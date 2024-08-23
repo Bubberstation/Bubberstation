@@ -2,13 +2,13 @@
 #define FISHING_DUD "dud"
 
 // Baseline fishing difficulty levels
-#define FISHING_DEFAULT_DIFFICULTY 15
-#define FISHING_EASY_DIFFICULTY 10
+#define FISHING_DEFAULT_DIFFICULTY 10 // BUBBER EDIT 15 -> 10
+#define FISHING_EASY_DIFFICULTY 6 // BUBBER EDIT 10 -> 6
 
 /// Difficulty modifier when bait is fish's favorite
-#define FAV_BAIT_DIFFICULTY_MOD -5
+#define FAV_BAIT_DIFFICULTY_MOD -10 //Bubberstation change: -5 to -10
 /// Difficulty modifier when bait is fish's disliked
-#define DISLIKED_BAIT_DIFFICULTY_MOD 15
+#define DISLIKED_BAIT_DIFFICULTY_MOD 10 //Bubberstation change: 15 to 10.
 /// Difficulty modifier when our fisherman has the trait TRAIT_EXPERT_FISHER
 #define EXPERT_FISHER_DIFFICULTY_MOD -5
 

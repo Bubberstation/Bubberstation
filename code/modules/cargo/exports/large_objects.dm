@@ -140,6 +140,7 @@
 								/datum/gas/helium,
 								/datum/gas/antinoblium,
 								/datum/gas/halon,
+								/datum/gas/goblin //BUBBERSTATION CHANGE
 								)
 
 	for(var/gasID in gases_to_check)

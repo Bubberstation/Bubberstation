@@ -321,7 +321,7 @@
 			damage_increase += rand(-30, 30) // HONK
 		consume_returns(matter_increase, damage_increase)
 	else if(isobj(consumed_object))
-		if(!iseffect(consumed_object))
+		if(!iseffect(consumed_object) && !(consumed_object.flags_1 & SUPERMATTER_NOLOGS_1)) //BUBBER EDIT | NOLOGS flag Addition to ignore items engineers like to feed the SM :3
 			var/suspicion = ""
 			if(consumed_object.fingerprintslast)
 				suspicion = "last touched by [consumed_object.fingerprintslast]"

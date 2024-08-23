@@ -15,6 +15,16 @@
 		if(prob(10)) //10% chance to drop the message entirely
 			return
 		message = Gibberish(message, emp_damage >= 12)//scrambles the message, gets worse when emp_damage is higher
+	// BUBBER CHANGE: funny talking head
+	var/datum/antagonist/bloodsucker/spooky_vampire_head = mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!container && spooky_vampire_head)
+		var/obj/head = spooky_vampire_head.is_head(src)
+		if(!head)
+			return
+		var/animation_time = max(2, length_char(message) * 0.5)
+		head.Shake(duration = animation_time)
+		..()
+	// BUBBER CHANGE END
 
 	return ..()
 

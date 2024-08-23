@@ -100,6 +100,9 @@ GLOBAL_VAR(antag_prototypes)
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
+	//BUBBERSTATION CHANGE START: ANTAG TICKET INTEGRATION
+	out += "Antag Tickets: <B>[current.client.get_antag_tickets()]</B> (Current multiplier: <B>x[current.client.antag_ticket_multiplier()]</B>)<br>"
+	//BUBBERSTATION CHANGE END: ANTAG TICKET INTEGRAATION
 	out += "Assigned role: [assigned_role.title]. <a href='?src=[REF(src)];role_edit=1'>Edit</a><br>"
 	out += "Faction and special role: <b><font color='red'>[special_role]</font></b><br>"
 	out += "<a href='?_src_=holder;[HrefToken()];check_teams=1'>Show Teams</a><br><br>"

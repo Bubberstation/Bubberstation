@@ -221,6 +221,13 @@
 			render_list += "<span class='info ml-1'>Subject Major Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)].</span>\n"
 			if(advanced)
 				render_list += "<span class='info ml-1'>Subject Minor Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE)].</span>\n"
+				// Allergies - BUBBER EDIT BEGIN
+			for(var/datum/quirk/quirky as anything in target.quirks)
+				if(istype(quirky, /datum/quirk/item_quirk/allergic))
+					var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
+					var/allergies = allergies_quirk.allergy_string
+					render_list += "<span class='alert ml-1'><b>Subject is extremely allergic to the following chemicals:</b></span>\n"
+					render_list += "<span class='alert ml-2'><b>[allergies]</b></span>\n" // BUBBER EDIT END
 
 	// SKYRAT EDIT ADDITION START -- Show increased/decreased brute/burn mods, to "leave a paper trail" for the fragility quirk
 	if(ishuman(target))
@@ -441,6 +448,21 @@
 	if(death_consequences_status_text)
 		render_list += death_consequences_status_text
 	// SKYRAT EDIT END
+
+	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
+	var/datum/component/changeling_zombie_infection/cling_infection = target.GetComponent(/datum/component/changeling_zombie_infection)
+	if(cling_infection)
+		if(cling_infection.zombified)
+			render_list += span_userdanger("Classified viral infection detected.")
+			render_list += "<span class='alert ml-1'>Treatment Guide: Euthanasia.</span>"
+		else
+			render_list += span_userdanger("Classified viral infection detected.")
+			if(cling_infection.was_changeling_husked)
+				render_list += "<span class='alert ml-1'>Treatment Guide: Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u of synthflesh or inject rezadone.</span>"
+			else
+				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
+				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
+	//BUBBERSTATION EDIT END
 
 	if(tochat)
 		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)

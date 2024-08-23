@@ -289,6 +289,13 @@
 /datum/reagent/water/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume)//Splashing people with water can help put them out!
 	. = ..()
 	if(methods & TOUCH)
+		//BUBBER EDIT ADDITION START - Species quirks; Hydrophilic trait
+		if(HAS_TRAIT(exposed_mob, TRAIT_HYDROPHILIC))
+			exposed_mob.blood_volume = max(exposed_mob.blood_volume - 30, 0) //So we don't end up with slimes going to -2535% blood.
+			to_chat(exposed_mob, span_warning("The water causes you to melt away!"))
+			return
+		//BUBBER EDIT ADDITION END
+
 		exposed_mob.extinguish_mob() // extinguish removes all fire stacks
 		exposed_mob.adjust_wet_stacks(reac_volume * WATER_TO_WET_STACKS_FACTOR_TOUCH) // Water makes you wet, at a 50% water-to-wet-stacks ratio. Which, in turn, gives you some mild protection from being set on fire!
 
@@ -1805,9 +1812,10 @@
 /datum/reagent/plantnutriment/endurogrow/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
 	var/obj/item/seeds/myseed = mytray.myseed
 	if(!isnull(myseed))
-		myseed.adjust_potency(-round(volume * 0.1))
-		myseed.adjust_yield(-round(volume * 0.075))
+		myseed.adjust_potency(-round(volume * 0.3)) //BUBBER EDIT
+		myseed.adjust_yield(-round(volume * 0.225)) //BUBBER EDIT
 		myseed.adjust_endurance(round(volume * 0.35))
+		myseed.adjust_lifespan(round(volume * 0.35)) //BUBBER EDIT
 
 /datum/reagent/plantnutriment/liquidearthquake
 	name = "Liquid Earthquake"

@@ -15,7 +15,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		body += "\[<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</A>\]"
 		if(CONFIG_GET(flag/use_exp_tracking))
 			body += "\[<A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(player)]'>" + player.client.get_exp_living(FALSE) + "</a>\]"
-
+			// BUBBERS EDIT START - Job exemption
+			body += "<br>\[<a href='?_src_=holder;[HrefToken()];getjobexemptwindow=[player.client.ckey]'>Job Exemption Menu</a>\]"
+			// BUBBERS EDIT END
 	if(isnewplayer(player))
 		body += " <B>Hasn't Entered Game</B> "
 	else
@@ -37,7 +39,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 
 		if(SSplayer_ranks.is_veteran(player.client, admin_bypass = FALSE))
 			player_ranks += "Veteran"
-
+		//BUBBER ADDITION START
+		if(SSplayer_ranks.is_vetted(player.client, admin_bypass = FALSE))
+			player_ranks |= "Vetted"
+		// BUBBER ADDITION END
 		body += "<br><br><b>Player Ranks: </b>[length(player_ranks) ? player_ranks.Join(", ") : "None"]"
 		// SKYRAT EDIT END
 		body += "<br><br><b>CentCom Galactic Ban DB: </b> "

@@ -82,7 +82,6 @@
 	)
 	crate_name = "Carwo 'Renoster' Shotgun Crate"
 
-
 /datum/supply_pack/security/armory/sindano
 	name = "Carwo 'Sindano' Submachinegun Crate"
 	desc = "Three entirely proprietary Sindano kits, chambered in .35 Sol Short. Each kit contains three empty magazines and a box each of incapacitator and lethal rounds."

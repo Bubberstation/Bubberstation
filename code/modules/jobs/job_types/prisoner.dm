@@ -7,6 +7,7 @@
 	spawn_positions = 2
 	supervisors = "the security team"
 	exp_granted_type = EXP_TYPE_CREW
+	bounty_types = CIV_JOB_PRISONER
 	paycheck = PAYCHECK_LOWER
 	config_tag = "PRISONER"
 

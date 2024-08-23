@@ -594,7 +594,7 @@
 		our_plant.color = COLOR_RED
 
 	playsound(our_plant.drop_location(), 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
-	addtimer(CALLBACK(src, PROC_REF(detonate), our_plant), rand(1 SECONDS, 6 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(detonate), our_plant), rand(4 SECONDS, 10 SECONDS)) //BUBBERSTATION CHANGE: 1 TO 6 INTO 4 TO 10.
 
 /datum/plant_gene/trait/bomb_plant/potency_based/detonate(obj/item/our_plant)
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
