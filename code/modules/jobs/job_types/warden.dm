@@ -51,6 +51,7 @@
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
+		/obj/item/flashlight/seclite = 1, //BUBBER EDIT
 		)
 	belt = /obj/item/modular_computer/pda/warden
 	ears = /obj/item/radio/headset/headset_sec/alt

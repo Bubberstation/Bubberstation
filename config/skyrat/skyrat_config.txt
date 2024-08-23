@@ -39,7 +39,7 @@ ALERT_DELTA_DOWNTO Destruction of the station is still imminent. All crew are in
 ALERT_GAMMA The Solar Federation has placed this system under Gamma Alert status. This galactic system is facing a ZK-Class Reality Failure Scenario. Security Personnel is authorized full access to lethal equipment to enforce Martial Law. Failure to follow emergency procedures is punishable by death. This is not a drill.
 
 ## How long until someone can be put in cryo if they are SSD
-CRYO_MIN_SSD_TIME 15
+CRYO_MIN_SSD_TIME 1
 
 ## log subtler emotes in game.txt
 #LOG_SUBTLER
@@ -48,7 +48,7 @@ CRYO_MIN_SSD_TIME 15
 #AUTOTRANSFER
 
 ## Enables starting transfer votes by the crew at large.
-#ALLOW_VOTE_TRANSFER
+ALLOW_VOTE_TRANSFER
 
 ## autovote initial delay (deciseconds in real time) before first automatic transfer vote call (default 120 minutes)
 ## Set to 0 to disable the subsystem altogether.
@@ -102,7 +102,7 @@ SSDECAY_DISABLE_NESTS
 #DISABLE_MISMATCHED_PARTS
 
 ## Do we allow consecutive catastrophic events?
-ALLOW_CONSECUTIVE_CATASTROPIC_EVENTS
+#ALLOW_CONSECUTIVE_CATASTROPIC_EVENTS
 
 ## What is the most amount of time the next event can run?
 EVENT_FREQUENCY_UPPER 8400

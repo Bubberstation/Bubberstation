@@ -389,6 +389,11 @@
 			if (!isnull(initial(strain.analyzerdesceffect)))
 				info_text += "<br>[span_notice("[initial(strain.analyzerdesceffect)]")]"
 
+			//BUBBERSATION CHANGE START: INSTANT ALERT WARNING
+			if(initial(strain.instant_alert_on_change))
+				info_text += "<br>[span_danger("WARNING: Changing your strain to this will instantly alert everyone to your presence!")]"
+			//BUBBERSTATION CHANGE END: INSTANT ALERT WARNING
+
 			var/datum/radial_menu_choice/choice = new
 			choice.image = strain_icon
 			choice.info = info_text
@@ -399,17 +404,26 @@
 	if (isnull(strain_result))
 		return
 
+	/* BUBBERSTATION CHANGE START: REFACTORS THIS.
 	if (!free_strain_rerolls && !can_buy(BLOB_POWER_REROLL_COST))
 		return
+	BUBBERSTATION CHANGE END: REFACTORS THIS. */
 
+	//Below code has basically been bubberstation refactored. Too many changes to make even semi-modular.
 	for (var/_other_strain in GLOB.valid_blobstrains)
 		var/datum/blobstrain/other_strain = _other_strain
 		if (initial(other_strain.name) == strain_result)
-			set_strain(other_strain)
 
-			if (free_strain_rerolls)
+			if(!has_announced && initial(other_strain.instant_alert_on_change) && tgui_alert(src, "Selecting this strain will alert the crew that you exist. Are you sure you wish to continue?","*Notices your Strain*", list("Yes","No")) != "Yes")
+				return
+
+			if(free_strain_rerolls)
 				free_strain_rerolls -= 1
+			else if(!can_buy(BLOB_POWER_REROLL_COST))
+				return
 
+			set_strain(other_strain)
+// BUBBER REFACTOR END
 			last_reroll_time = world.time
 			strain_choices = null
 

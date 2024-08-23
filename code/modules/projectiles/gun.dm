@@ -77,7 +77,7 @@
 		pin = new pin(src)
 
 	add_seclight_point()
-	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
+//	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES //BUBBER EDIT REMOVAL
 	give_manufacturer_examine() // SKYRAT EDIT ADDITON - MANUFACTURER EXAMINE
 	add_bayonet_point()
 

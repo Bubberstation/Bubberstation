@@ -1,5 +1,5 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
-#define KEEP_ROUNDS_MAP 3
+#define KEEP_ROUNDS_MAP 2 //BUBBERSTATION CHANGE: 3 TO 2.
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -48,6 +48,8 @@ SUBSYSTEM_DEF(persistence)
 	var/tram_hits_this_round = 0
 	var/tram_hits_last_round = 0
 
+	var/last_storyteller = "" // BUBBER EDIT ADD: Storyteller votes
+
 /datum/controller/subsystem/persistence/Initialize()
 	load_poly()
 	load_wall_engravings()
@@ -61,6 +63,7 @@ SUBSYSTEM_DEF(persistence)
 	load_panic_bunker() //SKYRAT EDIT ADDITION - PANICBUNKER
 	load_tram_counter()
 	load_adventures()
+	load_storyteller() //BUBBER EDIT ADD - Storyteller
 	return SS_INIT_SUCCESS
 
 ///Collects all data to persist.
@@ -106,7 +109,7 @@ SUBSYSTEM_DEF(persistence)
 		for(var/name in SSpersistence.saved_maps)
 			if(VM.map_name == name)
 				run++
-		if(run >= 2) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation.
+		if(run >= 1) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation. //BUBBERSTATION CHANGE 2 TO 1.
 			blocked_maps += VM.map_name
 
 ///Updates the list of the most recent maps.

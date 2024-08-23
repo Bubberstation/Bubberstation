@@ -303,6 +303,20 @@
 
 	table_smacks_left--
 	if(table_smacks_left <= 0)
+		//BUBBER ADDITION BEGIN - Potentially break glass tables - This introduces a potential check to break a glass table
+		if(table.type == /obj/structure/table/glass) /// Glass table... roll that dice, dice man
+			if(prob(!HAS_TRAIT(user, TRAIT_CURSED) ? 15 : 30)) /// 15% chance (or double for cursed folk)
+				var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
+				var/extra_wound = 0
+				if(HAS_TRAIT(user, TRAIT_HULK))
+					extra_wound = 20
+				user.visible_message(span_danger("[user.name] slams their hand through \the [table]!"),
+					span_userdanger("You smash your hand through \the [table]!"), span_hear("You hear a loud crash of broken glass!"), COMBAT_MESSAGE_RANGE, user)
+				active_arm?.receive_damage(brute = 10, wound_bonus = extra_wound)
+				user.apply_damage(30, STAMINA)
+				table.deconstruct(FALSE)
+				log_combat(user, user, "hand slammed", null, "through [table]")
+		//BUBBER ADDITION END
 		qdel(src)
 
 /// Slam the table, demand some attention

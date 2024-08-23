@@ -978,15 +978,20 @@
 	)
 
 	var/oxygen_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/oxygen][MOLES])
-	var/nitrogen_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitrogen][MOLES])
+	// var/nitrogen_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitrogen][MOLES]) BUBBERSTATION CHANGE: ALLOWS ASHWALKERS TO BREATHE ON STATION
 	var/plasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/plasma][MOLES])
 	var/carbon_dioxide_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/carbon_dioxide][MOLES])
 	var/bz_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/bz][MOLES])
 	var/miasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/miasma][MOLES])
 
 	safe_oxygen_min = max(0, oxygen_pp - GAS_TOLERANCE)
+	/* BUBBERSTATION CHANGE START: ALLOWS ASHWALKERS TO BREATHE ON STATION
 	safe_nitro_min = max(0, nitrogen_pp - GAS_TOLERANCE)
 	safe_plasma_min = max(0, plasma_pp - GAS_TOLERANCE)
+	*/
+	safe_nitro_min = 0
+	safe_plasma_min = 0
+	//BUBBERSTATION CHANGE END
 
 	// Increase plasma tolerance based on amount in base air
 	safe_plasma_max += plasma_pp

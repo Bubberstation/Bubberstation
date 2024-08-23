@@ -1,5 +1,5 @@
 
-#define EMOTE_DELAY (5 SECONDS) //To prevent spam emotes.
+#define EMOTE_DELAY (1 SECONDS) //To prevent spam emotes. - BUBBER EDIT 5 to 1 SECOND CHANGE IN COOLDOWN
 
 /mob
 	var/nextsoundemote = 1 //Time at which the next emote can be played
@@ -576,3 +576,11 @@
 
 /datum/emote/living/surrender
 	muzzle_ignore = TRUE
+
+/datum/emote/living/mggaow
+	key = "mggaow"
+	key_third_person = "meows loudly"
+	message = "meows loudly!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'

@@ -831,6 +831,7 @@
   Nerev4r:
   - balance: Hemophages now have higher healing numbers, and liquid blood helps non-bone
       wounds like tea does.
+  - rscdel: Heretic side path points are gone
   OrionTheFox:
   - bugfix: fixed the Face Scarf not changing the icon correctly when toggled
   - bugfix: fixed Vapes checking for digitigrade legs, rather than muzzles
@@ -854,6 +855,24 @@
   - bugfix: Fixed the infinite growth serum exploit.
   - bugfix: Fixed generic nutriment processing even when dead.
   - rscadd: The mother hallucination has more possible one-liners now.
+  - rscadd: The mother hallucination has more possible one-liners now.
+  - bugfix: selling large amount of mats in cargo should not give you infinite credits
+  - bugfix: runtime when adjusting material market after buying
+  - spellcheck: Nukie and ERT defibrillators now reference combat mode instead of
+      intents.
+  - bugfix: fixes bug that was preventing high luminosity eyes' light from turning
+      on
+  - bugfix: fixes eyes being on the wrong side of the head when facing east/west
+  - bugfix: Chat shouldn't bluescreen at the start of the round
+  - bugfix: Hydrotrays consume nutrients according to their proportion in the mix,
+      instead of randomly picking reagents to consume every cycle.
+  - bugfix: Stopped a DS crash when shooting a rebar crossbow in specific circumstances.
+  - qol: Nearly every ghost alert should now feature a "VIEW" button, even those with
+      click interaction.
+  - rscdel: Ghost alerts no longer show the entire message in the tooltip, instead
+      have been replaced with titles.
+  - spellcheck: Some roundstart tips have been made clearer regarding "suits" vs.
+      "exosuits".
   - bugfix: debug chem synthesizer works again. cleaned up chem dispenser, portable
       chem dispenser & debug chem synthesizer ui code
   - qol: ui for displaying beaker reagents for debug chem synthesizer has been improved.
@@ -892,6 +911,9 @@
   - bugfix: fixes missing examine_more text when double examining a mob (e.g. dogtags
       will now display)
   - bugfix: clickable links in examine text will now be surrounded in [brackets].
+  - bugfix: Hardcore Random will no longer assign incompatible quirks.
+  - bugfix: Admins can spawn bitrunning events (again!)
+  - bugfix: fixed a race condition with mutations
   xXPawnStarrXx:
   - rscadd: Added a stone griddle
   - rscadd: Added a seed shelf & produce bin
@@ -960,6 +982,10 @@
       this in poor ways may displease the Gods. Woe upon your lineage.
   - rscadd: A single pack of glowshroom mycelium has been added to the Hearth's starting
       seed stores for the benefit of creative healers, shamans, and radiation enthusiasts.
+  Cyprex:
+  - code_imp: Another test of the changelog bot!
+  Majkl-J:
+  - bugfix: Fixes an exploit with synth computers
 2023-11-22:
   Bumtickley00:
   - balance: The CMO's hypospray now holds 60u, and can be set to inject smaller amounts
@@ -1055,6 +1081,27 @@
   - code_imp: 'The currently operating rust-g version on a live server is posted to
       places like the runtime.log, in the same place where the revision information
       and any applicable test merges already were. /:cl:'
+  BurgerBB:
+  - bugfix: Fixes weak tackles bugging out your movespeed.
+  Majkl-J:
+  - rscadd: Rockfruit, the new awesome fruit that's literally just a plant growing
+      a granite shell
+  - image: Rockfruit seeds, plant, fruit, and rocks
+  - rscadd: Salt in biogenerator
+  - bugfix: Lime juice is no longer orange juice in biogens
+  - rscadd: Synths can now be printed in exofabs
+  ReturnToZender:
+  - rscadd: Pref check on autopunctuation
+  Runi-c:
+  - bugfix: non-moths can digest moth milk
+  The Sharkening:
+  - bugfix: removes skyrat rules from the antag TGUI
+  The-Sun-In-Splendour:
+  - balance: emp mold mosquitoes no longer shock you all the time until you have a
+      stroke irl over the annoyance
+  pixelkitty286:
+  - rscadd: 'emotes: mrrp, fpurr, gecker, and prbt'
+  - sound: mrrp.ogg, prbt.ogg, fox_purr.ogg, and foxgecker.ogg
 2023-11-24:
   Danny Boy:
   - rscadd: Added Affection Aversion quirk which stops affection modules
@@ -1101,6 +1148,10 @@
   - rscadd: you can craft the gutlunch trough
   - qol: you can fill the gutlunch trough with a mining bag
   - rscadd: you can hammer glass shards to get back sand
+  Majkl-J:
+  - rscadd: 'New quirk: Waddle'
+  larentoun:
+  - code_imp: Now if ONLY modular content was modified, build recompiles dme correctly
 2023-11-25:
   SkyratBot:
   - rscadd: Adds an arctangent2 component to circuitry!
@@ -1173,6 +1224,12 @@
   - rscdel: Removes a irrelevant quirk restriction of a nonexistant quirk
   - rscadd: Resonance degradation disorder, a highly customizable quirk that acts
       as a far more in-depth version of DNR
+  Majkl-J:
+  - rscadd: Ghosting or going DNR makes you appear slightly transparent
+  The Sharkening:
+  - balance: Nerfs the blueshield modsuit and gives it back
+  - balance: "Security modsuit buffed (\tmelee = 40, bullet = 30, laser = 30, energy\
+      \ = 40, bomb = 50, bio = 100, fire = 100, acid = 100, wound = 10"
 2023-11-28:
   GoldenAlpharex:
   - rscdel: The Radioactive Nebula station trait will no longer cause radiation storms,

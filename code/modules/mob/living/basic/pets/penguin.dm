@@ -199,9 +199,9 @@
 	can_grow_up = FALSE
 
 /mob/living/basic/pet/penguin/emperor/snowdin
-	minimum_survivable_temperature = ICEBOX_MIN_TEMPERATURE
+	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE //BUBBER EDIT Original = ICEBOX_MIN_TEMPERATURE
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/pet/penguin/baby/permanent/snowdin
-	minimum_survivable_temperature = ICEBOX_MIN_TEMPERATURE
+	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE //BUBBER EDIT Original = ICEBOX_MIN_TEMPERATURE
 	gold_core_spawnable = NO_SPAWN

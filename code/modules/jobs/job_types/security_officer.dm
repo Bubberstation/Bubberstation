@@ -223,6 +223,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
+		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt

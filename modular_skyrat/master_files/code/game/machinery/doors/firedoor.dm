@@ -9,20 +9,22 @@
 /obj/machinery/door/proc/try_manual_override(mob/user)
 	if(density && !welded && !operating)
 		balloon_alert(user, "opening...")
-		if(do_after(user, 10 SECONDS, target = src))
-			try_to_crowbar(null, user)
+		if(do_after(user, 5 SECONDS, target = src))
+			try_to_crowbar(null,user)
 			return TRUE
 	return FALSE
 
+// Uncomment this override to disable the auto-close feature of firedoors.
+/*
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/used_object, mob/user)
 	if(welded || operating)
 		balloon_alert(user, "opening failed!")
 		return
-
 	if(density)
 		open()
 	else
 		close()
+*/
 
 /obj/machinery/door/firedoor/heavy/closed
 	icon_state = "door_closed"

@@ -50,10 +50,7 @@
 		min_tile_charge = 6, \
 		)
 
-	AddComponent(/datum/component/butchering, \
-		speed = 10 SECONDS, \
-		effectiveness = 70, \
-	)
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 30)
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force_unwielded, \
 		force_wielded = force_wielded, \

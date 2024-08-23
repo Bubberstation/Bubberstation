@@ -695,7 +695,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>")
-			to_chat_immediate(src, {"<span class='notice'>Hi! We have temporarily enabled safety measures that prevents new players from joining currently.<br>Please try again later, or contact a staff on Discord if you have any questions. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #access-requests channel under the \"Landing Zone\" category in the Discord server linked here: <a href='https://discord.gg/6RpdCgR'>https://discord.gg/6RpdCgR</a></span>"}) //skyrat-edit
+			//BUBBER EDIT ADDITION BEGIN - PANICBUNKER TEXT
+			//BUBBER TODO: Make the to_chat a config thing and present it to skyrat
+			var/forumurl = CONFIG_GET(string/forumurl)
+			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to the game server, read the rules and open a ticket in the #get-whitelisted channel under the \"Whitelist\" category in the Discord server linked here: <a href=' [forumurl] '>[forumurl]</a></span>"})
+			//BUBBER EDIT ADDITION END - PANICBUNKER TEXT
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])

@@ -57,6 +57,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// This atom always returns its turf in get_turf_pixel instead of the turf from its offsets
 #define IGNORE_TURF_PIXEL_OFFSET_1 (1<<18)
 
+//BUBBER EDIT START - Flags
+//Does item send log notices to admin log when consumed by supermatter?
+#define SUPERMATTER_NOLOGS_1 (1<<20)
+
+//BUBBER EDIT END
 // Update flags for [/atom/proc/update_appearance]
 /// Update the atom's name
 #define UPDATE_NAME (1<<0)

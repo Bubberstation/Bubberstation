@@ -311,7 +311,7 @@
 		if(!blood_to_hurtguy)
 			return .
 		// We ignore incompatibility here.
-		mendicant.transfer_blood_to(hurtguy, blood_to_hurtguy, forced = TRUE, ignore_incompatibility = TRUE)
+		mendicant.transfer_blood_to(hurtguy, blood_to_hurtguy, forced = TRUE)
 		to_chat(mendicant, span_notice("Your veins (and brain) feel a bit lighter."))
 		. = TRUE
 		// Because we do our own spin on it!
@@ -328,7 +328,7 @@
 		// mender always gonna have blood
 
 		// We ignore incompatibility here.
-		hurtguy.transfer_blood_to(mendicant, hurtguy.blood_volume - BLOOD_VOLUME_EXCESS, forced = TRUE, ignore_incompatibility = TRUE)
+		hurtguy.transfer_blood_to(mendicant, hurtguy.blood_volume - BLOOD_VOLUME_EXCESS, forced = TRUE)
 		to_chat(hurtguy, span_notice("Your veins don't feel quite so swollen anymore."))
 		. = TRUE
 		// Because we do our own spin on it!

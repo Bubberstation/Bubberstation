@@ -33,6 +33,9 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
+	user.visible_message(span_warning("[user] begins to crush [src]!"), span_danger("You begin to crush [src]!")) //BUBBERSTATION ADDITION
+	if(!do_after(user, delay = 3 SECONDS)) //BUBBERSTATION ADDITION
+		return //BUBBERSTATION ADDITION
 	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

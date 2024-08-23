@@ -500,13 +500,23 @@
 	if(stat == DEAD)
 		if(reagents && (reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane))) // No organ decay if the body contains formaldehyde.
 			return
+		var/rot_count = 0 //BUBBERSTATION CHANGE: MIASMA ORGAN ROT
 		for(var/obj/item/organ/internal/organ in organs)
 			// On-death is where organ decay is handled
 			if(organ?.owner) // organ + owner can be null due to reagent metabolization causing organ shuffling
-				organ.on_death(seconds_per_tick, times_fired)
+				rot_count += organ.on_death(seconds_per_tick, times_fired) //BUBBERSTATION ADDITION: MIASMA_COUNT. NOTE THIS ISN'T CALLED ON ROBOTIC ORGANS.
 			// We need to re-check the stat every organ, as one of our others may have revived us
 			if(stat != DEAD)
 				break
+		//BUBBERSTATION CHANGE START: MIASMA ORGAN ROT
+		if(rot_count > 0) //This is going to be weird if there are mechanics that cause an organ to heal if you're dead, but at least this saves performance.
+			var/turf/organ_turf = get_turf(src) //We don't check the loc because of lockers. Stasis bodybags would prevent this from running anyways.
+			if(isopenturf(organ_turf) && !isspaceturf(organ_turf)) //Only spawn miasma on floor turfs and not in space turfs.
+				var/turf/open/open_turf = organ_turf
+				if(!open_turf.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
+					var/miasma_to_spawn = (rot_count/(6*100))*30 //There are about 6 rottable organs in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
+					open_turf.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
+		//BUBBERSTATION CHANGE END: MIASMA
 		return
 
 	// NOTE: organs_slot is sorted by GLOB.organ_process_order on insertion
