@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 	// SKYRAT EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
-	var/chosen_assignment = person_client?.prefs.alt_job_titles[assignment] || assignment
+	var/chosen_assignment = id_card?.get_job_title() || assignment //BUBBER EDIT: Intern Job Tags
 	// SKYRAT EDIT ADDITION END - ALTERNATIVE_JOB_TITLES
 
 	var/datum/record/locked/lockfile = new(

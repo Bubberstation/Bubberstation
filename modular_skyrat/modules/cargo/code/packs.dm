@@ -211,7 +211,7 @@
 	name = "Helmets Crate"
 	desc = "Contains three standard-issue brain buckets."
 	cost = CARGO_CRATE_VALUE * 2
-	contains = list(/obj/item/clothing/head/helmet/sec/sol = 3)
+	contains = list(/obj/item/clothing/head/helmet/sec = 3)
 	crate_name = "helmet crate"
 
 /datum/supply_pack/security/deployablebarricades
@@ -698,8 +698,8 @@
 		/obj/item/clothing/suit/armor/vest/cuirass/larp,
 		/obj/item/gun/ballistic/bow/longbow,
 		/obj/item/gun/ballistic/bow/longbow,
-		/obj/item/storage/bag/quiver,
-		/obj/item/storage/bag/quiver,
+		/obj/item/storage/bag/quiver/full,
+		/obj/item/storage/bag/quiver/full,
 		/obj/item/clothing/head/helmet/knight/red,
 		/obj/item/clothing/head/helmet/knight/blue,
 		/obj/item/food/bread/plain,

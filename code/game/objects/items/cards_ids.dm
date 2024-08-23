@@ -820,8 +820,9 @@
 /// Updates the name based on the card's vars and state.
 /obj/item/card/id/proc/update_label()
 	var/name_string = registered_name ? "[registered_name]'s ID Card" : initial(name)
-	var/assignment_string
+	var/assignment_string = get_job_title() // BUBBER EDIT: Adds a new proc which is used to get a job title
 
+	/* BUBBER EDIT: Moved to `get_job_title()`
 	if(is_intern)
 		if(assignment)
 			assignment_string = trim?.intern_alt_name || "Intern [assignment]"
@@ -829,6 +830,7 @@
 			assignment_string = "Intern"
 	else
 		assignment_string = assignment
+	*/
 
 	name = "[name_string] ([assignment_string])"
 
