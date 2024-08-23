@@ -39,6 +39,7 @@
 	name = "high heels"
 	desc = "A fancy pair of high heels. Won't compensate for your below average height that much."
 	icon_state = "heels"
+	var/list/squeak_sound = list('modular_skyrat/modules/modular_items/lewd_items/sounds/highheel1.ogg' =1, 'modular_skyrat/modules/modular_items/lewd_items/sounds/highheel2.ogg' =1)
 	greyscale_config = /datum/greyscale_config/heels
 	greyscale_config_worn = /datum/greyscale_config/heels/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/heels/worn/digi
@@ -51,6 +52,7 @@
 	icon_state = "fancyheels"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
+	var/list/squeak_sound = list('modular_skyrat/modules/modular_items/lewd_items/sounds/highheel1.ogg' =1, 'modular_skyrat/modules/modular_items/lewd_items/sounds/highheel2.ogg' =1)
 	greyscale_colors = "#FFFFFF"
 	greyscale_config = /datum/greyscale_config/fancyheels
 	greyscale_config_worn = /datum/greyscale_config/fancyheels/worn
