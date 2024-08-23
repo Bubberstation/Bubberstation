@@ -50,6 +50,16 @@
 	ammo_type = /obj/item/ammo_casing/c9mm/ihdf
 	icon_state = "g18_ihdf"
 
+//Shotgun Internal Tube
+
+/obj/item/ammo_box/magazine/internal/shot/extended
+	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
+	max_ammo = 10
+
+/obj/item/ammo_box/magazine/internal/shot/somewhatextended
+	name = "combat shotgun internal magazine"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	max_ammo = 8
 
 //10mm Cylinder
 /obj/item/ammo_box/magazine/internal/cylinder/nt_sec
@@ -72,6 +82,8 @@
 	ammo_band_icon = "+38_ammo_band"
 
 	custom_premium_price = 50
+
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_box/c10mm/speedloader/rubber
 
