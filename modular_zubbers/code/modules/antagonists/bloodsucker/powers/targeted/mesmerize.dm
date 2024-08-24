@@ -7,7 +7,7 @@
  * 	Level 5: Doesn't need to be facing you anymore
  */
 
-#define MESMERIZE_SLOWDOWN_LEVEL 2
+#define MESMERIZE_MUTE_LEVEL 2
 #define MESMERIZE_GLASSES_LEVEL 3
 #define MESMERIZE_FACING_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
@@ -17,7 +17,7 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
-	cooldown_time = 20 SECONDS
+	cooldown_time = 30 SECONDS
 	target_range = 4
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE
@@ -25,7 +25,7 @@
 	///Our mesmerized target - Prevents several mesmerizes.
 	var/datum/weakref/target_ref
 	/// How long it takes us to mesmerize our target.
-	var/mesmerize_delay = 4 SECONDS
+	var/mesmerize_delay = 5 SECONDS
 	/// At what level this ability will blind the target at. Level 0 = never.
 	var/blind_at_level = 0
 	/// if the ability requires you to be physically facing the target
@@ -48,14 +48,14 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. = list()
-	. += "Click any player to attempt to mesmerize them. This will stun and mute the victim."
-	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_SLOWDOWN_LEVEL] they will be also slowed down."
+	. += "Click any player to attempt to mesmerize them. This will stun the victim."
+	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_MUTE_LEVEL] they will be also muted."
 	if(blocked_by_glasses && requires_facing_target)
-		. += "Mesmerize requires you to not be wearing glasses and to be facing your target."
+		. += "[src] requires you to not be wearing glasses and to be facing your target."
 	else if(blocked_by_glasses)
-		. += "Mesmerize requires you to not be wearing glasses."
+		. += "[src] requires you to not be wearing glasses."
 	else if(requires_facing_target)
-		. += "Mesmerize requires you to be facing your target."
+		. += "[src] requires you to be facing your target."
 	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
 	. += "Obviously, both parties need to not be blind."
 	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
@@ -117,7 +117,7 @@
 		owner.balloon_alert(owner, "you must be facing [current_target].")
 		return FALSE
 	// Target facing me? (On the floor, they're facing everyone)
-	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= 4))
+	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= MESMERIZE_FACING_LEVEL))
 		owner.balloon_alert(owner, "[current_target] must be facing you.")
 		return FALSE
 
@@ -140,13 +140,10 @@
 		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 		return
 	// slow them down during the mesmerize
-	mesmerized_target.add_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
 	mute_target(mesmerized_target)
 	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
-		mesmerized_target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
 		StartCooldown(cooldown_time * 0.5)
 		return
-	mesmerized_target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
 	// Can't quite time it here, but oh well
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
@@ -206,7 +203,8 @@
 	mesmerized_target.become_blind(MESMERIZE_TRAIT)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target)
-	mesmerized_target.set_silence_if_lower(get_mute_time())
+	if(level_current >= MESMERIZE_MUTE_LEVEL)
+		mesmerized_target.set_silence_if_lower(get_mute_time())
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower(deactivate_flags)
 	. = ..()
@@ -238,4 +236,4 @@
 
 #undef MESMERIZE_GLASSES_LEVEL
 #undef MESMERIZE_FACING_LEVEL
-#undef MESMERIZE_SLOWDOWN_LEVEL
+#undef MESMERIZE_MUTE_LEVEL
