@@ -192,7 +192,7 @@
 	PowerActivatedSuccesfully(cost_override = bloodcost * 0.5)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
-	return 9 SECONDS + level_current * 1.5 SECONDS
+	return 9 SECONDS + level_current * 1 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_mute_time()
 	return get_power_time() * 2
