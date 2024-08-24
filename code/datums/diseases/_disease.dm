@@ -74,7 +74,8 @@
 
 	var/turf/source_turf = get_turf(infectee)
 	mobs_infected++
-	log_virus("[key_name(infectee)] was infected by virus: [src.admin_details()] at [loc_name(source_turf)]. Total infected by this variant: [mobs_infected]")
+	virus_debug("New infectee: [infectee]. Total infected by this variant: [mobs_infected]")
+	log_virus("[key_name(infectee)] was infected by virus: [src.admin_details()] at [loc_name(source_turf)]")
 
 /// Updates the spread flags set, ensuring signals are updated as necessary
 /datum/disease/proc/update_spread_flags(new_flags)
@@ -341,7 +342,7 @@
 	unregister_disease_signals()
 	LAZYREMOVE(affected_mob.diseases, src) //remove the datum from the list
 	affected_mob.med_hud_set_status()
-	log_virus("[affected_mob] was cured of virus. Total infected by this variant: [mobs_infected]")
+	virus_debug("[affected_mob] was cured of virus. Total infected by this variant: [mobs_infected]")
 	affected_mob = null
 
 /**
