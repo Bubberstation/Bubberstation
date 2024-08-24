@@ -145,6 +145,8 @@
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end(quiet = FALSE)
+	if(!owner?.current)
+		CRASH("tried to call torpor_end without a valid owner")
 	if(quiet)
 		owner.current.grab_ghost()
 		to_chat(owner.current, span_warning("You have recovered from Torpor."))

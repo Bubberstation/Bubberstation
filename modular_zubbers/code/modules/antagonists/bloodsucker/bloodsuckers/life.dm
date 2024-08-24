@@ -77,8 +77,8 @@
 /datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)
 	// Starts at 15 (now 8 since we doubled the Feed time)
 	var/feed_amount = 15 + (power_level * 2)
-	var/blood_taken = min(feed_amount, target.blood_volume) * mult
-	target.blood_volume -= blood_taken
+	var/blood_taken = feed_amount * mult
+	target.blood_volume = max(target.blood_volume - blood_taken, 0)
 
 	///////////
 	// Shift Body Temp (toward Target's temp, by volume taken)
