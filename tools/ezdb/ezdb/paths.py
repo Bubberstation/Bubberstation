@@ -33,5 +33,8 @@ def get_initial_schema_path():
 def get_modular_schema_path():
     return get_root_path() / 'SQL' / 'skyrat_schema.sql'
 
+def get_bubber_schema_path():
+    return get_root_path() / 'SQL' / 'bubber_schema.sql'
+
 def get_changelog_path():
     return get_root_path() / 'SQL' / 'database_changelog.md'
