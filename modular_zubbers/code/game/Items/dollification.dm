@@ -53,7 +53,7 @@
 
 		to_chat(doll, span_purple(pick(clumsy_text)))
 
-/obj/item/dollification_vial/proc/pref_check(user)
+/obj/item/dollification_vial/proc/pref_check(mob/living/user)
 	if(user.client?.prefs?.read_preference(/datum/preference/toggle/erp/transformation))
 		return TRUE
 	else
