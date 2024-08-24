@@ -1,6 +1,7 @@
 /datum/disease
 	/// Debug logs for disease transmission refactor, to verify after the fact the system is working as intended
 	var/debug_id
+	var/mobs_infected = 0
 
 /datum/disease/proc/log_virus_debug(text)
 	if(!debug_id)
