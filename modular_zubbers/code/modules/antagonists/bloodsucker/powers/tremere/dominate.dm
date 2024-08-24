@@ -27,7 +27,7 @@
 	bloodcost = 15
 	constant_bloodcost = 0.1
 	target_range = 6
-	mesmerize_delay = 3 SECONDS
+	mesmerize_delay = 4 SECONDS
 	blind_at_level = 3
 	requires_facing_target = FALSE
 	blocked_by_glasses = FALSE
@@ -208,7 +208,7 @@
 	user.death()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassal_duration()
-	return (1 MINUTES) * min(level_current, 1)
+	return (1 MINUTES) * max(level_current, 1)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassalize_cooldown()
 	return cooldown_time * 3
