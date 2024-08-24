@@ -265,6 +265,7 @@
  * toxin-filled foam, and is purple - which, as we all know, is the colour of the poison
  * in the poison flask Hearthstone card.
  */
+ /* BUBBERSTATION CHANGE: REMOVES TOXIC MOLD.
 /datum/mold_type/toxic
 	name = "toxic"
 	mold_color = "#cb37f5"
@@ -290,6 +291,7 @@
 		reagent_capacity = TEMP_REAGENT_HOLDER_CAPACITY_LARGE,
 		reagent_to_add = /datum/reagent/toxin,
 		)
+*/
 
 
 /**

@@ -1,7 +1,7 @@
 #define SPREAD_PROCESS 2
 #define SPREAD_STALLED_PROCESS 10
 
-#define PROGRESSION_FOR_STRUCTURE 20
+#define PROGRESSION_FOR_STRUCTURE 30 //BUBBERSTATION CHANGE: INCREASED.
 #define PROGRESSION_RETALIATED 5
 #define STRUCTURE_PROGRESSION_START 20
 
@@ -150,7 +150,7 @@
 
 		if(!forbidden)
 			structure_progression -= PROGRESSION_FOR_STRUCTURE
-			var/random = rand(1,3)
+			var/random = pick(1,1,1,1,2,3,3) //BUBBERSTATION CHANGE, LESS CHANCE OF SPAWNERS
 			spawn_structure_loc(random, ownturf)
 
 	//Check if we can attack an airlock

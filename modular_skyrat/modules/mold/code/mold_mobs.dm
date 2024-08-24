@@ -56,9 +56,9 @@
 	ai_controller = /datum/ai_controller/basic_controller/oil_shambler
 
 	/// The chance to apply fire stacks on melee hit
-	var/ignite_chance = 20
+	var/ignite_chance = 5 //BUBBERSTATION CHANGE: 20 TO 5.
 	/// How many fire stacks to apply on hit
-	var/additional_fire_stacks = 2
+	var/additional_fire_stacks = 1 //BUBBERSTATION CHANGE: 2 TO 1.
 
 /mob/living/basic/mold/oil_shambler/Initialize(mapload)
 	. = ..()
