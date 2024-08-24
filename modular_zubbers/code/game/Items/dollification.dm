@@ -67,7 +67,7 @@
 /obj/item/dollification_vial/proc/shatter(doll)
 	var/mob/living/carbon/human/target = doll
 	new /obj/item/shard(get_turf(src))
-	target.AddComponent(/datum/component/dollification)
 	playsound(src.loc, 'sound/effects/glassbr1.ogg', 50, TRUE)
 	qdel(src)
+	target.AddComponent(/datum/component/dollification)
 
