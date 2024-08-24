@@ -13,13 +13,14 @@
 	var/electronic = FALSE
 	var/devicetype = null
 
-obj/item/clothing/sextoy/chastity/remote
+ /obj/item/clothing/sextoy/chastity/remote
 	var/random = TRUE
 	var/freq_in_name = TRUE
 	var/code = 2
 	var/frequency = FREQ_ELECTROPACK
 
-obj/item/clothing/sextoy/chastity/belt
+
+/obj/item/clothing/sextoy/chastity/belt
 	name = "chastity belt"
 	desc = "They say codpieces are back in vogue, after all."
 	devicetype = "belt"
@@ -39,13 +40,25 @@ obj/item/clothing/sextoy/chastity/belt
 	w_class = WEIGHT_CLASS_SMALL
 	lewd_slot_flags = LEWD_SLOT_PENIS
 
-obj/item/clothing/sextoy/chastity/remote/belt
-	name = "electronic chastity belt"
+obj/item/clothing/sextoy/chastity/belt/remote
+	name = "remote chastity belt"
 	desc = "They say codpieces are back in vogue, after all."
+	devicetype = "belt"
+	icon_state = "chastitybelt"
+	inhand_icon_state = "chastitybelt"
+	worn_icon_state = "chastitybelt"
+	w_class = WEIGHT_CLASS_SMALL
+	lewd_slot_flags = LEWD_SLOT_PENIS | LEWD_SLOT_VAGINA
 
-/obj/item/clothing/sextoy/chastity/remote/cage
-	name = "electronic chastity cage"
+/obj/item/clothing/sextoy/chastity/cage/remote
+	name = "remote chastity cage"
 	desc = "They say codpieces are back in vogue, after all."
+	devicetype = "cage"
+	icon_state = "chastitycage"
+	inhand_icon_state = "chastitycage"
+	worn_icon_state = "chastitycage"
+	w_class = WEIGHT_CLASS_SMALL
+	lewd_slot_flags = LEWD_SLOT_PENIS
 	
 /obj/item/clothing/sextoy/chastity/remote/Initialize(mapload)
 	if(random)
