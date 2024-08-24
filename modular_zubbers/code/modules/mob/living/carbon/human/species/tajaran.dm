@@ -40,6 +40,10 @@
 //Insert russion translations here (sorry russions)
 	speech_args[SPEECH_MESSAGE] = message
 
+/datum/augment_item/organ/tongue/tajaran
+	name = "Tajaran tongue"
+	path = /obj/item/organ/internal/tongue/cat/tajaran
+
 //Tajara have the innate ability to see in the dark better than most
 /obj/item/organ/internal/eyes/tajaran
 	name = "tajaran eyes"
