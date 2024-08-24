@@ -7,10 +7,12 @@
 		/obj/item/mod/module/rad_protection,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/mind_swap,
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/mind_swap,
 	)
 
 /obj/item/mod/control/pre_equipped/derelict/allow_attack_hand_drop(mob/user)
