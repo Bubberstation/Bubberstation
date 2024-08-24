@@ -109,6 +109,16 @@ export const gender_change_pref: FeatureToggle = {
   component: CheckboxInput,
 };
 
+// BUBBER EDIT START: TRANSFORMATION PREF
+export const transformation_pref: FeatureToggle = {
+  name: 'Transformation',
+  category: 'ERP',
+  description:
+    'Determins if you wish to allow transformation into something else (I.E, TF)',
+  component: CheckboxInput,
+};
+// BUBBER EDIT END
+
 export const autocum_pref: FeatureToggle = {
   name: 'Autocum',
   category: 'ERP',

@@ -97,6 +97,11 @@
 	savefile_key = "vore_prey_pref
 BUBBER REMOVAL END */
 
+// BUBBER EDIT START
+/datum/preference/toggle/erp/transformation
+	savefile_key = "transformation_pref"
+// BUBBER EDIT END
+
 /datum/preference/toggle/erp/bimbofication
 	savefile_key = "bimbofication_pref"
 

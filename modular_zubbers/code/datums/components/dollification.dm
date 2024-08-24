@@ -20,8 +20,8 @@
 		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
 		return
 
-	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) // Another pref check.
-		to_chat(user, span_warning("ERP sex toy preferences not enabled."), confidential = TRUE)
+	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/transformation)) // Another pref check.
+		to_chat(user, span_warning("ERP transformation preferences not enabled."), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target
@@ -61,7 +61,7 @@
 	if(!iscarbon(doll))
 		return COMPONENT_INCOMPATIBLE
 
-	if(!doll.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) // Pref Check
+	if(!doll.client?.prefs?.read_preference(/datum/preference/toggle/erp/transformation)) // Pref Check
 		qdel(src)
 		return
 
