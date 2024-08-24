@@ -225,7 +225,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/advancedgaugeboxes_rubbershot
 	name = "12 Gauge Advanced Rubber Shot Ammunition Box(Less-Lethal)"
@@ -237,7 +237,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/advancedgaugeboxes_db
 	name = "12 Gauge Advanced Dragons Breath Ammunition Box(Very Lethal)"
@@ -276,7 +276,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/advancedgaugeboxes_ion
-	name = "12 Gauge Advanced Scatter Laser Ammunition Box(Very Lethal - Silicon)"
+	name = "12 Gauge Advanced Scatter Ion Ammunition Box(Very Lethal - Silicon)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_ion"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -286,6 +286,18 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_hunting
+	name = "12 Gauge Advanced Hunting Slug Ammunition Box(Less Lethal)"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_huntingslug"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/hunter
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CARGO
 
 // Misc Gun Stuff
 
