@@ -46,8 +46,8 @@
 		return
 
 	var/probability = rand(1,100)
-	if(probability <= 10) // 1 in 10 chance.
-		if(probability <= 25 && pref_check(doll)) // 1/4 chance to actually drop it.
+	if(probability <= 30) // 1 in 10 chance. // Temp until I fix this
+		if(probability <= 50 && pref_check(doll)) // 1/4 chance to actually drop it. // Temp until I fix this
 			to_chat(doll, span_purple("Whoops... I think I broke it..."))
 			shatter(doll)
 			return
