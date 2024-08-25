@@ -42,6 +42,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "e" = (
@@ -51,18 +54,6 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
-"f" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "nt_rep_priv";
-	name = "Privacy Shutter"
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "nt_rep_priv"
-	},
-/turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
 /obj/machinery/firealarm/directional/north,
@@ -153,6 +144,9 @@
 /obj/effect/landmark/navigate_destination/autoname,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
@@ -362,7 +356,7 @@ N
 q
 t
 C
-f
+R
 "}
 (5,1,1) = {"
 a

@@ -5,7 +5,7 @@
 /obj/item/ammo_casing/energy/laser/microfusion
 	name = "microfusion energy lens"
 	projectile_type = /obj/projectile/beam/laser/microfusion
-	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE) // 10 shots with a normal cell.
+	e_cost = LASER_SHOTS(12, STANDARD_CELL_CHARGE)
 	select_name = "laser"
 	fire_sound = 'modular_skyrat/modules/microfusion/sound/laser_1.ogg'
 	fire_sound_volume = 100
@@ -51,16 +51,18 @@
 	name = "hellfire microfusion laser"
 	icon_state = "laser_greyscale"
 	wound_bonus = 0
-	damage = 20 // You are trading damage for a significant wound bonus and speed increase
+	damage = 25 // Basically a hellfire beam
 	speed = 0.6
 	color = LIGHT_COLOR_FLARE
 	light_color = LIGHT_COLOR_FLARE
 
 /obj/projectile/beam/laser/microfusion/scatter
 	name = "scatter microfusion laser"
+	damage = 30 // This damage is split into pellet amount
 
 /obj/projectile/beam/laser/microfusion/scatter/max
 	name = "scatter microfusion laser"
+	damage = 45 // This damage is split into pellet amount
 
 /obj/projectile/beam/laser/microfusion/repeater
 	damage = 12.5

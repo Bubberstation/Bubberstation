@@ -5,11 +5,10 @@
 		<b>higher maximum output</b> than some larger units. Most commonly seen being used not for their ability to store \
 		power, but rather for use in regulating power input and output."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/power_storage_unit/small_battery.dmi'
-	capacity = 750 * 1000
+	capacity = 7.5 * STANDARD_BATTERY_CHARGE
 	input_level_max = 400 * 1000
 	output_level_max = 400 * 1000
 	circuit = null
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/flatpacked_machine/station_battery
 
@@ -34,6 +33,13 @@
 		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
 	return TRUE
 
+// previously NO_DECONSTRUCTION
+/obj/machinery/power/smes/battery_pack/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
+	return NONE
+
+/obj/machinery/power/smes/battery_pack/default_pry_open(obj/item/crowbar, close_after_pry, open_density, closed_density)
+	return NONE
+
 // We don't care about the parts updates because we don't want them to change
 /obj/machinery/power/smes/battery_pack/RefreshParts()
 	return
@@ -56,6 +62,11 @@
 	name = "flat-packed stationary battery"
 	icon_state = "battery_small_packed"
 	type_to_deploy = /obj/machinery/power/smes/battery_pack
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 // Larger station batteries, hold more but have less in/output
 
@@ -66,7 +77,7 @@
 		<b>low maximum output</b> compared to smaller units. Most commonly seen as large backup batteries, or simply \
 		for large power storage where throughput is not a concern."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/power_storage_unit/large_battery.dmi'
-	capacity = 10000 * 1000
+	capacity = 100 * STANDARD_BATTERY_CHARGE
 	input_level_max = 50 * 1000
 	output_level_max = 50 * 1000
 	repacked_type = /obj/item/flatpacked_machine/large_station_battery
@@ -83,3 +94,8 @@
 	name = "flat-packed large stationary battery"
 	icon_state = "battery_large_packed"
 	type_to_deploy = /obj/machinery/power/smes/battery_pack/large
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT,
+	)

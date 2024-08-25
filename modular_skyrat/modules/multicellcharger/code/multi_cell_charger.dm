@@ -10,11 +10,12 @@
 	power_channel = AREA_USAGE_EQUIP
 	circuit = /obj/item/circuitboard/machine/cell_charger_multi
 	pass_flags = PASSTABLE
-	var/list/charging_batteries = list() //The list of batteries we are gonna charge!
+	/// The list of batteries we are gonna charge!
+	var/list/charging_batteries = list()
+	/// Number of concurrent batteries that can be charged
 	var/max_batteries = 4
-	var/charge_rate = 250
-	var/charge_rate_base = 250 // Amount of charge we gain from a level one capacitor
-	var/charge_rate_max = 4000 // The highest we allow the charge rate to go
+	/// The base charge rate when spawned
+	var/charge_rate = STANDARD_CELL_RATE
 
 /obj/machinery/cell_charger_multi/update_overlays()
 	. = ..()
@@ -23,7 +24,7 @@
 		return
 
 	for(var/i = charging_batteries.len, i >= 1, i--)
-		var/obj/item/stock_parts/cell/charging = charging_batteries[i]
+		var/obj/item/stock_parts/power_store/cell/charging = charging_batteries[i]
 		var/newlevel = round(charging.percent() * 4 / 100)
 		var/mutable_appearance/charge_overlay = mutable_appearance(icon, "[base_icon_state]-o[newlevel]")
 		var/mutable_appearance/cell_overlay = mutable_appearance(icon, "[base_icon_state]-cell")
@@ -46,21 +47,21 @@
 		. += "There are no cells in [src]."
 	else
 		. += "There are [charging_batteries.len] cells in [src]."
-		for(var/obj/item/stock_parts/cell/charging in charging_batteries)
+		for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
 			. += "There's [charging] cell in the charger, current charge: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Charging power: <b>[charge_rate]W</b>.")
+		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b> per cell.")
 	. += span_notice("Right click it to remove all the cells at once!")
 
 /obj/machinery/cell_charger_multi/attackby(obj/item/tool, mob/user, params)
-	if(istype(tool, /obj/item/stock_parts/cell) && !panel_open)
+	if(istype(tool, /obj/item/stock_parts/power_store/cell) && !panel_open)
 		if(machine_stat & BROKEN)
 			to_chat(user, span_warning("[src] is broken!"))
 			return
 		if(!anchored)
 			to_chat(user, span_warning("[src] isn't attached to the ground!"))
 			return
-		var/obj/item/stock_parts/cell/inserting_cell = tool
+		var/obj/item/stock_parts/power_store/cell/inserting_cell = tool
 		if(inserting_cell.chargerate <= 0)
 			to_chat(user, span_warning("[inserting_cell] cannot be recharged!"))
 			return
@@ -93,15 +94,23 @@
 	if(!charging_batteries.len || !anchored || (machine_stat & (BROKEN|NOPOWER)))
 		return
 
-	for(var/obj/item/stock_parts/cell/charging in charging_batteries)
-		if(charging.percent() >= 100)
+	// create a charging queue, we only want cells that require charging to use the power budget
+	var/list/charging_queue
+	for(var/obj/item/stock_parts/power_store/cell/battery_slot in charging_batteries)
+		if(battery_slot.percent() >= 100)
 			continue
-		var/main_draw = use_power_from_net(charge_rate * seconds_per_tick, take_any = TRUE) //Pulls directly from the Powernet to dump into the cell
-		if(!main_draw)
-			return
-		charging.give(main_draw)
-		use_power(charge_rate / 100) //use a small bit for the charger itself, but power usage scales up with the part tier
+		LAZYADD(charging_queue, battery_slot)
 
+	if(!LAZYLEN(charging_queue))
+		return
+
+	//use a small bit for the charger itself, but power usage scales up with the part tier
+	use_energy(charge_rate / length(charging_queue) * seconds_per_tick * 0.01)
+
+	for(var/obj/item/stock_parts/power_store/cell/charging_cell in charging_queue)
+		charge_cell(charge_rate * seconds_per_tick, charging_cell)
+
+	LAZYNULL(charging_queue)
 	update_appearance()
 
 /obj/machinery/cell_charger_multi/attack_tk(mob/user)
@@ -114,15 +123,10 @@
 
 /obj/machinery/cell_charger_multi/RefreshParts()
 	. = ..()
-	charge_rate = 0 // No, you cant get free charging speed!
+	var/tier_total
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
-		charge_rate += charge_rate_base * capacitor.tier
-		if(charge_rate >= charge_rate_max) // We've hit the charge speed cap, stop iterating.
-			charge_rate = charge_rate_max
-			break
-
-	if(charge_rate < charge_rate_base) // This should never happen; but we need to pretend it can.
-		charge_rate = charge_rate_base
+		tier_total += capacitor.tier
+	charge_rate = tier_total * (initial(charge_rate) / 6)
 
 /obj/machinery/cell_charger_multi/emp_act(severity)
 	. = ..()
@@ -130,13 +134,15 @@
 	if(machine_stat & (BROKEN|NOPOWER) || . & EMP_PROTECT_CONTENTS)
 		return
 
-	for(var/obj/item/stock_parts/cell/charging in charging_batteries)
+	for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
 		charging.emp_act(severity)
 
 /obj/machinery/cell_charger_multi/on_deconstruction(disassembled)
-	for(var/obj/item/stock_parts/cell/charging in charging_batteries)
+	for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
 		charging.forceMove(drop_location())
 	charging_batteries = null
+	return ..()
+
 
 /obj/machinery/cell_charger_multi/attack_ai(mob/user)
 	return
@@ -146,7 +152,7 @@
 	if(.)
 		return
 
-	var/obj/item/stock_parts/cell/charging = removecell(user)
+	var/obj/item/stock_parts/power_store/cell/charging = removecell(user)
 
 	if(!charging)
 		return
@@ -159,11 +165,11 @@
 /obj/machinery/cell_charger_multi/proc/removecell(mob/user)
 	if(!charging_batteries.len)
 		return FALSE
-	var/obj/item/stock_parts/cell/charging
+	var/obj/item/stock_parts/power_store/cell/charging
 	if(charging_batteries.len > 1 && user)
 		var/list/buttons = list()
-		for(var/obj/item/stock_parts/cell/battery in charging_batteries)
-			buttons["[battery] [battery.percent()]%"] = battery
+		for(var/obj/item/stock_parts/power_store/cell/battery in charging_batteries)
+			buttons["[battery.name] ([round(battery.percent(), 1)]%)"] = battery
 		var/cell_name = tgui_input_list(user, "Please choose what cell you'd like to remove.", "Remove a cell", buttons)
 		charging = buttons[cell_name]
 	else
@@ -177,7 +183,7 @@
 	return charging
 
 /obj/machinery/cell_charger_multi/Destroy()
-	for(var/obj/item/stock_parts/cell/charging in charging_batteries)
+	for(var/obj/item/stock_parts/power_store/cell/charging in charging_batteries)
 		QDEL_NULL(charging)
 	charging_batteries = null
 	return ..()
@@ -186,7 +192,7 @@
 	name = "Multi-Cell Charger (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/cell_charger_multi
-	req_components = list(/datum/stock_part/capacitor = 4)
+	req_components = list(/datum/stock_part/capacitor = 6)
 	needs_anchored = FALSE
 
 

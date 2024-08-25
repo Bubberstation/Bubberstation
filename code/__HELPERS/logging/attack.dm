@@ -1,6 +1,7 @@
 /// Generic attack logging
-/proc/log_attack(text, list/data)
+/proc/log_attack(text, list/data, redacted_log_text) // BUBBER EDIT
 	logger.Log(LOG_CATEGORY_ATTACK, text, data)
+	log_public_file(redacted_log_text) // BUBBER EDIT
 
 /**
  * Log a combat message in the attack log
@@ -27,9 +28,9 @@
 		saddition = " [addition]"
 
 	var/postfix = "[sobject][saddition][hp]"
-
+	var/redacted_copy = "[what_done] [target][postfix]"
 	var/message = "[what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user.log_message(message, LOG_ATTACK, color="red", redacted_copy = redacted_copy) // BUBBER EDIT
 
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
@@ -79,6 +80,6 @@
 		log_game(bomb_message)
 
 	GLOB.bombers += bomb_message
-
-	if(message_admins)
+	var/area/bomb_area = get_area(bomb)
+	if(message_admins && !(bomb_area.area_flags & QUIET_LOGS)) // Don't spam the logs with deathmatch bombs
 		message_admins("[user ? "[ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(user)] " : ""][details][bomb ? " [bomb.name] at [ADMIN_VERBOSEJMP(bomb)]": ""][additional_details ? " [additional_details]" : ""].")

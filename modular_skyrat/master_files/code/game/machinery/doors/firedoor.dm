@@ -1,8 +1,6 @@
-/obj/machinery/door/firedoor/AltClick(mob/user)
-	. = ..()
-	if(!user.can_perform_action(src))
-		return
+/obj/machinery/door/firedoor/click_alt(mob/user)
 	try_manual_override(user)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()

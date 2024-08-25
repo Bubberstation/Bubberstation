@@ -1,4 +1,7 @@
-/* Bubberstation edit moved to modular
+/*
+
+Skyrat removal START, moved to modular file
+
 #define TEG_EFFICIENCY 0.65
 
 /obj/machinery/power/thermoelectric_generator
@@ -222,5 +225,5 @@
 
 #undef TEG_EFFICIENCY
 
-Bubberstation edit Moved to modular
+Skyrat removal END
 */

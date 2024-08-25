@@ -4,7 +4,7 @@
 
 /datum/uplink_item/role_restricted
 	category = /datum/uplink_category/role_restricted
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball
 	name = "Haunted Magic Eightball"
@@ -18,17 +18,17 @@
 
 /datum/uplink_item/role_restricted/mail_counterfeit_kit
 	name = "GLA Brand Mail Counterfeit Kit"
-	desc = "A box full of mail counterfeit devices. Devices that actually able to counterfeit NT's mail. Those devices also able to place a trap inside of mail for malicious actions. Trap will \"activate\" any item inside of mail. Also counterfieted mail might be used for contraband purposes. Integrated micro-computer will give you great configuration optionality for your needs. \nNothing stops the mail."
+	desc = "A box of five (5) counterfeit devices. Each single-use device can hold one normal sized object, and impersonate an ordinary postal envelope addressed to whoever you choose. Optionally, can be rigged to activate held items - great for if you want to surprise someone with a primed grenade!"
 	item = /obj/item/storage/box/syndie_kit/mail_counterfeit
 	cost = 2
-	illegal_tech = FALSE
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	restricted_roles = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	surplus = 5
 
 /datum/uplink_item/role_restricted/bureaucratic_error
 	name = "Organic Capital Disturbance Virus"
 	desc = "Randomizes job positions presented to new hires. May lead to too many/too few security officers and/or clowns. Single use."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	limited_stock = 1
 	cost = 2
@@ -45,7 +45,7 @@
 	item = /obj/item/dnainjector/clumsymut
 	cost = 1
 	restricted_roles = list(JOB_CLOWN)
-	illegal_tech = FALSE
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	surplus = 25
 
 /datum/uplink_item/role_restricted/ancient_jumpsuit
@@ -70,7 +70,7 @@
 	cost = 4
 	item = /obj/item/firing_pin/clown/ultra
 	restricted_roles = list(JOB_CLOWN)
-	illegal_tech = FALSE
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	surplus = 25
 
 /datum/uplink_item/role_restricted/clownsuperpin
@@ -79,7 +79,7 @@
 	cost = 7
 	item = /obj/item/firing_pin/clown/ultra/selfdestruct
 	restricted_roles = list(JOB_CLOWN)
-	illegal_tech = FALSE
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	surplus = 25
 
 /datum/uplink_item/role_restricted/syndimmi
@@ -109,7 +109,7 @@
 
 /datum/uplink_item/role_restricted/ez_clean_bundle
 	name = "EZ Clean Grenade Bundle"
-	desc = "A box with three cleaner grenades using the trademark Waffle Co. formula. Serves as a cleaner and causes acid damage to anyone standing nearby. \
+	desc = "A box with three cleaner grenades using the trademark Waffle Corp. formula. Serves as a cleaner and causes acid damage to anyone standing nearby. \
 			The acid only affects carbon-based creatures."
 	item = /obj/item/storage/box/syndie_kit/ez_clean
 	cost = 6
@@ -148,10 +148,10 @@
 
 /datum/uplink_item/role_restricted/rebarxbowsyndie
 	name = "Syndicate Rebar Crossbow"
-	desc = "A much more proffessional version of the engineer's bootleg rebar crossbow. 3 shot mag, quicker loading, and better ammo. Owners manual included."
+	desc = "A much more professional version of the engineer's bootleg rebar crossbow. 3 shot mag, quicker loading, and better ammo. Owners manual included."
 	item = /obj/item/storage/box/syndie_kit/rebarxbowsyndie
 	cost = 10
-	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"
@@ -164,7 +164,7 @@
 
 /datum/uplink_item/role_restricted/gorillacube
 	name = "Gorilla Cube"
-	desc = "A Waffle Co. brand gorilla cube. Eat big to get big. \
+	desc = "A Waffle Corp. brand gorilla cube. Eat big to get big. \
 			Caution: Product may rehydrate when exposed to water."
 	item = /obj/item/food/monkeycube/gorilla
 	cost = 6
@@ -286,7 +286,14 @@
 	restricted_roles = list(JOB_CLOWN)
 	surplus = 10
 
-/* Bubber Edit Removal, This break vore preferences /datum/uplink_item/role_restricted/his_grace
+/datum/uplink_item/role_restricted/clowncar/spawn_item_for_generic_use(mob/user)
+	var/obj/vehicle/sealed/car/clowncar/car = ..()
+	car.enforce_clown_role = FALSE
+	var/obj/item/key = new car.key_type(user.loc)
+	car.visible_message(span_notice("[key] drops out of [car] onto the floor."))
+	return car
+
+/datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
 	His Grace grants gradual regeneration and complete stun immunity to His wielder, but be wary: if He gets too hungry, He will become impossible to drop and eventually kill you if not fed. \
@@ -295,9 +302,10 @@
 	lock_other_purchases = TRUE
 	cant_discount = TRUE
 	item = /obj/item/his_grace
-	cost = 20
+	cost = 500 // BUBBER EDIT
 	surplus = 0
-	restricted_roles = list(JOB_CHAPLAIN) */
+	restricted_roles = list(JOB_CHAPLAIN)
+	purchasable_from = ~UPLINK_SPY
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
@@ -311,7 +319,7 @@
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
 	surplus = 15
 
-/* //SKYRAT REMOVAL START
+/* // SKYRAT EDIT REMOVAL START
 /datum/uplink_item/role_restricted/spider_injector
 	name = "Australicus Slime Mutator"
 	desc = "Crikey mate, it's been a wild travel from the Australicus sector but we've managed to get \
@@ -325,13 +333,13 @@
 	surplus = 10
 
 */
-// SKYRAT EDIT END
+// SKYRAT EDIT REMOVAL END
 /* /datum/uplink_item/role_restricted/blastcannon - BUBBER REMOVE START
 	name = "Blast Cannon"
 	desc = "A highly specialized weapon, the Blast Cannon is actually relatively simple. It contains an attachment for a tank transfer valve mounted to an angled pipe specially constructed \
 			withstand extreme pressure and temperatures, and has a mechanical trigger for triggering the transfer valve. Essentially, it turns the explosive force of a bomb into a narrow-angle \
 			blast wave \"projectile\". Aspiring scientists may find this highly useful, as forcing the pressure shockwave into a narrow angle seems to be able to bypass whatever quirk of physics \
-			disallows explosive ranges above a certain distance, allowing for the device to use the theoretical yield of a transfer valve bomb, instead of the factual yield. It's simple design makes it easy to conceal."
+			disallows explosive ranges above a certain distance, allowing for the device to use the theoretical yield of a transfer valve bomb, instead of the factual yield. Its simple design makes it easy to conceal."
 	progression_minimum = 30 MINUTES
 	item = /obj/item/gun/blastcannon
 	cost = 14 //High cost because of the potential for extreme damage in the hands of a skilled scientist.
@@ -384,3 +392,6 @@ BUBBER REMOVE END*/
 	restricted_roles = list(JOB_MIME)
 	restricted = TRUE
 	refundable = FALSE
+	progression_minimum = 30 MINUTES
+	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY
+

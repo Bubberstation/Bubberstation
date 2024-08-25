@@ -16,6 +16,9 @@
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	has_ammobar = TRUE
 	actions_types = list(/datum/action/item_action/rcd_scan)
+	drop_sound = 'sound/items/handling/rcd_drop.ogg'
+	pickup_sound = 'sound/items/handling/rcd_pickup.ogg'
+	sound_vary = TRUE
 
 	/// main category of currently selected design[Structures, Airlocks, Airlock Access]
 	var/root_category
@@ -70,11 +73,16 @@
 	construction_mode = mode
 
 	GLOB.rcd_list += src
+	AddElement(/datum/element/openspace_item_click_handler)
 
 /obj/item/construction/rcd/Destroy()
 	QDEL_NULL(airlock_electronics)
 	GLOB.rcd_list -= src
 	. = ..()
+
+/obj/item/construction/rcd/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	playsound(src, SFX_TOOL_SWITCH, 20, TRUE)
 
 /obj/item/construction/rcd/ui_action_click(mob/user, actiontype)
 	if (!COOLDOWN_FINISHED(src, destructive_scan_cooldown))
@@ -102,7 +110,7 @@
 			T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
 		useResource(16, user)
 		activate()
-		playsound(loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 		user.gib(DROP_ALL_REMAINS)
 		return MANUAL_SUICIDE
 
@@ -143,7 +151,7 @@
 
 			//check if we can build our window on the grill
 			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
-				playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
+				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 				balloon_alert(user, "something is blocking the turf")
 				return FALSE
 
@@ -154,7 +162,7 @@
 		else if(rcd_mode == RCD_TURF && rcd_structure == /turf/open/floor/plating/rcd  && (!istype(target_turf, /turf/open/floor) || istype(target, /obj/structure/girder)))
 			//if a player builds a wallgirder on top of himself manually with iron sheets he can't finish the wall if he is still on the girder. Exclude the girder itself when checking for other dense objects on the turf
 			if(istype(target, /obj/structure/girder) && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = list(target)))
-				playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
+				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 				balloon_alert(user, "something is on the girder!")
 				return FALSE
 
@@ -189,7 +197,7 @@
 
 			//check if the structure can fit on this turf
 			if(target_turf.is_blocked_turf(exclude_mobs = ignore_mobs, source_atom = null, ignore_atoms = ignored_types, type_list = TRUE))
-				playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
+				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 				balloon_alert(user, "something is on the tile!")
 				return FALSE
 
@@ -203,6 +211,11 @@
  * * [mob][user]- the user building this structure
  */
 /obj/item/construction/rcd/proc/rcd_create(atom/target, mob/user)
+	//straight up cant touch this
+	if(mode == RCD_DECONSTRUCT && (target.resistance_flags & INDESTRUCTIBLE))
+		balloon_alert(user, "too durable!")
+		return
+
 	//does this atom allow for rcd actions?
 	var/list/rcd_results = target.rcd_vals(user, src)
 	if(!rcd_results)
@@ -219,7 +232,14 @@
 		delay *= FREQUENT_USE_DEBUFF_MULTIPLIER
 
 	current_active_effects += 1
-	_rcd_create_effect(target, user, delay, rcd_results)
+
+	var/target_name = target.name //Store this information before it gets mutated by the rcd.
+	var/target_path = target.type
+	var/atom/design_path = rcd_results["[RCD_DESIGN_PATH]"]
+	var/location = AREACOORD(target)
+	if(_rcd_create_effect(target, user, delay, rcd_results))
+		log_tool("[key_name(user)] used [src] to [rcd_results["[RCD_DESIGN_MODE]"] != RCD_DECONSTRUCT ? "construct [initial(design_path.name)]([design_path])" : "deconstruct [target_name]([target_path])"] at [location]")
+
 	current_active_effects -= 1
 
 /**
@@ -242,7 +262,7 @@
 	if(ranged)
 		var/atom/beam_source = owner ? owner : user
 		beam = beam_source.Beam(target, icon_state = "rped_upgrade", time = delay)
-	if(delay && !do_after(user, delay, target = target)) // no need for do_after with no delay
+	if(!build_delay(user, delay, target = target)) // no need for do_after with no delay
 		qdel(rcd_effect)
 		if(!isnull(beam))
 			qdel(beam)
@@ -367,6 +387,7 @@
 			construction_mode = mode
 			rcd_design_path = design["[RCD_DESIGN_PATH]"]
 			design_title = initial(rcd_design_path.name)
+			blueprint_changed = TRUE
 
 		else
 			airlock_electronics.do_action(action, params)
@@ -377,36 +398,45 @@
 	. = ..()
 	ui_interact(user)
 
-/obj/item/construction/rcd/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/construction/rcd/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
-	//proximity check for normal rcd & range check for arcd
-	if((!proximity_flag && !ranged) || (ranged && !range_check(target, user)))
-		return FALSE
+	if(. & ITEM_INTERACT_ANY_BLOCKER)
+		return .
 
-	//do the work
 	mode = construction_mode
-	rcd_create(target, user)
+	rcd_create(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
-	return . | AFTERATTACK_PROCESSED_ITEM
+/obj/item/construction/rcd/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!ranged || !range_check(interacting_with, user))
+		return ITEM_INTERACT_BLOCKING
 
-/obj/item/construction/rcd/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	//proximity check for normal rcd & range check for arcd
-	if((!proximity_flag && !ranged) || (ranged && !range_check(target, user)))
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	mode = construction_mode
+	rcd_create(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
-	//do the work
+/obj/item/construction/rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	mode = RCD_DECONSTRUCT
-	rcd_create(target, user)
+	rcd_create(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+/obj/item/construction/rcd/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!ranged || !range_check(interacting_with, user))
+		return ITEM_INTERACT_BLOCKING
+
+	mode = RCD_DECONSTRUCT
+	rcd_create(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/construction/rcd/handle_openspace_click(turf/target, mob/user, list/modifiers)
+	interact_with_atom(target, user, modifiers)
 
 /obj/item/construction/rcd/proc/detonate_pulse()
 	audible_message("<span class='danger'><b>[src] begins to vibrate and \
 		buzz loudly!</b></span>","<span class='danger'><b>[src] begins \
 		vibrating violently!</b></span>")
 	// 5 seconds to get rid of it
-	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 50)
+	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 5 SECONDS)
 
 /obj/item/construction/rcd/proc/detonate_pulse_explode()
 	explosion(src, light_impact_range = 3, flame_range = 1, flash_range = 1)
@@ -415,7 +445,8 @@
 /obj/item/construction/rcd/borg
 	desc = "A device used to rapidly build walls and floors."
 	banned_upgrades = RCD_UPGRADE_SILO_LINK
-	var/energyfactor = 72
+	/// enery usage
+	var/energyfactor = 0.072 * STANDARD_CELL_CHARGE
 
 /obj/item/construction/rcd/borg/get_matter(mob/user)
 	if(!iscyborg(user))
@@ -457,7 +488,7 @@
 	desc = "A reverse-engineered RCD with black market upgrades that allow this device to deconstruct reinforced walls. Property of Donk Co."
 	icon_state = "ircd"
 	inhand_icon_state = "ircd"
-	energyfactor = 66
+	energyfactor = 0.066 * STANDARD_CELL_CHARGE
 	canRturf = TRUE
 
 /obj/item/construction/rcd/loaded
@@ -493,6 +524,7 @@
 	max_matter = INFINITY
 	matter = INFINITY
 	upgrade = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
+	delay_mod = 0.1
 
 // Ranged RCD
 /obj/item/construction/rcd/arcd
@@ -508,6 +540,9 @@
 	has_ammobar = FALSE
 	upgrade = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
 
+///How much charge is used up for each matter unit.
+#define MASS_TO_ENERGY (0.016 * STANDARD_CELL_CHARGE)
+
 /obj/item/construction/rcd/exosuit
 	name = "mounted RCD"
 	desc = "An exosuit-mounted Rapid Construction Device."
@@ -518,8 +553,6 @@
 	resistance_flags = FIRE_PROOF | INDESTRUCTIBLE // should NOT be destroyed unless the equipment is destroyed
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON | DROPDEL // already qdeleted in the equipment's Destroy() but you can never be too sure
 	delay_mod = 0.5
-	///How much charge is used up for each matter unit.
-	var/mass_to_energy = 16
 
 /obj/item/construction/rcd/exosuit/ui_status(mob/user, datum/ui_state/state)
 	if(ismecha(owner))
@@ -532,7 +565,7 @@
 	if(!ismecha(owner))
 		return 0
 	var/obj/vehicle/sealed/mecha/gundam = owner
-	return round(gundam.get_charge() / mass_to_energy)
+	return round(gundam.get_charge() / MASS_TO_ENERGY)
 
 /obj/item/construction/rcd/exosuit/useResource(amount, mob/user)
 	if(silo_link)
@@ -540,7 +573,7 @@
 	if(!ismecha(owner))
 		return 0
 	var/obj/vehicle/sealed/mecha/gundam = owner
-	if(!gundam.use_power(amount * mass_to_energy))
+	if(!gundam.use_energy(amount * MASS_TO_ENERGY))
 		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
 	return TRUE
@@ -551,10 +584,12 @@
 	if(!ismecha(owner))
 		return 0
 	var/obj/vehicle/sealed/mecha/gundam = owner
-	if(!gundam.has_charge(amount * mass_to_energy))
+	if(!gundam.has_charge(amount * MASS_TO_ENERGY))
 		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
 	return TRUE
+
+#undef MASS_TO_ENERGY
 
 #undef FREQUENT_USE_DEBUFF_MULTIPLIER
 

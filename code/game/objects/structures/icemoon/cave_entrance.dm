@@ -40,10 +40,9 @@ GLOBAL_LIST_INIT(ore_probability, list(
 			var/turf/closed/mineral/clearable = potential
 			clearable.ScrapeAway(flags = CHANGETURF_IGNORE_AIR)
 
-/obj/structure/spawner/ice_moon/deconstruct(disassembled)
+/obj/structure/spawner/ice_moon/atom_deconstruct(disassembled)
 	destroy_effect()
 	drop_loot()
-	return ..()
 
 /**
  * Effects and messages created when the spawner is destroyed
@@ -179,7 +178,8 @@ GLOBAL_LIST_INIT(ore_probability, list(
 		if(16)
 			new /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom(loc)
 		if(17)
-			new /obj/item/reagent_containers/cup/glass/drinkingglass/filled/nuka_cola(loc)
+			new /obj/item/clothing/gloves/fingerless/punch_mitts(loc)
+			new /obj/item/clothing/head/cowboy(loc)
 		if(18)
 			new /obj/item/soulstone/anybody(loc)
 		if(19)

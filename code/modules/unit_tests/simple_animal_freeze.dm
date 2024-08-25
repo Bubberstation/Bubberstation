@@ -6,7 +6,6 @@
 	// If you are refactoring a simple_animal, REMOVE it from this list
 	var/list/allowed_types = list(
 		/mob/living/simple_animal/bot,
-		/mob/living/simple_animal/bot/firebot,
 		/mob/living/simple_animal/bot/floorbot,
 		/mob/living/simple_animal/bot/mulebot,
 		/mob/living/simple_animal/bot/mulebot/paranormal,
@@ -20,17 +19,8 @@
 		/mob/living/simple_animal/bot/secbot/genesky,
 		/mob/living/simple_animal/bot/secbot/grievous,
 		/mob/living/simple_animal/bot/secbot/grievous/toy,
-		/mob/living/simple_animal/bot/secbot/honkbot,
 		/mob/living/simple_animal/bot/secbot/pingsky,
-		/mob/living/simple_animal/bot/vibebot,
 		/mob/living/simple_animal/hostile,
-		/mob/living/simple_animal/hostile/alien,
-		/mob/living/simple_animal/hostile/alien/drone,
-		/mob/living/simple_animal/hostile/alien/maid,
-		/mob/living/simple_animal/hostile/alien/maid/barmaid,
-		/mob/living/simple_animal/hostile/alien/queen,
-		/mob/living/simple_animal/hostile/alien/queen/large,
-		/mob/living/simple_animal/hostile/alien/sentinel,
 		/mob/living/simple_animal/hostile/asteroid,
 		/mob/living/simple_animal/hostile/asteroid/curseblob,
 		/mob/living/simple_animal/hostile/asteroid/elite,
@@ -43,7 +33,6 @@
 		/mob/living/simple_animal/hostile/asteroid/elite/pandora,
 		/mob/living/simple_animal/hostile/asteroid/polarbear,
 		/mob/living/simple_animal/hostile/asteroid/polarbear/lesser,
-		/mob/living/simple_animal/hostile/asteroid/wolf,
 		/mob/living/simple_animal/hostile/dark_wizard,
 		/mob/living/simple_animal/hostile/illusion,
 		/mob/living/simple_animal/hostile/illusion/escape,
@@ -68,6 +57,7 @@
 		/mob/living/simple_animal/hostile/megafauna/legion/medium/right,
 		/mob/living/simple_animal/hostile/megafauna/legion/small,
 		/mob/living/simple_animal/hostile/megafauna/wendigo,
+		/mob/living/simple_animal/hostile/megafauna/wendigo/noportal,
 		/mob/living/simple_animal/hostile/mimic,
 		/mob/living/simple_animal/hostile/mimic/copy,
 		/mob/living/simple_animal/hostile/mimic/copy/machine,
@@ -82,18 +72,10 @@
 		/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 		/mob/living/simple_animal/hostile/vatbeast,
 		/mob/living/simple_animal/hostile/zombie,
-		/mob/living/simple_animal/pet,
-		/mob/living/simple_animal/pet/gondola,
-		/mob/living/simple_animal/pet/gondola/gondolapod,
-		/mob/living/simple_animal/pet/gondola/virtual_domain,
-		/mob/living/simple_animal/slime,
-		/mob/living/simple_animal/slime/pet,
-		/mob/living/simple_animal/slime/random,
-		/mob/living/simple_animal/slime/transformed_slime,
 		/mob/living/simple_animal/soulscythe,
 
-		//MODULAR SKYRAT ENTRIES
-		//PLEASE REFACTOR THESE AS YOU CAN
+		// MODULAR SKYRAT ENTRIES
+		// PLEASE REFACTOR THESE AS YOU CAN
 		/mob/living/simple_animal/hostile/bigcrab,
 		/mob/living/simple_animal/hostile/blackmesa,
 		/mob/living/simple_animal/hostile/blackmesa/blackops,
@@ -163,20 +145,7 @@
 		/mob/living/simple_animal/hostile/vox/ranged/space/laser,
 		/mob/living/simple_animal/hostile/zombie/cheesezombie,
 		/mob/living/simple_animal/hostile/zombie/nocorpse,
-		/mob/living/simple_animal/pet/gondola/funky,
-		/mob/living/simple_animal/pet/poppy,
-		/mob/living/basic/fleshmind/tyrant,
-		/mob/living/basic/fleshmind/slicer,
-		/mob/living/basic/fleshmind/floater,
-		/mob/living/basic/fleshmind/globber,
-		/mob/living/basic/fleshmind/stunner,
-		/mob/living/basic/fleshmind/hiborg,
-		/mob/living/basic/fleshmind/himan,
-		/mob/living/basic/fleshmind/treader,
-		/mob/living/basic/fleshmind/phaser,
-		/mob/living/basic/fleshmind/mechiver,
-		/mob/living/basic/fleshmind/mauler_monkey,
-		/mob/living/basic/fleshmind,
+
 		// DO NOT ADD NEW ENTRIES TO THIS LIST
 		// READ THE COMMENT ABOVE
 	)

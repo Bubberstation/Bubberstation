@@ -58,12 +58,17 @@
 	/// Unspent ranks, don't modify this directly, use AdjustUnspentRanks() and use GetUnspentRanks() to get the current value.
 	VAR_PRIVATE/bloodsucker_level_unspent = 1
 	var/additional_regen
+	var/blood_over_cap = 0
 	var/bloodsucker_regen_rate = 0.3
 
 	// Used for Bloodsucker Objectives
 	var/area/bloodsucker_lair_area
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
+
+	/// Used for Bloodsuckers gaining levels from drinking blood
+	var/blood_level_gain = 0
+	var/blood_level_gain_amount = 0
 
 	///Blood display HUD
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display

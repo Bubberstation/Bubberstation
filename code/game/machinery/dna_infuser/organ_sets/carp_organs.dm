@@ -27,7 +27,7 @@
 
 /obj/item/organ/internal/lungs/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "neck has odd gills.", BODY_ZONE_HEAD)
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their neck has odd gills.", BODY_ZONE_HEAD)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 	ADD_TRAIT(src, TRAIT_SPACEBREATHING, REF(src))
 
@@ -45,7 +45,7 @@
 
 /obj/item/organ/internal/tongue/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "teeth are big and sharp.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their teeth are big and sharp.", BODY_ZONE_PRECISE_MOUTH)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 
 /obj/item/organ/internal/tongue/carp/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
@@ -58,11 +58,12 @@
 	var/datum/species/rec_species = human_receiver.dna.species
 	rec_species.update_no_equip_flags(tongue_owner, rec_species.no_equip_flags | ITEM_SLOT_MASK)
 
-/obj/item/organ/internal/tongue/carp/on_bodypart_insert(obj/item/bodypart/limb)
+/obj/item/organ/internal/tongue/carp/on_bodypart_insert(obj/item/bodypart/head)
 	. = ..()
-	limb.unarmed_damage_low = 10
-	limb.unarmed_damage_high = 15
-	limb.unarmed_effectiveness = 15
+	head.unarmed_damage_low = 10
+	head.unarmed_damage_high = 15
+	head.unarmed_effectiveness = 15
+	head.unarmed_attack_effect = ATTACK_EFFECT_BITE
 
 /obj/item/organ/internal/tongue/carp/on_mob_remove(mob/living/carbon/tongue_owner)
 	. = ..()
@@ -76,10 +77,10 @@
 
 /obj/item/organ/internal/tongue/carp/on_bodypart_remove(obj/item/bodypart/head)
 	. = ..()
-
 	head.unarmed_damage_low = initial(head.unarmed_damage_low)
 	head.unarmed_damage_high = initial(head.unarmed_damage_high)
 	head.unarmed_effectiveness = initial(head.unarmed_effectiveness)
+	head.unarmed_attack_effect = initial(head.unarmed_attack_effect)
 
 /obj/item/organ/internal/tongue/carp/on_life(seconds_per_tick, times_fired)
 	. = ..()
@@ -104,6 +105,7 @@
 	icon_state = "brain"
 	greyscale_config = /datum/greyscale_config/mutant_organ
 	greyscale_colors = CARP_COLORS
+	can_smoothen_out = FALSE
 
 	///Timer counting down. When finished, the owner gets a bad moodlet.
 	var/cooldown_timer
@@ -113,7 +115,7 @@
 /obj/item/organ/internal/brain/carp/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/noticable_organ, "seem%PRONOUN_S unable to stay still.")
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_They seem%PRONOUN_s unable to stay still.")
 
 /obj/item/organ/internal/brain/carp/on_mob_insert(mob/living/carbon/brain_owner)
 	. = ..()
@@ -151,8 +153,9 @@
 
 /obj/item/organ/internal/heart/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "skin has small patches of scales growing on it.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their skin has small patches of scales growing on it.", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
+	AddElement(/datum/element/update_icon_blocker)
 
 #undef CARP_ORGAN_COLOR
 #undef CARP_SCLERA_COLOR

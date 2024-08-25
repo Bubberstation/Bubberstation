@@ -42,7 +42,8 @@
 	return bloodsucker_blood_volume
 
 /datum/antagonist/bloodsucker/proc/AdjustBloodVolume(value)
-	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume)
+	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume * 2)
+	blood_over_cap = max(bloodsucker_blood_volume - max_blood_volume, 0) // Gets how much blood we have over the cap.
 	update_blood_hud()
 
 /datum/antagonist/bloodsucker/proc/SetBloodVolume(value)
@@ -97,11 +98,17 @@
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AdjustBloodVolume(blood_taken)
+	OverfeedHealing(blood_taken)
 	// Reagents (NOT Blood!)
 	if(target.reagents && target.reagents.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
 	total_blood_drank += blood_taken
+	if(target.mind) // Checks if the target has a mind
+		if(IS_VASSAL(target)) // Checks if the target is a vassal
+			blood_level_gain += blood_taken / 4
+		else
+			blood_level_gain += blood_taken
 	return blood_taken
 
 /**
@@ -110,8 +117,8 @@
 
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
-	var/actual_regen = bloodsucker_regen_rate + additional_regen
 	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
+	var/actual_regen = bloodsucker_regen_rate + additional_regen
 	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)))
 		return FALSE
 	// Garlic in you? No healing for you!
@@ -128,6 +135,8 @@
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
+	if (blood_over_cap > 0)
+		costMult += round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
 	if(amInCoffin && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
@@ -156,6 +165,21 @@
 		user.adjustFireLoss(-fireheal * mult)
 		AdjustBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
+
+/datum/antagonist/bloodsucker/proc/OverfeedHealing(drunk)
+	var/mob/living/carbon/user = owner.current
+	if(blood_over_cap > 0) //Checks if you are over your blood cap
+		var/overbruteheal = user.getBruteLoss_nonProsthetic()
+		var/overfireheal = user.getFireLoss_nonProsthetic()
+		var/heal_amount = drunk / 3
+		if(overbruteheal > 0 && heal_amount > 0)
+			user.adjustBruteLoss(-heal_amount, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
+			heal_amount = (heal_amount - overbruteheal) // Removes the amount of BRUTE we've healed from the heal amount
+		else if(overfireheal > 0 && heal_amount > 0)
+			heal_amount /= 1.5 // Burn should be more difficult to heal
+			user.adjustFireLoss(-heal_amount, forced=TRUE)
+		else
+			return
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
 	var/limb_regen_cost = 50 * -costMult
@@ -290,8 +314,11 @@
 		additional_regen = 0.3
 	else if(bloodsucker_blood_volume < BS_BLOOD_VOLUME_MAX_REGEN)
 		additional_regen = 0.4
-	else
+	else if(bloodsucker_blood_volume < max_blood_volume)
 		additional_regen = 0.5
+	else if(bloodsucker_blood_volume > max_blood_volume)
+		additional_regen = 1 + round((blood_over_cap / 1000) * 2, 0.1)
+		AdjustBloodVolume(-1 - blood_over_cap / 100)
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()

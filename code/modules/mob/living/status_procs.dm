@@ -303,6 +303,7 @@
 	Knockdown(amount)
 	Stun(amount)
 	Immobilize(amount)
+	Unconscious(amount)
 
 
 /mob/living/proc/SetAllImmobility(amount)
@@ -310,6 +311,7 @@
 	SetKnockdown(amount)
 	SetStun(amount)
 	SetImmobilized(amount)
+	SetUnconscious(amount)
 
 
 /mob/living/proc/AdjustAllImmobility(amount)
@@ -317,6 +319,7 @@
 	AdjustKnockdown(amount)
 	AdjustStun(amount)
 	AdjustImmobilized(amount)
+	AdjustUnconscious(amount)
 
 
 /* UNCONSCIOUS */
@@ -514,6 +517,7 @@
 	ADD_TRAIT(src, TRAIT_DISFIGURED, "husk")
 	update_body()
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE), PROC_REF(became_unhuskable))
+	return TRUE //MODULAR ZUBBERS CHANGE: RETURN TRUE
 
 /// Called when we become unhuskable while already husked
 /mob/living/proc/became_unhuskable()

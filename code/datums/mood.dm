@@ -48,9 +48,14 @@
 
 	RegisterSignal(mob_to_make_moody, COMSIG_MOB_HUD_CREATED, PROC_REF(modify_hud))
 	RegisterSignal(mob_to_make_moody, COMSIG_ENTER_AREA, PROC_REF(check_area_mood))
+	RegisterSignal(mob_to_make_moody, COMSIG_EXIT_AREA, PROC_REF(exit_area))
 	RegisterSignal(mob_to_make_moody, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))
 	RegisterSignal(mob_to_make_moody, COMSIG_MOB_STATCHANGE, PROC_REF(handle_mob_death))
 	RegisterSignal(mob_to_make_moody, COMSIG_QDELETING, PROC_REF(clear_parent_ref))
+
+	var/area/our_area = get_area(mob_to_make_moody)
+	if(our_area)
+		check_area_mood(mob_to_make_moody, our_area)
 
 	mob_to_make_moody.become_area_sensitive(MOOD_DATUM_TRAIT)
 	if(mob_to_make_moody.hud_used)
@@ -63,7 +68,10 @@
 
 	unmodify_hud()
 	mob_parent.lose_area_sensitivity(MOOD_DATUM_TRAIT)
-	UnregisterSignal(mob_parent, list(COMSIG_MOB_HUD_CREATED, COMSIG_ENTER_AREA, COMSIG_LIVING_REVIVE, COMSIG_MOB_STATCHANGE, COMSIG_QDELETING))
+	UnregisterSignal(mob_parent, list(COMSIG_MOB_HUD_CREATED, COMSIG_ENTER_AREA, COMSIG_EXIT_AREA, COMSIG_LIVING_REVIVE, COMSIG_MOB_STATCHANGE, COMSIG_QDELETING))
+	var/area/our_area = get_area(mob_parent)
+	if(our_area)
+		UnregisterSignal(our_area, COMSIG_AREA_BEAUTY_UPDATED)
 
 	mob_parent = null
 
@@ -92,12 +100,11 @@
 			set_sanity(sanity + 0.4 * seconds_per_tick, SANITY_NEUTRAL, SANITY_MAXIMUM)
 		if(MOOD_LEVEL_HAPPY4)
 			set_sanity(sanity + 0.6 * seconds_per_tick, SANITY_NEUTRAL, SANITY_MAXIMUM)
-	handle_nutrition()
 
 	// 0.416% is 15 successes / 3600 seconds. Calculated with 2 minute
 	// mood runtime, so 50% average uptime across the hour.
 	if(HAS_TRAIT(mob_parent, TRAIT_DEPRESSION) && SPT_PROB(0.416, seconds_per_tick))
-		add_mood_event("depression_mild", /datum/mood_event/depression_mild)
+		add_mood_event("depression", /datum/mood_event/depression)
 
 	if(HAS_TRAIT(mob_parent, TRAIT_JOLLY) && SPT_PROB(0.416, seconds_per_tick))
 		add_mood_event("jolly", /datum/mood_event/jolly)
@@ -112,16 +119,18 @@
 	last_stat = mob_parent.stat
 
 /// Handles mood given by nutrition
-/datum/mood/proc/handle_nutrition()
-	if (HAS_TRAIT(mob_parent, TRAIT_NOHUNGER))
-		clear_mood_event(MOOD_CATEGORY_NUTRITION)  // if you happen to switch species while hungry youre no longer hungy
-		return FALSE // no moods for nutrition
+/datum/mood/proc/update_nutrition_moodlets()
+	if(HAS_TRAIT(mob_parent, TRAIT_NOHUNGER))
+		clear_mood_event(MOOD_CATEGORY_NUTRITION)
+		return FALSE
+
+	if(HAS_TRAIT(mob_parent, TRAIT_FAT) && !HAS_TRAIT(mob_parent, TRAIT_VORACIOUS))
+		add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/fat)
+		return TRUE
+
 	switch(mob_parent.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			if (!HAS_TRAIT(mob_parent, TRAIT_VORACIOUS))
-				add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/fat)
-			else
-				add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/wellfed) // round and full
+			add_mood_event(MOOD_CATEGORY_NUTRITION, HAS_TRAIT(mob_parent, TRAIT_VORACIOUS) ? /datum/mood_event/wellfed : /datum/mood_event/too_wellfed)
 		if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/wellfed)
 		if( NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
@@ -132,6 +141,8 @@
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/starving)
+
+	return TRUE
 
 /**
  * Adds a mood event to the mob
@@ -301,7 +312,7 @@
 	mood_screen_object.color = "#4b96c4"
 	hud.infodisplay += mood_screen_object
 	RegisterSignal(hud, COMSIG_QDELETING, PROC_REF(unmodify_hud))
-	RegisterSignal(mood_screen_object, COMSIG_CLICK, PROC_REF(hud_click))
+	RegisterSignal(mood_screen_object, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(hud_click))
 
 /// Removes the mood HUD object
 /datum/mood/proc/unmodify_hud(datum/source)
@@ -358,7 +369,7 @@
 			if(SANITY_INSANE to SANITY_CRAZY)
 				msg += "[span_boldwarning("AHAHAHAHAHAHAHAHAHAH!!")]\n"
 	else
-		msg += span_notice("I don't really know.")
+		msg += "[span_notice("I don't really know.")]\n"
 	//SKYRAT EDIT CHANGE END
 
 	msg += span_notice("My current mood: ") //Short term
@@ -384,7 +395,7 @@
 		if(MOOD_LEVEL_HAPPY4)
 			msg += "[span_boldnicegreen("I love life!")]\n"
 	*/
-	//SKYRAT EDIT CHANGE BEGIN - ALEXITHYMIA
+	//SKYRAT EDIT CHANGE BEGIN - ALEXITHYMIA / ALCOHOL_PROCESSING
 	if(!HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE))
 		switch(mood_level)
 			if(MOOD_LEVEL_SAD4)
@@ -407,10 +418,12 @@
 				msg += "[span_boldnicegreen("I love life!")]\n"
 	else
 		msg += "[span_notice("No clue.")]\n"
-	//SKYRAT EDIT CHANGE END
+
 	msg += "[span_notice("Moodlets:")]\n"//All moodlets
-	//if(mood_events.len) //ORIGINAL
-	if(mood_events.len && !HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE)) //SKYRAT EDIT CHANGE - ALEXITHYMIA
+	msg += get_alcohol_processing(user)
+	msg += get_drunk_mood(user)
+	if(mood_events.len && !HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE)) // ORIGINAL - //if(mood_events.len)
+	//SKYRAT EDIT CHANGE END
 		for(var/category in mood_events)
 			var/datum/mood_event/event = mood_events[category]
 			switch(event.mood_change)
@@ -434,6 +447,8 @@
 /datum/mood/proc/check_area_mood(datum/source, area/new_area)
 	SIGNAL_HANDLER
 
+	RegisterSignal(new_area, COMSIG_AREA_BEAUTY_UPDATED, PROC_REF(update_beauty))
+
 	update_beauty(new_area)
 	if (new_area.mood_bonus && (!new_area.mood_trait || HAS_TRAIT(source, new_area.mood_trait)))
 		add_mood_event("area", /datum/mood_event/area, new_area.mood_bonus, new_area.mood_message)
@@ -442,8 +457,30 @@
 
 /// Updates the mob's given beauty moodie, based on the area
 /datum/mood/proc/update_beauty(area/area_to_beautify)
+	SIGNAL_HANDLER
 	if (area_to_beautify.outdoors) // if we're outside, we don't care
 		clear_mood_event(MOOD_CATEGORY_AREA_BEAUTY)
+		return
+
+	if(HAS_TRAIT(mob_parent, TRAIT_MORBID))
+		if(HAS_TRAIT(mob_parent, TRAIT_SNOB))
+			switch(area_to_beautify.beauty)
+				if(BEAUTY_LEVEL_DECENT to BEAUTY_LEVEL_GOOD)
+					add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/ehroom)
+					return
+				if(BEAUTY_LEVEL_GOOD to BEAUTY_LEVEL_GREAT)
+					add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/badroom)
+					return
+				if(BEAUTY_LEVEL_GREAT to INFINITY)
+					add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/horridroom)
+					return
+		switch(area_to_beautify.beauty)
+			if(-INFINITY to BEAUTY_LEVEL_HORRID)
+				add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/greatroom)
+			if(BEAUTY_LEVEL_HORRID to BEAUTY_LEVEL_BAD)
+				add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/goodroom)
+			if(BEAUTY_LEVEL_BAD to BEAUTY_LEVEL_DECENT)
+				clear_mood_event(MOOD_CATEGORY_AREA_BEAUTY)
 		return
 
 	if(HAS_TRAIT(mob_parent, TRAIT_SNOB))
@@ -463,6 +500,10 @@
 			add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/goodroom)
 		if(BEAUTY_LEVEL_GREAT to INFINITY)
 			add_mood_event(MOOD_CATEGORY_AREA_BEAUTY, /datum/mood_event/greatroom)
+
+/datum/mood/proc/exit_area(datum/source, area/old_area)
+	SIGNAL_HANDLER
+	UnregisterSignal(old_area, COMSIG_AREA_BEAUTY_UPDATED)
 
 /// Called when parent is ahealed.
 /datum/mood/proc/on_revive(datum/source, full_heal)
