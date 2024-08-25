@@ -102,12 +102,11 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 		qdel(sun_hud)
 	// We have to use the index here as -= won't work with two lists
 	UnregisterSignal(victim, COMSIG_QDELETING)
-	sun_sufferers.Cut(sufferer_list)
-	if(!length(sun_sufferers))
-		can_fire = FALSE
-		sunlight_active = initial(sunlight_active)
-		time_til_cycle = initial(time_til_cycle)
-		issued_XP = initial(issued_XP)
+	// if(!length(sun_sufferers))
+	// 	can_fire = FALSE
+	// 	sunlight_active = initial(sunlight_active)
+	// 	time_til_cycle = initial(time_til_cycle)
+	// 	issued_XP = initial(issued_XP)
 	return TRUE
 
 /datum/controller/subsystem/processing/sunlight/proc/warn_notify(mob/target, danger_level, message)
