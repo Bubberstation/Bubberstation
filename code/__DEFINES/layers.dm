@@ -3,6 +3,7 @@
 
 //NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -50
+#define EMISSIVE_PLANE -46 // BUBBER EDIT: Was 13, caused issues with rendering via \ref[appearance]
 
 // Doesn't really layer, just throwing this in here cause it's the best place imo
 #define FIELD_OF_VISION_BLOCKER_PLANE -45
@@ -45,7 +46,6 @@
 #define O_LIGHTING_VISUAL_PLANE 11
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define EMISSIVE_PLANE 13
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
 #define EMISSIVE_RENDER_PLATE 14
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
@@ -146,9 +146,9 @@
 #define WIRE_LAYER (9 + TOPDOWN_LAYER)
 #define GLASS_FLOOR_LAYER (10 + TOPDOWN_LAYER)
 #define TRAM_RAIL_LAYER (11 + TOPDOWN_LAYER)
+#define ABOVE_OPEN_TURF_LAYER (12 + TOPDOWN_LAYER)
 ///catwalk overlay of /turf/open/floor/plating/catwalk_floor
-#define CATWALK_LAYER (12 + TOPDOWN_LAYER)
-#define ABOVE_OPEN_TURF_LAYER (13 + TOPDOWN_LAYER)
+#define CATWALK_LAYER (13 + TOPDOWN_LAYER)
 
 //WALL_PLANE layers
 #define BELOW_CLOSED_TURF_LAYER 2.053
@@ -254,7 +254,7 @@
 
 //---------- EMISSIVES -------------
 //Layering order of these is not particularly meaningful.
-//Important part is the seperation of the planes for control via plane_master
+//Important part is the separation of the planes for control via plane_master
 
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
 #define EMISSIVE_LAYER_UNBLOCKABLE 9999
@@ -320,6 +320,15 @@
 #define PLANE_CRITICAL_CUT_RENDER (1<<2)
 
 #define PLANE_CRITICAL_FUCKO_PARALLAX (PLANE_CRITICAL_DISPLAY|PLANE_CRITICAL_NO_RELAY|PLANE_CRITICAL_CUT_RENDER)
+
+//---------- Plane Master offsetting_flags -------------
+// Describes how different plane masters behave regarding being offset
+/// This plane master will not be offset itself, existing only once with an offset of 0
+/// Mostly used for planes that really don't need to be duplicated, like the hud planes
+#define BLOCKS_PLANE_OFFSETTING (1<<0)
+/// This plane master will have its relays offset to match the highest rendering plane that matches the target
+/// Required for making things like the blind fullscreen not render over runechat
+#define OFFSET_RELAYS_MATCH_HIGHEST (1<<1)
 
 /// A value of /datum/preference/numeric/multiz_performance that disables the option
 #define MULTIZ_PERFORMANCE_DISABLE -1

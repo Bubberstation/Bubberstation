@@ -1581,6 +1581,20 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
 	)
 
+/datum/design/borg_upgrade_plunger
+	name = "Integrated Plunger"
+	id = "borg_upgrade_plunger"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/plunger
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.125,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT*0.75,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
+	)
+
 /datum/design/borg_upgrade_rolling_table
 	name = "Rolling Table Dock"
 	id = "borg_upgrade_rolling_table"
@@ -1989,6 +2003,17 @@
 	var/obj/item/mod/construction/plating/armor_type = build_path
 	var/datum/mod_theme/theme = GLOB.mod_themes[initial(armor_type.theme)]
 	desc = "External plating for a MODsuit. [theme.desc]"
+
+/datum/design/mod_plating/civilian
+	name = "MOD Civilian Plating"
+	id = "mod_plating_civilian"
+	build_path = /obj/item/mod/construction/plating/civilian
+	materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
+		/datum/material/glass =SHEET_MATERIAL_AMOUNT*1.5,
+		/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	research_icon_state = "civilian-plating"
 
 /datum/design/mod_plating/engineering
 	name = "MOD Engineering Plating"

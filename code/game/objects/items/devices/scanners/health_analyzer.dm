@@ -203,12 +203,12 @@
 						trauma_desc += "deep-rooted "
 					if(TRAUMA_RESILIENCE_WOUND)
 						trauma_desc += "fracture-derived "
-					//BUBBERSTATION CHANGE START: MAGIC TRAUMAS NOW CURABLE.
+					// SKYRAT EDIT CHANGE BEGIN - Curable permanent traumas
 					if(TRAUMA_RESILIENCE_MAGIC)
-						trauma_desc += "immutable "
+						trauma_desc += "soul-bound "
 					if(TRAUMA_RESILIENCE_ABSOLUTE)
 						trauma_desc += "permanent "
-					//BUBBERSTATION CHANGE END: MAGIC TRAUMAS NOW CURABLE.
+					// SKYRAT EDIT CHANGE END
 				trauma_desc += trauma.scan_desc
 				trauma_text += trauma_desc
 				// SKYRAT EDIT ADDITION START: Death Consequences Quirk
@@ -356,7 +356,7 @@
 
 		// Hulk and body temperature
 		var/datum/species/targetspecies = humantarget.dna.species
-		var/mutant = humantarget.dna.check_mutation(/datum/mutation/human/hulk)
+		var/mutant = HAS_TRAIT(humantarget, TRAIT_HULK)
 
 		render_list += "<span class='info ml-1'>Species: [targetspecies.name][mutant ? "-derived mutant" : ""]</span>\n"
 		var/core_temperature_message = "Core temperature: [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)"

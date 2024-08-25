@@ -77,7 +77,7 @@
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/flux = 2,
 		/obj/item/assembly/signaler/anomaly/grav = 1,
-		/obj/item/assembly/signaler/anomaly/vortex = MAX_CORES_VORTEX,
+		/obj/item/assembly/signaler/anomaly/vortex = (MAX_CORES_VORTEX - 1),
 		/obj/item/assembly/signaler/anomaly/bluespace = 1,
 		/obj/item/weaponcrafting/gunkit/beam_rifle = 1,
 	)
@@ -372,6 +372,21 @@
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 20 SECONDS
+	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
+
+/datum/crafting_recipe/shortbow
+	name = "Shortbow"
+	result = /obj/item/gun/ballistic/bow/shortbow
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 4,
+		/obj/item/stack/sheet/cloth = 2,
+		/obj/item/stack/sheet/iron = 1,
+	)
+	tool_paths = list(
+		/obj/item/hatchet,
+	)
+	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
