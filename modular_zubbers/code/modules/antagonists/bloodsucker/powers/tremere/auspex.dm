@@ -63,7 +63,7 @@
 	var/turf/target_turf = target_atom
 	if(target_turf.is_blocked_turf_ignore_climbable())
 		return FALSE
-	if(!(target_turf in view(owner.client.view, get_turf(owner))))
+	if(!(target_turf in view(owner.client.view, owner.client)))
 		owner.balloon_alert(owner, "out of view!")
 		return FALSE
 	return TRUE
