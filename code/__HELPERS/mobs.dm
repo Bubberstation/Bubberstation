@@ -552,9 +552,11 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		if(only_syndicate && !syndie_ai)
 			continue
 		if(check_mind)
-			if(!ai.mind || (ai.mind.special_role == ROLE_DERELICT_MODSUIT)) //Bubber edit - derelict AIs cannot be synced to or detected by normal means
+			if(!ai.mind)
 				continue
 		if(z && !(z == ai.z) && (!is_station_level(z) || !is_station_level(ai.z))) //if a Z level was specified, AND the AI is not on the same level, AND either is off the station...
+			continue
+		if(ai.mind.special_role == ROLE_DERELICT_MODSUIT) //Bubber edit - derelict AIs cannot be synced to or detected by normal means
 			continue
 		. += ai
 
