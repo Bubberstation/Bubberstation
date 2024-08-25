@@ -8,6 +8,7 @@
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/storage/large_capacity,
 		/obj/item/mod/module/mind_swap,
+		/obj/item/mod/module/borg_takeover,
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,

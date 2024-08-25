@@ -35,9 +35,10 @@
 	if(!spawn_turf)
 		return
 	var/obj/item/mod/control/pre_equipped/derelict/created_modsuit = new(spawn_turf)
-	var/mob/living/silicon/ai/suitai = new /mob/living/silicon/ai(get_turf(created_modsuit), new /datum/ai_laws/syndicate_override, chosen_candidate)
+	var/mob/living/silicon/ai/weak_syndie/suitai = new /mob/living/silicon/ai/weak_syndie(get_turf(created_modsuit), new /datum/ai_laws/derelict_laws, chosen_candidate)
 	suitai.mind.add_antag_datum(/datum/antagonist/derelict_modsuit)
 	suitai.mind.special_role = ROLE_DERELICT_MODSUIT
+	suitai.faction |= ROLE_SYNDICATE
 
 	created_modsuit.ai_enter_mod(suitai)
 	var/obj/structure/ai_core/deactivated/left_over_core = locate() in get_turf(created_modsuit)
