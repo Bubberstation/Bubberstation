@@ -5,7 +5,7 @@
  */
 /mob/living/basic/fleshmind
 	name = "broken"
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_mobs.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_mobs.dmi'
 	icon_state = "error"
 	faction = list(FACTION_FLESHMIND)
 	speak_emote = list("mechanically states")
@@ -21,10 +21,10 @@
 	var/previous_ckey
 	/// A list of sounds we can play when our mob is alerted to an enemy.
 	var/list/alert_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy1.ogg',
-		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy2.ogg',
-		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy3.ogg',
-		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy4.ogg'
+		'modular_zubbers/sound/fleshmind/robot_talk_heavy1.ogg',
+		'modular_zubbers/sound/fleshmind/robot_talk_heavy2.ogg',
+		'modular_zubbers/sound/fleshmind/robot_talk_heavy3.ogg',
+		'modular_zubbers/sound/fleshmind/robot_talk_heavy4.ogg'
 	)
 	/// What it will say while attacking
 	var/list/attack_speak
@@ -35,11 +35,11 @@
 		BB_EMOTE_SAY = list("The flesh yearns for your soul.", "The flesh is broken without you.", "The flesh does not discriminate.", "Join the flesh."),
 		BB_EMOTE_HEAR = list(),
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg'
+			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light3.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light4.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg'
 		),
 	)
 	//What the mob drobs when it dies
@@ -346,10 +346,10 @@
 		BB_EMOTE_SAY = list("A stitch in time saves nine!", "Dopamine is happiness!", "Seratonin, oxycodone, we can make them finally happy.", "Turn that frown upside down!", "Happiness through chemistry!", "Beauty through surgery!"),
 		BB_EMOTE_HEAR = list("shows an inconspicuous smiley face", "whirrs its drill"),
 		BB_EMOTE_SOUND = list(
-			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot1.ogg",
-			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot2.ogg",
-			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot3.ogg",
-			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot4.ogg",
+			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot1.ogg",
+			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot2.ogg",
+			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot3.ogg",
+			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot4.ogg",
 			)
 	)
 	loot = list(
@@ -393,11 +393,11 @@
 		),
 		BB_EMOTE_HEAR = list("floats ominously", "glows a deep red"),
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light3.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light4.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 		)
 	)
 	//move_to_delay = 8
@@ -492,11 +492,11 @@
 		BB_EMOTE_HEAR = list("cleans some wireweed dutifully", "patrols for pesky human shaped verman"),
 		/// Base robot emote sounds. These should have someone adding to them if you want something to do.
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light3.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light4.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 			)
 		)
 	loot = list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot)
@@ -553,11 +553,11 @@
 			"The only authority is that of the flesh, join the flesh.",
 		),
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
-			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light3.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light4.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 			)
 	)
 	loot = list(
@@ -606,12 +606,12 @@
 	mob_size = MOB_SIZE_HUMAN
 	attack_sound = 'sound/weapons/circsawhit.ogg'
 	alert_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_05.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_06.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_01.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_02.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_03.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_04.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_05.ogg',
+		'modular_zubbers/sound/fleshmind/hiborg/aggro_06.ogg',
 	)
 	attack_speak = list(
 		"You made my body into metal, why can't I do it to you?",
@@ -635,11 +635,11 @@
 			"The flesh does not hate, it just wants you to experience the glory of the flesh.",
 			"Glory to the flesh."),
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_01.ogg',
-			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_02.ogg',
-			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_03.ogg',
-			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_04.ogg',
-			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_05.ogg',
+			'modular_zubbers/sound/fleshmind/hiborg/passive_01.ogg',
+			'modular_zubbers/sound/fleshmind/hiborg/passive_02.ogg',
+			'modular_zubbers/sound/fleshmind/hiborg/passive_03.ogg',
+			'modular_zubbers/sound/fleshmind/hiborg/passive_04.ogg',
+			'modular_zubbers/sound/fleshmind/hiborg/passive_05.ogg',
 		)
 	)
 	loot = list(
@@ -766,21 +766,21 @@
 			"The flesh provides. I-it's giving me what the Company never could.",
 		),
 		BB_EMOTE_SOUND = list(
-			'modular_skyrat/modules/fleshmind/sound/himan/passive_01.ogg',
-			'modular_skyrat/modules/fleshmind/sound/himan/passive_02.ogg',
-			'modular_skyrat/modules/fleshmind/sound/himan/passive_03.ogg',
-			'modular_skyrat/modules/fleshmind/sound/himan/passive_04.ogg',
+			'modular_zubbers/sound/fleshmind/himan/passive_01.ogg',
+			'modular_zubbers/sound/fleshmind/himan/passive_02.ogg',
+			'modular_zubbers/sound/fleshmind/himan/passive_03.ogg',
+			'modular_zubbers/sound/fleshmind/himan/passive_04.ogg',
 		)
 	)
 	alert_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_05.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_06.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_07.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/aggro_08.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_01.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_02.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_03.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_04.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_05.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_06.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_07.ogg',
+		'modular_zubbers/sound/fleshmind/himan/aggro_08.ogg',
 	)
 	loot = list(
 		/obj/effect/gibspawner/human,
@@ -794,7 +794,7 @@
 	var/scream_cooldown = 20 SECONDS
 	COOLDOWN_DECLARE(scream_ability)
 	var/scream_effect_range = 10
-
+/*
 /mob/living/basic/fleshmind/himan/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/himan_fake_death/new_action = new
@@ -890,7 +890,7 @@
 	var/mob/living/basic/fleshmind/himan/himan_owner = owner
 	himan_owner.fake_our_death()
 	StartCooldownSelf()
-
+*/
 
 
 /**
@@ -1226,7 +1226,7 @@
 
 
 /obj/effect/temp_visual/phaser
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_mobs.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_mobs.dmi'
 	icon_state = "phaser-1"
 	base_icon_state = "phaser"
 	duration = 30 SECONDS
@@ -1349,21 +1349,21 @@
 		"It.. hurts, seeing you run. Knowing I can't keep up. Why won't you let other people help you..?",
 	)*/
 	alert_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/mechiver/aggro_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/aggro_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/aggro_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/aggro_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/aggro_05.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_01.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_02.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_03.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_04.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_05.ogg',
 	)
 	/*passive_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_05.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_06.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_07.ogg',
-		'modular_skyrat/modules/fleshmind/sound/mechiver/passive_08.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_01.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_02.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_03.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_04.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_05.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_06.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_07.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_08.ogg',
 
 	)*/
 	//del_on_death = TRUE

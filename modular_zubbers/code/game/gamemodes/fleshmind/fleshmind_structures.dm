@@ -8,7 +8,7 @@
 /obj/structure/fleshmind/structure
 	name = "this shouldn't be here"
 	desc = "report me to coders"
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "infected_machine"
 	base_icon_state = "infected_machine"
 	density = TRUE
@@ -163,7 +163,7 @@
 /obj/structure/fleshmind/structure/wireweed_wall
 	name = "wireweed wall"
 	desc = "A wall made of wireweed."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_structures.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "wireweed_wall"
 	base_icon_state = "wireweed_wall"
 	density = TRUE
@@ -189,7 +189,7 @@
 /obj/structure/fleshmind/structure/wireweed_door
 	name = "wireweed door"
 	desc = "A door made of wireweed."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_structures.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "door"
 	base_icon_state = "door"
 	can_atmos_pass = ATMOS_PASS_DENSITY
@@ -253,7 +253,7 @@
 /obj/structure/fleshmind/structure/core
 	name = "\improper UNASSIGNED Processor Unit"
 	desc = "This monsterous machine is definitely watching you."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
 	density = TRUE
@@ -409,7 +409,7 @@
 /obj/structure/fleshmind/structure/babbler
 	name = "\improper Babbler"
 	desc = "A column-like structure with lights."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "antenna"
 	base_icon_state = "antenna"
 	max_integrity = 100
@@ -492,7 +492,7 @@
 /obj/structure/fleshmind/structure/screamer
 	name = "\improper Tormented Head"
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "head"
 	base_icon_state = "head"
 	max_integrity = 120
@@ -524,7 +524,7 @@
 /obj/structure/fleshmind/structure/whisperer
 	name = "\improper Whisperer"
 	desc = "A small pulsating orb with no apparent purpose, it emits a slight hum."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "orb"
 	base_icon_state = "orb"
 	max_integrity = 100
@@ -579,7 +579,7 @@
 /obj/structure/fleshmind/structure/modulator
 	name = "\improper Psi-Modulator"
 	desc = "A strange pyramid shaped machine that eminates a soft hum and glow. Your head hurts just by looking at it."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "psy"
 	max_integrity = 100
 	base_icon_state = "psy"
@@ -604,7 +604,7 @@
 /obj/structure/fleshmind/structure/assembler
 	name = "\improper Assembler"
 	desc = "This cylindrical machine whirrs and whispers, it has a small opening in the middle."
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "spawner"
 	base_icon_state = "spawner"
 	density = FALSE
@@ -725,7 +725,7 @@
 	if(!triggered_mob)
 		return
 	flick("[base_icon_state]-anim", src)
-	playsound(loc, 'modular_skyrat/modules/fleshmind/sound/laser.ogg', 75, TRUE)
+	playsound(loc, 'modular_zubbers/sound/fleshmind/laser.ogg', 75, TRUE)
 	var/obj/projectile/new_projectile = new projectile_type
 	var/turf/our_turf = get_turf(src)
 	new_projectile.preparePixelProjectile(triggered_mob, our_turf)
@@ -736,7 +736,7 @@
 
 /obj/projectile/fleshmind_flechette
 	name = "organic flechette"
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_structures.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "goo_proj"
 	damage = 30
 	damage_type = BURN

@@ -91,7 +91,7 @@
 /datum/component/human_corruption/proc/update_parent_overlays(atom/source, list/new_overlays)
 	SIGNAL_HANDLER
 
-	new_overlays += mutable_appearance('modular_skyrat/modules/fleshmind/icons/fleshmind_mobs.dmi', "human_overlay")
+	new_overlays += mutable_appearance('modular_zubbers/icons/fleshmind/fleshmind_mobs.dmi', "human_overlay")
 
 /datum/component/human_corruption/proc/action_destroyed(datum/action/deleting_action, force) // What why are we deleting!!
 	SIGNAL_HANDLER

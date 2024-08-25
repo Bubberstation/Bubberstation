@@ -33,7 +33,7 @@
 	if(!LAZYLEN(spawnpoints))
 		CRASH("make_ert had no ERT spawnpoints to choose from!")
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", ROLE_DEATHSQUAD)
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", check_jobban = ROLE_DEATHSQUAD, alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
 
 	if(!LAZYLEN(candidates))
 		return FALSE
@@ -80,7 +80,7 @@
 			continue
 
 		//Spawn the body
-		var/mob/living/carbon/human/ert_operative = new created_ert_datum.mobtype(spawnloc)
+		var/mob/living/carbon/human/ert_operative = new created_ert_datum.mob_type(spawnloc)
 		chosen_candidate.client.prefs.safe_transfer_prefs_to(ert_operative, is_antag = TRUE)
 		ert_operative.key = chosen_candidate.key
 

@@ -1,7 +1,7 @@
 /mob/living/basic/fleshmind/tyrant
 	name = "Type 34-C Fleshdrive"
 	desc = "The will of the many, manifested in flesh and metal. It has fucking rockets."
-	icon = 'modular_skyrat/modules/fleshmind/icons/tyrant.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/tyrant.dmi'
 	icon_state = "tyrant"
 	icon_dead = "tyrant_dead"
 	health = 2000
@@ -20,7 +20,7 @@
 	base_pixel_y = -16
 	melee_damage_lower = 40
 	melee_damage_upper = 80
-	attack_sound = 'modular_skyrat/modules/fleshmind/sound/tyrant/mech_punch_slow.ogg'
+	attack_sound = 'modular_zubbers/sound/fleshmind/tyrant/mech_punch_slow.ogg'
 	attack_verb_continuous = "obliterates"
 	attack_verb_simple = "obliterate"
 	/*passive_speak_lines = list(
@@ -62,19 +62,19 @@
         "THE END HAS TO JUSTIFY THE MEANS.",
         "I WILL NOT LET VICTORY FALL THROUGH OUR HANDS.",
 	)
-	passive_sounds = list('modular_skyrat/modules/fleshmind/sound/tyrant/passive.ogg')*/
+	passive_sounds = list('modular_zubbers/sound/fleshmind/tyrant/passive.ogg')*/
 	alert_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_05.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_06.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_07.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_08.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_09.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_10.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_11.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_01.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_02.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_03.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_04.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_05.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_06.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_07.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_08.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_09.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_10.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/aggro_11.ogg',
 
 	)
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
@@ -100,12 +100,12 @@
 	COOLDOWN_DECLARE(rotate_sound_cooldown)
 	/// A list of footstep sounds we make
 	var/static/list/footstep_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_1.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_2.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_3.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_4.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_5.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/footstep_6.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_1.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_2.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_3.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_4.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_5.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/footstep_6.ogg',
 	)
 	/// We also have a small laser to fire at people ;)
 	var/laser_cooldown_time_upper = 4 SECONDS
@@ -115,14 +115,14 @@
 	var/laser_projectile_type = /obj/projectile/beam/emitter/hitscan
 	/// A list of sounds we can play when firing the laser
 	var/static/list/laser_projectile_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_1.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_2.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_3.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_4.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_5.ogg',
-		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_6.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_1.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_2.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_3.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_4.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_5.ogg',
+		'modular_zubbers/sound/fleshmind/tyrant/laser_6.ogg',
 	)
-	death_sound = 'modular_skyrat/modules/fleshmind/sound/tyrant/tyrant_death.ogg'
+	death_sound = 'modular_zubbers/sound/fleshmind/tyrant/tyrant_death.ogg'
 /*
 /mob/living/basic/fleshmind/tyrant/Life(delta_time, times_fired)
 	. = ..()
@@ -136,7 +136,7 @@
 
 	if(COOLDOWN_FINISHED(src, rocket_pod_cooldown) && target)
 		balloon_alert_to_viewers("begins whirring violently!")
-		playsound(src, 'modular_skyrat/modules/fleshmind/sound/tyrant/charge_up.ogg', 100, TRUE)
+		playsound(src, 'modular_zubbers/sound/fleshmind/tyrant/charge_up.ogg', 100, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(fire_rocket_pods), target), rocket_pod_charge_up_time)
 		COOLDOWN_START(src, rocket_pod_cooldown, rand(rocket_pod_cooldown_time_lower, rocket_pod_cooldown_time_upper))
 */
@@ -165,7 +165,7 @@
 /mob/living/basic/fleshmind/tyrant/setDir(newdir)
 	. = ..()
 	if(COOLDOWN_FINISHED(src, rotate_sound_cooldown))
-		playsound(src, 'modular_skyrat/modules/fleshmind/sound/tyrant/mech_rotation.ogg', 35, TRUE)
+		playsound(src, 'modular_zubbers/sound/fleshmind/tyrant/mech_rotation.ogg', 35, TRUE)
 		COOLDOWN_START(src, rotate_sound_cooldown, rotate_sound_cooldown_time)
 
 /mob/living/basic/fleshmind/tyrant/proc/fire_rocket_pods(atom/target_atom)

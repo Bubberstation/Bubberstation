@@ -85,7 +85,7 @@
 /datum/action/cooldown/fleshmind_plant_weeds
 	name = "Create Wireweed"
 	desc = "Creates a single patch of wireweed at your location."
-	button_icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_structures.dmi'
+	button_icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	background_icon_state = "bg_fugu"
 	button_icon_state = "wires-0"
 	cooldown_time = 10 SECONDS

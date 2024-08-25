@@ -2,7 +2,7 @@
  * fleshmind basetype(abstract)
  */
 /obj/structure/fleshmind
-	icon = 'modular_skyrat/modules/fleshmind/icons/fleshmind_structures.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "wires"
 	anchored = TRUE
 	/// Our faction
@@ -38,7 +38,7 @@
 /obj/structure/fleshmind/wireweed
 	name = "wireweed"
 	desc = "A strange pulsating mass of organic wires."
-	icon = 'modular_skyrat/modules/fleshmind/icons/wireweed_floor.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/wireweed_floor.dmi'
 	icon_state = "wires-0"
 	base_icon_state = "wires"
 	anchored = TRUE
@@ -149,6 +149,6 @@
 			to_chat(human_mob, span_green("[src] shoots a mechanical limb right into your missing limb!"))
 
 /obj/effect/temp_visual/wireweed_spread
-	icon = 'modular_skyrat/modules/fleshmind/icons/wireweed_floor.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/wireweed_floor.dmi'
 	icon_state = "spread_anim"
 	duration = 1.7 SECONDS

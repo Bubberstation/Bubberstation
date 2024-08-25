@@ -51,10 +51,10 @@
 	"shakes with an awful metallic noise.",)
 
 
-#define PAIN_RESPONSE_SOUNDS list('modular_skyrat/modules/fleshmind/sound/robot_talk_heavy1.ogg', \
-	'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy2.ogg', \
-	'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy3.ogg', \
-	'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy4.ogg',)
+#define PAIN_RESPONSE_SOUNDS list('modular_zubbers/sound/fleshmind/robot_talk_heavy1.ogg', \
+	'modular_zubbers/sound/fleshmind/robot_talk_heavy2.ogg', \
+	'modular_zubbers/sound/fleshmind/robot_talk_heavy3.ogg', \
+	'modular_zubbers/sound/fleshmind/robot_talk_heavy4.ogg',)
 
 #define MACHINE_TO_SPAWNER_PATHS list(/obj/machinery/rnd/production/techfab, /obj/machinery/autolathe, /obj/machinery/mecha_part_fabricator)
 
@@ -195,7 +195,7 @@
 /datum/component/machine_corruption/proc/handle_destruction(obj/item/target, damage_flag)
 	SIGNAL_HANDLER
 
-	playsound(target, 'modular_skyrat/modules/fleshmind/sound/sparks_2.ogg', 70, TRUE)
+	playsound(target, 'modular_zubbers/sound/fleshmind/sparks_2.ogg', 70, TRUE)
 	if(prob(DAMAGE_RESPONSE_PROB))
 		target.say("ARRRRRRRGHHHHHHH!")
 	new /obj/effect/gibspawner/robot(get_turf(target))
@@ -205,9 +205,9 @@
 	SIGNAL_HANDLER
 
 	if(starting_up)
-		overlays += mutable_appearance('modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi', "rebuild")
+		overlays += mutable_appearance('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "rebuild")
 	else
-		overlays += mutable_appearance('modular_skyrat/modules/fleshmind/icons/fleshmind_machines.dmi', set_overlay)
+		overlays += mutable_appearance('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', set_overlay)
 
 /datum/component/machine_corruption/proc/update_name()
 	var/obj/machinery/parent_machinery = parent
