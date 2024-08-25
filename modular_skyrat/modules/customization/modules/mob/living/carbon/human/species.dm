@@ -85,6 +85,10 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/list/features = ..()
 	return features
 
+/datum/species/golem
+	name = "Golem (Ghostrole)"
+	always_customizable = TRUE
+
 /**
  * Returns a list of mutant_bodyparts
  *

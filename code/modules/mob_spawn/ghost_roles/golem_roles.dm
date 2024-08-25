@@ -11,6 +11,8 @@
 	anchored = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
+	random_appearance = FALSE
+	restricted_species = list(/datum/species/golem)
 	prompt_name = "a free golem"
 	you_are_text = "You are a Free Golem. Your family worships The Liberator."
 	flavour_text = "In his infinite and divine wisdom, he set your clan free to travel the stars with a single declaration: \"Yeah go do whatever.\""
