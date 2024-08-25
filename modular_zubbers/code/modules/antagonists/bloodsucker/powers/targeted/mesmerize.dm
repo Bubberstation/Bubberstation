@@ -192,7 +192,7 @@
 	return 9 SECONDS + level_current * 1 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_mute_time()
-	return get_power_time() * 2
+	return get_power_time()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_time()
 	return get_power_time() * 0.3
