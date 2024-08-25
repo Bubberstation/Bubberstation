@@ -208,7 +208,7 @@
 	user.death()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassal_duration()
-	return (1 MINUTES) * max(level_current, 1)
+	return 4 MINUTES * max(level_current, 1)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassalize_cooldown()
 	return cooldown_time * 3
