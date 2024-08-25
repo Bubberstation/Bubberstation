@@ -85,8 +85,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/list/features = ..()
 	return features
 
-/datum/species/golem
-	name = "Golem (Ghostrole)"
+/datum/species/golemolem
 	always_customizable = TRUE
 
 /**
