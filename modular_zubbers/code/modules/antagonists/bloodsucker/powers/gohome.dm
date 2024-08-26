@@ -12,10 +12,11 @@
 	name = "Vanishing Act"
 	desc = "As dawn aproaches, disperse into mist and return directly to your Lair.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
 	button_icon_state = "power_gohome"
-active_background_icon_state = "vamp_power_off_oneshot"
+	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
 	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_FRENZY
+	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
+	check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 100
 	cooldown_time = 10 SECONDS
