@@ -76,6 +76,7 @@
 #define FLESHCORE_ATTACK_PROB 20 // How likely are we to attack every SS fire?
 #define FLESHCORE_WALL_PROB 30 // How likely are we to spawn a wall to seal a gap every SS fire?
 #define FLESHCORE_NEXT_CORE_DAMAGE_WIREWEED_ACTIVATION_COOLDOWN 10 SECONDS // The amount of time until we can activate nearby wireweed again.
+#define FLESHCORE_LEVEL_UP_COOLDOWN 1 MINUTES // The amount of grace period it takes to level up.
 
 #define CONTROLLER_DEATH_DO_NOTHING 1
 #define CONTROLLER_DEATH_SLOW_DECAY 2

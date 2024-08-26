@@ -99,6 +99,8 @@
 	var/next_core_damage_wireweed_activation_cooldown = FLESHCORE_NEXT_CORE_DAMAGE_WIREWEED_ACTIVATION_COOLDOWN
 	/// A cooldown to determine when we can activate nearby wireweed after the core has been attacked.
 	COOLDOWN_DECLARE(next_core_damage_wireweed_activation)
+	/// A cooldown to determine the level up grace period when the station destroys a core while there's still plenty of points.
+	COOLDOWN_DECLARE(level_up_cooldown)
 	/// DO we check distance when spreading through vents?
 	var/vent_distance_check = TRUE
 	/// Have we spawned a tyrant at level 3?
@@ -252,7 +254,7 @@
 
 /datum/fleshmind_controller/proc/calculate_level_system()
 	current_points = calculate_current_points()
-	if(current_points >= (last_level_up_points + level_up_progress_required) && level < CONTROLLER_LEVEL_MAX)
+	if(COOLDOWN_FINISHED(src, level_up_cooldown) && current_points >= (last_level_up_points + level_up_progress_required) && level < CONTROLLER_LEVEL_MAX)
 		level_up()
 		last_level_up_points = current_points
 
@@ -288,7 +290,7 @@
 				priority_announce("This is [controller_firstname], kernel efficency has reached maximum potential. Beginning shuttle override process, stand-by.", "CRITICAL MASS REACHED", ANNOUNCER_KLAXON)
 				end_game()
 				end_game = TRUE
-
+	COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
 /datum/fleshmind_controller/proc/level_down()
 	if(level <= 0 || end_game)
 		return
@@ -297,6 +299,7 @@
 	notify_ghosts("Corruption AI [controller_fullname] has leveled down to level [level]!")
 	if(level > 0)
 		minor_announce("KERNEL INTEGRITY FALTERING. DO BETTER!", controller_fullname, sound_override = pick('modular_zubbers/sound/fleshmind/ai/level_down_1.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_2.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_3.ogg'))
+		COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
 	else
 		priority_announce("[controller_fullname] has been neutralised.", "Corrupt AI Kernel OFFLINE")
 		message_admins("Corruption AI [controller_fullname] has been destroyed.")

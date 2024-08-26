@@ -341,8 +341,16 @@
 
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
+	/// Level * Progress Required - Current Points
+	var/level_calculation = (our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points
+	/// round Cooldown Time / 10
+	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
+
 	if(our_controller && isobserver(user))
-		. += "Level: [our_controller.level] | Progress to Next Level: [(our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points]"
+		if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
+			. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
+		else
+			. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
 
 /obj/structure/fleshmind/structure/core/proc/core_attack_atom(atom/thing)
 	. = FALSE
@@ -372,11 +380,16 @@
 	rally_troops()
 	build_a_wall()
 	var/list/turf = list()
-	for(var/turf/spawn_turf in view(3, src))
-		if(locate(/obj/structure/fleshmind/structure) in spawn_turf)
+	for(var/turf/spawn_turf in RANGE_TURFS(2, src))
+		if(locate(/obj/structure/fleshmind/wireweed) && !locate(/obj/structure/fleshmind/structure) in spawn_turf)
+			turf += spawn_turf
 			continue
-		turf += spawn_turf
-		our_controller?.spawn_mob(pick(turf), /mob/living/basic/fleshmind/mechiver)
+		var/picked_turf = pick(turf)
+		if(picked_turf) // Failsafe if there's no turf to spawn it on.
+			our_controller?.spawn_mob(pick(picked_turf), /mob/living/basic/fleshmind/mechiver)
+		else
+			our_controller?.spawn_mob(src.loc, /mob/living/basic/fleshmind/mechiver)
+		return
 
 /obj/structure/fleshmind/structure/core/proc/whip_those_fuckers()
 	for(var/mob/living/basic/fleshmind/iterating_mob in view(whip_range, src))
