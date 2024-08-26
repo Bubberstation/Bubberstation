@@ -5,28 +5,40 @@
 
 /obj/item/heretic_currency/exalting/pre_attack(obj/item/target, mob/living/user)
 	. = ..()
-	if(. || !istype(target))
+
+	if(.)
 		return
+
+	if(!istype(target))
+		user.balloon_alert(user, "not an item!")
+		return
+
+	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
+		user.balloon_alert(user, "has no effect!")
+		return
+
 	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
 	if(!found_component)
 		return
 
 	if(!length(found_component.affixes))
-		//uhhhhh
+		user.balloon_alert(user, "something went wrong!")
 		return
 
-	if(length(found_component.affixes) >= 2))
+	if(length(found_component.affixes) >= 2)
+		user.balloon_alert(user, "already has two affixes!")
 		return
 
 	var/datum/fantasy_affix/affix_to_add
 
 	var/datum/fantasy_affix/found_affix = found_component.affixes[1]
 	if(found_affix.placement & AFFIX_SUFFIX)
-		affix_to_add = get_prefix()
+		affix_to_add = get_prefix(target)
 	else
-		affix_to_add = get_suffix()
+		affix_to_add = get_suffix(target)
 
 	if(!affix_to_add)
+		user.balloon_alert(user, "something went wrong!")
 		return
 
 	affix_to_add = new affix_to_add
@@ -35,6 +47,8 @@
 	found_component.affixes += found_affix
 	found_component.affixes += affix_to_add
 	found_component.modify()
+
+	user.balloon_alert(user, "[name] applied!")
 
 	qdel(src)
 

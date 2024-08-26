@@ -1,40 +1,28 @@
-
-//Whitelist.
-GLOBAL_LIST_INIT(heretical_mirroring_whitelist,list(
-	/obj/item/weapon,
-	/obj/item/clothing,
-))
-
-//Blacklist. Todo.
-GLOBAL_LIST_INIT(heretical_mirroring_blacklist,list(
-
-))
-
 /obj/item/heretic_currency/mirroring
 	name = "mirroring orb"
 	icon_state = "mirroring"
 
 /obj/item/heretic_currency/mirroring/pre_attack(obj/item/target, mob/living/user)
+
 	. = ..()
-	if(. || !istype(target))
+
+	if(.)
+		return
+
+	if(!istype(target))
+		user.balloon_alert(user, "not a weapon or clothing item!")
+		return
+
+	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
+		user.balloon_alert(user, "has no effect!")
 		return
 
 	if(target.item_flags & (DROPDEL | ABSTRACT))
 		return
 
-	var/whitelist_passed = FALSE
-	for(var/whitelist_type in heretical_mirroring_whitelist)
-		if(istype(target,whitelist_type))
-			whitelist_passed = TRUE
-			break
-
-	if(!whitelist_passed)
+	if(!target.force && !target.throwforce && !isclothing(target) && !isgun(target))
+		user.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
-
-	for(var/blacklist_type in heretical_mirroring_blacklist)
-		if(istype(target,blacklist_type))
-			//Message goes here.
-			return
 
 	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
 	var/list/saved_affixes
@@ -45,8 +33,16 @@ GLOBAL_LIST_INIT(heretical_mirroring_blacklist,list(
 		if(found_component.quality)
 			saved_quality = saved_quality
 
-	var/obj/item/item_clone = new target.type
+	var/turf/turf_to_create_at = get_turf(target)
+	if(!turf_to_create_at)
+		turf_to_create_at = get_turf(user)
+
+	var/obj/item/item_clone = new target.type()
 	if(saved_affixes)
 		item_clone.AddComponent(/datum/component/fantasy,saved_quality,saved_affixes,FALSE,FALSE)
 
+	user.balloon_alert(user, "[name] applied!")
+
 	qdel(src)
+
+	user.put_in_hands(item_clone)
