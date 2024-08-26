@@ -478,7 +478,7 @@
 	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
 	// BUBBER EDIT CHANGE END - Disease Transmission
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
-	stage_prob = max(0.3 * properties["stage_rate"], 1)
+	stage_prob = max(0.4 * properties["stage_rate"], 1)
 	set_severity(properties["severity"])
 
 	//If we have an advanced (high stage) disease, add it to the name.
