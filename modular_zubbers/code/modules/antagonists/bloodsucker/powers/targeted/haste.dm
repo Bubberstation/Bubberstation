@@ -15,6 +15,7 @@
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 15
+	power_activates_immediately = FALSE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
 
@@ -63,13 +64,14 @@
 	. = ..()
 	var/mob/living/user = owner
 	var/stuns_mobs = TRUE
+	var/temp_cooldown = cooldown_time
 	if(level_current >= HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
 		to_chat(user, span_danger("Your heart takes a beat, and you force yourself to stand up!"))
 		user.SetKnockdown(0)
 		user.setStaminaLoss(0)
 		user.set_resting(FALSE, FALSE, TRUE)
 		stuns_mobs = FALSE
-		StartCooldown(GetGetupCooldown())
+		temp_cooldown = GetGetupCooldown()
 	if(stuns_mobs)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/turf/targeted_turf = isturf(target) ? target : get_turf(target)
@@ -96,7 +98,10 @@
 			break
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	hit.Cut()
 	user.adjustStaminaLoss(-user.staminaloss)
+	PowerActivatedSuccesfully(temp_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()
 	return 10 + level_current * 4
@@ -104,14 +109,7 @@
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetGetupCooldown()
 	return cooldown_time * 3
 
-/datum/action/cooldown/bloodsucker/targeted/haste/PowerActivatedSuccesfully()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	hit.Cut()
-
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/on_move()
-	if(!active)
-		return
 	for(var/mob/living/hit_living in dview(1, get_turf(owner)) - owner)
 		if(hit.Find(hit_living))
 			continue
