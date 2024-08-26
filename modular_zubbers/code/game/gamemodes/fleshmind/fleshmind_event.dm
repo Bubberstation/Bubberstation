@@ -40,7 +40,7 @@
 				continue
 			turfs += floor
 
-	qdel(test_resin)
+	QDEL_NULL(test_resin)
 
 	if(!turfs)
 		message_admins("Fleshmind failed to find an appropriate area to spawn.")
