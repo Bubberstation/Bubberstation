@@ -308,9 +308,9 @@
 	illness_type = advanced_disease.name
 
 	// BUBBER EDIT ADDITION START - Disease Transmission
-	var/to_infect = 2
+	var/to_infect = 3
 	if(length(GLOB.alive_player_list) > 65)
-		to_infect = 3
+		to_infect = 4
 
 	var/infected = 0
 	// BUBBER EDIT ADDITION END - Disease Transmission
