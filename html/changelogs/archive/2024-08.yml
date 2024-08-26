@@ -831,19 +831,41 @@
   - bugfix: bein able to buy the MCR, please stop
   - rscdel: obliterated powerstation from the blueshift. it should no longer be present
       now
+2024-08-24:
+  projectkepler-ru:
+  - bugfix: erronously the c10 speedloader was normal sized
+  - rscadd: you can now buy sidearm crate again
+  - code_imp: Frangible slug is re-coded to work abit differently
 2024-08-25:
   BurgerBB:
   - balance: As a living creature, it is no longer possible to go 2 times faster than
       base movement speed. Base movement speed is the default running speed of mobs,
       without any buffs.
+  EspeciallyStrange:
+  - bugfix: m45a5 guncase not spawning with an ammo pouch, I neglected this
+  - bugfix: the various guncase not being the pistol sized one
+  - rscadd: renoster shotgun purchasable
+  - balance: flechette ammo slightly easier to re-print
+  Kepteyn:
+  - rscadd: adds three new dorm rooms to hilbert's hotel options.
   LT3:
   - code_imp: Tajaran tongue moved from Feline Traits quirk to augments menu
   Majkl-J:
   - bugfix: Basic Medipens can be refilled again.
   ShadowLarkens:
   - bugfix: Claustrophobia no longer triggers inside vore bellies.
+  SkyratBot:
+  - spellcheck: Hierophant no longer lies about obliterating someone
+  - qol: goliath arm can defuse gibonite by bumping or direct click
+  - bugfix: Marine helmets no longer change their sprite to security helmets when
+      their flashlight is toggled
+  - balance: Rusted Ritual now requries 10 sheets of Iron instead of Titanium.
+  - bugfix: Aquarium decorations now contain plastic.
+  - spellcheck: Added item descriptions for aquarium decorations.
   Swiftfeather:
   - balance: Halves the time for bluespace crystal use
+  plsleavemealon:
+  - qol: Lets ethereals have custom food preferences
   projectkepler-ru:
   - rscadd: woodstock shotgun now buyable
   - bugfix: any remaining import gun being buyable
@@ -855,40 +877,13 @@
   - rscadd: you can now buy sidearm crate again
   shayoki:
   - rscadd: Five more new antler types.
-2024-08-24:
-  projectkepler-ru:
-  - bugfix: erronously the c10 speedloader was normal sized
-  - rscadd: you can now buy sidearm crate again
-  - code_imp: Frangible slug is re-coded to work abit differently
-2024-08-25:
-  EspeciallyStrange:
-  - bugfix: m45a5 guncase not spawning with an ammo pouch, I neglected this
-  - bugfix: the various guncase not being the pistol sized one
-  - rscadd: renoster shotgun purchasable
-  - balance: flechette ammo slightly easier to re-print
-  Kepteyn:
-  - rscadd: adds three new dorm rooms to hilbert's hotel options.
-  LT3:
-  - qol: Blacksmith anvil noises can be toggled with ambience sound preference
-  SkyratBot:
-  - spellcheck: Hierophant no longer lies about obliterating someone
-  - qol: goliath arm can defuse gibonite by bumping or direct click
-  - bugfix: Marine helmets no longer change their sprite to security helmets when
-      their flashlight is toggled
-  - balance: Rusted Ritual now requries 10 sheets of Iron instead of Titanium.
-  - bugfix: Aquarium decorations now contain plastic.
-  - spellcheck: Added item descriptions for aquarium decorations.
-  plsleavemealon:
-  - qol: Lets ethereals have custom food preferences
-  projectkepler-ru:
-  - bugfix: frangible slug literally doing nothing to window and grille
-  - bugfix: frangible slug should now no longer 1 shot borg or mech
-  - balance: combat shotgun recoil removed, instead, they just get a delay
-  - balance: bolt action delay on the ceremonial rifle reduced from 2 second to 6
-      ticks instead
 2024-08-26:
+  KazooBard:
+  - rscadd: The blueshield now can select "Henchman" as their title
   LT3:
   - bugfix: Flannel shirts actually cover your body when buttoned up
+  - bugfix: Fixed telecoms specialist HUD icon
+  - spellcheck: Sneak a peek of Hilbert's Hotel, not a sneak peak
   SkyratBot:
   - rscadd: Achievement for eating 500 cigarettes
   - balance: Cigarettes are now edible
@@ -897,6 +892,9 @@
       picked up/dropped
   - bugfix: SSPolling no longer fills in the candidate list with empty entries to
       guarantee it returns a list size of amount_to_pick
+  - bugfix: fixes blob spore and slime AI endlessly attacking the dead
+  aKromatopzia:
+  - image: more teshari clothing sprites
   grungussuss:
   - sound: lead pipe has sound
   projectkepler-ru:
@@ -906,3 +904,8 @@
   - balance: m45a5 has less painful wait period
   - bugfix: gun not being in pistol case when they should be
   - rscadd: 10mm AP, HP speedloader to the tech
+  - code_imp: removed unnecessary override as changes were patched upstream
+  - bugfix: Helmet pepperspray not working because of an NRI sabotage on the supplyline,
+      the IDMA Force has now succesfully repelled the attack and has shifted focus
+      toward trying to identify the suspect involved in this attack
+  - bugfix: weird suppresor overlay shenanigan
