@@ -80,9 +80,9 @@
 	for(var/iterating_action as anything in default_actions)
 		var/datum/action/new_action = new iterating_action
 		new_action.Grant(src)
-	if(length(loot))
-		loot = string_list(loot)
+	if(LAZYLEN(loot))
 		AddElement(/datum/element/death_drops, loot)
+	update_appearance()
 
 /mob/living/basic/fleshmind/death(gibbed)
 	if(contained_mob)
@@ -1387,8 +1387,7 @@
 
 /mob/living/basic/fleshmind/mechiver/update_overlays()
 	. = ..()
-	var/mob/living/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if(target && (get_dist(target, src) <= 4))
+	if(get_current_target() && (get_dist(get_current_target(), src) <= 4))
 		if(contained_mob)
 			. += "[base_icon_state]-chief"
 			. += "[base_icon_state]-hands"
@@ -1398,6 +1397,9 @@
 		. += "[base_icon_state]-closed"
 		if(contained_mob)
 			. += "[base_icon_state]-process"
+
+/mob/living/basic/fleshmind/mechiver/proc/get_current_target()
+	return ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
 /mob/living/basic/fleshmind/mechiver/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(target && COOLDOWN_FINISHED(src, consume_ability_cooldown) && Adjacent(target) && our_controller)
