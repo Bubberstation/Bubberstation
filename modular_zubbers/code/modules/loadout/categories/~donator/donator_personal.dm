@@ -46,7 +46,7 @@
 /datum/loadout_item/uniform/miscellaneous/diver
 	name = "Black Divers Uniform"
 	item_path = /obj/item/clothing/under/misc/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+	//ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /datum/loadout_item/uniform/miscellaneous/idmasnowfatigue
 	name = "IDMA Service Uniform"
@@ -103,7 +103,7 @@
 /datum/loadout_item/suit/diver //Donor item for patriot210
 	name = "Black Divers Coat"
 	item_path = /obj/item/clothing/suit/jacket/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+	//ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /datum/loadout_item/suit/holographic
     name = "Holographic Suit V4000"
@@ -115,6 +115,11 @@
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed
 	ckeywhitelist = list("lt3", "gavla")
 	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/suit/flight //Donor item for ironknight060
+	name = "MA-1 flight jacket"
+	item_path = /obj/item/clothing/suit/jacket/flight
+	ckeywhitelist = list("ironknight060")
 
 /*
 *	SHOES
@@ -128,7 +133,7 @@
 /datum/loadout_item/shoes/diver //Donor item for patriot210
 	name = "Black Divers Boots"
 	item_path = /obj/item/clothing/shoes/boots/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+	//ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /*
 *	ACCESSORIES
@@ -165,7 +170,7 @@
 /datum/loadout_item/gloves/diver //Donor item for patriot210
 	name = "Black Divers Gloves"
 	item_path = /obj/item/clothing/gloves/misc/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+	//ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /*
 *	IN-HAND
