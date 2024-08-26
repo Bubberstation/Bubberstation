@@ -13,7 +13,7 @@
 	var/electronic = FALSE
 	var/devicetype = null
 
- /obj/item/clothing/sextoy/chastity/remote
+/obj/item/clothing/sextoy/chastity/remote
 	var/random = TRUE
 	var/freq_in_name = TRUE
 	var/code = 2
