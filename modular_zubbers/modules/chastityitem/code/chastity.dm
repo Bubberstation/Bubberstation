@@ -40,7 +40,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	lewd_slot_flags = LEWD_SLOT_PENIS
 
-obj/item/clothing/sextoy/chastity/belt/remote
+/obj/item/clothing/sextoy/chastity/belt/remote
 	name = "remote chastity belt"
 	desc = "They say codpieces are back in vogue, after all."
 	devicetype = "belt"
