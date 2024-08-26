@@ -10,6 +10,7 @@
 		The power will cancel out if you are dead or unconcious."
 	power_flags = BP_AM_TOGGLE
 	check_flags = AB_CHECK_CONSCIOUS
+	bloodsucker_check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 1.5
 	cooldown_time = 10 SECONDS

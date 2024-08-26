@@ -23,7 +23,7 @@
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
 	var/power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	/// Requirement flags for checks
-	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED
 	var/bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	/// Who can purchase the Power
 	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|VASSAL_CAN_BUY
@@ -272,7 +272,7 @@
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		new_desc += "<br><b>LEVEL:</b> [level_current]"
 	else
-		new_desc += "<br><br><b>(Inherent Power)</b>"
+		new_desc += "<br><b>(Inherent Power)</b>"
 	if(bloodcost > 0)
 		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)

@@ -6,6 +6,7 @@
 	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
 	power_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_LYING|AB_CHECK_PHASED|AB_CHECK_LYING
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
@@ -56,10 +57,6 @@
 	// Check: Turf
 	var/mob/living/turf_target = target_atom
 	if(!isturf(turf_target.loc))
-		return FALSE
-	// Check: can the Bloodsucker even move?
-	var/mob/living/user = owner
-	if(user.body_position == LYING_DOWN || HAS_TRAIT(owner, TRAIT_IMMOBILIZED))
 		return FALSE
 	return TRUE
 
