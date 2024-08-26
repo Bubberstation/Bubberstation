@@ -181,7 +181,7 @@
 	return max_blood_volume * percentage_needed
 
 /datum/antagonist/bloodsucker/proc/max_vassals()
-	return bloodsucker_level
+	return round(bloodsucker_level * 0.5)
 
 /datum/antagonist/bloodsucker/proc/free_vassal_slots()
 	return max(max_vassals() - length(vassals), 0)
