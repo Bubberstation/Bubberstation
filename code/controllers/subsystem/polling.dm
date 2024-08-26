@@ -175,6 +175,10 @@ SUBSYSTEM_DEF(polling)
 	UNTIL(new_poll.finished)
 	if(!(amount_to_pick > 0))
 		return new_poll.signed_up
+	if(length(new_poll.signed_up) < amount_to_pick)
+		return new_poll.signed_up
+	if(length(new_poll.signed_up) < amount_to_pick)
+		return new_poll.signed_up
 
 	//BUBBERSTATION CHANGE START: ANTAG TICKETS INTEGRATION
 	var/list/candidate_tickets = candidates_to_tickets(new_poll.signed_up)
