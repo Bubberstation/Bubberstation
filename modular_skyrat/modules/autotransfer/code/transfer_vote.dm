@@ -29,7 +29,6 @@
 	return VOTE_AVAILABLE
 
 /datum/vote/transfer_vote/finalize_vote(winning_option)
-	has_ran = TRUE //bubber edit - ghosts can vote on transfers after its been ran once
 	if(winning_option == CHOICE_CONTINUE)
 		return
 
