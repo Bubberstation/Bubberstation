@@ -7,15 +7,10 @@
 		/area/station/cargo/miningfoundry/event_protected,
 
 		/area/ruin/unpowered/primitive_catgirl_den,
+
+		/area/ruin/space/has_grav/bubbers/dauntless_space,
+		/area/ruin/space/has_grav/bubbers/dauntless,
+
+		/area/station/commons/dorms,
 	))
 	. = ..()
-
-
-/datum/weather/rad_storm/New()
-	. = ..()
-
-	for (var/area/station/commons/dorms/dorm_subtype in subtypesof(/area/station/commons/dorms))
-		protected_areas += dorm_subtype
-
-	protected_areas += /area/ruin/space/has_grav/bubbers/dauntless
-	protected_areas += /area/ruin/space/has_grav/bubbers/dauntless_space
