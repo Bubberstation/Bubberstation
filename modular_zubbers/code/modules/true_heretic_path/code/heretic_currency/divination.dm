@@ -21,7 +21,10 @@
 		user.balloon_alert(user, "not a fantasy item!")
 		return
 
+	found_component.unmodify()
+
 	found_component.random_quality()
+
 	found_component.modify()
 
 	user.balloon_alert(user, "[name] applied!")

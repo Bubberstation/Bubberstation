@@ -24,6 +24,10 @@
 		user.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
 
+	var/turf/turf_to_create_at = get_turf(target)
+	if(!turf_to_create_at)
+		turf_to_create_at = get_turf(user)
+
 	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
 	var/list/saved_affixes
 	var/saved_quality
@@ -31,13 +35,9 @@
 		if(length(found_component.affixes))
 			saved_affixes = found_component.affixes.Copy()
 		if(found_component.quality)
-			saved_quality = saved_quality
+			saved_quality = found_component.quality
 
-	var/turf/turf_to_create_at = get_turf(target)
-	if(!turf_to_create_at)
-		turf_to_create_at = get_turf(user)
-
-	var/obj/item/item_clone = new target.type()
+	var/obj/item/item_clone = new target.type(turf_to_create_at)
 	if(saved_affixes)
 		item_clone.AddComponent(/datum/component/fantasy,saved_quality,saved_affixes,FALSE,FALSE)
 

@@ -4,13 +4,14 @@ GLOBAL_LIST_INIT(heretical_suffixes,generate_heretical_affixes(AFFIX_SUFFIX))
 GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 
 /proc/generate_heretical_affixes(affix_type)
+
 	. = list()
+
 	for(var/datum/fantasy_affix/affix as anything in subtypesof(/datum/fantasy_affix))
 		if(initial(affix.placement) != affix_type)
 			continue
-		if(initial(affix.alignment) & AFFIX_GOOD) //This also includes cosmetic types.
-			continue
 		.[new affix] = initial(affix.weight)
+
 	return
 
 /obj/item/heretic_currency
@@ -35,7 +36,7 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 	desc = "Does not contain fishing mechanics."
 	illustration = "fish"
 
-/obj/item/storage/box/disks_plantgene/PopulateContents()
+/obj/item/storage/box/heretic_currency_debug_box/PopulateContents()
 
 	for(var/obj/item/found_currency as anything in subtypesof(/obj/item/heretic_currency))
 		for(var/i in 1 to 5)

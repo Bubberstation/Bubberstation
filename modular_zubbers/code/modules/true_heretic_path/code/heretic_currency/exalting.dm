@@ -41,10 +41,9 @@
 		user.balloon_alert(user, "something went wrong!")
 		return
 
-	affix_to_add = new affix_to_add
+	affix_to_add = new affix_to_add.type
 
 	found_component.unmodify() //Clear existing (but we saved the existing one)
-	found_component.affixes += found_affix
 	found_component.affixes += affix_to_add
 	found_component.modify()
 

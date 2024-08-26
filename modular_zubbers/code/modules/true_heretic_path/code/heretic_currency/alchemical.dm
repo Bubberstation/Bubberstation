@@ -2,7 +2,6 @@
 	name = "alchemical orb"
 	icon_state = "alchemical"
 
-
 /obj/item/heretic_currency/alchemical/pre_attack(obj/item/target, mob/living/user)
 
 	. = ..()
@@ -35,7 +34,7 @@
 		user.balloon_alert(user, "something went wrong!")
 		return
 
-	desired_affix = new desired_affix
+	desired_affix = new desired_affix.type
 	target.AddComponent(/datum/component/fantasy, null, list(desired_affix), FALSE, FALSE)
 	user.balloon_alert(user, "[src] applied!")
 	qdel(src)

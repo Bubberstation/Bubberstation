@@ -37,11 +37,13 @@
 
 	found_component.unmodify() //Clear existing
 
+	found_component.affixes.Cut()
+
 	if(desired_prefix)
-		found_component.affixes += new desired_prefix
+		found_component.affixes += new desired_prefix.type
 
 	if(desired_suffix)
-		found_component.affixes += new desired_suffix
+		found_component.affixes += new desired_suffix.type
 
 	found_component.modify()
 
