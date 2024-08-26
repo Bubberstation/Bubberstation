@@ -6,7 +6,6 @@
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 8
 	cooldown_time = 9 SECONDS

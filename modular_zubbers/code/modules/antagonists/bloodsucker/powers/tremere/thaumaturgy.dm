@@ -21,7 +21,7 @@
 	name = "Thaumaturgy"
 	level_current = 1
 	button_icon_state = "power_thaumaturgy"
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
 	// custom cooldown handling based on charges
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 5

@@ -14,7 +14,7 @@
 		At level 2, you will no longer need to be unseen to activate this power.\n\
 		At level 4, you will be able to run while cloaked."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 5
 	constant_bloodcost = 0.2

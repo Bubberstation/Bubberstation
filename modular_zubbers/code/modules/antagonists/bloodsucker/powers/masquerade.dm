@@ -15,9 +15,11 @@
 	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
 	button_icon_state = "power_human"
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
-	check_flags = BP_CANT_USE_IN_FRENZY
+	check_flags = NONE
+	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 10
+	level_current = -1
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
 

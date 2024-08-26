@@ -16,7 +16,7 @@
 	name = "Auspex"
 	level_current = 1
 	button_icon_state = "power_auspex"
-	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
+	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
 	bloodcost = 10
 	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS

@@ -21,8 +21,6 @@
 	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 	level_current = 1
 	button_icon_state = "power_dominate"
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_CONSCIOUS
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 15
 	constant_bloodcost = 0.1

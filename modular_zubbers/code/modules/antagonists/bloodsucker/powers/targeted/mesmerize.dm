@@ -14,7 +14,6 @@
 	name = "Mesmerize"
 	button_icon_state = "power_mez"
 	power_flags = NONE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 30 SECONDS

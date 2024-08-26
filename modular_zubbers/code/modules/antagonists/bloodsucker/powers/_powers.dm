@@ -23,7 +23,8 @@
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
 	var/power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	/// Requirement flags for checks
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
+	var/bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	/// Who can purchase the Power
 	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|VASSAL_CAN_BUY
 
@@ -108,6 +109,8 @@
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	SHOULD_CALL_PARENT(TRUE)
 	DeactivatePower()
+	if(level_current == -1) // -1 means it doesn't rank up ever
+		return FALSE
 	level_current++
 	on_power_upgrade()
 	return TRUE
@@ -134,27 +137,19 @@
 		to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
 		return FALSE
 	// Torpor?
-	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
 		to_chat(user, span_warning("Not while you're in Torpor."))
 		return FALSE
-	if(!(check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
+	if(!(bloodsucker_check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
 		to_chat(user, span_warning("You can't do this while transformed!"))
 		return FALSE
 	// Frenzy?
-	if((check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.frenzied))
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.frenzied))
 		to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
 		return FALSE
 	// Stake?
-	if(!(check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
+	if(!(bloodsucker_check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
 		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
-		return FALSE
-	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
-	if((check_flags & AB_CHECK_CONSCIOUS) && user.stat >= UNCONSCIOUS)
-		to_chat(user, span_warning("You can't do this while you are unconcious!"))
-		return FALSE
-	// Incapacitated?
-	if((check_flags & AB_CHECK_INCAPACITATED) && (user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB)))
-		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
 	if(constant_bloodcost > 0 && !can_pay_blood(user))
@@ -261,7 +256,7 @@
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
-	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
+	if(level_current != -1)
 		. += "LEVEL: [level_current] [name]:"
 	else
 		. += "(Inherent Power) [name]:"
