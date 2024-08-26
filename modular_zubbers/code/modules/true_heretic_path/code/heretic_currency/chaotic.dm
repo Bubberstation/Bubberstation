@@ -1,5 +1,6 @@
 /obj/item/heretic_currency/chaotic
 	name = "chaotic orb"
+	desc = "A solid golden figurine of three heads combined into one. Looking at it makes you feel uncertainty."
 	icon_state = "chaotic"
 
 /obj/item/heretic_currency/chaotic/pre_attack(obj/item/target, mob/living/user)
@@ -44,6 +45,8 @@
 
 	if(desired_suffix)
 		found_component.affixes += new desired_suffix.type
+
+	found_component.quality = found_component.random_quality()
 
 	found_component.modify()
 

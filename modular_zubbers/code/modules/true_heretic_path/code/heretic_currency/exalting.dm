@@ -1,5 +1,6 @@
 /obj/item/heretic_currency/exalting
 	name = "exalting orb"
+	desc = "An amorphous golden blob of a three-headed figurine. You feel that it is shifting... but it isn't."
 	icon_state = "exalting"
 
 

@@ -1,5 +1,6 @@
 /obj/item/heretic_currency/mirroring
 	name = "mirroring orb"
+	desc = "A thick and heavy handleless hand-mirror that does not seem to show your own reflection, despite showing the world around it. Spooky."
 	icon_state = "mirroring"
 
 /obj/item/heretic_currency/mirroring/pre_attack(obj/item/target, mob/living/user)

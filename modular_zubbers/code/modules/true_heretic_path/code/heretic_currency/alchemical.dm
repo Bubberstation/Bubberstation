@@ -1,5 +1,6 @@
 /obj/item/heretic_currency/alchemical
 	name = "alchemical orb"
+	desc = "A mysterious rock-like orb that smells of sulfur. It has a weird organic root growing out the side."
 	icon_state = "alchemical"
 
 /obj/item/heretic_currency/alchemical/pre_attack(obj/item/target, mob/living/user)
@@ -10,16 +11,18 @@
 		return
 
 	if(!istype(target))
-		user.balloon_alert(user, "not an item!")
+		user.balloon_alert(user, "not a weapon or clothing item!")
 		return
 
 	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
 		user.balloon_alert(user, "has no effect!")
 		return
 
-	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
-	if(found_component)
-		user.balloon_alert(user, "already a fantasy item!")
+	if(target.item_flags & (DROPDEL | ABSTRACT))
+		return
+
+	if(!target.force && !target.throwforce && !isclothing(target) && !isgun(target))
+		user.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
 
 	var/datum/fantasy_affix/desired_affix
