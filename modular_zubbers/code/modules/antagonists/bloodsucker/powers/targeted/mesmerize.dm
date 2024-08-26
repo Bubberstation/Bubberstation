@@ -38,11 +38,11 @@
 	var/timer
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
-	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? "and muting them" : ""]."
+	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? " and muting them" : ""].<br>"
 	if(knockdown_on_secondary)
 		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
 	else
-		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())].<br>"
+		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())]."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. = list()
