@@ -72,7 +72,7 @@
 /mob/living/basic/fleshmind/Initialize(mapload, datum/fleshmind_controller/incoming_controller)
 	. = ..()
 	// The flesh will try to convince you while stabbing you.
-	AddComponent(/datum/component/aggro_emote, emote_list = src.attack_emote, speak_list = src.attack_speak, sounds = src.alert_sounds, emote_chance = 50)
+	AddComponent(/datum/component/aggro_emote, emote_list = src.attack_emote, speak_list = src.attack_speak, sounds = src.alert_sounds, emote_chance = 100)
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, src.emotes)
 	// We set a unique name when we are created, to give some feeling of randomness.
 	name = "[pick(FLESHMIND_NAME_MODIFIER_LIST)] [name]"
@@ -94,6 +94,7 @@
 
 /mob/living/basic/fleshmind/Destroy()
 	UnregisterSignal(src, COSMIG_CONTROLLER_SET_TARGET)
+	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	if(contained_mob)
 		contained_mob.forceMove(get_turf(src))
 		if(previous_ckey)
@@ -191,21 +192,6 @@
 
 	explosion(src, 0, 1, 2, 2, 0, FALSE)
 	gib()
-/*
-/mob/living/basic/fleshmind/proc/say_passive_speech()
-	say(pick(passive_speak_lines))
-	if(passive_sounds)
-		playsound(src, pick(passive_sounds), 50)
-*/
-/**
- * Special Abilities
- *
- * These advanced mobs have the ability to use a special ability every so often,
- * use the cooldown time to dictate how often this is activated.
- */
-
-/mob/living/basic/fleshmind/proc/special_ability()
-	return
 
 /**
  * Closet Interaction
@@ -244,7 +230,7 @@
 	do_sparks(3, FALSE, src)
 	Shake(10, 0, reset_time)
 	say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
-	src.ai_controller?.set_ai_status(AI_STATUS_OFF)
+	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	suffering_malfunction = TRUE
 	if(!endless_malfunction)
 		addtimer(CALLBACK(src, PROC_REF(malfunction_reset)), reset_time)
@@ -732,6 +718,7 @@
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	base_icon_state = "himan"
+	basic_mob_flags = null
 	maxHealth = 250
 	health = 250
 	speed = 2
@@ -794,7 +781,7 @@
 	var/scream_cooldown = 20 SECONDS
 	COOLDOWN_DECLARE(scream_ability)
 	var/scream_effect_range = 10
-/*
+
 /mob/living/basic/fleshmind/himan/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/himan_fake_death/new_action = new
@@ -804,9 +791,15 @@
 	. = ..()
 	if(health < (maxHealth * 0.5) && !faking_death && COOLDOWN_FINISHED(src, fake_death) && !key)
 		fake_our_death()
+	if(faking_death) // Heal damage slowly
+		heal_overall_damage(1, 1)
+		if(health == maxHealth)
+			awake()
 
-	if(faking_death)
-		stop_automated_movement = TRUE
+/mob/living/basic/fleshmind/himan/melee_attack(atom/target, list/modifiers, ignore_cooldown)
+	if(COOLDOWN_FINISHED(src, scream_ability))
+		scream()
+	return ..()
 
 /mob/living/basic/fleshmind/himan/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
@@ -818,31 +811,7 @@
 		return
 	return ..()
 
-/mob/living/basic/fleshmind/himan/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterproof = FALSE, message_range = 7, datum/saymode/saymode = null)
-	if(faking_death)
-		return
-	return ..()
-
-/mob/living/basic/fleshmind/himan/MoveToTarget(list/possible_targets)
-	if(faking_death)
-		return
-	return ..()
-
-/mob/living/basic/fleshmind/himan/melee_attack(atom/attacked_target, list/modifiers, ignore_cooldown)
-	if(faking_death)
-		return
-	return ..()
-
-/mob/living/basic/fleshmind/himan/Aggro()
-	if(faking_death && !key)
-		if(!Adjacent(target))
-			return
-		awake()
-	if(COOLDOWN_FINISHED(src, scream_ability) && !key)
-		scream()
-	return ..()
-
-/mob/living/basic/fleshmind/himan/say_passive_speech()
+/mob/living/basic/fleshmind/himan/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterproof = FALSE, message_range = 7, datum/saymode/saymode = null, message_mods)
 	if(faking_death)
 		return
 	return ..()
@@ -861,21 +830,25 @@
 			continue
 		if(faction_check(faction, iterating_mob.faction))
 			continue
-		iterating_mob.Knockdown(100)
+		iterating_mob.Knockdown(5 SECONDS)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
 		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 /mob/living/basic/fleshmind/himan/proc/fake_our_death()
+	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
+	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	manual_emote("stops moving...")
-	LoseAggro()
-	LoseTarget()
 	faking_death = TRUE
-	icon_state = "[base_icon_state]-dead"
+	look_dead()
 	COOLDOWN_START(src, fake_death, fake_death_cooldown)
 
 /mob/living/basic/fleshmind/himan/proc/awake()
+	if(COOLDOWN_FINISHED(src, scream_ability))
+		scream()
 	faking_death = FALSE
+	look_alive()
 	icon_state = base_icon_state
+	ai_controller?.set_ai_status(AI_STATUS_ON)
 
 /datum/action/cooldown/himan_fake_death
 	name = "Fake Death"
@@ -890,7 +863,7 @@
 	var/mob/living/basic/fleshmind/himan/himan_owner = owner
 	himan_owner.fake_our_death()
 	StartCooldownSelf()
-*/
+
 
 
 /**
@@ -904,26 +877,22 @@
 	name = "Treader"
 	desc = "A strange tracked robot with an appendage, on the end of which is a human head, it is shrieking in pain."
 	icon_state = "treader"
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/treader
+	var/projectile_type = /obj/projectile/treader
+	var/ranged_cooldown = 5 SECONDS
+	var/shoot_sound = 'sound/chemistry/saturnx_fade.ogg'
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	//retreat_distance = 4
-	//minimum_distance = 4
-	//dodging = TRUE
+	basic_mob_flags = DEL_ON_DEATH
 	health = 200
 	maxHealth = 200
 	speed = 3
-	//move_to_delay = 6
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	//retreat_distance = 4
-	//minimum_distance = 4
-	//projectiletype = /obj/projectile/treader
 	light_color = FLESHMIND_LIGHT_BLUE
 	light_range = 2
-	//del_on_death = TRUE
 	mob_size = MOB_SIZE_HUMAN
-	//loot = list(/obj/effect/gibspawner/robot)
-	/*speak = list(
+	attack_speak = list(
 		"You there! Cut off my head, I beg you!",
 		"I-..I'm so sorry! I c-..can't control myself anymore!",
 		"S-shoot the screen, please! God I hope it wont hurt!",
@@ -931,23 +900,43 @@
 		"I cant... I cant feel my arms...",
 		"Oh god... my legs... where are my legs!",
 		"God it hurts, please help me!",
-	)*/
-	special_ability_cooldown = 20 SECONDS
+	)
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"Please-e free me...",
+			"Maybe d-death is the only option.",
+			"WHAT HAPPENED TO ME!",
+			"PLEASE MAKE THE VOICES STOP!",
+			"Am I stuck like this forever?",),
+		BB_EMOTE_HEAR = list("wanders aimlessly", "hysteriacally screams!", "head thrashes around."),
+		BB_EMOTE_SOUND = list(
+			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light3.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light4.ogg',
+			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',)
+	)
 
 /mob/living/basic/fleshmind/treader/Initialize(mapload)
 	. = ..()
-	var/datum/action/cooldown/treader_dispense_nanites/new_action = new
-	new_action.Grant(src)
-
-/mob/living/basic/fleshmind/treader/special_ability()
-	dispense_nanites()
+	AddComponent(\
+		/datum/component/ranged_attacks,\
+		cooldown_time = ranged_cooldown,\
+		projectile_type = projectile_type,\
+		projectile_sound = shoot_sound,\
+	)
+	var/static/list/innate_actions = list(/datum/action/cooldown/treader_dispense_nanites = BB_TREADER_DISPENSE_NANITES)
+	grant_actions_by_list(innate_actions)
 
 /mob/living/basic/fleshmind/treader/proc/dispense_nanites()
-	manual_emote("vomits out a burst of nanites!")
-	do_smoke(3, 4, get_turf(src))
 	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
 		if(faction_check(iterating_mob.faction, faction))
-			iterating_mob.heal_overall_damage(30, 30)
+			if(iterating_mob.health < iterating_mob.maxHealth)
+				manual_emote("vomits out a burst of nanites!")
+				do_smoke(3, 4, get_turf(src))
+				iterating_mob.heal_overall_damage(30, 30)
+				return TRUE
+		return FALSE
 
 /datum/action/cooldown/treader_dispense_nanites
 	name = "Dispense Nanites"
@@ -960,7 +949,8 @@
 	if(!istype(owner, /mob/living/basic/fleshmind/treader))
 		return
 	var/mob/living/basic/fleshmind/treader/treader_owner = owner
-	treader_owner.dispense_nanites()
+	if(!treader_owner.dispense_nanites())
+		return
 	StartCooldownSelf()
 
 /obj/projectile/treader
@@ -988,24 +978,19 @@
 	name = "Phaser"
 	icon_state = "phaser-1"
 	base_icon_state = "phaser"
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/phaser
 	health = 160
 	maxHealth = 160
-	malfunction_chance = 0
+	malfunction_chance = null
 	attack_sound = 'sound/effects/attackblob.ogg'
 	attack_verb_continuous = "warps"
 	attack_verb_simple = "warp"
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	alert_sounds = null
-	//passive_sounds = null
 	escapes_closets = FALSE
-	//speak = list()
-	/*del_on_death = TRUE
-	loot = list(
-		/obj/effect/gibspawner/human,
-	)*/
+	loot = list(/obj/effect/gibspawner/human)
 	mob_size = MOB_SIZE_HUMAN
-	//wander = FALSE
 	/// What is the range at which we spawn our copies?
 	var/phase_range = 5
 	/// How many copies do we spawn when we are aggroed?
@@ -1026,12 +1011,32 @@
 	filters += filter(type = "blur", size = 0)
 	var/datum/action/cooldown/phaser_phase_ability/new_action = new
 	new_action.Grant(src)
-/*
-/mob/living/basic/fleshmind/phaser/Aggro()
-	if(COOLDOWN_FINISHED(src, phase_ability_cooldown))
-		phase_ability()
-	return ..()
-*/
+
+/mob/living/basic/fleshmind/phaser/Life(delta_time, times_fired)
+	. = ..()
+
+	var/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+	if(!.) //dead
+		return
+
+	if(COOLDOWN_FINISHED(src, closet_ability_cooldown) && !target && !key)
+		if(!istype(loc, /obj/structure/closet))
+			enter_nearby_closet()
+			COOLDOWN_START(src, closet_ability_cooldown, closet_ability_cooldown_time)
+
+	if(COOLDOWN_FINISHED(src, phase_ability_cooldown) && target && !key)
+		phase_ability(target)
+
+	if(istype(loc, /obj/structure/closet) && !key)
+		for(var/mob/living/iterating_mob in get_hearers_in_view(DEFAULT_VIEW_RANGE / 2, get_turf(src)))
+			if(faction_check(iterating_mob.faction, faction))
+				continue
+			if(iterating_mob.stat != CONSCIOUS)
+				continue
+			closet_interaction() // We exit if there are enemies nearby
+			ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, iterating_mob)
+
+
 /mob/living/basic/fleshmind/phaser/ShiftClickOn(atom/clicked_atom)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, manual_phase))
@@ -1043,45 +1048,9 @@
 	phase_move_to(clicked_atom)
 	COOLDOWN_START(src, manual_phase, manual_phase_cooldown)
 
-/*
-/mob/living/basic/fleshmind/phaser/MoveToTarget(list/possible_targets)
-	stop_automated_movement = TRUE
-	if(!target || !CanAttack(target))
-		LoseTarget()
-		return FALSE
-	if(target in possible_targets)
-		var/turf/turf = get_turf(src)
-		if(target.z != turf.z)
-			LoseTarget()
-			return FALSE
-		if(get_dist(src, target) > 1)
-			phase_move_to(target, nearby = TRUE)
-		else if(target)
-			MeleeAction()
-
-/mob/living/basic/fleshmind/phaser/Life(delta_time, times_fired)
-	. = ..()
-	if(!.) //dead
-		return
-	if(!target && COOLDOWN_FINISHED(src, closet_ability_cooldown) && !key)
-		enter_nearby_closet()
-		COOLDOWN_START(src, closet_ability_cooldown, closet_ability_cooldown_time)
-
-	if(istype(loc, /obj/structure/closet) && !key)
-		for(var/mob/living/iterating_mob in get_hearers_in_view(DEFAULT_VIEW_RANGE, get_turf(src)))
-			if(faction_check(iterating_mob.faction, faction))
-				continue
-			if(iterating_mob.stat != CONSCIOUS)
-				continue
-			closet_interaction() // We exit if there are enemies nearby
-
 /mob/living/basic/fleshmind/phaser/proc/enter_nearby_closet()
-	if(target) // We're in combat, no going to a closet.
-		return
-	if(istype(loc, /obj/structure/closet))
-		return
 	var/list/possible_closets = list()
-	for(var/obj/structure/closet/closet in view(DEFAULT_VIEW_RANGE, src))
+	for(var/obj/structure/closet/closet in oview(DEFAULT_VIEW_RANGE, src))
 		if(closet.locked)
 			continue
 		possible_closets += closet
@@ -1101,7 +1070,7 @@
 	COOLDOWN_RESET(src, phase_ability_cooldown)
 
 	SEND_SIGNAL(src, COMSIG_PHASER_ENTER_CLOSET)
-*/
+
 /mob/living/basic/fleshmind/phaser/proc/phase_move_to(atom/target_atom, nearby = FALSE)
 	var/turf/new_place
 	var/distance_to_target = get_dist(src, target_atom)
@@ -1171,11 +1140,10 @@
 			return FALSE
 
 	return TRUE
-/*
+
 /mob/living/basic/fleshmind/phaser/proc/phase_ability(mob/living/target_override)
-	//var/mob/living/intermediate_target = target
-	if(target_override)
-		intermediate_target = target_override
+
+	var/intermediate_target = target_override
 	if(!intermediate_target)
 		return
 	COOLDOWN_START(src, phase_ability_cooldown, phase_ability_cooldown_time)
@@ -1191,7 +1159,7 @@
 		phaser_copy.RegisterSignal(src, COMSIG_PHASER_PHASE_MOVE, /obj/effect/temp_visual/phaser/proc/parent_phase_move)
 		phaser_copy.RegisterSignal(src, COMSIG_LIVING_DEATH, /obj/effect/temp_visual/phaser/proc/parent_death)
 		phaser_copy.RegisterSignal(src, COMSIG_PHASER_ENTER_CLOSET, /obj/effect/temp_visual/phaser/proc/parent_death)
-*/
+
 /datum/action/cooldown/phaser_phase_ability
 	name = "Create Clones"
 	desc = "Creates phase copies of ourselves to move towards a set target."
@@ -1220,7 +1188,7 @@
 	if(!selected_target)
 		return
 
-	//phaser_owner.phase_ability(selected_target)
+	phaser_owner.phase_ability(selected_target)
 
 	StartCooldownSelf()
 
@@ -1321,56 +1289,19 @@
 	icon_state = "mechiver"
 	base_icon_state = "mechiver"
 	icon_dead = "mechiver-dead"
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/mechiver
 	health = 450
 	maxHealth = 450
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 20
+	melee_damage_upper = 30
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
 	attack_sound = 'sound/weapons/smash.ogg'
 	speed = 4 // Slow fucker
 	mob_size = MOB_SIZE_LARGE
-	/*passive_speak_lines = list(
-		"A shame this form isn't more fitting.",
-		"I feel so empty inside, I wish someone would join me.",
-		"Beauty is within.",
-	)*/
-	/*speak = list(
-		"What a lovely body. Lay it down intact.",
-		"Now this... this is worth living for.",
-		"Go on. It's okay to be afraid at first.",
-		"You're unhappy with your body, but you came to the right place.",
-		"What use is a body you're unhappy in? Please, I can fix it.",
-		"Mine is the caress of steel.",
-		"Climb inside, and I'll seal the door. When I open it back up, you'll be in a community that loves you.",
-		"You can be the pilot, and I can drive you to somewhere lovely.",
-		"Please, just- lay down, okay? I want nothing more than to help you be yourself.",
-		"Whatever form you want to be, just whisper it into my radio. You can become what you were meant to be.",
-		"It.. hurts, seeing you run. Knowing I can't keep up. Why won't you let other people help you..?",
-	)*/
-	alert_sounds = list(
-		'modular_zubbers/sound/fleshmind/mechiver/aggro_01.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/aggro_02.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/aggro_03.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/aggro_04.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/aggro_05.ogg',
-	)
-	/*passive_sounds = list(
-		'modular_zubbers/sound/fleshmind/mechiver/passive_01.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_02.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_03.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_04.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_05.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_06.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_07.ogg',
-		'modular_zubbers/sound/fleshmind/mechiver/passive_08.ogg',
-
-	)*/
-	//del_on_death = TRUE
-	//loot = list(/obj/effect/gibspawner/robot)
-	move_force = MOVE_FORCE_OVERPOWERING
-	move_resist = MOVE_FORCE_OVERPOWERING
-	pull_force = MOVE_FORCE_OVERPOWERING
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_VERY_STRONG
+	pull_force = MOVE_FORCE_VERY_STRONG
 	/// Is our hatch open? Used in icon processing.
 	var/hatch_open = FALSE
 	/// How much damage our mob will take, upper end, when they are tormented
@@ -1383,6 +1314,43 @@
 	var/consume_ability_cooldown_time = MECHIVER_CONSUME_COOLDOWN
 	COOLDOWN_DECLARE(consume_ability_cooldown)
 	/// A list of lines we will send to torment the passenger.
+	alert_sounds = list(
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_01.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_02.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_03.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_04.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/aggro_05.ogg',
+		)
+	attack_speak = list(
+		"What a lovely body. Lay it down intact.",
+		"Now this... this is worth living for.",
+		"Go on. It's okay to be afraid at first.",
+		"You're unhappy with your body, but you came to the right place.",
+		"What use is a body you're unhappy in? Please, I can fix it.",
+		"Mine is the caress of steel.",
+		"Climb inside, and I'll seal the door. When I open it back up, you'll be in a community that loves you.",
+		"You can be the pilot, and I can drive you to somewhere lovely.",
+		"Please, just- lay down, okay? I want nothing more than to help you be yourself.",
+		"Whatever form you want to be, just whisper it into my radio. You can become what you were meant to be.",
+		"It.. hurts, seeing you run. Knowing I can't keep up. Why won't you let other people help you..?",
+	)
+	emotes = list(
+		BB_EMOTE_SAY = list(
+		"A shame this form isn't more fitting.",
+		"I feel so empty inside, I wish someone would join me.",
+		"Beauty is within.",
+		),
+		BB_EMOTE_SOUND = list(
+		'modular_zubbers/sound/fleshmind/mechiver/passive_01.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_02.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_03.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_04.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_05.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_06.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_07.ogg',
+		'modular_zubbers/sound/fleshmind/mechiver/passive_08.ogg',
+		)
+	)
 	var/static/list/torment_lines = list(
 		"An arm grabs your neck, hundreds of manipulators trying to work a set of implants under your skin!",
 		"The cockpit radio crackles, \" You came to the right place... \"",
@@ -1394,20 +1362,20 @@
 		"A dozen needles slide effortless into your muscles, injecting you with an unknown vigor!",
 		"You feel a cold worm-like thing trying to wriggle into your solar plexus, burrowing underneath your skin!",
 	)
-/*
+
 /mob/living/basic/fleshmind/mechiver/Life(delta_time, times_fired)
 	. = ..()
 	if(contained_mob && contained_mob.stat != DEAD && prob(25) && !suffering_malfunction)
 		torment_passenger()
 
-	if(!target && !contained_mob && !suffering_malfunction && !key)
+	if(!ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] && !contained_mob && !suffering_malfunction && !key && our_controller)
 		for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
 			if(iterating_mob.stat != CONSCIOUS)
 				if(get_dist(src, iterating_mob) <= 1)
 					consume_mob(iterating_mob)
 				else
-					Goto(iterating_mob, speed)
-*/
+					ai_controller.set_blackboard_key(BB_TRAVEL_DESTINATION, iterating_mob)
+
 /mob/living/basic/fleshmind/mechiver/proc/torment_passenger()
 	if(!contained_mob)
 		return
@@ -1424,9 +1392,10 @@
 /mob/living/basic/fleshmind/mechiver/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	update_appearance()
-/*
+
 /mob/living/basic/fleshmind/mechiver/update_overlays()
 	. = ..()
+	var/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 	if(target && (get_dist(target, src) <= 4))
 		if(contained_mob)
 			. += "[base_icon_state]-chief"
@@ -1438,20 +1407,21 @@
 		if(contained_mob)
 			. += "[base_icon_state]-process"
 
-/mob/living/basic/fleshmind/mechiver/AttackingTarget(atom/attacked_target)
-	if(target && COOLDOWN_FINISHED(src, consume_ability_cooldown) && Adjacent(target))
+/mob/living/basic/fleshmind/mechiver/melee_attack(atom/target, list/modifiers, ignore_cooldown)
+	if(target && COOLDOWN_FINISHED(src, consume_ability_cooldown) && Adjacent(target) && our_controller)
 		consume_mob(target)
 	return ..()
-*/
+
 /mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/target_mob)
 	if(contained_mob)
 		return
 	if(!istype(target_mob))
 		return
-
 	if(target_mob.health > (target_mob.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 		return
 
+	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, FALSE)
+	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	hatch_open = TRUE
 	update_appearance()
 	flick("[base_icon_state]-opening_wires", src)
@@ -1478,8 +1448,9 @@
 	update_appearance()
 	flick("[base_icon_state]-opening", src)
 	addtimer(CALLBACK(src, PROC_REF(close_hatch)), 1 SECONDS)
-	contained_mob.forceMove(get_turf(src))
 	convert_mob(contained_mob)
+	contained_mob.forceMove(get_turf(src))
+	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, TRUE)
 	contained_mob = null
 
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
@@ -1487,13 +1458,11 @@
 /mob/living/basic/fleshmind/mechiver/proc/convert_mob(mob/living/mob_to_convert)
 	if(!our_controller) // Can't convert without a controller
 		return
-	if(faction_check(faction, mob_to_convert.faction)) // If we are already assimilated, just heal us.
-		mob_to_convert.fully_heal(TRUE)
-		mob_to_convert.heal_and_revive(0)
-		return
 
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
+		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)
+		mob_to_convert.heal_and_revive(50, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
 		return
 
 	if(iscyborg(mob_to_convert))
@@ -1523,20 +1492,27 @@
 			new_mob.key = old_mob.mind.key
 	return new_mob
 
+/*
 /**
  * Mauler Monkey
  *
- * A nasty looking converted monkey. Sadly, we can't use the monkey AI controller.
+ * A nasty looking converted monkey and it's extremely pissed off. Basic mobs allow us to give the monkey AI controller. Yay!
  */
 /mob/living/basic/fleshmind/mauler_monkey
 	name = "Mauler"
 	desc = "A mutated abomination, it resembles a monkey."
 	icon_state = "mauler_monkey"
-	//move_to_delay = 2 // We want it to be quite fast.
+	ai_controller = /datum/ai_controller/monkey
+	speed = 2 // We want it to be quite fast.
 	health = 140
 	maxHealth = 140
-	/*speak = list(
+	attack_emote = list(
 		"OOK OOK OOK!!!",
 		"SEEK!",
 		"OOOOOOOOOOK!!!",
-	)*/
+	)
+
+/mob/living/basic/fleshmind/mauler_monkey/Initialize()
+	. = ..()
+	ai_controller.set_blackboard_key(BB_MONKEY_AGGRESSIVE, TRUE) // Little angry cunt.
+*/

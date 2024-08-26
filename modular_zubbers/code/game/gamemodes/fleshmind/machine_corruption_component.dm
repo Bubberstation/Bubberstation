@@ -56,9 +56,11 @@
 	'modular_zubbers/sound/fleshmind/robot_talk_heavy3.ogg', \
 	'modular_zubbers/sound/fleshmind/robot_talk_heavy4.ogg',)
 
-#define MACHINE_TO_SPAWNER_PATHS list(/obj/machinery/rnd/production/techfab, /obj/machinery/autolathe, /obj/machinery/mecha_part_fabricator)
+#define MACHINE_TO_SPAWNER_PATHS list(/obj/machinery/rnd/production/techfab, /obj/machinery/autolathe, /obj/machinery/mecha_part_fabricator, /obj/machinery/rnd/production/circuit_imprinter, /obj/machinery/rnd/production/protolathe)
 
 /datum/component/machine_corruption
+	/// Our controller
+	var/datum/fleshmind_controller/our_controller
 	/// A list of possible overlays that we can choose from when we are created.
 	var/static/list/possible_overlays = list(
 		"wires-1",
@@ -74,17 +76,20 @@
 	COOLDOWN_DECLARE(damage_response)
 
 /datum/component/machine_corruption/Initialize(datum/fleshmind_controller/incoming_controller)
-
+	our_controller = incoming_controller
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	if(incoming_controller && is_type_in_list(parent, MACHINE_TO_SPAWNER_PATHS))
-		convert_to_factory(incoming_controller)
+	if(istype(parent, /obj/machinery/atmospherics/pipe))
 		return
 
-	if(incoming_controller)
-		RegisterSignal(incoming_controller, COMSIG_QDELETING, PROC_REF(controller_death))
-		incoming_controller.RegisterSignal(src, COMSIG_QDELETING, /datum/fleshmind_controller/proc/component_death)
+	if(our_controller && is_type_in_list(parent, MACHINE_TO_SPAWNER_PATHS))
+		convert_to_factory(our_controller)
+		return
+
+	if(our_controller)
+		RegisterSignal(our_controller, COMSIG_QDELETING, PROC_REF(controller_death))
+		our_controller.RegisterSignal(src, COMSIG_QDELETING, /datum/fleshmind_controller/proc/component_death)
 
 	set_overlay = pick(possible_overlays)
 
@@ -94,7 +99,7 @@
 
 	parent_machinery.update_appearance()
 
-	addtimer(CALLBACK(src, PROC_REF(finish_setup), incoming_controller), COMPONENT_SETUP_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_setup), our_controller), COMPONENT_SETUP_TIME)
 
 /datum/component/machine_corruption/proc/finish_setup(datum/fleshmind_controller/incoming_controller)
 	var/obj/machinery/parent_machinery = parent
@@ -123,7 +128,7 @@
 	parent_machinery.light_power = 1
 	parent_machinery.light_range = 2
 	parent_machinery.update_light()
-
+	incoming_controller.controlled_machine_components += parent_machinery
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
 /datum/component/machine_corruption/Destroy(force, silent)
@@ -142,6 +147,8 @@
 		COMSIG_ATOM_DESTRUCTION,
 	))
 	parent_machinery.update_appearance()
+	if(our_controller)
+		our_controller.controlled_machine_components -= parent_machinery
 	return ..()
 
 /**

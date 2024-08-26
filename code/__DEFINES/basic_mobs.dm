@@ -30,8 +30,6 @@
 #define MOOK_ATTACK_ACTIVE 2
 #define MOOK_ATTACK_STRIKE 3
 
-/// Fleshmind
-#define BB_FLOATER_EXPLODE "floater_explode"
 ///keeps track of how many gutlunches are born
 GLOBAL_VAR_INIT(gutlunch_count, 0)
 

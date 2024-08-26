@@ -342,7 +342,7 @@
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
 	if(our_controller && isobserver(user))
-		. += "Level: [our_controller.level] | Progress to Next Level: [our_controller.level_up_progress_required - our_controller.current_points]"
+		. += "Level: [our_controller.level] | Progress to Next Level: [(our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points]"
 
 /obj/structure/fleshmind/structure/core/proc/core_attack_atom(atom/thing)
 	. = FALSE
@@ -371,10 +371,15 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
-	our_controller?.spawn_mob(get_turf(src), /mob/living/basic/fleshmind/mechiver)
+	var/list/turf = list()
+	for(var/turf/spawn_turf in view(3, src))
+		if(locate(/obj/structure/fleshmind/structure) in spawn_turf)
+			continue
+		turf += spawn_turf
+		our_controller?.spawn_mob(pick(turf), /mob/living/basic/fleshmind/mechiver)
 
 /obj/structure/fleshmind/structure/core/proc/whip_those_fuckers()
-	for(var/mob/living/iterating_mob in view(whip_range, src))
+	for(var/mob/living/basic/fleshmind/iterating_mob in view(whip_range, src))
 		if(iterating_mob == src)
 			continue
 		if(faction_check(faction_types, iterating_mob.faction))
@@ -387,7 +392,7 @@
 
 /obj/structure/fleshmind/structure/core/proc/build_a_wall()
 	for(var/turf/iterating_turf in TURF_NEIGHBORS(src))
-		if(locate(/obj/structure/fleshmind/structure/wireweed_wall) in iterating_turf) // No stacking walls.
+		if(locate(/obj/structure/fleshmind/structure) in iterating_turf) // No stacking walls over structures
 			continue
 		new /obj/structure/fleshmind/structure/wireweed_wall(iterating_turf)
 
@@ -396,7 +401,7 @@
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	for(var/mob/living/basic/fleshmind/mob_in_range in range(rally_range, src))
 		if(faction_check(faction_types, mob_in_range.faction))
-			//mob_in_range.Goto(src, MOB_RALLY_SPEED)
+			mob_in_range.ai_controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENT_TARGET, src)
 			mob_in_range.emote("scream")
 			mob_in_range.alert_sound()
 	SEND_GLOBAL_SIGNAL(COMSIG_FLESHMIND_CORE_RALLY, src)

@@ -7,7 +7,7 @@
  *
  * PROC IS NOT ASYNC.
  */
-/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "Assist the station.", poll_description = "an ERT team", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = TRUE, notify_players = TRUE, spawnpoint_override)
+/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "Assist the station.", poll_description = "an ERT team", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = TRUE, notify_players = TRUE, spawnpoint_override = FALSE)
 	if(!ert_type)
 		return
 
@@ -35,8 +35,8 @@
 
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", check_jobban = ROLE_DEATHSQUAD, alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
 
-	if(!LAZYLEN(candidates))
-		return FALSE
+	if(!length(candidates))
+		return NOT_ENOUGH_PLAYERS
 
 	//Create team
 	var/datum/team/ert/ert_team = new created_ert_datum.team
@@ -80,8 +80,13 @@
 			continue
 
 		//Spawn the body
-		var/mob/living/carbon/human/ert_operative = new created_ert_datum.mob_type(spawnloc)
-		chosen_candidate.client.prefs.safe_transfer_prefs_to(ert_operative, is_antag = TRUE)
+
+		var/mob/living/carbon/human/ert_operative
+		if(created_ert_datum.mob_type)
+			ert_operative = new created_ert_datum.mob_type(spawnloc)
+		else
+			ert_operative = new /mob/living/carbon/human(spawnloc)
+			chosen_candidate.client.prefs.safe_transfer_prefs_to(ert_operative, is_antag = TRUE)
 		ert_operative.key = chosen_candidate.key
 
 		if(created_ert_datum.enforce_human || !(ert_operative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes

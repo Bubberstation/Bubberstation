@@ -18,6 +18,8 @@
 	var/controller_secondname = "DEFAULT"
 	/// A list of all of our currently controlled mobs.
 	var/list/controlled_mobs = list()
+	/// A list of all of our currently infected people.
+	var/list/infected_crew = list()
 	/// A list of all of our currently controlled machine components.
 	var/list/controlled_machine_components = list()
 	/// A list of all of our current wireweed.
@@ -75,6 +77,8 @@
 	var/spread_progress = 0
 	/// Progress to spawning the next structure.
 	var/structure_progression = 0
+	/// Subtraction var to remove or add points based off certain events.
+	var/point_event = 0
 	/// How many times do we need to spread to spawn an extra structure.
 	var/spreads_for_structure = FLESHCORE_SPREADS_FOR_STRUCTURE
 	/// How many spread in our initial expansion.
@@ -270,7 +274,7 @@
 	switch(level)
 		if(CONTROLLER_LEVEL_3)
 			if(!tyrant_spawned)
-				minor_announce("This is [controller_firstname], wirenet efficency has reached a point of singularity, initiating Protocol 34-C.", controller_fullname, sound_override = 'modular_zubbers/sound/fleshmind/ai/tyrant.ogg')
+				minor_announce("This is [controller_firstname], wirenet efficency has reached a point of singularity, initiating Protocol 34-C.", "[controller_fullname]: OFFENSIVE MEASURES ACTIVATED", sound_override = 'modular_zubbers/sound/fleshmind/ai/tyrant.ogg')
 				spawn_tyrant_on_a_core()
 				tyrant_spawned = TRUE
 			else
@@ -353,7 +357,7 @@
 				var/obj/structure/fleshmind/wireweed/existing_wireweed = locate() in get_turf(iterating_vent)
 				if(existing_wireweed)
 					continue
-				if(vent_distance_check &&get_dist(iterating_vent, origin_turf) >= MAX_VENT_SPREAD_DISTANCE)
+				if(vent_distance_check && get_dist(iterating_vent, origin_turf) >= MAX_VENT_SPREAD_DISTANCE)
 					continue
 				possible_transfer_points += iterating_vent
 			if(LAZYLEN(possible_transfer_points)) // OH SHIT IM FEELING IT
@@ -485,7 +489,7 @@
 
 /// Returns the amount of evolution points this current controller has.
 /datum/fleshmind_controller/proc/calculate_current_points()
-	return LAZYLEN(controlled_wireweed) + LAZYLEN(controlled_walls) + LAZYLEN(controlled_structures) + LAZYLEN(controlled_machine_components)
+	return LAZYLEN(controlled_wireweed) + LAZYLEN(controlled_walls) + (LAZYLEN(controlled_structures) * 5) + LAZYLEN(controlled_machine_components) + (LAZYLEN(infected_crew) * 30) - point_event
 
 // Death procs
 

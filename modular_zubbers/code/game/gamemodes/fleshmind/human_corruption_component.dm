@@ -39,9 +39,6 @@
 
 	var/mob/living/carbon/human/infected_human = parent
 
-	infected_human.fully_heal(TRUE)
-	infected_human.heal_and_revive(0)
-
 	to_chat(infected_human, span_hypnophrase("Your mind feels at ease, your mind feels one with the flesh."))
 	to_chat(infected_human, span_userdanger("IMPORTANT INFO, MUST READ: [CONTROLLED_MOB_POLICY]"))
 
@@ -51,6 +48,8 @@
 	RegisterSignal(infected_human, COMSIG_LIVING_DEATH, PROC_REF(host_death))
 
 	if(our_controller)
+		if(infected_human.client)
+			our_controller.infected_crew += infected_human
 		for(var/obj/structure/fleshmind/structure/core/iterating_core in our_controller.cores)
 			RegisterSignal(iterating_core, COMSIG_QDELETING, PROC_REF(core_death))
 		RegisterSignal(our_controller, COMSIG_QDELETING, PROC_REF(component_death))
@@ -68,7 +67,8 @@
 		ADD_TRAIT(infected_human, trait, "fleshmind")
 
 	create_glow()
-
+	infected_human.light_range = 3
+	infected_human.light_color = "#50edd9"
 	infected_human.update_appearance()
 
 /datum/component/human_corruption/Destroy(force, silent)
@@ -85,6 +85,9 @@
 		REMOVE_TRAIT(parent_mob, trait, "fleshmind")
 	parent_mob.remove_filter("corruption_glow")
 	parent_mob.update_appearance()
+	if(our_controller && parent_mob.client)
+		our_controller.infected_crew -= parent_mob
+
 	our_controller = null
 	return ..()
 
@@ -124,7 +127,7 @@
 		BODY_ZONE_R_LEG,
 	)
 	for(var/i in 1 to 2)
-		var/obj/item/bodypart/limb = parent_human.get_bodypart(pick_n_take(limbs_to_destroy)) // Your going to get fucked up
+		var/obj/item/bodypart/limb = parent_human.get_bodypart(pick_n_take(limbs_to_destroy)) // You're going to get fucked up
 		limb.receive_damage(brute = WOUND_SEVERITY_CRITICAL, wound_bonus = 100)
 		parent_human.update_damage_overlays()
 

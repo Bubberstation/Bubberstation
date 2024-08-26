@@ -26,6 +26,8 @@
 
 	var/list/possible_spawn_areas = typecacheof(typesof(/area/station/maintenance, /area/station/security/prison, /area/station/construction))
 
+	shuffle(turfs)
+
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
 			continue
@@ -39,8 +41,6 @@
 			turfs += floor
 
 	qdel(test_resin)
-
-	shuffle(turfs)
 
 	if(!turfs)
 		message_admins("Fleshmind failed to find an appropriate area to spawn.")

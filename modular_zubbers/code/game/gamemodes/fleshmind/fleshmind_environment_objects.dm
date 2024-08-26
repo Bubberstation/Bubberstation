@@ -74,13 +74,9 @@
 
 /obj/structure/fleshmind/wireweed/wirecutter_act(mob/living/user, obj/item/tool)
 	. = ..()
-	tool.play_tool_sound(src)
-	balloon_alert(user, "cutting...")
-	if(do_after(user, WIREWEED_WIRECUTTER_KILL_TIME, src))
+	if(tool.use_tool(src, user, WIREWEED_WIRECUTTER_KILL_TIME, volume = 50))
 		if(QDELETED(src))
 			return
-		balloon_alert(user, "cut!")
-		tool.play_tool_sound(src)
 		qdel(src)
 
 /obj/structure/fleshmind/wireweed/update_icon(updates)

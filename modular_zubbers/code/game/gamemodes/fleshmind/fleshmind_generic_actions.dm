@@ -58,10 +58,10 @@
 	cooldown_time = 2 MINUTES
 
 /datum/action/cooldown/fleshmind_flesh_call/Activate(atom/target)
-	for(var/mob/living/simple_animal/hostile/iterating_mob in view(DEFAULT_VIEW_RANGE, owner))
-		if(!faction_check(owner.faction, iterating_mob))
+	for(var/mob/living/basic/fleshmind/iterating_mob in view(DEFAULT_VIEW_RANGE, owner))
+		if(faction_check(owner.faction, iterating_mob))
 			continue
-		iterating_mob.Goto(owner, MOB_RALLY_SPEED)
+		iterating_mob.ai_controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENT_TARGET, owner.loc)
 	owner.visible_message(span_warning("[owner] lets out a horrible screech!"), span_notice("You let out a calling screech!"))
 	playsound(owner, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	StartCooldownSelf()
