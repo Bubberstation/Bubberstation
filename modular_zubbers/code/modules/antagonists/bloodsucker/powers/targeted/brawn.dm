@@ -34,6 +34,13 @@
 			return FALSE
 		owner.balloon_alert(owner, "ability level too low to break free!")
 	// Did neither, now we can PUNCH.
+	if(HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
+		owner.balloon_alert(owner, "your hands are blocked!")
+		return FALSE
+	// check if we have atleast one arm
+	if(!owner.get_active_hand())
+		owner.balloon_alert(owner, "you need a usable arm!")
+		return FALSE
 	return ..()
 
 // Look at 'biodegrade.dm' for reference
