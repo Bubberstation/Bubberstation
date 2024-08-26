@@ -75,6 +75,7 @@
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/spess_knife,
+		/obj/item/reagent_containers/cup/soda_cans/grey_bull,
 		/obj/item/melee/sickly_blade/lock,
 	))
 
