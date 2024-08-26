@@ -171,11 +171,6 @@
 	if(attacking_item.force && prob(40))
 		do_sparks(3, FALSE, src)
 	return ..()
-
-/mob/living/basic/fleshmind/MoveToTarget(list/possible_targets)
-	if(suffering_malfunction)
-		return
-	return ..()
 */
 /**
  * When our controller dies, this is called.
@@ -627,9 +622,6 @@
 			'modular_zubbers/sound/fleshmind/hiborg/passive_04.ogg',
 			'modular_zubbers/sound/fleshmind/hiborg/passive_05.ogg',
 		)
-	)
-	loot = list(
-		/obj/effect/gibspawner/robot,
 	)
 	/// The chance of performing a stun attack.
 	var/stun_attack_prob = 30
@@ -1395,7 +1387,7 @@
 
 /mob/living/basic/fleshmind/mechiver/update_overlays()
 	. = ..()
-	var/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+	var/mob/living/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 	if(target && (get_dist(target, src) <= 4))
 		if(contained_mob)
 			. += "[base_icon_state]-chief"
