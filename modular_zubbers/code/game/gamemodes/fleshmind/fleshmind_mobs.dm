@@ -1387,6 +1387,9 @@
 
 /mob/living/basic/fleshmind/mechiver/update_overlays()
 	. = ..()
+	if(isnull(ai_controller))
+		. += "[base_icon_state]-closed"
+		return
 	if(get_current_target() && (get_dist(get_current_target(), src) <= 4))
 		if(contained_mob)
 			. += "[base_icon_state]-chief"
