@@ -1,0 +1,24 @@
+/datum/heretic_knowledge/bag_purchase
+	name = "Satchel of Looting"
+	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge wand that shoots lesser fireballs."
+	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
+	next_knowledge = list(
+		/datum/heretic_knowledge/blade_upgrade/ash,
+		/datum/heretic_knowledge/reroll_targets,
+		/datum/heretic_knowledge/spell/space_phase,
+		/datum/heretic_knowledge/curse/paralysis,
+	)
+	required_atoms = list(
+		/obj/item/storage/backpack = 1,
+		/obj/item/stack/ore/bluespace_crystal = 1
+	)
+	result_atoms = list(/obj/item/storage/backpack/satchel/leather/exile)
+	cost = 1
+	route = PATH_EXILE
+	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
+	research_tree_icon_state = "mad_mask"
+	depth = 8
+
+
+
+

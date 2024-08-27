@@ -6,21 +6,21 @@ Goes as follows:
 
 Act One
 Grasp of Looting
-Mansus Grasp Blade Augmentation
-----Optional: Ring of Determination
-
-
-Ritual of Knowledge
-Hidden Fishing
-Auto-Alchemical Creation
-----Optional: Wizardblood
+----Optional: Satchel of Looting
+Ring of Determination
 ----Optional: Prophetic Wand of Heretical Fireball
 
+Mark of Mansus
+Ritual of Knowledge
+Auto-Alchemical Creation
+----Optional: Wizardblood
+----Optional: Boots of Speed
+Hidden Fishing
+
+Elder's Insanity
 Map Making
 ----Optional: Advanced Map Making
-Elder's Insanity
-Exile's Vision
-
+----Optional: Exile's Vision
 
 Resistance Capped
 
@@ -30,10 +30,12 @@ Resistance Capped
 	name = "Act One"
 	desc = "Opens up the Path of Exile to you. \
 		Allows you to transmute a knife and a sheet of iron into an Cold Iron Dagger, \
-		which is less obvious than most heretic blades. \
+		which is less obvious than most heretical blades. \
 		You can only create five at a time."
-	gain_text = "The City Guard know their watch. If you ask them at night, they may tell you about the ashy lantern."
-	next_knowledge = list(/datum/heretic_knowledge/loot_grasp)
+	gain_text = "Walk the steps of the Exile. Then walk them again. You will learn from their mistakes as well as yours."
+	next_knowledge = list(
+		/datum/heretic_knowledge/loot_grasp
+	)
 	required_atoms = list(
 		/obj/item/knife = 1,
 		/obj/item/stack/sheet/iron = 1
