@@ -1,24 +1,9 @@
-/*
-The Path of Exile
-
-
-Goes as follows:
-
-Act One
-Grasp of Looting
-----Optional: Auto-Alchemical Creation
-----Optional: Ring of Determination
-Mansus Grasp Blade Augmentation
-----Optional: Prophetic Wand of Heretical Fireball
-
-*/
-
-/datum/heretic_knowledge/limited_amount/starting/base_exile
-	name = "Act One"
+/datum/heretic_knowledge/limited_amount/insanity_blade
+	name = "Elder's Insanity"
 	desc = "Opens up the Path of Exile to you. \
 		Allows you to transmute a knife and a sheet of iron into an Cold Iron Dagger, \
 		which is less obvious than most heretic blades. \
-		You can only create five at a time."
+		You can only create one elder insanity. Don't lose it... or do lose it."
 	gain_text = "The City Guard know their watch. If you ask them at night, they may tell you about the ashy lantern."
 	next_knowledge = list(/datum/heretic_knowledge/loot_grasp)
 	required_atoms = list(
@@ -29,5 +14,4 @@ Mansus Grasp Blade Augmentation
 	route = PATH_EXILE
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inventory.dmi'
 	research_tree_icon_state = "dagger"
-	limit = 5
-
+	limit = 1

@@ -1,4 +1,4 @@
-/obj/item/gun/magic/wand/fireball
+/obj/item/gun/magic/wand/fireball/heretic
 
 	name = "wand of heretical fireball"
 	desc = "This wand shoots scorching balls of fire that explode into destructive flames."

@@ -14,3 +14,6 @@ GLOBAL_LIST_INIT(heretic_loot_grasp_table_currency,list(
 	/obj/item/heretic_currency/exalting = 25, //8.3%
 	/obj/item/heretic_currency/mirroring = 5 // 1.6%
 ))
+
+
+#define span_velvet(str) ("<span class='velvet'>" + str + "</span>")
