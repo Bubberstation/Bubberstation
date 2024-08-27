@@ -140,3 +140,4 @@
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/security/medic/full(src)
 	new /obj/item/storage/bag/garment/secmed(src)
+	new /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/firefly(src)
