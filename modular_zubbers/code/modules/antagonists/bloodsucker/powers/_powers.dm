@@ -68,7 +68,6 @@
 		return
 	. = ..()
 
-
 //This is when we CLICK on the ability Icon, not USING.
 /datum/action/cooldown/bloodsucker/PreActivate(atom/target)
 	if(!owner)
@@ -190,6 +189,7 @@
 		return
 	bloodsuckerdatum_power.AdjustBloodVolume(cost_override ? -cost_override : -bloodcost)
 
+// TODO refactor the Trigger -> PreActivate -> Activate -> ActivatePower / set_click_ability -> Activate -> ActivatePower chain
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
 	if(active)
 		return FALSE
@@ -205,7 +205,7 @@
 	if(!owner)
 		return FALSE
 
-/// return TRUE if you want the ability to be considered activated
+/// return TRUE if you want the ability to be considered activated, put your ability activate logic here
 /datum/action/cooldown/bloodsucker/proc/ActivatePower(atom/target)
 	return TRUE
 

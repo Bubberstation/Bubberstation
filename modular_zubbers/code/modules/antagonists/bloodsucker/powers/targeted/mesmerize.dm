@@ -35,6 +35,8 @@
 	var/knockdown_on_secondary = FALSE
 	// string id timer of the current cast, used for combat glare
 	var/timer
+	// a cooldown to ensure you can't spam both the primary and secondary mesmerizes
+	COOLDOWN_DECLARE(mesmerize_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
 	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? " and muting them" : ""].<br>"
@@ -125,6 +127,8 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target, params)
 	var/mob/living/user = owner
 	var/mob/living/carbon/mesmerized_target = target_ref?.resolve()
+	if(!COOLDOWN_FINISHED(src, mesmerize_cooldown))
+		return
 	if(!mesmerized_target)
 		CRASH("mesmerized_target is null")
 
@@ -138,6 +142,8 @@
 		return
 	// slow them down during the mesmerize
 	mute_target(mesmerized_target)
+
+	COOLDOWN_START(src, mesmerize_cooldown, mesmerize_delay)
 	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		StartCooldown(cooldown_time * 0.5)
 		return
@@ -156,8 +162,9 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
 	if(!isliving(target))
 		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
-	if(timer)
+	if(timer || !COOLDOWN_FINISHED(src, mesmerize_cooldown))
 		return
+	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
 	var/mob/living/mesmerized_target = target
 	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
 	perform_indicators(mesmerized_target, 3 SECONDS)
@@ -227,7 +234,7 @@
 
 /// Display an animated overlay over our head to indicate what's going on
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/eldritch_eye(mob/target, icon_state = "eye_open", duration = 1 SECONDS)
-	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28)
+	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28) /// TODO make this disable cloak
 	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
 	flick_overlay_global(image, list(owner?.client, target?.client), duration)
 

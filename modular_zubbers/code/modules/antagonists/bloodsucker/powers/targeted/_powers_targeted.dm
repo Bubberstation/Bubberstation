@@ -34,6 +34,7 @@
 /datum/action/cooldown/bloodsucker/targeted/set_click_ability(mob/on_who)
 	// activate runs before
 	if(!Activate())
+		DeactivatePower()
 		return
 	. = ..()
 	if(prefire_message)
@@ -96,7 +97,7 @@
 	if(!.)
 		return
 	// sometimes things will call DeactivatePower, but not unset_click_ability, so we have to unset the click interception here.
-	if(owner.click_intercept == src)
+	if(owner.click_intercept == src) // TODO test if this is no longer needed
 		owner.click_intercept = null
 
 /// The power went off! We now pay the cost of the power.
