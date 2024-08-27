@@ -40,6 +40,8 @@
 			continue
 		if(!(host.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 			continue
+		if(!(ROLE_DERELICT_HOST in host.client?.prefs?.be_special))
+			continue
 		host_candidate = host
 		break
 
