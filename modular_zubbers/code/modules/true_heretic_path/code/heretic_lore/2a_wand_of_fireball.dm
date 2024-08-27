@@ -1,12 +1,9 @@
 /datum/heretic_knowledge/wand_purchase
 	name = "Prophetic Wand of Heretical Fireball"
-	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge wand that shoots lesser fireballs."
-	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
+	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge wand that shoots lesser fireballs. Additionally, preforming this ritual will make you magically gifted, allowing you to use some wizard items without consequence."
+	gain_text = "Magic is essential to the Exile in order to survive this world."
 	next_knowledge = list(
-		/datum/heretic_knowledge/blade_upgrade/ash,
-		/datum/heretic_knowledge/reroll_targets,
-		/datum/heretic_knowledge/spell/space_phase,
-		/datum/heretic_knowledge/curse/paralysis,
+
 	)
 	required_atoms = list(
 		/obj/item/grown/log = 1,
@@ -14,8 +11,14 @@
 		/obj/item/stack/sheet/mineral/plasma = 1
 	)
 	result_atoms = list(/obj/item/gun/magic/wand/fireball/heretic)
+
 	cost = 1
+	depth = 3
 	route = PATH_EXILE
+
 	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
 	research_tree_icon_state = "mad_mask"
-	depth = 8
+
+/datum/heretic_knowledge/wand_purchase/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	. = ..()
+	ADD_TRAIT(user,TRAIT_MAGICALLY_GIFTED,EXILE_MAGIC)

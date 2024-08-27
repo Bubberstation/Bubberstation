@@ -1,6 +1,11 @@
 /datum/heretic_knowledge/ultimate/exile_final
 	name = "Exile's Ascension"
+	desc = "The ascension ritual of the Path of Exile. \
+	"
 
+
+	route = PATH_EXILE
+	gain_text = ""
 
 
 /datum/heretic_knowledge/ultimate/exile_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

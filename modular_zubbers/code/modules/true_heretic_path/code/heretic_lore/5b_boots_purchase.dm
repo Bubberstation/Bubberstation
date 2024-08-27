@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/boots_purchase
 	name = "Boots of Speed"
-	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge wand that shoots lesser fireballs."
-	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
+	desc = "Allows you to transmute a pair of workboots, a red crayon, and a flask of stimulants into a pair of Boots of Speed."
+	gain_text = "The red crayon makes it go faster."
 	next_knowledge = list(
 
 	)
@@ -11,11 +11,14 @@
 		/obj/item/reagent_containers/cup/endless_flask/stimulants = 1
 	)
 	result_atoms = list(/obj/item/clothing/shoes/workboots/speed)
+
 	cost = 1
+	depth = 6
 	route = PATH_EXILE
+
 	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
 	research_tree_icon_state = "mad_mask"
-	depth = 8
+
 
 
 

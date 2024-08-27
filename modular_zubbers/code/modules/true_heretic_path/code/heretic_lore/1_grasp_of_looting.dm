@@ -2,11 +2,14 @@
 	name = "Grasp of Looting"
 	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on kill.\
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, spilling out the contents and having a chance to grant special bonus loot."
-	gain_text = "More is never enough."
-	next_knowledge = list(/datum/heretic_knowledge/flask_purchase)
+	gain_text = "More is never enough. Always seek more"
+	next_knowledge = list(
+		/datum/heretic_knowledge/bag_purchase,
+		/datum/heretic_knowledge/determination,
+	)
 	cost = 1
+	depth = 2
 	route = PATH_EXILE
-	depth = 3
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_ui.dmi'
 	research_tree_icon_state = "grasp_currency"
 

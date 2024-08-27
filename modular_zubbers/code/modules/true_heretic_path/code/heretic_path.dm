@@ -3,6 +3,7 @@
 
 #define EXILE_ASCENSION_TRAIT "Exile Ascension"
 #define EXILE_FISHING_TRAIT "Exile Fishing"
+#define EXILE_MAGIC "Exile Magic"
 
 
 

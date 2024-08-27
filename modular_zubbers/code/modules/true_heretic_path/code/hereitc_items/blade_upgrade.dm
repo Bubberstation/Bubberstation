@@ -1,5 +1,5 @@
 /obj/item/melee/sickly_blade/exile/upgrade
-	name = "\improper elder's insanity sword"
+	name = "\improper Elder's insanity sword"
 	desc = "A dark plasma-edged sword that flickers with strange energy. Just looking at it makes you feel uneasy."
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inventory.dmi'
 	icon_state = "sword"
@@ -35,7 +35,8 @@
 		"What is that?",
 		"They see you.",
 		"They hear you.",
-		"They're watching you."
+		"They're watching you.",
+		"Hello, chat."
 	)
 
 	var/mob/living/carbon/current_user
