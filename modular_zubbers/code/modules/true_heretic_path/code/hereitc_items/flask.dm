@@ -10,7 +10,7 @@
 	RegisterSignals(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_CLEAR_REAGENTS, COMSIG_REAGENTS_REACTED), PROC_REF(on_reagent_change))
 	RegisterSignal(reagents, COMSIG_QDELETING, PROC_REF(on_reagents_del))
 	name = "endless flask of [initial(reagent_to_create.name)]"
-	desc = "An endless magical flask that refills over time. This one produces [initial(reagent_to_create.name)] at a rate of [amount_to_create]u every 2 seconds, up to a maximum of [reagents.maximum_volume]."
+	desc = "An endless magical flask that refills over time. This one produces [initial(reagent_to_create.name)] at a rate of [amount_to_create]u every [SSobj.wait/10] seconds, up to a maximum of [reagents.maximum_volume]."
 
 /// Handles properly detaching signal hooks.
 /obj/item/reagent_containers/cup/endless_flask/on_reagents_del(datum/reagents/reagents)
@@ -39,5 +39,22 @@
 
 	reagents.add_reagent(reagent_to_create,desired_amount)
 
+//Healing
 /obj/item/reagent_containers/cup/endless_flask/godblood
 	reagent_to_create = /datum/reagent/medicine/omnizine/godblood
+
+//Speed
+/obj/item/reagent_containers/cup/endless_flask/stimulants
+	reagent_to_create = /datum/reagent/medicine/stimulants
+
+//Phasing
+/obj/item/reagent_containers/cup/endless_flask/saturnx
+	reagent_to_create = /datum/reagent/drug/saturnx/stable
+
+//Evasion
+/obj/item/reagent_containers/cup/endless_flask/blastoff
+	reagent_to_create = /datum/reagent/drug/blastoff
+
+//Armor
+/obj/item/reagent_containers/cup/endless_flask/determination
+	reagent_to_create = /datum/reagent/determination

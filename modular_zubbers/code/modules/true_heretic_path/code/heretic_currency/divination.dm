@@ -1,6 +1,6 @@
 /obj/item/heretic_currency/divination
 	name = "divination orb"
-	desc = "A smooth and shiny golden figurine of some bald woman's head. It is perfect in every way."
+	desc = "A smooth and shiny golden figurine of some woman's head. It is perfect in every way, other than the hair loss."
 	icon_state = "divination"
 
 /obj/item/heretic_currency/divination/pre_attack(obj/item/target, mob/living/user)
