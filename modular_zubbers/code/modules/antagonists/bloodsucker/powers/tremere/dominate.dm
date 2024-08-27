@@ -83,6 +83,7 @@
 		var/datum/atom_hud/data_hud = GLOB.huds[hudtype]
 		data_hud.show_to(owner)
 	owner.update_sight()
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/DeactivatePower(deactivate_flags)
 	. = ..()

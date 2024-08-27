@@ -21,7 +21,7 @@
 
 	// FLAGS //
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
-	var/power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
+	var/power_flags = BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	/// Requirement flags for checks
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED
 	var/bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
@@ -191,26 +191,29 @@
 	bloodsuckerdatum_power.AdjustBloodVolume(cost_override ? -cost_override : -bloodcost)
 
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
-	if(!active)
-		ActivatePower(target)
+	if(active)
+		return FALSE
+	active = TRUE
+	if(power_flags & BP_CONTINUOUS_EFFECT || constant_bloodcost)
+		START_PROCESSING(SSprocessing, src)
+
+	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
+	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
+	return ActivatePower(target)
 
 /datum/action/cooldown/bloodsucker/proc/RightClickActivate(trigger_flags)
 	if(!owner)
 		return FALSE
 
+/// return TRUE if you want the ability to be considered activated
 /datum/action/cooldown/bloodsucker/proc/ActivatePower(atom/target)
-	active = TRUE
-	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
-		START_PROCESSING(SSprocessing, src)
-
-	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
-	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/proc/DeactivatePower(deactivate_flags)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!active) //Already inactive? Return
 		return FALSE
-	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
+	if(power_flags & BP_CONTINUOUS_EFFECT || constant_bloodcost)
 		STOP_PROCESSING(SSprocessing, src)
 	if(power_flags & BP_AM_SINGLEUSE && !(deactivate_flags & DEACTIVATE_POWER_DO_NOT_REMOVE))
 		remove_after_use()
@@ -221,11 +224,11 @@
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 	return TRUE
 
-///Used by powers that are scontinuously active (That have BP_AM_TOGGLE flag)
+///Used by powers that are scontinuously active (That have BP_CONTINUOUS_EFFECT flag)
 /datum/action/cooldown/bloodsucker/process(seconds_per_tick)
 	SHOULD_CALL_PARENT(TRUE) //Need this to call parent so the cooldown system works
 	. = ..()
-	if(!active || !(power_flags & BP_AM_TOGGLE))
+	if(!active || !(power_flags & BP_CONTINUOUS_EFFECT))
 		return FALSE
 	if(!ContinueActive(owner)) // We can't afford the Power? Deactivate it.
 		DeactivatePower()

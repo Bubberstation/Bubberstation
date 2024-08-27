@@ -2,7 +2,7 @@
 	name = "Veil of Many Faces"
 	desc = "Disguise yourself in the illusion of another identity."
 	button_icon_state = "power_veil"
-	power_flags = BP_AM_TOGGLE
+	power_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_IN_TORPOR
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
@@ -41,6 +41,7 @@
 //		Disguise_Outfit()
 	veil_user()
 	owner.balloon_alert(owner, "veil turned on.")
+	return TRUE
 
 /* // Meant to disguise your character's clothing into fake ones.
 /datum/action/cooldown/bloodsucker/veil/proc/Disguise_Outfit()

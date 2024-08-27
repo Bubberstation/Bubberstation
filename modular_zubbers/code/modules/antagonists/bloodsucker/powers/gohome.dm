@@ -14,7 +14,7 @@
 	button_icon_state = "power_gohome"
 	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
-	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
 	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
 	check_flags = NONE
 	purchase_flags = NONE
@@ -50,8 +50,8 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/gohome/ActivatePower(atom/target)
-	. = ..()
 	owner.balloon_alert(owner, "preparing to teleport...")
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/gohome/DeactivatePower(deactivate_flags)
 	if(active && teleporting_stage != GOHOME_TELEPORT)

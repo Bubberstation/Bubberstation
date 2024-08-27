@@ -13,7 +13,7 @@
 		Higher levels will increase how invisible you are.\n\
 		At level 2, you will no longer need to be unseen to activate this power.\n\
 		At level 4, you will be able to run while cloaked."
-	power_flags = BP_AM_TOGGLE
+	power_flags = BP_CONTINUOUS_EFFECT
 	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 5
@@ -39,13 +39,13 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/cloak/ActivatePower(atom/target)
-	. = ..()
 	var/mob/living/user = owner
 	was_running = (user.move_intent == MOVE_INTENT_RUN)
 	if(level_current < USE_RUN_CLOAK_LEVEL && was_running)
 		user.toggle_move_intent()
 	user.AddElement(/datum/element/digitalcamo)
 	user.balloon_alert(user, "cloak turned on.")
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/cloak/process(seconds_per_tick)
 	// Checks that we can keep using this.

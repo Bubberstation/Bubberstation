@@ -1,6 +1,6 @@
 // NOTE: All Targeted spells are Toggles! We just don't bother checking here.
 /datum/action/cooldown/bloodsucker/targeted
-	power_flags = BP_AM_TOGGLE
+	power_flags = NONE
 	click_to_activate = TRUE
 	///If set, how far the target has to be for the power to work.
 	var/target_range
@@ -33,14 +33,15 @@
 // If click_to_activate is true, only these two procs are called when the ability is clicked on
 /datum/action/cooldown/bloodsucker/targeted/set_click_ability(mob/on_who)
 	// activate runs before
-	Activate()
+	if(!Activate())
+		return
 	. = ..()
 	if(prefire_message)
 		to_chat(owner, span_announce("[prefire_message]"))
 
 /datum/action/cooldown/bloodsucker/targeted/unset_click_ability(mob/on_who, refund_cooldown)
 	. = ..()
-	if(active)
+	if(active) //todo refactor active into is_action_active()
 		DeactivatePower()
 
 /// Check if target is VALID (wall, turf, or character?)
@@ -88,6 +89,7 @@
 	if(!target)
 		return .
 	log_combat(owner, target, "used [name] on [target].")
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/DeactivatePower(deactivate_flags)
 	. = ..()
@@ -102,8 +104,8 @@
 	StartCooldown(cooldown_override)
 	unset_click_ability(owner)
 	pay_cost(cost_override)
-	if(active)
-		DeactivatePower()
+	// if(active)
+	// 	DeactivatePower()
 
 /datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()

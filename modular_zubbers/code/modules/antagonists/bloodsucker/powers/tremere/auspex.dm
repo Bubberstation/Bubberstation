@@ -72,6 +72,7 @@
 	. = ..()
 	owner.AddElement(/datum/element/digitalcamo)
 	animate(owner, alpha = 15, time = 2 SECONDS)
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower(deactivate_flags)
 	. = ..()

@@ -3,7 +3,7 @@
 	name = "Fortitude"
 	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
 	button_icon_state = "power_fortitude"
-	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = NONE
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
@@ -22,7 +22,6 @@
 	. += "Higher levels will increase Brute and Stamina resistance."
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(atom/target)
-	. = ..()
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
@@ -39,6 +38,7 @@
 	was_running = (bloodsucker_user.move_intent == MOVE_INTENT_RUN)
 	if(was_running)
 		bloodsucker_user.toggle_move_intent()
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/fortitude/proc/GetFortitudeResist()
 	return max(0.3, 0.7 - level_current * 0.1)

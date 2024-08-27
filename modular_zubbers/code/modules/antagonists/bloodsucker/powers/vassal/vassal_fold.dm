@@ -7,7 +7,6 @@
 		Use this power with a bloodbag in your hand to instead fill it with Vampiric Blood which \
 		can be used to reset ex-vassal deconversion timers. \
 		Right-Click will show the status of all Vassals."
-	power_flags = NONE
 	check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 10
@@ -67,7 +66,7 @@
 			to_chat(owner, "[information]")
 
 		DeactivatePower()
-		return
+		return FALSE
 
 	if(target_ref)
 		var/mob/living/target = target_ref.resolve()
@@ -79,7 +78,7 @@
 			former_vassal.return_to_fold(revenge_vassal)
 		target_ref = null
 		DeactivatePower()
-		return
+		return FALSE
 
 	if(bloodbag)
 		var/mob/living/living_owner = owner
@@ -88,3 +87,4 @@
 		var/obj/item/reagent_containers/blood/o_minus/bloodsucker/new_bag = new(owner.loc)
 		owner.put_in_active_hand(new_bag)
 		DeactivatePower()
+	return TRUE

@@ -16,7 +16,7 @@
 		"You must use the ability again to stop sucking blood.",
 	)
 	level_current = -1 // scales itself based on your actual level, since you always have it
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CAN_USE_WHILE_STAKED
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
@@ -157,7 +157,7 @@
 	ADD_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(notify_move_block))
-	return ..()
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/process(seconds_per_tick)
 	if(!active) //If we aren't active (running on SSfastprocess)

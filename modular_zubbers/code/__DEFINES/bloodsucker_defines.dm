@@ -119,8 +119,8 @@
 /// This Power can be purchased by Vassals
 #define VASSAL_CAN_BUY (1<<3)
 
-/// This Power is a Toggled Power
-#define BP_AM_TOGGLE (1<<0)
+/// This Power is a Continuous Effect, processing every tick
+#define BP_CONTINUOUS_EFFECT (1<<0)
 /// This Power is a Single-Use Power
 #define BP_AM_SINGLEUSE (1<<1)
 /// This Power has a Static cooldown

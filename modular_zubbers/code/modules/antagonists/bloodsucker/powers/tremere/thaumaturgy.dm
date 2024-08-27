@@ -83,6 +83,7 @@
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")
 	toggle_blood_shield(TRUE)
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/toggle_blood_shield(toggle)
 	if(level_current < THAUMATURGY_SHIELD_LEVEL)

@@ -16,7 +16,7 @@
 
 	level_current = 0
 	// Re-defining these as we want total control over them
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
+	power_flags = BP_AM_STATIC_COOLDOWN
 	purchase_flags = TREMERE_CAN_BUY
 	// Targeted stuff
 	unset_after_click = FALSE

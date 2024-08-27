@@ -14,7 +14,7 @@
 	name = "Masquerade"
 	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
 	button_icon_state = "power_human"
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = NONE
 	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
@@ -33,7 +33,6 @@
 	. += "At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
 
 /datum/action/cooldown/bloodsucker/masquerade/ActivatePower(atom/target)
-	. = ..()
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned on.")
 	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest, and your eyes are no longer sensitive to the light. You may yet pass for a mortal."))
@@ -59,6 +58,7 @@
 		eyes.color_cutoffs = initial(eyes.color_cutoffs)
 		eyes.sight_flags = initial(eyes.sight_flags)
 		user.update_sight()
+	return TRUE
 
 /// todo, make bloodsuckerification into it's own proc, ie, eyes, traits, and such
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower(deactivate_flags)

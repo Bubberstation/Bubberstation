@@ -20,3 +20,4 @@
 
 	var/mob/living/user = owner
 	user.adjustBruteLoss(10)
+	return TRUE

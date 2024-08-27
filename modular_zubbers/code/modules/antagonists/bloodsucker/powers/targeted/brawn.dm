@@ -5,7 +5,6 @@
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	power_flags = BP_AM_TOGGLE
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 8
 	cooldown_time = 9 SECONDS
@@ -24,6 +23,7 @@
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(atom/target)
 	// Did we break out of our handcuffs?
 	if(break_restraints())
+		playsound(get_turf(owner), 'sound/effects/grillehit.ogg', 80, 1, -1)
 		PowerActivatedSuccesfully()
 		return FALSE
 	// Did we knock a grabber down? We can only do this while not also breaking restraints if strong enough.
@@ -40,13 +40,20 @@
 	if(!owner.get_active_hand())
 		owner.balloon_alert(owner, "you need a usable arm!")
 		return FALSE
-	return ..()
+	return TRUE
 
 // Look at 'biodegrade.dm' for reference
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_restraints()
 	var/mob/living/carbon/human/user = owner
 	///Only one form of shackles removed per use
-	var/used = FALSE
+	var/obj/handcuffed = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	if(user.buckled && handcuffed && user.buckled.unbuckle_mob(user))
+		user.visible_message(
+			span_warning("[user] breaks free of [user.buckled]!"),
+			span_warning("We break free of [user.buckled]!"),
+		)
+		user.buckled = null
+		return TRUE
 
 	// Breaks out of lockers
 	if(istype(user.loc, /obj/structure/closet))
@@ -59,22 +66,22 @@
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
 		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 1)
-		used = TRUE
+		return TRUE
 
-	// Remove both Handcuffs & Legcuffs
-	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-	if(!used && (istype(cuffs) || istype(legcuffs)))
-		user.visible_message(
-			span_warning("[user] discards their restraints like it's nothing!"),
-			span_warning("We break through our restraints!"),
-		)
-		user.clear_cuffs(cuffs, TRUE)
-		user.clear_cuffs(legcuffs, TRUE)
-		used = TRUE
+	// Remove both Handcuffs & Legcuffs in one step
+	var/legcuffed = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
+	if(handcuffed || legcuffed)
+		var/hand_cuffs = user.clear_cuffs(handcuffed, TRUE)
+		var/leg_cuffs = user.clear_cuffs(legcuffed, TRUE)
+		if(hand_cuffs || leg_cuffs)
+			user.visible_message(
+				span_warning("[user] discards their restraints like it's nothing!"),
+				span_warning("We break through our restraints!"),
+			)
+			return TRUE
 
 	// Remove Straightjackets
-	if(user.wear_suit?.breakouttime && !used)
+	if(user.wear_suit?.breakouttime)
 		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		user.visible_message(
 			span_warning("[user] rips straight through the [user.p_their()] [straightjacket]!"),
@@ -82,12 +89,8 @@
 		)
 		if(straightjacket && user.wear_suit == straightjacket)
 			qdel(straightjacket)
-		used = TRUE
-
-	// Did we end up using our ability? If so, play the sound effect and return TRUE
-	if(used)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
-	return used
+			return TRUE
+	return FALSE
 
 // This is its own proc because its done twice, to repeat code copypaste.
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_closet(mob/living/carbon/human/user, obj/structure/closet/closet)

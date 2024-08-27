@@ -9,7 +9,6 @@
 	desc = "Force yourself to stand up if you're down and dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
 	prefire_message = "You prepare to dash!"
-	power_flags = BP_AM_TOGGLE
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
