@@ -3,7 +3,7 @@
 	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on kill.\
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, spilling out the contents and having a chance to grant special bonus loot."
 	gain_text = "More is never enough."
-	next_knowledge = list(/datum/heretic_knowledge/key_ring)
+	next_knowledge = list(/datum/heretic_knowledge/flask_purchase)
 	cost = 1
 	route = PATH_EXILE
 	depth = 3

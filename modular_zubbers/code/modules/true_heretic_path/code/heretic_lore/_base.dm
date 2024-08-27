@@ -6,9 +6,9 @@ Goes as follows:
 
 Act One
 Grasp of Looting
-
-
-
+----Optional: Auto-Alchemical Creation
+----Optional: Ring of Determination
+Mansus Grasp Blade Augmentation
 
 
 */
@@ -23,7 +23,7 @@ Grasp of Looting
 	next_knowledge = list(/datum/heretic_knowledge/loot_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
-		obj/item/stack/sheet/iron = 1
+		/obj/item/stack/sheet/iron = 1
 	)
 	result_atoms = list(/obj/item/melee/sickly_blade/exile)
 	route = PATH_EXILE
