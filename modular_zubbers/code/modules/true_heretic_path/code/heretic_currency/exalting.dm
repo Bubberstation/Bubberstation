@@ -11,11 +11,11 @@
 		return
 
 	if(!istype(target))
-		user.balloon_alert(user, "not an item!")
+		target.balloon_alert(user, "not an item!")
 		return
 
 	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
-		user.balloon_alert(user, "has no effect!")
+		target.balloon_alert(user, "has no effect!")
 		return
 
 	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
@@ -23,11 +23,11 @@
 		return
 
 	if(!length(found_component.affixes))
-		user.balloon_alert(user, "something went wrong!")
+		target.balloon_alert(user, "something went wrong!")
 		return
 
 	if(length(found_component.affixes) >= 2)
-		user.balloon_alert(user, "already has two affixes!")
+		target.balloon_alert(user, "already has two affixes!")
 		return
 
 	var/datum/fantasy_affix/affix_to_add
@@ -39,7 +39,7 @@
 		affix_to_add = get_suffix(target)
 
 	if(!affix_to_add)
-		user.balloon_alert(user, "something went wrong!")
+		target.balloon_alert(user, "something went wrong!")
 		return
 
 	affix_to_add = new affix_to_add.type
@@ -48,7 +48,7 @@
 	found_component.affixes += affix_to_add
 	found_component.modify()
 
-	user.balloon_alert(user, "[name] applied!")
+	target.balloon_alert(user, "[name] applied!")
 
 	qdel(src)
 

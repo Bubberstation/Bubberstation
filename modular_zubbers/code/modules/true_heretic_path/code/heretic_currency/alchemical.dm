@@ -11,18 +11,18 @@
 		return
 
 	if(!istype(target))
-		user.balloon_alert(user, "not a weapon or clothing item!")
+		target.balloon_alert(user, "not a weapon or clothing item!")
 		return
 
 	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
-		user.balloon_alert(user, "has no effect!")
+		target.balloon_alert(user, "has no effect!")
 		return
 
 	if(target.item_flags & (DROPDEL | ABSTRACT))
 		return
 
 	if(!target.force && !target.throwforce && !isclothing(target) && !isgun(target))
-		user.balloon_alert(user, "not a valid weapon or clothing item!")
+		target.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
 
 	var/datum/fantasy_affix/desired_affix
@@ -34,10 +34,10 @@
 		desired_affix = get_suffix(target)
 
 	if(!desired_affix)
-		user.balloon_alert(user, "something went wrong!")
+		target.balloon_alert(user, "something went wrong!")
 		return
 
 	desired_affix = new desired_affix.type
 	target.AddComponent(/datum/component/fantasy, null, list(desired_affix), FALSE, FALSE)
-	user.balloon_alert(user, "[src] applied!")
+	target.balloon_alert(user, "[src] applied!")
 	qdel(src)

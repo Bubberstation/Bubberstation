@@ -11,16 +11,16 @@
 		return
 
 	if(!istype(target))
-		user.balloon_alert(user, "not an item!")
+		target.balloon_alert(user, "not an item!")
 		return
 
 	if(HAS_TRAIT(target, TRAIT_INNATELY_FANTASTICAL_ITEM))
-		user.balloon_alert(user, "has no effect!")
+		target.balloon_alert(user, "has no effect!")
 		return
 
 	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
 	if(!found_component)
-		user.balloon_alert(user, "not a fantasy item!")
+		target.balloon_alert(user, "not a fantasy item!")
 		return
 
 	var/datum/fantasy_affix/desired_prefix = get_prefix(target)
@@ -33,7 +33,7 @@
 			else
 				desired_suffix = null
 	else if(!desired_prefix && !desired_suffix)
-		user.balloon_alert(user, "something went wrong!")
+		target.balloon_alert(user, "something went wrong!")
 		return
 
 	found_component.unmodify() //Clear existing
@@ -50,6 +50,6 @@
 
 	found_component.modify()
 
-	user.balloon_alert(user, "[name] applied!")
+	target.balloon_alert(user, "[name] applied!")
 
 	qdel(src)
