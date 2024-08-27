@@ -6,11 +6,23 @@ Goes as follows:
 
 Act One
 Grasp of Looting
-----Optional: Auto-Alchemical Creation
-----Optional: Ring of Determination
 Mansus Grasp Blade Augmentation
+----Optional: Ring of Determination
+
+
+Ritual of Knowledge
+Hidden Fishing
+Auto-Alchemical Creation
+----Optional: Wizardblood
 ----Optional: Prophetic Wand of Heretical Fireball
+
+Map Making
+----Optional: Advanced Map Making
 Elder's Insanity
+Exile's Vision
+
+
+Resistance Capped
 
 */
 
