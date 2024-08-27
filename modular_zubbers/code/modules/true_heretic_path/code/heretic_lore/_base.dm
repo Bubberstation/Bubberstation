@@ -10,6 +10,7 @@ Grasp of Looting
 ----Optional: Ring of Determination
 Mansus Grasp Blade Augmentation
 ----Optional: Prophetic Wand of Heretical Fireball
+Elder's Insanity
 
 */
 

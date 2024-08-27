@@ -34,7 +34,8 @@
 		"Why?",
 		"What is that?",
 		"They see you.",
-		"They hear you."
+		"They hear you.",
+		"They're watching you."
 	)
 
 	var/mob/living/carbon/current_user
