@@ -15,6 +15,7 @@
 		"If you are in desperate need of blood, mice can be fed off of, at a cost.",
 		"You must use the ability again to stop sucking blood.",
 	)
+	level_current = -1 // scales itself based on your actual level, since you always have it
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CAN_USE_WHILE_STAKED
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
@@ -287,10 +288,10 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_sleep_time()
-	return (5 + level_current) SECONDS
+	return (5 + bloodsuckerdatum_power?.bloodsucker_level || 1) SECONDS
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
-	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIMER)
+	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (bloodsuckerdatum_power?.bloodsucker_level || 1))), 1, FEED_DEFAULT_TIMER)
 
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER
