@@ -42,8 +42,6 @@
 			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg'
 		),
 	)
-	//What the mob drobs when it dies
-	var/list/loot = list(/obj/effect/gibspawner/robot)
 	/// How long of a cooldown between alert sounds?
 	var/alert_cooldown_time = 5 SECONDS
 	COOLDOWN_DECLARE(alert_cooldown)
@@ -81,9 +79,6 @@
 	for(var/iterating_action as anything in default_actions)
 		var/datum/action/new_action = new iterating_action
 		new_action.Grant(src)
-	if(LAZYLEN(loot))
-		var/static/list/death_loot = loot
-		AddElement(/datum/element/death_drops, death_loot)
 	update_appearance()
 
 /mob/living/basic/fleshmind/death(gibbed)
@@ -335,10 +330,11 @@
 			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot4.ogg",
 			)
 	)
-	loot = list(
-		/obj/item/bot_assembly/medbot,
-		/obj/effect/gibspawner/robot
-	)
+
+/mob/living/basic/fleshmind/slicer/Initialize()
+	. = ..()
+	var/static/list/loot = list(/obj/item/bot_assembly/medbot, /obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 
 /**
  * Floater
@@ -481,10 +477,11 @@
 			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 			)
 		)
-	loot = list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot)
 
 /mob/living/basic/fleshmind/globber/Initialize(mapload)
 	. = ..()
+	var/static/list/loot = list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 	AddElement(/datum/element/ai_retaliate)
 	AddComponent(\
 		/datum/component/ranged_attacks,\
@@ -542,13 +539,14 @@
 			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 			)
 	)
-	loot = list(
-		/obj/item/bot_assembly/secbot,
-		/obj/effect/gibspawner/robot,
-	)
 	/// How often we can stun someone
 	var/stun_cooldown_time = 2 SECONDS
 	COOLDOWN_DECLARE(stun_cooldown)
+
+/mob/living/basic/fleshmind/stunner/melee_attack()
+	. = ..()
+	var/static/list/loot = list(/obj/item/bot_assembly/secbot, /obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 
 /mob/living/basic/fleshmind/stunner/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	if(!COOLDOWN_FINISHED(src, stun_cooldown))
@@ -638,6 +636,8 @@
 	. = ..()
 	var/datum/action/cooldown/hiborg_slash/new_action = new
 	new_action.Grant(src)
+	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 
 /mob/living/basic/fleshmind/hiborg/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	. = ..()
@@ -762,7 +762,6 @@
 		'modular_zubbers/sound/fleshmind/himan/aggro_07.ogg',
 		'modular_zubbers/sound/fleshmind/himan/aggro_08.ogg',
 	)
-	loot = null
 	/// Are we currently faking our death? ready to pounce?
 	var/faking_death = FALSE
 	/// Fake death cooldown.
@@ -916,6 +915,8 @@
 		projectile_type = projectile_type,\
 		projectile_sound = shoot_sound,\
 	)
+	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 	var/static/list/innate_actions = list(/datum/action/cooldown/treader_dispense_nanites = BB_TREADER_DISPENSE_NANITES)
 	grant_actions_by_list(innate_actions)
 
@@ -980,7 +981,6 @@
 	melee_damage_upper = 15
 	alert_sounds = null
 	escapes_closets = FALSE
-	loot = list(/obj/effect/gibspawner/human)
 	mob_size = MOB_SIZE_HUMAN
 	/// What is the range at which we spawn our copies?
 	var/phase_range = 5
@@ -998,6 +998,8 @@
 
 /mob/living/basic/fleshmind/phaser/Initialize(mapload)
 	. = ..()
+	var/static/list/loot = list(/obj/effect/gibspawner/human)
+	AddElement(/datum/element/death_drops, loot)
 	icon_state = "[base_icon_state]-[rand(1, 4)]"
 	filters += filter(type = "blur", size = 0)
 	var/datum/action/cooldown/phaser_phase_ability/new_action = new
@@ -1353,6 +1355,10 @@
 		"A dozen needles slide effortless into your muscles, injecting you with an unknown vigor!",
 		"You feel a cold worm-like thing trying to wriggle into your solar plexus, burrowing underneath your skin!",
 	)
+/mob/living/basic/fleshmind/mechiver/Initialize()
+	. = ..()
+	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	AddElement(/datum/element/death_drops, loot)
 
 /mob/living/basic/fleshmind/mechiver/Life(delta_time, times_fired)
 	. = ..()
