@@ -71,6 +71,7 @@
 
 /mob/living/basic/fleshmind/Initialize(mapload, datum/fleshmind_controller/incoming_controller)
 	. = ..()
+	AddElement(/datum/element/ai_retaliate)
 	// The flesh will try to convince you while stabbing you.
 	AddComponent(/datum/component/aggro_emote, emote_list = src.attack_emote, speak_list = src.attack_speak, sounds = src.alert_sounds, emote_chance = 100)
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, src.emotes)
@@ -81,7 +82,8 @@
 		var/datum/action/new_action = new iterating_action
 		new_action.Grant(src)
 	if(LAZYLEN(loot))
-		AddElement(/datum/element/death_drops, loot)
+		var/static/list/death_loot = loot
+		AddElement(/datum/element/death_drops, death_loot)
 	update_appearance()
 
 /mob/living/basic/fleshmind/death(gibbed)
@@ -394,7 +396,6 @@
 
 /mob/living/basic/fleshmind/floater/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/simple_flying)
 	var/datum/action/innate/floater_explode/explode = new explode_attack(src)
 	explode.Grant(src)
@@ -761,9 +762,7 @@
 		'modular_zubbers/sound/fleshmind/himan/aggro_07.ogg',
 		'modular_zubbers/sound/fleshmind/himan/aggro_08.ogg',
 	)
-	loot = list(
-		/obj/effect/gibspawner/human,
-	)
+	loot = null
 	/// Are we currently faking our death? ready to pounce?
 	var/faking_death = FALSE
 	/// Fake death cooldown.
