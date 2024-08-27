@@ -1,3 +1,18 @@
+/*
+The Path of Exile
+
+
+Goes as follows:
+
+Act One
+Grasp of Looting
+
+
+
+
+
+*/
+
 /datum/heretic_knowledge/limited_amount/starting/base_exile
 	name = "Act One"
 	desc = "Opens up the Path of Exile to you. \
@@ -5,7 +20,7 @@
 		which is less obvious than most heretic blades. \
 		You can only create five at a time."
 	gain_text = "The City Guard know their watch. If you ask them at night, they may tell you about the ashy lantern."
-	next_knowledge = list(/datum/heretic_knowledge/ashen_grasp)
+	next_knowledge = list(/datum/heretic_knowledge/loot_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
 		obj/item/stack/sheet/iron = 1
