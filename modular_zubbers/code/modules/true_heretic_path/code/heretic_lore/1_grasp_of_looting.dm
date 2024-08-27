@@ -10,7 +10,7 @@
 	cost = 1
 	depth = 2
 	route = PATH_EXILE
-	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_ui.dmi'
+	//research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_ui.dmi'
 	research_tree_icon_state = "grasp_currency"
 
 /datum/heretic_knowledge/loot_grasp/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
@@ -39,7 +39,7 @@
 				if(prob(80)) //Culling strike optimization.
 					return
 
-			loot_multiplier_max *= (target.health_max/MAX_LIVING_HEALTH) //The bigger they are, the more they drop.
+			loot_multiplier_max *= (target.maxHealth/MAX_LIVING_HEALTH) //The bigger they are, the more they drop.
 
 			loot_multiplier_min = max(loot_multiplier_min,1) //Always at least 1.
 			loot_multiplier_max = max(loot_multiplier_max,1) //Always at least 1.
@@ -81,7 +81,7 @@
 
 	if(istype(target,/obj/structure/closet))
 		var/obj/structure/closet/loot_crate = target
-		if(loot_crate.locked && loot_crate.secure && !loot_crate.broken && length(req_access) > 0)
+		if(loot_crate.locked && loot_crate.secure && !loot_crate.broken && length(loot_crate.req_access) > 0)
 			loot_crate.bust_open()
 			var/turf/T = get_turf(loot_crate)
 			if(T) //Could be destroyed or some nonsense.

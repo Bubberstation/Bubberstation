@@ -19,13 +19,13 @@
 		return
 
 	user.visible_message(
-		span_warning("[user] begins to channel the powers from [src]!")
+		span_warning("[user] begins to channel the powers from [src]!"),
 		span_notice("You begin to channel the powers from [src]!")
 	)
 
 
 	if(!do_after(user, 5 SECONDS, target = src))
-		user.to_chat(span_notice("You stop channeling [src]."))
+		to_chat(user,span_notice("You stop channeling [src]."))
 		return
 
 	teleport(user)
@@ -35,19 +35,19 @@
 /obj/item/heretic_map/proc/teleport(mob/living/user)
 
 	if(!assocated_area)
-		user.to_chat(span_warning("Nothing happens..."))
+		to_chat(user,span_warning("Nothing happens..."))
 		return FALSE
 
 	var/turf/desired_turf = get_safe_random_station_turf(list(assocated_area))
 
 	if(!desired_turf)
-		user.to_chat(span_warning("Nothing happens..."))
+		to_chat(user,span_warning("Nothing happens..."))
 		return FALSE
 
 	var/turf/old_turf = get_turf(user)
 
 	user.visible_message(
-		span_warning("[user] flickers for a brief moment, then suddenly vanishes!",
+		span_warning("[user] flickers for a brief moment, then suddenly vanishes!"),
 		span_notice("You flicker for a brief moment...")
 	)
 
@@ -62,7 +62,7 @@
 	)
 
 	user.visible_message(
-		span_danger("Phases in, seemingly from out of nowhere!",
+		span_danger("Phases in, seemingly from out of nowhere!"),
 		span_notice("You phase into [assocated_area]!")
 	)
 

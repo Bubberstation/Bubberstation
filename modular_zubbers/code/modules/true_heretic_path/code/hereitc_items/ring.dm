@@ -4,8 +4,8 @@
 
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_inventory.dmi'
 	icon_state = "ring_of_determination"
-	worn_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_worny.dmi'
-	worn_icon_state = "ring_of_determination"
+	//worn_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_worny.dmi'
+	//worn_icon_state = "ring_of_determination"
 
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	clothing_traits = list(TRAIT_FINGERPRINT_PASSTHROUGH)

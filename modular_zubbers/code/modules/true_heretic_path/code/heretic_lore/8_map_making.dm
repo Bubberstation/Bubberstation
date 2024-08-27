@@ -27,11 +27,11 @@
 
 	var/area/desired_area = loc.loc
 	if(desired_area.area_flags & NOTELEPORT)
-		user.to_chat(span("warning","[src] can't be completed! The area you are in seems to be protected from teleportation magic..."))
+		to_chat(user,span_warning("[src] can't be completed! The area you are in seems to be protected from teleportation magic..."))
 		return FALSE
 
 	if(!istype(desired_area,/area/station))
-		user.to_chat(span("warning","[src] can't be completed! The area you are in not interesting to the Exile... try a station area, perhaps."))
+		to_chat(user,span_warning("[src] can't be completed! The area you are in not interesting to the Exile... try a station area, perhaps."))
 		return FALSE
 
 	return TRUE
@@ -39,6 +39,6 @@
 
 /datum/heretic_knowledge/map_making/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/obj/item/heretic_map/created_map = new(loc)
-	heretic_map.set_map(turf.loc)
-	ADD_TRAIT(heretic_map, TRAIT_CONTRABAND, INNATE_TRAIT)
+	created_map.set_map(loc.loc)
+	ADD_TRAIT(created_map, TRAIT_CONTRABAND, INNATE_TRAIT)
 	return TRUE

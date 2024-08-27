@@ -61,12 +61,12 @@
 		STOP_PROCESSING(SSobj, src)
 		return
 
-	if(SPT_PROB(seconds_per_tick*3))
+	if(SPT_PROB(3,seconds_per_tick))
 		current_user.emote("laugh")
 		if(!prob(80)) //hallucination optimization 1
 			visible_hallucination_pulse(current_user,hallucination_duration = 30 SECONDS,optional_messages=insanity_phrases)
 		else if(!prob(80)) //hallucination optimization 2
-			current_user.to_chat(span_velvet(pick(insanity_phrases)))
+			to_chat(current_user,span_velvet(pick(insanity_phrases)))
 		else
 			current_user.cause_hallucination(/datum/hallucination/chat, "elder's insanity sword hallucination")
 
@@ -86,7 +86,7 @@
 
 	living_user.mob_mood.set_sanity(living_user.mob_mood - 5)
 
-	if(is_living(target))
+	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.mob_mood)
 			living_target.mob_mood.set_sanity(living_target.mob_mood - 5)
