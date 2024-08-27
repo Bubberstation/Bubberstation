@@ -147,6 +147,7 @@
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 
 #define ROLE_DERELICT_MODSUIT "Derelict Modsuit"
+#define ROLE_DERELICT_HOST "Derelict Host"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
@@ -212,7 +213,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BLOODSUCKERBREAKOUT = 14,
 	ROLE_MONSTERHUNTER = 14,
 	ROLE_CHANGELING_ZOMBIE = 0,
-	ROLE_DERELICT_MODSUIT = 14
+	ROLE_DERELICT_MODSUIT = 14,
+	ROLE_DERELICT_HOST = 14,
 	//BUBBER EDIT END
 ))
 
