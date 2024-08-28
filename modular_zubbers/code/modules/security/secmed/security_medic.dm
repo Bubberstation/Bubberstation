@@ -57,9 +57,6 @@
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
 	suit_store = /obj/item/gun/energy/disabler/smg
-/* 	backpack_contents = list(
-		/obj/item/storage/box/gunset/firefly = 1, // FIX THIS LATER
-		) */
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
