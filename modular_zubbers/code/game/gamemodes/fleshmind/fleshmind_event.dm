@@ -2,10 +2,9 @@
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
 	max_occurrences = 1
+	weight = 1 // Rare
 	min_players = 50
-	/*
-	track = EVENT_TRACK_MAJOR // Storyteller
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT) */ //Storyteller
+	earliest_start = 45 MINUTES
 
 /datum/round_event/fleshmind
 	fakeable = FALSE
