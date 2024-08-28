@@ -28,6 +28,27 @@
 		to_chat(user,span_notice("You stop channeling [src]."))
 		return
 
+	if(!assocated_area)
+
+		var/area/desired_area = get_area(user)
+
+		if(!desired_area)
+			return
+
+		if(desired_area.area_flags & NOTELEPORT)
+			to_chat(user,span_warning("[src] can't be imbued! The area you are in seems to be protected from teleportation magic..."))
+			return
+
+		if(!istype(desired_area,/area/station))
+			to_chat(user,span_warning("[src] can't be imbued! The area you are in not interesting to the Exile... try a station area, perhaps."))
+			return
+
+		assocated_area = desired_area
+
+		to_chat(user,span_notice("You imbue [src] with the power of [desired_area]."))
+
+		return
+
 	teleport(user)
 
 	return
