@@ -127,7 +127,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(moving_atom))
 		return
-	if(istype(entered_mob, /mob/living/basic/fleshmind/tyrant)) // Don't heal this thing
+	if(istype(moving_atom, /mob/living/basic/fleshmind/tyrant)) // Don't heal this thing
 		return
 	var/mob/living/entered_mob = moving_atom
 	if(!faction_check(entered_mob.faction, faction_types))

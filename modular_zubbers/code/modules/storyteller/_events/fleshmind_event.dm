@@ -13,7 +13,7 @@
 	end_when = 151
 
 /datum/round_event/fleshmind/announce(fake)
-	priority_announce("Confirmed outbreak of level $£%!£ biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_AIMALF)
+	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
 
 /datum/round_event/fleshmind/start()
 	make_core()

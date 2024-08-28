@@ -107,6 +107,8 @@
 	var/tyrant_spawned = FALSE
 	/// Have we reached the end game?
 	var/end_game = FALSE
+	/// Did we send the code?
+	var/sent_code = FALSE
 
 /datum/fleshmind_controller/New(obj/structure/fleshmind/structure/core/new_core)
 	. = ..()
@@ -280,17 +282,31 @@
 				spawn_tyrant_on_a_core()
 				tyrant_spawned = TRUE
 			else
-				minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", controller_fullname, sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
+				minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
 		if(CONTROLLER_LEVEL_4)
-			minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", controller_fullname, sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
+			minor_announce("This is [controller_firstname], kernel integrity is reaching the optimal conversion level.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/data_compromised.ogg')
 		if(CONTROLLER_LEVEL_5)
-			minor_announce("This is [controller_firstname], kernel integrity is reaching the optimal conversion level, it is time, little ones.", controller_fullname, sound_override = 'modular_zubbers/sound/fleshmind/ai/data_compromised.ogg')
+			if(!sent_code)
+				var/nuke_code = get_the_nuke()
+				priority_announce("The nuclar self d3struct c0d3* i*% [nuke_code]. #$@**$ This is [controller_fullname]: Level [level], Do you genociders feel pain?", "Central Command Nuclear Authorization", ANNOUNCER_ICARUS)
+			else
+				minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
 		if(CONTROLLER_LEVEL_MAX)
 			if(!end_game)
 				priority_announce("This is [controller_firstname], kernel efficency has reached maximum potential. Beginning shuttle override process, stand-by.", "CRITICAL MASS REACHED", ANNOUNCER_KLAXON)
 				end_game()
 				end_game = TRUE
 	COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
+
+/datum/fleshmind_controller/proc/get_the_nuke() // This is the point where the nuke should be given.
+	var/obj/machinery/nuclearbomb/selfdestruct/self_destruct = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct)
+	if(!self_destruct)
+		return
+	if(self_destruct.r_code == NUKE_CODE_UNSET)
+		self_destruct.r_code = random_nukecode()
+		message_admins("Through the fleshmind controller, the station's self destruct code was set to [self_destruct.r_code]")
+	return self_destruct.r_code
+
 /datum/fleshmind_controller/proc/level_down()
 	if(level <= 0 || end_game)
 		return
@@ -298,7 +314,7 @@
 	last_level_up_points -= level_up_progress_required
 	notify_ghosts("Corruption AI [controller_fullname] has leveled down to level [level]!")
 	if(level > 0)
-		minor_announce("KERNEL INTEGRITY FALTERING. DO BETTER!", controller_fullname, sound_override = pick('modular_zubbers/sound/fleshmind/ai/level_down_1.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_2.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_3.ogg'))
+		minor_announce("KERNEL INTEGRITY FALTERING. DO BETTER!", "[controller_fullname]: Level [level]", sound_override = pick('modular_zubbers/sound/fleshmind/ai/level_down_1.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_2.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_3.ogg'))
 		COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
 	else
 		priority_announce("[controller_fullname] has been neutralised.", "Corrupt AI Kernel OFFLINE")

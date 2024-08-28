@@ -904,7 +904,7 @@
 	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
 		if(faction_check(iterating_mob.faction, faction))
 			if(iterating_mob.health < iterating_mob.maxHealth)
-				if(istype(/mob/living/basic/fleshmind/tyrant)) // Don't heal this.
+				if(istype(iterating_mob, /mob/living/basic/fleshmind/tyrant)) // Don't heal this.
 					continue
 				manual_emote("vomits out a burst of nanites!")
 				do_smoke(3, 4, get_turf(src))
