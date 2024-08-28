@@ -25,6 +25,11 @@
 		target.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
 
+	var/datum/component/fantasy/found_component = target.GetComponent(/datum/component/fantasy)
+	if(found_component)
+		target.balloon_alert(user, "already a fantasy item!")
+		return
+
 	var/datum/fantasy_affix/desired_affix
 
 	if(prob(50))

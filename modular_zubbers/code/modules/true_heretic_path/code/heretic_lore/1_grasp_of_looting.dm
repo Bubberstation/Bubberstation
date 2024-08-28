@@ -1,17 +1,21 @@
 /datum/heretic_knowledge/loot_grasp
+
 	name = "Grasp of Looting"
 	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on kill.\
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, spilling out the contents and having a chance to grant special bonus loot."
 	gain_text = "More is never enough. Always seek more"
+
 	next_knowledge = list(
 		/datum/heretic_knowledge/bag_purchase,
 		/datum/heretic_knowledge/determination,
 	)
+
 	cost = 1
 	depth = 2
 	route = PATH_EXILE
-	//research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_ui.dmi'
-	research_tree_icon_state = "grasp_currency"
+
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
+	research_tree_icon_state = "looting"
 
 /datum/heretic_knowledge/loot_grasp/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY, PROC_REF(on_secondary_mansus_grasp))
@@ -65,15 +69,16 @@
 
 	target.balloon_alert(source, "culling strike had no effect!")
 
-/datum/heretic_knowledge/loot_grasp/proc/create_loot(turf/desired_turf,min_loot=1,max_loot=3)
+/datum/heretic_knowledge/loot_grasp/proc/create_loot(turf/desired_turf,min_loot=1,max_loot=3,do_move=TRUE)
 	for(var/i in 1 to rand(min_loot,max_loot))
 		var/obj/item/item_to_spawn = pick_weight(GLOB.heretic_loot_grasp_table_currency)
 		item_to_spawn = new item_to_spawn(desired_turf)
-		var/chosen_dir = pick(GLOB.alldirs)
-		var/turf/found_step = get_step(item_to_spawn, chosen_dir)
-		if(!found_step)
-			continue
-		item_to_spawn.Move(found_step, chosen_dir)
+		if(do_move)
+			var/chosen_dir = pick(GLOB.alldirs)
+			var/turf/found_step = get_step(item_to_spawn, chosen_dir)
+			if(!found_step)
+				continue
+			item_to_spawn.Move(found_step, chosen_dir)
 
 /datum/heretic_knowledge/loot_grasp/proc/on_secondary_mansus_grasp(mob/living/source, atom/target)
 
@@ -85,6 +90,6 @@
 			loot_crate.bust_open()
 			var/turf/T = get_turf(loot_crate)
 			if(T) //Could be destroyed or some nonsense.
-				create_loot(T,1,3)
+				create_loot(T,1,3,FALSE)
 
 	return COMPONENT_USE_HAND

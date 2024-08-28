@@ -13,13 +13,13 @@
 	depth = 4
 	route = PATH_EXILE
 
-	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
-	research_tree_icon_state = "blade_upgrade_blade"
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
+	research_tree_icon_state = "autograsp"
 
 
 
 
-/datum/heretic_knowledge/blade_upgrade/blade/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+/datum/heretic_knowledge/blade_upgrade/exile/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 
 	var/obj/item/melee/touch_attack/mansus_fist/off_hand = source.get_inactive_held_item()
 

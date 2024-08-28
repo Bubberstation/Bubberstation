@@ -14,8 +14,8 @@
 	depth = 8
 	route = PATH_EXILE
 
-	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
-	research_tree_icon_state = "mad_mask"
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
+	research_tree_icon_state = "bait"
 
 
 /datum/heretic_knowledge/fisher/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

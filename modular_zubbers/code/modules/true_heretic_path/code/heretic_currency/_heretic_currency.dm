@@ -1,5 +1,10 @@
 
 
+GLOBAL_LIST_INIT(heretical_affixes_blacklist,list(
+	/datum/fantasy_affix/summoning,
+	/datum/fantasy_affix/curse_of_polymorph
+))
+
 GLOBAL_LIST_INIT(heretical_suffixes,generate_heretical_affixes(AFFIX_SUFFIX))
 GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 
@@ -12,10 +17,16 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 			continue
 		.[new affix] = initial(affix.weight)
 
+	. -= heretical_affixes_blacklist
+
 	return
 
 /obj/item/heretic_currency
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_currency.dmi'
+
+	weight_class = WEIGHT_CLASS_TINY
+
+	var/heretic_instructions
 
 /obj/item/heretic_currency/proc/get_prefix(obj/item/target)
 	for(var/attempts = 8,attempts>0,attempts--)

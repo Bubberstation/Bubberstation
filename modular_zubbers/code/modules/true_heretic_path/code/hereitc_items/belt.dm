@@ -3,8 +3,8 @@
 	desc = "A creepy heavy belt with an IV drip attached. It seems to have space for some specialized containers."
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_inventory.dmi'
 	icon_state = "wizardblood"
-	//worn_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_worn.dmi'
-	//worn_icon_state = "wizardblood"
+	worn_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_worn.dmi'
+	worn_icon_state = "wizardblood"
 
 	var/mob/living/carbon/owner
 

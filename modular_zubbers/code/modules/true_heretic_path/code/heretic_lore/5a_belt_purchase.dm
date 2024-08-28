@@ -17,5 +17,5 @@
 	depth = 6
 	route = PATH_EXILE
 
-	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
-	research_tree_icon_state = "mad_mask"
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_inventory.dmi'
+	research_tree_icon_state = "wizardblood"

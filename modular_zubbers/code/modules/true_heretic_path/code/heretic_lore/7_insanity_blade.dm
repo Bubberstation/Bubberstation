@@ -17,6 +17,6 @@
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inventory.dmi'
-	research_tree_icon_state = "dagger"
+	research_tree_icon_state = "sword"
 
 	limit = 1

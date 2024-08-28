@@ -19,9 +19,8 @@
 	depth = 10
 	route = PATH_EXILE
 
-	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
-	research_tree_icon_state = "mad_mask"
-
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_maps.dmi'
+	research_tree_icon_state = "map"
 
 /datum/heretic_knowledge/map_making/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 
