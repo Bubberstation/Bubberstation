@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/exile_sight
 	name = "Exile's Vision"
 	desc = "Allows you to see and hear through walls."
-	gain_text = "When alone in Exile, you begin to search hard for people."
+	gain_text = "When alone in Exile, you begin to search hard for people. Perhaps a little too hard."
 
 	cost = 1
 	depth = 10
