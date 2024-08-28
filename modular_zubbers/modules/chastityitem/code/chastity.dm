@@ -61,7 +61,8 @@
 	worn_icon_state = "chastitycage"
 	w_class = WEIGHT_CLASS_SMALL
 	lewd_slot_flags = LEWD_SLOT_PENIS
-	
+
+//Set signaller frequency at generation
 /obj/item/clothing/sextoy/chastity/remote/Initialize(mapload)
 	if(random)
 		code = rand(1, 100)
@@ -72,16 +73,36 @@
 		name = initial(name) + " - freq: [frequency/10] code: [code]"
 	set_frequency(frequency)
 	. = ..()
-//Removes signaller metadata
+
+//Removes signaller metadata on deletion of item
 /obj/item/clothing/sextoy/chastity/remote/Destroy()
 	SSradio.remove_object(src, frequency)
 	. = ..()
 
-//Set signaller frequency at generation
+//Replaces the signaller module if it is manually changed
 /obj/item/clothing/sextoy/chastity/remote/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	SSradio.add_object(src, frequency, RADIO_SIGNALER)
+
+//Additional variables for the TGUI slider stuff
+/obj/item/clothing/sextoy/chastity/remote/ui_data(mob/user)
+	var/list/data = list()
+	data["toystate"] = toy_on
+	data["frequency"] = frequency
+	data["code"] = code
+	data["minFrequency"] = MIN_FREE_FREQ
+	data["maxFrequency"] = MAX_FREE_FREQ
+	return data
+
+//behaviour for receiving a valid signal
+/obj/item/clothing/sextoy/chastity/remote/receive_signal(datum/signal/signal)
+	if(!signal || signal.data["code"] != code)
+		return
+
+	locked = !locked
+	to_chat(user, span_purple("You hear a small click from your source?.name."))
+	//I think source?.name is correct
 
 //Check for available hands	
 /obj/item/clothing/sextoy/chastity/remote/ui_state(mob/user)
@@ -95,6 +116,9 @@
 		name = "[initial(name)] - [cagename]"
 	//TODO: YES/NO for changing frequency 
 		if(electronic)
+			var/newfreq
+			var/newcode
+			/?TGUI ELEMENT HERE newfreq = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
 
 /obj/item/clothing/sextoy/chastity/examine(mob/user)
 	. = ..()
@@ -121,14 +145,15 @@
 		return
 	to_chat(user, span_warning("This isn't the correct key!"))
 
-// checked locked/broken var before you can remove it from the slot. WIP code
+// check locked/broken var before you can remove it from the slot. WIP code
 /obj/item/clothing/sextoy/chastity/attack_hand(mob/user)
 	if(loc == user && is_inside_lewd_slot(user) && locked)
 		to_chat(user, span_warning("The [devicetype] is locked! You'll need to unlock it before you can take it off!"))
 		return
 	add_fingerprint(usr)
 	return ..()
-checked locked/broken var before you can remove it from the slot. WIP code. This one works when you use drag between slots/into the world
+
+// check locked/broken var before you can remove it from the slot. WIP code. This one works when you use drag between slots/into the world
 /obj/item/clothing/sextoy/chastity/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)
 	if(loc == user && is_inside_lewd_slot(user) && locked && istype(over_object, /atom/movable/screen/inventory/hand))
 		to_chat(user, span_warning("The [devicetype] is locked! You'll need to unlock it before you can take it off!"))
