@@ -2,8 +2,9 @@
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
 	max_occurrences = 1
-	weight = 1 // Rare
+	weight = 3
 	min_players = 30
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
 	earliest_start = 30 MINUTES
 	track = EVENT_TRACK_MAJOR
 
@@ -13,7 +14,7 @@
 	end_when = 151
 
 /datum/round_event/fleshmind/announce(fake)
-	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
+	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated.", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
 
 /datum/round_event/fleshmind/start()
 	make_core()
