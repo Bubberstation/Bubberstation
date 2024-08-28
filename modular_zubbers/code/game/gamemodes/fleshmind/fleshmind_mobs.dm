@@ -81,7 +81,7 @@
 		new_action.Grant(src)
 	update_appearance()
 
-/mob/living/basic/fleshmind/death(gibbed)
+/mob/living/basic/fleshmind/death()
 	if(contained_mob)
 		contained_mob.forceMove(get_turf(src))
 		if(previous_ckey)
@@ -98,32 +98,6 @@
 			contained_mob.key = previous_ckey
 		contained_mob = null
 	return ..()
-
-/**
- * We don't want to destroy our own faction objects.
- */
-
-/*
-/mob/living/basic/fleshmind/DestroyObjectsInDirection(direction)
-	var/atom/target_from = GET_TARGETS_FROM(src)
-	var/turf/target_turf = get_step(target_from, direction)
-	if(QDELETED(target_turf))
-		return
-	if(target_turf.Adjacent(target_from))
-		if(CanSmashTurfs(target_turf))
-			target_turf.attack_animal(src)
-			return
-	for(var/obj/iterating_object in target_turf.contents)
-		if(!iterating_object.Adjacent(target_from))
-			continue
-		if(istype(iterating_object, /obj/structure/fleshmind))
-			var/obj/structure/fleshmind/friendly_object = iterating_object
-			if(faction_check(friendly_object.faction_types, faction))
-				continue
-		if((ismachinery(iterating_object) || isstructure(iterating_object)) && iterating_object.density && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !iterating_object.IsObscured())
-			iterating_object.attack_animal(src)
-			return
-*/
 
 /**
  * While this mob lives, it can malfunction.
@@ -163,12 +137,12 @@
 /**
  * We are robotic, so we spark when we're hit by something that does damage.
  */
-/*
+
 /mob/living/basic/fleshmind/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(attacking_item.force && prob(40))
 		do_sparks(3, FALSE, src)
 	return ..()
-*/
+
 /**
  * When our controller dies, this is called.
  */
@@ -334,7 +308,7 @@
 
 /mob/living/basic/fleshmind/slicer/Initialize()
 	. = ..()
-	var/static/list/loot = list(/obj/item/bot_assembly/medbot, /obj/effect/gibspawner/robot)
+	var/list/loot = string_list(list(/obj/item/bot_assembly/medbot, /obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
 
 /**
@@ -484,9 +458,8 @@
 
 /mob/living/basic/fleshmind/globber/Initialize(mapload)
 	. = ..()
-	var/static/list/loot = list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot)
+	var/list/loot = string_list(list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
-	AddElement(/datum/element/ai_retaliate)
 	AddComponent(\
 		/datum/component/ranged_attacks,\
 		cooldown_time = ranged_cooldown,\
@@ -641,7 +614,7 @@
 	. = ..()
 	var/datum/action/cooldown/hiborg_slash/new_action = new
 	new_action.Grant(src)
-	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
 
 /mob/living/basic/fleshmind/hiborg/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
@@ -716,7 +689,6 @@
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	base_icon_state = "himan"
-	basic_mob_flags = null
 	maxHealth = 250
 	health = 250
 	speed = 2
@@ -922,7 +894,7 @@
 		projectile_type = projectile_type,\
 		projectile_sound = shoot_sound,\
 	)
-	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
 	nanites = new dispense_nanites_type(src)
 	nanites.Grant(src)
@@ -932,6 +904,8 @@
 	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
 		if(faction_check(iterating_mob.faction, faction))
 			if(iterating_mob.health < iterating_mob.maxHealth)
+				if(istype(/mob/living/basic/fleshmind/tyrant)) // Don't heal this.
+					continue
 				manual_emote("vomits out a burst of nanites!")
 				do_smoke(3, 4, get_turf(src))
 				iterating_mob.heal_overall_damage(30, 30)
@@ -1363,7 +1337,7 @@
 	)
 /mob/living/basic/fleshmind/mechiver/Initialize()
 	. = ..()
-	var/static/list/loot = list(/obj/effect/gibspawner/robot)
+	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
 
 /mob/living/basic/fleshmind/mechiver/Life(delta_time, times_fired)
@@ -1373,7 +1347,7 @@
 
 	if(!ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] && !contained_mob && !suffering_malfunction && !key && our_controller)
 		for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
-			if(iterating_mob.stat != CONSCIOUS)
+			if(iterating_mob.stat != CONSCIOUS && ishuman(iterating_mob))
 				if(get_dist(src, iterating_mob) <= 1)
 					consume_mob(iterating_mob)
 				else
@@ -1470,7 +1444,7 @@
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)
-		mob_to_convert.heal_and_revive(50, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
+		mob_to_convert.heal_and_revive(75, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
 		return
 
 	if(iscyborg(mob_to_convert))

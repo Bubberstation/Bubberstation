@@ -681,7 +681,6 @@
 	do_squish(0.8, 1.2)
 
 	spawned_mobs++
-
 	var/chosen_mob_type = override_monser_type ? override_monser_type : pick_weight(monster_types)
 
 	var/mob/living/basic/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)

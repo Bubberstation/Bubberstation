@@ -1,15 +1,16 @@
 /datum/round_event_control/fleshmind
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
-	max_occurrences = 0 // Storyteller needs to merge the new ones.
+	max_occurrences = 1
 	weight = 1 // Rare
-	min_players = 50
-	earliest_start = 45 MINUTES
+	min_players = 30
+	earliest_start = 30 MINUTES
+	track = EVENT_TRACK_MAJOR
 
 /datum/round_event/fleshmind
 	fakeable = FALSE
-	announce_when = 200
-	end_when = 201
+	announce_when = 150
+	end_when = 151
 
 /datum/round_event/fleshmind/announce(fake)
 	priority_announce("Confirmed outbreak of level $£%!£ biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_AIMALF)
@@ -25,7 +26,7 @@
 
 	var/list/possible_spawn_areas = typecacheof(typesof(/area/station/maintenance, /area/station/security/prison, /area/station/construction))
 
-	shuffle(turfs)
+	shuffle(possible_spawn_areas)
 
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
