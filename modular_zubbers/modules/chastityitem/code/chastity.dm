@@ -114,11 +114,13 @@
 		var/cagename
 		cagename = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
 		name = "[initial(name)] - [cagename]"
-	//TODO: YES/NO for changing frequency 
+	//TODO: YES/NO for changing frequency. 
 		if(electronic)
 			var/newfreq
 			var/newcode
-			/?TGUI ELEMENT HERE newfreq = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
+			newfreq = tgui_input_number(user, "Input the new frequency", "0", MAX_FREE_FREQ, MIN_FREE_FREQ)
+			newcode = tgui_input_number(user, "Input the new code", "0", 1, 99)
+	//make the part which replaces frequency with newfreq etc
 
 /obj/item/clothing/sextoy/chastity/examine(mob/user)
 	. = ..()
