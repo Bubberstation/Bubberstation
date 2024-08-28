@@ -229,6 +229,7 @@
 				bloodsuckerdatum.blood_level_gain()
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
 			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+		bloodsuckerdatum.check_limbs(COFFIN_HEAL_COST_MULT)
 		if(!bloodsuckerdatum.check_begin_torpor())
 			bloodsuckerdatum.heal_vampire_organs()
 	return TRUE

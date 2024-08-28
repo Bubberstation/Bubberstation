@@ -134,6 +134,8 @@
 #define DOMINATE_VASSALIZE_LEVEL 2
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
 
+#define COFFIN_HEAL_COST_MULT 0.5
+
 
 /**
  * Torpor check bitflags

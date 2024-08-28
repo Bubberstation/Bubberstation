@@ -144,7 +144,7 @@
 			return FALSE
 		fireheal = min(getFireLoss(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
-		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
+		costMult *= COFFIN_HEAL_COST_MULT // Decrease cost if we're sleeping in a coffin.
 		user.extinguish_mob()
 		user.bodytemperature = user.get_body_temp_normal()
 		if(ishuman(user))
@@ -207,29 +207,35 @@
  *	This is called on Bloodsucker's Assign, and when they end Torpor.
  */
 /// TODO: Separate this into smaller functions
-/datum/antagonist/bloodsucker/proc/heal_vampire_organs(regenerate_heart = FALSE)
+/datum/antagonist/bloodsucker/proc/heal_vampire_organs()
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 	// please don't poison or asphyxiate the immune
 	bloodsuckeruser.setToxLoss(0, forced = TRUE)
 	bloodsuckeruser.setOxyLoss(0, forced = TRUE)
+
 	if(!bloodsuckeruser)
 		return
+
 	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
 		to_chat(bloodsuckeruser, span_danger("Your immortal blood has healed your body from near-irrecoverable damage, but has used nearly all of your blood in doing so!"))
 		AddHumanityLost(2)
 		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
+
 	bloodsuckeruser.cure_husk(BURN)
-	if(regenerate_heart || bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
+	if(bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
+
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart?.Stop()
+
 	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
-	if(current_eyes)
+	if(current_eyes && !(current_eyes.organ_flags & ORGAN_ROBOTIC))
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 		current_eyes.sight_flags = SEE_MOBS
+
 	bloodsuckeruser.update_sight()
 	/// Disable gutting for the chest
 	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
@@ -237,12 +243,14 @@
 		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
 
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
-	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
-		on_revive()
+	on_revive()
+
 	if(bloodsuckeruser.stat == DEAD)
 		bloodsuckeruser.revive()
+
 	for(var/datum/wound/iter_wound in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
+
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
 		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
