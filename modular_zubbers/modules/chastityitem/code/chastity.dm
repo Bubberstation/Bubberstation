@@ -1,3 +1,5 @@
+//File will be annotated for Renarchy. Hi! - aKhro
+
 /obj/item/clothing/sextoy/chastity
 	name = "DEBUG ITEM"
 	desc = "call an admin probably"
@@ -70,31 +72,35 @@
 		name = initial(name) + " - freq: [frequency/10] code: [code]"
 	set_frequency(frequency)
 	. = ..()
-
+//Removes signaller metadata
 /obj/item/clothing/sextoy/chastity/remote/Destroy()
 	SSradio.remove_object(src, frequency)
 	. = ..()
-	
+
+//Set signaller frequency at generation
 /obj/item/clothing/sextoy/chastity/remote/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	SSradio.add_object(src, frequency, RADIO_SIGNALER)
-	
+
+//Check for available hands	
 /obj/item/clothing/sextoy/chastity/remote/ui_state(mob/user)
 	return GLOB.hands_state
 
-
+//When you activate it in active hand
 /obj/item/clothing/sextoy/chastity/cage/attack_self(mob/user)
-	if(electronic)
-		
-	keyname = stripped_input(user, "Would you like to change the name on the key?", "Renaming key", "Key", MAX_NAME_LEN)
-	name = "[initial(name)] - [keyname]"
+	//TODO: YES/NO for rename
+		var/cagename
+		cagename = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
+		name = "[initial(name)] - [cagename]"
+	//TODO: YES/NO for changing frequency 
+		if(electronic)
 
 /obj/item/clothing/sextoy/chastity/examine(mob/user)
 	. = ..()
-
 		. += "It seems to be [locked ? "locked" : "unlocked"]."
 
+//Toggles locked/broken state. Called for when the variables change
 /obj/item/clothing/sextoy/chastity/proc/IsLocked(to_lock, mob/user)
 	if(!broken)
 		to_chat(user, span_warning("The [devicetype] is [to_lock ? "bolted tight." : "unbolted."]"))
@@ -106,6 +112,7 @@
 	locked = FALSE
 	REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_NODROP)
 
+//Toggles locked state if it is the correct key
 /obj/item/clothing/sextoy/chastity/attackby(obj/item/key/chastity/attack_item, mob/user, params)
 	if(!istype(attack_item))
 		return
@@ -114,15 +121,14 @@
 		return
 	to_chat(user, span_warning("This isn't the correct key!"))
 
-// keep it on
-
+// checked locked/broken var before you can remove it from the slot. WIP code
 /obj/item/clothing/sextoy/chastity/attack_hand(mob/user)
 	if(loc == user && is_inside_lewd_slot(user) && locked)
 		to_chat(user, span_warning("The [devicetype] is locked! You'll need to unlock it before you can take it off!"))
 		return
 	add_fingerprint(usr)
 	return ..()
-
+checked locked/broken var before you can remove it from the slot. WIP code. This one works when you use drag between slots/into the world
 /obj/item/clothing/sextoy/chastity/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)
 	if(loc == user && is_inside_lewd_slot(user) && locked && istype(over_object, /atom/movable/screen/inventory/hand))
 		to_chat(user, span_warning("The [devicetype] is locked! You'll need to unlock it before you can take it off!"))
@@ -131,7 +137,8 @@
 	if(user.putItemFromInventoryInHandIfPossible(src, inv_hand.held_index))
 		add_fingerprint(user)
 	return ..()
-	
+
+//For putting it on - or preventing you to
 /obj/item/clothing/sextoy/chastity/equipped(mob/user, slot)
 	var/mob/living/carbon/human/chasted = user
 	
@@ -147,16 +154,12 @@
 		
 		chasted.regenerate_icons()
 	. = ..()
-
+//Inverse of above
 /obj/item/clothing/sextoy/chastity/dropped(mob/user)
 	var/mob/living/carbon/human/chasted = user
 	if(ishuman(user))
 		chasted.cut_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
 	. = ..()
-	
-/obj/item/key/chastity/attack_self(mob/user)
-	keyname = stripped_input(user, "Would you like to change the name on the key?", "Renaming key", "Key", MAX_NAME_LEN)
-	name = "[initial(name)] - [keyname]"
 	
 //checks for the key's ID
 /obj/item/key/chastity/attack(mob/living/carbon/human/target, mob/living/user, params)
@@ -170,7 +173,7 @@
 		collar.IsLocked((collar.locked ? FALSE : TRUE), user)
 	else
 		to_chat(user, span_warning("This isn't the correct key!"))
-
+//For breaking the lock
 /obj/item/circular_saw/attack(mob/living/carbon/target, mob/living/user, params)
 	if(!istype(target))
 		return ..()
@@ -209,9 +212,8 @@
 	desc = "A hex key meant for the bolt on a chastity device. Don't lose this. Or do."
 	interaction_flags_click = NEED_DEXTERITY
 	var/key_id = null
-	var/keyname = null
-
+	
+//Key name change
 /obj/item/key/chastity/attack_self(mob/user)
-		keyname = stripped_input(user, "Would you like to change the name on the key?", "Renaming key", "Key", MAX_NAME_LEN)
-		name = "[initial(name)] - [keyname]"
-
+	keyname = stripped_input(user, "Would you like to change the name on the key?", "Renaming key", "Key", MAX_NAME_LEN)
+	name = "[initial(name)] - [keyname]"
