@@ -1,7 +1,7 @@
 /datum/round_event_control/fleshmind
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
-	max_occurrences = 1
+	max_occurrences = 0 // Storyteller needs to merge the new ones.
 	weight = 1 // Rare
 	min_players = 50
 	earliest_start = 45 MINUTES
