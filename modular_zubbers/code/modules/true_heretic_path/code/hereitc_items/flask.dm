@@ -1,6 +1,13 @@
 /obj/item/reagent_containers/cup/endless_flask //Thankfully this is automatically excluded in silver slime extracts.
 	name = "water from the Nile"
 	desc = "Excuse me a minute. Water from the Nile. Nile water. Heh."
+
+	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks_fillings.dmi'
+	icon_state = "health"
+
+	fill_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks_fillings.dmi'
+	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
+
 	var/amount_to_create = 1 //Every 2 seconds.
 	var/datum/reagent/reagent_to_create = /datum/reagent/water //Fallback
 
@@ -21,6 +28,7 @@
 /obj/item/reagent_containers/cup/endless_flask/on_reagent_change()
 	SIGNAL_HANDLER
 	START_PROCESSING(SSobj,src)
+	. = ..()
 
 /obj/item/reagent_containers/cup/endless_flask/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -42,19 +50,24 @@
 //Healing
 /obj/item/reagent_containers/cup/endless_flask/godblood
 	reagent_to_create = /datum/reagent/medicine/omnizine/godblood
+	icon_state = "health"
 
 //Speed
 /obj/item/reagent_containers/cup/endless_flask/stimulants
 	reagent_to_create = /datum/reagent/medicine/stimulants
+	icon_state = "speed"
 
 //Phasing
 /obj/item/reagent_containers/cup/endless_flask/saturnx
 	reagent_to_create = /datum/reagent/drug/saturnx/stable
+	icon_state = "phasing"
 
 //Evasion
 /obj/item/reagent_containers/cup/endless_flask/blastoff
 	reagent_to_create = /datum/reagent/drug/blastoff
+	icon_state = "evasion"
 
 //Armor
 /obj/item/reagent_containers/cup/endless_flask/determination
 	reagent_to_create = /datum/reagent/determination
+	icon_state = "armor"

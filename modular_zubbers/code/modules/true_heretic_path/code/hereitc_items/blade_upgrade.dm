@@ -1,9 +1,14 @@
 /obj/item/melee/sickly_blade/exile/upgrade
 	name = "\improper Elder's insanity sword"
 	desc = "A dark plasma-edged sword that flickers with strange energy. Just looking at it makes you feel uneasy."
+
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inventory.dmi'
 	icon_state = "sword"
+
+	righthand_file = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inhand_rightdmi'
+	lefthand_file = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inhand_left.dmi'
 	inhand_icon_state = "sword"
+
 	after_use_message = "The Exile hears your call..."
 
 	force = 24 //Previously 20
