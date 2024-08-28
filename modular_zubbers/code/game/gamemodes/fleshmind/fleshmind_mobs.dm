@@ -182,7 +182,7 @@
 
 /mob/living/basic/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
 
-	explosion(src, 0, 1, 2, 2, 0, FALSE)
+	explosion(src, 0, 0, 2, 2, 0, FALSE)
 	gib()
 
 /**
@@ -221,7 +221,8 @@
 		return
 	do_sparks(3, FALSE, src)
 	Shake(10, 0, reset_time)
-	say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
+	if(prob(50))
+		say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
 	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	suffering_malfunction = TRUE
 	if(!endless_malfunction)
@@ -379,10 +380,9 @@
 			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 		)
 	)
-	//move_to_delay = 8
 	health = 10
 	maxHealth = 10
-	var/explode_attack = /datum/action/innate/floater_explode
+	var/explode_attack = /datum/action/cooldown/mob_cooldown/floater_explode
 	mob_size = MOB_SIZE_SMALL
 	light_color = "#820D1C"
 	light_power = 1
@@ -393,15 +393,20 @@
 /mob/living/basic/fleshmind/floater/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/simple_flying)
-	var/datum/action/innate/floater_explode/explode = new explode_attack(src)
+	var/datum/action/cooldown/mob_cooldown/floater_explode/explode = new explode_attack(src)
 	explode.Grant(src)
-	ai_controller.set_blackboard_key(BB_FLOATER_EXPLODE, explode)
-	AddComponent(/datum/component/revenge_ability, explode, targetting = GET_TARGETING_STRATEGY(ai_controller.blackboard[BB_TARGETING_STRATEGY]))
+	AddComponent(/datum/component/revenge_ability, explode, targeting = GET_TARGETING_STRATEGY(ai_controller.blackboard[BB_TARGETING_STRATEGY]), min_range = 1)
 
-/mob/living/basic/fleshmind/floater/death(gibbed)
+/mob/living/basic/fleshmind/floater/melee_attack(atom/target, list/modifiers, ignore_cooldown)
+	. = ..()
+	var/mob/living/target_mob = target
+	if(ishuman(target_mob) && target_mob.stat < UNCONSCIOUS)
+		detonate()
+
+/mob/living/basic/fleshmind/floater/death()
 	if(!exploded)
 		detonate()
-	return ..(gibbed)
+	return ..()
 
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
@@ -410,14 +415,13 @@
 	explosion(src, 0, 0, 2, 3)
 	death()
 
-/datum/action/innate/floater_explode
+/datum/action/cooldown/mob_cooldown/floater_explode
 	name = "explode"
 	desc = "Detonate our internals."
 	button_icon = 'icons/obj/weapons/grenade.dmi'
 	button_icon_state = "frag"
-	check_flags = AB_CHECK_CONSCIOUS
 
-/datum/action/innate/floater_explode/Activate()
+/datum/action/cooldown/mob_cooldown/floater_explode/Activate(atom/target)
 	if(!istype(owner, /mob/living/basic/fleshmind/floater))
 		return
 	var/mob/living/basic/fleshmind/floater/akbar_floater = owner
@@ -488,6 +492,7 @@
 		cooldown_time = ranged_cooldown,\
 		projectile_type = projectile_type,\
 		projectile_sound = shoot_sound,\
+		burst_shots = 3,\
 	)
 
 /obj/projectile/treader/weak
@@ -543,7 +548,7 @@
 	var/stun_cooldown_time = 2 SECONDS
 	COOLDOWN_DECLARE(stun_cooldown)
 
-/mob/living/basic/fleshmind/stunner/melee_attack()
+/mob/living/basic/fleshmind/stunner/Initialize()
 	. = ..()
 	var/static/list/loot = list(/obj/item/bot_assembly/secbot, /obj/effect/gibspawner/robot)
 	AddElement(/datum/element/death_drops, loot)
@@ -882,6 +887,8 @@
 	light_color = FLESHMIND_LIGHT_BLUE
 	light_range = 2
 	mob_size = MOB_SIZE_HUMAN
+	var/datum/action/cooldown/mob_cooldown/treader_dispense_nanites/nanites
+	var/dispense_nanites_type = /datum/action/cooldown/mob_cooldown/treader_dispense_nanites
 	attack_speak = list(
 		"You there! Cut off my head, I beg you!",
 		"I-..I'm so sorry! I c-..can't control myself anymore!",
@@ -917,8 +924,9 @@
 	)
 	var/static/list/loot = list(/obj/effect/gibspawner/robot)
 	AddElement(/datum/element/death_drops, loot)
-	var/static/list/innate_actions = list(/datum/action/cooldown/treader_dispense_nanites = BB_TREADER_DISPENSE_NANITES)
-	grant_actions_by_list(innate_actions)
+	nanites = new dispense_nanites_type(src)
+	nanites.Grant(src)
+	ai_controller.set_blackboard_key(BB_TREADER_DISPENSE_NANITES, nanites)
 
 /mob/living/basic/fleshmind/treader/proc/dispense_nanites()
 	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
@@ -927,22 +935,20 @@
 				manual_emote("vomits out a burst of nanites!")
 				do_smoke(3, 4, get_turf(src))
 				iterating_mob.heal_overall_damage(30, 30)
-				return TRUE
-		return FALSE
 
-/datum/action/cooldown/treader_dispense_nanites
+/datum/action/cooldown/mob_cooldown/treader_dispense_nanites
 	name = "Dispense Nanites"
 	desc = "Dispenses nanites healing all friendly mobs in a range."
 	button_icon = 'icons/obj/meteor.dmi'
 	button_icon_state = "dust"
 	cooldown_time = 20 SECONDS
+	click_to_activate = FALSE
 
-/datum/action/cooldown/treader_dispense_nanites/Activate(atom/target)
+/datum/action/cooldown/mob_cooldown/treader_dispense_nanites/Activate(atom/target)
 	if(!istype(owner, /mob/living/basic/fleshmind/treader))
 		return
 	var/mob/living/basic/fleshmind/treader/treader_owner = owner
-	if(!treader_owner.dispense_nanites())
-		return
+	treader_owner.dispense_nanites()
 	StartCooldownSelf()
 
 /obj/projectile/treader

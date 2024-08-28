@@ -36,8 +36,7 @@
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
 		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/floater,
-		/datum/ai_planning_subtree/use_mob_ability/explode,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 		/datum/ai_planning_subtree/random_speech/blackboard/fleshmind
 	)
 
@@ -55,9 +54,9 @@
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
 		/datum/ai_planning_subtree/simple_find_target,
+		/datum/ai_planning_subtree/use_mob_ability/dispense_nanites,
 		/datum/ai_planning_subtree/maintain_distance,
 		/datum/ai_planning_subtree/ranged_skirmish,
-		/datum/ai_planning_subtree/use_mob_ability/dispense_nanites,
 		/datum/ai_planning_subtree/random_speech/blackboard/fleshmind
 	)
 
@@ -86,38 +85,17 @@
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 	)
 
-/datum/ai_controller/basic_controller/fleshmind/tyrant
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-		/datum/ai_planning_subtree/target_retaliate/check_faction,
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/maintain_distance,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/tyrant,
-		/datum/ai_planning_subtree/random_speech/blackboard/fleshmind,
-	)
+/datum/ai_planning_subtree/use_mob_ability/dispense_nanites
+	ability_key = BB_TREADER_DISPENSE_NANITES
 
-/datum/ai_planning_subtree/basic_melee_attack_subtree/floater
-	end_planning = FALSE
-
-/datum/ai_planning_subtree/use_mob_ability/explode
-	ability_key = BB_FLOATER_EXPLODE
-	finish_planning = TRUE
-
-/datum/ai_planning_subtree/use_mob_ability/explode/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
-	var/mob/living/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if(!isliving(target))
-		return
-	if(get_dist(target.loc, controller.pawn) >= 2)
+/datum/ai_planning_subtree/use_mob_ability/dispense_nanites/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	var/mob/living/pawn = controller.pawn
+	var/list/valid_mobs = list()
+	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, controller.pawn))
+		if(faction_check(iterating_mob.faction, pawn.faction))
+			if(iterating_mob.health < iterating_mob.maxHealth * 0.5)
+				valid_mobs += iterating_mob
+	if(!LAZYLEN(valid_mobs))
 		return
 	return ..()
 
-/datum/ai_planning_subtree/use_mob_ability/dispense_nanites
-	ability_key = BB_TREADER_DISPENSE_NANITES
-	finish_planning = FALSE
-
-/datum/ai_planning_subtree/basic_melee_attack_subtree/tyrant
-	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/tyrant
-
-/datum/ai_behavior/basic_melee_attack/tyrant
-	terminate_after_action = TRUE

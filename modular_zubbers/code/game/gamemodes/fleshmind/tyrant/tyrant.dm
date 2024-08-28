@@ -13,7 +13,14 @@
 	/// Our main gun projectile
 	var/projectiletype = /obj/projectile/bullet/c50cal/tyrant
 	var/projectilesound = 'modular_skyrat/modules/mounted_machine_gun/sound/50cal_box_01.ogg'
-	COOLDOWN_DECLARE(gun_cooldown)
+	var/ranged_cooldown = 5 SECONDS
+
+	var/datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_laser/laser
+	var/datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket/rockets
+
+	var/laser_type = /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_laser
+	var/rocket_type = /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket
+
 	mob_size = MOB_SIZE_HUGE
 	pixel_x = -16
 	pixel_y = -16
@@ -53,20 +60,6 @@
 	move_force = MOVE_FORCE_OVERPOWERING
 	move_resist = MOVE_FORCE_OVERPOWERING
 	pull_force = MOVE_FORCE_OVERPOWERING
-	/// The cooldown on our rocket pod use.
-	var/rocket_pod_cooldown_time_upper = 30 SECONDS
-	var/rocket_pod_cooldown_time_lower = 20 SECONDS
-	COOLDOWN_DECLARE(rocket_pod_cooldown)
-	/// The projectile we fire when shooting our rocket pods.
-	var/rocket_projectile_type = /obj/projectile/bullet/rocket/weak
-	/// The sound we play when firing our rocket pods.
-	var/rocket_projectile_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
-	/// The time it takes for us to charge up our rocket pods
-	var/rocket_pod_charge_up_time = 3 SECONDS
-	/// How many rockets in our barrage
-	var/barrage = 1
-	/// How much time between rocket shots
-	var/barrage_interval = 2
 	/// How often we can play the rotate sound
 	var/rotate_sound_cooldown_time = 1 SECONDS
 	COOLDOWN_DECLARE(rotate_sound_cooldown)
@@ -78,21 +71,6 @@
 		'modular_zubbers/sound/fleshmind/tyrant/footstep_4.ogg',
 		'modular_zubbers/sound/fleshmind/tyrant/footstep_5.ogg',
 		'modular_zubbers/sound/fleshmind/tyrant/footstep_6.ogg',
-	)
-	/// We also have a small laser to fire at people ;)
-	var/laser_cooldown_time_upper = 4 SECONDS
-	var/laser_cooldown_time_lower = 2 SECONDS
-	COOLDOWN_DECLARE(laser_cooldown)
-	/// Our laser projectile type
-	var/laser_projectile_type = /obj/projectile/beam/emitter/hitscan
-	/// A list of sounds we can play when firing the laser
-	var/static/list/laser_projectile_sounds = list(
-		'modular_zubbers/sound/fleshmind/tyrant/laser_1.ogg',
-		'modular_zubbers/sound/fleshmind/tyrant/laser_2.ogg',
-		'modular_zubbers/sound/fleshmind/tyrant/laser_3.ogg',
-		'modular_zubbers/sound/fleshmind/tyrant/laser_4.ogg',
-		'modular_zubbers/sound/fleshmind/tyrant/laser_5.ogg',
-		'modular_zubbers/sound/fleshmind/tyrant/laser_6.ogg',
 	)
 	death_sound = 'modular_zubbers/sound/fleshmind/tyrant/tyrant_death.ogg'
 	attack_speak = list(
@@ -137,30 +115,30 @@
         "I WILL NOT LET VICTORY FALL THROUGH OUR HANDS.",
 	)
 
+/mob/living/basic/fleshmind/tyrant/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ranged_attacks,\
+		cooldown_time = ranged_cooldown,\
+		projectile_type = projectiletype,\
+		projectile_sound = projectilesound,\
+		burst_shots = 3,\
+		burst_intervals = 0.5 SECONDS,\
+		cooldown_time = 3 SECONDS,\
+		)
+
+	var/static/list/innate_actions = list(
+		/datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_laser = BB_TYRANT_LASER,
+		/datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket = BB_TYRANT_ROCKET
+	)
+
+	grant_actions_by_list(innate_actions)
+
 /mob/living/basic/fleshmind/tyrant/Life(delta_time, times_fired)
 	. = ..()
 	if(health <= (maxHealth * 0.5) && prob(20))
 		do_sparks(3, FALSE, src)
 	if(!.) //dead
 		return
-	var/mob/living/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if(target && target.stat >= UNCONSCIOUS) // Target learnt their lesson
-		ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
-		return
-/// THIS IS BAD, REALLY BAD DOGSHIT CODE AND THIS SHOULD NOT GO INTO LIFE()
-	if(COOLDOWN_FINISHED(src, gun_cooldown) && target)
-		fire_custom_projectile(target, projectiletype, projectilesound)
-		COOLDOWN_START(src, gun_cooldown, rand(laser_cooldown_time_lower, laser_cooldown_time_upper))
-
-	if(COOLDOWN_FINISHED(src, laser_cooldown) && target)
-		fire_custom_projectile(target, laser_projectile_type, pick(laser_projectile_sounds))
-		COOLDOWN_START(src, laser_cooldown, rand(laser_cooldown_time_lower, laser_cooldown_time_upper))
-
-	if(COOLDOWN_FINISHED(src, rocket_pod_cooldown) && target)
-		balloon_alert_to_viewers("begins whirring violently!")
-		playsound(src, 'modular_zubbers/sound/fleshmind/tyrant/charge_up.ogg', 100, TRUE)
-		addtimer(CALLBACK(src, PROC_REF(fire_rocket_pods), target), rocket_pod_charge_up_time)
-		COOLDOWN_START(src, rocket_pod_cooldown, rand(rocket_pod_cooldown_time_lower, rocket_pod_cooldown_time_upper))
 
 /mob/living/basic/fleshmind/tyrant/Destroy()
 	QDEL_NULL(particles)
@@ -196,28 +174,7 @@
 		playsound(src, 'modular_zubbers/sound/fleshmind/tyrant/mech_rotation.ogg', 35, TRUE)
 		COOLDOWN_START(src, rotate_sound_cooldown, rotate_sound_cooldown_time)
 
-/mob/living/basic/fleshmind/tyrant/proc/fire_rocket_pods(atom/target_atom)
-	if(!target_atom || QDELETED(target_atom))
-		return
-	if(barrage > 1)
-		var/datum/callback/callback = CALLBACK(src, PROC_REF(fire_custom_projectile), target_atom, rocket_projectile_type, rocket_projectile_sound)
-		for(var/i in 1 to barrage)
-			addtimer(callback, (i - 1) * barrage_interval)
-	else
-		fire_custom_projectile(target_atom, rocket_projectile_type, rocket_projectile_sound)
-
-/mob/living/basic/fleshmind/tyrant/proc/fire_custom_projectile(atom/target_atom, projectile_type, sound/projectile_sound)
-	if(!target_atom || QDELETED(target_atom))
-		return
-	playsound(loc, projectile_sound, 100, TRUE)
-	var/obj/projectile/new_projectile = new projectile_type
-	new_projectile.preparePixelProjectile(target_atom, get_turf(src))
-	new_projectile.firer = src
-	new_projectile.fired_from = src
-	new_projectile.ignored_factions = faction
-	new_projectile.fire()
-
-/obj/projectile/bullet/c50cal/tyrant
-	damage = 30
-	wound_bonus = 40
+/obj/projectile/bullet/c50cal/tyrant // BANG BANG BANG
+	damage = 20
+	wound_bonus = 20
 	armour_penetration = 20

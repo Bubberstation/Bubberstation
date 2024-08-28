@@ -20,7 +20,6 @@
 	)
 	/// These traits will be given and removed from the host.
 	var/static/list/traits_to_give = list(
-		TRAIT_NOGUNS,
 		TRAIT_NOBREATH,
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHEAT,
