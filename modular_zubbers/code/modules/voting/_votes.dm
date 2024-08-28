@@ -17,6 +17,16 @@
 	return TRUE
 
 #undef INGAME_TIME_NEEDED
-
 /datum/vote/transfer_vote
 	allow_ghosts = FALSE
+	// Has this vote been run before?
+	var/has_ran = FALSE
+
+/datum/vote/transfer_vote/can_mob_vote(mob/voter)
+	if(has_ran)
+		return TRUE
+	return ..()
+
+/datum/vote/transfer_vote/finalize_vote(winning_option)
+	has_ran = TRUE
+	return ..()
