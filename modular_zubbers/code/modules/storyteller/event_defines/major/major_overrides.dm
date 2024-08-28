@@ -1,3 +1,7 @@
+/datum/round_event_control/fleshmind
+	track = EVENT_TRACK_MAJOR // Storyteller
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
+
 /datum/round_event_control/earthquake
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE)
@@ -66,6 +70,3 @@
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_SPACE)
 
-/datum/round_event_control/fleshmind
-	track = EVENT_TRACK_MAJOR // Storyteller
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
