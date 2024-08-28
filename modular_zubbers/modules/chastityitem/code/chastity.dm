@@ -88,7 +88,7 @@
 //Additional variables for the TGUI slider stuff
 /obj/item/clothing/sextoy/chastity/remote/ui_data(mob/user)
 	var/list/data = list()
-	data["toystate"] = toy_on
+	data["lockstate"] = locked
 	data["frequency"] = frequency
 	data["code"] = code
 	data["minFrequency"] = MIN_FREE_FREQ
