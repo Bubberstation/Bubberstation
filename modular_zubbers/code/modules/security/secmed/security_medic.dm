@@ -56,6 +56,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+	suit_store = /obj/item/gun/energy/disabler/smg
 /* 	backpack_contents = list(
 		/obj/item/storage/box/gunset/firefly = 1, // FIX THIS LATER
 		) */
@@ -140,4 +141,3 @@
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/security/medic/full(src)
 	new /obj/item/storage/bag/garment/secmed(src)
-	new /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/firefly(src)
