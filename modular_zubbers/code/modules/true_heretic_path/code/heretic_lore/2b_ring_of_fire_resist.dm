@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/fire_resist_ring
 	name = "Gold Ring of Fire Resistance"
-	desc = "Allows you to transmute a fire suit and a sheet of gold into a ring of fire resistance, which as the name implies, gives singificant fire resistance (but not immunity!) when worn. Applies to every limb when worn."
+	desc = "Allows you to transmute a fire suit and a sheet of gold into a ring of fire resistance, which as the name implies, gives singificant fire resistance (but not immunity!) when worn. This protects every limb."
 	gain_text = "When you have more, protect yourself so that others cannot have more."
 	next_knowledge = list(
 

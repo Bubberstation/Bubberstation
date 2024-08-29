@@ -1,9 +1,9 @@
 /datum/heretic_knowledge/belt_purchase
 	name = "Wizardblood"
-	desc = "Allows you to transmute any belt, an iv drip, an arm, and a leg into a powerful and expensive belt that automatically applies the effects of stored flasks to you while worn."
+	desc = "Allows you to transmute an iv drip, an arm, and a leg and any belt containing storage into a powerful and expensive belt that automatically applies the effects of stored flasks to you while worn."
 	gain_text = "The result of having more is that you can have more."
 	next_knowledge = list(
-		/datum/heretic_knowledge/limited_amount/heretic_merchant_part_2
+		/datum/heretic_knowledge/limited_amount/wizardblood_trading
 	)
 	required_atoms = list(
 		/obj/item/storage/belt = 1,
