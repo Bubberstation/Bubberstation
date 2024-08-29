@@ -41,14 +41,13 @@
 		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(remove_block))
 		is_worn = TRUE
 	else if(is_worn)
-		UnregisterSignal(user, COMSIG_HUMAN_EQUIPPING_ITEM)
+		UnregisterSignal(user, list(COMSIG_HUMAN_EQUIPPING_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
 		is_worn = FALSE
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/remove_block(datum/source, obj/item, force, newloc, no_move, invdrop, silent)
 	SIGNAL_HANDLER
 	if(is_worn)
-		UnregisterSignal(source, COMSIG_HUMAN_EQUIPPING_ITEM)
-		UnregisterSignal(source, COMSIG_MOB_UNEQUIPPED_ITEM)
+		UnregisterSignal(source, list(COMSIG_HUMAN_EQUIPPING_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
 		is_worn = FALSE
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/block_equips(datum/source, mob/target, slot)
