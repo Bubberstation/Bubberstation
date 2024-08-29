@@ -35,3 +35,10 @@
 
 /obj/item/bodypart/chest/pod/xiarn
 	brute_modifier = 0.75
+
+
+/obj/item/mod/control/pre_equipped/interdyne/xiarn
+	theme = /datum/mod_theme/interdyne/xiarn
+
+/datum/mod_theme/interdyne/xiarn
+	slowdown_active = 0
