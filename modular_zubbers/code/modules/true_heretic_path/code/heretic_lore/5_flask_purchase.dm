@@ -5,9 +5,8 @@
 	gain_text = "If you cannot have more, find a way to make more for less."
 	next_knowledge = list(
 		/datum/heretic_knowledge/belt_purchase,
-		/datum/heretic_knowledge/boots_purchase,
 		/datum/heretic_knowledge/fisher,
-		/datum/heretic_knowledge/chaotic_flask_purchase
+		/datum/heretic_knowledge/chaotic_flask_purchase,
 	)
 	required_atoms = list(
 		/obj/item/reagent_containers/cup/beaker/meta = 1,

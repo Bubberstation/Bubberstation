@@ -6,8 +6,8 @@
 
 	)
 	required_atoms = list(
-		/obj/item/heretic_currency/divination = 1
-		/obj/item/storage/belt/skullhunter = 1
+		/obj/item/heretic_currency/divination = 1,
+		/obj/item/storage/belt/skullhunter = 1,
 	)
 	result_atoms = list(/obj/effect/heretic_influence)
 

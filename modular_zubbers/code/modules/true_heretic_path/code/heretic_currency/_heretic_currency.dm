@@ -17,20 +17,20 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 			continue
 		.[new affix] = initial(affix.weight)
 
-	. -= heretical_affixes_blacklist
+	. -= GLOB.heretical_affixes_blacklist
 
 	return
 
 /obj/item/heretic_currency
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_currency.dmi'
 
-	weight_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_TINY
 
 	var/heretic_instructions //This is displayed to heretics on examine only.
 
 /obj/item/heretic_currency/examine(mob/user)
 	. = ..()
-	if(heretic_instructions && ISHERETIC(user))
+	if(heretic_instructions && IS_HERETIC(user))
 		. += span_velvet(heretic_instructions)
 
 /obj/item/heretic_currency/proc/get_prefix(obj/item/target)

@@ -3,7 +3,9 @@
 	desc = "Allows you to transmute a fish into ancient and powerful fishing knowledge."
 	gain_text = "Wait, fishing? What is the purpose of this? There is literally no benefit to knowing this. I'm becoming insane."
 	next_knowledge = list(
-		/datum/heretic_knowledge/limited_amount/insanity_blade
+		/datum/heretic_knowledge/limited_amount/insanity_blade,
+		/datum/heretic_knowledge/limited_amount/portal_protection,
+		/datum/heretic_knowledge/limited_amount/hardcore
 	)
 	required_atoms = list(
 		/obj/item/fish

@@ -4,7 +4,7 @@
 	gain_text = "When alone in Exile, you begin to search hard for people. Perhaps a little too hard."
 
 	cost = 2
-	depth = 10
+	depth = 9
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'

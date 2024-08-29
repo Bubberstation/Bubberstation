@@ -41,4 +41,4 @@ Goes as follows:
 		var/knowledge_route = initial(knowledge_type.route)
 		if(!knowledge_route == PATH_SIDE || knowledge_route == src.route)
 			continue
-		banned_knowledge += final_knowledge_type
+		banned_knowledge += knowledge_route

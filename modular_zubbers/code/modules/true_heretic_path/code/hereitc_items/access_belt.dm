@@ -14,14 +14,13 @@
 
 	. = ..()
 
-	if(ISHERETIC(user))
+	if(IS_HERETIC(user))
 		. += span_velvet("This belt has stolen the access from [length(stolen_id_names)] different crewmembers.")
 
 /obj/item/storage/belt/skullhunter/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_BELT && ishuman(user) && ISHERETIC(user))
-		owner = user
-	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_blade_attack))
+	if(slot == ITEM_SLOT_BELT && ishuman(user) && IS_HERETIC(user))
+		RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_blade_attack))
 
 /obj/item/storage/belt/skullhunter/dropped(mob/user, silent)
 	. = ..()

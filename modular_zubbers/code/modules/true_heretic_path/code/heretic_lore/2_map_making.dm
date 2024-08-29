@@ -4,7 +4,6 @@
 	gain_text = "The creation of maps is an important step in following the Path of Exile."
 	next_knowledge = list(
 		/datum/heretic_knowledge/wand_purchase,
-		/datum/heretic_knowledge/limited_amount/portal_protection,
 		/datum/heretic_knowledge/fire_resist_ring,
 		/datum/heretic_knowledge/blade_upgrade/exile
 	)
