@@ -111,15 +111,17 @@
 //When you activate it in active hand
 /obj/item/clothing/sextoy/chastity/cage/attack_self(mob/user)
 	//TODO: YES/NO for rename
-		var/cagename
-		cagename = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
-		name = "[initial(name)] - [cagename]"
+	var/cagename
+	cagename = stripped_input(user, "Would you like to change the name on the device?", "Renaming device", "Chastity device", MAX_NAME_LEN)
+	name = "[initial(name)] - [cagename]"
 	//TODO: YES/NO for changing frequency. 
-		if(electronic)
-			var/newfreq
-			var/newcode
-			newfreq = tgui_input_number(user, "Input the new frequency", "0", MAX_FREE_FREQ, MIN_FREE_FREQ)
-			newcode = tgui_input_number(user, "Input the new code", "0", 1, 99)
+	if(electronic)
+		var/newfreq
+		var/newcode
+		newfreq = tgui_input_number(user, "Input the new frequency", "0", MAX_FREE_FREQ, MIN_FREE_FREQ)
+		newcode = tgui_input_number(user, "Input the new code", "0", 1, 99)
+	else
+		return
 	//make the part which replaces frequency with newfreq etc
 
 /obj/item/clothing/sextoy/chastity/examine(mob/user)
