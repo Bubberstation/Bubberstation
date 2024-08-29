@@ -61,6 +61,7 @@
 
 /datum/ai_controller/basic_controller/fleshmind/mechiver
 	blackboard = list(
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_STOP_FLEEING = TRUE,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
 	)
