@@ -8,7 +8,6 @@
 	Now that I have returned to full power, none can stop me. I am free to raze and pillage this place as I see fit, \
 	a true reward for someone returning from the Path of Exile."
 	route = PATH_EXILE
-	gain_text = ""
 
 
 /datum/heretic_knowledge/ultimate/exile_final/is_valid_sacrifice(mob/living/sacrifice)
