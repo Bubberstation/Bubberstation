@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 	for(var/datum/fantasy_affix/affix as anything in subtypesof(/datum/fantasy_affix))
 		if(initial(affix.placement) != affix_type)
 			continue
-		if(heretical_affixes_blacklist[affix])
+		if(GLOB.heretical_affixes_blacklist[affix])
 			continue
 		.[new affix] = initial(affix.weight)
 

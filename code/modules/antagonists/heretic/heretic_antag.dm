@@ -71,6 +71,7 @@
 		PATH_COSMIC = "node_cosmos",
 		PATH_LOCK = "node_lock",
 		PATH_MOON = "node_moon",
+		PATH_EXILE = "node_exile", //BUBBERSTATION ADDITION
 	)
 
 	var/static/list/path_to_rune_color = list(
@@ -83,6 +84,7 @@
 		PATH_COSMIC = COLOR_PURPLE,
 		PATH_LOCK = COLOR_YELLOW,
 		PATH_MOON = COLOR_BLUE_LIGHT,
+		PATH_EXILE = COLOR_GOLD, //BUBBERSTATION ADDITION
 	)
 
 	/// List that keeps track of which items have been gifted to the heretic after a cultist was sacrificed. Used to alter drop chances to reduce dupes.

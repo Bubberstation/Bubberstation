@@ -6,9 +6,6 @@
 		/datum/heretic_knowledge/limited_amount/insanity_blade,
 		/datum/heretic_knowledge/limited_amount/portal_protection,
 		/datum/heretic_knowledge/limited_amount/hardcore,
-		/datum/heretic_knowledge/reroll_targets,
-		/datum/heretic_knowledge/unfathomable_curio,
-		/datum/heretic_knowledge/painting,
 	)
 	required_atoms = list(
 		/obj/item/fish

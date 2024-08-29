@@ -6,8 +6,8 @@
 	gain_text = "Multitasking is essential to having more."
 
 	next_knowledge = list(
-		/datum/heretic_knowledge/flask_purchase,
-		/datum/heretic_knowledge/access_belt
+		/datum/heretic_knowledge/access_belt,
+		/datum/heretic_knowledge/reroll_targets/exile
 	)
 
 	cost = 1
