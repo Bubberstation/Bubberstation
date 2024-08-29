@@ -1,5 +1,5 @@
 // Same as a armor deployed redsuit
-/datum/armor/syndimaid
+/datum/armor/clothing_under/syndimaid
 	acid = 90
 	bio = 100
 	bomb = 40
@@ -13,7 +13,7 @@
 /obj/item/clothing/under/syndicate/skyrat/maid/armored
 	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit.\
 	 The armor on this one is too bulky blocks the user from wearing any chest armor."
-	armor_type = /datum/armor/syndimaid
+	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = CHEST|GROIN|LEGS
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
 
@@ -56,12 +56,12 @@
 		return COMPONENT_BLOCK_EQUIP
 
 /obj/item/clothing/head/costume/maidheadband/syndicate/armored
-	armor_type = /datum/armor/syndimaid
+	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = HEAD
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
 
 /obj/item/clothing/gloves/combat/maid/armored
-	armor_type = /datum/armor/syndimaid
+	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = HANDS | ARMS
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
 
