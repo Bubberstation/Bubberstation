@@ -20,7 +20,39 @@
 	make_core()
 
 /datum/round_event/fleshmind/proc/make_core()
+	var/obj/structure/mold/resin/test/test_resin = new()
+	var/list/turfs = list() // List of all the final turfs
+	var/list/areas = list() // List of all the final areas
+	var/list/possible_spawn_areas = typecacheof(typesof(/area/station/maintenance, /area/station/security/prison, /area/station/construction)) // Get us our areas
 
+	for(var/area/iterating_area in GLOB.areas)
+		if(!is_station_level(iterating_area.z))
+			continue
+		if(!is_type_in_typecache(iterating_area, possible_spawn_areas))
+			continue
+		areas += iterating_area
+	if(!LAZYLEN(areas))
+		message_admins("Fleshmind event controller failed to find a proper area.")
+		return
+
+	var/area_pick = pick(areas)
+	for(var/turf/open/floor in area_pick)
+		if(!floor.Enter(test_resin))
+			continue
+		if(locate(/turf/closed) in range(2, floor))
+			continue
+		turfs += floor
+
+	qdel(test_resin, TRUE)
+
+	if(!turfs)
+		message_admins("Fleshmind failed to find an appropriate turf to spawn in [area_pick]!")
+		return
+	var/turf/picked_turf = pick(turfs)
+
+	var/obj/structure/fleshmind/structure/core/new_core = new(picked_turf)
+	announce_to_ghosts(new_core)
+/*
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas
 
 	var/obj/structure/mold/resin/test/test_resin = new()
@@ -51,5 +83,5 @@
 
 	var/obj/structure/fleshmind/structure/core/new_core = new(picked_turf)
 	announce_to_ghosts(new_core)
-
+*/
 

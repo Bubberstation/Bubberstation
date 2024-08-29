@@ -381,18 +381,21 @@
 	build_a_wall()
 	var/list/turf = list()
 	for(var/turf/spawn_turf in RANGE_TURFS(2, src))
-		if(locate(/obj/structure/fleshmind/wireweed) && !locate(/obj/structure/fleshmind/structure) in spawn_turf)
-			turf += spawn_turf
+		if(!locate(/obj/structure/fleshmind/wireweed) in spawn_turf)
 			continue
+		if(locate(/obj/structure/fleshmind/structure) in spawn_turf)
+			continue
+		turf += spawn_turf
+
+	if(LAZYLEN(turf)) // Failsafe if there's no turf to spawn it on.
 		var/picked_turf = pick(turf)
-		if(picked_turf) // Failsafe if there's no turf to spawn it on.
-			our_controller?.spawn_mob(pick(picked_turf), /mob/living/basic/fleshmind/mechiver)
-		else
-			our_controller?.spawn_mob(src.loc, /mob/living/basic/fleshmind/mechiver)
-		return
+		our_controller?.spawn_mob(pick(picked_turf), /mob/living/basic/fleshmind/mechiver)
+	else
+		our_controller?.spawn_mob(src.loc, /mob/living/basic/fleshmind/mechiver)
+	return
 
 /obj/structure/fleshmind/structure/core/proc/whip_those_fuckers()
-	for(var/mob/living/basic/fleshmind/iterating_mob in view(whip_range, src))
+	for(var/mob/living/iterating_mob in view(whip_range, src))
 		if(iterating_mob == src)
 			continue
 		if(faction_check(faction_types, iterating_mob.faction))

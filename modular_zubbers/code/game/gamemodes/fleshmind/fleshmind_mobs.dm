@@ -978,7 +978,7 @@
 
 /mob/living/basic/fleshmind/phaser/Initialize(mapload)
 	. = ..()
-	var/static/list/loot = list(/obj/effect/gibspawner/human)
+	var/list/loot = string_list(list(/obj/effect/gibspawner/human))
 	AddElement(/datum/element/death_drops, loot)
 	icon_state = "[base_icon_state]-[rand(1, 4)]"
 	filters += filter(type = "blur", size = 0)
@@ -1444,7 +1444,7 @@
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)
-		mob_to_convert.heal_and_revive(75, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
+		mob_to_convert.heal_and_revive(0, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
 		return
 
 	if(iscyborg(mob_to_convert))
