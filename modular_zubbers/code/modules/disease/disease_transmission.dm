@@ -41,12 +41,15 @@
 
 /datum/disease/flu
 	spreading_modifier = 3
+	bypasses_disease_recovery = TRUE
 
 /datum/disease/fluspanish
 	spreading_modifier = 3
+	bypasses_disease_recovery = TRUE
 
 /datum/disease/magnitis
 	spreading_modifier = 3
+	bypasses_disease_recovery = TRUE
 
 /datum/disease/pierrot_throat
 	spreading_modifier = 2
@@ -62,7 +65,7 @@
 
 /datum/disease/beesease
 	spreading_modifier = 3
-	bypasses_immunity = TRUE
+	bypasses_disease_recovery = TRUE
 
 /datum/disease/anxiety
-	bypasses_immunity = TRUE
+	bypasses_disease_recovery = TRUE

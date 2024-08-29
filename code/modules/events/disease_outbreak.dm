@@ -337,7 +337,7 @@
 /datum/disease/advance/random/event
 	name = "Event Disease"
 	copy_type = /datum/disease/advance
-	bypasses_immunity = TRUE
+	bypasses_disease_recovery = TRUE
 
 /datum/round_event/disease_outbreak/advance/setup()
 	announce_when = ADV_ANNOUNCE_DELAY

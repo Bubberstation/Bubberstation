@@ -49,6 +49,7 @@
 	var/infectable_biotypes = MOB_ORGANIC //if the disease can spread on organics, synthetics, or undead
 	var/process_dead = FALSE //if this ticks while the host is dead
 	var/copy_type = null //if this is null, copies will use the type of the instance being copied
+	var/bypasses_disease_recovery = FALSE // Does it skip self recovery process, such as event diseases
 
 /datum/disease/Destroy()
 	. = ..()
@@ -130,7 +131,7 @@
 	if(SPT_PROB(stage_prob*slowdown, seconds_per_tick))
 		update_stage(min(stage + 1, max_stages))
 
-	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE)
+	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && bypasses_disease_recovery != TRUE)
 		switch(severity)
 			if(DISEASE_SEVERITY_POSITIVE) //good viruses don't go anywhere after hitting max stage - you can try to get rid of them by sleeping earlier
 				cycles_to_beat = max(DISEASE_RECOVERY_SCALING, DISEASE_CYCLES_POSITIVE) //because of the way we later check for recovery_prob, we need to floor this at least equal to the scaling to avoid infinitely getting less likely to cure
@@ -319,7 +320,7 @@
 	//note that stage is not copied over - the copy starts over at stage 1
 	var/static/list/copy_vars = list("name", "visibility_flags", "disease_flags", "spread_flags", "form", "desc", "agent", "spread_text",
 									"cure_text", "max_stages", "stage_prob", "incubation_time", "viable_mobtypes", "cures", "infectivity", "cure_chance",
-									"required_organ", "bypasses_immunity", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
+									"required_organ", "bypasses_immunity", "bypasses_disease_recovery", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
 									"infectable_biotypes", "process_dead")
 
 	var/datum/disease/D = copy_type ? new copy_type() : new type()
