@@ -7,7 +7,8 @@
 		/datum/heretic_knowledge/flask_purchase,
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/painting,
-		/datum/heretic_knowledge/access_belt
+		/datum/heretic_knowledge/access_belt,
+		/datum/heretic_knowledge/boots_purchase
 	)
 
 	cost = 1

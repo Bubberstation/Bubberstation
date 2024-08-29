@@ -4,25 +4,7 @@ The Path of Exile
 
 Goes as follows:
 
-Act One
-Grasp of Looting
-----Optional: Satchel of Looting
-Ring of Determination
-----Optional: Prophetic Wand of Heretical Fireball
 
-Mark of Mansus
-Ritual of Knowledge
-Auto-Alchemical Creation
-----Optional: Wizardblood
-----Optional: Boots of Speed
-Hidden Fishing
-
-Elder's Insanity
-Map Making
-----Optional: Advanced Map Making
-----Optional: Exile's Vision
-
-Resistance Capped
 
 */
 

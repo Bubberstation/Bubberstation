@@ -7,7 +7,9 @@
 
 	next_knowledge = list(
 		/datum/heretic_knowledge/bag_purchase,
-		/datum/heretic_knowledge/determination,
+		/datum/heretic_knowledge/map_making,
+		/datum/heretic_knowledge/resistance_helmet,
+		/datum/heretic_knowledge/limited_amount/real_mirror_trading
 	)
 
 	cost = 1
@@ -18,10 +20,12 @@
 	research_tree_icon_state = "looting"
 
 /datum/heretic_knowledge/loot_grasp/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY, PROC_REF(on_secondary_mansus_grasp))
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/heretic_knowledge/loot_grasp/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 

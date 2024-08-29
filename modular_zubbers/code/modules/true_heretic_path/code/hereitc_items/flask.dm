@@ -58,9 +58,13 @@
 	icon_state = "speed"
 
 //Phasing
-/obj/item/reagent_containers/cup/endless_flask/saturnx
-	reagent_to_create = /datum/reagent/drug/saturnx/stable
+/obj/item/reagent_containers/cup/endless_flask/random
+	reagent_to_create = null
 	icon_state = "phasing"
+
+/obj/item/reagent_containers/cup/endless_flask/random/New(...)
+	reagent_to_create = get_random_reagent_id()
+	. = ..()
 
 //Evasion
 /obj/item/reagent_containers/cup/endless_flask/blastoff

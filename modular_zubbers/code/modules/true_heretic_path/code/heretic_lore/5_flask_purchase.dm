@@ -7,6 +7,7 @@
 		/datum/heretic_knowledge/belt_purchase,
 		/datum/heretic_knowledge/boots_purchase,
 		/datum/heretic_knowledge/fisher,
+		/datum/heretic_knowledge/chaotic_flask_purchase
 	)
 	required_atoms = list(
 		/obj/item/reagent_containers/cup/beaker/meta = 1,
@@ -23,7 +24,7 @@
 
 
 /datum/heretic_knowledge/flask_purchase/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
-	var/obj/item/item_to_create = pick(subtypesof(/obj/item/reagent_containers/cup/endless_flask))
+	var/obj/item/item_to_create = pick(subtypesof(/obj/item/reagent_containers/cup/endless_flask) - /obj/item/reagent_containers/cup/endless_flask/random)
 	item_to_create = new item_to_create(loc)
 	ADD_TRAIT(item_to_create, TRAIT_CONTRABAND, INNATE_TRAIT)
 	return TRUE

@@ -14,7 +14,7 @@
 	result_atoms = list(/obj/item/clothing/shoes/workboots/speed)
 
 	cost = 1
-	depth = 6
+	depth = 4
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_inventory.dmi'

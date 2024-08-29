@@ -38,7 +38,7 @@
 	if(!source_id_card)
 		return
 
-	if(!ishuman(target) || !(target.stat & DEAD)
+	if(!ishuman(target) || !(target.stat & DEAD))
 		return
 
 	var/mob/living/carbon/human/target_as_human = target

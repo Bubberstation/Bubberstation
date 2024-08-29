@@ -3,7 +3,9 @@
 	desc = "Allows you to transmute a map and a bluespace crystal into a blank map. Using the map in a location will instantly save that location to the map, without the need of performing a ritual in that area."
 	gain_text = "The manipulation of maps is a vital step in following the Path of Exile."
 	next_knowledge = list(
-
+		/datum/heretic_knowledge/exile_sight,
+		/datum/heretic_knowledge/ultimate/exile_final,
+		/datum/heretic_knowledge/spell/apetra_vulnera
 	)
 	required_atoms = list(
 		/obj/item/stack/ore/bluespace_crystal = 1,

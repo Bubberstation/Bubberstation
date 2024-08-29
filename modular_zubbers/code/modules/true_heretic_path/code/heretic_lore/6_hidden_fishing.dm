@@ -8,7 +8,7 @@
 	required_atoms = list(
 		/obj/item/fish
 	)
-	result_atoms = list(/obj/item/reagent_containers/cup/endless_flask)
+	result_atoms = list()
 
 	cost = 0
 	depth = 8

@@ -3,10 +3,10 @@
 	desc = "Allows you to transmute a sheet of cardboard, a sheet of paper, and a pen into a special map that, when used in hand, teleports you and uip to 5 nearby living beings to approximately the same area where the ritual took place."
 	gain_text = "The creation of maps is an important step in following the Path of Exile."
 	next_knowledge = list(
-		/datum/heretic_knowledge/advanced_map_making,
-		/datum/heretic_knowledge/exile_sight,
-		/datum/heretic_knowledge/ultimate/exile_final,
-		/datum/heretic_knowledge/spell/apetra_vulnera
+		/datum/heretic_knowledge/wand_purchase,
+		/datum/heretic_knowledge/limited_amount/portal_protection,
+		/datum/heretic_knowledge/fire_resist_ring,
+		/datum/heretic_knowledge/blade_upgrade/exile
 	)
 	required_atoms = list(
 		/obj/item/stack/sheet/cardboard = 1,
@@ -15,8 +15,8 @@
 	)
 	result_atoms = list(/obj/item/heretic_map)
 
-	cost = 1
-	depth = 10
+	cost = 2
+	depth = 3
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_maps.dmi'
