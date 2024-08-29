@@ -62,3 +62,4 @@
 
 /datum/disease/beesease
 	spreading_modifier = 3
+	bypasses_immunity = TRUE

@@ -46,7 +46,7 @@
 
 	// BUBBER EDIT CHANGE START - Disease Transmission
 	// if(prob(15/disease.spreading_modifier))
-	var/infect_chance = clamp(42 + (disease.spreading_modifier * 7), 49, 77)
+	var/infect_chance = clamp(14 + (disease.spreading_modifier * 7), 21, 49)
 	if(!prob(infect_chance))
 		return
 	// BUBBER EDIT CHANGE END - Disease Transmission
@@ -149,7 +149,7 @@
 
 	if(!can_be_spread_airborne_disease())
 		return FALSE
-	var/infect_chance = clamp(21 + (disease.spreading_modifier * 7), 28, 56)
+	var/infect_chance = clamp(7 + (disease.spreading_modifier * 7), 14, 42)
 	if(!prob(infect_chance))
 		return FALSE
 	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
