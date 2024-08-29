@@ -17,6 +17,6 @@
 	depth = 10
 	route = PATH_ASH
 
-	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
-	research_tree_icon_state = "maps"
+	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_maps.dmi'
+	research_tree_icon_state = "map"
 

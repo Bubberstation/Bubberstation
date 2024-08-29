@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/bag_purchase
 	name = "Rucksack of Looting"
 	desc = "Allows you to transmute a satchel and a sheet of cloth into a rucksack that can carry all your funny heretical orbs."
-	gain_text = "When you can never have more, find something that will allow you to have more."
+	gain_text = "When you can't have more, find something that will allow you to have more."
 	next_knowledge = list(
 
 	)

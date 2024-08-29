@@ -1,11 +1,13 @@
 /datum/heretic_knowledge/map_making
 	name = "Map Making"
-	desc = "Allows you to transmute a sheet of cardboard, a sheet of paper, and a pen into a special map that, when used in hand, teleports you and uip to 5 nearby living beings to approximately the same area where the ritual took place."
+	desc = "Allows you to transmute a sheet of cardboard, a sheet of paper, and a pen into a special map that, when used in hand, \
+	teleports you and up to 5 nearby living beings to approximately the same area where the ritual took place."
 	gain_text = "The creation of maps is an important step in following the Path of Exile."
 	next_knowledge = list(
 		/datum/heretic_knowledge/wand_purchase,
 		/datum/heretic_knowledge/fire_resist_ring,
-		/datum/heretic_knowledge/blade_upgrade/exile
+		/datum/heretic_knowledge/blade_upgrade/exile,
+		/datum/heretic_knowledge/boots_purchase
 	)
 	required_atoms = list(
 		/obj/item/stack/sheet/cardboard = 1,
@@ -19,7 +21,7 @@
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_maps.dmi'
-	research_tree_icon_state = "map"
+	research_tree_icon_state = "map_filled"
 
 /datum/heretic_knowledge/map_making/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 

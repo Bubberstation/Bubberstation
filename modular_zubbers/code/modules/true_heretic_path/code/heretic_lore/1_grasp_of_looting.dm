@@ -1,9 +1,12 @@
 /datum/heretic_knowledge/loot_grasp
 
 	name = "Grasp of Looting"
-	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on successful kill.\
-	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, spilling out the contents and having a chance to grant special bonus loot."
-	gain_text = "More is never enough. Always seek more"
+	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, \
+	and has a chance to grant special bonus loot on successful kill. \
+	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, \
+	spilling out the contents and having a chance to grant special bonus loot."
+
+	gain_text = "More is never enough. Always seek more."
 
 	next_knowledge = list(
 		/datum/heretic_knowledge/bag_purchase,

@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/limited_amount/real_mirror_trading
 	name = "Real Mirror Trading"
-	desc = "Allows you to transmute the rare and elusive orb of mirroring into 5000 credits. This can be performed up to 5 times."
-	gain_text = "When you have more, sell the more you don't need for even more."
+	desc = "Allows you to transmute the rare and elusive orb of mirroring into 5000 credits worth of space cash. This ritual can be performed up to 5 times."
+	gain_text = "Sometimes, you need to spend more to earn more."
 	next_knowledge = list(
 
 	)

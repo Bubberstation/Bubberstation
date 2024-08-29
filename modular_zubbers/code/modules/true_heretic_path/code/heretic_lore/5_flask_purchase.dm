@@ -1,8 +1,9 @@
 /datum/heretic_knowledge/flask_purchase
 	name = "Auto-Alchemical Creation"
-	desc = "Allows you to transmute a metamaterial beaker and a heart into a magical flask that refills with with one of the selected reagents: \
+	desc = "Allows you to transmute a metamaterial beaker and a heart into a magical flask \
+	that refills with with one of the selected reagents: \
 	Godblood, Stimulants, Saturn-X, Blastoff, or Determination."
-	gain_text = "If you cannot have more, find a way to make more for less."
+	gain_text = "Creating more from nothing is every Exile's dream."
 	next_knowledge = list(
 		/datum/heretic_knowledge/belt_purchase,
 		/datum/heretic_knowledge/fisher,

@@ -16,7 +16,7 @@
 	route = PATH_EXILE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
-	research_tree_icon_state = "portal"
+	research_tree_icon_state = "hardcore"
 
 	limit = 1
 

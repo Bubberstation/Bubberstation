@@ -1,7 +1,9 @@
 /datum/heretic_knowledge/fire_resist_ring
 	name = "Gold Ring of Fire Resistance"
-	desc = "Allows you to transmute a fire suit and a sheet of gold into a ring of fire resistance, which as the name implies, gives singificant fire resistance (but not immunity!) when worn. This protects every limb."
-	gain_text = "When you have more, protect yourself so that others cannot have more."
+	desc = "Allows you to transmute a fire suit and a sheet of gold into a ring of fire resistance, \
+	which as the name implies, gives significant fire resistance (but not immunity!) when worn. \
+	This ring protects every limb."
+	gain_text = "Only you can prevent eldritch fires."
 	next_knowledge = list(
 
 	)

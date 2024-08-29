@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/limited_amount/wizardblood_trading
 	name = "Wizardblood Trading"
 	desc = "Allows you to transmute a wizardblood and an orb of diviniation into a researchable heretical influence. This can be performed up to 3 times."
-	gain_text = "When you have more, sell the more you don't need for even more."
+	gain_text = "Trading is essential to the Path of Exile. Without it, it would be nothing."
 	next_knowledge = list(
 
 	)
