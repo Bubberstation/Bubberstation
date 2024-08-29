@@ -11,9 +11,19 @@
 	research_tree_icon_state = "eyes"
 
 
-/datum/heretic_knowledge/exile_sight/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+/datum/heretic_knowledge/exile_sight/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	user.add_traits(
+		list(
+			TRAIT_XRAY_VISION,
+			TRAIT_XRAY_HEARING
+		),
+		EXILE_VISION_TRAIT
+	)
+
+/datum/heretic_knowledge/exile_sight/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
+	user.remove_traits(
 		list(
 			TRAIT_XRAY_VISION,
 			TRAIT_XRAY_HEARING

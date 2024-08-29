@@ -1,8 +1,9 @@
 
 
 GLOBAL_LIST_INIT(heretical_affixes_blacklist,list(
-	/datum/fantasy_affix/summoning,
-	/datum/fantasy_affix/curse_of_polymorph
+	/datum/fantasy_affix/summoning = TRUE,
+	/datum/fantasy_affix/curse_of_polymorph = TRUE,
+	/datum/fantasy_affix/venomous = TRUE //Too strong.
 ))
 
 GLOBAL_LIST_INIT(heretical_suffixes,generate_heretical_affixes(AFFIX_SUFFIX))
@@ -15,9 +16,9 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 	for(var/datum/fantasy_affix/affix as anything in subtypesof(/datum/fantasy_affix))
 		if(initial(affix.placement) != affix_type)
 			continue
+		if(heretical_affixes_blacklist[affix])
+			continue
 		.[new affix] = initial(affix.weight)
-
-	. -= GLOB.heretical_affixes_blacklist
 
 	return
 

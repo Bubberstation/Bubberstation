@@ -3,6 +3,7 @@
 	name = "Six Portal Body Problem"
 	desc = "Allows you to transmute a defibrillator, a map, six hearts, amd six bluespace crystals into the ability to revive and heal all your external damage on death. \
 	This only works up to 6 times, and each death gives you a moderate amount of brain damage. \
+	Completing the ritual will also reduce your maximum health by 45 as a consequence. \
 	The place in which you revive will be the place where you complete the transmutation ritual. Researching this prevents \"Hardcore\" from being researched.\
 	Once the ritual is performed, this cannot be reversed!"
 
@@ -37,9 +38,12 @@
 	user.maxHealth -= 45
 	user.health = min(user.health, user.maxHealth)
 
-	research_location = loc
+	research_location = loc.type
 
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_heretic_death))
+
+	to_chat(user,span_velvet("Your body is now imbued with the power of revival. You have [portals_left] [portals_left == 1 ? "revive" :"revives"] left."))
+
 
 
 /datum/heretic_knowledge/limited_amount/portal_protection/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
@@ -62,7 +66,7 @@
 		return
 
 	user.revive(
-		HEAL_BRUTE | HEAL_BURN | HEAL_TOX | HEAL_OXY | HEAL_BLOOD | HEAL_WOUNDS | HEAL_LIMBS,
+		HEAL_ALL & ~(HEAL_ORGANS|HEAL_REFRESH_ORGANS),
 		excess_healing = 100,
 		force_grab_ghost  = TRUE
 	)

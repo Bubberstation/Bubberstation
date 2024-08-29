@@ -57,13 +57,13 @@
 /obj/item/heretic_map/proc/teleport(mob/living/user)
 
 	if(!assocated_area)
-		to_chat(user,span_warning("Nothing happens..."))
+		to_chat(user,span_warning("Nothing happens... something really went wrong."))
 		return FALSE
 
-	var/turf/desired_turf = get_safe_random_station_turf(list(assocated_area))
+	var/turf/desired_turf = get_safe_random_station_turf(list(assocated_area.type))
 
 	if(!desired_turf)
-		to_chat(user,span_warning("Nothing happens..."))
+		to_chat(user,span_warning("Nothing happens... is the area safe?"))
 		return FALSE
 
 	var/turf/old_turf = get_turf(user)

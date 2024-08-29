@@ -2,7 +2,7 @@
 	name = "water from the Nile"
 	desc = "Excuse me a minute. Water from the Nile. Nile water. Heh."
 
-	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks_fillings.dmi'
+	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks.dmi'
 	icon_state = "health"
 
 	fill_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks_fillings.dmi'
@@ -21,12 +21,10 @@
 
 /// Handles properly detaching signal hooks.
 /obj/item/reagent_containers/cup/endless_flask/on_reagents_del(datum/reagents/reagents)
-	SIGNAL_HANDLER
 	UnregisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_CLEAR_REAGENTS, COMSIG_REAGENTS_REACTED, COMSIG_QDELETING))
-	return NONE
+	. = ..()
 
 /obj/item/reagent_containers/cup/endless_flask/on_reagent_change()
-	SIGNAL_HANDLER
 	START_PROCESSING(SSobj,src)
 	. = ..()
 

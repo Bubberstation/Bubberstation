@@ -9,7 +9,6 @@
 	required_atoms = list(
 		/obj/item/clothing/shoes/workboots = 1,
 		/obj/item/toy/crayon/green = 1,
-		/obj/item/reagent_containers/cup/endless_flask/stimulants = 1,
 		/obj/item/paper = 1,
 	)
 

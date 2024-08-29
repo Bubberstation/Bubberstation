@@ -4,7 +4,7 @@
 	teleports you and up to 5 nearby living beings to approximately the same area where the ritual took place."
 	gain_text = "The creation of maps is an important step in following the Path of Exile."
 	next_knowledge = list(
-		/datum/heretic_knowledge/wand_purchase,
+		// /datum/heretic_knowledge/wand_purchase, Disabled, for now.
 		/datum/heretic_knowledge/fire_resist_ring,
 		/datum/heretic_knowledge/blade_upgrade/exile,
 		/datum/heretic_knowledge/boots_purchase
@@ -16,7 +16,7 @@
 	)
 	result_atoms = list(/obj/item/heretic_map)
 
-	cost = 2
+	cost = 1
 	depth = 3
 	route = PATH_EXILE
 

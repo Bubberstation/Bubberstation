@@ -2,7 +2,7 @@
 
 	name = "Grasp of Looting"
 	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, \
-	and has a chance to grant special bonus loot on successful kill. \
+	and has a chance to grant special bonus loot on successful kill, based on the power of the mob. \
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, \
 	spilling out the contents and having a chance to grant special bonus loot."
 
@@ -37,6 +37,7 @@
 	SIGNAL_HANDLER
 
 	if(target.stat != DEAD && target.health <= target.maxHealth * 0.1 && target.death(FALSE)) //Culling strike.
+		target.balloon_alert(source, "culling strike!")
 		log_combat(source, target, "killed via culling strike")
 		target.investigate_log("has been killed by culling strike.", INVESTIGATE_DEATHS)
 		var/turf/target_turf = get_turf(target)
@@ -77,7 +78,6 @@
 					loot_multiplier_max
 				)
 
-		target.balloon_alert(source, "culling strike!")
 		return
 
 	target.balloon_alert(source, "culling strike had no effect!")
