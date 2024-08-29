@@ -11,6 +11,7 @@
 	assocated_area = desired_area
 	name = "[assocated_area] map"
 	desc = "A strange slab of stone, with a dark concave inner circle. Looking in it, you can sort of make out an image of [assocated_area]..."
+	icon_state = "map_filled"
 	return TRUE
 
 /obj/item/heretic_map/attack_self(mob/user)

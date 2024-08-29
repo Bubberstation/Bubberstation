@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/loot_grasp
 
 	name = "Grasp of Looting"
-	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on kill.\
+	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, and has a chance to grant special bonus loot on successful kill.\
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, spilling out the contents and having a chance to grant special bonus loot."
 	gain_text = "More is never enough. Always seek more"
 
@@ -38,15 +38,21 @@
 			var/loot_multiplier_max = 3
 
 			if(!target.mind)
-				loot_multiplier_min = 1
-				loot_multiplier_max = 1
-				if(prob(80)) //Culling strike optimization.
-					return
+				if(FACTION_BOSS in target.faction)
+					loot_multiplier_min = 2
+					loot_multiplier_max = 3
+				else if(FACTION_HOSTILE in target.faction)
+					loot_multiplier_min = 1
+					loot_multiplier_max = 1
+					if(!prob(80)) //Culling strike optimization.
+						return
+				else
+					loot_multiplier_min = 1
+					loot_multiplier_max = 1
+					if(prob(80)) //Culling strike optimization.
+						return
 
 			loot_multiplier_max *= (target.maxHealth/MAX_LIVING_HEALTH) //The bigger they are, the more they drop.
-
-			loot_multiplier_min = max(loot_multiplier_min,1) //Always at least 1.
-			loot_multiplier_max = max(loot_multiplier_max,1) //Always at least 1.
 
 			if(loot_multiplier_min > loot_multiplier_max)
 				loot_multiplier_min = loot_multiplier_max
@@ -57,7 +63,7 @@
 			loot_multiplier_min = CEILING(loot_multiplier_min,1)
 			loot_multiplier_max = CEILING(loot_multiplier_max,1)
 
-			if(loot_multiplier_max > 0)
+			if(loot_multiplier_max > 0 && loot_multiplier_min > 0)
 				create_loot(
 					target_turf,
 					loot_multiplier_min,

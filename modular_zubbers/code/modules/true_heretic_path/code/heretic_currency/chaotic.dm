@@ -2,6 +2,7 @@
 	name = "chaotic orb"
 	desc = "A solid golden figurine of three heads combined into one. Looking at it makes you feel uncertainty."
 	icon_state = "chaotic"
+	heretic_instructions = "Use on a weapon or clothing item with fantasy modifiers to completely reroll the fantasy modifiers on an item. Consumed on use."
 
 /obj/item/heretic_currency/chaotic/pre_attack(obj/item/target, mob/living/user)
 

@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/wand_purchase
 	name = "Prophetic Wand of Heretical Fireball"
-	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge wand that shoots lesser fireballs. Additionally, preforming this ritual will make you magically gifted, allowing you to use some wizard items without consequence."
+	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge self-recharging wand that shoots lesser fireballs. Additionally, preforming this ritual will make you magically gifted, allowing you to use some wizard items without consequence."
 	gain_text = "Magic is essential to the Exile in order to survive this world."
 	next_knowledge = list(
 
@@ -12,7 +12,7 @@
 	)
 	result_atoms = list(/obj/item/gun/magic/wand/fireball/heretic)
 
-	cost = 1
+	cost = 2
 	depth = 3
 	route = PATH_EXILE
 

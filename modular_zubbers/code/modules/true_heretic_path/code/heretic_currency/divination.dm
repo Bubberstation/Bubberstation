@@ -2,6 +2,7 @@
 	name = "divination orb"
 	desc = "A smooth and shiny golden figurine of some woman's head. It is perfect in every way, other than the hair loss."
 	icon_state = "divination"
+	heretic_instructions = "Use on a weapon or clothing item with fantasy modifiers to reroll the quality number of the item. Consumed on use."
 
 /obj/item/heretic_currency/divination/pre_attack(obj/item/target, mob/living/user)
 	. = ..()

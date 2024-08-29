@@ -2,6 +2,7 @@
 	name = "alchemical orb"
 	desc = "A mysterious rock-like orb that smells of sulfur. It has a weird organic root growing out the side."
 	icon_state = "alchemical"
+	heretic_instructions = "Use on a weapon or clothing item without fantasy modifiers to turn it into an item with fantasy modifiers. Consumed on use."
 
 /obj/item/heretic_currency/alchemical/pre_attack(obj/item/target, mob/living/user)
 

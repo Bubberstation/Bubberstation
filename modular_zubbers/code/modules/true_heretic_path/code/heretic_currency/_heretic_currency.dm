@@ -26,7 +26,12 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 
 	weight_class = WEIGHT_CLASS_TINY
 
-	var/heretic_instructions
+	var/heretic_instructions //This is displayed to heretics on examine only.
+
+/obj/item/heretic_currency/examine(mob/user)
+	. = ..()
+	if(heretic_instructions && ISHERETIC(user))
+		. += span_velvet(heretic_instructions)
 
 /obj/item/heretic_currency/proc/get_prefix(obj/item/target)
 	for(var/attempts = 8,attempts>0,attempts--)

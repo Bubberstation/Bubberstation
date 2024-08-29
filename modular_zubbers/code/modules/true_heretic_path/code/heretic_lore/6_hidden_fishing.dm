@@ -10,7 +10,7 @@
 	)
 	result_atoms = list(/obj/item/reagent_containers/cup/endless_flask)
 
-	cost = 1
+	cost = 0
 	depth = 8
 	route = PATH_EXILE
 

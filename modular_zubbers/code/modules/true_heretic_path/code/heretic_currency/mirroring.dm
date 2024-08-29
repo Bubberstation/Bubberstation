@@ -2,6 +2,7 @@
 	name = "mirroring orb"
 	desc = "A thick and heavy handleless hand-mirror that does not seem to show your own reflection, despite showing the world around it. Spooky."
 	icon_state = "mirroring"
+	heretic_instructions = "Use on a weapon or clothing item to duplicate the item. Consumed on use."
 
 /obj/item/heretic_currency/mirroring/pre_attack(obj/item/target, mob/living/user)
 

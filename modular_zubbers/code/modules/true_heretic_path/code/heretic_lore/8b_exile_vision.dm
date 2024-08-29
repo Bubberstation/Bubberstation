@@ -3,7 +3,7 @@
 	desc = "Allows you to see and hear through walls."
 	gain_text = "When alone in Exile, you begin to search hard for people. Perhaps a little too hard."
 
-	cost = 1
+	cost = 2
 	depth = 10
 	route = PATH_EXILE
 

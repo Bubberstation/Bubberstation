@@ -11,7 +11,7 @@
 	)
 	result_atoms = list(/obj/item/heretic_map)
 
-	cost = 1
+	cost = 2
 	depth = 10
 	route = PATH_ASH
 

@@ -2,7 +2,7 @@
 	name = "exalting orb"
 	desc = "An amorphous golden blob of a three-headed figurine. You feel that it is shifting... but it isn't."
 	icon_state = "exalting"
-
+	heretic_instructions = "Use on a weapon or clothing item without 2 fantasy modifiers to add an additional fantasy modifier. Consumed on use."
 
 /obj/item/heretic_currency/exalting/pre_attack(obj/item/target, mob/living/user)
 	. = ..()

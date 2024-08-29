@@ -12,7 +12,7 @@
 	)
 	result_atoms = list(/obj/item/melee/sickly_blade/exile/upgrade)
 
-	cost = 1
+	cost = 2
 	depth = 9
 	route = PATH_EXILE
 
