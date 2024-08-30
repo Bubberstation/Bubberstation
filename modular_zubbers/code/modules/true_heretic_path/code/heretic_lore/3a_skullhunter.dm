@@ -2,7 +2,8 @@
 	name = "Skullhunter"
 
 	desc = "Allows you to transmute 5 heads, a silver ID card, and any belt containing storage into a Skullhunter. \
-	Skullhunter is a special belt that steals one random access from a dead being's id card that you hit with your heretical blade and applies it to your worn id."
+	Skullhunter is a special belt that steals one random access from a dead being's id card that you hit with your heretical blade and applies it to your worn id. \
+	Only one data of access can be stolen per ID per belt."
 
 	gain_text = "The desired object of every exile; a belt that fits."
 
