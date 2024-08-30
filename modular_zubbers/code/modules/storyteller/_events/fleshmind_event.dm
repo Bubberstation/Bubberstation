@@ -4,7 +4,7 @@
 	max_occurrences = 1
 	weight = 3
 	min_players = 30
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	earliest_start = 30 MINUTES
 	track = EVENT_TRACK_MAJOR
 
