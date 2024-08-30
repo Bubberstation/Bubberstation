@@ -1431,7 +1431,6 @@
 	flick("[base_icon_state]-opening", src)
 	addtimer(CALLBACK(src, PROC_REF(close_hatch)), 1 SECONDS)
 	convert_mob(contained_mob)
-	contained_mob.forceMove(get_turf(src))
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, TRUE)
 	contained_mob = null
 
@@ -1445,6 +1444,7 @@
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)
 		mob_to_convert.heal_and_revive(0, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
+		contained_mob.forceMove(get_turf(src))
 		return
 
 	if(iscyborg(mob_to_convert))
@@ -1472,7 +1472,7 @@
 		if(old_mob.mind?.key)
 			new_mob.previous_ckey = old_mob.mind.key
 			new_mob.key = old_mob.mind.key
-	return new_mob
+	return
 
 /*
 /**
