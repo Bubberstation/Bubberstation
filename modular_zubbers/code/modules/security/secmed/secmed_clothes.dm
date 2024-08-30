@@ -102,7 +102,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "secmed_helmet"
 	base_icon_state = "secmed_helmet"
-	can_toggle = FALSE
 	actions_types = null
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 

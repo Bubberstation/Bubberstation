@@ -26,43 +26,6 @@
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 4)
 	crate_name = "wt-550 magazine crate (regular)"
 
-/datum/supply_pack/security/armory/renoster
-	name = "Renoster Shotgun Crate"
-	desc = "Contains two Carwo Renoster shotguns. Additional ammmo sold separately."
-	cost = CARGO_CRATE_VALUE * 20
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 2,
-	/obj/item/ammo_box/advanced/s12gauge/buckshot = 2,
-	)
-	crate_name = "Renoster Shotgun Crate"
-
-/datum/supply_pack/security/armory/sindano
-	name = "Sindano Submachinegun Crate"
-	cost = CARGO_CRATE_VALUE * 20
-	desc = "Contains two Sindano Submachineguns, and four spare magazines for them."
-	contains = list(/obj/item/gun/ballistic/automatic/sol_smg = 2,
-	/obj/item/ammo_box/magazine/c35sol_pistol = 4,
-	)
-
-	crate_name = "Sindano Submachinegun Crate"
-
-/datum/supply_pack/security/armory/infanterie
-	name = "Carwil Battle Rifle Crate"
-	desc = "Contains two Carwil Battle Rifles, and two spare each magazines for them."
-	cost = CARGO_CRATE_VALUE * 20
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
-	/obj/item/ammo_box/magazine/c40sol_rifle = 4,
-	)
-	crate_name = "Carwil Battle Rifle Crate"
-
-/datum/supply_pack/security/armory/elite
-	name = "Carwil Marksman Rifle Crate"
-	desc = "Contains one Carwil Marksman Rifle, as well as three spare magazines for it."
-	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
-	/obj/item/ammo_box/magazine/c40sol_rifle = 3,
-	)
-	crate_name = "Carwil Marksman Rifle Crate"
-
 /datum/supply_pack/security/ammo
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/bean = 3,
 					/obj/item/ammo_box/advanced/s12gauge/rubber = 3,
@@ -73,43 +36,6 @@
 	special = FALSE
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
-/datum/supply_pack/security/disabler
-	cost = CARGO_CRATE_VALUE * 3
-//Why were these made more expensive?
-//Good question
-
-/datum/supply_pack/security/armory/ionrifle
-	name = "Ion Carbine Crate"
-	cost = CARGO_CRATE_VALUE * 18 //Same as the energy gun crate
-	desc = "Contains two Ion Carbines, for when you need to deal with speedy space tiders, mechs, or upstart silicons."
-	contains = list(/obj/item/gun/energy/ionrifle/carbine = 2)
-	crate_name = "Ion Carbine Crate"
-
-/datum/supply_pack/security/miniegun
-	name = "Mini E-Gun Bulk Crate"
-	cost = CARGO_CRATE_VALUE * 2
-	desc = "Contains three mini e-guns, cheap and semi-effective, for when you need to arm up on a budget."
-	contains = list(/obj/item/gun/energy/e_gun/mini = 3)
-	crate_name = "Mini E-Gun Bulk Crate"
-//You know the problem is literally nobody want to buy the mini-egun even if it was cheap
-
-/datum/supply_pack/security/armory/kiboko
-	name = "Kiboko Grenade Launcher Crate"
-	cost = CARGO_CRATE_VALUE * 20
-	desc = "Contains two Kiboko 25mm grenade launchers. A small dial on the sight allows you to set the length of the grenade fuse."
-	contains = list(
-		/obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag = 1,
-		/obj/item/ammo_box/magazine/c980_grenade/starts_empty = 3
-	)
-	crate_name = "Kiboko Grenade Launcher Crate"
-
-/datum/supply_pack/security/armory/kiboko_riot
-	name = "Kiboko 25mm Riot Munition"
-	cost = CARGO_CRATE_VALUE * 8
-	desc = "Contains a variety of ammo types for the Kiboko 25mm Grenade Launcher. Three riot boxes."
-	contains = list(
-		/obj/item/ammo_box/c980grenade/riot = 3,
-	)
 
 /datum/supply_pack/security/secmed_technician
 	name = "Security Medic Kit Crate - Technician"
