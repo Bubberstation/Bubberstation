@@ -21,6 +21,8 @@
 	points = 0
 	refined_type = null
 	merge_type = /obj/item/stack/ore/bluespace_crystal/refined
+	drop_sound = null //till I make a better one
+	pickup_sound = null
 
 /obj/item/stack/ore/bluespace_crystal/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -32,7 +34,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
 	user.visible_message(span_warning("[user] begins to crush [src]!"), span_danger("You begin to crush [src]!")) //BUBBERSTATION ADDITION
-	if(!do_after(user, delay = 3 SECONDS)) //BUBBERSTATION ADDITION
+	if(!do_after(user, delay = 1.5 SECONDS)) //BUBBERSTATION ADDITION
 		return //BUBBERSTATION ADDITION
 	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/effect/particle_effect/sparks(loc)
@@ -63,6 +65,8 @@
 	refined_type = null
 	grind_results = list(/datum/reagent/bluespace = 10, /datum/reagent/silicon = 20)
 	merge_type = /obj/item/stack/ore/bluespace_crystal/artificial
+	drop_sound = null //till I make a better one
+	pickup_sound = null
 
 //Polycrystals, aka stacks
 /obj/item/stack/sheet/bluespace_crystal
@@ -81,6 +85,7 @@
 	merge_type = /obj/item/stack/sheet/bluespace_crystal
 	material_type = /datum/material/bluespace
 	var/crystal_type = /obj/item/stack/ore/bluespace_crystal/refined
+
 
 /obj/item/stack/sheet/bluespace_crystal/attack_self(mob/user)// to prevent the construction menu from ever happening
 	to_chat(user, span_warning("You cannot crush the polycrystal in-hand, try breaking one off."))

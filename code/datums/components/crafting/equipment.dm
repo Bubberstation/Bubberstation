@@ -23,7 +23,7 @@
 	time = 4 SECONDS
 	category = CAT_EQUIPMENT
 
-/datum/crafting_recipe/improvisedshield
+/datum/crafting_recipe/moonflowershield
 	name = "Moonflower Shield"
 	result = /obj/item/shield/buckler/moonflower
 	reqs = list(
@@ -284,5 +284,4 @@
 	)
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
-
 */ // SKYRAT EDIT REMOVAL END
