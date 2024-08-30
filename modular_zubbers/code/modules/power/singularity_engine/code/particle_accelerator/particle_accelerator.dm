@@ -128,8 +128,7 @@
 	return ..()
 
 
-/obj/structure/particle_accelerator/deconstruct()
-	. = ..()
+/obj/structure/particle_accelerator/atom_deconstruct()
 	if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION ))
 		new /obj/item/stack/sheet/iron (loc, 5)
 	qdel(src)
