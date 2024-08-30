@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/regret
 
 	name = "Regretable Change"
-	desc = "Allows you to sacrifice a bar of soap to clear fantasy modifiers on all items on the center of the ritual circle."
+	desc = "Allows you to sacrifice a bar of soap to clear fantasy modifiers on all items on the center of the ritual circle. Because the Mansus is generous, the bar of soap is not consumed in this ritual! Yay!"
 	gain_text = "Oh fuck go back"
 
 	required_atoms = list(

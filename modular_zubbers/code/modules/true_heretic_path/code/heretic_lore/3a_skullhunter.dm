@@ -1,8 +1,8 @@
 /datum/heretic_knowledge/access_belt
 	name = "Skullhunter"
 
-	desc = "Allows you to transmute 5 heads, a silver ID card, and any belt containing storage into a Skullhunter, \
-	a special belt that steals the id access of dead beings you attack with your heretical blade and applies it to your worn id."
+	desc = "Allows you to transmute 5 heads, a silver ID card, and any belt containing storage into a Skullhunter. \
+	Skullhunter is a special belt that steals one random access from a dead being's id card that you hit with your heretical blade and applies it to your worn id."
 
 	gain_text = "The desired object of every exile; a belt that fits."
 

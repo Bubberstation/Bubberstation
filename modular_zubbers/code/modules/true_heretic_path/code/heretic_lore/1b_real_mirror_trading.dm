@@ -24,4 +24,4 @@
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
 	research_tree_icon_state = "barter_mirror"
 
-	limit = 5
+	limit = 5*5

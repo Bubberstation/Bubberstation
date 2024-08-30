@@ -6,9 +6,13 @@
 	Once the ritual is performed, this cannot be reversed!"
 
 	required_atoms = list(
-		/obj/item/stack/ore/titanium = 1,
+		/obj/item/stack/sheet/mineral/titanium = 1,
 		/obj/item/organ/internal/liver = 1,
 		/obj/item/heretic_currency/divination = 1
+	)
+
+	result_atoms = list(
+		/obj/item/paper/fluff/good_advice //We need a result here so the limit feature actually works.
 	)
 
 	cost = 3
@@ -51,11 +55,13 @@
 	if(gibbed) //You're fucked lol.
 		return
 
-	//Stolen from die of fate code.
-	for(var/obj/item/non_implant in user)
-		if(istype(non_implant, /obj/item/implant))
-			continue
-		qdel(non_implant)
+	//Partially stolen from die of fate code.
+	//Fun fact. Original die of fate code would delete all your organs as well.
+	var/list/items_to_remove = user.contents.Copy()
+	items_to_remove -= user.organs
+	items_to_remove -= user.bodyparts
+	for(var/obj/item/found_item in items_to_remove)
+		qdel(found_item)
 
 	user.visible_message(
 		span_userdanger("Everything [user] was holding and wearing disappears!"),

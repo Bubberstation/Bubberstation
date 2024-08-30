@@ -60,7 +60,17 @@
 		to_chat(user,span_warning("Nothing happens... something really went wrong."))
 		return FALSE
 
-	var/turf/desired_turf = get_safe_random_station_turf(list(assocated_area.type))
+	var/turf/desired_turf
+
+	var/list/possible_turfs = get_area_turfs(assocated_area)
+	shuffle(possible_turfs)
+
+	for(var/turf/possible_turf as anything in possible_turfs)
+		possible_turfs -= desired_turf
+		if(!is_safe_turf(possible_turf))
+			continue
+		desired_turf = possible_turf
+		break
 
 	if(!desired_turf)
 		to_chat(user,span_warning("Nothing happens... is the area safe?"))
@@ -92,6 +102,15 @@
 	//Up to 5!
 	var/portals_left = 5
 	for(var/mob/living/nearby_living in orange(1,old_turf))
+
+		//Change the destination for each person. If possible.
+		for(var/turf/possible_turf as anything in possible_turfs)
+			possible_turfs -= desired_turf
+			if(!is_safe_turf(possible_turf))
+				continue
+			desired_turf = possible_turf
+			break
+
 		do_teleport(
 			nearby_living,
 			desired_turf,

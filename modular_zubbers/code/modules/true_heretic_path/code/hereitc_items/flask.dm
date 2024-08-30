@@ -14,15 +14,14 @@
 ///Stolen from plubming code.
 /obj/item/reagent_containers/cup/endless_flask/create_reagents(max_vol, flags)
 	. = ..()
-	RegisterSignals(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_CLEAR_REAGENTS, COMSIG_REAGENTS_REACTED), PROC_REF(on_reagent_change))
-	RegisterSignal(reagents, COMSIG_QDELETING, PROC_REF(on_reagents_del))
 	name = "endless flask of [initial(reagent_to_create.name)]"
 	desc = "An endless magical flask that refills over time. This one produces [initial(reagent_to_create.name)] at a rate of [amount_to_create]u every [SSobj.wait/10] seconds, up to a maximum of [reagents.maximum_volume]."
 
 /// Handles properly detaching signal hooks.
 /obj/item/reagent_containers/cup/endless_flask/on_reagents_del(datum/reagents/reagents)
-	UnregisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_CLEAR_REAGENTS, COMSIG_REAGENTS_REACTED, COMSIG_QDELETING))
 	. = ..()
+	UnregisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_CLEAR_REAGENTS, COMSIG_REAGENTS_REACTED, COMSIG_QDELETING))
+
 
 /obj/item/reagent_containers/cup/endless_flask/on_reagent_change()
 	. = ..()

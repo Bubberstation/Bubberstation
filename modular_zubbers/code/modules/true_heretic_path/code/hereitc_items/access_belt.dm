@@ -54,10 +54,12 @@
 	if(!length(access_difference))
 		return
 
-	stolen_id_names[target_id_card.registered_name] = TRUE
-	source_id_card.add_access(access_difference)
+	var/list/stolen_access = list(pick(access_difference))
 
-	playsound(source,'modular_skyrat/modules/emotes/sound/voice/scream_skeleton.ogg')
+	stolen_id_names[target_id_card.registered_name] = TRUE
+	source_id_card.add_access(stolen_access,mode = FORCE_ADD_ALL)
+
+	playsound(get_turf(source),'modular_skyrat/modules/emotes/sound/voice/scream_skeleton.ogg',50,TRUE)
 
 	return
 

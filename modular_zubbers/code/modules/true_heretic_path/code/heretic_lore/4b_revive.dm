@@ -8,6 +8,10 @@
 		/obj/item/melee/sickly_blade = 1
 	)
 
+	result_atoms = list(
+		/obj/item/knife = 1 //We need a result here so the limit feature actually works.
+	)
+
 	cost = 1
 	depth = 5
 	route = PATH_EXILE
@@ -17,6 +21,8 @@
 
 	limit = 1
 
+	var/used = FALSE
+
 /datum/heretic_knowledge/limited_amount/exile_revival/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 
 	. = ..()
@@ -25,3 +31,5 @@
 		HEAL_ALL,
 		excess_healing = 100
 	)
+
+	used = TRUE

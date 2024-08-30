@@ -14,6 +14,10 @@
 		/obj/item/stack/ore/bluespace_crystal = 6,
 	)
 
+	result_atoms = list(
+		/obj/item/paper/fluff/good_advice //We need a result here so the limit feature actually works.
+	)
+
 	cost = 6
 	depth = 8
 	route = PATH_EXILE
