@@ -54,7 +54,7 @@
 	name = "ERT Commander - High Alert"
 
 	backpack_contents = list(
-		/obj/item/gun/energy/pulse/pistol/loyalpin = 1,
+		/obj/item/gun/energy/e_gun/blueshield, // /obj/item/gun/energy/pulse/pistol/loyalpin = 1, BUBBER EDIT
 		/obj/item/melee/baton/security/loaded = 1,
 	)
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
@@ -108,7 +108,7 @@
 	name = "ERT Medic - High Alert"
 
 	backpack_contents = list(
-		/obj/item/gun/energy/pulse/pistol/loyalpin = 1,
+		/obj/item/gun/energy/e_gun/mini, // /obj/item/gun/energy/pulse/pistol/loyalpin = 1, - BUBBER EDIT
 		/obj/item/gun/medbeam = 1,
 		/obj/item/melee/baton/security/loaded = 1,
 		/obj/item/reagent_containers/hypospray/combat/nanites = 1,
@@ -138,7 +138,7 @@
 
 	backpack_contents = list(
 		/obj/item/construction/rcd/combat = 1,
-		/obj/item/gun/energy/pulse/pistol/loyalpin = 1,
+		/obj/item/gun/energy/e_gun/mini, // /obj/item/gun/energy/pulse/pistol/loyalpin = 1, - BUBBER EDIT
 		/obj/item/melee/baton/security/loaded = 1,
 		/obj/item/pipe_dispenser = 1,
 	)
