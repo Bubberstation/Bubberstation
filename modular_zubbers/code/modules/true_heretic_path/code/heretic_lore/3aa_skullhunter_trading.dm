@@ -1,3 +1,4 @@
+/* Disabled because linters complain.
 /datum/heretic_knowledge/limited_amount/skullhunter_trading
 	name = "Skullhunter Trading"
 	desc = "Allows you to transmute a skullhunter with at least 5 different access names stolen and an orb of diviniation into a \
@@ -33,3 +34,4 @@
 			continue
 
 	return TRUE
+*/

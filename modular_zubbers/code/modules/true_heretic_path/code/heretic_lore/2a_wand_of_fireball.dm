@@ -1,3 +1,4 @@
+/* Disabled because broken
 /datum/heretic_knowledge/wand_purchase
 	name = "Prophetic Wand of Heretical Fireball"
 	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge self-recharging \
@@ -24,3 +25,4 @@
 /datum/heretic_knowledge/wand_purchase/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	ADD_TRAIT(user,TRAIT_MAGICALLY_GIFTED,EXILE_MAGIC)
+*/

@@ -7,7 +7,8 @@
 	gain_text = "Much like the Exile before me, I have seeked revenge against those who exiled me. \
 	Now that I have returned to full power, none can stop me. I am free to raze and pillage this place as I see fit, \
 	a true reward for someone returning from the Path of Exile."
-	route = PATH_EXILE
+	//route = PATH_EXILE
+	route = null
 
 
 /datum/heretic_knowledge/ultimate/exile_final/is_valid_sacrifice(mob/living/sacrifice)

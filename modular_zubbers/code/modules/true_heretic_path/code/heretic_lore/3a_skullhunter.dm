@@ -7,7 +7,7 @@
 	gain_text = "The desired object of every exile; a belt that fits."
 
 	next_knowledge = list(
-		/datum/heretic_knowledge/limited_amount/skullhunter_trading
+
 	)
 
 	required_atoms = list(

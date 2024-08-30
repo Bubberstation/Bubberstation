@@ -9,11 +9,7 @@
 		/obj/item/heretic_currency/mirroring = 1
 	)
 	result_atoms = list(
-		/obj/item/stack/spacecash/c1000,
-		/obj/item/stack/spacecash/c1000,
-		/obj/item/stack/spacecash/c1000,
-		/obj/item/stack/spacecash/c1000,
-		/obj/item/stack/spacecash/c1000
+		/obj/item/stack/spacecash/c5000,
 	)
 
 	cost = 1
@@ -24,4 +20,4 @@
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
 	research_tree_icon_state = "barter_mirror"
 
-	limit = 5*5
+	limit = 5

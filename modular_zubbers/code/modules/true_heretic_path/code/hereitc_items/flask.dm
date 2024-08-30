@@ -16,6 +16,7 @@
 	. = ..()
 	name = "endless flask of [initial(reagent_to_create.name)]"
 	desc = "An endless magical flask that refills over time. This one produces [initial(reagent_to_create.name)] at a rate of [amount_to_create]u every [SSobj.wait/10] seconds, up to a maximum of [reagents.maximum_volume]."
+	START_PROCESSING(SSobj,src)
 
 /// Handles properly detaching signal hooks.
 /obj/item/reagent_containers/cup/endless_flask/on_reagents_del(datum/reagents/reagents)
