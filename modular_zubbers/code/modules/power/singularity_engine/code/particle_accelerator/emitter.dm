@@ -2,7 +2,7 @@
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM containment grid"
 	desc = "This launches the alpha particles, might not want to stand near this end."
-	icon = 'modular_skyrat/modules/singularity_engine/icons/particle_accelerator.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/particle_accelerator.dmi'
 	icon_state = "emitter_center"
 
 	/// The delay between shooting a particle
@@ -43,16 +43,16 @@
 		switch(strength)
 			if(PARTICLE_STRENGTH_WEAK)
 				new_particle = new/obj/effect/accelerated_particle/weak(our_turf)
-				playsound(src, 'modular_skyrat/modules/singularity_engine/sound/cyclotron.ogg', 30, FALSE)
+				playsound(src, 'modular_zubbers/code/modules/power/singularity_engine/sound/cyclotron.ogg', 30, FALSE)
 			if(PARTICLE_STRENGTH_NORMAL)
 				new_particle = new/obj/effect/accelerated_particle(our_turf)
-				playsound(src, 'modular_skyrat/modules/singularity_engine/sound/cyclotron.ogg', 70, FALSE)
+				playsound(src, 'modular_zubbers/code/modules/power/singularity_engine/sound/cyclotron.ogg', 70, FALSE)
 			if(PARTICLE_STRENGTH_STRONG)
 				new_particle = new/obj/effect/accelerated_particle/strong(our_turf)
-				playsound(src, 'modular_skyrat/modules/singularity_engine/sound/cyclotron.ogg', 100, FALSE)
+				playsound(src, 'modular_zubbers/code/modules/power/singularity_engine/sound/cyclotron.ogg', 100, FALSE)
 			if(PARTICLE_STRENGTH_MAX)
 				new_particle = new/obj/effect/accelerated_particle/powerful(our_turf)
-				playsound(src, 'modular_skyrat/modules/singularity_engine/sound/cyclotron.ogg', 100, FALSE)
+				playsound(src, 'modular_zubbers/code/modules/power/singularity_engine/sound/cyclotron.ogg', 100, FALSE)
 				new /obj/effect/particle_effect/sparks/quantum (our_turf)
 				radiation_pulse(src, max_range = 3, threshold = RAD_EXTREME_INSULATION)
 		new_particle.setDir(dir)

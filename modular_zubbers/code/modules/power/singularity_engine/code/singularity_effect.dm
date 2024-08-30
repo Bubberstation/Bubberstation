@@ -1,7 +1,7 @@
 /obj/effect/singularity_creation
 	name = "collapsing spacetime"
 	desc = "It looks like spacetime is collapsing, oh shit!"
-	icon = 'modular_skyrat/modules/singularity_engine/icons/singularity_creation.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/singularity_creation.dmi'
 	icon_state = ""
 	anchored = TRUE
 	opacity = FALSE

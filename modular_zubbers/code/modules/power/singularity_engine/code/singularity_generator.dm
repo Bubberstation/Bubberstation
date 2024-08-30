@@ -5,7 +5,7 @@
 /obj/machinery/singularity_generator
 	name = "gravitational singularity generator"
 	desc = "An odd device which produces a Gravitational Singularity when set up."
-	icon = 'modular_skyrat/modules/singularity_engine/icons/sing_gen.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/sing_gen.dmi'
 	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE

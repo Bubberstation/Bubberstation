@@ -16,7 +16,7 @@
 /obj/structure/particle_accelerator
 	name = "particle accelerator"
 	desc = "Part of a Particle Accelerator."
-	icon = 'modular_skyrat/modules/singularity_engine/icons/particle_accelerator.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/particle_accelerator.dmi'
 	icon_state = "power_box"
 	anchored = FALSE
 	density = TRUE
@@ -128,8 +128,9 @@
 	return ..()
 
 
-/obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
+/obj/structure/particle_accelerator/deconstruct()
+	. = ..()
+	if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION ))
 		new /obj/item/stack/sheet/iron (loc, 5)
 	qdel(src)
 
@@ -176,13 +177,13 @@
 /obj/structure/particle_accelerator/power_box
 	name = "particle focusing EM lens"
 	desc = "This uses electromagnetic waves to focus the alpha particles."
-	icon = 'modular_skyrat/modules/singularity_engine/icons/particle_accelerator.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/particle_accelerator.dmi'
 	icon_state = "power_box"
 	icon_state_reference = "power_box"
 
 /obj/structure/particle_accelerator/fuel_chamber
 	name = "EM acceleration chamber"
 	desc = "This is where the alpha particles are accelerated to <b><i>radical speeds</i></b>."
-	icon = 'modular_skyrat/modules/singularity_engine/icons/particle_accelerator.dmi'
+	icon = 'modular_zubbers/code/modules/power/singularity_engine/icons/particle_accelerator.dmi'
 	icon_state = "fuel_chamber"
 	icon_state_reference = "fuel_chamber"

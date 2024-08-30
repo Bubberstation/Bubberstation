@@ -132,7 +132,7 @@
 	. = ..()
 	if(!active)
 		. += span_notice("<b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>.\"")
-	. += span_notice("[src]'s display states that it has stored <b>[display_joules(get_stored_joules())]</b>, and is processing <b>[display_power(get_power_output())]</b>.")
+	. += span_notice("[src]'s display states that it has stored <b>[display_energy(get_stored_joules())]</b>, and is processing <b>[display_power(processed_energy)]</b>.")
 
 /obj/machinery/power/energy_accumulator/rad_collector/atom_break(damage_flag)
 	. = ..()
@@ -166,7 +166,7 @@
 /obj/machinery/power/energy_accumulator/rad_collector/proc/hawking_pulse(atom/source, pulse_strength)
 	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_THRESHOLD)
 		// Adjust energy calculation based on efficiency multiplier
-		stored_energy += joules_to_energy((pulse_strength - RAD_COLLECTOR_THRESHOLD) * RAD_COLLECTOR_COEFFICIENT * efficiency_multiplier)
+		stored_energy += power_to_energy((pulse_strength - RAD_COLLECTOR_THRESHOLD) * RAD_COLLECTOR_COEFFICIENT * efficiency_multiplier)
 		new /obj/effect/temp_visual/hawking_radiation(get_turf(src))
 
 /obj/machinery/power/energy_accumulator/rad_collector/update_overlays()
