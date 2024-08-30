@@ -106,7 +106,7 @@
 /datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost)
 	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0))
 		return
-	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
 
 /datum/antagonist/bloodsucker/proc/GetRank()
 	return bloodsucker_level
@@ -196,57 +196,31 @@
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
-/datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
-	if(heart?.resolve())
-		remove_signals_from_heart(current_mob)
-	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
-	heart = WEAKREF(organ)
-	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
-	RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
+// /datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
+// 	if(heart?.resolve())
+// 		remove_signals_from_heart(current_mob)
+// 	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
+// 	heart = WEAKREF(organ)
+// 	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
+// 	RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
 
-/datum/antagonist/bloodsucker/proc/remove_signals_from_heart(mob/living/carbon/human/current_mob)
-	var/organ = heart.resolve()
-	if(!organ)
-		return
-	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
-	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
-	heart = null
+// /datum/antagonist/bloodsucker/proc/remove_signals_from_heart(mob/living/carbon/human/current_mob)
+// 	var/organ = heart.resolve()
+// 	if(!organ)
+// 		return
+// 	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
+// 	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+// 	heart = null
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
 	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ?.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
 		return
-	remove_signals_from_heart(old_owner)
-	// You don't run bloodsucker life without a heart or brain
-	RegisterSignal(old_owner, COMSIG_ENTER_COFFIN, PROC_REF(regain_heart))
-	UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
 	DisableAllPowers(TRUE)
 	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_end(TRUE)
 	to_chat(old_owner, span_userdanger("You have lost your [organ?.slot ? organ.slot : "heart"]!"))
 	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
-
-/datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
-	SIGNAL_HANDLER
-	if(replacement.slot != ORGAN_SLOT_HEART)
-		return
-	// Shit might get really fucked up. Let's try to fix things if it does
-	if(current_mob != owner.current)
-		UnregisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN)
-		RegisterSignal(owner.current, COMSIG_CARBON_GAIN_ORGAN)
-		add_signals_to_heart(owner.current)
-		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
-		CRASH("Somehow the on_organ_gain signal is not on the owner of the bloodsucker datum, called on: [current_mob], bloodsucker datum owner: [owner.current]")
-	UnregisterSignal(current_mob, COMSIG_ENTER_COFFIN)
-	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE) // overriding here due to the fact this can without removing the signal due to before_organ_replace()
-	add_signals_to_heart(current_mob)
-
-/// This handles regen_organs replacing organs, without this the bloodsucker would die for a moment due to their heart being removed for a moment
-/datum/antagonist/bloodsucker/proc/before_organ_replace(obj/item/organ/old_organ, obj/item/organ/new_organ)
-	SIGNAL_HANDLER
-	if(new_organ.slot != ORGAN_SLOT_HEART)
-		return
-	remove_signals_from_heart(owner.current)
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
@@ -308,9 +282,8 @@
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
-	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART))
+	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(coffin_dweller))
 		to_chat(span_warning("You have regained your heart!"))
-		heart.Insert(coffin_dweller)
 
 /datum/antagonist/bloodsucker/proc/shake_head_on_talk(mob/speaker, speech_args)
 	var/obj/head = is_head(speaker)
@@ -318,3 +291,33 @@
 		return
 	var/animation_time = max(2, length_char(speech_args[SPEECH_MESSAGE]) * 0.5)
 	head.Shake(duration = animation_time)
+
+/datum/antagonist/bloodsucker/proc/stake_can_kill()
+	if(owner.current.IsSleeping() || owner.current.stat >= UNCONSCIOUS || HAS_TRAIT(owner.current, TRAIT_NODEATH))
+		for(var/stake in get_stakes())
+			var/obj/item/stake/killin_stake = stake
+			if(killin_stake?.kills_blodsuckers)
+				return TRUE
+	return FALSE
+
+/datum/antagonist/bloodsucker/proc/am_staked()
+	var/obj/item/bodypart/chosen_bodypart = owner.current.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/stake/stake = locate() in chosen_bodypart.embedded_objects
+	return stake
+
+/datum/antagonist/bloodsucker/proc/get_stakes()
+	var/obj/item/bodypart/chosen_bodypart = owner.current.get_bodypart(BODY_ZONE_CHEST)
+	if(!chosen_bodypart)
+		return FALSE
+	var/list/stakes = list()
+	for(var/obj/item/embedded_stake in chosen_bodypart.embedded_objects)
+		if(istype(embedded_stake, /obj/item/stake))
+			stakes += list(embedded_stake)
+	return stakes
+
+/datum/antagonist/bloodsucker/proc/on_staked(atom/target, forced)
+	if(stake_can_kill())
+		FinalDeath()
+	else
+		to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
+		target.balloon_alert(target, "you have been staked!")
