@@ -24,7 +24,6 @@
         REMOVE_TRAIT(H, perk, QUIRK_TRAIT)
 
 /datum/quirk/undead/process(seconds_per_tick)
-    . = ..()
     var/mob/living/carbon/human/H = quirk_holder
     H.adjust_nutrition(-0.025)//The Undead are Hungry.
     H.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy)

@@ -9,6 +9,5 @@
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
 
 /datum/quirk/breathless/process(seconds_per_tick)
-	. = ..()
 	var/mob/living/carbon/C = quirk_holder
 	C.adjustOxyLoss(-3) // Fix for defibrillator "bug". probably not necessary in this codebase

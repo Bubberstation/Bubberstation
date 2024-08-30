@@ -18,7 +18,6 @@
 	//REMOVE_TRAIT(H,TRAIT_NOTHIRST,ROUNDSTART_TRAIT) //Needs thirst system
 
 /datum/quirk/incubus/process(seconds_per_tick)
-	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.adjust_nutrition(-0.09)//increases their nutrition loss rate to encourage them to gain a partner they can essentially leech off of
 

@@ -16,7 +16,6 @@
 	put_in.implant(quirk_holder, null, TRUE, TRUE)
 
 /datum/quirk/storage_concealment/process(seconds_per_tick)
-	. = ..()
 	// This trait should only be applied by the augment
 	// Check the quirk holder for the trait
 	if(HAS_TRAIT(quirk_holder, TRAIT_HIDE_BACKPACK))

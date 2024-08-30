@@ -8,7 +8,6 @@
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
 
 /datum/quirk/restorative_metabolism/process(seconds_per_tick)
-	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 
 	H.adjustBruteLoss(-0.5)
