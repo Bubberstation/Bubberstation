@@ -1,8 +1,6 @@
-/obj/machinery/door/firedoor/AltClick(mob/user)
-	. = ..()
-	if(!user.can_perform_action(src))
-		return
+/obj/machinery/door/firedoor/click_alt(mob/user)
 	try_manual_override(user)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
@@ -11,22 +9,22 @@
 /obj/machinery/door/proc/try_manual_override(mob/user)
 	if(density && !welded && !operating)
 		balloon_alert(user, "opening...")
-		if(do_after(user, 5 SECONDS, target = src)) //BUBBERSTATION CHANGE: 10 SECONDS TO 5 SECONDS.
-			try_to_crowbar_secondary(null,user) // BUBBERSTATION CHANGE: FIXES TG/SKYRAT FIREDOOR CONFLICT.
+		if(do_after(user, 5 SECONDS, target = src))
+			try_to_crowbar(null,user)
 			return TRUE
 	return FALSE
 
-/* BUBBERSTATION CHANGE START: FIXES TG/SKYRAT FIREDOOR CONFLICT.
+// Uncomment this override to disable the auto-close feature of firedoors.
+/*
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/used_object, mob/user)
 	if(welded || operating)
 		balloon_alert(user, "opening failed!")
 		return
-
 	if(density)
 		open()
 	else
 		close()
-BUBBERSTATION CHANGE END: FIXES TG/SKYRAT FIREDOOR CONFLICT. */
+*/
 
 /obj/machinery/door/firedoor/heavy/closed
 	icon_state = "door_closed"

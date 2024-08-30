@@ -293,7 +293,7 @@
 		chance *= 5.5
 		delay_mult *= 0.85
 		knows_wires = TRUE
-	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
+	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD) || HAS_TRAIT(user, TRAIT_RESEARCH_CYBORG)) // BUBBER EDIT - Research cyborgs
 		if (knows_wires)
 			chance *= 1.25 // ((10 * 8) * 1.25) = 100%
 		else
@@ -340,14 +340,14 @@
 
 	var/delay_mult = 1
 	if (victim == user)
-		delay_mult *= 0.5
+		delay_mult *= 1.5
 
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= 0.75
 
 	user.visible_message(span_danger("[user] begins hastily applying [gel] to [victim]'s [limb.plaintext_zone]..."), span_warning("You begin hastily applying [gel] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone], disregarding the acidic effect it seems to have on the metal..."))
 
-	if (!do_after(user, (8 SECONDS * delay_mult), target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if (!do_after(user, (6 SECONDS * delay_mult), target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	gel.use(1)

@@ -20,19 +20,18 @@
 		)
 	random_spawns_possible = FALSE
 	job_flags = JOB_NEW_PLAYER_JOINABLE | JOB_EQUIP_RANK | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
-	var/do_special_check = TRUE
 	config_tag = "AI"
 
 
 /datum/job/ai/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
-	/* SKYRAT REMOVAL START
+	/* SKYRAT EDIT REMOVAL START
 	//we may have been created after our borg
 	if(SSticker.current_state == GAME_STATE_SETTING_UP)
 		for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 			if(!R.connected_ai)
 				R.TryConnectToAI()
-	*/ //SKYRAT REMOVAL END
+	*/ // SKYRAT EDIT REMOVAL END
 	var/mob/living/silicon/ai/ai_spawn = spawned
 	ai_spawn.log_current_laws()
 	// SKYRAT EDIT ADDITION START
@@ -45,7 +44,7 @@
 			continue
 		sync_target.notify_ai(AI_NOTIFICATION_CYBORG_DISCONNECTED)
 		sync_target.set_connected_ai(ai_spawn)
-		log_combat(ai_spawn, sync_target, "synced cyborg [ADMIN_LOOKUP(sync_target)] to [ADMIN_LOOKUP(ai_spawn)] (AI spawn syncage)")
+		log_combat(ai_spawn, sync_target, "synced cyborg [sync_target] to [ai_spawn] (AI spawn syncage)") // BUBBER EDIT - PUBLIC LOGS CLEANUP
 		if(sync_target.shell)
 			sync_target.undeploy()
 			sync_target.notify_ai(AI_NOTIFICATION_AI_SHELL)
@@ -62,8 +61,15 @@
 /datum/job/ai/get_roundstart_spawn_point()
 	return get_latejoin_spawn_point()
 
-
 /datum/job/ai/get_latejoin_spawn_point()
+	for(var/obj/structure/ai_core/latejoin_inactive/inactive_core as anything in GLOB.latejoin_ai_cores)
+		if(!inactive_core.is_available())
+			continue
+		GLOB.latejoin_ai_cores -= inactive_core
+		inactive_core.available = FALSE
+		var/turf/core_turf = get_turf(inactive_core)
+		qdel(inactive_core)
+		return core_turf
 	var/list/primary_spawn_points = list() // Ideal locations.
 	var/list/secondary_spawn_points = list() // Fallback locations.
 	for(var/obj/effect/landmark/start/ai/spawn_point in GLOB.landmarks_list)
@@ -84,27 +90,10 @@
 	chosen_spawn_point.used = TRUE
 	return chosen_spawn_point
 
-
-/datum/job/ai/get_latejoin_spawn_point()
-	for(var/obj/structure/ai_core/latejoin_inactive/inactive_core as anything in GLOB.latejoin_ai_cores)
-		if(!inactive_core.is_available())
-			continue
-		GLOB.latejoin_ai_cores -= inactive_core
-		inactive_core.available = FALSE
-		. = inactive_core.loc
-		qdel(inactive_core)
-		return
-	return ..()
-
-
 /datum/job/ai/special_check_latejoin(client/C)
-	if(!do_special_check)
-		return TRUE
-	for(var/i in GLOB.latejoin_ai_cores)
-		var/obj/structure/ai_core/latejoin_inactive/LAI = i
-		if(istype(LAI))
-			if(LAI.is_available())
-				return TRUE
+	for(var/obj/structure/ai_core/latejoin_inactive/latejoin_core as anything in GLOB.latejoin_ai_cores)
+		if(latejoin_core.is_available())
+			return TRUE
 	return FALSE
 
 

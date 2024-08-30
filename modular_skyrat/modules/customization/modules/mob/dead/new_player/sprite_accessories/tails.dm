@@ -3,8 +3,6 @@
 	generic = "Tail"
 	organ_type = /obj/item/organ/external/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
-	special_render_case = TRUE
-	special_colorize = TRUE
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
 	/// Can we use this tail for the fluffy tail turf emote?
@@ -29,11 +27,8 @@
 		else if(wearer.wear_suit.flags_inv & HIDETAIL)
 			return TRUE
 
-/datum/sprite_accessory/tails/get_special_render_state(mob/living/carbon/human/wearer)
-	return icon_state
-
 /datum/sprite_accessory/tails/none
-	name = "None"
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	recommended_species = list(SPECIES_SYNTH, SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_HUMANOID, SPECIES_GHOUL)
 	color_src = null
@@ -63,7 +58,6 @@
 	icon_state = "monkey"
 	icon = 'icons/mob/human/species/monkey/monkey_tail.dmi'
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_MAMMAL, SPECIES_MONKEY, SPECIES_GHOUL)
-	color_src = FALSE
 	organ_type = /obj/item/organ/external/tail/monkey
 
 /datum/sprite_accessory/tails/mammal

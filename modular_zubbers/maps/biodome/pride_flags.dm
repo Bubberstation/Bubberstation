@@ -17,7 +17,7 @@
 	icon_state = "flag_pride"
 	item_flag = /obj/item/sign/flag/pride/gay
 
-/obj/structure/sign/flag/pride/gay/AltClick(mob/user)
+/obj/structure/sign/flag/pride/gay/click_alt(mob/user)
 	icon_state = "flag_pride_vertical"
 	.=..()
 
@@ -27,7 +27,7 @@
 	icon_state = "flag_ace"
 	item_flag = /obj/item/sign/flag/pride/ace
 
-/obj/structure/sign/flag/pride/ace/AltClick(mob/user)
+/obj/structure/sign/flag/pride/ace/click_alt(mob/user)
 	icon_state = "flag_ace_vertical"
 	.=..()
 
@@ -37,7 +37,7 @@
 	icon_state = "flag_bi"
 	item_flag = /obj/item/sign/flag/pride/bi
 
-/obj/structure/sign/flag/pride/bi/AltClick(mob/user)
+/obj/structure/sign/flag/pride/bi/click_alt(mob/user)
 	icon_state = "flag_bi_vertical"
 	.=..()
 
@@ -47,7 +47,7 @@
 	icon_state = "flag_lesbian"
 	item_flag = /obj/item/sign/flag/pride/lesbian
 
-/obj/structure/sign/flag/pride/lesbian/AltClick(mob/user)
+/obj/structure/sign/flag/pride/lesbian/click_alt(mob/user)
 	icon_state = "flag_lesbian_vertical"
 	.=..()
 
@@ -57,7 +57,7 @@
 	icon_state = "flag_pan"
 	item_flag = /obj/item/sign/flag/pride/pan
 
-/obj/structure/sign/flag/pride/pan/AltClick(mob/user)
+/obj/structure/sign/flag/pride/pan/click_alt(mob/user)
 	icon_state = "flag_pan_vertical"
 	.=..()
 
@@ -67,7 +67,7 @@
 	icon_state = "flag_trans"
 	item_flag = /obj/item/sign/flag/pride/trans
 
-/obj/structure/sign/flag/pride/trans/AltClick(mob/user)
+/obj/structure/sign/flag/pride/trans/click_alt(mob/user)
 	icon_state = "flag_trans_vertical"
 	.=..()
 

@@ -532,6 +532,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
+"ih" = (
+/obj/structure/safe,
+/obj/item/mod/module/jetpack,
+/obj/item/mod/control/pre_equipped/standard,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/cargodise_freighter/vault)
 "is" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/cargodise_freighter/utility)
@@ -1219,7 +1225,7 @@
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall)
 "tW" = (
 /obj/structure/bed/double,
-/obj/item/bedsheet/dorms_double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/cargodise_freighter/kitchen)
 "tY" = (
@@ -1562,7 +1568,7 @@
 /obj/structure/bed/double{
 	dir = 1
 	},
-/obj/item/bedsheet/dorms_double{
+/obj/effect/spawner/random/bedsheet/double{
 	dir = 4
 	},
 /turf/open/floor/wood/parquet,
@@ -1582,18 +1588,6 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark/smooth_half,
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall)
-"Ai" = (
-/obj/structure/closet/crate/secure/engineering,
-/obj/item/storage/toolbox/electrical,
-/obj/item/storage/toolbox/electrical,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/construction/rcd/loaded,
-/obj/item/pipe_dispenser,
-/obj/item/construction/plumbing/research,
-/obj/item/construction/plumbing/engineering,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/cargodise_freighter/utility)
 "Aj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -2502,12 +2496,6 @@
 	},
 /turf/open/floor/iron/kitchen,
 /area/ruin/space/has_grav/cargodise_freighter/kitchen)
-"NQ" = (
-/obj/structure/safe,
-/obj/item/mod/module/jetpack/advanced,
-/obj/item/mod/control/pre_equipped/standard,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/cargodise_freighter/vault)
 "NV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/cargodise_freighter/quarters)
@@ -3124,6 +3112,17 @@
 	dir = 4
 	},
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
+"XQ" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/construction/rcd/loaded,
+/obj/item/pipe_dispenser,
+/obj/item/construction/plumbing/engineering,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/cargodise_freighter/utility)
 "XT" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/cargodise_freighter/quarters)
@@ -3650,7 +3649,7 @@ pm
 dp
 SZ
 VL
-Ai
+XQ
 is
 Mu
 NE
@@ -4995,7 +4994,7 @@ Gh
 Gh
 Gh
 vh
-NQ
+ih
 Eo
 dT
 mL

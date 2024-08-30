@@ -78,3 +78,11 @@
 	materials = list(/datum/material/biomass = 0.2)
 	make_reagent = /datum/reagent/consumable/salt
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
+
+/datum/design/diskplantgene
+	name = "Plant Data Disk"
+	id = "diskplantgene"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 10)
+	build_path = /obj/item/disk/plantgene
+	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_MATERIALS)

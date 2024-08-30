@@ -4,17 +4,18 @@
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_head"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM | BODYTYPE_SNOUTED
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
+	teeth_count = 0
 
 /obj/item/bodypart/chest/mutant/vox_primalis
 	icon_static = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_chest"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
@@ -24,7 +25,7 @@
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_l_arm"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
 
@@ -33,7 +34,7 @@
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_r_arm"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
 
@@ -42,7 +43,7 @@
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_l_leg"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
 
@@ -51,7 +52,7 @@
 	icon_greyscale = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_bodyparts.dmi'
 	icon_state = "vox_primalis_r_leg"
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	should_draw_greyscale = FALSE
 	limb_id = SPECIES_VOX_PRIMALIS
 

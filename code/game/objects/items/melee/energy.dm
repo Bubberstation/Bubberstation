@@ -5,11 +5,12 @@
 	attack_verb_continuous = list("hits", "taps", "pokes")
 	attack_verb_simple = list("hit", "tap", "poke")
 	resistance_flags = FIRE_PROOF
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 3
 	light_power = 1
 	light_on = FALSE
 	bare_wound_bonus = 20
+	demolition_mod = 1.5 //1.5x damage to objects, robots, etc.
 	stealthy_audio = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NO_BLOOD_ON_ITEM
@@ -122,13 +123,9 @@
 	SIGNAL_HANDLER
 
 	if(active)
-		if(embedding)
-			updateEmbedding()
 		heat = active_heat
 		START_PROCESSING(SSobj, src)
 	else
-		if(embedding)
-			disableEmbedding()
 		heat = initial(heat)
 		STOP_PROCESSING(SSobj, src)
 
@@ -182,6 +179,10 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /// Energy swords.
+/datum/embed_data/esword
+	embed_chance = 75
+	impact_pain_mult = 10
+
 /obj/item/melee/energy/sword
 	name = "energy sword"
 	desc = "May the force be within you."
@@ -198,7 +199,7 @@
 	armour_penetration = 35
 	block_chance = 50
 	block_sound = 'sound/weapons/block_blade.ogg'
-	embedding = list("embed_chance" = 75, "impact_pain_mult" = 10)
+	embed_type = /datum/embed_data/esword
 
 /obj/item/melee/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
@@ -213,13 +214,13 @@
 	name = "cyborg energy sword"
 	sword_color_icon = "red"
 	/// The cell cost of hitting something.
-	var/hitcost = 50
+	var/hitcost = 0.05 * STANDARD_CELL_CHARGE
 
 /obj/item/melee/energy/sword/cyborg/attack(mob/target, mob/living/silicon/robot/user)
 	if(!user.cell)
 		return
 
-	var/obj/item/stock_parts/cell/our_cell = user.cell
+	var/obj/item/stock_parts/power_store/our_cell = user.cell
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !(our_cell.use(hitcost)))
 		attack_self(user)
 		to_chat(user, span_notice("It's out of charge!"))
@@ -238,7 +239,7 @@
 	icon_state = "esaw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	force = 18
-	hitcost = 75 // Costs more than a standard cyborg esword.
+	hitcost = 0.075 * STANDARD_CELL_CHARGE // Costs more than a standard cyborg esword.
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
 	light_color = LIGHT_COLOR_LIGHT_CYAN

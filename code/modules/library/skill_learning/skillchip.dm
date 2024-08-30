@@ -1,10 +1,3 @@
-// Skillchip categories
-//Various skillchip categories. Use these when setting which categories a skillchip restricts being paired with
-//while using the SKILLCHIP_RESTRICTED_CATEGORIES flag
-/// General related skillchip category
-#define SKILLCHIP_CATEGORY_GENERAL "general"
-
-
 /obj/item/skillchip
 	name = "skillchip"
 	desc = "This biochip integrates with user's brain to enable mastery of specific skill. Consult certified Nanotrasen neurosurgeon before use."
@@ -491,9 +484,9 @@
 
 /obj/item/skillchip/master_angler
 	name = "Mast-Angl-Er skillchip"
-	auto_traits = list(TRAIT_REVEAL_FISH)
+	auto_traits = list(TRAIT_REVEAL_FISH, TRAIT_EXAMINE_FISHING_SPOT)
 	skill_name = "Fisherman's Discernment"
-	skill_description = "While fishing, it'll make a smidge easier to guess whatever you're trying to catch."
+	skill_description = "Lists fishes when examining a fishing spot, and gives a hint of whatever thing's biting the hook."
 	skill_icon = "fish"
 	activate_message = span_notice("You feel the knowledge and passion of several sunbaked, seasoned fishermen burn within you.")
 	deactivate_message = span_notice("You no longer feel like casting a fishing rod by the sunny riverside.")
@@ -506,5 +499,3 @@
 	skill_icon = FA_ICON_DRUMSTICK_BITE
 	activate_message = span_notice("You think of your favourite food and realise that you can rotate its flavour in your mind.")
 	deactivate_message = span_notice("You feel your food-based mind palace crumbling...")
-
-#undef SKILLCHIP_CATEGORY_GENERAL

@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/blob,
 		/obj/structure/checkoutmachine,
 		/obj/structure/disposalpipe,
+		/obj/structure/disposaloutlet,
 		/obj/structure/extraction_point,
 		/obj/structure/guardian_beacon,
 		/obj/tear_in_reality,
@@ -80,12 +81,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!length(stuff_to_send_home))
 		return FALSE
 
-	var/obj/structure/closet/supplypod/centcompod/et_go_home = new()
-
-	for(var/atom/movable/et as anything in stuff_to_send_home)
-		et.forceMove(et_go_home)
-
-	new /obj/effect/pod_landingzone(get_turf(home), et_go_home)
+	podspawn(list(
+		"target" = get_turf(home),
+		"path" = /obj/structure/closet/supplypod/centcompod,
+		"spawn" = stuff_to_send_home,
+	))
 
 	return stuff_to_send_home
 

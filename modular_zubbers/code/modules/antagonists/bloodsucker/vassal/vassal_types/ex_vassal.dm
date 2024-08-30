@@ -5,7 +5,7 @@
 	name = "\improper Ex-Vassal"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	job_rank = ROLE_VASSAL
 	antag_hud_name = "vassal_grey"
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -75,11 +75,11 @@
 	SIGNAL_HANDLER
 
 	if(COOLDOWN_TIMELEFT(src, blood_timer) <= BLOOD_TIMER_HALWAY + 2 && COOLDOWN_TIMELEFT(src, blood_timer) >= BLOOD_TIMER_HALWAY - 2) //just about halfway
-		to_chat(owner.current, span_cultbold("You need new blood from your Master!"))
+		to_chat(owner.current, span_cult_bold("You need new blood from your Master!"))
 	if(!COOLDOWN_FINISHED(src, blood_timer))
 		return
-	to_chat(owner.current, span_cultbold("You are out of blood!"))
-	to_chat(revenge_vassal.owner.current, span_cultbold("[owner.current] has ran out of blood and is no longer in the fold!"))
+	to_chat(owner.current, span_cult_bold("You are out of blood!"))
+	to_chat(revenge_vassal.owner.current, span_cult_bold("[owner.current] has ran out of blood and is no longer in the fold!"))
 	owner.remove_antag_datum(/datum/antagonist/ex_vassal)
 
 

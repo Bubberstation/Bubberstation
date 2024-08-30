@@ -80,7 +80,7 @@
 	if (needs_update)
 		SSlighting.sources_queue -= src
 		SSlighting.current_sources -= src
-		
+
 	top_atom = null
 	source_atom = null
 	source_turf = null
@@ -95,6 +95,7 @@
 	LAZYADD(new_atom_host.light_sources, src)
 	if(ismovable(new_atom_host) && new_atom_host == source_atom)
 		RegisterSignal(new_atom_host, COMSIG_MOVABLE_MOVED, PROC_REF(update_host_lights))
+	RegisterSignal(new_atom_host, COMSIG_TURF_NO_LONGER_BLOCK_LIGHT, PROC_REF(force_update))
 	return TRUE
 
 ///remove this light source from old_atom_host's light_sources list, unsetting movement registrations
@@ -105,16 +106,8 @@
 	LAZYREMOVE(old_atom_host.light_sources, src)
 	if(ismovable(old_atom_host) && old_atom_host == source_atom)
 		UnregisterSignal(old_atom_host, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(old_atom_host, COMSIG_TURF_NO_LONGER_BLOCK_LIGHT)
 	return TRUE
-
-///signal handler for when our host atom moves and we need to update our effects
-/datum/light_source/proc/update_host_lights(atom/movable/host)
-	SIGNAL_HANDLER
-
-	if(QDELETED(host))
-		return
-
-	host.update_light()
 
 // Yes this doesn't align correctly on anything other than 4 width tabs.
 // If you want it to go switch everybody to elastic tab stops.
@@ -127,6 +120,19 @@
 		needs_update = level;                 \
 	}
 
+///signal handler for when our host atom moves and we need to update our effects
+/datum/light_source/proc/update_host_lights(atom/movable/host)
+	SIGNAL_HANDLER
+	if(QDELETED(host))
+		return
+
+	// If the host is our owner, we want to call their update so they can decide who the top atom should be
+	if(host == source_atom)
+		host.update_light()
+		return
+
+	// Otherwise, our top atom just moved, so we trigger a normal rebuild
+	EFFECT_UPDATE(LIGHTING_CHECK_UPDATE)
 
 /// This proc will cause the light source to update the top atom, and add itself to the update queue.
 /datum/light_source/proc/update(atom/new_top_atom)

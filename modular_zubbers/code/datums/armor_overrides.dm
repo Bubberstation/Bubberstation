@@ -16,6 +16,7 @@
 
 /obj/item/mod/control/pre_equipped/security/Initialize()
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
+	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
 
 /datum/mod_theme/safeguard //HoS
@@ -35,6 +36,7 @@
 
 /obj/item/mod/control/pre_equipped/safeguard/Initialize()
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security/safeguard
+	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
 
 /datum/mod_theme/magnate // Captain
@@ -54,6 +56,7 @@
 
 /obj/item/mod/control/pre_equipped/magnate/Initialize()
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/magnate
+	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
 
 /datum/mod_theme/responsory // ERT
@@ -116,7 +119,7 @@
 	wound = 20
 
 /obj/item/mod/control/pre_equipped/blueshield/
-	applied_cell = /obj/item/stock_parts/cell/high
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
 		/obj/item/mod/module/storage,
 		/obj/item/mod/module/magnetic_harness,

@@ -69,15 +69,13 @@
 		COOLDOWN_START(src, grab_cooldown, use_cooldown)
 		return
 
-/obj/item/physic_manipulation_tool/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
 
 /obj/item/physic_manipulation_tool/dropped(mob/user, silent)
 	. = ..()
 	if(handlet_atom)
 		release_atom()
 
-/obj/item/physic_manipulation_tool/AltClick(mob/user)
+/obj/item/physic_manipulation_tool/click_alt(mob/user)
 	. = ..()
 	var/choised_color = input(usr, "Pick new effects color", "Physgun color") as color|null
 	effects_color = choised_color

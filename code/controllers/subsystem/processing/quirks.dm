@@ -5,14 +5,16 @@
 // Shifted to glob so they are generated at world start instead of risking players doing preference stuff before the subsystem inits
 GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted),
+	list(/datum/quirk/item_quirk/blindness, /datum/quirk/touchy),
 	list(/datum/quirk/jolly, /datum/quirk/depression, /datum/quirk/apathetic, /datum/quirk/hypersensitive),
 	list(/datum/quirk/no_taste, /datum/quirk/vegetarian, /datum/quirk/deviant_tastes, /datum/quirk/gamer),
 	list(/datum/quirk/pineapple_liker, /datum/quirk/pineapple_hater, /datum/quirk/gamer),
 	list(/datum/quirk/alcohol_tolerance, /datum/quirk/light_drinker),
-	list(/datum/quirk/item_quirk/clown_enjoyer, /datum/quirk/item_quirk/mime_fan, /datum/quirk/item_quirk/pride_pin),
+	list(/datum/quirk/item_quirk/clown_enjoyer, /datum/quirk/item_quirk/mime_fan),
 	list(/datum/quirk/bad_touch, /datum/quirk/friendly),
 	list(/datum/quirk/extrovert, /datum/quirk/introvert),
-	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/transhumanist, /datum/quirk/body_purist),
+	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/body_purist),
+	list(/datum/quirk/transhumanist, /datum/quirk/body_purist),
 	list(/datum/quirk/prosthetic_organ, /datum/quirk/tin_man, /datum/quirk/body_purist),
 	list(/datum/quirk/quadruple_amputee, /datum/quirk/paraplegic, /datum/quirk/hemiplegic),
 	//list(/datum/quirk/quadruple_amputee, /datum/quirk/frail), // SKYRAT EDIT REMOVAL- Since we have synth wounds now, frail has a large downside for prosthetics and such
@@ -35,7 +37,13 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/light_drinker, /datum/quirk/drunkhealing),
 	list(/datum/quirk/oversized, /datum/quirk/freerunning),
 	list(/datum/quirk/oversized, /datum/quirk/item_quirk/settler),
+	list(/datum/quirk/echolocation, /datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted, /datum/quirk/item_quirk/deafness),
 	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION BEGIN
+	list(/datum/quirk/featherweight, /datum/quirk/oversized),
+	list(/datum/quirk/overweight, /datum/quirk/obese),
+	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained)
+	//BUBBER EDIT ADDITION END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -63,12 +71,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_points = list() //Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	///An assoc list of quirks that can be obtained as a hardcore character, and their hardcore value.
 	var/list/hardcore_quirks = list()
-	//BUBBER EDIT ADDITION START - Species quirks
-	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
-	var/static/list/quirk_species_whitelist = list(
-		list("Hydrophilic", "[SPECIES_SLIMESTART]")
-	)
-	//BUBBER EDIT ADDITION END
+
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
 	return SS_INIT_SUCCESS

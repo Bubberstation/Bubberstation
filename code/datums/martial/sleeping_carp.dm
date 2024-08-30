@@ -9,7 +9,7 @@
 	help_verb = /mob/living/proc/sleeping_carp_help
 	display_combos = TRUE
 	/// List of traits applied to users of this martial art.
-	var/list/scarp_traits = list(TRAIT_NOGUNS, TRAIT_HARDLY_WOUNDED, TRAIT_NODISMEMBER, TRAIT_HEAVY_SLEEPER)
+	var/list/scarp_traits = list(TRAIT_NOGUNS, TRAIT_TOSS_GUN_HARD, TRAIT_HARDLY_WOUNDED, TRAIT_NODISMEMBER, TRAIT_HEAVY_SLEEPER)
 
 /datum/martial_art/the_sleeping_carp/on_teach(mob/living/new_holder)
 	. = ..()
@@ -188,8 +188,7 @@
 		return FALSE
 	if(!(carp_user.mobility_flags & MOBILITY_USE)) //NO UNABLE TO USE
 		return FALSE
-	var/datum/dna/dna = carp_user.has_dna()
-	if(dna?.check_mutation(/datum/mutation/human/hulk)) //NO HULK
+	if(HAS_TRAIT(carp_user, TRAIT_HULK)) //NO HULK
 		return FALSE
 	if(!isturf(carp_user.loc)) //NO MOTHERFLIPPIN MECHS!
 		return FALSE
@@ -322,6 +321,21 @@
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		return ..()
 	return FALSE
+
+/obj/item/clothing/gloves/the_sleeping_carp
+	name = "carp gloves"
+	desc = "These gloves are capable of making people use The Sleeping Carp."
+	icon_state = "black"
+	greyscale_colors = COLOR_BLACK
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+
+/obj/item/clothing/gloves/the_sleeping_carp/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/the_sleeping_carp)
 
 #undef STRONG_PUNCH_COMBO
 #undef LAUNCH_KICK_COMBO

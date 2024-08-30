@@ -12,15 +12,16 @@
 /obj/item/stack/rail_track/fifty
 	amount = 50
 
-/obj/item/stack/rail_track/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!isopenturf(target) || !proximity_flag)
-		return ..()
-	var/turf/target_turf = get_turf(target)
+/obj/item/stack/rail_track/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!isopenturf(interacting_with))
+		return NONE
+	var/turf/open/target_turf = get_turf(interacting_with)
 	var/obj/structure/railroad/check_rail = locate() in target_turf
 	if(check_rail || !use(1))
-		return ..()
+		return NONE
 	to_chat(user, span_notice("You place [src] on [target_turf]."))
-	new /obj/structure/railroad(get_turf(target))
+	new /obj/structure/railroad(target_turf)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/railroad
 	name = "railroad track"
@@ -31,33 +32,29 @@
 
 /obj/structure/railroad/Initialize(mapload)
 	. = ..()
-	for(var/obj/structure/railroad/rail in range(1))
-		addtimer(CALLBACK(rail, /atom/proc/update_appearance), 5)
+	for(var/obj/structure/railroad/rail in range(2, src))
+		rail.change_look()
 
 /obj/structure/railroad/Destroy()
-	. = ..()
-	for(var/obj/structure/railroad/rail in range(1))
-		if(rail == src)
-			continue
-		addtimer(CALLBACK(rail, /atom/proc/update_appearance), 5)
+	for(var/obj/structure/railroad/rail in range(2, src))
+		rail.change_look(src)
+	return ..()
 
-/obj/structure/railroad/update_appearance(updates)
+/obj/structure/railroad/proc/change_look(obj/structure/target_structure = null)
 	icon_state = "rail"
 	var/turf/src_turf = get_turf(src)
 	for(var/direction in GLOB.cardinals)
 		var/obj/structure/railroad/locate_rail = locate() in get_step(src_turf, direction)
-		if(!locate_rail)
+		if(!locate_rail || (target_structure && locate_rail == target_structure))
 			continue
 		icon_state = "[icon_state][direction]"
-	return ..()
+	update_appearance()
 
 /obj/structure/railroad/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	if(!do_after(user, 2 SECONDS, src))
-		return
-	tool.play_tool_sound(src)
 	new /obj/item/stack/rail_track(get_turf(src))
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/ridden/rail_cart
 	name = "rail cart"
@@ -78,7 +75,7 @@
 /obj/vehicle/ridden/rail_cart/Initialize(mapload)
 	. = ..()
 	attach_trailer()
-	railoverlay = mutable_appearance(icon, "railoverlay", ABOVE_MOB_LAYER, src)
+	railoverlay = mutable_appearance(icon, "railoverlay", ABOVE_MOB_LAYER, src, ABOVE_GAME_PLANE)
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/rail_cart)
 
 	create_storage(max_total_storage = 21, max_slots = 21)
@@ -106,9 +103,9 @@
 		return relaydrive(user, direction)
 	return FALSE
 
-/obj/vehicle/ridden/rail_cart/AltClick(mob/user)
-	. = ..()
+/obj/vehicle/ridden/rail_cart/click_alt(mob/user)
 	attach_trailer()
+	return CLICK_ACTION_SUCCESS
 
 /obj/vehicle/ridden/rail_cart/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

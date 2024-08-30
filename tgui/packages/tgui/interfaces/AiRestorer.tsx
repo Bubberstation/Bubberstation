@@ -1,6 +1,3 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -92,6 +92,15 @@ export const AiRestorerContent = (props) => {
             disabled={restoring}
             mt={1}
             onClick={() => act('PRG_beginReconstruction')}
+          />
+          {/* BUBBER ADDITION - Malf Remover */}
+          <Button
+            fluid
+            icon="bug"
+            content="Run Dr. Moffson Antivirus"
+            disabled={restoring}
+            mt={1}
+            onClick={() => act('PRG_Moffson')}
           />
           <Section title="Laws">
             {laws.map((law) => (

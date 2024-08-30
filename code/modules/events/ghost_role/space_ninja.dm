@@ -19,16 +19,12 @@
 		return MAP_ERROR
 
 	//selecting a candidate player
-	var/list/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_NINJA, role = ROLE_NINJA, pic_source = /obj/item/energy_katana)
-	if(!candidates.len)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_NINJA, role = ROLE_NINJA, alert_pic = /obj/item/energy_katana, jump_target = spawn_location, role_name_text = "space ninja", amount_to_pick = 1)
+	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
-
-	var/mob/dead/selected_candidate = pick(candidates)
-	var/key = selected_candidate.key
-
 	//spawn the ninja and assign the candidate
 	var/mob/living/carbon/human/ninja = create_space_ninja(spawn_location)
-	ninja.key = key
+	ninja.key = chosen_one.key
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 	spawned_mobs += ninja
 // SKYRAT EDIT ADDITION BEGIN: Preference Ninjas
@@ -44,6 +40,10 @@
 	else
 		ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
 		ninja.dna.update_dna_identity()
+	//BUBBER EDIT BEGIN
+	var/obj/item/mod/control/ninjamod = locate(/obj/item/mod/control/pre_equipped/ninja) in ninja.contents
+	var/obj/item/mod/module/dna_lock/reinforced/ninja_dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in ninjamod.contents
+	ninja_dna_lock.on_use()// BUBBER EDIT END
 
 // SKYRAT EDIT ADDITION END: Preference Ninjas
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")

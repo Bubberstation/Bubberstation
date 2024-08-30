@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
+// GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 
 /// The flag to show that snouts should use the muzzled sprite.
 #define SPRITE_ACCESSORY_USE_MUZZLED_SPRITE (1<<0)
@@ -39,16 +39,10 @@ GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 
 	///Set this to true to make an accessory appear as color customizable in preferences despite advanced color settings being off, will also prevent the accessory from being reset
 	var/always_color_customizable
-	///Whether the accessory can have a special icon_state to render, i.e. wagging tails
-	var/special_render_case
 	///Special case of whether the accessory should be shifted in the X dimension, check taur genitals for example
 	var/special_x_dimension
-	///Special case of whether the accessory should have a different icon, check taur genitals for example
-	var/special_icon_case
 	///Special case for MODsuit overlays
 	var/use_custom_mod_icon
-	///Special case of applying a different color
-	var/special_colorize
 	///If defined, the accessory will be only available to ckeys inside the list. ITS ASSOCIATIVE, ie. ("ckey" = TRUE). For speed
 	var/list/ckey_whitelist
 	///Whether this feature is genetic, and thus modifiable by DNA consoles
@@ -67,34 +61,25 @@ GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 				default_color = DEFAULT_MATRIXED
 			else
 				default_color = "#FFFFFF"
-	if(name == "None")
+	if(name == SPRITE_ACCESSORY_NONE)
 		factual = FALSE
 	if(color_src == USE_MATRIXED_COLORS && default_color != DEFAULT_MATRIXED)
 		default_color = DEFAULT_MATRIXED
 	if (color_src == USE_MATRIXED_COLORS)
 		color_layer_names = list()
-		if (!GLOB.cached_mutant_icon_files[icon])
-			GLOB.cached_mutant_icon_files[icon] = icon_states(new /icon(icon))
+		if (!SSaccessories.cached_mutant_icon_files[icon])
+			SSaccessories.cached_mutant_icon_files[icon] = icon_states(new /icon(icon))
 		for (var/layer in relevent_layers)
 			var/layertext = layer == BODY_BEHIND_LAYER ? "BEHIND" : (layer == BODY_ADJ_LAYER ? "ADJ" : "FRONT")
-			if ("m_[key]_[icon_state]_[layertext]_primary" in GLOB.cached_mutant_icon_files[icon])
+			if ("m_[key]_[icon_state]_[layertext]_primary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["1"] = "primary"
-			if ("m_[key]_[icon_state]_[layertext]_secondary" in GLOB.cached_mutant_icon_files[icon])
+			if ("m_[key]_[icon_state]_[layertext]_secondary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["2"] = "secondary"
-			if ("m_[key]_[icon_state]_[layertext]_tertiary" in GLOB.cached_mutant_icon_files[icon])
+			if ("m_[key]_[icon_state]_[layertext]_tertiary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["3"] = "tertiary"
 
 /datum/sprite_accessory/proc/is_hidden(mob/living/carbon/human/owner)
 	return FALSE
-
-/datum/sprite_accessory/proc/get_special_render_state(mob/living/carbon/human/H)
-	return null
-
-/datum/sprite_accessory/proc/get_special_render_key(mob/living/carbon/human/owner)
-	return key
-
-/datum/sprite_accessory/proc/get_special_render_colour(mob/living/carbon/human/H, passed_state)
-	return null
 
 /datum/sprite_accessory/proc/get_special_icon(mob/living/carbon/human/H, passed_state)
 	return icon
@@ -135,64 +120,55 @@ GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 /datum/sprite_accessory/moth_markings/is_hidden(mob/living/carbon/human/owner)
 	return FALSE
 
-
-/datum/sprite_accessory/moth_antennae/none
-	name = "None"
+/datum/sprite_accessory/moth_markings/none
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 
-
 /datum/sprite_accessory/pod_hair
-	name = "None"
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
-	icon_state = "None"
 	key = "pod_hair"
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
 	organ_type = /obj/item/organ/external/pod_hair
 
-
-/datum/sprite_accessory/spines
-	key = "spines"
-	generic = "Spines"
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/lizard_spines.dmi'
-	special_render_case = TRUE
-	default_color = DEFAULT_SECONDARY
-	recommended_species = list(SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
-	genetic = TRUE
-	organ_type = /obj/item/organ/external/spines
-
-/datum/sprite_accessory/spines/is_hidden(mob/living/carbon/human/wearer)
-	var/obj/item/organ/external/tail/tail = wearer.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
-	if(!wearer.w_uniform && !wearer.wear_suit)
-		return FALSE
-	//	Can hide if wearing uniform
-	if(key in wearer.try_hide_mutant_parts)
-		return TRUE
-	if(wearer.wear_suit)
-	//	Exception for MODs
-		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
-			return FALSE
-	else if(!tail \
-			|| (wearer.wear_suit \
-				&& (wearer.wear_suit.flags_inv & HIDETAIL \
-				|| wearer.wear_suit.flags_inv & HIDESPINE) \
-			)
-		)
-		return TRUE
-
-/datum/sprite_accessory/spines/get_special_render_state(mob/living/carbon/human/H)
-	return icon_state
+/datum/sprite_accessory/pod_hair/none
+	name = SPRITE_ACCESSORY_NONE
+	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/caps
 	key = "caps"
 	generic = "Caps"
+	icon = 'icons/mob/human/species/mush_cap.dmi'
+	relevent_layers = list(BODY_ADJ_LAYER)
 	color_src = USE_ONE_COLOR
-	organ_type = /obj/item/organ/external/cap
+	organ_type = /obj/item/organ/external/mushroom_cap
+	genetic = TRUE
 
-/datum/sprite_accessory/body_markings
+/datum/sprite_accessory/caps/is_hidden(mob/living/carbon/human/human)
+	if(((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR)) || (key in human.try_hide_mutant_parts))
+		return TRUE
+
+	return FALSE
+
+/datum/sprite_accessory/caps/none
+	name = SPRITE_ACCESSORY_NONE
+	icon_state = "none"
+	color_src = null
+	factual = FALSE
+
+/datum/sprite_accessory/caps/round
+	name = "Round"
+	icon_state = "round"
+
+/datum/sprite_accessory/lizard_markings
 	key = "body_markings"
 	generic = "Body Markings"
 	default_color = DEFAULT_TERTIARY
+
+/datum/sprite_accessory/lizard_markings/none
+	name = SPRITE_ACCESSORY_NONE
+	icon_state = "none"
+
 
 /datum/sprite_accessory/legs
 	key = "legs"

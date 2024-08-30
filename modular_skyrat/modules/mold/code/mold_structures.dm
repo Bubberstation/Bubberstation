@@ -131,7 +131,7 @@
 	icon = 'modular_skyrat/modules/mold/icons/blob_resin.dmi'
 	icon_state = "blob_floor"
 	density = FALSE
-	plane = FLOOR_PLANE
+	plane = GAME_PLANE
 	layer = LOW_SIGIL_LAYER
 	max_integrity = 25 //BUBBERSTATION CHANGE
 	var/blooming = FALSE
@@ -380,7 +380,13 @@
 
 /obj/structure/mold/structure/spawner/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/spawner, mold_type.mob_types, mold_type.spawn_cooldown, mold_type.max_spawns, list(FACTION_MOLD), "emerges from")
+	AddComponent(/datum/component/spawner, \
+		spawn_types = mold_type.mob_types, \
+		spawn_time = mold_type.spawn_cooldown, \
+		max_spawned = mold_type.max_spawns, \
+		faction = list(FACTION_MOLD), \
+		spawn_text = "emerges from", \
+	)
 
 #undef CORE_RETALIATION_COOLDOWN
 #undef MOLD_BULB_ALPHA

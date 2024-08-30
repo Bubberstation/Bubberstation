@@ -3,23 +3,28 @@
 #define SMOOTH_CORNERS (1<<0)
 /// Smoothing system in where adjacencies are calculated and used to select a pre-baked icon_state, encoded by bitmasking.
 #define SMOOTH_BITMASK (1<<1)
+/// Limits SMOOTH_BITMASK to only cardinal directions, for use with cardinal smoothing
+#define SMOOTH_BITMASK_CARDINALS (1<<2)
 /// Atom has diagonal corners, with underlays under them.
-#define SMOOTH_DIAGONAL_CORNERS (1<<2)
+#define SMOOTH_DIAGONAL_CORNERS (1<<3)
 /// Atom will smooth with the borders of the map.
-#define SMOOTH_BORDER (1<<3)
+#define SMOOTH_BORDER (1<<4)
 /// Atom is currently queued to smooth.
-#define SMOOTH_QUEUED (1<<4)
+#define SMOOTH_QUEUED (1<<5)
 /// Smooths with objects, and will thus need to scan turfs for contents.
-#define SMOOTH_OBJ (1<<5)
+#define SMOOTH_OBJ (1<<6)
 /// Uses directional object smoothing, so we care not only about something being on the right turf, but also its direction
 /// Changes the meaning of smoothing_junction, instead of representing the directions we are smoothing in
 /// it represents the sides of our directional border object that have a neighbor
 /// Is incompatible with SMOOTH_CORNERS because border objects don't have corners
-#define SMOOTH_BORDER_OBJECT (1<<6)
+#define SMOOTH_BORDER_OBJECT (1<<7)
+
+#define USES_SMOOTHING (SMOOTH_CORNERS|SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS)
 
 DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
 	"SMOOTH_BITMASK" = SMOOTH_BITMASK,
+	"SMOOTH_BITMASK_CARDINALS" = SMOOTH_BITMASK_CARDINALS,
 	"SMOOTH_DIAGONAL_CORNERS" = SMOOTH_DIAGONAL_CORNERS,
 	"SMOOTH_BORDER" = SMOOTH_BORDER,
 	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
@@ -38,6 +43,9 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SOUTHWEST_JUNCTION (1<<6)
 #define NORTHWEST_JUNCTION (1<<7)
 
+#define CARDINAL_SMOOTHING_JUNCTIONS (NORTH_JUNCTION|SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)
+#define ALL_SMOOTHING_JUNCTIONS (NORTH_JUNCTION|SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION|NORTHEAST_JUNCTION|SOUTHEAST_JUNCTION|SOUTHWEST_JUNCTION|NORTHWEST_JUNCTION)
+
 DEFINE_BITFIELD(smoothing_junction, list(
 	"NORTH_JUNCTION" = NORTH_JUNCTION,
 	"SOUTH_JUNCTION" = SOUTH_JUNCTION,
@@ -51,7 +59,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 /*smoothing macros*/
 
-#define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) {SSicon_smooth.add_to_queue(thing_to_queue)}
+#define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & USES_SMOOTHING) {SSicon_smooth.add_to_queue(thing_to_queue)}
 
 #define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/atom/atom_neighbor as anything in orange(1, thing_to_queue)) {QUEUE_SMOOTH(atom_neighbor)}
 
@@ -174,8 +182,6 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM S_OBJ(24) ///turf/closed/indestructible/opsglass, /obj/structure/window/reinforced/plasma/plastitanium
 #define SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE S_OBJ(25) ///obj/structure/window/reinforced/shuttle
 
-#define SMOOTH_GROUP_WINDOW_DIRECTIONAL_TRAM S_OBJ(26) ///obj/structure/tram
-
 #define SMOOTH_GROUP_LATTICE S_OBJ(31) ///obj/structure/lattice
 #define SMOOTH_GROUP_CATWALK S_OBJ(32) ///obj/structure/lattice/catwalk
 
@@ -205,12 +211,18 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_CLEANABLE_DIRT S_OBJ(68) ///obj/effect/decal/cleanable/dirt
 
-#define SMOOTH_GROUP_GAS_TANK S_OBJ(72)
+#define SMOOTH_GROUP_GAS_TANK S_OBJ(69)
+
+#define SMOOTH_GROUP_SPIDER_WEB S_OBJ(70) // /obj/structure/spider/stickyweb
+#define SMOOTH_GROUP_SPIDER_WEB_WALL S_OBJ(71) // /obj/structure/spider/stickyweb/sealed
+#define SMOOTH_GROUP_SPIDER_WEB_ROOF S_OBJ(72) // /obj/structure/spider/passage
+#define SMOOTH_GROUP_SPIDER_WEB_WALL_TOUGH S_OBJ(73) // /obj/structure/spider/stickyweb/sealed/thick
+#define SMOOTH_GROUP_SPIDER_WEB_WALL_MIRROR S_OBJ(74) // /obj/structure/spider/stickyweb/sealed/reflector
 
 //SKYRAT EDIT ADDITION
-#define SMOOTH_GROUP_SHUTTERS S_OBJ(73)
+#define SMOOTH_GROUP_SHUTTERS S_OBJ(75)
 
-#define SMOOTH_GROUP_WATER S_OBJ(74) ///obj/effect/abstract/liquid_turf
+#define SMOOTH_GROUP_WATER S_OBJ(76) ///obj/effect/abstract/liquid_turf
 //SKYRAT EDIT END
 
 /// Performs the work to set smoothing_groups and canSmoothWith.

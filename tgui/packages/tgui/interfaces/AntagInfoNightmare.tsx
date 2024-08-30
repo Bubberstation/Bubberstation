@@ -1,4 +1,5 @@
-import { BlockQuote, LabeledList, Section, Stack } from '../components';
+import { BlockQuote, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
 
@@ -64,7 +65,7 @@ export const AntagInfoNightmare = (props) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Light Eater">
                   Your twisted appendage. It will consume the light of what it
-                  touches, be it victim or object. After 15 seconds of being in
+                  touches, be it victim or object. After 7 seconds of being in
                   jaunt, stabbing a foe will stun them or do extra damage.
                 </LabeledList.Item>
               </LabeledList>

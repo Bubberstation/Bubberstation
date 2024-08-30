@@ -79,9 +79,13 @@
 	you_are_text = "You are an Interdyne Deck Officer, employed in a top secret research facility developing biological weapons."
 	outfit = /datum/outfit/lavaland_syndicate/shaftminer/deckofficer
 
+/* Bubberstation Removal Start - Don't spawn empty sleeper
+
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deckofficer/Destroy()
 	new/obj/structure/fluff/empty_sleeper/syndicate/captain(get_turf(src))
 	return ..()
+
+Bubberstation Removal End */
 
 /datum/outfit/lavaland_syndicate/shaftminer/ice
 	name = "Icemoon Interdyne Shaft Miner"

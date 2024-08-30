@@ -8,7 +8,7 @@
 		Riot gear and Monster Hunters are protected and will only be passively grabbed.\n\
 		You cannot use the Power if you are already grabbing someone, or are being grabbed.\n\
 		If you grab from behind, or while using cloak of darkness, you will knock the target down.\n\
-		If used on a dead body, will tear their heart out.\n\
+		If used on a dead body, will tear out a random organ from the zone you are targeting.\n\
 		Higher levels increase the knockdown dealt to enemies.\n\
 		At level 4, you will no longer spin, but you will be limited to tackling from only 6 tiles away."
 	power_flags = NONE
@@ -137,32 +137,48 @@
 		user.spin(10)
 		return
 	// Is my target a Monster hunter?
-	if(HAS_TRAIT(target, TRAIT_SHOVE_KNOCKDOWN_BLOCKED))
-		owner.balloon_alert(owner, "pushed away!")
-		target.grabbedby(owner)
+	if(HAS_TRAIT(target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
+		user.balloon_alert(user, "pushed away!")
+		target.grabbedby(user)
 		return
 
-	owner.balloon_alert(owner, "you lunge at [target]!")
+	user.balloon_alert(user, "you lunge at [target]!")
+	user.changeNext_move(CLICK_CD_MELEE)
 	if(target.stat == DEAD)
-		var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
+		var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(user.zone_selected))
+		if(!bodypart)
+			target.balloon_alert(user, "bodypart missing!")
+			return
 		var/datum/wound/slash/flesh/moderate/crit_wound = new
-		crit_wound.apply_wound(chest)
-		owner.visible_message(
-			span_warning("[owner] tears into [target]'s chest!"),
-			span_warning("You tear into [target]'s chest!"))
+		crit_wound.sound_effect = null
+		crit_wound.apply_wound(bodypart)
+		user.visible_message(
+			span_warning("[user] tears into [target]'s [bodypart]!"),
+			span_warning("You tear into [target]'s [bodypart]!"))
+		playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE, 5)
+		var/obj/item/organ/internal/myheart_now
+		if(bodypart.body_zone == BODY_ZONE_CHEST)
+			myheart_now = target.get_organ_slot(ORGAN_SLOT_HEART)
+		if(!myheart_now)
+			var/list/organs = target.get_organs_for_zone(bodypart.body_zone)
+			if(!length(organs))
+				to_chat(user, span_warning("[target] has no organs in [bodypart]!"))
+				target.balloon_alert(user, "no organs!")
+				return
+			myheart_now = pick(organs)
 
-		var/obj/item/organ/internal/heart/myheart_now = locate() in target.organs
 		if(myheart_now)
 			myheart_now.Remove(target)
 			user.put_in_hands(myheart_now)
 
 	else
-		target.grabbedby(owner)
-		target.grippedby(owner, instant = TRUE)
-		// Did we knock them down?
-		if(!is_source_facing_target(target, owner) || owner.alpha <= 40)
+		if(!is_source_facing_target(target, user) || user.alpha <= 40)
 			target.Knockdown(10 + level_current * 5)
 			target.Paralyze(0.1)
+		target.grabbedby(user)
+		target.grippedby(user, instant = TRUE)
+		// Did we knock them down?
+
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, BLOODSUCKER_TRAIT)

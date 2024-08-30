@@ -51,7 +51,7 @@
 		authenticated_user = auth_card.registered_name ? auth_card.registered_name : "Unknown"
 		job_templates = is_centcom ? SSid_access.centcom_job_templates.Copy() : SSid_access.station_job_templates.Copy()
 		valid_access = is_centcom ? SSid_access.get_region_access_list(list(REGION_CENTCOM)) : SSid_access.get_region_access_list(list(REGION_ALL_STATION))
-		update_static_data(user)
+		computer.update_static_data_for_all_viewers()
 		return TRUE
 
 	// Otherwise, we're minor and now we have to build a list of restricted departments we can change access for.
@@ -59,6 +59,10 @@
 	for(var/access_as_text in managers)
 		var/list/info = managers[access_as_text]
 		var/access = access_as_text
+		// BUBBER EDIT START - No weird captain bypass
+		if(access == ACCESS_CAPTAIN)
+			continue
+		// BUBBER EDIT END
 		if((access in auth_card.access) && ((target_dept in info["regions"]) || !target_dept))
 			region_access |= info["regions"]
 			job_templates |= info["templates"]
@@ -67,7 +71,7 @@
 		minor = TRUE
 		valid_access |= SSid_access.get_region_access_list(region_access)
 		authenticated_card = "[auth_card.name] \[LIMITED ACCESS\]"
-		update_static_data(user)
+		computer.update_static_data_for_all_viewers()
 		return TRUE
 
 	return FALSE

@@ -9,15 +9,16 @@
 	base_icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
-	pass_flags_self = PASSGRILLE
-	obj_flags = CONDUCTS_ELECTRICITY
-	obj_flags = CAN_BE_HIT | IGNORE_DENSITY
+	pass_flags_self = PASSGRILLE | PASSWINDOW
+	obj_flags = CONDUCTS_ELECTRICITY | CAN_BE_HIT | IGNORE_DENSITY
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	armor_type = /datum/armor/structure_grille
 	max_integrity = 50
 	integrity_failure = 0.4
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
+	/// Whether or not we're disappearing but dramatically
+	var/dramatically_disappearing = FALSE
 
 /datum/armor/structure_grille
 	melee = 50
@@ -43,7 +44,7 @@
 		return
 
 	. = ..()
-	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
+	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & USES_SMOOTHING))
 		QUEUE_SMOOTH(src)
 
 /obj/structure/grille/update_icon_state()
@@ -52,8 +53,6 @@
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()
-	if(obj_flags & NO_DECONSTRUCTION)
-		return
 
 	if(anchored)
 		. += span_notice("It's secured in place with <b>screws</b>. The rods look like they could be <b>cut</b> through.")
@@ -200,10 +199,8 @@
 	add_fingerprint(user)
 	if(shock(user, 100))
 		return
-	if(obj_flags & NO_DECONSTRUCTION)
-		return FALSE
 	tool.play_tool_sound(src, 100)
-	deconstruct()
+	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/grille/screwdriver_act(mob/living/user, obj/item/tool)
@@ -211,8 +208,6 @@
 		return FALSE
 	add_fingerprint(user)
 	if(shock(user, 90))
-		return FALSE
-	if(obj_flags & NO_DECONSTRUCTION)
 		return FALSE
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
@@ -296,18 +291,13 @@
 			playsound(src, 'sound/items/welder.ogg', 80, TRUE)
 
 
-/obj/structure/grille/deconstruct(disassembled = TRUE)
-	if(!loc) //if already qdel'd somehow, we do nothing
-		return
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		var/obj/R = new rods_type(drop_location(), rods_amount)
-		transfer_fingerprints_to(R)
-		qdel(src)
-	..()
+/obj/structure/grille/atom_deconstruct(disassembled = TRUE)
+	var/obj/rods = new rods_type(drop_location(), rods_amount)
+	transfer_fingerprints_to(rods)
 
 /obj/structure/grille/atom_break()
 	. = ..()
-	if(!broken && !(obj_flags & NO_DECONSTRUCTION))
+	if(!broken)
 		icon_state = "brokengrille"
 		set_density(FALSE)
 		atom_integrity = 20
@@ -339,19 +329,19 @@
 	var/turf/T = get_turf(src)
 	if(T.overfloor_placed)//cant be a floor in the way!
 		return FALSE
-	// Shocking hurts the grille (to weaken monkey powersinks)
-	if(prob(50))
+
+	var/obj/structure/cable/cable_node = T.get_cable_node()
+	if(isnull(cable_node))
+		return FALSE
+	if(!electrocute_mob(user, cable_node, src, 1, TRUE))
+		return FALSE
+	if(prob(50)) // Shocking hurts the grille (to weaken monkey powersinks)
 		take_damage(1, BURN, FIRE, sound_effect = FALSE)
-	var/obj/structure/cable/C = T.get_cable_node()
-	if(C)
-		if(electrocute_mob(user, C, src, 1, TRUE))
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(3, 1, src)
-			s.start()
-			return TRUE
-		else
-			return FALSE
-	return FALSE
+	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
+	sparks.set_up(3, 1, src)
+	sparks.start()
+
+	return TRUE
 
 /obj/structure/grille/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return exposed_temperature > T0C + 1500 && !broken
@@ -376,6 +366,31 @@
 
 /obj/structure/grille/get_dumping_location()
 	return null
+
+/obj/structure/grille/proc/temporary_shatter(time_to_go = 0 SECONDS, time_to_return = 4 SECONDS)
+	if(dramatically_disappearing)
+		return
+
+	//dissapear in 1 second
+	dramatically_disappearing = TRUE
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, moveToNullspace)), time_to_go) //woosh
+
+	// come back in 1 + 4 seconds
+	addtimer(VARSET_CALLBACK(src, atom_integrity, atom_integrity), time_to_go + time_to_return) //set the health back (icon is updated on move)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, forceMove), loc), time_to_go + time_to_return) //we back boys
+	addtimer(VARSET_CALLBACK(src, dramatically_disappearing, FALSE), time_to_go + time_to_return) //also set the var back
+
+/// Do some very specific checks to see if we *would* get shocked. Returns TRUE if it's shocked
+/obj/structure/grille/proc/is_shocked()
+	var/turf/turf = get_turf(src)
+	var/obj/structure/cable/cable = turf.get_cable_node()
+	var/list/powernet_info = get_powernet_info_from_source(cable)
+
+	if(!powernet_info)
+		return FALSE
+
+	var/datum/powernet/powernet = powernet_info["powernet"]
+	return !!powernet.get_electrocute_damage()
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
 	icon_state = "brokengrille"

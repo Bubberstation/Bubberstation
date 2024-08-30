@@ -92,6 +92,20 @@
 		robot_resting = FALSE
 		update_icons()
 
+/mob/living/silicon/robot/update_worn_icons()
+	if(!hat_overlay)
+		return
+	cut_overlay(hat_overlay)
+
+	var/list/offset_list = ((robot_resting && model.rest_hat_offset) ? model.rest_hat_offset : model.hat_offset)
+	if(islist(offset_list))
+		var/list/offset = offset_list[ISDIAGONALDIR(dir) ? dir2text(dir & (WEST|EAST)) : dir2text(dir)]
+		if(offset)
+			hat_overlay.pixel_w = offset[1]
+			hat_overlay.pixel_z = offset[2]
+
+	add_overlay(hat_overlay)
+
 /mob/living/silicon/robot/update_module_innate()
 	..()
 	if(hands)
@@ -103,7 +117,7 @@
  * model_features is defined in modular_skyrat\modules\altborgs\code\modules\mob\living\silicon\robot\robot_model.dm.
  */
 /mob/living/silicon/robot/proc/can_rest()
-	if(model && model.model_features && ((TRAIT_R_WIDE in model.model_features) || (TRAIT_R_TALL in model.model_features)))
+	if(model && model.model_features && ((TRAIT_R_WIDE in model.model_features) || (TRAIT_R_TALL in model.model_features) || (TRAIT_R_SQUADRUPED in model.model_features)))// BUBBER EDIT - added small quadrupeds
 		if(TRAIT_IMMOBILIZED in _status_traits)
 			return FALSE
 		return TRUE

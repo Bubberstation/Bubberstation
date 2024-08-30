@@ -138,6 +138,21 @@
 	mob_type = /mob/living/carbon/human/species/lizard/ashwalker;
 	outfit = /datum/outfit/consumed_ashwalker
 
+/obj/effect/mob_spawn/ghost_role/human/oldsec
+	loadout_enabled = TRUE
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+
+/obj/effect/mob_spawn/ghost_role/human/oldsci
+	loadout_enabled = TRUE
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+
+/obj/effect/mob_spawn/ghost_role/human/oldeng
+	loadout_enabled = TRUE
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+
 //OUTFITS//
 /datum/outfit/syndicatespace/syndicrew
 	ears = /obj/item/radio/headset/cybersun
@@ -156,7 +171,7 @@
 		id_card.registered_name = syndicate.real_name
 		id_card.update_label()
 		id_card.update_icon()
-
+	syndicate.apply_pref_name(/datum/preference/name/syndicate, syndicate.client)
 	handlebank(syndicate)
 	return ..()
 

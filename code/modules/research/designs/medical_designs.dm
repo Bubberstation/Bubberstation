@@ -403,7 +403,11 @@
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	id = "ci-surgery"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 	construction_time = 2 SECONDS
 	build_path = /obj/item/organ/internal/cyberimp/arm/surgery
 	category = list(
@@ -416,7 +420,11 @@
 	desc = "A stripped-down version of engineering cyborg toolset, designed to be installed on subject's arm."
 	id = "ci-toolset"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 	construction_time = 2 SECONDS
 	build_path = /obj/item/organ/internal/cyberimp/arm/toolset
 	category = list(
@@ -566,9 +574,27 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/datum/design/cyberimp_herculean
+	name = "Herculean Gravitronic Spinal Implant"
+	desc = "This gravitronic spinal interface allows the user to reduce the impact of gravity on their body, effectively improving athletic performance."
+	id = "ci-herculean"
+	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
+	construction_time = 4 SECONDS
+	materials = list(
+		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
+		/datum/material/titanium=SMALL_MATERIAL_AMOUNT*3,
+		/datum/material/gold=SMALL_MATERIAL_AMOUNT*3,
+		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
+	)
+	build_path = /obj/item/organ/internal/cyberimp/chest/spine
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
 /datum/design/cyberimp_nutriment
 	name = "Nutriment Pump Implant"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
+	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
 	id = "ci-nutriment"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -585,7 +611,7 @@
 
 /datum/design/cyberimp_nutriment_plus
 	name = "Nutriment Pump Implant PLUS"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
+	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
 	id = "ci-nutrimentplus"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
@@ -679,27 +705,63 @@
 
 /datum/design/implant_chem
 	name = "Chemical Implant Case"
-	desc = "A glass case containing an implant."
+	desc = "A glass case containing a chemical implant."
 	id = "implant_chem"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT*7)
+	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 7)
 	build_path = /obj/item/implantcase/chem
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/implant_tracking
 	name = "Tracking Implant Case"
-	desc = "A glass case containing an implant."
+	desc = "A glass case containing a tracking implant."
 	id = "implant_tracking"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
 	build_path = /obj/item/implantcase/tracking
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/implant_beacon
+	name = "Beacon Implant Case"
+	desc = "A glass case containing a beacon implant."
+	id = "implant_beacon"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/beacon
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/implant_bluespace
+	name = "Bluespace Grounding Implant Case"
+	desc = "A glass case containing a teleport blocker implant."
+	id = "implant_bluespace"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/teleport_blocker
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/implant_exile
+	name = "Exile Implant Case"
+	desc = "A glass case containing an exile implant."
+	id = "implant_exile"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/exile
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 //Cybernetic organs
 
@@ -774,6 +836,23 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_3
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/cybernetic_heart/anomalock
+	name = "Voltaic combat cyberheart"
+	desc = "A cutting-edge cyberheart, originally designed for Nanotrasen killsquad usage but later declassified for normal research. Voltaic technology allows the heart to keep the body upright in dire circumstances, alongside redirecting anomalous flux energy to fully shield the user from shocks and electro-magnetic pulses. Does nothing without a flux anomaly core."
+	id = "cybernetic_heart_anomalock"
+	construction_time = 5 SECONDS
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/organ/internal/heart/cybernetic/anomalock
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/cybernetic_lungs
 	name = "Basic Cybernetic Lungs"

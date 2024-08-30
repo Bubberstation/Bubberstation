@@ -64,6 +64,11 @@
 	. = ..()
 	chameleon_blacklist |= typecacheof(/obj/item/clothing/mask/changeling, only_root_path = TRUE)
 
+/datum/action/item_action/chameleon/change/mask/initialize_disguises()
+	. = ..()
+	add_chameleon_items(/obj/item/cigarette)
+	add_chameleon_items(/obj/item/vape)
+
 /datum/action/item_action/chameleon/change/hat
 	chameleon_type = /obj/item/clothing/head
 	chameleon_name = "Hat"
@@ -282,7 +287,6 @@
 		/obj/item/camera/siliconcam,
 		/obj/item/door_remote/omni,
 		/obj/item/flashlight/emp/debug,
-		/obj/item/flashlight/eyelight/adapted,
 		/obj/item/flashlight/flare,
 		/obj/item/flashlight/lamp,
 		/obj/item/healthanalyzer/rad_laser,

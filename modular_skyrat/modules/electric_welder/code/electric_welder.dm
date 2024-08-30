@@ -10,7 +10,7 @@
 	power_use_amount = POWER_CELL_USE_LOW
 	// We don't use fuel
 	change_icons = FALSE
-	var/cell_override = /obj/item/stock_parts/cell/high
+	var/cell_override = /obj/item/stock_parts/power_store/cell/high
 	var/powered = FALSE
 	max_fuel = 20
 
@@ -70,10 +70,6 @@
 // This is what uses fuel in the parent. We override it here to not use fuel
 /obj/item/weldingtool/electric/use(used = 0)
 	return isOn()
-
-// This is what starts fires. Overriding it stops it starting fires
-/obj/item/weldingtool/electric/handle_fuel_and_temps(used = 0, mob/living/user)
-	return
 
 /obj/item/weldingtool/electric/examine()
 	. = ..()

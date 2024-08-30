@@ -326,9 +326,11 @@ const NewscasterWantedScreen = (props) => {
         </>
       ) : (
         <Box>
-          {wanted.active
-            ? 'Please contact your local security officer if spotted.'
-            : 'No wanted issue posted. Have a secure day.'}
+          {wanted.map((activeWanted) =>
+            activeWanted.active
+              ? 'Please contact your local security officer if spotted.'
+              : 'No wanted issue posted. Have a secure day.',
+          )}
         </Box>
       )}
     </Modal>
@@ -428,7 +430,7 @@ const NewscasterChannelBox = (props) => {
             {!!admin_mode && (
               <Button
                 icon="ban"
-                tooltip="Censor the whole channel and it's \
+                tooltip="Censor the whole channel and its \
                   contents as dangerous to the station. Cannot be undone."
                 disabled={!admin_mode || !viewing_channel}
                 onClick={() =>
@@ -445,6 +447,7 @@ const NewscasterChannelBox = (props) => {
           <Box>
             <Button
               icon="newspaper"
+              tooltip={paper <= 0 ? 'Insert paper first!' : ''}
               disabled={paper <= 0}
               onClick={() => act('printNewspaper')}
             >

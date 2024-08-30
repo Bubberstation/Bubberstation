@@ -17,6 +17,7 @@
 	can_assign_self_objectives = TRUE
 	default_custom_objective = "Perform an overcomplicated heist on valuable Nanotrasen assets."
 	hardcore_random_bonus = TRUE
+	stinger_sound = 'sound/ambience/antag/tatoralert.ogg'
 
 	///The flag of uplink that this traitor is supposed to have.
 	var/uplink_flag_given = UPLINK_TRAITORS
@@ -46,7 +47,8 @@
 	/// The uplink handler that this traitor belongs to.
 	var/datum/uplink_handler/uplink_handler
 
-	var/uplink_sale_count = 3
+	var/uplink_sales_min = 4
+	var/uplink_sales_max = 6
 
 	///the final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.
 	var/datum/objective/ending_objective
@@ -57,7 +59,7 @@
 	// There will still be a timelock on uplink items
 	name = "\improper Infiltrator"
 	give_secondary_objectives = FALSE
-	uplink_flag_given = UPLINK_TRAITORS | UPLINK_INFILTRATORS
+	uplink_flag_given = UPLINK_INFILTRATORS
 
 /datum/antagonist/traitor/infiltrator/sleeper_agent
 	name = "\improper Syndicate Sleeper Agent"
@@ -97,14 +99,14 @@
 
 		var/list/uplink_items = list()
 		for(var/datum/uplink_item/item as anything in SStraitor.uplink_items)
-			if(item.item && !item.cant_discount && (item.purchasable_from & uplink_handler.uplink_flag) && item.cost > 1)
+			if(item.item && !item.cant_discount && (item.purchasable_from & uplink_handler.uplink_flag) && item.cost >= TRAITOR_DISCOUNT_MIN_PRICE)
 				if(!length(item.restricted_roles) && !length(item.restricted_species))
 					uplink_items += item
 					continue
 				if((uplink_handler.assigned_role in item.restricted_roles) || (uplink_handler.assigned_species in item.restricted_species))
 					uplink_items += item
 					continue
-		uplink_handler.extra_purchasable += create_uplink_sales(uplink_sale_count, /datum/uplink_category/discounts, 1, uplink_items)
+		uplink_handler.extra_purchasable += create_uplink_sales(rand(uplink_sales_min, uplink_sales_max), /datum/uplink_category/discounts, 1, uplink_items)
 
 	if(give_objectives)
 		forge_traitor_objectives()
@@ -114,8 +116,6 @@
 
 	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
-
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
@@ -123,6 +123,9 @@
 		uplink_handler.has_objectives = FALSE
 		uplink_handler.can_replace_objectives = null
 		uplink_handler.replace_objectives = null
+	owner.take_uplink()
+	owner.special_role = null
+	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 	return ..()
 
 /datum/antagonist/traitor/proc/traitor_objective_to_html(datum/traitor_objective/to_display)
@@ -182,11 +185,6 @@
 	replacement_uplink_code = "[pick(GLOB.phonetic_alphabet)] [rand(10,99)]"
 	replacement_uplink_frequency = sanitize_frequency(rand(MIN_UNUSED_FREQ, MAX_FREQ), free = FALSE, syndie = FALSE)
 
-/datum/antagonist/traitor/on_removal()
-	owner.special_role = null
-	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-	return ..()
-
 /datum/antagonist/traitor/proc/pick_employer()
 	if(!employer)
 		var/faction = prob(75) ? FLAVOR_FACTION_SYNDICATE : FLAVOR_FACTION_NANOTRASEN
@@ -209,7 +207,6 @@
 
 /// Generates a complete set of traitor objectives up to the traitor objective limit, including non-generic objectives such as martyr and hijack.
 /datum/antagonist/traitor/proc/forge_traitor_objectives()
-	objectives.Cut()
 	var/objective_count = 0
 
 	if((GLOB.joined_player_list.len >= HIJACK_MIN_PLAYERS) && prob(HIJACK_PROB))
@@ -253,7 +250,7 @@
 
 /datum/antagonist/traitor/proc/forge_single_generic_objective()
 	if(prob(KILL_PROB))
-		var/list/active_ais = active_ais()
+		var/list/active_ais = active_ais(skip_syndicate = TRUE)
 		if(active_ais.len && prob(DESTROY_AI_PROB(GLOB.joined_player_list.len)))
 			var/datum/objective/destroy/destroy_objective = new()
 			destroy_objective.owner = owner
@@ -352,7 +349,7 @@
 	if(uplink_owned)
 		var/uplink_text = "(used [used_telecrystals] TC) [purchases]"
 		if((used_telecrystals == 0) && traitor_won)
-			var/static/icon/badass = icon('icons/ui_icons/antags/badass.dmi', "badass")
+			var/static/icon/badass = icon('icons/ui/antags/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
 		result += uplink_text
 
@@ -363,7 +360,7 @@
 			result += contractor_round_end()
 		result += "<br>The traitor had a total of [DISPLAY_PROGRESSION(uplink_handler.progression_points)] Reputation and [uplink_handler.telecrystals] Unused Telecrystals."
 
-	var/special_role_text = lowertext(name)
+	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
 		result += span_greentext("The [special_role_text] was successful!")

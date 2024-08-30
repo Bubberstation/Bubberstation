@@ -452,9 +452,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger_multi,
-/obj/item/stock_parts/cell/super/empty,
-/obj/item/stock_parts/cell/super/empty,
-/obj/item/stock_parts/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate/nri)
 "rg" = (
@@ -488,7 +488,7 @@
 /area/shuttle/pirate/nri)
 "tl" = (
 /obj/machinery/power/apc/auto_name/directional/east{
-	cell_type = /obj/item/stock_parts/cell/super
+	cell_type = /obj/item/stock_parts/power_store/battery/super
 	},
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/structure/cable,
@@ -1064,9 +1064,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate/nri)
 "Lp" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/pirate/nri)

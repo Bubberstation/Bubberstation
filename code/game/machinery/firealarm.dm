@@ -42,11 +42,12 @@
 
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
+	id_tag = assign_random_name()
 	if(building)
 		buildstage = FIRE_ALARM_BUILD_NO_CIRCUIT
 		set_panel_open(TRUE)
 	if(name == initial(name))
-		name = "[get_area_name(src)] [initial(name)]"
+		update_name()
 	my_area = get_area(src)
 	LAZYADD(my_area.firealarms, src)
 
@@ -114,7 +115,7 @@
 
 /obj/machinery/firealarm/update_name(updates)
 	. = ..()
-	name = "[get_area_name(my_area)] [initial(name)]"
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]"
 
 /obj/machinery/firealarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place
@@ -178,25 +179,7 @@
 				var/current_level = SSsecurity_level.get_current_level_as_number()
 				. += mutable_appearance(icon, "fire_[current_level]")
 				. += emissive_appearance(icon, "fire_level_e", src, alpha = src.alpha)
-				switch(current_level)
-					if(SEC_LEVEL_GREEN)
-						set_light(l_color = LIGHT_COLOR_BLUEGREEN)
-					if(SEC_LEVEL_BLUE)
-						set_light(l_color = LIGHT_COLOR_ELECTRIC_CYAN)
-					if(SEC_LEVEL_RED)
-						set_light(l_color = LIGHT_COLOR_FLARE)
-					if(SEC_LEVEL_DELTA)
-						set_light(l_color = LIGHT_COLOR_INTENSE_RED)
-					//SKYRAT EDIT ADDITION BEGIN - ADDITIONAL ALERT LEVELS
-					if(SEC_LEVEL_VIOLET)
-						set_light(l_color = COLOR_VIOLET)
-					if(SEC_LEVEL_ORANGE)
-						set_light(l_color = LIGHT_COLOR_ORANGE)
-					if(SEC_LEVEL_AMBER)
-						set_light(l_color = LIGHT_COLOR_DIM_YELLOW)
-					if(SEC_LEVEL_GAMMA)
-						set_light(l_color = COLOR_ASSEMBLY_PURPLE)
-					//SKYRAT EDIT ADDITION END
+				set_light(l_color = SSsecurity_level?.current_security_level?.fire_alarm_light_color || LIGHT_COLOR_BLUEGREEN)
 			else
 				. += mutable_appearance(icon, "fire_offstation")
 				. += emissive_appearance(icon, "fire_level_e", src, alpha = src.alpha)
@@ -269,6 +252,8 @@
 	if(user)
 		balloon_alert(user, "triggered alarm!")
 		user.log_message("triggered a fire alarm.", LOG_GAME)
+	my_area.fault_status = AREA_FAULT_MANUAL
+	my_area.fault_location = name
 	soundloop.start() //Manually pulled fire alarms will make the sound, rather than the doors.
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_TRIGGER)
 	update_use_power(ACTIVE_POWER_USE)
@@ -401,7 +386,7 @@
 
 				else if(istype(tool, /obj/item/electroadaptive_pseudocircuit))
 					var/obj/item/electroadaptive_pseudocircuit/pseudoc = tool
-					if(!pseudoc.adapt_circuit(user, 15))
+					if(!pseudoc.adapt_circuit(user, circuit_cost = 0.015 * STANDARD_CELL_CHARGE))
 						return
 					user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 					span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
@@ -450,22 +435,21 @@
 		return
 	return ..()
 
-/obj/machinery/firealarm/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		new /obj/item/stack/sheet/iron(loc, 1)
-		if(buildstage > FIRE_ALARM_BUILD_NO_CIRCUIT)
-			var/obj/item/item = new /obj/item/electronics/firealarm(loc)
-			if(!disassembled)
-				item.update_integrity(item.max_integrity * 0.5)
-		if(buildstage > FIRE_ALARM_BUILD_NO_WIRES)
-			new /obj/item/stack/cable_coil(loc, 3)
-	qdel(src)
+/obj/machinery/firealarm/on_deconstruction(disassembled)
+	new /obj/item/stack/sheet/iron(loc, 1)
+	if(buildstage > FIRE_ALARM_BUILD_NO_CIRCUIT)
+		var/obj/item/item = new /obj/item/electronics/firealarm(loc)
+		if(!disassembled)
+			item.update_integrity(item.max_integrity * 0.5)
+	if(buildstage > FIRE_ALARM_BUILD_NO_WIRES)
+		new /obj/item/stack/cable_coil(loc, 3)
 
 // Allows users to examine the state of the thermal sensor
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
 	if((my_area?.fire || LAZYLEN(my_area?.active_firelocks)))
 		. += "The local area hazard light is flashing."
+		. += "The fault location display is [my_area.fault_location] ([my_area.fault_status == AREA_FAULT_AUTOMATIC ? "Automatic Detection" : "Manual Trigger"])."
 		if(is_station_level(z))
 			. += "The station security alert level is [SSsecurity_level.get_current_level_as_text()]."
 		. += "<b>Left-Click</b> to activate all firelocks in this area."
@@ -493,6 +477,9 @@
 	my_area.fire_detect = !my_area.fire_detect
 	for(var/obj/machinery/firealarm/fire_panel in my_area.firealarms)
 		fire_panel.update_icon()
+	// Used to force all the firelocks to update, if the zone is not manually activated
+	if (my_area.fault_status != AREA_FAULT_MANUAL)
+		reset() // Don't send user to prevent double balloon_alert() and the action is already logged in this proc.
 	if (user)
 		balloon_alert(user, "thermal sensors [my_area.fire_detect ? "enabled" : "disabled"]")
 		user.log_message("[ my_area.fire_detect ? "enabled" : "disabled" ] firelock sensors using [src].", LOG_GAME)

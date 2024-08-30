@@ -1,7 +1,7 @@
 /// How often the sensor data is updated
 #define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
-#define UNKNOWN_JOB_ID 802 //BUBBERSTATION CHANGE: NEW CREW MONITOR SORTING.
+#define UNKNOWN_JOB_ID 998
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
@@ -98,12 +98,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs = list(
 		// Note that jobs divisible by 10 are considered heads of staff, and bolded
 		// 00: Captain
-		JOB_CAPTAIN = 00,
+		JOB_CAPTAIN = 0,
+		JOB_HUMAN_AI = 1,
 		// 10-19: Security
 		JOB_HEAD_OF_SECURITY = 10,
 		JOB_WARDEN = 11,
 		JOB_SECURITY_OFFICER = 12,
-		/* SKYRAT REMOVAL - We need those slots for our own jobs, these jobs aren't on Skyrat anymore anyway.
+		/* SKYRAT EDIT REMOVAL - We need those slots for our own jobs, these jobs aren't on Skyrat anymore anyway.
 		JOB_SECURITY_OFFICER_MEDICAL = 13,
 		JOB_SECURITY_OFFICER_ENGINEERING = 14,
 		JOB_SECURITY_OFFICER_SCIENCE = 15,
@@ -115,12 +116,11 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// 20-29: Medbay
 		JOB_CHIEF_MEDICAL_OFFICER = 20,
 		JOB_CHEMIST = 21,
-		JOB_VIROLOGIST = 22,
-		JOB_MEDICAL_DOCTOR = 23,
-		JOB_PARAMEDIC = 24,
-		JOB_CORONER = 25,
-		JOB_ORDERLY = 26, // SKYRAT EDIT ADDITION
-		JOB_PSYCHOLOGIST = 27, // SKYRAT EDIT - ORIGINAL: JOB_PSYCHOLOGIST = 71,
+		JOB_MEDICAL_DOCTOR = 22,
+		JOB_PARAMEDIC = 23,
+		JOB_CORONER = 24,
+		JOB_ORDERLY = 25, // SKYRAT EDIT ADDITION
+		JOB_PSYCHOLOGIST = 26, // SKYRAT EDIT - ORIGINAL: JOB_PSYCHOLOGIST = 71,
 		// 30-39: Science
 		JOB_RESEARCH_DIRECTOR = 30,
 		JOB_SCIENTIST = 31,
@@ -132,27 +132,29 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_STATION_ENGINEER = 41,
 		JOB_ATMOSPHERIC_TECHNICIAN = 42,
 		JOB_ENGINEERING_GUARD = 43, // SKYRAT EDIT ADDITION
+		JOB_TELECOMMS_SPECIALIST = 44, // SKYRAT EDIT ADDITION	
 		// 50-59: Cargo
 		JOB_QUARTERMASTER = 50,
 		JOB_SHAFT_MINER = 51,
 		JOB_CARGO_TECHNICIAN = 52,
 		JOB_BITRUNNER = 53,
 		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
-		JOB_BLACKSMITH = 54,	// Bubber Addition!
-		// 60+: Civilian/other
+		JOB_BLACKSMITH = 55,	// Bubber edit Addition!
+		// 60+: Service
 		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_BARTENDER = 61,
-		JOB_COOK = 62,
-		JOB_BOTANIST = 63,
-		JOB_CURATOR = 64,
-		JOB_CHAPLAIN = 65,
-		JOB_CLOWN = 66,
-		JOB_MIME = 67,
-		JOB_JANITOR = 68,
-		JOB_LAWYER = 69,
-		JOB_BARBER = 71, // SKYRAT EDIT ADDITION
-		JOB_BOUNCER = 72, // SKYRAT EDIT ADDITION
-		// 200-239: Centcom
+		JOB_CHEF = 62,
+		JOB_COOK = 63,
+		JOB_BOTANIST = 64,
+		JOB_CURATOR = 65,
+		JOB_CHAPLAIN = 66,
+		JOB_CLOWN = 67,
+		JOB_MIME = 68,
+		JOB_JANITOR = 69,
+		JOB_LAWYER = 71,
+		JOB_BARBER = 72, // SKYRAT EDIT ADDITION
+		JOB_BOUNCER = 73, // SKYRAT EDIT ADDITION
+		// 200-229: Centcom
 		JOB_CENTCOM_ADMIRAL = 200,
 		JOB_CENTCOM = 201,
 		JOB_CENTCOM_OFFICIAL = 210,
@@ -197,7 +199,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		z = T.z
 	. = list(
 		"sensors" = update_data(z),
-		"link_allowed" = isAI(user)
+		"link_allowed" = HAS_AI_ACCESS(user)
 	)
 
 /datum/crewmonitor/proc/update_data(z)
@@ -248,7 +250,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		var/list/entry = list(
 			"ref" = REF(tracked_living_mob),
 			"name" = "Unknown",
-			"ijob" = UNKNOWN_JOB_ID
+			"ijob" = UNKNOWN_JOB_ID,
 		)
 
 		// ID and id-related data
@@ -325,7 +327,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			var/mob/living/silicon/ai/AI = usr
 			if(!istype(AI))
 				return
-			AI.ai_tracking_tool.set_tracked_mob(AI, params["name"])
+			AI.ai_tracking_tool.track_name(AI, params["name"])
 
 #undef SENSORS_UPDATE_PERIOD
 #undef UNKNOWN_JOB_ID

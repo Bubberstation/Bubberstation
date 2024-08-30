@@ -260,7 +260,7 @@
 /obj/machinery/plantgenes/Topic(href, list/href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+//	usr.set_machine(src)
 
 	if(href_list["eject_seed"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
@@ -373,7 +373,7 @@
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr))
 			if (!usr.put_in_hands(disk))
 				disk.forceMove(drop_location())
 		else
@@ -383,7 +383,7 @@
 
 /obj/machinery/plantgenes/proc/eject_seed()
 	if (seed && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr))
 			if (!usr.put_in_hands(seed))
 				seed.forceMove(drop_location())
 		else

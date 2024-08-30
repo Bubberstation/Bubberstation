@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_SRV = ACCOUNT_SRV_NAME,
 										ACCOUNT_CAR = ACCOUNT_CAR_NAME,
 										ACCOUNT_CMD = ACCOUNT_CMD_NAME, // SKYRAT EDIT
+										ACCOUNT_INT = ACCOUNT_INT_NAME, // BUBBER EDIT
 										ACCOUNT_SEC = ACCOUNT_SEC_NAME)
 	var/list/departmental_accounts = list()
 	/**
@@ -29,6 +30,8 @@ SUBSYSTEM_DEF(economy)
 	  * A list of sole account datums can be obtained with flatten_list(), another variable would be redundant rn.
 	  */
 	var/list/bank_accounts_by_id = list()
+	/// A list of bank accounts indexed by their assigned job typepath.
+	var/list/bank_accounts_by_job = list()
 	///List of the departmental budget cards in existance.
 	var/list/dep_cards = list()
 	/// A var that collects the total amount of credits owned in player accounts on station, reset and recounted on fire()

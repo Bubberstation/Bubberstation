@@ -16,14 +16,14 @@
 	button_icon_state = "power_human"
 	power_explanation = "Masquerade:\n\
 		Activating Masquerade will forge your identity to be practically identical to that of a human;\n\
-		- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus and cold immunity.\n\
+		- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity.\n\
 		- Your eyes turn to that of a regular human as your heart begins to beat.\n\
 		- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer.\n\
 		- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden.\n\
-		At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any Disease & Gene you might have."
+		At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_FRENZY
-	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
+	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 10
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
@@ -40,7 +40,11 @@
 
 	// Handle Traits
 	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
+	
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
+	var/obj/item/bodypart/chest/target_chest = user.get_bodypart(BODY_ZONE_CHEST)
+	if(target_chest)
+		target_chest.bodypart_flags &= ~BODYPART_UNREMOVABLE
 	// Handle organs
 	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	if(vampheart)
@@ -52,6 +56,7 @@
 		eyes.sight_flags = initial(eyes.sight_flags)
 		user.update_sight()
 
+/// todo, make bloodsuckerification into it's own proc, ie, eyes, traits, and such
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
 	var/mob/living/carbon/user = owner
@@ -59,14 +64,15 @@
 
 	// Remove status effect, mutations & diseases that you got while on masq.
 	user.remove_status_effect(/datum/status_effect/masquerade)
-	user.dna.remove_all_mutations()
 	for(var/datum/disease/diseases as anything in user.diseases)
 		diseases.cure()
 
 	// Handle Traits
 	user.add_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
-
+	var/obj/item/bodypart/chest/target_chest = user.get_bodypart(BODY_ZONE_CHEST)
+	if(target_chest)
+		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
 	// Handle organs
 	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	if(vampheart)

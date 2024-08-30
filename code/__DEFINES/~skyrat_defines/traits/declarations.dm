@@ -57,8 +57,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// The trait which is applied when a `slick skin` trait haver actually gets wet_stacks
 #define TRAIT_SLIPPERY "slippery"
 
-/// Under the effect of a numbling agent, such as morphine, for surgery.
-#define TRAIT_NUMBED "numbed"
+/// When someone is fixing electrical damage, this trait is set and prevents the wound from worsening.
+// We use a trait to avoid erronous setting of a variable to false if two people are repairing and one stops.
+#define TRAIT_ELECTRICAL_DAMAGE_REPAIRING "electrical_damage_repairing"
 
 // felinid traits
 #define TRAIT_FELINE "feline_aspect"
@@ -108,6 +109,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Trait that was granted by a NIFSoft
 #define TRAIT_NIFSOFT "nifsoft"
+
+/// Trait that was granted by a soulcatcher
+#define TRAIT_CARRIER "soulcatcher"
 
 /// Trait given to a piece of eyewear that allows the user to use NIFSoft HUDs
 #define TRAIT_NIFSOFT_HUD_GRANTER "nifsoft_hud_granter"

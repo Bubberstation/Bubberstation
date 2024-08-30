@@ -153,7 +153,7 @@
 		if(bloodsucker_power.level_current >= 5)
 			var/mob/living/person_hit = target
 			person_hit.blood_volume -= 60
-			bloodsucker_power.bloodsuckerdatum_power.AddBloodVolume(60)
+			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(60)
 		qdel(src)
 		return BULLET_ACT_HIT
 	. = ..()
@@ -182,5 +182,5 @@
 /obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
-		bloodsuckerdatum.AddBloodVolume(-15)
+		bloodsuckerdatum.AdjustBloodVolume(-15)
 	return ..()

@@ -13,7 +13,7 @@
 /datum/bloodsucker_clan/gangrel/on_exit_frenzy(datum/antagonist/bloodsucker/source)
 	REMOVE_TRAIT(bloodsuckerdatum.owner.current, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
 
-/datum/bloodsucker_clan/gangrel/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/gangrel/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	. = ..()
 	var/area/current_area = get_area(bloodsuckerdatum.owner.current)
 	if(istype(current_area, /area/station/service/chapel))

@@ -17,6 +17,10 @@ GLOBAL_PROTECT(exp_to_update)
 	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT
 	if(isexempt)
 		return 0
+	// BUBBER EDIT START - Job exemption
+	if(is_job_exempt_from(C.ckey, title))
+		return 0
+	// BUBBER EDIT END
 	var/my_exp = C.calc_exp_type(get_exp_req_type())
 	var/job_requirement = get_exp_req_amount()
 	if(my_exp >= job_requirement)
@@ -71,6 +75,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(L.is_afk())
 			continue
 		L.update_exp_list(mins)
+		L.update_living_minutes(mins) // BUBBER EDIT BEGIN - Voting timers
 
 /datum/controller/subsystem/blackbox/proc/update_exp_db()
 	set waitfor = FALSE
@@ -203,6 +208,6 @@ GLOBAL_PROTECT(exp_to_update)
 	if(flags_read.NextRow())
 		prefs.db_flags = text2num(flags_read.item[1])
 	else if(isnull(prefs.db_flags))
-		prefs.db_flags = 0 //This PROBABLY won't happen, but better safe than sorry.
+		prefs.db_flags = NONE //This PROBABLY won't happen, but better safe than sorry.
 	qdel(flags_read)
 	return TRUE

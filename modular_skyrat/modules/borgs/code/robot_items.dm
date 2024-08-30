@@ -22,7 +22,7 @@
 	/// How long is the integrated printer's cooldown?
 	var/printer_cooldown_time = 10 SECONDS
 	/// How much charge is required to print a piece of paper?
-	var/paper_charge_cost = 50
+	var/paper_charge_cost = STANDARD_CELL_CHARGE * 0.05
 
 
 /obj/item/clipboard/cyborg/Initialize(mapload)
@@ -32,20 +32,20 @@
 
 /obj/item/clipboard/cyborg/examine()
 	. = ..()
-	. += "Alt-click to synthetize a piece of paper."
+	. += "Alt-click to synthesize a piece of paper."
 	if(!COOLDOWN_FINISHED(src, printer_cooldown))
-		. += "Its integrated paper synthetizer seems to still be on cooldown."
+		. += "Its integrated paper synthesizer seems to still be on cooldown."
 
 
-/obj/item/clipboard/cyborg/AltClick(mob/user)
+/obj/item/clipboard/cyborg/click_alt(mob/user)
 	if(!iscyborg(user))
 		to_chat(user, span_warning("You do not seem to understand how to use [src]."))
-		return
+		return CLICK_ACTION_BLOCKING
 	var/mob/living/silicon/robot/cyborg_user = user
 	// Not enough charge? Tough luck.
 	if(cyborg_user?.cell.charge < paper_charge_cost)
 		to_chat(user, span_warning("Your internal cell doesn't have enough charge left to use [src]'s integrated printer."))
-		return
+		return CLICK_ACTION_BLOCKING
 	// Check for cooldown to avoid paper spamming
 	if(COOLDOWN_FINISHED(src, printer_cooldown))
 		// If there's not too much paper already, let's go
@@ -61,10 +61,12 @@
 			toppaper_ref = WEAKREF(new_paper)
 			update_appearance()
 			to_chat(user, span_notice("[src]'s integrated printer whirs to life, spitting out a fresh piece of paper and clipping it into place."))
+			return CLICK_ACTION_SUCCESS
 		else
 			to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, as [src] already contains enough paper."))
 	else
-		to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, its bluespace paper synthetizer not having finished recovering from its last synthesis."))
+		to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, its bluespace paper synthesizer not having finished recovering from its last synthesis."))
+	return CLICK_ACTION_BLOCKING
 
 
 /obj/item/hand_labeler/cyborg
@@ -76,10 +78,10 @@
 /obj/item/borg/hydraulic_clamp
 	name = "integrated hydraulic clamp"
 	desc = "A neat way to lift and move around few small packages for quick and painless deliveries!"
-	icon = 'icons/mob/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
+	icon = 'icons/obj/devices/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
 	icon_state = "mecha_clamp"
 	/// How much power does it draw per operation?
-	var/charge_cost = 20
+	var/charge_cost = STANDARD_CELL_CHARGE * 0.02
 	/// How many items can it hold at once in its internal storage?
 	var/storage_capacity = 5
 	/// Does it require the items it takes in to be wrapped in paper wrap? Can have unforeseen consequences, change to FALSE at your own risks.
@@ -353,12 +355,12 @@
 
 
 /// A proc for shooting a projectile at the target, it's just that simple, really.
-/obj/item/borg/paperplane_crossbow/proc/shoot(atom/target, mob/living/user, params)
+/obj/item/borg/paperplane_crossbow/proc/shoot(atom/target, mob/living/user)
 	if(!COOLDOWN_FINISHED(src, shooting_cooldown))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(planes <= 0)
 		to_chat(user, span_warning("Not enough paper planes left!"))
-		return FALSE
+		return ITEM_INTERACT_BLOCKING
 	planes--
 
 	var/obj/item/paperplane/syndicate/hardlight/plane_to_fire = new /obj/item/paperplane/syndicate/hardlight(get_turf(src.loc))
@@ -368,18 +370,19 @@
 	COOLDOWN_START(src, shooting_cooldown, shooting_delay)
 	user.visible_message(span_warning("[user] shoots a paper plane at [target]!"))
 	check_amount()
+	return ITEM_INTERACT_SUCCESS
 
 
-/obj/item/borg/paperplane_crossbow/afterattack(atom/target, mob/living/user, proximity, click_params)
-	. = ..()
+/obj/item/borg/paperplane_crossbow/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	check_amount()
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/robot_user = user
-		if(!robot_user.cell.use(10))
-			to_chat(user, span_warning("Not enough power."))
-			return FALSE
-		shoot(target, user, click_params)
+	if(!iscyborg(user))
+		return ITEM_INTERACT_BLOCKING
 
+	var/mob/living/silicon/robot/robot_user = user
+	if(!robot_user.cell.use(10))
+		to_chat(user, span_warning("Not enough power."))
+		return ITEM_INTERACT_BLOCKING
+	return shoot(interacting_with, user)
 
 /// Holders for the package wrap and the wrapping paper synthetizers.
 
@@ -525,8 +528,8 @@
 	var/saved_special_light_key
 	var/saved_hat_offset
 	var/active = FALSE
-	var/activationCost = 100
-	var/activationUpkeep = 5
+	var/activationCost = STANDARD_CELL_CHARGE * 0.1
+	var/activationUpkeep = STANDARD_CELL_CHARGE * 0.005
 	var/disguise_model_name
 	var/disguise
 	var/disguise_icon_override
@@ -606,7 +609,10 @@
 			"Peacekeeper" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "peace"),
 			"Clown" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "clown"),
 			"Syndicate" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "synd_sec"),
-			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi")
+			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi"),
+			//Bubber addition start
+			"Research" = image(icon = 'modular_zubbers/code/modules/borgs/sprites/robot_sci.dmi', icon_state = "research"),
+			//Bubber addition end
 		))
 		var/model_selection = show_radial_menu(user, user, model_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 		if(!model_selection)
@@ -638,6 +644,10 @@
 				model = new /obj/item/robot_model/syndicatejack
 			if("Spider Clan")
 				model = new /obj/item/robot_model/ninja
+			//Bubber addition start
+			if("Research")
+				model = new /obj/item/robot_model/sci
+			//Bubber addition end
 			else
 				return FALSE
 		if (!set_disguise_vars(model, user))
@@ -660,7 +670,7 @@
 			f = user.filters[start+i]
 			animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 			animate(offset=f:offset-1, time=rand()*20+10)
-		if (do_after(user, 50, target=user) && user.cell.use(activationCost))
+		if (do_after(user, 5 SECONDS, target=user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, span_notice("You are now disguised."))
 			activate(user)
@@ -720,8 +730,12 @@
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 	if(listeningTo == user)
 		return
@@ -745,8 +759,12 @@
 	user.bubble_icon = saved_bubble_icon
 	active = FALSE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
@@ -764,10 +782,10 @@
 	desc = "For giving affectionate kisses."
 	item_flags = NOBLUDGEON
 
-/obj/item/quadborg_tongue/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity || !isliving(target))
-		return
+/obj/item/quadborg_tongue/interact_with_atom(atom/target, mob/living/user, list/modifiers)
+	if(!isliving(target))
+		return NONE
+
 	var/mob/living/silicon/robot/borg = user
 	var/mob/living/mob = target
 
@@ -778,8 +796,10 @@
 		else
 			borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
 			playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_warning("ERROR: [target] is on the Do Not Lick registry!"))
+		return ITEM_INTERACT_BLOCKING
 
 // Quadruped nose - Boop
 /obj/item/quadborg_nose
@@ -791,16 +811,14 @@
 	item_flags = NOBLUDGEON
 	force = 0
 
-/obj/item/quadborg_nose/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-
+/obj/item/quadborg_nose/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(target, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
 		do_attack_animation(target, null, src)
 		user.visible_message(span_notice("[user] [pick("nuzzles", "pushes", "boops")] \the [target.name] with their nose!"))
+		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_warning("ERROR: [target] is on the No Nosing registry!"))
+		return ITEM_INTERACT_BLOCKING
 
 /// Better Clamp
 /obj/item/borg/hydraulic_clamp/better

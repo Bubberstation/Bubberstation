@@ -145,7 +145,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
 /obj/effect/landmark/start/bouncer
-	name = "Service Guard"
+	name = "Bouncer"
 	icon_state = "Bouncer"
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
@@ -732,7 +732,7 @@
 	name = "service stun baton"
 	desc = "A stun baton that doesn't operate outside of the Service department, based off the station's blueprint layout. Can be used outside of Service up to three times before needing to return!"
 	icon_state = "service_baton"
-	valid_areas = list(/area/station/service, /area/station/maintenance/department/chapel, /area/station/maintenance/department/crew_quarters, /area/shuttle/escape)
+	valid_areas = list(/area/station/service, /area/station/hallway/secondary/service, /area/station/maintenance/department/chapel, /area/station/maintenance/department/crew_quarters, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/prison
 	name = "prison stun baton"

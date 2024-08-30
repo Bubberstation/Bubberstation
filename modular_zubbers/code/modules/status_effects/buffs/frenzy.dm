@@ -75,4 +75,4 @@
 	// If duration is not -1, that means we're about to loose frenzy, let's give them some safe time.
 	if(!bloodsuckerdatum.frenzied || duration > 0 || user.stat != CONSCIOUS )
 		return
-	user.adjustFireLoss(1 + (bloodsuckerdatum.humanity_lost / 10))
+	user.adjustFireLoss(1 + (bloodsuckerdatum.GetHumanityLost() / 10))

@@ -64,30 +64,24 @@
 
 /mob/living/carbon/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	var/obj/item/bodypart/affecting = get_bodypart(def_zone)
-	if(affecting && !(affecting.bodypart_flags & BODYPART_UNREMOVABLE) && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
+	if(affecting && affecting.can_dismember() && !(affecting.bodypart_flags & BODYPART_UNREMOVABLE) && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
 		affecting.dismember(P.damtype)
 		if(P.catastropic_dismemberment)
 			apply_damage(P.damage, P.damtype, BODY_ZONE_CHEST, wound_bonus = P.wound_bonus) //stops a projectile blowing off a limb effectively doing no damage. Mostly relevant for sniper rifles.
 
-/mob/living/carbon/proc/can_catch_item(skip_throw_mode_check)
-	. = FALSE
-	if(!skip_throw_mode_check && !throw_mode)
-		return
-	if(get_active_held_item())
-		return
-	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
-		return
-	return TRUE
+/mob/living/carbon/try_catch_item(obj/item/item, skip_throw_mode_check = FALSE, try_offhand = FALSE)
+	. = ..()
+	if(.)
+		throw_mode_off(THROW_MODE_TOGGLE)
 
-/mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	if(!skipcatch && can_catch_item() && isitem(AM) && !HAS_TRAIT(AM, TRAIT_UNCATCHABLE) && isturf(AM.loc))
-		var/obj/item/I = AM
-		I.attack_hand(src)
-		if(get_active_held_item() == I) //if our attack_hand() picks up the item...
-			visible_message(span_warning("[src] catches [I]!"), \
-							span_userdanger("You catch [I] in mid-air!"))
-			throw_mode_off(THROW_MODE_TOGGLE)
-			return TRUE
+/mob/living/carbon/can_catch_item(skip_throw_mode_check = FALSE, try_offhand = FALSE)
+	if(!skip_throw_mode_check && !throw_mode)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/hitby(atom/movable/movable, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
+	if(!skipcatch && try_catch_item(movable))
+		return TRUE
 	return ..()
 
 /mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, def_zone)
@@ -181,6 +175,13 @@
 
 	return FALSE
 
+/mob/living/carbon/attack_animal(mob/living/simple_animal/user, list/modifiers)
+	if (!user.combat_mode)
+		for (var/datum/wound/wounds as anything in all_wounds)
+			if (wounds.try_handling(user))
+				return TRUE
+
+	return ..()
 
 /mob/living/carbon/attack_paw(mob/living/carbon/human/user, list/modifiers)
 
@@ -246,15 +247,6 @@
 		show_message(span_userdanger("The blob attacks!"))
 		adjustBruteLoss(10)
 
-/mob/living/carbon/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
-		return
-	for(var/obj/item/organ/organ as anything in organs)
-		organ.emp_act(severity)
-	for(var/obj/item/bodypart/bodypart as anything in src.bodyparts)
-		bodypart.emp_act(severity)
-
 ///Adds to the parent by also adding functionality to propagate shocks through pulling and doing some fluff effects.
 /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE, jitter_time = 20 SECONDS, stutter_time = 4 SECONDS, stun_duration = 4 SECONDS)
 	. = ..()
@@ -302,8 +294,8 @@
 	else
 		Knockdown(stun_duration)
 
-/mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper)
-	var/nosound = FALSE //SKYRAT EDIT ADDITION - EMOTES
+/mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper, force_friendly)
+	var/nosound = FALSE //SKYRATEDIT ADDITION - EMOTES
 	if(on_fire)
 		to_chat(helper, span_warning("You can't put [p_them()] out with just your bare hands!"))
 		return
@@ -427,7 +419,7 @@
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 			to_chat(helper, span_warning("It feels like [src] is freezing as you hug [p_them()]."))
 
-		if(HAS_TRAIT(helper, TRAIT_FRIENDLY))
+		if(HAS_TRAIT(helper, TRAIT_FRIENDLY) || force_friendly)
 			if (helper.mob_mood.sanity >= SANITY_GREAT)
 				new /obj/effect/temp_visual/heart(loc)
 				add_mood_event("friendly_hug", /datum/mood_event/besthug, helper)
@@ -445,11 +437,14 @@
 	if(body_position != STANDING_UP && !resting && !buckled && !HAS_TRAIT(src, TRAIT_FLOORED))
 		get_up(TRUE)
 
-	if(!nosound) //SKYRAT EDIT ADDITION - EMOTES
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	if(!nosound) // SKYRAT EDIT ADDITION - EMOTES
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1) // SKYRAT EDIT CHANGE - EMOTES - Original was unindented but otherwise the same
 
 	// Shake animation
 	if (incapacitated())
+		shake_up_animation()
+
+/mob/proc/shake_up_animation()
 		var/direction = prob(50) ? -1 : 1
 		animate(src, pixel_x = pixel_x + SHAKE_ANIMATION_OFFSET * direction, time = 1, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(pixel_x = pixel_x - (SHAKE_ANIMATION_OFFSET * 2 * direction), time = 1)
@@ -469,7 +464,7 @@
 				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
 				visible_message(span_notice("[src] examines [p_them()]self."), \
 					span_notice("You check yourself for shrapnel."))
-			if(I.isEmbedHarmless())
+			if(I.is_embed_harmless())
 				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
 			else
 				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
@@ -599,10 +594,10 @@
 */
 /mob/living/carbon/proc/check_passout()
 	var/mob_oxyloss = getOxyLoss()
-	if(mob_oxyloss >= 50)
+	if(mob_oxyloss >= OXYLOSS_PASSOUT_THRESHOLD)
 		if(!HAS_TRAIT_FROM(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT))
 			ADD_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
-	else if(mob_oxyloss < 50)
+	else if(mob_oxyloss < OXYLOSS_PASSOUT_THRESHOLD)
 		REMOVE_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
 
 /mob/living/carbon/get_organic_health()
@@ -616,8 +611,7 @@
 	if(user != src)
 		return ..()
 
-	var/obj/item/bodypart/grasped_part = get_bodypart(zone_selected)
-	/*
+	var/obj/item/bodypart/grasped_part = grabbed_part ? grabbed_part : get_bodypart(zone_selected) // SKYRAT EDIT CHANGE - ORIGINAL: var/obj/item/bodypart/grasped_part = get_bodypart(zone_selected)
 	if(!grasped_part?.can_be_grasped())
 		return
 	var/starting_hand_index = active_hand_index
@@ -638,8 +632,6 @@
 		QDEL_NULL(grasp)
 		return
 	grasp.grasp_limb(grasped_part)
-	*/ // SKYRAT EDIT REMOVAL - MODULARIZED INTO grasp.dm's self_grasp_bleeding_limb !! IF THIS PROC IS UPDATED, PUT IT IN THERE !!
-	self_grasp_bleeding_limb(grasped_part, supress_message)
 
 /// If TRUE, the owner of this bodypart can try grabbing it to slow bleeding, as well as various other effects.
 /obj/item/bodypart/proc/can_be_grasped()
@@ -753,7 +745,9 @@
 /mob/living/carbon/get_shove_flags(mob/living/shover, obj/item/weapon)
 	. = ..()
 	. |= SHOVE_CAN_STAGGER
-	if(IsKnockdown() && !IsParalyzed())
+	if(IsKnockdown() && !IsParalyzed() && HAS_TRAIT(src, TRAIT_STUN_ON_NEXT_SHOVE))
 		. |= SHOVE_CAN_KICK_SIDE
+	if(HAS_TRAIT(src, TRAIT_NO_SIDE_KICK)) // added as an extra check, just in case
+		. &= ~SHOVE_CAN_KICK_SIDE
 
 #undef SHAKE_ANIMATION_OFFSET
