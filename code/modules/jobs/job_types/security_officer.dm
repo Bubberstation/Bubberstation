@@ -223,6 +223,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
+		/obj/item/choice_beacon/security_pistol = 1, //SKYRAT ADDITION
 		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
 	belt = /obj/item/modular_computer/pda/security
@@ -230,6 +231,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	gloves = /obj/item/clothing/gloves/color/black/security
 	head = /obj/item/clothing/head/security_garrison //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/head/helmet/sec
 	shoes = /obj/item/clothing/shoes/jackboots/sec
+	glasses = /obj/item/clothing/glasses/hud/security //SKYRAT EDIT - ADDITION
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 

@@ -78,13 +78,7 @@
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/emp_shield
 	item_type = /obj/item/mod/module/emp_shield
 	cost = PAYCHECK_CREW
-/* //BUBBER EDIT REMOVAL BEGIN: REMOVES OP MODULES FROM COMPANY IMPORTS
-/datum/armament_entry/company_import/nakamura_modsuits/protection_modules/armor_plates
-	item_type = /obj/item/mod/module/armor_booster/retractplates
-	cost = PAYCHECK_COMMAND * 3
-	restricted = TRUE
-	contraband = TRUE
-*/ //BUBBER EDIT REMOVAL END: REMOVES OP MODULES FROM COMPANY IMPORTS
+
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/accretion
 	item_type = /obj/item/mod/module/ash_accretion
 	cost = PAYCHECK_COMMAND * 3
@@ -195,17 +189,3 @@
 /datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/hat_stabilizer
 	item_type = /obj/item/mod/module/hat_stabilizer
 	cost = PAYCHECK_CREW
-
-/* //BUBBER EDIT REMOVAL BEGIN: REMOVES OP MODULES FROM COMPANY IMPORTS
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/kinesis
-	item_type = /obj/item/mod/module/anomaly_locked/kinesis/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 15
-
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/antigrav
-	item_type = /obj/item/mod/module/anomaly_locked/antigrav/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 15
-
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/teleporter
-	item_type = /obj/item/mod/module/anomaly_locked/teleporter/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 20
-*/ //BUBBER EDIT REMOVAL END: REMOVES OP MODULES FROM COMPANY IMPORTS
