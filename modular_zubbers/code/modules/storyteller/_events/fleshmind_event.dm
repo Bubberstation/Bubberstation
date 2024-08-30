@@ -10,8 +10,8 @@
 
 /datum/round_event/fleshmind
 	fakeable = FALSE
-	announce_when = 150
-	end_when = 151
+	announce_when = 200
+	end_when = 201
 
 /datum/round_event/fleshmind/announce(fake)
 	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated.", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
