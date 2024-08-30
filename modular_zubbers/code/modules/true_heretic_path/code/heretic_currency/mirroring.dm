@@ -22,7 +22,7 @@
 	if(target.item_flags & (DROPDEL | ABSTRACT))
 		return
 
-	if(!target.force && !target.throwforce && !isclothing(target) && !isgun(target))
+	if(!initial(target.force) && !isclothing(target) && !isgun(target))
 		target.balloon_alert(user, "not a valid weapon or clothing item!")
 		return
 

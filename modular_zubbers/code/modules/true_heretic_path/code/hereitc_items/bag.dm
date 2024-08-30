@@ -6,6 +6,8 @@
 
 	w_class = WEIGHT_CLASS_NORMAL //YOU FUCKING LIAR. YOU SAID IT WAS SMALL.
 
+	inhand_icon_state = null //It's not small I'm just too lazy to add inhand sprites for something so minor.
+
 /obj/item/storage/bag/exile/Initialize(mapload)
 	. = ..()
 	atom_storage.max_slots = 60

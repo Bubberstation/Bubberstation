@@ -25,12 +25,13 @@
 	. = ..()
 
 /obj/item/reagent_containers/cup/endless_flask/on_reagent_change()
-	START_PROCESSING(SSobj,src)
 	. = ..()
+	START_PROCESSING(SSobj,src)
+
 
 /obj/item/reagent_containers/cup/endless_flask/Destroy()
-	STOP_PROCESSING(SSobj, src)
 	. = ..()
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/reagent_containers/cup/endless_flask/process(seconds_per_tick)
 
