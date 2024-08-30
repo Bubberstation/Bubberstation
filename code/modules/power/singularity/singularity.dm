@@ -175,14 +175,14 @@
 		if(prob(event_chance))
 			event()
 	dissipate(seconds_per_tick)
-	hawking_pulse(seconds_per_tick) // SKYRAT EDIT ADDITION
+	hawking_pulse(seconds_per_tick) // Bubber EDIT ADDITION
 	check_energy()
 
 /obj/singularity/proc/dissipate(seconds_per_tick)
 	if (!dissipate)
 		return
 
-	time_since_last_dissipiation += seconds_per_tick SECONDS // SKYRAT EDIT CHANGE
+	time_since_last_dissipiation += seconds_per_tick SECONDS // Bubber EDIT CHANGE
 
 	// Uses a while in case of especially long delta times
 	while (time_since_last_dissipiation >= dissipate_delay)
@@ -475,7 +475,7 @@
 	)
 
 /obj/singularity/proc/emp_area()
-	empulse(src, 5, 8) //SKYRAT EDIT CHANGE
+	empulse(src, 5, 8) //Bubber EDIT CHANGE
 
 /obj/singularity/singularity_act()
 	var/gain = (energy/2)

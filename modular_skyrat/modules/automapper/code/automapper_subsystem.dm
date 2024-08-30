@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(automapper)
 			CRASH("[template] could not find map file [map_file]!")
 
 		var/datum/map_template/automap_template/map = new(map_file, template, required_map, load_turf)
-			preloaded_map_templates += map
+		preloaded_map_templates += map
 
 /**
  * Assuming we have preloaded our templates, this will load them from the cache.
