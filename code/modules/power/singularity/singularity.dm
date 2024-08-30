@@ -50,7 +50,7 @@
 	/// What the game tells ghosts when you make one
 	var/ghost_notification_message = "IT'S LOOSE"
 
-	invisibility = INVISIBILITY_MAXIMUM //SKYRAT EDIT ADDITION
+	invisibility = INVISIBILITY_MAXIMUM //Bubber EDIT ADDITION
 
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 	flags_1 = SUPERMATTER_IGNORES_1
@@ -60,11 +60,11 @@
 /obj/singularity/Initialize(mapload, starting_energy = 50)
 	. = ..()
 
-	//SKYRAT EDIT ADDITION BEGIN
+	//Bubber EDIT ADDITION BEGIN
 	new /obj/effect/singularity_creation(loc)
 
 	addtimer(CALLBACK(src, PROC_REF(make_visible)), SINGULARITY_EFFECT_ANIM_TIME)
-	//SKYRAT EDIT END
+	//Bubber EDIT END
 
 	energy = starting_energy
 
