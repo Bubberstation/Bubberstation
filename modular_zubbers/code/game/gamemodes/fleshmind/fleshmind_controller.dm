@@ -469,6 +469,9 @@
 		if(!length(locations))
 			break
 		var/turf/location = pick(locations)
+		if(locate(/obj/structure/fleshmind/structure/core) in location)
+			locations -= location
+			continue
 		locations -= location
 		var/structure_to_spawn
 		if(length(guaranteed_structures))
