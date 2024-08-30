@@ -59,7 +59,7 @@
 			var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
 			consumed_mix.assert_gas(/datum/gas/goblin)
 			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5
+			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/vent_pressure_multiplier)
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 		if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
@@ -166,7 +166,7 @@
 		else
 			if(active)
 				buffer_gases.pump_gas_to(turf_air,vent_pressure) //Pump buffer gases to turf. Reduced rate because active.
-				if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=0.5)
+				if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=min(1,0.5*vent_pressure_multiplier))
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increases rate because inactive.
 				if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
