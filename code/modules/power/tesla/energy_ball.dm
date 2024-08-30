@@ -1,5 +1,5 @@
-#define TESLA_DEFAULT_POWER 5214780 // Bubber EDIT CHANGE
-#define TESLA_MINI_POWER 1738260 // Bubber EDIT CHANGE
+#define TESLA_DEFAULT_ENERGY 5214780 // Bubber EDIT CHANGE
+#define TESLA_MINI_ENERGY 1738260 // Bubber EDIT CHANGE
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
 #define COIL (ROD + 1)
