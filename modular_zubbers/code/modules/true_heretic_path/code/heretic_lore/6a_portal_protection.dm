@@ -69,6 +69,23 @@
 	if(gibbed || portals_left <= 0) //You're fucked lol.
 		return
 
+	portals_left--
+
+	user.visible_message(
+		span_userdanger("As [user] takes their last breath, they disappear!"),
+		span_userdanger("As you take your last breath, you feel yourself disappearing!")
+	)
+
+	if(research_location) //Safety
+		do_teleport(
+			user,
+			research_location,
+			no_effects = TRUE,
+			channel = TELEPORT_CHANNEL_MAGIC,
+			asoundin = 'sound/magic/cosmic_energy.ogg',
+			asoundout = 'sound/magic/cosmic_energy.ogg',
+		)
+
 	user.revive(
 		HEAL_ALL & ~(HEAL_ORGANS|HEAL_REFRESH_ORGANS),
 		excess_healing = 100,
@@ -76,10 +93,7 @@
 	)
 
 	var/damage_to_deal = round(BRAIN_DAMAGE_DEATH/6,1)
-
 	user.adjustOrganLoss(ORGAN_SLOT_BRAIN,damage_to_deal)
-
-	portals_left--
 
 	to_chat(user,span_velvet("You feel your soul getting slammed back into your broken body while it is carried away to safety... you have [portals_left] [portals_left == 1 ? "revive" :"revives"] left!"))
 

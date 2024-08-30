@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/limited_amount/exile_revival
 
 	name = "Washed Up Shores"
-	desc = "Allows you to sacrifice a single heretical blade to instantly heal yourself of all damage and ailments. One use only."
+	desc = "Allows you to sacrifice a single heretical blade to instantly heal yourself of all damage and ailments. This ritual can be invoked only once!"
 	gain_text = "A second chance at life."
 
 	required_atoms = list(
@@ -21,8 +21,6 @@
 
 	limit = 1
 
-	var/used = FALSE
-
 /datum/heretic_knowledge/limited_amount/exile_revival/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 
 	. = ..()
@@ -31,5 +29,3 @@
 		HEAL_ALL,
 		excess_healing = 100
 	)
-
-	used = TRUE

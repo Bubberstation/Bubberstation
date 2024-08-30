@@ -1,5 +1,5 @@
 /datum/heretic_knowledge/fisher
-	name = "Hidden Fishing"
+	name = "Hidden Fishing Mechanics"
 	desc = "Allows you to transmute a fish into ancient and powerful fishing knowledge."
 	gain_text = "Wait, fishing? What is the purpose of this? There is literally no benefit to knowing this. I'm becoming insane."
 	next_knowledge = list(

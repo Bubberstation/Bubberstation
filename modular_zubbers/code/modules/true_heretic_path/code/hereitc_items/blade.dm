@@ -10,6 +10,8 @@
 
 	after_use_message = "The Exile hears your call..."
 
+	force = 16 //Previously 20
+
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 

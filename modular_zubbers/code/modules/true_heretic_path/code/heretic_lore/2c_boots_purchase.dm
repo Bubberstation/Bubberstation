@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/boots_purchase
 	name = "Boots of Speed"
-	desc = "Allows you to transmute a pair of workboots, a green crayon, an endless flask of stimulants, and a sheet of paper into Boots of Speed."
+	desc = "Allows you to transmute a pair of workboots, a green crayon and a sheet of paper into Boots of Speed. The boots do go fast."
 	gain_text = "The paper wings makes it go faster."
 	next_knowledge = list(
 
