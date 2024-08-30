@@ -31,57 +31,21 @@
 		if(!is_type_in_typecache(iterating_area, possible_spawn_areas))
 			continue
 		areas += iterating_area
-	if(!LAZYLEN(areas))
-		message_admins("Fleshmind event controller failed to find a proper area.")
+
+	var/turf/picked_turf = get_safe_random_station_turf(areas)
+
+	for(var/turf/open/floor/floors in range(2, picked_turf))
+		if(!floors.Enter(test_resin))
+			continue
+		if(locate(/turf/closed) in range(1, test_resin))
+			continue
+		turfs += floors
+
+	if(!LAZYLEN(turfs))
+		message_admins("Fleshmind failed to pick a proper turf!")
 		return
 
-	var/area_pick = pick(areas)
-	for(var/turf/open/floor in area_pick)
-		if(!floor.Enter(test_resin))
-			continue
-		if(locate(/turf/closed) in range(2, floor))
-			continue
-		turfs += floor
-
-	qdel(test_resin, TRUE)
-
-	if(!turfs)
-		message_admins("Fleshmind failed to find an appropriate turf to spawn in [area_pick]!")
-		return
-	var/turf/picked_turf = pick(turfs)
-
-	var/obj/structure/fleshmind/structure/core/new_core = new(picked_turf)
+	qdel(test_resin)
+	var/final_turf = pick(turfs)
+	var/obj/structure/fleshmind/structure/core/new_core = new(final_turf)
 	announce_to_ghosts(new_core)
-/*
-	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas
-
-	var/obj/structure/mold/resin/test/test_resin = new()
-
-	var/list/possible_spawn_areas = typecacheof(typesof(/area/station/maintenance, /area/station/security/prison, /area/station/construction))
-
-	shuffle(possible_spawn_areas)
-
-	for(var/area/iterating_area in GLOB.areas)
-		if(!is_station_level(iterating_area.z))
-			continue
-		if(!is_type_in_typecache(iterating_area, possible_spawn_areas))
-			continue
-		for(var/turf/open/floor in iterating_area)
-			if(!floor.Enter(test_resin))
-				continue
-			if(locate(/turf/closed) in range(2, floor))
-				continue
-			turfs += floor
-
-	QDEL_NULL(test_resin)
-
-	if(!turfs)
-		message_admins("Fleshmind failed to find an appropriate area to spawn.")
-		return
-
-	var/turf/picked_turf = pick(turfs)
-
-	var/obj/structure/fleshmind/structure/core/new_core = new(picked_turf)
-	announce_to_ghosts(new_core)
-*/
-
