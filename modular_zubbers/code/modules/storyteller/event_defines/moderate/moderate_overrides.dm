@@ -53,6 +53,3 @@
 /datum/round_event_control/portal_storm_syndicate
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMBAT)
-
-/datum/round_event_control/mold
-	max_occurrences = 0 // Disable mold due to fleshmind
