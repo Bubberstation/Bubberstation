@@ -4,31 +4,25 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-	if(!owner || !owner.current)
+	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
-	life_always()
-	var/is_head = is_head(owner.current)
-	if(!is_head && owner.current.get_organ_slot(ORGAN_SLOT_HEART) && !am_staked())
-		life_active(is_head)
-
-	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
-
-/datum/antagonist/bloodsucker/proc/life_always(is_head = FALSE)
+	if(isbrain(owner.current))
+		return
 	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		check_end_torpor()
-	if(is_head)
-		return
+	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		INVOKE_ASYNC(src, PROC_REF(AdjustBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
-	INVOKE_ASYNC(src, PROC_REF(update_blood))
-	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
-
-/datum/antagonist/bloodsucker/proc/life_active()
 	if(HandleHealing())
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && bloodsucker_blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
+	// Standard Updates
+	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
+	INVOKE_ASYNC(src, PROC_REF(update_blood))
+
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
 	SIGNAL_HANDLER
@@ -394,7 +388,7 @@
 	user.remove_all_embedded_objects()
 	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
 
-	var/unique_death = SEND_SIGNAL(src, COMSIG_BLOODSUCKER_FINAL_DEATH)
+	var/unique_death = SEND_SIGNAL(src, BLOODSUCKER_FINAL_DEATH)
 	if(unique_death & DONT_DUST)
 		return
 

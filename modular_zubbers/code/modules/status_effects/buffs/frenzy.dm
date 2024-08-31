@@ -40,7 +40,7 @@
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! You will DIE if you do not get BLOOD."))
 	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you quickly accrue burn damage, instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	owner.balloon_alert(owner, "you enter a frenzy! Drink blood, or you will die!")
-	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_ENTERS_FRENZY)
+	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY)
 
 	// Give the other Frenzy effects
 	owner.add_traits(trait_list, FRENZY_TRAIT)
@@ -66,7 +66,7 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/frenzy_speedup)
 	owner.remove_client_colour(/datum/client_colour/manual_heart_blood)
 
-	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY)
+	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY)
 	bloodsuckerdatum.frenzied = FALSE
 	return ..()
 

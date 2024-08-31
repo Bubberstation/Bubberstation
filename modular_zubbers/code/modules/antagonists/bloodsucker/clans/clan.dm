@@ -37,32 +37,32 @@
 	src.bloodsuckerdatum = owner_datum
 
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(handle_clan_life))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
 
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
 
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ENTERS_FRENZY, PROC_REF(on_enter_frenzy))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY, PROC_REF(on_exit_frenzy))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY, PROC_REF(on_enter_frenzy))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY, PROC_REF(on_exit_frenzy))
 
 	give_clan_objective()
 
 /datum/bloodsucker_clan/Destroy(force)
 	UnregisterSignal(bloodsuckerdatum, list(
 		COMSIG_BLOODSUCKER_ON_LIFETICK,
-		COMSIG_BLOODSUCKER_RANK_UP,
-		COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL,
-		COMSIG_BLOODSUCKER_MAKE_FAVORITE,
-		COMSIG_BLOODSUCKER_MADE_VASSAL,
-		COMSIG_BLOODSUCKER_EXIT_TORPOR,
-		COMSIG_BLOODSUCKER_FINAL_DEATH,
-		COMSIG_BLOODSUCKER_ENTERS_FRENZY,
-		COMSIG_BLOODSUCKER_EXITS_FRENZY,
+		BLOODSUCKER_RANK_UP,
+		BLOODSUCKER_INTERACT_WITH_VASSAL,
+		BLOODSUCKER_MAKE_FAVORITE,
+		BLOODSUCKER_MADE_VASSAL,
+		BLOODSUCKER_EXIT_TORPOR,
+		BLOODSUCKER_FINAL_DEATH,
+		BLOODSUCKER_ENTERS_FRENZY,
+		BLOODSUCKER_EXITS_FRENZY,
 	))
 	remove_clan_objective()
 	bloodsuckerdatum = null

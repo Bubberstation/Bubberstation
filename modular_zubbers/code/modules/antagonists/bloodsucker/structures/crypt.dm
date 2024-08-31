@@ -259,7 +259,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal?
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
-		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL, vassaldatum)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, vassaldatum)
 		return
 	if(bloodsuckerdatum.free_vassal_slots() < 1)
 		to_chat(user, span_warning("You can't vassalize more people until you level up more! You are currently at [bloodsuckerdatum.free_vassal_slots()] active / [bloodsuckerdatum.max_vassals()] max vassals."))
@@ -332,7 +332,7 @@
 	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
 		remove_loyalties(target)
-		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_VASSAL, user, target)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
 
 /obj/structure/bloodsucker/vassalrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
 	// Fifteen seconds if you aren't using anything. Shorter with weapons and such.

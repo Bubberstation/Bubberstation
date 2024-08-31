@@ -86,12 +86,12 @@
 	if(!wood_stack && replace)
 		user.put_in_hands(new_item)
 
-// TODO move this into bloodsuckerdatum
 /// Do I have a stake in my heart?
 /mob/living/proc/am_staked()
-	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
-	var/obj/item/stake/stake = locate() in chosen_bodypart.embedded_objects
-	return stake
+	var/list/stakes = get_stakes()
+	if(!length(stakes))
+		return FALSE
+	return TRUE
 
 /mob/living/proc/get_stakes()
 	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
@@ -173,17 +173,18 @@
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
 	if(tryEmbed(target.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)) //and if it embeds successfully in their chest, cause a lot of pain
 		target.apply_damage(max(10, force * 1.2), BRUTE, BODY_ZONE_CHEST, wound_bonus = 0, sharpness = TRUE)
-
-/obj/item/stake/tryEmbed(atom/target, forced)
-	. = ..()
-	if(!(. & COMPONENT_EMBED_SUCCESS) || !isbodypart(target))
-		return FALSE
-	var/obj/item/bodypart/bodypart = target
-	if(bodypart.body_zone != BODY_ZONE_CHEST)
+	if(QDELETED(src)) // in case trying to embed it caused its deletion (say, if it's DROPDEL)
 		return
-	SEND_SIGNAL(bodypart, COMSIG_BODYPART_STAKED, forced)
-	if(bodypart.owner)
-		SEND_SIGNAL(bodypart.owner, COMSIG_MOB_STAKED, forced)
+	if(!target.mind)
+		return
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
+	if(bloodsuckerdatum)
+		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
+		if(target.StakeCanKillMe())
+			bloodsuckerdatum.FinalDeath()
+		else
+			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
+			target.balloon_alert(target, "you have been staked!")
 
 ///Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /mob/living/proc/can_be_staked()

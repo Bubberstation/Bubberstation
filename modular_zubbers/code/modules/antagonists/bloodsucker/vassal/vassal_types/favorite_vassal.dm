@@ -17,10 +17,10 @@
 
 /datum/antagonist/vassal/favorite/on_gain()
 	. = ..()
-	SEND_SIGNAL(master, COMSIG_BLOODSUCKER_MAKE_FAVORITE, src)
+	SEND_SIGNAL(master, BLOODSUCKER_MAKE_FAVORITE, src)
 
 /datum/antagonist/vassal/favorite/on_removal()
-	SEND_SIGNAL(master, COMSIG_BLOODSUCKER_LOOSE_FAVORITE, src)
+	SEND_SIGNAL(master, BLOODSUCKER_LOOSE_FAVORITE, src)
 	remove_powers(bloodsucker_powers)
 	. = ..()
 
