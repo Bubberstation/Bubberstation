@@ -15,6 +15,8 @@
 
 		TAG_OUTSIDER_ANTAG = 0.25, //BurgerBB was here.
 
+		TAG_CHAOTIC = 0.75, //Already got this from the constant antag spawns.
+
 	)
 
 	starting_point_multipliers = list(
