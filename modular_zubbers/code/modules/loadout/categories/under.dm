@@ -49,3 +49,11 @@
 /datum/loadout_item/uniform/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
 	name = "Tacticool Utility Skirt and Suspenders"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+
+/datum/loadout_item/under/loincloth
+	name = "leather loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/sensor
+
+/datum/loadout_item/under/loincloth/cloth
+	name = "loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/cloth/sensor
