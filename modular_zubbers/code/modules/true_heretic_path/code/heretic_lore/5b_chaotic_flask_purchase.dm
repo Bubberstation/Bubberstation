@@ -2,7 +2,7 @@
 	name = "Chaotic Auto-Alchemical Creation"
 	desc = "Allows you to transmute a bluespace beaker, a heart, 3 maintenance pills, and a chaotic orb into a \
 	magical flask that refills with with an absolutely random reagent. Only for the brave. Or insane."
-	gain_text = "Lets go gambling."
+	gain_text = "Lets go gambling!"
 	next_knowledge = list(
 
 	)
@@ -16,7 +16,7 @@
 		/obj/item/reagent_containers/cup/endless_flask/random
 	)
 
-	cost = 2
+	cost = 3
 	depth = 6
 	route = PATH_EXILE
 

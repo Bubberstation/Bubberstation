@@ -12,7 +12,7 @@
 	)
 	result_atoms = list(/obj/item/heretic_map)
 
-	cost = 2
+	cost = 1
 	depth = 10
 	route = PATH_EXILE
 

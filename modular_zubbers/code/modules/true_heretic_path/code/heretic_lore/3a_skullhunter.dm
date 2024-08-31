@@ -19,7 +19,7 @@
 
 	result_atoms = list(/obj/item/storage/belt/skullhunter)
 
-	cost = 3
+	cost = 2
 	depth = 4
 	route = PATH_EXILE
 

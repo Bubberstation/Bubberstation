@@ -14,7 +14,7 @@
 	)
 	result_atoms = list(/obj/item/storage/belt/wizardblood)
 
-	cost = 3
+	cost = 2
 	depth = 6
 	route = PATH_EXILE
 
