@@ -99,7 +99,7 @@
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)))
+		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && is_in_torpor()))
 			if(power.active)
 				power.DeactivatePower()
 
@@ -293,7 +293,7 @@
 	head.Shake(duration = animation_time)
 
 /datum/antagonist/bloodsucker/proc/stake_can_kill()
-	if(owner.current.IsSleeping() || owner.current.stat >= UNCONSCIOUS || HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(owner.current.IsSleeping() || owner.current.stat >= UNCONSCIOUS || is_in_torpor())
 		for(var/stake in get_stakes())
 			var/obj/item/stake/killin_stake = stake
 			if(killin_stake?.kills_blodsuckers)

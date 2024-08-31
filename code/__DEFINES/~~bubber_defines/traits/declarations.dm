@@ -16,3 +16,5 @@
 
 //basic security hud
 #define TRAIT_BASIC_SECURITY_HUD "basic_security_hud"
+
+#define TRAIT_TORPOR "torpor"

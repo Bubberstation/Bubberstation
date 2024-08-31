@@ -129,6 +129,7 @@
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
 #define DEACTIVATE_POWER_DO_NOT_REMOVE (1<<0)
+#define DEACTIVATE_POWER_NO_COOLDOWN (1<<1)
 
 // ability levels that are used cross-file
 #define DOMINATE_VASSALIZE_LEVEL 2

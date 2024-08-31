@@ -51,7 +51,7 @@
 		if(owner.current.am_staked() && COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
 			to_chat(owner.current, span_userdanger("You are staked you will keep burning until it is removed! Remove the offending weapon from your heart before sleeping."))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
-		if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+		if(!is_in_torpor())
 			check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
 			owner.current.add_mood_event("vampsleep", /datum/mood_event/coffinsleep)
 		return
@@ -103,12 +103,15 @@
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
 	var/total_damage = getBruteLoss() + getFireLoss() + user.getToxLoss() + user.getOxyLoss()
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
-	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !is_in_torpor())
 		torpor_begin()
 		return TRUE
 	return FALSE
 
-/datum/antagonist/bloodsucker/proc/check_end_torpor()
+/datum/antagonist/bloodsucker/proc/is_in_torpor()
+	return owner.current && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_TORPOR, BLOODSUCKER_TRAIT)
+
+/datum/antagonist/bloodsucker/proc/check_end_torpor(early_end = FALSE)
 	var/mob/living/carbon/user = owner.current
 	var/total_brute = getBruteLoss()
 	var/total_burn = getFireLoss()
@@ -118,7 +121,7 @@
 		return FALSE
 	if(SSsunlight.sunlight_active)
 		return FALSE
-	if(bloodsucker_blood_volume == 0 || owner.current.am_staked() || HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
+	if(bloodsucker_blood_volume == 0 || early_end)
 		// If you're frenzying, you need a bit more health to actually have a chance to do something
 		if(frenzied && total_damage >= user.maxHealth)
 			return FALSE
@@ -139,21 +142,22 @@
 	if(!silent)
 		to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	// Force them to go to sleep
-	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+	owner.current.death()
 	// Without this, you'll just keep dying while you recover.
-	owner.current.add_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
+	owner.current.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_TORPOR), BLOODSUCKER_TRAIT)
 	owner.current.do_jitter_animation(2)
 	// Disable ALL Powers
 	DisableAllPowers()
 
-/datum/antagonist/bloodsucker/proc/torpor_end(quiet = FALSE)
+/datum/antagonist/bloodsucker/proc/torpor_end(message = FALSE)
 	if(!owner.current)
 		return
-	if(quiet)
-		to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	owner.current.grab_ghost()
-	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
-	if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT))
-		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	heal_vampire_organs()
+	owner.current.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_TORPOR), BLOODSUCKER_TRAIT)
+	var/revived = heal_vampire_organs()
+	if(message)
+		if(revived)
+			to_chat(owner.current, span_warning("You have recovered from Torpor."))
+		else
+			to_chat(owner.current, span_warning("You could not recover from Torpor"))
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_EXIT_TORPOR)

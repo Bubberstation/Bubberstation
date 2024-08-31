@@ -253,6 +253,8 @@
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
+	if(!bloodsuckerdatum)
+		return FALSE
 	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
 		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= power_level)
 			return TRUE

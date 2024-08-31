@@ -220,9 +220,8 @@
 	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
 	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as Bloodsuckers.
+	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as roundstart Bloodsuckers.
 		bloodsucker_level_unspent = 0
-		show_in_roundend = FALSE
 	else
 		// Start Sunlight if first Bloodsucker
 		// Name and Titles

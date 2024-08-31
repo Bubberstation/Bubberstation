@@ -196,7 +196,7 @@
 	active = TRUE
 	. = ActivatePower(target)
 	if(!.)
-		DeactivatePower()
+		DeactivatePower(DEACTIVATE_POWER_NO_COOLDOWN)
 		return FALSE
 	if(power_flags & BP_CONTINUOUS_EFFECT || constant_bloodcost)
 		START_PROCESSING(SSprocessing, src)
@@ -222,7 +222,7 @@
 		remove_after_use()
 		return FALSE
 	active = FALSE
-	if(!click_to_activate)
+	if(!click_to_activate && !(deactivate_flags & DEACTIVATE_POWER_NO_COOLDOWN))
 		StartCooldown()
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 	return TRUE

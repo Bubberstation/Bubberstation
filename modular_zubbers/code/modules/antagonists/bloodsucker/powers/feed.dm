@@ -99,7 +99,10 @@
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
 	silent_feed = TRUE
-	var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref?.resolve()
+	if(!feed_target)
+		DeactivatePower()
+		return FALSE
 	if(istype(feed_target, /mob/living/basic/mouse))
 		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
 		if(bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_INHUMANELY)
@@ -108,6 +111,7 @@
 			bloodsuckerdatum_power.AddHumanityLost(1)
 		bloodsuckerdatum_power.AdjustBloodVolume(25)
 		feed_target.death()
+		StartCooldown()
 		return FALSE
 	var/feed_timer = get_feed_start_time()
 	if(bloodsuckerdatum_power.frenzied)
@@ -161,7 +165,10 @@
 	if(!active) //If we aren't active (running on SSfastprocess)
 		return ..() //Manage our cooldown timers
 	var/mob/living/user = owner
-	var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref?.resolve()
+	if(!feed_target)
+		DeactivatePower()
+		return
 	if(!ContinueActive(user, feed_target, !silent_feed, !silent_feed))
 		if(!silent_feed)
 			user.visible_message(
