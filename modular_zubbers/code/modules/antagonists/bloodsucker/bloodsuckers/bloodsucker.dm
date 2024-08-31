@@ -452,8 +452,8 @@
  */
 /datum/antagonist/bloodsucker/proc/clear_powers_and_stats()
 	// Remove clan first
-	if(my_clan)
-		QDEL_NULL(my_clan)
+	// if(my_clan)
+	// 	QDEL_NULL(my_clan)
 	// Powers
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		RemovePower(all_powers)
