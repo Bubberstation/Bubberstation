@@ -12,7 +12,7 @@
 		/obj/item/stack/spacecash/c5000,
 	)
 
-	cost = 1
+	cost = 0
 	depth = 2
 
 	route = PATH_EXILE

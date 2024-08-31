@@ -12,7 +12,7 @@
 	)
 	result_atoms = list(/obj/item/clothing/head/helmet/heretic_resistance)
 
-	cost = 2
+	cost = 1
 	depth = 2
 	route = PATH_EXILE
 

@@ -11,14 +11,6 @@
 
 	after_use_message = "The Exile hears your call..."
 
-	force = 24 //Previously 20
-	throwforce = 5 //Previously 10
-	wound_bonus = 10 //Previously 5
-	bare_wound_bonus = 10 //Previously 15
-	toolspeed = 0.5 //Previously 0.375
-	demolition_mod = 1.2 //Previously 0.8
-	armour_penetration = 50
-
 	var/static/list/insanity_phrases = list(
 		"There is something nearby.",
 		"You left something behind.",

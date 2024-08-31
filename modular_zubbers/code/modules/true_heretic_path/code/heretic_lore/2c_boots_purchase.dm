@@ -14,7 +14,7 @@
 
 	result_atoms = list(/obj/item/clothing/shoes/workboots/speed)
 
-	cost = 1
+	cost = 2
 	depth = 3
 	route = PATH_EXILE
 

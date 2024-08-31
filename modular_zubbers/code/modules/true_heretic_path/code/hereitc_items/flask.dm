@@ -52,8 +52,8 @@
 	icon_state = "health"
 
 //Speed
-/obj/item/reagent_containers/cup/endless_flask/stimulants
-	reagent_to_create = /datum/reagent/medicine/stimulants
+/obj/item/reagent_containers/cup/endless_flask/pumpup
+	reagent_to_create = /datum/reagent/drug/pumpup
 	icon_state = "speed"
 
 //Phasing

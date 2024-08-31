@@ -12,7 +12,7 @@
 
 	result_atoms = list(/obj/item/storage/bag/exile)
 
-	cost = 1
+	cost = 0
 	depth = 2
 
 	route = PATH_EXILE
