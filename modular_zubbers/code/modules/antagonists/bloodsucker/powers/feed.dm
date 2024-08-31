@@ -81,9 +81,8 @@
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref?.resolve()
 	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
-	if(isnull(feed_target))
+	if(isnull(feed_target) && blood_taken)
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
-		stack_trace("[src] ended feeding with no target")
 	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
 		to_chat(user, span_notice("You slowly release [feed_target]."))
@@ -108,9 +107,8 @@
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 			bloodsuckerdatum_power.AddHumanityLost(1)
 		bloodsuckerdatum_power.AdjustBloodVolume(25)
-		DeactivatePower()
 		feed_target.death()
-		return
+		return FALSE
 	var/feed_timer = get_feed_start_time()
 	if(bloodsuckerdatum_power.frenzied)
 		feed_timer = min(2 SECONDS, feed_timer)
@@ -120,7 +118,7 @@
 	if(!do_after(owner, feed_timer, feed_target, hidden = TRUE))
 		owner.balloon_alert(owner, "feed stopped")
 		target_ref = null
-		return
+		return FALSE
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())

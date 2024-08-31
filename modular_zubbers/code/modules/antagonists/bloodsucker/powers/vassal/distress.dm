@@ -9,6 +9,7 @@
 	purchase_flags = NONE
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
+	level_current = -1
 
 /datum/action/cooldown/bloodsucker/distress/ActivatePower(trigger_flags)
 	. = ..()

@@ -11,7 +11,7 @@
 	purchase_flags = NONE
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
-
+	level_current = -1
 	///Bloodbag we have in our hands.
 	var/obj/item/reagent_containers/blood/bloodbag
 	///Weakref to a target we're bringing into the fold.

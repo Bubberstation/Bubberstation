@@ -14,6 +14,7 @@
 	purchase_flags = NONE
 	bloodcost = 1.5
 	cooldown_time = 10 SECONDS
+	level_current = -1
 
 /datum/action/cooldown/bloodsucker/recuperate/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()

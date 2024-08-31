@@ -129,7 +129,7 @@
 		return FALSE
 	if(!isliving(user))
 		return FALSE
-	if(bloodsuckerdatum_power && !bloodsuckerdatum_power.heart?.resolve())
+	if(bloodsuckerdatum_power && !owner.get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_warning("To channel your powers you need a heart!"))
 		return FALSE
 	if(isbrain(user))
@@ -194,12 +194,15 @@
 	if(active)
 		return FALSE
 	active = TRUE
+	. = ActivatePower(target)
+	if(!.)
+		DeactivatePower()
+		return FALSE
 	if(power_flags & BP_CONTINUOUS_EFFECT || constant_bloodcost)
 		START_PROCESSING(SSprocessing, src)
 
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
-	return ActivatePower(target)
 
 /datum/action/cooldown/bloodsucker/proc/RightClickActivate(trigger_flags)
 	if(!owner)
@@ -272,7 +275,7 @@
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
 	var/new_desc = ""
-	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
+	if(level_current != -1)
 		new_desc += "<br><b>LEVEL:</b> [level_current]"
 	else
 		new_desc += "<br><b>(Inherent Power)</b>"

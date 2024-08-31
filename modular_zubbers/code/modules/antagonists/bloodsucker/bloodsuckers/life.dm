@@ -29,6 +29,7 @@
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && bloodsucker_blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
+
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
 	SIGNAL_HANDLER
 	RegisterSignal(owner.current, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))

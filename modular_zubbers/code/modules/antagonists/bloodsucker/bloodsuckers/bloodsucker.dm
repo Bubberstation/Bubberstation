@@ -106,10 +106,6 @@
 		TRAIT_STABLELIVER
 	)
 	var/static/biotype = MOB_VAMPIRIC
-	/// Weakref to the owner mob's heart, without it they loose their powers. Handled via signals due to the fact that
-	/// bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
-	/// Saved here so we can keep a track of it and remove signals properly
-	var/datum/weakref/heart
 
 /**
  * Apply innate effects is everything given to the mob
