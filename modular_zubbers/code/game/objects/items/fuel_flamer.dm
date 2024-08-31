@@ -28,7 +28,7 @@
 
 /obj/item/gun/fuel_thrower/update_overlays()
 	. = ..()
-	. += "+igniter[status]"
+	. += "+igniter1"
 	. += "+ptank"
 	if(lit)
 		. += "+lit"
@@ -40,6 +40,7 @@
 	else
 		playsound(get_turf(src), 'sound/items/welderdeactivate.ogg', 50, TRUE)
 	set_light_on(lit)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/fuel_thrower/examine(mob/user)
 	. = ..()
@@ -60,9 +61,19 @@
 /obj/item/gun/fuel_thrower/can_shoot()
 	return lit && reagents.has_reagent(fuel_type, fuel_consumption)
 
-/obj/item/gun/fuel_thrower/handle_chamber()
+/obj/item/gun/fuel_thrower/recharge_newshot()
 	if(chambered && !chambered.loaded_projectile && reagents.has_reagent(fuel_type, fuel_consumption))
+		if(!istype(chambered, /obj/item/ammo_casing/flamer))
+			return
+		var/obj/item/ammo_casing/flamer/casing = chambered
+		casing.fuel_type = fuel_type
+		casing.fuel_to_use = fuel_consumption
 		chambered.newshot()
+
+/obj/item/gun/magic/handle_chamber()
+	if(chambered && !chambered.loaded_projectile) //if BB is null, i.e the shot has been fired...
+		reagents.remove_reagent(fuel_type, fuel_consumption)
+		recharge_newshot()
 
 /obj/item/gun/fuel_thrower/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
@@ -80,8 +91,20 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/projectile/bullet/incendiary/fire/fuel_trail
+	var/datum/reagent/fuel_type
 	var/fuel_to_use = 20
 	var/fuel_consumption = 1
+
+/obj/projectile/bullet/incendiary/fire/fuel_trail/Move()
+	. = ..()
+	if(fuel_to_use <= 0)
+		qdel(src)
+		return
+	var/turf/location = get_turf(src)
+	if(location)
+		fuel_to_use -= fuel_consumption
+		var/obj/effect/decal/cleanable/fuel_pool/pool = location.spawn_unique_cleanable(/obj/effect/decal/cleanable/fuel_pool)
+		pool.burn_amount = fuel_to_use
 
 /obj/item/ammo_casing/flamer
 	projectile_type = /obj/projectile/bullet/incendiary/fire/fuel_trail
