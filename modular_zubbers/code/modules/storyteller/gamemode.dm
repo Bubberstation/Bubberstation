@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(gamemode)
 	/// Our storyteller. He progresses our trackboards and picks out events
 	var/datum/storyteller/storyteller
 	/// Result of the storyteller vote. Defaults to the guide.
-	var/voted_storyteller = /datum/storyteller/guide
+	var/voted_storyteller = /datum/storyteller/default
 	/// List of all the storytellers. Populated at init. Associative from type
 	var/list/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
@@ -213,7 +213,9 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
 	if(isnull(storyteller))
 		return 0
-	return round(get_correct_popcount() / storyteller.antag_divisor) + (sec_crew ? sec_crew : ANTAG_CAP_FLAT) // Population divide by storyeteller's divisor, add one antag per sec.
+	if(storyteller.antag_divisor == 0)
+		return 0
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew,sec_crew*1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
