@@ -17,12 +17,15 @@
 #define TAG_TEAM_ANTAG "team_antag"
 /// When one of the non-crewmember players becomes an antagonist
 #define TAG_OUTSIDER_ANTAG "away_antag"
+/// When the event is considered chaotic by a completely non-biased coder.
+#define TAG_CHAOTIC "chaotic"
 /// When the event impacts the overmap
 #define TAG_OVERMAP "overmap"
 /// When the event requires the station to be in space (meteors, carp)
 #define TAG_SPACE "space"
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
+
 
 #define EVENT_TRACK_MUNDANE "Mundane"
 #define EVENT_TRACK_MODERATE "Moderate"
