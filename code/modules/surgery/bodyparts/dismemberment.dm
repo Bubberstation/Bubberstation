@@ -4,7 +4,7 @@
 		return FALSE
 	return TRUE
 
-///Remove target limb from it's owner, with side effects.
+///Remove target limb from its owner, with side effects.
 /obj/item/bodypart/proc/dismember(dam_type = BRUTE, silent=TRUE, wounding_type)
 	if(!owner || (bodypart_flags & BODYPART_UNREMOVABLE))
 		return FALSE
@@ -238,8 +238,6 @@
 		//Drop all worn head items
 		for(var/obj/item/head_item as anything in list(owner.glasses, owner.ears, owner.wear_mask, owner.head))
 			owner.dropItemToGround(head_item, force = TRUE)
-
-	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay flushed emoji
 
 	//Handle dental implants
 	for(var/datum/action/item_action/activate_pill/pill_action in owner.actions)

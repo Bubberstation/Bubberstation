@@ -329,7 +329,7 @@
 
 /obj/item/circuitboard/machine/scanner_gate
 	name = "Scanner Gate"
-	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/scanner_gate
 	req_components = list(
 		/datum/stock_part/scanning_module = 3)
@@ -572,6 +572,11 @@
 		return
 	. += span_info("[src] is set to [fridges_name_paths[build_path]]. You can use a screwdriver to reconfigure it.")
 
+/obj/item/circuitboard/machine/dehydrator
+	name = "Dehydrator"
+	build_path = /obj/machinery/smartfridge/drying
+	req_components = list(/datum/stock_part/matter_bin = 1)
+	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/space_heater
 	name = "Space Heater"
@@ -712,6 +717,13 @@
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
+
+/obj/item/circuitboard/machine/vending/donksnackvendor
+	name = "Donk Co Snack Vendor"
+	build_path = /obj/machinery/vending/donksnack
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/vending_refill/donksnackvendor = 1)
 
 /obj/item/circuitboard/machine/bountypad
 	name = "Civilian Bounty Pad"
@@ -1283,6 +1295,15 @@
 		/obj/item/stack/sheet/glass = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/hydroponics/fullupgrade
+	build_path = /obj/machinery/hydroponics/constructable/fullupgrade
+	specific_parts = TRUE
+	req_components = list(
+		/datum/stock_part/matter_bin/tier4 = 2,
+		/datum/stock_part/servo/tier4 = 1,
+		/obj/item/stack/sheet/glass = 1
+	)
+
 /obj/item/circuitboard/machine/microwave
 	name = "Microwave"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
@@ -1368,6 +1389,10 @@
 		/datum/stock_part/matter_bin = 2,
 		/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/fishing_portal_generator/emagged
+	name = "Emagged Fishing Portal Generator"
+	build_path = /obj/machinery/fishing_portal_generator
 
 //Supply
 /obj/item/circuitboard/machine/ore_redemption
@@ -1678,3 +1703,20 @@
 	req_components = list(
 		/obj/item/pipe/trinary/flippable/filter = 1,
 	)
+
+/obj/item/circuitboard/machine/portagrav
+	name = "Portable Gravity Unit"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/power/portagrav
+	req_components = list(
+		/datum/stock_part/capacitor = 2,
+		/datum/stock_part/micro_laser = 2,
+		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/big_manipulator
+	name = "Big Manipulator"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/big_manipulator
+	req_components = list(
+		/datum/stock_part/servo = 1,
+		)

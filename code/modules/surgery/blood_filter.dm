@@ -9,6 +9,19 @@
 		/datum/surgery_step/close,
 	)
 
+
+/datum/surgery/blood_filter/mechanic
+	name = "Hydraulics Purge"
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/filter_blood,
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/mechanic_close,
+	)
+
 /datum/surgery/blood_filter/can_start(mob/user, mob/living/carbon/target)
 	if(HAS_TRAIT(target, TRAIT_HUSK)) //You can filter the blood of a dead person just not husked
 		return FALSE
@@ -39,6 +52,10 @@
  * * bloodfilter - The blood filter to check the whitelist of
  */
 /datum/surgery_step/filter_blood/proc/has_filterable_chems(mob/living/carbon/target, obj/item/blood_filter/bloodfilter)
+	// BUBBER EDIT ADDITION BEGIN - Filtration fixes toxins
+	if(target.toxloss > 0)
+		return TRUE
+	// BUBBER EDIT ADDITION END
 	if(!length(target.reagents?.reagent_list))
 		bloodfilter.audible_message(span_notice("[bloodfilter] pings as it reports no chemicals detected in [target]'s blood."))
 		playsound(get_turf(target), 'sound/machines/ping.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1)
@@ -69,7 +86,7 @@
 		for(var/datum/reagent/chem as anything in target.reagents.reagent_list)
 			if(!length(bloodfilter.whitelist) || (chem.type in bloodfilter.whitelist))
 				target.reagents.remove_reagent(chem.type, clamp(round(chem.volume * 0.22, 0.2), 0.4, 10))
-	target.adjustToxLoss(-2, forced = TRUE) //BUBBER EDIT - Filtration fixes toxins
+	target.adjustToxLoss(amount = clamp(round(target.toxloss * -0.07, 2), -2, -10), forced = TRUE) // BUBBER EDIT ADDITION - Filtration fixes toxins
 	display_results(
 		user,
 		target,
