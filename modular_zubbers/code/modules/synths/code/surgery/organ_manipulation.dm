@@ -39,14 +39,12 @@
 	)
 	steps = list(
 		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/pry_off_plating,
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/manipulate_organs/internal/mechanic,
-		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
-	num_opening_steps = 2
-	num_steps_until_closing = 4
+	num_opening_steps = 1
+	num_steps_until_closing = 3
 	close_surgery = /datum/surgery/robot/close_organ_manipulation/soft
 
 /datum/surgery/robot/close_organ_manipulation/soft
@@ -58,7 +56,6 @@
 		BODY_ZONE_R_ARM,
 	)
 	steps = list(
-		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
 
@@ -76,13 +73,11 @@
 	)
 	steps = list(
 		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/pry_off_plating,
 		/datum/surgery_step/manipulate_organs/external/mechanic,
-		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
-	num_opening_steps = 2
-	num_steps_until_closing = 3
+	num_opening_steps = 1
+	num_steps_until_closing = 2
 	close_surgery = /datum/surgery/robot/close_organ_manipulation/external
 
 /datum/surgery/robot/close_organ_manipulation/external
@@ -97,7 +92,6 @@
 		BODY_ZONE_R_LEG,
 	)
 	steps = list(
-		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
 
