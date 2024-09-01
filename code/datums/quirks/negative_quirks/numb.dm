@@ -7,7 +7,6 @@
 	lose_text = "The numbness subsides."
 	medical_record_text = "The patient exhibits congenital hypoesthesia, making them insensitive to pain stimuli."
 	hardcore_value = 4
-	mob_trait = TRAIT_ANALGESIA
 
 /datum/quirk/numb/add(client/client_source)
 	quirk_holder.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
