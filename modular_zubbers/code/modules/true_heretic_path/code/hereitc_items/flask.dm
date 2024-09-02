@@ -8,6 +8,8 @@
 	fill_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_flasks_fillings.dmi'
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 
+	volume = 30
+
 	var/amount_to_create = 1 //Every 2 seconds.
 	var/datum/reagent/reagent_to_create = /datum/reagent/water //Fallback
 
@@ -46,17 +48,26 @@
 
 	reagents.add_reagent(reagent_to_create,desired_amount)
 
-//Healing
-/obj/item/reagent_containers/cup/endless_flask/godblood
-	reagent_to_create = /datum/reagent/medicine/omnizine/godblood
+
+/obj/item/reagent_containers/cup/endless_flask/vitfro
+	reagent_to_create = /datum/reagent/consumable/vitfro
 	icon_state = "health"
 
-//Speed
-/obj/item/reagent_containers/cup/endless_flask/pumpup
-	reagent_to_create = /datum/reagent/drug/pumpup
+/obj/item/reagent_containers/cup/endless_flask/saturnx
+	reagent_to_create = /datum/reagent/drug/saturnx
+	icon_state = "evasion"
+
+
+/obj/item/reagent_containers/cup/endless_flask/blastoff
+	reagent_to_create = /datum/reagent/drug/blastoff
 	icon_state = "speed"
 
-//Phasing
+
+/obj/item/reagent_containers/cup/endless_flask/determination
+	reagent_to_create = /datum/reagent/determination
+	icon_state = "armor"
+
+
 /obj/item/reagent_containers/cup/endless_flask/random
 	reagent_to_create = null
 	icon_state = "phasing"
@@ -65,12 +76,9 @@
 	reagent_to_create = get_random_reagent_id()
 	. = ..()
 
-//Evasion
-/obj/item/reagent_containers/cup/endless_flask/blastoff
-	reagent_to_create = /datum/reagent/drug/blastoff
-	icon_state = "evasion"
+/obj/item/reagent_containers/cup/endless_flask/burger
+	icon_state = "health"
 
-//Armor
-/obj/item/reagent_containers/cup/endless_flask/determination
-	reagent_to_create = /datum/reagent/determination
-	icon_state = "armor"
+/obj/item/reagent_containers/cup/endless_flask/burger/New(...)
+	reagent_to_create = pick(/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/mayonnaise,/datum/reagent/consumable/salt,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/soysauce)
+	. = ..()
