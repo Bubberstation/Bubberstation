@@ -130,7 +130,7 @@
 /datum/ai_behavior/find_and_set/incapacitated/search_tactic(datum/ai_controller/controller, locate_path, search_range)
 	var/list/corpses = list()
 	for(var/mob/living/iterating_mobs in view(search_range, controller.pawn))
-		if(faction_check(faction, iterating_mobs.faction))
+		if(faction_check(controller.pawn.faction, iterating_mobs.faction))
 			continue
 		if(iterating_mobs.health < (iterating_mobs.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 			corpses += iterating_mobs
