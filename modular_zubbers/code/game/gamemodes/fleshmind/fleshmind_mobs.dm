@@ -324,7 +324,7 @@
 
 /mob/living/basic/fleshmind/floater
 	name = "Floater"
-	desc = "A small organic robot that floats ominously."
+	desc = "A small organ robot. It has a fucking bomb on it."
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/floater
 	icon_state = "bomber"
 	attack_speak = list(
@@ -382,6 +382,10 @@
 		detonate()
 	return ..()
 
+/mob/living/basic/fleshmind/floater/proc/pre_detonate()
+	add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
+	balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
+	addtimer(CALLBACK(src, PROC_REF(detonate), 0.5 SECONDS))
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
 		return
@@ -696,7 +700,7 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_upper = 30
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	mob_size = MOB_SIZE_HUMAN
 	attack_speak = list(
@@ -1270,11 +1274,11 @@
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
 	attack_sound = 'sound/weapons/smash.ogg'
-	speed = 4 // Slow fucker
+	speed = 3 // Slowish fucker
 	mob_size = MOB_SIZE_LARGE
-	move_force = MOVE_FORCE_VERY_STRONG
-	move_resist = MOVE_FORCE_VERY_STRONG
-	pull_force = MOVE_FORCE_VERY_STRONG
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
 	/// Is our hatch open? Used in icon processing.
 	var/hatch_open = FALSE
 	/// How much damage our mob will take, upper end, when they are tormented
@@ -1339,19 +1343,16 @@
 	. = ..()
 	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
+	RegisterSignal(src, COMSIG_MECHIVER_CONVERT, PROC_REF(consume_mob))
+
+/mob/living/basic/fleshmind/mechiver/Destroy()
+	UnregisterSignal(src, COMSIG_MECHIVER_CONVERT)
+	return ..()
 
 /mob/living/basic/fleshmind/mechiver/Life(delta_time, times_fired)
 	. = ..()
 	if(contained_mob && contained_mob.stat != DEAD && prob(25) && !suffering_malfunction)
 		torment_passenger()
-
-	if(!ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] && !contained_mob && !suffering_malfunction && !key && our_controller)
-		for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
-			if(iterating_mob.stat != CONSCIOUS && ishuman(iterating_mob))
-				if(get_dist(src, iterating_mob) <= 1)
-					consume_mob(iterating_mob)
-				else
-					ai_controller.set_blackboard_key(BB_TRAVEL_DESTINATION, iterating_mob)
 
 /mob/living/basic/fleshmind/mechiver/proc/torment_passenger()
 	if(!contained_mob)
@@ -1389,21 +1390,23 @@
 /mob/living/basic/fleshmind/mechiver/proc/get_current_target()
 	return ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
-/mob/living/basic/fleshmind/mechiver/melee_attack(atom/target, list/modifiers, ignore_cooldown)
+/*/mob/living/basic/fleshmind/mechiver/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(target && COOLDOWN_FINISHED(src, consume_ability_cooldown) && Adjacent(target) && our_controller)
 		consume_mob(target)
 	return ..()
+*/
+/mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/source, mob/living/target_mob)
+	SIGNAL_HANDLER
 
-/mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/target_mob)
 	if(contained_mob)
 		return
 	if(!istype(target_mob))
 		return
+	if(!our_controller)
+		return
 	if(target_mob.health > (target_mob.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 		return
 
-	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, FALSE)
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	hatch_open = TRUE
 	update_appearance()
 	flick("[base_icon_state]-opening_wires", src)
@@ -1430,16 +1433,13 @@
 	update_appearance()
 	flick("[base_icon_state]-opening", src)
 	addtimer(CALLBACK(src, PROC_REF(close_hatch)), 1 SECONDS)
-	convert_mob(contained_mob)
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, TRUE)
+	convert_mob(contained_mob)
 	contained_mob = null
-
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
 /mob/living/basic/fleshmind/mechiver/proc/convert_mob(mob/living/mob_to_convert)
-	if(!our_controller) // Can't convert without a controller
-		return
-
+	ai_controller.clear_blackboard_key(BB_MECHIVER_CONTAINED_MOB)
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)

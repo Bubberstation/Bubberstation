@@ -2,7 +2,7 @@
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
 	max_occurrences = 1
-	weight = 3
+	weight = 5
 	min_players = 30
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	earliest_start = 30 MINUTES

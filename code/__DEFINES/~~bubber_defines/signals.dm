@@ -17,3 +17,5 @@
 
 /// from /obj/structure/fleshmind/structure/core/proc/rally_troops()
 #define COMSIG_FLESHMIND_CORE_RALLY "fleshmind_core_rally"
+
+#define COMSIG_MECHIVER_CONVERT "mechiver_convert"
