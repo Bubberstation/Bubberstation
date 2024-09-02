@@ -131,6 +131,8 @@
 	var/mob/living/pawn = controller.pawn
 	var/list/corpses = list()
 	for(var/mob/living/iterating_mobs in view(search_range, pawn))
+		if(iterating_mobs == pawn)
+			continue
 		if(faction_check(pawn, iterating_mobs.faction))
 			continue
 		if(iterating_mobs.health < (iterating_mobs.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
@@ -143,8 +145,11 @@
 
 /datum/ai_behavior/convert_easy_pickings/setup(datum/ai_controller/controller, target_key)
 	. = ..()
+	var/mob/living/basic/pawn = controller.pawn
 	var/mob/living/target = controller.blackboard[target_key]
 	if(QDELETED(target))
+		return FALSE
+	if(faction_check(pawn, target))
 		return FALSE
 	if(target.health > (target.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD)) // Don't do this
 		return FALSE
@@ -156,7 +161,11 @@
 
 	if(QDELETED(target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	controller.set_blackboard_key(BB_MECHIVER_CONTAINED_MOB, target)
+	if(!isturf(target.loc)) // Check to make sure the target is reachable.
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	if(faction_check(pawn, target.faction))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+
 	SEND_SIGNAL(pawn, COMSIG_MECHIVER_CONVERT, target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -164,6 +173,5 @@
 	. = ..()
 	if(succeeded)
 		controller.clear_blackboard_key(target_key)
-		controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, FALSE)
 
 #undef MECHIVER_CORPSE_RANGE

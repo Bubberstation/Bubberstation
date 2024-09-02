@@ -375,17 +375,18 @@
 	. = ..()
 	var/mob/living/target_mob = target
 	if(ishuman(target_mob) && target_mob.stat < UNCONSCIOUS)
-		detonate()
+		pre_detonate()
 
 /mob/living/basic/fleshmind/floater/death()
 	if(!exploded)
-		detonate()
+		pre_detonate()
 	return ..()
 
 /mob/living/basic/fleshmind/floater/proc/pre_detonate()
 	add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
 	balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
-	addtimer(CALLBACK(src, PROC_REF(detonate), 0.5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(detonate), 1 SECONDS))
+
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
 		return
@@ -1407,6 +1408,8 @@
 	if(target_mob.health > (target_mob.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 		return
 
+	ai_controller.set_blackboard_key(BB_MECHIVER_CONTAINED_MOB, target_mob)
+	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, FALSE)
 	hatch_open = TRUE
 	update_appearance()
 	flick("[base_icon_state]-opening_wires", src)
