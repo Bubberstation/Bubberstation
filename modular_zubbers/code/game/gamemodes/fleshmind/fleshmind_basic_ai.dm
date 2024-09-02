@@ -128,9 +128,10 @@
 	action_cooldown = 2 SECONDS
 
 /datum/ai_behavior/find_and_set/incapacitated/search_tactic(datum/ai_controller/controller, locate_path, search_range)
+	var/mob/living/pawn = controller.pawn
 	var/list/corpses = list()
-	for(var/mob/living/iterating_mobs in view(search_range, controller.pawn))
-		if(faction_check(controller.pawn.faction, iterating_mobs.faction))
+	for(var/mob/living/iterating_mobs in view(search_range, pawn))
+		if(faction_check(pawn, iterating_mobs.faction))
 			continue
 		if(iterating_mobs.health < (iterating_mobs.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 			corpses += iterating_mobs
