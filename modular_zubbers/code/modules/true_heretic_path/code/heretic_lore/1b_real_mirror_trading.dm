@@ -15,7 +15,7 @@
 	cost = 0
 	depth = 2
 
-	route = PATH_EXILE
+	route = PATH_SIDE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
 	research_tree_icon_state = "barter_mirror"

@@ -16,7 +16,7 @@
 
 	cost = 2
 	depth = 3
-	route = PATH_EXILE
+	route = PATH_SIDE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_inventory.dmi'
 	research_tree_icon_state = "boots_of_speed"

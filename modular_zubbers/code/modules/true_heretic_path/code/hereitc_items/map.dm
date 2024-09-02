@@ -84,26 +84,26 @@
 	)
 
 	//Teleport time.
-	do_teleport(
-		user,
-		desired_turf,
-		no_effects = TRUE,
-		channel = TELEPORT_CHANNEL_MAGIC,
-		asoundin = 'sound/magic/cosmic_energy.ogg',
-		asoundout = 'sound/magic/cosmic_energy.ogg',
-	)
+	if(do_teleport(user,desired_turf,no_effects = TRUE,channel = TELEPORT_CHANNEL_MAGIC,asoundin = 'sound/magic/cosmic_energy.ogg',asoundout = 'sound/magic/cosmic_energy.ogg'))
+		user.visible_message(
+			span_danger("Phases in, seemingly from out of nowhere!"),
+			span_notice("You phase into [assocated_area]!")
+		)
+	else
+		user.visible_message(
+			span_danger("Phases back in, right where they were before!"),
+			span_notice("You phase back where you were before! Something is preventing you from teleporting!")
+		)
+		qdel(src)
+		return
 
-	user.visible_message(
-		span_danger("Phases in, seemingly from out of nowhere!"),
-		span_notice("You phase into [assocated_area]!")
-	)
 
 	//Bring others with you.
 	//Up to 5!
 	var/portals_left = 5
 	for(var/mob/living/nearby_living in orange(1,old_turf))
 
-		//Change the destination for each person. If possible.
+		//Change the destination for each nearby person. If possible.
 		for(var/turf/possible_turf as anything in possible_turfs)
 			possible_turfs -= desired_turf
 			if(!is_safe_turf(possible_turf))
@@ -111,12 +111,9 @@
 			desired_turf = possible_turf
 			break
 
-		do_teleport(
-			nearby_living,
-			desired_turf,
-			no_effects = TRUE,
-			channel = TELEPORT_CHANNEL_MAGIC
-		)
+		if(!do_teleport(nearby_living,desired_turf,no_effects = TRUE,channel = TELEPORT_CHANNEL_MAGIC))
+			continue
+
 		nearby_living.visible_message(
 			span_warning("[nearby_living] is dragged along with [user]!"),
 			span_danger("You're dragged along with [user]!")
