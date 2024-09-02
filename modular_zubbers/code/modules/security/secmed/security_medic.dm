@@ -56,9 +56,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
-/* 	backpack_contents = list(
-		/obj/item/storage/box/gunset/firefly = 1, // FIX THIS LATER
-		) */
+	suit_store = /obj/item/gun/energy/disabler/smg
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
@@ -100,23 +98,7 @@
 	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "hud"
 	worn_icon_state = "healthhud"
-	hud_type = DATA_HUD_MEDICAL_ADVANCED
-	clothing_traits = list(TRAIT_MEDICAL_HUD)
-
-/obj/item/clothing/glasses/hud/secmed/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!(slot & ITEM_SLOT_EYES))
-		return
-	// Extra hud because the bloody code doesn't support multihuds yet. I'll probably add multihud support soon enough. If you see this I didn't. ~Waterpig
-	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-	extra_hud.show_to(user)
-
-/obj/item/clothing/glasses/hud/secmed/dropped(mob/living/carbon/human/user)
-	. = ..()
-	if(!istype(user) || user.glasses != src)
-		return
-	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-	extra_hud.hide_from(user)
+	clothing_traits = list(TRAIT_MEDICAL_HUD, TRAIT_BASIC_SECURITY_HUD)
 
 /obj/item/clothing/glasses/hud/secmed/sunglasses
 	name = "security-medical HUD sunglasses"

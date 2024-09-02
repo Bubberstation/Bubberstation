@@ -84,7 +84,8 @@
 	/// `speed` a modest value like 1 and set this to a low value like 0.2.
 	var/pixel_speed_multiplier = 1
 
-	var/Angle = 0
+	/// The current angle of the projectile. Initially null, so if the arg is missing from [/fire()], we can calculate it from firer and target as fallback.
+	var/Angle
 	var/original_angle = 0 //Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
 	var/spread = 0 //amount (in degrees) of projectile spread
@@ -207,19 +208,13 @@
 	var/wound_falloff_tile
 	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
 	var/embed_falloff_tile
-	var/static/list/projectile_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-		COMSIG_ATOM_ATTACK_HAND = PROC_REF(attempt_parry),
-	)
+	var/static/list/projectile_connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_entered))
 	// SKYRAT EDIT ADDITION START
 	/// If this should be able to hit the target even on direct firing when `ignored_factions` applies
 	var/ignore_direct_target = FALSE
 	// SKYRAT EDIT ADDITION END
-
 	/// If true directly targeted turfs can be hit
 	var/can_hit_turfs = FALSE
-	/// If this projectile has been parried before
-	var/parried = FALSE
 
 /obj/projectile/Initialize(mapload)
 	. = ..()
@@ -303,7 +298,6 @@
 	else
 		hitx = target.pixel_x + rand(-8, 8)
 		hity = target.pixel_y + rand(-8, 8)
-
 	// SKYRAT EDIT ADDITION BEGIN - IMPACT SOUNDS
 	var/impact_sound
 	if(hitsound)
@@ -313,6 +307,13 @@
 		get_sfx()
 	playsound(src, get_sfx_skyrat(impact_sound), vol_by_damage(), TRUE, -1)
 	// SKYRAT EDIT ADDITION END
+
+	if(isturf(target_turf) && hitsound_wall)
+		var/volume = clamp(vol_by_damage() + 20, 0, 100)
+		if(suppressed)
+			volume = 5
+		playsound(loc, hitsound_wall, volume, TRUE, -1)
+
 
 	if(damage > 0 && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_turf) && prob(75))
 		var/turf/closed/wall/target_wall = target_turf
@@ -333,6 +334,8 @@
 				volume = 5
 			playsound(loc, hitsound_wall, volume, TRUE, -1)
 		SKYRAT EDIT REMOVAL END */
+
+
 		return BULLET_ACT_HIT
 
 	var/mob/living/living_target = target
@@ -438,33 +441,6 @@
 		return
 	Impact(A)
 
-/// Signal proc for when a mob attempts to attack this projectile or the turf it's on with an empty hand.
-/obj/projectile/proc/attempt_parry(datum/source, mob/user, list/modifiers)
-	SIGNAL_HANDLER
-
-	if(parried)
-		return FALSE
-
-	if(SEND_SIGNAL(user, COMSIG_LIVING_PROJECTILE_PARRYING, src) & ALLOW_PARRY)
-		on_parry(user, modifiers)
-		return TRUE
-
-	return FALSE
-
-
-/// Called when a mob with PARRY_TRAIT clicks on this projectile or the tile its on, reflecting the projectile within 7 degrees and increasing the bullet's stats.
-/obj/projectile/proc/on_parry(mob/user, list/modifiers)
-	if(SEND_SIGNAL(user, COMSIG_LIVING_PROJECTILE_PARRIED, src) & INTERCEPT_PARRY_EFFECTS)
-		return
-
-	parried = TRUE
-	set_angle(dir2angle(user.dir) + rand(-3, 3))
-	firer = user
-	speed *= 0.8 // Go 20% faster when parried
-	damage *= 1.15 // And do 15% more damage
-	add_atom_colour(COLOR_RED_LIGHT, TEMPORARY_COLOUR_PRIORITY)
-
-
 /**
  * Called when the projectile hits something
  * This can either be from it bumping something,
@@ -546,7 +522,7 @@
 		return process_hit(T, select_target(T, target, bumped), bumped, hit_something) // try to hit something else
 	// at this point we are going to hit the thing
 	// in which case send signal to it
-	if (SEND_SIGNAL(target, COMSIG_PROJECTILE_PREHIT, args, src) & PROJECTILE_INTERRUPT_HIT)
+	if ((SEND_SIGNAL(target, COMSIG_PROJECTILE_PREHIT, args, src) & PROJECTILE_INTERRUPT_HIT) || (SEND_SIGNAL(src, COMSIG_PROJECTILE_SELF_PREHIT, args) & PROJECTILE_INTERRUPT_HIT))
 		qdel(src)
 		return BULLET_ACT_BLOCK
 	if(mode == PROJECTILE_PIERCE_HIT)
@@ -583,7 +559,7 @@
  */
 /obj/projectile/proc/select_target(turf/our_turf, atom/target, atom/bumped)
 	// 1. special bumped border object check
-	if((bumped?.flags_1 & ON_BORDER_1) && can_hit_target(bumped, original == bumped, FALSE, TRUE))
+	if((bumped?.flags_1 & ON_BORDER_1) && can_hit_target(bumped, original == bumped, TRUE, TRUE))
 		return bumped
 	// 2. original
 	if(can_hit_target(original, TRUE, FALSE, original == bumped))
@@ -794,7 +770,7 @@
 			required_moves = SSprojectiles.global_max_tick_moves
 			time_offset += overrun * speed
 		time_offset += MODULUS(elapsed_time_deciseconds, speed)
-
+	SEND_SIGNAL(src, COMSIG_PROJECTILE_BEFORE_MOVE)
 	for(var/i in 1 to required_moves)
 		pixel_move(pixel_speed_multiplier, FALSE)
 
@@ -807,25 +783,23 @@
 	if(!log_override && firer && original && !do_not_log)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 			//note: mecha projectile logging is handled in /obj/item/mecha_parts/mecha_equipment/weapon/action(). try to keep these messages roughly the sameish just for consistency's sake.
-	if(direct_target && (get_dist(direct_target, get_turf(fired_from)) <= 1)) // point blank shots // SKYRAT EDIT - ORIGINAL: if(direct_target && (get_dist(direct_target, get_turf(src)) <= 1))
+	if(direct_target && (get_dist(direct_target, get_turf(src)) <= 1)) // point blank shots
 		process_hit(get_turf(direct_target), direct_target)
 		if(QDELETED(src))
 			return
+	var/turf/starting = get_turf(src)
 	if(isnum(angle))
 		set_angle(angle)
-	if(spread)
-		set_angle(Angle + ((rand() - 0.5) * spread))
-	var/turf/starting = get_turf(src)
-	if(isnull(Angle)) //Try to resolve through offsets if there's no angle set.
+	else if(isnull(Angle)) //Try to resolve through offsets if there's no angle set.
 		if(isnull(xo) || isnull(yo))
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
 			qdel(src)
 			return
 		var/turf/target = locate(clamp(starting + xo, 1, world.maxx), clamp(starting + yo, 1, world.maxy), starting.z)
 		set_angle(get_angle(src, target))
+	if(spread)
+		set_angle(Angle + (rand() - 0.5) * spread)
 	original_angle = Angle
-	if(!nondirectional_sprite)
-		transform = transform.Turn(Angle)
 	trajectory_ignore_forcemove = TRUE
 	forceMove(starting)
 	trajectory_ignore_forcemove = FALSE
@@ -834,7 +808,6 @@
 	fired = TRUE
 	play_fov_effect(starting, 6, "gunfire", dir = NORTH, angle = Angle)
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_FIRE)
-	RegisterSignal(src, COMSIG_ATOM_ATTACK_HAND, PROC_REF(attempt_parry))
 	if(hitscan)
 		process_hitscan()
 		if(QDELETED(src))
@@ -954,21 +927,25 @@
 			trajectory.increment(-trajectory_multiplier)
 			qdel(src)
 			return
-		if(T.z != loc.z)
-			var/old = loc
-			before_z_change(loc, T)
-			trajectory_ignore_forcemove = TRUE
-			forceMove(T)
-			trajectory_ignore_forcemove = FALSE
-			after_z_change(old, loc)
-			if(!hitscanning)
-				pixel_x = trajectory.return_px()
-				pixel_y = trajectory.return_py()
-			forcemoved = TRUE
-			hitscan_last = loc
-		else if(T != loc)
+		if (T == loc)
+			continue
+		if (T.z == loc.z)
 			step_towards(src, T)
 			hitscan_last = loc
+			SEND_SIGNAL(src, COMSIG_PROJECTILE_PIXEL_STEP)
+			continue
+		var/old = loc
+		before_z_change(loc, T)
+		trajectory_ignore_forcemove = TRUE
+		forceMove(T)
+		trajectory_ignore_forcemove = FALSE
+		after_z_change(old, loc)
+		if(!hitscanning)
+			pixel_x = trajectory.return_px()
+			pixel_y = trajectory.return_py()
+		forcemoved = TRUE
+		hitscan_last = loc
+		SEND_SIGNAL(src, COMSIG_PROJECTILE_PIXEL_STEP)
 	if(QDELETED(src)) //deleted on last move
 		return
 	if(!hitscanning && !forcemoved)

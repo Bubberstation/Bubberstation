@@ -62,7 +62,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTRICAL_DAMAGE_REPAIRING "electrical_damage_repairing"
 
 // felinid traits
-#define TRAIT_FELINE "feline_aspect"
+#define TRAIT_FELINID "felinid_aspect"
 
 // canine traits
 #define TRAIT_CANINE "canine_aspect"
@@ -122,6 +122,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Defines for some extra inherent traits
 #define TRAIT_REVIVES_BY_HEALING "trait_revives_by_healing"
 #define TRAIT_ROBOTIC_DNA_ORGANS "trait_robotic_dna_organs"
+
+// Isolation trait for synths
+#define TRAIT_SYNTHETIC "trait_synthetic"
 
 //Defines for model features, set in the model_features list of a robot model datum. Are they a dogborg? Is the model small? etc.
 /// Cyborgs with unique sprites for when they get totally broken down.

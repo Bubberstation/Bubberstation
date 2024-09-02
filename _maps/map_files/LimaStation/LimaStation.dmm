@@ -947,6 +947,7 @@
 "avX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "awe" = (
@@ -5317,7 +5318,7 @@
 "chZ" = (
 /obj/machinery/pdapainter,
 /obj/structure/cable,
-/obj/machinery/keycard_auth/directional/east,
+/obj/machinery/keycard_auth/wall_mounted/directional/east,
 /obj/item/stamp/head/hop{
 	pixel_x = 7;
 	pixel_y = 10
@@ -7363,6 +7364,7 @@
 "cZa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "cZl" = (
@@ -10228,7 +10230,7 @@
 /obj/item/radio/intercom/directional/south{
 	pixel_y = -40
 	},
-/obj/machinery/keycard_auth/directional/south{
+/obj/machinery/keycard_auth/wall_mounted/directional/south{
 	pixel_y = -24
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -11790,10 +11792,6 @@
 /obj/structure/cable,
 /obj/structure/sink/directional/north,
 /obj/structure/mirror/directional/south,
-/obj/machinery/camera{
-	c_tag = "Central Lower Hallway - Toilets";
-	dir = 8
-	},
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/restrooms)
 "eKq" = (
@@ -12042,6 +12040,7 @@
 /mob/living/simple_animal/bot/secbot/pingsky,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "eOB" = (
@@ -13654,7 +13653,7 @@
 	pixel_y = 35;
 	req_access = list("hos")
 	},
-/obj/machinery/keycard_auth/directional/north{
+/obj/machinery/keycard_auth/wall_mounted/directional/north{
 	pixel_x = 6;
 	pixel_y = 24
 	},
@@ -17256,6 +17255,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "gJb" = (
@@ -19887,7 +19887,6 @@
 	network = list("aicore")
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/cable,
 /obj/machinery/door/window/brigdoor/left/directional/south{
 	name = "Primary AI Core Access";
 	req_access = list("ai_upload")
@@ -20645,7 +20644,7 @@
 /obj/machinery/modular_computer/preset/research{
 	dir = 8
 	},
-/obj/machinery/keycard_auth/directional/east,
+/obj/machinery/keycard_auth/wall_mounted/directional/east,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/command/heads_quarters/rd)
@@ -24794,6 +24793,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/minisat,
 /obj/effect/landmark/navigate_destination,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "jAG" = (
@@ -35476,6 +35476,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/end{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "nsO" = (
@@ -37963,6 +37964,7 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "onc" = (
@@ -41248,7 +41250,7 @@
 /obj/machinery/modular_computer/preset/engineering{
 	dir = 1
 	},
-/obj/machinery/keycard_auth/directional/south,
+/obj/machinery/keycard_auth/wall_mounted/directional/south,
 /obj/effect/turf_decal/trimline/yellow/filled/end,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
@@ -43099,6 +43101,7 @@
 /area/station/hallway/primary/starboard)
 "qhn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "qhq" = (
@@ -43265,9 +43268,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "qkB" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/full,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
@@ -52777,7 +52778,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "tEk" = (
-/obj/machinery/keycard_auth/directional/south,
+/obj/machinery/keycard_auth/wall_mounted/directional/south,
 /obj/machinery/light/directional/south,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/qm)
@@ -53044,6 +53045,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/bot,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "tLl" = (
@@ -55377,6 +55379,7 @@
 /area/station/maintenance/department/engine/atmos)
 "uFE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai)
 "uFL" = (
@@ -56211,7 +56214,6 @@
 	pixel_y = 20
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/cable,
 /obj/machinery/holopad/secure,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
@@ -56481,10 +56483,6 @@
 /turf/open/floor/iron,
 /area/station/maintenance/department/science)
 "vaX" = (
-/obj/machinery/camera{
-	c_tag = "Dormitory - Toilets";
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
@@ -56570,6 +56568,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "vdu" = (
@@ -177733,7 +177732,7 @@ mOD
 eLO
 nCJ
 omJ
-nCJ
+bAb
 cZO
 mOD
 hin
@@ -177990,8 +177989,8 @@ hin
 ekh
 nnO
 aWo
-bAb
-ekh
+nCJ
+tpG
 hin
 hin
 hin
