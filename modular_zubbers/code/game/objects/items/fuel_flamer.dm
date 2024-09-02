@@ -65,12 +65,9 @@
 	if(chambered && !chambered.loaded_projectile && reagents.has_reagent(fuel_type, fuel_consumption))
 		if(!istype(chambered, /obj/item/ammo_casing/flamer))
 			return
-		var/obj/item/ammo_casing/flamer/casing = chambered
-		casing.fuel_type = fuel_type
-		casing.fuel_to_use = fuel_consumption
 		chambered.newshot()
 
-/obj/item/gun/magic/handle_chamber()
+/obj/item/gun/fuel_thrower/handle_chamber()
 	if(chambered && !chambered.loaded_projectile) //if BB is null, i.e the shot has been fired...
 		reagents.remove_reagent(fuel_type, fuel_consumption)
 		recharge_newshot()
