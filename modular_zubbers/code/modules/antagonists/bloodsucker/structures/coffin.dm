@@ -217,6 +217,9 @@
 	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
+	bloodsuckerdatum.check_limbs(COFFIN_HEAL_COST_MULT)
+	if(!bloodsuckerdatum.check_begin_torpor())
+		bloodsuckerdatum.heal_vampire_organs()
 	if(bloodsuckerdatum && (user in src))
 		if(prompt_coffin_claim(bloodsuckerdatum))
 			LockMe(user)
@@ -229,9 +232,6 @@
 				bloodsuckerdatum.blood_level_gain()
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
 			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		bloodsuckerdatum.check_limbs(COFFIN_HEAL_COST_MULT)
-		if(!bloodsuckerdatum.check_begin_torpor())
-			bloodsuckerdatum.heal_vampire_organs()
 	return TRUE
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)

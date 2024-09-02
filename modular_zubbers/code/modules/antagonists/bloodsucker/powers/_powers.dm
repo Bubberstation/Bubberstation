@@ -136,7 +136,7 @@
 		to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
 		return FALSE
 	// Torpor?
-	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && bloodsuckerdatum_power?.is_in_torpor())
 		to_chat(user, span_warning("Not while you're in Torpor."))
 		return FALSE
 	if(!(bloodsucker_check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))

@@ -117,11 +117,12 @@
 	var/total_burn = getFireLoss()
 	// for waking up we ignore all other damage types so we don't get stuck
 	var/total_damage = total_brute + total_burn
+	var/is_in_coffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if(total_burn >= user.maxHealth * 2)
 		return FALSE
-	if(SSsunlight.sunlight_active)
+	if(SSsunlight.sunlight_active && is_in_coffin)
 		return FALSE
-	if(bloodsucker_blood_volume == 0 || early_end)
+	if(bloodsucker_blood_volume == 0 || early_end || (SSsunlight.sunlight_active && !is_in_coffin))
 		// If you're frenzying, you need a bit more health to actually have a chance to do something
 		if(frenzied && total_damage >= user.maxHealth)
 			return FALSE

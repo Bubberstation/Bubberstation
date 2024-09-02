@@ -251,9 +251,6 @@
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
 	if(bloodsuckeruser.stat == DEAD)
 		. = bloodsuckeruser.revive()
-	if(.)
-		on_revive()
-
 
 	for(var/datum/wound/iter_wound in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
