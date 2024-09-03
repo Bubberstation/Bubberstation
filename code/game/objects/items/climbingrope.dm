@@ -18,6 +18,7 @@
 	var/uses = 5
 	///climb time
 	var/climb_time = 2.5 SECONDS
+	var/climbsound = 'sound/effects/picaxe1.ogg' // BUBBER EDIT - Mothwings need this
 
 /obj/item/climbing_hook/examine(mob/user)
 	. = ..()
@@ -46,8 +47,10 @@
 
 	var/away_dir = get_dir(above, target)
 	user.visible_message(span_notice("[user] begins climbing upwards with [src]."), span_notice("You get to work on properly hooking [src] and going upwards."))
-	playsound(target, 'sound/effects/picaxe1.ogg', 50) //plays twice so people above and below can hear
-	playsound(user_turf, 'sound/effects/picaxe1.ogg', 50)
+	// BUBBER EDIT BEGIN - climbsound
+	playsound(target, climbsound, 50) //plays twice so people above and below can hear
+	playsound(user_turf, climbsound, 50)
+	// BUBBER EDIT END
 	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(target, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))
 
 	// Our climbers athletics ability
