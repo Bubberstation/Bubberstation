@@ -249,7 +249,10 @@
 	var/kiss_type = /obj/item/hand_item/kisser
 
 	if(HAS_TRAIT(user, TRAIT_SYNDIE_KISS))
-		kiss_type = /obj/item/hand_item/kisser/syndie
+		if(do_after(user, 0.55 SECONDS, target = user, timed_action_flags = IGNORE_USER_LOC_CHANGE))//bubber edit addition
+			kiss_type = /obj/item/hand_item/kisser/syndie
+		else		//bubber edit addition
+			return	//bubber edit addition
 
 	if(HAS_TRAIT(user, TRAIT_KISS_OF_DEATH))
 		kiss_type = /obj/item/hand_item/kisser/death
