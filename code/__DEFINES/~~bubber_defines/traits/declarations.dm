@@ -16,3 +16,6 @@
 
 //basic security hud
 #define TRAIT_BASIC_SECURITY_HUD "basic_security_hud"
+
+//lipstick trait
+#define TRAIT_HYPNO_KISS "hypno kiss"

@@ -4,3 +4,5 @@
 	icon_state = "slipstick"
 	base_icon_state = "slipstick"
 	lipstick_color = COLOR_SYNDIE_RED
+	lipstick_trait = TRAIT_HYPNO_KISS
+
