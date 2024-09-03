@@ -163,8 +163,6 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	if(!isturf(target.loc)) // Check to make sure the target is reachable.
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	if(faction_check(pawn, target.faction))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	SEND_SIGNAL(pawn, COMSIG_MECHIVER_CONVERT, target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
