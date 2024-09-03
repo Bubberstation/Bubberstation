@@ -1,4 +1,4 @@
-/obj/item/hand_item/kisser/syndie/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+/obj/item/hand_item/kisser/hypnosyndie/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!iscarbon(interacting_with))
 		return NONE
 	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
@@ -25,11 +25,6 @@
 	else
 		victim.apply_status_effect(/datum/status_effect/trance, 20 SECONDS, TRUE)
 
-/obj/projectile/kiss/syndie
-	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	damage_type = NONE
-	armor_flag = NONE
-	armour_penetration = 0
-	damage = 0
-	wound_bonus = 0
-	bare_wound_bonus = 0
+/obj/projectile/kiss/hypnosyndie
+	name = "hypnosyndie kiss"
+	color = COLOR_SYNDIE_RED
