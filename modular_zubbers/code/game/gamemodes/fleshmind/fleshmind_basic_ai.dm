@@ -133,7 +133,7 @@
 	for(var/mob/living/iterating_mobs in view(search_range, pawn))
 		if(iterating_mobs == pawn)
 			continue
-		if(faction_check(pawn, iterating_mobs.faction))
+		if(faction_check(pawn.faction, iterating_mobs.faction))
 			continue
 		if(iterating_mobs.health < (iterating_mobs.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
 			corpses += iterating_mobs
@@ -149,7 +149,7 @@
 	var/mob/living/target = controller.blackboard[target_key]
 	if(QDELETED(target))
 		return FALSE
-	if(faction_check(pawn, target))
+	if(faction_check(pawn.faction, target.faction))
 		return FALSE
 	if(target.health > (target.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD)) // Don't do this
 		return FALSE
