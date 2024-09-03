@@ -4,7 +4,7 @@
 	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
 		return ..()
 	visible_message("[user] leans in for a kiss on the lips.")
-	if(!do_after(user, 2 SECONDS))
+	if(!do_after(user, 2 SECONDS, interacting_with))
 		visible_message("[user] doesn't manage to lock lips with anyone.")
 		return ITEM_INTERACT_BLOCKING
 
