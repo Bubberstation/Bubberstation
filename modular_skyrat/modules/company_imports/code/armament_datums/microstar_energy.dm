@@ -1,10 +1,10 @@
-/datum/armament_entry/company_import/microstar
+/* /datum/armament_entry/company_import/microstar
 
 // Basic lethal/disabler beam weapons, includes the base mcr
 
 /datum/armament_entry/company_import/microstar/basic_energy_weapons
 	subcategory = "Basic Energy Smallarms"
-/*
+
 /datum/armament_entry/company_import/microstar/basic_energy_weapons/mini_egun
 	item_type = /obj/item/gun/energy/e_gun/mini
 	cost = PAYCHECK_CREW * 4
@@ -91,3 +91,4 @@
 	name = "microfusion bluespace parts"
 	item_type = /obj/item/storage/briefcase/secure/white/mcr_parts/bluespace
 	cost = PAYCHECK_COMMAND * 6
+*/
