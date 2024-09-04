@@ -1,6 +1,6 @@
 /datum/round_event_control/brand_intelligence
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL)
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
 
 /datum/round_event_control/carp_migration
 	track = EVENT_TRACK_MODERATE
@@ -48,8 +48,12 @@
 
 /datum/round_event_control/spacevine
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL, TAG_COMBAT)
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
 
 /datum/round_event_control/portal_storm_syndicate
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMBAT)
+	tags = list(TAG_COMBAT, TAG_CHAOTIC)
+
+/datum/round_event_control/mold
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)

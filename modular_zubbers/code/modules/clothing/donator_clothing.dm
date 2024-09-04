@@ -8,58 +8,6 @@
 //Will also be available for usage in Foundation 19
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
-
-/datum/loadout_item/suit/idmavest
-	name = "IDMA combat vest"
-	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
-/datum/loadout_item/suit/idmarsuit
-	name = "IDMA service jacket"
-	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
-/datum/loadout_item/suit/idmardjacket
-	name = "silicon administrator vest"
-	item_path = /obj/item/clothing/suit/jacket/vera_jacket
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
-
-/datum/loadout_item/under/miscellaneous/idmasnowfatigue
-	name = "IDMA service uniform"
-	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
-
-/datum/loadout_item/under/miscellaneous/idmafatigue
-	name = "IDMA desert service uniform"
-	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
-/datum/loadout_item/head/idmaberet
-	name = "IDMA beret"
-	item_path = /obj/item/clothing/head/idma_beret
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-
-/datum/loadout_item/head/idmahelmet
-	name = "IDMA service helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
-/datum/loadout_item/accessory/idmaarmbands
-	name = "IDMA armbands"
-	item_path = /obj/item/clothing/accessory/armband/idmaarmband
-	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-
-/datum/loadout_item/toys/especiallystrange
-	name = "Ironmoon Tajaran Plushie"
-	item_path = /obj/item/toy/plush/especiallystrange
-
 /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	name = "ironmoon service helmet."
 	desc = "A helmet worn by the romulus expeditionary force."
@@ -84,7 +32,17 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
-	can_adjust = FALSE //Yes we have the sprite for them but they look ass so let's not use it
+	uses_advanced_reskins = FALSE
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/under/rank/idma_utility
+	name = "ironmoon utility fatigue"
+	desc = "An old snow pattern uniform worn commonly worn by IDMA Staff."
+	icon_state = "romulusutility"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
@@ -118,7 +76,7 @@
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
 		/obj/item/assembly/flash/handheld,
-		/obj/item/clothing/mask/cigarette,
+		/obj/item/cigarette,
 		/obj/item/disk,
 		/obj/item/lighter,
 		/obj/item/melee,
@@ -131,30 +89,31 @@
 		/obj/item/tank/internals/plasmaman,
 	)
 
-//This is meant to be a functional wintercoat
-/obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
+/obj/item/clothing/suit/jacket/idma_jacket
 	name = "ironmoon service coat"
-	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	desc = "A lightweight jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is meant to be worn as utility coat."
 	icon_state = "romulusofficer"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/idma_hood
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 
 /obj/item/clothing/suit/armor/vest/idma_vest
 	name = "IDMA Combat Vest"
-	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains a class IIA plating to protect the wearer from harms."
 	icon_state = "romfed_armor"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/hooded/winterhood/security/idma_hood
-	name = "ironmoon winterhood"
-	desc = "A white, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
-	icon_state = "romulushood"
+/obj/item/clothing/suit/armor/vest/idma_vest/idma_jacket
+	name = "ironmoon heavy service coat"
+	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is armoured."
+	icon_state = "romulusarmoured"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 
 /obj/item/clothing/accessory/armband/idmaarmband
 	name = "ironmoon police armband"

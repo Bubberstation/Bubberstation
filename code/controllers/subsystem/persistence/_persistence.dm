@@ -1,5 +1,5 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
-#define KEEP_ROUNDS_MAP 3
+#define KEEP_ROUNDS_MAP 2 //BUBBERSTATION CHANGE: 3 TO 2.
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -42,8 +42,6 @@ SUBSYSTEM_DEF(persistence)
 	var/datum/json_database/piggy_banks_database
 	/// List of persistene ids which piggy banks.
 	var/list/queued_broken_piggy_ids
-
-	var/list/broken_piggy_banks
 
 	var/rounds_since_engine_exploded = 0
 	var/delam_highscore = 0
@@ -111,7 +109,7 @@ SUBSYSTEM_DEF(persistence)
 		for(var/name in SSpersistence.saved_maps)
 			if(VM.map_name == name)
 				run++
-		if(run >= 2) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation.
+		if(run >= 1) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation. //BUBBERSTATION CHANGE 2 TO 1.
 			blocked_maps += VM.map_name
 
 ///Updates the list of the most recent maps.

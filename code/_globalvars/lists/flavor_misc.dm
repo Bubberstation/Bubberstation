@@ -149,6 +149,7 @@ GLOBAL_LIST_INIT(scarySounds, list(
 	'sound/weapons/armbomb.ogg',
 	'sound/weapons/taser.ogg',
 	'sound/weapons/thudswoosh.ogg',
+	'sound/weapons/shove.ogg',
 ))
 
 
@@ -268,3 +269,5 @@ GLOBAL_LIST_INIT(status_display_state_pictures, list(
 	"blank",
 	"shuttle",
 ))
+
+GLOBAL_LIST_INIT(fishing_tips, world.file2list("strings/fishing_tips.txt"))

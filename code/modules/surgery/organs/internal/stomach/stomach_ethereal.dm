@@ -4,13 +4,13 @@
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
 	organ_traits = list(TRAIT_NOHUNGER) // We have our own hunger mechanic.
 	/// Where the energy of the stomach is stored.
-	var/obj/item/stock_parts/cell/cell
+	var/obj/item/stock_parts/power_store/cell
 	///used to keep ethereals from spam draining power sources
 	var/drain_time = 0
 
 /obj/item/organ/internal/stomach/ethereal/Initialize(mapload)
 	. = ..()
-	cell = new /obj/item/stock_parts/cell/ethereal(null)
+	cell = new /obj/item/stock_parts/power_store/cell/ethereal(null)
 
 /obj/item/organ/internal/stomach/ethereal/Destroy()
 	QDEL_NULL(cell)
@@ -40,7 +40,7 @@
 /obj/item/organ/internal/stomach/ethereal/proc/charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
 	SIGNAL_HANDLER
 
-	charge_cell.Invoke(cell, seconds_per_tick / 3.5) // Ethereals don't have NT designed charging ports, so they charge slower.
+	charge_cell.Invoke(cell, seconds_per_tick / 3.5, ETHEREAL_CHARGE_FULL) // Ethereals don't have NT designed charging ports, so they charge slower. //BUBBER EDIT
 
 /obj/item/organ/internal/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, shock_source, siemens_coeff = 1, flags = NONE)
 	SIGNAL_HANDLER

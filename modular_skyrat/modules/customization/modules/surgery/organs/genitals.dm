@@ -114,10 +114,10 @@
 		return sprite_datum.color_layer_names
 
 	sprite_datum.color_layer_names = list()
-	if (!GLOB.cached_mutant_icon_files[sprite_datum.icon])
-		GLOB.cached_mutant_icon_files[sprite_datum.icon] = icon_states(new /icon(sprite_datum.icon))
+	if (!SSaccessories.cached_mutant_icon_files[sprite_datum.icon])
+		SSaccessories.cached_mutant_icon_files[sprite_datum.icon] = icon_states(new /icon(sprite_datum.icon))
 
-	var/list/cached_mutant_icon_states = GLOB.cached_mutant_icon_files[sprite_datum.icon]
+	var/list/cached_mutant_icon_states = SSaccessories.cached_mutant_icon_files[sprite_datum.icon]
 
 	for (var/layer in all_layers)
 		if(!(layer & layers))
@@ -259,7 +259,7 @@
 	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
 
 /obj/item/organ/external/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, 3)
+	var/measured_size = clamp(genital_size, 1, TESTICLES_MAX_SIZE)
 	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -283,7 +283,7 @@
 
 /obj/item/organ/external/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, 3)
+	measured_size = clamp(measured_size, 0, TESTICLES_MAX_SIZE)
 	var/passed_string = "[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"

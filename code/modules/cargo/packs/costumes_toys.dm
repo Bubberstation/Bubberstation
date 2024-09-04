@@ -90,7 +90,7 @@
 /datum/supply_pack/costumes_toys/knucklebones
 	name = "Knucklebones Game Crate"
 	desc = "A fun dice game definitely not invented by a cult. Consult your local chaplain regarding \
-		approved religious activity. Contains eighteen d6, one white crayon, and instructions on how to play."
+		approved religious activity. Contains eighteen d6, one stick of chalk, and instructions on how to play."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/dice/d6 = 18,
 					/obj/item/paper/guides/knucklebone,
@@ -181,7 +181,7 @@
 	var/the_toy
 	for(var/i in 1 to num_contained)
 		if(prob(50))
-			the_toy = pick_weight(GLOB.arcade_prize_pool)
+			the_toy = pick_weight_recursive(GLOB.arcade_prize_pool) //BUBBERSTATION CHANGE: USES PICK_WEIGHT_RECURSIVE
 		else
 			the_toy = pick(subtypesof(/obj/item/toy/plush))
 		new the_toy(C)

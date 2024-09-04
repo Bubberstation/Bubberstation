@@ -118,11 +118,12 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 	// SKYRAT EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
-	var/chosen_assignment = person_client?.prefs.alt_job_titles[assignment] || assignment
+	var/chosen_assignment = id_card?.get_job_title() || assignment //BUBBER EDIT: Intern Job Tags
 	// SKYRAT EDIT ADDITION END - ALTERNATIVE_JOB_TITLES
 
 	var/datum/record/locked/lockfile = new(
 		age = person.age,
+		chrono_age = person.chrono_age, // SKYRAT EDIT ADDITION - Chronological age
 		blood_type = record_dna.blood_type,
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,
@@ -140,6 +141,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 	new /datum/record/crew(
 		age = person.age,
+		chrono_age = person.chrono_age, // SKYRAT EDIT ADDITION - Chronological age
 		blood_type = record_dna.blood_type,
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,

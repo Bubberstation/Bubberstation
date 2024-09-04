@@ -39,7 +39,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 	/turf/open/openspace,
 	/turf/open/space/openspace,
-	/turf/open/chasm/moonstation //BUBBERSTATION ADDITION
 	)))
 
 #define isopenspaceturf(A) (is_type_in_typecache(A, GLOB.turfs_openspace))
@@ -49,6 +48,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isindestructiblefloor(A) (istype(A, /turf/open/indestructible))
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
+
+#define is_space_or_openspace(A) (isopenspaceturf(A) || isspaceturf(A))
 
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
@@ -67,6 +68,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define ischasm(A) (istype(A, /turf/open/chasm))
 
 #define isplatingturf(A) (istype(A, /turf/open/floor/plating))
+
+#define iscatwalkturf(A) (istype(A, /turf/open/floor/catwalk_floor))
 
 #define isasteroidturf(A) (istype(A, /turf/open/misc/asteroid))
 
@@ -231,6 +234,8 @@ GLOBAL_LIST_INIT(turfs_pass_meteor, typecacheof(list(
 #define isgrenade(A) (istype(A, /obj/item/grenade))
 
 #define islandmine(A) (istype(A, /obj/effect/mine))
+
+#define iscloset(A) (istype(A, /obj/structure/closet))
 
 #define issupplypod(A) (istype(A, /obj/structure/closet/supplypod))
 
