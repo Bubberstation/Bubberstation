@@ -1,4 +1,4 @@
-
+/*
 /datum/armament_entry/company_import/allstar
 	category = COMPANY_NAME_ALLSTAR_ENERGY
 	company_bitflag = CARGO_COMPANY_ALLSTAR_ENERGY
@@ -8,7 +8,7 @@
 /datum/armament_entry/company_import/allstar/basic_energy_weapons
 	subcategory = "Basic Energy Smallarms"
 	restricted = TRUE
-/*
+
 /datum/armament_entry/company_import/allstar/basic_energy_weapons/disabler
 	item_type = /obj/item/gun/energy/disabler
 	cost = PAYCHECK_CREW * 5
@@ -56,6 +56,7 @@
 
 /datum/armament_entry/company_import/allstar/experimental_energy/tesla_cannon
 	item_type = /obj/item/gun/energy/tesla_cannon
-*/
+
 /datum/armament_entry/company_import/allstar/experimental_energy/ion_carbine
 	item_type = /obj/item/gun/energy/ionrifle/carbine
+*/
