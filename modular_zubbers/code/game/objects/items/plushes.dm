@@ -153,3 +153,13 @@
 	attack_verb_simple = list("slap", "plap", "smear")
 	gender = FEMALE
 	squeak_override = list('sound/misc/soggy.ogg'=1)
+
+/obj/item/toy/plush/internshiba
+	name = "Intern Shiba Plush" //Plush for Kazumi Hasegawa/sprited by Amorbis
+	desc = "An adorable shiba inu plushie of a well-known intern mutt."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "internshiba"
+	attack_verb_continuous = list("baps", "paws", "claws")
+	attack_verb_simple = list("bap", "paw", "claw")
+	gender = MALE
+	squeak_override = list('sound/creatures/dog/growl2.ogg' = 1)
