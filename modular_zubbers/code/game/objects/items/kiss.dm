@@ -8,14 +8,12 @@
 		return ITEM_INTERACT_BLOCKING
 
 	var/mob/living/carbon/victim = interacting_with
-	var/hypnosis = FALSE
-	if(victim.hypnosis_vulnerable())
-		hypnosis = TRUE
+
 	if(user)
 		log_combat(user, victim, "[user] hypno kissed [victim]", src)
 		user.visible_message(span_danger("[user] kisses [victim] on the lips! [victim] looks flushed!"), span_danger("You kiss [victim] on the lips!"))
 
-	if(!hypnosis)
+	if(!victim.hypnosis_vulnerable())
 		to_chat(victim, span_hypnophrase("That kiss made you feel oddly relaxed..."))
 		victim.adjust_confusion_up_to(10 SECONDS, 20 SECONDS)
 		victim.adjust_dizzy_up_to(20 SECONDS, 40 SECONDS)
