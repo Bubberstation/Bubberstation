@@ -1,8 +1,8 @@
-/*
+
 /datum/armament_entry/company_import/allstar
 	category = COMPANY_NAME_ALLSTAR_ENERGY
 	company_bitflag = CARGO_COMPANY_ALLSTAR_ENERGY
-
+/*
 // Basic lethal/disabler beam weapons, includes the base mcr
 
 /datum/armament_entry/company_import/allstar/basic_energy_weapons

@@ -1,5 +1,5 @@
-/* /datum/armament_entry/company_import/microstar
-
+/datum/armament_entry/company_import/microstar
+/*
 // Basic lethal/disabler beam weapons, includes the base mcr
 
 /datum/armament_entry/company_import/microstar/basic_energy_weapons
