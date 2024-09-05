@@ -2,7 +2,7 @@
 	. = ..()
 	var/kiss_type = /obj/item/hand_item/kisser
 
-	if(do_after(user, 0.55 SECONDS, target = user, timed_action_flags = IGNORE_USER_LOC_CHANGE))//bubber edit addition
+	if(do_after(user, 0.55 SECONDS, target = user, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		if(HAS_TRAIT(user, TRAIT_SYNDIE_KISS))
 			kiss_type = /obj/item/hand_item/kisser/syndie
 
