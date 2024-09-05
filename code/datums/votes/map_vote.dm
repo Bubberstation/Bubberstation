@@ -37,7 +37,7 @@
 				continue
 			choices += possible_config.map_name
 		choices -= get_choices_invalid_for_population()
-		if(SSmapping.config && length(choices >= 4)) //Remove the current map if there is more than 4 possible maps.
+		if(SSmapping.config && length(choices) >= 4) //Remove the current map if there is more than 4 possible maps.
 			choices -= SSmapping.config.map_name
 	//BUBBERSTATION EDIT END.
 
