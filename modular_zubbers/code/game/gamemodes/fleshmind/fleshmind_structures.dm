@@ -136,7 +136,7 @@
 	if(disabled)
 		return
 	do_sparks(4, FALSE, src)
-	balloon_alert_to_viewers("grinds to a hault")
+	balloon_alert_to_viewers("grinds to a halt")
 	Shake(10, 0, duration)
 	disabled = TRUE
 	addtimer(CALLBACK(src, PROC_REF(enable)), duration)

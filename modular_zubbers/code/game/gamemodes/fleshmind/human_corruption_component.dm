@@ -84,6 +84,7 @@
 		REMOVE_TRAIT(parent_mob, trait, "fleshmind")
 	parent_mob.remove_filter("corruption_glow")
 	parent_mob.update_appearance()
+	log_combat(parent_mob, null, "deconverted", "deconverted message", "[parent_mob] has been deconverted from the fleshmind")
 	if(our_controller && parent_mob.client)
 		our_controller.infected_crew -= parent_mob
 
@@ -105,7 +106,7 @@
 /datum/component/human_corruption/proc/on_examine(atom/examined, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += "<b>It has strange wires wrappped around it!</b>"
+	examine_list += "<b>[p_They()] have strange wires wrappped around [p_them()]!</b>"
 
 /datum/component/human_corruption/proc/core_death(obj/structure/fleshmind/structure/core/deleting_core, force)
 	SIGNAL_HANDLER

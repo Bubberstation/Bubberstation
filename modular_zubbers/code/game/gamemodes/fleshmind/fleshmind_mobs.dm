@@ -151,7 +151,7 @@
 
 	our_controller = null
 	endless_malfunction = TRUE
-	balloon_alert_to_viewers("Its systems are overloading!")
+	balloon_alert_to_viewers("its systems are overloading!")
 	addtimer(CALLBACK(src, PROC_REF(kill_mob)), pick(rand(3 SECONDS,10 SECONDS)))
 
 /mob/living/basic/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
@@ -1443,6 +1443,7 @@
 
 /mob/living/basic/fleshmind/mechiver/proc/convert_mob(mob/living/mob_to_convert)
 	ai_controller.clear_blackboard_key(BB_MECHIVER_CONTAINED_MOB)
+	log_combat(mob_to_convert, src, "converted", "Merchiver Convert", "[mob_to_convert] has been converted to the fleshmind.")
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)

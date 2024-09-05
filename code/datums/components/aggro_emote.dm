@@ -1,4 +1,4 @@
-/// A component for ai-controlled atoms which plays a sound, emote, or speech if they switch to a living target which they can attack
+/// A component for ai-controlled atoms which plays a sound if they switch to a living target which they can attack
 /datum/component/aggro_emote
 	/// Blackboard key in which target data is stored
 	var/target_key
