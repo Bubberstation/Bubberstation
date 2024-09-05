@@ -14,3 +14,4 @@
 	)
 	population_min = 25
 	antag_divisor = 10
+	votable = FALSE
