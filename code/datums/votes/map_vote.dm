@@ -29,7 +29,7 @@
 	//BUBBERSTATION EDIT START, CHOICE SAFETY STUFF.
 	//This basically just re-does map selection, but ignores persistent blocked maps and the currently voted map.
 	//Prevents situations where there are no maps to vote.
-	if(length(choices <= 3))
+	if(length(choices) <= 3)
 		var/list/maps = shuffle(global.config.maplist)
 		for(var/map in maps)
 			var/datum/map_config/possible_config = config.maplist[map]
