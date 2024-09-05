@@ -52,6 +52,8 @@
 	// such that you never actually cared about checking if something is *edible*.
 	var/obj/item/food/clothing/moth_snack
 
+	var/ignore_abstract = FALSE
+
 /obj/item/clothing/Initialize(mapload)
 	if(clothing_flags & VOICEBOX_TOGGLABLE)
 		actions_types += list(/datum/action/item_action/toggle_voice_box)
@@ -60,7 +62,7 @@
 	if(can_be_bloody && ((body_parts_covered & FEET) || (flags_inv & HIDESHOES)))
 		LoadComponent(/datum/component/bloodysoles)
 	AddElement(/datum/element/attack_equip)
-	if(!icon_state)
+	if(!icon_state && !ignore_abstract)
 		item_flags |= ABSTRACT
 
 /obj/item/clothing/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)

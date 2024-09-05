@@ -200,7 +200,7 @@
 		return
 	// SKYRAT EDIT END
 	ADD_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
-	owner.update_transform(1.25)
+	owner.update_size(1.25)
 	owner.visible_message(span_danger("[owner] suddenly grows!"), span_notice("Everything around you seems to shrink.."))
 
 /datum/mutation/human/gigantism/on_losing(mob/living/carbon/human/owner)
@@ -212,6 +212,7 @@
 		REMOVE_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
 		return
 	// SKYRAT EDIT END
+	owner.update_size(0.75)
 
 //Clumsiness has a very large amount of small drawbacks depending on item.
 /datum/mutation/human/clumsy

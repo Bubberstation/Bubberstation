@@ -135,6 +135,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 /datum/dna/proc/transfer_identity(mob/living/carbon/destination, transfer_SE = FALSE, transfer_species = TRUE)
 	if(!istype(destination))
 		return
+	var/old_size = destination.dna.features["body_size"]
 	destination.dna.unique_enzymes = unique_enzymes
 	destination.dna.unique_identity = unique_identity
 	destination.dna.blood_type = blood_type
@@ -145,7 +146,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
 	destination.dna.mutant_bodyparts = mutant_bodyparts.Copy()
 	destination.dna.body_markings = body_markings.Copy()
-	destination.dna.update_body_size()
+	destination.update_size(get_size(destination), old_size)
 	//SKYRAT EDIT ADDITION END
 	if(transfer_SE)
 		destination.dna.mutation_index = mutation_index
@@ -646,6 +647,10 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(newfeatures)
 		dna.features = newfeatures
 		dna.generate_unique_features()
+
+		var/old_size = dna.features["body_size"]
+		dna.features = newfeatures
+		update_size(get_size(src), old_size)
 
 	if(mrace)
 		var/datum/species/newrace = new mrace.type
