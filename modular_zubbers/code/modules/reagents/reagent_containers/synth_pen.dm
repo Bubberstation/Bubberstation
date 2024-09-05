@@ -1,9 +1,9 @@
 /obj/item/reagent_containers/hypospray/medipen/survival/luxury/synth
 	name = "synth emergency repair medipen"
 	desc = "Cutting edge bluespace technology allowed Nanotrasen to compact 60u of volume into a single medipen. Contains rare and powerful chemicals used to aid synthetic species in exploration of very hard enviroments. WARNING: DO NOT MIX WITH EPINEPHRINE OR ATROPINE."
-	inhand_icon_state = "nanite_hypo"
-	icon_state = "nanite_hypo"
-	base_icon_state = "nanite_hypo"
+	icon_state = "luxpen"
+	inhand_icon_state = "atropen"
+	base_icon_state = "luxpen"
 	volume = 60
 	amount_per_transfer_from_this = 60
 	list_reagents = list(/datum/reagent/medicine/chimerozyme = 30, /datum/reagent/medicine/c2/penthrite = 15 , /datum/reagent/medicine/leporazine = 15)
