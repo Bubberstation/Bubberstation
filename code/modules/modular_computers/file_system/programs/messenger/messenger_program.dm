@@ -646,20 +646,25 @@
 	if(rigged)
 		log_bomber(sender, "sent a rigged PDA message (Name: [fake_name]. Job: [fake_job]) to [english_list(stringified_targets)] [!is_special_character(sender) ? "(SENT BY NON-ANTAG)" : ""]")
 
-	// Show it to ghosts
-	var/ghost_message = span_game_say("[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\"")
-	var/list/message_listeners = GLOB.dead_player_list + GLOB.current_observers_list
 	/** BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES - Original:
-	//	for(var/mob/listener as anything in message_listeners)
-	//	if(!(get_chat_toggles(listener) & CHAT_GHOSTPDA))
-	//		continue
-	//	to_chat(listener, "[FOLLOW_LINK(listener, source)] [ghost_message]")
+	 *  var/ghost_message = span_game_say("[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\"")
+	 *  var/list/message_listeners = GLOB.dead_player_list + GLOB.current_observers_list
+	 *  for(var/mob/listener as anything in message_listeners)
+	 *  if(!(get_chat_toggles(listener) & CHAT_GHOSTPDA))
+	 *  	continue
+	 *  to_chat(listener, "[FOLLOW_LINK(listener, source)] [ghost_message]")
 	*/
+	// Show it to ghosts
+	var/public_message = "[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\""
+	var/ghost_message = span_game_say(public_message)
+	var/list/message_listeners = GLOB.dead_player_list + GLOB.current_observers_list
 	if(!subtle)
 		for(var/mob/listener as anything in message_listeners)
 			if(!(get_chat_toggles(listener) & CHAT_GHOSTPDA))
 				continue
 			to_chat(listener, "[FOLLOW_LINK(listener, source)] [ghost_message]")
+		// Log to public log
+		log_public_file(public_message)
 	// BUBBER EDIT CHANGE END
 
 	if(sender)
