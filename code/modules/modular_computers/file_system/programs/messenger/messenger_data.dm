@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY_TYPED(pda_messengers, /datum/computer_file/program/messenger)
 	/// Whether or not the message is hidden from ghostchat
 	var/subtle // BUBBER EDIT ADDITION - SUBTLE MESSAGES
 
-/datum/pda_message/New(message, outgoing, timestamp, photo_name = null, everyone = FALSE)
+/datum/pda_message/New(message, outgoing, timestamp, photo_name = null, everyone = FALSE, subtle = FALSE) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: /datum/pda_message/New(message, outgoing, timestamp, photo_name = null, everyone = FALSE)
 	src.message = message
 	src.outgoing = outgoing
 	src.timestamp = timestamp
