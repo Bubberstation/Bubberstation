@@ -7,6 +7,9 @@
 	icon = 'icons/obj/weapons/flamethrower.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/flamethrower_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/flamethrower_righthand.dmi'
+	dry_fire_sound = null
+	fire_sound = null
+	suppressed_sound = null
 	force = 3
 	throwforce = 10
 	throw_speed = 1
@@ -22,6 +25,14 @@
 	var/fuel_consumption = 5
 	var/datum/reagent/fuel_type = /datum/reagent/fuel
 
+/obj/item/gun/fuel_thrower/Initialize(mapload)
+	. = ..()
+	desc = "A flamethrower that uses [lowertext(initial(fuel_type.name))] as ammunition."
+	chambered = new /obj/item/ammo_casing/flamer(src)
+	create_reagents(max_fuel)
+	reagents.add_reagent(fuel_type, max_fuel)
+	update_appearance(ALL)
+
 /obj/item/gun/fuel_thrower/update_icon_state()
 	inhand_icon_state = "flamethrower_[lit]"
 	return ..()
@@ -33,11 +44,21 @@
 	if(lit)
 		. += "+lit"
 
+/obj/item/gun/fuel_thrower/shoot_with_empty_chamber(mob/living/user)
+	. = ..()
+	if(lit)
+		toggle(FALSE)
+
 /obj/item/gun/fuel_thrower/attack_self(mob/user)
 	lit = !lit
+	toggle(lit)
+
+/obj/item/gun/fuel_thrower/proc/toggle(on = TRUE)
+	lit = on
 	if(lit)
 		playsound(get_turf(src), 'sound/items/welderactivate.ogg', 50, TRUE)
 	else
+		do_sparks(1, FALSE, src)
 		playsound(get_turf(src), 'sound/items/welderdeactivate.ogg', 50, TRUE)
 	set_light_on(lit)
 	update_appearance(UPDATE_ICON)
@@ -45,13 +66,6 @@
 /obj/item/gun/fuel_thrower/examine(mob/user)
 	. = ..()
 	. += "[reagents.total_volume] / [max_fuel] fuel loaded."
-
-/obj/item/gun/fuel_thrower/Initialize(mapload)
-	. = ..()
-	desc = "A flamethrower that uses [initial(fuel_type.name)] as ammunition."
-	chambered = new /obj/item/ammo_casing/flamer(src)
-	create_reagents(max_fuel)
-	reagents.add_reagent(fuel_type, max_fuel)
 
 /obj/item/gun/fuel_thrower/apply_fantasy_bonuses(bonus)
 	. = ..()
@@ -69,7 +83,10 @@
 
 /obj/item/gun/fuel_thrower/handle_chamber()
 	if(chambered && !chambered.loaded_projectile) //if BB is null, i.e the shot has been fired...
-		reagents.remove_reagent(fuel_type, fuel_consumption)
+		if(reagents.has_reagent(fuel_type, fuel_consumption))
+			reagents.remove_reagent(fuel_type, fuel_consumption)
+		else
+			toggle(FALSE)
 		recharge_newshot()
 
 /obj/item/gun/fuel_thrower/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -88,20 +105,21 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/projectile/bullet/incendiary/fire/fuel_trail
-	var/datum/reagent/fuel_type
+	suppressed = SUPPRESSED_VERY
+	range = 10
 	var/fuel_to_use = 20
 	var/fuel_consumption = 1
 
 /obj/projectile/bullet/incendiary/fire/fuel_trail/Move()
-	. = ..()
 	if(fuel_to_use <= 0)
 		qdel(src)
 		return
 	var/turf/location = get_turf(src)
 	if(location)
-		fuel_to_use -= fuel_consumption
+		range -= fuel_consumption
 		var/obj/effect/decal/cleanable/fuel_pool/pool = location.spawn_unique_cleanable(/obj/effect/decal/cleanable/fuel_pool)
 		pool.burn_amount = fuel_to_use
+	. = ..()
 
 /obj/item/ammo_casing/flamer
 	projectile_type = /obj/projectile/bullet/incendiary/fire/fuel_trail
