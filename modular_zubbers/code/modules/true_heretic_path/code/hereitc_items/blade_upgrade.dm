@@ -38,6 +38,15 @@
 
 	var/mob/living/carbon/current_user
 
+	w_class = WEIGHT_CLASS_BULKY
+
+	force = 20
+	block_chance = 25
+
+/obj/item/melee/sickly_blade/exile/upgrade/apply_fantasy_bonuses(bonus)
+	bonus = abs(bonus) //Means that negative modifiers are also treated as positive.
+	. = ..()
+
 /obj/item/melee/sickly_blade/exile/upgrade/Destroy()
 	current_user = null //Just in case.
 	. = ..()

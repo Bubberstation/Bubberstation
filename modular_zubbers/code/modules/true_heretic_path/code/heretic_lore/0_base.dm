@@ -12,9 +12,9 @@ Goes as follows:
 	name = "Act One"
 	desc = "Opens up the Path of Exile to you. \
 		Allows you to transmute a knife, a sheet of iron, and a condenser into an Cold Iron Dagger, \
-		which is less obvious than most heretical blades. \
+		which is smaller and less obvious than most heretical blades. \
 		You can only perform this ritual give times. \
-		<b>Note that this heretic path is new and is currently undergoing testing! Expect this path to be either absurdly overpowered or absurdly weak!</b>"
+		Note that this heretic path is new and is currently undergoing testing! Expect this path to be either absurdly overpowered or absurdly weak!"
 
 	gain_text = "Walk the steps of the Exile. Then walk them again. You will learn from their mistakes as well as yours."
 

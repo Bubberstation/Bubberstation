@@ -49,12 +49,12 @@
 	reagents.add_reagent(reagent_to_create,desired_amount)
 
 
-/obj/item/reagent_containers/cup/endless_flask/vitfro
-	reagent_to_create = /datum/reagent/consumable/vitfro
+/obj/item/reagent_containers/cup/endless_flask/healing_juice
+	reagent_to_create = /datum/reagent/medicine/omnizine/healing_juice
 	icon_state = "health"
 
-/obj/item/reagent_containers/cup/endless_flask/saturnx
-	reagent_to_create = /datum/reagent/drug/saturnx
+/obj/item/reagent_containers/cup/endless_flask/gravitum
+	reagent_to_create = /datum/reagent/gravitum
 	icon_state = "evasion"
 
 

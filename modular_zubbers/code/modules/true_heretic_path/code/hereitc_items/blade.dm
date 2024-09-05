@@ -15,6 +15,7 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 
+	w_class = WEIGHT_CLASS_SMALL
 
 
 
