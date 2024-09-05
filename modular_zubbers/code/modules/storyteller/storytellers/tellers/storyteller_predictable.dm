@@ -4,7 +4,7 @@
 	welcome_text = "Waiter, more chaos! That's enough. Thank you, waiter."
 	population_min = 35
 
-	var/crew_per_antag = 20 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
+	var/crew_per_antag = 15 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
 
 	tag_multipliers = list(
 
