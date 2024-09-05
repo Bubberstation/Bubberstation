@@ -99,10 +99,12 @@
 /obj/item/clothing/head/mob_holder/micro
 	name = "micro"
 	desc = "Another person, small enough to fit in your hand."
-	icon = 'icons/obj/fluff/general.dmi'
-	icon_state = "error" // Some idiots determined that not having a state makes the item abstract, happy now?
+	icon = null
+	icon_state = null
 	worn_icon = null
 	inhand_icon_state = null
+	lefthand_file = null
+	righthand_file = null
 	slot_flags = ITEM_SLOT_FEET | ITEM_SLOT_HEAD | ITEM_SLOT_ID | ITEM_SLOT_BACK | ITEM_SLOT_NECK
 	w_class = null //handled by their size
 	ignore_abstract = TRUE // it didn't help still
