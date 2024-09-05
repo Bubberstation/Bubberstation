@@ -54,3 +54,11 @@
 /datum/loadout_item/toys/secoff
 	name = "GalFed Secoff Plush"
 	item_path = /obj/item/toy/plush/secoff
+
+/datum/loadout_item/toys/xenofig
+	name = "Xeno Action Figure"
+	item_path = /obj/item/toy/toy_xeno
+
+/datum/loadout_item/toys/internshiba
+	name = "Intern Shiba Plush"
+	item_path = /obj/item/toy/plush/internshiba
