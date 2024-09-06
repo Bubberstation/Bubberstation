@@ -283,6 +283,7 @@
 
 /obj/structure/fleshmind/structure/core/Initialize(mapload, spawn_controller = TRUE)
 	. = ..()
+	notify_ghosts("New fleshmind core at [get_area(src)]", src)
 	update_appearance()
 	if(spawn_controller)
 		our_controller = new controller_type(src)

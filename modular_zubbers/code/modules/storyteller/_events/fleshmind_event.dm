@@ -32,6 +32,8 @@
 			continue
 		areas += iterating_area
 
+	shuffle(areas)
+
 	var/turf/picked_turf = get_safe_random_station_turf(areas)
 
 	for(var/turf/open/floor/floors in range(2, picked_turf))
@@ -48,4 +50,3 @@
 	qdel(test_resin)
 	var/final_turf = pick(turfs)
 	var/obj/structure/fleshmind/structure/core/new_core = new(final_turf)
-	announce_to_ghosts(new_core)
