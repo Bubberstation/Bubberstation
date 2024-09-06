@@ -1,5 +1,5 @@
 /datum/round_event_control/slaughter
-	track = EVENT_TRACK_ROLESET
+	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT, TAG_CHAOTIC)
 	weight = 0
 	max_occurrences = 0
