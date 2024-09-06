@@ -478,7 +478,7 @@
 	//spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
 	properties["transmittable"] = rand(6,9)
 	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
-	infectivity = clamp(7 + (spreading_modifier * 7), 14, 42)
+	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
 	stage_prob = rand(7, 17) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate
 	// BUBBER EDIT CHANGE END - Disease Transmission
