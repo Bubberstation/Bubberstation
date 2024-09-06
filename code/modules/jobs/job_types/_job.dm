@@ -180,6 +180,14 @@
 	if(roundstart_experience)
 		for(var/i in roundstart_experience)
 			spawned_human.mind.adjust_experience(i, roundstart_experience[i], TRUE)
+	// BUBBER EDIT START - Intern jobs
+	var/obj/item/card/id/id_card = spawned.get_idcard()
+	if(id_card && istype(id_card))
+		id_card.set_intern_status(player_joins_as_intern(player_client))
+		var/obj/item/modular_computer/pda/pda = spawned.get_item_by_slot(ITEM_SLOT_BELT)
+		if(pda && istype(pda))
+			pda.imprint_id(job_name = id_card.get_job_title())
+	// BUBBER EDIT END
 
 /// Return the outfit to use
 /datum/job/proc/get_outfit(consistent)

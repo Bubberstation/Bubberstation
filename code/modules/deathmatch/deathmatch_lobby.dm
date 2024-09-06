@@ -153,6 +153,13 @@
 	for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
 		GLOB.deathmatch_game.modifiers[modifier].apply(new_player, src)
 
+	// BUBBER EDIT BEGIN - No more abductors talking to station!
+	if(isabductor(new_player))
+		var/obj/item/organ/internal/tongue/abductor/tongue = new_player.get_organ_slot(ORGAN_SLOT_TONGUE)
+		if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
+			tongue.mothership = "deathmatch"
+	// BUBBER EDIT END
+
 	// register death handling.
 	register_player_signals(new_player)
 

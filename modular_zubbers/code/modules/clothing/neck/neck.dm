@@ -266,8 +266,8 @@
 /obj/item/clothing/neck/tie/bunnytie/coroner
 	name = "coroner's bowtie"
 	desc = "A black tie that includes a collar. Looking dead...Dead good!"
-	icon_state = "bowtie_collar_virologist_tied"
-	tie_type = "bowtie_collar_virologist"
+	icon_state = "bowtie_collar_coroner_tied"
+	tie_type = "bowtie_collar_coroner"
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null

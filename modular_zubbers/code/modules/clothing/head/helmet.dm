@@ -85,6 +85,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	icon_state = "playbunny_ears"
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/playbunnyears
 	greyscale_config_worn = /datum/greyscale_config/playbunnyears_worn
@@ -144,6 +145,7 @@
 	inhand_icon_state = "that"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	dog_fashion = null
 
 //CARGO

@@ -4,10 +4,12 @@
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_cc.dmi'
 
 #define CYBORG_ICON_CLOWN_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_clown.dmi'
+#define CYBORG_ICON_CLOWN_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_clown.dmi'
 
 #define CYBORG_ICON_MED_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_med.dmi'
 #define CYBORG_ICON_MED_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_med.dmi'
 #define CYBORG_ICON_MED_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_med.dmi'
+#define CYBORG_ICON_MED_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_med.dmi'
 
 #define CYBORG_ICON_CARGO_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_cargo.dmi'
 #define CYBORG_ICON_CARGO_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_cargo.dmi'
@@ -20,26 +22,33 @@
 #define CYBORG_ICON_ENG_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_eng.dmi'
 #define CYBORG_ICON_ENG_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_eng.dmi'
 #define CYBORG_ICON_ENG_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_eng.dmi'
+#define CYBORG_ICON_ENG_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_eng.dmi'
 
 #define CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_pk.dmi'
 #define CYBORG_ICON_PEACEKEEPER_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_pk.dmi'
 #define CYBORG_ICON_PEACEKEEPER_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_pk.dmi'
+#define CYBORG_ICON_PEACEKEEPER_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_pk.dmi'
 
 #define CYBORG_ICON_SERVICE_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_serv.dmi'
 #define CYBORG_ICON_SERVICE_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_serv.dmi'
 #define CYBORG_ICON_SERVICE_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_serv.dmi'
+#define CYBORG_ICON_SERVICE_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_serv.dmi'
+#define CYBORG_ICON_SERVICE_BUNDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_bun.dmi'
 
 #define CYBORG_ICON_MINING_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_mine.dmi'
 #define CYBORG_ICON_MINING_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_mine.dmi'
 #define CYBORG_ICON_MINING_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_mine.dmi'
+#define CYBORG_ICON_MINING_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_mine.dmi'
 
 #define CYBORG_ICON_JANI_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_jani.dmi'
 #define CYBORG_ICON_JANI_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_jani.dmi'
 #define CYBORG_ICON_JANI_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_jani.dmi'
+#define CYBORG_ICON_JANI_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_jani.dmi'
 
 #define CYBORG_ICON_SYNDIE_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_syndie.dmi'
 #define CYBORG_ICON_SYNDIE_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_syndie.dmi'
 #define CYBORG_ICON_SYNDIE_LARGE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/largerobot_syndie.dmi'
+#define CYBORG_ICON_SYNDIE_HAYDEE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/curverobot_syndie.dmi'
 
 #define CYBORG_ICON_NINJA_WIDE_BUBBER 'modular_zubbers/code/modules/borgs/sprites/widerobot_ninja.dmi'
 #define CYBORG_ICON_NINJA_TALL_BUBBER 'modular_zubbers/code/modules/borgs/sprites/tallrobot_ninja.dmi'

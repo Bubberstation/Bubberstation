@@ -15,9 +15,6 @@
 
 	alert_observers = TRUE
 
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMMUNAL,TAG_COMBAT)
-
 /datum/round_event/stray_cargo/changeling_zombie
 	possible_pack_types = list(/datum/supply_pack/misc/changeling_zombie)
 	fakeable = FALSE

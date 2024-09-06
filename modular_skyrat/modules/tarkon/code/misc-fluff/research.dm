@@ -123,10 +123,24 @@
 	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
 	circuit = /obj/item/circuitboard/machine/protolathe/tarkon
 	stripe_color = "#350f04"
+
 /obj/item/circuitboard/machine/protolathe/tarkon
 	name = "Tarkon Industries Protolathe"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon
+
+//Interdyne equipment
+
+/obj/machinery/rnd/production/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	circuit = /obj/item/circuitboard/machine/protolathe/interdyne
+	stripe_color = "#d40909"
+
+/obj/item/circuitboard/machine/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	greyscale_colors = CIRCUIT_COLOR_SECURITY
+	build_path = /obj/machinery/rnd/production/protolathe/interdyne
 
 /obj/item/circuitboard/machine/rdserver/interdyne
 	name = "Interdyne Pharmaceutics R&D Server"

@@ -92,6 +92,7 @@
 		AA.onNewMob(src)
 	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 	. = ..()
+	setup_hud_traits()
 	update_config_movespeed()
 	initialize_actionspeed()
 	update_movespeed(TRUE)
@@ -310,7 +311,13 @@
 			msg = blind_message
 			msg_type = MSG_AUDIBLE
 		else if(T != loc && T != src) //if src is inside something and not a turf.
-			if(M != loc) // Only give the blind message to hearers that aren't the location
+			// BUBBER EDIT Start - Prey hear each other in bellies + pred always hears prey
+			if(istype(loc, /obj/vore_belly))
+				if(M.loc != loc && M != loc.loc)
+					msg = blind_message
+					msg_type = MSG_AUDIBLE
+			// BUBBER EDIT End
+			else if(M != loc)  // Only give the blind message to hearers that aren't the location
 				msg = blind_message
 				msg_type = MSG_AUDIBLE
 		else if(!HAS_TRAIT(M, TRAIT_HEAR_THROUGH_DARKNESS) && M.lighting_cutoff < LIGHTING_CUTOFF_HIGH && T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.
@@ -1650,3 +1657,18 @@
 /mob/key_down(key, client/client, full_key)
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)
+
+/mob/proc/setup_hud_traits()
+	for(var/hud_trait in GLOB.trait_to_hud)
+		RegisterSignal(src, SIGNAL_ADDTRAIT(hud_trait), PROC_REF(hud_trait_enabled))
+		RegisterSignal(src, SIGNAL_REMOVETRAIT(hud_trait), PROC_REF(hud_trait_disabled))
+
+/mob/proc/hud_trait_enabled(datum/source, new_trait)
+	SIGNAL_HANDLER
+	var/datum/atom_hud/datahud = GLOB.huds[GLOB.trait_to_hud[new_trait]]
+	datahud.show_to(src)
+
+/mob/proc/hud_trait_disabled(datum/source, new_trait)
+	SIGNAL_HANDLER
+	var/datum/atom_hud/datahud = GLOB.huds[GLOB.trait_to_hud[new_trait]]
+	datahud.hide_from(src)

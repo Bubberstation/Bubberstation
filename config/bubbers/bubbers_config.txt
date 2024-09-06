@@ -1,0 +1,18 @@
+## Allows intern tags to be applied to people new to the jobs, adding a prefix to their ID job title, only works with DB and exp_tracking enabled
+ALLOW_INTERN_JOB_TAGS
+
+## Makes it so that people are no longer eligible for the intern tag, if they have enough job exp to unlock the "master" job, which is usually the head position of the department
+#USE_INTERN_MASTER_JOB_UNLOCK_THRESHOLD
+
+## Time thresholds in hours for job experience until people are no longer eligible for the intern tag
+INTERN_THRESHOLD_SECURITY 20
+INTERN_THRESHOLD_CARGO 20
+INTERN_THRESHOLD_MEDICAL 20
+INTERN_THRESHOLD_SCIENCE 20
+INTERN_THRESHOLD_SERVICE 20
+INTERN_THRESHOLD_ENGINEERING 20
+INTERN_THRESHOLD_COMMAND 20
+
+# Vetted player system
+## If enabled, it will use checks to determine if a player is vetted or not in different parts of the game
+#CHECK_VETTED
