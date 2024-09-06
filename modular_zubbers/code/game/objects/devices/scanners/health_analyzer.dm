@@ -127,13 +127,17 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	data["damaged_organs"] = damaged_organs
 	data["damaged_organs"] += get_missing_organs(patient)
 
-	//var/obj/item/organ/internal/heart = patient.get_organ_by_type(/obj/item/organ/internal/heart)
 	if(HAS_TRAIT(patient, TRAIT_DNR))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
-	//else if((patient.get_organ_slot(ORGAN_SLOT_HEART).organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
-		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
-		//data["revivable_boolean"] = FALSE
+	else if(isnull(patient.get_organ_slot(ORGAN_SLOT_HEART)))
+		data["revivable_string"] = "Not ready to defibrillate - heart is missing"
+		data["revivable_boolean"] = FALSE
+	else if(!isnull(patient.get_organ_slot(ORGAN_SLOT_HEART)))
+		var/obj/item/organ/internal/heart = patient.get_organ_by_type(/obj/item/organ/internal/heart)
+		if(heart.organ_flags & ORGAN_FAILING || heart.damage >= 100)
+			data["revivable_string"] = "Not ready to defibrillate - heart is too damaged"
+			data["revivable_boolean"] = FALSE
 	else if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE) && (!HAS_TRAIT(patient, TRAIT_HUSK)))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
