@@ -163,6 +163,8 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	*/
 	var/list/virus_list = list()
 	for(var/datum/disease/disease as anything in patient.diseases)
+		if(isnull(disease))
+			continue
 		if(!(disease.visibility_flags & HIDDEN_SCANNER))
 			virus_list += list(list(
 				"form" = disease.form,
