@@ -143,5 +143,29 @@
 		if(occurences)
 			///If the event has occured already, apply a penalty multiplier based on amount of occurences
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
+
+		//Decrease the chance based on missing slots.
+		if(event.restriction_tags)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_COMMAND) && head_crew < restriction_tag_requirement)
+				weight_total *= 1 / (1 + restriction_tag_requirement - head_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_ENGINEERING) && eng_crew < restriction_tag_requirement)
+				weight_total *= 1 / (1 + restriction_tag_requirement - eng_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_SECURITY) && sec_crew < restriction_tag_requirement)
+				weight_total *= 1 / (1 + restriction_tag_requirement - sec_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_MEDICAL) && med_crew < restriction_tag_requirement)
+				weight_total *= 1 / (1 + restriction_tag_requirement - med_crew)
+			if((event.restriction_tags & RESTRICTION_TAG_SCIENCE) && sci_crew < restriction_tag_requirement)
+				weight_total *= 1 / (1 + restriction_tag_requirement - sci_crew)
+			weight_total = round(weight_total,1)
+
+
+
+
+
+
+
+
+
+
 		/// Write it
 		event.calculated_weight = weight_total

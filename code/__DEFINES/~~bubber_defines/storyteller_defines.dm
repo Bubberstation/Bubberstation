@@ -26,18 +26,6 @@
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
 
-
-<<<<<<< Updated upstream
-=======
-#define RESTRICTION_TAG_NONE (1<<0)
-
-#define RESTRICTION_TAG_SECURITY (1<<1)
-#define RESTRICTION_TAG_ENGINEERING (1<<2)
-#define RESTRICTION_TAG_SCIENCE (1<<3)
-#define RESTRICTION_TAG_MEDICAL (1<<4)
-
-
->>>>>>> Stashed changes
 #define EVENT_TRACK_MUNDANE "Mundane"
 #define EVENT_TRACK_MODERATE "Moderate"
 #define EVENT_TRACK_MAJOR "Major"

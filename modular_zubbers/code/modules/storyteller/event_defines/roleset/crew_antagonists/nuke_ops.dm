@@ -17,6 +17,9 @@
 
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NUKIEBASE)
 
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_COMMAND
+	restriction_tag_requirement = 4
+
 /datum/round_event/antagonist/team/nukie
 	var/datum/job/job_type = /datum/job/nuclear_operative
 	var/required_role = ROLE_NUCLEAR_OPERATIVE

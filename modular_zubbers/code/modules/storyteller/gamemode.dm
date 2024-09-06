@@ -137,6 +137,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/eng_crew = 0
 	var/sec_crew = 0
 	var/med_crew = 0
+	var/sci_crew = 0
 
 	var/wizardmode = FALSE
 
@@ -396,6 +397,7 @@ SUBSYSTEM_DEF(gamemode)
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
+	sci_crew = 0
 	for(var/mob/player_mob as anything in GLOB.player_list)
 		if(!player_mob.client)
 			continue
@@ -416,6 +418,8 @@ SUBSYSTEM_DEF(gamemode)
 				med_crew++
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 				sec_crew++
+			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SCIENCE)
+				sci_crew++
 	update_pop_scaling()
 
 /datum/controller/subsystem/gamemode/proc/update_pop_scaling()

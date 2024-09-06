@@ -14,6 +14,9 @@
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	restricted_roles = list()
 
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_COMMAND
+	restriction_tag_requirement = 4
+
 /datum/round_event_control/antagonist/solo/malf/roundstart
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart

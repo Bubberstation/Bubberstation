@@ -13,11 +13,12 @@
 	var/can_run_post_roundstart = TRUE
 
 
-	//Setting this to other than none adds a requirement to job slots for this event.
-	//Failing to meet the requirements will divide the final weight by the amount of missing slots plus 1.
-	var/restriction_tags = RESTRICTION_TAG_NONE
+	//Setting this adds a requirement to job slots for this event. This takes department bitflags.
+	//Currently has support for DEPARTMENT_BITFLAG_COMMAND, DEPARTMENT_BITFLAG_ENGINEERING, DEPARTMENT_BITFLAG_SECURITY, DEPARTMENT_BITFLAG_SCIENCE, DEPARTMENT_BITFLAG_MEDICAL
+	//Failing to meet the requirements will divide the final weight by the amount of missing slots plus 1 (ie 2 missing slots means weight is divided by 3).
+	var/restriction_tags
 	//Amount of job slots in each restriction_tag department there must be for this event to run.
-	var/restriction_tag_requirement = 1
+	var/restriction_tag_requirement = 4
 
 /datum/round_event
 	/// Whether the event called its start() yet or not.

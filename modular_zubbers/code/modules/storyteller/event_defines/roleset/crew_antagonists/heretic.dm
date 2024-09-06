@@ -13,6 +13,9 @@
 
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 2
+
 /datum/round_event_control/antagonist/solo/heretic/New()
 	protected_roles |= JOB_CHAPLAIN // Would be silly to get chaplain heretics
 	. = ..()
