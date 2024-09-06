@@ -27,3 +27,11 @@
 	track = EVENT_TRACK_ROLESET
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	weight = 2
+
+/datum/round_event_control/morph
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+
+/datum/round_event_control/operative
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_CHAOTIC, TAG_CREW_ANTAG)
