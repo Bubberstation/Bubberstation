@@ -33,7 +33,9 @@
 	return
 
 /obj/structure/cargo_shelf/Destroy()
-	QDEL_LIST(shelf_contents)
+	for(var/obj/structure/closet/crate/crate in shelf_contents)
+		crate.forceMove(loc)
+	shelf_contents = null
 	return ..()
 
 /obj/structure/cargo_shelf/examine(mob/user)

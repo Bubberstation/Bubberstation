@@ -32,7 +32,17 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
-	can_adjust = FALSE //Yes we have the sprite for them but they look ass so let's not use it
+	uses_advanced_reskins = FALSE
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/under/rank/idma_utility
+	name = "ironmoon utility fatigue"
+	desc = "An old snow pattern uniform worn commonly worn by IDMA Staff."
+	icon_state = "romulusutility"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
@@ -79,30 +89,31 @@
 		/obj/item/tank/internals/plasmaman,
 	)
 
-//This is meant to be a functional wintercoat
-/obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
+/obj/item/clothing/suit/jacket/idma_jacket
 	name = "ironmoon service coat"
-	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	desc = "A lightweight jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is meant to be worn as utility coat."
 	icon_state = "romulusofficer"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/idma_hood
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 
 /obj/item/clothing/suit/armor/vest/idma_vest
 	name = "IDMA Combat Vest"
-	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains a class IIA plating to protect the wearer from harms."
 	icon_state = "romfed_armor"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/hooded/winterhood/security/idma_hood
-	name = "ironmoon winterhood"
-	desc = "A white, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
-	icon_state = "romulushood"
+/obj/item/clothing/suit/armor/vest/idma_vest/idma_jacket
+	name = "ironmoon heavy service coat"
+	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is armoured."
+	icon_state = "romulusarmoured"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 
 /obj/item/clothing/accessory/armband/idmaarmband
 	name = "ironmoon police armband"

@@ -4,7 +4,7 @@
 	welcome_text = "Waiter, more chaos! That's enough. Thank you, waiter."
 	population_min = 35
 
-	var/crew_per_antag = 20 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
+	var/crew_per_antag = 15 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
 
 	tag_multipliers = list(
 
@@ -14,6 +14,8 @@
 		TAG_TARGETED = 0.25, //Let us not waste event rolls on single people every 5 or so minutes.
 
 		TAG_OUTSIDER_ANTAG = 0.25, //BurgerBB was here.
+
+		TAG_CHAOTIC = 0.75, //Already got this from the constant antag spawns.
 
 	)
 

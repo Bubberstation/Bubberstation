@@ -82,6 +82,7 @@
 	)
 	crate_name = "Carwo 'Renoster' Shotgun Crate"
 
+
 /datum/supply_pack/security/armory/sindano
 	name = "Carwo 'Sindano' Submachinegun Crate"
 	desc = "Three entirely proprietary Sindano kits, chambered in .35 Sol Short. Each kit contains three empty magazines and a box each of incapacitator and lethal rounds."
@@ -118,8 +119,8 @@
 	desc = "Two CMG-1, chambered in experimental steel flechette."
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(
-		/obj/item/storage/toolbox/guncase/skyrat/rom_flech,
-		/obj/item/storage/toolbox/guncase/skyrat/rom_flech,
+		/obj/item/storage/toolbox/guncase/skyrat/pistol/rom_flech,
+		/obj/item/storage/toolbox/guncase/skyrat/pistol/rom_flech,
 	)
 	crate_name = "RomTech CMG-1 Crate"
 

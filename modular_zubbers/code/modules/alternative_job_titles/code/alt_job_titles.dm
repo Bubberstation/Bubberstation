@@ -6,3 +6,9 @@
 		"Brig Physician",
 		"Combat Medic",
 	)
+
+/datum/job/blueshield/New()
+	alt_titles |= list(
+		 "Henchman",
+		)
+	. = ..()
