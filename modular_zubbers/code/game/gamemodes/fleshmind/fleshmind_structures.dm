@@ -379,6 +379,12 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
+	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver)
+
+// Tries to place mobs outside of the walls. But it will spawn on the core if it can't find a place.
+
+/obj/structure/fleshmind/structure/core/proc/spawn_mob_at_core(mob/thing_to_spawn)
+
 	var/list/turf = list()
 	for(var/turf/spawn_turf in RANGE_TURFS(2, src))
 		if(!locate(/obj/structure/fleshmind/wireweed) in spawn_turf)
@@ -389,10 +395,9 @@
 
 	if(LAZYLEN(turf)) // Failsafe if there's no turf to spawn it on.
 		var/picked_turf = pick(turf)
-		our_controller?.spawn_mob(pick(picked_turf), /mob/living/basic/fleshmind/mechiver)
+		our_controller?.spawn_mob(pick(picked_turf), thing_to_spawn)
 	else
-		our_controller?.spawn_mob(src.loc, /mob/living/basic/fleshmind/mechiver)
-	return
+		our_controller?.spawn_mob(src.loc, thing_to_spawn)
 
 /obj/structure/fleshmind/structure/core/proc/whip_those_fuckers()
 	for(var/mob/living/iterating_mob in view(whip_range, src))

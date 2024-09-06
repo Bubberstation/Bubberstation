@@ -343,8 +343,8 @@
 	SSshuttle.fleshmind_call(controller_firstname)
 
 /datum/fleshmind_controller/proc/spawn_tyrant_on_a_core()
-	var/obj/picked_core = pick(cores)
-	var/mob/living/basic/fleshmind/tyrant/new_tyrant = spawn_mob(get_turf(picked_core), /mob/living/basic/fleshmind/tyrant)
+	var/obj/structure/fleshmind/structure/core/picked_core = pick(cores)
+	var/mob/living/basic/fleshmind/tyrant/new_tyrant = picked_core.spawn_mob_at_core(/mob/living/basic/fleshmind/tyrant)
 	notify_ghosts("A new [new_tyrant.name] has been created by [controller_fullname]!", source = new_tyrant)
 
 /datum/fleshmind_controller/proc/spawn_new_core()
