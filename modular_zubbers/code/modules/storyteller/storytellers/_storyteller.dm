@@ -146,17 +146,17 @@
 
 		//Decrease the chance based on missing slots.
 		//No point in doing this if the weight is already 0.
-		if(weight_total > 0 && event.restriction_tags)
-			if((event.restriction_tags & DEPARTMENT_BITFLAG_COMMAND) && head_crew < restriction_tag_requirement)
-				weight_total *= 1 / (1 + restriction_tag_requirement - head_crew)
-			if((event.restriction_tags & DEPARTMENT_BITFLAG_ENGINEERING) && eng_crew < restriction_tag_requirement)
-				weight_total *= 1 / (1 + restriction_tag_requirement - eng_crew)
-			if((event.restriction_tags & DEPARTMENT_BITFLAG_SECURITY) && sec_crew < restriction_tag_requirement)
-				weight_total *= 1 / (1 + restriction_tag_requirement - sec_crew)
-			if((event.restriction_tags & DEPARTMENT_BITFLAG_MEDICAL) && med_crew < restriction_tag_requirement)
-				weight_total *= 1 / (1 + restriction_tag_requirement - med_crew)
-			if((event.restriction_tags & RESTRICTION_TAG_SCIENCE) && sci_crew < restriction_tag_requirement)
-				weight_total *= 1 / (1 + restriction_tag_requirement - sci_crew)
+		if(weight_total > 0 && event.restriction_tags && event.restriction_tag_requirement > 0)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_COMMAND) && mode.head_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.head_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_ENGINEERING) && eng_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.eng_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_SECURITY) && mode.sec_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.sec_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_MEDICAL) && mode.med_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.med_crew)
+			if((event.restriction_tags & RESTRICTION_TAG_SCIENCE) && mode.sci_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.sci_crew)
 			weight_total = FLOOR(weight_total,1)
 
 		/// Write it
