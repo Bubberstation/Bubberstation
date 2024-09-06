@@ -191,7 +191,7 @@
  * This simply stops the mob from moving for a set amount of time and displays some nice effects, and a little damage.
  */
 /mob/living/basic/fleshmind/proc/malfunction(reset_time = MALFUNCTION_RESET_TIME)
-	if(suffering_malfunction)
+	if(suffering_malfunction || key)
 		return
 	do_sparks(3, FALSE, src)
 	Shake(10, 0, reset_time)
