@@ -5,7 +5,7 @@
 
 /datum/round_event_control/space_dragon
 	track = EVENT_TRACK_ROLESET
-	tags = list(TAG_COMBAT)
+	tags = list(TAG_COMBAT, TAG_CHAOTIC)
 	weight = 2
 
 /datum/round_event_control/space_ninja
@@ -20,10 +20,10 @@
 
 /datum/round_event_control/alien_infestation
 	track = EVENT_TRACK_ROLESET
-	tags = list(TAG_COMBAT, TAG_SPOOKY)
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CHAOTIC)
 	weight = 2
 
 /datum/round_event_control/spider_infestation
 	track = EVENT_TRACK_ROLESET
-	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE)
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	weight = 2

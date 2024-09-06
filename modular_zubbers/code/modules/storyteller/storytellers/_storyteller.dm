@@ -45,8 +45,8 @@
 	var/population_min
 	/// If defined, it will not be votable if exceeding the population
 	var/population_max
-	/// The antag divisor, the higher it is the lower the antag cap gets.
-	var/antag_divisor = 1
+	/// The antag divisor, the higher it is the lower the antag cap gets. Basically means "for every antag_divisor crew, spawn 1 antag".
+	var/antag_divisor = 8
 
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
@@ -94,6 +94,8 @@
 		var/list/valid_events = list()
 		// Determine which events are valid to pick
 		for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
+			if(isnull(event))
+				continue
 			if(event.can_spawn_event(player_pop))
 				valid_events[event] = event.calculated_weight
 		///If we didn't get any events, remove the points inform admins and dont do anything
