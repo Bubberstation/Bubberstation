@@ -190,57 +190,26 @@
 		chasted.cut_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
 	. = ..()
 	
-//checks for the key's ID
+//checks for the key's ID, figuring this bit out
 /obj/item/key/chastity/attack(mob/living/carbon/human/target, mob/living/user, params)
 	if(!istype(target))
 		return
 	. = ..()
-	if(!istype(target.wear_vagina | target.wear_penis, /obj/item/clothing/neck/kink_collar/locked))
+	if(!istype(target.vagina | target.penis, /obj/item/clothing/sextoy/chastity))
 		return
-	var/obj/item/clothing/neck/kink_collar/locked/collar = target.wear_neck
-	if(REF(collar) == src.key_id)
-		collar.IsLocked((collar.locked ? FALSE : TRUE), user)
+	var/obj/item/clothing/sextoy/chastity = target.penis
+	var/obj/item/clothing/sextoy/chastity = target.vagina
+	if(REF(chastity) == src.key_id)
+		chastity.IsLocked((chastity.locked ? FALSE : TRUE), user)
 	else
 		to_chat(user, span_warning("This isn't the correct key!"))
-//For breaking the lock
-/obj/item/circular_saw/attack(mob/living/carbon/target, mob/living/user, params)
-	if(!istype(target))
-		return ..()
-	if(!istype(target.wear_neck, /obj/item/clothing/neck/kink_collar/locked))
-		return ..()
-	var/obj/item/clothing/neck/kink_collar/locked/collar = target.wear_neck
-	if(collar.broken)
-		to_chat(user, span_warning("The lock is already broken!"))
-		return
-	to_chat(user, span_warning("You try to cut the lock right off!"))
-	if(target != user)
-		if(!do_after(user, 2 SECONDS, target))
-			return
-		collar.broken = TRUE
-		collar.IsLocked(FALSE, user)
-		if(prob(33)) //chance to get damage
-			to_chat(user, span_warning("You successfully cut away the lock, but gave [target.name] several cuts in the process!"))
-			target.apply_damage(rand(1, 4), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10)
-		else
-			to_chat(user, span_warning("You successfully cut away the lock!"))
-	else
-		if(!do_after(user, 3 SECONDS, target))
-			return
-		if(prob(33))
-			to_chat(user, span_warning("You successfully cut away the lock, but gave yourself several cuts in the process!"))
-			collar.broken = TRUE
-			collar.IsLocked(FALSE, user)
-			target.apply_damage(rand(2, 4), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10)
-		else
-			to_chat(user, span_warning("You fail to cut away the lock, cutting yourself in the process!"))
-			target.apply_damage(rand(3, 5), BRUTE, BODY_ZONE_HEAD, wound_bonus = 30)
-
 
 /obj/item/key/chastity
 	name = "chastity key"
 	desc = "A hex key meant for the bolt on a chastity device. Don't lose this. Or do."
 	interaction_flags_click = NEED_DEXTERITY
 	var/key_id = null
+	var/keyname
 	
 //Key name change
 /obj/item/key/chastity/attack_self(mob/user)
