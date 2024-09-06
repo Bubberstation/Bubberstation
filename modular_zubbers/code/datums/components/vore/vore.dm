@@ -363,15 +363,17 @@
 	return TRUE
 
 /proc/check_vore_grab(mob/living/grabber, mob/living/grabbed)
-	. = FALSE
 	if(QDELETED(grabber))
 		return FALSE
 	if(QDELETED(grabbed))
 		return FALSE
-	if(ishuman(grabber) && grabber.grab_state >= GRAB_AGGRESSIVE)
-		. = TRUE
 	if(istype(grabbed.loc, /obj/item/clothing/head/mob_holder))
-		. = TRUE
+		return TRUE
+	if(ishuman(grabber) && grabber.pulling)
+		if(grabber.grab_state >= GRAB_AGGRESSIVE)
+			return TRUE
+		else
+			return FALSE
 	return TRUE
 
 /datum/component/vore/proc/vore_other(mob/living/prey)

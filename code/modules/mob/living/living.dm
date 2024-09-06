@@ -220,10 +220,12 @@
 	if(moving_diagonally)//no mob swap during diagonal moves.
 		return TRUE
 
+	//SPLURT EDIT ADDITION BEGIN - FEATURE_NAME - (sizecode)
 	//handle micro bumping on help intent
 	if(resolve_intent_name(combat_mode) == "help")
 		if(handle_micro_bump_helping(M))
 			return TRUE
+	//SPLURT EDIT ADDITION END
 
 	if(!M.buckled && !M.has_buckled_mobs())
 		if(can_mobswap_with(M))
@@ -259,8 +261,10 @@
 	//not if he's not CANPUSH of course
 	if(!(M.status_flags & CANPUSH))
 		return TRUE
+	//SPLURT EDIT ADDITION BEGIN - FEATURE_NAME - (sizecode)
 	if(handle_micro_bump_other(M))
 		return TRUE
+	//SPLURT EDIT ADDITION END
 	if(isliving(M))
 		var/mob/living/L = M
 		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
@@ -2051,12 +2055,6 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(NAMEOF(src, body_position))
 			set_body_position(var_value)
 			. = TRUE
-		if(NAMEOF(src, current_size))
-			update_size(var_value)
-			return TRUE
-		if(NAMEOF(src, size_multiplier))
-			update_size(var_value)
-			return TRUE
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED

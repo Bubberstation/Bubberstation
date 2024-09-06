@@ -344,12 +344,6 @@
 //called when something steps onto a human
 /mob/living/carbon/human/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-
-	//Hyper Change - Step on people
-	var/mob/living/carbon/human/H = AM
-	if(istype(H) && resting && resolve_intent_name(H.combat_mode) != "help")
-		H.handle_micro_bump_other(src)
-
 	spreadFire(AM)
 
 /mob/living/carbon/human/proc/canUseHUD()

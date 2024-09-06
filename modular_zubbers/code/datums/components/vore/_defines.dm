@@ -23,7 +23,7 @@
 /// If true, prevents mobs in crit or death from engaging in vore
 #define NO_DEAD TRUE
 /// If true, mobs with no player cannot be pred or prey
-#define REQUIRES_PLAYER FALSE
+#define REQUIRES_PLAYER TRUE
 /// Makes every mob spawn with a vore component, just for testing
 // #define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
 /// Number of rolling backups bellies will keep
