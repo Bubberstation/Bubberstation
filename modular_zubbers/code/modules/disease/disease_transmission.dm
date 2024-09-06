@@ -6,10 +6,13 @@
 /datum/disease/proc/log_virus_debug(text)
 	if(!debug_id)
 		debug_id = assign_random_name()
-	var/log_message = "VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]"
+	var/log_message = "VIRUS_DEBUG: P:[length(SSdisease.active_diseases)] [debug_id] [name]: [text]"
 	log_game(log_message)
 	log_public_file(log_message)
-	//to_chat(world, span_yellowteamradio("VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]"))
+	for(var/mob/player in GLOB.player_list)
+		if(player.ckey == "lt3")
+			to_chat(player, span_yellowteamradio(log_message))
+			break
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type

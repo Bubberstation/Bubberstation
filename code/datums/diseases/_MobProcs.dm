@@ -171,7 +171,7 @@
 		if(del_on_fail)
 			qdel(D)
 		return FALSE
-	D.log_virus_debug("[name] - [infect_vector] - passed infection checks for [infect_vector] transmission. ([final_infectivity]% chance)") // BUBBER EDIT ADDITION - Disease Transmission
+	D.log_virus_debug("[name] passed infection checks for [infect_vector ? infect_vector : "FORCED"] transmission. ([final_infectivity ? final_infectivity : "100"]% chance)") // BUBBER EDIT ADDITION - Disease Transmission
 	return TRUE
 
 
