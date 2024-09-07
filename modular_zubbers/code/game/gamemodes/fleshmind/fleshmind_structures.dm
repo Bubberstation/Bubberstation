@@ -285,6 +285,7 @@
 	. = ..()
 	notify_ghosts("New fleshmind core at [get_area(src)]", src)
 	update_appearance()
+	SSpoints_of_interest.make_point_of_interest(src)
 	if(spawn_controller)
 		our_controller = new controller_type(src)
 	START_PROCESSING(SSobj, src)
