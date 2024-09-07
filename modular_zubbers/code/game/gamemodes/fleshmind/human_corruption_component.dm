@@ -48,7 +48,7 @@
 
 	if(our_controller)
 		if(infected_human.client)
-			our_controller.infected_crew += infected_human
+			LAZYADD(our_controller.infected_crew, infected_human)
 		for(var/obj/structure/fleshmind/structure/core/iterating_core in our_controller.cores)
 			RegisterSignal(iterating_core, COMSIG_QDELETING, PROC_REF(core_death))
 		RegisterSignal(our_controller, COMSIG_QDELETING, PROC_REF(component_death))
@@ -86,7 +86,7 @@
 	parent_mob.update_appearance()
 	log_combat(parent_mob, null, "deconverted", "deconverted message", "[parent_mob] has been deconverted from the fleshmind")
 	if(our_controller && parent_mob.client)
-		our_controller.infected_crew -= parent_mob
+		LAZYREMOVE(our_controller.infected_crew, parent_mob)
 
 	our_controller = null
 	return ..()
