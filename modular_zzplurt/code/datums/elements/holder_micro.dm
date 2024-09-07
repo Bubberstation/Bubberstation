@@ -108,6 +108,7 @@
 	slot_flags = ITEM_SLOT_FEET | ITEM_SLOT_HEAD | ITEM_SLOT_ID | ITEM_SLOT_BACK | ITEM_SLOT_NECK
 	w_class = null //handled by their size
 	ignore_abstract = TRUE // it didn't help still
+	item_flags = INEDIBLE_CLOTHING
 
 /obj/item/clothing/head/mob_holder/micro/container_resist_act(mob/living/resisting)
 	if(resisting.incapacitated())
@@ -188,8 +189,8 @@
 
 	if(holder == eater) // Parent wants to eat pulled
 		. = vore.vore_other(held_mob)
-	else // Parent wants to feed pulled to clicked_on
-		. = vore.feed_other_to_other(eater, held_mob)
+		return
+	return ..()
 
 /obj/item/clothing/head/mob_holder/micro/Exited(mob/living/totally_not_vored, direction)
 	// Transferred to a belly? Get rid of this before it puts us on the floor
@@ -221,3 +222,7 @@
 /obj/item/clothing/head/mob_holder/micro/update_visuals(mob/living/carbon/human/tiny_person)
 	. = ..()
 	transform = null
+
+// And right here i throw all of those error sprites in the trash
+/obj/item/clothing/head/mob_holder/micro/build_worn_icon(default_layer, default_icon_file, isinhands, female_uniform, override_state, override_file, mutant_styles)
+	return null
