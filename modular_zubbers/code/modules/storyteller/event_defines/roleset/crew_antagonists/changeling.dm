@@ -10,9 +10,6 @@
 
 	tags = list(TAG_COMBAT, TAG_CREW_ANTAG)
 
-	restriction_tags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
-	restriction_tag_requirement = 2
-
 /datum/round_event_control/antagonist/solo/changeling/midround
 	name = "Genome Awakening (Changelings)"
 	roundstart = FALSE
