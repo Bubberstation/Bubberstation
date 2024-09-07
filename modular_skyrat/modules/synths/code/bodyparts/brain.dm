@@ -1,7 +1,7 @@
 /obj/item/organ/internal/brain/synth
 	name = "compact positronic brain"
 	slot = ORGAN_SLOT_BRAIN
-	zone = BODY_ZONE_HEAD
+	zone = BODY_ZONE_CHEST
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
@@ -9,6 +9,7 @@
 	icon_state = "posibrain-ipc"
 	/// The last time (in ticks) a message about brain damage was sent. Don't touch.
 	var/last_message_time = 0
+	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 
 /obj/item/organ/internal/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()

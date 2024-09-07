@@ -188,21 +188,16 @@
 
 //Disassembling shibari stand
 /obj/structure/chair/shibari_stand/click_ctrl_shift(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
 	to_chat(user, span_notice("You begin unfastening the frame of \the [src]..."))
 	if(!do_after(user, 8 SECONDS, src))
 		to_chat(user, span_warning("You fail to disassemble \the [src]."))
-		return FALSE
+		return
 
 	to_chat(user, span_notice("You disassemble \the [src]."))
 	var/obj/item/construction_kit/bdsm/shibari/kit = new(get_turf(src))
 	kit.set_greyscale(greyscale_colors)
 	unbuckle_all_mobs()
 	qdel(src)
-	return TRUE
 
 //Changing color of shibari stand
 /obj/structure/chair/shibari_stand/click_ctrl(mob/user)
@@ -216,7 +211,7 @@
 	)
 	menu.ui_interact(usr)
 	to_chat(user, span_notice("You switch the frame's plastic fittings color."))
-	return TRUE
+	return CLICK_ACTION_SUCCESS
 
 /obj/structure/chair/shibari_stand/examine(mob/user)
 	. = ..()

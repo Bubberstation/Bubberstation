@@ -9,12 +9,12 @@
 
 /datum/round_event_control/blob
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	weight = 10
 
 /datum/round_event_control/meteor_wave
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_DESTRUCTIVE)
+	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	weight = 10
 
 /datum/round_event_control/meteor_wave/meaty
@@ -49,6 +49,27 @@
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE)
 
-/datum/round_event_control/spider_infestation
-	track = EVENT_TRACK_ROLESET
+/datum/round_event_control/revenant
+	min_players = 20
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+
+/datum/round_event_control/abductor
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CHAOTIC)
+
+/datum/round_event_control/fugitives
+	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT)
+
+/datum/round_event_control/voidwalker
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_SPACE)
+
+/datum/round_event_control/cme
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
+
+/datum/round_event_control/stray_cargo/changeling_zombie
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_SPOOKY)

@@ -8,7 +8,7 @@
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.02
 	power_channel = AREA_USAGE_ENVIRON
-	req_access = list(ACCESS_ATMOSPHERICS)
+	req_access = list(ACCESS_ENGINEERING)
 	max_integrity = 250
 	integrity_failure = 0.33
 	armor_type = /datum/armor/machinery_airalarm
@@ -137,7 +137,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 /obj/machinery/airalarm/Destroy()
 	if(my_area)
 		my_area = null
-	QDEL_NULL(wires)
 	QDEL_NULL(alarm_manager)
 	GLOB.air_alarms -= src
 	return ..()

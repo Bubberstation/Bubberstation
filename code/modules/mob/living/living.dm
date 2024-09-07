@@ -62,6 +62,12 @@
 	. = SEND_SIGNAL(src, COMSIG_LIVING_Z_IMPACT, levels, impacted_turf)
 	if(. & ZIMPACT_CANCEL_DAMAGE)
 		return .
+	// multiplier for the damage taken from falling
+	var/damage_softening_multiplier = 1
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		damage_softening_multiplier *= potential_spine.athletics_boost_multiplier
 
 	//SKYRAT EDIT ADDITION START - Landing in liquids
 	if(impacted_turf.liquids && impacted_turf.liquids.liquid_state >= LIQUID_STATE_WAIST)
@@ -113,7 +119,7 @@
 		new /obj/effect/temp_visual/mook_dust(impacted_turf)
 
 	if(body_position == STANDING_UP)
-		var/damage_for_each_leg = round(incoming_damage / 2)
+		var/damage_for_each_leg = round((incoming_damage / 2) * damage_softening_multiplier)
 		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_L_LEG, wound_bonus = -2.5 * levels)
 		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_R_LEG, wound_bonus = -2.5 * levels)
 	else
@@ -168,13 +174,8 @@
 	if(now_pushing)
 		return TRUE
 
-	var/they_can_move = TRUE
-	var/their_combat_mode = FALSE
-
 	if(isliving(M))
 		var/mob/living/L = M
-		their_combat_mode = L.combat_mode
-		they_can_move = L.mobility_flags & MOBILITY_MOVE
 		//Also spread diseases
 		for(var/thing in diseases)
 			var/datum/disease/D = thing
@@ -220,22 +221,7 @@
 		return TRUE
 
 	if(!M.buckled && !M.has_buckled_mobs())
-		var/mob_swap = FALSE
-		var/too_strong = (M.move_resist > move_force) //can't swap with immovable objects unless they help us
-		if(!they_can_move) //we have to physically move them
-			if(!too_strong)
-				mob_swap = TRUE
-		else
-			//You can swap with the person you are dragging on grab intent, and restrained people in most cases
-			if(M.pulledby == src && !too_strong)
-				mob_swap = TRUE
-			else if(
-				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP)) &&\
-				((HAS_TRAIT(M, TRAIT_RESTRAINED) && !too_strong) || !their_combat_mode) &&\
-				(HAS_TRAIT(src, TRAIT_RESTRAINED) || !combat_mode)
-			)
-				mob_swap = TRUE
-		if(mob_swap)
+		if(can_mobswap_with(M))
 			//switch our position with M
 			if(loc && !loc.Adjacent(M.loc))
 				return TRUE
@@ -287,6 +273,46 @@
 		if(!isclothing(M))
 			if(prob(I.block_chance*2))
 				return
+
+/mob/living/proc/can_mobswap_with(mob/other)
+	if (HAS_TRAIT(other, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP))
+		return FALSE
+
+	var/they_can_move = TRUE
+	var/their_combat_mode = FALSE
+
+	if(isliving(other))
+		var/mob/living/other_living = other
+		their_combat_mode = other_living.combat_mode
+		they_can_move = other_living.mobility_flags & MOBILITY_MOVE
+
+	var/too_strong = other.move_resist > move_force
+
+	// They cannot move, see if we can push through them
+	if (!they_can_move)
+		return !too_strong
+
+	// We are pulling them and can move through
+	if (other.pulledby == src && !too_strong)
+		return TRUE
+
+	// If we're in combat mode and not restrained we don't try to pass through people
+	if (combat_mode && !HAS_TRAIT(src, TRAIT_RESTRAINED))
+		return FALSE
+
+	// Nor can we pass through non-restrained people in combat mode (or if they're restrained but still too strong for us)
+	if (their_combat_mode && (!HAS_TRAIT(other, TRAIT_RESTRAINED) || too_strong))
+		return FALSE
+
+	if (isnull(other.client) || isnull(client))
+		return TRUE
+
+	// If both of us are trying to move in the same direction, let the fastest one through first
+	if (client.intended_direction == other.client.intended_direction)
+		return cached_multiplicative_slowdown < other.cached_multiplicative_slowdown
+
+	// Else, sure, let us pass
+	return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/holding = list()
@@ -706,6 +732,10 @@
 
 /mob/living/proc/get_up(instant = FALSE)
 	set waitfor = FALSE
+	var/get_up_time = 1 SECONDS
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		get_up_time *= potential_spine.athletics_boost_multiplier
 	// if(!instant && !do_after(src, 1 SECONDS, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP, hidden = TRUE)) // SKYRAT EDIT REMOVAL
 	// SKYRAT EDIT ADDITION START
 	var/get_up_speed = GET_UP_FAST
@@ -1227,7 +1257,8 @@
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 	//If we're in an aggressive grab or higher, we're lying down, we're vulnerable to grabs, or we're staggered and we have some amount of stamina loss, we must resist
-	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || get_timed_status_effect_duration(/datum/status_effect/staggered) && getStaminaLoss() > STAMINA_THRESHOLD_HARD_RESIST) //SKYRAT EDIT CHANGE - ORIGINAL : if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || get_timed_status_effect_duration(/datum/status_effect/staggered) && getStaminaLoss() >= 30)
+	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || get_timed_status_effect_duration(/datum/status_effect/staggered) && (getFireLoss()*0.5 + getBruteLoss()*0.5) >= 40)
+
 		var/altered_grab_state = pulledby.grab_state
 		if((body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || get_timed_status_effect_duration(/datum/status_effect/staggered)) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
 			altered_grab_state++
@@ -1888,7 +1919,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/old_level_new_clients = (registered_z ? SSmobs.clients_by_zlevel[registered_z].len : null)
 	//No one is left after we're gone, shut off inactive ones
 	if(registered_z && old_level_new_clients == 0)
-		for(var/datum/ai_controller/controller as anything in SSai_controllers.ai_controllers_by_zlevel[registered_z])
+		for(var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[registered_z])
 			controller.set_ai_status(AI_STATUS_OFF)
 
 	if(new_z)
@@ -1899,7 +1930,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		SSmobs.clients_by_zlevel[new_z] += src
 
 		if(new_level_old_clients == 0) //No one was here before, wake up all the AIs.
-			for (var/datum/ai_controller/controller as anything in SSai_controllers.ai_controllers_by_zlevel[new_z])
+			for (var/datum/ai_controller/controller as anything in GLOB.ai_controllers_by_zlevel[new_z])
 				//We don't set them directly on, for instances like AIs acting while dead and other cases that may exist in the future.
 				//This isn't a problem for AIs with a client since the client will prevent this from being called anyway.
 				controller.set_ai_status(controller.get_expected_ai_status())
@@ -2732,7 +2763,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	///The price should be high enough that the contractor can't just buy 'em back with their cut alone.
 	var/datum/market_item/hostage/market_item = new(src, black_market_price || ransom_price)
-	SSblackmarket.markets[/datum/market/blackmarket].add_item(market_item)
+	SSmarket.markets[/datum/market/blackmarket].add_item(market_item)
 
 	if(mind)
 		ADD_TRAIT(mind, TRAIT_HAS_BEEN_KIDNAPPED, TRAIT_GENERIC)

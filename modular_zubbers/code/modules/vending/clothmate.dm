@@ -4,6 +4,7 @@
 			"name" = "Head",
 			"icon" = "hat-cowboy",
 			"products" = list(
+				/obj/item/clothing/head/henchmen_hat = 5,
 				/obj/item/clothing/head/avipilot = 5,
 				/obj/item/clothing/head/costume/ushanka/frosty = 5,
 
@@ -51,6 +52,7 @@
 			"name" = "Suits & Skirts",
 			"icon" = "vest",
 			"products" = list(
+				/obj/item/clothing/suit/jacket/henchmen_coat = 5,
 				/obj/item/clothing/suit/furcoat = 5,
 				/obj/item/clothing/suit/jacket/cherno = 5,
 				/obj/item/clothing/suit/jacket/hydrogenrobes = 5,
@@ -60,6 +62,7 @@
 				/obj/item/clothing/suit/short_coat = 5,
 				/obj/item/clothing/suit/hooded/sigmarcoat = 5,
 				/obj/item/clothing/suit/jacket/skyy = 5,
+				/obj/item/clothing/suit/jacket/tailcoat = 5,
 			),
 		),
 
@@ -84,7 +87,7 @@
 		)
 	)
 
-	zubbers_premium = list( //being here means you're artificially rare, congratulations
+	zubbers_premium = list( //being here means you're even more artificially rare, congratulations
 		/obj/item/clothing/head/razurathhat = 2,
 		/obj/item/clothing/suit/razurathcoat = 2,
 		/obj/item/clothing/suit/hooded/colorblockhoodie = 2,

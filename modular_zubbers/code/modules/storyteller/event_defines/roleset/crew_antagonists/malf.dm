@@ -4,19 +4,20 @@
 
 	base_antags = 1
 	maximum_antags = 1
+	maximum_antags_global = 1
 
 	min_players = 20
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
 	weight = 0
-	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE)
+	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	restricted_roles = list()
 
 /datum/round_event_control/antagonist/solo/malf/roundstart
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 2
+	weight = 10
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

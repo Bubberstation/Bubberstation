@@ -141,6 +141,7 @@
 	)
 
 /obj/effect/decal/cleanable/cobweb
+	SET_BASE_PIXEL(0, 24)
 	name = "cobweb"
 	desc = "Somebody should remove that."
 	gender = NEUTER
@@ -330,6 +331,9 @@
 
 /obj/effect/decal/cleanable/wrapping/pinata/syndie
 	icon_state = "syndie_pinata_shreds"
+
+/obj/effect/decal/cleanable/wrapping/pinata/donk
+	icon_state = "donk_pinata_shreds"
 
 /obj/effect/decal/cleanable/garbage
 	name = "decomposing garbage"

@@ -6,7 +6,7 @@
 	value = 1
 	gain_text = span_notice("You feel like making someone your pet.")
 	lose_text = span_notice("You feel less assertive than before")
-	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN
+	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	erp_quirk = TRUE // Disables on ERP config.
 
 /datum/quirk/dominant_aura/add(client/client_source)

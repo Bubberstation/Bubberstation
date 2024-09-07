@@ -105,6 +105,7 @@ const ALTTITLES = {
   // Blueshield - shield-dog
   'Command Bodyguard': BASEICONS['Blueshield'],
   'Executive Protection Agent': BASEICONS['Blueshield'],
+  Henchman: BASEICONS['Blueshield'],
   // Botanist - seedling
   Hydroponicist: BASEICONS['Botanist'],
   Gardener: BASEICONS['Botanist'],

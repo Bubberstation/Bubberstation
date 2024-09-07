@@ -317,7 +317,7 @@
 		/obj/machinery/self_actualization_device = 5,
 		/obj/machinery/sheetifier = 30,
 		/obj/machinery/skill_station = 30,
-		/obj/machinery/smartfridge/drying_rack = 80,
+		/obj/machinery/smartfridge/drying/rack = 80,
 		/obj/machinery/smoke_machine = 10,
 		/obj/machinery/space_heater/improvised_chem_heater = 200,
 		/obj/machinery/stasis = 10,

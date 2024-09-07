@@ -15,6 +15,12 @@
 	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
 		return
 
+	// BUBBER EDIT START: Vore
+	if(istype(quirk_holder.loc, /obj/vore_belly))
+		quirk_holder.clear_mood_event("claustrophobia")
+		return
+	// BUBBER EDIT END
+
 	if(HAS_TRAIT(quirk_holder, TRAIT_MIND_TEMPORARILY_GONE) || HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
 		return
 

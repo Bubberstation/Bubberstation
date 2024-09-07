@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(can_be_greyscale == DONT_GREYSCALE)
 		can_be_greyscale = FALSE
-	else if(item_path::flags_1 & IS_PLAYER_COLORABLE_1)
+	else if((item_path::flags_1 & IS_PLAYER_COLORABLE_1) && item_path::greyscale_config && item_path::greyscale_colors)
 		can_be_greyscale = TRUE
 
 	if(isnull(name))
@@ -297,6 +297,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			renamed = 1
 		if(renamed)
 			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, "Loadout")
+			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED) // BUBBER EDIT
 	// SKYRAT EDIT END
 
 	if(can_be_reskinned && item_details?[INFO_RESKIN])

@@ -13,3 +13,6 @@
 	return "Abductors do not need to breathe, eat, do not have blood, a heart, stomach, or lungs and cannot be infected by human viruses. \
 		Their chunky tridactyl hands make it hard to operate human equipment."
 
+/datum/species/abductor/get_species_description()
+	return list("Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
+		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",)

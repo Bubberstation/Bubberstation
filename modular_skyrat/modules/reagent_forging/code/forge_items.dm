@@ -38,7 +38,7 @@
 		/obj/structure/reagent_crafting_bench
 	)
 
-/obj/item/forging/hammer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/forging/hammer/afterattack(atom/target, mob/user, click_parameters)
 	. = ..()
 	if(!is_type_in_list(target, fast_attacks))
 		return
@@ -263,7 +263,7 @@
 	icon_state = "coil"
 
 /obj/item/forging/incomplete_bow
-	name = "incomplete bow"
+	name = "incomplete longbow"
 	desc = "A wooden bow that has yet to be strung."
 	icon_state = "nostring_bow"
 

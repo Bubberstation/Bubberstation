@@ -125,7 +125,7 @@
 			dir_shots.Trigger(target = target)
 // BUBBER EDIT START - ACTUALLY LOOSE THE TARGET
 	var/mob/living/living_target = target
-	if(!istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
+	if(istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
 		LoseTarget()
 		return
 // BUBBER EDIT END
@@ -192,6 +192,10 @@
 	pass_flags = PASSTABLE
 	plane = GAME_PLANE
 	var/explode_hit_objects = TRUE
+
+/obj/projectile/colossus/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/parriable_projectile)
 
 /obj/projectile/colossus/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
 	if(isliving(target))
@@ -549,9 +553,9 @@
 			possessor.investigate_log("has died from [src].", INVESTIGATE_DEATHS)
 			possessor.death(FALSE)
 		if(holder_animal)
-			possessor.forceMove(get_turf(holder_animal))
 			holder_animal.mind.transfer_to(possessor)
 			possessor.mind.grab_ghost(force = TRUE)
+			possessor.forceMove(get_turf(holder_animal))
 			holder_animal.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
 			holder_animal.gib(DROP_ALL_REMAINS)
 			return ..()
