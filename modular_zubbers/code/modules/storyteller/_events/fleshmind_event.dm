@@ -49,4 +49,5 @@
 
 	qdel(test_resin)
 	var/final_turf = pick(turfs)
-	var/obj/structure/fleshmind/structure/core/new_core = new(final_turf)
+	var/obj/structure/fleshmind/structure/core/new_core
+	new_core = new(final_turf)
