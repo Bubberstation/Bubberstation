@@ -25,8 +25,8 @@
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers
 
-	/// Variance in cost of the purchased events. Effectively affects frequency of events
-	var/cost_variance = 15
+	/// Multiplicative variance in cost of the purchased events. Effectively affects frequency of events
+	var/cost_variance = 0.30
 
 	/// Whether the storyteller guaranteed a crewset roll (crew antag) on roundstart. (Still needs to pass pop check)
 	var/guarantees_roundstart_crewset = TRUE
@@ -111,8 +111,8 @@
 	// Perhaps use some bell curve instead of a flat variance?
 	var/total_cost = bought_event.cost * mode.point_thresholds[track]
 	if(!bought_event.roundstart)
-		total_cost *= (1 + (rand(-cost_variance, cost_variance)/100)) //Apply cost variance if not roundstart event
-	mode.event_track_points[track] -= total_cost
+		total_cost *= (1 - (rand(0, cost_variance))) //Apply cost variance if not roundstart event
+	mode.event_track_points[track] = max(0, mode.event_track_points[track] - total_cost)
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
