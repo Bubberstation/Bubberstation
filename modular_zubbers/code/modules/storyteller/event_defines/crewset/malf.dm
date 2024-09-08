@@ -4,12 +4,13 @@
 
 	base_antags = 1
 	maximum_antags = 1
+	maximum_antags_global = 1
 
 	min_players = 20
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 0
+	weight = 6
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	restricted_roles = list()
 
