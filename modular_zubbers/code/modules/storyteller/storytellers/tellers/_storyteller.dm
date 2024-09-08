@@ -43,6 +43,7 @@
 	/// The antag divisor, the higher it is the lower the antag cap gets. Basically means "for every antag_divisor crew, spawn 1 antag".
 	var/antag_divisor = 8
 
+	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
 /datum/storyteller/process(delta_time)

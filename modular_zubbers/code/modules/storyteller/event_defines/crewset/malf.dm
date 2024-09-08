@@ -4,7 +4,6 @@
 
 	base_antags = 1
 	maximum_antags = 1
-	maximum_antags_global = 1
 
 	min_players = 20
 
