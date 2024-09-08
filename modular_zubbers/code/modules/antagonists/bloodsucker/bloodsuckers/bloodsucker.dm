@@ -14,7 +14,7 @@
 
 	/// How much blood we have, starting off at default blood levels. Do not adjust this directly, use adjustBloodVolume(), and use getBloodVolume() to get the current value.
 	VAR_PRIVATE/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
-	/// How much blood we can have at once, increases per level.
+	/// How much blood we can have without it deckaying quickly, increases per level.
 	var/max_blood_volume = 600
 
 	var/datum/bloodsucker_clan/my_clan

@@ -151,14 +151,14 @@
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
 		"You have the opportunity to grow more ancient. [blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]",
-		"Your Blood Thickens..."
+		"Your Blood Thickens...",
 	)
 	if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
 		return FALSE
 	// Good to go - Buy Power!
 	bloodsuckerdatum.BuyPower(choice)
-	human_user.balloon_alert(human_user, "learned [choice]!")
-	to_chat(human_user, span_notice("You have learned how to use [choice]!"))
+	human_user.balloon_alert(human_user, "learned [initial(choice.name)]!")
+	to_chat(human_user, span_notice("You have learned how to use [initial(choice.name)]!"))
 
 	return finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
@@ -170,7 +170,8 @@
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(!length(options))
 		return FALSE
-	return tgui_input_list(human_user, message, title, options)
+	var/choice = tgui_input_list(human_user, message, title, options)
+	return options[choice]
 
 /datum/bloodsucker_clan/proc/is_valid_choice(datum/action/cooldown/bloodsucker/power, cost_rank, blood_cost, requires_coffin)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current

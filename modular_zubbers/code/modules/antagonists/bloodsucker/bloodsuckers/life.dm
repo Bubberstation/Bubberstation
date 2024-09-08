@@ -74,7 +74,7 @@
 #undef MASQUERADE
 
 /// mult: SILENT feed is 1/3 the amount
-/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)
+/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level, already_drunk = 0)
 	// Starts at 15 (now 8 since we doubled the Feed time)
 	var/feed_amount = 15 + (power_level * 2)
 	var/blood_taken = feed_amount * mult
@@ -90,25 +90,27 @@
 		blood_taken /= 3
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 2
-	// High level vampires get much less blood from mindless targets
-	else if(bloodsucker_level >= BLOODSUCKER_HIGH_LEVEL && !target.mind)
-		blood_taken /= 4
 	else if(!target?.mind) // Penalty for Mindless Blood
 		blood_taken /= 2
-	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AdjustBloodVolume(blood_taken)
+	total_blood_drank += blood_taken
 	OverfeedHealing(blood_taken)
 	// Reagents (NOT Blood!)
 	if(target.reagents && target.reagents.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
-	total_blood_drank += blood_taken
 	if(target.mind) // Checks if the target has a mind
+		// closer it is to max, the less level up blood you get
+		var/blood_for_leveling = blood_taken
+		if(already_drunk > BLOOD_VOLUME_NORMAL)
+			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
+			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
+			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
 		if(IS_VASSAL(target)) // Checks if the target is a vassal
-			blood_level_gain += blood_taken / 4
+			blood_level_gain += blood_for_leveling / 4
 		else
-			blood_level_gain += blood_taken
+			blood_level_gain += blood_for_leveling
 	return blood_taken
 
 /**
