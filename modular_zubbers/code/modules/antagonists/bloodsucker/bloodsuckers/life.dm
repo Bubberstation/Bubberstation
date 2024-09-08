@@ -354,12 +354,19 @@
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
+	RegisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH, PROC_REF(allow_head_to_talk))
 	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS
+
+/datum/antagonist/bloodsucker/proc/cleanup_talking_head()
+	var/mob/living/poor_fucker = owner.current
+	UnregisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH)
+	UnregisterSignal(poor_fucker, COMSIG_MOB_SAY)
+	poor_fucker.speech_span = initial(poor_fucker.speech_span)
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)

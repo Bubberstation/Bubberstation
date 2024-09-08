@@ -285,6 +285,11 @@
 	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(coffin_dweller))
 		to_chat(span_warning("You have regained your heart!"))
 
+/datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
+	if(!is_head(speaker) || speaker.stat >= UNCONSCIOUS)
+		return
+	return COMPONENT_IGNORE_CAN_SPEAK
+
 /datum/antagonist/bloodsucker/proc/shake_head_on_talk(mob/speaker, speech_args)
 	var/obj/head = is_head(speaker)
 	if(!head)

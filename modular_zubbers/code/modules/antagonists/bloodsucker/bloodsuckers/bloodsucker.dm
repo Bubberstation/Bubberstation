@@ -119,7 +119,7 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
-	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_removal))
+	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(free_all_vassals))
 	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(regain_heart))
 	RegisterSignal(current_mob, COMSIG_MOB_STAKED, PROC_REF(on_staked))
 	talking_head()
@@ -241,6 +241,8 @@
 	free_all_vassals()
 	if(!owner?.current)
 		return
+	if(is_head(owner.current))
+		cleanup_talking_head()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
 		user?.dna?.species.regenerate_organs(user, null, TRUE)
