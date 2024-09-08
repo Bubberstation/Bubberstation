@@ -178,9 +178,6 @@
 // Tell symptoms stage changed
 /datum/disease/advance/update_stage(new_stage)
 	..()
-	if(!isnull(incubation_time) && incubation_time < world.time)
-		make_visible()
-
 	for(var/datum/symptom/S in symptoms)
 		S.on_stage_change(src)
 
@@ -563,12 +560,3 @@
 
 /datum/disease/advance/proc/totalTransmittable()
 	return properties["transmittable"]
-
-/**
- *  Make virus visible to heath scanners
- */
-/datum/disease/advance/proc/make_visible()
-	visibility_flags &= ~HIDDEN_SCANNER
-	visibility_flags &= ~HIDDEN_MEDHUD // BUBBER EDIT ADDITION - Disease Transmission
-	if(!isnull(affected_mob))
-		affected_mob.med_hud_set_status()

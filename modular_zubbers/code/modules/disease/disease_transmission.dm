@@ -1,18 +1,34 @@
+/datum/controller/subsystem/disease
+	/// List of event created diseases in all mobs
+	var/list/event_diseases = list()
+
 /datum/disease
 	/// Debug logs for disease transmission refactor, to verify after the fact the system is working as intended
 	var/debug_id
 	var/mobs_infected = 0
+	var/event_disease = FALSE
+	/// When this carrier was created
+	var/start_time
+	var/datum/weakref/debug_log_ref
 
 /datum/disease/proc/log_virus_debug(text)
-	if(!debug_id)
-		debug_id = assign_random_name()
-	var/log_message = "VIRUS_DEBUG: P:[length(SSdisease.active_diseases)] [debug_id] [name]: [text]"
+	if(!event_disease)
+		return
+	var/log_message = "VIRUS_DEBUG: P:[length(SSdisease.event_diseases)] [debug_id ? debug_id : "VIRUS_INIT"] [name]: [text]"
 	log_game(log_message)
 	log_public_file(log_message)
-	for(var/mob/player in GLOB.player_list)
-		if(player.ckey == "lt3")
-			to_chat(player, span_yellowteamradio(log_message))
-			break
+	var/mob/debug_mob = debug_log_ref?.resolve()
+	if(debug_mob)
+		to_chat(debug_mob, span_yellowteamradio(log_message))
+
+/**
+ *  Make virus visible to heath scanners
+ */
+/datum/disease/proc/make_visible()
+	visibility_flags &= ~HIDDEN_SCANNER
+	visibility_flags &= ~HIDDEN_MEDHUD
+	if(!isnull(affected_mob))
+		affected_mob.med_hud_set_status()
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type

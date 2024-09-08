@@ -17,8 +17,6 @@
 	var/max_stages = 0
 	/// The probability of this infection advancing a stage every second the cure is not present.
 	var/stage_prob = 2
-	/// How long this infection incubates (non-visible) before revealing itself
-	var/incubation_time
 	/// Has the virus hit its limit?
 	var/stage_peaked = FALSE
 	/// How many cycles has the virus been at its peak?
@@ -55,6 +53,8 @@
 	. = ..()
 	if(affected_mob)
 		remove_disease()
+	if(event_disease)
+		SSdisease.event_diseases -= src
 	SSdisease.active_diseases.Remove(src)
 
 //add this disease if the host does not already have too many
@@ -65,9 +65,17 @@
 //add the disease with no checks
 /datum/disease/proc/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
+	if(isnull(D))
+		stack_trace("Failed to create a copy of disease [debug_id] [src]! Check for runtime errors in the disease Copy() proc")
+		log_virus_debug("Failed to create a copy of disease [debug_id] [src]! Check for runtime errors in the disease Copy() proc")
+		return FALSE
+	D.debug_id = assign_random_name()
+	D.start_time = REALTIMEOFDAY
 	LAZYADD(infectee.diseases, D)
 	D.affected_mob = infectee
 	SSdisease.active_diseases += D //Add it to the active diseases list, now that it's actually in a mob and being processed.
+	if(event_disease)
+		SSdisease.event_diseases += D
 
 	D.after_add()
 	infectee.med_hud_set_status()
@@ -75,7 +83,7 @@
 
 	var/turf/source_turf = get_turf(infectee)
 	mobs_infected++
-	log_virus_debug("New infectee: [infectee]. Total infected by this variant: [mobs_infected]")
+	log_virus_debug("New infectee: [infectee]. Total infected by this carrier: [mobs_infected]")
 	log_virus("[key_name(infectee)] was infected by virus: [src.admin_details()] at [loc_name(source_turf)]")
 
 /// Updates the spread flags set, ensuring signals are updated as necessary
@@ -232,6 +240,8 @@
 	return !carrier
 
 /datum/disease/proc/update_stage(new_stage)
+	if(new_stage > stage)
+		log_virus_debug("[affected_mob.name] stage advance [stage] > [new_stage]. Time elapsed: [DisplayTimeText(REALTIMEOFDAY - start_time)] (Stage speed [stage_prob])")
 	stage = new_stage
 	if(!isnull(affected_mob))
 		affected_mob.med_hud_set_status()
@@ -319,10 +329,9 @@
 /datum/disease/proc/Copy()
 	//note that stage is not copied over - the copy starts over at stage 1
 	var/static/list/copy_vars = list("name", "visibility_flags", "disease_flags", "spread_flags", "form", "desc", "agent", "spread_text",
-									"cure_text", "max_stages", "stage_prob", "incubation_time", "viable_mobtypes", "cures", "infectivity", "cure_chance",
+									"cure_text", "max_stages", "stage_prob", "viable_mobtypes", "cures", "infectivity", "cure_chance",
 									"required_organ", "bypasses_immunity", "bypasses_disease_recovery", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
-									"infectable_biotypes", "process_dead")
-
+									"infectable_biotypes", "process_dead", "event_disease", "debug_log_ref")
 	var/datum/disease/D = copy_type ? new copy_type() : new type()
 	for(var/V in copy_vars)
 		var/val = vars[V]
@@ -343,7 +352,7 @@
 	unregister_disease_signals()
 	LAZYREMOVE(affected_mob.diseases, src) //remove the datum from the list
 	affected_mob.med_hud_set_status()
-	log_virus_debug("[affected_mob] was cured of virus. Total infected by this variant: [mobs_infected]")
+	log_virus_debug("[affected_mob] was cured of virus. Total infected by this carrier: [mobs_infected]")
 	affected_mob = null
 
 /**

@@ -109,7 +109,7 @@
 	event.virus_type = virus
 
 /datum/round_event/disease_outbreak
-	announce_when = ADV_ANNOUNCE_DELAY
+	announce_when = 22
 	///The disease type we will be spawning
 	var/datum/disease/virus_type
 	///The preset (classic) or generated (advanced) illness name
@@ -118,6 +118,9 @@
 	var/list/afflicted = list()
 
 /datum/round_event/disease_outbreak/announce(fake)
+	for(var/datum/disease/advance/active_carrier in SSdisease.event_diseases)
+		active_carrier.make_visible()
+
 	if(!illness_type)
 		var/list/virus_candidates = list(
 			/datum/disease/anxiety,
@@ -141,6 +144,7 @@
 	announce_when = ADV_ANNOUNCE_DELAY
 
 /datum/round_event/disease_outbreak/start()
+	announce_chance = 100 // BUBBER EDIT ADDITION - Storytellers Debug
 	var/datum/round_event_control/disease_outbreak/disease_event = control
 	afflicted += disease_event.disease_candidates
 	disease_event.disease_candidates.Cut() //Clean the list after use
@@ -161,8 +165,14 @@
 
 	var/datum/disease/new_disease
 	new_disease = new virus_type()
-	new_disease.carrier = TRUE
+	//new_disease.carrier = TRUE // BUBBER EDIT REMOVE - Disease Transmission
 	illness_type = new_disease.name
+	new_disease.event_disease = TRUE // BUBBER EDIT ADDITION - Disease Transmission
+
+	for(var/mob/player in GLOB.player_list)
+		if(player.ckey == "lt3")
+			new_disease.debug_log_ref = WEAKREF(player)
+			break
 
 	// BUBBER EDIT ADDITION START - Disease Transmission
 	var/to_infect = 3
@@ -301,13 +311,19 @@
 		else
 			requested_severity = ADV_DISEASE_DANGEROUS
 
-	var/datum/disease/advance/advanced_disease = new /datum/disease/advance/random/event(max_symptoms, requested_severity, requested_transmissibility)
+	var/datum/disease/advance/advanced_disease = new /datum/disease/advance/event(max_symptoms, requested_severity, requested_transmissibility)
 
 	var/list/name_symptoms = list()
 	for(var/datum/symptom/new_symptom as anything in advanced_disease.symptoms)
 		name_symptoms += new_symptom.name
 
 	illness_type = advanced_disease.name
+
+	if(advanced_disease.spread_flags & DISEASE_SPREAD_AIRBORNE)
+		for(var/datum/symptom/final_symptom in advanced_disease.symptoms)
+			if(istype(final_symptom, /datum/symptom/cough) || istype(final_symptom, /datum/symptom/sneeze))
+				announce_when = 22 // the most transmissible get an early announcement
+				break
 
 	// BUBBER EDIT ADDITION START - Disease Transmission
 	var/to_infect = 3
@@ -336,10 +352,11 @@
 
 	deadchat_broadcast("Disease Outbreak: Advanced starting with [advanced_disease.name]! Symptoms: [advanced_disease.symptoms_list()]")
 
-/datum/disease/advance/random/event
+/datum/disease/advance/event
 	name = "Event Disease"
 	copy_type = /datum/disease/advance
 	bypasses_disease_recovery = TRUE
+	event_disease = TRUE
 
 /datum/round_event/disease_outbreak/advance/setup()
 	announce_when = ADV_ANNOUNCE_DELAY
@@ -350,7 +367,7 @@
  * Uses the parameters to create a list of symptoms, picking from various severities
  * Viral Evolution and Eternal Youth are special modifiers, so we roll separately.
  */
-/datum/disease/advance/random/event/New(max_symptoms, requested_severity, requested_transmissibility)
+/datum/disease/advance/event/New(max_symptoms, requested_severity, requested_transmissibility)
 	var/list/datum/symptom/possible_symptoms = list(
 		/datum/symptom/beard,
 		/datum/symptom/chills,
@@ -449,12 +466,6 @@
 		symptoms += new chosen_viral
 		symptoms += new /datum/symptom/youth
 
-	if(spread_flags & DISEASE_SPREAD_AIRBORNE)
-		for(var/datum/symptom/final_symptom in symptoms)
-			if(istype(final_symptom, /datum/symptom/cough) || istype(final_symptom, /datum/symptom/sneeze))
-				visibility_flags &= ~HIDDEN_MEDHUD // transmissible symptoms make it visible on medHUD as soon as they reach stage 2
-				break
-
 	Refresh()
 
 /**
@@ -466,21 +477,26 @@
  * If the virus is severity DANGEROUS we do not hide it from health scanners at event start.
  * If the virus is airborne, also don't hide it.
  */
-/datum/disease/advance/random/event/assign_properties()
+/datum/disease/advance/event/assign_properties()
 
 	if(!length(properties))
 		stack_trace("Advanced virus properties were empty or null!")
 		return
 
-	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	// BUBBER EDIT CHANGE START - Disease Transmission
+	for(var/mob/player in GLOB.player_list)
+		if(player.ckey == "lt3")
+			debug_log_ref = WEAKREF(player)
+			break
+
+	//incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	//properties["transmittable"] = rand(4,7)
 	//spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
 	properties["transmittable"] = rand(6,9)
 	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
 	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
-	stage_prob = rand(7, 17) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate
+	stage_prob = rand(7, 9) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate and medical to respond
 	// BUBBER EDIT CHANGE END - Disease Transmission
 	set_severity(properties["severity"])
 
@@ -488,7 +504,7 @@
 	if(properties["stage_rate"] >= 7)
 		name = "Advanced [name]"
 
-	log_virus_debug("spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - Disease Transmission
+	log_virus_debug("stage speed is [stage_prob], spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - Disease Transmission
 	generate_cure(properties)
 
 /**
@@ -496,7 +512,7 @@
  *
  * Apply the transmission methods we rolled in the assign_properties proc
  */
-/datum/disease/advance/random/event/set_spread(spread_id)
+/datum/disease/advance/event/set_spread(spread_id)
 	switch(spread_id)
 		if(DISEASE_SPREAD_CONTACT_FLUIDS)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS)
@@ -513,7 +529,7 @@
  *
  * Rolls one of five possible cure groups, then selects a cure from it and applies it to the virus.
  */
-/datum/disease/advance/random/event/generate_cure()
+/datum/disease/advance/event/generate_cure()
 	if(!length(properties))
 		stack_trace("Advanced virus properties were empty or null!")
 		return
@@ -521,12 +537,12 @@
 	// BUBBER EDIT CHANGE START - Disease Transmission
 	var/list/cures_list = advance_cures.Copy()
 	if(properties["stage_rate"] >= 7)
-		cures = list(pick_n_take(cures_list[rand(3, 7)]), pick_n_take(cures_list[rand(4, 7)]))
+		cures = list(pick_n_take(cures_list[rand(4, 7)]), pick_n_take(cures_list[3])) // require some help outside medbay (list 3)
 		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
 		var/datum/reagent/cure_2 = GLOB.chemical_reagents_list[cures[2]]
 		cure_text = "[cure_1.name] and [cure_2.name]"
 	else
-		cures = list(pick_n_take(cures_list[rand(3, 7)]))
+		cures = list(pick_n_take(cures_list[rand(4, 7)]))
 		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
 		cure_text = cure_1.name
 	// BUBBER EDIT CHANGE END - Disease Transmission
