@@ -20,7 +20,7 @@
 	var/datum/storyteller_data/tracks/track_data = /datum/storyteller_data/tracks
 
 	/// Percentual variance in the budget of roundstart points.
-	var/roundstart_points_variance = 25
+	var/roundstart_points_variance = 30
 
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers

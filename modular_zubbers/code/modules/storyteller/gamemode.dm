@@ -326,7 +326,7 @@ SUBSYSTEM_DEF(gamemode)
 		var/calc_value = base_amt
 		calc_value *= roundstart_point_multipliers[track]
 		calc_value *= storyteller.starting_point_multipliers[track]
-		calc_value *= (1 + rand(-storyteller.roundstart_points_variance, storyteller.roundstart_points_variance))
+		calc_value *= (1 + (rand(-storyteller.roundstart_points_variance, storyteller.roundstart_points_variance) / 100))
 		event_track_points[track] = max(0, round(calc_value))
 
 	/// If the storyteller guarantees an antagonist roll, add points to make it so.
