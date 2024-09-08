@@ -19,14 +19,14 @@
 
 	var/datum/storyteller_data/tracks/track_data = /datum/storyteller_data/tracks
 
-	/// +- Multiplicative variance in the budget of roundstart points.
-	var/roundstart_points_variance = 0.25
+	/// Percentual variance in the budget of roundstart points.
+	var/roundstart_points_variance = 25
 
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers
 
-	/// Multiplicative variance in cost of the purchased events. Effectively affects frequency of events
-	var/cost_variance = 0.30
+	/// Percentual variance in cost of the purchased events. Effectively affects frequency of events
+	var/cost_variance = 30
 
 	/// Whether the storyteller guaranteed a crewset roll (crew antag) on roundstart. (Still needs to pass pop check)
 	var/guarantees_roundstart_crewset = TRUE
@@ -111,7 +111,7 @@
 	// Perhaps use some bell curve instead of a flat variance?
 	var/total_cost = bought_event.cost * mode.point_thresholds[track]
 	if(!bought_event.roundstart)
-		total_cost *= (1 - (rand(0, cost_variance))) //Apply cost variance if not roundstart event
+		total_cost *= (1 - (rand(0, cost_variance) / 100)) //Apply cost variance if not roundstart event
 	mode.event_track_points[track] = max(0, mode.event_track_points[track] - total_cost)
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
