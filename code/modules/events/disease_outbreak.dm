@@ -494,7 +494,7 @@
 	properties["transmittable"] = rand(6,9)
 	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
 	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
-	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
+	cure_chance = rand(14, 21) // cure quickly once they've hit medbay
 	stage_prob = rand(7, 9) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate and medical to respond
 	// BUBBER EDIT CHANGE END - Disease Transmission
 	set_severity(properties["severity"])
