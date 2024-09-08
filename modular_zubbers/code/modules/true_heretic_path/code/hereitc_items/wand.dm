@@ -23,7 +23,7 @@
 
 /obj/item/gun/magic/wand/fireball/heretic/try_fire_gun(atom/target, mob/living/user, params)
 	. = ..()
-	if(. && auto_charge_rate > 0 && charges < max_charges)
+	if(. && auto_charge_amount > 0 && charges < max_charges)
 		START_PROCESSING(SSobj,src)
 
 /obj/item/gun/magic/wand/fireball/heretic/process(seconds_per_tick)
