@@ -141,10 +141,9 @@
 	priority_announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "[illness_type] Alert", ANNOUNCER_OUTBREAK7)
 
 /datum/round_event/disease_outbreak/setup()
-	announce_when = ADV_ANNOUNCE_DELAY
+	announce_when = 22
 
 /datum/round_event/disease_outbreak/start()
-	announce_chance = 100 // BUBBER EDIT ADDITION - Storytellers Debug
 	var/datum/round_event_control/disease_outbreak/disease_event = control
 	afflicted += disease_event.disease_candidates
 	disease_event.disease_candidates.Cut() //Clean the list after use
