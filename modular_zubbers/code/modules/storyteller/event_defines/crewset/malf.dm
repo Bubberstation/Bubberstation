@@ -13,6 +13,9 @@
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	restricted_roles = list()
 
+/datum/round_event_control/antagonist/solo/malf/get_candidates()
+	return GLOB.ai_list
+
 /datum/round_event_control/antagonist/solo/malf/roundstart
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
@@ -20,7 +23,7 @@
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
-	var/list/candidates = ..()
+	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = TRUE, restricted_roles = restricted_roles)
 	. = list()
 	var/datum/job/aijob = SSjob.GetJob(JOB_AI)
 	for(var/mob/candidate as anything in candidates)
