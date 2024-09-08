@@ -59,7 +59,7 @@ We then just check what the last one is in SSgamemode.storyteller_vote_choices()
 /datum/controller/subsystem/persistence/proc/load_storyteller_type()
 	if(!fexists(STORYTELLER_LAST_FILEPATH))
 		return
-	last_storyteller_type = file2text(STORYTELLER_LAST_FILEPATH)
+	last_storyteller_type = text2num(file2text(STORYTELLER_LAST_FILEPATH))
 
 /// Collects current storyteller and stores it
 /datum/controller/subsystem/persistence/proc/collect_storyteller_type()
