@@ -14,6 +14,7 @@
 					/obj/item/slime_extract,
 					/obj/item/slimepotion,
 					/obj/item/disk,
+					/obj/item/computer_disk,//ordinance
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
 					/obj/item/assembly/prox_sensor,
