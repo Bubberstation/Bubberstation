@@ -35,9 +35,9 @@
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
 
 	/// How many baseline antags do we spawn
-	var/base_antags = 2
+	var/base_antags = 1
 	/// How many maximum antags can we spawn
-	var/maximum_antags = 3
+	var/maximum_antags = 2
 	/// Strict limit on how many antagonists of this type that should be in this round. 0 to ignore.
 	var/maximum_antags_global = 0
 	/// For this many players we'll add 1 up to the maximum antag amount
