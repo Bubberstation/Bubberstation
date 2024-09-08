@@ -110,6 +110,14 @@
 	ignore_abstract = TRUE // it didn't help still
 	item_flags = INEDIBLE_CLOTHING
 
+/obj/item/clothing/head/mob_holder/micro/Initialize(mapload, mob/living/M, worn_state, head_icon, lh_icon, rh_icon, worn_slot_flags)
+	. = ..()
+	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_POST_UNEQUIP), PROC_REF(update_visuals))
+
+/obj/item/clothing/head/mob_holder/micro/Destroy()
+	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_POST_EQUIPPED))
+	return ..()
+
 /obj/item/clothing/head/mob_holder/micro/container_resist_act(mob/living/resisting)
 	if(resisting.incapacitated())
 		to_chat(resisting, span_warning("You can't escape while you're restrained like this!"))
@@ -185,12 +193,12 @@
 /obj/item/clothing/head/mob_holder/micro/attack(mob/living/eater, mob/living/holder)
 	var/datum/component/vore/vore = holder.GetComponent(/datum/component/vore)
 	if(!vore)
-		return FALSE
+		return ..()
 
 	if(holder == eater) // Parent wants to eat pulled
-		. = vore.vore_other(held_mob)
-		return
-	return ..()
+		vore.vore_other(held_mob)
+	else
+		vore.feed_other_to_other(eater, held_mob)
 
 /obj/item/clothing/head/mob_holder/micro/Exited(mob/living/totally_not_vored, direction)
 	// Transferred to a belly? Get rid of this before it puts us on the floor
