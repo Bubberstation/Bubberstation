@@ -37,7 +37,6 @@
 		return FALSE
 
 	var/passed = TRUE
-	var/pass_message // BUBBER EDIT ADDITION - Disease Transmission
 
 	var/head_chance = 80
 	var/body_chance = 100
@@ -50,8 +49,6 @@
 	if(!prob(infect_chance))
 		return
 	// BUBBER EDIT CHANGE END - Disease Transmission
-
-	disease.log_virus_debug("[name] - CONTACT - passed infection checks for CONTACT transmission. ([infect_chance]% chance)")
 
 	if(satiety>0 && prob(satiety/2)) // positive satiety makes it harder to contract the disease.
 		return
@@ -74,61 +71,31 @@
 		if(HAS_TRAIT(infecting_human, TRAIT_VIRUS_RESISTANCE) && prob(75))
 			return
 
-		var/armor_check = 0 // BUBBER EDIT ADDITION - Disease Transmission
-		// BUBBER EDIT CHANGE START - Disease Transmission
 		switch(target_zone)
 			if(BODY_ZONE_HEAD)
 				if(isobj(infecting_human.head))
-					//passed = prob(100-infecting_human.head.get_armor_rating(BIO)) // commented out because we're temporarily doing armor_check for logging
-					armor_check = 100-infecting_human.head.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for HEAD. (Armor rating: [infecting_human.head.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.head.get_armor_rating(BIO))
 				if(passed && isobj(infecting_human.wear_mask))
-					//passed = prob(100-infecting_human.wear_mask.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_mask.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for MASK. (Armor rating: [infecting_human.wear_mask.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.wear_mask.get_armor_rating(BIO))
 				if(passed && isobj(infecting_human.wear_neck))
-					//passed = prob(100-infecting_human.wear_neck.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_neck.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for NECK. (Armor rating: [infecting_human.wear_neck.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.wear_neck.get_armor_rating(BIO))
 			if(BODY_ZONE_CHEST)
 				if(isobj(infecting_human.wear_suit))
-					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for SUIT. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
 				if(passed && isobj(infecting_human.w_uniform))
-					//passed = prob(100-infecting_human.w_uniform.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.w_uniform.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for UNIFORM. (Armor rating: [infecting_human.w_uniform.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.w_uniform.get_armor_rating(BIO))
 			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 				if(isobj(infecting_human.wear_suit) && infecting_human.wear_suit.body_parts_covered&HANDS)
-					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for HANDS. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
 				if(passed && isobj(infecting_human.gloves))
-					//passed = prob(100-infecting_human.gloves.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for GLOVES. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.gloves.get_armor_rating(BIO))
 			if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 				if(isobj(infecting_human.wear_suit) && infecting_human.wear_suit.body_parts_covered&FEET)
-					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for LEGS. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
+					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
 				if(passed && isobj(infecting_human.shoes))
-					//passed = prob(100-infecting_human.shoes.get_armor_rating(BIO))
-					armor_check = 100-infecting_human.shoes.get_armor_rating(BIO)
-					passed = prob(armor_check)
-					pass_message = "protection pass checked for SHOES. (Armor rating: [infecting_human.shoes.get_armor()] [armor_check]%)"
-		// BUBBER EDIT CHANGE END - Disease Transmission
+					passed = prob(100-infecting_human.shoes.get_armor_rating(BIO))
 	if(passed)
-		disease.log_virus_debug("[name] - CONTACT - [pass_message]") // BUBBER EDIT ADDITION - Disease Transmission
+		disease.log_virus_debug("[name] passed infection checks for CONTACT transmission. ([infect_chance]% chance)")
 		disease.try_infect(src)
 
 /**
