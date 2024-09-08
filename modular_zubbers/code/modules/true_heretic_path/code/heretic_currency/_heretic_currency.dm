@@ -3,7 +3,11 @@
 GLOBAL_LIST_INIT(heretical_affixes_blacklist,list(
 	/datum/fantasy_affix/summoning = TRUE,
 	/datum/fantasy_affix/curse_of_polymorph = TRUE,
-	/datum/fantasy_affix/venomous = TRUE //Too strong.
+	/datum/fantasy_affix/venomous = TRUE,
+	/datum/fantasy_affix/shrapnel = TRUE,
+	/datum/fantasy_affix/tactical = TRUE,
+	/datum/fantasy_affix/soul_stealer = TRUE
+
 ))
 
 GLOBAL_LIST_INIT(heretical_suffixes,generate_heretical_affixes(AFFIX_SUFFIX))

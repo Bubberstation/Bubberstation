@@ -1,13 +1,13 @@
 /datum/heretic_knowledge/blade_upgrade/exile
 	name = "Mansus Grasp Blade Augmentation"
 	desc = "Attacking with your heretical blade and your Mansus Grasp active will now also apply your \
-	researched effects (not the base ones) of Mansus Grasp on the target."
+	researched effects (not the default ones) of Mansus Grasp on the target."
 
 	gain_text = "Multitasking is essential to having more."
 
 	next_knowledge = list(
 		/datum/heretic_knowledge/access_belt,
-		/datum/heretic_knowledge/reroll_targets/exile
+		/datum/heretic_knowledge/reroll_targets/exile,
 	)
 
 	cost = 1

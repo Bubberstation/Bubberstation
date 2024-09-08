@@ -1,7 +1,7 @@
 /obj/item/gun/magic/wand/fireball/heretic
 
-	name = "wand of heretical fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames."
+	name = "prophetic wand"
+	desc = "A wand that shoots simple firebolts at a target. The wand recharges itself automatically, but has a low charge capacity as a result."
 
 	school = SCHOOL_EVOCATION
 	fire_sound = 'sound/magic/fireball.ogg'
@@ -11,15 +11,25 @@
 	base_icon_state = "wand"
 	icon_state = "wand"
 
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	righthand_file = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inhand_right.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inhand_left.dmi'
 	inhand_icon_state = "wand"
-
 
 	can_charge = FALSE
 	variable_charges = FALSE
-	charges = 4
-	recharge_rate = 1
+	max_charges = 4
+
+	var/auto_charge_amount = 1 //Every 2 seconds.
+
+/obj/item/gun/magic/wand/fireball/heretic/try_fire_gun(atom/target, mob/living/user, params)
+	. = ..()
+	if(. && auto_charge_rate > 0 && charges < max_charges)
+		START_PROCESSING(SSobj,src)
+
+/obj/item/gun/magic/wand/fireball/heretic/process(seconds_per_tick)
+	charges = min(charges + auto_charge_amount,max_charges)
+	if(charges >= max_charges)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/ammo_casing/magic/fireball/heretic
 	projectile_type = /obj/projectile/magic/fireball/heretic
