@@ -38,3 +38,4 @@
 	disable_distribution = TRUE
 	population_max = 40
 	antag_divisor = 32
+

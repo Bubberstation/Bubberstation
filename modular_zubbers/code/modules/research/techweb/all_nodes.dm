@@ -79,31 +79,6 @@
 		"minesweeper",
 	)
 
-//Weaponry Research
-
-/datum/techweb_node/magazineresearch
-	id = TECHWEB_NODE_MAGAZINES_SIM
-	display_name = "Military Grade Munition Research"
-	description = "In the wake of the NRI Border Conflict, there was a drive to advances our armament, learn how sol does it."
-	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
-	design_ids = list(
-		"s12g_buckshot",
-		"s12g_slug",
-		"sol40_riflstandardemag",
-		"solgrenade_extmag",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-
-/datum/techweb_node/magazineresearch_heavy
-	id = TECHWEB_NODE_MAGAZINES_ADV
-	display_name = "Advanced Munition Research"
-	description = "The same technology we used to defeat eldritch god, even you can have it"
-	prereq_ids = list(TECHWEB_NODE_SYNDICATE_BASIC)
-	design_ids = list(
-		"sol40_rifldrummag",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS * 2)  //Unreasonably expensive and locked behind multiple tier of research, you can have abit of powercreep as a treat
-
 /datum/techweb_node/riot_supression/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"

@@ -56,7 +56,7 @@
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
 		/obj/item/storage/box/evidence = 1,
-		/obj/item/flashlight/seclite = 1,
+		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
 	belt = /obj/item/storage/belt/holster/detective/full // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/modular_computer/pda/detective
 	ears = /obj/item/radio/headset/headset_sec/alt
