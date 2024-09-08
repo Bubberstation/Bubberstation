@@ -9,9 +9,9 @@
 	)
 	population_min = 25
 	antag_divisor = 10
-
+	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/bomb
-	var/threshold_mundane = 1800
-	var/threshold_moderate = 1400
-	var/threshold_major = 5500
+	threshold_mundane = 1800
+	threshold_moderate = 1400
+	threshold_major = 5500

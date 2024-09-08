@@ -91,3 +91,8 @@
 #define ROUNDSTART_CREWSET_BASE 60
 
 #define ROUNDSTART_GHOSTSET_BASE 40
+
+/// Storyteller types below, basically prevents several intense teller rounds in a row
+#define STORYTELLER_TYPE_ALWAYS_AVAILABLE 0
+#define STORYTELLER_TYPE_CALM 1
+#define STORYTELLER_TYPE_INTENSE 2

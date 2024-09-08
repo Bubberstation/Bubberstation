@@ -7,10 +7,11 @@
 
 	population_min = 50
 	antag_divisor = 4
+	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/clown
-	var/threshold_mundane = 700
-	var/threshold_moderate = 1600
-	var/threshold_major = 4800
-	var/threshold_crewset = 1000
-	var/threshold_ghostset = 4000
+	threshold_mundane = 700
+	threshold_moderate = 1600
+	threshold_major = 4800
+	threshold_crewset = 1000
+	threshold_ghostset = 4000

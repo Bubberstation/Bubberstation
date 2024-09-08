@@ -12,7 +12,8 @@
 	)
 	population_min = 35
 	antag_divisor = 5
+	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/gamer
-	var/threshold_moderate = 1300 // About 1.3x more events from default
-	var/threshold_major = 6150 // About 1.3x more events from default
+	threshold_moderate = 1300
+	threshold_major = 6150

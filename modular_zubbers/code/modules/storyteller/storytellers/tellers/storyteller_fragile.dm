@@ -12,10 +12,10 @@
 		TAG_DESTRUCTIVE = 0.1,
 		TAG_CHAOTIC = 0.1
 	)
-
+	storyteller_type = STORYTELLER_TYPE_CALM
 /datum/storyteller_data/tracks/fragile
-	var/threshold_mundane = 1200
-	var/threshold_moderate = 1800
-	var/threshold_major = 8000
-	var/threshold_crewset = 3000
-	var/threshold_ghostset = 8000
+	threshold_mundane = 1200
+	threshold_moderate = 1800
+	threshold_major = 8000
+	threshold_crewset = 3000
+	threshold_ghostset = 8000
