@@ -7,3 +7,15 @@
 	var/old_size = dna.features["body_size"]
 	. = ..()
 	update_size(get_size(src), old_size)
+
+/datum/dna/copy_dna(datum/dna/new_dna)
+	. = ..()
+	holder.adjust_mobsize(get_size(holder))
+
+/mob/living/carbon/set_species(datum/species/mrace, icon_update, pref_load, list/override_features, list/override_mutantparts, list/override_markings)
+	. = ..()
+	adjust_mobsize(get_size(src))
+
+/datum/preference/choiced/species/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/prefs)
+	. = ..()
+	target.adjust_mobsize(get_size(target))
