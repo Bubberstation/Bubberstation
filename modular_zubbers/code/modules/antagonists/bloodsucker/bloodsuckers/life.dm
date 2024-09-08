@@ -220,6 +220,8 @@
 		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 	bloodsuckeruser.cure_husk(BURN)
+	for(var/datum/wound/wound as anything in bloodsuckeruser.all_wounds)
+		wound.remove_wound()
 	if(regenerate_heart || bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
