@@ -8,4 +8,5 @@
 	. = ..()
 
 	if(.)
-		adjust_mobsize(size_to_apply)
+		var/mob/living/carbon/human/human_parent = parent
+		human_parent.adjust_mobsize(size_to_apply)
