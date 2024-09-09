@@ -83,8 +83,15 @@
 	name = "bloodsuckersurvive"
 	explanation_text = "Survive the entire shift without succumbing to Final Death."
 
-// WIN CONDITIONS?
-// Handled by parent
+/datum/objective/survive/bloodsucker/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		var/datum/antagonist/bloodsucker/vamp = IS_BLOODSUCKER(M.current)
+		if(!vamp)
+			return FALSE
+		if(!vamp.considered_alive(M))
+			return FALSE
+	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////
 

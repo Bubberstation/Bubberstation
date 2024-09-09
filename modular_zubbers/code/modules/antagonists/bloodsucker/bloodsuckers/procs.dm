@@ -307,6 +307,8 @@
 
 /datum/antagonist/bloodsucker/proc/am_staked()
 	var/obj/item/bodypart/chosen_bodypart = owner.current.get_bodypart(BODY_ZONE_CHEST)
+	if(!chosen_bodypart)
+		return FALSE
 	var/obj/item/stake/stake = locate() in chosen_bodypart.embedded_objects
 	return stake
 

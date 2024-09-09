@@ -216,6 +216,8 @@
 		return FALSE
 	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
+	if(!bloodsuckerdatum)
+		return TRUE
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
 	bloodsuckerdatum.check_limbs(COFFIN_HEAL_COST_MULT)
 	if(!bloodsuckerdatum.check_begin_torpor())

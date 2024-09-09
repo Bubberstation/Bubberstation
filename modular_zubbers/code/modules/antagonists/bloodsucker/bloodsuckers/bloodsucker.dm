@@ -511,6 +511,15 @@
 		return "<font color=red>Final Death</font>"
 	return ..()
 
+/datum/antagonist/bloodsucker/proc/considered_alive(datum/mind/player_mind, enforce_human)
+	if(!player_mind?.current) // no owner.current means there is no body, thus we final-death'd
+		return FALSE
+	if(is_head(player_mind.current))
+		return FALSE
+	if(am_staked())
+		return FALSE
+	return TRUE
+
 /datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
 	// Claim a Lair Objective
 	var/datum/objective/bloodsucker/lair/lair_objective = new
