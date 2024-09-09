@@ -12,7 +12,7 @@
 		/datum/reagent/consumable/ethanol/beer,
 		/datum/reagent/consumable/ethanol/fernet_cola,
 		/datum/reagent/consumable/ethanol/sugar_rush,
-		/datum/reagent/consumable/ethanol/synthanol
+		/datum/reagent/consumable/ethanol/synthanol,
 		/datum/reagent/consumable/laughter,
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/tinlux,
