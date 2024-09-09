@@ -20,4 +20,5 @@
 // All the weights are the same to the clown
 /datum/storyteller/clown/calculate_weights(track)
 	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
-		event.calculated_weight = 1
+		if(event.weight)
+			event.calculated_weight = 1
