@@ -58,3 +58,4 @@
 	exp_fire = 1
 	exp_flash = 1
 	speed = 0.3
+
