@@ -57,3 +57,4 @@
 /datum/round_event_control/mold
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
+	max_occurrences = 0 // Disables this outright due to the existence of fleshmind.
