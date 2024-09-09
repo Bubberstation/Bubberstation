@@ -15,9 +15,6 @@
 /obj/item/storage/bag/exile/Initialize(...)
 	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
 	. = ..()
-
-/obj/item/storage/bag/exile/Initialize(mapload)
-	. = ..()
 	atom_storage.max_slots = 60
 	atom_storage.max_total_storage = 60
 	atom_storage.numerical_stacking = TRUE

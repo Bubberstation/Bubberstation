@@ -45,7 +45,7 @@
 
 	return TRUE
 
-/obj/item/watching_eye/Initialize()
+/obj/item/watching_eye/Initialize(...)
 
 	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
 
