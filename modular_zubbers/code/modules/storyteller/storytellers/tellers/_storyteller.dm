@@ -125,8 +125,7 @@
 
 /// Calculates the weights of the events from a passed track.
 /datum/storyteller/proc/calculate_weights(track)
-	var/datum/controller/subsystem/gamemode/mode = SSgamemode
-	for(var/datum/round_event_control/event as anything in mode.event_pools[track])
+	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
 		var/weight_total = event.weight
 		/// Apply tag multipliers if able
 		if(tag_multipliers)

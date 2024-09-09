@@ -12,6 +12,8 @@
 	description = "A Void Walker that drags people out of the station and into the abyss"
 	map_flags = EVENT_SPACE_ONLY
 
+	track = EVENT_TRACK_GHOSTSET
+
 /datum/round_event/ghost_role/void_walker
 	minimum_required = 30
 	fakeable = FALSE

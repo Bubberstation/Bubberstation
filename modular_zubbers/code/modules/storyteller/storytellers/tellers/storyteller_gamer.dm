@@ -17,3 +17,4 @@
 /datum/storyteller_data/tracks/gamer
 	threshold_moderate = 1300
 	threshold_major = 6150
+	threshold_ghostset = 6000

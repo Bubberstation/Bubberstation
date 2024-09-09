@@ -13,6 +13,7 @@
 		TAG_CHAOTIC = 0.1
 	)
 	storyteller_type = STORYTELLER_TYPE_CALM
+
 /datum/storyteller_data/tracks/fragile
 	threshold_mundane = 1200
 	threshold_moderate = 1800
