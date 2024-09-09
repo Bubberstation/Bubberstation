@@ -240,7 +240,7 @@
 	return !carrier
 
 /datum/disease/proc/update_stage(new_stage)
-	if(new_stage > stage)
+	if(new_stage > stage && !isnull(affected_mob))
 		log_virus_debug("[affected_mob.name] stage advance [stage] > [new_stage]. Time elapsed: [DisplayTimeText(REALTIMEOFDAY - start_time)] (Stage speed [stage_prob])")
 	stage = new_stage
 	if(!isnull(affected_mob))
