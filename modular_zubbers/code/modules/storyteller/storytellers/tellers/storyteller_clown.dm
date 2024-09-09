@@ -13,9 +13,9 @@
 /datum/storyteller_data/tracks/clown
 	threshold_mundane = 700
 	threshold_moderate = 1600
-	threshold_major = 4800
+	threshold_major = 3200
 	threshold_crewset = 1000
-	threshold_ghostset = 4000
+	threshold_ghostset = 3200
 
 // All the weights are the same to the clown
 /datum/storyteller/clown/calculate_weights(track)
