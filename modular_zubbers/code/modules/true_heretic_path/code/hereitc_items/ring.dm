@@ -15,10 +15,6 @@
 
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/gloves/ring/fire_resistance/Initialize(...)
-	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
-	. = ..()
-
 /datum/armor/ring_of_fire_resistance
 	melee = 0
 	bullet = 0
