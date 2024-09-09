@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/access_belt
 	name = "Skullhunter"
 
-	desc = "Allows you to transmute 5 heads, a silver ID card, and any belt containing storage into a Skullhunter. \
+	desc = "Allows you to transmute 5 hats, a silver ID card, and any belt containing storage into a Skullhunter. \
 	Skullhunter is a special belt that steals one random access from a dead being's id card that you hit with your heretical blade and applies it to your worn id. \
 	Only one data of access can be stolen per ID per belt."
 
@@ -13,13 +13,13 @@
 
 	required_atoms = list(
 		/obj/item/storage/belt = 1,
-		/obj/item/bodypart/head = 5,
+		/obj/item/clothing/head = 5,
 		/obj/item/card/id/advanced/silver = 1,
 	)
 
 	result_atoms = list(/obj/item/storage/belt/skullhunter)
 
-	cost = 2
+	cost = 1
 	depth = 4
 	route = PATH_SIDE
 

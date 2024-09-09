@@ -13,6 +13,9 @@
 
 	armor_type = /datum/armor/heretic_resistance
 
+/obj/item/clothing/head/helmet/heretic_resistance/Initialize(mapload)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
+
 /datum/armor/heretic_resistance
 	melee = 0
 	bullet = 0

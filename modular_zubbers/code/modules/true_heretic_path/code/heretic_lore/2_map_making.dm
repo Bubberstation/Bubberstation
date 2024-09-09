@@ -30,7 +30,10 @@
 		to_chat(user,span_warning("[src] can't be completed! The area you are in seems to be protected from teleportation magic..."))
 		return FALSE
 
-	if(!istype(desired_area,/area/station))
+	var/datum/antagonist/heretic/heretic_datum = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/is_ascended = heretic_datum?.ascended
+
+	if(!is_ascended && !istype(desired_area,/area/station))
 		to_chat(user,span_warning("[src] can't be completed! The area you are in not interesting to the Exile... try a station area, perhaps."))
 		return FALSE
 

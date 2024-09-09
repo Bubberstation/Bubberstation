@@ -15,6 +15,7 @@
 	. = ..()
 
 /obj/item/storage/belt/wizardblood/Initialize(mapload)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
 	. = ..()
 	atom_storage.max_slots = 4
 	atom_storage.set_holdable(

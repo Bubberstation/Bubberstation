@@ -30,6 +30,9 @@
 	. = ..()
 	START_PROCESSING(SSobj,src)
 
+/obj/item/reagent_containers/cup/endless_flask/Initialize(...)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
+	. = ..()
 
 /obj/item/reagent_containers/cup/endless_flask/Destroy()
 	. = ..()
@@ -53,8 +56,16 @@
 	reagent_to_create = /datum/reagent/medicine/omnizine/healing_juice
 	icon_state = "health"
 
+/obj/item/reagent_containers/cup/endless_flask/regen_jelly
+	reagent_to_create = /datum/reagent/medicine/regen_jelly
+	icon_state = "health"
+
 /obj/item/reagent_containers/cup/endless_flask/gravitum
 	reagent_to_create = /datum/reagent/gravitum
+	icon_state = "evasion"
+
+/obj/item/reagent_containers/cup/endless_flask/stimulants
+	reagent_to_create = /datum/reagent/medicine/stimulants
 	icon_state = "evasion"
 
 
@@ -62,10 +73,20 @@
 	reagent_to_create = /datum/reagent/drug/blastoff
 	icon_state = "speed"
 
+/obj/item/reagent_containers/cup/endless_flask/changelingadrenaline
+	reagent_to_create = /datum/reagent/medicine/changelingadrenaline
+	icon_state = "speed"
+
+
 
 /obj/item/reagent_containers/cup/endless_flask/determination
 	reagent_to_create = /datum/reagent/determination
 	icon_state = "armor"
+
+/obj/item/reagent_containers/cup/endless_flask/leporazine
+	reagent_to_create = /datum/reagent/medicine/leporazine
+	icon_state = "armor"
+
 
 
 /obj/item/reagent_containers/cup/endless_flask/random

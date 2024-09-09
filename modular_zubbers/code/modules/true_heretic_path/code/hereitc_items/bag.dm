@@ -4,10 +4,17 @@
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_bags.dmi'
 	icon_state = "rucksack"
 
+	worn_icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_clothing_worn.dmi'
+	worn_icon_state = "rucksack"
+
 	w_class = WEIGHT_CLASS_NORMAL //YOU FUCKING LIAR. YOU SAID IT WAS SMALL.
 
 	inhand_icon_state = null //It's not small I'm just too lazy to add inhand sprites for something so minor.
 	worn_icon_state
+
+/obj/item/storage/bag/exile/Initialize(...)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
+	. = ..()
 
 /obj/item/storage/bag/exile/Initialize(mapload)
 	. = ..()

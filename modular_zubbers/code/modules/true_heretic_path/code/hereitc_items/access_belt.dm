@@ -10,6 +10,10 @@
 
 	var/list/stolen_id_names = list() //Assoc list.
 
+/obj/item/storage/belt/skullhunter/Initialize(...)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
+	. = ..()
+
 /obj/item/storage/belt/skullhunter/examine(mob/user)
 
 	. = ..()

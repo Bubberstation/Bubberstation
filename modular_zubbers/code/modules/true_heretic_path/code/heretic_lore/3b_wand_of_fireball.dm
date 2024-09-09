@@ -1,4 +1,4 @@
-/* Disabled, for now.
+
 /datum/heretic_knowledge/limited_amount/wand_purchase
 	name = "Prophetic Wand"
 	desc = "Allows you to transmute an igniter, a wooden log, and a sheet of plasma into a low-charge self-recharging \
@@ -16,8 +16,8 @@
 	)
 	result_atoms = list(/obj/item/gun/magic/wand/fireball/heretic)
 
-	cost = 2
-	depth = 3
+	cost = 3 //Unlimited fireball is powerful, yo.
+	depth = 4
 	route = PATH_SIDE
 
 	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_weapons_inventory.dmi'
@@ -28,4 +28,3 @@
 /datum/heretic_knowledge/limited_amount/wand_purchase/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	ADD_TRAIT(user,TRAIT_MAGICALLY_GIFTED,EXILE_MAGIC)
-*/

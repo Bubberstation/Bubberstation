@@ -36,16 +36,23 @@
 
 	SIGNAL_HANDLER
 
-	if(target.stat != DEAD && target.health <= target.maxHealth * 0.1 && target.death(FALSE)) //Culling strike.
+	var/datum/antagonist/heretic/heretic_datum = source.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/is_ascended = heretic_datum?.ascended
+
+	if(target.stat != DEAD && target.health <= target.maxHealth * (is_ascended ? 0.25 : 0.1) && target.death(FALSE)) //Culling strike.
 		target.balloon_alert(source, "culling strike!")
 		log_combat(source, target, "killed via culling strike")
 		target.investigate_log("has been killed by culling strike.", INVESTIGATE_DEATHS)
+
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/loot_multiplier_min = 1
 			var/loot_multiplier_max = 3
 
-			if(!target.mind)
+			if(is_ascended)
+				loot_multiplier_min = 3
+				loot_multiplier_max = 5
+			else if(!target.mind)
 				if(FACTION_BOSS in target.faction)
 					loot_multiplier_min = 2
 					loot_multiplier_max = 3
@@ -77,6 +84,7 @@
 					loot_multiplier_min,
 					loot_multiplier_max
 				)
+
 
 		return
 

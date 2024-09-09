@@ -43,6 +43,8 @@
 	force = 20
 	block_chance = 25
 
+	var/upgraded = FALSE
+
 /obj/item/melee/sickly_blade/exile/upgrade/apply_fantasy_bonuses(bonus)
 	bonus = abs(bonus) //Means that negative modifiers are also treated as positive.
 	. = ..()
@@ -55,6 +57,21 @@
 	. = ..()
 	current_user = user
 	START_PROCESSING(SSobj,src)
+
+	if(!upgraded)
+		var/datum/antagonist/heretic/heretic_datum = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+		var/is_ascended = heretic_datum?.ascended
+		if(is_ascended)
+			to_chat(user,span_velvet("As you touch [src], the blade glows violently, then settles down! Something seems to have changed..."))
+			var/datum/component/fantasy/found_component = src.GetComponent(/datum/component/fantasy)
+			if(found_component)
+				qdel(found_component)
+			name = "Innbury Edge"
+			force = initial(force) * 2.2 //120% increased physical damage.
+			attack_speed = initial(attack_speed) * (1/1.2) // 20% increased attack speed.
+			src.AddElement(/datum/element/lifesteal, force * 0.02) //2% of damage leeched as life
+			upgraded = TRUE
+			ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_ASCENSION_TRAIT)
 
 /obj/item/melee/sickly_blade/exile/upgrade/dropped(mob/user, silent)
 	. = ..()
@@ -96,7 +113,6 @@
 		var/mob/living/living_target = target
 		if(living_target.mob_mood)
 			living_target.mob_mood.set_sanity(living_target.mob_mood - 5)
-
 
 /obj/item/melee/sickly_blade/exile/upgrade/attack_self(mob/user)
 

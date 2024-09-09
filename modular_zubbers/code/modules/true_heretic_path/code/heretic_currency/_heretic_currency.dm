@@ -33,6 +33,10 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 
 	var/heretic_instructions //This is displayed to heretics on examine only.
 
+/obj/item/heretic_currency/Initialize(...)
+	ADD_TRAIT(src, TRAIT_INNATELY_FANTASTICAL_ITEM,EXILE_UNIQUE)
+	. = ..()
+
 /obj/item/heretic_currency/examine(mob/user)
 	. = ..()
 	if(heretic_instructions && IS_HERETIC(user))
