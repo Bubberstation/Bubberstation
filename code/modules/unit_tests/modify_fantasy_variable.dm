@@ -8,6 +8,10 @@
 
 	for(var/obj/item/path as anything in applicable_types)
 		var/obj/item/object = allocate(path)
+		//BUBBERSTATION CHANGE: SUPPORT FOR FANTASY BLACKLIST
+		if(HAS_TRAIT(object, TRAIT_INNATELY_FANTASTICAL_ITEM))
+			continue
+		//BUBBERSTATION CHANGE END.
 		// objects will have fantasy bonuses inherent to their type (like butterdogs and the slippery component), so we need to take this into account
 		var/number_of_extant_bonuses = LAZYLEN(object.fantasy_modifications)
 
