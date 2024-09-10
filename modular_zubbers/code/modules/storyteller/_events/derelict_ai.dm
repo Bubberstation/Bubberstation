@@ -32,24 +32,11 @@
 	if(isnull(chosen_candidate))
 		return NOT_ENOUGH_PLAYERS
 
-	var/mob/living/carbon/human/host_candidate
-	for(var/mob/living/carbon/human/host in shuffle(GLOB.player_list))
-		if(!host.client || !(ROLE_DERELICT_HOST))
-			continue
-		if(host.stat == DEAD)
-			continue
-		if(!(host.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
-			continue
-		if(!(ROLE_DERELICT_HOST in host.client?.prefs?.be_special))
-			continue
-		host_candidate = host
-		break
+	var/turf/spawn_turf = get_safe_random_station_turf()
+	if(!spawn_turf)
+		return
 
-	if(isnull(host_candidate))
-		return NOT_ENOUGH_PLAYERS
-
-	host_candidate.equipOutfit(/datum/outfit/derelict_host)
-	var/obj/item/mod/control/pre_equipped/derelict/created_modsuit = host_candidate.back
+	var/obj/item/mod/control/pre_equipped/derelict/created_modsuit = new(spawn_turf)
 	var/mob/living/silicon/ai/suitai = new /mob/living/silicon/ai(get_turf(created_modsuit), new /datum/ai_laws/derelict_laws, chosen_candidate)
 	suitai.mind.add_antag_datum(/datum/antagonist/derelict_modsuit)
 	suitai.mind.special_role = ROLE_DERELICT_MODSUIT
