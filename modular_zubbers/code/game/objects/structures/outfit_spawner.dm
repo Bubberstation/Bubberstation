@@ -8,6 +8,8 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	/// Faction to apply to the player when they spawn
+	var/spawn_faction = null
 	/// specific assoc list of outfits that can be chosen from
 	var/list/outfits = list()
 	/// specific list of ckeys that are allowed to spawn via this spawner
@@ -20,7 +22,8 @@
 /obj/structure/outfit_spawner/examine(mob/user)
 	. = ..()
 	if(user.client && check_rights_for(user.client, R_ADMIN))
-		. += "Click on it to configure, add the same outfit to remove it."
+		. += "Click on it as ghost to configure, add the same outfit to remove it."
+		. += "VV to change the spawn_faction variable to modify what faction the player spawn with."
 		. += "Limitations: You must always re-select all outfits or ckeys each time you configure it!"
 		. += "Currently allowed ckeys: [length(allowed_ckeys) ? allowed_ckeys.Join(", ") : "Any"]"
 		. += "Currently available outfits: [length(outfits) ? outfits.Join(", ") : "None"]"
@@ -45,6 +48,8 @@
 	var/mob/living/carbon/human/player_mob = new(spawn_point)
 	player_mob.equipOutfit(chosen_outfit)
 	user.client.prefs.safe_transfer_prefs_to(player_mob, is_antag = TRUE)
+	if(spawn_faction)
+		player_mob.faction += spawn_faction
 	player_mob.ckey = user.client.ckey
 
 /obj/structure/outfit_spawner/proc/configure(mob/user)
@@ -113,3 +118,12 @@
 	. = list()
 	for(var/client/client in GLOB.clients)
 		. += client.ckey
+
+
+/obj/structure/outfit_spawner/red
+	icon_state = "syndbeacon"
+	spawn_faction = "blue"
+
+/obj/structure/outfit_spawner/blue
+	icon_state = "bluebeacon"
+	spawn_faction = "red"
