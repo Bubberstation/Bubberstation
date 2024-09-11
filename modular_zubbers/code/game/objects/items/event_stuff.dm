@@ -34,6 +34,7 @@
 	inhand_icon_state = "duffel_blueshield"
 
 /datum/id_trim/blue_team
+	sechud_icon_state = SECHUD_CENTCOM
 	department_color = COLOR_BLUE
 	access = list(ACCESS_MAINT_TUNNELS)
 
@@ -69,6 +70,7 @@
 	assignment = "Blue Spy"
 
 /datum/id_trim/red_team
+	sechud_icon_state = SECHUD_SYNDICATE
 	department_color = COLOR_RED
 	access = list(ACCESS_MAINT_TUNNELS)
 
