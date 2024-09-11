@@ -97,3 +97,14 @@
 
 /datum/id_trim/red_team/spy
 	assignment = "Red Spy"
+
+/obj/item/storage/toolbox/emergency/turret/event/blue
+	color = "blue"
+	faction = "blue"
+
+/obj/item/storage/toolbox/emergency/turret/event/red
+	faction = "red"
+
+/obj/item/storage/toolbox/emergency/turret/event/set_faction(obj/machinery/porta_turret/turret, mob/user)
+	turret.faction += faction
+	return
