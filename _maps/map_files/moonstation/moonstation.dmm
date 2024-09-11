@@ -34289,6 +34289,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/commons/lounge)
 "jzl" = (
@@ -36172,6 +36175,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/iron/grimy,
 /area/station/service/library)
 "kct" = (
@@ -44061,10 +44067,6 @@
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
-"mjw" = (
-/obj/structure/cable,
-/turf/open/floor/glass/reinforced/scrape_below,
-/area/station/service/library/artgallery)
 "mjz" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -84488,7 +84490,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
-	dir = 10
+	dir = 4
 	},
 /turf/open/floor/iron/grimy,
 /area/station/service/library)
@@ -244706,7 +244708,7 @@ wQJ
 oyW
 xAp
 swX
-mjw
+vrq
 pHZ
 rvx
 bBo
