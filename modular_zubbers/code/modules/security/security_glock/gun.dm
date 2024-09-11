@@ -16,7 +16,7 @@
 	desc = "The Compact Criminal Killer, or C-CK9 for short, is a semi-automatic ballistic pistol meant for regulated station defense. These are normally issued with a special firing pin that only allows firing on code blue or higher."
 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
 	icon_state = "black"
-	pin = /obj/item/firing_pin/alert_level
+	pin = /obj/item/firing_pin/alert_level/blue
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/flathead
 	fire_delay = 4
 	can_suppress = FALSE
