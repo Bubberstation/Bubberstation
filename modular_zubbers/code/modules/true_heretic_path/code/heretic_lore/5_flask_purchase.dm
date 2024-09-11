@@ -1,18 +1,19 @@
 /datum/heretic_knowledge/flask_purchase
 	name = "Auto-Alchemical Creation"
-	desc = "Allows you to transmute a large beaker, a stomach, and a silver bar into a magical flask \
+	desc = "Allows you to transmute a large beaker, a stomach, a silver bar, and an alchemical orb into a magical endless flask \
 	that refills with with one of the selected reagents: \
 	Healing Juice, Gravitum, Blastoff, or Determination."
 	gain_text = "Creating more from nothing is every Exile's dream."
 	next_knowledge = list(
 		/datum/heretic_knowledge/belt_purchase,
-		/datum/heretic_knowledge/fisher,
 		/datum/heretic_knowledge/chaotic_flask_purchase,
+		/datum/heretic_knowledge/limited_amount/wand_purchase,
 	)
 	required_atoms = list(
 		/obj/item/reagent_containers/cup/beaker/large = 1,
 		/obj/item/organ/internal/stomach = 1,
 		/obj/item/stack/sheet/mineral/silver = 1,
+		/obj/item/heretic_currency/alchemical = 1
 	)
 	result_atoms = list(/obj/item/reagent_containers/cup/endless_flask)
 

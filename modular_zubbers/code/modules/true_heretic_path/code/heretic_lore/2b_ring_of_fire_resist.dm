@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/fire_resist_ring
 	name = "Gold Ring of Fire Resistance"
-	desc = "Allows you to transmute a fire suit and a gold ingot into a ring of fire resistance, \
+	desc = "Allows you to transmute a fire suit and a chaotic orb into a ring of fire resistance, \
 	which as the name implies, gives significant fire resistance (but not immunity!) when worn. \
 	This ring protects every limb."
 	gain_text = "Only you can prevent eldritch fires."
@@ -9,7 +9,7 @@
 	)
 	required_atoms = list(
 		/obj/item/clothing/suit/utility/fire = 1,
-		/obj/item/stack/sheet/mineral/gold = 1
+		/obj/item/heretic_currency/chaotic = 1
 	)
 	result_atoms = list(/obj/item/clothing/gloves/ring/fire_resistance)
 

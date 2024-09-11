@@ -1,15 +1,16 @@
 /datum/heretic_knowledge/limited_amount/portal_protection
 
 	name = "Six Portal Body Problem"
-	desc = "Allows you to transmute a defibrillator, a map, six hearts, amd six bluespace crystals into the ability to revive and heal all your external damage on death. \
+	desc = "Allows you to transmute a map, six hearts, amd six bluespace crystals into the ability to revive and heal all your external damage on death. \
 	This only works up to 6 times, and each death gives you a moderate amount of brain damage. \
 	Completing the ritual will also reduce your maximum health by 45 as a consequence. \
 	The place in which you revive will be the place where you complete the transmutation ritual. Researching this prevents \"Hardcore\" from being researched.\
 	Once the ritual is performed, this cannot be reversed!"
 
+	gain_text = "Immortality in very short grasp."
+
 	required_atoms = list(
 		/obj/item/heretic_map = 1,
-		/obj/item/defibrillator = 1,
 		/obj/item/organ/internal/heart = 6,
 		/obj/item/stack/ore/bluespace_crystal = 6,
 	)
@@ -18,7 +19,7 @@
 		/obj/item/paper/fluff/good_advice //We need a result here so the limit feature actually works.
 	)
 
-	cost = 6
+	cost = 3
 	depth = 8
 	route = PATH_SIDE
 

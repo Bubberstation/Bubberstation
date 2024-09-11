@@ -10,9 +10,8 @@
 
 	next_knowledge = list(
 		/datum/heretic_knowledge/bag_purchase,
-		/datum/heretic_knowledge/map_making,
-		/datum/heretic_knowledge/resistance_helmet,
-		/datum/heretic_knowledge/limited_amount/real_mirror_trading
+		/datum/heretic_knowledge/limited_amount/real_mirror_trading,
+		/datum/heretic_knowledge/portal_making
 	)
 
 	cost = 1
@@ -59,12 +58,12 @@
 				else if(FACTION_HOSTILE in target.faction)
 					loot_multiplier_min = 1
 					loot_multiplier_max = 1
-					if(!prob(80)) //Culling strike optimization.
+					if(!prob(target.maxHealth*2))
 						return
 				else
 					loot_multiplier_min = 1
 					loot_multiplier_max = 1
-					if(prob(80)) //Culling strike optimization.
+					if(!prob(target.maxHealth))
 						return
 
 			loot_multiplier_max *= (target.maxHealth/MAX_LIVING_HEALTH) //The bigger they are, the more they drop.

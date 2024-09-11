@@ -5,6 +5,8 @@
 	However, when you die, every single item on your person is sent to the void. Researching this prevents \"Six Portal Body Problem\" from being researched. \
 	Once the ritual is performed, this cannot be reversed!"
 
+	gain_text = "Leave nothing for your captors."
+
 	required_atoms = list(
 		/obj/item/stack/sheet/mineral/titanium = 1,
 		/obj/item/organ/internal/liver = 1,

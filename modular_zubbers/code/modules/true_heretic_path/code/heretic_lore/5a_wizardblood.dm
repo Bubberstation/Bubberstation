@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/belt_purchase
 	name = "Wizardblood"
-	desc = "Allows you to transmute an iv drip, an arm, and a leg and any belt containing storage \
+	desc = "Allows you to transmute an iv drip, an arm, a leg, a storage belt, and a mirroring orb \
 	into a powerful and expensive belt that automatically applies the effects of stored flasks to you while worn."
 	gain_text = "The desired object of every exile; a belt that fits."
 	next_knowledge = list(
@@ -11,6 +11,7 @@
 		/obj/machinery/iv_drip = 1,
 		/obj/item/bodypart/arm = 1,
 		/obj/item/bodypart/leg = 1,
+		/obj/item/heretic_currency/mirroring = 1,
 	)
 	result_atoms = list(/obj/item/storage/belt/wizardblood)
 

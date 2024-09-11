@@ -12,8 +12,8 @@
 	depth = 5
 	route = PATH_SIDE
 
-	research_tree_icon_path = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_ui.dmi'
-	research_tree_icon_state = "regret"
+	research_tree_icon_path = 'icons/obj/watercloset.dmi'
+	research_tree_icon_state = "soapgibs"
 
 /datum/heretic_knowledge/regret/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 
