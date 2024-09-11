@@ -128,7 +128,7 @@
 	parent_machinery.light_power = 1
 	parent_machinery.light_range = 2
 	parent_machinery.update_light()
-	LAZYADD(incoming_controller.controlled_machine_components, parent_machinery)
+	LAZYADD(incoming_controller.controlled_machine_components, src)
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
 /datum/component/machine_corruption/Destroy(force, silent)
@@ -150,7 +150,7 @@
 	))
 	parent_machinery.update_appearance()
 	if(our_controller)
-		LAZYREMOVE(our_controller.controlled_machine_components, parent_machinery)
+		LAZYREMOVE(our_controller.controlled_machine_components, src)
 	return ..()
 
 /**
