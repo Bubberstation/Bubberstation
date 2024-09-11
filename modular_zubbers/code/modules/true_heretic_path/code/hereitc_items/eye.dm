@@ -20,11 +20,9 @@
 
 /obj/item/watching_eye/attack_self(mob/user)
 
-	/*
 	if(!IS_HERETIC(user))
 		to_chat(user,span_warning("You don't know how to use [src]!"))
 		return
-	*/
 
 	if(!COOLDOWN_FINISHED(src,reactivation_cooldown))
 		to_chat(user,span_warning("[src] is not ready to be deployed yet!"))
