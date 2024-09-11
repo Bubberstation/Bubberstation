@@ -141,6 +141,11 @@
 	. = ..()
 	. += span_notice("<i>You examine [src] closer, and note the following...</i>")
 
+	if(istype(w_uniform, /obj/item/clothing/under))
+		var/obj/item/clothing/under/undershirt = w_uniform
+		if(undershirt.has_sensor == BROKEN_SENSORS)
+			. += list(span_notice("The [undershirt]'s medical sensors are sparking."))
+
 	if(dna) //not all carbons have it. eg - xenos
 		//On closer inspection, this man isnt a man at all!
 		var/list/covered_zones = get_covered_body_zones()
