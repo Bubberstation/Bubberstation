@@ -56,13 +56,14 @@ GLOBAL_PROTECT(vetted_list)
 		add_player_to_sql(ckey_)
 
 /datum/player_rank_controller/vetted/proc/add_player_to_sql(ckey, admin_ckey)
-	var/client/admin_who_added = admin_ckey
-	if(!admin_ckey)
-		admin_ckey = "Conversion Script"
+	var/ckey_admin = "Conversion Script"
+	var/client/admin_who_added_client = admin
+	if(admin_who_added_client.ckey)
+		ckey_admin = admin_who_added_client.ckey
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
 		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added) \
 		 ON DUPLICATE KEY UPDATE admin_who_added = :admin_who_added",
-		list("ckey" = ckey, "admin_who_added" = admin_who_added.ckey),
+		list("ckey" = ckey, "admin_who_added" = ckey),
 	)
 
 	if(!query_add_player_rank.warn_execute())
