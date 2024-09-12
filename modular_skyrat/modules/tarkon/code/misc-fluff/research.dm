@@ -84,6 +84,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
