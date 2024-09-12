@@ -72,21 +72,21 @@
 				if(!outfit.name)
 					stack_trace("Outfit has no name, possibly non-instantiated outfit in GLOB.custom_outfits? Type: [outfit?.type ? outfit.type : "empty list entry"]")
 					continue
-				var/unique_name = select_outfits[outfit.name] ? "[outfit.name]_duplicate_id_[index]" : outfit.name
+				var/unique_name = master_outfits[outfit.name] ? "[outfit.name]_duplicate_id_[index]" : outfit.name
 				select_outfits += unique_name
-				master_outfits[unique_name] += outfit
+				master_outfits[unique_name] = outfit
 				index++
 
 			for(var/datum/outfit/outfit as anything in subtypesof(/datum/outfit))
 				// todo figure out count of duplicates and increment the unique number by that
 				// var/exists = select_outfits[initial(outfit.name)]
 				var/outfit_name = initial(outfit.name)
-				var/is_already_in = select_outfits.Find(outfit_name)
-				var/unique_name = is_already_in ? "[outfit_name]_[index]" : outfit_name
+				var/is_already_in = master_outfits[outfit_name]
+				var/unique_name = is_already_in ? "[outfit_name]_duplicate_id_[index]" : outfit_name
 				select_outfits += unique_name
 				// subtypesof returns a list of TYPEs, while GLOBAL.custom_outfits is a list of INSTANCES
 				// we don't instance it here as we'd need to delete them after, and that'd require us to compare with the custom_outfit list to not delete the original
-				master_outfits[unique_name] += outfit
+				master_outfits[unique_name] = outfit
 				index++
 
 			var/list/add_outfit = tgui_input_checkboxes(user, "Select outfits to allow in this spawner", "Outfit name", select_outfits, 0, 999) // hilariously tgui_input_checkboxes does not support assoc lists, and neither already checked options
