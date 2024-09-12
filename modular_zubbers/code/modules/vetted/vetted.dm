@@ -88,7 +88,7 @@ GLOBAL_PROTECT(vetted_list)
 	if(!query_remove_player_vetted.warn_execute())
 		return FALSE
 
-ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to SQL", "Restart one of the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to SQL", "Warning! Might be slow!", ADMIN_CATEGORY_DEBUG)
 	var/consent = tgui_input_list(usr, "Do you want to convert the vetted list to SQL?", "UH OH", list("Yes", "No"), "No")
 	if(consent == "Yes")
 		SSplayer_ranks.vetted_controller.convert_all_to_sql()
