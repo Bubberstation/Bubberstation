@@ -92,12 +92,15 @@ ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to 
 	var/consent = tgui_input_list(usr, "Do you want to convert the vetted list to SQL?", "UH OH", list("Yes", "No"), "No")
 	if(consent == "Yes")
 		SSplayer_ranks.vetted_controller.convert_all_to_sql()
-
+		message_admins("[usr] has forcefully converted the vetted list file to SQL.")
 ADMIN_VERB(add_vetted, R_ADMIN, "Add user to Vetted", "Adds a user to the vetted list", ADMIN_CATEGORY_MAIN)
 	var/user_adding = tgui_input_text(usr, "Whom is being added?", "Vetted List")
 	if(length(user_adding))
 		SSplayer_ranks.vetted_controller.add_player(ckey = user_adding, admin = usr)
+		message_admins("[usr] has added [user_adding] to the vetted database.")
+
 ADMIN_VERB(remove_vetted, R_ADMIN, "Remove user from Vetted", "Removes a user from the vetted list", ADMIN_CATEGORY_MAIN)
 	var/user_del = tgui_input_text(usr, "Whom is being Removed?", "Vetted List")
 	if(length(user_del))
 		SSplayer_ranks.vetted_controller.remove_player(ckey = user_del)
+		message_admins("[usr] has removed [user_del] from the vetted databse.")
