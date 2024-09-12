@@ -65,12 +65,14 @@
 //add the disease with no checks
 /datum/disease/proc/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
-	if(isnull(D))
-		stack_trace("Failed to create a copy of disease [debug_id] [src]! Check for runtime errors in the disease Copy() proc")
-		log_virus_debug("Failed to create a copy of disease [debug_id] [src]! Check for runtime errors in the disease Copy() proc")
-		return FALSE
-	D.debug_id = assign_random_name()
-	D.start_time = REALTIMEOFDAY
+	if(D.affected_mob)
+		stack_trace("Disease [D.debug_id] [D] tried to infect [infectee] while already bound to an affected mob [D.affected_mob]!")
+		log_virus_debug("Disease [D.debug_id] [D] tried to infect [infectee] while already bound to an affected mob [D.affected_mob]!")
+		return
+	if(!D.debug_id)
+		D.debug_id = assign_random_name()
+	if(!D.start_time)
+		D.start_time = REALTIMEOFDAY
 	LAZYADD(infectee.diseases, D)
 	D.affected_mob = infectee
 	SSdisease.active_diseases += D //Add it to the active diseases list, now that it's actually in a mob and being processed.
