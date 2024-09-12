@@ -247,7 +247,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Your Regent is doubting your abilities, level some Blood Magic to prove them wrong! Remember that Vassalizing gives more Ranks!"
+	explanation_text = "Your Regent is doubting your abilities, level some Blood Magic to prove them wrong! Remember that Ghoulifying gives more Ranks!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
