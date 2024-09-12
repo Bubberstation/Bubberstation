@@ -1,6 +1,7 @@
+GLOBAL_LIST_EMPTY(vetted_list_legacy)
+GLOBAL_PROTECT(vetted_list_legacy)
 GLOBAL_LIST_EMPTY(vetted_list)
 GLOBAL_PROTECT(vetted_list)
-
 /datum/controller/subsystem/player_ranks
 
 /datum/player_rank_controller/vetted
@@ -37,20 +38,63 @@ GLOBAL_PROTECT(vetted_list)
 		if(findtextEx(line, "#", 1, 2))
 			continue
 
-		vetted_controller.add_player(line)
+		vetted_controller.add_player(line, legacy = TRUE)
+	var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT * FROM vetted_list")
+	if(!query_load_player_rank.warn_execute())
+		return
+	while(query_load_player_rank.NextRow())
+		var/ckey = ckey(query_load_player_rank.item[1])
+		vetted_controller.add_player(ckey)
+
 
 	return TRUE
 
-/datum/player_rank_controller/vetted/add_player(ckey)
-	if(IsAdminAdvancedProcCall())
-		return
+/datum/player_rank_controller/vetted/proc/convert_all_to_sql()
+	if(!SSdbcore.Connect())
+		return message_admins("Failed to connect to database. Unable to complete flat file to SQL conversion.")
+	for(var/ckey_ in GLOB.vetted_list_legacy)
+		add_player_to_sql(ckey_)
 
+/datum/player_rank_controller/vetted/proc/add_player_to_sql(ckey, admin_ckey)
+	var/client/admin_who_added = admin_ckey
+	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
+		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added) \
+		 ON DUPLICATE KEY UPDATE admin_who_added = :admin_who_added",
+		list("ckey" = ckey, "admin_who_added" = admin_who_added.ckey),
+	)
+
+	if(!query_add_player_rank.warn_execute())
+		return FALSE
+
+/datum/player_rank_controller/vetted/add_player(ckey, legacy, admin)
 	ckey = ckey(ckey)
-
+	if(legacy)
+		GLOB.vetted_list_legacy[ckey] = TRUE
 	GLOB.vetted_list[ckey] = TRUE
+	add_player_to_sql(ckey, admin)
 
 /datum/player_rank_controller/vetted/remove_player(ckey)
-	if(IsAdminAdvancedProcCall())
-		return
-
 	GLOB.vetted_list -= ckey
+	remove_player_from_sql(ckey)
+
+/datum/player_rank_controller/vetted/proc/remove_player_from_sql(ckey)
+	var/datum/db_query/query_remove_player_vetted = SSdbcore.NewQuery(
+		"DELETE FROM vetted_list WHERE ckey = :ckey",
+		list("ckey" = ckey),
+	)
+	if(!query_remove_player_vetted.warn_execute())
+		return FALSE
+
+ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to SQL", "Restart one of the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG)
+	var/consent = tgui_input_list(usr, "Do you want to convert the vetted list to SQL?", "UH OH", list("Yes", "No"), "No")
+	if(consent == "Yes")
+		SSplayer_ranks.vetted_controller.convert_all_to_sql()
+
+ADMIN_VERB(add_vetted, R_ADMIN, "Add user to Vetted", "Adds a user to the vetted list", ADMIN_CATEGORY_MAIN)
+	var/user_adding = tgui_input_text(usr, "Whom is being added?", "Vetted List")
+	if(length(user_adding))
+		SSplayer_ranks.vetted_controller.add_player(ckey = user_adding, admin = usr)
+ADMIN_VERB(remove_vetted, R_ADMIN, "Remove user from Vetted", "Removes a user from the vetted list", ADMIN_CATEGORY_MAIN)
+	var/user_del = tgui_input_text(usr, "Whom is being Removed?", "Vetted List")
+	if(length(user_del))
+		SSplayer_ranks.vetted_controller.remove_player(ckey = user_del)
