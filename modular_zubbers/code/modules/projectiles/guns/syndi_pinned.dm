@@ -25,6 +25,14 @@
 /obj/item/gun/ballistic/automatic/smart_machine_gun/syndicate
 	pin = /obj/item/firing_pin/implant/pindicate
 
+/obj/item/gun/ballistic/automatic/smart_machine_gun/syndicate/red
+	color = "red"
+	iff_factions = list("red")
+
+/obj/item/gun/ballistic/automatic/smart_machine_gun/syndicate/blue
+	color = "blue"
+	iff_factions = list("blue")
+
 /obj/item/gun/ballistic/automatic/sol_smg/syndicate
 	pin = /obj/item/firing_pin/implant/pindicate
 

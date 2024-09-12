@@ -122,8 +122,8 @@
 
 /obj/structure/outfit_spawner/red
 	icon_state = "syndbeacon"
-	spawn_faction = "blue"
+	spawn_faction = "red"
 
 /obj/structure/outfit_spawner/blue
 	icon_state = "bluebeacon"
-	spawn_faction = "red"
+	spawn_faction = "blue"
