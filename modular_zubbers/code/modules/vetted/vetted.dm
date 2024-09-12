@@ -57,6 +57,8 @@ GLOBAL_PROTECT(vetted_list)
 
 /datum/player_rank_controller/vetted/proc/add_player_to_sql(ckey, admin_ckey)
 	var/client/admin_who_added = admin_ckey
+	if(!admin_ckey)
+		admin_ckey = "Conversion Script"
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
 		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added) \
 		 ON DUPLICATE KEY UPDATE admin_who_added = :admin_who_added",
