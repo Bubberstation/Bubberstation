@@ -56,7 +56,7 @@
 
 	var/datum/objective/survive/new_objective = new
 	new_objective.name = "Avenge Master"
-	new_objective.explanation_text = "Avenge your Master's final death by felling the ones that killed them, and by recruiting their ex-ghoul and continuing their operations."
+	new_objective.explanation_text = "Avenge your Master's final death by felling the ones that killed them, and by recruiting their ex-ghouls and continuing their operations."
 	new_objective.owner = owner
 	objectives += new_objective
 
