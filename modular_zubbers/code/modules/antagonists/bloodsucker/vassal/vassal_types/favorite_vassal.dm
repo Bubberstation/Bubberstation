@@ -4,10 +4,10 @@
  * Gets some cool abilities depending on the Clan.
  */
 /datum/antagonist/vassal/favorite
-	name = "\improper Favorite Vassal"
+	name = "\improper Favorite Ghoul"
 	antag_hud_name = "vassal6"
 	special_type = FAVORITE_VASSAL
-	vassal_description = "The Favorite Vassal gets unique abilities over other Vassals depending on the Master's Clan \
+	vassal_description = "The Favorite Ghoul gets unique abilities over other Ghouls depending on the Master's Clan \
 		and becomes completely immune to Mindshields. If part of Ventrue, this is the Vassal a Bloodsucker will rank up."
 
 	///Bloodsucker levels, but for Vassals, used by Ventrue. Used for ventrue creating a new bloodsucker.

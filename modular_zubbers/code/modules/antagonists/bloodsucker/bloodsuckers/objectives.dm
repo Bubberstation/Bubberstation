@@ -29,7 +29,7 @@
 
 	return possible_targets
 
-/// Check Vassals and get their occupations
+/// Check Ghouls and get their occupations
 /datum/objective/bloodsucker/proc/get_vassal_occupations()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum || !bloodsuckerdatum.vassals.len)
@@ -37,7 +37,7 @@
 	var/list/all_vassal_jobs = list()
 	var/vassal_job
 	for(var/datum/antagonist/vassal/bloodsucker_vassals in bloodsuckerdatum.vassals)
-		if(!bloodsucker_vassals || !bloodsucker_vassals.owner)	// Must exist somewhere, and as a vassal.
+		if(!bloodsucker_vassals || !bloodsucker_vassals.owner)	// Must exist somewhere, and as a Ghoul.
 			continue
 		// Mind Assigned
 		if(bloodsucker_vassals.owner?.assigned_role)
@@ -66,7 +66,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/lair/update_explanation_text()
-	explanation_text = "Create a lair by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
+	explanation_text = "Create a Haven by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
@@ -102,7 +102,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/command/update_explanation_text()
-	explanation_text = "Guarantee a Vassal ends up as a Department Head or in a Leadership role."
+	explanation_text = "Guarantee a Ghoul ends up as a Department Head or in a Leadership role."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/conversion/command/check_completion()
@@ -139,7 +139,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/department/update_explanation_text()
-	explanation_text = "Have [target_amount] Vassal[target_amount == 1 ? "" : "s"] in the [target_department.department_name] department."
+	explanation_text = "Have [target_amount] Ghoul[target_amount == 1 ? "" : "s"] in the [target_department.department_name] department."
 	return ..()
 
 // WIN CONDITIONS?
@@ -216,14 +216,14 @@
 //     CLAN OBJECTIVES      //
 //////////////////////////////
 
-/// Steal the Archive of the Kindred - Nosferatu Clan objective
+/// Steal the Book of Nod - Nosferatu Clan objective
 /datum/objective/bloodsucker/kindred
-	name = "steal kindred"
+	name = "steal the book of nod"
 
 // EXPLANATION
 /datum/objective/bloodsucker/kindred/update_explanation_text()
 	. = ..()
-	explanation_text = "Ensure Nosferatu steals and keeps control over the Archive of the Kindred."
+	explanation_text = "A Noddist Scholar has posted a bounty on SchreckNet for a scrap of the Book of Nod located in your sector. Their advise? Read a book."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/kindred/check_completion()
@@ -247,7 +247,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
+	explanation_text = "Your Regent is doubting your abilities, level some Blood Magic to prove them wrong! Remember that Vassalizing gives more Ranks!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
@@ -266,7 +266,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/embrace/update_explanation_text()
 	. = ..()
-	explanation_text = "Use the vassal rack to Rank your Favorite Vassal up enough to become a Bloodsucker."
+	explanation_text = "Your Strategoi has granted you permission to embrace a ghoul (vassel), use the Rack to 'level' them up."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()
@@ -348,7 +348,7 @@
 /datum/objective/bloodsucker/vassalhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Vassalized via the Persuasion Rack."
+		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulified via the Persuasion Rack."
 	else
 		explanation_text = "Free Objective"
 

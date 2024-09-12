@@ -4,7 +4,7 @@
 #define VASSAL_SCAN_PING_TIME 20
 
 /datum/antagonist/vassal
-	name = "\improper Vassal"
+	name = "\improper Ghoul"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
 	job_rank = ROLE_VASSAL
@@ -12,7 +12,7 @@
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoVassal"
-	antag_panel_description = "You are a Vassal, a mortal servant of a Bloodsucker."
+	antag_panel_description = "You are a Ghoul, a mortal servant of a Bloodsucker."
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
@@ -76,7 +76,7 @@
 /// This is called when the antagonist is successfully mindshielded.
 /datum/antagonist/vassal/on_mindshield(mob/implanter, mob/living/mob_override)
 	owner.remove_antag_datum(/datum/antagonist/vassal)
-	owner.current.log_message("has been deconverted from Vassalization by [implanter]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been deconverted from Ghoulification by [implanter]!", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
 
 /datum/antagonist/vassal/proc/on_examined(datum/source, mob/examiner, examine_text)
@@ -98,7 +98,7 @@
 		master.special_vassals[special_type] |= src
 	master.vassals += src
 	owner.enslave_mind_to_creator(master.owner.current)
-	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been ghoulified by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
 	BuyPower(/datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
@@ -166,7 +166,7 @@
 	owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 	/// Message told to your (former) Master.
 	if(master && master.owner)
-		to_chat(master.owner, span_cult_bold("You feel the bond with your vassal [owner.current] has somehow been broken!"))
+		to_chat(master.owner, span_cult_bold("You feel the bond with your ghoul [owner.current] has somehow been broken!"))
 
 /datum/antagonist/vassal/admin_add(datum/mind/new_owner, mob/admin)
 	var/list/datum/mind/possible_vampires = list()
@@ -180,7 +180,7 @@
 			continue
 		possible_vampires += vamp
 	if(!length(possible_vampires))
-		message_admins("[key_name_admin(admin)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
+		message_admins("[key_name_admin(admin)] tried ghoulifing [key_name_admin(new_owner)], but there were no bloodsuckers!")
 		return
 	var/datum/mind/choice = tgui_input_list(admin, "Which bloodsucker should this vassal belong to?", "Bloodsucker", possible_vampires)
 	if(!choice)
@@ -189,4 +189,4 @@
 	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
 	master = vampire
 	new_owner.add_antag_datum(src)
-	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
+	to_chat(choice, span_notice("Through antediluvian intervention, you've gained a new ghoul! Praise Caine!"))

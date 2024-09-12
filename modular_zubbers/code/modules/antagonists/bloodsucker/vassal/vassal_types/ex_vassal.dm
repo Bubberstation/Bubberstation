@@ -2,7 +2,7 @@
 #define BLOOD_TIMER_HALWAY (BLOOD_TIMER_REQUIREMENT / 2)
 
 /datum/antagonist/ex_vassal
-	name = "\improper Ex-Vassal"
+	name = "\improper Ex-Ghoul"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
 	job_rank = ROLE_VASSAL
@@ -34,7 +34,7 @@
 
 	var/datum/antagonist/vassal/revenge/vassaldatum = examiner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
 	if(vassaldatum && !revenge_vassal)
-		examine_text += span_notice("[owner.current] is an ex-vassal!")
+		examine_text += span_notice("[owner.current] is an ex-ghoul!")
 
 /datum/antagonist/ex_vassal/add_team_hud(mob/target)
 	QDEL_NULL(team_hud_ref)
@@ -84,17 +84,17 @@
 
 
 /**
- * Bloodsucker Blood
+ * Vampire Vitae
  *
  * Artificially made, this must be fed to ex-vassals to keep them on their high.
  */
 /datum/reagent/blood/bloodsucker
-	name = "Blood two"
+	name = "artificial vitae"
 
 /datum/reagent/blood/bloodsucker/expose_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
 	var/datum/antagonist/ex_vassal/former_vassal = exposed_mob.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 	if(former_vassal)
-		to_chat(exposed_mob, span_cult("You feel the blood restore you... You feel safe."))
+		to_chat(exposed_mob, span_cult("You feel the vitae restore you... You feel safe."))
 		COOLDOWN_RESET(former_vassal, blood_timer)
 		COOLDOWN_START(former_vassal, blood_timer, BLOOD_TIMER_REQUIREMENT)
 	return ..()

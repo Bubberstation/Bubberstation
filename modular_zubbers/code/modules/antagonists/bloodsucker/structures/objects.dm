@@ -241,7 +241,7 @@
 //////////////////////
 
 /**
- *	# Archives of the Kindred:
+ *	# The Book of Nod:
  *+
  *	A book that can only be used by Curators.
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
@@ -252,14 +252,14 @@
  *	Regular Bloodsuckers won't have any negative effects from the book, while everyone else will get burns/eye damage.
  */
 /obj/item/book/kindred
-	name = "\improper Archive of the Kindred"
-	starting_title = "the Archive of the Kindred"
-	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
+	name = "\improper Book of Nod"
+	starting_title = "the Book of Nod"
+	desc = "A collection of pages from the fabled 'Book of Nod', said to contain information about vampires and their society. What rubbish! It is said only Curators can decipher what they really mean."
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	icon_state = "kindred_book"
-	starting_author = "dozens of generations of Curators"
+	starting_author = "dozens of generations of Noddist Scholars"
 	unique = TRUE
 	throw_speed = 1
 	throw_range = 10
