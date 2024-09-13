@@ -85,11 +85,11 @@
 
 /datum/objective/survive/bloodsucker/check_completion()
 	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		var/datum/antagonist/bloodsucker/vamp = IS_BLOODSUCKER(M.current)
+	for(var/datum/mind/mind in owners)
+		var/datum/antagonist/bloodsucker/vamp = IS_BLOODSUCKER(mind.current)
 		if(!vamp)
 			return FALSE
-		if(!vamp.considered_alive(M))
+		if(!vamp.considered_alive(mind))
 			return FALSE
 	return TRUE
 

@@ -104,7 +104,6 @@
 #define BP_CANT_USE_IN_TORPOR (1<<0)
 /// This Power can't be used in Frenzy.
 #define BP_CANT_USE_IN_FRENZY (1<<1)
-
 /// This Power can be used while transformed, for example by the shapeshift spell
 #define BP_CAN_USE_TRANSFORMED (1<<2)
 /// This Power can be used with a stake in you

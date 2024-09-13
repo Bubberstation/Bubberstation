@@ -149,7 +149,15 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING, COMSIG_ENTER_COFFIN, COMSIG_MOB_STAKED))
+	UnregisterSignal(current_mob, list(
+		COMSIG_LIVING_LIFE,
+		COMSIG_ATOM_EXAMINE,
+		COMSIG_LIVING_DEATH,
+		COMSIG_SPECIES_GAIN,
+		COMSIG_QDELETING,
+		COMSIG_ENTER_COFFIN,
+		COMSIG_MOB_STAKED
+	))
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -160,7 +168,7 @@
 
 	SSsunlight.remove_sun_sufferer(owner.current) //check if sunlight should end
 	if(iscarbon(current_mob))
-		current_mob.dna.species?.on_bloodsucker_loss(current_mob)
+		current_mob?.dna.species.on_bloodsucker_loss(current_mob)
 	if(current_mob.client)
 		// We need to let the bloodsucker antag datum get removed before we can re-add quirks
 		addtimer(CALLBACK(SSquirks, TYPE_PROC_REF(/datum/controller/subsystem/processing/quirks, AssignQuirks), current_mob, current_mob.client), 1 SECONDS)

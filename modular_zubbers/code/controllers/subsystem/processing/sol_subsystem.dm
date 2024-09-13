@@ -126,7 +126,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 /datum/controller/subsystem/processing/sunlight/proc/is_sufferer(mob/victim)
 	if(!sun_sufferers)
 		CRASH("Sol subsystem sun_sufferers list is null, when it should never be.")
-	if(!victim || !length(sun_sufferers))
+	if(isnull(victim) || !length(sun_sufferers))
 		return FALSE
 
 	if(sun_sufferers[victim])

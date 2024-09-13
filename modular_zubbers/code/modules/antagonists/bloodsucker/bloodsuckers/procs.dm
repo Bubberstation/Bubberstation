@@ -325,6 +325,7 @@
 	return stakes
 
 /datum/antagonist/bloodsucker/proc/on_staked(atom/target, forced)
+	SIGNAL_HANDLER
 	if(stake_can_kill())
 		FinalDeath()
 	else

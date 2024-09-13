@@ -4,7 +4,7 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-	if(!owner || !owner.current)
+	if(isnull(owner) || isnull(owner.current))
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 	life_always()
