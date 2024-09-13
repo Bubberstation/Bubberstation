@@ -93,7 +93,7 @@
 				continue
 			if(watchers.is_blind())
 				continue
-			if(!IS_BLOODSUCKER(watchers) && !IS_VASSAL(watchers))
+			if(!IS_BLOODSUCKER(watchers) && !IS_GHOUL(watchers))
 				drop_item = TRUE
 				break
 	// Drop all necessary items (handcuffs, legcuffs, items if seen)

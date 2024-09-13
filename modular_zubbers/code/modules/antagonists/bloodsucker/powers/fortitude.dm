@@ -10,7 +10,7 @@
 		Higher levels will increase Brute and Stamina resistance."
 	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 8 SECONDS
 	constant_bloodcost = 0.2
@@ -26,7 +26,7 @@
 	if(level_current >= 4)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(IS_BLOODSUCKER(owner) || IS_GHOUL(owner))
 		fortitude_resist = max(0.3, 0.7 - level_current * 0.1)
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
 		bloodsucker_user.physiology.burn_mod *= fortitude_resist + 0.2
@@ -57,7 +57,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(IS_BLOODSUCKER(owner) || IS_GHOUL(owner))
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
 		bloodsucker_user.physiology.burn_mod /= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod /= fortitude_resist

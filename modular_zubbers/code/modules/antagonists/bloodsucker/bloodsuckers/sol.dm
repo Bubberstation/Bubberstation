@@ -63,7 +63,7 @@
 	owner.current.updatehealth()
 	owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 
-/datum/antagonist/bloodsucker/proc/give_warning(atom/source, danger_level, vampire_warning_message, vassal_warning_message)
+/datum/antagonist/bloodsucker/proc/give_warning(atom/source, danger_level, vampire_warning_message, ghoul_warning_message)
 	SIGNAL_HANDLER
 	SSsunlight.warn_notify(owner.current, danger_level, vampire_warning_message)
 
@@ -125,7 +125,7 @@
 			torpor_end()
 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)		
+/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)
 	// slow down bucko
 	if(!COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
 		return

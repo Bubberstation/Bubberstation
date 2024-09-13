@@ -4,8 +4,8 @@
  *	Level 1 - Mesmerizes target
  *	Level 2 - Mesmerizes and mutes target
  *	Level 3 - Mesmerizes, blinds and mutes target
- *	Level 4 - Target (if at least in crit & has a mind) will revive as a Mute/Deaf Vassal for 5 minutes before dying.
- *	Level 5 - Target (if at least in crit & has a mind) will revive as a Vassal for 8 minutes before dying.
+ *	Level 4 - Target (if at least in crit & has a mind) will revive as a Mute/Deaf Ghoul for 5 minutes before dying.
+ *	Level 5 - Target (if at least in crit & has a mind) will revive as a Ghoul for 8 minutes before dying.
  */
 
 // Copied from mesmerize.dm
@@ -68,12 +68,12 @@
 	name = "Level 4: Possession"
 	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/advanced/two
 	level_current = 4
-	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Vassals."
+	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Ghouls."
 	power_explanation = "Level 4: Possession:\n\
 		Click any person to, after a 4 second timer, Mesmerize them.\n\
 		This will completely immobilize, mute, and blind them for the next 13.5 seconds.\n\
-		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal.\n\
-		If you use this on a currently dead normal Vassal, they will will not suddenly cease to live as if a temporary Vassal.\n\
+		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul.\n\
+		If you use this on a currently dead normal Ghoul, they will will not suddenly cease to live as if a temporary Ghoul.\n\
 		Despite being Mute and Deaf, they will still have complete loyalty to you, until their death in 5 minutes upon use."
 	background_icon_state = "tremere_power_gold_off"
 	active_background_icon_state = "tremere_power_gold_on"
@@ -83,14 +83,14 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/advanced/two
 	name = "Level 5: Possession"
-	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Vassals."
+	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Ghouls."
 	level_current = 5
 	upgraded_power = null
 	power_explanation = "Level 5: Possession:\n\
 		Click any person to, after a 4 second timer, Mesmerize them.\n\
 		This will completely immobilize, mute, and blind them for the next 13.5 seconds.\n\
-		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal.\n\
-		If you use this on a currently dead normal Vassal, they will will not suddenly cease to live as if a temporary Vassal.\n\
+		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul.\n\
+		If you use this on a currently dead normal Ghoul, they will will not suddenly cease to live as if a temporary Ghoul.\n\
 		They will have complete loyalty to you, until their death in 8 minutes upon use."
 	bloodcost = 100
 	cooldown_time = 2 MINUTES
@@ -101,7 +101,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/selected_target = target_atom
-	if((IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT) && !owner.Adjacent(selected_target))
+	if((IS_GHOUL(selected_target) || selected_target.stat >= SOFT_CRIT) && !owner.Adjacent(selected_target))
 		owner.balloon_alert(owner, "out of range.")
 		return FALSE
 	return TRUE
@@ -112,12 +112,12 @@
 	var/mob/living/user = owner
 	if(target.stat != CONSCIOUS && level_current >= 4)
 		if(user.Adjacent(target))
-			attempt_vassalize(target, user)
-		else 
-			owner.balloon_alert(owner, "too far to vassalize!")
+			attempt_ghoulize(target, user)
+		else
+			owner.balloon_alert(owner, "too far to ghoulize!")
 		return
-	else if(IS_VASSAL(target))
-		owner.balloon_alert(owner, "vassal cant be revived")
+	else if(IS_GHOUL(target))
+		owner.balloon_alert(owner, "ghoul cant be revived")
 		return
 	attempt_mesmerize(target, user)
 
@@ -158,17 +158,17 @@
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
 		owner.balloon_alert(owner, "[target] snapped out of their trance.")
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/dominate/proc/attempt_vassalize(mob/living/target, mob/living/user)
-	var/datum/antagonist/vassal/is_vassal = IS_VASSAL(target)
-	if(!bloodsuckerdatum_power.can_make_vassal(target))
-		owner.balloon_alert(owner, "not a valid target for vassalization!.")
+/datum/action/cooldown/bloodsucker/targeted/tremere/dominate/proc/attempt_ghoulize(mob/living/target, mob/living/user)
+	var/datum/antagonist/ghoul/is_ghoul = IS_GHOUL(target)
+	if(!bloodsuckerdatum_power.can_make_ghoul(target))
+		owner.balloon_alert(owner, "not a valid target for ghoulization!.")
 		return FALSE
 
-	owner.balloon_alert(owner, "attempting to vassalize.")
+	owner.balloon_alert(owner, "attempting to ghoulize.")
 	if(!do_after(user, 6 SECONDS, target, NONE, TRUE))
 		return FALSE
 
-	if(is_vassal?.master == bloodsuckerdatum_power)
+	if(is_ghoul?.master == bloodsuckerdatum_power)
 		if(target.stat != DEAD)
 			owner.balloon_alert(owner, "not dead!")
 			return FALSE
@@ -179,8 +179,8 @@
 		target.revive(ADMIN_HEAL_ALL)
 		return FALSE
 
-	if(!bloodsuckerdatum_power.make_vassal(target))
-		owner.balloon_alert(owner, "not a valid target for vassalization!.")
+	if(!bloodsuckerdatum_power.make_ghoul(target))
+		owner.balloon_alert(owner, "not a valid target for ghoulization!.")
 		return
 
 	/*if(IS_MONSTERHUNTER(target))
@@ -190,8 +190,8 @@
 	to_chat(user, span_warning("We revive [target]!"))
 	target.mind.grab_ghost()
 	target.revive(ADMIN_HEAL_ALL)
-	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
-	vassaldatum.special_type = TREMERE_VASSAL //don't turn them into a favorite please
+	var/datum/antagonist/ghoul/ghouldatum = target.mind.has_antag_datum(/datum/antagonist/ghoul)
+	ghouldatum.special_type = TREMERE_GHOUL //don't turn them into a favorite please
 	var/living_time = (1 MINUTES) * level_current
 	if(level_current <= 4)
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
@@ -200,9 +200,9 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/proc/end_possession(mob/living/user)
-	if(!IS_VASSAL(user) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT))
+	if(!IS_GHOUL(user) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT))
 		return
 	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
-	user.mind.remove_antag_datum(/datum/antagonist/vassal)
+	user.mind.remove_antag_datum(/datum/antagonist/ghoul)
 	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
 	user.death()
