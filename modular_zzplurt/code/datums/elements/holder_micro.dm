@@ -107,16 +107,24 @@
 	righthand_file = null
 	slot_flags = ITEM_SLOT_FEET | ITEM_SLOT_HEAD | ITEM_SLOT_ID | ITEM_SLOT_BACK | ITEM_SLOT_NECK
 	w_class = null //handled by their size
-	ignore_abstract = TRUE // it didn't help still
 	item_flags = INEDIBLE_CLOTHING
 
 /obj/item/clothing/head/mob_holder/micro/Initialize(mapload, mob/living/M, worn_state, head_icon, lh_icon, rh_icon, worn_slot_flags)
 	. = ..()
-	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_POST_UNEQUIP), PROC_REF(update_visuals))
+	item_flags &= ~ABSTRACT
+	RegisterSignals(held_mob, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(update_visuals))
+	RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(update_visuals))
+
+/obj/item/clothing/head/mob_holder/micro/release(del_on_release, display_messages)
+	UnregisterSignal(held_mob, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
+	return ..()
 
 /obj/item/clothing/head/mob_holder/micro/Destroy()
-	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_POST_EQUIPPED))
-	return ..()
+	UnregisterSignal(src, COMSIG_ATOM_EXAMINE)
+	. = ..()
+
+/obj/item/clothing/head/mob_holder/micro/examine(mob/user)
+	return held_mob.examine(user)
 
 /obj/item/clothing/head/mob_holder/micro/container_resist_act(mob/living/resisting)
 	if(resisting.incapacitated())
