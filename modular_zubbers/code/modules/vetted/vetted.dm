@@ -57,11 +57,12 @@ GLOBAL_PROTECT(vetted_list)
 	for(var/ckey_ in GLOB.vetted_list_legacy)
 		add_player_to_sql(ckey_)
 
-/datum/player_rank_controller/vetted/proc/add_player_to_sql(ckey, admin_ckey)
+/datum/player_rank_controller/vetted/proc/add_player_to_sql(ckey, admin_mob)
 	var/ckey_admin = "Conversion Script"
-	var/client/admin_who_added_client = admin_ckey | "Conversion Script"
-	if(istype(admin_who_added_client, /client) && admin_who_added_client?.ckey)
-		ckey_admin = admin_who_added_client.ckey
+	var/mob/admin_who_added_client = admin_mob
+	if(istype(admin_who_added_client, /mob) && admin_who_added_client.client)
+		ckey_admin = admin_who_added_client?.client?.ckey
+
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
 		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added) \
 		 ON DUPLICATE KEY UPDATE admin_who_added = :admin_who_added",
