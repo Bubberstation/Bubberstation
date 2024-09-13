@@ -47,7 +47,7 @@
 		owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
 		return
 
-	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin)) // Coffins offer the BEST protection
+	if(is_valid_coffin()) // Coffins offer the BEST protection
 		if(owner.current.am_staked() && COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
 			to_chat(owner.current, span_userdanger("You are staked you will keep burning until it is removed! Remove the offending weapon from your heart before sleeping."))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
@@ -117,7 +117,7 @@
 	var/total_burn = getFireLoss()
 	// for waking up we ignore all other damage types so we don't get stuck
 	var/total_damage = total_brute + total_burn
-	var/is_in_coffin = istype(user.loc, /obj/structure/closet/crate/coffin)
+	var/is_in_coffin = is_valid_coffin()
 	if(total_burn >= user.maxHealth * 2)
 		return FALSE
 	if(SSsunlight.sunlight_active && is_in_coffin)
@@ -128,11 +128,12 @@
 			return FALSE
 		torpor_end()
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
-	if(istype(user.loc, /obj/structure/closet/crate/coffin))
+	var/damage_to_revive = owner.current.maxHealth * 0.5
+	if(is_valid_coffin())
 		if(total_damage <= 10)
 			torpor_end()
 	else
-		if(total_damage <= 10)
+		if(total_damage <= damage_to_revive)
 			torpor_end()
 	return TRUE
 
@@ -142,10 +143,13 @@
 		return
 	if(!silent)
 		to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
-	// Force them to go to sleep
-	owner.current.death()
+	// Force them to go to "sleep"
+	if(!is_valid_coffin())
+		owner.current.death()
+	else
+		owner.current.add_traits(list(TRAIT_FAKEDEATH, TRAIT_DEATHCOMA), BLOODSUCKER_TRAIT)
 	// Without this, you'll just keep dying while you recover.
-	owner.current.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_TORPOR), BLOODSUCKER_TRAIT)
+	owner.current.add_traits(list(TRAIT_TORPOR, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_DEATHCOMA), BLOODSUCKER_TRAIT)
 	owner.current.do_jitter_animation(2)
 	// Disable ALL Powers
 	DisableAllPowers()
@@ -154,11 +158,8 @@
 	if(!owner.current)
 		return
 	owner.current.grab_ghost()
-	owner.current.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_TORPOR), BLOODSUCKER_TRAIT)
-	var/revived = heal_vampire_organs()
+	owner.current.remove_traits(list(TRAIT_TORPOR, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA), BLOODSUCKER_TRAIT)
+	heal_vampire_organs()
 	if(message)
-		if(revived)
-			to_chat(owner.current, span_warning("You have recovered from Torpor."))
-		else
-			to_chat(owner.current, span_warning("You could not recover from Torpor"))
+		to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_EXIT_TORPOR)

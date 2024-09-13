@@ -169,7 +169,7 @@
 			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
 		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-		if(!istype(human_user.loc, /obj/structure/closet/crate/coffin))
+		if(!bloodsuckerdatum.is_valid_coffin())
 			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
 			return
 

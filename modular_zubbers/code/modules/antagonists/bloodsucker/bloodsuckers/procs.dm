@@ -72,7 +72,7 @@
 		to_chat(owner.current, span_notice("You have gained a rank. Join a Clan to spend it."))
 		return
 	// Spend Rank Immediately?
-	if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+	if(!is_valid_coffin())
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Vassal on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
@@ -286,11 +286,13 @@
 		to_chat(span_warning("You have regained your heart!"))
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
+	SIGNAL_HANDLER
 	if(!is_head(speaker) || speaker.stat >= UNCONSCIOUS)
 		return
 	return COMPONENT_IGNORE_CAN_SPEAK
 
 /datum/antagonist/bloodsucker/proc/shake_head_on_talk(mob/speaker, speech_args)
+	SIGNAL_HANDLER
 	var/obj/head = is_head(speaker)
 	if(!head)
 		return
@@ -328,3 +330,11 @@
 	else
 		to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
 		target.balloon_alert(target, "you have been staked!")
+
+/// is it something that is close enough to a coffin to let us heal/level up in it?
+/datum/antagonist/bloodsucker/proc/is_valid_coffin()
+	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+		return TRUE
+	// if(istype(owner.current.loc, /obj/structure/closet/crate/grave))
+	// 	return TRUE
+	return FALSE

@@ -140,7 +140,7 @@
 	var/bruteheal = min(bruteLoss, actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
-	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
+	var/amInCoffin = is_valid_coffin()
 	if (blood_over_cap > 0)
 		costMult += round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
 	if(amInCoffin && is_in_torpor())
@@ -212,7 +212,7 @@
  *
  *	This is called on Bloodsucker's Assign, and when they end Torpor.
  */
-/// TODO: Separate this into smaller functions
+// TODO: Separate this into smaller functions
 /datum/antagonist/bloodsucker/proc/heal_vampire_organs()
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 	// please don't poison or asphyxiate the immune
@@ -276,7 +276,7 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	if(!owner.current)
+	if(isnull(owner.current))
 		if(length(vassals))
 			free_all_vassals()
 		vassals = list()
