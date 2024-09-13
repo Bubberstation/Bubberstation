@@ -127,7 +127,7 @@
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
 					/obj/item/clothing/glasses/hud/ar/projector/security = 3,
-					/obj/item/clothing/mask/gas/sechailer/half_mask = 3,
+					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
 					/obj/item/clothing/head/playbunnyears/prisoner = 6,
 					/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,
