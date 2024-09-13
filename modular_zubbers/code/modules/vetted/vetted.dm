@@ -3,10 +3,11 @@ GLOBAL_PROTECT(vetted_list_legacy)
 GLOBAL_LIST_EMPTY(vetted_list)
 GLOBAL_PROTECT(vetted_list)
 /datum/controller/subsystem/player_ranks
-
+	var/loaded_vetted_sql = FALSE
 /datum/player_rank_controller/vetted
 	rank_title = "vetted user"
 	var/file_path_vetted
+
 /datum/controller/subsystem/player_ranks/proc/is_vetted(client/user, admin_bypass = TRUE)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_vetted(), expected 'client' and obtained '[user ? user.type : "null"]'.")
@@ -25,7 +26,8 @@ GLOBAL_PROTECT(vetted_list)
 
 /datum/controller/subsystem/player_ranks/proc/load_vetted_ckeys()
 	PROTECTED_PROC(TRUE)
-
+	if(loaded_vetted_sql)
+		return
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -46,7 +48,7 @@ GLOBAL_PROTECT(vetted_list)
 		var/ckey = ckey(query_load_player_rank.item[1])
 		vetted_controller.add_player(ckey)
 
-
+	loaded_vetted_sql = TRUE
 	return TRUE
 
 /datum/player_rank_controller/vetted/proc/convert_all_to_sql()
