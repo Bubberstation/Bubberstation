@@ -184,7 +184,7 @@
 	var/mob/living/carbon/human/victim
 	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
-		if(victim.ForceContractDisease(new_disease, FALSE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - Disease Transmission
+		if(victim.ForceContractDisease(new_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - Disease Transmission
 			message_admins("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [ADMIN_LOOKUPFLW(victim)]!")
 			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
 			announce_to_ghosts(victim)
@@ -335,7 +335,7 @@
 	var/mob/living/carbon/human/victim
 	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
-		if(victim.ForceContractDisease(advanced_disease, FALSE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - Disease Transmission
+		if(victim.ForceContractDisease(advanced_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - Disease Transmission
 			message_admins("Event triggered: Disease Outbreak: Advanced - starting with patient zero [ADMIN_LOOKUPFLW(victim)]! Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_game("Event triggered: Disease Outbreak: Advanced - starting with patient zero [key_name(victim)]. Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
