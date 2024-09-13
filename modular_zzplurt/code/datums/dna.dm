@@ -10,7 +10,8 @@
 
 /datum/dna/copy_dna(datum/dna/new_dna)
 	. = ..()
-	holder.adjust_mobsize(get_size(holder))
+	if(holder)
+		holder.adjust_mobsize(get_size(holder))
 
 /mob/living/carbon/set_species(datum/species/mrace, icon_update, pref_load, list/override_features, list/override_mutantparts, list/override_markings)
 	. = ..()
