@@ -394,7 +394,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel
 	cost = 1
-	route = PATH_BLADE
+	route = null // BUBBER EDIT - Removes ascensions
 	depth = 10
 
 /datum/heretic_knowledge/ultimate/blade_final

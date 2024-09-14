@@ -190,7 +190,7 @@
 	gain_text = "We dived down towards the crowd, his soul splitting off in search of greater venture \
 		for where the Ringleader had started the parade, I shall continue it unto the suns demise \
 		WITNESS MY ASCENSION, THE MOON SMILES ONCE MORE AND FOREVER MORE IT SHALL!"
-	route = PATH_MOON
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/moon_ascension
 
 /datum/heretic_knowledge/ultimate/moon_final/is_valid_sacrifice(mob/living/sacrifice)

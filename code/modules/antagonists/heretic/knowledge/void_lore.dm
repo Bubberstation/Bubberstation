@@ -180,7 +180,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/aoe/void_pull
 	cost = 1
-	route = PATH_VOID
+	route = null // BUBBER EDIT - Removes ascensions
 	depth = 10
 	research_tree_icon_frame = 6
 

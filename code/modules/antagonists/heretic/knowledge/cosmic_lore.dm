@@ -242,7 +242,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/conjure/cosmic_expansion
 	cost = 1
-	route = PATH_COSMIC
+	route = null // BUBBER EDIT - Removes ascensions
 	depth = 10
 
 /datum/heretic_knowledge/ultimate/cosmic_final

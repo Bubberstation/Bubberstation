@@ -194,7 +194,7 @@
 		/datum/heretic_knowledge/ultimate/lock_final,
 		/datum/heretic_knowledge/spell/apetra_vulnera,
 	)
-	route = PATH_LOCK
+	route = null // BUBBER EDIT - Removes ascensions
 	spell_to_add = /datum/action/cooldown/spell/caretaker
 	cost = 1
 	depth = 10

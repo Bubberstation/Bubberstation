@@ -303,7 +303,7 @@
 	)
 	mob_to_summon = /mob/living/basic/heretic_summon/stalker
 	cost = 1
-	route = PATH_FLESH
+	route = null // BUBBER EDIT - Removes ascensions
 	poll_ignore_define = POLL_IGNORE_STALKER
 	depth = 10
 

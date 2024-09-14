@@ -210,7 +210,7 @@
 		and becoming immune to many effects and dangers \ You will be able to rust almost anything upon ascending."
 	gain_text = "Champion of rust. Corruptor of steel. Fear the dark, for the RUSTBRINGER has come! \
 		The Blacksmith forges ahead! Rusted Hills, CALL MY NAME! WITNESS MY ASCENSION!"
-	route = PATH_RUST
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/rust_ascension
 	/// If TRUE, then immunities are currently active.
 	var/immunities_active = FALSE

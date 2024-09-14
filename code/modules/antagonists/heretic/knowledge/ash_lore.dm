@@ -201,7 +201,7 @@
 	gain_text = "The Watch is dead, the Nightwatcher burned with it. Yet his fire burns evermore, \
 		for the Nightwatcher brought forth the rite to mankind! His gaze continues, as now I am one with the flames, \
 		WITNESS MY ASCENSION, THE ASHY LANTERN BLAZES ONCE MORE!"
-	route = PATH_ASH
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/ash_ascension
 	/// A static list of all traits we apply on ascension.
 	var/static/list/traits_to_apply = list(

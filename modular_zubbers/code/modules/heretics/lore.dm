@@ -5,8 +5,3 @@
 	for (var/next in next_knowledge)
 		if (ispath(next, /datum/heretic_knowledge/ultimate))
 			next_knowledge -= next
-
-/datum/heretic_knowledge/ultimate/New()
-	. = ..()
-
-	route = null
