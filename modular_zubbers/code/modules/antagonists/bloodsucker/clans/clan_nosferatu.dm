@@ -24,8 +24,8 @@
 /datum/bloodsucker_clan/nosferatu/proc/on_mob_examine(datum/antagonist/bloodsucker/datum, datum/source, mob/examiner, examine_text)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/ogled = datum.owner.current
-	if(isliving(examiner) && examiner != ogled && !examiner.mob_mood.has_mood_of_category("nosferatu_examine"))
-		var/mob/living/ogler = examiner
+	var/mob/living/ogler = examiner
+	if(isliving(examiner) && examiner != ogled && !ogler.mob_mood.has_mood_of_category("nosferatu_examine"))
 		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled)
 		ogler.adjust_disgust(10)
 	examine_text += span_danger("[ogled.p_They()] look[ogled.p_s()] horrifically disfigured and grotesque, pale as a corpse, and [ogled.p_their()] body is covered in scars and burns.")
