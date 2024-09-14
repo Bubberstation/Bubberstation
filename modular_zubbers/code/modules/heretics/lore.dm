@@ -2,8 +2,9 @@
 /datum/heretic_knowledge/New()
 	. = ..()
 
-	for (var/datum/heretic_knowledge/ultimate/ascension in next_knowledge)
-		next_knowledge -= ascension
+	for (var/next in next_knowledge)
+		if (ispath(next, /datum/heretic_knowledge/ultimate))
+			next_knowledge -= next
 
 /datum/heretic_knowledge/ultimate/New()
 	. = ..()
