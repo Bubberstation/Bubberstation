@@ -128,7 +128,7 @@
 			return FALSE
 		torpor_end()
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
-	var/damage_to_revive = owner.current.maxHealth * 0.5
+	var/damage_to_revive = owner.current.maxHealth * 0.8
 	if(is_valid_coffin())
 		if(total_damage <= 10)
 			torpor_end()

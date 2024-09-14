@@ -196,30 +196,14 @@
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
-// /datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
-// 	if(heart?.resolve())
-// 		remove_signals_from_heart(current_mob)
-// 	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
-// 	heart = WEAKREF(organ)
-// 	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
-// 	RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
-
-// /datum/antagonist/bloodsucker/proc/remove_signals_from_heart(mob/living/carbon/human/current_mob)
-// 	var/organ = heart.resolve()
-// 	if(!organ)
-// 		return
-// 	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
-// 	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
-// 	heart = null
-
-/datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
+/datum/antagonist/bloodsucker/proc/on_organ_removal(mob/living/carbon/old_owner, obj/item/organ/organ, special)
 	SIGNAL_HANDLER
 	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ?.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
 		return
 	DisableAllPowers(TRUE)
 	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_end(TRUE)
-	to_chat(old_owner, span_userdanger("You have lost your [organ?.slot ? organ.slot : "heart"]!"))
+	to_chat(old_owner, span_userdanger("You have lost your [organ.slot]]!"))
 	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
@@ -279,10 +263,9 @@
 	power.level_current = level
 	power.on_power_upgrade()
 
-/datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
-	SIGNAL_HANDLER
+/datum/antagonist/bloodsucker/proc/regain_heart(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin)
 	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
-	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(coffin_dweller))
+	if(heart && !target.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(target))
 		to_chat(span_warning("You have regained your heart!"))
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
@@ -339,3 +322,31 @@
 	// if(istype(owner.current.loc, /obj/structure/closet/crate/grave))
 	// 	return TRUE
 	return FALSE
+
+/datum/antagonist/bloodsucker/proc/on_enter_coffin(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	check_limbs(COFFIN_HEAL_COST_MULT)
+	regain_heart(target, coffin)
+	if(!check_begin_torpor())
+		heal_vampire_organs()
+	if(user == owner.current && (user in coffin))
+		if(can_claim_coffin(coffin, get_area(coffin)))
+			INVOKE_ASYNC(src, PROC_REF(try_claim_coffin), coffin)
+		else
+			INVOKE_ASYNC(src, PROC_REF(try_coffin_level_up))
+
+/datum/antagonist/bloodsucker/proc/try_claim_coffin(obj/structure/closet/crate/coffin/coffin)
+	if(coffin.prompt_coffin_claim(src))
+		try_coffin_level_up()
+
+/datum/antagonist/bloodsucker/proc/try_coffin_level_up()
+	var/mob/living/carbon/user = owner.current
+	//Level up if possible.
+	if(!my_clan)
+		user.balloon_alert("enter a clan!")
+		to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
+	else if(!frenzied)
+		if(GetUnspentRank() < 1)
+			blood_level_gain()
+		// Level ups cost 30% of your max blood volume, which scales with your rank.
+		SpendRank(blood_cost = max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)

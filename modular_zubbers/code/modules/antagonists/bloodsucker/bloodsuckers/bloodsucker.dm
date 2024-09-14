@@ -120,8 +120,9 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
 	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(free_all_vassals))
-	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(regain_heart))
+	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
 	RegisterSignal(current_mob, COMSIG_MOB_STAKED, PROC_REF(on_staked))
+	RegisterSignal(current_mob, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_removal))
 	talking_head()
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
@@ -156,7 +157,8 @@
 		COMSIG_SPECIES_GAIN,
 		COMSIG_QDELETING,
 		COMSIG_ENTER_COFFIN,
-		COMSIG_MOB_STAKED
+		COMSIG_MOB_STAKED,
+		COMSIG_CARBON_LOSE_ORGAN
 	))
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
