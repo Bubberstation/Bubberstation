@@ -194,7 +194,7 @@
 		/datum/heretic_knowledge/ultimate/lock_final,
 		/datum/heretic_knowledge/spell/apetra_vulnera,
 	)
-	route = null // BUBBER EDIT - Removes ascensions
+	route = PATH_LOCK
 	spell_to_add = /datum/action/cooldown/spell/caretaker
 	cost = 1
 	depth = 10
@@ -213,7 +213,7 @@
 		My foes were the Locks and my blades were the Key! \
 		The Labyrinth will be Locked no more, and freedom will be ours! WITNESS US!"
 	required_atoms = list(/mob/living/carbon/human = 3)
-	route = PATH_LOCK
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/lock_ascension
 
 /datum/heretic_knowledge/ultimate/lock_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)

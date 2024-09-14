@@ -180,7 +180,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/aoe/void_pull
 	cost = 1
-	route = null // BUBBER EDIT - Removes ascensions
+	route = PATH_VOID
 	depth = 10
 	research_tree_icon_frame = 6
 
@@ -194,7 +194,7 @@
 	gain_text = "The world falls into darkness. I stand in an empty plane, small flakes of ice fall from the sky. \
 		The Aristocrat stands before me, beckoning. We will play a waltz to the whispers of dying reality, \
 		as the world is destroyed before our eyes. The void will return all to nothing, WITNESS MY ASCENSION!"
-	route = PATH_VOID
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/void_ascension
 	///soundloop for the void theme
 	var/datum/looping_sound/void_loop/sound_loop

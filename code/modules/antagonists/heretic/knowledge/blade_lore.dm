@@ -394,7 +394,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel
 	cost = 1
-	route = null // BUBBER EDIT - Removes ascensions
+	route = PATH_BLADE
 	depth = 10
 
 /datum/heretic_knowledge/ultimate/blade_final
@@ -408,7 +408,7 @@
 		Your Sundered Blades deal bonus damage and heal you on attack for a portion of the damage dealt."
 	gain_text = "The Torn Champion is freed! I will become the blade reunited, and with my greater ambition, \
 		I AM UNMATCHED! A STORM OF STEEL AND SILVER IS UPON US! WITNESS MY ASCENSION!"
-	route = PATH_BLADE
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/blade_ascension
 
 /datum/heretic_knowledge/ultimate/blade_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)

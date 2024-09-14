@@ -303,7 +303,7 @@
 	)
 	mob_to_summon = /mob/living/basic/heretic_summon/stalker
 	cost = 1
-	route = null // BUBBER EDIT - Removes ascensions
+	route = PATH_FLESH
 	poll_ignore_define = POLL_IGNORE_STALKER
 	depth = 10
 
@@ -321,7 +321,7 @@
 		Men of this world, hear me, for the time has come! The Marshal guides my army! \
 		Reality will bend to THE LORD OF THE NIGHT or be unraveled! WITNESS MY ASCENSION!"
 	required_atoms = list(/mob/living/carbon/human = 4)
-	route = PATH_FLESH
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/flesh_ascension
 
 /datum/heretic_knowledge/ultimate/flesh_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

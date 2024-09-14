@@ -242,7 +242,7 @@
 	)
 	spell_to_add = /datum/action/cooldown/spell/conjure/cosmic_expansion
 	cost = 1
-	route = null // BUBBER EDIT - Removes ascensions
+	route = PATH_COSMIC
 	depth = 10
 
 /datum/heretic_knowledge/ultimate/cosmic_final
@@ -260,7 +260,7 @@
 		I clung on to them, they would protect me, and I would protect it. \
 		I closed my eyes with my head laid against their form. I was safe. \
 		WITNESS MY ASCENSION!"
-	route = PATH_COSMIC
+	route = null // BUBBER EDIT - Removes ascensions
 	ascension_achievement = /datum/award/achievement/misc/cosmic_ascension
 	/// A static list of command we can use with our mob.
 	var/static/list/star_gazer_commands = list(
