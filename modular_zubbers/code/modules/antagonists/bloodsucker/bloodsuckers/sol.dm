@@ -76,7 +76,7 @@
  *
  * Torpor is triggered by:
  * - Being in a Coffin while Sol is on, dealt with by Sol
- * - Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by on_enter_coffin() [procs.dm]
+ * - Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by /datum/antagonist/bloodsucker/on_enter_coffin() [procs.dm]
  * - Death, dealt with by /HandleDeath()
  * Torpor is ended by:
  * - Having less than maxhealth * 0.8 Damage while OUTSIDE of your Coffin while it isnt Sol.
