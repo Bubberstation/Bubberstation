@@ -1,3 +1,4 @@
+// disables ascensions
 /datum/heretic_knowledge/New()
 	. = ..()
 
