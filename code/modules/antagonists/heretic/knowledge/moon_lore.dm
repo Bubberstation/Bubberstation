@@ -216,6 +216,7 @@
 	user.mind.add_antag_datum(/datum/antagonist/lunatic/master)
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
+	/* BUBBERSTATION CHANGE: REMOVES LUNATICS
 	// Roughly 1/5th of the station will rise up as lunatics to the heretic
 	for (var/mob/living/carbon/human/crewmate as anything in GLOB.human_list)
 		// How many lunatics we have
@@ -253,6 +254,7 @@
 		crewmate.equip_in_one_of_slots(amulet, slots, qdel_on_fail = FALSE)
 		crewmate.emote("laugh")
 		amount_of_lunatics += 1
+	*/
 
 /datum/heretic_knowledge/ultimate/moon_final/proc/on_life(mob/living/source, seconds_per_tick, times_fired)
 	var/obj/effect/moon_effect = /obj/effect/temp_visual/moon_ringleader

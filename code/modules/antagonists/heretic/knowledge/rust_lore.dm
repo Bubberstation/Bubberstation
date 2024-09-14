@@ -258,7 +258,7 @@
 		sound = 'sound/ambience/antag/heretic/ascend_rust.ogg',
 		color_override = "pink",
 	)
-	trigger(loc)
+	//trigger(loc) BUBBBERSTATION CHANGE: NO MORE MASS RUSTING.
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	user.client?.give_award(/datum/award/achievement/misc/rust_ascension, user)

@@ -223,10 +223,12 @@
 	)
 	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, MAGIC_TRAIT)
 
+	/*BUBBERSTATION CHANGE: NERFS VOID ASCENSION.
 	// Let's get this show on the road!
 	sound_loop = new(user, TRUE, TRUE)
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	BUBBERSTATION CHANGE END*/
 
 /datum/heretic_knowledge/ultimate/void_final/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	on_death() // Losing is pretty much dying. I think
