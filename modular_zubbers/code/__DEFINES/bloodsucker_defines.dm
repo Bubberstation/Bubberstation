@@ -169,6 +169,8 @@
 #define COMSIG_BLOODSUCKER_ENTERS_FRENZY "bloodsucker_enters_frenzy"
 ///Called when a Bloodsucker exits Frenzy
 #define COMSIG_BLOODSUCKER_EXITS_FRENZY "bloodsucker_exits_frenzy"
+/// COMSIG_ATOM_EXAMINE that correctly updates when the bloodsucker datum is moved
+#define COMSIG_BLOODSUCKER_EXAMINE "bloodsucker_examine"
 // Called when anyone enters the coffin
 #define COMSIG_ENTER_COFFIN "enter_coffin"
 #define COMSIG_MOB_STAKED "staked"

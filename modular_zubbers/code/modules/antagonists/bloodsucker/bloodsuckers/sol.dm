@@ -79,7 +79,7 @@
  * - Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by /datum/antagonist/bloodsucker/on_enter_coffin() [procs.dm]
  * - Death, dealt with by /HandleDeath()
  * Torpor is ended by:
- * - Having less than maxhealth * 0.8 Damage while OUTSIDE of your Coffin while it isnt Sol.
+ * - Having less than maxHealth * 0.8 damage while OUTSIDE of your Coffin while it isnt Sol.
  * - Having less than 10 Damage Combined while INSIDE of your Coffin while it isnt Sol.
  * - Sol being over, dealt with by /datum/controller/subsystem/processing/sunlight/process() [sol_subsystem.dm]
 */

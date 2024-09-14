@@ -6,6 +6,7 @@
 	var/vamp_examine = return_vamp_examine(examiner)
 	if(vamp_examine)
 		examine_text += vamp_examine
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_EXAMINE, source, examiner, examine_text)
 
 /datum/antagonist/bloodsucker/proc/BuyPowers(powers = list())
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)

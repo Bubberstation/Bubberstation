@@ -51,3 +51,10 @@
 	description = "<span class='boldwarning'>Something is making your mind feel... loose.</span>\n"
 	mood_change = -15
 	timeout = 5 MINUTES
+
+/datum/mood_event/nosferatu_examined
+	mood_change = -10
+	timeout = 5 MINUTES
+
+/datum/mood_event/nosferatu_examined/add_effects(target)
+	description = "You feel a deep sense of revulsion at the sight of [target]."

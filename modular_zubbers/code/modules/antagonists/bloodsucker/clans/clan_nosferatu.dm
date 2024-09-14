@@ -19,6 +19,16 @@
 	if(!bloodsuckerdatum.owner.current.has_quirk(/datum/quirk/badback))
 		bloodsuckerdatum.owner.current.add_quirk(/datum/quirk/badback)
 	bloodsuckerdatum.owner.current.add_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXAMINE, PROC_REF(on_mob_examine))
+
+/datum/bloodsucker_clan/nosferatu/proc/on_mob_examine(datum/antagonist/bloodsucker/datum, datum/source, mob/examiner, examine_text)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/ogled = datum.owner.current
+	if(isliving(examiner) && examiner != ogled && !examiner.mob_mood.has_mood_of_category("nosferatu_examine"))
+		var/mob/living/ogler = examiner
+		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled)
+		ogler.adjust_disgust(10)
+	examine_text += span_danger("[ogled.p_They()] look[ogled.p_s()] horrifically disfigured and grotesque, pale as a corpse, and [ogled.p_their()] body is covered in scars and burns.")
 
 /datum/bloodsucker_clan/nosferatu/Destroy(force)
 	var/datum/action/cooldown/bloodsucker/feed/suck = locate() in bloodsuckerdatum.powers
@@ -27,13 +37,8 @@
 	bloodsuckerdatum.give_starting_powers()
 	bloodsuckerdatum.owner.current.remove_quirk(/datum/quirk/badback)
 	bloodsuckerdatum.owner.current.remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
-	UnregisterSignal(bloodsuckerdatum, BLOODSUCKER_UPDATE_BLOOD)
+	UnregisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXAMINE)
 	return ..()
-
-/datum/bloodsucker_clan/nosferatu/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
-	. = ..()
-	if(!HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_NOBLOOD))
-		bloodsuckerdatum.owner.current.blood_volume = BLOOD_VOLUME_SURVIVE
 
 /datum/bloodsucker_clan/nosferatu/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/list/traits_to_add = list(TRAIT_VENTCRAWLER_NUDE, TRAIT_DISFIGURED, TRAIT_TRUE_NIGHT_VISION, TRAIT_KNOW_ENGI_WIRES, TRAIT_SILENT_FOOTSTEPS)
