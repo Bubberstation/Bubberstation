@@ -14,7 +14,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/ammo_casing/shotgun/incapacitate = 1,
 		/obj/item/ammo_casing/shotgun/incendiary = 1,
 		/obj/item/ammo_casing/shotgun/ion = 1,
-		/obj/item/ammo_casing/shotgun/laserslug = 1,
 		/obj/item/ammo_casing/shotgun/magnum = 1,
 		/obj/item/ammo_casing/shotgun/pulverizer = 1,
 		/obj/item/ammo_casing/shotgun/rubbershot = 100,

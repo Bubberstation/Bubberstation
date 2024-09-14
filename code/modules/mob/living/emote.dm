@@ -243,10 +243,13 @@
 	key = "kiss"
 	key_third_person = "kisses"
 	cooldown = 3 SECONDS
-
+/* BUBBER EDIT modularized - modular_zubbers\code\modules\mob\living\emote.dm
 /datum/emote/living/kiss/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
 	var/kiss_type = /obj/item/hand_item/kisser
+
+	if(HAS_TRAIT(user, TRAIT_SYNDIE_KISS))
+		kiss_type = /obj/item/hand_item/kisser/syndie
 
 	if(HAS_TRAIT(user, TRAIT_KISS_OF_DEATH))
 		kiss_type = /obj/item/hand_item/kisser/death
@@ -257,7 +260,7 @@
 	else
 		qdel(kiss_blower)
 		to_chat(user, span_warning("You're incapable of blowing a kiss in your current state."))
-
+*/
 /datum/emote/living/laugh
 	key = "laugh"
 	key_third_person = "laughs"
