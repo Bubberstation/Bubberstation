@@ -5171,7 +5171,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/kitchen,
 /turf/open/floor/iron/cafeteria,
-/area/station/hallway/secondary/service)
+/area/station/service/kitchen)
 "aAf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -34354,17 +34354,18 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "dxm" = (
-/obj/structure/microscope,
-/obj/item/petri_dish{
-	pixel_y = 10;
-	pixel_x = 6
+/obj/structure/microscope{
+	pixel_x = 5
 	},
 /obj/structure/table,
-/obj/item/petri_dish{
-	pixel_y = 15;
-	pixel_x = -5
-	},
 /obj/machinery/newscaster/directional/east,
+/obj/item/petri_dish/random{
+	pixel_x = -10
+	},
+/obj/item/petri_dish/oldstation{
+	pixel_x = -7;
+	pixel_y = 10
+	},
 /turf/open/floor/iron/smooth_corner,
 /area/station/science/cytology)
 "dxQ" = (
@@ -34519,9 +34520,11 @@
 /obj/item/soap{
 	pixel_y = -2
 	},
-/obj/item/clothing/gloves/latex,
 /obj/item/food/cheese/wedge,
 /obj/structure/closet/secure_closet/cytology,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/swab,
+/obj/item/storage/box/petridish,
 /turf/open/floor/iron/smooth_large,
 /area/station/science/cytology)
 "dFs" = (
@@ -36847,6 +36850,7 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness)
 "fmC" = (
+/obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
 /area/station/science/cytology)
 "fmP" = (
@@ -60181,6 +60185,7 @@
 	pixel_y = -1;
 	pixel_x = -1
 	},
+/obj/item/hand_labeler,
 /turf/open/floor/iron/smooth_large,
 /area/station/science/cytology)
 "vAv" = (
