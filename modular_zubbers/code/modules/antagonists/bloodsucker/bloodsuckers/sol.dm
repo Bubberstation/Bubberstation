@@ -76,12 +76,12 @@
  *
  * Torpor is triggered by:
  * - Being in a Coffin while Sol is on, dealt with by Sol
- * - Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by /closet/crate/coffin/close() [bloodsucker_coffin.dm]
+ * - Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by on_enter_coffin() [procs.dm]
  * - Death, dealt with by /HandleDeath()
  * Torpor is ended by:
- * - Having less than 10 Brute damage while OUTSIDE of your Coffin while it isnt Sol.
- * - Having less than 10 Brute & Burn Combined while INSIDE of your Coffin while it isnt Sol.
- * - Sol being over, dealt with by /sunlight/process() [bloodsucker_daylight.dm]
+ * - Having less than maxhealth * 0.8 Damage while OUTSIDE of your Coffin while it isnt Sol.
+ * - Having less than 10 Damage Combined while INSIDE of your Coffin while it isnt Sol.
+ * - Sol being over, dealt with by /datum/controller/subsystem/processing/sunlight/process() [sol_subsystem.dm]
 */
 /datum/antagonist/bloodsucker/proc/check_begin_torpor(SkipChecks = NONE)
 	var/mob/living/carbon/user = owner.current
