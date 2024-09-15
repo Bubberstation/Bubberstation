@@ -45,7 +45,7 @@
 		return FALSE
 	var/vassal_upgrade_cost = bloodsuckerdatum.get_level_cost()
 	// We don't have any ranks to spare? Let them upgrade... with enough Blood.
-	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to spend [vassal_upgrade_cost] Blood to Rank [vassaldatum.owner.current] up?"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to spend [vassal_upgrade_cost] blood thickening points to Rank [vassaldatum.owner.current] up?"))
 	var/static/list/rank_options = list(
 		"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
 		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
@@ -53,13 +53,14 @@
 	var/rank_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, rank_options, radius = 36, require_near = TRUE)
 	if(rank_response == "Yes")
 		var/has_rank = bloodsuckerdatum.GetUnspentRank() >= 1
-		if(!has_rank || !source.blood_level_gain())
-			to_chat(bloodsuckerdatum.owner.current, span_danger("You don't have any levels or enough Blood to Rank [vassaldatum.owner.current] up with."))
+		if(!has_rank && !source.blood_level_gain(FALSE))
+			to_chat(bloodsuckerdatum.owner.current, span_danger("You don't have any levels or enough blood thickening points to Rank [vassaldatum.owner.current] up with."))
 			return FALSE
-		vassal_level(vassaldatum.owner.current)
-	return TRUE
+		return vassal_level(vassaldatum)
+	return FALSE
 
-/datum/bloodsucker_clan/ventrue/proc/vassal_level(mob/living/carbon/human/target, datum/antagonist/vassal/favorite/vassaldatum)
+/datum/bloodsucker_clan/ventrue/proc/vassal_level(datum/antagonist/vassal/favorite/vassaldatum)
+	var/mob/living/carbon/human/target = vassaldatum.owner.current
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
 		"You have the opportunity to level up your Favorite Vassal. Select a power you wish them to recieve.",
 		"A wise master's hand is neccesary",
@@ -67,15 +68,18 @@
 	)
 	if(!vassaldatum.BuyPower(choice, vassaldatum.bloodsucker_powers))
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "[target] already knows [choice]!")
-		return
-	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [choice]!")
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [choice]!"))
-	target.balloon_alert(target, "learned [choice]!")
-	to_chat(target, span_notice("Your master taught you how to use [choice]!"))
+		return FALSE
+	var/name = initial(choice.name)
+	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [name]!")
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [name]!"))
+
+	target.balloon_alert(target, "learned [name]!")
+	to_chat(target, span_notice("Your master taught you how to use [name]!"))
 
 	vassaldatum.vassal_level++
 	finish_spend_rank(vassaldatum, TRUE, FALSE)
 	bloodsuckerify(vassaldatum.vassal_level)
+	return TRUE
 
 /datum/bloodsucker_clan/ventrue/proc/bloodsuckerify(mob/living/carbon/human/target, stage = 1)
 	var/datum/antagonist/vassal/favorite/vassaldatum = IS_FAVORITE_VASSAL(target)

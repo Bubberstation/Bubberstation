@@ -276,19 +276,21 @@
 
 	if(!options.len)
 		master.balloon_alert(master, "Out of Special Vassal slots!")
-		return
+		return FALSE
 
 	to_chat(master, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
 	var/vassal_response = show_radial_menu(master, servant, radial_display)
 	if(!vassal_response)
-		return
+		return FALSE
 	var/datum/antagonist/vassal/vassal_type = options[vassal_response]
 	// let's ask if the vassal themselves actually wants to be a favorite
+#ifndef BLOODSUCKER_TESTING
 	servant.balloon_alert(master, "asking...")
 	var/vassal_permission = tgui_alert(servant, initial(vassal_type.vassal_description), "Become a Special Vassal?", list("Yes", "No"), 1 MINUTES) == "Yes"
 	if(!vassal_permission)
 		servant.balloon_alert(master, "refused!")
 		return FALSE
+#endif
 	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !vassal_type)
 		return FALSE
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
