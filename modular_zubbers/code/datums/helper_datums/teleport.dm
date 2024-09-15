@@ -18,7 +18,7 @@
 
 /mob/living/carbon/proc/apply_teleportation_sickness(destination, channel)
 
-	if(channel == TELEPORT_CHANNEL_WORMHOLE || channel == TELEPORT_CHANNEL_FREE)
+	if(channel == TELEPORT_CHANNEL_WORMHOLE)
 		return FALSE
 
 	if(HAS_TRAIT(src,TRAIT_TELEPORTATION_TRAINED))
