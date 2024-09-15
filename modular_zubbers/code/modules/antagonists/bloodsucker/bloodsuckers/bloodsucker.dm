@@ -68,6 +68,8 @@
 
 	/// Used for Bloodsuckers gaining levels from drinking blood
 	var/blood_level_gain = 0
+	/// How many levels you can get from Sol
+	var/sol_levels = 3
 
 	///Blood display HUD
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
