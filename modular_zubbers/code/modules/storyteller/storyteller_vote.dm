@@ -21,7 +21,7 @@
 
 /datum/vote/storyteller/create_vote()
 	. = ..()
-	if((length(choices) == 1)) // Only one choice, no need to vote. Let's just auto-rotate it to the only remaining map because it would just happen anyways.
+	if((length(choices) == 1)) // Only one choice, no need to vote.
 		var/de_facto_winner = choices[1]
 		SSgamemode.storyteller_vote_result(de_facto_winner)
 		to_chat(world, span_boldannounce("The storyteller vote has been skipped because there is only one storyteller left to vote for. The storyteller has been changed to [de_facto_winner]."))
@@ -43,7 +43,7 @@
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
 Basically, this keeps track of what we voted last time to prevent it being voted on again.
-For this, we use the SSpersistence.last_storyteller variable
+For this, we use the SSpersistence.last_storyteller_type variable
 
 We then just check what the last one is in SSgamemode.storyteller_vote_choices()
 */
@@ -53,16 +53,16 @@ We then just check what the last one is in SSgamemode.storyteller_vote_choices()
 /// Extends collect_data
 /datum/controller/subsystem/persistence/collect_data()
 	. = ..()
-	collect_storyteller()
+	collect_storyteller_type()
 
-/// Loads last storyteller into last_storyteller
-/datum/controller/subsystem/persistence/proc/load_storyteller()
+/// Loads last storyteller into last_storyteller_type
+/datum/controller/subsystem/persistence/proc/load_storyteller_type()
 	if(!fexists(STORYTELLER_LAST_FILEPATH))
 		return
-	last_storyteller = file2text(STORYTELLER_LAST_FILEPATH)
+	last_storyteller_type = text2num(file2text(STORYTELLER_LAST_FILEPATH))
 
 /// Collects current storyteller and stores it
-/datum/controller/subsystem/persistence/proc/collect_storyteller()
-	rustg_file_write("[SSgamemode.storyteller.name]", STORYTELLER_LAST_FILEPATH)
+/datum/controller/subsystem/persistence/proc/collect_storyteller_type()
+	rustg_file_write("[SSgamemode.storyteller.storyteller_type]", STORYTELLER_LAST_FILEPATH)
 
 #undef STORYTELLER_LAST_FILEPATH

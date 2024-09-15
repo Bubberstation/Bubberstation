@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist
 	reoccurence_penalty_multiplier = 0
-	track = EVENT_TRACK_ROLESET
+	track = EVENT_TRACK_CREWSET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
 	var/protected_roles = list(
 		JOB_CAPTAIN,
@@ -35,9 +35,9 @@
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
 
 	/// How many baseline antags do we spawn
-	var/base_antags = 2
+	var/base_antags = 1
 	/// How many maximum antags can we spawn
-	var/maximum_antags = 6
+	var/maximum_antags = 2
 	/// Strict limit on how many antagonists of this type that should be in this round. 0 to ignore.
 	var/maximum_antags_global = 0
 	/// For this many players we'll add 1 up to the maximum antag amount
