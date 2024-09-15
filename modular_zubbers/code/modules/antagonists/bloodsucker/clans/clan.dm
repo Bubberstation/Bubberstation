@@ -11,7 +11,7 @@
 	var/name = CLAN_NONE
 	///Description of what the clan is, given when joining and through your antag UI.
 	var/description = "The Caitiff is as basic as you can get with Bloodsuckers. \n\
-		Entirely Clan-less, they are blissfully unaware of who they really are. \n\
+		Entirely without the help of a formal Clan, they are blissfully unaware of who they really are. \n\
 		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
 		The Favorite Vassal will gain the Brawn ability, to help in combat."
 	///The clan objective that is required to greentext.
