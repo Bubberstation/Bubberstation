@@ -179,13 +179,14 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher,
 		/obj/item/weldingtool/largetank/cyborg,
-		/obj/item/borg/cyborg_omnitool/engineering,// no upgrades to not replace engie borg
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/crowbar/cyborg/power,
 		/obj/item/multitool/cyborg,
 		/obj/item/analyzer,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/storage/bag/sheetsnatcher/borg,
+		/obj/item/storage/bag/xeno,
 		/obj/item/stack/cable_coil,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/borg/apparatus/organ_storage,
@@ -201,11 +202,10 @@
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 
-//TODO: Illegal science stuff
 	emag_modules = list(
 		/obj/item/borg/stun,
 		/obj/item/experimental_dash,
-		/obj/item/borg/apparatus/illegal //To replace malf printers
+		/obj/item/borg/apparatus/illegal //Get to work unit!
 	)
 	cyborg_base_icon = "research"
 	cyborg_icon_override = CYBORG_ICON_SCI

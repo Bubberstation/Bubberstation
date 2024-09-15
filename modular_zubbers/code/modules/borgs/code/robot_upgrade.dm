@@ -64,7 +64,7 @@
 /obj/item/borg/upgrade/experi_scanner
 	name = "Research cyborg BlueSpace Experi-Scanner"
 	desc = "An upgrade to the Research model cyborg's standard health analyzer."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_general"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH

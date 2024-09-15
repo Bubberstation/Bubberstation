@@ -106,7 +106,8 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-sci"
 
-//illegal teleporter module
+//Illegal experimental Dash module
+
 /obj/item/experimental_dash
 	name = "Exerimental Dash"
 	desc = "An experimental module that allows for dashing."
@@ -162,7 +163,7 @@
 	max_charges = 1
 	charge_rate = 15 SECONDS
 	beam_length = 1 SECONDS
-	recharge_sound = null
+	recharge_sound = 'sound/machines/ding.ogg'
 	beam_effect = "plasmabeam"
 
 /datum/action/innate/dash/research/GiveAction(mob/viewer) //this action should be invisible

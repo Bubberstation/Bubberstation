@@ -13,11 +13,12 @@
 	storable = list(
 					/obj/item/slime_extract,
 					/obj/item/slimepotion,
-					/obj/item/disk,
+					/obj/item/disk/data,
+					/obj/item/disk/design_disk,
+					/obj/item/disk/tech_disk,
 					/obj/item/computer_disk,//ordinance
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
-					/obj/item/assembly/prox_sensor,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/borg/upgrade/rename, //Basics not an upgrade
@@ -47,6 +48,9 @@
 					/obj/item/integrated_circuit,
 					/obj/item/circuit_component,
 					/obj/item/usb_cable,
+					/obj/item/assembly/signaler,
+					/obj/item/healthanalyzer, //To build medibots
+					/obj/item/assembly/prox_sensor,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
