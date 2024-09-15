@@ -33,7 +33,7 @@
 	voice_filter = null // performer masks expect to be talked through
 
 
-/obj/item/clothing/mask/gas/sechailer/half_mask
+/obj/item/clothing/mask/gas/half_mask
 	name = "tacticool neck gaiter"
 	desc = "A black techwear mask. Its low-profile design contrasts with the edge. Has a small respirator to be used with internals."
 	actions_types = list(/datum/action/item_action/adjust)
@@ -44,3 +44,6 @@
 	unique_death = 'modular_skyrat/master_files/sound/effects/hacked.ogg'
 	voice_filter = null
 	use_radio_beeps_tts = FALSE
+
+/obj/item/clothing/mask/gas/half_mask/ui_action_click(mob/user, action)
+	adjust_visor(user)

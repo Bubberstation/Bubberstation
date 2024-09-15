@@ -70,6 +70,11 @@
 	name = "Pocket Watch"
 	item_path = /obj/item/clothing/accessory/pocketwatch
 
+
+/datum/loadout_item/pocket_items/cigarettesleary
+	name = "Mindbreaker Cigs"
+	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+
 /*
 *	FLAGS
 */

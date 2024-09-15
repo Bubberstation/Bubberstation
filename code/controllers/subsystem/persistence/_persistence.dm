@@ -43,14 +43,12 @@ SUBSYSTEM_DEF(persistence)
 	/// List of persistene ids which piggy banks.
 	var/list/queued_broken_piggy_ids
 
-	var/list/broken_piggy_banks
-
 	var/rounds_since_engine_exploded = 0
 	var/delam_highscore = 0
 	var/tram_hits_this_round = 0
 	var/tram_hits_last_round = 0
 
-	var/last_storyteller = "" // BUBBER EDIT ADD: Storyteller votes
+	var/last_storyteller_type = "" // BUBBER EDIT ADD: Storyteller votes
 
 /datum/controller/subsystem/persistence/Initialize()
 	load_poly()
@@ -65,7 +63,7 @@ SUBSYSTEM_DEF(persistence)
 	load_panic_bunker() //SKYRAT EDIT ADDITION - PANICBUNKER
 	load_tram_counter()
 	load_adventures()
-	load_storyteller() //BUBBER EDIT ADD - Storyteller
+	load_storyteller_type() //BUBBER EDIT ADD - Storyteller
 	return SS_INIT_SUCCESS
 
 ///Collects all data to persist.

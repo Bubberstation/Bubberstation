@@ -356,6 +356,7 @@
 	if((shove_flags & SHOVE_KNOCKDOWN_BLOCKED) || !(shove_flags & SHOVE_BLOCKED))
 		return
 	target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
+	target.apply_status_effect(/datum/status_effect/next_shove_stuns)
 	target.visible_message(span_danger("[shover.name] shoves [target.name] onto \the [src]!"),
 		span_userdanger("You're shoved onto \the [src] by [shover.name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, shover)
 	to_chat(shover, span_danger("You shove [target.name] onto \the [src]!"))
@@ -792,16 +793,6 @@
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
-
-///Align the mob with the table when buckled.
-/obj/structure/table/optable/post_buckle_mob(mob/living/buckled)
-	. = ..()
-	buckled.pixel_y += 6
-
-///Disalign the mob with the table when unbuckled.
-/obj/structure/table/optable/post_unbuckle_mob(mob/living/buckled)
-	. = ..()
-	buckled.pixel_y -= 6
 
 /// Any mob that enters our tile will be marked as a potential patient. They will be turned into a patient if they lie down.
 /obj/structure/table/optable/proc/mark_patient(datum/source, mob/living/carbon/potential_patient)

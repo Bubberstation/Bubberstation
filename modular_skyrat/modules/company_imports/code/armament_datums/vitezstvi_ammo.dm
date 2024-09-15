@@ -10,11 +10,11 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
 	item_type = /obj/item/circuitboard/machine/ammo_workbench
 	cost = PAYCHECK_COMMAND * 5
-/* //BUBBER EDIT REMOVAL BEGIN
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
 	item_type = /obj/item/disk/ammo_workbench/advanced
 	cost = PAYCHECK_COMMAND * 5
-*/ //BUBBER EDIT REMOVAL END
+*/
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
 	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
@@ -109,7 +109,7 @@
 /*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_hollowpoint
 	item_type = /obj/item/ammo_box/c585trappiste/hollowpoint
-*/ //BUBBER EDIT REMOVAL: AMMO TYPES
+*/
 // Revolver speedloaders
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
@@ -131,7 +131,7 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
-/* //BUBBER EDIT REMOVAL BEGIN
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge
 
@@ -149,19 +149,19 @@
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/express_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/express
-
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/hunter_slug
 	item_type = /obj/item/ammo_box/advanced/s12gauge/hunter
-
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/flechettes
 	item_type = /obj/item/ammo_box/advanced/s12gauge/flechette
-
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/hornet_nest
 	item_type = /obj/item/ammo_box/advanced/s12gauge/beehive
-
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/stardust
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide
-*/ //BUBBER EDIT END
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
 
