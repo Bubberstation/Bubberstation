@@ -91,6 +91,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
+					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/playbunnyears/brig_phys = 3,
 					/obj/item/clothing/under/rank/security/brig_phys_bunnysuit = 3,
 					/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec = 3,
