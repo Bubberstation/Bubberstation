@@ -134,6 +134,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/storyteller_voted = FALSE
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
+	. = ..()
 	// Populate event pools
 	for(var/track in event_tracks)
 		event_pools[track] = list()
@@ -158,7 +159,7 @@ SUBSYSTEM_DEF(gamemode)
 			uncategorized += event
 			continue
 		event_pools[event.track] += event //Add it to the categorized event pools
-//	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
