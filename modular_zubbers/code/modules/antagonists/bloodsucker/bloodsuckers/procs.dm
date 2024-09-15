@@ -344,7 +344,7 @@
 	var/mob/living/carbon/user = owner.current
 	//Level up if possible.
 	if(!my_clan)
-		user.balloon_alert("enter a clan!")
+		user.balloon_alert(user, "enter a clan!")
 		to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
 	else if(!frenzied)
 		if(GetUnspentRank() < 1)

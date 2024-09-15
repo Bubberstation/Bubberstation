@@ -56,5 +56,6 @@
 	mood_change = -10
 	timeout = 5 MINUTES
 
-/datum/mood_event/nosferatu_examined/add_effects(target)
-	description = "You feel a deep sense of revulsion at the sight of [target]."
+/datum/mood_event/nosferatu_examined/add_effects(target, level = 0)
+	description = span_danger("You feel a deep sense of revulsion at the sight of [target].")
+	mood_change = level * -5

@@ -21,13 +21,13 @@
 	bloodsuckerdatum.owner.current.add_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXAMINE, PROC_REF(on_mob_examine))
 
-/datum/bloodsucker_clan/nosferatu/proc/on_mob_examine(datum/antagonist/bloodsucker/datum, datum/source, mob/examiner, examine_text)
+/datum/bloodsucker_clan/nosferatu/proc/on_mob_examine(datum/antagonist/bloodsucker/owner_datum, datum/source, mob/examiner, examine_text)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/ogled = datum.owner.current
+	var/mob/living/carbon/human/ogled = owner_datum.owner.current
 	var/mob/living/ogler = examiner
 	if(isliving(examiner) && examiner != ogled && !ogler.mob_mood.has_mood_of_category("nosferatu_examine"))
-		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled)
-		ogler.adjust_disgust(10)
+		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled, owner_datum.GetRank())
+		ogler.adjust_disgust(owner_datum.GetRank() * 5)
 	examine_text += span_danger("[ogled.p_They()] look[ogled.p_s()] horrifically disfigured and grotesque, pale as a corpse, and [ogled.p_their()] body is covered in scars and burns.")
 
 /datum/bloodsucker_clan/nosferatu/Destroy(force)
