@@ -43,9 +43,7 @@
 		return TRUE
 	if(!istype(vassaldatum))
 		return FALSE
-	var/vassal_upgrade_cost = bloodsuckerdatum.get_level_cost()
-	// We don't have any ranks to spare? Let them upgrade... with enough Blood.
-	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to spend [vassal_upgrade_cost] blood thickening points to Rank [vassaldatum.owner.current] up?"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to Rank [vassaldatum.owner.current] up? This will use a unspent Rank"))
 	var/static/list/rank_options = list(
 		"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
 		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
@@ -66,15 +64,17 @@
 		"A wise master's hand is neccesary",
 		VASSAL_CAN_BUY
 	)
-	if(!vassaldatum.BuyPower(choice, vassaldatum.bloodsucker_powers))
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "[target] already knows [choice]!")
+	if(!choice)
 		return FALSE
-	var/name = initial(choice.name)
-	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [name]!")
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [name]!"))
+	var/power_name = initial(choice.name)
+	if(!vassaldatum.BuyPower(choice, vassaldatum.bloodsucker_powers))
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "[target] already knows [power_name]!")
+		return FALSE
+	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [power_name]!")
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [power_name]!"))
 
-	target.balloon_alert(target, "learned [name]!")
-	to_chat(target, span_notice("Your master taught you how to use [name]!"))
+	target.balloon_alert(target, "learned [power_name]!")
+	to_chat(target, span_notice("Your master taught you how to use [power_name]!"))
 
 	vassaldatum.vassal_level++
 	finish_spend_rank(vassaldatum, TRUE, FALSE)
