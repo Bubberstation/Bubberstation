@@ -4,6 +4,7 @@ GLOBAL_LIST_EMPTY(vetted_list)
 GLOBAL_PROTECT(vetted_list)
 /datum/controller/subsystem/player_ranks
 	var/loaded_vetted_sql = FALSE
+
 /datum/player_rank_controller/vetted
 	rank_title = "vetted user"
 	var/file_path_vetted
@@ -33,20 +34,23 @@ GLOBAL_PROTECT(vetted_list)
 
 	vetted_controller = new
 	vetted_controller.file_path_vetted = "[global.config.directory]/bubbers/vetted_players.txt"
-	for(var/line in world.file2list(vetted_controller.file_path_vetted))
-		if(!line)
-			continue
+	ASYNC
+		for(var/line in world.file2list(vetted_controller.file_path_vetted))
+			if(!line)
+				continue
 
-		if(findtextEx(line, "#", 1, 2))
-			continue
+			if(findtextEx(line, "#", 1, 2))
+				continue
 
-		vetted_controller.add_player(line, legacy = TRUE)
-	var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT * FROM vetted_list")
-	if(!query_load_player_rank.warn_execute())
-		return
-	while(query_load_player_rank.NextRow())
-		var/ckey = ckey(query_load_player_rank.item[1])
-		vetted_controller.add_player(ckey)
+			vetted_controller.add_player(line, legacy = TRUE)
+			world.log << "Added [line] to vetted list."
+		var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT * FROM vetted_list")
+		if(!query_load_player_rank.warn_execute())
+			return
+		while(query_load_player_rank.NextRow())
+			var/ckey = ckey(query_load_player_rank.item[1])
+			vetted_controller.add_player(ckey)
+			world.log << "Added [ckey] to vetted list."
 
 	loaded_vetted_sql = TRUE
 	return TRUE
