@@ -17,6 +17,8 @@
 #define TAG_TEAM_ANTAG "team_antag"
 /// When one of the non-crewmember players becomes an antagonist
 #define TAG_OUTSIDER_ANTAG "away_antag"
+/// When the event is considered chaotic by a completely non-biased coder.
+#define TAG_CHAOTIC "chaotic"
 /// When the event impacts the overmap
 #define TAG_OVERMAP "overmap"
 /// When the event requires the station to be in space (meteors, carp)
@@ -24,11 +26,12 @@
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
 
+
 #define EVENT_TRACK_MUNDANE "Mundane"
 #define EVENT_TRACK_MODERATE "Moderate"
 #define EVENT_TRACK_MAJOR "Major"
-#define EVENT_TRACK_ROLESET "Roleset"
-#define EVENT_TRACK_OBJECTIVES "Objectives"
+#define EVENT_TRACK_CREWSET "Crewset"
+#define EVENT_TRACK_GHOSTSET "Ghostset"
 
 #define ALL_EVENTS "All"
 #define UNCATEGORIZED_EVENTS "Uncategorized"
@@ -42,53 +45,54 @@
 #define GAMEMODE_PANEL_MAIN "Main"
 #define GAMEMODE_PANEL_VARIABLES "Variables"
 
-#define MUNDANE_POINT_THRESHOLD 40
-#define MODERATE_POINT_THRESHOLD 70
-#define MAJOR_POINT_THRESHOLD 130
-#define ROLESET_POINT_THRESHOLD 150
-#define OBJECTIVES_POINT_THRESHOLD 170
+/// Reused for multipliers of the thresholds
+#define MUNDANE_POINT_THRESHOLD 1
+#define MODERATE_POINT_THRESHOLD 1
+#define MAJOR_POINT_THRESHOLD 1
+#define CREWSET_POINT_THRESHOLD 1
+#define GHOSTSET_POINT_THRESHOLD 1
 
-#define MUNDANE_MIN_POP 4
-#define MODERATE_MIN_POP 6
+#define MUNDANE_MIN_POP 0
+#define MODERATE_MIN_POP 0
 #define MAJOR_MIN_POP 20
-#define ROLESET_MIN_POP 20
-#define OBJECTIVES_MIN_POP 20
+#define CREWSET_MIN_POP 0
+#define GHOSTSET_MIN_POP 0
 
 /// Defines for how much pop do we need to stop applying a pop scalling penalty to event frequency.
 #define MUNDANE_POP_SCALE_THRESHOLD 25
 #define MODERATE_POP_SCALE_THRESHOLD 32
 #define MAJOR_POP_SCALE_THRESHOLD 45
-#define ROLESET_POP_SCALE_THRESHOLD 45
-#define OBJECTIVES_POP_SCALE_THRESHOLD 45
+#define CREWSET_POP_SCALE_THRESHOLD 45
+#define GHOSTSET_POP_SCALE_THRESHOLD 45
 
 /// The maximum penalty coming from pop scalling, when we're at the most minimum point, easing into 0 as we reach the SCALE_THRESHOLD. This is treated as a percentage.
 #define MUNDANE_POP_SCALE_PENALTY 35
 #define MODERATE_POP_SCALE_PENALTY 35
 #define MAJOR_POP_SCALE_PENALTY 35
-#define ROLESET_POP_SCALE_PENALTY 35
-#define OBJECTIVES_POP_SCALE_PENALTY 35
+#define CREWSET_POP_SCALE_PENALTY 35
+#define GHOSTSET_POP_SCALE_PENALTY 35
 
 #define STORYTELLER_VOTE "storyteller"
 
-#define EVENT_TRACKS list(EVENT_TRACK_MUNDANE, EVENT_TRACK_MODERATE, EVENT_TRACK_MAJOR, EVENT_TRACK_ROLESET, EVENT_TRACK_OBJECTIVES)
-#define EVENT_PANEL_TRACKS list(EVENT_TRACK_MUNDANE, EVENT_TRACK_MODERATE, EVENT_TRACK_MAJOR, EVENT_TRACK_ROLESET, EVENT_TRACK_OBJECTIVES, UNCATEGORIZED_EVENTS, ALL_EVENTS)
+#define EVENT_TRACKS list(EVENT_TRACK_MUNDANE, EVENT_TRACK_MODERATE, EVENT_TRACK_MAJOR, EVENT_TRACK_CREWSET, EVENT_TRACK_GHOSTSET)
+#define EVENT_PANEL_TRACKS list(EVENT_TRACK_MUNDANE, EVENT_TRACK_MODERATE, EVENT_TRACK_MAJOR, EVENT_TRACK_CREWSET, EVENT_TRACK_GHOSTSET, UNCATEGORIZED_EVENTS, ALL_EVENTS)
 
 /// Defines for the antag cap to prevent midround injections.
 #define ANTAG_CAP_FLAT 1
 #define ANTAG_CAP_DENOMINATOR 9
 
-///Below are defines for roundstart point pool. The GAIN ones are multiplied by ready population
+///Below are defines for the percentage fill that the tracks should start on. +- 50% of the value will be added
 #define ROUNDSTART_MUNDANE_BASE 20
-#define ROUNDSTART_MUNDANE_GAIN 0.5
 
 #define ROUNDSTART_MODERATE_BASE 35
-#define ROUNDSTART_MODERATE_GAIN 1.2
 
 #define ROUNDSTART_MAJOR_BASE 40
-#define ROUNDSTART_MAJOR_GAIN 2
 
-#define ROUNDSTART_ROLESET_BASE 60
-#define ROUNDSTART_ROLESET_GAIN 4
+#define ROUNDSTART_CREWSET_BASE 60
 
-#define ROUNDSTART_OBJECTIVES_BASE 40
-#define ROUNDSTART_OBJECTIVES_GAIN 2
+#define ROUNDSTART_GHOSTSET_BASE 40
+
+/// Storyteller types below, basically prevents several intense teller rounds in a row
+#define STORYTELLER_TYPE_ALWAYS_AVAILABLE 0
+#define STORYTELLER_TYPE_CALM 1
+#define STORYTELLER_TYPE_INTENSE 2

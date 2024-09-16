@@ -9,9 +9,11 @@
 		/obj/item/fish/lanternfish = 5,
 		/obj/item/fish/zipzap = 5,
 		/obj/item/fish/clownfish/lube = 3,
+		/obj/structure/mystery_box/fishing = 1,
 	)
 	fish_counts = list(
 		/obj/item/fish/clownfish/lube = 2,
+		/obj/structure/mystery_box/fishing = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 5
 	explosive_malus = TRUE
@@ -178,7 +180,6 @@
 		new_traits |= pick_weight(weighted_traits)
 	caught_fish.inherit_traits(new_traits)
 	caught_fish.randomize_size_and_weight(deviation = 0.3)
-	caught_fish.progenitors = full_capitalize(caught_fish.name)
 	return caught_fish
 
 

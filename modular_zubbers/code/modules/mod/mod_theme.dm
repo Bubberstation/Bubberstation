@@ -59,6 +59,12 @@
 	acid = 100
 	wound = 15
 
+/datum/mod_theme/asset_protection/set_skin(obj/item/mod/control/mod, skin)
+	. = ..()
+	var/parts = mod.get_parts()
+	for(var/obj/item/part as anything in parts + mod)
+		part.worn_icon_digi = 'modular_zubbers/icons/mob/clothing/modsuit/mod.dmi'
+
 /datum/mod_theme/mining/New()
 	variants += list(
 		"imp" = list(
