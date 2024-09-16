@@ -108,6 +108,8 @@
 #define BP_CAN_USE_TRANSFORMED (1<<2)
 /// This Power can be used with a stake in you
 #define BP_CAN_USE_WHILE_STAKED (1<<4)
+/// This Power can be used while heartless
+#define BP_CAN_USE_HEARTLESS (1<<5)
 
 /// This Power can be purchased by Bloodsuckers
 #define BLOODSUCKER_CAN_BUY (1<<0)

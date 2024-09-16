@@ -129,7 +129,7 @@
 		return FALSE
 	if(!isliving(user))
 		return FALSE
-	if(bloodsuckerdatum_power && !owner.get_organ_slot(ORGAN_SLOT_HEART))
+	if(!(bloodsucker_check_flags & BP_CAN_USE_HEARTLESS) && bloodsuckerdatum_power && !owner.get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_warning("To channel your powers you need a heart!"))
 		return FALSE
 	if(isbrain(user))

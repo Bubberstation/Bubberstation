@@ -81,7 +81,6 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(mob/target)
 	. = ..()
 	charges = get_max_charges()
-	owner.balloon_alert(owner, "you start thaumaturgy")
 	toggle_blood_shield(TRUE)
 	return TRUE
 

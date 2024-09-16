@@ -17,7 +17,7 @@
 	)
 	level_current = -1 // scales itself based on your actual level, since you always have it
 	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN
-	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CAN_USE_WHILE_STAKED
+	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CAN_USE_WHILE_STAKED|BP_CAN_USE_HEARTLESS
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
@@ -81,6 +81,8 @@
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref?.resolve()
 	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
+	if(!blood_taken)
+		return
 	if(isnull(feed_target) && blood_taken)
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
 	else
