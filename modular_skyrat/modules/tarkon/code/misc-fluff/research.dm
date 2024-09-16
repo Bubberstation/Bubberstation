@@ -27,7 +27,11 @@
 	design_ids = list(
 		"mod_plating_tarkon",
 		"arcs",
-		"rcd_tarkon"
+		"rcd_tarkon", //BUBBER EDIT (comma)
+		"powerator_tarkon",//BUBBER EDIT Addition start
+		"cargoconsole_tarkon",
+		"bountypad_tarkon", 
+		"bountyconsole_tarkon"//BUBBER EDIT Addition end
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
@@ -80,7 +84,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
-
+	
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
@@ -176,3 +180,4 @@
 		qdel(research_notes)
 		return
 	return ..()
+
