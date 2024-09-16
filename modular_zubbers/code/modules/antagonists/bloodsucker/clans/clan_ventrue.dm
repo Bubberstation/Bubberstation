@@ -43,15 +43,16 @@
 		return TRUE
 	if(!istype(vassaldatum))
 		return FALSE
-	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to Rank [vassaldatum.owner.current] up? This will use a unspent Rank"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to Rank [vassaldatum.owner.current] up?"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("This will use [bloodsuckerdatum.GetUnspentRank() >= 1 ? "a unspent Rank" : "[bloodsuckerdatum.get_level_cost()] Blood Thickening Points"]!"))
+
 	var/static/list/rank_options = list(
 		"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
 		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
 	)
 	var/rank_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, rank_options, radius = 36, require_near = TRUE)
 	if(rank_response == "Yes")
-		var/has_rank = bloodsuckerdatum.GetUnspentRank() >= 1
-		if(!has_rank && !source.blood_level_gain(FALSE))
+		if(!bloodsuckerdatum.GetUnspentRank() >= 1 && !source.blood_level_gain(FALSE))
 			to_chat(bloodsuckerdatum.owner.current, span_danger("You don't have any levels or enough blood thickening points to Rank [vassaldatum.owner.current] up with."))
 			return FALSE
 		return vassal_level(vassaldatum)
@@ -62,7 +63,8 @@
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
 		"You have the opportunity to level up your Favorite Vassal. Select a power you wish them to recieve.",
 		"A wise master's hand is neccesary",
-		VASSAL_CAN_BUY
+		VASSAL_CAN_BUY,
+		vassaldatum.bloodsucker_powers
 	)
 	if(!choice)
 		return FALSE
@@ -78,11 +80,12 @@
 
 	vassaldatum.vassal_level++
 	finish_spend_rank(vassaldatum, TRUE, FALSE)
-	bloodsuckerify(vassaldatum.vassal_level)
+	bloodsuckerify(vassaldatum)
 	return TRUE
 
-/datum/bloodsucker_clan/ventrue/proc/bloodsuckerify(mob/living/carbon/human/target, stage = 1)
-	var/datum/antagonist/vassal/favorite/vassaldatum = IS_FAVORITE_VASSAL(target)
+/datum/bloodsucker_clan/ventrue/proc/bloodsuckerify(datum/antagonist/vassal/favorite/vassaldatum)
+	var/mob/living/carbon/human/target = vassaldatum.owner.current
+	var/stage = vassaldatum.vassal_level
 	var/list/traits_possible = list(
 		list(TRAIT_COLDBLOODED, TRAIT_NOBREATH, TRAIT_AGEUSIA),
 		list(TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT, TRAIT_SLEEPIMMUNE, TRAIT_VIRUSIMMUNE),

@@ -162,14 +162,16 @@
 
 	return finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
-/datum/bloodsucker_clan/proc/choose_powers(message, title, can_buy = BLOODSUCKER_CAN_BUY)
+/datum/bloodsucker_clan/proc/choose_powers(message, title, can_buy = BLOODSUCKER_CAN_BUY, already_known = bloodsuckerdatum.powers)
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & can_buy && !(locate(power) in bloodsuckerdatum.powers))
+		if(initial(power.purchase_flags) & can_buy && !(locate(power) in already_known))
 			options[initial(power.name)] = power
+
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(!length(options))
 		return FALSE
+
 	var/choice = tgui_input_list(human_user, message, title, options)
 	return options[choice]
 
