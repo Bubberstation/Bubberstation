@@ -10,7 +10,7 @@
 
 	id = "teleportation_sickness"
 
-	duration = 30 SECONDS
+	duration = 15 SECONDS
 
 	alert_type = /atom/movable/screen/alert/status_effect/teleportation_sickness
 
