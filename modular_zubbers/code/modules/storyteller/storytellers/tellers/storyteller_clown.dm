@@ -16,9 +16,3 @@
 	threshold_major = 3200
 	threshold_crewset = 1000
 	threshold_ghostset = 3200
-
-// All the weights are the same to the clown
-/datum/storyteller/clown/calculate_weights(track)
-	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
-		if(event.weight)
-			event.calculated_weight = 1
