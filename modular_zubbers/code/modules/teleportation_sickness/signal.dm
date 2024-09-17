@@ -8,7 +8,7 @@
 
 /mob/living/carbon/proc/apply_teleportation_sickness(user,destination,channel) //We don't actually use the user here, but we need to include it so everything is in order.
 
-	if(channel == TELEPORT_CHANNEL_WORMHOLE)
+	if(channel == TELEPORT_CHANNEL_WORMHOLE || channel == TELEPORT_CHANNEL_QUANTUM)
 		return FALSE
 
 	if(HAS_TRAIT(src,TRAIT_TELEPORTATION_TRAINED))
