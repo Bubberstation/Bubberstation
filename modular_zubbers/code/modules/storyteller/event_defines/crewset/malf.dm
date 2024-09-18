@@ -1,12 +1,13 @@
 
 /datum/round_event_control/antagonist/solo/malf
-	name = "Malfunctioning AI"
+	name = "Malfunctioning AI Midround"
 
 	base_antags = 1
 	maximum_antags = 1
 	maximum_antags_global = 1
 
 	min_players = 20
+	roundstart = FALSE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
@@ -18,6 +19,8 @@
 	return GLOB.ai_list
 
 /datum/round_event_control/antagonist/solo/malf/roundstart
+	name = "Malfunctioning AI"
+
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
 	weight = 10
