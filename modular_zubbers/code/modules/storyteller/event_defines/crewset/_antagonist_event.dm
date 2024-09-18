@@ -63,11 +63,13 @@
 		if(initial(iterating_job.restricted_antagonists))
 			restricted_roles |= initial(iterating_job.title)
 
-/datum/round_event_control/antagonist/can_spawn_event(popchecks = TRUE, allow_magic)
+/datum/round_event_control/antagonist/can_spawn_event(players_amt, allow_magic = FALSE, popchecks = TRUE)
 	. = ..()
 	if(!.)
 		return
 	if(!roundstart && !SSgamemode.can_inject_antags())
+		return FALSE
+	if(!get_antag_amount())
 		return FALSE
 	var/list/candidates = get_candidates()
 	if(candidates.len < get_minimum_candidates())
@@ -94,12 +96,12 @@
 		for(var/datum/antagonist/existing_antagonist as anything in GLOB.antagonists)
 			if(QDELETED(existing_antagonist) || QDELETED(existing_antagonist.owner) || QDELETED(existing_antagonist.owner.current)) //This feels messy, but it just werks.
 				continue
-			if(!istype(existing_antagonist,antag_datum)) //Obviously ignore other antagonists.
+			if(!istype(existing_antagonist, antag_datum)) //Obviously ignore other antagonists.
 				continue
 			antag_slots_left-- //Slot is occupied.
 			if(antag_slots_left <= 0) //No point in checking anymore.
 				break
-		amount = min(amount,antag_slots_left)
+		amount = min(amount, antag_slots_left)
 
 	return min(amount, maximum_antags)
 
