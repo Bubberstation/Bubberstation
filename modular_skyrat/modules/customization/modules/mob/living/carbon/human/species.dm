@@ -85,6 +85,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/list/features = ..()
 	return features
 
+/datum/species/golemolem
+	always_customizable = TRUE
+
 /**
  * Returns a list of mutant_bodyparts
  *
