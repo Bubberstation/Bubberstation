@@ -9,7 +9,7 @@
 
 /obj/machinery/research/anomaly_refinery/examine(mob/user)
 	. = ..()
-	. += span_notice("Usage of the machine will increase the bomb range requirement for the next experiment, however this diminishes with time.")
+	. += span_notice("Usage of the machine will increase the bomb range requirement for the next experiment.")
 	. += span_notice("Requires <b>[display_power(REFINERY_ANOMALY_POWER_REQUIREMENT)]</b> of power in the network to use.")
 	. += span_notice("Each core refinement takes <b>[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]</b> to complete.")
 
