@@ -81,8 +81,9 @@
 					/obj/item/bodypart/leg/right/robot,
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
-					/obj/item/borg/upgrade/ai, //Shell makeing
+					/obj/item/borg/upgrade/ai, //Shell making
 					)
+
 /obj/item/borg/apparatus/illegal/examine()
 	. = ..()
 	if(stored)
@@ -95,21 +96,35 @@
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/tank)
 
-/obj/item/robot_model/syndicatejack/New(...)
+/obj/item/borg/apparatus/tank_manipulator/update_overlays()
 	. = ..()
-	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+	var/mutable_appearance/arm = mutable_appearance(icon = icon, icon_state = "borg_beaker_apparatus")
+	if(stored)
+		stored.pixel_x = 0
+		stored.pixel_y = 0
+		var/mutable_appearance/stored_copy = new /mutable_appearance(stored)
+		stored_copy.layer = FLOAT_LAYER
+		stored_copy.plane = FLOAT_PLANE
+		. += stored_copy
+	else
+		arm.pixel_y = arm.pixel_y - 5
+	. += arm
 
-/obj/item/robot_model/ninja_saboteur/New(...)
-	. = ..()
+/obj/item/robot_model/syndicatejack/Initialize(mapload)
 	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+	. = ..()
 
-/obj/item/robot_model/engineering/New(...)
-	. = ..()
+/obj/item/robot_model/ninja_saboteur/Initialize(mapload)
 	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+	. = ..()
 
-/obj/item/robot_model/saboteur/New(...)
-	. = ..()
+/obj/item/robot_model/engineering/Initialize(mapload)
 	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+	. = ..()
+
+/obj/item/robot_model/saboteur/Initialize(mapload)
+	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+	. = ..()
 
 /obj/item/borg/apparatus/sheet_manipulator/Initialize()
 	. = ..()

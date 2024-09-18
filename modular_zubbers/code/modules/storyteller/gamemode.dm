@@ -134,6 +134,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/storyteller_voted = FALSE
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
+	. = ..()
 	// Populate event pools
 	for(var/track in event_tracks)
 		event_pools[track] = list()
@@ -158,7 +159,7 @@ SUBSYSTEM_DEF(gamemode)
 			uncategorized += event
 			continue
 		event_pools[event.track] += event //Add it to the categorized event pools
-//	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
@@ -204,13 +205,13 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
 	if(isnull(storyteller))
 		return 0
-	if(storyteller.antag_divisor == 0)
+	if(!storyteller.antag_divisor)
 		return 0
-	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew,sec_crew*1.5),ANTAG_CAP_FLAT))
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew ,sec_crew * 1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
-	return (get_antag_cap() > length(GLOB.antagonists))
+	return (get_antag_cap() > length(GLOB.current_living_antags))
 
 /// Gets candidates for antagonist roles.
 
