@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/loot_grasp
 
 	name = "Grasp of Looting"
-	desc = "Your mansus grasp allows you to instantly kill a living creature with 10% or less remaining life, \
+	desc = "Your mansus grasp allows you to instantly kill a humanoid with 10% or less remaining life, or a living being with 20% or less remaining life, \
 	and has a chance to grant special bonus loot on successful kill, based on the power of the mob. \
 	Additionally, secondary attack allows you to instantly break open any secure lockers, closets, or crates, \
 	spilling out the contents and having a chance to grant special bonus loot."
@@ -38,7 +38,14 @@
 	var/datum/antagonist/heretic/heretic_datum = source.mind?.has_antag_datum(/datum/antagonist/heretic)
 	var/is_ascended = heretic_datum?.ascended
 
-	if(target.stat != DEAD && target.health <= target.maxHealth * (is_ascended ? 0.25 : 0.1) && target.death(FALSE)) //Culling strike.
+
+	var/culling_amount = 0.2
+	if(is_ascended)
+		culling_amount = 0.3
+	else if(ishuman(target))
+		culling_amount = 0.1
+
+	if(target.stat != DEAD && target.health <= target.maxHealth * culling_amount && target.death(FALSE)) //Culling strike.
 		target.balloon_alert(source, "culling strike!")
 		log_combat(source, target, "killed via culling strike")
 		target.investigate_log("has been killed by culling strike.", INVESTIGATE_DEATHS)
@@ -108,8 +115,9 @@
 		var/obj/structure/closet/loot_crate = target
 		if(loot_crate.locked && loot_crate.secure && !loot_crate.broken && length(loot_crate.req_access) > 0)
 			loot_crate.bust_open()
-			var/turf/T = get_turf(loot_crate)
-			if(T) //Could be destroyed or some nonsense.
-				create_loot(T,1,3,FALSE)
+			if(loot_crate.is_maploaded) //God damn exploiters.
+				var/turf/T = get_turf(loot_crate)
+				if(T) //Could be destroyed or some nonsense.
+					create_loot(T,1,3,FALSE)
 
 	return COMPONENT_USE_HAND

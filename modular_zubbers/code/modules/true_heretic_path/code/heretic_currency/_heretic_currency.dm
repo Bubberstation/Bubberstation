@@ -1,5 +1,3 @@
-
-
 GLOBAL_LIST_INIT(heretical_affixes_blacklist,list(
 	/datum/fantasy_affix/summoning = TRUE,
 	/datum/fantasy_affix/curse_of_polymorph = TRUE,
