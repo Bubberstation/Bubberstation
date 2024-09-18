@@ -40,10 +40,23 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 
+	//Same stats as a captain's sabre, minus the blockchance (25 as opposed to captain's 50)
 	force = 20
+	throwforce = 10
+	wound_bonus = 10
+	bare_wound_bonus = 25
+	armour_penetration = 25
+
 	block_chance = 25
 
+	sharpness = SHARP_EDGED
+
+	block_sound = 'sound/weapons/parry.ogg'
+	hitsound = 'sound/weapons/rapierhit.ogg'
+
 	var/upgraded = FALSE
+
+	COOLDOWN_DECLARE(self_use_cooldown)
 
 /obj/item/melee/sickly_blade/exile/upgrade/apply_fantasy_bonuses(bonus)
 	bonus = abs(bonus) //Means that negative modifiers are also treated as positive.
@@ -93,12 +106,6 @@
 		else
 			current_user.cause_hallucination(/datum/hallucination/chat, "elder's insanity sword hallucination")
 
-/obj/item/melee/sickly_blade/exile/upgrade/examine(mob/user)
-	. = ..()
-	if(!check_usability(user))
-		return
-	. += span_velvet("Or can you?")
-
 /obj/item/melee/sickly_blade/exile/upgrade/afterattack(atom/target, mob/user, click_parameters)
 	. = ..()
 	if(!isliving(user))
@@ -112,28 +119,7 @@
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.mob_mood)
-			living_target.mob_mood.set_sanity(living_target.mob_mood - 5)
-
-/obj/item/melee/sickly_blade/exile/upgrade/attack_self(mob/user)
-
-	if(!isliving(user))
-		return
-
-	var/mob/living/living_user = user
-
-	if(!living_user.mob_mood)
-		return
-
-	living_user.visible_message(
-		span_warning("[user] attempts to shatter the blade, but the blade shatters their mind instead!"),
-		span_danger("You attempt to shatter the blade, but the blade shatters your mind instead!")
-	)
-
-	living_user.mob_mood.set_sanity(SANITY_INSANE)
-	living_user.Knockdown(2 SECONDS)
-	living_user.set_jitter_if_lower(10 SECONDS)
-	living_user.emote("scream")
-
+			living_target.mob_mood.set_sanity(living_target.mob_mood - round(force/4))
 
 /obj/item/melee/sickly_blade/exile/upgrade/check_usability(mob/living/user)
-	return TRUE
+	return FALSE
