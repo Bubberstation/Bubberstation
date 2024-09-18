@@ -15,7 +15,7 @@
 	. = ..()
 	design_ids += list(
 		"bs_experi_scanner",
-		"cyborg_bs_experi_scanner",
+		"bs_experi_scanner_cyborg",
 	)
 
 /datum/techweb_node/ai_laws/New()
