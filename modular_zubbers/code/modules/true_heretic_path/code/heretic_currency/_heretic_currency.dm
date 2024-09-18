@@ -26,6 +26,13 @@ GLOBAL_LIST_INIT(heretical_prefixes,generate_heretical_affixes(AFFIX_PREFIX))
 
 	return
 
+/proc/generate_heretical_quality()
+	// https://www.desmos.com/calculator/8qkyp8enui
+	var/rng = rand(1,100)
+	if(rng == 100)
+		return 6
+	return min(round(-6 + (rng * 0.056) ** 1.4,5),1)
+
 /obj/item/heretic_currency
 	icon = 'modular_zubbers/code/modules/true_heretic_path/icons/heretic_currency.dmi'
 

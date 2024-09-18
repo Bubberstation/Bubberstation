@@ -47,7 +47,7 @@
 	if(desired_suffix)
 		found_component.affixes += new desired_suffix.type
 
-	found_component.quality = found_component.random_quality()
+	found_component.quality = generate_heretical_quality()
 
 	found_component.modify()
 

@@ -25,7 +25,7 @@
 
 	found_component.unmodify()
 
-	found_component.quality = found_component.random_quality()
+	found_component.quality = generate_heretical_quality()
 
 	found_component.modify()
 

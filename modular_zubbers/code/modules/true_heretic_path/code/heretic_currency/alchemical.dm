@@ -44,6 +44,6 @@
 		return
 
 	desired_affix = new desired_affix.type
-	target.AddComponent(/datum/component/fantasy, null, list(desired_affix), FALSE, FALSE)
+	target.AddComponent(/datum/component/fantasy, generate_heretical_quality(), list(desired_affix), FALSE, FALSE)
 	target.balloon_alert(user, "[src] applied!")
 	qdel(src)
