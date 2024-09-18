@@ -35,6 +35,8 @@
 		. += "The gripper currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
+//To build funny little gadgets
+
 /obj/item/borg/apparatus/circuit_sci
 	name = "Research circuit assembly gripper"
 	desc = "A complex grasping tool used for working with circuitry."
@@ -51,6 +53,7 @@
 					/obj/item/assembly/signaler,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/assembly/prox_sensor,
+					/obj/item/electronics,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
@@ -71,7 +74,7 @@
 	icon_state = "connector"
 	storable = list(
 					/obj/item/mmi,
-					/obj/item/assembly/flash, //to build borgs,
+					/obj/item/assembly, //unrestricted assembly building
 					/obj/item/bodypart/arm/left/robot,
 					/obj/item/bodypart/arm/right/robot,
 					/obj/item/bodypart/leg/left/robot,

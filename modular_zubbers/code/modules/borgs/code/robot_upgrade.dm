@@ -52,7 +52,6 @@
 	. = ..()
 	model_type += /obj/item/robot_model/sci
 	model_flags += BORG_MODEL_RESEARCH
-	items_to_remove = list(/obj/item/surgical_drapes)
 
 // Engineering BRPED
 /obj/item/borg/upgrade/rped/Initialize()

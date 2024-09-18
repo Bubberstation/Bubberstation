@@ -175,3 +175,19 @@
 //No more ghetto
 /obj/item/screwdriver/cyborg/power
 	sharpness = NONE
+
+//Research cyborg omnitool
+
+/obj/item/borg/cyborg_omnitool/research
+	name = "research omni-toolset"
+	desc = "A set of engineering tools with a addition of tools to allow synthetic repairs."
+
+	omni_toolkit = list(
+		/obj/item/surgical_drapes/cyborg,
+		/obj/item/bonesetter/cyborg,
+		/obj/item/wrench/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/screwdriver/cyborg,
+		/obj/item/crowbar/cyborg,
+		/obj/item/multitool/cyborg,
+	)

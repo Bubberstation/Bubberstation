@@ -179,9 +179,11 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher,
 		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/borg/cyborg_omnitool/research, // A modded engineering omitool.
+		/obj/item/borg/cyborghug/medical, // You can now hug and fix synths :3c
+		/obj/item/multitool/cyborg,
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/crowbar/cyborg/power,
-		/obj/item/multitool/cyborg,
 		/obj/item/analyzer,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/borg/apparatus/sheet_manipulator,
@@ -193,10 +195,8 @@
 		/obj/item/borg/apparatus/research,
 		/obj/item/borg/apparatus/circuit_sci,
 		/obj/item/storage/part_replacer/cyborg,
-		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
 		/obj/item/experi_scanner,
-		/obj/item/bonesetter,
 		/obj/item/stack/medical/gauze,
 		/obj/item/borg/apparatus/tank_manipulator,
 	)
