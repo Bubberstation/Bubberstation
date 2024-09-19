@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist
 	reoccurence_penalty_multiplier = 0
-	track = EVENT_TRACK_ROLESET
+	track = EVENT_TRACK_CREWSET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
 	var/protected_roles = list(
 		JOB_CAPTAIN,
@@ -35,9 +35,9 @@
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
 
 	/// How many baseline antags do we spawn
-	var/base_antags = 2
+	var/base_antags = 1
 	/// How many maximum antags can we spawn
-	var/maximum_antags = 6
+	var/maximum_antags = 2
 	/// Strict limit on how many antagonists of this type that should be in this round. 0 to ignore.
 	var/maximum_antags_global = 0
 	/// For this many players we'll add 1 up to the maximum antag amount
@@ -63,11 +63,13 @@
 		if(initial(iterating_job.restricted_antagonists))
 			restricted_roles |= initial(iterating_job.title)
 
-/datum/round_event_control/antagonist/can_spawn_event(popchecks = TRUE, allow_magic)
+/datum/round_event_control/antagonist/can_spawn_event(players_amt, allow_magic = FALSE, popchecks = TRUE)
 	. = ..()
 	if(!.)
 		return
 	if(!roundstart && !SSgamemode.can_inject_antags())
+		return FALSE
+	if(!get_antag_amount())
 		return FALSE
 	var/list/candidates = get_candidates()
 	if(candidates.len < get_minimum_candidates())
@@ -94,12 +96,12 @@
 		for(var/datum/antagonist/existing_antagonist as anything in GLOB.antagonists)
 			if(QDELETED(existing_antagonist) || QDELETED(existing_antagonist.owner) || QDELETED(existing_antagonist.owner.current)) //This feels messy, but it just werks.
 				continue
-			if(!istype(existing_antagonist,antag_datum)) //Obviously ignore other antagonists.
+			if(!istype(existing_antagonist, antag_datum)) //Obviously ignore other antagonists.
 				continue
 			antag_slots_left-- //Slot is occupied.
 			if(antag_slots_left <= 0) //No point in checking anymore.
 				break
-		amount = min(amount,antag_slots_left)
+		amount = min(amount, antag_slots_left)
 
 	return min(amount, maximum_antags)
 
