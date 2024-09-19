@@ -237,6 +237,28 @@
 	update_wearer_status()
 
 BUBBERSTATION CHANGE END */
+/**
+ * Called by medical scanners a simple summary of the status
+ *
+ * Arguments:
+ * * silent: If TRUE, will return blank if everything is fine
+ */
+/obj/item/clothing/under/proc/get_sensor_text(silent = TRUE)
+	if(has_sensor == BROKEN_SENSORS)
+		return "<font color='#ffcc33'>Non-Functional: Repair with cable coil</font>"
+
+	if(silent)
+		return ""
+
+	switch(has_sensor)
+		if(NO_SENSORS)
+			return "Not Present"
+
+		if(LOCKED_SENSORS)
+			return "Functional, Locked"
+
+		if(HAS_SENSORS)
+			return "Functional"
 
 // End suit sensor handling
 
