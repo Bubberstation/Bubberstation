@@ -1,5 +1,5 @@
 ///Uncomment this to enable testing of Bloodsucker features (such as vassalizing people with a mind instead of a client).
-// #define BLOODSUCKER_TESTING // if this isn't commented out, someone is a dumbfuck
+#define BLOODSUCKER_TESTING // if this isn't commented out, someone is a dumbfuck
 
 /// You have special interactions with Bloodsuckers
 #define TRAIT_BLOODSUCKER_HUNTER "bloodsucker_hunter"
@@ -118,6 +118,8 @@
 #define TREMERE_CAN_BUY (1<<2)
 /// This Power can be purchased by Vassals
 #define VASSAL_CAN_BUY (1<<3)
+/// If this Power can be bought if you already own it
+#define CAN_BUY_OWNED (1<<4)
 
 /// This Power is a Continuous Effect, processing every tick
 #define BP_CONTINUOUS_EFFECT (1<<0)

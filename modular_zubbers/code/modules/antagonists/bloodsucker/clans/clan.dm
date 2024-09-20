@@ -143,32 +143,30 @@
  * cost_rank - TRUE/FALSE on whether this will cost us a rank when we go through with it.
  * blood_cost - A number saying how much it costs to rank up.
  */
-/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, force)
+/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/human/target, cost_rank = TRUE, blood_cost, force)
 	SIGNAL_HANDLER
 
 	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, requires_coffin = TRUE)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
-		"You have the opportunity to grow more ancient. [blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]",
-		"Your Blood Thickens...",
-	)
-	if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
-		return FALSE
-	// Good to go - Buy Power!
-	purchase_choice(source, choice)
-	human_user.balloon_alert(human_user, "learned [initial(choice.name)]!")
-	to_chat(human_user, span_notice("You have learned how to use [initial(choice.name)]!"))
+	var/list/options = list_available_powers()
+	if(length(options))
+		var/datum/action/cooldown/bloodsucker/choice = choose_powers(
+			"You have the opportunity to grow more ancient. [blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]",
+			"Your Blood Thickens...",
+			options
+		)
+		if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
+			return FALSE
+		// Good to go - Buy Power!
+		purchase_choice(source, choice)
+		human_user.balloon_alert(human_user, "learned [initial(choice.name)]!")
+		to_chat(human_user, span_notice("You have learned how to use [initial(choice.name)]!"))
 
 	return finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
-/datum/bloodsucker_clan/proc/choose_powers(message, title, can_buy = BLOODSUCKER_CAN_BUY, already_known = bloodsuckerdatum.powers)
-	var/list/options = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & can_buy && !(locate(power) in already_known))
-			options[initial(power.name)] = power
-
+/datum/bloodsucker_clan/proc/choose_powers(message, title, options = list(), can_buy = BLOODSUCKER_CAN_BUY)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(!length(options))
 		return FALSE
@@ -190,9 +188,10 @@
 	if(requires_coffin && !istype(human_user.loc, /obj/structure/closet/crate/coffin))
 		to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
 		return FALSE
-	if(!(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY))
+	if(!(initial(power.purchase_flags) & buy_power_flags))
+		to_chat(human_user, span_notice("[initial(power.name)] is not available for purchase."))
 		return FALSE
-	if(locate(power) in bloodsuckerdatum.powers)
+	if(!(buy_power_flags & CAN_BUY_OWNED) && locate(power) in bloodsuckerdatum.powers)
 		to_chat(human_user, span_notice("You already know [initial(power.name)]!"))
 		return FALSE
 	return TRUE
@@ -240,10 +239,10 @@
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
 	return TRUE
 
-/datum/bloodsucker_clan/proc/level_up_options()
+/datum/bloodsucker_clan/proc/list_available_powers(already_known, powers_list = bloodsuckerdatum.all_bloodsucker_powers)
 	var/list/options = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in bloodsuckerdatum.powers))
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers_list)
+		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in already_known))
 			options[initial(power.name)] = power
 	return options
 

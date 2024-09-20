@@ -7,8 +7,8 @@
 	clan_objective = /datum/objective/bloodsucker/tremere_power
 	join_icon_state = "tremere"
 	join_description = "You will burn if you enter the Chapel, lose all default powers, \
-		but gain Blood Magic instead, powers you level up overtime."
-	buy_power_flags = TREMERE_CAN_BUY
+		but gain Blood Magic instead, stronger powers you level up overtime."
+	buy_power_flags = TREMERE_CAN_BUY|CAN_BUY_OWNED
 
 /datum/bloodsucker_clan/tremere/New(mob/living/carbon/user)
 	. = ..()
@@ -32,18 +32,14 @@
 		bloodsuckerdatum.owner.current.adjust_fire_stacks(2)
 		bloodsuckerdatum.owner.current.ignite_mob()
 
-
 /datum/bloodsucker_clan/tremere/level_up_powers(datum/antagonist/bloodsucker/source)
 	return
 
-/datum/bloodsucker_clan/tremere/level_up_options(datum/antagonist/bloodsucker/source)
-	var/list/options = list()
-	// get current powers to upgrade
-	for(var/datum/action/cooldown/bloodsucker/targeted/power as anything in bloodsuckerdatum.powers)
-		if(!(power.purchase_flags & buy_power_flags))
-			continue
-		options[initial(power.name)] = power
-	return options
+// redefine the default args
+/datum/bloodsucker_clan/tremere/list_available_powers(already_known, powers_list)
+	already_known = list()
+	powers_list = bloodsuckerdatum.powers
+	return ..()
 
 /datum/bloodsucker_clan/tremere/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
 	return purchased_power.upgrade_power()
