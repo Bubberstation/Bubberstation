@@ -48,9 +48,9 @@
 
 	//Cooldowns.
 	var/antag_event_delay = 5 MINUTES
-	var/mundane_event_delay = 10 MINUTES
+	var/mundane_event_delay = 5 MINUTES
 	var/moderate_event_delay = 30 MINUTES
-	var/major_event_delay = 90 MINUTES
+	var/major_event_delay = 60 MINUTES
 
 	COOLDOWN_DECLARE(antag_event_cooldown)
 	COOLDOWN_DECLARE(mundane_event_cooldown)
