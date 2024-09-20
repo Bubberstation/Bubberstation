@@ -85,9 +85,20 @@
 		return FALSE
 
 	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
-		if(find_and_buy_event_from_track(EVENT_TRACK_ROLESET))
-			COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
-			return TRUE
+
+		var/crew_role_chance = max(50,100 - (world.time/(60 MINUTES))*100) //Ghost roles will have an equal chance to spawn with crew roles at the 60 minute mark.
+
+		if(prob(crew_role_chance))
+			//Prioritize crew role.
+			if(find_and_buy_event_from_track(EVENT_TRACK_CREWSET) || find_and_buy_event_from_track(EVENT_TRACK_GHOSTSET))
+				COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
+				return TRUE
+		else
+			//Prioritize ghost role.
+			if(find_and_buy_event_from_track(EVENT_TRACK_GHOSTSET) || find_and_buy_event_from_track(EVENT_TRACK_CREWSET))
+				COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
+				return TRUE
+
 		if(COOLDOWN_FINISHED(src,major_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MAJOR))
 			COOLDOWN_START(src, major_event_cooldown, major_event_delay)
 			COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
