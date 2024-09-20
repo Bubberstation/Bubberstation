@@ -104,7 +104,7 @@
 			if(power.active)
 				power.DeactivatePower()
 
-/datum/antagonist/bloodsucker/proc/SpendRank(cost_rank = TRUE, blood_cost)
+/datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost)
 	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0))
 		return
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)

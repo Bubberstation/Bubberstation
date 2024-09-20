@@ -157,7 +157,7 @@
 	if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
 		return FALSE
 	// Good to go - Buy Power!
-	bloodsuckerdatum.BuyPower(choice)
+	purchase_choice(source, choice)
 	human_user.balloon_alert(human_user, "learned [initial(choice.name)]!")
 	to_chat(human_user, span_notice("You have learned how to use [initial(choice.name)]!"))
 
@@ -178,38 +178,24 @@
 
 /datum/bloodsucker_clan/proc/is_valid_choice(datum/action/cooldown/bloodsucker/power, cost_rank, blood_cost, requires_coffin)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	if(options.len < 1)
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
-	else
-		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient.[blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]", "Your Blood Thickens...", options)
-		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
-			return
-		if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
-			human_user.balloon_alert(human_user, "not enough blood!")
-			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
-			return
-		// Did you choose a power?
-		if(!choice || !options[choice])
-			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
-			return
-		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(locate(options[choice]) in bloodsuckerdatum.powers)
-			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
-			return
-		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-		if(!istype(human_user.loc, /obj/structure/closet/crate/coffin))
-			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
-			return
-
-		// Good to go - Buy Power!
-		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
-		bloodsuckerdatum.BuyPower(purchased_power)
-		human_user.balloon_alert(human_user, "learned [choice]!")
-		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
-
-	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
+	if(!power)
+		return FALSE
+	if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
+		return FALSE
+	if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
+		human_user.balloon_alert(human_user, "not enough blood!")
+		to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+		return FALSE
+	// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
+	if(requires_coffin && !istype(human_user.loc, /obj/structure/closet/crate/coffin))
+		to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
+		return FALSE
+	if(!(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY))
+		return FALSE
+	if(locate(power) in bloodsuckerdatum.powers)
+		to_chat(human_user, span_notice("You already know [initial(power.name)]!"))
+		return FALSE
+	return TRUE
 
 /datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
 	level_up_powers(source)
@@ -261,17 +247,11 @@
 			options[initial(power.name)] = power
 	return options
 
-// /datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
-// 	bloodsuckerdatum.LevelUpPowers()
+/datum/bloodsucker_clan/proc/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
+	return bloodsuckerdatum.BuyPower(purchased_power)
 
-// /datum/bloodsucker_clan/proc/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
-// 	if(purchased_power in bloodsuckerdatum.powers)
-// 		to_chat(source.owner.current, span_notice("You already have this power!"))
-// 		return
-// 	return bloodsuckerdatum.BuyPower(purchased_power)
-
-// /datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
-// 	bloodsuckerdatum.LevelUpPowers()
+/datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
+	bloodsuckerdatum.LevelUpPowers()
 /**
  * Called when we are trying to turn someone into a Favorite Vassal
  * args:
