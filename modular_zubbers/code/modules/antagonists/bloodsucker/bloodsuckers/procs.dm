@@ -361,7 +361,7 @@
 		if(GetUnspentRank() < 1)
 			blood_level_gain()
 		// Level ups cost 30% of your max blood volume, which scales with your rank.
-		SpendRank(blood_cost = max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+		SpendRank()
 
 /datum/antagonist/bloodsucker/proc/on_owner_deletion(mob/living/deleted_mob)
 	SIGNAL_HANDLER
