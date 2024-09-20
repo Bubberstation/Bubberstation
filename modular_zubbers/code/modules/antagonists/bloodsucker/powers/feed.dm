@@ -75,12 +75,16 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower(deactivate_flags)
+	// run before parent checks just to ensure that this always gets cleaned up
+	UnregisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
 	. = ..()
 	if(!.)
 		return
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref?.resolve()
-	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
+
 	if(!blood_taken)
 		return
 	if(isnull(feed_target) && blood_taken)
@@ -95,8 +99,6 @@
 	target_ref = null
 	warning_target_bloodvol = initial(warning_target_bloodvol)
 	blood_taken = initial(blood_taken)
-	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	notified_overfeeding = initial(notified_overfeeding)
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
@@ -288,7 +290,7 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
 		return FALSE
-	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 20))
+	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 5))
 		if(give_warnings)
 			owner.balloon_alert(owner, "too much garlic!")
 		return FALSE
@@ -302,6 +304,9 @@
 
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER
+	if(!active)
+		DeactivatePower()
+		return
 	if (!COOLDOWN_FINISHED(src, feed_movement_notify_cooldown))
 		return
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
