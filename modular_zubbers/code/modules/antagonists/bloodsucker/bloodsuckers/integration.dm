@@ -118,9 +118,3 @@
 	if(IS_BLOODSUCKER(src))
 		return TRUE
 	. =..()
-
-// prevents players being trapped in their brain, alive, yet limbless and voiceless
-/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
-	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
-	brain?.brainmob?.death()
-	. = ..()

@@ -352,8 +352,13 @@
 /datum/antagonist/bloodsucker/proc/talking_head()
 	var/mob/living/poor_fucker = owner.current
 	// Don't do anything if we're not actually inside a brain and a head
-	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
+	var/obj/item/bodypart/head/head = is_head(poor_fucker)
+	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
+	if(istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+		RegisterSignal(poor_fucker.loc, COMSIG_QDELETING, PROC_REF(on_brain_remove))
+		RegisterSignal(poor_fucker.loc, COMSIG_ORGAN_BODYPART_REMOVED, PROC_REF(on_brain_remove))
+
 	RegisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH, PROC_REF(allow_head_to_talk))
 	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
@@ -362,11 +367,27 @@
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS
 
-/datum/antagonist/bloodsucker/proc/cleanup_talking_head()
+/datum/antagonist/bloodsucker/proc/cleanup_talking_head(obj/item/organ/brain)
 	var/mob/living/poor_fucker = owner.current
-	UnregisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH)
-	UnregisterSignal(poor_fucker, COMSIG_MOB_SAY)
+	if(brain)
+		UnregisterSignal(brain, list(COMSIG_QDELETING, COMSIG_ORGAN_BODYPART_REMOVED))
+	// fucked up if this happens, but we're probably final deathed at this point
+	if(!poor_fucker)
+		return
+	UnregisterSignal(poor_fucker, list(COMSIG_MOB_TRY_SPEECH, COMSIG_MOB_SAY, COMSIG_QDELETING))
+	poor_fucker.death()
 	poor_fucker.speech_span = initial(poor_fucker.speech_span)
+
+/datum/antagonist/bloodsucker/proc/on_brain_remove(obj/item/organ/brain)
+	SIGNAL_HANDLER
+	cleanup_talking_head(brain)
+
+/datum/antagonist/bloodsucker/proc/on_brainmob_qdel()
+	SIGNAL_HANDLER
+	if(istype(owner.current.loc, /obj/item/organ/internal/brain))
+		cleanup_talking_head(owner.current.loc)
+	else
+		cleanup_talking_head()
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
@@ -374,19 +395,8 @@
 	// If we have no body, end here.
 	if(!owner.current || isbrain(owner.current))
 		return
-	UnregisterSignal(src, list(
-		COMSIG_BLOODSUCKER_ON_LIFETICK,
-		COMSIG_LIVING_REVIVE,
-		COMSIG_LIVING_LIFE,
-		COMSIG_LIVING_DEATH,
-	))
-	UnregisterSignal(SSsunlight, list(
-		COMSIG_SOL_RANKUP_BLOODSUCKERS,
-		COMSIG_SOL_NEAR_START,
-		COMSIG_SOL_END,
-		COMSIG_SOL_RISE_TICK,
-		COMSIG_SOL_WARNING_GIVEN,
-	))
+	unregister_body_signals()
+	unregister_sol_signals()
 	free_all_vassals()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))

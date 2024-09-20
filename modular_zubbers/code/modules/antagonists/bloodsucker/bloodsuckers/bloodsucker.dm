@@ -119,7 +119,7 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
-	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(free_all_vassals))
+	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_owner_deletion))
 	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
 	RegisterSignal(current_mob, COMSIG_MOB_STAKED, PROC_REF(on_staked))
 	RegisterSignal(current_mob, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_removal))
@@ -134,8 +134,6 @@
 		RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
 	if(ishuman(current_mob))
 		current_mob?.dna?.species.on_bloodsucker_gain(current_mob)
-		// check if we already somehow don't have a heart, if this is possible, something is fucked up.
-		on_organ_removal(null, current_mob)
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
@@ -150,16 +148,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(
-		COMSIG_LIVING_LIFE,
-		COMSIG_ATOM_EXAMINE,
-		COMSIG_LIVING_DEATH,
-		COMSIG_SPECIES_GAIN,
-		COMSIG_QDELETING,
-		COMSIG_ENTER_COFFIN,
-		COMSIG_MOB_STAKED,
-		COMSIG_CARBON_LOSE_ORGAN
-	))
+	unregister_body_signals()
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -251,6 +240,7 @@
 	free_all_vassals()
 	if(!owner?.current)
 		return
+	unregister_sol_signals()
 	if(is_head(owner.current))
 		cleanup_talking_head()
 	if(ishuman(owner.current))
@@ -258,6 +248,7 @@
 		user?.dna?.species.regenerate_organs(user, null, TRUE)
 	clear_powers_and_stats()
 	ventrue_sired = null
+	coffin?.unclaim_coffin(FALSE, TRUE)
 	return ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)

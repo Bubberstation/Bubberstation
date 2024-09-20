@@ -102,6 +102,9 @@
 	notified_overfeeding = initial(notified_overfeeding)
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
+	// if this happens this means that we didn't properly deactivate the power
+	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILIZED, FEED_TRAIT) || HAS_TRAIT_FROM(owner, TRAIT_MUTE, FEED_TRAIT))
+		DeactivatePower()
 	silent_feed = TRUE
 	var/mob/living/feed_target = target_ref?.resolve()
 	if(!feed_target)

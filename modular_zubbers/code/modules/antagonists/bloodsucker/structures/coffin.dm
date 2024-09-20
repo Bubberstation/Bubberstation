@@ -170,7 +170,7 @@
 				new /obj/effect/decal/cleanable/cobweb/cobweb2(T_Dirty)
 		new /obj/effect/decal/cleanable/dirt(T_Dirty)
 
-/obj/structure/closet/crate/proc/unclaim_coffin(manual = FALSE)
+/obj/structure/closet/crate/proc/unclaim_coffin(manual = FALSE, silent = FALSE)
 	// Unanchor it (If it hasn't been broken, anyway)
 	anchored = FALSE
 	if(!resident || !resident.mind)
@@ -184,10 +184,11 @@
 	for(var/obj/structure/bloodsucker/bloodsucker_structure in get_area(src))
 		if(bloodsucker_structure.owner == resident)
 			bloodsucker_structure.unbolt()
-	if(manual)
-		to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
-	else
-		to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
+	if(!silent)
+		if(manual)
+			to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
+		else
+			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
 

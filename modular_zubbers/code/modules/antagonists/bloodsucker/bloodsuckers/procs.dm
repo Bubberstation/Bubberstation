@@ -351,3 +351,33 @@
 			blood_level_gain()
 		// Level ups cost 30% of your max blood volume, which scales with your rank.
 		SpendRank(blood_cost = max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+
+/datum/antagonist/bloodsucker/proc/on_owner_deletion(mob/living/deleted_mob)
+	SIGNAL_HANDLER
+	free_all_vassals()
+	if(deleted_mob != owner.current)
+		return
+	if(is_head(deleted_mob))
+		on_brainmob_qdel()
+
+
+/datum/antagonist/bloodsucker/proc/unregister_body_signals()
+	UnregisterSignal(owner.current, list(
+		COMSIG_LIVING_LIFE,
+		COMSIG_ATOM_EXAMINE,
+		COMSIG_LIVING_DEATH,
+		COMSIG_SPECIES_GAIN,
+		COMSIG_QDELETING,
+		COMSIG_ENTER_COFFIN,
+		COMSIG_MOB_STAKED,
+		COMSIG_CARBON_LOSE_ORGAN
+	))
+
+/datum/antagonist/bloodsucker/proc/unregister_sol_signals()
+	UnregisterSignal(SSsunlight, list(
+		COMSIG_SOL_RANKUP_BLOODSUCKERS,
+		COMSIG_SOL_NEAR_START,
+		COMSIG_SOL_END,
+		COMSIG_SOL_RISE_TICK,
+		COMSIG_SOL_WARNING_GIVEN
+	))
