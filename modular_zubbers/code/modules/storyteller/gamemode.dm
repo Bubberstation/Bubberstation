@@ -782,6 +782,7 @@ SUBSYSTEM_DEF(gamemode)
 				if(last_points)
 					next = round((upper - lower) / last_points / STORYTELLER_WAIT_TIME * 40 / 6) / 10
 				next = max(next,round(src.breathing_room / 6)/10)
+				next = max(next,round(src.next_track_event_run[track] / 6)/10)
 				dat += "<tr style='vertical-align:top; background-color: [background_cl];'>"
 				dat += "<td>[track]</td>" //Track
 				dat += "<td>[percent]% ([lower]/[upper])</td>" //Progress
