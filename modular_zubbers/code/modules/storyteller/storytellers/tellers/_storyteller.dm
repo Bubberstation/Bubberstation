@@ -46,28 +46,21 @@
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
-	//Cooldowns.
-	var/antag_event_delay = 5 MINUTES
-	var/mundane_event_delay = 5 MINUTES
-	var/moderate_event_delay = 30 MINUTES
-	var/major_event_delay = 60 MINUTES
-
-	COOLDOWN_DECLARE(antag_event_cooldown)
-	COOLDOWN_DECLARE(mundane_event_cooldown)
-	COOLDOWN_DECLARE(moderate_event_cooldown)
-	COOLDOWN_DECLARE(major_event_cooldown)
-
-
-/datum/storyteller/New(...)
-	COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
-	COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
-	COOLDOWN_START(src, major_event_cooldown, major_event_delay)
-	. = ..()
+	//Prevents events from running for this long for that track only when any event is triggered.
+	var/list/track_event_delays = list(
+		EVENT_TRACK_MUNDANE = 0 MINUTES,
+		EVENT_TRACK_MODERATE = 10 MINUTES,
+		EVENT_TRACK_MAJOR = 30 MINUTES,
+		EVENT_TRACK_CREWSET = 5 MINUTES,
+		EVENT_TRACK_GHOSTSET = 5 MINUTES
+	)
 
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
 		return
-	add_points(delta_time)
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	if(mode.breathing_room <= 0)
+		add_points(delta_time)
 	handle_tracks()
 
 /// Add points to all tracks while respecting the multipliers.
@@ -79,42 +72,21 @@
 		mode.last_point_gains[track] = point_gain
 
 /// Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
+
+
 /datum/storyteller/proc/handle_tracks()
 
-	if(!COOLDOWN_FINISHED(src,antag_event_cooldown)) //Don't want to run an antag event then suddenly have meteors.
-		return FALSE
-
-	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
-
-		var/crew_role_chance = max(50,100 - (STATION_TIME_PASSED()/(60 MINUTES))*100) //Ghost roles will have an equal chance to spawn with crew roles at the 60 minute mark.
-
-		if(prob(crew_role_chance))
-			//Prioritize crew role.
-			if(find_and_buy_event_from_track(EVENT_TRACK_CREWSET) || find_and_buy_event_from_track(EVENT_TRACK_GHOSTSET))
-				COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
-				return TRUE
-		else
-			//Prioritize ghost role.
-			if(find_and_buy_event_from_track(EVENT_TRACK_GHOSTSET) || find_and_buy_event_from_track(EVENT_TRACK_CREWSET))
-				COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
-				return TRUE
-
-		if(COOLDOWN_FINISHED(src,major_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MAJOR))
-			COOLDOWN_START(src, major_event_cooldown, major_event_delay)
-			COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
-			COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
-			return TRUE
-
-	if(COOLDOWN_FINISHED(src,moderate_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MODERATE))
-		COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
-		COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
-		return TRUE
-
-	if(COOLDOWN_FINISHED(src,mundane_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MUNDANE))
-		COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
-		return TRUE
-
-	return FALSE
+	. = FALSE //Has return value for the roundstart loop
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	for(var/track in mode.event_track_points)
+		if(mode.event_track_points[track] < mode.point_thresholds[track])
+			continue
+		if(world.time < mode.next_track_event_run[track])
+			continue
+		if(!find_and_buy_event_from_track(track))
+			continue
+		mode.next_track_event_run[track] = world.time + src.track_event_delays[track]
+		. = TRUE
 
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/find_and_buy_event_from_track(track)
@@ -169,6 +141,7 @@
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
+	mode.breathing_room += bought_event.breathing_room_to_add
 
 /// Calculates the weights of the events from a passed track.
 /datum/storyteller/proc/calculate_weights(track)
