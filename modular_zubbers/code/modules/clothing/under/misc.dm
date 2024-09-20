@@ -741,3 +741,23 @@
 	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+/obj/item/clothing/under/costume/loincloth
+	name = "loincloth"
+	desc = "A simple leather covering. It's better than wearing nothing at least."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "loincloth"
+	body_parts_covered = GROIN
+	can_adjust = FALSE
+	has_sensor = NO_SENSORS
+
+/obj/item/clothing/under/costume/loincloth/sensor
+	has_sensor = HAS_SENSORS
+
+/obj/item/clothing/under/costume/loincloth/cloth
+	desc = "A simple cloth covering. It's better than wearing nothing at least."
+	icon_state = "loincloth_cloth"
+
+/obj/item/clothing/under/costume/loincloth/cloth/sensor
+	has_sensor = HAS_SENSORS

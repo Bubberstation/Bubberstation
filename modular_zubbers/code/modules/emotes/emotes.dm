@@ -96,3 +96,16 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/voice/moth/moth_flutter.ogg'
+
+/datum/emote/living/sigh_exasperated
+	key = "esigh" // short for exasperated sigh
+	key_third_person = "esighs"
+	message = "lets out an exasperated sigh."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/sigh_exasperated/get_sound(mob/living/user)
+	if(iscarbon(user))
+		if(user.gender == MALE)
+			return 'modular_zubbers/code/modules/emotes/sound/voice/male_sigh_exasperated.ogg'
+		return 'modular_zubbers/code/modules/emotes/sound/voice/female_sigh_exasperated.ogg'
+	return

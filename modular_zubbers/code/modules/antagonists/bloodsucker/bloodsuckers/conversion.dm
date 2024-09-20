@@ -37,7 +37,7 @@
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()
 	if(!master || (master == owner.current))
 		return TRUE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = master.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(master)
 	if(bloodsuckerdatum && bloodsuckerdatum.broke_masquerade)
 		//vassal stealing
 		return TRUE
@@ -51,14 +51,16 @@
  * conversion_target - The person converted.
  */
 /datum/antagonist/bloodsucker/proc/make_vassal(mob/living/conversion_target)
+#ifndef BLOODSUCKER_TESTING
 	if(!can_make_vassal(conversion_target))
 		return FALSE
+#endif
 	//Check if they used to be a Vassal and was stolen.
-	var/datum/antagonist/vassal/old_vassal = conversion_target.mind.has_antag_datum(/datum/antagonist/vassal)
+	var/datum/antagonist/vassal/old_vassal = IS_VASSAL(conversion_target)
 	if(old_vassal)
 		conversion_target.mind.remove_antag_datum(/datum/antagonist/vassal)
 
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	bloodsuckerdatum.SelectTitle(am_fledgling = FALSE)
 
 	//set the master, then give the datum.
