@@ -31,7 +31,7 @@
 
 /// Check Vassals and get their occupations
 /datum/objective/bloodsucker/proc/get_vassal_occupations()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum || !bloodsuckerdatum.vassals.len)
 		return FALSE
 	var/list/all_vassal_jobs = list()
@@ -70,7 +70,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.bloodsucker_lair_area)
 		return TRUE
 	return FALSE
@@ -83,8 +83,15 @@
 	name = "bloodsuckersurvive"
 	explanation_text = "Survive the entire shift without succumbing to Final Death."
 
-// WIN CONDITIONS?
-// Handled by parent
+/datum/objective/survive/bloodsucker/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/mind in owners)
+		var/datum/antagonist/bloodsucker/vamp = IS_BLOODSUCKER(mind.current)
+		if(!vamp)
+			return FALSE
+		if(!vamp.considered_alive(mind))
+			return FALSE
+	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -200,7 +207,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/gourmand/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	var/stolen_blood = bloodsuckerdatum.total_blood_drank
@@ -229,7 +236,7 @@
 /datum/objective/bloodsucker/kindred/check_completion()
 	if(!owner.current)
 		return FALSE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 
@@ -244,16 +251,19 @@
 /// Max out a Tremere Power - Tremere Clan objective
 /datum/objective/bloodsucker/tremere_power
 	name = "tremerepower"
+	var/power_level = TREMERE_OBJECTIVE_POWER_LEVEL
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
+	explanation_text = "Upgrade a Blood Magic power to level [power_level], remember that Vassalizing gives more Ranks!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	for(var/datum/action/cooldown/bloodsucker/targeted/tremere/tremere_powers in bloodsuckerdatum.powers)
-		if(tremere_powers.level_current >= 5)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
+	if(!bloodsuckerdatum)
+		return FALSE
+	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
+		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= power_level)
 			return TRUE
 	return FALSE
 
@@ -270,7 +280,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	for(var/datum/antagonist/bloodsucker/sired_vamp in GLOB.antagonists)
