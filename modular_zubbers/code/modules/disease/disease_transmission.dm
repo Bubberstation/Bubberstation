@@ -9,7 +9,6 @@
 	var/event_disease = FALSE
 	/// When this carrier was created
 	var/start_time
-	var/datum/weakref/debug_log_ref
 
 /datum/disease/proc/log_virus_debug(text)
 	if(!event_disease)
@@ -17,9 +16,6 @@
 	var/log_message = "VIRUS_DEBUG: P:[length(SSdisease.event_diseases)] [debug_id ? debug_id : "VIRUS_INIT"] [name]: [text]"
 	log_game(log_message)
 	log_public_file(log_message)
-	var/mob/debug_mob = debug_log_ref?.resolve()
-	if(debug_mob)
-		to_chat(debug_mob, span_yellowteamradio(log_message))
 
 /**
  *  Make virus visible to heath scanners

@@ -168,11 +168,6 @@
 	illness_type = new_disease.name
 	new_disease.event_disease = TRUE // BUBBER EDIT ADDITION - Disease Transmission
 
-	for(var/mob/player in GLOB.player_list)
-		if(player.ckey == "lt3")
-			new_disease.debug_log_ref = WEAKREF(player)
-			break
-
 	// BUBBER EDIT ADDITION START - Disease Transmission
 	var/to_infect = 3
 	if(length(GLOB.alive_player_list) > 65)
@@ -483,11 +478,6 @@
 		return
 
 	// BUBBER EDIT CHANGE START - Disease Transmission
-	for(var/mob/player in GLOB.player_list)
-		if(player.ckey == "lt3")
-			debug_log_ref = WEAKREF(player)
-			break
-
 	//incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	//properties["transmittable"] = rand(4,7)
 	//spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)

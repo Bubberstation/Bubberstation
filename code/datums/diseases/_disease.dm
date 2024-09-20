@@ -333,7 +333,7 @@
 	var/static/list/copy_vars = list("name", "visibility_flags", "disease_flags", "spread_flags", "form", "desc", "agent", "spread_text",
 									"cure_text", "max_stages", "stage_prob", "viable_mobtypes", "cures", "infectivity", "cure_chance",
 									"required_organ", "bypasses_immunity", "bypasses_disease_recovery", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
-									"infectable_biotypes", "process_dead", "event_disease", "debug_log_ref")
+									"infectable_biotypes", "process_dead", "event_disease")
 	var/datum/disease/D = copy_type ? new copy_type() : new type()
 	for(var/V in copy_vars)
 		var/val = vars[V]
