@@ -86,7 +86,7 @@
 
 	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
 
-		var/crew_role_chance = max(50,100 - (world.time/(60 MINUTES))*100) //Ghost roles will have an equal chance to spawn with crew roles at the 60 minute mark.
+		var/crew_role_chance = max(50,100 - (STATION_TIME_PASSED/(60 MINUTES))*100) //Ghost roles will have an equal chance to spawn with crew roles at the 60 minute mark.
 
 		if(prob(crew_role_chance))
 			//Prioritize crew role.
