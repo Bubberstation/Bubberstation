@@ -11,7 +11,7 @@
 	var/name = CLAN_NONE
 	///Description of what the clan is, given when joining and through your antag UI.
 	var/description = "The Caitiff is as basic as you can get with Bloodsuckers. \n\
-		Entirely Clan-less, they are blissfully unaware of who they really are. \n\
+		Entirely without the help of a formal Clan, they are blissfully unaware of who they really are. \n\
 		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
 		The Favorite Vassal will gain the Brawn ability, to help in combat."
 	///The clan objective that is required to greentext.
@@ -29,6 +29,7 @@
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
 	/// How much stamina armor we get in frenzy
 	var/frenzy_stamina_mod = 0.4
+	var/buy_power_flags = BLOODSUCKER_CAN_BUY
 	// what percentage of blood you need to spend to level up, divided by 100
 	var/level_cost = BLOODSUCKER_LEVELUP_PERCENTAGE
 
@@ -37,32 +38,32 @@
 	src.bloodsuckerdatum = owner_datum
 
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(handle_clan_life))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
 
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
 
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY, PROC_REF(on_enter_frenzy))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY, PROC_REF(on_exit_frenzy))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ENTERS_FRENZY, PROC_REF(on_enter_frenzy))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY, PROC_REF(on_exit_frenzy))
 
 	give_clan_objective()
 
 /datum/bloodsucker_clan/Destroy(force)
 	UnregisterSignal(bloodsuckerdatum, list(
 		COMSIG_BLOODSUCKER_ON_LIFETICK,
-		BLOODSUCKER_RANK_UP,
-		BLOODSUCKER_INTERACT_WITH_VASSAL,
-		BLOODSUCKER_MAKE_FAVORITE,
-		BLOODSUCKER_MADE_VASSAL,
-		BLOODSUCKER_EXIT_TORPOR,
-		BLOODSUCKER_FINAL_DEATH,
-		BLOODSUCKER_ENTERS_FRENZY,
-		BLOODSUCKER_EXITS_FRENZY,
+		COMSIG_BLOODSUCKER_RANK_UP,
+		COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL,
+		COMSIG_BLOODSUCKER_MAKE_FAVORITE,
+		COMSIG_BLOODSUCKER_MADE_VASSAL,
+		COMSIG_BLOODSUCKER_EXIT_TORPOR,
+		COMSIG_BLOODSUCKER_FINAL_DEATH,
+		COMSIG_BLOODSUCKER_ENTERS_FRENZY,
+		COMSIG_BLOODSUCKER_EXITS_FRENZY,
 	))
 	remove_clan_objective()
 	bloodsuckerdatum = null
@@ -177,27 +178,41 @@
 
 /datum/bloodsucker_clan/proc/is_valid_choice(datum/action/cooldown/bloodsucker/power, cost_rank, blood_cost, requires_coffin)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	if(!power)
-		return FALSE
-	if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
-		return FALSE
-	if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
-		human_user.balloon_alert(human_user, "not enough blood!")
-		to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
-		return FALSE
-	// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-	if(requires_coffin && !istype(human_user.loc, /obj/structure/closet/crate/coffin))
-		to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
-		return FALSE
-	if(!(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY))
-		return FALSE
-	if(locate(power) in bloodsuckerdatum.powers)
-		to_chat(human_user, span_notice("You already know [initial(power.name)]!"))
-		return FALSE
-	return TRUE
+	if(options.len < 1)
+		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
+	else
+		// Give them the UI to purchase a power.
+		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient.[blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]", "Your Blood Thickens...", options)
+		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
+		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
+			return
+		if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
+			human_user.balloon_alert(human_user, "not enough blood!")
+			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+			return
+		// Did you choose a power?
+		if(!choice || !options[choice])
+			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
+		if(locate(options[choice]) in bloodsuckerdatum.powers)
+			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
+		if(!istype(human_user.loc, /obj/structure/closet/crate/coffin))
+			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
+			return
+
+		// Good to go - Buy Power!
+		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
+		bloodsuckerdatum.BuyPower(purchased_power)
+		human_user.balloon_alert(human_user, "learned [choice]!")
+		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
+
+	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
-	bloodsuckerdatum.LevelUpPowers()
+	level_up_powers(source)
 	bloodsuckerdatum.bloodsucker_regen_rate += 0.05
 	bloodsuckerdatum.max_blood_volume += 100
 
@@ -239,6 +254,24 @@
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
 	return TRUE
 
+/datum/bloodsucker_clan/proc/level_up_options()
+	var/list/options = list()
+	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
+		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in bloodsuckerdatum.powers))
+			options[initial(power.name)] = power
+	return options
+
+// /datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
+// 	bloodsuckerdatum.LevelUpPowers()
+
+// /datum/bloodsucker_clan/proc/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
+// 	if(purchased_power in bloodsuckerdatum.powers)
+// 		to_chat(source.owner.current, span_notice("You already have this power!"))
+// 		return
+// 	return bloodsuckerdatum.BuyPower(purchased_power)
+
+// /datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
+// 	bloodsuckerdatum.LevelUpPowers()
 /**
  * Called when we are trying to turn someone into a Favorite Vassal
  * args:

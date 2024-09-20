@@ -21,7 +21,7 @@
 	. = ..()
 	if(!mind)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
 	if(!bloodsuckerdatum)
 		return
 	bloodsuckerdatum.AdjustBloodVolume(-amount)
@@ -55,7 +55,7 @@
 	. = ..()
 	if(!mind)
 		return ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
@@ -115,9 +115,3 @@
 	if(IS_BLOODSUCKER(src))
 		return TRUE
 	. =..()
-
-// prevents players being trapped in their brain, alive, yet limbless and voiceless
-/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
-	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
-	brain?.brainmob.death()
-	. = ..()

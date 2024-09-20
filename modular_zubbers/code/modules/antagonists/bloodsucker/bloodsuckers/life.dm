@@ -4,25 +4,31 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-	if(!owner)
+	if(isnull(owner) || isnull(owner.current))
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
-	if(isbrain(owner.current))
-		return
-	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+	life_always()
+	var/is_head = is_head(owner.current)
+	if(!is_head && owner.current.get_organ_slot(ORGAN_SLOT_HEART) && !am_staked())
+		life_active(is_head)
+
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
+
+/datum/antagonist/bloodsucker/proc/life_always(is_head = FALSE)
+	if(is_in_torpor())
 		check_end_torpor()
-	// Deduct Blood
-	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+	if(is_head)
+		return
+	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !is_in_torpor())
 		INVOKE_ASYNC(src, PROC_REF(AdjustBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
+	INVOKE_ASYNC(src, PROC_REF(update_blood))
+	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
+
+/datum/antagonist/bloodsucker/proc/life_active()
 	if(HandleHealing())
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && bloodsucker_blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
-	// Standard Updates
-	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
-	INVOKE_ASYNC(src, PROC_REF(update_blood))
-
-	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
 	SIGNAL_HANDLER
@@ -119,9 +125,9 @@
 
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
-	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
+	// Don't heal if I'm staked or on Masquerade.
 	var/actual_regen = bloodsucker_regen_rate + additional_regen
-	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)))
+	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE)))
 		return FALSE
 	// Garlic in you? No healing for you!
 	if(HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
@@ -136,17 +142,17 @@
 	var/bruteheal = min(bruteLoss, actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
-	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
+	var/amInCoffin = is_valid_coffin()
 	if (blood_over_cap > 0)
 		costMult += round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
-	if(amInCoffin && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+	if(amInCoffin && is_in_torpor())
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return FALSE
 		fireheal = min(getFireLoss(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
-		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
+		costMult *= COFFIN_HEAL_COST_MULT // Decrease cost if we're sleeping in a coffin.
 		user.extinguish_mob()
 		user.bodytemperature = user.get_body_temp_normal()
 		if(ishuman(user))
@@ -156,7 +162,7 @@
 		if(check_limbs(costMult))
 			return TRUE
 	// In Torpor, but not in a Coffin? Heal faster anyways.
-	else if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+	else if(is_in_torpor())
 		var/fireloss = getFireLoss()
 		fireheal = min(fireloss, actual_regen) / 1.2 // 20% slower than being in a coffin
 		mult *= 3
@@ -208,42 +214,49 @@
  *
  *	This is called on Bloodsucker's Assign, and when they end Torpor.
  */
-/// TODO: Separate this into smaller functions
-/datum/antagonist/bloodsucker/proc/heal_vampire_organs(regenerate_heart = FALSE)
+// TODO: Separate this into smaller functions
+/datum/antagonist/bloodsucker/proc/heal_vampire_organs()
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 	// please don't poison or asphyxiate the immune
 	bloodsuckeruser.setToxLoss(0, forced = TRUE)
 	bloodsuckeruser.setOxyLoss(0, forced = TRUE)
+
 	if(!bloodsuckeruser)
 		return
+
 	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
 		to_chat(bloodsuckeruser, span_danger("Your immortal blood has healed your body from near-irrecoverable damage, but has used nearly all of your blood in doing so!"))
 		AddHumanityLost(2)
 		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
+
 	bloodsuckeruser.cure_husk(BURN)
-	if(regenerate_heart || bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
+	if(bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
+
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
-		current_heart.Stop()
+		current_heart?.Stop()
+
 	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
-	if(current_eyes)
+	if(current_eyes && !(current_eyes.organ_flags & ORGAN_ROBOTIC))
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 		current_eyes.sight_flags = SEE_MOBS
+
 	bloodsuckeruser.update_sight()
 	/// Disable gutting for the chest
 	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
 	if(target_chest && !(target_chest.bodypart_flags & BODYPART_UNREMOVABLE))
 		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
+
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
-	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
-		on_revive()
 	if(bloodsuckeruser.stat == DEAD)
-		bloodsuckeruser.revive()
-	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
+		. = bloodsuckeruser.revive()
+
+	for(var/datum/wound/iter_wound in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
+
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
 		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
@@ -265,12 +278,13 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	// Not "Alive"?
-	if(!owner.current)
-		FinalDeath()
+	if(isnull(owner.current))
+		if(length(vassals))
+			free_all_vassals()
+		vassals = list()
 		return
 	// Fire Damage? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
+	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
 		FinalDeath()
 		return
 	// Staked with a silver stake while "Temp Death" or Asleep
@@ -278,13 +292,8 @@
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.
-	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT) || isbrain(owner.current))
+	if(is_in_torpor() || isbrain(owner.current))
 		return
-	// Won't torpor without vital organs, as this means they'd revive without a heart
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/humie = owner.current
-		if(humie.dna.species.mutantheart && !owner.current.get_organ_slot(ORGAN_SLOT_HEART))
-			return
 	check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
@@ -299,7 +308,7 @@
 		status_effect.duration = world.time + 10 SECONDS
 		owner.current.balloon_alert(owner.current, "Frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
-	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
+	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !is_in_torpor() && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		owner.current.set_timed_status_effect(3 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_SURVIVE)
@@ -324,6 +333,8 @@
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()
+	if(SEND_SIGNAL(src, BLOODSUCKER_UPDATE_BLOOD) & BLOODSUCKER_UPDATE_BLOOD_DISABLED)
+		return
 	if(HAS_TRAIT(owner.current, TRAIT_NOBLOOD))
 		return
 	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
@@ -343,15 +354,42 @@
 /datum/antagonist/bloodsucker/proc/talking_head()
 	var/mob/living/poor_fucker = owner.current
 	// Don't do anything if we're not actually inside a brain and a head
-	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
+	var/obj/item/bodypart/head/head = is_head(poor_fucker)
+	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
-	// Ensure that the HUD updates (We might have lost the heart at some point)
-	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
+	if(istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+		RegisterSignal(poor_fucker.loc, COMSIG_QDELETING, PROC_REF(on_brain_remove))
+		RegisterSignal(poor_fucker.loc, COMSIG_ORGAN_BODYPART_REMOVED, PROC_REF(on_brain_remove))
+
+	RegisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH, PROC_REF(allow_head_to_talk))
+	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS
+
+/datum/antagonist/bloodsucker/proc/cleanup_talking_head(obj/item/organ/brain)
+	var/mob/living/poor_fucker = owner.current
+	if(brain)
+		UnregisterSignal(brain, list(COMSIG_QDELETING, COMSIG_ORGAN_BODYPART_REMOVED))
+	// fucked up if this happens, but we're probably final deathed at this point
+	if(!poor_fucker)
+		return
+	UnregisterSignal(poor_fucker, list(COMSIG_MOB_TRY_SPEECH, COMSIG_MOB_SAY, COMSIG_QDELETING))
+	poor_fucker.death()
+	poor_fucker.speech_span = initial(poor_fucker.speech_span)
+
+/datum/antagonist/bloodsucker/proc/on_brain_remove(obj/item/organ/brain)
+	SIGNAL_HANDLER
+	cleanup_talking_head(brain)
+
+/datum/antagonist/bloodsucker/proc/on_brainmob_qdel()
+	SIGNAL_HANDLER
+	if(istype(owner.current.loc, /obj/item/organ/internal/brain))
+		cleanup_talking_head(owner.current.loc)
+	else
+		cleanup_talking_head()
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
@@ -359,19 +397,8 @@
 	// If we have no body, end here.
 	if(!owner.current || isbrain(owner.current))
 		return
-	UnregisterSignal(src, list(
-		COMSIG_BLOODSUCKER_ON_LIFETICK,
-		COMSIG_LIVING_REVIVE,
-		COMSIG_LIVING_LIFE,
-		COMSIG_LIVING_DEATH,
-	))
-	UnregisterSignal(SSsunlight, list(
-		COMSIG_SOL_RANKUP_BLOODSUCKERS,
-		COMSIG_SOL_NEAR_START,
-		COMSIG_SOL_END,
-		COMSIG_SOL_RISE_TICK,
-		COMSIG_SOL_WARNING_GIVEN,
-	))
+	unregister_body_signals()
+	unregister_sol_signals()
 	free_all_vassals()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
@@ -384,7 +411,7 @@
 	user.remove_all_embedded_objects()
 	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
 
-	var/unique_death = SEND_SIGNAL(src, BLOODSUCKER_FINAL_DEATH)
+	var/unique_death = SEND_SIGNAL(src, COMSIG_BLOODSUCKER_FINAL_DEATH)
 	if(unique_death & DONT_DUST)
 		return
 

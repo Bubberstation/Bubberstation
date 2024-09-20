@@ -46,7 +46,7 @@
 
 /obj/structure/bloodsucker/attack_hand(mob/user, list/modifiers)
 //	. = ..() // Don't call parent, else they will handle unbuckling.
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	/// Claiming the Rack instead of using it?
 	if(istype(bloodsuckerdatum) && !owner)
 		if(!bloodsuckerdatum.bloodsucker_lair_area)
@@ -133,7 +133,7 @@
 
 /obj/structure/bloodsucker/vassalrack/examine(mob/user)
 	. = ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	if(bloodsuckerdatum)
 		. += span_cult("You can support a total of [convert_integer_to_words(bloodsuckerdatum.max_vassals())] [bloodsuckerdatum.max_vassals() == 1 ? "vassal" : "vassals"], \
 		with [convert_integer_to_words(bloodsuckerdatum.free_vassal_slots())] [bloodsuckerdatum.free_vassal_slots() == 1 ? "slot" : "slots"] remaining.")
@@ -246,7 +246,7 @@
 	if(!has_buckled_mobs())
 		return FALSE
 
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	var/mob/living/carbon/buckled_carbons = pick(buckled_mobs)
 	// If I'm not a Bloodsucker, try to unbuckle them.
 	if(!istype(bloodsuckerdatum))
@@ -259,7 +259,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal?
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
-		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, vassaldatum)
+		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL, vassaldatum)
 		return
 	if(bloodsuckerdatum.free_vassal_slots() < 1)
 		to_chat(user, span_warning("You can't vassalize more people until you level up more! You are currently at [bloodsuckerdatum.free_vassal_slots()] active / [bloodsuckerdatum.max_vassals()] max vassals."))
@@ -278,9 +278,9 @@
  * * Vassalize target
  */
 /obj/structure/bloodsucker/vassalrack/proc/torture_victim(mob/living/user, mob/living/target)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	if(IS_VASSAL(target))
-		var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
+		var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(target)
 		if(!vassaldatum.master.broke_masquerade)
 			balloon_alert(user, "someone else's vassal!")
 			return FALSE
@@ -332,7 +332,7 @@
 	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
 		remove_loyalties(target)
-		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
+		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_VASSAL, user, target)
 
 /obj/structure/bloodsucker/vassalrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
 	// Fifteen seconds if you aren't using anything. Shorter with weapons and such.
@@ -598,7 +598,7 @@
 	var/mob/living/carbon/human/user = source
 	var/rendered = span_cult_large("<b>[user.real_name]:</b> [capitalize(message)]")
 	user.log_talk(message, LOG_SAY, tag = ROLE_BLOODSUCKER)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	for(var/datum/antagonist/vassal/receiver as anything in bloodsuckerdatum.vassals)
 		if(!receiver.owner.current)
 			continue
