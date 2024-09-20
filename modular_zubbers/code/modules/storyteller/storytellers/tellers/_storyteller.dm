@@ -46,6 +46,24 @@
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
+	//Cooldowns.
+	var/antag_event_delay = 5 MINUTES
+	var/mundane_event_delay = 10 MINUTES
+	var/moderate_event_delay = 30 MINUTES
+	var/major_event_delay = 90 MINUTES
+
+	COOLDOWN_DECLARE(antag_event_cooldown)
+	COOLDOWN_DECLARE(mundane_event_cooldown)
+	COOLDOWN_DECLARE(moderate_event_cooldown)
+	COOLDOWN_DECLARE(major_event_cooldown)
+
+
+/datum/storyteller/New(...)
+	COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
+	COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
+	COOLDOWN_START(src, major_event_cooldown, major_event_delay)
+	. = ..()
+
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
 		return
@@ -62,12 +80,30 @@
 
 /// Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
 /datum/storyteller/proc/handle_tracks()
-	. = FALSE //Has return value for the roundstart loop
-	var/datum/controller/subsystem/gamemode/mode = SSgamemode
-	for(var/track in mode.event_track_points)
-		var/points = mode.event_track_points[track]
-		if(points >= mode.point_thresholds[track] && find_and_buy_event_from_track(track))
-			. = TRUE
+
+	if(!COOLDOWN_FINISHED(src,antag_event_cooldown)) //Don't want to run an antag event then suddenly have meteors.
+		return FALSE
+
+	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
+		if(find_and_buy_event_from_track(EVENT_TRACK_ROLESET))
+			COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
+			return TRUE
+		if(COOLDOWN_FINISHED(src,major_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MAJOR))
+			COOLDOWN_START(src, major_event_cooldown, major_event_delay)
+			COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
+			COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
+			return TRUE
+
+	if(COOLDOWN_FINISHED(src,moderate_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MODERATE))
+		COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
+		COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
+		return TRUE
+
+	if(COOLDOWN_FINISHED(src,mundane_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MUNDANE))
+		COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
+		return TRUE
+
+	return FALSE
 
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/find_and_buy_event_from_track(track)
