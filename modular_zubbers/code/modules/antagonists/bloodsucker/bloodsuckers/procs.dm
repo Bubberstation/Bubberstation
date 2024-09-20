@@ -188,7 +188,7 @@
 		if(input == "Yes")
 			AdjustUnspentRank(1) // gives level
 			blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
-			AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
+			// AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
 			return TRUE
 	return FALSE
 

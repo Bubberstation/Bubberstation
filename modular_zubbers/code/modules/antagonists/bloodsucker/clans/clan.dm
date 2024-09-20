@@ -149,7 +149,6 @@
 	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, requires_coffin = TRUE)
-	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	var/list/options = list_available_powers()
 	if(length(options))
 		var/datum/action/cooldown/bloodsucker/choice = choose_powers(
@@ -161,10 +160,14 @@
 			return FALSE
 		// Good to go - Buy Power!
 		purchase_choice(source, choice)
-		human_user.balloon_alert(human_user, "learned [initial(choice.name)]!")
-		to_chat(human_user, span_notice("You have learned how to use [initial(choice.name)]!"))
+		level_message(initial(choice.name))
 
 	return finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
+
+/datum/bloodsucker_clan/proc/level_message(power_name)
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+	human_user.balloon_alert(human_user, "learned [power_name]!")
+	to_chat(human_user, span_notice("You have learned how to use [power_name]!"))
 
 /datum/bloodsucker_clan/proc/choose_powers(message, title, options = list(), can_buy = BLOODSUCKER_CAN_BUY)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current

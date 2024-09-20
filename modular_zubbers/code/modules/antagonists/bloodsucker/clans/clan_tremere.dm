@@ -35,6 +35,11 @@
 /datum/bloodsucker_clan/tremere/level_up_powers(datum/antagonist/bloodsucker/source)
 	return
 
+/datum/bloodsucker_clan/tremere/level_message(power_name)
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+	human_user.balloon_alert(human_user, "upgraded [power_name]!")
+	to_chat(human_user, span_notice("You have upgraded [power_name]!"))
+
 // redefine the default args
 /datum/bloodsucker_clan/tremere/list_available_powers(already_known, powers_list)
 	already_known = list()
