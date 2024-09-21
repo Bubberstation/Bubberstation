@@ -53,7 +53,7 @@
 	possible_locs = list(BODY_ZONE_HEAD)
 
 /datum/surgery/robot/brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
-	return istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), obj/item/organ/internal/brain/synth) && ..()
+	return istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/internal/brain/synth) && ..()
 
 /datum/surgery/robot/brain_surgery/organic/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
-	return target.get_organ_slot(ORGAN_SLOT_BRAIN) && !istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), obj/item/organ/internal/brain/synth) && ..()
+	return target.get_organ_slot(ORGAN_SLOT_BRAIN) && !istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/internal/brain/synth) && ..()
