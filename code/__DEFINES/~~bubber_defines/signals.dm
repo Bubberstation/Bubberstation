@@ -21,3 +21,5 @@
 #define COMSIG_FLESHMIND_CORE_RALLY "fleshmind_core_rally"
 
 #define COMSIG_MECHIVER_CONVERT "mechiver_convert"
+
+//#define COMSIG_CORE_DEATH "fleshmind_core_death"

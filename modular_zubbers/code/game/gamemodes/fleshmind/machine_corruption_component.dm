@@ -76,12 +76,10 @@
 	COOLDOWN_DECLARE(damage_response)
 
 /datum/component/machine_corruption/Initialize(datum/fleshmind_controller/incoming_controller)
+	. = ..()
 	our_controller = incoming_controller
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
-
-	if(istype(parent, /obj/machinery/atmospherics/pipe))
-		return
 
 	if(our_controller && is_type_in_list(parent, MACHINE_TO_SPAWNER_PATHS))
 		convert_to_factory(our_controller)
@@ -96,7 +94,6 @@
 	var/obj/machinery/parent_machinery = parent
 
 	RegisterSignal(parent_machinery, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(handle_overlays))
-	RegisterSignal(src, COMSIG_PREQDELETED, PROC_REF(pre_delete))
 	parent_machinery.update_appearance()
 
 	addtimer(CALLBACK(src, PROC_REF(finish_setup), our_controller), COMPONENT_SETUP_TIME)
@@ -130,7 +127,15 @@
 	parent_machinery.update_light()
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
-/datum/component/machine_corruption/Destroy()
+/datum/component/machine_corruption/Destroy() // This is fucking cursed and QDEL_HINT_IWILLGC should not be used for components
+	. = ..()
+	if(our_controller)
+		our_controller.UnregisterSignal(src, COMSIG_QDELETING)
+		LAZYREMOVE(our_controller.controlled_machine_components, src)
+	our_controller = null
+	return QDEL_HINT_IWILLGC // Assume it'll garbage collect so it doesn't time out and hard delete.
+
+/datum/component/machine_corruption/UnregisterFromParent()
 	var/obj/machinery/parent_machinery = parent
 	parent_machinery.idle_power_usage = initial(parent_machinery.idle_power_usage)
 	parent_machinery.light_color = initial(parent_machinery.light_color)
@@ -147,14 +152,7 @@
 		COMSIG_ATOM_EMP_ACT,
 	))
 	parent_machinery.update_appearance()
-	return ..()
 
-/datum/component/machine_corruption/proc/pre_delete()
-	SIGNAL_HANDLER
-
-	if(our_controller)
-		LAZYREMOVE(our_controller.controlled_machine_components, src)
-	our_controller = null
 /**
  * Handling UI interactions
  *

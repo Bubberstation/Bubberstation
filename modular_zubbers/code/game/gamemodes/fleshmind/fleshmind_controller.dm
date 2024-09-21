@@ -56,9 +56,8 @@
 		/obj/structure/fleshmind/structure/turret,
 		/obj/structure/fleshmind/structure/screamer,
 	)
-	var/list/blacklisted_conversion_structures = list(
-		/obj/machinery/light,
-	)
+	var/list/blacklisted_conversion_structures = list()
+
 	/// Our wireweed type, defines what is spawned when we grow.
 	var/wireweed_type = /obj/structure/fleshmind/wireweed
 	/// We have the ability to make walls, this defines what kind of walls we make.
@@ -157,7 +156,7 @@
 
 	calculate_level_system()
 
-/datum/fleshmind_controller/Destroy(force, ...)
+/datum/fleshmind_controller/Destroy()
 	active_wireweed = null
 	controlled_machine_components = null
 	controlled_wireweed = null
@@ -386,7 +385,8 @@
 				spawn_wireweed(new_transfer_vent_turf, wireweed_type, origin_turf, are_we_a_vent_burrow)
 
 	for(var/obj/machinery/iterating_machine in location)
-		if(is_type_in_list(blacklisted_conversion_structures))
+		blacklisted_conversion_structures = typesof(/obj/machinery/light, /obj/machinery/atmospherics/pipe, /obj/machinery/light_switch)
+		if(is_type_in_list(iterating_machine, blacklisted_conversion_structures))
 			continue
 		if(iterating_machine.GetComponent(/datum/component/machine_corruption))
 			continue
@@ -563,18 +563,18 @@
 
 /// Deletes everything, unless an argument is passed, then it just deletes structures
 /datum/fleshmind_controller/proc/delete_everything(just_structures = FALSE)
-	for(var/obj/structure/fleshmind/structure/structure_thing as anything in controlled_structures)
-		qdel(structure_thing)
-	for(var/obj/structure/fleshmind/structure/wireweed_wall/wall_thing as anything in controlled_walls)
-		qdel(wall_thing)
-	for(var/datum/component/machine_corruption/corruption_thing as anything in controlled_machine_components)
-		qdel(corruption_thing)
+	if(LAZYLEN(controlled_structures))
+		QDEL_LIST(controlled_structures)
+	if(LAZYLEN(controlled_walls))
+		QDEL_LIST(controlled_walls)
+	if(LAZYLEN(controlled_machine_components))
+		QDEL_LIST(controlled_machine_components)
 	if(just_structures)
 		return
-	for(var/obj/structure/fleshmind/wireweed/wireweed_thing as anything in controlled_wireweed)
-		qdel(wireweed_thing)
-	for(var/obj/structure/fleshmind/structure/core/core_to_destroy as anything in cores)
-		qdel(core_to_destroy)
+	if(LAZYLEN(controlled_wireweed))
+		QDEL_LIST(controlled_wireweed)
+	if(LAZYLEN(cores))
+		QDEL_LIST(cores)
 	qdel(src)
 
 /// Handles the controller(thus AI) dying
