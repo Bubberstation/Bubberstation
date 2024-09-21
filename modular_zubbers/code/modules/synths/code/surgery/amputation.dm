@@ -6,8 +6,8 @@
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
 		BODY_ZONE_L_ARM,
-		BODY_ZONE_L_LEG,
 		BODY_ZONE_R_LEG,
+		BODY_ZONE_L_LEG,
 		BODY_ZONE_HEAD,
 	)
 	steps = list(
@@ -29,8 +29,8 @@
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
 		BODY_ZONE_L_ARM,
-		BODY_ZONE_L_LEG,
 		BODY_ZONE_R_LEG,
+		BODY_ZONE_L_LEG,
 		BODY_ZONE_HEAD,
 	)
 	steps = list(
