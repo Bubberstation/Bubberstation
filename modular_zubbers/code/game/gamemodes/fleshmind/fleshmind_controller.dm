@@ -563,19 +563,18 @@
 
 /// Deletes everything, unless an argument is passed, then it just deletes structures
 /datum/fleshmind_controller/proc/delete_everything(just_structures = FALSE)
-	if(LAZYLEN(controlled_structures))
-		QDEL_LIST(controlled_structures)
-	if(LAZYLEN(controlled_walls))
-		QDEL_LIST(controlled_walls)
-	if(LAZYLEN(controlled_machine_components))
-		QDEL_LIST(controlled_machine_components)
+	for(var/obj/structure/fleshmind/structure/structure_thing as anything in controlled_structures)
+		qdel(structure_thing)
+	for(var/obj/structure/fleshmind/structure/wireweed_wall/wall_thing as anything in controlled_walls)
+		qdel(wall_thing)
+	for(var/datum/component/machine_corruption/corruption_thing as anything in controlled_machine_components)
+		qdel(corruption_thing)
 	if(just_structures)
 		return
-	if(LAZYLEN(controlled_wireweed))
-		QDEL_LIST(controlled_wireweed)
-	if(LAZYLEN(cores))
-		QDEL_LIST(cores)
-	qdel(src)
+	for(var/obj/structure/fleshmind/wireweed/wireweed_thing as anything in controlled_wireweed)
+		qdel(wireweed_thing)
+	for(var/obj/structure/fleshmind/structure/core/core_to_destroy as anything in cores)
+		qdel(core_to_destroy)
 
 /// Handles the controller(thus AI) dying
 /datum/fleshmind_controller/proc/controller_death()

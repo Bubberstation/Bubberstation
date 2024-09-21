@@ -288,6 +288,7 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	if(spawn_controller)
 		our_controller = new controller_type(src)
+		AddComponent(/datum/component/gps, "*!Rouge Wireweed Signal!*")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/fleshmind/structure/core/Destroy()
@@ -348,11 +349,14 @@
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
 
-	if(our_controller && isobserver(user))
-		if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
-			. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
-		else
-			. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
+	if(our_controller)
+		if(isliving(user))
+			. += span_notice("Your GPS tracks to this thing!")
+		if(isobserver(user))
+			if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
+				. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
+			else
+				. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
 
 /obj/structure/fleshmind/structure/core/proc/core_attack_atom(atom/thing)
 	. = FALSE
