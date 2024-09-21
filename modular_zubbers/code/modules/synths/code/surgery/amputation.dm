@@ -17,7 +17,7 @@
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/robot_sever_limb,
 	)
-	removes_target_bodypart = TRUE // SKYRAT EDIT ADDITION - Surgically unremovable limbs
+	removes_target_bodypart = TRUE // Surgically unremovable limbs
 	close_surgery = /datum/surgery/robot/close_amputation
 	num_opening_steps = 3
 	num_steps_until_closing = 6 // last step automatically closes
