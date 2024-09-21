@@ -93,12 +93,7 @@
 
 /obj/structure/fleshmind/wireweed/emp_act(severity)
 	. = ..()
-	switch(severity)
-		if(EMP_LIGHT)
-			take_damage(20)
-		if(EMP_HEAVY)
-			take_damage(40)
-
+	take_damage(10) // Reduced EMP by default.
 
 /obj/structure/fleshmind/wireweed/update_overlays()
 	. = ..()
