@@ -18,12 +18,16 @@
 
 /datum/round_event/fleshmind/start()
 	var/list/areas = list() // List of all the final areas
-	var/list/possible_spawn_areas = typecacheof(typesof(/area/station/maintenance, /area/station/security/prison, /area/station/construction)) // Get us our areas
-
+	// Blacklisted areas that the wireweed can't spawn in.
+	var/list/blacklisted_areas = typecacheof(typesof(
+		/area/station/engineering/supermatter,
+		/area/station/ai_monitored,
+		/area/station/tcommsat,
+	))
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
 			continue
-		if(!is_type_in_typecache(iterating_area, possible_spawn_areas))
+		if(is_type_in_typecache(iterating_area, blacklisted_areas))
 			continue
 		areas += iterating_area
 
