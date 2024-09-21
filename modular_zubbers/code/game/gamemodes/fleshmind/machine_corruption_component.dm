@@ -89,14 +89,14 @@
 
 	if(our_controller)
 		our_controller.RegisterSignal(src, COMSIG_QDELETING, /datum/fleshmind_controller/proc/component_death)
-		LAZYADD(incoming_controller.controlled_machine_components, src)
+		LAZYADD(our_controller.controlled_machine_components, src)
 
 	set_overlay = pick(possible_overlays)
 
 	var/obj/machinery/parent_machinery = parent
 
 	RegisterSignal(parent_machinery, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(handle_overlays))
-
+	RegisterSignal(src, COMSIG_PREQDELETED, PROC_REF(pre_delete))
 	parent_machinery.update_appearance()
 
 	addtimer(CALLBACK(src, PROC_REF(finish_setup), our_controller), COMPONENT_SETUP_TIME)
@@ -147,11 +147,14 @@
 		COMSIG_ATOM_EMP_ACT,
 	))
 	parent_machinery.update_appearance()
+	return ..()
+
+/datum/component/machine_corruption/proc/pre_delete()
+	SIGNAL_HANDLER
+
 	if(our_controller)
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
 	our_controller = null
-	return ..()
-
 /**
  * Handling UI interactions
  *
