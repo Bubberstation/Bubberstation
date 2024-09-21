@@ -88,7 +88,6 @@
 		return
 
 	if(our_controller)
-		RegisterSignal(our_controller, COMSIG_QDELETING, PROC_REF(controller_death))
 		our_controller.RegisterSignal(src, COMSIG_QDELETING, /datum/fleshmind_controller/proc/component_death)
 		LAZYADD(incoming_controller.controlled_machine_components, src)
 
@@ -131,7 +130,7 @@
 	parent_machinery.update_light()
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
-/datum/component/machine_corruption/Destroy(force, silent)
+/datum/component/machine_corruption/Destroy()
 	var/obj/machinery/parent_machinery = parent
 	parent_machinery.idle_power_usage = initial(parent_machinery.idle_power_usage)
 	parent_machinery.light_color = initial(parent_machinery.light_color)
@@ -149,20 +148,9 @@
 	))
 	parent_machinery.update_appearance()
 	if(our_controller)
-		UnregisterSignal(our_controller, COMSIG_QDELETING)
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
 	our_controller = null
 	return ..()
-
-/**
- * Controller Death
- *
- * Handles when the controller dies.
- */
-/datum/component/machine_corruption/proc/controller_death(datum/fleshmind_controller/deleting_controller, force)
-	SIGNAL_HANDLER
-
-	qdel(src)
 
 /**
  * Handling UI interactions
