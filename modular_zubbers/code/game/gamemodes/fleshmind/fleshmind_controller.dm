@@ -174,9 +174,6 @@
 
 /// The process of handling active wireweed behaviours
 /datum/fleshmind_controller/proc/wireweed_process(do_spread, do_attack, progress_structure = TRUE)
-	// Don't do anything if you don't have a core.
-	if(!LAZYLEN(cores))
-		return
 	// If no wireweed, spawn one under our first core.
 	if(!LAZYLEN(controlled_wireweed))
 		spawn_wireweed(get_turf(cores[1]), wireweed_type) // We use the first core in the list to spread.
@@ -487,7 +484,8 @@
 /datum/fleshmind_controller/proc/activate_wireweed_nearby(turf/location, range)
 	var/list/turfs_to_check = list()
 	turfs_to_check[location] = TRUE
-
+	if(!LAZYLEN(cores))
+		return
 	if(range)
 		var/list/turfs_to_iterate = list()
 		var/list/new_iteration_list = list()
