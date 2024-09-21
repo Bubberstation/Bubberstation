@@ -88,7 +88,7 @@
 	. = ..()
 	if(!target)
 		return .
-	SEND_SIGNAL(src, COMSIG_FIRE_TARGETED_POWER, target_atom)
+	SEND_SIGNAL(src, COMSIG_FIRE_TARGETED_POWER, target)
 	log_combat(owner, target, "used [name] on [target].")
 	return TRUE
 
