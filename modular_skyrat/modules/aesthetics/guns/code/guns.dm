@@ -482,7 +482,7 @@
 
 /obj/projectile/bullet/c9mm
 	name = "9x25mm bullet"
-//	damage = 25
+//	damage = 25 - BUBBER EDIT
 
 /obj/projectile/bullet/c9mm/ap
 	name = "9x25mm armor-piercing bullet"
