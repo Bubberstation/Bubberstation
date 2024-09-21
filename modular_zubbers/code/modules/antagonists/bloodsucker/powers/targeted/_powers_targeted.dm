@@ -88,7 +88,6 @@
 	. = ..()
 	if(!target)
 		return .
-	SEND_SIGNAL(src, COMSIG_FIRE_TARGETED_POWER, target)
 	log_combat(owner, target, "used [name] on [target].")
 	return TRUE
 
@@ -113,6 +112,7 @@
 	if(!.)
 		return FALSE
 	var/list/modifiers = params2list(params)
+	SEND_SIGNAL(src, COMSIG_FIRE_TARGETED_POWER, target)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		return FireSecondaryTargetedPower(target, modifiers)
 	else

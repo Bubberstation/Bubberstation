@@ -47,6 +47,7 @@
 		trigger_listening += power
 	RegisterSignal(owner, COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, PROC_REF(on_heal))
 	RegisterSignal(owner, COMSIG_LIVING_ADJUST_BURN_DAMAGE, PROC_REF(on_heal))
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/fortitude/proc/on_heal(mob/current_mob, type, amount, forced)
 	if(!forced && active && amount < 0)
@@ -55,7 +56,7 @@
 
 /datum/action/cooldown/bloodsucker/fortitude/proc/on_action_trigger(datum/action, mob/target)
 	SIGNAL_HANDLER
-	DeactivatePower()
+	addtimer(CALLBACK(src, PROC_REF(DeactivatePower)), 1 SECONDS)
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/fortitude/proc/GetFortitudeResist()
