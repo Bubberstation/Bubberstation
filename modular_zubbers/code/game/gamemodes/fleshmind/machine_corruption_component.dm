@@ -150,8 +150,8 @@
 	parent_machinery.update_appearance()
 	if(our_controller)
 		UnregisterSignal(our_controller, COMSIG_QDELETING)
-		our_controller = null
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
+	our_controller = null
 	return ..()
 
 /**

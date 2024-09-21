@@ -553,7 +553,6 @@
 	var/obj/parent_object = deleting_component.parent
 	if(parent_object)
 		activate_wireweed_nearby(get_turf(parent_object), GENERAL_DAMAGE_WIREWEED_ACTIVATION_RANGE)
-	controlled_machine_components -= deleting_component
 
 /// When a mob dies, called by mob
 /datum/fleshmind_controller/proc/mob_death(mob/living/basic/fleshmind/dying_mob, force)
