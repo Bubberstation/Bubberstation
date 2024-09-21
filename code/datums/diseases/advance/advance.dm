@@ -91,7 +91,7 @@
 			/datum/reagent/toxin/mindbreaker,
 			/datum/reagent/acetaldehyde,
 			/datum/reagent/medicine/sal_acid,
-			/datum/reagent/medicine/pen_acid,
+			///datum/reagent/medicine/pen_acid, BUBBER EDIT REMOVE - Disease Transmission
 			/datum/reagent/medicine/psicodine,
 		),
 		list( // level 8
