@@ -14,7 +14,6 @@
 	num_opening_steps = 3
 	num_steps_until_closing = 6
 	close_surgery = /datum/surgery/robot/close_brain_surgery
-	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain."
@@ -44,7 +43,6 @@
 		/datum/surgery_step/mechanic_close,
 	)
 	is_closer = TRUE
-	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE
