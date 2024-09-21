@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/cortex_imprint
-	name = "Positronic OS Ver 2.0"
+	name = "Positronic OS Ver 2.0 (Cortex Imprint)"
 	desc = "A robotic upgrade which updates the patient's operating system to the 'latest version', whatever that means, making the brain able to bypass damage caused by minor brain traumas. \
 		Shame about all the adware."
 	requires_bodypart_type = BODYTYPE_ROBOTIC

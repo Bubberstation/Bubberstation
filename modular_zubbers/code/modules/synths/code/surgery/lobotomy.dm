@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/lobotomy
-	name = "Destructive Posibrain Defragmentation"
+	name = "Destructive Posibrain Defragmentation (Lobotomy)"
 	desc = "A destructive robotic defragmentation method which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_HEAD)
@@ -99,7 +99,7 @@
 	return FALSE
 
 /datum/surgery/robot/advanced/blessed_lobotomy
-	name = "Reticulate Posibrain Splines"
+	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC

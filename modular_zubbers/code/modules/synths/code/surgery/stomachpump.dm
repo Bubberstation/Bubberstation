@@ -1,5 +1,5 @@
 /datum/surgery/robot/stomach_pump
-	name = "Nutrient Processing Purge"
+	name = "Nutrient Processing Purge (Stomach Pump)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,

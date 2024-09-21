@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/cortex_folding
-	name = "Posibrain Labyrinthian Programming"
+	name = "Posibrain Labyrinthian Programming (Cortex Folding)"
 	desc = "A robotic upgrade which reprograms the patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_HEAD)

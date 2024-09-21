@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/vein_threading
-	name = "Hydraulics Routing Optimization"
+	name = "Hydraulics Routing Optimization (Vein Threading)"
 	desc = "A robotic upgrade which severely reduces the amount of hydraulic fluid lost in case of injury."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)

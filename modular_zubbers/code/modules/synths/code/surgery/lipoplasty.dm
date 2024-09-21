@@ -1,5 +1,5 @@
 /datum/surgery/robot/lipoplasty
-	name = "Nutrient Reserve Expulsion"
+	name = "Nutrient Reserve Expulsion (Lipoplasty)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(

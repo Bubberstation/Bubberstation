@@ -1,5 +1,5 @@
 /datum/surgery/robot/eye_surgery
-	name = "Repair optics"
+	name = "Repair optics (Eye surgery)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EYES
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)

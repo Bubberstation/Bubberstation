@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/nerve_grounding
-	name = "System Shock Dampening"
+	name = "System Shock Dampening (Nerve Grounding)"
 	desc = "A robotic upgrade which reroutes and grounds the patient's electricals, protecting them from electrical shocks."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)

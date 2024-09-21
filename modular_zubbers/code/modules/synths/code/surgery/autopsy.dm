@@ -1,5 +1,5 @@
 /datum/surgery/robot/autopsy
-	name = "System Failure Analysis"
+	name = "System Failure Analysis (Autopsy)"
 	surgery_flags = SURGERY_IGNORE_CLOTHES | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYTYPE_ROBOTIC

@@ -1,5 +1,5 @@
 /datum/surgery/robot/amputation
-	name = "Disassemble"
+	name = "Disassemble (Amputation)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY | SURGERY_SELF_OPERABLE
 	target_mobtypes = list(/mob/living/carbon/human/species/synth)

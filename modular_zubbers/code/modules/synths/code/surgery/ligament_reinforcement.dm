@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/ligament_reinforcement
-	name = "Anchor Point Reinforcement"
+	name = "Anchor Point Reinforcement (Ligament Reinforcement)"
 	desc = "A surgical procedure which adds reinforced limb anchor points to the patient's chassis, preventing dismemberment. \
 		However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
 	requires_bodypart_type = BODYTYPE_ROBOTIC

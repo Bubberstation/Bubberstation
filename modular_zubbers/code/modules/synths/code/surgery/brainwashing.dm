@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/brainwashing
-	name = "Reprogramming"
+	name = "Reprogramming (Brainwashing)"
 	desc = "Malware which directly implants a directive into the robotic patient's operating system, making it their absolute priority. It can be cleared using a mindshield implant."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_HEAD)

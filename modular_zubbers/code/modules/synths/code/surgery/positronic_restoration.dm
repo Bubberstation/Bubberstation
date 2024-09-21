@@ -1,5 +1,5 @@
 /datum/surgery/robot/positronic_restoration
-	name = "Posibrain Reboot (Revival)"
+	name = "Systems Reboot (Revival)"
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -14,13 +14,13 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	desc = "A surgical procedure that reboots a positronic brain."
+	desc = "A surgical procedure that reboots a synthetic body."
 	num_opening_steps = 3
 	num_steps_until_closing = 6
 	close_surgery = /datum/surgery/robot/close_positronic_restoration
 
 /datum/surgery/robot/close_positronic_restoration
-	name = "Close Surgery (Posibrain Reboot (Revival))"
+	name = "Close Surgery (Posibrain Reboot)"
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,

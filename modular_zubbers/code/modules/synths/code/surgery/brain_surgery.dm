@@ -21,7 +21,7 @@
 	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery/robot/close_brain_surgery
-	name = "Close Surgery (Reset Posibrain Logic (Brain Surgery))"
+	name = "Close Surgery (Reset Posibrain Logic)"
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,

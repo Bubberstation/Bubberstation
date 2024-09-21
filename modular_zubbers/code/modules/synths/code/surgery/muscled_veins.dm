@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/muscled_veins
-	name = "Hydraulics Redundancy Subroutine"
+	name = "Hydraulics Redundancy Subroutine (Muscled Veins)"
 	desc = "A robotic upgrade which adds sophisticated hydraulics redundancies, allowing a patient to pump hydraulic fluid without a dedicated pump."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)

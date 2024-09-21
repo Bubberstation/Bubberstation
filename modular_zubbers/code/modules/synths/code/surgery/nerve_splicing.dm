@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/bioware/nerve_splicing
-	name = "System Automatic Reset Subroutine"
+	name = "System Automatic Reset Subroutine (Nerve Splicing)"
 	desc = "A robotic upgrade which upgrades a patient's automatic systems, making them more resistant to stuns."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)

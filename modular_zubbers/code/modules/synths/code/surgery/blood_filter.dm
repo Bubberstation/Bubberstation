@@ -1,5 +1,5 @@
 /datum/surgery/robot/blood_filter
-	name = "Hydraulics Purge"
+	name = "Hydraulics Purge (Filter Blood)"
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE

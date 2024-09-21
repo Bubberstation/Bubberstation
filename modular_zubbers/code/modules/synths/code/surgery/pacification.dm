@@ -1,5 +1,5 @@
 /datum/surgery/robot/advanced/pacify
-	name = "Aggression Suppression Programming"
+	name = "Aggression Suppression Programming (Pacification)"
 	desc = "Malware which permanently inhibits the aggression programming of the patient's neural network, making the patient unwilling to cause direct harm."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_HEAD)
