@@ -5,17 +5,19 @@
 	name = "Feed"
 	desc = "Feed blood off of a living creature."
 	button_icon_state = "power_feed"
-	power_explanation = "Feed:\n\
-		Activate Feed while next to someone and you will begin to feed blood off of them.\n\
-		The time needed before you start feeding speeds up the higher level you are.\n\
-		Feeding off of someone while you have them aggressively grabbed will put them to sleep.\n\
-		While feeding, you can't speak, as your mouth is covered.\n\
-		Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
-		If you get too many Masquerade Infractions, you will break the Masquerade.\n\
-		If you are in desperate need of blood, mice can be fed off of, at a cost.\n\
-		You must use the ability again to stop sucking blood."
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS|BP_CAN_USE_WHILE_STAKED
+	power_explanation = list(
+		"Activate Feed while next to someone and you will begin to feed blood off of them.",
+		"The time needed before you start feeding speeds up the higher level you are.",
+		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
+		"While feeding, you can't speak, as your mouth is covered.",
+		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
+		"If you get too many Masquerade Infractions, you will break the Masquerade.",
+		"If you are in desperate need of blood, mice can be fed off of, at a cost.",
+		"You must use the ability again to stop sucking blood.",
+	)
+	level_current = -1 // scales itself based on your actual level, since you always have it
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN
+	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CAN_USE_WHILE_STAKED|BP_CAN_USE_HEARTLESS
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
@@ -32,12 +34,27 @@
 	///Have we notified you already that you are at maximum blood?
 	var/notified_overfeeding = FALSE
 
+/datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
+	. = list()
+	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
+	. += "The time needed before you start feeding is [DisplayTimeText(FEED_DEFAULT_TIMER)]."
+	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."
+	. += "While feeding, you can't speak, as you are using your mouth to drink blood."
+	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
+	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
+	. += "If you are in desperate need of blood, mice can be fed off of, at a cost to your humanity."
+	. += "You must use the ability again to stop sucking blood."
+
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(target_ref) //already sucking blood.
-		return FALSE
+		if(!ContinueActive(user, target_ref?.resolve(), !silent_feed, !silent_feed))
+			target_ref = null
+		else
+			owner.balloon_alert(owner, "already feeding!")
+			return FALSE
 	if(user.is_mouth_covered() && !isplasmaman(user))
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
@@ -57,11 +74,20 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/DeactivatePower()
+/datum/action/cooldown/bloodsucker/feed/DeactivatePower(deactivate_flags)
+	// run before parent checks just to ensure that this always gets cleaned up
+	UnregisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref?.resolve()
-	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
-	if(isnull(feed_target))
+
+	if(!blood_taken)
+		return
+	if(isnull(feed_target) && blood_taken)
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
 	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
@@ -73,14 +99,17 @@
 	target_ref = null
 	warning_target_bloodvol = initial(warning_target_bloodvol)
 	blood_taken = initial(blood_taken)
-	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	notified_overfeeding = initial(notified_overfeeding)
-	return ..()
 
-/datum/action/cooldown/bloodsucker/feed/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
+	// if this happens this means that we didn't properly deactivate the power
+	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILIZED, FEED_TRAIT) || HAS_TRAIT_FROM(owner, TRAIT_MUTE, FEED_TRAIT))
+		DeactivatePower()
 	silent_feed = TRUE
-	var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref?.resolve()
+	if(!feed_target)
+		DeactivatePower()
+		return FALSE
 	if(istype(feed_target, /mob/living/basic/mouse))
 		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
 		if(bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_INHUMANELY)
@@ -88,22 +117,22 @@
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 			bloodsuckerdatum_power.AddHumanityLost(1)
 		bloodsuckerdatum_power.AdjustBloodVolume(25)
-		DeactivatePower()
 		feed_target.death()
-		return
-	var/feed_timer = clamp(round(FEED_DEFAULT_TIMER / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIMER)
+		StartCooldown()
+		return FALSE
+	var/feed_timer = get_feed_start_time()
 	if(bloodsuckerdatum_power.frenzied)
-		feed_timer = 2 SECONDS
+		feed_timer = min(2 SECONDS, feed_timer)
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
 	if(!do_after(owner, feed_timer, feed_target, hidden = TRUE))
 		owner.balloon_alert(owner, "feed stopped")
-		DeactivatePower()
-		return
+		target_ref = null
+		return FALSE
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
-			feed_target.Unconscious((5 + level_current) SECONDS)
+			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
 		owner.visible_message(
@@ -137,13 +166,16 @@
 	ADD_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(notify_move_block))
-	return ..()
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/process(seconds_per_tick)
 	if(!active) //If we aren't active (running on SSfastprocess)
 		return ..() //Manage our cooldown timers
 	var/mob/living/user = owner
-	var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref?.resolve()
+	if(!feed_target)
+		DeactivatePower()
+		return
 	if(!ContinueActive(user, feed_target, !silent_feed, !silent_feed))
 		if(!silent_feed)
 			user.visible_message(
@@ -261,14 +293,23 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
 		return FALSE
-	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 20))
+	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 5))
 		if(give_warnings)
 			owner.balloon_alert(owner, "too much garlic!")
 		return FALSE
 	return TRUE
 
+/datum/action/cooldown/bloodsucker/feed/proc/get_sleep_time()
+	return (5 + bloodsuckerdatum_power?.GetRank() || 1) SECONDS
+
+/datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
+	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (bloodsuckerdatum_power?.GetRank() || 1))), 1, FEED_DEFAULT_TIMER)
+
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER
+	if(!active)
+		DeactivatePower()
+		return
 	if (!COOLDOWN_FINISHED(src, feed_movement_notify_cooldown))
 		return
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
