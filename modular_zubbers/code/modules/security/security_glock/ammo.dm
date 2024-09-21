@@ -1,9 +1,3 @@
-/obj/projectile/bullet/c9mm
-	damage = 30
-
-/obj/projectile/bullet/c9mm/ap
-	damage = 27
-
 /obj/projectile/bullet/c9mm/flathead
 	name = "9x25mm flathead bullet"
 
