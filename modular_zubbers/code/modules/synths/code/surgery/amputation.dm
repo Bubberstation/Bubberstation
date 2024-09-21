@@ -53,7 +53,6 @@
 	)
 	accept_hand = TRUE // You can just pull it off, like putting a limb on
 	time = 2 SECONDS // It's not a slow procedure
-	preop_sound = 'sound/items/crowbar_prying.ogg'
 	success_sound = 'sound/items/deconstruct.ogg'
 
 /datum/surgery_step/robot_sever_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
