@@ -194,8 +194,8 @@
 		for(var/mob/living/possible_target as anything in orange(1, target))
 			if(!ismob(possible_target))
 				continue
-			var/datum/antagonist/vassal/vassal = IS_VASSAL(possible_target)
-			if(length(bloodsuckerdatum_power?.vassals) && vassal && (vassal in bloodsuckerdatum_power?.vassals))
+			var/datum/antagonist/ghoul/ghoul = IS_GHOUL(possible_target)
+			if(length(bloodsuckerdatum_power?.ghouls) && ghoul && (ghoul in bloodsuckerdatum_power?.ghouls))
 				continue
 			targets += possible_target
 		if(length(targets))

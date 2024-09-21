@@ -111,7 +111,7 @@
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
 	total_blood_drank += blood_taken
 	if(target.mind) // Checks if the target has a mind
-		if(IS_VASSAL(target)) // Checks if the target is a vassal
+		if(IS_GHOUL(target)) // Checks if the target is a ghoul
 			blood_level_gain += blood_taken / 4
 		else
 			blood_level_gain += blood_taken
@@ -277,9 +277,9 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	if(isnull(owner.current))
-		if(length(vassals))
-			free_all_vassals()
-		vassals = list()
+		if(length(ghouls))
+			free_all_ghouls()
+		ghouls = list()
 		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
@@ -397,7 +397,7 @@
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
-	free_all_vassals()
+	free_all_ghouls()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(DROP_ITEMS)
