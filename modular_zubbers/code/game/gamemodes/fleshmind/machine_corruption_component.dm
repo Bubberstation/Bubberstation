@@ -145,11 +145,11 @@
 		COMSIG_ATOM_UPDATE_OVERLAYS,
 		COMSIG_ATOM_ATTACK_HAND,
 		COMSIG_ATOM_DESTRUCTION,
-		COMSIG_QDELETING,
 		COMSIG_ATOM_EMP_ACT,
 	))
 	parent_machinery.update_appearance()
 	if(our_controller)
+		UnregisterSignal(our_controller, COMSIG_QDELETING)
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
 	return ..()
 
