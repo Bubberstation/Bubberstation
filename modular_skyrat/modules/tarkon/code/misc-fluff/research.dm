@@ -27,7 +27,11 @@
 	design_ids = list(
 		"mod_plating_tarkon",
 		"arcs",
-		"rcd_tarkon"
+		"rcd_tarkon", //BUBBER EDIT (comma)
+		"powerator_tarkon",//BUBBER EDIT Addition start
+		"cargoconsole_tarkon",
+		"bountypad_tarkon", 
+		"bountyconsole_tarkon"//BUBBER EDIT Addition end
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
@@ -80,7 +84,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
-
+	
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
@@ -123,10 +127,24 @@
 	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
 	circuit = /obj/item/circuitboard/machine/protolathe/tarkon
 	stripe_color = "#350f04"
+
 /obj/item/circuitboard/machine/protolathe/tarkon
 	name = "Tarkon Industries Protolathe"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon
+
+//Interdyne equipment
+
+/obj/machinery/rnd/production/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	circuit = /obj/item/circuitboard/machine/protolathe/interdyne
+	stripe_color = "#d40909"
+
+/obj/item/circuitboard/machine/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	greyscale_colors = CIRCUIT_COLOR_SECURITY
+	build_path = /obj/machinery/rnd/production/protolathe/interdyne
 
 /obj/item/circuitboard/machine/rdserver/interdyne
 	name = "Interdyne Pharmaceutics R&D Server"
@@ -162,3 +180,4 @@
 		qdel(research_notes)
 		return
 	return ..()
+

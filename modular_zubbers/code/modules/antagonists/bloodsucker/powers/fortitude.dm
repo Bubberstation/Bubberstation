@@ -1,14 +1,9 @@
+#define FORTITUDE_STUN_IMMUNITY_LEVEL 4
 /datum/action/cooldown/bloodsucker/fortitude
 	name = "Fortitude"
 	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings, but will render you unable to heal."
 	button_icon_state = "power_fortitude"
-	power_explanation = "Fortitude:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity, however making you unable to regenerate wounds any way whatsoever\n\
-		You will additionally gain resistance to both physical and stamina damage, scaling with level.\n\
-		While using Fortitude, attempting to run will crush you, and you will be unable to heal while it is active.\n\
-		At level 4, you gain complete stun immunity.\n\
-		Higher levels will increase Brute and Stamina resistance."
-	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	cooldown_time = 20 SECONDS
@@ -19,19 +14,27 @@
 	var/list/trigger_listening = list()
 	var/traits_to_add = list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE)
 
-/datum/action/cooldown/bloodsucker/fortitude/ActivatePower(trigger_flags)
-	. = ..()
+/datum/action/cooldown/bloodsucker/fortitude/get_power_explanation_extended()
+	. = list()
+	. += "Fortitude will provide pierce, stun and dismember immunity."
+	. += "You will additionally gain resistance to both brute, burn and stamina damage, scaling with level."
+	. += "Fortitude will make you receive [GetFortitudeResist() * 10]% less brute and and stamina and [GetBurnResist() * 10]% less burn damage."
+	. += "While using Fortitude, attempting to run will crush you."
+	. += "At level [FORTITUDE_STUN_IMMUNITY_LEVEL], you gain complete stun immunity."
+	. += "Higher levels will increase Brute and Stamina resistance."
+
+/datum/action/cooldown/bloodsucker/fortitude/ActivatePower(atom/target)
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
 	owner.add_traits(traits_to_add, BLOODSUCKER_TRAIT)
-	if(level_current >= 4)
-		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
+	if(level_current >= FORTITUDE_STUN_IMMUNITY_LEVEL)
+		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
-		fortitude_resist = max(0.3, 0.7 - level_current * 0.05)
+		fortitude_resist = GetFortitudeResist()
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
-		bloodsucker_user.physiology.burn_mod *= fortitude_resist + 0.2
+		bloodsucker_user.physiology.burn_mod *= GetBurnResist()
 		bloodsucker_user.physiology.stamina_mod *= fortitude_resist
 
 	was_running = (bloodsucker_user.move_intent == MOVE_INTENT_RUN)
@@ -53,6 +56,13 @@
 /datum/action/cooldown/bloodsucker/fortitude/proc/on_action_trigger(datum/action, mob/target)
 	SIGNAL_HANDLER
 	DeactivatePower()
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/fortitude/proc/GetFortitudeResist()
+	return max(0.3, 0.7 - level_current * 0.05)
+
+/datum/action/cooldown/bloodsucker/fortitude/proc/GetBurnResist()
+	return GetFortitudeResist() + 0.2
 
 /datum/action/cooldown/bloodsucker/fortitude/process(seconds_per_tick)
 	// Checks that we can keep using this.
@@ -71,15 +81,16 @@
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
-/datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
+/datum/action/cooldown/bloodsucker/fortitude/DeactivatePower(deactivate_flags)
 	if(length(trigger_listening))
 		for(var/power in trigger_listening)
 			UnregisterSignal(power, COMSIG_FIRE_TARGETED_POWER)
 			trigger_listening -= power
-	if(!ishuman(owner))
+	. = ..()
+	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner) && fortitude_resist)
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
 		bloodsucker_user.physiology.burn_mod /= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod /= fortitude_resist

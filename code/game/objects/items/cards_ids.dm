@@ -820,8 +820,9 @@
 /// Updates the name based on the card's vars and state.
 /obj/item/card/id/proc/update_label()
 	var/name_string = registered_name ? "[registered_name]'s ID Card" : initial(name)
-	var/assignment_string
+	var/assignment_string = get_job_title() // BUBBER EDIT: Adds a new proc which is used to get a job title
 
+	/* BUBBER EDIT: Moved to `get_job_title()`
 	if(is_intern)
 		if(assignment)
 			assignment_string = trim?.intern_alt_name || "Intern [assignment]"
@@ -829,6 +830,7 @@
 			assignment_string = "Intern"
 	else
 		assignment_string = assignment
+	*/
 
 	name = "[name_string] ([assignment_string])"
 
@@ -839,6 +841,11 @@
 /// Returns the trim sechud icon state.
 /obj/item/card/id/proc/get_trim_sechud_icon_state()
 	return trim?.sechud_icon_state || SECHUD_UNKNOWN
+
+/obj/item/card/id/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(iscash(interacting_with))
+		return insert_money(interacting_with, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
+	return NONE
 
 /obj/item/card/id/away
 	name = "\proper a perfectly generic identification card"
@@ -1442,7 +1449,7 @@
 		theft_target = WEAKREF(interacting_with)
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
-	return NONE
+	return ..()
 
 /obj/item/card/id/advanced/chameleon/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	// If we're attacking a human, we want it to be covert. We're not ATTACKING them, we're trying

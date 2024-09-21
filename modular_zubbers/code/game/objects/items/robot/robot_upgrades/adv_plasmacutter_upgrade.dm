@@ -14,7 +14,7 @@
 /obj/item/borg/upgrade/advcutter
 	name = "mining cyborg advanced plasma cutter"
 	desc = "An upgrade for the mining cyborgs plasma cutter, bringing it to advanced operation."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER

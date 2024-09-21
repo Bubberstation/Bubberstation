@@ -1,7 +1,7 @@
 /obj/item/borg/upgrade/transform/ntjack
 	name = "borg module picker (Centcom)"
 	desc = "Allows you to to turn a cyborg into a experimental nanotrasen cyborg."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_illegal"
 	new_model = /obj/item/robot_model/centcom
 
 /obj/item/borg/upgrade/transform/ntjack/action(mob/living/silicon/robot/cyborg, user = usr)
@@ -10,7 +10,7 @@
 /obj/item/borg/upgrade/transform/security
 	name = "borg model picker (Security)"
 	desc = "Allows you to to turn a cyborg into a Security model, shitsec abound."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_security"
 	new_model = /obj/item/robot_model/security
 
 //Research borg upgrades
@@ -19,7 +19,7 @@
 /obj/item/borg/upgrade/healthanalyzer
 	name = "Research cyborg advanced Health Analyzer"
 	desc = "An upgrade to the Research model cyborg's standard health analyzer."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
@@ -40,7 +40,7 @@
 /obj/item/borg/upgrade/brped
 	name = "Research cyborg Rapid Part Exchange Device Upgrade"
 	desc = "An upgrade to the Research model cyborg's standard RPED."
-	icon_state = "cyborg_upgrade3"
+	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
