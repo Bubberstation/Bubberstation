@@ -285,10 +285,6 @@
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
 		FinalDeath()
 		return
-	// Staked with a silver stake while "Temp Death" or Asleep
-	if(owner.current.StakeCanKillMe())
-		FinalDeath()
-		return
 	// Temporary Death? Convert to Torpor.
 	if(is_in_torpor() || isbrain(owner.current))
 		return
