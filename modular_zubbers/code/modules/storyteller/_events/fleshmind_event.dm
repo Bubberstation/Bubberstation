@@ -23,6 +23,7 @@
 		/area/station/engineering/supermatter,
 		/area/station/ai_monitored,
 		/area/station/tcommsat,
+		/area/station/hallway,
 	))
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
