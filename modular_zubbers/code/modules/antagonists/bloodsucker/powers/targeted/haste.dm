@@ -12,7 +12,7 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
-	target_range = 15
+	target_range = 5
 	power_activates_immediately = FALSE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
