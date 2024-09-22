@@ -140,8 +140,8 @@ const BloodsuckerIntro = () => {
               <br />
               You will learn how to make persuasion racks once you have enough
               levels to support a ghoul, which you will learn during torpor
-              during daytime. Examine the ghoul rack to see how many ghouls
-              you can have!
+              during daytime. Examine the ghoul rack to see how many ghouls you
+              can have!
               <br />
               You cannot level up until you select a clan. To select a clan,
               click the clan tab on the top right of this window.
