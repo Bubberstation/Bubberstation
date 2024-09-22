@@ -14,11 +14,12 @@
 	desc = "A near-concealed harness meant for going over uniforms. Or lack thereof."
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
 	icon_state = "suit_harness"
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/suits.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/misc.dmi'
 	worn_icon_state = "suit_harness"
 	inhand_icon_state = null
 	body_parts_covered = 0x0
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	attachment_slot_override = CHEST
 
 	//Allowed is same as jackets.
 	allowed = list(
