@@ -185,9 +185,4 @@
 	omni_toolkit = list(
 		/obj/item/surgical_drapes/cyborg,
 		/obj/item/bonesetter/cyborg,
-		/obj/item/wrench/cyborg,
-		/obj/item/wirecutters/cyborg,
-		/obj/item/screwdriver/cyborg,
-		/obj/item/crowbar/cyborg,
-		/obj/item/multitool/cyborg,
 	)
