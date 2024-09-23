@@ -24,6 +24,7 @@
 		/area/station/ai_monitored,
 		/area/station/tcommsat,
 		/area/station/hallway,
+		/area/station/commons/dorms,
 	))
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))

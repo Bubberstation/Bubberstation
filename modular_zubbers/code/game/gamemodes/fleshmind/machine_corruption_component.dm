@@ -100,7 +100,8 @@
 
 /datum/component/machine_corruption/proc/finish_setup(datum/fleshmind_controller/incoming_controller)
 	var/obj/machinery/parent_machinery = parent
-
+	if(QDELETED(src))
+		return
 	if(incoming_controller && parent_machinery.circuit && prob(CHANCE_TO_CREATE_MECHIVER))
 		var/mob/living/basic/fleshmind/mechiver/new_mechiver = incoming_controller.spawn_mob(get_turf(parent_machinery), /mob/living/basic/fleshmind/mechiver)
 		parent_machinery.circuit.forceMove(get_turf(parent_machinery))
@@ -127,13 +128,12 @@
 	parent_machinery.update_light()
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
-/datum/component/machine_corruption/Destroy() // This is fucking cursed and QDEL_HINT_IWILLGC should not be used for components
-	. = ..()
+/datum/component/machine_corruption/Destroy()
 	if(our_controller)
 		our_controller.UnregisterSignal(src, COMSIG_QDELETING)
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
 	our_controller = null
-	return QDEL_HINT_IWILLGC // Assume it'll garbage collect so it doesn't time out and hard delete.
+	return ..()
 
 /datum/component/machine_corruption/UnregisterFromParent()
 	var/obj/machinery/parent_machinery = parent
@@ -268,5 +268,4 @@
 
 /datum/component/machine_corruption/proc/emp_act(datum/source, severity)
 	SIGNAL_HANDLER
-
 	qdel(src)

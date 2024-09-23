@@ -112,6 +112,8 @@
  */
 /obj/structure/fleshmind/structure/proc/activate_ability(mob/living/triggered_mob)
 	SHOULD_CALL_PARENT(TRUE)
+	if(QDELETED(src))
+		return
 	SEND_SIGNAL(src, COMSIG_CORRUPTION_STRUCTURE_ABILITY_TRIGGERED, src, triggered_mob)
 	if(ability_cooldown_time)
 		COOLDOWN_START(src, ability_cooldown, ability_cooldown_time)
@@ -168,6 +170,9 @@
 	base_icon_state = "wireweed_wall"
 	density = TRUE
 	opacity = TRUE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS
+	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	max_integrity = 150
 	disabled_sprite = FALSE
@@ -300,6 +305,8 @@
 	explosion(src, 0, 2, 4, 6, 6)
 
 /obj/structure/fleshmind/structure/core/process(delta_time)
+	if(QDELETED(src))
+		return
 	var/mob/living/carbon/human/target = locate() in view(5, src)
 	if(target && target.stat == CONSCIOUS)
 		if(get_dist(src, target) <= 1)
@@ -420,6 +427,8 @@
 /obj/structure/fleshmind/structure/core/proc/build_a_wall()
 	for(var/turf/iterating_turf in TURF_NEIGHBORS(src))
 		if(locate(/obj/structure/fleshmind/structure) in iterating_turf) // No stacking walls over structures
+			continue
+		if(locate(/turf/closed) in iterating_turf) // No stacking walls over walls
 			continue
 		new /obj/structure/fleshmind/structure/wireweed_wall(iterating_turf)
 
