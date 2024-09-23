@@ -36,3 +36,8 @@
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	icon_state = "technician"
 	inhand_icon_state = "technician"
+
+//Placing this here for admins, used in award medals so people can't spam the end round with "Barack Obama awarded Joe Biden" stuff.
+/obj/item/clothing/accessory/fake/medal
+	name = "plastic medal"
+	desc = "Yeah nice try buddy. They won't record this one."
