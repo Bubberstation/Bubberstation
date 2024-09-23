@@ -4,8 +4,16 @@
 	/// Has the vote reminder fired yet
 	var/reminder_fired = FALSE
 
+/// Bubber vote fire proc, original at code/controllers/subsystem/vote.dm
 /datum/controller/subsystem/vote/fire()
-	. = ..()
+	if(!current_vote)
+		return
+
+	current_vote.time_remaining = round((current_vote.started_time + CONFIG_GET(number/vote_period) - world.time) / 10)
+	if(current_vote.time_remaining < 0)
+		end_vote()
+
+	// We give a reminder to latejoiners who may have missed the original vote notification.
 	if(!current_vote.vote_reminder || current_vote.reminder_fired)
 		return
 
@@ -14,7 +22,6 @@
 
 	current_vote.reminder_fired = TRUE
 
-	// We give a reminder to latejoiners who may have missed the original vote notification.
 	for(var/client/late_voter as anything in GLOB.clients)
 		if(LAZYFIND(voted, late_voter.ckey)) // Skip people who already voted
 			continue
