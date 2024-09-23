@@ -1,7 +1,7 @@
 #define INIT_ORDER_GAMEMODE 70
 
 SUBSYSTEM_DEF(gamemode)
-	name = "Gamemode"
+	name = "Storyteller"
 	init_order = INIT_ORDER_GAMEMODE
 	runlevels = RUNLEVEL_GAME
 	flags = SS_BACKGROUND | SS_KEEP_TIMING
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/roundstart_event_view = TRUE
 
 	/// Whether the storyteller has been halted
-	var/halted_storyteller = FALSE
+	var/storyteller_halted = FALSE
 
 	/// Ready players for roundstart events.
 	var/ready_players = 0
@@ -175,7 +175,7 @@ SUBSYSTEM_DEF(gamemode)
 			sch_event.alerted_admins = TRUE
 			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
-	if(!halted_storyteller && next_storyteller_process <= world.time && storyteller)
+	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
 				// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
 		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
@@ -308,7 +308,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /// We roll points to be spent for roundstart events, including antagonists.
 /datum/controller/subsystem/gamemode/proc/roll_pre_setup_points()
-	if(storyteller.disable_distribution || halted_storyteller)
+	if(storyteller.disable_distribution || storyteller_halted)
 		return
 	/// Distribute points
 	for(var/track in event_track_points)
@@ -343,7 +343,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/handle_pre_setup_roundstart_events()
 	if(storyteller.disable_distribution)
 		return
-	if(halted_storyteller)
+	if(storyteller_halted)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
 		return
 	while(TRUE)
@@ -688,8 +688,14 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
 		return
 	set_storyteller(voted_storyteller)
-
-/datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type)
+/**
+ * set_storyteller
+ *
+ * Always call this to set the storyteller
+ * Called by the storyteller system on roundstart and after a vote finishes.
+ * When forced via game panel, forced = TRUE, and force_ckey contains the ckey of the admin who forced it
+*/
+/datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type, forced, force_ckey)
 	if(!storytellers[passed_type])
 		message_admins("Attempted to set an invalid storyteller type: [passed_type].")
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
@@ -704,6 +710,17 @@ SUBSYSTEM_DEF(gamemode)
 
 	to_chat(world, span_notice("<b>Storyteller is [storyteller.name]!</b>"))
 	to_chat(world, span_notice("[storyteller.welcome_text]"))
+	log_dynamic("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
+
+/**
+ * halt_storyteller
+ *
+ * Used to halt/unhalt and properly log storyteller
+ */
+/datum/controller/subsystem/gamemode/proc/halt_storyteller(mob/user)
+	storyteller_halted = !storyteller_halted
+	message_admins("[key_name_admin(user)] has [storyteller_halted ? "HALTED" : "un-halted"] the Storyteller.")
+	log_dynamic("Storyteller [storyteller_halted ? "halted" : "un-halted"] by admin [user.ckey].")
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
@@ -712,7 +729,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/dat = list()
 	var/active_pop = get_correct_popcount()
 	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
-	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
+	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [storyteller_halted ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
 	dat += "<BR>Active Players: [active_pop]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew]) - Antag Cap: [get_antag_cap()]"
 	dat += "<HR>"
@@ -822,6 +839,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/browser/popup = new(user, "gamemode_admin_panel", "Gamemode Panel", 670, 650)
 	popup.set_content(dat.Join())
 	popup.open()
+	ui_interact(usr)
 
  /// Panel containing information and actions regarding events
 /datum/controller/subsystem/gamemode/proc/event_panel(mob/user)
@@ -930,8 +948,7 @@ SUBSYSTEM_DEF(gamemode)
 					var/new_storyteller_type = name_list[new_storyteller_name]
 					set_storyteller(new_storyteller_type)
 				if("halt_storyteller")
-					halted_storyteller = !halted_storyteller
-					message_admins("[key_name_admin(usr)] has [halted_storyteller ? "HALTED" : "un-halted"] the Storyteller.")
+					halt_storyteller(usr)
 				if("vars")
 					var/track = href_list["track"]
 					switch(href_list["var"])
