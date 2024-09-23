@@ -10,7 +10,7 @@
 	var/data = list()
 	data["storyteller_name"] = storyteller ? storyteller.name : "None"
 	data["storyteller_halt"] = storyteller_halted
-	data["pop"] = get_correct_popcount() // Todo - make pop a static thing and update only with get_correct_popcount calls
+	data["pop"] = get_correct_popcount()
 	data["antag_count"] = GLOB.current_living_antags.len
 	data["antag_cap"] = get_antag_cap()
 	return data

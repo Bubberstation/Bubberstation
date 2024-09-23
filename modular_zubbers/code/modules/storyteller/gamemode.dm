@@ -129,6 +129,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/sec_crew = 0
 	var/med_crew = 0
 
+	/// Whether we looked up pop info in this process tick
+	var/pop_data_cached = FALSE
+
 	var/wizardmode = FALSE
 
 	var/storyteller_voted = FALSE
@@ -176,10 +179,12 @@ SUBSYSTEM_DEF(gamemode)
 			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
 	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
-				// We update crew information here to adjust population scalling and event thresholds for the storyteller.
+		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
 		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
 		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+	// Reset the cache value to false
+	pop_data_cached = FALSE
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -277,10 +282,12 @@ SUBSYSTEM_DEF(gamemode)
 /// Gets the correct popcount, returning READY people if roundstart, and active people if not.
 /datum/controller/subsystem/gamemode/proc/get_correct_popcount()
 	if(SSticker.HasRoundStarted())
-		update_crew_infos()
+		if(!pop_data_cached)
+			update_crew_infos()
 		return active_players
 	else
-		calculate_ready_players()
+		if(!pop_data_cached)
+			calculate_ready_players()
 		return ready_players
 
 /// Refunds and removes a scheduled event.
@@ -305,6 +312,7 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 		if(player.ready == PLAYER_READY_TO_PLAY)
 			ready_players++
+	pop_data_cached = TRUE
 
 /// We roll points to be spent for roundstart events, including antagonists.
 /datum/controller/subsystem/gamemode/proc/roll_pre_setup_points()
@@ -397,6 +405,7 @@ SUBSYSTEM_DEF(gamemode)
 				med_crew++
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 				sec_crew++
+	pop_data_cached = TRUE
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
 	. = event.preRunEvent()
@@ -511,6 +520,7 @@ SUBSYSTEM_DEF(gamemode)
 	addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(1 MINUTES, 5 MINUTES))
 	handle_post_setup_roundstart_events()
 	roundstart_event_view = FALSE
+	pop_data_cached = FALSE // Uncache it because we still consider it cache from lobby pops
 	return TRUE
 
 
@@ -724,14 +734,12 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
-	update_crew_infos()
 	var/round_started = SSticker.HasRoundStarted()
 	var/list/dat = list()
-	var/active_pop = get_correct_popcount()
 	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
 	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [storyteller_halted ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
-	dat += "<BR>Active Players: [active_pop]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew]) - Antag Cap: [get_antag_cap()]"
+	dat += "<BR>Active Players: [get_correct_popcount()]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew]) - Antag Cap: [get_antag_cap()]"
 	dat += "<HR>"
 	dat += "<a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_MAIN]' [panel_page == GAMEMODE_PANEL_MAIN ? "class='linkOn'" : ""]>Main</a>"
 	dat += " <a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_VARIABLES]' [panel_page == GAMEMODE_PANEL_VARIABLES ? "class='linkOn'" : ""]>Variables</a>"
