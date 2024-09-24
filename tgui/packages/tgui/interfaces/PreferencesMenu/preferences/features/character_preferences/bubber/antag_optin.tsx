@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBERS UI FILE
 import { FeatureChoiced } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
