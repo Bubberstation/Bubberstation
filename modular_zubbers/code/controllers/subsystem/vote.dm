@@ -12,6 +12,7 @@
 	current_vote.time_remaining = round((current_vote.started_time + CONFIG_GET(number/vote_period) - world.time) / 10)
 	if(current_vote.time_remaining < 0)
 		end_vote()
+		return
 
 	// We give a reminder to latejoiners who may have missed the original vote notification.
 	if(!current_vote.vote_reminder || current_vote.reminder_fired)
