@@ -129,34 +129,6 @@
 		repair_sensors(cable_required = FALSE)
 	update_appearance()
 
-/* BUBBERSTATION CHANGE: REWORKS SENSOR EMP
-
-/obj/item/clothing/under/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(has_sensor == NO_SENSORS || has_sensor == BROKEN_SENSORS)
-		return
-
-	if(severity <= EMP_HEAVY)
-		has_sensor = BROKEN_SENSORS
-		if(ismob(loc))
-			var/mob/M = loc
-			to_chat(M,span_warning("[src]'s sensors short out!"))
-
-	else
-		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
-		if(ismob(loc))
-			var/mob/M = loc
-			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/ooman = loc
-		if(ooman.w_uniform == src)
-			ooman.update_suit_sensors()
-
-BUBBERSTATION CHANGE END */
-
 /obj/item/clothing/under/visual_equipped(mob/user, slot)
 	. = ..()
 	if(adjusted == ALT_STYLE)
@@ -244,6 +216,8 @@ BUBBERSTATION CHANGE END */
 /mob/living/carbon/human/dummy/update_sensor_list()
 	return
 
+/* BUBBERSTATION CHANGE: REWORKS SENSOR EMP
+
 /obj/item/clothing/under/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -260,6 +234,8 @@ BUBBERSTATION CHANGE END */
 		visible_message(span_warning("The [src]'s medical sensors flash and change rapidly!"), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 	update_wearer_status()
+
+BUBBERSTATION CHANGE END */
 
 // End suit sensor handling
 
