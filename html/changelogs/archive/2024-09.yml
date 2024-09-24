@@ -77,3 +77,63 @@
   theselfish:
   - rscadd: Adds unused Red Pauldrons to Sec Vendor, as well as the Sec Med beret
       and Armadyne belts.
+2024-09-24:
+  Arturlang:
+  - refactor: Heavily refactors how bloodsucker powers function.
+  - refactor: Tremere powers no longer have subtypes for each level.
+  - rscadd: Completely redoes how bloodsucker ability descriptions, both the longer
+      antag panel and the action button hover over, they will actually tell you actual
+      values that the game itself uses for damage, cooldowns, and effect durations
+  - balance: Tremere powers can now level up as far as you want.
+  - balance: Mesmerize is heavily reworked, now it no longer forces both parties to
+      stand still for it to work, but it is obvious to the victim when used, however
+      the victim is muted for the duration of the spool up, and will stun and mute
+      normally if the do_after completes.
+  - rscadd: 'Mesmerize now has a secondary that allows you to mute and confuse your
+      victim that happens on a right-click,
+
+      dominate, the tremere''s version instead knockdowns.'
+  - rscadd: Tremere's dominate now has a visual timer for temporary vassals, visible
+      only to the master's vassals and the master themselves.
+  - balance: Tremere's dominate now only requires level 2 to create temporary vassals,
+      but the duration now scales with the level. It now requires the potential vassal
+      to have more than 336 blood, and will use it all up once the duration ends,
+      effectively making it only usable once per person.
+  - balance: All tremere powers can now level up past level 4
+  - balance: Thaumaturgy is heavily reworked, it now has a charge system, and while
+      the projectile deal less damage, you can shoot a lot more of them, and the projectiles
+      will seek towards any non-vassal mob near where you cast it.
+  - refactor: Separates bloodsucker ability bitfields and action bitfields to avoid
+      overriding eachother
+  - balance: Bloodsuckers going into torpor outside of coffins will always die, but
+      will wake out of torpor at 20% maxhealth(not counting critical health)
+  - balance: A coffin being opened during sol will wake you up, given you are LITERALL
+      BURNING UN-ALIVE.
+  - balance: The range of haste is now 5 tiles.
+  - balance: Bloodsuckers are no longer highly wound resistant, but their coffins
+      will now heal all wounds
+  - bugfix: Should fix the issue with bloodsucker bleeding staying active forever
+  BurgerBB:
+  - balance: Reduces RBMK2 temperature gain based on matter bin tier
+  - balance: Overhauls requirements for Anomaly Refinement, and removes some limits
+      and implements some more.
+  - balance: Makes Space Dragons immune to toxin + oxy damage because I saw a Space
+      Dragon die to simplemobs on Moonstation Once
+  KathrinBailey:
+  - rscadd: Loincloths from Sandstorm.
+  - bugfix: Jean shorts/skirt no longer covers legs and chest.
+  Majkl-J:
+  - qol: The tank manipulator now gives feedback about what's in it
+  Odairu:
+  - balance: nerfs heretics ability to ascend
+  Redrover1760:
+  - balance: Reverts 9x25mm and 9x25mm AP skyrat nerf to tg values.
+  Shadow-Quill:
+  - spellcheck: Fixed a typo in the message that appeared when someone with the Well-Trained
+      perk examined someone with the Dominant Aura trait.
+  nevimer:
+  - bugfix: airbags are no longer haunted
+  shayoki:
+  - rscadd: Added fitness equipment to Box Station's Fitness Room.
+  theselfish:
+  - bugfix: The Neck Gaiter no longer hides glasses.
