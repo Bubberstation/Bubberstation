@@ -37,7 +37,7 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/technician_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked
-	cost = PAYCHECK_COMMAND * 13.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 23.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
 
 // Basic first aid supplies like gauze, sutures, mesh, so on
 
