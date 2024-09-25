@@ -520,7 +520,7 @@ SUBSYSTEM_DEF(gamemode)
 	addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(1 MINUTES, 5 MINUTES))
 	handle_post_setup_roundstart_events()
 	roundstart_event_view = FALSE
-	pop_data_cached = FALSE // Uncache it because we still consider it cache from lobby pops
+	pop_data_cached = FALSE // Uncache it because we'd still wrongly consider it cached from lobby pops
 	return TRUE
 
 
@@ -698,6 +698,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
 		return
 	set_storyteller(voted_storyteller)
+
 /**
  * set_storyteller
  *
