@@ -66,6 +66,16 @@
 		if("track_action")
 			switch(params["action"])
 				if("set_pnts")
+					var/track_to_adjust = params["track"]
+					var/num = tgui_input_number(\
+					usr, \
+					title = "Set track points", \
+					default = event_track_points[track_to_adjust], \
+					max_value = point_thresholds[track_to_adjust]*5, \
+					)
+					if(isnull(num))
+						return
+					event_track_points[track_to_adjust] = num
 					// Point setting shit here
 				if("force_next")
 					var/forced_track = params["track"]
