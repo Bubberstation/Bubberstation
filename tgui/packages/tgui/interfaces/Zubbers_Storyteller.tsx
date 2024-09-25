@@ -7,6 +7,7 @@ import {
   ProgressBar,
   Section,
   Stack,
+  Table,
 } from '../components';
 import { Window } from '../layouts';
 import { useState } from 'react';
@@ -24,7 +25,7 @@ export type Storyteller_Data = {
 export const Zubbers_Storyteller = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   return (
-    <Window width={500} height={500}>
+    <Window width={800} height={680}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -100,70 +101,81 @@ export const Zubbers_Storyteller_Round_Data = (props) => {
   );
 };
 
-const TRACK_DATA_TRACK_WIDTH = '15%';
-const TRACK_DATA_POINT_WIDTH = '33%';
-const TRACK_DATA_NEXT_WIDTH = '17%';
-const TRACK_DATA_FORCED_WIDTH = '35%';
+const TRACK_DATA_TRACK_WIDTH = '8%';
+const TRACK_DATA_POINT_WIDTH = '22%';
+const TRACK_DATA_NEXT_WIDTH = '8%';
+const TRACK_DATA_FORCED_WIDTH = '20%';
+const TRACK_DATA_ACTIONS_WIDTH = '20%';
 
 export const Zubbers_Storyteller_Track_Data = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { tracks_data, storyteller_halt } = data;
   return (
     <Section title="Tracks">
-      <Stack vertical>
-        <Stack.Item>
-          <Stack bold>
-            <Stack.Item width={TRACK_DATA_TRACK_WIDTH}>Track</Stack.Item>
-            <Stack.Item width={TRACK_DATA_POINT_WIDTH}>Points</Stack.Item>
-            <Stack.Item width={TRACK_DATA_NEXT_WIDTH}>Next event</Stack.Item>
-            <Stack.Item width={TRACK_DATA_FORCED_WIDTH}>
-              Next forced event
-            </Stack.Item>
-          </Stack>
-        </Stack.Item>
+      <Table>
+        <Table.Row bold>
+          <Table.Cell width={TRACK_DATA_TRACK_WIDTH}>Track</Table.Cell>
+          <Table.Cell width={TRACK_DATA_POINT_WIDTH}>Points</Table.Cell>
+          <Table.Cell width={TRACK_DATA_NEXT_WIDTH}>Next event</Table.Cell>
+          <Table.Cell width={TRACK_DATA_FORCED_WIDTH} textAlign="center">
+            Next forced event
+          </Table.Cell>
+          <Table.Cell width={TRACK_DATA_ACTIONS_WIDTH}>Actions</Table.Cell>
+        </Table.Row>
         <Stack.Divider></Stack.Divider>
         {Object.entries(tracks_data).map(([track, track_data]) => {
           const max_points = Number(track_data['max']);
           const current_points = Number(track_data['current']);
           const forced = track_data['forced'];
           return (
-            <Stack.Item>
-              <Stack>
-                <Stack.Item width={TRACK_DATA_TRACK_WIDTH}>
-                  <Button
-                    tooltip="Edit track parameters"
-                    width="100%"
-                    textAlign="center"
-                  >
-                    {track}
-                  </Button>
-                </Stack.Item>
-                <Stack.Item width={TRACK_DATA_POINT_WIDTH}>
-                  <ProgressBar
-                    value={current_points}
-                    maxValue={max_points}
-                    ranges={{
-                      good: [-Infinity, max_points],
-                      average: [max_points, Infinity],
-                    }}
-                  >
-                    {current_points + ' / ' + max_points}
-                    {' (' +
-                      Math.floor((current_points * 100) / max_points) +
-                      '%) '}
-                  </ProgressBar>
-                </Stack.Item>
-                <Stack.Item width={TRACK_DATA_NEXT_WIDTH} textAlign="center">
-                  {storyteller_halt ? 'N/A' : '~' + track_data['next'] + 'min'}
-                </Stack.Item>
-                <Stack.Item width={TRACK_DATA_FORCED_WIDTH}>
-                  {forced ? forced : ''}
-                </Stack.Item>
-              </Stack>
-            </Stack.Item>
+            <Table.Row>
+              <Table.Cell>
+                <Button
+                  tooltip="Edit points"
+                  width="100%"
+                  textAlign="center"
+                  onClick={() => act('track_action', { action: 'set_pnts' })}
+                >
+                  {track}
+                </Button>
+              </Table.Cell>
+              <Table.Cell>
+                <ProgressBar
+                  value={current_points}
+                  maxValue={max_points}
+                  ranges={{
+                    good: [-Infinity, max_points],
+                    average: [max_points, Infinity],
+                  }}
+                >
+                  {current_points + ' / ' + max_points}
+                  {' (' +
+                    Math.floor((current_points * 100) / max_points) +
+                    '%) '}
+                </ProgressBar>
+              </Table.Cell>
+              <Table.Cell textAlign="center">
+                {storyteller_halt ? 'N/A' : '~' + track_data['next'] + 'min'}
+              </Table.Cell>
+              <Table.Cell>{forced ? forced : ''}</Table.Cell>
+              <Table.Cell>
+                <Button
+                  onClick={() =>
+                    act('track_action', { action: 'force_next', track: track })
+                  }
+                >
+                  Next Event
+                </Button>{' '}
+                <Button
+                  onClick={() => act('open_event_panel', { track: track })}
+                >
+                  Events Panel
+                </Button>
+              </Table.Cell>
+            </Table.Row>
           );
         })}
-      </Stack>
+      </Table>
     </Section>
   );
 };

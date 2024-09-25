@@ -728,10 +728,27 @@ SUBSYSTEM_DEF(gamemode)
  *
  * Used to halt/unhalt and properly log storyteller
  */
+
 /datum/controller/subsystem/gamemode/proc/halt_storyteller(mob/user)
 	storyteller_halted = !storyteller_halted
+	if(isnull(user))
+		return
 	message_admins("[key_name_admin(user)] has [storyteller_halted ? "HALTED" : "un-halted"] the Storyteller.")
 	log_dynamic("Storyteller [storyteller_halted ? "halted" : "un-halted"] by admin [user.ckey].")
+
+/**
+ * force_next_event
+ *
+ * Forces next event scheduling/firing for `track`
+ *
+ */
+/datum/controller/subsystem/gamemode/proc/force_next_event(track, mob/user)
+	event_track_points[track] = point_thresholds[track]
+	if(isnull(storyteller))
+		return
+	storyteller.handle_tracks()
+	message_admins("[key_name_admin(user)] has forced an event for the [track] track.")
+	log_dynamic("Storyteller track [track] forced to run by [user.ckey]")
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)

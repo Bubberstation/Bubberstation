@@ -50,6 +50,7 @@
 	. = ..()
 	switch(action)
 		if("set_storyteller")
+			// Todo: Replace with tgui_input
 			var/list/name_list = list()
 			for(var/storyteller_type in storytellers)
 				var/datum/storyteller/storyboy = storytellers[storyteller_type]
@@ -62,4 +63,10 @@
 			set_storyteller(new_storyteller_type, TRUE, usr.ckey)
 		if("halt_storyteller")
 			halt_storyteller(usr)
-
+		if("track_action")
+			switch(params["action"])
+				if("set_pnts")
+					// Point setting shit here
+				if("force_next")
+					var/forced_track = params["track"]
+					force_next_event(forced_track, usr)
