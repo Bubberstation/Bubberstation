@@ -20,14 +20,3 @@
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/dropper(src)
 
-/datum/uplink_item/role_restricted/changeling_zombie
-	name = "Modifiable Changeling Zombie Virus"
-	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the host. \
-		On death, these nodules take control of the dead body, causing the infectious variant of Changeling Zombie virus to manifest. \
-		This does not turn you into a real Changeling, just a failed experimental one that can still be useful to spread chaos with. \
-		This virus can be modified if you're not too happy with the initial symptoms! Virus food not included."
-	item = /obj/item/storage/box/syndie_kit/changeling_zombie
-	cost = 20
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER)
-	surplus = 0
-
