@@ -204,6 +204,48 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
               <Table.Cell>{event_name}</Table.Cell>
               <Table.Cell>{event_data['track']}</Table.Cell>
               <Table.Cell>{time ? time + ' s' : 'Roundstart'}</Table.Cell>
+              <Table.Cell>
+                <Button
+                  onClick={() =>
+                    act('event_action', {
+                      action: 'cancel',
+                      type: event_data['event_type'],
+                    })
+                  }
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() =>
+                    act('event_action', {
+                      action: 'refund',
+                      type: event_data['event_type'],
+                    })
+                  }
+                >
+                  Refund
+                </Button>
+                <Button
+                  onClick={() =>
+                    act('event_action', {
+                      action: 'reschedule',
+                      type: event_data['event_type'],
+                    })
+                  }
+                >
+                  Reschedule
+                </Button>
+                <Button
+                  onClick={() =>
+                    act('event_action', {
+                      action: 'fire',
+                      type: event_data['event_type'],
+                    })
+                  }
+                >
+                  Fire
+                </Button>
+              </Table.Cell>
             </Table.Row>
           );
         })}

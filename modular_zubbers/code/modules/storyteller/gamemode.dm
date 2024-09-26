@@ -750,6 +750,19 @@ SUBSYSTEM_DEF(gamemode)
 	message_admins("[key_name_admin(user)] has forced an event for the [track] track.")
 	log_dynamic("Storyteller track [track] forced to run by [user.ckey]")
 
+/**
+ * get_scheduled_by_event_type
+ *
+ * Returns the scheduled event, if any, by the event's type.
+ * Returns null if no such event exists.
+ */
+/datum/controller/subsystem/gamemode/proc/get_scheduled_by_event_type(type)
+	for(var/datum/scheduled_event/scheduled_event as anything in scheduled_events)
+		if(istype(scheduled_event.event, type))
+			continue
+		return scheduled_event
+	return null
+
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
 	var/round_started = SSticker.HasRoundStarted()
