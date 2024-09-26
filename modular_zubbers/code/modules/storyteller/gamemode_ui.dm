@@ -10,10 +10,12 @@
 	var/data = list()
 	data["storyteller_name"] = storyteller ? storyteller.name : "None"
 	data["storyteller_halt"] = storyteller_halted
-	data["pop_data"] = get_ui_pop_data()
-	data["tracks_data"] = get_ui_track_data()
 	data["antag_count"] = GLOB.current_living_antags.len // Switch this up if the calculation for the cap changes (It probably will)
 	data["antag_cap"] = get_antag_cap()
+
+	data["pop_data"] = get_ui_pop_data()
+	data["tracks_data"] = get_ui_track_data()
+	data["scheduled_data"] = get_ui_scheduled_data()
 	return data
 
 /datum/controller/subsystem/gamemode/proc/get_ui_pop_data()
@@ -39,6 +41,21 @@
 			"next" = next,
 		)
 	return track_data
+
+/datum/controller/subsystem/gamemode/proc/get_ui_scheduled_data()
+	var/scheduled_data = list()
+	var/sorted_scheduled = list()
+	for(var/datum/scheduled_event/scheduled as anything in scheduled_events)
+		sorted_scheduled[scheduled] = scheduled.start_time
+	sortTim(sorted_scheduled, cmp=/proc/cmp_numeric_asc, associative = TRUE)
+	for(var/datum/scheduled_event/scheduled as anything in sorted_scheduled)
+		var/time = (scheduled.event.roundstart) ? null : ((scheduled.start_time - world.time) / (1 SECONDS))
+		scheduled_data[scheduled.event.name] = list(
+			"track" = scheduled.event.track,
+			"time" = time,
+			"event_type" = scheduled.event.type,
+		)
+	return scheduled_data
 
 /datum/controller/subsystem/gamemode/ui_static_data(mob/user)
 	. = ..()
@@ -69,14 +86,14 @@
 					var/track_to_adjust = params["track"]
 					var/num = tgui_input_number(\
 					usr, \
-					title = "Set track points", \
+					"Set [track_to_adjust] track points",
+					title = "Track points", \
 					default = event_track_points[track_to_adjust], \
 					max_value = point_thresholds[track_to_adjust]*5, \
 					)
 					if(isnull(num))
 						return
 					event_track_points[track_to_adjust] = num
-					// Point setting shit here
 				if("force_next")
 					var/forced_track = params["track"]
 					force_next_event(forced_track, usr)

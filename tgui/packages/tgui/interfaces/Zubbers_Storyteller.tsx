@@ -20,6 +20,7 @@ export type Storyteller_Data = {
 
   pop_data: Record<string, number>;
   tracks_data: Record<string, Record<string, number>>;
+  scheduled_data: Record<string, Record<string, string>>;
 };
 
 export const Zubbers_Storyteller = (props) => {
@@ -34,6 +35,9 @@ export const Zubbers_Storyteller = (props) => {
           <Stack.Divider />
           <Stack.Item>
             <Zubbers_Storyteller_Track_Data />
+          </Stack.Item>
+          <Stack.Item>
+            <Zubbers_Storyteller_Scheduled_Data />
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -70,7 +74,6 @@ export const Zubbers_Storyteller_Round_Data = (props) => {
             color={storyteller_halt ? 'red' : 'green'}
             tooltip={(storyteller_halt ? 'Unhalt' : 'Halt') + ' storyteller'}
             onClick={() => act('halt_storyteller')}
-            width="20%"
             textAlign="center"
           >
             {storyteller_halt ? 'Halted' : 'Running'}
@@ -134,7 +137,9 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
                   tooltip="Edit points"
                   width="100%"
                   textAlign="center"
-                  onClick={() => act('track_action', { action: 'set_pnts' })}
+                  onClick={() =>
+                    act('track_action', { action: 'set_pnts', track: track })
+                  }
                 >
                   {track}
                 </Button>
@@ -182,11 +187,27 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
 
 export const Zubbers_Storyteller_Scheduled_Data = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
+  const { scheduled_data } = data;
   return (
     <Section title="Scheduled events">
-      <Stack vertical>
-        <Stack.Item></Stack.Item>
-      </Stack>
+      <Table>
+        <Table.Row bold>
+          <Table.Cell>Name</Table.Cell>
+          <Table.Cell>Track</Table.Cell>
+          <Table.Cell>Time</Table.Cell>
+          <Table.Cell>Actions</Table.Cell>
+        </Table.Row>
+        {Object.entries(scheduled_data).map(([event_name, event_data]) => {
+          const time = event_data['time'];
+          return (
+            <Table.Row>
+              <Table.Cell>{event_name}</Table.Cell>
+              <Table.Cell>{event_data['track']}</Table.Cell>
+              <Table.Cell>{time ? time + ' s' : 'Roundstart'}</Table.Cell>
+            </Table.Row>
+          );
+        })}
+      </Table>
     </Section>
   );
 };
