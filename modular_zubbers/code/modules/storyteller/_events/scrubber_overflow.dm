@@ -1,38 +1,54 @@
-/datum/round_event/scrubber_overflow
-	/// Whitelist of reagents we want scrubbers to dispense
-	safer_chems = list(/datum/reagent/baldium,
-		/datum/reagent/bluespace,
-		/datum/reagent/carbon,
-		/datum/reagent/concentrated_barbers_aid,
-		/datum/reagent/consumable/astrotame,
-		/datum/reagent/consumable/char,
-		/datum/reagent/consumable/condensedcapsaicin,
-		/datum/reagent/consumable/cream,
-		/datum/reagent/consumable/ethanol/antifreeze,
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/consumable/ethanol/fernet_cola,
-		/datum/reagent/consumable/ethanol/sugar_rush,
-		/datum/reagent/consumable/ethanol/synthanol,
-		/datum/reagent/consumable/laughter,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/tinlux,
-		/datum/reagent/cryptobiolin,
-		/datum/reagent/drug/mushroomhallucinogen,
-		/datum/reagent/drug/space_drugs,
-		/datum/reagent/eigenstate,
-		/datum/reagent/fuel,
-		/datum/reagent/gravitum,
-		/datum/reagent/growthserum,
-		/datum/reagent/hair_dye,
-		/datum/reagent/hydrogen_peroxide,
-		/datum/reagent/lube,
-		/datum/reagent/medicine/c2/multiver,
-		/datum/reagent/medicine/nanite_slurry,
-		/datum/reagent/metalgen,
-		/datum/reagent/pax,
-		/datum/reagent/plastic_polymers,
-		/datum/reagent/space_cleaner,
-		/datum/reagent/spraytan,
-		/datum/reagent/lube/superlube,
-		/datum/reagent/yuck,
-	)
+GLOBAL_LIST_INIT(safe_touch_chems,list(
+	/datum/reagent/consumable/salt,
+	/datum/reagent/consumable/flour,
+	/datum/reagent/blood,
+	/datum/reagent/water,
+	/datum/reagent/lube,
+	/datum/reagent/carbon,
+	/datum/reagent/space_cleaner,
+	subtypesof(/datum/reagent/carpet),
+	/datum/reagent/drying_agent,
+	subtypesof(/datum/reagent/glitter),
+	/datum/reagent/firefighting_foam,
+	/datum/reagent/cellulose,
+	/datum/reagent/medicine/dermagen,
+	/datum/reagent/medicine/regen_jelly,
+	/datum/reagent/baldium,
+	/datum/reagent/concentrated_barbers_aid,
+	/datum/reagent/barbers_aid,
+	/datum/reagent/hair_dye,
+	/datum/reagent/water/salt,
+	/datum/reagent/medicine/mine_salve,
+	/datum/reagent/consumable/tinlux,
+	/datum/reagent/consumable/tearjuice,
+	/datum/reagent/consumable/condensedcapsaicin,
+))
+
+GLOBAL_LIST_INIT(dangerous_touch_chems,list(
+	/datum/reagent/consumable/frostoil,
+	/datum/reagent/hydrogen_peroxide,
+	/datum/reagent/water/holywater,
+	/datum/reagent/uranium,
+	/datum/reagent/fuel,
+	/datum/reagent/ants,
+	/datum/reagent/thermite,
+	/datum/reagent/clf3,
+	subtypesof(/datum/reagent/toxin/acid),
+	/datum/reagent/medicine/rezadone,
+	/datum/reagent/toxin/plantbgone,
+	/datum/reagent/napalm,
+	/datum/reagent/medicine/polypyr,
+	/datum/reagent/medicine/strange_reagent,
+	/datum/reagent/consumable/liquidelectricity,
+	/datum/reagent/medicine/c2/synthflesh,
+	/datum/reagent/medicine/c2/hercuri,
+	/datum/reagent/flightpotion, //Not dangerous, just should be rare :)
+))
+
+/datum/round_event/scrubber_overflow/get_overflowing_reagent(dangerous)
+
+	var/result = dangerous ? pick(GLOB.dangerous_touch_chems) : pick(GLOB.safe_touch_chems)
+	while(islist(result))
+		result = pick(result)
+
+	return result
