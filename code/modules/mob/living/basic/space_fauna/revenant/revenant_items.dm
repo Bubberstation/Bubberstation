@@ -16,7 +16,7 @@
 
 /obj/item/ectoplasm/revenant/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(try_reform)), 15 SECONDS) // BUBBER EDIT
+	addtimer(CALLBACK(src, PROC_REF(try_reform)), 30 SECONDS) // BUBBER EDIT
 
 /obj/item/ectoplasm/revenant/Destroy()
 	if(!QDELETED(revenant))

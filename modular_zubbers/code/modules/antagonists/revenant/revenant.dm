@@ -1,7 +1,7 @@
 /mob/living/basic/revenant
 	essence = 1
-	max_essence = 60
-	essence_regen_amount = 1
+	max_essence = 75
+	essence_regen_amount = 1.5
 	var/times_tossed = 0
 	var/pending_punishment
 
@@ -10,21 +10,24 @@
 	. = ..()
 	. += "Times scattered: [times_tossed]"
 
-
+/obj/item/ectoplasm/revenant
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "revenantEctoplasm"
 
 /obj/item/ectoplasm/revenant/proc/become_defeated()
 	if(!revenant.pending_punishment)
-		alpha = 0
+		alpha = 50
 		revenant.pending_punishment = TRUE
-		to_chat(revenant, span_revenwarning("Your spirit is put to rest... for now."))
-		sleep(3 MINUTES)
+		icon = 'modular_zubbers/icons/effects/revenant.dmi'
+		icon_state = "scattered"
+		to_chat(revenant, span_revenwarning("Your ashes are scattered!"))
+		inert = TRUE
+		addtimer(CALLBACK(src, PROC_REF(try_reform)), 3 MINUTES, TIMER_OVERRIDE)
 
 /mob/living/basic/revenant/death_reset()
 	. = ..()
 	if(pending_punishment)
 		times_tossed++
-/* 		var/datum/action/cooldown/spell/aoe/revenant/ability = pick(abilities)
-		ability.locked = initial(ability.locked) */
-		essence_regen_amount = 0.05 // drain a soul to get it back to normal.
+		essence_regen_amount = 0.1 // drain a soul to get it back to normal.
 		pending_punishment = FALSE
 		to_chat(src, span_revenwarning("Your ashes slowly come back together."))
