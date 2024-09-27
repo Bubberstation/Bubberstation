@@ -66,3 +66,10 @@
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)
+
+/datum/supply_pack/security/armory/precisionionrifle
+	name = "Precision Ion Rifle Crate"
+	cost = CARGO_CRATE_VALUE * 20 //Same as the energy gun crate, but a little more.
+	desc = "Contains two Precision Ion Rifle, for when you want to spend a little extra to ensure that you don't hit stuff you don't want to hit."
+	contains = list(/obj/item/gun/energy/ionrifle/precision = 2)
+	crate_name = "Precision Ion Rifle Crate"
