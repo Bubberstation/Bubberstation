@@ -32,6 +32,8 @@
 /datum/round_event_control/sandstorm
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_DESTRUCTIVE)
+	weight = 0
+	max_occurrences = 0
 
 /datum/round_event_control/shuttle_catastrophe
 	track = EVENT_TRACK_MODERATE
