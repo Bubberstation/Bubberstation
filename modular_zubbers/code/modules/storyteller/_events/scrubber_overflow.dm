@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(safe_touch_chems,list(
 	/datum/reagent/consumable/flour,
 	/datum/reagent/blood,
 	/datum/reagent/water,
-	/datum/reagent/lube,
+	subtypesof(/datum/reagent/lube),
 	/datum/reagent/carbon,
 	/datum/reagent/space_cleaner,
 	subtypesof(/datum/reagent/carpet),
