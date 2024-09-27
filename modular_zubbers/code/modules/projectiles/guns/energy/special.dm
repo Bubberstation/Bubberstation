@@ -5,10 +5,8 @@
 	Comes with a burst fire selector and a built-in scope for the professionals."
 
 	icon = 'modular_zubbers/icons/obj/weapons/guns/precision_ion.dmi'
-	icon_state = "ion"
+	icon_state = "ionrifle"
 
-	inhand_icon_state = "ionrifle"
-	worn_icon_state = "ionrifle"
 	shaded_charge = TRUE
 	w_class = WEIGHT_CLASS_HUGE
 	obj_flags = CONDUCTS_ELECTRICITY
