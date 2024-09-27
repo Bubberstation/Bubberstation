@@ -547,13 +547,6 @@
 	controlled_structures -= dying_structure
 	activate_wireweed_nearby(get_turf(dying_structure), GENERAL_DAMAGE_WIREWEED_ACTIVATION_RANGE)
 
-/datum/fleshmind_controller/proc/component_death(datum/component/machine_corruption/deleting_component, force)
-	SIGNAL_HANDLER
-
-	var/obj/parent_object = deleting_component.parent
-	if(parent_object)
-		activate_wireweed_nearby(get_turf(parent_object), GENERAL_DAMAGE_WIREWEED_ACTIVATION_RANGE)
-
 /// When a mob dies, called by mob
 /datum/fleshmind_controller/proc/mob_death(mob/living/basic/fleshmind/dying_mob, force)
 	SIGNAL_HANDLER

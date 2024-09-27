@@ -60,7 +60,7 @@
 
 /datum/component/machine_corruption
 	/// Our controller
-	var/datum/fleshmind_controller/our_controller
+	var/datum/weakref/weak_controller
 	/// A list of possible overlays that we can choose from when we are created.
 	var/static/list/possible_overlays = list(
 		"wires-1",
@@ -77,16 +77,15 @@
 
 /datum/component/machine_corruption/Initialize(datum/fleshmind_controller/incoming_controller)
 	. = ..()
-	our_controller = incoming_controller
+	weak_controller = WEAKREF(incoming_controller)
+	var/datum/fleshmind_controller/our_controller = weak_controller.resolve()
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	if(our_controller && is_type_in_list(parent, MACHINE_TO_SPAWNER_PATHS))
-		convert_to_factory(our_controller)
-		return
-
 	if(our_controller)
-		our_controller.RegisterSignal(src, COMSIG_QDELETING, /datum/fleshmind_controller/proc/component_death)
+		if(is_type_in_list(parent, MACHINE_TO_SPAWNER_PATHS))
+			convert_to_factory(our_controller)
+			return
 		LAZYADD(our_controller.controlled_machine_components, src)
 
 	set_overlay = pick(possible_overlays)
@@ -101,7 +100,10 @@
 /datum/component/machine_corruption/proc/finish_setup(datum/fleshmind_controller/incoming_controller)
 	var/obj/machinery/parent_machinery = parent
 	if(QDELETED(src))
+		weak_controller = null
 		return
+	if(!incoming_controller)
+		weak_controller = null
 	if(incoming_controller && parent_machinery.circuit && prob(CHANCE_TO_CREATE_MECHIVER))
 		var/mob/living/basic/fleshmind/mechiver/new_mechiver = incoming_controller.spawn_mob(get_turf(parent_machinery), /mob/living/basic/fleshmind/mechiver)
 		parent_machinery.circuit.forceMove(get_turf(parent_machinery))
@@ -129,10 +131,10 @@
 	parent_machinery.idle_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2 // These machines are now power sinks!
 
 /datum/component/machine_corruption/Destroy()
-	if(our_controller)
-		our_controller.UnregisterSignal(src, COMSIG_QDELETING)
+	var/datum/fleshmind_controller/our_controller = weak_controller.resolve()
+	if(weak_controller)
 		LAZYREMOVE(our_controller.controlled_machine_components, src)
-	our_controller = null
+		weak_controller = null
 	return ..()
 
 /datum/component/machine_corruption/UnregisterFromParent()
@@ -193,7 +195,9 @@
 
 /datum/component/machine_corruption/proc/handle_destruction(obj/item/target, damage_flag)
 	SIGNAL_HANDLER
-
+	var/datum/fleshmind_controller/our_controller = weak_controller.resolve()
+	if(our_controller)
+		our_controller.activate_wireweed_nearby(get_turf(parent), GENERAL_DAMAGE_WIREWEED_ACTIVATION_RANGE)
 	playsound(target, 'modular_zubbers/sound/fleshmind/sparks_2.ogg', 70, TRUE)
 	if(prob(DAMAGE_RESPONSE_PROB))
 		target.say("ARRRRRRRGHHHHHHH!")
@@ -258,6 +262,8 @@
  * Converts our parent into a factory
  */
 /datum/component/machine_corruption/proc/convert_to_factory(datum/fleshmind_controller/incoming_controller)
+	if(!incoming_controller)
+		return
 	var/turf/our_turf = get_turf(parent)
 	incoming_controller.spawn_structure(our_turf, /obj/structure/fleshmind/structure/assembler)
 	var/obj/machinery/parent_machienry = parent
