@@ -21,7 +21,6 @@
 		icon = 'modular_zubbers/icons/effects/revenant.dmi'
 		icon_state = "scattered"
 		to_chat(revenant, span_revenwarning("Your ashes are scattered!"))
-		inert = TRUE
 		addtimer(CALLBACK(src, PROC_REF(try_reform)), 3 MINUTES, TIMER_OVERRIDE)
 
 /mob/living/basic/revenant/death_reset()
