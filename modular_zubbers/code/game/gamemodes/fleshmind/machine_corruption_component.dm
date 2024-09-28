@@ -241,7 +241,7 @@
 				target.say(pick(DAMAGE_RESPONSE_PHRASES))
 			if(2)
 				target.balloon_alert_to_viewers(pick(PAIN_RESPONSE_EMOTES))
-		playsound(target, PAIN_RESPONSE_SOUNDS, 50, TRUE)
+		playsound(target, pick(PAIN_RESPONSE_SOUNDS), 50, TRUE)
 
 	if(prob(DAMAGE_SPARKS_PROB))
 		do_sparks(3, FALSE, target)
