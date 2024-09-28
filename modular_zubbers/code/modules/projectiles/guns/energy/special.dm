@@ -2,7 +2,7 @@
 	name = "precision ion rifle"
 	desc = "The MK.III Prototype Ion \'Precisor\' is a more advanced version of the original MK.I ion rifle, \
 	built to be be more charge capacity and precision, ensuring less collateral damage when hitting targets. \
-	Comes with a burst fire selector and a built-in scope for the professionals."
+	Comes with a 2-burst fire selector and a built-in scope for the professionals."
 
 	icon = 'modular_zubbers/icons/obj/weapons/guns/precision_ion.dmi'
 	icon_state = "ionrifle"
@@ -14,7 +14,7 @@
 
 	ammo_type = list(/obj/item/ammo_casing/energy/ion/precision)
 
-	burst_size = 3
+	burst_size = 2
 	fire_delay = 2
 
 	actions_types = list(/datum/action/item_action/toggle_firemode)
@@ -56,4 +56,4 @@
 /obj/item/ammo_casing/energy/ion/precision
 	fire_sound = 'modular_zubbers/sound/weapons/gun/ion/shot.ogg'
 	projectile_type = /obj/projectile/ion/weak
-	e_cost = LASER_SHOTS(15, STANDARD_CELL_CHARGE * 10)
+	e_cost = LASER_SHOTS(14, STANDARD_CELL_CHARGE * 10)
