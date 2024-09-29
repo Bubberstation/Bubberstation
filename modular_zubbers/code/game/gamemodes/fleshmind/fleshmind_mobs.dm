@@ -385,7 +385,7 @@
 /mob/living/basic/fleshmind/floater/proc/pre_detonate()
 	add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
 	balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
-	addtimer(CALLBACK(src, PROC_REF(detonate), 1 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(detonate), 3 SECONDS))
 
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
@@ -475,6 +475,7 @@
 
 /obj/projectile/treader/weak
 	knockdown = 0
+	damage = 15
 
 /**
  * Stunner
@@ -752,7 +753,7 @@
 	/// The cooldown between screams.
 	var/scream_cooldown = 20 SECONDS
 	COOLDOWN_DECLARE(scream_ability)
-	var/scream_effect_range = 10
+	var/scream_effect_range = 3
 
 /mob/living/basic/fleshmind/himan/Initialize(mapload)
 	. = ..()
@@ -802,7 +803,7 @@
 			continue
 		if(faction_check(faction, iterating_mob.faction))
 			continue
-		iterating_mob.Knockdown(5 SECONDS)
+		iterating_mob.Knockdown(3 SECONDS)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
 		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
 
@@ -1452,7 +1453,10 @@
 		return
 
 	if(iscyborg(mob_to_convert))
-		create_mob(/mob/living/basic/fleshmind/hiborg, mob_to_convert)
+		var/mob/living/silicon/robot/mob = mob_to_convert
+		if(mob.shell) // Kick the AI out.
+			mob.undeploy()
+		create_mob(/mob/living/basic/fleshmind/hiborg, mob)
 		return
 
 	// Other mobs get converted into whatever else
