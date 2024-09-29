@@ -147,7 +147,8 @@ const CharacterDirectoryList = (props) => {
     if (sortId === 'erp') {
       const indexA = erpOrder.indexOf(a.erp);
       const indexB = erpOrder.indexOf(b.erp);
-      return sortOrderValue * (indexA - indexB);
+
+      return sortOrderValue * (indexA - indexB); // This line effectively controls the order
     }
 
     // Default sorting for other fields
