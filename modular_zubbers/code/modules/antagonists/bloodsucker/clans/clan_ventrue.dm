@@ -59,12 +59,12 @@
 	return FALSE
 
 /datum/bloodsucker_clan/ventrue/proc/vassal_level(datum/antagonist/vassal/favorite/vassaldatum)
+	var/list/options = list_available_powers(vassaldatum.bloodsucker_powers)
 	var/mob/living/carbon/human/target = vassaldatum.owner.current
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
 		"You have the opportunity to level up your Favorite Vassal. Select a power you wish them to recieve.",
 		"A wise master's hand is neccesary",
-		VASSAL_CAN_BUY,
-		vassaldatum.bloodsucker_powers
+		options
 	)
 	if(!choice)
 		return FALSE

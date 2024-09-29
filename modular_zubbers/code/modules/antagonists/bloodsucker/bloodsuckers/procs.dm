@@ -166,29 +166,30 @@
 	//returnString += "\n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
 
-/datum/antagonist/bloodsucker/proc/can_gain_blood_rank(silent = TRUE)
+/datum/antagonist/bloodsucker/proc/can_gain_blood_rank(silent = TRUE, requires_blood = FALSE)
 	var/level_cost = get_level_cost()
 	var/mob/living/carbon/user = owner.current
 	if(blood_level_gain < level_cost)
 		if(!silent)
-			user.balloon_alert("not enough blood thickening points!")
+			user.balloon_alert(user, "not enough blood thickening points!")
 		return FALSE
-	if(bloodsucker_blood_volume < level_cost)
+	if(requires_blood && bloodsucker_blood_volume < level_cost)
 		if(!silent)
-			user.balloon_alert("not enough blood!")
+			user.balloon_alert(user, "not enough blood!")
 		return FALSE
 	return TRUE
 
 // Blood level gain is used to give Bloodsuckers more levels if they are being agressive and drinking from real, sentient people.
 // The maximum blood that counts towards this
-/datum/antagonist/bloodsucker/proc/blood_level_gain(silent = TRUE)
+/datum/antagonist/bloodsucker/proc/blood_level_gain(silent = TRUE, requires_blood = FALSE)
 	var/level_cost = get_level_cost()
-	if(can_gain_blood_rank(silent)) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
+	if(can_gain_blood_rank(silent, requires_blood)) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
 		var/input = tgui_alert(owner.current, "You have drunk enough blood from the living to thicken your blood, this will cost you [level_cost] blood and give you another level",  "Thicken your blood?.", list("Yes", "No")) //asks user if they want to spend their blood on a level
 		if(input == "Yes")
 			AdjustUnspentRank(1) // gives level
 			blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
-			// AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
+			if(requires_blood)
+				AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
 			return TRUE
 	return FALSE
 

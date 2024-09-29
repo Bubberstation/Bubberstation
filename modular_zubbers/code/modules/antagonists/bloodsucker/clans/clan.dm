@@ -169,7 +169,7 @@
 	human_user.balloon_alert(human_user, "learned [power_name]!")
 	to_chat(human_user, span_notice("You have learned how to use [power_name]!"))
 
-/datum/bloodsucker_clan/proc/choose_powers(message, title, options = list(), can_buy = BLOODSUCKER_CAN_BUY)
+/datum/bloodsucker_clan/proc/choose_powers(message, title, options = list())
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(!length(options))
 		return FALSE
@@ -242,7 +242,7 @@
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
 	return TRUE
 
-/datum/bloodsucker_clan/proc/list_available_powers(already_known, powers_list = bloodsuckerdatum.all_bloodsucker_powers)
+/datum/bloodsucker_clan/proc/list_available_powers(already_known = bloodsuckerdatum.powers, powers_list = bloodsuckerdatum.all_bloodsucker_powers)
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers_list)
 		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in already_known))
