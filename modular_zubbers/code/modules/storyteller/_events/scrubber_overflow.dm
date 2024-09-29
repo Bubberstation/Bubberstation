@@ -22,6 +22,11 @@ GLOBAL_LIST_INIT(safe_touch_chems,list(
 	/datum/reagent/consumable/tinlux,
 	/datum/reagent/consumable/tearjuice,
 	/datum/reagent/consumable/condensedcapsaicin,
+	/datum/reagent/growthserum,
+	/datum/reagent/gravitum,
+	/datum/reagent/consumable/laughter,
+	/datum/reagent/consumable/char,
+	typesof(/datum/reagent/colorful_reagent),
 ))
 
 GLOBAL_LIST_INIT(dangerous_touch_chems,list(
@@ -43,6 +48,9 @@ GLOBAL_LIST_INIT(dangerous_touch_chems,list(
 	/datum/reagent/medicine/c2/synthflesh,
 	/datum/reagent/medicine/c2/hercuri,
 	/datum/reagent/flightpotion, //Not dangerous, just should be rare :)
+	/datum/reagent/drug/space_drugs,
+	/datum/reagent/drug/mushroomhallucinogen,
+	/datum/reagent/inverse/helgrasp,
 ))
 
 /datum/round_event/scrubber_overflow/get_overflowing_reagent(dangerous)
