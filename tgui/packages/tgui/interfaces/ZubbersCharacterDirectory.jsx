@@ -142,16 +142,13 @@ const CharacterDirectoryList = (props) => {
   ];
 
   const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
-    const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
-
     if (sortId === 'erp') {
       const indexA = erpOrder.indexOf(a.erp);
       const indexB = erpOrder.indexOf(b.erp);
-
-      return sortOrderValue * (indexA - indexB); // This line effectively controls the order
+      return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
     }
 
-    // Default sorting for other fields
+    const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
     return sortOrderValue * a[sortId].localeCompare(b[sortId]);
   });
 
