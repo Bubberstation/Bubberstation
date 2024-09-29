@@ -139,6 +139,7 @@
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
 		// Apply weight totals based on current jobs.
 		if(weight_total > 0 && event.restriction_tags && event.restriction_tag_requirement > 0)
+			var/datum/controller/subsystem/gamemode/mode = SSgamemode
 			if((event.restriction_tags & DEPARTMENT_BITFLAG_COMMAND) && mode.head_crew < event.restriction_tag_requirement)
 				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.head_crew)
 			if((event.restriction_tags & DEPARTMENT_BITFLAG_ENGINEERING) && mode.eng_crew < event.restriction_tag_requirement)
