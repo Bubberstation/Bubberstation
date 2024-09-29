@@ -125,15 +125,15 @@ const CharacterDirectoryList = (props) => {
     'Bottom - Dom',
     'Bottom - Switch',
     'Bottom - Sub',
+    'Verse - Dom',
+    'Verse - Switch',
+    'Verse - Sub',
     'Verse-Top - Dom',
     'Verse-Top - Switch',
     'Verse-Top - Sub',
     'Verse-Bottom - Dom',
     'Verse-Bottom - Switch',
     'Verse-Bottom - Sub',
-    'Verse - Dom',
-    'Verse - Switch',
-    'Verse - Sub',
     'Yes',
     'Check OOC Notes',
     'Ask (L)OOC',
@@ -145,7 +145,7 @@ const CharacterDirectoryList = (props) => {
     if (sortId === 'erp') {
       const indexA = erpOrder.indexOf(a.erp);
       const indexB = erpOrder.indexOf(b.erp);
-      return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
+      return sortOrder === 'desc' ? indexA - indexB : indexB - indexA; // Handle both orders in one line
     }
 
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
