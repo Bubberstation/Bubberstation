@@ -95,10 +95,10 @@ const CharacterDirectoryList = (props) => {
 
   const handleSort = (id) => {
     if (sortId === id) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle between descending and ascending
     } else {
       setSortId(id);
-      setSortOrder('asc');
+      setSortOrder('desc'); // Set to descending on new sort
     }
   };
 
@@ -145,7 +145,7 @@ const CharacterDirectoryList = (props) => {
     if (sortId === 'erp') {
       const indexA = erpOrder.indexOf(a.erp);
       const indexB = erpOrder.indexOf(b.erp);
-      return sortOrder === 'desc' ? indexA - indexB : indexB - indexA; // Handle both orders in one line
+      return sortOrder === 'desc' ? indexA - indexB : indexB - indexA; // Toggle between descending and ascending
     }
 
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
