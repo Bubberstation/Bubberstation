@@ -1,6 +1,8 @@
 /datum/round_event_control/scrubber_overflow
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
+	restriction_tags = DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/scrubber_overflow/threatening
 	weight = 0

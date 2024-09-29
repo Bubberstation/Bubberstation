@@ -13,6 +13,9 @@
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT)
 
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 2
+
 /datum/round_event/ghost_role/lone_infiltrator
 	minimum_required = 1
 	role_name = ROLE_LONE_INFILTRATOR

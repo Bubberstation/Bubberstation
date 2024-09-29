@@ -5,6 +5,8 @@
 /datum/round_event_control/brain_trauma
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_TARGETED)
+	restriction_tags = DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 1
 
 /datum/round_event_control/camera_failure
 	track = EVENT_TRACK_MUNDANE
@@ -13,6 +15,8 @@
 /datum/round_event_control/disease_outbreak
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_TARGETED)
+	restriction_tags = DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/space_dust
 	track = EVENT_TRACK_MUNDANE
@@ -46,6 +50,8 @@
 	var/list/run_situations = list()
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL //Could loan the cargo shuttle to something bad.
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/mass_hallucination
 	track = EVENT_TRACK_MUNDANE
@@ -58,15 +64,23 @@
 /datum/round_event_control/grey_tide
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+	restriction_tags = DEPARTMENT_BITFLAG_ENGINEERING //Entirely possible to open doors to space.
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/gravity_generator_blackout
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_SPACE)
+	restriction_tags = DEPARTMENT_BITFLAG_ENGINEERING
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/shuttle_insurance
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
+	restriction_tags = DEPARTMENT_BITFLAG_COMMAND
+	restriction_tag_requirement = 2
 
 /datum/round_event_control/tram_malfunction
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_DESTRUCTIVE)
+	restriction_tags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 1

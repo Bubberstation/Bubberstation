@@ -137,5 +137,18 @@
 		if(occurences)
 			///If the event has occured already, apply a penalty multiplier based on amount of occurences
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
+		// Apply weight totals based on current jobs.
+		if(weight_total > 0 && event.restriction_tags && event.restriction_tag_requirement > 0)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_COMMAND) && mode.head_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.head_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_ENGINEERING) && mode.eng_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.eng_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_SECURITY) && mode.sec_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.sec_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_MEDICAL) && mode.med_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.med_crew)
+			if((event.restriction_tags & DEPARTMENT_BITFLAG_SCIENCE) && mode.sci_crew < event.restriction_tag_requirement)
+				weight_total *= 1 / (1 + event.restriction_tag_requirement - mode.sci_crew)
+			weight_total = FLOOR(weight_total,1)
 		/// Write it
 		event.calculated_weight = weight_total

@@ -14,6 +14,9 @@
 
 	track = EVENT_TRACK_GHOSTSET
 
+	restriction_tags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+	restriction_tag_requirement = 2
+
 /datum/round_event/ghost_role/void_walker
 	minimum_required = 30
 	fakeable = FALSE

@@ -128,6 +128,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/eng_crew = 0
 	var/sec_crew = 0
 	var/med_crew = 0
+	var/sci_crew = 0
 
 	var/wizardmode = FALSE
 
@@ -397,6 +398,8 @@ SUBSYSTEM_DEF(gamemode)
 				med_crew++
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 				sec_crew++
+			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SCIENCE)
+				sci_crew++
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
 	. = event.preRunEvent()
