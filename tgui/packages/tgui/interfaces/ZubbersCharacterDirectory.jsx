@@ -118,8 +118,39 @@ const CharacterDirectoryList = (props) => {
     character.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  const erpOrder = [
+    'Top - Dom',
+    'Top - Switch',
+    'Top - Sub',
+    'Bottom - Dom',
+    'Bottom - Switch',
+    'Bottom - Sub',
+    'Verse-Top - Dom',
+    'Verse-Top - Switch',
+    'Verse-Top - Sub',
+    'Verse-Bottom - Dom',
+    'Verse-Bottom - Switch',
+    'Verse-Bottom - Sub',
+    'Verse - Dom',
+    'Verse - Switch',
+    'Verse - Sub',
+    'Yes',
+    'Check OOC Notes',
+    'Ask (L)OOC',
+    'No',
+    'Unset',
+  ];
+
   const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
+
+    if (sortId === 'erp') {
+      const indexA = erpOrder.indexOf(a.erp);
+      const indexB = erpOrder.indexOf(b.erp);
+      return sortOrderValue * (indexA - indexB);
+    }
+
+    // Default sorting for other fields
     return sortOrderValue * a[sortId].localeCompare(b[sortId]);
   });
 
