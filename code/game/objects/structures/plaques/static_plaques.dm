@@ -121,6 +121,10 @@
 /obj/structure/plaque/static_plaque/golden/commission/delta
 	desc = "Spinward Sector Station SS-13\n'Delta' Class Outpost\nCommissioned 17/12/2556\n'Efficiency Through Redundancy'"
 
+// Kilostation: added Nov 13, 2019 (#46968)
+/obj/structure/plaque/static_plaque/golden/commission/kilo
+	desc = "Spinward Sector Station SS-13\n'Kilo' Class Outpost\nCommissioned 13/11/2559\n'Forever Different'"
+
 // Tramstation: added Mar 11, 2021 (#56509)
 /obj/structure/plaque/static_plaque/golden/commission/tram
 	desc = "Spinward Sector Station SS-13\n'Tram' Class Outpost\nCommissioned 11/03/2561\n'Making Moves'"
@@ -137,6 +141,11 @@
 /obj/structure/plaque/static_plaque/golden/commission/birdshot
 	desc = "Spinward Sector Station SS-13\n'Birdshot' Class Outpost\nCommissioned 29/04/2563\n'Shooting for the Stars'"
 
+// Boxstation: added Nov 15, 2010 (pre-git), removed Jul 06, 2020 (#52017)- 9 years, 7 months, 21 days
+// Modified NSSJourney (from FluffySTG), added April 19, 2021 (#4884). added to Bubber Feb 10, 2024 (#1128).
+/obj/structure/plaque/static_plaque/golden/commission/box
+	desc = "Spinward Sector Station SS-02\n'Box' Class Outpost\nCommissioned 15/11/2550\nDecommissioned 06/07/2560\nRecommissioned 10/02/2564\n'Uncontested Boxing Champion'"
+
 //Removed stations
 
 // Asteroidstation: added Oct 17, 2015 (169ab09f7b52254ee505e54cdea681fab287647b), removed Jun 19, 2016 (#18661)- 8 months, 2 days
@@ -146,10 +155,6 @@
 // Birdboat Station: added Sep 17, 2015 (#11829), removed Feb 09, 2017 (#23754)- 1 year, 4 months, 23 days
 /obj/structure/plaque/static_plaque/golden/commission/birdboat
 	desc = "Spinward Sector Station SS-03\n'Birdboat' Class Outpost\nCommissioned 17/09/2555\nDecommissioned 09/02/2557\n'Rocking the Boat'"
-
-// Boxstation: added Nov 15, 2010 (pre-git), removed Jul 06, 2020 (#52017)- 9 years, 7 months, 21 days
-/obj/structure/plaque/static_plaque/golden/commission/box
-	desc = "Spinward Sector Station SS-02\n'Box' Class Outpost\nCommissioned 15/11/2550\nDecommissioned 06/07/2560\n'Old Faithful'"
 
 // Pubbystation: added Oct 19, 2016 (#20925), removed Dec 10, 2020 (#54588)- 4 years, 1 month, 21 days
 /obj/structure/plaque/static_plaque/golden/commission/pubby
@@ -174,10 +179,6 @@
 // Efficiencystation: added Jan 28, 2016 (46f64266cfb8b40e35faa8a4d9a2d3aeec689943), removed Dec 20, 2016 (#22306)- 10 months, 22 days
 /obj/structure/plaque/static_plaque/golden/commission/efficiency
 	desc = "Spinward Sector Station SS-07\n'Efficiency' Class Outpost\nCommissioned 28/01/2556\nDecommissioned 20/12/2556\n'Work Smarter, Not Harder'"
-
-// Kilostation: added Nov 13, 2019 (#46968), removed
-/obj/structure/plaque/static_plaque/golden/commission/kilo
-	desc = "Spinward Sector Station SS-13\n'Kilo' Class Outpost\nCommissioned 13/11/2559\nDecommissioned \n'Forever Different'"
 
 // Ministation: added Jan 29, 2014 (7a76e9456b782e6626bf81e27a912d8232c76b18), removed Dec 27, 2016 (#22453)- 2 years, 10 months, 28 days
 /obj/structure/plaque/static_plaque/golden/commission/mini

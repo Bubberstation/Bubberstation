@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(dynamic)
 		SSticker.news_report = SSshuttle.emergency?.is_hijacked() ? SHUTTLE_HIJACK : STATION_EVACUATED
 
 /datum/controller/subsystem/dynamic/proc/send_intercept()
-	if(GLOB.communications_controller.block_command_report) //If we don't want the report to be printed just yet, we put it off until it's ready
+	/*if(GLOB.communications_controller.block_command_report) //If we don't want the report to be printed just yet, we put it off until it's ready
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), 10 SECONDS)
 		return
 
@@ -369,7 +369,7 @@ SUBSYSTEM_DEF(dynamic)
 		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
 			SSsecurity_level.set_level(SEC_LEVEL_BLUE, announce = FALSE)
 		priority_announce("[SSsecurity_level.current_security_level.elevating_to_announcement]\n\nA summary has been copied and printed to all communications consoles.", "Security level elevated.", ANNOUNCER_INTERCEPT, color_override = SSsecurity_level.current_security_level.announcement_color)
-#endif
+#endif*/ // BUBBER EDIT END
 
 	return .
 
@@ -572,8 +572,8 @@ SUBSYSTEM_DEF(dynamic)
 	if (!CONFIG_GET(flag/no_intercept_report))
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 		addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 

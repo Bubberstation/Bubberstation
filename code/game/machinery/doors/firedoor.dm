@@ -279,11 +279,14 @@
 
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
+	if(!environment)
+		stack_trace("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
+		return
 
-	var/pressure = environment?.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
-	if(environment?.temperature >= BODYTEMP_HEAT_DAMAGE_LIMIT || pressure > WARNING_HIGH_PRESSURE) //SKYRAT EDIT CHANGE - BETTER LOCKS
+	var/pressure = environment.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
+	if(environment.temperature >= BODYTEMP_HEAT_WARNING_2 || pressure > HAZARD_HIGH_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_HOT
-	if(environment?.temperature <= BODYTEMP_COLD_DAMAGE_LIMIT || pressure < WARNING_LOW_PRESSURE) //SKYRAT EDIT CHANGE - BETTER LOCKS
+	if(environment.temperature <= BODYTEMP_COLD_WARNING_2 || pressure < HAZARD_LOW_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_COLD
 	return
 
@@ -568,8 +571,10 @@
 
 	if(density)
 		open()
+		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
+		BUBBERSTATION CHANGE END. */
 	else
 		close()
 

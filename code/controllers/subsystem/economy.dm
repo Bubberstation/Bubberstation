@@ -14,6 +14,8 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_SRV = ACCOUNT_SRV_NAME,
 										ACCOUNT_CAR = ACCOUNT_CAR_NAME,
 										ACCOUNT_CMD = ACCOUNT_CMD_NAME, // SKYRAT EDIT
+										ACCOUNT_INT = ACCOUNT_INT_NAME, // BUBBER EDIT
+										ACCOUNT_TAR = ACCOUNT_TAR_NAME, // END BUBBER EDIT
 										ACCOUNT_SEC = ACCOUNT_SEC_NAME)
 	var/list/departmental_accounts = list()
 	/**

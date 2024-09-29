@@ -162,7 +162,7 @@
 	..()
 	team_number = team_count++
 	name = "Mothership [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
-	//add_objective(new /datum/objective/experiment) //SKYRAT EDIT REMOVAL
+	add_objective(new /datum/objective/experiment)
 
 /datum/team/abductor_team/roundend_report()
 	var/list/result = list()

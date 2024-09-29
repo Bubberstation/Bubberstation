@@ -38,6 +38,11 @@ const DEPARTMENT2COLOR = {
   Ordnance: 'yellow',
   Office: 'red',
   Dormitories: 'black',
+  // BUBBER EDIT ADD - Moonstation
+  'Arrivals Terminal': 'yellow',
+  'Cryogenic Sleepers': 'purple',
+  'Main Station': 'blue',
+  'Departures/Evac': 'green',
 } as const;
 
 const COLOR2BLURB = {

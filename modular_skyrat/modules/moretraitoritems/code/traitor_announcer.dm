@@ -21,7 +21,7 @@
 		balloon_alert(user, "no uses left!")
 		return
 	//build our announcement
-	var/origin = sanitize_text(reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28)))
+	var/origin = reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28)) //BUBBERSTATION CHANGE
 	if(!origin)
 		balloon_alert(user, "bad origin!")
 		return
@@ -33,11 +33,11 @@
 	if(!color)
 		balloon_alert(user, "bad color!")
 		return
-	var/title = sanitize_text(reject_bad_text(tgui_input_text(user, "Choose the title of the announcement.", "Announcement Title", max_length = 42)))
+	var/title = reject_bad_text(tgui_input_text(user, "Choose the title of the announcement.", "Announcement Title", max_length = 42)) //BUBBERSTATION CHANGE
 	if(!title)
 		balloon_alert(user, "bad title!")
 		return
-	var/input = sanitize_text(reject_bad_text(tgui_input_text(user, "Choose the bodytext of the announcement.", "Announcement Text", max_length = 512, multiline = TRUE)))
+	var/input = reject_bad_text(tgui_input_text(user, "Choose the bodytext of the announcement.", "Announcement Text", max_length = 512, multiline = TRUE)) //BUBBERSTATION CHANGE
 	if(!input)
 		balloon_alert(user, "bad text!")
 		return
@@ -51,6 +51,8 @@
 	has_important_message = TRUE,
 	sender_override = origin,
 	color_override = color,
+	encode_text = FALSE, //BUBBERSTATION CHANGE
+	encode_title = FALSE //BUBBERSTATION CHANGE
 	)
 	if(uses != INFINITE_CHARGES)
 		uses--

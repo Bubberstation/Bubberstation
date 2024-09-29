@@ -10,7 +10,6 @@
 		/datum/reagent/medicine/lidocaine\
 	) //SKYRAT EDIT line 10 added Lidocaine
 #define EXPANDED_MEDICAL_REAGENTS list(\
-		/datum/reagent/medicine/haloperidol,\
 		/datum/reagent/medicine/inacusiate,\
 		/datum/reagent/medicine/mannitol,\
 		/datum/reagent/medicine/mutadone,\
@@ -19,7 +18,7 @@
 		/datum/reagent/medicine/pen_acid,\
 		/datum/reagent/medicine/rezadone,\
 		/datum/reagent/medicine/sal_acid\
-	)
+	) //BUBBER EDIT removed haloperidol line 13
 #define HACKED_MEDICAL_REAGENTS list(\
 		/datum/reagent/toxin/cyanide,\
 		/datum/reagent/toxin/acid/fluacid,\

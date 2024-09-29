@@ -73,7 +73,7 @@
 
 /datum/antagonist/obsessed/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
+	var/datum/objective/assassinate/kill = new // ZUBBER EDIT : Now with less round-removal! | org: var/datum/objective/assassinate/obsessed/kill = new
 	kill.owner = owner
 	kill.target = obsessionmind
 	var/obj/family_heirloom
@@ -179,7 +179,7 @@
 	..()
 	old = find_coworker(target)
 	if(target?.current && old)
-		explanation_text = "Murder [target.name], [old]'s coworker."
+		explanation_text = "Assassinate [target.name], [old]'s coworker, ONCE." // ZUBBER EDIT | org: explanation_text = "Murder [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
 	else
 		explanation_text = "Free Objective"
 

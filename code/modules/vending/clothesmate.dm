@@ -220,6 +220,7 @@
 		/obj/item/clothing/under/costume/swagoutfit = 1,
 		/obj/item/clothing/shoes/swagshoes = 1,
 		/obj/item/instrument/piano_synth/headphones/spacepods = 1,
+		/obj/item/clothing/head/helmet/toggleable/pinwheel = 1, //BUBBER EDIT: Pinwheel hat // BUBBER TODO: Modularize
 	)
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = PAYCHECK_CREW * 0.7 //Default of

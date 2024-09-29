@@ -108,7 +108,7 @@
 /datum/loadout_item/uniform/jumpsuit/security_trousers
 	name = "Security Trousers"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/security_shorts
 	name = "Security Shorts"
@@ -138,7 +138,7 @@
 /datum/loadout_item/uniform/jumpsuit/security_peacekeeper
 	name = "Security Peacekeeper Uniform"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
 	name = "Imperial Police Uniform"
@@ -227,7 +227,7 @@
 /datum/loadout_item/uniform/jumpsuit/utility_sec
 	name = "Security Utility Uniform"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE, JOB_WARDEN, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER) //i dunno about the blueshield, they're a weird combo of sec and command, thats why they arent in the loadout pr im making
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE, JOB_WARDEN, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/uniform/jumpsuit/utility_com
 	name = "Command Utility Uniform"
@@ -339,10 +339,6 @@
 /datum/loadout_item/uniform/miscellaneous/recolorable_kilt
 	name = "Recolorable Kilt"
 	item_path = /obj/item/clothing/under/pants/skyrat/kilt
-
-/datum/loadout_item/uniform/miscellaneous/kilt/royal
-	name = "Royal Kilt"
-	item_path = /obj/item/clothing/under/costume/skyrat/kilt/royal
 
 //TODO: split loadout's miscellaneous to have "Pants/Shorts" and "Dresses/Skirts" as options too. Misc is stupid.
 
@@ -489,10 +485,6 @@
 /datum/loadout_item/uniform/miscellaneous/tactical_hawaiian_green
 	name = "Tactical Hawaiian Outfit - Green"
 	item_path = /obj/item/clothing/under/tachawaiian/green
-
-/datum/loadout_item/uniform/miscellaneous/tactical/irish
-	name = "Irish Tactical Uniform"
-	item_path = /obj/item/clothing/under/costume/skyrat/tac/irish
 
 /datum/loadout_item/uniform/miscellaneous/maidcostume
 	name = "Maid Costume"

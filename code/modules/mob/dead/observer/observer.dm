@@ -424,6 +424,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(job_to_free)
 			job_to_free.current_positions = max(0, job_to_free.current_positions - 1)
 		//SKYRAT EDIT ADDITION END - DNR TRAIT
+		//BUBBER EDIT ADDITION BEGIN - MAKES YOU GHOSTLY UPON DNR
+		if(ishuman(mind.current))
+			current_mob.alpha = GHOST_ALPHA
+		//BUBBER EDIT ADDITION END
 	log_message("has opted to do-not-resuscitate / DNR from their body ([current_mob])", LOG_GAME, color = COLOR_GREEN)
 
 	// Disassociates observer mind from the body mind

@@ -32,7 +32,7 @@
 	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
 	var/obj/item/organ/internal/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(old_stomach))
+	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_ROBOTIC || old_stomach.organ_traits & TRAIT_NOHUNGER)	//BUBBERSTATION EDIT: make sure synths and species that don't need to eat don't get huge guts
 		return
 	old_stomach.Remove(human_holder, special = TRUE)
 	qdel(old_stomach)
@@ -94,7 +94,7 @@
 	else if(istype(gained, /obj/item/bodypart/leg))
 		var/obj/item/bodypart/leg/new_leg = gained
 		new_leg.unarmed_effectiveness = initial(new_leg.unarmed_effectiveness) + OVERSIZED_KICK_EFFECTIVENESS_BONUS
-	
+
 	gained.name = "oversized " + gained.name
 
 /datum/movespeed_modifier/oversized

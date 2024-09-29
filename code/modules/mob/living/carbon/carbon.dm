@@ -952,17 +952,16 @@
 /mob/living/carbon/can_be_revived()
 	if(!get_organ_by_type(/obj/item/organ/internal/brain) && (!IS_CHANGELING(src)) || HAS_TRAIT(src, TRAIT_HUSK))
 		return FALSE
-//SKYRAT EDIT ADDITION - DNR TRAIT
-	if(HAS_TRAIT(src, TRAIT_DNR))
-		return FALSE
-//SKYRAT EDIT ADDITION END - DNR TRAIT
-
+//SKYRAT EDIT ADDITION - DNR TRAIT // BUBBER EDIT REMOVAL
+//	if(HAS_TRAIT(src, TRAIT_DNR))
+//		return FALSE
+//SKYRAT EDIT ADDITION END - DNR TRAIT // BUBBER EDIT REMOVAL
 	return ..()
 
 /mob/living/carbon/proc/can_defib()
 //SKYRAT EDIT ADDITION - DNR TRAIT
-	if(HAS_TRAIT(src, TRAIT_DNR)) //This is also added when a ghost DNR's!
-		return DEFIB_FAIL_DNR
+//	if(HAS_TRAIT(src, TRAIT_DNR)) //This is also added when a ghost DNR's! // BUBBER EDIT REMOVAL
+//		return DEFIB_FAIL_DNR
 //SKYRAT EDIT ADDITION END - DNR TRAIT
 	if (HAS_TRAIT(src, TRAIT_SUICIDED))
 		return DEFIB_FAIL_SUICIDE

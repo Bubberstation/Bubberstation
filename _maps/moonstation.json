@@ -1,0 +1,51 @@
+{
+	"version": 1,
+	"map_name": "Moon Station",
+	"map_path": "map_files/moonstation",
+	"map_file": "moonstation.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"emergency": "emergency_moonstation",
+		"ferry": "ferry_skyrat",
+		"cargo": "cargo_skyrat",
+		"whiteship": "whiteship_delta"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Mining": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Lava Ruins": true,
+			"Baseturf": "/turf/open/lava/smooth/lava_land_surface",
+			"No Parallax": true
+		},
+		{
+			"Up": true,
+			"Down": true,
+			"Mining": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/misc/moonstation_rock",
+			"No Parallax": true
+		},
+		{
+			"Down": true,
+			"Mining": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/openspace/moonstation",
+			"No Parallax": true,
+			"Weather_Sandstorm": true
+		}
+	],
+	"minetype": "none",
+	"job_changes": {
+		"Captain": {
+			"special_charter": "moon"
+		}
+	},
+	"emergency_override": 1
+}

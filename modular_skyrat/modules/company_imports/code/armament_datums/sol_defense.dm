@@ -137,7 +137,7 @@
 /datum/armament_entry/company_import/sol_defense/longarm/infanterie
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle
 	cost = PAYCHECK_COMMAND * 14
-	contraband = TRUE
+	// contraband = TRUE - Bubberstation Edit
 
 These one are simply rediculous, but we'll keep it there incase someone has idea
 /datum/armament_entry/company_import/sol_defense/longarm/outomaties
@@ -150,7 +150,6 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 	cost = PAYCHECK_COMMAND * 46
 	contraband = TRUE
 */
-
 /datum/armament_entry/company_import/sol_defense/magazines
 	subcategory = "Magazines"
 	cost = PAYCHECK_CREW

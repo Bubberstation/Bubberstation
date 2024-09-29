@@ -428,6 +428,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SYNDIE_KISS "syndie_kiss"
 /// Used to activate french kissing
 #define TRAIT_GARLIC_BREATH "kiss_of_garlic_death"
+// Indicates that the mob has garlic in them, really just a optimization so we don't have to go looking for it
+#define TRAIT_GARLIC_REAGENT "garlic_reagent"
 /// Addictions don't tick down, basically they're permanently addicted
 #define TRAIT_HOPELESSLY_ADDICTED "hopelessly_addicted"
 /// This mob has a cult halo.

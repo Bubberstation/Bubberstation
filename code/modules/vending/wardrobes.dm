@@ -349,6 +349,7 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	vend_reply = "Don't forget your \"Buy one get one free\" burial deal!"
 	products = list(
 		/obj/item/clothing/head/utility/surgerycap/black = 1,
+		/obj/item/clothing/head/beret/medical/coroner = 1,	//Bubbers edit: Coroner beret
 		/obj/item/clothing/mask/surgical = 1,
 		/obj/item/clothing/suit/apron/surgical = 1,
 		/obj/item/clothing/suit/hooded/wintercoat/medical/coroner = 1,

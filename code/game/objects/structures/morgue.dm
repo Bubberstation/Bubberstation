@@ -274,6 +274,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(morgue_state == MORGUE_HAS_REVIVABLE && beeper && COOLDOWN_FINISHED(src, next_beep))
 		playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
 		COOLDOWN_START(src, next_beep, beep_cooldown)
+		SEND_SIGNAL(src, COMSIG_MORGUE_ALARM) // BUBBER EDIT
 
 	if(!connected || connected.loc != src)
 		var/datum/gas_mixture/current_exposed_air = loc.return_air()

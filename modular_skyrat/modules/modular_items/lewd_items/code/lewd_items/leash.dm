@@ -11,6 +11,9 @@
 	/// Weakref to the leash component we're using, if it exists.
 	var/datum/weakref/our_leash_component
 
+	/// Leash line visual for the hooked item // BUBBER EDIT //
+	var/datum/beam/leash_line/leash_line // BUBBER EDIT
+
 	unique_reskin = list(
 		"Pink" = "neckleash_pink",
 		"Teal" = "neckleash_teal",
@@ -56,12 +59,14 @@
 	ouppy.AddComponent(/datum/component/leash/erp, src, 2)
 	if(our_leash_component.resolve()) // The component will immediately delete itself if there's an existing one; this sanity checks for feedback on if it failed.
 		ouppy.balloon_alert(user, "leashed!")
+		create_leash_line(ouppy)
 		return
 	else to_chat(user, span_danger("There's a leash attached to [ouppy] already."))
 
 /// Leash removal
 /obj/item/clothing/erp_leash/proc/remove_leash(mob/free_bird)
 	free_bird?.balloon_alert_to_viewers("unhooked")
+	clear_line(src)
 	qdel(our_leash_component.resolve())
 
 /*
@@ -78,6 +83,8 @@
 	// Owner Signals
 	RegisterSignal(owner, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_item_attack_self))
 	RegisterSignal(owner, COMSIG_ITEM_DROPPED, PROC_REF(on_item_dropped))
+	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED, PROC_REF(on_item_dropped)) // Bubber Edit
+	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED_AS_OUTFIT, PROC_REF(on_item_dropped)) // Bubber Edit
 	// Parent Signals
 	RegisterSignal(parent, COMSIG_LIVING_RESIST, PROC_REF(on_parent_resist))
 	if(istype(owner, /obj/item/clothing/erp_leash))
@@ -86,12 +93,12 @@
 
 /datum/component/leash/erp/UnregisterFromParent()
 	if(owner) // Destroy() sets owner to null
-		UnregisterSignal(owner, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_DROPPED))
+		UnregisterSignal(owner, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_EQUIPPED_AS_OUTFIT))
 		UnregisterSignal(parent, COMSIG_LIVING_RESIST)
 	return ..()
 
 /datum/component/leash/erp/Destroy() // Have to do this here too
-	UnregisterSignal(owner, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_DROPPED))
+	UnregisterSignal(owner, list(COMSIG_ITEM_ATTACK_SELF, COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_EQUIPPED_AS_OUTFIT))
 	if(istype(owner, /obj/item/clothing/erp_leash))
 		var/obj/item/clothing/erp_leash/our_leash = owner
 		our_leash.our_leash_component = null
@@ -137,3 +144,73 @@
 			to_chat(our_parent, span_notice("You unhook yourself from the leash."))
 			qdel(src)
 	else qdel(src) // If they're not an item; something is very wrong - qdel anyways without the breakout time.
+
+// LEASH Line BUBBER ADDON
+// Bubber EDIT STARTS HERE
+// Adds leash as beam, definetly not copy pasted from fishing line
+
+/obj/item/clothing/erp_leash/proc/create_leash_line(atom/movable/target, target_py = null)
+	var/mob/user = loc
+	if(!istype(user))
+		return
+	if(leash_line)
+		QDEL_NULL(leash_line)
+	var/beam_color = "purple"
+	leash_line = new(user, target, icon_state = "fishing_line", beam_color = beam_color,  emissive = FALSE, override_target_pixel_y = target_py)
+	leash_line.lefthand = user.get_held_index_of_item(src) % 2 == 1
+	RegisterSignal(leash_line, COMSIG_BEAM_BEFORE_DRAW, PROC_REF(check_los))
+	RegisterSignal(leash_line, COMSIG_QDELETING, PROC_REF(clear_line))
+	INVOKE_ASYNC(leash_line, TYPE_PROC_REF(/datum/beam/, Start))
+	user.update_held_items()
+	return leash_line
+
+/obj/item/clothing/erp_leash/proc/check_los(datum/beam/source)
+	SIGNAL_HANDLER
+	. = NONE
+
+	if(!CheckToolReach(src, source.target, 6)) // More distance than leash itself, prevents it from suddenly dissapearing...HOPEFULLY
+		qdel(source)
+		return BEAM_CANCEL_DRAW
+
+/obj/item/clothing/erp_leash/proc/clear_line(datum/source)
+	SIGNAL_HANDLER
+	if(ismob(loc))
+		var/mob/user = loc
+		user.update_held_items()
+	leash_line = null
+
+/obj/item/clothing/erp_leash/dropped(mob/user, silent)
+	. = ..()
+	QDEL_NULL(leash_line)
+
+/datum/beam/leash_line
+	// Is the fishing rod held in left side hand
+	var/lefthand = FALSE
+
+	// Make these inline with final sprites
+
+	var/righthand_px = 0
+	var/righthand_py = 0
+
+	var/lefthand_px = 0
+	var/lefthand_py = 0
+
+/datum/beam/leash_line/Start()
+	update_offsets(origin.dir)
+	. = ..()
+	RegisterSignal(origin, COMSIG_ATOM_DIR_CHANGE, PROC_REF(handle_dir_change))
+
+/datum/beam/leash_line/Destroy()
+	UnregisterSignal(origin, COMSIG_ATOM_DIR_CHANGE)
+	. = ..()
+
+/datum/beam/leash_line/proc/handle_dir_change(atom/movable/source, olddir, newdir)
+	SIGNAL_HANDLER
+	update_offsets(newdir)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/beam/, redrawing))
+
+/datum/beam/leash_line/proc/update_offsets(user_dir)
+	override_origin_pixel_x = lefthand ? lefthand_px : righthand_px
+	override_origin_pixel_y = lefthand ? lefthand_py : righthand_py
+
+// Bubber addon ends here

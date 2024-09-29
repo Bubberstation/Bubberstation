@@ -65,7 +65,7 @@
 
 /obj/machinery/power/smes/RefreshParts()
 	SHOULD_CALL_PARENT(FALSE)
-	var/power_coefficient = 0
+	var/power_coefficient = 1 // Bubber edit
 	var/max_charge = 0
 	var/new_charge = 0
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)

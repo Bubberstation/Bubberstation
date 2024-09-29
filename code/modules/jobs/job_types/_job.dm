@@ -180,6 +180,14 @@
 	if(roundstart_experience)
 		for(var/i in roundstart_experience)
 			spawned_human.mind.adjust_experience(i, roundstart_experience[i], TRUE)
+	// BUBBER EDIT START - Intern jobs
+	var/obj/item/card/id/id_card = spawned.get_idcard()
+	if(id_card && istype(id_card))
+		id_card.set_intern_status(player_joins_as_intern(player_client))
+		var/obj/item/modular_computer/pda/pda = spawned.get_item_by_slot(ITEM_SLOT_BELT)
+		if(pda && istype(pda))
+			pda.imprint_id(job_name = id_card.get_job_title())
+	// BUBBER EDIT END
 
 /// Return the outfit to use
 /datum/job/proc/get_outfit(consistent)
@@ -205,7 +213,10 @@
 /mob/living/carbon/human/on_job_equipping(datum/job/equipping, client/player_client)
 	if(equipping.paycheck_department)
 		var/datum/bank_account/bank_account = new(real_name, equipping, dna.species.payday_modifier)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		//BUBBERSTATION CHANGE START: EXTRA DOSH FOR ROUND STARTERS
+		// bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		bank_account.payday(STARTING_PAYCHECKS * (!player_client?.mob?.mind?.late_joiner ? 3 : 1 ), TRUE) //Triple the dosh for shift starters.
+		//BUBBERSTATION CHANGE END
 		account_id = bank_account.account_id
 		bank_account.replaceable = FALSE
 		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
@@ -522,6 +533,10 @@
 	if(length(GLOB.jobspawn_overrides[job_spawn_title])) //We're doing something special today.
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
 	// SKYRAT EDIT END
+	//BUBBERSTATION CHANGE START: MOONSTATION CRYO SPAWNS.
+	if(length(SSjob.latejoin_override_trackers))
+		return pick(SSjob.latejoin_override_trackers)
+	//BUBBERSTATION CHANGE END
 	if(length(SSjob.latejoin_trackers))
 		return pick(SSjob.latejoin_trackers)
 	return SSjob.get_last_resort_spawn_points()
@@ -589,6 +604,7 @@
 				player_client.prefs.read_preference(/datum/preference/choiced/species),
 			)
 	dna.update_dna_identity()
+
 	updateappearance()
 
 /mob/living/silicon/ai/apply_prefs_job(client/player_client, datum/job/job)

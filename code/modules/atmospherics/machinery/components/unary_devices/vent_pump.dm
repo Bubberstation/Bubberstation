@@ -274,9 +274,9 @@
 
 		if(pressure_delta > 0)
 			if(air_contents.temperature > 0)
-				if(!fan_overclocked && (environment_pressure >= 50 * ONE_ATMOSPHERE))
-					return FALSE
-
+/* 				if(!fan_overclocked && (environment_pressure >= 50 * ONE_ATMOSPHERE))
+					return FALSE // BUBBER EDIT REMOVAL - Bad mechanics.
+ */
 				var/transfer_moles = (pressure_delta * environment.volume) / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
 				if(!fan_overclocked && (percent_integrity < 1))
 					transfer_moles *= percent_integrity

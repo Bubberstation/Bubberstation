@@ -560,9 +560,9 @@
 /area/shuttle/pirate)
 "rV" = (
 /obj/machinery/power/apc/auto_name/directional/north{
-	cell_type = /obj/item/stock_parts/power_store/battery/bluespace;
-	start_charge = 100
+	cell_type = /obj/item/stock_parts/power_store/battery/bluespace
 	},
+/obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
 	dir = 1

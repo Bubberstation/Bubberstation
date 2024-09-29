@@ -1,4 +1,4 @@
-/datum/dynamic_ruleset/roundstart/quiet
+/* /datum/dynamic_ruleset/roundstart/quiet // BUBBER EDIT DISABLE
 	name = "Quiet"
 	antag_flag = null
 	antag_datum = null
@@ -46,3 +46,4 @@
 		if (is_banned_from(candidate_player.ckey, BAN_OPFOR))
 			candidates.Remove(candidate_player)
 			continue
+ */ // BUBBER EDIT DISABLE

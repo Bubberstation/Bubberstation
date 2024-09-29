@@ -1,15 +1,15 @@
 /// Logging for generic/unsorted game messages
-/proc/log_game(text, list/data)
+/proc/log_game(text, list/data, redacted_log_text) // BUBBER EDIT
 	logger.Log(LOG_CATEGORY_GAME, text, data)
-
+	log_public_file(redacted_log_text) // BUBBER EDIT
 /// Logging for emotes
-/proc/log_emote(text, list/data)
+/proc/log_emote(text, list/data, redacted_log_text) // BUBBER EDIT
 	logger.Log(LOG_CATEGORY_GAME_EMOTE, text, data)
-
+	log_public_file(redacted_log_text) // BUBBER EDIT
 /// Logging for emotes sent over the radio
-/proc/log_radio_emote(text, list/data)
+/proc/log_radio_emote(text, list/data, redacted_log_text)
 	logger.Log(LOG_CATEGORY_GAME_RADIO_EMOTE, text, data)
-
+	log_public_file(redacted_log_text) // BUBBER EDIT
 /// Logging for messages sent in OOC
 /proc/log_ooc(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_OOC, text, data)

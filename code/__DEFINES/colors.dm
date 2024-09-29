@@ -213,6 +213,7 @@
 #define COLOR_THEME_CLOCKWORK "#CFBA47"
 #define COLOR_THEME_TRASENKNOX "#3ce375"
 #define COLOR_THEME_DETECTIVE "#c7b08b"
+#define COLOR_THEME_BLUE98 "#7d8dab" // Bubber Addition
 
 ///Colors for eigenstates
 #define COLOR_PERIWINKLEE "#9999FF"

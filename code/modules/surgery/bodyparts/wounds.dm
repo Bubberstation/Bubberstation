@@ -75,7 +75,7 @@
 	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
 	var/list/series_wounding_mods = check_series_wounding_mods()
 
-	if(injury_roll > WOUND_DISMEMBER_OUTRIGHT_THRESH && prob(get_damage() / max_damage * 100) && can_dismember())
+	if(damage_source && injury_roll > WOUND_DISMEMBER_OUTRIGHT_THRESH && prob(get_damage() / max_damage * 100) && can_dismember()) //BUBBERSTATION CHANGE: You can only dismember with melee weapons.
 		var/datum/wound/loss/dismembering = new
 		dismembering.apply_dismember(src, woundtype, outright = TRUE, attack_direction = attack_direction)
 		return

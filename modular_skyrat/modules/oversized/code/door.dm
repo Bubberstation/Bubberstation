@@ -1,3 +1,5 @@
+//BUBBER EDIT: Commenting out this whole file, we don't want this.
+/*
 /obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	var/static/list/loc_connections = list(
@@ -17,4 +19,4 @@
 			crossing_human.visible_message(span_warning("[crossing_human] slams their head into the frame of [src] with a sickening thud!"), \
 				span_userdanger("You slam your head against [src]!")
 			)
-			playsound(crossed_atom, 'sound/effects/bang.ogg', 50, TRUE)
+			playsound(crossed_atom, 'sound/effects/bang.ogg', 50, TRUE)*/

@@ -170,7 +170,12 @@
 
 	/// A weak reference to the mob who turned on the portal
 	var/datum/weakref/turned_on_portal
-
+// BUBBERSTATION EDIT START
+/obj/machinery/restaurant_portal/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return ITEM_INTERACT_SUCCESS
+// BUBBERSTATION EDIT END
 /obj/machinery/restaurant_portal/Initialize(mapload)
 	. = ..()
 	if(linked_venue)

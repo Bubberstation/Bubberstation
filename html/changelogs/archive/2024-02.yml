@@ -45,18 +45,120 @@
   jjpark-kb:
   - rscadd: adds back the teg (you can research and print it)
 2024-02-03:
+  Arturlang:
+  - rscadd: Add bloodsuckers, a new reason to fear maintenance and the dark. Don't
+      go out there alone, or you might wake up pale and fainting.
+  - bugfix: Observing works again.
+  AtoriBirb:
+  - image: added white/black sprites for worn/in hand.
+  - code_imp: added variant code to krav maga sec gloves
+  - image: Security Beanie
+  BurgerBB:
+  - rscdel: ' Removes the ability for Seedlings to have multiple harvests.'
+  - balance: Sets Evil Seedling TC cost to 2 (From 8),
+  - rscdel: Removes Slaughter Demons from the wizard spellbook.
+  - balance: Laughter Demons cost 2 points (instead of 1), and are limited to 1 purchase
+      per wizard.
+  - bugfix: Fixes some Moonstation things (Fixes mining shuttle not having power,
+      Honkbot in clown's room starts unconstructed, Fixes missing Bar lighting, Fixes
+      missing emergency atmos in maint, Fixes missing robodrobe)
+  - rscadd: Replaces the Oh Hi Daniel shuttle with a similar shuttle.
+  - rscadd: Organs that rot now create miasma. Note that miasma emissions will stop
+      once the organ is fully decayed.
+  - balance: The Crab17 uplink item cannot spawn in surplus crates, nor can it be
+      discounted.
+  - rscadd: Adds Moon Station
+  - rscdel: Removes Burgerstation
+  - balance: Blob Fake Announcements are now followed by a clarification 60 to 180
+      seconds later.
+  - balance: Balances or outright removes some wizard spells.
+  - balance: Reworks or removes some wizard events so they're more roleplay friendly.
+  - rscdel: Removes/rewords some Gimmick objectives, and adds some new ones.
+  Cyprex:
+  - server: We've added a new relay, located in the city of Singapore!
+  Deek-Za:
+  - rscadd: Added redsec armor and belt reskin option
+  - bugfix: Adjusted redsec boots sprite to be more in-line with peacekeeper style
+  - image: Added new sprite for redsec gloves in peacekeeper style
+  Huskil & Orion:
+  - rscadd: Added cowprint bra and underwear
+  IgiariValkyr:
+  - rscadd: Centcom Administration has moved to the Interlink
   Justavidya:
   - image: modified the cherry cupcake and blue-cherry cupcake sprites
+  Kepteyn:
+  - rscadd: Added a xenomorph plushie.
+  - rscadd: 'Added a xenomorph maid plushie.
+
+      :cl:'
+  Kyogon:
+  - rscadd: The new MultiSec vendor, containing all the Security clothing in one.
+  - rscadd: A new custom sprite for the MultiSec vendor.
+  - rscdel: Insertion file for Civil Protection suits, moving them into native vendor
+      lists.
+  LT3:
+  - rscadd: Runechat message colour is now a character preference
+  - image: Colorable jean skirt is now adjustable
+  - bugfix: Morgue trays and freezing temperatures will no longer husk bodies
+  - bugfix: Organs outside bodies will properly receive cold damage
+  - bugfix: Character directory will show all fields without resizing
+  - config: Adjusted population thresholds for certain random events
+  LT3 (code):
+  - server: Makes relay text display properly
   Lutowski:
   - rscadd: Mothic language returns with its own lore blurb.
   - image: Added icon for Chitinclick.
+  Majkl-J:
+  - qol: Crew monitor consoles receive a new firmware update to address recent complaints,
+      removing the low health alarm on DNR and low sensor settings
+  - code_imp: Introduced get_dnr() proc
+  - image: Sexy snoodle plushie inhand sprite
+  - qol: Subtler sound can now be toggled in game prefs
+  - qol: Synth computers now show the current charge of the synth
+  - qol: Synth power cord now charges you more than before
+  - balance: Synth computer capacity is now back to 64, from Skyrat 32
+  - rscdel: Removes broken stealthmerge change
+  - bugfix: Biodome now has the bitrunner vendor
+  - rscadd: The syndicate access override on the Dauntless now includes the radio
+      key
+  - rscadd: Windows on Dauntless robotics
+  - rscdel: The mask FOV is gone
+  - rscadd: Secmed huds are now available for security medics
+  - rscadd: Secmed headset upgraded into a bowman
+  - image: Icons for secmed huds and secmed headset
+  MefAnneFeminene:
+  - rscadd: New Russian Flag sprite
+  - code_imp: description of Russian flag changed
   Melbert:
   - bugfix: Robocontrol app maybe works better now.
   - bugfix: Fixed examining modular PCs
   - refactor: Big martial arts refactor, they should now overall act a ton more consistent.
       Also technically any mob can do martial arts. Let me know if something is funky.
+  NithaIsTired:
+  - rscadd: Synths now scream in agony when they die.
+  ReturnToZender:
+  - server: cleans up some relay names
+  - rscadd: role restriction to the tactical boots
+  - rscadd: two more goobers to the pinwheel list
+  - rscdel: restricted_roles on the mech suit, so anyone can wear it
+  - bugfix: /datum/armor/none added to the colorable arm wraps in loadout
+  - rscdel: redundant mech suit
+  ReturnToZender, Gax (Sprites):
+  - rscadd: Vale clownborg sprites are now available!
+  - bugfix: Fancy raptors have had their hat bounce fixed, Syndicate raptors have
+      their headlamp overlays properly implemented.
+  ReturnToZender, LT3, Waterpig:
+  - rscadd: NSFW flavor text (for players and silicons)
+  - rscadd: New examine panel with slightly bigger font, easier to read, also integrates
+      most of the new preferences
+  - rscadd: Flavor text requirements now respect silicon flavor text, thanks to @lessthnthree
+  ReturnToZender, SpaceManJim (sprites):
+  - rscadd: Animated raptorborg sprites
   Rhials:
   - qol: Spider eggs will now close their spawn menu when you move away from them.
+  SarmentiCampbell:
+  - balance: removed abductor's wounds immunity and delimbs.
+  - balance: Normal Zombies, not infectious types are no longer immune to pressure.
   SkyratBot:
   - rscadd: Wearing certain gloves (such as black gloves and combat oriented gloves)
       allow you to cuff people faster
@@ -76,12 +178,84 @@
   - balance: Mech wire panels are now blocked when the mech is occupied. I guess it
       was moved to be behind the seat.
   - bugfix: Ash drake's fire breath attack has proper cooldowns again
+  - code_imp: Removes /obj/item/onetankbomb, assembly bombs are now handled by the
+      tank itself.
+  StrangeWeirdKitten:
+  - code_imp: Switches the emergancy shuttle to Centcom instead of the Interlink
+  - bugfix: You can no longer dodge nose boops if you have a sensitive snout
+  - balance: gives medical borgs back their crew monitors
+  Swiftfeather:
+  - rscdel: Door sounds from Citrp
+  - qol: better door sounds
+  - sound: changed sound back to better original airlock sound
+  - code_imp: re enables skyrat's door sound override
+  Sylphet:
+  - rscadd: added vertical variants of the pride flags used in biodome
+  - image: resprited horizontal pride flags used in biodome
+  - bugfix: added cmo turtleneck/skirtleneck to garment bag
+  TealSeer:
+  - bugfix: Dropdown options for quirks should now function properly
+  - bugfix: Randomize button in character prefs should look normal
+  Thlumyn, Arta/Maxi for the sprites:
+  - rscadd: Added peacock tails
+  YakumoChen:
+  - rscdel: After the introduction of the Multisec Vendor, stations are no longer
+      shipped with an additional Redsec vendor.
+  - rscadd: Security, HoS, Captain, Blueshield, and Centcom roles have had armour
+      booster modules built into their modsuits. Most do not reduce the slowdown of
+      your suit (except the HoS one)
+  - balance: Armour values in said modsuits have been halved across the board, with
+      the lost values moved to the armour boosters.
+  - balance: Effectively, armour in EVA combat is severely nerfed for everyone except
+      the syndicate who already had armour boosters.
+  aKromatopzia:
+  - rscadd: digitigrade cybernetic legs, and the ability to select them in preferences
   jjpark-kb:
   - rscadd: added the powerator  (purchase-able and BEPIS-tech), a machine to sell
       power for cargo credit
   - rscadd: added back the default turf mining
   - rscadd: boulders are now affected by your mining skill
   - balance: you get more mining xp from boulders
+  lilBlovy:
+  - rscadd: Taurs_Types.dms folder
+  - rscadd: NagaFat Sprites
+  nevimer:
+  - rscadd: Shortcuts to internet relays are now on the top menu bar.
+  - bugfix: dnr behavior is consistent again
+  - rscadd: Malf AI Doomsday now makes a tidal wave of explosions from APC's.
+  nikothedude:
+  - spellcheck: The nobility dresscoat has been reflavored to not be nobility
+  pixelkitty286:
+  - rscadd: Door sounds from Citrp
+  - qol: Better door sounds
+  - sound: added door sound files in modular sounds folder
+  - code_imp: Disabled skyrat's door sound over rides in airlock.dm
+  - rscadd: F3-LINE
+  - image: added felibot_all.dmi
+  - code_imp: modular robot_model.dm
+  - sound: Add synth_scary.ogg synth_error.ogg synth_startup.ogg synth_shutdown.ogg
+  - code_imp: modular synth_emotes.dm
+  projectkepler-ru:
+  - rscadd: DS-2 role now all starts with some form of armament
+  thegrb93:
+  - rscadd: Borg dominatrix module to lustwish that gives them some dominatrix toys
+  theselfish:
+  - rscadd: Donator item.
+  - rscadd: Donator stamp.
+  - rscadd: ACTUALLY REALLY Lets Clown and Mime slots be opened again.
+  xXPawnStarrXx:
+  - rscadd: Added new bounties for inmates.
+2024-02-07:
+  Majkl-J:
+  - image: Mouth worn sprites for rubber ducky and dog bones
+  ReturnToZender:
+  - bugfix: Readying up without proper flavor text now reports the correct flavor
+      text source instead of saying you need silicon flavor.
+  ReturnToZender, GenericDM (Original Version):
+  - rscadd: Cargo shelves are now craftable using metal! They store up to 3 crates
+      per shelf.
+  - bugfix: Skyrat modular shelves (such as gun racks and tall shelves) are now buildable
+      using metal.
 2024-02-04:
   SkyratBot:
   - code_imp: Removes /obj/item/onetankbomb, assembly bombs are now handled by the

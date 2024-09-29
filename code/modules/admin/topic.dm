@@ -48,6 +48,15 @@
 			return
 		cmd_show_exp_panel(M.client)
 
+	// BUBBER EDIT START - Job exemption
+	else if (href_list["getjobexemptwindow"])
+		var/target_ckey = href_list["getjobexemptwindow"]
+		show_job_exempt_menu(usr, target_ckey)
+	else if (href_list["getjobexempttask"])
+		var/target_ckey = href_list["getjobexempttask"]
+		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
+	// BUBBER EDIT END
+
 // SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
 	else if(href_list["makeAntag"])
 
@@ -104,8 +113,8 @@
 	else if(href_list["gamemode_panel"])
 		if(!check_rights(R_ADMIN))
 			return
-		SSdynamic.admin_panel()
-
+		//SSdynamic.admin_panel() // BUBBER EDIT - STORYTELLER
+		SSgamemode.admin_panel(usr) // BUBBER EDIT - STORYTELLER
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1425,6 +1434,9 @@
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
 
 	else if(href_list["centcomlookup"])
+		if(href_list) // BUBBER EDIT BEGIN - Crash Bandaid
+			message_admins("a naughty admin was prevented from hanging the server sending an external query.")
+			return // BUBBER EDIT END - Crash Bandaid
 		if(!check_rights(R_ADMIN))
 			return
 

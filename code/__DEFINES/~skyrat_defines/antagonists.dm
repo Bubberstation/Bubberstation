@@ -17,7 +17,7 @@
 #define GOLDENEYE_REQUIRED_KEYS_MAXIMUM 3
 
 /// Population requirement for bomb objectives (ninja c4, locate weakpoint, etc.) objectives to appear
-#define BOMB_POP_REQUIREMENT 80
+#define BOMB_POP_REQUIREMENT 30 //BUBBER EDIT: Original 80
 
 // Borer evolution defines
 // The three primary paths that eventually diverge

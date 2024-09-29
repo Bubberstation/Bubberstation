@@ -6,7 +6,6 @@
 	var/icon = "dna"
 	/// Flags that determine if a gene can be modified.
 	var/mutability_flags
-
 /*
  * Returns the formatted name of the plant gene.
  *

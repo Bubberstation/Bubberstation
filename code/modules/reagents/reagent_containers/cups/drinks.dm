@@ -30,6 +30,7 @@
 	B.mimic_broken(src, target, break_top)
 	qdel(src)
 	target.Bumped(B)
+	return B //BUBBERSTATION CHANGE: RETURNS THE BROKEN BOTTLE.
 
 /obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
 	. = ..()

@@ -5,6 +5,13 @@
 /obj/machinery/quantum_server/proc/cool_off()
 	is_ready = TRUE
 	update_appearance()
+	//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the radio from blurting out on cargo channel for dauntless prisoners
+	//If the dauntless map is removed, remove this hack!
+	var/area/curr = get_area(src)
+	if(istype(curr, /area/ruin/space/has_grav/bubbers/dauntless) || istype(curr, /area/ruin/space/has_grav/bubbers/dauntless_space))
+		balloon_alert_to_viewers("cooldown has completed")
+		return
+	//BUBBER ADDITION END
 	radio.talk_into(src, "Thermal systems within operational parameters. Proceeding to domain configuration.", RADIO_CHANNEL_SUPPLY)
 
 
@@ -147,8 +154,15 @@
 	var/atom/entry_atom = get_avatar_destination()
 	if(isnull(entry_atom))
 		return
-
-	var/mob/living/carbon/new_avatar = generate_avatar(get_turf(entry_atom), netsuit)
+	// BUBBER EDIT BEGIN - PREFS!
+	var/datum/preferences/pref
+	var/load_loadout = FALSE
+	var/obj/item/bitrunning_disk/prefs/prefdisk = locate() in neo.get_contents()
+	if(prefdisk)
+		load_loadout = prefdisk.include_loadout
+		pref = prefdisk.loaded_preference
+	var/mob/living/carbon/new_avatar = generate_avatar(get_turf(entry_atom), netsuit, prefs = pref, load_loadout = load_loadout)  // Added the prefs argument
+	// BUBBER EDIT END
 	stock_gear(new_avatar, neo, generated_domain)
 
 	// Cleanup for domains with one time use custom spawns

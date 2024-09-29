@@ -1296,3 +1296,163 @@
       properly
   - code_imp: Various improvements to taur leg code
   - code_imp: Taur bodies are properly subtyped
+2024-06-17:
+  Arturlang:
+  - bugfix: Bitrunner glitches should now spawn properly more often
+  - balance: Reduced nightmare's burn weakness to 1.2, from 1.5.
+  - qol: Becoming a special vassal will now ask the vassal in question if they wish
+      to become it, and only go through if you accept it.
+  Boviro:
+  - rscadd: Adds the Bobr shotgun revolver to cargo as a goody.
+  BurgerB:
+  - balance: Buffs RBMK2 base power generation + Buffs RBMK2 cooling efficiency
+  BurgerBB:
+  - rscadd: Adds Big Fat Security Glocks
+  - bugfix: Fixes some WT-551 ammo errors.
+  - balance: Rebalances the overweight quirk, and adds a new obese quirk.
+  - balance: Adds a damage threshold + RNG requirement for EMPs affecting heads and
+      torsos, as well as organs inside those two.
+  - balance: Changes Ninja's energy sword recharge rate from 350 to 200.
+  - balance: The maintenance loot scarcity station trait now only spawns very rare
+      loot
+  - qol: Adds a module that allows engineering cyborgs (and some saboteur cyborgs)
+      to carry handheld tanks.
+  - rscadd: Destroying floor tiles on the Moonstation upper level can lead to a chasm
+      that drops you down to the middle cave level. Note that you can't get dropped
+      down to lavaland.
+  - rscdel: Malfunctioning AIs can no longer purchase the "Nuke Station" module.
+  - rscadd: Adds Legion to Moonstation + Raptor Farm outside Mining
+  - qol: Map voting shows total map counts for each map
+  - balance: Nerfs electrocution damage because I died to it once
+  - bugfix: Fixes a missing moonstation disposals pipe.
+  - bugfix: Fixes Moonstation SM pipes from Atmos
+  - bugfix: Fixes maint loot being absurd.
+  - balance: Increases the chances of the Wizard Die of Fate event running.
+  - balance: Makes the exterior of Moonstation more enclosed.
+  - bugfix: Fixes the second layer of moonstation creating space turfs.
+  BurgerLUA:
+  - bugfix: Moonstation Fixes and Balance Changes
+  ChromeFoxxity:
+  - rscadd: Adds Security High-Vis Jacket Red and Blue variant.
+  - image: Added icons of both variants.
+  - code_imp: Added code for both variants.
+  Colfer1:
+  - bugfix: Entombed trait reskin feature works now
+  Erol509:
+  - rscadd: Added leash line between user and your "pet".
+  - bugfix: Fixed the fact that you can put a leash on your belt, doing some wonky
+      stuff with resisting from that.
+  - bugfix: Fixes the leash beam randomly dissapering
+  Gandalf2k15:
+  - bugfix: You are no longer GBJd
+  Hacks-The-Doors:
+  - balance: dental pills can now be used in crit.
+  - balance: dental pills now give off a message when you start using them
+  - balance: dental pills have a 2.5 second delay when in soft crit
+  Iamgoofball:
+  - balance: ' removes the antag-spawning trumpet from the maintenance pool because
+      this is not supposed to be spawned'
+  IgiariValkyr:
+  - rscadd: Parts from a discontinued synth chassis line from the Mariinsky Ballet
+      Company is making rounds on the black market - now available to install for
+      synths and chromed up organics!
+  KathrinBailey:
+  - bugfix: Blue jumpskirts should not be in the vendor's red clothing section.
+  - bugfix: Red jumpskirts should be available in the game again.
+  Kyogon:
+  - rscadd: Adds Kyo's true horns, named Biter's Horns.
+  Majkl-J:
+  - rscadd: Cooking pots can now be worn on your head
+  - rscadd: Adds prefloading to bitrunning
+  - qol: Makes the vote requirements code not terrible by allowing anyone with some
+      effect on the round to use it
+  - code_imp: The storyteller failed to pick events runtime now includes more information
+  Nevimer, Majkl-J, BurgerBB, Azarak:
+  - rscadd: Ported the storyteller event system from horizon
+  RadiantFlash7:
+  - balance: gave tajarans better tackles to compensate for weak ears
+  ReturnToZender:
+  - bugfix: Fixed some indentation issues in tajaran.dm, adjusted some lines of examine
+      code to prevent runtimes, borg names show up on the examine panel now instead
+      of nothing
+  - refactor: applies AddElementTrait to the waddling quirk, and mouse waddling
+  - balance: Borgs now take 2 seconds to emag. Cover lock functionality unchanged.
+  - balance: The stun time on the tippable component for borgs has been reduced to
+      20 seconds, from 60 seconds.
+  - balance: Extends the Spy bounty handler by 2x to match our longer rounds.
+  - balance: Releases two new genders, Transmasc and Transfem, for use in the Character
+      Directory.
+  Shayoki:
+  - qol: General Box Station improvements.
+  Shayoki, Crumpaloo, Keila, Wolf751, bitsynapse.:
+  - rscadd: Donator toys and clothes have arrived.
+  SkyratBot:
+  - sound: added compressed air sound for when air tanks are inserted into machinery
+  - balance: Certain changeling abilities won't work while on fire.
+  Tera:
+  - rscadd: Added new leash item to borg dom module
+  VrazzleDazzle:
+  - image: Added one new alt skin to the mining MODsuit
+  - rscadd: Advancements in mining R&D have introduced four new crusher variants to
+      the mining vendor, courtesy of Monkestation
+  aKromatopzia:
+  - rscadd: new silicon model (smolraptor). non-syndie, sorry; for now
+  - rscdel: Removed duplicate raptoral cybernetic defines in preferences, research
+      web nodes and fabricators
+  delingar:
+  - qol: Relentless Heartbeat costs 0 knowledge
+  grungussuss:
+  - rscadd: Added Misha the bear to the HoS office on icebox.
+  pixelkitty286:
+  - rscadd: Research cyborgs
+  - rscadd: ability to pry cyborg cells out
+  - rscdel: ~~disabled malf cyborg factory~~
+  - qol: made an alt method removing cells
+  - balance: rebalanced cyborg making
+  - image: Sprites for research cyborgs
+  - code_imp: what ever needed to get the cyborgs working
+  - rscdel: unused ass pics
+  - balance: Tajaran body temps and flash sensitivities
+  - bugfix: Moved images
+  - code_imp: Defines for cat cyborgs
+  - bugfix: Central Command small raptors from not showing up
+  - rscadd: holding code for cyborgs
+  - rscdel: Old 32x32 F3-LINE sprites
+  - image: 32x32 F3-LINE sprites and a cargo variant
+  - code_imp: preventive flags to indicate when held
+  - admin: Two robot traits added to the trait list
+  - bugfix: engineering borg BRPED upgrade re-added
+  projectkepler-ru:
+  - bugfix: idma co donor item being flammable and fixes the ammo reloading pouch
+      for the hos revolver being flamable
+  - bugfix: Due to a genetic sequencing error, hydrophilic slime people have once
+      again been spotted on the station
+  shayoki:
+  - bugfix: fixed a few donator items.
+  theselfish:
+  - rscadd: Added various clown clothing into the autodrobe.
+  - rscadd: Clown Cryto is back.
+  - code_imp: Modular Vending code from Skyrat, but for us.
+  - rscadd: Marge has breached containment.
+  - rscadd: A Halo is a new 'horn' option for angel characters.
+  - rscdel: Tiny loadout folder is now annexed into the bigger one.
+  - qol: Drill hats are clickable and are in the command vendor. (Thanks to F13 for
+      the OBJ sprite.)
+  - spellcheck: Removed a reference to Skyrat, and a spelling mistake in the Credits.
+  - bugfix: Drill Hats ACTUALLY work.
+  - bugfix: MASSIVE File Structure clean-up.
+  - rscadd: Crewimov related modules are printable now.
+  tmyqlfpir:
+  - bugfix: Dauntless space ruin bitrunner server no longer announces cool down over
+      NT supply comms
+  - bugfix: Dauntless and Interdyne are now immune to rad storms
+  - rscadd: Added Syndie borg access cards to Interdyne
+  - qol: Replaced the polarized windows in the Interdyne sauna area with blast door
+      shutters
+  - rscadd: Added experi-scanners to Interdyne/Dauntless R&D
+  - bugfix: Interdyne never spawns on top Z level
+  - qol: Interdyne dorm rooms now have crowbars in closets
+  - qol: Interdyne deck officer does not leave empty sleeper on ghost role spawn
+  xXPawnStarrXx:
+  - rscadd: Added new primitive, power free farming methods.
+  - bugfix: stopped shelves spawning clay. (You don't think I saw you, but I did...)

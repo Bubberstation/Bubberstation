@@ -499,10 +499,19 @@
   grungussuss:
   - bugfix: fixed being able to install multiple of the same upgrade to medical cyborgs
 2024-04-29:
+  LT3:
+  - bugfix: Skyrat specific crew monitors work properly
   Majkl-J:
   - bugfix: Synth recharging in mechchargers is now fixed
   - bugfix: Crank cell can now be cranked for 1MJ of energy instead of 100J. How a
       human manages to pull that off shall not be discussed
+  Melbert:
+  - bugfix: You can handcuff people with 2 arms and you can no longer handcuff people
+      with 0 arms
+  ReturnToZender:
+  - bugfix: NTC office bugs have received some minor fixes
+  - rscadd: It is now free to exit the NTC office, even if the outer access is not
+      free
   SpaceLoveSs13:
   - admin: New verb to play local internet music!
   StrangeWeirdKitten:
@@ -510,10 +519,18 @@
   VexingRaven:
   - bugfix: The debug box no longer spills its contents everywhere
 2024-04-30:
+  BurgerBB:
+  - rscadd: Adds the DOTA suit and various extras to research.
+  Erol509:
+  - balance: Nerfs powerator cash generation
   LT3:
   - bugfix: Skyrat specific crew monitors work properly
   Majkl-J:
   - code_imp: Further cleared out MCR defines
+  - qol: Debloated the service borg module count
+  - balance: Moved service borg art and music supplies to the new artistic module
+  - bugfix: Fixed the dual cooking tools on service borgs, opting to keep tg ones.
+  - spellcheck: Fixed lowercase on a few borg module recipes
   Melbert:
   - bugfix: Midround malf can roll again
   - bugfix: You can handcuff people with 2 arms and you can no longer handcuff people
@@ -547,5 +564,14 @@
   - image: The Infiltrator Suit has received a new model, sleeker than ever!
   - admin: spy can now be rolebanned
   - bugfix: pAI requests should no longer randomly permanently break in a round.
+  aKromatopzia:
+  - rscadd: teshari move speed change applies to raptor cybernetics
+  destrucktoid:
+  - rscadd: Added new healing systems for bloodsuckers
+  - refactor: Made the code use AddBloodVolume() exclusively for blood costs as bloodsucker.
   scabs3:
   - rscadd: Added new lines and responses to the 'dark and brooding lizard plushie'
+  tmyqlfpir:
+  - bugfix: Automatically link machines to closest research server for off-station
+      z levels (fixes Tarkon/DS-2 machines linking to wrong R&D server)
+  - qol: Wrench down research console on DS-2

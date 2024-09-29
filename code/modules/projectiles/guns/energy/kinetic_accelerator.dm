@@ -16,6 +16,8 @@
 	var/list/obj/item/borg/upgrade/modkit/modkits = list()
 	///The max capacity of modkits the PKA can have installed at once.
 	var/max_mod_capacity = 100
+	var/disablemodification = FALSE // Bubber edit, stops removal and addition of mods.
+
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 20, offset_y = 12)
@@ -76,7 +78,7 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if(modkits.len)
+	if(!disablemodification && modkits.len) // BUBBER EDIT
 		to_chat(user, span_notice("You pry all the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/obj/item/borg/upgrade/modkit/modkit_upgrade as anything in modkits)
@@ -139,7 +141,7 @@
 		modkits |= arrived
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/borg/upgrade/modkit))
+	if(!disablemodification && istype(I, /obj/item/borg/upgrade/modkit)) // BUBBER EDIT
 		var/obj/item/borg/upgrade/modkit/MK = I
 		MK.install(src, user)
 	else

@@ -706,7 +706,7 @@
  * literally ripping itself apart. all of the actual movement is handled by SStramprocess
  *
  * Arguments: collided_rod (the immovable rod that hit the tram)
- * Return: push_destination (the landmark /obj/effect/landmark/tram/nav that the tram is being pushed to due to the rod's trajectory)
+ * Return: push_destination (the landmark /obj/effect/landmark/transport/nav_beacon/tram/nav that the tram is being pushed to due to the rod's trajectory)
  */
 /datum/transport_controller/linear/tram/proc/rod_collision(obj/effect/immovablerod/collided_rod)
 	log_transport("TC: [specific_transport_id] hit an immovable rod.")

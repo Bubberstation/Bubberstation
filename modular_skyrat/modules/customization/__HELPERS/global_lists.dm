@@ -1,5 +1,6 @@
 /proc/make_skyrat_datum_references()
 	init_prefs_emotes()
+	make_bloopers() // BUBBER EDIT - Bloopers
 	make_default_mutant_bodypart_references()
 	make_body_marking_references()
 	make_body_marking_set_references()
@@ -189,3 +190,14 @@
 			continue
 
 		SSaccessories.bra_m -= sprite_name
+
+//BUBBER EDIT ADDITION BEGIN
+// Text bloopers
+/proc/make_bloopers()
+	GLOB.blooper_list = list()
+	for(var/sound_blooper_path in subtypesof(/datum/blooper))
+		var/datum/blooper/bloop = new sound_blooper_path()
+		GLOB.blooper_list[bloop.id] = sound_blooper_path
+		if(bloop.allow_random)
+			GLOB.blooper_random_list[bloop.id] = sound_blooper_path
+//BUBBER EDIT END

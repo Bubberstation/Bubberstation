@@ -117,7 +117,10 @@
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/rocket,
 		/obj/item/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan)
+		/obj/item/toy/crayon/spraycan,
+		/obj/item/seeds, // BUBBER EDIT ADDITION
+		/obj/item/card, // BUBBER EDIT ADDITION
+		)
 		)
 
 /datum/storage/pockets/shoes/clown/New(

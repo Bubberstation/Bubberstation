@@ -179,7 +179,7 @@
 			hud_list[hud] = list()
 
 		else
-			var/image/I = image('modular_skyrat/master_files/icons/mob/huds/hud.dmi', src, "")	//SKYRAT EDIT: original filepath 'icons/mob/huds/hud.dmi'
+			var/image/I = image('modular_zubbers/icons/mob/huds/hud.dmi', src, "")	//ZUBBERS EDIT: original filepath 'icons/mob/huds/hud.dmi'
 			I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 			hud_list[hud] = I
 		set_hud_image_active(hud, update_huds = FALSE) //by default everything is active. but dont add it to huds to keep control.
@@ -311,7 +311,13 @@
 			msg = blind_message
 			msg_type = MSG_AUDIBLE
 		else if(T != loc && T != src) //if src is inside something and not a turf.
-			if(M != loc) // Only give the blind message to hearers that aren't the location
+			// BUBBER EDIT Start - Prey hear each other in bellies + pred always hears prey
+			if(istype(loc, /obj/vore_belly))
+				if(M.loc != loc && M != loc.loc)
+					msg = blind_message
+					msg_type = MSG_AUDIBLE
+			// BUBBER EDIT End
+			else if(M != loc)  // Only give the blind message to hearers that aren't the location
 				msg = blind_message
 				msg_type = MSG_AUDIBLE
 		else if(!HAS_TRAIT(M, TRAIT_HEAR_THROUGH_DARKNESS) && M.lighting_cutoff < LIGHTING_CUTOFF_HIGH && T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.

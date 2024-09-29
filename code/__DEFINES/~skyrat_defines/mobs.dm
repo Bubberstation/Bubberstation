@@ -12,7 +12,7 @@
 #define UNDERWEAR_HIDE_BRA (1<<3)
 
 //Appends to the bottom of Defib fails - DNR TRAIT
-#define DEFIB_FAIL_DNR (1<<11)
+//#define DEFIB_FAIL_DNR (1<<11) //BUBBER EDIT REMOVAL
 
 ///Defines for icons used for modular bodyparts, created to make it easier to relocate the module or files if necessary.
 #define BODYPART_ICON_HUMAN 'modular_skyrat/modules/bodyparts/icons/human_parts_greyscale.dmi'

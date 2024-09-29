@@ -206,6 +206,7 @@
 	human_for_preview.set_haircolor("#ffcccc", update = FALSE) // pink
 	human_for_preview.set_hairstyle("Hime Cut", update = TRUE)
 
+
 	/* SKYRAT EDIT - Making the species menu icons work better - ORIGINAL:
 	var/obj/item/organ/internal/ears/cat/cat_ears = human_for_preview.get_organ_by_type(/obj/item/organ/internal/ears/cat)
 	if (cat_ears)

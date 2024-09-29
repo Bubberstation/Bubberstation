@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(automapper)
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_AUTOMAPPER
 	/// The path to our TOML file
-	var/config_file = "_maps/skyrat/automapper/automapper_config.toml"
+	var/config_file = "_maps/bubber/automapper/automapper_config.toml" //BUBBER EDIT: POINTS TO OUR MODULAR AUTOMAPPER
 	/// Our loaded TOML file
 	var/loaded_config
 	/// Our preloaded map templates

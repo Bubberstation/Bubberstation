@@ -80,4 +80,4 @@
 	desc = "A fox, scraping by the icemoon hostile atmosphere."
 	gold_core_spawnable = NO_SPAWN
 	habitable_atmos = null
-	minimum_survivable_temperature = ICEBOX_MIN_TEMPERATURE
+	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE //BUBBER EDIT Original = ICEBOX_MIN_TEMPERATURE

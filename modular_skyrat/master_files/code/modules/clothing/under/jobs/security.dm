@@ -100,20 +100,8 @@
 	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with a skirt."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "jumpskirt_blue"
-	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_blue",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
-        ),
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_black",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
-		),
-	)
+	icon_state = "secskirt"
+
 
 /obj/item/clothing/under/rank/security/peacekeeper/shortskirt
 	name = "security shortskirt"

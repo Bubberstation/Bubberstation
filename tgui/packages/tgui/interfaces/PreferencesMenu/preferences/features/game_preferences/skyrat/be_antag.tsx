@@ -1,4 +1,3 @@
-// THIS IS A SKYRAT UI FILE
 import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const be_antag_pref: FeatureToggle = {

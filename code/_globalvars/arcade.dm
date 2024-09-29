@@ -1,4 +1,5 @@
 ///List of all things that can be dispensed by an arcade cabinet and the weight of them being picked.
+/* BUBBERSTATION CHANGE: MODULAR OVERRIDE
 GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	/obj/item/storage/box/snappops = 2,
 	/obj/item/toy/talking/ai = 2,
@@ -71,3 +72,4 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	/obj/item/clothing/mask/party_horn = 2,
 	/obj/item/storage/box/party_poppers = 2,
 ))
+BUBBERSTATION CHANGE END */

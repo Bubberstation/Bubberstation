@@ -272,7 +272,7 @@
 
 /mob/living/basic/get_status_tab_items()
 	. = ..()
-	. += "Health: [round((health / maxHealth) * 100)]%"
+	. += "Health: [round((health / maxHealth) * 100)]% ([health]/[maxHealth])"
 	. += "Combat Mode: [combat_mode ? "On" : "Off"]"
 
 /mob/living/basic/compare_sentience_type(compare_type)

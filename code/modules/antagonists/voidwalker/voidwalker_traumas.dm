@@ -10,7 +10,7 @@
 	/// Type for the bodypart texture we add
 	var/bodypart_overlay_type = /datum/bodypart_overlay/texture/spacey
 	///traits we give on gain
-	var/list/traits_to_apply = list(TRAIT_MUTE, TRAIT_PACIFISM)
+	var/list/traits_to_apply = list(TRAIT_PACIFISM) // BUBBER EDIT - REMOVES TRAIT_MUTE
 	/// Do we ban the person from entering space?
 	var/ban_from_space = TRUE
 
