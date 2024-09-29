@@ -760,13 +760,13 @@
 	var/datum/action/cooldown/himan_fake_death/new_action = new
 	new_action.Grant(src)
 
-/mob/living/basic/fleshmind/himan/Life(delta_time, times_fired)
+/mob/living/basic/fleshmind/himan/Life(delta_time, times_fired) // TODO: Move into basic AI
 	. = ..()
 	if(health < (maxHealth * 0.5) && !faking_death && COOLDOWN_FINISHED(src, fake_death) && !key)
 		fake_our_death()
 	if(faking_death) // Heal damage slowly
-		heal_overall_damage(1, 1)
-		if(health == maxHealth)
+		heal_overall_damage(3, 3)
+		if(health >= maxHealth * 0.75)
 			awake()
 
 /mob/living/basic/fleshmind/himan/melee_attack(atom/target, list/modifiers, ignore_cooldown)
@@ -1392,11 +1392,6 @@
 /mob/living/basic/fleshmind/mechiver/proc/get_current_target()
 	return ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
-/*/mob/living/basic/fleshmind/mechiver/melee_attack(atom/target, list/modifiers, ignore_cooldown)
-	if(target && COOLDOWN_FINISHED(src, consume_ability_cooldown) && Adjacent(target) && our_controller)
-		consume_mob(target)
-	return ..()
-*/
 /mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/source, mob/living/target_mob)
 	SIGNAL_HANDLER
 
