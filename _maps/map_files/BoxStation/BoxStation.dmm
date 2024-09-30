@@ -19466,7 +19466,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/smartfridge/organ,
+/obj/structure/table/glass,
 /turf/open/floor/iron,
 /area/station/medical/medbay/central)
 "bxT" = (
@@ -33528,6 +33528,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
+"cTT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/science/ordnance)
 "cUl" = (
 /obj/machinery/mass_driver/ordnance{
 	dir = 4
@@ -36393,13 +36404,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
-"eZt" = (
-/obj/machinery/door/airlock/research/glass{
-	name = "Ordnance Lab"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
-/turf/open/floor/iron/dark/airless,
-/area/station/science/ordnance/freezerchamber)
 "eZu" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood,
@@ -54012,6 +54016,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
+"rjU" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Ordnance Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
+/turf/open/floor/iron/dark/airless,
+/area/station/science/ordnance/freezerchamber)
 "rkf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -58899,17 +58910,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/science/auxlab/firing_range)
-"uHF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/modular_computer/preset/civilian{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/science/ordnance)
 "uIQ" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -112420,7 +112420,7 @@ hFU
 bzL
 aLu
 bCg
-eZt
+rjU
 euc
 ogm
 aXJ
@@ -112676,7 +112676,7 @@ cKR
 byu
 bzJ
 byb
-uHF
+cTT
 rMU
 rAg
 ogm
