@@ -15,6 +15,7 @@
 		/datum/reagent/consumable/ethanol/sugar_rush,
 		/datum/reagent/consumable/ethanol/synthanol,
 		/datum/reagent/consumable/flour,
+		/datum/reagent/consumable/ice,
 		/datum/reagent/consumable/laughter,
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/tinlux,
