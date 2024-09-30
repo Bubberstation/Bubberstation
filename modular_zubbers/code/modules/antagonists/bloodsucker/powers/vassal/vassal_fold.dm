@@ -7,12 +7,11 @@
 		Use this power with a bloodbag in your hand to instead fill it with Vampiric Blood which \
 		can be used to reset ex-vassal deconversion timers. \
 		Right-Click will show the status of all Vassals."
-	power_flags = NONE
 	check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
-
+	level_current = -1
 	///Bloodbag we have in our hands.
 	var/obj/item/reagent_containers/blood/bloodbag
 	///Weakref to a target we're bringing into the fold.
@@ -22,7 +21,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+	var/datum/antagonist/vassal/revenge/revenge_vassal = IS_REVENGE_VASSAL(owner)
 	if(revenge_vassal)
 		return FALSE
 
@@ -34,7 +33,7 @@
 
 	if(owner.pulling && isliving(owner.pulling))
 		var/mob/living/pulled_target = owner.pulling
-		var/datum/antagonist/ex_vassal/former_vassal = pulled_target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = IS_EX_VASSAL(pulled_target)
 		if(!former_vassal)
 			owner.balloon_alert(owner, "not a former vassal!")
 			return FALSE
@@ -53,7 +52,7 @@
 
 /datum/action/cooldown/bloodsucker/vassal_blood/ActivatePower(trigger_flags)
 	. = ..()
-	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
+	var/datum/antagonist/vassal/revenge/revenge_vassal = IS_REVENGE_VASSAL(owner)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		for(var/datum/antagonist/ex_vassal/former_vassals as anything in revenge_vassal.ex_vassals)
 			var/information = "[former_vassals.owner.current]"
@@ -67,11 +66,11 @@
 			to_chat(owner, "[information]")
 
 		DeactivatePower()
-		return
+		return FALSE
 
 	if(target_ref)
 		var/mob/living/target = target_ref.resolve()
-		var/datum/antagonist/ex_vassal/former_vassal = target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = IS_EX_VASSAL(target)
 		if(!former_vassal || former_vassal.revenge_vassal)
 			target_ref = null
 			return
@@ -79,7 +78,7 @@
 			former_vassal.return_to_fold(revenge_vassal)
 		target_ref = null
 		DeactivatePower()
-		return
+		return FALSE
 
 	if(bloodbag)
 		var/mob/living/living_owner = owner
@@ -88,3 +87,4 @@
 		var/obj/item/reagent_containers/blood/o_minus/bloodsucker/new_bag = new(owner.loc)
 		owner.put_in_active_hand(new_bag)
 		DeactivatePower()
+	return TRUE
