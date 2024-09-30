@@ -133,6 +133,17 @@ SUBSYSTEM_DEF(gamemode)
 
 	var/storyteller_voted = FALSE
 
+	var/list/next_track_event_run = list(
+		EVENT_TRACK_MUNDANE = 0,
+		EVENT_TRACK_MODERATE = 0,
+		EVENT_TRACK_MAJOR = 0,
+		EVENT_TRACK_CREWSET = 0,
+		EVENT_TRACK_GHOSTSET = 0
+	)
+
+	//If this value is over 0, then stop point gains. Lowers over time.
+	var/breathing_room = 0
+
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	. = ..()
 	// Populate event pools
@@ -180,6 +191,9 @@ SUBSYSTEM_DEF(gamemode)
 		update_crew_infos()
 		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
 		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+	if(breathing_room > 0)
+		breathing_room = max(0,breathing_room - wait)
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -767,6 +781,8 @@ SUBSYSTEM_DEF(gamemode)
 				var/last_points = last_point_gains[track]
 				if(last_points)
 					next = round((upper - lower) / last_points / STORYTELLER_WAIT_TIME * 40 / 6) / 10
+				next = max(next,round(src.breathing_room / 6)/10)
+				next = max(next,round(src.next_track_event_run[track] / 6)/10)
 				dat += "<tr style='vertical-align:top; background-color: [background_cl];'>"
 				dat += "<td>[track]</td>" //Track
 				dat += "<td>[percent]% ([lower]/[upper])</td>" //Progress

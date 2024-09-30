@@ -11,6 +11,8 @@
 	var/static/list/shared_occurences = list()
 	/// Whether a roundstart event can happen post roundstart. Very important for events which override job assignments.
 	var/can_run_post_roundstart = TRUE
+	//Prevents point gains from time for this amount of seconds when ran. Set this for high chaos events.
+	var/breathing_room_to_add = 0 SECONDS
 
 /datum/round_event
 	/// Whether the event called its start() yet or not.

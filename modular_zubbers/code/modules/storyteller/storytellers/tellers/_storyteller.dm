@@ -46,22 +46,41 @@
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
+	//Prevents events from running for this long for that track only when any event is triggered.
+	var/list/track_event_delays = list(
+		EVENT_TRACK_MUNDANE = 0 MINUTES,
+		EVENT_TRACK_MODERATE = 10 MINUTES,
+		EVENT_TRACK_MAJOR = 30 MINUTES,
+		EVENT_TRACK_CREWSET = 5 MINUTES,
+		EVENT_TRACK_GHOSTSET = 5 MINUTES
+	)
+
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
 		return
-	add_points(delta_time)
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	if(mode.breathing_room <= 0)
+		add_points(delta_time)
 	handle_tracks()
 
 /// Add points to all tracks while respecting the multipliers.
 /datum/storyteller/proc/add_points(delta_time)
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	for(var/track in mode.event_track_points)
-		var/point_gain = delta_time
-		mode.event_track_points[track] += point_gain
-		mode.last_point_gains[track] = point_gain
+		if(mode.event_track_points[track] < mode.point_thresholds[track])
+			continue
+		if(world.time < mode.next_track_event_run[track])
+			continue
+		if(!find_and_buy_event_from_track(track))
+			continue
+		mode.next_track_event_run[track] = world.time + src.track_event_delays[track]
+		. = TRUE
+
+
 
 /// Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
 /datum/storyteller/proc/handle_tracks()
+
 	. = FALSE //Has return value for the roundstart loop
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	for(var/track in mode.event_track_points)
@@ -122,6 +141,7 @@
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
+	mode.breathing_room += bought_event.breathing_room_to_add
 
 /// Calculates the weights of the events from a passed track.
 /datum/storyteller/proc/calculate_weights(track)
