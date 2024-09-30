@@ -95,7 +95,7 @@ const CharacterDirectoryList = (props) => {
 
   const handleSort = (id) => {
     if (sortId === id) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle between descending and ascending
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortId(id);
       setSortOrder('desc'); // Set to descending on new sort
