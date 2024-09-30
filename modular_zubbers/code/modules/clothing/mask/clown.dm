@@ -44,6 +44,11 @@
 	unique_death = 'modular_skyrat/master_files/sound/effects/hacked.ogg'
 	voice_filter = null
 	use_radio_beeps_tts = FALSE
+	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDESNOUT
+	w_class = WEIGHT_CLASS_SMALL
+	visor_flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDESNOUT
+	flags_cover = MASKCOVERSMOUTH
+	visor_flags_cover = MASKCOVERSMOUTH
 
 /obj/item/clothing/mask/gas/half_mask/ui_action_click(mob/user, action)
 	adjust_visor(user)
