@@ -98,7 +98,7 @@
 	)
 
 //Some new toys
-/datum/design/experi_scanner/bluespace
+/datum/design/experi_scanner/bluespace_borg
 	name = "Cyborg Bluespace Experimental Scanner"
 	desc = "A version of the experiment scanner that allows for performing experiment scans from a distance."
 	id = "bs_experi_scanner_cyborg"
