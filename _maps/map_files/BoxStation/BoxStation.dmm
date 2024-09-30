@@ -19466,7 +19466,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/smartfridge/organ,
+/obj/structure/table/glass,
 /turf/open/floor/iron,
 /area/station/medical/medbay/central)
 "bxT" = (
@@ -33528,6 +33528,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
+"cTT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/science/ordnance)
 "cUl" = (
 /obj/machinery/mass_driver/ordnance{
 	dir = 4
@@ -44456,6 +44467,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/pipe_scrubber,
 /turf/open/floor/iron,
 /area/station/science/ordnance/storage)
 "kwD" = (
@@ -54004,6 +54016,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
+"rjU" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Ordnance Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
+/turf/open/floor/iron/dark/airless,
+/area/station/science/ordnance/freezerchamber)
 "rkf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -54295,6 +54314,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "rtB" = (
@@ -54827,11 +54847,8 @@
 /area/station/security/office)
 "rMU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/modular_computer/preset/civilian{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 5
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/station/science/ordnance)
@@ -62121,9 +62138,18 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
-/obj/item/pipe_dispenser,
+/obj/item/analyzer{
+	pixel_x = 8
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -2;
+	pixel_y = 2
+	},
 /obj/machinery/light/directional/north,
+/obj/item/holosign_creator/atmos{
+	pixel_x = -7;
+	pixel_y = -7
+	},
 /turf/open/floor/iron,
 /area/station/science/ordnance)
 "wQh" = (
@@ -112394,7 +112420,7 @@ hFU
 bzL
 aLu
 bCg
-aXE
+rjU
 euc
 ogm
 aXJ
@@ -112650,7 +112676,7 @@ cKR
 byu
 bzJ
 byb
-uEh
+cTT
 rMU
 rAg
 ogm
