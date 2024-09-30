@@ -102,10 +102,6 @@ const CharacterDirectoryList = (props) => {
     }
   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   const handleRandomView = () => {
     if (directory.length > 0) {
       const randomIndex = Math.floor(Math.random() * directory.length);
