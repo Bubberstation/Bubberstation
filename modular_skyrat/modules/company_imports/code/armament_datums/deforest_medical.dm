@@ -21,11 +21,11 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair
 	item_type = /obj/item/storage/medkit/robotic_repair/stocked
-	cost = PAYCHECK_COMMAND * 16 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 7
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair_super
 	item_type = /obj/item/storage/medkit/robotic_repair/preemo/stocked
-	cost = PAYCHECK_COMMAND * 32 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 16
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/first_responder
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
