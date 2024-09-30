@@ -42548,6 +42548,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/gateway)
+"jlp" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Ordnance Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
+/turf/open/floor/iron/dark/airless,
+/area/station/science/ordnance/freezerchamber)
 "jly" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -44456,6 +44463,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/pipe_scrubber,
 /turf/open/floor/iron,
 /area/station/science/ordnance/storage)
 "kwD" = (
@@ -48341,6 +48349,17 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron,
 /area/station/science/auxlab/firing_range)
+"noJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/science/ordnance)
 "noK" = (
 /obj/structure/girder,
 /turf/open/floor/iron/dark,
@@ -54295,6 +54314,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "rtB" = (
@@ -54827,11 +54847,8 @@
 /area/station/security/office)
 "rMU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/modular_computer/preset/civilian{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 5
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/station/science/ordnance)
@@ -112394,7 +112411,7 @@ hFU
 bzL
 aLu
 bCg
-aXE
+jlp
 euc
 ogm
 aXJ
@@ -112650,7 +112667,7 @@ cKR
 byu
 bzJ
 byb
-uEh
+noJ
 rMU
 rAg
 ogm
