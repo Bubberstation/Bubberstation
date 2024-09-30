@@ -36393,6 +36393,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
+"eZt" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Ordnance Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
+/turf/open/floor/iron/dark/airless,
+/area/station/science/ordnance/freezerchamber)
 "eZu" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood,
@@ -42548,13 +42555,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/gateway)
-"jlp" = (
-/obj/machinery/door/airlock/research/glass{
-	name = "Ordnance Lab"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
-/turf/open/floor/iron/dark/airless,
-/area/station/science/ordnance/freezerchamber)
 "jly" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -48349,17 +48349,6 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron,
 /area/station/science/auxlab/firing_range)
-"noJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/modular_computer/preset/civilian{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/science/ordnance)
 "noK" = (
 /obj/structure/girder,
 /turf/open/floor/iron/dark,
@@ -58910,6 +58899,17 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/science/auxlab/firing_range)
+"uHF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/science/ordnance)
 "uIQ" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -62138,9 +62138,18 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
-/obj/item/pipe_dispenser,
+/obj/item/analyzer{
+	pixel_x = 8
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -2;
+	pixel_y = 2
+	},
 /obj/machinery/light/directional/north,
+/obj/item/holosign_creator/atmos{
+	pixel_x = -7;
+	pixel_y = -7
+	},
 /turf/open/floor/iron,
 /area/station/science/ordnance)
 "wQh" = (
@@ -112411,7 +112420,7 @@ hFU
 bzL
 aLu
 bCg
-jlp
+eZt
 euc
 ogm
 aXJ
@@ -112667,7 +112676,7 @@ cKR
 byu
 bzJ
 byb
-noJ
+uHF
 rMU
 rAg
 ogm
