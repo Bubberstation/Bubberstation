@@ -16,7 +16,7 @@
 			span_notice("You squeeze [src], and it bursts in your hand, splashing you with milky goo which quickly regenerates your injuries!"))
 	core_effect_before(H, user)
 	user.do_attack_animation(interacting_with)
-	H.revive(HEAL_ALL)
+	H.revive(HEAL_DAMAGE)
 	core_effect(H, user)
 	playsound(H, 'sound/effects/splat.ogg', 40, TRUE)
 	qdel(src)
