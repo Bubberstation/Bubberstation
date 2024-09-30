@@ -57,6 +57,7 @@
 	to_chat(user, span_warning("Nothing happened... This slime extract cannot be activated this way."))
 	return FALSE
 
+/* BUBBERSTATION CHANGE: REMOVES CROSSBREEDING
 /**
 * Core-crossing: Feeding adult slimes extracts to obtain a much more powerful, single extract.
 *
@@ -85,6 +86,7 @@
 
 	if(target_slime.applied_crossbreed_amount >= SLIME_EXTRACT_CROSSING_REQUIRED)
 		target_slime.spawn_corecross()
+*/
 
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
