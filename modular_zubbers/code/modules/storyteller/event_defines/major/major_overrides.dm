@@ -44,11 +44,6 @@
 	tags = list(TAG_DESTRUCTIVE)
 	weight = 20
 
-/datum/round_event_control/stray_meteor
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_DESTRUCTIVE, TAG_SPACE)
-	weight = 25
-
 /datum/round_event_control/anomaly/anomaly_vortex
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE)
@@ -81,3 +76,20 @@
 /datum/round_event_control/stray_cargo/changeling_zombie
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_SPOOKY)
+
+/datum/round_event_control/pirates
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMMUNAL, TAG_COMBAT)
+
+/datum/round_event_control/cortical_borer
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_TARGETED, TAG_SPOOKY)
+	min_players = 20
+
+/datum/round_event_control/morph
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+
+/datum/round_event_control/operative
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_CHAOTIC, TAG_CREW_ANTAG)
