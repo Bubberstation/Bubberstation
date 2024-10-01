@@ -30,9 +30,8 @@
 #define HUMANITY_LOST_MAXIMUM 50
 
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0
-/// Upper bound for Blood cost increase; used for blood thickening
-#define BLOOD_LEVEL_GAIN_MAX 0.9
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.45
+#define BLOODSUCKER_LEVELUP_PERCENTAGE_VENTRUE BLOODSUCKER_LEVELUP_PERCENTAGE - 0.1
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
 #define BLOODSUCKER_HIGH_LEVEL 4
@@ -117,8 +116,13 @@
 #define BLOODSUCKER_DEFAULT_POWER (1<<1)
 /// This Power can be purchased by Tremere Bloodsuckers
 #define TREMERE_CAN_BUY (1<<2)
+
 /// This Power can be purchased by Ghouls
 #define GHOUL_CAN_BUY (1<<3)
+
+/// If this Power can be bought if you already own it
+#define CAN_BUY_OWNED (1<<4)
+
 
 /// This Power is a Continuous Effect, processing every tick
 #define BP_CONTINUOUS_EFFECT (1<<0)
@@ -177,6 +181,8 @@
 #define COMSIG_ENTER_COFFIN "enter_coffin"
 #define COMSIG_MOB_STAKED "staked"
 #define COMSIG_BODYPART_STAKED "staked"
+// called when a targeted ability is cast
+#define COMSIG_FIRE_TARGETED_POWER "comsig_fire_targeted_power"
 
 /**
  * Sol signals & Defines

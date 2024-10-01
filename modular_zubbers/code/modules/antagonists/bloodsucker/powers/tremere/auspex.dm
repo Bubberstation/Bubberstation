@@ -17,6 +17,7 @@
 	level_current = 1
 	button_icon_state = "power_auspex"
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
+	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 10
 	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS

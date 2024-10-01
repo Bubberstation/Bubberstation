@@ -423,7 +423,7 @@
 			all_implants.removed(target, silent = TRUE)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// todo, make this steal blood into a internal reservoir from nearby non-vassals/bloodsuckers
 /obj/structure/bloodsucker/candelabrum
 	name = "candelabrum"
 	desc = "It burns slowly, but doesn't radiate any heat."
@@ -432,6 +432,7 @@
 	light_color = "#66FFFF"//LIGHT_COLOR_BLUEGREEN // lighting.dm
 	light_power = 3
 	light_range = 0 // to 2
+	max_integrity = 100
 	density = FALSE
 	can_buckle = TRUE
 	anchored = FALSE
@@ -462,6 +463,8 @@
 	. = ..()
 	set_anchored(FALSE)
 	density = FALSE
+	if(lit)
+		toggle()
 
 /obj/structure/bloodsucker/candelabrum/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

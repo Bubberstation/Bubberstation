@@ -22,6 +22,7 @@
 	level_current = 1
 	button_icon_state = "power_thaumaturgy"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
+	purchase_flags = TREMERE_CAN_BUY
 	// custom cooldown handling based on charges
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 5

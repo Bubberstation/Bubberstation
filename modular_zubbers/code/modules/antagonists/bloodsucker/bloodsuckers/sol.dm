@@ -8,6 +8,13 @@
 /datum/antagonist/bloodsucker/proc/sol_rank_up(atom/source)
 	SIGNAL_HANDLER
 
+	// Bloodsuckers above BLOODSUCKER_HIGH_LEVEL must drink blood to level up.
+	if(sol_levels == 1) // just in case a bloodsucker is stuck at this level
+		// very important info here, so we use span_danger
+		to_chat(owner.current, span_danger("Sol's foul gaze no longer grants you power. You must drink blood to advance further."))
+	if(sol_levels <= 0)
+		return
+	sol_levels--
 	INVOKE_ASYNC(src, PROC_REF(RankUp))
 
 ///Called when Sol is near starting.
