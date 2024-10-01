@@ -4,7 +4,7 @@ import { NtosWindow } from '../layouts';
 
 export const SiliconJobManager = (props) => {
   return (
-    <NtosWindow width={400} height={620}>
+    <NtosWindow width={400} height={300}>
       <NtosWindow.Content scrollable>
         <SiliconManagerContent />
       </NtosWindow.Content>
