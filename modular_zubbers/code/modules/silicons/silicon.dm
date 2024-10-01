@@ -14,10 +14,10 @@
 
 
 	var/list/actions = list(
+		"Deny request",
 		"Open door",
 		"Bolt door",
 		"Shock door",
-		"Deny request",
 	)
 	var/choice = tgui_input_list(src, "How would you like to fulfill the request?", "Action Selection", actions)
 	switch(choice)
