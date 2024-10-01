@@ -96,10 +96,10 @@
 	. = ..()
 	if(.)
 		return
-/* Bubber edit begin
+// Bubber edit begin
 	if(!proximity_flag)
 		return
-*/ Bubber edit end
+// Bubber edit end
 	if(pole_in_use)
 		balloon_alert(user, "already in use!")
 		return
