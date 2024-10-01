@@ -177,6 +177,8 @@
 #define COMSIG_ENTER_COFFIN "enter_coffin"
 #define COMSIG_MOB_STAKED "staked"
 #define COMSIG_BODYPART_STAKED "staked"
+// called when a targeted ability is cast
+#define COMSIG_FIRE_TARGETED_POWER "comsig_fire_targeted_power"
 
 /**
  * Sol signals & Defines
