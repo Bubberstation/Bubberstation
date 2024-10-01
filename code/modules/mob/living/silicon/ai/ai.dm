@@ -554,6 +554,7 @@
 
 		paper_note.show_through_camera(usr)
 
+
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
 		return FALSE
