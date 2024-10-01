@@ -177,34 +177,35 @@
 	name = "Research"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/extinguisher/mini,
+		/obj/item/extinguisher,
 		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/borg/cyborg_omnitool/research, // A modded engineering omitool.
+		/obj/item/borg/cyborghug/medical, // You can now hug and fix synths :3c
+		/obj/item/multitool/cyborg,
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/crowbar/cyborg/power,
-		/obj/item/multitool/cyborg,
 		/obj/item/analyzer,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/storage/bag/sheetsnatcher/borg,
+		/obj/item/storage/bag/xeno,
 		/obj/item/stack/cable_coil,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/borg/apparatus/research,
 		/obj/item/borg/apparatus/circuit_sci,
 		/obj/item/storage/part_replacer/cyborg,
-		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
 		/obj/item/experi_scanner,
-		/obj/item/bonesetter,
 		/obj/item/stack/medical/gauze,
 		/obj/item/borg/apparatus/tank_manipulator,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 
-//TODO: Illegal science stuff
 	emag_modules = list(
 		/obj/item/borg/stun,
 		/obj/item/experimental_dash,
-		/obj/item/borg/apparatus/illegal //To replace malf printers
+		/obj/item/borg/apparatus/illegal //Get to work unit!
 	)
 	cyborg_base_icon = "research"
 	cyborg_icon_override = CYBORG_ICON_SCI

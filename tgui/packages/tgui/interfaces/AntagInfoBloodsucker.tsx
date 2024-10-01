@@ -148,6 +148,10 @@ const BloodsuckerIntro = () => {
               <br />
               Ensure to read the descriptions of each ability in the Clan &
               Powers tab, you may learn something new!
+              <br />
+              After a certain level, Sol will no longer grant you levels,
+              instead, you will need to feed on the blood of others to gain
+              levels.
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">

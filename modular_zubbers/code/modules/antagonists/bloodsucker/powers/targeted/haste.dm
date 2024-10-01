@@ -33,6 +33,7 @@
 	. += "Anyone in your way during your Haste will be knocked down."
 	. += "Higher levels will increase the knockdown dealt to enemies."
 	. += "It will also refill your stamina so you can keep moving."
+	. += "If Fortitude is active, using haste will disable it."
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
