@@ -13,4 +13,4 @@
 			return
 		if(!door)
 			return
-		open_door(requester, door)
+		fulfill_door_request(requester, door)
