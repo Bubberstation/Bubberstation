@@ -13,10 +13,12 @@
 	storable = list(
 					/obj/item/slime_extract,
 					/obj/item/slimepotion,
-					/obj/item/disk,
+					/obj/item/disk/data,
+					/obj/item/disk/design_disk,
+					/obj/item/disk/tech_disk,
+					/obj/item/computer_disk,//ordinance
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
-					/obj/item/assembly/prox_sensor,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/borg/upgrade/rename, //Basics not an upgrade
@@ -24,6 +26,7 @@
 					/obj/item/mod,
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,
+					/obj/item/food/monkeycube,
 					)
 
 /obj/item/borg/apparatus/research/examine()
@@ -31,6 +34,8 @@
 	if(stored)
 		. += "The gripper currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+
+//To build funny little gadgets
 
 /obj/item/borg/apparatus/circuit_sci
 	name = "Research circuit assembly gripper"
@@ -45,6 +50,10 @@
 					/obj/item/integrated_circuit,
 					/obj/item/circuit_component,
 					/obj/item/usb_cable,
+					/obj/item/assembly/signaler,
+					/obj/item/healthanalyzer, //To build medibots
+					/obj/item/assembly/prox_sensor,
+					/obj/item/electronics,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
@@ -65,7 +74,7 @@
 	icon_state = "connector"
 	storable = list(
 					/obj/item/mmi,
-					/obj/item/assembly/flash, //Building borgs
+					/obj/item/assembly, //unrestricted assembly building
 					/obj/item/bodypart/arm/left/robot,
 					/obj/item/bodypart/arm/right/robot,
 					/obj/item/bodypart/leg/left/robot,
