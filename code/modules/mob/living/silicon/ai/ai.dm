@@ -1076,10 +1076,6 @@
 		target.deploy_init(src)
 		mind.transfer_to(target)
 	diag_hud_set_deployed()
-	//bubber edit begin
-	var/mob/living/silicon/ai/AI = src
-	AI.in_shell = TRUE
-	//bubber edit end
 
 /datum/action/innate/deploy_shell
 	name = "Deploy to AI Shell"

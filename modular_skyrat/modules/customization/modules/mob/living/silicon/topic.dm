@@ -7,9 +7,9 @@
 		show_temp_ftext(usr)
 	if(href_list["open_door"])
 		var/obj/machinery/door/airlock/door = locate(href_list["open_door"]) in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/airlock)
-		var/mob/living/target = locate(href_list["user"]) in GLOB.mob_list
-		if(!target)
+		var/mob/living/requester = locate(href_list["user"]) in GLOB.mob_list
+		if(!requester)
 			return
 		if(!door)
 			return
-		open_door(target, door)
+		open_door(requester, door)
