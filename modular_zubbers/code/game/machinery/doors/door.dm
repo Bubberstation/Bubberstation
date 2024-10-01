@@ -1,0 +1,6 @@
+/obj/machinery/door/airlock/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	var/list/active = active_ais(TRUE)
+	if(active.len)
+		for(var/AI as anything in active)
+			to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open <a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)]'>\a [src]</a>")

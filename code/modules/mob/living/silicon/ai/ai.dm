@@ -554,6 +554,15 @@
 
 		paper_note.show_through_camera(usr)
 
+	if(href_list["open_door"])
+		var/obj/machinery/door/airlock/door = locate(href_list["open_door"]) in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/airlock)
+		var/mob/living/target = locate(href_list["user"]) in GLOB.mob_list
+		if(!target)
+			return
+		if(!door)
+			return
+		open_door(target, door)
+
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
