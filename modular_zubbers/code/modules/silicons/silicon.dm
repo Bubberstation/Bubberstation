@@ -18,7 +18,7 @@
 		"Shock door",
 		"Deny request",
 	)
-	var/choice = tgui_input_list(user, "How would you like to fulfill the request?", "Action Selection", actions)
+	var/choice = tgui_input_list(src, "How would you like to fulfill the request?", "Action Selection", actions)
 	switch(actions)
 		if("Open door")
 			if(door.locked)
