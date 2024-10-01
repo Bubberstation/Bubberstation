@@ -1,8 +1,6 @@
 /obj/machinery/door/airlock/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	var/list/ais = GLOB.ai_list
-	if(ais.len)
-		for(var/mob/living/silicon/ai/AI as anything in ais)
+	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 			if(AI.stat == DEAD)
 				continue
 			if(AI.control_disabled)
