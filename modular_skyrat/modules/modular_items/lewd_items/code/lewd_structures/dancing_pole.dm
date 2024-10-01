@@ -92,9 +92,11 @@
 
 
 //trigger dance if character uses LBM
-/obj/structure/stripper_pole/attack_hand(mob/living/user)
+/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag)
 	. = ..()
 	if(.)
+		return
+	if(!proximity_flag)
 		return
 	if(pole_in_use)
 		balloon_alert(user, "already in use!")
