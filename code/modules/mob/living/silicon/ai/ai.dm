@@ -554,16 +554,6 @@
 
 		paper_note.show_through_camera(usr)
 
-	if(href_list["open_door"])
-		var/obj/machinery/door/airlock/door = locate(href_list["open_door"]) in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/airlock)
-		var/mob/living/target = locate(href_list["user"]) in GLOB.mob_list
-		if(!target)
-			return
-		if(!door)
-			return
-		open_door(target, door)
-
-
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
 		return FALSE
@@ -1086,6 +1076,10 @@
 		target.deploy_init(src)
 		mind.transfer_to(target)
 	diag_hud_set_deployed()
+	//bubber edit begin
+	var/mob/living/silicon/ai/AI = src
+	AI.in_shell = TRUE
+	//bubber edit end
 
 /datum/action/innate/deploy_shell
 	name = "Deploy to AI Shell"
