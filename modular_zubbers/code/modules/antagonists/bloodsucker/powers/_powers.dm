@@ -72,6 +72,8 @@
 /datum/action/cooldown/bloodsucker/PreActivate(atom/target)
 	if(QDELETED(owner))
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
 	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
 		return FALSE
