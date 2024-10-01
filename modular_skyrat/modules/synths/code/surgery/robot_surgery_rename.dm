@@ -1,3 +1,4 @@
+/* BUBBER REMOVAL START
 /datum/surgery/amputation/mechanic
 	name = "Disconnect limb"
 
@@ -9,6 +10,6 @@
 
 /datum/surgery/organ_manipulation/mechanic/external
 	name = "Chassis Manipulation (External Manipulation)"
-
+BUBBER REMOVAL END */
 
 

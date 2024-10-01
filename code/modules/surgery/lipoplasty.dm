@@ -9,6 +9,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START - pretty sure robots can't get fat???
 /datum/surgery/lipoplasty/mechanic
 	name = "Nutrient Reserve Expulsion"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -21,6 +22,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/lipoplasty/can_start(mob/user, mob/living/carbon/target)
 	if(!HAS_TRAIT_FROM(target, TRAIT_FAT, OBESITY) || target.nutrition < NUTRITION_LEVEL_WELL_FED)
@@ -58,7 +60,7 @@
 	success_sound = 'sound/machines/doorclick.ogg'
 
 /datum/surgery_step/cut_fat/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message(span_notice("[user] begins to cut away [target]'s excess fat."), span_notice("You begin to cut away [target]'s excess fat..."))
+	// user.visible_message(span_notice("[user] begins to cut away [target]'s excess fat."), span_notice("You begin to cut away [target]'s excess fat...")) // BUBBER EDIT FIX
 	display_results(
 		user,
 		target,

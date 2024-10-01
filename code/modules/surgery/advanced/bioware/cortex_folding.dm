@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/cortex/folded
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/cortex_folding/mechanic
 	name = "Wetware OS Labyrinthian Programming"
 	desc = "A robotic upgrade which reprograms the patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
@@ -28,6 +29,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/advanced/bioware/cortex_folding/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)

@@ -1,4 +1,5 @@
 /// Bioreactor Maintenance
+/* BUBBER REMOVAL START
 /datum/surgery/bioreactor
 	name = "Bioreactor Maintenance"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
@@ -21,6 +22,7 @@
 	if(isnull(bioreactor) || !issynthetic(target) || bioreactor.damage < 10)
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/bioreactor/repair
 	name = "perform bioreactor maintenance (screwdriver)"

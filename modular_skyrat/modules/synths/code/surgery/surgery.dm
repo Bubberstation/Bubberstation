@@ -1,3 +1,4 @@
+/* BUBBER REMOVAL START
 //Blacklists upstream's mechanical surgeries for augmented people in favor of our synth surgeries
 
 /datum/surgery/advanced/bioware/cortex_folding/mechanic/can_start(mob/user, mob/living/carbon/target)
@@ -51,3 +52,4 @@
 
 /datum/surgery/stomach_pump/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
+BUBBER REMOVAL END */

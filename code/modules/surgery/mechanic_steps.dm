@@ -60,10 +60,14 @@
 
 //prepare electronics
 /datum/surgery_step/prepare_electronics
-	name = "prepare electronics (multitool or hemostat)"
+	name = "prepare electronics (multitool)" // BUBBER EDIT
 	implements = list(
 		TOOL_MULTITOOL = 100,
-		TOOL_HEMOSTAT = 75)
+		// BUBBER EDIT START
+		TOOL_HEMOSTAT = 35,
+		/obj/item/pen = 15
+		// BUBBER EDIT END
+	)
 	time = 24
 	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
 	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
@@ -80,7 +84,7 @@
 
 //unwrench
 /datum/surgery_step/mechanic_unwrench
-	name = "unwrench bolts (wrench or retractor)"
+	name = "unwrench bolts (wrench)" // BUBBER EDIT
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 75)
@@ -105,7 +109,7 @@
 
 //wrench
 /datum/surgery_step/mechanic_wrench
-	name = "wrench bolts (wrench or retractor)"
+	name = "wrench bolts (wrench)" // BUBBER EDIT
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 75)

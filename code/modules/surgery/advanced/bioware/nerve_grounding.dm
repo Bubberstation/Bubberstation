@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/nerves/grounded
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/nerve_grounding/mechanic
 	name = "System Shock Dampening"
 	desc = "A robotic upgrade which installs grounding rods into the robotic patient's system, protecting them from electrical shocks."
@@ -28,6 +29,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/ground_nerves
 	name = "ground nerves (hand)"

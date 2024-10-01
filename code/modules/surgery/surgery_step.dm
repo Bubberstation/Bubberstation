@@ -338,10 +338,12 @@
 			if(!pain_message)
 				return
 			to_chat(target, span_notice("You feel a dull, numb sensation as your body is surgically operated on."))
+		/* BUBBER REMOVAL START
 		// SKYRAT EDIT ADDITION START
 		else if(mechanical_surgery == TRUE) //robots can't benefit from numbing agents like most but have no reason not to sleep - their debuff falls in-between
 			target.add_mood_event("robot_surgery", /datum/mood_event/robot_surgery)
 		// SKYRAT EDIT ADDITION END
+		BUBBER REMOVAL END */
 		else
 			target.add_mood_event("severe_surgery", /datum/mood_event/severe_surgery) // SKYRAT EDIT ADDITION - Adds mood effects to surgeries
 			if(!pain_message)

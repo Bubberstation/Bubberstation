@@ -1,4 +1,5 @@
 /// Heatsink Repair Surgery
+/* BUBBER REMOVAL START
 /datum/surgery/heatsink
 	name = "Heatsink Maintenance"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
@@ -22,6 +23,7 @@
 	if(isnull(target_lungs) || !issynthetic(target) || target_lungs.damage < 10 )
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/heatsink/repair
 	name = "Tighten heatsink mounts (wrench)"

@@ -1,4 +1,5 @@
 /// Hydraulic Pump Surgery
+/* BUBBER REMOVAL START
 /datum/surgery/hydraulic_maintenance
 	name = "Hydraulic Pump Maintenance"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -21,6 +22,7 @@
 	if(isnull(hydraulic_pump) || !issynthetic(target) || hydraulic_pump.damage < 10)
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/hydraulic/repair
 	name = "tighten seals (screwdriver or wrench)"

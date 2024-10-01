@@ -1,3 +1,4 @@
+/* BUBBER REMOVAL START
 /datum/surgery/robot_brain_surgery
 	name = "Reset Posibrain Logic (Brain Surgery)"
 	steps = list(
@@ -24,6 +25,7 @@
 		return FALSE
 	else
 		return TRUE
+BUBBER REMOVAL END */
 
 /datum/surgery_step/fix_robot_brain
 	name = "fix posibrain (multitool)"
@@ -80,6 +82,7 @@
 
 	return FALSE
 
+/* BUBBER REMOVAL
 /datum/surgery/robot_trauma_surgery
 	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
@@ -94,6 +97,7 @@
 		/datum/surgery_step/fix_robot_brain/advanced,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL */
 
 /datum/surgery_step/fix_robot_brain/advanced
 	name = "reticulate splines (multitool)"

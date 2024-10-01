@@ -12,6 +12,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/gastrectomy/mechanic
 	name = "Engine Diagnostic (Heart)" // Nova Edit: Original name = "Engine Diagnostic"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -24,6 +25,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/coronary_bypass/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/heart/target_heart = target.get_organ_slot(ORGAN_SLOT_HEART)

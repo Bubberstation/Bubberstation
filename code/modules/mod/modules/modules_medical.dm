@@ -411,21 +411,21 @@
 		/datum/surgery/advanced/pacify,
 		/datum/surgery/healing/combo/upgraded/femto,
 		/datum/surgery/advanced/brainwashing,
-		/datum/surgery/advanced/brainwashing/mechanic,
+		/datum/surgery/robot/advanced/brainwashing, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/nerve_splicing,
-		/datum/surgery/advanced/bioware/nerve_splicing/mechanic,
+		/datum/surgery/robot/advanced/bioware/nerve_splicing, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/nerve_grounding,
-		/datum/surgery/advanced/bioware/nerve_grounding/mechanic,
+		/datum/surgery/robot/advanced/bioware/nerve_grounding, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/vein_threading,
-		/datum/surgery/advanced/bioware/vein_threading/mechanic,
+		/datum/surgery/robot/advanced/bioware/vein_threading, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/muscled_veins,
-		/datum/surgery/advanced/bioware/muscled_veins/mechanic,
+		/datum/surgery/robot/advanced/bioware/muscled_veins, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/ligament_hook,
-		/datum/surgery/advanced/bioware/ligament_hook/mechanic,
+		// /datum/surgery/advanced/bioware/ligament_hook/mechanic, // BUBBER REMOVAL
 		/datum/surgery/advanced/bioware/ligament_reinforcement,
-		/datum/surgery/advanced/bioware/ligament_reinforcement/mechanic,
+		/datum/surgery/robot/advanced/bioware/ligament_reinforcement, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/cortex_imprint,
-		/datum/surgery/advanced/bioware/cortex_imprint/mechanic,
+		/datum/surgery/robot/advanced/bioware/cortex_imprint, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/cortex_folding,
-		/datum/surgery/advanced/bioware/cortex_folding/mechanic,
+		/datum/surgery/robot/advanced/bioware/cortex_folding, // BUBBER EDIT
 	)

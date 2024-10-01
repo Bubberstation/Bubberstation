@@ -18,6 +18,7 @@
 	)
 	removes_target_bodypart = TRUE // SKYRAT EDIT ADDITION - Surgically unremovable limbs
 
+/* BUBBER REMOVAL START
 /datum/surgery/amputation/mechanic
 	name = "Disassemble"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -26,6 +27,7 @@
 		/datum/surgery_step/open_hatch,
 		/datum/surgery_step/sever_limb/mechanic, //The benefit of being robotic; people can pull you apart in an instant! Wait, that's not a benefit...
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/amputation/peg
 	name = "Detach"

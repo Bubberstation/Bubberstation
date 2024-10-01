@@ -10,6 +10,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/brain_surgery/mechanic
 	name = "Wetware OS Diagnostics"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -22,6 +23,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/fix_brain
 	name = "fix brain (hemostat)"
