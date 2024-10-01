@@ -106,7 +106,8 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-sci"
 
-//illegal teleporter module
+//Illegal experimental Dash module
+
 /obj/item/experimental_dash
 	name = "Exerimental Dash"
 	desc = "An experimental module that allows for dashing."
@@ -127,15 +128,18 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-/obj/item/experimental_dash/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+
+/obj/item/experimental_dash/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
+		return ITEM_INTERACT_SUCCESS
 	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
 		user.balloon_alert(user, "Low charge!")
-		return
-	if(!target.density && jaunt?.teleport(user, target))
+		return ITEM_INTERACT_SUCCESS
+	if(!interacting_with.density && jaunt?.teleport(user, interacting_with))
 		cyborg?.cell?.use(charge_cost)
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/experimental_dash/equipped(mob/user, slot, initial)
 	. = ..()
@@ -159,7 +163,7 @@
 	max_charges = 1
 	charge_rate = 15 SECONDS
 	beam_length = 1 SECONDS
-	recharge_sound = null
+	recharge_sound = 'sound/machines/ding.ogg'
 	beam_effect = "plasmabeam"
 
 /datum/action/innate/dash/research/GiveAction(mob/viewer) //this action should be invisible
@@ -171,3 +175,14 @@
 //No more ghetto
 /obj/item/screwdriver/cyborg/power
 	sharpness = NONE
+
+//Research cyborg omnitool
+
+/obj/item/borg/cyborg_omnitool/research
+	name = "research omni-toolset"
+	desc = "A set of engineering tools with a addition of tools to allow synthetic repairs."
+
+	omni_toolkit = list(
+		/obj/item/surgical_drapes/cyborg,
+		/obj/item/bonesetter/cyborg,
+	)
