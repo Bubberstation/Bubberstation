@@ -14,17 +14,14 @@
 	button_icon_state = "power_gohome"
 	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
-	power_explanation = "Vanishing Act: \n\
-		Activating Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin. \n\
-		The power will cancel out if the Claimed Coffin is somehow destroyed. \n\
-		Immediately after activating, lights around the user will begin to flicker. \n\
-		Once the user teleports to their coffin, in their place will be a Rat or Bat."
-	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_FRENZY
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
+	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
+	check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 100
-	constant_bloodcost = 2
-	cooldown_time = 100 SECONDS
+	cooldown_time = 10 SECONDS
+	power_activates_immediately = FALSE
+	level_current = -1
 
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START
@@ -33,6 +30,14 @@
 		/mob/living/basic/mouse = 3,
 		/mob/living/basic/bat = 1,
 	)
+
+/datum/action/cooldown/bloodsucker/gohome/get_power_explanation_extended()
+	. = list()
+	. += "Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin."
+	. += "The user will drop all belongings if seen by a mortal."
+	. += "The power will cancel out if the Claimed Coffin is somehow destroyed."
+	. += "Immediately after activating, lights around the user will begin to flicker."
+	. += "Once the user teleports to their coffin, in their place will be a Rat or Bat."
 
 /datum/action/cooldown/bloodsucker/gohome/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -44,9 +49,16 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/gohome/ActivatePower(trigger_flags)
-	. = ..()
+/datum/action/cooldown/bloodsucker/gohome/ActivatePower(atom/target)
 	owner.balloon_alert(owner, "preparing to teleport...")
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/gohome/DeactivatePower(deactivate_flags)
+	if(active && teleporting_stage != GOHOME_TELEPORT)
+		owner.balloon_alert(owner, "teleportation cancelled.")
+		teleporting_stage = GOHOME_START
+		return . = ..(DEACTIVATE_POWER_DO_NOT_REMOVE)
+	. = ..()
 
 /datum/action/cooldown/bloodsucker/gohome/process(seconds_per_tick)
 	. = ..()
@@ -122,6 +134,7 @@
 	bloodsuckerdatum_power.coffin.force_enter(user)
 
 	DeactivatePower()
+	pay_cost()
 
 /datum/effect_system/steam_spread/bloodsucker
 	effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
