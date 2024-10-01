@@ -236,8 +236,7 @@
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)
 	. = ..()
-	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
-		. += span_notice("You know that the [src] can remo")
+	. += span_notice("You think that the [src] could destroy someone's heart if you really slam it in someone's ribs properly.")
 
 //////////////////////
 //     ARCHIVES     //
