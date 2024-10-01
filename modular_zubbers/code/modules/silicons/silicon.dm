@@ -11,6 +11,7 @@
 
 	if(door.aiControlDisabled != AI_WIRE_NORMAL)
 		to_chat(src, "Unable to access airlock")
+		return
 
 
 	var/list/actions = list(
