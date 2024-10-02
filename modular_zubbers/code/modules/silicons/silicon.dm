@@ -10,7 +10,7 @@
 		return
 
 	if(door.aiControlDisabled != AI_WIRE_NORMAL)
-		to_chat(src, "Unable to access airlock")
+		to_chat(src, span_notice("Unable to access airlock"))
 		return
 
 
