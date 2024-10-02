@@ -9,6 +9,8 @@
 
 	. = ..()
 
+	balloon_alert(user, "AI requested")
+
 	if(!hasPower())
 		to_chat(user, span_warning("This door isn't powered."))
 		return
