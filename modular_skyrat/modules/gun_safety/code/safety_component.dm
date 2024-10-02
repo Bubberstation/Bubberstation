@@ -41,7 +41,8 @@
 	SIGNAL_HANDLER
 
 	if(safety_currently_on)
-		user.balloon_alert(user, "safety on!")
+		user.balloon_alert(user, "The safety disengages!")
+		toggle_safeties(user)
 		return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used
