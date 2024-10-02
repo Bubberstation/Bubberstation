@@ -6,7 +6,7 @@
 		return
 
 	if(!requester.can_track(src))
-		to_chat(src, "Unable to track requester.")
+		to_chat(src, span_notice("Unable to track requester."))
 		return
 
 	if(door.aiControlDisabled != AI_WIRE_NORMAL)
