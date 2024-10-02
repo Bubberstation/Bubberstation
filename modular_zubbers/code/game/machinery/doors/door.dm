@@ -4,10 +4,14 @@
 
 /obj/machinery/door/airlock/attack_hand_secondary(mob/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, request_cd))
-		to_chat(user, span_warning("Hold on, let the AI parse your request"))
+		to_chat(user, span_warning("Hold on, let the AI parse your request."))
 		return
 
 	. = ..()
+
+	if(!hasPower())
+		to_chat(user, span_warning("This door isn't powered."))
+		return
 
 	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		if(AI.stat == DEAD)
