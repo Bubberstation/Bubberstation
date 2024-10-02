@@ -1,5 +1,5 @@
 import { warn } from 'console';
-import { useBackend } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import {
   Box,
   Button,
@@ -11,16 +11,44 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 import { useState } from 'react';
+import { Tooltip } from 'tgui-core/components';
 
 export type Storyteller_Data = {
-  storyteller_name: String;
+  storyteller_name: string;
   storyteller_halt: Boolean;
   antag_count: number;
   antag_cap: number;
 
   pop_data: Record<string, number>;
-  tracks_data: Record<string, Record<string, number>>;
+  tracks_data: Record<string, Storyteller_Track>;
   scheduled_data: Record<string, Record<string, string>>;
+  events: Storyteller_Event_Category[];
+};
+
+export type Storyteller_Track = {
+  name: string;
+  current: number;
+  max: number;
+  next: number;
+  forced: Storyteller_Event;
+};
+
+export type Storyteller_Event = {
+  name: string;
+  desc: string;
+  tags: string[];
+  occurences: number;
+  occurences_shared: Boolean;
+  min_pop: number;
+  start: number;
+  can_run: Boolean;
+  weight: number;
+  weight_raw: number;
+};
+
+export type Storyteller_Event_Category = {
+  name: string;
+  events: Storyteller_Event[];
 };
 
 export const Zubbers_Storyteller = (props) => {
@@ -38,6 +66,9 @@ export const Zubbers_Storyteller = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Zubbers_Storyteller_Scheduled_Data />
+          </Stack.Item>
+          <Stack.Item>
+            <Zubbers_Storyteller_Events_List />
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -127,9 +158,9 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
         </Table.Row>
         <Stack.Divider></Stack.Divider>
         {Object.entries(tracks_data).map(([track, track_data]) => {
-          const max_points = Number(track_data['max']);
-          const current_points = Number(track_data['current']);
-          const forced = track_data['forced'];
+          const max_points = track_data.max;
+          const current_points = track_data.current;
+          const forced = track_data.forced ? track_data.forced : 0;
           return (
             <Table.Row>
               <Table.Cell>
@@ -162,7 +193,7 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
               <Table.Cell textAlign="center">
                 {storyteller_halt ? 'N/A' : '~' + track_data['next'] + 'min'}
               </Table.Cell>
-              <Table.Cell>{forced ? forced : ''}</Table.Cell>
+              <Table.Cell>{forced ? forced.name : ''}</Table.Cell>
               <Table.Cell>
                 <Button
                   onClick={() =>
@@ -170,11 +201,6 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
                   }
                 >
                   Next Event
-                </Button>{' '}
-                <Button
-                  onClick={() => act('open_event_panel', { track: track })}
-                >
-                  Events Panel
                 </Button>
               </Table.Cell>
             </Table.Row>
@@ -251,5 +277,74 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
         })}
       </Table>
     </Section>
+  );
+};
+
+export const Zubbers_Storyteller_Events_List = (props) => {
+  const { act, data } = useBackend<Storyteller_Data>();
+  const { events } = data;
+
+  const eventCategoryTabs = events.map((eventCategory) => {
+    return eventCategory.name;
+  });
+  const [currentEventCategory, setCurrentEventCategory] = useState(
+    eventCategoryTabs[0],
+  );
+
+  return (
+    <Section title="Event Panel">
+      <Stack>
+        {Object.entries(events).map((id, event_category) => {
+          return (
+            <Stack.Item>
+              <Button></Button>
+            </Stack.Item>
+          );
+        })}
+      </Stack>
+      <Stack.Divider />
+      <Table>
+        <Table.Row bold>
+          <Table.Cell>Name</Table.Cell>
+          <Table.Cell>Tags</Table.Cell>
+          <Table.Cell>Occ.</Table.Cell>
+          <Table.Cell>M.Pop</Table.Cell>
+          <Table.Cell>M.Time</Table.Cell>
+          <Table.Cell>Can Run</Table.Cell>
+          <Table.Cell>Weight</Table.Cell>
+          <Table.Cell>Actions</Table.Cell>
+        </Table.Row>
+        {/*Object.entries(events).map(([track, this_event]))*/}
+      </Table>
+    </Section>
+  );
+};
+
+export const Zubbers_Storyteller_Event = (props: Storyteller_Event) => {
+  const {
+    name,
+    desc,
+    tags,
+    occurences,
+    occurences_shared,
+    min_pop,
+    start,
+    can_run,
+    weight,
+    weight_raw,
+  } = props;
+  return (
+    <Table.Row>
+      <Table.Cell>
+        <Tooltip content={desc}>{name}</Tooltip>
+      </Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+    </Table.Row>
   );
 };

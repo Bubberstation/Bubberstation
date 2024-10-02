@@ -7,7 +7,7 @@
 		ui.open()
 
 /datum/controller/subsystem/gamemode/ui_data(mob/user)
-	var/data = list()
+	var/list/data = list()
 	data["storyteller_name"] = storyteller ? storyteller.name : "None"
 	data["storyteller_halt"] = storyteller_halted
 	data["antag_count"] = GLOB.current_living_antags.len // Switch this up if the calculation for the cap changes (It probably will)
@@ -19,23 +19,24 @@
 	return data
 
 /datum/controller/subsystem/gamemode/proc/get_ui_pop_data()
-	var/data = list(
+	var/list/pop_data = list(
 		"active" = get_correct_popcount(),
 		"head" = head_crew,
 		"sec" = sec_crew,
 		"eng" = eng_crew,
 		"med" = med_crew,
 	)
-	return data
+	return pop_data
 
 /datum/controller/subsystem/gamemode/proc/get_ui_track_data()
-	var/track_data = list()
+	var/list/track_data = list()
 	for(var/track in event_tracks)
 		var/last_points = last_point_gains[track]
 		var/lower = event_track_points[track]
 		var/upper = point_thresholds[track]
 		var/next = last_points ? round((upper - lower) / last_points / STORYTELLER_WAIT_TIME * 40 / 6) / 10 : 0
 		track_data[track] = list(
+			"name" = "[track]",
 			"current" = lower,
 			"max" = upper,
 			"next" = next,
@@ -43,8 +44,8 @@
 	return track_data
 
 /datum/controller/subsystem/gamemode/proc/get_ui_scheduled_data()
-	var/scheduled_data = list()
-	var/sorted_scheduled = list()
+	var/list/scheduled_data = list()
+	var/list/sorted_scheduled = list()
 	for(var/datum/scheduled_event/scheduled as anything in scheduled_events)
 		sorted_scheduled[scheduled] = scheduled.start_time
 	sortTim(sorted_scheduled, cmp=/proc/cmp_numeric_asc, associative = TRUE)
@@ -57,8 +58,20 @@
 		)
 	return scheduled_data
 
+// God has abandoned us
 /datum/controller/subsystem/gamemode/ui_static_data(mob/user)
-	. = ..()
+	var/list/static_data = list()
+	static_data["events"] = list()
+	for(var/event_category as anything in event_pools)
+		var/list/event_list = event_pools[event_category]
+		static_data["events"][event_category] = list("name" = event_category, "events" = list())
+		for(var/datum/round_event_control/event as anything in event_list)
+			static_data["events"][event_category]["events"][event.type] = event.generate_ui_data()
+	// Uncategorized shit
+	static_data["events"]["Uncategorized"] = list("name" = "Uncategorized", "events" = list())
+	for(var/datum/round_event_control/event as anything in uncategorized)
+		static_data["events"]["Uncategorized"]["events"][event.type] = event.generate_ui_data()
+	return static_data
 
 /datum/controller/subsystem/gamemode/ui_state(mob/user)
 	return GLOB.admin_state
@@ -104,11 +117,11 @@
 			switch(params["action"])
 				if("cancel")
 					message_admins("[key_name_admin(usr)] cancelled scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] cancelled scheduled event [sch_event.event.name].")
+					log_dynamic("[key_name(usr)] cancelled scheduled event [sch_event.event.name].")
 					SSgamemode.remove_scheduled_event(sch_event)
 				if("refund")
 					message_admins("[key_name_admin(usr)] refunded scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] refunded scheduled event [sch_event.event.name].")
+					log_dynamic("[key_name(usr)] refunded scheduled event [sch_event.event.name].")
 					SSgamemode.refund_scheduled_event(sch_event)
 				if("reschedule")
 					var/new_schedule = tgui_input_number(usr, "Set time in seconds in which to fire event", "Rescheduling event", 0, 3600, 0)
@@ -116,10 +129,10 @@
 						return
 					sch_event.start_time = world.time + (new_schedule SECONDS)
 					message_admins("[key_name_admin(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
-					log_admin_private("[key_name(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
+					log_dynamic("[key_name(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
 				if("fire")
 					if(!SSticker.HasRoundStarted())
 						return
 					message_admins("[key_name_admin(usr)] has fired scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] has fired scheduled event [sch_event.event.name].")
+					log_dynamic("[key_name(usr)] has fired scheduled event [sch_event.event.name].")
 					sch_event.try_fire()

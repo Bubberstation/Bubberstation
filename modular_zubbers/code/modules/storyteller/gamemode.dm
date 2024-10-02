@@ -690,13 +690,14 @@ SUBSYSTEM_DEF(gamemode)
 			break
 
 /datum/controller/subsystem/gamemode/proc/init_storyteller()
+	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
+		log_dynamic("Roundstart storyteller has been set by admins to [storyteller.name], the vote was not considered.")
+		return
 	var/datum/storyteller/storyteller_pick
 	if(!voted_storyteller)
 		storyteller_pick = pick(storytellers)
-		message_admins("We picked [storyteller_pick] for this rounds storyteller, randomly.")
+		log_dynamic("Roundstart picked storyteller [storyteller.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
-	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
-		return
 	set_storyteller(voted_storyteller)
 
 /**
@@ -743,12 +744,14 @@ SUBSYSTEM_DEF(gamemode)
  *
  */
 /datum/controller/subsystem/gamemode/proc/force_next_event(track, mob/user)
-	event_track_points[track] = point_thresholds[track]
+	if(isnull(user))
+		return
 	if(isnull(storyteller))
 		return
+	event_track_points[track] = point_thresholds[track]
 	storyteller.handle_tracks()
 	message_admins("[key_name_admin(user)] has forced an event for the [track] track.")
-	log_dynamic("Storyteller track [track] forced to run by [user.ckey]")
+	log_dynamic("Storyteller track [track] forced to run an event by [user.ckey]")
 
 /**
  * get_scheduled_by_event_type
