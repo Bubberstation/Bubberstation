@@ -36,3 +36,22 @@
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	icon_state = "technician"
 	inhand_icon_state = "technician"
+
+/obj/item/clothing/accessory/fake/medal
+	name = "plastic medal"
+	desc = "Yeah nice try buddy. They won't record this one. Especially since it reads 'youre winnar!!'. Alt-Click to reskin!"
+	unique_reskin = list(
+			"Bronze" = "bronze",
+			"Bronze Heart" = "bronze_heart",
+			"Silver" = "silver",
+			"Gold" = "gold",
+			"Plasma" = "plasma",
+			"Cargo" = "cargo",
+			"Paperwork" = "medal_paperwork",
+			"Medical Second Class" = "med_medal",
+			"Medical First Class" = "med_medal2",
+			"Atmosian" = "elderatmosian",
+			"Emergency Service - General" = "emergencyservices",
+			"Emergency Service - Engineering" = "emergencyservices_engi",
+			"Emergency Service - Medical" = "emergencyservices_med"
+	)

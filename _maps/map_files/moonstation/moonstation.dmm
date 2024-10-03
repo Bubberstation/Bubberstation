@@ -483,10 +483,8 @@
 /area/station/cargo/sorting)
 "ahy" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/basic/statue/mannequin/suspicious{
-	dir = 1;
-	name = "mannequin";
-	desc = "Who left this here?"
+/obj/structure/mannequin/wood{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/station/construction)
@@ -2829,6 +2827,7 @@
 	},
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/holosign_creator/atmos,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "aLZ" = (
@@ -3217,7 +3216,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
-/obj/machinery/portable_atmospherics/canister/water_vapor,
+/obj/machinery/portable_atmospherics/pipe_scrubber,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/storage)
 "aQZ" = (
@@ -35798,7 +35797,10 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/layer2{
 	dir = 1
 	},
-/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/airlock/research{
+	name = "Ordnance Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
 /turf/open/floor/plating,
 /area/station/science/ordnance/freezerchamber)
 "jVf" = (
