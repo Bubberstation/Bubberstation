@@ -111,10 +111,15 @@
 	item_path = /obj/item/pinpointer/vent
 	cost_per_order = 1150
 
+/*BEGIN BUBBER EDIT
+
 /datum/orderable_item/mining/boulder_processing
 	item_path = /obj/item/boulder_beacon
 	desc = "A Bouldertech brand all-in-one boulder processing beacon. Each use will teleport in a component of a full boulder processing assembly line. Good for when you need to process additional boulders."
 	cost_per_order = 875
+
+END BUBBER EDIT
+*/
 
 /datum/orderable_item/mining/grapple_gun
 	item_path = /obj/item/grapple_gun
