@@ -5,7 +5,6 @@
 
 #define CATEGORY_GOLEM "Golem"
 #define CATEGORY_MINING "Mining"
-#define CATEGORY_MINING_OFFSTATION "Mining " //bubber station addition to facilitate locking boulder retrival matrixes while ensuring that this is as modular as possible. Space is intentional
 #define CATEGORY_CONSUMABLES "Consumables"
 #define CATEGORY_TOYS_DRONE "Toys & Drones"
 #define CATEGORY_PKA "PKAs"

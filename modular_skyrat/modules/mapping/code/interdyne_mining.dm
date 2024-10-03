@@ -10,10 +10,10 @@
 	forced_express = TRUE
 	express_cost_multiplier = 1
 	order_categories = list(
-		CATEGORY_MINING_OFFSTATION,
+		CATEGORY_MINING,
 		CATEGORY_CONSUMABLES,
 		CATEGORY_TOYS_DRONE,
-		CATEGORY_PKA
+		CATEGORY_PKA,
 	)
 
 // This is honestly quite terrible but, replaces voucher spawned mining drones with the interdyne subtype at this console
