@@ -50,3 +50,4 @@
 	description = "An older version of bluespace miners, used to mine raw ores from the great bluespace sea."
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
+	starting_node = TRUE
