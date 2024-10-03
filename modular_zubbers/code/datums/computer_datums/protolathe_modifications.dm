@@ -9,6 +9,11 @@
 /datum/design/board/borgupload
 	build_type = IMPRINTER
 
+//This removes the Boulder Retrieval Matrix (Totally stolen from Zender)
+/datum/design/board/brm
+	build_type = IMPRINTER
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE //Adds Science so the Science imprinter can make it
+
 // NT and offstation mining Vendor separation
 
 /datum/design/board/mining_equipment_vendor

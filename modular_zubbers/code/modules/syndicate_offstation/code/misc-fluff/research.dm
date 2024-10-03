@@ -30,7 +30,8 @@
 		"powerator_syndicate",
 		"exofab_syndicate",
 		"syndicate_firing_pin",
-		"syndicate_headset"
+		"syndicate_headset",
+		"bluespace_miner_ore"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE

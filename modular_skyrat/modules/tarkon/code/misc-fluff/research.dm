@@ -23,10 +23,11 @@
 		"mod_plating_tarkon",
 		"arcs",
 		"rcd_tarkon", //BUBBER EDIT (comma)
-		"powerator_tarkon",//BUBBER EDIT Addition start
+		"powerator_tarkon", //BUBBER EDIT Addition start
 		"cargoconsole_tarkon",
 		"bountypad_tarkon",
-		"bountyconsole_tarkon"//BUBBER EDIT Addition end
+		"bountyconsole_tarkon",
+		"bluespace_miner_ore" //BUBBER EDIT Addition end
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
