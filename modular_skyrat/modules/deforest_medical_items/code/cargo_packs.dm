@@ -24,7 +24,7 @@
 	crate_name = "technician kit crate"
 	desc = "Contains a pink medical technician kit."
 	access = ACCESS_MEDICAL
-	cost = CARGO_CRATE_VALUE * 11.75 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 7.95 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked,
 	)
@@ -34,7 +34,7 @@
 	crate_name = "surgical kit crate"
 	desc = "Contains a grey first responder surgical kit."
 	access = ACCESS_MEDICAL
-	cost = CARGO_CRATE_VALUE * 10.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 4.6 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
 	)
@@ -44,7 +44,7 @@
 	crate_name = "medical kit crate"
 	desc = "Contains an orange satchel medical kit."
 	access = ACCESS_MEDICAL
-	cost = CARGO_CRATE_VALUE * 9.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 7.95 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)

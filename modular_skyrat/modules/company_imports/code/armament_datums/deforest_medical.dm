@@ -17,7 +17,7 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/combat_surgeon
 	item_type = /obj/item/storage/medkit/combat_surgeon/stocked
-	cost = PAYCHECK_COMMAND * 7 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 11.1 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair
 	item_type = /obj/item/storage/medkit/robotic_repair/stocked
@@ -29,15 +29,15 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/first_responder
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
-	cost = PAYCHECK_COMMAND * 21 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 14.1 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/orange_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked
-	cost = PAYCHECK_COMMAND * 19 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 24.2 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/technician_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked
-	cost = PAYCHECK_COMMAND * 23.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 24.2 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 
 // Basic first aid supplies like gauze, sutures, mesh, so on
 
