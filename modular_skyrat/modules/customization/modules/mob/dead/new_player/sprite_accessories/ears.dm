@@ -406,5 +406,3 @@
 /datum/sprite_accessory/ears/acrador/short
 	icon_state = "acrador_short"
 	name = "Acrador (Short)"
-
-
