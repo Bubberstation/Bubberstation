@@ -9,35 +9,35 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/civil_defense
 	item_type = /obj/item/storage/medkit/civil_defense/stocked
-	cost = PAYCHECK_COMMAND * 5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 2.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/frontier
 	item_type = /obj/item/storage/medkit/frontier/stocked
-	cost = PAYCHECK_COMMAND * 7 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 3.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/combat_surgeon
 	item_type = /obj/item/storage/medkit/combat_surgeon/stocked
-	cost = PAYCHECK_COMMAND * 11.1 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
+	cost = PAYCHECK_COMMAND * 3.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair
 	item_type = /obj/item/storage/medkit/robotic_repair/stocked
-	cost = PAYCHECK_COMMAND * 7  //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 3.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair_super
 	item_type = /obj/item/storage/medkit/robotic_repair/preemo/stocked
-	cost = PAYCHECK_COMMAND * 16 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = PAYCHECK_COMMAND * 8
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/first_responder
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
-	cost = PAYCHECK_COMMAND * 14.1 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
+	cost = PAYCHECK_COMMAND * 10.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/orange_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked
-	cost = PAYCHECK_COMMAND * 24.2 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
+	cost = PAYCHECK_COMMAND * 9.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/technician_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked
-	cost = PAYCHECK_COMMAND * 24.2 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
+	cost = PAYCHECK_COMMAND * 11.75
 
 // Basic first aid supplies like gauze, sutures, mesh, so on
 

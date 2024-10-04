@@ -3,7 +3,7 @@
 	crate_name = "civil defense medical kit crate"
 	desc = "Contains ten civil defense medical kits, small packs of injectors meant to be passed out to the public in case of emergency."
 	access = ACCESS_MEDICAL
-	cost = CARGO_CRATE_VALUE * 10 // 2000
+	cost = CARGO_CRATE_VALUE * 32 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 	contains = list(
 		/obj/item/storage/medkit/civil_defense/stocked = 10,
 	)
@@ -13,7 +13,7 @@
 	crate_name = "frontier first aid crate"
 	desc = "Contains three of each of frontier medical kits, and combat surgeon medical kits."
 	access = ACCESS_MEDICAL
-	cost = CARGO_CRATE_VALUE * 21 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 21 //BUBBER EDIT: BALANCE COMPANY IMPORTS MEDICAL
 	contains = list(
 		/obj/item/storage/medkit/frontier/stocked = 3,
 		/obj/item/storage/medkit/combat_surgeon/stocked = 3,
