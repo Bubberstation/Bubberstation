@@ -4,7 +4,7 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-	if(isnull(owner) || isnull(owner.current))
+	if(QDELETED(owner) || QDELETED(owner.current))
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 	life_always()
@@ -170,8 +170,9 @@
 	// Heal if Damaged
 	if((bruteheal + fireheal) && mult != 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time), and don't cost any blood if we cannot
-		if(!user.adjustBruteLoss(-bruteheal * mult) && !user.adjustFireLoss(-fireheal * mult)) // Heal BRUTE / BURN in random portions throughout the body.
+		if(!user.adjustBruteLoss(-bruteheal * mult, updating_health = FALSE) && !user.adjustFireLoss(-fireheal * mult, updating_health = FALSE)) // Heal BRUTE / BURN in random portions throughout the body.
 			return FALSE
+		user.updatehealth()
 		AdjustBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
 
@@ -182,13 +183,12 @@
 		var/overfireheal = user.getFireLoss_nonProsthetic()
 		var/heal_amount = drunk / 3
 		if(overbruteheal > 0 && heal_amount > 0)
-			user.adjustBruteLoss(-heal_amount, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
+			user.adjustBruteLoss(-heal_amount, updating_health = FALSE, forced = TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
 			heal_amount = (heal_amount - overbruteheal) // Removes the amount of BRUTE we've healed from the heal amount
 		else if(overfireheal > 0 && heal_amount > 0)
 			heal_amount /= 1.5 // Burn should be more difficult to heal
-			user.adjustFireLoss(-heal_amount, forced=TRUE)
-		else
-			return
+			user.adjustFireLoss(-heal_amount, updating_health = FALSE, forced = TRUE)
+		user.updatehealth()
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
 	var/limb_regen_cost = 50 * -costMult
@@ -222,7 +222,7 @@
 	bloodsuckeruser.setToxLoss(0, forced = TRUE)
 	bloodsuckeruser.setOxyLoss(0, forced = TRUE)
 
-	if(!bloodsuckeruser)
+	if(QDELETED(bloodsuckeruser))
 		return
 
 	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
@@ -281,8 +281,8 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	if(isnull(owner.current))
-		if(length(ghouls))
+	if(QDELETED(owner.current))
+		if(length(ghoulss))
 			free_all_ghouls()
 		ghouls = list()
 		return
@@ -352,6 +352,8 @@
 /// Turns the bloodsucker into a wacky talking head.
 /datum/antagonist/bloodsucker/proc/talking_head()
 	var/mob/living/poor_fucker = owner.current
+	if(QDELETED(poor_fucker))
+		return
 	// Don't do anything if we're not actually inside a brain and a head
 	var/obj/item/bodypart/head/head = is_head(poor_fucker)
 	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
@@ -373,7 +375,7 @@
 	if(brain)
 		UnregisterSignal(brain, list(COMSIG_QDELETING, COMSIG_ORGAN_BODYPART_REMOVED))
 	// fucked up if this happens, but we're probably final deathed at this point
-	if(!poor_fucker)
+	if(QDELETED(poor_fucker))
 		return
 	UnregisterSignal(poor_fucker, list(COMSIG_MOB_TRY_SPEECH, COMSIG_MOB_SAY, COMSIG_QDELETING))
 	poor_fucker.death()
@@ -394,7 +396,7 @@
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
 	SIGNAL_HANDLER
 	// If we have no body, end here.
-	if(!owner.current || isbrain(owner.current))
+	if(QDELETED(owner.current) || isbrain(owner.current))
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
