@@ -282,7 +282,7 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	if(QDELETED(owner.current))
-		if(length(ghoulss))
+		if(length(ghouls))
 			free_all_ghouls()
 		ghouls = list()
 		return
