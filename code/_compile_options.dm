@@ -154,6 +154,7 @@
 #ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
 #define CBT
+#define PRELOAD_RSC // BUBBER EDIT - ASSET CACHE FOR TGS
 #endif
 
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
