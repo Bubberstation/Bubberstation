@@ -30,7 +30,8 @@
 	/// How much stamina armor we get in frenzy
 	var/frenzy_stamina_mod = 0.4
 	var/buy_power_flags = BLOODSUCKER_CAN_BUY
-	var/level_up_percentage_cost = 0.1
+	// what percentage of blood you need to spend to level up, divided by 100
+	var/level_cost = BLOODSUCKER_LEVELUP_PERCENTAGE
 
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
@@ -139,49 +140,64 @@
  * Called when a Bloodsucker successfully starts spending their Rank
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
- * target - The Vassal (if any) we are upgrading.
  * cost_rank - TRUE/FALSE on whether this will cost us a rank when we go through with it.
  * blood_cost - A number saying how much it costs to rank up.
  */
-/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost, force)
+/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/human/target, cost_rank = TRUE, blood_cost, force)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, target, cost_rank, blood_cost)
+	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, cost_rank, blood_cost)
 
-/datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
-	// Purchase Power Prompt
-	var/list/options = level_up_options()
-	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	if(options.len < 1)
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
-	else
-		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient.[blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]", "Your Blood Thickens...", options)
-		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
-			return
-		if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
-			human_user.balloon_alert(human_user, "not enough blood!")
-			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
-			return
-		// Did you choose a power?
-		if(!choice || !options[choice])
-			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
-			return
-		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-		if(!bloodsuckerdatum.is_valid_coffin())
-			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
-			return
-
+/datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, requires_coffin = TRUE)
+	var/list/options = list_available_powers()
+	if(length(options))
+		var/datum/action/cooldown/bloodsucker/choice = choose_powers(
+			"You have the opportunity to grow more ancient. [blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]",
+			"Your Blood Thickens...",
+			options
+		)
+		if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
+			return FALSE
 		// Good to go - Buy Power!
-		if(!purchase_choice(bloodsuckerdatum, options[choice]))
-			to_chat(human_user, span_warning("Cannot buy duplicate powers!"))
-			return
+		purchase_choice(source, choice)
+		level_message(initial(choice.name))
 
-		human_user.balloon_alert(human_user, "learned [choice]!")
-		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
+	return finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
-	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
+/datum/bloodsucker_clan/proc/level_message(power_name)
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+	human_user.balloon_alert(human_user, "learned [power_name]!")
+	to_chat(human_user, span_notice("You have learned how to use [power_name]!"))
+
+/datum/bloodsucker_clan/proc/choose_powers(message, title, options = list())
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+	if(!length(options))
+		return FALSE
+
+	var/choice = tgui_input_list(human_user, message, title, options)
+	return options[choice]
+
+/datum/bloodsucker_clan/proc/is_valid_choice(datum/action/cooldown/bloodsucker/power, cost_rank, blood_cost, requires_coffin)
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+	if(!power)
+		return FALSE
+	if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
+		return FALSE
+	if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
+		human_user.balloon_alert(human_user, "not enough blood!")
+		to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+		return FALSE
+	// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
+	if(requires_coffin && !istype(human_user.loc, /obj/structure/closet/crate/coffin))
+		to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
+		return FALSE
+	if(!(initial(power.purchase_flags) & buy_power_flags))
+		to_chat(human_user, span_notice("[initial(power.name)] is not available for purchase."))
+		return FALSE
+	if(!(buy_power_flags & CAN_BUY_OWNED) && locate(power) in bloodsuckerdatum.powers)
+		to_chat(human_user, span_notice("You already know [initial(power.name)]!"))
+		return FALSE
+	return TRUE
 
 /datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
 	level_up_powers(source)
@@ -208,7 +224,6 @@
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
-		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans and blood bags is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
@@ -225,23 +240,20 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
+	return TRUE
 
-/datum/bloodsucker_clan/proc/level_up_options()
+/datum/bloodsucker_clan/proc/list_available_powers(already_known = bloodsuckerdatum.powers, powers_list = bloodsuckerdatum.all_bloodsucker_powers)
 	var/list/options = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in bloodsuckerdatum.powers))
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers_list)
+		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in already_known))
 			options[initial(power.name)] = power
 	return options
 
-/datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
-	bloodsuckerdatum.LevelUpPowers()
-
 /datum/bloodsucker_clan/proc/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
-	if(purchased_power in bloodsuckerdatum.powers)
-		to_chat(source.owner.current, span_notice("You already have this power!"))
-		return
 	return bloodsuckerdatum.BuyPower(purchased_power)
 
+/datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
+	bloodsuckerdatum.LevelUpPowers()
 /**
  * Called when we are trying to turn someone into a Favorite Vassal
  * args:
@@ -281,19 +293,21 @@
 
 	if(!options.len)
 		master.balloon_alert(master, "Out of Special Vassal slots!")
-		return
+		return FALSE
 
 	to_chat(master, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
 	var/vassal_response = show_radial_menu(master, servant, radial_display)
 	if(!vassal_response)
-		return
+		return FALSE
 	var/datum/antagonist/vassal/vassal_type = options[vassal_response]
 	// let's ask if the vassal themselves actually wants to be a favorite
+#ifndef BLOODSUCKER_TESTING
 	servant.balloon_alert(master, "asking...")
 	var/vassal_permission = tgui_alert(servant, initial(vassal_type.vassal_description), "Become a Special Vassal?", list("Yes", "No"), 1 MINUTES) == "Yes"
 	if(!vassal_permission)
 		servant.balloon_alert(master, "refused!")
 		return FALSE
+#endif
 	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !vassal_type)
 		return FALSE
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
