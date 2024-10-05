@@ -116,6 +116,10 @@
 #warn IF YOU PUT THIS ON LIVE I WILL FIND YOU AND MAKE YOU WISH YOU WERE NEVE-
 #endif
 
+#if defined(TGS) // BUBBER EDIT
+#define PRELOAD_RSC
+#endif
+
 #ifndef PRELOAD_RSC //set to:
 #define PRELOAD_RSC 1 // 0 to allow using external resources or on-demand behaviour;
 #endif // 1 to use the default behaviour;
@@ -154,8 +158,6 @@
 #ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
 #define CBT
-// BUBBER EDIT - ASSET CACHE FOR TGS
-#define PRELOAD_RSC
 #endif
 
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
