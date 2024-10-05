@@ -368,6 +368,8 @@
 /datum/job/orderly
 	alt_titles = list(
 		"Orderly",
+		"Medical Attendant", // BUBBER EDIT ADDITION - MED ALT TITLES
+		"Medical Support Technician", // BUBBER EDIT ADDITION - MED ALT TITLES
 		"Medical Guard",
 	) //other dept guards' alt-titles should be kept to [department] guard to avoid confusion, unless the department gets a re-do.
 
