@@ -6,6 +6,8 @@
 /obj/machinery/door/airlock
 	//so you don't spam the AI
 	COOLDOWN_DECLARE(request_cd)
+	//so the AI doesn't spam you
+	COOLDOWN_DECLARE(answer_cd)
 
 /obj/machinery/door/airlock/attack_hand_secondary(mob/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, request_cd))
