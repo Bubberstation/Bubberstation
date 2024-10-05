@@ -8,7 +8,7 @@
 			continue
 		if(temp_vent.welded)
 			continue
-		if(is_type_in_list(scrubber_area, list(/area/station/engineering/supermatter/room, /area/station/engineering/supermatter, /area/station/commons/dorms)))
+		if(is_type_in_list(scrubber_area, list(/area/station/engineering/supermatter/room, /area/station/engineering/supermatter, /area/station/commons/dorms, /area/station/security/prison/safe, /area/station/security/prison/toilet)))
 			continue
 		if(!prob(overflow_probability))
 			continue
