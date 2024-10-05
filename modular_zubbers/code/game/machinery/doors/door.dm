@@ -28,10 +28,10 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 		if(!is_station_level(AI.registered_z))
 			continue
-		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 	COOLDOWN_START(src, request_cd, 10 SECONDS)
 
 #undef LINK_DENY
