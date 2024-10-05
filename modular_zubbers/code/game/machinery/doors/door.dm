@@ -1,3 +1,8 @@
+#define LINK_DENY "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=deny'>\a (deny)</a>"
+#define LINK_OPEN "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=open'>\a (open)</a>"
+#define LINK_BOLT "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=bolt'>\a (bolt)</a>"
+#define LINK_SHOCK "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>\a (shock)</a>"
+
 /obj/machinery/door/airlock
 	//so you don't spam the AI
 	COOLDOWN_DECLARE(request_cd)
@@ -23,8 +28,13 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open <a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)]'>\a [src]</a>")
+			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 		if(!is_station_level(AI.registered_z))
 			continue
-		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open <a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)]'>\a [src]</a>")
+		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 	COOLDOWN_START(src, request_cd, 10 SECONDS)
+
+#undef LINK_DENY
+#undef LINK_OPEN
+#undef LINK_BOLT
+#undef LINK_SHOCK
