@@ -30,18 +30,18 @@
 		return
 
 	if(!COOLDOWN_FINISHED(door, answer_cd))
-		to_chat(src, span_notice("Your processor is still cooling down."))
+		to_chat(src, span_warning("Your processor is still cooling down."))
 		return
 
 	if(!requester.can_track(src))
 		to_chat(src, span_notice("Unable to track requester."))
 		return
-
 	if(door.aiControlDisabled != AI_WIRE_NORMAL)
 		to_chat(src, span_notice("Unable to access airlock"))
 		return
 
 	COOLDOWN_START(door, answer_cd, 10 SECONDS)
+
 	switch(action)
 		if("open")
 			if(door.locked)
