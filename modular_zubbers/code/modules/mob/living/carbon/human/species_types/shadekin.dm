@@ -137,7 +137,7 @@
 	heal_owner()
 
 /datum/status_effect/shadekin_regeneration/proc/heal_owner()
-	owner.heal_overall_damage(brute = 0.25, burn = 0.25, required_bodytype = BODYTYPE_ORGANIC)
+	owner.heal_overall_damage(brute = 0.5, burn = 0.5, required_bodytype = BODYTYPE_ORGANIC)
 
 /atom/movable/screen/alert/status_effect/shadekin_regeneration
 	name = "Dark Regeneration"
