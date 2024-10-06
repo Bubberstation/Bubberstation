@@ -1661,6 +1661,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_sneeze_sound(mob/living/carbon/human/human)
 	return
 
+/// Returns the species' snore sound.
+/datum/species/proc/get_snore_sound(mob/living/carbon/human/human)
+	return
+
 // BUBBER EDIT - OR BEGIN
 /datum/species/proc/get_types_to_preload()
 	var/list/to_store = list()
