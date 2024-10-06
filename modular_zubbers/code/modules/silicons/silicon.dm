@@ -6,13 +6,12 @@
 			return
 		var/obj/machinery/door/airlock/door = locate(href_list["open_door"]) in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/airlock)
 		var/mob/living/requester = locate(href_list["user"]) in GLOB.mob_list
-		var/action = href_list["action"]
 
 		if(!requester)
 			return
 		if(!door)
 			return
-		fulfill_door_request(requester, door, action)
+		fulfill_door_request(requester, door, href_list["action"])
 	if(href_list["track"])
 		if(!isAI(src))
 			to_chat(src, span_warning("You shouldn't be seeing this bug a coder"))
