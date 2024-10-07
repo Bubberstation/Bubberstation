@@ -360,3 +360,26 @@
 	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the outpost fall into enemy hands!"
 	important_text = "Do NOT let the outpost fall into enemy hands"
 	outfit = /datum/outfit/lavaland_syndicate/comms/icemoon
+
+///Lavaland Gas Station Worker - BUBBER EDIT ADDITION
+/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation
+	name = "Lavaland Gas Station Attendant"
+	desc = "Seems like there's somebody inside, peacefully sleeping."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	prompt_name = "a gas station worker"
+	you_are_text = "You are a worker at a Lizard's Gas Station close to a mining facility."
+	flavour_text = "Your employer, however, failed to realize that there are hostile megafauna and tribes in the area, so make sure that you can defend yourself. Also sell stuff to people, occasionally."
+	important_text = "Do NOT let your workplace get damaged! Do not abandon it either!"
+	outfit = /datum/outfit/lavaland_gasstation
+
+/datum/outfit/lavaland_gasstation
+	name = "Lizard Gas Station Attendant"
+	uniform = /obj/item/clothing/under/costume/lizardgas
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	ears = /obj/item/instrument/piano_synth/headphones
+	gloves = /obj/item/clothing/gloves/fingerless
+	head = /obj/item/clothing/head/soft/purple
+	l_pocket = /obj/item/modular_computer/pda
+
+/// BUBBER EDIT ADDITION END
