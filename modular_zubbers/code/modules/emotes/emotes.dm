@@ -119,7 +119,7 @@
 		key_third_person = "thumps their tail!"
 		emote_type = EMOTE_AUDIBLE
 		vary = TRUE
-		sound = 'modular_zubbers/modules/emotes/sound/voice/tailthump.ogg
+		sound = 'modular_zubbers/modules/emotes/sound/voice/tailthump.ogg'
 
 /datum/emote/living/squeal
 
@@ -127,4 +127,4 @@
 	key_third_person = "squeals!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/squeal.ogg
+	sound = 'modular_zubbers/modules/emotes/sound/voice/squeal.ogg'
