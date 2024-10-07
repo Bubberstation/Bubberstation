@@ -63,8 +63,11 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "cC" = (
-/obj/effect/spawner/random/trash/deluxe_garbage,
 /obj/machinery/light/directional/north,
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -414,12 +417,11 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "oT" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/food_packaging,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/vending/dorms{
+	onstation = 0
+	},
+/turf/closed/wall/r_wall{
+	baseturfs = /turf/open/floor/plating/lavaland_baseturf
 	},
 /area/ruin/thelizardsgas_lavaland)
 "pp" = (
@@ -1082,8 +1084,7 @@
 "NY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
-	dir = 4;
-	mob_type = /mob/living/carbon/human/species/lizard
+	dir = 4
 	},
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -1734,13 +1735,13 @@ DI
 DI
 DI
 DI
-DI
+FA
 FA
 cC
 Bb
+xW
 oT
 FA
-DI
 DI
 DI
 DI
@@ -1757,13 +1758,13 @@ DI
 DI
 DI
 DI
-DI
+FA
 FA
 Bw
 Hd
 jB
 FA
-DI
+FA
 DI
 DI
 DI
@@ -1780,13 +1781,13 @@ DI
 DI
 DI
 DI
-DI
 FA
 FA
 FA
 FA
 FA
-DI
+FA
+FA
 DI
 DI
 DI

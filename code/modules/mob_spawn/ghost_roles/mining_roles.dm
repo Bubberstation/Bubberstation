@@ -371,6 +371,9 @@
 	you_are_text = "You are a worker at a Lizard's Gas Station close to a mining facility."
 	flavour_text = "Your employer, however, failed to realize that there are hostile megafauna and tribes in the area, so make sure that you can defend yourself. Also sell stuff to people, occasionally."
 	important_text = "Do NOT let your workplace get damaged! Do not abandon it either!"
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+	loadout_enabled = FALSE
 	outfit = /datum/outfit/lavaland_gasstation
 
 /datum/outfit/lavaland_gasstation
