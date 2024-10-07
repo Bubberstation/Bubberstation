@@ -424,13 +424,10 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	*/
 		if(mobs.client)
 			shake_camera(M = mobs, duration = 3.2 SECONDS, strength = 0.5)
-			if(!mobs.client.prefs.read_preference(/datum/preference/toggle/sound_ambience))
-				return
-
 			mobs.playsound_local(
 				turf_source = mob_turf,
 				soundin = alert_sound,
-				vol = 40,
+				vol = 90,
 				vary = FALSE,
 			)
 	/* Shut up Skyrat priority announcer
