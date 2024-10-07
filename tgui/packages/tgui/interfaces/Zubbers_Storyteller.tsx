@@ -22,7 +22,7 @@ export type Storyteller_Data = {
   pop_data: Record<string, number>;
   tracks_data: Record<string, Storyteller_Track>;
   scheduled_data: Record<string, Record<string, string>>;
-  events: Storyteller_Event_Category[];
+  events: Record<string, Storyteller_Event_Category>;
 };
 
 export type Storyteller_Track = {
@@ -48,14 +48,14 @@ export type Storyteller_Event = {
 
 export type Storyteller_Event_Category = {
   name: string;
-  events: Storyteller_Event[];
+  events: Record<string, Storyteller_Event>;
 };
 
 export const Zubbers_Storyteller = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   return (
     <Window width={800} height={680}>
-      <Window.Content>
+      <Window.Content height="100%">
         <Stack fill vertical>
           <Stack.Item>
             <Zubbers_Storyteller_Round_Data />
@@ -67,8 +67,8 @@ export const Zubbers_Storyteller = (props) => {
           <Stack.Item>
             <Zubbers_Storyteller_Scheduled_Data />
           </Stack.Item>
-          <Stack.Item>
-            <Zubbers_Storyteller_Events_List />
+          <Stack.Item grow>
+            <Zubbers_Storyteller_EventPanel />
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -280,29 +280,33 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
   );
 };
 
-export const Zubbers_Storyteller_Events_List = (props) => {
+export const Zubbers_Storyteller_EventPanel = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { events } = data;
 
-  const eventCategoryTabs = events.map((eventCategory) => {
-    return eventCategory.name;
-  });
+  const eventCategoryTabs = Object.values(events);
   const [currentEventCategory, setCurrentEventCategory] = useState(
     eventCategoryTabs[0],
   );
 
   return (
-    <Section title="Event Panel">
-      <Stack>
-        {Object.entries(events).map((id, event_category) => {
-          return (
-            <Stack.Item>
-              <Button></Button>
-            </Stack.Item>
-          );
-        })}
-      </Stack>
-      <Stack.Divider />
+    <Section
+      title="Event Panel"
+      maxHeight="100%"
+      fill
+      scrollable
+      buttons={Object.values(events).map((event_category) => {
+        return (
+          <Button
+            key={event_category.name}
+            selected={event_category === currentEventCategory}
+            onClick={() => setCurrentEventCategory(event_category)}
+          >
+            {event_category.name}
+          </Button>
+        );
+      })}
+    >
       <Table>
         <Table.Row bold>
           <Table.Cell>Name</Table.Cell>
@@ -314,36 +318,66 @@ export const Zubbers_Storyteller_Events_List = (props) => {
           <Table.Cell>Weight</Table.Cell>
           <Table.Cell>Actions</Table.Cell>
         </Table.Row>
-        {/*Object.entries(events).map(([track, this_event]))*/}
+        <Zubbers_Storyteller_EventPanel_Category
+          current={currentEventCategory}
+        />
       </Table>
     </Section>
   );
 };
 
-export const Zubbers_Storyteller_Event = (props: Storyteller_Event) => {
-  const {
-    name,
-    desc,
-    tags,
-    occurences,
-    occurences_shared,
-    min_pop,
-    start,
-    can_run,
-    weight,
-    weight_raw,
-  } = props;
+type EventPanel_Category_Props = {
+  current: Storyteller_Event_Category;
+};
+
+export const Zubbers_Storyteller_EventPanel_Category = (
+  props: EventPanel_Category_Props,
+) => {
+  const { current } = props;
+  return (
+    <>
+      {Object.entries(current.events)
+        .sort((a, b) => b[1].weight - a[1].weight)
+        .map(([event_type, event]) => {
+          return (
+            <Zubbers_Storyteller_Event
+              type={event_type}
+              event={event}
+            ></Zubbers_Storyteller_Event>
+          );
+        })}
+    </>
+  );
+};
+
+type Event_Props = {
+  type: string;
+  event: Storyteller_Event;
+};
+
+export const Zubbers_Storyteller_Event = (props: Event_Props) => {
+  const { type, event } = props;
   return (
     <Table.Row>
       <Table.Cell>
-        <Tooltip content={desc}>{name}</Tooltip>
+        <Tooltip content={event.desc}>{event.name}</Tooltip>
       </Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
+      <Table.Cell>
+        {Object.values(event.tags).map((tag) => {
+          return tag + ' ';
+        })}
+      </Table.Cell>
+      <Table.Cell>
+        {event.occurences}
+        {event.occurences_shared ? 'S' : ''}
+      </Table.Cell>
+      <Table.Cell>{event.min_pop}</Table.Cell>
+      <Table.Cell>
+        {event.start}
+        {'m.'}
+      </Table.Cell>
+      <Table.Cell>{event.can_run ? 'Yes' : 'No'}</Table.Cell>
+      <Table.Cell>{event.weight}</Table.Cell>
       <Table.Cell></Table.Cell>
     </Table.Row>
   );

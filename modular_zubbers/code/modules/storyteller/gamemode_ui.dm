@@ -61,6 +61,7 @@
 // God has abandoned us
 /datum/controller/subsystem/gamemode/ui_static_data(mob/user)
 	var/list/static_data = list()
+	// Events are static because we don't need to update them as often, only on storyteller ticks
 	static_data["events"] = list()
 	for(var/event_category as anything in event_pools)
 		var/list/event_list = event_pools[event_category]
