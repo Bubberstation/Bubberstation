@@ -18,7 +18,8 @@
 	var/duration = 0
 	if(istext(input))
 		var/shell_scrubbed_input = shell_url_scrub(input)
-		var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+		// BUBBER EDIT - YOUTUB AUTHENTICATION
+		var/list/output = world.shelleo("[ytdl] --geo-bypass [CONFIG_GET(flag/youtube_auth) ? "--username [CONFIG_GET(string/youtube_username)] --password [CONFIG_GET(string/youtube_password)]": ""] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
 		var/errorlevel = output[SHELLEO_ERRORLEVEL]
 		var/stdout = output[SHELLEO_STDOUT]
 		var/stderr = output[SHELLEO_STDERR]
