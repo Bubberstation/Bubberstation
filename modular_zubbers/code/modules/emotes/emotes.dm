@@ -109,3 +109,22 @@
 			return 'modular_zubbers/code/modules/emotes/sound/voice/male_sigh_exasperated.ogg'
 		return 'modular_zubbers/code/modules/emotes/sound/voice/female_sigh_exasperated.ogg'
 	return
+
+/datum/emote/living/tail_thump
+	var/obj/item/organ/external/tail/oranges_accessory = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+	if(isnull(tail))
+		CRASH("[type] ran on a mob that has no tail!")
+	else
+		key = "tailthump"
+		key_third_person = "thumps their tail!"
+		emote_type = EMOTE_AUDIBLE
+		vary = TRUE
+		sound = 'modular_zubbers/modules/emotes/sound/voice/tailthump.ogg
+
+/datum/emote/living/squeal
+
+	key = "squeal"
+	key_third_person = "squeals!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/squeal.ogg
