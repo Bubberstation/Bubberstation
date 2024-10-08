@@ -4,13 +4,15 @@
 #define LINK_SHOCK "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>\a (shock)</a>"
 
 /obj/machinery/door/airlock
-	//so you don't spam the AI
-	COOLDOWN_DECLARE(request_cd)
 	//so the AI doesn't spam you
 	COOLDOWN_DECLARE(answer_cd)
 
-/obj/machinery/door/airlock/attack_hand_secondary(mob/user, list/modifiers)
-	if(!COOLDOWN_FINISHED(src, request_cd))
+/mob/living
+	//so you don't spam the AI
+	COOLDOWN_DECLARE(request_cd)
+
+/obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
+	if(!COOLDOWN_FINISHED(user, request_cd))
 		to_chat(user, span_warning("Hold on, let the AI parse your request."))
 		return
 
@@ -34,7 +36,7 @@
 		if(!is_station_level(AI.registered_z))
 			continue
 		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
-	COOLDOWN_START(src, request_cd, 10 SECONDS)
+	COOLDOWN_START(user, request_cd, 10 SECONDS)
 
 #undef LINK_DENY
 #undef LINK_OPEN
