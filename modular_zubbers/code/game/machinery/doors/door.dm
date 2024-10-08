@@ -6,13 +6,14 @@
 /obj/machinery/door/airlock
 	//so the AI doesn't spam you
 	COOLDOWN_DECLARE(answer_cd)
+	var/static/list/requesters = list()
 
 /mob/living
 	//so you don't spam the AI
 	COOLDOWN_DECLARE(request_cd)
 
 /obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
-	if(!COOLDOWN_FINISHED(user, request_cd))
+	if(world.time < requesters[user.name] + 10 SECONDS)
 		to_chat(user, span_warning("Hold on, let the AI parse your request."))
 		return
 
@@ -36,7 +37,8 @@
 		if(!is_station_level(AI.registered_z))
 			continue
 		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
-	COOLDOWN_START(user, request_cd, 10 SECONDS)
+	//requesters += user.name
+	requesters[user.name] = world.time
 
 #undef LINK_DENY
 #undef LINK_OPEN
