@@ -8,10 +8,6 @@
 	COOLDOWN_DECLARE(answer_cd)
 	var/static/list/requesters = list()
 
-/mob/living
-	//so you don't spam the AI
-	COOLDOWN_DECLARE(request_cd)
-
 /obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
 	if(world.time < requesters[user.name] + 10 SECONDS)
 		to_chat(user, span_warning("Hold on, let the AI parse your request."))
