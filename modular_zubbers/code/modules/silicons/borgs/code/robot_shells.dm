@@ -15,6 +15,7 @@
 	. = ..()
 	if(href_list["track"])
 		if(!can_track(href_list["track"]))
+			to_chat(src, span_info("This person is not currently on cameras."))
 			return
 		var/mob/living/silicon/ai/AI
 		if(!isAI(src))
