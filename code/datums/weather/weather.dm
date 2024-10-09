@@ -106,6 +106,7 @@
 		affectareas += V
 	for(var/V in protected_areas)
 		affectareas -= get_areas(V)
+	affectareas = enhanced_roleplay_filter(affectareas) // BUBBER EDIT ADDITION - enhanced roleplay check - modular_zubbers/code/modules/events/ev_roleplay_check.dm
 	for(var/V in affectareas)
 		var/area/A = V
 		if(protect_indoors && !A.outdoors)

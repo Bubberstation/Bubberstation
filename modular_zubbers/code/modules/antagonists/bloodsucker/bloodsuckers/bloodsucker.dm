@@ -14,7 +14,7 @@
 
 	/// How much blood we have, starting off at default blood levels. Do not adjust this directly, use adjustBloodVolume(), and use getBloodVolume() to get the current value.
 	VAR_PRIVATE/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
-	/// How much blood we can have at once, increases per level.
+	/// How much blood we can have without it deckaying quickly, increases per level.
 	var/max_blood_volume = 600
 
 	var/datum/bloodsucker_clan/my_clan
@@ -68,7 +68,8 @@
 
 	/// Used for Bloodsuckers gaining levels from drinking blood
 	var/blood_level_gain = 0
-	var/blood_level_gain_amount = 0
+	/// How many levels you can get from Sol
+	var/sol_levels = 3
 
 	///Blood display HUD
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
