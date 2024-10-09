@@ -15,7 +15,7 @@
 			AI.deployed_shell.undeploy()
 		AI.ai_tracking_tool.track_name(src, href_list["track"])
 
-///Allows the AI to interact somewhat with a door if the requester can be tracked by cameras and the AI can normally access it.
+/// Allows the AI to interact somewhat with a door if the requester can be tracked by cameras and the AI can normally access it.
 /mob/living/silicon/proc/fulfill_door_request(mob/living/requester, obj/machinery/door/airlock/door, action)
 	if(!istype(requester))
 		return
