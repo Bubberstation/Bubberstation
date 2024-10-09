@@ -13,7 +13,6 @@
 	if(world.time < requesters[user.name] + 10 SECONDS)
 		to_chat(user, span_warning("Hold on, let the AI parse your request."))
 		return
-
 	. = ..()
 
 	if(!hasPower())
