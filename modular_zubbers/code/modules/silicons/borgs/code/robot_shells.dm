@@ -14,6 +14,8 @@
 /mob/living/silicon/robot/shell/Topic(href, href_list)
 	. = ..()
 	if(href_list["track"])
+		if(!isAI(src) && !istype(src, /mob/living/silicon/robot/shell))
+			return
 		if(!can_track(href_list["track"]))
 			to_chat(src, span_info("This person is not currently on cameras."))
 			return
