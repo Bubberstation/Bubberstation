@@ -4,8 +4,9 @@
 #define LINK_SHOCK "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>\a (shock)</a>"
 
 /obj/machinery/door/airlock
-	//so the AI doesn't spam you
+	//so the AI doesn't get spammed
 	COOLDOWN_DECLARE(answer_cd)
+	/// List of ai door requesters
 	var/static/list/requesters = list()
 
 /obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
