@@ -9,6 +9,13 @@
 
 /datum/job/blueshield/New()
 	alt_titles |= list(
-		 "Henchman",
-		)
+		"Henchman",
+	)
+	. = ..()
+
+/datum/job/orderly/New()
+	alt_titles |= list(
+		"Medical Attendant",
+		"Medical Support Technician",
+	)
 	. = ..()
