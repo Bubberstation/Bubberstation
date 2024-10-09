@@ -14,6 +14,8 @@
 /mob/living/silicon/robot/shell/Topic(href, href_list)
 	. = ..()
 	if(href_list["track"])
+		if(!can_track(href_list["track"]))
+			return
 		var/mob/living/silicon/ai/AI
 		if(!isAI(src))
 			AI = src.mainframe
