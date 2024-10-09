@@ -31,7 +31,7 @@
 	examine_list += span_purple("You can't look at <b>[dom]</b> for long for long before flustering away")
 
 	if(TIMER_COOLDOWN_FINISHED(dom, DOMINANT_COOLDOWN_EXAMINE))
-		to_chat(dom, span_purple("<b>[source]</b> tries to look at you but immedietly looks away with a red face..."))
+		to_chat(dom, span_purple("<b>[source]</b> tries to look at you but immediately looks away with a red face..."))
 		TIMER_COOLDOWN_START(dom, DOMINANT_COOLDOWN_EXAMINE, 15 SECONDS)
 		INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob, emote), "blush") // Needs to be aynsc because of the cooldown.
 		quirk_holder.dir = turn(get_dir(quirk_holder, dom), pick(-90, 90))
