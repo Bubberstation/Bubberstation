@@ -81,6 +81,14 @@
 /obj/effect/spawner/random/structure/closet_empty/crate,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/unexplored)
+"ei" = (
+/obj/structure/sink/directional/west,
+/obj/structure/mirror/directional/east,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/powered/lizard_gas)
 "eq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
 /obj/structure/railing{
@@ -303,9 +311,13 @@
 	},
 /area/ruin/powered/lizard_gas)
 "kI" = (
-/obj/effect/spawner/random/trash/grille_or_waste,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/unexplored)
+/obj/machinery/dryer{
+	pixel_x = 26
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/powered/lizard_gas)
 "kJ" = (
 /obj/structure/sink/gasstation{
 	dir = 8;
@@ -342,8 +354,12 @@
 /turf/open/floor/plating/snowed/icemoon,
 /area/icemoon/underground/unexplored)
 "lt" = (
-/obj/effect/spawner/random/trash/grille_or_waste,
-/turf/open/misc/asteroid/snow/icemoon,
+/obj/machinery/vending/dorms{
+	onstation = 0
+	},
+/turf/closed/wall/r_wall{
+	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+	},
 /area/ruin/powered/lizard_gas)
 "lK" = (
 /obj/structure/table/reinforced,
@@ -942,7 +958,14 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/unexplored)
 "HE" = (
-/turf/open/misc/asteroid/snow/icemoon,
+/obj/machinery/light/directional/north,
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
 /area/ruin/powered/lizard_gas)
 "HI" = (
 /obj/structure/cable,
@@ -972,7 +995,16 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/unexplored)
 "Jv" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/powered/lizard_gas)
+"Kr" = (
+/obj/structure/toilet,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
 /area/ruin/powered/lizard_gas)
 "KG" = (
 /obj/effect/spawner/random/structure/grille,
@@ -1248,6 +1280,12 @@
 /obj/item/food/donut/berry{
 	pixel_x = 5
 	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/powered/lizard_gas)
+"Xn" = (
+/obj/machinery/door/airlock/bathroom,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1918,9 +1956,9 @@ qM
 qM
 qM
 qM
+Xn
 qM
 qM
-gv
 gv
 gv
 gv
@@ -1940,14 +1978,14 @@ Ji
 Ji
 ed
 Ji
+ur
+qM
+qM
 HE
 Jv
-Jv
-HE
-Jv
-Jv
+Py
 lt
-gv
+qM
 gv
 gv
 gv
@@ -1968,13 +2006,13 @@ wN
 RW
 mE
 pO
-ur
-Ji
-Ji
-Ji
-ur
+qM
+qM
+Kr
 kI
-gv
+ei
+qM
+qM
 gv
 gv
 gv
@@ -1995,13 +2033,13 @@ Md
 Ji
 Ji
 Ji
-Ji
-Ji
-ur
-Ji
-Ji
-kI
-gv
+qM
+qM
+qM
+qM
+qM
+qM
+qM
 gv
 gv
 gv
