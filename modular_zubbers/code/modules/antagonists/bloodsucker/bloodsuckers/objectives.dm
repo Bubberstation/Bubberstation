@@ -96,13 +96,13 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-/// Ghoulize a certain person / people
+/// Ghoulify a certain person / people
 /datum/objective/bloodsucker/conversion
 	name = "ghoulization"
 
 /////////////////////////////////
 
-// Ghoulize a head of staff
+// Ghoulify a head of staff
 /datum/objective/bloodsucker/conversion/command
 	name = "ghoulizationcommand"
 	target_amount = 1
@@ -121,11 +121,11 @@
 
 /////////////////////////////////
 
-// Ghoulize crewmates in a department
+// Ghoulify crewmates in a department
 /datum/objective/bloodsucker/conversion/department
-	name = "ghoulize department"
+	name = "ghoulify department"
 
-	///The selected department we have to ghoulize.
+	///The selected department we have to ghoulify.
 	var/datum/job_department/target_department
 	///List of all departments that can be selected for the objective.
 	var/static/list/possible_departments = list(
@@ -344,7 +344,7 @@
 //////////////////////////////
 
 // NOTE: Look up /assassinate in objective.dm for inspiration.
-/// Ghoulize a target.
+/// Ghoulify a target.
 /datum/objective/bloodsucker/ghoulhim
 	name = "ghoulhim"
 	var/target_department_type = FALSE
@@ -358,7 +358,7 @@
 /datum/objective/bloodsucker/ghoulhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulized via the Persuasion Rack."
+		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulifyd via the Persuasion Rack."
 	else
 		explanation_text = "Free Objective"
 
