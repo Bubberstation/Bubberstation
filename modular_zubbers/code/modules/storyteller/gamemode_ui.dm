@@ -35,11 +35,13 @@
 		var/lower = event_track_points[track]
 		var/upper = point_thresholds[track]
 		var/next = last_points ? round((upper - lower) / last_points / STORYTELLER_WAIT_TIME * 40 / 6) / 10 : 0
+		var/datum/round_event_control/forced = forced_next_events[track]
 		track_data[track] = list(
 			"name" = "[track]",
 			"current" = lower,
 			"max" = upper,
 			"next" = next,
+			"forced" = forced ? forced.generate_ui_data() : null
 		)
 	return track_data
 
@@ -118,11 +120,11 @@
 			switch(params["action"])
 				if("cancel")
 					message_admins("[key_name_admin(usr)] cancelled scheduled event [sch_event.event.name].")
-					log_dynamic("[key_name(usr)] cancelled scheduled event [sch_event.event.name].")
+					log_admin_private("[key_name(usr)] cancelled scheduled event [sch_event.event.name].")
 					SSgamemode.remove_scheduled_event(sch_event)
 				if("refund")
 					message_admins("[key_name_admin(usr)] refunded scheduled event [sch_event.event.name].")
-					log_dynamic("[key_name(usr)] refunded scheduled event [sch_event.event.name].")
+					log_admin_private("[key_name(usr)] refunded scheduled event [sch_event.event.name].")
 					SSgamemode.refund_scheduled_event(sch_event)
 				if("reschedule")
 					var/new_schedule = tgui_input_number(usr, "Set time in seconds in which to fire event", "Rescheduling event", 0, 3600, 0)
@@ -130,10 +132,22 @@
 						return
 					sch_event.start_time = world.time + (new_schedule SECONDS)
 					message_admins("[key_name_admin(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
-					log_dynamic("[key_name(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
+					log_admin_private("[key_name(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
 				if("fire")
 					if(!SSticker.HasRoundStarted())
 						return
 					message_admins("[key_name_admin(usr)] has fired scheduled event [sch_event.event.name].")
-					log_dynamic("[key_name(usr)] has fired scheduled event [sch_event.event.name].")
+					log_admin_private("[key_name(usr)] has fired scheduled event [sch_event.event.name].")
 					sch_event.try_fire()
+		if("panel_action")
+			var/datum/round_event_control/event = get_event_by_track_and_type(params["track"], params["type"])
+			if(isnull(event))
+				return
+			switch(params["action"])
+				if("force_next")
+					message_admins("[key_name_admin(usr)] has forced scheduled event [src.name].")
+					log_admin_private("[key_name(usr)] has forced scheduled event [src.name].")
+					SSgamemode.force_event(event)
+		if("panel_update")
+			if(storyteller)
+				storyteller.calculate_weights_all()

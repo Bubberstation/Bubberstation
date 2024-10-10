@@ -44,6 +44,7 @@ export type Storyteller_Event = {
   can_run: Boolean;
   weight: number;
   weight_raw: number;
+  track: string;
 };
 
 export type Storyteller_Event_Category = {
@@ -52,9 +53,8 @@ export type Storyteller_Event_Category = {
 };
 
 export const Zubbers_Storyteller = (props) => {
-  const { act, data } = useBackend<Storyteller_Data>();
   return (
-    <Window width={800} height={680}>
+    <Window width={1200} height={680}>
       <Window.Content height="100%">
         <Stack fill vertical>
           <Stack.Item>
@@ -135,9 +135,9 @@ export const Zubbers_Storyteller_Round_Data = (props) => {
   );
 };
 
-const TRACK_DATA_TRACK_WIDTH = '8%';
+const TRACK_DATA_TRACK_WIDTH = '5%';
 const TRACK_DATA_POINT_WIDTH = '22%';
-const TRACK_DATA_NEXT_WIDTH = '8%';
+const TRACK_DATA_NEXT_WIDTH = '5%';
 const TRACK_DATA_FORCED_WIDTH = '20%';
 const TRACK_DATA_ACTIONS_WIDTH = '20%';
 
@@ -150,8 +150,10 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
         <Table.Row bold>
           <Table.Cell width={TRACK_DATA_TRACK_WIDTH}>Track</Table.Cell>
           <Table.Cell width={TRACK_DATA_POINT_WIDTH}>Points</Table.Cell>
-          <Table.Cell width={TRACK_DATA_NEXT_WIDTH}>Next event</Table.Cell>
-          <Table.Cell width={TRACK_DATA_FORCED_WIDTH} textAlign="center">
+          <Table.Cell width={TRACK_DATA_NEXT_WIDTH} textAlign="center">
+            Next event
+          </Table.Cell>
+          <Table.Cell width={TRACK_DATA_FORCED_WIDTH}>
             Next forced event
           </Table.Cell>
           <Table.Cell width={TRACK_DATA_ACTIONS_WIDTH}>Actions</Table.Cell>
@@ -232,6 +234,7 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
               <Table.Cell>{time ? time + ' s' : 'Roundstart'}</Table.Cell>
               <Table.Cell>
                 <Button
+                  color="red"
                   onClick={() =>
                     act('event_action', {
                       action: 'cancel',
@@ -262,6 +265,7 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
                   Reschedule
                 </Button>
                 <Button
+                  color="green"
                   onClick={() =>
                     act('event_action', {
                       action: 'fire',
@@ -279,6 +283,15 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
     </Section>
   );
 };
+
+const EVENT_PANEL_NAME_WIDTH = '20%';
+const EVENT_PANEL_TAGS_WIDTH = '10%';
+const EVENT_PANEL_OCCURENCES_WIDTH = '6%';
+const EVENT_PANEL_POP_WIDTH = '6%';
+const EVENT_PANEL_MINTIME_WIDTH = '6%';
+const EVENT_PANEL_CANRUN_WIDTH = '6%';
+const EVENT_PANEL_WEIGHT_WIDTH = '10%';
+const EVENT_PANEL_ACTIONS_WIDTH = '20%';
 
 export const Zubbers_Storyteller_EventPanel = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
@@ -309,14 +322,24 @@ export const Zubbers_Storyteller_EventPanel = (props) => {
     >
       <Table>
         <Table.Row bold>
-          <Table.Cell>Name</Table.Cell>
-          <Table.Cell>Tags</Table.Cell>
-          <Table.Cell>Occ.</Table.Cell>
-          <Table.Cell>M.Pop</Table.Cell>
-          <Table.Cell>M.Time</Table.Cell>
-          <Table.Cell>Can Run</Table.Cell>
-          <Table.Cell>Weight</Table.Cell>
-          <Table.Cell>Actions</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_NAME_WIDTH}>Name</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_TAGS_WIDTH}>Tags</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_OCCURENCES_WIDTH} textAlign="center">
+            Occ.
+          </Table.Cell>
+          <Table.Cell width={EVENT_PANEL_POP_WIDTH} textAlign="center">
+            M.Pop
+          </Table.Cell>
+          <Table.Cell width={EVENT_PANEL_MINTIME_WIDTH} textAlign="center">
+            M.Time
+          </Table.Cell>
+          <Table.Cell width={EVENT_PANEL_CANRUN_WIDTH} textAlign="center">
+            Can Run
+          </Table.Cell>
+          <Table.Cell width={EVENT_PANEL_WEIGHT_WIDTH} textAlign="center">
+            Weight (Raw)
+          </Table.Cell>
+          <Table.Cell width={EVENT_PANEL_ACTIONS_WIDTH}>Actions</Table.Cell>
         </Table.Row>
         <Zubbers_Storyteller_EventPanel_Category
           current={currentEventCategory}
@@ -357,6 +380,7 @@ type Event_Props = {
 
 export const Zubbers_Storyteller_Event = (props: Event_Props) => {
   const { type, event } = props;
+  const { act } = useBackend<Storyteller_Data>();
   return (
     <Table.Row>
       <Table.Cell>
@@ -367,18 +391,55 @@ export const Zubbers_Storyteller_Event = (props: Event_Props) => {
           return tag + ' ';
         })}
       </Table.Cell>
-      <Table.Cell>
+      <Table.Cell textAlign="center">
         {event.occurences}
         {event.occurences_shared ? 'S' : ''}
       </Table.Cell>
-      <Table.Cell>{event.min_pop}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell textAlign="center">{event.min_pop}</Table.Cell>
+      <Table.Cell textAlign="center">
         {event.start}
         {'m.'}
       </Table.Cell>
-      <Table.Cell>{event.can_run ? 'Yes' : 'No'}</Table.Cell>
-      <Table.Cell>{event.weight}</Table.Cell>
-      <Table.Cell></Table.Cell>
+      <Table.Cell textAlign="center">{event.can_run ? 'Yes' : 'No'}</Table.Cell>
+      <Table.Cell textAlign="center">
+        {event.weight}
+        {' (' + event.weight_raw + ')'}
+      </Table.Cell>
+      <Table.Cell>
+        <Button
+          onClick={() =>
+            act('panel_action', {
+              action: 'fire',
+              type: type,
+              track: event.track,
+            })
+          }
+        >
+          Fire
+        </Button>
+        <Button
+          onClick={() =>
+            act('panel_action', {
+              action: 'schedule',
+              type: type,
+              track: event.track,
+            })
+          }
+        >
+          Schedule
+        </Button>
+        <Button
+          onClick={() =>
+            act('panel_action', {
+              action: 'force_next',
+              type: type,
+              track: event.track,
+            })
+          }
+        >
+          Force Next
+        </Button>
+      </Table.Cell>
     </Table.Row>
   );
 };

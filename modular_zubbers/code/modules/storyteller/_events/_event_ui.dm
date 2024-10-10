@@ -10,4 +10,5 @@
 				"can_run" = can_spawn_event(),
 				"weight" = calculated_weight,
 				"weight_raw" = weight,
+				"track" = track,
 			)

@@ -146,3 +146,9 @@
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
 		/// Write it
 		event.calculated_weight = weight_total
+
+/datum/storyteller/proc/calculate_weights_all()
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	for(var/track in mode.event_tracks)
+		calculate_weights(track)
+	mode.update_static_data_for_all_viewers()

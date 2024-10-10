@@ -722,7 +722,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	to_chat(world, span_notice("<b>Storyteller is [storyteller.name]!</b>"))
 	to_chat(world, span_notice("[storyteller.welcome_text]"))
-	log_dynamic("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
+	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
 
 /**
  * halt_storyteller
@@ -751,7 +751,7 @@ SUBSYSTEM_DEF(gamemode)
 	event_track_points[track] = point_thresholds[track]
 	storyteller.handle_tracks()
 	message_admins("[key_name_admin(user)] has forced an event for the [track] track.")
-	log_dynamic("Storyteller track [track] forced to run an event by [user.ckey]")
+	log_admin_private("Storyteller track [track] forced to run an event by [user.ckey]")
 
 /**
  * get_scheduled_by_event_type
@@ -761,10 +761,21 @@ SUBSYSTEM_DEF(gamemode)
  */
 /datum/controller/subsystem/gamemode/proc/get_scheduled_by_event_type(type)
 	for(var/datum/scheduled_event/scheduled_event as anything in scheduled_events)
-		if(istype(scheduled_event.event, type))
-			continue
-		return scheduled_event
+		if(scheduled_event.event.type == text2path(type))
+			return scheduled_event
 	return null
+
+/datum/controller/subsystem/gamemode/proc/get_event_by_track_and_type(track, type)
+	if(isnull(track) || isnull(type))
+		return
+	var/list/track_events = event_pools[track]
+	if(isnull(track_events))
+		return
+
+	for(var/datum/round_event_control/event as anything in track_events)
+		if(event.type == text2path(type))
+			return event
+
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
@@ -882,6 +893,8 @@ SUBSYSTEM_DEF(gamemode)
 	popup.set_content(dat.Join())
 	popup.open()
 	ui_interact(usr)
+	if(storyteller)
+		storyteller.calculate_weights_all()
 
  /// Panel containing information and actions regarding events
 /datum/controller/subsystem/gamemode/proc/event_panel(mob/user)
