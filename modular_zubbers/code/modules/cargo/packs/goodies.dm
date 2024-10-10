@@ -45,6 +45,14 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 20
 
+/datum/supply_pack/goody/plasma_projector
+	name = "Słońce Plasma Projector Single-Pack"
+	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 6
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 
