@@ -12,7 +12,7 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
-	target_range = 15
+	target_range = 5
 	power_activates_immediately = FALSE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
@@ -33,6 +33,7 @@
 	. += "Anyone in your way during your Haste will be knocked down."
 	. += "Higher levels will increase the knockdown dealt to enemies."
 	. += "It will also refill your stamina so you can keep moving."
+	. += "If Fortitude is active, using haste will disable it."
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
