@@ -23,9 +23,9 @@
 	blood_overlay_type = "hardsuit-metrocop-RL"
 	armor_type = /datum/armor/armor_riot
 
-/obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr
-	name = "Collared Vest"
-	desc = "An armored vest with an attached collar, adorned with a blue stripe on the right breastplate. It is unlikely the collar adds any additional protective qualities."
+/obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr/Bangle - same person. Recently edited sprite.
+	name = "BNGL Collared Vest"
+	desc = "An armored vest with an attached protective collar, similar to a gorget. This pattern of vest is typically afforded to diplomats and members of the press in hostile environments, though has seen use among private security forces. The armored collar is designed to protect the neck and throat from shrapnel. All things considered, it's quite comfortable."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	icon_state = "vest_worn"

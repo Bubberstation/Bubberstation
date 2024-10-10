@@ -126,6 +126,15 @@
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	cost = PAYCHECK_COMMAND * 8
 
+//These are new - added by Bangle. Framework for additional conversion kits as deemed appropriate by maintainers.
+/datum/armament_entry/company_import/sol_defense/conversionkit
+	restricted = TRUE
+	subcategory = "Conversion Kits"
+
+/datum/armament_entry/company_import/sol_defense/conversionkit/sindano
+	item_type = /obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit
+	cost = PAYCHECK_COMMAND * 10
+
 /*
 /datum/armament_entry/company_import/sol_defense/longarm/bogseo
 	item_type = /obj/item/gun/ballistic/automatic/xhihao_smg
