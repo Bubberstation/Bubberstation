@@ -124,4 +124,4 @@
 	message = "squeals!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
