@@ -116,7 +116,7 @@
 		message = "thumps their tail!"
 		emote_type = EMOTE_AUDIBLE
 		vary = TRUE
-		sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg'
+		sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
 
 /datum/emote/living/squeal
 
