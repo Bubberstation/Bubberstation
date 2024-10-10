@@ -38,6 +38,7 @@
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
+					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 				),
 			),
 		list(
