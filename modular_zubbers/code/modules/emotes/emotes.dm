@@ -118,6 +118,13 @@
 		vary = TRUE
 		sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
 
+/datum/emote/living/tail_thump/can_run_emote(mob/user, status_check, intentional, params)
+	var/obj/item/organ/external/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+	if(tail:)
+		return ..()
+	return FALSE
+
+
 /datum/emote/living/squeal
 	key = "squeal"
 	key_third_person = "squeals!"
