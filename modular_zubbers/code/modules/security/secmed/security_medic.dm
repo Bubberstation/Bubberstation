@@ -104,8 +104,9 @@
 	name = "security-medical HUD sunglasses"
 	icon_state = "hud_protected"
 	worn_icon_state = "sunhudsec"
-	flash_protect = FLASH_PROTECTION_SENSITIVE
+	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
+	tint = 1
 
 /obj/item/storage/bag/garment/secmed
 	name = "Security medic's garment bag"

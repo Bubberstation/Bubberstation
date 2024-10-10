@@ -825,7 +825,7 @@
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
 		/obj/item/clothing/head/beret/sec/medical = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly = 2,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/clothing/glasses/hud/secmed = 2, // BUBBER EDIT CHANGE - was sechud
 	), src)
 
 /obj/item/storage/bag/garment/engineering_guard
