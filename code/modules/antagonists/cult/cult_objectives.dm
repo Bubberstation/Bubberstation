@@ -19,11 +19,16 @@
 		return
 	var/datum/team/cult/cult = team
 	var/list/target_candidates = list()
+	var/opt_in_disabled = CONFIG_GET(flag/disable_rr_opt_in_preferences) // BUBBER EDIT ADDITION - Round Removal OPT-IN
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		// SKYRAT EDIT ADDITION START - Players in the interlink can't be obsession targets
 		if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
 			continue
 		// SKYRAT EDIT END
+		// BUBBER EDIT ADDITION START - Round Removal OPT-IN
+		if (!opt_in_disabled && !opt_in_valid(player))
+			continue
+		// BUBBER EDIT END
 		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
 			target_candidates += player.mind
 	if(target_candidates.len == 0)
@@ -33,6 +38,10 @@
 			if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
 				continue
 			// SKYRAT EDIT END
+			// BUBBER EDIT ADDITION START - Round Removal OPT-IN
+			if (!opt_in_disabled && !opt_in_valid(player))
+				continue
+			// BUBBER EDIT END
 			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
 				target_candidates += player.mind
 	list_clear_nulls(target_candidates)
