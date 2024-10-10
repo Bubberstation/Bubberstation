@@ -29,7 +29,7 @@
 
 /datum/outfit/job/orderly
 	head =  /obj/item/clothing/head/beret/sec/medical
-	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/medsechud/sunglasses
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
