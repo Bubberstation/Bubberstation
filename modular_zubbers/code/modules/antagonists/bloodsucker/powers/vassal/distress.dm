@@ -14,10 +14,10 @@
 /datum/action/cooldown/bloodsucker/distress/ActivatePower(trigger_flags)
 	. = ..()
 	var/turf/open/floor/target_area = get_area(owner)
-	var/datum/antagonist/vassal/vassaldatum = owner.mind.has_antag_datum(/datum/antagonist/vassal)
+	var/datum/antagonist/ghoul/ghouldatum = owner.mind.has_antag_datum(/datum/antagonist/ghoul)
 
 	owner.balloon_alert(owner, "you call out for your master!")
-	to_chat(vassaldatum.master.owner, "<span class='userdanger'>[owner], your loyal Vassal, is desperately calling for aid at [target_area]!</span>")
+	to_chat(ghouldatum.master.owner, "<span class='userdanger'>[owner], your loyal Ghoul, is desperately calling for aid at [target_area]!</span>")
 
 	var/mob/living/user = owner
 	user.adjustBruteLoss(10)
