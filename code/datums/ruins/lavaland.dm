@@ -33,7 +33,8 @@
 	name = "Lava-Ruin The Lizard's Gas"
 	id = "lizgas2"
 	description = "A recently opened gas station from the Lizard's Gas franchise."
-	suffix = "lavaland_surface_gas.dmm"
+	prefix = "_maps/RandomRuins/LavaRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "lavaland_surface_gas_bubber.dmm" //BUBBER EDIT - ORIGINAL: lavaland_surface_gas.dmm
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/cube

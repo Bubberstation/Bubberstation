@@ -16,7 +16,8 @@
 	name = "Ice-Ruin Lizard Gas Station"
 	id = "lizgasruin"
 	description = "A gas station. It appears to have been recently open and is in mint condition."
-	suffix = "icemoon_surface_gas.dmm"
+	prefix = "_maps/RandomRuins/IceRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "icemoon_surface_gas_bubber.dmm" //BUBBER EDIT - ORIGINAL: icemoon_surface_gas.dmm
 
 /datum/map_template/ruin/icemoon/lust
 	name = "Ice-Ruin Ruin of Lust"
