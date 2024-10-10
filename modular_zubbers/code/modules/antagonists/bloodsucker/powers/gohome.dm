@@ -99,7 +99,7 @@
 	// If we aren't in the dark, anyone watching us will cause us to drop out stuff
 	if(current_turf && current_turf.lighting_object && current_turf.get_lumcount() >= 0.2)
 		for(var/mob/living/watchers in viewers(world.view, get_turf(user)) - user)
-			if(!watchers.client)
+			if(QDELETED(watchers.client) || watchers.stat != CONSCIOUS)
 				continue
 			if(watchers.has_unlimited_silicon_privilege)
 				continue
@@ -109,12 +109,7 @@
 				drop_item = TRUE
 				break
 	// Drop all necessary items (handcuffs, legcuffs, items if seen)
-	if(user.handcuffed)
-		var/obj/item/handcuffs = user.handcuffed
-		user.dropItemToGround(handcuffs)
-	if(user.legcuffed)
-		var/obj/item/legcuffs = user.legcuffed
-		user.dropItemToGround(legcuffs)
+	user.uncuff()
 	if(drop_item)
 		for(var/obj/item/literally_everything in owner)
 			owner.dropItemToGround(literally_everything, TRUE)
