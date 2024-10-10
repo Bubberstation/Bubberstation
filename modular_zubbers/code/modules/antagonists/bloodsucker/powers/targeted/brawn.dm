@@ -5,7 +5,7 @@
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 12 SECONDS
 	target_range = 1
