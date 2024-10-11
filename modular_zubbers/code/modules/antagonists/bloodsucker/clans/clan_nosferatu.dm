@@ -3,7 +3,7 @@
 	description = "The Nosferatu Clan is unable to blend in with the crew, with no abilities such as Masquerade and Veil. \n\
 		Additionally, has a permanent bad back and looks like a Bloodsucker upon a simple examine, and their face is disfigured \n\
 		they can fit in the vents regardless of their form and equipment. \n\
-		The Favorite Vassal is also permanently disfigured, and can also ventcrawl, but only while entirely nude. \n\
+		The Favorite Ghoul is also permanently disfigured, and can also ventcrawl, but only while entirely nude. \n\
 		They also have night vision, know what each wire does, and have silent footsteps."
 	clan_objective = /datum/objective/bloodsucker/kindred
 	join_icon_state = "nosferatu"
@@ -40,12 +40,12 @@
 	UnregisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXAMINE)
 	return ..()
 
-/datum/bloodsucker_clan/nosferatu/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/nosferatu/favorite_ghoul_gain(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	var/list/traits_to_add = list(TRAIT_VENTCRAWLER_NUDE, TRAIT_DISFIGURED, TRAIT_TRUE_NIGHT_VISION, TRAIT_KNOW_ENGI_WIRES, TRAIT_SILENT_FOOTSTEPS)
-	vassaldatum.owner.current.add_traits(traits_to_add, VASSAL_TRAIT)
-	vassaldatum.traits += traits_to_add
-	vassaldatum.owner.current.update_sight()
-	to_chat(vassaldatum.owner.current, span_notice("Additionally, you can now ventcrawl while naked, and are permanently disfigured. You also have night vision, know how which wires to cut, and have silent footsteps."))
+	ghouldatum.owner.current.add_traits(traits_to_add, GHOUL_TRAIT)
+	ghouldatum.traits += traits_to_add
+	ghouldatum.owner.current.update_sight()
+	to_chat(ghouldatum.owner.current, span_notice("Additionally, you can now ventcrawl while naked, and are permanently disfigured. You also have night vision, know how which wires to cut, and have silent footsteps."))
 
-/datum/bloodsucker_clan/nosferatu/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	vassaldatum.owner.current.update_sight()
+/datum/bloodsucker_clan/nosferatu/favorite_ghoul_loss(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
+	ghouldatum.owner.current.update_sight()

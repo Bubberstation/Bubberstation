@@ -3,7 +3,7 @@
 	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
 	button_icon_state = "power_tres"
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 8 SECONDS
 	prefire_message = "Select a destination."
