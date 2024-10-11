@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(weather)
 		var/datum/weather/our_event = V
 		if(our_event.aesthetic || our_event.stage != MAIN_STAGE)
 			continue
+		our_event.weather_active_tick()
 		for(var/mob/act_on as anything in GLOB.mob_living_list)
 			if(our_event.can_weather_act(act_on))
 				our_event.weather_act(act_on)

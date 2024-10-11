@@ -114,7 +114,7 @@
 ///Minimum temperature to continue superconduction once started
 #define MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION (T20C+80)
 ///Minimum temperature to start doing superconduction calculations
-#define MINIMUM_TEMPERATURE_START_SUPERCONDUCTION (T20C+400)
+#define MINIMUM_TEMPERATURE_START_SUPERCONDUCTION (T20C+100)
 
 //HEAT TRANSFER COEFFICIENTS
 //Must be between 0 and 1. Values closer to 1 equalize temperature faster

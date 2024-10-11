@@ -631,7 +631,7 @@ Then we space some of our heat, and think about if we should stop conducting.
 
 			neighbor.neighbor_conduct_with_src(src)
 
-			neighbor.consider_superconductivity()
+			neighbor.consider_superconductivity(neighbor = src)
 
 	radiate_to_spess()
 
@@ -650,23 +650,27 @@ Then we space some of our heat, and think about if we should stop conducting.
 	..((blocks_air ? temperature : air.temperature))
 
 ///Should we attempt to superconduct?
-/turf/proc/consider_superconductivity(starting)
+/turf/proc/consider_superconductivity(starting, turf/neighbor)
 	if(!thermal_conductivity)
 		return FALSE
 
 	SSair.active_super_conductivity |= src
 	return TRUE
 
-/turf/open/consider_superconductivity(starting)
-	if(air.temperature < (starting?MINIMUM_TEMPERATURE_START_SUPERCONDUCTION:MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION))
+/turf/open/consider_superconductivity(starting, turf/neighbor)
+	var/mintemp = starting ? MINIMUM_TEMPERATURE_START_SUPERCONDUCTION : MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION
+	if(!neighbor || temperature - neighbor.temperature < mintemp)
 		return FALSE
 	if(air.heat_capacity() < M_CELL_WITH_RATIO) // Was: MOLES_CELLSTANDARD*0.1*0.05 Since there are no variables here we can make this a constant.
 		return FALSE
 	return ..()
 
-/turf/closed/consider_superconductivity(starting)
-	if(temperature < (starting?MINIMUM_TEMPERATURE_START_SUPERCONDUCTION:MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION))
+/turf/closed/consider_superconductivity(starting, turf/neighbor)
+	var/mintemp = starting ? MINIMUM_TEMPERATURE_START_SUPERCONDUCTION : MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION
+	// check if neighbor temp difference is enough to start superconducting
+	if(!neighbor || temperature - neighbor.temperature < mintemp)
 		return FALSE
+
 	return ..()
 
 /// Radiate excess tile heat to space.
