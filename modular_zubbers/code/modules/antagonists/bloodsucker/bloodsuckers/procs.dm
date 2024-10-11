@@ -41,7 +41,7 @@
 		return
 	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
 	to_chat(owner.current, span_cult_bold_italic("You have broken the Masquerade!"))
-	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Vassals are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
+	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Ghouls are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
 	broke_masquerade = TRUE
 	antag_hud_name = "masquerade_broken"
 	add_team_hud(owner.current)
@@ -74,7 +74,7 @@
 		return
 	// Spend Rank Immediately?
 	if(!is_valid_coffin())
-		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Vassal on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
+		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Ghoul on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
 		return
@@ -124,18 +124,18 @@
 	update_rank_hud()
 /**
  * Called when a Bloodsucker reaches Final Death
- * Releases all Vassals and gives them the ex_vassal datum.
+ * Releases all Ghouls and gives them the ex_ghoul datum.
  */
-/datum/antagonist/bloodsucker/proc/free_all_vassals()
-	for(var/datum/antagonist/vassal/all_vassals in vassals)
-		// Skip over any Bloodsucker Vassals, they're too far gone to have all their stuff taken away from them
-		if(IS_BLOODSUCKER(all_vassals.owner.current))
-			all_vassals.owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+/datum/antagonist/bloodsucker/proc/free_all_ghouls()
+	for(var/datum/antagonist/ghoul/all_ghouls in ghouls)
+		// Skip over any Bloodsucker Ghouls, they're too far gone to have all their stuff taken away from them
+		if(IS_BLOODSUCKER(all_ghouls.owner.current))
+			all_ghouls.owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/ghoul_edition)
 			continue
-		if(all_vassals.special_type == REVENGE_VASSAL || !all_vassals.owner)
+		if(all_ghouls.special_type == REVENGE_GHOUL || !all_ghouls.owner)
 			continue
-		all_vassals.owner.add_antag_datum(/datum/antagonist/ex_vassal)
-		all_vassals.owner.remove_antag_datum(/datum/antagonist/vassal)
+		all_ghouls.owner.add_antag_datum(/datum/antagonist/ex_ghoul)
+		all_ghouls.owner.remove_antag_datum(/datum/antagonist/ghoul)
 
 /**
  * Returns a Vampire's examine strings.
@@ -145,14 +145,14 @@
 /datum/antagonist/bloodsucker/proc/return_vamp_examine(mob/living/viewer)
 	if(!viewer.mind && !isobserver(viewer))
 		return FALSE
-	// Viewer is Target's Vassal?
-	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals))
+	// Viewer is Target's Ghoul?
+	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/ghoul) in ghouls))
 		var/returnString = "\[<span class='warning'><EM>This is your Master!</EM></span>\]"
 		var/returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "bloodsucker")]"
 		returnString += "\n"
 		return returnIcon + returnString
-	// Viewer not a Vamp AND not the target's vassal?
-	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
+	// Viewer not a Vamp AND not the target's ghoul?
+	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in ghouls))
 		if(!(HAS_TRAIT(viewer.mind, TRAIT_BLOODSUCKER_HUNTER) && broke_masquerade))
 			return FALSE
 	// Default String
@@ -197,11 +197,11 @@
 	var/percentage_needed = my_clan ? my_clan.level_cost : BLOODSUCKER_LEVELUP_PERCENTAGE
 	return max_blood_volume * percentage_needed
 
-/datum/antagonist/bloodsucker/proc/max_vassals()
+/datum/antagonist/bloodsucker/proc/max_ghouls()
 	return round(bloodsucker_level * 0.5)
 
-/datum/antagonist/bloodsucker/proc/free_vassal_slots()
-	return max(max_vassals() - length(vassals), 0)
+/datum/antagonist/bloodsucker/proc/free_ghoul_slots()
+	return max(max_ghouls() - length(ghouls), 0)
 
 /datum/antagonist/bloodsucker/proc/frenzy_enter_threshold()
 	return FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)
@@ -366,7 +366,7 @@
 
 /datum/antagonist/bloodsucker/proc/on_owner_deletion(mob/living/deleted_mob)
 	SIGNAL_HANDLER
-	free_all_vassals()
+	free_all_ghouls()
 	if(deleted_mob != owner.current)
 		return
 	if(is_head(deleted_mob))
