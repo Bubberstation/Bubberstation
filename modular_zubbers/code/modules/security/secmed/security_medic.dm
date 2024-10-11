@@ -10,7 +10,7 @@
 	minimal_player_age = 7
 	exp_requirements = 120
 	exp_required_type = EXP_TYPE_CREW
-	exp_required_type_department = EXP_TYPE_SECURITY
+	exp_required_type_department = EXP_TYPE_MEDICAL
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "SECURITY_MEDIC"
 
@@ -138,3 +138,12 @@
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/security/medic/full(src)
 	new /obj/item/storage/bag/garment/secmed(src)
+
+//Prevents secmed hours from counting towards HoS
+/datum/controller/subsystem/job/SetupOccupations()
+    . = ..()
+    var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
+    for(var/datum/job/job_type in sec_exp_list)
+        if(istype(job_type, /datum/job/security_medic))
+            LAZYREMOVE(sec_exp_list, job_type)
+            break
