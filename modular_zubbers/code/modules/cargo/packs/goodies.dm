@@ -74,3 +74,9 @@
 
 /datum/supply_pack/goody/thermal_single
 	special = FALSE
+
+/datum/supply_pack/goody/medkit_surgery
+	name = "Spare Surgical Medkit"
+	desc = "A spare high capacity medkit containing a set of surgical tools and basic supplies."
+	cost = PAYCHECK_CREW * 10
+	contains = list(/obj/item/storage/medkit/surgery)
