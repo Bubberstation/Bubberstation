@@ -133,7 +133,7 @@
 
 /datum/armament_entry/company_import/sol_defense/conversionkit/sindano
 	item_type = /obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit
-	cost = PAYCHECK_COMMAND * 10
+	cost = PAYCHECK_COMMAND * 8
 
 /*
 /datum/armament_entry/company_import/sol_defense/longarm/bogseo
