@@ -96,3 +96,39 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/voice/moth/moth_flutter.ogg'
+
+/datum/emote/living/sigh_exasperated
+	key = "esigh" // short for exasperated sigh
+	key_third_person = "esighs"
+	message = "lets out an exasperated sigh."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/sigh_exasperated/get_sound(mob/living/user)
+	if(iscarbon(user))
+		if(user.gender == MALE)
+			return 'modular_zubbers/code/modules/emotes/sound/voice/male_sigh_exasperated.ogg'
+		return 'modular_zubbers/code/modules/emotes/sound/voice/female_sigh_exasperated.ogg'
+	return
+
+/datum/emote/living/tail_thump
+		key = "tailthump"
+		key_third_person = "thumps their tail!"
+		message = "thumps their tail!"
+		emote_type = EMOTE_AUDIBLE
+		vary = TRUE
+		sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
+
+/datum/emote/living/tail_thump/can_run_emote(mob/user, status_check, intentional, params)
+	var/obj/item/organ/external/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+	if(isnull(tail))
+		return FALSE
+	return ..()
+
+
+/datum/emote/living/squeal
+	key = "squeal"
+	key_third_person = "squeals!"
+	message = "squeals!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
