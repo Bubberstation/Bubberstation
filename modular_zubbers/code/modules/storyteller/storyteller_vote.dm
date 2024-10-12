@@ -9,6 +9,7 @@
 	has_desc = TRUE
 	count_method = VOTE_COUNT_METHOD_MULTI
 	winner_method = VOTE_WINNER_METHOD_SIMPLE
+	vote_reminder = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()

@@ -31,6 +31,7 @@
 /datum/antagonist/ert/on_gain()
 	if(random_names)
 		update_name()
+	else owner.current.fully_replace_character_name(owner.current.real_name,"[role] [owner.current.client?.prefs?.read_preference(/datum/preference/name/emergency)]") //BUBBER EDIT ADDITION: ERT NAMES
 	if(forge_objectives_for_ert)
 		forge_objectives()
 	if(equip_ert)
