@@ -129,7 +129,7 @@
 	icon_state = "medkit_surgery"
 	inhand_icon_state = "medkit"
 	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment."
-	custom_premium_price = PAYCHECK_CREW * 10
+	custom_premium_price = PAYCHECK_COMMAND * 6
 
 /obj/item/storage/medkit/surgery/Initialize(mapload)
 	. = ..()
