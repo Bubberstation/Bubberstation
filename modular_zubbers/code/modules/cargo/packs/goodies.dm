@@ -76,7 +76,7 @@
 	special = FALSE
 
 /datum/supply_pack/goody/medkit_surgery
-	name = "Spare Surgical Medkit"
-	desc = "A spare high capacity medkit containing a set of surgical tools and basic supplies."
+	name = "High Capacity Surgical Medkit"
+	desc = "A high capacity aid kit, full of medical supplies and basic surgical equipment."
 	cost = PAYCHECK_CREW * 15
 	contains = list(/obj/item/storage/medkit/surgery)
