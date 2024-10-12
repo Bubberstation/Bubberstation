@@ -107,13 +107,14 @@
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
 	if(target.mind) // Checks if the target has a mind
+
 		// closer it is to max, the less level up blood you get
 		var/blood_for_leveling = blood_taken
 		if(already_drunk > BLOOD_VOLUME_NORMAL)
 			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
 			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
 			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
-		if(IS_VASSAL(target)) // Checks if the target is a vassal
+		if(IS_GHOUL(target)) // Checks if the target is a ghoul
 			blood_level_gain += blood_for_leveling / 4
 		else
 			blood_level_gain += blood_for_leveling
@@ -281,9 +282,9 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	if(QDELETED(owner.current))
-		if(length(vassals))
-			free_all_vassals()
-		vassals = list()
+		if(length(ghouls))
+			free_all_ghouls()
+		ghouls = list()
 		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
@@ -399,7 +400,7 @@
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
-	free_all_vassals()
+	free_all_ghouls()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(DROP_ITEMS)
