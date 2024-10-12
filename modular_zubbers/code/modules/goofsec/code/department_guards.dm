@@ -8,5 +8,6 @@
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly = 1,
 		/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 1,
 		/obj/item/clothing/suit/hazardvest/security_medic/blue = 1,
+		/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 1,
 		/obj/item/clothing/glasses/hud/medsechud = 1,
 	), src)
