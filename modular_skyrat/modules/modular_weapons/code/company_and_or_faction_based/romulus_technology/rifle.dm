@@ -7,11 +7,11 @@
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
 	icon_state = "carbine"
 
-	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_worn.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/romulusresprites/guns_worn.dmi'
 	worn_icon_state = "carbine"
 
-	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_righthand.dmi'
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/romulusresprites/guns_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/romulusresprites/guns_righthand.dmi'
 	inhand_icon_state = "carbine"
 
 	bolt_type = BOLT_TYPE_LOCKING

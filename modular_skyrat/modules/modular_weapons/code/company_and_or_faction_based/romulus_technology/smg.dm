@@ -8,8 +8,8 @@
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun40x32.dmi'
 	icon_state = "gelato"
 
-	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_righthand.dmi'
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/romulusresprites/guns_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/romulusresprites/guns_righthand.dmi'
 	inhand_icon_state = "gelato"
 
 	special_mags = TRUE
