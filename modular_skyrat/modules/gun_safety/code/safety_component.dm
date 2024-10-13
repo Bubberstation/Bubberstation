@@ -5,7 +5,7 @@
 	/// Holder for the toggle safety action
 	var/datum/action/item_action/gun_safety_toggle/toggle_safety_action
 
-/datum/component/gun_safety/Initialize(safety_currently_on = FALSE)
+/datum/component/gun_safety/Initialize(safety_currently_on = FALSE) // Bubber Edit - Org: True
 	. = ..()
 
 	// Obviously gun safety should only apply to guns
