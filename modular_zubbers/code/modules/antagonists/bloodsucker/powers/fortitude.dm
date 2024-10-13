@@ -5,7 +5,7 @@
 	button_icon_state = "power_fortitude"
 	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	cooldown_time = 20 SECONDS
 	bloodcost = 30
 	constant_bloodcost = 0.2
@@ -31,7 +31,7 @@
 	if(level_current >= FORTITUDE_STUN_IMMUNITY_LEVEL)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(IS_BLOODSUCKER(owner) || IS_GHOUL(owner))
 		fortitude_resist = GetFortitudeResist()
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
 		bloodsucker_user.physiology.burn_mod *= GetBurnResist()
@@ -91,7 +91,7 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner) && fortitude_resist)
+	if(IS_BLOODSUCKER(owner) || IS_GHOUL(owner) && fortitude_resist)
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
 		bloodsucker_user.physiology.burn_mod /= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod /= fortitude_resist
