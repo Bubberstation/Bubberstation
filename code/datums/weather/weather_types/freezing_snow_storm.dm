@@ -50,12 +50,36 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 
 /datum/weather/snow_storm/cold_snap/start()
 	. = ..()
-	walls_to_freeze = copy_affected_turfs(GLOB.snowable_walls)
-	windows_to_freeze = copy_affected_turfs(GLOB.snowable_windows)
-	ASYNC
-		weaken_walls()
-	ASYNC
-		make_it_fucking_cold()
+	var/toggled_atmos = FALSE
+	if(SSAir.can_fire)
+		SSAir.can_fire = FALSE // hey please hold on for a bit and don't go insane, lemme do stuff!
+		toggled_atmos = TRUE
+		addtimer(CALLBACK(src, PROC_REF(backup_restart_atmos)), 5 MINUTES)
+	var/done_walls = FALSE
+	var/done_turfs = FALSE
+	try
+		walls_to_freeze = copy_affected_turfs(GLOB.snowable_walls)
+		windows_to_freeze = copy_affected_turfs(GLOB.snowable_windows)
+
+		ASYNC
+			weaken_walls()
+			done_walls = TRUE
+		ASYNC
+			make_it_fucking_cold()
+			done_turfs = TRUE
+	catch(var/exception/e)
+		stack_trace(e)
+		message_admins("[src] failed to properly freeze the station, prepare for atmos churn in five or so minutes")
+	if(!toggled_atmos)
+		return
+	UNTIL(done_walls && done_turfs)
+	SSair.can_fire = TRUE
+
+// we REALLY don't want the cold snap to brick atmos, so we just in case try to restart it
+// I don't trust the code not to runtime at some point
+/datum/weather/snow_storm/cold_snap/proc/backup_restart_atmos()
+	if(!SSAir.can_fire)
+		SSAir.can_fire = TRUE
 
 /datum/weather/snow_storm/cold_snap/proc/weaken_walls()
 	for(var/datum/weakref/ref as anything in GLOB.all_walls)
@@ -68,6 +92,7 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 		if(istype(wall, /turf/closed/wall/r_wall))
 			conductivity_change /= 2
 		wall.thermal_conductivity = clamp(wall_heat_conductivity_change, WALL_HEAT_TRANSFER_COEFFICIENT, OPEN_HEAT_TRANSFER_COEFFICIENT)
+		stoplag()
 
 /datum/weather/snow_storm/cold_snap/proc/make_it_fucking_cold()
 	// do the actual cooling
@@ -96,6 +121,7 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 				if(gasmix)
 					gasmix.temperature = new_temp
 					gasmix.temperature_archived = new_temp
+				stoplag()
 	world << "iters: [iters], atmos iters [atmos_iters]"
 				// if(turf_gasmix)
 				// 	turf_gasmix.temperature += temp_change
