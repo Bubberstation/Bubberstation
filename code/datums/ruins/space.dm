@@ -140,7 +140,8 @@
 
 /datum/map_template/ruin/space/the_lizards_gas
 	id = "the-lizards-gas"
-	suffix = "thelizardsgas.dmm"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "thelizardsgas_bubber.dmm" //BUBBER EDIT - ORIGINAL: thelizardsgas.dmm
 	name = "Space-Ruin The Lizard's Gas"
 	description = "A refueling station stocked with enough plasma for any space-worthy vessel. Well, maybe if it weren't 50 years ago."
 
