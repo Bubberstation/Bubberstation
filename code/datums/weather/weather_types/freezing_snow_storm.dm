@@ -9,11 +9,11 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 	desc = "A sudden cold snap has descended upon the area, freezing everything in its path."
 	telegraph_message = span_warning("The temperature begins to drop rapidly.")
 	telegraph_duration = 100
-	weather_message = span_userdanger("The cold snap has arrived! Seek shelter!")
+	weather_message = span_userdanger("The cold snap has arrived! Seek shelter and keep warm!")
 	probability = 0 // best let admins trigger this one
 	cooling_lower = 10
 	cooling_upper = 25
-	end_duration = 500
+	end_duration = 1000
 	var/temp_change = -10
 	var/wall_heat_conductivity_change = 0.05
 	var/walls_per_process = 20
@@ -52,7 +52,12 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 	. = ..()
 	walls_to_freeze = copy_affected_turfs(GLOB.snowable_walls)
 	windows_to_freeze = copy_affected_turfs(GLOB.snowable_windows)
+	ASYNC
+		weaken_walls()
+	ASYNC
+		make_it_fucking_cold()
 
+/datum/weather/snow_storm/cold_snap/proc/weaken_walls()
 	for(var/datum/weakref/ref as anything in GLOB.all_walls)
 		var/turf/closed/wall = ref.resolve()
 		if(!wall) // it's time for the inside to become cold as fuck :)
@@ -64,6 +69,7 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 			conductivity_change /= 2
 		wall.thermal_conductivity = clamp(wall_heat_conductivity_change, WALL_HEAT_TRANSFER_COEFFICIENT, OPEN_HEAT_TRANSFER_COEFFICIENT)
 
+/datum/weather/snow_storm/cold_snap/proc/make_it_fucking_cold()
 	// do the actual cooling
 	var/iters = 1
 	var/atmos_iters = 1
@@ -102,20 +108,17 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 		var/obj/object = ref.resolve()
 		if(!object || !(object.z in impacted_z_levels))
 			continue
-		if(!istype(object, /turf))
-			return
-		var/turf/target_turf = object
-		var/list/tiles_around = range(1, object)
+		var/atom/target_atom = object
+		var/list/tiles_around = RANGE_TURFS(1, object)
 		for(var/turf/open/tile in tiles_around)
-			if(tile.planetary_atmos)
-				if(!object.loc)
-					continue
-				objects_refs -= ref
-				target_turf.icon = icon_path
-				target_turf.base_icon_state = icon_name
-				target_turf.icon_state = icon_name + "-0"
-				target_turf.update_icon()
-				break
+			objects_refs -= ref
+			if(!object.loc || !tile.planetary_atmos)
+				continue
+			target_atom.icon = icon_path
+			target_atom.base_icon_state = icon_name
+			target_atom.icon_state = icon_name + "-0"
+			target_atom.update_icon()
+			break
 
 /datum/weather/snow_storm/cold_snap/weather_act(mob/living/living)
 	. = ..()
@@ -142,11 +145,9 @@ GLOBAL_LIST_EMPTY(snowable_windows)
 
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
-	var/is_base_wall = /turf/closed/wall
-	if(is_base_wall || type == /turf/closed/wall/r_wall)
-		if(is_base_wall)
-			GLOB.snowable_walls += WEAKREF(src)
-		GLOB.all_walls += WEAKREF(src)
+	if(type == /turf/closed/wall)
+		GLOB.snowable_walls += WEAKREF(src)
+	GLOB.all_walls += WEAKREF(src)
 
 /turf/closed/wall/Destroy()
 	. = ..()
