@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(statpanels)
 	var/list/mc_data
 
 	///how many subsystem fires between most tab updates
-	var/default_wait = 10
+	var/default_wait = 100 // BUBBER EDIT
 	///how many subsystem fires between updates of the status tab
 	var/status_wait = 2
 	///how many subsystem fires between updates of the MC tab
