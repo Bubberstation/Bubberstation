@@ -68,8 +68,7 @@ GLOBAL_PROTECT(vetted_list)
 		ckey_admin = admin_who_added_client?.client?.ckey
 
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
-		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added) \
-		 ON DUPLICATE KEY UPDATE admin_who_added = :admin_who_added",
+		"INSERT INTO vetted_list (ckey, admin_who_added) VALUES(:ckey, :admin_who_added)",
 		list("ckey" = ckey, "admin_who_added" = ckey_admin),
 	)
 
