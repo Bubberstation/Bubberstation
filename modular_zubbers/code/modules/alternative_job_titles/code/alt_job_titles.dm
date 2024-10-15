@@ -5,6 +5,7 @@
 		"Security Corpsman",
 		"Brig Physician",
 		"Combat Medic",
+		"Special Operations Medic",
 	)
 
 /datum/job/blueshield/New()
