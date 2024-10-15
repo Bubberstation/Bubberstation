@@ -19,3 +19,16 @@
 		"Medical Support Technician",
 	)
 	. = ..()
+
+//New titles for Blacksmith
+/datum/job/blacksmith
+	alt_titles = list(
+		"Ithastrist",
+		"Metalurgist",
+		"Metal Worker",
+		"Metalsmith",
+		"Forge Artisan",
+		"Forgemaster",
+		"Weaponsmith",
+		"Armorsmith",
+	)
