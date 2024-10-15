@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 /datum/simple_research/xenoarch_recoverer
 	research_item = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_recoverer
 	required_items = list(
-		/datum/simple_research/laser,
+		/datum/simple_research/micro_laser,
 		/datum/simple_research/matter_bin,
 		/datum/simple_research/cable,
 	)
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 /datum/simple_research/xenoarch_scanner
 	research_item = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_scanner
 	required_items = list(
-		/datum/simple_research/laser,
+		/datum/simple_research/micro_laser,
 		/datum/simple_research/matter_bin,
 		/datum/simple_research/cable,
 	)
