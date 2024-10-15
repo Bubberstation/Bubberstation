@@ -100,10 +100,10 @@ GLOBAL_LIST_EMPTY(simple_research)
 // or maybe replace this with solars? still it would kind of just be a mess
 /datum/simple_research/pacman
 	research_item = /obj/item/circuitboard/machine/pacman
-	// skilled_item = /obj/item/circuitboard/machine/rtg
- 	required_items = list(
- 		/datum/simple_research/cable,
- 	)
+	required_items = list(
+		/datum/simple_research/cell,
+		/datum/simple_research/cable,
+	)
 
 /datum/simple_research/smes
 	research_item = /obj/item/circuitboard/machine/smes
