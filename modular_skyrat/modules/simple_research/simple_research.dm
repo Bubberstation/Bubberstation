@@ -39,12 +39,12 @@ GLOBAL_LIST_EMPTY(simple_research)
 	research_item = /obj/item/stack/cable_coil/five
 	skilled_item = /obj/item/stack/cable_coil
 
-/datum/simple_research/part_replacer
-	research_item = /obj/item/storage/part_replacer
-	//skilled_item = /obj/item/storage/part_replacer/bluespace
-	required_items = list(
-		/datum/simple_research/cable,
-	)
+// /datum/simple_research/part_replacer
+// 	research_item = /obj/item/storage/part_replacer
+// 	skilled_item = /obj/item/storage/part_replacer/bluespace
+// 	required_items = list(
+// 		/datum/simple_research/cable,
+// 	)
 
 // Just no, go do xenoarch for liberator's legacy instead
 
@@ -79,6 +79,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 	// skilled_item = /obj/item/pipe_dispenser/bluespace
 	required_items = list(
 		/datum/simple_research/multitool,
+		/datum/simple_research/matter_bin,
 	)
 
 /datum/simple_research/apc
@@ -96,6 +97,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 	)
 
 // I'd make the normal reward into SOFIE and the skilled into PACMAN, but SOFIE is a flatpack, so eh
+// or maybe replace this with solars? still it would kind of just be a mess
 /datum/simple_research/pacman
 	research_item = /obj/item/circuitboard/machine/pacman
 	// skilled_item = /obj/item/circuitboard/machine/rtg
@@ -115,6 +117,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 	research_item = /obj/item/pickaxe/drill
 	required_items = list(
 		/datum/simple_research/servo,
+		/datum/simple_research/multitool,
 	)
 // 	skilled_item = /obj/item/pickaxe/drill/diamonddrill
 
@@ -134,6 +137,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 	required_items = list(
 		/datum/simple_research/beaker,
 		/datum/simple_research/servo,
+		/datum/simple_research/multitool,
 	)
 
 /datum/simple_research/igniter
@@ -168,6 +172,11 @@ GLOBAL_LIST_EMPTY(simple_research)
 /datum/simple_research/xenoarch_brush
 	research_item = /obj/item/xenoarch/brush
 	skilled_item = /obj/item/xenoarch/brush/adv
+
+// more precise hammer is harder to make or something
+/datum/simple_research/xenoarch_hammer
+	research_item = /obj/item/xenoarch/hammer/cm10
+	skilled_item = /obj/item/xenoarch/hammer/cm5
 
 /datum/simple_research/xenoarch_tape
 	research_item = /obj/item/xenoarch/tape_measure
