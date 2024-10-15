@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(simple_research)
 	var/list/required_items = list()
 
 /**
- * 19 items
+ * 25/27 items
  */
 /datum/simple_research/scanner
 	research_item = /obj/item/stock_parts/scanning_module
@@ -41,66 +41,99 @@ GLOBAL_LIST_EMPTY(simple_research)
 
 /datum/simple_research/part_replacer
 	research_item = /obj/item/storage/part_replacer
-	skilled_item = /obj/item/storage/part_replacer/bluespace
+	//skilled_item = /obj/item/storage/part_replacer/bluespace
 	required_items = list(
 		/datum/simple_research/cable,
 	)
 
-/datum/simple_research/protolathe
-	research_item = /obj/item/circuitboard/machine/protolathe/offstation
-	required_items = list(
-		/datum/simple_research/part_replacer,
-	)
+// Just no, go do xenoarch for liberator's legacy instead
 
-/datum/simple_research/circuit_imprinter
-	research_item = /obj/item/circuitboard/machine/circuit_imprinter/offstation
-	required_items = list(
-		/datum/simple_research/part_replacer,
-	)
+// /datum/simple_research/protolathe
+// 	research_item = /obj/item/circuitboard/machine/protolathe/offstation
+// 	required_items = list(
+// 		/datum/simple_research/part_replacer,
+// 	)
 
-/datum/simple_research/rdconsole
-	research_item = /obj/item/circuitboard/computer/rdconsole
+// /datum/simple_research/circuit_imprinter
+// 	research_item = /obj/item/circuitboard/machine/circuit_imprinter/offstation
+// 	required_items = list(
+// 		/datum/simple_research/part_replacer,
+// 	)
+
+// /datum/simple_research/rdconsole
+// 	research_item = /obj/item/circuitboard/computer/rdconsole
+// 	required_items = list(
+// 		/datum/simple_research/protolathe,
+// 		/datum/simple_research/circuit_imprinter,
+// 	)
+
+/datum/simple_research/autolathe
+	research_item = /obj/item/circuitboard/machine/autolathe
 	required_items = list(
-		/datum/simple_research/protolathe,
-		/datum/simple_research/circuit_imprinter,
+		/datum/simple_research/servo,
+		/datum/simple_research/matter_bin,
 	)
 
 /datum/simple_research/pipe_dispenser
 	research_item = /obj/item/pipe_dispenser
-	skilled_item = /obj/item/pipe_dispenser/bluespace
+	// skilled_item = /obj/item/pipe_dispenser/bluespace
 	required_items = list(
 		/datum/simple_research/multitool,
 	)
 
+/datum/simple_research/apc
+	research_item = /obj/item/electronics/apc
+	required_items = list(
+		/datum/simple_research/cell,
+		/datum/simple_research/cable,
+	)
+
 /datum/simple_research/inducer
 	research_item = /obj/item/inducer/empty
-	skilled_item = /obj/item/inducer/syndicate
+	// skilled_item = /obj/item/inducer/syndicate
 	required_items = list(
 		/datum/simple_research/cell,
 	)
 
+// I'd make the normal reward into SOFIE and the skilled into PACMAN, but SOFIE is a flatpack, so eh
 /datum/simple_research/pacman
 	research_item = /obj/item/circuitboard/machine/pacman
-	skilled_item = /obj/item/circuitboard/machine/rtg
-	required_items = list(
-		/datum/simple_research/cell,
-	)
+	// skilled_item = /obj/item/circuitboard/machine/rtg
+ 	required_items = list(
+ 		/datum/simple_research/cable,
+ 	)
 
 /datum/simple_research/smes
 	research_item = /obj/item/circuitboard/machine/smes
 	required_items = list(
-		/datum/simple_research/pacman,
+		/datum/simple_research/cell,
+		/datum/simple_research/cable,
+		/datum/simple_research/capacitor,
 	)
 
 /datum/simple_research/drill
 	research_item = /obj/item/pickaxe/drill
-	skilled_item = /obj/item/pickaxe/drill/diamonddrill
-
-/datum/simple_research/chem_dispenser
-	research_item = /obj/item/circuitboard/machine/chem_dispenser
 	required_items = list(
-		/datum/simple_research/igniter,
-		/datum/simple_research/condenser,
+		/datum/simple_research/servo,
+	)
+// 	skilled_item = /obj/item/pickaxe/drill/diamonddrill
+
+// /datum/simple_research/chem_dispenser
+// 	research_item = /obj/item/circuitboard/machine/chem_dispenser
+// 	required_items = list(
+// 		/datum/simple_research/igniter,
+// 		/datum/simple_research/condenser,
+// 	)
+
+/datum/simple_research/beaker
+	research_item = /obj/item/reagent_containers/cup/beaker/large
+	skilled_item = /obj/item/reagent_containers/cup/beaker/plastic
+
+/datum/simple_research/chem_master
+	research_item = /obj/item/circuitboard/machine/chem_master
+	required_items = list(
+		/datum/simple_research/beaker,
+		/datum/simple_research/servo,
 	)
 
 /datum/simple_research/igniter
@@ -111,4 +144,37 @@ GLOBAL_LIST_EMPTY(simple_research)
 
 /datum/simple_research/multitool
 	research_item = /obj/item/multitool
-	skilled_item = /obj/item/multitool/abductor
+	// skilled_item = /obj/item/multitool/abductor
+	required_items = list(
+ 		/datum/simple_research/scanner,
+ 	)
+
+/datum/simple_research/xenoarch_recoverer
+	research_item = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_recoverer
+	required_items = list(
+		/datum/simple_research/laser,
+		/datum/simple_research/matter_bin,
+		/datum/simple_research/cable,
+	)
+
+/datum/simple_research/xenoarch_scanner
+	research_item = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_scanner
+	required_items = list(
+		/datum/simple_research/laser,
+		/datum/simple_research/matter_bin,
+		/datum/simple_research/cable,
+	)
+
+/datum/simple_research/xenoarch_brush
+	research_item = /obj/item/xenoarch/brush
+	skilled_item = /obj/item/xenoarch/brush/adv
+
+/datum/simple_research/xenoarch_tape
+	research_item = /obj/item/xenoarch/tape_measure
+
+/datum/simple_research/mining_scanner
+	research_item = /obj/item/mining_scanner
+	skilled_item = /obj/item/t_scanner/adv_mining_scanner/lesser
+	required_items = list(
+ 		/datum/simple_research/scanner,
+ 	)
