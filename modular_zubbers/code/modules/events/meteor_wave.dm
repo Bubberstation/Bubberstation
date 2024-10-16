@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 			announce_prefix = /datum/round_event/meteor_wave/candy::announce_prefix
 			announce_desc = /datum/round_event/meteor_wave/candy::announce_desc
 			announce_fluff = /datum/round_event/meteor_wave/candy::announce_fluff
-			//return
+			return
 
 	switch(wave_name)
 		if("normal")
@@ -174,9 +174,6 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	desc = "A pumpkin-shaped meteor filled with candy. It's a bit spooky."
 	icon_state = "spooky"
 	threat = 5
-
-/obj/effect/meteor/candy/pumpkin/Initialize()
-	. = ..()
 
 /obj/effect/meteor/candy/pumpkin/meteor_effect()
 	..()
