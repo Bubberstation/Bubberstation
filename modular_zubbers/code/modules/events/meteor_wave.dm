@@ -7,55 +7,44 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	/obj/effect/meteor/candy/banana = 2,
 ))
 
-/datum/round_event_control/meteor_wave/candy
-	name = "Meteor Wave: Candy"
-	typepath = /datum/round_event/meteor_wave/candy
-	weight = 0
-	description = "A meteor wave for the holidays, filled with candy."
-
 /datum/round_event/meteor_wave
 	/// Time we give before the wave for cargo to order / engineering to set up meteor shields
 	var/warning_time = 30 EVENT_SECONDS
 	/// Number of SSevent ticks for the wave to last (TG original: 60)
 	var/wave_duration = 45
+	/// Prefix for the announcement
+	var/announce_prefix = "Meteor Alert"
 	/// Description for the announcement
-	var/meteor_desc = "Meteor"
+	var/announce_desc = "Meteors"
 	/// Added to the announcement giving a preview of the wave intensity
-	var/response_suggestion = "Crew are advised to take shelter within the central areas of the station."
+	var/announce_fluff = "Crew are advised to take shelter within the central areas of the station."
 
 /datum/round_event/meteor_wave/threatening
-	warning_time = 420 EVENT_SECONDS
-	response_suggestion = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
+	warning_time = 420 EVENT_SECONDS // smoke a joint and start your mindless repairs
+	announce_fluff = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
 
 /datum/round_event/meteor_wave/catastrophic
 	warning_time = 420 EVENT_SECONDS
-	response_suggestion = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
+	announce_fluff = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
 
 /datum/round_event/meteor_wave/dust_storm
 	warning_time = 6 EVENT_SECONDS
 
+/datum/round_event/meteor_wave/meaty
+	announce_prefix = "Oh crap, get the mop."
+	announce_desc = "Meaty ores"
+	announce_fluff = "Please refrain from eating the space meat. We know it's tempting, but this is not the time to test your culinary curiosity."
+
 /datum/round_event/meteor_wave/candy
 	wave_name = "candy"
-	meteor_desc = "Spooky Package"
-	response_suggestion = "We're not responsible for what happens if you try to stick fragments in your mouth. Why do we even have to tell you that?"
+	announce_prefix = "2SPOOKY DELIVERY INCOMING"
+	announce_desc = "Spooky packages"
+	announce_fluff = "We're not responsible for what happens if you try to stick fragments in your mouth. Why do we even have to tell you that?"
 
 /datum/round_event/meteor_wave/New()
 	. = ..()
 	start_when = rand(warning_time, warning_time * 1.5)
 	end_when = start_when + rand(wave_duration, wave_duration * 1.5)
-
-/datum/round_event/meteor_wave/announce(fake)
-	priority_announce(
-			text = "[meteor_desc]s have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [DisplayTimeText(start_when * 20, 10)]. [response_suggestion]",
-			title = "[meteor_desc] Alert",
-			sound = ANNOUNCER_METEORWARNING,
-		)
-
-	if(fake)
-		return
-
-	if(wave_name == "threatening" || wave_name == "catastrophic" || wave_name == "spooky")
-		addtimer(CALLBACK(src, PROC_REF(meteor_reminder)), ((start_when * 20) - 15 SECONDS))
 
 /datum/round_event/meteor_wave/determine_wave_type()
 	if(!wave_name)
@@ -68,11 +57,12 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		if(prob(50))
 			wave_name = "candy"
 			wave_type = GLOB.meteors_candy_halloween
-			meteor_desc = /datum/round_event/meteor_wave/candy::meteor_desc
-			response_suggestion = /datum/round_event/meteor_wave/candy::response_suggestion
-			return
+			announce_prefix = /datum/round_event/meteor_wave/candy::announce_prefix
+			announce_desc = /datum/round_event/meteor_wave/candy::announce_desc
+			announce_fluff = /datum/round_event/meteor_wave/candy::announce_fluff
+			//return
 
-	else switch(wave_name)
+	switch(wave_name)
 		if("normal")
 			wave_type = GLOB.meteors_normal
 		if("threatening")
@@ -91,18 +81,37 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		if("candy")
 			wave_type = GLOB.meteors_candy_halloween
 		else
-			WARNING("Wave name of [wave_name] not recognised.")
+			stack_trace("Wave name of [wave_name] not recognised.")
 			kill()
+
+/datum/round_event/meteor_wave/announce(fake)
+	priority_announce(
+			text = "[announce_desc] have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [DisplayTimeText(start_when * 20, 10)]. [announce_fluff]",
+			title = announce_prefix,
+			sound = ANNOUNCER_METEORWARNING,
+		)
+
+	if(fake)
+		return
+
+	if(warning_time > 180 EVENT_SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(meteor_reminder)), ((start_when * 20) - 15 SECONDS))
 
 /datum/round_event/meteor_wave/proc/meteor_reminder()
 	event_minimum_security_level(min_level = SEC_LEVEL_ORANGE, eng_access = TRUE, maint_access = FALSE)
 	priority_announce(
-			text = "[meteor_desc]s approaching, brace for impact. Long range scanners indicate a high density of meteors incoming, the kind of impact that makes you rethink your life choices. So, hold on tight and try not to fly into anything too important.",
-			title = "[meteor_desc] Alert",
+			text = "[announce_desc] approaching, brace for impact. Long range scanners indicate a high density of meteors incoming, the kind of impact that makes you rethink your life choices. So, hold on tight and try not to fly into anything too important.",
+			title = announce_prefix,
 			sound = 'sound/misc/radio_important.ogg', // basically silent, since the securitylevel proc will make a sound
 			sender_override = "[command_name()] Engineering Division",
 			color_override = "orange",
 		)
+
+/datum/round_event_control/meteor_wave/candy
+	name = "Meteor Wave: Candy"
+	typepath = /datum/round_event/meteor_wave/candy
+	weight = 0
+	description = "A meteor wave for the holidays, filled with candy."
 
 /obj/effect/meteor
 	lifetime = 45 SECONDS
