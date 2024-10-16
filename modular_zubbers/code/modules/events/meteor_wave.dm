@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /datum/round_event/meteor_wave/candy
 	wave_name = "candy"
-	meteor_desc = "Spooky package"
+	meteor_desc = "Spooky Package"
 	response_suggestion = "We're not responsible for what happens if you try to stick fragments in your mouth. Why do we even have to tell you that?"
 
 /datum/round_event/meteor_wave/New()
@@ -64,9 +64,13 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 			"threatening" = 40,
 			"catastrophic" = 10))
 
-	if((check_holidays(HALLOWEEN) && prob(40)) || wave_name == "candy")
-		wave_name = "candy"
-		wave_type = GLOB.meteors_candy_halloween
+	if(check_holidays(HALLOWEEN))
+		if(prob(50))
+			wave_name = "candy"
+			wave_type = GLOB.meteors_candy_halloween
+			meteor_desc = /datum/round_event/meteor_wave/candy::meteor_desc
+			response_suggestion = /datum/round_event/meteor_wave/candy::response_suggestion
+			return
 
 	else switch(wave_name)
 		if("normal")
@@ -84,6 +88,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 			wave_type = GLOB.meteors_dust
 		if("halloween")
 			wave_type = GLOB.meteorsSPOOKY
+		if("candy")
+			wave_type = GLOB.meteors_candy_halloween
 		else
 			WARNING("Wave name of [wave_name] not recognised.")
 			kill()
