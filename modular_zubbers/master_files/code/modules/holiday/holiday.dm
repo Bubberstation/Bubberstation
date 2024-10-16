@@ -12,7 +12,7 @@
 /datum/holiday/halloween/New()
 	. = ..()
 	LAZYCLEARLIST(holiday_colors)
-	var/palette = rand(1, 16)
+	var/palette = rand(1, 15)
 	switch(palette)
 		if(1, 2)
 			holiday_colors += PURPLE_LIGHT
@@ -49,9 +49,6 @@
 			holiday_colors += PURPLE_DARK
 			holiday_colors += ORANGE_DARK
 		if(11)
-			holiday_colors += GREY_DARK
-			holiday_colors += GREY_LIGHT
-		if(12)
 			holiday_colors = list(
 				COLOR_PRIDE_PURPLE,
 				COLOR_PRIDE_BLUE,
@@ -60,13 +57,13 @@
 				COLOR_PRIDE_ORANGE,
 				COLOR_PRIDE_RED,
 			)
-		if(13)
+		if(12)
 			holiday_colors += PURPLE_LIGHT
-		if(14)
+		if(13)
 			holiday_colors += ORANGE_LIGHT
-		if(15)
+		if(14)
 			holiday_colors += PURPLE_DARK
-		if(16)
+		if(15)
 			holiday_colors += ORANGE_DARK
 
 /datum/holiday/halloween/celebrate()
