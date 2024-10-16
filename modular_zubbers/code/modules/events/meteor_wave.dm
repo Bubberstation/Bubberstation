@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(meteors_candy_halloween, list(
+	/obj/effect/meteor/candy/party_popper = 6,
 	/obj/effect/meteor/candy/pumpkin = 16,
 	/obj/effect/meteor/candy/pumpking = 6,
 	/obj/effect/meteor/candy/corgi = 6,
@@ -196,6 +197,21 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 /obj/effect/meteor/candy/pumpking/meteor_effect()
 	..()
 	explosion(src, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 3, flash_range = 4, adminlog = FALSE)
+
+/obj/effect/meteor/candy/party_popper
+	name = "party popper"
+	desc = "A small device used for celebrations and annoying the janitor."
+	icon = 'icons/obj/toys/toy.dmi'
+	icon_state = "party_popper"
+	pass_flags = PASSTABLE | PASSGRILLE
+	hitpwr = EXPLODE_LIGHT
+	hits = 3
+	threat = 4
+	meteorsound = 'sound/effects/snap.ogg'
+
+/obj/effect/meteor/candy/party_popper/meteor_effect()
+	..()
+	new /obj/item/reagent_containers/spray/chemsprayer/party(get_turf(src))
 
 /obj/effect/meteor/candy/corgi
 	name = "corgi pinata"
