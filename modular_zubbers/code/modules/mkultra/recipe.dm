@@ -20,24 +20,24 @@
 	reaction_tags = REACTION_TAG_MODERATE | REACTION_TAG_EXPLOSIVE | REACTION_TAG_OTHER | REACTION_TAG_DANGEROUS
 
 /datum/chemical_reaction/fermi/enthrall/reaction_finish(datum/reagents/holder, atom/my_atom)
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
-	var/datum/reagent/fermi/enthrall/E = locate(/datum/reagent/fermi/enthrall) in holder.reagent_list
-	if(!B || !E)
+	var/datum/reagent/blood/mob_blood = locate(/datum/reagent/blood) in holder.reagent_list
+	var/datum/reagent/fermi/enthrall/enthrall_chem = locate(/datum/reagent/fermi/enthrall) in holder.reagent_list
+	if(!mob_blood || !enthrall_chem)
 		return
-	if(!B.data)
+	if(!mob_blood.data)
 		my_atom.visible_message("<span class='warning'>The reaction splutters and fails to react properly.</span>") //Just in case
-		E.purity = 0
+		enthrall_chem.purity = 0
 		return
-	if (B.data["gender"] == "female")
-		E.data["creatorGender"] = "Mistress"
-		E.creatorGender = "Mistress"
+	if (mob_blood.data["gender"] == "female")
+		enthrall_chem.data["creatorGender"] = "Mistress"
+		enthrall_chem.creatorGender = "Mistress"
 	else
-		E.data["creatorGender"] = "Master"
-		E.creatorGender = "Master"
-	E.data["creatorName"] = B.data["real_name"]
-	E.creatorName = B.data["real_name"]
-	E.data["creatorID"] = B.data["ckey"]
-	E.creatorID = B.data["ckey"]
+		enthrall_chem.data["creatorGender"] = "Master"
+		enthrall_chem.creatorGender = "Master"
+	enthrall_chem.data["creatorName"] = mob_blood.data["real_name"]
+	enthrall_chem.creatorName = mob_blood.data["real_name"]
+	enthrall_chem.data["creatorID"] = mob_blood.data["ckey"]
+	enthrall_chem.creatorID = mob_blood.data["ckey"]
 
 //Kaboom
 /datum/chemical_reaction/fermi/enthrall/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)

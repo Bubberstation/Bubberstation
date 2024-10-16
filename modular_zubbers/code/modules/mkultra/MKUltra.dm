@@ -148,42 +148,42 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	creatorName = src.data["creatorName"]
 	creator = get_mob_by_key(creatorID)
 
-/datum/reagent/fermi/enthrall/on_mob_add(mob/living/carbon/M)
+/datum/reagent/fermi/enthrall/on_mob_add(mob/living/carbon/mob_affected)
 	. = ..()
-	if(!ishuman(M))//Just to make sure screwy stuff doesn't happen.
+	if(!ishuman(mob_affected))//Just to make sure screwy stuff doesn't happen.
 		return
 	if(!creatorID)
 		//This happens when the reaction explodes.
 		return
 	if(purity < 0.5)//Impure chems don't function as you expect
 		return
-	var/datum/status_effect/chem/enthrall/E = M.has_status_effect(/datum/status_effect/chem/enthrall)
-	if(E)
-		if(E.enthrallID == M.ckey && creatorID != M.ckey)//If you're enthralled to yourself (from OD) and someone else tries to enthrall you, you become thralled to them instantly.
-			E.enthrallID = creatorID
-			E.enthrallGender = creatorGender
-			E.master = get_mob_by_key(creatorID)
-			to_chat(M, "<span class='big love'><i>Your addled, plastic, mind bends under the chemical influence of a new [(E.lewd?"master":"leader")]. Your highest priority is now to stay by [creatorName]'s side, following and aiding them at all costs.</i></span>") //THIS SHOULD ONLY EVER APPEAR IF YOU MINDBREAK YOURSELF AND THEN GET INJECTED FROM SOMEONE ELSE.
+	var/datum/status_effect/chem/enthrall/enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
+	if(enthrall_chem)
+		if(enthrall_chem.enthrallID == mob_affected.ckey && creatorID != mob_affected.ckey)//If you're enthralled to yourself (from OD) and someone else tries to enthrall you, you become thralled to them instantly.
+			enthrall_chem.enthrallID = creatorID
+			enthrall_chem.enthrallGender = creatorGender
+			enthrall_chem.master = get_mob_by_key(creatorID)
+			to_chat(mob_affected, "<span class='big love'><i>Your addled, plastic, mind bends under the chemical influence of a new [(enthrall_chem.lewd?"master":"leader")]. Your highest priority is now to stay by [creatorName]'s side, following and aiding them at all costs.</i></span>") //THIS SHOULD ONLY EVER APPEAR IF YOU MINDBREAK YOURSELF AND THEN GET INJECTED FROM SOMEONE ELSE.
 			return
-	if((M.ckey == creatorID) && (creatorName == M.real_name)) //same name AND same player - same instance of the player. (should work for clones?)
-		var/obj/item/organ/internal/vocal_cords/Vc = M.get_organ_slot(ORGAN_SLOT_VOICE)
-		var/obj/item/organ/internal/vocal_cords/nVc = new /obj/item/organ/internal/vocal_cords/velvet
-		if(Vc)
-			Vc.Remove()
-		nVc.Insert(M)
-		qdel(Vc)
-		to_chat(M, "<span class='notice'><i>You feel your vocal chords tingle you speak in a more charasmatic and sultry tone.</i></span>")
+	if((mob_affected.ckey == creatorID) && (creatorName == mob_affected.real_name)) //same name AND same player - same instance of the player. (should work for clones?)
+		var/obj/item/organ/internal/vocal_cords/vocal_cords = mob_affected.get_organ_slot(ORGAN_SLOT_VOICE)
+		var/obj/item/organ/internal/vocal_cords/new_vocal_cords = new /obj/item/organ/internal/vocal_cords/velvet
+		if(vocal_cords)
+			vocal_cords.Remove()
+		new_vocal_cords.Insert(mob_affected)
+		qdel(vocal_cords)
+		to_chat(mob_affected, "<span class='notice'><i>You feel your vocal chords tingle you speak in a more charasmatic and sultry tone.</i></span>")
 	else
-		M.apply_status_effect(/datum/status_effect/chem/enthrall)
+		mob_affected.apply_status_effect(/datum/status_effect/chem/enthrall)
 
-/datum/reagent/fermi/enthrall/on_mob_life(mob/living/carbon/M)
+/datum/reagent/fermi/enthrall/on_mob_life(mob/living/carbon/mob_affected)
 	. = ..()
 	if(purity < 0.5)//DO NOT SPLIT INTO DIFFERENT CHEM: This relies on DoNotSplit - has to be done this way.
 
-		if (M.ckey == creatorID && creatorName == M.real_name)//If the creator drinks it, they fall in love randomly. If someone else drinks it, the creator falls in love with them.
-			if(M.has_status_effect(/datum/status_effect/in_love))//Can't be enthralled when enthralled, so to speak.
+		if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If the creator drinks it, they fall in love randomly. If someone else drinks it, the creator falls in love with them.
+			if(mob_affected.has_status_effect(/datum/status_effect/in_love))//Can't be enthralled when enthralled, so to speak.
 				return
-			var/list/seen = (M.in_fov(M.client?.view || world.view) - M) | viewers(M.client?.view || world.view, M)
+			var/list/seen = (mob_affected.in_fov(mob_affected.client?.view || world.view) - mob_affected) | viewers(mob_affected.client?.view || world.view, mob_affected)
 			for(var/victim in seen)
 				if(ishuman(victim))
 					var/mob/living/carbon/V = victim
@@ -194,61 +194,61 @@ Creating a chem with a low purity will make you permanently fall in love with so
 
 			if(LAZYLEN(seen))
 				return
-			M.reagents.del_reagent(type)
-			FallInLove(M, pick(seen))
+			mob_affected.reagents.del_reagent(type)
+			FallInLove(mob_affected, pick(seen))
 			return
 
 		else // If someone else drinks it, the creator falls in love with them!
-			var/mob/living/carbon/C = get_mob_by_key(creatorID)
-			if(M.has_status_effect(/datum/status_effect/in_love))
+			var/mob/living/carbon/chem_creator = get_mob_by_key(creatorID)
+			if(mob_affected.has_status_effect(/datum/status_effect/in_love))
 				return
-			if(C.client && (M in C.in_fov(C.client.view)))
-				M.reagents.del_reagent(type)
-				FallInLove(C, M)
+			if(chem_creator.client && (mob_affected in chem_creator.in_fov(chem_creator.client.view)))
+				mob_affected.reagents.del_reagent(type)
+				FallInLove(chem_creator, mob_affected)
 			return
-	if (M.ckey == creatorID && creatorName == M.real_name)//If you yourself drink it, it supresses the vocal effects, for stealth. NEVERMIND ADD THIS LATER I CAN'T GET IT TO WORK
+	if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If you yourself drink it, it supresses the vocal effects, for stealth. NEVERMIND ADD THIS LATER I CAN'T GET IT TO WORK
 		return
-	if(!M.client)
+	if(!mob_affected.client)
 		metabolization_rate = 0 //Stops powergamers from quitting to avoid affects. but prevents affects on players that don't exist for performance.
 		return
 	if(metabolization_rate == 0)
 		metabolization_rate = 0.1
-	var/datum/status_effect/chem/enthrall/E = M.has_status_effect(/datum/status_effect/chem/enthrall)//If purity is over 5, works as intended
-	if(!E)
+	var/datum/status_effect/chem/enthrall/enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)//If purity is over 5, works as intended
+	if(!enthrall_chem)
 		return
 	else
-		E.enthrallTally += 1
+		enthrall_chem.enthrallTally += 1
 	..()
 
-/datum/reagent/fermi/enthrall/overdose_start(mob/living/carbon/M)//I made it so the creator is set to gain the status for someone random.
+/datum/reagent/fermi/enthrall/overdose_start(mob/living/carbon/mob_affected)//I made it so the creator is set to gain the status for someone random.
 	. = ..()
 	metabolization_rate = 1//Mostly to manage brain damage and reduce server stress
-	if (M.ckey == creatorID && creatorName == M.real_name)//If the creator drinks 100u, then you get the status for someone random (They don't have the vocal chords though, so it's limited.)
-		if (!M.has_status_effect(/datum/status_effect/chem/enthrall))
-			to_chat(M, "<span class='love'><i>You are unable to resist your own charms anymore, and become a full blown narcissist.</i></span>")
-	ADD_TRAIT(M, TRAIT_PACIFISM, "MKUltra")
-	var/datum/status_effect/chem/enthrall/E
-	if (!M.has_status_effect(/datum/status_effect/chem/enthrall))
-		M.apply_status_effect(/datum/status_effect/chem/enthrall)
-		E = M.has_status_effect(/datum/status_effect/chem/enthrall)
-		E.enthrallID = creatorID
-		E.enthrallGender = creatorGender
-		E.master = creator
+	if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If the creator drinks 100u, then you get the status for someone random (They don't have the vocal chords though, so it's limited.)
+		if (!mob_affected.has_status_effect(/datum/status_effect/chem/enthrall))
+			to_chat(mob_affected, "<span class='love'><i>You are unable to resist your own charms anymore, and become a full blown narcissist.</i></span>")
+	ADD_TRAIT(mob_affected, TRAIT_PACIFISM, "MKUltra")
+	var/datum/status_effect/chem/enthrall/enthrall_chem
+	if (!mob_affected.has_status_effect(/datum/status_effect/chem/enthrall))
+		mob_affected.apply_status_effect(/datum/status_effect/chem/enthrall)
+		enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
+		enthrall_chem.enthrallID = creatorID
+		enthrall_chem.enthrallGender = creatorGender
+		enthrall_chem.master = creator
 	else
-		E = M.has_status_effect(/datum/status_effect/chem/enthrall)
-	if(E.lewd)
-		to_chat(M, "<span class='big love'><i>Your mind shatters under the volume of the mind altering chem inside of you, breaking all will and thought completely. Instead the only force driving you now is the instinctual desire to obey and follow [creatorName]. Your highest priority is now to stay by their side and protect them at all costs.</i></span>")
+		enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
+	if(enthrall_chem.lewd)
+		to_chat(mob_affected, "<span class='big love'><i>Your mind shatters under the volume of the mind altering chem inside of you, breaking all will and thought completely. Instead the only force driving you now is the instinctual desire to obey and follow [creatorName]. Your highest priority is now to stay by their side and protect them at all costs.</i></span>")
 	else
-		to_chat(M, "<span class='big warning'><i>The might volume of chemicals in your system overwhelms your mind, and you suddenly agree with what [creatorName] has been saying. Your highest priority is now to stay by their side and protect them at all costs.</i></span>")
-	M.adjust_slurring(60 SECONDS)
-	M.adjust_confusion(60 SECONDS)
-	E.phase = 4
-	E.mental_capacity = 0
-	E.customTriggers = list()
+		to_chat(mob_affected, "<span class='big warning'><i>The might volume of chemicals in your system overwhelms your mind, and you suddenly agree with what [creatorName] has been saying. Your highest priority is now to stay by their side and protect them at all costs.</i></span>")
+	mob_affected.adjust_slurring(60 SECONDS)
+	mob_affected.adjust_confusion(60 SECONDS)
+	enthrall_chem.phase = 4
+	enthrall_chem.mental_capacity = 0
+	enthrall_chem.customTriggers = list()
 	SSblackbox.record_feedback("tally", "fermi_chem", 1, "Thralls mindbroken")
 
-/datum/reagent/fermi/enthrall/overdose_process(mob/living/carbon/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
+/datum/reagent/fermi/enthrall/overdose_process(mob/living/carbon/mob_affected)
+	mob_affected.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
 	..()
 
 /datum/reagent/fermi/proc/FallInLove(mob/living/carbon/Lover, mob/living/carbon/Love)
