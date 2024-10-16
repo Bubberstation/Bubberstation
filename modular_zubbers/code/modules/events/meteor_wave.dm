@@ -168,7 +168,6 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /obj/effect/meteor/candy/pumpkin/Initialize()
 	. = ..()
-	meteorsound = pick('sound/hallucinations/im_here1.ogg','sound/hallucinations/im_here2.ogg')
 
 /obj/effect/meteor/candy/pumpkin/meteor_effect()
 	..()
@@ -185,6 +184,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /obj/effect/meteor/candy/pumpking/Initialize()
 	. = ..()
+	src.transform *= 2
 	meteorsound = pick('sound/hallucinations/im_here1.ogg','sound/hallucinations/im_here2.ogg')
 
 /obj/effect/meteor/candy/pumpking/meteor_effect()
@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	desc = "Who thought beating candy out of dogs was a fun activity anyways?"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "pinata"
-	threat = 4
+	threat = 5
 
 /obj/effect/meteor/candy/corgi/meteor_effect()
 	..()
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	icon_state = "bluespace"
 	dropamt = 9
 	hits = 12
-	threat = 10
+	threat = 12
 	signature = "bluespace flux"
 
 /obj/effect/meteor/candy/bluespace/Bump()
