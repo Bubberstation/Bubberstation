@@ -69,6 +69,17 @@
 		if(16)
 			holiday_colors += ORANGE_DARK
 
+/datum/holiday/halloween/celebrate()
+	. = ..()
+	if(locate(/datum/round_event/spooky) in SSevents.running)
+		return
+
+	var/datum/round_event_control/spooky_scary = locate(/datum/round_event_control/spooky) in SSevents.control
+	if(isnull(spooky_scary))
+		return
+
+	spooky_scary.run_event(admin_forced = TRUE)
+
 #undef PURPLE_LIGHT
 #undef PURPLE_DARK
 #undef ORANGE_LIGHT
