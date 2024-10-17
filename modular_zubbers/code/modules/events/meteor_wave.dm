@@ -58,6 +58,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		if(prob(50))
 			wave_name = "candy"
 			wave_type = GLOB.meteors_candy_halloween
+			warning_time = /datum/round_event/meteor_wave/candy::warning_time
 			announce_prefix = /datum/round_event/meteor_wave/candy::announce_prefix
 			announce_desc = /datum/round_event/meteor_wave/candy::announce_desc
 			announce_fluff = /datum/round_event/meteor_wave/candy::announce_fluff
