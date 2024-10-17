@@ -15,12 +15,14 @@
 	var/palette = rand(1, 15)
 	switch(palette)
 		if(1, 2)
-			holiday_colors += PURPLE_LIGHT
-			holiday_colors += PURPLE_DARK
-			holiday_colors += GREY_DARK
-			holiday_colors += ORANGE_DARK
-			holiday_colors += ORANGE_LIGHT
-			holiday_colors += GREY_LIGHT
+			holiday_colors += list(
+				PURPLE_LIGHT,
+				PURPLE_DARK,
+				GREY_DARK,
+				ORANGE_DARK,
+				ORANGE_LIGHT,
+				GREY_LIGHT,
+				)
 		if(3)
 			holiday_colors += list(
 				PURPLE_LIGHT,
