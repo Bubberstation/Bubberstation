@@ -1,0 +1,134 @@
+2024-10-17:
+  Adrian16199:
+  - rscadd: HFZ can have digitigrade legs now.
+  Aroliacue:
+  - balance: Increased Shadekin bodypart burn damage received from 10% to 20%
+  - spellcheck: Fixed some desc typos in shadekin.dm
+  - bugfix: Removed doubleup eyes organ in shadekin.dm
+  Arturlang:
+  - balance: brawn costs 10 blood instead of 8, and has a cooldown of 12 seconds,
+      instead of 9
+  - balance: fortitude now has a cooldown of 20 seconds, from 8, also you will not
+      be able to heal any brute or burn damage while it is active, the scaling of
+      the damage resist is also halved, no longer is maximum resistance of 0.3 for
+      brute, 0.5 for burn achieved at level 4, now it is reached at level 8, changing
+      by 0.05 per ability level
+  - balance: haste costs 9 blood instead of 6, and has a cooldown of 15 seconds from
+      12
+  - balance: Silver stakes no longer gib/dust sleepy bloodsuckers, instead they remove
+      hearts, which leaves bloodsuckers power-less
+  - balance: The candelabrum is no longer as tough
+  - bugfix: candelabrum now turns off when unsecured
+  - balance: Bloodsucker no longer level from sol when they reach level 4
+  - balance: Ventrue now can only use blood drunk from sentients to level up vassals
+      if they wish to level themselves up.
+  - refactor: Refactors how ventrue vassalizing is handled, no longer copying most
+      of level up code for it.
+  - bugfix: Malkavians will now actually get a notification and a objective once a
+      bloodsucker breaks the masquarade
+  Bangle:
+  - spellcheck: Added some alt titles
+  Boviro:
+  - rscadd: Re-adds gun safeties
+  - rscadd: Guns with enabled safeties will disable their safeties if you attempt
+      to fire with it on.
+  BurgerBB:
+  - balance: Buffs Xeno Weed temperature survivability in hotter environments. It
+      was increased from 300K to 350K, which is only slightly higher than Moon Station's
+      external temperature of 347.65K.
+  - bugfix: Fixes missing Moon Station wire that caused Engineering (just the area
+      outside the SM) to not be connected to the grid.
+  - balance: Heretic Transmutation Runes can no longer have Fingerprints.
+  - rscdel: Removes the Mannequin in Moonstation engineering because a shaft miner
+      died to it 5 times.
+  FlufflesTheDog (code), ReturnToZender (port):
+  - bugfix: A restraining order has been placed on medibots on behalf of synthetic
+      crew members due to reports of harassment.
+  IgiariValkyr:
+  - rscadd: Lizard Gas can actually be staffed now!
+  KathrinBailey:
+  - bugfix: Jean skirts no longer cover chest/legs.
+  KazooBard:
+  - rscadd: Added the card reader to the autolathe's designs
+  LT3:
+  - code_imp: Radiation storm warning only sent to players who are in an area without
+      radiation protection
+  - balance: Occupied dorms are protected from radiation storms and scrubbers
+  - balance: Morgue surgery tray now comes with an autopsy scanner
+  - code_imp: Bubber medsecHUD replaced with TG version
+  - rscadd: Medic labcoat/vest added to Orderly garment bag
+  - rscdel: No more eigenstate in scrubber overflows
+  - qol: Gravity generator failures/power restores are now less announcement and sound
+      spammy
+  - admin: Storyteller backend updates
+  - rscdel: Disabled sandstorm random event
+  LT3, vinylspiders, LordVoidron:
+  - rscadd: Private (subtle) PDA messaging by adding "#" to start of message
+  - qol: Added button to NTOS messenger TGUI to toggle private messaging
+  - admin: Public logging for non-subtle PDA messages
+  Mitryll:
+  - rscadd: Added *squeal emote
+  - rscadd: Added *tailthump emote
+  - sound: Added sounds for *squeal and *tailthump
+  - balance: Set Heretic sacrifice target amount to 5-6.
+  MosleyTheMalO:
+  - rscadd: ports our job alt titles
+  Odairu:
+  - qol: AIs can open doors without looking
+  - bugfix: TK no longer teleports to stripper pole
+  - rscadd: adds silicon manager pda app
+  ReturnToZender:
+  - balance: Re-orders character directory sorting based on what really matters.
+  - rscdel: The Lungbuster now no longer calls forth hell's sirens.
+  - rscadd: You can now control what your name is, when you spawn as an ERT.
+  ReturnToZender (code):
+  - rscadd: The futuristic security helmet is now properly added to the multisec vendor,
+      and the loadout along with the patrol cap.
+  Shadow-Quill:
+  - balance: Oppressive Force Relocation Medicells no longer require bluespace extracts
+      to become functional.
+  SkyratBot:
+  - balance: Plexagon Crew Manifest is now a default PDA app for everyone, and is
+      free.
+  - balance: Plexagon Crew Manifest no longer provides Detomatix resistance, but security
+      records and status display control now do.
+  StrangeWeirdKitten:
+  - rscadd: Holofans and Pipescrubbers to Moon and Box's ordnance
+  - rscadd: Unbolted doors to the ordnance freeze chambers
+  - bugfix: Missing power wire to QM's office on Box
+  - rscdel: Smart Organ storage in the middle of Box' medbay
+  Swiftfeather:
+  - balance: Reduced wound chance multiplication when injured.
+  - rscdel: Removed hostile pitbull crates.
+  nevimer:
+  - refactor: Vetted system is now using SQL and improved.
+  - rscadd: Centralsmith Donor Item
+  pixelkitty286:
+  - rscadd: cut down omitool a small upgrade for the scanner
+  - qol: made research borgs actually able to revive and work on synths
+  - balance: research cyborg grippers
+  - bugfix: research cyborgs not being able to repair synths. research cyborgs being
+      able to pick up the nuke disk (oops lol).
+  shayoki:
+  - rscadd: Added a basic megacell in Boxstation's EVA Storage room inside the inducer
+      storage.
+  - rscadd: Added two secure lockers in Boxstation's Brig evidence room.
+  - rscdel: Removed Borg Burger in Boxstation's robotics.
+  - bugfix: Realigned the airlock and windows for Boxstation's Blueshield office to
+      match the Vacant Office nearby it.
+  - bugfix: Fixed an open wall connecting to Boxstation's Garden and maints.
+  - spellcheck: fixed a crate's name in Boxstation's test firing range.
+  shellspeed1:
+  - rscadd: Thanks to the effort of syndicate engineers, you can now reproduce the
+      interdyne cargo equipment as well as firing pins and headsets complete with
+      comms key! Don't let it get stolen by NT!
+  sippykot:
+  - rscadd: you can buy the surgical medkit in cargo now
+  thegrb93:
+  - bugfix: Fix runtimes and bugs with using lewd toys on cyborgs
+  theselfish:
+  - rscadd: Recent events have caused an insane amount of plastic medals to flood
+      the market.
+  - spellcheck: Various Bloodsucker things have been renamed after the Inconnu paid
+      a visit.
+  - rscdel: Removed storage from (nearly) all the Bunny Suits
