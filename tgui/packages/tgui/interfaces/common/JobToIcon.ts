@@ -105,6 +105,7 @@ const ALTTITLES = {
   // Blueshield - shield-dog
   'Command Bodyguard': BASEICONS['Blueshield'],
   'Executive Protection Agent': BASEICONS['Blueshield'],
+  'Command Protection Officer': BASEICONS['Blueshield'],
   Henchman: BASEICONS['Blueshield'],
   // Botanist - seedling
   Hydroponicist: BASEICONS['Botanist'],
@@ -169,6 +170,7 @@ const ALTTITLES = {
   'Forensic Technician': BASEICONS['Detective'],
   'Private Investigator': BASEICONS['Detective'],
   'Forensic Scientist': BASEICONS['Detective'],
+  'CID Officer': BASEICONS['Detective'],
   // Geneticist - dna
   'Mutation Researcher': BASEICONS['Geneticist'],
   // Head of Personnel - dog
@@ -205,6 +207,7 @@ const ALTTITLES = {
   Pantomimist: BASEICONS['Mime'],
   // Nanotrasen Consultant - clipboard-check
   'Nanotrasen Diplomat': BASEICONS['Nanotrasen Consultant'],
+  'Corporate Consultant': BASEICONS['Nanotrasen Consultant'],
   // Paramedic - truck-medical
   'Emergency Medical Technician': BASEICONS['Paramedic'],
   'Search and Rescue Technician': BASEICONS['Paramedic'],
@@ -256,6 +259,8 @@ const ALTTITLES = {
   'Combat Medic': BASEICONS['Security Medic'],
   // Security Officer - shield-halved
   'Security Operative': BASEICONS['Security Officer'],
+  'Security Specialist': BASEICONS['Security Officer'],
+  'Defense Contractor': BASEICONS['Security Officer'],
   Peacekeeper: BASEICONS['Security Officer'],
   'Security Cadet': BASEICONS['Security Officer'],
   // Shaft Miner - digging
@@ -264,6 +269,8 @@ const ALTTITLES = {
   Spelunker: BASEICONS['Shaft Miner'],
   'Drill Technician': BASEICONS['Shaft Miner'],
   Prospector: BASEICONS['Shaft Miner'],
+  Dredger: BASEICONS['Shaft Miner'],
+  'Contract Miner': BASEICONS['Shaft Miner'],
   // Station Engineer - gears
   'Emergency Damage Control Technician': BASEICONS['Station Engineer'],
   Electrician: BASEICONS['Station Engineer'],

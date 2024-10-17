@@ -217,7 +217,7 @@
 	new /obj/item/cautery/cruel(src)
 	new /obj/item/circular_saw(src)
 	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/suit/toggle/labcoat/hospitalgown(src) // SKYRAT EDIT ADDITION
+	new /obj/item/autopsy_scanner(src) // BUBBER EDIT ADDITION
 	new /obj/item/hemostat/cruel(src)
 	new /obj/item/razor/surgery(src)
 	new /obj/item/retractor/cruel(src)

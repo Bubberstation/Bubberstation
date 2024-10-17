@@ -152,6 +152,10 @@
 #define ANNOUNCER_SHUTTLE "announcer_shuttle"
 //SKYRAT EDIT END
 
+// BUBBER EDIT ADDITION BEGIN
+#define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
+// BUBBER EDIT ADDITION END
+
 
 /// Global list of all of our announcer keys.
 GLOBAL_LIST_INIT(announcer_keys, list(
@@ -197,6 +201,9 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_NRI_RAIDERS,
 	ANNOUNCER_OUTBREAK6,
 	//SKYRAT EDIT END
+	// BUBBER EDIT ADDITION BEGIN
+	ANNOUNCER_GRAVGENBLACKOUT,
+	// BUBBER EDIT ADDITION END
 ))
 
 /// List of all of our sound keys.

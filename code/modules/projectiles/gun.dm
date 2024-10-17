@@ -77,7 +77,7 @@
 		pin = new pin(src)
 
 	add_seclight_point()
-//	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES //BUBBER EDIT REMOVAL
+	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
 	give_manufacturer_examine() // SKYRAT EDIT ADDITON - MANUFACTURER EXAMINE
 	add_bayonet_point()
 
@@ -220,7 +220,7 @@
 				ignored_mobs = user
 		)
 
-	if(chambered.integrity_damage)
+	if(chambered?.integrity_damage)
 		take_damage(chambered.integrity_damage, sound_effect = FALSE)
 
 /obj/item/gun/atom_destruction(damage_flag)
