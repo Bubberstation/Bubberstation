@@ -8,10 +8,10 @@
 /datum/holiday/halloween
 	name = HALLOWEEN
 	begin_day = 17
+	holiday_colors = list()
 
 /datum/holiday/halloween/New()
 	. = ..()
-	LAZYCLEARLIST(holiday_colors)
 	var/palette = rand(1, 15)
 	switch(palette)
 		if(1, 2)
