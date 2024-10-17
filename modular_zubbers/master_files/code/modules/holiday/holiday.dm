@@ -40,8 +40,10 @@
 			holiday_colors += pick(GREY_LIGHT, GREY_DARK)
 			holiday_colors += pick(ORANGE_LIGHT, ORANGE_DARK)
 		if(8)
-			holiday_colors += pick(PURPLE_LIGHT, PURPLE_DARK)
-			holiday_colors += pick(ORANGE_LIGHT, ORANGE_DARK)
+			holiday_colors += list(
+				pick(PURPLE_LIGHT, PURPLE_DARK),
+				pick(ORANGE_LIGHT, ORANGE_DARK),
+				)
 		if(9)
 			holiday_colors += PURPLE_LIGHT
 			holiday_colors += ORANGE_LIGHT
