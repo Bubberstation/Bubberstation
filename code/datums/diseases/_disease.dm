@@ -17,8 +17,6 @@
 	var/max_stages = 0
 	/// The probability of this infection advancing a stage every second the cure is not present.
 	var/stage_prob = 2
-	/// How long this infection incubates (non-visible) before revealing itself
-	var/incubation_time
 	/// Has the virus hit its limit?
 	var/stage_peaked = FALSE
 	/// How many cycles has the virus been at its peak?
@@ -49,11 +47,14 @@
 	var/infectable_biotypes = MOB_ORGANIC //if the disease can spread on organics, synthetics, or undead
 	var/process_dead = FALSE //if this ticks while the host is dead
 	var/copy_type = null //if this is null, copies will use the type of the instance being copied
+	var/bypasses_disease_recovery = FALSE // Does it skip self recovery process, such as event diseases
 
 /datum/disease/Destroy()
 	. = ..()
 	if(affected_mob)
 		remove_disease()
+	if(event_disease)
+		SSdisease.event_diseases -= src
 	SSdisease.active_diseases.Remove(src)
 
 //add this disease if the host does not already have too many
@@ -64,15 +65,27 @@
 //add the disease with no checks
 /datum/disease/proc/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
+	if(D.affected_mob)
+		stack_trace("Disease [D.debug_id] [D] tried to infect [infectee] while already bound to an affected mob [D.affected_mob]!")
+		log_virus_debug("Disease [D.debug_id] [D] tried to infect [infectee] while already bound to an affected mob [D.affected_mob]!")
+		return
+	if(!D.debug_id)
+		D.debug_id = assign_random_name()
+	if(!D.start_time)
+		D.start_time = REALTIMEOFDAY
 	LAZYADD(infectee.diseases, D)
 	D.affected_mob = infectee
 	SSdisease.active_diseases += D //Add it to the active diseases list, now that it's actually in a mob and being processed.
+	if(event_disease)
+		SSdisease.event_diseases += D
 
 	D.after_add()
 	infectee.med_hud_set_status()
-	register_disease_signals()
+	D.register_disease_signals() // BUBBER EDIT CHANGE - Disease Transmission
 
 	var/turf/source_turf = get_turf(infectee)
+	mobs_infected++
+	log_virus_debug("New infectee: [infectee]. Total infected by this carrier: [mobs_infected]")
 	log_virus("[key_name(infectee)] was infected by virus: [src.admin_details()] at [loc_name(source_turf)]")
 
 /// Updates the spread flags set, ensuring signals are updated as necessary
@@ -128,7 +141,7 @@
 	if(SPT_PROB(stage_prob*slowdown, seconds_per_tick))
 		update_stage(min(stage + 1, max_stages))
 
-	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE)
+	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && bypasses_disease_recovery != TRUE)
 		switch(severity)
 			if(DISEASE_SEVERITY_POSITIVE) //good viruses don't go anywhere after hitting max stage - you can try to get rid of them by sleeping earlier
 				cycles_to_beat = max(DISEASE_RECOVERY_SCALING, DISEASE_CYCLES_POSITIVE) //because of the way we later check for recovery_prob, we need to floor this at least equal to the scaling to avoid infinitely getting less likely to cure
@@ -229,7 +242,11 @@
 	return !carrier
 
 /datum/disease/proc/update_stage(new_stage)
+	if(new_stage > stage && !isnull(affected_mob))
+		log_virus_debug("[affected_mob.name] stage advance [stage] > [new_stage]. Time elapsed: [DisplayTimeText(REALTIMEOFDAY - start_time)] (Stage speed [stage_prob])")
 	stage = new_stage
+	if(!isnull(affected_mob))
+		affected_mob.med_hud_set_status()
 	if(new_stage == max_stages && !(stage_peaked)) //once a virus has hit its peak, set it to have done so
 		stage_peaked = TRUE
 
@@ -258,7 +275,7 @@
 		return FALSE
 	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return FALSE
-	if(affected_mob.can_spread_airborne_diseases())
+	if(!affected_mob.can_spread_airborne_diseases()) // BUBBER EDIT CHANGE - Disease Transmission
 		return FALSE
 	if(!has_required_infectious_organ(affected_mob, ORGAN_SLOT_LUNGS)) //also if you lack lungs
 		return FALSE
@@ -268,6 +285,10 @@
 	if(!istype(mob_loc))
 		return FALSE
 	for(var/mob/living/carbon/to_infect in oview(spread_range, affected_mob))
+		// BUBBER EDIT ADDITION START - Disease Transmission
+		if(!prob(infectivity))
+			continue
+		// BUBBER EDIT ADDITION END - Disease Transmission
 		var/turf/infect_loc = to_infect.loc
 		if(!istype(infect_loc))
 			continue
@@ -310,10 +331,9 @@
 /datum/disease/proc/Copy()
 	//note that stage is not copied over - the copy starts over at stage 1
 	var/static/list/copy_vars = list("name", "visibility_flags", "disease_flags", "spread_flags", "form", "desc", "agent", "spread_text",
-									"cure_text", "max_stages", "stage_prob", "incubation_time", "viable_mobtypes", "cures", "infectivity", "cure_chance",
-									"required_organ", "bypasses_immunity", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
-									"infectable_biotypes", "process_dead")
-
+									"cure_text", "max_stages", "stage_prob", "viable_mobtypes", "cures", "infectivity", "cure_chance",
+									"required_organ", "bypasses_immunity", "bypasses_disease_recovery", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
+									"infectable_biotypes", "process_dead", "event_disease")
 	var/datum/disease/D = copy_type ? new copy_type() : new type()
 	for(var/V in copy_vars)
 		var/val = vars[V]
@@ -334,6 +354,7 @@
 	unregister_disease_signals()
 	LAZYREMOVE(affected_mob.diseases, src) //remove the datum from the list
 	affected_mob.med_hud_set_status()
+	log_virus_debug("[affected_mob] was cured of virus. Total infected by this carrier: [mobs_infected]")
 	affected_mob = null
 
 /**
@@ -375,8 +396,10 @@
 /datum/disease/proc/on_breath(datum/source, seconds_per_tick, ...)
 	SIGNAL_HANDLER
 
+	/* BUBBER EDIT REMOVE START - Disease Transmission
 	if(SPT_PROB(infectivity * 4, seconds_per_tick))
-		airborne_spread()
+	*/// BUBBER EDIT REMOVE END - Disease Transmission
+	airborne_spread()
 
 //Use this to compare severities
 /proc/get_disease_severity_value(severity)
