@@ -34,8 +34,10 @@
 			holiday_colors += pick(PURPLE_LIGHT, PURPLE_DARK)
 			holiday_colors += pick(ORANGE_LIGHT, ORANGE_DARK)
 		if(6)
-			holiday_colors += pick(GREY_LIGHT, GREY_DARK)
-			holiday_colors += pick(PURPLE_LIGHT, PURPLE_DARK)
+			holiday_colors += list(
+				pick(GREY_LIGHT, GREY_DARK),
+				pick(PURPLE_LIGHT, PURPLE_DARK),
+				)
 		if(7)
 			holiday_colors += list(
 				pick(GREY_LIGHT, GREY_DARK),
