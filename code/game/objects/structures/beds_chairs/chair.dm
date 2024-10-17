@@ -17,7 +17,10 @@
 	var/buildstackamount = 1
 	var/item_chair = /obj/item/chair // if null it can't be picked up
 	///How much sitting on this chair influences fishing difficulty
-	var/fishing_modifier = -3
+	var/fishing_modifier = -5
+	var/has_armrest = FALSE
+	// The mutable appearance used for the overlay over buckled mobs.
+	var/mutable_appearance/armrest
 
 /obj/structure/chair/Initialize(mapload)
 	. = ..()
@@ -25,8 +28,18 @@
 		name = "tactical [name]"
 		fishing_modifier -= 4
 	MakeRotate()
+	if (has_armrest)
+		gen_armrest()
 	if(can_buckle && fishing_modifier)
 		AddComponent(/datum/component/adjust_fishing_difficulty, fishing_modifier)
+
+/obj/structure/chair/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(same_z_layer || !has_armrest)
+		return ..()
+	cut_overlay(armrest)
+	QDEL_NULL(armrest)
+	gen_armrest()
+	return ..()
 
 /obj/structure/chair/examine(mob/user)
 	. = ..()
@@ -40,6 +53,7 @@
 
 /obj/structure/chair/Destroy()
 	SSjob.latejoin_trackers -= src //These may be here due to the arrivals shuttle
+	QDEL_NULL(armrest)
 	return ..()
 
 /obj/structure/chair/atom_deconstruct(disassembled)
@@ -63,6 +77,19 @@
 		return
 	. = ..()
 
+/obj/structure/chair/proc/gen_armrest()
+	armrest = GetArmrest()
+	armrest.layer = ABOVE_MOB_LAYER
+	update_armrest()
+
+/obj/structure/chair/proc/GetArmrest()
+	return mutable_appearance(icon, "[icon_state]_armrest")
+
+/obj/structure/chair/proc/update_armrest()
+	if(has_buckled_mobs())
+		add_overlay(armrest)
+	else
+		cut_overlay(armrest)
 
 ///allows each chair to request the electrified_buckle component with overlays that dont look ridiculous
 /obj/structure/chair/proc/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
@@ -117,9 +144,14 @@
 		playsound(src, 'modular_skyrat/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
 	//SKYRAT EDIT END
+	if (has_armrest)
+		update_armrest()
+
 /obj/structure/chair/post_unbuckle_mob()
 	. = ..()
 	handle_layer()
+	if (has_armrest)
+		update_armrest()
 
 /obj/structure/chair/setDir(newdir)
 	..()
@@ -161,47 +193,8 @@
 	max_integrity = 70
 	buildstackamount = 2
 	item_chair = null
-	fishing_modifier = -5
-	// The mutable appearance used for the overlay over buckled mobs.
-	var/mutable_appearance/armrest
-
-/obj/structure/chair/comfy/Initialize(mapload)
-	gen_armrest()
-	return ..()
-
-/obj/structure/chair/comfy/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
-	if(same_z_layer)
-		return ..()
-	cut_overlay(armrest)
-	QDEL_NULL(armrest)
-	gen_armrest()
-	return ..()
-
-/obj/structure/chair/comfy/proc/gen_armrest()
-	armrest = GetArmrest()
-	armrest.layer = ABOVE_MOB_LAYER
-	update_armrest()
-
-/obj/structure/chair/comfy/proc/GetArmrest()
-	return mutable_appearance(icon, "[icon_state]_armrest")
-
-/obj/structure/chair/comfy/Destroy()
-	QDEL_NULL(armrest)
-	return ..()
-
-/obj/structure/chair/comfy/post_buckle_mob(mob/living/M)
-	. = ..()
-	update_armrest()
-
-/obj/structure/chair/comfy/proc/update_armrest()
-	if(has_buckled_mobs())
-		add_overlay(armrest)
-	else
-		cut_overlay(armrest)
-
-/obj/structure/chair/comfy/post_unbuckle_mob()
-	. = ..()
-	update_armrest()
+	fishing_modifier = -7
+	has_armrest = TRUE
 
 /obj/structure/chair/comfy/brown
 	color = rgb(70, 47, 28)
@@ -463,7 +456,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	buildstacktype = /obj/item/stack/sheet/bronze
 	buildstackamount = 1
 	item_chair = null
-	fishing_modifier = -12 //the pinnacle of Ratvarian technology.
+	fishing_modifier = -13 //the pinnacle of Ratvarian technology.
+	has_armrest = TRUE
 	/// Total rotations made
 	var/turns = 0
 
@@ -481,6 +475,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	turns++
 	if(turns >= 8)
 		STOP_PROCESSING(SSfastprocess, src)
+
+/obj/structure/chair/bronze/MakeRotate()
+	return
 
 /obj/structure/chair/bronze/click_alt(mob/user)
 	turns = 0
