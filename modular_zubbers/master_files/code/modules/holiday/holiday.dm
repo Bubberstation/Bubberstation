@@ -22,40 +22,40 @@
 				ORANGE_DARK,
 				ORANGE_LIGHT,
 				GREY_LIGHT,
-				)
+			)
 		if(3)
 			holiday_colors += list(
 				PURPLE_LIGHT,
 				ORANGE_LIGHT,
 				GREY_LIGHT,
-				)
+			)
 		if(4)
 			holiday_colors += list(
 				PURPLE_DARK,
 				ORANGE_DARK,
 				GREY_DARK,
-				)
+			)
 		if(5)
 			holiday_colors += list(
 				pick(GREY_LIGHT, GREY_DARK),
 				pick(PURPLE_LIGHT, PURPLE_DARK),
 				pick(ORANGE_LIGHT, ORANGE_DARK),
-				)
+			)
 		if(6)
 			holiday_colors += list(
 				pick(GREY_LIGHT, GREY_DARK),
 				pick(PURPLE_LIGHT, PURPLE_DARK),
-				)
+			)
 		if(7)
 			holiday_colors += list(
 				pick(GREY_LIGHT, GREY_DARK),
 				pick(ORANGE_LIGHT, ORANGE_DARK),
-				)
+			)
 		if(8)
 			holiday_colors += list(
 				pick(PURPLE_LIGHT, PURPLE_DARK),
 				pick(ORANGE_LIGHT, ORANGE_DARK),
-				)
+			)
 		if(9)
 			holiday_colors += list(PURPLE_LIGHT, ORANGE_LIGHT)
 		if(10)
