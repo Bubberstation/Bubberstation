@@ -59,8 +59,7 @@
 		if(9)
 			holiday_colors += list(PURPLE_LIGHT, ORANGE_LIGHT)
 		if(10)
-			holiday_colors += PURPLE_DARK
-			holiday_colors += ORANGE_DARK
+			holiday_colors += list(PURPLE_DARK, ORANGE_DARK)
 		if(11)
 			holiday_colors = list(
 				COLOR_PRIDE_PURPLE,
