@@ -98,12 +98,8 @@ const CharacterDirectoryList = (props) => {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortId(id);
-      setSortOrder('asc');
+      setSortOrder('desc'); // Set to descending on new sort
     }
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
   };
 
   const handleRandomView = () => {
@@ -118,7 +114,36 @@ const CharacterDirectoryList = (props) => {
     character.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  const erpOrder = [
+    'Top - Dom',
+    'Top - Switch',
+    'Top - Sub',
+    'Bottom - Dom',
+    'Bottom - Switch',
+    'Bottom - Sub',
+    'Verse - Dom',
+    'Verse - Switch',
+    'Verse - Sub',
+    'Verse-Top - Dom',
+    'Verse-Top - Switch',
+    'Verse-Top - Sub',
+    'Verse-Bottom - Dom',
+    'Verse-Bottom - Switch',
+    'Verse-Bottom - Sub',
+    'Yes',
+    'Check OOC Notes',
+    'Ask (L)OOC',
+    'No',
+    'Unset',
+  ];
+
   const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
+    if (sortId === 'erp') {
+      const indexA = erpOrder.indexOf(a.erp);
+      const indexB = erpOrder.indexOf(b.erp);
+      return sortOrder === 'desc' ? indexA - indexB : indexB - indexA; // Toggle between descending and ascending
+    }
+
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
     return sortOrderValue * a[sortId].localeCompare(b[sortId]);
   });

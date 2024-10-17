@@ -455,6 +455,11 @@
 			//SKYRAT EDIT ADDITION BEGIN - EXAMINE RECORDS
 			if(target_record && length(target_record.past_medical_records) > RECORDS_INVISIBLE_THRESHOLD)
 				. += "<a href='?src=[REF(src)];hud=m;medrecords=1;examine_time=[world.time]'>\[View medical records\]</a>"
+			if(istype(w_uniform, /obj/item/clothing/under))
+				var/obj/item/clothing/under/undershirt = w_uniform
+				var/sensor_text = undershirt.get_sensor_text()
+				if(sensor_text)
+					. += "Sensor Status: [sensor_text]"
 			//SKYRAT EDIT END
 
 		if(HAS_TRAIT(user, TRAIT_SECURITY_HUD))
@@ -584,3 +589,8 @@
 		if(101 to INFINITY)
 			age_text = "withering away"
 	. += list(span_notice("[p_They()] appear[p_s()] to be [age_text]."))
+
+	if(istype(w_uniform, /obj/item/clothing/under))
+		var/obj/item/clothing/under/undershirt = w_uniform
+		if(undershirt.has_sensor == BROKEN_SENSORS)
+			. += list(span_notice("The [undershirt]'s medical sensors are sparking."))
