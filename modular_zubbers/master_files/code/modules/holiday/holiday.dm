@@ -5,6 +5,28 @@
 #define GREY_LIGHT "#FFFFFF"
 #define GREY_DARK "#292929"
 
+/datum/holiday/proc/queue_storyteller_celebration(datum/round_event/event, datum/round_event_control/control)
+	if(isnull(event) || isnull(control))
+		stack_trace("Invalid holiday event passed to storyteller")
+		return
+
+	if(locate(event) in SSevents.running)
+		return
+
+	var/datum/round_event_control/holiday_event = locate(control) in SSevents.control
+	if(isnull(holiday_event))
+		return
+
+	holiday_event.run_event(admin_forced = TRUE)
+
+/datum/holiday/valentines/celebrate()
+	. = ..()
+	queue_storyteller_celebration(event = /datum/round_event/valentines, control = /datum/round_event_control/valentines)
+
+/datum/holiday/easter/celebrate()
+	. = ..()
+	queue_storyteller_celebration(event = /datum/round_event/easter, control = /datum/round_event_control/easter)
+
 /datum/holiday/halloween
 	name = HALLOWEEN
 	begin_day = 17
@@ -80,14 +102,7 @@
 
 /datum/holiday/halloween/celebrate()
 	. = ..()
-	if(locate(/datum/round_event/spooky) in SSevents.running)
-		return
-
-	var/datum/round_event_control/spooky_scary = locate(/datum/round_event_control/spooky) in SSevents.control
-	if(isnull(spooky_scary))
-		return
-
-	spooky_scary.run_event(admin_forced = TRUE)
+	queue_storyteller_celebration(event = /datum/round_event/spooky, control = /datum/round_event_control/spooky)
 
 #undef PURPLE_LIGHT
 #undef PURPLE_DARK
