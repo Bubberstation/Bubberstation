@@ -182,7 +182,10 @@
 
 /datum/emote/living/carbon/snap/get_sound(mob/living/user)
 	if(ishuman(user))
-		return pick('sound/mobs/humanoids/human/snap/fingersnap1.ogg', 'sound/mobs/humanoids/human/snap/fingersnap2.ogg')
+		return pick(
+			'sound/mobs/humanoids/human/snap/fingersnap1.ogg',
+			'sound/mobs/humanoids/human/snap/fingersnap2.ogg',
+			)
 	return null
 Bubber removal end */
 
