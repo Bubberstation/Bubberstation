@@ -142,10 +142,12 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(ghoul_type != /datum/antagonist/ghoul/favorite)
+	var/datum/antagonist/ghoul/favorite = /datum/antagonist/ghoul/favorite
+	if(ghoul_type != favorite)
 		// no ghoul slots and trying to make a non-favorite ghoul, don't softlock yourself
-		if(bloodsuckerdatum.free_ghoul_slots() < 1 && !bloodsuckerdatum.special_ghouls[/datum/antagonist/ghoul/favorite])
+		if(bloodsuckerdatum.free_ghoul_slots() < 1 && !bloodsuckerdatum.special_ghouls[initial(favorite.special_type)])
 			to_chat(bloodsuckerdatum.owner.current, span_danger("Making a non-favorite Ghoul will prevent you from leveling up, as you have no slots left!"))
 			return FALSE
+	return TRUE
 
 #undef VENTRUE_MAX_POWERS
