@@ -113,7 +113,7 @@
 			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
 			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
 			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
-			blood_level_gain += blood_for_leveling
+		blood_level_gain += blood_for_leveling
 	return blood_taken
 
 /**
