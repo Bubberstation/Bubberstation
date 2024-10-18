@@ -126,7 +126,7 @@ Blowing up the reaction produces a gas that causes everyone to fall in love with
 Creating a chem with a low purity will make you permanently fall in love with someone, and tasked with keeping them safe. If someone else drinks it, you fall for them.
 */
 
-/datum/reagent/fermi/enthrall
+/datum/reagent/mkultra
 	name = "MKUltra"
 	description = "A forbidden deep red mixture that increases a person's succeptability to another's words. When taken by the creator, it will enhance the draw of their voice to those affected by it."
 	color = "#660015" // rgb: , 0, 255
@@ -141,14 +141,14 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	ph = 10
 	chemical_flags = REAGENT_DONOTSPLIT //Procs on_mob_add when merging into a human
 
-/datum/reagent/fermi/enthrall/on_new(list/data)
+/datum/reagent/mkultra/on_new(list/data)
 	. = ..()
 	creatorID = src.data["creatorID"]
 	creatorGender = src.data["creatorGender"]
 	creatorName = src.data["creatorName"]
 	creator = get_mob_by_key(creatorID)
 
-/datum/reagent/fermi/enthrall/on_mob_add(mob/living/carbon/mob_affected)
+/datum/reagent/mkultra/on_mob_add(mob/living/carbon/mob_affected)
 	. = ..()
 	if(!ishuman(mob_affected))//Just to make sure screwy stuff doesn't happen.
 		return
@@ -176,7 +176,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	else
 		mob_affected.apply_status_effect(/datum/status_effect/chem/enthrall)
 
-/datum/reagent/fermi/enthrall/on_mob_life(mob/living/carbon/mob_affected)
+/datum/reagent/mkultra/on_mob_life(mob/living/carbon/mob_affected)
 	. = ..()
 	if(purity < 0.5)//DO NOT SPLIT INTO DIFFERENT CHEM: This relies on DoNotSplit - has to be done this way.
 
@@ -220,7 +220,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 		enthrall_chem.enthrallTally += 1
 	..()
 
-/datum/reagent/fermi/enthrall/overdose_start(mob/living/carbon/mob_affected)//I made it so the creator is set to gain the status for someone random.
+/datum/reagent/mkultra/overdose_start(mob/living/carbon/mob_affected)//I made it so the creator is set to gain the status for someone random.
 	. = ..()
 	metabolization_rate = 1//Mostly to manage brain damage and reduce server stress
 	if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If the creator drinks 100u, then you get the status for someone random (They don't have the vocal chords though, so it's limited.)
@@ -247,7 +247,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	enthrall_chem.customTriggers = list()
 	SSblackbox.record_feedback("tally", "fermi_chem", 1, "Thralls mindbroken")
 
-/datum/reagent/fermi/enthrall/overdose_process(mob/living/carbon/mob_affected)
+/datum/reagent/mkultra/overdose_process(mob/living/carbon/mob_affected)
 	mob_affected.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
 	..()
 

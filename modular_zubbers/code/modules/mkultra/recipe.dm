@@ -1,5 +1,5 @@
-/datum/chemical_reaction/fermi/enthrall //check this
-	results = list(/datum/reagent/fermi/enthrall = 5)
+/datum/chemical_reaction/mkultra //check this
+	results = list(/datum/reagent/mkultra = 5)
 	required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/bluespace = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/psicodine = 1, /datum/reagent/drug/happiness = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
 	mix_message = "the reaction gives off a burgundy plume of smoke!"
@@ -19,9 +19,9 @@
 	purity_min 				= 0.2
 	reaction_tags = REACTION_TAG_MODERATE | REACTION_TAG_EXPLOSIVE | REACTION_TAG_OTHER | REACTION_TAG_DANGEROUS
 
-/datum/chemical_reaction/fermi/enthrall/reaction_finish(datum/reagents/holder, atom/my_atom)
+/datum/chemical_reaction/mkultra/reaction_finish(datum/reagents/holder, atom/my_atom)
 	var/datum/reagent/blood/mob_blood = locate(/datum/reagent/blood) in holder.reagent_list
-	var/datum/reagent/fermi/enthrall/enthrall_chem = locate(/datum/reagent/fermi/enthrall) in holder.reagent_list
+	var/datum/reagent/mkultra/enthrall_chem = locate(/datum/reagent/mkultra) in holder.reagent_list
 	if(!mob_blood || !enthrall_chem)
 		return
 	if(!mob_blood.data)
@@ -40,16 +40,16 @@
 	enthrall_chem.creatorID = mob_blood.data["ckey"]
 
 //Kaboom
-/datum/chemical_reaction/fermi/enthrall/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
+/datum/chemical_reaction/mkultra/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
 	. = ..()
 	enthrall_explosion(holder, equilibrium.reacted_vol)
 
-/datum/chemical_reaction/fermi/enthrall/overly_impure(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
+/datum/chemical_reaction/mkultra/overly_impure(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
 	. = ..()
 	enthrall_explosion(holder, equilibrium.reacted_vol)
 
 //My le bomb... It le killed people?? || Stolen meth code :)
-/datum/chemical_reaction/fermi/enthrall/proc/enthrall_explosion(datum/reagents/holder, explode_vol)
+/datum/chemical_reaction/mkultra/proc/enthrall_explosion(datum/reagents/holder, explode_vol)
 	var/power = 5 + round(explode_vol/12, 1) //MKU strengthdiv is 12, same as meth.
 	if(power <= 0)
 		return

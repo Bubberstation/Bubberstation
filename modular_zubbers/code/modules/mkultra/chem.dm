@@ -45,7 +45,7 @@
 
 /datum/status_effect/chem/enthrall/on_apply()
 	var/mob/living/carbon/enthrall_victim = owner
-	var/datum/reagent/fermi/enthrall/enthrall_chem = locate(/datum/reagent/fermi/enthrall) in enthrall_victim.reagents.reagent_list
+	var/datum/reagent/mkultra/enthrall_chem = locate(/datum/reagent/mkultra) in enthrall_victim.reagents.reagent_list
 	if(!enthrall_chem.data["creatorID"])
 		message_admins("WARNING: FermiChem: No master found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
 		stack_trace("No master found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
@@ -72,7 +72,7 @@
 	var/mob/living/carbon/enthrall_victim = owner
 
 	//chem calculations
-	if(!owner.reagents.has_reagent(/datum/reagent/fermi/enthrall))
+	if(!owner.reagents.has_reagent(/datum/reagent/mkultra))
 		if (phase < 3 && phase != 0)
 			deltaResist += 3//If you've no chem, then you break out quickly
 			if(prob(5))
@@ -155,7 +155,7 @@
 			if(lewd && prob(1) && !customEcho)
 				to_chat(owner, "<span class='love'><i>[pick("I belong to [enthrallGender].", "[enthrallGender] knows whats best for me.", "Obedence is pleasure.",  "I exist to serve [enthrallGender].", "[enthrallGender] is so dominant, it feels right to obey them.")].</i></span>")
 		if (4) //mindbroken
-			if (mental_capacity >= 499 && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) <=0 || HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD)) && !owner.reagents.has_reagent(/datum/reagent/fermi/enthrall))
+			if (mental_capacity >= 499 && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) <=0 || HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD)) && !owner.reagents.has_reagent(/datum/reagent/mkultra))
 				phase = 2
 				mental_capacity = 500
 				customTriggers = list()
