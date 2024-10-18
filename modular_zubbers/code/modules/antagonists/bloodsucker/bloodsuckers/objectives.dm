@@ -98,13 +98,13 @@
 
 /// Ghoulify a certain person / people
 /datum/objective/bloodsucker/conversion
-	name = "ghoulization"
+	name = "ghouling"
 
 /////////////////////////////////
 
 // Ghoulify a head of staff
 /datum/objective/bloodsucker/conversion/command
-	name = "ghoulizationcommand"
+	name = "ghoulingcommand"
 	target_amount = 1
 
 // EXPLANATION
