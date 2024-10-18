@@ -138,5 +138,14 @@
 	to_chat(source.owner.current, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Ghoul by buckling them onto a persuasion rack!"))
 	ghouldatum.BuyPower(/datum/action/cooldown/bloodsucker/distress)
 
+/datum/bloodsucker_clan/ventrue/is_valid_ghoul(datum/antagonist/ghoul/ghoul_type)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(ghoul_type != /datum/antagonist/ghoul/favorite)
+		// no ghoul slots and trying to make a non-favorite ghoul, don't softlock yourself
+		if(bloodsuckerdatum.free_ghoul_slots() < 1 && !bloodsuckerdatum.special_ghouls[/datum/antagonist/ghoul/favorite])
+			to_chat(bloodsuckerdatum.owner.current, span_danger("Making a non-favorite Ghoul will prevent you from leveling up, as you have no slots left!"))
+			return FALSE
 
 #undef VENTRUE_MAX_POWERS
