@@ -54,7 +54,7 @@
 	. += "While this ability is active, you will be able to see additional information about everyone in the room."
 	. += "At level [DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active."
 	. += "At level [DOMINATE_GHOULIZE_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOULIZE_COST] blood."
-	. += "The victim must have atleast [BLOOD_VOLUME_BAD] blood to be ghoulized."
+	. += "The victim must have atleast [BLOOD_VOLUME_BAD] blood to be ghouled."
 	. += "The ghoul will be mute and deaf if the level of [src] is not at least [DOMINATE_NON_MUTE_GHOULIZE_LEVEL]"
 	. += "If you use this on a currently dead normal Ghoul, they will will not suddenly cease to live as if a temporary Ghoul."
 	. += "They will have complete loyalty to you, until their death in [DisplayTimeText(get_ghoul_duration())] upon use."
@@ -106,7 +106,7 @@
 			if(IS_GHOUL(target_mob))
 				owner.balloon_alert(owner, "too far to revive!")
 			else
-				owner.balloon_alert(owner, "too far to ghoulize!")
+				owner.balloon_alert(owner, "too far to ghoul!")
 		return TRUE
 	return ..()
 
@@ -118,7 +118,7 @@
 	if(ghoul)
 		owner.balloon_alert(owner, "attempting to revive.")
 	else
-		owner.balloon_alert(owner, "attempting to ghoulize.")
+		owner.balloon_alert(owner, "attempting to ghoul.")
 	if(!do_after(user, 6 SECONDS, target, NONE, TRUE))
 		return FALSE
 	if(!victim_has_blood(target))
@@ -136,7 +136,7 @@
 		log_combat(owner, target, "tremere revived", addition="Revived their ghoul using dominate")
 		return FALSE
 	if(!bloodsuckerdatum_power.make_ghoul(target) )
-		owner.balloon_alert(owner, "not a valid target for ghoulization!.")
+		owner.balloon_alert(owner, "not a valid target for ghouling!.")
 		return
 
 	/*if(IS_MONSTERHUNTER(target))

@@ -59,12 +59,12 @@
 /**
  * Ghoul defines
  */
-///If someone passes all checks and can be ghoulized
-#define GHOULIZATION_ALLOWED 0
-///If someone has to accept ghoulization
-#define GHOULIZATION_DISLOYAL 1
+///If someone passes all checks and can be ghouled
+#define GHOULING_ALLOWED 0
+///If someone has to accept ghouling
+#define GHOULING_DISLOYAL 1
 ///If someone is not allowed under any circimstances to become a Ghoul
-#define GHOULIZATION_BANNED 2
+#define GHOULING_BANNED 2
 
 /**
  * Cooldown defines
