@@ -46,12 +46,12 @@
 /datum/status_effect/chem/enthrall/on_apply()
 	var/mob/living/carbon/enthrall_victim = owner
 	var/datum/reagent/mkultra/enthrall_chem = locate(/datum/reagent/mkultra) in enthrall_victim.reagents.reagent_list
-	if(!enthrall_chem.data["creatorID"])
+	if(!enthrall_chem.data["creatorCkey"])
 		message_admins("WARNING: FermiChem: No master found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
 		stack_trace("No master found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
 		owner.remove_status_effect(src)
 		return ..()
-	enthrallID = enthrall_chem.data["creatorID"]
+	enthrallID = enthrall_chem.data["creatorCkey"]
 	enthrallGender = enthrall_chem.data["creatorGender"]
 	if(enthrall_victim.ckey == enthrallID)
 		//owner.remove_status_effect(src)//At the moment, a user can enthrall themselves, toggle this back in if that should be removed.

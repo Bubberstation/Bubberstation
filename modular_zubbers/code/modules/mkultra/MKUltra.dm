@@ -133,8 +133,8 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	taste_description = "synthetic chocolate, a base tone of alcohol, and high notes of roses"
 	overdose_threshold = 100 //If this is too easy to get 100u of this, then double it please.
 	metabolization_rate = 0.1//It has to be slow, so there's time for the effect.
-	data = list("creatorID" = null, "creatorGender" = null, "creatorName" = null)
-	var/creatorID  //ckey
+	data = list("creatorCkey" = null, "creatorGender" = null, "creatorName" = null)
+	var/creatorCkey  //ckey
 	var/creatorGender
 	var/creatorName
 	var/mob/living/creator
@@ -143,29 +143,29 @@ Creating a chem with a low purity will make you permanently fall in love with so
 
 /datum/reagent/mkultra/on_new(list/data)
 	. = ..()
-	creatorID = src.data["creatorID"]
+	creatorCkey = src.data["creatorCkey"]
 	creatorGender = src.data["creatorGender"]
 	creatorName = src.data["creatorName"]
-	creator = get_mob_by_key(creatorID)
+	creator = get_mob_by_key(creatorCkey)
 
 /datum/reagent/mkultra/on_mob_add(mob/living/carbon/mob_affected)
 	. = ..()
 	if(!ishuman(mob_affected))//Just to make sure screwy stuff doesn't happen.
 		return
-	if(!creatorID)
+	if(!creatorCkey)
 		//This happens when the reaction explodes.
 		return
 	if(purity < 0.5)//Impure chems don't function as you expect
 		return
 	var/datum/status_effect/chem/enthrall/enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
 	if(enthrall_chem)
-		if(enthrall_chem.enthrallID == mob_affected.ckey && creatorID != mob_affected.ckey)//If you're enthralled to yourself (from OD) and someone else tries to enthrall you, you become thralled to them instantly.
-			enthrall_chem.enthrallID = creatorID
+		if(enthrall_chem.enthrallID == mob_affected.ckey && creatorCkey != mob_affected.ckey)//If you're enthralled to yourself (from OD) and someone else tries to enthrall you, you become thralled to them instantly.
+			enthrall_chem.enthrallID = creatorCkey
 			enthrall_chem.enthrallGender = creatorGender
-			enthrall_chem.master = get_mob_by_key(creatorID)
+			enthrall_chem.master = get_mob_by_key(creatorCkey)
 			to_chat(mob_affected, "<span class='big love'><i>Your addled, plastic, mind bends under the chemical influence of a new [(enthrall_chem.lewd?"master":"leader")]. Your highest priority is now to stay by [creatorName]'s side, following and aiding them at all costs.</i></span>") //THIS SHOULD ONLY EVER APPEAR IF YOU MINDBREAK YOURSELF AND THEN GET INJECTED FROM SOMEONE ELSE.
 			return
-	if((mob_affected.ckey == creatorID) && (creatorName == mob_affected.real_name)) //same name AND same player - same instance of the player. (should work for clones?)
+	if((mob_affected.ckey == creatorCkey) && (creatorName == mob_affected.real_name)) //same name AND same player - same instance of the player. (should work for clones?)
 		var/obj/item/organ/internal/vocal_cords/vocal_cords = mob_affected.get_organ_slot(ORGAN_SLOT_VOICE)
 		var/obj/item/organ/internal/vocal_cords/new_vocal_cords = new /obj/item/organ/internal/vocal_cords/velvet
 		if(vocal_cords)
@@ -180,7 +180,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	. = ..()
 	if(purity < 0.5)//DO NOT SPLIT INTO DIFFERENT CHEM: This relies on DoNotSplit - has to be done this way.
 
-		if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If the creator drinks it, they fall in love randomly. If someone else drinks it, the creator falls in love with them.
+		if (mob_affected.ckey == creatorCkey && creatorName == mob_affected.real_name)//If the creator drinks it, they fall in love randomly. If someone else drinks it, the creator falls in love with them.
 			if(mob_affected.has_status_effect(/datum/status_effect/in_love))//Can't be enthralled when enthralled, so to speak.
 				return
 			var/list/seen = (mob_affected.in_fov(mob_affected.client?.view || world.view) - mob_affected) | viewers(mob_affected.client?.view || world.view, mob_affected)
@@ -199,14 +199,14 @@ Creating a chem with a low purity will make you permanently fall in love with so
 			return
 
 		else // If someone else drinks it, the creator falls in love with them!
-			var/mob/living/carbon/chem_creator = get_mob_by_key(creatorID)
+			var/mob/living/carbon/chem_creator = get_mob_by_key(creatorCkey)
 			if(mob_affected.has_status_effect(/datum/status_effect/in_love))
 				return
 			if(chem_creator.client && (mob_affected in chem_creator.in_fov(chem_creator.client.view)))
 				mob_affected.reagents.del_reagent(type)
 				FallInLove(chem_creator, mob_affected)
 			return
-	if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If you yourself drink it, it supresses the vocal effects, for stealth. NEVERMIND ADD THIS LATER I CAN'T GET IT TO WORK
+	if (mob_affected.ckey == creatorCkey && creatorName == mob_affected.real_name)//If you yourself drink it, it supresses the vocal effects, for stealth. NEVERMIND ADD THIS LATER I CAN'T GET IT TO WORK
 		return
 	if(!mob_affected.client)
 		metabolization_rate = 0 //Stops powergamers from quitting to avoid affects. but prevents affects on players that don't exist for performance.
@@ -223,7 +223,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 /datum/reagent/mkultra/overdose_start(mob/living/carbon/mob_affected)//I made it so the creator is set to gain the status for someone random.
 	. = ..()
 	metabolization_rate = 1//Mostly to manage brain damage and reduce server stress
-	if (mob_affected.ckey == creatorID && creatorName == mob_affected.real_name)//If the creator drinks 100u, then you get the status for someone random (They don't have the vocal chords though, so it's limited.)
+	if (mob_affected.ckey == creatorCkey && creatorName == mob_affected.real_name)//If the creator drinks 100u, then you get the status for someone random (They don't have the vocal chords though, so it's limited.)
 		if (!mob_affected.has_status_effect(/datum/status_effect/chem/enthrall))
 			to_chat(mob_affected, "<span class='love'><i>You are unable to resist your own charms anymore, and become a full blown narcissist.</i></span>")
 	ADD_TRAIT(mob_affected, TRAIT_PACIFISM, "MKUltra")
@@ -231,7 +231,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	if (!mob_affected.has_status_effect(/datum/status_effect/chem/enthrall))
 		mob_affected.apply_status_effect(/datum/status_effect/chem/enthrall)
 		enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
-		enthrall_chem.enthrallID = creatorID
+		enthrall_chem.enthrallID = creatorCkey
 		enthrall_chem.enthrallGender = creatorGender
 		enthrall_chem.master = creator
 	else

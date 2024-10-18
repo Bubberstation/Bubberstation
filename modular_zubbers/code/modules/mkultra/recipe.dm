@@ -36,8 +36,8 @@
 		enthrall_chem.creatorGender = "Master"
 	enthrall_chem.data["creatorName"] = mob_blood.data["real_name"]
 	enthrall_chem.creatorName = mob_blood.data["real_name"]
-	enthrall_chem.data["creatorID"] = mob_blood.data["ckey"]
-	enthrall_chem.creatorID = mob_blood.data["ckey"]
+	enthrall_chem.data["creatorCkey"] = mob_blood.data["ckey"]
+	enthrall_chem.creatorCkey = mob_blood.data["ckey"]
 
 //Kaboom
 /datum/chemical_reaction/mkultra/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
