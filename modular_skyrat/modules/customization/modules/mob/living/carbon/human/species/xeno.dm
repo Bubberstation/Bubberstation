@@ -51,7 +51,7 @@
 
 /datum/species/xeno/get_species_lore()
 	return list(placeholder_lore)
-
+/* Bubberedit start - Moved to modular_zubbers
 /datum/species/xeno/create_pref_unique_perks()
 	var/list/to_add = list()
 
@@ -70,6 +70,7 @@
 	))
 
 	return to_add
+*/// Bubberedit end
 
 /datum/species/xeno/prepare_human_for_preview(mob/living/carbon/human/xeno)
 	var/xeno_color = "#525288"
