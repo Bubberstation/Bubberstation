@@ -95,6 +95,7 @@
 
 /datum/armament_entry/company_import/nri_surplus/firearm
 	subcategory = "Firearms"
+/*
 /datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
 	item_type = /obj/item/gun/ballistic/revolver/shotgun_revolver
 	cost = PAYCHECK_COMMAND * 6
@@ -128,7 +129,7 @@
 	contraband = TRUE
 	cost = PAYCHECK_COMMAND * 14
 	restricted = TRUE
-
+*/ //Bubber Edit: Disables Lanca, Sakhno, Bobr, and other
 //Begone
 /*
 /datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
@@ -141,7 +142,7 @@
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo
 	subcategory = "Firearm Magazines"
 	cost = PAYCHECK_CREW
-
+/*
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/plasma_battery
 	item_type = /obj/item/ammo_box/magazine/recharge/plasma_battery
 
@@ -156,7 +157,7 @@
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/lanca
 	item_type = /obj/item/ammo_box/magazine/lanca/spawns_empty
 	contraband = TRUE
-/*
+
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/amr_magazine
 	item_type = /obj/item/ammo_box/magazine/wylom
 	contraband = TRUE
