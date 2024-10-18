@@ -251,7 +251,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	mob_affected.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
 	..()
 
-/datum/reagent/fermi/proc/FallInLove(mob/living/carbon/Lover, mob/living/carbon/Love)
+/datum/reagent/mkultra/proc/FallInLove(mob/living/carbon/Lover, mob/living/carbon/Love)
 	if(Lover.has_status_effect(/datum/status_effect/in_love))
 		to_chat(Lover, "<span class='warning'>You are already fully devoted to someone else!</span>")
 		return
