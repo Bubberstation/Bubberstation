@@ -153,7 +153,7 @@
 	contains = list(
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
-/* BUBBER REMOVAL: Removes the machine gun crate
+/* //BUBBER REMOVAL: Removes the machine gun crate
 /datum/supply_pack/imports/lmg
 	name = "Smuggled Sol Light Machinegun Crate"
 	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
