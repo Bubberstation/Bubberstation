@@ -6,6 +6,7 @@
 
 	wound_bonus = 0
 	bare_wound_bonus = 0
+	armour_penetration = 0
 
 	var/blood_chance = 100
 
