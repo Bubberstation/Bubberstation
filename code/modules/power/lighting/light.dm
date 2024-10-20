@@ -504,7 +504,7 @@
 // if a light is turned off, it won't activate emergency power
 /obj/machinery/light/proc/turned_off()
 	var/area/local_area = get_room_area()
-	return !local_area.lightswitch && local_area.power_light || flickering || constant_flickering //SKYRAT EDIT CHANGE - ORIGINAL : return !local_area.lightswitch && local_area.power_light || flickering
+	return !local_area.lightswitch && local_area.power_light || flickering
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
@@ -561,7 +561,7 @@
 			on = (status == LIGHT_OK)
 		else
 			on = FALSE
-		update(FALSE, TRUE) // SKYRAT EDIT CHANGE
+		update(FALSE, TRUE) //SKYRAT EDIT CHANGE
 		. = TRUE //did we actually flicker?
 	flickering = FALSE
 

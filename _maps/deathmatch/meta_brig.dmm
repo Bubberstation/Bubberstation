@@ -268,6 +268,16 @@
 "du" = (
 /turf/closed/indestructible/fakedoor,
 /area/deathmatch)
+"dy" = (
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/obj/machinery/flasher/directional/north{
+	id = "visitorflash"
+	},
+/turf/open/floor/iron,
+/area/deathmatch)
 "dA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -458,6 +468,15 @@
 	dir = 5
 	},
 /turf/open/floor/iron/white,
+/area/deathmatch)
+"hS" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/telescreen/prison/directional/north,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
 /area/deathmatch)
 "hY" = (
 /obj/effect/turf_decal/tile/red{
@@ -1646,6 +1665,14 @@
 	dir = 4
 	},
 /turf/open/indestructible/dark,
+/area/deathmatch)
+"yN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/deathmatch)
 "yO" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -2929,6 +2956,14 @@
 /obj/structure/cable,
 /turf/open/indestructible,
 /area/deathmatch)
+"PV" = (
+/obj/machinery/computer/security/telescreen/prison/directional/south,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/indestructible,
+/area/deathmatch)
 "Qd" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses{
@@ -3667,9 +3702,9 @@ IJ
 Yh
 Yh
 Yh
-cQ
+dy
 YW
-oc
+yN
 IJ
 IJ
 IJ
@@ -4430,7 +4465,7 @@ vt
 CS
 bA
 GU
-Mt
+PV
 XK
 XK
 XI
@@ -4549,7 +4584,7 @@ Ik
 Os
 mE
 Yh
-zn
+hS
 FY
 dp
 Pt

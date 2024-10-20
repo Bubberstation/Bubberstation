@@ -3,6 +3,7 @@
 [![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+[![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
@@ -53,6 +54,7 @@ You are responsible for the testing of your content. You should not mark a pull 
 [Running on the server](.github/guides/RUNNING_A_SERVER.md)
 
 [Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
+[Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
 ## Compilation
 
@@ -76,6 +78,7 @@ All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 a
 
 See LICENSE and GPLv3.txt for more details.
 
+The TGS DMAPI is licensed as a subproject under the MIT license.
 The TGS DMAPI is licensed as a subproject under the MIT license.
 
 See the footer of [code/__DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/modules/tgs/LICENSE](./code/modules/tgs/LICENSE) for the MIT license.
