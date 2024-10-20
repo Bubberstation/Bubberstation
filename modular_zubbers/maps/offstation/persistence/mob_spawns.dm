@@ -1,94 +1,103 @@
-/datum/job/persistance // Job Define
-	title = ROLE_PERSISTANCE
-	policy_index = ROLE_PERSISTANCE
+/datum/job/persistence // Job Define
+	title = ROLE_PERSISTENCE
+	policy_index = ROLE_PERSISTENCE
 	akula_outfit = /datum/outfit/akula
 	antagonist_restricted = TRUE
 
-// Dauntless Ghost Spawners (Lava)
+// Persistence mining rig Ghost Spawners
 
-/obj/effect/mob_spawn/ghost_role/human/persistance
-	name = "Persistance Personnel"
+/obj/effect/mob_spawn/ghost_role/human/persistence
+	name = "Persistence Personnel"
 	use_outfit_name = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "Persistance Personnel"
-	you_are_text = "You are a syndicate Operative, employed as part of a joint top secret operation to stealthly monitor Nanotrasen assets, conduct research and development, and produce new assets."
+	prompt_name = "Persistence Personnel"
+	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler. Your mission objectives are to harvest materials, build outposts, produce goods, andv advance the interests of your company"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
-	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service
-	spawner_job_path = /datum/job/persistance
+	computer_area = /area/ruin/space/has_grav/bubbers/persistance/service
+	spawner_job_path = /datum/job/persistence
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate
 	name = "Syndicate Operative"
 	prompt_name = "a Syndicate Operative"
-	you_are_text = "an Operative assigned to the Syndicate Spy Vessel Persistance, employed onboard for reasons that are yours"
-	flavour_text = "The jointly managed SSV Persistance has been assigned to stealthly monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform you duties and keep a low profile."
-	important_text = "You are NOT an antagonist and the round does not center the Persistance. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
-	outfit = /datum/outfit/dauntless/syndicate
+	you_are_text = "an Operative assigned to the Syndicate Land Crawler Persistence, employed onboard for reasons that are yours"
+	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform you duties and keep a low profile while maintaing your front as a mining operation."
+	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	outfit = /datum/outfit/persistence/syndicate
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/command
+/obj/effect/mob_spawn/ghost_role/human/persistence/command
 	name = "Syndicate Command Operative"
 	prompt_name = "a Syndicate leader"
-	you_are_text = "a Syndicate Command Operative assigned to lead the SSV Persistance and guide it forward in its goals"
-	flavour_text = "The jointly managed SSV Persistance has been assigned to stealthly monitor Nanotrasen assets while creating our own. Your orders are help lead the Persistance while ensuring a low profile is maintained."
-	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Persistance. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	you_are_text = "a Syndicate Command Operative assigned to lead the SSV Persistence and guide it forward in its goals"
+	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets under the cover of a legal mining operation Your orders are help lead the Persistence while ensuring a low profile is maintained."
+	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
 	outfit = /datum/outfit/dauntless/command
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/prisoner
+/obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
 	name = "Syndicate Hostage"
 	prompt_name = "a Syndicate hostage"
 	you_are_text = "You are a hostage onboard an unknown vessel"
 	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Persistance personnel can throw you into lava if you antagonize them."
-	outfit = /datum/outfit/dauntless/prisoner
-	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
+	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel can throw you into lava or plasma outside if you antagonize them."
+	outfit = /datum/outfit/persistence/prisoner
+	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/service
-	outfit = /datum/outfit/dauntless/syndicate/service
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service
+	outfit = /datum/outfit/persistence/syndicate/service
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/enginetech
-	outfit = /datum/outfit/dauntless/syndicate/enginetech
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor
+	outfit = /datum/outfit/persistence/syndicate/janitor
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/researcher
-	outfit = /datum/outfit/dauntless/syndicate/researcher
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/enginetech
+	outfit = /datum/outfit/persistence/syndicate/enginetech
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/stationmed
-	outfit = /datum/outfit/dauntless/syndicate/stationmed
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/researcher
+	outfit = /datum/outfit/persistence/syndicate/researcher
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/brigoff
-	outfit = /datum/outfit/dauntless/syndicate/brigoff
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/stationmed
+	outfit = /datum/outfit/persistence/syndicate/stationmed
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/miningoff
-	outfit = /datum/outfit/dauntless/syndicate/miningoff
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff
+	outfit = /datum/outfit/persistence/syndicate/brigoff
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/command/masteratarms
-	outfit = /datum/outfit/dauntless/command/masteratarms
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/quartermaster
+	outfit = /datum/outfit/persistance/syndicate/quartermaster
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/command/corporateliaison
-	outfit = /datum/outfit/dauntless/command/corporateliaison
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/masteratarms
+	outfit = /datum/outfit/persistence/command/masteratarms
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/command/admiral
-	outfit = /datum/outfit/dauntless/command/admiral
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/corporateliaison
+	outfit = /datum/outfit/persistence/command/corporateliaison
+
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral
+	outfit = /datum/outfit/persistence/command/admiral
+
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/moraleofficer
+	outfit = /datum/outfit/persistence/command/moraleofficer
+
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/commsop
+	outfit = /datum/outfit/persistence/command/commsop
 
 // Codespeak Granter
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/syndicate/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/special(mob/living/new_spawn)
 	. = ..()
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER)
 
-/obj/effect/mob_spawn/ghost_role/human/persistance/command/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/special(mob/living/new_spawn)
 	. = ..()
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER)
 
 
 // Outfits --------------
 
-/datum/outfit/dauntless/persistance
-	name = "Persistance"
+/datum/outfit/persistence
+	name = "Persistence"
 
-/datum/outfit/dauntless/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
+/datum/outfit/persistence/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = syndicate.wear_id
 	if(istype(id_card))
 		id_card.registered_name = syndicate.real_name
@@ -98,19 +107,19 @@
 	handlebank(syndicate)
 	return ..()
 
-//Dauntless Hostage
+//Persistence Hostage
 
-/datum/outfit/dauntless/prisoner
+/datum/outfit/persistence/prisoner
 	name = "Syndicate Prisoner"
 	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
 	shoes = /obj/item/clothing/shoes/sneakers/crimson
 	id = /obj/item/card/id/advanced/prisoner/ds2
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/prisoner
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/prisoner
 
-//Dauntless Roles
+//Persistence Roles
 
-/datum/outfit/dauntless/syndicate
-	name = "Dauntless Opporative"
+/datum/outfit/persistence/syndicate
+	name = "Persistence Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne
@@ -118,49 +127,66 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	id = /obj/item/card/id/advanced/black
 	implants = list(/obj/item/implant/weapons_auth)
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless
 
-/datum/outfit/dauntless/syndicate/service
-	name = "Dauntless General Staff"
+/datum/outfit/persistence/syndicate/service
+	name = "Persistence General Staff"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/syndicatestaff
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/syndicatestaff
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
 		/obj/item/sharpener = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	suit = /obj/item/clothing/suit/apron/chef
 	head = /obj/item/clothing/head/soft/mime
 
-/datum/outfit/dauntless/syndicate/enginetech
-	name = "Dauntless Engineer"
+/datum/outfit/persistence/syndicate/janitor
+	name = "Persistence Sanitation Technician"
+	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/janitor
+	back = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
+		/obj/item/soap/syndie = 1,
+		)
+	belt = /obj/item/storage/belt/janitor/full
+
+/datum/outfit/persistence/syndicate/enginetech
+	name = "Persistence Engineer"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
 	head = /obj/item/clothing/head/soft/sec/syndicate
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
+		/obj/item/choice_beacon/syndicateoffstation/engineer = 1,
 		)
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/enginetechnician
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/engineer
 	glasses = /obj/item/clothing/glasses/welding/up
 	belt = /obj/item/storage/belt/utility/syndicate
 	gloves = /obj/item/clothing/gloves/combat
 
-/datum/outfit/dauntless/syndicate/researcher
-	name = "Dauntless Researcher"
+/datum/outfit/persistence/syndicate/researcher
+	name = "Persistence Researcher"
 	uniform = /obj/item/clothing/under/rank/rnd/scientist/skyrat/utility/syndicate
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/researcher
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/researcher
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	glasses = /obj/item/clothing/glasses/sunglasses/chemical
 	gloves = /obj/item/clothing/gloves/color/black
 	back = /obj/item/storage/backpack/satchel
+	belt = /obj/item/storage/belt/utility/syndicate
 
-/datum/outfit/dauntless/syndicate/stationmed
-	name = "Dauntless Medical Officer"
+/datum/outfit/persistence/syndicate/stationmed
+	name = "Persistence Medical Officer"
 	uniform = /obj/item/clothing/under/syndicate/scrubs
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/medicalofficer
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/medicalofficer
 	suit = /obj/item/clothing/suit/toggle/labcoat/interdyne
 	belt = /obj/item/storage/belt/medical/paramedic
 	gloves = /obj/item/clothing/gloves/latex/nitrile/ntrauma
@@ -169,12 +195,13 @@
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
 		/obj/item/storage/medkit/surgery = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 
-/datum/outfit/dauntless/syndicate/brigoff
-	name = "Dauntless Brig Officer"
+/datum/outfit/persistence/syndicate/brigoff
+	name = "Persistence Brig Officer"
 	uniform = /obj/item/clothing/under/syndicate/combat
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/brigofficer
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
 	back = /obj/item/storage/backpack/security/redsec
@@ -182,6 +209,7 @@
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
@@ -189,10 +217,10 @@
 	ears = /obj/item/radio/headset/interdyne
 
 /datum/outfit/persistance/syndicate/quartermaster
-	name = "Persistance Quarter Master"
+	name = "Persistence Quarter Master"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
 	belt = /obj/item/storage/bag/ore
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/miner
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/cargo
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
 	back = /obj/item/storage/backpack/satchel/explorer
@@ -202,7 +230,7 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/interdyne
@@ -216,8 +244,8 @@
 
 // Dauntless Command
 
-/datum/outfit/dauntless/command
-	name = "Dauntless Command Operative"
+/datum/outfit/persistence/command
+	name = "Persistence Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne/command
@@ -225,19 +253,25 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation/command = 1,
 		)
 	id = /obj/item/card/id/advanced/black
 	implants = list(/obj/item/implant/weapons_auth)
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless
 
-/datum/outfit/dauntless/command/masteratarms
-	name = "Dauntless Master At Arms"
+/datum/outfit/persistence/command/masteratarms
+	name = "Persistence Master At Arms"
 	uniform = /obj/item/clothing/under/syndicate/combat
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/masteratarms
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/masteratarms
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	back = /obj/item/storage/backpack/satchel/sec/redsec
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation/maa =1,
+		)
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
@@ -245,24 +279,54 @@
 		/obj/item/implant/krav_maga
 		)
 
-/datum/outfit/dauntless/command/corporateliaison
-	name = "Syndicate Corporate Liasion"
+/datum/outfit/persistence/command/corporateliaison
+	name = "Persistence Corporate Liasion"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	head = /obj/item/clothing/head/fedora
 	shoes = /obj/item/clothing/shoes/laceup
 	back = /obj/item/storage/backpack/satchel
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/corporateliasion
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/corporateliasion
 
-/datum/outfit/dauntless/command/admiral
-	name = "Ship Admiral"
+/datum/outfit/persistence/command/admiral
+	name = "Rig Manager"
 	uniform = /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	back = /obj/item/storage/backpack/satchel
-	belt = /obj/item/gun/ballistic/automatic/pistol/aps
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
-	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/stationadmiral
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/rigmanager
 
-/datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
+/datum/outfit/persistence/command/moraleofficer
+	name = "Ship Admiral"
+	uniform = /obj/item/clothing/under/syndicate/sniper
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	back = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation/morale = 1,
+		)
+	head = /obj/item/clothing/head/hats/hos/cap/syndicate
+	id = /obj/item/card/id/advanced/gold/generic
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/moraleofficer
+
+/datum/outfit/persistence/command/commsop
+	name = "Persistence Communications Operative"
+	id = /obj/item/card/id/advanced/chameleon
+	id_trim = /datum/id_trim/chameleon/operative
+	uniform = /obj/item/clothing/under/syndicate
+	mask = /obj/item/clothing/mask/gas/syndicate
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
+		)
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	ears = /obj/item/radio/headset/syndicate/alt
+	shoes = /obj/item/clothing/shoes/combat
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/commsoperative
+
+/datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()

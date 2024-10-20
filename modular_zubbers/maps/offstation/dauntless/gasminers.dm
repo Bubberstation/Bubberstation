@@ -12,5 +12,10 @@
 	allowed_areas = list(/area/ruin/space/has_grav/bubbers/dauntless/cargo,
 						 /area/ruin/space/has_grav/bubbers/dauntless/engineering,
 						 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine,
+						 /area/ruin/space/has_grav/bubbers/persistance/engineering,
+						 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics,
+						 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining,
+						 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas,
+						 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities
 						 )
 	area_string = "dauntless"

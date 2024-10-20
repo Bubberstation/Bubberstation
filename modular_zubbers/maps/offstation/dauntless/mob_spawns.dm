@@ -185,7 +185,7 @@
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
-	name = "Dauntless Opporative"
+	name = "Dauntless Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne

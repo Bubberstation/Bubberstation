@@ -137,7 +137,7 @@
 
 //BUBBER EDIT START
 #define ROLE_DAUNTLESS "Dauntless Syndicate"
-#define Role_PERSISTANCE "Persistance Syndicate"
+#define ROLE_PERSISTENCE "Persistence Syndicate"
 
 #define ROLE_BLOODSUCKER "Bloodsucker"
 #define ROLE_VAMPIRICACCIDENT "Bloodsucker (Midround)"
