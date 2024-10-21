@@ -97,6 +97,11 @@
 	savefile_key = "vore_prey_pref
 BUBBER REMOVAL END */
 
+// BUBBER EDIT START: ERP HYPNO PREF 2.0
+/datum/preference/toggle/erp/hypnosis
+	savefile_key = "hypnosis_pref"
+// BUBBER EDIT END: ERP HYPNO PREF 2.0
+
 /datum/preference/toggle/erp/bimbofication
 	savefile_key = "bimbofication_pref"
 

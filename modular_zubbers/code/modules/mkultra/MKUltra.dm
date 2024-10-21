@@ -255,7 +255,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	if(Lover.has_status_effect(/datum/status_effect/in_love))
 		to_chat(Lover, "<span class='warning'>You are already fully devoted to someone else!</span>")
 		return
-	var/lewd = (Lover.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) && (Love.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	var/lewd = (Lover.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)) && (Love.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 	to_chat(Lover, "[(lewd?"<span class='love'>":"<span class='warning'>")]You develop a deep and sudden bond with [Love][(lewd?", your heart beginning to race as your mind filles with thoughts about them.":".")] You are determined to keep them safe and happy, and feel drawn towards them.</span>")
 	Lover.faction |= "[REF(Love)]"
 	Lover.apply_status_effect(/datum/status_effect/in_love, Love)

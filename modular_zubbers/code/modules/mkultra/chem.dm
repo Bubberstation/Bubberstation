@@ -61,7 +61,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist) //Do resistance calc if resist is pressed#
 	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/owner_hear)
 	mental_capacity = 500 - enthrall_victim.get_organ_loss(ORGAN_SLOT_BRAIN)//It's their brain!
-	lewd = (owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) && (master.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	lewd = (owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)) && (master.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 	var/message = "[(lewd ? "I am a good pet for [enthrallGender]." : "[master] is a really inspirational person!")]"
 	enthrall_victim.add_mood_event("enthrall", /datum/mood_event/enthrall, message)
 	to_chat(owner, "<span class='[(lewd ?"big velvet":"big warning")]'><b>You feel inexplicably drawn towards [master], their words having a demonstrable effect on you. It seems the closer you are to them, the stronger the effect is. However you aren't fully swayed yet and can resist their effects by repeatedly resisting as much as you can!</b></span>")

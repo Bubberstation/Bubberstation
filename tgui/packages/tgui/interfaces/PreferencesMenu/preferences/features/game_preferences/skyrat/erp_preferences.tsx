@@ -62,6 +62,16 @@ export const vore_enable_pref: FeatureToggle = {
 };
 // BUBBER EDIT END
 
+// BUBBER EDIT START: MECHANICAL HYPNOSIS PREF
+export const transformation_pref: FeatureToggle = {
+  name: 'Hypnosis',
+  category: 'ERP',
+  description:
+    'Determines if you wish to allow hypnosis in a lewd manner.',
+  component: CheckboxInput,
+};
+// BUBBER EDIT END
+
 export const breast_enlargement_pref: FeatureToggle = {
   name: 'Breast enlargement',
   category: 'ERP',
