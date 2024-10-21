@@ -15,7 +15,6 @@
 		#include "map_files\tramstation\tramstation.dmm"
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
-		#include "map_files\NSVBlueshift\Blueshift.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
 		//#include "map_files\wawastation\wawastation.dmm" BUBBER EDIT - UNUSED
@@ -23,7 +22,6 @@
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\LimaStation\LimaStation.dmm"
 		#include "map_files\moonstation\moonstation.dmm"
-		#include "map_files\KiloStation\KiloStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		// #include "map_files\ss13construct\ss13_construct.dmm"
 		// BUBBER EDIT ADDITION END
