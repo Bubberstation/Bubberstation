@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
+	datum_flags = DF_STATIC_OBJECT
 	vis_flags = VIS_INHERIT_ID // Important for interaction with and visualization of openspace.
 	luminosity = 1
 	light_height = LIGHTING_HEIGHT_FLOOR
@@ -608,7 +609,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	. = ..()
 	if((acidpwr <= 0) || (acid_volume <= 0))
 		return FALSE
-	if(QDELETED(src)) //skyrat edit: fix createanddestroy
+	if(QDELETED(src)) //skyrat edit: fix createanddestroy // SKYRAT TODO: Look into why this happens
 		return FALSE
 	AddComponent(/datum/component/acid, acidpwr, acid_volume, GLOB.acid_overlay)
 

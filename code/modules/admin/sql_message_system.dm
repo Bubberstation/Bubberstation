@@ -433,10 +433,12 @@
 			var/text = query_get_type_messages.item[5]
 			var/timestamp = query_get_type_messages.item[6]
 			var/server = query_get_type_messages.item[7]
-			var/editor_key = query_get_type_messages.item[9] // SKYRAT EDIT CHANGE BEGIN - MULTISERVER
+			// SKYRAT EDIT CHANGE BEGIN - MULTISERVER
+			var/editor_key = query_get_type_messages.item[9]
 			var/expire_timestamp = query_get_type_messages.item[10]
 			var/playtime = query_get_type_messages.item[11]
-			var/round_id = query_get_type_messages.item[12] // SKYRAT EDIT CHANGE END - MULTISERVER
+			var/round_id = query_get_type_messages.item[12]
+			// SKYRAT EDIT CHANGE END - MULTISERVER
 			output += "<b>"
 			if(type == "watchlist entry")
 				output += "[t_key] | "
@@ -497,13 +499,15 @@
 			var/text = query_get_messages.item[5]
 			var/timestamp = query_get_messages.item[6]
 			var/server = query_get_messages.item[7]
-			var/editor_key = query_get_messages.item[9] // SKYRAT EDIT CHANGE BEGIN - MULTISERVER
+			// SKYRAT EDIT CHANGE BEGIN - MULTISERVER
+			var/editor_key = query_get_messages.item[9]
 			var/age = text2num(query_get_messages.item[10])
 			target_key = query_get_messages.item[11]
 			var/expire_timestamp = query_get_messages.item[12]
 			var/severity = query_get_messages.item[13]
 			var/playtime = query_get_messages.item[14]
-			var/round_id = query_get_messages.item[15] // SKYRAT EDIT CHANGE END - MULTISERVER
+			var/round_id = query_get_messages.item[15]
+			// SKYRAT EDIT CHANGE END - MULTISERVER
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)

@@ -5,6 +5,7 @@
 		"Security Corpsman",
 		"Brig Physician",
 		"Combat Medic",
+		"Special Operations Medic",
 	)
 
 /datum/job/blueshield/New()
@@ -19,3 +20,16 @@
 		"Medical Support Technician",
 	)
 	. = ..()
+
+//New titles for Blacksmith
+/datum/job/blacksmith
+	alt_titles = list(
+		"Ithastrist",
+		"Metalurgist",
+		"Metal Worker",
+		"Metalsmith",
+		"Forge Artisan",
+		"Forgemaster",
+		"Weaponsmith",
+		"Armorsmith",
+	)

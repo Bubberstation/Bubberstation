@@ -61,6 +61,11 @@
 #define AIRLOCK_FRAME_OPEN "open"
 #define AIRLOCK_FRAME_OPENING "opening"
 
+#define AIRLOCK_FRAME_CLOSED "closed"
+#define AIRLOCK_FRAME_CLOSING "closing"
+#define AIRLOCK_FRAME_OPEN "open"
+#define AIRLOCK_FRAME_OPENING "opening"
+
 #define AIRLOCK_SECURITY_NONE 0 //Normal airlock //Wires are not secured
 #define AIRLOCK_SECURITY_IRON 1 //Medium security airlock //There is a simple iron plate over wires (use welder)
 #define AIRLOCK_SECURITY_PLASTEEL_I_S 2 //Sliced inner plating (use crowbar), jumps to 0
@@ -1579,9 +1584,8 @@
 
 	if(!disassembled)
 		A?.update_integrity(A.max_integrity * 0.5)
-	else if(obj_flags & EMAGGED)
-		//no electronics nothing
-	else
+
+	else if(!(obj_flags & EMAGGED))
 		var/obj/item/electronics/airlock/ae
 		if(!electronics)
 			ae = new/obj/item/electronics/airlock(loc)
@@ -1677,7 +1681,7 @@
 	data["wires"] = wire
 	return data
 
-/obj/machinery/door/airlock/ui_act(action, params)
+/obj/machinery/door/airlock/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -2525,6 +2529,7 @@
 	set_density(TRUE)
 	operating = FALSE
 	return TRUE
+
 // SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 /*
 #undef AIRLOCK_SECURITY_NONE
