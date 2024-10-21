@@ -239,6 +239,7 @@ export type PreferencesMenuData = {
   ckey: string;
   is_donator: BooleanLike;
   // SKYRAT EDIT END
+
   keybindings: Record<string, string[]>;
   overflow_role: string;
   selected_quirks: string[];

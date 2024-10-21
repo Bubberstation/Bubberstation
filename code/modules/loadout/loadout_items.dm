@@ -441,4 +441,3 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		))
 
 	return reskins
-

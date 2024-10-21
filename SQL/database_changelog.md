@@ -283,7 +283,11 @@ Modified table `messages`, adding column `playtime` to show the user's playtime 
 ```sql
 ALTER TABLE `messages` ADD `playtime` INT(11) NULL DEFAULT(NULL) AFTER `severity`
 ```
+=======
+Version 5.12, 29 December 2020, by Missfox
+Modified table `messages`, adding column `playtime` to show the user's playtime when the note was created.
 
+ALTER TABLE `messages` ADD `playtime` INT(11) NULL DEFAULT(NULL) AFTER `severity`
 -----------------------------------------------------
 
 Version 5.11, 7 September 2020, by bobbahbrown, MrStonedOne, and Jordie0608 (Updated 26 March 2021 by bobbahbrown)

@@ -49,6 +49,13 @@
 	/// Type path of item to go in belt slot
 	var/belt = null
 
+	/**
+	  * list of items that should go in the belt of the user
+	  *
+	  * Format of this list should be: list(path=count,otherpath=count)
+	  */
+	var/list/belt_contents = null
+
 	/// Type path of item to go in ears slot
 	var/ears = null
 
@@ -258,6 +265,14 @@
 				for(var/i in 1 to number)
 					EQUIP_OUTFIT_ITEM(path, ITEM_SLOT_BACKPACK)
 
+		if(belt_contents)
+			for(var/path in belt_contents)
+				var/number = belt_contents[path]
+				if(!isnum(number))//Default to 1
+					number = 1
+				for(var/i in 1 to number)
+					EQUIP_OUTFIT_ITEM(path, ITEM_SLOT_BELTPACK)
+
 	post_equip(user, visualsOnly)
 
 	if(!visualsOnly)
@@ -342,40 +357,6 @@
 		item.add_fingerprint(user, ignoregloves = TRUE)
 	return TRUE
 
-//SKYRAT EDIT
-/**
- * Copies the outfit from a human to itself.
- **/
-/datum/outfit/proc/copy_outfit_from_target(mob/living/carbon/human/H)
-	if(!istype(H))
-		return
-	if(H.back)
-		back = H.back.type
-	if(H.wear_id)
-		id = H.wear_id.type
-	if(H.w_uniform)
-		uniform = H.w_uniform.type
-	if(H.wear_suit)
-		suit = H.wear_suit.type
-	if(H.wear_mask)
-		mask = H.wear_mask.type
-	if(H.wear_neck)
-		neck = H.wear_neck.type
-	if(H.head)
-		head = H.head.type
-	if(H.shoes)
-		shoes = H.shoes.type
-	if(H.gloves)
-		gloves = H.gloves.type
-	if(H.ears)
-		ears = H.ears.type
-	if(H.glasses)
-		glasses = H.glasses.type
-	if(H.belt)
-		belt = H.belt.type
-	return TRUE
-// SKYRAT EDIT END
-
 /// Return a list of all the types that are required to disguise as this outfit type
 /datum/outfit/proc/get_chameleon_disguise_info()
 	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, id, l_pocket, r_pocket, suit_store, r_hand, l_hand)
@@ -396,6 +377,13 @@
 	//Load in backpack gear and shit
 	for(var/type_to_load in backpack_contents)
 		var/num_to_load = backpack_contents[type_to_load]
+		if(!isnum(num_to_load))
+			num_to_load = 1
+		for(var/i in 1 to num_to_load)
+			preload += type_to_load
+	//Load in belt gear and shit
+	for(var/type_to_load in belt_contents)
+		var/num_to_load = belt_contents[type_to_load]
 		if(!isnum(num_to_load))
 			num_to_load = 1
 		for(var/i in 1 to num_to_load)
@@ -448,6 +436,7 @@
 	.["l_hand"] = l_hand
 	.["internals_slot"] = internals_slot
 	.["backpack_contents"] = backpack_contents
+	.["belt_contents"] = belt_contents
 	.["box"] = box
 	.["implants"] = implants
 	.["accessory"] = accessory
@@ -475,6 +464,7 @@
 	l_hand = target.l_hand
 	internals_slot = target.internals_slot
 	backpack_contents = target.backpack_contents
+	belt_contents = target.belt_contents
 	box = target.box
 	implants = target.implants
 	accessory = target.accessory
@@ -518,6 +508,12 @@
 		var/itype = text2path(item)
 		if(itype)
 			backpack_contents[itype] = backpack[item]
+	var/list/beltpack = outfit_data["belt_contents"]
+	belt_contents = list()
+	for(var/item in beltpack)
+		var/itype = text2path(item)
+		if(itype)
+			belt_contents[itype] = belt[item]
 	box = text2path(outfit_data["box"])
 	var/list/impl = outfit_data["implants"]
 	implants = list()
