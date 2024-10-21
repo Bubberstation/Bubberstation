@@ -1,4 +1,4 @@
-## Bubberstation (A Skyrat Downstream)
+## Bubberstation (TG Downstream)
 
 [![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
@@ -16,7 +16,7 @@
 | Bubberstation Discord     | [https://discord.gg/x4CVEHy6u7](https://discord.gg/x4CVEHy6u7) |
 | Coderbus Discord          | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9) |
 
-This is Bubberstation's downstream fork of Skyrat, which is in turn a fork of tgstation.
+This is Bubberstation's fork of TG. Originally forked from Skyrat.
 
 **Please note that this repository contains sexually explicit content and is not suitable for those under the age of 18.**
 
@@ -42,6 +42,10 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 - Goonstation code is incompatible with this codebase and will not be accepted.
 
 *Credit: [Goonstation contribution guidelines](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)*
+
+## Modularization and codedocs note
+
+As of our recent split from Skyrat, a lot of codedocs/modularization guides need to be rewritten. Until it is done expect some wait time with larger refactors. You are also free to edit any Skyrat files
 
 ## Important note - TEST YOUR PULL REQUESTS
 
