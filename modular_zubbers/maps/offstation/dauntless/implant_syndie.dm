@@ -36,4 +36,3 @@
 	name = "implant case - 'interdyne'"
 	desc = "A glass case containing a Interdyne Pharmaceutics employee implant. Are you ready to join Interdyne Pharmaceutics, agent?"
 	imp_type = /obj/item/implant/interdyne
-

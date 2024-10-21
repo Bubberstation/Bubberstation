@@ -10,7 +10,7 @@
 	minimal_player_age = 7
 	exp_requirements = 120
 	exp_required_type = EXP_TYPE_CREW
-	exp_required_type_department = EXP_TYPE_MEDICAL
+	exp_required_type_department = EXP_TYPE_SECURITY
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "SECURITY_MEDIC"
 
@@ -52,7 +52,7 @@
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	gloves = /obj/item/clothing/gloves/latex/nitrile
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/medsechud
+	glasses = /obj/item/clothing/glasses/hud/secmed
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
@@ -92,23 +92,20 @@
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
-/obj/item/clothing/glasses/hud/medsechud
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	icon_state = "security_hud"
-	inhand_icon_state = "trayson-t-ray"
-	glass_colour_type = /datum/client_colour/glass_colour/blue
-
-/obj/item/clothing/glasses/hud/medsechud/sunglasses
-	name = "health scanner security HUD sunglasses"
+/obj/item/clothing/glasses/hud/secmed
+	name = "security-medical HUD"
+	desc = "The choice for security medics all across the sector, provides advanced medical and simplified security readings."
 	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
+	icon_state = "hud"
+	worn_icon_state = "healthhud"
+	clothing_traits = list(TRAIT_MEDICAL_HUD, TRAIT_BASIC_SECURITY_HUD)
+
+/obj/item/clothing/glasses/hud/secmed/sunglasses
+	name = "security-medical HUD sunglasses"
 	icon_state = "hud_protected"
-	worn_icon_state = "security_hud_black"
-	inhand_icon_state = "sunhudmed"
-	flash_protect = FLASH_PROTECTION_FLASH
+	worn_icon_state = "sunhudsec"
+	flash_protect = FLASH_PROTECTION_SENSITIVE
 	flags_cover = GLASSESCOVERSEYES
-	tint = 1
 
 /obj/item/storage/bag/garment/secmed
 	name = "Security medic's garment bag"
@@ -135,18 +132,9 @@
 /obj/structure/closet/secure_closet/security_medic/PopulateContents()
 	..()
 	new /obj/item/radio/headset/headset_medsec(src)
-	new /obj/item/clothing/glasses/hud/medsechud/sunglasses(src)
+	new /obj/item/clothing/glasses/hud/secmed/sunglasses(src)
 	new /obj/item/storage/medkit/emergency(src)
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/security/medic/full(src)
 	new /obj/item/storage/bag/garment/secmed(src)
-
-//Prevents secmed hours from counting towards HoS
-/datum/controller/subsystem/job/SetupOccupations()
-    . = ..()
-    var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
-    for(var/datum/job/job_type in sec_exp_list)
-        if(istype(job_type, /datum/job/security_medic))
-            LAZYREMOVE(sec_exp_list, job_type)
-            break

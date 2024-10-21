@@ -3,8 +3,6 @@
 	var/can_buckle = FALSE
 	/// Bed-like behaviour, forces mob.lying = buckle_lying if not set to [NO_BUCKLE_LYING].
 	var/buckle_lying = NO_BUCKLE_LYING
-	/// Bed-like behaviour, sets mob dir to buckle_dir if not set to [BUCKLE_MATCH_DIR]. If set to [BUCKLE_MATCH_DIR], makes mob dir match ours.
-	var/buckle_dir = BUCKLE_MATCH_DIR
 	/// Require people to be handcuffed before being able to buckle. eg: pipes
 	var/buckle_requires_restraints = FALSE
 	/// The mobs currently buckled to this atom
@@ -108,10 +106,7 @@
 	M.set_glide_size(glide_size)
 
 	M.Move(loc)
-	if(buckle_dir == BUCKLE_MATCH_DIR)
-		M.setDir(dir)
-	else
-		M.setDir(buckle_dir)
+	M.setDir(dir)
 
 	//Something has unbuckled us in reaction to the above movement
 	if(!M.buckled)
@@ -266,7 +261,7 @@
  */
 /atom/movable/proc/is_user_buckle_possible(mob/living/target, mob/user, check_loc = TRUE)
 	// Standard adjacency and other checks.
-	if(!Adjacent(user) || !Adjacent(target) || !isturf(user.loc) || user.incapacitated || target.anchored)
+	if(!Adjacent(user) || !Adjacent(target) || !isturf(user.loc) || user.incapacitated() || target.anchored)
 		return FALSE
 
 	if(iscarbon(user))

@@ -389,7 +389,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			user.balloon_alert(user, "no room!")
 		return FALSE
 
-	var/can_hold_it = isnull(can_hold) || is_type_in_typecache(to_insert, can_hold) || is_type_in_typecache(to_insert, exception_hold)
+	var/can_hold_it = isnull(can_hold) || is_type_in_typecache(to_insert, can_hold)
 	var/cant_hold_it = is_type_in_typecache(to_insert, cant_hold)
 	var/trait_says_no = HAS_TRAIT(to_insert, TRAIT_NO_STORAGE_INSERT)
 	if(!can_hold_it || cant_hold_it || trait_says_no)
@@ -738,7 +738,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/on_mousedrop_onto(datum/source, atom/over_object, mob/user)
 	SIGNAL_HANDLER
 
-	if(ismecha(user.loc) || user.incapacitated || !user.canUseStorage())
+	if(ismecha(user.loc) || !user.canUseStorage())
 		return
 
 	if(istype(over_object, /atom/movable/screen/inventory/hand))
@@ -826,9 +826,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(dropping.atom_storage) // If it has storage it should be trying to dump, not insert.
 		return
 	if(!iscarbon(user) && !isdrone(user))
-		return
-	var/mob/living/user_living = user
-	if(user_living.incapacitated)
 		return
 
 	attempt_insert(dropping, user)
@@ -1001,7 +998,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(user.active_storage == src && user.client)
 			seeing += user
 		else
-			hide_contents(user)
+			is_using -= user
 	return seeing
 
 /**
@@ -1059,6 +1056,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * * mob/to_hide - the mob to hide the storage from
  */
 /datum/storage/proc/hide_contents(mob/to_hide)
+	if(!to_hide.client)
+		return TRUE
 	if(to_hide.active_storage == src)
 		to_hide.active_storage = null
 
@@ -1071,9 +1070,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	is_using -= to_hide
 
-	if(to_hide.client)
-		to_hide.client.screen -= storage_interfaces[to_hide].list_ui_elements()
-		to_hide.client.screen -= real_location.contents
+	to_hide.client.screen -= storage_interfaces[to_hide].list_ui_elements()
+	to_hide.client.screen -= real_location.contents
 	QDEL_NULL(storage_interfaces[to_hide])
 	storage_interfaces -= to_hide
 
@@ -1104,9 +1102,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	var/columns = clamp(max_slots, 1, screen_max_columns)
 	var/rows = clamp(CEILING(adjusted_contents / columns, 1) + additional_row, 1, screen_max_rows)
 
-	for (var/mob/ui_user as anything in storage_interfaces)
-		if (isnull(storage_interfaces[ui_user]))
-			continue
+	for (var/ui_user in storage_interfaces)
 		storage_interfaces[ui_user].update_position(screen_start_x, screen_pixel_x, screen_start_y, screen_pixel_y, columns, rows)
 
 	var/current_x = screen_start_x

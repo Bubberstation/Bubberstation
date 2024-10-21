@@ -79,7 +79,10 @@
 	. = ..()
 	if(. && atom_integrity > 0)
 		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
-			boom()
+			//SKYRAT EDIT CHANGE
+			var/guaranteed_violent = (damage_flag == BULLET || damage_flag == LASER)
+			boom(damage_type, guaranteed_violent)
+			//SKYRAT EDIT END
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
 	if(W.is_refillable())
@@ -357,10 +360,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 		desc = "IT'S PEPPER TIME, BITCH!"
 	find_and_hang_on_wall()
 
-/obj/structure/reagent_dispensers/water_cooler
+/obj/structure/reagent_dispensers/water_cooler//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "liquid cooler"
 	desc = "A machine that dispenses liquid to drink."
-	icon = 'icons/obj/machines/vending.dmi' //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "water_cooler"
 	anchored = TRUE
 	tank_volume = 500
@@ -427,10 +430,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 	anchored = TRUE
 	reagent_id = /datum/reagent/consumable/nutraslop
 
-/obj/structure/reagent_dispensers/plumbed
+/obj/structure/reagent_dispensers/plumbed//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "stationary water tank"
 	anchored = TRUE
-	icon_state = "water_stationary" //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+	icon_state = "water_stationary"
 	desc = "A stationary, plumbed, water tank."
 	can_be_tanked = FALSE
 

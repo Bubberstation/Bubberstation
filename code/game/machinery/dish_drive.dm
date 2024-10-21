@@ -11,7 +11,8 @@
 	pass_flags = PASSTABLE
 	interaction_flags_click = ALLOW_SILICON_REACH
 	/// List of dishes the drive can hold
-	var/list/collectable_items = list( // SKYRAT EDIT CHANGE - non static list
+	var/list/collectable_items = list(/obj/item/trash/waffles, // SKYRAT EDIT CHANGE - non-static list
+		/obj/item/trash/waffles,
 		/obj/item/broken_bottle,
 		/obj/item/kitchen/fork,
 		/obj/item/plate,
@@ -22,7 +23,8 @@
 		/obj/item/trash/tray,
 	)
 	/// List of items the drive detects as trash
-	var/static/list/disposable_items = list(
+	var/static/list/disposable_items = list(/obj/item/trash/waffles,
+		/obj/item/trash/waffles,
 		/obj/item/broken_bottle,
 		/obj/item/plate_shard,
 		/obj/item/shard,
@@ -36,7 +38,6 @@
 	var/list/dish_drive_contents
 	/// Distance this is capable of sucking dishes up over. (2 + servo tier)
 	var/suck_distance = 0
-
 	var/binrange = 7 //SKYRAT EDIT ADDITION - SEC_HAUL
 
 	COOLDOWN_DECLARE(time_since_dishes)
@@ -125,6 +126,7 @@
 		do_the_dishes()
 	if(!suction_enabled)
 		return
+
 	for(var/obj/item/dish in view(2 + suck_distance, src))
 		if(is_type_in_list(dish, collectable_items) && dish.loc != src && (!dish.reagents || !dish.reagents.total_volume) && (dish.contents.len < 1))
 			if(dish.Adjacent(src))

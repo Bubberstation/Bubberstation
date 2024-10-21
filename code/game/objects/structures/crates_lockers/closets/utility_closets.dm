@@ -94,6 +94,7 @@
 	new /obj/item/clothing/head/utility/hardhat/red(src)
 	new /obj/item/crowbar/large/emergency(src)
 
+
 /*
  * Tool Closet
  */

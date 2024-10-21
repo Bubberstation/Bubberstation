@@ -41,6 +41,7 @@
 		set_light_on(TRUE)
 	update_brightness()
 	register_context()
+
 	if(toggle_context)
 		RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
@@ -694,9 +695,6 @@
 	desc = "An ornate, green lantern."
 	color = LIGHT_COLOR_GREEN
 	light_color = LIGHT_COLOR_GREEN
-
-/obj/item/flashlight/lantern/jade/on
-	start_on = TRUE
 
 /obj/item/flashlight/slime
 	gender = PLURAL

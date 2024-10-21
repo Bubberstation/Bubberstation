@@ -16,6 +16,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 	. = ..()
 	if(building)
 		opened = TRUE
+		//icon_state = "extinguisher_empty" ORIGINAL
+		icon_state = "extinguisher_empty_open"	//SKYRAT EDIT CHANGE - AESTHETICS
 	else
 		stored_extinguisher = new /obj/item/extinguisher(src)
 	update_appearance(UPDATE_ICON)
@@ -159,7 +161,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 
 	return ..()
 */
-
 
 /obj/structure/extinguisher_cabinet/atom_break(damage_flag)
 	. = ..()

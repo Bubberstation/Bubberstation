@@ -27,7 +27,7 @@
 	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/ceremonial_rifle
-	name = "Romulus Ceremonial Bolt Action Rifle"
+	name = "Romulus Sporting Rifle"
 	desc = "A sporting rifle made of light polymer material chambered in Sol .40, poor recoil handling but quite accurate."
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/ceremonial_rifle = 1)
 	cost = PAYCHECK_COMMAND * 20

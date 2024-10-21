@@ -6,15 +6,7 @@
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_TARGETED)
 
-/datum/round_event_control/heart_attack
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_TARGETED)
-
 /datum/round_event_control/camera_failure
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_SPOOKY)
-
-/datum/round_event_control/grid_check
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_SPOOKY)
 
@@ -77,32 +69,4 @@
 
 /datum/round_event_control/tram_malfunction
 	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_TARGETED, TAG_SPOOKY)
-
-/datum/round_event_control/bitrunning_glitch
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_TARGETED)
-
-/datum/round_event_control/sentience
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_TARGETED, TAG_POSITIVE)
-
-/datum/round_event_control/easter
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-
-/datum/round_event_control/rabbitrelease
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-
-/datum/round_event_control/valentines
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-
-/datum/round_event_control/santa
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-
-/datum/round_event_control/spooky
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE, TAG_SPOOKY)
+	tags = list(TAG_DESTRUCTIVE)

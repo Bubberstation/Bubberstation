@@ -1,4 +1,1 @@
-/datum/loadout_item/accessory/fake_medal
-	name = "Fake Medal"
-	item_path = /obj/item/clothing/accessory/fake/medal
-
+// THIS IS WHERE LOADOUT DATUMS GO FOR ACCESSORIES (REMOVE THIS COMMENT AND TICK THIS FILE IF YOU ADD ANYTHING)

@@ -12,7 +12,7 @@
 
 	if(owner.stat & DEAD)
 		return
-	if(INCAPACITATED_IGNORING(owner, INCAPABLE_GRAB))
+	if(owner.incapacitated(IGNORE_GRAB))
 		return
 
 /datum/action/cooldown/noclip/Activate(atom/target)

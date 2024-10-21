@@ -5,7 +5,6 @@
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	pickup_sound = 'sound/items/gun_pick_up.ogg'
 	drop_sound = 'sound/items/gun_drop.ogg'
-	sound_vary = TRUE
 
 	/// What type of power cell this uses
 	var/obj/item/stock_parts/power_store/cell

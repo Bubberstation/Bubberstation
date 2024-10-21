@@ -396,6 +396,7 @@
 		else
 			return FALSE
 	//SKYRAT EDIT END
+
 	return TRUE
 
 /**

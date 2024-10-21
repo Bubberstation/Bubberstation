@@ -97,7 +97,7 @@ const InputDisplay = (props) => {
           </Box>
           <Input
             fluid
-            maxLength={100}
+            maxLength={500} /* SKYRAT EDIT: ORIGINAL 100 */
             value={comments}
             onChange={(e, value) => setInput({ ...input, comments: value })}
           />

@@ -70,7 +70,15 @@
 	var/new_charge = 0
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
 		// SKYRAT EDIT CHANGE START - Original: power_coefficient += capacitor.tier
-		power_coefficient = 2 ** (capacitor.tier - 1)
+		switch(capacitor.tier)
+			if(1)
+				power_coefficient = 1
+			if(2)
+				power_coefficient = 2
+			if(3)
+				power_coefficient = 4
+			else
+				power_coefficient = 8
 		// SKYRAT EDIT CHANGE END
 	input_level_max = initial(input_level_max) * power_coefficient
 	output_level_max = initial(output_level_max) * power_coefficient
@@ -124,7 +132,7 @@
 			if(isnull(choice) \
 				|| !user.is_holding(item) \
 				|| !user.Adjacent(src) \
-				|| user.incapacitated \
+				|| user.incapacitated() \
 				|| !can_place_terminal(user, item, silent = TRUE) \
 			)
 				return
@@ -369,7 +377,7 @@
 	)
 	return data
 
-/obj/machinery/power/smes/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/power/smes/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -423,6 +431,7 @@
 
 /obj/machinery/power/smes/proc/log_smes(mob/user)
 	investigate_log("Input/Output: [input_level]/[output_level] | Charge: [charge] | Output-mode: [output_attempt?"ON":"OFF"] | Input-mode: [input_attempt?"AUTO":"OFF"] by [user ? key_name(user) : "outside forces"]", INVESTIGATE_ENGINE)
+
 
 /obj/machinery/power/smes/emp_act(severity)
 	. = ..()

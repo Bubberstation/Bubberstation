@@ -36,8 +36,7 @@
 		/obj/item/storage/box/handcuffs = 10,
 		/obj/item/storage/box/teargas = 10,
 		/obj/item/storage/box/flashbangs = 10,
-		/obj/item/storage/box/rubbershot = 10,
-		/obj/item/storage/box/lethalshot = 5
+		/obj/item/storage/box/rubbershot = 10
 	)
 	rpg_title = "Jailor"
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT

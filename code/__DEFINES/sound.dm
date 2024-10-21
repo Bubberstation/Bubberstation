@@ -152,10 +152,6 @@
 #define ANNOUNCER_SHUTTLE "announcer_shuttle"
 //SKYRAT EDIT END
 
-// BUBBER EDIT ADDITION BEGIN
-#define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
-// BUBBER EDIT ADDITION END
-
 
 /// Global list of all of our announcer keys.
 GLOBAL_LIST_INIT(announcer_keys, list(
@@ -201,9 +197,6 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_NRI_RAIDERS,
 	ANNOUNCER_OUTBREAK6,
 	//SKYRAT EDIT END
-	// BUBBER EDIT ADDITION BEGIN
-	ANNOUNCER_GRAVGENBLACKOUT,
-	// BUBBER EDIT ADDITION END
 ))
 
 /// List of all of our sound keys.
@@ -249,7 +242,3 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 #define SFX_KEYBOARD_CLICKS "keyboard_clicks"
 #define SFX_STONE_DROP "stone_drop"
 #define SFX_STONE_PICKUP "stone_pickup"
-#define SFX_MUFFLED_SPEECH "muffspeech"
-#define SFX_DEFAULT_FISH_SLAP "default_fish_slap"
-#define SFX_ALT_FISH_SLAP "alt_fish_slap"
-#define SFX_FISH_PICKUP "fish_pickup"

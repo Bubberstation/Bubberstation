@@ -1,7 +1,3 @@
-//////////////////////////
-/////Initial Building/////
-//////////////////////////
-
 /// Inits GLOB.surgeries
 /proc/init_surgeries()
 	var/surgeries = list()

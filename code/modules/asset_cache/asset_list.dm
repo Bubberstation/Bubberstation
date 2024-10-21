@@ -486,7 +486,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #undef SPRSZ_ICON
 #undef SPRSZ_STRIPPED
 
-
 /datum/asset/changelog_item
 	_abstract = /datum/asset/changelog_item
 	var/item_filename

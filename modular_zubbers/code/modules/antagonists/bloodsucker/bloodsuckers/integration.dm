@@ -13,6 +13,9 @@
 
 	if(bloodsuckerdatum.my_clan && istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
 		return ..()
+	if(bloodsuckerdatum.GetRank() >= BLOODSUCKER_HIGH_LEVEL)
+		exposed_mob.adjust_disgust(5 SECONDS, DISGUST_LEVEL_GROSS)
+		reac_volume = reac_volume * 0.3
 	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_NORMAL)
 		return ..()
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
@@ -21,7 +24,7 @@
 	. = ..()
 	if(!mind)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return
 	bloodsuckerdatum.AdjustBloodVolume(-amount)
@@ -55,7 +58,7 @@
 	. = ..()
 	if(!mind)
 		return ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
@@ -115,3 +118,9 @@
 	if(IS_BLOODSUCKER(src))
 		return TRUE
 	. =..()
+
+// prevents players being trapped in their brain, alive, yet limbless and voiceless
+/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
+	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
+	brain?.brainmob.death()
+	. = ..()

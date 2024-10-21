@@ -63,8 +63,6 @@
 				/obj/item/clothing/suit/hooded/sigmarcoat = 5,
 				/obj/item/clothing/suit/jacket/skyy = 5,
 				/obj/item/clothing/suit/jacket/tailcoat = 5,
-				/obj/item/clothing/under/dress/skirt/skyrat/black_skirt = 5,
-				/obj/item/clothing/suit/misc/suit_harness = 5,
 			),
 		),
 

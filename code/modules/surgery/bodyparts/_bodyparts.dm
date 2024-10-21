@@ -546,12 +546,12 @@
 			//SKYRAT EDIT ADDITION - MEDICAL
 			//This makes it so the more damaged bodyparts are, the more likely they are to get wounds
 			//However, this bonus isn't applied when the object doesn't pass the initial wound threshold, nor is it when it already has enough wounding dmg
-			/* if(wounding_dmg < DAMAGED_BODYPART_BONUS_WOUNDING_BONUS) // BUBBER EDIT REMOVAL
+			if(wounding_dmg < DAMAGED_BODYPART_BONUS_WOUNDING_BONUS)
 				var/damaged_percent = (brute_dam + burn_dam) / max_damage
 				if(damaged_percent > DAMAGED_BODYPART_BONUS_WOUNDING_THRESHOLD)
 					damaged_percent = DAMAGED_BODYPART_BONUS_WOUNDING_THRESHOLD
 				wounding_dmg = min(DAMAGED_BODYPART_BONUS_WOUNDING_BONUS, wounding_dmg + (damaged_percent * DAMAGED_BODYPART_BONUS_WOUNDING_COEFF))
-			*/// BUBBER EDIT REMOVAL
+
 			if (istype(current_gauze, /obj/item/stack/medical/gauze))
 				var/obj/item/stack/medical/gauze/our_gauze = current_gauze
 				our_gauze.get_hit()
@@ -991,6 +991,7 @@
 		aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
 	markings_alpha = owner_species.markings_alpha
 	// SKYRAT EDIT END
+
 	recolor_external_organs()
 	return TRUE
 

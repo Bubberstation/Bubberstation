@@ -178,6 +178,5 @@ Skyrat removal START, moved to modular file
 	pixel_x = 0
 	pixel_y = 0
 
-
 Skyrat removal END
 */

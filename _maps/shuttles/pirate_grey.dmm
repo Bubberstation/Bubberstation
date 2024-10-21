@@ -353,9 +353,8 @@
 /obj/machinery/light/small/directional/west,
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate{
 	dir = 4;
-	x_offset = -5;
-	y_offset = 12;
-	view_range = 10
+	x_offset = -3;
+	y_offset = 7
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm/directional/south,
@@ -735,6 +734,13 @@
 /obj/structure/chair/stool/bar/directional/south,
 /turf/open/floor/iron/dark,
 /area/shuttle/pirate)
+"yA" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/power_store/cell/high,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 "yI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -855,21 +861,10 @@
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/docking_port/mobile/pirate{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/pod/light,
-/area/shuttle/pirate)
-"Bu" = (
-/obj/machinery/power/apc/auto_name/directional/north{
-	cell_type = /obj/item/stock_parts/power_store/battery/bluespace
-	},
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/turf/open/floor/plating,
 /area/shuttle/pirate)
 "BL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -923,13 +918,6 @@
 "CY" = (
 /obj/structure/cable,
 /obj/item/flashlight,
-/turf/open/floor/plating,
-/area/shuttle/pirate)
-"De" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/power_store/cell/high,
-/obj/machinery/airalarm/directional/east,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "Dn" = (
@@ -1230,9 +1218,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/pirate)
-"Pn" = (
-/turf/closed/wall,
-/area/shuttle/pirate)
 "PM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/trash/grille_or_waste,
@@ -1292,6 +1277,17 @@
 /obj/effect/mob_spawn/ghost_role/human/pirate/grey/shitter{
 	dir = 8
 	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
+"RY" = (
+/obj/machinery/power/apc/auto_name/directional/north{
+	cell_type = /obj/item/stock_parts/power_store/battery/bluespace
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "Sb" = (
@@ -1495,6 +1491,9 @@
 /obj/effect/spawner/random/trash/garbage,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
+"ZU" = (
+/turf/closed/wall,
+/area/shuttle/pirate)
 
 (1,1,1) = {"
 je
@@ -1668,7 +1667,7 @@ qm
 Ti
 "}
 (10,1,1) = {"
-Pn
+ZU
 Ut
 kw
 CH
@@ -1683,7 +1682,7 @@ Yj
 rV
 Tq
 uE
-Pn
+ZU
 HD
 "}
 (11,1,1) = {"
@@ -1702,7 +1701,7 @@ wX
 Oa
 Tq
 Lo
-Pn
+ZU
 ei
 "}
 (12,1,1) = {"
@@ -1711,7 +1710,7 @@ sB
 GE
 Yj
 Nu
-Pn
+ZU
 am
 Eq
 yN
@@ -1728,7 +1727,7 @@ HD
 HD
 XX
 vJ
-Pn
+ZU
 SB
 Nm
 Vw
@@ -1740,14 +1739,14 @@ Sh
 gQ
 dd
 xy
-Pn
+ZU
 HD
 "}
 (14,1,1) = {"
 pk
 pS
 pU
-Pn
+ZU
 QO
 Ac
 Wc
@@ -1763,11 +1762,11 @@ Sh
 zB
 "}
 (15,1,1) = {"
-Pn
+ZU
 dI
 Sv
-Pn
-Bu
+ZU
+RY
 xO
 yf
 Lk
@@ -1785,7 +1784,7 @@ zB
 zB
 vM
 lO
-Pn
+ZU
 tJ
 xO
 ax
@@ -1836,7 +1835,7 @@ Bh
 Uf
 DP
 zB
-Pn
+ZU
 "}
 (19,1,1) = {"
 je
@@ -1849,17 +1848,17 @@ sm
 CY
 fj
 DG
-Pn
+ZU
 Ci
 Sh
 Gb
 xm
-Pn
+ZU
 je
 "}
 (20,1,1) = {"
 je
-Pn
+ZU
 ia
 NI
 yU
@@ -1868,49 +1867,49 @@ bv
 aD
 cJ
 tU
-Pn
+ZU
 xl
 Sh
 AR
 lO
-Pn
+ZU
 je
 "}
 (21,1,1) = {"
 je
-Pn
-Pn
+ZU
+ZU
 xm
 yU
 OG
 qo
 pT
-De
+yA
 sh
-Pn
+ZU
 Zc
-Pn
+ZU
 pB
-Pn
-Pn
+ZU
+ZU
 je
 "}
 (22,1,1) = {"
 je
 je
-Pn
+ZU
 EA
 ll
 FI
 Hh
-Pn
-Pn
+ZU
+ZU
 Hh
-Pn
+ZU
 gz
-Pn
+ZU
 RX
-Pn
+ZU
 je
 je
 "}
@@ -1927,8 +1926,8 @@ ti
 Yf
 FI
 aV
-Pn
-Pn
+ZU
+ZU
 je
 je
 je
@@ -1946,7 +1945,7 @@ Am
 FT
 pk
 pk
-Pn
+ZU
 je
 je
 je
@@ -1959,8 +1958,8 @@ je
 je
 pk
 zB
-Pn
-Pn
+ZU
+ZU
 zB
 pk
 pk

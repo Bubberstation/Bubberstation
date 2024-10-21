@@ -380,7 +380,6 @@ const PageMain = (props) => {
               onClick={() => act('makePriorityAnnouncement')}
             />
           )}
-
           {!!canToggleEmergencyAccess && (
             <Button.Confirm
               icon="id-card-o"

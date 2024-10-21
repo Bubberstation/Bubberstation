@@ -2,12 +2,14 @@
 	name = "Veil of Many Faces"
 	desc = "Disguise yourself in the illusion of another identity."
 	button_icon_state = "power_veil"
-	power_flags = NONE
-	check_flags = AB_CHECK_CONSCIOUS
-	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_IN_TORPOR
+	power_explanation = "Veil of Many Faces: \n\
+		Activating Veil of Many Faces will shroud you in smoke and forge you a new identity.\n\
+		Your name and appearance will be completely randomized, and turning the ability off again will undo it all.\n\
+		Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 15
-	level_current = -1
 	constant_bloodcost = 0.1
 	cooldown_time = 10 SECONDS
 	// Outfit Vars
@@ -28,20 +30,13 @@
 	var/list/prev_features // For lizards and such
 	var/disguise_name
 
-/datum/action/cooldown/bloodsucker/veil/get_power_explanation_extended()
-	. = list()
-	. += "Activating Veil of Many Faces will shroud you in smoke and forge you a new identity."
-	. += "Your name and appearance will be completely randomized, and turning the ability off again will undo it all."
-	. += "Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
-
-/datum/action/cooldown/bloodsucker/veil/ActivatePower(atom/target)
+/datum/action/cooldown/bloodsucker/veil/ActivatePower(trigger_flags)
 	. = ..()
 	cast_effect() // POOF
 //	if(blahblahblah)
 //		Disguise_Outfit()
 	veil_user()
 	owner.balloon_alert(owner, "veil turned on.")
-	return TRUE
 
 /* // Meant to disguise your character's clothing into fake ones.
 /datum/action/cooldown/bloodsucker/veil/proc/Disguise_Outfit()
@@ -106,9 +101,9 @@
 	identity[VISIBLE_NAME_FACE] = disguise_name
 	user.SetSpecialVoice(disguise_name)
 
-/datum/action/cooldown/bloodsucker/veil/DeactivatePower(deactivate_flags)
+/datum/action/cooldown/bloodsucker/veil/DeactivatePower()
 	. = ..()
-	if(!. || !ishuman(owner))
+	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
 	// Revert Identity

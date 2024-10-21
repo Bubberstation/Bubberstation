@@ -3,7 +3,6 @@
 	name = "vox breath mask"
 	actions_types = list()
 	flags_cover = NONE
-	visor_flags_cover = NONE
 
 /obj/item/clothing/mask/balaclavaadjust
 	name = "adjustable balaclava"
@@ -21,7 +20,7 @@
 /obj/item/clothing/mask/balaclavaadjust/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	if(!user.incapacitated)
+	if(!user.incapacitated())
 		switch(open)
 			if (0)
 				flags_inv = HIDEHAIR

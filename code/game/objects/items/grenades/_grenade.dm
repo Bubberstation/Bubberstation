@@ -19,7 +19,6 @@
 	max_integrity = 40
 	pickup_sound = 'sound/items/grenade_pick_up.ogg'
 	drop_sound = 'sound/items/grenade_drop.ogg'
-	sound_vary = TRUE
 	/// Bitfields which prevent the grenade from detonating if set. Includes ([GRENADE_DUD]|[GRENADE_USED])
 	var/dud_flags = NONE
 	///Is this grenade currently armed?

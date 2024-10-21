@@ -304,8 +304,10 @@ export function QuirksPage(props) {
 
   return (
     <ServerPreferencesFetcher
+      // SKYRAT EDIT START - Quirks balance refactor
       render={(server_data) => {
         if (!server_data) {
+          // SKYRAT EDIT END
           return <Box>Loading quirks...</Box>;
         }
 
@@ -314,7 +316,7 @@ export function QuirksPage(props) {
           quirk_blacklist: quirkBlacklist,
           quirk_info: quirkInfo,
           points_enabled: pointsEnabled,
-        } = server_data.quirks;
+        } = server_data.quirks; // SKYRAT EDIT - Quirks balance refactor
 
         const quirks = Object.entries(quirkInfo);
         quirks.sort(([_, quirkA], [__, quirkB]) => {
@@ -344,7 +346,7 @@ export function QuirksPage(props) {
             }
           }
 
-          // SKYRAT EDIT START - Veteran quirks. Please phase these out! - Kali
+          // SKYRAT EDIT START - Veteran quirks
           if (quirk.veteran_only && !data.is_veteran) {
             return 'You need to be a veteran to select this quirk, apply today!';
           }
@@ -453,7 +455,7 @@ export function QuirksPage(props) {
                           },
                         ];
                       })}
-                    serverData={server_data}
+                    serverData={server_data} // SKYRAT EDIT CHANGE
                     randomBodyEnabled={randomBodyEnabled}
                   />
                 </Stack.Item>
@@ -517,7 +519,7 @@ export function QuirksPage(props) {
                           },
                         ];
                       })}
-                    serverData={server_data}
+                    serverData={server_data} // sKYRAT EDIT CHANGE
                     randomBodyEnabled={randomBodyEnabled}
                   />
                 </Stack.Item>

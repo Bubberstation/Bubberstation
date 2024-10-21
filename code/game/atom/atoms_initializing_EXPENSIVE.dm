@@ -24,7 +24,7 @@
 
 	switch(result)
 		if (INITIALIZE_HINT_NORMAL)
-			EMPTY_BLOCK_GUARD // Pass
+			// pass
 		if(INITIALIZE_HINT_LATELOAD)
 			if(arguments[1]) //mapload
 				late_loaders += A

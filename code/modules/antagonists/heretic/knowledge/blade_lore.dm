@@ -147,7 +147,7 @@
 	if(!riposte_ready)
 		return
 
-	if(INCAPACITATED_IGNORING(source, INCAPABLE_GRAB))
+	if(source.incapacitated(IGNORE_GRAB))
 		return
 
 	var/mob/living/attacker = hitby.loc

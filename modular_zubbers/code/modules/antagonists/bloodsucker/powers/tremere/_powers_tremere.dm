@@ -7,16 +7,21 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere
 	name = "Tremere Gift"
-	desc = ""
-	power_explanation = ""
+	desc = "A Tremere exclusive gift."
+	button_icon_state = "power_auspex"
+	background_icon_state = "tremere_power_off"
 	active_background_icon_state = "tremere_power_on"
 	base_background_icon_state = "tremere_power_off"
 	button_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 
+	// Tremere powers don't level up, we have them hardcoded.
 	level_current = 0
 	// Re-defining these as we want total control over them
-	power_flags = BP_AM_STATIC_COOLDOWN
+	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
+	purchase_flags = TREMERE_CAN_BUY
 	// Targeted stuff
-	unset_after_click = FALSE
+	power_activates_immediately = FALSE
 
+	///The upgraded version of this Power. 'null' means it's the max level.
+	var/upgraded_power = null

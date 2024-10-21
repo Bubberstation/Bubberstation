@@ -49,6 +49,7 @@
 	if(ishuman(new_jellyperson))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(new_jellyperson)
+		update_mail_goodies(new_jellyperson)
 		alter_form = new //SKYRAT EDIT CUSTOMIZATION
 		alter_form.Grant(new_jellyperson) //SKYRAT EDIT CUSTOMIZATION
 
@@ -420,7 +421,7 @@
 
 	return data
 
-/datum/action/innate/swap_body/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/action/innate/swap_body/ui_act(action, params)
 	. = ..()
 	if(.)
 		return

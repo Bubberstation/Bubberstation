@@ -504,9 +504,6 @@
 	icon = 'modular_skyrat/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod-open"
 
-/obj/structure/showcase/machinery/oldpod/used/psyker
-	icon = 'icons/obj/machines/sleeper.dmi' // SKYRAT TODO - Add aesthetics sprites
-
 //IDS//
 
 /obj/item/card/id/away/silver

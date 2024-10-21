@@ -26,7 +26,7 @@
 /obj/item/spanking_pad/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated)
+	if(user.incapacitated())
 		return FALSE
 	return TRUE
 
@@ -64,22 +64,20 @@
 	. = ..()
 	if(target.stat == DEAD)
 		return
-
-	var/mob/living/carbon/human/carbon_target
-	if(ishuman(target))
-		carbon_target = target
-	else if(!iscyborg(target))
+	var/mob/living/carbon/human/carbon_target = target
+	if(!carbon_target && !iscyborg(target))
 		return
 
+	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
 		to_chat(user, span_danger("[target] doesn't want you to do that."))
 		return
 
-	if(carbon_target && !carbon_target.is_bottomless())
+	if(!carbon_target?.is_bottomless() && !iscyborg(target))
 		to_chat(user, span_danger("[target]'s butt is covered!"))
 		return
 
-	var/message = (user == target) ? pick("spanks themselves with [src]",
+	message = (user == target) ? pick("spanks themselves with [src]",
 			"uses [src] to slap their hips") \
 		: pick("slaps [target]'s hips with [src]",
 			"uses [src] to slap [target]'s butt",

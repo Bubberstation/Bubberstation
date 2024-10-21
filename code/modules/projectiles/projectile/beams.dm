@@ -2,7 +2,7 @@
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 20
+	damage = 25
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
@@ -50,11 +50,13 @@
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
 	name = "hellfire laser"
-	icon_state = "hellfire"
 	wound_bonus = 0
 	damage = 30
 	speed = 0.6 // higher power = faster, that's how light works right
-	light_color = "#FF969D"
+
+/obj/projectile/beam/laser/hellfire/Initialize(mapload)
+	. = ..()
+	transform *= 2
 
 /obj/projectile/beam/laser/heavylaser
 	name = "heavy laser"

@@ -39,7 +39,7 @@ export const KeycardAuth = (props) => {
                       content="Red Alert"
                     />
                     <Button
-                      icon="wrench"
+                      icon="id-card-o"
                       fluid
                       onClick={() => act('emergency_maint')}
                       content="Emergency Maintenance Access"

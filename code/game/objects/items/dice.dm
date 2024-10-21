@@ -360,8 +360,10 @@
 		if(4)
 			//Destroy Equipment
 			selected_turf.visible_message(span_userdanger("Everything [user] is holding and wearing disappears!"))
-			var/list/belongings = user.get_all_gear()
-			QDEL_LIST(belongings)
+			for(var/obj/item/non_implant in user)
+				if(istype(non_implant, /obj/item/implant))
+					continue
+				qdel(non_implant)
 		if(5)
 			//Monkeying
 			selected_turf.visible_message(span_userdanger("[user] transforms into a monkey!"))
@@ -393,9 +395,9 @@
 		if(11)
 			//Cookie
 			selected_turf.visible_message(span_userdanger("A cookie appears out of thin air!"))
-			var/obj/item/food/cookie/ooh_a_cookie = new(drop_location())
+			var/obj/item/food/cookie/C = new(drop_location())
 			do_smoke(0, holder = src, location = drop_location())
-			ooh_a_cookie.name = "Cookie of Fate"
+			C.name = "Cookie of Fate"
 		if(12)
 			//Healing
 			selected_turf.visible_message(span_userdanger("[user] looks very healthy!"))

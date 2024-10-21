@@ -1,29 +1,29 @@
-local SS13 = require("SS13")
+local SS13 = require('SS13')
 local HandlerGroup = {}
 HandlerGroup.__index = HandlerGroup
 
 function HandlerGroup.new()
 	return setmetatable({
-		registered = {},
+		registered = {}
 	}, HandlerGroup)
 end
 
 -- Registers a signal on a datum for this handler group instance.
 function HandlerGroup:register_signal(datum, signal, func)
-	local registered_successfully = SS13.register_signal(datum, signal, func)
-	if not registered_successfully then
+	local callback = SS13.register_signal(datum, signal, func)
+	if not callback then
 		return
 	end
-	table.insert(self.registered, { datum = datum, signal = signal, func = func })
+	table.insert(self.registered, { datum = dm.global_proc("WEAKREF", datum), signal = signal, callback = callback  })
 end
 
 -- Clears all the signals that have been registered on this HandlerGroup
 function HandlerGroup:clear()
 	for _, data in self.registered do
-		if not data.func or not SS13.is_valid(data.datum) then
+		if not data.callback or not data.datum then
 			continue
 		end
-		SS13.unregister_signal(data.datum, data.signal, data.func)
+		SS13.unregister_signal(data.datum, data.signal, data.callback)
 	end
 	table.clear(self.registered)
 end
@@ -44,5 +44,6 @@ function HandlerGroup.register_once(datum, signal, func)
 	callback:clear_on(datum, signal, func)
 	return callback
 end
+
 
 return HandlerGroup
