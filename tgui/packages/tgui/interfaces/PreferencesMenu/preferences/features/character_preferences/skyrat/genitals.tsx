@@ -237,7 +237,6 @@ export const erp_status_pref_mechanics: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
-
 export const feature_butt: Feature<string> = {
   name: 'Butt Choice',
   component: (
@@ -273,7 +272,6 @@ export const butt_size: FeatureNumeric = {
   component: FeatureNumberInput,
 };
 
-
 export const anus_skin_tone: FeatureToggle = {
   name: 'Anus uses Skin Tone',
   component: CheckboxInput,
@@ -294,7 +292,6 @@ export const anus_emissive: Feature<boolean[]> = {
   description: 'Emissive parts glow in the dark.',
   component: FeatureTriBoolInput,
 };
-
 
 export const feature_belly: Feature<string> = {
   name: 'Belly Choice',
