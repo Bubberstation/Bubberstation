@@ -89,7 +89,7 @@
 
 	initial_sparks_amount = 3
 
-	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/moderate
+	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/severe
 
 	a_or_from = "a"
 
@@ -134,7 +134,7 @@
 
 	initial_sparks_amount = 8
 
-	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/moderate
+	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/critical
 
 	a_or_from = "a"
 
