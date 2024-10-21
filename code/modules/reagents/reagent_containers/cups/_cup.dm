@@ -162,7 +162,7 @@
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	target.update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
 	var/hotness = attacking_item.get_temperature()
@@ -233,6 +233,7 @@
 	drop_sound = 'sound/items/handling/beaker_place.ogg'
 	volume = 60 //SKYRAT EDIT: Addition
 	possible_transfer_amounts = list(5,10,15,20,30,60) //SKYRAT EDIT: Addition
+	sound_vary = TRUE
 
 /obj/item/reagent_containers/cup/beaker/Initialize(mapload)
 	. = ..()

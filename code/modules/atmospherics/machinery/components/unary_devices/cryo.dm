@@ -661,7 +661,7 @@
 
 	if(isliving(target))
 		var/mob/living/living_mob = target
-		if(living_mob.incapacitated())
+		if(living_mob.incapacitated)
 			close_machine(target)
 		return
 

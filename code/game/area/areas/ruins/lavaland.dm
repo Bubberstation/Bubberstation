@@ -98,7 +98,7 @@
 
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
-	//SKYRAT EDIT ADDITION BEGIN - ASH WALKER MACHINES FIX
+	//SKYRAT EDIT ADDITION BEGIN - ASH WALKER MACHINES FIX //SKYRAT TODO - Fix this proper holy hell
 	always_unpowered = FALSE
 	power_equip = TRUE
 	//SKYRAT EDIT ADDITION END
