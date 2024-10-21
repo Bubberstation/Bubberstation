@@ -18,7 +18,7 @@
 
 /datum/armament_entry/company_import/sol_defense/armor
 	subcategory = "Ballistic Armor"
-	cost = PAYCHECK_CREW * 3
+	cost = PAYCHECK_CREW * 6 //Bubber edit: Doubles the price of the ballistic armor
 
 /datum/armament_entry/company_import/sol_defense/armor/ballistic_helmet
 	item_type = /obj/item/clothing/head/helmet/sf_peacekeeper/debranded
@@ -41,7 +41,7 @@
 
 /datum/armament_entry/company_import/sol_defense/armor_hardened
 	subcategory = "Hardened Armor"
-	cost = PAYCHECK_CREW * 3
+	cost = PAYCHECK_CREW * 6 //Bubber edit: Doubles the price of the hardened armor
 
 /datum/armament_entry/company_import/sol_defense/armor_hardened/enclosed_helmet
 	item_type = /obj/item/clothing/head/helmet/toggleable/sf_hardened
@@ -121,12 +121,12 @@
 /datum/armament_entry/company_import/sol_defense/longarm/sindano
 	item_type = /obj/item/gun/ballistic/automatic/sol_smg
 	cost = PAYCHECK_COMMAND * 6
-*/
+
 /datum/armament_entry/company_import/sol_defense/longarm/elite
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	cost = PAYCHECK_COMMAND * 8
 
-/*
+
 /datum/armament_entry/company_import/sol_defense/longarm/bogseo
 	item_type = /obj/item/gun/ballistic/automatic/xhihao_smg
 	cost = PAYCHECK_COMMAND * 10
@@ -162,7 +162,7 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 /*
 /datum/armament_entry/company_import/sol_defense/magazines/c585_mag
 	item_type = /obj/item/ammo_box/magazine/c585trappiste_pistol/spawns_empty
-*/
+
 /datum/armament_entry/company_import/sol_defense/magazines/sol_rifle_short
 	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
 
@@ -170,7 +170,6 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/standard/starts_empty
 	cost = PAYCHECK_COMMAND
 
-/*
 
 /datum/armament_entry/company_import/sol_defense/magazines/sol_rifle_drum
 	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty

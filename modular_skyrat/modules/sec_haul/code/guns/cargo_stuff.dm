@@ -31,7 +31,7 @@
 /datum/supply_pack/security/armory/exoticskyratammo
 	name = "12 Gauge Exotic Ammunition Crates"
 	desc = "Contains 6 boxes of exotic ammunition for all 12 Gauge Shotguns."
-	cost = CARGO_CRATE_VALUE * 20
+	cost = CARGO_CRATE_VALUE * 40 //BUBBER EDIT: DOUBLES THE COST OF EXOTIC AMMO
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/incendiary= 1,
 					/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
 					/obj/item/ammo_box/advanced/s12gauge/express = 1,
@@ -154,6 +154,7 @@
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
 
+/*
 /datum/supply_pack/imports/lmg
 	name = "Smuggled Sol Light Machinegun Crate"
 	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
@@ -166,6 +167,7 @@
 		/obj/item/gun/ballistic/automatic/sol_rifle/machinegun = 1,
 		/obj/item/ammo_box/magazine/c40sol_rifle/drum = 2,
 	)
+*/ //BUBBER EDIT: IT'S AS BAD AS YOU THOUGHT
 
 /datum/supply_pack/imports/infanterie
 	name = "Carwil Battle Rifle Crate"
