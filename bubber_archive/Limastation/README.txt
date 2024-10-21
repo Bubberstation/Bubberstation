@@ -1,6 +1,6 @@
 ## General Information
 
-Limastation is a medium map ported from Talestation in the early days of Bubberstation.
+Limastation is a medium sized map ported from Talestation in the early days of Bubberstation.
 
 ## ARCHIVAL REASON
 
