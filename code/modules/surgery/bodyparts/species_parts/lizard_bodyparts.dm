@@ -56,24 +56,13 @@
 
 /obj/item/bodypart/leg/left/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		var/obj/item/clothing/shoes/worn_shoes = human_owner.get_item_by_slot(ITEM_SLOT_FEET)
-		var/uniform_compatible = FALSE
-		var/suit_compatible = FALSE
-		var/shoes_compatible = FALSE
-		if(!(human_owner.w_uniform) || (human_owner.w_uniform.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON))) //Checks uniform compatibility
-			uniform_compatible = TRUE
-		if((!human_owner.wear_suit) || (human_owner.wear_suit.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON)) || !(human_owner.wear_suit.body_parts_covered & LEGS)) //Checks suit compatability
-			suit_compatible = TRUE
-		if((worn_shoes == null) || (worn_shoes.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON)))
-			shoes_compatible = TRUE
-
-		if((uniform_compatible && suit_compatible && shoes_compatible) || (suit_compatible && shoes_compatible && human_owner.wear_suit?.flags_inv & HIDEJUMPSUIT)) //If the uniform is hidden, it doesnt matter if its compatible
-			limb_id = BODYPART_ID_DIGITIGRADE
-
-		else
-			limb_id = SPECIES_LIZARD
+	var/old_id = limb_id
+	limb_id = owner?.is_digitigrade_squished() ? SPECIES_LIZARD : BODYPART_ID_DIGITIGRADE
+	if(old_id != limb_id)
+		// Something unsquished / squished us so we need to go through and update everything that is affected
+		for(var/obj/item/thing as anything in owner?.get_equipped_items())
+			if(thing.supports_variations_flags & DIGITIGRADE_VARIATIONS)
+				thing.update_slot_icon()
 
 /obj/item/bodypart/leg/right/digitigrade
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
@@ -83,22 +72,11 @@
 
 /obj/item/bodypart/leg/right/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		var/obj/item/clothing/shoes/worn_shoes = human_owner.get_item_by_slot(ITEM_SLOT_FEET)
-		var/uniform_compatible = FALSE
-		var/suit_compatible = FALSE
-		var/shoes_compatible = FALSE
-		if(!(human_owner.w_uniform) || (human_owner.w_uniform.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON))) //Checks uniform compatibility
-			uniform_compatible = TRUE
-		if((!human_owner.wear_suit) || (human_owner.wear_suit.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON)) || !(human_owner.wear_suit.body_parts_covered & LEGS)) //Checks suit compatability
-			suit_compatible = TRUE
-		if((worn_shoes == null) || (worn_shoes.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON)))
-			shoes_compatible = TRUE
-
-		if((uniform_compatible && suit_compatible && shoes_compatible) || (suit_compatible && shoes_compatible && human_owner.wear_suit?.flags_inv & HIDEJUMPSUIT)) //If the uniform is hidden, it doesnt matter if its compatible
-			limb_id = BODYPART_ID_DIGITIGRADE
-
-		else
-			limb_id = SPECIES_LIZARD
+	var/old_id = limb_id
+	limb_id = owner?.is_digitigrade_squished() ? SPECIES_LIZARD : BODYPART_ID_DIGITIGRADE
+	if(old_id != limb_id)
+		// Something unsquished / squished us so we need to go through and update everything that is affected
+		for(var/obj/item/thing as anything in owner?.get_equipped_items())
+			if(thing.supports_variations_flags & DIGITIGRADE_VARIATIONS)
+				thing.update_slot_icon()
 */

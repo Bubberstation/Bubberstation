@@ -196,10 +196,6 @@
 				worn_face_offset.apply_offset(eye_right)
 
 			// SKYRAT EDIT ADDITION START - Customization (Emissives and synths)
-			if(eyes.eye_icon_state == "None")
-				eye_left.alpha = 0
-				eye_right.alpha = 0
-
 			if (eyes.is_emissive) // Because it was done all weird up there.
 				var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, src, -BODY_LAYER, eye_left.alpha)
 				var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, src, -BODY_LAYER, eye_right.alpha)

@@ -1,0 +1,341 @@
+2024-10-21:
+  Adrian16199:
+  - rscadd: HFZ can have digitigrade legs now.
+  Aroliacue:
+  - balance: Increased Shadekin bodypart burn damage received from 10% to 20%
+  - spellcheck: Fixed some desc typos in shadekin.dm
+  - bugfix: Removed doubleup eyes organ in shadekin.dm
+  Arturlang:
+  - refactor: Heavily refactors how bloodsucker powers function.
+  - refactor: Tremere powers no longer have subtypes for each level.
+  - rscadd: Completely redoes how bloodsucker ability descriptions, both the longer
+      antag panel and the action button hover over, they will actually tell you actual
+      values that the game itself uses for damage, cooldowns, and effect durations
+  - balance: Tremere powers can now level up as far as you want.
+  - balance: Mesmerize is heavily reworked, now it no longer forces both parties to
+      stand still for it to work, but it is obvious to the victim when used, however
+      the victim is muted for the duration of the spool up, and will stun and mute
+      normally if the do_after completes.
+  - rscadd: 'Mesmerize now has a secondary that allows you to mute and confuse your
+      victim that happens on a right-click,
+
+      dominate, the tremere''s version instead knockdowns.'
+  - rscadd: Tremere's dominate now has a visual timer for temporary vassals, visible
+      only to the master's vassals and the master themselves.
+  - balance: Tremere's dominate now only requires level 2 to create temporary vassals,
+      but the duration now scales with the level. It now requires the potential vassal
+      to have more than 336 blood, and will use it all up once the duration ends,
+      effectively making it only usable once per person.
+  - balance: All tremere powers can now level up past level 4
+  - balance: Thaumaturgy is heavily reworked, it now has a charge system, and while
+      the projectile deal less damage, you can shoot a lot more of them, and the projectiles
+      will seek towards any non-vassal mob near where you cast it.
+  - refactor: Separates bloodsucker ability bitfields and action bitfields to avoid
+      overriding eachother
+  - balance: Bloodsuckers going into torpor outside of coffins will always die, but
+      will wake out of torpor at 20% maxhealth(not counting critical health)
+  - balance: A coffin being opened during sol will wake you up, given you are LITERALL
+      BURNING UN-ALIVE.
+  - balance: brawn costs 10 blood instead of 8, and has a cooldown of 12 seconds,
+      instead of 9
+  - balance: fortitude now has a cooldown of 20 seconds, from 8, also you will not
+      be able to heal any brute or burn damage while it is active, the scaling of
+      the damage resist is also halved, no longer is maximum resistance of 0.3 for
+      brute, 0.5 for burn achieved at level 4, now it is reached at level 8, changing
+      by 0.05 per ability level
+  - balance: haste costs 9 blood instead of 6, and has a cooldown of 15 seconds from
+      12
+  - balance: The candelabrum is no longer as tough
+  - bugfix: candelabrum now turns off when unsecured
+  - balance: Bloodsucker no longer level from sol when they reach level 4
+  - balance: Ventrue now can only use blood drunk from sentients to level up vassals
+      if they wish to level themselves up.
+  - refactor: Refactors how ventrue vassalizing is handled, no longer copying most
+      of level up code for it.
+  - balance: Silver stakes no longer gib/dust sleepy bloodsuckers, instead they remove
+      hearts, which leaves bloodsuckers power-less
+  - balance: Bloodsuckers are no longer highly wound resistant, but their coffins
+      will now heal all wounds
+  - bugfix: Should fix the issue with bloodsucker bleeding staying active forever
+  - balance: The range of haste is now 5 tiles.
+  - bugfix: Malkavians will now actually get a notification and a objective once a
+      bloodsucker breaks the masquarade
+  - balance: Drinking from ghouls/vassals as a bloodsucker is no longer is 1/4th less
+      effective than drinking from non ghouls/vassals
+  - bugfix: Bloodsuckers now get blood thickening points
+  Azarak (code), ReturnToZender (bugfixing):
+  - rscadd: New players to a department now show properly as interns.
+  Bangle:
+  - spellcheck: Added some alt titles
+  Boviro:
+  - rscadd: Re-adds gun safeties
+  - rscadd: Guns with enabled safeties will disable their safeties if you attempt
+      to fire with it on.
+  BurgerBB:
+  - balance: Overhauls requirements for Anomaly Refinement, and removes some limits
+      and implements some more.
+  - balance: Changeling Zombie Toxins are capped when it reaches the curable stage.
+  - balance: Changeling Zombie patients will deal damage to the cryotube if placed
+      inside it while activated.
+  - balance: Spaceacillin can be used to negate Changeling Zombie toxins damage, and
+      half the cure threshold of curing changeling zombies. Note that using Spaceacillin
+      too early in a patient, or too often, can result in the virus gaining an immunity
+      to it.
+  - balance: As a living creature, it is no longer possible to go 2 times faster than
+      base movement speed. Base movement speed is the default running speed of mobs,
+      without any buffs.
+  - bugfix: Fixes some moonstation issues.
+  - bugfix: Fixes some Moonstation bugs.
+  - bugfix: Fixes even more moonstation issues.
+  - bugfix: Fixes the bug where there are no possible maps to be voted for because
+      all the lowpop maps have already been played recently.
+  - bugfix: Fixes Moonstation Lighting being too dark.
+  - balance: Significantly Boosts the chances of the Wizardly Die of Fate event triggering.
+      The event now has a 20% chance not to announce the existence of a Wizardly Die
+      of Fate
+  - rscadd: People who sign up roundstart get triple the starting cash compared to
+      latejoiners.
+  - balance: Reworks (mostly) and renames all the storytellers and improves the code.
+  - balance: Reduces RBMK2 temperature gain based on matter bin tier
+  - rscadd: Predictable Chaos now has 50% more antagonists.
+  - rscdel: Disables "The Bomb" storyteller from being votable because engineering
+      cryos every time it's voted.
+  - bugfix: Fixes a typo in map voting code that prevented the fallback "no maps to
+      vote for" code to work.
+  - bugfix: Fixes Moonstation Library Wiring and Disposal Pipe
+  - rscdel: The mold event can no longer be triggered by events except by admin intervention.
+  - balance: Makes Space Dragons immune to toxin + oxy damage because I saw a Space
+      Dragon die to simplemobs on Moonstation Once
+  - bugfix: Fixes missing Moon Station wire that caused Engineering (just the area
+      outside the SM) to not be connected to the grid.
+  - rscdel: Removes the Mannequin in Moonstation engineering because a shaft miner
+      died to it 5 times.
+  - balance: Buffs Xeno Weed temperature survivability in hotter environments. It
+      was increased from 300K to 350K, which is only slightly higher than Moon Station's
+      external temperature of 347.65K.
+  - balance: Heretic Transmutation Runes can no longer have Fingerprints.
+  Doomtail:
+  - rscadd: Added twisted, twisted long, wicked, and inari hairstyles.
+  - rscadd: Added cervine snout.
+  - rscadd: Added naja hood frill.
+  EnterTheJake:
+  - balance: Syndicate quiver is now small sized instead of Bulky.
+  FeudeyTF:
+  - bugfix: fixed removing last case
+  FlufflesTheDog (code), ReturnToZender (port):
+  - bugfix: A restraining order has been placed on medibots on behalf of synthetic
+      crew members due to reports of harassment.
+  IgiariValkyr:
+  - rscadd: Lizard Gas can actually be staffed now!
+  KathrinBailey:
+  - rscadd: Loincloths from Sandstorm.
+  - bugfix: Jean shorts/skirt no longer covers legs and chest.
+  KazooBard:
+  - rscadd: The blueshield now can select "Henchman" as their title
+  - rscadd: Added the card reader to the autolathe's designs
+  KeRSedChaplain:
+  - rscadd: Ports the Divine Lightblade nullrod from citadel
+  Krypandenej:
+  - rscadd: Added Leary's Delight cigs, a xeno action figure, and a pale zippo to
+      loadout
+  LT3:
+  - code_imp: Holy Water lobotomies are now a standalone surgery operation named Blessed
+      Lobotomy
+  - bugfix: Feline traits will give purr speech modifier
+  - code_imp: Tajaran tongue moved from Feline Traits quirk to augments menu
+  - bugfix: Fixed telecoms specialist HUD icon
+  - admin: Storyteller backend updates
+  - rscdel: Disabled sandstorm random event
+  - code_imp: Boykissers resume boy kissing! Kiss emote no longer causes a progress
+      bar after using
+  - balance: Syndie/death kiss projectiles have a 1.6 second cooldown
+  - code_imp: Modularised and updated scrubber overflow event
+  - qol: New vote reminder notification, enabled for storyteller votes
+  - image: Added a moth to your taskbar
+  - rscdel: No more eigenstate in scrubber overflows
+  - code_imp: Radiation storm warning only sent to players who are in an area without
+      radiation protection
+  - balance: Occupied dorms are protected from radiation storms and scrubbers
+  - qol: Gravity generator failures/power restores are now less announcement and sound
+      spammy
+  - code_imp: Bubber medsecHUD replaced with TG version
+  - rscadd: Medic labcoat/vest added to Orderly garment bag
+  - balance: Morgue surgery tray now comes with an autopsy scanner
+  LT3, vinylspiders, LordVoidron:
+  - rscadd: Private (subtle) PDA messaging by adding "#" to start of message
+  - qol: Added button to NTOS messenger TGUI to toggle private messaging
+  - admin: Public logging for non-subtle PDA messages
+  Majkl-J:
+  - rscdel: Removed broken unmaintained crusher code
+  - balance: Sec no longer spawn in with fully loaded belts as it was an old undocumented
+      change that introduced a bug
+  - code_imp: Makes the empty synth body spawn logic run faster
+  - bugfix: Harpy wings now display correctly
+  - bugfix: Basic Medipens can be refilled again.
+  - rscadd: Syndicate maid kit, a kit containing armored syndicate maid clothing
+  - bugfix: Cargo shelves now drop crates upon being destroyed
+  - bugfix: Moth climb works again
+  - rscadd: Added Lone infiltrator ghost midround
+  - rscadd: Added Malf AI midround
+  - rscdel: Removes predictable chaos as all tellers now use its main gimmick as a
+      baseline
+  - qol: Storyteller votes now prevent a constant voting streak of the same type of
+      tellers
+  - balance: All storytellers now roll antags more often, but in smaller numbers per
+      roll
+  - balance: Clown storyteller no longer cares about event weights and just does whatever
+      rng decides
+  - balance: Meteors can no longer run repeatedly in a single round
+  - balance: Makes ghost roles actually roll somewhat frequently
+  - bugfix: Fixed a few bugs with storytellers, namely the tracks sometimes going
+      into negatives, and voidwalker running on planet maps
+  - refactor: Refactored how storytellers handle tracks to be easier to code with
+  - bugfix: Storyteller now actually rolls stuff correctly and in respect to the antag
+      cap
+  - qol: The tank manipulator now gives feedback about what's in it
+  Mitryll:
+  - balance: Set Heretic sacrifice target amount to 5-6.
+  - rscadd: Added *squeal emote
+  - rscadd: Added *tailthump emote
+  - sound: Added sounds for *squeal and *tailthump
+  Nerev4r (Code), ReturnToZender (port):
+  - rscadd: Moths now get a dash at the cost of stamina. You can use at most 3 dashes
+      before entering stamcrit.
+  - rscadd: Flutter emote for moths
+  Odairu:
+  - rscadd: Darkness regen, nightvision, nobreath, flash vulnerability, movespeed
+      decrease in light, no stamina regen in light
+  - rscadd: antag names
+  - rscadd: Adds sec hailer
+  - refactor: modularizes a few things
+  - balance: nerfs heretics ability to ascend
+  - code_imp: changed basic sec hud into a trait
+  - bugfix: fixed abductors in deathmatch talking to station abductors
+  - bugfix: bows properly apply damage as ashwalker/icecat
+  - rscadd: adds silicon manager pda app
+  - bugfix: Lima AI sat
+  - bugfix: maps choosing themselves
+  - bugfix: custom species lore properly displays
+  - bugfix: AP mod has digisprites now and applies them properly.
+  - image: filled in the nullspace for shadekin tail BEHIND icons
+  - qol: ghosts can vote on transfers 2 - infinity
+  - balance: removed slipstick from uplink
+  - rscadd: hypno lipstick
+  - bugfix: neck gaiter no longer has sec radio
+  - bugfix: TK no longer teleports to stripper pole
+  - qol: AIs can open doors without looking
+  Redrover1760:
+  - balance: Reverts 9x25mm and 9x25mm AP skyrat nerf to tg values.
+  ReturnToZender:
+  - rscadd: You can now control what your name is, when you spawn as an ERT.
+  - balance: NTC no longer gets Stardust shells, they get only their laser.
+  - balance: Re-orders character directory sorting based on what really matters.
+  - rscdel: The Lungbuster now no longer calls forth hell's sirens.
+  ReturnToZender (code):
+  - rscadd: Anime eye sprites
+  - rscadd: The futuristic security helmet is now properly added to the multisec vendor,
+      and the loadout along with the patrol cap.
+  ReturnToZender (code), APWill (Sprites):
+  - rscadd: Deer snout to the character creator
+  Shadow-Quill:
+  - spellcheck: Fixed a typo in the message that appeared when someone with the Well-Trained
+      perk examined someone with the Dominant Aura trait.
+  - balance: Oppressive Force Relocation Medicells no longer require bluespace extracts
+      to become functional.
+  ShadowLarkens:
+  - rscadd: Mechanical Vore
+  - bugfix: Claustrophobia no longer triggers inside vore bellies.
+  - bugfix: Delete button on belly messages no longer has a rendering error.
+  Shroopy:
+  - bugfix: Added a missing period to law 2 of the NT OS Safeguard V1.0 lawset.
+  StrangeWeirdKitten:
+  - balance: Emagging a borg will now scramble its codes plus opening the cover has
+      a delay
+  - qol: Divides Jukebox volume by 2
+  - rscadd: Holofans and Pipescrubbers to Moon and Box's ordnance
+  - rscadd: Unbolted doors to the ordnance freeze chambers
+  - bugfix: Missing power wire to QM's office on Box
+  - rscdel: Smart Organ storage in the middle of Box' medbay
+  Swiftfeather:
+  - balance: Halves the time for bluespace crystal use
+  - admin: Red Alert ERT no longer has pulse weapons.
+  - bugfix: Can no longer rapid fire kisses, you boykisser.
+  - balance: Reduced heretic weighting.
+  - rscdel: Removed hostile pitbull crates.
+  - balance: Reduced wound chance multiplication when injured.
+  Szyszkrzyneczka:
+  - code_imp: lore updates + species lore is now a list of strings instead of a string
+  TealSeer:
+  - rscdel: Remove air alarm in Space from BoxStation.
+  grungussuss:
+  - sound: fish sounds are louder
+  nevimer:
+  - refactor: Vetted system is now using SQL and improved.
+  - bugfix: airbags are no longer haunted
+  - rscadd: Centralsmith Donor Item
+  nikothedude:
+  - rscadd: '*esigh, for exasperated sighing'
+  pixelkitty286:
+  - rscadd: cat like grace to lightweight chassis and small quad borg walking sounds
+  - image: catborg death sprites
+  - code_imp: changed how cyborgs get their walking sounds.
+  - rscadd: cut down omitool a small upgrade for the scanner
+  - qol: made research borgs actually able to revive and work on synths
+  - balance: research cyborg grippers
+  - bugfix: research cyborgs not being able to repair synths. research cyborgs being
+      able to pick up the nuke disk (oops lol).
+  plsleavemealon:
+  - balance: lessened ethereal revive penalty
+  - rscdel: Removed the agender trait from ethereals.
+  - balance: rebalanced (buffed) ethereal's interior power cell
+  - rscadd: Add new argument to cyborg rechargers, allowing an optional limit to be
+      placed upon amount charged.
+  - rscadd: Add new entry within ethereal stomach taking advantage of the new argument
+  - balance: rebalanced entombed modsuit starting storage
+  - rscadd: Makes the numb quirk actually numb you
+  - bugfix: lets zombies be gendered
+  projectkepler-ru:
+  - rscadd: woodstock shotgun now buyable
+  - bugfix: any remaining import gun being buyable
+  - balance: riot shotgun now fire faster
+  - balance: renoster now hold 9 + 1 shot
+  - balance: casing pouch bumped to hold 14 shot
+  - code_imp: moved the infanteria rifle crate down to emag contraband
+  - code_imp: removed unnecessary override as changes were patched upstream
+  - rscadd: disabler smg to sec medic
+  - bugfix: erronously the c10 speedloader was normal sized
+  - rscadd: you can now buy sidearm crate again
+  shayoki:
+  - rscadd: Five more new antler types.
+  - rscadd: Added fitness equipment to Box Station's Fitness Room.
+  - rscadd: Added a basic megacell in Boxstation's EVA Storage room inside the inducer
+      storage.
+  - rscadd: Added two secure lockers in Boxstation's Brig evidence room.
+  - rscdel: Removed Borg Burger in Boxstation's robotics.
+  - bugfix: Realigned the airlock and windows for Boxstation's Blueshield office to
+      match the Vacant Office nearby it.
+  - bugfix: Fixed an open wall connecting to Boxstation's Garden and maints.
+  - spellcheck: fixed a crate's name in Boxstation's test firing range.
+  shellspeed1:
+  - rscadd: Cargo Companies are now available to offstation factions
+  - rscadd: Tarkon now has a cargo setup available to them
+  - bugfix: Made interdyne exofab circuit board actually work and made the exofab
+      drop the right board
+  - rscadd: Thanks to the effort of syndicate engineers, you can now reproduce the
+      interdyne cargo equipment as well as firing pins and headsets complete with
+      comms key! Don't let it get stolen by NT!
+  sippykot:
+  - rscadd: you can buy the surgical medkit in cargo now
+  thegrb93:
+  - bugfix: Fix runtimes and bugs with using lewd toys on cyborgs
+  theselfish:
+  - rscdel: Duplicate Butler title is gone.
+  - rscdel: Deleted duplicate Language files.
+  - rscadd: Adds unused Red Pauldrons to Sec Vendor, as well as the Sec Med beret
+      and Armadyne belts.
+  - rscdel: Removed storage from (nearly) all the Bunny Suits
+  - spellcheck: Various Bloodsucker things have been renamed after the Inconnu paid
+      a visit.
+  - bugfix: The Neck Gaiter no longer hides glasses.
+  - rscadd: Recent events have caused an insane amount of plastic medals to flood
+      the market.

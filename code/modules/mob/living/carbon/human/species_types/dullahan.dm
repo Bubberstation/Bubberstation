@@ -292,4 +292,3 @@
 			owner.gib(DROP_ALL_REMAINS)
 	owner = null
 	return ..()
-

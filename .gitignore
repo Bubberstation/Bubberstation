@@ -211,16 +211,10 @@ Temporary Items
 /tools/tgs_test/bin/*
 /tools/tgs_test/obj/*
 
-# Autowiki
-/tools/autowiki/node_modules
-
-# TGUI bundles - SKYRAT EDIT
-/tgui/public/tgui-common.bundle.js
-
 # Built auxtools libraries and intermediate files
 aux*.dll
 libaux*.so
-aux*.pdb
+*.pdb
 
 # byond-tracy, we intentionally do not ship this and do not want to maintain it
 # https://github.com/mafemergency/byond-tracy/
@@ -247,13 +241,6 @@ define_sanity_output.txt
 # ezdb
 /db/
 /config/ezdb.txt
-<<<<<<< HEAD
-=======
 
 # Running OpenDream locally
 tgstation.json
-<<<<<<< HEAD
-.cargo-lock
->>>>>>> 5d81843b3302 (Raptor faction fix (#85792))
-=======
->>>>>>> 8fa9db8869f0 (Reverts accidental .gitignore changes (#86114))
