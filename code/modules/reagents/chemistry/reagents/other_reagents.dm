@@ -208,17 +208,6 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS
 	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
 	evaporates = TRUE //SKYRAT EDIT ADDITION
-
-/datum/glass_style/shot_glass/water
-	required_drink_type = /datum/reagent/water
-	icon_state = "shotglassclear"
-
-/datum/glass_style/drinking_glass/water
-	required_drink_type = /datum/reagent/water
-	name = "glass of water"
-	desc = "The father of all refreshments."
-	icon_state = "glass_clear"
-
 /datum/glass_style/shot_glass/water
 	required_drink_type = /datum/reagent/water
 	icon_state = "shotglassclear"

@@ -5,6 +5,10 @@
 	special_desc_requirement = EXAMINE_CHECK_JOB // SKYRAT EDIT
 	special_desc_jobs = list("Medical Doctor, Chief Medical Officer, Roboticist") // SKYRAT EDIT CHANGE //You mean to tell me the roles that get this role-exclusive item know what it does?
 	special_desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
+	surgeries = list(
+		/datum/surgery/advanced/brainwashing,
+		/datum/surgery/advanced/brainwashing/mechanic,
+	)
 
 /datum/surgery/advanced/brainwashing
 	name = "Brainwashing"

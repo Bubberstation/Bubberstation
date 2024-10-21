@@ -115,9 +115,8 @@
 /// log attack messages
 /datum/config_entry/flag/log_attack
 
-/datum/config_entry/flag/log_subtler // log subtler emotes //SKYRAT EDIT ADDITION
-
-/datum/config_entry/flag/log_econ // log economy actions
+// log subtler emotes
+/datum/config_entry/flag/log_subtler  //SKYRAT EDIT ADDITION
 
 /// log emotes
 /datum/config_entry/flag/log_emote
