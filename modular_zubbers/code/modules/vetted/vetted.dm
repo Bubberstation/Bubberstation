@@ -10,6 +10,9 @@ GLOBAL_PROTECT(vetted_list)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_vetted(), expected 'client' and obtained '[user ? user.type : "null"]'.")
 
+	if(!CONFIG_GET(flag/check_vetted))
+		return TRUE
+
 	if(GLOB.vetted_list[user.ckey])
 		return TRUE
 

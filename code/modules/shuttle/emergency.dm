@@ -554,7 +554,7 @@
 					color_override = "orange",
 				)
 				INVOKE_ASYNC(SSticker, TYPE_PROC_REF(/datum/controller/subsystem/ticker, poll_hearts))
-				SSmapping.mapvote() //If no map vote has been run yet, start one.
+				// SSmapping.mapvote() //If no map vote has been run yet, start one. - BUBBER EDIT we have our own map vote
 
 				if(!is_reserved_level(z))
 					CRASH("Emergency shuttle did not move to transit z-level!")
@@ -762,12 +762,13 @@
 	name = "emergency space helmet"
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange"
+	slowdown = 1.5
 
 /obj/item/clothing/suit/space/orange
 	name = "emergency space suit"
 	icon_state = "syndicate-orange"
 	inhand_icon_state = "syndicate-orange"
-	slowdown = 3
+	slowdown = 1.5
 
 /obj/item/pickaxe/emergency
 	name = "emergency disembarkation tool"

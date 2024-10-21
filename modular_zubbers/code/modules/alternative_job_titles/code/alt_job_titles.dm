@@ -6,6 +6,9 @@
 		"Brig Physician",
 		"Combat Medic",
 	)
-/datum/job/assistant/New()
-	alt_titles += list("Butler")
+
+/datum/job/blueshield/New()
+	alt_titles |= list(
+		 "Henchman",
+		)
 	. = ..()

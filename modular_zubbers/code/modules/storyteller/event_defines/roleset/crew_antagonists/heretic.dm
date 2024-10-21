@@ -7,8 +7,9 @@
 	weight = 8
 	min_players = 30
 
-	base_antags = 2
-	maximum_antags = 3
+	base_antags = 1
+	maximum_antags = 2
+	maximum_antags_global = 2
 
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 

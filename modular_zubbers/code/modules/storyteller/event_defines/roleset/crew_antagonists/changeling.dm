@@ -6,6 +6,7 @@
 	antag_datum = /datum/antagonist/changeling
 	weight = 8
 	min_players = 20
+	maximum_antags_global = 4
 
 	tags = list(TAG_COMBAT, TAG_CREW_ANTAG)
 

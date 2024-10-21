@@ -33,6 +33,21 @@
 	icon_state = "fangs"
 	affected_bodyparts = HEAD
 
+/datum/body_marking/bubber/deer //Sprites by AP Will on Sojourn :)
+	name = "Deer Snout (Marking)"
+	icon_state = "deer"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/anime_inner
+	name = "Anime Eyes (Inner)"
+	icon_state = "eyesinner"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/anime_outer
+	name = "Anime Eyes (Outer)"
+	icon_state = "eyesouter"
+	affected_bodyparts = HEAD
+
 /datum/body_marking/bubber/clowncross
 	name = "Clown Cross"
 	icon_state = "clowncross"

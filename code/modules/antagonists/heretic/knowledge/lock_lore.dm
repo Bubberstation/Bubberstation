@@ -1,7 +1,5 @@
 /**
  * # The path of Lock.
- * Spell names are in this language: EGYPTIAN
- * Both are related: Egyptian-Mysteries-Secrets-Lock
  *
  * Goes as follows:
  *
@@ -138,7 +136,7 @@
 
 /datum/heretic_knowledge/limited_amount/concierge_rite // item that creates 3 max at a time heretic only barriers, probably should limit to 1 only, holy people can also pass
 	name = "Concierge's Rite"
-	desc = "Allows you to transmute a white crayon, a wooden plank, and a multitool to create a Labyrinth Handbook. \
+	desc = "Allows you to transmute a stick of chalk, a wooden plank, and a multitool to create a Labyrinth Handbook. \
 		It can materialize a barricade at range that only you and people resistant to magic can pass. 3 uses."
 	gain_text = "The Concierge scribbled my name into the Handbook. \"Welcome to your new home, fellow Steward.\""
 	required_atoms = list(
@@ -243,7 +241,7 @@
 		text = "Delta-class dimensional anomaly detec[generate_heretic_text()] Reality rended, torn. Gates open, doors open, [user.real_name] has ascended! Fear the tide! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = 'sound/ambience/antag/heretic/ascend_knock.ogg',
-		color_override = "yellow",
+		color_override = "pink",
 	)
 
 	// buffs

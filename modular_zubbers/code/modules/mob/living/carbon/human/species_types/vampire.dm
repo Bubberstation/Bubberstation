@@ -11,3 +11,7 @@
 // handled by bane on null rod whip
 /datum/species/vampire/damage_weakness(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	return
+
+
+/datum/species/vampire/get_species_description()
+	return list("A classy Vampire! They descend upon Space Station Thirteen Every year to spook the crew! \"Bleeg!!\"",)

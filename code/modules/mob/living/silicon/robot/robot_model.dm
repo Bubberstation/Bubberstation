@@ -238,6 +238,7 @@
 	if(!new_model.be_transformed_to(src, forced))
 		qdel(new_model)
 		return
+	cyborg.drop_all_held_items()
 	cyborg.model = new_model
 	cyborg.update_module_innate()
 	new_model.rebuild_modules()
@@ -257,6 +258,7 @@
 	new_model.update_quadruped()
 	new_model.update_lightweight()
 	new_model.update_robot_rest()
+	new_model.update_footsteps()
 	//BUBBER EDIT ADDTION END
 
 	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))

@@ -13,25 +13,3 @@
 		/obj/item/reagent_containers/hypospray/medipen/deforest/halobinin = /datum/reagent/medicine/antihol,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/lepoturi = /datum/reagent/medicine/c2/lenturi,
 	)
-
-/obj/machinery/medipen_refiller/attackby(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/reagent_containers/hypospray/medipen))
-		var/obj/item/reagent_containers/hypospray/medipen/medipen = weapon
-		if(!(LAZYFIND(moreallowed_pens, medipen.type)))
-			balloon_alert(user, "medipen incompatible!")
-			return
-		if(medipen.reagents?.reagent_list.len)
-			balloon_alert(user, "medipen full!")
-			return
-		if(!reagents.has_reagent(moreallowed_pens[medipen.type], 10))
-			balloon_alert(user, "not enough reagents!")
-			return
-		add_overlay("active")
-		if(do_after(user, 2 SECONDS, src))
-			medipen.used_up = FALSE
-			medipen.add_initial_reagents()
-			reagents.remove_reagent(moreallowed_pens[medipen.type], 10)
-			balloon_alert(user, "refilled")
-		cut_overlays()
-		return
-	return ..()
