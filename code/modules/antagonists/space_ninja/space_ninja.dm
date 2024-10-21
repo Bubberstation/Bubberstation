@@ -73,6 +73,7 @@
 	doorobjective.doors_required = rand(15,40)
 	doorobjective.explanation_text = "Use your gloves to doorjack [doorobjective.doors_required] airlocks on the station."
 	objectives += doorobjective
+
 	//SKYRAT EDIT START
 	if(length(get_crewmember_minds()) >= BOMB_POP_REQUIREMENT)
 		//Explosive plant, the bomb will register its completion on priming
@@ -91,11 +92,11 @@
 	//Security Scramble, set to complete upon using your gloves on a security console
 	var/datum/objective/securityobjective = new /datum/objective/security_scramble()
 	objectives += securityobjective
-	/* SKYRAT EDIT REMOVAL
+
 	//Message of Terror, set to complete upon using your gloves a communication console
 	var/datum/objective/communicationobjective = new /datum/objective/terror_message()
 	objectives += communicationobjective
-	*/
+
 	//Survival until end
 	var/datum/objective/survival = new /datum/objective/survive()
 	survival.owner = owner

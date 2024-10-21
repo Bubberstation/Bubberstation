@@ -354,7 +354,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	// Can't be bothered adding more to them.
 	returnable_list += list(/obj/item/organ/external/neck_accessory, /obj/item/organ/external/head_accessory)
 	//SKYRAT EDIT ADDITION END
-
 	return returnable_list
 
 /proc/RunUnitTests()

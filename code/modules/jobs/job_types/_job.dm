@@ -213,7 +213,10 @@
 /mob/living/carbon/human/on_job_equipping(datum/job/equipping, client/player_client)
 	if(equipping.paycheck_department)
 		var/datum/bank_account/bank_account = new(real_name, equipping, dna.species.payday_modifier)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		//BUBBERSTATION CHANGE START: EXTRA DOSH FOR ROUND STARTERS
+		// bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		bank_account.payday(STARTING_PAYCHECKS * (!player_client?.mob?.mind?.late_joiner ? 3 : 1 ), TRUE) //Triple the dosh for shift starters.
+		//BUBBERSTATION CHANGE END
 		account_id = bank_account.account_id
 		bank_account.replaceable = FALSE
 		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
@@ -497,8 +500,6 @@
 				hangover_landmark.used = TRUE
 				break
 			return hangover_spawn_point || get_latejoin_spawn_point()
-	/* if(length(GLOB.jobspawn_overrides[title]))
-		return pick(GLOB.jobspawn_overrides[title]) */ // ORIGINAL CODE
 	// SKYRAT EDIT START - Alt job titles
 	if(length(GLOB.jobspawn_overrides[job_spawn_title]))
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
@@ -524,8 +525,6 @@
 
 /// Finds a valid latejoin spawn point, checking for events and special conditions.
 /datum/job/proc/get_latejoin_spawn_point()
-	/* if(length(GLOB.jobspawn_overrides[title]))
-		return pick(GLOB.jobspawn_overrides[title]) */ // ORIGINAL CODE
 	// SKYRAT EDIT START - Alt job titles
 	if(length(GLOB.jobspawn_overrides[job_spawn_title])) //We're doing something special today.
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])

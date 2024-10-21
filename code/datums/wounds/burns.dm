@@ -81,6 +81,8 @@
 	infestation += infestation_rate * seconds_per_tick
 	switch(infestation)
 		if(0 to WOUND_INFECTION_MODERATE)
+			return
+
 		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
 			if(SPT_PROB(15, seconds_per_tick))
 				victim.adjustToxLoss(0.2)
@@ -363,8 +365,8 @@
 	can_be_randomly_generated = FALSE
 
 	wound_path_to_generate = /datum/wound/burn/flesh/severe/brand
-
 /// special severe wound caused by the cursed slot machine.
+
 /datum/wound/burn/flesh/severe/cursed_brand
 	name = "Ancient Brand"
 	desc = "Patient is suffering extreme burns with oddly ornate brand markings, creating serious risk of infection and greatly reduced limb integrity."

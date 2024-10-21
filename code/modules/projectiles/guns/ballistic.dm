@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	pickup_sound = 'sound/items/gun_pick_up.ogg'
 	drop_sound = 'sound/items/gun_drop.ogg'
+	sound_vary = TRUE
 
 	///sound when inserting magazine
 	var/load_sound = 'sound/weapons/gun/general/magazine_insert_full.ogg'
@@ -397,7 +398,6 @@
 		balloon_alert(user, "[magazine_wording] unloaded")
 	update_appearance()
 
-
 /obj/item/gun/ballistic/can_shoot()
 	return chambered?.loaded_projectile
 
@@ -480,6 +480,8 @@
 	return ..()
 
 /obj/item/gun/ballistic/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
+	if(isnull(chambered))
+		return ..()
 	if(can_misfire && chambered.can_misfire != FALSE)
 		misfire_probability += misfire_percentage_increment
 		misfire_probability = clamp(misfire_probability, 0, misfire_probability_cap)

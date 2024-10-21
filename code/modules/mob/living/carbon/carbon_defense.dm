@@ -295,7 +295,7 @@
 		Knockdown(stun_duration)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper, force_friendly)
-	var/nosound = FALSE //SKYRATEDIT ADDITION - EMOTES
+	var/nosound = FALSE //SKYRAT EDIT ADDITION - EMOTES
 	if(on_fire)
 		to_chat(helper, span_warning("You can't put [p_them()] out with just your bare hands!"))
 		return
@@ -318,7 +318,7 @@
 	//SKYRAT EDIT ADDITION BEGIN - EMOTES -- SENSITIVE SNOUT TRAIT ADDITION
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
-		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))) // Bubberstation Edit
+		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS) && !(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT))) // Bubberstation Edit - Sensitive snoot check
 			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
 			return
 		else
@@ -334,7 +334,7 @@
 		if(HAS_TRAIT(src, TRAIT_OVERSIZED) && !HAS_TRAIT(helper, TRAIT_OVERSIZED))
 			visible_message(span_warning("[helper] tries to pat [src] on the head, but can't reach!"))
 			return
-		else if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))
+		else if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 			visible_message(span_warning("[helper] tries to pat [src] on the head, but [p_they()] move[p_s()] out of the way."))
 			return
 		//SKYRAT EDIT ADDITION END
@@ -381,7 +381,7 @@
 			to_chat(src, span_notice("[helper] squeezes you super tightly in a firm bear hug!"))
 		else
 			// SKYRAT EDIT ADDITION START
-			if (HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))
+			if (HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 				visible_message(span_warning("[helper] tries to hug [src], but [p_they()] move[p_s()] out of the way."))
 				return
 			// SKYRAT EDIT ADDITION END
@@ -441,7 +441,7 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1) // SKYRAT EDIT CHANGE - EMOTES - Original was unindented but otherwise the same
 
 	// Shake animation
-	if (incapacitated())
+	if (incapacitated)
 		shake_up_animation()
 
 /mob/proc/shake_up_animation()
