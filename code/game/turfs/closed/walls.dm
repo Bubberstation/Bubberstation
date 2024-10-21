@@ -2,7 +2,7 @@
 
 /turf/closed/wall
 	name = "wall"
-	desc = "A huge chunk of iron used to separate rooms." //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
+	desc = "A huge chunk of iron used to separate rooms."
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -40,7 +40,7 @@
 	if(!iscarbon(dropping) && !iscyborg(dropping))
 		return
 	var/mob/living/leaner = dropping
-	if(leaner.incapacitated(IGNORE_RESTRAINTS) || leaner.stat != CONSCIOUS || HAS_TRAIT(leaner, TRAIT_NO_TRANSFORM))
+	if(INCAPACITATED_IGNORING(leaner, INCAPABLE_RESTRAINTS) || leaner.stat != CONSCIOUS || HAS_TRAIT(leaner, TRAIT_NO_TRANSFORM))
 		return
 	if(!leaner.density || leaner.pulledby || leaner.buckled || !(leaner.mobility_flags & MOBILITY_STAND))
 		return

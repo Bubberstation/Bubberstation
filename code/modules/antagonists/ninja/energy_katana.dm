@@ -68,7 +68,7 @@
 /datum/action/innate/dash/ninja
 	current_charges = 3
 	max_charges = 3
-	charge_rate = 200 //SKYRAT EDIT CHANGE - ORIGINAL: 200, BUBBERS EDIT CHANGE, REVERTS IT TO ORIGINAL
+	charge_rate = 200
 	beam_length = 1 SECONDS
 	recharge_sound = null
 

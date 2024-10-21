@@ -95,15 +95,15 @@
 		return
 
 	switch(burn_time_remaining())
-		if(0 to 19999) //SKYRAT EDIT original: if(0 to 500)
+		if(0 to 500)
 			. += "fireplace_fire0"
-		if(20000 to 39999) //SKYRAT EDIT original: if(500 to 1000)
+		if(500 to 1000)
 			. += "fireplace_fire1"
-		if(40000 to 59999) //SKYRAT EDIT original: if(1000 to 1500)
+		if(1000 to 1500)
 			. += "fireplace_fire2"
-		if(60000 to 79999) //SKYRAT EDIT original: if(1500 to 2000)
+		if(1500 to 2000)
 			. += "fireplace_fire3"
-		if(80000 to MAXIMUM_BURN_TIMER) //SKYRAT EDIT original: if(2000 to MAXIMUM_BURN_TIMER)
+		if(2000 to MAXIMUM_BURN_TIMER)
 			. += "fireplace_fire4"
 	. += "fireplace_glow"
 

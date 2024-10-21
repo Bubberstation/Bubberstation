@@ -14,11 +14,9 @@
 	harmful = TRUE
 	mech_flags = EXOSUIT_MODULE_RIPLEY
 	///Bool for whether we beat the hell out of things we punch (and tear off their arms)
-	var/killer_clamp = TRUE
+	var/killer_clamp = FALSE
 	///How much base damage this clamp does
 	var/clamp_damage = 20
-	///Var for the chassis we are attached to, needed to access ripley contents and such
-	var/obj/vehicle/sealed/mecha/ripley/cargo_holder
 	///Audio for using the hydraulic clamp
 	var/clampsound = 'sound/mecha/hydraulic.ogg'
 	///Chassis but typed for the cargo_hold var

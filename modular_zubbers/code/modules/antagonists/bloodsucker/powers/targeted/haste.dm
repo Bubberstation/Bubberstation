@@ -93,7 +93,7 @@
 				break //just stop
 		else
 			consequetive_failures = 0 //reset so we can keep moving
-		if(user.resting || user.incapacitated(IGNORE_RESTRAINTS, IGNORE_GRAB)) //actually down? stop.
+		if(user.resting || INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS)) //actually down? stop.
 			break
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)
