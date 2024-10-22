@@ -41,8 +41,8 @@
 	var/static/list/selectable_gun_types = list(
 		"M90-GL" = /obj/item/storage/toolbox/guncase/m90gl,
 		"Bulldog" = /obj/item/storage/toolbox/guncase/bulldog,
-		"Energy Sword and Shield" = /obj/item/storage/toolbox/guncase/sword_and_board,
-		"Stolen Revolver" = /obj/item/storage/toolbox/guncase/skyrat/hos_revolver
+		"Stolen Revolver" = /obj/item/storage/toolbox/guncase/skyrat/hos_revolver,
+		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r,
 	)
 
 	return selectable_gun_types
@@ -54,7 +54,7 @@
 	var/static/list/selectable_gun_types = list(
 		"Stechkin APS" = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps,
 		"Ansem Pistol Kit" = /obj/item/storage/toolbox/guncase/clandestine,
-		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r
+		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r,
 
 	)
 
