@@ -63,7 +63,7 @@ export const vore_enable_pref: FeatureToggle = {
 // BUBBER EDIT END
 
 // BUBBER EDIT START: MECHANICAL HYPNOSIS PREF
-export const transformation_pref: FeatureToggle = {
+export const hypnosis_pref: FeatureToggle = {
   name: 'Hypnosis',
   category: 'ERP',
   description:
