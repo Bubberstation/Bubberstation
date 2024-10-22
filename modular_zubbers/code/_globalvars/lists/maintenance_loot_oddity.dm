@@ -98,7 +98,6 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/storage/box/syndie_kit/signaler = 10,
 	/obj/item/storage/box/syndie_kit/sleepytime = 10,
 	/obj/item/storage/box/syndie_kit/space = 1,
-	/obj/item/storage/box/syndie_kit/stickers = 10,
 	/obj/item/toy/crayon/spraycan/hellcan = 1,
 	/obj/item/toy/plush/carpplushie/dehy_carp = 5,
 	/obj/item/watertank/pepperspray = 5,

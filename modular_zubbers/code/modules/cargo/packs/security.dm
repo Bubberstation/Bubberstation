@@ -42,7 +42,7 @@
 	crate_name = "security medic crate"
 	desc = "Contains a medical technician kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 11.75 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 7.125
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked,
 	)
@@ -52,7 +52,7 @@
 	crate_name = "security medic crate"
 	desc = "Contains a first responder surgical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 10.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 3.9
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
 	)
@@ -62,7 +62,7 @@
 	crate_name = "security medic crate"
 	desc = "Contains a large satchel medical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 9.5 //BUBBER EDIT: DOUBLES MEDICAL KIT COSTS
+	cost = CARGO_CRATE_VALUE * 7.125
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)

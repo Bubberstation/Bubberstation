@@ -11,7 +11,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_AWAY
 	sound_environment = SOUND_ENVIRONMENT_ROOM
-	area_flags = NOTELEPORT|UNIQUE_AREA //SKYRAT EDIT CHANGE
+	area_flags = UNIQUE_AREA
 
 /area/awaymission/museum
 	name = "Nanotrasen Museum"

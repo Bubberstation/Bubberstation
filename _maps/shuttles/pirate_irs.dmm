@@ -380,13 +380,6 @@
 /obj/machinery/loot_locator,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
-"nj" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate,
-/obj/effect/turf_decal/trimline/dark_blue/filled/line{
-	dir = 5
-	},
-/turf/open/floor/iron,
-/area/shuttle/pirate)
 "nk" = (
 /obj/effect/turf_decal/tile/dark_blue/half{
 	dir = 8
@@ -1026,6 +1019,19 @@
 /obj/structure/curtain,
 /turf/open/floor/iron/dark,
 /area/shuttle/pirate)
+"Dr" = (
+/obj/structure/sign/departments/vault/directional/north,
+/obj/effect/turf_decal/trimline/dark_blue/filled/end{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/machinery/shower/directional/south,
+/obj/effect/turf_decal/box,
+/obj/structure/fluff/shower_drain,
+/turf/open/floor/iron/dark,
+/area/shuttle/pirate)
 "Dy" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
@@ -1051,19 +1057,6 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/shuttle/pirate)
-"Ek" = (
-/obj/structure/sign/departments/vault/directional/north,
-/obj/effect/turf_decal/trimline/dark_blue/filled/end{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/machinery/shower/directional/south,
-/obj/effect/turf_decal/box,
-/obj/structure/fluff/shower_drain,
-/turf/open/floor/iron/dark,
 /area/shuttle/pirate)
 "Eq" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -1423,6 +1416,17 @@
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
+/area/shuttle/pirate)
+"LV" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate{
+	y_offset = 11;
+	x_offset = -4;
+	view_range = 10
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 5
+	},
+/turf/open/floor/iron,
 /area/shuttle/pirate)
 "LX" = (
 /turf/open/floor/plating/airless,
@@ -2262,7 +2266,7 @@ WR
 "}
 (13,1,1) = {"
 Rh
-nj
+LV
 ev
 mA
 pO
@@ -2422,7 +2426,7 @@ OC
 Mu
 OC
 hK
-Ek
+Dr
 BG
 XX
 wM

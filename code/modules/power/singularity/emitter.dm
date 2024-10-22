@@ -353,7 +353,7 @@
 	if(!istype(energy_gun, /obj/item/gun/energy))
 		return
 	if(istype(energy_gun, /obj/item/gun/energy/cell_loaded))//SKYRAT EDIT MEDIGUNS
-		return //SKYRAT EDIT END
+		return
 	if(!user.transferItemToLoc(energy_gun, src))
 		return
 	gun = energy_gun
@@ -423,7 +423,7 @@
 	. = ..()
 
 /obj/machinery/power/emitter/prototype/user_buckle_mob(mob/living/buckled_mob, mob/user, check_loc = TRUE)
-	if(user.incapacitated() || !istype(user))
+	if(user.incapacitated || !istype(user))
 		return
 	for(var/atom/movable/atom in get_turf(src))
 		if(atom.density && (atom != src && atom != buckled_mob))

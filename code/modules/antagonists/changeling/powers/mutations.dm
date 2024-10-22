@@ -200,8 +200,9 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
-	wound_bonus = -20
-	bare_wound_bonus = 20
+	wound_bonus = 10
+	bare_wound_bonus = 10
+	armour_penetration = 35
 	var/can_drop = FALSE
 	var/fake = FALSE
 
@@ -497,6 +498,7 @@
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	block_chance = 50
+	is_bashable = FALSE
 
 	var/remaining_uses //Set by the changeling ability.
 

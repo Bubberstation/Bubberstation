@@ -1,5 +1,4 @@
-// Precompiled first aid kits, ready to go if you don't want to bother getting individual items
-
+// Prices are calculated by the level 1 lathe cost to print the items, or their vending machine price
 /datum/armament_entry/company_import/deforest/first_aid_kit/civil_defense
 	cost = PAYCHECK_COMMAND * 5
 
