@@ -91,7 +91,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		to_chat(target, span_warning("You too far away from \the [src] to enter it!"))
 
 	// If the target is incapacitated after selecting a room, they're not allowed to teleport.
-	if(target.incapacitated())
+	if(target.incapacitated)
 		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
 
 	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
@@ -186,11 +186,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(ruinSpawned && roomNumber == GLOB.hhMysteryRoomNumber)
 		load_from = hotelRoomTempLore
 	//SKYRAT EDIT ADDITION START - GHOST HOTEL UPDATE
-	//else if(chosen_room == "Apartment")
-	//	load_from = ghost_cafe_rooms_apartment
-	//SKYRAT EDIT ADDITION END
-
-	//BUBBER EDIT ADDITION START - GHOST HOTEL UPDATE
 	else if(chosen_room == "Apartment")
 		load_from = ghost_cafe_rooms_apartment
 
@@ -201,7 +196,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		load_from = ghost_cafe_rooms_stationside
 	else if(chosen_room == "Library")
 		load_from = ghost_cafe_rooms_library
-	//BUBBER EDIT ADDITION END
+	//SKYRAT EDIT ADDITION END
 
 	load_from.load(bottom_left)
 	activeRooms["[roomNumber]"] = roomReservation

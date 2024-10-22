@@ -31,7 +31,6 @@
 	var/obj/item/bodypart/chest/chest = character.get_bodypart(BODY_ZONE_CHEST)
 	chest.add_bodypart_overlay(new /datum/bodypart_overlay/simple/sixpack() )
 
-
 /**
  * Goes through all quirks that can be used in hardcore mode and select some based on a random budget.
  * Returns the new value to be gained with this setup, plus the previously earned score.

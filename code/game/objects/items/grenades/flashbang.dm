@@ -50,7 +50,6 @@
 			living_mob.Knockdown(30)
 		living_mob.soundbang_act(1, max(200 / max(1, distance), 60), rand(0, 5))
 
-
 /obj/item/grenade/stingbang
 	name = "stingbang"
 	icon_state = "timeg"

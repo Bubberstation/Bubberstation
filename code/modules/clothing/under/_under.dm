@@ -8,6 +8,8 @@
 	slot_flags = ITEM_SLOT_ICLOTHING
 	interaction_flags_click = NEED_DEXTERITY
 	armor_type = /datum/armor/clothing_under
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	digitigrade_greyscale_config_worn = /datum/greyscale_config/jumpsuit/worn_digi
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
@@ -92,7 +94,7 @@
 	return changed ? CONTEXTUAL_SCREENTIP_SET : .
 
 
-/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE)
+/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // SKYRAT EDIT - customisation
 	. = ..()
 	if(isinhands)
 		return
