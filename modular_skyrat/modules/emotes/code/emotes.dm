@@ -599,9 +599,9 @@
 	message = "yips!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_skyrat/modules/emotes/sound/emotes/yip.ogg'
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
 /datum/emote/living/yip/get_sound(mob/living/user)
 	return pick('modular_skyrat/modules/emotes/sound/emotes/yip1.ogg',
-				'modular_skyrat/modules/emotes/sound/emotes/yip2.ogg'.
+				'modular_skyrat/modules/emotes/sound/emotes/yip2.ogg',
 				'modular_skyrat/modules/emotes/sound/emotes/yip2.ogg')
