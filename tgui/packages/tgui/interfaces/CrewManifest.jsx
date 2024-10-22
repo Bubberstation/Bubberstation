@@ -10,7 +10,7 @@ const commandJobs = [
   'Chief Engineer',
   'Research Director',
   'Chief Medical Officer',
-  'Quartermaster', // SKYRAT EDIT
+  'Quartermaster',
   'Nanotrasen Consultant', // SKYRAT EDIT
 ];
 

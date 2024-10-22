@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type), src)
+		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
 
 	// SKYRAT EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
