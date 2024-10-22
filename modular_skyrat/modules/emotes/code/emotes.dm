@@ -584,3 +584,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'
+
+/datum/emote/living/yip
+	key = "yip"
+	key_third_person = "yips"
+	message = "yips!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/emotes/yip.ogg'
