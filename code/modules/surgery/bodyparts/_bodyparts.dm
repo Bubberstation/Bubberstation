@@ -991,7 +991,6 @@
 		aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
 	markings_alpha = owner_species.markings_alpha
 	// SKYRAT EDIT END
-
 	recolor_external_organs()
 	return TRUE
 

@@ -47,14 +47,17 @@
 /datum/species/lizard/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
 	return
 
+
 //SKYRAT EDIT REMOVAL BEGIN
 /*
 /datum/species/lizard/randomize_features()
 	var/list/features = ..()
 	features["lizard_markings"] = pick(SSaccessories.lizard_markings_list)
 	return features
+
 */
 //SKYRAT EDIT REMOVAL END
+
 
 /datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
 	return pick(
