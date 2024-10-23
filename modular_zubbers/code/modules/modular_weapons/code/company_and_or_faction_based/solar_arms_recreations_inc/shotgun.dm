@@ -1,5 +1,6 @@
+//lever-action shotgun
 /obj/item/gun/ballistic/rifle/boltaction/levershotgun
-	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/sar_inc.dmi'
 	icon_state = "levershotgun"
 	w_class = WEIGHT_CLASS_BULKY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/levershotgun
@@ -14,6 +15,12 @@
 	inhand_icon_state = "null"
 	worn_icon_state = "null"
 	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/shotgun_heavy.ogg'
+	rack_sound = 'modular_skyrat/modules/modular_weapons/sounds/shotgun_rack.ogg'
+	projectile_damage_multiplier = 1
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
+	inhand_icon_state = "levershotgun"
 
 /obj/item/gun/ballistic/rifle/boltaction/levershotgun/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_STOCK)
@@ -22,22 +29,22 @@
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
-/obj/item/gun/ballistic/rifle/boltaction/leveraction/examine_more(mob/user)
+/obj/item/gun/ballistic/rifle/boltaction/levershotgun/examine_more(mob/user)
 	. = ..()
 
-	. += "The Winnfield Repeating Rifle was originally produced in the late \
-		1800s on Terra. Originally chambered in a rifle-length .38 caliber, \
-		it was widely popular amongst outlaws, thieves, and those who fought them. \
-		In 2557, Solar Arms Recreations, Inc. settled upon this model of \
-		Winnfield to recreate for the modern collector and enthusiast market. \
+	. += "The Coltfield lever-action shotgun was originally produced in the \
+		1800s on Terra. Chambered in 12 gauge shells, its use and power made \
+		it widely popular amongst outlaws, thieves, and those who fought them. \
+		In 2555, Solar Arms Recreations, Inc. settled upon this model of \
+		Coltfield to recreate for the modern collector and enthusiast market. \
 		While the exterior and most internal mechanisms are unchanged, the \
-		weapon has been brought up to modern safety standards and rechambered \
-		for the far more common Solar .40 cartridge."
+		weapon has been brought up to modern safety standards, such as the \
+		modern digital firing pin and an added safety."
 
 	return .
 
 /obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn
-	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/sar_inc.dmi'
 	can_be_sawn_off = FALSE
 	name = "\improper Sawn-Off Replica Lever-Action Shotgun"
 	desc = "A horribly mangled replica of an American lever-action shotgun. The stock, barrel, and tube have been sawn down, likely for 'cool points.' Fittingly, the seal of quality burned into the stock was sawn off as well."
@@ -45,9 +52,30 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/levershotgun/sawn
 	weapon_weight = WEAPON_LIGHT
 	w_class = WEIGHT_CLASS_NORMAL
+	spread = 20
+	projectile_damage_multiplier = 0.7
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
+	inhand_icon_state = "levershotgun_sawn"
 
 /obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_NOSTOCK)
+
+/obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn/examine_more(mob/user)
+	. = ..()
+
+	. += "The Coltfield lever-action shotgun was originally produced in the \
+		1800s on Terra. Chambered in 12 gauge shells, its use and power made \
+		it widely popular amongst outlaws, thieves, and those who fought them. \
+		In 2555, Solar Arms Recreations, Inc. settled upon this model of \
+		Coltfield to recreate for the modern collector and enthusiast market. \
+		While the exterior and most internal mechanisms are unchanged, the \
+		weapon has been brought up to modern safety standards, such as the \
+		modern digital firing pin and an added safety. This one has been 'field-modified' \
+		by sawing down the barrel, stock, and magazine tube to make a weapon that \
+		is commonly described as 'painful to look at,' 'terrifying,' and 'a sin against nature.'"
+
+	return .
 
 /obj/item/gun/ballistic/rifle/boltaction/levershotgun/sawoff(mob/user, obj/item/saw, handle_modifications = TRUE)
 	. = ..()

@@ -1,6 +1,6 @@
 // lever-action rifle
 /obj/item/gun/ballistic/rifle/boltaction/leveraction
-	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/sar_inc.dmi'
 	icon_state = "leverrifle"
 	w_class = WEIGHT_CLASS_BULKY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/leveraction
@@ -12,7 +12,9 @@
 	name = "\improper Winnfield Rifle"
 	desc = "A replica of an Terran American lever-action rifle firing .40 Sol Long. Bears the distinctive cobalt mark of SAR Inc quality. Nobody's quite sure what specific model it's a replica of though..."
 	sawn_desc = "you should not ever see this in real gameplay. If you do it's a bug and you should report it pretty please."
-	inhand_icon_state = "null"
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
+	inhand_icon_state = "leverrifle"
 	worn_icon_state = "null"
 	weapon_weight = WEAPON_HEAVY
 
@@ -38,7 +40,7 @@
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
 /obj/item/gun/ballistic/shotgun/riot/sol/leverriflesawn
-	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/sar_inc.dmi'
 	can_be_sawn_off = FALSE
 	name = "\improper Sawn-Off Winnfield Rifle"
 	desc = "A horribly mangled replica of an American lever-action rifle firing .40 Sol Long. The stock, barrel, and tube have been sawn down, likely for 'cool points.' Fittingly, the seal of quality burned into the stock was sawn off as well."
@@ -46,6 +48,11 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/leveraction/sawn
 	weapon_weight = WEAPON_LIGHT
 	w_class = WEIGHT_CLASS_NORMAL
+	spread = 20
+	projectile_damage_multiplier = 0.7
+	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
+	inhand_icon_state = "leverrifle_sawn"
 
 /obj/item/gun/ballistic/shotgun/riot/sol/leverriflesawn/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_NOSTOCK)
@@ -62,7 +69,7 @@
 		weapon has been brought up to modern safety standards and rechambered \
 		for the far more common Solar .40 cartridge. This one has been 'field-modified' \
 		by sawing down the barrel, stock, and magazine tube to make a weapon that \
-		is commonly described as 'painful,' 'terrifying,' and 'a sin against nature.'"
+		is commonly described as 'painful to look at,' 'terrifying,' and 'a sin against nature.'"
 
 	return .
 
