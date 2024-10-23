@@ -132,3 +132,17 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
+
+/datum/emote/living/carbon/bonk
+	key = "bonk"
+	key_third_person = "bonks"
+	hands_use_check = TRUE
+
+/datum/emote/living/carbon/bonk/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(!length(user.get_empty_held_indexes()))
+		to_chat(user, span_warning("You don't have any free hands to bonk someone with."))
+		return
+	var/obj/item/hand_item/bonkinghand/N = new(user)
+	if(user.put_in_hands(N))
+		to_chat(user, span_notice("You ready your hand to bonk someone."))
