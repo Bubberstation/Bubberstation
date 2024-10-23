@@ -56,10 +56,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/skinned_type
 	///flags for inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
 	var/no_equip_flags
-	/// Allows the species to equip items that normally require a jumpsuit without having one equipped. Used by golems.
-	var/nojumpsuit = FALSE
-	///Affects the speech message, for example: Motharula flutters, "My speech message is flutters!"
-	var/say_mod = "says"
 	/// What languages this species can understand and say.
 	/// Use a [language holder datum][/datum/language_holder] typepath in this var.
 	/// Should never be null.
@@ -548,38 +544,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
 
 /**
- * Proc called when mail goodies need to be updated for this species.
- *
- * Updates the mail goodies if that is required. e.g. for the blood deficiency quirk, which sends bloodbags to quirk holders, update the sent bloodpack to match the species' exotic blood.
- * This is currently only used for the blood deficiency quirk but more can be added as needed.
- * Arguments:
- * * mob/living/carbon/human/recipient - the mob receiving the mail goodies
- */
-/datum/species/proc/update_mail_goodies(mob/living/carbon/human/recipient)
-	update_quirk_mail_goodies(recipient, recipient.get_quirk(/datum/quirk/blooddeficiency))
-
-/**
- * Updates the mail goodies of a specific quirk.
- *
- * Updates the mail goodies belonging to a specific quirk.
- * Add implementation as needed for each individual species. The base species proc should give the species the 'default' version of whatever mail goodies are required.
- * Arguments:
- * * mob/living/carbon/human/recipient - the mob receiving the mail goodies
- * * datum/quirk/quirk - the quirk to update the mail goodies of. Use get_quirk(datum/quirk/some_quirk) to get the actual mob's quirk to pass.
- * * list/mail_goodies - a list of mail goodies. Generally speaking you should not be using this argument on the initial function call. You should instead add to the species' implementation of this proc.
- */
-/datum/species/proc/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies)
-	if(isnull(quirk))
-		return
-	if(length(mail_goodies))
-		quirk.mail_goodies = mail_goodies
-		return
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		if(HAS_TRAIT(recipient, TRAIT_NOBLOOD) && isnull(recipient.dna.species.exotic_blood))  // TRAIT_NOBLOOD and no exotic blood (yes we have to check for both, jellypeople exist)
-			quirk.mail_goodies = list() // means no blood pack gets sent to them.
-			return
-
-/**
  * Handles the body of a human
  *
  * Handles lipstick, having no eyes, eye color, undergarnments like underwear, undershirts, and socks, and body layers.
@@ -611,7 +575,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/mutable_appearance/underwear_overlay
 			if(underwear)
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE && (underwear.gender == MALE))
-					underwear_overlay = wear_female_version(underwear.icon_state, underwear.icon, BODY_LAYER, FEMALE_UNIFORM_FULL)
+					underwear_overlay = mutable_appearance(wear_female_version(underwear.icon_state, underwear.icon, FEMALE_UNIFORM_FULL), layer = -BODY_LAYER)
 				else
 					underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 				if(!underwear.use_static)
@@ -623,9 +587,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				var/mutable_appearance/working_shirt
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE)
-					working_shirt = wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+					working_shirt = mutable_appearance(wear_female_version(undershirt.icon_state, undershirt.icon), layer = -BODY_LAYER)
 				else
-					working_shirt = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
+					working_shirt = mutable_appearance(undershirt.icon, undershirt.icon_state, layer = -BODY_LAYER)
 				standing += working_shirt
 
 		if(species_human.socks && species_human.num_legs >= 2 && !(species_human.bodyshape & BODYSHAPE_DIGITIGRADE))
@@ -639,8 +603,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	species_human.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(species_human)
 
-*/
-//SKYRAT EDIT REMOVAL END
+
 
 /**
  * Handles the mutant bodyparts of a human
@@ -651,8 +614,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * * H - Human, whoever we're handling the body for
  * * forced_colour - The forced color of an accessory. Leave null to use mutant color.
  */
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/source, forced_colour)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
@@ -825,7 +786,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		// Anything that's small or smaller can fit into a pocket by default
 		if((slot & (ITEM_SLOT_RPOCKET|ITEM_SLOT_LPOCKET)) && I.w_class <= POCKET_WEIGHT_CLASS)
 			excused = TRUE
-		else if(slot & (ITEM_SLOT_SUITSTORE|ITEM_SLOT_BACKPACK|ITEM_SLOT_HANDS))
+		else if(slot & (ITEM_SLOT_SUITSTORE|ITEM_SLOT_BACKPACK|ITEM_SLOT_BELTPACK|ITEM_SLOT_HANDS))
 			excused = TRUE
 		if(!excused)
 			return FALSE
@@ -854,7 +815,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			/* SKYRAT EDIT REMOVAL
 			if((H.bodyshape & BODYSHAPE_DIGITIGRADE) && !(I.item_flags & IGNORE_DIGITIGRADE))
-				if(!(I.supports_variations_flags & (CLOTHING_DIGITIGRADE_VARIATION|CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON)))
+				if(!(I.supports_variations_flags & DIGITIGRADE_VARIATIONS))
 					if(!disable_warning)
 						to_chat(H, span_warning("The footwear around here isn't compatible with your feet!"))
 					return FALSE
@@ -868,6 +829,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(ITEM_SLOT_BELTPACK)
+			if(H.belt && H.belt.atom_storage?.can_insert(I, H, messages = TRUE, force = indirect_action ? STORAGE_SOFT_LOCKED : STORAGE_NOT_LOCKED))
+				return TRUE
+			return FALSE
 		if(ITEM_SLOT_EYES)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
@@ -952,7 +917,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(H.back && H.back.atom_storage?.can_insert(I, H, messages = TRUE, force = indirect_action ? STORAGE_SOFT_LOCKED : STORAGE_NOT_LOCKED))
 				return TRUE
 			return FALSE
-
 	return FALSE //Unsupported slot
 
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
@@ -1743,7 +1707,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_description()
 	SHOULD_CALL_PARENT(FALSE)
 
-	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.")
+	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.") // SKYRAT EDIT REMOVAL
 	return "No species description set, file a bug report!"
 
 /**
@@ -1757,7 +1721,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SHOULD_CALL_PARENT(FALSE)
 	RETURN_TYPE(/list)
 
-	//stack_trace("Species [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_species_lore.")
+	//stack_trace("Species [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_species_lore.") // SKYRAT EDIT REMOVAL
 	return list("No species lore set, file a bug report!")
 
 /**

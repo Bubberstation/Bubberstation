@@ -4,6 +4,16 @@
 	mob_type_allowed_typecache = /mob/living
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
+/datum/emote/living/taunt
+	key = "taunt"
+	key_third_person = "taunts"
+	message = "taunts!"
+	cooldown = 1.6 SECONDS //note when changing this- this is used by the matrix taunt to block projectiles.
+
+/datum/emote/living/taunt/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	user.spin(TAUNT_EMOTE_DURATION, 0.1 SECONDS)
+
 /datum/emote/living/blush
 	key = "blush"
 	key_third_person = "blushes"
@@ -225,20 +235,6 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
-/datum/emote/living/jump
-	key = "jump"
-	key_third_person = "jumps"
-	message = "jumps!"
-	hands_use_check = TRUE
-
-/datum/emote/living/jump/run_emote(mob/living/user, params, type_override, intentional)
-	. = ..()
-	animate(user, pixel_y = user.pixel_y + 4, time = 0.1 SECONDS)
-	animate(pixel_y = user.pixel_y - 4, time = 0.1 SECONDS)
-
-/datum/emote/living/jump/get_sound(mob/living/user)
-	return 'sound/weapons/thudswoosh.ogg'
-
 /datum/emote/living/kiss
 	key = "kiss"
 	key_third_person = "kisses"
@@ -439,7 +435,6 @@
 	if(!istype(user))
 		return
 	return user.dna.species.get_sniff_sound(user)
-
 
 
 /datum/emote/living/snore

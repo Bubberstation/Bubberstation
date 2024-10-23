@@ -159,7 +159,7 @@
 		else
 			. += span_notice("You could use a <b>MOD core</b> on it to install one.")
 		if(isnull(ai_assistant))
-			. += span_notice("You could install a pAI with a <b>pAI card</b>.") // SKYRAT EDIT CHANGE - ORIGINAL: . += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
+			. += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
 		else if(isAI(ai_assistant))
 			. += span_notice("You could remove [ai_assistant] with an <b>intellicard</b>.")
 	. += span_notice("You could copy/set link frequency with a <b>multitool</b>.")
@@ -237,14 +237,14 @@
 
 	// SKYRAT EDIT ADDITION START - Can't remove your MODsuit from your back when it's still active (as it can cause runtimes and even the MODsuit control unit to delete itself)
 	if(active)
-		if(!wearer.incapacitated())
+		if(!wearer.incapacitated)
 			balloon_alert(wearer, "deactivate first!")
 			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 
 		return
 	// SKYRAT EDIT ADDITION END
 
-	if(!wearer.incapacitated())
+	if(!wearer.incapacitated)
 		var/atom/movable/screen/inventory/hand/ui_hand = over_object
 		if(wearer.putItemFromInventoryInHandIfPossible(src, ui_hand.held_index))
 			add_fingerprint(user)

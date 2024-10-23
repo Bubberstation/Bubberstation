@@ -280,6 +280,7 @@
 		return FALSE
 
 	grippedby(user)
+	update_incapacitated()
 
 //proc to upgrade a simple pull into a more aggressive grab.
 /mob/living/proc/grippedby(mob/living/user, instant = FALSE)

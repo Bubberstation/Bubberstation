@@ -137,11 +137,12 @@
 	return ..()
 
 /obj/item/defibrillator/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)
-	if(ismob(loc))
-		var/mob/M = loc
-		if(istype(over_object, /atom/movable/screen/inventory/hand))
-			var/atom/movable/screen/inventory/hand/H = over_object
-			M.putItemFromInventoryInHandIfPossible(src, H.held_index)
+	if(!ismob(loc))
+		return
+	var/mob/living_mob = loc
+	if(!living_mob.incapacitated && istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/hand = over_object
+		living_mob.putItemFromInventoryInHandIfPossible(src, hand.held_index)
 
 /obj/item/defibrillator/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!cell || !cell_removable)
@@ -628,10 +629,13 @@
 						fail_reason = "Patient's brain is missing. Further attempts futile."
 					if (DEFIB_FAIL_BLACKLISTED)
 						fail_reason = "Patient has been blacklisted from revival. Further attempts futile."
-					//SKYRAT EDIT ADDITION - DNR TRAIT // BUBBED EDIT REMOVAL BEGIN
-//					if (DEFIB_FAIL_DNR)
-//						fail_reason = "Patient has been flagged as Do Not Resuscitate. Further attempts futile."
-					//SKYRAT EDIT ADDITION END - DNR TRAIT // BUBBER EDIT REMOVAL BEGIN
+					/* BUBBER EDIT REMOVAL
+					//SKYRAT EDIT ADDITION - DNR TRAIT
+					if (DEFIB_FAIL_DNR)
+						fail_reason = "Patient has been flagged as Do Not Resuscitate. Further attempts futile."
+					//SKYRAT EDIT ADDITION END - DNR TRAIT
+					*/
+
 				if(fail_reason)
 					user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - [fail_reason]"))
 					playsound(src, 'sound/machines/defib_failed.ogg', 50, FALSE)
@@ -660,13 +664,16 @@
 					H.revive()
 					H.emote("gasp")
 					H.set_jitter_if_lower(200 SECONDS)
+
 					to_chat(H, "<span class='userdanger'>[CONFIG_GET(string/blackoutpolicy)]</span>") //SKYRAT EDIT ADDITION
+
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
 					if(HAS_MIND_TRAIT(user, TRAIT_MORBID))
 						user.add_mood_event("morbid_saved_life", /datum/mood_event/morbid_saved_life)
 					else
 						user.add_mood_event("saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)
+
 					// SKYRAT EDIT ADDITION BEGIN - SYNTH REVIVAL
 					if (target_synthetic)
 						user.visible_message(span_boldwarning("[src] fire a powerful jolt of electricity into [H]'s vulnerable circuitry!"))
@@ -683,6 +690,7 @@
 							if (!QDELETED(trauma))
 								addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_synth_defib_trauma), brain_organ, trauma), SYNTH_DEFIBBED_TRAUMA_DURATION)
 					// SKYRAT EDIT ADDITION END - SYNTH REVIVAL
+
 
 				do_success()
 				return
