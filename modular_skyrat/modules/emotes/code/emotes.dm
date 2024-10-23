@@ -587,8 +587,8 @@
 
 /datum/emote/living/yipyip
 	key = "yipyip"
-	key_third_person = "yips"
-	message = "yips!"
+	key_third_person = "yips twice"
+	message = "yips twice!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/emotes/yip.ogg'
