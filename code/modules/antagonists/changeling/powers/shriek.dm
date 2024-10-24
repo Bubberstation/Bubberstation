@@ -52,7 +52,7 @@
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	if(!COOLDOWN_FINISHED(src, dissonant_shriek_cooldown))
-		user.balloon_alert(user, "Your throat is sore. On cooldown!")
+		user.balloon_alert(user, "Your throat is sore!")
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	empulse(get_turf(user), 2, 5, 1)
