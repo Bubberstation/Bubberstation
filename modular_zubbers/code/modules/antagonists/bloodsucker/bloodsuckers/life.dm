@@ -228,8 +228,7 @@
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 
 	bloodsuckeruser.cure_husk(BURN)
-	for(var/datum/wound/wound as anything in bloodsuckeruser.all_wounds)
-		wound.remove_wound()
+
 	if(bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 
