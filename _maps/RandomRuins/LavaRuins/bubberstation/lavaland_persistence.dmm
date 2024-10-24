@@ -677,7 +677,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
@@ -909,7 +908,6 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/trimline/dark_red/filled/line,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/royalblack,
@@ -2172,10 +2170,6 @@
 	},
 /turf/open/floor/iron/stairs,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
-"hn" = (
-/obj/structure/lattice/catwalk/mining,
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "ho" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/disposalpipe/segment{
@@ -4700,7 +4694,6 @@
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/heavy,
 /obj/structure/cable,
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/iron/dark/small,
@@ -4989,7 +4982,7 @@
 	color = "#333333"
 	},
 /obj/machinery/door/firedoor/heavy,
-/turf/closed/wall/r_wall/syndicate/cruiser,
+/turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "rv" = (
 /obj/machinery/duct,
@@ -7512,7 +7505,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
 "Aj" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
@@ -9879,6 +9871,9 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Turbine Room"
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "IJ" = (
@@ -11049,7 +11044,7 @@
 	color = "#333333"
 	},
 /obj/machinery/door/firedoor/heavy,
-/turf/closed/wall/r_wall/syndicate/cruiser,
+/turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "MR" = (
 /obj/machinery/duct,
@@ -14088,9 +14083,6 @@
 /obj/machinery/computer/message_monitor{
 	dir = 8
 	},
-/obj/machinery/computer/message_monitor{
-	dir = 8
-	},
 /obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
@@ -16995,7 +16987,7 @@ FW
 gq
 gq
 VG
-hn
+tb
 tb
 Wq
 Ht
