@@ -399,7 +399,7 @@
 	return ..()
 
 /mob/living/silicon/robot/execute_mode()
-	if(incapacitated())
+	if(incapacitated)
 		return
 	var/obj/item/W = get_active_held_item()
 	if(W)
@@ -508,8 +508,8 @@
 		lampButton?.update_appearance()
 		update_icons()
 		return
-	set_light_range(lamp_intensity)
-	set_light_color(lamp_doom? COLOR_RED : lamp_color) //Red for doomsday killborgs, borg's choice otherwise
+	set_light_range(max(MINIMUM_USEFUL_LIGHT_RANGE, lamp_intensity))
+	set_light_color(lamp_doom ? COLOR_RED : lamp_color) //Red for doomsday killborgs, borg's choice otherwise
 	set_light_on(TRUE)
 	lamp_enabled = TRUE
 	lampButton?.update_appearance()
@@ -727,7 +727,7 @@
 	if (hasExpanded)
 		hasExpanded = FALSE
 		//update_transform(0.5) // Original
-		update_transform(0.8) // SKYRAT EDIT CHANGE
+		update_transform(0.6) // SKYRAT EDIT CHANGE
 
 	//SKYRAT EDIT ADDITION BEGIN - CYBORG
 	if (hasShrunk)
@@ -893,7 +893,7 @@
 	lawupdate = TRUE
 	lawsync()
 	if(radio && AI.radio) //AI keeps all channels, including Syndie if it is a Traitor
-		if(AI.radio.syndie)
+		if((AI.radio.special_channels & RADIO_SPECIAL_SYNDIE))
 			radio.make_syndie()
 		radio.subspace_transmission = TRUE
 		radio.channels = AI.radio.channels
@@ -955,7 +955,7 @@
 		M.visible_message(span_warning("[M] really can't seem to mount [src]..."))
 		return
 
-	if(stat || incapacitated())
+	if(stat || incapacitated)
 		return
 	if(model && !model.allow_riding)
 		M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
