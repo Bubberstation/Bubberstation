@@ -2,7 +2,6 @@
 	name = "Shadekin"
 	id = SPECIES_SHADEKIN
 	eyes_icon = 'modular_zubbers/icons/mob/human/human_face.dmi'
-	say_mod = "mars"
 	mutanttongue = /obj/item/organ/internal/tongue/shadekin
 	mutantears = /obj/item/organ/internal/ears/shadekin
 	mutantbrain = /obj/item/organ/internal/brain/shadekin

@@ -60,11 +60,6 @@
 	src.speech_action_icon_state = speech_action_icon_state
 	src.speech_action_background_icon_state = speech_action_background_icon_state
 
-	/* ORIGINAL CODE
-	master_speech = new(src)
-	master_speech.Grant(owner)
-	*/ //ORIGINAL CODE END
-
 	//SKYRAT EDIT - NIFs
 	if(speech_action)
 		master_speech = new(src)
@@ -95,19 +90,6 @@
 /datum/component/mind_linker/proc/link_mob(mob/living/to_link)
 	if(QDELETED(to_link) || to_link.stat == DEAD)
 		return FALSE
-
-	/* ORIGINAL CODE
-	if(HAS_TRAIT(to_link, TRAIT_MINDSHIELD)) // Mindshield implant - no dice
-		return FALSE
-	if(to_link.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		return FALSE
-	*/ //ORIGINAL CODE END
-	//SKYRAT EDIT START
-	if(HAS_TRAIT(to_link, TRAIT_MINDSHIELD) && linking_protection) // Mindshield implant - no dice
-		return FALSE
-	if(to_link.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) && linking_protection)
-		return FALSE
-	//SKYRAT EDIT END
 	if(linked_mobs[to_link])
 		return FALSE
 

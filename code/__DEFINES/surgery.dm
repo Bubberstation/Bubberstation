@@ -67,7 +67,7 @@
 /// All head flags, default for most heads
 #define HEAD_ALL_FEATURES (HEAD_HAIR|HEAD_FACIAL_HAIR|HEAD_LIPS|HEAD_EYESPRITES|HEAD_EYECOLOR|HEAD_EYEHOLES|HEAD_DEBRAIN)
 
-/// When the surgery step fails :(
+/// Return value when the surgery step fails :(
 #define SURGERY_STEP_FAIL -1
 
 // Flags for surgery_flags on surgery datums

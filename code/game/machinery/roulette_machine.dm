@@ -98,7 +98,7 @@
 
 	return data
 
-/obj/machinery/roulette/ui_act(action, params)
+/obj/machinery/roulette/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -456,7 +456,7 @@
 		"path" = /obj/structure/closet/supplypod/centcompod,
 		"spawn" = /obj/machinery/roulette
 	))
-	
+
 	qdel(src)
 
 #undef ROULETTE_DOZ_COL_PAYOUT
