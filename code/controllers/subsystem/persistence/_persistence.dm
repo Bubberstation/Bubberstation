@@ -49,6 +49,16 @@ SUBSYSTEM_DEF(persistence)
 	var/tram_hits_last_round = 0
 
 	var/last_storyteller_type = "" // BUBBER EDIT ADD: Storyteller votes
+	/// A json database to data/message_bottles.json
+	var/datum/json_database/message_bottles_database
+	/// An index used to create unique ids for the message bottles database
+	var/message_bottles_index = 0
+	/**
+	 * A list of non-maploaded photos or papers that met the 0.2% chance to be saved in the message bottles database
+	 * because I don't want the database to feel empty unless there's someone constantly throwing bottles in the
+	 * sea or beach/ocean fishing portals.
+	 */
+	var/list/queued_message_bottles
 
 /datum/controller/subsystem/persistence/Initialize()
 	load_poly()
@@ -77,6 +87,7 @@ SUBSYSTEM_DEF(persistence)
 	save_custom_outfits()
 	save_modular_persistence() // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
 	save_delamination_counter()
+	save_queued_message_bottles()
 	if(SStransport.can_fire)
 		for(var/datum/transport_controller/linear/tram/transport as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 			save_tram_history(transport.specific_transport_id)

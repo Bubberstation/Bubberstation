@@ -29,7 +29,7 @@ export type BloodsuckerProps = {
   powers: PowerInfo[];
   objectives: Objective[];
 };
-export type VassalProps = BloodsuckerProps & {
+export type GhoulProps = BloodsuckerProps & {
   title: string;
   description: string;
 };
@@ -131,7 +131,7 @@ const BloodsuckerIntro = () => {
         <Section fill title="Items">
           <Stack vertical>
             <Stack.Item>
-              Rest in a <b>Coffin</b> to claim it, and that area, as your lair.
+              Rest in a <b>Coffin</b> to claim it, and that area, as your haven.
               <br />
               Examine your new structures to see how they function!
               <br />
@@ -139,15 +139,19 @@ const BloodsuckerIntro = () => {
               Masquerade ability will hide your identity to prevent this.
               <br />
               You will learn how to make persuasion racks once you have enough
-              levels to support a vassal, which you will learn during torpor
-              during daytime. Examine the vassal rack to see how many vassals
-              you can have!
+              levels to support a ghoul, which you will learn during torpor
+              during daytime. Examine the ghoul rack to see how many ghouls you
+              can have!
               <br />
               You cannot level up until you select a clan. To select a clan,
               click the clan tab on the top right of this window.
               <br />
               Ensure to read the descriptions of each ability in the Clan &
               Powers tab, you may learn something new!
+              <br />
+              After a certain level, Sol will no longer grant you levels,
+              instead, you will need to feed on the blood of others to gain
+              levels.
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">

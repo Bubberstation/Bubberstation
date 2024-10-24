@@ -26,7 +26,7 @@
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED
 	var/bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	/// Who can purchase the Power
-	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|VASSAL_CAN_BUY
+	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|GHOUL_CAN_BUY
 
 	// VARS //
 	/// If the Power is currently active, differs from action cooldown because of how powers are handled.
@@ -70,7 +70,9 @@
 
 //This is when we CLICK on the ability Icon, not USING.
 /datum/action/cooldown/bloodsucker/PreActivate(atom/target)
-	if(!owner)
+	if(QDELETED(owner))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
 	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
@@ -83,7 +85,7 @@
 		pay_cost()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_cost()
-	if(!owner || !owner.mind)
+	if(QDELETED(owner) || !owner.mind)
 		return FALSE
 	// Cooldown?
 	if(!COOLDOWN_FINISHED(src, next_use_time))
@@ -125,7 +127,7 @@
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user)
-	if(!owner)
+	if(QDELETED(owner))
 		return FALSE
 	if(!isliving(user))
 		return FALSE
@@ -249,7 +251,7 @@
 
 /// Checks to make sure this power can stay active
 /datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
-	if(!user)
+	if(QDELETED(user))
 		return FALSE
 	if(!constant_bloodcost > 0 || can_pay_blood(user))
 		return TRUE

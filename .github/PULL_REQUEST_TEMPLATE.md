@@ -14,6 +14,10 @@
 ## Proof Of Testing
 
 <!-- Compile and run your code locally. Make sure it works. This is the place to show off your changes! We are not responsible for testing your features. -->
+<details>
+<summary>Screenshots/Videos</summary>
+
+</details>
 
 ## Changelog
 
