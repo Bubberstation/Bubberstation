@@ -60,6 +60,6 @@
 		L.on = TRUE
 		L.break_light_tube()
 		stoplag()
-		COOLDOWN_START(src, dissonant_shriek_cooldown, 3 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
+		COOLDOWN_START(src, dissonant_shriek_cooldown, 5 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
 
 	return TRUE
