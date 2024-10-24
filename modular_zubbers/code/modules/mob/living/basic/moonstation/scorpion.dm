@@ -37,7 +37,7 @@
 	melee_damage_upper = 20
 
 	attack_vis_effect = ATTACK_EFFECT_MECHTOXIN
-	attack_sound = 'sound/weapons/pierce_slow.ogg'
+	attack_sound = 'sound/items/weapons/pierce_slow.ogg'
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "sting"
 

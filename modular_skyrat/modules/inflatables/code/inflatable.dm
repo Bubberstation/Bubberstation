@@ -19,7 +19,7 @@
 	/// The type we drop when deflated.
 	var/deflated_type = /obj/item/inflatable
 	/// The hitsound made when we're... hit...
-	var/hit_sound = 'sound/effects/Glasshit.ogg'
+	var/hit_sound = 'sound/effects/glass/glasshit.ogg'
 	/// How quickly we deflate when manually deflated.
 	var/manual_deflation_time = 3 SECONDS
 	/// Whether or not the inflatable has been deflated
@@ -161,7 +161,7 @@
 	if(locate(structure_type) in get_turf(user))
 		to_chat(user, span_warning("There is already a wall here!"))
 		return
-	playsound(loc, 'sound/items/zip.ogg', 75, 1)
+	playsound(loc, 'sound/items/zip/zip.ogg', 75, 1)
 	to_chat(user, span_notice("You inflate [src]."))
 	if(do_after(user, 1 SECONDS, src))
 		new structure_type(get_turf(user))

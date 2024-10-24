@@ -49,7 +49,7 @@
 	invocation = "YA'YEET!!"
 	button_icon = 'icons/mob/nonhuman-player/cult.dmi'
 	button_icon_state = "shade_wizard"
-	sound = 'sound/effects/assslap.ogg'
+	sound = 'sound/effects/emotes/assslap.ogg'
 
 /datum/action/cooldown/spell/touch/smite/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
 

@@ -60,7 +60,7 @@
 
 	update_action_button_state()
 
-	playsound(parent, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(parent, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	user.visible_message(
 		span_notice("[user] toggles [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"]."),
 		span_notice("You toggle [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].")

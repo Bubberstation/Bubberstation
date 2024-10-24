@@ -24,7 +24,7 @@
 	var/datum/team/nuclear/nuke_team
 
 /datum/round_event/antagonist/team/nukie/candidate_roles_setup(mob/candidate)
-	candidate.mind.set_assigned_role(SSjob.GetJobType(job_type))
+	candidate.mind.set_assigned_role(SSjob.get_job_type(job_type))
 	candidate.mind.special_role = required_role
 
 /datum/round_event/antagonist/team/nukie/start()

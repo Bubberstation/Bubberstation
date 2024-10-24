@@ -198,7 +198,7 @@
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = missing_bodypart.max_damage
 		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
 /*

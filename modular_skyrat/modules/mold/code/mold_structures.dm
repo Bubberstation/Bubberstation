@@ -20,9 +20,9 @@
 /obj/structure/mold/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
+			playsound(loc, 'sound/effects/blob/attackblob.ogg', 100, TRUE)
 		if(BURN)
-			playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 /obj/structure/mold/Initialize(mapload, passed_type)
 	. = ..()

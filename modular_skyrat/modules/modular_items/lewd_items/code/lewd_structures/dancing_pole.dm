@@ -65,7 +65,7 @@
 /obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
 	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
-	playsound(user, lights_enabled ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
 	update_brightness()

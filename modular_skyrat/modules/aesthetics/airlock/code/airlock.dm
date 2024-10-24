@@ -389,8 +389,8 @@
 	name = "tram door"
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/tram/tram.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/tram/tram_overlays.dmi'
-	doorOpen = 'sound/machines/tramopen.ogg'
-	doorClose = 'sound/machines/tramclose.ogg'
+	doorOpen = 'sound/machines/tram/tramopen.ogg'
+	doorClose = 'sound/machines/tram/tramclose.ogg'
 
 /obj/machinery/door/airlock/tram/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_angle, l_dir, l_height, l_on)
 	return

@@ -566,14 +566,14 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
-				playsound(loc, 'sound/weapons/bladeslice.ogg', 100, TRUE)
+				playsound(loc, 'sound/items/weapons/bladeslice.ogg', 100, TRUE)
 			else
-				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
+				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		if(BURN)
 			if(!damage_amount)
 				return
 
-			playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 
 /// Signal proc for when owner moves. Qdels src.

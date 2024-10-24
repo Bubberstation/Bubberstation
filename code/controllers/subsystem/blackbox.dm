@@ -368,7 +368,7 @@ Versioning
 		"z_coord" = L.z,
 		"last_words" = L.last_words,
 		"suicide" = did_they_suicide,
-		"map" = SSmapping.config.map_name,
+		"map" = SSmapping.current_map.map_name,
 		"server_name" = CONFIG_GET(string/serversqlname),  // SKYRAT EDIT ADDITION - MULTISERVER
 		"internet_address" = world.internet_address || "0",
 		"port" = "[world.port]",

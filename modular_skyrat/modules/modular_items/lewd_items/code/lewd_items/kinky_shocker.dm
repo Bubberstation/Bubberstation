@@ -91,7 +91,7 @@
 	if(cell && cell.charge >= cell_hit_cost)
 		shocker_on = !shocker_on
 		to_chat(user, span_notice("You turn the shocker [shocker_on? "on. Buzz!" : "off."]"))
-		conditional_pref_sound(user, shocker_on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+		conditional_pref_sound(user, shocker_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	else
 		shocker_on = FALSE
 		if(!cell)
@@ -224,7 +224,7 @@
 			return
 
 	user.visible_message(span_purple("[user] [message]!"))
-	conditional_pref_sound(loc, 'sound/weapons/taserhit.ogg', 70, 1, -1)
+	conditional_pref_sound(loc, 'sound/items/weapons/taserhit.ogg', 70, 1, -1)
 	deductcharge(cell_hit_cost)
 	if(prob(80))
 		target.try_lewd_autoemote(pick("twitch", "twitch_s", "shiver", "scream"))

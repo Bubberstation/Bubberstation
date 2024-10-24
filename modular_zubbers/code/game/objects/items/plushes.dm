@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "chaotic_toaster"
 	attack_verb_simple = list("beeped", "booped", "pinged")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/Synth
 	name = "Synth plushie"
@@ -32,7 +32,7 @@
 	icon_state = "chirp"//Sprited by Kan3/kaylexi
 	attack_verb_continuous = list("chirps", "chimes")
 	attack_verb_simple = list("chirps")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 	gender = FEMALE
 
 /obj/item/toy/plush/bigdeer
@@ -85,7 +85,7 @@
 	desc = "A cute rendition of the notorious xenomorph. Its stuffing is an acidic green colour."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "xenoplush"
-	squeak_override = list('sound/voice/hiss6.ogg' = 1)
+	squeak_override = list('sound/mobs/non-humanoids/hiss/hiss6.ogg' = 1)
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
 	inhand_icon_state = "xenoplush"
@@ -121,7 +121,7 @@
 	icon_state = "blovyplushie"
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
-	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	squeak_override = list('sound/effects/blob/blobattack.ogg' = 1)
 
 /obj/item/toy/plush/tunafish
 	name = "Piscene Paddle" //Donator plush for Astroturf, sprited by Crumpaloo
@@ -130,7 +130,7 @@
 	icon_state = "tunafish"
 	attack_verb_continuous = list("slaps", "whacks")
 	attack_verb_simple = list("slap", "whack")
-	squeak_override = list('sound/weapons/slap.ogg' = 1)
+	squeak_override = list('sound/items/weapons/slap.ogg' = 1)
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
 	inhand_icon_state = "tunafish"
@@ -142,7 +142,7 @@
 	icon_state = "secoff"
 	attack_verb_continuous = list("shoots (and misses)", "batongs", "annoys", "harmbatons", "magdumps")
 	attack_verb_simple = list("shot (and missed)", "batong", "annoy", "harmbaton", "magdump")
-	squeak_override = list('sound/weapons/gun/general/bolt_rack.ogg' = 1)
+	squeak_override = list('sound/items/weapons/gun/general/bolt_rack.ogg' = 1)
 
 /obj/item/toy/plush/cescrewsplush
 	name = "Chief Screws Plush" //Plush for Steals The Screwdriver/SteamStucKobold, sprited by stickygoat. and Amorbis
@@ -162,4 +162,4 @@
 	attack_verb_continuous = list("baps", "paws", "claws")
 	attack_verb_simple = list("bap", "paw", "claw")
 	gender = MALE
-	squeak_override = list('sound/creatures/dog/growl2.ogg' = 1)
+	squeak_override = list('sound/mobs/non-humanoids/dog/growl2.ogg' = 1)

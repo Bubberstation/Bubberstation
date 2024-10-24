@@ -38,7 +38,7 @@
 	SSquirks.AssignQuirks(operative, chosen_one.client, TRUE, TRUE, null, FALSE, operative)
 
 	player_mind.transfer_to(operative)
-	player_mind.set_assigned_role(SSjob.GetJobType(/datum/job/lone_operative))
+	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
 	player_mind.special_role = "Lone Infiltrator"
 	player_mind.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
 

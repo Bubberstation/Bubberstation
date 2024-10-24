@@ -341,6 +341,10 @@ multiple modular subtrees with behaviors
 ///Runs any actions that are currently running
 /datum/ai_controller/process(seconds_per_tick)
 
+	if(!length(current_behaviors) && idle_behavior)
+		idle_behavior.perform_idle_behavior(seconds_per_tick, src) //Do some stupid shit while we have nothing to do
+		return
+
 	if(current_movement_target)
 		if(!isatom(current_movement_target))
 			stack_trace("[pawn]'s current movement target is not an atom, rather a [current_movement_target.type]! Did you accidentally set it to a weakref?")
@@ -472,7 +476,6 @@ multiple modular subtrees with behaviors
 	if(!behavior.setup(arglist(arguments)))
 		return
 
-	var/should_exit_unplanned = !length(current_behaviors)
 	planned_behaviors[behavior] = TRUE
 	current_behaviors[behavior] = TRUE
 
@@ -485,9 +488,6 @@ multiple modular subtrees with behaviors
 	if(!(behavior.behavior_flags & AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION)) //this one blocks planning!
 		able_to_plan = FALSE
 
-	if(should_exit_unplanned)
-		exit_unplanned_mode()
-
 	SEND_SIGNAL(src, AI_CONTROLLER_BEHAVIOR_QUEUED(behavior_type), arguments)
 
 /datum/ai_controller/proc/check_able_to_plan()
@@ -499,16 +499,6 @@ multiple modular subtrees with behaviors
 /datum/ai_controller/proc/dequeue_behavior(datum/ai_behavior/behavior)
 	current_behaviors -= behavior
 	able_to_plan = check_able_to_plan()
-	if(!length(current_behaviors))
-		enter_unplanned_mode()
-
-/datum/ai_controller/proc/exit_unplanned_mode()
-	remove_from_unplanned_controllers()
-	start_ai_processing()
-
-/datum/ai_controller/proc/enter_unplanned_mode()
-	add_to_unplanned_controllers()
-	stop_previous_processing()
 
 /datum/ai_controller/proc/ProcessBehavior(seconds_per_tick, datum/ai_behavior/behavior)
 	var/list/arguments = list(seconds_per_tick, src)

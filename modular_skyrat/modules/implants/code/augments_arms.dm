@@ -1,11 +1,11 @@
-#define KNIFE_HITSOUND 'sound/weapons/bladeslice.ogg'
-#define KNIFE_USESOUND 'sound/weapons/bladeslice.ogg'
+#define KNIFE_HITSOUND 'sound/items/weapons/bladeslice.ogg'
+#define KNIFE_USESOUND 'sound/items/weapons/bladeslice.ogg'
 #define KNIFE_ATTACK_VERB_CONTINUOUS list("slashes", "tears", "slices", "tears", "lacerates", "rips", "dices", "cuts", "rends")
 #define KNIFE_ATTACK_VERB_SIMPLE list("slash", "tear", "slice", "tear", "lacerate", "rip", "dice", "cut", "rend")
 #define KNIFE_SHARPNESS SHARP_EDGED
 #define KNIFE_BARE_WOUND_BONUS 15
-#define CUTTER_HITSOUND 'sound/items/wirecutter.ogg'
-#define CUTTER_USESOUND 'sound/items/wirecutter.ogg'
+#define CUTTER_HITSOUND 'sound/items/tools/wirecutter.ogg'
+#define CUTTER_USESOUND 'sound/items/tools/wirecutter.ogg'
 #define CUTTER_ATTACK_VERB_CONTINUOUS list("bashes", "batters", "bludgeons", "thrashes", "whacks")
 #define CUTTER_ATTACK_VERB_SIMPLE list("bash", "batter", "bludgeon", "thrash", "whack")
 #define CUTTER_FORCE 6
@@ -35,7 +35,7 @@
 	icon_state = "energy_mantis_blade"
 	force = 30
 	armour_penetration = 10 //Energy isn't as good at going through armor as it is through flesh alone.
-	hitsound = 'sound/weapons/blade1.ogg'
+	hitsound = 'sound/items/weapons/blade1.ogg'
 
 /obj/item/organ/internal/cyberimp/arm/armblade
 	name = "arm blade implant"
@@ -71,7 +71,7 @@
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
 
 /obj/item/knife/razor_claws/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
+	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		tool_behaviour = TOOL_WIRECUTTER
 		to_chat(user, span_notice("You shift [src] into Precision mode, for wirecutting."))
@@ -171,7 +171,7 @@
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("saws", "tears", "lacerates", "cuts", "chops", "dices")
 	attack_verb_simple = list("saw", "tear", "lacerate", "cut", "chop", "dice")
-	hitsound = 'sound/weapons/chainsawhit.ogg'
+	hitsound = 'sound/items/weapons/chainsawhit.ogg'
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 

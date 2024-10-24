@@ -61,8 +61,8 @@
 	unarmed_damage_high = 5 //highest possible punch damage
 	unarmed_attack_verbs = list("punch")
 	unarmed_attack_effect = ATTACK_EFFECT_PUNCH
-	unarmed_attack_sound = 'sound/weapons/punch1.ogg'
-	unarmed_miss_sound = 'sound/weapons/punchmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/punch1.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/punchmiss.ogg'
 	brute_modifier = GHOUL_BRUTE_MODIFIER
 	burn_modifier = GHOUL_BURN_MODIFIER
 
@@ -74,8 +74,8 @@
 	unarmed_damage_high = 5 //highest possible punch damage
 	unarmed_attack_verbs = list("punch")
 	unarmed_attack_effect = ATTACK_EFFECT_PUNCH
-	unarmed_attack_sound = 'sound/weapons/punch1.ogg'
-	unarmed_miss_sound = 'sound/weapons/punchmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/punch1.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/punchmiss.ogg'
 	brute_modifier = GHOUL_BRUTE_MODIFIER
 	burn_modifier = GHOUL_BURN_MODIFIER
 

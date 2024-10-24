@@ -36,7 +36,7 @@
 		user.visible_message("[user] opens [src].", "You open [src].", "You hear a metallic thunk.")
 	else
 		user.visible_message("[user] closes [src].", "You close [src].", "You hear a metallic thunk.")
-	playsound(src, 'sound/machines/boltsup.ogg', 30, TRUE)
+	playsound(src, 'sound/machines/airlock/boltsup.ogg', 30, TRUE)
 	update_appearance()
 
 /obj/item/cortical_cage/attackby(obj/item/attacking_item, mob/user, params)
@@ -69,7 +69,7 @@
 	if(internal_radio)
 		var/area/src_area = get_area(src)
 		internal_radio.talk_into(src, "A cortical borer has been trapped in [src_area].", RADIO_CHANNEL_COMMON)
-	playsound(src, 'sound/machines/boltsup.ogg', 30, TRUE)
+	playsound(src, 'sound/machines/airlock/boltsup.ogg', 30, TRUE)
 	update_appearance()
 
 /obj/item/cortical_cage/relaymove(mob/living/user, direction)

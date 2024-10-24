@@ -19,9 +19,9 @@
 /datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
 	return pick(
 		'modular_skyrat/modules/emotes/sound/voice/scream_lizard.ogg',
-		'sound/voice/lizard/lizard_scream_1.ogg',
-		'sound/voice/lizard/lizard_scream_2.ogg',
-		'sound/voice/lizard/lizard_scream_3.ogg',
+		'sound/mobs/humanoids/lizard/lizard_scream_1.ogg',
+		'sound/mobs/humanoids/lizard/lizard_scream_2.ogg',
+		'sound/mobs/humanoids/lizard/lizard_scream_3.ogg',
 	)
 
 /datum/species/skeleton/get_scream_sound(mob/living/carbon/human/skeleton)
@@ -46,7 +46,7 @@
 	return 'modular_skyrat/modules/emotes/sound/emotes/voxscream.ogg'
 
 /datum/species/xeno/get_scream_sound(mob/living/carbon/human/xeno)
-	return 'sound/voice/hiss6.ogg'
+	return 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
 
 /datum/species/zombie/get_scream_sound(mob/living/carbon/human/teshari)
 	return 'modular_skyrat/modules/emotes/sound/emotes/zombie_scream.ogg'

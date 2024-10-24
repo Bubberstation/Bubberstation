@@ -69,5 +69,5 @@
 	usr.audible_message("<font color='red' size='5'><b>BACKUP REQUESTED!</b></font>")
 	balloon_alert_to_viewers("Backup Requested!", "Backup Requested!", 7)
 	log_combat(usr, src, "has called for backup")
-	playsound(usr, 'sound/misc/whistle.ogg', 50, FALSE, 4)
+	playsound(usr, 'sound/items/whistle/whistle.ogg', 50, FALSE, 4)
 

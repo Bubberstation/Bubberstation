@@ -142,7 +142,7 @@
 	else
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(minor_announcement_strings, ""))
 
-	var/custom_sound = sound_override || (alert ? 'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg' : 'sound/misc/notice2.ogg') // SKYRAT EDIT CHANGE - CUSTOM ANNOUNCEMENTS - Original: 'sound/misc/notice1.ogg'
+	var/custom_sound = sound_override || (alert ? 'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // SKYRAT EDIT CHANGE - CUSTOM ANNOUNCEMENTS - Original: 'sound/announcer/notice/notice1.ogg'
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
@@ -189,7 +189,7 @@
 	// SKYRAT EDIT CHANGE BEGIN - CUSTOM ANNOUNCEMENTS
 	/* Original:
 
-	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/misc/notice2.ogg'
+	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
 
 	for(var/mob/target in players)
 		if(isnewplayer(target) || !target.can_hear())
@@ -211,7 +211,7 @@
 	if(!isnull(sound_override))
 		sound_override = sound(sound_override)
 
-	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/misc/notice2.ogg'
+	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
 	alert_sound_to_playing(sound_to_play, players = players)
 
 	for(var/mob/target in players)

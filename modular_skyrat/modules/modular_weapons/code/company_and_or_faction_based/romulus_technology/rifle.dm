@@ -83,8 +83,8 @@
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	suppressed_sound = 'modular_skyrat/modules/modular_weapons/sounds/suppressed_rifle.ogg'
 	fire_sound_volume = 90
-	load_sound = 'sound/weapons/gun/sniper/mag_insert.ogg'
-	rack_sound = 'sound/weapons/gun/sniper/rack.ogg'
+	load_sound = 'sound/items/weapons/gun/sniper/mag_insert.ogg'
+	rack_sound = 'sound/items/weapons/gun/sniper/rack.ogg'
 	recoil = 2
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
@@ -149,7 +149,7 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/caflechette
 	spawn_magazine_type = /obj/item/ammo_box/magazine/caflechette
-	var/folding_sound = 'sound/weapons/batonextend.ogg'
+	var/folding_sound = 'sound/items/weapons/batonextend.ogg'
 	/// is our stock collapsed?
 	var/folded = FALSE
 	/// how long does it take to extend/collapse the stock

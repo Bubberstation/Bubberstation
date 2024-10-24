@@ -8,7 +8,7 @@
 		/obj/item = 10,
 	) // 10% success with any sharp item.
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/wirecutter.ogg'
+	preop_sound = 'sound/items/tools/wirecutter.ogg'
 
 /datum/surgery_step/cut_wires/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
@@ -32,7 +32,7 @@
 		TOOL_HEMOSTAT = 10,
 	)
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/crowbar.ogg'
+	preop_sound = 'sound/items/tools/crowbar.ogg'
 
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	do_sparks(rand(5, 9), FALSE, target.loc)
@@ -54,7 +54,7 @@
 		TOOL_WELDER = 100,
 	)
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/welder.ogg'
+	preop_sound = 'sound/items/tools/welder.ogg'
 
 /datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER && !tool.use_tool(user, user, 0, volume=50, amount=1))
@@ -77,7 +77,7 @@
 		TOOL_WELDER = 100,
 	)
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/welder.ogg'
+	preop_sound = 'sound/items/tools/welder.ogg'
 
 /datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER && !tool.use_tool(user, user, 0, volume=50, amount=1))

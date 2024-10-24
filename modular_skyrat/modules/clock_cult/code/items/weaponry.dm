@@ -14,7 +14,7 @@
 	throwforce = 20
 	throw_speed = 4
 	armour_penetration = 10
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "gore")
 	sharpness = SHARP_EDGED
@@ -76,7 +76,7 @@
 	attack_verb_continuous = list("bashes", "hammers", "attacks", "smashes")
 	clockwork_desc = "Enemies hit by this will be flung back while you are on bronze tiles."
 	sharpness = 0
-	hitsound = 'sound/weapons/smash.ogg'
+	hitsound = 'sound/items/weapons/smash.ogg'
 
 
 /obj/item/clockwork/weapon/brass_battlehammer/Initialize(mapload)
@@ -122,7 +122,7 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 30 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/attack_atom(obj/attacked_obj, mob/living/user, params)
@@ -142,7 +142,7 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
@@ -250,7 +250,7 @@
 	inhand_icon_state = "clockwork_rifle"
 	worn_icon_state = "clockwork_rifle"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/lionhunter/clockwork
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_sound = 'sound/items/weapons/gun/sniper/shot.ogg'
 	show_bolt_icon = FALSE
 
 

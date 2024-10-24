@@ -56,6 +56,7 @@ const BASEICONS = {
   'Station Engineer': 'gears',
   'Syndicate Operative': 'dragon',
   'Veteran Security Advisor': 'ribbon',
+  'Pun Pun': 'paw',
   Warden: 'handcuffs',
   // SKYRAT EDIT START - Skyrat-exclusive jobs have icons too
 

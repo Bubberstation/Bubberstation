@@ -25,7 +25,7 @@
 	attack_verb_continuous = list("slaps", "challenges")
 	attack_verb_simple = list("slap", "challenge")
 	equip_delay_self = 2 SECONDS //that's a lot of bulky
-	hitsound = 'sound/weapons/slap.ogg'
+	hitsound = 'sound/items/weapons/slap.ogg'
 	slot_flags = ITEM_SLOT_GLOVES
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -74,7 +74,7 @@
 	return FALSE //you WILL glass cannon and you WILL like it.
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/after_detonate(mob/living/user, mob/living/target)
-	playsound(src, 'sound/weapons/resonator_blast.ogg', 40, TRUE)
+	playsound(src, 'sound/items/weapons/resonator_blast.ogg', 40, TRUE)
 	var/old_dir_user = user.dir
 	var/old_dir_target = user.dir
 	step(user, get_dir(target, user))
@@ -114,14 +114,14 @@
 		can_deploy = FALSE
 
 	if(!can_deploy)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You need both free hands to deploy [src]!"))
 		return
 
 	// equipping/unequipping shall take time
 	wearer.add_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 	if(!do_after(wearer, 1.5 SECONDS, src, IGNORE_USER_LOC_CHANGE, interaction_key = type))
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You fail to deploy [src]!"))
 		wearer.remove_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 		return
@@ -134,7 +134,7 @@
 		can_deploy = FALSE
 
 	if(!can_deploy)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You need both free hands to deploy [src]!"))
 		return
 
@@ -146,8 +146,8 @@
 
 	ADD_TRAIT(src, TRAIT_NODROP, type)
 
-	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(src, 'sound/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(wearer, span_notice("You deploy [src]."))
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/retract_gauntlets()
@@ -165,7 +165,7 @@
 	wearer.add_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 	if(!do_after(wearer, 1.5 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 		wearer.remove_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You fail to retract [src]!"))
 		return
 
@@ -175,8 +175,8 @@
 	right_gauntlet?.forceMove(src)
 
 	REMOVE_TRAIT(src, TRAIT_NODROP, type)
-	playsound(src, 'sound/mecha/powerloader_turn2.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(src, 'sound/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/powerloader_turn2.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(wearer, span_notice("You retract [src]."))
 
 
@@ -222,7 +222,7 @@
 
 /obj/item/kinetic_gauntlet/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
-	playsound(src, 'sound/weapons/genhit2.ogg', 40, TRUE)
+	playsound(src, 'sound/items/weapons/genhit2.ogg', 40, TRUE)
 	next_attack = world.time + 0.8 SECONDS // same as a crusher
 	user.changeNext_move(CLICK_CD_HYPER_RAPID) //forgive me
 	if(istype(user.get_inactive_held_item(), /obj/item/kinetic_gauntlet))
@@ -240,11 +240,11 @@
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
 	if(linked_gauntlets)
-		RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+		RegisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(do_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
 	if(linked_gauntlets)
-		UnregisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR)
+		UnregisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT)
 		linked_gauntlets.set_light_on(FALSE)
 	return ..()
 
@@ -255,11 +255,11 @@
 
 /obj/item/kinetic_gauntlet/left/attack_self(mob/user, modifiers)
 	linked_gauntlets.set_light_on(!linked_gauntlets.light_on)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
-/obj/item/kinetic_gauntlet/left/proc/on_saboteur(datum/source, disrupt_duration)
+/obj/item/kinetic_gauntlet/left/proc/do_saboteur(datum/source, disrupt_duration)
 	linked_gauntlets.set_light_on(FALSE)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	return COMSIG_SABOTEUR_SUCCESS

@@ -208,22 +208,22 @@
 		if(VIB_OFF)
 			vibration_mode = VIB_LOW
 			toy_on = TRUE
-			conditional_pref_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
 			soundloop1.start()
 		if(VIB_LOW)
 			vibration_mode = VIB_MEDIUM
-			conditional_pref_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
 			soundloop1.stop()
 			soundloop2.start()
 		if(VIB_MEDIUM)
 			vibration_mode = VIB_HIGH
-			conditional_pref_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
 			soundloop2.stop()
 			soundloop3.start()
 		if(VIB_HIGH)
 			vibration_mode = VIB_OFF
 			toy_on = FALSE
-			conditional_pref_sound(loc, 'sound/weapons/magout.ogg', 20, TRUE)
+			conditional_pref_sound(loc, 'sound/items/weapons/magout.ogg', 20, TRUE)
 			soundloop3.stop()
 
 #undef DEFAULT_AROUSAL_INCREASE

@@ -27,11 +27,11 @@
 	bodytemp_cold_damage_limit = MINIMUM_TEMPERATURE_TO_MOVE // take damage below minimum movement temp
 	/// A list of spooky sounds we can play intermittantly.
 	var/static/list/spooks = list(
-		'sound/hallucinations/growl1.ogg',
-		'sound/hallucinations/growl2.ogg',
-		'sound/hallucinations/growl3.ogg',
-		'sound/hallucinations/veryfar_noise.ogg',
-		'sound/hallucinations/wail.ogg'
+		'sound/effects/hallucinations/growl1.ogg',
+		'sound/effects/hallucinations/growl2.ogg',
+		'sound/effects/hallucinations/growl3.ogg',
+		'sound/effects/hallucinations/veryfar_noise.ogg',
+		'sound/effects/hallucinations/wail.ogg'
 		)
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant_zombie,
@@ -186,7 +186,7 @@
 	inhand_icon_state = "mutant"
 	lefthand_file = 'modular_skyrat/modules/mutants/icons/mutant_hand_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/mutants/icons/mutant_hand_righthand.dmi'
-	hitsound = 'sound/hallucinations/growl1.ogg'
+	hitsound = 'sound/effects/hallucinations/growl1.ogg'
 	force = 26
 	sharpness = SHARP_EDGED
 	wound_bonus = -20

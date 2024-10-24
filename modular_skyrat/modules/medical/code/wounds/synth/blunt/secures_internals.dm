@@ -173,7 +173,7 @@
 		victim_message = self_message
 	to_chat(victim, victim_message)
 
-	playsound(get_turf(crowbarring_item), 'sound/machines/airlock_alien_prying.ogg', 30, TRUE)
+	playsound(get_turf(crowbarring_item), 'sound/machines/airlock/airlock_alien_prying.ogg', 30, TRUE)
 	if (!crowbarring_item.use_tool(target = victim, user = user, delay = (7 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 

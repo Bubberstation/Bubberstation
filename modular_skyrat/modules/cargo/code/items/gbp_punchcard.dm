@@ -71,7 +71,7 @@
 		var/obj/item/gbp_punchcard/punchcard = attacking_item
 		var/amount_to_reward = punchcard.punches * GBP_PUNCH_REWARD
 		if(!punchcard.punches)
-			playsound(src, 'sound/machines/scanbuzz.ogg', 100)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 			say("You can't redeem an unpunched card!")
 			return
 
@@ -88,7 +88,7 @@
 			return
 
 		if(!card_used.registered_account || !istype(card_used.registered_account.account_job, /datum/job/assistant))
-			playsound(src, 'sound/machines/scanbuzz.ogg', 100)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 			say("You cannot redeem a punchcard without a valid assistant bank account!")
 			return
 
