@@ -161,7 +161,7 @@
 	if(locate(structure_type) in get_turf(user))
 		to_chat(user, span_warning("There is already a wall here!"))
 		return
-	playsound(loc, 'sound/items/zip.ogg', 75, 1)
+	playsound(loc, 'sound/items/zip/zip.ogg', 75, 1)
 	to_chat(user, span_notice("You inflate [src]."))
 	if(do_after(user, 1 SECONDS, src))
 		new structure_type(get_turf(user))

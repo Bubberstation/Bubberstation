@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(statpanels)
 		var/timeinworld = "[time2text(world.realtime, "DD of Month,")] [CURRENT_STATION_YEAR]"
 		global_data = list(
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
-			"Map: [SSmapping.config?.map_name || "Loading..."]",
+			"Map: [SSmapping.current_map?.map_name || "Loading..."]",
 			cached ? "Next Map: [cached.map_name]" : null,
 			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",

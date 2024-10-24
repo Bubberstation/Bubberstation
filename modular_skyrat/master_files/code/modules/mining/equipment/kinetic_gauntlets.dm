@@ -240,7 +240,7 @@
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
 	if(linked_gauntlets)
-		RegisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(on_saboteur))
+		RegisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(do_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
 	if(linked_gauntlets)
@@ -258,7 +258,7 @@
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
-/obj/item/kinetic_gauntlet/left/proc/on_saboteur(datum/source, disrupt_duration)
+/obj/item/kinetic_gauntlet/left/proc/do_saboteur(datum/source, disrupt_duration)
 	linked_gauntlets.set_light_on(FALSE)
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()

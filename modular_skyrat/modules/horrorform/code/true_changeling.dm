@@ -126,7 +126,7 @@
 	mind.transfer_to(stored_changeling)
 	stored_changeling.Paralyze(10 SECONDS) //Make them helpless for 10 seconds
 	stored_changeling.adjustBruteLoss(30, TRUE, TRUE)
-	stored_changeling.status_flags &= ~GODMODE
+	REMOVE_TRAIT(stored_changeling, TRAIT_GODMODE, INNATE_TRAIT)
 	stored_changeling.emote("scream")
 	stored_changeling.gib()
 	stored_changeling = null
@@ -201,7 +201,7 @@
 	horrorform.stored_changeling.loc = get_turf(horrorform)
 	horrorform.mind.transfer_to(horrorform.stored_changeling)
 	horrorform.stored_changeling.Stun(2 SECONDS)
-	horrorform.stored_changeling.status_flags &= ~GODMODE
+	REMOVE_TRAIT(horrorform.stored_changeling, TRAIT_GODMODE, INNATE_TRAIT)
 	qdel(horrorform)
 	return TRUE
 

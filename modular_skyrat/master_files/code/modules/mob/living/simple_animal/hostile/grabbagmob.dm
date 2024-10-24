@@ -174,7 +174,7 @@
 	icon_living = "cultmage"
 	move_to_delay = 10
 	projectiletype = /obj/projectile/magic/spell/magic_missile/lesser
-	projectilesound = 'sound/magic/ethereal_enter.ogg'
+	projectilesound = 'sound/effects/magic/ethereal_enter.ogg'
 	ranged = TRUE
 	ranged_message = "fires a spell"
 	ranged_cooldown_time = 8
@@ -187,7 +187,7 @@
 	attack_verb_continuous = "punches"
 	combat_mode = TRUE
 	speak_emote = list("chants")
-	attack_sound = 'sound/magic/magic_missile.ogg'
+	attack_sound = 'sound/effects/magic/magic_missile.ogg'
 	aggro_vision_range = 9
 	turns_per_move = 5
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID

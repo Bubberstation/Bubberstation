@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	if(shield_health)
 		damage_shield()
 
-		playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 40, 1)
+		playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 40, 1)
 
 	if(attacking_item == TOOL_WELDER)
 		welder_act(user, attacking_item)
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	to_chat(user, span_notice("You repair some of [src]'s damage."))
 	if(shield_health < MARAUDER_SHIELD_MAX)
 		shield_health++
-		playsound(src, 'sound/magic/charge.ogg', 60, TRUE)
+		playsound(src, 'sound/effects/magic/charge.ogg', 60, TRUE)
 	return TRUE
 
 

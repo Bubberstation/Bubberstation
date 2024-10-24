@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 			cop.mind.add_antag_datum(ert_antag)
 			cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
-			SSjob.SendToLateJoin(cop)
+			SSjob.send_to_late_join(cop)
 			cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos) // charge for atmos techs
@@ -609,7 +609,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 					cop.mind.add_antag_datum(ert_antag)
 					cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
-					SSjob.SendToLateJoin(cop)
+					SSjob.send_to_late_join(cop)
 					cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 					var/obj/item/gangster_cellphone/phone = new() // biggest gang in the city
@@ -772,14 +772,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 				else
 					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
-				playsound(pulling_turf, 'sound/magic/Repulse.ogg', 100, 1)
+				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
 				var/datum/effect_system/spark_spread/quantum/sparks = new
 				sparks.set_up(10, 1, pulling_turf)
 				sparks.attach(pulling_turf)
 				sparks.start()
 				qdel(living_user.pulling)
 			var/turf/user_turf = get_turf(living_user)
-			playsound(user_turf, 'sound/magic/Repulse.ogg', 100, 1)
+			playsound(user_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
 			var/datum/effect_system/spark_spread/quantum/sparks = new
 			sparks.set_up(10, 1, user_turf)
 			sparks.attach(user_turf)

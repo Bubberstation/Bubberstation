@@ -85,7 +85,7 @@
 	desc = "A cute rendition of the notorious xenomorph. Its stuffing is an acidic green colour."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "xenoplush"
-	squeak_override = list('sound/voice/hiss6.ogg' = 1)
+	squeak_override = list('sound/mobs/non-humanoids/hiss/hiss6.ogg' = 1)
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
 	inhand_icon_state = "xenoplush"

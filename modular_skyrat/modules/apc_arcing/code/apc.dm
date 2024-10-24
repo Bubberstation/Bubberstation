@@ -32,7 +32,7 @@
 		if(length(shock_mobs))
 			var/mob/living/living_target = pick(shock_mobs)
 			living_target.electrocute_act(rand(5, 25), "electrical arc")
-			playsound(get_turf(living_target), 'sound/magic/lightningshock.ogg', 75, TRUE)
+			playsound(get_turf(living_target), 'sound/effects/magic/lightningshock.ogg', 75, TRUE)
 			Beam(living_target, icon_state = "lightning[rand(1, 12)]", icon = 'icons/effects/beam.dmi', time = 5)
 
 /obj/machinery/power/apc/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

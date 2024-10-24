@@ -39,7 +39,7 @@
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 110)
 	AddComponent(/datum/component/kinetic_crusher, detonation_damage, backstab_bonus, charge_time, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(attack_check)))
 	AddComponent(/datum/component/two_handed, force_wielded = 20, force_unwielded = 0, unwield_callback = CALLBACK(src, PROC_REF(on_unwield)))
-	RegisterSignal(src, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(on_saboteur))
+	RegisterSignal(src, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(do_saboteur))
 
 /obj/item/kinetic_crusher/proc/attack_check(mob/user, cancel_attack)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
@@ -68,7 +68,7 @@
 /////// HACK TO WORK AROUND TWOHANDED NOT RESPECTING FORCE_UNWIELDED=0 ///////////
 //////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/kinetic_crusher/proc/on_saboteur(datum/source, disrupt_duration)
+/obj/item/kinetic_crusher/proc/do_saboteur(datum/source, disrupt_duration)
 	set_light_on(FALSE)
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	return COMSIG_SABOTEUR_SUCCESS

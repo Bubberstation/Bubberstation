@@ -17,9 +17,9 @@
 	if(ismonkey(user))
 		return 'modular_skyrat/modules/emotes/sound/voice/scream_monkey.ogg'
 	if(istype(user, /mob/living/basic/gorilla))
-		return 'sound/creatures/gorilla.ogg'
+		return 'sound/mobs/non-humanoids/gorilla.ogg'
 	if(isalien(user))
-		return 'sound/voice/hiss6.ogg'
+		return 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
 
 /datum/emote/living/scream/can_run_emote(mob/living/user, status_check, intentional)
 	if(iscyborg(user))

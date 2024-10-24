@@ -122,7 +122,7 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 30 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/attack_atom(obj/attacked_obj, mob/living/user, params)
@@ -142,7 +142,7 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
