@@ -115,7 +115,7 @@
 	if(prob(block_chance) && (phase == 1 || phase == 4) && !stunned)
 		var/our_turf = get_turf(src)
 		new /obj/effect/temp_visual/block(our_turf, COLOR_YELLOW)
-		playsound(src, 'sound/weapons/parry.ogg', BLOCK_SOUND_VOLUME * 2, vary = TRUE) // louder because lavaland low pressure maybe?
+		playsound(src, 'sound/items/weapons/parry.ogg', BLOCK_SOUND_VOLUME * 2, vary = TRUE) // louder because lavaland low pressure maybe?
 		return FALSE
 	. = ..()
 	update_phase()
@@ -421,7 +421,7 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/bone_knife_throw(atom/target)
 	var/obj/item/knife/combat/bone/boned = new /obj/item/knife/combat/bone(get_turf(src))
 	boned.throwforce = 35
-	playsound(src, 'sound/weapons/bolathrow.ogg', 60, 0)
+	playsound(src, 'sound/items/weapons/bolathrow.ogg', 60, 0)
 	boned.throw_at(target, 7, 3, thrower = src)
 	QDEL_IN(boned, 3 SECONDS)
 

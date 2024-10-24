@@ -34,7 +34,7 @@
 		'sound/effects/boing.ogg' = 5,
 		'sound/effects/cartoon_splat.ogg' = 1,
 		'sound/effects/cashregister.ogg' = 1,
-		'sound/effects/glassbash.ogg' = 50,
+		'sound/effects/glass/glassbash.ogg' = 50,
 		'sound/effects/glassbr1.ogg' = 20,
 		'sound/effects/glassbr2.ogg' = 20,
 		'sound/effects/glassbr3.ogg' = 20,
@@ -210,7 +210,7 @@
 		spawned_item = new spawned_item(T)
 		var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60,60))
 		if(spawned_item.safe_throw_at(throw_at, rand(2,4), rand(1,3), user, spin = TRUE))
-			playsound(T, 'sound/weapons/punchmiss.ogg', 10)
+			playsound(T, 'sound/items/weapons/punchmiss.ogg', 10)
 
 	if(COOLDOWN_FINISHED(src,funny_sound_cooldown))
 		COOLDOWN_START(src, funny_sound_cooldown, funny_sound_delay*0.5 + rand()*funny_sound_delay) // x0.5 to x1.5

@@ -1,5 +1,5 @@
-#define KNIFE_HITSOUND 'sound/weapons/bladeslice.ogg'
-#define KNIFE_USESOUND 'sound/weapons/bladeslice.ogg'
+#define KNIFE_HITSOUND 'sound/items/weapons/bladeslice.ogg'
+#define KNIFE_USESOUND 'sound/items/weapons/bladeslice.ogg'
 #define KNIFE_ATTACK_VERB_CONTINUOUS list("slashes", "tears", "slices", "tears", "lacerates", "rips", "dices", "cuts", "rends")
 #define KNIFE_ATTACK_VERB_SIMPLE list("slash", "tear", "slice", "tear", "lacerate", "rip", "dice", "cut", "rend")
 #define KNIFE_SHARPNESS SHARP_EDGED
@@ -35,7 +35,7 @@
 	icon_state = "energy_mantis_blade"
 	force = 30
 	armour_penetration = 10 //Energy isn't as good at going through armor as it is through flesh alone.
-	hitsound = 'sound/weapons/blade1.ogg'
+	hitsound = 'sound/items/weapons/blade1.ogg'
 
 /obj/item/organ/internal/cyberimp/arm/armblade
 	name = "arm blade implant"
@@ -171,7 +171,7 @@
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("saws", "tears", "lacerates", "cuts", "chops", "dices")
 	attack_verb_simple = list("saw", "tear", "lacerate", "cut", "chop", "dice")
-	hitsound = 'sound/weapons/chainsawhit.ogg'
+	hitsound = 'sound/items/weapons/chainsawhit.ogg'
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 

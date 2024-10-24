@@ -121,7 +121,7 @@
 	melee_damage_lower = 7
 	melee_damage_upper = 13
 	obj_damage = 30
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 

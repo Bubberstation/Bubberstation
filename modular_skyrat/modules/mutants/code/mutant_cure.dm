@@ -21,7 +21,7 @@
 			return FALSE
 		to_chat(user, span_notice("You insert [O] into [src]!"))
 		loaded_vial = O
-		playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		update_appearance()
 
 /obj/item/rna_extractor/attack_self(mob/living/user)
@@ -61,7 +61,7 @@
 		to_chat(user, span_notice("You remove [loaded_vial] from [src]."))
 		loaded_vial = null
 		update_appearance()
-		playsound(loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, span_notice("[src] isn't loaded!"))
 		return
@@ -183,7 +183,7 @@
 	to_chat(user, span_notice("You insert [weapon] to into [src] reciprocal."))
 	flick("h_lathe_load", src)
 	update_appearance()
-	playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 
 
 /obj/machinery/rnd/rna_recombinator/ui_interact(mob/user)

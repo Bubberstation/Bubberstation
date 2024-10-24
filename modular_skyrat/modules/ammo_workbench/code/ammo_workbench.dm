@@ -545,7 +545,7 @@
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
-		playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		return TRUE
 	if(istype(O, /obj/item/disk/ammo_workbench))
 		if(!user.transferItemToLoc(O, src))

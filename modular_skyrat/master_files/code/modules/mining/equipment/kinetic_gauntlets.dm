@@ -25,7 +25,7 @@
 	attack_verb_continuous = list("slaps", "challenges")
 	attack_verb_simple = list("slap", "challenge")
 	equip_delay_self = 2 SECONDS //that's a lot of bulky
-	hitsound = 'sound/weapons/slap.ogg'
+	hitsound = 'sound/items/weapons/slap.ogg'
 	slot_flags = ITEM_SLOT_GLOVES
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -74,7 +74,7 @@
 	return FALSE //you WILL glass cannon and you WILL like it.
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/after_detonate(mob/living/user, mob/living/target)
-	playsound(src, 'sound/weapons/resonator_blast.ogg', 40, TRUE)
+	playsound(src, 'sound/items/weapons/resonator_blast.ogg', 40, TRUE)
 	var/old_dir_user = user.dir
 	var/old_dir_target = user.dir
 	step(user, get_dir(target, user))
@@ -222,7 +222,7 @@
 
 /obj/item/kinetic_gauntlet/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
-	playsound(src, 'sound/weapons/genhit2.ogg', 40, TRUE)
+	playsound(src, 'sound/items/weapons/genhit2.ogg', 40, TRUE)
 	next_attack = world.time + 0.8 SECONDS // same as a crusher
 	user.changeNext_move(CLICK_CD_HYPER_RAPID) //forgive me
 	if(istype(user.get_inactive_held_item(), /obj/item/kinetic_gauntlet))
@@ -255,11 +255,11 @@
 
 /obj/item/kinetic_gauntlet/left/attack_self(mob/user, modifiers)
 	linked_gauntlets.set_light_on(!linked_gauntlets.light_on)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
 /obj/item/kinetic_gauntlet/left/proc/do_saboteur(datum/source, disrupt_duration)
 	linked_gauntlets.set_light_on(FALSE)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	return COMSIG_SABOTEUR_SUCCESS

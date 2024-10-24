@@ -61,7 +61,7 @@
 	name = "Windy"
 	id = "bullet"
 	maxpitch = 1.6
-	soundpath = 'sound/weapons/bulletflyby.ogg'
+	soundpath = 'sound/items/weapons/bulletflyby.ogg'
 
 /datum/blooper/coggers
 	name = "Brassy"

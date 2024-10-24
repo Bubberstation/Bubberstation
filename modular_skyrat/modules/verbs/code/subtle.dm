@@ -144,7 +144,7 @@
 			// BUBBER EDIT BEGIN - Subtler sounds
 			var/datum/preferences/prefs = target_mob.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/glockenspiel_ping.ogg', 50)
+				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 			// BUBBER EDIT END
 		else
 			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))

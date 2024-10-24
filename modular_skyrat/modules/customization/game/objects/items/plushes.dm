@@ -163,7 +163,7 @@
 	icon_state = "plushie_riffy"
 	attack_verb_continuous = list("slaps", "challenges")
 	attack_verb_simple = list("slap", "challenge")
-	squeak_override = list('sound/weapons/slap.ogg' = 1)
+	squeak_override = list('sound/items/weapons/slap.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/ian
 	name = "plush corgi"
@@ -409,7 +409,7 @@
 	desc = "It reminds you of a very, very, very huggable bee."
 	icon_state = "plushie_rubi"
 	gender = FEMALE
-	squeak_override = list('sound/weapons/thudswoosh.ogg' = 1)
+	squeak_override = list('sound/items/weapons/thudswoosh.ogg' = 1)
 	attack_verb_continuous = list("hugs")
 	attack_verb_simple = list("hug")
 
@@ -463,7 +463,7 @@
 	gender = FEMALE
 	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
 	attack_verb_simple = list("pat", "hug", "scold", "pet")
-	squeak_override = list('sound/creatures/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
+	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
 	responses = list("Rabbits are prey animals and are therefore constantly aware of their surroundings.", "Things to jump up on (they like to be in high places)", "become a rabbit today!", "Be cunning and full of tricks...", "Subscription confirmed! Thank you for choosing RABBITFACTS +TM+!", "Holland Lops are a breed of rabbit originating in the Netherlands.", "Rabbits may need medication to keep themselves healthy, and that's ok! Make sure to take yours too!", "rabbits really liked this product", "A healthy rabbit diet includes fresh vegetables.", "Rabbits do not hibernate. Their schedules are much too busy.", "the rate of bunnies is measured by RPB (rabbits per bunny)", )
 
 /obj/item/toy/plush/skyrat/chunko/andrew
@@ -473,7 +473,7 @@
 	gender = MALE
 	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
 	attack_verb_simple = list("pat", "hug", "scold", "pet")
-	squeak_override = list('sound/creatures/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
+	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
 	// All lowercase messages are intentional
 	responses = list("bunny who you best pray you never encounter, lest you suffer a fate worse than death.", "this is a bunny!", "I wonder what would happen if you took bunnies, and combined them with rabbits, and merged their properties and characteristics. It's something to think about.", "If you're cold, they're cold. Give them the deed to your house.", "bunny that goes yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah!", "the bunnies are beyond my comprehension", "it's a bunny thing, you wouldn't get it", "this bunny has an unfathomable power level", "%pull the string and I'll bink at you...I'm your bunny.", "Bunny (1954)", "the bunny that pulls the strings....", )
 
@@ -562,7 +562,7 @@
 	icon_state = "plush_scishark"
 	attack_verb_continuous = list("bites", "eats", "fin slaps")
 	attack_verb_simple = list("bite", "eat", "fin slap")
-	squeak_override = list('sound/weapons/bite.ogg'=1)
+	squeak_override = list('sound/items/weapons/bite.ogg'=1)
 
 //Other donation reward for Razurath
 /obj/item/toy/plush/skyrat/plushie_razurath/second

@@ -158,7 +158,7 @@
 	message = "squeaks!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'sound/creatures/mousesqueek.ogg'
+	sound = 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg'
 
 /datum/emote/living/merp
 	key = "merp"
@@ -563,7 +563,7 @@
 	message = "gnashes."
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'sound/weapons/bite.ogg'
+	sound = 'sound/items/weapons/bite.ogg'
 
 /datum/emote/living/thump
 	key = "thump"
@@ -572,7 +572,7 @@
 	emote_type = EMOTE_AUDIBLE
 	muzzle_ignore = TRUE
 	vary = TRUE
-	sound = 'sound/effects/glassbash.ogg'
+	sound = 'sound/effects/glass/glassbash.ogg'
 
 /datum/emote/living/surrender
 	muzzle_ignore = TRUE

@@ -130,7 +130,7 @@
 	icon_state = "tunafish"
 	attack_verb_continuous = list("slaps", "whacks")
 	attack_verb_simple = list("slap", "whack")
-	squeak_override = list('sound/weapons/slap.ogg' = 1)
+	squeak_override = list('sound/items/weapons/slap.ogg' = 1)
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
 	inhand_icon_state = "tunafish"
@@ -142,7 +142,7 @@
 	icon_state = "secoff"
 	attack_verb_continuous = list("shoots (and misses)", "batongs", "annoys", "harmbatons", "magdumps")
 	attack_verb_simple = list("shot (and missed)", "batong", "annoy", "harmbaton", "magdump")
-	squeak_override = list('sound/weapons/gun/general/bolt_rack.ogg' = 1)
+	squeak_override = list('sound/items/weapons/gun/general/bolt_rack.ogg' = 1)
 
 /obj/item/toy/plush/cescrewsplush
 	name = "Chief Screws Plush" //Plush for Steals The Screwdriver/SteamStucKobold, sprited by stickygoat. and Amorbis

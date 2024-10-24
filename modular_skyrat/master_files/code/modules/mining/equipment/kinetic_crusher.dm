@@ -18,7 +18,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 1.15,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 2.075
 	)
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("smashes", "crushes", "cleaves", "chops", "pulps")
 	attack_verb_simple = list("smash", "crush", "cleave", "chop", "pulp")
 	sharpness = SHARP_EDGED
@@ -53,7 +53,7 @@
 
 /obj/item/kinetic_crusher/ui_action_click(mob/user, actiontype)
 	set_light_on(!light_on)
-	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@
 
 /obj/item/kinetic_crusher/proc/do_saboteur(datum/source, disrupt_duration)
 	set_light_on(FALSE)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	return COMSIG_SABOTEUR_SUCCESS
 
 /obj/item/kinetic_crusher/update_icon_state()

@@ -362,7 +362,7 @@
 		balloon_alert_to_viewers("barrel heatlocked!")
 		fire_result = FALSE
 	if(!fire_result)
-		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 50, TRUE)
+		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 50, TRUE)
 	if(!bolt && fire_result)
 		cock_bolt()
 	return fire_result

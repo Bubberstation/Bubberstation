@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	melee_damage_upper = 24
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	combat_mode = TRUE
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_LARGE

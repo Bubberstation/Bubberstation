@@ -7,7 +7,7 @@
 	max_integrity = 120
 	base_icon_state = "syndie"
 	lethal_projectile = /obj/projectile/beam/emitter
-	lethal_projectile_sound = 'sound/weapons/laser.ogg'
+	lethal_projectile_sound = 'sound/items/weapons/laser.ogg'
 
 /obj/machinery/porta_turret/black_mesa/assess_perp(mob/living/carbon/human/perp)
 	return 10
@@ -19,7 +19,7 @@
 	name = "Heavy Defence Turret"
 	max_integrity = 200
 	lethal_projectile = /obj/projectile/beam/laser/heavylaser
-	lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
+	lethal_projectile_sound = 'sound/items/weapons/lasercannonfire.ogg'
 
 /obj/item/storage/toolbox/emergency/turret/mesa
 	name = "USMC stationary defense deployment system"
