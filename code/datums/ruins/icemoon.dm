@@ -171,6 +171,9 @@
 	id = "icemoon_comms_agent"
 	description = "Radio signals are being detected and the source is this completely innocent pile of snow."
 	suffix = "icemoon_underground_comms_agent.dmm"
+	//begin bubber edit
+	unpickable = TRUE
+	//end bubber edit
 
 //TODO: Bottom-Level ONLY Spawns after Refactoring Related Code
 /datum/map_template/ruin/icemoon/underground/plasma_facility
