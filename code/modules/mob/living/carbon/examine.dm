@@ -279,6 +279,50 @@
 		ADD_NEWLINE_IF_NECESSARY(.)
 		. += "<b>Quirks:</b> [get_quirk_string(FALSE, CAT_QUIRK_ALL)]"
 
+	//SKYRAT EDIT ADDITION BEGIN - GUNPOINT
+	if(gunpointing)
+		. += "<span class='warning'><b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b></span>\n"
+	if(length(gunpointed))
+		for(var/datum/gunpoint/GP in gunpointed)
+			. += "<span class='warning'><b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b></span>\n"
+
+	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+	for(var/genital in GLOB.possible_genitals)
+		if(dna.species.mutant_bodyparts[genital])
+			var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
+			if(G)
+				if(!(G.is_hidden(src)))
+					. += "<span class='notice'>[t_He] [t_has] exposed genitals... <a href='?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
+					break
+
+	var/flavor_text_link
+	/// The first 1-FLAVOR_PREVIEW_LIMIT characters in the mob's "flavor_text" DNA feature. FLAVOR_PREVIEW_LIMIT is defined in flavor_defines.dm.
+	var/preview_text = copytext_char((dna.features["flavor_text"]), 1, FLAVOR_PREVIEW_LIMIT)
+	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
+	var/obscurity_examine_pref = (client?.prefs?.read_preference(/datum/preference/toggle/obscurity_examine)) //BUBBERSTATION EDIT
+	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE) && obscurity_examine_pref) || (head && (head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT
+
+	if (!(face_obscured))
+		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
+	else
+		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
+	if (flavor_text_link)
+		. += flavor_text_link
+
+	//Temporary flavor text addition:
+	if(temporary_flavor_text)
+		if(length_char(temporary_flavor_text) < TEMPORARY_FLAVOR_PREVIEW_LIMIT)
+			. += span_revennotice("<br>They look different than usual: [temporary_flavor_text]")
+		else
+			. += span_revennotice("<br>They look different than usual: [copytext_char(temporary_flavor_text, 1, TEMPORARY_FLAVOR_PREVIEW_LIMIT)]... <a href='?src=[REF(src)];temporary_flavor=1'>More...</a>")
+
+	if(client)
+		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
+		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
+			. += EXAMINE_SECTION_BREAK
+			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)]")
+	// SKYRAT EDIT END
+
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 	if(length(.))
 		.[1] = "<span class='info'>" + .[1]
@@ -549,10 +593,10 @@
 		return
 	var/age_text
 	switch(age)
-		if(-INFINITY to 25)
-			age_text = "very young"
-		if(26 to 35)
-			age_text = "of adult age"
+		if(-INFINITY to 17) // SKYRAT EDIT ADD START -- AGE EXAMINE
+			age_text = "too young to be here"
+		if(18 to 25)
+			age_text = "a young adult" // SKYRAT EDIT END
 		if(36 to 55)
 			age_text = "middle-aged"
 		if(56 to 75)

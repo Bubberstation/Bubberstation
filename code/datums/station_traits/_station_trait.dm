@@ -49,10 +49,12 @@ GLOBAL_LIST_EMPTY(lobby_station_traits)
 		GLOB.dynamic_station_traits[src] = threat_reduction
 	if(dynamic_category)
 		GLOB.dynamic_ruleset_categories = dynamic_category
+	/* BUBBER EDIT REMOVAL - We have our own lobby buttons
 	if(sign_up_button)
 		GLOB.lobby_station_traits += src
 		if(SSstation.initialized)
 			SSstation.display_lobby_traits()
+	*/
 	if(trait_processes)
 		START_PROCESSING(SSstation, src)
 	if(trait_to_give)
@@ -135,11 +137,13 @@ GLOBAL_LIST_EMPTY(lobby_station_traits)
 		if (QDELETED(hud_owner))
 			qdel(button)
 			continue
+		/* BUBBER EDIT REMOVAL - We use our own lobby buttons
 		var/datum/hud/new_player/using_hud = hud_owner.hud_used
 		if(!using_hud)
 			qdel(button)
 			continue
 		using_hud.remove_station_trait_button(src)
+		*/
 
 /// Called when overriding a pulsar star command report message.
 /datum/station_trait/proc/get_pulsar_message()

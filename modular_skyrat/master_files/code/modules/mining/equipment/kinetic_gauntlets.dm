@@ -240,11 +240,11 @@
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
 	if(linked_gauntlets)
-		RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+		RegisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(on_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
 	if(linked_gauntlets)
-		UnregisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR)
+		UnregisterSignal(linked_gauntlets, COMSIG_ATOM_SABOTEUR_ACT)
 		linked_gauntlets.set_light_on(FALSE)
 	return ..()
 

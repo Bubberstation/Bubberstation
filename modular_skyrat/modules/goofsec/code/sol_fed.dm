@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			var/datum/antagonist/ert/request_911/ert_antag = new cops_to_send
 
 			cop.mind.add_antag_datum(ert_antag)
-			cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
+			cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
 			SSjob.SendToLateJoin(cop)
 			cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					var/datum/antagonist/ert/request_911/ert_antag = new type_to_summon
 
 					cop.mind.add_antag_datum(ert_antag)
-					cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
+					cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
 					SSjob.SendToLateJoin(cop)
 					cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 

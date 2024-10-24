@@ -18,7 +18,7 @@
 
 	if(action)
 		var/priority_target = params["target"]
-		var/datum/job/silicon = SSjob.GetJob(priority_target)
+		var/datum/job/silicon = SSjob.get_job(priority_target)
 		if(silicon in SSjob.prioritized_jobs)
 			SSjob.prioritized_jobs -= silicon
 		else
@@ -35,8 +35,8 @@
 		authed = TRUE
 
 	var/list/silicon_jobs = list(
-		SSjob.GetJob(JOB_AI),
-		SSjob.GetJob(JOB_CYBORG)
+		SSjob.get_job(JOB_AI),
+		SSjob.get_job(JOB_CYBORG)
 	)
 	data["authed"] = authed
 

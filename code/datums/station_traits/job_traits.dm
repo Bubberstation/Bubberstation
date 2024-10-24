@@ -269,9 +269,11 @@
 	new /obj/effect/landmark/start/pun_pun(GLOB.the_one_and_only_punpun.loc)
 	qdel(GLOB.the_one_and_only_punpun)
 
+/* BUBBER EDIT REMOVAL - We use our own lobby buttons
 /datum/station_trait/job/pun_pun/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	. = ..()
 	overlays += LAZYFIND(lobby_candidates, lobby_button.get_mob()) ? "pun_pun_on" : "pun_pun_off"
+*/
 
 #undef CAN_ROLL_ALWAYS
 #undef CAN_ROLL_PROTECTED

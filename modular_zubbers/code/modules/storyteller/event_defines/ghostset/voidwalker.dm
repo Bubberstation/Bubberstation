@@ -32,7 +32,7 @@
 
 	var/mob/living/carbon/human/walker = new (spawn_location)
 	player_mind.transfer_to(walker)
-	player_mind.set_assigned_role(SSjob.GetJobType(/datum/job/voidwalker))
+	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/voidwalker))
 	player_mind.add_antag_datum(/datum/antagonist/voidwalker)
 	walker.set_species(/datum/species/voidwalker)
 	playsound(walker, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
