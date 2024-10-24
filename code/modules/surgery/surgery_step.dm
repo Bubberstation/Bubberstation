@@ -181,6 +181,7 @@
 	surgery.step_in_progress = FALSE
 	return advance
 #undef SURGERY_SPEEDUP_AREA // SKYRAT EDIT ADDITION
+
 /**
  * Handles updating the mob's mood depending on the surgery states.
  * * surgery_state = SURGERY_STATE_STARTED, SURGERY_STATE_FAILURE, SURGERY_STATE_SUCCESS

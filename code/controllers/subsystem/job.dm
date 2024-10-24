@@ -561,7 +561,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/EquipRank(mob/living/equipping, datum/job/job, client/player_client)
 	// SKYRAT EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
-	var/alt_title = player_client?.prefs.alt_job_titles[job.title]
+	var/alt_title = player_client?.prefs.alt_job_titles[job.title] || job.title
 	// SKYRAT EDIT ADDITION END
 
 	equipping.job = job.title
@@ -569,7 +569,7 @@ SUBSYSTEM_DEF(job)
 	SEND_SIGNAL(equipping, COMSIG_JOB_RECEIVED, job)
 
 	equipping.mind?.set_assigned_role_with_greeting(job, player_client, alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: equipping.mind?.set_assigned_role_with_greeting(job, player_client)
-	equipping.on_job_equipping(job, player_client) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: equipping.on_job_equipping(job)
+	equipping.on_job_equipping(job, player_client)
 	job.announce_job(equipping, alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: job.announce_job(equipping)
 
 	if(player_client?.holder)

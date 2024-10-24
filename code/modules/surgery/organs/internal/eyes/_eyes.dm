@@ -50,7 +50,8 @@
 	/// indication that the eyes are undergoing some negative effect
 	var/damaged = FALSE
 	/// Native FOV that will be applied if a config is enabled
-	var/native_fov = FOV_180_DEGREES //SKYRAT EDIT CHANGE
+	var/native_fov = FOV_180_DEGREES //SKYRAT EDIT CHANGE - Original FOV_90_DEGREES
+
 
 /obj/item/organ/internal/eyes/Insert(mob/living/carbon/eye_recipient, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	// If we don't do this before everything else, heterochromia will be reset leading to eye_color_right no longer being accurate
@@ -134,7 +135,7 @@
 	if(!istype(parent) || parent.get_organ_by_type(/obj/item/organ/internal/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
 
-	if(isnull(eye_icon_state))
+	if(isnull(eye_icon_state) || eye_icon_state == "None") // SKYRAT EDIT - Synths, adds eye_icon_state == "None"
 		return list()
 
 	var/eye_icon = parent.dna?.species.eyes_icon || 'icons/mob/human/human_face.dmi' // SKYRAT EDIT ADDITION
@@ -156,11 +157,7 @@
 			my_head.worn_face_offset.apply_offset(eye_left)
 			my_head.worn_face_offset.apply_offset(eye_right)
 
-	// SKYRAT EDIT START - Customization (Synths + Emissives)
-	if(eye_icon_state == "None")
-		eye_left.alpha = 0
-		eye_right.alpha = 0
-
+	// SKYRAT EDIT START - Customization Emissives)
 	if (is_emissive) // Because it was done all weird up there.
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)

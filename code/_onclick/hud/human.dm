@@ -374,6 +374,8 @@
 		if(H.head)
 			screenmob.client.screen -= H.head
 
+
+
 /datum/hud/human/persistent_inventory_update(mob/viewer)
 	if(!mymob)
 		return

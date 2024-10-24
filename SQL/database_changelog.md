@@ -2,10 +2,10 @@ Any time you make a change to the schema files, remember to increment the databa
 
 Make sure to also update `DB_MAJOR_VERSION` and `DB_MINOR_VERSION`, which can be found in `code/__DEFINES/subsystem.dm`.
 
-The latest database version is 5.30 (5.27 for /tg/); The query to update the schema revision table is:
+The latest database version is 5.31 (for bubberstation, 5.30 for skyrat) (5.27 for /tg/); The query to update the schema revision table is:
 
 ```sql
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 30);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 31);
 ```
 or
 
@@ -283,7 +283,11 @@ Modified table `messages`, adding column `playtime` to show the user's playtime 
 ```sql
 ALTER TABLE `messages` ADD `playtime` INT(11) NULL DEFAULT(NULL) AFTER `severity`
 ```
+=======
+Version 5.12, 29 December 2020, by Missfox
+Modified table `messages`, adding column `playtime` to show the user's playtime when the note was created.
 
+ALTER TABLE `messages` ADD `playtime` INT(11) NULL DEFAULT(NULL) AFTER `severity`
 -----------------------------------------------------
 
 Version 5.11, 7 September 2020, by bobbahbrown, MrStonedOne, and Jordie0608 (Updated 26 March 2021 by bobbahbrown)
