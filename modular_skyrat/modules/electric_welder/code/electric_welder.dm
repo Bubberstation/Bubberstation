@@ -24,7 +24,7 @@
 		if(!(item_use_power(power_use_amount, user, TRUE) & COMPONENT_POWER_SUCCESS))
 			return
 	powered = !powered
-	playsound(src, 'sound/effects/sparks4.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 100, TRUE)
 	if(powered)
 		to_chat(user, span_notice("You turn [src] on."))
 		switched_on()

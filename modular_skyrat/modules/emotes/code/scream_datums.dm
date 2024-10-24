@@ -32,11 +32,11 @@ GLOBAL_LIST_EMPTY(scream_types)
 		'sound/mobs/humanoids/human/scream/malescream_6.ogg',
 	)
 	female_screamsounds = list(
-		'sound/voice/human/femalescream_1.ogg',
-		'sound/voice/human/femalescream_2.ogg',
-		'sound/voice/human/femalescream_3.ogg',
-		'sound/voice/human/femalescream_4.ogg',
-		'sound/voice/human/femalescream_5.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_1.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_2.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_3.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_4.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_5.ogg',
 	)
 
 
@@ -57,11 +57,11 @@ GLOBAL_LIST_EMPTY(scream_types)
 /datum/scream_type/human_femme
 	name = "Feminine Human Scream"
 	male_screamsounds = list(
-		'sound/voice/human/femalescream_1.ogg',
-		'sound/voice/human/femalescream_2.ogg',
-		'sound/voice/human/femalescream_3.ogg',
-		'sound/voice/human/femalescream_4.ogg',
-		'sound/voice/human/femalescream_5.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_1.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_2.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_3.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_4.ogg',
+		'sound/mobs/humanoids/human/scream/femalescream_5.ogg',
 		'modular_skyrat/modules/emotes/sound/voice/scream_f1.ogg',
 		'modular_skyrat/modules/emotes/sound/voice/scream_f2.ogg',
 	)

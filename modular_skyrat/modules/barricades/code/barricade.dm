@@ -386,7 +386,7 @@
 				to_chat(user, span_warning("[src] cannot be folded up while damaged!"))
 				return CLICK_ACTION_BLOCKING
 			user.visible_message(span_notice("[user] folds [src] up!"), span_notice("You neatly fold [src] up!"))
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			fold_up()
 			return CLICK_ACTION_SUCCESS
 	return ..()
@@ -511,7 +511,7 @@
 
 	user.visible_message(span_notice("[user] starts welding the damage on [src]."),
 	span_notice("You start welding the damage on [src]."))
-	playsound(src, 'sound/items/welder2.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 5 SECONDS, src))
 		return TRUE
@@ -527,7 +527,7 @@
 	span_notice("You weld the damage on [src]."))
 	repair_damage(150)
 	update_icon()
-	playsound(src, 'sound/items/welder2.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
 	return TRUE
 
 
@@ -557,7 +557,7 @@
 /obj/structure/deployable_barricade/metal/wrench_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 			user.visible_message (span_notice ("[user] loosens the anchor bolts on [src]."),
@@ -579,7 +579,7 @@
 					to_chat(user, span_warning("There is already a barricade here."))
 					return TRUE
 
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 
@@ -710,7 +710,7 @@
 /obj/structure/deployable_barricade/metal/plasteel/proc/toggle_open(state, mob/living/user)
 	if(state == closed)
 		return
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/tools/ratchet.ogg', 25, 1)
 	closed = !closed
 	density = !density
 
@@ -765,13 +765,13 @@
 
 /obj/item/quickdeploy/attack_self(mob/user)
 	to_chat(user, span_notice("You start deploying [src] in front of you."))
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/tools/ratchet.ogg', 25, 1)
 	if(!do_after(usr, delay, src))
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
 		var/obj/O = new thing_to_deploy(get_turf(user))
 		O.setDir(user.dir)
-		playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+		playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 		qdel(src)
 
 /obj/item/quickdeploy/proc/can_place(mob/user)

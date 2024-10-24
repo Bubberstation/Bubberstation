@@ -102,7 +102,7 @@
 	climb_time = 2.5 SECONDS
 	force = 0
 	throwforce = 0
-	climbsound = 'sound/voice/moth/moth_flutter.ogg'
+	climbsound = 'sound/mobs/humanoids/moth/moth_flutter.ogg'
 
 /obj/item/climbing_hook/climbing_moth_wings/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/turf/check_turf = get_turf(user)

@@ -121,7 +121,7 @@
 	icon_state = "blovyplushie"
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
-	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	squeak_override = list('sound/effects/blob/blobattack.ogg' = 1)
 
 /obj/item/toy/plush/tunafish
 	name = "Piscene Paddle" //Donator plush for Astroturf, sprited by Crumpaloo
@@ -162,4 +162,4 @@
 	attack_verb_continuous = list("baps", "paws", "claws")
 	attack_verb_simple = list("bap", "paw", "claw")
 	gender = MALE
-	squeak_override = list('sound/creatures/dog/growl2.ogg' = 1)
+	squeak_override = list('sound/mobs/non-humanoids/dog/growl2.ogg' = 1)

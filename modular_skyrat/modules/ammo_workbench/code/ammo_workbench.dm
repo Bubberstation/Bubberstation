@@ -373,7 +373,7 @@
 		loaded_magazine.update_appearance()
 		flick("ammobench_process", src)
 		use_energy(3000 JOULES)
-		playsound(loc, 'sound/machines/piston_raise.ogg', 60, 1)
+		playsound(loc, 'sound/machines/piston/piston_raise.ogg', 60, 1)
 	else
 		qdel(new_casing)
 		ammo_fill_finish(FALSE)
@@ -554,7 +554,7 @@
 		to_chat(user, span_notice("You insert [O] to into [src]'s floppydisk port."))
 		flick("h_lathe_load", src)
 		update_appearance()
-		playsound(loc, 'sound/machines/terminal_insert_disc.ogg', 35, 1)
+		playsound(loc, 'sound/machines/terminal/terminal_insert_disc.ogg', 35, 1)
 		return TRUE
 	return FALSE
 

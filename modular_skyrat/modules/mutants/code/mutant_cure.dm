@@ -264,7 +264,7 @@
 	vial.contains_rna = FALSE
 	vial.update_appearance()
 	ejectItem()
-	playsound(loc, 'sound/items/rped.ogg', 60, 1)
+	playsound(loc, 'sound/items/tools/rped.ogg', 60, 1)
 	flick("h_lathe_wloop", src)
 	use_energy(3000 JOULES)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(recombinate_step)), recombination_step_time, TIMER_STOPPABLE)
@@ -283,7 +283,7 @@
 		return
 	flick("h_lathe_wloop", src)
 	use_energy(3000 JOULES)
-	playsound(loc, 'sound/items/rped.ogg', 60, 1)
+	playsound(loc, 'sound/items/tools/rped.ogg', 60, 1)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(recombinate_step)), recombination_step_time, TIMER_STOPPABLE)
 
 /obj/machinery/rnd/rna_recombinator/proc/recombinate_finish()

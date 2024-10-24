@@ -40,8 +40,8 @@
 			disposed++
 	if(disposed)
 		visible_message(span_notice("[src] [pick("whooshes", "bwooms", "fwooms", "pshooms")] and demoleculizes [disposed] stored item\s into the nearby void."))
-		playsound(src, 'sound/items/pshoom.ogg', 50, TRUE)
-		playsound(bin, 'sound/items/pshoom.ogg', 50, TRUE)
+		playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
+		playsound(bin, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		flick("synthesizer_beam", src)
 	else
 		visible_message(span_notice("There are no disposable items in [src]!"))
@@ -61,7 +61,7 @@
 				LAZYADD(dish_drive_contents, I)
 				visible_message(span_notice("[src] beams up [I]!"))
 				I.moveToNullspace()
-				playsound(src, 'sound/items/pshoom.ogg', 50, TRUE)
+				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)
 			else
 				step_towards(I, src)

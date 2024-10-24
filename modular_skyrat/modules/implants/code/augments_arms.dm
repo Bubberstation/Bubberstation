@@ -71,7 +71,7 @@
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
 
 /obj/item/knife/razor_claws/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
+	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		tool_behaviour = TOOL_WIRECUTTER
 		to_chat(user, span_notice("You shift [src] into Precision mode, for wirecutting."))

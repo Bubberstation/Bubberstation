@@ -19,7 +19,7 @@
 	/// The type we drop when deflated.
 	var/deflated_type = /obj/item/inflatable
 	/// The hitsound made when we're... hit...
-	var/hit_sound = 'sound/effects/Glasshit.ogg'
+	var/hit_sound = 'sound/effects/glass/glasshit.ogg'
 	/// How quickly we deflate when manually deflated.
 	var/manual_deflation_time = 3 SECONDS
 	/// Whether or not the inflatable has been deflated

@@ -29,25 +29,25 @@
 		'sound/effects/footstep/meowstep1.ogg' = 1,
 		'sound/effects/blob/attackblob.ogg' = 10,
 		'sound/effects/bang.ogg' = 10,
-		'sound/effects/bin_close.ogg' = 20,
-		'sound/effects/bin_open.ogg' = 20,
+		'sound/effects/bin/bin_close.ogg' = 20,
+		'sound/effects/bin/bin_open.ogg' = 20,
 		'sound/effects/boing.ogg' = 5,
-		'sound/effects/cartoon_splat.ogg' = 1,
+		'sound/effects/cartoon_sfx/cartoon_splat.ogg' = 1,
 		'sound/effects/cashregister.ogg' = 1,
 		'sound/effects/glass/glassbash.ogg' = 50,
-		'sound/effects/glassbr1.ogg' = 20,
-		'sound/effects/glassbr2.ogg' = 20,
-		'sound/effects/glassbr3.ogg' = 20,
+		'sound/effects/glass/glassbr1.ogg' = 20,
+		'sound/effects/glass/glassbr2.ogg' = 20,
+		'sound/effects/glass/glassbr3.ogg' = 20,
 		'sound/effects/grillehit.ogg' = 20,
 		'sound/effects/hit_on_shattered_glass.ogg' = 20,
 		'sound/effects/jingle.ogg' = 50,
 		'sound/effects/meatslap.ogg' = 50,
 		'sound/effects/quack.ogg' = 20,
-		'sound/effects/rustle1.ogg' = 100,
-		'sound/effects/rustle2.ogg' = 100,
-		'sound/effects/rustle3.ogg' = 100,
-		'sound/effects/rustle4.ogg' = 100,
-		'sound/effects/rustle5.ogg' = 100,
+		'sound/effects/rustle/rustle1.ogg' = 100,
+		'sound/effects/rustle/rustle2.ogg' = 100,
+		'sound/effects/rustle/rustle3.ogg' = 100,
+		'sound/effects/rustle/rustle4.ogg' = 100,
+		'sound/effects/rustle/rustle5.ogg' = 100,
 	)
 
 /obj/structure/trash_pile/Destroy()
@@ -89,7 +89,7 @@
 
 	user.visible_message("[user] searches through \the [src]...", span_notice("You search through \the [src]..."))
 
-	playsound(get_turf(src), pick('sound/effects/rustle1.ogg','sound/effects/rustle2.ogg','sound/effects/rustle3.ogg','sound/effects/rustle4.ogg','sound/effects/rustle5.ogg'), 50)
+	playsound(get_turf(src), pick('sound/effects/rustle/rustle1.ogg','sound/effects/rustle/rustle2.ogg','sound/effects/rustle/rustle3.ogg','sound/effects/rustle/rustle4.ogg','sound/effects/rustle/rustle5.ogg'), 50)
 
 	var/content_length = length(contents)
 	if(content_length) //Something hidden inside (mob/item)

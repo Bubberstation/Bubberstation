@@ -49,7 +49,7 @@
 	bronze.use(1)
 	balloon_alert(user, "installed arc shielding")
 	arc_shielded = TRUE
-	playsound(src, 'sound/items/rped.ogg', 20)
+	playsound(src, 'sound/items/tools/rped.ogg', 20)
 	return ITEM_INTERACT_SUCCESS
 /obj/machinery/power/apc/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 	if (GLOB.cops_arrived)
 		to_chat(user, span_warning("911 has already been called this shift!"))
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 		return FALSE
 
 	if (!issilicon(user))
@@ -209,11 +209,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
 			to_chat(user, span_warning("You need to swipe your ID!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
 			to_chat(user, span_warning("You are not authorized to do this!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
 		to_chat(user, "The console refuses to let you dial 911 as an AI or Cyborg!")

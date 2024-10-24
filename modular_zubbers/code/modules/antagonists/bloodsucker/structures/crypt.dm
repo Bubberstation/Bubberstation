@@ -66,7 +66,7 @@
 			return FALSE
 		switch(secure_response)
 			if("Yes")
-				user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
+				user.playsound_local(null, 'sound/items/tools/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 				bolt(user)
 				return FALSE
 		return FALSE
