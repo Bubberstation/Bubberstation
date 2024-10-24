@@ -311,7 +311,7 @@
 				if((charge < CELL_POWER_DRAIN) || (stomach_cell.charge() > charge_limit))
 					return
 				if(istype(stomach))
-					to_chat(H, span_purple("You receive some charge from [src], wasting some in the process.")) // SKYRAT EDIT CHANGE - Ethereal Rework 2024 - Original: to_chat(H, span_notice("You receive some charge from [src], wasting some in the process."))
+					to_chat(H, span_notice("You receive some charge from [src], wasting some in the process."))
 					stomach.adjust_charge(CELL_POWER_GAIN)
 					charge -= CELL_POWER_DRAIN //you waste way more than you receive, so that ethereals cant just steal one cell and forget about hunger
 				else

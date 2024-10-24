@@ -151,6 +151,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(pack == /datum/supply_pack/armament)
 			continue
 		//SKYRAT EDIT END
+
 		if(ispath(pack, /datum/supply_pack))
 			pack = new pack
 
@@ -1052,7 +1053,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
+/datum/controller/subsystem/shuttle/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return

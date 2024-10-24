@@ -41,7 +41,6 @@ GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when s
 	/obj/item/trash/vendor_trash/moth_bag = 5,
 	/obj/item/trash/vendor_trash/mothmallow = 5,
 	/obj/item/trash/vendor_trash/rice_crackers = 5,
-	/obj/item/trash/waffles = 5
 ))
 
 GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spawning coins.

@@ -69,6 +69,7 @@ All ShuttleMove procs go here
 		newT.reasses_liquids()
 	//SKYRAT EDIT END
 
+
 	newT.CopyOnTop(src, 1, shuttle_depth, TRUE)
 	newT.blocks_air = TRUE
 	newT.air_update_turf(TRUE, FALSE)

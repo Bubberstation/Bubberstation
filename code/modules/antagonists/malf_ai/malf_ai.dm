@@ -41,8 +41,6 @@
 	malf_ai.vox_voices += VOX_MIL
 #endif
 	// SKYRAT EDIT END
-
-	employer = pick(GLOB.ai_employers)
 	if(!employer)
 		employer = pick(GLOB.ai_employers)
 
@@ -221,7 +219,7 @@
 
 	return data
 
-/datum/antagonist/malf_ai/ui_act(action, list/params)
+/datum/antagonist/malf_ai/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -250,7 +248,7 @@
 /datum/antagonist/malf_ai/roundend_report()
 	var/list/result = list()
 
-	//var/malf_ai_won = TRUE // SKYRAT EDIT REMOVAL
+	var/malf_ai_won = TRUE
 
 	result += printplayer(owner)
 
@@ -258,20 +256,13 @@
 	if(objectives.len) //If the traitor had no objectives, don't need to process this.
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			// SKYRAT EDIT START - No greentext
-			/*
 			if(!objective.check_completion())
 				malf_ai_won = FALSE
 			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
-			*/
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
-			// SKYRAT EDIT END - No greentext
 			count++
 
 	result += objectives_text
 
-	// SKYRAT EDIT REMOVAL START
-	/*
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(malf_ai_won)
@@ -279,7 +270,6 @@
 	else
 		result += span_redtext("The [special_role_text] has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
-	*/
 
 	return result.Join("<br>")
 

@@ -24,6 +24,10 @@
 	new /obj/item/gun/energy/e_gun(src)
 	new /obj/item/storage/belt/sabre(src)
 
+/obj/structure/closet/secure_closet/captains/populate_contents_immediate()
+	new /obj/item/gun/energy/e_gun(src)
+	new /obj/item/storage/belt/sabre(src)
+
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
 	icon_state = "hop"
@@ -73,6 +77,14 @@
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
 	new /obj/item/card/id/departmental_budget/sec(src) //SKYRAT EDIT ADDITION
+
+/obj/structure/closet/secure_closet/hos/populate_contents_immediate()
+	. = ..()
+
+	// Traitor steal objectives
+	new /obj/item/gun/energy/e_gun/hos(src)
+	new /obj/item/pinpointer/nuke(src)
+	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 
 /obj/structure/closet/secure_closet/hos/populate_contents_immediate()
 	. = ..()
@@ -283,6 +295,7 @@
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"
+	icon_state = "armory"
 	req_access = list(ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/armory1/PopulateContents()

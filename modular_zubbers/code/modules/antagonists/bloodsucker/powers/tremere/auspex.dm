@@ -17,6 +17,7 @@
 	level_current = 1
 	button_icon_state = "power_auspex"
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
+	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 10
 	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS
@@ -99,7 +100,7 @@
 	new /obj/effect/particle_effect/fluid/smoke/vampsmoke(targeted_turf)
 
 	for(var/mob/living/carbon/living_mob in range(1, targeted_turf)-user)
-		if(IS_BLOODSUCKER(living_mob) || IS_VASSAL(living_mob))
+		if(IS_BLOODSUCKER(living_mob) || IS_GHOUL(living_mob))
 			continue
 		if(level_current >= AUSPEX_BLEED_LEVEL)
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)

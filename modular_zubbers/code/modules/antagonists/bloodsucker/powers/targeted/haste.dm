@@ -9,7 +9,7 @@
 	desc = "Force yourself to stand up if you're down and dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
 	prefire_message = "You prepare to dash!"
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 5
@@ -33,6 +33,7 @@
 	. += "Anyone in your way during your Haste will be knocked down."
 	. += "Higher levels will increase the knockdown dealt to enemies."
 	. += "It will also refill your stamina so you can keep moving."
+	. += "If Fortitude is active, using haste will disable it."
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -92,7 +93,7 @@
 				break //just stop
 		else
 			consequetive_failures = 0 //reset so we can keep moving
-		if(user.resting || user.incapacitated(IGNORE_RESTRAINTS, IGNORE_GRAB)) //actually down? stop.
+		if(user.resting || INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS)) //actually down? stop.
 			break
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)

@@ -504,7 +504,7 @@
 	// SKYRAT EDIT ADDITION END
 
 	for(var/slot in slot_priority)
-		if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, initial = initial, indirect_action = indirect_action)) // SKYRAT EDIT CHANGE - ORIGINAL: if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action))
+		if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action, initial = initial)) // SKYRAT EDIT CHANGE - ORIGINAL: if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action))
 			return TRUE
 
 	if(qdel_on_fail)
@@ -574,8 +574,6 @@
 
 /mob/proc/getBeltSlot()
 	return ITEM_SLOT_BELT
-
-
 
 //Inventory.dm is -kind of- an ok place for this I guess
 

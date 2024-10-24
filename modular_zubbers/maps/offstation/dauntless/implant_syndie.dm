@@ -36,3 +36,4 @@
 	name = "implant case - 'Syndicate Identification Friend or Foe'"
 	desc = "A glass case containing an IFF system implant manufactured by Interdyne Pharmaceutics. These do not work with the IFF systems used by the Gorlex Marauders. Are you ready to join the Syndicate, agent?"
 	imp_type = /obj/item/implant/interdyne
+
