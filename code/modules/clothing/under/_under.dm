@@ -183,7 +183,7 @@
 			return
 		cabling.visible_message(span_notice("[user] repairs the suit sensors on [src] with [cabling]."))
 
-	playsound(source = src, soundin = 'sound/effects/sparks4.ogg', vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
+	playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 	has_sensor = HAS_SENSORS
 	update_wearer_status()
 
@@ -239,6 +239,7 @@
 	update_wearer_status()
 
 BUBBERSTATION CHANGE END */
+
 /**
  * Called by medical scanners a simple summary of the status
  *
@@ -377,7 +378,7 @@ BUBBERSTATION CHANGE END */
 /obj/item/clothing/under/proc/list_accessories_with_icon(mob/user)
 	var/list/all_accessories = list()
 	for(var/obj/item/clothing/accessory/attached as anything in attached_accessories)
-		all_accessories += attached.get_examine_string(user)
+		all_accessories += attached.examine_title(user)
 
 	return all_accessories
 
