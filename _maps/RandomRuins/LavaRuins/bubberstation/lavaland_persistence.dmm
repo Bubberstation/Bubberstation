@@ -10968,9 +10968,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "MB" = (
 /obj/machinery/button/door/directional/north{
-	name = "Engineering shutter Bolt";
-	pixel_x = -24;
-	id = "syndiengishutters"
+	id = "syndiengis";
+	name = "Exterior Radiation Shutters";
+	pixel_x = -24
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -12621,7 +12621,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/poddoor/shutters/window{
-	id = "syndiengishutters"
+	id = "syndiengis"
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -13373,6 +13373,11 @@
 	dir = 10
 	},
 /obj/structure/lattice/catwalk/mining,
+/obj/machinery/button/door/directional/north{
+	id = "syndiengis";
+	name = "Exterior Radiation Shutters";
+	pixel_x = 24
+	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "VS" = (

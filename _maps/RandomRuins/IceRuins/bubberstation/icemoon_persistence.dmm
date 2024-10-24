@@ -9501,9 +9501,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Hy" = (
 /obj/machinery/button/door/directional/north{
-	name = "Engineering shutter Bolt";
-	pixel_x = -24;
-	id = "syndiengishutters"
+	id = "syndiengis";
+	name = "Exterior Radiation Shutters";
+	pixel_x = -24
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -12121,12 +12121,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "Rc" = (
 /obj/structure/lattice/catwalk/mining,
-/obj/machinery/button/door/directional/north{
-	name = "Engineering Shutter Bolt";
-	pixel_x = 24;
-	pixel_y = -8;
-	id = "syndiengishutters"
-	},
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2{
 	dir = 4
 	},
@@ -12186,7 +12180,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/poddoor/shutters/window{
-	id = "syndiengishutters"
+	id = "syndiengis"
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -12643,6 +12637,11 @@
 	dir = 10
 	},
 /obj/structure/lattice/catwalk/mining,
+/obj/machinery/button/door/directional/north{
+	id = "syndiengis";
+	name = "Exterior Radiation Shutters";
+	pixel_x = 24
+	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SK" = (
