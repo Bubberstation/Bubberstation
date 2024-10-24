@@ -24,7 +24,7 @@
 	attack_verb_continuous = list("drills", "screws", "jabs", "whacks")
 	attack_verb_simple = list("drill", "screw", "jab", "whack")
 	hitsound = 'sound/items/drill_hit.ogg'
-	usesound = 'sound/items/drill_use.ogg'
+	usesound = 'sound/items/tools/drill_use.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 1
 	random_color = FALSE

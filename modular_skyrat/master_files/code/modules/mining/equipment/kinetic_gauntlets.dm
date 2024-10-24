@@ -114,14 +114,14 @@
 		can_deploy = FALSE
 
 	if(!can_deploy)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You need both free hands to deploy [src]!"))
 		return
 
 	// equipping/unequipping shall take time
 	wearer.add_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 	if(!do_after(wearer, 1.5 SECONDS, src, IGNORE_USER_LOC_CHANGE, interaction_key = type))
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You fail to deploy [src]!"))
 		wearer.remove_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 		return
@@ -134,7 +134,7 @@
 		can_deploy = FALSE
 
 	if(!can_deploy)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You need both free hands to deploy [src]!"))
 		return
 
@@ -146,8 +146,8 @@
 
 	ADD_TRAIT(src, TRAIT_NODROP, type)
 
-	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(src, 'sound/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(wearer, span_notice("You deploy [src]."))
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/retract_gauntlets()
@@ -165,7 +165,7 @@
 	wearer.add_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
 	if(!do_after(wearer, 1.5 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 		wearer.remove_movespeed_modifier(/datum/movespeed_modifier/equipping_gauntlets)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(wearer, span_warning("You fail to retract [src]!"))
 		return
 
@@ -175,8 +175,8 @@
 	right_gauntlet?.forceMove(src)
 
 	REMOVE_TRAIT(src, TRAIT_NODROP, type)
-	playsound(src, 'sound/mecha/powerloader_turn2.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(src, 'sound/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/powerloader_turn2.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove01.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(wearer, span_notice("You retract [src]."))
 
 

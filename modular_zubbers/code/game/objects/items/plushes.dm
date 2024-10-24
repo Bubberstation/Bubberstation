@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "chaotic_toaster"
 	attack_verb_simple = list("beeped", "booped", "pinged")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/Synth
 	name = "Synth plushie"
@@ -32,7 +32,7 @@
 	icon_state = "chirp"//Sprited by Kan3/kaylexi
 	attack_verb_continuous = list("chirps", "chimes")
 	attack_verb_simple = list("chirps")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 	gender = FEMALE
 
 /obj/item/toy/plush/bigdeer

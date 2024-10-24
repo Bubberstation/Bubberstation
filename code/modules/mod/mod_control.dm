@@ -239,7 +239,7 @@
 	if(active)
 		if(!wearer.incapacitated)
 			balloon_alert(wearer, "deactivate first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 
 		return
 	// SKYRAT EDIT ADDITION END

@@ -4,8 +4,8 @@
 #define KNIFE_ATTACK_VERB_SIMPLE list("slash", "tear", "slice", "tear", "lacerate", "rip", "dice", "cut", "rend")
 #define KNIFE_SHARPNESS SHARP_EDGED
 #define KNIFE_BARE_WOUND_BONUS 15
-#define CUTTER_HITSOUND 'sound/items/wirecutter.ogg'
-#define CUTTER_USESOUND 'sound/items/wirecutter.ogg'
+#define CUTTER_HITSOUND 'sound/items/tools/wirecutter.ogg'
+#define CUTTER_USESOUND 'sound/items/tools/wirecutter.ogg'
 #define CUTTER_ATTACK_VERB_CONTINUOUS list("bashes", "batters", "bludgeons", "thrashes", "whacks")
 #define CUTTER_ATTACK_VERB_SIMPLE list("bash", "batter", "bludgeon", "thrash", "whack")
 #define CUTTER_FORCE 6

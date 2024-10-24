@@ -27,7 +27,7 @@
 		'sound/effects/footstep/clownstep1.ogg' = 5,
 		'sound/effects/footstep/clownstep2.ogg' = 5,
 		'sound/effects/footstep/meowstep1.ogg' = 1,
-		'sound/effects/attackblob.ogg' = 10,
+		'sound/effects/blob/attackblob.ogg' = 10,
 		'sound/effects/bang.ogg' = 10,
 		'sound/effects/bin_close.ogg' = 20,
 		'sound/effects/bin_open.ogg' = 20,

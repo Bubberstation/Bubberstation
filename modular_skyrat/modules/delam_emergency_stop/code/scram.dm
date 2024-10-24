@@ -306,7 +306,7 @@
 		return
 
 	if(!validate_suppression_status())
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, FALSE, BUTTON_SOUND_RANGE, falloff_distance = BUTTON_SOUND_FALLOFF_DISTANCE)
+		playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE, BUTTON_SOUND_RANGE, falloff_distance = BUTTON_SOUND_FALLOFF_DISTANCE)
 		audible_message(span_danger("[src] makes a sad buzz and goes dark. Did someone activate it already?")) // Look through the window, buddy
 		burn_out()
 		return

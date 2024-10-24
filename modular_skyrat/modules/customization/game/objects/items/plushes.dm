@@ -48,7 +48,7 @@
 	icon_state = "plushie_securityk9"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/medihound
 	name = "medi-hound plushie"
@@ -56,7 +56,7 @@
 	icon_state = "plushie_medihound"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/engihound
 	name = "engi-hound plushie"
@@ -64,7 +64,7 @@
 	icon_state = "plushie_engihound"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/scrubpuppy
 	name = "scrub-puppy plushie"
@@ -72,7 +72,7 @@
 	icon_state = "plushie_scrubpuppy"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/meddrake
 	name = "medi-drake plushie"
@@ -80,7 +80,7 @@
 	icon_state = "plushie_meddrake"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/secdrake
 	name = "sec-drake plushie"
@@ -88,7 +88,7 @@
 	icon_state = "plushie_secdrake"
 	attack_verb_continuous = list("beeps", "boops", "pings")
 	attack_verb_simple = list("beep", "boop", "ping")
-	squeak_override = list('sound/machines/beep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox
 	name = "fox plushie"
@@ -272,7 +272,7 @@
 	icon_state = "plushie_tyri"
 	attack_verb_continuous = list("fixes", "unbolts", "welds")
 	attack_verb_simple = list("fix", "unbolt", "weld")
-	squeak_override = list('sound/items/screwdriver.ogg' = 1, 'sound/items/drill_use.ogg' = 1, 'sound/items/welder.ogg' = 1)
+	squeak_override = list('sound/items/tools/screwdriver.ogg' = 1, 'sound/items/tools/drill_use.ogg' = 1, 'sound/items/tools/welder.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/glitch_synth
 	name = "glitching synthetic plushie"
@@ -280,7 +280,7 @@
 	icon_state = "plushie_rex"
 	attack_verb_continuous = list("beeps", "hugs", "health analyzes")
 	attack_verb_simple = list("beep", "hug", "health analyze")
-	squeak_override = list('sound/machines/twobeep_high.ogg' = 1)
+	squeak_override = list('sound/machines/beep/twobeep_high.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/boom_bird
 	name = "boom bird plushie"
@@ -345,7 +345,7 @@
 	icon_state = "plushie_zapp"
 	attack_verb_continuous = list("boops", "nuzzles")
 	attack_verb_simple = list("boop", "nuzzle")
-	squeak_override = list('sound/effects/can_open1.ogg' = 1, 'sound/effects/can_open2.ogg' = 1, 'sound/effects/can_open3.ogg' = 1)
+	squeak_override = list('sound/effects/can/can_open1.ogg' = 1, 'sound/effects/can/can_open2.ogg' = 1, 'sound/effects/can/can_open3.ogg' = 1)
 	///the list that is chosen from depending on gaming skill
 	var/static/list/skill_response = list(
 		"Weak! What are you, a mobile gamer?",
@@ -383,9 +383,9 @@
 		skill_level = (max(6, skill_level))
 	say(skill_response[skill_level])
 	if(skill_level == 7)
-		playsound(src_turf, 'sound/effects/can_pop.ogg', 80, TRUE)
+		playsound(src_turf, 'sound/effects/can/can_pop.ogg', 80, TRUE)
 		new /obj/effect/abstract/liquid_turf/pwr_gamr(src_turf)
-		playsound(src_turf, 'sound/effects/bubbles.ogg', 50, TRUE)
+		playsound(src_turf, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 		qdel(src)
 
 /obj/effect/abstract/liquid_turf/pwr_gamr
@@ -652,4 +652,4 @@
 	icon_state = "plush_janiborg"
 	attack_verb_continuous = list("beeps", "washes", "mops", "squirts", "soaps")
 	attack_verb_simple = list("beep", "wash", "mop", "squirt", "soap")
-	squeak_override = list('sound/machines/twobeep.ogg' = 1)
+	squeak_override = list('sound/machines/beep/twobeep.ogg' = 1)

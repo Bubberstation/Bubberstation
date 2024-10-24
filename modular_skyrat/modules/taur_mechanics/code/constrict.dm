@@ -573,7 +573,7 @@
 			if(!damage_amount)
 				return
 
-			playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 
 /// Signal proc for when owner moves. Qdels src.

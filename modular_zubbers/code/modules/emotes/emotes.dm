@@ -71,7 +71,7 @@
 	message = "snaps their fingers."
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-	sound = 'sound/misc/fingersnap1.ogg'
+	sound = 'sound/mobs/humanoids/human/snap/fingersnap1.ogg'
 
 /datum/emote/living/meow_alt
 	key = "meow1"
@@ -95,7 +95,7 @@
 	message = "rapidly flutters their wings!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'sound/voice/moth/moth_flutter.ogg'
+	sound = 'sound/mobs/humanoids/moth/moth_flutter.ogg'
 
 /datum/emote/living/sigh_exasperated
 	key = "esigh" // short for exasperated sigh

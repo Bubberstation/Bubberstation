@@ -463,7 +463,7 @@
 	desc = "A cyborg fitted module resembling the jaws of life."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "jaws_pry_cyborg"
-	usesound = 'sound/items/jaws_pry.ogg'
+	usesound = 'sound/items/tools/jaws_pry.ogg'
 	force = 10
 	toolspeed = 0.5
 
@@ -472,17 +472,17 @@
 	. += " It's fitted with a [tool_behaviour == TOOL_CROWBAR ? "prying" : "cutting"] head."
 
 /obj/item/crowbar/cyborg/power/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, TRUE)
+	playsound(get_turf(user), 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_CROWBAR)
 		tool_behaviour = TOOL_WIRECUTTER
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 		icon_state = "jaws_cutter_cyborg"
-		usesound = 'sound/items/jaws_cut.ogg'
+		usesound = 'sound/items/tools/jaws_cut.ogg'
 	else
 		tool_behaviour = TOOL_CROWBAR
 		to_chat(user, span_notice("You attach the prying jaws to [src]."))
 		icon_state = "jaws_pry_cyborg"
-		usesound = 'sound/items/jaws_pry.ogg'
+		usesound = 'sound/items/tools/jaws_pry.ogg'
 
 /obj/item/screwdriver/cyborg/power
 	name =	"automated drill"
@@ -490,7 +490,7 @@
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "drill_screw_cyborg"
 	hitsound = 'sound/items/drill_hit.ogg'
-	usesound = 'sound/items/drill_use.ogg'
+	usesound = 'sound/items/tools/drill_use.ogg'
 	toolspeed = 0.5
 	random_color = FALSE
 
@@ -778,7 +778,7 @@
 	desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "synthtongue"
-	hitsound = 'sound/effects/attackblob.ogg'
+	hitsound = 'sound/effects/blob/attackblob.ogg'
 	desc = "For giving affectionate kisses."
 	item_flags = NOBLUDGEON
 
@@ -792,10 +792,10 @@
 	if(!HAS_TRAIT(target, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
 		if(check_zone(borg.zone_selected) == "head")
 			borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
-			playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+			playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 		else
 			borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
-			playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+			playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_warning("ERROR: [target] is on the Do Not Lick registry!"))

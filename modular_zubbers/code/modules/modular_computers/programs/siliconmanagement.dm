@@ -23,7 +23,7 @@
 			SSjob.prioritized_jobs -= silicon
 		else
 			SSjob.prioritized_jobs += silicon
-		playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+		playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 		return TRUE
 
 /datum/computer_file/program/silicon_management/ui_data(mob/user)

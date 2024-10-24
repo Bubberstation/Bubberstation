@@ -38,7 +38,7 @@
 	light_on = TRUE
 	force = 15
 	damtype = BURN
-	hitsound = 'sound/items/welder.ogg'
+	hitsound = 'sound/items/tools/welder.ogg'
 	set_light_on(powered)
 	update_appearance()
 	START_PROCESSING(SSobj, src)

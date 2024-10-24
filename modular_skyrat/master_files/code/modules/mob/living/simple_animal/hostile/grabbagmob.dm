@@ -386,7 +386,7 @@
 	melee_damage_upper = 15
 	attack_verb_continuous = "welds"
 	attack_verb_simple = "weld"
-	attack_sound = 'sound/items/welder.ogg'
+	attack_sound = 'sound/items/tools/welder.ogg'
 
 /mob/living/simple_animal/hostile/evilborg/sec
 	name = "Malfunctioning Security Cyborg"

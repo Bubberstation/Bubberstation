@@ -23,7 +23,7 @@
 	attack_verb_simple = "cleave"
 	attack_verb_continuous = "cleaves"
 	attack_sound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'
-	death_sound = 'sound/creatures/space_dragon_roar.ogg'
+	death_sound = 'sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg'
 	death_message = "falls on his sword, ash evaporating from every hole in his armor."
 	gps_name = "Forgotten Signal"
 	gender = MALE

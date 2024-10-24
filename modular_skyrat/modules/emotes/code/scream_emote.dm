@@ -17,7 +17,7 @@
 	if(ismonkey(user))
 		return 'modular_skyrat/modules/emotes/sound/voice/scream_monkey.ogg'
 	if(istype(user, /mob/living/basic/gorilla))
-		return 'sound/mobs/non-humanoids/gorilla.ogg'
+		return 'sound/mobs/non-humanoids/gorilla/gorilla.ogg'
 	if(isalien(user))
 		return 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
 
@@ -39,7 +39,7 @@
 		return
 	if(isnull(user.selected_scream) || (LAZYLEN(user.selected_scream.male_screamsounds) && LAZYLEN(user.selected_scream.female_screamsounds))) //For things that don't have a selected scream(npcs)
 		if(prob(1))
-			return 'sound/voice/human/wilhelm_scream.ogg'
+			return 'sound/mobs/humanoids/human/scream/wilhelm_scream.ogg'
 		return user.dna.species.get_scream_sound(user)
 	if(user.gender == FEMALE && LAZYLEN(user.selected_scream.female_screamsounds))
 		return pick(user.selected_scream.female_screamsounds)

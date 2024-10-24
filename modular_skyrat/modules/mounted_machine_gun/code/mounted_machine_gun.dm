@@ -140,7 +140,7 @@
 
 //BUCKLE HOOKS
 /obj/machinery/mounted_machine_gun/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
-	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
+	playsound(src,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 	for(var/obj/item/iterating_item in buckled_mob.held_items)
 		if(istype(iterating_item, /obj/item/gun_control))
 			qdel(iterating_item)
@@ -166,7 +166,7 @@
 	layer = ABOVE_MOB_LAYER
 	plane = ABOVE_GAME_PLANE
 	setDir(SOUTH)
-	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
+	playsound(src,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 	set_anchored(TRUE)
 
 	update_positioning()

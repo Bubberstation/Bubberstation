@@ -125,7 +125,7 @@ These are basically advanced cells.
 		balloon_alert(user, "no attachments!")
 		return
 	remove_attachments()
-	playsound(src, 'sound/items/screwdriver.ogg', 70, TRUE)
+	playsound(src, 'sound/items/tools/screwdriver.ogg', 70, TRUE)
 	balloon_alert(user, "attachments removed")
 
 /obj/item/stock_parts/power_store/cell/microfusion/process(seconds_per_tick)

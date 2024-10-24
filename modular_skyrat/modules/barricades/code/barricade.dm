@@ -123,7 +123,7 @@
 	if(!do_after(user, 2 SECONDS, src))
 		return TRUE
 
-	playsound(src, 'sound/items/wirecutter.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] removed the barbed wire on [src]."),
 	span_notice("You removed the barbed wire on [src]."))
 	modify_max_integrity(max_integrity - 50)
@@ -476,7 +476,7 @@
 	user.visible_message(span_notice("[user] attaches[choice] to [src]."),
 		span_notice("You attach [choice] to [src]."))
 
-	playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 	update_icon()
 
 /obj/structure/deployable_barricade/metal/examine(mob/user)
@@ -534,7 +534,7 @@
 /obj/structure/deployable_barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 			user.visible_message (span_notice ("[user] secures the panel on [src]."),
@@ -543,7 +543,7 @@
 			return TRUE
 
 		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
@@ -598,7 +598,7 @@
 			user.visible_message(span_notice("[user] begins to disassemble [src]."),
 			span_notice("You start to disassemble [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
@@ -616,7 +616,7 @@
 			user.visible_message(span_notice("[user] begins to detach the armor plates from [src]."),
 			span_notice("You begin to detach the armor plates from [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
@@ -680,7 +680,7 @@
 			user.visible_message(span_notice("[user] begins to disassemble [src]."),
 			span_notice("You start to disassemble [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 

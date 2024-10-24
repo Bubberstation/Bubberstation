@@ -394,7 +394,7 @@
 	if(successfully)
 		playsound(loc, 'sound/machines/ping.ogg', 40, TRUE)
 	else
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 	update_appearance()
 	busy = FALSE
 	if(timer_id)

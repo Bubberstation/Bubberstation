@@ -214,7 +214,7 @@
 	if(ismoth(user))
 		return 'modular_skyrat/modules/emotes/sound/emotes/mothchitter.ogg'
 	else
-		return'sound/creatures/chitter.ogg'
+		return 'sound/mobs/non-humanoids/insect/chitter.ogg'
 
 /datum/emote/living/sigh/get_sound(mob/living/user)
 	if(iscarbon(user))
