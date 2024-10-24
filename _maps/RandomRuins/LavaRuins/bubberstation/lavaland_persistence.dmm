@@ -3919,7 +3919,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "nu" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "persistence_burnchamberbed_w"
+	polarizer_id = "burnchamberbed_w"
 	},
 /obj/machinery/door/poddoor{
 	id = "turbine_shutters_bed"
@@ -4067,10 +4067,13 @@
 /turf/open/floor/catwalk_floor/colony_fabricator,
 /area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "nT" = (
-/obj/machinery/door/poddoor/obj/structure/fans/tiny/forcefield,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/fans/tiny/forcefield,
+/obj/machinery/door/poddoor{
+	id = "syndihanger"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "nU" = (
@@ -13329,6 +13332,7 @@
 /obj/machinery/incident_display/delam/directional/north,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/construction/rcd/arcd/mattermanipulator,
+/obj/item/reagent_containers/cup/glass/mug,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "VG" = (
@@ -14402,8 +14406,6 @@
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
 "Zt" = (
-/obj/item/reagent_containers/cup/glass/mug,
-/obj/item/modular_computer/laptop/preset/syndicate,
 /obj/structure/dresser,
 /obj/item/flashlight/lamp/green{
 	pixel_x = 5;
@@ -14414,7 +14416,7 @@
 	pixel_x = -40;
 	pixel_y = 8;
 	name = "Turbine Window Polarization";
-	id = persistence_burnchamberbed_w
+	id = "burnchamberbed_w"
 	},
 /obj/machinery/button/door/directional/west{
 	pixel_y = -8;
