@@ -15,8 +15,10 @@
 	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
 	inhand_icon_state = "leverrifle"
-	worn_icon_state = "null"
+	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/worn.dmi'
+	worn_icon_state = "leverrifle"
 	weapon_weight = WEAPON_HEAVY
+	projectile_damage_multiplier = 1.1	//you're sacrificing capacity and firing rate, a 10% damage bonus seems reasonable
 
 /obj/item/gun/ballistic/rifle/boltaction/leveraction/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_STOCK)
@@ -53,6 +55,8 @@
 	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
 	inhand_icon_state = "leverrifle_sawn"
+	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/worn.dmi'
+	worn_icon_state = "null"
 
 /obj/item/gun/ballistic/shotgun/riot/sol/leverriflesawn/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_NOSTOCK)

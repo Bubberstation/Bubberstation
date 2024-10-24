@@ -12,14 +12,14 @@
 	name = "\improper Coltfield Shotgun"
 	desc = "A replica of a classic Terran American lever-action shotgun firing 12 gauge shells. Bears the distinctive cobalt mark of SAR Inc quality. Nobody's quite sure what specific model it's a replica of though..."
 	sawn_desc = "You should not see this! Please report this if you see it in normal gameplay because it is a bug!!"
-	inhand_icon_state = "null"
-	worn_icon_state = "null"
+	worn_icon_state = "levershotgun"
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/shotgun_heavy.ogg'
 	rack_sound = 'modular_skyrat/modules/modular_weapons/sounds/shotgun_rack.ogg'
-	projectile_damage_multiplier = 1
+	projectile_damage_multiplier = 1.1 //you're sacrificing firing rate, a 10% damage bonus seems reasonable
 	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/worn.dmi'
 	inhand_icon_state = "levershotgun"
 
 /obj/item/gun/ballistic/rifle/boltaction/levershotgun/give_manufacturer_examine()
@@ -57,6 +57,8 @@
 	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
 	inhand_icon_state = "levershotgun_sawn"
+	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/worn.dmi'
+	worn_icon_state = "null"
 
 /obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_NOSTOCK)
