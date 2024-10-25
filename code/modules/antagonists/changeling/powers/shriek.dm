@@ -52,7 +52,7 @@
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	if(!COOLDOWN_FINISHED(src, dissonant_shriek_cooldown))
-		user.balloon_alert(user, "Your throat is sore!")
+		user.balloon_alert(user, "throat is sore!")
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	empulse(get_turf(user), 2, 5, 1)
@@ -60,6 +60,6 @@
 		L.on = TRUE
 		L.break_light_tube()
 		stoplag()
-		COOLDOWN_START(src, dissonant_shriek_cooldown, 5 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
+		COOLDOWN_START(src, dissonant_shriek_cooldown, 10 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
 
 	return TRUE
