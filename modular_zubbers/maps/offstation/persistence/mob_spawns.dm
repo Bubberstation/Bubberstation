@@ -26,7 +26,7 @@
 	you_are_text = "you are an Operative assigned to the Syndicate Land Crawler Persistence, employed onboard for reasons that are yours"
 	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform you duties and keep a low profile while maintaing your front as a mining operation."
 	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
-	outfit = /datum/outfit/persistence/syndicate
+	outfit = /datum/outfit/dauntless/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command
 	name = "Syndicate Command Operative"
