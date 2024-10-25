@@ -90,3 +90,12 @@
 	icon_file = 'modular_zubbers/code/modules/GAGS/icons/monkehenchmenmob.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 
+/datum/greyscale_config/miniskirt
+	name = "Miniskirt"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	json_config = 'modular_zubbers/code/modules/GAGS/json_configs/miniskirt/miniskirt.json'
+
+/datum/greyscale_config/miniskirt_worn
+	name = "Worn Miniskirt"
+	icon_file = 'modular_zubbers/code/modules/clothing/under/skirts_dresses.dm'
+	json_config = 'modular_zubbers/code/modules/GAGS/json_configs/miniskirt/miniskirt_worn.json'
