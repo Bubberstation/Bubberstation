@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	.["mob_name"] = targetMob.real_name
 	.["mob_type"] = targetMob.type
 	.["admin_mob_type"] = user.client?.mob.type
-	.["godmode"] = targetMob.status_flags & GODMODE
+	.["godmode"] = HAS_TRAIT(user, TRAIT_GODMODE)
 
 	var/mob/living/L = targetMob
 	if (istype(L))

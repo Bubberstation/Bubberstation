@@ -451,6 +451,15 @@
 				accessory_message = " with [english_list(accessories)] attached"
 
 		. += "[t_He] [t_is] wearing [w_uniform.examine_title(user)][accessory_message]."
+	//SPLURT EDIT - shirt
+	if(w_shirt && !undershirt_hidden() && !(w_shirt.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_shirt.examine_title(user)]."
+	//SPLURT EDIT - bra
+	if(w_bra && !bra_hidden() && !(w_bra.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_bra.examine_title(user)]."
+	//SPLURT EDIT - underwear
+	if(w_underwear && !underwear_hidden() && !(w_underwear.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_underwear.examine_title(user)]."
 	//head
 	if(head && !(obscured & ITEM_SLOT_HEAD) && !(head.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [head.examine_title(user)] on [t_his] head."
@@ -471,6 +480,13 @@
 	//ears
 	if(ears && !(obscured & ITEM_SLOT_EARS) && !(ears.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_has] [ears.examine_title(user)] on [t_his] ears."
+	//SPLURT EDIT - ears extra
+	if(ears_extra && !(obscured & ITEM_SLOT_EARS_RIGHT) && !(ears_extra.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_has] [ears_extra.examine_title(user)] on [t_his] right ear."
+	//SPLURT EDIT - ears extra
+	//wearing two ear items makes you look like an idiot
+	if((istype(ears, /obj/item/radio/headset) && !(obscured & ITEM_SLOT_EARS_LEFT) && !(ears.item_flags & EXAMINE_SKIP)) && (istype(ears_extra, /obj/item/radio/headset) && !(obscured & ITEM_SLOT_EARS_RIGHT) && !(ears_extra.item_flags & EXAMINE_SKIP)))
+		. += span_warning("[t_He] looks quite tacky wearing both \an [ears.name] and \an [ears_extra.name] on [t_his] head.")
 	//suit/armor
 	if(wear_suit && !(wear_suit.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [wear_suit.examine_title(user)]."
@@ -500,6 +516,9 @@
 	else if(GET_ATOM_BLOOD_DNA_LENGTH(src) || blood_in_hands)
 		if(num_hands)
 			. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "]blood-stained hand[num_hands > 1 ? "s" : ""]!")
+	//SPLURT EDIT - wrists
+	if(wrists && !wrists_hidden() && !(wrists.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [wrists.examine_title(user)]."
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "restrained with cable" : "handcuffed"
@@ -510,6 +529,9 @@
 	//shoes
 	if(shoes && !(obscured & ITEM_SLOT_FEET)  && !(shoes.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [shoes.examine_title(user)] on [t_his] feet."
+	//SPLURT EDIT - socks
+	if(w_socks && !socks_hidden() && !(w_socks.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_socks.examine_title(user)] on [t_his] feet."
 
 /// Collects info displayed about any HUDs the user has when examining src
 /mob/living/carbon/proc/get_hud_examine_info(mob/living/user)
