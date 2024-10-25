@@ -30,8 +30,8 @@
 		TOOL_RETRACTOR = 45,
 	)
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/ratchet_fast.ogg'
-	success_sound = 'sound/machines/doorclick.ogg'
+	preop_sound = 'sound/items/tools/ratchet_fast.ogg'
+	success_sound = 'sound/machines/airlock/doorclick.ogg'
 
 /datum/surgery_step/heatsink/repair/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(

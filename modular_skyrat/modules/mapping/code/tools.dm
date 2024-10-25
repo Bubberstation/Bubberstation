@@ -39,7 +39,7 @@
 	icon = 'modular_skyrat/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "screwdriver_a"
 	inhand_icon_state = "screwdriver_nuke"
-	usesound = 'sound/items/pshoom.ogg'
+	usesound = 'sound/items/pshoom/pshoom.ogg'
 	toolspeed = 0.2
 	random_color = FALSE
 	greyscale_colors = null
@@ -52,7 +52,7 @@
 	name = "advanced crowbar"
 	desc = "A scientist's almost successful reproduction of an abductor's crowbar, it uses the same technology combined with a handle that can't quite hold it."
 	icon = 'modular_skyrat/modules/mapping/icons/obj/items/advancedtools.dmi'
-	usesound = 'sound/weapons/sonic_jackhammer.ogg'
+	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	icon_state = "crowbar"
 	toolspeed = 0.2
 

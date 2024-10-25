@@ -157,7 +157,7 @@
 	user.visible_message(span_notice("[user] upgrades [target_glasses] with [src]."), span_notice("You upgrade [target_glasses] to be NIF HUD compatible."))
 	target_glasses.name = "\improper HUD-upgraded " + target_glasses.name
 	target_glasses.AddElement(/datum/element/nifsoft_hud)
-	playsound(target_glasses.loc, 'sound/weapons/circsawhit.ogg', 50, vary = TRUE)
+	playsound(target_glasses.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)
 
 	if(!multiple_uses)
 		qdel(src)

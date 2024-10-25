@@ -102,7 +102,7 @@
 		if(traitor_data.uplink_handler.contractor_hub.current_contract == src)
 			traitor_data.uplink_handler.contractor_hub.current_contract = null
 
-	for(var/obj/item/person_contents as anything in person_sent.gather_belongings())
+	for(var/obj/item/person_contents as anything in person_sent.gather_belongings(FALSE, FALSE))
 		if(ishuman(person_sent))
 			var/mob/living/carbon/human/human_sent = person_sent
 			if(person_contents == human_sent.w_uniform)
@@ -122,7 +122,11 @@
 			if(person_contents == human_sent.wrists) // once wrists actually have a danger item, you have my blessing to remove
 				continue
 			// SPLURT EDIT END
-		person_sent.transferItemToLoc(person_contents)
+
+		var/unequipped = person_sent.temporarilyRemoveItemFromInventory(person_contents)
+		if (!unequipped)
+			continue
+		person_contents.moveToNullspace()
 		victim_belongings.Add(WEAKREF(person_contents))
 
 	var/obj/structure/closet/supplypod/extractionpod/pod = source

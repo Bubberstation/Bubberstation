@@ -183,7 +183,7 @@
 /datum/status_effect/dodgeroll_iframes/proc/whiff()
 	SIGNAL_HANDLER
 	owner.balloon_alert_to_viewers("MISS!")
-	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	playsound(src, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return SUCCESSFUL_BLOCK
 
 /obj/item/claymore/dragonslayer/very_fucking_loud
