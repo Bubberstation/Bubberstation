@@ -4249,6 +4249,7 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/chem_dispenser/frontier_appliance,
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "oM" = (
@@ -6288,7 +6289,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "vK" = (
 /obj/structure/sink/kitchen/directional/east,
-/obj/machinery/duct,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "vL" = (
@@ -9609,6 +9609,13 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+"HO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/duct,
+/turf/open/floor/iron/kitchen/herringbone,
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "HS" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenoarchology)
@@ -9622,6 +9629,9 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/east,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "HU" = (
@@ -11620,7 +11630,6 @@
 /obj/structure/sink/kitchen/directional/west{
 	pixel_x = 18
 	},
-/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "OQ" = (
@@ -12001,6 +12010,7 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/hairbrush/tactical,
 /obj/item/scissors,
+/obj/machinery/duct,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Qp" = (
@@ -18026,7 +18036,7 @@ wV
 Cr
 eq
 yv
-AI
+HO
 Qn
 DF
 Ko
