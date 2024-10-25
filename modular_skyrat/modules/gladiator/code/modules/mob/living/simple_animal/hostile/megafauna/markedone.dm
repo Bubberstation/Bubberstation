@@ -217,6 +217,7 @@
 		var/mob/living/carbon/human/human_target = target
 		var/datum/species/targetspecies = human_target.dna.species
 		// The gladiator hates non-humans, he especially hates ash walkers.
+		// BUBBER TODO - Bring the says back when refactoring to basicmobs
 		if(targetspecies.id == SPECIES_HUMAN)
 			var/static/list/human_messages = list(
 									"Is this all that is left?",
@@ -226,7 +227,7 @@
 									"Show me a good time, miner!",
 									"I'll give you the first hit.",
 								)
-			say(message = pick(human_messages))
+			//say(message = pick(human_messages))
 			introduced |= WEAKREF(target)
 		else if(targetspecies.id == SPECIES_LIZARD_ASH)
 			var/static/list/ashie_messages = list(
@@ -236,7 +237,7 @@
 									"GET OVER HERE!!",
 								)
 
-			say(message = pick(ashie_messages), language = /datum/language/ashtongue)
+			//say(message = pick(ashie_messages), language = /datum/language/ashtongue)
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
@@ -248,13 +249,13 @@
 									"You will make a fine rug!",
 									"For the necropolis!"
 									)
-			say(message = pick(other_humanoid_messages))
+			//say(message = pick(other_humanoid_messages))
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
 	else
 		//simplemobs beware
-		say("It's berserkin' time!")
+		//say("It's berserkin' time!")
 		introduced |= WEAKREF(target)
 
 /// Checks against the Marked One's current health and updates his phase accordingly. Uses variable shitcode to make sure his phase updates only ever happen *once*
