@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	priority_announce(
 			text = "[announce_desc] approaching, brace for impact. Long range scanners indicate a high density of meteors incoming, the kind of impact that makes you rethink your life choices. So, hold on tight and try not to fly into anything too important.",
 			title = announce_prefix,
-			sound = 'sound/misc/radio_important.ogg', // basically silent, since the securitylevel proc will make a sound
+			sound = 'sound/items/radio/radio_important.ogg', // basically silent, since the securitylevel proc will make a sound
 			sender_override = "[command_name()] Engineering Division",
 			color_override = "orange",
 		)
@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 /obj/effect/meteor/candy/pumpking/Initialize()
 	. = ..()
 	src.transform *= 2
-	meteorsound = pick('sound/hallucinations/im_here1.ogg','sound/hallucinations/im_here2.ogg')
+	meteorsound = pick('sound/effects/hallucinations/im_here1.ogg', 'sound/effects/hallucinations/im_here2.ogg')
 
 /obj/effect/meteor/candy/pumpking/meteor_effect()
 	..()
@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /obj/effect/meteor/candy/banana/meteor_effect()
 	..()
-	playsound(src, 'sound/items/AirHorn.ogg', 100, TRUE, -1)
+	playsound(src, 'sound/items/airhorn/AirHorn.ogg', 100, TRUE, -1)
 	for(var/atom/movable/object in view(4, get_turf(src)))
 		var/turf/throwtarget = get_edge_target_turf(get_turf(src), get_dir(get_turf(src), get_step_away(object, get_turf(src))))
 		object.safe_throw_at(throwtarget, 5, 1, force = MOVE_FORCE_STRONG)
