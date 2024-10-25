@@ -110,7 +110,7 @@
 //Persistence Hostage
 
 /datum/outfit/persistence/prisoner
-	name = "Persistence Prisoner"
+	name = "Persistence Syndicate Prisoner"
 	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
 	shoes = /obj/item/clothing/shoes/sneakers/crimson
 	id = /obj/item/card/id/advanced/prisoner/ds2
@@ -119,7 +119,7 @@
 //Persistence Roles
 
 /datum/outfit/persistence/syndicate
-	name = "Persistence Standard Operative"
+	name = "Persistence Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne

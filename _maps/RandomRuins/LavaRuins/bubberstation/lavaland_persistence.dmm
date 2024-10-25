@@ -225,7 +225,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/colony_fabricator,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "aL" = (
 /obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/component_printer,
@@ -712,7 +712,6 @@
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/catwalk_floor/colony_fabricator,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "cv" = (
@@ -2976,7 +2975,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "ku" = (
 /obj/structure/closet/generic/wall{
 	pixel_x = -32
@@ -2994,7 +2993,7 @@
 /obj/item/choice_beacon/music,
 /obj/item/encryptionkey/headset_syndicate/interdyne,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "kv" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
@@ -3411,7 +3410,7 @@
 /obj/machinery/light/directional/north,
 /obj/machinery/digital_clock/directional/north,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "lU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -4250,7 +4249,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/chem_dispenser/frontier_appliance,
 /obj/structure/cable,
-/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "oM" = (
@@ -4346,7 +4344,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "pl" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/disposalpipe/segment{
@@ -4546,7 +4544,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "pO" = (
 /obj/machinery/computer/camera_advanced/syndie{
 	dir = 1
@@ -6152,6 +6150,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/dispoals)
 "vf" = (
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer4,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/cryopod,
@@ -6289,6 +6288,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "vK" = (
 /obj/structure/sink/kitchen/directional/east,
+/obj/machinery/duct,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "vL" = (
@@ -6747,8 +6747,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/catwalk_floor/colony_fabricator,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "xu" = (
@@ -7254,7 +7252,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "zi" = (
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/mining)
@@ -9470,6 +9468,7 @@
 	pixel_y = 15;
 	pixel_x = 11
 	},
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/kitchen/diagonal,
@@ -9610,13 +9609,6 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
-"HO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/duct,
-/turf/open/floor/iron/kitchen/herringbone,
-/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "HS" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenoarchology)
@@ -9630,9 +9622,6 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/east,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "HU" = (
@@ -9969,7 +9958,7 @@
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "IY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -10575,7 +10564,7 @@
 "KU" = (
 /obj/machinery/suit_storage_unit/industrial/commsoperative,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "KV" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/button/camkillswitch/persistence_ext{
@@ -11631,6 +11620,7 @@
 /obj/structure/sink/kitchen/directional/west{
 	pixel_x = 18
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "OQ" = (
@@ -11695,7 +11685,7 @@
 	},
 /obj/item/encryptionkey/syndicate,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "Pa" = (
 /obj/structure/sink/kitchen/directional/west{
 	pixel_x = 18
@@ -12011,7 +12001,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/hairbrush/tactical,
 /obj/item/scissors,
-/obj/machinery/duct,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Qp" = (
@@ -13587,7 +13576,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "WF" = (
 /obj/machinery/computer{
 	desc = "A console meant to allow modifications to IDs. There's a chameleon ID stuck inside and no one has been able to pull it out...";
@@ -13792,7 +13781,7 @@
 /obj/machinery/light_switch/directional/east,
 /obj/item/reagent_containers/cup/maunamug,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "Xn" = (
 /obj/structure/curtain,
 /obj/machinery/duct,
@@ -13945,7 +13934,7 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/disposal/bin,
 /turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "XK" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/machinery/button/door/directional/north{
@@ -16664,9 +16653,9 @@ XO
 lo
 Ed
 LH
-NZ
-NZ
-NZ
+qr
+qr
+qr
 uZ
 wp
 TL
@@ -18037,7 +18026,7 @@ wV
 Cr
 eq
 yv
-HO
+AI
 Qn
 DF
 Ko
