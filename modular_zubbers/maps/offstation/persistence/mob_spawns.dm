@@ -26,7 +26,7 @@
 	you_are_text = "you are an Operative assigned to the Syndicate Land Crawler Persistence, employed onboard for reasons that are yours"
 	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform you duties and keep a low profile while maintaing your front as a mining operation."
 	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
-	outfit = /datum/outfit/dauntless/syndicate
+	outfit = /datum/outfit/persistence/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command
 	name = "Syndicate Command Operative"
@@ -34,7 +34,7 @@
 	you_are_text = "you are a Syndicate Command Operative assigned to lead the SSV Persistence and guide it forward in its goals"
 	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets under the cover of a legal mining operation Your orders are help lead the Persistence while ensuring a low profile is maintained."
 	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
-	outfit = /datum/outfit/dauntless/command
+	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
 	name = "Syndicate Hostage"
@@ -95,7 +95,7 @@
 // Outfits --------------
 
 /datum/outfit/persistence
-	name = "Standard Persistence Operative"
+	name = "Persistence"
 
 /datum/outfit/persistence/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = syndicate.wear_id
@@ -119,7 +119,7 @@
 //Persistence Roles
 
 /datum/outfit/persistence/syndicate
-	name = "Persistence Operative"
+	name = "Persistence Standard Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne
