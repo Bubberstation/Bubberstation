@@ -64,7 +64,7 @@
 	outfit = /datum/outfit/persistence/syndicate/brigoff
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/quartermaster
-	outfit = /datum/outfit/persistance/syndicate/quartermaster
+	outfit = /datum/outfit/persistence/syndicate/quartermaster
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/masteratarms
 	outfit = /datum/outfit/persistence/command/masteratarms
@@ -216,7 +216,7 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/interdyne
 
-/datum/outfit/persistance/syndicate/quartermaster
+/datum/outfit/persistence/syndicate/quartermaster
 	name = "Persistence Quarter Master"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
 	belt = /obj/item/storage/bag/ore
