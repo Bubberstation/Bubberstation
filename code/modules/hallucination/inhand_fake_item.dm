@@ -16,7 +16,7 @@
 
 	// These slots are human only, + they have to have a uniform
 	var/mob/living/carbon/human/human_hallucinator = hallucinator
-	if(istype(hallucinator) && human_hallucinator.w_uniform)
+	if(istype(human_hallucinator) && human_hallucinator.w_uniform)
 		if((valid_slots & ITEM_SLOT_BELT) && !human_hallucinator.belt)
 			slots_free[ui_belt] = ITEM_SLOT_BELT
 		if((valid_slots & ITEM_SLOT_LPOCKET) && !human_hallucinator.l_store)
@@ -72,7 +72,7 @@
 		var/obj/item/melee/energy/sword/saber/sabre_color = pick(subtypesof(/obj/item/melee/energy/sword/saber))
 		// Yes this can break if someone changes esword icon stuff
 		hallucinated_item.icon_state = "[hallucinated_item.icon_state]_on_[initial(sabre_color.sword_color_icon)]"
-		hallucinator.playsound_local(get_turf(hallucinator), 'sound/weapons/saberon.ogg', 35, TRUE)
+		hallucinator.playsound_local(get_turf(hallucinator), 'sound/items/weapons/saberon.ogg', 35, TRUE)
 
 	return hallucinated_item
 
@@ -109,7 +109,7 @@
 	if(prob(15))
 		// Yes this can break if someone changse grenade icon stuff
 		hallucinated_item.icon_state = "[hallucinated_item.icon_state]_active"
-		hallucinator.playsound_local(get_turf(hallucinator), 'sound/weapons/armbomb.ogg', 60, TRUE)
+		hallucinator.playsound_local(get_turf(hallucinator), 'sound/items/weapons/armbomb.ogg', 60, TRUE)
 		to_chat(hallucinator, span_warning("You prime [hallucinated_item]! 5 seconds!"))
 
 	return hallucinated_item
