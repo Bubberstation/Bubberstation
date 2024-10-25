@@ -3055,6 +3055,14 @@
 "nr" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
+"nt" = (
+/obj/machinery/button/camkillswitch{
+	pixel_x = -32;
+	pixel_y = 26;
+	req_access = list("syndicate")
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "nu" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/stripes/red/line{
@@ -3234,6 +3242,10 @@
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
+"on" = (
+/obj/item/assembly/control/camkillswitch/persistence_ext,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
 /turf/open/floor/wood/tile,
@@ -13647,7 +13659,7 @@ RP
 dY
 pl
 HC
-RP
+on
 eI
 qr
 ux
@@ -14744,7 +14756,7 @@ JZ
 Wm
 tA
 Ku
-oZ
+nt
 VP
 ru
 HW
