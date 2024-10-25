@@ -570,6 +570,7 @@
 			if(!length(result))
 				result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
 			result_combined = jointext(result, "<br>")
+			result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
 		else
 			client.recent_examines[ref_to_atom] = world.time // set to when we last normal examine'd them
