@@ -451,10 +451,12 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		return
 	update_robot_modules_display()
 
+/* BUBBER EDIT REMOVAL - We use a different lobby hud
 /datum/hud/new_player/show_hud(version = 0, mob/viewmob)
 	. = ..()
 	if(.)
 		show_station_trait_buttons()
+*/
 
 /datum/hud/proc/hidden_inventory_update()
 	return

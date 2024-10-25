@@ -253,7 +253,7 @@
 		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
 	else
 		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
-	playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/quadborg_nose/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -295,7 +295,7 @@
 		smoke.start()
 		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)
-			playsound(borg, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, TRUE, -1)
+			playsound(borg, pick('sound/items/tools/drill_use.ogg', 'sound/items/tools/jaws_cut.ogg', 'sound/items/tools/jaws_pry.ogg', 'sound/items/tools/welder.ogg', 'sound/items/tools/ratchet.ogg'), 80, TRUE, -1)
 			sleep(1.2 SECONDS)
 		if(!prev_lockcharge)
 			borg.SetLockdown(FALSE)

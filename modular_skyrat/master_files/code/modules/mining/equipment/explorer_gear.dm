@@ -76,7 +76,7 @@
 	return success
 
 /obj/item/clothing/suit/hifl_suit/proc/make_sound()
-	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/movespeed_modifier/hifl_equip
 	multiplicative_slowdown = 1.5

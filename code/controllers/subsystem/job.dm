@@ -298,7 +298,7 @@ SUBSYSTEM_DEF(job)
 
 		//SKYRAT EDIT ADDITION
 		if(job.departments_bitflags & DEPARTMENT_BITFLAG_CENTRAL_COMMAND) //If you want a CC position, select it!
-			JobDebug("GRJ skipping Central Command role, Player: [player], Job: [job]")
+			job_debug("GRJ skipping Central Command role, Player: [player], Job: [job]")
 			continue
 		//SKYRAT EDIT END
 
@@ -947,19 +947,19 @@ SUBSYSTEM_DEF(job)
 
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
 	if(!CONFIG_GET(flag/bypass_veteran_system) && possible_job.veteran_only && !SSplayer_ranks.is_veteran(player.client))
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_NOT_VETERAN)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_NOT_VETERAN)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_NOT_VETERAN
 
 	if(possible_job.has_banned_quirk(player.client.prefs))
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_QUIRK)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_QUIRK)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_QUIRK
 
 	if(!possible_job.has_required_languages(player.client.prefs))
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_LANGUAGE)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_LANGUAGE)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_LANGUAGE
 
 	if(possible_job.has_banned_species(player.client.prefs))
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
 
 	if(CONFIG_GET(flag/min_flavor_text))
@@ -967,15 +967,15 @@ SUBSYSTEM_DEF(job)
 		var/uses_silicon_flavortext = (is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text)) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
 		var/uses_normal_flavortext = (!is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
 		if(uses_silicon_flavortext)
-			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+			job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR_SILICON
 		if(uses_normal_flavortext)
 		//BUBBER EDIT END: SILICON FLAVOR TEXT CHECK
-			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+			job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR
 
 	if(possible_job.has_banned_augment(player.client.prefs))
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_AUGMENT
 
 

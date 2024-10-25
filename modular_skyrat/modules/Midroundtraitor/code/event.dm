@@ -42,7 +42,7 @@
 	operative.dna.species.pre_equip_species_outfit(null, operative)
 	operative.regenerate_icons()
 	SSquirks.AssignQuirks(operative, applicant.client, TRUE, TRUE, null, FALSE, operative)
-	player_mind.set_assigned_role(SSjob.GetJobType(/datum/job/lone_operative))
+	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
 	player_mind.special_role = "Lone Infiltrator"
 	player_mind.active = TRUE
 	player_mind.transfer_to(operative)

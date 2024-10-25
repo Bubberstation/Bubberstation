@@ -41,13 +41,13 @@
 			target_organ = valid_features[1]
 		if(2 to INFINITY)
 			var/choose_options = list()
-// BUBBER EDIT - OR BEGIN
+			// BUBBER EDIT - OR BEGIN
 			var/name_to_organ = list() //literally so I dont have to loop again after someones made their choice
 			for(var/obj/item/organ/external/organ_choice as anything in valid_features)
-/*
+			/*
 			var/name_to_organ = list() //literally so I don't have to loop again after someone's made their choice
 			for(var/obj/item/organ/organ_choice as anything in valid_features)
-*/ // BUBBER EDIT - OR END
+			*/ // BUBBER EDIT - OR END
 				choose_options[organ_choice.name] = image(organ_choice)
 				name_to_organ[organ_choice.name] = organ_choice
 			var/picked_option = show_radial_menu(trimmer, original_target, choose_options, radius = 38, require_near = TRUE)

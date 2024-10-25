@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(ticker)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, span_notice("<b>Welcome to [station_name()]!</b>"))
 			/* ORIGINAL:
-			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/channel_announce_new_game))
+			send2chat("New round starting on [SSmapping.current_map.map_name]!", CONFIG_GET(string/channel_announce_new_game))
 			*/ // SKYRAT EDIT START - DISCORD SPAM PREVENTION
 			if(!discord_alerted)
 				discord_alerted = TRUE

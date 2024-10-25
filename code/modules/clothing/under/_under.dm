@@ -233,7 +233,7 @@
 
 	else
 		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
-		playsound(source = src, soundin = 'sound/effects/sparks3.ogg', vol = 75, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
+		playsound(source = src, soundin = 'sound/effects/sparks/sparks3.ogg', vol = 75, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		visible_message(span_warning("The [src]'s medical sensors flash and change rapidly!"), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 	update_wearer_status()

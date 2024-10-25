@@ -491,7 +491,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			GLOB.pizza_order = pick(GLOB.pizza_names)
 			call_911(EMERGENCY_RESPONSE_EMAG)
 			to_chat(usr, span_notice("Thank you for choosing Dogginos, [GLOB.pizza_order]!"))
-			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 		if("toggleEngOverride")
 			if(emergency_access_cooldown(usr)) //if were in cooldown, dont allow the following code
 				return

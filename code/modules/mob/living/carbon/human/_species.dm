@@ -1667,6 +1667,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	to_store += mutant_organs
 	for(var/obj/item/organ/external/horny as anything in external_organs)
 		to_store += horny //Haha get it?
+	return to_store
+
 /*
 /datum/species/proc/get_mut_organs(include_brain = TRUE)
 	var/list/mut_organs = list()
@@ -1683,11 +1685,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	mut_organs += mutantappendix
 	list_clear_nulls(mut_organs)
 	return mut_organs
-*/ // BUBBER EDIT - OR END
+
 
 /datum/species/proc/get_types_to_preload()
 	return get_mut_organs(FALSE)
-
+*/ // BUBBER EDIT - OR END
 
 /**
  * Owner login

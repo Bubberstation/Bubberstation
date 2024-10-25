@@ -90,8 +90,17 @@ multiple modular subtrees with behaviors
 
 ///Sets the current movement target, with an optional param to override the movement behavior
 /datum/ai_controller/proc/set_movement_target(source, atom/target, datum/ai_movement/new_movement)
+	if(current_movement_target)
+		UnregisterSignal(current_movement_target, list(COMSIG_MOVABLE_MOVED, COMSIG_PREQDELETED))
+	if(!isnull(target) && !isatom(target))
+		stack_trace("[pawn]'s current movement target is not an atom, rather a [target.type]! Did you accidentally set it to a weakref?")
+		CancelActions()
+		return
 	movement_target_source = source
 	current_movement_target = target
+	if(!isnull(current_movement_target))
+		RegisterSignal(current_movement_target, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_target_move))
+		RegisterSignal(current_movement_target, COMSIG_PREQDELETED, PROC_REF(on_movement_target_delete))
 	if(new_movement)
 		change_ai_movement_type(new_movement)
 
@@ -153,6 +162,20 @@ multiple modular subtrees with behaviors
 	SIGNAL_HANDLER
 
 	set_new_cells()
+	if(current_movement_target)
+		check_target_max_distance()
+
+/datum/ai_controller/proc/on_movement_target_move(atom/source)
+	SIGNAL_HANDLER
+	check_target_max_distance()
+
+/datum/ai_controller/proc/on_movement_target_delete(atom/source)
+	SIGNAL_HANDLER
+	set_movement_target(source = type, target = null)
+
+/datum/ai_controller/proc/check_target_max_distance()
+	if(get_dist(current_movement_target, pawn) > max_target_distance)
+		CancelActions()
 
 /datum/ai_controller/proc/set_new_cells()
 	if(isnull(our_cells))
@@ -341,20 +364,6 @@ multiple modular subtrees with behaviors
 ///Runs any actions that are currently running
 /datum/ai_controller/process(seconds_per_tick)
 
-	if(!length(current_behaviors) && idle_behavior)
-		idle_behavior.perform_idle_behavior(seconds_per_tick, src) //Do some stupid shit while we have nothing to do
-		return
-
-	if(current_movement_target)
-		if(!isatom(current_movement_target))
-			stack_trace("[pawn]'s current movement target is not an atom, rather a [current_movement_target.type]! Did you accidentally set it to a weakref?")
-			CancelActions()
-			return
-
-		if(get_dist(pawn, current_movement_target) > max_target_distance) //The distance is out of range
-			CancelActions()
-			return
-
 	for(var/datum/ai_behavior/current_behavior as anything in current_behaviors)
 
 		// Convert the current behaviour action cooldown to realtime seconds from deciseconds.current_behavior
@@ -368,9 +377,9 @@ multiple modular subtrees with behaviors
 			ProcessBehavior(action_seconds_per_tick, current_behavior)
 			return
 
-		if(!current_movement_target)
-			stack_trace("[pawn] wants to perform action type [current_behavior.type] which requires movement, but has no current movement target!")
-			return //This can cause issues, so don't let these slide.
+		if(isnull(current_movement_target))
+			fail_behavior(current_behavior)
+			return
 		///Stops pawns from performing such actions that should require the target to be adjacent.
 		var/atom/movable/moving_pawn = pawn
 		var/can_reach = !(current_behavior.behavior_flags & AI_BEHAVIOR_REQUIRE_REACH) || moving_pawn.CanReach(current_movement_target)
@@ -476,6 +485,7 @@ multiple modular subtrees with behaviors
 	if(!behavior.setup(arglist(arguments)))
 		return
 
+	var/should_exit_unplanned = !length(current_behaviors)
 	planned_behaviors[behavior] = TRUE
 	current_behaviors[behavior] = TRUE
 
@@ -488,6 +498,9 @@ multiple modular subtrees with behaviors
 	if(!(behavior.behavior_flags & AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION)) //this one blocks planning!
 		able_to_plan = FALSE
 
+	if(should_exit_unplanned)
+		exit_unplanned_mode()
+
 	SEND_SIGNAL(src, AI_CONTROLLER_BEHAVIOR_QUEUED(behavior_type), arguments)
 
 /datum/ai_controller/proc/check_able_to_plan()
@@ -499,6 +512,16 @@ multiple modular subtrees with behaviors
 /datum/ai_controller/proc/dequeue_behavior(datum/ai_behavior/behavior)
 	current_behaviors -= behavior
 	able_to_plan = check_able_to_plan()
+	if(!length(current_behaviors))
+		enter_unplanned_mode()
+
+/datum/ai_controller/proc/exit_unplanned_mode()
+	remove_from_unplanned_controllers()
+	start_ai_processing()
+
+/datum/ai_controller/proc/enter_unplanned_mode()
+	add_to_unplanned_controllers()
+	stop_previous_processing()
 
 /datum/ai_controller/proc/ProcessBehavior(seconds_per_tick, datum/ai_behavior/behavior)
 	var/list/arguments = list(seconds_per_tick, src)
@@ -522,11 +545,14 @@ multiple modular subtrees with behaviors
 	if(!length(current_behaviors))
 		return
 	for(var/datum/ai_behavior/current_behavior as anything in current_behaviors)
-		var/list/arguments = list(src, FALSE)
-		var/list/stored_arguments = behavior_args[current_behavior.type]
-		if(stored_arguments)
-			arguments += stored_arguments
-		current_behavior.finish_action(arglist(arguments))
+		fail_behavior(current_behavior)
+
+/datum/ai_controller/proc/fail_behavior(datum/ai_behavior/current_behavior)
+	var/list/arguments = list(src, FALSE)
+	var/list/stored_arguments = behavior_args[current_behavior.type]
+	if(stored_arguments)
+		arguments += stored_arguments
+	current_behavior.finish_action(arglist(arguments))
 
 /// Turn the controller on or off based on if you're alive, we only register to this if the flag is present so don't need to check again
 /datum/ai_controller/proc/on_stat_changed(mob/living/source, new_stat)

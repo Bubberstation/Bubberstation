@@ -580,7 +580,8 @@
 		var/list/result = examinify.examine(src)
 		var/atom_title = examinify.examine_title(src, thats = TRUE)
 		SEND_SIGNAL(src, COMSIG_MOB_EXAMINING, examinify, result)
-		result_combined = (atom_title ? fieldset_block("[span_slightly_larger(atom_title)].", jointext(result, "<br>"), "examine_block") : examine_block(jointext(result, "<br>")))
+		result_combined = (atom_title ? "[span_slightly_larger("[atom_title][ismob(examinify) ? "!" :"."][EXAMINE_SECTION_BREAK]")]" : "") + jointext(result, "<br>") // BUBBER EDIT CHANGE - No centered title + exclamation point for mobs - ORIGINAL: result_combined = (atom_title ? fieldset_block("[span_slightly_larger(atom_title)].", jointext(result, "<br>"), "examine_block") : examine_block(jointext(result, "<br>")))
+		result_combined = examine_block(replacetext(result_combined, "<hr><br>", "<hr>")) // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers, as well as properly adding the examine_block
 
 	to_chat(src, span_infoplain(result_combined))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)

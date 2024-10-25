@@ -47,7 +47,7 @@
 	if(user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return TRUE
 	else
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 		return FALSE
 
 /obj/item/summon_beacon/proc/generate_display_names()

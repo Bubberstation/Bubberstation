@@ -33,7 +33,7 @@
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
 
-	var/datum/job/job = SSjob.GetJob(job_title)
+	var/datum/job/job = SSjob.get_job(job_title)
 
 	if (isnull(job))
 		return FALSE
