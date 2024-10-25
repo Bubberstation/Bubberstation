@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if(!ISADVANCEDTOOLUSER(user))
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
-	if(user.incapacitated() || !user.Adjacent(src))
+	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
@@ -609,6 +609,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if (use(1) && amount > 0)
 		INVOKE_ASYNC(src, PROC_REF(try_heal_loop), interacting_with, user, TRUE)
 
+	return ITEM_INTERACT_SUCCESS
+
 ///////////////////////////////////////////////
 // Cable laying procedures
 //////////////////////////////////////////////
@@ -626,7 +628,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		to_chat(user, span_warning("There is no cable left!"))
 		return
 
-	if(get_dist(T,user) > 1)
+	if(get_dist(T,user) > 1) // Too far
 		to_chat(user, span_warning("You can't lay cable at a place that far away!"))
 		return
 
@@ -773,7 +775,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	if(!ISADVANCEDTOOLUSER(user))
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
-	if(user.incapacitated() || !user.Adjacent(src))
+	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 

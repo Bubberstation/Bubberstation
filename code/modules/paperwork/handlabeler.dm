@@ -1,5 +1,5 @@
 /// A mini-tool used to apply label items onto something to modify its name.
-/obj/item/hand_labeler //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/item/hand_labeler
 	name = "hand labeler"
 	desc = "A combined label printer, applicator, and remover, all in a single portable device. Designed to be easy to operate and use."
 	icon = 'icons/obj/service/bureaucracy.dmi'

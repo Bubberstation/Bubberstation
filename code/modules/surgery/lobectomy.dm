@@ -68,8 +68,11 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		var/obj/item/organ/internal/lungs/target_lungs = human_target.get_organ_slot(ORGAN_SLOT_LUNGS)
-		target_lungs.operated = TRUE
 		human_target.setOrganLoss(ORGAN_SLOT_LUNGS, 60)
+		if(target_lungs)
+			target_lungs.operated = TRUE
+			if(target_lungs.organ_flags & ORGAN_EMP) //If our organ is failing due to an EMP, fix that
+				target_lungs.organ_flags &= ~ORGAN_EMP
 		display_results(
 			user,
 			target,

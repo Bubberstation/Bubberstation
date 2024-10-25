@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 	desc = "[desc] It has [uses] use\s remaining."
 
 /datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, atom/clicked_on)
-	if(caller.incapacitated())
+	if(caller.incapacitated)
 		unset_ranged_ability(caller)
 		return FALSE
 	if(!ismachinery(clicked_on))
@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 		qdel(to_explode)
 
 /datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, atom/clicked_on)
-	if(caller.incapacitated())
+	if(caller.incapacitated)
 		unset_ranged_ability(caller)
 		return FALSE
 	if(!ismachinery(clicked_on))
@@ -634,7 +634,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 /// Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting.
 /datum/ai_module/utility/place_cyborg_transformer
 	name = "Robotic Factory (Removes Shunting)"
-	description = "Build a machine anywhere, using expensive nanomachines, that will slowly create loyal cyborgs for you." // Skyrat edit
+	description = "Build a machine anywhere, using expensive nanomachines, that will slowly create loyal cyborgs for you." // SKYRAT EDIT
 	cost = 100
 	power_type = /datum/action/innate/ai/place_transformer
 	unlock_text = span_notice("You make contact with Space Amazon and request a robotics factory for delivery.")
@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 
 /datum/action/innate/ai/place_transformer
 	name = "Place Robotics Factory"
-	desc = "Places a machine that creates cyborgs efficiently. Conveyor belts included!" // Skyrat edit
+	desc = "Places a machine that slowly creates cyborgs. Conveyor belts included!" // SKYRAT EDIT
 	button_icon_state = "robotic_factory"
 	uses = 1
 	auto_use_uses = FALSE //So we can attempt multiple times
@@ -679,7 +679,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 		C.images -= I
 
 /mob/living/silicon/ai/proc/can_place_transformer(datum/action/innate/ai/place_transformer/action)
-	if(!eyeobj || !isturf(loc) || incapacitated() || !action)
+	if(!eyeobj || !isturf(loc) || incapacitated || !action)
 		return
 	var/turf/middle = get_turf(eyeobj)
 	var/list/turfs = list(middle, locate(middle.x - 1, middle.y, middle.z), locate(middle.x + 1, middle.y, middle.z))
@@ -995,7 +995,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 	data["selected"] = say_span || owner.speech_span
 	return data
 
-/obj/machinery/ai_voicechanger/ui_act(action, params)
+/obj/machinery/ai_voicechanger/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return
 	switch(action)
@@ -1096,7 +1096,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 
 	var/mob/living/silicon/ai/ai_caller = caller
 
-	if(ai_caller.incapacitated())
+	if(ai_caller.incapacitated)
 		unset_ranged_ability(caller)
 		return FALSE
 
@@ -1186,7 +1186,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 		return FALSE
 	var/mob/living/silicon/ai/ai_caller = caller
 
-	if (ai_caller.incapacitated() || !isturf(ai_caller.loc))
+	if (ai_caller.incapacitated || !isturf(ai_caller.loc))
 		return FALSE
 
 	var/turf/target = get_turf(clicked_on)
@@ -1214,7 +1214,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 	COOLDOWN_START(src, time_til_next_tilt, roll_over_cooldown)
 
 /datum/action/innate/ai/ranged/core_tilt/proc/do_roll_over(mob/living/silicon/ai/ai_caller, picked_dir)
-	if (ai_caller.incapacitated() || !isturf(ai_caller.loc)) // prevents bugs where the ai is carded and rolls
+	if (ai_caller.incapacitated || !isturf(ai_caller.loc)) // prevents bugs where the ai is carded and rolls
 		return
 
 	var/turf/target = get_step(ai_caller, picked_dir) // in case we moved we pass the dir not the target turf
@@ -1228,7 +1228,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 
 /// Used in our radial menu, state-checking proc after the radial menu sleeps
 /datum/action/innate/ai/ranged/core_tilt/proc/radial_check(mob/living/silicon/ai/caller)
-	if (QDELETED(caller) || caller.incapacitated() || caller.stat == DEAD)
+	if (QDELETED(caller) || caller.incapacitated || caller.stat == DEAD)
 		return FALSE
 
 	if (uses <= 0)
@@ -1275,7 +1275,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 		return FALSE
 	var/mob/living/silicon/ai/ai_caller = caller
 
-	if(ai_caller.incapacitated())
+	if(ai_caller.incapacitated)
 		unset_ranged_ability(caller)
 		return FALSE
 
@@ -1331,7 +1331,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/d
 
 /// Used in our radial menu, state-checking proc after the radial menu sleeps
 /datum/action/innate/ai/ranged/remote_vendor_tilt/proc/radial_check(mob/living/silicon/ai/caller, obj/machinery/vending/clicked_vendor)
-	if (QDELETED(caller) || caller.incapacitated() || caller.stat == DEAD)
+	if (QDELETED(caller) || caller.incapacitated || caller.stat == DEAD)
 		return FALSE
 
 	if (QDELETED(clicked_vendor))

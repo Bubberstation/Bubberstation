@@ -588,11 +588,7 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
-	var/resize_amount = 1.25
-	if(TRAIT_R_WIDE in borg.model.model_features)
-		resize_amount = 1.25
-	if(TRAIT_R_TALL in borg.model.model_features)
-		resize_amount = 1.05
+	var/resize_amount = 1.6
 	// SKYRAT EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	var/prev_lockcharge = borg.lockcharge
@@ -618,7 +614,7 @@
 		return .
 	if (borg.hasExpanded)
 		borg.hasExpanded = FALSE
-		borg.update_transform(0.8) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
+		borg.update_transform(0.625) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg RPED"

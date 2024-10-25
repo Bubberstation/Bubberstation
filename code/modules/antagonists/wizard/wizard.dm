@@ -28,11 +28,6 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	/// Perks that wizard learn
 	var/list/perks = list()
 
-/datum/antagonist/wizard/New()
-	if(move_to_lair) // kick off loading of your lair, if you want to be moved to it
-		INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, lazy_load_template), LAZY_TEMPLATE_KEY_WIZARDDEN)
-	return ..()
-
 /datum/antagonist/wizard_minion
 	name = "Wizard Minion"
 	antagpanel_category = ANTAG_GROUP_WIZARDS

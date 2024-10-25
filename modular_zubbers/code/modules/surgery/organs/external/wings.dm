@@ -47,7 +47,7 @@
 		to_chat(owner, span_warning("There's far too little air for your wings to work against!"))
 		return
 
-	if(owner.incapacitated())
+	if(owner.incapacitated)
 		return
 
 	if(!COOLDOWN_FINISHED(src, dash_cooldown))

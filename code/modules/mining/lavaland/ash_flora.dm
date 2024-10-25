@@ -257,6 +257,21 @@
 	seed = /obj/item/seeds/lavaland/fireblossom
 	wine_power = 40
 
+/obj/item/food/grown/ash_flora/seraka
+	name = "seraka cap"
+	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
+	icon_state = "seraka_cap"
+	seed = /obj/item/seeds/lavaland/seraka
+	wine_power = 40
+
+/obj/item/food/grown/ash_flora/fireblossom
+	name = "fire blossom"
+	desc = "A flower from a fire blossom."
+	icon_state = "fireblossom"
+	slot_flags = ITEM_SLOT_HEAD
+	seed = /obj/item/seeds/lavaland/fireblossom
+	wine_power = 40
+
 //SEEDS
 
 /obj/item/seeds/lavaland
@@ -404,17 +419,4 @@
 /obj/item/reagent_containers/cup/bowl/mushroom_bowl/update_icon_state()
 	if(!reagents.total_volume)
 		icon_state = "mushroom_bowl"
-	return ..()
-
-/obj/item/reagent_containers/cup/bowl/wood_bowl
-	name = "wooden bowl"
-	desc = "A bowl made out of wood. Primitive, but effective."
-	icon = 'icons/obj/mining_zones/ash_flora.dmi'
-	icon_state = "wood_bowl"
-	fill_icon_state = "fullbowl"
-	fill_icon = 'icons/obj/mining_zones/ash_flora.dmi'
-
-/obj/item/reagent_containers/cup/bowl/mushroom_bowl/update_icon_state()
-	if(!reagents.total_volume)
-		icon_state = "wood_bowl"
 	return ..()
