@@ -95,7 +95,7 @@
 // Outfits --------------
 
 /datum/outfit/persistence
-	name = "Persistence"
+	name = "Standard Persistence Operative"
 
 /datum/outfit/persistence/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = syndicate.wear_id
@@ -110,7 +110,7 @@
 //Persistence Hostage
 
 /datum/outfit/persistence/prisoner
-	name = "Syndicate Prisoner"
+	name = "Persistence Prisoner"
 	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
 	shoes = /obj/item/clothing/shoes/sneakers/crimson
 	id = /obj/item/card/id/advanced/prisoner/ds2
