@@ -406,7 +406,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 					if (!L)
 						continue
 					L.dismember()
-					playsound(H, 'sound/effects/cartoon_pop.ogg', 70)
+					playsound(H, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 70)
 				else
 					H.regenerate_limb(limb)
 
