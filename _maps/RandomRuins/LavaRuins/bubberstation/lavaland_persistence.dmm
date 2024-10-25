@@ -3747,6 +3747,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "mP" = (
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "mQ" = (
@@ -5302,7 +5305,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "ss" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall/syndicate/cruiser,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "st" = (
 /obj/structure/sign/warning/no_smoking/directional/east,
@@ -8949,6 +8952,7 @@
 /obj/machinery/door/airlock/sandstone,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/catwalk_floor/colony_fabricator,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Fx" = (
@@ -11077,7 +11081,6 @@
 "Nb" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/full,
-/obj/machinery/light_switch/directional/east,
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
@@ -12162,6 +12165,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/mining)
+"QT" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "QU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -16725,7 +16735,7 @@ My
 My
 aJ
 kV
-mP
+QT
 mP
 AT
 wS
@@ -16944,7 +16954,7 @@ uZ
 BZ
 zU
 Xu
-mH
+ZK
 wS
 ry
 mH

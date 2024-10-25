@@ -297,7 +297,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/rigmanager
 
 /datum/outfit/persistence/command/moraleofficer
-	name = "Ship Admiral"
+	name = "Persistence Morale Officer"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	back = /obj/item/storage/backpack/satchel
