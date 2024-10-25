@@ -221,6 +221,10 @@
 	item_type = /obj/item/cautery/advanced
 	cost = PAYCHECK_COMMAND * 3
 
+/datum/armament_entry/company_import/deforest/equipment/advanced_blood_filter
+	item_type = /obj/item/blood_filter/advanced
+	cost = PAYCHECK_COMMAND * 9
+
 /datum/armament_entry/company_import/deforest/equipment/medigun_upgrade
 	item_type = /obj/item/device/custom_kit/medigun_fastcharge
 	cost = PAYCHECK_COMMAND * 2
