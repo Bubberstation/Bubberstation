@@ -15,7 +15,7 @@
 	attack_verb_continuous = list("shoves", "bashes","berthas")
 	attack_verb_simple = list("shove", "bash","bertha")
 	armor_type = /datum/armor/big_bertha
-	block_sound = 'sound/weapons/block_shield.ogg'
+	block_sound = 'sound/items/weapons/block_shield.ogg'
 	breakable_by_damage = FALSE
 	item_flags = IMMUTABLE_SLOW | SLOWS_WHILE_IN_HAND
 	slowdown = 2

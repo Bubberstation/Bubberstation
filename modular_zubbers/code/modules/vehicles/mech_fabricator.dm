@@ -17,7 +17,7 @@
 				illegal_local_designs |= illegal_mech_design
 				cached_designs |= illegal_mech_design
 		say("R$c!i&ed ERROR de#i$ns. C@n%ec$%ng to ~NULL~ se%ve$s.")
-		playsound(src, 'sound/machines/uplinkerror.ogg', 50, TRUE)
+		playsound(src, 'sound/machines/uplink/uplinkerror.ogg', 50, TRUE)
 		update_static_data_for_all_viewers()
 		return TRUE
 	else
