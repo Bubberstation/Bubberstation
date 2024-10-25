@@ -15,7 +15,7 @@
 	name = "Cell-Volume Altering Base"
 	id = /datum/reagent/sizechem
 	mix_message = "the reaction rapidly alters in size!"
-	required_reagents = list(/datum/reagent/growthserum = 0.15, /datum/reagent/medicine/clonexadone = 0.15, /datum/reagent/gold = 0.15, /datum/reagent/acetone = 0.15)
+	required_reagents = list(/datum/reagent/growthserum = 0.15, /datum/reagent/gold = 0.15, /datum/reagent/acetone = 0.15)
 	results = list(/datum/reagent/sizechem = 0.3)
 	required_temp = 1
 	//Fermichem vars
