@@ -1,15 +1,3 @@
-/datum/sprite_accessory/genital/penis
-	icon = 'modular_zzplurt/icons/mob/human/genitals/penis.dmi'
-
-/datum/sprite_accessory/genital/testicles
-	icon = 'modular_zzplurt/icons/mob/human/genitals/testicles.dmi'
-
-/datum/sprite_accessory/genital/vagina
-	icon = 'modular_zzplurt/icons/mob/human/genitals/vagina.dmi'
-
-/datum/sprite_accessory/genital/breasts
-	icon = 'modular_zzplurt/icons/mob/human/genitals/breasts.dmi'
-
 /datum/sprite_accessory/genital/butt
 	icon = 'modular_zzplurt/icons/mob/human/genitals/butt.dmi'
 	organ_type = /obj/item/organ/external/genital/butt

@@ -62,11 +62,15 @@ GLOBAL_LIST_INIT(balls_size_translation, list(
 	))
 */
 GLOBAL_LIST_INIT(balls_size_translation, list(
-	"1" = "Small",
-	"2" = "Average",
-	"3" = "Big",
-	"4" = "Enormous",
-	"5" = "Gargantuan"
+	"0" = "Small",
+	"1" = "Average",
+	"2" = "Big",
+	"3" = "Large",
+	"4" = "Very Large",
+	"5" = "Enormous",
+	"6" = "Immense",
+	"7" = "Gargantuan",
+	"8" = "Colossal"
 	))
 //SPLURT EDIT END
 
@@ -92,14 +96,28 @@ GLOBAL_LIST_INIT(marking_zones, list(
 	BODY_ZONE_PRECISE_R_HAND,
 	))
 
+//SPLURT EDIT START
+/*
 GLOBAL_LIST_INIT(preference_balls_sizes, list(
 	"Small",
 	"Average",
 	"Big",
-	//"Very Big" //SPLURT EDIT
+	"Very Big"
 	"Enormous",
-	//"Immense", //SPLURT EDIT
+	"Immense",
 	"Gargantuan"
+	))
+*/
+GLOBAL_LIST_INIT(preference_balls_sizes, list(
+	"Small",
+	"Average",
+	"Big",
+	"Large",
+	"Very Large",
+	"Enormous",
+	"Immense",
+	"Gargantuan",
+	"Colossal"
 	))
 
 GLOBAL_LIST_INIT(robotic_styles_list, list(
