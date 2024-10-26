@@ -11,7 +11,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	hitsound = 'sound/weapons/whip.ogg'
+	hitsound = 'sound/items/weapons/whip.ogg'
 	clothing_flags = INEDIBLE_CLOTHING
 	//When taking that thing in mouth
 	flags_cover = MASKCOVERSMOUTH
@@ -196,7 +196,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.Paralyze(1)//don't touch it. It's domination tool, it should have ability to put someone on kneels. I already inserted check for PREF YOU CAN'T ABUSE THIS ITEM
 				target.adjust_pain(5)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 			else
 				message = (user == target) ? pick("knocks [target.p_them()]self down with [src]",
 						"gently uses [src] to knock [target.p_them()]self on the ground") \
@@ -208,7 +208,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.Paralyze(1)
 				target.adjust_pain(3)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 		if(BODY_ZONE_HEAD)
 			message = (user == target) ? pick("wraps [src] around [target.p_their()] neck, choking [target.p_them()]self",
@@ -239,7 +239,7 @@
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM) || HAS_TRAIT(target, TRAIT_BIMBO))
 					target.add_mood_event("pervert spanked", /datum/mood_event/perv_spanked)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 			else
 				message = (user == target) ? pick("roughly flogs [target.p_them()]self with [src]",
@@ -256,7 +256,7 @@
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM) || HAS_TRAIT(target, TRAIT_BIMBO))
 					target.add_mood_event("pervert spanked", /datum/mood_event/perv_spanked)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 		else
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("disciplines [target.p_them()]self with [src]",
@@ -268,7 +268,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.do_jitter_animation()
 				target.adjust_pain(7)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 
 			else
 				message = (user == target) ? pick("whips [target.p_them()]self with [src]",
@@ -283,7 +283,7 @@
 				target.do_jitter_animation()
 				target.adjust_pain(4)
 				carbon_target?.adjust_arousal(5)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 	user.visible_message(span_purple("[user] [message]!"))
 
