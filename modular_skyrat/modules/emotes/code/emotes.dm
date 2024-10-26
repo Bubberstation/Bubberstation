@@ -318,13 +318,13 @@
 
 /datum/emote/living/blink2
 	key = "blink2"
-	key_third_person = "blinks twice"
+	key_third_person = "blinktwice"
 	message = "blinks twice."
 	message_AI = "has their display flicker twice."
 
 /datum/emote/living/rblink
 	key = "rblink"
-	key_third_person = "rapidly blinks"
+	key_third_person = "rapidblink"
 	message = "rapidly blinks!"
 	message_AI = "has their display port flash rapidly!"
 
@@ -341,7 +341,7 @@
 
 /datum/emote/living/eyeroll
 	key = "eyeroll"
-	key_third_person = "rolls their eyes"
+	key_third_person = "eyerolls"
 	message = "rolls their eyes."
 
 /datum/emote/living/huff
@@ -351,7 +351,7 @@
 
 /datum/emote/living/etwitch
 	key = "etwitch"
-	key_third_person = "twitches their ears"
+	key_third_person = "eartwitch"
 	message = "twitches their ears!"
 
 /datum/emote/living/carbon/human/clear_throat
@@ -463,7 +463,7 @@
 
 /datum/emote/living/baa2
 	key = "baa2"
-	key_third_person = "baas"
+	key_third_person = "bleat"
 	message = "bleats."
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -516,8 +516,8 @@
 	sound = 'modular_skyrat/modules/emotes/sound/voice/warbles.ogg'
 
 /datum/emote/living/trills
-	key = "trills"
-	key_third_person = "trills!"
+	key = "trill"
+	key_third_person = "trills"
 	message = "trills!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -525,7 +525,7 @@
 
 /datum/emote/living/rpurr
 	key = "rpurr"
-	key_third_person = "purrs!"
+	key_third_person = "rpurrs"
 	message = "purrs!"
 	emote_type = EMOTE_AUDIBLE
 	muzzle_ignore = TRUE
@@ -534,7 +534,7 @@
 
 /datum/emote/living/purr //Ported from CitRP originally by buffyuwu.
 	key = "purr"
-	key_third_person = "purrs!"
+	key_third_person = "purrs"
 	message = "purrs!"
 	emote_type = EMOTE_AUDIBLE
 	muzzle_ignore = TRUE
@@ -543,7 +543,7 @@
 
 /datum/emote/living/moo
 	key = "moo"
-	key_third_person = "moos!"
+	key_third_person = "moos"
 	message = "moos!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -551,7 +551,7 @@
 
 /datum/emote/living/honk
 	key = "honk1"
-	key_third_person = "honks loudly like a goose!"
+	key_third_person = "ghonk"
 	message = "honks loudly like a goose!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -579,7 +579,7 @@
 
 /datum/emote/living/mggaow
 	key = "mggaow"
-	key_third_person = "meows loudly"
+	key_third_person = "meowloud"
 	message = "meows loudly!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
