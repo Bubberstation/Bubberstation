@@ -371,7 +371,7 @@
 					speaktrigger += "I feel like I'm on the brink of losing my mind, "
 
 			//collar
-			if(istype(humanoid.wear_neck, /obj/item/clothing/neck/petcollar) && enthrall_chem.lewd)
+			if(humanoid.wear_neck?.kink_collar == TRUE && enthrall_chem.lewd)
 				speaktrigger += "I love the collar you gave me, "
 			//End
 			if(enthrall_chem.lewd)

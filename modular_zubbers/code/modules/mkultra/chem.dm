@@ -540,7 +540,7 @@
 	//Mental health could play a role too in the other direction
 
 	//If you've a collar, you get a sense of pride
-	if(istype(enthrall_victim.wear_neck, /obj/item/clothing/neck/petcollar))
+	if(enthrall_victim.wear_neck?.kink_collar == TRUE)
 		deltaResist *= 0.5
 	if(HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD))
 		deltaResist += 5//even faster!
