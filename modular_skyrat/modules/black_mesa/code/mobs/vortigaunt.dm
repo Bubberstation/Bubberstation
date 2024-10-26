@@ -29,7 +29,7 @@
 	melee_damage_upper = 10
 	retreat_distance = 5
 	minimum_distance = 5
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	gold_core_spawnable = FRIENDLY_SPAWN
 	loot = list(/obj/item/stack/sheet/bone)
 	alert_sounds = list(

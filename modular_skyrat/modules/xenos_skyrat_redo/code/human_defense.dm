@@ -12,14 +12,14 @@
 		if(mob_held_item)
 
 			if(check_block(user, damage = 0, attack_text = "[user.name]"))
-				playsound(loc, 'sound/weapons/parry.ogg', 25, TRUE, -1) //Audio feedback to the fact you just got blocked
+				playsound(loc, 'sound/items/weapons/parry.ogg', 25, TRUE, -1) //Audio feedback to the fact you just got blocked
 				apply_damage(disarm_damage / 2, STAMINA)
 				visible_message(span_danger("[user] attempts to touch [src]!"), \
 					span_danger("[user] attempts to touch you!"), span_hear("You hear a swoosh!"), null, user)
 				to_chat(user, span_warning("You attempt to touch [src]!"))
 				return FALSE
 
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, -1) //The sounds of these are changed so the xenos can actually hear they are being non-lethal
+			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 25, TRUE, -1) //The sounds of these are changed so the xenos can actually hear they are being non-lethal
 			Knockdown(3 SECONDS)
 			apply_damage(disarm_damage, STAMINA)
 			visible_message(span_danger("[user] knocks [src] down!"), \
@@ -49,7 +49,7 @@
 
 		var/armor_block = run_armor_check(affecting, MELEE,"","",10)
 
-		playsound(loc, 'sound/weapons/slice.ogg', 25, TRUE, -1)
+		playsound(loc, 'sound/items/weapons/slice.ogg', 25, TRUE, -1)
 		visible_message(span_danger("[user] slashes at [src]!"), \
 						span_userdanger("[user] slashes at you!"), span_hear("You hear a sickening sound of a slice!"), null, user)
 		to_chat(user, span_danger("You slash at [src]!"))

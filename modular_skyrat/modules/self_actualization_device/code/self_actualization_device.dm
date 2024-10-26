@@ -175,7 +175,7 @@
 	say("Procedure validation in progress...")
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(!isnull(human_occupant.ckey) && isnull(human_occupant.client)) // player mob, currently disconnected
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Validation failed: No elicited response from occupant genes. Subject may be suffering from Sudden Sleep Disorder.")
 		return
 
@@ -195,7 +195,7 @@
 		update_appearance()
 	else
 		player_consent = NO_CONSENT
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Validation failed: Occupant genes have willfully rejected the procedure. You may try again if you think this was an error.")
 		update_appearance()
 
