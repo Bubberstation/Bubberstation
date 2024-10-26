@@ -1,8 +1,8 @@
 /obj/item/organ/external/genital/belly
 	name = "belly"
 	desc = "You see a belly on their midsection."
-	//icon = 'modular_zzplurt/icons/obj/metical/organs/belly.dmi' //apparently theres no organ sprite?
-	icon_state = "belly"
+	icon = null //apparently theres no organ sprite?
+	icon_state = null
 	drop_when_organ_spilling = FALSE
 	slot = ORGAN_SLOT_BELLY
 	zone = BODY_ZONE_CHEST
