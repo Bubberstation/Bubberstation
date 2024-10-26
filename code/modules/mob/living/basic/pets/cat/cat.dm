@@ -53,7 +53,7 @@
 	var/cult_icon_state = "cat_cult"
 
 /datum/emote/living/basic/pet/cat/meow
-	key = "meow"
+	// key = "meow" // BUBBER EDIT REMOVAL - Instead used by /datum/emote/living/meow
 	key_third_person = "meows"
 	message = "meows!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
@@ -61,7 +61,7 @@
 	sound = SFX_CAT_MEOW
 
 /datum/emote/living/basic/pet/cat/purr
-	key = "purr"
+	// key = "purr" // BUBBER EDIT REMOVAL - Instead used by /datum/emote/living/purr
 	key_third_person = "purrs"
 	message = "purrs."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
