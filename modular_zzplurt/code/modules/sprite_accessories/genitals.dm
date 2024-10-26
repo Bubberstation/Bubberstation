@@ -58,9 +58,10 @@
 	icon = 'modular_zzplurt/icons/mob/human/genitals/belly.dmi'
 	organ_type = /obj/item/organ/external/genital/belly
 	associated_organ_slot = ORGAN_SLOT_BELLY
-	color_src = USE_MATRIXED_COLORS
-	always_color_customizable = TRUE
 	key = ORGAN_SLOT_BELLY
+	color_src = USE_ONE_COLOR
+	always_color_customizable = TRUE
+	relevent_layers = list(BODY_FRONT_LAYER, BODY_BEHIND_LAYER)
 	genetic = TRUE
 
 /datum/sprite_accessory/genital/belly/none
@@ -72,4 +73,3 @@
 /datum/sprite_accessory/genital/belly/normal
 	icon_state = "pair" //????
 	name = "Belly"
-	color_src = null

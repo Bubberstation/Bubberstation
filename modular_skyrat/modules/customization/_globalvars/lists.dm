@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(breast_size_translation, list(
 	"14" = BREAST_SIZE_N,
 	"15" = BREAST_SIZE_O,
 	"16" = BREAST_SIZE_P,
+	//splurt sizes here
 	"17" = BREAST_SIZE_R,
 	"18" = BREAST_SIZE_S,
 	"19" = BREAST_SIZE_T,
@@ -42,11 +43,24 @@ GLOBAL_LIST_INIT(breast_size_to_number, list(
 	BREAST_SIZE_N = 14,
 	BREAST_SIZE_O = 15,
 	BREAST_SIZE_P = 16,
+	//splurt sizes here
 	BREAST_SIZE_R = 17,
 	BREAST_SIZE_S = 18,
 	BREAST_SIZE_T = 19,
 	))
 
+//SPLURT EDIT START
+/*
+GLOBAL_LIST_INIT(balls_size_translation, list(
+	"0" = "Small",
+	"1" = "Average",
+	"2" = "Big",
+	"3" = "Very Big",
+	"4" = "Enormous",
+	"5" = "Immense",
+	"6" = "Gargantuan"
+	))
+*/
 GLOBAL_LIST_INIT(balls_size_translation, list(
 	"1" = "Small",
 	"2" = "Average",
@@ -54,6 +68,7 @@ GLOBAL_LIST_INIT(balls_size_translation, list(
 	"4" = "Enormous",
 	"5" = "Gargantuan"
 	))
+//SPLURT EDIT END
 
 GLOBAL_LIST_INIT(marking_zone_to_bitflag, list(
 	BODY_ZONE_HEAD = HEAD,
@@ -81,7 +96,9 @@ GLOBAL_LIST_INIT(preference_balls_sizes, list(
 	"Small",
 	"Average",
 	"Big",
+	//"Very Big" //SPLURT EDIT
 	"Enormous",
+	//"Immense", //SPLURT EDIT
 	"Gargantuan"
 	))
 

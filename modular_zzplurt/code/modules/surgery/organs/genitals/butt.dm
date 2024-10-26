@@ -37,7 +37,7 @@
 /obj/item/organ/external/genital/butt/set_size(size)
 	. = ..()
 	spawn(0) //set_size is called by build_from_dna.. which executes before Insert assigns owner. This gets around that
-		var/obj/item/organ/external/genital/anus/anus = owner.get_organ_slot(ORGAN_SLOT_ANUS)
+		var/obj/item/organ/external/genital/anus/anus = owner?.get_organ_slot(ORGAN_SLOT_ANUS) //sometimes
 		if(!anus)
 			return
 
