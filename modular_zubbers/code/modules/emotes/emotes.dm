@@ -139,7 +139,7 @@
 	message = "yips twice!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/emotes/yip.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/yip.ogg'
 
 /datum/emote/living/yip
 	key = "yip"
@@ -150,6 +150,6 @@
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
 /datum/emote/living/yip/get_sound(mob/living/user)
-	return pick('modular_zubbers/modules/emotes/sound/emotes/yip1.ogg',
-				'modular_zubbers/modules/emotes/sound/emotes/yip2.ogg',
-				'modular_zubbers/modules/emotes/sound/emotes/yip2.ogg')
+	return pick('modular_zubbers/code/modules/emotes/sound/voice/yip1.ogg',
+				'modular_zubbers/code/modules/emotes/sound/voice/yip2.ogg',
+				'modular_zubbers/code/modules/emotes/sound/voice/yip2.ogg')
