@@ -112,7 +112,7 @@
 
 /datum/emote/living/tail_thump
 	key = "tailthump"
-	key_third_person = "thumps"
+	key_third_person = "tailthumps"
 	message = "thumps their tail!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
