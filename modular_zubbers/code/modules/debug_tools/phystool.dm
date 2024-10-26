@@ -13,7 +13,7 @@
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 1
-	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
+	drop_sound = 'sound/items/handling/tools/screwdriver_drop.ogg'
 	pickup_sound = 'modular_zubbers/sound/phystools/toolgun_select.ogg'
 	resistance_flags = INDESTRUCTIBLE
 
