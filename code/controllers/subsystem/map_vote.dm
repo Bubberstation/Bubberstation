@@ -79,10 +79,9 @@ SUBSYSTEM_DEF(map_vote)
 		send_map_vote_notice("No valid maps.")
 		return
 
-	to_chat(world, span_purple("Map Vote\n<hr>\n[tally_printout]")) // BUBBER EDIT ADDITION - Show map vote tallies in result
 	var/winner = pick_weight(filter_cache_to_valid_maps())
 	set_next_map(config.maplist[winner])
-	send_map_vote_notice("[span_bold(next_map_config.map_name)] selected based on weighted random.\n\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.") // BUBBER EDIT CHANGE - Show map vote tallies in result
+	send_map_vote_notice("Map Selected - [span_bold(next_map_config.map_name)]")
 
 	// do not reset tallies if only one map is even possible
 	if(length(valid_maps) > 1)
@@ -158,4 +157,4 @@ SUBSYSTEM_DEF(map_vote)
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
 		data += "[map.map_name] - [map_vote_cache[map_id]]"
-	tally_printout = examine_block("Map Vote (Including Carryover)\n<hr>\n[data.Join("\n")]") // BUBBER EDIT CHANGE - Show map vote tallies in result
+	tally_printout = examine_block("Current Tallies\n<hr>\n[data.Join("\n")]")
