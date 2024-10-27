@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(map_vote)
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, span_purple(examine_block("Map Vote\n<hr>\n[messages.Join("\n")]")))
+	to_chat(world, span_purple(examine_block("Map Vote\n<hr>[messages.Join("\n")]"))) // BUBBER EDIT CHANGE - Map Vote Formatting
 
 /datum/controller/subsystem/map_vote/proc/finalize_map_vote(datum/vote/map_vote/map_vote)
 	if(already_voted)
@@ -158,4 +158,4 @@ SUBSYSTEM_DEF(map_vote)
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
 		data += "[map.map_name] - [map_vote_cache[map_id]]"
-	tally_printout = examine_block("Map Vote (Including Carryover)\n<hr>\n[data.Join("\n")]") // BUBBER EDIT CHANGE - Show map vote tallies in result
+	tally_printout = examine_block("Map Vote (Including Carryover)\n<hr>[data.Join("\n")]") // BUBBER EDIT CHANGE - Show map vote tallies in result
