@@ -1,7 +1,7 @@
 /obj/item/implant/hide_backpack
 	name = "storage concealment implant"
 	desc = "Prevents your backpack from being observable by the naked eye."
-	icon = 'modular_splurt/icons/obj/storage.dmi'
+	icon = 'modular_zzplurt/icons/obj/storage.dmi'
 	icon_state = "backpack_faded"
 
 	// Custom action for extra customization
@@ -84,7 +84,7 @@
 		button_icon_state = "backpack_faded"
 	else
 		// Normal backpack
-		button_icon = 'icons/obj/storage.dmi'
+		button_icon = 'icons/obj/storage/backpack.dmi'
 		button_icon_state = "backpack"
 
 	// Update icon state

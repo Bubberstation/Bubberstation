@@ -44,7 +44,7 @@
 	name = "Hypnotize"
 	desc = "Stare deeply into someone's eyes, drawing them into a hypnotic slumber."
 	button_icon_state = "Hypno_eye"
-	button_icon = 'modular_splurt/icons/mob/actions/lewd_actions/lewd_icons.dmi'
+	button_icon = 'modular_zzplurt/icons/mob/actions/lewd_actions/lewd_icons.dmi'
 	background_icon_state = "bg_alien"
 	transparent_when_unavailable = TRUE
 	cooldown_time = HYPNOEYES_COOLDOWN_NORMAL
@@ -369,7 +369,7 @@
 	to_chat(action_owner, "You whisper your [term_suggest] in a smooth calming voice to [action_target]")
 
 	// Play a sound effect
-	playsound(action_target, 'sound/magic/domain.ogg', 20, 1)
+	playsound(action_target, 'sound/magic/smoke.ogg', 20, 1)
 
 	// Display local message
 	action_target.visible_message(span_warning("[action_target] wakes up from their deep slumber!"), span_danger("Your eyelids gently open as you see [action_owner]'s face staring back at you."))

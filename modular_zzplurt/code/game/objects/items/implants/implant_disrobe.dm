@@ -1,7 +1,7 @@
 /obj/item/implant/disrobe
 	name = "rapid disrobe implant"
-	icon = 'icons/obj/clothing/uniforms.dmi'
-	icon_state = "grey"
+	icon = 'icons/obj/clothing/under/color.dmi'
+	icon_state = "jumpsuit"
 
 	// Custom action for extra customization
 	actions_types = list(/datum/action/item_action/disrobe)

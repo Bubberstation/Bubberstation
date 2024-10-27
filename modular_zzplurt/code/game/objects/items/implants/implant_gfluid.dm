@@ -1,7 +1,7 @@
 /* Commented until we have the genital fluid options
 /obj/item/implant/genital_fluid
 	name = "genital fluid implant"
-	icon = 'modular_splurt/icons/obj/implants.dmi'
+	icon = 'modular_zzplurt/icons/obj/implants.dmi'
 	icon_state = "genital_fluid"
 	var/use_blacklist = TRUE
 
@@ -113,7 +113,7 @@
 /datum/action/item_action/genital_fluid_infuse
 	name = "Infuse Genital Fluids"
 	desc = "Activate an integrated reagent receptor device to modify your genital contents."
-	icon_icon = 'modular_splurt/icons/obj/implants.dmi'
+	icon_icon = 'modular_zzplurt/icons/obj/implants.dmi'
 	button_icon_state = "genital_fluid"
 	background_icon_state = "bg_tech"
 
