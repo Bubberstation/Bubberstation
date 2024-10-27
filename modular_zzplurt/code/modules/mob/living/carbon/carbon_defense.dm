@@ -8,10 +8,12 @@
 			if(affecting?.receive_damage(PERSONAL_SPACE_DAMAGE))
 				update_damage_overlays()
 				emote("scream")
+			/*
 			var/list/ouchies = list(
 				'modular_zzplurt/sound/effects/pan0.ogg',
 				'modular_zzplurt/sound/effects/pan1.ogg'
 			)
+			*/
 			playsound(target.loc, , 50, TRUE, ASS_SLAP_EXTRA_RANGE)
 			visible_message(
 				span_danger("[src] slaps [target]'s ass, but it's like solid steel!"),
