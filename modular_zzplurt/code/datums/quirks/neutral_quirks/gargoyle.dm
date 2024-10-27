@@ -191,7 +191,7 @@
 		ADD_TRAIT(L, TRAIT_NOFIRE, STATUE_MUTE) //OH GOD HELP I'M ON FIRE INSIDE THE STATUE I CAN'T MOVE AND I CAN'T STOP IT HAAAAALP - person who experienced this
 		L.click_intercept = src
 		L.faction |= FACTION_MIMIC //Stops mimics from instaqdeling people in statues
-		L.status_flags |= GODMODE
+		ADD_TRAIT(L, TRAIT_GODMODE, STATUE_MUTE)
 		old_max_health = L.maxHealth
 		old_size = H.dna.features["body_size"]
 		atom_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
@@ -219,7 +219,7 @@
 
 /obj/structure/statue/gargoyle/Destroy()
 	if(petrified_mob)
-		petrified_mob.status_flags &= ~GODMODE
+		REMOVE_TRAIT(petrified_mob, TRAIT_GODMODE, STATUE_MUTE)
 		petrified_mob.forceMove(loc)
 		REMOVE_TRAIT(petrified_mob, TRAIT_MUTE, STATUE_MUTE)
 		REMOVE_TRAIT(petrified_mob, TRAIT_IMMOBILIZED, STATUE_MUTE)
