@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 			continue
 		if(movable_content.anchored)
 			continue
-		do_teleport(movable_content, moving_turf, asoundout = 'sound/magic/Disable_Tech.ogg')
+		do_teleport(movable_content, moving_turf, asoundout = 'sound/effects/magic/Disable_Tech.ogg')
 	new /obj/effect/decal/cleanable/ash(target_turf)
 	COOLDOWN_START(src, use_cooldown, 8 SECONDS)
 	return ITEM_INTERACT_SUCCESS

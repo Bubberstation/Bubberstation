@@ -6138,25 +6138,6 @@
 	dir = 4
 	},
 /area/station/service/theater)
-"aDS" = (
-/obj/machinery/camera/directional/north{
-	c_tag = "Fitness Room"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/vending/autodrobe/all_access,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark/side{
-	dir = 9
-	},
-/area/station/commons/fitness)
 "aDT" = (
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet)
@@ -9497,13 +9478,6 @@
 /area/station/commons/locker)
 "aQO" = (
 /obj/structure/closet/wardrobe/white,
-/turf/open/floor/iron,
-/area/station/commons/locker)
-"aQP" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "aQQ" = (
@@ -33025,6 +32999,10 @@
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/main)
+"cMA" = (
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "cMC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
@@ -47086,10 +47064,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/explab)
-"mrX" = (
-/obj/machinery/vending/autodrobe/all_access,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/fore)
 "msc" = (
 /obj/structure/sign/warning/no_smoking/circle/directional/east,
 /turf/closed/wall,
@@ -50029,6 +50003,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
+"oyf" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/iron,
+/area/station/commons/locker)
 "oyM" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/head_of_security,
@@ -50455,6 +50436,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"oOQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/station/maintenance/abandon_cafeteria)
 "oOU" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/item/radio/intercom/directional/east,
@@ -50973,6 +50959,25 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/barber)
+"pix" = (
+/obj/machinery/camera/directional/north{
+	c_tag = "Fitness Room"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/vending/autodrobe,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark/side{
+	dir = 9
+	},
+/area/station/commons/fitness)
 "piD" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/portable_atmospherics/pump,
@@ -54576,6 +54581,11 @@
 "rAC" = (
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
+"rBG" = (
+/obj/machinery/vending/autodrobe,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/station/maintenance/abandon_cafeteria)
 "rBN" = (
 /obj/effect/turf_decal/bot,
 /turf/closed/wall/r_wall,
@@ -55191,6 +55201,12 @@
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
+"sad" = (
+/obj/effect/spawner/random/structure/grille,
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/space/basic,
+/area/space/nearstation)
 "sas" = (
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
@@ -57043,12 +57059,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/explab)
-"tnt" = (
-/obj/effect/spawner/random/structure/grille,
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/space/basic,
-/area/space/nearstation)
 "tnF" = (
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet{
@@ -60656,11 +60666,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/science/server)
-"vOr" = (
-/obj/machinery/vending/autodrobe/all_access,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/station/maintenance/abandon_cafeteria)
 "vOt" = (
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/tile/purple/opposingcorners{
@@ -61756,11 +61761,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
-"wCp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/boozeomat/all_access,
-/turf/open/floor/wood,
-/area/station/maintenance/abandon_cafeteria)
 "wCx" = (
 /obj/structure/frame/computer,
 /obj/effect/mapping_helpers/broken_floor,
@@ -82051,7 +82051,7 @@ aLE
 avJ
 aOn
 aPA
-aQP
+oyf
 axi
 aTx
 aTB
@@ -86213,7 +86213,7 @@ vLX
 bCq
 nsM
 iMH
-wCp
+oOQ
 bCq
 kOB
 otQ
@@ -88273,7 +88273,7 @@ tlT
 wqq
 wqq
 vVc
-vOr
+rBG
 bCq
 bUt
 bCq
@@ -100277,7 +100277,7 @@ aBV
 aBW
 aCq
 rQR
-aDS
+pix
 aua
 aGb
 ams
@@ -103704,7 +103704,7 @@ cdJ
 bzs
 sPq
 sPq
-tnt
+sad
 caF
 sPq
 sPq
@@ -112112,7 +112112,7 @@ alP
 anf
 dJh
 fzr
-mrX
+cMA
 alP
 nAp
 qPm

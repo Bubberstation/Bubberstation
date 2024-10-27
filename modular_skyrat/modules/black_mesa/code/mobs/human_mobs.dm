@@ -25,7 +25,7 @@
 	melee_damage_upper = 10
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	combat_mode = TRUE
 	loot = list(/obj/effect/gibspawner/human, /obj/item/melee/baton)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
@@ -56,7 +56,7 @@
 	icon_state = "hecu_ranged"
 	icon_living = "hecu_ranged"
 	casingtype = /obj/item/ammo_casing/a50ae
-	projectilesound = 'sound/weapons/gun/pistol/shot.ogg'
+	projectilesound = 'sound/items/weapons/gun/pistol/shot.ogg'
 	loot = list(/obj/effect/gibspawner/human, /obj/effect/spawner/random/hecu_deagle)
 	dodging = TRUE
 	rapid_melee = 1
@@ -66,7 +66,7 @@
 	icon_state = "hecu_ranged_smg"
 	icon_living = "hecu_ranged_smg"
 	casingtype = /obj/item/ammo_casing/c34
-	projectilesound = 'sound/weapons/gun/smg/shot.ogg'
+	projectilesound = 'sound/items/weapons/gun/smg/shot.ogg'
 	loot = list(/obj/effect/gibspawner/human, /obj/effect/spawner/random/hecu_smg)
 
 /mob/living/simple_animal/hostile/blackmesa/sec
@@ -90,7 +90,7 @@
 	melee_damage_upper = 7
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	loot = list(/obj/effect/gibspawner/human, /obj/item/clothing/suit/armor/vest/blueshirt)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 7.5
@@ -161,7 +161,7 @@
 	icon_state = "security_guard_ranged"
 	icon_living = "security_guard_ranged"
 	casingtype = /obj/item/ammo_casing/c9mm
-	projectilesound = 'sound/weapons/gun/pistol/shot.ogg'
+	projectilesound = 'sound/items/weapons/gun/pistol/shot.ogg'
 	loot = list(/obj/effect/gibspawner/human, /obj/item/clothing/suit/armor/vest/blueshirt, /obj/item/gun/ballistic/automatic/pistol/sol)
 	rapid_melee = 1
 
@@ -221,6 +221,6 @@
 	icon_living = "blackops_ranged"
 	casingtype = /obj/item/ammo_casing/c40sol
 	projectilesound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	loot = list(/obj/effect/gibspawner/human, /obj/item/ammo_box/magazine/c40sol_rifle/standard)
 	rapid_melee = 1

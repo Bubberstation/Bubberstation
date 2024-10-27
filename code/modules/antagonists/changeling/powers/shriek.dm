@@ -27,7 +27,7 @@
 				SEND_SOUND(C, sound('sound/effects/screech.ogg'))
 
 		if(issilicon(M))
-			SEND_SOUND(M, sound('sound/weapons/flash.ogg'))
+			SEND_SOUND(M, sound('sound/items/weapons/flash.ogg'))
 			M.Paralyze(rand(100,200))
 
 	for(var/obj/machinery/light/L in range(4, user))
@@ -43,16 +43,23 @@
 	chemical_cost = 20
 	dna_cost = 1
 	disabled_by_fire = FALSE
+	COOLDOWN_DECLARE(dissonant_shriek_cooldown) //BUBBER EDIT: DECLARES A COOLDOWN
 
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
 		user.balloon_alert(user, "can't shriek in pipes!")
 		return FALSE
+	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
+	if(!COOLDOWN_FINISHED(src, dissonant_shriek_cooldown))
+		user.balloon_alert(user, "throat is sore!")
+		return FALSE
+	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	empulse(get_turf(user), 2, 5, 1)
 	for(var/obj/machinery/light/L in range(5, usr))
 		L.on = TRUE
 		L.break_light_tube()
 		stoplag()
+		COOLDOWN_START(src, dissonant_shriek_cooldown, 10 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
 
 	return TRUE

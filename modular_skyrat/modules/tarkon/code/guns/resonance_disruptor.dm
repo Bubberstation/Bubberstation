@@ -40,7 +40,7 @@
 	projectile_type = /obj/projectile/resonant_bolt
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/resonance/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
 	..()
@@ -141,7 +141,7 @@
 /datum/status_effect/resonant_link/proc/detonate()
 	SIGNAL_HANDLER
 	var/turf/src_turf = get_turf(src)
-	playsound(src_turf, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
+	playsound(src_turf, 'sound/items/weapons/resonator_blast.ogg', 50, TRUE)
 	check_pressure(src_turf)
 	if(creator)
 		log_combat(creator, owner, "used a resonator field on", "resonator")
