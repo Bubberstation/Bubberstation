@@ -19,8 +19,6 @@
 		switch(cyborg_base_icon)
 			if("mekamine")
 				cyborg.AddComponent(/datum/component/robot_smoke)
-			else
-
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
 		//cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)// BUBBER REMOVAL - Moved into update_footsteps()

@@ -270,13 +270,13 @@
 	JOB_WARDEN, \
 	JOB_SECURITY_OFFICER, \
 	JOB_DETECTIVE, \
-) \
+)
 
 #define BLOODSUCKER_RESTRICTED_ROLES list( \
 	JOB_AI, \
 	JOB_CYBORG, \
 	JOB_CURATOR, \
-) \
+)
 
 #define BLOODSUCKER_RESTRICTED_SPECIES list( \
 	/datum/species/synthetic, \
@@ -289,5 +289,5 @@
 	/datum/species/skeleton, \
 	/datum/species/zombie, \
 	/datum/species/mutant, \
-	/datum/species/dullahan \
-) \
+	/datum/species/dullahan, \
+)
