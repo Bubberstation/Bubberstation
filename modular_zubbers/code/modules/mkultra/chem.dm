@@ -187,7 +187,11 @@
 	switch(DistApart)
 		if(0 to 8)//If the enchanter is within range, increase enthrallTally, remove withdrawal subproc and undo withdrawal effects.
 			if(phase <= 2)
-				enthrallTally += distancelist[get_dist(master, owner)+1]
+				// Collars speed up the enthralment process.
+				if(enthrall_victim.wear_neck?.kink_collar == TRUE)
+					enthrallTally += distancelist[get_dist(master, owner)+1] * 1.3
+				else
+					enthrallTally += distancelist[get_dist(master, owner)+1]
 			if(withdrawalTick > 0)
 				withdrawalTick -= 1
 			//calming effects
