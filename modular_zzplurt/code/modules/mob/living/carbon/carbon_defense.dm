@@ -49,7 +49,7 @@
 				)
 				to_chat(target, span_purple("[src] smacks your big fat butt and sends it [pick("rippling","jiggling","sloshing","clapping","wobbling")]! It [pick("ripples","jiggles","sloshes","claps","wobbles")] about and throws you off balance!"))
 		do_ass_slap_animation(target)
-		playsound(target.loc, 'sound/weapons/slap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
+		playsound(target.loc, 'sound/items/weapons/slap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
 
 	. = ..()
 

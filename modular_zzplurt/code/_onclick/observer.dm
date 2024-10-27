@@ -13,7 +13,7 @@
 	if(HAS_TRAIT(src, TRAIT_STEEL_ASS))
 		to_chat(src, span_danger("You feel something bounce off your steely asscheeks, but nothing is there..."))
 		to_chat(user, span_danger("You slap \The [src]'s ass, but your ethereal hand bounces right off!"))
-		playsound(src.loc, 'sound/weapons/tap.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/items/weapons/tap.ogg', 50, 1, -1)
 		return
 	/*if(istype(H))
 		H.adjust_arousal(20, "masochism", maso=TRUE)
@@ -21,7 +21,7 @@
 			H.mob_climax(forced_climax=TRUE, cause="masochism")
 	if(!HAS_TRAIT(src, TRAIT_PERMABONER))
 		H.dna.species.stop_wagging_tail(src)*/
-	playsound(src.loc, 'sound/weapons/slap.ogg', 50, 1, -1)
+	playsound(src.loc, 'sound/items/weapons/slap.ogg', 50, 1, -1)
 	visible_message(\
 		span_danger("You hear someone slap \The [src]'s ass, but nobody's there..."),
 		span_notice("Somebody slaps your ass, but nobody is around..."),

@@ -34,4 +34,4 @@
 		visible_message(span_userlove("[src] suddenly bursts out of [p_their()] clothes!"), span_userlove("You suddenly burst out of your clothes!"))
 
 		// Play the ripped poster sound
-		playsound(loc, 'sound/items/poster_ripped.ogg', 50, 1)
+		playsound(loc, 'sound/items/poster/poster_ripped.ogg', 50, 1)
