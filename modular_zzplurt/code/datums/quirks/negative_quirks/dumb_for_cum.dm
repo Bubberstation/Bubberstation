@@ -28,7 +28,7 @@
 	REMOVE_TRAIT(quirk_holder, TRAIT_PACIFISM, QUIRK_TRAIT)
 
 	// Remove mood event
-	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, QMOOD_DUMB_CUM)
+	quirk_holder.clear_mood_event(QMOOD_DUMB_CUM)
 
 	// Remove timer
 	deltimer(timer)
@@ -58,7 +58,7 @@
 	ADD_TRAIT(quirk_holder, TRAIT_PACIFISM, QUIRK_TRAIT)
 
 	// Add negative mood effect
-	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, QMOOD_DUMB_CUM, /datum/mood_event/cum_craving)
+	quirk_holder.add_mood_event(QMOOD_DUMB_CUM, /datum/mood_event/cum_craving)
 
 /datum/quirk/dumb_for_cum/proc/uncrave()
 	// Remove active status trait
@@ -70,7 +70,7 @@
 	REMOVE_TRAIT(quirk_holder, TRAIT_PACIFISM, QUIRK_TRAIT)
 
 	// Add positive mood event
-	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, QMOOD_DUMB_CUM, /datum/mood_event/cum_stuffed)
+	quirk_holder.add_mood_event(QMOOD_DUMB_CUM, /datum/mood_event/cum_stuffed)
 
 	// Remove timer
 	deltimer(timer)
@@ -78,3 +78,12 @@
 
 	// Add new timer
 	timer = addtimer(CALLBACK(src, PROC_REF(crave)), timer_trigger, TIMER_STOPPABLE)
+
+/datum/mood_event/cum_craving
+	description = span_warning("I... NEED... CUM...\n")
+	mood_change = -20
+
+/datum/mood_event/cum_stuffed
+	description = span_nicegreen("The cum feels so good inside me!\n")
+	mood_change = 8
+	timeout = 5 MINUTES
