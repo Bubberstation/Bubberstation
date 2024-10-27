@@ -46,7 +46,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /datum/element/mob_holder/proc/mob_try_pickup(mob/living/source, mob/user)
-	if(!ishuman(user) || !user.Adjacent(source) || user.incapacitated())
+	if(!ishuman(user) || !user.Adjacent(source) || user.incapacitated)
 		return FALSE
 	if(user.get_active_held_item())
 		to_chat(user, span_warning("Your hands are full!"))

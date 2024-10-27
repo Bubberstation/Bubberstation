@@ -1,3 +1,6 @@
+/mob/living
+	var/datum/action/sizecode_smallsprite/small_sprite = new
+
 /// Toggle admin frozen
 /mob/living/proc/toggle_admin_freeze(client/admin)
 	admin_frozen = !admin_frozen

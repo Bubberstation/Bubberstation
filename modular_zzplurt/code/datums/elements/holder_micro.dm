@@ -56,7 +56,7 @@
 /datum/element/mob_holder/micro/proc/mob_try_pickup_micro(mob/living/carbon/source, mob/living/carbon/user)
 	if(!(resolve_intent_name(user.combat_mode) == "grab"))
 		return FALSE
-	if(!ishuman(user) || !user.Adjacent(source) || user.incapacitated())
+	if(!ishuman(user) || !user.Adjacent(source) || user.incapacitated)
 		return FALSE
 	if(source == user)
 		to_chat(user, span_warning("You can't pick yourself up."))
@@ -127,7 +127,7 @@
 	return held_mob.examine(user)
 
 /obj/item/clothing/head/mob_holder/micro/container_resist_act(mob/living/resisting)
-	if(resisting.incapacitated())
+	if(resisting.incapacitated)
 		to_chat(resisting, span_warning("You can't escape while you're restrained like this!"))
 		return
 	var/mob/living/carrier = get_atom_on_turf(src, /mob/living)
