@@ -213,8 +213,8 @@
 		SEND_SIGNAL(petrified_mob, COMSIG_ATOM_EXAMINE, user, .)
 		. -= span_notice("<i>You examine [src] closer, but find nothing of interest...</i>")
 
-/obj/structure/statue/gargoyle/handle_atom_del(atom/A)
-	if(A == petrified_mob)
+/obj/structure/statue/gargoyle/Exited(atom/movable/gone, direction)
+	if(gone == petrified_mob)
 		petrified_mob = null
 
 /obj/structure/statue/gargoyle/Destroy()
@@ -248,7 +248,7 @@
 			comp.is_shifted = TRUE //just prevents bad things tbh
 			comp.how_tilted = was_tilted
 		if (pulledby && pulledby.pulling == src) //gotta checked just in case
-			INVOKE_ASYNC(pulledby, PROC_REF(start_pulling), petrified_mob, supress_message = TRUE)
+			INVOKE_ASYNC(pulledby, TYPE_PROC_REF(/atom/movable, start_pulling), petrified_mob, supress_message = TRUE)
 		var/datum/quirk/gargoyle/T = petrified_mob.get_quirk(/datum/quirk/gargoyle)
 		if (T)
 			T.transformed = 0
