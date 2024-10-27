@@ -4,7 +4,7 @@
 	name = "Toggle Giant Sprite"
 	desc = "Others will always see you as giant"
 	button_icon = 'icons/hud/screen_gen.dmi'
-	button_icon_state = "healthdoll"
+	button_icon_state = "healthdoll_OVERLAY"
 	background_icon_state = "bg_alien"
 	var/small = FALSE
 	//var/image/small_icon
