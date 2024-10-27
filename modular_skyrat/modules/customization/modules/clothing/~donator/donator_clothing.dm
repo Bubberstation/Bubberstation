@@ -151,7 +151,7 @@
 			if("No")
 				return
 			if("Maybe")
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 				audible_message(span_warning("The [src] buzzes!"))
 				return
 
@@ -479,7 +479,7 @@
 	var/goggles = FALSE
 
 /obj/item/clothing/head/avipilot/proc/adjust_goggles(mob/living/carbon/user)
-	if(user?.incapacitated())
+	if(user?.incapacitated)
 		return
 	if(goggles)
 		icon_state = "avipilotup"

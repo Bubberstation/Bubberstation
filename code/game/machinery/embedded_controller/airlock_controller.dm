@@ -6,7 +6,7 @@
 #define AIRLOCK_STATE_OUTOPEN "outopen"
 
 /obj/machinery/airlock_controller
-	icon = 'icons/obj/machines/wallmounts.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "airlock_control_standby"
 	base_icon_state = "airlock_control"
 
@@ -244,7 +244,7 @@
 
 	return data
 
-/obj/machinery/airlock_controller/ui_act(action, params)
+/obj/machinery/airlock_controller/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return

@@ -49,7 +49,7 @@
 	reconcile_air()
 	//Only react if the mix has changed, and don't keep updating if it hasn't
 	update = air.react(src)
-	//CalculateGasmixColor(air) // SKYRAT EDIT REMOVAL - Pipe gas visuals removed
+	//CalculateGasmixColor(air) // SKYRAT EDIT REMOVAL - Pipe gas visuals removed // SKYRAT TODO - Look into this
 
 /datum/pipeline/proc/set_air(datum/gas_mixture/new_air)
 	if(new_air == air)
@@ -96,7 +96,7 @@
 	while(possible_expansions.len)
 		for(var/obj/machinery/atmospherics/borderline in possible_expansions)
 			var/list/result = borderline.pipeline_expansion(src)
-			if(!(result && result.len))
+			if(!result?.len)
 				possible_expansions -= borderline
 				continue
 			for(var/obj/machinery/atmospherics/considered_device in result)

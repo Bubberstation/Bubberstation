@@ -269,7 +269,7 @@
 		return
 	flipped = !flipped
 	balloon_alert(usr, span_notice("You flip [src]."))
-	playsound(src, 'sound/items/change_drill.ogg', 50)
+	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)

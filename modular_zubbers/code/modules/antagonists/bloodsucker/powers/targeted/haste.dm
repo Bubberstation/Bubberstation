@@ -79,7 +79,7 @@
 	// Go to target turf
 	// DO NOT USE WALK TO.
 	owner.balloon_alert(owner, "you dash into the air!")
-	playsound(get_turf(owner), 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	playsound(get_turf(owner), 'sound/items/weapons/punchmiss.ogg', 25, 1, -1)
 	var/safety = get_dist(user, targeted_turf) * 3 + 1
 	var/consequetive_failures = 0
 	active = TRUE
@@ -93,7 +93,7 @@
 				break //just stop
 		else
 			consequetive_failures = 0 //reset so we can keep moving
-		if(user.resting || user.incapacitated(IGNORE_RESTRAINTS, IGNORE_GRAB)) //actually down? stop.
+		if(user.resting || INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS)) //actually down? stop.
 			break
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)

@@ -133,7 +133,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		to_chat(affected_mob, "You feel confused and disoriented.")
 		if(prob(30))
-			SEND_SOUND(affected_mob, sound('sound/weapons/flash_ring.ogg'))
+			SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -1348,6 +1348,9 @@
 
 	if (affected_mob.get_timed_status_effect_duration(/datum/status_effect/hallucination) >= 10 SECONDS)
 		affected_mob.adjust_hallucinations(-10 SECONDS * REM * seconds_per_tick)
+
+	if(affected_mob.getStaminaLoss() >= 100)
+		affected_mob.reagents.remove_reagent(type, 2 * REM * seconds_per_tick)
 
 	var/need_mob_update = FALSE
 	if(SPT_PROB(10, seconds_per_tick))
