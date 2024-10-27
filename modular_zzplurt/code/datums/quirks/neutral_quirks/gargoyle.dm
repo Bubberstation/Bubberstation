@@ -3,6 +3,7 @@
 	desc = "You are some form of gargoyle! You can only leave your stone form for so long, and will have to return to it to regain energy. On the bright side, you heal in statue form!"
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	icon = FA_ICON_MONUMENT
 	var/energy = 0
 	var/transformed = 0
 	var/cooldown = 0

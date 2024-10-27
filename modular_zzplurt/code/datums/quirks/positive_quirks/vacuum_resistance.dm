@@ -4,6 +4,7 @@
     value = 3
     gain_text = span_notice("Your physique attunes to the silence of space, now able to operate in zero pressure.")
     lose_text = span_notice("Your physiology reverts as your spacefaring gifts lay dormant once more.")
+    icon = FA_ICON_USER_ASTRONAUT
     var/list/perks = list(TRAIT_RESISTCOLD, TRAIT_RESISTLOWPRESSURE)
 
 /datum/quirk/vacuum_resistance/add(client/client_source)

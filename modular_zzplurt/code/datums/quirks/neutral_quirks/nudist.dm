@@ -6,6 +6,7 @@
 	medical_record_text = "Patient expresses a psychological need to remain unclothed."
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED
+	icon = FA_ICON_LEAF
 	var/is_nude
 
 /datum/quirk/nudist/add(client/client_source)

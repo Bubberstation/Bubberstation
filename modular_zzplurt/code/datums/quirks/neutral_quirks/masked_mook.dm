@@ -6,6 +6,7 @@
 	value = 0
 	medical_record_text = "Patient feels more secure when wearing a gas mask."
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED | QUIRK_PROCESSES
+	icon = FA_ICON_MASK_VENTILATOR
 
 /datum/quirk/masked_mook/process(seconds_per_tick)
 	var/mob/living/carbon/human/H = quirk_holder

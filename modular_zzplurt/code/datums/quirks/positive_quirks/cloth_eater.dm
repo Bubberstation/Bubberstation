@@ -4,3 +4,4 @@
 	value = 1
 	var/mood_category ="cloth_eaten"
 	mob_trait = TRAIT_CLOTH_EATER
+	icon = FA_ICON_SHIRT

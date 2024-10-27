@@ -6,6 +6,7 @@
 	gain_text = span_notice("Your body feels more malleable...")
 	lose_text = span_notice("Your body is more firm.")
 	medical_record_text = "Patient's body seems unusually malleable."
+	icon = FA_ICON_PEOPLE_ARROWS
 	var/datum/action/innate/alter_form/alter_form_action
 
 /datum/quirk/body_morpher/add(client/client_source)

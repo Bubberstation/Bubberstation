@@ -6,3 +6,4 @@
 	gain_text = span_notice("A curse from a land where men return as beasts runs deep in your blood.")
 	lose_text = span_notice("You feel the weight of the curse in your blood finally gone.")
 	medical_record_text = "Patient suffers from an unknown type of aversion to holy reagents. Keep them away from a chaplain."
+	icon = FA_ICON_FIRE_FLAME_CURVED

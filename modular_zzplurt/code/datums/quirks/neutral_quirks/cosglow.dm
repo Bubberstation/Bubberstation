@@ -6,6 +6,7 @@
 	mob_trait = TRAIT_COSGLOW
 	gain_text = span_notice("You feel empowered by a three-letter agency!")
 	lose_text = span_notice("You realize that working for the space CIA sucks!")
+	icon = FA_ICON_PERSON_RAYS
 
 /datum/quirk/cosglow/add()
 	// Define quirk holder mob

@@ -6,3 +6,4 @@
 	gain_text = span_purple("You feel like covering something in layer of your fluids.")
 	lose_text = span_notice("You don't feel 'messy' anymore.")
 	medical_record_text = "Had to be sedated after covering entire hospital wing with cum."
+	icon = FA_ICON_DROPLET

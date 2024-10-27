@@ -3,6 +3,7 @@
 	name = "Fluid Infuser"
 	desc = "You just couldn't wait to get one of NanoTrasen's new fluid inducers when they first came out, so now you can hop in the station with editable titty milk!"
 	value = 0
+	icon = FA_ICON_BOTTLE_DROPLET
 
 /datum/quirk/fluid_infuser/on_spawn()
 	. = ..()

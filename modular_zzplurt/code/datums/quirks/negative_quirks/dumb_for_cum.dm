@@ -7,6 +7,7 @@
 	lose_text = span_notice("Cum didn't even taste that good, anyways.")
 	medical_record_text = "Patient seems to have an unhealthy psychological obsession with seminal fluids."
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED
+	icon = FA_ICON_DROPLET
 	var/timer
 	var/timer_trigger = 15 MINUTES
 

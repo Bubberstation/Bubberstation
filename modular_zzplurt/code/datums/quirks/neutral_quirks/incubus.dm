@@ -4,6 +4,7 @@
 	value = 0
 	mob_trait = TRAIT_INCUBUS
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	icon = FA_ICON_COW
 
 /datum/quirk/incubus/add(client/client_source)
 	. = ..()

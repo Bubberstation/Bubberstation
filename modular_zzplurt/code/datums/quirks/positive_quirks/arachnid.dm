@@ -8,7 +8,7 @@
 	gain_text = span_notice("You feel a strange sensation near your anus...")
 	lose_text = span_notice("You feel like you can't spin webs anymore...")
 	processing_quirk = TRUE
-	icon =
+	icon = FA_ICON_SPIDER
 
 /datum/quirk/arachnid/add()
 	. = ..()

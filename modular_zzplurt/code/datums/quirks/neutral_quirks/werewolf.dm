@@ -7,6 +7,7 @@
 	gain_text = span_notice("You feel the full moon beckon.")
 	lose_text = span_notice("The moon's call hushes into silence.")
 	medical_record_text = "Patient has been reported howling at the night sky."
+	icon = FA_ICON_MOON
 	var/list/old_features
 
 /datum/quirk/werewolf/add_chemical_reaction(datum/chemical_reaction/add)

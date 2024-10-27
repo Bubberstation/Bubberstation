@@ -6,3 +6,4 @@
 	gain_text = span_notice("You begin sensing peculiar smells from people's bits...")
 	lose_text = span_notice("People's genitals start smelling all the same to you...")
 	medical_record_text = "Patient attempted to get their doctor to drag his balls accross their face."
+	icon = FA_ICON_SOCCER_BALL

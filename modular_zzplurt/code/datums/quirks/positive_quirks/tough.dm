@@ -5,6 +5,7 @@
 	medical_record_text = "Patient has an abnormally high capacity for injury."
 	gain_text = span_notice("You feel very sturdy.")
 	lose_text = span_notice("You feel less sturdy.")
+	icon = FA_ICON_SHIELD_HEART
 
 /datum/quirk/tough/add(client/client_source)
 	quirk_holder.maxHealth *= 1.1

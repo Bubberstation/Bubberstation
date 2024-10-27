@@ -6,6 +6,7 @@
 	medical_record_text = "Patient contains an unidentified hallowed material concentrated in their blood. Please consult a chaplain."
 	gain_text = span_notice("You feel holy energy starting to flow through your body.")
 	lose_text = span_notice("You feel your holy energy fading away...")
+	icon = FA_ICON_CHURCH
 
 /datum/quirk/hallowed/add(client/client_source)
 	// Define quirk mob.

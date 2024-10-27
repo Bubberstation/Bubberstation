@@ -5,3 +5,4 @@
 	mob_trait = TRAIT_STEEL_ASS
 	gain_text = span_notice("Your ass rivals those of golems.")
 	lose_text = span_notice("Your butt feels more squishy and slappable.")
+	icon = FA_ICON_HAND

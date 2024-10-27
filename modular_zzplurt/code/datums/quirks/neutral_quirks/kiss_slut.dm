@@ -6,3 +6,4 @@
 	gain_text = span_purple("You feel like kissing someone...")
 	lose_text = span_notice("You don't feel like kissing someone anymore...")
 	medical_record_text = "Patient seems to demonstrate an extraordinary liking in kissing."
+	icon = FA_ICON_FACE_KISS_WINK_HEART

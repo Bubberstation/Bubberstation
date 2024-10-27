@@ -6,6 +6,7 @@
 	gain_text = span_notice("You feel a surge of reconstutitive vitality coursing through your body...")
 	lose_text = span_notice("You sense your enhanced reconstutitive ability fading away...")
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	icon = FA_ICON_NOTES_MEDICAL
 
 /datum/quirk/restorative_metabolism/process(seconds_per_tick)
 	var/mob/living/carbon/human/H = quirk_holder

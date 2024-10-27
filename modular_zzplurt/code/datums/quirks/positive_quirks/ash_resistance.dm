@@ -7,6 +7,7 @@
 	medical_record_text = "Patient has an abnormally thick epidermis."
 	gain_text = span_notice("You feel resistant to burning brimstone.")
 	lose_text = span_notice("You feel less as if your flesh is more flamamble.")
+	icon = FA_ICON_FIRE
 
 /* --FALLBACK SYSTEM INCASE THE TRAIT FAILS TO WORK. Do NOT enable this without editing ash_storm.dm to deal stamina damage with ash immunity.
 /datum/quirk/ashresistance/add()

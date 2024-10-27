@@ -6,6 +6,7 @@
 	gain_text = span_notice("Your butt feels extremely smackable.")
 	lose_text = span_notice("Your butt feels normally smackable again.")
 	COOLDOWN_DECLARE(wiggle_cooldown)
+	icon = FA_ICON_CAKE
 
 /datum/quirk/jiggly_ass/add()
 	// Add examine text

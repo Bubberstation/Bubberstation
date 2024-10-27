@@ -4,6 +4,7 @@
     value = 0
     mob_trait = TRAIT_UNDEAD
     quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+    icon = FA_ICON_SKULL_CROSSBONES
 	// Note: The Undead cannot take advantage of healing viruses and genetic mutations, since they have no DNA.
     var/list/zperks = list(TRAIT_STABLEHEART,TRAIT_EASYDISMEMBER,TRAIT_VIRUSIMMUNE,TRAIT_RADIMMUNE,TRAIT_FAKEDEATH,TRAIT_NOSOFTCRIT)
 

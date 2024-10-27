@@ -9,6 +9,7 @@
 	gain_text = span_notice("Your eyes glimmer hypnotically...")
 	lose_text = span_notice("Your eyes return to normal.")
 	medical_record_text = "Prolonged exposure to Patient's eyes exhibits soporific effects."
+	icon = FA_ICON_ARROWS_TO_EYE
 
 /datum/quirk/Hypnotic_gaze/add()
 	// Define quirk mob

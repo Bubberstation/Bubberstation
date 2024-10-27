@@ -4,6 +4,7 @@
 	value = 0
 	mob_trait = TRAIT_SUCCUBUS
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	icon = FA_ICON_DROPLET
 
 /datum/quirk/succubus/add(client/client_source)
 	. = ..()

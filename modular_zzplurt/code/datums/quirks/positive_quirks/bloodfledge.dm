@@ -7,6 +7,7 @@
 	mob_trait = TRAIT_BLOODFLEDGE
 	gain_text = span_notice("You feel a sanguine thirst.")
 	lose_text = span_notice("You feel the sanguine thirst fade away.")
+	icon = FA_ICON_WINE_GLASS
 
 /datum/quirk/bloodfledge/add()
 	// Define quirk mob
