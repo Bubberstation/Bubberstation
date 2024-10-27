@@ -33,7 +33,7 @@
 		update_appearance()
 		set_light(l_range = 1.9, l_power = 5, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
 		if(COOLDOWN_FINISHED(src, alarm_cooldown))
-			playsound(source = src, soundin = 'sound/machines/twobeep.ogg', vol = 50, vary = TRUE)
+			playsound(source = src, soundin = 'sound/machines/beep/twobeep.ogg', vol = 50, vary = TRUE)
 			spasm_animation(1 SECONDS)
 			COOLDOWN_START(src, alarm_cooldown, ALARM_PERIOD)
 	else

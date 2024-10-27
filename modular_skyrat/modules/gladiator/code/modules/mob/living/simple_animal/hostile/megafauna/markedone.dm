@@ -23,7 +23,7 @@
 	attack_verb_simple = "cleave"
 	attack_verb_continuous = "cleaves"
 	attack_sound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'
-	death_sound = 'sound/creatures/space_dragon_roar.ogg'
+	death_sound = 'sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg'
 	death_message = "falls on his sword, ash evaporating from every hole in his armor."
 	gps_name = "Forgotten Signal"
 	gender = MALE
@@ -115,7 +115,7 @@
 	if(prob(block_chance) && (phase == 1 || phase == 4) && !stunned)
 		var/our_turf = get_turf(src)
 		new /obj/effect/temp_visual/block(our_turf, COLOR_YELLOW)
-		playsound(src, 'sound/weapons/parry.ogg', BLOCK_SOUND_VOLUME * 2, vary = TRUE) // louder because lavaland low pressure maybe?
+		playsound(src, 'sound/items/weapons/parry.ogg', BLOCK_SOUND_VOLUME * 2, vary = TRUE) // louder because lavaland low pressure maybe?
 		return FALSE
 	. = ..()
 	update_phase()
@@ -217,6 +217,7 @@
 		var/mob/living/carbon/human/human_target = target
 		var/datum/species/targetspecies = human_target.dna.species
 		// The gladiator hates non-humans, he especially hates ash walkers.
+		// BUBBER TODO - Bring the says back when refactoring to basicmobs
 		if(targetspecies.id == SPECIES_HUMAN)
 			var/static/list/human_messages = list(
 									"Is this all that is left?",
@@ -226,7 +227,7 @@
 									"Show me a good time, miner!",
 									"I'll give you the first hit.",
 								)
-			say(message = pick(human_messages))
+			//say(message = pick(human_messages))
 			introduced |= WEAKREF(target)
 		else if(targetspecies.id == SPECIES_LIZARD_ASH)
 			var/static/list/ashie_messages = list(
@@ -236,7 +237,7 @@
 									"GET OVER HERE!!",
 								)
 
-			say(message = pick(ashie_messages), language = /datum/language/ashtongue)
+			//say(message = pick(ashie_messages), language = /datum/language/ashtongue)
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
@@ -248,13 +249,13 @@
 									"You will make a fine rug!",
 									"For the necropolis!"
 									)
-			say(message = pick(other_humanoid_messages))
+			//say(message = pick(other_humanoid_messages))
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
 	else
 		//simplemobs beware
-		say("It's berserkin' time!")
+		//say("It's berserkin' time!")
 		introduced |= WEAKREF(target)
 
 /// Checks against the Marked One's current health and updates his phase accordingly. Uses variable shitcode to make sure his phase updates only ever happen *once*
@@ -421,7 +422,7 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/bone_knife_throw(atom/target)
 	var/obj/item/knife/combat/bone/boned = new /obj/item/knife/combat/bone(get_turf(src))
 	boned.throwforce = 35
-	playsound(src, 'sound/weapons/bolathrow.ogg', 60, 0)
+	playsound(src, 'sound/items/weapons/bolathrow.ogg', 60, 0)
 	boned.throw_at(target, 7, 3, thrower = src)
 	QDEL_IN(boned, 3 SECONDS)
 

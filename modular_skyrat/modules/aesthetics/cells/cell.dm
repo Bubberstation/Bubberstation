@@ -4,6 +4,10 @@
 	var/charging_icon = "cell_in"
 	connector_type = null
 
+/obj/item/stock_parts/power_store/cell/upgraded
+	icon_state = "upcell"
+	charging_icon = "upcell_in"
+
 /obj/item/stock_parts/power_store/cell/high
 	charging_icon = "hcell_in"
 
