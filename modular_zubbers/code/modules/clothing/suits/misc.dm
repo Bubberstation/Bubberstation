@@ -9,4 +9,26 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	body_parts_covered = CHEST|GROIN
 
+/obj/item/clothing/suit/misc/suit_harness
+	name = "suit harness"
+	desc = "A near-concealed harness meant for going over uniforms. Or lack thereof."
+	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
+	icon_state = "suit_harness"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
+	worn_icon_state = "suit_harness"
+	inhand_icon_state = null
+	body_parts_covered = 0x0
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	attachment_slot_override = CHEST
 
+	//Allowed is same as jackets.
+	allowed = list(
+		/obj/item/flashlight,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/toy,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/lighter,
+		/obj/item/radio,
+		/obj/item/storage/belt/holster,
+	)

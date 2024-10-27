@@ -210,6 +210,7 @@
 	item_flags &= ~ABSTRACT
 	REMOVE_TRAIT(src, TRAIT_NODROP, ORGAN_INSIDE_BODY_TRAIT)
 	interaction_flags_item |= INTERACT_ITEM_ATTACK_HAND_PICKUP
+	SEND_SIGNAL(src, COMSIG_ORGAN_BODYPART_REMOVED, limb, movement_flags) // BUBBER CHANGE, added COMSIG_ORGAN_BODYPART_REMOVED to on_bodypart_remove
 
 /// In space station videogame, nothing is sacred. If somehow an organ is removed unexpectedly, handle it properly
 /obj/item/organ/proc/forced_removal()
@@ -223,7 +224,7 @@
 		stack_trace("Force removed an already removed organ!")
 
 /**
- * Proc that gets called when the organ is surgically removed by someone, can be used for special effects
+ * Proc that gets called when the organ is surgic		d for special effects
  */
 /obj/item/organ/proc/on_surgical_removal(mob/living/user, mob/living/carbon/old_owner, target_zone, obj/item/tool)
 	SHOULD_CALL_PARENT(TRUE)

@@ -482,7 +482,7 @@
 			return
 		switch(choice)
 			if("Plant Name")
-				var/newplantname = reject_bad_text(tgui_input_text(user, "Write a new plant name", "Plant Name", plantname, 20))
+				var/newplantname = reject_bad_text(tgui_input_text(user, "Write a new plant name", "Plant Name", plantname, max_length = MAX_NAME_LEN))
 				if(isnull(newplantname))
 					return
 				if(!user.can_perform_action(src))
@@ -490,7 +490,7 @@
 				name = "[LOWER_TEXT(newplantname)]"
 				plantname = newplantname
 			if("Seed Description")
-				var/newdesc = tgui_input_text(user, "Write a new seed description", "Seed Description", desc, 180)
+				var/newdesc = tgui_input_text(user, "Write a new seed description", "Seed Description", desc, max_length = MAX_DESC_LEN)
 				if(isnull(newdesc))
 					return
 				if(!user.can_perform_action(src))
@@ -499,7 +499,7 @@
 			if("Product Description")
 				if(product && !productdesc)
 					productdesc = initial(product.desc)
-				var/newproductdesc = tgui_input_text(user, "Write a new product description", "Product Description", productdesc, 180)
+				var/newproductdesc = tgui_input_text(user, "Write a new product description", "Product Description", productdesc, max_length = MAX_DESC_LEN)
 				if(isnull(newproductdesc))
 					return
 				if(!user.can_perform_action(src))
@@ -629,11 +629,6 @@
 /obj/item/grown/get_plant_seed()
 	return seed
 
-
-
-
-
-
 /obj/item/seeds/proc/perform_reagent_pollination(obj/item/seeds/donor)
 	var/list/datum/plant_gene/reagent/valid_reagents = list()
 	for(var/datum/plant_gene/reagent/donor_reagent in donor.genes)
@@ -655,11 +650,5 @@
 	if(length(valid_reagents))
 		// pick a valid reagent that our receptor seed don't have and add the gene to it
 		var/datum/plant_gene/reagent/selected_reagent = pick(valid_reagents)
-
 		genes += selected_reagent.Copy()
 		reagents_from_genes()
-
-
-	
-
-

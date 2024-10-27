@@ -61,7 +61,7 @@
 /// This cycles the harness's current mode to the next one, likely using the action button. Goes from Off to Anti to Extra, always.
 /obj/item/gravity_harness/proc/toggle_mode(mob/user, voluntary)
 
-	if(!istype(user) || user.incapacitated())
+	if(!istype(user) || user.incapacitated)
 		return FALSE
 
 	if(!gravity_on && (!current_cell || current_cell.charge < GRAVITY_FIELD_COST))
@@ -259,12 +259,12 @@
 
 	if(!cell_cover_open)
 		balloon_alert(user, "open the cell cover first!")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(current_cell)
 		balloon_alert(user, "cell already installed!")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 
 	/// Shadow realm? I'm sending you to Lake City, FL!
