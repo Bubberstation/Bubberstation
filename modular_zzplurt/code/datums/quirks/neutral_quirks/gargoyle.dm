@@ -181,17 +181,20 @@
 		was_lying = L.body_position == LYING_DOWN
 		was_lying_prev = L.lying_prev
 		L.forceMove(src)
-		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
-		ADD_TRAIT(L, TRAIT_IMMOBILIZED, STATUE_MUTE)
-		ADD_TRAIT(L, TRAIT_HANDS_BLOCKED, STATUE_MUTE)
-		//ADD_TRAIT(L, TRAIT_MOBILITY_NOUSE, STATUE_MUTE)
-		ADD_TRAIT(L, TRAIT_NOBREATH, STATUE_MUTE)
-		ADD_TRAIT(L, TRAIT_NOHUNGER, STATUE_MUTE)
-		//ADD_TRAIT(L, TRAIT_NOTHIRST, STATUE_MUTE)
-		ADD_TRAIT(L, TRAIT_NOFIRE, STATUE_MUTE) //OH GOD HELP I'M ON FIRE INSIDE THE STATUE I CAN'T MOVE AND I CAN'T STOP IT HAAAAALP - person who experienced this
+		// Add all Gargoyle traits as a list
+		L.add_traits(list(
+			TRAIT_MUTE,
+			TRAIT_IMMOBILIZED,
+			TRAIT_HANDS_BLOCKED,
+			//TRAIT_MOBILITY_NOUSE,
+			TRAIT_NOBREATH,
+			TRAIT_NOHUNGER,
+			//TRAIT_NOTHIRST,
+			TRAIT_NOFIRE, // Someone had issues with fire
+			TRAIT_GODMODE,
+		), STATUE_MUTE)
 		L.click_intercept = src
 		L.faction |= FACTION_MIMIC //Stops mimics from instaqdeling people in statues
-		ADD_TRAIT(L, TRAIT_GODMODE, STATUE_MUTE)
 		old_max_health = L.maxHealth
 		old_size = H.dna.features["body_size"]
 		atom_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
@@ -219,16 +222,19 @@
 
 /obj/structure/statue/gargoyle/Destroy()
 	if(petrified_mob)
-		REMOVE_TRAIT(petrified_mob, TRAIT_GODMODE, STATUE_MUTE)
 		petrified_mob.forceMove(loc)
-		REMOVE_TRAIT(petrified_mob, TRAIT_MUTE, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_IMMOBILIZED, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_HANDS_BLOCKED, STATUE_MUTE)
-		//REMOVE_TRAIT(petrified_mob, TRAIT_MOBILITY_NOUSE, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_NOBREATH, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_NOHUNGER, STATUE_MUTE)
-		//REMOVE_TRAIT(petrified_mob, TRAIT_NOTHIRST, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_NOFIRE, STATUE_MUTE)
+		// Remove all Gargoyle traits as a list
+		petrified_mob.remove_traits(list(
+			TRAIT_MUTE,
+			TRAIT_IMMOBILIZED,
+			TRAIT_HANDS_BLOCKED,
+			//TRAIT_MOBILITY_NOUSE,
+			TRAIT_NOBREATH,
+			TRAIT_NOHUNGER,
+			//TRAIT_NOTHIRST,
+			TRAIT_NOFIRE, // Someone had issues with fire
+			TRAIT_GODMODE,
+		), STATUE_MUTE)
 		petrified_mob.faction -= FACTION_MIMIC
 		petrified_mob.click_intercept = null
 		petrified_mob.dir = dir
