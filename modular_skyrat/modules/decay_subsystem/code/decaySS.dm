@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(decay)
 		log_world("SSDecay was disabled in config.")
 		return SS_INIT_NO_NEED
 
-	if(SSmapping.config.map_name in station_filter)
+	if(SSmapping.current_map.map_name in station_filter)
 		message_admins("SSDecay was disabled due to map filter.")
 		log_world("SSDecay was disabled due to map filter.")
 		return SS_INIT_NO_NEED

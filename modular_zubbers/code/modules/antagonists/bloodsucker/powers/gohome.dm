@@ -114,7 +114,7 @@
 		for(var/obj/item/literally_everything in owner)
 			owner.dropItemToGround(literally_everything, TRUE)
 
-	playsound(current_turf, 'sound/magic/summon_karp.ogg', 60, 1)
+	playsound(current_turf, 'sound/effects/magic/summon_karp.ogg', 60, 1)
 
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.set_up(3, 0, current_turf)
