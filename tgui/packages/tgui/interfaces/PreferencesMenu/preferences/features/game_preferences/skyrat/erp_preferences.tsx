@@ -67,7 +67,7 @@ export const hypnosis_pref: FeatureToggle = {
   name: 'Hypnosis',
   category: 'ERP',
   description:
-    'Determines if you wish to allow hypnosis in a lewd manner.',
+    'Determines if you wish to allow hypnosis/hypnosis chemicals in a lewd manner.',
   component: CheckboxInput,
 };
 // BUBBER EDIT END
