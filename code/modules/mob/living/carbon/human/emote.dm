@@ -168,7 +168,7 @@
 
 /datum/emote/living/carbon/human/clear_throat
 	key = "clear"
-	key_third_person = "clears throat"
+	key_third_person = "clearthroat"
 	message = "clears their throat."
 
 ///Snowflake emotes only for le epic chimp
