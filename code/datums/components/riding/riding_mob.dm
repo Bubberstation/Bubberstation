@@ -1,11 +1,5 @@
 // For any mob that can be ridden
 
-//SKYRAT EDIT START: Human Riding Defines
-#define OVERSIZED_OFFSET 18
-#define OVERSIZED_SIDE_OFFSET 11
-#define REGULAR_OFFSET 6
-#define REGULAR_SIDE_OFFSET 4
-//SKYRAT EDIT END
 /datum/component/riding/creature
 	/// If TRUE, this creature's movements can be controlled by the rider while mounted (as opposed to riding cyborgs and humans, which is passive)
 	var/can_be_driven = TRUE
@@ -214,9 +208,13 @@
 /datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
 	. = ..()
 	var/mob/living/carbon/human/human_parent = parent
-	human_parent.add_movespeed_modifier(/datum/movespeed_modifier/human_carry)
+	//human_parent.add_movespeed_modifier(/datum/movespeed_modifier/human_carry) // BUBBER EDIT REMOVAL
+	// BUBBER EDIT ADDITION START - Taur saddles
+	if (!(ride_check_flags & RIDING_TAUR))
+		human_parent.add_movespeed_modifier(/datum/movespeed_modifier/human_carry)
+	// BUBBER EDIT ADDITION END
 
-	if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
+	if(ride_check_flags & RIDER_NEEDS_ARMS || (ride_check_flags & RIDING_TAUR)) // BUBBER CHANGE - ORIGINAL: if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
 		human_parent.buckle_lying = 0
 		// the riding mob is made nondense so they don't bump into any dense atoms the carrier is pulling,
 		// since pulled movables are moved before buckled movables
@@ -299,7 +297,13 @@
 
 /datum/component/riding/creature/human/get_offsets(pass_index)
 	var/mob/living/carbon/human/H = parent
-	//SKYRAT EDIT BEGIN - Oversized Overhaul
+	/* BUBBER EDIT REMOVAL START
+	if(H.buckle_lying)
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list(0, 6))
+	else
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4))
+	*/ // BUBBER EDIT REMOVAL END
+	// BUBBER EDIT ADDITION BEGIN - Oversized Overhaul, Taur riding
 	if(H.buckle_lying)
 		return HAS_TRAIT(H, TRAIT_OVERSIZED) ? list(
 				TEXT_NORTH = list(0, OVERSIZED_OFFSET),
@@ -312,7 +316,7 @@
 				TEXT_EAST = list(0, REGULAR_OFFSET),
 				TEXT_WEST = list(0, REGULAR_OFFSET),
 			)
-	else
+	else if (!(ride_check_flags & RIDING_TAUR)) // BUBBER EDIT CHANGE - ORIGINAL: else
 		return HAS_TRAIT(H, TRAIT_OVERSIZED) ? list(
 				TEXT_NORTH = list(0, OVERSIZED_OFFSET),
 				TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
@@ -324,7 +328,12 @@
 				TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET),
 				TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET)
 			)
-	//SKYRAT EDIT END
+
+	if (ride_check_flags & RIDING_TAUR)
+		var/obj/item/organ/external/taur_body/taur_body = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		return taur_body.get_riding_offset(oversized = HAS_TRAIT(H, TRAIT_OVERSIZED))
+	//BUBBER EDIT END
+
 /datum/component/riding/creature/human/force_dismount(mob/living/dismounted_rider)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(dismounted_rider)
