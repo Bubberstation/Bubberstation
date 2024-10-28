@@ -94,6 +94,7 @@
 /obj/item/clothing/head/hooded/berserker/gatsu/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
 	. = ..()
