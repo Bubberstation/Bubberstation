@@ -744,13 +744,13 @@
 
 /// The minimum number of tallies a map vote entry can have.
 /datum/config_entry/number/map_vote_minimum_tallies
-	default = 1
+	default = 0 // BUBBER EDIT CHANGE - Original: 1
 	min_val = 0
 	max_val = 50
 
 /// The flat amount all maps get by default
 /datum/config_entry/number/map_vote_flat_bonus
-	default = 5
+	default = 0 // BUBBER EDIT CHANGE - Original: 5
 	min_val = 0
 	max_val = INFINITY
 
