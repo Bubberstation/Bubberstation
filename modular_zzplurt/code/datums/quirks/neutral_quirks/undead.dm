@@ -3,8 +3,8 @@
     desc = "Your body - be it anomalous, or just outright refusing to die - has become undead. Due to this condition; you become hungry faster than normal."
     value = 0
     quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
-    gain_text = "The life has left your body, but you haven't stopped moving yet."
-    lose_text = "By some miracle, you've been brought back to life!"
+    gain_text = span_notice("The life has left your body, but you haven't stopped moving yet.")
+    lose_text = span_notice("By some miracle, you've been brought back to life!")
     medical_record_text = "Patient is listed as deceased in medical records."
     mob_trait = TRAIT_UNDEAD
     icon = FA_ICON_SKULL_CROSSBONES

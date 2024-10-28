@@ -2,7 +2,7 @@
 	name = "Nudist"
 	desc = "Wearing most types of clothing unnerves you. Bring a gear harness!"
 	value = 0
-	gain_text = span_notice("You feel spiritually connected to your natural form.")
+	gain_text = span_danger("You feel spiritually connected to your natural form.")
 	lose_text = span_notice("It feels like clothing could fit you comfortably.")
 	medical_record_text = "Patient expresses a psychological need to remain unclothed."
 	mob_trait = TRAIT_NUDIST

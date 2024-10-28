@@ -3,8 +3,8 @@
 	desc = "Your seductress-like metabolism can only be sated by milk."
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
-	gain_text = "You feel a craving for dairy products."
-	lose_text = "Your dairy craving fades back away."
+	gain_text = span_notice("You feel a craving for dairy products.")
+	lose_text = span_notice("Your dairy craving fades back away.")
 	medical_record_text = "Patient claims to subsist entirely on milk based products."
 	mob_trait = TRAIT_INCUBUS
 	icon = FA_ICON_COW

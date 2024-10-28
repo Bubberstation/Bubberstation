@@ -3,8 +3,8 @@
 	desc = "You are some form of gargoyle! You can only leave your stone form for so long, and will have to return to it to regain energy. On the bright side, you heal in statue form!"
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
-	gain_text = "You feel a strange longing to perch atop buildings."
-	lose_text = "The stone curse leaves your body."
+	gain_text = span_notice("You feel a strange longing to perch atop buildings.")
+	lose_text = span_notice("The stone curse leaves your body.")
 	medical_record_text = "Patient has a tenancy to solidify into stone."
 	mob_trait = TRAIT_GARGOYLE
 	icon = FA_ICON_MONUMENT

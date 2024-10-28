@@ -2,8 +2,8 @@
 	name = "Flutter"
 	desc = "You are able to move about freely in pressurized low-gravity environments. This could be through the use of wings, magic, or some other physiological nonsense."
 	value = 1
-	gain_text = "Your body is prepared to maneuver pressurized low-gravity environments."
-	lose_text = "You forget how to move around in low-gravity."
+	gain_text = span_notice("Your body is prepared to maneuver pressurized low-gravity environments.")
+	lose_text = span_notice("You forget how to move around in low-gravity.")
 	medical_record_text = "Patient demonstrates exceptional maneuverability in low-gravity environments."
 	mob_trait = TRAIT_FLUTTER
 	hardcore_value = -1

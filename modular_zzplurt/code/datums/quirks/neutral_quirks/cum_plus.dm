@@ -3,8 +3,8 @@
 	name = "Extra-Productive Genitals"
 	desc = "Your genitals produce and hold more than normal."
 	value = 0
-	gain_text = span_notice("You feel pressure in your groin.")
-	lose_text = span_notice("You feel a weight lifted from your groin.")
+	gain_text = span_purple("You feel pressure in your groin.")
+	lose_text = span_purple("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
 	icon = FA_ICON_DROPLET
 	//var/increasedcum // Currently unused

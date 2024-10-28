@@ -2,8 +2,8 @@
 	name = "Modular Limbs"
 	desc = "Your limbs are able to be attached and detached easily. Unfortunately, this means everyone else can alter your limbs too!"
 	value = 0
-	gain_text = "Your limbs feel like they could come off with a bit of effort."
-	lose_text = "Your limbs feel more firmly attached."
+	gain_text = span_notice("Your limbs feel like they could come off with a bit of effort.")
+	lose_text = span_notice("Your limbs feel more firmly attached.")
 	medical_record_text = "Patient has undergone an experimental ligament hook surgery."
 	icon = FA_ICON_PUZZLE_PIECE
 

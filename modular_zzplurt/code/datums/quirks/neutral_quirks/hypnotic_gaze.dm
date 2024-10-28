@@ -5,8 +5,8 @@
 	name = "Hypnotic Gaze"
 	desc = "Be it through mysterious patterns, flickering colors, or some genetic oddity, prolonged eye contact with you will place the viewer into a highly-suggestible hypnotic trance."
 	value = 0
-	gain_text = span_notice("Your eyes glimmer hypnotically...")
-	lose_text = span_notice("Your eyes return to normal.")
+	gain_text = span_purple("Your eyes glimmer hypnotically...")
+	lose_text = span_purple("Your eyes return to normal.")
 	medical_record_text = "Patient's eyes exhibits soporific effects. Additional testing may be necessary."
 	mob_trait = TRAIT_HYPNOTIC_GAZE
 	icon = FA_ICON_ARROWS_TO_EYE

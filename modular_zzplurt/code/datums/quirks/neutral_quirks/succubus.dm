@@ -3,8 +3,8 @@
 	desc = "Your seductress-like metabolism can only be sated by semen."
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
-	gain_text = "You feel a craving for certain reproductive fluids."
-	lose_text = "Your bodily fluid craving fades back away."
+	gain_text = span_purple("You feel a craving for certain reproductive fluids.")
+	lose_text = span_purple("Your bodily fluid craving fades back away.")
 	medical_record_text = "Patient claims to subsist entirely on milk based products."
 	mob_trait = TRAIT_SUCCUBUS
 	icon = FA_ICON_DROPLET

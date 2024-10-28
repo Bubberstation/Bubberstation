@@ -2,8 +2,8 @@
 	name = "Buns of Thunder"
 	desc = "That pants-stretching, seat-creaking, undie-devouring butt of yours is as satisfying as it is difficult to keep balanced when smacked!"
 	value = 0
-	gain_text = span_notice("Your butt feels extremely smackable.")
-	lose_text = span_notice("Your butt no longer feels like it needs smacking.")
+	gain_text = span_purple("Your butt feels extremely smackable.")
+	lose_text = span_purple("Your butt no longer feels like it needs smacking.")
 	medical_record_text = "Patient is endowed with a superior posterior."
 	mob_trait = TRAIT_JIGGLY_ASS
 	icon = FA_ICON_CAKE
