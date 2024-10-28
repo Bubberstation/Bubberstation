@@ -46,7 +46,6 @@
 
 /datum/emote/living/shift_layer_up
 	key = "shiftlayerup"
-	key_third_person = "shiftlayerup"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 	cooldown = 0.25 SECONDS
@@ -63,7 +62,6 @@
 
 /datum/emote/living/shift_layer_down
 	key = "shiftlayerdown"
-	key_third_person = "shiftlayerdown"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 	cooldown = 0.25 SECONDS
