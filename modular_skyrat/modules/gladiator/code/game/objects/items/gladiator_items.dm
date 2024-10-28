@@ -66,8 +66,7 @@
 
 /datum/armor/drake_empowerment_gatsu
 	melee = 35
-	laser = 20
-	energy = 15
+	laser = 10
 	bomb = 20
 
 /obj/item/clothing/suit/hooded/berserker/gatsu/Initialize(mapload)
