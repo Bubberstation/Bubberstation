@@ -3,9 +3,9 @@
 	name = "Overweight"
 	desc = "You're particularly fond of food, and join the shift being overweight."
 	value = 0
-	gain_text = span_notice("You feel a bit chubby!")
-	lose_text = span_notice("UNIMPLEMENTED - OVERWEIGHT")
-	medical_record_text = "UNIMPLEMENTED - OVERWEIGHT"
+	gain_text = span_notice("You're feeling a bit chubby this shift!")
+	lose_text = span_notice("Your weight returns to an average level.")
+	medical_record_text = "Patient has an unhealthy obsession with food."
 	mob_trait = TRAIT_OVERWEIGHT
 	icon = FA_ICON_BURGER
 

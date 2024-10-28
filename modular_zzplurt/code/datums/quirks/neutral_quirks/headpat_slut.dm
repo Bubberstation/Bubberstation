@@ -1,11 +1,11 @@
 // UNIMPLEMENTED QUIRK!
 /datum/quirk/headpat_slut
 	name = "Headpat Slut"
-	desc = "You love the feeling of others touching your head! Maybe a little too much, actually... Others patting your head will provide a bigger mood boost and cause aroused reactions."
+	desc = "You love the feeling of others touching your head! Maybe a little too much, actually... Others patting your head will provide a stronger mood boost, along with other sensual reactions."
 	value = 0
-	gain_text = span_purple("You crave headpats immensely!")
-	lose_text = span_purple("Your headpats addiction wanes.")
-	medical_record_text = "Patient seems overly affectionate."
+	gain_text = span_purple("You long for the wonderful sensation of head pats!")
+	lose_text = span_purple("Being pat on the head doesn't feel special anymore.")
+	medical_record_text = "Patient seems abnormally responsive to being touched on the head."
 	mob_trait = TRAIT_HEADPAT_SLUT
 	icon = FA_ICON_HAND_HOLDING_HEART
 

@@ -1,11 +1,11 @@
 // UNIMPLEMENTED QUIRK!
 /datum/quirk/thirsty
 	name = "Thirsty"
-	desc = "You find yourself unusually thirsty. Gotta drink twice as much as normal."
+	desc = "You become thirsty twice as quickly. Make sure to drink plenty of fluids!"
 	value = -1
-	gain_text = span_danger("You're starting to feel thirstier a lot faster.")
+	gain_text = span_danger("You're beginning to feel parched again.")
 	lose_text = span_notice("Your elevated craving for water begins dying down.")
-	medical_record_text = "Patient reports drinking twice as many liquids per day than usual for their species."
+	medical_record_text = "Patient's body is half as effective at retaining liquids, necessitating drinking twice as many liquids per day than usual for their species."
 	mob_trait = TRAIT_THIRSTY
 	hardcore_value = 1
 	icon = FA_ICON_GLASS_WATER
