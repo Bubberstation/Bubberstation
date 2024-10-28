@@ -1,7 +1,7 @@
 /datum/bloodsucker_clan/malkavian
 	name = CLAN_MALKAVIAN
 	description = "Little is documented about Malkavians. Complete insanity is the most common theme. \n\
-		The Favorite Vassal will suffer the same fate as the Master, while gaining the ability to tap into the madness when fighting."
+		The Favorite Ghoul will suffer the same fate as the Master, while gaining the ability to tap into the madness when fighting."
 	join_icon_state = "malkavian"
 	join_description = "Completely insane. You gain constant hallucinations, become a prophet with unintelligable rambling, \
 		and become the enforcer of the Masquerade code."
@@ -26,7 +26,7 @@
 		carbon_owner.gain_trauma(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
 	owner_datum.owner.current.update_sight()
 
-	bloodsuckerdatum.owner.current.playsound_local(get_turf(bloodsuckerdatum.owner.current), 'sound/ambience/antag/creepalert.ogg', 80, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+	bloodsuckerdatum.owner.current.playsound_local(get_turf(bloodsuckerdatum.owner.current), 'sound/music/antag/creepalert.ogg', 80, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	to_chat(bloodsuckerdatum.owner.current, span_hypnophrase("Welcome to the Malkavian..."))
 
 /datum/bloodsucker_clan/malkavian/Destroy(force)
@@ -56,24 +56,24 @@
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_zubbers/strings/bloodsuckers"))
 	INVOKE_ASYNC(source.owner.current, TYPE_PROC_REF(/atom/movable, say), message, forced = CLAN_MALKAVIAN)
 
-/datum/bloodsucker_clan/malkavian/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	var/mob/living/carbon/carbonowner = vassaldatum.owner.current
+/datum/bloodsucker_clan/malkavian/favorite_ghoul_gain(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
+	var/mob/living/carbon/carbonowner = ghouldatum.owner.current
 	if(istype(carbonowner))
 		carbonowner.gain_trauma(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
 		carbonowner.gain_trauma(/datum/brain_trauma/special/bluespace_prophet/phobetor, TRAUMA_RESILIENCE_ABSOLUTE)
 	var/datum/martial_art/psychotic_brawling/psychotic_brawling = new(null)
-	psychotic_brawling.teach(vassaldatum.owner.current, TRUE)
-	to_chat(vassaldatum.owner.current, span_notice("Additionally, you now suffer the same fate as your Master, while also gaining the ability to tap into the madness when fighting."))
+	psychotic_brawling.teach(ghouldatum.owner.current, TRUE)
+	to_chat(ghouldatum.owner.current, span_notice("Additionally, you now suffer the same fate as your Master, while also gaining the ability to tap into the madness when fighting."))
 
-/datum/bloodsucker_clan/malkavian/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	var/mob/living/carbon/carbonowner = vassaldatum.owner.current
+/datum/bloodsucker_clan/malkavian/favorite_ghoul_loss(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
+	var/mob/living/carbon/carbonowner = ghouldatum.owner.current
 	if(istype(carbonowner))
 		carbonowner.cure_trauma_type(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
 		carbonowner.cure_trauma_type(/datum/brain_trauma/special/bluespace_prophet/phobetor, TRAUMA_RESILIENCE_ABSOLUTE)
-	if(!istype(/datum/martial_art/psychotic_brawling, vassaldatum.owner.martial_art))
+	if(!istype(/datum/martial_art/psychotic_brawling, ghouldatum.owner.martial_art))
 		return
-	var/datum/martial_art/psychotic_brawling/psychotic_brawling = vassaldatum.owner.martial_art
-	psychotic_brawling.remove(vassaldatum.owner.current)
+	var/datum/martial_art/psychotic_brawling/psychotic_brawling = ghouldatum.owner.martial_art
+	psychotic_brawling.remove(ghouldatum.owner.current)
 
 /datum/bloodsucker_clan/malkavian/on_exit_torpor(datum/antagonist/bloodsucker/source)
 	var/mob/living/carbon/carbonowner = bloodsuckerdatum.owner.martial_art
@@ -89,7 +89,7 @@
 		stone.capture_soul(bloodsuckerdatum.owner.current, forced = TRUE)
 	return DONT_DUST
 
-/datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/antagonist/bloodsucker/masquerade_breaker)
+/datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/source, datum/antagonist/bloodsucker/masquerade_breaker)
 	SIGNAL_HANDLER
 	to_chat(bloodsuckerdatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] has broken the Masquerade! Ensure [masquerade_breaker.owner.current.p_they()] [masquerade_breaker.owner.current.p_are()] eliminated at all costs!"))
 	var/datum/objective/assassinate/masquerade_objective = new()

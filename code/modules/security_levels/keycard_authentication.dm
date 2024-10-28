@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/keycard_auth/ui_act(action, params)
+/obj/machinery/keycard_auth/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(. || waiting || !allowed(usr))
 		return
@@ -175,6 +175,16 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 		if(KEYCARD_ENG_OVERRIDE)
 			toggle_eng_override()
 		//SKYRAT EDIT END
+
+/// Subtype which is stuck to a wall
+/obj/machinery/keycard_auth/wall_mounted
+	icon = 'icons/obj/machines/wallmounts.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth/wall_mounted, 26)
+
+/obj/machinery/keycard_auth/wall_mounted/Initialize(mapload)
+	. = ..()
+	find_and_hang_on_wall()
 
 /// Subtype which is stuck to a wall
 /obj/machinery/keycard_auth/wall_mounted
