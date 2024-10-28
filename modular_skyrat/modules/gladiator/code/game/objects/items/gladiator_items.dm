@@ -62,7 +62,7 @@
 	bio = 70
 	fire = 100
 	acid = 100
-	wound = 10
+	wound = -10
 
 /datum/armor/drake_empowerment_gatsu
 	melee = 35
