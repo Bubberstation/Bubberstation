@@ -1,4 +1,4 @@
-/* needs genital fluids and also to affect more than just your balls
+// UNIMPLEMENTED QUIRK!
 /datum/quirk/cum_plus
 	name = "Extra-Productive Genitals"
 	desc = "Your genitals produce and hold more than normal."
@@ -7,8 +7,9 @@
 	lose_text = span_notice("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
 	icon = FA_ICON_DROPLET
-	var/increasedcum
+	//var/increasedcum // Currently unused
 
+/* needs genital fluids and also to affect more than just your balls
 /datum/quirk/cum_plus/add()
 	var/mob/living/carbon/M = quirk_holder
 	if(M.getorganslot("testicles"))

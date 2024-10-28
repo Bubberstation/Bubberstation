@@ -1,14 +1,16 @@
-/* Needs fixing
+// UNIMPLEMENTED QUIRK!
 /datum/quirk/bloodfledge
 	name = "Bloodsucker Fledgling"
-	desc = "You are a fledgling belonging to ancient Bloodsucker bloodline. While the blessing has yet to fully convert you, some things have changed. Only blood will sate your hungers, and holy energies will cause your flesh to char. <b>This is NOT an antagonist role!</b>"
+	desc = "You are a fledgling belonging to ancient Bloodsucker bloodline. While the blessing has yet to fully convert you, some things have changed. Only blood will sate your hungers, and holy energies will cause your flesh to char."
 	value = 2
+	gain_text = span_notice("A sanguine blessing flows through your body, granting it new strength.")
+	lose_text = span_notice("The sanguine blessing fades away...")
 	medical_record_text = "Patient exhibits onset symptoms of a sanguine curse."
 	mob_trait = TRAIT_BLOODFLEDGE
-	gain_text = span_notice("You feel a sanguine thirst.")
-	lose_text = span_notice("You feel the sanguine thirst fade away.")
+	hardcore_value = -1
 	icon = FA_ICON_WINE_GLASS
 
+/*
 /datum/quirk/bloodfledge/add()
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder

@@ -1,12 +1,16 @@
 /datum/quirk/nudist
 	name = "Nudist"
 	desc = "Wearing most types of clothing unnerves you. Bring a gear harness!"
+	value = 0
 	gain_text = span_notice("You feel spiritually connected to your natural form.")
 	lose_text = span_notice("It feels like clothing could fit you comfortably.")
 	medical_record_text = "Patient expresses a psychological need to remain unclothed."
-	value = 0
+	mob_trait = TRAIT_NUDIST
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED
 	icon = FA_ICON_LEAF
+	mail_goodies = list (
+		// /datum/reagent/consumable/ethanol/panty_dropper = 1 // Not yet implemented
+	)
 	var/is_nude
 
 /datum/quirk/nudist/add(client/client_source)

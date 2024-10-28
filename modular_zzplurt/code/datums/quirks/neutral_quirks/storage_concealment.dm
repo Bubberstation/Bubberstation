@@ -1,6 +1,10 @@
 /datum/quirk/storage_concealment
 	name = "Dorsualiphobic Augmentation"
 	desc = "You despise the idea of being seen wearing any type of back-mounted storage apparatus! A new technology shields you from the immense shame you may experience, by hiding your equipped backpack."
+	value = 0
+	gain_text = "Your Chameleon Storage Concealment Implant has been activated."
+	lose_text = "Your Chameleon Storage Concealment Implant encounters a critical error."
+	medical_record_text = "Patient has exhibited concerns about being seen wearing a backpack."
 	icon = FA_ICON_BRIEFCASE
 
 	// UNUSED: Enable by setting these values to TRUE

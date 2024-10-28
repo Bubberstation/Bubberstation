@@ -1,10 +1,13 @@
-/datum/quirk/sodiumsensetivity
+/datum/quirk/sodium_sensetivity
 	name = "Sodium Sensitivity"
 	desc = "Your body is sensitive to sodium, and is burnt upon contact. Ingestion or contact with it is not advised."
-	icon = FA_ICON_BIOHAZARD
 	value = 0
+	gain_text = "You remember that advice about reducing your sodium intake."
+	lose_text = "You remember how good salt makes things taste!"
+	medical_record_text = "Patient is highly allergic to to sodium, and should not come into contact with it under any circumstances."
 	mob_trait = TRAIT_SALT_SENSITIVE
-	medical_record_text = "Patient should not come into contact with sodium."
+	hardcore_value = 1
+	icon = FA_ICON_BIOHAZARD
 
 /datum/reagent/consumable/salt/expose_mob(mob/living/M, method=TOUCH, reac_volume)
 	. = ..()

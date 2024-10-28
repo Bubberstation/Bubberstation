@@ -1,13 +1,19 @@
 /datum/quirk/masked_mook
 	name = "Bane Syndrome"
 	desc = "For some reason you don't feel... right without wearing some kind of gas mask."
-	gain_text = span_danger("You start feeling unwell without any gas mask on.")
-	lose_text = span_notice("You no longer have a need to wear some gas mask.")
 	value = 0
-	medical_record_text = "Patient feels more secure when wearing a gas mask."
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED | QUIRK_PROCESSES
+	gain_text = span_danger("You start feeling unwell without a gas mask on.")
+	lose_text = span_notice("You no longer feel the need to wear a gas mask.")
+	medical_record_text = "Patient feels a strong psychological attachment to gas masks."
+	mob_trait = TRAIT_MASKED_MOOK
+	hardcore_value = 1
 	icon = FA_ICON_MASK_VENTILATOR
+	mail_goodies = list (
+		/obj/item/gas_filter = 1
+	)
 
+// TODO: Change this to not require processing.
 /datum/quirk/masked_mook/process(seconds_per_tick)
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/mask/gas/gasmask = H.get_item_by_slot(ITEM_SLOT_MASK)
@@ -21,7 +27,7 @@
 
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/mask/gas/cosmetic/gasmask = new(get_turf(quirk_holder)) // Uses a custom gas mask
-	H.equip_to_slot_if_possible(gasmask, ITEM_SLOT_MASK) // If character have a loadout mask, the custom one will not overwrite it but instead will be dropped on floor
+	H.equip_to_slot_if_possible(gasmask, ITEM_SLOT_MASK) // If character has a loadout mask, the custom one will not overwrite it but instead will be dropped on floor
 	H.regenerate_icons()
 
 /datum/mood_event/masked_mook

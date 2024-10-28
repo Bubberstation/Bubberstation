@@ -1,10 +1,16 @@
 /datum/quirk/succubus
 	name = "Succubus"
-	desc = "Your seductress-like metabolism can only be sated by semen. (And milk, if you're an Incubus as well.)"
+	desc = "Your seductress-like metabolism can only be sated by semen."
 	value = 0
-	mob_trait = TRAIT_SUCCUBUS
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	gain_text = "You feel a craving for certain reproductive fluids."
+	lose_text = "Your bodily fluid craving fades back away."
+	medical_record_text = "Patient claims to subsist entirely on milk based products."
+	mob_trait = TRAIT_SUCCUBUS
 	icon = FA_ICON_DROPLET
+	mail_goodies = list (
+		/datum/glass_style/drinking_glass/cum = 1
+	)
 
 /datum/quirk/succubus/add(client/client_source)
 	. = ..()

@@ -1,9 +1,11 @@
 /datum/quirk/modularlimbs
 	name = "Modular Limbs"
-	desc = "Your limbs are able to be attached and detached easily... Unfortunately, everyone around you can alter your limbs too!"
-	icon = FA_ICON_PUZZLE_PIECE
+	desc = "Your limbs are able to be attached and detached easily. Unfortunately, this means everyone else can alter your limbs too!"
 	value = 0
-	medical_record_text = "Patient's limbs seem to be easily detachable and reattachable."
+	gain_text = "Your limbs feel like they could come off with a bit of effort."
+	lose_text = "Your limbs feel more firmly attached."
+	medical_record_text = "Patient has undergone an experimental ligament hook surgery."
+	icon = FA_ICON_PUZZLE_PIECE
 
 /datum/quirk/modularlimbs/add(client/client_source)
 	var/mob/living/carbon/human/C = quirk_holder

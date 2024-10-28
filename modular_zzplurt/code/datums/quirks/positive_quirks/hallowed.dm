@@ -1,12 +1,16 @@
 /datum/quirk/hallowed
 	name = "Hallowed"
-	desc = "You have been blessed by a higher power or are otherwise imbued with holy energy in some way. Your divine presence drives away magic and the unholy! Holy water will restore your health."
+	desc = "You have been blessed by a higher power, or are otherwise imbued with holy energy in some way. Your divine presence drives away unholy magics! Holy water is extra potent for you."
 	value = 1 // Maybe up the cost if more is added later.
-	mob_trait = TRAIT_HALLOWED
-	medical_record_text = "Patient contains an unidentified hallowed material concentrated in their blood. Please consult a chaplain."
-	gain_text = span_notice("You feel holy energy starting to flow through your body.")
+	gain_text = span_notice("You feel holy energy radiating through your body.")
 	lose_text = span_notice("You feel your holy energy fading away...")
+	medical_record_text = "Patient is under the influence of an unidentified hallowed blessing. Please consult a chaplain."
+	mob_trait = TRAIT_HALLOWED
+	hardcore_value = -1
 	icon = FA_ICON_CHURCH
+	mail_goodies = list (
+		/obj/item/reagent_containers/cup/glass/bottle/holywater = 1
+	)
 
 /datum/quirk/hallowed/add(client/client_source)
 	// Define quirk mob.

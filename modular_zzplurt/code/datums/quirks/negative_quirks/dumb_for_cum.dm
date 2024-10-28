@@ -2,12 +2,15 @@
 	name = "Dumb For Cum"
 	desc = "For one reason or another, you're totally obsessed with seminal fluids. The heat of it, the smell... the taste... It's quite simply euphoric."
 	value = -1
-	mob_trait = TRAIT_DUMB_CUM
+	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED
 	gain_text = span_notice("You feel an insatiable craving for seminal fluids.")
 	lose_text = span_notice("Cum didn't even taste that good, anyways.")
 	medical_record_text = "Patient seems to have an unhealthy psychological obsession with seminal fluids."
-	quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED
+	mob_trait = TRAIT_DUMB_CUM
 	icon = FA_ICON_DROPLET
+	mail_goodies = list (
+		/datum/glass_style/drinking_glass/cum = 1
+	)
 	var/timer
 	var/timer_trigger = 15 MINUTES
 

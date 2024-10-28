@@ -1,9 +1,13 @@
 /datum/quirk/kiss_slut
 	name = "Kiss Slut"
-	desc = "The sheer thought of kissing someone makes you blush and overheat, effectively increasing your arousal with each smooch."
+	desc = "The sheer thought of kissing someone makes you blush and overheat, sending you into a spiral of passion."
 	value = 0
-	mob_trait = TRAIT_KISS_SLUT //No use for this yet
-	gain_text = span_purple("You feel like kissing someone...")
-	lose_text = span_notice("You don't feel like kissing someone anymore...")
+	gain_text = span_purple("Thoughts of smooching invade your mind.")
+	lose_text = span_notice("You feel like your lips have had enough for now.")
 	medical_record_text = "Patient seems to demonstrate an extraordinary liking in kissing."
+	mob_trait = TRAIT_KISS_SLUT //No use for this yet
 	icon = FA_ICON_FACE_KISS_WINK_HEART
+	mail_goodies = list (
+		/obj/item/lipstick/random = 20,
+		/obj/item/lipstick/hypnosyndie = 1 // Very small chance of ERP lipstick
+	)

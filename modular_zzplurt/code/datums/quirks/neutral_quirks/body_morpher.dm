@@ -1,12 +1,15 @@
 /datum/quirk/body_morpher
 	name = "Body Morpher"
-	desc = "Somehow you developed an ability allowing your body to morph and shift itself to modify bodyparts, much like a slimeperson can."
+	desc = "You've developed an ability allowing your body to morph and shift itself to modify body parts, much like a slimeperson can."
 	value = 0
-	mob_trait = TRAIT_BODY_MORPHER
-	gain_text = span_notice("Your body feels more malleable...")
-	lose_text = span_notice("Your body is more firm.")
+	gain_text = span_notice("Your body feels more malleable.")
+	lose_text = span_notice("Your body returns to a normal consistency.")
 	medical_record_text = "Patient's body seems unusually malleable."
+	mob_trait = TRAIT_BODY_MORPHER
 	icon = FA_ICON_PEOPLE_ARROWS
+	mail_goodies = list (
+		/obj/item/toy/foamblade = 1 // Fake changeling
+	)
 	var/datum/action/innate/alter_form/alter_form_action
 
 /datum/quirk/body_morpher/add(client/client_source)

@@ -1,13 +1,22 @@
-//You are a CIA agent.
+// You might be an undercover agent.
 /datum/quirk/cosglow
 	name = "Cosmetic Glow"
-	desc = "You glow! Be it an obscure radiation emission, or simple Bioluminescent properties.."
+	desc = "You glow! Be it an obscure radiation emission, governmental affiliation, or simple bioluminescent properties."
 	value = 0
-	mob_trait = TRAIT_COSGLOW
 	gain_text = span_notice("You feel empowered by a three-letter agency!")
-	lose_text = span_notice("You realize that working for the space CIA sucks!")
+	lose_text = span_notice("You realize that working for the space agency sucks!")
+	medical_record_text = "Patient emits a subtle emissive aura."
+	mob_trait = TRAIT_COSGLOW
 	icon = FA_ICON_PERSON_RAYS
-
+	mail_goodies = list (
+		/obj/item/flashlight/glowstick = 1,
+		/obj/item/flashlight/glowstick/red = 1,
+		/obj/item/flashlight/glowstick/blue = 1,
+		/obj/item/flashlight/glowstick/cyan = 1,
+		/obj/item/flashlight/glowstick/orange = 1,
+		/obj/item/flashlight/glowstick/yellow = 1,
+		/obj/item/flashlight/glowstick/pink = 1
+	)
 /datum/quirk/cosglow/add()
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder

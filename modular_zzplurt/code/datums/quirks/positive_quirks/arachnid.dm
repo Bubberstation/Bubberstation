@@ -1,15 +1,16 @@
-/* No arachnid species or similar in TG yet
+// UNIMPLEMENTED QUIRK!
 /datum/quirk/arachnid
 	name = "Arachnid"
-	desc = "Your bodily anatomy allows you to spin webs and cocoons, even if you aren't an arachnid! (Note that this quirk does nothing for members of the arachnid species)"
+	desc = "Your bodily anatomy allows you to spin webs and cocoons, even if you aren't an arachnid! This quirk does nothing for members of the arachnid species."
 	value = 1
+	//quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES // Unimplemented
 	medical_record_text = "Patient has attempted to cover the room in webs, claiming to be \"making a nest\"."
 	mob_trait = TRAIT_ARACHNID
 	gain_text = span_notice("You feel a strange sensation near your anus...")
 	lose_text = span_notice("You feel like you can't spin webs anymore...")
-	processing_quirk = TRUE
 	icon = FA_ICON_SPIDER
 
+/* No arachnid species or similar in TG yet
 /datum/quirk/arachnid/add()
 	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder

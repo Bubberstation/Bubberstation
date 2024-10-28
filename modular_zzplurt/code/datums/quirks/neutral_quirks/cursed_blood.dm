@@ -2,8 +2,13 @@
 	name = "Cursed Blood"
 	desc = "Your lineage is cursed with the paleblood curse. Best to stay away from holy water... Hell water, on the other hand..."
 	value = 0
-	mob_trait = TRAIT_CURSED_BLOOD
 	gain_text = span_notice("A curse from a land where men return as beasts runs deep in your blood.")
 	lose_text = span_notice("You feel the weight of the curse in your blood finally gone.")
-	medical_record_text = "Patient suffers from an unknown type of aversion to holy reagents. Keep them away from a chaplain."
+	medical_record_text = "Patient suffers from an unknown type of aversion to holy reagents. Keep them away from chaplains."
+	mob_trait = TRAIT_CURSED_BLOOD
+	hardcore_value = 1
 	icon = FA_ICON_FIRE_FLAME_CURVED
+	mail_goodies = list (
+		// This may be the only way to get hell water.
+		/obj/item/reagent_containers/cup/glass/bottle/holywater/hell = 1
+	)

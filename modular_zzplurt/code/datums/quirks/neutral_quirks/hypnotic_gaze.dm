@@ -5,10 +5,10 @@
 	name = "Hypnotic Gaze"
 	desc = "Be it through mysterious patterns, flickering colors, or some genetic oddity, prolonged eye contact with you will place the viewer into a highly-suggestible hypnotic trance."
 	value = 0
-	mob_trait = TRAIT_HYPNOTIC_GAZE
 	gain_text = span_notice("Your eyes glimmer hypnotically...")
 	lose_text = span_notice("Your eyes return to normal.")
-	medical_record_text = "Prolonged exposure to Patient's eyes exhibits soporific effects."
+	medical_record_text = "Patient's eyes exhibits soporific effects. Additional testing may be necessary."
+	mob_trait = TRAIT_HYPNOTIC_GAZE
 	icon = FA_ICON_ARROWS_TO_EYE
 
 /datum/quirk/Hypnotic_gaze/add()

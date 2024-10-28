@@ -1,11 +1,13 @@
 /datum/quirk/restorative_metabolism
 	name = "Restorative Metabolism"
-	desc = "Your body possesses a differentiated reconstutitive ability, allowing you to slowly recover from injuries. Note, however, that critical injuries, wounds or genetic damage will still require medical attention."
+	desc = "Your body possesses a differentiated reconstructive ability, allowing you to slowly recover from injuries. Critical injuries, wounds, and genetic damage will still require medical attention."
 	value = 3
-	mob_trait = TRAIT_RESTORATIVE_METABOLISM
-	gain_text = span_notice("You feel a surge of reconstutitive vitality coursing through your body...")
-	lose_text = span_notice("You sense your enhanced reconstutitive ability fading away...")
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	gain_text = span_notice("You feel a surge of reconstructive vitality coursing through your body...")
+	lose_text = span_notice("You sense your enhanced reconstructive ability fading away...")
+	medical_record_text = "Patient possesses a self-reconstructive condition. Medical care is only required under extreme circumstances."
+	mob_trait = TRAIT_RESTORATIVE_METABOLISM
+	hardcore_value = -4
 	icon = FA_ICON_NOTES_MEDICAL
 
 /datum/quirk/restorative_metabolism/process(seconds_per_tick)

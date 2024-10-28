@@ -1,9 +1,16 @@
-/datum/quirk/gargoyle //Mmmm yes stone time
+/datum/quirk/gargoyle
 	name = "Gargoyle"
 	desc = "You are some form of gargoyle! You can only leave your stone form for so long, and will have to return to it to regain energy. On the bright side, you heal in statue form!"
 	value = 0
 	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	gain_text = "You feel a strange longing to perch atop buildings."
+	lose_text = "The stone curse leaves your body."
+	medical_record_text = "Patient has a tenancy to solidify into stone."
+	mob_trait = TRAIT_GARGOYLE
 	icon = FA_ICON_MONUMENT
+	mail_goodies = list (
+		/obj/item/chisel = 1 // Build yourself a friend
+	)
 	var/energy = 0
 	var/transformed = 0
 	var/cooldown = 0

@@ -1,15 +1,16 @@
-/* Needs editing and also the size system
-/datum/quirk/werewolf //adds the werewolf quirk
+// UNIMPLEMENTED QUIRK!
+/datum/quirk/werewolf
 	name = "Werewolf"
 	desc = "A beastly affliction allows you to shape-shift into a large anthropomorphic canine at will."
 	value = 0
-	mob_trait = TRAIT_WEREWOLF
 	gain_text = span_notice("You feel the full moon beckon.")
 	lose_text = span_notice("The moon's call hushes into silence.")
 	medical_record_text = "Patient has been reported howling at the night sky."
+	mob_trait = TRAIT_WEREWOLF
 	icon = FA_ICON_MOON
-	var/list/old_features
+	//var/list/old_features // Currently unimplemented
 
+/* Needs editing and also the size system
 /datum/quirk/werewolf/add_chemical_reaction(datum/chemical_reaction/add)
 	. = ..()
 
