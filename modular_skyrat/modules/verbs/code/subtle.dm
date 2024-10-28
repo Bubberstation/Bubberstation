@@ -7,7 +7,6 @@
 
 /datum/emote/living/subtle
 	key = "subtle"
-	key_third_person = "subtle"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
@@ -68,7 +67,6 @@
 
 /datum/emote/living/subtler
 	key = "subtler"
-	key_third_person = "subtler"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
