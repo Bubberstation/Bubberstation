@@ -1,12 +1,12 @@
 import { useBackend } from '../backend';
 import { Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { VassalProps } from './AntagInfoBloodsucker';
+import { GhoulProps } from './AntagInfoBloodsucker';
 import { ObjectivePrintout } from './common/Objectives';
 import { PowerDetails } from './PowerInfo';
 
-export const AntagInfoVassal = (props: any, context: any) => {
-  const { data } = useBackend<VassalProps>();
+export const AntagInfoGhoul = (props: any, context: any) => {
+  const { data } = useBackend<GhoulProps>();
   const { powers } = data;
   return (
     <Window
@@ -15,14 +15,14 @@ export const AntagInfoVassal = (props: any, context: any) => {
       theme="spookyconsole"
     >
       <Window.Content>
-        <VassalInfo />
+        <GhoulInfo />
       </Window.Content>
     </Window>
   );
 };
 
-const VassalInfo = () => {
-  const { data } = useBackend<VassalProps>();
+const GhoulInfo = () => {
+  const { data } = useBackend<GhoulProps>();
   const { powers, objectives, title, description } = data;
   return (
     <Stack vertical fill>

@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	melee_damage_upper = 24
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	combat_mode = TRUE
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_LARGE
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	if(shield_health)
 		damage_shield()
 
-		playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 40, 1)
+		playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 40, 1)
 
 	if(attacking_item == TOOL_WELDER)
 		welder_act(user, attacking_item)
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	to_chat(user, span_notice("You repair some of [src]'s damage."))
 	if(shield_health < MARAUDER_SHIELD_MAX)
 		shield_health++
-		playsound(src, 'sound/magic/charge.ogg', 60, TRUE)
+		playsound(src, 'sound/effects/magic/charge.ogg', 60, TRUE)
 	return TRUE
 
 

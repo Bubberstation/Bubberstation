@@ -49,7 +49,6 @@
 	if(ishuman(new_jellyperson))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(new_jellyperson)
-		update_mail_goodies(new_jellyperson)
 		alter_form = new //SKYRAT EDIT CUSTOMIZATION
 		alter_form.Grant(new_jellyperson) //SKYRAT EDIT CUSTOMIZATION
 
@@ -421,7 +420,7 @@
 
 	return data
 
-/datum/action/innate/swap_body/ui_act(action, params)
+/datum/action/innate/swap_body/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -471,16 +470,13 @@
 	if(!can_swap(dupe)) //sanity check
 		return
 	if(M.current.stat == CONSCIOUS)
-		M.current.visible_message("<span class='notice'>[M.current] \
-			stops moving and starts staring vacantly into space.</span>",
+		M.current.visible_message(span_notice("[M.current] stops moving and starts staring vacantly into space."),
 			span_notice("You stop moving this body..."))
 	else
 		to_chat(M.current, span_notice("You abandon this body..."))
 	M.current.transfer_quirk_datums(dupe)
 	M.transfer_to(dupe)
-	dupe.visible_message("<span class='notice'>[dupe] blinks and looks \
-		around.</span>",
-		span_notice("...and move this one instead."))
+	dupe.visible_message(span_notice("[dupe] blinks and looks around."), span_notice("...and move this one instead."))
 
 
 ///////////////////////////////////LUMINESCENTS//////////////////////////////////////////
@@ -733,7 +729,7 @@
 	var/mob/living/recipient = tgui_input_list(telepath, "Choose a telepathic message recipient", "Telepathy", sort_names(recipient_options))
 	if(isnull(recipient) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
-	var/msg = tgui_input_text(telepath, title = "Telepathy")
+	var/msg = tgui_input_text(telepath, title = "Telepathy", max_length = MAX_MESSAGE_LEN)
 	if(isnull(msg) || telepath.stat == DEAD || !is_species(telepath, /datum/species/jelly/stargazer))
 		return
 	if(!(recipient in oview(telepath)))

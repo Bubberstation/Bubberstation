@@ -4,7 +4,7 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-	if(isnull(owner) || isnull(owner.current))
+	if(QDELETED(owner) || QDELETED(owner.current))
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 	life_always()
@@ -80,11 +80,11 @@
 #undef MASQUERADE
 
 /// mult: SILENT feed is 1/3 the amount
-/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)
+/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level, already_drunk = 0)
 	// Starts at 15 (now 8 since we doubled the Feed time)
 	var/feed_amount = 15 + (power_level * 2)
-	var/blood_taken = min(feed_amount, target.blood_volume) * mult
-	target.blood_volume -= blood_taken
+	var/blood_taken = feed_amount * mult
+	target.blood_volume = max(target.blood_volume - blood_taken, 0)
 
 	///////////
 	// Shift Body Temp (toward Target's temp, by volume taken)
@@ -96,25 +96,24 @@
 		blood_taken /= 3
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 2
-	// High level vampires get much less blood from mindless targets
-	else if(bloodsucker_level >= BLOODSUCKER_HIGH_LEVEL && !target.mind)
-		blood_taken /= 4
 	else if(!target?.mind) // Penalty for Mindless Blood
 		blood_taken /= 2
-	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AdjustBloodVolume(blood_taken)
+	total_blood_drank += blood_taken
 	OverfeedHealing(blood_taken)
 	// Reagents (NOT Blood!)
 	if(target.reagents && target.reagents.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
-	total_blood_drank += blood_taken
 	if(target.mind) // Checks if the target has a mind
-		if(IS_VASSAL(target)) // Checks if the target is a vassal
-			blood_level_gain += blood_taken / 4
-		else
-			blood_level_gain += blood_taken
+		// closer it is to max, the less level up blood you get
+		var/blood_for_leveling = blood_taken
+		if(already_drunk > BLOOD_VOLUME_NORMAL)
+			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
+			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
+			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
+		blood_level_gain += blood_for_leveling
 	return blood_taken
 
 /**
@@ -166,9 +165,10 @@
 		mult *= 3
 	// Heal if Damaged
 	if((bruteheal + fireheal) && mult != 0) // Just a check? Don't heal/spend, and return.
-		// We have damage. Let's heal (one time)
-		user.adjustBruteLoss(-bruteheal * mult) // Heal BRUTE / BURN in random portions throughout the body.
-		user.adjustFireLoss(-fireheal * mult)
+		// We have damage. Let's heal (one time), and don't cost any blood if we cannot
+		if(!user.adjustBruteLoss(-bruteheal * mult, updating_health = FALSE) && !user.adjustFireLoss(-fireheal * mult, updating_health = FALSE)) // Heal BRUTE / BURN in random portions throughout the body.
+			return FALSE
+		user.updatehealth()
 		AdjustBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
 
@@ -179,13 +179,12 @@
 		var/overfireheal = user.getFireLoss_nonProsthetic()
 		var/heal_amount = drunk / 3
 		if(overbruteheal > 0 && heal_amount > 0)
-			user.adjustBruteLoss(-heal_amount, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
+			user.adjustBruteLoss(-heal_amount, updating_health = FALSE, forced = TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
 			heal_amount = (heal_amount - overbruteheal) // Removes the amount of BRUTE we've healed from the heal amount
 		else if(overfireheal > 0 && heal_amount > 0)
 			heal_amount /= 1.5 // Burn should be more difficult to heal
-			user.adjustFireLoss(-heal_amount, forced=TRUE)
-		else
-			return
+			user.adjustFireLoss(-heal_amount, updating_health = FALSE, forced = TRUE)
+		user.updatehealth()
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
 	var/limb_regen_cost = 50 * -costMult
@@ -199,7 +198,7 @@
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = missing_bodypart.max_damage
 		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
 /*
@@ -219,7 +218,7 @@
 	bloodsuckeruser.setToxLoss(0, forced = TRUE)
 	bloodsuckeruser.setOxyLoss(0, forced = TRUE)
 
-	if(!bloodsuckeruser)
+	if(QDELETED(bloodsuckeruser))
 		return
 
 	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
@@ -278,17 +277,13 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	if(isnull(owner.current))
-		if(length(vassals))
-			free_all_vassals()
-		vassals = list()
+	if(QDELETED(owner.current))
+		if(length(ghouls))
+			free_all_ghouls()
+		ghouls = list()
 		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
-		FinalDeath()
-		return
-	// Staked with a silver stake while "Temp Death" or Asleep
-	if(owner.current.StakeCanKillMe())
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.
@@ -353,6 +348,8 @@
 /// Turns the bloodsucker into a wacky talking head.
 /datum/antagonist/bloodsucker/proc/talking_head()
 	var/mob/living/poor_fucker = owner.current
+	if(QDELETED(poor_fucker))
+		return
 	// Don't do anything if we're not actually inside a brain and a head
 	var/obj/item/bodypart/head/head = is_head(poor_fucker)
 	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
@@ -374,7 +371,7 @@
 	if(brain)
 		UnregisterSignal(brain, list(COMSIG_QDELETING, COMSIG_ORGAN_BODYPART_REMOVED))
 	// fucked up if this happens, but we're probably final deathed at this point
-	if(!poor_fucker)
+	if(QDELETED(poor_fucker))
 		return
 	UnregisterSignal(poor_fucker, list(COMSIG_MOB_TRY_SPEECH, COMSIG_MOB_SAY, COMSIG_QDELETING))
 	poor_fucker.death()
@@ -395,11 +392,11 @@
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
 	SIGNAL_HANDLER
 	// If we have no body, end here.
-	if(!owner.current || isbrain(owner.current))
+	if(QDELETED(owner.current) || isbrain(owner.current))
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
-	free_all_vassals()
+	free_all_ghouls()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(DROP_ITEMS)
