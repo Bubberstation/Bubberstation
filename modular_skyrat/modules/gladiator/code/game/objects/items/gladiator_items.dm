@@ -56,7 +56,7 @@
 /datum/armor/berserker_gatsu
 	melee = 40
 	bullet = 30
-	laser = 20
+	laser = 15
 	energy = 25
 	bomb = 70
 	bio = 70
