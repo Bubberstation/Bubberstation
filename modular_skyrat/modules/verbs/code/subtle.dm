@@ -7,7 +7,6 @@
 
 /datum/emote/living/subtle
 	key = "subtle"
-	key_third_person = "subtle"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
@@ -68,7 +67,6 @@
 
 /datum/emote/living/subtler
 	key = "subtler"
-	key_third_person = "subtler"
 	message = null
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
@@ -92,7 +90,7 @@
 		to_chat(user, span_warning("You cannot send IC messages (muted)."))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler" , null, MAX_MESSAGE_LEN, TRUE)
+		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler Anti-Ghost" , null, MAX_MESSAGE_LEN, TRUE) // Bubber Edit - Improves distinction between Subtle and Subtler text boxes: "Subtler" > "Subtler Anti-Ghost"
 		if(!subtler_emote)
 			return FALSE
 
