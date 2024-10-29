@@ -1,6 +1,8 @@
 #define HYPNOEYES_COOLDOWN_NORMAL 3 SECONDS
 #define HYPNOEYES_COOLDOWN_BRAINWASH 30 SECONDS
 
+// Disabled in favor of new NIFSoft method
+/*
 /datum/quirk/Hypnotic_gaze
 	name = "Hypnotic Gaze"
 	desc = "Be it through mysterious patterns, flickering colors, or some genetic oddity, prolonged eye contact with you will place the viewer into a highly-suggestible hypnotic trance."
@@ -42,7 +44,7 @@
 // Set effect examine text
 /datum/status_effect/quirk_hypnotic_gaze/get_examine_text()
 	return span_purple("[owner.p_Their()] eyes glimmer with an entrancing power.")
-
+*/
 
 //
 // Actions
@@ -51,11 +53,14 @@
 /datum/action/cooldown/hypnotize
 	name = "Hypnotize"
 	desc = "Stare deeply into someone's eyes, drawing them into a hypnotic slumber."
-	button_icon_state = "Hypno_eye"
-	button_icon = 'modular_zzplurt/icons/mob/actions/lewd_actions/lewd_icons.dmi'
-	background_icon_state = "bg_alien"
 	transparent_when_unavailable = TRUE
 	cooldown_time = HYPNOEYES_COOLDOWN_NORMAL
+
+	// New icons
+	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
+	background_icon_state = "android"
+	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
+	button_icon_state = "hypnotize"
 
 	// Should this create a brainwashed victim?
 	// Enabled by using Mesmer Eyes with the quirk

@@ -1,3 +1,5 @@
+// Disabled in favor of new NIFSoft method
+/*
 /datum/quirk/body_morpher
 	name = "Body Morpher"
 	desc = "You've developed an ability allowing your body to morph and shift itself to modify body parts, much like a slimeperson can."
@@ -31,3 +33,4 @@
 	// Remove quirk ability action datum
 	alter_form_action.Remove(quirk_mob)
 	QDEL_NULL(alter_form_action)
+*/
