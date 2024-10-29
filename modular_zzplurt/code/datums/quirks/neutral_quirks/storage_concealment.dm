@@ -1,3 +1,5 @@
+// Disabled in favor of new NIFSoft method
+/*
 /datum/quirk/storage_concealment
 	name = "Dorsualiphobic Augmentation"
 	desc = "You despise the idea of being seen wearing any type of back-mounted storage apparatus! A new technology shields you from the immense shame you may experience, by hiding your equipped backpack."
@@ -37,3 +39,4 @@
 /datum/mood_event/dorsualiphobic_mood_negative
 	description = span_warning("I can't let anyone find out if I'm wearing a backpack or not!\n")
 	mood_change = -4
+*/

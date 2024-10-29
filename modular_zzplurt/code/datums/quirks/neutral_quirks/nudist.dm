@@ -38,6 +38,7 @@
 	// Evaluate outfit
 	check_outfit()
 
+/* Replaced by NIFSoft!
 /datum/quirk/nudist/add_unique(client/client_source)
 	. = ..()
 
@@ -46,6 +47,7 @@
 
 	// Implant into quirk holder
 	quirk_implant.implant(quirk_holder, null, TRUE, TRUE)
+*/
 
 /datum/quirk/nudist/proc/check_outfit()
 	SIGNAL_HANDLER
