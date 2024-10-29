@@ -22,35 +22,20 @@
 	beauty = FISH_BEAUTY_GOOD
 	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 
-/obj/item/fish/jumpercable/carl
+/obj/item/fish/jumpercable/karl/carl
 	name = "Carl"
-	desc = "A deadly syndicate monojumper cable saved from the horrors of Nanotrasen by the animal rights consortium. Its been given a new home as a power source for syndicate operations!"
-	stable_population = 4
-	random_case_rarity = FISH_RARITY_NOPE
-	fish_flags = parent_type::fish_flags & ~FISH_FLAG_SHOW_IN_CATALOG
-	beauty = FISH_BEAUTY_GOOD
-	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 
-/obj/item/fish/jumpercable/carly
+/obj/item/fish/jumpercable/karl/carly
 	name = "Carly"
-	desc = "A deadly syndicate monojumper cable saved from the horrors of Nanotrasen by the animal rights consortium. Its been given a new home as a power source for syndicate operations!"
-	stable_population = 4
-	random_case_rarity = FISH_RARITY_NOPE
-	fish_flags = parent_type::fish_flags & ~FISH_FLAG_SHOW_IN_CATALOG
-	beauty = FISH_BEAUTY_GOOD
+
 	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 
-/obj/item/fish/jumpercable/frank
+/obj/item/fish/jumpercable/karl/frank
 	name = "Frank"
-	desc = "A deadly syndicate monojumper cable saved from the horrors of Nanotrasen by the animal rights consortium. Its been given a new home as a power source for syndicate operations!"
-	stable_population = 4
-	random_case_rarity = FISH_RARITY_NOPE
-	fish_flags = parent_type::fish_flags & ~FISH_FLAG_SHOW_IN_CATALOG
-	beauty = FISH_BEAUTY_GOOD
-	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
+
 
 /obj/item/storage/fish_case/syndicate/persistence
 	name = "ominous fish case"
 
 /obj/item/storage/fish_case/syndicate/get_fish_type()
-	return pick(/obj/item/fish/jumpercable/frank, /obj/item/fish/jumpercable/carly, /obj/item/fish/jumpercable/carl, /obj/item/fish/jumpercable/karl)
+	return pick(/obj/item/fish/jumpercable/karl/frank, /obj/item/fish/jumpercable/karl/carly, /obj/item/fish/jumpercable/karl/carl, /obj/item/fish/jumpercable/karl)
