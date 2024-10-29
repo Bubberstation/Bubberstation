@@ -34,14 +34,11 @@
 			if((living_peeker.loc == peeked.loc) && (living_peeker.resting && !peeked.resting))
 				return TRUE
 
-			// Or are you nearby and we are up high
-			// to-do climbable stuff
-			/*var/obj/structure/high_ground_peeked = locate(/obj/structure) in get_turf(peeked)
+			var/obj/structure/high_ground_peeked = locate(/obj/structure) in get_turf(peeked)
 			var/obj/structure/high_ground_peeker = locate(/obj/structure) in get_turf(peeker)
-			if(high_ground_peeked && high_ground_peeked.climbable && CHECK_BITFIELD(peeked.mobility_flags, MOBILITY_STAND) && peeked.Adjacent(peeker))
-				// Funnily enough, if we're at the same height, they can't just peek under us!
-				if(!(high_ground_peeker && high_ground_peeker.climbable))
-					return TRUE*/
+			if(high_ground_peeked && HAS_TRAIT(high_ground_peeked, TRAIT_CLIMBABLE) && (peeked.mobility_flags & MOBILITY_STAND) && peeked.Adjacent(peeker))
+				if(!(high_ground_peeker && HAS_TRAIT(high_ground_peeker, TRAIT_CLIMBABLE)))
+					return TRUE
 	return FALSE
 
 /datum/element/skirt_peeking/proc/on_examine(mob/living/carbon/human/peeked, mob/peeker, list/examine_list)
@@ -53,7 +50,7 @@
 		for(var/obj/item/organ/external/genital/genital in peeked.organs)
 			if(genital.zone != BODY_ZONE_PRECISE_GROIN)
 				continue
-			if(genital.visibility_preference = GENITAL_SKIP_VISIBILITY)
+			if(genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 				continue
 			examine_content += genital.get_description_string()
 		addtimer(CALLBACK(src, PROC_REF(try_notice), peeked, peeker), 1)
