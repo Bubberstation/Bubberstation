@@ -34,8 +34,6 @@
 #define TRAIT_TOUGH				"tough"
 #define TRAIT_ARACHNID			"arachnid"
 #define TRAIT_ASHRESISTANCE		"ash_resistance"
-#define TRAIT_PHARMA			"hepatic_pharmacokinesis"
 #define TRAIT_DISTANT			"headpat_hater"
 #define TRAIT_HEADPAT_SLUT		"headpat_slut"
-#define TRAIT_OVERWEIGHT		"overweight"
 #define TRAIT_THIRSTY			"thirsty"
