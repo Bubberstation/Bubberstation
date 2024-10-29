@@ -7,6 +7,7 @@
 	medical_record_text = "Patient seems to demonstrate an extraordinary liking in kissing."
 	mob_trait = TRAIT_KISS_SLUT //No use for this yet
 	icon = FA_ICON_FACE_KISS_WINK_HEART
+	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/lipstick/random = 20,
 		/obj/item/lipstick/hypnosyndie = 1 // Very small chance of ERP lipstick

@@ -7,6 +7,7 @@
 	medical_record_text = "Patient exhibits an abnormal obsession with restricted breathing."
 	mob_trait = TRAIT_CHOKE_SLUT // Not implemented yet due to the lack of the arousal system
 	icon = FA_ICON_LUNGS
+	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/reagent_containers/hypospray/medipen = 1 // Fix your oxy loss
 	)

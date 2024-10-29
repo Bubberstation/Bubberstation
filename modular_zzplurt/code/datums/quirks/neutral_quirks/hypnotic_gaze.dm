@@ -12,6 +12,7 @@
 	medical_record_text = "Patient's eyes exhibits soporific effects. Additional testing may be necessary."
 	mob_trait = TRAIT_HYPNOTIC_GAZE
 	icon = FA_ICON_ARROWS_TO_EYE
+	erp_quirk = TRUE
 
 /datum/quirk/Hypnotic_gaze/add()
 	// Define quirk mob

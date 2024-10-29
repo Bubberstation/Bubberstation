@@ -2,7 +2,7 @@
 	name = "Breathless"
 	desc = "Whether due to genetic engineering, medical technology, or bluespace magic, you no longer require air to function. This also means that administering life-saving maneuvers such as CPR is impossible."
 	value = 3
-	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	quirk_flags = QUIRK_PROCESSES
 	gain_text = span_notice("You no longer need to breathe.")
 	lose_text = span_notice("You need to breathe again...")
 	medical_record_text = "Patient demonstrates no requirement for oxygen intake."

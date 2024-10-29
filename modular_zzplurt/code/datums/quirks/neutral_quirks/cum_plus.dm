@@ -7,6 +7,7 @@
 	lose_text = span_purple("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
 	icon = FA_ICON_DROPLET
+	erp_quirk = TRUE
 	//var/increasedcum // Currently unused
 
 /* needs genital fluids and also to affect more than just your balls

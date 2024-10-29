@@ -7,6 +7,7 @@
 	medical_record_text = "Patient's body has above-average fluid production capability."
 	mob_trait = TRAIT_MESSY
 	icon = FA_ICON_DROPLET
+	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/mop = 1 // Clean this mess up!
 	)

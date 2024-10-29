@@ -10,6 +10,7 @@
 	medical_record_text = "Patient has been implanted with a Fluid Infuser implant."
 	// No mob trait
 	icon = FA_ICON_BOTTLE_DROPLET
+	erp_quirk = TRUE
 
 */
 /* Commented until we have the genital fluid options

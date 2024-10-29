@@ -2,11 +2,13 @@
 	name = "Buns of Thunder"
 	desc = "That pants-stretching, seat-creaking, undie-devouring butt of yours is as satisfying as it is difficult to keep balanced when smacked!"
 	value = 0
+	quirk_flags = QUIRK_MOODLET_BASED
 	gain_text = span_purple("Your butt feels extremely smackable.")
 	lose_text = span_purple("Your butt no longer feels like it needs smacking.")
 	medical_record_text = "Patient is endowed with a superior posterior."
 	mob_trait = TRAIT_JIGGLY_ASS
 	icon = FA_ICON_CAKE
+	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/food/cake = 1 // You know why
 	)

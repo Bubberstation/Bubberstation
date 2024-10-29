@@ -8,6 +8,7 @@
 	medical_record_text = "Patient seems abnormally responsive to being touched on the head."
 	mob_trait = TRAIT_HEADPAT_SLUT
 	icon = FA_ICON_HAND_HOLDING_HEART
+	erp_quirk = TRUE
 
 // Copy pasted from old code
 /*

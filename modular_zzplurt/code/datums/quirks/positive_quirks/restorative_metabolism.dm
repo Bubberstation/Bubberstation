@@ -2,7 +2,7 @@
 	name = "Restorative Metabolism"
 	desc = "Your body possesses a differentiated reconstructive ability, allowing you to slowly recover from injuries. Critical injuries, wounds, and genetic damage will still require medical attention."
 	value = 3
-	quirk_flags = /datum/quirk::quirk_flags | QUIRK_PROCESSES
+	quirk_flags = QUIRK_PROCESSES
 	gain_text = span_notice("You feel a surge of reconstructive vitality coursing through your body...")
 	lose_text = span_notice("You sense your enhanced reconstructive ability fading away...")
 	medical_record_text = "Patient possesses a self-reconstructive condition. Medical care is only required under extreme circumstances."
