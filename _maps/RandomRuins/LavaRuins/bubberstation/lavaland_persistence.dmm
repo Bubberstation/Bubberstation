@@ -8089,7 +8089,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer4{
 	dir = 4
 	},
-/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "zq" = (
@@ -9400,15 +9399,6 @@
 /obj/structure/closet/crate/freezer/blood/interdyne,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
-"DN" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/cable,
-/obj/structure/sign/poster/official/flech_rifle{
-	pixel_x = 32
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "DO" = (
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/structure/cable,
@@ -9652,14 +9642,6 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/mining)
-"EI" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/persistance/med)
 "EJ" = (
 /obj/machinery/computer/cargo/express/interdyne{
 	dir = 4
@@ -12258,7 +12240,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/catwalk_floor/colony_fabricator,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenoarchology)
 "MT" = (
@@ -14642,6 +14623,7 @@
 "UH" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "UI" = (
@@ -15646,18 +15628,11 @@
 	pixel_y = -32;
 	all_products_free = 1
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/button/door/directional/north{
 	id = "dauntbar_s";
 	name = "Bar Shutters";
 	pixel_x = -24;
 	pixel_y = 8
-	},
-/obj/machinery/button/polarizer{
-	id = "dauntbar_w";
-	name = "Bar Windows";
-	pixel_y = 24;
-	pixel_x = -8
 	},
 /obj/machinery/button/polarizer{
 	id = "dauntbar_w";
@@ -17918,7 +17893,7 @@ Ri
 ef
 Xt
 EU
-DN
+Ij
 Ij
 dg
 AQ
@@ -19966,7 +19941,7 @@ lY
 ZL
 dx
 hN
-EI
+sV
 sV
 FZ
 yI
