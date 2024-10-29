@@ -1,15 +1,12 @@
 /obj/item/disk/nifsoft_uploader/dorms/nif_disrobe_disk
 	name = "rapid disrobe"
-	loaded_nifsoft = /datum/nifsoft/action_granter/nif_disrobe
+	loaded_nifsoft = /datum/nifsoft/action_granter/free/nif_disrobe
 
-/datum/nifsoft/action_granter/nif_disrobe
+/datum/nifsoft/action_granter/free/nif_disrobe
 	name = "Emergency Clothing Disruption Field"
 	program_desc = "Generates a lining of nanites along the epidermis with high power static charge emitters, allowing for the rapid removal of clothing. Precision not guaranteed."
 	buying_category = NIFSOFT_CATEGORY_FUN
 	lewd_nifsoft = TRUE
-	purchase_price = 150
-	able_to_keep = TRUE
-	active_cost = 0
 	ui_icon = "eye"
 	action_to_grant = /datum/action/innate/nif_disrobe_action
 

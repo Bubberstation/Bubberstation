@@ -4,6 +4,7 @@
 
 	// Disable use cost
 	active_cost = 0
+	activation_cost = 0
 
 	// Replace action
 	action_to_grant = /datum/action/cooldown/hypnotize

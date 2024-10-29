@@ -9,9 +9,9 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 	/datum/nifsoft/summoner/book,
 	/datum/nifsoft/action_granter/hypnosis,
 	// SPLURT EDIT
-	/datum/nifsoft/action_granter/nif_disrobe,
-	/datum/nifsoft/action_granter/nif_hide_backpack,
-	/datum/nifsoft/action_granter/nif_gfluid,
+	/datum/nifsoft/action_granter/free/nif_disrobe,
+	/datum/nifsoft/action_granter/free/nif_hide_backpack,
+	/datum/nifsoft/action_granter/free/nif_gfluid,
 	// SPLURT EDIT END
 ))
 
