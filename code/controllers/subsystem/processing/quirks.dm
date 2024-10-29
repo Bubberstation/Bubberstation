@@ -45,9 +45,32 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
 	//BUBBER EDIT ADDITION END
 	//SPLURT EDIT ADDITION BEGIN
-	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood),
+
+	// Hallowed is a direct foil to both quirks.
+	// Causes a conflict with Holy Water effects.
+	// Bloodsuckers cannot interact with Hallowed users.
+	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood, /datum/quirk/bloodfledge),
+
+	// Causes unacceptable levels of mixed signals.
+	list(/datum/quirk/buns_of_steel,/datum/quirk/jiggly_ass),
+
+	// Both quirks add a cosmetic glow effect.
 	list(/datum/quirk/rad_fiend, /datum/quirk/cosglow),
-	
+
+	// You have an irremovable suit.
+	list(/datum/quirk/nudist,/datum/quirk/equipping/entombed),
+
+	// Conflicting health add-remove effect.
+	list(/datum/quirk/flimsy,/datum/quirk/tough),
+
+	// You must have working eyes for hypnotic gaze.
+	// Disabled because quirk was replaced by NIFsoft
+	//list(/datum/quirk/Hypnotic_gaze,/datum/quirk/item_quirk/blindness,/datum/quirk/echolocation),
+
+	// You can't smell anything!
+	list(/datum/quirk/cum_sniff,/datum/quirk/item_quirk/anosmia)
+	//SPLURT EDIT ADDITION END
+
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
