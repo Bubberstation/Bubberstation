@@ -19,8 +19,8 @@
 	var/datum/action/cooldown/hypnotize/act_hypno = new
 	act_hypno.Grant(quirk_mob)
 
-	// Add examine text
-	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_holder))
+	// Add status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hypnotic_gaze)
 
 /datum/quirk/Hypnotic_gaze/remove()
 	// Define quirk mob
@@ -30,12 +30,19 @@
 	var/datum/action/cooldown/hypnotize/act_hypno = locate() in quirk_mob.actions
 	act_hypno.Remove(quirk_mob)
 
-	// Remove examine text
-	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_hypnotic_gaze)
 
-// Quirk examine text
-/datum/quirk/Hypnotic_gaze/proc/on_examine_holder(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
-	examine_list += "[quirk_holder.p_their(TRUE)] eyes glimmer with an entrancing power..."
+// Examine text status effect
+/datum/status_effect/quirk_hypnotic_gaze
+	id = "quirk_hypnotic_gaze"
+	duration = -1
+	alert_type = null
+
+// Set effect examine text
+/datum/status_effect/quirk_hypnotic_gaze/get_examine_text()
+	return span_purple("[owner.p_Their()] eyes glimmer with an entrancing power.")
+
 
 //
 // Actions

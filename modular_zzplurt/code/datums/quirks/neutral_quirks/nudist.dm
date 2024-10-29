@@ -18,19 +18,17 @@
 
 	// Register signal handlers
 	RegisterSignals(quirk_holder, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(check_outfit))
-	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(quirk_examine_nudist))
 
 /datum/quirk/nudist/remove()
 	. = ..()
 
-	// Remove mood event
-	quirk_holder.clear_mood_event(QMOOD_NUDIST)
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
 
 	// Unregister signals
 	UnregisterSignal(quirk_holder, list(
 		COMSIG_MOB_EQUIPPED_ITEM,
-		COMSIG_MOB_UNEQUIPPED_ITEM,
-		COMSIG_ATOM_EXAMINE
+		COMSIG_MOB_UNEQUIPPED_ITEM
 		)
 	)
 
@@ -60,6 +58,12 @@
 		// Send positive mood event
 		quirk_mob.add_mood_event(QMOOD_NUDIST, /datum/mood_event/nudist_positive)
 
+		// Remove old status effect
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
+
+		// Apply positive status effect
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_nudist/positive)
+
 		// Check if already set
 		if(is_nude)
 			return
@@ -75,6 +79,12 @@
 		// Send negative mood event
 		quirk_mob.add_mood_event(QMOOD_NUDIST, /datum/mood_event/nudist_negative)
 
+		// Remove old status effect
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
+
+		// Apply negative status effect
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_nudist/negative)
+
 		// Check if already set
 		if(!is_nude)
 			return
@@ -85,26 +95,6 @@
 		// Set nude status
 		is_nude = FALSE
 
-/datum/quirk/nudist/proc/quirk_examine_nudist(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
-	SIGNAL_HANDLER
-
-	// Define default status term
-	var/mood_term = "content with [quirk_holder.p_their()] lack of"
-
-	// Define default span class
-	var/span_class
-
-	// Check if dressed
-	if(!is_nude)
-		// Set negative term
-		mood_term = "disturbed by wearing"
-
-		// Set negative span class
-		span_class = "warning"
-
-	// Add examine text
-	examine_list += "<span class='[span_class]'>[quirk_holder.p_they(TRUE)] appear[quirk_holder.p_s()] [mood_term] clothing.</span>"
-
 /datum/mood_event/nudist_positive
 	description = span_nicegreen("I'm delighted to not be constricted by clothing.\n")
 	mood_change = 1
@@ -112,3 +102,17 @@
 /datum/mood_event/nudist_negative
 	description = span_warning("I don't feel comfortable wearing this.\n")
 	mood_change = -4
+
+// Examine text status effect
+/datum/status_effect/quirk_nudist
+	id = "quirk_nudist"
+	duration = -1
+	alert_type = null
+
+// Set effect examine text - Positive
+/datum/status_effect/quirk_nudist/positive/get_examine_text()
+	return span_notice("[owner.p_They()] appear[owner.p_s()] content with [owner.p_their()] lack of clothing.")
+
+// Set effect examine text - Negative
+/datum/status_effect/quirk_nudist/negative/get_examine_text()
+	return span_warning("[owner.p_They()] appear[owner.p_s()] disturbed by wearing clothing.")

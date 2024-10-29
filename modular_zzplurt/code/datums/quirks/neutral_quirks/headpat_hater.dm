@@ -9,6 +9,24 @@
 	mob_trait = TRAIT_DISTANT
 	icon = FA_ICON_HAND
 
+/datum/quirk/headpat_hater/post_add()
+	// Add status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_headpat_hater)
+
+/datum/quirk/headpat_hater/remove()
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_headpat_hater)
+
+// Examine text status effect
+/datum/status_effect/quirk_headpat_hater
+	id = "headpat_hater"
+	duration = -1
+	alert_type = null
+
+// Set effect examine text
+/datum/status_effect/quirk_headpat_hater/get_examine_text()
+	return span_warning("[owner.p_They()] look[owner.p_s()] like someone you shouldn't pat.")
+
 // Copy pasted from old code
 /*
 /datum/quirk/headpat_hater/add()

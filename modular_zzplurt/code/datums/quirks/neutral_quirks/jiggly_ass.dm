@@ -13,24 +13,29 @@
 	COOLDOWN_DECLARE(wiggle_cooldown)
 
 /datum/quirk/jiggly_ass/add()
-	// Add examine text
-	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_holder))
+	// Add status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_jiggly_ass)
 
 /datum/quirk/jiggly_ass/remove()
-	// Remove examine text
-	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_jiggly_ass)
 
-// Quirk examine text
-/datum/quirk/jiggly_ass/proc/on_examine_holder(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
-	examine_list += span_purple("[quirk_holder.p_their(TRUE)] butt could use a firm smack.")
+// Examine text status effect
+/datum/status_effect/quirk_jiggly_ass
+	id = "quirk_jiggly_ass"
+	duration = -1
+	alert_type = null
 
+// Set effect examine text
+/datum/status_effect/quirk_jiggly_ass/get_examine_text()
+	return span_purple("[owner.p_Their()] butt could use a firm smack.")
 
 /datum/mood_event/butt_slap
-	description = span_userlove("Smacking that butt felt extremely satisfying!\n")
+	description = span_purple("Smacking that butt felt extremely satisfying!\n")
 	mood_change = 3
 	timeout = 2 MINUTES
 
 /datum/mood_event/butt_slapped
-	description = span_userlove("My jiggly butt was finally smacked, so satisfying!\n")
+	description = span_purple("My jiggly butt was finally smacked, so satisfying!\n")
 	mood_change = 3
 	timeout = 2 MINUTES

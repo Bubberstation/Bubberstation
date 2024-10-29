@@ -25,8 +25,8 @@
 	// Makes the user holy.
 	quirk_mob.mind.holy_role = HOLY_ROLE_DEACON
 
-	// Add examine text.
-	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_holder))
+	// Add status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/headpat_hater)
 
 /datum/quirk/hallowed/remove()
 	// Define quirk mob.
@@ -41,12 +41,12 @@
 	// Makes the user not holy.
 	quirk_mob.mind.holy_role = NONE
 
-	// Remove examine text
-	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/headpat_hater)
 
-// Quirk examine text.
-/datum/quirk/hallowed/proc/on_examine_holder(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
-	examine_list += "[quirk_holder.p_they(TRUE)] radiates divine power..."
+// Set effect examine text
+/datum/status_effect/headpat_hater/get_examine_text()
+	return span_notice("[owner.p_They()] radiate[owner.p_s()] divine power.")
 
 /datum/reagent/water/holywater/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	. = ..()
