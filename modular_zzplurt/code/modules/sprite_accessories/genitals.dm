@@ -5,7 +5,7 @@
 	key = ORGAN_SLOT_BUTT
 	color_src = USE_MATRIXED_COLORS
 	always_color_customizable = TRUE
-	relevent_layers = list(BODY_ADJ_LAYER)
+	relevent_layers = list(BODY_FRONT_LAYER)
 	genetic = TRUE
 
 
