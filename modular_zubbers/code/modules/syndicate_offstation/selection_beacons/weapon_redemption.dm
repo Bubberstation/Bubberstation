@@ -12,7 +12,6 @@
 		"Makarov" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/makarov,
 		"M1911" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/m1911,
 		"Energy Dagger" = /obj/item/pen/edagger,
-		"Energy Pistol" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/egun_mini
 	)
 
 	return selectable_gun_types
@@ -26,7 +25,6 @@
 		"Makarov" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/makarov,
 		"M1911" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/m1911,
 		"Energy Dagger" = /obj/item/pen/edagger,
-		"Energy Pistol" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/egun_mini,
 		"Syndicate Crossbow" = /obj/item/storage/toolbox/guncase/skyrat/opfor/rebar_crossbow
 	)
 
