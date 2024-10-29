@@ -37,3 +37,5 @@
 #define TRAIT_DISTANT			"headpat_hater"
 #define TRAIT_HEADPAT_SLUT		"headpat_slut"
 #define TRAIT_THIRSTY			"thirsty"
+// Prevents processing any type of consumable reagent, including nutriment
+#define TRAIT_NO_PROCESS_FOOD	"no-process-food"
