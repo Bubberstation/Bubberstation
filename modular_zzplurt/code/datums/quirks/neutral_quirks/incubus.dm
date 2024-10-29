@@ -1,8 +1,11 @@
+// Original comments imply hunger changes are designed
+// to encourage the quirk holder to seek a 'partner'
+#define QUIRK_HUNGER_INCUBUS 1.1 // 10% hungrier
+
 /datum/quirk/incubus
 	name = "Incubus"
 	desc = "Your seductress-like metabolism can only be sated by milk."
 	value = 0
-	quirk_flags = QUIRK_PROCESSES
 	gain_text = span_notice("You feel a craving for dairy products.")
 	lose_text = span_notice("Your dairy craving fades back away.")
 	medical_record_text = "Patient claims to subsist entirely on milk based products."
@@ -14,21 +17,36 @@
 
 /datum/quirk/incubus/add(client/client_source)
 	. = ..()
+
+	// Define quirk holder
 	var/mob/living/carbon/human/H = quirk_holder
-	ADD_TRAIT(H, TRAIT_NOHUNGER, QUIRK_TRAIT)
-	//ADD_TRAIT(H,TRAIT_NOTHIRST,ROUNDSTART_TRAIT) //Needs thirst system
+
+	// Check for valid holder
+	if(!istype(H))
+		return
+
+	// Increase hunger rate
+	H.physiology.hunger_mod *= QUIRK_HUNGER_INCUBUS
+
+	// Prevent consuming normal food
+	ADD_TRAIT(H, TRAIT_NO_PROCESS_FOOD, QUIRK_TRAIT)
+	//ADD_TRAIT(H,TRAIT_NOTHIRST,QUIRK_TRAIT) //Needs thirst system
 
 /datum/quirk/incubus/remove()
 	. = ..()
-	var/mob/living/carbon/human/H = quirk_holder
-	REMOVE_TRAIT(H, TRAIT_NOHUNGER, QUIRK_TRAIT)
-	//REMOVE_TRAIT(H,TRAIT_NOTHIRST,ROUNDSTART_TRAIT) //Needs thirst system
 
-/datum/quirk/incubus/process(seconds_per_tick)
+	// Define quirk holder
 	var/mob/living/carbon/human/H = quirk_holder
-	H.adjust_nutrition(-0.09)//increases their nutrition loss rate to encourage them to gain a partner they can essentially leech off of
 
-/datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	. = ..()
-	if(HAS_TRAIT(affected_mob, TRAIT_INCUBUS))
-		affected_mob.adjust_nutrition(1.5)
+	// Check for valid holder
+	if(!istype(H))
+		return
+
+	// Revert hunger rate change
+	H.physiology.hunger_mod /= QUIRK_HUNGER_INCUBUS
+
+	// Revert quirk traits
+	REMOVE_TRAIT(H, TRAIT_NO_PROCESS_FOOD, QUIRK_TRAIT)
+	//REMOVE_TRAIT(H,TRAIT_NOTHIRST,QUIRK_TRAIT) //Needs thirst system
+
+#undef QUIRK_HUNGER_INCUBUS
