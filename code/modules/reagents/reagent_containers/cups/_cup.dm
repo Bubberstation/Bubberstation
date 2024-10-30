@@ -224,7 +224,7 @@
 
 /obj/item/reagent_containers/cup/beaker
 	name = "beaker"
-	desc = "A beaker. It can hold up to 50 units."
+	desc = "A beaker. It can hold up to 60 units." //BubberEdit
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
 	inhand_icon_state = "beaker"
@@ -236,6 +236,8 @@
 	pickup_sound = 'sound/items/handling/beaker_pickup.ogg'
 	drop_sound = 'sound/items/handling/beaker_place.ogg'
 	sound_vary = TRUE
+	volume = 60 //BubberEdit addition
+	possible_transfer_amounts = list(5,10,15,20,30,60) //BubberEdit addition
 
 /obj/item/reagent_containers/cup/beaker/Initialize(mapload)
 	. = ..()
@@ -252,22 +254,22 @@
 
 /obj/item/reagent_containers/cup/beaker/large
 	name = "large beaker"
-	desc = "A large beaker. Can hold up to 100 units."
+	desc = "A large beaker. Can hold up to 120 units." //BubberEdit
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT*1.25)
-	volume = 100
+	volume = 120 //BubberEdit
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120) //BubberEdit
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/plastic
 	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 120 units."
+	desc = "An extra-large beaker. Can hold up to 150 units." //BubberEdit
 	icon_state = "beakerwhite"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5)
-	volume = 120
+	volume = 150
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
+	possible_transfer_amounts = list(5,10,15,20,25,30,50,75,150) //BubberEdit
 	fill_icon_thresholds = list(0, 1, 10, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/meta
@@ -283,11 +285,12 @@
 /obj/item/reagent_containers/cup/beaker/noreact
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 50 units."
+		reactions. Can hold up to 60 units." //BubberEdit
 	icon_state = "beakernoreact"
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	reagent_flags = OPENCONTAINER | NO_REACT
-	volume = 50
+	volume = 60 //BubberEdit
+	possible_transfer_amounts = list(5,10,15,20,30,60) //BubberEdit addition
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/cup/beaker/bluespace
