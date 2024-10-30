@@ -163,3 +163,36 @@
 	attack_verb_simple = list("bap", "paw", "claw")
 	gender = MALE
 	squeak_override = list('sound/mobs/non-humanoids/dog/growl2.ogg' = 1)
+
+// Silly plush for kurzaen, sprited and coded by Waterpig
+// Spontaneously combusts when touched by other plushies
+/obj/item/toy/plush/cat_annoying
+	name = "\improper Annoying Cat Plush"
+	desc = "This plush reeks of Green apples, and HATES physical affection. You can feel it looking at you with a judgmental gaze.."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "annoyingcat"
+	gender = MALE
+	squeak_override = list(
+		'modular_skyrat/modules/emotes/sound/voice/scream_m1.ogg' = 1,
+		'modular_skyrat/modules/emotes/sound/voice/scream_m2.ogg' = 1,
+	)
+
+/obj/item/toy/plush/cat_annoying/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/toy/plush))
+		combust()
+	return ..()
+
+/obj/item/toy/plush/cat_annoying/pre_attack(atom/A, mob/living/user, params)
+	if(istype(A, /obj/item/toy/plush))
+		combust()
+	return ..()
+
+/obj/item/toy/plush/cat_annoying/proc/combust()
+	src.fire_act(5000)
+	src.visible_message(span_notice("The [src.name] spontaneously combusts from physical affection!"))
+	addtimer(CALLBACK(src, PROC_REF(ash)), 2 SECONDS)
+
+/obj/item/toy/plush/cat_annoying/proc/ash()
+	new /obj/effect/decal/cleanable/ash(get_turf(src))
+	src.visible_message(span_warning("The [src.name] turns to ash!"))
+	qdel(src)
