@@ -34,3 +34,4 @@
 #define TRAIT_THIRSTY			"thirsty"
 // Prevents processing any type of consumable reagent, including nutriment
 #define TRAIT_NO_PROCESS_FOOD	"no-process-food"
+#define TRAIT_CONCUBUS			"concubus"

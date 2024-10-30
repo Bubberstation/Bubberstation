@@ -2,7 +2,7 @@
 	. = ..()
 
 	// Check for Incubus quirk
-	if(HAS_TRAIT(affected_mob, TRAIT_INCUBUS))
+	if(HAS_TRAIT(affected_mob, TRAIT_CONCUBUS))
 		// Add nutrition
 		affected_mob.adjust_nutrition(nutriment_factor)
 

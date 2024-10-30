@@ -3,7 +3,7 @@
 	. = ..()
 
 	// Check for Succubus quirk
-	if(HAS_TRAIT(affected_mob, TRAIT_SUCCUBUS))
+	if(HAS_TRAIT(affected_mob, TRAIT_CONCUBUS))
 		// Add nutrition
 		affected_mob.adjust_nutrition(nutriment_factor)
 
@@ -15,7 +15,7 @@
 	. = ..()
 
 	// Check for Succubus quirk
-	if(HAS_TRAIT(affected_mob, TRAIT_SUCCUBUS))
+	if(HAS_TRAIT(affected_mob, TRAIT_CONCUBUS))
 		// Add nutrition
 		affected_mob.adjust_nutrition(nutriment_factor)
 
