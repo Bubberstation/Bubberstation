@@ -8,6 +8,7 @@
 /datum/status_effect/chem/enthrall
 	id = "enthrall"
 	alert_type = null
+	tick_interval = 4 SECONDS
 	//examine_text TODO
 	var/enthrallTally = 1 //Keeps track of the enthralling process
 	var/resistanceTally = 0 //Keeps track of the resistance
@@ -68,13 +69,13 @@
 	SSblackbox.record_feedback("tally", "fermi_chem", 1, "Enthrall attempts")
 	return ..()
 
-/datum/status_effect/chem/enthrall/tick()
+/datum/status_effect/chem/enthrall/tick(seconds_between_ticks)
 	var/mob/living/carbon/enthrall_victim = owner
 
 	//chem calculations
 	if(!owner.reagents.has_reagent(/datum/reagent/mkultra))
 		if (phase < 3 && phase != 0)
-			deltaResist += 3//If you've no chem, then you break out quickly
+			deltaResist += 2 //If you've no chem, then you break out quickly
 			if(prob(5))
 				to_chat(owner, "<span class='notice'><i>Your mind starts to restore some of it's clarity as you feel the effects of the drug wain.</i></span>")
 	if (mental_capacity <= 500 || phase == 4)
@@ -102,7 +103,7 @@
 				cooldown -= 1
 			return
 		if(1)//Initial enthrallment
-			if (enthrallTally > 125)
+			if (enthrallTally >= 48)
 				phase += 1
 				mental_capacity -= resistanceTally//leftover resistance per step is taken away from mental_capacity.
 				resistanceTally /= 2
@@ -113,7 +114,7 @@
 				else
 					to_chat(owner, "<span class='big velvet'><i>Your conciousness slips, as you feel more drawn to following [master].</i></span>")
 
-			else if (resistanceTally > 125)
+			else if (resistanceTally >= 48)
 				phase = -1
 				to_chat(owner, "<span class='warning'><i>You break free of the influence in your mind, your thoughts suddenly turning lucid!</i></span>")
 				if(DistApart < 10)
@@ -124,7 +125,7 @@
 				if(lewd)
 					to_chat(owner, "<span class='small velvet'><i>[pick("It feels so good to listen to [master].", "You can't keep your eyes off [master].", "[master]'s voice is making you feel so sleepy.",  "You feel so comfortable with [master]", "[master] is so dominant, it feels right to obey them.")].</b></span>")
 		if (2) //partially enthralled
-			if(enthrallTally > 200)
+			if(enthrallTally >= 96)
 				phase += 1
 				mental_capacity -= resistanceTally//leftover resistance per step is taken away from mental_capacity.
 				enthrallTally = 0
@@ -136,7 +137,7 @@
 					to_chat(owner, "<span class='big nicegreen'><i>You are unable to put up a resistance any longer, and now are under the influence of [master]. However you find that in your intoxicated state you are unable to resort to violence. Equally you are unable to commit suicide, even if ordered to, as you cannot follow [master] in death. </i></span>")
 				to_chat(master, "<span class='notice'><i>Your [(lewd?"pet":"follower")] [owner] appears to have fully fallen under your sway.</i></span>")
 				SSblackbox.record_feedback("tally", "fermi_chem", 1, "thralls fully enthralled.")
-			else if (resistanceTally > 200)
+			else if (resistanceTally >= 96)
 				enthrallTally *= 0.5
 				phase -= 1
 				resistanceTally = 0
@@ -145,7 +146,7 @@
 			if(lewd && prob(10))
 				to_chat(owner, "<span class='velvet'><i>[pick("It feels so good to listen to [enthrallGender].", "You can't keep your eyes off [enthrallGender].", "[enthrallGender]'s voice is making you feel so sleepy.",  "You feel so comfortable with [enthrallGender]", "[enthrallGender] is so dominant, it feels right to obey them.")].</i></span>")
 		if (3)//fully entranced
-			if ((resistanceTally >= 200 && withdrawalTick >= 150) || (HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD) && (resistanceTally >= 100)))
+			if ((resistanceTally >= 96 && withdrawalTick >= 72) || (HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD) && (resistanceTally >= 48)))
 				enthrallTally = 0
 				phase -= 1
 				resistanceTally = 0
@@ -189,11 +190,11 @@
 			if(phase <= 2)
 				// Collars speed up the enthralment process.
 				if(enthrall_victim.wear_neck?.kink_collar == TRUE)
-					enthrallTally += distancelist[get_dist(master, owner)+1] * 1.3
+					enthrallTally += round(distancelist[get_dist(master, owner)+1] * 1.3, 0.1)
 				else
-					enthrallTally += distancelist[get_dist(master, owner)+1]
+					enthrallTally += round(distancelist[get_dist(master, owner)+1], 0.1)
 			if(withdrawalTick > 0)
-				withdrawalTick -= 1
+				withdrawalTick -= 2
 			//calming effects
 			enthrall_victim.set_hallucinations(0)
 			enthrall_victim.set_stutter(0)
@@ -213,19 +214,19 @@
 	//Withdrawal subproc:
 	if (withdrawal == TRUE)//Your minions are really REALLY needy.
 		switch(withdrawalTick)//denial
-			if(5)//To reduce spam
+			if(4) // 00:20 - To reduce spam
 				to_chat(owner, "<span class='big warning'><b>You are unable to complete [(lewd?"your [enthrallGender]":"[master]")]'s orders without their presence, and any commands and objectives given to you prior are not in effect until you are back with them.</b></span>")
 				ADD_TRAIT(owner, TRAIT_PACIFISM, "MKUltra") //IMPORTANT
-			if(10 to 35)//Gives wiggle room, so you're not SUPER needy
+			if(16 to 47) // 01:00-3:00 - Gives wiggle room, so you're not SUPER needy
 				if(prob(5))
 					to_chat(owner, "<span class='notice'><i>You're starting to miss [(lewd?"your [enthrallGender]":"[master]")].</i></span>")
 				if(prob(5))
 					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
 					to_chat(owner, "<i>[(lewd?"[enthrallGender]":"[master]")] will surely be back soon</i>") //denial
-			if(36)
+			if(48) // 03:00 - You can now try and break away
 				var/message = "[(lewd?"I feel empty when [enthrallGender]'s not around..":"I miss [master]'s presence")]"
 				enthrall_victim.add_mood_event("EnthMissing1", /datum/mood_event/enthrallmissing1, message)
-			if(37 to 65)//barganing
+			if(49 to 71) // 03:00-05:00 - barganing
 				if(prob(10))
 					to_chat(owner, "<i>They are coming back, right...?</i>")
 					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5)
@@ -233,14 +234,14 @@
 					if(lewd)
 						to_chat(owner, "<i>I just need to be a good pet for [enthrallGender], they'll surely return if I'm a good pet.</i>")
 					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
-			if(66)
+			if(72) // 05:00
 				enthrall_victim.clear_mood_event("EnthMissing1")
 				var/message = "[(lewd?"I feel so lost in this complicated world without [enthrallGender]..":"I have to return to [master]!")]"
 				to_chat(owner, "<span class='warning'>You start to feel really angry about how you're not with [(lewd?"your [enthrallGender]":"[master]")]!</span>")
 				enthrall_victim.add_mood_event("EnthMissing2", /datum/mood_event/enthrallmissing2, message)
 				owner.adjust_stutter(30 SECONDS)
 				owner.adjust_jitter(150 SECONDS)
-			if(67 to 89) //anger
+			if(73 to 95) // 05:00-7:00 - anger
 				if(prob(10))
 					addtimer(CALLBACK(enthrall_victim.set_combat_mode(TRUE)), 2)
 					addtimer(CALLBACK(enthrall_victim, /mob/proc/click_random_mob), 2)
@@ -248,7 +249,7 @@
 						to_chat(owner, "<span class='warning'>You are overwhelmed with anger at the lack of [enthrallGender]'s presence and suddenly lash out!</span>")
 					else
 						to_chat(owner, "<span class='warning'>You are overwhelmed with anger and suddenly lash out!</span>")
-			if(90)
+			if(96) // 07:00
 				enthrall_victim.clear_mood_event("EnthMissing2")
 				var/message = "[(lewd?"Where are you [enthrallGender]??!":"I need to find [master]!")]"
 				enthrall_victim.add_mood_event("EnthMissing3", /datum/mood_event/enthrallmissing3, message)
@@ -256,20 +257,20 @@
 					to_chat(owner, "<span class='warning'><i>You need to find your [enthrallGender] at all costs, you can't hold yourself back anymore!</i></span>")
 				else
 					to_chat(owner, "<span class='warning'><i>You need to find [master] at all costs, you can't hold yourself back anymore!</i></span>")
-			if(91 to 100)//depression
+			if(97 to 119) // 07:00-09:00 - depression
 				if(prob(10))
 					enthrall_victim.gain_trauma_type(BRAIN_TRAUMA_MILD)
 					owner.adjust_stutter(15 SECONDS)
 					owner.adjust_jitter(15 SECONDS)
 				else if(prob(25))
 					enthrall_victim.adjust_hallucinations(10 SECONDS)
-			if(101)
+			if(120)
 				enthrall_victim.clear_mood_event("EnthMissing3")
 				var/message = "[(lewd?"I'm all alone, It's so hard to continute without [enthrallGender]...":"I really need to find [master]!!!")]"
 				enthrall_victim.add_mood_event("EnthMissing4", /datum/mood_event/enthrallmissing4, message)
 				to_chat(owner, "<span class='warning'><i>You can hardly find the strength to continue without [(lewd?"your [enthrallGender]":"[master]")].</i></span>")
 				enthrall_victim.gain_trauma_type(BRAIN_TRAUMA_SEVERE)
-			if(102 to 140) //depression 2, revengeance
+			if(121 to 143) // 09:00-11:00 - depression 2, revengeance
 				if(prob(20))
 					owner.Stun(50)
 					owner.emote("cry")//does this exist?
@@ -290,7 +291,7 @@
 								enthrall_victim.gain_trauma_type(BRAIN_TRAUMA_SPECIAL)
 				if(prob(5))
 					deltaResist += 5
-			if(140 to INFINITY) //acceptance
+			if(144 to INFINITY) // 11:00+ - acceptance
 				if(prob(15))
 					deltaResist += 5
 					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)
@@ -303,7 +304,7 @@
 					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 					enthrall_victim.adjust_hallucinations(10 SECONDS)
 
-		withdrawalTick += 0.5//Enough to leave you with a major brain trauma, but not kill you.
+		withdrawalTick += 1 //Enough to leave you with a major brain trauma, but not kill you.
 
 	//Status subproc - statuses given to you from your Master
 	//currently 3 statuses; antiresist -if you press resist, increases your enthrallment instead, HEAL - which slowly heals the pet, CHARGE - which breifly increases speed, PACIFY - makes pet a pacifist, ANTIRESIST - frustrates resist presses.
@@ -322,7 +323,7 @@
 				to_chat(owner, "<span class='notice'><i>You finish licking your wounds.</i></span>")
 			else
 				statusStrength -= 1
-				owner.heal_overall_damage(1, 1, 0, FALSE, FALSE)
+				owner.heal_overall_damage(4, 4, 0, FALSE, FALSE)
 				cooldown += 1 //Cooldown doesn't process till status is done
 
 		else if(status == "charge")
@@ -374,12 +375,12 @@
 				to_chat(master, "<span class='notice'><i>Your thrall [owner] appears to have finished internalising your last command.</i></span>")
 		cooldownMsg = TRUE
 		cooldown = 0
-	if (tranceTime > 0 && tranceTime != 51) //custom trances only last 50 ticks.
+	if (tranceTime > 0 && tranceTime != 25) //custom trances only last 24 ticks.
 		tranceTime -= 1
 	else if (tranceTime == 0) //remove trance after.
 		enthrall_victim.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY)
 		enthrall_victim.remove_status_effect(/datum/status_effect/trance)
-		tranceTime = 51
+		tranceTime = 25
 	//..()
 
 //Remove all stuff
