@@ -10,10 +10,10 @@
 
 /obj/item/reagent_containers/cup/beaker/plastic
 	desc = "An extra-large beaker. Can hold up to 150 units."
+	volume = 150
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,75,150)
 
 /obj/item/reagent_containers/cup/beaker/noreact
-	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 60 units."
+	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	volume = 60
 	possible_transfer_amounts = list(5,10,15,20,30,60)
