@@ -34,7 +34,7 @@
 
 /datum/emote/living/fpurr
 	key = "fpurr"
-	key_third_person = "purrs!"
+	key_third_person = "fpurrs"
 	message = "purrs!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -42,7 +42,7 @@
 
 /datum/emote/living/prbt //all tesh players will love me
 	key = "prbt"
-	key_third_person = "prbts!"
+	key_third_person = "prbts"
 	message = "prbts!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -58,7 +58,7 @@
 
 /datum/emote/living/mar //all shadekin players will love me
 	key = "mar"
-	key_third_person = "lets out a mar!"
+	key_third_person = "mars"
 	message = "lets out a mar!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -71,11 +71,11 @@
 	message = "snaps their fingers."
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-	sound = 'sound/misc/fingersnap1.ogg'
+	sound = 'sound/mobs/humanoids/human/snap/fingersnap1.ogg'
 
 /datum/emote/living/meow_alt
 	key = "meow1"
-	key_third_person = "meows"
+	key_third_person = "meowalt"
 	message = "meows!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -91,11 +91,11 @@
 
 /datum/emote/living/flutter //Moth flutter
 	key = "flutter"
-	key_third_person = "rapidly flutters their wings!"
+	key_third_person = "flutters"
 	message = "rapidly flutters their wings!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'sound/voice/moth/moth_flutter.ogg'
+	sound = 'sound/mobs/humanoids/moth/moth_flutter.ogg'
 
 /datum/emote/living/sigh_exasperated
 	key = "esigh" // short for exasperated sigh
@@ -111,12 +111,12 @@
 	return
 
 /datum/emote/living/tail_thump
-		key = "tailthump"
-		key_third_person = "thumps their tail!"
-		message = "thumps their tail!"
-		emote_type = EMOTE_AUDIBLE
-		vary = TRUE
-		sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
+	key = "tailthump"
+	key_third_person = "tailthumps"
+	message = "thumps their tail!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
 
 /datum/emote/living/tail_thump/can_run_emote(mob/user, status_check, intentional, params)
 	var/obj/item/organ/external/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -127,8 +127,29 @@
 
 /datum/emote/living/squeal
 	key = "squeal"
-	key_third_person = "squeals!"
+	key_third_person = "squeals"
 	message = "squeals!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
+
+/datum/emote/living/yipyip
+	key = "yipyip"
+	key_third_person = "yips twice"
+	message = "yips twice!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/yip.ogg'
+
+/datum/emote/living/yip
+	key = "yip"
+	key_third_person = "yips"
+	message = "yips!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/yip/get_sound(mob/living/user)
+	return pick('modular_zubbers/code/modules/emotes/sound/voice/yip1.ogg',
+				'modular_zubbers/code/modules/emotes/sound/voice/yip2.ogg',
+				'modular_zubbers/code/modules/emotes/sound/voice/yip2.ogg')
