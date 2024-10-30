@@ -2,7 +2,7 @@
 /datum/quirk/thirsty
 	name = "Thirsty"
 	desc = "You become thirsty twice as quickly. Make sure to drink plenty of fluids!"
-	value = -1
+	value = 0
 	gain_text = span_danger("You're beginning to feel parched again.")
 	lose_text = span_notice("Your elevated craving for water begins dying down.")
 	medical_record_text = "Patient's body is half as effective at retaining liquids, necessitating drinking twice as many liquids per day than usual for their species."

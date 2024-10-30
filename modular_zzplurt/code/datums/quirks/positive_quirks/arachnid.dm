@@ -2,7 +2,7 @@
 /datum/quirk/arachnid
 	name = "Arachnid"
 	desc = "Your bodily anatomy allows you to spin webs and cocoons, even if you aren't an arachnid! This quirk does nothing for members of the arachnid species."
-	value = 1
+	value = 2
 	//quirk_flags = QUIRK_PROCESSES // Unimplemented
 	medical_record_text = "Patient has attempted to cover the room in webs, claiming to be \"making a nest\"."
 	mob_trait = TRAIT_ARACHNID

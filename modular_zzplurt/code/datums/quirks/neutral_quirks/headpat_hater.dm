@@ -2,7 +2,7 @@
 /datum/quirk/headpat_hater
 	name = "Distant"
 	desc = "You don't seem to show much care for having your head touched. Others doing so won't make you wag your tail should you possess one, and the action may even attract your ire."
-	value = 0
+	value = -1
 	gain_text = span_danger("Others' touches begin to make your blood boil.")
 	lose_text = span_notice("Having your head pet doesn't sound so bad anymore.")
 	medical_record_text = "Patient cares little with or dislikes having their head touched."

@@ -1,11 +1,11 @@
 /datum/quirk/vacuum_resistance
     name = "Vacuum Resistance"
     desc = "Your body - whether due to technology, magic, or genetic engineering - is specially adapted to withstand and operate in the vacuum of space. You may still need a source of breathable air, however."
-    value = 3
+    value = 8
     gain_text = span_notice("Your physique attunes to the silence of space, now able to operate in zero pressure.")
     lose_text = span_notice("Your physiology reverts as your spacefaring gifts lay dormant once more.")
     medical_record_text = "Patient's body has fully adapted to zero-pressure environments."
-    hardcore_value = -4
+    hardcore_value = -6
     icon = FA_ICON_USER_ASTRONAUT
     mail_goodies = list (
         /obj/item/storage/box/emergency_spacesuit = 1

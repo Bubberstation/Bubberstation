@@ -1,12 +1,12 @@
 /datum/quirk/hallowed
 	name = "Hallowed"
 	desc = "You have been blessed by a higher power, or otherwise become a deacon imbued with holy energy. Your divine presence gives you the power of a chaplain, and drives away unholy magics!"
-	value = 1 // Maybe up the cost if more is added later.
+	value = 6 // Maybe up the cost if more is added later.
 	gain_text = span_notice("You feel holy energy radiating through your body.")
 	lose_text = span_notice("You feel your holy energy fading away...")
 	medical_record_text = "Patient is under the influence of an unidentified hallowed blessing. Please consult a chaplain."
 	mob_trait = TRAIT_HALLOWED
-	hardcore_value = -1
+	hardcore_value = -4
 	icon = FA_ICON_CHURCH
 	mail_goodies = list (
 		/obj/item/reagent_containers/cup/glass/bottle/holywater = 1

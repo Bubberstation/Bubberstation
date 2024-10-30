@@ -1,12 +1,12 @@
 /datum/quirk/tough
 	name = "Tough"
 	desc = "Your body is abnormally enduring and can take 10% more damage."
-	value = 2
+	value = 4
 	gain_text = span_notice("You feel very sturdy.")
 	lose_text = span_notice("You feel less sturdy.")
 	medical_record_text = "Patient has an abnormally high capacity for injury."
 	mob_trait = TRAIT_TOUGH
-	hardcore_value = -3
+	hardcore_value = -2
 	icon = FA_ICON_SHIELD_HEART
 
 /datum/quirk/tough/add(client/client_source)
