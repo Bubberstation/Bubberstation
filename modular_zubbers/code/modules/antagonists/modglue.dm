@@ -97,7 +97,7 @@
 		i.loc = get_turf(src)
 		var/turf/throw_at = get_ranged_target_turf_direct(src, usr, 7, rand(-60,60))
 		if(i.safe_throw_at(throw_at, rand(2,4), rand(1,3), usr, spin = TRUE))
-			playsound(i, 'sound/weapons/punchmiss.ogg', 10)
+			playsound(i, 'sound/items/weapons/punchmiss.ogg', 10)
 
 	return TRUE
 

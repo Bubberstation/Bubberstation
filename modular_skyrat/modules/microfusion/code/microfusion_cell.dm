@@ -47,7 +47,7 @@ These are basically advanced cells.
 	/// Do we play an alarm when empty?
 	var/empty_alarm = TRUE
 	/// What sound do we play when empty?
-	var/empty_alarm_sound = 'sound/weapons/gun/general/empty_alarm.ogg'
+	var/empty_alarm_sound = 'sound/items/weapons/gun/general/empty_alarm.ogg'
 	/// Do we have the self charging upgrade?
 	var/self_charging = FALSE
 	/// We use this to edit the reload time of the gun
@@ -125,7 +125,7 @@ These are basically advanced cells.
 		balloon_alert(user, "no attachments!")
 		return
 	remove_attachments()
-	playsound(src, 'sound/items/screwdriver.ogg', 70, TRUE)
+	playsound(src, 'sound/items/tools/screwdriver.ogg', 70, TRUE)
 	balloon_alert(user, "attachments removed")
 
 /obj/item/stock_parts/power_store/cell/microfusion/process(seconds_per_tick)

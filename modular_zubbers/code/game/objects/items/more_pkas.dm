@@ -116,13 +116,13 @@
 	projectile_type = /obj/projectile/kinetic/railgun
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
-	fire_sound = 'sound/weapons/beam_sniper.ogg'
+	fire_sound = 'sound/items/weapons/beam_sniper.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/repeater
 	projectile_type = /obj/projectile/kinetic/repeater
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.15) //about three shots
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/shotgun
 	projectile_type = /obj/projectile/kinetic/shotgun
@@ -130,13 +130,13 @@
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	pellets = 3
 	variance = 50
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/glock
 	projectile_type = /obj/projectile/kinetic/glock
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/shockwave
 	projectile_type = /obj/projectile/kinetic/shockwave
@@ -144,13 +144,13 @@
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	pellets = 8
 	variance = 360
-	fire_sound = 'sound/weapons/gun/general/cannon.ogg'
+	fire_sound = 'sound/items/weapons/gun/general/cannon.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/m79
 	projectile_type = /obj/projectile/bullet/mining_bomb //uses the mining bomb projectile from the mining modsuit
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
-	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
+	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 
 //Accelerator Projectiles
 /obj/projectile/kinetic/railgun
