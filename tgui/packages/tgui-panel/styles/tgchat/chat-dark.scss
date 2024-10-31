@@ -417,6 +417,15 @@ em {
   color: #c51e1e;
 }
 
+.tinydanger {
+  color: #c51e1e;
+  font-size: 85%;
+}
+
+.smalldanger {
+  color: #c51e1e;
+  font-size: 90%;
+}
 .warning {
   color: #c51e1e;
   font-style: italic;
@@ -761,6 +770,10 @@ em {
   font-size: 60%;
 }
 
+.slightly_larger {
+  font-size: 115%;
+}
+
 .big {
   font-size: 185%;
 }
@@ -1050,7 +1063,7 @@ em {
 }
 
 .ml-3 {
-  margin-left: 3em;
+  margin-left: 2.5em;
 }
 
 .examine_block {
@@ -1063,6 +1076,47 @@ em {
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed #fff;
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #a4bad6;
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
+// Used to display images besides text
+.img_by_text_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img_by_text_container img {
+  width: 3em; // a css guru can probably dehardcode this later
+  height: auto;
+  margin-right: 12px;
+  margin-top: 6px;
+}
+
+.img_by_text_container .img_text {
+  flex-grow: 1;
 }
 
 $alert-stripe-colors: (
@@ -1332,4 +1386,16 @@ $border-width-px: $border-width * 1px;
   font-weight: bold;
   font-style: italic;
 }
+
 // SKYRAT EDIT ADDITION END
+
+/* BUBBER EDIT ADDITION BEGIN - DARK MODE CLASSES */
+
+.subtlepda {
+  color: #eb6bff;
+}
+
+.vote {
+  color: #db00a0;
+}
+// BUBBER EDIT ADDITION END

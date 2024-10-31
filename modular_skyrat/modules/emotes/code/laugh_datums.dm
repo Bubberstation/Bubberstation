@@ -13,8 +13,8 @@ GLOBAL_LIST_EMPTY(laugh_types)
 /datum/laugh_type/human
 	name = "Human Laugh"
 	male_laughsounds = list(
-		'sound/voice/human/manlaugh1.ogg',
-		'sound/voice/human/manlaugh2.ogg',
+		'sound/mobs/humanoids/human/laugh/manlaugh1.ogg',
+		'sound/mobs/humanoids/human/laugh/manlaugh2.ogg',
 	)
 	female_laughsounds = list(
 		'modular_skyrat/modules/emotes/sound/emotes/female/female_giggle_1.ogg',
@@ -24,8 +24,8 @@ GLOBAL_LIST_EMPTY(laugh_types)
 /datum/laugh_type/humanmasc
 	name = "Masculine Human Laugh"
 	male_laughsounds = list(
-		'sound/voice/human/manlaugh1.ogg',
-		'sound/voice/human/manlaugh2.ogg',
+		'sound/mobs/humanoids/human/laugh/manlaugh1.ogg',
+		'sound/mobs/humanoids/human/laugh/manlaugh2.ogg',
 	)
 	female_laughsounds = null
 
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(laugh_types)
 
 /datum/laugh_type/lizard
 	name = "Lizard Laugh"
-	male_laughsounds = list('sound/voice/lizard/lizard_laugh1.ogg',)
+	male_laughsounds = list('sound/mobs/humanoids/lizard/lizard_laugh1.ogg',)
 	female_laughsounds = null
 
 /datum/laugh_type/felinid
@@ -53,8 +53,8 @@ GLOBAL_LIST_EMPTY(laugh_types)
 /datum/laugh_type/clown
 	name = "Clown Laugh"
 	male_laughsounds = list(
-		'sound/creatures/clown/hohoho.ogg',
-		'sound/creatures/clown/hehe.ogg',
+		'sound/mobs/non-humanoids/clown/hohoho.ogg',
+		'sound/mobs/non-humanoids/clown/hehe.ogg',
 	)
 	female_laughsounds = null
 

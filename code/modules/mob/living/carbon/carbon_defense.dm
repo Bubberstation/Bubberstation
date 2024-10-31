@@ -338,7 +338,6 @@
 			visible_message(span_warning("[helper] tries to pat [src] on the head, but [p_they()] move[p_s()] out of the way."))
 			return
 		//SKYRAT EDIT ADDITION END
-	else if(check_zone(helper.zone_selected) == BODY_ZONE_HEAD && get_bodypart(BODY_ZONE_HEAD)) //Headpats! //SKYRAT EDIT
 		helper.visible_message(span_notice("[helper] gives [src] a pat on the head to make [p_them()] feel better!"), \
 					null, span_hear("You hear a soft patter."), DEFAULT_MESSAGE_RANGE, list(helper, src))
 		to_chat(helper, span_notice("You give [src] a pat on the head to make [p_them()] feel better!"))
@@ -439,7 +438,7 @@
 		get_up(TRUE)
 
 	if(!nosound) // SKYRAT EDIT ADDITION - EMOTES
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1) // SKYRAT EDIT CHANGE - EMOTES - Original was unindented but otherwise the same
+		playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1) // SKYRAT EDIT CHANGE - EMOTES - Original was unindented but otherwise the same
 
 	// Shake animation
 	if (incapacitated)
@@ -546,7 +545,7 @@
 					ears.set_organ_damage(ears.maxHealth)
 			else if(ears.damage >= 5)
 				to_chat(src, span_warning("Your ears start to ring!"))
-			SEND_SOUND(src, sound('sound/weapons/flash_ring.ogg',0,1,0,250))
+			SEND_SOUND(src, sound('sound/items/weapons/flash_ring.ogg',0,1,0,250))
 		return effect_amount //how soundbanged we are
 
 
@@ -692,7 +691,7 @@
 	var/bleed_rate = grasped_part.get_modified_bleed_rate()
 	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
 	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name][bleeding_text]."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
-	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	playsound(get_turf(src), 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
 
 /// Randomise a body part and organ of this mob
