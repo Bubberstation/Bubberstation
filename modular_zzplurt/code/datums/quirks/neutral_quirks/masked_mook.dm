@@ -30,10 +30,12 @@
 	H.equip_to_slot_if_possible(gasmask, ITEM_SLOT_MASK) // If character has a loadout mask, the custom one will not overwrite it but instead will be dropped on floor
 	H.regenerate_icons()
 
+// Equal to having heirloom
 /datum/mood_event/masked_mook
-	description = span_nicegreen("I feel more complete with a gas mask on.\n")
+	description = span_nicegreen("I feel more complete with a gas mask on.")
 	mood_change = 1
 
+// Equal to losing heirloom
 /datum/mood_event/masked_mook_incomplete
-	description = span_warning("I feel incomplete without a gas mask...\n")
+	description = span_warning("I feel incomplete without a gas mask...")
 	mood_change = -4

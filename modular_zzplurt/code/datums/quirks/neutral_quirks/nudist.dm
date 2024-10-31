@@ -97,12 +97,14 @@
 		// Set nude status
 		is_nude = FALSE
 
+// Equal to having heirloom
 /datum/mood_event/nudist_positive
-	description = span_nicegreen("I'm delighted to not be constricted by clothing.\n")
+	description = span_nicegreen("I'm delighted to not be constricted by clothing.")
 	mood_change = 1
 
+// Equal to losing heirloom
 /datum/mood_event/nudist_negative
-	description = span_warning("I don't feel comfortable wearing this.\n")
+	description = span_warning("I don't feel comfortable wearing this.")
 	mood_change = -4
 
 // Examine text status effect

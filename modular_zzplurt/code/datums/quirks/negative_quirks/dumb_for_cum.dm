@@ -83,11 +83,13 @@
 	// Add new timer
 	timer = addtimer(CALLBACK(src, PROC_REF(crave)), timer_trigger, TIMER_STOPPABLE)
 
+// Equal to 'decharged' mood event
 /datum/mood_event/cum_craving
-	description = span_warning("I... NEED... CUM...\n")
-	mood_change = -20
+	description = span_warning("I... NEED... CUM...")
+	mood_change = -10
 
+// Equal to 'charged' mood event
 /datum/mood_event/cum_stuffed
-	description = span_nicegreen("The cum feels so good inside me!\n")
+	description = span_nicegreen("The cum feels so good inside me!")
 	mood_change = 8
 	timeout = 5 MINUTES

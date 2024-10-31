@@ -32,11 +32,13 @@
 		// When not found: Mood penalty
 		quirk_holder.add_mood_event(QMOOD_HIDE_BAG, /datum/mood_event/dorsualiphobic_mood_negative)
 
+// Equal to having heirloom
 /datum/mood_event/dorsualiphobic_mood_positive
-	description = span_nicegreen("Nobody will know if I'm wearing a backpack or not.\n")
+	description = span_nicegreen("Nobody will know if I'm wearing a backpack or not.")
 	mood_change = 1
 
+// Equal to losing heirloom
 /datum/mood_event/dorsualiphobic_mood_negative
-	description = span_warning("I can't let anyone find out if I'm wearing a backpack or not!\n")
+	description = span_warning("I can't let anyone find out if I'm wearing a backpack or not!")
 	mood_change = -4
 */

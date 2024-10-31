@@ -32,12 +32,14 @@
 /datum/status_effect/quirk_jiggly_ass/get_examine_text()
 	return span_purple("[owner.p_Their()] butt could use a firm smack.")
 
+// Equal to 'pet animal'
 /datum/mood_event/butt_slap
-	description = span_purple("Smacking that butt felt extremely satisfying!\n")
-	mood_change = 3
+	description = span_purple("Smacking that butt felt extremely satisfying!")
+	mood_change = 2
 	timeout = 2 MINUTES
 
+// Equal to Well-Trained 'good boy'
 /datum/mood_event/butt_slapped
-	description = span_purple("My jiggly butt was finally smacked, so satisfying!\n")
-	mood_change = 3
+	description = span_purple("My jiggly butt was finally smacked, so satisfying!")
+	mood_change = 2
 	timeout = 2 MINUTES
