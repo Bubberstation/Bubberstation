@@ -1,4 +1,6 @@
 // UNIMPLEMENTED QUIRK!
+// This is now redundant with Bad Touch!
+/*
 /datum/quirk/headpat_hater
 	name = "Distant"
 	desc = "You don't seem to show much care for having your head touched. Others doing so won't make you wag your tail should you possess one, and the action may even attract your ire."
@@ -26,6 +28,7 @@
 // Set effect examine text
 /datum/status_effect/quirk_headpat_hater/get_examine_text()
 	return span_warning("[owner.p_They()] look[owner.p_s()] like someone you shouldn't pat.")
+*/
 
 // Copy pasted from old code
 /*

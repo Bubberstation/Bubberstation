@@ -16,7 +16,7 @@
 #define TRAIT_JIGGLY_ASS        "jiggly_ass"
 #define TRAIT_CURSED_BLOOD		"cursed_blood"
 #define TRAIT_HEADPAT_SLUT		"headpat_slut"
-#define TRAIT_DISTANT			"headpat_hater"
+#define TRAIT_DISTANT			"headpat_hater" // Use TRAIT_BADTOUCH instead
 #define TRAIT_HIDE_BACKPACK		"hide_backpack"
 #define TRAIT_DUMB_CUM			"dumb_for_cum_base"
 #define TRAIT_DUMB_CUM_CRAVE	"dumb_for_cum_need"

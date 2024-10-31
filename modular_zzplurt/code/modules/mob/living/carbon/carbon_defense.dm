@@ -1,5 +1,9 @@
 #define PERSONAL_SPACE_DAMAGE 2
 #define ASS_SLAP_EXTRA_RANGE -1
+#define BADTOUCH_RETALIATE_CHANCE 5
+#define BADTOUCH_RETALIATE_DAMAGE 5
+#define BADTOUCH_RETALIATE_KNOCKDOWN 20
+#define BADTOUCH_RETALIATE_SADISM_MULT 2
 
 /mob/living/carbon/disarm(mob/living/carbon/target)
 	if(zone_selected == BODY_ZONE_PRECISE_GROIN && target.dir == dir)
@@ -55,5 +59,99 @@
 
 	. = ..()
 
+// Proc to recreate old Distant quirk
+/mob/living/carbon/proc/badtouch_retaliate(mob/living/carbon/toucher)
+	// Check for activation chance
+	if(!prob(BADTOUCH_RETALIATE_CHANCE))
+		// Do nothing!
+		return
+
+	// User cannot be a pacifist
+	if(HAS_TRAIT(src, TRAIT_PACIFISM))
+		// Alert user and return
+		to_chat(src, span_warning("You briefly consider retaliating against [toucher], but decide not to."))
+		return
+
+	// Display message
+	toucher.visible_message(span_warning("[src] twists [toucher]\'s arm in retaliation for touching [p_them()]!"), \
+		span_boldwarning("Your arm gets twisted in [src]\'s grasp!"))
+
+	// Play attack sound
+	playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 50, 1, -1)
+
+	// Damage amount to apply
+	var/retaliate_damage = BADTOUCH_RETALIATE_DAMAGE
+
+	// Check if toucher enjoys this
+	if(HAS_TRAIT(toucher, TRAIT_MASOCHISM))
+		// Cause toucher to express contentment
+		toucher.emote("moan")
+
+		// Add good mood event
+		toucher.add_mood_event("badtouch_retaliate_victim", /datum/mood_event/badtouch_retaliate/victim_good)
+
+	// They don't enjoy this
+	else
+		// Cause toucher to scream
+		toucher.emote("scream")
+
+		// Add bad mood event
+		toucher.add_mood_event("badtouch_retaliate_victim", /datum/mood_event/badtouch_retaliate/victim_bad)
+
+	// Check if target is a sadist
+	if(HAS_TRAIT(src, TRAIT_SADISM))
+		// Multiply retaliation damage
+		retaliate_damage *= BADTOUCH_RETALIATE_SADISM_MULT
+
+		// Add good mood event
+		src.add_mood_event("badtouch_retaliate_attacker", /datum/mood_event/badtouch_retaliate/attacker_good)
+
+	// Target is not a sadist
+	else
+		// Add bad mood event
+		src.add_mood_event("badtouch_retaliate_attacker", /datum/mood_event/badtouch_retaliate/attacker_good)
+
+	// Drop toucher's held item
+	toucher.dropItemToGround(toucher.get_active_held_item())
+
+	// Determine toucher's hand
+	var/which_hand = BODY_ZONE_PRECISE_L_HAND
+	if(!(toucher.active_hand_index % 2))
+		which_hand = BODY_ZONE_PRECISE_R_HAND
+
+	// Apply damage to toucher's hand
+	toucher.apply_damage(retaliate_damage, BRUTE, which_hand)
+
+	// Knock down toucher
+	toucher.Knockdown(BADTOUCH_RETALIATE_KNOCKDOWN)
+
+	// Log interaction
+	log_combat(src, toucher, "retaliates against", "due to Bad Touch quirk")
+
+// Bad Touch retaliate mood events
+/datum/mood_event/badtouch_retaliate/attacker_bad
+	description = "I need to watch my temper."
+	mood_change = -2
+	timeout = 2 MINUTES
+
+/datum/mood_event/badtouch_retaliate/attacker_good
+	description = "I taught someone a lesson."
+	mood_change = 2
+	timeout = 2 MINUTES
+
+/datum/mood_event/badtouch_retaliate/victim_bad
+	description = "I shouldn't touch people without permission."
+	mood_change = -2
+	timeout = 2 MINUTES
+
+/datum/mood_event/badtouch_retaliate/victim_good
+	description = "I deserved that for what I did."
+	mood_change = 2
+	timeout = 2 MINUTES
+
 #undef ASS_SLAP_EXTRA_RANGE
 #undef PERSONAL_SPACE_DAMAGE
+#undef BADTOUCH_RETALIATE_CHANCE
+#undef BADTOUCH_RETALIATE_DAMAGE
+#undef BADTOUCH_RETALIATE_KNOCKDOWN
+#undef BADTOUCH_RETALIATE_SADISM_MULT
