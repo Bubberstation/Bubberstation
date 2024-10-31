@@ -1,14 +1,13 @@
 /datum/chemical_reaction/mkultra //check this
 	results = list(/datum/reagent/mkultra = 5)
-	//required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/bluespace = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/psicodine = 1, /datum/reagent/drug/happiness = 1)
-	required_reagents = list(/datum/reagent/aluminium = 1)
+	required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/bluespace = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/psicodine = 1, /datum/reagent/drug/happiness = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
 	mix_message = "the reaction gives off a burgundy plume of smoke!"
 	//FermiChem vars:
-	required_temp 			= 290
-	optimal_temp			= 320
+	required_temp 			= 780
+	optimal_temp			= 820
 	overheat_temp 			= 840
-	optimal_ph_min 			= 1
+	optimal_ph_min 			= 12
 	optimal_ph_max			= 13
 	determin_ph_range 		= 2
 	//CatalystFact 			= 0
@@ -16,7 +15,7 @@
 	ph_exponent_factor 		= 4
 	thermic_constant 		= 15
 	H_ion_release 			= 0.1
-	rate_up_lim 			= 20
+	rate_up_lim 			= 1
 	purity_min 				= 0.2
 	reaction_tags = REACTION_TAG_MODERATE | REACTION_TAG_EXPLOSIVE | REACTION_TAG_OTHER | REACTION_TAG_DANGEROUS
 
