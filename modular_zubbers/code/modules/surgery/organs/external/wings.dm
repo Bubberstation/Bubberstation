@@ -69,7 +69,7 @@
 
 /datum/emote/living/mothic_dash
 	key = "mdash"
-	key_third_person = "mdash"
+	key_third_person = "mothdash"
 	cooldown = 6 SECONDS
 
 /datum/emote/living/mothic_dash/run_emote(mob/living/user, params, type_override, intentional)

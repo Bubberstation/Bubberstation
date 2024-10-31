@@ -62,3 +62,7 @@
 /datum/loadout_item/toys/internshiba
 	name = "Intern Shiba Plush"
 	item_path = /obj/item/toy/plush/internshiba
+
+/datum/loadout_item/toys/cat_annoying
+	name = "Annoying Cat Plush"
+	item_path = /obj/item/toy/plush/cat_annoying
