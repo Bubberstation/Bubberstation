@@ -62,7 +62,7 @@
 	if (new_suffix)
 		description += new_suffix
 
-/datum/controller/subsystem/job/SetupOccupations()
+/datum/controller/subsystem/job/setup_occupations()
 	. = ..()
 
 	if(CONFIG_GET(flag/disable_rr_opt_in_preferences))
