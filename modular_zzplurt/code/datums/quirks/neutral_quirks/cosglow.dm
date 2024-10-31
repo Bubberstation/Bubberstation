@@ -9,13 +9,7 @@
 	mob_trait = TRAIT_COSGLOW
 	icon = FA_ICON_PERSON_RAYS
 	mail_goodies = list (
-		/obj/item/flashlight/glowstick = 1,
-		/obj/item/flashlight/glowstick/red = 1,
-		/obj/item/flashlight/glowstick/blue = 1,
-		/obj/item/flashlight/glowstick/cyan = 1,
-		/obj/item/flashlight/glowstick/orange = 1,
-		/obj/item/flashlight/glowstick/yellow = 1,
-		/obj/item/flashlight/glowstick/pink = 1
+		/obj/item/flashlight/glowstick = 1
 	)
 /datum/quirk/cosglow/add()
 	// Define quirk holder mob
@@ -38,12 +32,12 @@
 /datum/action/cosglow
 	name = "Broken Glow Action"
 	desc = "Report this to a coder."
-	button_icon_state = "static"
+	button_icon = 'icons/obj/lighting.dmi'
+	button_icon_state = "slime-on"
 
 /datum/action/cosglow/update_glow
 	name = "Modify Glow"
 	desc = "Change your glow color."
-	button_icon_state = "blank"
 
 	// Glow color to use
 	var/glow_color
