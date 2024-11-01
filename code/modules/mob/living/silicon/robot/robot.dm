@@ -13,7 +13,7 @@
 		roleplay_friendly = TRUE, \
 		roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep, /datum/emote/silicon/beep2), /* SKYRAT EDIT CHANGE - ORIGINAL: roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep)*/ \
 		roleplay_callback = CALLBACK(src, PROC_REF(untip_roleplay)))
-		//BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 5 SECONDS, FROM 60 SECONDS
+		//BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 3 SECONDS, FROM 60 SECONDS
 
 	set_wires(new /datum/wires/robot(src))
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
