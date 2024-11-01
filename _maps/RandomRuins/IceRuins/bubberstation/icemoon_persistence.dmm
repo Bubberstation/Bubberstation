@@ -1457,11 +1457,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
 "eZ" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/computer{
-	desc = "A console meant to communicate with Syndicate upper command. This one seems to be busy processing mining orders since you last saw it...";
-	icon_keyboard = "tech_key";
-	icon_screen = "comm";
-	name = "syndicate communications console";
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red{
@@ -5969,8 +5965,8 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
-/obj/machinery/computer/rdconsole,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/computer/rdconsole,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "td" = (
@@ -11535,7 +11531,7 @@
 	pixel_y = -32;
 	id = "syndiarmoryshutter"
 	},
-/obj/machinery/computer/security/persistence{
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -11902,10 +11898,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/cargo)
-"LM" = (
-/obj/machinery/power/apc/auto_name/directional/west,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "LN" = (
 /obj/structure/cable,
 /obj/machinery/light/directional/east,
@@ -17190,7 +17182,7 @@ Sl
 TR
 HP
 QO
-LM
+QO
 Tx
 ia
 wJ

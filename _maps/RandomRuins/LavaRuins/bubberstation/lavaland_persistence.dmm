@@ -2133,7 +2133,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "gL" = (
-/obj/structure/lattice/catwalk/mining,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/icemoon/underground/explored)
 "gN" = (
@@ -8406,10 +8405,6 @@
 "AH" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/obj/effect/mapping_helpers/apc/full_charge,
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
@@ -8935,8 +8930,8 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
-/obj/machinery/computer/rdconsole,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/computer/rdconsole,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "Cj" = (
@@ -9584,7 +9579,7 @@
 	pixel_y = -32;
 	id = "syndiarmoryshutter"
 	},
-/obj/machinery/computer/security/persistence{
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -15766,10 +15761,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/med)
-"Ys" = (
-/obj/machinery/power/apc/auto_name/directional/west,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "Yv" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -17238,7 +17229,7 @@ fR
 Kt
 CL
 zi
-Ys
+zi
 rM
 vN
 cT
