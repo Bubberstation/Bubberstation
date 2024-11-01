@@ -1,7 +1,7 @@
 //Various offstation syndicate mapping bits for bubber
 
 /obj/machinery/suit_storage_unit/industrial/bloodredsuit
-	mod_type = /obj/item/mod/control/pre_equipped/nuclear
+	mod_type = /obj/item/mod/control/pre_equipped/traitor
 	storage_type = /obj/item/tank/internals/emergency_oxygen/double
 	mask_type = /obj/item/clothing/mask/gas/syndicate
 
