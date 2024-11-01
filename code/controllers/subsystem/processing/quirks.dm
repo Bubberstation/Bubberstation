@@ -49,7 +49,11 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	// Hallowed is a direct foil to both quirks.
 	// Causes a conflict with Holy Water effects.
 	// Bloodsuckers cannot interact with Hallowed users.
-	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood, /datum/quirk/bloodfledge),
+	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood),
+	list(/datum/quirk/hallowed, /datum/quirk/bloodfledge),
+
+	// Bloodfledges do not use standard thirst
+	list(/datum/quirk/bloodfledge, /datum/quirk/thirsty),
 
 	// Causes unacceptable levels of mixed signals.
 	list(/datum/quirk/buns_of_steel,/datum/quirk/jiggly_ass),
@@ -68,9 +72,15 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//list(/datum/quirk/Hypnotic_gaze,/datum/quirk/item_quirk/blindness,/datum/quirk/echolocation),
 
 	// You can't smell anything!
-	list(/datum/quirk/cum_sniff,/datum/quirk/item_quirk/anosmia)
-	//SPLURT EDIT ADDITION END
+	list(/datum/quirk/cum_sniff,/datum/quirk/item_quirk/anosmia),
 
+	// You can't choke if you don't breathe
+	list(/datum/quirk/choke_slut, /datum/quirk/breathless),
+
+	// Direct mechanical conflict
+	list(/datum/quirk/bad_touch, /datum/quirk/headpat_slut),
+	list(/datum/quirk/bad_touch, /datum/quirk/excitable)
+	//SPLURT EDIT ADDITION END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
