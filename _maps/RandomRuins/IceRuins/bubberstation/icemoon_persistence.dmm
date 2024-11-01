@@ -480,6 +480,9 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "bL" = (
@@ -2360,6 +2363,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/duct,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "ia" = (
@@ -4973,6 +4980,8 @@
 	dir = 9
 	},
 /obj/structure/sign/warning/electric_shock/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "qf" = (
@@ -5250,6 +5259,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
+"qU" = (
+/obj/machinery/door/poddoor{
+	id = "armory_s2";
+	name = "Emergancy Armory Access"
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "qV" = (
 /obj/machinery/power/portagrav,
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -6432,6 +6448,21 @@
 /obj/item/skub,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/command/vault)
+"uB" = (
+/obj/machinery/duct,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/button/door/directional/north{
+	name = "Armory Shutters";
+	id = "armory_s2";
+	pixel_y = 0;
+	req_access = list("syndicate_leader");
+	pixel_x = -24
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "uC" = (
 /obj/machinery/light/cold/directional/north,
 /turf/closed/wall/r_wall/syndicate/cruiser,
@@ -7478,6 +7509,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
+"xO" = (
+/obj/structure/window/reinforced/plasma/spawner/directional/south,
+/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "xQ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -8192,14 +8232,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "Aa" = (
-/obj/structure/closet/secure_closet/interdynefob/munitions_locker,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/machinery/light/directional/east,
-/obj/machinery/light_switch/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Ab" = (
@@ -10074,6 +10106,8 @@
 "FV" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/sign/departments/telecomms/alt/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "FW" = (
@@ -10315,12 +10349,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "GO" = (
@@ -13772,6 +13805,14 @@
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
+/obj/machinery/light/directional/east,
+/obj/machinery/button/door/directional/north{
+	name = "Armory Shutters";
+	id = "armory_s2";
+	req_access = list("syndicate_leader");
+	pixel_x = 24;
+	pixel_y = 0
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "RH" = (
@@ -15168,10 +15209,14 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "Wj" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/kirbyplants/random{
-	pixel_y = 10
-	},
+/obj/structure/closet/secure_closet/interdynefob/munitions_locker,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/machinery/light_switch/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Wm" = (
@@ -18133,7 +18178,7 @@ Gg
 VA
 bF
 bF
-xy
+xO
 jO
 yy
 rr
@@ -18666,7 +18711,7 @@ qR
 qR
 qR
 qR
-qR
+qU
 qR
 lu
 Oc
@@ -18735,7 +18780,7 @@ fC
 uN
 xn
 Al
-ec
+uB
 ZB
 ec
 Em

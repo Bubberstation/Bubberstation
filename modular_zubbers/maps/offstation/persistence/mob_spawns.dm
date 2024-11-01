@@ -61,7 +61,7 @@
 	outfit = /datum/outfit/persistence/syndicate/stationmed
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/assistant
-	outfit = /datum/outfit/persistence/assistant
+	outfit = /datum/outfit/persistence/syndicate/assistant
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff
 	outfit = /datum/outfit/persistence/syndicate/brigoff
@@ -243,7 +243,7 @@
 	return ..()
 
 
-/datum/outfit/persistence/assistant
+/datum/outfit/persistence/syndicate/assistant
 	name = "Persistence Off Duty Staff"
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/assistant
 	uniform = /obj/item/clothing/under/syndicate
