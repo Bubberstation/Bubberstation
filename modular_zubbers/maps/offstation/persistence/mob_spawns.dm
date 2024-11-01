@@ -60,7 +60,7 @@
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/stationmed
 	outfit = /datum/outfit/persistence/syndicate/stationmed
 
-/obj/effect/mob_spawn/ghost_role/human/persistence/assistant
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/assistant
 	outfit = /datum/outfit/persistence/assistant
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff
