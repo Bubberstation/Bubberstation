@@ -21,7 +21,7 @@
 			span_notice("You bonk [bonked] on the head, but hurt your hand on the metal of their head!"),
 			span_hear("You hear a comedic metallic bonk."),
 		)
-		playsound(bonked, 'sound/weapons/smash.ogg', bonk_volume, TRUE, -1)
+		playsound(bonked, 'sound/items/weapons/smash.ogg', bonk_volume, TRUE, -1)
 	else if((bonk_victims_head.biological_state & BIO_METAL && user.zone_selected == BODY_ZONE_HEAD))
 		if(bonkers_hand?.receive_damage( 5, 0 )) // 5 brute damage
 			user.update_damage_overlays()
@@ -30,7 +30,7 @@
 			span_notice("You bonk [bonked] on the head, but hurt your hand on the metal of their head!"),
 			span_hear("You hear a comedic metallic bonk."),
 		)
-		playsound(bonked, 'sound/weapons/smash.ogg', bonk_volume, TRUE, -1)
+		playsound(bonked, 'sound/items/weapons/smash.ogg', bonk_volume, TRUE, -1)
 	else if(!issilicon(bonked) && user.zone_selected == BODY_ZONE_HEAD)
 		user.visible_message(
 			span_danger("[user] bonks [bonked] on the head!"),
