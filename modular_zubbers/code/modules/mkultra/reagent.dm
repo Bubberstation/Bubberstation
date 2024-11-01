@@ -137,7 +137,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	var/enthrall_ckey  //ckey
 	var/enthrall_gender
 	var/enthrall_name
-	var/mob/living/creator
+	var/mob/living/enthrall_mob
 	ph = 10
 	chemical_flags = REAGENT_DONOTSPLIT //Procs on_mob_add when merging into a human
 
@@ -146,7 +146,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	enthrall_ckey = src.data["enthrall_ckey"]
 	enthrall_gender = src.data["enthrall_gender"]
 	enthrall_name = src.data["enthrall_name"]
-	creator = get_mob_by_key(enthrall_ckey)
+	enthrall_mob = get_mob_by_key(enthrall_ckey)
 
 /datum/reagent/mkultra/on_mob_add(mob/living/carbon/mob_affected)
 	. = ..()
@@ -233,7 +233,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 		enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
 		enthrall_chem.enthrall_ckey = enthrall_ckey
 		enthrall_chem.enthrall_gender = enthrall_gender
-		enthrall_chem.enthrall_mob = creator
+		enthrall_chem.enthrall_mob = enthrall_mob
 	else
 		enthrall_chem = mob_affected.has_status_effect(/datum/status_effect/chem/enthrall)
 	if(enthrall_chem.lewd)
