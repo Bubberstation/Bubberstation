@@ -22,3 +22,5 @@
 //lipstick trait
 #define TRAIT_HYPNO_KISS "hypno kiss"
 
+// MK Ultra Skillchip
+#define TRAIT_PET_SKILLCHIP "mkii_ultra"

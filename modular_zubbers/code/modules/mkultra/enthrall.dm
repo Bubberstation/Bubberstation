@@ -76,7 +76,7 @@
 	enthrall_gender = enthrall_chem.data["enthrall_gender"]
 	if(enthrall_victim.ckey == enthrall_ckey)
 		//owner.remove_status_effect(src)//At the moment, a user can enthrall themselves, toggle this back in if that should be removed.
-		to_chat(owner, span_warning("some kind of warning message here"))
+		to_chat(owner, span_warning("You hear a code reviewer screaming into the void: \"I DON'T KNOW WHAT ENTHRALL.DM:80 IS SUPPOSED TO DO!"))
 		return ..()
 	enthrall_mob = get_mob_by_key(enthrall_ckey)
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist) //Do resistance calc if resist is pressed#
