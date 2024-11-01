@@ -7,12 +7,7 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 	/datum/nifsoft/soulcatcher,
 	/datum/nifsoft/scryer,
 	/datum/nifsoft/summoner/book,
-	/datum/nifsoft/action_granter/hypnosis,
-	// SPLURT EDIT
-	/datum/nifsoft/action_granter/free/nif_disrobe,
-	/datum/nifsoft/action_granter/free/nif_hide_backpack,
-	/datum/nifsoft/action_granter/free/nif_gfluid,
-	// SPLURT EDIT END
+	/datum/nifsoft/action_granter/hypnosis
 ))
 
 /datum/computer_file/program/nifsoft_downloader
