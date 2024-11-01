@@ -1,4 +1,4 @@
-// Disabled in favor of new NIFSoft method
+// REMOVED QUIRK - Disabled in favor of new NIFSoft method
 /*
 /datum/quirk/body_morpher
 	name = "Body Morpher"

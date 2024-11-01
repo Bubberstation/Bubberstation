@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/nudist,/datum/quirk/equipping/entombed),
 
 	// Conflicting health add-remove effect.
-	list(/datum/quirk/flimsy,/datum/quirk/tough),
+	//list(/datum/quirk/flimsy,/datum/quirk/tough),
 
 	// You must have working eyes for hypnotic gaze.
 	// Disabled because quirk was replaced by NIFsoft

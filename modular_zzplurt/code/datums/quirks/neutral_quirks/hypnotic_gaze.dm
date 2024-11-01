@@ -4,7 +4,8 @@
 #define HYPNOEYES_SLEEP_TIME 2 MINUTES
 #define HYPNOEYES_DROWSINESS 40
 
-// Disabled in favor of new NIFSoft method
+// REMOVED QUIRK - Disabled in favor of new NIFSoft method
+// This file still contains the action
 /*
 /datum/quirk/Hypnotic_gaze
 	name = "Hypnotic Gaze"

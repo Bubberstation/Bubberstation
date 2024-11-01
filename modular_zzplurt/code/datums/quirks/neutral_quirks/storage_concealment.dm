@@ -1,4 +1,4 @@
-// Disabled in favor of new NIFSoft method
+// REMOVED QUIRK - Disabled in favor of new NIFSoft method
 /*
 /datum/quirk/storage_concealment
 	name = "Dorsualiphobic Augmentation"

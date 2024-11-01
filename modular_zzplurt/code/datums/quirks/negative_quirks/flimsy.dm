@@ -1,3 +1,5 @@
+// REMOVED QUIRK - Use Fragility quirk instead
+/*
 /datum/quirk/flimsy
 	name = "Flimsy"
 	desc = "Your body is a little more fragile then most, decreasing total health by 20%."
@@ -20,3 +22,4 @@
 	if(!quirk_holder)
 		return
 	quirk_holder.maxHealth *= 1.25
+*/

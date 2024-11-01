@@ -1,3 +1,5 @@
+// REMOVED QUIRK - Disabled until someone is willing to fix it
+/*
 /datum/quirk/gargoyle
 	name = "Gargoyle"
 	desc = "You are some form of gargoyle! You can only leave your stone form for so long, and will have to return to it to regain energy. On the bright side, you heal in statue form!"
@@ -298,3 +300,4 @@
 			deconstruct(TRUE)
 		return
 	return ..()
+*/

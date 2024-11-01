@@ -1,5 +1,4 @@
-// UNIMPLEMENTED QUIRK!
-// Disabled in favor of new NIFSoft method
+// REMOVED QUIRK - Disabled in favor of new NIFSoft method
 /*
 /datum/quirk/fluid_infuser
 	name = "Fluid Infuser"

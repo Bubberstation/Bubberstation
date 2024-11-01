@@ -1,5 +1,4 @@
-// UNIMPLEMENTED QUIRK!
-// This is now redundant with Bad Touch!
+// REMOVED QUIRK - This is now redundant with Bad Touch!
 /*
 /datum/quirk/headpat_hater
 	name = "Distant"
