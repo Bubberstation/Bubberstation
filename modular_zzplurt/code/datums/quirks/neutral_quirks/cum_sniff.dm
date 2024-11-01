@@ -1,7 +1,7 @@
 // UNIMPLEMENTED QUIRK!
 /datum/quirk/cum_sniff
 	name = "Genital Sniffer"
-	desc = "You've had so much experience with other people's genitals that you can easily tell what reagents they produce."
+	desc = "You can accurately identify what reagents other people's genitals produce."
 	value = 0
 	mob_trait = TRAIT_GFLUID_DETECT // TODO: Add the reagent detection system
 	gain_text = span_purple("You begin sensing peculiar smells from people's bits...")

@@ -1,6 +1,6 @@
 /datum/quirk/tough
 	name = "Tough"
-	desc = "Your body is abnormally enduring and can take 10% more damage."
+	desc = "Your body is abnormally enduring, granting you 10% more health."
 	value = 4
 	gain_text = span_notice("You feel very sturdy.")
 	lose_text = span_notice("You feel less sturdy.")

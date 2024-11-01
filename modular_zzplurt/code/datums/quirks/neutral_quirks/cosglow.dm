@@ -1,7 +1,7 @@
 // You might be an undercover agent.
 /datum/quirk/cosglow
 	name = "Cosmetic Glow"
-	desc = "You glow! Be it an obscure radiation emission, governmental affiliation, or simple bioluminescent properties."
+	desc = "You are capable of emitting a soft glow! This doesn't provide any actual light."
 	value = 0
 	gain_text = span_notice("You feel empowered by a three-letter agency!")
 	lose_text = span_notice("You realize that working for the space agency sucks!")

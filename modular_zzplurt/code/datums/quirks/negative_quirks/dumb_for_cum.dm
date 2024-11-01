@@ -2,7 +2,7 @@
 
 /datum/quirk/dumb_for_cum
 	name = "Dumb For Cum"
-	desc = "For one reason or another, you're totally obsessed with seminal fluids. The heat of it, the smell... the taste... It's quite simply euphoric."
+	desc = "You're totally addicted to seminal fluids. You need to consume them periodically, or face the consequences."
 	value = -2
 	gain_text = span_purple("You feel an insatiable craving for seminal fluids.")
 	lose_text = span_purple("Cum didn't even taste that good, anyways.")

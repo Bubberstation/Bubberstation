@@ -1,7 +1,7 @@
 // UNIMPLEMENTED QUIRK!
 /datum/quirk/bloodfledge
 	name = "Bloodsucker Fledgling"
-	desc = "You are a fledgling belonging to ancient Bloodsucker bloodline. While the blessing has yet to fully convert you, some things have changed. Only blood will sate your hungers, and holy energies will cause your flesh to char."
+	desc = "You are a fledgling belonging to ancient Bloodsucker bloodline. Only blood will sate your hungers, and holy energies will cause your flesh to char."
 	value = 4
 	gain_text = span_notice("A sanguine blessing flows through your body, granting it new strength.")
 	lose_text = span_notice("The sanguine blessing fades away...")

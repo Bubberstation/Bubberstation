@@ -2,7 +2,7 @@
 /*
 /datum/quirk/body_morpher
 	name = "Body Morpher"
-	desc = "You've developed an ability allowing your body to morph and shift itself to modify body parts, much like a slimeperson can."
+	desc = "You have the ability to morph and shift your body, like a slimeperson can."
 	value = 0
 	gain_text = span_notice("Your body feels more malleable.")
 	lose_text = span_notice("Your body returns to a normal consistency.")

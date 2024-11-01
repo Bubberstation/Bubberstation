@@ -4,7 +4,7 @@
 
 /datum/quirk/concubus
 	name = "Concubus"
-	desc = "Your seducer-like metabolism can only be sated by milk or semen."
+	desc = "Your seducer-like metabolism can only be sated by milk or semen. This also makes you slightly hungrier."
 	value = 0
 	gain_text = span_purple("You feel a craving for certain bodily fluids.")
 	lose_text = span_purple("Your bodily fluid cravings fade back away.")

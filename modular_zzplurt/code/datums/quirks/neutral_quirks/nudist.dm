@@ -1,6 +1,6 @@
 /datum/quirk/nudist
 	name = "Nudist"
-	desc = "Wearing most types of clothing unnerves you. Bring a gear harness!"
+	desc = "Wearing any clothing that covers your torso unnerves you. Bring a gear harness!"
 	value = 0
 	quirk_flags = QUIRK_MOODLET_BASED
 	gain_text = span_danger("You feel spiritually connected to your natural form.")

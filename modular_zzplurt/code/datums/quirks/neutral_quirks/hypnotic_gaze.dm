@@ -9,7 +9,7 @@
 /*
 /datum/quirk/Hypnotic_gaze
 	name = "Hypnotic Gaze"
-	desc = "Be it through mysterious patterns, flickering colors, or some genetic oddity, prolonged eye contact with you will place the viewer into a highly-suggestible hypnotic trance."
+	desc = "Prolonged eye contact with you can place a viewer into a highly-suggestible hypnotic trance."
 	value = 0
 	gain_text = span_purple("Your eyes glimmer hypnotically...")
 	lose_text = span_purple("Your eyes return to normal.")

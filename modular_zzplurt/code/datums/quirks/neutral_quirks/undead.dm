@@ -1,6 +1,6 @@
 /datum/quirk/undead
     name = "Undeath"
-    desc = "Your body - be it anomalous, or just outright refusing to die - has become undead. Due to this condition; you become hungry faster than normal."
+    desc = "Your body has become undead. Due to this condition; you become hungry faster than normal."
     value = 0
     quirk_flags = QUIRK_PROCESSES
     gain_text = span_notice("The life has left your body, but you haven't stopped moving yet.")
