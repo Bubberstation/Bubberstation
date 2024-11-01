@@ -130,10 +130,7 @@
 
 	switch(mob_parent.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			// SPLURT EDIT CHANGE - Incubus and Succubus traits - No bad fat mood for incubi/succubi.
-			if(!HAS_TRAIT(mob_parent, TRAIT_INCUBUS) && !HAS_TRAIT(mob_parent, TRAIT_SUCCUBUS))
-				add_mood_event(MOOD_CATEGORY_NUTRITION, HAS_TRAIT(mob_parent, TRAIT_VORACIOUS) ? /datum/mood_event/wellfed : /datum/mood_event/too_wellfed)
-			// SPLURT EDIT CHANGE END
+			add_mood_event(MOOD_CATEGORY_NUTRITION, HAS_TRAIT(mob_parent, TRAIT_VORACIOUS) ? /datum/mood_event/wellfed : /datum/mood_event/too_wellfed)
 		if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/wellfed)
 		if( NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
