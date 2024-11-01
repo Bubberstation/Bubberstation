@@ -10993,9 +10993,6 @@
 /obj/structure/closet/generic/wall{
 	pixel_x = -32
 	},
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/commsop{
-	dir = 4
-	},
 /obj/item/storage/belt/holster/chameleon,
 /obj/effect/spawner/random/exotic/syndie,
 /obj/item/storage/wallet/random,
@@ -11003,7 +11000,6 @@
 /obj/item/choice_beacon/music,
 /obj/effect/spawner/random/entertainment/plushie_delux,
 /obj/effect/spawner/random/entertainment/plushie,
-/obj/item/encryptionkey/syndicate,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/communications)
 "IX" = (
@@ -11212,7 +11208,6 @@
 	req_access = list("syndicate");
 	normaldoorcontrol = 1
 	},
-/obj/item/encryptionkey/syndicate,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/communications)
 "Jr" = (
@@ -12402,6 +12397,7 @@
 /obj/effect/spawner/random/entertainment/plushie,
 /obj/effect/spawner/random/entertainment/plushie_delux,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/item/encryptionkey/syndicate,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "Nq" = (
@@ -12783,6 +12779,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/item/encryptionkey/syndicate,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
@@ -14695,11 +14692,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "UQ" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/computer{
-	desc = "A console meant to communicate with Syndicate upper command. This one seems to be busy processing mining orders since you last saw it...";
-	icon_keyboard = "tech_key";
-	icon_screen = "comm";
-	name = "syndicate communications console";
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red{
@@ -16303,7 +16296,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "ZV" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/item/encryptionkey/syndicate,
 /obj/structure/safe,
 /obj/item/bombcore/syndicate/large,
 /turf/open/floor/carpet/red,
@@ -20111,7 +20103,7 @@ FW
 FW
 gq
 gq
-gq
+dn
 VG
 Yd
 Yd
