@@ -323,7 +323,7 @@
 		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	ears = /obj/item/radio/headset/syndicate/alt
+	ears = /obj/item/radio/headset/interdyne/command
 	shoes = /obj/item/clothing/shoes/combat
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/commsoperative
 
