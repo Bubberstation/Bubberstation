@@ -31,22 +31,25 @@
 	limb_id = SPECIES_MAMMAL
 	is_dimorphic = TRUE
 
+/obj/item/bodypart/chest/mutant/get_butt_sprite()
+	return icon('modular_skyrat/master_files/icons/mob/butts.dmi', BUTT_SPRITE_VULP)
+
 /obj/item/bodypart/arm/left/mutant
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = SPECIES_MAMMAL
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
-	unarmed_attack_sound = 'sound/weapons/slash.ogg'
-	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 
 /obj/item/bodypart/arm/right/mutant
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = SPECIES_MAMMAL
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
-	unarmed_attack_sound = 'sound/weapons/slash.ogg'
-	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 
 /obj/item/bodypart/leg/left/mutant

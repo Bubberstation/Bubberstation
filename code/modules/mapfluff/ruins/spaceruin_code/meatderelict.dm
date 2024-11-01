@@ -76,12 +76,12 @@
 	SEND_SIGNAL(src, COMSIG_PUZZLE_COMPLETED)
 	qdel(src)
 
-/obj/machinery/puzzle_button/meatderelict
+/obj/machinery/puzzle/button/meatderelict
 	name = "lockdown panel"
 	desc = "A panel that controls the lockdown of this outpost."
 	id = "md_prevault"
 
-/obj/machinery/puzzle_button/meatderelict/open_doors()
+/obj/machinery/puzzle/button/meatderelict/on_puzzle_complete()
 	. = ..()
 	playsound(src, 'sound/effects/alert.ogg', 100, TRUE)
 	visible_message(span_warning("[src] lets out an alarm as the lockdown is lifted!"))
@@ -121,7 +121,7 @@
 
 /obj/lightning_thrower/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSprocessing, src) 
+	START_PROCESSING(SSprocessing, src)
 
 /obj/lightning_thrower/Destroy()
 	. = ..()
@@ -131,7 +131,7 @@
 /obj/lightning_thrower/process(seconds_per_tick)
 	var/list/dirs = throw_diagonals ? GLOB.diagonals : GLOB.cardinals
 	throw_diagonals = !throw_diagonals
-	playsound(src, 'sound/magic/lightningbolt.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
+	playsound(src, 'sound/effects/magic/lightningbolt.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 	for(var/direction in dirs)
 		var/victim_turf = get_step(src, direction)
 		if(isclosedturf(victim_turf))

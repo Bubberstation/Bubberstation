@@ -8,6 +8,7 @@
 	resistance_flags = FIRE_PROOF
 	icon_state = "plasmaman_suit"
 	inhand_icon_state = "plasmaman_suit"
+	fishing_modifier = 0
 	var/next_extinguish = 0
 	var/extinguish_cooldown = 100
 	var/extinguishes_left = 10
@@ -54,10 +55,13 @@
 	resistance_flags = FIRE_PROOF
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 4
+	light_power = 0.8
+	light_color = "#ffcc99"
 	light_on = FALSE
+	fishing_modifier = 0
 	var/helmet_on = FALSE
 	var/smile = FALSE
-	var/smile_color = "#FF0000"
+	var/smile_color = COLOR_RED
 	var/visor_icon = "envisor"
 	var/smile_state = "envirohelm_smile"
 	var/obj/item/clothing/head/attached_hat
@@ -66,6 +70,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF
 	visor_flags_inv = HIDEEYES|HIDEFACE
+	slowdown = 0
 
 /datum/armor/space_plasmaman
 	bio = 100
@@ -84,59 +89,78 @@
 	else
 		. += span_notice("There's nothing placed on the helmet.")
 
-/obj/item/clothing/head/helmet/space/plasmaman/AltClick(mob/user)
+/obj/item/clothing/head/helmet/space/plasmaman/click_alt(mob/user)
 	if(user.can_perform_action(src))
-		toggle_welding_screen(user)
+		adjust_visor(user)
 
 /obj/item/clothing/head/helmet/space/plasmaman/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_welding_screen))
-		toggle_welding_screen(user)
+		adjust_visor(user)
 		return
 
 	return ..()
 
-/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_screen(mob/living/user)
-	if(weldingvisortoggle(user))
-		if(helmet_on)
-			to_chat(user, span_notice("Your helmet's torch can't pass through your welding visor!"))
-			helmet_on = FALSE
-			playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
-			update_appearance()
-		else
-			playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
-			update_appearance()
+/obj/item/clothing/head/helmet/space/plasmaman/adjust_visor(mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	if(helmet_on)
+		to_chat(user, span_notice("Your helmet's torch can't pass through your welding visor!"))
+		set_light_on(FALSE)
+		helmet_on = FALSE
+	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
+	update_appearance()
+
+/obj/item/clothing/head/helmet/space/plasmaman/update_icon_state()
+	. = ..()
+	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
+	inhand_icon_state = icon_state
 
 /obj/item/clothing/head/helmet/space/plasmaman/update_overlays()
 	. = ..()
-	. += visor_icon
+	if(!up)
+		. += visor_icon
+	if(smile)
+		var/mutable_appearance/smiley = mutable_appearance(icon, smile_state)
+		smiley.color = smile_color
+		. += smiley
 
-/obj/item/clothing/head/helmet/space/plasmaman/attackby(obj/item/hitting_item, mob/living/user)
-	. = ..()
-	if(istype(hitting_item, /obj/item/toy/crayon))
-		if(smile == FALSE)
-			var/obj/item/toy/crayon/CR = hitting_item
-			to_chat(user, span_notice("You start drawing a smiley face on the helmet's visor.."))
-			if(do_after(user, 25, target = src))
-				smile = TRUE
-				smile_color = CR.paint_color
-				to_chat(user, "You draw a smiley on the helmet visor.")
-				update_appearance()
-		else
-			to_chat(user, span_warning("Seems like someone already drew something on this helmet's visor!"))
-		return
-	if(istype(hitting_item, /obj/item/clothing/head))
-		var/obj/item/clothing/hitting_clothing = hitting_item
-		if(hitting_clothing.clothing_flags & STACKABLE_HELMET_EXEMPT)
-			to_chat(user, span_notice("You cannot place [hitting_clothing.name] on helmet!"))
-			return
-		if(attached_hat)
-			to_chat(user, span_notice("There's already something placed on helmet!"))
-			return
-		attached_hat = hitting_clothing
-		to_chat(user, span_notice("You placed [hitting_clothing.name] on helmet!"))
-		hitting_clothing.forceMove(src)
+/obj/item/clothing/head/helmet/space/plasmaman/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/toy/crayon))
+		if(smile)
+			to_chat(user, span_warning("Seems like someone already drew something on [src]'s visor!"))
+			return ITEM_INTERACT_BLOCKING
+
+		var/obj/item/toy/crayon/crayon = tool
+		to_chat(user, span_notice("You start drawing a smiley face on [src]'s visor..."))
+		if(!do_after(user, 2.5 SECONDS, target = src))
+			return ITEM_INTERACT_BLOCKING
+
+		smile = TRUE
+		smile_color = crayon.paint_color
+		to_chat(user, "You draw a smiley on [src] visor.")
 		update_appearance()
+		return ITEM_INTERACT_SUCCESS
 
+	if(!istype(tool, /obj/item/clothing/head))
+		return NONE
+
+	var/obj/item/clothing/hitting_clothing = tool
+	if(hitting_clothing.clothing_flags & STACKABLE_HELMET_EXEMPT)
+		to_chat(user, span_notice("You cannot place [hitting_clothing.name] on [src]!"))
+		return ITEM_INTERACT_BLOCKING
+
+	if(attached_hat)
+		to_chat(user, span_notice("There's already something placed on [src]!"))
+		return ITEM_INTERACT_BLOCKING
+
+	attached_hat = hitting_clothing
+	to_chat(user, span_notice("You placed [hitting_clothing.name] on [src]!"))
+	hitting_clothing.forceMove(src)
+	update_appearance()
+	return ITEM_INTERACT_SUCCESS
+
+///By the by, helmets have the update_icon_updates_onmob element, so we don't have to call mob.update_worn_head()
 /obj/item/clothing/head/helmet/space/plasmaman/worn_overlays(mutable_appearance/standing, isinhands)
 	. = ..()
 	if(!isinhands && smile)
@@ -159,9 +183,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	helmet_on = !helmet_on
-	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
-	inhand_icon_state = icon_state
-	user.update_worn_head() //So the mob overlay updates
+	update_appearance()
 
 	if(helmet_on)
 		if(!up)
@@ -173,6 +195,14 @@
 		set_light_on(FALSE)
 
 	update_item_action_buttons()
+
+/obj/item/clothing/head/helmet/space/plasmaman/on_saboteur(datum/source, disrupt_duration)
+	. = ..()
+	if(!helmet_on)
+		return FALSE
+	helmet_on = FALSE
+	update_appearance()
+	return TRUE
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_hand_secondary(mob/user)
 	..()

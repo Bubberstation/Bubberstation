@@ -27,23 +27,6 @@ Do not use tabs/spaces for indentation in the middle of a code line. Not only is
 #define SPECIES_FELINID "felinid"
 ```
 
-### Comments
-
-You mustn't use box comments as headers for code, nor for anything else.
-While it may be slightly more aesthetically pleasing, it can cause problems with auto-documentation and makes it far harder to add anything after the fact.
-It's much easier to stick down a new line than have to balance a bunch of whitespaces and forward slashes. 
-
-```dm
-//////////////////////////////////
-// BAD. DON'T DO THIS. STOP IT. //
-//////////////////////////////////
-
-/*
-* GOOD!
-* CONTINUE TO DO THIS
-*/
-```
-
 ### Control statements
 (if, while, for, etc)
 
@@ -457,7 +440,7 @@ Pop-quiz, what does this do?
 give_pizza(TRUE, 2)
 ```
 
-Well, obviously the `TRUE` makes the pizza hot, and `2` is the number of toppings. 
+Well, obviously the `TRUE` makes the pizza hot, and `2` is the number of toppings.
 
 Code like this can be very difficult to read, especially since our LSP does not show argument names at this time. Because of this, you should prefer to use named arguments where the meaning is not otherwise obvious.
 
@@ -474,7 +457,7 @@ deal_damage(10) // Fine! The proc name makes it obvious `10` is the damage...at 
 deal_damage(10, FIRE) // Also fine! `FIRE` makes it obvious the second parameter is damage type.
 deal_damage(damage = 10) // Redundant, but not prohibited.
 
-use_power(30) // Fine! `30` is obviously something like watts.
+use_energy(30 JOULES) // Use energy in joules.
 turn_on(30) // Not fine!
 turn_on(power_usage = 30) // Fine!
 
@@ -607,7 +590,7 @@ This is [a real bug that tends to come up](https://github.com/tgstation/tgstatio
 The same goes for arguments passed to a macro...
 
 ```
-// Guarantee 
+// Guarantee
 #define CALCULATE_TEMPERATURE(base) (T20C + (##base))
 ```
 

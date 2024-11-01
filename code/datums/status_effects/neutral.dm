@@ -1,12 +1,37 @@
 //entirely neutral or internal status effects go here
 
-/datum/status_effect/crusher_damage //tracks the damage dealt to this mob by kinetic crushers
+/datum/status_effect/crusher_damage
 	id = "crusher_damage"
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
+	/// How much damage?
 	var/total_damage = 0
+
+/datum/status_effect/crusher_damage/on_apply()
+	RegisterSignal(owner, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(damage_taken))
+	return TRUE
+
+/datum/status_effect/crusher_damage/on_remove()
+	UnregisterSignal(owner, COMSIG_MOB_AFTER_APPLY_DAMAGE)
+
+/datum/status_effect/crusher_damage/proc/damage_taken(
+	datum/source,
+	damage_dealt,
+	damagetype,
+	def_zone,
+	blocked,
+	wound_bonus,
+	bare_wound_bonus,
+	sharpness,
+	attack_direction,
+	attacking_item,
+)
+	SIGNAL_HANDLER
+
+	if(istype(attacking_item, /obj/item/kinetic_crusher))
+		total_damage += (-1 * damage_dealt)
 
 /datum/status_effect/syphon_mark
 	id = "syphon_mark"
@@ -94,7 +119,7 @@
 
 /datum/status_effect/bounty/on_apply()
 	to_chat(owner, span_boldnotice("You hear something behind you talking... \"You have been marked for death by [rewarded]. If you die, they will be rewarded.\""))
-	playsound(owner, 'sound/weapons/gun/shotgun/rack.ogg', 75, FALSE)
+	playsound(owner, 'sound/items/weapons/gun/shotgun/rack.ogg', 75, FALSE)
 	return ..()
 
 /datum/status_effect/bounty/tick(seconds_between_ticks)
@@ -105,7 +130,7 @@
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
 		to_chat(owner, span_boldnotice("You hear something behind you talking... \"Bounty claimed.\""))
-		playsound(owner, 'sound/weapons/gun/shotgun/shot.ogg', 75, FALSE)
+		playsound(owner, 'sound/items/weapons/gun/shotgun/shot.ogg', 75, FALSE)
 		to_chat(rewarded, span_greentext("You feel a surge of mana flow into you!"))
 		for(var/datum/action/cooldown/spell/spell in rewarded.actions)
 			spell.reset_spell_cooldown()
@@ -562,7 +587,7 @@
 	return ..()
 
 /datum/status_effect/tinlux_light/on_apply()
-	mob_light_obj = owner.mob_light(2)
+	mob_light_obj = owner.mob_light(2, 1.5, "#ccff33")
 	return TRUE
 
 /datum/status_effect/tinlux_light/on_remove()

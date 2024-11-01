@@ -30,7 +30,7 @@
 	return !sprite_datum.is_hidden(human)
 
 
-/obj/item/organ/external/snout/Insert(mob/living/carbon/reciever, special, movement_flags)
+/obj/item/organ/external/snout/Insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_MUZZLED_SPRITE)
 		external_bodyshapes |= BODYSHAPE_SNOUTED
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER)
@@ -53,7 +53,7 @@
 
 
 /datum/sprite_accessory/snouts/none
-	name = "None"
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	flags_for_organ = NONE
 	factual = FALSE
@@ -457,3 +457,9 @@
 	color_src = USE_MATRIXED_COLORS
 	name = "Acrador 4 (Normal)"
 	icon_state = "acrador_4"
+
+/datum/sprite_accessory/snouts/renamon
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
+	color_src = USE_MATRIXED_COLORS
+	name = "Renamon"
+	icon_state = "renamon"

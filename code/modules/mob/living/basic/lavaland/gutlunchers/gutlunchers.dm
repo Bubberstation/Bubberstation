@@ -55,7 +55,7 @@
 /mob/living/basic/mining/gutlunch/proc/pre_attack(mob/living/puncher, atom/target)
 	SIGNAL_HANDLER
 
-	if(!istype(target, /obj/structure/ore_container/gutlunch_trough))
+	if(!istype(target, /obj/structure/ore_container/food_trough/gutlunch_trough))
 		return
 
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
@@ -139,12 +139,12 @@
 	can_breed = FALSE
 	gender = NEUTER
 	ai_controller = /datum/ai_controller/basic_controller/gutlunch/gutlunch_baby
+	current_size = 0.6
 	///list of stats we inherited
 	var/datum/gutlunch_inherited_stats/inherited_stats
 
 /mob/living/basic/mining/gutlunch/grub/Initialize(mapload)
 	. = ..()
-	transform = transform.Scale(0.6, 0.6)
 	AddComponent(\
 		/datum/component/growth_and_differentiation,\
 		growth_time = 3 MINUTES,\

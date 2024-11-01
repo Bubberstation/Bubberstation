@@ -118,9 +118,6 @@
 	balloon_alert(user, "transferring [amount_per_transfer_from_this]u")
 	mode_change_message(user)
 
-/obj/item/reagent_containers/attack(mob/M, mob/living/user, def_zone)
-	if(user.combat_mode)
-		return ..()
 /obj/item/reagent_containers/pre_attack_secondary(atom/target, mob/living/user, params)
 	if(HAS_TRAIT(target, TRAIT_DO_NOT_SPLASH))
 		return ..()
@@ -151,7 +148,7 @@
 	if (ismob(target))
 		var/mob/target_mob = target
 		target_mob.show_message(
-			span_userdanger("[user] splash the contents of [src] onto you!"),
+			span_userdanger("[user] splashes the contents of [src] onto you!"),
 			MSG_VISUAL,
 			span_userdanger("You feel drenched!"),
 		)
@@ -258,7 +255,6 @@
 			reagents.expose(target, TOUCH)
 		//SKYRAT EDIT END
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
-		//reagents.expose(target, TOUCH) //SKYRAT EDIT REMOVAL
 		if(QDELETED(src))
 			return
 
@@ -275,9 +271,6 @@
 /obj/item/reagent_containers/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
 	reagents.expose_temperature(1000)
 	return ..() | COMPONENT_MICROWAVE_SUCCESS
-
-/obj/item/reagent_containers/fire_act(temperature, volume)
-	reagents.expose_temperature(temperature)
 
 /// Updates the icon of the container when the reagents change. Eats signal args
 /obj/item/reagent_containers/proc/on_reagent_change(datum/reagents/holder, ...)

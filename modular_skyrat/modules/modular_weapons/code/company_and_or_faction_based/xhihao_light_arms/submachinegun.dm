@@ -18,14 +18,12 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	slot_flags = ITEM_SLOT_OCLOTHING | ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c585trappiste_pistol
 
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_heavy.ogg'
 	can_suppress = TRUE
-
-	can_bayonet = FALSE
 
 	suppressor_x_offset = 9
 

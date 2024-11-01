@@ -67,7 +67,7 @@
 	slot_flags = null
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/shotgun
 	empty_indicator = TRUE
-	fire_sound = 'sound/weapons/gun/shotgun/shot_alt.ogg'
+	fire_sound = 'sound/items/weapons/gun/shotgun/shot_alt.ogg'
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
@@ -156,8 +156,9 @@
 	ammo_x_offset = 2
 	shaded_charge = FALSE
 
-/obj/item/gun/energy/laser/instakill/emp_act() //implying you could stop the instagib
-	return
+/obj/item/gun/energy/laser/instakill/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/gun/energy/laser/instakill/ctf/Initialize(mapload)
 	. = ..()

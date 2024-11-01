@@ -128,7 +128,7 @@
 	desc = "Holy smokes."
 	icon_state = "lucky"
 	force = 10
-	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
+	fire_sound = 'sound/items/weapons/gun/revolver/shot.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/revchap
 	obj_flags = UNIQUE_RENAME
 	custom_materials = null
@@ -225,7 +225,7 @@
 		return
 	user.say("#Oh great [GLOB.deity], give me the ammunition I need!", forced = "ammo prayer")
 	magazine.top_off()
-	user.playsound_local(get_turf(src), 'sound/magic/magic_block_holy.ogg', 50, TRUE)
+	user.playsound_local(get_turf(src), 'sound/effects/magic/magic_block_holy.ogg', 50, TRUE)
 	chamber_round()
 
 /datum/action/item_action/pray_refill
@@ -252,13 +252,13 @@
 	ricochet_auto_aim_angle = 10
 	ricochet_auto_aim_range = 3
 	wound_bonus = -10
-	embedding = null
+	embed_type = null
 
-/obj/projectile/bullet/c38/holy/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/c38/holy/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
 	var/roll_them_bones = rand(1,38)
 	if(roll_them_bones == 1 && isliving(target))
-		playsound(target, 'sound/machines/synth_yes.ogg', 50, TRUE)
+		playsound(target, 'sound/machines/synth/synth_yes.ogg', 50, TRUE)
 		playsound(target, pick(list('sound/machines/coindrop.ogg', 'sound/machines/coindrop2.ogg')), 40, TRUE)
 		new /obj/effect/temp_visual/crit(get_turf(target))
 
@@ -341,14 +341,14 @@
 	else
 		times_dry_fired = 0
 	var/turf/target_turf = get_offset_target_turf(get_ranged_target_turf(owner, owner.dir, 7), dx = rand(-1, 1), dy = rand(-1, 1))
-	held_gun.process_fire(target_turf, owner, TRUE, null, pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
+	held_gun.process_fire(target_turf, owner, TRUE, null, pick(GLOB.all_body_zones))
 	held_gun.semicd = FALSE
 
 /datum/action/cooldown/spell/charged/psychic_booster
 	name = "Psychic Booster"
 	desc = "Charge up your mind to shoot firearms faster and home in on your targets. Think smarter, not harder."
 	button_icon_state = "projectile"
-	sound = 'sound/weapons/gun/shotgun/rack.ogg'
+	sound = 'sound/items/weapons/gun/shotgun/rack.ogg'
 	school = SCHOOL_PSYCHIC
 	cooldown_time = 1 MINUTES
 	antimagic_flags = MAGIC_RESISTANCE_MIND

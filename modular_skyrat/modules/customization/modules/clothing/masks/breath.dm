@@ -3,6 +3,7 @@
 	name = "vox breath mask"
 	actions_types = list()
 	flags_cover = NONE
+	visor_flags_cover = NONE
 
 /obj/item/clothing/mask/balaclavaadjust
 	name = "adjustable balaclava"
@@ -20,7 +21,7 @@
 /obj/item/clothing/mask/balaclavaadjust/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	if(!user.incapacitated())
+	if(!user.incapacitated)
 		switch(open)
 			if (0)
 				flags_inv = HIDEHAIR
@@ -38,7 +39,7 @@
 				to_chat(user, "You pull the balaclava up to cover your whole head.")
 				open = 0
 		user.update_body_parts()
-		user.update_inv_ears()
+		user.update_worn_ears()
 		user.update_worn_mask() //Updates mob icons
 
 /obj/item/clothing/mask/balaclavaadjust/attack_self(mob/user)

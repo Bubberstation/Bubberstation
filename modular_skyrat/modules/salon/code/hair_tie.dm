@@ -53,7 +53,7 @@
 	return ..()
 
 /obj/item/clothing/head/hair_tie/attack_self(mob/user)
-	var/hair_id = tgui_input_list(user, "How does your hair look when its up?", "Pick!", GLOB.hairstyles_list)
+	var/hair_id = tgui_input_list(user, "How does your hair look when its up?", "Pick!", SSaccessories.hairstyles_list)
 	if(!hair_id || hair_id == "Bald")
 		balloon_alert(user, "error!")
 		return
@@ -86,16 +86,16 @@
 	user.set_hairstyle(actual_hairstyle, update = TRUE)
 	actual_hairstyle = null
 
-/obj/item/clothing/head/hair_tie/AltClick(mob/living/user)
-	. = ..()
+/obj/item/clothing/head/hair_tie/click_alt(mob/living/user)
 	if(!(user.get_slot_by_item(src) == ITEM_SLOT_HANDS))
 		balloon_alert(user, "hold in-hand!")
-		return
+		return CLICK_ACTION_BLOCKING
 	user.visible_message(
 		span_danger("[user.name] puts [src] around [user.p_their()] fingers, beginning to flick it!"),
 		span_notice("You try to flick [src]!"),
 	)
 	flick_hair_tie(user)
+	return CLICK_ACTION_SUCCESS
 
 ///This proc flicks the hair tie out of the player's hand, tripping the target hit for 1 second
 /obj/item/clothing/head/hair_tie/proc/flick_hair_tie(mob/living/user)
@@ -112,14 +112,14 @@
 	proj.firer = user
 	proj.fired_from = user
 	proj.fire((dir2angle(user.dir) + rand(-projectile_aim_radius, projectile_aim_radius)))
-	playsound(src, 'sound/weapons/effects/batreflect.ogg', 25, TRUE)
+	playsound(src, 'sound/items/weapons/effects/batreflect.ogg', 25, TRUE)
 	//get rid of what we just launched to let projectile_drop spawn a new one
 	qdel(src)
 
 /obj/projectile/bullet/hair_tie
 	icon = 'modular_skyrat/modules/salon/icons/items.dmi'
 	icon_state = "hairtie"
-	hitsound = 'sound/weapons/genhit.ogg'
+	hitsound = 'sound/items/weapons/genhit.ogg'
 	damage = 0 //its just about the knockdown
 	sharpness = NONE
 	shrapnel_type = NONE //no embedding pls
@@ -143,7 +143,7 @@
 	)
 	build_path = /obj/item/clothing/head/hair_tie/plastic_beads
 	category = list(
-		RND_CATEGORY_INITIAL, 
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SERVICE,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE

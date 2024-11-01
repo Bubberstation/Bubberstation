@@ -248,10 +248,10 @@
 		return
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TRAPDOOR_LINK, src) & LINKED_UP)
 		playsound(assembly_turf, 'sound/machines/chime.ogg', 50, TRUE)
-		assembly_turf.visible_message("<span class='notice'>[src] has linked up to a nearby trapdoor! \
-		You may now use it to check where the trapdoor is... be careful!</span>", vision_distance = SAMETILE_MESSAGE_RANGE)
+		assembly_turf.visible_message(span_notice("[src] has linked up to a nearby trapdoor! \
+		You may now use it to check where the trapdoor is... be careful!"), vision_distance = SAMETILE_MESSAGE_RANGE)
 	else
-		playsound(assembly_turf, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(assembly_turf, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		assembly_turf.visible_message(span_warning("[src] has failed to find a trapdoor nearby to link to."), vision_distance = SAMETILE_MESSAGE_RANGE)
 
 /**
@@ -326,7 +326,7 @@
 		return TRUE
 
 	user.balloon_alert(user, "trapdoor triggered")
-	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	icon_state = "trapdoor_pressed"
 	addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), trapdoor_cooldown_time)
 	COOLDOWN_START(src, trapdoor_cooldown, trapdoor_cooldown_time)
@@ -354,26 +354,23 @@
 	. = ..()
 	AddElement(/datum/element/openspace_item_click_handler)
 
-/obj/item/trapdoor_kit/handle_openspace_click(turf/target, mob/user, proximity_flag, click_parameters)
-	afterattack(target, user, proximity_flag, click_parameters)
+/obj/item/trapdoor_kit/handle_openspace_click(turf/target, mob/user, list/modifiers)
+	interact_with_atom(target, user, modifiers)
 
-/obj/item/trapdoor_kit/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(!proximity_flag)
-		return
-	var/turf/target_turf = get_turf(target)
+/obj/item/trapdoor_kit/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/turf/target_turf = get_turf(interacting_with)
 	if(!isopenspaceturf(target_turf))
-		return
+		return NONE
 	in_use = TRUE
 	balloon_alert(user, "constructing trapdoor")
-	if(!do_after(user, 5 SECONDS, target = target))
+	if(!do_after(user, 5 SECONDS, interacting_with))
 		in_use = FALSE
-		return
+		return ITEM_INTERACT_BLOCKING
 	in_use = FALSE
 	if(!isopenspaceturf(target_turf)) // second check to make sure nothing changed during constructions
-		return
+		return ITEM_INTERACT_BLOCKING
 	var/turf/new_turf = target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	new_turf.AddComponent(/datum/component/trapdoor, starts_open = FALSE, conspicuous = TRUE)
 	balloon_alert(user, "trapdoor constructed")
 	qdel(src)
-	return
+	return ITEM_INTERACT_SUCCESS

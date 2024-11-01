@@ -79,7 +79,7 @@
 /obj/item/nullrod/cultdagger/attack_self(mob/user)
 	if(narsian)
 	else if(user.mind && (user.mind.holy_role))
-		to_chat(user, span_cultlarge("\"Partake in the language of blood..\""))
+		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)
 		special_desc_requirement = NONE // No point in keeping something that can't no longer be used
 		narsian = TRUE
@@ -93,7 +93,7 @@
 /obj/item/nullrod/claymore/darkblade/attack_self(mob/user)
 	if(narsian)
 	else if(user.mind && (user.mind.holy_role))
-		to_chat(user, span_cultlarge("\"Partake in the language of blood..\""))
+		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)
 		special_desc_requirement = NONE // No point in keeping something that can't no longer be used
 		narsian = TRUE
@@ -171,7 +171,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
 

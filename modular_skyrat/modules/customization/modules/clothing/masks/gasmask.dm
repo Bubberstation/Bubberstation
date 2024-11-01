@@ -98,7 +98,7 @@
 	. = ..()
 	. += span_notice("You can toggle its ability to muffle your TTS voice with <b>control click</b>.")
 
-/obj/item/clothing/mask/gas/respirator/CtrlClick(mob/living/user)
+/obj/item/clothing/mask/gas/respirator/item_ctrl_click(mob/living/user)
 	if(!isliving(user))
 		return
 	if(user.get_active_held_item() != src)
@@ -127,7 +127,7 @@
 		)
 
 /obj/item/clothing/mask/gas/clown_hat/vox/ui_action_click(mob/user)
-	if(!istype(user) || user.incapacitated())
+	if(!istype(user) || user.incapacitated)
 		return
 
 	var/list/options = list()
@@ -142,7 +142,7 @@
 	if(!choice)
 		return FALSE
 
-	if(src && choice && !user.incapacitated() && in_range(user,src))
+	if(src && choice && !user.incapacitated && in_range(user,src))
 		icon_state = options[choice]
 		user.update_worn_mask()
 		update_item_action_buttons()
@@ -167,7 +167,7 @@
 		)
 
 /obj/item/clothing/mask/gas/mime/vox/ui_action_click(mob/user)
-	if(!istype(user) || user.incapacitated())
+	if(!istype(user) || user.incapacitated)
 		return
 
 	var/list/options = list()
@@ -180,7 +180,7 @@
 	if(!choice)
 		return FALSE
 
-	if(src && choice && !user.incapacitated() && in_range(user,src))
+	if(src && choice && !user.incapacitated && in_range(user,src))
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.dna.species.mutant_bodyparts["snout"])
 			icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'

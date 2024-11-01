@@ -2,12 +2,15 @@
 	name = "advanced choice beacon"
 	desc = "A beacon that will send whatever your heart desires, providing Nanotrasen approves it."
 	icon = 'icons/obj/devices/remote.dmi'
-	icon_state = "gangtool-red"
-	inhand_icon_state = null
+	icon_state = "designator_syndicate"
+	inhand_icon_state = "nukietalkie"
+
+	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 
 	var/list/possible_choices = list()
 
-	var/pod_style = STYLE_CENTCOM
+	var/pod_style = /datum/pod_style/centcom
 
 /obj/item/advanced_choice_beacon/attack_self(mob/user, modifiers)
 	if(can_use_beacon(user))
@@ -17,7 +20,7 @@
 	if(user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return TRUE
 	else
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 		return FALSE
 
 
@@ -110,7 +113,7 @@
 	if(I.tool_behaviour == TOOL_WRENCH && user.combat_mode)
 		user.visible_message(span_danger("[user] bashes [src] with [I]!"), \
 			span_danger("You bash [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
-		playsound(src, "sound/items/drill_use.ogg", 80, TRUE, -1)
+		playsound(src, "sound/items/tools/drill_use.ogg", 80, TRUE, -1)
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/nri/turret = new(get_turf(loc))
 		turret.faction = list(FACTION_NEUTRAL, FACTION_ERT)
 		qdel(src)

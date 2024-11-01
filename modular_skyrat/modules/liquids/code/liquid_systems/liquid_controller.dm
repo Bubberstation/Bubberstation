@@ -17,15 +17,22 @@ SUBSYSTEM_DEF(liquids)
 	var/list/processing_fire = list()
 	var/fire_counter = 0 //Only process fires on intervals
 
+	// format: list[path, list[str, instance]]
 	var/list/singleton_immutables = list()
 
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
-/datum/controller/subsystem/liquids/proc/get_immutable(type)
-	if(!singleton_immutables[type])
-		var/obj/effect/abstract/liquid_turf/immutable/new_one = new type()
-		singleton_immutables[type] = new_one
-	return singleton_immutables[type]
+/datum/controller/subsystem/liquids/proc/get_immutable(type, turf/reference_turf)
+	if(isnull(singleton_immutables[type]))
+		singleton_immutables[type] = list()
+
+	var/offset = GET_TURF_PLANE_OFFSET(reference_turf)
+
+	if(!("[offset]" in singleton_immutables[type]))
+		var/obj/effect/abstract/liquid_turf/immutable/new_one = new type(null, offset)
+		singleton_immutables[type]["[offset]"] = new_one
+
+	return singleton_immutables[type]["[offset]"]
 
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
@@ -112,10 +119,5 @@ SUBSYSTEM_DEF(liquids)
 		if(T.lgroup)
 			T.lgroup.amount_of_active_turfs--
 
-/client/proc/toggle_liquid_debug()
-	set category = "Debug"
-	set name = "Liquid Groups Color Debug"
-	set desc = "Liquid Groups Color Debug."
-	if(!holder)
-		return
+ADMIN_VERB(toggle_liquid_debug, R_DEBUG, "Liquid Groups Color Debug", "Liquid Groups Color Debug.", ADMIN_CATEGORY_DEBUG)
 	GLOB.liquid_debug_colors = !GLOB.liquid_debug_colors

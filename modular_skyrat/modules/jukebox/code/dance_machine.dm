@@ -37,8 +37,6 @@
 	desc = "Now redesigned with data gathered from the extensive disco and plasma research."
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
-
 /obj/machinery/jukebox/public
 	req_access = list()
 	falloff_dist_offset = 10
@@ -55,7 +53,7 @@
 	return ..()
 
 /obj/machinery/jukebox/attackby(obj/item/O, mob/user, params)
-	if(!active && !(obj_flags & NO_DECONSTRUCTION))
+	if(!active)
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
 				to_chat(user,span_notice("You secure [src] to the floor."))
@@ -461,7 +459,7 @@
 		update_use_power(IDLE_POWER_USE)
 		STOP_PROCESSING(SSobj, src)
 		dance_over()
-		playsound(src,'sound/machines/terminal_off.ogg',50,TRUE)
+		playsound(src,'sound/machines/terminal/terminal_off.ogg',50,TRUE)
 		update_appearance(UPDATE_ICON_STATE)
 		stop = world.time + 100
 

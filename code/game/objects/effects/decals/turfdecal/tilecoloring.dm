@@ -97,6 +97,18 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_red)
 
 /// Bar tiles
 
+TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/red)
+
+/// Dark red tiles
+
+/obj/effect/turf_decal/tile/dark_red
+	name = "dark red tile decal"
+	color = "#B11111"
+
+TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark_red)
+
+/// Bar tiles
+
 /obj/effect/turf_decal/tile/bar
 	name = "bar tile decal"
 	color = "#791500"
@@ -140,7 +152,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/dark)
 /// Date-specific tiles
 /obj/effect/turf_decal/tile/holiday
 	name = "ERROR tile decal"
-	color = "#FF0000"
+	color = COLOR_RED
 
 /obj/effect/turf_decal/tile/holiday/Initialize(mapload)
 	color = request_holiday_colors(src, pattern)
@@ -241,6 +253,9 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/holiday/random)
 ##path/filled/warning {\
 	icon_state = "trimline_warn_fill";\
 }\
+##path/filled/warning/corner {\
+	icon_state = "trimline_corner_warn_fill";\
+}\
 ##path/filled/mid_joiner {\
 	icon_state = "trimline_mid_fill";\
 }\
@@ -254,7 +269,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/holiday/random)
 
 /// White trimlines
 /obj/effect/turf_decal/trimline/white
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 
 TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/white)
 

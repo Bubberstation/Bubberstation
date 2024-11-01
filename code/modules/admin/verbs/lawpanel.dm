@@ -1,15 +1,9 @@
-/client/proc/cmd_admin_law_panel()
-	set category = "Admin.Events"
-	set name = "Law Panel"
-
-	if(!check_rights(R_ADMIN))
-		return
-	if(!isobserver(usr) && SSticker.HasRoundStarted())
-		message_admins("[key_name_admin(usr)] checked AI laws via the Law Panel.")
-
+ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_EVENTS)
+	if(!isobserver(user) && SSticker.HasRoundStarted())
+		message_admins("[key_name_admin(user)] checked AI laws via the Law Panel.")
+	var/datum/law_panel/tgui = new
+	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Law Panel")
-	var/datum/law_panel/tgui = new()
-	tgui.ui_interact(usr)
 
 /datum/law_panel
 
@@ -30,7 +24,7 @@
 	var/lawtype = tgui_input_list(user, "Select law type", "Law type", lawtypes)
 	if(isnull(lawtype))
 		return FALSE
-	var/lawtext = tgui_input_text(user, "Input law text", "Law text")
+	var/lawtext = tgui_input_text(user, "Input law text", "Law text") // admin verb so no max length and also any user-level input is config based already so ehhhh
 	if(!lawtext)
 		return FALSE
 	if(QDELETED(src) || QDELETED(borgo))
@@ -211,7 +205,7 @@
 
 	switch(action)
 		if("lawchange_logs")
-			usr.client?.list_law_changes()
+			ui.user?.client?.holder?.list_law_changes()
 			return FALSE
 
 		if("force_state_laws")

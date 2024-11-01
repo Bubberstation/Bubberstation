@@ -68,7 +68,7 @@
 
 		if(!amount)
 			say("Not enough material. Aborting.")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE)
 			return TRUE
 		qdel(exportable)
 
@@ -77,7 +77,7 @@
 		new_block.export_mat = material_to_export
 		new_block.quantity = amount
 		to_chat(user, span_notice("You have created a stock block worth [new_block.export_value] cr! Sell it before it becomes liquid!"))
-		playsound(src, 'sound/machines/synth_yes.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/synth/synth_yes.ogg', 50, FALSE)
 		return TRUE
 	return ..()
 
@@ -166,12 +166,14 @@
 		var/min_value_override = initial(traded_mat.minimum_value_override)
 		if(min_value_override)
 			minimum_value_threshold = min_value_override
-
+		else
+			minimum_value_threshold = round(initial(traded_mat.value_per_unit) * SHEET_MATERIAL_AMOUNT * 0.5)
 
 		//send data
 		material_data += list(list(
 			"name" = initial(traded_mat.name),
 			"price" = SSstock_market.materials_prices[traded_mat],
+			"rarity" = initial(traded_mat.value_per_unit),
 			"threshold" = minimum_value_threshold,
 			"quantity" = SSstock_market.materials_quantity[traded_mat],
 			"trend" = trend_string,
@@ -205,6 +207,7 @@
 	.["orderBalance"] = current_cost
 	.["orderingPrive"] = ordering_private
 	.["canOrderCargo"] = can_buy_via_budget
+	.["updateTime"] = SSstock_market.next_fire - world.time
 
 /obj/machinery/materials_market/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -229,7 +232,7 @@
 			var/material_str = params["material"]
 			var/quantity = text2num(params["quantity"])
 
-			//find material from it's name
+			//find material from its name
 			var/datum/material/material_bought
 			var/obj/item/stack/sheet/sheet_to_buy
 			for(var/datum/material/mat as anything in SSstock_market.materials_prices)
@@ -271,14 +274,14 @@
 				var/prior_sheets = current_order.pack.contains[sheet_to_buy]
 				if(prior_sheets + quantity > SSstock_market.materials_quantity[material_bought] )
 					say("There aren't enough sheets on the market! Please wait for more sheets to be traded before adding more.")
-					playsound(usr, 'sound/machines/synth_no.ogg', 35, FALSE)
+					playsound(usr, 'sound/machines/synth/synth_no.ogg', 35, FALSE)
 					return
 
 				// Check if the order exceeded the purchase limit
 				var/prior_stacks = ROUND_UP(prior_sheets / MAX_STACK_SIZE)
 				if(prior_stacks >= MAX_STACK_LIMIT)
 					say("There are already 10 stacks of sheets on order! Please wait for them to arrive before ordering more.")
-					playsound(usr, 'sound/machines/synth_no.ogg', 35, FALSE)
+					playsound(usr, 'sound/machines/synth/synth_no.ogg', 35, FALSE)
 					return
 
 				// Prevents you from ordering more than the available budget
@@ -343,21 +346,21 @@
 	var/datum/material/export_mat
 	/// Quantity of export material
 	var/quantity = 0
-	/// Is this stock block currently updating it's value with the market (aka fluid)?
+	/// Is this stock block currently updating its value with the market (aka fluid)?
 	var/fluid = FALSE
 
 /obj/item/stock_block/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(value_warning)), 2.5 MINUTES, TIMER_DELETE_ME)
-	addtimer(CALLBACK(src, PROC_REF(update_value)), 5 MINUTES, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(value_warning)), 1.5 MINUTES, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(update_value)), 3 MINUTES, TIMER_DELETE_ME)
 
 /obj/item/stock_block/examine(mob/user)
 	. = ..()
 	. += span_notice("\The [src] is worth [export_value] cr, from selling [quantity] sheets of [initial(export_mat?.name)].")
 	if(fluid)
-		. += span_warning("\The [src] is currently liquid! It's value is based on the market price.")
+		. += span_warning("\The [src] is currently liquid! Its value is based on the market price.")
 	else
-		. += span_notice("\The [src]'s value is still [span_boldnotice("locked in")]. [span_boldnotice("Sell it")] before it's value becomes liquid!")
+		. += span_notice("\The [src]'s value is still [span_boldnotice("locked in")]. [span_boldnotice("Sell it")] before its value becomes liquid!")
 
 /obj/item/stock_block/proc/value_warning()
 	visible_message(span_warning("\The [src] is starting to become liquid!"))

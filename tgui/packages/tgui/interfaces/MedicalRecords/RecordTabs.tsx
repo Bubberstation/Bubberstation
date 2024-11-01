@@ -1,5 +1,4 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useState } from 'react';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
@@ -20,18 +19,17 @@ import { MedicalRecord, MedicalRecordData } from './types';
 /** Displays all found records. */
 export const MedicalRecordTabs = (props) => {
   const { act, data } = useBackend<MedicalRecordData>();
-  const { records = [] } = data;
-
+  const { records = [], station_z } = data;
   const errorMessage = !records.length
     ? 'No records found.'
     : 'No match. Refine your search.';
 
   const [search, setSearch] = useState('');
 
-  const sorted: MedicalRecord[] = flow([
-    filter((record: MedicalRecord) => isRecordMatch(record, search)),
-    sortBy((record: MedicalRecord) => record.name?.toLowerCase()),
-  ])(records);
+  const sorted: MedicalRecord[] = sortBy(
+    filter(records, (record) => isRecordMatch(record, search)),
+    (record) => record.name?.toLowerCase(),
+  );
 
   return (
     <Stack fill vertical>
@@ -70,6 +68,7 @@ export const MedicalRecordTabs = (props) => {
             <Button.Confirm
               content="Purge"
               icon="trash"
+              disabled={!station_z}
               onClick={() => act('purge_records')}
               tooltip="Wipe all record data."
             />

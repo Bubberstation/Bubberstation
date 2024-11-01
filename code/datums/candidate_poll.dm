@@ -28,6 +28,7 @@
 		POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "It's too late to unregister yourself, selection has already begun!",
 		POLL_RESPONSE_UNREGISTERED = "You have been unregistered as a candidate for %ROLE%. You can sign up again before the poll ends.",
 	)
+	var/list/chosen_candidates = list()
 
 /datum/candidate_poll/New(
 	polled_role,
@@ -73,7 +74,7 @@
 	if(time_left() <= 0)
 		if(!silent)
 			to_chat(candidate, span_danger("Sorry, you were too late for the consideration!"))
-			SEND_SOUND(candidate, 'sound/machines/buzz-sigh.ogg')
+			SEND_SOUND(candidate, 'sound/machines/buzz/buzz-sigh.ogg')
 		return FALSE
 
 	signed_up += candidate
@@ -131,3 +132,13 @@
 
 /datum/candidate_poll/proc/time_left()
 	return duration - (world.time - time_started)
+
+
+/// Print to chat which candidate was selected
+/datum/candidate_poll/proc/announce_chosen(list/poll_recipients)
+	if(!length(chosen_candidates))
+		return
+	for(var/mob/chosen in chosen_candidates)
+		var/client/chosen_client = chosen.client
+		for(var/mob/poll_recipient as anything in poll_recipients)
+			to_chat(poll_recipient, span_ooc("[isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null][span_warning(" [full_capitalize(role)] Poll: ")][key_name(chosen_client, include_name = FALSE)] was selected."))

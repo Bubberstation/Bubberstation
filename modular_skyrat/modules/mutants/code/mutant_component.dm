@@ -108,7 +108,7 @@
 	if(host.stat != DEAD)
 		return
 	if(!ismutant(host))
-		to_chat(host, span_cultlarge("You can feel your heart stopping, but something isn't right... \
+		to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... \
 		life has not abandoned your broken form. You can only feel a deep and immutable hunger that \
 		not even death can stop, you will rise again!"))
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
@@ -138,7 +138,7 @@
 
 	host.do_jitter_animation(30)
 	host.visible_message(span_danger("[host] suddenly convulses, as [host.p_they()][stand_up ? " stagger to [host.p_their()] feet and" : ""] gain a ravenous hunger in [host.p_their()] eyes!"), span_alien("You HUNGER!"))
-	playsound(host.loc, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
+	playsound(host.loc, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 	if(is_species(host, /datum/species/mutant/infectious/fast))
 		to_chat(host, span_redtext("You are a FAST zombie. You run fast and hit more quickly, beware however, you are much weaker and susceptible to damage."))
 	else
@@ -151,21 +151,20 @@
 /datum/component/mutant_infection/proc/mutant_death()
 	SIGNAL_HANDLER
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
-	to_chat(host, span_cultlarge("You can feel your heart stopping, but something isn't right... you will rise again!"))
+	to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... you will rise again!"))
 	timer_id = addtimer(CALLBACK(src, PROC_REF(regenerate)), revive_time, TIMER_STOPPABLE)
 
 /datum/component/mutant_infection/proc/regenerate()
 	if(!host.mind)
-		var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("Do you want to play as a mutant([host.name])?", target_mob = host)
-		if(!candidates.len)
+		var/mob/canidate = SSpolling.poll_ghosts_for_target("Do you want to play as a mutant([host.name])?", checked_target = host)
+		if(!istype(canidate))
 			return
-		var/client/C = pick_n_take(candidates)
-		host.key = C.key
+		host.key = canidate.key
 	else
 		host.grab_ghost()
 	to_chat(host, span_notice("You feel an itching, both inside and \
 		outside as your tissues knit and reknit."))
-	playsound(host, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(host, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	host.revive(TRUE, TRUE)
 
 /datum/component/mutant_infection/proc/create_glow()

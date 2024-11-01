@@ -47,6 +47,7 @@
 	data["maxcharge"] = maxcharge //Cell max charge
 	data["integrity"] = ((cyborg.health + 100) / 2) //health, as percentage
 	data["lampIntensity"] = cyborg.lamp_intensity //lamp power setting
+	data["lampConsumption"] = cyborg.lamp_power_consumption //Power consumption of the lamp per lamp intensity.
 	data["sensors"] = "[cyborg.sensors_on?"ACTIVE":"DISABLED"]"
 	data["printerPictures"] = cyborg.connected_ai? cyborg.connected_ai.aicamera.stored.len : cyborg.aicamera.stored.len //Number of pictures taken, synced to AI if available
 	data["printerToner"] = cyborg.toner //amount of toner
@@ -110,7 +111,7 @@
 				if(!cyborg.cell || !cyborg.cell.charge)
 					cyborg.visible_message(span_notice("The power warning light on [span_name("[cyborg]")] flashes urgently."), \
 						"You announce you are operating in low power mode.")
-					playsound(cyborg, 'sound/machines/buzz-two.ogg', 50, FALSE)
+					playsound(cyborg, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 
 		if("toggleSensors")
 			cyborg.toggle_sensors()

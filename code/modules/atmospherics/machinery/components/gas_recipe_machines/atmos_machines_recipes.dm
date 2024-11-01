@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 10
 	max_temp = 20
 	energy_release = 3500000
-	requirements = list(/datum/gas/plasma = 450, /datum/gas/bz = 15) //SKYRAT EDIT CHANGE, ORIGINAL: requirements = list(/datum/gas/plasma = 450)
+	requirements = list(/datum/gas/plasma = 450)
 	products = list(/obj/item/stack/sheet/mineral/plasma = 1)
 
 /datum/gas_recipe/crystallizer/crystal_cell
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	max_temp = 90
 	energy_release = -800000
 	requirements = list(/datum/gas/plasma = 800, /datum/gas/helium = 100, /datum/gas/bz = 50)
-	products = list(/obj/item/stock_parts/cell/crystal_cell = 1)
+	products = list(/obj/item/stock_parts/power_store/cell/crystal_cell = 1)
 
 /datum/gas_recipe/crystallizer/zaukerite
 	id = "zaukerite"

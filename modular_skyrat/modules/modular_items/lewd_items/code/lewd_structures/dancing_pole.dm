@@ -31,7 +31,8 @@
 								"green" = COLOR_GREEN,
 								"white" = COLOR_WHITE,
 								)
-
+	/// Is the pole in use currently?
+	var/pole_in_use
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()
@@ -49,29 +50,26 @@
 	)
 
 
-/obj/structure/stripper_pole/CtrlClick(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
+/obj/structure/stripper_pole/click_ctrl(mob/user)
 	var/choice = show_radial_menu(user, src, pole_designs, radius = 50, require_near = TRUE)
 	if(!choice)
-		return FALSE
+		return CLICK_ACTION_BLOCKING
 	current_pole_color = choice
 	light_color = pole_lights[choice]
 	update_icon()
 	update_brightness()
-	return TRUE
+	return CLICK_ACTION_SUCCESS
 
 
 // Alt-click to turn the lights on or off.
-/obj/structure/stripper_pole/AltClick(mob/user)
+/obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
 	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
-	playsound(user, lights_enabled ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
 	update_brightness()
+	return CLICK_ACTION_SUCCESS
 
 
 /obj/structure/stripper_pole/Initialize(mapload)
@@ -94,21 +92,25 @@
 
 
 //trigger dance if character uses LBM
-/obj/structure/stripper_pole/attack_hand(mob/living/user)
+/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag) //Bubber edit add proximity_flag
 	. = ..()
 	if(.)
 		return
-	if(obj_flags & IN_USE)
+// Bubber edit begin
+	if(!proximity_flag)
+		return
+// Bubber edit end
+	if(pole_in_use)
 		balloon_alert(user, "already in use!")
 		return
-	obj_flags |= IN_USE
+	pole_in_use = TRUE
 	dancer = user
 	user.setDir(SOUTH)
 	user.Stun(10 SECONDS)
 	user.forceMove(loc)
 	user.visible_message(pick(span_purple("[user] dances on [src]!"), span_purple("[user] flexes their hip-moving skills on [src]!")))
 	dance_animate(user)
-	obj_flags &= ~IN_USE
+	pole_in_use = FALSE
 	user.pixel_y = 0
 	user.pixel_z = pseudo_z_axis //incase we are off it when we jump on!
 	dancer = null
@@ -155,11 +157,7 @@
 		dancer.forceMove(get_turf(src))
 		dancer = null
 
-/obj/structure/stripper_pole/CtrlShiftClick(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
+/obj/structure/stripper_pole/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
 	balloon_alert(user, "disassembling...")
 	if(!do_after(user, 8 SECONDS, src))
@@ -169,7 +167,6 @@
 	balloon_alert(user, "disassembled")
 	new /obj/item/construction_kit/pole(get_turf(user))
 	qdel(src)
-	return TRUE
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()

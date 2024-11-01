@@ -116,10 +116,12 @@ GLOBAL_LIST_EMPTY(startup_messages)
 			<hr>
 			<a class="menu_button" href='?src=[text_ref(src)];character_setup=1'>SETUP CHARACTER (<span id="character_slot">[uppertext(client.prefs.read_preference(/datum/preference/name/real_name))]</span>)</a>
 			<a class="menu_button" href='?src=[text_ref(src)];game_options=1'>GAME OPTIONS</a>
+			<a id="be_antag" class="menu_button" href='?src=[text_ref(src)];toggle_antag=1'>[client.prefs.read_preference(/datum/preference/toggle/be_antag) ? "<span class='checked'>☑</span> BE ANTAGONIST" : "<span class='unchecked'>☒</span> BE ANTAGONIST"]</a>
+			<hr>
 			<a class="menu_button" href='?src=[text_ref(src)];server_swap=1'>SWAP SERVERS</a>
 		"}
 
-		if(length(GLOB.lobby_station_traits) && !SSticker.HasRoundStarted())
+		if(length(GLOB.lobby_station_traits))
 			dat += {"<a class="menu_button" href='?src=[text_ref(src)];job_traits=1'>JOB TRAITS</a>"}
 
 		if(!is_guest_key(src.key))
@@ -141,6 +143,21 @@ GLOBAL_LIST_EMPTY(startup_messages)
 					if (ready_int === ready_marks.length)
 						ready_int = 0;
 					ready_mark.innerHTML = ready_marks\[ready_int\];
+				}
+			}
+			var antag_int = 0;
+			var antag_mark = document.getElementById("be_antag");
+			var antag_marks = \[ "<span class='unchecked'>☒</span> BE ANTAGONIST", "<span class='checked'>☑</span> BE ANTAGONIST" \];
+			function toggle_antag(setAntag) {
+				if(setAntag) {
+					antag_int = setAntag;
+					antag_mark.innerHTML = antag_marks\[antag_int\];
+				}
+				else {
+					antag_int++;
+					if (antag_int === antag_marks.length)
+						antag_int = 0;
+					antag_mark.innerHTML = antag_marks\[antag_int\];
 				}
 			}
 

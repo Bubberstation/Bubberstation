@@ -7,19 +7,15 @@
 	action_cooldown = 2 SECONDS
 
 /datum/ai_behavior/find_and_set/perform(seconds_per_tick, datum/ai_controller/controller, set_key, locate_path, search_range)
-	. = ..()
 	if (controller.blackboard_key_exists(set_key))
-		finish_action(controller, TRUE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	if(QDELETED(controller.pawn))
-		finish_action(controller, FALSE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	var/find_this_thing = search_tactic(controller, locate_path, search_range)
 	if(isnull(find_this_thing))
-		finish_action(controller, FALSE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	controller.set_blackboard_key(set_key, find_this_thing)
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/find_and_set/proc/search_tactic(datum/ai_controller/controller, locate_path, search_range)
 	return locate(locate_path) in oview(search_range, controller.pawn)
@@ -181,3 +177,17 @@
 	var/mob/living/living_pawn = controller.pawn
 	var/potential_friend = living_pawn.faction.Find(REF(friend)) ? friend : null
 	return potential_friend
+
+
+/datum/ai_behavior/find_and_set/in_list/turf_types
+
+
+/datum/ai_behavior/find_and_set/in_list/turf_types/search_tactic(datum/ai_controller/controller, locate_paths, search_range)
+	var/list/found = RANGE_TURFS(search_range, controller.pawn)
+	shuffle_inplace(found)
+	for(var/turf/possible_turf as anything in found)
+		if(!is_type_in_typecache(possible_turf, locate_paths))
+			continue
+		if(can_see(controller.pawn, possible_turf, search_range))
+			return possible_turf
+	return null

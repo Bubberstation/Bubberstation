@@ -123,7 +123,7 @@
 	if(!do_after(user, 2 SECONDS, src))
 		return TRUE
 
-	playsound(src, 'sound/items/wirecutter.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] removed the barbed wire on [src]."),
 	span_notice("You removed the barbed wire on [src]."))
 	modify_max_integrity(max_integrity - 50)
@@ -132,7 +132,7 @@
 	update_icon()
 
 
-/obj/structure/deployable_barricade/deconstruct(disassembled = TRUE)
+/obj/structure/deployable_barricade/atom_deconstruct(disassembled = TRUE)
 	if(stack_type)
 		var/stack_amt
 		if(!disassembled && destroyed_stack_amount)
@@ -361,34 +361,34 @@
 	fire = 80
 	acid = 40
 
-/obj/structure/deployable_barricade/metal/AltClick(mob/user)
+/obj/structure/deployable_barricade/metal/click_alt(mob/user)
 	if(portable_type)
 		if(anchored)
 			to_chat(user, span_warning("[src] cannot be folded up while anchored to the ground!"))
-			return FALSE
+			return CLICK_ACTION_BLOCKING
 		if(barricade_upgrade_type)
 			to_chat(user, span_warning("[src] cannot be folded up with upgrades attached, remove them first!"))
-			return FALSE
+			return CLICK_ACTION_BLOCKING
 		if(get_integrity() < max_integrity)
 			to_chat(user, span_warning("[src] cannot be folded up while damaged!"))
-			return FALSE
+			return CLICK_ACTION_BLOCKING
 		user.visible_message(span_notice("[user] starts folding [src] up!"), span_notice("You start folding [src] up!"))
 		if(do_after(user, 5 SECONDS, src))
 			if(QDELETED(src)) //Copied encase we change states.
 				return
 			if(anchored)
 				to_chat(user, span_warning("[src] cannot be folded up while anchored to the ground!"))
-				return FALSE
+				return CLICK_ACTION_BLOCKING
 			if(barricade_upgrade_type)
 				to_chat(user, span_warning("[src] cannot be folded up with upgrades attached, remove them first!"))
-				return FALSE
+				return CLICK_ACTION_BLOCKING
 			if(get_integrity() < max_integrity)
 				to_chat(user, span_warning("[src] cannot be folded up while damaged!"))
-				return FALSE
+				return CLICK_ACTION_BLOCKING
 			user.visible_message(span_notice("[user] folds [src] up!"), span_notice("You neatly fold [src] up!"))
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			fold_up()
-			return TRUE
+			return CLICK_ACTION_SUCCESS
 	return ..()
 
 /obj/structure/deployable_barricade/metal/proc/fold_up()
@@ -476,7 +476,7 @@
 	user.visible_message(span_notice("[user] attaches[choice] to [src]."),
 		span_notice("You attach [choice] to [src]."))
 
-	playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 	update_icon()
 
 /obj/structure/deployable_barricade/metal/examine(mob/user)
@@ -511,7 +511,7 @@
 
 	user.visible_message(span_notice("[user] starts welding the damage on [src]."),
 	span_notice("You start welding the damage on [src]."))
-	playsound(src, 'sound/items/welder2.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 5 SECONDS, src))
 		return TRUE
@@ -527,14 +527,14 @@
 	span_notice("You weld the damage on [src]."))
 	repair_damage(150)
 	update_icon()
-	playsound(src, 'sound/items/welder2.ogg', 25, TRUE)
+	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
 	return TRUE
 
 
 /obj/structure/deployable_barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 			user.visible_message (span_notice ("[user] secures the panel on [src]."),
@@ -543,7 +543,7 @@
 			return TRUE
 
 		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			playsound(src, 'sound/items/screwdriver.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
@@ -557,7 +557,7 @@
 /obj/structure/deployable_barricade/metal/wrench_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 			user.visible_message (span_notice ("[user] loosens the anchor bolts on [src]."),
@@ -579,7 +579,7 @@
 					to_chat(user, span_warning("There is already a barricade here."))
 					return TRUE
 
-			playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 
@@ -598,7 +598,7 @@
 			user.visible_message(span_notice("[user] begins to disassemble [src]."),
 			span_notice("You start to disassemble [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
@@ -616,7 +616,7 @@
 			user.visible_message(span_notice("[user] begins to detach the armor plates from [src]."),
 			span_notice("You begin to detach the armor plates from [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
@@ -680,7 +680,7 @@
 			user.visible_message(span_notice("[user] begins to disassemble [src]."),
 			span_notice("You start to disassemble [src]."))
 
-			playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
@@ -710,7 +710,7 @@
 /obj/structure/deployable_barricade/metal/plasteel/proc/toggle_open(state, mob/living/user)
 	if(state == closed)
 		return
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/tools/ratchet.ogg', 25, 1)
 	closed = !closed
 	density = !density
 
@@ -765,13 +765,13 @@
 
 /obj/item/quickdeploy/attack_self(mob/user)
 	to_chat(user, span_notice("You start deploying [src] in front of you."))
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/tools/ratchet.ogg', 25, 1)
 	if(!do_after(usr, delay, src))
 		return
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
 		var/obj/O = new thing_to_deploy(get_turf(user))
 		O.setDir(user.dir)
-		playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+		playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 		qdel(src)
 
 /obj/item/quickdeploy/proc/can_place(mob/user)

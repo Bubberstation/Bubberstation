@@ -22,10 +22,11 @@
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.8)
 	attack_verb_continuous = list("pinches", "nips")
 	attack_verb_simple = list("pinch", "nip")
-	hitsound = 'sound/items/wirecutter.ogg'
-	usesound = 'sound/items/wirecutter.ogg'
-	drop_sound = 'sound/items/handling/wirecutter_drop.ogg'
-	pickup_sound = 'sound/items/handling/wirecutter_pickup.ogg'
+	hitsound = 'sound/items/tools/wirecutter.ogg'
+	usesound = 'sound/items/tools/wirecutter.ogg'
+	operating_sound = 'sound/items/tools/wirecutter_cut.ogg'
+	drop_sound = 'sound/items/handling/tools/wirecutter_drop.ogg'
+	pickup_sound = 'sound/items/handling/tools/wirecutter_pickup.ogg'
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
 	armor_type = /datum/armor/item_wirecutters
@@ -63,7 +64,7 @@
 	playsound(loc, usesound, 50, TRUE, -1)
 	return BRUTELOSS
 
-/obj/item/wirecutters/abductor//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/item/wirecutters/abductor//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/antags/abductor.dmi'
@@ -77,7 +78,7 @@
 	name = "powered wirecutters"
 	desc = "Cuts wires with the power of ELECTRICITY. Faster than normal wirecutters."
 	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "wirecutters_cyborg"
+	icon_state = "toolkit_engiborg_cutters"
 	worn_icon_state = "cutters"
 	toolspeed = 0.5
 	random_color = FALSE

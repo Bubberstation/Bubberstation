@@ -22,7 +22,7 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_OCLOTHING
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle/standard
@@ -30,8 +30,6 @@
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	suppressed_sound = 'modular_skyrat/modules/modular_weapons/sounds/suppressed_rifle.ogg'
 	can_suppress = TRUE
-
-	can_bayonet = FALSE
 
 	suppressor_x_offset = 12
 

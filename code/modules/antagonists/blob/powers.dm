@@ -193,14 +193,20 @@
 /mob/camera/blob/proc/pick_blobbernaut_candidate(obj/structure/blob/special/factory/factory)
 	if(isnull(factory))
 		return
-
-	var/datum/callback/to_call = CALLBACK(src, PROC_REF(on_poll_concluded), factory)
-	factory.AddComponent(/datum/component/orbit_poll, \
-		ignore_key = POLL_IGNORE_BLOB, \
-		job_bans = ROLE_BLOB, \
-		to_call = to_call, \
-		title = "Blobbernaut", \
+	var/icon/blobbernaut_icon = icon(icon, "blobbernaut")
+	blobbernaut_icon.Blend(blobstrain.color, ICON_MULTIPLY)
+	var/image/blobbernaut_image = image(blobbernaut_icon)
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+		check_jobban = ROLE_BLOB,
+		poll_time = 20 SECONDS,
+		checked_target = factory,
+		ignore_category = POLL_IGNORE_BLOB,
+		alert_pic = blobbernaut_image,
+		jump_target = factory,
+		role_name_text = "blobbernaut",
+		chat_text_border_icon = blobbernaut_image,
 	)
+	on_poll_concluded(factory, chosen_one)
 
 /// Called when the ghost poll concludes
 /mob/camera/blob/proc/on_poll_concluded(obj/structure/blob/special/factory/factory, mob/dead/observer/ghost)
@@ -383,6 +389,11 @@
 			if (!isnull(initial(strain.analyzerdesceffect)))
 				info_text += "<br>[span_notice("[initial(strain.analyzerdesceffect)]")]"
 
+			//BUBBERSATION CHANGE START: INSTANT ALERT WARNING
+			if(initial(strain.instant_alert_on_change))
+				info_text += "<br>[span_danger("WARNING: Changing your strain to this will instantly alert everyone to your presence!")]"
+			//BUBBERSTATION CHANGE END: INSTANT ALERT WARNING
+
 			var/datum/radial_menu_choice/choice = new
 			choice.image = strain_icon
 			choice.info = info_text
@@ -393,17 +404,26 @@
 	if (isnull(strain_result))
 		return
 
+	/* BUBBERSTATION CHANGE START: REFACTORS THIS.
 	if (!free_strain_rerolls && !can_buy(BLOB_POWER_REROLL_COST))
 		return
+	BUBBERSTATION CHANGE END: REFACTORS THIS. */
 
+	//Below code has basically been bubberstation refactored. Too many changes to make even semi-modular.
 	for (var/_other_strain in GLOB.valid_blobstrains)
 		var/datum/blobstrain/other_strain = _other_strain
 		if (initial(other_strain.name) == strain_result)
-			set_strain(other_strain)
 
-			if (free_strain_rerolls)
+			if(!has_announced && initial(other_strain.instant_alert_on_change) && tgui_alert(src, "Selecting this strain will alert the crew that you exist. Are you sure you wish to continue?","*Notices your Strain*", list("Yes","No")) != "Yes")
+				return
+
+			if(free_strain_rerolls)
 				free_strain_rerolls -= 1
+			else if(!can_buy(BLOB_POWER_REROLL_COST))
+				return
 
+			set_strain(other_strain)
+// BUBBER REFACTOR END
 			last_reroll_time = world.time
 			strain_choices = null
 

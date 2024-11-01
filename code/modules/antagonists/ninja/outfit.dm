@@ -1,7 +1,7 @@
 /datum/outfit/ninja
 	name = "Space Ninja"
 	uniform = /obj/item/clothing/under/syndicate/ninja
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/night/colorless
 	mask = /obj/item/clothing/mask/gas/ninja
 	ears = /obj/item/radio/headset
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -10,7 +10,7 @@
 	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/energy_katana
 	back = /obj/item/mod/control/pre_equipped/ninja
-	//implants = list(/obj/item/implant/explosive) SKYRAT EDIT REMOVAL
+	implants = list(/obj/item/implant/explosive)
 
 /datum/outfit/ninja/post_equip(mob/living/carbon/human/ninja)
 	var/obj/item/grenade/c4/ninja/charge = ninja.l_store

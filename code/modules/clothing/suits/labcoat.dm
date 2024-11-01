@@ -38,6 +38,10 @@
 	icon_state = "labcoat_cmo"
 	inhand_icon_state = null
 
+/obj/item/clothing/suit/toggle/labcoat/cmo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+
 /datum/armor/toggle_labcoat
 	bio = 50
 	fire = 50
@@ -57,13 +61,14 @@
 	icon_state = "labcoat_paramedic"
 	inhand_icon_state = null
 
-//START SKYRAT EDIT ADDITION
 /obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+	//START SKYRAT EDIT ADDITION
 	allowed += list(
 		/obj/item/storage/medkit,
 	)
-//END SKYRAT EDIT
+	//END SKYRAT EDIT
 
 /obj/item/clothing/suit/toggle/labcoat/mad
 	name = "\proper The Mad's labcoat"
@@ -78,6 +83,10 @@
 	greyscale_config = /datum/greyscale_config/labcoat
 	greyscale_config_worn = /datum/greyscale_config/labcoat/worn
 	greyscale_colors = "#EEEEEE#4A77A1#4A77A1#7095C2"
+
+/obj/item/clothing/suit/toggle/labcoat/genetics/Initialize(mapload)
+	. = ..()
+	allowed += /obj/item/sequence_scanner
 
 /obj/item/clothing/suit/toggle/labcoat/chemist
 	name = "chemist labcoat"
@@ -116,6 +125,9 @@
 	allowed += list(
 		/obj/item/autopsy_scanner,
 		/obj/item/scythe,
+		/obj/item/shovel,
+		/obj/item/shovel/serrated,
+		/obj/item/trench_tool,
 	)
 
 /obj/item/clothing/suit/toggle/labcoat/science
@@ -145,3 +157,24 @@
 	greyscale_config = /datum/greyscale_config/labcoat
 	greyscale_config_worn = /datum/greyscale_config/labcoat/worn
 	greyscale_colors = "#EEEEEE#88242D#88242D#39393F"
+
+// Research Director
+
+/obj/item/clothing/suit/toggle/labcoat/research_director
+	name = "research director's coat"
+	desc = "A mix between a labcoat and just a regular coat. It's made out of a special anti-bacterial, anti-acidic, and anti-biohazardous synthetic fabric."
+	icon_state = "labcoat_rd"
+	armor_type = /datum/armor/jacket_research_director
+	body_parts_covered = CHEST|GROIN|ARMS
+
+/datum/armor/jacket_research_director
+	bio = 75
+	fire = 75
+	acid = 75
+
+/obj/item/clothing/suit/toggle/labcoat/research_director/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/storage/bag/xeno,
+		/obj/item/melee/baton/telescopic,
+	)

@@ -18,7 +18,7 @@
 	speed = 0.5
 	stop_automated_movement = FALSE
 	status_flags = CANPUSH
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	atmos_requirements = null
 	minbodytemp = 0
 	maxHealth = 750 //Very durable
 	health = 500
@@ -31,7 +31,7 @@
 	wander = FALSE
 	attack_verb_continuous = "rips into"
 	attack_verb_simple = "rip into"
-	attack_sound = 'sound/effects/blobattack.ogg'
+	attack_sound = 'sound/effects/blob/blobattack.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 15) //It's a pretty big dude. Actually killing one is a feat.
 	gold_core_spawnable = FALSE //Should stay exclusive to changelings tbh, otherwise makes it much less significant to sight one
 	var/datum/action/innate/turn_to_human
@@ -126,7 +126,7 @@
 	mind.transfer_to(stored_changeling)
 	stored_changeling.Paralyze(10 SECONDS) //Make them helpless for 10 seconds
 	stored_changeling.adjustBruteLoss(30, TRUE, TRUE)
-	stored_changeling.status_flags &= ~GODMODE
+	REMOVE_TRAIT(stored_changeling, TRAIT_GODMODE, INNATE_TRAIT)
 	stored_changeling.emote("scream")
 	stored_changeling.gib()
 	stored_changeling = null
@@ -148,7 +148,17 @@
 	ricochet_incidence_leeway = 0
 	embed_falloff_tile = -2
 	shrapnel_type = /obj/item/shrapnel/bone_fragment
-	embedding = list(embed_chance=55, fall_chance=2, jostle_chance=7, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.7, pain_mult=3, jostle_pain_mult=3, rip_time=15)
+	embed_type = /datum/embed_data/tomahawk
+
+/datum/embed_data/tomahawk
+	embed_chance = 55
+	fall_chance = 2
+	jostle_chance = 7
+	ignore_throwspeed_threshold = TRUE
+	pain_stam_pct = 0.7
+	pain_mult = 3
+	jostle_pain_mult = 3
+	rip_time = 15
 
 /obj/item/shrapnel/bone_fragment
 	name = "bone fragment"
@@ -191,7 +201,7 @@
 	horrorform.stored_changeling.loc = get_turf(horrorform)
 	horrorform.mind.transfer_to(horrorform.stored_changeling)
 	horrorform.stored_changeling.Stun(2 SECONDS)
-	horrorform.stored_changeling.status_flags &= ~GODMODE
+	REMOVE_TRAIT(horrorform.stored_changeling, TRAIT_GODMODE, INNATE_TRAIT)
 	qdel(horrorform)
 	return TRUE
 

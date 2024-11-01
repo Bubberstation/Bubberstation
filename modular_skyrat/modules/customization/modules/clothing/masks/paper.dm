@@ -20,6 +20,7 @@
 	icon_state = "mask_paper"
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDESNOUT
+	interaction_flags_click = NEED_DEXTERITY
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/adjust/papermask)
 	unique_reskin = list(
@@ -57,7 +58,6 @@
 
 /obj/item/clothing/mask/paper/Initialize(mapload)
 	. = ..()
-	register_context()
 	if(wear_hair_over)
 		alternate_worn_layer = BACK_LAYER
 
@@ -66,14 +66,10 @@
 	if(!strap_hidden)
 		. += mutable_appearance(icon_file, "mask_paper_strap")
 
-/obj/item/clothing/mask/paper/alt_click_secondary(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(user.can_perform_action(src, NEED_DEXTERITY))
+/obj/item/clothing/mask/paper/click_alt_secondary(mob/user)
 		adjust_mask(user)
 
-/obj/item/clothing/mask/paper/CtrlClick(mob/user)
+/obj/item/clothing/mask/paper/item_ctrl_click(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -105,7 +101,7 @@
 /obj/item/clothing/mask/paper/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	if(!user.incapacitated())
+	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
@@ -120,7 +116,7 @@
 /obj/item/clothing/mask/paper/proc/adjust_strap(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	if(!user.incapacitated())
+	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		strap_hidden = !strap_hidden
 		to_chat(user, "You [is_worn ? "" : "will "][strap_hidden ? "hide" : "show"] the mask strap.")

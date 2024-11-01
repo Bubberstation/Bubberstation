@@ -641,7 +641,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/syndicate/cruiser/brig)
 "GN" = (
-/obj/machinery/vending/medical/syndicate_access,
+/obj/machinery/vending/medical/syndicate,
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
@@ -882,7 +882,7 @@
 /obj/structure/closet/crate/medical,
 /mob/living/basic/bot/medbot{
 	faction = list("Syndicate");
-	maints_access_required = list(150);
+	req_one_access = list(150);
 	name = "James T. Kirk";
 	radio_channel = "Syndicate"
 	},

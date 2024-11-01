@@ -1,7 +1,8 @@
 /datum/action/cooldown/spell/touch/star_touch
 	name = "Star Touch"
-	desc = "Marks someone with a star mark or puts someone with a star mark to sleep for 4 seconds, removing the star mark. \
-		You and your target are linked with a cosmic ray, burning them for up to a minute, or \
+	desc = "Manifests cosmic fields on tiles next to you while marking the victim with a star mark \
+		or consuming an already present star mark to put them to sleep for 4 seconds. \
+		They will then be linked to you with a cosmic ray, burning them for up to a minute, or \
 		until they can escape your sight. Star Touch can also remove Cosmic Runes, or teleport you \
 		to your Star Gazer when used on yourself."
 	background_icon_state = "bg_heretic"
@@ -9,7 +10,7 @@
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "star_touch"
 
-	sound = 'sound/items/welder.ogg'
+	sound = 'sound/items/tools/welder.ogg'
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation = "ST'R 'N'RG'!"
@@ -106,8 +107,8 @@
 		get_turf(star_gazer_mob),
 		no_effects = TRUE,
 		channel = TELEPORT_CHANNEL_MAGIC,
-		asoundin = 'sound/magic/cosmic_energy.ogg',
-		asoundout = 'sound/magic/cosmic_energy.ogg',
+		asoundin = 'sound/effects/magic/cosmic_energy.ogg',
+		asoundout = 'sound/effects/magic/cosmic_energy.ogg',
 	)
 	remove_hand_with_no_refund(user)
 

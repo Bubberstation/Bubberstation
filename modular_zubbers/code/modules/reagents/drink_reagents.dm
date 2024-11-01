@@ -11,3 +11,9 @@
 	if(!ismoth(M))
 		M.adjust_disgust(10 * REM * delta_time,DISGUST_LEVEL_DISGUSTED)
 		return UPDATE_MOB_HEALTH
+
+
+/mob/living/basic/mothroach/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/udder, reagent_produced_override = /datum/reagent/consumable/moth_milk)

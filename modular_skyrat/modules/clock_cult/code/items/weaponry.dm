@@ -14,7 +14,7 @@
 	throwforce = 20
 	throw_speed = 4
 	armour_penetration = 10
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "gore")
 	sharpness = SHARP_EDGED
@@ -56,11 +56,14 @@
 	name = "brass spear"
 	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
 	icon_state = "ratvarian_spear"
-	embedding = list("max_damage_mult" = 15, "armour_block" = 80)
+	embed_type = /datum/embed_data/spear/brass
 	throwforce = 36
 	force = 25
 	armour_penetration = 24
 
+/datum/embed_data/spear/brass
+	impact_pain_mult = parent_type::impact_pain_mult + 8
+	remove_pain_mult = parent_type::remove_pain_mult + 8
 
 /obj/item/clockwork/weapon/brass_battlehammer
 	name = "brass battle-hammer"
@@ -73,7 +76,7 @@
 	attack_verb_continuous = list("bashes", "hammers", "attacks", "smashes")
 	clockwork_desc = "Enemies hit by this will be flung back while you are on bronze tiles."
 	sharpness = 0
-	hitsound = 'sound/weapons/smash.ogg'
+	hitsound = 'sound/items/weapons/smash.ogg'
 
 
 /obj/item/clockwork/weapon/brass_battlehammer/Initialize(mapload)
@@ -119,7 +122,7 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 30 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/attack_atom(obj/attacked_obj, mob/living/user, params)
@@ -139,14 +142,14 @@
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
 	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
+	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
 	to_chat(target, span_brass("[src] glows, indicating the next attack will disrupt electronics of the target."))
 
 
-/obj/item/gun/ballistic/bow/clockwork
+/obj/item/gun/ballistic/bow/clockwork // SKYRAT TODO - Make Arrow icon independent from sprite
 	name = "brass bow"
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_weapons.dmi'
@@ -168,11 +171,10 @@
 	AddElement(/datum/element/clockwork_description, "Firing from brass tiles will halve the time that it takes to recharge a bolt.")
 	AddElement(/datum/element/clockwork_pickup)
 
-/obj/item/gun/ballistic/bow/clockwork/afterattack(atom/target, mob/living/user, flag, params, passthrough)
+/obj/item/gun/ballistic/bow/clockwork/try_fire_gun(atom/target, mob/living/user, params)
 	if(!drawn || !chambered)
 		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
-		return
-
+		return FALSE
 	return ..()
 
 /obj/item/gun/ballistic/bow/clockwork/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
@@ -248,7 +250,7 @@
 	inhand_icon_state = "clockwork_rifle"
 	worn_icon_state = "clockwork_rifle"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/lionhunter/clockwork
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_sound = 'sound/items/weapons/gun/sniper/shot.ogg'
 	show_bolt_icon = FALSE
 
 

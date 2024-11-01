@@ -10,7 +10,7 @@
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_appliances
-	id = "colony_fabricator_appliances"
+	id = TECHWEB_NODE_COLONY_APPLIANCES
 	display_name = "Colony Fabricator Appliance Designs"
 	description = "Contains all of the colony fabricator's appliance machine designs."
 	design_ids = list(
@@ -18,7 +18,6 @@
 		"portable_lil_pump",
 		"portable_scrubbs",
 		"survival_knife", // I just don't want to make a whole new node for this one sorry
-		"soup_pot", // This one too
 		"water_synth",
 		"hydro_synth",
 		"frontier_sustenance_dispenser",
@@ -30,7 +29,7 @@
 		"frontier_range",
 		"tabletop_griddle",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000000000000000) // God save you
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITE) // God save you
 	hidden = TRUE
 	show_on_wiki = FALSE
 	starting_node = TRUE

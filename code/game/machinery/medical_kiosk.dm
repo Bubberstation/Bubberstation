@@ -75,7 +75,7 @@
 
 	var/obj/item/card/id/card = paying.get_idcard(TRUE)
 	if(card?.registered_account?.account_job?.paycheck_department == payment_department)
-		use_power(active_power_usage)
+		use_energy(active_power_usage)
 		paying_customer = TRUE
 		say("Hello, esteemed medical staff!")
 		RefreshParts()
@@ -83,7 +83,7 @@
 	var/bonus_fee = pandemonium ? rand(10,30) : 0
 	if(attempt_charge(src, paying, bonus_fee) & COMPONENT_OBJ_CANCEL_CHARGE )
 		return
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	paying_customer = TRUE
 	icon_state = "[base_icon_state]_active"
 	say("Thank you for your patronage!")
@@ -273,8 +273,12 @@
 					trauma_desc += "severe "
 				if(TRAUMA_RESILIENCE_LOBOTOMY)
 					trauma_desc += "deep-rooted "
-				if(TRAUMA_RESILIENCE_MAGIC, TRAUMA_RESILIENCE_ABSOLUTE)
+				// SKYRAT EDIT CHANGE BEGIN - Curable permanent traumas
+				if(TRAUMA_RESILIENCE_MAGIC)
+					trauma_desc += "soul-bound "
+				if(TRAUMA_RESILIENCE_ABSOLUTE)
 					trauma_desc += "permanent "
+				// SKYRAT EDIT CHANGE END
 			trauma_desc += trauma.scan_desc
 			trauma_text += trauma_desc
 		trauma_status = "Cerebral traumas detected: patient appears to be suffering from [english_list(trauma_text)]."
@@ -322,7 +326,7 @@
 		patient_status = pick(
 			"The only kiosk is kiosk, but is the only patient, patient?",
 			"Breathing manually.",
-			"Constact NTOS site admin.",
+			"Contact NTOS site admin.",
 			"97% carbon, 3% natural flavoring",
 			"The ebb and flow wears us all in time.",
 			"It's Lupus. You have Lupus.",

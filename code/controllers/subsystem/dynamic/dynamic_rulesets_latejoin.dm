@@ -17,9 +17,9 @@
 		else if (!((antag_preference || antag_flag) in P.client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
 			candidates.Remove(P)
 		// SKYRAT EDIT ADDITION - PROTECTED JOBS
-/* 		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag)) // BUBBER EDIT
+		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 			candidates.Remove(P)
-			continue */
+			continue
 		else if(is_banned_from(P.client?.ckey, BAN_ANTAGONIST))
 			candidates.Remove(P)
 			continue
@@ -175,7 +175,7 @@
 /// Checks for revhead loss conditions and other antag datums.
 /datum/dynamic_ruleset/latejoin/provocateur/proc/check_eligible(datum/mind/M)
 	var/turf/T = get_turf(M.current)
-	if(!considered_afk(M) && considered_alive(M) && is_station_level(T.z) && !M.antag_datums?.len && !HAS_TRAIT(M, TRAIT_MINDSHIELD))
+	if(!considered_afk(M) && considered_alive(M) && is_station_level(T.z) && !M.antag_datums?.len && !HAS_MIND_TRAIT(M.current, TRAIT_UNCONVERTABLE))
 		return TRUE
 	return FALSE
 

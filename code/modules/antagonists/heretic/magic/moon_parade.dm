@@ -1,13 +1,13 @@
 /datum/action/cooldown/spell/pointed/projectile/moon_parade
 	name = "Lunar parade"
-	desc = "This unleashes the parade towards a target."
+	desc = "This unleashes the parade, making everyone in its way join it and suffer hallucinations."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "moon_parade"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/moon_target.dmi'
 
-	sound = 'sound/magic/cosmic_energy.ogg'
+	sound = 'sound/effects/magic/cosmic_energy.ogg'
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
 

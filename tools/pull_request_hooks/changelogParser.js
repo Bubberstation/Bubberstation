@@ -43,7 +43,7 @@ function parseChangelogBody(lines, openTag) {
 			const entry = CHANGELOG_KEYS_TO_ENTRY[type];
 			if(!entry) { console.log(type); }
 
-			if (entry.placeholders.includes(description)) {
+			if (!entry || entry.placeholders.includes(description)) {
 				continue;
 			}
 
@@ -65,6 +65,9 @@ function parseChangelogBody(lines, openTag) {
 }
 
 export function parseChangelog(text) {
+	if(text == null) {
+		return undefined;
+	}
 	const lines = text.split("\n").map((line) => line.trim());
 
 	for (let index = 0; index < lines.length; index++) {

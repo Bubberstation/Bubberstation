@@ -34,6 +34,37 @@
 	foodtypes = SEAFOOD
 	eatverbs = list("bite", "chew", "gnaw", "swallow", "chomp")
 	w_class = WEIGHT_CLASS_SMALL
+	starting_reagent_purity = 1.0
+
+/obj/item/food/fishmeat/quality
+	name = "quality fish fillet"
+	desc = "A fillet of some precious fish meat."
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 4,
+		/datum/reagent/consumable/nutriment/vitamin = 3,
+	)
+	bite_consumption = 7
+	crafting_complexity = FOOD_COMPLEXITY_1
+
+/obj/item/food/fishmeat/quality/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/quality_food_ingredient, FOOD_COMPLEXITY_1)
+
+/obj/item/food/fishmeat/salmon
+	name = "salmon fillet"
+	desc = "a chunky, fatty fillet of salmon meat."
+	icon_state = "salmon"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 4,
+		/datum/reagent/consumable/nutriment/vitamin = 3,
+		/datum/reagent/consumable/nutriment/fat = 2,
+	)
+	bite_consumption = 4.5
+	crafting_complexity = FOOD_COMPLEXITY_1
+
+/obj/item/food/fishmeat/salmon/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/quality_food_ingredient, FOOD_COMPLEXITY_1)
 
 /obj/item/food/fishmeat/carp
 	name = "carp fillet"
@@ -68,13 +99,19 @@
 
 /obj/item/food/fishmeat/gunner_jellyfish
 	name = "filleted gunner jellyfish"
-	desc = "A gunner jellyfish with the stingers removed. Mildly hallucinogenic."
+	desc = "A gunner jellyfish with the stingers removed. Mildly hallucinogenic when raw."
 	icon = 'icons/obj/food/lizard.dmi'
 	icon_state = "jellyfish_fillet"
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment/protein = 4,
-		/datum/reagent/toxin/mindbreaker = 2,
+		/datum/reagent/consumable/nutriment/protein = 4, //The halluginogen comes from the fish trait.
 	)
+
+///Premade gunner jellyfish fillets from supply orders. Contains the halluginogen that'd be normally from the fish trait.
+/obj/item/food/fishmeat/gunner_jellyfish/supply
+
+/obj/item/food/fishmeat/gunner_jellyfish/supply/Initialize(mapload)
+	food_reagents[/datum/reagent/toxin/mindbreaker/fish] = 2
+	return ..()
 
 /obj/item/food/fishmeat/armorfish
 	name = "cleaned armorfish"
@@ -88,6 +125,7 @@
 	name = "donkfillet"
 	desc = "The dreaded donkfish fillet. No sane spaceman would eat this, and it does not get better when cooked."
 	icon_state = "donkfillet"
+	starting_reagent_purity = 0.3
 
 /obj/item/food/fishmeat/octopus
 	name = "octopus tentacle"
@@ -252,6 +290,7 @@
 	tastes = list("rice and meat" = 4, "lettuce" = 2, "soy sauce" = 2)
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	w_class = WEIGHT_CLASS_SMALL
+	venue_value = FOOD_PRICE_NORMAL
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/fish_poke
@@ -268,6 +307,7 @@
 	tastes = list("rice and fish" = 4, "lettuce" = 2, "soy sauce" = 2)
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	w_class = WEIGHT_CLASS_SMALL
+	venue_value = FOOD_PRICE_NORMAL
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
@@ -489,7 +529,7 @@
 
 /obj/item/food/patty
 	name = "patty"
-	desc = "The nanotrasen patty is the patty for you and me!"
+	desc = "The Nanotrasen patty is the patty for you and me!"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "patty"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
@@ -498,7 +538,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_1
 
-///Exists purely for the crafting recipe (because itll take subtypes)
+///Exists purely for the crafting recipe (because it'll take subtypes)
 /obj/item/food/patty/plain
 
 /obj/item/food/patty/human
@@ -554,6 +594,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = PAYCHECK_CREW * 0.6
 
 /obj/item/food/sausage/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/salami, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
@@ -713,12 +754,21 @@
 	w_class = WEIGHT_CLASS_TINY
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_1
+	var/meat_source = "\"chicken\""
 
 /obj/item/food/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
-	desc = "A \"chicken\" nugget vaguely shaped like a [shape]."
+	desc = "A [meat_source] nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
+
+///subtype harvested from fish caught from, you guess it, the deepfryer
+/obj/item/food/nugget/fish
+	name = "fish nugget"
+	tastes = list("fried fish" = 1)
+	foodtypes = MEAT|SEAFOOD|FRIED
+	venue_value = FOOD_PRICE_NORMAL
+	meat_source = "fish"
 
 /obj/item/food/pigblanket
 	name = "pig in a blanket"
@@ -734,6 +784,7 @@
 	foodtypes = MEAT | DAIRY | GRAIN
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_price = PAYCHECK_CREW
 
 /obj/item/food/bbqribs
 	name = "bbq ribs"
@@ -749,19 +800,6 @@
 	tastes = list("meat" = 3, "smokey sauce" = 1)
 	foodtypes = MEAT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_2
-
-///Special private component to handle how bbq is grilled, not meant to be used anywhere else
-/datum/component/grillable/bbq
-
-/datum/component/grillable/bbq/finish_grilling(atom/grill_source)
-	//when on a grill allow it to roast without deleting itself
-	if(istype(grill_source, /obj/machinery/grill))
-		grill_source.visible_message(span_notice("[parent] is grilled to perfection!"))
-	else //when on a girddle allow it to burn into an mouldy mess
-		return ..()
-
-/obj/item/food/bbqribs/make_grillable()
-	AddComponent(/datum/component/grillable/bbq, /obj/item/food/badrecipe, rand(30 SECONDS, 40 SECONDS), FALSE)
 
 /obj/item/food/meatclown
 	name = "meat clown"
@@ -904,9 +942,10 @@
 
 /obj/item/food/beef_stroganoff
 	name = "beef stroganoff"
-	desc = "A russian dish that consists of beef and sauce. Really popular in japan, or at least that's what my animes would allude to."
+	desc = "A Russian dish that consists of beef and sauce. Really popular in Japan, or at least that's what my animes would allude to."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "beefstroganoff"
+	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 16,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
@@ -1085,7 +1124,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/full_english
-	name = "full english breakfast"
+	name = "full English breakfast"
 	desc = "A hearty plate with all the trimmings, representing the pinnacle of the breakfast art."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "full_english"

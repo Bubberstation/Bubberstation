@@ -32,12 +32,6 @@
 		component_mixture.volume = 200
 		airs[i] = component_mixture
 
-/obj/machinery/atmospherics/components/Initialize(mapload)
-	. = ..()
-
-	if(hide)
-		RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(hide_pipe))
-
 // Iconnery
 
 /**
@@ -46,11 +40,14 @@
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
 
+/obj/machinery/atmospherics/components/on_hide(datum/source, underfloor_accessibility)
+	hide_pipe(underfloor_accessibility)
+	return ..()
+
 /**
- * Called in Initialize(), set the showpipe var to true or false depending on the situation, calls update_icon()
+ * Called in on_hide(), set the showpipe var to true or false depending on the situation, calls update_icon()
  */
-/obj/machinery/atmospherics/components/proc/hide_pipe(datum/source, underfloor_accessibility)
-	SIGNAL_HANDLER
+/obj/machinery/atmospherics/components/proc/hide_pipe(underfloor_accessibility)
 	showpipe = !!underfloor_accessibility
 	if(showpipe)
 		REMOVE_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
@@ -65,8 +62,11 @@
 
 	color = null
 	SET_PLANE_IMPLICIT(src, showpipe ? GAME_PLANE : FLOOR_PLANE)
+	// Layer is handled in update_layer()
 
 	if(!showpipe)
+		return ..()
+	if(pipe_flags & PIPING_DISTRO_AND_WASTE_LAYERS)
 		return ..()
 
 	var/connected = 0 //Direction bitset
@@ -330,7 +330,7 @@
 	connect_nodes()
 
 /obj/machinery/atmospherics/components/update_layer()
-	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)
+	layer = (showpipe ? initial(layer) : ABOVE_OPEN_TURF_LAYER) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)
 
 /**
  * Handles air relocation to the pipenet/environment

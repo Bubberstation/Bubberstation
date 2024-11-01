@@ -10,7 +10,7 @@
 /mob/living/proc/check_stun_immunity(check_flags = CANSTUN, force_stun = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return TRUE
 
 	if(force_stun) // Does not take priority over god mode? I guess
@@ -303,6 +303,7 @@
 	Knockdown(amount)
 	Stun(amount)
 	Immobilize(amount)
+	Unconscious(amount)
 
 
 /mob/living/proc/SetAllImmobility(amount)
@@ -310,6 +311,7 @@
 	SetKnockdown(amount)
 	SetStun(amount)
 	SetImmobilized(amount)
+	SetUnconscious(amount)
 
 
 /mob/living/proc/AdjustAllImmobility(amount)
@@ -317,6 +319,7 @@
 	AdjustKnockdown(amount)
 	AdjustStun(amount)
 	AdjustImmobilized(amount)
+	AdjustUnconscious(amount)
 
 
 /* UNCONSCIOUS */
@@ -382,7 +385,7 @@
 /mob/living/proc/Sleeping(amount) //Can't go below remaining duration
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount) & COMPONENT_NO_STUN)
 		return
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
@@ -394,7 +397,7 @@
 /mob/living/proc/SetSleeping(amount) //Sets remaining duration
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount) & COMPONENT_NO_STUN)
 		return
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(amount <= 0)
@@ -409,7 +412,7 @@
 /mob/living/proc/AdjustSleeping(amount) //Adds to remaining duration
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount) & COMPONENT_NO_STUN)
 		return
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
@@ -422,7 +425,7 @@
 /mob/living/proc/PermaSleeping()
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, -1) & COMPONENT_NO_STUN)
 		return
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
@@ -514,6 +517,7 @@
 	ADD_TRAIT(src, TRAIT_DISFIGURED, "husk")
 	update_body()
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE), PROC_REF(became_unhuskable))
+	return TRUE //MODULAR ZUBBERS CHANGE: RETURN TRUE
 
 /// Called when we become unhuskable while already husked
 /mob/living/proc/became_unhuskable()

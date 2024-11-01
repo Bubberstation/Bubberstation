@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NEW PATHS FROM THE COMMENTED PARTS
 	/obj/item/aicard/aitater = 10,
-	/obj/item/ammo_box/foambox/riot = 50,
+	/obj/item/ammo_box/foambox/riot = 25,
 	list(
 		/obj/item/survivalcapsule = 100,
 		/obj/item/survivalcapsule/luxury = 10,
@@ -8,35 +8,8 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/survivalcapsule/sauna = 5,
 		/obj/item/survivalcapsule/bathroom = 1
 	) = 25,
-	/obj/item/table_clock = 50,
-	/obj/item/storage/briefcase/coderbus = 25,
-	list(
-		/obj/item/ammo_casing/shotgun/antitide = 1,
-		/obj/item/ammo_casing/shotgun/beanbag = 1,
-		/obj/item/ammo_casing/shotgun/beehive = 1,
-		/obj/item/ammo_casing/shotgun/buckshot = 50,
-		/obj/item/ammo_casing/shotgun/dart = 1,
-		/obj/item/ammo_casing/shotgun/dragonsbreath = 1,
-		/obj/item/ammo_casing/shotgun/express = 1,
-		/obj/item/ammo_casing/shotgun/flechette = 1,
-		/obj/item/ammo_casing/shotgun/frag12 = 1,
-//		/obj/item/ammo_casing/shotgun/honk = 25,
-//		/obj/item/ammo_casing/shotgun/hp = 1,
-		/obj/item/ammo_casing/shotgun/hunter = 1,
-//		/obj/item/ammo_casing/shotgun/iceblox = 1,
-		/obj/item/ammo_casing/shotgun/improvised = 200,
-		/obj/item/ammo_casing/shotgun/incapacitate = 1,
-		/obj/item/ammo_casing/shotgun/incendiary = 1,
-		/obj/item/ammo_casing/shotgun/ion = 1,
-		/obj/item/ammo_casing/shotgun/laserslug = 1,
-		/obj/item/ammo_casing/shotgun/magnum = 1,
-//		/obj/item/ammo_casing/shotgun/pt20 = 1,
-		/obj/item/ammo_casing/shotgun/pulverizer = 1,
-//		/obj/item/ammo_casing/shotgun/rip = 1,
-		/obj/item/ammo_casing/shotgun/rubbershot = 100,
-		/obj/item/ammo_casing/shotgun/stunslug = 25,
-		/obj/item/ammo_casing/shotgun/techshell = 75
-	) = 100,
+	/obj/item/table_clock = 25,
+	/obj/item/storage/briefcase/coderbus = 10,
 	/obj/item/analyzer/ranged = 1,
 	list(
 		/obj/item/autosurgeon/organ/nif/disposable = 10,
@@ -98,7 +71,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/construction/plumbing = 1,
 		/obj/item/construction/plumbing/engineering = 1,
 		/obj/item/construction/plumbing/mining = 1,
-		/obj/item/construction/plumbing/research = 1,
 		/obj/item/construction/plumbing/service = 1,
 		/obj/item/construction/rcd = 1,
 		/obj/item/construction/rld = 10,
@@ -107,7 +79,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/rsf = 10,
 		/obj/item/rsf/cookiesynth = 5,
 		/obj/item/rwd/loaded = 10
-	) = 10,
+	) = 20,
 	/obj/item/cortical_cage = 5,
 	/obj/item/detective_scanner = 15,
 	list(
@@ -135,7 +107,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/dnainjector/antenna = 1
 	) = 25,
 	/obj/item/dog_bone = 5,
-	/obj/item/door_seal = 5,
+	/obj/item/door_seal = 10,
 	list(
 		/obj/item/language_manual/roundstart_species = 1
 	) = 10,
@@ -169,12 +141,12 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/pizzabox/pineapple = 1,
 		/obj/item/pizzabox/vegetable = 1,
 		/obj/item/pizzabox/random = 3 //Mothic.
-	) = 30,
+	) = 20,
 	list(
 		/obj/item/quickdeploy/barricade = 50,
 		/obj/item/quickdeploy/barricade/plasteel = 10,
 		/obj/item/storage/barricade = 5
-	) = 10,
+	) = 20,
 	list(
 		/obj/item/restraints/legcuffs/beartrap = 10,
 		/obj/item/restraints/legcuffs/beartrap/prearmed = 1
@@ -191,17 +163,17 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/storage/medkit/o2 = 25,
 		/obj/item/storage/medkit/surgery = 5,
 		/obj/item/storage/medkit/toxin = 25
-	) = 75,
+	) = 50,
 	/obj/item/crucifix = 5,
 	list(
 		/obj/item/hairbrush/switchblade = 5,
 		/obj/item/hairbrush/tactical = 1
 	) = 5,
-	/obj/item/geneshears = 10,
+	/obj/item/geneshears = 5,
 	/obj/item/sign/flag/usa = 5,
 	/obj/item/spess_knife = 5,
 	/obj/item/borg_restart_board = 5,
-	/obj/item/switchblade = 5,
+	/obj/item/switchblade = 1,
 	/obj/item/throwing_star = 5,
 	/obj/item/grenade/primer/stingbang = 1,
 	list(
@@ -209,5 +181,44 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/n2o = 1,
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/bz = 1,
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/helium = 1
-	) = 5
+	) = 5,
+	list(
+		/obj/item/stack/sheet/mineral/adamantine = 1,
+		/obj/item/stack/sheet/mineral/runite = 1,
+		/obj/item/stack/sheet/mineral/mythril = 5,
+		/obj/item/stack/sheet/mineral/abductor = 1,
+		/obj/item/stack/sheet/runed_metal/five = 5,
+		/obj/item/stack/sheet/hauntium/five = 25,
+		/obj/item/stack/sheet/cobolterium/three = 50,
+		/obj/item/stack/sheet/copporcitite/three = 50,
+		/obj/item/stack/sheet/tinumium/three = 50,
+		/obj/item/stack/sheet/brussite/three = 50,
+	) = 20,
+	/obj/item/reagent_containers/cup/soda_cans/shamblers/eldritch = 1,
+	list(
+		/obj/item/reagent_containers/spray/mister/pepperspray = 1,
+		/obj/item/reagent_containers/spray/pepper = 10,
+		/obj/item/reagent_containers/spray/pepper/empty = 100,
+		/obj/item/reagent_containers/spray/medical = 50,
+		/obj/item/reagent_containers/spray = 100,
+	) = 50,
+	/obj/item/implanter/toaster = 10,
+	/obj/item/plunger/reinforced = 5,
+	/obj/item/upgradescroll = 1,
+	list(
+		/obj/item/stake = 100,
+		/obj/item/stake/hardened = 50,
+		/obj/item/stake/hardened/silver = 25
+	) = 10,
+	/obj/item/lazarus_injector = 5,
+	/obj/item/tailclub = 5,
+	/obj/item/bikehorn/airhorn = 5,
+	/obj/item/toy/snappop/phoenix = 5,
+	/obj/item/melee/skateboard/pro = 5,
+	list(
+		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
+		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1
+	) = 10,
+	/obj/item/skillchip/intj = 5,
+
 ))

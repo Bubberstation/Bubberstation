@@ -50,8 +50,8 @@
 	req_access = list(ACCESS_PSYCHOLOGY)
 	icon_state = "cabinet"
 	door_anim_time = 0 // no animation
-	open_sound = 'sound/machines/wooden_closet_open.ogg'
-	close_sound = 'sound/machines/wooden_closet_close.ogg'
+	open_sound = 'sound/machines/closet/wooden_closet_open.ogg'
+	close_sound = 'sound/machines/closet/wooden_closet_close.ogg'
 	open_sound_volume = 25
 	close_sound_volume = 50
 
@@ -102,7 +102,7 @@
 
 	// Traitor steal objective
 	//new /obj/item/reagent_containers/hypospray/cmo(src) - ORIGINAL
-	new /obj/item/storage/hypospraykit/cmo(src) //SKYRAT EDIT ADDITION - New Hyposprays
+	new /obj/item/storage/hypospraykit/cmo/preloaded(src) //SKYRAT EDIT ADDITION - New Hyposprays
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control locker"

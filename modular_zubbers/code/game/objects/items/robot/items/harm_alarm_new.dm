@@ -5,7 +5,7 @@
 	desc = "Releases a harmless blast that confuses most organics. Use in case of hostile blue whales."
 	var/alarm_phrase = "HARM"
 
-/obj/item/harmalarm/bubbers/AltClick(mob/living/user)
+/obj/item/harmalarm/bubbers/click_alt(mob/living/user)
 	var/str = reject_bad_text(tgui_input_text(user, "What would your alarm like to broadcast?", "Alarm Phrase", alarm_phrase, MAX_NAME_LEN)) //Limit of 42 characters.
 	if(!str)
 		to_chat(user, span_warning("Invalid text!"))

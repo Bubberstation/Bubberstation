@@ -34,6 +34,7 @@ const BASEICONS = {
   Geneticist: 'dna',
   'Head of Personnel': 'dog',
   'Head of Security': 'user-shield',
+  'Big Brother': 'eye',
   Janitor: 'soap',
   Lawyer: 'gavel',
   'Medical Doctor': 'staff-snake',
@@ -54,9 +55,12 @@ const BASEICONS = {
   'Shaft Miner': 'digging',
   'Station Engineer': 'gears',
   'Syndicate Operative': 'dragon',
-  Virologist: 'virus',
+  'Veteran Security Advisor': 'ribbon',
+  'Pun Pun': 'paw',
   Warden: 'handcuffs',
   // SKYRAT EDIT START - Skyrat-exclusive jobs have icons too
+
+  'Telecomms Specialist': 'tower-cell',
   Barber: 'scissors',
   Blueshield: 'shield-dog',
   Bouncer: 'shield-heart',
@@ -102,6 +106,8 @@ const ALTTITLES = {
   // Blueshield - shield-dog
   'Command Bodyguard': BASEICONS['Blueshield'],
   'Executive Protection Agent': BASEICONS['Blueshield'],
+  'Command Protection Officer': BASEICONS['Blueshield'],
+  Henchman: BASEICONS['Blueshield'],
   // Botanist - seedling
   Hydroponicist: BASEICONS['Botanist'],
   Gardener: BASEICONS['Botanist'],
@@ -165,6 +171,7 @@ const ALTTITLES = {
   'Forensic Technician': BASEICONS['Detective'],
   'Private Investigator': BASEICONS['Detective'],
   'Forensic Scientist': BASEICONS['Detective'],
+  'CID Officer': BASEICONS['Detective'],
   // Geneticist - dna
   'Mutation Researcher': BASEICONS['Geneticist'],
   // Head of Personnel - dog
@@ -201,6 +208,7 @@ const ALTTITLES = {
   Pantomimist: BASEICONS['Mime'],
   // Nanotrasen Consultant - clipboard-check
   'Nanotrasen Diplomat': BASEICONS['Nanotrasen Consultant'],
+  'Corporate Consultant': BASEICONS['Nanotrasen Consultant'],
   // Paramedic - truck-medical
   'Emergency Medical Technician': BASEICONS['Paramedic'],
   'Search and Rescue Technician': BASEICONS['Paramedic'],
@@ -252,6 +260,8 @@ const ALTTITLES = {
   'Combat Medic': BASEICONS['Security Medic'],
   // Security Officer - shield-halved
   'Security Operative': BASEICONS['Security Officer'],
+  'Security Specialist': BASEICONS['Security Officer'],
+  'Defense Contractor': BASEICONS['Security Officer'],
   Peacekeeper: BASEICONS['Security Officer'],
   'Security Cadet': BASEICONS['Security Officer'],
   // Shaft Miner - digging
@@ -260,6 +270,8 @@ const ALTTITLES = {
   Spelunker: BASEICONS['Shaft Miner'],
   'Drill Technician': BASEICONS['Shaft Miner'],
   Prospector: BASEICONS['Shaft Miner'],
+  Dredger: BASEICONS['Shaft Miner'],
+  'Contract Miner': BASEICONS['Shaft Miner'],
   // Station Engineer - gears
   'Emergency Damage Control Technician': BASEICONS['Station Engineer'],
   Electrician: BASEICONS['Station Engineer'],
@@ -268,7 +280,13 @@ const ALTTITLES = {
   Mechanic: BASEICONS['Station Engineer'],
   'Apprentice Engineer': BASEICONS['Station Engineer'],
   'Engineering Trainee': BASEICONS['Station Engineer'],
+  // Telecomms Specialist - tower-cell
+  'Network Engineer': BASEICONS['Telecomms Specialist'],
+  'Wireless Operator': BASEICONS['Telecomms Specialist'],
+  'Tram Technician': BASEICONS['Telecomms Specialist'],
+  Sysadmin: BASEICONS['Telecomms Specialist'],
   // Virologist - virus
+  Virologist: 'virus',
   Pathologist: BASEICONS['Virologist'],
   'Junior Pathologist': BASEICONS['Virologist'],
   // Warden - handcuffs

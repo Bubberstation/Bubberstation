@@ -1,5 +1,4 @@
 //Proto-Kinetic Accelerators
-
 /obj/item/gun/energy/recharge/kinetic_accelerator/railgun
 	name = "proto-kinetic railgun"
 	desc = "Before the nice streamlined and modern day Proto-Kinetic Accelerator was created, multiple designs were drafted by the Mining Research and Development \
@@ -19,7 +18,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	can_bayonet = TRUE
 	max_mod_capacity = 15 // A crumb of mod capacity as a treat
 	recoil = 3 //railgun go brrrrr
 	gun_flags = NOT_A_REAL_GUN
@@ -39,9 +37,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
-	knife_x_offset = 20
-	knife_y_offset = 12
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun
@@ -59,9 +54,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
-	knife_x_offset = 20
-	knife_y_offset = 12
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
@@ -79,7 +71,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
 	max_mod_capacity = 200
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave
@@ -96,7 +87,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79
@@ -114,50 +104,53 @@
 	obj_flags = UNIQUE_RENAME
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	can_bayonet = FALSE
 	max_mod_capacity = 0
 	disablemodification = TRUE
 
+/obj/item/gun/energy/recharge/kinetic_accelerator/m79/add_bayonet_point()
+	return
+
 //Accelerator Casing
+//Fixed maths to use new standards
 /obj/item/ammo_casing/energy/kinetic/railgun
 	projectile_type = /obj/projectile/kinetic/railgun
 	select_name = "kinetic"
-	e_cost = 500
-	fire_sound = 'sound/weapons/beam_sniper.ogg'
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
+	fire_sound = 'sound/items/weapons/beam_sniper.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/repeater
 	projectile_type = /obj/projectile/kinetic/repeater
 	select_name = "kinetic"
-	e_cost = 150 //about three shots
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.15) //about three shots
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/shotgun
 	projectile_type = /obj/projectile/kinetic/shotgun
 	select_name = "kinetic"
-	e_cost = 500
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	pellets = 3
 	variance = 50
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/glock
 	projectile_type = /obj/projectile/kinetic/glock
 	select_name = "kinetic"
-	e_cost = 500
-	fire_sound = 'sound/weapons/kinetic_accel.ogg'
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
+	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/shockwave
 	projectile_type = /obj/projectile/kinetic/shockwave
 	select_name = "kinetic"
-	e_cost = 500
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	pellets = 8
 	variance = 360
-	fire_sound = 'sound/weapons/gun/general/cannon.ogg'
+	fire_sound = 'sound/items/weapons/gun/general/cannon.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/m79
 	projectile_type = /obj/projectile/bullet/mining_bomb //uses the mining bomb projectile from the mining modsuit
 	select_name = "kinetic"
-	e_cost = 500
-	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
+	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 
 //Accelerator Projectiles
 /obj/projectile/kinetic/railgun
@@ -220,6 +213,7 @@
 							/area/icemoon/surface/outdoors/unexplored/rivers/no_monsters,
 							/area/icemoon/underground/unexplored/rivers/deep/shoreline,
 							/area/icemoon/underground/explored,
+							/area/moonstation/surface,
 							/area/moonstation/surface/unexplored,
 							/area/moonstation/underground,
 							/area/moonstation/underground/unexplored,
@@ -230,7 +224,8 @@
 							/area/lavaland/surface/outdoors/unexplored,
 							/area/lavaland/surface/outdoors/explored,
 							/area/ocean/generated,
-							/area/ruin/)
+							/area/ruin/
+						)
 
 /obj/item/firing_pin/wastes/pin_auth(mob/living/user)
 	if(!istype(user))

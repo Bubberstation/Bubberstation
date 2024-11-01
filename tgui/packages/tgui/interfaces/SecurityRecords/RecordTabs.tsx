@@ -1,5 +1,4 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useState } from 'react';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
@@ -21,7 +20,7 @@ import { SecurityRecord, SecurityRecordsData } from './types';
 /** Tabs on left, with search bar */
 export const SecurityRecordTabs = (props) => {
   const { act, data } = useBackend<SecurityRecordsData>();
-  const { higher_access, records = [] } = data;
+  const { higher_access, records = [], station_z } = data;
 
   const errorMessage = !records.length
     ? 'No records found.'
@@ -29,10 +28,10 @@ export const SecurityRecordTabs = (props) => {
 
   const [search, setSearch] = useState('');
 
-  const sorted: SecurityRecord[] = flow([
-    filter((record: SecurityRecord) => isRecordMatch(record, search)),
-    sortBy((record: SecurityRecord) => record.name),
-  ])(records);
+  const sorted = sortBy(
+    filter(records, (record) => isRecordMatch(record, search)),
+    (record) => record.name,
+  );
 
   return (
     <Stack fill vertical>
@@ -70,7 +69,7 @@ export const SecurityRecordTabs = (props) => {
           <Stack.Item>
             <Button.Confirm
               content="Purge"
-              disabled={!higher_access}
+              disabled={!higher_access || !station_z}
               icon="trash"
               onClick={() => act('purge_records')}
               tooltip="Wipe criminal record data."

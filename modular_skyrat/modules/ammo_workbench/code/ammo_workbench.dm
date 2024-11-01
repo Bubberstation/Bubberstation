@@ -372,8 +372,8 @@
 		new_casing.set_custom_materials(efficient_materials)
 		loaded_magazine.update_appearance()
 		flick("ammobench_process", src)
-		use_power(3000)
-		playsound(loc, 'sound/machines/piston_raise.ogg', 60, 1)
+		use_energy(3000 JOULES)
+		playsound(loc, 'sound/machines/piston/piston_raise.ogg', 60, 1)
 	else
 		qdel(new_casing)
 		ammo_fill_finish(FALSE)
@@ -385,16 +385,16 @@
 		error_type = "good"
 		return
 
-	updateDialog()
+	SStgui.update_uis(src)
 
 	timer_id = addtimer(CALLBACK(src, PROC_REF(fill_round), casing_type), time_per_round, TIMER_STOPPABLE)
 
 /obj/machinery/ammo_workbench/proc/ammo_fill_finish(successfully = TRUE)
-	updateDialog()
+	SStgui.update_uis(src)
 	if(successfully)
 		playsound(loc, 'sound/machines/ping.ogg', 40, TRUE)
 	else
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 40, TRUE)
+		playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 	update_appearance()
 	busy = FALSE
 	if(timer_id)
@@ -545,7 +545,7 @@
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
-		playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		return TRUE
 	if(istype(O, /obj/item/disk/ammo_workbench))
 		if(!user.transferItemToLoc(O, src))
@@ -554,7 +554,7 @@
 		to_chat(user, span_notice("You insert [O] to into [src]'s floppydisk port."))
 		flick("h_lathe_load", src)
 		update_appearance()
-		playsound(loc, 'sound/machines/terminal_insert_disc.ogg', 35, 1)
+		playsound(loc, 'sound/machines/terminal/terminal_insert_disc.ogg', 35, 1)
 		return TRUE
 	return FALSE
 
@@ -624,13 +624,13 @@
 	switch(wire)
 		if(WIRE_HACK)
 			A.adjust_hacked(!A.hacked)
-			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 60)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 6 SECONDS)
 		if(WIRE_SHOCK)
 			A.shocked = !A.shocked
-			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 60)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 6 SECONDS)
 		if(WIRE_DISABLE)
 			A.disabled = !A.disabled
-			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 60)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/ammo_workbench, reset), wire), 6 SECONDS)
 
 /datum/wires/ammo_workbench/on_cut(wire, mend, source)
 	var/obj/machinery/ammo_workbench/A = holder

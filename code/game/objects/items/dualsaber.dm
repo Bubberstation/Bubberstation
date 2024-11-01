@@ -24,7 +24,7 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	block_chance = 75
-	block_sound = 'sound/weapons/block_blade.ogg'
+	block_sound = 'sound/items/weapons/block_blade.ogg'
 	max_integrity = 200
 	armor_type = /datum/armor/item_dualsaber
 	resistance_flags = FIRE_PROOF
@@ -32,6 +32,7 @@
 	bare_wound_bonus = 20
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE_TOY // Skyrat edit
 	special_desc = "A double bladed energy sword employed by the Syndicate in raids" // Skyrat edit
+	demolition_mod = 1.5 //1.5x damage to objects, robots, etc.
 	item_flags = NO_BLOOD_ON_ITEM
 	var/w_class_on = WEIGHT_CLASS_BULKY
 	var/saber_color = "green"
@@ -48,8 +49,8 @@
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
 		force_wielded = two_hand_force, \
-		wieldsound = 'sound/weapons/saberon.ogg', \
-		unwieldsound = 'sound/weapons/saberoff.ogg', \
+		wieldsound = 'sound/items/weapons/saberon.ogg', \
+		unwieldsound = 'sound/items/weapons/saberoff.ogg', \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
@@ -57,19 +58,18 @@
 /// Triggered on wield of two handed item
 /// Specific hulk checks due to reflection chance for balance issues and switches hitsounds.
 /obj/item/dualsaber/proc/on_wield(obj/item/source, mob/living/carbon/user)
-	if(user?.has_dna())
-		if(user.dna.check_mutation(/datum/mutation/human/hulk))
-			to_chat(user, span_warning("You lack the grace to wield this!"))
-			return COMPONENT_TWOHANDED_BLOCK_WIELD
-	w_class = w_class_on
-	hitsound = 'sound/weapons/blade1.ogg'
+	if(user && HAS_TRAIT(user, TRAIT_HULK))
+		to_chat(user, span_warning("You lack the grace to wield this!"))
+		return COMPONENT_TWOHANDED_BLOCK_WIELD
+	update_weight_class(w_class_on)
+	hitsound = 'sound/items/weapons/blade1.ogg'
 	START_PROCESSING(SSobj, src)
 	set_light_on(TRUE)
 
 /// Triggered on unwield of two handed item
 /// switch hitsounds
 /obj/item/dualsaber/proc/on_unwield(obj/item/source, mob/living/carbon/user)
-	w_class = initial(w_class)
+	update_weight_class(initial(w_class))
 	hitsound = SFX_SWING_HIT
 	STOP_PROCESSING(SSobj, src)
 	set_light_on(FALSE)
@@ -124,12 +124,11 @@
 	. = ..()
 
 /obj/item/dualsaber/attack(mob/target, mob/living/carbon/human/user)
-	if(user.has_dna())
-		if(user.dna.check_mutation(/datum/mutation/human/hulk))
-			to_chat(user, span_warning("You grip the blade too hard and accidentally drop it!"))
-			if(HAS_TRAIT(src, TRAIT_WIELDED))
-				user.dropItemToGround(src, force=TRUE)
-				return
+	if(HAS_TRAIT(user, TRAIT_HULK))
+		to_chat(user, span_warning("You grip the blade too hard and accidentally drop it!"))
+		if(HAS_TRAIT(src, TRAIT_WIELDED))
+			user.dropItemToGround(src, force=TRUE)
+			return
 	..()
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		return

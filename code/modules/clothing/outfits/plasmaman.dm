@@ -295,3 +295,22 @@
 	uniform = /obj/item/clothing/under/plasmaman //call me when this is gags and not 10 million new assets
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black
 	head = /obj/item/clothing/head/helmet/space/plasmaman
+
+/datum/outfit/plasmaman/human_ai
+	name = "Human AI Plasmaman"
+
+	uniform = /obj/item/clothing/under/plasmaman //same
+	gloves = /obj/item/clothing/gloves/color/plasmaman/black
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+
+/datum/outfit/plasmaman/medical_commander
+	name = "Chief EMT Plasmaman"
+	uniform = /obj/item/clothing/under/plasmaman/chief_medical_officer
+	gloves = /obj/item/clothing/gloves/color/plasmaman/white
+	head = /obj/item/clothing/head/helmet/space/plasmaman/chief_medical_officer
+
+/datum/outfit/plasmaman/medical_technician
+	name = "EMT Paramedic Plasmaman"
+	uniform = /obj/item/clothing/under/plasmaman/medical
+	gloves = /obj/item/clothing/gloves/color/plasmaman/white
+	head = /obj/item/clothing/head/helmet/space/plasmaman/medical

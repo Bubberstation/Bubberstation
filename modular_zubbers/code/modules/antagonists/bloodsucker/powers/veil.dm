@@ -2,14 +2,12 @@
 	name = "Veil of Many Faces"
 	desc = "Disguise yourself in the illusion of another identity."
 	button_icon_state = "power_veil"
-	power_explanation = "Veil of Many Faces: \n\
-		Activating Veil of Many Faces will shroud you in smoke and forge you a new identity.\n\
-		Your name and appearance will be completely randomized, and turning the ability off again will undo it all.\n\
-		Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
-	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
+	power_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_IN_TORPOR
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 15
+	level_current = -1
 	constant_bloodcost = 0.1
 	cooldown_time = 10 SECONDS
 	// Outfit Vars
@@ -30,13 +28,20 @@
 	var/list/prev_features // For lizards and such
 	var/disguise_name
 
-/datum/action/cooldown/bloodsucker/veil/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/veil/get_power_explanation_extended()
+	. = list()
+	. += "Activating Veil of Many Faces will shroud you in smoke and forge you a new identity."
+	. += "Your name and appearance will be completely randomized, and turning the ability off again will undo it all."
+	. += "Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
+
+/datum/action/cooldown/bloodsucker/veil/ActivatePower(atom/target)
 	. = ..()
 	cast_effect() // POOF
 //	if(blahblahblah)
 //		Disguise_Outfit()
 	veil_user()
 	owner.balloon_alert(owner, "veil turned on.")
+	return TRUE
 
 /* // Meant to disguise your character's clothing into fake ones.
 /datum/action/cooldown/bloodsucker/veil/proc/Disguise_Outfit()
@@ -50,7 +55,7 @@
 	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
 
 	// Store Prev Appearance
-	disguise_name = user.dna.species.random_name(user.gender)
+	disguise_name = generate_random_name(user.gender, TRUE)
 	prev_gender = user.gender
 	prev_skin_tone = user.skin_tone
 	prev_hair_style = user.hairstyle
@@ -68,7 +73,7 @@
 
 	// Change Appearance
 	user.gender = pick(MALE, FEMALE, PLURAL, NEUTER)
-	user.skin_tone = random_skin_tone()
+	user.skin_tone = pick(GLOB.skin_tones)
 	user.hairstyle = random_hairstyle(user.gender)
 	user.facial_hairstyle = pick(random_facial_hairstyle(user.gender), "Shaved")
 	user.hair_color = "#[random_short_color()]"
@@ -76,12 +81,12 @@
 	user.underwear = random_underwear(user.gender)
 	user.undershirt = random_undershirt(user.gender)
 	user.socks = random_socks(user.gender)
-	
+
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
 	var/datum/dna/dna = user.dna
-	// 
+	//
 	// dna.features = dna.species.randomize_features()
 	dna.features = dna.species.randomize_features(user)
 	// dna.body_markings = dna.species.get_random_body_markings(dna.features)
@@ -101,9 +106,9 @@
 	identity[VISIBLE_NAME_FACE] = disguise_name
 	user.SetSpecialVoice(disguise_name)
 
-/datum/action/cooldown/bloodsucker/veil/DeactivatePower()
+/datum/action/cooldown/bloodsucker/veil/DeactivatePower(deactivate_flags)
 	. = ..()
-	if(!ishuman(owner))
+	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
 	// Revert Identity
@@ -142,7 +147,7 @@
 // CAST EFFECT // General effect (poof, splat, etc) when you cast. Doesn't happen automatically!
 /datum/action/cooldown/bloodsucker/veil/proc/cast_effect()
 	// Effect
-	playsound(get_turf(owner), 'sound/magic/smoke.ogg', 20, 1)
+	playsound(get_turf(owner), 'sound/effects/magic/smoke.ogg', 20, 1)
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/()
 	puff.set_up(3, 0, get_turf(owner))
 	puff.attach(owner) //OPTIONAL

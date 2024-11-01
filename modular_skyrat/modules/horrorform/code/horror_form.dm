@@ -19,7 +19,7 @@
 		return 0
 	user.visible_message(span_warning("[user] writhes and contorts, their body expanding to inhuman proportions!"), \
 						span_danger("We begin our transformation to our true form!"))
-	if(!do_after(user, 30, target = user, timed_action_flags = IGNORE_HELD_ITEM))
+	if(!do_after(user, 3 SECONDS, target = user, timed_action_flags = IGNORE_HELD_ITEM))
 		user.visible_message(span_warning("[user]'s transformation abruptly reverts itself!"), \
 							span_warning("Our transformation has been interrupted!"))
 		return 0
@@ -65,7 +65,7 @@
 	new_mob.name = new_mob.real_name
 	new_mob.stored_changeling = user
 	user.loc = new_mob
-	user.status_flags |= GODMODE
+	ADD_TRAIT(user, TRAIT_GODMODE, INNATE_TRAIT)
 	user.mind.transfer_to(new_mob)
 	user.spawn_gibs()
 	//feedback_add_details("changeling_powers","HF")

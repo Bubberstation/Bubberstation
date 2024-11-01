@@ -38,6 +38,87 @@
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+/datum/sprite_accessory/hair/bubberclown
+	name = "Clown"
+	icon_state = "hair_clown"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+
+/datum/sprite_accessory/hair/emma
+	name = "Emma"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_emma"
+
+/datum/sprite_accessory/hair/immovable
+	name = "Ozen"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_immovable"
+
+/datum/sprite_accessory/hair/damsel
+	name = "Damsel"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_damsel"
+
+/datum/sprite_accessory/hair/wavylong
+	name = "Long Wavy"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_wavylong"
+
+/datum/sprite_accessory/hair/wavyovereye
+	name = "Wavy over eye"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_wavyovereye"
+
+/datum/sprite_accessory/hair/straightovereye
+	name = "Straight over eye"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightovereye"
+
+/datum/sprite_accessory/hair/straightside
+	name = "Side Straight"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightside"
+
+/datum/sprite_accessory/hair/straightshort
+	name = "Straight Long"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightshort"
+
+/datum/sprite_accessory/hair/straightlong
+	name = "Straight Long"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightlong"
+
+/datum/sprite_accessory/hair/straightfloorlength
+	name = "Straight Long (Very)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightfloorlength"
+
+/datum/sprite_accessory/hair/deathhawk
+	name = "Deathhawk"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_deathhawk"
+
+/datum/sprite_accessory/hair/bedheadhline
+	name = "Bedhead (+hairline)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_bedheadhline"
+
+/datum/sprite_accessory/hair/spicyalt
+	name = "Spicy (Alt)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_spicyalt"
+
+/datum/sprite_accessory/hair/honse
+	name = "Honse"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_honse"
+
+//Sprite from Monkestation: https://github.com/Monkestation/MonkeStation
+/datum/sprite_accessory/hair/marge
+	name = "Marge"
+	icon_state = "marge"
+	icon = 'modular_zubbers/icons/mob/species/human/monkeymarge.dmi'
+
 //Podpeople hair
 /datum/sprite_accessory/hair/podmale
 	name = "Pod Male"
@@ -111,57 +192,58 @@
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
 
-/datum/sprite_accessory/hair/emma
-	name = "Emma"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_emma"
+/datum/sprite_accessory/socks/warm_thigh
+	name = "Warm Thigh Highs"
+	icon_state = "warm_thigh"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/immovable
-	name = "Ozen"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_immovable"
+/datum/sprite_accessory/socks/warm_ankle
+	name = "Warm Ankle Socks"
+	icon_state = "warm_ankle"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/damsel
-	name = "Damsel"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_damsel"
+/datum/sprite_accessory/socks/warm_short
+	name = "Warm Short Socks"
+	icon_state = "warm_short"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/wavylong
-	name = "Long Wavy"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_wavylong"
+/datum/sprite_accessory/socks/recolor_thigh
+	name = "NonTemp Thigh Highs"
+	icon_state = "recolor_thigh"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/wavyovereye
-	name = "Wavy over eye"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_wavyovereye"
+/datum/sprite_accessory/socks/cool_thighs
+	name = "Cool thigh highs."
+	icon_state = "cool_thighs"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/straightovereye
-	name = "Straight over eye"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightovereye"
+/datum/sprite_accessory/socks/cool_ankle
+	name = "Cool Ankle Socks."
+	icon_state = "cool_ankle"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/straightside
-	name = "Side Straight"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightside"
+/datum/sprite_accessory/socks/cool_short
+	name = "Cool Short Socks."
+	icon_state = "cool_short"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/straightshort
-	name = "Straight Long"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightshort"
+/datum/sprite_accessory/socks/grey_ankle
+	name = "Nontemp ankle socks."
+	icon_state = "grey_ankle"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/straightlong
-	name = "Straight Long"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightlong"
+/datum/sprite_accessory/socks/grey_short
+	name = "Nontemp short socks."
+	icon_state = "grey_short"
+	use_static = null
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
 
-/datum/sprite_accessory/hair/straightfloorlength
-	name = "Straight Long (Very)"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightfloorlength"
 
-/datum/sprite_accessory/hair/deathhawk
-	name = "Deathhawk"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_deathhawk"

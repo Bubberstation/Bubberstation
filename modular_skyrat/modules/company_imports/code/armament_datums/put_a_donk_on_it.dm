@@ -1,5 +1,5 @@
 /datum/armament_entry/company_import/donk
-	category = DONK_CO_NAME
+	category = COMPANY_NAME_DONK_CO
 	company_bitflag = CARGO_COMPANY_DONK
 
 // Donk Co foods, like donk pockets and ready donk
@@ -84,11 +84,11 @@
 	cost = PAYCHECK_COMMAND
 
 /datum/armament_entry/company_import/donk/foamforce/foam_shotgun
-	item_type = /obj/item/gun/ballistic/shotgun/toy/unrestricted
+	item_type = /obj/item/gun/ballistic/shotgun/toy/riot
 	cost = PAYCHECK_COMMAND
 
 /datum/armament_entry/company_import/donk/foamforce/foam_smg
-	item_type = /obj/item/gun/ballistic/automatic/toy/unrestricted
+	item_type = /obj/item/gun/ballistic/automatic/toy/riot
 	cost = PAYCHECK_COMMAND * 3
 
 /datum/armament_entry/company_import/donk/foamforce/foam_c20

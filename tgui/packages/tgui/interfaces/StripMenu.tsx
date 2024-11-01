@@ -72,6 +72,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'tshirt',
     text: 'Adjust jumpsuit',
   },
+
+  adjust_sensor: {
+    icon: 'microchip',
+    text: 'Adjust sensors',
+  },
 };
 
 const SLOTS: Record<
@@ -208,6 +213,7 @@ const SLOTS: Record<
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
+
   // SKYRAT EDIT ADDITION
   vagina: {
     displayName: 'vagina',
@@ -234,6 +240,7 @@ const SLOTS: Record<
   },
 };
 // SKYRAT EDIT END
+
 enum ObscuringLevel {
   Completely = 1,
   Hidden = 2,
@@ -260,7 +267,7 @@ type StripMenuItem =
       | {
           icon: string;
           name: string;
-          alternate?: string;
+          alternate?: string[];
         }
       | {
           obscured: ObscuringLevel;
@@ -307,18 +314,13 @@ export const StripMenu = (props) => {
                   const item = data.items[keyAtSpot];
                   const slot = SLOTS[keyAtSpot];
 
-                  let alternateAction: AlternateAction | undefined;
-
-                  let content;
-                  let tooltip;
+                  let content: JSX.Element | undefined;
+                  let alternateActions: JSX.Element[] | undefined;
+                  let tooltip: string | undefined;
 
                   if (item === null) {
                     tooltip = slot.displayName;
                   } else if ('name' in item) {
-                    if (item.alternate) {
-                      alternateAction = ALTERNATE_ACTIONS[item.alternate];
-                    }
-
                     content = (
                       <Image
                         src={`data:image/jpeg;base64,${item.icon}`}
@@ -331,6 +333,41 @@ export const StripMenu = (props) => {
                     );
 
                     tooltip = item.name;
+                    if (item.alternate) {
+                      alternateActions = item.alternate.map(
+                        (alternateKey, idx) => {
+                          const alternateAction =
+                            ALTERNATE_ACTIONS[alternateKey];
+
+                          const alternateActionStyle = {
+                            background: 'rgba(0, 0, 0, 0.6)',
+                            position: 'absolute',
+                            overflow: 'hidden',
+                            margin: '0px',
+                            maxWidth: '22px', // yes I know its not 20 or 25; they look bad. 22px is perfect
+                            zIndex: '2',
+                            left: `${idx === 0 ? '0' : undefined}`,
+                            right: `${idx === 1 ? '0' : undefined}`,
+                            bottom: '0',
+                          };
+                          return (
+                            <Button
+                              key={alternateAction.text}
+                              onClick={() => {
+                                act('alt', {
+                                  key: keyAtSpot,
+                                  alternate_action: alternateKey,
+                                });
+                              }}
+                              tooltip={alternateAction.text}
+                              style={alternateActionStyle}
+                            >
+                              <Icon name={alternateAction.icon} />
+                            </Button>
+                          );
+                        },
+                      );
+                    }
                   } else if ('obscured' in item) {
                     content = (
                       <Icon
@@ -398,26 +435,7 @@ export const StripMenu = (props) => {
 
                           {slot.additionalComponent}
                         </Button>
-
-                        {alternateAction !== undefined && (
-                          <Button
-                            onClick={() => {
-                              act('alt', {
-                                key: keyAtSpot,
-                              });
-                            }}
-                            tooltip={alternateAction.text}
-                            style={{
-                              background: 'rgba(0, 0, 0, 0.6)',
-                              position: 'absolute',
-                              bottom: '0',
-                              right: '0',
-                              zIndex: '2',
-                            }}
-                          >
-                            <Icon name={alternateAction.icon} />
-                          </Button>
-                        )}
+                        {alternateActions}
                       </Box>
                     </Stack.Item>
                   );

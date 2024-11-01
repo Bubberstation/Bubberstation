@@ -22,13 +22,15 @@
 	amount = 3
 	merge_type = /obj/item/stack/medical/wound_recovery
 	custom_price = PAYCHECK_COMMAND * 2.5
+	/// If this checks for pain, used for synthetic repair foam
+	var/causes_pain = TRUE
 	/// The types of wounds that we work on, in list format
 	var/list/applicable_wounds = list(
 		/datum/wound/blunt/bone,
 		/datum/wound/muscle,
 	)
 	/// The sound we play upon successfully treating the wound
-	var/treatment_sound = 'sound/items/duct_tape_rip.ogg'
+	var/treatment_sound = 'sound/items/duct_tape/duct_tape_rip.ogg'
 
 // This is only relevant for the types of wounds defined, we can't work if there are none
 /obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent = FALSE, looping = FALSE)
@@ -70,10 +72,10 @@
 	if(!do_after(user, treatment_delay, target = patient))
 		return
 
-	user.visible_message(span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."), span_green("You bandage the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]."))
+	user.visible_message(span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."), span_green("You treat the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]."))
 	playsound(patient, treatment_sound, 50, TRUE)
 	woundies.remove_wound()
-	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA))
+	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA) || !causes_pain)
 		patient.emote("scream")
 		to_chat(patient, span_userdanger("Your [limb.plaintext_zone] burns like hell as the wounds on it are rapidly healed, fuck!"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
@@ -83,7 +85,7 @@
 	use(1)
 
 /datum/mood_event/rapid_wound_healing
-	description = "That may have healed my wound fast, but if that wasn't one of the worst experiences!\n"
+	description = "The wound is gone, but that pain was unbearable!\n"
 	mood_change = -3
 	timeout = 5 MINUTES
 

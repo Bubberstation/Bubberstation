@@ -195,9 +195,9 @@
 	icon_state = "random_vending"
 	loot = list(
 		/obj/machinery/vending/assist = 400,
-		/obj/machinery/vending/autodrobe/all_access = 200,
+		/obj/machinery/vending/autodrobe = 200,
 		/obj/machinery/vending/barbervend = 50,
-		/obj/machinery/vending/boozeomat/all_access = 100,
+		/obj/machinery/vending/boozeomat = 100,
 		/obj/machinery/vending/cigarette = 50,
 		/obj/machinery/vending/cigarette/beach = 25,
 		/obj/machinery/vending/cigarette/syndicate = 10,
@@ -317,7 +317,7 @@
 		/obj/machinery/self_actualization_device = 5,
 		/obj/machinery/sheetifier = 30,
 		/obj/machinery/skill_station = 30,
-		/obj/machinery/smartfridge/drying_rack = 80,
+		/obj/machinery/smartfridge/drying/rack = 80,
 		/obj/machinery/smoke_machine = 10,
 		/obj/machinery/space_heater/improvised_chem_heater = 200,
 		/obj/machinery/stasis = 10,

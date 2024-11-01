@@ -115,9 +115,8 @@
 /// log attack messages
 /datum/config_entry/flag/log_attack
 
-/datum/config_entry/flag/log_subtler // log subtler emotes //SKYRAT EDIT ADDITION
-
-/datum/config_entry/flag/log_econ // log economy actions
+// log subtler emotes
+/datum/config_entry/flag/log_subtler  //SKYRAT EDIT ADDITION
 
 /// log emotes
 /datum/config_entry/flag/log_emote
@@ -188,13 +187,13 @@
 
 /// minimum time between voting sessions (deciseconds, 10 minute default)
 /datum/config_entry/number/vote_delay
-	default = 6000
+	default = 10 MINUTES
 	integer = FALSE
 	min_val = 0
 
 /// length of voting period (deciseconds, default 1 minute)
 /datum/config_entry/number/vote_period
-	default = 600
+	default = 1 MINUTES
 	integer = FALSE
 	min_val = 0
 
@@ -317,13 +316,13 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "https://wiki.skyrat13.space/index.php" //SKYRAT EDIT - Original: "http://www.tgstation13.org/wiki"
+	default = "http://tgstation13.org/wiki"
 
 /datum/config_entry/string/forumurl
 	default = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	default = "http://www.tgstation13.org/wiki/Rules"
+	default = "http://tgstation13.org/wiki/Rules"
 
 /datum/config_entry/string/githuburl
 	default = "https://www.github.com/tgstation/tgstation"
@@ -451,10 +450,13 @@
 
 /datum/config_entry/flag/irc_first_connection_alert // do we notify the irc channel when somebody is connecting for the first time?
 
+/datum/config_entry/string/ipintel_base
+	default = "check.getipintel.net"
+
 /datum/config_entry/string/ipintel_email
 
 /datum/config_entry/string/ipintel_email/ValidateAndSet(str_val)
-	return str_val != "ch@nge.me" && ..()
+	return str_val != "ch@nge.me" && (!length(str_val) || findtext(str_val, "@")) && ..()
 
 /datum/config_entry/number/ipintel_rating_bad
 	default = 1
@@ -462,18 +464,26 @@
 	min_val = 0
 	max_val = 1
 
-/datum/config_entry/number/ipintel_save_good
-	default = 12
-	integer = FALSE
+/datum/config_entry/flag/ipintel_reject_rate_limited
+	default = FALSE
+
+/datum/config_entry/flag/ipintel_reject_bad
+	default = FALSE
+
+/datum/config_entry/flag/ipintel_reject_unknown
+	default = FALSE
+
+/datum/config_entry/number/ipintel_rate_minute
+	default = 15
 	min_val = 0
 
-/datum/config_entry/number/ipintel_save_bad
-	default = 1
-	integer = FALSE
+/datum/config_entry/number/ipintel_cache_length
+	default = 7
 	min_val = 0
 
-/datum/config_entry/string/ipintel_domain
-	default = "check.getipintel.net"
+/datum/config_entry/number/ipintel_exempt_playtime_living
+	default = 5
+	min_val = 0
 
 /datum/config_entry/flag/aggressive_changelog
 
@@ -643,6 +653,9 @@
 
 /datum/config_entry/flag/auto_profile
 
+/datum/config_entry/number/profiler_interval
+	default = 300 SECONDS
+
 /datum/config_entry/number/drift_dump_threshold
 	default = 4 SECONDS
 
@@ -728,3 +741,27 @@
 /datum/config_entry/number/upload_limit_admin
 	default = 5242880
 	min_val = 0
+
+/// The minimum number of tallies a map vote entry can have.
+/datum/config_entry/number/map_vote_minimum_tallies
+	default = 0 // BUBBER EDIT CHANGE - Original: 1
+	min_val = 0
+	max_val = 50
+
+/// The flat amount all maps get by default
+/datum/config_entry/number/map_vote_flat_bonus
+	default = 0 // BUBBER EDIT CHANGE - Original: 5
+	min_val = 0
+	max_val = INFINITY
+
+/// The maximum number of tallies a map vote entry can have.
+/datum/config_entry/number/map_vote_maximum_tallies
+	default = 200
+	min_val = 0
+	max_val = INFINITY
+
+/// The number of tallies that are carried over between rounds.
+/datum/config_entry/number/map_vote_tally_carryover_percentage
+	default = 100
+	min_val = 0
+	max_val = 100

@@ -15,17 +15,15 @@
 
 	bolt_type = BOLT_TYPE_OPEN
 
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	slot_flags = ITEM_SLOT_OCLOTHING | ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
 
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_light.ogg'
 	can_suppress = TRUE
-
-	can_bayonet = FALSE
 
 	suppressor_x_offset = 11
 

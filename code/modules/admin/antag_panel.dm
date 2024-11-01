@@ -78,14 +78,16 @@ GLOBAL_VAR(antag_prototypes)
 /datum/mind/proc/get_special_statuses()
 	var/list/result = LAZYCOPY(special_statuses)
 	if(!current)
-		result += "<span class='bad'>No body!</span>"
+		result += span_bad("No body!")
 	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
-		result += "<span class='good'>Mindshielded</span>"
+		result += span_good("Mindshielded")
+	if(current && HAS_MIND_TRAIT(current, TRAIT_UNCONVERTABLE))
+		result += span_good("Unconvertable")
 	//Move these to mob
 	if(iscyborg(current))
 		var/mob/living/silicon/robot/robot = current
 		if (robot.emagged)
-			result += "<span class='bad'>Emagged</span>"
+			result += span_bad("Emagged")
 	return result.Join(" | ")
 
 /datum/mind/proc/traitor_panel()
@@ -98,8 +100,12 @@ GLOBAL_VAR(antag_prototypes)
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
+	//BUBBERSTATION CHANGE START: ANTAG TICKET INTEGRATION
+	out += "Antag Tickets: <B>[current.client.get_antag_tickets()]</B> (Current multiplier: <B>x[current.client.antag_ticket_multiplier()]</B>)<br>"
+	//BUBBERSTATION CHANGE END: ANTAG TICKET INTEGRAATION
 	out += "Assigned role: [assigned_role.title]. <a href='?src=[REF(src)];role_edit=1'>Edit</a><br>"
 	out += "Faction and special role: <b><font color='red'>[special_role]</font></b><br>"
+	out += "<a href='?_src_=holder;[HrefToken()];check_teams=1'>Show Teams</a><br><br>"
 
 	var/special_statuses = get_special_statuses()
 	if(length(special_statuses))
@@ -152,7 +158,7 @@ GLOBAL_VAR(antag_prototypes)
 				continue
 		else //Show removal and current one
 			priority_sections |= antag_category
-			antag_header_parts += "<span class='bad'>[current_antag.name]</span>"
+			antag_header_parts += span_bad("[current_antag.name]")
 			antag_header_parts += "<a href='?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
 			antag_header_parts += "<a href='?src=[REF(src)];open_antag_vv=[REF(current_antag)]'>Open VV</a>"
 

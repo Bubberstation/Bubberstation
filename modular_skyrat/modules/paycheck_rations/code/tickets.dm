@@ -20,13 +20,14 @@
 /// Attempts to fill out the order list with items of the user's choosing, will stop in its tracks if it fails
 /obj/item/paper/paperslip/ration_ticket/proc/try_to_make_ration_order_list(obj/machinery/computer/cargo/object_we_attack, mob/living/user)
 	forceMove(object_we_attack)
-	playsound(object_we_attack, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	// List of meat options we get
 	var/list/radial_meat_options = list(
 		"Standard Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats"),
 		"Seafood Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_fish"),
 		"Tizirian Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_lizard"),
+		"Ethereal Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_ethereal"),
 	)
 
 	var/meats_choice = show_radial_menu(user, object_we_attack, radial_meat_options, require_near = TRUE)
@@ -34,7 +35,7 @@
 	if(!meats_choice)
 		object_we_attack.balloon_alert(user, "no selection made")
 		forceMove(drop_location(object_we_attack))
-		playsound(object_we_attack, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+		playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 		return
 
 	switch(meats_choice)
@@ -44,6 +45,8 @@
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/fish
 		if("Tizirian Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/lizard
+		if("Ethereal Meats")
+			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/ethereal
 
 	// List of produce options we get
 	var/list/radial_produce_options = list(
@@ -51,6 +54,7 @@
 		"Alternative Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_alt"),
 		"Mothic Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_moth"),
 		"Tizirian Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_lizard"),
+		"Ethereal Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_ethereal"),
 	)
 
 	var/produce_choice = show_radial_menu(user, object_we_attack, radial_produce_options, require_near = TRUE)
@@ -60,7 +64,7 @@
 		// Reset the list if we fail
 		items_we_deliver = list()
 		forceMove(drop_location(object_we_attack))
-		playsound(object_we_attack, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+		playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 		return
 
 	switch(produce_choice)
@@ -72,6 +76,8 @@
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/mothic
 		if("Tizirian Produce")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/lizard
+		if("Ethereal Produce")
+			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/ethereal
 
 	items_we_deliver += /obj/item/storage/box/papersack/ration_bread_slice
 
@@ -79,6 +85,7 @@
 	var/list/radial_flour_options = list(
 		"Standard Flour" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "flour"),
 		"Korta Flour" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "flour_korta"),
+		"Ethereal Stock" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "stock_ethereal"),
 	)
 
 	var/flour_choice = show_radial_menu(user, object_we_attack, radial_flour_options, require_near = TRUE)
@@ -88,7 +95,7 @@
 		// Reset the list if we fail
 		items_we_deliver = list()
 		forceMove(drop_location(object_we_attack))
-		playsound(object_we_attack, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+		playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 		return
 
 	switch(flour_choice)
@@ -97,6 +104,9 @@
 		if("Korta Flour")
 			items_we_deliver += /obj/item/reagent_containers/condiment/small_ration_korta_flour
 			items_we_deliver += /obj/item/reagent_containers/condiment/soymilk/small_ration
+		if("Ethereal Stock")
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/volt_energy
+			items_we_deliver += /obj/item/reagent_containers/condiment/dashi_concentrate/small_ration
 
 	items_we_deliver += /obj/item/reagent_containers/condiment/rice/small_ration
 	items_we_deliver += /obj/item/reagent_containers/condiment/sugar/small_ration
@@ -162,13 +172,14 @@
 /// Attempts to fill out the order list with items of the user's choosing, will stop in its tracks if it fails
 /obj/item/paper/paperslip/ration_ticket/luxury/try_to_make_ration_order_list(obj/machinery/computer/cargo/object_we_attack, mob/living/user)
 	forceMove(object_we_attack)
-	playsound(object_we_attack, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	// List of meat options we get
 	var/list/radial_alcohol_options = list(
 		"Navy Rum" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "navy_rum"),
 		"Ginger Beer" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "gingie_beer"),
 		"Kortara" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "kortara"),
+		"Voltaic Wine" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "wine_voltaic_canned")
 	)
 
 	var/alcohol_choice = show_radial_menu(user, object_we_attack, radial_alcohol_options, require_near = TRUE)
@@ -188,6 +199,9 @@
 		if("Kortara")
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/kortara
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/kortara
+		if("Voltaic Wine")
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
 
 	// List of produce options we get
 	var/list/radial_consumables_options = list(

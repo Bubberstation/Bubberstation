@@ -76,14 +76,14 @@
 	if(user_client == "speech")
 		if(muzzle == TRUE)
 			muzzle = FALSE
-			play_lewd_sound(usr, 'sound/weapons/magout.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Speech switch off"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				REMOVE_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 				//to_chat(U, span_purple("Your mouth is free. you breathe out with relief."))
 		else
 			muzzle = TRUE
-			play_lewd_sound(usr, 'sound/weapons/magin.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Speech switch on"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				ADD_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
@@ -91,14 +91,14 @@
 	if(user_client == "hearing")
 		if(earmuffs == TRUE)
 			earmuffs = FALSE
-			play_lewd_sound(usr, 'sound/weapons/magout.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Hearing switch off"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				REMOVE_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 				//to_chat(U, span_purple("Finally you can hear the world around again."))
 		else
 			earmuffs = TRUE
-			play_lewd_sound(usr, 'sound/weapons/magin.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Hearing switch on"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				ADD_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
@@ -107,14 +107,14 @@
 		var/mob/living/carbon/human/user = usr
 		if(prevent_vision == TRUE)
 			prevent_vision = FALSE
-			play_lewd_sound(usr, 'sound/weapons/magout.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Vision switch off"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				user.cure_blind("deprivation_helmet_[REF(src)]")
 				//to_chat(U, span_purple("Helmet no longer restricts your vision."))
 		else
 			prevent_vision = TRUE
-			play_lewd_sound(usr, 'sound/weapons/magin.ogg', 40, TRUE)
+			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
 			to_chat(usr, span_notice("Vision switch on"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				user.become_blind("deprivation_helmet_[REF(src)]")
@@ -129,20 +129,18 @@
 		"tealn" = image(icon = src.icon, icon_state = "dephelmet_tealn"))
 
 // To change model
-/obj/item/clothing/head/deprivation_helmet/AltClick(mob/user)
+/obj/item/clothing/head/deprivation_helmet/click_alt(mob/user)
 	if(color_changed == FALSE)
-		. = ..()
-		if(.)
-			return
 		var/choice = show_radial_menu(user, src, helmet_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
-			return FALSE
+			return CLICK_ACTION_BLOCKING
 		current_helmet_color = choice
 		update_icon()
 		update_mob_action_buttonss()
 		color_changed = TRUE
+		return CLICK_ACTION_SUCCESS
 	else
-		return
+		return CLICK_ACTION_BLOCKING
 
 /obj/item/clothing/head/deprivation_helmet/proc/update_mob_action_buttonss()
 	var/datum/action/item_action/action_button
@@ -163,7 +161,7 @@
 /obj/item/clothing/head/deprivation_helmet/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated())
+	if(user.incapacitated)
 		return FALSE
 	return TRUE
 

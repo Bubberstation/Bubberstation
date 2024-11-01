@@ -112,6 +112,16 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	allocated += instance
 	return instance
 
+/// Resets the air of our testing room to its default
+/datum/unit_test/proc/restore_atmos()
+	var/area/working_area = run_loc_floor_bottom_left.loc
+	var/list/turf/to_restore = working_area.get_turfs_from_all_zlevels()
+	for(var/turf/open/restore in to_restore)
+		var/datum/gas_mixture/GM = SSair.parse_gas_string(restore.initial_gas_mix, /datum/gas_mixture/turf)
+		restore.copy_air(GM)
+		restore.temperature = initial(restore.temperature)
+		restore.air_update_turf(update = FALSE, remove = FALSE)
+
 /datum/unit_test/proc/test_screenshot(name, icon/icon)
 	if (!istype(icon))
 		TEST_FAIL("[icon] is not an icon.")
@@ -148,7 +158,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 
 /// Logs a test message. Will use GitHub action syntax found at https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
 /datum/unit_test/proc/log_for_test(text, priority, file, line)
-	var/map_name = SSmapping.config.map_name
+	var/map_name = SSmapping.current_map.map_name
 
 	// Need to escape the text to properly support newlines.
 	var/annotation_text = replacetext(text, "%", "%25")
@@ -167,18 +177,19 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 
 	GLOB.current_test = test
 	var/duration = REALTIMEOFDAY
-	var/skip_test = (test_path in SSmapping.config.skipped_tests)
+	var/skip_test = (test_path in SSmapping.current_map.skipped_tests)
 	var/test_output_desc = "[test_path]"
 	var/message = ""
 
 	log_world("::group::[test_path]")
 
 	if(skip_test)
-		log_world("[TEST_OUTPUT_YELLOW("SKIPPED")] Skipped run on map [SSmapping.config.map_name].")
+		log_world("[TEST_OUTPUT_YELLOW("SKIPPED")] Skipped run on map [SSmapping.current_map.map_name].")
 
 	else
 
 		test.Run()
+		test.restore_atmos()
 
 		duration = REALTIMEOFDAY - duration
 		GLOB.current_test = null
@@ -245,6 +256,8 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		//Both are abstract types meant to scream bloody murder if spawned in raw
 		/obj/item/organ/external,
 		/obj/item/organ/external/wings,
+		//Not meant to spawn without the machine wand
+		/obj/effect/bug_moving,
 	)
 
 	// Everything that follows is a typesof() check.
@@ -274,8 +287,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	returnable_list += typesof(/obj/effect/baseturf_helper)
 	//No tauma to pass in
 	returnable_list += typesof(/mob/camera/imaginary_friend)
-	//No pod to gondola
-	returnable_list += typesof(/mob/living/simple_animal/pet/gondola/gondolapod)
 	//No heart to give
 	returnable_list += typesof(/obj/structure/ethereal_crystal)
 	//No linked console
@@ -286,12 +297,20 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	returnable_list += typesof(/obj/effect/anomaly/grav/high)
 	//See above
 	returnable_list += typesof(/obj/effect/timestop)
+	//Sparks can ignite a number of things, causing a fire to burn the floor away. Only you can prevent CI fires
+	returnable_list += typesof(/obj/effect/particle_effect/sparks)
+	//See above - These are one of those things.
+	returnable_list += typesof(/obj/effect/decal/cleanable/fuel_pool)
 	//Invoke async in init, skippppp
 	returnable_list += typesof(/mob/living/silicon/robot/model)
 	//This lad also sleeps
 	returnable_list += typesof(/obj/item/hilbertshotel)
 	//this boi spawns turf changing stuff, and it stacks and causes pain. Let's just not
 	returnable_list += typesof(/obj/effect/sliding_puzzle)
+	//these can explode and cause the turf to be destroyed at unexpected moments
+	returnable_list += typesof(/obj/effect/mine)
+	returnable_list += typesof(/obj/effect/spawner/random/contraband/landmine)
+	returnable_list += typesof(/obj/item/minespawner)
 	//Stacks baseturfs, can't be tested here
 	returnable_list += typesof(/obj/effect/temp_visual/lava_warning)
 	//Stacks baseturfs, can't be tested here
@@ -335,7 +354,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	// Can't be bothered adding more to them.
 	returnable_list += list(/obj/item/organ/external/neck_accessory, /obj/item/organ/external/head_accessory)
 	//SKYRAT EDIT ADDITION END
-
 	return returnable_list
 
 /proc/RunUnitTests()
@@ -350,7 +368,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	if(length(focused_tests))
 		tests_to_run = focused_tests
 
-	tests_to_run = sortTim(tests_to_run, GLOBAL_PROC_REF(cmp_unit_test_priority))
+	sortTim(tests_to_run, GLOBAL_PROC_REF(cmp_unit_test_priority))
 
 	var/list/test_results = list()
 

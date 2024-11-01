@@ -61,11 +61,9 @@
 		. += span_notice("The wire panel is [open_panel ? "opened" : "closed"]. The display reads:")
 		. += "[readout()]"
 
-/obj/item/taperecorder/AltClick(mob/user)
-	. = ..()
-	if(!can_interact(user))
-		return
+/obj/item/taperecorder/click_alt(mob/user)
 	play()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/taperecorder/proc/update_available_icons()
 	icons_available = list()
@@ -124,7 +122,7 @@
 
 /obj/item/taperecorder/proc/can_use(mob/user)
 	if(user && ismob(user))
-		if(!user.incapacitated())
+		if(!user.incapacitated)
 			return TRUE
 	return FALSE
 
@@ -159,9 +157,12 @@
 
 /obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list(), message_range)
 	. = ..()
+	if(message_mods[MODE_RELAY])
+		return
+
 	if(mytape && recording)
 		mytape.timestamp += mytape.used_capacity
-		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [raw_message]"
+		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [speaker.GetVoice()]: [raw_message]"
 
 
 /obj/item/taperecorder/verb/record()

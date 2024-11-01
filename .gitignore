@@ -211,16 +211,10 @@ Temporary Items
 /tools/tgs_test/bin/*
 /tools/tgs_test/obj/*
 
-# Autowiki
-/tools/autowiki/node_modules
-
-# TGUI bundles - SKYRAT EDIT
-/tgui/public/tgui-common.bundle.js
-
 # Built auxtools libraries and intermediate files
 aux*.dll
 libaux*.so
-aux*.pdb
+*.pdb
 
 # byond-tracy, we intentionally do not ship this and do not want to maintain it
 # https://github.com/mafemergency/byond-tracy/
@@ -247,3 +241,6 @@ define_sanity_output.txt
 # ezdb
 /db/
 /config/ezdb.txt
+
+# Running OpenDream locally
+tgstation.json

@@ -65,7 +65,7 @@
 ///obj/item/clothing/head/hats/sus_bowler/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	//var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	//if(thrownby && !caught)
-		//addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		//addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 0.1 SECONDS)
 	//else
 		//return ..()
 
@@ -182,10 +182,20 @@
 /obj/projectile/bullet/c14mm
 	name = "14mm bullet"
 	damage = 60
-	embedding = list(embed_chance = 90, fall_chance = 3, jostle_chance = 4, ignore_throwspeed_threshold = TRUE, pain_stam_pct = 0.4, pain_mult = 5, jostle_pain_mult = 9, rip_time = 10)
+	embed_type = /datum/embed_data/c14mm
 	dismemberment = 50
 	pierces = 1
 	projectile_piercing = PASSCLOSEDTURF|PASSGRILLE|PASSGLASS
+
+/datum/embed_data/c14mm
+	embed_chance = 90
+	fall_chance = 3
+	jostle_chance = 4
+	ignore_throwspeed_threshold = TRUE
+	pain_stam_pct = 0.4
+	pain_mult = 5
+	jostle_pain_mult = 9
+	rip_time = 10
 
 //nullrod katana
 /obj/item/katana/weak/curator //This has the same stats as the curator's claymore

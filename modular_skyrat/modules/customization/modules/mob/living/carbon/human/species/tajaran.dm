@@ -17,7 +17,7 @@
 	examine_limb_id = SPECIES_MAMMAL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/tajaran, // BUBBER EDIT
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
@@ -71,22 +71,6 @@
 	if(BMS)
 		markings = assemble_body_markings_from_set(BMS, passed_features, src)
 	return markings
-
-/*	Runtime in tajaran.dm,76: pick() from empty list
-/datum/species/tajaran/random_name(gender,unique,lastname)
-	var/randname
-	if(gender == MALE)
-		randname = pick(GLOB.first_names_male_taj)
-	else
-		randname = pick(GLOB.first_names_female_taj)
-
-	if(lastname)
-		randname += " [lastname]"
-	else
-		randname += " [pick(GLOB.last_names_taj)]"
-
-	return randname
-*/
 
 /datum/species/tajaran/get_species_description()
 	return placeholder_description

@@ -24,7 +24,7 @@
 /atom/movable/screen/movable/pic_in_pic/ai/make_backgrounds()
 	..()
 	highlighted_background = new /mutable_appearance()
-	highlighted_background.icon = 'icons/misc/pic_in_pic.dmi'
+	highlighted_background.icon = 'icons/hud/pic_in_pic.dmi'
 	highlighted_background.icon_state = "background_highlight"
 	highlighted_background.layer = SPACE_LAYER
 
@@ -32,7 +32,7 @@
 	if((width > 0) && (height > 0))
 		var/matrix/M = matrix()
 		M.Scale(width + 0.5, height + 0.5)
-		M.Translate((width-1)/2 * world.icon_size, (height-1)/2 * world.icon_size)
+		M.Translate((width-1)/2 * ICON_SIZE_X, (height-1)/2 * ICON_SIZE_Y)
 		highlighted_background.transform = M
 		standard_background.transform = M
 		add_overlay(highlighted ? highlighted_background : standard_background)
@@ -84,7 +84,7 @@
 
 /turf/open/ai_visible
 	name = ""
-	icon = 'icons/misc/pic_in_pic.dmi'
+	icon = 'icons/hud/pic_in_pic.dmi'
 	icon_state = "room_background"
 	turf_flags = NOJAUNT
 
@@ -172,15 +172,13 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	add = visible - cameras_telegraphed
 	remove = cameras_telegraphed - visible
 
-	for (var/V in remove)
-		var/obj/machinery/camera/C = V
+	for (var/obj/machinery/camera/C as anything in remove)
 		if(QDELETED(C))
 			continue
 		cameras_telegraphed -= C
 		C.in_use_lights--
 		C.update_appearance()
-	for (var/V in add)
-		var/obj/machinery/camera/C = V
+	for (var/obj/machinery/camera/C as anything in add)
 		if(QDELETED(C))
 			continue
 		cameras_telegraphed |= C
@@ -189,8 +187,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 /mob/camera/ai_eye/pic_in_pic/proc/disable_camera_telegraphing()
 	telegraph_cameras = FALSE
-	for (var/V in cameras_telegraphed)
-		var/obj/machinery/camera/C = V
+	for (var/obj/machinery/camera/C as anything in cameras_telegraphed)
 		if(QDELETED(C))
 			continue
 		C.in_use_lights--

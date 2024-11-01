@@ -1,41 +1,3 @@
-// VOID CHILL
-/datum/status_effect/void_chill
-	id = "void_chill"
-	alert_type = /atom/movable/screen/alert/status_effect/void_chill
-	duration = 8 SECONDS
-	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 0.5 SECONDS
-	/// The amount the victim's body temperature changes each tick() in kelvin. Multiplied by TEMPERATURE_DAMAGE_COEFFICIENT.
-	var/cooling_per_tick = -14
-
-/atom/movable/screen/alert/status_effect/void_chill
-	name = "Void Chill"
-	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
-	icon_state = "void_chill"
-
-/datum/status_effect/void_chill/on_apply()
-	owner.add_atom_colour(COLOR_BLUE_LIGHT, TEMPORARY_COLOUR_PRIORITY)
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/void_chill, update = TRUE)
-	return TRUE
-
-/datum/status_effect/void_chill/on_remove()
-	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_BLUE_LIGHT)
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/void_chill, update = TRUE)
-
-/datum/status_effect/void_chill/tick(seconds_between_ticks)
-	owner.adjust_bodytemperature(cooling_per_tick * TEMPERATURE_DAMAGE_COEFFICIENT)
-
-/datum/status_effect/void_chill/major
-	duration = 10 SECONDS
-	cooling_per_tick = -20
-
-/datum/status_effect/void_chill/lasting
-	id = "lasting_void_chill"
-	duration = -1
-
-/datum/movespeed_modifier/void_chill
-	multiplicative_slowdown = 0.3
-
 // AMOK
 /datum/status_effect/amok
 	id = "amok"
@@ -280,7 +242,7 @@
 
 /datum/status_effect/moon_converted/on_remove()
 	// Span warning and unconscious so they realize they aren't evil anymore
-	to_chat(owner, span_warning("Your mind is cleared from the effect of the manus, your alligiences are as they were before"))
+	to_chat(owner, span_warning("Your mind is cleared from the effect of the mansus, your alligiences are as they were before"))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, REF(src))
 	owner.AdjustUnconscious(5 SECONDS, ignore_canstun = FALSE)
 	owner.log_message("[owner] is no longer insane.", LOG_GAME)

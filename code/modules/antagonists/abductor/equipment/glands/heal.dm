@@ -159,7 +159,7 @@
 	else
 		to_chat(owner, span_warning("You feel a weird rumble behind your eye sockets..."))
 
-	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(100, 200))
+	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(10 SECONDS, 20 SECONDS))
 
 /obj/item/organ/internal/heart/gland/heal/proc/finish_replace_eyes()
 	var/eye_type = /obj/item/organ/internal/eyes
@@ -177,13 +177,13 @@
 	else
 		to_chat(owner, span_warning("You feel a weird tingle in your [parse_zone(body_zone)]... even if you don't have one."))
 
-	addtimer(CALLBACK(src, PROC_REF(finish_replace_limb), body_zone), rand(150, 300))
+	addtimer(CALLBACK(src, PROC_REF(finish_replace_limb), body_zone), rand(15 SECONDS, 30 SECONDS))
 
 /obj/item/organ/internal/heart/gland/heal/proc/finish_replace_limb(body_zone)
 	owner.visible_message(span_warning("With a loud snap, [owner]'s [parse_zone(body_zone)] rapidly grows back from [owner.p_their()] body!"),
 	span_userdanger("With a loud snap, your [parse_zone(body_zone)] rapidly grows back from your body!"),
 	span_warning("Your hear a loud snap."))
-	playsound(owner, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(owner, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	owner.regenerate_limb(body_zone)
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_blood()
@@ -207,12 +207,12 @@
 		if(owner.reagents.has_reagent(R.type))
 			keep_going = TRUE
 	if(keep_going)
-		addtimer(CALLBACK(src, PROC_REF(keep_replacing_blood)), 30)
+		addtimer(CALLBACK(src, PROC_REF(keep_replacing_blood)), 3 SECONDS)
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_chest(obj/item/bodypart/chest/chest)
 	if(!IS_ORGANIC_LIMB(chest))
 		owner.visible_message(span_warning("[owner]'s [chest.name] rapidly expels its mechanical components, replacing them with flesh!"), span_userdanger("Your [chest.name] rapidly expels its mechanical components, replacing them with flesh!"))
-		playsound(owner, 'sound/magic/clockwork/anima_fragment_attack.ogg', 50, TRUE)
+		playsound(owner, 'sound/effects/magic/clockwork/anima_fragment_attack.ogg', 50, TRUE)
 		var/list/dirs = GLOB.alldirs.Copy()
 		for(var/i in 1 to 3)
 			var/obj/effect/decal/cleanable/robot_debris/debris = new(get_turf(owner))

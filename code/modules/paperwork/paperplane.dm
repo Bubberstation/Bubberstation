@@ -89,7 +89,7 @@
 /obj/item/paperplane/attackby(obj/item/attacking_item, mob/user, params)
 	if(burn_paper_product_attackby_check(attacking_item, user))
 		return
-	if(istype(attacking_item, /obj/item/pen) || istype(attacking_item, /obj/item/toy/crayon))
+	if(IS_WRITING_UTENSIL(attacking_item))
 		to_chat(user, span_warning("You should unfold [src] before changing it!"))
 		return
 	else if(istype(attacking_item, /obj/item/stamp)) //we don't randomize stamps on a paperplane
@@ -102,7 +102,7 @@
 /obj/item/paperplane/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom) && HAS_TRAIT(hit_atom, TRAIT_PAPER_MASTER))
 		var/mob/living/carbon/hit_carbon = hit_atom
-		if(hit_carbon.can_catch_item(TRUE))
+		if(hit_carbon.can_catch_item(src, skip_throw_mode_check = TRUE))
 			hit_carbon.throw_mode_on(THROW_MODE_TOGGLE)
 
 	. = ..()

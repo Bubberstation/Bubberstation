@@ -10,7 +10,7 @@
 		var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 		if (prob(90))
 			log_combat(user, src, "attacked")
-			playsound(loc, 'sound/weapons/slash.ogg', 25, TRUE, -1)
+			playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
 			visible_message(span_danger("[user] slashes at [src]!"), \
 							span_userdanger("[user] slashes at you!"), null, null, user)
 			to_chat(user, span_danger("You slash at [src]!"))
@@ -18,9 +18,8 @@
 				flash_act(affect_silicon = 1)
 			log_combat(user, src, "attacked")
 			adjustBruteLoss(damage)
-			updatehealth()
 		else
-			playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE, -1)
+			playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
 			visible_message(span_danger("[user]'s swipe misses [src]!"), \
 							span_danger("You avoid [user]'s swipe!"), null, null, user)
 			to_chat(user, span_warning("Your swipe misses [src]!"))
@@ -77,7 +76,7 @@
 		return TRUE
 	else
 		// SKYRAT EDIT ADDITION START
-		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))
+		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 			visible_message(span_warning("[user] tries to pet [src], but it moves out of the way."))
 			return TRUE
 		// SKYRAT EDIT ADDITION END
@@ -105,13 +104,6 @@
 	if(user.combat_mode)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
-
-/mob/living/silicon/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
-	if(buckled_mobs)
-		for(var/mob/living/M in buckled_mobs)
-			unbuckle_mob(M)
-			M.electrocute_act(shock_damage/100, source, siemens_coeff, flags) //Hard metal shell conducts!
-	return 0 //So borgs they don't die trying to fix wiring
 
 /mob/living/silicon/emp_act(severity)
 	. = ..()

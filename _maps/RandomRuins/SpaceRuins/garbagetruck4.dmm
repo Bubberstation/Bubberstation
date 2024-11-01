@@ -78,7 +78,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "hH" = (
-/obj/structure/spider/solid,
+/obj/structure/spider/stickyweb/sealed/tough,
 /obj/item/book/manual/wiki/cytology,
 /obj/effect/decal/cleanable/plastic,
 /turf/open/floor/plating,
@@ -122,7 +122,7 @@
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "lm" = (
 /obj/structure/spider/stickyweb,
-/obj/structure/spider/sticky,
+/obj/structure/spider/stickyweb/very_sticky,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "mf" = (
@@ -182,7 +182,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "qX" = (
-/obj/structure/spider/sticky,
+/obj/structure/spider/stickyweb/very_sticky,
 /obj/item/food/badrecipe/moldy,
 /obj/structure/spider/stickyweb,
 /obj/item/food/spidereggs{
@@ -255,7 +255,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "ts" = (
-/obj/structure/spider/solid,
+/obj/structure/spider/stickyweb/sealed/tough,
 /obj/structure/spider/stickyweb,
 /obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/plating,
@@ -652,11 +652,11 @@
 	pixel_y = 8
 	},
 /obj/machinery/light/warm,
-/obj/machinery/power/apc/auto_name/directional/south{
-	cell_type = /obj/item/stock_parts/cell/lead
+/obj/machinery/power/apc{
+	locked = 0;
+	pixel_y = -25;
+	start_charge = 0
 	},
-/obj/effect/mapping_helpers/apc/no_charge,
-/obj/effect/mapping_helpers/apc/unlocked,
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/toystore)
@@ -671,7 +671,7 @@
 "Mp" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "MK" = (
@@ -757,7 +757,7 @@
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "Rl" = (
 /obj/item/paper/crumpled,
-/obj/item/stock_parts/cell/hyper,
+/obj/item/stock_parts/power_store/cell/hyper,
 /obj/item/hand_labeler,
 /obj/item/hand_labeler_refill,
 /obj/item/hand_labeler_refill,
@@ -840,7 +840,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "XI" = (
-/obj/structure/spider/solid,
+/obj/structure/spider/stickyweb/sealed/tough,
 /obj/item/food/badrecipe/moldy/bacteria,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)

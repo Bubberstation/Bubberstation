@@ -3,7 +3,7 @@
 	desc = "A nausea-inducing hunk of twisting flesh and metal."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "gland"
-	organ_flags = ORGAN_ROBOTIC // weird?
+	organ_flags = ORGAN_ROBOTIC | ORGAN_PROMINENT // weird?
 	/// Shows name of the gland as well as a description of what it does upon examination by abductor scientists and observers.
 	var/abductor_hint = "baseline placebo referencer"
 
@@ -51,7 +51,7 @@
 		return
 	var/image/holder = owner.hud_list[GLAND_HUD]
 	var/icon/I = icon(owner.icon, owner.icon_state, owner.dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = I.Height() - ICON_SIZE_Y
 	if(active_mind_control)
 		holder.icon_state = "hudgland_active"
 	else if(mind_control_uses)

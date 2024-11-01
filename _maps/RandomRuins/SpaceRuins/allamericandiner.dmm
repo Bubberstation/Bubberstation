@@ -245,12 +245,7 @@
 /area/ruin/space/has_grav/allamericandiner)
 "nq" = (
 /obj/machinery/shower/directional/east,
-/obj/structure/fluff{
-	desc = "What, you think the water just magically soaks into the metallic flooring?";
-	icon = 'icons/obj/mining_zones/survival_pod.dmi';
-	icon_state = "fan_tiny";
-	name = "shower drain"
-	},
+/obj/structure/fluff/shower_drain,
 /obj/item/soap,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
@@ -358,6 +353,13 @@
 /area/ruin/space/has_grav/allamericandiner)
 "rd" = (
 /turf/open/floor/iron/kitchen,
+/area/ruin/space/has_grav/allamericandiner)
+"ri" = (
+/obj/machinery/door/window/left/directional/south{
+	name = "Trash Dumpster"
+	},
+/obj/structure/plasticflaps,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/allamericandiner)
 "rG" = (
 /obj/structure/chair/stool/bar/directional/north,
@@ -511,7 +513,7 @@
 "yE" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /obj/machinery/power/terminal{
 	dir = 4
 	},
@@ -603,12 +605,7 @@
 /area/ruin/space/has_grav/allamericandiner)
 "CF" = (
 /obj/machinery/shower/directional/west,
-/obj/structure/fluff{
-	desc = "What, you think the water just magically soaks into the metallic flooring?";
-	icon = 'icons/obj/mining_zones/survival_pod.dmi';
-	icon_state = "fan_tiny";
-	name = "shower drain"
-	},
+/obj/structure/fluff/shower_drain,
 /obj/item/soap,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
@@ -637,6 +634,13 @@
 	dir = 4
 	},
 /turf/open/floor/iron,
+/area/ruin/space/has_grav/allamericandiner)
+"DZ" = (
+/obj/machinery/door/window/left/directional/east{
+	name = "Kitchen"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
 "Eo" = (
 /obj/structure/cable,
@@ -770,13 +774,6 @@
 /obj/machinery/deepfryer,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/fluff/ruins/allamericandiner,
-/turf/open/floor/iron/kitchen/small,
-/area/ruin/space/has_grav/allamericandiner)
-"Ic" = (
-/obj/machinery/door/window/left/directional/east{
-	name = "Kitchen"
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
 "Id" = (
@@ -1140,13 +1137,6 @@
 /obj/structure/mirror/directional/north,
 /obj/structure/sink/directional/south,
 /turf/open/floor/iron/freezer,
-/area/ruin/space/has_grav/allamericandiner)
-"Vn" = (
-/obj/machinery/door/window/left/directional/south{
-	name = "Trash Dumpster"
-	},
-/obj/structure/plasticflaps,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/allamericandiner)
 "Vq" = (
 /obj/structure/table/reinforced,
@@ -1567,7 +1557,7 @@ oN
 EK
 pa
 Is
-Ic
+DZ
 Xw
 Du
 FB
@@ -2229,7 +2219,7 @@ Bn
 wC
 qB
 qB
-Vn
+ri
 ck
 fz
 vA

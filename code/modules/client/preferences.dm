@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Ensures that we always load the last used save, QOL
 	var/default_slot = 1
 	/// The maximum number of slots we're allowed to contain
-	var/max_save_slots = 30 //SKYRAT EDIT - ORIGINAL 3
+	var/max_save_slots = 50 // BUBBER EDIT: original is 3
 
 	/// Bitflags for communications that are muted
 	var/muted = NONE
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/key_bindings_by_key = list()
 
 	var/toggles = TOGGLES_DEFAULT
-	var/db_flags
+	var/db_flags = NONE
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
 
@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		unlock_content = !!parent.IsByondMember()
 		donator_status = !!GLOB.donator_list[parent.ckey] //SKYRAT EDIT ADD - DONATOR CHECK
 		if(unlock_content || donator_status) //SKYRAT EDIT - ADD DONATOR CHECK
-			max_save_slots = 50 //SKYRAT EDIT - ORIGINAL 8
+			max_save_slots = 100 //SKYRAT EDIT - ORIGINAL 8
 	else
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["character_profiles"] = create_character_profiles()
 
 	data["character_preview_view"] = character_preview_view.assigned_map
-	data["overflow_role"] = SSjob.GetJobType(SSjob.overflow_role).title
+	data["overflow_role"] = SSjob.get_job_type(SSjob.overflow_role).title
 	data["window"] = current_window
 
 	data["content_unlocked"] = unlock_content
@@ -240,30 +240,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if ("change_slot")
 			// Save existing character
 			save_character()
-
-			// SAFETY: `load_character` performs sanitization the slot number
-			if (!load_character(params["slot"]))
-				tainted_character_profiles = TRUE
-				randomise_appearance_prefs()
-				save_character()
-
 			// SKYRAT EDIT START - Sanitizing languages
 			if(sanitize_languages())
 				save_character()
 			// SKYRAT EDIT END
-
-			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-				preference_middleware.on_new_character(usr)
-
-			character_preview_view.update_body()
-
+			// SAFETY: `switch_to_slot` performs sanitization on the slot number
+			switch_to_slot(params["slot"])
+			return TRUE
+		if ("remove_current_slot")
+			remove_current_slot()
 			return TRUE
 		if ("rotate")
 			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
 			character_preview_view.dir = turn(character_preview_view.dir, -90)
 			*/ // ORIGINAL END - SKYRAT EDIT START:
 			var/backwards = params["backwards"]
-			character_preview_view.dir = turn(character_preview_view.dir, backwards ? 90 : -90)
+			character_preview_view.setDir(turn(character_preview_view.dir, backwards ? 90 : -90))
 			// SKYRAT EDIT END
 
 			return TRUE
@@ -325,14 +317,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character_preview_view.update_body()
 			return TRUE
 
-		if ("open_loadout")
-			var/datum/loadout_manager/open_loadout_ui = parent.open_loadout_ui?.resolve()
-			if(open_loadout_ui)
-				open_loadout_ui.ui_interact(usr)
-			else
-				parent.open_loadout_ui = null
-				var/datum/loadout_manager/tgui = new(usr)
-				tgui.ui_interact(usr)
+		if ("open_food")
+			GLOB.food_prefs_menu.ui_interact(usr)
 			return TRUE
 
 		if ("set_tricolor_preference")
@@ -450,6 +436,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mob/living/carbon/human/dummy/body
 	/// The preferences this refers to
 	var/datum/preferences/preferences
+	/// Whether we show current job clothes or nude/loadout only
+	var/show_job_clothes = TRUE
 
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
 	. = ..()
@@ -467,15 +455,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		create_body()
 	else
 		body.wipe_state()
-	appearance = preferences.render_new_preview_appearance(body)
+
+	appearance = preferences.render_new_preview_appearance(body, show_job_clothes)
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)
 
 	body = new
-
-	// Without this, it doesn't show up in the menu
-	body.appearance_flags |= KEEP_TOGETHER // SKYRAT EDIT - Fix pixel scaling - ORIGINAL: body.appearance_flags &= ~KEEP_TOGETHER
 
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()
@@ -607,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type), src)
+		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
 
 	// SKYRAT EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)

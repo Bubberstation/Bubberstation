@@ -179,7 +179,7 @@
 		last_time_degraded_on_death = world.time
 
 /datum/brain_trauma/severe/death_consequences/process(seconds_per_tick)
-	if (owner.status_flags & GODMODE)
+	if (HAS_TRAIT(owner, TRAIT_GODMODE))
 		return
 
 	var/is_dead = (owner.stat == DEAD)
@@ -336,7 +336,7 @@
 	if (owner_staminaloss > (minimum_stamina_damage + 1))
 		return
 	else if ((owner_staminaloss >= (minimum_stamina_damage - 1)) && (owner_staminaloss <= (minimum_stamina_damage + 1)))
-		owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
+		owner.apply_status_effect(/datum/status_effect/incapacitating/stamcrit)
 		return
 
 	var/final_adjustment = (minimum_stamina_damage - owner_staminaloss)

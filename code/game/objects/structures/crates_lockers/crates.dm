@@ -1,23 +1,24 @@
 /obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/storage/crates.dmi' //ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "crate"
 	base_icon_state = "crate"
 	req_access = null
-	can_weld_shut = FALSE
 	horizontal = TRUE
 	allow_objects = TRUE
 	allow_dense = TRUE
 	dense_when_open = TRUE
 	delivery_icon = "deliverycrate"
-	open_sound = 'sound/machines/crate_open.ogg'
-	close_sound = 'sound/machines/crate_close.ogg'
+	open_sound = 'sound/machines/crate/crate_open.ogg'
+	close_sound = 'sound/machines/crate/crate_close.ogg'
 	open_sound_volume = 35
 	close_sound_volume = 50
 	drag_slowdown = 0
 	door_anim_time = 0 // no animation
 	pass_flags_self = PASSSTRUCTURE | LETPASSTHROW
+	x_shake_pixel_shift = 1
+	y_shake_pixel_shift = 2
 	/// Mobs standing on it are nudged up by this amount.
 	var/elevation = 14
 	/// The same, but when the crate is open
@@ -44,22 +45,23 @@
 	var/static/list/crate_paint_jobs
 	if(isnull(crate_paint_jobs))
 		crate_paint_jobs = list(
-		"Internals" = list("icon_state" = "o2crate"),
-		"Medical" = list("icon_state" = "medical"),
-		"Medical Plus" = list("icon_state" = "medicalcrate"),
-		"Radiation" = list("icon_state" = "radiation"),
-		"Hydrophonics" = list("icon_state" = "hydrocrate"),
-		"Science" = list("icon_state" = "scicrate"),
-		"Robotics" = list("icon_state" = "robo"),
-		"Solar" = list("icon_state" = "engi_e_crate"),
-		"Engineering" = list("icon_state" = "engi_crate"),
-		"Atmospherics" = list("icon_state" = "atmos"),
-		"Cargo" = list("icon_state" = "cargo"),
-		"Mining" = list("icon_state" = "mining"),
-		"Command" = list("icon_state" = "centcom")
-	)
+			"Internals" = list("icon_state" = "o2crate"),
+			"Medical" = list("icon_state" = "medical"),
+			"Medical Plus" = list("icon_state" = "medicalcrate"),
+			"Radiation" = list("icon_state" = "radiation"),
+			"Hydrophonics" = list("icon_state" = "hydrocrate"),
+			"Science" = list("icon_state" = "scicrate"),
+			"Robotics" = list("icon_state" = "robo"),
+			"Solar" = list("icon_state" = "engi_e_crate"),
+			"Engineering" = list("icon_state" = "engi_crate"),
+			"Atmospherics" = list("icon_state" = "atmos"),
+			"Cargo" = list("icon_state" = "cargo"),
+			"Mining" = list("icon_state" = "mining"),
+			"Command" = list("icon_state" = "centcom"),
+		)
 	if(paint_jobs)
 		paint_jobs = crate_paint_jobs
+	AddComponent(/datum/component/soapbox)
 
 /obj/structure/closet/crate/Destroy()
 	QDEL_NULL(manifest)
@@ -92,6 +94,9 @@
 		else if(secure)
 			. += "securecrateg"
 
+	if(welded)
+		. += icon_welded
+
 	if(opened && lid_icon_state)
 		var/mutable_appearance/lid = mutable_appearance(icon = lid_icon, icon_state = lid_icon_state)
 		lid.pixel_x = lid_x
@@ -116,7 +121,7 @@
 		if(elevation_open)
 			AddElement(/datum/element/elevation, pixel_shift = elevation_open)
 	if(!QDELETED(manifest))
-		playsound(src, 'sound/items/poster_ripped.ogg', 75, TRUE)
+		playsound(src, 'sound/items/poster/poster_ripped.ogg', 75, TRUE)
 		manifest.forceMove(get_turf(src))
 		manifest = null
 		update_appearance()
@@ -138,12 +143,12 @@
 	for (var/i in 1 to rand(2,6))
 		new /obj/effect/spawner/random/maintenance(src)
 
-	UnregisterSignal(src, COMSIG_CLOSET_POPULATE_CONTENTS)
+	UnregisterSignal(src, COMSIG_CLOSET_CONTENTS_INITIALIZED)
 
 ///Removes the supply manifest from the closet
 /obj/structure/closet/crate/proc/tear_manifest(mob/user)
 	to_chat(user, span_notice("You tear the manifest off of [src]."))
-	playsound(src, 'sound/items/poster_ripped.ogg', 75, TRUE)
+	playsound(src, 'sound/items/poster/poster_ripped.ogg', 75, TRUE)
 
 	manifest.forceMove(loc)
 	if(ishuman(user))
@@ -164,13 +169,14 @@
 	max_integrity = 70
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 5
-	open_sound = 'sound/machines/wooden_closet_open.ogg'
-	close_sound = 'sound/machines/wooden_closet_close.ogg'
+	open_sound = 'sound/machines/closet/wooden_closet_open.ogg'
+	close_sound = 'sound/machines/closet/wooden_closet_close.ogg'
 	open_sound_volume = 25
 	close_sound_volume = 50
 	can_install_electronics = FALSE
 	paint_jobs = null
 	elevation_open = 0
+	can_weld_shut = FALSE
 
 /obj/structure/closet/crate/trashcart //please make this a generic cart path later after things calm down a little
 	desc = "A heavy, metal trashcart with wheels."
@@ -187,6 +193,7 @@
 	base_icon_state = "laundry"
 	elevation = 14
 	elevation_open = 14
+	can_weld_shut = FALSE
 
 /obj/structure/closet/crate/trashcart/Initialize(mapload)
 	. = ..()
@@ -218,6 +225,12 @@
 	name = "medical crate"
 	icon_state = "medicalcrate"
 	base_icon_state = "medicalcrate"
+
+/obj/structure/closet/crate/deforest
+	name = "deforest medical crate"
+	desc = "A DeForest brand crate of medical supplies."
+	icon_state = "deforest"
+	base_icon_state = "deforest"
 
 /obj/structure/closet/crate/medical/department
 	icon_state = "medical"
@@ -287,6 +300,24 @@
 	icon_state = "food"
 	base_icon_state = "food"
 
+/obj/structure/closet/crate/freezer/donk
+	name = "donk co. fridge"
+	desc = "A Donk Co. brand fridge, keeps your donkpcokets and foam ammunition fresh!"
+	icon_state = "donkcocrate"
+	base_icon_state = "donkcocrate"
+
+/obj/structure/closet/crate/freezer/interdyne
+	name = "interdyne freezer"
+	desc = "Interdyne Pharmauceutics branded freezer. Might or might not contain cold steel, or fresh organs."
+	icon_state = "interdynefreezer"
+	base_icon_state = "interdynefreezer"
+
+/obj/structure/closet/crate/freezer/blood/interdyne
+	name = "interdyne blood freezer"
+	desc = "Interdyne Pharmauceutics branded freezer. Only freshly harvested- I mean, freshly kept blood inside!"
+	icon_state = "interdynefreezer"
+	base_icon_state = "interdynefreezer"
+
 /obj/structure/closet/crate/radiation
 	desc = "A crate with a radiation sign on it."
 	name = "radiation crate"
@@ -309,6 +340,12 @@
 	icon_state = "cargo"
 	base_icon_state = "cargo"
 
+/obj/structure/closet/crate/robust
+	name = "robust industries crate"
+	desc = "Robust Inustries LLC. crate. Feels oddly nostalgic."
+	icon_state = "robust"
+	base_icon_state = "robust"
+
 /obj/structure/closet/crate/cargo/mining
 	name = "mining crate"
 	icon_state = "mining"
@@ -318,6 +355,14 @@
 	name = "engineering crate"
 	icon_state = "engi_crate"
 	base_icon_state = "engi_crate"
+
+
+/obj/structure/closet/crate/nakamura
+	name = "nakamura engineering crate"
+	desc = "Crate from Nakamura Engineering, most likely containing engineering supplies or MODcores."
+	icon_state = "nakamura"
+	base_icon_state = "nakamura"
+
 
 /obj/structure/closet/crate/engineering/electrical
 	icon_state = "engi_e_crate"
@@ -378,6 +423,7 @@
 
 /obj/structure/closet/crate/goldcrate
 	name = "gold crate"
+	desc = "A rectangular steel crate. It seems to be painted to look like gold."
 	icon_state = "gold"
 	base_icon_state = "gold"
 
@@ -393,6 +439,7 @@
 
 /obj/structure/closet/crate/silvercrate
 	name = "silver crate"
+	desc = "A rectangular steel crate. It seems to be painted to look like silver."
 	icon_state = "silver"
 	base_icon_state = "silver"
 

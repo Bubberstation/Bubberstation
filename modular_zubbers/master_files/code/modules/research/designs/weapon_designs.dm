@@ -16,7 +16,7 @@
 	id = "wt550_ammo_flathead"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/rubber
+	build_path = /obj/item/ammo_box/magazine/wt550m9/flathead
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)

@@ -6,8 +6,10 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	layer = BELOW_OBJ_LAYER
+	interaction_flags_mouse_drop = NEED_DEXTERITY
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/monkey_recycler
+
 	var/stored_matter = 0
 	var/cube_production = 0.2
 	var/list/connected = list() //Keeps track of connected xenobio consoles, for deletion in /Destroy()
@@ -29,9 +31,9 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	. = ..()
 	cube_production = 0
 	for(var/datum/stock_part/servo/servo in component_parts)
-		cube_production += servo.tier * 0.2 // SKYRAT EDIT CHANGE - buffs to allow 1.2 cubes per monkey at T4 - ORIGINAL: cube_production += manipulator.tier * 0.1
+		cube_production += servo.tier * 0.125 // SKYRAT EDIT CHANGE - buffs to allow 1 cubes per monkey at T4 - ORIGINAL: cube_production += manipulator.tier * 0.1
 	for(var/datum/stock_part/matter_bin/matter_bin in component_parts)
-		cube_production += matter_bin.tier * 0.2 // SKYRAT EDIT CHANGE - buffs to allow 1.2 cubes per monkey at T4 - ORIGINAL: cube_production += matter_bin.tier * 0.1
+		cube_production += matter_bin.tier * 0.125 // SKYRAT EDIT CHANGE - buffs to allow 1 cubes per monkey at T4 - ORIGINAL: cube_production += matter_bin.tier * 0.1
 
 /obj/machinery/monkey_recycler/examine(mob/user)
 	. = ..()
@@ -59,7 +61,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	else
 		return ..()
 
-/obj/machinery/monkey_recycler/MouseDrop_T(mob/living/target, mob/living/user)
+/obj/machinery/monkey_recycler/mouse_drop_receive(mob/living/target, mob/living/user, params)
 	if(!istype(target))
 		return
 	if(ismonkey(target))
@@ -79,7 +81,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	stored_matter += cube_production
 	addtimer(VARSET_CALLBACK(src, pixel_x, base_pixel_x))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), user, span_notice("The machine now has [stored_matter] monkey\s worth of material stored.")))

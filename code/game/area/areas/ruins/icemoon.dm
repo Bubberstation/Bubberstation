@@ -18,9 +18,18 @@
 	base_icon_state = "block"
 	smoothing_flags = NONE
 	canSmoothWith = null
+	rust_resistance = RUST_RESISTANCE_BASIC
 
 /area/ruin/powered/mailroom
 	name = "\improper Abandoned Post Office"
+
+/area/ruin/comms_agent
+	name = "\improper Listening Post"
+	sound_environment = SOUND_ENVIRONMENT_CITY
+
+/area/ruin/comms_agent/maint
+	name = "\improper Listening Post Maintenance"
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
 
 /area/ruin/plasma_facility/commons
 	name = "\improper Abandoned Plasma Facility Commons"
@@ -35,7 +44,7 @@
 	mood_message = "I feel like I am being watched..."
 
 /area/ruin/bughabitat
-	name = "\improper Entemology Outreach Center"
+	name = "\improper Entomology Outreach Center"
 	mood_bonus = 1
 	mood_message = "This place seems strangely serene."
 
@@ -66,3 +75,7 @@
 /area/ruin/powered/hermit
 	name = "\improper Hermit's Cabin"
 
+/area/ruin/syndielab
+	name = "\improper Syndicate Lab"
+	ambience_index = AMBIENCE_DANGER
+	sound_environment = SOUND_ENVIRONMENT_CAVE

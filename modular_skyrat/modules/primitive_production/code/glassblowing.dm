@@ -41,36 +41,23 @@
 	desc = "A glass bowl that is capable of carrying things."
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_bowl"
-	custom_materials = null
+	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT)
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
-
-/obj/item/reagent_containers/cup/bowl/blowing_glass/Initialize(mapload)
-	. = ..()
-	set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = SHEET_MATERIAL_AMOUNT))
 
 /obj/item/reagent_containers/cup/beaker/large/blowing_glass
 	name = "glass cup"
 	desc = "A glass cup that is capable of carrying liquids."
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_cup"
-	custom_materials = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
-
-/obj/item/reagent_containers/cup/beaker/large/blowing_glass/Initialize(mapload)
-	. = ..()
-	set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = SHEET_MATERIAL_AMOUNT))
 
 /obj/item/plate/blowing_glass
 	name = "glass plate"
 	desc = "A glass plate that is capable of carrying things."
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "glass_plate"
-	custom_materials = null
+	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT)
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
-
-/obj/item/plate/blowing_glass/Initialize(mapload)
-	. = ..()
-	set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = SHEET_MATERIAL_AMOUNT))
 
 /obj/item/glassblowing/molten_glass
 	name = "molten glass"
@@ -156,22 +143,20 @@
 	if(glass.steps_remaining[STEP_JACKS])
 		. += "The glass requires [glass.steps_remaining[STEP_JACKS]] more jacking actions!"
 
-/obj/item/glassblowing/blowing_rod/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return ..()
-	if(istype(target, /obj/item/glassblowing/molten_glass))
-		var/obj/item/glassblowing/molten_glass/attacking_glass = target
-		var/obj/item/glassblowing/molten_glass/glass = glass_ref?.resolve()
-		if(glass)
-			to_chat(user, span_warning("[src] already has some glass on it!"))
-			return
-		if(!user.transferItemToLoc(attacking_glass, src))
-			return
-		glass_ref = WEAKREF(attacking_glass)
-		to_chat(user, span_notice("[src] picks up [target]."))
-		icon_state = "blow_pipe_full"
-		return
-	return ..()
+/obj/item/glassblowing/blowing_rod/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/glassblowing/molten_glass/attacking_glass = interacting_with
+	if(!istype(attacking_glass))
+		return NONE
+
+	if(glass_ref?.resolve())
+		to_chat(user, span_warning("[src] already has some glass on it!"))
+		return ITEM_INTERACT_BLOCKING
+	if(!user.transferItemToLoc(attacking_glass, src))
+		return ITEM_INTERACT_BLOCKING
+	glass_ref = WEAKREF(attacking_glass)
+	to_chat(user, span_notice("[src] picks up [attacking_glass]."))
+	icon_state = "blow_pipe_full"
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/glassblowing/blowing_rod/attackby(obj/item/attacking_item, mob/living/user, params)
 	var/actioning_speed = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * DEFAULT_TIMED
@@ -240,7 +225,6 @@
 	if(!Adjacent(usr))
 		return
 	add_fingerprint(usr)
-	usr.set_machine(src)
 
 	var/obj/item/glassblowing/molten_glass/glass = glass_ref?.resolve()
 	var/actioning_speed = usr.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * DEFAULT_TIMED

@@ -29,7 +29,10 @@
 	/// If true, being in an unsuitable location spoils the egg (ie. kills the component). If false, it just pauses the egg's development.
 	var/spoilable
 
-/datum/component/fertile_egg/Initialize(embryo_type, minimum_growth_rate, maximum_growth_rate, total_growth_required, current_growth, location_allowlist, spoilable, examine_message)
+	///callback after the egg hatches
+	var/datum/callback/post_hatch
+
+/datum/component/fertile_egg/Initialize(embryo_type, minimum_growth_rate, maximum_growth_rate, total_growth_required, current_growth, location_allowlist, spoilable, examine_message, post_hatch)
 	// Quite how an _area_ can be a fertile egg is an open question, but it still has a location. Technically.
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -41,6 +44,7 @@
 	src.current_growth = current_growth
 	src.location_allowlist = location_allowlist
 	src.spoilable = spoilable
+	src.post_hatch = post_hatch
 
 	START_PROCESSING(SSobj, src)
 
@@ -48,7 +52,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/datum/component/fertile_egg/process(delta_time)
+/datum/component/fertile_egg/process(seconds_per_tick)
 	var/atom/parent_atom = parent
 
 	if(location_allowlist && !is_type_in_typecache(parent_atom.loc, location_allowlist))
@@ -57,9 +61,11 @@
 			qdel(src)
 		return
 
-	current_growth += rand(minimum_growth_rate, maximum_growth_rate) * delta_time
-	if(current_growth >= total_growth_required)
-		parent_atom.visible_message(span_notice("[parent] hatches with a quiet cracking sound."))
-		new embryo_type(get_turf(parent_atom))
-		// We destroy the parent on hatch, which will destroy the component as well, which will stop us processing.
-		qdel(parent_atom)
+	current_growth += rand(minimum_growth_rate, maximum_growth_rate) * seconds_per_tick
+	if(current_growth < total_growth_required)
+		return
+	parent_atom.visible_message(span_notice("[parent] hatches with a quiet cracking sound."))
+	new embryo_type(get_turf(parent_atom))
+	post_hatch?.Invoke(embryo_type)
+	// We destroy the parent on hatch, which will destroy the component as well, which will stop us processing.
+	qdel(parent_atom)

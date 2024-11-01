@@ -15,7 +15,7 @@
 	var/boulders_held_max = 1
 	/// What sound plays when a thing operates?
 	var/usage_sound = 'sound/machines/mining/wooping_teleport.ogg'
-	/// Silo link to it's materials list.
+	/// Silo link to its materials list.
 	var/datum/component/remote_materials/silo_materials
 	/// Mining points held by the machine for miners.
 	var/points_held = 0
@@ -38,7 +38,7 @@
 
 	register_context()
 
-/obj/machinery/bouldertech/LateInitialize()
+/obj/machinery/bouldertech/post_machine_initialize()
 	. = ..()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
@@ -66,9 +66,9 @@
 	else if(istype(held_item, /obj/item/card/id) && points_held > 0)
 		context[SCREENTIP_CONTEXT_LMB] = "Claim mining points"
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "" : "Un"] Anchor"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Un" : ""]Anchor"
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
 		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
 
@@ -81,14 +81,14 @@
 	for(var/obj/item/boulder/potential_boulder in contents)
 		boulder_count += 1
 	. += span_notice("Storage capacity = <b>[boulder_count]/[boulders_held_max] boulders</b>.")
-	. += span_notice("Can process upto <b>[boulders_processing_count] boulders</b> at a time.")
+	. += span_notice("Can process up to <b>[boulders_processing_count] boulders</b> at a time.")
 
 	if(anchored)
-		. += span_notice("Its [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
 	else
 		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to start operations.")
 
-	. += span_notice("Its maintainence panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
 
 	if(panel_open)
 		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
@@ -96,9 +96,186 @@
 /obj/machinery/bouldertech/update_icon_state()
 	. = ..()
 	var/suffix = ""
-	if(!anchored || !is_operational || (machine_stat & (BROKEN | NOPOWER)) || panel_open)
+	if(!anchored || panel_open || !is_operational || (machine_stat & (BROKEN | NOPOWER)))
 		suffix = "-off"
 	icon_state ="[initial(icon_state)][suffix]"
+
+/obj/machinery/bouldertech/CanAllowThrough(atom/movable/mover, border_dir)
+	if(!anchored)
+		return FALSE
+	if(istype(mover, /obj/item/boulder))
+		return can_process_boulder(mover)
+	if(isgolem(mover))
+		return can_process_golem(mover)
+	return ..()
+
+/**
+ * Can we process the boulder, checks only the boulders state & machines capacity
+ * Arguments
+ *
+ * * obj/item/boulder/new_boulder - the boulder we are checking
+ */
+/obj/machinery/bouldertech/proc/can_process_boulder(obj/item/boulder/new_boulder)
+	PRIVATE_PROC(TRUE)
+	SHOULD_BE_PURE(TRUE)
+
+	//machine not operational
+	if(!anchored || panel_open || !is_operational || (machine_stat & (BROKEN | NOPOWER)))
+		return FALSE
+
+	//not a valid boulder
+	if(!istype(new_boulder) || QDELETED(new_boulder))
+		return FALSE
+
+	//someone is still processing this
+	if(new_boulder.processed_by)
+		return FALSE
+
+	//no space to hold boulders
+	var/boulder_count = 0
+	for(var/obj/item/boulder/potential_boulder in contents)
+		boulder_count += 1
+	if(boulder_count >= boulders_held_max)
+		return FALSE
+
+	//did we cooldown enough to accept a boulder
+	return COOLDOWN_FINISHED(src, accept_cooldown)
+
+/**
+ * Accepts a boulder into the machine. Used when a boulder is first placed into the machine.
+ * Arguments
+ *
+ * * obj/item/boulder/new_boulder - the boulder to accept
+ */
+/obj/machinery/bouldertech/proc/accept_boulder(obj/item/boulder/new_boulder)
+	PRIVATE_PROC(TRUE)
+	if(!can_process_boulder(new_boulder))
+		return FALSE
+
+	new_boulder.forceMove(src)
+
+	COOLDOWN_START(src, accept_cooldown, 1.5 SECONDS)
+
+	return TRUE
+
+/**
+ * Can we maim this golem
+ * Arguments
+ *
+ * * [rockman][mob/living/carbon/human] - the golem we are trying to main
+ */
+/obj/machinery/bouldertech/proc/can_process_golem(mob/living/carbon/human/rockman)
+	PRIVATE_PROC(TRUE)
+	SHOULD_BE_PURE(TRUE)
+
+	//not operatinal
+	if(!anchored || panel_open || !is_operational || (machine_stat & (BROKEN | NOPOWER)))
+		return FALSE
+
+	//still in cooldown
+	if(!COOLDOWN_FINISHED(src, accept_cooldown))
+		return FALSE
+
+	//not processable
+	if(!istype(rockman) || QDELETED(rockman) || rockman.body_position != LYING_DOWN)
+		return FALSE
+
+	return TRUE
+
+/**
+ * Accepts a golem to be processed, mainly for memes
+ * Arguments
+ *
+ * * [rockman][mob/living/carbon/human] - the golem we are trying to main
+ */
+/obj/machinery/bouldertech/proc/accept_golem(mob/living/carbon/human/rockman)
+	PRIVATE_PROC(TRUE)
+
+	if(!can_process_golem(rockman))
+		return
+
+	if(!use_energy(active_power_usage * 1.5, force = FALSE))
+		say("Not enough energy!")
+		return
+
+	maim_golem(rockman)
+	playsound(src, usage_sound, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+
+	COOLDOWN_START(src, accept_cooldown, 3 SECONDS)
+
+/// What effects actually happens to a golem when it is "processed"
+/obj/machinery/bouldertech/proc/maim_golem(mob/living/carbon/human/rockman)
+	PROTECTED_PROC(TRUE)
+
+	Shake(duration = 1 SECONDS)
+	rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("You get processed into bits by [src]!"))
+	rockman.investigate_log("was gibbed by [src] for being a golem", INVESTIGATE_DEATHS)
+	rockman.gib(DROP_ALL_REMAINS)
+
+/obj/machinery/bouldertech/proc/on_entered(datum/source, atom/movable/atom_movable)
+	SIGNAL_HANDLER
+
+	if(istype(atom_movable, /obj/item/boulder))
+		INVOKE_ASYNC(src, PROC_REF(accept_boulder), atom_movable)
+		return
+
+	if(isgolem(atom_movable))
+		INVOKE_ASYNC(src, PROC_REF(accept_golem), atom_movable)
+		return
+
+/**
+ * Looks for a boost to the machine's efficiency, and applies it if found.
+ * Applied more on the chemistry integration but can be used for other things if desired.
+ */
+/obj/machinery/bouldertech/proc/check_for_boosts()
+	PROTECTED_PROC(TRUE)
+
+	refining_efficiency = initial(refining_efficiency) //Reset refining efficiency to 100%.
+
+/**
+ * Checks if this machine can process this material
+ * Arguments
+ *
+ * * datum/material/mat - the material to process
+ */
+/obj/machinery/bouldertech/proc/can_process_material(datum/material/mat)
+	PROTECTED_PROC(TRUE)
+
+	return FALSE
+
+/obj/machinery/bouldertech/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(panel_open || user.combat_mode)
+		return NONE
+
+	if(istype(tool, /obj/item/boulder))
+		var/obj/item/boulder/my_boulder = tool
+		if(!accept_boulder(my_boulder))
+			balloon_alert_to_viewers("cannot accept!")
+			return ITEM_INTERACT_BLOCKING
+		balloon_alert_to_viewers("accepted")
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/card/id))
+		if(points_held <= 0)
+			balloon_alert_to_viewers("no points to claim!")
+			if(!COOLDOWN_FINISHED(src, sound_cooldown))
+				return ITEM_INTERACT_BLOCKING
+			COOLDOWN_START(src, sound_cooldown, 1.5 SECONDS)
+			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, FALSE)
+			return ITEM_INTERACT_BLOCKING
+
+		var/obj/item/card/id/id_card = tool
+		var/amount = tgui_input_number(user, "How many mining points do you wish to claim? ID Balance: [id_card.registered_account.mining_points], stored mining points: [points_held]", "Transfer Points", max_value = points_held, min_value = 0, round_value = 1)
+		if(!amount)
+			return ITEM_INTERACT_BLOCKING
+		if(amount > points_held)
+			amount = points_held
+		id_card.registered_account.mining_points += amount
+		points_held = round(points_held - amount)
+		to_chat(user, span_notice("You claim [amount] mining points from \the [src] to [id_card]."))
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/machinery/bouldertech/wrench_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
@@ -121,132 +298,12 @@
 	if(default_deconstruction_crowbar(tool))
 		return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/bouldertech/CanAllowThrough(atom/movable/mover, border_dir)
-	if(!anchored)
-		return FALSE
-	if(istype(mover, /obj/item/boulder))
-		var/obj/item/boulder/boulder = mover
-		return can_process_boulder(boulder)
-	return ..()
-
-/**
- * Can we process the boulder, checks only the boulders state & machines capacity
- * Arguments
- *
- * * obj/item/boulder/new_boulder - the boulder we are checking
- */
-/obj/machinery/bouldertech/proc/can_process_boulder(obj/item/boulder/new_boulder)
-	PRIVATE_PROC(TRUE)
-	SHOULD_BE_PURE(TRUE)
-
-	//machine not operational
-	if(!anchored || panel_open || !is_operational || machine_stat & (BROKEN | NOPOWER))
-		return FALSE
-
-	//not a valid boulder
-	if(!istype(new_boulder) || QDELETED(new_boulder))
-		return FALSE
-
-	//someone just processed this
-	if(new_boulder.processed_by)
-		return FALSE
-
-	//no space to hold boulders
-	var/boulder_count = 0
-	for(var/obj/item/boulder/potential_boulder in contents)
-		boulder_count += 1
-	if(boulder_count >= boulders_held_max)
-		return FALSE
-
-	//did we cooldown enough to accept a boulder
-	return COOLDOWN_FINISHED(src, accept_cooldown)
-
-/**
- * Accepts a boulder into the machine. Used when a boulder is first placed into the machine.
- * Arguments
- *
- * * obj/item/boulder/new_boulder - the boulder to accept
- */
-/obj/machinery/bouldertech/proc/accept_boulder(obj/item/boulder/new_boulder)
-	if(!can_process_boulder(new_boulder))
-		return FALSE
-
-	new_boulder.forceMove(src)
-
-	COOLDOWN_START(src, accept_cooldown, 1.5 SECONDS)
-
-	return TRUE
-
-/obj/machinery/bouldertech/proc/on_entered(datum/source, atom/movable/atom_movable)
-	SIGNAL_HANDLER
-
-	if(!can_process_boulder(atom_movable))
-		return
-
-	INVOKE_ASYNC(src, PROC_REF(accept_boulder), atom_movable)
-
-/**
- * Looks for a boost to the machine's efficiency, and applies it if found.
- * Applied more on the chemistry integration but can be used for other things if desired.
- */
-/obj/machinery/bouldertech/proc/check_for_boosts()
-	PROTECTED_PROC(TRUE)
-
-	refining_efficiency = initial(refining_efficiency) //Reset refining efficiency to 100%.
-
-/**
- * Checks if this machine can process this material
- * Arguments
- *
- * * datum/material/mat - the material to process
- */
-/obj/machinery/bouldertech/proc/can_process_material(datum/material/mat)
-	PROTECTED_PROC(TRUE)
-
-	return FALSE
-
-/obj/machinery/bouldertech/attackby(obj/item/attacking_item, mob/user, params)
-	if(panel_open)
-		return ..()
-
-	if(istype(attacking_item, /obj/item/boulder))
-		. = TRUE
-		var/obj/item/boulder/my_boulder = attacking_item
-		if(!accept_boulder(my_boulder))
-			balloon_alert_to_viewers("cannot accept!")
-			return
-		balloon_alert_to_viewers("accepted")
-		return
-
-	if(istype(attacking_item, /obj/item/card/id))
-		. = TRUE
-		if(points_held <= 0)
-			balloon_alert_to_viewers("no points to claim!")
-			if(!COOLDOWN_FINISHED(src, sound_cooldown))
-				return
-			COOLDOWN_START(src, sound_cooldown, 1.5 SECONDS)
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, FALSE)
-			return
-
-		var/obj/item/card/id/id_card = attacking_item
-		var/amount = tgui_input_number(user, "How many mining points do you wish to claim? ID Balance: [id_card.registered_account.mining_points], stored mining points: [points_held]", "Transfer Points", max_value = points_held, min_value = 0, round_value = 1)
-		if(!amount)
-			return
-		if(amount > points_held)
-			amount = points_held
-		id_card.registered_account.mining_points += amount
-		points_held = round(points_held - amount)
-		to_chat(user, span_notice("You claim [amount] mining points from \the [src] to [id_card]."))
-		return
-
-	return ..()
-
 /obj/machinery/bouldertech/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor first!")
+		balloon_alert(user, "anchor it first!")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(panel_open)
 		balloon_alert(user, "close panel!")
@@ -266,15 +323,20 @@
  * Accepts a boulder into the machinery, then converts it into minerals.
  * If the boulder can be fully processed by this machine, we take the materials, insert it into the silo, and destroy the boulder.
  * If the boulder has materials left, we make a copy of the boulder to hold the processable materials, take the processable parts, and eject the original boulder.
- * @param chosen_boulder The boulder to being breaking down into minerals.
+ * Arguments
+ *
+ * * obj/item/boulder/chosen_boulder - The boulder to being breaking down into minerals.
  */
 /obj/machinery/bouldertech/proc/breakdown_boulder(obj/item/boulder/chosen_boulder)
 	PRIVATE_PROC(TRUE)
 
 	if(QDELETED(chosen_boulder))
-		return FALSE
+		return
 	if(chosen_boulder.loc != src)
-		return FALSE
+		return
+	if(!use_energy(active_power_usage, force = FALSE))
+		say("Not enough energy!")
+		return
 
 	//if boulders are kept inside because there is no space to eject them, then they could be reprocessed, lets avoid that
 	if(!chosen_boulder.processed_by)
@@ -290,7 +352,6 @@
 			points_held = round(points_held + (quantity * possible_mat.points_per_unit * MINING_POINT_MACHINE_MULTIPLIER)) // put point total here into machine
 			if(!silo_materials.mat_container.insert_amount_mat(quantity, possible_mat))
 				rejected_mats[possible_mat] = quantity
-		use_power(active_power_usage)
 
 		//puts back materials that couldn't be processed
 		chosen_boulder.set_custom_materials(rejected_mats, refining_efficiency)
@@ -301,7 +362,7 @@
 			if(istype(chosen_boulder, /obj/item/boulder/artifact))
 				points_held = round((points_held + MINER_POINT_MULTIPLIER) * MINING_POINT_MACHINE_MULTIPLIER) /// Artifacts give bonus points!
 			chosen_boulder.break_apart()
-			return TRUE //We've processed all the materials in the boulder, so we can just destroy it in break_apart.
+			return//We've processed all the materials in the boulder, so we can just destroy it in break_apart.
 
 		chosen_boulder.processed_by = src
 
@@ -309,7 +370,7 @@
 	remove_boulder(chosen_boulder)
 
 /obj/machinery/bouldertech/process()
-	if(!anchored || panel_open || !is_operational || machine_stat & (BROKEN | NOPOWER))
+	if(!anchored || panel_open || !is_operational || (machine_stat & (BROKEN | NOPOWER)))
 		return
 
 	var/boulders_found = FALSE
@@ -346,6 +407,9 @@
 		return TRUE
 	if(locate(/obj/item/boulder) in loc) //There is an boulder in our loc. it has be removed so we don't clog up our loc with even more boulders
 		return FALSE
+	if(!length(specific_boulder.custom_materials))
+		specific_boulder.break_apart()
+		return TRUE
 
 	//Reset durability to little random lower value cause we have crushed it so many times
 	var/size = specific_boulder.boulder_size

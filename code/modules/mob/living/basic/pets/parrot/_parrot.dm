@@ -91,13 +91,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	AddElement(/datum/element/strippable, GLOB.strippable_parrot_items)
 	AddElement(/datum/element/simple_flying)
 	AddComponent(/datum/component/listen_and_repeat, desired_phrases = get_static_list_of_phrases(), blackboard_key = BB_PARROT_REPEAT_STRING)
-	AddComponent(\
-		/datum/component/tameable,\
-		food_types = edibles,\
-		tame_chance = 100,\
-		bonus_tame_chance = 0,\
-		after_tame = CALLBACK(src, PROC_REF(tamed)),\
-	)
+	AddComponent(/datum/component/tameable, food_types = edibles, tame_chance = 100, bonus_tame_chance = 0)
 
 	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attacking))
 	RegisterSignal(src, COMSIG_MOB_CLICKON, PROC_REF(on_click))
@@ -157,11 +151,6 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /mob/living/basic/parrot/get_status_tab_items()
 	. = ..()
 	. += "Held Item: [held_item]"
-
-/mob/living/basic/parrot/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
-	if(stat != DEAD) // parrots have evolved to let them fly in space because fucking uhhhhhhhhhh
-		return TRUE
-	return ..()
 
 /mob/living/basic/parrot/radio(message, list/message_mods = list(), list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
@@ -445,7 +434,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	return returnable_list
 
-/mob/living/basic/parrot/proc/tamed()
+/mob/living/basic/parrot/tamed(mob/living/tamer, atom/food)
 	new /obj/effect/temp_visual/heart(drop_location())
 
 /mob/living/basic/parrot/proc/drop_item_on_signal(mob/living/user)

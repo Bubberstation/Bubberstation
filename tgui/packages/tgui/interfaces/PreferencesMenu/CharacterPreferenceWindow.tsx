@@ -11,6 +11,7 @@ import { JobsPage } from './JobsPage';
 import { LanguagesPage } from './LanguagesMenu';
 import { LimbsPage } from './LimbsPage';
 // SKYRAT EDIT END
+import { LoadoutPage } from './loadout/index';
 import { MainPage } from './MainPage';
 import { PageButton } from './PageButton';
 import { QuirksPage } from './QuirksPage';
@@ -26,6 +27,7 @@ enum Page {
   // SKYRAT EDIT END
   Species,
   Quirks,
+  Loadout,
 }
 
 const CharacterProfiles = (props: {
@@ -43,7 +45,7 @@ const CharacterProfiles = (props: {
       <Flex.Item width="25%">
         <Dropdown
           width="100%"
-          selected={activeSlot}
+          selected={activeSlot as unknown as string}
           displayText={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
             value: slot,
@@ -95,6 +97,11 @@ export const CharacterPreferenceWindow = (props) => {
     case Page.Quirks:
       pageContents = <QuirksPage />;
       break;
+
+    case Page.Loadout:
+      pageContents = <LoadoutPage />;
+      break;
+
     default:
       exhaustiveCheck(currentPage);
   }
@@ -114,15 +121,12 @@ export const CharacterPreferenceWindow = (props) => {
               profiles={data.character_profiles}
             />
           </Stack.Item>
-
           {!data.content_unlocked && (
             <Stack.Item align="center">
               Buy BYOND premium for more slots!
             </Stack.Item>
           )}
-
           <Stack.Divider />
-
           <Stack.Item>
             <Stack fill>
               <Stack.Item grow>
@@ -133,6 +137,16 @@ export const CharacterPreferenceWindow = (props) => {
                   otherActivePages={[Page.Species]}
                 >
                   Character
+                </PageButton>
+              </Stack.Item>
+
+              <Stack.Item grow>
+                <PageButton
+                  currentPage={currentPage}
+                  page={Page.Loadout}
+                  setPage={setCurrentPage}
+                >
+                  Loadout
                 </PageButton>
               </Stack.Item>
 
@@ -195,9 +209,7 @@ export const CharacterPreferenceWindow = (props) => {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-
           <Stack.Divider />
-
           <Stack.Item>{pageContents}</Stack.Item>
         </Stack>
       </Window.Content>

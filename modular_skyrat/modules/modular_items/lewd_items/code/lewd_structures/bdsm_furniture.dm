@@ -7,7 +7,6 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/bdsm_furniture.dmi'
 	icon_state = "bdsm_bed"
 	max_integrity = 50
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
 
 /obj/item/bdsm_bed_kit
 	name = "bdsm bed construction kit"
@@ -16,7 +15,7 @@
 	icon_state = "bdsm_bed_kit"
 	w_class = WEIGHT_CLASS_HUGE
 
-/obj/item/bdsm_bed_kit/CtrlShiftClick(mob/user)
+/obj/item/bdsm_bed_kit/click_ctrl_shift(mob/user)
 	. = ..()
 	if(. == FALSE)
 		return FALSE
@@ -41,6 +40,10 @@
 	. = ..()
 	. += span_purple("[src] can be assembled by using Ctrl+Shift+Click while [src] is on the floor.")
 
+// previously NO_DECONSTRUCTION
+/obj/structure/bed/bdsm_bed/wrench_act_secondary(mob/living/user, obj/item/weapon)
+	return NONE
+
 /obj/structure/bed/bdsm_bed/post_buckle_mob(mob/living/affected_mob)
 	density = TRUE
 	//Push them up from the normal lying position
@@ -51,23 +54,17 @@
 	//Set them back down to the normal lying position
 	affected_mob.pixel_y = affected_mob.base_pixel_y + affected_mob.body_position_pixel_y_offset
 
-/obj/structure/bed/bdsm_bed/CtrlShiftClick(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
+/obj/structure/bed/bdsm_bed/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
 	to_chat(user, span_notice("You begin unfastening the frame of [src] and deflating the latex pillows..."))
 	if(!do_after(user, 8 SECONDS, src))
 		to_chat(user, span_warning("You fail to disassemble [src]."))
-		return FALSE
+		return
 
 	to_chat(user, span_notice("You disassemble [src]."))
 	var/obj/item/construction_kit/bdsm/bed/created_kit = new
 	created_kit.forceMove(loc)
 	qdel(src)
-
-	return TRUE
 
 /obj/structure/bed/bdsm_bed/Destroy()
 	unbuckle_all_mobs(TRUE)
@@ -239,7 +236,7 @@
 	add_fingerprint(user)
 	update_icon_state()
 	update_icon()
-	play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+	conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
 
 //Place the mob in the desired position after buckling
 /obj/structure/chair/x_stand/post_buckle_mob(mob/living/affected_mob)
@@ -285,21 +282,16 @@
 *	X-STAND CONSTRUCTION KIT
 */
 
-/obj/structure/chair/x_stand/CtrlShiftClick(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
+/obj/structure/chair/x_stand/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
 	to_chat(user, span_notice("You begin unfastening the frame of [src]..."))
 	if(!do_after(user, 8 SECONDS, src))
-		return FALSE
+		return
 
 	to_chat(user, span_notice("You disassemble [src]."))
 	new /obj/item/construction_kit/bdsm/x_stand(loc)
 	unbuckle_all_mobs()
 	qdel(src)
-	return TRUE
 
 /obj/structure/chair/x_stand/examine(mob/user)
 	. = ..()

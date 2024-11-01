@@ -119,6 +119,9 @@
 		"mouse" = TRUE,
 		"rabbit" = TRUE,
 		"repairbot" = TRUE,
+		"kitten" = TRUE,
+		"puppy" = TRUE,
+		"spider" = TRUE,
 	)
 	/// List of all available card overlays.
 	var/static/list/possible_overlays = list(
@@ -146,7 +149,7 @@
 	return ..()
 
 // See software.dm for Topic()
-/mob/living/silicon/pai/can_perform_action(atom/movable/target, action_bitflags)
+/mob/living/silicon/pai/can_perform_action(atom/target, action_bitflags)
 	action_bitflags |= ALLOW_RESTING // Resting is just an aesthetic feature for them
 	action_bitflags &= ~ALLOW_SILICON_REACH // They don't get long reach like the rest of silicons
 	return ..(target, action_bitflags)
@@ -161,8 +164,18 @@
 	QDEL_NULL(signaler)
 	QDEL_NULL(leash)
 	card = null
-	GLOB.pai_list.Remove(src)
 	return ..()
+
+// Need to override parent here because the message we dispatch is turf-based, not based on the location of the object because that could be fuckin anywhere
+/mob/living/silicon/pai/send_applicable_messages()
+	var/turf/location = get_turf(src)
+	location.visible_message(span_danger(get_visible_suicide_message()), null, span_hear(get_blind_suicide_message())) // null in the second arg here because we're sending from the turf
+
+/mob/living/silicon/pai/get_visible_suicide_message()
+	return "[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""
+
+/mob/living/silicon/pai/get_blind_suicide_message()
+	return "[src] bleeps electronically."
 
 /mob/living/silicon/pai/emag_act(mob/user)
 	return handle_emag(user)
@@ -210,7 +223,6 @@
 	if(istype(loc, /obj/item/modular_computer))
 		give_messenger_ability()
 	START_PROCESSING(SSfastprocess, src)
-	GLOB.pai_list += src
 	make_laws()
 	for(var/law in laws.inherent)
 		lawcheck += law
@@ -231,6 +243,11 @@
 	RegisterSignals(src, list(COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, COMSIG_LIVING_ADJUST_BURN_DAMAGE), PROC_REF(on_shell_damaged))
 	RegisterSignal(src, COMSIG_LIVING_ADJUST_STAMINA_DAMAGE, PROC_REF(on_shell_weakened))
 
+/mob/living/silicon/pai/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/pda/silicon/pai(src)
+	return ..()
+
 /mob/living/silicon/pai/make_laws()
 	laws = new /datum/ai_laws/pai()
 	return TRUE
@@ -250,7 +267,7 @@
 	return radio.screwdriver_act(user, tool)
 
 /mob/living/silicon/pai/updatehealth()
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	set_health(maxHealth - getBruteLoss() - getFireLoss())
 	update_stat()
@@ -343,6 +360,12 @@
 	to_chat(src, span_danger("WARN: Holochasis range restrictions disabled."))
 	return TRUE
 
+/mob/living/silicon/pai/on_saboteur(datum/source, disrupt_duration)
+	. = ..()
+	set_silence_if_lower(disrupt_duration)
+	balloon_alert(src, "muted!")
+	return TRUE
+
 /**
  * Resets the pAI and any emagged status.
  *
@@ -392,7 +415,13 @@
 	if(!master_ref)
 		balloon_alert(user, "access denied: no master")
 		return FALSE
-	var/new_laws = tgui_input_text(user, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", laws.supplied[1], 300)
+	var/new_laws = tgui_input_text(
+		user,
+		"Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.",
+		"pAI Directive Configuration",
+		laws.supplied[1],
+		max_length = 300,
+	)
 	if(!new_laws || !master_ref)
 		return FALSE
 	add_supplied_law(0, new_laws)
@@ -442,7 +471,7 @@
 	to_chat(src, span_userdanger("Your mental faculties leave you."))
 	to_chat(src, span_rose("oblivion... "))
 	balloon_alert(user, "personality wiped")
-	playsound(src, "sound/machines/buzz-two.ogg", 30, TRUE)
+	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	qdel(src)
 	return TRUE
 
@@ -451,8 +480,8 @@
 	SIGNAL_HANDLER
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cultitalic("You don't think this is what Nar'Sie had in mind when She asked for blood sacrifices..."))
-	return STOP_SACRIFICE
+		to_chat(cultist, span_cult_italic("You don't think this is what Nar'Sie had in mind when She asked for blood sacrifices..."))
+	return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 /// Updates the distance we can be from our pai card
 /mob/living/silicon/pai/proc/increment_range(increment_amount)

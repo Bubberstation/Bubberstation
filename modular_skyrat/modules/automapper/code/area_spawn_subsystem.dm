@@ -272,7 +272,7 @@ SUBSYSTEM_DEF(area_spawn)
  * Attempts to find a location using an algorithm to spawn the desired atom.
  */
 /datum/area_spawn/proc/try_spawn()
-	if(SSmapping.config.map_name in blacklisted_stations)
+	if(SSmapping.current_map.map_name in blacklisted_stations)
 		return
 
 	// Turfs that are available
@@ -288,7 +288,7 @@ SUBSYSTEM_DEF(area_spawn)
 
 	if(!LAZYLEN(available_turfs))
 		if(!optional)
-			log_mapping("[src.type] could not find any suitable turfs on map [SSmapping.config.map_name]!")
+			log_mapping("[src.type] could not find any suitable turfs on map [SSmapping.current_map.map_name]!")
 			SSarea_spawn.failed_area_spawns += src.type
 		return
 
@@ -326,7 +326,7 @@ SUBSYSTEM_DEF(area_spawn)
  * Spawn the atoms.
  */
 /datum/area_spawn_over/proc/try_spawn()
-	if(SSmapping.config.map_name in blacklisted_stations)
+	if(SSmapping.current_map.map_name in blacklisted_stations)
 		return
 
 	for(var/area_type in target_areas)
@@ -358,11 +358,7 @@ SUBSYSTEM_DEF(area_spawn)
 /**
  * Show overlay over area of priorities. Wall priority over open priority.
  */
-/client/proc/test_area_spawner(area/area)
-	set category = "Debug"
-	set name = "Test Area Spawner"
-	set desc = "Show area spawner placement candidates as an overlay."
-
+ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG, area/area)
 	for(var/obj/effect/turf_test/old_test in area)
 		qdel(old_test)
 
