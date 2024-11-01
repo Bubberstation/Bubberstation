@@ -91,9 +91,9 @@
 	sechud_icon_state = SECHUD_CLOWN
 	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
 
-/datum/id_trim/syndicom/bubberstation/persistence/commsoperative
+/datum/id_trim/syndicom/bubberstation/persistence/assistant
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	assignment = "Persistence Communications Operative"
+	assignment = "Persistence off duty staff"
 	trim_state = "DS-2 General Staff"
 	sechud_icon_state = SECHUD_CLOWN
-	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
+	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS)

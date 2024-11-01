@@ -60,6 +60,9 @@
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/stationmed
 	outfit = /datum/outfit/persistence/syndicate/stationmed
 
+/obj/effect/mob_spawn/ghost_role/human/persistence/assistant
+	outfit = /datum/outfit/persistence/assistant
+
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff
 	outfit = /datum/outfit/persistence/syndicate/brigoff
 
@@ -77,9 +80,6 @@
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/moraleofficer
 	outfit = /datum/outfit/persistence/command/moraleofficer
-
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/commsop
-	outfit = /datum/outfit/persistence/command/commsop
 
 // Codespeak Granter
 
@@ -217,7 +217,7 @@
 	ears = /obj/item/radio/headset/interdyne
 
 /datum/outfit/persistence/syndicate/quartermaster
-	name = "Persistence Quarter Master"
+	name = "Persistence Cargo Tech"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
 	belt = /obj/item/storage/bag/ore
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/cargo
@@ -241,6 +241,26 @@
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
+
+
+/datum/outfit/persistence/assistant
+	name = "Persistence Off Duty Staff"
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/assistant
+	uniform = /obj/item/clothing/under/syndicate
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation = 1,
+		)
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	ears = /obj/item/radio/headset/interdyne
+	shoes = /obj/item/clothing/shoes/combat
+
+/datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
+	syndicate.faction |= ROLE_SYNDICATE
+	return ..()
+
 
 // Dauntless Command
 
@@ -309,24 +329,3 @@
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/moraleofficer
-
-/datum/outfit/persistence/command/commsop
-	name = "Persistence Communications Operative"
-	id = /obj/item/card/id/advanced/chameleon
-	id_trim = /datum/id_trim/chameleon/operative
-	uniform = /obj/item/clothing/under/syndicate
-	mask = /obj/item/clothing/mask/gas/syndicate
-	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/survival = 1,
-		/obj/item/crowbar = 1,
-		/obj/item/choice_beacon/syndicateoffstation = 1,
-		)
-	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	ears = /obj/item/radio/headset/interdyne/command
-	shoes = /obj/item/clothing/shoes/combat
-	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/commsoperative
-
-/datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
-	return ..()

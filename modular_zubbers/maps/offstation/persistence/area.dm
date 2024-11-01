@@ -124,8 +124,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/liason
 	name = "Persistance Corporate Liason Quarters"
 
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/communications
-	name = "Persistance Asset Monitor Quarters"
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant
+	name = "Persistance Assistant"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale
 	name = "Persistance Morale Officer Quarters"
