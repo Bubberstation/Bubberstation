@@ -106,6 +106,7 @@
 	product = /obj/item/food/grown/shell/sand
 	mutatelist = list(/obj/item/seeds/uraniberry,
 					/obj/item/seeds/aubergine,
+					/obj/item/seeds/ferrotuber,
 					/obj/item/seeds/adamapple)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/silicon = 0.1)
@@ -386,7 +387,7 @@
 	species = "ore"
 	plantname = "titanituber"
 	product = /obj/item/food/grown/shell/titanituber
-	mutatelist = list(/obj/item/seeds/dimantis)
+	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
@@ -452,7 +453,7 @@
 	species = "ore"
 	plantname = "runescooper"
 	product = /obj/item/food/grown/shell/runescooper
-	mutatelist = list(/obj/item/seeds/dimantis)
+	mutatelist = list(/obj/item/seeds/bananiumberry)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
