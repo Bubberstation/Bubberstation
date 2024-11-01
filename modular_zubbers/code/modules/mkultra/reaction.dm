@@ -29,15 +29,15 @@
 		enthrall_chem.purity = 0
 		return
 	if (mob_blood.data["gender"] == "female")
-		enthrall_chem.data["creatorGender"] = "Mistress"
-		enthrall_chem.creatorGender = "Mistress"
+		enthrall_chem.data["enthrall_gender"] = "Mistress"
+		enthrall_chem.enthrall_gender = "Mistress"
 	else
-		enthrall_chem.data["creatorGender"] = "Master"
-		enthrall_chem.creatorGender = "Master"
-	enthrall_chem.data["creatorName"] = mob_blood.data["real_name"]
-	enthrall_chem.creatorName = mob_blood.data["real_name"]
-	enthrall_chem.data["creatorCkey"] = mob_blood.data["ckey"]
-	enthrall_chem.creatorCkey = mob_blood.data["ckey"]
+		enthrall_chem.data["enthrall_gender"] = "Master"
+		enthrall_chem.enthrall_gender = "Master"
+	enthrall_chem.data["enthrall_name"] = mob_blood.data["real_name"]
+	enthrall_chem.enthrall_name = mob_blood.data["real_name"]
+	enthrall_chem.data["enthrall_ckey"] = mob_blood.data["ckey"]
+	enthrall_chem.enthrall_ckey = mob_blood.data["ckey"]
 
 //Kaboom
 /datum/chemical_reaction/mkultra/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added)
