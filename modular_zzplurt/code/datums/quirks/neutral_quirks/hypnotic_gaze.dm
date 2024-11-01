@@ -1,5 +1,8 @@
 #define HYPNOEYES_COOLDOWN_NORMAL 3 SECONDS
 #define HYPNOEYES_COOLDOWN_BRAINWASH 30 SECONDS
+#define HYPNOEYES_ACTION_TIME 5 SECONDS
+#define HYPNOEYES_SLEEP_TIME 2 MINUTES
+#define HYPNOEYES_DROWSINESS 40
 
 // Disabled in favor of new NIFSoft method
 /*
@@ -64,12 +67,25 @@
 	button_icon_state = "hypnotize"
 
 	// Should this create a brainwashed victim?
-	// Enabled by using Mesmer Eyes with the quirk
+	// Currently unused in this codebase
 	var/mode_brainwash = FALSE
 
 	// Terminology used
 	var/term_hypno = "hypnotize"
 	var/term_suggest = "suggestion"
+
+// Upgraded variant
+/datum/action/cooldown/hypnotize/brainwash
+	name = "Brainwash"
+	desc = "Stare deeply into someone's eyes, converting them into a loyal mind slave."
+	cooldown_time = HYPNOEYES_COOLDOWN_BRAINWASH
+
+	// Should this create a brainwashed victim?
+	mode_brainwash = TRUE
+
+	// Terminology used
+	term_hypno = "brainwash"
+	term_suggest = "command"
 
 /datum/action/cooldown/hypnotize/IsAvailable(feedback)
 	. = ..()
@@ -103,7 +119,7 @@
 		return FALSE
 
 	// Check if owner is blind
-	if(action_owner.has_status_effect(/datum/status_effect/grouped/blindness))
+	if(action_owner.is_blind())
 		// Warn the user, then return
 		to_chat(action_owner, span_warning("Your blind [owner_eyes] are of no use."))
 		return FALSE
@@ -171,7 +187,7 @@
 	StartCooldown()
 
 	// Alert user
-	to_chat(owner, span_mind_control("Your hypnotic power [toggle_message] You'll need time to adjust before using it again."))
+	to_chat(owner, span_warning("Your hypnotic power [toggle_message] You'll need time to adjust before using it again."))
 
 	// Log interaction
 	log_admin("[key_name(owner)] [log_message_type] hypnotic brainwashing powers.")
@@ -197,12 +213,10 @@
 
 	// Check for alien
 	// Taken from eyedropper check
-	/*
 	if(isalien(grab_target))
 		// Warn the user, then return
-		to_chat(action_owner, span_warning("[grab_target] doesn\'t seem to have any eyes!"))
+		to_chat(action_owner, span_warning("[grab_target] does not seem to have any eyes!"))
 		return
-	*/
 
 	// Check for carbon human target
 	if(!ishuman(grab_target))
@@ -224,6 +238,12 @@
 
 	// Define target
 	var/mob/living/carbon/human/action_target = grab_target
+
+	// Check for sleep
+	if(action_target.IsSleeping())
+		// Warn the user, then return
+		to_chat(action_owner, span_warning("You can't [term_hypno] [action_target] whilst [action_target.p_theyre()] asleep!"))
+		return
 
 	// Check if target has a mind
 	if(!action_target.mind)
@@ -255,28 +275,28 @@
 	// Check if target has eye protection
 	if(action_target.get_eye_protection())
 		// Warn the user, then return
-		to_chat(action_owner, span_warning("You have difficulty focusing on [action_target]'s eyes due to some form of protection, and are left unable to [term_hypno] them."))
+		to_chat(action_owner, span_warning("You have difficulty focusing on [action_target]'s eyes due to some form of eye protection, and are left unable to [term_hypno] [action_target.p_them()]."))
 		to_chat(action_target, span_notice("[action_owner] stares intensely at you, but stops after a moment."))
 		return
 
 	// Check if target is blind
-	if(action_owner.has_status_effect(/datum/status_effect/grouped/blindness))
+	if(action_target.is_blind())
 		// Warn the user, then return
 		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, but see nothing but emptiness."))
 		return
 
-	// Check for anti-magic
-	// This does not include TRAIT_HOLY
-	if(action_target.can_block_magic())
+	// Check for mental anti-magic
+	// This should not apply to the Hallowed quirk!
+	if(action_target.can_block_magic(MAGIC_RESISTANCE_MIND))
 		// Warn the users, then return
-		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes. They stare back at you as if nothing had happened."))
-		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes for a moment. You sense nothing out of the ordinary from them."))
+		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes. [action_target.p_They()] stare[action_target.p_s()] back at you as if nothing had happened."))
+		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes for a moment. You sense nothing out of the ordinary from [action_owner.p_them()]."))
 		return
 
-	// Check client pref for hypno
-	if(action_target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) //TODO: Add the correct pref for hypno
+	// Check if client has denied hypnosis preference
+	if(READ_PREFS(action_target, choiced/erp_status_hypno) == "No")
 		// Warn the users, then return
-		to_chat(action_owner, span_warning("You sense that [action_target] would rather not be hypnotized, and decide to respect their wishes."))
+		to_chat(action_owner, span_warning("You sense that [action_target] is not comfortable with this type of interaction, and decide to respect [action_target.p_their()] preferences."))
 		to_chat(action_target, span_notice("[action_owner] stares into your eyes with a strange conviction, but turns away after a moment."))
 		return
 
@@ -287,18 +307,19 @@
 		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes for a moment, before a buzzing sound emits from your head."))
 		return
 
+	// Check if target mind is unconvertable
+	if(HAS_MIND_TRAIT(action_target, TRAIT_UNCONVERTABLE))
+		// Warn the users, then return
+		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, but nothing happens. Your power cannot control [action_target.p_them()]."))
+		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes for a moment, then stops."))
+		return
+
 	// Check for sleep immunity
 	// This is required for SetSleeping to trigger
-	if(HAS_TRAIT(action_target, TRAIT_SLEEPIMMUNE))
+	if(HAS_TRAIT(action_target, TRAIT_SLEEPIMMUNE) || !(action_target.status_flags & CANUNCONSCIOUS))
 		// Warn the users, then return
 		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, and see nothing but unrelenting energy. You won't be able to subdue [action_target.p_them()] in this state!"))
 		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes, but sees something unusual about you..."))
-		return
-
-	// Check for sleep
-	if(action_target.IsSleeping())
-		// Warn the user, then return
-		to_chat(action_owner, span_warning("You can't [term_hypno] [action_target] whilst [action_target.p_theyre()] asleep!"))
 		return
 
 	// Check for combat mode
@@ -313,7 +334,7 @@
 	to_chat(action_target, span_warning("[action_owner] stares intensely into your eyes..."))
 
 	// Try to perform action timer
-	if(!do_after(action_owner, 5 SECONDS, action_target))
+	if(!do_after(action_owner, HYPNOEYES_ACTION_TIME, action_target))
 		// Action timer was interrupted
 		// Warn the user, then return
 		to_chat(action_owner, span_warning("You lose concentration on [action_target], and fail to [term_hypno] [action_target.p_them()]!"))
@@ -324,7 +345,7 @@
 	var/input_consent
 
 	// Check for non-consensual setting
-	if(action_target.client?.prefs.read_preference(/datum/preference/choiced/erp_status_nc) != "Yes")
+	if(READ_PREFS(action_target, choiced/erp_status_nc) != "Yes")
 		// Non-consensual is NOT enabled
 		// Define warning suffix
 		var/warning_target = (mode_brainwash ? "You will become a brainwashed victim, and be required to follow all orders given. [action_owner] accepts all responsibility for antagonistic orders." : "These are only suggestions, and you may disobey cases that strongly violate your character.")
@@ -343,16 +364,16 @@
 	action_target.visible_message(span_warning("[action_target] falls into a deep slumber!"), span_danger("Your eyelids gently shut as you fall into a deep slumber. All you can hear is [action_owner]'s voice as you commit to following all of their [term_suggest]s."))
 
 	// Set sleeping
-	action_target.SetSleeping(2 MINUTES)
+	action_target.SetSleeping(HYPNOEYES_SLEEP_TIME)
 
-	// Set drowsiness
-	action_target.set_drowsiness(max(action_target.get_timed_status_effect_duration(/datum/status_effect/drowsiness), 40))
+	// Set drowsiness if below value
+	action_target.set_drowsiness_if_lower(HYPNOEYES_DROWSINESS)
 
 	// Define warning suffix
 	var/warning_owner = (mode_brainwash ? "You are responsible for any antagonistic actions they take as a result of the brainwashing." : "This is only a suggestion, and [action_target.p_they()] may disobey if it violates [action_target.p_their()] character.")
 
 	// Prompt action owner for response
-	var/input_suggestion = input("What would you like to suggest [action_target] do? Leave blank to release [action_target.p_them()] instead. [warning_owner]", "Hypnotic [term_suggest]", null, null)
+	var/input_suggestion = input("What [term_suggest] do you give [action_target]? Leave blank to release [action_target.p_them()] instead. [warning_owner]", "Hypnotic [term_suggest]", null, null)
 
 	// Check if input text exists
 	if(!input_suggestion)
@@ -374,13 +395,13 @@
 	// Not in brainwash mode
 	else
 		// Display message to target
-		to_chat(action_target, span_mind_control("...[input_suggestion]..."))
+		to_chat(action_target, span_reallybig(span_hypnophrase("...[input_suggestion]...")))
 
 	// Start cooldown
 	StartCooldown()
 
 	// Display message to action owner
-	to_chat(action_owner, "You whisper your [term_suggest] in a smooth calming voice to [action_target]")
+	to_chat(action_owner, "You whisper your [term_suggest] in a smooth calming voice to [action_target].")
 
 	// Play a sound effect
 	playsound(action_target, 'sound/effects/magic/smoke.ogg', 20, 1)
@@ -394,3 +415,6 @@
 
 #undef HYPNOEYES_COOLDOWN_NORMAL
 #undef HYPNOEYES_COOLDOWN_BRAINWASH
+#undef HYPNOEYES_ACTION_TIME
+#undef HYPNOEYES_SLEEP_TIME
+#undef HYPNOEYES_DROWSINESS
