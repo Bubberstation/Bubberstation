@@ -110,3 +110,9 @@
 	surplus = 50
 	limited_stock = 1
 	purchasable_from = UPLINK_TRAITORS | UPLINK_SPY
+
+/datum/uplink_item/stealthy_weapons/slipers
+	name = "Syndi Slipers"
+	desc = "For the criminal trying to take their shoe-stealing game to the next level. Simply throw that at a would-be victims legs. WARNING: Removal will require the help of a friend"
+	item = /obj/item/clothing/shoes/slipers
+	cost = 6
