@@ -257,6 +257,13 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
+"aU" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/fermenting_barrel,
+/turf/open/floor/stone,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "aV" = (
 /obj/structure/fireplace,
 /obj/item/stack/sheet/mineral/wood/fifty,
@@ -2337,9 +2344,6 @@
 /obj/machinery/chem_dispenser/drinks{
 	dir = 1
 	},
-/obj/structure/sign/chalkboard_menu{
-	pixel_y = -32
-	},
 /obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
@@ -2686,11 +2690,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
-"in" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/microwave/engineering/cell_included,
-/turf/open/floor/iron/kitchen/diagonal,
-/area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "io" = (
 /obj/machinery/modular_computer/preset/curator{
 	dir = 8
@@ -4005,6 +4004,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "mu" = (
@@ -4667,6 +4667,10 @@
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
 /area/icemoon/underground/explored)
+"oJ" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/stone,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "oK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -4727,6 +4731,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/biogenerator/medstation/directional/east,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "oV" = (
@@ -5613,6 +5621,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "rN" = (
 /obj/machinery/light/directional/north,
+/obj/machinery/seed_extractor{
+	pixel_x = -3
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "rO" = (
@@ -5865,7 +5876,9 @@
 /obj/structure/sign/poster/contraband/kudzu/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "sA" = (
@@ -6997,8 +7010,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 6
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/plantgenes,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "wa" = (
@@ -7202,10 +7213,7 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 8
 	},
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
-"wH" = (
-/obj/machinery/chem_dispenser/mutagensaltpeter,
+/mob/living/basic/chicken/teshari,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "wI" = (
@@ -7726,6 +7734,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal/bin,
+/obj/structure/sign/poster/contraband/got_wood/directional/south,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "yh" = (
@@ -7898,10 +7907,8 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "yJ" = (
-/obj/machinery/seed_extractor{
-	pixel_x = -3
-	},
 /obj/machinery/light/directional/north,
+/obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "yL" = (
@@ -8287,6 +8294,10 @@
 /obj/structure/sign/poster/official/no_erp/directional/west,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"zY" = (
+/obj/structure/window/reinforced/plasma/spawner/directional/south,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Aa" = (
 /obj/structure/safe/abovetilefloor,
 /turf/open/floor/mineral/plastitanium,
@@ -8400,11 +8411,11 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Az" = (
 /obj/structure/fireplace,
-/obj/machinery/digital_clock/directional/east,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service{
 	dir = 8;
 	name = "Persistence General Staff"
 	},
+/obj/machinery/digital_clock/directional/east,
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
 "AA" = (
@@ -8417,6 +8428,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "AD" = (
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "AE" = (
@@ -8540,7 +8555,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
-/obj/machinery/biogenerator,
+/obj/machinery/biogenerator/organic_printer,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "AU" = (
@@ -10217,7 +10232,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Gx" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/biogenerator/medstation/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -10226,6 +10240,9 @@
 	dir = 1
 	},
 /obj/machinery/duct,
+/obj/structure/sign/chalkboard_menu{
+	pixel_y = -32
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Gz" = (
@@ -10503,6 +10520,7 @@
 	},
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/north,
+/obj/machinery/microwave/engineering/cell_included,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Hs" = (
@@ -11051,6 +11069,11 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant)
+"IY" = (
+/obj/machinery/biogenerator,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "IZ" = (
 /obj/structure/toilet{
 	pixel_y = 13;
@@ -11257,11 +11280,13 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Js" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner,
-/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Jt" = (
@@ -11585,6 +11610,9 @@
 "Ky" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/plantgenes,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/structure/window/reinforced/plasma/spawner/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Kz" = (
@@ -12051,6 +12079,13 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
+"Me" = (
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/mob/living/basic/cow,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Mf" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/white/diagonal,
@@ -13813,6 +13848,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "RK" = (
 /obj/machinery/light/directional/west,
+/obj/machinery/smartfridge/disks,
+/obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "RL" = (
@@ -14333,6 +14370,7 @@
 	dir = 4
 	},
 /obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/sign/poster/contraband/kudzu/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "TH" = (
@@ -14955,7 +14993,6 @@
 /obj/item/plant_analyzer,
 /obj/item/shovel/spade,
 /obj/item/cultivator,
-/obj/item/construction/plumbing,
 /obj/structure/closet/crate/secure/arc,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
@@ -15160,6 +15197,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 10
 	},
+/obj/structure/sign/poster/contraband/andromeda_bitters/directional/west,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "WA" = (
@@ -15305,9 +15343,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "WU" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/box/disks_plantgene,
-/obj/machinery/smartfridge/disks,
+/obj/item/construction/plumbing,
+/obj/structure/rack,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "WV" = (
@@ -15453,7 +15490,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Xu" = (
 /obj/machinery/smartfridge/food,
-/turf/open/floor/plating/reinforced,
+/turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Xv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer4{
@@ -18174,7 +18211,7 @@ My
 My
 My
 yc
-TE
+oJ
 KQ
 wG
 NZ
@@ -18246,7 +18283,7 @@ My
 My
 JE
 yc
-TE
+oJ
 EN
 dz
 NZ
@@ -18390,9 +18427,9 @@ My
 My
 JE
 Ne
-TE
+oJ
 ny
-wG
+Me
 wS
 Kc
 Rj
@@ -18462,7 +18499,7 @@ TL
 My
 JE
 Ne
-TE
+oJ
 ir
 TG
 wS
@@ -18534,8 +18571,8 @@ My
 My
 aJ
 Ne
-TE
 mP
+aU
 AT
 wS
 iK
@@ -18673,15 +18710,15 @@ cw
 WP
 fl
 uZ
-wH
+My
 TL
 My
-My
+zY
 tm
 oU
 ui
 vY
-wS
+IY
 eo
 xU
 LB
@@ -18750,7 +18787,7 @@ Bl
 Bl
 Bl
 ND
-uZ
+jH
 BZ
 Xu
 ZK
@@ -19111,7 +19148,7 @@ vC
 rI
 OP
 mH
-in
+Zu
 Pa
 FV
 Lr
