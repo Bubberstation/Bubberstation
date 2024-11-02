@@ -900,12 +900,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "db" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
 /obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/plating/reinforced,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "dc" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -925,7 +921,6 @@
 	dir = 8;
 	networks = list("dauntless_xeno")
 	},
-/obj/structure/sign/xenobio_guide/directional/east,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "df" = (
@@ -1503,6 +1498,10 @@
 /obj/effect/turf_decal/tile/dark_red,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/machinery/light/directional/north,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("persistence_xeno");
+	name = "persistence_xeno_north"
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "ff" = (
@@ -8464,6 +8463,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "AP" = (
 /obj/machinery/mining_weather_monitor/directional/south,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "AQ" = (
@@ -9352,9 +9355,6 @@
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground/explored)
 "DL" = (
-/obj/machinery/camera/autoname/directional/west{
-	network = list("persistence_xeno")
-	},
 /obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Slime Euthanization Chamber";
 	req_access = list("syndicate")
@@ -10305,11 +10305,6 @@
 "GB" = (
 /obj/effect/turf_decal/tile/dark_red/half,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/machinery/camera/autoname/directional/north{
-	network = list("persistence_xeno");
-	name = "persistence_xeno_north"
-	},
-/obj/structure/sign/warning/test_chamber/directional/north,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "GD" = (
@@ -11080,7 +11075,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "IS" = (
-/obj/structure/sign/xenobio_guide/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4;
@@ -11998,6 +11992,12 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+"LT" = (
+/obj/machinery/camera/autoname/directional/west{
+	network = list("persistence_xeno")
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "LW" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -15068,6 +15068,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "VJ" = (
+/obj/structure/sign/xenobio_guide/directional/east,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
@@ -15093,6 +15094,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"VP" = (
+/obj/structure/sign/xenobio_guide/directional/west,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("persistence_xeno");
+	name = "persistence_xeno_north"
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "VQ" = (
 /obj/structure/chair/office/tactical{
 	dir = 4
@@ -17180,7 +17189,7 @@ ia
 ia
 QO
 kQ
-QO
+WN
 AP
 Vq
 Ey
@@ -17250,9 +17259,9 @@ Tx
 ia
 wJ
 ll
-WN
+dk
 db
-Vq
+on
 fe
 HK
 HK
@@ -17321,8 +17330,8 @@ QO
 YO
 nB
 on
-Vq
-on
+VP
+LT
 GB
 vx
 zx

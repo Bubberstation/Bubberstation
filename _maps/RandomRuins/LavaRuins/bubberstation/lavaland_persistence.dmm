@@ -419,6 +419,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "bz" = (
 /obj/machinery/mining_weather_monitor/directional/south,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "bA" = (
@@ -1105,6 +1109,14 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
+"dD" = (
+/obj/structure/sign/xenobio_guide/directional/west,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("persistence_xeno");
+	name = "persistence_xeno_north"
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "dE" = (
 /obj/structure/closet/crate,
 /obj/item/skillchip/job/engineer,
@@ -2721,15 +2733,6 @@
 "it" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
-"iu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "iv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -3583,6 +3586,10 @@
 /obj/effect/turf_decal/tile/dark_red,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/machinery/light/directional/north,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("persistence_xeno");
+	name = "persistence_xeno_north"
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "lb" = (
@@ -3703,6 +3710,15 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
+"lu" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/evac)
 "lv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -7730,9 +7746,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "yk" = (
-/obj/machinery/camera/autoname/directional/west{
-	network = list("persistence_xeno")
-	},
 /obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Slime Euthanization Chamber";
 	req_access = list("syndicate")
@@ -7843,6 +7856,12 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
+"yF" = (
+/obj/machinery/camera/autoname/directional/west{
+	network = list("persistence_xeno")
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "yG" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -8650,11 +8669,6 @@
 "Bt" = (
 /obj/effect/turf_decal/tile/dark_red/half,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/machinery/camera/autoname/directional/north{
-	network = list("persistence_xeno");
-	name = "persistence_xeno_north"
-	},
-/obj/structure/sign/warning/test_chamber/directional/north,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Bu" = (
@@ -11251,7 +11265,6 @@
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Jt" = (
-/obj/structure/sign/xenobio_guide/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4;
@@ -11288,12 +11301,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
 "Jy" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
 /obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/plating/reinforced,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "Jz" = (
 /obj/effect/turf_decal/siding/wood{
@@ -17195,8 +17204,8 @@ CL
 vN
 vN
 zi
-wu
-zi
+lu
+Re
 bz
 DY
 bi
@@ -17267,10 +17276,10 @@ zi
 rM
 vN
 cT
-iu
-Re
+wu
+aB
 Jy
-DY
+dY
 kY
 XR
 XR
@@ -17341,8 +17350,8 @@ zi
 xi
 GE
 dY
-DY
-dY
+dD
+yF
 Bt
 XY
 Zi
