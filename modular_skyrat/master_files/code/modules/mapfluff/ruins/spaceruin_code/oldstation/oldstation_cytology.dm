@@ -1,3 +1,3 @@
-// Beakers capacity default is 50
+// Beakers capacity 50u -> 60u
 /obj/item/reagent_containers/cup/beaker/oldstation
-	amount_per_transfer_from_this = 50
+	amount_per_transfer_from_this = 60
