@@ -753,12 +753,12 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "cD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "cE" = (
@@ -822,6 +822,15 @@
 	icon_state = "plastitanium"
 	},
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
+"cK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/mob/living/basic/mining_drone/interdyne{
+	name = "Molly"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "cR" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1724,7 +1733,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
 "fV" = (
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/assistant,
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/assistant{
+	name = "Persistence Off Duty Staff"
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant)
 "fW" = (
@@ -2059,9 +2070,6 @@
 "gX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/mob/living/basic/mining_drone/interdyne{
-	name = "Molly"
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "hc" = (
@@ -3356,6 +3364,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/machinery/monkey_recycler,
 /obj/structure/sign/flag/syndicate/directional/north,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "ll" = (
@@ -3989,7 +3998,8 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff{
-	dir = 4
+	dir = 4;
+	name = "Persistence Brig Officer"
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
@@ -4490,7 +4500,8 @@
 	dir = 9
 	},
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/syndicate/stationmed{
-	dir = 4
+	dir = 4;
+	name = "Persistence Medical Officer"
 	},
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
@@ -5087,7 +5098,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral,
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral{
+	name = "Persistence Rig Manager"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "qx" = (
@@ -5255,7 +5268,8 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/masteratarms{
-	dir = 8
+	dir = 8;
+	name = "Persistence Master at Arms"
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
@@ -5918,6 +5932,7 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/pipe_dispenser/bluespace,
 /obj/item/construction/rcd/ce,
+/obj/item/rcd_upgrade/frames,
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "sS" = (
@@ -5970,7 +5985,8 @@
 	dir = 10
 	},
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor{
-	dir = 4
+	dir = 4;
+	name = "Persistence Janitor"
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
@@ -6992,8 +7008,10 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "wo" = (
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/corporateliaison,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/corporateliaison{
+	name = "Persistence Corporate Liason"
+	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
 "wr" = (
@@ -7167,7 +7185,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "wO" = (
@@ -7306,7 +7323,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "xp" = (
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/quartermaster{
-	dir = 1
+	dir = 1;
+	name = "Persistence Cargo Tech"
 	},
 /obj/structure/closet/generic/wall{
 	pixel_y = -32
@@ -8479,6 +8497,7 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/bag/xeno,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "AW" = (
@@ -9449,7 +9468,8 @@
 "Ee" = (
 /obj/structure/fireplace,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/researcher{
-	dir = 4
+	dir = 4;
+	name = "Persistence Scientist"
 	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
@@ -10626,7 +10646,8 @@
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/enginetech{
-	dir = 8
+	dir = 8;
+	name = "Persistence Engineer"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -10854,6 +10875,7 @@
 	initialize_directions = 4;
 	name = "euthanization chamber freezer"
 	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Ir" = (
@@ -11687,7 +11709,8 @@
 "KS" = (
 /obj/structure/fireplace,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service{
-	dir = 8
+	dir = 8;
+	name = "Persistence General Staff"
 	},
 /obj/machinery/digital_clock/directional/east,
 /turf/open/floor/iron/terracotta/diagonal,
@@ -13107,6 +13130,7 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/structure/fans/tiny,
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "PF" = (
@@ -13668,6 +13692,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/structure/fans/tiny,
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Rm" = (
@@ -13740,7 +13765,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/moraleofficer{
-	dir = 8
+	dir = 8;
+	name = "Persistence Morale Officer"
 	},
 /turf/open/floor/carpet/donk,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
@@ -13844,6 +13870,7 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/bz,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "RO" = (
@@ -16019,12 +16046,6 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "YU" = (
-/obj/structure/filingcabinet,
-/obj/item/folder/syndicate/red,
-/obj/item/paper{
-	default_raw_text = "<h1>SSV Dauntless Cargo Guide</h1><p>The SSV Dauntless has made a corporate deal with Gorlex Industries to test out their new 1100mm rail cannon reverse engineered off the 1500mm delivery system that Nanotrasen utilizes.</p><p>Please note, if at all the base has fallen into the wrong hands, it is required that these boards are to be destroyed as it contains our cryptography private seeds.</p><p>All cargo goods are logged and maintained, any misuse of funds will be traced back to agent, and will be reprimanded.</p><p></p><ul><li>Express Supply Console Computer</li>Install into a computer frame and print a beacon. Wrench the beacon down in a clear area (and ideally away from explosive goods).<li>Ancient Powerator</li>This is used to generate credits for orders. Ideally used to consume excess power from an upgraded turbine.<li>Bounty Pad</li>A quantum pad that teleports any materials of value into our black market vendors. Credits sold is deposited instantaneously into the SSV Dauntless account.<li>Bounty Control Terminal</li>This is used to activate the bounty pad to sell goods. Install into a computer frame and link the bounty pad using a multi-tool.</ul><p>Please note: Physical money can be directly sent to our black market vendors to be exchanged into credits.</p>";
-	name = "paper- 'SSV Dauntless Cargo Guide'"
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "YV" = (
@@ -18480,7 +18501,7 @@ Xj
 Mv
 EU
 EU
-vV
+cK
 DH
 DH
 tU
