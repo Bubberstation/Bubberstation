@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from "../../base";
+import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const scaled_appearance: FeatureToggle = {
   name: 'Scaled Appearance',
