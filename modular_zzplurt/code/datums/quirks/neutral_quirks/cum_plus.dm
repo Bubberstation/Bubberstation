@@ -1,38 +1,68 @@
-// UNIMPLEMENTED QUIRK!
+#define CUMPLUS_MULT_GLOBAL 1.75
+#define CUMPLUS_MULT_TESTI 2
+#define CUMPLUS_MULT_VAGI 2
+#define CUMPLUS_MULT_BOOBI 2
+
 /datum/quirk/cum_plus
 	name = "Extra-Productive Genitals"
-	desc = "Your genitals produce and hold more than normal."
+	desc = "Your genitals can hold twice the amount of fluid expected for their size, and produce slightly faster."
 	value = 0
 	gain_text = span_purple("You feel pressure in your groin.")
 	lose_text = span_purple("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
 	icon = FA_ICON_DROPLET
 	erp_quirk = TRUE
-	//var/increasedcum // Currently unused
 
-/* needs genital fluids and also to affect more than just your balls
+// Note: Increasing size increases production rate
+// Production scales based on size and mob arousal
+
+// Increase fluids
 /datum/quirk/cum_plus/add()
-	var/mob/living/carbon/M = quirk_holder
-	if(M.getorganslot("testicles"))
-		var/obj/item/organ/genital/testicles/T = M.getorganslot("testicles")
-		T.fluid_mult += 0.5 //Base is 1
-		T.fluid_max_volume *= 1.75 //Fixes this.
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
+	// Define potential fluid producing organ
+	// Check if it exists
+	// Multiply maximum fluid
+
+	// Testicles
+	var/obj/item/organ/external/genital/testicles/mob_testi = quirk_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	if(mob_testi)
+		mob_testi.internal_fluid_maximum *= CUMPLUS_MULT_TESTI
+
+	// Vagina
+	var/obj/item/organ/external/genital/vagina/mob_vagi = quirk_mob.get_organ_slot(ORGAN_SLOT_VAGINA)
+	if(mob_vagi)
+		mob_vagi.internal_fluid_maximum *= CUMPLUS_MULT_VAGI
+
+	// Breasts
+	var/obj/item/organ/external/genital/testicles/mob_boobi = quirk_mob.get_organ_slot(ORGAN_SLOT_BREASTS)
+	if(mob_boobi)
+		mob_boobi.internal_fluid_maximum *= CUMPLUS_MULT_BOOBI
+
+// Reduce fluids
 /datum/quirk/cum_plus/remove()
-	var/mob/living/carbon/M = quirk_holder
-	if(!M)
-		return
-	if(quirk_holder.getorganslot("testicles"))
-		var/obj/item/organ/genital/testicles/T = M.getorganslot("testicles")
-		T.fluid_mult -= 0.5 //Base is 1
-		T.fluid_max_volume *= 0.25 //Base is 50
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
-/datum/quirk/cum_plus/on_process()
-	var/mob/living/carbon/M = quirk_holder //If you get balls later, then this will still proc
-	if(M.getorganslot("testicles"))
-		var/obj/item/organ/genital/testicles/T = M.getorganslot("testicles")
-		if(!increasedcum)
-			T.fluid_mult = 1.5 //Base is 0.133
-			T.fluid_max_volume *= 1.75
-			increasedcum = TRUE
-*/
+	// Identical to above but divides
+
+	// Testicles
+	var/obj/item/organ/external/genital/testicles/mob_testi = quirk_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	if(mob_testi)
+		mob_testi.internal_fluid_maximum /= CUMPLUS_MULT_TESTI
+
+	// Vagina
+	var/obj/item/organ/external/genital/vagina/mob_vagi = quirk_mob.get_organ_slot(ORGAN_SLOT_VAGINA)
+	if(mob_vagi)
+		mob_vagi.internal_fluid_maximum /= CUMPLUS_MULT_VAGI
+
+	// Breasts
+	var/obj/item/organ/external/genital/testicles/mob_boobi = quirk_mob.get_organ_slot(ORGAN_SLOT_BREASTS)
+	if(mob_boobi)
+		mob_boobi.internal_fluid_maximum /= CUMPLUS_MULT_BOOBI
+
+#undef CUMPLUS_MULT_GLOBAL
+#undef CUMPLUS_MULT_TESTI
+#undef CUMPLUS_MULT_VAGI
+#undef CUMPLUS_MULT_BOOBI
