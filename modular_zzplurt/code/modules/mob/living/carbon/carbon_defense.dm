@@ -78,6 +78,39 @@
 	// Run original
 	. = ..()
 
+/mob/living/carbon/adjustOxyLoss(amount, updating_health = TRUE, forced, required_biotype, required_respiration_type)
+	. = ..()
+
+	// Check parent return
+	if(!.)
+		return
+
+	// Check for Choke Slut
+	if(HAS_TRAIT(src, TRAIT_CHOKE_SLUT))
+		// Check if amount is positive
+		// Negative values remove suffocation
+		if(amount < 0)
+			return
+
+		// Check if alive and ERP is enabled
+		if(stat >= DEAD || !client?.prefs?.read_preference(/datum/preference/toggle/erp))
+			return
+
+		// Check for no breathing
+		if(HAS_TRAIT(src, TRAIT_NOBREATH))
+			return
+
+		// Define quirk mob
+		var/mob/living/carbon/human/quirk_mob = src
+
+		// Check if quirk mob exists
+		if(!quirk_mob)
+			return
+
+		// Adjust arousal and pleasure
+		quirk_mob.adjust_arousal(amount)
+		quirk_mob.adjust_pleasure(amount / 2)
+
 /mob/living/carbon/proc/can_touch_retaliate()
 	// User must be conscious
 	if(src.stat != CONSCIOUS)
