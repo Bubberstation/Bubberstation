@@ -352,6 +352,37 @@
 			if(src_tail && !(src_tail.wag_flags & WAG_WAGGING))
 				emote("wag")
 		//SKYRAT EDIT ADDITION END
+		// SPLURT EDIT BEGIN - Headpat Slut quirk
+		if(HAS_TRAIT(src, TRAIT_HEADPAT_SLUT))
+			// Display messages to participants
+			to_chat(helper, span_purple("[src] seems to be enjoying the head patting way more than normal..."))
+			to_chat(src, span_purple("[helper] sends a wave of pleasure through your head with [helper.p_their()] touch!"))
+
+			// Add mood events
+			add_mood_event(QMOOD_HEADPAT_SLUT, /datum/mood_event/headpat_slut/recipient, helper)
+			helper.add_mood_event("petting_bonus", /datum/mood_event/headpat_slut/giver, src)
+
+			// Define target
+			var/mob/living/carbon/human/target_mob = src
+
+			// Increase arousal
+			target_mob?.adjust_arousal(5)
+			target_mob?.adjust_pleasure(2.5)
+
+			// Small chance of additional effects
+			if(prob(10))
+				// Attempt to auto-emote
+				try_lewd_autoemote(pick("moan", "blush"))
+
+				// Increase dizziness
+				set_dizzy_if_lower(3 SECONDS)
+
+				// Check for well trained
+				if(has_quirk(/datum/quirk/well_trained))
+					// Induce helplessness
+					Stun(5)
+
+		// SPLURT EDIT END
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && !isnull(src.get_organ_by_type(/obj/item/organ/external/tail)))
 		helper.visible_message(span_notice("[helper] pulls on [src]'s tail!"), \

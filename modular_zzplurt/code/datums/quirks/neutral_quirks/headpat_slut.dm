@@ -1,7 +1,6 @@
-// UNIMPLEMENTED QUIRK!
 /datum/quirk/headpat_slut
 	name = "Headpat Slut"
-	desc = "You love the feeling of others touching your head! Maybe a little too much, actually... Others patting your head will provide a stronger mood boost, along with other sensual reactions."
+	desc = "You love the feeling of others touching your head! Maybe a little too much. Others patting your head will provide a stronger mood boost, along with other sensual reactions."
 	value = 0
 	gain_text = span_purple("You long for the wonderful sensation of head pats!")
 	lose_text = span_purple("Being pat on the head doesn't feel special anymore.")
@@ -10,13 +9,51 @@
 	icon = FA_ICON_HAND_HOLDING_HEART
 	erp_quirk = TRUE
 
-// Copy pasted from old code
-/*
-/datum/quirk/headpat_slut/add()
-	. = ..()
-	quirk_holder.AddElement(/datum/element/wuv/headpat, null, null, /datum/mood_event/pet_animal)
+/datum/quirk/bad_touch/post_add()
+	// Add examine text status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_headpat_slut)
 
-/datum/quirk/headpat_slut/remove()
-	. = ..()
-	quirk_holder.RemoveElement(/datum/element/wuv/headpat)
-*/
+/datum/quirk/bad_touch/remove()
+	// Remove examine text status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_headpat_slut)
+
+// Examine text status effect
+/datum/status_effect/quirk_headpat_slut
+	id = "quirk_headpat_slut"
+	duration = -1
+	alert_type = null
+
+// Set effect examine text
+/datum/status_effect/quirk_headpat_slut/get_examine_text()
+	return span_purple("[owner.p_Their()] head could use a good patting.")
+
+// Base mood event
+// Based on 'betterhug' mood event
+/datum/mood_event/headpat_slut
+	description = span_danger("I have an invalid mood event. I should report this.")
+	mood_change = 3
+	timeout = 4 MINUTES
+
+// Mood for recipient
+/datum/mood_event/headpat_slut/recipient
+	description = span_purple("I enjoyed receiving head pats.")
+
+/datum/mood_event/headpat_slut/recipient/add_effects(mob/giver)
+	// Check for valid giver
+	if(!giver)
+		return
+
+	// Set dynamic text
+	description = span_purple("[giver.name] gives great head pats!")
+
+// Mood for giver
+/datum/mood_event/headpat_slut/giver
+	description = span_purple("I enjoyed patting that person on the head.")
+
+/datum/mood_event/headpat_slut/giver/add_effects(mob/recipient)
+	// Check for valid recipient
+	if(!recipient)
+		return
+
+	// Set dynamic text
+	description = span_purple("[recipient.name] was overjoyed by my touch!")
