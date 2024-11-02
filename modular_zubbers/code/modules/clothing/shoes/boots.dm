@@ -196,7 +196,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet.dmi'
 	name = "Slipers"
-	desc = "Throw 'em and make people slip. Ha!"
+	desc = "Slippery shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend"
 	icon_state = "slipers"
 	worn_icon_state = "slipers"
 	can_be_tied = FALSE
@@ -205,14 +205,10 @@
 ///Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
 /obj/item/clothing/shoes/slipers/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
 	. = ..()
-	src.visible_message("Test1")
 	///if the thrown object's target zone isn't the head
 	if(thrownthing.target_zone != BODY_ZONE_L_LEG && thrownthing.target_zone != BODY_ZONE_R_LEG)
 		return
-	///ignore any hats with the tinfoil counter-measure enabled
-	if(clothing_flags & ANTI_TINFOIL_MANEUVER)
-		return
-	///if the hat happens to be capable of holding contents and has something in it. mostly to prevent super cheesy stuff like stuffing a mini-bomb in a hat and throwing it
+	///Just in case someone adds storage down the line on the slipers
 	if(LAZYLEN(contents))
 		return
 	if(iscarbon(hit_atom))
@@ -223,16 +219,16 @@
 			if(HAS_TRAIT(WH, TRAIT_NODROP))
 				H.visible_message(span_warning("[src] bounces off [H]'s [WH.name]!"), span_warning("[src] bounces off your [WH.name], falling to the floor."))
 				return
-			///check if the item is an actual clothing head item, since some non-clothing items can be worn
+			///check if the item is an actual clothing feet item, since some non-clothing items can be worn
 			if(istype(WH, /obj/item/clothing/head))
 				var/obj/item/clothing/head/WHH = WH
-				///SNUG_FIT hats are immune to being knocked off
+				///SNUG_FIT shoes are immune to being knocked off
 				if(WHH.clothing_flags & SNUG_FIT)
 					H.visible_message(span_warning("[src] bounces off [H]'s [WHH.name]!"), span_warning("[src] bounces off your [WHH.name], falling to the floor."))
 					return
-			///if the hat manages to knock something off
+			///if the slipers manages to knock something off
 			if(H.dropItemToGround(WH))
-				H.visible_message(span_warning("[src] knocks [WH] off [H]'s head!"), span_warning("[WH] is suddenly knocked off your head by [src]!"))
+				H.visible_message(span_warning("[src] slips [WH] off [H]'s feet!"), span_warning("[WH] is suddenly slipped off your feet by [src]!"))
 		if(H.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
 			H.visible_message(span_notice("[src] lands neatly on [H]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
 			H.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
@@ -247,9 +243,7 @@
 
 /obj/item/clothing/shoes/slipers/proc/on_step()
 	SIGNAL_HANDLER
-	src.visible_message("Step triggered")
 	if(iscarbon(src.loc))
-		src.visible_message("ITS CARBON")
 		var/mob/living/carbon/W = src.loc
 		W.slip(80)
 
@@ -271,4 +265,3 @@
 	if (!owner.dropItemToGround(src))
 		return FALSE
 	return TRUE
-	//SKYRAT EDIT END
