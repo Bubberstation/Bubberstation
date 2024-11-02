@@ -55,8 +55,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	// Bloodfledges do not use standard thirst
 	list(/datum/quirk/bloodfledge, /datum/quirk/thirsty),
 
-	// Causes unacceptable levels of mixed signals.
-	list(/datum/quirk/buns_of_steel,/datum/quirk/jiggly_ass),
+	// Causes a direct mechanical conflict.
+	//list(/datum/quirk/jiggly_ass,/datum/quirk/buns_of_steel),
+	list(/datum/quirk/jiggly_ass,/datum/quirk/personalspace),
 
 	// Both quirks add a cosmetic glow effect.
 	list(/datum/quirk/rad_fiend, /datum/quirk/cosglow),
