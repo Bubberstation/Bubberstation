@@ -797,6 +797,17 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
+"cF" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/plasticflaps/opaque,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "cI" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -14519,17 +14530,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
-"Tx" = (
-/obj/machinery/button/door/directional/west{
-	pixel_y = -8;
-	specialfunctions = 4;
-	name = "Dorm Bolt Switch";
-	id = "syndishipcargo";
-	req_access = list("syndicate");
-	normaldoorcontrol = 1
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "Tz" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -16317,9 +16317,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "ZD" = (
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
 /obj/machinery/conveyor{
 	id = "syndirecycle";
 	dir = 1
@@ -16329,8 +16326,11 @@
 	pixel_y = 5
 	},
 /obj/effect/spawner/random/maintenance/three,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/window/plasma{
+	dir = 4
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -17283,7 +17283,7 @@ TR
 HP
 QO
 QO
-Tx
+QO
 ia
 wJ
 ll
@@ -18955,7 +18955,7 @@ UL
 UL
 HB
 HB
-HB
+cF
 UL
 Wv
 lK
