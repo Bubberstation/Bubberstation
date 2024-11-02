@@ -1,7 +1,19 @@
+#define COSGLOW_OPACITY_MIN 32
+#define COSGLOW_OPACITY_MAX 128
+#define COSGLOW_OPACITY_DEFAULT 64
+#define COSGLOW_RANGE_MIN 1
+#define COSGLOW_RANGE_MAX 4
+#define COSGLOW_RANGE_DEFAULT 2
+#define COSGLOW_LAMP_RANGE_MIN 0
+#define COSGLOW_LAMP_RANGE_MAX MINIMUM_USEFUL_LIGHT_RANGE
+#define COSGLOW_LAMP_RANGE_DEFAULT COSGLOW_LAMP_RANGE_MAX/2
+#define COSGLOW_LAMP_POWER 1
+#define COSGLOW_LAMP_COLOR COLOR_WHITE
+
 // You might be an undercover agent.
 /datum/quirk/cosglow
 	name = "Cosmetic Glow"
-	desc = "You are capable of emitting a soft glow! This doesn't provide any actual light."
+	desc = "You are capable of emitting a soft glow!"
 	value = 0
 	gain_text = span_notice("You feel empowered by a three-letter agency!")
 	lose_text = span_notice("You realize that working for the space agency sucks!")
@@ -14,6 +26,7 @@
 /datum/quirk/cosglow/add()
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
 	// Add glow control action
 	var/datum/action/cosglow/update_glow/quirk_action = new
 	quirk_action.Grant(quirk_mob)
@@ -29,24 +42,60 @@
 	// Remove glow effect
 	quirk_mob.remove_filter("rad_fiend_glow")
 
+// Light emitting status effect
+/datum/status_effect/quirk_cosglow
+	id = "quirk_cosglow"
+	duration = -1
+	alert_type = null
+	status_type = STATUS_EFFECT_REPLACE
+
+	// Light effect object
+	var/obj/effect/dummy/lighting_obj/moblight/cosglow_light_obj
+
+/datum/status_effect/quirk_cosglow/on_apply()
+	// Dynamic color is disabled
+	/*
+	// Get glow action
+	var/datum/action/cosglow/update_glow/quirk_action = locate() in owner.actions
+
+	// Check if glow action exists
+	if(!quirk_action)
+		return FALSE
+	*/
+
+	// Set light values
+	// Ignores range settings to prevent crew becoming lanterns
+	cosglow_light_obj = owner.mob_light(range = COSGLOW_LAMP_RANGE_DEFAULT, power = COSGLOW_LAMP_POWER, color = COSGLOW_LAMP_COLOR)
+
+	return TRUE
+
+/datum/status_effect/quirk_cosglow/on_remove()
+	// Remove light
+	QDEL_NULL(cosglow_light_obj)
+
+/datum/status_effect/quirk_cosglow/get_examine_text()
+	return span_notice("[owner.p_They()] emit[owner.p_s()] a harmless glowing aura.")
+
+// Glow actions
 /datum/action/cosglow
 	name = "Broken Glow Action"
 	desc = "Report this to a coder."
 	button_icon = 'icons/obj/lighting.dmi'
 	button_icon_state = "slime-on"
+	var/obj/effect/dummy/lighting_obj/moblight/cosglow_light
 
 /datum/action/cosglow/update_glow
 	name = "Modify Glow"
-	desc = "Change your glow color."
+	desc = "Change your glow color, thickness, and opacity."
 
-	// Glow color to use
-	var/glow_color
+	// Default glow color to use
+	var/glow_color = COSGLOW_LAMP_COLOR
 
-	// Thickness of glow outline
-	var/glow_range
+	// Default thickness of glow outline
+	var/glow_range = COSGLOW_RANGE_DEFAULT
 
-	// Alpha of the glow outline
-	var/glow_intensity
+	// Default alpha of the glow outline
+	var/glow_intensity = COSGLOW_OPACITY_DEFAULT
 
 /datum/action/cosglow/update_glow/Grant(mob/grant_to)
 	. = ..()
@@ -54,12 +103,12 @@
 	// Define user mob
 	var/mob/living/carbon/human/action_mob = grant_to
 
-	// Default glow intensity to 48 (in decimal)
-	glow_intensity = "30"
-
 	// Add outline effect
 	if(glow_color && glow_range)
 		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + glow_intensity, "size" = glow_range))
+
+	// Apply status effect
+	action_mob.apply_status_effect(/datum/status_effect/quirk_cosglow, TRAIT_COSGLOW)
 
 /datum/action/cosglow/update_glow/Remove(mob/remove_from)
 	. = ..()
@@ -69,6 +118,9 @@
 
 	// Remove glow
 	action_mob.remove_filter("rad_fiend_glow")
+
+	// Remove status effect
+	action_mob.remove_status_effect(/datum/status_effect/quirk_cosglow, TRAIT_COSGLOW)
 
 /datum/action/cosglow/update_glow/Trigger(trigger_flags)
 	. = ..()
@@ -84,20 +136,19 @@
 	glow_color = (input_color ? input_color : glow_color)
 
 	// Ask user for range input
-	var/input_range = input(action_mob, "How much do you glow? Value may range between 0 to 4. 0 disables glow.", "Select Glow Range", glow_range) as num|null
+	var/input_range_tgui = tgui_input_number(action_mob, "How thick is your glow outline?", "Select Glow Range", default = COSGLOW_RANGE_DEFAULT, max_value = COSGLOW_RANGE_MAX, min_value = COSGLOW_RANGE_MIN)
 
 	// Check if range input was given
-	// Disable glow if input is 0.
-	// Reset to stored range when input is null.
-	// Input is clamped in the 0-4 range
-	glow_range = isnull(input_range) ? glow_range : clamp(input_range, 0, 4) //More customisable, so you know when you're looking at someone with Radfiend (doom) or a normal player.
+	// Reset to stored range when input is null
+	glow_range = isnull(input_range_tgui) ? glow_range : input_range_tgui
 
 	// Ask user for intensity input
-	var/input_intensity = input(action_mob, "How intense is your glow? Value may range between 0 to 255. 0 disables glow.", "Select Glow Intensity", hex2num(glow_intensity)) as num|null
+	// Limit maximum to prevent crew turning into stickers
+	var/input_intensity_tgui = tgui_input_number(action_mob, "How opaque is your glow outline?", "Select Glow Intensity", default = COSGLOW_OPACITY_DEFAULT, max_value = COSGLOW_OPACITY_MAX, min_value = COSGLOW_OPACITY_MIN)
 
-	// Check if intensity input was given and clamp it
+	// Check if intensity input was given
 	// If no input is given, reset to stored intensity
-	var/intensity_clamped = isnull(input_intensity) ? hex2num(glow_intensity) : clamp(input_intensity, 0, 255)
+	var/intensity_clamped = isnull(input_intensity_tgui) ? hex2num(glow_intensity) : input_intensity_tgui
 
 	// Update glow intensity
 	glow_intensity = num2hex(intensity_clamped, 2)
@@ -107,3 +158,26 @@
 		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + glow_intensity, "size" = glow_range))
 	else
 		action_mob.remove_filter("rad_fiend_glow")
+
+	// Find status effect
+	var/datum/status_effect/quirk_cosglow/glow_effect = locate() in action_mob.status_effects
+
+	// Update status effect light color
+	//glow_effect?.cosglow_light_obj?.set_light_color(glow_color) // Unused
+
+	// Update status effect light range
+	// New value is based on light range
+	var/light_obj_range = (COSGLOW_LAMP_RANGE_MAX/COSGLOW_RANGE_MAX) * glow_range
+	glow_effect?.cosglow_light_obj?.set_light_range(light_obj_range)
+
+#undef COSGLOW_OPACITY_MIN
+#undef COSGLOW_OPACITY_MAX
+#undef COSGLOW_OPACITY_DEFAULT
+#undef COSGLOW_RANGE_MIN
+#undef COSGLOW_RANGE_MAX
+#undef COSGLOW_RANGE_DEFAULT
+#undef COSGLOW_LAMP_RANGE_MIN
+#undef COSGLOW_LAMP_RANGE_MAX
+#undef COSGLOW_LAMP_RANGE_DEFAULT
+#undef COSGLOW_LAMP_POWER
+#undef COSGLOW_LAMP_COLOR
