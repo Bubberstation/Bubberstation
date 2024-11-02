@@ -1,4 +1,3 @@
-import { warn } from 'console';
 import { useBackend, useSharedState } from '../backend';
 import {
   Box,
@@ -45,6 +44,7 @@ export type Storyteller_Event = {
   weight: number;
   weight_raw: number;
   track: string;
+  roundstart: boolean;
 };
 
 export type Storyteller_Event_Category = {
@@ -301,6 +301,7 @@ export const Zubbers_Storyteller_EventPanel = (props) => {
   const [currentEventCategory, setCurrentEventCategory] = useState(
     eventCategoryTabs[0],
   );
+  const showRoundstart = false;
 
   return (
     <Section
@@ -343,6 +344,7 @@ export const Zubbers_Storyteller_EventPanel = (props) => {
         </Table.Row>
         <Zubbers_Storyteller_EventPanel_Category
           current={currentEventCategory}
+          roundstart={showRoundstart}
         />
       </Table>
     </Section>
@@ -351,6 +353,7 @@ export const Zubbers_Storyteller_EventPanel = (props) => {
 
 type EventPanel_Category_Props = {
   current: Storyteller_Event_Category;
+  roundstart: boolean;
 };
 
 export const Zubbers_Storyteller_EventPanel_Category = (

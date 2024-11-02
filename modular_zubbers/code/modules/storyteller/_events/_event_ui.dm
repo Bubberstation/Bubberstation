@@ -11,4 +11,5 @@
 				"weight" = calculated_weight,
 				"weight_raw" = weight,
 				"track" = track,
+				"roundstart" = roundstart,
 			)
