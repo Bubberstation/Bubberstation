@@ -4805,11 +4805,7 @@
 "HE" = (
 /obj/effect/turf_decal/tile/blue/half,
 /obj/structure/table/reinforced,
-/obj/machinery/fax{
-	name = "Port Tarkon Fax Machine";
-	fax_name = "Tarkon Industries Bridge";
-	special_networks = list("tarkon" = list("fax_name" = "Tarkon TB.", "fax_id" = "tarkon_command", "color" = "brown", "emag_needed" = 0))
-	},
+/obj/machinery/fax/tarkon,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "HH" = (
