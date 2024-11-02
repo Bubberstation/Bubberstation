@@ -39,7 +39,7 @@
 	// Check if conscious
 	if(quirk_holder.stat == CONSCIOUS)
 		// Display emote
-		quirk_holder.emote("sigh")
+		quirk_holder.try_lewd_autoemote("sigh")
 
 		// Define list of phrases
 		var/list/trigger_phrases = list(

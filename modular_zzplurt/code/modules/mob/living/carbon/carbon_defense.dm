@@ -73,7 +73,7 @@
 
 		// Apply effects
 		do_ass_slap_animation(target)
-		playsound(target.loc, 'sound/items/weapons/slap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
+		conditional_pref_sound(target.loc, 'sound/items/weapons/slap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
 
 	// Run original
 	. = ..()
@@ -132,7 +132,7 @@
 	// Check if toucher enjoys this
 	if(HAS_TRAIT(toucher, TRAIT_MASOCHISM))
 		// Cause toucher to express contentment
-		toucher.emote("moan")
+		toucher.try_lewd_autoemote("moan")
 
 		// Add good mood event
 		toucher.add_mood_event("badtouch_retaliate_victim", /datum/mood_event/badtouch_retaliate/victim_good)

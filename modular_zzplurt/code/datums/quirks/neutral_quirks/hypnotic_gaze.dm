@@ -405,7 +405,7 @@
 	to_chat(action_owner, "You whisper your [term_suggest] in a smooth calming voice to [action_target].")
 
 	// Play a sound effect
-	playsound(action_target, 'sound/effects/magic/smoke.ogg', 20, 1)
+	conditional_pref_sound(action_target, 'sound/effects/magic/smoke.ogg', 20, 1)
 
 	// Display local message
 	action_target.visible_message(span_warning("[action_target] wakes up from their deep slumber!"), span_danger("Your eyelids gently open as you see [action_owner]'s face staring back at you."))

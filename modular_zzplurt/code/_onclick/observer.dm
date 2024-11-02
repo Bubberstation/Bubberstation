@@ -21,7 +21,7 @@
 			H.mob_climax(forced_climax=TRUE, cause="masochism")
 	if(!HAS_TRAIT(src, TRAIT_PERMABONER))
 		H.dna.species.stop_wagging_tail(src)*/
-	playsound(src.loc, 'sound/items/weapons/slap.ogg', 50, 1, -1)
+	conditional_pref_sound(src.loc, 'sound/items/weapons/slap.ogg', 50, 1, -1)
 	visible_message(\
 		span_danger("You hear someone slap \The [src]'s ass, but nobody's there..."),
 		span_notice("Somebody slaps your ass, but nobody is around..."),
