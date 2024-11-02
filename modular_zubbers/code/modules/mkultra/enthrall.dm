@@ -66,23 +66,37 @@
 
 /datum/status_effect/chem/enthrall/on_apply()
 	var/mob/living/carbon/enthrall_victim = owner
-	var/datum/reagent/mkultra/enthrall_chem = locate(/datum/reagent/mkultra) in enthrall_victim.reagents.reagent_list
-	if(!enthrall_chem.data["enthrall_ckey"])
-		message_admins("WARNING: FermiChem: No enthrall_mob found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
-		stack_trace("No enthrall_mob found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
-		owner.remove_status_effect(src)
-		return ..()
-	enthrall_ckey = enthrall_chem.data["enthrall_ckey"]
-	enthrall_gender = enthrall_chem.data["enthrall_gender"]
-	if(enthrall_victim.ckey == enthrall_ckey)
-		//owner.remove_status_effect(src)//At the moment, a user can enthrall themselves, toggle this back in if that should be removed.
-		to_chat(owner, span_warning("You hear a code reviewer screaming into the void: \"I DON'T KNOW WHAT ENTHRALL.DM:80 IS SUPPOSED TO DO!"))
-		return ..()
-	enthrall_mob = get_mob_by_key(enthrall_ckey)
+	if(HAS_TRAIT(enthrall_victim, TRAIT_PET_SKILLCHIP))
+		var/obj/item/organ/internal/brain/neopet_brain = enthrall_victim.get_organ_slot(ORGAN_SLOT_BRAIN)
+		for(var/obj/item/skillchip/mkiiultra/neopet_chip in neopet_brain?.skillchips)
+			if(istype(neopet_chip) && neopet_chip.active)
+				enthrall_ckey = neopet_chip.enthrall_ckey
+				enthrall_gender = neopet_chip.enthrall_gender
+				enthrall_mob = get_mob_by_key(enthrall_ckey)
+				lewd = TRUE
+		if(isnull(enthrall_mob))
+			stack_trace("A thrall has an MKUltra skillchip activated but the skillchip has no enthrall mob linked. This should never happen!")
+			owner.remove_status_effect(src)
+			return ..()
+	else
+		var/datum/reagent/mkultra/enthrall_chem = locate(/datum/reagent/mkultra) in enthrall_victim.reagents.reagent_list
+		if(!enthrall_chem.data["enthrall_ckey"])
+			message_admins("WARNING: FermiChem: No enthrall_mob found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
+			stack_trace("No enthrall_mob found in thrall, did you bus in the status? You need to set up the vars manually in the chem if it's not reacted/bussed. Someone set up the reaction/status proc incorrectly if not (Don't use donor blood). Console them with a chemcat plush maybe?")
+			owner.remove_status_effect(src)
+			return ..()
+		enthrall_ckey = enthrall_chem.data["enthrall_ckey"]
+		enthrall_gender = enthrall_chem.data["enthrall_gender"]
+		if(enthrall_victim.ckey == enthrall_ckey)
+			//owner.remove_status_effect(src)//At the moment, a user can enthrall themselves, toggle this back in if that should be removed.
+			to_chat(owner, span_warning("You hear a code reviewer screaming into the void: \"I DON'T KNOW WHAT ENTHRALL.DM:80 IS SUPPOSED TO DO!"))
+			return ..()
+		enthrall_mob = get_mob_by_key(enthrall_ckey)
+		lewd = (owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)) && (enthrall_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
+
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist) //Do resistance calc if resist is pressed#
 	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/owner_hear)
 	mental_capacity = 500 - enthrall_victim.get_organ_loss(ORGAN_SLOT_BRAIN)//It's their brain!
-	lewd = (owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)) && (enthrall_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 	var/message = "[(lewd ? "I am a good pet for [enthrall_gender]." : "[enthrall_mob] is a really inspirational person!")]"
 	enthrall_victim.add_mood_event("enthrall", /datum/mood_event/enthrall, message)
 	to_chat(owner, "<span class='[(lewd ?"big velvet":"big warning")]'><b>You feel inexplicably drawn towards [enthrall_mob], their words having a demonstrable effect on you. It seems the closer you are to them, the stronger the effect is. However you aren't fully swayed yet and can resist their effects by repeatedly resisting as much as you can!</b></span>")
@@ -93,7 +107,7 @@
 	var/mob/living/carbon/enthrall_victim = owner
 
 	//chem calculations
-	if(!owner.reagents.has_reagent(/datum/reagent/mkultra))
+	if(!owner.reagents.has_reagent(/datum/reagent/mkultra) && !HAS_TRAIT(enthrall_victim, TRAIT_PET_SKILLCHIP))
 		if (phase < FULLY_ENTHRALLED && phase != SLEEPER_AGENT)
 			delta_resist += 2 //If you've no chem, then you break out quickly
 			if(prob(5))
@@ -111,6 +125,10 @@
 			to_chat(owner, "<span class='notice'><i>You feel lucidity returning to your mind as the mindshield buzzes, attempting to return your brain to normal function.</i></span>")
 		if(phase == OVERDOSE_ENTHRALLED)
 			mental_capacity += 5
+
+	//skillchip check
+	if(HAS_TRAIT(enthrall_victim, TRAIT_PET_SKILLCHIP) && (phase == ENTHRALL_IN_PROGRESS || phase == PARTIALLY_ENTHRALLED))
+		enthrall_tally += 1
 
 	//phase specific events
 	switch(phase)

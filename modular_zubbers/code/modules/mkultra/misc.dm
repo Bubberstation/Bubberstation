@@ -7,6 +7,10 @@
 	desc = "Why bother with training will when you can install obedience directly? Transform your target into a devoted, compliant companion - no leash required!\
 		\n\nWith Patented Enthrallment Tech™, even the most independent spirits will be eager to fetch you coffee, act as a makeshift coat rack, or just stare adoringly at you as if you hold the secrets to the universe (you don’t).\
 		\n\nSide effects may include unnerving eye contact, sudden availability, and an unsettling enthusiasm for being at your beck and call.\n"
+	removable = FALSE
+	complexity = 2
+	slot_use = 2
+	cooldown = 15 MINUTES
 	auto_traits = list(TRAIT_PET_SKILLCHIP)
 	skill_name = "Pet Enthrallment"
 	skill_description = "Transform into a devoted, compliant companion - no leash required! Enthralls the user to a specific person as coded in the skillchip's DNA identifier."
@@ -68,9 +72,43 @@
 		else
 			. += span_notice("The status light is off, indicating that the skillchip is non-functional.")
 
+/obj/item/skillchip/mkiiultra/has_mob_incompatibility(mob/living/carbon/target)
+	// No carbon/carbon of incorrect type
+	if(!istype(target))
+		return "Incompatible lifeform detected."
+
+	// No brain
+	var/obj/item/organ/internal/brain/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(QDELETED(brain))
+		return "Get a brain, moran."
+
+	// Check brain incompatibility. This also performs skillchip-to-skillchip incompatibility checks.
+	var/brain_message = has_brain_incompatibility(brain)
+	if(brain_message)
+		return brain_message
+
+	var/mob/living/carbon/human/enthrall = enthrall_ref?.resolve()
+	if(isnull(enthrall))
+		return "Unable to locate DNA imprint."
+
+	if(enthrall == target)
+		return "You can't enthrall yourself."
+
+	if(!enthrall.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
+		return "[enthrall] has Hypnosis preference disabled."
+
+	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
+		return "[target] has Hypnosis preference disabled."
+
+	return FALSE
+
 /obj/item/skillchip/mkiiultra/on_activate(mob/living/carbon/user, silent = FALSE)
 	. = ..()
-	// mob_affected.apply_status_effect(/datum/status_effect/chem/enthrall)
+	user.apply_status_effect(/datum/status_effect/chem/enthrall)
+
+/obj/item/skillchip/mkiiultra/on_deactivate(mob/living/carbon/user, silent = FALSE)
+	user.remove_status_effect(/datum/status_effect/chem/enthrall)
+	return ..()
 
 #undef DNA_BLANK
 #undef CHIP_EXPIRED
