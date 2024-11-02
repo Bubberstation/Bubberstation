@@ -112,8 +112,8 @@
 /obj/item/clothing/head/mob_holder/micro/Initialize(mapload, mob/living/M, worn_state, head_icon, lh_icon, rh_icon, worn_slot_flags)
 	. = ..()
 	item_flags &= ~ABSTRACT
-	RegisterSignals(held_mob, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(update_visuals))
-	RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(update_visuals))
+	//Updating the visuals when the mob updates doesn't work (it disappears)
+	//RegisterSignals(held_mob, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY, COMSIG_ATOM_EXAMINE), PROC_REF(update_visuals))
 
 /obj/item/clothing/head/mob_holder/micro/release(del_on_release, display_messages)
 	UnregisterSignal(held_mob, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
