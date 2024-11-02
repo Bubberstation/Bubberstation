@@ -355,12 +355,6 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 			. += span_notice("Swipe your PDA with an ID card/Just ID to change access levels.")
 			. += span_notice("Use multitool to [access_locked ? "unlock" : "lock"] the access panel.")
 
-//BUBBERSTATION EDIT START - LOCKER CONTENT EXAMINING
-	if(isobserver(user))
-		. += span_info("It contains: [english_list(contents)].")
-		investigate_log("had its contents examined by [user] as a ghost.", INVESTIGATE_GHOST)
-//BUBBERSTATION EDIT END - LOCKER CONTENT EXAMINING
-
 /obj/structure/closet/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	var/screentip_change = FALSE
