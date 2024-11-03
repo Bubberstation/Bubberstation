@@ -1,9 +1,9 @@
 #define COSGLOW_OPACITY_MIN 32
 #define COSGLOW_OPACITY_MAX 128
 #define COSGLOW_OPACITY_DEFAULT 64
-#define COSGLOW_RANGE_MIN 1
-#define COSGLOW_RANGE_MAX 4
-#define COSGLOW_RANGE_DEFAULT 2
+#define COSGLOW_THICKNESS_MIN 1
+#define COSGLOW_THICKNESS_MAX 4
+#define COSGLOW_THICKNESS_DEFAULT 1
 #define COSGLOW_LAMP_RANGE_MIN 0
 #define COSGLOW_LAMP_RANGE_MAX MINIMUM_USEFUL_LIGHT_RANGE
 #define COSGLOW_LAMP_RANGE_DEFAULT COSGLOW_LAMP_RANGE_MAX/2
@@ -92,10 +92,10 @@
 	var/glow_color = COSGLOW_LAMP_COLOR
 
 	// Default thickness of glow outline
-	var/glow_range = COSGLOW_RANGE_DEFAULT
+	var/glow_thickness = COSGLOW_THICKNESS_DEFAULT
 
 	// Default alpha of the glow outline
-	var/glow_intensity = COSGLOW_OPACITY_DEFAULT
+	var/glow_opacity = COSGLOW_OPACITY_DEFAULT
 
 /datum/action/cosglow/update_glow/Grant(mob/grant_to)
 	. = ..()
@@ -104,8 +104,8 @@
 	var/mob/living/carbon/human/action_mob = grant_to
 
 	// Add outline effect
-	if(glow_color && glow_range)
-		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + glow_intensity, "size" = glow_range))
+	if(glow_color && glow_thickness)
+		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + "[glow_opacity]", "size" = glow_thickness))
 
 	// Apply status effect
 	action_mob.apply_status_effect(/datum/status_effect/quirk_cosglow, TRAIT_COSGLOW)
@@ -135,27 +135,27 @@
 	// Reset to stored color when not given input
 	glow_color = (input_color ? input_color : glow_color)
 
-	// Ask user for range input
-	var/input_range_tgui = tgui_input_number(action_mob, "How thick is your glow outline?", "Select Glow Range", default = COSGLOW_RANGE_DEFAULT, max_value = COSGLOW_RANGE_MAX, min_value = COSGLOW_RANGE_MIN)
+	// Ask user for thickness input
+	var/input_thickness_tgui = tgui_input_number(action_mob, "How thick is your glow outline?", "Select Glow Thickness", default = COSGLOW_THICKNESS_DEFAULT, max_value = COSGLOW_THICKNESS_MAX, min_value = COSGLOW_THICKNESS_MIN)
 
-	// Check if range input was given
-	// Reset to stored range when input is null
-	glow_range = isnull(input_range_tgui) ? glow_range : input_range_tgui
+	// Check if thickness input was given
+	// Reset to stored thickness when input is null
+	glow_thickness = isnull(input_thickness_tgui) ? glow_thickness : input_thickness_tgui
 
-	// Ask user for intensity input
+	// Ask user for opacity input
 	// Limit maximum to prevent crew turning into stickers
-	var/input_intensity_tgui = tgui_input_number(action_mob, "How opaque is your glow outline?", "Select Glow Intensity", default = COSGLOW_OPACITY_DEFAULT, max_value = COSGLOW_OPACITY_MAX, min_value = COSGLOW_OPACITY_MIN)
+	var/input_opacity_tgui = tgui_input_number(action_mob, "How opaque is your glow outline?", "Select Glow Opacity", default = COSGLOW_OPACITY_DEFAULT, max_value = COSGLOW_OPACITY_MAX, min_value = COSGLOW_OPACITY_MIN)
 
-	// Check if intensity input was given
-	// If no input is given, reset to stored intensity
-	var/intensity_clamped = isnull(input_intensity_tgui) ? hex2num(glow_intensity) : input_intensity_tgui
+	// Check if opacity input was given
+	// If no input is given, reset to stored opacity
+	var/opacity_clamped = isnull(input_opacity_tgui) ? hex2num(glow_opacity) : input_opacity_tgui
 
-	// Update glow intensity
-	glow_intensity = num2hex(intensity_clamped, 2)
+	// Update glow opacity
+	glow_opacity = num2hex(opacity_clamped, 2)
 
 	// Update outline effect
-	if(glow_range && glow_color)
-		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + glow_intensity, "size" = glow_range))
+	if(glow_thickness && glow_color)
+		action_mob.add_filter("rad_fiend_glow", 1, list("type" = "outline", "color" = glow_color + "[glow_opacity]", "size" = glow_thickness))
 	else
 		action_mob.remove_filter("rad_fiend_glow")
 
@@ -167,15 +167,15 @@
 
 	// Update status effect light range
 	// New value is based on light range
-	var/light_obj_range = (COSGLOW_LAMP_RANGE_MAX/COSGLOW_RANGE_MAX) * glow_range
+	var/light_obj_range = (COSGLOW_LAMP_RANGE_MAX/COSGLOW_THICKNESS_MAX) * glow_thickness
 	glow_effect?.cosglow_light_obj?.set_light_range(light_obj_range)
 
 #undef COSGLOW_OPACITY_MIN
 #undef COSGLOW_OPACITY_MAX
 #undef COSGLOW_OPACITY_DEFAULT
-#undef COSGLOW_RANGE_MIN
-#undef COSGLOW_RANGE_MAX
-#undef COSGLOW_RANGE_DEFAULT
+#undef COSGLOW_THICKNESS_MIN
+#undef COSGLOW_THICKNESS_MAX
+#undef COSGLOW_THICKNESS_DEFAULT
 #undef COSGLOW_LAMP_RANGE_MIN
 #undef COSGLOW_LAMP_RANGE_MAX
 #undef COSGLOW_LAMP_RANGE_DEFAULT
