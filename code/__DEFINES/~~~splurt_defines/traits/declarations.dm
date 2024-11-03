@@ -36,3 +36,4 @@
 #define TRAIT_NO_PROCESS_FOOD	"no-process-food"
 #define TRAIT_CONCUBUS			"concubus"
 #define TRAIT_MODULAR_LIMBS		"modular_limbs"
+#define TRAIT_VACUUM_RESIST		"vacuum_resist"
