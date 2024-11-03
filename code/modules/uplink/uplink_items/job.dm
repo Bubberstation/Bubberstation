@@ -48,7 +48,7 @@
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	surplus = 25
 
-/datum/uplink_item/stealthy_weapons/slipers
+/datum/uplink_item/role_restricted/slipers
 	name = "Syndi Slipers"
 	desc = "For the criminal trying to take their shoe-stealing game to the next level. Simply throw that at a would-be victims legs. WARNING: Removal will require the help of a friend"
 	item = /obj/item/clothing/shoes/slipers
