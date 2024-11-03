@@ -4,3 +4,5 @@
 #define COMSIG_NAME_CHANGED "name_changed"
 ///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_NECK_STEP_ACTION "neck_step_action"
+/// from /obj/item/organ/proc/on_bodypart_remove(obj/item/bodypart/limb, movement_flags)
+#define COMSIG_ORGAN_BODYPART_REMOVED "organ_bodypart_removed"

@@ -248,27 +248,6 @@
 	},
 /turf/open/misc/sandy_dirt,
 /area/centcom/central_command_areas/holding)
-"gq" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	name = "freezer"
-	},
-/obj/item/food/meat/slab/killertomato,
-/obj/item/food/meat/slab/killertomato,
-/obj/item/food/grown/tomato,
-/obj/item/food/grown/tomato,
-/obj/item/food/grown/tomato,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/berries,
-/obj/item/food/grown/berries,
-/obj/item/food/grown/cabbage,
-/obj/item/food/grown/cherries,
-/obj/item/food/grown/cherries,
-/obj/item/reagent_containers/condiment/enzyme,
-/obj/item/food/grown/redbeet,
-/turf/open/floor/catwalk_floor,
-/area/centcom/central_command_areas/holding)
 "gy" = (
 /obj/machinery/griddle,
 /obj/item/kitchen/rollingpin,
@@ -1588,7 +1567,6 @@
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/holding)
 "JV" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/item/food/grown/rice,
 /obj/item/food/grown/rice,
 /obj/item/food/grown/rice,
@@ -1604,6 +1582,9 @@
 /obj/item/food/grown/onion/red,
 /obj/item/food/grown/onion/red,
 /obj/item/food/grown/coffee,
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	name = "kitchen cabinet"
+	},
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "Kb" = (
@@ -1702,6 +1683,19 @@
 /obj/structure/table/wood,
 /obj/item/food/grown/tea/astra,
 /obj/item/food/grown/soybeans,
+/turf/open/floor/carpet/black,
+/area/centcom/central_command_areas/holding)
+"Nt" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 4;
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/condiment/enzyme{
+	pixel_x = 10;
+	pixel_y = 2
+	},
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "Nz" = (
@@ -1815,19 +1809,6 @@
 /obj/machinery/defibrillator_mount/directional/south,
 /obj/machinery/stasis,
 /turf/open/floor/iron/sepia,
-/area/centcom/central_command_areas/holding)
-"QG" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 4;
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/condiment/enzyme{
-	pixel_x = 10;
-	pixel_y = 2
-	},
-/turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "QJ" = (
 /obj/effect/turf_decal/siding/wood,
@@ -2042,6 +2023,27 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
+/area/centcom/central_command_areas/holding)
+"VW" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	name = "freezer"
+	},
+/obj/item/food/meat/slab/killertomato,
+/obj/item/food/meat/slab/killertomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/tomato,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/berries,
+/obj/item/food/grown/berries,
+/obj/item/food/grown/cabbage,
+/obj/item/food/grown/cherries,
+/obj/item/food/grown/cherries,
+/obj/item/reagent_containers/condiment/enzyme,
+/obj/item/food/grown/redbeet,
+/turf/open/floor/catwalk_floor,
 /area/centcom/central_command_areas/holding)
 "We" = (
 /obj/machinery/vending/cigarette/syndicate,
@@ -2358,7 +2360,7 @@ Zj
 Zj
 Zj
 CG
-gq
+VW
 ql
 iQ
 CG
@@ -2427,7 +2429,7 @@ Ea
 dg
 zc
 rn
-QG
+Nt
 JV
 zh
 Xn

@@ -26,7 +26,7 @@
 /obj/item/spanking_pad/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated())
+	if(user.incapacitated)
 		return FALSE
 	return TRUE
 
@@ -64,27 +64,29 @@
 	. = ..()
 	if(target.stat == DEAD)
 		return
-	var/mob/living/carbon/human/carbon_target = target
-	if(!carbon_target && !iscyborg(target))
+
+	var/mob/living/carbon/human/carbon_target
+	if(ishuman(target))
+		carbon_target = target
+	else if(!iscyborg(target))
 		return
 
-	var/message = ""
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
 		to_chat(user, span_danger("[target] doesn't want you to do that."))
 		return
 
-	if(!carbon_target?.is_bottomless() && !iscyborg(target))
+	if(carbon_target && !carbon_target.is_bottomless())
 		to_chat(user, span_danger("[target]'s butt is covered!"))
 		return
 
-	message = (user == target) ? pick("spanks themselves with [src]",
+	var/message = (user == target) ? pick("spanks themselves with [src]",
 			"uses [src] to slap their hips") \
 		: pick("slaps [target]'s hips with [src]",
 			"uses [src] to slap [target]'s butt",
 			"spanks [target] with [src], making a loud slapping noise",
 			"slaps [target]'s thighs with [src]")
 	user.visible_message(span_purple("[user] [message]!"))
-	play_lewd_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/slap.ogg', 100, 1, -1)
+	conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/slap.ogg', 100, 1, -1)
 	if(prob(40))
 		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush", "gasp"))
 	if(prob(10))

@@ -98,9 +98,12 @@
 	. = ..()
 	if(target.stat == DEAD)
 		return
-	var/mob/living/carbon/human/carbon_target = target
-	if(!carbon_target && !iscyborg(target))
-		return FALSE
+
+	var/mob/living/carbon/human/carbon_target
+	if(ishuman(target))
+		carbon_target = target
+	else if(!iscyborg(target))
+		return
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
 		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
@@ -182,12 +185,15 @@
 					: pick("[second_adjective] teases [target]'s touch sensors with [src]",
 						"uses [src] to [vibration_mode == MAGIC_WAND_MODE_LOW ? "slowly" : ""] massage [target]'s touch sensors",
 						"uses [src] to tease [target]'s touch sensors")
+		else
+			to_chat(user, span_warning("Use the wand on their groin or chest!"))
+			return FALSE
 
 	if(prob(30))
 		target.try_lewd_autoemote(pick("twitch_s", "moan"))
 
 	user.visible_message(span_purple("[user] [message]!"))
-	play_lewd_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/vibrate.ogg', (vibration_mode == MAGIC_WAND_MODE_LOW ? 10 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 30 : 20)), TRUE, pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds)
+	conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/vibrate.ogg', (vibration_mode == MAGIC_WAND_MODE_LOW ? 10 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 30 : 20)), TRUE, pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds)
 
 /obj/item/clothing/sextoy/magic_wand/attack_self(mob/user)
 	toggle_mode()
@@ -208,7 +214,7 @@
 /// Toggle between toy modes in a specific order
 /obj/item/clothing/sextoy/magic_wand/proc/toggle_mode()
 	if(vibration_mode != "high")
-		play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+		conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
 
 	switch(vibration_mode)
 		if("off")
@@ -226,7 +232,7 @@
 			vibration_mode = MAGIC_WAND_MODE_HIGH
 
 		if("high")
-			play_lewd_sound(loc, 'sound/weapons/magout.ogg', 20, TRUE)
+			conditional_pref_sound(loc, 'sound/items/weapons/magout.ogg', 20, TRUE)
 			soundloop3.stop()
 			vibration_mode = MAGIC_WAND_MODE_OFF
 

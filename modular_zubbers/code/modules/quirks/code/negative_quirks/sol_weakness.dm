@@ -67,7 +67,7 @@
 
 /datum/quirk/sol_weakness/proc/sun_burn()
 	quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
-	if(quirk_holder.blood_volume > BLOOD_VOLUME_MAXIMUM * 0.4)
+	if(quirk_holder.blood_volume > BLOOD_VOLUME_NORMAL * 0.71) // 397.6
 		quirk_holder.blood_volume -= 5
 		sun_burn_message(span_warning("The sun burns your skin, but your blood protects you from the worst of it..."))
 		quirk_holder.adjustFireLoss(1)
@@ -84,7 +84,7 @@
 	to_chat(quirk_holder, text)
 	COOLDOWN_START(src, sun_burn, 30 SECONDS)
 
-/datum/quirk/sol_weakness/proc/sun_warning(atom/source, danger_level, vampire_warning_message, vassal_warning_message)
+/datum/quirk/sol_weakness/proc/sun_warning(atom/source, danger_level, vampire_warning_message, ghoul_warning_message)
 	SIGNAL_HANDLER
 	if(danger_level == DANGER_LEVEL_SOL_ROSE)
 		vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk death!")

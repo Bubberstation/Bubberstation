@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Ensures that we always load the last used save, QOL
 	var/default_slot = 1
 	/// The maximum number of slots we're allowed to contain
-	var/max_save_slots = 30 //SKYRAT EDIT - ORIGINAL 3
+	var/max_save_slots = 50 // BUBBER EDIT: original is 3
 
 	/// Bitflags for communications that are muted
 	var/muted = NONE
@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		unlock_content = !!parent.IsByondMember()
 		donator_status = !!GLOB.donator_list[parent.ckey] //SKYRAT EDIT ADD - DONATOR CHECK
 		if(unlock_content || donator_status) //SKYRAT EDIT - ADD DONATOR CHECK
-			max_save_slots = 50 //SKYRAT EDIT - ORIGINAL 8
+			max_save_slots = 100 //SKYRAT EDIT - ORIGINAL 8
 	else
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["character_profiles"] = create_character_profiles()
 
 	data["character_preview_view"] = character_preview_view.assigned_map
-	data["overflow_role"] = SSjob.GetJobType(SSjob.overflow_role).title
+	data["overflow_role"] = SSjob.get_job_type(SSjob.overflow_role).title
 	data["window"] = current_window
 
 	data["content_unlocked"] = unlock_content
@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type), src)
+		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
 
 	// SKYRAT EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)

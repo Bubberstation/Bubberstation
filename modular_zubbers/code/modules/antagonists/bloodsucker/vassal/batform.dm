@@ -6,6 +6,10 @@
 /datum/action/cooldown/spell/shapeshift/bat
 	name = "Bat Form"
 	desc = "Take on the shape of a space bat. You can fly and see in the dark, and you heal from doing melee attacks."
+	background_icon_state = "tremere_power_off"
+	active_background_icon_state = "tremere_power_on"
+	base_background_icon_state = "tremere_power_off"
+	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 	power_explanation = "You can fly and see in the dark, and you heal from doing melee attacks."
 	invocation = "Master, grant me your might, BAT FORM!!"
 	invocation_type = INVOCATION_SHOUT
@@ -13,6 +17,10 @@
 	convert_damage = TRUE
 	cooldown_time = 1 MINUTES
 	possible_shapes = list(/mob/living/basic/bat/bloodsucker)
+	power_explanation = "This ability turns you into a small bat, which can fly and heals from doing meele damage. \n\
+		However, you don't do much meele damage, and are slightly weak to fire damage.\n\
+		Using the ability also spawns some normal bats around where you cast it, causing confusion.\n\
+		Keep in mind if you die in this form, your real body will also die, and any damage received is transfered as well."
 	var/bats_to_spawn = 3
 
 /datum/action/cooldown/spell/shapeshift/bat/cast(mob/living/cast_on)

@@ -28,17 +28,15 @@
 	var/glass_amount = 1
 	var/real_explosion_block //ignore this, just use explosion_block
 	var/break_sound = SFX_SHATTER
-	var/knock_sound = 'sound/effects/glassknock.ogg'
-	var/bash_sound = 'sound/effects/glassbash.ogg'
-	var/hit_sound = 'sound/effects/glasshit.ogg'
+	var/knock_sound = 'sound/effects/glass/glassknock.ogg'
+	var/bash_sound = 'sound/effects/glass/glassbash.ogg'
+	var/hit_sound = 'sound/effects/glass/glasshit.ogg'
 	/// If some inconsiderate jerk has had their blood spilled on this window, thus making it cleanable
 	var/bloodied = FALSE
 	///Datum that the shard and debris type is pulled from for when the glass is broken.
 	var/datum/material/glass_material_datum = /datum/material/glass
 	/// Whether or not we're disappearing but dramatically
 	var/dramatically_disappearing = FALSE
-	/// If we added a leaning component to ourselves
-	var/added_leaning = FALSE
 
 /datum/armor/structure_window
 	melee = 50
@@ -79,35 +77,6 @@
 
 	if (flags_1 & ON_BORDER_1)
 		AddElement(/datum/element/connect_loc, loc_connections)
-
-/obj/structure/window/mouse_drop_receive(atom/dropping, mob/user, params)
-	. = ..()
-	if (added_leaning)
-		return
-	/// For performance reasons and to cut down on init times we are "lazy-loading" the leaning component when someone drags their sprite onto us, and then calling dragging code again to trigger the component
-	AddComponent(/datum/component/leanable, 11, same_turf = (flags_1 & ON_BORDER_1), lean_check = CALLBACK(src, PROC_REF(lean_check)))
-	added_leaning = TRUE
-	dropping.base_mouse_drop_handler(src, null, null, params)
-
-/obj/structure/window/proc/lean_check(mob/living/leaner, list/modifiers)
-	if (!(flags_1 & ON_BORDER_1))
-		return TRUE
-
-	if (leaner.loc == loc)
-		return dir == REVERSE_DIR(leaner.dir)
-
-	return get_dir(src, leaner) == dir && leaner.dir == dir
-
-/obj/structure/window/setDir(newdir)
-	. = ..()
-	if(fulltile)
-		return
-	// Needed because render targets seem to shift larger then 32x32 icons down constantly. No idea why
-	pixel_y = 0
-	pixel_z = 16
-	if(smoothing_flags & SMOOTH_BORDER_OBJECT)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
@@ -352,9 +321,9 @@
 			if(damage_amount)
 				playsound(src, hit_sound, 75, TRUE)
 			else
-				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
+				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		if(BURN)
-			playsound(src, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(src, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 
 /obj/structure/window/atom_deconstruct(disassembled = TRUE)
@@ -481,6 +450,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, forceMove), loc), time_to_go + time_to_return) //we back boys
 	addtimer(VARSET_CALLBACK(src, dramatically_disappearing, FALSE), time_to_go + time_to_return) //also set the var back
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_appearance)), time_to_go + time_to_return)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(src), 'sound/effects/glass/glass_reverse.ogg', 70, TRUE), time_to_go + time_to_return)
 
 	var/obj/structure/grille/grill = take_grill ? (locate(/obj/structure/grille) in loc) : null
 	if(grill)
@@ -521,7 +491,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 //2022 BABYYYYY ~lewc
 //2023 ONE YEAR TO GO! -LT3
 /datum/armor/window_reinforced
-	melee = 50
+	melee = 80
 	bomb = 25
 	fire = 80
 	acid = 100
@@ -535,7 +505,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 	switch(state)
 		if(RWINDOW_SECURE)
 			if(tool.tool_behaviour == TOOL_WELDER)
-				if(tool.tool_start_check(user))
+				if(tool.tool_start_check(user, heat_required = HIGH_TEMPERATURE_REQUIRED))
 					user.visible_message(span_notice("[user] holds \the [tool] to the security screws on \the [src]..."),
 						span_notice("You begin heating the security screws on \the [src]..."))
 					if(tool.use_tool(src, user, 15 SECONDS, volume = 100))
@@ -929,9 +899,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	resistance_flags = FLAMMABLE
 	armor_type = /datum/armor/none
 	knock_sound = SFX_PAGE_TURN
-	bash_sound = 'sound/weapons/slashmiss.ogg'
-	break_sound = 'sound/items/poster_ripped.ogg'
-	hit_sound = 'sound/weapons/slashmiss.ogg'
+	bash_sound = 'sound/items/weapons/slashmiss.ogg'
+	break_sound = 'sound/items/poster/poster_ripped.ogg'
+	hit_sound = 'sound/items/weapons/slashmiss.ogg'
 	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/structure_variations.dmi',icon_state = "paper-torn", layer = ABOVE_OBJ_LAYER - 0.1)
 	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/structure_variations.dmi',icon_state = "paper-whole", layer = ABOVE_OBJ_LAYER - 0.1)
 

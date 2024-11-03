@@ -71,7 +71,7 @@
 		return t
 	t = matchMiddle.group[1]
 
-	// Replace any non-space whitespace characters with spaces, and also multiple occurences with just one space
+	// Replace any non-space whitespace characters with spaces, and also multiple occurrences with just one space
 	var/static/regex/matchSpacing = new(@"\s+", "g")
 	t = replacetext(t, matchSpacing, " ")
 
@@ -153,7 +153,7 @@
 /**
  * Filters out undesirable characters from names.
  *
- * * strict - return null immidiately instead of filtering out
+ * * strict - return null immediately instead of filtering out
  * * allow_numbers - allows numbers and common special characters - used for silicon/other weird things names
  * * cap_after_symbols - words like Bob's will be capitalized to Bob'S by default. False is good for titles.
  */
@@ -169,7 +169,7 @@
 	var/char = ""
 
 	// This is a sanity short circuit, if the users name is three times the maximum allowable length of name
-	// We bail out on trying to process the name at all, as it could be a bug or malicious input and we dont
+	// We bail out on trying to process the name at all, as it could be a bug or malicious input and we don't
 	// Want to iterate all of it.
 	if(t_len > 3 * MAX_NAME_LEN)
 		return
@@ -1227,6 +1227,13 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/endswith(input_text, ending)
 	var/input_length = LAZYLEN(ending)
 	return !!findtext(input_text, ending, -input_length)
+
+/// Returns TRUE if the input_text starts with any of the beginnings
+/proc/starts_with_any(input_text, list/beginnings)
+	for(var/beginning in beginnings)
+		if(!!findtext(input_text, beginning, 1, LAZYLEN(beginning)+1))
+			return TRUE
+	return FALSE
 
 /// Generate a grawlix string of length of the text argument.
 /proc/grawlix(text)

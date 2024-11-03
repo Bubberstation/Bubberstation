@@ -12,8 +12,6 @@
 	var/atom/flee_from = controller.blackboard[target_key]
 	if(!should_flee(controller, flee_from))
 		return
-	if(!should_flee(controller, flee_from))
-		return
 	var/flee_distance = controller.blackboard[BB_BASIC_MOB_FLEE_DISTANCE] || DEFAULT_BASIC_FLEE_DISTANCE
 	if (get_dist(controller.pawn, flee_from) >= flee_distance)
 		return

@@ -12,14 +12,21 @@
 	. = ..()
 	if(target.stat == DEAD)
 		return
-	var/mob/living/carbon/human/carbon_target = target
-	if(!carbon_target && !iscyborg(target))
+
+	var/mob/living/carbon/human/carbon_target
+	if(ishuman(target))
+		carbon_target = target
+	else if(!iscyborg(target))
+		return
+
+	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
+		to_chat(user, span_danger("[target] doesn't want you to do that."))
 		return
 
 	var/message = ""
 	switch(user.zone_selected) //to let code know what part of body we gonna tickle
 		if(BODY_ZONE_PRECISE_GROIN)
-			if(!carbon_target?.is_bottomless())
+			if(carbon_target && !carbon_target.is_bottomless())
 				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
 				return
 
@@ -45,7 +52,7 @@
 						"gently teases [target.p_their()] synthetic body with [src]") \
 					: pick("teases [target]'s touch sensors with [src]")
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			if(!carbon_target?.has_feet(REQUIRE_GENITAL_EXPOSED))
+			if(carbon_target && !carbon_target.has_feet(REQUIRE_GENITAL_EXPOSED))
 				to_chat(user, span_danger("Looks like [target]'s feets are covered!"))
 				return
 
@@ -55,7 +62,7 @@
 					"uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_LEG ? "left" : "right"] foot",
 					"uses [src] to tickle [target]'s toes")
 		if(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
-			if(!carbon_target?.is_topless())
+			if(carbon_target && !carbon_target.is_topless())
 				to_chat(user, span_danger("Looks like [target]'s armpits are covered!"))
 				return
 
@@ -74,7 +81,7 @@
 	target.add_mood_event("tickled", /datum/mood_event/tickled)
 	carbon_target?.adjust_arousal(3)
 	user.visible_message(span_purple("[user] [message]!"))
-	play_lewd_sound(loc, \
+	conditional_pref_sound(loc, \
 		pick(
 			'sound/items/handling/cloth_drop.ogg', // I duplicate this part of code because im useless shitcoder that can't make it work properly without tons of repeating code blocks
 			'sound/items/handling/cloth_pickup.ogg', // If you can make it better - go ahead, modify it, please.

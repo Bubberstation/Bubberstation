@@ -369,7 +369,7 @@
 			if(SANITY_INSANE to SANITY_CRAZY)
 				msg += "[span_boldwarning("AHAHAHAHAHAHAHAHAHAH!!")]\n"
 	else
-		msg += span_notice("I don't really know.")
+		msg += "[span_notice("I don't really know.")]\n"
 	//SKYRAT EDIT CHANGE END
 
 	msg += span_notice("My current mood: ") //Short term
@@ -418,7 +418,7 @@
 				msg += "[span_boldnicegreen("I love life!")]\n"
 	else
 		msg += "[span_notice("No clue.")]\n"
-	
+
 	msg += "[span_notice("Moodlets:")]\n"//All moodlets
 	msg += get_alcohol_processing(user)
 	msg += get_drunk_mood(user)
@@ -462,7 +462,7 @@
 		clear_mood_event(MOOD_CATEGORY_AREA_BEAUTY)
 		return
 
-	if(HAS_TRAIT(mob_parent, TRAIT_MORBID))
+	if(HAS_MIND_TRAIT(mob_parent, TRAIT_MORBID))
 		if(HAS_TRAIT(mob_parent, TRAIT_SNOB))
 			switch(area_to_beautify.beauty)
 				if(BEAUTY_LEVEL_DECENT to BEAUTY_LEVEL_GOOD)
