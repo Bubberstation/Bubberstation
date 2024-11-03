@@ -2907,7 +2907,7 @@
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/wood{
 	id_tag = "syndishipmoraledorm";
-	name = "Chefs Quarters"
+	name = "Chefs Quarter"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -5811,9 +5811,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
 "rU" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Brig officer's bitrunning setup"
-	},
+/obj/machinery/door/airlock/highsecurity,
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -6600,9 +6598,7 @@
 /obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate")
 	},
-/obj/structure/window/plasma{
-	dir = 4
-	},
+/obj/structure/window/plasma/spawner/directional/east,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "ug" = (
@@ -10101,8 +10097,7 @@
 /obj/machinery/door/firedoor/heavy,
 /obj/structure/cable,
 /obj/machinery/door/airlock/highsecurity{
-	id_tag = "syndishipmaad";
-	name = "Master at Arms Quarters"
+	id_tag = "syndishipmaad"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -10653,8 +10648,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/door/airlock/highsecurity{
-	id_tag = "syndishipliason";
-	name = "Corporate Liason Quarters"
+	id_tag = "syndishipliason"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
@@ -13769,24 +13763,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"Ra" = (
-/obj/machinery/door/airlock/highsecurity{
-	id_tag = "syndishipmanager";
-	name = "Admiral quarters"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/heavy,
-/obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/duct,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "Rb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -15350,7 +15326,6 @@
 /obj/effect/turf_decal/siding{
 	dir = 10
 	},
-/obj/structure/sign/poster/contraband/andromeda_bitters/directional/west,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "WA" = (
@@ -19006,7 +18981,7 @@ Hg
 NY
 XO
 XO
-Ra
+Fc
 XO
 XO
 XO
