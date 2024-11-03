@@ -104,6 +104,15 @@
 
 /obj/item/skillchip/mkiiultra/on_activate(mob/living/carbon/user, silent = FALSE)
 	. = ..()
+	var/mob/living/carbon/human/enthrall = enthrall_ref?.resolve()
+	if(!isnull(enthrall))
+		var/obj/item/organ/internal/vocal_cords/vocal_cords = enthrall.get_organ_slot(ORGAN_SLOT_VOICE)
+		var/obj/item/organ/internal/vocal_cords/new_vocal_cords = new /obj/item/organ/internal/vocal_cords/velvet
+		if(vocal_cords)
+			vocal_cords.Remove()
+		new_vocal_cords.Insert(enthrall)
+		qdel(vocal_cords)
+		to_chat(enthrall, span_purple("<i>You feel your vocal cords tingle you speak in a more charasmatic and sultry tone.</i>"))
 	user.apply_status_effect(/datum/status_effect/chem/enthrall)
 
 /obj/item/skillchip/mkiiultra/on_deactivate(mob/living/carbon/user, silent = FALSE)
