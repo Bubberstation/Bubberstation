@@ -8,14 +8,3 @@
 	mob_trait = TRAIT_SALT_SENSITIVE
 	hardcore_value = 1
 	icon = FA_ICON_BIOHAZARD
-
-/datum/reagent/consumable/salt/expose_mob(mob/living/M, method=TOUCH, reac_volume)
-	. = ..()
-	if(HAS_TRAIT(M, TRAIT_SALT_SENSITIVE)) // haha snails go brrr
-		M.adjustFireLoss(2)
-		M.emote("scream")
-
-/datum/reagent/consumable/salt/on_mob_life(mob/living/M)
-	. = ..()
-	if(HAS_TRAIT(M, TRAIT_SALT_SENSITIVE))
-		M.adjustFireLoss(1) // equal to a standard toxin
