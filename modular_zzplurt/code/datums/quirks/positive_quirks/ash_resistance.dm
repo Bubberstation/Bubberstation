@@ -1,23 +1,23 @@
-// UNIMPLEMENTED QUIRK!
 /datum/quirk/ash_resistance
 	name = "Ashen Resistance"
 	desc = "Your body is adapted to the burning sheets of ash that coat volcanic worlds. The heavy downpours of silt will still tire you."
-	value = 2 //Is not actually THAT good. Does not grant breathing and does stamina damage to the point you are unable to attack. Crippling on lavaland, but you'll survive. Is not a replacement for SEVA suits for this reason. Can be adjusted.
+	value = 2
 	gain_text = span_notice("Your body has adapted to the harsh climates of volcanic worlds.")
 	lose_text = span_notice("Your body has lost its ashen adaptations.")
 	medical_record_text = "Patient has an abnormally thick epidermis."
 	mob_trait = TRAIT_ASHRESISTANCE
 	hardcore_value = -1
-	icon = FA_ICON_FIRE
+	icon = FA_ICON_FIRE_FLAME_SIMPLE
 
-/* Uses stamina, so we'll have to find a better way to apply it
-/* --FALLBACK SYSTEM INCASE THE TRAIT FAILS TO WORK. Do NOT enable this without editing ash_storm.dm to deal stamina damage with ash immunity.
+// Without the stamina penalty, this quirk can replace SEVA suits
+// Please increase the cost if you use the code below
+
+/*
 /datum/quirk/ashresistance/add()
-	quirk_holder.weather_immunities |= "ash"
+	// Add ash storm immunity
+	ADD_TRAIT(quirk_holder, TRAIT_ASHSTORM_IMMUNE, TRAIT_ASHRESISTANCE)
 
 /datum/quirk/ashresistance/remove()
-	if(!quirk_holder)
-		return
-	quirk_holder.weather_immunities -= "ash"
-*/
+	// Remove ash storm immunity
+	REMOVE_TRAIT(quirk_holder, TRAIT_ASHSTORM_IMMUNE, TRAIT_ASHRESISTANCE)
 */
