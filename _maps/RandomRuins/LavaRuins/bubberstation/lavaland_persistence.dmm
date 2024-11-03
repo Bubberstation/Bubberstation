@@ -5811,7 +5811,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
 "rU" = (
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Brig Officer's Bitrunning Setup"
+	},
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -6708,9 +6710,6 @@
 "uD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
-	},
-/obj/structure/closet/emcloset/wall{
-	pixel_y = 32
 	},
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/mineral/plastitanium,
@@ -10111,7 +10110,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/door/airlock/wood{
-	name = "Dining room"
+	name = "Dining Room"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -12802,7 +12801,7 @@
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/service{
 	id_tag = "syndishipjanitor";
-	name = "Janitor's quarters"
+	name = "Janitor's Quarters"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
