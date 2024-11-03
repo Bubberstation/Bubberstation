@@ -1,4 +1,7 @@
-import { useBackend, useSharedState } from '../backend';
+import { useState } from 'react';
+import { Tooltip } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,8 +12,6 @@ import {
   Table,
 } from '../components';
 import { Window } from '../layouts';
-import { useState } from 'react';
-import { Tooltip } from 'tgui-core/components';
 
 export type Storyteller_Data = {
   storyteller_name: string;
@@ -58,17 +59,17 @@ export const Zubbers_Storyteller = (props) => {
       <Window.Content height="100%">
         <Stack fill vertical>
           <Stack.Item>
-            <Zubbers_Storyteller_Round_Data />
+            <ZubbersStorytellerRoundData />
           </Stack.Item>
           <Stack.Divider />
           <Stack.Item>
-            <Zubbers_Storyteller_Track_Data />
+            <ZubbersStorytellerTrackData />
           </Stack.Item>
           <Stack.Item>
-            <Zubbers_Storyteller_Scheduled_Data />
+            <ZubbersStorytellerScheduledData />
           </Stack.Item>
           <Stack.Item grow>
-            <Zubbers_Storyteller_EventPanel />
+            <ZubbersStorytellerEventPanel />
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -76,7 +77,7 @@ export const Zubbers_Storyteller = (props) => {
   );
 };
 
-export const Zubbers_Storyteller_Round_Data = (props) => {
+export const ZubbersStorytellerRoundData = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const {
     storyteller_name,
@@ -141,7 +142,7 @@ const TRACK_DATA_NEXT_WIDTH = '5%';
 const TRACK_DATA_FORCED_WIDTH = '20%';
 const TRACK_DATA_ACTIONS_WIDTH = '20%';
 
-export const Zubbers_Storyteller_Track_Data = (props) => {
+export const ZubbersStorytellerTrackData = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { tracks_data, storyteller_halt } = data;
   return (
@@ -158,13 +159,13 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
           </Table.Cell>
           <Table.Cell width={TRACK_DATA_ACTIONS_WIDTH}>Actions</Table.Cell>
         </Table.Row>
-        <Stack.Divider></Stack.Divider>
+        <Stack.Divider />
         {Object.entries(tracks_data).map(([track, track_data]) => {
           const max_points = track_data.max;
           const current_points = track_data.current;
           const forced = track_data.forced ? track_data.forced : 0;
           return (
-            <Table.Row>
+            <Table.Row key={track}>
               <Table.Cell>
                 <Button
                   tooltip="Edit points"
@@ -213,7 +214,7 @@ export const Zubbers_Storyteller_Track_Data = (props) => {
   );
 };
 
-export const Zubbers_Storyteller_Scheduled_Data = (props) => {
+export const ZubbersStorytellerScheduledData = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { scheduled_data } = data;
   return (
@@ -228,7 +229,7 @@ export const Zubbers_Storyteller_Scheduled_Data = (props) => {
         {Object.entries(scheduled_data).map(([event_name, event_data]) => {
           const time = event_data['time'];
           return (
-            <Table.Row>
+            <Table.Row key={event_name}>
               <Table.Cell>{event_name}</Table.Cell>
               <Table.Cell>{event_data['track']}</Table.Cell>
               <Table.Cell>{time ? time + ' s' : 'Roundstart'}</Table.Cell>
@@ -293,7 +294,7 @@ const EVENT_PANEL_CANRUN_WIDTH = '6%';
 const EVENT_PANEL_WEIGHT_WIDTH = '10%';
 const EVENT_PANEL_ACTIONS_WIDTH = '20%';
 
-export const Zubbers_Storyteller_EventPanel = (props) => {
+export const ZubbersStorytellerEventPanel = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { events } = data;
 
@@ -342,7 +343,7 @@ export const Zubbers_Storyteller_EventPanel = (props) => {
           </Table.Cell>
           <Table.Cell width={EVENT_PANEL_ACTIONS_WIDTH}>Actions</Table.Cell>
         </Table.Row>
-        <Zubbers_Storyteller_EventPanel_Category
+        <ZubbersStorytellerEventPanelCategory
           current={currentEventCategory}
           roundstart={showRoundstart}
         />
@@ -356,7 +357,7 @@ type EventPanel_Category_Props = {
   roundstart: boolean;
 };
 
-export const Zubbers_Storyteller_EventPanel_Category = (
+export const ZubbersStorytellerEventPanelCategory = (
   props: EventPanel_Category_Props,
 ) => {
   const { current } = props;
@@ -365,12 +366,7 @@ export const Zubbers_Storyteller_EventPanel_Category = (
       {Object.entries(current.events)
         .sort((a, b) => b[1].weight - a[1].weight)
         .map(([event_type, event]) => {
-          return (
-            <Zubbers_Storyteller_Event
-              type={event_type}
-              event={event}
-            ></Zubbers_Storyteller_Event>
-          );
+          return <ZubbersStorytellerEvent type={event_type} event={event} />;
         })}
     </>
   );
@@ -381,7 +377,7 @@ type Event_Props = {
   event: Storyteller_Event;
 };
 
-export const Zubbers_Storyteller_Event = (props: Event_Props) => {
+export const ZubbersStorytellerEvent = (props: Event_Props) => {
   const { type, event } = props;
   const { act } = useBackend<Storyteller_Data>();
   return (
