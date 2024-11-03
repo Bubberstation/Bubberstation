@@ -1,34 +1,65 @@
-// UNIMPLEMENTED QUIRK!
 /datum/quirk/arachnid
-	name = "Arachnid"
-	desc = "Your bodily anatomy allows you to spin webs and cocoons, even if you aren't an arachnid! This quirk does nothing for members of the arachnid species."
+	name = "Silkspinner"
+	desc = "Your bodily anatomy allows you to spin webs and cocoons, even though you aren't an arachnid! This quirk does nothing for members of the arachnid species."
 	value = 2
-	//quirk_flags = QUIRK_PROCESSES // Unimplemented
 	medical_record_text = "Patient has attempted to cover the room in webs, claiming to be \"making a nest\"."
 	mob_trait = TRAIT_ARACHNID
 	gain_text = span_notice("You feel a strange sensation near your anus...")
 	lose_text = span_notice("You feel like you can't spin webs anymore...")
 	icon = FA_ICON_SPIDER
 
-/* No arachnid species or similar in TG yet
 /datum/quirk/arachnid/add()
-	. = ..()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(is_species(H,/datum/species/arachnid))
-		to_chat(H, span_warning("As an arachnid, this quirk does nothing for you, as these abilities are innate to your species."))
+	// Define quirk holder mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Check if already an arachnid
+	if(is_species(quirk_mob,/datum/species/arachnid))
+		// Warn user and return
+		to_chat(quirk_mob, span_warning("As an arachnid, the Arachnid quirk does nothing for you! These abilities are innate to your species."))
 		return
-	var/datum/action/innate/spin_web/SW = new
-	var/datum/action/innate/spin_cocoon/SC = new
-	SC.Grant(H)
-	SW.Grant(H)
+
+	// Define arachnid abilities
+	var/datum/action/innate/arachnid/spin_web/ability_web = new
+	var/datum/action/innate/arachnid/spin_cocoon/ability_cocoon = new
+
+	// Grant abilities
+	ability_web.Grant(quirk_mob)
+	ability_cocoon.Grant(quirk_mob)
+
+	// Grant arachnid traits
+	quirk_mob.add_traits(list(
+		TRAIT_WEB_SURFER,
+		TRAIT_WEB_WEAVER,
+	), TRAIT_ARACHNID)
+
+	// Check if mob was already a bug
+	if(!(quirk_mob.mob_biotypes & MOB_BUG))
+		// Add bug biotype
+		quirk_mob.mob_biotypes += MOB_BUG
 
 /datum/quirk/arachnid/remove()
-	. = ..()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(is_species(H,/datum/species/arachnid))
+	// Define quirk holder mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Check if already an arachnid
+	if(is_species(quirk_mob,/datum/species/arachnid))
 		return
-	var/datum/action/innate/spin_web/SW = locate(/datum/action/innate/spin_web) in H.actions
-	var/datum/action/innate/spin_cocoon/SC = locate(/datum/action/innate/spin_cocoon) in H.actions
-	SC?.Remove(H)
-	SW?.Remove(H)
-*/
+
+	// Define arachnid abilities
+	var/datum/action/innate/arachnid/spin_web/ability_web = locate(/datum/action/innate/arachnid/spin_web) in quirk_mob.actions
+	var/datum/action/innate/arachnid/spin_cocoon/ability_cocoon = locate(/datum/action/innate/arachnid/spin_cocoon) in quirk_mob.actions
+
+	// Revoke abilities
+	ability_web?.Remove(quirk_mob)
+	ability_cocoon?.Remove(quirk_mob)
+
+	// Revoke arachnid traits
+	quirk_mob.remove_traits(list(
+		TRAIT_WEB_SURFER,
+		TRAIT_WEB_WEAVER,
+	), TRAIT_ARACHNID)
+
+	// Check if species should still be a bug
+	if(!(quirk_mob.dna?.species?.inherent_biotypes & MOB_BUG))
+		// Remove bug biotype
+		quirk_mob.mob_biotypes -= MOB_BUG
