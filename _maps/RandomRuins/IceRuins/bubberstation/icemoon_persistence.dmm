@@ -1222,12 +1222,7 @@
 	},
 /obj/item/fur_dyer,
 /obj/machinery/light/directional/east,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 6
-	},
+/obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "eh" = (
@@ -1878,15 +1873,6 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
-"gn" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "gp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1970,11 +1956,10 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "gG" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
 	},
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
+/area/icemoon/underground/explored)
 "gH" = (
 /obj/machinery/smartfridge/food,
 /obj/machinery/door/firedoor/heavy,
@@ -4442,17 +4427,6 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
-"of" = (
-/obj/structure/dresser,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 5;
-	pixel_y = 15
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "og" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/siding/wood/end{
@@ -6079,18 +6053,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "sZ" = (
-/obj/machinery/airalarm/directional/west,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "syndisalon_w"
 	},
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor{
-	dir = 4;
-	name = "Persistence Janitor"
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "ta" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -6531,7 +6500,7 @@
 	name = "Saloon"
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service)
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "uv" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/stripes/line{
@@ -6791,13 +6760,6 @@
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/carpet/stellar,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/cargo)
-"vt" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 30
-	},
-/obj/machinery/digital_clock/directional/east,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "vu" = (
 /obj/machinery/light_switch/directional/west,
 /turf/open/floor/iron/kitchen/diagonal,
@@ -6992,22 +6954,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
-"vW" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/obj/effect/mapping_helpers/apc/full_charge,
-/obj/machinery/button/door/directional/west{
-	pixel_y = -8;
-	specialfunctions = 4;
-	name = "Dorm Bolt Switch";
-	id = "syndishipjanitor";
-	req_access = list("syndicate");
-	normaldoorcontrol = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "vX" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/structure/cable,
@@ -7217,6 +7163,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "wF" = (
@@ -8413,15 +8360,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"Ap" = (
-/obj/structure/bed/double/pod,
-/obj/effect/spawner/random/bedsheet/any/double,
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/obj/machinery/light/directional/east,
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "At" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -8838,6 +8776,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "BQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "BR" = (
@@ -9032,17 +8973,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
-"Cu" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/safe/abovetilefloor,
-/obj/item/sign/flag/syndicate{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Cv" = (
 /obj/machinery/piratepad/syndiepad,
 /turf/open/floor/noslip/tram,
@@ -9328,9 +9258,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
-"DB" = (
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "DC" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/siding/wood{
@@ -9594,15 +9521,15 @@
 	pixel_y = 4
 	},
 /obj/item/lipstick/syndie,
-/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/item/straight_razor,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
+	dir = 1
 	},
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Er" = (
@@ -9916,9 +9843,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Fi" = (
@@ -10352,6 +10276,22 @@
 /obj/structure/sign/poster/official/foam_force_ad/directional/south,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"Gw" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/box/perfume,
+/obj/item/storage/box/perfume,
+/obj/machinery/light/directional/south,
+/obj/machinery/button/door{
+	id = "syndisalon_w";
+	name = "Salon Window Shutters";
+	req_access = list("syndicate");
+	pixel_y = -24
+	},
+/turf/open/floor/iron/kitchen/herringbone,
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Gx" = (
 /obj/machinery/button/door/directional/north{
 	id = "syndiship_vault";
@@ -10576,17 +10516,10 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "Hi" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/service{
-	id_tag = "syndishipjanitor";
-	name = "Janitor's Quarters"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Hl" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -12128,25 +12061,12 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Mb" = (
-/obj/structure/chair/comfy/carp{
-	dir = 4
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/item/storage/box/syndimaid,
-/obj/effect/spawner/random/exotic/syndie,
-/obj/item/storage/wallet/random,
-/obj/item/clothing/under/syndicate/skyrat/baseball,
-/obj/item/choice_beacon/music,
-/obj/effect/spawner/random/exotic/syndie,
-/obj/structure/closet/generic/wall{
-	pixel_x = -32
-	},
-/obj/effect/spawner/random/entertainment/plushie_delux,
-/obj/effect/spawner/random/entertainment/plushie,
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
+/turf/open/space/basic,
+/area/icemoon/underground/explored)
 "Mg" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -12240,6 +12160,28 @@
 /obj/structure/sign/poster/contraband/icebox_moment/directional/south,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
+"My" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	faction = list("Syndicate","neutral");
+	pixel_y = 32
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
+	network = list("persistence_ext")
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "MA" = (
 /obj/machinery/computer/order_console/bitrunning{
 	pixel_x = 32;
@@ -12861,14 +12803,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
-"Oz" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/modular_computer/laptop/preset/syndicate,
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "OB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -13573,12 +13507,6 @@
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant)
 "Qy" = (
-/obj/machinery/vending/barbervend{
-	onstation = 0;
-	onstation_override = 1;
-	pixel_y = 32;
-	all_products_free = 1
-	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
@@ -13590,10 +13518,6 @@
 /obj/effect/turf_decal/siding/thinplating/terracotta/end,
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
-"QA" = (
-/obj/structure/fireplace,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "QC" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
@@ -13721,9 +13645,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
-"QY" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "QZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -14780,6 +14701,28 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
+"Uh" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32;
+	faction = list("Syndicate","neutral")
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Ui" = (
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/structure/cable,
@@ -15165,6 +15108,19 @@
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+"VG" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/obj/machinery/vending/barbervend{
+	onstation = 0;
+	onstation_override = 1;
+	pixel_y = 28;
+	all_products_free = 1
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/turf/open/floor/iron/kitchen/herringbone,
+/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "VH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
@@ -20013,9 +19969,9 @@ bv
 cc
 ka
 Jk
-Jk
+VG
 Hi
-Jk
+Gw
 ST
 eh
 ph
@@ -20082,12 +20038,12 @@ ai
 WQ
 GZ
 VZ
-DB
-vW
-gn
+Jk
 sZ
-QY
-ST
+sZ
+sZ
+Jk
+Jk
 cJ
 Xz
 aI
@@ -20152,12 +20108,12 @@ ai
 bP
 KI
 Ts
-DB
-QA
-Cu
+Jk
+Mb
+Mb
 gG
 Mb
-DB
+Jk
 NP
 JJ
 Xz
@@ -20222,12 +20178,12 @@ ai
 cr
 KI
 ge
-DB
-vt
-Ap
-of
-Oz
-DB
+Jk
+Mb
+Mb
+gG
+Mb
+Jk
 Ot
 XL
 KF
@@ -20292,12 +20248,12 @@ ai
 IE
 Dh
 kw
-DB
-DB
-DB
-DB
-DB
-DB
+Jk
+Mb
+Mb
+gG
+Mb
+Jk
 ST
 ST
 ST
@@ -20362,12 +20318,12 @@ ai
 ai
 ai
 ai
-DB
-Rf
+Jk
+My
 Fc
 Nq
 Fc
-Rf
+Uh
 nc
 nc
 nc
