@@ -60,9 +60,6 @@
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/stationmed
 	outfit = /datum/outfit/persistence/syndicate/stationmed
 
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/assistant
-	outfit = /datum/outfit/persistence/syndicate/assistant
-
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff
 	outfit = /datum/outfit/persistence/syndicate/brigoff
 
@@ -77,9 +74,6 @@
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral
 	outfit = /datum/outfit/persistence/command/admiral
-
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/moraleofficer
-	outfit = /datum/outfit/persistence/command/moraleofficer
 
 // Codespeak Granter
 
@@ -242,26 +236,6 @@
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
 
-
-/datum/outfit/persistence/syndicate/assistant
-	name = "Persistence Off Duty Staff"
-	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/assistant
-	uniform = /obj/item/clothing/under/syndicate
-	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/survival = 1,
-		/obj/item/crowbar = 1,
-		/obj/item/choice_beacon/syndicateoffstation = 1,
-		)
-	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	ears = /obj/item/radio/headset/interdyne
-	shoes = /obj/item/clothing/shoes/combat
-
-/datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
-	return ..()
-
-
 // Dauntless Command
 
 /datum/outfit/persistence/command
@@ -308,18 +282,9 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/corporateliasion
 
 /datum/outfit/persistence/command/admiral
-	name = "Rig Manager"
+	name = "Rig Admiral"
 	uniform = /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
-	back = /obj/item/storage/backpack/satchel
-	head = /obj/item/clothing/head/hats/hos/cap/syndicate
-	id = /obj/item/card/id/advanced/gold/generic
-	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/rigmanager
-
-/datum/outfit/persistence/command/moraleofficer
-	name = "Persistence Morale Officer"
-	uniform = /obj/item/clothing/under/syndicate/sniper
-	mask = /obj/item/clothing/mask/gas/clown_hat
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -328,4 +293,4 @@
 		)
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
-	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/moraleofficer
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/rigmanager

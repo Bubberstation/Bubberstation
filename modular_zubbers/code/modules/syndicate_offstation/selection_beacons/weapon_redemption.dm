@@ -12,6 +12,7 @@
 		"Makarov" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/makarov,
 		"M1911" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/m1911,
 		"Energy Dagger" = /obj/item/pen/edagger,
+		"Ansem Pistol Kit" = /obj/item/storage/toolbox/guncase/clandestine,
 	)
 
 	return selectable_gun_types
@@ -25,7 +26,8 @@
 		"Makarov" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/makarov,
 		"M1911" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/m1911,
 		"Energy Dagger" = /obj/item/pen/edagger,
-		"Syndicate Crossbow" = /obj/item/storage/toolbox/guncase/skyrat/opfor/rebar_crossbow
+		"Syndicate Crossbow" = /obj/item/storage/toolbox/guncase/skyrat/opfor/rebar_crossbow,
+		"Ansem Pistol Kit" = /obj/item/storage/toolbox/guncase/clandestine,
 	)
 
 	return selectable_gun_types
@@ -59,7 +61,7 @@
 	return selectable_gun_types
 
 /obj/item/choice_beacon/syndicateoffstation/morale
-	name = "Syndicate morale officer weapon beacon"
+	name = "Syndicate Admiral weapon beacon"
 
 /obj/item/choice_beacon/syndicateoffstation/morale/generate_display_names()
 	var/static/list/selectable_gun_types = list(
