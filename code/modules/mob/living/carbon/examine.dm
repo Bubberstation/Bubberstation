@@ -51,6 +51,12 @@
 	if (length(status_examines))
 		. += status_examines
 
+	//SPLURT EDIT ADDITION - Sizecode
+	var/list/size_examines = get_size_examine_info(user)
+	if (length(size_examines))
+		. += size_examines
+	//SPLURT EDIT ADDITION END
+
 	if(get_bodypart(BODY_ZONE_HEAD) && !get_organ_by_type(/obj/item/organ/internal/brain))
 		. += span_deadsay("It appears that [t_his] brain is missing...")
 
