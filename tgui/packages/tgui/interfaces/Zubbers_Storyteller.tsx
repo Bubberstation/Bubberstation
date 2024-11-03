@@ -302,7 +302,32 @@ export const ZubbersStorytellerEventPanel = (props) => {
   const [currentEventCategory, setCurrentEventCategory] = useState(
     eventCategoryTabs[0],
   );
-  const showRoundstart = false;
+  const [showRoundstart, setRounstart] = useState(false);
+
+  const eventButtons = () => {
+    const event_categories = Object.values(events).map((event_category) => {
+      return (
+        <Button
+          key={event_category.name}
+          selected={event_category === currentEventCategory}
+          onClick={() => setCurrentEventCategory(event_category)}
+        >
+          {event_category.name}
+        </Button>
+      );
+    });
+    return (
+      <Stack>
+        <Button.Checkbox
+          checked={showRoundstart}
+          onClick={() => setRounstart((prevValue) => !prevValue)}
+        >
+          Roundstart
+        </Button.Checkbox>
+        {event_categories}
+      </Stack>
+    );
+  };
 
   return (
     <Section
@@ -310,17 +335,7 @@ export const ZubbersStorytellerEventPanel = (props) => {
       maxHeight="100%"
       fill
       scrollable
-      buttons={Object.values(events).map((event_category) => {
-        return (
-          <Button
-            key={event_category.name}
-            selected={event_category === currentEventCategory}
-            onClick={() => setCurrentEventCategory(event_category)}
-          >
-            {event_category.name}
-          </Button>
-        );
-      })}
+      buttons={eventButtons()}
     >
       <Table>
         <Table.Row bold>
@@ -360,13 +375,21 @@ type EventPanel_Category_Props = {
 export const ZubbersStorytellerEventPanelCategory = (
   props: EventPanel_Category_Props,
 ) => {
-  const { current } = props;
+  const { current, roundstart } = props;
   return (
     <>
       {Object.entries(current.events)
         .sort((a, b) => b[1].weight - a[1].weight)
         .map(([event_type, event]) => {
-          return <ZubbersStorytellerEvent type={event_type} event={event} />;
+          if (event.roundstart == roundstart) {
+            return (
+              <ZubbersStorytellerEvent
+                key={event_type}
+                type={event_type}
+                event={event}
+              />
+            );
+          }
         })}
     </>
   );
