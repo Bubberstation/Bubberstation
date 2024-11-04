@@ -226,7 +226,7 @@ jobs:
 
   compare_screenshots:
     if: needs.collect_data.outputs.alternate_tests == '[]' || needs.run_alternate_tests.result == 'success'
-    needs: [ collect_data, run_all_tests, run_alternate_tests ]
+    needs: [ collect_data, run_alternate_tests ]
     name: Compare Screenshot Tests
     timeout-minutes: 15
     runs-on: ubuntu-22.04
