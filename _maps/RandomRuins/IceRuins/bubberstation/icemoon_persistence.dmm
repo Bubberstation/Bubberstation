@@ -1183,6 +1183,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
+/obj/machinery/door/window/survival_pod/left/directional/north{
+	req_access = list("syndicate_leader")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "ea" = (
@@ -1710,6 +1713,7 @@
 "fL" = (
 /obj/structure/flora/bush/flowers_yw/style_random,
 /obj/structure/flora/bush/fullgrass,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "fM" = (
@@ -1901,17 +1905,14 @@
 /obj/machinery/firealarm/directional/south,
 /obj/structure/flora/biolumi/flower/weaklight,
 /obj/machinery/light/directional/south,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "gt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "gx" = (
 /obj/effect/turf_decal/siding/dark{
@@ -1956,6 +1957,7 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "gG" = (
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -2770,6 +2772,7 @@
 	dir = 5
 	},
 /obj/effect/mapping_helpers/broken_floor,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "jo" = (
@@ -3729,6 +3732,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground/explored)
 "mm" = (
@@ -4467,6 +4471,7 @@
 	dir = 9
 	},
 /obj/effect/mapping_helpers/burnt_floor,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "om" = (
@@ -5671,6 +5676,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "rS" = (
 /obj/structure/flora/bush/flowers_pp,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "rT" = (
@@ -8445,14 +8451,10 @@
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "AM" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "AP" = (
 /obj/machinery/mining_weather_monitor/directional/south,
@@ -8743,6 +8745,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "BL" = (
 /obj/machinery/exoscanner,
+/obj/structure/lattice/catwalk/mining,
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "BM" = (
@@ -8985,6 +8988,7 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -9128,6 +9132,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/sign/warning/docking/directional/west,
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -9692,9 +9697,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/chair/comfy/carp{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -9818,6 +9820,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/icemoon/underground/explored)
 "Fd" = (
@@ -10689,6 +10692,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/sign/warning/biohazard/directional/west,
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -12065,7 +12069,8 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/space/basic,
+/obj/structure/lattice/catwalk/mining,
+/turf/open/floor/pod/dark,
 /area/icemoon/underground/explored)
 "Mg" = (
 /obj/machinery/duct,
@@ -12180,6 +12185,7 @@
 	name = "Persistence Exterior North";
 	network = list("persistence_ext")
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "MA" = (
@@ -12437,6 +12443,7 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -13034,6 +13041,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Pe" = (
@@ -13669,6 +13677,7 @@
 /obj/structure/railing{
 	dir = 9
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Rd" = (
@@ -13699,6 +13708,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Ri" = (
@@ -14265,6 +14275,7 @@
 	name = "Exterior Radiation Shutters";
 	pixel_x = 24
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SK" = (
@@ -14721,6 +14732,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Ui" = (
@@ -15293,6 +15305,7 @@
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
 "Wf" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Wi" = (

@@ -1724,6 +1724,7 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "fF" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "fG" = (
@@ -3211,7 +3212,8 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/space/basic,
+/obj/structure/lattice/catwalk/mining,
+/turf/open/floor/pod/dark,
 /area/icemoon/underground/explored)
 "jT" = (
 /obj/structure/closet/crate/secure/gear{
@@ -5343,6 +5345,7 @@
 	dir = 5
 	},
 /obj/effect/mapping_helpers/broken_floor,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "qH" = (
@@ -5932,6 +5935,7 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "sy" = (
@@ -6084,6 +6088,9 @@
 "sQ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
+	},
+/obj/machinery/door/window/survival_pod/left/directional/north{
+	req_access = list("syndicate_leader")
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
@@ -6803,6 +6810,7 @@
 "uY" = (
 /obj/structure/flora/bush/flowers_yw/style_random,
 /obj/structure/flora/bush/fullgrass,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "uZ" = (
@@ -7138,14 +7146,10 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "wf" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "wh" = (
 /obj/structure/chair/sofa/corp/left{
@@ -8489,6 +8493,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "AC" = (
 /obj/structure/flora/bush/flowers_pp,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "AD" = (
@@ -8629,6 +8634,7 @@
 /obj/machinery/firealarm/directional/south,
 /obj/structure/flora/biolumi/flower/weaklight,
 /obj/machinery/light/directional/south,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "AX" = (
@@ -12454,6 +12460,7 @@
 	dir = 9
 	},
 /obj/effect/mapping_helpers/burnt_floor,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Na" = (
@@ -14811,19 +14818,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
-"UU" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/turf/open/floor/pod/dark,
-/area/icemoon/underground/explored)
 "UV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -15115,6 +15109,7 @@
 	name = "Persistence Exterior North";
 	network = list("persistence_ext")
 	},
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "VU" = (
@@ -15254,9 +15249,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/chair/comfy/carp{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -15372,14 +15364,10 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "WJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "WK" = (
 /obj/machinery/duct,
@@ -20473,9 +20461,9 @@ Cr
 Cr
 uA
 VT
-UU
+hY
 ki
-UU
+hY
 KC
 VG
 VG
