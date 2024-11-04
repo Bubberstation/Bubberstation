@@ -75,7 +75,7 @@
 	. = ..()
 
 	. += "The GZ-03 series of coalition armor was a collaborative project between the NRI and TransOrbital \
-		to develop a frontline soldier's armor set that could withstand attacks from the Solar Federation's \
+		to develop a frontline soldier's armor set that could withstand attacks from the Terran Government's \
 		then relatively new pulse ballistics. The design itself is based upon a far older pattern \
 		of armor originally developed by TerraGov themselves, which was the standard pattern of armor design \
 		granted to the first colony ships leaving Sol. Armor older than any of the CIN member states, \
@@ -176,7 +176,7 @@
 	. = ..()
 
 	. += "The GZ-03 series of coalition armor was a collaborative project between the NRI and TransOrbital \
-		to develop a frontline soldier's armor set that could withstand attacks from the Solar Federation's \
+		to develop a frontline soldier's armor set that could withstand attacks from the Terran Government's \
 		then relatively new pulse ballistics. The design itself is based upon a far older pattern \
 		of armor originally developed by TerraGov themselves, which was the standard pattern of armor design \
 		granted to the first colony ships leaving Sol. Armor older than any of the CIN member states, \

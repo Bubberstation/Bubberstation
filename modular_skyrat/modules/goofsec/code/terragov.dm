@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/radio/headset/headset_terragov/atmos
 	name = "\improper TerraGov adv. atmos headset"
-	desc = "A headset used by the Solar Federation response teams."
+	desc = "A headset used by the Terran Government response teams."
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_terragov/atmos
 	radiosound = 'modular_skyrat/modules/radiosound/sound/radio/security.ogg'
