@@ -8,3 +8,6 @@
 
 // Trait types
 #define DUMB_CUM_TRAIT		"dumb4cum"
+
+// Quirk variables
+//#define RADFIEND_IMMUNITY_TIME (5 MINUTES) // How long does Rad Fiend protect against radiation? Currently unused.

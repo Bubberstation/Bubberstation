@@ -1,7 +1,7 @@
 /datum/quirk/rad_fiend
 	name = "Rad Fiend"
-	desc = "You've been blessed by Cherenkov's warming light! Only critical levels of radiation are capable of penetrating your protective barrier."
-	value = 4
+	desc = "You've been blessed by Cherenkov's warming light! Radiation is incapable of penetrating your protective barrier."
+	value = 6
 	gain_text = span_notice("You feel empowered by Cherenkov's glow.")
 	lose_text = span_notice("You realize that rads aren't so rad.")
 	medical_record_text = "Patient emits a slight radioactive aura. The effect is harmless."
@@ -12,12 +12,21 @@
 		/obj/item/geiger_counter = 1
 	)
 
+// This quirk does three things:
+// - Immunity to radiation
+// - A cosmetic glow effect
+// - A favorite food mood bonus for drinking Nuka Cola
+
 /datum/quirk/rad_fiend/add(client/client_source)
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
 	// Add glow control action
 	var/datum/action/cosglow/update_glow/quirk_action = new
 	quirk_action.Grant(quirk_mob)
+
+	// Add radiation immunity
+	ADD_TRAIT(quirk_mob, TRAIT_RADIMMUNE, TRAIT_RAD_FIEND)
 
 /datum/quirk/rad_fiend/remove()
 	// Define quirk holder mob
@@ -29,3 +38,6 @@
 
 	// Remove glow effect
 	quirk_mob.remove_filter("rad_fiend_glow")
+
+	// Remove radiation immunity
+	REMOVE_TRAIT(quirk_mob, TRAIT_RADIMMUNE, TRAIT_RAD_FIEND)

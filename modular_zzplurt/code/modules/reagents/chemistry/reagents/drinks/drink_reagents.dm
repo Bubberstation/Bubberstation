@@ -8,3 +8,12 @@
 
 		// Continue processing
 		current_cycle++
+
+// Nuka Cola metabolize
+/datum/reagent/consumable/nuka_cola/on_mob_metabolize(mob/living/affected_mob)
+	. = ..()
+
+	// Check for Rad Fiend
+	if(HAS_TRAIT(affected_mob, TRAIT_RAD_FIEND))
+		// Add mood bonus
+		affected_mob.add_mood_event("fav_food", /datum/mood_event/favorite_food)
