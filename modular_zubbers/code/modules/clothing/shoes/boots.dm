@@ -244,8 +244,8 @@
 /obj/item/clothing/shoes/slipers/proc/on_step()
 	SIGNAL_HANDLER
 	if(iscarbon(src.loc))
-		var/mob/living/carbon/W = src.loc
-		W.slip(80)
+		var/mob/living/carbon/stepping_mob = src.loc
+		stepping_mob.slip(80)
 
 /obj/item/clothing/shoes/slipers/equipped(mob/user, slot)
 	. = ..()
