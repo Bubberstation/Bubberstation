@@ -509,13 +509,18 @@
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "bP" = (
-/obj/vehicle/ridden/janicart,
-/obj/item/key/janitor,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/structure/fireplace,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8;
+	icon_state = "siding_plain_end"
 	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/turf/open/floor/iron/terracotta/diagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "bR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -596,6 +601,7 @@
 "cc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "cd" = (
@@ -670,9 +676,18 @@
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "cr" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/effect/turf_decal/siding/dark{
+	dir = 4;
+	icon_state = "siding_plain_end"
+	},
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor{
+	name = "Persistence Janitor"
+	},
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
+/turf/open/floor/iron/terracotta/diagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "ct" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -838,6 +853,14 @@
 	icon_state = "plastitanium"
 	},
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
+"cQ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "cR" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1811,11 +1834,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "ge" = (
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "gf" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -3016,6 +3039,9 @@
 /obj/item/clothing/shoes/galoshes,
 /obj/item/soap/syndie,
 /obj/machinery/duct,
+/obj/item/grenade/clusterbuster/cleaner,
+/obj/item/grenade/clusterbuster/cleaner,
+/obj/item/grenade/clusterbuster/soap,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "kb" = (
@@ -3139,15 +3165,14 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "kw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/grenade/clusterbuster/cleaner,
-/obj/item/grenade/clusterbuster/cleaner,
-/obj/item/grenade/clusterbuster/soap,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/structure/chair/sofa/right/maroon{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "kx" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/cable,
@@ -3925,6 +3950,8 @@
 	id = "syndicatejanitor";
 	name = "Janitor Closet"
 	},
+/obj/vehicle/ridden/janicart,
+/obj/item/key/janitor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "mJ" = (
@@ -6801,6 +6828,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "vC" = (
@@ -7109,6 +7137,15 @@
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+"wv" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/safe/abovetilefloor,
+/obj/item/sign/flag/syndicate{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "ww" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -7288,6 +7325,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"wU" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "wV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -7900,6 +7941,13 @@
 	dir = 1
 	},
 /obj/structure/moisture_trap,
+/obj/machinery/vending/wardrobe/jani_wardrobe{
+	onstation = 0;
+	onstation_override = 1;
+	pixel_y = 28;
+	density = 0;
+	all_products_free = 1
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "yR" = (
@@ -9148,8 +9196,19 @@
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/light/directional/east,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/dresser,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 5;
+	pixel_y = 15
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Di" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
@@ -9502,6 +9561,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/structure/mop_bucket/janitorialcart,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "Eo" = (
@@ -10464,6 +10524,7 @@
 "GZ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "Ha" = (
@@ -10719,6 +10780,15 @@
 "HP" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"HQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/chair/sofa/left/maroon{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "HR" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -11009,18 +11079,13 @@
 /turf/open/floor/glass/reinforced/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "IE" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
 	},
-/obj/machinery/vending/wardrobe/jani_wardrobe{
-	onstation = 0;
-	onstation_override = 1;
-	pixel_y = 28;
-	density = 0;
-	all_products_free = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/structure/bed/double/pod,
+/obj/effect/spawner/random/bedsheet/any/double,
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "IG" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
@@ -11679,8 +11744,12 @@
 "KI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "KK" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
@@ -11716,6 +11785,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
+"KP" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/door/airlock/service{
+	id_tag = "syndishipjanidorm";
+	name = "Janitorial Dorm"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "KR" = (
 /obj/structure/table/wood/fancy/red,
 /obj/machinery/computer/libraryconsole/bookmanagement{
@@ -12116,10 +12197,6 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"Mm" = (
-/obj/effect/turf_decal/tile/holiday,
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Mo" = (
 /obj/machinery/duct,
 /turf/open/floor/mineral/titanium/white,
@@ -13294,6 +13371,23 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"PU" = (
+/obj/effect/spawner/random/exotic/syndie,
+/obj/item/storage/wallet/random,
+/obj/item/clothing/under/syndicate/skyrat/baseball,
+/obj/effect/spawner/random/exotic/syndie,
+/obj/effect/spawner/random/exotic/syndie,
+/obj/effect/spawner/random/entertainment/plushie,
+/obj/effect/spawner/random/entertainment/plushie_delux,
+/obj/structure/closet/generic/wall{
+	pixel_y = -32
+	},
+/obj/item/storage/box/syndimaid,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "PV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -13358,6 +13452,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Qe" = (
 /obj/structure/fireplace,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Qf" = (
@@ -14476,6 +14574,10 @@
 "Tp" = (
 /obj/item/kirbyplants/random,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4;
+	icon_state = "siding_plain_end"
+	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Tr" = (
@@ -14499,12 +14601,23 @@
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Ts" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/obj/structure/mop_bucket/janitorialcart,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
+/obj/machinery/button/door/directional/west{
+	pixel_y = -8;
+	specialfunctions = 4;
+	name = "Dorm Bolt Switch";
+	id = "syndishipjanidorm";
+	req_access = list("syndicate");
+	normaldoorcontrol = 1
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Tt" = (
 /obj/structure/closet/secure_closet/freezer/kitchen/all_access,
 /obj/item/food/breadslice/plain,
@@ -14872,6 +14985,10 @@
 	pixel_x = 8
 	},
 /obj/machinery/firealarm/directional/north,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8;
+	icon_state = "siding_plain_end"
+	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "UL" = (
@@ -15263,12 +15380,6 @@
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
-"VZ" = (
-/obj/machinery/duct,
-/obj/item/wrench,
-/obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "Wa" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -15306,6 +15417,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
 "Wf" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/obj/structure/flora/bush/reed,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Wi" = (
@@ -15546,9 +15658,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
-"WQ" = (
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "WR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -15946,6 +16055,7 @@
 	dir = 1
 	},
 /obj/machinery/duct,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "Yi" = (
@@ -16495,6 +16605,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
+"ZW" = (
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "ZY" = (
 /obj/structure/chair/office/tactical,
 /turf/open/floor/mineral/plastitanium,
@@ -19353,7 +19466,7 @@ OP
 KO
 DI
 gq
-Mm
+ID
 ID
 ID
 Vk
@@ -20047,12 +20160,12 @@ IQ
 Qe
 fd
 nu
-ai
-WQ
-GZ
-VZ
-Jk
-sZ
+ZW
+ZW
+KP
+ZW
+ZW
+wU
 sZ
 sZ
 Jk
@@ -20117,12 +20230,12 @@ IQ
 Tp
 OV
 mb
-ai
+ZW
 bP
 KI
 Ts
-Jk
-Mb
+PU
+ZW
 Mb
 gG
 Mb
@@ -20187,12 +20300,12 @@ IQ
 hS
 hS
 qR
-ai
+ZW
 cr
-KI
+cQ
 ge
-Jk
-Mb
+wv
+ZW
 Mb
 gG
 Mb
@@ -20257,12 +20370,12 @@ IQ
 nc
 nc
 ai
-ai
+ZW
 IE
 Dh
 kw
-Jk
-Mb
+HQ
+ZW
 Mb
 gG
 Mb
@@ -20327,11 +20440,11 @@ nc
 uQ
 uQ
 KC
-ai
-ai
-ai
-ai
-Jk
+ZW
+ZW
+ZW
+ZW
+ZW
 My
 Fc
 Nq
