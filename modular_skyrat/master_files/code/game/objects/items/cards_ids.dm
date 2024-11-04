@@ -21,5 +21,5 @@
 /obj/item/card/id/advanced/terragov
 	name = "terragov identification card"
 	icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	icon_state = "card_solfed"
-	assigned_icon_state = "assigned_solfed"
+	icon_state = "card_terragov"
+	assigned_icon_state = "assigned_terragov"

@@ -1,11 +1,11 @@
 /datum/id_trim/terragov
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	assignment = "TerraGov"
-	trim_state = "trim_solfed"
+	trim_state = "trim_terragov"
 	department_color = COLOR_TERRAGOV_GOLD
 	subdepartment_color = COLOR_TERRAGOV_GOLD
 	sechud_icon_state = SECHUD_TERRAGOV
-	threat_modifier = -5 // Solfed Count as a police force
+	threat_modifier = -5 // Terragov Count as a police force
 
 /datum/id_trim/terragov/atmos/New()
 	. = ..()

@@ -7,7 +7,7 @@
 	completion_loot = list(/obj/item/bitrunning_disk/item/ancient_milsim = 1)
 	difficulty = BITRUNNER_DIFFICULTY_HIGH
 	help_text = "The last part of this domain has a chance to be very PvP-centric. It's best if you don't come alone, and smuggle some ability and gear disks."
-	forced_outfit = /datum/outfit/solfed_bitrun
+	forced_outfit = /datum/outfit/terragov_bitrun
 	key = "ancient_milsim"
 	map_name = "skyrat_ancientmilsim"
 	mob_modules = list(/datum/modular_mob_segment/cin_mobs)

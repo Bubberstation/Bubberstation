@@ -11,7 +11,7 @@
 GLOBAL_VAR(caller_of_911)
 GLOBAL_VAR(call_911_msg)
 GLOBAL_VAR(pizza_order)
-GLOBAL_VAR_INIT(solfed_tech_charge, -7500)
+GLOBAL_VAR_INIT(terragov_tech_charge, -7500)
 GLOBAL_LIST_INIT(pizza_names, list(
 	"Dixon Buttes",
 	"I. C. Weiner",
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(pizza_names, list(
 	"Joe Mama"
 ))
 GLOBAL_LIST_INIT(emergency_responders, list())
-GLOBAL_LIST_INIT(solfed_responder_info, list(
+GLOBAL_LIST_INIT(terragov_responder_info, list(
 	"911_responders" = list(
 		TERRAGOV_AMT = 0,
 		TERRAGOV_VOTES = 0,
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		Stationwide atmospherics loss, wide-scale supermatter delamination related repairs, unending fires filling the hallways, or department-sized breaches with Engineering and Atmospherics unable to handle it, etc. \n\
 		You SHOULD NOT call Advanced Atmospherics for:\n\
 		A trashcan on fire in the library, a single breached room, heating issues, etc. - especially with capable Engineers/Atmos Techs.\n\
-		There is a response fee of [abs(GLOB.solfed_tech_charge)] credits per emergency responder.\n\
+		There is a response fee of [abs(GLOB.terragov_tech_charge)] credits per emergency responder.\n\
 		Are you sure you want to call Advanced Atmospherics?"
 ))
 
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 		var/list/spawnpoints = GLOB.emergencyresponseteamspawn
 		var/index = 0
-		GLOB.solfed_responder_info[list_to_use][TERRAGOV_AMT] = agents_number
+		GLOB.terragov_responder_info[list_to_use][TERRAGOV_AMT] = agents_number
 		while(agents_number && candidates.len)
 			var/spawn_loc = spawnpoints[index + 1]
 			//loop through spawnpoints one at a time
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos) // charge for atmos techs
 				var/datum/bank_account/station_balance = SSeconomy.get_dep_account(ACCOUNT_CAR)
-				station_balance?.adjust_money(GLOB.solfed_tech_charge)
+				station_balance?.adjust_money(GLOB.terragov_tech_charge)
 			else
 				var/obj/item/gangster_cellphone/phone = new() // biggest gang in the city
 				phone.gang_id = cell_phone_number
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			//Logging and cleanup
 			log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos)
-				log_game("[abs(GLOB.solfed_tech_charge)] has been charged from the station budget for [key_name(cop)]")
+				log_game("[abs(GLOB.terragov_tech_charge)] has been charged from the station budget for [key_name(cop)]")
 			agents_number--
 	GLOB.cops_arrived = TRUE
 	return TRUE
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /datum/outfit/request_911
 	name = "911 Response: Base"
 	back = /obj/item/storage/backpack/duffelbag/cops
-	backpack_contents = list(/obj/item/solfed_reporter/swat_caller = 1)
+	backpack_contents = list(/obj/item/terragov_reporter/swat_caller = 1)
 
 	id_trim = /datum/id_trim/space_police
 
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/ammo_box/c35sol = 1,
-		/obj/item/solfed_reporter/swat_caller = 1,
+		/obj/item/terragov_reporter/swat_caller = 1,
 		/obj/item/beamout_tool = 1,
 		/obj/item/taperecorder = 1,
 		/obj/item/storage/box/evidence = 1,
@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	back = /obj/item/mod/control/pre_equipped/advanced/atmos
 	uniform = /obj/item/clothing/under/rank/engineering/atmospheric_technician/skyrat/utility/advanced
 	shoes = /obj/item/clothing/shoes/jackboots/peacekeeper
-	ears = /obj/item/radio/headset/headset_solfed/atmos
+	ears = /obj/item/radio/headset/headset_terragov/atmos
 	mask = /obj/item/clothing/mask/gas/atmos/glass
 	belt = /obj/item/storage/belt/utility/full/powertools/ircd
 	suit_store = /obj/item/tank/internals/oxygen/yellow
@@ -370,18 +370,18 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/extinguisher/advanced = 1,
 		/obj/item/rwd/loaded = 1,
 		/obj/item/beamout_tool = 1,
-		/obj/item/solfed_reporter/swat_caller = 1,
+		/obj/item/terragov_reporter/swat_caller = 1,
 	)
 	id_trim = /datum/id_trim/terragov/atmos
 
-/obj/item/radio/headset/headset_solfed/atmos
+/obj/item/radio/headset/headset_terragov/atmos
 	name = "\improper TerraGov adv. atmos headset"
 	desc = "A headset used by the Solar Federation response teams."
 	icon_state = "med_headset"
-	keyslot = /obj/item/encryptionkey/headset_solfed/atmos
+	keyslot = /obj/item/encryptionkey/headset_terragov/atmos
 	radiosound = 'modular_skyrat/modules/radiosound/sound/radio/security.ogg'
 
-/obj/item/encryptionkey/headset_solfed/atmos
+/obj/item/encryptionkey/headset_terragov/atmos
 	name = "\improper TerraGov adv. atmos encryption key"
 	icon_state = "cypherkey_medical"
 	special_channels = RADIO_SPECIAL_CENTCOM
@@ -418,7 +418,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/emergency_bed = 1,
-		/obj/item/solfed_reporter/swat_caller = 1,
+		/obj/item/terragov_reporter/swat_caller = 1,
 		/obj/item/beamout_tool = 1,
 		/obj/item/defibrillator/compact/loaded = 1,
 	)
@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 3,
-		/obj/item/solfed_reporter/treason_reporter = 1,
+		/obj/item/terragov_reporter/treason_reporter = 1,
 		/obj/item/beamout_tool = 1,
 	)
 
@@ -517,7 +517,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 	id_trim = /datum/id_trim/terragov
 
-/obj/item/solfed_reporter
+/obj/item/terragov_reporter
 	name = "TerraGov reporter"
 	desc = "Use this in-hand to vote to call TerraGov backup. If half your team votes for it, SWAT will be dispatched."
 	icon = 'modular_skyrat/modules/goofsec/icons/reporter.dmi'
@@ -548,8 +548,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	/// What announcement message should be displayed if the vote succeeds?
 	var/announcement_message = "Example announcement message"
 
-/obj/item/solfed_reporter/proc/pre_checks(mob/user)
-	if(GLOB.solfed_responder_info[type_of_callers][TERRAGOV_AMT] == 0)
+/obj/item/terragov_reporter/proc/pre_checks(mob/user)
+	if(GLOB.terragov_responder_info[type_of_callers][TERRAGOV_AMT] == 0)
 		to_chat(user, span_warning("There are no responders. You likely spawned this in as an admin. Please don't do this."))
 		return FALSE
 	if(!user.mind.has_antag_datum(type_to_check))
@@ -557,25 +557,25 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		return FALSE
 	return TRUE
 
-/obj/item/solfed_reporter/proc/questions(mob/user)
+/obj/item/terragov_reporter/proc/questions(mob/user)
 	return TRUE
 
-/obj/item/solfed_reporter/attack_self(mob/user, modifiers)
+/obj/item/terragov_reporter/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!pre_checks(user))
 		return
-	if(!activated && !GLOB.solfed_responder_info[type_of_callers][TERRAGOV_DECLARED])
+	if(!activated && !GLOB.terragov_responder_info[type_of_callers][TERRAGOV_DECLARED])
 		if(!questions(user))
 			return
 		activated = TRUE
 		icon_state = "reporter_on"
-		GLOB.solfed_responder_info[type_of_callers][TERRAGOV_VOTES]++
-		var/current_votes = GLOB.solfed_responder_info[type_of_callers][TERRAGOV_VOTES]
-		var/amount_of_responders = GLOB.solfed_responder_info[type_of_callers][TERRAGOV_AMT]
+		GLOB.terragov_responder_info[type_of_callers][TERRAGOV_VOTES]++
+		var/current_votes = GLOB.terragov_responder_info[type_of_callers][TERRAGOV_VOTES]
+		var/amount_of_responders = GLOB.terragov_responder_info[type_of_callers][TERRAGOV_AMT]
 		to_chat(user, span_warning("You have activated the device. \
 		Current Votes: [current_votes]/[amount_of_responders] votes."))
 		if(current_votes >= amount_of_responders * 0.5)
-			GLOB.solfed_responder_info[type_of_callers][TERRAGOV_DECLARED] = TRUE
+			GLOB.terragov_responder_info[type_of_callers][TERRAGOV_DECLARED] = TRUE
 			if(fine_station)
 				var/datum/bank_account/station_balance = SSeconomy.get_dep_account(ACCOUNT_CAR)
 				station_balance?.adjust_money(TERRAGOV_FINE_AMOUNT) // paying for the gas to drive all the fuckin' way out to the frontier
@@ -586,7 +586,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			if(candidates.len)
 				//Pick the (un)lucky players
 				var/agents_number = min(amount_to_summon, candidates.len)
-				GLOB.solfed_responder_info[summoned_type][TERRAGOV_AMT] = agents_number
+				GLOB.terragov_responder_info[summoned_type][TERRAGOV_AMT] = agents_number
 
 				var/list/spawnpoints = GLOB.emergencyresponseteamspawn
 				var/index = 0
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
 					agents_number--
 
-/obj/item/solfed_reporter/swat_caller
+/obj/item/terragov_reporter/swat_caller
 	name = "S.W.A.T. backup caller"
 	desc = "Use this in-hand to vote to call TerraGov S.W.A.T. backup. If half your team votes for it, SWAT will be dispatched."
 	type_to_check = /datum/antagonist/ert/request_911
@@ -639,7 +639,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		impediment, or due to a fraudulent 911 call. We have billed the station $20,000 for this, to cover the expenses of flying a second emergency response to \
 		your station. Please comply with all requests by said S.W.A.T. members."
 
-/obj/item/solfed_reporter/swat_caller/questions(mob/user)
+/obj/item/terragov_reporter/swat_caller/questions(mob/user)
 	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
 		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
 	if(tgui_input_list(user, question, "S.W.A.T. Backup Caller", list("Yes", "No")) != "Yes")
@@ -648,7 +648,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
 	return TRUE
 
-/obj/item/solfed_reporter/treason_reporter
+/obj/item/terragov_reporter/treason_reporter
 	name = "treason reporter"
 	desc = "Use this in-hand to vote that the station is engaging in Treason. If half your team votes for it, the Military will handle the situation."
 	type_to_check = /datum/antagonist/ert/request_911/condom_destroyer
@@ -667,7 +667,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		Non-offending citizens, prepare for evacuation. Comply with all orders given to you by Terran Government military personnel.\n\
 		To all those who are engaging in treason, lay down your weapons and surrender. Refusal to comply may be met with lethal force."
 
-/obj/item/solfed_reporter/treason_reporter/questions(mob/user)
+/obj/item/terragov_reporter/treason_reporter/questions(mob/user)
 	var/list/list_of_questions = list(
 		"Treason is the crime of attacking a state authority to which one owes allegiance. The station is located within Terran Government space, \
 			and owes allegiance to the Terran Government despite being owned by Nanotrasen. Did the station engage in this today?",
@@ -685,7 +685,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		and has voted that the station is engaging in Treason.")
 	return TRUE
 
-/obj/item/solfed_reporter/pizza_managers
+/obj/item/terragov_reporter/pizza_managers
 	name = "Dogginos uncompliant customer reporter"
 	desc = "Use this in-hand to vote to call for Dogginos Regional Managers if the station refuses to pay for their pizza. \
 		If half your delivery squad votes for it, Dogginos Regional Managers will be dispatched."
@@ -704,7 +704,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	summoned_type = "dogginos_manager"
 	cell_phone_number = "Dogginos"
 
-/obj/item/solfed_reporter/pizza_managers/questions(mob/user)
+/obj/item/terragov_reporter/pizza_managers/questions(mob/user)
 	if(tgui_input_list(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("Yes", "No")) != "Yes")
 		to_chat(user, "You decide not to request management assist you with the delivery.")
 		return FALSE
@@ -719,7 +719,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/storage/box/survival,
 		/obj/item/knife,
 		/obj/item/storage/box/ingredients/italian,
-		/obj/item/solfed_reporter/pizza_managers,
+		/obj/item/terragov_reporter/pizza_managers,
 	)
 	r_hand = /obj/item/pizzabox/meat
 	l_hand = /obj/item/pizzabox/vegetable

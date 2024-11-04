@@ -1,4 +1,4 @@
-/datum/outfit/solfed_bitrun
+/datum/outfit/terragov_bitrun
 	name = "Bitrunning TerraGov Marine"
 
 	uniform = /obj/item/clothing/under/rank/security/officer/hecu
@@ -15,12 +15,12 @@
 	l_hand = null
 	backpack_contents = null
 	belt = null
-	id_trim = /datum/id_trim/solfed_bitrun
+	id_trim = /datum/id_trim/terragov_bitrun
 
-/datum/id_trim/solfed_bitrun
+/datum/id_trim/terragov_bitrun
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	assignment = "TerraGov Marine"
-	trim_state = "trim_solfed"
+	trim_state = "trim_terragov"
 	department_color = COLOR_TERRAGOV_GOLD
 	subdepartment_color = COLOR_TERRAGOV_GOLD
 	sechud_icon_state = SECHUD_TERRAGOV

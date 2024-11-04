@@ -52,7 +52,7 @@
 	name = "Folded Kingdom Of Agurkrral Flag"
 	item_path = /obj/item/sign/flag/ssc
 
-/datum/loadout_item/inhand/flag_solfed
+/datum/loadout_item/inhand/flag_terragov
 	name = "Folded Terran Government Flag"
 	item_path = /obj/item/sign/flag/terragov
 

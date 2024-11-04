@@ -29,7 +29,7 @@
 	has_sensor = SENSOR_COORDS
 	random_sensor = FALSE
 
-// Solfed flak jacket, for marshals
+// Terragov flak jacket, for marshals
 
 /obj/item/clothing/suit/armor/vest/det_suit/terra
 	name = "'Gordyn' flak vest"

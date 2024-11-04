@@ -58,7 +58,7 @@
 /obj/structure/sign/flag/terragov
 	name = "flag of Terran Government"
 	desc = "The flag of Terran Government. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
-	icon_state = "flag_solfed"
+	icon_state = "flag_terragov"
 	item_flag = /obj/item/sign/flag/terragov
 
 /obj/structure/sign/flag/nri
@@ -131,7 +131,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 /obj/item/sign/flag/terragov
 	name = "folded flag of the Terran Government"
 	desc = "The folded flag of Terran Government."
-	icon_state = "folded_solfed"
+	icon_state = "folded_terragov"
 	sign_path = /obj/structure/sign/flag/terragov
 
 /obj/item/sign/flag/tizira

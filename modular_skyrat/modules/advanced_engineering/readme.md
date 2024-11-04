@@ -10,7 +10,7 @@ Adds some new high tier engineering gear for use by ERTs.
 None
 
 ### Defines
-#define RADIO_CHANNEL_TERRAGOV "SolFed"
+#define RADIO_CHANNEL_TERRAGOV "Terragov"
 #define RADIO_KEY_TERRAGOV "l"
 #define RADIO_TOKEN_TERRAGOV ":l"
 
