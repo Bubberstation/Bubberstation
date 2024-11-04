@@ -212,26 +212,26 @@
 	if(LAZYLEN(contents))
 		return
 	if(iscarbon(hit_atom))
-		var/mob/living/carbon/H = hit_atom
-		if(istype(H.shoes, /obj/item))
-			var/obj/item/WH = H.shoes
+		var/mob/living/carbon/hit_carbon = hit_atom
+		if(istype(hit_carbon.shoes, /obj/item))
+			var/obj/item/hit_carbon_shoes = hit_carbon.shoes
 			///check if the item has NODROP
-			if(HAS_TRAIT(WH, TRAIT_NODROP))
-				H.visible_message(span_warning("[src] bounces off [H]'s [WH.name]!"), span_warning("[src] bounces off your [WH.name], falling to the floor."))
+			if(HAS_TRAIT(hit_carbon_shoes, TRAIT_NODROP))
+				hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes.name], falling to the floor."))
 				return
 			///check if the item is an actual clothing feet item, since some non-clothing items can be worn
-			if(istype(WH, /obj/item/clothing/head))
-				var/obj/item/clothing/head/WHH = WH
+			if(istype(hit_carbon_shoes, /obj/item/clothing/shoes))
+				var/obj/item/clothing/head/hit_carbon_shoes_confirmed = hit_carbon_shoes
 				///SNUG_FIT shoes are immune to being knocked off
-				if(WHH.clothing_flags & SNUG_FIT)
-					H.visible_message(span_warning("[src] bounces off [H]'s [WHH.name]!"), span_warning("[src] bounces off your [WHH.name], falling to the floor."))
+				if(hit_carbon_shoes_confirmed.clothing_flags & SNUG_FIT)
+					hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes_confirmed.name], falling to the floor."))
 					return
 			///if the slipers manages to knock something off
-			if(H.dropItemToGround(WH))
-				H.visible_message(span_warning("[src] slips [WH] off [H]'s feet!"), span_warning("[WH] is suddenly slipped off your feet by [src]!"))
-		if(H.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
-			H.visible_message(span_notice("[src] lands neatly on [H]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
-			H.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
+			if(hit_carbon.dropItemToGround(hit_carbon_shoes))
+				hit_carbon.visible_message(span_warning("[src] slips [hit_carbon_shoes] off [hit_carbon]'s feet!"), span_warning("[hit_carbon_shoes] is suddenly slipped off your feet by [src]!"))
+		if(hit_carbon.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
+			hit_carbon.visible_message(span_notice("[src] lands neatly on [hit_carbon]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
+			hit_carbon.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
 		return
 	if(iscyborg(hit_atom))
 		return
