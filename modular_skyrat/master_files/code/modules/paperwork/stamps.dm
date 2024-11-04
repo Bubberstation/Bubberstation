@@ -75,8 +75,8 @@
 	icon_state = "stamp-nri"
 	dye_color = DYE_CENTCOM
 
-/obj/item/stamp/solfed
+/obj/item/stamp/terragov
 	name = "\improper Solar Federation stamp"
 	icon = 'modular_skyrat/master_files/icons/obj/bureaucracy.dmi'
-	icon_state = "stamp-solfed"
+	icon_state = "stamp-terragov"
 	dye_color = DYE_CE

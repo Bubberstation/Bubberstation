@@ -92,7 +92,7 @@
 /datum/techweb_node/illegal_microfusion
 	id = TECHWEB_NODE_ILLEGAL_MICROFUSION
 	display_name = "Illegal Microfusion Technology"
-	description = "Microfusion tech that has previously been banned by SolFed. I love the smell of plasma in the mornings."
+	description = "Microfusion tech that has previously been banned by TerraGov. I love the smell of plasma in the mornings."
 	prereq_ids = list(
 		TECHWEB_NODE_ADVANCED_MICROFUSION,
 		TECHWEB_NODE_SYNDICATE_BASIC,

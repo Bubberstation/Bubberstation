@@ -10,7 +10,7 @@
 	lefthand_file = 'modular_skyrat/modules/tarkon/icons/mob/guns/m6pdw/lefthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	spawnwithmagazine = FALSE
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
+	accepted_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol
 	can_suppress = FALSE
 	fire_sound = 'sound/items/weapons/gun/pistol/shot_alt.ogg'
 	rack_sound = 'sound/items/weapons/gun/pistol/rack.ogg'

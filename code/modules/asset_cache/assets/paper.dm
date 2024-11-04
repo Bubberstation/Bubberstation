@@ -13,7 +13,7 @@
 		"stamp-paw_green" = 'modular_skyrat/master_files/icons/stamp_icons/paw_green.png',
 		// Other stamp icons
 		"stamp-nri" = 'modular_skyrat/master_files/icons/stamp_icons/large_stamp-nri.png',
-		"stamp-solfed" = 'modular_skyrat/master_files/icons/stamp_icons/large_stamp-solfed.png',
+		"stamp-terragov" = 'modular_skyrat/master_files/icons/stamp_icons/large_stamp-terragov.png',
 		// SKYRAT EDIT ADDITION: END
 		//BUBBERSTATION ADDITION: START - Bubberstation Stamp Icons
 		"stamp-merged" = 'icons/stamp_icons/large_stamp-merged.png',

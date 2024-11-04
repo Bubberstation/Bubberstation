@@ -2,7 +2,7 @@
 	category = COMPANY_NAME_SOL_DEFENSE_DEFENSE
 	company_bitflag = CARGO_COMPANY_SOL_DEFENSE
 
-// Beautiful SolFed clothing
+// Beautiful TerraGov clothing
 
 /datum/armament_entry/company_import/sol_defense/clothing
 	subcategory = "Surplus Clothing"
@@ -33,7 +33,7 @@
 	item_type = /obj/item/clothing/suit/armor/sf_peacekeeper
 
 /datum/armament_entry/company_import/sol_defense/armor/flak_jacket
-	item_type = /obj/item/clothing/suit/armor/vest/det_suit/sol
+	item_type = /obj/item/clothing/suit/armor/vest/det_suit/terra
 
 /datum/armament_entry/company_import/sol_defense/armor/slim_vest
 	name = "type I vest"
@@ -84,7 +84,7 @@
 	subcategory = "Sidearms"
 
 /datum/armament_entry/company_import/sol_defense/sidearm/eland
-	item_type = /obj/item/gun/ballistic/revolver/sol
+	item_type = /obj/item/gun/ballistic/revolver/terra
 	cost = PAYCHECK_COMMAND * 4
 	restricted = TRUE
 
@@ -92,7 +92,7 @@
 //If cargo decides to agree with sec on a compromise then good job
 
 /datum/armament_entry/company_import/sol_defense/sidearm/wespe
-	item_type = /obj/item/gun/ballistic/automatic/pistol/sol
+	item_type = /obj/item/gun/ballistic/automatic/pistol/terra
 	cost = PAYCHECK_COMMAND * 4
 	restricted = TRUE
 /*
@@ -115,7 +115,7 @@
 	restricted = TRUE
 /*
 /datum/armament_entry/company_import/sol_defense/longarm/renoster
-	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
+	item_type = /obj/item/gun/ballistic/shotgun/riot/terra
 	cost = PAYCHECK_COMMAND * 6
 
 /datum/armament_entry/company_import/sol_defense/longarm/sindano
@@ -155,10 +155,10 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_mag
-	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_extended
-	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
 /*
 /datum/armament_entry/company_import/sol_defense/magazines/c585_mag
 	item_type = /obj/item/ammo_box/magazine/c585trappiste_pistol/spawns_empty

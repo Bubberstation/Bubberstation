@@ -1,8 +1,8 @@
 // .35 Sol pistol magazines
 
-/obj/item/ammo_box/magazine/c35sol_pistol
+/obj/item/ammo_box/magazine/c35terra_pistol
 	name = "\improper Sol pistol magazine"
-	desc = "A standard size magazine for SolFed pistols, holds twelve rounds."
+	desc = "A standard size magazine for TerraGov pistols, holds twelve rounds."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "pistol_35_standard"
@@ -15,12 +15,12 @@
 	caliber = CALIBER_SOL35SHORT
 	max_ammo = 12
 
-/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
+/obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
 	start_empty = TRUE
 
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo
+/obj/item/ammo_box/magazine/c35terra_pistol/stendo
 	name = "\improper Sol extended pistol magazine"
-	desc = "An extended magazine for SolFed pistols, holds twenty-four rounds."
+	desc = "An extended magazine for TerraGov pistols, holds twenty-four rounds."
 
 	icon_state = "pistol_35_stended"
 
@@ -28,14 +28,14 @@
 
 	max_ammo = 24
 
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
+/obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
 	start_empty = TRUE
 
 // .40 Sol rifle magazines
 
 /obj/item/ammo_box/magazine/c40sol_rifle
 	name = "\improper Sol rifle short magazine"
-	desc = "A shortened magazine for SolFed rifles, holds fifteen rounds."
+	desc = "A shortened magazine for TerraGov rifles, holds fifteen rounds."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "rifle_short"
@@ -54,7 +54,7 @@
 
 /obj/item/ammo_box/magazine/c40sol_rifle/standard
 	name = "\improper Sol rifle magazine"
-	desc = "A standard size magazine for SolFed rifles, holds thirty rounds."
+	desc = "A standard size magazine for TerraGov rifles, holds thirty rounds."
 
 	icon_state = "rifle_standard"
 
@@ -68,7 +68,7 @@
 
 /obj/item/ammo_box/magazine/c40sol_rifle/drum
 	name = "\improper Sol rifle drum magazine"
-	desc = "A massive drum magazine for SolFed rifles, holds sixty rounds."
+	desc = "A massive drum magazine for TerraGov rifles, holds sixty rounds."
 
 	icon_state = "rifle_drum"
 

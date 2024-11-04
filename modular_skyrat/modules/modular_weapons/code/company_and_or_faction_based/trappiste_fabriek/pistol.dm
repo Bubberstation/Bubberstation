@@ -1,8 +1,8 @@
 // .35 Sol pistol
 
-/obj/item/gun/ballistic/automatic/pistol/sol
+/obj/item/gun/ballistic/automatic/pistol/terra
 	name = "\improper Wespe Pistol"
-	desc = "The standard issue service pistol of SolFed's various military branches. Uses .35 Sol and comes with an attached light."
+	desc = "The standard issue service pistol of TerraGov's various military branches. Uses .35 Sol and comes with an attached light."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "wespe"
@@ -11,7 +11,7 @@
 
 	w_class = WEIGHT_CLASS_NORMAL
 
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
+	accepted_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol
 	special_mags = TRUE
 
 	suppressor_x_offset = 7
@@ -19,42 +19,42 @@
 
 	fire_delay = 0.3 SECONDS
 
-/obj/item/gun/ballistic/automatic/pistol/sol/give_manufacturer_examine()
+/obj/item/gun/ballistic/automatic/pistol/terra/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
 
-/obj/item/gun/ballistic/automatic/pistol/sol/add_seclight_point()
+/obj/item/gun/ballistic/automatic/pistol/terra/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
 		starting_light = new /obj/item/flashlight/seclite(src), \
 		is_light_removable = FALSE, \
 		)
 
-/obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/terra/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
-/obj/item/gun/ballistic/automatic/pistol/sol/examine_more(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/terra/examine_more(mob/user)
 	. = ..()
 
 	. += "The Wespe is a pistol that was made entirely for military use. \
 		Required to use a standard round, standard magazines, and be able \
-		to function in all of the environments that SolFed operated in \
+		to function in all of the environments that TerraGov operated in \
 		commonly. These qualities just so happened to make the weapon \
 		popular in frontier space and is likely why you are looking at \
 		one now."
 
 	return .
 
-/obj/item/gun/ballistic/automatic/pistol/sol/no_mag
+/obj/item/gun/ballistic/automatic/pistol/terra/no_mag
 	spawnwithmagazine = FALSE
 
 // Sol pistol evil gun
 
-/obj/item/gun/ballistic/automatic/pistol/sol/evil
-	desc = "The standard issue service pistol of SolFed's various military branches. Comes with attached light. This one is painted tacticool black."
+/obj/item/gun/ballistic/automatic/pistol/terra/evil
+	desc = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light. This one is painted tacticool black."
 
 	icon_state = "wespe_evil"
 
-/obj/item/gun/ballistic/automatic/pistol/sol/evil/no_mag
+/obj/item/gun/ballistic/automatic/pistol/terra/evil/no_mag
 	spawnwithmagazine = FALSE
 
 // Trappiste high caliber pistol in .585
@@ -84,23 +84,23 @@
 /obj/item/gun/ballistic/automatic/pistol/trappiste/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
 
-/obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/terra/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
 /obj/item/gun/ballistic/automatic/pistol/trappiste/examine_more(mob/user)
 	. = ..()
 
-	. += "The Skild only exists due to a widely known event that SolFed's military \
+	. += "The Skild only exists due to a widely known event that TerraGov's military \
 		would prefer wasn't anywhere near as popular. A general, name unknown as of now, \
 		was recorded complaining about the lack of capability the Wespe provided to the \
 		military, alongside several statements comparing the Wespe's lack of masculinity \
 		to the, quote, 'unique lack of testosterone those NRI mongrels field'. While the \
 		identities of both the general and people responsible for the leaking of the recording \
-		are still classified, many high ranking SolFed military staff suspiciously have stopped \
+		are still classified, many high ranking TerraGov military staff suspiciously have stopped \
 		appearing in public, unlike the Skild. A lot of several thousand pistols, the first \
-		of the weapons to ever exist, were not so silently shipped to SolFed's Plutonian \
-		shipping hub from TRAPPIST. SolFed military command refuses to answer any \
+		of the weapons to ever exist, were not so silently shipped to TerraGov's Plutonian \
+		shipping hub from TRAPPIST. TerraGov military command refuses to answer any \
 		further questions about the incident to this day."
 
 	return .

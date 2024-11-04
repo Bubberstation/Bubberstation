@@ -41,8 +41,8 @@
 
 /datum/supply_pack/goody/rensoter_shotgun
 	name = "Renoster Shotgun Single-Pack"
-	desc = "A common modern shotgun used by Solarian State Police."
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	desc = "A common modern shotgun used by Terran Government Police."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/terra, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	cost = PAYCHECK_COMMAND * 22
 
 /datum/supply_pack/goody/double_barrel

@@ -129,7 +129,7 @@
 	backpack_contents = list(
 		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/wespe,
 		/obj/item/storage/box/handcuffs,
-		/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
+		/obj/item/ammo_box/magazine/c35terra_pistol/stendo,
 		/obj/item/modular_computer/pda/security,
 	)
 	back = /obj/item/storage/backpack/security

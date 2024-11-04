@@ -2,7 +2,7 @@
 //Main Rifle
 /obj/item/gun/ballistic/automatic/rom_carbine
 	name = "\improper RomTech Carbine"
-	desc = "An unusual variation of the Carwo-Carwil Battle rifle fielded as service rifle in Romulus Federation, preferred by some law enforcement agency for the compact nature. Accepts any standard .40 SolFed rifle magazine."
+	desc = "An unusual variation of the Carwo-Carwil Battle rifle fielded as service rifle in Romulus Federation, preferred by some law enforcement agency for the compact nature. Accepts any standard .40 TerraGov rifle magazine."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
 	icon_state = "carbine"

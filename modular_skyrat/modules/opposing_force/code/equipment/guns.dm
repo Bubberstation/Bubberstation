@@ -7,13 +7,13 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster/PopulateContents()
-	new /obj/item/gun/ballistic/shotgun/riot/sol/evil(src)
+	new /obj/item/gun/ballistic/shotgun/riot/terra/evil(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 
 /datum/opposing_force_equipment/ranged/infanteria
 	name = "Carwo-Cawil Battle Rifle"
-	description = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard SolFed rifle magazine."
+	description = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard TerraGov rifle magazine."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria/PopulateContents()
@@ -154,18 +154,18 @@
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/sindano/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/sol_smg/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol/stendo(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol/stendo(src)
 
 /datum/opposing_force_equipment/ranged_stealth/wespe
 	name = "Wespe Pistol"
-	description = "The standard issue service pistol of SolFed's various military branches. Comes with attached light."
+	description = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 
 /datum/opposing_force_equipment/ranged_stealth/makarov
 	name = "Makarov Pistol"

@@ -25,7 +25,7 @@
 	name = "\improper Carwo 'Sindano' gunset"
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sol_smg/no_mag
-	extra_to_spawn = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
+	extra_to_spawn = /obj/item/ammo_box/magazine/c35terra_pistol/stendo
 
 /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano/PopulateContents()
 	new weapon_to_spawn (src)
@@ -33,8 +33,8 @@
 	generate_items_inside(list(
 		/obj/item/ammo_box/c35sol/incapacitator = 1,
 		/obj/item/ammo_box/c35sol = 1,
-		/obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty = 1,
-		/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 2,
+		/obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty = 1,
+		/obj/item/ammo_box/magazine/c35terra_pistol/starts_empty = 2,
 	), src)
 
 /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano/evil

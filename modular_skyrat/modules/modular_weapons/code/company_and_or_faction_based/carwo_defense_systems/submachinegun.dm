@@ -19,8 +19,8 @@
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
-	spawn_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
+	accepted_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol
+	spawn_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol/stendo
 
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_light.ogg'
 	can_suppress = TRUE
@@ -44,7 +44,7 @@
 
 	. += "The Sindano submachinegun was originally produced for military contract. \
 		These guns were seen in the hands of anyone from medics, ship techs, logistics officers, \
-		and shuttle pilots often had several just to show off. Due to SolFed's quest to \
+		and shuttle pilots often had several just to show off. Due to TerraGov's quest to \
 		extend the lifespans of their logistics officers and quartermasters, the weapon \
 		uses the same standard pistol cartridge that most other miltiary weapons of \
 		small caliber use. This results in interchangeable magazines between pistols \

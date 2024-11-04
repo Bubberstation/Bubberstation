@@ -24,12 +24,12 @@
 /obj/item/clothing/suit/armor/sf_peacekeeper/examine_more(mob/user)
 	. = ..()
 
-	. += "A common SolFed designed armor vest for a common cause, not having your innards become outards. \
+	. += "A common TerraGov designed armor vest for a common cause, not having your innards become outards. \
 		While heavier armors certainly exist, the 'Touvou' is relatively cheap for the protection you do get, \
 		and many soldiers and officers around the galaxy will tell you the convenience of a mostly soft body armor. \
 		Not for any of the protection, but for the relative comfort, especially in areas where you don't need to care \
 		much if you're able to stop an anti materiel round with your chest. Likely due to all those factors, \
-		it is a common sight on SolFed peacekeepers around the galaxy, alongside other misfits and corporate baddies \
+		it is a common sight on TerraGov peacekeepers around the galaxy, alongside other misfits and corporate baddies \
 		across the galaxy."
 
 	return .
@@ -42,7 +42,7 @@
 
 /obj/item/clothing/head/helmet/sf_peacekeeper
 	name = "'Kastrol' peacekeeper helmet"
-	desc = "A large, almost always ill-fitting helmet painted in bright blue. It proudly bears the emblems of SolFed on its sides. \
+	desc = "A large, almost always ill-fitting helmet painted in bright blue. It proudly bears the emblems of TerraGov on its sides. \
 		It will protect from bullets best, with some protection against blunt blows, but falters easily in the presence of lasers."
 	icon = 'modular_skyrat/modules/specialist_armor/icons/armor.dmi'
 	icon_state = "helmet_peacekeeper"
@@ -56,14 +56,14 @@
 /obj/item/clothing/head/helmet/sf_peacekeeper/examine_more(mob/user)
 	. = ..()
 
-	. += "A common SolFed designed ballistic helmet for a common cause, keeping your brain inside your head. \
+	. += "A common TerraGov designed ballistic helmet for a common cause, keeping your brain inside your head. \
 		While heavier helmets certainly exist, the 'Kastrol' is relatively cheap for the protection you do get, \
 		and many soldiers don't mind it much due to its large over-head size bypassing a lot of the fitting issues \
 		some more advanced or more protective helmets might have. \
 		Especially in areas where you don't need to care \
 		much if you're able to stop an anti materiel round with your forehead, it does the job just fine. \
 		Likely due to all those factors, \
-		it is a common sight on SolFed peacekeepers around the galaxy, alongside other misfits and corporate baddies \
+		it is a common sight on TerraGov peacekeepers around the galaxy, alongside other misfits and corporate baddies \
 		across the galaxy."
 
 	return .

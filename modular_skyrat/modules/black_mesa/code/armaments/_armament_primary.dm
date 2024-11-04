@@ -41,7 +41,7 @@
 	magazine_cost = 4
 
 /datum/armament_entry/hecu/primary/shotgun/shotgun_highcap
-	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
+	item_type = /obj/item/gun/ballistic/shotgun/riot/terra
 	max_purchase = 2
 	cost = 5
 

@@ -53,7 +53,7 @@
 		though not in the standard grenade size. The much lighter .980 Tydhouer grenades \
 		developed for the weapon offered many advantages over standard grenade launching \
 		ammunition. For a start, it was significantly lighter, and easier to carry large \
-		amounts of. What it also offered, however, and the reason SolFed funded the \
+		amounts of. What it also offered, however, and the reason TerraGov funded the \
 		project: Variable time fuze. Using the large and expensive ranging sight on the \
 		launcher, its user can set an exact distance for the grenade to self detonate at. \
 		The dream of militaries for decades, finally realized. The smaller shells do not, \

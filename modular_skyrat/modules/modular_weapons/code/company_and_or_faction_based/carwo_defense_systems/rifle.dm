@@ -2,7 +2,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle
 	name = "\improper Carwo-Cawil Battle Rifle"
-	desc = "A heavy battle rifle firing .40 Sol. Commonly seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
+	desc = "A heavy battle rifle firing .40 Sol. Commonly seen in the hands of TerraGov military types. Accepts any standard TerraGov rifle magazine."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "infanterie"
@@ -60,7 +60,7 @@
 	. = ..()
 
 	. += "The Carwo-Cawil rifles are built by Carwo for \
-		use by SolFed's various infantry branches. Following the rather reasonable \
+		use by TerraGov's various infantry branches. Following the rather reasonable \
 		military requirements of using the same few cartridges and magazines, \
 		the lifespans of logistics coordinators and quartermasters everywhere \
 		were lengthened by several years. While typically only for military sale \
@@ -77,7 +77,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	name = "\improper Cawil Marksman Rifle"
-	desc = "A heavy marksman rifle commonly seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
+	desc = "A heavy marksman rifle commonly seen in the hands of TerraGov military types. Accepts any standard TerraGov rifle magazine."
 
 	icon_state = "elite"
 	worn_icon_state = "elite"
@@ -117,7 +117,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
 	name = "\improper Qarad Light Machinegun"
-	desc = "A hefty machinegun commonly seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
+	desc = "A hefty machinegun commonly seen in the hands of TerraGov military types. Accepts any standard TerraGov rifle magazine."
 
 	icon_state = "outomaties"
 	worn_icon_state = "outomaties"
@@ -152,7 +152,7 @@
 // Evil version of the rifle (nothing different its just black)
 
 /obj/item/gun/ballistic/automatic/sol_rifle/evil
-	desc = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard SolFed rifle magazine."
+	desc = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard TerraGov rifle magazine."
 
 	icon_state = "infanterie_evil"
 	worn_icon_state = "infanterie_evil"

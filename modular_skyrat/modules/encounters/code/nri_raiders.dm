@@ -70,13 +70,13 @@ GLOBAL_VAR(first_officer)
 		"Interdyne Pharmaceuticals Chemical Factory" = 5,
 		"Free Teshari League Engineering Station" = 5,
 		"Agurkrral Military Base" = 5,
-		"Sol Federation Embassy" = 5,
+		"Terran Government Embassy" = 5,
 		"Novaya Rossiyskaya Imperiya Civilian Port" = 5,
 	))
 	///"right" = Right for the raiders to use as an argument; usually pretty difficult to avoid.
 	var/right_pick = pick(
 		"high probability of NRI-affiliated civilian casualties aboard the facility",
-		"highly increased funding by the SolFed authorities; neglected NRI-backed subsidiaries' contracts",
+		"highly increased funding by the TerraGov authorities; neglected NRI-backed subsidiaries' contracts",
 		"unethical hiring practices and unfair payment allocation for the NRI citizens",
 		"recently discovered BSA-[number] or similar model in close proximity to the neutral space aboard this or nearby affiliated facility",
 	)
@@ -84,7 +84,7 @@ GLOBAL_VAR(first_officer)
 	var/wrong_pick = pick(
 		"inadequate support of the local producer",
 		"unregulated production of Gauss weaponry aboard this installation",
-		"SolFed-backed stationary military formation on the surface of Indecipheres",
+		"TerraGov-backed stationary military formation on the surface of Indecipheres",
 		"AUTOMATED REGULATORY VIOLATION DETECTION SYSTEM CRITICAL FAILURE. PLEASE CONTACT AND INFORM THE DISPATCHED AUTHORITIES TO RESOLVE THE ISSUE. \
 		ANY POSSIBLE INDENTURE HAS BEEN CLEARED. WE APOLOGIZE FOR THE INCONVENIENCE",
 	)

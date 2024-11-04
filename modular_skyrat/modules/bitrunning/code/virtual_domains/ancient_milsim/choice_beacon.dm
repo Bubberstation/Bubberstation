@@ -20,10 +20,10 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/mechanic/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/storage/pouch/ammo(src)
 	new /obj/item/mod/control/pre_equipped/responsory/milsim_mechanic(src)
 
@@ -32,10 +32,10 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/marksman/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/storage/pouch/ammo(src)
 	new /obj/item/mod/control/pre_equipped/responsory/milsim_marksman(src)
 
@@ -44,10 +44,10 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/medic/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/storage/pouch/ammo(src)
 	new /obj/item/mod/control/pre_equipped/responsory/milsim_medic(src)
 
@@ -56,9 +56,9 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/trapper/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/storage/pouch/ammo(src)
 	new /obj/item/mod/control/pre_equipped/responsory/milsim_trapper(src)
