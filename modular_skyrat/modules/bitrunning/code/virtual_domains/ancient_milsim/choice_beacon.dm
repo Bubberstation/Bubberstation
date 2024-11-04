@@ -20,7 +20,7 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/mechanic/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
@@ -32,7 +32,7 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/marksman/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
@@ -44,7 +44,7 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/medic/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
@@ -56,7 +56,7 @@
 
 /obj/structure/closet/crate/secure/weapon/milsim/trapper/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)

@@ -1,6 +1,6 @@
 // TerraGov shotgun (this was gonna be in a proprietary shotgun shell type outside of 12ga at some point, wild right?)
 
-/obj/item/gun/ballistic/shotgun/riot/terra
+/obj/item/gun/ballistic/shotgun/riot/sol
 	name = "\improper Renoster Shotgun"
 	desc = "A twelve gauge shotgun with a six shell capacity underneath. Made for and used by TerraGov's various military branches."
 
@@ -33,14 +33,14 @@
 
 	fire_delay = 8
 
-/obj/item/gun/ballistic/shotgun/riot/terra/give_manufacturer_examine()
+/obj/item/gun/ballistic/shotgun/riot/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_CARWO)
 
-/obj/item/gun/ballistic/shotgun/riot/terra/examine(mob/user)
+/obj/item/gun/ballistic/shotgun/riot/sol/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
-/obj/item/gun/ballistic/shotgun/riot/terra/examine_more(mob/user)
+/obj/item/gun/ballistic/shotgun/riot/sol/examine_more(mob/user)
 	. = ..()
 
 	. += "The Renoster was designed at its core as a police shotgun. \
@@ -53,7 +53,7 @@
 
 	return .
 
-/obj/item/gun/ballistic/shotgun/riot/terra/update_appearance(updates)
+/obj/item/gun/ballistic/shotgun/riot/sol/update_appearance(updates)
 	if(sawn_off)
 		suppressor_x_offset = 0
 		SET_BASE_PIXEL(0, 0)
@@ -62,7 +62,7 @@
 
 // Shotgun but EVIL!
 
-/obj/item/gun/ballistic/shotgun/riot/terra/evil
+/obj/item/gun/ballistic/shotgun/riot/sol/evil
 	desc = "A twleve guage shotgun with an eight shell capacity underneath. This one is painted in a tacticool black."
 
 	icon_state = "renoster_evil"

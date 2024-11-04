@@ -1,6 +1,6 @@
 // .35 Sol mini revolver
 
-/obj/item/gun/ballistic/revolver/terra
+/obj/item/gun/ballistic/revolver/sol
 	name = "\improper Eland Revolver"
 	desc = "A small revolver with a comically short barrel and cylinder space for eight .35 Sol Short rounds."
 
@@ -15,14 +15,14 @@
 
 	can_suppress = TRUE
 
-/obj/item/gun/ballistic/revolver/terra/give_manufacturer_examine()
+/obj/item/gun/ballistic/revolver/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
 
-/obj/item/gun/ballistic/revolver/terra/examine(mob/user)
+/obj/item/gun/ballistic/revolver/sol/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
-/obj/item/gun/ballistic/revolver/terra/examine_more(mob/user)
+/obj/item/gun/ballistic/revolver/sol/examine_more(mob/user)
 	. = ..()
 
 	. += "The Eland is one of the few Trappiste weapons not made for military contract. \

@@ -7,7 +7,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster/PopulateContents()
-	new /obj/item/gun/ballistic/shotgun/riot/terra/evil(src)
+	new /obj/item/gun/ballistic/shotgun/riot/sol/evil(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 
@@ -163,7 +163,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/terra/evil(src)
+	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
 

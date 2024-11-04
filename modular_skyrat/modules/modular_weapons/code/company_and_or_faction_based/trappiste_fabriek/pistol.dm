@@ -1,6 +1,6 @@
 // .35 Sol pistol
 
-/obj/item/gun/ballistic/automatic/pistol/terra
+/obj/item/gun/ballistic/automatic/pistol/sol
 	name = "\improper Wespe Pistol"
 	desc = "The standard issue service pistol of TerraGov's various military branches. Uses .35 Sol and comes with an attached light."
 
@@ -19,20 +19,20 @@
 
 	fire_delay = 0.3 SECONDS
 
-/obj/item/gun/ballistic/automatic/pistol/terra/give_manufacturer_examine()
+/obj/item/gun/ballistic/automatic/pistol/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
 
-/obj/item/gun/ballistic/automatic/pistol/terra/add_seclight_point()
+/obj/item/gun/ballistic/automatic/pistol/sol/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
 		starting_light = new /obj/item/flashlight/seclite(src), \
 		is_light_removable = FALSE, \
 		)
 
-/obj/item/gun/ballistic/automatic/pistol/terra/examine(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
-/obj/item/gun/ballistic/automatic/pistol/terra/examine_more(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/sol/examine_more(mob/user)
 	. = ..()
 
 	. += "The Wespe is a pistol that was made entirely for military use. \
@@ -44,17 +44,17 @@
 
 	return .
 
-/obj/item/gun/ballistic/automatic/pistol/terra/no_mag
+/obj/item/gun/ballistic/automatic/pistol/sol/no_mag
 	spawnwithmagazine = FALSE
 
 // Sol pistol evil gun
 
-/obj/item/gun/ballistic/automatic/pistol/terra/evil
+/obj/item/gun/ballistic/automatic/pistol/sol/evil
 	desc = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light. This one is painted tacticool black."
 
 	icon_state = "wespe_evil"
 
-/obj/item/gun/ballistic/automatic/pistol/terra/evil/no_mag
+/obj/item/gun/ballistic/automatic/pistol/sol/evil/no_mag
 	spawnwithmagazine = FALSE
 
 // Trappiste high caliber pistol in .585
@@ -84,7 +84,7 @@
 /obj/item/gun/ballistic/automatic/pistol/trappiste/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
 
-/obj/item/gun/ballistic/automatic/pistol/terra/examine(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 

@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	suit_store = /obj/item/gun/energy/disabler
 	belt = /obj/item/storage/belt/security/full
 	r_pocket = /obj/item/flashlight/seclite
-	l_pocket = /obj/item/gun/ballistic/revolver/terra
+	l_pocket = /obj/item/gun/ballistic/revolver/sol
 	id = /obj/item/card/id/advanced/terragov
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,

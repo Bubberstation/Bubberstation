@@ -84,7 +84,7 @@
 	subcategory = "Sidearms"
 
 /datum/armament_entry/company_import/sol_defense/sidearm/eland
-	item_type = /obj/item/gun/ballistic/revolver/terra
+	item_type = /obj/item/gun/ballistic/revolver/sol
 	cost = PAYCHECK_COMMAND * 4
 	restricted = TRUE
 
@@ -92,7 +92,7 @@
 //If cargo decides to agree with sec on a compromise then good job
 
 /datum/armament_entry/company_import/sol_defense/sidearm/wespe
-	item_type = /obj/item/gun/ballistic/automatic/pistol/terra
+	item_type = /obj/item/gun/ballistic/automatic/pistol/sol
 	cost = PAYCHECK_COMMAND * 4
 	restricted = TRUE
 /*
@@ -115,7 +115,7 @@
 	restricted = TRUE
 /*
 /datum/armament_entry/company_import/sol_defense/longarm/renoster
-	item_type = /obj/item/gun/ballistic/shotgun/riot/terra
+	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
 	cost = PAYCHECK_COMMAND * 6
 
 /datum/armament_entry/company_import/sol_defense/longarm/sindano

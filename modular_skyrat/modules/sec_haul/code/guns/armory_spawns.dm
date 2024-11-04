@@ -46,9 +46,9 @@
 
 /obj/effect/spawner/armory_spawn/shotguns
 	guns = list(
-		/obj/item/gun/ballistic/shotgun/riot/terra,
-		/obj/item/gun/ballistic/shotgun/riot/terra,
-		/obj/item/gun/ballistic/shotgun/riot/terra,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
 
 /obj/structure/closet/ammunitionlocker/useful/PopulateContents()

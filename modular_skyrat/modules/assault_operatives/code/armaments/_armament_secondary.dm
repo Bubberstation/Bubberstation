@@ -12,7 +12,7 @@
 	subcategory = OPS_SUBCATEGORY_LETHAL_SIDE
 
 /datum/armament_entry/assault_operatives/secondary/lethal/pistol
-	item_type = /obj/item/gun/ballistic/automatic/pistol/terra/evil
+	item_type = /obj/item/gun/ballistic/automatic/pistol/sol/evil
 
 /datum/armament_entry/assault_operatives/secondary/lethal/energy_sword
 	item_type = /obj/item/melee/energy/sword/saber

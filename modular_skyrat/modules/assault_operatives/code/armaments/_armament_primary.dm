@@ -80,7 +80,7 @@
 	subcategory = OPS_SUBCATEGORY_SHOTGUN
 
 /datum/armament_entry/assault_operatives/primary/shotgun/assault_ops_shotgun
-	item_type = /obj/item/gun/ballistic/shotgun/riot/terra/evil
+	item_type = /obj/item/gun/ballistic/shotgun/riot/sol/evil
 
 /datum/armament_entry/assault_operatives/primary/shotgun_ammo
 	subcategory = OPS_SUBCATEGORY_SHOTGUN_AMMO

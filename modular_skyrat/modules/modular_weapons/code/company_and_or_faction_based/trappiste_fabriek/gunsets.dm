@@ -22,13 +22,13 @@
 /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/wespe
 	name = "Trappiste 'Wespe' gunset"
 
-	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/terra/no_mag
+	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/sol/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/eland
 	name = "Trappiste 'Eland' gunset"
 
-	weapon_to_spawn = /obj/item/gun/ballistic/revolver/terra
+	weapon_to_spawn = /obj/item/gun/ballistic/revolver/sol
 	extra_to_spawn = /obj/item/ammo_box/c35sol/incapacitator
 
 // Gunset for the Skild heavy pistol
