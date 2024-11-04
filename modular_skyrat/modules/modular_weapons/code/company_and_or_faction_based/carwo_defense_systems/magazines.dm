@@ -1,6 +1,6 @@
 // .35 Sol pistol magazines
 
-/obj/item/ammo_box/magazine/c35terra_pistol
+/obj/item/ammo_box/magazine/c35sol_pistol
 	name = "\improper Sol pistol magazine"
 	desc = "A standard size magazine for TerraGov pistols, holds twelve rounds."
 
@@ -15,10 +15,10 @@
 	caliber = CALIBER_SOL35SHORT
 	max_ammo = 12
 
-/obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
+/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 	start_empty = TRUE
 
-/obj/item/ammo_box/magazine/c35terra_pistol/stendo
+/obj/item/ammo_box/magazine/c35sol_pistol/stendo
 	name = "\improper Sol extended pistol magazine"
 	desc = "An extended magazine for TerraGov pistols, holds twenty-four rounds."
 
@@ -28,7 +28,7 @@
 
 	max_ammo = 24
 
-/obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
+/obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 	start_empty = TRUE
 
 // .40 Sol rifle magazines

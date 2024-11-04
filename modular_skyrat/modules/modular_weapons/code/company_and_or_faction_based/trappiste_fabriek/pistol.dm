@@ -11,7 +11,7 @@
 
 	w_class = WEIGHT_CLASS_NORMAL
 
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol
+	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
 	special_mags = TRUE
 
 	suppressor_x_offset = 7

@@ -7,7 +7,7 @@
 	id = "sol35_shortmag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
-	build_path = /obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
+	build_path = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -19,7 +19,7 @@
 	id = "sol35_shortextmag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 10)
-	build_path = /obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
+	build_path = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)

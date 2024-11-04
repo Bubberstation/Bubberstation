@@ -155,10 +155,10 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_mag
-	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_extended
-	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 /*
 /datum/armament_entry/company_import/sol_defense/magazines/c585_mag
 	item_type = /obj/item/ammo_box/magazine/c585trappiste_pistol/spawns_empty

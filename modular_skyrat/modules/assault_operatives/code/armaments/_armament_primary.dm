@@ -60,11 +60,11 @@
 	cost = 1
 
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo/standard
-	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 	cost = 0
 
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo/extended
-	item_type = /obj/item/ammo_box/magazine/c35terra_pistol/stendo/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 	cost = 0
 
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol

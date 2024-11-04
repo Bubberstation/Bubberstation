@@ -19,8 +19,8 @@
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
-	accepted_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol
-	spawn_magazine_type = /obj/item/ammo_box/magazine/c35terra_pistol/stendo
+	accepted_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol
+	spawn_magazine_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
 
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_light.ogg'
 	can_suppress = TRUE

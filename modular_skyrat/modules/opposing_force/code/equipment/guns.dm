@@ -154,8 +154,8 @@
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/sindano/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/sol_smg/evil(src)
-	new /obj/item/ammo_box/magazine/c35terra_pistol/stendo(src)
-	new /obj/item/ammo_box/magazine/c35terra_pistol/stendo(src)
+	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
+	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
 
 /datum/opposing_force_equipment/ranged_stealth/wespe
 	name = "Wespe Pistol"
@@ -164,8 +164,8 @@
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
-	new /obj/item/ammo_box/magazine/c35terra_pistol(src)
+	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
 
 /datum/opposing_force_equipment/ranged_stealth/makarov
 	name = "Makarov Pistol"
