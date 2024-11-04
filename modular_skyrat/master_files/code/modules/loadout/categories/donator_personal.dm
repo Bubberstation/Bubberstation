@@ -1,5 +1,5 @@
 /datum/loadout_item/toys/miafoxplush
-	name = "silver fox plushie" //bubber edit on request
+	name = "silver fox plushie"
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
 	//ckeywhitelist = list("fuzlet")
 
@@ -12,12 +12,6 @@
 	name = "Drawing Tablet"
 	item_path = /obj/item/canvas/drawingtablet
 	//ckeywhitelist = list("thedragmeme")
-
-/* /datum/loadout_item/shoes/heeled_jackboots - BUBBERSTATION
-	name = "High-heel Jackboots"
-	item_path = /obj/item/clothing/shoes/jackboots/heel
-	//ckeywhitelist = list("thedragmeme")
-*/ //As they requested, it's properly public now. - BUBBERSTATION
 
 /datum/loadout_item/suit/furcoat
 	name = "Leather coat with fur"
@@ -62,13 +56,13 @@
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
-//	ckeywhitelist = list("raxraus")
+    //ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/uniform/rax_banded_uniform
 	name = "Banded Uniform"
 	item_path = /obj/item/clothing/under/rank/security/rax
-//	ckeywhitelist = list("raxraus")
+	//ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/head/goldengoggles
