@@ -17,7 +17,6 @@
 #define INVESTIGATE_DEATHS "deaths"
 #define INVESTIGATE_ENGINE "engine"
 #define INVESTIGATE_EXPERIMENTOR "experimentor"
-#define INVESTIGATE_GHOST "ghost" //BUBBER EDIT - LOCKER CONTENT EXAMINING
 #define INVESTIGATE_GRAVITY "gravity"
 #define INVESTIGATE_HALLUCINATIONS "hallucinations"
 #define INVESTIGATE_HYPERTORUS "hypertorus"

@@ -2,4 +2,3 @@
 	. = ..()
 	if(isobserver(user))
 		. += span_info("It contains: [english_list(contents)].")
-		investigate_log("had its contents examined by [user] as a ghost.", INVESTIGATE_GHOST)
