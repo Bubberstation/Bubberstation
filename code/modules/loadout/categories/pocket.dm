@@ -80,10 +80,10 @@
 	item_path = /obj/item/lipstick/white
 	additional_displayed_text = list("White")
 
-/datum/loadout_item/pocket_items/tamagotchi
-	name = "Tamagotchi"
-	item_path = /obj/item/tamagotchi/
-	additional_displayed_text = "It's a Tamagotchi! Feed it, play with it, and keep it alive!"
+/datum/loadout_item/pocket_titems/nyamagotchi
+	name = "Nyamagotchi"
+	item_path = /obj/item/nyamagotchi/
+	additional_displayed_text = "It's a Nyamagotchi! Feed it, play with it, and keep it alive!"
 
 /* SKYRAT EDIT REMOVAL
 /datum/loadout_item/pocket_items/plush
