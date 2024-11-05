@@ -42,7 +42,6 @@
 
 /obj/item/nyamagotchi/proc/readout()
 	if (alive == 0 && died == 0)
-		var/status = "The Nyamagotchi is ready to be started!"
 		return span_notice("The Nyamagotchi is ready to be started!")
 	if (alive == 0 && died == 1)
 		var/status = "The Nyamagotchi is DEAD. You're a terrible person."
