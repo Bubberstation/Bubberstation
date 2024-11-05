@@ -325,7 +325,7 @@
 	name = "Hemoglobin Iced Tea"
 	desc = "Kinda like that rich golfer, but it's actually blood!"
 	icon_state = "blood_tea"
-	list_reagents = list(/datum/reagent/blood = 45, /datum/reagent/consumable/ethanol/bloodshot = 5)
+	list_reagents = list(/datum/reagent/blood = 25, /datum/reagent/consumable/ethanol/bloodshot = 5)
 
 /obj/item/reagent_containers/cup/soda_cans/beer/rice/Initialize(mapload)
 	. = ..()
