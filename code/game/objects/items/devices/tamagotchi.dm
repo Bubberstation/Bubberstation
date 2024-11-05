@@ -17,9 +17,9 @@
 	var/list/icons_available = list()
 	var/radial_icon_file = 'icons/hud/radial_tamagotchi.dmi'
 
-	var/hunger = 0       // Hunger level (0 = full, 100 = starving)
-	var/happiness = 100    // Happiness level (0 = sad, 100 = very happy)
-	var/energy = 100       // Energy level (0 = tired, 100 = full of energy)
+	var/hunger = 0      // Hunger level (0 = full, 100 = starving)
+	var/happiness = 100   // Happiness level (0 = sad, 100 = very happy)
+	var/energy = 0       // Energy level (0 = tired, 100 = full of energy)
 	var/age = 0            // Age in "days" or some unit of time
 	var/alive = 0          // Status flag (1 = alive, 0 = dead)
 	var/died = 0		   // Status flag (1 = died, 0 = alive)
@@ -27,7 +27,10 @@
 
 /obj/item/tamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
-	spawn()a
+	// give a slightly random start
+	hunger = rand(0,20)
+	happiness = rand(80,100)
+	energy = rand(80,100)
 	update()   // Start the update loop
 
 /obj/item/tamagotchi/examine(mob/user)
@@ -82,9 +85,7 @@
 	died = 0
 	say("I'm alive, nya!")
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(update)), 10 SECONDS)
-	// timer(1 SECONDS, /obj/item/tamagotchi/proc/play_meow_sound)
-	update()  // Start the update loop
+	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
 
 // status update loop
@@ -94,9 +95,9 @@
 		return
 
 	age += 1       // Increase age over time
-	hunger += rand(1,5)    // Increase hunger over time
-	happiness -= rand(1,5) // Decrease happiness over time
-	energy -= rand(1,5)    // Decrease energy over time
+	hunger += rand(1,3)    // Increase hunger over time
+	happiness -= rand(1,3) // Decrease happiness over time
+	energy -= rand(1,3)    // Decrease energy over time
 
 	// check if the Tamagotchi is still alive
 	if(hunger >= 100 || energy <= 0)
@@ -117,22 +118,18 @@
 		playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
 		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
 		var/alert_proc = pick(tama_alerts) // pick a random alert to say
-		switch  (alert_proc)
-			if ("hungry")
-				say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!", "HEY!!! I'm feeling a bit hungry, nya!"))
-			if ("sad")
-				say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "I'm feeling a bit blue, nya..."))
-			if ("tired")
-				say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
+		if (alert_proc)
+			switch  (alert_proc)
+				if ("hungry")
+					say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!", "HEY!!! I'm feeling a bit hungry, nya!"))
+				if ("sad")
+					say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "I'm feeling a bit blue, nya..."))
+				if s ("tired")
+					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
 	else
 	// make the tamagotchi stop shaking
 		animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
-		update_status()
-	addtimer(CALLBACK(src, PROC_REF(update)), 10 SECONDS)
-
-// func to update the status message
-/obj/item/tamagotchi/proc/update_status()
-	var/status = "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]"
+	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
 // Interactions
 /obj/item/tamagotchi/proc/feed()
