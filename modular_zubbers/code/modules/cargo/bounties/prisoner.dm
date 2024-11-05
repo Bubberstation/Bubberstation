@@ -7,7 +7,7 @@
 
 /datum/bounty/item/prisoner/baseball_bat
 	name = "Baseball Bat"
-	description = "Security wants more bats, sell them... Don't use them unless you want to be the new league ball."
+	description = "Security wants more baseball bats, sell them... Don't use them unless you want to be the new league ball."
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/melee/baseball_bat = TRUE)
