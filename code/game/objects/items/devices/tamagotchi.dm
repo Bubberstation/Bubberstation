@@ -1,5 +1,5 @@
 /obj/item/tamagotchi
-	name = "tamagotchi"
+	name = "nyamagotchi"
 	icon = 'icons/obj/devices/tamagotchi.dmi'
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
 	icon_state = "default"
@@ -38,10 +38,10 @@
 
 /obj/item/tamagotchi/proc/readout()
 	if (alive == 0 && died == 0)
-		var/status = "The Tamagachi is ready to be started!"
+		var/status = "The Nyamagotchi is ready to be started!"
 		return span_notice(status)
 	if (alive == 0 && died == 1)
-		var/status = "The Tamagachi is DEAD. You're a terrible person."
+		var/status = "The Nyamagotchi is DEAD. You're a terrible person."
 		return span_notice(status)
 	else
 		var/status = "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]"
@@ -88,7 +88,7 @@
 // status update loop
 /obj/item/tamagotchi/proc/update()
 	if(alive)
-		spawn(1 SECONDS)  // Wait 10 seconds between updates (adjust as needed)
+		spawn(9 SECONDS)  // Wait 10 seconds between updates (adjust as needed)
 			age += 1       // Increase age over time
 			hunger += rand(1,5)    // Increase hunger over time
 			happiness -= rand(1,5) // Decrease happiness over time
@@ -141,46 +141,46 @@
 		hunger -= 10
 		if (hunger < 0)
 			hunger = 0
-		balloon_alert(usr, "You fed your Tamagotchi! Its hunger is now at [hunger].")
+		balloon_alert(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
 		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
 		sleep(2 SECONDS)
 		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
 		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!",
 			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"))
 	else
-		balloon_alert(usr, "Your Tamagotchi isn't hungry!")
+		balloon_alert(usr, "Your Nyamagotchi isn't hungry!")
 
 /obj/item/tamagotchi/proc/play()
 	if (happiness < 100)
 		happiness += 10
 		if (happiness > 100)
 			happiness = 100
-		balloon_alert(usr, "You play with your Tamagotchi! Its happiness is now [happiness].")
+		balloon_alert(usr, "You play with your Nyamagotchi! Its happiness is now [happiness].")
 		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
 		say(pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "I had a great time playing with you!"))
 	else
-		balloon_alert(usr, "The Tamagotchi is already very happy!")
+		balloon_alert(usr, "Your Nyamagotchi is already very happy!")
 
 /obj/item/tamagotchi/proc/rest()
 	if(energy < 100)
 		energy += 20
 		if(energy > 100)
 			energy = 100
-		balloon_alert(usr, "The Tamagotchi rests and regains energy. Its energy is now [energy].")
+		balloon_alert(usr, "Your Nyamagotchi rests and regains energy. Its energy is now [energy].")
 		playsound(src, 'sound/creatures/cat/cat_purr3.ogg', 50, FALSE)
 		say(pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "I'm feeling so energized!", "I'm feeling so well-rested!"))
 	else
-		balloon_alert(usr, "The Tamagotchi is fully rested.")
+		balloon_alert(usr, "Your Nyamagotchi is fully rested.")
 
 // Function for when the Tamagotchi dies
 /obj/item/tamagotchi/proc/die()
 	alive = 0
 	died = 1
 	say("I'M DEAD, NYA. BAI!!")
-	visible_message("The Tamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
+	visible_message("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
 	//src.icon_state = "dead"
 	playsound(src, 'sound/misc/sadtrombone.ogg',50, FALSE)
-	balloon_alert(usr, "Your Tamagotchi has died!")
+	balloon_alert(usr, "Your Nyamagotchi has died!")
 
 /obj/item/tamagotchi/proc/check_status()
 	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
