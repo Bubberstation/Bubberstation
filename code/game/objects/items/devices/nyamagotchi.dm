@@ -22,7 +22,8 @@
 	/// Happiness level (0 = sad, 100 = very happy)
 	var/happiness = 100
 	var/energy = 0       // Energy level (0 = tired, 100 = full of energy)
-	var/age = 0            // Age in "days" or some unit of time
+	/// Age in "days" or some unit of time
+	var/age = 0
 	var/alive = 0          // Status flag (1 = alive, 0 = dead)
 	var/died = 0		   // Status flag (1 = died, 0 = alive)
 
