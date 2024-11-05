@@ -191,42 +191,42 @@
 	greyscale_colors = "#46464d"
 	flags_1 = null
 
-
-/obj/item/clothing/shoes/slipers
+/// Syndicate slippers, guaranteed slipping for whoever wears them.
+/obj/item/clothing/shoes/banana_slippers
 	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet.dmi'
-	name = "Slipers"
-	desc = "Slippery shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend"
-	icon_state = "slipers"
-	worn_icon_state = "slipers"
+	name = "banana slippers"
+	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
+	icon_state = "banana_slippers"
+	worn_icon_state = "banana_slippers"
 	can_be_tied = FALSE
-	strip_delay = 100
+	strip_delay = 10 SECONDS
 
-///Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
-/obj/item/clothing/shoes/slipers/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
+// Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
+/obj/item/clothing/shoes/banana_slippers/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
 	. = ..()
-	///if the thrown object's target zone isn't the head
+	// if the thrown object's target zone isn't the head
 	if(thrownthing.target_zone != BODY_ZONE_L_LEG && thrownthing.target_zone != BODY_ZONE_R_LEG)
 		return
-	///Just in case someone adds storage down the line on the slipers
+	// Just in case someone adds storage down the line on the slippers
 	if(LAZYLEN(contents))
 		return
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/hit_carbon = hit_atom
 		if(istype(hit_carbon.shoes, /obj/item))
 			var/obj/item/hit_carbon_shoes = hit_carbon.shoes
-			///check if the item has NODROP
+			// check if the item has NODROP
 			if(HAS_TRAIT(hit_carbon_shoes, TRAIT_NODROP))
 				hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes.name], falling to the floor."))
 				return
-			///check if the item is an actual clothing feet item, since some non-clothing items can be worn
+			// check if the item is an actual clothing feet item, since some non-clothing items can be worn
 			if(istype(hit_carbon_shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/head/hit_carbon_shoes_confirmed = hit_carbon_shoes
-				///SNUG_FIT shoes are immune to being knocked off
+				// SNUG_FIT shoes are immune to being knocked off
 				if(hit_carbon_shoes_confirmed.clothing_flags & SNUG_FIT)
 					hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes_confirmed.name], falling to the floor."))
 					return
-			///if the slipers manages to knock something off
+			// if the slippers manages to knock something off
 			if(hit_carbon.dropItemToGround(hit_carbon_shoes))
 				hit_carbon.visible_message(span_warning("[src] slips [hit_carbon_shoes] off [hit_carbon]'s feet!"), span_warning("[hit_carbon_shoes] is suddenly slipped off your feet by [src]!"))
 		if(hit_carbon.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
@@ -236,31 +236,31 @@
 	if(iscyborg(hit_atom))
 		return
 
-/obj/item/clothing/shoes/slipers/Initialize()
+/obj/item/clothing/shoes/slippers/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
 
-/obj/item/clothing/shoes/slipers/proc/on_step()
+/obj/item/clothing/shoes/slippers/proc/on_step()
 	SIGNAL_HANDLER
 	if(iscarbon(src.loc))
 		var/mob/living/carbon/stepping_mob = src.loc
 		stepping_mob.slip(80)
 
-/obj/item/clothing/shoes/slipers/equipped(mob/user, slot)
+/obj/item/clothing/shoes/slippers/equipped(mob/user, slot)
 	. = ..()
 	if(slot & ITEM_SLOT_FEET)
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
-/obj/item/clothing/shoes/slipers/dropped(mob/user)
+/obj/item/clothing/shoes/slippers/dropped(mob/user)
 	. = ..()
 	// Could have been blown off in an explosion from the previous owner
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
-/obj/item/clothing/shoes/slipers/canStrip(mob/stripper, mob/owner)
+/obj/item/clothing/shoes/slippers/canStrip(mob/stripper, mob/owner)
 	return TRUE
 
-/obj/item/clothing/shoes/slipers/doStrip(mob/stripper, mob/owner)
+/obj/item/clothing/shoes/slippers/doStrip(mob/stripper, mob/owner)
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	if (!owner.dropItemToGround(src))
 		return FALSE
