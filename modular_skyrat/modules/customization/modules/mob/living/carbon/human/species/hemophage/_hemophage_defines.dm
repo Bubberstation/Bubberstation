@@ -1,5 +1,5 @@
 /// Organ flag for organs of hemophage origin, or organs that have since been infected by an hemophage's tumor.
-#define ORGAN_TUMOR_CORRUPTED (1<<12) // Not taking chances, hopefully this number remains good for a little while.
+#define ORGAN_TUMOR_CORRUPTED (1<<15) // Not taking chances, hopefully this number remains good for a little while.
 
 /// We have a pulsating tumor, it's active.
 #define PULSATING_TUMOR_ACTIVE 0

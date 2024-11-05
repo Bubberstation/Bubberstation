@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(title)
 		return
 
 	// If there's no info about the current map, use the defaults.
-	var/list/map_info = progress_json[SSmapping.config.map_name]
+	var/list/map_info = progress_json[SSmapping.current_map.map_name]
 	if(!islist(map_info))
 		return
 
@@ -113,14 +113,14 @@ SUBSYSTEM_DEF(title)
 
 	progress_json["_version"] = TITLE_PROGRESS_CACHE_VERSION
 
-	if(progress_json[SSmapping.config.map_name])
+	if(progress_json[SSmapping.current_map.map_name])
 		// Save total time and updated message timings. Latest time is worth 1/4 the "average"
 		map_info["total"] = 0.75 * average_completion_time + 0.25 * (world.timeofday - progress_reference_time)
 	else
 		// New. Just save the time it took.
 		map_info["total"] = world.timeofday - progress_reference_time
 	map_info["messages"] = startup_message_timings
-	progress_json[SSmapping.config.map_name] = map_info
+	progress_json[SSmapping.current_map.map_name] = map_info
 
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(progress_json))

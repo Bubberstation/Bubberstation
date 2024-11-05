@@ -9,12 +9,13 @@
 	material_drop_amount = 4
 	delivery_icon = "deliverybox"
 	integrity_failure = 0 //Makes the crate break when integrity reaches 0, instead of opening and becoming an invisible sprite.
-	open_sound = 'sound/machines/wooden_closet_open.ogg'
-	close_sound = 'sound/machines/wooden_closet_close.ogg'
+	open_sound = 'sound/machines/closet/wooden_closet_open.ogg'
+	close_sound = 'sound/machines/closet/wooden_closet_close.ogg'
 	open_sound_volume = 25
 	close_sound_volume = 50
 	can_install_electronics = FALSE
 	elevation = 22
+	can_weld_shut = FALSE
 
 	// Stops people from "diving into" a crate you can't open normally
 	divable = FALSE
@@ -34,18 +35,18 @@
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(manifest)
 			tear_manifest(user)
-
+		if(!open(user))
+			return FALSE
 		user.visible_message(span_notice("[user] pries \the [src] open."), \
 			span_notice("You pry open \the [src]."), \
 			span_hear("You hear splitting wood."))
-		playsound(src.loc, 'sound/weapons/slashmiss.ogg', 75, TRUE)
+		playsound(src.loc, 'sound/items/weapons/slashmiss.ogg', 75, TRUE)
 
 		var/turf/T = get_turf(src)
 		for(var/i in 1 to material_drop_amount)
 			new material_drop(src)
 		for(var/atom/movable/AM in contents)
 			AM.forceMove(T)
-
 		qdel(src)
 
 	else

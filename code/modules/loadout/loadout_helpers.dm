@@ -30,11 +30,11 @@
 
 	var/list/preference_list = preference_source.read_preference(/datum/preference/loadout)
 	var/list/loadout_datums = loadout_list_to_datums(preference_list)
-	var/obj/item/storage/briefcase/empty/travel_suitcase // SKYRAT EDIT ADDITIONi
+	// SKYRAT EDIT ADDITION BEGIN
+	var/obj/item/storage/briefcase/empty/travel_suitcase
 	var/loadout_placement_preference = preference_source.read_preference(/datum/preference/choiced/loadout_override_preference)
 	// Slap our things into the outfit given
 	for(var/datum/loadout_item/item as anything in loadout_datums)
-		// SKYRAT EDIT ADDITION
 		if(item.restricted_roles && equipping && !(equipping.title in item.restricted_roles))
 			if(preference_source.parent)
 				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item([initial(item.item_path.name)]) due to job restrictions!"))
