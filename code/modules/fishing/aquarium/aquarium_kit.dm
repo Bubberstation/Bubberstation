@@ -58,7 +58,7 @@
 	name = "ominous fish case"
 
 /obj/item/storage/fish_case/syndicate/get_fish_type()
-	return pick(/obj/item/fish/donkfish, /obj/item/fish/emulsijack, /obj/item/fish/jumpercable)
+	return pick(/obj/item/fish/donkfish, /obj/item/fish/emulsijack, /obj/item/fish/jumpercable, /obj/item/fish/chainsawfish)
 
 /obj/item/storage/fish_case/tiziran
 	name = "imported fish case"
@@ -122,7 +122,16 @@
 
 /obj/item/aquarium_prop/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/aquarium_content, icon, beauty = beauty)
+	//It's important that we register the signals before the component is attached.
+	RegisterSignal(src, COMSIG_AQUARIUM_CONTENT_GENERATE_APPEARANCE, PROC_REF(generate_aquarium_appearance))
+	AddComponent(/datum/component/aquarium_content, beauty = beauty)
+	ADD_TRAIT(src, TRAIT_UNIQUE_AQUARIUM_CONTENT, INNATE_TRAIT)
+
+/obj/item/aquarium_prop/proc/generate_aquarium_appearance(datum/source, obj/effect/aquarium/visual)
+	SIGNAL_HANDLER
+	visual.icon = icon
+	visual.icon_state = icon_state
+	visual.layer_mode = layer_mode
 
 /obj/item/aquarium_prop/rocks
 	name = "decorative rocks"

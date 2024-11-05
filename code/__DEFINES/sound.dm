@@ -154,6 +154,7 @@
 
 // BUBBER EDIT ADDITION BEGIN
 #define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
+#define ANNOUNCER_METEORWARNING "announcer_meteorwarning"
 // BUBBER EDIT ADDITION END
 
 
@@ -203,6 +204,7 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	//SKYRAT EDIT END
 	// BUBBER EDIT ADDITION BEGIN
 	ANNOUNCER_GRAVGENBLACKOUT,
+	ANNOUNCER_METEORWARNING,
 	// BUBBER EDIT ADDITION END
 ))
 
@@ -249,3 +251,10 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 #define SFX_KEYBOARD_CLICKS "keyboard_clicks"
 #define SFX_STONE_DROP "stone_drop"
 #define SFX_STONE_PICKUP "stone_pickup"
+#define SFX_MUFFLED_SPEECH "muffspeech"
+#define SFX_DEFAULT_FISH_SLAP "default_fish_slap"
+#define SFX_ALT_FISH_SLAP "alt_fish_slap"
+#define SFX_FISH_PICKUP "fish_pickup"
+#define SFX_CAT_MEOW "cat_meow"
+#define SFX_CAT_PURR "cat_purr"
+#define SFX_LIQUID_POUR "liquid_pour"
