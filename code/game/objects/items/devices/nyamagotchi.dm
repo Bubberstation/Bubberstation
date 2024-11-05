@@ -33,7 +33,7 @@
 	. = ..()               // Call the parent constructor
 	// give a slightly random start
 	hunger = rand(0, 20)
-	happiness = rand(80,100)
+	happiness = rand(80, 100)
 	energy = rand(80, 100)
 	update()   // Start the update loop
 
