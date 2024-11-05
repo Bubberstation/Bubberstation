@@ -27,7 +27,7 @@
 
 /obj/item/tamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
-	spawn()
+	spawn()a
 	update()   // Start the update loop
 
 /obj/item/tamagotchi/examine(mob/user)
@@ -82,7 +82,7 @@
 	died = 0
 	say("I'm alive, nya!")
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(update)), 10 SECONDS)
 	// timer(1 SECONDS, /obj/item/tamagotchi/proc/play_meow_sound)
 	update()  // Start the update loop
 
@@ -115,7 +115,7 @@
 			tama_alerts += "tired"
 
 		playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
 		var/alert_proc = pick(tama_alerts) // pick a random alert to say
 		switch  (alert_proc)
 			if ("hungry")
@@ -142,7 +142,7 @@
 			hunger = 0
 		balloon_alert(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
 		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
 		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!",
 			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"))
 	else
