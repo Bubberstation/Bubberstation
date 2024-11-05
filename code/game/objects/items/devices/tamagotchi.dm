@@ -81,55 +81,54 @@
 	died = 0
 	say("I'm alive, nya!")
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
-	spawn(1 SECONDS)
-		playsound(src, 'sound/creatures/cat/cat_meow1.ogg', 50, FALSE)
+	timer(1 SECONDS, /obj/item/tamagotchi/proc/play_meow_sound)
 	update()  // Start the update loop
+
+/obj/item/tamagotchi/proc/play_meow_sound()
+	playsound(src, 'sound/creatures/cat/cat_meow1.ogg', 50, FALSE)
 
 // status update loop
 /obj/item/tamagotchi/proc/update()
 	if(alive)
-		spawn(9 SECONDS)  // Wait 10 seconds between updates (adjust as needed)
-			age += 1       // Increase age over time
-			hunger += rand(1,5)    // Increase hunger over time
-			happiness -= rand(1,5) // Decrease happiness over time
-			energy -= rand(1,5)    // Decrease energy over time
+		age += 1       // Increase age over time
+		hunger += rand(1,5)    // Increase hunger over time
+		happiness -= rand(1,5) // Decrease happiness over time
+		energy -= rand(1,5)    // Decrease energy over time
 
-			// check if the Tamagotchi is still alive
-			if(hunger >= 100 || energy <= 0)
-				die()
-				return
-			// make the tamagotchi say things if an attentio is needed
-			if (hunger >= 80 || happiness <= 20 || energy <= 20)
-				// Make the tamagotchi shake around
-				animate(src, transform = matrix(1, 0, rand(-5, 5), 0, 1, rand(-5, 5)), time = 2, loop = -1)
-				var/tama_alerts = list()
-				if (hunger >= 80)
-					tama_alerts += "hungry"
-				if (happiness <= 20)
-					tama_alerts += "sad"
-				if (energy <= 20)
-					tama_alerts += "tired"
+		// check if the Tamagotchi is still alive
+		if(hunger >= 100 || energy <= 0)
+			die()
+			return
+		// make the tamagotchi say things if an attentio is needed
+		if (hunger >= 80 || happiness <= 20 || energy <= 20)
+			// Make the tamagotchi shake around
+			animate(src, transform = matrix(1, 0, rand(-5, 5), 0, 1, rand(-5, 5)), time = 2, loop = -1)
+			var/tama_alerts = list()
+			if (hunger >= 80)
+				tama_alerts += "hungry"
+			if (happiness <= 20)
+				tama_alerts += "sad"
+			if (energy <= 20)
+				tama_alerts += "tired"
 
-				playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
-				spawn(1 SECONDS)
-					var/alert_proc = pick(tama_alerts) // pick a random alert to say
-					playsound(src, 'sound/creatures/cat/cat_meow1.ogg', 50, FALSE)
-					switch  (alert_proc)
-						if ("hungry")
-							say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!", "HEY!!! I'm feeling a bit hungry, nya!"))
-						if ("sad")
-							say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "I'm feeling a bit blue, nya..."))
-						if ("tired")
-							say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
+			playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
+			timer(1 SECONDS, /obj/item/tamagotchi/proc/play_meow_sound)
+			var/alert_proc = pick(tama_alerts) // pick a random alert to say
+			switch  (alert_proc)
+				if ("hungry")
+					say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!", "HEY!!! I'm feeling a bit hungry, nya!"))
+				if ("sad")
+					say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "I'm feeling a bit blue, nya..."))
+				if ("tired")
+					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
 			else
 				// make the tamagotchi stop shaking
 				animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
 
 			// update status messages
 			update_status()
-			update()  // Continue the update loop
+			timer(9 SECONDS, /obj/item/tamagotchi/proc/update)
 	else
-		spawn(2)
 			update_available_icons()
 
 // func to update the status message
@@ -144,8 +143,7 @@
 			hunger = 0
 		balloon_alert(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
 		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
-		sleep(2 SECONDS)
-		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
+		timer(1 SECONDS, /obj/item/tamagotchi/proc/play_meow_sound)
 		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!",
 			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"))
 	else
