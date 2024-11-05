@@ -48,7 +48,7 @@
 	if (alive == 0 && died == 1)
 		return span_notice("The Nyamagotchi is DEAD. You're a terrible person.")
 	else
-		return span_notice(status)
+		return span_notice("Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]")
 
 /obj/item/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
