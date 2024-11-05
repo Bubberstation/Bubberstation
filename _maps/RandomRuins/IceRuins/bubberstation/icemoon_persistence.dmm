@@ -94,13 +94,6 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
-"as" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/reagent_water_basin,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "at" = (
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
@@ -258,7 +251,19 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/light/directional/east,
-/obj/structure/closet/crate/solarpanel_small,
+/obj/structure/closet/crate/secure/cybersun/noon{
+	name = "mining supplies"
+	},
+/obj/item/pickaxe,
+/obj/item/grapple_gun,
+/obj/item/mining_voucher,
+/obj/item/pickaxe,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/storage/belt/mining/vendor,
+/obj/item/storage/belt/mining/vendor,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "aW" = (
@@ -1066,7 +1071,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/structure/reagent_crafting_bench,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "dG" = (
@@ -3093,7 +3097,17 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/reagent_forge,
+/obj/structure/closet/crate/secure/cybersun/night,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "km" = (
@@ -6594,6 +6608,10 @@
 /obj/machinery/light/cold/directional/north,
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
+"uD" = (
+/obj/structure/reagent_forge,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "uE" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -8670,6 +8688,13 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"Bs" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/forging/billow,
+/obj/item/forging/tongs,
+/obj/item/forging/hammer,
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Bt" = (
 /obj/item/crowbar/power/syndicate,
 /obj/item/crowbar/power/syndicate{
@@ -9711,21 +9736,6 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
-"EH" = (
-/obj/structure/closet/crate/secure/cybersun/night,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "EJ" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/right,
 /turf/open/floor/mineral/plastitanium/red,
@@ -9898,10 +9908,6 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
-"Ff" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Fh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -10252,18 +10258,7 @@
 	pixel_x = -24;
 	id = "synditrashgun"
 	},
-/obj/structure/closet/crate/secure/cybersun/noon{
-	name = "mining supplies"
-	},
-/obj/item/storage/belt/mining/vendor,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/pickaxe,
-/obj/item/pickaxe,
-/obj/item/mining_voucher,
-/obj/item/grapple_gun,
+/obj/structure/reagent_water_basin,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Gg" = (
@@ -12416,6 +12411,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"Na" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/shipping_container/gorlex/red{
+	pixel_x = 17;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Nb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -12511,6 +12514,24 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/structure/closet/crate/secure/cybersun/dawn{
+	name = "Syndicate Goods crate"
+	},
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/vending_refill/wardrobe/syndie_wardrobe,
+/obj/item/vending_refill/wardrobe/syndie_wardrobe,
+/obj/item/disk{
+	desc = "A cheap, plastic hard-disk labelled 'good tunes to assault ops to'. It looks disused... wait, is that a 'THE WEAPONIZED' logo?";
+	icon_state = "nucleardisk";
+	name = "dat fukken disk"
+	},
+/obj/item/choice_beacon/music,
+/obj/item/choice_beacon/music,
+/obj/item/choice_beacon/music,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Nq" = (
@@ -13703,17 +13724,6 @@
 "QO" = (
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
-"QP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light/directional/north,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/forging/hammer,
-/obj/item/forging/tongs,
-/obj/item/forging/billow,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "QQ" = (
 /obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate");
@@ -15336,20 +15346,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "VW" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/choice_beacon/music,
-/obj/item/choice_beacon/music,
-/obj/item/choice_beacon/music,
-/obj/item/disk{
-	desc = "A cheap, plastic hard-disk labelled 'good tunes to assault ops to'. It looks disused... wait, is that a 'THE WEAPONIZED' logo?";
-	icon_state = "nucleardisk";
-	name = "dat fukken disk"
-	},
-/obj/item/vending_refill/wardrobe/syndie_wardrobe,
-/obj/item/binoculars,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
 /obj/machinery/light/directional/north,
 /obj/machinery/button/door/directional/west{
 	id = "syndicargo_s";
@@ -15363,6 +15359,7 @@
 	pixel_y = -8;
 	pixel_x = -24
 	},
+/obj/structure/reagent_crafting_bench,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "VX" = (
@@ -15774,7 +15771,6 @@
 /obj/structure/cable,
 /obj/machinery/light/directional/south,
 /obj/machinery/firealarm/directional/south,
-/obj/structure/closet/cardboard,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Xm" = (
@@ -19351,7 +19347,7 @@ nc
 hO
 VW
 Gf
-Ms
+uD
 Ms
 Ms
 jB
@@ -19420,7 +19416,7 @@ uQ
 nc
 hO
 dF
-as
+zL
 Wp
 Wp
 zL
@@ -19490,11 +19486,11 @@ uQ
 nc
 hO
 kY
-pj
+Bs
 JE
 JE
 pj
-fk
+Vn
 Xl
 Kd
 Kd
@@ -19629,10 +19625,10 @@ mc
 uQ
 nc
 hO
-QP
-Ff
-JE
-JE
+Up
+pj
+Wd
+Wd
 pj
 fk
 zG
@@ -19700,7 +19696,7 @@ uQ
 nc
 Kd
 Qj
-EH
+JE
 JE
 JE
 Wd
@@ -19842,7 +19838,7 @@ Kd
 nk
 FO
 JE
-JE
+Wd
 JE
 If
 zG
@@ -19914,7 +19910,7 @@ wH
 JE
 JE
 pj
-fk
+Na
 zG
 Ms
 Ms
@@ -19984,7 +19980,7 @@ oh
 Wd
 JE
 pj
-Vn
+fk
 zG
 Np
 Gv

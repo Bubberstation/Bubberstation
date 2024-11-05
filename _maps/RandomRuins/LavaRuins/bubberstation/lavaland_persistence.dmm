@@ -305,7 +305,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/structure/reagent_crafting_bench,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "bg" = (
@@ -1617,6 +1616,13 @@
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"fi" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/forging/billow,
+/obj/item/forging/tongs,
+/obj/item/forging/hammer,
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "fk" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/poddoor{
@@ -4361,17 +4367,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
-"nq" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light/directional/north,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/forging/hammer,
-/obj/item/forging/tongs,
-/obj/item/forging/billow,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ns" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -4463,6 +4458,24 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/structure/closet/crate/secure/cybersun/dawn{
+	name = "Syndicate Goods crate"
+	},
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/vending_refill/wardrobe/syndie_wardrobe,
+/obj/item/vending_refill/wardrobe/syndie_wardrobe,
+/obj/item/disk{
+	desc = "A cheap, plastic hard-disk labelled 'good tunes to assault ops to'. It looks disused... wait, is that a 'THE WEAPONIZED' logo?";
+	icon_state = "nucleardisk";
+	name = "dat fukken disk"
+	},
+/obj/item/choice_beacon/music,
+/obj/item/choice_beacon/music,
+/obj/item/choice_beacon/music,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "nH" = (
@@ -5998,6 +6011,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"sB" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/shipping_container/gorlex/red{
+	pixel_x = 17;
+	pixel_y = 15
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "sC" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -6364,6 +6385,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/sign/warning/docking/directional/west,
+/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -7268,7 +7290,17 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/reagent_forge,
+/obj/structure/closet/crate/secure/cybersun/night,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
+/obj/item/bedsheet/syndie/double,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ww" = (
@@ -8326,7 +8358,19 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/light/directional/east,
-/obj/structure/closet/crate/solarpanel_small,
+/obj/structure/closet/crate/secure/cybersun/noon{
+	name = "mining supplies"
+	},
+/obj/item/pickaxe,
+/obj/item/grapple_gun,
+/obj/item/mining_voucher,
+/obj/item/pickaxe,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/storage/belt/mining/vendor,
+/obj/item/storage/belt/mining/vendor,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "zG" = (
@@ -10340,20 +10384,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Gl" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/choice_beacon/music,
-/obj/item/choice_beacon/music,
-/obj/item/choice_beacon/music,
-/obj/item/disk{
-	desc = "A cheap, plastic hard-disk labelled 'good tunes to assault ops to'. It looks disused... wait, is that a 'THE WEAPONIZED' logo?";
-	icon_state = "nucleardisk";
-	name = "dat fukken disk"
-	},
-/obj/item/vending_refill/wardrobe/syndie_wardrobe,
-/obj/item/binoculars,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
 /obj/machinery/light/directional/north,
 /obj/machinery/button/door/directional/west{
 	id = "syndicargo_s";
@@ -10367,6 +10397,7 @@
 	pixel_y = -8;
 	pixel_x = -24
 	},
+/obj/structure/reagent_crafting_bench,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Gm" = (
@@ -10802,18 +10833,7 @@
 	pixel_x = -24;
 	id = "synditrashgun"
 	},
-/obj/structure/closet/crate/secure/cybersun/noon{
-	name = "mining supplies"
-	},
-/obj/item/storage/belt/mining/vendor,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/pickaxe,
-/obj/item/pickaxe,
-/obj/item/mining_voucher,
-/obj/item/grapple_gun,
+/obj/structure/reagent_water_basin,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "HG" = (
@@ -11136,13 +11156,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
-"IG" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/reagent_water_basin,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "IH" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -12305,6 +12318,10 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
+"Mn" = (
+/obj/structure/reagent_forge,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Mo" = (
 /obj/machinery/button/camkillswitch/persistence_xeno{
 	pixel_y = 24;
@@ -14129,10 +14146,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
-"Sh" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/plating/elevatorshaft,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Si" = (
 /obj/item/toy/basketball,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -14462,7 +14475,6 @@
 /obj/structure/cable,
 /obj/machinery/light/directional/south,
 /obj/machinery/firealarm/directional/south,
-/obj/structure/closet/cardboard,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Tu" = (
@@ -14919,6 +14931,29 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
+"UU" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32;
+	faction = list("Syndicate","neutral")
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "UV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -16617,21 +16652,6 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"ZZ" = (
-/obj/structure/closet/crate/secure/cybersun/night,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/obj/item/bedsheet/syndie/double,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 
 (1,1,1) = {"
 FW
@@ -19450,7 +19470,7 @@ VG
 XB
 Gl
 HF
-cc
+Mn
 cc
 cc
 sL
@@ -19521,7 +19541,7 @@ gq
 VG
 XB
 bf
-IG
+fV
 UY
 UY
 fV
@@ -19593,11 +19613,11 @@ gq
 VG
 XB
 Cz
-ol
+fi
 hR
 hR
 ol
-YK
+IK
 Tr
 Yd
 Yd
@@ -19736,10 +19756,10 @@ gq
 gq
 VG
 XB
-nq
-Sh
+LF
+ol
 hR
-hR
+Oi
 ol
 YK
 OG
@@ -19809,7 +19829,7 @@ gq
 VG
 Yd
 YC
-ZZ
+hR
 hR
 hR
 Oi
@@ -20027,9 +20047,9 @@ Yd
 LF
 QX
 hR
-hR
+Oi
 ol
-YK
+sB
 OG
 cc
 cc
@@ -20101,7 +20121,7 @@ Ki
 Oi
 hR
 ol
-IK
+YK
 OG
 nF
 Dw
@@ -20464,7 +20484,7 @@ fT
 pV
 UV
 tz
-Lu
+UU
 XU
 qB
 Bh
