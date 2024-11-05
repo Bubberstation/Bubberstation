@@ -130,7 +130,7 @@
 	desc = "A very fragile sandfruit core, literally composed of dozens of particles of sand... don't store in pockets."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "sandfruit"
-	custom_materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Uranium - First on 'energy' line
 
@@ -165,7 +165,7 @@
 	desc = "A very dense uraniberry core, don't store in pockets, unless you want extra limbs."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "uraniberry"
-	custom_materials = list(/datum/material/uranium =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/uranium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Plasma - Second stage of 'energy' line.
 
@@ -200,7 +200,7 @@
 	desc = "A very dense plasmaplum core, store in a cold, fire and spark free place."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "plasmaplum"
-	custom_materials = list(/datum/material/plasma =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Bluespace - ending of 'energy' line.
 
@@ -235,7 +235,7 @@
 	desc = "A very dense bluegem drupe core, dropping may incur teleportation in rare cases."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bluegemdrupe"
-	custom_materials = list(/datum/material/bluespace =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Silver - Aubergine (Get it? AU, silver?!) - First on 'precious' line
 
@@ -270,7 +270,7 @@
 	desc = "A dense aubergine core of solid, sterling silver."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "aubergine"
-	custom_materials = list(/datum/material/silver =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Gold - Agbergine (Pretty sure you can work this one out) - Second stage of 'precious' line.
 
@@ -305,7 +305,7 @@
 	desc = "A very dense ag-bergine core, solid 24 karat goodness."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "agbergine"
-	custom_materials = list(/datum/material/gold =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Dimantis - ending of 'precious' line.
 
@@ -340,7 +340,7 @@
 	desc = "A very dense dimantis core, the way to a woman's heart, it could probably get through her ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "dimantis"
-	custom_materials = list(/datum/material/diamond =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Iron - Ferrotubers - First on 'metal' line
 
@@ -375,7 +375,7 @@
 	desc = "A dense ferrotuber core of solid iron, slightly magnetic."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "ferrotuber"
-	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Titanium - titanituber - Second stage of 'metal' line.
 
@@ -408,7 +408,7 @@
 	desc = "A very dense titanituber core, let's hope you didn't bite it!"
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "titanituber"
-	custom_materials = list(/datum/material/titanium =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/titanium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Adamantine - First on 'misc' line
 
@@ -441,7 +441,7 @@
 	desc = "A dense adam's apple core of solid adamantine."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "adamapple"
-	custom_materials = list(/datum/material/adamantine =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Runite - Second stage of 'misc' line.
 
@@ -474,7 +474,7 @@
 	desc = "A very dense runite core, a few more of these and you might be able to make a scimitar to defeat your foes..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "runescooper"
-	custom_materials = list(/datum/material/runite =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/runite=SHEET_MATERIAL_AMOUNT*0.2)
 
 //bananiumberry - ending of 'misc' line.
 
@@ -509,4 +509,4 @@
 	desc = "A very dense bananium core, the way to a clown's heart, it could probably get through their ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bananiumberry"
-	custom_materials = list(/datum/material/bananium =SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/bananium=SHEET_MATERIAL_AMOUNT*0.2)
