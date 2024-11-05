@@ -82,7 +82,7 @@
 
 /datum/loadout_item/pocket_titems/nyamagotchi
 	name = "Nyamagotchi"
-	item_path = /obj/item/nyamagotchi/
+	item_path = /obj/item/nyamagotchi
 	additional_displayed_text = "It's a Nyamagotchi! Feed it, play with it, and keep it alive!"
 
 /* SKYRAT EDIT REMOVAL
