@@ -236,31 +236,31 @@
 	if(iscyborg(hit_atom))
 		return
 
-/obj/item/clothing/shoes/slippers/Initialize()
+/obj/item/clothing/shoes/banana_slippers/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
 
-/obj/item/clothing/shoes/slippers/proc/on_step()
+/obj/item/clothing/shoes/banana_slippers/proc/on_step()
 	SIGNAL_HANDLER
 	if(iscarbon(src.loc))
 		var/mob/living/carbon/stepping_mob = src.loc
 		stepping_mob.slip(80)
 
-/obj/item/clothing/shoes/slippers/equipped(mob/user, slot)
+/obj/item/clothing/shoes/banana_slippers/equipped(mob/user, slot)
 	. = ..()
 	if(slot & ITEM_SLOT_FEET)
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
-/obj/item/clothing/shoes/slippers/dropped(mob/user)
+/obj/item/clothing/shoes/banana_slippers/dropped(mob/user)
 	. = ..()
 	// Could have been blown off in an explosion from the previous owner
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
-/obj/item/clothing/shoes/slippers/canStrip(mob/stripper, mob/owner)
+/obj/item/clothing/shoes/banana_slippers/canStrip(mob/stripper, mob/owner)
 	return TRUE
 
-/obj/item/clothing/shoes/slippers/doStrip(mob/stripper, mob/owner)
+/obj/item/clothing/shoes/banana_slippers/doStrip(mob/stripper, mob/owner)
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	if (!owner.dropItemToGround(src))
 		return FALSE
