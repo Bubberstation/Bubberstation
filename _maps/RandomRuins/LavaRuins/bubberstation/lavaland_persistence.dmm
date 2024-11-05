@@ -5970,7 +5970,6 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "sy" = (
@@ -8505,6 +8504,23 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"As" = (
+/obj/machinery/door/airlock/highsecurity{
+	id_tag = "syndishipmanager"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "At" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -15785,11 +15801,11 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "XK" = (
 /obj/structure/lattice/catwalk/mining,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 4
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -19036,7 +19052,7 @@ Hg
 NY
 XO
 XO
-Fc
+As
 XO
 XO
 XO
