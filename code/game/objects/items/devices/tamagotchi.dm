@@ -177,7 +177,7 @@
 	say("I'M DEAD, NYA. BAI!!")
 	visible_message("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
 	//src.icon_state = "dead"
-	playsound(src, 'sound/misc/sadtrombone.ogg',50, FALSE)
+	playsound(src, 'sound/misc/sadtrombone.ogg',30, FALSE)
 	balloon_alert(usr, "Your Nyamagotchi has died!")
 
 /obj/item/tamagotchi/proc/check_status()
