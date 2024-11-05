@@ -107,11 +107,11 @@
 		// Make the tamagotchi shake around
 		animate(src, transform = matrix(1, 0, rand(-3, 3), 0, 1, rand(-3, 3)), time = 2, loop = -1)
 		var/tama_alerts = list()
-		if (hunger >= 80)
+		if (hunger >= 75)
 			tama_alerts += "hungry"
-		if (happiness <= 20)
+		if (happiness <= 15)
 			tama_alerts += "sad"
-		if (energy <= 20)
+		if (energy <= 25)
 			tama_alerts += "tired"
 
 		playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
