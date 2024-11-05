@@ -46,7 +46,7 @@
 	if (alive == 0 && died == 0)
 		return span_notice("The Nyamagotchi is ready to be started!")
 	if (alive == 0 && died == 1)
-		return span_notice(status)
+		return span_notice("The Nyamagotchi is DEAD. You're a terrible person.")
 	else
 		var/status = "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]"
 		return span_notice(status)
