@@ -103,7 +103,7 @@
 		die()
 		return
 	// make the tamagotchi say things if an attentio is needed
-	if (hunger >= 80 || happiness <= 20 || energy <= 20)
+	if (hunger >= 75 || happiness <= 15 || energy <= 25)
 		// Make the tamagotchi shake around
 		animate(src, transform = matrix(1, 0, rand(-3, 3), 0, 1, rand(-3, 3)), time = 2, loop = -1)
 		var/tama_alerts = list()
