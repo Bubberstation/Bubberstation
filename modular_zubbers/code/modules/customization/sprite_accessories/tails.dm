@@ -20,3 +20,13 @@
 	name = "Rattlesnake"
 	icon_state = "rattlesnake"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/blackjackal
+	name = "Black-Backed Jackal"
+	icon_state = "blackjackal"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/gecko
+	name = "Gecko"
+	icon_state = "gecko"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
