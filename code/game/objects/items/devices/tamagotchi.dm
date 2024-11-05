@@ -97,6 +97,7 @@
 			// check if the Tamagotchi is still alive
 			if(hunger >= 100 || energy <= 0)
 				die()
+				return
 			// make the tamagotchi say things if an attentio is needed
 			if (hunger >= 80 || happiness <= 20 || energy <= 20)
 				// Make the tamagotchi shake around
