@@ -98,7 +98,7 @@
 		return
 
 	age += 1       // Increase age over time
-	hunger += rand(1,3)    // Increase hunger over time
+	hunger += rand(1, 3)    // Increase hunger over time
 	happiness -= rand(1,3) // Decrease happiness over time
 	energy -= rand(1,3)    // Decrease energy over time
 
