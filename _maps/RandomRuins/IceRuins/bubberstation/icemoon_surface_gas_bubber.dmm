@@ -169,23 +169,15 @@
 "gm" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/south,
-/obj/item/food/cornuto{
-	pixel_y = 4;
-	pixel_x = -3
-	},
-/obj/item/food/cornuto{
-	pixel_y = -5;
-	pixel_x = 2
-	},
-/obj/item/food/cornuto{
-	pixel_y = 5;
-	pixel_x = 6
-	},
-/obj/item/food/cornuto{
-	pixel_y = -5;
-	pixel_x = -3
-	},
 /obj/structure/closet/crate/freezer,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
 /turf/open/floor/iron/freezer{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -355,10 +347,11 @@
 /area/icemoon/underground/unexplored)
 "lt" = (
 /obj/machinery/vending/dorms{
-	onstation = 0
+	density = 0;
+	pixel_y = -32
 	},
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/powered/lizard_gas)
 "lK" = (
@@ -567,6 +560,22 @@
 	},
 /obj/structure/closet/crate/freezer,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
+/obj/item/food/cornuto{
+	pixel_y = -5;
+	pixel_x = -3
+	},
+/obj/item/food/cornuto{
+	pixel_y = 4;
+	pixel_x = -3
+	},
+/obj/item/food/cornuto{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/food/cornuto{
+	pixel_y = -5;
+	pixel_x = 2
+	},
 /turf/open/floor/iron/freezer{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -649,10 +658,6 @@
 /obj/item/tank/internals/oxygen,
 /obj/item/clothing/mask/breath,
 /obj/item/pickaxe,
-/obj/item/gun/ballistic/rifle/boltaction/pipegun,
-/obj/item/ammo_casing/junk/hunter,
-/obj/item/ammo_casing/junk/hunter,
-/obj/item/ammo_casing/junk/hunter,
 /obj/item/storage/box/coffeepack/robusta,
 /obj/item/storage/box/coffeepack/robusta,
 /obj/item/flatpacked_machine,
@@ -660,6 +665,7 @@
 /obj/item/flatpacked_machine/sustenance_machine,
 /obj/item/flatpacked_machine/organics_ration_printer,
 /obj/item/flatpacked_machine/macrowave,
+/obj/item/gun/energy/laser/musket,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1958,7 +1964,7 @@ qM
 qM
 Xn
 qM
-qM
+gv
 gv
 gv
 gv
@@ -1979,13 +1985,13 @@ Ji
 ed
 Ji
 ur
-qM
+ur
 qM
 HE
 Jv
-Py
 lt
 qM
+gv
 gv
 gv
 gv
@@ -2006,13 +2012,13 @@ wN
 RW
 mE
 pO
-qM
+ur
 qM
 Kr
 kI
 ei
 qM
-qM
+gv
 gv
 gv
 gv
@@ -2033,13 +2039,13 @@ Md
 Ji
 Ji
 Ji
+ur
 qM
 qM
 qM
 qM
 qM
-qM
-qM
+gv
 gv
 gv
 gv

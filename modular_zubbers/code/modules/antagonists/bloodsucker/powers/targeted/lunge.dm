@@ -133,7 +133,7 @@
 	var/mob/living/carbon/target = hit_atom
 
 	// Did I slip or get knocked unconscious?
-	if(user.body_position != STANDING_UP || user.incapacitated())
+	if(user.body_position != STANDING_UP || user.incapacitated)
 		user.throw_at(target_turf, 12, 0.8)
 		user.spin(10)
 		return

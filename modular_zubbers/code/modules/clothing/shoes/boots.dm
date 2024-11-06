@@ -20,7 +20,7 @@
 	armor_type = /datum/armor/shoes_combat
 
 	lace_time = 12 SECONDS
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	strip_delay = 2 SECONDS
 	force = 10
 	throwforce = 15
