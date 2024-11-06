@@ -50,7 +50,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/leveraction/sawn
 	weapon_weight = WEAPON_LIGHT
 	w_class = WEIGHT_CLASS_NORMAL
-	spread = 20
+	spread = 10
 	projectile_damage_multiplier = 0.7
 	lefthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
@@ -87,3 +87,36 @@
 	. = ..()
 	flick("sawnleverflip",src)
 	return
+
+/obj/item/gun/ballistic/rifle/boltaction/leveraction/holy
+	icon_state = "rifleholy"
+	name = "\improper Winnfield Rifle Custom"
+	desc = "A custom-modified replica of an Terran American lever-action rifle firing .40 Sol Long. Has an integral suppressor and is advertised to have been 'machined in holy water.' Bears the distinctive cobalt mark of SAR Inc quality."
+	inhand_icon_state = "holyrifle"
+	worn_icon_state = "holyrifle"
+	can_be_sawn_off = FALSE
+	suppressed = TRUE
+	can_unsuppress = FALSE
+
+/obj/item/gun/ballistic/rifle/boltaction/leveraction/holy/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_BARREL)
+
+/obj/item/gun/ballistic/rifle/boltaction/leveraction/examine_more(mob/user)
+	. = ..()
+
+	. += "The Winnfield Repeating Rifle was originally produced in the late \
+		1800s on Terra. Originally chambered in a rifle-length .38 caliber, \
+		it was widely popular amongst outlaws, thieves, and those who fought them. \
+		In 2557, Solar Arms Recreations, Inc. settled upon this model of \
+		Winnfield to recreate for the modern collector and enthusiast market. \
+		While the exterior and most internal mechanisms are unchanged, the \
+		weapon has been brought up to modern safety standards and rechambered \
+		for the far more common Solar .40 cartridge. This one is a variant produced \
+		by SAR with a custom integrated suppressor, a metal wireframe stock, and a \
+		silver finish. Supposedly 'machined with holy water' according to the pamphlet."
+
+	return .
+
+/obj/item/gun/ballistic/rifle/boltaction/leveraction/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")

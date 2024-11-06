@@ -46,7 +46,7 @@
 /obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn
 	icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/sar_inc.dmi'
 	can_be_sawn_off = FALSE
-	name = "\improper Sawn-Off Replica Lever-Action Shotgun"
+	name = "\improper Sawn-Off Coltfield Shotgun"
 	desc = "A horribly mangled replica of an American lever-action shotgun. The stock, barrel, and tube have been sawn down, likely for 'cool points.' Fittingly, the seal of quality burned into the stock was sawn off as well."
 	icon_state = "sawnlevershotgun"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/levershotgun/sawn

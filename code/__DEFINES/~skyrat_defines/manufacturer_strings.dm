@@ -32,3 +32,4 @@
 
 #define COMPANY_SAR_STOCK "It has the text <b>[span_blue("Solar Arms Recreations, Inc.")]</b> engraved into it, along with a stylized depiction of the <b>[span_blue("Sol sytem")]</b> and a <b>[span_blue("cobalt blue SAR seal of quality")]</b> burned into the stock."
 #define COMPANY_SAR_NOSTOCK "It has the text <b>[span_blue("Solar Arms Recreations, Inc.")]</b> engraved into it, along with a stylized depiction of the <b>[span_blue("Sol sytem")]</b>."
+#define COMPANY_SAR_BARREL "It has the text <b>[span_blue("Solar Arms Recreations, Inc.")]</b> engraved into it, along with a stylized depiction of the <b>[span_blue("Sol sytem")]</b> and a <b>[span_blue("cobalt blue SAR seal of quality")]</b> engraved onto the barrel."
