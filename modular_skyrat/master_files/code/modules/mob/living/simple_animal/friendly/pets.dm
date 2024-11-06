@@ -26,7 +26,6 @@
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_icon_state = "clowncat"
-	has_collar_resting_icon_state = FALSE
 	can_be_held = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/cat/clown
 	held_state = "cat2"
@@ -148,7 +147,7 @@
 	melee_damage_upper = 5
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile //he's a nice boy
 

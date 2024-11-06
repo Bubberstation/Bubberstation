@@ -21,7 +21,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
 	attack_verb_simple = list("flog", "whip", "lash", "discipline")
-	hitsound = 'sound/weapons/chainhit.ogg'
+	hitsound = 'sound/items/weapons/chainhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/melee/chainofcommand/suicide_act(mob/living/user)
@@ -39,7 +39,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	throwforce = 10
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
@@ -54,7 +54,7 @@
 
 /obj/item/melee/sabre
 	name = "officer's sabre" //SKYRAT EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease." 
+	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
@@ -70,8 +70,8 @@
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("slashes", "cuts")
 	attack_verb_simple = list("slash", "cut")
-	block_sound = 'sound/weapons/parry.ogg'
-	hitsound = 'sound/weapons/rapierhit.ogg'
+	block_sound = 'sound/items/weapons/parry.ogg'
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	wound_bonus = 10
 	bare_wound_bonus = 25
@@ -164,6 +164,46 @@
 		user.death(FALSE)
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
+/obj/item/melee/parsnip_sabre
+	name = "parsnip sabre"
+	desc = "A weird, yet elegant weapon. Suprisingly sharp for something made from a parsnip."
+	icon = 'icons/obj/weapons/sword.dmi'
+	icon_state = "parsnip_sabre"
+	inhand_icon_state = "parsnip_sabre"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 15
+	throwforce = 10
+	demolition_mod = 0.3
+	w_class = WEIGHT_CLASS_BULKY
+	block_chance = 40
+	armour_penetration = 40
+	sharpness = SHARP_EDGED
+	attack_verb_continuous = list("slashes", "cuts")
+	attack_verb_simple = list("slash", "cut")
+	block_sound = 'sound/items/weapons/parry.ogg'
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	custom_materials = null
+	wound_bonus = 5
+	bare_wound_bonus = 15
+
+/obj/item/melee/sabre/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/jousting)
+
+/obj/item/melee/parsnip_sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK)
+		final_block_chance = 0 //Don't bring a sword to a gunfight, and also you aren't going to really block someone full body tackling you with a sword
+	return ..()
+
+/obj/item/melee/parsnip_sabre/on_exit_storage(datum/storage/container)
+	. = ..()
+	playsound(container.parent, 'sound/items/unsheath.ogg', 25, TRUE)
+
+/obj/item/melee/parsnip_sabre/on_enter_storage(datum/storage/container)
+	. = ..()
+	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
+
 /obj/item/melee/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
@@ -183,8 +223,8 @@
 	armour_penetration = 65
 	attack_verb_continuous = list("slashes", "stings", "prickles", "pokes")
 	attack_verb_simple = list("slash", "sting", "prickle", "poke")
-	hitsound = 'sound/weapons/rapierhit.ogg'
-	block_sound = 'sound/weapons/parry.ogg'
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	block_sound = 'sound/items/weapons/parry.ogg'
 
 /obj/item/melee/beesword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK)
@@ -329,7 +369,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
 	attack_verb_simple = list("flog", "whip", "lash", "discipline")
-	hitsound = 'sound/weapons/whip.ogg'
+	hitsound = 'sound/items/weapons/whip.ogg'
 
 /obj/item/melee/curator_whip/afterattack(atom/target, mob/user, click_parameters)
 	if(ishuman(target))
@@ -393,7 +433,7 @@
 	inhand_icon_state = active ? "nullrod" : null
 	if(user)
 		balloon_alert(user, "[active ? "extended" : "collapsed"] [src]")
-	playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
+	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/melee/roastingstick/attackby(atom/target, mob/user)
@@ -434,7 +474,7 @@
 		return NONE
 	if (istype(interacting_with, /obj/singularity) && get_dist(user, interacting_with) < 10)
 		to_chat(user, span_notice("You send [held_sausage] towards [interacting_with]."))
-		playsound(src, 'sound/items/rped.ogg', 50, TRUE)
+		playsound(src, 'sound/items/tools/rped.ogg', 50, TRUE)
 		beam = user.Beam(interacting_with, icon_state = "rped_upgrade", time = 10 SECONDS)
 		return ITEM_INTERACT_SUCCESS
 	return NONE
@@ -445,21 +485,21 @@
 	if (!is_type_in_typecache(interacting_with, ovens))
 		return NONE
 	to_chat(user, span_notice("You extend [src] towards [interacting_with]."))
-	playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
+	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	finish_roasting(user, interacting_with)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
 	if(do_after(user, 10 SECONDS, target = user))
 		to_chat(user, span_notice("You finish roasting [held_sausage]."))
-		playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+		playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
 		held_sausage.add_atom_colour(rgb(103, 63, 24), FIXED_COLOUR_PRIORITY)
 		held_sausage.name = "[target.name]-roasted [held_sausage.name]"
 		held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."
 		update_appearance()
 	else
 		QDEL_NULL(beam)
-		playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
+		playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 		to_chat(user, span_notice("You put [src] away."))
 
 /obj/item/melee/cleric_mace
@@ -483,7 +523,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	throwforce = 8
 	block_chance = 10
-	block_sound = 'sound/weapons/genhit.ogg'
+	block_sound = 'sound/items/weapons/genhit.ogg'
 	armour_penetration = 50
 	attack_verb_continuous = list("smacks", "strikes", "cracks", "beats")
 	attack_verb_simple = list("smack", "strike", "crack", "beat")

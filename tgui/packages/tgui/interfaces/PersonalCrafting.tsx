@@ -140,6 +140,7 @@ type Recipe = {
   structures: string[];
   steps: string[];
   foodtypes: string[];
+  has_food_effect: BooleanLike;
 };
 
 type Diet = {
@@ -608,6 +609,23 @@ const MaterialContent = (props) => {
 
 const FoodtypeContent = (props) => {
   const { type, diet, craftableCount } = props;
+  let iconName = '',
+    iconColor = '';
+
+  // We use iconName in the return to see if this went through.
+  if (type !== 'Can Make' && diet) {
+    if (diet.liked_food.includes(type)) {
+      iconName = 'face-laugh-beam';
+      iconColor = 'good';
+    } else if (diet.disliked_food.includes(type)) {
+      iconName = 'face-tired';
+      iconColor = 'average';
+    } else if (diet.toxic_food.includes(type)) {
+      iconName = 'skull-crossbones';
+      iconColor = 'bad';
+    }
+  }
+
   return (
     <Stack>
       <Stack.Item width="14px" textAlign="center">
@@ -619,16 +637,7 @@ const FoodtypeContent = (props) => {
       <Stack.Item>
         {type === 'Can Make'
           ? craftableCount
-          : diet &&
-            (diet.liked_food.includes(type) ? (
-              <Icon name="face-laugh-beam" color={'good'} />
-            ) : diet.disliked_food.includes(type) ? (
-              <Icon name="face-tired" color={'average'} />
-            ) : (
-              diet.toxic_food.includes(type) && (
-                <Icon name="skull-crossbones" color={'bad'} />
-              )
-            ))}
+          : iconName && <Icon name={iconName} color={iconColor} />}
       </Stack.Item>
     </Stack>
   );
@@ -787,10 +796,16 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
         <Stack.Item grow>
           <Stack>
             <Stack.Item grow={5}>
-              <Box mb={0.5} bold style={{ textTransform: 'capitalize' }}>
+              <Box mb={1} bold style={{ textTransform: 'capitalize' }}>
                 {item.name}
               </Box>
               {item.desc && <Box color={'gray'}>{item.desc}</Box>}
+              {!!item.has_food_effect && (
+                <Box my={2} color={'pink'}>
+                  <Icon name="wand-magic-sparkles" mr={1} />
+                  Special effect on consumption.
+                </Box>
+              )}
               <Box style={{ textTransform: 'capitalize' }}>
                 {item.reqs && (
                   <Box>

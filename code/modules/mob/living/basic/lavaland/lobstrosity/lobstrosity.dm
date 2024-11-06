@@ -16,7 +16,7 @@
 	melee_damage_upper = 19
 	attack_verb_continuous = "snips"
 	attack_verb_simple = "snip"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE // Closer than a scratch to a crustacean pinching effect
 	melee_attack_cooldown = 1 SECONDS
 	butcher_results = list(
@@ -41,12 +41,11 @@
 
 /mob/living/basic/mining/lobstrosity/Initialize(mapload)
 	. = ..()
-	var/static/list/food_types = list(/obj/item/fish/lavaloop)
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(food_types))
 	AddComponent(/datum/component/profound_fisher)
 	AddElement(/datum/element/mob_grabber)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/basic_eating, food_types = target_foods)
+	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
 	AddComponent(\
 		/datum/component/amputating_limbs,\
 		surgery_time = snip_speed, \

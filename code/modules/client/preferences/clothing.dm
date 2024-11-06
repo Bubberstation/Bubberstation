@@ -93,15 +93,6 @@
 /datum/preference/choiced/jumpsuit/apply_to_human(mob/living/carbon/human/target, value)
 	target.jumpsuit_style = value
 
-/datum/preference/choiced/jumpsuit/create_informed_default_value(datum/preferences/preferences)
-	switch(preferences.read_preference(/datum/preference/choiced/gender))
-		if(MALE)
-			return PREF_SUIT
-		if(FEMALE)
-			return PREF_SKIRT
-
-	return ..()
-
 /// Socks preference
 /datum/preference/choiced/socks
 	savefile_key = "socks"
@@ -155,7 +146,7 @@
 			return /datum/sprite_accessory/undershirt/sports_bra::name
 
 	return ..()
-*/ // NOVA EDIT REMOVAL END
+*/ // SKYRAT EDIT REMOVAL END
 
 /datum/preference/choiced/undershirt/icon_for(value)
 	var/static/icon/body

@@ -41,12 +41,20 @@
 	if(CONFIG_GET(flag/disable_lewd_items))
 		verbs -= /mob/living/carbon/human/verb/safeword
 
-/mob/living/carbon/human/verb/safeword()
+/* BUBBER EDIT START: Rename remove_lewd_items to OOC Safe Word */
+/mob/living/carbon/human/verb/remove_lewd_items()
 	set name = "Remove Lewd Items"
 	set category = "OOC"
 	set desc = "Removes any and all lewd items from you."
+	// literally just another way to safeword
+	safeword()
 
-	log_message("[key_name(src)] used the Remove Lewd Items verb.", LOG_ATTACK)
+/mob/living/carbon/human/verb/safeword()
+	set name = "OOC Safe Word"
+	set category = "OOC"
+	set desc = "Removes any and all lewd items from you."
+
+	log_message("[key_name(src)] used the OOC Safe Word verb.", LOG_ATTACK)
 	for(var/obj/item/equipped_item in get_equipped_items())
 		if(!(equipped_item.type in GLOB.pref_checked_clothes))
 			continue
@@ -59,7 +67,12 @@
 	if(leash_check)
 		qdel(leash_check)
 
+	// Vore Edit
+	if(istype(loc, /obj/vore_belly))
+		forceMove(get_turf(src))
+
 	return TRUE
+/* BUBBER EDIT END */
 
 /mob/living/carbon/human/verb/lick(mob/living/carbon/human/target in get_adjacent_humans())
 	set name = "Lick"

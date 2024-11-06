@@ -31,7 +31,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		var/name = target.name
 		var/rank = target.rank // user-visible job
 		var/trim = target.trim // internal jobs by trim type
-		var/datum/job/job = SSjob.GetJob(trim)
+		var/datum/job/job = SSjob.get_job(trim)
 		if(!job || !(job.job_flags & JOB_CREW_MANIFEST) || !LAZYLEN(job.departments_list)) // In case an unlawful custom rank is added.
 			var/list/misc_list = manifest_out[DEPARTMENT_UNASSIGNED]
 			misc_list[++misc_list.len] = list(
@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 	// SKYRAT EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
-	var/chosen_assignment = person_client?.prefs.alt_job_titles[assignment] || assignment
+	var/chosen_assignment = id_card?.get_job_title() || assignment //BUBBER EDIT: Intern Job Tags
 	// SKYRAT EDIT ADDITION END - ALTERNATIVE_JOB_TITLES
 
 	var/datum/record/locked/lockfile = new(

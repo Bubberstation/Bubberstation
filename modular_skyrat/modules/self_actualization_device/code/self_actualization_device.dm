@@ -175,7 +175,7 @@
 	say("Procedure validation in progress...")
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(!isnull(human_occupant.ckey) && isnull(human_occupant.client)) // player mob, currently disconnected
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Validation failed: No elicited response from occupant genes. Subject may be suffering from Sudden Sleep Disorder.")
 		return
 
@@ -195,7 +195,7 @@
 		update_appearance()
 	else
 		player_consent = NO_CONSENT
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Validation failed: Occupant genes have willfully rejected the procedure. You may try again if you think this was an error.")
 		update_appearance()
 
@@ -213,12 +213,17 @@
 
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient)
 	patient.dna.update_dna_identity()
+	SSquirks.AssignQuirks(patient, patient.client)
 	log_game("[key_name(patient)] used a Self-Actualization Device at [loc_name(src)].")
 
 	if(patient.dna.real_name != original_name)
 		message_admins("[key_name_admin(patient)] has used the Self-Actualization Device, and changed the name of their character. \
 		Original Name: [original_name], New Name: [patient.dna.real_name]. \
 		This may be a false positive from changing from a humanized monkey into a character, so be careful.")
+	else
+		message_admins("[key_name_admin(patient)] has used the Self-Actualization Device, and potentially changed their quirks. \
+		This may be a false positive from restoring an altered body of the same name, so be careful.")
+
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	say("Procedure complete! Enjoy your life being a new you!")
 

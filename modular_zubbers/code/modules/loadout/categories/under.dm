@@ -49,3 +49,15 @@
 /datum/loadout_item/uniform/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
 	name = "Tacticool Utility Skirt and Suspenders"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+
+/datum/loadout_item/uniform/miscellaneous/loincloth
+	name = "leather loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/sensor
+
+/datum/loadout_item/uniform/miscellaneous/loincloth/cloth
+	name = "loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/cloth/sensor
+
+/datum/loadout_item/uniform/miscellaneous/miniskirt
+	name = "recolourable miniskirt"
+	item_path = /obj/item/clothing/under/dress/miniskirt

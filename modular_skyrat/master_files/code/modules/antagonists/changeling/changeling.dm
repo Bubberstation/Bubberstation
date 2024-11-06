@@ -5,8 +5,6 @@
 /datum/changeling_profile
 	/// The bra worn by the profile source
 	var/bra
-	/// The color of the underwear used by the profile source
-	var/underwear_color
 	/// The color of the undershirt used by the profile source
 	var/undershirt_color
 	/// The color of the socks used by the profile source
@@ -34,3 +32,7 @@
 	var/scream_type
 	/// The profile source laugh type
 	var/laugh_type
+	/// Profile source mob height
+	var/target_body_scaling
+	/// Profile source Mob Size
+	var/target_size

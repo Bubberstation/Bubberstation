@@ -34,6 +34,14 @@
 		/datum/ai_planning_subtree/find_and_hunt_target/lobster_fishing,
 		/datum/ai_planning_subtree/find_fingers,
 	)
+
+/datum/ai_controller/basic_controller/lobstrosity/TryPossessPawn(atom/new_pawn)
+	. = ..()
+	if(. & AI_CONTROLLER_INCOMPATIBLE)
+		return
+	var/static/list/food_types = typecacheof(list(/obj/item/fish/lavaloop))
+	set_blackboard_key(BB_BASIC_FOODS, food_types)
+
 ///Ensure that juveline lobstrosities witll charge at things they can reach.
 /datum/ai_controller/basic_controller/lobstrosity/juvenile
 	blackboard = list(
@@ -96,7 +104,7 @@
 /datum/ai_planning_subtree/find_and_hunt_target/lobster_fishing
 	target_key = BB_FISHING_TARGET
 	hunt_targets = list(/turf/open/lava)
-	hunting_behavior = /datum/ai_behavior/hunt_target/unarmed_attack_target/reset_target_combat_mode
+	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/reset_target_combat_mode_off
 
 /datum/ai_planning_subtree/basic_melee_attack_subtree/lobster
 	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/lobster
@@ -315,7 +323,7 @@
 	var/atom/fingers = controller.blackboard[target_key]
 	if (QDELETED(fingers) || living_pawn.pulling != fingers)
 		return AI_BEHAVIOR_FAILED
-	living_pawn.melee_attack(fingers)
+	controller.ai_interact(target = fingers)
 	return AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/hoard_fingers/finish_action(datum/ai_controller/controller, succeeded, target_key)

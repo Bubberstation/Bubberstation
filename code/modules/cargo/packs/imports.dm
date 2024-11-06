@@ -17,6 +17,7 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/gun/ballistic/shotgun/toy = 8)
 	crate_name = "foam force crate"
+	crate_type = /obj/structure/closet/crate/freezer/donk
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports/foamforce/bonus
@@ -30,6 +31,7 @@
 		/obj/item/ammo_box/magazine/toy/pistol = 2,
 	)
 	crate_name = "foam force crate"
+	crate_type = /obj/structure/closet/crate/freezer/donk
 
 /datum/supply_pack/imports/meatmeatmeatmeat // MEAT MEAT MEAT MEAT
 	name = "MEAT MEAT MEAT MEAT MEAT"
@@ -141,6 +143,7 @@
 		/obj/item/gun/ballistic/automatic/wt550 = 2,
 		/obj/item/ammo_box/magazine/wt550m9 = 2,
 	)
+	crate_type = /obj/structure/closet/crate/secure/gorlex_weapons/jammed
 
 /datum/supply_pack/imports/wt550ammo
 	name = "Smuggled WT-550 Ammo Crate"
@@ -153,7 +156,7 @@
 		/obj/item/ammo_box/magazine/wt550m9/wtic = 2,
 	)
 	crate_name = "emergency crate"
-	crate_type = /obj/structure/closet/crate/internals
+	crate_type = /obj/structure/closet/crate/secure/gorlex_weapons/jammed
 
 /datum/supply_pack/imports/shocktrooper
 	name = "Shocktrooper Crate"
@@ -169,6 +172,7 @@
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/head/helmet,
 	)
+	crate_type = /obj/structure/closet/crate/secure/gorlex_weapons/jammed
 
 /datum/supply_pack/imports/specialops
 	name = "Special Ops Crate"
@@ -315,11 +319,12 @@ Removal End */
 		risky espionage hallway operations. Enjoy our product!"
 	contraband = TRUE
 	cost = CARGO_CRATE_VALUE * 6
-	contains = list(/obj/item/clothing/under/syndicate/floortilecamo = 3,
-			/obj/item/clothing/mask/floortilebalaclava = 3,
-			/obj/item/clothing/gloves/combat/floortile = 3,
-			/obj/item/clothing/shoes/jackboots/floortile = 3,
-			/obj/item/storage/backpack/floortile = 3
+	contains = list(
+		/obj/item/clothing/under/syndicate/floortilecamo = 3,
+		/obj/item/clothing/mask/floortilebalaclava = 3,
+		/obj/item/clothing/gloves/combat/floortile = 3,
+		/obj/item/clothing/shoes/jackboots/floortile = 3,
+		/obj/item/storage/backpack/floortile = 3
 	)
 	crate_name = "floortile camouflauge crate"
 	crate_type = /obj/structure/closet/crate/secure/weapon

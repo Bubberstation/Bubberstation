@@ -208,6 +208,27 @@
 
 	items_to_add = list(/obj/item/cautery/prt)
 
+/obj/item/borg/upgrade/plunger
+	name = "janitor cyborg plunging tool"
+	desc = "An integrated cyborg retractable plunger. It's meant for plunging things, duh."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list(/obj/item/plunger/cyborg)
+
+/obj/item/borg/upgrade/high_capacity_light_replacer
+	name = "janitor cyborg high capacity replacer"
+	desc = "Increases the amount of lights that can be stored in the replacer."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list (/obj/item/lightreplacer/cyborg/advanced)
+	items_to_remove = list(/obj/item/lightreplacer/cyborg)
+
 /obj/item/borg/upgrade/syndicate
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a cyborg."
@@ -420,7 +441,8 @@
 /obj/item/borg/upgrade/surgery_omnitool
 	name = "cyborg surgical omni-tool upgrade"
 	desc = "An upgrade to the Medical model, upgrading the built-in \
-		surgical omnitool, to be on par with advanced surgical tools"
+		surgical omnitool, to be on par with advanced surgical tools, allowing for faster surgery. \
+		It also upgrades their scanner."
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical,  /obj/item/robot_model/syndicate_medical)
@@ -577,11 +599,7 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
-	var/resize_amount = 1.25
-	if(TRAIT_R_WIDE in borg.model.model_features)
-		resize_amount = 1.25
-	if(TRAIT_R_TALL in borg.model.model_features)
-		resize_amount = 1.05
+	var/resize_amount = 1.6
 	// SKYRAT EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	var/prev_lockcharge = borg.lockcharge
@@ -592,7 +610,7 @@
 	smoke.start()
 	sleep(0.2 SECONDS)
 	for(var/i in 1 to 4)
-		playsound(borg, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, TRUE, -1)
+		playsound(borg, pick('sound/items/tools/drill_use.ogg', 'sound/items/tools/jaws_cut.ogg', 'sound/items/tools/jaws_pry.ogg', 'sound/items/tools/welder.ogg', 'sound/items/tools/ratchet.ogg'), 80, TRUE, -1)
 		sleep(1.2 SECONDS)
 	if(!prev_lockcharge)
 		borg.SetLockdown(FALSE)
@@ -607,7 +625,7 @@
 		return .
 	if (borg.hasExpanded)
 		borg.hasExpanded = FALSE
-		borg.update_transform(0.8) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
+		borg.update_transform(0.625) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg RPED"
@@ -813,7 +831,7 @@
 
 	if(borgo.mind)
 		borgo.mind.grab_ghost()
-		playsound(loc, 'sound/voice/liveagain.ogg', 75, TRUE)
+		playsound(loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
 	else
 		playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
 

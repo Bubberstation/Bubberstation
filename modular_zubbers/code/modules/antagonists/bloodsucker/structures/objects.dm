@@ -47,14 +47,14 @@
 		return FALSE
 	return TRUE
 
-///Bloodbag of Bloodsucker blood (used by Vassals only)
+///Bloodbag of Bloodsucker blood (used by Ghouls only)
 /obj/item/reagent_containers/blood/o_minus/bloodsucker
 	name = "blood pack"
 	unique_blood = /datum/reagent/blood/bloodsucker
 
 /obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
 	. = ..()
-	if(user.mind.has_antag_datum(/datum/antagonist/ex_vassal) || user.mind.has_antag_datum(/datum/antagonist/vassal/revenge))
+	if(user.mind.has_antag_datum(/datum/antagonist/ex_ghoul) || user.mind.has_antag_datum(/datum/antagonist/ghoul/revenge))
 		. += span_notice("Seems to be just about the same color as your Master's...")
 
 //////////////////////
@@ -86,12 +86,12 @@
 	if(!wood_stack && replace)
 		user.put_in_hands(new_item)
 
+// TODO move this into bloodsuckerdatum
 /// Do I have a stake in my heart?
 /mob/living/proc/am_staked()
-	var/list/stakes = get_stakes()
-	if(!length(stakes))
-		return FALSE
-	return TRUE
+	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/stake/stake = locate() in chosen_bodypart.embedded_objects
+	return stake
 
 /mob/living/proc/get_stakes()
 	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
@@ -102,15 +102,6 @@
 		if(istype(embedded_stake, /obj/item/stake))
 			stakes += list(embedded_stake)
 	return stakes
-
-/// You can't go to sleep in a coffin with a stake in you.
-/mob/living/proc/StakeCanKillMe()
-	if(IsSleeping() || stat >= UNCONSCIOUS || HAS_TRAIT(src, TRAIT_NODEATH))
-		for(var/stake in get_stakes())
-			var/obj/item/stake/killin_stake = stake
-			if(killin_stake?.kills_blodsuckers)
-				return TRUE
-	return FALSE
 
 /datum/embed_data/stake
 	embed_chance = 20
@@ -125,7 +116,7 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("staked", "stabbed", "tore into")
 	attack_verb_simple = list("staked", "stabbed", "tore into")
 	sharpness = SHARP_EDGED
@@ -162,7 +153,7 @@
 		return
 
 	to_chat(user, span_notice("You put all your weight into embedding the stake into [target]'s chest..."))
-	playsound(user, 'sound/magic/Demon_consume.ogg', 50, 1)
+	playsound(user, 'sound/effects/magic/Demon_consume.ogg', 50, 1)
 	if(!do_after(user, staketime, target, extra_checks = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon, can_be_staked)))) // user / target / time / uninterruptable / show progress bar / extra checks
 		return
 	// Drop & Embed Stake
@@ -173,18 +164,31 @@
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
 	if(tryEmbed(target.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)) //and if it embeds successfully in their chest, cause a lot of pain
 		target.apply_damage(max(10, force * 1.2), BRUTE, BODY_ZONE_CHEST, wound_bonus = 0, sharpness = TRUE)
-	if(QDELETED(src)) // in case trying to embed it caused its deletion (say, if it's DROPDEL)
+		on_stake_embed(target, user)
+
+/obj/item/stake/proc/on_stake_embed(mob/living/target, mob/living/user)
+	return
+
+/obj/item/stake/hardened/silver/on_stake_embed(mob/living/target, mob/living/user)
+	var/obj/item/organ/internal/heart/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
+	if(!heart)
 		return
-	if(!target.mind)
+	target.visible_message(
+		span_danger("The [src.name] pierces [target]'s chest, destroying their [heart.name]!"),
+		span_userdanger("You feel a HORRIBLE pain as the [src.name] pierces your chest, destroying your [heart.name]!"),
+	)
+	qdel(heart)
+
+/obj/item/stake/tryEmbed(atom/target, forced)
+	. = ..()
+	if(!(. & COMPONENT_EMBED_SUCCESS) || !isbodypart(target))
+		return FALSE
+	var/obj/item/bodypart/bodypart = target
+	if(bodypart.body_zone != BODY_ZONE_CHEST)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum)
-		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
-		if(target.StakeCanKillMe())
-			bloodsuckerdatum.FinalDeath()
-		else
-			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
-			target.balloon_alert(target, "you have been staked!")
+	SEND_SIGNAL(bodypart, COMSIG_BODYPART_STAKED, forced)
+	if(bodypart.owner)
+		SEND_SIGNAL(bodypart.owner, COMSIG_MOB_STAKED, forced)
 
 ///Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /mob/living/proc/can_be_staked()
@@ -215,7 +219,7 @@
 	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
 /datum/embed_data/stake/silver
-	embed_chance = 65
+	embed_chance = 0 // we want it to only be embeddable manually
 	fall_chance = 0
 
 /obj/item/stake/hardened/silver
@@ -229,12 +233,10 @@
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
 	embed_data = /datum/embed_data/stake/silver
 	staketime = 15 SECONDS
-	kills_blodsuckers = TRUE
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)
 	. = ..()
-	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
-		. += span_notice("You know that the [src] can cause a Final Death to a vile Bloodsucker if they are asleep or dead.")
+	. += span_notice("You think that the [src] could destroy someone's heart if you really slam it in someone's ribs properly.")
 
 //////////////////////
 //     ARCHIVES     //
@@ -246,14 +248,14 @@
  *	A book that can only be used by Curators.
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
  *	This book should not work on Bloodsuckers using the Masquerade ability.
- *	If it reveals a Bloodsucker, the Curator will then be able to tell they are a Bloodsucker on examine (Like a Vassal).
+ *	If it reveals a Bloodsucker, the Curator will then be able to tell they are a Bloodsucker on examine (Like a Ghoul).
  *	Reading it normally will allow Curators to read what each Clan does, with some extra flavor text ones.
  *
  *	Regular Bloodsuckers won't have any negative effects from the book, while everyone else will get burns/eye damage.
  */
 /obj/item/book/kindred
-	name = "\improper Archive of the Kindred"
-	starting_title = "the Archive of the Kindred"
+	name = "\improper Book of Nod"
+	starting_title = "the Book of Nod"
 	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'

@@ -1,7 +1,6 @@
 /datum/species/synthetic
 	name = "Synthetic Humanoid"
 	id = SPECIES_SYNTH
-	say_mod = "beeps"
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
 	inherent_traits = list(
 		TRAIT_CAN_STRIP,
@@ -17,6 +16,7 @@
 		TRAIT_LITERATE,
 		TRAIT_NOCRITDAMAGE, // We do our own handling of crit damage.
 		TRAIT_ROBOTIC_DNA_ORGANS,
+		TRAIT_SYNTHETIC,
 	)
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -35,12 +35,12 @@
 	mutantappendix = null
 	exotic_blood = /datum/reagent/fuel/oil
 	bodypart_overrides = list(
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/robot/synth,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/robot/synth,
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/robot/synth,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/robot/synth,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/robot/synth,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/robot/synth,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/synth,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/synth,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/synth,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/synth,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/synth,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/synth,
 	)
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
 	coldmod = 1.2

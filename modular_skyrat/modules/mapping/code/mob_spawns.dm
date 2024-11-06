@@ -171,7 +171,7 @@
 		id_card.registered_name = syndicate.real_name
 		id_card.update_label()
 		id_card.update_icon()
-
+	syndicate.apply_pref_name(/datum/preference/name/syndicate, syndicate.client)
 	handlebank(syndicate)
 	return ..()
 
@@ -503,6 +503,9 @@
 /obj/structure/showcase/machinery/oldpod/used
 	icon = 'modular_skyrat/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod-open"
+
+/obj/structure/showcase/machinery/oldpod/used/psyker
+	icon = 'icons/obj/machines/sleeper.dmi' // SKYRAT TODO - Add aesthetics sprites
 
 //IDS//
 

@@ -9,7 +9,7 @@
 	suicide_cry = "FOR MY BROTHER!!"
 	antag_moodlet = /datum/mood_event/focused
 	hardcore_random_bonus = TRUE
-	stinger_sound = 'sound/ambience/antag/tatoralert.ogg'
+	stinger_sound = 'sound/music/antag/traitor/tatoralert.ogg'
 	VAR_PRIVATE
 		datum/team/brother_team/team
 
@@ -94,7 +94,7 @@
 		flashed.balloon_alert(source, "[flashed.p_theyre()] loyal to someone else!")
 		return
 
-	if (HAS_TRAIT(flashed, TRAIT_MINDSHIELD))
+	if (HAS_TRAIT(flashed, TRAIT_UNCONVERTABLE))
 		flashed.balloon_alert(source, "[flashed.p_they()] resist!")
 		return
 
@@ -136,6 +136,7 @@
 
 	brother1.dna.features["ethcolor"] = GLOB.color_list_ethereal["Faint Red"]
 	brother1.set_species(/datum/species/ethereal)
+
 
 	brother2.dna.features["mcolor"] = "#E5CD99" // SKYRAT EDIT ADDITION - Customization
 	brother2.dna.mutant_bodyparts["moth_antennae"] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: brother2.dna.features["moth_antennae"] = "Plain"
@@ -222,6 +223,9 @@
 		return
 	. = ..()
 	member.remove_antag_datum(/datum/antagonist/brother)
+	if (!length(members))
+		qdel(src)
+		return
 	if (isnull(member.current))
 		return
 	for (var/datum/mind/brother_mind as anything in members)

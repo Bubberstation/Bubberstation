@@ -129,7 +129,7 @@
 	mask = /obj/item/clothing/mask/whistle
 	uniform = /obj/item/clothing/under/color/red
 
-	//neck = /obj/item/camera SKYRAT EDIT REMOVAL
+	//neck = /obj/item/camera //SKYRAT TODO - Figure out why this adding to Wardrobe canon list makes holodisks with clowns harddel cameras
 
 	outfit_weight = 2
 
@@ -167,6 +167,7 @@
 	belt = /obj/item/storage/belt/utility/full
 	head = /obj/item/clothing/head/utility/hardhat
 	uniform = /obj/item/clothing/under/color/yellow
+	l_pocket = /obj/item/modular_computer/pda/assistant
 
 	outfit_weight = 6
 

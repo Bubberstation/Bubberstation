@@ -1,6 +1,6 @@
 /datum/quirk/claustrophobia
 	name = "Claustrophobia"
-	desc = "You are terrified of small spaces. If you are placed inside any container, locker, or machinery, a panic attack sets in and you struggle to breathe." // SKYRAT EDIT CHANGE - ORIGINAL: desc = "You are terrified of small spaces and certain jolly figures. If you are placed inside any container, locker, or machinery, a panic attack sets in and you struggle to breathe."
+	desc = "You are terrified of small spaces and certain jolly figures. If you are placed inside any container, locker, or machinery, a panic attack sets in and you struggle to breathe."
 	icon = FA_ICON_BOX_OPEN
 	value = -4
 	medical_record_text = "Patient demonstrates a fear of tight spaces."
@@ -14,6 +14,12 @@
 /datum/quirk/claustrophobia/process(seconds_per_tick)
 	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
 		return
+
+	// BUBBER EDIT START: Vore
+	if(istype(quirk_holder.loc, /obj/vore_belly))
+		quirk_holder.clear_mood_event("claustrophobia")
+		return
+	// BUBBER EDIT END
 
 	if(HAS_TRAIT(quirk_holder, TRAIT_MIND_TEMPORARILY_GONE) || HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
 		return

@@ -25,12 +25,14 @@
 	melee_damage_upper = 5
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox
 
 /mob/living/basic/pet/fox/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/cultist_pet)
+	AddElement(/datum/element/wears_collar)
 	AddElement(/datum/element/pet_bonus, "pants and yaps happily!")
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/tiny_mob_hunter, MOB_SIZE_SMALL)

@@ -79,8 +79,8 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
-	//regardless, we will make a sound
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, ignore_walls = FALSE)
+	//regardless, we will make a sound (if the user has the pref enabled)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, pref_to_check = /datum/preference/toggle/sound_ambience)
 
 	//do we have an incomplete item to hammer out? if so, here is our block of code
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
@@ -174,6 +174,6 @@
 	)
 	poor_target.Paralyze(5 SECONDS)
 	poor_target.emote("scream")
-	playsound(poor_target, 'sound/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
+	playsound(poor_target, 'sound/effects/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
 	add_memory_in_range(poor_target, 7, /datum/memory/witness_vendor_crush, protagonist = poor_target, antognist = src)
 	return TRUE

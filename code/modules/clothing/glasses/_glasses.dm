@@ -112,7 +112,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/science
@@ -251,7 +251,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
@@ -344,6 +344,7 @@
 /obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	add_glasses_slapcraft_component()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -1)
 
 /obj/item/clothing/glasses/sunglasses/proc/add_glasses_slapcraft_component()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunsec, /datum/crafting_recipe/hudsunmed, /datum/crafting_recipe/hudsundiag, /datum/crafting_recipe/scienceglasses)
@@ -384,7 +385,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/sunglasses/gar/orange
@@ -445,8 +446,20 @@
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER // SKYRAT EDIT - Just so it works until I make the change upstream
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
+/obj/item/clothing/glasses/welding/Initialize(mapload)
+	. = ..()
+	if(!up)
+		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
+
+/obj/item/clothing/glasses/welding/attack_self(mob/living/user)
 	adjust_visor(user)
+
+/obj/item/clothing/glasses/welding/adjust_visor(mob/user)
+	. = ..()
+	if(up)
+		qdel(GetComponent(/datum/component/adjust_fishing_difficulty))
+	else
+		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	. = ..()
@@ -465,6 +478,10 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = INFINITY // You WILL Be blind, no matter what
 	dog_fashion = /datum/dog_fashion/head
+
+/obj/item/clothing/glasses/blindfold/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/trickblindfold
 	name = "blindfold"
@@ -502,6 +519,10 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	flags_cover = GLASSESCOVERSEYES
 	glass_colour_type = /datum/client_colour/glass_colour/red
+
+/obj/item/clothing/glasses/thermal/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	. = ..()
@@ -557,10 +578,6 @@
 	. = ..()
 	icon_state = (icon_state == base_icon_state) ? "[base_icon_state]_flipped" : base_icon_state
 	user.update_worn_glasses()
-
-/datum/armor/glasses_science
-	fire = 80
-	acid = 100
 
 /obj/item/clothing/glasses/cold
 	name = "cold goggles"
@@ -620,6 +637,10 @@
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_MADNESS_IMMUNE)
 	var/list/hudlist = list(DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BOT_PATH)
 	var/xray = FALSE
+
+/obj/item/clothing/glasses/debug/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -15)
 
 /obj/item/clothing/glasses/debug/equipped(mob/user, slot)
 	. = ..()
@@ -706,6 +727,10 @@
 	flags_cover = GLASSESCOVERSEYES
 	/// Hallucination datum currently being used for seeing mares
 	var/datum/hallucination/stored_hallucination
+
+/obj/item/clothing/glasses/nightmare_vision/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, 13)
 
 /obj/item/clothing/glasses/nightmare_vision/Destroy()
 	QDEL_NULL(stored_hallucination)

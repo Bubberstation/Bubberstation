@@ -120,6 +120,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 	return TRUE
 
+
 //SKYRAT EDIT ADDITION
 /obj/machinery/shower/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	if(do_after(user, 3 SECONDS, src))
