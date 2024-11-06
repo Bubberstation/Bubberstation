@@ -148,11 +148,11 @@
 		if (hunger < 0)
 			hunger = 0
 		balloon_alert(usr, "Nyamagotchi fed!")
-		to_chat(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
+		to_chat(usr, span_purple("You fed your Nyamagotchi! Its hunger is now at [hunger]."))
 		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
 		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
-		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!", "So yummy!", "Oooh! Delicious!", "MONCH MONCH MONCH.",
-			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"))
+		say(message=pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!", "So yummy!", "Oooh! Delicious!", "MONCH MONCH MONCH.",
+			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"), message_range=2)
 	else
 		to_chat(usr, "Your Nyamagotchi isn't hungry!")
 
@@ -162,12 +162,12 @@
 		if (happiness > 100)
 			happiness = 100
 		balloon_alert(usr, "Nyamagotchi played with!")
-		to_chat(usr, "You play with your Nyamsagotchi! Its happiness is now [happiness].")
+		to_chat(usr, span_purple("You play with your Nyamsagotchi! Its happiness is now [happiness]."))
 		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
-		say(pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "YAY!!!",
-		"I had a great time playing with you!", "YIPPEEE!!!", "That was a blast!", "Wowzers meowzers, that was a blast!"))
+		say(message=pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "YAY!!!",
+		"I had a great time playing with you!", "YIPPEEE!!!", "That was a blast!", "Wowzers meowzers, that was a blast!"), message_range=2)
 	else
-		to_chat(usr, "Your Nyamagotchi is already very happy!")
+		to_chat(usr, span_purple("Your Nyamagotchi is already very happy!"))
 
 /obj/item/nyamagotchi/proc/rest()
 	if(energy < 100)
@@ -175,18 +175,18 @@
 		if(energy > 100)
 			energy = 100
 		balloon_alert(usr, "Nyamagotchi rested!")
-		to_chat(usr, "Your Nyamagotchi rests and regains energy. Its energy is now [energy].")
+		to_chat(usr, span_purple("Your Nyamagotchi rests and regains energy. Its energy is now [energy]."))
 		playsound(src, 'sound/creatures/cat/cat_purr3.ogg', 50, FALSE)
-		say(pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "Snoozin' time, nya...", "Honk shoo!",
-		"I'm feeling so energized!", "I'm feeling so well-rested!", "Zzz... Zzz... Zzz... Zzz... Zzz..."))
+		say(message=pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "Snoozin' time, nya...", "Honk shoo!",
+		"I'm feeling so energized!", "I'm feeling so well-rested!", "Zzz... Zzz... Zzz... Zzz... Zzz..."), message_range=2)
 	else
-		to_chat(usr, "Your Nyamagotchi is fully rested.")
+		to_chat(usr, span_purple("Your Nyamagotchi is fully rested."))
 
 // Function for when the nyamagotchi dies
 /obj/item/nyamagotchi/proc/die()
 	alive = ANIMAL_DEAD
 	say("I'M DEAD, NYA. BAI!!")
-	visible_message("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
+	to_chat(usr, span_warning("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person."))
 	//src.icon_state = "dead"
 	playsound(src, 'sound/misc/sadtrombone.ogg',20, FALSE)
 	balloon_alert(usr, "Nyamagotchi died!")
