@@ -61,6 +61,11 @@
 #define AIRLOCK_FRAME_OPEN "open"
 #define AIRLOCK_FRAME_OPENING "opening"
 
+#define AIRLOCK_FRAME_CLOSED "closed"
+#define AIRLOCK_FRAME_CLOSING "closing"
+#define AIRLOCK_FRAME_OPEN "open"
+#define AIRLOCK_FRAME_OPENING "opening"
+
 #define AIRLOCK_SECURITY_NONE 0 //Normal airlock //Wires are not secured
 #define AIRLOCK_SECURITY_IRON 1 //Medium security airlock //There is a simple iron plate over wires (use welder)
 #define AIRLOCK_SECURITY_PLASTEEL_I_S 2 //Sliced inner plating (use crowbar), jumps to 0
@@ -137,12 +142,12 @@
 	var/normalspeed = TRUE
 	var/cutAiWire = FALSE
 	var/autoname = FALSE
-	var/doorOpen = 'sound/machines/airlock.ogg'
-	var/doorClose = 'sound/machines/airlockclose.ogg'
-	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
-	var/boltUp = 'sound/machines/boltsup.ogg'
-	var/boltDown = 'sound/machines/boltsdown.ogg'
-	var/noPower = 'sound/machines/doorclick.ogg'
+	var/doorOpen = 'sound/machines/airlock/airlock.ogg'
+	var/doorClose = 'sound/machines/airlock/airlockclose.ogg'
+	var/doorDeni = 'sound/machines/beep/deniedbeep.ogg' // i'm thinkin' Deni's
+	var/boltUp = 'sound/machines/airlock/boltsup.ogg'
+	var/boltDown = 'sound/machines/airlock/boltsdown.ogg'
+	var/noPower = 'sound/machines/airlock/doorclick.ogg'
 	/// What airlock assembly mineral plating was applied to
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
@@ -1066,7 +1071,7 @@
 			to_chat(user, span_warning("[src] has already been sealed!"))
 			return
 		user.visible_message(span_notice("[user] begins sealing [src]."), span_notice("You begin sealing [src]."))
-		playsound(src, 'sound/items/jaws_pry.ogg', 30, TRUE)
+		playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 		if(!do_after(user, airlockseal.seal_time, target = src))
 			return
 		if(!density)
@@ -1078,7 +1083,7 @@
 		if(!user.transferItemToLoc(airlockseal, src))
 			to_chat(user, span_warning("For some reason, you can't attach [airlockseal]!"))
 			return
-		playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
+		playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
 		user.visible_message(span_notice("[user] finishes sealing [src]."), span_notice("You finish sealing [src]."))
 		seal = airlockseal
 		modify_max_integrity(max_integrity * AIRLOCK_SEAL_MULTIPLIER)
@@ -1152,12 +1157,12 @@
 		to_chat(user, span_warning("You don't have the dexterity to remove the seal!"))
 		return TRUE
 	user.visible_message(span_notice("[user] begins removing the seal from [src]."), span_notice("You begin removing [src]'s pneumatic seal."))
-	playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
+	playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
 	if(!do_after(user, airlockseal.unseal_time, target = src))
 		return TRUE
 	if(!seal)
 		return TRUE
-	playsound(src, 'sound/items/jaws_pry.ogg', 30, TRUE)
+	playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 	airlockseal.forceMove(get_turf(user))
 	user.visible_message(span_notice("[user] finishes removing the seal from [src]."), span_notice("You finish removing [src]'s pneumatic seal."))
 	seal = null
@@ -1191,10 +1196,10 @@
 	return TRUE
 
 /obj/machinery/door/airlock/try_to_crowbar(obj/item/I, mob/living/user, forced = FALSE)
-	if(I?.tool_behaviour == TOOL_CROWBAR && should_try_removing_electronics() && !operating)
+	if(I.tool_behaviour == TOOL_CROWBAR && should_try_removing_electronics() && !operating)
 		user.visible_message(span_notice("[user] removes the electronics from the airlock assembly."), \
 			span_notice("You start to remove electronics from the airlock assembly..."))
-		if(I.use_tool(src, user, 40, volume=100))
+		if(I.use_tool(src, user, 40, volume = 100))
 			deconstruct(TRUE, user)
 			return
 	if(seal)
@@ -1217,10 +1222,10 @@
 
 			if(!prying_so_hard)
 				var/time_to_open = 50
-				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
+				playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, src))
-					if(check_electrified && shock(user,100))
+				if(I.use_tool(src, user, time_to_open, volume = 100))
+					if(check_electrified && shock(user, 100))
 						prying_so_hard = FALSE
 						return
 					open(BYPASS_DOOR_CHECKS)
@@ -1397,7 +1402,7 @@
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS)
-			playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
+			playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
 			return TRUE
 
 		else
@@ -1490,7 +1495,7 @@
 	var/time_to_open = 5 //half a second
 	if(hasPower())
 		time_to_open = 5 SECONDS //Powered airlocks take longer to open, and are loud.
-		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
+		playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 
 
 	if(do_after(user, time_to_open, src))
@@ -1579,9 +1584,8 @@
 
 	if(!disassembled)
 		A?.update_integrity(A.max_integrity * 0.5)
-	else if(obj_flags & EMAGGED)
-		//no electronics nothing
-	else
+
+	else if(!(obj_flags & EMAGGED))
 		var/obj/item/electronics/airlock/ae
 		if(!electronics)
 			ae = new/obj/item/electronics/airlock(loc)
@@ -1677,7 +1681,7 @@
 	data["wires"] = wire
 	return data
 
-/obj/machinery/door/airlock/ui_act(action, params)
+/obj/machinery/door/airlock/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -2245,7 +2249,7 @@
 		if(!hasPower())
 			to_chat(user, span_notice("You begin unlocking the airlock safety mechanism..."))
 			if(do_after(user, 15 SECONDS, target = src))
-				try_to_crowbar(null, user, TRUE)
+				try_to_crowbar(src, user, TRUE)
 				return TRUE
 		else
 			// always open from the space side
@@ -2391,7 +2395,7 @@
 			new /obj/effect/temp_visual/cult/sac(loc)
 			var/atom/throwtarget
 			throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(L, src)))
-			SEND_SOUND(L, sound(pick('sound/hallucinations/turn_around1.ogg','sound/hallucinations/turn_around2.ogg'),0,1,50))
+			SEND_SOUND(L, sound(pick('sound/effects/hallucinations/turn_around1.ogg','sound/effects/hallucinations/turn_around2.ogg'),0,1,50))
 			flash_color(L, flash_color=COLOR_CULT_RED, flash_time=20)
 			L.Paralyze(40)
 			L.throw_at(throwtarget, 5, 1)
@@ -2525,6 +2529,7 @@
 	set_density(TRUE)
 	operating = FALSE
 	return TRUE
+
 // SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 /*
 #undef AIRLOCK_SECURITY_NONE

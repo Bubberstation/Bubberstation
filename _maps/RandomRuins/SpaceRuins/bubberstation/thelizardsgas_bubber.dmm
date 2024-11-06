@@ -14,10 +14,6 @@
 /obj/item/tank/internals/oxygen,
 /obj/item/clothing/mask/breath,
 /obj/item/pickaxe,
-/obj/item/gun/ballistic/rifle/boltaction/pipegun,
-/obj/item/ammo_casing/junk/hunter,
-/obj/item/ammo_casing/junk/hunter,
-/obj/item/ammo_casing/junk/hunter,
 /obj/item/storage/box/coffeepack/robusta,
 /obj/item/storage/box/coffeepack/robusta,
 /obj/item/flatpacked_machine,
@@ -26,6 +22,7 @@
 /obj/item/flatpacked_machine/organics_ration_printer,
 /obj/item/flatpacked_machine/macrowave,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/gun/energy/laser/musket,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/thelizardsgas)
 "bo" = (
@@ -108,6 +105,14 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "eV" = (
 /obj/structure/sign/poster/fluff/lizards_gas_payment/directional/north,
+/mob/living/basic/lizard/space{
+	desc = "How are you ALIVE?!";
+	name = "Blarpo"
+	},
+/obj/structure/bed/dogbed{
+	name = "Blarpo's bed";
+	desc = "A comfy-looking lizard bed. Looks a lot like a dog bed."
+	},
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 8
 	},
@@ -285,23 +290,17 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/thelizardsgas)
 "vj" = (
-/obj/item/food/cornuto{
-	pixel_y = 4;
-	pixel_x = -3
-	},
-/obj/item/food/cornuto{
-	pixel_y = -5;
-	pixel_x = 2
-	},
-/obj/item/food/cornuto{
-	pixel_y = 5;
-	pixel_x = 6
-	},
-/obj/item/food/cornuto{
-	pixel_y = -5;
-	pixel_x = -3
-	},
 /obj/structure/closet/crate/freezer,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
 /turf/open/floor/iron/freezer{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -621,15 +620,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/pink/hidden,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/thelizardsgas)
-"Ua" = (
-/mob/living/basic/lizard/space{
-	desc = "How are you ALIVE?!";
-	name = "Blarpo"
-	},
-/turf/open/floor/iron/white/side{
-	dir = 1
-	},
-/area/ruin/space/has_grav/thelizardsgas)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible{
 	dir = 4
@@ -710,6 +700,22 @@
 	pixel_x = 3
 	},
 /obj/structure/closet/crate/freezer,
+/obj/item/food/cornuto{
+	pixel_y = -5;
+	pixel_x = -3
+	},
+/obj/item/food/cornuto{
+	pixel_y = -5;
+	pixel_x = 2
+	},
+/obj/item/food/cornuto{
+	pixel_y = 4;
+	pixel_x = -3
+	},
+/obj/item/food/cornuto{
+	pixel_y = 5;
+	pixel_x = 6
+	},
 /turf/open/floor/iron/freezer{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1089,7 +1095,7 @@ mR
 gS
 Zs
 cn
-Ua
+UO
 uh
 CA
 CA

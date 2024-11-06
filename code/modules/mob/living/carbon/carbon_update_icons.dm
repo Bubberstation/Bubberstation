@@ -428,7 +428,7 @@
 
 /mob/living/carbon/update_worn_handcuffs(update_obscured = TRUE)
 	remove_overlay(HANDCUFF_LAYER)
-	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT ADDED !(handcuffed.item_flags & ABSTRACT)
+	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT - ADDED !(handcuffed.item_flags & ABSTRACT)
 		if(update_obscured)
 			update_obscured_slots(handcuffed.flags_inv)
 		var/mutable_appearance/handcuff_overlay = mutable_appearance('icons/mob/simple/mob.dmi', "handcuff1", -HANDCUFF_LAYER)

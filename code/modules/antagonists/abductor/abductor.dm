@@ -7,7 +7,7 @@
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
 	suicide_cry = "FOR THE MOTHERSHIP!!" // They can't even talk but y'know
-	stinger_sound = 'sound/ambience/antag/ayylien.ogg'
+	stinger_sound = 'sound/music/antag/ayylien.ogg'
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -15,11 +15,6 @@
 	var/greet_text
 	/// Type path for the associated job datum.
 	var/role_job = /datum/job/abductor_agent
-
-/datum/antagonist/abductor/New()
-	// lets get the loading started now, but don't block waiting for it
-	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, lazy_load_template), LAZY_TEMPLATE_KEY_ABDUCTOR_SHIPS)
-	return ..()
 
 /datum/antagonist/abductor/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/scientist = new
@@ -75,7 +70,7 @@
 	return team
 
 /datum/antagonist/abductor/on_gain()
-	owner.set_assigned_role(SSjob.GetJobType(role_job))
+	owner.set_assigned_role(SSjob.get_job_type(role_job))
 	owner.special_role = ROLE_ABDUCTOR
 	objectives += team.objectives
 	finalize_abductor()
@@ -176,7 +171,7 @@
 	else
 		result += "<span class='redtext big'>[name] team failed its mission.</span>"
 
-	result += "<span class='header'>The abductors of [name] were:</span>"
+	result += span_header("The abductors of [name] were:")
 	for(var/datum/mind/abductor_mind in members)
 		result += printplayer(abductor_mind)
 	result += printobjectives(objectives)
