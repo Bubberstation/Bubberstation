@@ -104,3 +104,16 @@
 	cost_change_lower = -1000
 	cost_change_upper = 2000
 	can_roundstart_pick = FALSE
+
+// Bubber Edits Begin
+
+// SAR Inc. sells recreations of antique firearms
+/datum/cargo_company/sar_inc
+	name = COMPANY_NAME_SAR_INC
+	company_flag = CARGO_COMPANY_SAR_INC
+	cost = 2000
+	cost_change_lower = -1000
+	cost_change_upper = 1000
+	can_roundstart_pick = FALSE
+
+// Bubber Edits End
