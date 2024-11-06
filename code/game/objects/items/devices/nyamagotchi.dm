@@ -58,7 +58,7 @@
 
 /obj/item/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
-	if(alive == ANIMAL_ALIVE)
+	if(alive == NO_ANIMAL || alive == ANIMAL_DEAD)
 		icons_available += list("Start!" = image(radial_icon_file,"start"))
 	else
 		icons_available += list("Feed" = image(radial_icon_file,"feed"),

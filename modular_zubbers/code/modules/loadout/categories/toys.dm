@@ -66,3 +66,8 @@
 /datum/loadout_item/toys/cat_annoying
 	name = "Annoying Cat Plush"
 	item_path = /obj/item/toy/plush/cat_annoying
+
+/datum/loadout_item/pocket_titems/nyamagotchi
+	name = "Nyamagotchi"
+	item_path = /obj/item/nyamagotchi
+	additional_displayed_text = "It's a Nyamagotchi! Feed it, play with it, and keep it alive!"
