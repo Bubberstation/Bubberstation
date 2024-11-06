@@ -1,3 +1,7 @@
+#define NO_ANIMAL 0
+#define ANIMAL_ALIVE 0
+#define ANIMAL_DEAD 1
+
 /obj/item/nyamagotchi
 	name = "nyamagotchi"
 	icon = 'icons/obj/devices/nyamagotchi.dmi'
@@ -25,8 +29,8 @@
 	var/energy = 0
 	/// Age in "days" or some unit of time
 	var/age = 0
-	var/alive = 0          // Status flag (1 = alive, 0 = dead)
-	var/died = 0		   // Status flag (1 = died, 0 = alive)
+
+	var/alive = NO_ANIMAL
 
 
 /obj/item/nyamagotchi/Initialize(mapload)
@@ -43,16 +47,18 @@
 		. += "[readout()]"
 
 /obj/item/nyamagotchi/proc/readout()
-	if (alive == 0 && died == 0)
-		return span_notice("The Nyamagotchi is ready to be started!")
-	if (alive == 0 && died == 1)
-		return span_notice("The Nyamagotchi is DEAD. You're a terrible person.")
-	else
-		return span_notice("Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]")
+	switch(alive)
+		if(NO_ANIMAL)
+			return span_notice("The Nyamagotchi is ready to be started!")
+		if(ANIMAL_ALIVE)
+			return span_notice("Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]")
+		if(ANIMAL_DEAD)
+			return span_notice("The Nyamagotchi is DEAD. You're a terrible person.")
+
 
 /obj/item/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
-	if(alive == 0)
+	if(alive == ANIMAL_ALIVE)
 		icons_available += list("Start!" = image(radial_icon_file,"start"))
 	else
 		icons_available += list("Feed" = image(radial_icon_file,"feed"),
@@ -82,8 +88,7 @@
 	playsound(src, 'sound/creatures/cat/cat_meow1.ogg', 50, FALSE)
 
 /obj/item/nyamagotchi/proc/start()
-	alive = 1
-	died = 0
+	alive = ANIMAL_ALIVE
 	say("I'm alive, nya!")
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
@@ -171,8 +176,7 @@
 
 // Function for when the nyamagotchi dies
 /obj/item/nyamagotchi/proc/die()
-	alive = 0
-	died = 1
+	alive = ANIMAL_DEAD
 	say("I'M DEAD, NYA. BAI!!")
 	visible_message("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
 	//src.icon_state = "dead"
@@ -181,3 +185,7 @@
 
 /obj/item/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
+
+#undef NO_ANIMAL
+#undef ANIMAL_ALIVE
+#undef ANIMAL_DEAD
