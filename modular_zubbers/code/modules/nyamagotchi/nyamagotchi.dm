@@ -1,10 +1,10 @@
 #define NO_ANIMAL 0
-#define ANIMAL_ALIVE 0
-#define ANIMAL_DEAD 1
+#define ANIMAL_ALIVE 1
+#define ANIMAL_DEAD 0
 
 /obj/item/nyamagotchi
 	name = "nyamagotchi"
-	icon = 'icons/obj/devices/nyamagotchi.dmi'
+	icon = 'modular_zubbers/code/modules/nyamagotchi/sprites/nyamagotchi.dmi'
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
 	icon_state = "default"
 	worn_icon_state = "nothing"
@@ -19,7 +19,7 @@
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT)
 	// interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_ALLOW_USER_LOCATION | INTERACT_ATOM_IGNORE_MOBILITY
 	var/list/icons_available = list()
-	var/radial_icon_file = 'icons/hud/radial_nyamagotchi.dmi'
+	var/radial_icon_file = 'modular_zubbers/code/modules/nyamagotchi/sprites/radial_nyamagotchi.dmi'
 
 	/// Hunger level (0 = full, 100 = starving)
 	var/hunger = 0
@@ -128,11 +128,14 @@
 		if (alert_proc)
 			switch  (alert_proc)
 				if ("hungry")
-					say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!", "HEY!!! I'm feeling a bit hungry, nya!"))
+					say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!",
+					"HEY!!! I'm feeling a bit hungry, nya!", "HONNNNGRYYY!!!", "I needs the food, mrow!"))
 				if ("sad")
-					say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "I'm feeling a bit blue, nya..."))
+					say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...",
+					"I'm feeling a bit blue, nya...", "I'm sad...", "Play with meeee! PLEASE.", "My fun levels are low, nya..."))
 				if ("tired")
-					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
+					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...",
+					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."))
 	else
 	// make the nyamagotchi stop shaking
 		animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
