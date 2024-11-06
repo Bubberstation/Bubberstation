@@ -79,7 +79,6 @@
 	name = "Lipstick (White)"
 	item_path = /obj/item/lipstick/white
 	additional_displayed_text = list("White")
-
 /* SKYRAT EDIT REMOVAL
 /datum/loadout_item/pocket_items/plush
 	abstract_type = /datum/loadout_item/pocket_items/plush

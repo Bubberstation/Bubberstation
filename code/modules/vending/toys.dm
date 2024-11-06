@@ -17,7 +17,6 @@
 		/obj/item/gun/ballistic/automatic/toy = 8,
 		/obj/item/gun/ballistic/shotgun/toy = 8,
 		/obj/item/ammo_box/foambox/mini = 20,
-		/obj/item/nyamagotchi = 8,
 	)
 	contraband = list(
 		/obj/item/toy/balloon/syndicate = 1,
