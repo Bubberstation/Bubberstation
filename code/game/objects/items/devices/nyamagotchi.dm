@@ -135,7 +135,7 @@
 					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm feeling a bit exhausted, nya..."))
 	else
 	// make the nyamagotchi stop shaking
-	animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
+		animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
 	addtimer(CALLBACK(src, PROC_REF(update)), 12 SECONDS)
 
 // Interactions
