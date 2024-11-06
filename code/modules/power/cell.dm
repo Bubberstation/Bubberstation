@@ -51,9 +51,11 @@
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
 	chargerate = STANDARD_CELL_RATE * 0.5
 
+/* BUBBER EDIT REMOVAL BEGIN - New icon in modular_skyrat/modules/aesthetics/cells/cell.dm
 /obj/item/stock_parts/power_store/cell/upgraded/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
+*/// BUBBER EDIT REMOVAL END
 
 /obj/item/stock_parts/power_store/cell/upgraded/plus
 	name = "upgraded power cell+"
