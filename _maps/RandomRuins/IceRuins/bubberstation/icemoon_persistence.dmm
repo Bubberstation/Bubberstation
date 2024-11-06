@@ -1384,6 +1384,7 @@
 	dir = 10
 	},
 /obj/machinery/biogenerator/organic_printer,
+/obj/machinery/light/directional/south,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "eF" = (
@@ -2266,6 +2267,9 @@
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
 /turf/open/floor/engine/co2,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
+"hH" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "hI" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -3465,6 +3469,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "lt" = (
@@ -6546,7 +6551,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/airlock/service/glass{
-	name = "Saloon"
+	name = "Salon"
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
@@ -7599,6 +7604,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/item/construction/plumbing,
 /obj/structure/rack,
+/obj/machinery/light_switch/directional/south,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "xH" = (
@@ -9289,6 +9295,9 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"Ds" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Dt" = (
 /obj/structure/sign/painting/library{
 	pixel_x = -30
@@ -9991,8 +10000,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/gym)
 "FB" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/cyborgrecharger,
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "FC" = (
@@ -12033,6 +12041,7 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 4
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "LI" = (
@@ -12043,9 +12052,8 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "LJ" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/cyborgrecharger,
 /obj/machinery/light/directional/west,
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "LL" = (
@@ -16307,6 +16315,7 @@
 	dir = 8
 	},
 /mob/living/basic/cow,
+/obj/machinery/light/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Za" = (
@@ -17970,8 +17979,8 @@ nz
 ip
 wT
 Jl
-Vq
-Vq
+on
+on
 dd
 on
 IR
@@ -18041,9 +18050,9 @@ DS
 wT
 lK
 qJ
-Vq
-Vq
-Vq
+on
+on
+on
 LY
 KM
 rN
@@ -18265,11 +18274,11 @@ Ou
 Ou
 SQ
 Ou
-Pz
+HI
 Qq
 TZ
 av
-Pz
+HI
 fX
 nY
 jG
@@ -18337,7 +18346,7 @@ xS
 iJ
 Pz
 Pz
-Pz
+HI
 ZI
 Og
 fX
@@ -18976,7 +18985,7 @@ QS
 QS
 QS
 QS
-fT
+Ds
 oK
 bE
 FI
@@ -19434,8 +19443,8 @@ Cl
 Eu
 ws
 II
-nb
-VL
+Ck
+hH
 vQ
 kS
 SO

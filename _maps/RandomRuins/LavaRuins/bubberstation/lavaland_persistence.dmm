@@ -132,6 +132,9 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"aw" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "ay" = (
 /obj/structure/cable,
 /obj/machinery/light/directional/east,
@@ -1104,6 +1107,7 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 4
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "dA" = (
@@ -2292,8 +2296,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
 "gZ" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/cyborgrecharger,
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "hb" = (
@@ -2316,9 +2319,8 @@
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "hd" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/cyborgrecharger,
 /obj/machinery/light/directional/west,
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "he" = (
@@ -7262,6 +7264,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "ws" = (
@@ -8637,7 +8640,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/airlock/service/glass{
-	name = "Saloon"
+	name = "Salon"
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
@@ -8737,6 +8740,7 @@
 	dir = 10
 	},
 /obj/machinery/biogenerator/organic_printer,
+/obj/machinery/light/directional/south,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "AU" = (
@@ -12302,6 +12306,7 @@
 	dir = 8
 	},
 /mob/living/basic/cow,
+/obj/machinery/light/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Mf" = (
@@ -13712,6 +13717,9 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"QG" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "QH" = (
 /obj/machinery/light/cold/directional/north,
 /obj/structure/cable,
@@ -15575,6 +15583,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/item/construction/plumbing,
 /obj/structure/rack,
+/obj/machinery/light_switch/directional/south,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "WV" = (
@@ -18053,8 +18062,8 @@ oO
 DH
 eH
 KZ
-DY
-DY
+dY
+dY
 LK
 dY
 Bn
@@ -18126,9 +18135,9 @@ ea
 eH
 TJ
 sG
-DY
-DY
-DY
+dY
+dY
+dY
 UX
 ja
 mT
@@ -18356,11 +18365,11 @@ NY
 NY
 UF
 NY
-XO
+ep
 ip
 GW
 XP
-XO
+ep
 YR
 Pu
 ou
@@ -19087,7 +19096,7 @@ NZ
 NZ
 NZ
 NZ
-ND
+QG
 XL
 Pk
 jQ
@@ -19776,7 +19785,7 @@ Dz
 IQ
 tn
 Qc
-Ds
+aw
 Ds
 Ds
 Ds
