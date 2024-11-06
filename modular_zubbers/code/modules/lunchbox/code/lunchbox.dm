@@ -6,8 +6,8 @@
 	inhand_icon_state = "lunchbox"
 	lefthand_file = 'modular_zubbers/code/modules/lunchbox/icons/lunchbox_lefthand.dmi'
 	righthand_file = 'modular_zubbers/code/modules/lunchbox/icons/lunchbox_righthand.dmi'
-	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
-	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
+	drop_sound = 'sound/items/handling/cardboard_box/cardboardbox_drop.ogg'
+	pickup_sound =  'sound/items/handling/cardboard_box/cardboardbox_pickup.ogg'
 	throw_speed = 3
 	throw_range = 7
 

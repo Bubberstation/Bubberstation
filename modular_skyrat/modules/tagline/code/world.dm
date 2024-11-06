@@ -19,8 +19,8 @@
 
 	var/players = GLOB.clients.len
 
-	if(SSmapping.config)
-		features += "[SSmapping.config.map_name]"
+	if(SSmapping.current_map)
+		features += "[SSmapping.current_map.map_name]"
 
 	features += "~[players] player[players == 1 ? "": "s"]"
 

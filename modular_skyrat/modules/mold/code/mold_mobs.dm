@@ -42,7 +42,7 @@
 	melee_damage_lower = 5 //BUBBERSTATION CHANGE
 	melee_damage_upper = 10 //BUBBERSTATION CHANGE
 	obj_damage = 40
-	attack_sound = 'sound/effects/attackblob.ogg'
+	attack_sound = 'sound/effects/blob/attackblob.ogg'
 
 	basic_mob_flags = DEL_ON_DEATH
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -121,7 +121,7 @@
 	melee_damage_lower = 7
 	melee_damage_upper = 13
 	obj_damage = 30
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 
@@ -188,7 +188,7 @@
 	obj_damage = 20
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "sting"
-	attack_sound = 'sound/effects/attackblob.ogg'
+	attack_sound = 'sound/effects/blob/attackblob.ogg'
 	basic_mob_flags = DEL_ON_DEATH
 
 	ai_controller = /datum/ai_controller/basic_controller/electric_mosquito
