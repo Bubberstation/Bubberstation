@@ -411,3 +411,7 @@
 /datum/loadout_item/toys/purple_laser
 	name = "Purple Laser Pointer"
 	item_path = /obj/item/laser_pointer/limited/purple
+
+/datum/loadout_item/toys/nyamagotchi
+	name = "Nyamagotchi"
+	item_path = /obj/item/nyamagotchi

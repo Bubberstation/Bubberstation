@@ -1,6 +1,6 @@
 #define NO_ANIMAL 0
 #define ANIMAL_ALIVE 1
-#define ANIMAL_DEAD 0
+#define ANIMAL_DEAD 2
 
 /obj/item/nyamagotchi
 	name = "nyamagotchi"
@@ -36,9 +36,9 @@
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
 	// give a slightly random start
-	hunger = rand(0, 20)
+	hunger = rand(30, 60)
 	happiness = rand(80, 100)
-	energy = rand(80, 100)
+	energy = rand(60, 90)
 	update()   // Start the update loop
 
 /obj/item/nyamagotchi/examine(mob/user)
@@ -53,7 +53,7 @@
 		if(ANIMAL_ALIVE)
 			return span_notice("Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]")
 		if(ANIMAL_DEAD)
-			return span_notice("The Nyamagotchi is DEAD. You're a terrible person.")
+			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
 
 
 /obj/item/nyamagotchi/proc/update_available_icons()
@@ -89,7 +89,7 @@
 
 /obj/item/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
-	say("I'm alive, nya!")
+	say(message="I'm alive, nya!", message_range=2)
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(update)), 12 SECONDS)
@@ -112,8 +112,6 @@
 		return
 	// make the nyamagotchi say things if an attentio is needed
 	if (hunger >= 85 || happiness <= 10 || energy <= 20)
-		// Make the nyamagotchi shake around
-		animate(src, transform = matrix(1, 0, rand(-3, 3), 0, 1, rand(-3, 3)), time = 2, loop = -1)
 		var/tama_alerts = list()
 		if (hunger >= 85)
 			tama_alerts += "hungry"
@@ -128,17 +126,19 @@
 		if (alert_proc)
 			switch  (alert_proc)
 				if ("hungry")
-					say(pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!",
-					"HEY!!! I'm feeling a bit hungry, nya!", "HONNNNGRYYY!!!", "I needs the food, mrow!"))
+					say(message=pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!",
+					"I could eat the world right now, nya!", "Soooo hongry!", "HELLO! Food, pwease?",
+					"HEY!!! I'm feeling a bit hungry, nya!", "HONNNNGRYYY!!!", "I needs the food, mrow!"), message_range=2)
 				if ("sad")
-					say(pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...",
-					"I'm feeling a bit blue, nya...", "I'm sad...", "Play with meeee! PLEASE.", "My fun levels are low, nya..."))
+					say(message=pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "Playtime! Now!",
+					"This is no fun...", "I'm BORED, nya!", "So sad! So bored! Need to play!", "Wah... So sad, nya...",
+					"I'm feeling a bit blue, nya...", "I'm sad...", "Play with meeee! PLEASE.", "My fun levels are low, nya..."),
+					message_range=2)
 				if ("tired")
-					say(pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...",
-					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."))
-	else
-	// make the nyamagotchi stop shaking
-		animate(src, transform = matrix(1, 0, 0, 0, 1, 0), time = 2, loop = -1)
+					say(message=pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm gonna pass out and DIE!",
+					"Sleempy...", "I be needin' a naps, nya!", "Need to do the big sleeps, please!",
+					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."),
+					message_range=2)
 	addtimer(CALLBACK(src, PROC_REF(update)), 12 SECONDS)
 
 // Interactions
@@ -147,35 +147,40 @@
 		hunger -= 10
 		if (hunger < 0)
 			hunger = 0
-		balloon_alert(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
+		balloon_alert(usr, "Nyamagotchi fed!")
+		to_chat(usr, "You fed your Nyamagotchi! Its hunger is now at [hunger].")
 		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
 		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
-		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!",
+		say(pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!", "So yummy!", "Oooh! Delicious!", "MONCH MONCH MONCH.",
 			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"))
 	else
-		balloon_alert(usr, "Your Nyamagotchi isn't hungry!")
+		to_chat(usr, "Your Nyamagotchi isn't hungry!")
 
 /obj/item/nyamagotchi/proc/play()
 	if (happiness < 100)
 		happiness += 10
 		if (happiness > 100)
 			happiness = 100
-		balloon_alert(usr, "You play with your Nyamsagotchi! Its happiness is now [happiness].")
+		balloon_alert(usr, "Nyamagotchi played with!")
+		to_chat(usr, "You play with your Nyamsagotchi! Its happiness is now [happiness].")
 		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
-		say(pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "I had a great time playing with you!"))
+		say(pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "YAY!!!",
+		"I had a great time playing with you!", "YIPPEEE!!!", "That was a blast!", "Wowzers meowzers, that was a blast!"))
 	else
-		balloon_alert(usr, "Your Nyamagotchi is already very happy!")
+		to_chat(usr, "Your Nyamagotchi is already very happy!")
 
 /obj/item/nyamagotchi/proc/rest()
 	if(energy < 100)
 		energy += 20
 		if(energy > 100)
 			energy = 100
-		balloon_alert(usr, "Your Nyamagotchi rests and regains energy. Its energy is now [energy].")
+		balloon_alert(usr, "Nyamagotchi rested!")
+		to_chat(usr, "Your Nyamagotchi rests and regains energy. Its energy is now [energy].")
 		playsound(src, 'sound/creatures/cat/cat_purr3.ogg', 50, FALSE)
-		say(pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "I'm feeling so energized!", "I'm feeling so well-rested!"))
+		say(pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "Snoozin' time, nya...", "Honk shoo!",
+		"I'm feeling so energized!", "I'm feeling so well-rested!", "Zzz... Zzz... Zzz... Zzz... Zzz..."))
 	else
-		balloon_alert(usr, "Your Nyamagotchi is fully rested.")
+		to_chat(usr, "Your Nyamagotchi is fully rested.")
 
 // Function for when the nyamagotchi dies
 /obj/item/nyamagotchi/proc/die()
@@ -183,8 +188,8 @@
 	say("I'M DEAD, NYA. BAI!!")
 	visible_message("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person.")
 	//src.icon_state = "dead"
-	playsound(src, 'sound/misc/sadtrombone.ogg',30, FALSE)
-	balloon_alert(usr, "Your Nyamagotchi has died!")
+	playsound(src, 'sound/misc/sadtrombone.ogg',20, FALSE)
+	balloon_alert(usr, "Nyamagotchi died!")
 
 /obj/item/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
