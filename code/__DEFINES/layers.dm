@@ -174,6 +174,8 @@
 #define PLUMBING_PIPE_VISIBILE_LAYER 2.495//layer = initial(layer) + ducting_layer / 3333 in atmospherics/handle_layer() to determine order of duct overlap
 #define BOT_PATH_LAYER 2.497
 #define LOW_OBJ_LAYER 2.5
+#define LOW_SIGIL_LAYER 2.52 // BUBBER EDIT ADDITION
+#define SIGIL_LAYER 2.53 // BUBBER EDIT ADDITION
 #define HIGH_PIPE_LAYER 2.54
 // Anything above this layer is not "on" a turf for the purposes of washing
 // I hate this life of ours
