@@ -405,7 +405,7 @@
 	item_path = /obj/item/laser_pointer/limited/green
 
 /datum/loadout_item/toys/blue_laser
-	name = "Blue Laser Pointer"tM
+	name = "Blue Laser Pointer"
 	item_path = /obj/item/laser_pointer/limited/blue
 
 /datum/loadout_item/toys/purple_laser
