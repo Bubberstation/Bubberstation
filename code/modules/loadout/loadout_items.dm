@@ -297,7 +297,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			renamed = 1
 		if(renamed)
 			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, "Loadout")
-			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED) // BUBBER EDIT
+			equipped_item.AddElement(/datum/element/examined_when_worn)
+			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED)
 	// SKYRAT EDIT END
 
 	if(can_be_reskinned && item_details?[INFO_RESKIN])
