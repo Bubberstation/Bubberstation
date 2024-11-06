@@ -70,4 +70,3 @@
 /datum/loadout_item/toys/nyamagotchi
 	name = "Nyamagotchi"
 	item_path = /obj/item/nyamagotchi
-	additional_displayed_text = "It's a Nyamagotchi! Feed it, play with it, and keep it alive!"
