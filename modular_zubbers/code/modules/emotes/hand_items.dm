@@ -43,7 +43,7 @@
 			span_hear("You hear a comedic bonking sound."),
 		)
 		playsound(bonked, 'modular_zubbers/code/modules/emotes/sound/effects/bonk.ogg', bonk_volume, FALSE, -1)
-		qdel(src)
+	qdel(src)
 
 // Successful takes will qdel our hand after
 /obj/item/hand_item/bonkinghand/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)
