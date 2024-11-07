@@ -35,7 +35,7 @@
 			span_hear("You hear a comedic metallic bonk."),
 		)
 		playsound(bonked, 'sound/items/weapons/smash.ogg', bonk_volume, FALSE, -1)
-		qdel(src)
+		
 	else
 		user.visible_message(
 			span_danger("[user] bonks [bonked] on the head!"),
