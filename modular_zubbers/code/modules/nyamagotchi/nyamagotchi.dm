@@ -35,7 +35,7 @@
 /obj/item/clothing/suit/Initialize(mapload)
   . = ..()
     allowed += list(
-        /obj/item/nyamaguchi,
+        /obj/item/nyamagotchi,
     )
 
 /obj/item/nyamagotchi/Initialize(mapload)
