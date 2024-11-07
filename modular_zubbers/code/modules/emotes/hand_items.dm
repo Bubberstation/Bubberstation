@@ -36,7 +36,7 @@
 		)
 		playsound(bonked, 'sound/items/weapons/smash.ogg', bonk_volume, FALSE, -1)
 		qdel(src)
-	else if(!issilicon(bonked) && user.zone_selected == BODY_ZONE_HEAD)
+	else
 		user.visible_message(
 			span_danger("[user] bonks [bonked] on the head!"),
 			span_notice("You bonk [bonked] on the head!"),
