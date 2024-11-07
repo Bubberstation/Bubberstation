@@ -33,10 +33,10 @@
 	var/alive = NO_ANIMAL
 
 /obj/item/clothing/suit/Initialize(mapload)
-  . = ..()
-    allowed += list(
-        /obj/item/nyamagotchi,
-    )
+	. = ..()
+	allowed += list(
+		/obj/item/nyamagotchi,
+	)
 
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
