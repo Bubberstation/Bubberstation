@@ -15,7 +15,8 @@
 	var/obj/item/bodypart/head/bonk_victims_head = bonked.get_bodypart(BODY_ZONE_HEAD)
 	if(user.zone_selected != BODY_ZONE_HEAD)
 		to_chat(user, span_warning("You can't bonk someone on the head if you aren't aiming for their head!"))
-	else if((issilicon(bonked) && user.zone_selected == BODY_ZONE_HEAD))
+		return
+	if(issilicon(bonked))
 		if(bonkers_hand?.receive_damage( 5, 0 )) // 5 brute damage
 			user.update_damage_overlays()
 		user.visible_message(
