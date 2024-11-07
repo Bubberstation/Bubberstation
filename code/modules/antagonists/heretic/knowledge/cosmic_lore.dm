@@ -280,12 +280,13 @@
 /datum/heretic_knowledge/ultimate/cosmic_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
+		//text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]", // BUBBER EDIT CHANGE - Changing text to be accurate
+		text = "[generate_heretic_text()] [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = 'sound/music/antag/heretic/ascend_cosmic.ogg',
 		color_override = "pink",
 	)
-	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = new /mob/living/basic/heretic_summon/star_gazer(loc)
+	/*var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = new /mob/living/basic/heretic_summon/star_gazer(loc)
 	star_gazer_mob.maxHealth = INFINITY
 	star_gazer_mob.health = INFINITY
 	user.AddComponent(/datum/component/death_linked, star_gazer_mob)
@@ -307,4 +308,4 @@
 	blade_upgrade.increase_amount = 2 SECONDS
 
 	var/datum/action/cooldown/spell/conjure/cosmic_expansion/cosmic_expansion_spell = locate() in user.actions
-	cosmic_expansion_spell?.ascended = TRUE
+	cosmic_expansion_spell?.ascended = TRUE*/ // BUBBER EDIT REMOVAL - Pointless Ascensions

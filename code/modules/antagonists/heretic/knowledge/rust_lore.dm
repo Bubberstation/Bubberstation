@@ -258,12 +258,12 @@
 		sound = 'sound/music/antag/heretic/ascend_rust.ogg',
 		color_override = "pink",
 	)
-	trigger(loc)
+	/*trigger(loc)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	user.client?.give_award(/datum/award/achievement/misc/rust_ascension, user)
 	var/datum/action/cooldown/spell/aoe/rust_conversion/rust_spread_spell = locate() in user.actions
-	rust_spread_spell?.cooldown_time /= 2
+	rust_spread_spell?.cooldown_time /= 2*/ // BUBBER EDIT REMOVAL - Pointless ascensions
 
 // I sure hope this doesn't have performance implications
 /datum/heretic_knowledge/ultimate/rust_final/proc/trigger(turf/center)

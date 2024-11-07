@@ -250,7 +250,7 @@
 	)
 	user.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_FLYING, TRAIT_FREE_HYPERSPACE_MOVEMENT), MAGIC_TRAIT)
 
-	// Let's get this show on the road!
+	/*// Let's get this show on the road!
 	sound_loop = new(user, TRUE, TRUE)
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignal(user, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(hit_by_projectile))
@@ -260,7 +260,7 @@
 		var/mob/living/carbon/human/ascended_human = user
 		var/obj/item/organ/internal/eyes/heretic_eyes = ascended_human.get_organ_slot(ORGAN_SLOT_EYES)
 		heretic_eyes?.color_cutoffs = list(30, 30, 30)
-		ascended_human.update_sight()
+		ascended_human.update_sight()*/ // BUBBER EDIT REMOVAL - Pointless ascensions
 
 /datum/heretic_knowledge/ultimate/void_final/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	on_death() // Losing is pretty much dying. I think

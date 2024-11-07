@@ -426,7 +426,7 @@
 		sound = 'sound/music/antag/heretic/ascend_blade.ogg',
 		color_override = "pink",
 	)
-	ADD_TRAIT(user, TRAIT_NEVER_WOUNDED, name)
+	/*ADD_TRAIT(user, TRAIT_NEVER_WOUNDED, name)
 	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
 	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, null, 8, 30, 0.25 SECONDS, 1 MINUTES)
 	user.add_stun_absorption(
@@ -448,6 +448,7 @@
 
 	var/mob/living/carbon/human/heretic = user
 	heretic.physiology.knockdown_mod = 0.75 // Otherwise knockdowns would probably overpower the stun absorption effect.
+	*/ // BUBBER EDIT REMOVAL - Pointless ascensions
 
 /datum/heretic_knowledge/ultimate/blade_final/proc/on_eldritch_blade(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 	SIGNAL_HANDLER

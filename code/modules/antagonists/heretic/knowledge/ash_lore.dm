@@ -234,7 +234,7 @@
 		color_override = "pink",
 	)
 
-	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
+	/*var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
 	circle_spell.Grant(user)
 
 	var/datum/action/cooldown/spell/fire_cascade/big/screen_wide_fire_spell = new(user.mind)
@@ -250,4 +250,4 @@
 	fiery_rebirth?.cooldown_time *= 0.16
 
 	if(length(traits_to_apply))
-		user.add_traits(traits_to_apply, MAGIC_TRAIT)
+		user.add_traits(traits_to_apply, MAGIC_TRAIT)*/ // BUBBER EDIT REMOVAL - Pointless ascensions

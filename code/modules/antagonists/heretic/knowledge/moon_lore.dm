@@ -212,7 +212,7 @@
 		color_override = "pink",
 	)
 
-	ADD_TRAIT(user, TRAIT_MADNESS_IMMUNE, REF(src))
+	/*ADD_TRAIT(user, TRAIT_MADNESS_IMMUNE, REF(src))
 	user.mind.add_antag_datum(/datum/antagonist/lunatic/master)
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
@@ -252,7 +252,7 @@
 		)
 		crewmate.equip_in_one_of_slots(amulet, slots, qdel_on_fail = FALSE)
 		crewmate.emote("laugh")
-		amount_of_lunatics += 1
+		amount_of_lunatics += 1*/ // BUBBER EDIT REMOVAL - Pointless ascensions
 
 /datum/heretic_knowledge/ultimate/moon_final/proc/on_life(mob/living/source, seconds_per_tick, times_fired)
 	var/obj/effect/moon_effect = /obj/effect/temp_visual/moon_ringleader

@@ -332,7 +332,7 @@
 		sound = 'sound/music/antag/heretic/ascend_flesh.ogg',
 		color_override = "pink",
 	)
-
+	/*
 	var/datum/action/cooldown/spell/shapeshift/shed_human_form/worm_spell = new(user.mind)
 	worm_spell.Grant(user)
 
@@ -344,6 +344,6 @@
 	ritual_ghoul.limit *= 3
 	var/datum/heretic_knowledge/limited_amount/starting/base_flesh/blade_ritual = heretic_datum.get_knowledge(/datum/heretic_knowledge/limited_amount/starting/base_flesh)
 	blade_ritual.limit = 999
-
+	*/ // BUBBER EDIT REMOVAL - Pointless ascensions
 #undef GHOUL_MAX_HEALTH
 #undef MUTE_MAX_HEALTH
