@@ -9,7 +9,7 @@
 	icon_state = "default"
 	worn_icon_state = "nothing"
 	base_icon_state = "default"
-	slot_flags = ITEM_SLOT_BELT, ITEM_SLOT_S
+	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	throwforce = 2
