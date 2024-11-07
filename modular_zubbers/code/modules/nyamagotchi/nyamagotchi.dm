@@ -91,8 +91,7 @@
 	say(message="I'm alive, nya!", message_range=2)
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(update)), 12 SECONDS)
-
+	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
 // status update loop
 /obj/item/nyamagotchi/proc/update()
@@ -138,7 +137,7 @@
 					"Sleempy...", "I be needin' a naps, nya!", "Need to do the big sleeps, please!",
 					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."),
 					message_range=2)
-	addtimer(CALLBACK(src, PROC_REF(update)), 12 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
 // Interactions
 /obj/item/nyamagotchi/proc/feed()
@@ -185,10 +184,11 @@
 /obj/item/nyamagotchi/proc/die()
 	alive = ANIMAL_DEAD
 	say("I'M DEAD, NYA. BAI!!")
-	to_chat(usr, span_warning("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person."))
+	if(ishuman(loc))
+		to_chat(loc, span_warning("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person."))
 	//src.icon_state = "dead"
-	playsound(src, 'sound/misc/sadtrombone.ogg',20, FALSE)
-	balloon_alert(usr, "Nyamagotchi died!")
+	playsound(src, 'sound/misc/sadtrombone.ogg', 20, FALSE)
+	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE)
 
 /obj/item/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
