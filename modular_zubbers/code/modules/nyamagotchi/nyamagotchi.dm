@@ -67,6 +67,39 @@
 		"Yum, that was delicious!",
 		"What a PURRFECT meal, nya!",
 	)
+	var/static/list/hungry_messages = list(
+		"Wowzers meowzers, I'm hungry, nya!",
+		"Excuse me! I'm feeling a bit peckish, nya!",
+		"I could eat the world right now, nya!",
+		"Soooo hongry!",
+		"HELLO! Food, pwease?",
+		"HEY!!! I'm feeling a bit hungry, nya!",
+		"HONNNNGRYYY!!!",
+		"I needs the food, mrow!",
+	)
+	var/static/list/bored_messages = list(
+		"Some fun would be purrfect, nya...",
+		"I'm feeling a bit down, nya...",
+		"Playtime! Now!",
+		"This is no fun...",
+		"I'm BORED, nya!",
+		"So sad! So bored! Need to play!",
+		"Wah... So sad, nya...",
+		"I'm feeling a bit blue, nya...",
+		"I'm sad...",
+		"Play with meeee! PLEASE.",
+		"My fun levels are low, nya...",
+	)
+	var/static/list/tired_messages = list(
+		"SO, SO EEPY, NYA...",
+		"I'm feeling a bit sleepy, nya...",
+		"I'm gonna pass out and DIE!",
+		"Sleempy...", "I be needin' a naps, nya!",
+		"Need to do the big sleeps, please!",
+		"I'm feeling a bit exhausted, nya...",
+		"I could go for a nap...",
+		"EEPY. EEPY. EEPY...",
+	)
 
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()
@@ -85,7 +118,6 @@
 			return span_notice("The Nyamagotchi is alive! Use the 'Check Status button to see its stats!")
 		if(ANIMAL_DEAD)
 			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
-
 
 /obj/item/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
@@ -142,34 +174,27 @@
 	if(hunger >= 100 || energy <= 0)
 		die()
 		return
-	// make the nyamagotchi say things if an attentio is needed
-	if (hunger >= 85 || happiness <= 10 || energy <= 20)
+
+	// make the nyamagotchi say things if attention is needed
+	if(hunger >= 85 || happiness <= 10 || energy <= 20)
 		var/tama_alerts = list()
-		if (hunger >= 85)
+		if(hunger >= 85)
 			tama_alerts += "hungry"
-		if (happiness <= 10)
+		if(happiness <= 10)
 			tama_alerts += "sad"
-		if (energy <= 20)
+		if(energy <= 20)
 			tama_alerts += "tired"
 
-		be_known(sfx = MEOW_CRITICAL)
 		var/alert_proc = pick(tama_alerts) // pick a random alert to say
-		if (alert_proc)
-			switch  (alert_proc)
-				if ("hungry")
-					say(message=pick("Wowzers meowzers, I'm hungry, nya!", "Excuse me! I'm feeling a bit peckish, nya!",
-					"I could eat the world right now, nya!", "Soooo hongry!", "HELLO! Food, pwease?",
-					"HEY!!! I'm feeling a bit hungry, nya!", "HONNNNGRYYY!!!", "I needs the food, mrow!"), message_range=2)
-				if ("sad")
-					say(message=pick("Some fun would be purrfect, nya...", "I'm feeling a bit down, nya...", "Playtime! Now!",
-					"This is no fun...", "I'm BORED, nya!", "So sad! So bored! Need to play!", "Wah... So sad, nya...",
-					"I'm feeling a bit blue, nya...", "I'm sad...", "Play with meeee! PLEASE.", "My fun levels are low, nya..."),
-					message_range=2)
-				if ("tired")
-					say(message=pick("SO, SO EEPY, NYA...", "I'm feeling a bit sleepy, nya...", "I'm gonna pass out and DIE!",
-					"Sleempy...", "I be needin' a naps, nya!", "Need to do the big sleeps, please!",
-					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."),
-					message_range=2)
+		if(alert_proc)
+			switch(alert_proc)
+				if("hungry")
+					be_known(sfx = MEOW_CRITICAL, speech = pick(hungry_messages))
+				if("sad")
+					be_known(sfx = MEOW_CRITICAL, speech = pick(bored_messages))
+				if("tired")
+					be_known(sfx = MEOW_CRITICAL, speech = pick(tired_messages))
+
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
 /obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
@@ -216,11 +241,11 @@
 // Function for when the nyamagotchi dies
 /obj/item/nyamagotchi/proc/die()
 	alive = ANIMAL_DEAD
-	say("I'M DEAD, NYA. BAI!!")
+	audible_message(span_warning("[src] makes a weak, sad noise and then goes silent... Rest in peace."), hearing_distance = COMBAT_MESSAGE_RANGE)
 	if(ishuman(loc))
-		to_chat(loc, span_warning("Your Nyamagotchi shows an x3 on its display. It's dead. You're a terrible person."))
+		to_chat(loc, span_warning("[src] shows an x3 on its display. It's dead. You're a terrible person."))
 	//src.icon_state = "dead"
-	playsound(src, 'sound/misc/sadtrombone.ogg', 20, FALSE)
+	be_known(sfx = 'sound/misc/sadtrombone.ogg')
 	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE)
 	update_available_icons()
 
