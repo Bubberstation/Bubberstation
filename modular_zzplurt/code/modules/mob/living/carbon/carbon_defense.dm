@@ -32,7 +32,7 @@
 			"You hear a loud clang!",
 			ignored_mobs = list(target)
 		)
-		to_chat(target, span_danger("[src] tries to slap your ass, but their hand bounces off it!"))
+		to_chat(target, span_danger("[src] tries to slap your ass, but [src.p_their()] hand bounces off it!"))
 
 		// End here
 		return
@@ -40,10 +40,10 @@
 	// Check for slap request
 	if(HAS_TRAIT(target, TRAIT_JIGGLY_ASS))
 		// Get target quirk
-		var/datum/quirk/jiggly_ass/trait = target.get_quirk(/datum/quirk/jiggly_ass)
+		var/datum/quirk/jiggly_ass/quirk_jiggle = target.get_quirk(/datum/quirk/jiggly_ass)
 
 		// Check for cooldown
-		if(!COOLDOWN_FINISHED(trait, wiggle_cooldown))
+		if(!COOLDOWN_FINISHED(quirk_jiggle, wiggle_cooldown))
 			// Display message
 			target.visible_message(span_warning("[target]'s big butt is still [ASS_JIGGLE_VERBS_1] about way too much to get a good smack!!"), \
 			span_boldwarning("[src] tries to smack your jiggly ass, but can't get a lock on it!"))
@@ -53,11 +53,11 @@
 
 		// Cooldown is not active
 		// Start the cooldown
-		COOLDOWN_START(trait, wiggle_cooldown, ASS_JIGGLE_COOLDOWN)
+		COOLDOWN_START(quirk_jiggle, wiggle_cooldown, ASS_JIGGLE_COOLDOWN)
 
 		// Add mood bonuses
-		add_mood_event(TRAIT_JIGGLY_ASS, /datum/mood_event/butt_slap)
-		target.add_mood_event(TRAIT_JIGGLY_ASS, /datum/mood_event/butt_slapped)
+		add_mood_event(QMOOD_JIGGLY_ASS, /datum/mood_event/butt_slap)
+		target.add_mood_event(QMOOD_JIGGLY_ASS, /datum/mood_event/butt_slapped)
 
 		// Reduce target stamina (???)
 		target.adjustStaminaLoss(ASS_JIGGLE_STAMLOSS)
@@ -135,7 +135,7 @@
 		toucher.try_lewd_autoemote("moan")
 
 		// Add good mood event
-		toucher.add_mood_event("badtouch_retaliate_victim", /datum/mood_event/badtouch_retaliate/victim_good)
+		toucher.add_mood_event(QMOOD_BADTOUCH_VICTIM, /datum/mood_event/badtouch_retaliate/victim_good)
 
 	// They don't enjoy this
 	else
@@ -143,7 +143,7 @@
 		toucher.emote("scream")
 
 		// Add bad mood event
-		toucher.add_mood_event("badtouch_retaliate_victim", /datum/mood_event/badtouch_retaliate/victim_bad)
+		toucher.add_mood_event(QMOOD_BADTOUCH_VICTIM, /datum/mood_event/badtouch_retaliate/victim_bad)
 
 	// Damage amount to apply
 	var/retaliate_damage = BADTOUCH_RETALIATE_DAMAGE
@@ -154,12 +154,12 @@
 		retaliate_damage *= BADTOUCH_RETALIATE_SADISM_MULT
 
 		// Add good mood event
-		src.add_mood_event("badtouch_retaliate_attacker", /datum/mood_event/badtouch_retaliate/attacker_good)
+		src.add_mood_event(QMOOD_BADTOUCH_ATTACKER, /datum/mood_event/badtouch_retaliate/attacker_good)
 
 	// Target is not a sadist
 	else
 		// Add bad mood event
-		src.add_mood_event("badtouch_retaliate_attacker", /datum/mood_event/badtouch_retaliate/attacker_good)
+		src.add_mood_event(QMOOD_BADTOUCH_ATTACKER, /datum/mood_event/badtouch_retaliate/attacker_bad)
 
 	// Determine toucher's hand
 	var/which_hand = BODY_ZONE_PRECISE_L_HAND
@@ -205,7 +205,7 @@
 
 // Bad Touch retaliate mood events
 /datum/mood_event/badtouch_retaliate/attacker_bad
-	description = span_danger("I need to watch my temper.")
+	description = span_danger("Someone got hurt because of me.")
 	mood_change = -2
 	timeout = 2 MINUTES
 

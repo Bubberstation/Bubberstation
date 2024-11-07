@@ -5,6 +5,9 @@
 #define QMOOD_WELL_TRAINED	"mood_dom_trained"
 #define QMOOD_DUMB_CUM		"mood_dumb4cum"
 #define QMOOD_HEADPAT_SLUT	"mood_headpat_slut"
+#define QMOOD_JIGGLY_ASS	"mood_jiggly_ass"
+#define QMOOD_BADTOUCH_ATTACKER	"mood_badtouch_attacker"
+#define QMOOD_BADTOUCH_VICTIM	"mood_badtouch_victim"
 
 // Trait types
 #define DUMB_CUM_TRAIT		"dumb4cum"

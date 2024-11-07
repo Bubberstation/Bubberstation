@@ -9,11 +9,11 @@
 	icon = FA_ICON_HAND_HOLDING_HEART
 	erp_quirk = TRUE
 
-/datum/quirk/bad_touch/post_add()
+/datum/quirk/headpat_slut/post_add()
 	// Add examine text status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_headpat_slut)
 
-/datum/quirk/bad_touch/remove()
+/datum/quirk/headpat_slut/remove()
 	// Remove examine text status effect
 	quirk_holder.remove_status_effect(/datum/status_effect/quirk_headpat_slut)
 
