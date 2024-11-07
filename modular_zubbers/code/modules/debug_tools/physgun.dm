@@ -20,20 +20,20 @@
 	drop_sound = 'sound/items/handling/tools/screwdriver_drop.ogg'
 	pickup_sound = 'modular_zubbers/sound/phystools/physgun_pickup.ogg'
 
-	//The dragged object.
+	/// The dragged object
 	var/atom/movable/handled_atom
-	//The creature that is using the physgun.
+	/// The creature that is using the physgun
 	var/mob/living/physgun_user
-	//Datum of the beam between the user and the dragged object.
+	/// Datum of the beam between the user and the dragged object
 	var/datum/beam/physgun_beam
-	//Color of the physgun.
+	/// Color of the physgun
 	var/effects_color = COLOR_CARP_BLUE
-	//The effect that is tracking the cursor.
+	/// The effect that is tracking the cursor
 	var/atom/movable/screen/fullscreen/cursor_catcher/physgun_catcher
 
-	//If the physgun is empowered?
+	/// If the physgun is empowered
 	var/force_grab = FALSE
-	//Can the physgun use advanced settings?
+	/// Whether the physgun use advanced settings
 	var/advanced = FALSE
 
 	var/use_cooldown = 3 SECONDS
