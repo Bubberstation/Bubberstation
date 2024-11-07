@@ -53,7 +53,7 @@
 /**
  * The control of the dragging.
  */
-/obj/item/physic_manipulation_tool/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/physic_manipulation_tool/ranged_interact_with_atom(atom/movable/target, mob/living/user, list/modifiers)
 	. = ..()
 	if(istype(target))
 		if(!can_catch(target, user))
@@ -163,12 +163,12 @@
  * Signal controller.
  */
 
-/obj/item/physic_manipulation_tool/proc/on_clicked(atom/source, location, control, params, user)
+/obj/item/physic_manipulation_tool/proc/on_clicked(atom/source, atom/clicked_on, modifiers)
 	SIGNAL_HANDLER
 	if(!handlet_atom || !physgun_user)
+		stack_trace("Physgun tried to run its click signal with no linked atoms or users.")
 		return
-
-	var/list/modifiers = params2list(params)
+	. = COMSIG_MOB_CANCEL_CLICKON
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(!advanced)
 			physgun_user.balloon_alert(physgun_user, "Not enjoy power!")
@@ -216,7 +216,7 @@
 	physgun_user = user
 	loop_sound.start()
 
-	RegisterSignal(physgun_catcher, COMSIG_CLICK, PROC_REF(on_clicked), TRUE)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_clicked), TRUE)
 	START_PROCESSING(SSfastprocess, src)
 
 /**
