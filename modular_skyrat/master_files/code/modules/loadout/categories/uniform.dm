@@ -961,3 +961,8 @@
 /datum/loadout_item/uniform/donator/blondie
 	name = "Blonde Cowboy Uniform"
 	item_path = /obj/item/clothing/under/rank/security/detective/cowboy/armorless
+
+/datum/loadout_item/uniform/tacticalcent
+	name = "CentCom Officer's Turtleneck"
+	item_path = /obj/item/clothing/under/rank/centcom/officer
+	restricted_roles = list(JOB_BLUESHIELD)

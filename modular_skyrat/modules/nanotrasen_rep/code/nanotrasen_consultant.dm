@@ -119,12 +119,12 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/giga(src)
 	new /obj/item/clothing/gloves/combat(src)
-	new /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant(src)
+	new /obj/item/clothing/gloves/captain/centcom(src) // Bubberstation edit. Old: /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant
 	new /obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant/skirt(src)
-	new /obj/item/clothing/under/rank/centcom/officer(src)
-	new /obj/item/clothing/under/rank/centcom/officer_skirt(src)
+	new /obj/item/clothing/under/rank/centcom/official(src) // Bubberstation edit. Old: new /obj/item/clothing/under/rank/centcom/officer(src)
+	new /obj/item/clothing/under/rank/centcom/official/turtleneck(src) // Bubberstation edit. Old: new /obj/item/clothing/under/rank/centcom/officer_skirt(src)
 	new /obj/item/clothing/head/nanotrasen_consultant(src)
 	new /obj/item/clothing/head/nanotrasen_consultant/beret(src)
 	new /obj/item/clothing/head/beret/centcom_formal/nt_consultant(src)
@@ -151,4 +151,6 @@
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/storage/bag/garment/nanotrasen_consultant(src)
+	new /obj/item/storage/belt/sabre/centcom(src) //Bubber Edit: Yessir. Sword? I THINK SO!
+	new /obj/item/storage/toolbox/guncase/skyrat/pistol/m45a5(src) //Bubber Edit: I mean.. Why not? They had it before!
 	//new /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/firefly(src) //Bubber Edit: I don't want it
