@@ -1,5 +1,4 @@
 // REMOVED QUIRK - Disabled in favor of new NIFSoft method
-/*
 /datum/quirk/body_morpher
 	name = "Body Morpher"
 	desc = "You have the ability to morph and shift your body, like a slimeperson can."
@@ -12,6 +11,7 @@
 	mail_goodies = list (
 		/obj/item/toy/foamblade = 1 // Fake changeling
 	)
+	hidden_quirk = TRUE
 	var/datum/action/innate/alter_form/alter_form_action
 
 /datum/quirk/body_morpher/add(client/client_source)
@@ -33,4 +33,3 @@
 	// Remove quirk ability action datum
 	alter_form_action.Remove(quirk_mob)
 	QDEL_NULL(alter_form_action)
-*/

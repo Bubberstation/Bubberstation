@@ -11,3 +11,4 @@
 	mail_goodies = list (
 		/obj/item/mop = 1 // Clean this mess up!
 	)
+	hidden_quirk = TRUE

@@ -19,6 +19,7 @@
 	var/paused = 0
 	var/turf/position
 	var/obj/structure/statue/gargoyle/current = null
+	hidden_quirk = TRUE
 
 /datum/quirk/gargoyle/add(client/client_source)
 	. = ..()

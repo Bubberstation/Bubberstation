@@ -9,6 +9,7 @@
 	medical_record_text = "Patient cares little with or dislikes having their head touched."
 	mob_trait = TRAIT_DISTANT
 	icon = FA_ICON_HAND
+	hidden_quirk = TRUE
 
 /datum/quirk/headpat_hater/post_add()
 	// Add status effect

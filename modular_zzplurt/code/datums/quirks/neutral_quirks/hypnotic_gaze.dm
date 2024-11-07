@@ -6,7 +6,6 @@
 
 // REMOVED QUIRK - Disabled in favor of new NIFSoft method
 // This file still contains the action
-/*
 /datum/quirk/Hypnotic_gaze
 	name = "Hypnotic Gaze"
 	desc = "Prolonged eye contact with you can place a viewer into a highly-suggestible hypnotic trance."
@@ -17,6 +16,7 @@
 	mob_trait = TRAIT_HYPNOTIC_GAZE
 	icon = FA_ICON_ARROWS_TO_EYE
 	erp_quirk = TRUE
+	hidden_quirk = TRUE
 
 /datum/quirk/Hypnotic_gaze/add()
 	// Define quirk mob
@@ -49,7 +49,6 @@
 // Set effect examine text
 /datum/status_effect/quirk_hypnotic_gaze/get_examine_text()
 	return span_purple("[owner.p_Their()] eyes glimmer with an entrancing power.")
-*/
 
 //
 // Actions

@@ -12,18 +12,22 @@
 	mail_goodies = list (
 		/obj/item/reagent_containers/cup/glass/waterbottle = 1
 	)
+	hidden_quirk = TRUE
 
 // Copy pasted from old code
 // Thirst has not been implemented yet
 /*
 /datum/quirk/thirsty/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/physiology/P = H.physiology
-	P.thirst_mod *= 2
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Set hunger multiplier
+	quirk_mob.physiology?.thirst_mod *= 2
 
 /datum/quirk/thirsty/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		var/datum/physiology/P = H.physiology
-		P.thirst_mod /= 2
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Revert hunger multiplier
+	quirk_mob.physiology?.thirst_mod /= 2
 */

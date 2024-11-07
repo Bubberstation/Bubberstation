@@ -9,4 +9,5 @@
 	medical_record_text = "Patient's posterior displays incredible resilience."
 	mob_trait = TRAIT_STEEL_ASS
 	icon = FA_ICON_HAND
+	hidden_quirk = TRUE
 */

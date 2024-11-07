@@ -10,9 +10,10 @@
 	// No mob trait
 	icon = FA_ICON_BOTTLE_DROPLET
 	erp_quirk = TRUE
-
+	hidden_quirk = TRUE
 */
-/* Commented until we have the genital fluid options
+// Implant currently not implemented
+/*
 /datum/quirk/fluid_infuser/on_spawn()
 	. = ..()
 	var/obj/item/implant/genital_fluid/put_in = new

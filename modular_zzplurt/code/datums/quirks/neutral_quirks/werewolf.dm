@@ -1,6 +1,5 @@
 // UNIMPLEMENTED QUIRK!
 // Currently disabled due to appearance change issues
-/*
 /datum/quirk/werewolf
 	name = "Werewolf"
 	desc = "A beastly affliction allows you to shape-shift into a large anthropomorphic canine at will."
@@ -10,6 +9,7 @@
 	medical_record_text = "Patient has been reported howling at the night sky."
 	mob_trait = TRAIT_WEREWOLF
 	icon = FA_ICON_MOON
+	hidden_quirk = TRUE
 
 /datum/quirk/werewolf/post_add()
 	// Define quirk action
@@ -24,7 +24,6 @@
 
 	// Revoke quirk action
 	quirk_action.Remove(quirk_holder)
-*/
 
 //
 // Quirk Abilities

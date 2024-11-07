@@ -9,6 +9,7 @@
 	mob_trait = TRAIT_BLOODFLEDGE
 	hardcore_value = -2
 	icon = FA_ICON_WINE_GLASS
+	hidden_quirk = TRUE
 
 /*
 /datum/quirk/bloodfledge/add()

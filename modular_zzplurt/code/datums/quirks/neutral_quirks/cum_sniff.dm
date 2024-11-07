@@ -9,3 +9,4 @@
 	medical_record_text = "Patient has exemplary olfactory capability for specific body regions."
 	icon = FA_ICON_SOCCER_BALL
 	erp_quirk = TRUE
+	hidden_quirk = TRUE
