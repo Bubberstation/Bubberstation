@@ -25,7 +25,7 @@
 			span_hear("You hear a comedic metallic bonk."),
 		)
 		playsound(bonked, 'sound/items/weapons/smash.ogg', bonk_volume, TRUE, -1)
-		qdel(src)
+		
 	else if(bonk_victims_head.biological_state & BIO_METAL)
 		if(bonkers_hand?.receive_damage( 5, 0 )) // 5 brute damage
 			user.update_damage_overlays()
