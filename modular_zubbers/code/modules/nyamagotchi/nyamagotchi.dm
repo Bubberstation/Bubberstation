@@ -9,7 +9,7 @@
 	icon_state = "default"
 	worn_icon_state = "nothing"
 	base_icon_state = "default"
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT, ITEM_SLOT_S
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	throwforce = 2
@@ -32,6 +32,11 @@
 
 	var/alive = NO_ANIMAL
 
+/obj/item/clothing/suit/Initialize(mapload)
+  . = ..()
+    allowed += list(
+        /obj/item/nyamaguchi,
+    )
 
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
@@ -51,7 +56,7 @@
 		if(NO_ANIMAL)
 			return span_notice("The Nyamagotchi is ready to be started!")
 		if(ANIMAL_ALIVE)
-			return span_notice("Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age]")
+			return span_notice("The Nyamagotchi is alive! Use the 'Check Status button to see its stats!")
 		if(ANIMAL_DEAD)
 			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
 
