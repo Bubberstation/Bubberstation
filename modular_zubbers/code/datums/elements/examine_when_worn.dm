@@ -14,3 +14,4 @@
 /datum/element/examined_when_worn/Detach(datum/source, ...)
 	. = ..()
 	UnregisterSignal(source, COMSIG_TOPIC)
+	REMOVE_TRAIT(source, TRAIT_WORN_EXAMINE, TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM)
