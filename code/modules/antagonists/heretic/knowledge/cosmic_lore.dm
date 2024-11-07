@@ -281,7 +281,7 @@
 	. = ..()
 	priority_announce(
 		//text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]", // BUBBER EDIT CHANGE - Changing text to be accurate
-		text = "[generate_heretic_text()] [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
+		text = "[generate_heretic_text()] [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]", // BUBBER EDIT ADDITION
 		title = "[generate_heretic_text()]",
 		sound = 'sound/music/antag/heretic/ascend_cosmic.ogg',
 		color_override = "pink",
