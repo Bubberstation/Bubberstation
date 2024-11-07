@@ -56,7 +56,7 @@
 		return
 	selected_mode.use_act(user)
 
-/obj/item/phystool/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/phystool/ranged_interact_with_atom(atom/target, mob/user, list/modifiers)
 	. = ..()
 	if(!selected_mode)
 		return
@@ -75,7 +75,6 @@
 		return
 	do_work_effect(target, user)
 	playsound(user, 'modular_zubbers/sound/phystools/toolgun_shot1.ogg', 100, TRUE)
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/phystool/proc/do_work_effect(atom/target, mob/user)
 	if(!target)
