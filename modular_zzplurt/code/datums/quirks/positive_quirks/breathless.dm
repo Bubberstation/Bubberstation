@@ -8,3 +8,4 @@
 	mob_trait = TRAIT_NOBREATH
 	hardcore_value = -4
 	icon = FA_ICON_LUNGS
+	hidden_quirk = TRUE
