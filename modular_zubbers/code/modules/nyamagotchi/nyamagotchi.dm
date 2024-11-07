@@ -36,6 +36,8 @@
 	var/energy = 0
 	/// Age in "days" or some unit of time
 	var/age = 0
+	/// How often a 'life' cycle of the pet runs
+	var/update_rate = 15 SECONDS
 
 	var/alive = NO_ANIMAL
 	var/static/list/rest_messages = list(
@@ -87,13 +89,15 @@
 
 /obj/item/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
-	if(alive == NO_ANIMAL || alive == ANIMAL_DEAD)
-		icons_available += list("Start!" = image(radial_icon_file,"start"))
+	if(alive == ANIMAL_ALIVE)
+		icons_available += list(
+			"Feed" = image(radial_icon_file, "feed"),
+			"Play" = image(radial_icon_file, "play"),
+			"Rest" = image(radial_icon_file, "rest"),
+			"Check Status" = image(radial_icon_file, "status",
+		))
 	else
-		icons_available += list("Feed" = image(radial_icon_file,"feed"),
-			"Play" = image(radial_icon_file,"play"),
-			"Rest" = image(radial_icon_file,"rest"),
-			"Check Status" = image(radial_icon_file,"status"))
+		icons_available += list("Start!" = image(radial_icon_file, "start"))
 
 /obj/item/nyamagotchi/attack_self(mob/user)
 	update_available_icons()
@@ -121,8 +125,8 @@
 	energy = rand(60, 90)
 	say(message="I'm alive, nya!", message_range=2)
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(be_known), MEOW_NORMAL), 0.5 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(be_known), MEOW_NORMAL), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
 // status update loop
 /obj/item/nyamagotchi/proc/update()
@@ -166,7 +170,7 @@
 					"Sleempy...", "I be needin' a naps, nya!", "Need to do the big sleeps, please!",
 					"I'm feeling a bit exhausted, nya...", "I could go for a nap...", "EEPY. EEPY. EEPY..."),
 					message_range=2)
-	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
 /obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
 	if(!isnull(sfx))
