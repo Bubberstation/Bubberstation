@@ -40,10 +40,6 @@
 
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()               // Call the parent constructor
-	// give a slightly random start
-	hunger = rand(30, 60)
-	happiness = rand(80, 100)
-	energy = rand(60, 90)
 	update()   // Start the update loop
 
 /obj/item/nyamagotchi/examine(mob/user)
@@ -94,6 +90,10 @@
 
 /obj/item/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
+	// give a slightly random start
+	hunger = rand(30, 60)
+	happiness = rand(80, 100)
+	energy = rand(60, 90)
 	say(message="I'm alive, nya!", message_range=2)
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
