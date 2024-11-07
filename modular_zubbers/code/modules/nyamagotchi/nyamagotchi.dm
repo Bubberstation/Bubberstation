@@ -2,6 +2,13 @@
 #define ANIMAL_ALIVE 1
 #define ANIMAL_DEAD 2
 
+#define MEOW_NORMAL 'sound/creatures/cat/cat_meow1.ogg'
+#define MEOW_SAD 'modular_zubbers/code/modules/nyamagotchi/sound/cat_sad.ogg'
+#define MEOW_CRITICAL 'modular_zubbers/code/modules/nyamagotchi/sound/cat_alert.ogg'
+#define EAT_FOOD 'modular_zubbers/code/modules/nyamagotchi/sound/cat_eat.ogg'
+#define PURR_PLAY 'sound/creatures/cat/cat_purr1.ogg'
+#define PURR_SLEEP 'sound/creatures/cat/cat_purr3.ogg'
+
 /obj/item/nyamagotchi
 	name = "nyamagotchi"
 	icon = 'modular_zubbers/code/modules/nyamagotchi/sprites/nyamagotchi.dmi'
@@ -31,10 +38,37 @@
 	var/age = 0
 
 	var/alive = NO_ANIMAL
+	var/static/list/rest_messages = list(
+		"Zzz... Zzz... Zzz...",
+		"Honk, shew! Hooonk, shewww...!",
+		"Snoozin' time, nya...",
+		"Honk shoo!",
+		"I'm feeling so energized!",
+		"I'm feeling so well-rested!",
+		"Zzz... Zzz... Zzz... Zzz... Zzz...",
+	)
+	var/static/list/play_messages = list(
+		"Wowzers meowzers, that was fun!",
+		"That was so much fun, nya!",
+		"YAY!!!",
+		"I had a great time playing with you!",
+		"YIPPEEE!!!", "That was a blast!",
+		"Wowzers meowzers, that was a blast!",
+	)
+	var/static/list/feed_messages = list(
+		"NOM NOM NOM. Ice cream, yum!",
+		"Mmm, that was tasty!",
+		"So yummy!",
+		"Oooh! Delicious!",
+		"MONCH MONCH MONCH.",
+		"MUNCH MUNCH, that was so heckin' tasty, nya!",
+		"Yum, that was delicious!",
+		"What a PURRFECT meal, nya!",
+	)
 
 /obj/item/nyamagotchi/Initialize(mapload)
-	. = ..()               // Call the parent constructor
-	update()   // Start the update loop
+	. = ..()
+	update_available_icons()
 
 /obj/item/nyamagotchi/examine(mob/user)
 	. = ..()
@@ -79,9 +113,6 @@
 			if("Check Status")
 				check_status()
 
-/obj/item/nyamagotchi/proc/play_meow_sound()
-	playsound(src, 'sound/creatures/cat/cat_meow1.ogg', 50, FALSE)
-
 /obj/item/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
 	// give a slightly random start
@@ -90,13 +121,12 @@
 	energy = rand(60, 90)
 	say(message="I'm alive, nya!", message_range=2)
 	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(be_known), MEOW_NORMAL), 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
 // status update loop
 /obj/item/nyamagotchi/proc/update()
 	if(!alive)
-		update_available_icons()
 		return
 
 	age += 1       // Increase age over time
@@ -118,8 +148,7 @@
 		if (energy <= 20)
 			tama_alerts += "tired"
 
-		playsound(src, 'sound/machines/beep/triple_beep.ogg', 20, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
+		be_known(sfx = MEOW_CRITICAL)
 		var/alert_proc = pick(tama_alerts) // pick a random alert to say
 		if (alert_proc)
 			switch  (alert_proc)
@@ -139,18 +168,24 @@
 					message_range=2)
 	addtimer(CALLBACK(src, PROC_REF(update)), 15 SECONDS)
 
+/obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
+	if(!isnull(sfx))
+		playsound(source = src, soundin = sfx, vol = 40, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
+
+	if(!isnull(speech))
+		say(speech, message_range = 2)
+
+	if(!isnull(visible))
+		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE)
+
 // Interactions
 /obj/item/nyamagotchi/proc/feed()
 	if(hunger > 0)
 		hunger -= 10
 		if (hunger < 0)
 			hunger = 0
-		balloon_alert(usr, "Nyamagotchi fed!")
 		to_chat(usr, span_purple("You fed your Nyamagotchi! Its hunger is now at [hunger]."))
-		playsound(src, 'sound/items/eatfood.ogg', 50, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(play_meow_sound)), 0.25 SECONDS)
-		say(message=pick("NOM NOM NOM. Ice cream, yum!", "Mmm, that was tasty!", "So yummy!", "Oooh! Delicious!", "MONCH MONCH MONCH.",
-			"MUNCH MUNCH, that was so heckin' tasty, nya!", "Yum, that was delicious!", "What a PURRFECT meal, nya!"), message_range=2)
+		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
 	else
 		to_chat(usr, "Your Nyamagotchi isn't hungry!")
 
@@ -159,11 +194,8 @@
 		happiness += 10
 		if (happiness > 100)
 			happiness = 100
-		balloon_alert(usr, "Nyamagotchi played with!")
 		to_chat(usr, span_purple("You play with your Nyamsagotchi! Its happiness is now [happiness]."))
-		playsound(src, 'sound/creatures/cat/cat_purr1.ogg', 50, FALSE)
-		say(message=pick("Wowzers meowzers, that was fun!", "That was so much fun, nya!", "YAY!!!",
-		"I had a great time playing with you!", "YIPPEEE!!!", "That was a blast!", "Wowzers meowzers, that was a blast!"), message_range=2)
+		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
 	else
 		to_chat(usr, span_purple("Your Nyamagotchi is already very happy!"))
 
@@ -172,11 +204,8 @@
 		energy += 20
 		if(energy > 100)
 			energy = 100
-		balloon_alert(usr, "Nyamagotchi rested!")
 		to_chat(usr, span_purple("Your Nyamagotchi rests and regains energy. Its energy is now [energy]."))
-		playsound(src, 'sound/creatures/cat/cat_purr3.ogg', 50, FALSE)
-		say(message=pick("Zzz... Zzz... Zzz...", "Honk, shew! Hooonk, shewww...!", "Snoozin' time, nya...", "Honk shoo!",
-		"I'm feeling so energized!", "I'm feeling so well-rested!", "Zzz... Zzz... Zzz... Zzz... Zzz..."), message_range=2)
+		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
 	else
 		to_chat(usr, span_purple("Your Nyamagotchi is fully rested."))
 
@@ -189,6 +218,7 @@
 	//src.icon_state = "dead"
 	playsound(src, 'sound/misc/sadtrombone.ogg', 20, FALSE)
 	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE)
+	update_available_icons()
 
 /obj/item/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
@@ -196,3 +226,10 @@
 #undef NO_ANIMAL
 #undef ANIMAL_ALIVE
 #undef ANIMAL_DEAD
+
+#undef MEOW_NORMAL
+#undef MEOW_SAD
+#undef MEOW_CRITICAL
+#undef EAT_FOOD
+#undef PURR_PLAY
+#undef PURR_SLEEP
