@@ -650,15 +650,15 @@
 	item_path = /obj/item/toy/plush/skyrat/plushie_syntax1112
 	//ckeywhitelist = list("syntax1112")
 
-/datum/loadout_item/gloves/hypnoring_nuke
+/datum/loadout_item/gloves/hypnoring_sharkenning
 	name = "Suspiciously Glossy Ring"
-	item_path = /obj/item/clothing/gloves/ring/hypno/nuke
-	ckeywhitelist = list("sonicgotnuked", "tecktonic")
+	item_path = /obj/item/clothing/gloves/ring/hypno/sharkenning
+	ckeywhitelist = list("thesharkenning", "tecktonic")
 
-/datum/loadout_item/ears/kinkphone_nuke
+/datum/loadout_item/ears/kinkphone_sharkenning
 	name = "Suspiciously Glossy Headphones"
-	item_path = /obj/item/clothing/ears/kinky_headphones/nuke
-	ckeywhitelist = list("sonicgotnuked")
+	item_path = /obj/item/clothing/ears/kinky_headphones/sharkenning
+	ckeywhitelist = list("thesharkenning")
 
 /datum/loadout_item/head/somerandomowl
 	name = "Starry Witch Hat"
