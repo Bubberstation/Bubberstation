@@ -37,3 +37,4 @@
 #define TRAIT_CONCUBUS			"concubus"
 #define TRAIT_MODULAR_LIMBS		"modular_limbs"
 #define TRAIT_VACUUM_RESIST		"vacuum_resist"
+#define TRAIT_OVERWEIGHT		"overweight"
