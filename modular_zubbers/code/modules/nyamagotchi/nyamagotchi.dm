@@ -11,10 +11,9 @@
 
 /obj/item/toy/nyamagotchi
 	name = "nyamagotchi"
-	icon = 'modular_zubbers/code/modules/nyamagotchi/sprites/nyamagotchi.dmi'
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
-	icon_state = "default"
-	base_icon_state = "default"
+	icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
+	icon_state = "nya"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
