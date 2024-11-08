@@ -10,9 +10,7 @@
 #define CARGO_COMPANY_MICRON (1<<8)
 #define CARGO_COMPANY_VITEZSTVI_AMMO (1<<9)
 #define CARGO_COMPANY_ALLSTAR_ENERGY (1<<10)
-// Bubber Additions Begin
 #define CARGO_COMPANY_SAR_INC (1<<11)
-// Bubber Additions End
 
 // Company names, because the armament category and company name need to be the exact same, so use defines like this
 #define COMPANY_NAME_NAKAMURA_ENGINEERING_MODSUITS "Nakamura Engineering MOD Divison"
@@ -26,9 +24,7 @@
 #define COMPANY_NAME_MICRON_CONTROL_SYSTEMS "Micron Control Systems"
 #define COMPANY_NAME_ALLSTAR_ENERGY "Allstar Energy Incorporated"
 #define COMPANY_NAME_VITEZSTVI_AMMO "Vitezstvi Ammo & Weapon Accessories"
-// Bubber Additions Begin
 #define COMPANY_NAME_SAR_INC "Solar Arms Recreations, Inc."
-// Bubber Additions End
 
 #define COMPANY_INTEREST_GAIN_BIG 10
 #define COMPANY_INTEREST_GAIN_AVERAGE 5
