@@ -124,7 +124,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_engineer, 
 
 /obj/structure/sign/poster/contraband/nri_radar
 	name = "Imperial navy enlistment poster"
-	desc = "Enlist with the imperial navy today! See the galaxy, shoot solarians, get PTSD!"
+	desc = "Enlist with the imperial navy today! See the galaxy, shoot terrans, get PTSD!"
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "nri_radar"
 

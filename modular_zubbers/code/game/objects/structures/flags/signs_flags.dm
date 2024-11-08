@@ -17,7 +17,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 
 /obj/structure/sign/flag/terragov
 	name = "flag of the Terran Government"
-	desc = "Previously the flag of the Terran Government, before it was dissolved."
+	desc = "The flag of the Terran Government, home of humanity."
 
 /obj/item/sign/flag/galfed
 	name = "folded flag of the Galactic Federation"

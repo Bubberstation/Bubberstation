@@ -11,7 +11,7 @@
 
 /obj/item/clothing/suit/armor/sf_peacekeeper
 	name = "'Touvou' peacekeeper armor vest"
-	desc = "A bright blue vest, proudly bearing 'SF' in white on its front and back. Dense fabric with a thin layer of rolled metal \
+	desc = "A bright blue vest, proudly bearing 'TGPD' in white on its front and back. Dense fabric with a thin layer of rolled metal \
 		will protect you from bullets best, a few blunt blows, and the wounds they cause. Lasers will burn more or less straight through it."
 	icon = 'modular_skyrat/modules/specialist_armor/icons/armor.dmi'
 	icon_state = "soft_peacekeeper"
@@ -36,8 +36,7 @@
 
 /obj/item/clothing/suit/armor/sf_peacekeeper/debranded
 	name = "'Touvou' soft armor vest"
-	desc = "A bright white vest, notably missing an 'SF' marking on either its front or back. Dense fabric with a thin layer of rolled metal \
-		will protect you from bullets best, a few blunt blows, and the wounds they cause. Lasers will burn more or less straight through it."
+	desc = "A bright white vest, notably missing an 'TGPD', and the wounds they cause. Lasers will burn more or less straight through it."
 	icon_state = "soft_civilian"
 
 /obj/item/clothing/head/helmet/sf_peacekeeper
