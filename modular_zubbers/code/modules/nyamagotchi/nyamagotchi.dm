@@ -100,6 +100,7 @@
 		"I could go for a nap...",
 		"EEPY. EEPY. EEPY...",
 	)
+	COOLDOWN_DECLARE(mute_pet)
 
 /obj/item/nyamagotchi/Initialize(mapload)
 	. = ..()
@@ -109,6 +110,10 @@
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
 		. += "[readout()]"
+		if(!COOLDOWN_FINISHED(src, mute_pet))
+			. += span_notice("<b>Alt-click</b> to disable mute feature.")
+		else
+			. += span_notice("<b>Alt-click</b> to temporarily mute notifications.")
 
 /obj/item/nyamagotchi/proc/readout()
 	switch(alive)
@@ -148,6 +153,18 @@
 				rest()
 			if("Check Status")
 				check_status()
+
+/obj/item/nyamagotchi/click_alt(mob/living/user)
+	if(user != loc)
+		return
+
+	if(COOLDOWN_FINISHED(src, mute_pet))
+		COOLDOWN_START(src, mute_pet, 3 MINUTES)
+		user.balloon_alert(user, "muted!")
+
+	else
+		COOLDOWN_RESET(src, mute_pet)
+		user.balloon_alert(user, "unmuted!")
 
 /obj/item/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
@@ -198,6 +215,9 @@
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
 /obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
+	if(!COOLDOWN_FINISHED(src, mute_pet))
+		return
+
 	if(!isnull(sfx))
 		playsound(source = src, soundin = sfx, vol = 40, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 
@@ -209,8 +229,8 @@
 
 // Interactions
 /obj/item/nyamagotchi/proc/feed()
-	if(hunger > 30)
-		hunger -= clamp(rand(30, 40), hunger, 40)
+	if(hunger > 20)
+		hunger -= min(rand(30, 40), hunger)
 		to_chat(usr, span_purple("You fed your Nyamagotchi! Its hunger is now at [hunger]."))
 		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
 	else
@@ -218,7 +238,7 @@
 
 /obj/item/nyamagotchi/proc/play()
 	if(happiness < 80)
-		happiness += clamp(rand(30, 40), 30, 100 - happiness)
+		happiness += min(rand(30, 40), 100 - happiness)
 		to_chat(usr, span_purple("You play with your Nyamsagotchi! Its happiness is now [happiness]."))
 		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
 	else
@@ -226,7 +246,7 @@
 
 /obj/item/nyamagotchi/proc/rest()
 	if(energy < 80)
-		energy += clamp(rand(30, 40), 30, 100 - energy)
+		energy += min(rand(30, 40), 100 - energy)
 		to_chat(usr, span_purple("Your Nyamagotchi rests and regains energy. Its energy is now [energy]."))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
 	else
