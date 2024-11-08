@@ -111,6 +111,7 @@
 
 /obj/item/toy/nyamagotchi/Initialize(mapload)
 	. = ..()
+	register_context()
 	update_available_icons()
 
 /obj/item/toy/nyamagotchi/examine(mob/user)
@@ -121,6 +122,11 @@
 			. += span_notice("<b>Alt-click</b> to disable mute feature.")
 		else
 			. += span_notice("<b>Alt-click</b> to temporarily mute notifications.")
+
+/obj/item/toy/nyamagotchi/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	context[SCREENTIP_CONTEXT_LMB] = "Interact"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle mute"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/toy/nyamagotchi/proc/readout()
 	switch(alive)
@@ -144,6 +150,12 @@
 		icons_available += list("Start!" = image(radial_icon_file, "start"))
 
 /obj/item/toy/nyamagotchi/attack_self(mob/user)
+	pet_menu(user)
+
+/obj/item/toy/nyamagotchi/attack_hand_secondary(mob/user, list/modifiers)
+	pet_menu(user)
+
+/obj/item/toy/nyamagotchi/proc/pet_menu(mob/user, list/modifiers)
 	update_available_icons()
 	if(icons_available)
 		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -168,10 +180,13 @@
 	if(COOLDOWN_FINISHED(src, mute_pet))
 		COOLDOWN_START(src, mute_pet, 3 MINUTES)
 		user.balloon_alert(user, "muted!")
+		to_chat(user, span_notice("You turn on [src]'s mute feature."))
 
 	else
 		COOLDOWN_RESET(src, mute_pet)
 		user.balloon_alert(user, "unmuted!")
+		to_chat(user, span_notice("You turn off [src]'s mute feature."))
+		be_known(sfx = MEOW_NORMAL)
 
 /obj/item/toy/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
@@ -290,6 +305,10 @@
 
 /obj/item/toy/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "hunger: [hunger] happiness: [happiness] energy: [energy]")
+
+/datum/job/psychologist/New()
+	LAZYADDASSOC(mail_goodies, /obj/item/toy/nyamagotchi, 45)
+	. = ..()
 
 #undef NO_ANIMAL
 #undef ANIMAL_ALIVE
