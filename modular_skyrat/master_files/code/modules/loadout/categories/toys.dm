@@ -414,4 +414,4 @@
 
 /datum/loadout_item/toys/nyamagotchi
 	name = "Nyamagotchi"
-	item_path = /obj/item/nyamagotchi
+	item_path = /obj/item/toy/nyamagotchi

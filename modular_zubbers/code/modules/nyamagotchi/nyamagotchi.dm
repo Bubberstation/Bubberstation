@@ -9,12 +9,11 @@
 #define PURR_PLAY 'sound/creatures/cat/cat_purr1.ogg'
 #define PURR_SLEEP 'sound/creatures/cat/cat_purr3.ogg'
 
-/obj/item/nyamagotchi
+/obj/item/toy/nyamagotchi
 	name = "nyamagotchi"
 	icon = 'modular_zubbers/code/modules/nyamagotchi/sprites/nyamagotchi.dmi'
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
 	icon_state = "default"
-	worn_icon_state = "nothing"
 	base_icon_state = "default"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
@@ -110,11 +109,11 @@
 	)
 	COOLDOWN_DECLARE(mute_pet)
 
-/obj/item/nyamagotchi/Initialize(mapload)
+/obj/item/toy/nyamagotchi/Initialize(mapload)
 	. = ..()
 	update_available_icons()
 
-/obj/item/nyamagotchi/examine(mob/user)
+/obj/item/toy/nyamagotchi/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
 		. += "[readout()]"
@@ -123,7 +122,7 @@
 		else
 			. += span_notice("<b>Alt-click</b> to temporarily mute notifications.")
 
-/obj/item/nyamagotchi/proc/readout()
+/obj/item/toy/nyamagotchi/proc/readout()
 	switch(alive)
 		if(NO_ANIMAL)
 			return span_notice("The Nyamagotchi is ready to be started!")
@@ -132,7 +131,7 @@
 		if(ANIMAL_DEAD)
 			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
 
-/obj/item/nyamagotchi/proc/update_available_icons()
+/obj/item/toy/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
 	if(alive == ANIMAL_ALIVE)
 		icons_available += list(
@@ -144,7 +143,7 @@
 	else
 		icons_available += list("Start!" = image(radial_icon_file, "start"))
 
-/obj/item/nyamagotchi/attack_self(mob/user)
+/obj/item/toy/nyamagotchi/attack_self(mob/user)
 	update_available_icons()
 	if(icons_available)
 		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -162,7 +161,7 @@
 			if("Check Status")
 				check_status()
 
-/obj/item/nyamagotchi/click_alt(mob/living/user)
+/obj/item/toy/nyamagotchi/click_alt(mob/living/user)
 	if(user != loc)
 		return
 
@@ -174,7 +173,7 @@
 		COOLDOWN_RESET(src, mute_pet)
 		user.balloon_alert(user, "unmuted!")
 
-/obj/item/nyamagotchi/proc/start()
+/obj/item/toy/nyamagotchi/proc/start()
 	alive = ANIMAL_ALIVE
 	// give a slightly random start
 	hunger = rand(30, 60)
@@ -185,7 +184,7 @@
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
 // status update loop
-/obj/item/nyamagotchi/proc/update()
+/obj/item/toy/nyamagotchi/proc/update()
 	if(!alive)
 		return
 
@@ -237,7 +236,7 @@
 	else if(prob(15))
 		be_known(sfx = MEOW_NORMAL)
 
-/obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
+/obj/item/toy/nyamagotchi/proc/be_known(sfx, speech, visible)
 	if(!COOLDOWN_FINISHED(src, mute_pet))
 		return
 
@@ -251,7 +250,7 @@
 		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE + 2)
 
 // Interactions
-/obj/item/nyamagotchi/proc/feed()
+/obj/item/toy/nyamagotchi/proc/feed()
 	if(hunger > 20)
 		hunger -= min(rand(30, 40), hunger)
 		to_chat(usr, span_purple("You fed [src]! Its hunger is now at [hunger]."))
@@ -259,7 +258,7 @@
 	else
 		usr.balloon_alert(usr, "not hungry!")
 
-/obj/item/nyamagotchi/proc/play()
+/obj/item/toy/nyamagotchi/proc/play()
 	if(happiness < 80)
 		happiness += min(rand(30, 40), 100 - happiness)
 		to_chat(usr, span_purple("You play with [src]! Its happiness is now [happiness]."))
@@ -267,7 +266,7 @@
 	else
 		usr.balloon_alert(usr, "not bored!")
 
-/obj/item/nyamagotchi/proc/rest()
+/obj/item/toy/nyamagotchi/proc/rest()
 	if(energy < 80)
 		energy += min(rand(30, 40), 100 - energy)
 		to_chat(usr, span_purple("Your [src] rests and regains energy. Its energy is now [energy]."))
@@ -276,7 +275,7 @@
 		usr.balloon_alert(usr, "not tired!")
 
 // Function for when the nyamagotchi dies
-/obj/item/nyamagotchi/proc/die()
+/obj/item/toy/nyamagotchi/proc/die()
 	alive = ANIMAL_DEAD
 	audible_message(span_warning("[src] makes a weak, sad noise and then goes silent... Rest in peace."), hearing_distance = COMBAT_MESSAGE_RANGE)
 	if(ishuman(loc))
@@ -285,7 +284,7 @@
 	be_known(sfx = 'sound/misc/sadtrombone.ogg', visible = "nyamagotchi died!")
 	update_available_icons()
 
-/obj/item/nyamagotchi/proc/check_status()
+/obj/item/toy/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "hunger: [hunger] happiness: [happiness] energy: [energy]")
 
 #undef NO_ANIMAL
