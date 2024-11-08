@@ -151,5 +151,5 @@
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/storage/bag/garment/nanotrasen_consultant(src)
-	new /obj/item/storage/belt/sabre/centcom(src) //Bubber Edit: Yessir. Sword? I THINK SO!
+	new /obj/item/storage/belt/sabre/centcom/consultant(src) //Bubber Edit: Yessir. Sword? I THINK SO!
 	//new /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/firefly(src) //Bubber Edit: I don't want it
