@@ -188,10 +188,14 @@
 	if(!alive)
 		return
 
-	age += 1       // Increase age over time
-	hunger += rand(1, 3)    // Increase hunger over time
-	happiness -= rand(1,3) // Decrease happiness over time
-	energy -= rand(1,3)    // Decrease energy over time
+	if(happiness < 16) // unhappy pets get hungry and tired faster
+		hunger += rand(1, 3)
+		energy -= rand(1, 3)
+
+	age += 1	// Increase age over time
+	hunger += rand(1, 3)	// Increase hunger over time
+	happiness -= rand(1,3)	// Decrease happiness over time
+	energy -= rand(1,3)	// Decrease energy over time
 
 	// check if the nyamagotchi is still alive
 	if(hunger >= 100 || energy <= 0)
