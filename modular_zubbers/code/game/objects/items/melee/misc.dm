@@ -6,8 +6,8 @@
 	inhand_icon_state = "cc_sabre"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-	block_chance = 25
-	armour_penetration = 30
+	block_chance = 40
+	armour_penetration = 55
 
 /obj/item/melee/sabre/centcom/consultant
 	name = "representative's sabre"
