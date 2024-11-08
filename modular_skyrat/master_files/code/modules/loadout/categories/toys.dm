@@ -415,5 +415,3 @@
 /datum/loadout_item/toys/nyamagotchi
 	name = "Nyamagotchi"
 	item_path = /obj/item/toy/nyamagotchi
-	ui_icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-	ui_icon_state = "nya"
