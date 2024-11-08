@@ -288,7 +288,7 @@
 /obj/item/toy/nyamagotchi/proc/rest()
 	if(energy < 80)
 		energy += min(rand(30, 40), 100 - energy)
-		to_chat(usr, span_purple("Your [src] rests and regains energy. Its energy is now [energy]."))
+		to_chat(usr, span_purple("[src] rests and regains energy. Its energy is now [energy]."))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
 	else
 		usr.balloon_alert(usr, "not tired!")
