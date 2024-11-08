@@ -148,3 +148,13 @@
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	icon_state = "centcom"
+
+/*
+* GLOVES
+*/
+/obj/item/clothing/mask/gas/atmos/centcom
+	name = "\improper CentCom gas mask"
+	desc = "Oooh, gold and green. Fancy! This should help as you sit in your office."
+	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION
