@@ -167,7 +167,7 @@
 		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
 	if(COOLDOWN_FINISHED(src, scanner_beep) && type != "passive")
 		COOLDOWN_START(src, scanner_beep, 0.5 SECONDS)
-		playsound(src, type == "alarm" ? 'sound/machines/buzz-sigh.ogg' : 'sound/machines/chime.ogg', 45, TRUE)
+		playsound(src, type == "alarm" ? 'sound/machines/buzz/buzz-sigh.ogg' : 'sound/machines/chime.ogg', 45, TRUE)
 
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
 	if(is_operational && istype(package, /obj/item/bounty_cube) && (!panel_open) && anchored)
