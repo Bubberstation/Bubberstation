@@ -205,38 +205,32 @@
 		say(speech, message_range = 2)
 
 	if(!isnull(visible))
-		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE)
+		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE + 1)
 
 // Interactions
 /obj/item/nyamagotchi/proc/feed()
-	if(hunger > 0)
-		hunger -= 10
-		if (hunger < 0)
-			hunger = 0
+	if(hunger > 30)
+		hunger -= clamp(rand(30, 40), hunger, 40)
 		to_chat(usr, span_purple("You fed your Nyamagotchi! Its hunger is now at [hunger]."))
 		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
 	else
-		to_chat(usr, "Your Nyamagotchi isn't hungry!")
+		usr.balloon_alert(usr, "not hungry!")
 
 /obj/item/nyamagotchi/proc/play()
-	if (happiness < 100)
-		happiness += 10
-		if (happiness > 100)
-			happiness = 100
+	if(happiness < 80)
+		happiness += clamp(rand(30, 40), 30, 100 - happiness)
 		to_chat(usr, span_purple("You play with your Nyamsagotchi! Its happiness is now [happiness]."))
 		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
 	else
-		to_chat(usr, span_purple("Your Nyamagotchi is already very happy!"))
+		usr.balloon_alert(usr, "not bored!")
 
 /obj/item/nyamagotchi/proc/rest()
-	if(energy < 100)
-		energy += 20
-		if(energy > 100)
-			energy = 100
+	if(energy < 80)
+		energy += clamp(rand(30, 40), 30, 100 - energy)
 		to_chat(usr, span_purple("Your Nyamagotchi rests and regains energy. Its energy is now [energy]."))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
 	else
-		to_chat(usr, span_purple("Your Nyamagotchi is fully rested."))
+		usr.balloon_alert(usr, "not tired!")
 
 // Function for when the nyamagotchi dies
 /obj/item/nyamagotchi/proc/die()
@@ -246,7 +240,7 @@
 		to_chat(loc, span_warning("[src] shows an x3 on its display. It's dead. You're a terrible person."))
 	//src.icon_state = "dead"
 	be_known(sfx = 'sound/misc/sadtrombone.ogg')
-	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE)
+	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE + 2)
 	update_available_icons()
 
 /obj/item/nyamagotchi/proc/check_status()
