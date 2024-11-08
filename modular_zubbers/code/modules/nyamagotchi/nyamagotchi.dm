@@ -127,7 +127,7 @@
 		if(NO_ANIMAL)
 			return span_notice("The Nyamagotchi is ready to be started!")
 		if(ANIMAL_ALIVE)
-			return span_notice("The Nyamagotchi is alive, its reached age [age]! Use the 'Check Status button to see its stats!")
+			return span_notice("The Nyamagotchi is alive, it has reached age [age]! Use the <b>'Check Status'</b> button to see its stats!")
 		if(ANIMAL_DEAD)
 			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
 
