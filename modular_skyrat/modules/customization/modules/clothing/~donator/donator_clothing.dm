@@ -1656,7 +1656,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	desc = "These gloves are a near perfect replica those that worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
 		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
 		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government
+		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
