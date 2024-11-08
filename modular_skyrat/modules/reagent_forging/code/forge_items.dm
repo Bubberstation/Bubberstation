@@ -38,12 +38,6 @@
 		/obj/structure/reagent_crafting_bench
 	)
 
-/obj/item/forging/hammer/afterattack(atom/target, mob/user, click_parameters)
-	. = ..()
-	if(!is_type_in_list(target, fast_attacks))
-		return
-	user.changeNext_move(CLICK_CD_RAPID)
-
 /obj/item/forging/hammer/primitive
 	name = "primitive forging hammer"
 
