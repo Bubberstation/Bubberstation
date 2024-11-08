@@ -10,7 +10,7 @@
 		var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 		if (prob(90))
 			log_combat(user, src, "attacked")
-			playsound(loc, 'sound/weapons/slash.ogg', 25, TRUE, -1)
+			playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
 			visible_message(span_danger("[user] slashes at [src]!"), \
 							span_userdanger("[user] slashes at you!"), null, null, user)
 			to_chat(user, span_danger("You slash at [src]!"))
@@ -19,7 +19,7 @@
 			log_combat(user, src, "attacked")
 			adjustBruteLoss(damage)
 		else
-			playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE, -1)
+			playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
 			visible_message(span_danger("[user]'s swipe misses [src]!"), \
 							span_danger("You avoid [user]'s swipe!"), null, null, user)
 			to_chat(user, span_warning("Your swipe misses [src]!"))
@@ -76,7 +76,7 @@
 		return TRUE
 	else
 		// SKYRAT EDIT ADDITION START
-		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))
+		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 			visible_message(span_warning("[user] tries to pet [src], but it moves out of the way."))
 			return TRUE
 		// SKYRAT EDIT ADDITION END

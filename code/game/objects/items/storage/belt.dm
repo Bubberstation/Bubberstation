@@ -76,6 +76,7 @@
 		/obj/item/wrench,
 		/obj/item/spess_knife,
 		/obj/item/melee/sickly_blade/lock,
+		/obj/item/reagent_containers/cup/soda_cans,
 	))
 
 /obj/item/storage/belt/utility/chief
@@ -397,8 +398,8 @@
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/stock_parts/power_store/cell/microfusion, //SKYRAT EDIT ADDITION
-		))
-	atom_storage.open_sound = 'sound/items/holster.ogg'
+	))
+	atom_storage.open_sound = 'sound/items/handling/holster_open.ogg'
 	atom_storage.open_sound_vary = TRUE
 	atom_storage.rustle_sound = FALSE
 
@@ -539,6 +540,7 @@
 	. = ..()
 	atom_storage.max_slots = 1
 	atom_storage.set_holdable(/obj/item/clothing/mask/luchador)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 /obj/item/storage/belt/military
 	name = "chest rig"

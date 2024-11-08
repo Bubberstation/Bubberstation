@@ -161,7 +161,7 @@
 	if(num_loaded)
 		if(!silent)
 			to_chat(user, span_notice("You load [num_loaded > 1 ? "[num_loaded] [casing_phrasing]s" : "a [casing_phrasing]"] into \the [src]!"))
-			playsound(src, 'sound/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
+			playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
 		update_appearance()
 
 	return num_loaded
@@ -174,7 +174,7 @@
 	A.forceMove(drop_location())
 	if(!user.is_holding(src) || !user.put_in_hands(A)) //incase they're using TK
 		A.bounce_away(FALSE, NONE)
-	playsound(src, 'sound/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
+	playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
 	to_chat(user, span_notice("You remove a [casing_phrasing] from [src]!"))
 	update_appearance()
 
@@ -194,6 +194,7 @@
 	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] [casing_phrasing]\s left!"
 
 /obj/item/ammo_box/update_icon_state()
+	. = ..()
 	var/shells_left = LAZYLEN(stored_ammo)
 	switch(multiple_sprites)
 		if(AMMO_BOX_PER_BULLET)
@@ -201,20 +202,19 @@
 		if(AMMO_BOX_FULL_EMPTY)
 			icon_state = "[multiple_sprite_use_base ? base_icon_state : initial(icon_state)]-[shells_left ? "full" : "empty"]"
 
+/obj/item/ammo_box/update_overlays()
+	. = ..()
 	if(ammo_band_color && ammo_band_icon)
-		update_ammo_band()
-
-	return ..()
+		. += update_ammo_band()
 
 /obj/item/ammo_box/proc/update_ammo_band()
-	overlays.Cut()
 	var/band_icon = ammo_band_icon
 	if(!(length(stored_ammo)) && ammo_band_icon_empty)
 		band_icon = ammo_band_icon_empty
 	var/image/ammo_band_image = image(icon, src, band_icon)
 	ammo_band_image.color = ammo_band_color
 	ammo_band_image.appearance_flags = RESET_COLOR|KEEP_APART
-	overlays += ammo_band_image
+	return ammo_band_image
 
 ///Count of number of bullets in the magazine
 /obj/item/ammo_box/magazine/proc/ammo_count(countempties = TRUE)

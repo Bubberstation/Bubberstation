@@ -118,7 +118,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
-		playsound(target.loc, pick('sound/effects/liquid_pour1.ogg', 'sound/effects/liquid_pour2.ogg', 'sound/effects/liquid_pour3.ogg'), 50)
+		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
 		target.update_appearance()
@@ -134,6 +134,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
+		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 		target.update_appearance()
@@ -143,11 +144,11 @@
 
 /obj/item/reagent_containers/cup/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
 	if(user.combat_mode)
-		return ITEM_INTERACT_SKIP_TO_ATTACK
+		return NONE
 	if(!check_allowed_items(target, target_self = TRUE))
 		return NONE
 	if(!spillable)
-		return ITEM_INTERACT_BLOCKING
+		return NONE
 
 	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
@@ -159,10 +160,13 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
+		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
+		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
+		target.update_appearance()
+		return ITEM_INTERACT_SUCCESS
 
-	target.update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
 	var/hotness = attacking_item.get_temperature()
@@ -220,7 +224,7 @@
 
 /obj/item/reagent_containers/cup/beaker
 	name = "beaker"
-	desc = "A beaker. It can hold up to 60 units." //SKYRAT EDIT: Used to say can hold up to 50 units.
+	desc = "A beaker. It can hold up to 50 units."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
 	inhand_icon_state = "beaker"
@@ -231,8 +235,7 @@
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 	pickup_sound = 'sound/items/handling/beaker_pickup.ogg'
 	drop_sound = 'sound/items/handling/beaker_place.ogg'
-	volume = 60 //SKYRAT EDIT: Addition
-	possible_transfer_amounts = list(5,10,15,20,30,60) //SKYRAT EDIT: Addition
+	sound_vary = TRUE
 
 /obj/item/reagent_containers/cup/beaker/Initialize(mapload)
 	. = ..()
@@ -249,24 +252,22 @@
 
 /obj/item/reagent_containers/cup/beaker/large
 	name = "large beaker"
-	desc = "A large beaker. Can hold up to 120 units." //SKYRAT EDIT: Used to say Can hold up to 100 units.
+	desc = "A large beaker. Can hold up to 100 units."
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT*1.25)
-	volume = 120 //SKYRAT EDIT: Original value (100)
+	volume = 100
 	amount_per_transfer_from_this = 10
-	//possible_transfer_amounts = list(5,10,15,20,25,30,50,100) //SKYRAT EDIT: Original Values
-	possible_transfer_amounts = list(5,10,15,20,30,40,60,120) //SKYRAT EDIT: New Values
+	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/plastic
 	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 150 units." //SKYRAT EDIT: Used to say Can hold up to 120 units
+	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5)
-	volume = 150 //SKYRAT EDIT: Original Value (120)
+	volume = 120
 	amount_per_transfer_from_this = 10
-	//possible_transfer_amounts = list(5,10,15,20,25,30,60,120) //SKYRAT EDIT: Original values
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,75,150) //SKYRAT EDIT: New Values
+	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 	fill_icon_thresholds = list(0, 1, 10, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/meta
@@ -348,6 +349,9 @@
 
 /obj/item/reagent_containers/cup/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
+
+/obj/item/reagent_containers/cup/beaker/synthflesh/named
+	name = "synthflesh beaker"
 
 /obj/item/reagent_containers/cup/bucket
 	name = "bucket"

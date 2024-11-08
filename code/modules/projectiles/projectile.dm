@@ -208,11 +208,15 @@
 	var/wound_falloff_tile
 	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
 	var/embed_falloff_tile
-	var/static/list/projectile_connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_entered))
 	// SKYRAT EDIT ADDITION START
 	/// If this should be able to hit the target even on direct firing when `ignored_factions` applies
 	var/ignore_direct_target = FALSE
 	// SKYRAT EDIT ADDITION END
+	///How much accuracy is lost for each tile travelled
+	var/accuracy_falloff = 7
+	///How much accuracy before falloff starts to matter. Formula is range - falloff * tiles travelled
+	var/accurate_range = 100
+	var/static/list/projectile_connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_entered))
 	/// If true directly targeted turfs can be hit
 	var/can_hit_turfs = FALSE
 
@@ -222,6 +226,8 @@
 	if(get_embed())
 		AddElement(/datum/element/embed)
 	AddElement(/datum/element/connect_loc, projectile_connections)
+
+	add_traits(list(TRAIT_FREE_HYPERSPACE_MOVEMENT, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT), INNATE_TRAIT)
 
 /obj/projectile/proc/Range()
 	range--
@@ -308,12 +314,11 @@
 	playsound(src, get_sfx_skyrat(impact_sound), vol_by_damage(), TRUE, -1)
 	// SKYRAT EDIT ADDITION END
 
-	if(isturf(target_turf) && hitsound_wall)
+	if(isturf(target) && hitsound_wall)
 		var/volume = clamp(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
 		playsound(loc, hitsound_wall, volume, TRUE, -1)
-
 
 	if(damage > 0 && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_turf) && prob(75))
 		var/turf/closed/wall/target_wall = target_turf
@@ -368,16 +373,15 @@
 		if(hit_limb_zone)
 			organ_hit_text = " in \the [living_target.parse_zone_with_bodypart(hit_limb_zone)]"
 		if(suppressed == SUPPRESSED_VERY)
-			//playsound(loc, hitsound, 5, TRUE, -1) SKYRAT EDIT REMOVAL - IMPACT SOUNDS
 		else if(suppressed)
-			//playsound(loc, hitsound, 5, TRUE, -1) SKYRAT EDIT REMOVAL - IMPACT SOUNDS
+			playsound(loc, hitsound, 5, TRUE, -1)
+		else if(suppressed)
 			to_chat(living_target, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
-			/* SKYRAT EDIT REMOVAL - IMPACT SOUNDS
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(src, hitsound, volume, TRUE, -1)
-			SKYRAT EDIT REMOVAL END */
+
 			living_target.visible_message(span_danger("[living_target] is hit by \a [src][organ_hit_text]!"), \
 					span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 			if(living_target.is_blind())
@@ -475,9 +479,8 @@
 				store_hitscan_collision(point_cache)
 			return TRUE
 
-	if(!HAS_TRAIT(src, TRAIT_ALWAYS_HIT_ZONE))
-		var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
-		def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
+	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
+	def_zone = ran_zone(def_zone, clamp(accurate_range - (accuracy_falloff * distance), 5, 100)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	return process_hit(T, select_target(T, A, A), A) // SELECT TARGET FIRST!
 
@@ -594,6 +597,9 @@
 	if((target.pass_flags_self & pass_flags) && !direct_target)
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_UNHITTABLE_BY_PROJECTILES))
+		if(!HAS_TRAIT(target, TRAIT_BLOCKING_PROJECTILES) && isliving(target))
+			var/mob/living/living_target = target
+			living_target.block_projectile_effects()
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
@@ -1037,14 +1043,14 @@
  */
 /proc/calculate_projectile_angle_and_pixel_offsets(atom/source, atom/target, modifiers)
 	var/angle = 0
-	var/p_x = LAZYACCESS(modifiers, ICON_X) ? text2num(LAZYACCESS(modifiers, ICON_X)) : world.icon_size / 2 // ICON_(X|Y) are measured from the bottom left corner of the icon.
-	var/p_y = LAZYACCESS(modifiers, ICON_Y) ? text2num(LAZYACCESS(modifiers, ICON_Y)) : world.icon_size / 2 // This centers the target if modifiers aren't passed.
+	var/p_x = LAZYACCESS(modifiers, ICON_X) ? text2num(LAZYACCESS(modifiers, ICON_X)) : ICON_SIZE_X / 2 // ICON_(X|Y) are measured from the bottom left corner of the icon.
+	var/p_y = LAZYACCESS(modifiers, ICON_Y) ? text2num(LAZYACCESS(modifiers, ICON_Y)) : ICON_SIZE_Y / 2 // This centers the target if modifiers aren't passed.
 
 	if(target)
 		var/turf/source_loc = get_turf(source)
 		var/turf/target_loc = get_turf(target)
-		var/dx = ((target_loc.x - source_loc.x) * world.icon_size) + (target.pixel_x - source.pixel_x) + (p_x - (world.icon_size / 2))
-		var/dy = ((target_loc.y - source_loc.y) * world.icon_size) + (target.pixel_y - source.pixel_y) + (p_y - (world.icon_size / 2))
+		var/dx = ((target_loc.x - source_loc.x) * ICON_SIZE_X) + (target.pixel_x - source.pixel_x) + (p_x - (ICON_SIZE_X / 2))
+		var/dy = ((target_loc.y - source_loc.y) * ICON_SIZE_Y) + (target.pixel_y - source.pixel_y) + (p_y - (ICON_SIZE_Y / 2))
 
 		angle = ATAN2(dy, dx)
 		return list(angle, p_x, p_y)
@@ -1063,8 +1069,8 @@
 	//Split Y+Pixel_Y up into list(Y, Pixel_Y)
 	var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
 
-	var/tx = (text2num(screen_loc_X[1]) - 1) * world.icon_size + text2num(screen_loc_X[2])
-	var/ty = (text2num(screen_loc_Y[1]) - 1) * world.icon_size + text2num(screen_loc_Y[2])
+	var/tx = (text2num(screen_loc_X[1]) - 1) * ICON_SIZE_X + text2num(screen_loc_X[2])
+	var/ty = (text2num(screen_loc_Y[1]) - 1) * ICON_SIZE_Y + text2num(screen_loc_Y[2])
 
 	//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
 	var/list/screenview = view_to_pixels(user.client.view)

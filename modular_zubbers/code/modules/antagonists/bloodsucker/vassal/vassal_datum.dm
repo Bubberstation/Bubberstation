@@ -76,7 +76,7 @@
 /// This is called when the antagonist is successfully mindshielded.
 /datum/antagonist/ghoul/on_mindshield(mob/implanter, mob/living/mob_override)
 	owner.remove_antag_datum(/datum/antagonist/ghoul)
-	owner.current.log_message("has been deconverted from Ghoulization by [implanter]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been deconverted from Ghouling by [implanter]!", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
 
 /datum/antagonist/ghoul/proc/on_examined(datum/source, mob/examiner, examine_text)
@@ -98,7 +98,7 @@
 		master.special_ghouls[special_type] |= src
 	master.ghouls += src
 	owner.enslave_mind_to_creator(master.owner.current)
-	owner.current.log_message("has been ghoulized by [master.owner.current]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been ghouled by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
 	BuyPower(/datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
@@ -149,11 +149,11 @@
 	to_chat(owner, span_userdanger("You are now the mortal servant of [master.owner.current], a Bloodsucker!"))
 	to_chat(owner, span_boldannounce("The power of [master.owner.current.p_their()] immortal blood compels you to obey [master.owner.current.p_them()] in all things, even offering your own life to prolong theirs.\n\
 		You are not required to obey any other Bloodsucker, for only [master.owner.current] is your master. The laws of Nanotrasen do not apply to you now; only your vampiric master's word must be obeyed."))
-	owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 	antag_memory += "You, becoming the mortal servant of <b>[master.owner.current]</b>, a bloodsucking vampire!<br>"
 	/// Message told to your Master.
 	to_chat(master.owner, span_userdanger("[owner.current] has become addicted to your immortal blood. [capitalize(owner.current.p_they(TRUE))] [owner.current.p_are()] now your mortal servant!"))
-	master.owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
+	master.owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/ghoul/farewell()
 	if(silent)
@@ -163,7 +163,7 @@
 		span_deconversion_message("[owner.current]'s eyes dart feverishly from side to side, and then stop. [owner.current.p_they(TRUE)] seem[owner.current.p_s()] calm, \
 			like [owner.current.p_they()] [owner.current.p_have()] regained some lost part of [owner.current.p_them()]self."), \
 		span_deconversion_message("With a snap, you are no longer enslaved to [master.owner]! You breathe in heavily, having regained your free will."))
-	owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 	/// Message told to your (former) Master.
 	if(master && master.owner)
 		to_chat(master.owner, span_cult_bold("You feel the bond with your ghoul [owner.current] has somehow been broken!"))

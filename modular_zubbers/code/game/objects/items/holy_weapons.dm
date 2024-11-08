@@ -137,7 +137,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 	. = ..()
 	if(!user.can_perform_action(src, SILENT_ADJACENCY) || hacked)
 		return
-	if(user.incapacitated() || !istype(user))
+	if(user.incapacitated || !istype(user))
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
 	if(alert("Are you sure you want to recolor your blade?", "Confirm Repaint", "Yes", "No") == "Yes")

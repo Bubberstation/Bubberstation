@@ -18,7 +18,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 1.15,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 2.075
 	)
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("smashes", "crushes", "cleaves", "chops", "pulps")
 	attack_verb_simple = list("smash", "crush", "cleave", "chop", "pulp")
 	sharpness = SHARP_EDGED
@@ -39,7 +39,7 @@
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 110)
 	AddComponent(/datum/component/kinetic_crusher, detonation_damage, backstab_bonus, charge_time, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(attack_check)))
 	AddComponent(/datum/component/two_handed, force_wielded = 20, force_unwielded = 0, unwield_callback = CALLBACK(src, PROC_REF(on_unwield)))
-	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+	RegisterSignal(src, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(do_saboteur))
 
 /obj/item/kinetic_crusher/proc/attack_check(mob/user, cancel_attack)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
@@ -53,7 +53,7 @@
 
 /obj/item/kinetic_crusher/ui_action_click(mob/user, actiontype)
 	set_light_on(!light_on)
-	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 /////// HACK TO WORK AROUND TWOHANDED NOT RESPECTING FORCE_UNWIELDED=0 ///////////
 //////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/kinetic_crusher/proc/on_saboteur(datum/source, disrupt_duration)
+/obj/item/kinetic_crusher/proc/do_saboteur(datum/source, disrupt_duration)
 	set_light_on(FALSE)
-	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(src, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	return COMSIG_SABOTEUR_SUCCESS
 
 /obj/item/kinetic_crusher/update_icon_state()

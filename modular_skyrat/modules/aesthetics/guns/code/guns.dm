@@ -205,11 +205,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "sniper"
 	worn_icon_state = null
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_sound = 'sound/items/weapons/gun/sniper/shot.ogg'
 	fire_sound_volume = 90
-	load_sound = 'sound/weapons/gun/sniper/mag_insert.ogg'
-	rack_sound = 'sound/weapons/gun/sniper/rack.ogg'
-	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
+	load_sound = 'sound/items/weapons/gun/sniper/mag_insert.ogg'
+	rack_sound = 'sound/items/weapons/gun/sniper/rack.ogg'
+	suppressed_sound = 'sound/items/weapons/gun/general/heavy_shot_suppressed.ogg'
 	recoil = 2
 	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/sniper_rounds
@@ -279,8 +279,8 @@
 	suppressed_sound = 'modular_skyrat/modules/aesthetics/guns/sound/sniperrifle_s.ogg'
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
-	load_sound = 'sound/weapons/gun/sniper/mag_insert.ogg'
-	rack_sound = 'sound/weapons/gun/sniper/rack.ogg'
+	load_sound = 'sound/items/weapons/gun/sniper/mag_insert.ogg'
+	rack_sound = 'sound/items/weapons/gun/sniper/rack.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	can_suppress = TRUE
 	can_unsuppress = TRUE
