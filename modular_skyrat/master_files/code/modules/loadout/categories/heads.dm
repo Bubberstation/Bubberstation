@@ -661,3 +661,8 @@
 /datum/loadout_item/head/cowboyhat_legacy
 	name = "Cowboy Hat (Legacy)"
 	item_path = /obj/item/clothing/head/costume/cowboyhat_old
+
+/datum/loadout_item/head/ccrep
+	name = "CentCom Representative's Cap"
+	item_path = /obj/item/clothing/head/hats/consultant_cap
+	restricted_roles = list(JOB_NT_REP)

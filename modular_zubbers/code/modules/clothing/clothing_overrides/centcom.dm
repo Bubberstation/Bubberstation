@@ -17,6 +17,20 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
 
+/obj/item/clothing/under/rank/centcom/consultant
+	name = "\improper CentCom representative's suit"
+	desc = "An elegant uniform worn by CentCom's station officials, comfortable trousers and silver marking denoting the rank of \"Representative\"."
+	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
+	icon_state = "rep"
+
+/obj/item/clothing/under/rank/centcom/consultant/skirt
+	name = "\improper CentCom representative's suitskirt"
+	desc = "An elegant uniform worn by CentCom's station officials, comfortable skirt and silver marking denoting the rank of \"Representative\"."
+	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
+	icon_state = "rep_skirt"
+
 /obj/item/clothing/under/rank/centcom/official
 	name = "\improper CentCom official's suit"
 	desc = "A formal suit worn by CentCom's paper pushers, a generic uniform usually used by Inspectors. The silver belt buckle denotes their rank with ease."
@@ -94,6 +108,14 @@
 	desc = "A luxurious peaked cap, worn by only CentCom's finest commanders. Inside the lining of the cap, lies two faint initials."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+
+/obj/item/clothing/head/hats/consultant_cap
+	name = "\improper CentCom representative's cap"
+	desc = "A fancy peaked cap, worn by only CentCom's station officials. Inside the lining of the cap, lies two faint initials."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "rep_cap"
+	armor_type = /datum/armor/head_nanotrasen_consultant
 
 /obj/item/clothing/head/hats/centhat
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'

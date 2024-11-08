@@ -966,3 +966,13 @@
 	name = "CentCom Officer's Turtleneck"
 	item_path = /obj/item/clothing/under/rank/centcom/officer
 	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/ccrep
+	name = "CentCom Representative's Suit"
+	item_path = /obj/item/clothing/under/rank/centcom/consultant
+	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/uniform/ccrepskirt
+	name = "CentCom Representative's Suitskirt"
+	item_path = /obj/item/clothing/under/rank/centcom/consultant/skirt
+	restricted_roles = list(JOB_NT_REP)
