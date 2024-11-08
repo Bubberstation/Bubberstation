@@ -321,12 +321,6 @@
 	icon_state = "ebisu"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rice_beer = 40)
 
-/obj/item/reagent_containers/cup/soda_cans/blood_tea
-	name = "Hemoglobin Iced Tea"
-	desc = "Kinda like that rich golfer, but it's actually blood!"
-	icon_state = "blood_tea"
-	list_reagents = list(/datum/reagent/blood = 25, /datum/reagent/consumable/ethanol/bloodshot = 5)
-
 /obj/item/reagent_containers/cup/soda_cans/beer/rice/Initialize(mapload)
 	. = ..()
 	var/brand = pick("Ebisu Super Dry", "Shimauma Ichiban", "Moonlabor Malt's")
