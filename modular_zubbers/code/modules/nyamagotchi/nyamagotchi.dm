@@ -67,17 +67,21 @@
 		"Yum, that was delicious!",
 		"What a PURRFECT meal, nya!",
 	)
-	var/static/list/hungry_messages = list(
+	var/static/list/hunger_warning = list(
 		"Wowzers meowzers, I'm hungry, nya!",
 		"Excuse me! I'm feeling a bit peckish, nya!",
 		"I could eat the world right now, nya!",
 		"Soooo hongry!",
-		"HELLO! Food, pwease?",
-		"HEY!!! I'm feeling a bit hungry, nya!",
-		"HONNNNGRYYY!!!",
+		"I'm feeling a bit hungry, nya!",
 		"I needs the food, mrow!",
 	)
-	var/static/list/bored_messages = list(
+	var/static/list/hunger_critical = list(
+		"HELLO! Food, pwease?...",
+		"HEY!!! I'm starving...",
+		"HONNNNGRYYY!!!",
+		"so so hungry...",
+	)
+	var/static/list/happiness_warning = list(
 		"Some fun would be purrfect, nya...",
 		"I'm feeling a bit down, nya...",
 		"Playtime! Now!",
@@ -90,15 +94,19 @@
 		"Play with meeee! PLEASE.",
 		"My fun levels are low, nya...",
 	)
-	var/static/list/tired_messages = list(
-		"SO, SO EEPY, NYA...",
+	var/static/list/energy_warning = list(
 		"I'm feeling a bit sleepy, nya...",
-		"I'm gonna pass out and DIE!",
-		"Sleempy...", "I be needin' a naps, nya!",
+		"Sleempy...",
+		"I be needin' a naps, nya!",
 		"Need to do the big sleeps, please!",
 		"I'm feeling a bit exhausted, nya...",
 		"I could go for a nap...",
-		"EEPY. EEPY. EEPY...",
+	)
+	var/static/list/energy_critical = list(
+		"SO, SO EEPY, NYA...",
+		"Please, I need to rest...",
+		"I'm gonna pass out and DIE!",
+		"EEPY. EEPY. eepy...",
 	)
 	COOLDOWN_DECLARE(mute_pet)
 
@@ -120,7 +128,7 @@
 		if(NO_ANIMAL)
 			return span_notice("The Nyamagotchi is ready to be started!")
 		if(ANIMAL_ALIVE)
-			return span_notice("The Nyamagotchi is alive! Use the 'Check Status button to see its stats!")
+			return span_notice("The Nyamagotchi is alive, its reached age [age]! Use the 'Check Status button to see its stats!")
 		if(ANIMAL_DEAD)
 			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
 
@@ -172,8 +180,7 @@
 	hunger = rand(30, 60)
 	happiness = rand(80, 100)
 	energy = rand(60, 90)
-	say(message="I'm alive, nya!", message_range=2)
-	playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
+	be_known(sfx = 'sound/misc/bloop.ogg', speech = "I'm alive, nya!")
 	addtimer(CALLBACK(src, PROC_REF(be_known), MEOW_NORMAL), 2 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
@@ -192,27 +199,43 @@
 		die()
 		return
 
-	// make the nyamagotchi say things if attention is needed
-	if(hunger >= 85 || happiness <= 10 || energy <= 20)
-		var/tama_alerts = list()
-		if(hunger >= 85)
-			tama_alerts += "hungry"
-		if(happiness <= 10)
-			tama_alerts += "sad"
-		if(energy <= 20)
-			tama_alerts += "tired"
-
-		var/alert_proc = pick(tama_alerts) // pick a random alert to say
-		if(alert_proc)
-			switch(alert_proc)
-				if("hungry")
-					be_known(sfx = MEOW_CRITICAL, speech = pick(hungry_messages))
-				if("sad")
-					be_known(sfx = MEOW_CRITICAL, speech = pick(bored_messages))
-				if("tired")
-					be_known(sfx = MEOW_CRITICAL, speech = pick(tired_messages))
-
+	// schedule our next check
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
+
+	// make the nyamagotchi say things if attention is needed, otherwise just a small chance of a reminder meow
+	var/list/tama_alerts = list()
+	var/selected_alert
+	if(hunger > 93)
+		tama_alerts += "vhungry"
+	if(energy < 7)
+		tama_alerts += "vtired"
+	if(tama_alerts.len)
+		selected_alert = pick(tama_alerts)
+		switch(selected_alert)
+			if("vhungry")
+				be_known(sfx = MEOW_CRITICAL, speech = pick(hunger_critical))
+				return
+			if("vtired")
+				be_known(sfx = MEOW_CRITICAL, speech = pick(energy_critical))
+				return
+
+	if(hunger > 84)
+		tama_alerts += "hungry"
+	if(happiness < 11)
+		tama_alerts += "sad"
+	if(energy < 16)
+		tama_alerts += "tired"
+	if(tama_alerts.len)
+		selected_alert = pick(tama_alerts)
+		switch(selected_alert)
+			if("hungry")
+				be_known(sfx = MEOW_SAD, speech = pick(hunger_warning))
+			if("sad")
+				be_known(sfx = MEOW_SAD, speech = pick(happiness_warning))
+			if("tired")
+				be_known(sfx = MEOW_SAD, speech = pick(energy_warning))
+	else if(prob(15))
+		be_known(sfx = MEOW_NORMAL)
 
 /obj/item/nyamagotchi/proc/be_known(sfx, speech, visible)
 	if(!COOLDOWN_FINISHED(src, mute_pet))
@@ -225,13 +248,13 @@
 		say(speech, message_range = 2)
 
 	if(!isnull(visible))
-		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE + 1)
+		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE + 2)
 
 // Interactions
 /obj/item/nyamagotchi/proc/feed()
 	if(hunger > 20)
 		hunger -= min(rand(30, 40), hunger)
-		to_chat(usr, span_purple("You fed your Nyamagotchi! Its hunger is now at [hunger]."))
+		to_chat(usr, span_purple("You fed [src]! Its hunger is now at [hunger]."))
 		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
 	else
 		usr.balloon_alert(usr, "not hungry!")
@@ -239,7 +262,7 @@
 /obj/item/nyamagotchi/proc/play()
 	if(happiness < 80)
 		happiness += min(rand(30, 40), 100 - happiness)
-		to_chat(usr, span_purple("You play with your Nyamsagotchi! Its happiness is now [happiness]."))
+		to_chat(usr, span_purple("You play with [src]! Its happiness is now [happiness]."))
 		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
 	else
 		usr.balloon_alert(usr, "not bored!")
@@ -247,7 +270,7 @@
 /obj/item/nyamagotchi/proc/rest()
 	if(energy < 80)
 		energy += min(rand(30, 40), 100 - energy)
-		to_chat(usr, span_purple("Your Nyamagotchi rests and regains energy. Its energy is now [energy]."))
+		to_chat(usr, span_purple("Your [src] rests and regains energy. Its energy is now [energy]."))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
 	else
 		usr.balloon_alert(usr, "not tired!")
@@ -259,12 +282,11 @@
 	if(ishuman(loc))
 		to_chat(loc, span_warning("[src] shows an x3 on its display. It's dead. You're a terrible person."))
 	//src.icon_state = "dead"
-	be_known(sfx = 'sound/misc/sadtrombone.ogg')
-	balloon_alert_to_viewers("nyamagotchi died!", vision_distance = COMBAT_MESSAGE_RANGE + 2)
+	be_known(sfx = 'sound/misc/sadtrombone.ogg', visible = "nyamagotchi died!")
 	update_available_icons()
 
 /obj/item/nyamagotchi/proc/check_status()
-	balloon_alert(usr, "Hunger: [hunger], Happiness: [happiness], Energy: [energy], Age: [age].")
+	balloon_alert(usr, "hunger: [hunger] happiness: [happiness] energy: [energy]")
 
 #undef NO_ANIMAL
 #undef ANIMAL_ALIVE
