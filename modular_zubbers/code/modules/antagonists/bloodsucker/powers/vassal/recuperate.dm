@@ -1,4 +1,4 @@
-/// Used by Vassals
+/// Used by Ghouls
 /datum/action/cooldown/bloodsucker/recuperate
 	name = "Sanguine Recuperation"
 	desc = "Slowly heals you overtime using your master's blood, in exchange for some of your own blood and effort."
@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(user.stat >= DEAD || user.incapacitated())
+	if(user.stat >= DEAD || user.incapacitated)
 		user.balloon_alert(user, "you are incapacitated...")
 		return FALSE
 	return TRUE
@@ -39,12 +39,12 @@
 	if(!active)
 		return
 	var/mob/living/carbon/user = owner
-	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(user)
-	if(!vassaldatum || QDELETED(vassaldatum.master))
+	var/datum/antagonist/ghoul/ghouldatum = IS_GHOUL(user)
+	if(!ghouldatum || QDELETED(ghouldatum.master))
 		to_chat(owner, span_warning("No master to draw blood from!"))
 		DeactivatePower()
 		return
-	vassaldatum.master.AdjustBloodVolume(-1)
+	ghouldatum.master.AdjustBloodVolume(-1)
 	user.set_timed_status_effect(5 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	user.adjustStaminaLoss(bloodcost * 1.1)
 	user.adjustBruteLoss(-2.5, updating_health = FALSE)
@@ -62,7 +62,7 @@
 /datum/action/cooldown/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
 	if(user.stat >= DEAD)
 		return FALSE
-	if(user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
+	if(INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS))
 		owner?.balloon_alert(owner, "too exhausted...")
 		return FALSE
 	return TRUE

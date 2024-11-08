@@ -10,7 +10,7 @@
  */
 /datum/action/cooldown/bloodsucker/gohome
 	name = "Vanishing Act"
-	desc = "As dawn aproaches, disperse into mist and return directly to your Lair.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
+	desc = "As dawn aproaches, disperse into mist and return directly to your Haven.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
 	button_icon_state = "power_gohome"
 	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
@@ -43,7 +43,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	/// Have No Lair (NOTE: You only got this power if you had a lair, so this means it's destroyed)
+	/// Have No Haven (NOTE: You only got this power if you had a haven, so this means it's destroyed)
 	if(!istype(bloodsuckerdatum_power) || !bloodsuckerdatum_power.coffin)
 		owner.balloon_alert(owner, "coffin was destroyed!")
 		return FALSE
@@ -105,7 +105,7 @@
 				continue
 			if(watchers.is_blind())
 				continue
-			if(!IS_BLOODSUCKER(watchers) && !IS_VASSAL(watchers))
+			if(!IS_BLOODSUCKER(watchers) && !IS_GHOUL(watchers))
 				drop_item = TRUE
 				break
 	// Drop all necessary items (handcuffs, legcuffs, items if seen)
@@ -114,7 +114,7 @@
 		for(var/obj/item/literally_everything in owner)
 			owner.dropItemToGround(literally_everything, TRUE)
 
-	playsound(current_turf, 'sound/magic/summon_karp.ogg', 60, 1)
+	playsound(current_turf, 'sound/effects/magic/summon_karp.ogg', 60, 1)
 
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.set_up(3, 0, current_turf)

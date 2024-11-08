@@ -15,7 +15,8 @@
 	storyteller_type = STORYTELLER_TYPE_CALM
 
 /datum/storyteller_data/tracks/chill
-	threshold_mundane = 900
+	threshold_mundane = 1800
 	threshold_moderate = 2700
-	threshold_major = 10000
-	threshold_crewset = 2400
+	threshold_major = 16000
+	threshold_crewset = 3600
+	threshold_ghostset = 9000

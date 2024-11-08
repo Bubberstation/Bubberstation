@@ -13,7 +13,7 @@
 	var/description = "The Caitiff is as basic as you can get with Bloodsuckers. \n\
 		Entirely without the help of a formal Clan, they are blissfully unaware of who they really are. \n\
 		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
-		The Favorite Vassal will gain the Brawn ability, to help in combat."
+		The Favorite Ghoul will gain the Brawn ability, to help in combat."
 	///The clan objective that is required to greentext.
 	var/datum/objective/bloodsucker/clan_objective
 	///The icon of the radial icon to join this clan.
@@ -40,11 +40,11 @@
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(handle_clan_life))
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_GHOUL, PROC_REF(on_interact_with_ghoul))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_ghoul_gain))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_ghoul_loss))
 
-	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_GHOUL, PROC_REF(on_ghoul_made))
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
 
@@ -57,9 +57,9 @@
 	UnregisterSignal(bloodsuckerdatum, list(
 		COMSIG_BLOODSUCKER_ON_LIFETICK,
 		COMSIG_BLOODSUCKER_RANK_UP,
-		COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL,
+		COMSIG_BLOODSUCKER_INTERACT_WITH_GHOUL,
 		COMSIG_BLOODSUCKER_MAKE_FAVORITE,
-		COMSIG_BLOODSUCKER_MADE_VASSAL,
+		COMSIG_BLOODSUCKER_MADE_GHOUL,
 		COMSIG_BLOODSUCKER_EXIT_TORPOR,
 		COMSIG_BLOODSUCKER_FINAL_DEATH,
 		COMSIG_BLOODSUCKER_ENTERS_FRENZY,
@@ -125,13 +125,13 @@
 	SIGNAL_HANDLER
 
 /**
- * Called when a Bloodsucker successfully Vassalizes someone.
+ * Called when a Bloodsucker successfully Ghoulizes someone.
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/on_vassal_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
+/datum/bloodsucker_clan/proc/on_ghoul_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
 	SIGNAL_HANDLER
-	user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
+	user.playsound_local(null, 'sound/effects/explosion/explosion_distant.ogg', 40, TRUE)
 	target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 	target.set_timed_status_effect(15 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "laugh")
@@ -140,6 +140,7 @@
  * Called when a Bloodsucker successfully starts spending their Rank
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
+ * target - The Ghoul (if any) we are upgrading.
  * cost_rank - TRUE/FALSE on whether this will cost us a rank when we go through with it.
  * blood_cost - A number saying how much it costs to rank up.
  */
@@ -233,14 +234,15 @@
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
-	// unlock vassalizing if we have a vassal slot
-	if(bloodsuckerdatum.max_vassals() >= 1 && !(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_recipes))
-		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
+	// unlock ghoulizing if we have a ghoul slot
+	if(bloodsuckerdatum.max_ghouls() >= 1 && !(/datum/crafting_recipe/ghoulrack in bloodsuckerdatum.owner?.learned_recipes))
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/ghoulrack)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Ghouling unlocked!")
 	return TRUE
+
 
 /datum/bloodsucker_clan/proc/list_available_powers(already_known = bloodsuckerdatum.powers, powers_list = bloodsuckerdatum.all_bloodsucker_powers)
 	var/list/options = list()
@@ -255,77 +257,82 @@
 /datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
 	bloodsuckerdatum.LevelUpPowers()
 /**
- * Called when we are trying to turn someone into a Favorite Vassal
+ * Called when we are trying to turn someone into a Favorite Ghoul
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker performing this.
- * vassaldatum - the antagonist datum of the Vassal being offered up.
+ * ghouldatum - the antagonist datum of the Ghoul being offered up.
  */
-/datum/bloodsucker_clan/proc/on_interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/on_interact_with_ghoul(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, PROC_REF(interact_with_vassal), bloodsuckerdatum, vassaldatum)
+	INVOKE_ASYNC(src, PROC_REF(interact_with_ghoul), bloodsuckerdatum, ghouldatum)
 
-/datum/bloodsucker_clan/proc/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/interact_with_ghoul(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	var/mob/living/carbon/human/master = bloodsuckerdatum.owner.current
-	var/mob/living/carbon/human/servant = vassaldatum.owner.current
-	if(vassaldatum.special_type || IS_BLOODSUCKER(servant))
-		to_chat(master, span_notice("This Vassal was already assigned a special position."))
+	var/mob/living/carbon/human/servant = ghouldatum.owner.current
+	if(ghouldatum.special_type || IS_BLOODSUCKER(servant))
+		to_chat(master, span_notice("This Ghoul was already assigned a special position."))
 		return FALSE
-	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
-		to_chat(master, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
+	if(!ghouldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
+		to_chat(master, span_notice("This Ghoul is unable to gain a Special rank due to innate features."))
 		return FALSE
-	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
-		to_chat(master, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
+		to_chat(master, span_notice("You need at least 150 blood to make a Ghoul a Favorite Ghoul."))
 		return FALSE
 	var/list/options = list()
 	var/list/radial_display = list()
-	for(var/datum/antagonist/vassal/vassaldatums as anything in subtypesof(/datum/antagonist/vassal))
-		var/vassal_type = initial(vassaldatums.special_type)
-		var/slot = bloodsuckerdatum.special_vassals[vassal_type]
-		if(vassal_type && slot)
+	for(var/datum/antagonist/ghoul/ghouldatums as anything in subtypesof(/datum/antagonist/ghoul))
+		var/ghoul_type = initial(ghouldatums.special_type)
+		var/slot = bloodsuckerdatum.special_ghouls[ghoul_type]
+		if(ghoul_type && slot)
 			continue
-		options[initial(vassaldatums.name)] = vassaldatums
+		options[initial(ghouldatums.name)] = ghouldatums
 
 		var/datum/radial_menu_choice/option = new
-		option.image = image(icon = initial(vassaldatums.hud_icon), icon_state = initial(vassaldatums.antag_hud_name), pixel_y = -12, pixel_x = -12)
-		option.info = "[initial(vassaldatums.name)] - [span_boldnotice(initial(vassaldatums.vassal_description))]"
-		radial_display[initial(vassaldatums.name)] = option
-
-	if(!options.len)
-		master.balloon_alert(master, "Out of Special Vassal slots!")
+		option.image = image(icon = initial(ghouldatums.hud_icon), icon_state = initial(ghouldatums.antag_hud_name), pixel_y = -12, pixel_x = -12)
+		option.info = "[initial(ghouldatums.name)] - [span_boldnotice(initial(ghouldatums.ghoul_description))]"
+		radial_display[initial(ghouldatums.name)] = option
+	if(!length(options))
+		master.balloon_alert(master, "Out of Special Ghoul slots!")
 		return FALSE
 
-	to_chat(master, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
-	var/vassal_response = show_radial_menu(master, servant, radial_display)
-	if(!vassal_response)
+	to_chat(master, span_notice("You can change who this Ghoul is, who are they to you? This will cost [SPECIAL_GHOUL_COST] blood."))
+	var/ghoul_response = show_radial_menu(master, servant, radial_display)
+	if(!ghoul_response || !is_valid_ghoul(options[ghoul_response]))
 		return FALSE
-	var/datum/antagonist/vassal/vassal_type = options[vassal_response]
-	// let's ask if the vassal themselves actually wants to be a favorite
+	var/datum/antagonist/ghoul/ghoul_type = options[ghoul_response]
+
+	// let's ask if the ghoul themselves actually wants to be a favorite
 #ifndef BLOODSUCKER_TESTING
 	servant.balloon_alert(master, "asking...")
-	var/vassal_permission = tgui_alert(servant, initial(vassal_type.vassal_description), "Become a Special Vassal?", list("Yes", "No"), 1 MINUTES) == "Yes"
-	if(!vassal_permission)
+	var/ghoul_permission = tgui_alert(servant, initial(ghoul_type.ghoul_description), "Become a Special Ghoul?", list("Yes", "No"), 1 MINUTES) == "Yes"
+	if(!ghoul_permission)
 		servant.balloon_alert(master, "refused!")
 		return FALSE
 #endif
-	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !vassal_type)
+	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !ghoul_type)
 		return FALSE
-	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
-		to_chat(master, span_notice("You took too long to make your vassal, you no longer have enough blood!"))
+
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
+		to_chat(master, span_notice("You took too long to make your ghoul, you no longer have enough blood!"))
 		return FALSE
-	vassaldatum.make_special(vassal_type)
-	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_VASSAL_COST)
+	ghouldatum.make_special(ghoul_type)
+	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_GHOUL_COST)
 	return TRUE
 
+/datum/bloodsucker_clan/proc/is_valid_ghoul(datum/antagonist/ghoul/ghoul_type)
+	if(!ghoul_type)
+		return FALSE
+	return TRUE
 /**
- * Called when we are successfully turn a Vassal into a Favorite Vassal
+ * Called when we are successfully turn a Ghoul into a Favorite Ghoul
  * args:
- * bloodsuckerdatum - antagonist datum of the Bloodsucker who turned them into a Vassal.
- * vassaldatum - the antagonist datum of the Vassal being offered up.
+ * bloodsuckerdatum - antagonist datum of the Bloodsucker who turned them into a Ghoul.
+ * ghouldatum - the antagonist datum of the Ghoul being offered up.
  */
-/datum/bloodsucker_clan/proc/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/favorite_ghoul_gain(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	SIGNAL_HANDLER
-	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/targeted/brawn)
+	ghouldatum.BuyPower(/datum/action/cooldown/bloodsucker/targeted/brawn)
 
-/datum/bloodsucker_clan/proc/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/favorite_ghoul_loss(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	SIGNAL_HANDLER

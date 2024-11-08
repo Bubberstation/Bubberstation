@@ -406,6 +406,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/powered/beach)
+"mv" = (
+/obj/effect/spawner/message_in_a_bottle/low_prob,
+/turf/open/misc/beach/coast,
+/area/ruin/powered/beach)
 "mw" = (
 /obj/structure/flora/coconuts,
 /turf/open/misc/beach/sand,
@@ -523,6 +527,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/powered/beach)
+"qK" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "qT" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -542,6 +551,14 @@
 "rK" = (
 /obj/item/toy/beach_ball,
 /turf/open/misc/beach/sand,
+/area/ruin/powered/beach)
+"rU" = (
+/obj/item/reagent_containers/condiment/enzyme,
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 5
+	},
+/obj/structure/table,
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "sa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
@@ -903,6 +920,15 @@
 /obj/structure/sign/poster/contraband/space_cola/directional/north,
 /turf/open/misc/beach/sand,
 /area/ruin/powered/beach)
+"GA" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/chair/stool/directional/south,
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/under/shorts/red,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "GB" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/peppermill,
@@ -963,6 +989,7 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
+/obj/effect/spawner/message_in_a_bottle/low_prob,
 /turf/open/misc/beach/coast/corner{
 	dir = 8
 	},
@@ -1086,11 +1113,6 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/south,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"OU" = (
-/obj/machinery/light/small/directional/east,
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Pr" = (
@@ -1266,15 +1288,6 @@
 /obj/structure/noticeboard/staff,
 /turf/closed/wall/mineral/wood/nonmetal,
 /area/ruin/powered/beach)
-"UQ" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/chair/stool/directional/south,
-/obj/item/storage/backpack/duffelbag,
-/obj/item/clothing/under/shorts/red,
-/obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "UT" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
 /turf/open/misc/beach/sand,
@@ -1364,14 +1377,6 @@
 	name = "Chicken Joe"
 	},
 /turf/open/misc/beach/sand,
-/area/ruin/powered/beach)
-"Xj" = (
-/obj/item/reagent_containers/condiment/enzyme,
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 5
-	},
-/obj/structure/table,
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Xt" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1542,7 +1547,7 @@ VI
 VI
 FH
 aj
-OU
+qK
 aC
 aC
 CK
@@ -1880,7 +1885,7 @@ hj
 CT
 VI
 tQ
-Xj
+rU
 aC
 Ds
 ww
@@ -1990,7 +1995,7 @@ bG
 bL
 VI
 VI
-yT
+mv
 pz
 Eu
 pz
@@ -2017,7 +2022,7 @@ Lm
 Lm
 rv
 VI
-UQ
+GA
 bH
 bM
 VI
