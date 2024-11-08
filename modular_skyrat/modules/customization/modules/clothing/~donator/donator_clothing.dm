@@ -1653,7 +1653,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/gloves/elofy
 	name = "anime admiral gloves"
-	desc = "These gloves is a near perfect replica of that worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+	desc = "These gloves are a near perfect replica of that worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
 		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
 		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
 		but hasn't had much spread outside of the Terran Government
