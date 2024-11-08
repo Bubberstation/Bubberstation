@@ -58,7 +58,7 @@
 	righthand_file = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/inhand_right.dmi'
 	inhand_icon_state = "levershotgun_sawn"
 	worn_icon = 'modular_zubbers/icons/obj/weapons/guns/sar_inc/worn.dmi'
-	worn_icon_state = "null"
+	worn_icon_state = "sawn"
 
 /obj/item/gun/ballistic/shotgun/riot/sol/levershotgunsawn/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SAR_NOSTOCK)
