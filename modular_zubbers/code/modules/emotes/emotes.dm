@@ -134,14 +134,16 @@
 	sound = 'modular_zubbers/code/modules/emotes/sound/voice/squeal.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
 
 /datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
+	if(!..())
+		return FALSE
 	if(!intentional || isobserver(user))
-		return ..()
+		return TRUE
 	if(HAS_TRAIT(user, TRAIT_FREERUNNING) || HAS_TRAIT(user, TRAIT_STYLISH)) //Freerunners can flip despite their hardships
-		return ..()
+		return TRUE
 	if(isliving(user) && user.cached_multiplicative_slowdown < 2.0) //Can only flip if you're not too heavy/slow/starving/injured
 		var/mob/living/flippy_mcgee = user
 		flippy_mcgee.adjustStaminaLoss(20)
-		return ..()
+		return TRUE
 
 	user.balloon_alert(user, "Not feeling energetic enough to flip!")
 	return FALSE
