@@ -36,7 +36,7 @@
 	/// Age in "days" or some unit of time
 	var/age = 0
 	/// How often a 'life' cycle of the pet runs
-	var/update_rate = 15 SECONDS
+	var/update_rate = 30 SECONDS
 
 	var/alive = NO_ANIMAL
 	var/static/list/rest_messages = list(
@@ -92,6 +92,14 @@
 		"I'm sad...",
 		"Play with meeee! PLEASE.",
 		"My fun levels are low, nya...",
+	)
+	var/static/list/full_critical = list(
+		"So this... is how it ends for me...",
+		"Is this how it ends... cold, alone, unfed...",
+		"Fading... fast... my last request: snacks and snuggles, please...",
+		"I see the great food bowl in the sky...",
+		"Abandoned... like a stray... in my own virtual world...",
+		"It’s getting so dark and cold...",
 	)
 	var/static/list/energy_warning = list(
 		"I'm feeling a bit sleepy, nya...",
@@ -200,14 +208,14 @@
 	if(!alive)
 		return
 
-	if(happiness < 16) // unhappy pets get hungry and tired faster
+	if(happiness <= 21) // unhappy pets get hungry and tired faster
 		hunger += rand(1, 3)
 		energy -= rand(1, 3)
 
 	age += 1	// Increase age over time
 	hunger += rand(1, 3)	// Increase hunger over time
-	happiness -= rand(1,3)	// Decrease happiness over time
-	energy -= rand(1,3)	// Decrease energy over time
+	happiness -= rand(1, 3)	// Decrease happiness over time
+	energy -= rand(1, 3)	// Decrease energy over time
 
 	// check if the nyamagotchi is still alive
 	if(hunger >= 100 || energy <= 0)
@@ -220,9 +228,12 @@
 	// make the nyamagotchi say things if attention is needed, otherwise just a small chance of a reminder meow
 	var/list/tama_alerts = list()
 	var/selected_alert
-	if(hunger > 93)
+	if((hunger >= 80 || energy <= 20) && happiness <= 20)
+		be_known(sfx = MEOW_CRITICAL, speech = pick(full_critical))
+		return
+	if(hunger >= 85)
 		tama_alerts += "vhungry"
-	if(energy < 7)
+	if(energy <= 15)
 		tama_alerts += "vtired"
 	if(tama_alerts.len)
 		selected_alert = pick(tama_alerts)
@@ -234,11 +245,11 @@
 				be_known(sfx = MEOW_CRITICAL, speech = pick(energy_critical))
 				return
 
-	if(hunger > 84)
+	if(hunger >= 75)
 		tama_alerts += "hungry"
-	if(happiness < 11)
+	if(happiness <= 25)
 		tama_alerts += "sad"
-	if(energy < 16)
+	if(energy <= 25)
 		tama_alerts += "tired"
 	if(tama_alerts.len)
 		selected_alert = pick(tama_alerts)
@@ -249,7 +260,7 @@
 				be_known(sfx = MEOW_SAD, speech = pick(happiness_warning))
 			if("tired")
 				be_known(sfx = MEOW_SAD, speech = pick(energy_warning))
-	else if(prob(15))
+	else if(prob(25))
 		be_known(sfx = MEOW_NORMAL)
 
 /obj/item/toy/nyamagotchi/proc/be_known(sfx, speech, visible)
