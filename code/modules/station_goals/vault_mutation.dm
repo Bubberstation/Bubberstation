@@ -6,7 +6,6 @@
 	text_lose_indication = span_warning("Your lungs feel normal again.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/breathless/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -23,7 +22,6 @@
 	text_lose_indication = span_warning("Your legs feel weaker and slower.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/quick/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -40,7 +38,6 @@
 	text_lose_indication = span_warning("Your skin feels weaker.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/tough/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -59,7 +56,6 @@
 	text_lose_indication = span_warning("Your limbs feel less dextrous and responsive.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/dextrous/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -76,7 +72,6 @@
 	text_lose_indication = span_warning("Your body feels vulnerable to fire again.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/fire_immunity/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -95,7 +90,6 @@
 	text_lose_indication = span_warning("You feel like recovering from a fall is a challenge again.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/quick_recovery/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
@@ -112,7 +106,6 @@
 	text_lose_indication = span_warning("Your lungs feel vulnerable to airborne contaminant again.")
 	locked = TRUE
 	mutadone_proof = TRUE
-	class = MUT_OTHER //BUBBER EDIT - DNA VAULT ABUSE FIX
 
 /datum/mutation/human/plasmocile/on_acquiring(mob/living/carbon/human/acquirer)
 	. = ..()
