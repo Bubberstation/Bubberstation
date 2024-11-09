@@ -34,6 +34,9 @@
 	// Register examine text
 	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(quirk_examine_bloodfledge))
 
+	// Teach how to make the Hemorrhagic Sanguinizer
+	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
+
 /datum/quirk/item_quirk/bloodfledge/post_add()
 	. = ..()
 
@@ -167,60 +170,13 @@
 	// Define default card type name
 	var/card_name_type = "Blood"
 
-	// Beginning of species blood type checks
-	// These are mostly based on unique species blood
+	// Define possible blood prefix
+	var/blood_prefix = quirk_mob.get_blood_prefix()
 
-	// Check for hemophage
-	if(ishemophage(quirk_mob))
-		card_name_type = "Hemo"
-
-	// Check for real vampire
-	/*
-	else if(isvampire(quirk_mob))
-		card_name_type = "Vamp"
-	*/
-
-	// Check for Synthetic
-	else if(issynthetic(quirk_mob))
-		card_name_type = "Oil"
-
-	// Check for Teshari
-	else if(isteshari(quirk_mob))
-		card_name_type = "Ammonia"
-
-	// Check for Shadekin
-	else if(isshadekin(quirk_mob))
-		card_name_type = "Shade"
-
-	// Check for round-start Slime
-	else if(isroundstartslime(quirk_mob))
-		card_name_type = "Slime"
-
-	// Check for Snail
-	else if(issnail(quirk_mob))
-		card_name_type = "Lube"
-
-	// Check for Skrell
-	else if(is_species(quirk_mob,/datum/species/skrell))
-		card_name_type = "Copper"
-
-	// Check for Xenomorph Hybrid
-	else if(isxenohybrid(quirk_mob))
-		card_name_type = "Acid"
-
-	// Check for Ethreal
-	else if(isethereal(quirk_mob))
-		card_name_type = "Electro"
-
-	// Check for Podperson
-	else if(ispodperson(quirk_mob))
-		card_name_type = "Hydro"
-
-	// Check for Plasmaman
-	else if(isplasmaman(quirk_mob))
-		card_name_type = "Plasma"
-
-	// End of species blood type checks
+	// Check if species blood prefix was returned
+	if(blood_prefix)
+		// Set new card type
+		card_name_type = blood_prefix
 
 	// Define operative alias
 	var/operative_alias = client_source?.prefs?.read_preference(/datum/preference/name/operative_alias)
@@ -304,7 +260,7 @@
 			return
 
 	// Check if examiner shares the quirk
-	if(isbloodfledge(examiner))
+	if((examiner))
 		// Add detection text
 		examine_list += span_info("[quirk_holder.p_their(TRUE)] hunger makes it easy to identify [quirk_holder.p_them()] as a fellow sanguine!")
 
