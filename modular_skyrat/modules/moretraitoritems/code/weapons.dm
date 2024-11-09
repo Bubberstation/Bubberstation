@@ -105,16 +105,27 @@
 /obj/item/gun/ballistic/automatic/pistol/robohand/unrestricted
 	unrestricted = TRUE
 
-//The gun cannot shoot if you do not have a cyborg arm.
-/obj/item/gun/ballistic/automatic/pistol/robohand/afterattack(atom/target, mob/living/user, flag, params)
-	//This is where we are checking if the user has a cybernetic arm to USE the gun. ROBOHAND HAS A ROBO HAND
-	if(!unrestricted)
-		var/mob/living/carbon/human/human_user = user
-		var/obj/item/bodypart/selected_hand = human_user.get_active_hand()
-		if(IS_ORGANIC_LIMB(selected_hand))
-			to_chat(user, span_warning("You can't seem to figure out how to use [src], perhaps you need to check the manual?"))
-			return
-	. = ..()
+/obj/item/gun/ballistic/automatic/pistol/robohand/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(can_use(user) == ITEM_INTERACT_SUCCESS)
+		return ..()
+	return ITEM_INTERACT_BLOCKING
+
+/obj/item/gun/ballistic/automatic/pistol/robohand/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	if(can_use(user) == ITEM_INTERACT_SUCCESS)
+		return ..()
+	return ITEM_INTERACT_BLOCKING
+
+/// Checks if we have the roboarm to use the robo gun. Well, unless it's unrestricted
+/obj/item/gun/ballistic/automatic/pistol/robohand/proc/can_use(mob/living/carbon/human/user)
+	if(unrestricted)
+		return ITEM_INTERACT_SUCCESS
+	if(!istype(user))
+		return ITEM_INTERACT_BLOCKING
+	var/obj/item/bodypart/selected_hand = user.get_active_hand()
+	if(IS_ORGANIC_LIMB(selected_hand))
+		to_chat(user, span_warning("You can't seem to figure out how to use [src], perhaps you need to check the manual?"))
+		return ITEM_INTERACT_BLOCKING
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/pistol/robohand/insert_magazine(mob/user, obj/item/ammo_box/magazine/inserted_mag, display_message)
 	if(!istype(inserted_mag, accepted_magazine_type))
