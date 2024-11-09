@@ -14,13 +14,14 @@
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
 	icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
 	icon_state = "nya"
+	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
+	inhand_icon_state = "electronic"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	throwforce = 2
-	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	inhand_icon_state = "electronic"
+	actions_types = list(/datum/action/item_action/nyamagotchi_menu)
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT)
 	// interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_ALLOW_USER_LOCATION | INTERACT_ATOM_IGNORE_MOBILITY
 	var/list/icons_available = list()
@@ -149,9 +150,6 @@
 		icons_available += list("Start!" = image(radial_icon_file, "start"))
 
 /obj/item/toy/nyamagotchi/attack_self(mob/user)
-	pet_menu(user)
-
-/obj/item/toy/nyamagotchi/attack_hand_secondary(mob/user, list/modifiers)
 	pet_menu(user)
 
 /obj/item/toy/nyamagotchi/proc/pet_menu(mob/user, list/modifiers)
@@ -304,6 +302,11 @@
 
 /obj/item/toy/nyamagotchi/proc/check_status()
 	balloon_alert(usr, "hunger: [hunger] happiness: [happiness] energy: [energy]")
+
+/datum/action/item_action/nyamagotchi_menu
+	name = "Check Nyamagotchi"
+	button_icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
+	button_icon_state = "nya"
 
 /datum/job/psychologist/New()
 	LAZYADDASSOC(mail_goodies, /obj/item/toy/nyamagotchi, 45)
