@@ -22,5 +22,8 @@
 //lipstick trait
 #define TRAIT_HYPNO_KISS "hypno kiss"
 
+// Shows extended examine option when worn
+#define TRAIT_WORN_EXAMINE "worn_examine"
+
 // MK Ultra Skillchip
 #define TRAIT_PET_SKILLCHIP "mkii_ultra"
