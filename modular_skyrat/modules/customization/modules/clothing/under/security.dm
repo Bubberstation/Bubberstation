@@ -119,4 +119,4 @@
 /obj/item/clothing/under/rank/prisoner/syndicate/station
 	name = "syndicate prisoner jumpsuit"
 	desc = "A dark blood red prison jumpsuit, for the known Syndicate captives, valuable targets to CentCom and interrogation. Its suit sensors are stuck in the \"Fully On\" position."
-	greyscale_colors = "#992300"
+	greyscale_colors = "#5c0000ff"
