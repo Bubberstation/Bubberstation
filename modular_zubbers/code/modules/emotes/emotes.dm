@@ -138,7 +138,9 @@
 		return ..()
 	if(HAS_TRAIT(user, TRAIT_FREERUNNING) || HAS_TRAIT(user, TRAIT_STYLISH)) //Freerunners can flip despite their hardships
 		return ..()
-	if(user.cached_multiplicative_slowdown < 2.0) //Can only flip if you're not too heavy/slow/starving/injured
+	if(isliving(user) && user.cached_multiplicative_slowdown < 2.0) //Can only flip if you're not too heavy/slow/starving/injured
+		var/mob/living/flippy_mcgee = user
+		flippy_mcgee.adjustStaminaLoss(20)
 		return ..()
 
 	user.balloon_alert(user, "Not feeling energetic enough to flip!")
