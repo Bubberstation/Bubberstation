@@ -29,6 +29,9 @@
 		JOB_CUSTOMS_AGENT,
 		JOB_ENGINEERING_GUARD,
 		JOB_SCIENCE_GUARD,
+
+		// Shaft miners
+		JOB_SHAFT_MINER,
 		)
 
 	/// Restricted roles from the antag roll
