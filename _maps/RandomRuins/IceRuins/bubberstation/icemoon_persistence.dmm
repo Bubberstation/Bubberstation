@@ -2019,9 +2019,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "gK" = (
-/obj/machinery/netpod,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/machinery/byteforge,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "Syndibitrunningconveyor"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -2285,19 +2289,15 @@
 	pixel_y = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/button/polarizer{
-	id = "Bitrunning_windows";
-	name = "Bitrunning windows";
-	pixel_y = -8;
-	pixel_x = -24
-	},
 /obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal/delivery_chute,
 /obj/structure/plasticflaps,
-/obj/machinery/door/window/survival_pod/left/directional/south{
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	req_access = list("syndicate")
 	},
-/obj/structure/window/plasma/spawner/directional/east,
+/obj/machinery/disposal/delivery_chute{
+	dir = 4
+	},
+/obj/structure/window/plasma,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "hK" = (
@@ -3892,10 +3892,10 @@
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	polarizer_id = "Bitrunning_windows"
 	},
-/obj/machinery/door/poddoor{
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
 	id = "syndi_bitrunning"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "mz" = (
@@ -3918,6 +3918,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 5
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "Syndibitrunningconveyor"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -15504,7 +15507,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Wu" = (
-/obj/machinery/byteforge,
+/obj/machinery/netpod,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "Wv" = (
