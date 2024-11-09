@@ -9,6 +9,21 @@
 #define QMOOD_BADTOUCH_ATTACKER	"mood_badtouch_attacker"
 #define QMOOD_BADTOUCH_VICTIM	"mood_badtouch_victim"
 
+// Bloodfledge mood types
+#define QMOOD_BFLED_DRANK_MATCH	"bloodfledge_drank_exotic_match"
+#define QMOOD_BFLED_DRANK_SYNTH	"bloodfledge_drank_synth"
+#define QMOOD_BFLED_DRANK_SLIME	"bloodfledge_drank_slime"
+#define QMOOD_BFLED_DRANK_BUG	"bloodfledge_drank_insect"
+#define QMOOD_BFLED_DRANK_XENO	"bloodfledge_drank_xeno"
+#define QMOOD_BFLED_DRANK_DEAD	"bloodfledge_drank_dead"
+#define QMOOD_BFLED_DRANK_KILL	"bloodfledge_drank_killed"
+#define QMOOD_BFLED_DRANK_CURSE	"bloodfledge_drank_cursed_blood"
+#define QMOOD_BFLED_DRANK_VAMP	"bloodfledge_drank_dead"
+#define QMOOD_BFLED_DRANK_POD	"bloodfledge_drank_podperson"
+#define QMOOD_BFLED_DRANK_SNAIL	"bloodfledge_drank_snail"
+#define QMOOD_BFLED_DRANK_ETHER	"bloodfledge_drank_ethreal"
+#define QMOOD_BFLED_DRANK_SKREL	"bloodfledge_drank_skrell"
+
 // Trait types
 #define DUMB_CUM_TRAIT		"dumb4cum"
 

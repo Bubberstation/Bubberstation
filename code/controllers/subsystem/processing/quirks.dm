@@ -50,10 +50,10 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	// Causes a conflict with Holy Water effects.
 	// Bloodsuckers cannot interact with Hallowed users.
 	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood),
-	list(/datum/quirk/hallowed, /datum/quirk/bloodfledge),
+	list(/datum/quirk/hallowed, /datum/quirk/item_quirk/bloodfledge),
 
 	// Bloodfledges do not use standard thirst
-	list(/datum/quirk/bloodfledge, /datum/quirk/thirsty),
+	list(/datum/quirk/item_quirk/bloodfledge, /datum/quirk/thirsty),
 
 	// Causes a direct mechanical conflict.
 	//list(/datum/quirk/jiggly_ass,/datum/quirk/buns_of_steel),
