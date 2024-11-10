@@ -7,7 +7,7 @@
 	medical_record_text = "Patient demonstrates exceptional maneuverability in low-gravity environments."
 	mob_trait = TRAIT_FLUTTER
 	hardcore_value = -1
-	icon = FA_ICON_DOVE
+	icon = FA_ICON_PLANE
 
 /mob/Process_Spacemove(movement_dir, continuous_move)
 	if(HAS_TRAIT(src, TRAIT_FLUTTER))

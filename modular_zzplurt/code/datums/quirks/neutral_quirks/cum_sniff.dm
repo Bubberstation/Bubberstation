@@ -7,6 +7,6 @@
 	gain_text = span_purple("You begin sensing peculiar smells from people's bits...")
 	lose_text = span_purple("People's genitals start smelling all the same to you...")
 	medical_record_text = "Patient has exemplary olfactory capability for specific body regions."
-	icon = FA_ICON_SOCCER_BALL
+	icon = FA_ICON_VIAL
 	erp_quirk = TRUE
 	hidden_quirk = TRUE

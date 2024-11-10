@@ -107,9 +107,8 @@
 		if(!quirk_mob)
 			return
 
-		// Adjust arousal and pleasure
+		// Adjust arousal
 		quirk_mob.adjust_arousal(amount)
-		quirk_mob.adjust_pleasure(amount / 2)
 
 /mob/living/carbon/proc/can_touch_retaliate()
 	// User must be conscious

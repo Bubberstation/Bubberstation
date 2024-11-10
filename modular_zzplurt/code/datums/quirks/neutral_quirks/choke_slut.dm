@@ -6,7 +6,7 @@
 	lose_text = span_purple("You stop feeling aroused by suffocation.")
 	medical_record_text = "Patient exhibits an abnormal obsession with restricted breathing."
 	mob_trait = TRAIT_CHOKE_SLUT
-	icon = FA_ICON_LUNGS
+	icon = FA_ICON_HEAD_SIDE_COUGH
 	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/reagent_containers/hypospray/medipen = 1 // Fix your oxy loss

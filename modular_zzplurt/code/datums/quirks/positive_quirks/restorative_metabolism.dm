@@ -15,7 +15,7 @@
 	medical_record_text = "Patient possesses a self-reconstructive condition. Medical care is only required under extreme circumstances."
 	mob_trait = TRAIT_RESTORATIVE_METABOLISM
 	hardcore_value = -10
-	icon = FA_ICON_NOTES_MEDICAL
+	icon = FA_ICON_BRIEFCASE_MEDICAL
 
 /datum/quirk/restorative_metabolism/process(seconds_per_tick)
 	// Quirk holder must be injured

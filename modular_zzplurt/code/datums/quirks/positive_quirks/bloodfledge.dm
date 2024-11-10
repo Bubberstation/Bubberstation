@@ -13,7 +13,7 @@
 	medical_record_text = "Patient exhibits onset symptoms of a sanguine curse."
 	mob_trait = TRAIT_BLOODFLEDGE
 	hardcore_value = -2
-	icon = FA_ICON_WINE_GLASS
+	icon = FA_ICON_CHAMPAGNE_GLASSES
 
 /datum/quirk/item_quirk/bloodfledge/add()
 	// Define quirk mob

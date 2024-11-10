@@ -21,7 +21,7 @@
 	lose_text = span_notice("You realize that working for the space agency sucks!")
 	medical_record_text = "Patient emits a subtle emissive aura."
 	mob_trait = TRAIT_COSGLOW
-	icon = FA_ICON_PERSON_RAYS
+	icon = FA_ICON_MAGIC_WAND_SPARKLES
 	mail_goodies = list (
 		/obj/item/flashlight/glowstick = 1
 	)

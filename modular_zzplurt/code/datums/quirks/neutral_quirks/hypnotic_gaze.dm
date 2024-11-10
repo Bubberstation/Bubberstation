@@ -6,7 +6,7 @@
 
 // REMOVED QUIRK - Disabled in favor of new NIFSoft method
 // This file still contains the action
-/datum/quirk/Hypnotic_gaze
+/datum/quirk/hypnotic_gaze
 	name = "Hypnotic Gaze"
 	desc = "Prolonged eye contact with you can place a viewer into a highly-suggestible hypnotic trance."
 	value = 0
@@ -14,11 +14,11 @@
 	lose_text = span_purple("Your eyes return to normal.")
 	medical_record_text = "Patient's eyes exhibits soporific effects. Additional testing may be necessary."
 	mob_trait = TRAIT_HYPNOTIC_GAZE
-	icon = FA_ICON_ARROWS_TO_EYE
+	icon = FA_ICON_FAN
 	erp_quirk = TRUE
 	hidden_quirk = TRUE
 
-/datum/quirk/Hypnotic_gaze/add()
+/datum/quirk/hypnotic_gaze/add()
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
@@ -29,7 +29,7 @@
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hypnotic_gaze)
 
-/datum/quirk/Hypnotic_gaze/remove()
+/datum/quirk/hypnotic_gaze/remove()
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

@@ -8,7 +8,7 @@
 	lose_text = span_notice("The moon's call hushes into silence.")
 	medical_record_text = "Patient has been reported howling at the night sky."
 	mob_trait = TRAIT_WEREWOLF
-	icon = FA_ICON_MOON
+	icon = FA_ICON_PAW
 	hidden_quirk = TRUE
 
 /datum/quirk/werewolf/post_add()

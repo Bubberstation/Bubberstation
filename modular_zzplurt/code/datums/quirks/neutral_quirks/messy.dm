@@ -6,7 +6,7 @@
 	lose_text = span_purple("You don't feel the need to make a mess anymore.")
 	medical_record_text = "Patient's body has above-average fluid production capability."
 	mob_trait = TRAIT_MESSY
-	icon = FA_ICON_DROPLET
+	icon = FA_ICON_EXPLOSION
 	erp_quirk = TRUE
 	mail_goodies = list (
 		/obj/item/mop = 1 // Clean this mess up!

@@ -69,8 +69,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//list(/datum/quirk/flimsy,/datum/quirk/tough),
 
 	// You must have working eyes for hypnotic gaze.
-	// Disabled because quirk was replaced by NIFsoft
-	//list(/datum/quirk/Hypnotic_gaze,/datum/quirk/item_quirk/blindness,/datum/quirk/echolocation),
+	// NOTE: Quirk was replaced by NIFsoft
+	list(/datum/quirk/hypnotic_gaze,/datum/quirk/item_quirk/blindness),
+	list(/datum/quirk/hypnotic_gaze,/datum/quirk/echolocation),
 
 	// You can't smell anything!
 	list(/datum/quirk/cum_sniff,/datum/quirk/item_quirk/anosmia),

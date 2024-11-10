@@ -8,7 +8,7 @@
 	lose_text = span_purple("Cum didn't even taste that good, anyways.")
 	medical_record_text = "Patient seems to have an unhealthy psychological obsession with seminal fluids."
 	mob_trait = TRAIT_DUMB_CUM
-	icon = FA_ICON_DROPLET
+	icon = FA_ICON_FAUCET_DRIP
 	erp_quirk = TRUE
 	var/timer_crave
 

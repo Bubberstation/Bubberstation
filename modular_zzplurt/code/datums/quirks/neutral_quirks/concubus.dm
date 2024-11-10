@@ -10,7 +10,7 @@
 	lose_text = span_purple("Your bodily fluid cravings fade back away.")
 	medical_record_text = "Patient claims to subsist entirely on lactose and reproductive fluids."
 	mob_trait = TRAIT_CONCUBUS
-	icon = FA_ICON_DROPLET
+	icon = FA_ICON_COW
 	erp_quirk = TRUE
 	mail_goodies = list (
 		/datum/glass_style/drinking_glass/cum = 1,

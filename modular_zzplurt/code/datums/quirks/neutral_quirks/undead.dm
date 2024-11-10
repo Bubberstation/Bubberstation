@@ -8,7 +8,7 @@
     lose_text = span_notice("By some miracle, you've been brought back to life!")
     medical_record_text = "Patient is listed as deceased in medical records."
     mob_trait = TRAIT_UNDEAD
-    icon = FA_ICON_SKULL_CROSSBONES
+    icon = FA_ICON_HEAD_SIDE_VIRUS
 
 /datum/quirk/undead/add()
 	// Define quirk holder mob

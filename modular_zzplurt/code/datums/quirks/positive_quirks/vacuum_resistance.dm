@@ -7,7 +7,7 @@
     medical_record_text = "Patient's body has fully adapted to zero-pressure environments."
     mob_trait = TRAIT_VACUUM_RESIST
     hardcore_value = -6
-    icon = FA_ICON_USER_ASTRONAUT
+    icon = FA_ICON_ROCKET
     mail_goodies = list (
         /obj/item/storage/box/emergency_spacesuit = 1
     )

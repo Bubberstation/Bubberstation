@@ -7,5 +7,5 @@
 	medical_record_text = "Patient demonstrates no requirement for oxygen intake."
 	mob_trait = TRAIT_NOBREATH
 	hardcore_value = -4
-	icon = FA_ICON_LUNGS
+	icon = FA_ICON_BAN_SMOKING
 	hidden_quirk = TRUE

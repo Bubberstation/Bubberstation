@@ -10,7 +10,7 @@
 	gain_text = span_purple("You feel pressure in your groin.")
 	lose_text = span_purple("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
-	icon = FA_ICON_DROPLET
+	icon = FA_ICON_HEART_CIRCLE_PLUS
 	erp_quirk = TRUE
 
 // Note: Increasing size increases production rate
