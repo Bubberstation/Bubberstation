@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			cell_phone_number = "Dogginos"
 			list_to_use = "dogginos"
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg', has_important_message=TRUE, color_override = "yellow")
-	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/solfed, role_name_text = "solfed response team")
+	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/terragov, role_name_text = "Terran Government response team")
 
 	if(candidates.len)
 		//Pick the (un)lucky players
@@ -704,7 +704,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	summoned_type = "dogginos_manager"
 	cell_phone_number = "Dogginos"
 
-/obj/item/solfed_reporter/pizza_managers/questions(mob/user)
+/obj/item/terragov_reporter/pizza_managers/questions(mob/user)
 	if(tgui_alert(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("No", "Yes")) != "Yes")
 		to_chat(user, "You decide not to request management assist you with the delivery.")
 		return FALSE
