@@ -1,19 +1,19 @@
 /**
  * Checks if the target has antag datums and, if so,
- * are they allowed to be Ghoulized, or not, or banned.
+ * are they allowed to be Ghouled, or not, or banned.
  * Args:
  * target - The person we check for antag datums.
  */
 /datum/antagonist/bloodsucker/proc/AmValidAntag(mob/target)
 	if(HAS_TRAIT(target, TRAIT_UNCONVERTABLE))
-		return GHOULIZATION_BANNED
+		return GHOULING_BANNED
 
-	var/ghoulization_status = GHOULIZATION_ALLOWED
+	var/ghouling_status = GHOULING_ALLOWED
 	for(var/datum/antagonist/antag_datum as anything in target.mind.antag_datums)
 		if(antag_datum.type in ghoul_banned_antags)
-			return GHOULIZATION_BANNED
-		ghoulization_status = GHOULIZATION_DISLOYAL
-	return ghoulization_status
+			return GHOULING_BANNED
+		ghouling_status = GHOULING_DISLOYAL
+	return ghouling_status
 
 /**
  * # can_make_ghoul
@@ -22,7 +22,7 @@
  * If they are a Ghoul themselves, will check if their master
  * has broken the Masquerade, to steal them.
  * Args:
- * conversion_target - Person being ghoulized
+ * conversion_target - Person being ghouled
  */
 /datum/antagonist/bloodsucker/proc/can_make_ghoul(mob/living/conversion_target)
 	if(!iscarbon(conversion_target) || (conversion_target.stat < CONSCIOUS))
@@ -31,7 +31,7 @@
 	if(!conversion_target.mind)
 		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Ghoul."))
 		return FALSE
-	if(AmValidAntag(conversion_target) == GHOULIZATION_BANNED)
+	if(AmValidAntag(conversion_target) == GHOULING_BANNED)
 		to_chat(owner.current, span_danger("[conversion_target] resists the power of your blood to dominate their mind!"))
 		return FALSE
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()
