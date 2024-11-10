@@ -18,17 +18,17 @@
 	resistance_flags = INDESTRUCTIBLE
 
 
-	//The mode that is chosen at the moment.
+	/// The mode that is chosen at the moment
 	var/datum/phystool_mode/selected_mode
-	//Available modes.
-	var/list/datum/phystool_mode/avaible_modes = list(
+	/// Available modes
+	var/list/datum/phystool_mode/available_modes = list(
 		/datum/phystool_mode/build_mode,
 		/datum/phystool_mode/spawn_mode,
 		/datum/phystool_mode/remove_mode,
 		/datum/phystool_mode/color_mode,
 		/datum/phystool_mode/size_mode,
 	)
-	//The datum of the beam.
+	/// The datum of the beam
 	var/datum/beam/work_beam
 
 /obj/item/phystool/examine(mob/user)
@@ -43,7 +43,7 @@
 	. = ..()
 	if(selected_mode)
 		qdel(selected_mode)
-	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "Select work mode:", "Phystool mode", avaible_modes)
+	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "Select work mode:", "Phystool mode", available_modes)
 	if(!mode_to_select)
 		return
 	selected_mode = new mode_to_select
