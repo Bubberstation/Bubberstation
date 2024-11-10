@@ -36,7 +36,7 @@
 	/// Age in "days" or some unit of time
 	var/age = 0
 	/// How often a 'life' cycle of the pet runs
-	var/update_rate = 30 SECONDS
+	var/update_rate = 20 SECONDS
 
 	var/alive = NO_ANIMAL
 	var/static/list/rest_messages = list(
@@ -211,6 +211,9 @@
 	if(happiness <= 21) // unhappy pets get hungry and tired faster
 		hunger += rand(1, 3)
 		energy -= rand(1, 3)
+
+	if(hunger >= 70 || energy <= 30)
+		happiness -= rand(2, 4)
 
 	age += 1	// Increase age over time
 	hunger += rand(1, 3)	// Increase hunger over time
