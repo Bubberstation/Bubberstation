@@ -9,7 +9,6 @@ import {
   Autofocus,
   Box,
   Button,
-  Dropdown, // SKYRAT EDIT ADDITION
   Flex,
   Input,
   LabeledList,
@@ -37,7 +36,7 @@ import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 import { useRandomToggleState } from './useRandomToggleState';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 13.4; // SKYRAT EDIT CHANGE - ORIGINAL:  9
+const CLOTHING_SIDEBAR_ROWS = 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -46,7 +45,6 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 const CharacterControls = (props: {
   handleRotate: () => void;
   handleOpenSpecies: () => void;
-  handleFood: () => void; // SKYRAT EDIT ADDITION
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -81,22 +79,12 @@ const CharacterControls = (props: {
           />
         </Stack.Item>
       )}
-      {/* SKYRAT EDIT ADDITION START */}
-      <Stack.Item>
-        <Button
-          onClick={props.handleFood}
-          fontSize="22px"
-          icon="drumstick-bite"
-          tooltip="Edit Food Preferences"
-          tooltipPosition="top"
-        />
-        {/* SKYRAT EDIT ADDITION END */}
-      </Stack.Item>
     </Stack>
   );
 };
 
 const ChoicedSelection = (props: {
+  // BUBBER EDIT: ORIGINAL: const ChoicedSelection = (props: {
   name: string;
   catalog: FeatureChoicedServerData;
   selected: string;
@@ -630,11 +618,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                       handleRotate={() => {
                         act('rotate');
                       }}
-                      // SKYRAT EDIT ADDITION - BEGIN
-                      handleFood={() => {
-                        act('open_food');
-                      }}
-                      // SKYRAT EDIT ADDITION - END
                       setGender={createSetPreference(act, 'gender')}
                       showGender={
                         currentSpeciesData ? !!currentSpeciesData.sexes : true
@@ -644,24 +627,8 @@ export const MainPage = (props: { openSpecies: () => void }) => {
 
                   <Stack.Item grow>
                     <CharacterPreview
-                      height="80%" // SKYRAT EDIT - ORIGINAL: height="100%"
+                      height="100%"
                       id={data.character_preview_view}
-                    />
-                  </Stack.Item>
-
-                  <Stack.Item
-                    // SKYRAT EDIT ADDITION
-                    position="relative"
-                  >
-                    <Dropdown
-                      width="100%"
-                      selected={data.preview_selection}
-                      options={data.preview_options}
-                      onSelected={(value) =>
-                        act('update_preview', {
-                          updated_preview: value,
-                        })
-                      }
                     />
                   </Stack.Item>
 

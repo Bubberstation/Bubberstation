@@ -1,8 +1,8 @@
-import { exhaustiveCheck } from 'common/exhaustive';
+import { exhaustiveCheck } from '../../../common/exhaustive';
 import { useState } from 'react';
 
 import { useBackend } from '../../backend';
-import { Dropdown, Flex, Stack } from '../../components'; // SKYRAT EDIT CHANGE - ORIGINAL: import { Button, Stack } from '../../components';
+import { Box, Dimmer, Dropdown, Flex, Icon, Stack } from '../../components'; // SKYRAT EDIT CHANGE - ORIGINAL: import { Button, Stack } from '../../components';
 import { Window } from '../../layouts';
 import { AntagsPage } from './AntagsPage';
 import { PreferencesMenuData } from './data';
@@ -12,22 +12,30 @@ import { LanguagesPage } from './LanguagesMenu';
 import { LimbsPage } from './LimbsPage';
 // SKYRAT EDIT END
 import { LoadoutPage } from './loadout/index';
-import { MainPage } from './MainPage';
 import { PageButton } from './PageButton';
 import { QuirksPage } from './QuirksPage';
 import { SpeciesPage } from './SpeciesPage';
+import { IndexPage } from './bubber/IndexPage';
+import { Button } from 'tgui-core/components';
+import { MultiNameInput, NameInput } from './names';
+import { LoadoutPreviewSection } from './bubber/utils';
 
-enum Page {
+export enum Page { // BUBBER EDIT: Original: enum Page {
   Antags,
   Main,
   Jobs,
-  // SKYRAT EDIT
-  Limbs,
-  Languages,
-  // SKYRAT EDIT END
   Species,
   Quirks,
   Loadout,
+  // BUBBER EDIT
+  Limbs,
+  Languages,
+  Appearance,
+  OOC,
+  Food,
+  Inspection,
+  Misc,
+  // BUBBER EDIT END
 }
 
 const CharacterProfiles = (props: {
@@ -65,7 +73,8 @@ export const CharacterPreferenceWindow = (props) => {
 
   const [currentPage, setCurrentPage] = useState(Page.Main);
 
-  let pageContents;
+  let pageContents: String | React.JSX.Element = '';
+  let [multiNameInputOpen, setMultiNameInputOpen] = useState(false); // BUBBER EDIT ADDITION
 
   switch (currentPage) {
     case Page.Antags:
@@ -74,19 +83,10 @@ export const CharacterPreferenceWindow = (props) => {
     case Page.Jobs:
       pageContents = <JobsPage />;
       break;
-    // SKYRAT EDIT
-    case Page.Limbs:
-      pageContents = <LimbsPage />;
-      break;
-    case Page.Languages:
-      pageContents = <LanguagesPage />;
-      break;
-    // SKYRAT EDIT END
     case Page.Main:
-      pageContents = (
-        <MainPage openSpecies={() => setCurrentPage(Page.Species)} />
-      );
-
+      pageContents = pageContents = (
+        <IndexPage setCurrentPage={(page: Page) => setCurrentPage(page)} />
+      ); // BUBBER EDIT: ORIGINAL: (<MainPage openSpecies={() => setCurrentPage(Page.Species)} />)
       break;
     case Page.Species:
       pageContents = (
@@ -102,10 +102,188 @@ export const CharacterPreferenceWindow = (props) => {
       pageContents = <LoadoutPage />;
       break;
 
+    // BUBBER EDIT
+    case Page.Limbs:
+      pageContents = <LimbsPage />;
+      break;
+    case Page.Languages:
+      pageContents = <LanguagesPage />;
+      break;
+    case Page.Appearance:
+      pageContents = 'null';
+      break;
+    case Page.OOC:
+      pageContents = 'null';
+      break;
+    case Page.Food:
+      pageContents = 'null';
+      break;
+    case Page.Inspection:
+      pageContents = 'null';
+      break;
+    case Page.Misc:
+      pageContents = 'null';
+      break;
+    // BUBBER EDIT END
+
     default:
       exhaustiveCheck(currentPage);
   }
 
+  // BUBBER EDIT START: See further on for the original code. This is very different from upstream from here on.
+  const [tutorialStatus, setTutorialStatus] = useState<string | null>();
+  return (
+    <Window title="Character Preferences" width={920} height={770}>
+      <Window.Content scrollable>
+        {multiNameInputOpen && (
+          <MultiNameInput
+            handleClose={() => setMultiNameInputOpen(false)}
+            handleRandomizeName={(preference) =>
+              act('randomize_name', {
+                preference,
+              })
+            }
+            handleUpdateName={(nameType, value) =>
+              act('set_preference', {
+                preference: nameType,
+                value,
+              })
+            }
+            names={data.character_preferences.names}
+          />
+        )}
+        {tutorialStatus === 'general' && (
+          <Dimmer>
+            <Stack vertical align="center">
+              <Stack.Item preserveWhitespace>
+                Here&apos;s a few things to note for this preferences system:
+                <ul>
+                  <li>
+                    Inputting black (000000) will make that colour take your
+                    chosen skin tone/custom skin colour.
+                  </li>
+                  <li>
+                    Is something not appearing correctly? Please file a bug
+                    report!
+                  </li>
+                </ul>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  mt={1}
+                  align="center"
+                  onClick={() => setTutorialStatus(null)}
+                >
+                  Okay.
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Dimmer>
+        )}
+        {tutorialStatus === 'new_player' && (
+          <Dimmer>
+            <Stack vertical align="center">
+              <Stack.Item preserveWhitespace>
+                So you&apos;re new here, and you want to make your first
+                character? Here&apos;s the lowdown:
+                <ul>
+                  <li>
+                    Pick your species. This will make figuring out what the heck
+                    you&apos;re going to do later on much much easier.
+                  </li>
+                  <li>
+                    Generally speaking, start in the top left, and work your way
+                    to the bottom right.
+                    <br />
+                    I&apos;ve tried to keep things in order of importance for
+                    new players.
+                  </li>
+                  <li>
+                    If you want to read up on some of the lore, see{' '}
+                    <a href="https://wiki.bubberstation.org/index.php?title=Lore">
+                      our wiki
+                    </a>{' '}
+                    for some!
+                  </li>
+                </ul>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  mt={1}
+                  align="center"
+                  onClick={() => setTutorialStatus(null)}
+                >
+                  Okay.
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Dimmer>
+        )}
+        <Stack vertical fill>
+          <Stack.Item>
+            {!(currentPage === Page.Main) && (
+              <Box width="8em" position="absolute">
+                <PageButton
+                  currentPage={currentPage}
+                  page={Page.Main}
+                  setPage={setCurrentPage}
+                >
+                  <Icon name="arrow-left" />
+                  Index
+                </PageButton>
+              </Box>
+            )}
+            <CharacterProfiles
+              activeSlot={data.active_slot - 1}
+              onClick={(slot) => {
+                act('change_slot', {
+                  slot: slot + 1,
+                });
+              }}
+              profiles={data.character_profiles}
+            />
+            <Box position="absolute" right={0.5} top={0.5}>
+              <Button
+                icon="question"
+                fontSize="1.2em"
+                onClick={() => {
+                  setTutorialStatus('general');
+                }}
+              >
+                Tips and Tricks
+              </Button>
+            </Box>
+          </Stack.Item>
+          {!data.content_unlocked && (
+            <Stack.Item align="center">
+              Buy BYOND premium for more slots!
+            </Stack.Item>
+          )}
+
+          <Stack.Divider />
+
+          <Stack.Item height="100%">
+            <Stack fill>
+              <Stack.Item style={{ width: '280px' }}>
+                <LoadoutPreviewSection
+                  tutorialStatus={tutorialStatus}
+                  setMultiNameInputOpen={setMultiNameInputOpen}
+                />
+              </Stack.Item>
+              <Stack.Divider />
+              <Stack.Item width="100%" height="100%">
+                {pageContents}
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
+    </Window>
+  );
+};
+
+// BUBBER EDIT REMOVAL: I need to change so much of this shit, that it's best just sharded like this so maints have an easier time merging upstream.
+/*
   return (
     <Window title="Character Preferences" width={920} height={770}>
       <Window.Content scrollable>
@@ -159,35 +337,10 @@ export const CharacterPreferenceWindow = (props) => {
                   {/*
                     Fun fact: This isn't "Jobs" so that it intentionally
                     catches your eyes, because it's really important!
-                  */}
+                  *\/}
                   Occupations
                 </PageButton>
               </Stack.Item>
-              {
-                // SKYRAT EDIT
-              }
-              <Stack.Item grow>
-                <PageButton
-                  currentPage={currentPage}
-                  page={Page.Limbs}
-                  setPage={setCurrentPage}
-                >
-                  Augments+
-                </PageButton>
-              </Stack.Item>
-
-              <Stack.Item grow>
-                <PageButton
-                  currentPage={currentPage}
-                  page={Page.Languages}
-                  setPage={setCurrentPage}
-                >
-                  Languages
-                </PageButton>
-              </Stack.Item>
-              {
-                // SKYRAT EDIT END
-              }
               <Stack.Item grow>
                 <PageButton
                   currentPage={currentPage}
@@ -215,4 +368,5 @@ export const CharacterPreferenceWindow = (props) => {
       </Window.Content>
     </Window>
   );
-};
+};*/
+// BUBBER EDIT END
