@@ -78,12 +78,32 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/gold
 	name = "gold trimmed m1911"
-	desc = "A classic .460 ceres handgun with a small magazine capacity. Now trimmed in gold"
+	desc = "A Kayian reproduction of Terran handgun rechambered to .460 ceres  with a small magazine capacity. Now trimmed in gold"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/pistol.dmi'
 	icon_state = "m1911"
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/gold/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/gold/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/gold/examine_more(mob/user)
+	. = ..()
+
+	. += "The feeding ramp is polished to a mirror sheen. It's not going to have any feeding problems. The slide's been replaced with a reinforced version. And it meshes perfectly with the frame. \
+		The frame itself has been iron-welded and scraped down multiple times for maximum precision. The front strap part of the frame has been checkered to make it dig into the hand. That prevents any slipping. \
+		The sight system's original, too. It's a 3-dot type. It's got an enlarged front sight, giving it superior target sighting capability. \
+		The regular hammer's been replaced with a ring hammer. That enhances the cocking control and increases the hammer-down speed. They also reworked the grip safety to accommodate a four fingered Kayian., \
+		Looks like they eliminated it altogether. This is a tool for pros. The thumb safety and the slide stop are extended to allow for more precise handling. The base of the trigger guard is whittled down, so you can use a high grip. \
+		And the trigger itself is a long type for easy finger access. The trigger pull is about 3.5 pounds. That's about a pound and a half lighter than normal. The magazine well has been widened to make it easier to put in a new magazine  \
+		The magazine catch button has been cut down low to make it harder to hit by accident. The mainspring housing has been changed to a flat type to increase grip. \
+		To whom it may concerns, These weapon were mostly used by the new Romulus National Army,\
+		And it's even been fitted with stepping so that it doesn't slip from the recoil when firing. On top of that, they added cocking serrations to the front part of the slide. That lets you load and eject cartridges faster in an emergency.  \
+		Weapons cannot bring people back, but it can save your life."
+
+	return .
 
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/m1911_gold
