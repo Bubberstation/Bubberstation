@@ -36,7 +36,7 @@
 	/// Age in "days" or some unit of time
 	var/age = 0
 	/// How often a 'life' cycle of the pet runs
-	var/update_rate = 20 SECONDS
+	var/update_rate = 30 SECONDS
 	/// The last action the pet performed
 	var/last_task = null
 
