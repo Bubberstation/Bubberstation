@@ -10,7 +10,7 @@
 #define PURR_SLEEP 'sound/creatures/cat/cat_purr3.ogg'
 
 /obj/item/toy/nyamagotchi
-	name = "nyamagotchi"
+	name = "Nyamagotchi"
 	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
 	icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
 	icon_state = "nya"
@@ -143,11 +143,11 @@
 /obj/item/toy/nyamagotchi/proc/readout()
 	switch(alive)
 		if(NO_ANIMAL)
-			return span_notice("The Nyamagotchi is ready to be started!")
+			return span_notice("[src] is ready to be started!")
 		if(ANIMAL_ALIVE)
-			return span_notice("The Nyamagotchi is alive, it has reached age [age]! Use the <b>'Check Status'</b> button to see its stats!")
+			return span_notice("[src] is alive, it has reached age [age]! Use the <b>'Check Status'</b> button to see its stats!")
 		if(ANIMAL_DEAD)
-			return span_purple("The Nyamagotchi is DEAD. You're a terrible person.")
+			return span_purple("[src] is DEAD. You're a terrible person.")
 
 /obj/item/toy/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
