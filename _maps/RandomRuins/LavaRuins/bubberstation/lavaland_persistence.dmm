@@ -1175,6 +1175,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "dB" = (
@@ -1438,26 +1439,6 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
-"eo" = (
-/obj/item/storage/lunchbox/amongus,
-/obj/item/storage/lunchbox/amongus,
-/obj/item/storage/lunchbox/bunny,
-/obj/item/storage/lunchbox/bunny,
-/obj/item/storage/lunchbox/corgi,
-/obj/item/storage/lunchbox/corgi,
-/obj/item/storage/lunchbox/heart,
-/obj/item/storage/lunchbox/heart,
-/obj/item/storage/lunchbox/medical,
-/obj/item/storage/lunchbox/medical,
-/obj/item/storage/lunchbox/nanotrasen,
-/obj/item/storage/lunchbox/nanotrasen,
-/obj/item/storage/lunchbox/safetymoth,
-/obj/item/storage/lunchbox/safetymoth,
-/obj/structure/closet/crate/secure/wafflecorp,
-/obj/item/storage/box/aquarium_props,
-/obj/item/storage/box/aquarium_props,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "ep" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
@@ -2128,6 +2109,27 @@
 /obj/machinery/power/portagrav,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
+"gu" = (
+/obj/item/storage/lunchbox/amongus,
+/obj/item/storage/lunchbox/amongus,
+/obj/item/storage/lunchbox/bunny,
+/obj/item/storage/lunchbox/bunny,
+/obj/item/storage/lunchbox/corgi,
+/obj/item/storage/lunchbox/corgi,
+/obj/item/storage/lunchbox/heart,
+/obj/item/storage/lunchbox/heart,
+/obj/item/storage/lunchbox/medical,
+/obj/item/storage/lunchbox/medical,
+/obj/item/storage/lunchbox/nanotrasen,
+/obj/item/storage/lunchbox/nanotrasen,
+/obj/item/storage/lunchbox/safetymoth,
+/obj/item/storage/lunchbox/safetymoth,
+/obj/structure/closet/crate/secure/wafflecorp,
+/obj/item/storage/box/aquarium_props,
+/obj/item/storage/box/aquarium_props,
+/obj/item/storage/box/aquarium_props,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "gw" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	polarizer_id = "persist_science"
@@ -4224,6 +4226,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
+"mA" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "mF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -6033,10 +6041,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
-"ss" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "st" = (
 /obj/structure/sign/warning/no_smoking/directional/east,
 /obj/structure/fans/tiny,
@@ -10943,9 +10947,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "HL" = (
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/south,
-/turf/open/floor/pod/dark,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "HN" = (
 /obj/structure/cable,
@@ -11357,11 +11360,6 @@
 	},
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant)
-"IY" = (
-/obj/machinery/biogenerator,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "IZ" = (
 /obj/structure/toilet{
 	pixel_y = 13;
@@ -12464,14 +12462,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
-"MB" = (
-/obj/machinery/button/door/directional/north{
-	id = "syndiengis";
-	name = "Exterior Radiation Shutters";
-	pixel_x = -24
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "MC" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -12674,6 +12664,12 @@
 /obj/machinery/computer/order_console/mining/interdyne,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"Nh" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Ni" = (
 /turf/open/floor/iron/stairs,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
@@ -13099,7 +13095,6 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "OB" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/plasticflaps,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
@@ -14400,19 +14395,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
-"SI" = (
-/obj/effect/turf_decal/stripes,
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Turbine Room"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/machinery/door/poddoor/shutters/window{
-	id = "syndiengis"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/iron/dark/smooth_large,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SJ" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /obj/machinery/hydroponics/constructable,
@@ -15286,11 +15268,6 @@
 	dir = 10
 	},
 /obj/structure/lattice/catwalk/mining,
-/obj/machinery/button/door/directional/north{
-	id = "syndiengis";
-	name = "Exterior Radiation Shutters";
-	pixel_x = 24
-	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "VR" = (
@@ -17242,7 +17219,7 @@ cZ
 Pf
 Kb
 YG
-SI
+yZ
 AQ
 yZ
 EP
@@ -17314,7 +17291,7 @@ wI
 CN
 Zz
 OB
-MB
+sb
 sE
 AP
 sb
@@ -17385,7 +17362,7 @@ QD
 hz
 QD
 dA
-ss
+Kb
 sb
 Yn
 bH
@@ -18623,7 +18600,7 @@ Az
 La
 CK
 VG
-gq
+qg
 gq
 gq
 gq
@@ -18695,8 +18672,8 @@ uZ
 uZ
 uZ
 uZ
-VG
-gq
+wS
+qg
 gq
 gq
 FW
@@ -18762,13 +18739,13 @@ Ne
 oJ
 ny
 Me
+uZ
 wS
 Kc
 Rj
 Ha
 wS
-VG
-gq
+qg
 gq
 gq
 FW
@@ -18834,13 +18811,13 @@ Ne
 oJ
 ir
 TG
+uZ
 wS
 fU
 Un
 OH
 wS
-VG
-gq
+qg
 gq
 gq
 FW
@@ -18905,14 +18882,14 @@ aJ
 Ne
 mP
 aU
+Nh
 AT
 wS
 iK
 ht
 rO
 wS
-VG
-gq
+qg
 gq
 gq
 FW
@@ -18977,14 +18954,14 @@ My
 gB
 TE
 TE
+TE
 WU
 wS
 rh
 cY
 So
 wS
-VG
-gq
+qg
 gq
 gq
 FW
@@ -19049,14 +19026,14 @@ zY
 tm
 oU
 ui
+mA
 vY
-IY
-eo
+wS
+gu
 xU
 LB
 wS
-VG
-gq
+qg
 gq
 FW
 FW
@@ -19127,8 +19104,8 @@ ZK
 ry
 mH
 mH
-pm
-gq
+mH
+qg
 gq
 gq
 FW
