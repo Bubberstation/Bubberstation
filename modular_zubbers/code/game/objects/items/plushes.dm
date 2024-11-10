@@ -196,3 +196,13 @@
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	src.visible_message(span_warning("The [src.name] turns to ash!"))
 	qdel(src)
+
+// Plush for Vanilla
+/obj/item/toy/plush/suspicious_protogen
+	name = "\improper Suspicious protogen plush"
+	desc = "A suspicious pink looking protogen plushie commonly seen roaming the station almost everywhere, \
+			perfect for cuddling when you feel upset at something."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "pinkproot"
+	gender = FEMALE
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
