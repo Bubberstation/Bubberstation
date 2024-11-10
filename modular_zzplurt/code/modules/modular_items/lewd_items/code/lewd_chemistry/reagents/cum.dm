@@ -1,11 +1,11 @@
-// Default type
+// Default type cum
 /datum/reagent/consumable/cum/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 
 	// Check for semen-based quirks
 	handle_secretion_quirks(affected_mob)
 
-// Female type
+// Female type cum
 /datum/reagent/consumable/femcum/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 
@@ -16,8 +16,10 @@
 /datum/reagent/consumable/proc/handle_secretion_quirks(mob/living/carbon/affected_mob)
 	// Check for Concubus quirk
 	if(HAS_TRAIT(affected_mob, TRAIT_CONCUBUS))
-		// Add nutrition
-		affected_mob.adjust_nutrition(nutriment_factor)
+		// Check if nutrition is below full
+		if(affected_mob.nutrition <= NUTRITION_LEVEL_FULL)
+			// Adjust nutrition
+			affected_mob.adjust_nutrition((CONCUBUS_NUTRITION_AMT * REAGENTS_METABOLISM * 2) * REM)
 
 		// Continue processing
 		current_cycle++

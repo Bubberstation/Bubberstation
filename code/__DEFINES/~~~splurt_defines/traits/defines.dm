@@ -29,3 +29,5 @@
 
 // Quirk variables
 //#define RADFIEND_IMMUNITY_TIME (5 MINUTES) // How long does Rad Fiend protect against radiation? Currently unused.
+// Amount of nutrition Concubus gets from compatible reagents
+#define CONCUBUS_NUTRITION_AMT 10 // Slightly below Nutriment (15)
