@@ -165,7 +165,7 @@
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
 	// Create vampire ID card
-	var/obj/item/card/id/vampire/id_vampire = new(get_turf(quirk_mob))
+	var/obj/item/card/id/advanced/quirk/bloodfledge/id_vampire = new(get_turf(quirk_mob))
 
 	// Define default card type name
 	var/card_name_type = "Blood"
@@ -194,8 +194,9 @@
 	if(quirk_mob.chrono_age)
 		id_vampire.registered_age = quirk_mob.chrono_age
 
-	// Set assignment
-	id_vampire.assignment = "[card_name_type]sucker Fledgling"
+	// Set assignment overrides
+	id_vampire.assignment = "[card_name_type]fledge"
+	id_vampire.trim?.assignment = "[card_name_type]fledge"
 
 	// Update label
 	id_vampire.update_label()

@@ -3,7 +3,7 @@
 	name = "Hemorrhagic Sanguinizer"
 	desc = "A modified Bloodfledge ID card capable of channeling technopathic blood magic."
 	reqs = list(
-		/obj/item/card/id/vampire = 1,
+		/obj/item/card/id/advanced/quirk/bloodfledge = 1,
 		/obj/item/assembly/signaler = 1,
 		/obj/item/reagent_containers/syringe = 1,
 		/obj/item/reagent_containers/blood = 1,
