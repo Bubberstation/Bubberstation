@@ -41,7 +41,7 @@
 	var/last_task = null
 
 	var/alive = NO_ANIMAL
-	var/static/list/rest_messages = list(
+	var/list/rest_messages = list(
 		"Zzz... Zzz... Zzz...",
 		"Honk, shew! Hooonk, shewww...!",
 		"Snoozin' time, nya...",
@@ -50,7 +50,7 @@
 		"I'm feeling so well-rested!",
 		"Zzz... Zzz... Zzz... Zzz... Zzz...",
 	)
-	var/static/list/play_messages = list(
+	var/list/play_messages = list(
 		"Wowzers meowzers, that was fun!",
 		"That was so much fun, nya!",
 		"YAY!!!",
@@ -58,7 +58,7 @@
 		"YIPPEEE!!!", "That was a blast!",
 		"Wowzers meowzers, that was a blast!",
 	)
-	var/static/list/feed_messages = list(
+	var/list/feed_messages = list(
 		"NOM NOM NOM. Ice cream, yum!",
 		"Mmm, that was tasty!",
 		"So yummy!",
@@ -68,7 +68,7 @@
 		"Yum, that was delicious!",
 		"What a PURRFECT meal, nya!",
 	)
-	var/static/list/hunger_warning = list(
+	var/list/hunger_warning = list(
 		"Wowzers meowzers, I'm hungry, nya!",
 		"Excuse me! I'm feeling a bit peckish, nya!",
 		"I could eat the world right now, nya!",
@@ -76,13 +76,13 @@
 		"I'm feeling a bit hungry, nya!",
 		"I needs the food, mrow!",
 	)
-	var/static/list/hunger_critical = list(
+	var/list/hunger_critical = list(
 		"HELLO! Food, pwease?...",
 		"HEY!!! I'm starving...",
 		"HONNNNGRYYY!!!",
 		"so so hungry...",
 	)
-	var/static/list/happiness_warning = list(
+	var/list/happiness_warning = list(
 		"Some fun would be purrfect, nya...",
 		"I'm feeling a bit down, nya...",
 		"Playtime! Now!",
@@ -95,7 +95,7 @@
 		"Play with meeee! PLEASE.",
 		"My fun levels are low, nya...",
 	)
-	var/static/list/full_critical = list(
+	var/list/full_critical = list(
 		"So this... is how it ends for me...",
 		"Is this how it ends... cold, alone, unfed...",
 		"Fading... fast... my last request: snacks and snuggles, please...",
@@ -103,7 +103,7 @@
 		"Abandoned... like a stray... in my own virtual world...",
 		"It’s getting so dark and cold...",
 	)
-	var/static/list/energy_warning = list(
+	var/list/energy_warning = list(
 		"I'm feeling a bit sleepy, nya...",
 		"Sleempy...",
 		"I be needin' a naps, nya!",
@@ -111,7 +111,7 @@
 		"I'm feeling a bit exhausted, nya...",
 		"I could go for a nap...",
 	)
-	var/static/list/energy_critical = list(
+	var/list/energy_critical = list(
 		"SO, SO EEPY, NYA...",
 		"Please, I need to rest...",
 		"I'm gonna pass out and DIE!",
@@ -121,6 +121,8 @@
 
 /obj/item/toy/nyamagotchi/Initialize(mapload)
 	. = ..()
+	if(prob(3))
+		name = "pocket pussy" // mrowwww!
 	register_context()
 	update_available_icons()
 
@@ -346,6 +348,23 @@
 /datum/job/psychologist/New()
 	LAZYADDASSOC(mail_goodies, /obj/item/toy/nyamagotchi, 45)
 	. = ..()
+
+/obj/effect/spawner/random/entertainment/dice
+	name = "dice spawner"
+	icon_state = "dice_bag"
+	spawn_loot_count = 3
+	spawn_loot_double = FALSE
+	spawn_loot_split = TRUE
+	loot = list(
+		/obj/item/dice/d4,
+		/obj/item/dice/d6,
+		/obj/item/dice/d8,
+		/obj/item/dice/d10,
+		/obj/item/dice/d12,
+		/obj/item/dice/d20,
+		/obj/item/dice/fourdd6,
+		/obj/item/toy/nyamagotchi,
+	)
 
 #undef NO_ANIMAL
 #undef ANIMAL_ALIVE
