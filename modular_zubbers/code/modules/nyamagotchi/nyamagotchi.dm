@@ -37,6 +37,8 @@
 	var/age = 0
 	/// How often a 'life' cycle of the pet runs
 	var/update_rate = 20 SECONDS
+	/// The last action the pet performed
+	var/last_task = null
 
 	var/alive = NO_ANIMAL
 	var/static/list/rest_messages = list(
@@ -208,6 +210,8 @@
 	if(!alive)
 		return
 
+	last_task = null
+
 	if(happiness <= 21) // unhappy pets get hungry and tired faster
 		hunger += rand(1, 3)
 		energy -= rand(1, 3)
@@ -280,32 +284,49 @@
 		balloon_alert_to_viewers(message = visible, vision_distance = COMBAT_MESSAGE_RANGE + 2)
 
 // Interactions
+/obj/item/toy/nyamagotchi/proc/action_check()
+	if(!isnull(last_task))
+		usr.balloon_alert(usr, "still [last_task]!")
+		be_known(sfx = MEOW_SAD)
+		return FALSE
+	return TRUE
+
 /obj/item/toy/nyamagotchi/proc/feed()
-	if(hunger > 20)
+	if(!action_check())
+		return
+	else if(hunger > 20)
 		hunger -= min(rand(30, 40), hunger)
 		to_chat(usr, span_purple("You fed [src]! Its hunger is now at [hunger]."))
 		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
+		last_task = "eating"
 	else
 		usr.balloon_alert(usr, "not hungry!")
 
 /obj/item/toy/nyamagotchi/proc/play()
-	if(happiness < 80)
+	if(!action_check())
+		return
+	else if(happiness < 80)
 		happiness += min(rand(30, 40), 100 - happiness)
 		to_chat(usr, span_purple("You play with [src]! Its happiness is now [happiness]."))
 		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
+		last_task = "playing"
 	else
 		usr.balloon_alert(usr, "not bored!")
 
 /obj/item/toy/nyamagotchi/proc/rest()
-	if(energy < 80)
+	if(!action_check())
+		return
+	else if(energy < 80)
 		energy += min(rand(30, 40), 100 - energy)
 		to_chat(usr, span_purple("[src] rests and regains energy. Its energy is now [energy]."))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
+		last_task = "resting"
 	else
 		usr.balloon_alert(usr, "not tired!")
 
 // Function for when the nyamagotchi dies
 /obj/item/toy/nyamagotchi/proc/die()
+	last_task = null
 	alive = ANIMAL_DEAD
 	audible_message(span_warning("[src] makes a weak, sad noise and then goes silent... Rest in peace."), hearing_distance = COMBAT_MESSAGE_RANGE)
 	if(ishuman(loc))
