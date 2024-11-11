@@ -158,7 +158,6 @@
 		force = initial(force)
 		wound_bonus = initial(wound_bonus)
 		armour_penetration = initial(armour_penetration)
-		block_chance = initial(block_chance)
 		return ..()
 	else
 		force = 18
