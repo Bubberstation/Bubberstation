@@ -155,34 +155,6 @@ export const CharacterPreferenceWindow = (props) => {
             names={data.character_preferences.names}
           />
         )}
-        {tutorialStatus === 'general' && (
-          <Dimmer>
-            <Stack vertical align="center">
-              <Stack.Item preserveWhitespace>
-                Here&apos;s a few things to note for this preferences system:
-                <ul>
-                  <li>
-                    Inputting black (000000) will make that colour take your
-                    chosen skin tone/custom skin colour.
-                  </li>
-                  <li>
-                    Is something not appearing correctly? Please file a bug
-                    report!
-                  </li>
-                </ul>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  mt={1}
-                  align="center"
-                  onClick={() => setTutorialStatus(null)}
-                >
-                  Okay.
-                </Button>
-              </Stack.Item>
-            </Stack>
-          </Dimmer>
-        )}
         {tutorialStatus === 'new_player' && (
           <Dimmer>
             <Stack vertical align="center">
@@ -245,17 +217,7 @@ export const CharacterPreferenceWindow = (props) => {
               }}
               profiles={data.character_profiles}
             />
-            <Box position="absolute" right={0.5} top={0.5}>
-              <Button
-                icon="question"
-                fontSize="1.2em"
-                onClick={() => {
-                  setTutorialStatus('general');
-                }}
-              >
-                Tips and Tricks
-              </Button>
-            </Box>
+            <Box position="absolute" right={0.5} top={0.5}></Box>
           </Stack.Item>
           {!data.content_unlocked && (
             <Stack.Item align="center">
