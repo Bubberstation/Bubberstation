@@ -8,6 +8,8 @@
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
 	ambient_buzz = 'sound/ambience/earth_rumble/earth_rumble_distant1.ogg'
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/jungleplanet/surface
 	name = "jungle planet surface"
