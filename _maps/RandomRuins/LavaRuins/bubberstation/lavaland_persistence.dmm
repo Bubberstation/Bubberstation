@@ -1422,12 +1422,9 @@
 	dir = 6
 	},
 /obj/machinery/biogenerator/medstation/directional/south,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/iron/dark/small,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "el" = (
 /obj/structure/cable,
@@ -7492,6 +7489,9 @@
 /obj/structure/table/wood/fancy/red,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
+"wF" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "wG" = (
 /obj/structure/railing/wooden_fencing{
 	dir = 8
@@ -10614,6 +10614,16 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"Gt" = (
+/obj/structure/cable,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "Gv" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/mech_bay_recharge_port{
@@ -10725,13 +10735,13 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "GN" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/light/directional/south,
 /obj/machinery/barsign/all_access/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "GP" = (
@@ -11582,6 +11592,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
 /obj/machinery/firealarm/directional/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Jp" = (
@@ -12097,9 +12110,6 @@
 "KR" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/south,
-/obj/structure/fireaxecabinet/empty/directional/south{
-	name = "Universal Crate Opener"
-	},
 /obj/item/fireaxe/energy,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -12749,6 +12759,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Ne" = (
@@ -13211,6 +13224,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "OG" = (
@@ -14019,6 +14033,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
 /obj/structure/chair/sofa/left/maroon,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Re" = (
@@ -14112,6 +14129,9 @@
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"Rp" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "Rr" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -15349,7 +15369,6 @@
 "VE" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
@@ -15363,6 +15382,9 @@
 	dir = 4
 	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "VG" = (
@@ -17303,7 +17325,7 @@ HL
 yZ
 XK
 VQ
-AQ
+yZ
 AQ
 AQ
 AQ
@@ -17555,7 +17577,7 @@ kq
 xg
 UI
 Zo
-Zo
+wF
 Zg
 Ks
 CL
@@ -17843,7 +17865,7 @@ Oy
 Ja
 eI
 Zo
-kX
+Rp
 OT
 Uj
 Uj
@@ -17915,7 +17937,7 @@ Xf
 ge
 fB
 Nj
-kX
+Rp
 UK
 HV
 Md
@@ -17987,7 +18009,7 @@ Sr
 vl
 fB
 tJ
-kX
+Rp
 kX
 kX
 kX
@@ -18059,7 +18081,7 @@ mi
 EZ
 sU
 es
-CL
+Zo
 rR
 dh
 qY
@@ -18131,7 +18153,7 @@ jF
 cV
 sU
 KB
-CL
+Zo
 IZ
 ld
 ij
@@ -18202,8 +18224,8 @@ VL
 Qj
 Ma
 dd
-CL
-CL
+Zo
+Zo
 CL
 Zo
 Dx
@@ -19599,7 +19621,7 @@ NL
 xj
 xE
 xE
-eH
+Gt
 OF
 bE
 Nc

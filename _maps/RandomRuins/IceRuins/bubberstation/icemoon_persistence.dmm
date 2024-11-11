@@ -3221,12 +3221,9 @@
 	dir = 6
 	},
 /obj/machinery/biogenerator/medstation/directional/south,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/iron/dark/small,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "kn" = (
 /obj/machinery/hydroponics/constructable,
@@ -3929,6 +3926,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
 /obj/machinery/firealarm/directional/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "ms" = (
@@ -4114,13 +4114,13 @@
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "mO" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/light/directional/south,
 /obj/machinery/barsign/all_access/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "mP" = (
@@ -6927,6 +6927,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "vn" = (
@@ -7240,6 +7243,9 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+"wh" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "wi" = (
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/structure/cable,
@@ -10073,7 +10079,6 @@
 "Fi" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
@@ -10087,6 +10092,9 @@
 	dir = 4
 	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Fk" = (
@@ -10338,6 +10346,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/duct,
 /obj/structure/chair/sofa/left/maroon,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "FS" = (
@@ -11604,9 +11615,6 @@
 "JK" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/south,
-/obj/structure/fireaxecabinet/empty/directional/south{
-	name = "Universal Crate Opener"
-	},
 /obj/item/fireaxe/energy,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -13189,6 +13197,16 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
+"OI" = (
+/obj/structure/cable,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "OJ" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/apc/full_charge,
@@ -14922,6 +14940,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "TN" = (
@@ -16037,6 +16056,14 @@
 "Xq" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/med)
+"Xs" = (
+/obj/structure/safe/abovetilefloor,
+/obj/item/sign/flag/syndicate{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/donk,
+/area/ruin/space/has_grav/bubbers/persistance/evac)
 "Xt" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/box/gas_miner_beacons/syndicate{
@@ -17253,7 +17280,7 @@ UZ
 Gd
 Rc
 SJ
-rt
+Gd
 rt
 rt
 rt
@@ -17497,7 +17524,7 @@ yz
 Eo
 ON
 NU
-NU
+wh
 rx
 DO
 HP
@@ -17777,9 +17804,9 @@ Ay
 Kf
 By
 NU
-HP
+NU
 Fz
-HW
+Xs
 HW
 bI
 YO
@@ -17847,7 +17874,7 @@ jC
 Sm
 UY
 qL
-HP
+NU
 yX
 qf
 wC
@@ -17917,7 +17944,7 @@ MO
 qx
 UY
 oi
-HP
+NU
 ia
 ia
 ia
@@ -17987,7 +18014,7 @@ Jn
 Mo
 Kx
 sp
-HP
+NU
 Rd
 MD
 hr
@@ -18057,7 +18084,7 @@ dV
 UD
 Kx
 Nn
-HP
+NU
 eY
 QM
 EQ
@@ -18126,8 +18153,8 @@ ig
 HU
 rW
 Tt
-HP
-HP
+NU
+NU
 HP
 NU
 xq
@@ -18196,7 +18223,7 @@ ig
 Ie
 Ud
 mJ
-HP
+NU
 iH
 zd
 HP
@@ -19485,7 +19512,7 @@ mL
 JQ
 jr
 jr
-wT
+OI
 TK
 Kc
 vm
