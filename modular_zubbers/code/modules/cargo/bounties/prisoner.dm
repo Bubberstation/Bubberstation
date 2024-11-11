@@ -7,7 +7,7 @@
 
 /datum/bounty/item/prisoner/baseball_bat
 	name = "Baseball Bat"
-	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
+	description = "Security wants more baseball bats, sell them... Don't use them unless you want to be the new league ball."
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/melee/baseball_bat = TRUE)
@@ -20,7 +20,7 @@
 
 /datum/bounty/item/prisoner/poppy
 	name = "Poppies"
-	description = "Stop asking questions, send the flowers, get paid. INMATE!"
+	description = "Stop asking questions, send the poppies, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 2
 	required_count = 3
 	wanted_types = list(/obj/item/food/grown/poppy = TRUE)
@@ -28,7 +28,7 @@
 
 /datum/bounty/item/prisoner/lilly
 	name = "Lillies"
-	description = "Stop asking questions, send the flowers, get paid. INMATE!"
+	description = "Stop asking questions, send the lillies, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 3
 	wanted_types = list(/obj/item/food/grown/poppy/lily = TRUE)
@@ -36,7 +36,7 @@
 
 /datum/bounty/item/prisoner/geranium
 	name = "Geraniums"
-	description = "Stop asking questions, send the flowers, get paid. INMATE!"
+	description = "Stop asking questions, send the geraniums, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 3
 	wanted_types = list(/obj/item/food/grown/poppy/geranium = TRUE)
@@ -44,7 +44,7 @@
 
 /datum/bounty/item/prisoner/tomatoes
 	name = "Tomatoes"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the tomatoes, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/tomato = TRUE)
@@ -52,7 +52,7 @@
 
 /datum/bounty/item/prisoner/carrots
 	name = "Carrots"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the carrots, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/carrot = TRUE)
@@ -60,7 +60,7 @@
 
 /datum/bounty/item/prisoner/onion
 	name = "Onions"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the onions, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/onion = TRUE)
@@ -68,7 +68,7 @@
 
 /datum/bounty/item/prisoner/apples
 	name = "Apples"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the apples, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/apple = TRUE)
@@ -76,7 +76,7 @@
 
 /datum/bounty/item/prisoner/grapes
 	name = "Grapes"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the grapes, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/grapes = TRUE)
@@ -84,7 +84,7 @@
 
 /datum/bounty/item/prisoner/corn
 	name = "Ears of Corn"
-	description = "Stop asking questions, send the fruits, get paid. INMATE!"
+	description = "Stop asking questions, send the corn, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/item/food/grown/corn = TRUE)
