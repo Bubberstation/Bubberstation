@@ -16,9 +16,9 @@ GLOBAL_LIST_INIT(rr_opt_in_strings, list(
 #define RR_OPT_OUT 0
 
 /// The minimum opt-in level for people playing sec.
-#define RR_OPT_LEVEL_SECURITY RR_OPT_IN
+#define RR_OPT_LEVEL_SECURITY RR_OPT_OUT
 /// The minimum opt-in level for people playing command.
-#define RR_OPT_LEVEL_COMMAND RR_OPT_IN
+#define RR_OPT_LEVEL_COMMAND RR_OPT_OUT
 
 /// The default opt in level for preferences and mindless mobs.
 #define RR_OPT_LEVEL_DEFAULT RR_OPT_OUT

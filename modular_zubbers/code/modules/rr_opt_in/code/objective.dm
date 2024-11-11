@@ -14,7 +14,7 @@
     default_opt_in_level = RR_OPT_IN
 
 /datum/objective/capture
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/absorb
 	default_opt_in_level = RR_OPT_IN
@@ -35,28 +35,28 @@
 	default_opt_in_level = RR_OPT_IN
 
 /datum/objective/mutiny
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/maroon
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/protect
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/protect/nonhuman
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/steal_n_of_type
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/steal
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/escape/escape_with_identity
 	default_opt_in_level = RR_OPT_IN
 
 /datum/objective/jailbreak
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/contract
 	default_opt_in_level = RR_OPT_IN
