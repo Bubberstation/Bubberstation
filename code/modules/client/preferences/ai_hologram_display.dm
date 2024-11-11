@@ -1,6 +1,6 @@
 /// What to show on the AI hologram
 /datum/preference/choiced/ai_hologram_display
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "preferred_ai_hologram_display"
 	should_generate_icons = TRUE

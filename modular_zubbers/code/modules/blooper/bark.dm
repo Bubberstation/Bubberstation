@@ -51,7 +51,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	to_chat(world, "<span class='oocplain'><B>Vocal barks have been globally [GLOB.blooper_allowed ? "enabled" : "disabled"].</B></span>")
 
 /datum/preference/choiced/blooper
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_speech"
 
@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	return TRUE
 
 /datum/preference/numeric/blooper_speech_speed
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_speech_speed"
 	minimum = BLOOPER_DEFAULT_MINSPEED
@@ -100,7 +100,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	return round((BLOOPER_DEFAULT_MINSPEED + BLOOPER_DEFAULT_MAXSPEED) / 2)
 
 /datum/preference/numeric/blooper_speech_pitch
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_speech_pitch"
 	minimum = BLOOPER_DEFAULT_MINPITCH
@@ -114,7 +114,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	return round((BLOOPER_DEFAULT_MINPITCH + BLOOPER_DEFAULT_MAXPITCH) / 2)
 
 /datum/preference/numeric/blooper_pitch_range
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_pitch_range"
 	minimum = BLOOPER_DEFAULT_MINVARY

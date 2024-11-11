@@ -131,7 +131,7 @@ BUBBER REMOVAL END */
 	savefile_key = "new_genitalia_growth_pref"
 
 /datum/preference/choiced/erp_status
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref"
 
@@ -181,7 +181,7 @@ BUBBER REMOVAL END */
 	return FALSE
 
 /datum/preference/choiced/erp_status_nc
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_nc"
 
@@ -211,7 +211,7 @@ BUBBER REMOVAL END */
 	return FALSE
 
 /datum/preference/choiced/erp_status_v
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_v"
 
@@ -241,7 +241,7 @@ BUBBER REMOVAL END */
 	return FALSE
 
 /datum/preference/choiced/erp_status_mechanics
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_mechanics"
 
@@ -301,7 +301,7 @@ BUBBER REMOVAL END */
 	return FALSE
 
 /datum/preference/choiced/erp_status_hypno
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_hypnosis"
 

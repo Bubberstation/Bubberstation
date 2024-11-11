@@ -17,7 +17,7 @@
 	savefile_key = "backpack"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Backpack"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/backpack/init_possible_values()
@@ -71,7 +71,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
 	main_feature_name = "Jumpsuit"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/jumpsuit/init_possible_values()
@@ -98,7 +98,7 @@
 	savefile_key = "socks"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Socks"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 	can_randomize = FALSE
 
@@ -127,7 +127,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
 	main_feature_name = "Undershirt"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 	can_randomize = FALSE
 
@@ -177,7 +177,7 @@
 	savefile_key = "underwear"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Underwear"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 	can_randomize = FALSE
 

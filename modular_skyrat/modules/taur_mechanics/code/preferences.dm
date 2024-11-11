@@ -1,5 +1,5 @@
 /datum/preference/toggle/naga_soles
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_key = "naga_sole"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_BODYPARTS + 0.1

@@ -1,5 +1,5 @@
 /datum/preference/choiced/height_scaling
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_key = "height_scaling"
 	savefile_identifier = PREFERENCE_CHARACTER
 

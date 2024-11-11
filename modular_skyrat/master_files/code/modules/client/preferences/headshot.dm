@@ -1,7 +1,7 @@
 // Hey listen! Imgur doesn't actually work, it's been tested.
 
 /datum/preference/text/headshot
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_INSPECTION_TEXT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "headshot"
 	maximum_value_length = MAX_MESSAGE_LEN

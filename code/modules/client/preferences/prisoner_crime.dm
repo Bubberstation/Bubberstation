@@ -1,6 +1,6 @@
 /// Which crime is the prisoner permabrigged for. For fluff!
 /datum/preference/choiced/prisoner_crime
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_RECORDS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "prisoner_crime"
 
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(prisoner_crimes, init_prisoner_crimes())
 	name = "Identity Theft of High-Ranking Figure"
 	desc = "Impersonated a high-ranking figure."
 	tattoos = 0 //well, obviously can't impersonate people with tats. if they want to go back to doing that
-	
+
 /datum/prisoner_crime/jaywalker
 	name = "Jaywalker"
 	desc = "Jaywalked across non-green tram crossings, shuttle docking zones, and/or through space."

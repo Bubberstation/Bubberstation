@@ -40,7 +40,7 @@
 	savefile_key = "bra"
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Bra"
-	category = PREFERENCE_CATEGORY_CLOTHING
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	should_generate_icons = TRUE
 
 /datum/preference/choiced/bra/init_possible_values()

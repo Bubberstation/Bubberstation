@@ -115,19 +115,19 @@
 #define PREFERENCE_TAB_KEYBINDINGS 2
 
 /// These will be shown in the character sidebar, but at the bottom.
-#define PREFERENCE_CATEGORY_FEATURES "features"
+// #define PREFERENCE_CATEGORY_FEATURES "features" // BUBBER EDIT REMOVAL: Better prefs. It's better to compiletime rather than runtime in this instance.
 
 /// Any preferences that will show to the sides of the character in the setup menu.
-#define PREFERENCE_CATEGORY_CLOTHING "clothing"
+// #define PREFERENCE_CATEGORY_CLOTHING "clothing" // BUBBER EDIT REMOVAL: Better prefs
 
 /// Preferences that will be put into the 3rd list, and are not contextual.
-#define PREFERENCE_CATEGORY_NON_CONTEXTUAL "non_contextual"
+// #define PREFERENCE_CATEGORY_NON_CONTEXTUAL "non_contextual" // BUBBER EDIT REMOVAL: Better prefs
 
 /// Will be put under the game preferences window.
 #define PREFERENCE_CATEGORY_GAME_PREFERENCES "game_preferences"
 
 /// These will show in the list to the right of the character preview.
-#define PREFERENCE_CATEGORY_SECONDARY_FEATURES "secondary_features"
+// #define PREFERENCE_CATEGORY_SECONDARY_FEATURES "secondary_features" // BUBBER EDIT REMOVAL: Better prefs
 
 /// These are preferences that are supplementary for main features,
 /// such as hair color being affixed to hair.

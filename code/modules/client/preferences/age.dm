@@ -1,5 +1,5 @@
 /datum/preference/numeric/age
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_RECORDS
 	savefile_key = "age"
 	savefile_identifier = PREFERENCE_CHARACTER
 

@@ -1,5 +1,5 @@
 /datum/preference/color/heterochromatic
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_key = "heterochromatic"
 	savefile_identifier = PREFERENCE_CHARACTER
 

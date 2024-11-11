@@ -1,5 +1,5 @@
 /datum/preference/toggle/persistent_scars
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_key = "persistent_scars"
 	savefile_identifier = PREFERENCE_CHARACTER
 

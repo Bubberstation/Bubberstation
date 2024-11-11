@@ -1,9 +1,11 @@
 // 200 dollars is 200 dollars :(
+// It wasn't enough for the code to not be complete agony - Rimi post doing a refactor and then coming back from a 2 year hiatus.
 
 // ABSTRACT TYPES
 
+// RIMI TODO: Yeet this shit, it's redundant, you can literally fucking set a boolean saying you want a "none" option in prefs
 /datum/preference/toggle/allow_genitals
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_genitals_toggle"
 	default_value = TRUE
@@ -19,7 +21,7 @@
 	return erp_allowed && passed_initial_check
 
 /datum/preference/choiced/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	abstract_type = /datum/preference/choiced/genital
 
@@ -74,7 +76,7 @@
 	return assoc_to_keys_features(SSaccessories.sprite_accessories[relevant_mutant_bodypart])
 
 /datum/preference/toggle/genital_skin_tone
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 	abstract_type = /datum/preference/toggle/genital_skin_tone
@@ -91,7 +93,7 @@
 	return erp_allowed && (passed_initial_check || allowed)
 
 /datum/preference/toggle/genital_skin_color
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 	abstract_type = /datum/preference/toggle/genital_skin_color
@@ -123,7 +125,7 @@
 
 
 /datum/preference/tri_color/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	abstract_type = /datum/preference/tri_color/genital
@@ -141,7 +143,7 @@
 	return erp_allowed && can_color && passed_initial_check
 
 /datum/preference/tri_bool/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	abstract_type = /datum/preference/tri_bool/genital
@@ -185,7 +187,7 @@
 	target.dna.features["penis_uses_skincolor"] = value
 
 /datum/preference/numeric/penis_length
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "penis_length"
 	relevant_mutant_bodypart = ORGAN_SLOT_PENIS
@@ -206,7 +208,7 @@
 	return round(max(PENIS_MIN_LENGTH, PENIS_DEFAULT_LENGTH))
 
 /datum/preference/numeric/penis_girth
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "penis_girth"
 	relevant_mutant_bodypart = ORGAN_SLOT_PENIS
@@ -239,7 +241,7 @@
 	skin_color_type = /datum/preference/toggle/genital_skin_color/penis
 
 /datum/preference/toggle/penis_taur_mode
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "penis_taur_mode_toggle"
 	default_value = FALSE
@@ -260,7 +262,7 @@
 /datum/preference/choiced/penis_sheath
 	savefile_key = "penis_sheath"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = ORGAN_SLOT_PENIS
 
 /datum/preference/choiced/penis_sheath/is_accessible(datum/preferences/preferences)
@@ -318,7 +320,7 @@
 	skin_color_type = /datum/preference/toggle/genital_skin_color/testicles
 
 /datum/preference/numeric/balls_size
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "balls_size"
 	relevant_mutant_bodypart = ORGAN_SLOT_TESTICLES
@@ -422,7 +424,7 @@
 	skin_color_type = /datum/preference/toggle/genital_skin_color/breasts
 
 /datum/preference/toggle/breasts_lactation
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "breasts_lactation_toggle"
 	default_value = FALSE
@@ -439,7 +441,7 @@
 	return erp_allowed && part_enabled && (passed_initial_check || allowed)
 
 /datum/preference/choiced/breasts_size
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "breasts_size"
 	relevant_mutant_bodypart = ORGAN_SLOT_BREASTS

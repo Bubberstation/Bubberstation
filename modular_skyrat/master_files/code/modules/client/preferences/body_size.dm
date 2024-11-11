@@ -1,5 +1,5 @@
 /datum/preference/numeric/body_size
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_size"
 	minimum = BODY_SIZE_MIN

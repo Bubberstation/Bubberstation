@@ -1,5 +1,5 @@
 /datum/preference/color/chat_color
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	priority = PREFERENCE_PRIORITY_NAME_MODIFICATIONS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ic_chat_color"

@@ -1,5 +1,5 @@
 /datum/preference/choiced/uplink_location
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "uplink_loc"
 	can_randomize = FALSE

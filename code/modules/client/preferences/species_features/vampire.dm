@@ -1,7 +1,7 @@
 /datum/preference/choiced/vampire_status
 	savefile_key = "feature_vampire_status"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_CONTENT
 	priority = PREFERENCE_PRIORITY_NAME_MODIFICATIONS //this will be overwritten by names otherwise
 	main_feature_name = "Vampire status"
 	should_generate_icons = TRUE

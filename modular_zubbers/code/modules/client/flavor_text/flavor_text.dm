@@ -11,7 +11,7 @@
 	var/headshot_silicon_nsfw = ""
 
 /datum/preference/text/flavor_text_nsfw
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_INSPECTION_TEXT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "flavor_text_nsfw"
 	maximum_value_length = MAX_FLAVOR_LEN
@@ -29,7 +29,7 @@
 
 //Lets the client choose when their NSFW flavor text is visible on a per-character basis.
 /datum/preference/choiced/show_nsfw_flavor_text
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_INSPECTION_TEXT
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "show_flavor_text_nsfw"
 

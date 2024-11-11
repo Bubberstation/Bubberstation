@@ -1,7 +1,7 @@
 /datum/preference/choiced/skin_tone
 	savefile_key = "skin_tone"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_inherent_trait = TRAIT_USES_SKINTONES
 
 /datum/preference/choiced/skin_tone/init_possible_values()

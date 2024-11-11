@@ -1,7 +1,7 @@
 /datum/preference/choiced/vox_bodycolor
 	savefile_key = "vox_bodycolor"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 
 /datum/preference/choiced/vox_bodycolor/init_possible_values()
 	return list("default", "darkteal", "yellow", "albino", "brown")

@@ -1,6 +1,6 @@
 /// What to show on the AI monitor
 /datum/preference/choiced/ai_emote_display
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "preferred_ai_emote_display"
 	should_generate_icons = TRUE

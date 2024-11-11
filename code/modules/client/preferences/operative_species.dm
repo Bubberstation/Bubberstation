@@ -1,7 +1,7 @@
 /// When TRUE, will spawn you as a human when selected for an operative role
 /// When FALSE, players will be placed into the game as their character's species
 /datum/preference/toggle/nuke_ops_species
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	can_randomize = FALSE
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_CHARACTER

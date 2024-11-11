@@ -11,7 +11,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 //The advertisement that you show to people looking through the directory
 /datum/preference/text/character_ad
 	savefile_key = "character_ad"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_DIRECTORY
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MAX_FLAVOR_LEN
 
@@ -25,7 +25,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/attraction
 	savefile_key = "attraction"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_DIRECTORY
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/attraction/init_possible_values()
@@ -39,7 +39,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/display_gender
 	savefile_key = "display_gender"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_DIRECTORY
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/display_gender/init_possible_values()
@@ -54,7 +54,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/emote_length
 	savefile_key = "emote_length"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_BUBBER_DIRECTORY
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/emote_length/init_possible_values()
@@ -68,7 +68,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/approach_pref
 	savefile_key = "approach_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_BUBBER_DIRECTORY
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/approach_pref/init_possible_values()
@@ -83,6 +83,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /// Pref for all the things with the same "Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe" setting
 /// Saves us on copypaste code
 /datum/preference/choiced/directory_character_prefs
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
 	savefile_key = "char_directory_char_prefs" // This is so unit checks don't scream
 
 /datum/preference/choiced/directory_character_prefs/init_possible_values()
@@ -94,30 +96,21 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /datum/preference/choiced/directory_character_prefs/create_default_value()
 	return "Unset"
 
+// Note to self, probably move this to char prefs in the future - Rimi
 /datum/preference/choiced/directory_character_prefs/furry_pref
 	savefile_key = "furry_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/directory_character_prefs/scalie_pref
 	savefile_key = "scalie_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/directory_character_prefs/other_pref
 	savefile_key = "other_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/directory_character_prefs/demihuman_pref
 	savefile_key = "demihuman_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/directory_character_prefs/human_pref
 	savefile_key = "human_pref"
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_identifier = PREFERENCE_PLAYER
 
 //CHARACTER DIRECTORY CODE START
 //Add a cooldown for the character directory to the client, primarily to stop server lag from refresh spam

@@ -1,6 +1,6 @@
 // Chronological age
 /datum/preference/numeric/chronological_age
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_RECORDS
 	savefile_key = "chrono_age"
 	savefile_identifier = PREFERENCE_CHARACTER
 

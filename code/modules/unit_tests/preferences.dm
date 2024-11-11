@@ -45,7 +45,7 @@
 		if (!istype(preference))
 			continue
 
-		if (preference.category != PREFERENCE_CATEGORY_FEATURES && preference.category != PREFERENCE_CATEGORY_CLOTHING)
+		if (!preference.should_generate_icons) // BUBBER EDIT: Better prefs: ORIGINA: if (preference.category != PREFERENCE_CATEGORY_FEATURES && preference.category != PREFERENCE_CATEGORY_CLOTHING)
 			continue
 
 		TEST_ASSERT(!isnull(preference.main_feature_name), "Preference [preference_type] does not have a main_feature_name set!")

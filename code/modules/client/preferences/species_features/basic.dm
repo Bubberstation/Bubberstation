@@ -23,7 +23,7 @@
 	priority = PREFERENCE_PRIORITY_BODYPARTS
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/color/eye_color/apply_to_human(mob/living/carbon/human/target, value)
@@ -55,7 +55,7 @@
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
 	savefile_key = "facial_style_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	main_feature_name = "Facial hair"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_FACIAL_HAIR
@@ -108,7 +108,7 @@
 
 /datum/preference/choiced/facial_hair_gradient
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "facial_hair_gradient"
 	relevant_head_flag = HEAD_FACIAL_HAIR
@@ -125,7 +125,7 @@
 
 /datum/preference/color/facial_hair_gradient
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "facial_hair_gradient_color"
 	relevant_head_flag = HEAD_FACIAL_HAIR
@@ -155,7 +155,7 @@
 	priority = PREFERENCE_PRIORITY_BODY_TYPE // Happens after gender so we can picka hairstyle based on that
 	savefile_key = "hairstyle_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_HAIR
@@ -196,7 +196,7 @@
 
 /datum/preference/choiced/hair_gradient
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "hair_gradient"
 	relevant_head_flag = HEAD_HAIR
@@ -213,7 +213,7 @@
 
 /datum/preference/color/hair_gradient
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "hair_gradient_color"
 	relevant_head_flag = HEAD_HAIR

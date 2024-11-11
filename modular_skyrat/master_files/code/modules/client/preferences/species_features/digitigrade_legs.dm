@@ -2,7 +2,7 @@
 /datum/preference/choiced/digitigrade_legs
 	savefile_key = "digitigrade_legs"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = "legs"
 
 

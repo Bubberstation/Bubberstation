@@ -5,7 +5,7 @@
  */
 /datum/preference/text/pda_ringtone
 	savefile_key = "pda_ringtone"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MESSENGER_RINGTONE_MAX_LENGTH
 
@@ -22,7 +22,7 @@
  */
 /datum/preference/choiced/pda_theme
 	savefile_key = "pda_theme"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/pda_theme/init_possible_values()

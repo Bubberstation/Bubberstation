@@ -1,5 +1,5 @@
 /datum/preference/choiced/random_body
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_key = "random_body"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
@@ -18,7 +18,7 @@
 	return RANDOM_DISABLED
 
 /datum/preference/toggle/random_hardcore
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_key = "random_hardcore"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
@@ -34,7 +34,7 @@
 	return preferences.parent && (preferences.parent.get_exp_living(pure_numeric = TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 
 /datum/preference/choiced/random_name
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_BUBBER_MISC
 	savefile_key = "random_name"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
