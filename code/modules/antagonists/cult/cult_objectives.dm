@@ -25,10 +25,6 @@
 		if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
 			continue
 		// SKYRAT EDIT END
-		// BUBBER EDIT ADDITION START - Round Removal OPT-IN
-		if (!opt_in_disabled && !opt_in_valid(player))
-			continue
-		// BUBBER EDIT END
 		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
 			target_candidates += player.mind
 	if(target_candidates.len == 0)
@@ -38,10 +34,6 @@
 			if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
 				continue
 			// SKYRAT EDIT END
-			// BUBBER EDIT ADDITION START - Round Removal OPT-IN
-			if (!opt_in_disabled && !opt_in_valid(player))
-				continue
-			// BUBBER EDIT END
 			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
 				target_candidates += player.mind
 	list_clear_nulls(target_candidates)

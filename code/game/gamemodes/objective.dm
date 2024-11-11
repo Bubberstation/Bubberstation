@@ -880,15 +880,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/destroy/find_target(dupe_search_range, list/blacklist)
 	var/list/possible_targets = active_ais(TRUE)
 	possible_targets -= blacklist
-	//var/mob/living/silicon/ai/target_ai = pick(possible_targets) // BUBBER EDIT REMOVAL - Uses the below loop for Round Removal OPT-IN
-	// BUBBER EDIT ADDITION BEGIN - Round Removal OPT-IN
-	var/mob/living/silicon/ai/target_ai
-	var/opt_in_disabled = CONFIG_GET(flag/disable_rr_opt_in_preferences) // BUBBER EDIT ADDITION - Round Removal OPT-IN
-	for (var/mob/living/silicon/ai/possible_target as anything in shuffle(possible_targets))
-		if (!opt_in_disabled && !opt_in_valid(possible_target))
-			continue
-		target_ai = possible_target
-	// BUBBER EDIT ADDITION END
+	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
 	update_explanation_text()
 	return target
