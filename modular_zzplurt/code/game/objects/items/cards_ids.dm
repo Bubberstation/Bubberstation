@@ -13,3 +13,28 @@
 	icon_state = "card_bloodfledge"
 	assignment = "Bloodsucker Fledgling"
 	trim = /datum/id_trim/quirk/bloodfledge
+
+// Quirk: Concubus
+/obj/item/card/id/advanced/quirk/concubus
+	name = "concubus identification card"
+	trim = /datum/id_trim/quirk/concubus
+
+// Quirk: Gargoyle
+/obj/item/card/id/advanced/quirk/gargoyle
+	name = "gargoyle identification card"
+	trim = /datum/id_trim/quirk/gargoyle
+
+// Quirk: Hallowed
+/obj/item/card/id/advanced/quirk/hallowed
+	name = "deacon identification card"
+	trim = /datum/id_trim/quirk/hallowed
+
+// Quirk: Rad Fiend
+/obj/item/card/id/advanced/quirk/rad_fiend
+	name = "rad fiend identification card"
+	trim = /datum/id_trim/quirk/rad_fiend
+
+// Quirk: Werewolf
+/obj/item/card/id/advanced/quirk/werewolf
+	name = "werewolf identification card"
+	trim = /datum/id_trim/quirk/werewolf
