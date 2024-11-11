@@ -17,7 +17,6 @@ import {
   Species,
   createSetPreference,
 } from '../data';
-import { CharacterPreview } from '../../CharacterPreview';
 import { useState } from 'react';
 import { Diet, SpeciesPerks } from '../SpeciesPage';
 
@@ -133,13 +132,6 @@ export const BubberSpeciesPageInner = (props: {
                       </Section>
                     </Section>
                   </Stack.Item>
-
-                  {/* <Stack.Item width="30%"> // BUBBER EDIT REMOVAL
-                    <CharacterPreview
-                      id={data.character_preview_view}
-                      height="100%"
-                    />
-                  </Stack.Item> */}
                 </Stack>
               </Box>
 

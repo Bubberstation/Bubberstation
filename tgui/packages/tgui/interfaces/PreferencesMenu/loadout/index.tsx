@@ -130,9 +130,9 @@ const LoadoutTabs = (props: {
     <Stack fill height="550px">
       <Stack.Item align="center" width="250px" height="100%">
         <Stack vertical fill>
-          <Stack.Item height="60%">
+          {/* <Stack.Item height="60%"> // BUBBER REMOVAL: Better prefs
             <LoadoutPreviewSection />
-          </Stack.Item>
+          </Stack.Item> */}
           <Stack.Item grow>
             <LoadoutSelectedSection
               all_tabs={loadout_tabs}
