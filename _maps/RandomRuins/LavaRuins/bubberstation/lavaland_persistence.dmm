@@ -896,6 +896,9 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
+"cR" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "cS" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/shower)
@@ -2114,6 +2117,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "gu" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "gw" = (
@@ -2359,7 +2365,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "hd" = (
 /obj/machinery/light/directional/west,
-/obj/machinery/recharge_station,
+/obj/structure/frame/machine/secured,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "he" = (
@@ -2481,6 +2487,8 @@
 	},
 /obj/item/mmi/posibrain/sphere,
 /obj/structure/cable,
+/obj/item/mmi/posibrain/sphere,
+/obj/item/mmi/syndie,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "hs" = (
@@ -4144,18 +4152,18 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "mp" = (
-/obj/machinery/button/door/directional/west{
-	id = "syndihanger";
-	name = "Docking Port Blast Doors";
-	req_access = list("syndicate");
-	pixel_x = 0;
-	pixel_y = 21
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndicargo";
+	name = "Hanger Bay Shutters";
+	req_access = list("syndicate");
+	pixel_x = 0;
+	pixel_y = 21
 	},
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
@@ -5286,18 +5294,18 @@
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "pV" = (
-/obj/machinery/button/door/directional/west{
-	id = "syndihanger";
-	name = "Docking Port Blast Doors";
-	req_access = list("syndicate");
-	pixel_x = 0;
-	pixel_y = -24
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndicargo";
+	name = "Hanger Bay Shutters";
+	req_access = list("syndicate");
+	pixel_x = 0;
+	pixel_y = -22
 	},
 /turf/open/floor/engine/hull{
 	initial_gas_mix = "LAVALAND_ATMOS"
@@ -5627,10 +5635,6 @@
 /obj/item/defibrillator/loaded,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med)
-"ra" = (
-/obj/machinery/light/directional/south,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "rb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -7779,7 +7783,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor{
-	id = "syndihanger";
+	id = "syndicargo";
 	name = "Docking Port Blast Doors"
 	},
 /obj/structure/cable,
@@ -8099,6 +8103,29 @@
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
+"yr" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	faction = list("Syndicate","neutral");
+	pixel_y = 32
+	},
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
+	network = list("persistence_ext")
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "ys" = (
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 8
@@ -8581,14 +8608,14 @@
 /turf/open/floor/carpet/donk,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "zR" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/suit_storage_unit/industrial/loader,
 /obj/machinery/button/door/directional/west{
-	id = "syndihanger";
-	name = "Recycling Shutters";
+	id = "syndicargo";
+	name = "Hanger Bay Shutters";
 	req_access = list("syndicate");
 	pixel_x = 24
 	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/suit_storage_unit/industrial/loader,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "zT" = (
@@ -10971,7 +10998,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor{
-	id = "syndihanger";
+	id = "syndicargo";
 	name = "Docking Port Blast Doors"
 	},
 /turf/open/floor/plating/reinforced,
@@ -11648,7 +11675,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor{
-	id = "syndihanger";
+	id = "syndicargo";
 	name = "Docking Port Blast Doors"
 	},
 /turf/open/floor/plating/reinforced,
@@ -13905,8 +13932,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "QF" = (
 /obj/machinery/button/door/directional/west{
-	id = "syndihanger";
-	name = "Recycling Shutters";
+	id = "syndicargo";
+	name = "Hanger Bay Shutters";
 	req_access = list("syndicate");
 	pixel_x = 24
 	},
@@ -14499,6 +14526,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "SD" = (
@@ -14634,6 +14662,9 @@
 "SZ" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
+"Ta" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Tb" = (
 /obj/structure/sink/kitchen/directional/west,
 /obj/structure/mirror/directional/east,
@@ -15480,28 +15511,9 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "VT" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	faction = list("Syndicate","neutral");
-	pixel_y = 32
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
-	network = list("persistence_ext")
-	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "VU" = (
 /obj/structure/chair/office/tactical{
 	dir = 4
@@ -16160,7 +16172,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/light/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "XU" = (
@@ -17744,8 +17755,8 @@ kX
 kX
 kX
 kX
-kX
-kX
+Rp
+Rp
 lu
 Re
 bz
@@ -17960,8 +17971,8 @@ Rp
 UK
 HV
 Md
-kX
-kX
+Rp
+Rp
 QW
 DY
 Jt
@@ -18031,8 +18042,8 @@ tJ
 Rp
 kX
 kX
-kX
-kX
+Rp
+Rp
 jo
 Je
 DY
@@ -19713,7 +19724,7 @@ wQ
 Im
 CP
 qL
-ra
+sR
 sR
 HJ
 ZW
@@ -20437,7 +20448,7 @@ LH
 Cr
 RA
 PJ
-Cr
+cR
 uA
 AI
 GM
@@ -20866,13 +20877,13 @@ VG
 gq
 gq
 Lm
-JU
+Ta
 JU
 JU
 JU
 JU
 VT
-hY
+yr
 ki
 hY
 KC
@@ -20943,7 +20954,7 @@ VG
 VG
 VG
 VG
-gq
+qg
 gq
 gq
 gq
