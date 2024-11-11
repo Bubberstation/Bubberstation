@@ -46,8 +46,7 @@
 		"Honk, shew! Hooonk, shewww...!",
 		"Snoozin' time, nya...",
 		"Honk shoo!",
-		"I'm feeling so energized!",
-		"I'm feeling so well-rested!",
+		"Nini...~",
 		"Zzz... Zzz... Zzz... Zzz... Zzz...",
 	)
 	var/list/play_messages = list(
@@ -99,7 +98,7 @@
 		"So this... is how it ends for me...",
 		"Is this how it ends... cold, alone, unfed...",
 		"Fading... fast... my last request: snacks and snuggles, please...",
-		"I see the great food bowl in the sky...",
+		"I see the end... all nine lives gone...",
 		"Abandoned... like a stray... in my own virtual world...",
 		"It’s getting so dark and cold...",
 	)
@@ -114,7 +113,8 @@
 	var/list/energy_critical = list(
 		"SO, SO EEPY, NYA...",
 		"Please, I need to rest...",
-		"I'm gonna pass out and DIE!",
+		"I'm feel like I'm gonna pass out...",
+		"Why won't you let me sleep?..."
 		"EEPY. EEPY. eepy...",
 	)
 	COOLDOWN_DECLARE(mute_pet)
