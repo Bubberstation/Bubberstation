@@ -142,25 +142,9 @@
 	name = "Mothic Rations Pack"
 	item_path = /obj/item/storage/box/mothic_rations
 
-/datum/loadout_item/pocket_items/cloth_ten
-	name = "Ten Cloth Sheets"
-	item_path = /obj/item/stack/sheet/cloth/ten
-
 /datum/loadout_item/pocket_items/random_pizza
 	name = "Random Pizza Box"
 	item_path = /obj/item/pizzabox/random
-
-/datum/loadout_item/pocket_items/medkit
-	name = "First-Aid Kit"
-	item_path = /obj/item/storage/medkit/regular
-
-/datum/loadout_item/pocket_items/deforest_cheesekit
-	name = "Civil Defense Medical Kit"
-	item_path = /obj/item/storage/medkit/civil_defense/stocked
-
-/datum/loadout_item/pocket_items/deforest_frontiermedkit
-	name = "Frontier Medical Kit"
-	item_path = /obj/item/storage/medkit/frontier/stocked
 
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"
@@ -173,18 +157,6 @@
 /datum/loadout_item/pocket_items/six_soda
 	name = "Soda Six-Pack"
 	item_path = /obj/item/storage/cans/sixsoda
-
-/datum/loadout_item/pocket_items/power_cell
-	name = "Standard Power Cell"
-	item_path = /obj/item/stock_parts/power_store/cell
-
-/datum/loadout_item/pocket_items/soap
-	name = "Bar of Soap"
-	item_path = /obj/item/soap
-
-/datum/loadout_item/pocket_items/mini_extinguisher
-	name = "Mini Fire Extinguisher"
-	item_path = /obj/item/extinguisher/mini
 
 /datum/loadout_item/pocket_items/binoculars
 	name = "Pair of Binoculars"
