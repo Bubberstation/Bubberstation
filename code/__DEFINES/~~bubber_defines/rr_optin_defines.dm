@@ -9,8 +9,8 @@ GLOBAL_LIST_INIT(rr_opt_in_strings, list(
 
 /// Assoc list of stringified opt_in_## define to the color associated with it.
 GLOBAL_LIST_INIT(rr_opt_in_colors, list(
-    RR_OPT_IN_STRING = COLOR_RED,
-    RR_OPT_OUT_STRING = COLOR_EMERALD
+	RR_OPT_IN_STRING = COLOR_RED,
+	RR_OPT_OUT_STRING = COLOR_EMERALD
 ))
 
 //defines for antag opt in objective checking
