@@ -24,4 +24,4 @@ GLOBAL_LIST_INIT(rr_opt_in_strings, list(
 #define RR_OPT_LEVEL_DEFAULT RR_OPT_OUT
 
 /// If the player has any non-ghost role antags enabled, they are forced to use a minimum of this.
-#define RR_OPT_LEVEL_ANTAG RR_OPT_IN
+#define RR_OPT_LEVEL_ANTAG RR_OPT_OUT
