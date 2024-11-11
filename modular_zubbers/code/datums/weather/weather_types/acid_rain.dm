@@ -20,7 +20,7 @@
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ACIDRAIN
 
-	immunity_type = TRAIT_ACIDRAIN_IMMUNE
+	immunity_type = TRAIT_WEATHER_IMMUNE
 
 	barometer_predictable = FALSE
 
