@@ -142,9 +142,17 @@
 	name = "Mothic Rations Pack"
 	item_path = /obj/item/storage/box/mothic_rations
 
+/datum/loadout_item/pocket_items/cloth_ten
+	name = "Ten Cloth Sheets"
+	item_path = /obj/item/stack/sheet/cloth/ten
+
 /datum/loadout_item/pocket_items/random_pizza
 	name = "Random Pizza Box"
 	item_path = /obj/item/pizzabox/random
+
+/datum/loadout_item/pocket_items/deforest_frontiermedkit
+	name = "Empty Frontier Medical Kit"
+	item_path = obj/item/storage/medkit/frontier
 
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"
