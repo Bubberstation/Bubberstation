@@ -136,7 +136,7 @@ export const CharacterPreferenceWindow = (props) => {
 
   // BUBBER EDIT START: See further on for the original code. This is very different from upstream from here on.
   return (
-    <Window title="Character Preferences" width={920} height={770}>
+    <Window title="Character Preferences" width={1200} height={770}>
       <Window.Content scrollable>
         {multiNameInputOpen && (
           <MultiNameInput
