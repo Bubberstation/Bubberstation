@@ -11,7 +11,7 @@
 	return (get_opt_in_level(target_mind) <= target_mind.get_effective_opt_in_level())
 
 /datum/objective/assassinate/paradox_clone
-    default_opt_in_level = RR_OPT_IN
+    default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/capture
 	default_opt_in_level = RR_OPT_OUT
@@ -23,13 +23,13 @@
 	default_opt_in_level = RR_OPT_IN
 
 /datum/objective/sacrifice
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/debrain
 	default_opt_in_level = RR_OPT_IN
 
 /datum/objective/assassinate
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/destroy
 	default_opt_in_level = RR_OPT_IN
@@ -59,7 +59,7 @@
 	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/contract
-	default_opt_in_level = RR_OPT_IN
+	default_opt_in_level = RR_OPT_OUT
 
 /datum/objective/contract/opt_in_valid(datum/mind/target_mind)
 	var/datum/job/target_job = target_mind.assigned_role
