@@ -136,6 +136,7 @@
 	var/height_seed = rand(0, 50000)
 	var/humidity_seed = rand(0, 50000)
 	var/heat_seed = rand(0, 50000)
+	var/BIOME_RANDOM_SQUARE_DRIFT = 2
 
 	for(var/t in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = t
