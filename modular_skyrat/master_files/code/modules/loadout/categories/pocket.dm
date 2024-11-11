@@ -162,6 +162,10 @@
 	name = "Bar of Soap"
 	item_path = /obj/item/soap
 
+/datum/loadout_item/pocket_items/mini_extinguisher
+	name = "Mini Fire Extinguisher"
+	item_path = /obj/item/extinguisher/mini
+
 /datum/loadout_item/pocket_items/binoculars
 	name = "Pair of Binoculars"
 	item_path = /obj/item/binoculars
