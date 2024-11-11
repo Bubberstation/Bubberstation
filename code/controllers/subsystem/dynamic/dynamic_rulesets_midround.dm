@@ -960,7 +960,6 @@
 			continue
 		possible_targets += player
 
-
 	if(possible_targets.len)
 		return pick(possible_targets)
 	return FALSE

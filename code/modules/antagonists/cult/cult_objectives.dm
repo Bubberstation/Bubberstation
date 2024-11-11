@@ -19,7 +19,6 @@
 		return
 	var/datum/team/cult/cult = team
 	var/list/target_candidates = list()
-	var/opt_in_disabled = CONFIG_GET(flag/disable_rr_opt_in_preferences) // BUBBER EDIT ADDITION - Round Removal OPT-IN
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		// SKYRAT EDIT ADDITION START - Players in the interlink can't be obsession targets
 		if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
