@@ -347,8 +347,8 @@
 /obj/item/storage/box/hecu_rations{
 	pixel_x = 7
 	},
-/obj/structure/closet/crate/secure/gorlex{
-	name = "Gorlex Marauders MRES"
+/obj/structure/closet/crate/secure/syndicate/gorlex{
+	name = "Gorlex Marauders MREs"
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -703,7 +703,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "cn" = (
 /obj/machinery/bluespace_vendor/directional/north,
-/obj/structure/closet/crate/secure/cybersun/dawn,
 /obj/item/flatpacked_machine,
 /obj/item/flatpacked_machine/water_synth,
 /obj/item/construction/plumbing/engineering,
@@ -1886,7 +1885,9 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
-/obj/structure/closet/crate/secure/interdyne,
+/obj/structure/closet/crate/secure/syndicate/interdyne{
+	name = "Interdyne Medical Supplies"
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "fR" = (
@@ -2113,24 +2114,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "gu" = (
-/obj/item/storage/lunchbox/amongus,
-/obj/item/storage/lunchbox/amongus,
-/obj/item/storage/lunchbox/bunny,
-/obj/item/storage/lunchbox/bunny,
-/obj/item/storage/lunchbox/corgi,
-/obj/item/storage/lunchbox/corgi,
-/obj/item/storage/lunchbox/heart,
-/obj/item/storage/lunchbox/heart,
-/obj/item/storage/lunchbox/medical,
-/obj/item/storage/lunchbox/medical,
-/obj/item/storage/lunchbox/nanotrasen,
-/obj/item/storage/lunchbox/nanotrasen,
-/obj/item/storage/lunchbox/safetymoth,
-/obj/item/storage/lunchbox/safetymoth,
-/obj/structure/closet/crate/secure/wafflecorp,
-/obj/item/storage/box/aquarium_props,
-/obj/item/storage/box/aquarium_props,
-/obj/item/storage/box/aquarium_props,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "gw" = (
@@ -2336,7 +2319,7 @@
 /obj/item/pointman_broken,
 /obj/effect/spawner/random/exotic/antag_gear_weak,
 /obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/structure/closet/crate/secure/m13,
+/obj/structure/closet/crate/secure/syndicate/mi13,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "gV" = (
@@ -3325,10 +3308,6 @@
 /turf/open/floor/pod/dark,
 /area/icemoon/underground/explored)
 "jT" = (
-/obj/structure/closet/crate/secure/gear{
-	req_access = list("syndicate");
-	anchored = 1
-	},
 /obj/item/clothing/glasses/night,
 /obj/item/storage/belt/military,
 /obj/item/storage/belt/military,
@@ -3349,6 +3328,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/light_switch/directional/north,
+/obj/structure/closet/crate/secure/syndicate/cybersun/night{
+	name = "Cybersun Operative Equipment"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "jU" = (
@@ -4559,9 +4541,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/obj/structure/closet/crate/secure/cybersun/dawn{
-	name = "Syndicate Goods crate"
-	},
 /obj/item/computer_disk/syndicate/camera_app,
 /obj/item/computer_disk/syndicate/camera_app,
 /obj/item/computer_disk/syndicate/camera_app,
@@ -4577,6 +4556,9 @@
 /obj/item/choice_beacon/music,
 /obj/item/choice_beacon/music,
 /obj/item/choice_beacon/music,
+/obj/structure/closet/crate/secure/syndicate/mi13{
+	name = "Syndicate Supplies"
+	},
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "nH" = (
@@ -4713,12 +4695,14 @@
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
 "oe" = (
 /obj/structure/cable,
-/obj/structure/closet/crate/secure/arc,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/fish_feed,
+/obj/structure/closet/crate/secure/syndicate/arc{
+	name = "Fish storage"
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "of" = (
@@ -5233,10 +5217,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "pG" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/structure/closet/crate/secure/cybersun/dusk,
 /obj/item/folded_navigation_gigabeacon,
 /obj/item/stock_parts/power_store/cell/lead,
 /obj/item/stock_parts/power_store/cell/lead,
+/obj/structure/closet/crate/secure/syndicate/mi13,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "pI" = (
@@ -5370,9 +5354,11 @@
 /obj/machinery/light/directional/south,
 /obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/siding/dark,
-/obj/structure/closet/crate/secure/tiger,
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
+/obj/structure/closet/crate/secure/syndicate/tiger{
+	name = "Tiger Co-Op instant monkey crate"
+	},
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "qf" = (
@@ -5672,8 +5658,8 @@
 /obj/item/tank/internals/nitrogen/full,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/structure/closet/crate/secure/cybersun/noon{
-	name = "Spare Internals Crate"
+/obj/structure/closet/crate/secure/syndicate/cybersun/dawn{
+	name = "Internals crate"
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
@@ -5691,11 +5677,28 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "rh" = (
-/obj/structure/cargo_shelf,
 /obj/item/vending_refill/hotdog,
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/storage/lunchbox/safetymoth,
+/obj/item/storage/lunchbox/safetymoth,
+/obj/item/storage/lunchbox/nanotrasen,
+/obj/item/storage/lunchbox/nanotrasen,
+/obj/item/storage/lunchbox/medical,
+/obj/item/storage/lunchbox/medical,
+/obj/item/storage/lunchbox/heart,
+/obj/item/storage/lunchbox/heart,
+/obj/item/storage/lunchbox/corgi,
+/obj/item/storage/lunchbox/corgi,
+/obj/item/storage/lunchbox/bunny,
+/obj/item/storage/lunchbox/bunny,
+/obj/item/storage/lunchbox/amongus,
+/obj/item/storage/lunchbox/amongus,
+/obj/structure/closet/crate/secure/syndicate/wafflecorp{
+	name = "Waffle corp. lunch boxes crate"
+	},
+/obj/item/vending_refill/hotdog,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "rl" = (
@@ -6045,6 +6048,12 @@
 	density = 0;
 	all_products_free = 1
 	},
+/obj/item/mod/module/jump_jet,
+/obj/item/mod/module/jump_jet,
+/obj/item/mod/module/jump_jet,
+/obj/item/mod/module/jump_jet,
+/obj/item/mod/module/jump_jet,
+/obj/structure/closet/crate/robust,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "sm" = (
@@ -7042,7 +7051,6 @@
 	name = "Robotics Airlock";
 	req_access = list("syndicate")
 	},
-/obj/structure/closet/crate/secure/self,
 /obj/item/mod/module/jump_jet,
 /obj/item/mod/module/jump_jet,
 /obj/item/mod/module/jump_jet,
@@ -7411,7 +7419,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/closet/crate/secure/cybersun/night,
 /obj/item/bedsheet/syndie/double,
 /obj/item/bedsheet/syndie/double,
 /obj/item/bedsheet/syndie/double,
@@ -7422,6 +7429,9 @@
 /obj/item/bedsheet/syndie/double,
 /obj/item/bedsheet/syndie/double,
 /obj/item/bedsheet/syndie/double,
+/obj/structure/closet/crate/secure/syndicate/cybersun/dawn{
+	name = "Syndicate bedsheet supplies"
+	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ww" = (
@@ -7718,7 +7728,6 @@
 "xq" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/structure/closet/crate/secure/gorlex_weapons,
 /obj/item/ammo_box/magazine/m223,
 /obj/item/ammo_box/magazine/m223,
 /obj/item/storage/belt/holster/nukie,
@@ -7735,6 +7744,9 @@
 /obj/item/ammo_box/magazine/smgm45,
 /obj/item/ammo_box/magazine/smgm45,
 /obj/item/ammo_box/magazine/smgm45,
+/obj/structure/closet/crate/secure/syndicate/gorlex/weapons{
+	name = "Gorlex ammo crate"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "xs" = (
@@ -8497,9 +8509,6 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/light/directional/east,
-/obj/structure/closet/crate/secure/cybersun/noon{
-	name = "mining supplies"
-	},
 /obj/item/pickaxe,
 /obj/item/grapple_gun,
 /obj/item/mining_voucher,
@@ -8510,6 +8519,9 @@
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/storage/belt/mining/vendor,
 /obj/item/storage/belt/mining/vendor,
+/obj/structure/closet/crate/secure/syndicate/cybersun/dusk{
+	name = "Mining gear"
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "zG" = (
@@ -9307,7 +9319,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/structure/closet/crate/secure/wafflecorp,
 /obj/item/stack/sheet/rglass/fifty{
 	pixel_x = -3;
 	pixel_y = 2
@@ -9337,6 +9348,9 @@
 	},
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 10
+	},
+/obj/structure/closet/crate/secure/gear{
+	name = "Persistence materials"
 	},
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
@@ -9807,7 +9821,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
-/obj/structure/closet/crate/freezer/blood/interdyne,
+/obj/structure/closet/crate/secure/freezer/interdyne/blood,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "DN" = (
@@ -9963,6 +9977,10 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"El" = (
+/obj/structure/closet/crate/secure/freezer/interdyne/blood,
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Eo" = (
 /obj/structure/cable,
 /obj/structure/fireaxecabinet/mechremoval/directional/north,
@@ -13369,7 +13387,6 @@
 /obj/item/ai_module/core/full/persistence{
 	pixel_y = 3
 	},
-/obj/structure/closet/crate/secure/self,
 /obj/machinery/digital_clock/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
@@ -15417,8 +15434,10 @@
 /obj/item/plant_analyzer,
 /obj/item/shovel/spade,
 /obj/item/cultivator,
-/obj/structure/closet/crate/secure/arc,
 /obj/item/reagent_containers/cup/watering_can/advanced,
+/obj/structure/closet/crate/secure/syndicate/arc{
+	name = "botany supplies"
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "VL" = (
@@ -19943,7 +19962,7 @@ gq
 VG
 XB
 wv
-ol
+El
 hR
 hR
 ol
