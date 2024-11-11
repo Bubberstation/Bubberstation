@@ -36,7 +36,7 @@
 	/// Age in "days" or some unit of time
 	var/age = 0
 	/// How often a 'life' cycle of the pet runs
-	var/update_rate = 30 SECONDS
+	var/update_rate = 45 SECONDS
 	/// The last action the pet performed
 	var/last_task = null
 
@@ -118,6 +118,7 @@
 		"EEPY. EEPY. eepy...",
 	)
 	COOLDOWN_DECLARE(mute_pet)
+	COOLDOWN_DECLARE(needs_alert)
 
 /obj/item/toy/nyamagotchi/Initialize(mapload)
 	. = ..()
@@ -187,7 +188,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, mute_pet))
-		COOLDOWN_START(src, mute_pet, 3 MINUTES)
+		COOLDOWN_START(src, mute_pet, update_rate * 5.75)
 		user.balloon_alert(user, "muted!")
 		to_chat(user, span_notice("You turn on [src]'s mute feature."))
 
@@ -215,16 +216,16 @@
 	last_task = null
 
 	if(happiness <= 21) // unhappy pets get hungry and tired faster
-		hunger += rand(1, 3)
+		hunger += rand(1, 2)
 		energy -= rand(1, 3)
 
 	if(hunger >= 70 || energy <= 30)
-		happiness -= rand(2, 4)
+		happiness -= clamp(rand(2, 4), 0, happiness)
 
-	age += 1	// Increase age over time
-	hunger += rand(1, 3)	// Increase hunger over time
-	happiness -= rand(1, 3)	// Decrease happiness over time
-	energy -= rand(1, 3)	// Decrease energy over time
+	age += 1										// Increase age over time
+	hunger += rand(1, 3)							// Increase hunger over time
+	happiness -= clamp(rand(1, 3), 0, happiness)	// Decrease happiness over time
+	energy -= rand(1, 3)							// Decrease energy over time
 
 	// check if the nyamagotchi is still alive
 	if(hunger >= 100 || energy <= 0)
@@ -237,12 +238,12 @@
 	// make the nyamagotchi say things if attention is needed, otherwise just a small chance of a reminder meow
 	var/list/tama_alerts = list()
 	var/selected_alert
-	if((hunger >= 80 || energy <= 20) && happiness <= 20)
+	if((hunger >= 83 || energy <= 17) && happiness <= 21)
 		be_known(sfx = MEOW_CRITICAL, speech = pick(full_critical))
 		return
-	if(hunger >= 85)
+	if(hunger >= 83)
 		tama_alerts += "vhungry"
-	if(energy <= 15)
+	if(energy <= 17)
 		tama_alerts += "vtired"
 	if(tama_alerts.len)
 		selected_alert = pick(tama_alerts)
@@ -254,13 +255,17 @@
 				be_known(sfx = MEOW_CRITICAL, speech = pick(energy_critical))
 				return
 
-	if(hunger >= 75)
+	if(!COOLDOWN_FINISHED(src, needs_alert))
+		return // to not be too annoying
+
+	if(hunger >= 70)
 		tama_alerts += "hungry"
-	if(happiness <= 25)
+	if(happiness <= 30)
 		tama_alerts += "sad"
-	if(energy <= 25)
+	if(energy <= 30)
 		tama_alerts += "tired"
 	if(tama_alerts.len)
+		COOLDOWN_START(src, needs_alert, update_rate * 2.25)
 		selected_alert = pick(tama_alerts)
 		switch(selected_alert)
 			if("hungry")
