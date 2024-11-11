@@ -132,7 +132,6 @@
 	var/list/special_pool = list() //The special list, for quirk-based
 	var/chosen_victim  //The obsession target
 
-	var/opt_in_disabled = CONFIG_GET(flag/disable_rr_opt_in_preferences) // BUBBER EDIT ADDITION - Round Removal OPT-IN
 	for(var/mob/player as anything in GLOB.player_list)//prevents crew members falling in love with nuke ops they never met, and other annoying hijinks
 		if(!player.client || !player.mind || isnewplayer(player) || player.stat == DEAD || isbrain(player) || player == owner)
 			continue
@@ -142,10 +141,6 @@
 		if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
 			continue
 		// SKYRAT EDIT END
-		// BUBBER EDIT ADDITION START - Round Removal OPT-IN
-		if (!opt_in_disabled && player.mind?.get_effective_opt_in_level() < RR_OPT_IN)
-			continue
-		// BUBBER EDIT ADDITION END
 		viable_minds += player.mind
 	for(var/datum/mind/possible_target as anything in viable_minds)
 		if(possible_target != owner && ishuman(possible_target.current))
