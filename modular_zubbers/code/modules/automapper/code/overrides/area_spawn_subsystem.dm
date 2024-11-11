@@ -1,9 +1,9 @@
 /datum/area_spawn/New()
-	blacklisted_stations |= list("Lima Station", "Moon Station", "Box Station")
+	blacklisted_stations |= list("Lima Station", "Moon Station", "Box Station", "Pubby Station 2")
 	. = ..()
 
 /datum/area_spawn_over/New()
-	blacklisted_stations |= list("Lima Station", "Moon Station", "Box Station")
+	blacklisted_stations |= list("Lima Station", "Moon Station", "Box Station", "Pubby Station 2")
 	. = ..()
 
 /datum/area_spawn_over/big_bertha
