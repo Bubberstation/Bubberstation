@@ -20,7 +20,7 @@
 
 /datum/loadout_item/head/idmahelmet
 	name = "IDMA Service Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/terra/idma_helmet
+	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok", "Raxraus", "Tecktonic")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
