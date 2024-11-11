@@ -5233,6 +5233,14 @@
 /obj/item/ammo_box/magazine/m9mm_aps,
 /obj/item/ammo_box/magazine/m9mm_aps,
 /obj/item/ammo_box/magazine/m9mm_aps,
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1245;
+	pixel_x = 0;
+	pixel_y = -30
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "pL" = (
@@ -7033,6 +7041,14 @@
 	},
 /obj/item/infuser_book,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1245;
+	pixel_x = 0;
+	pixel_y = -30
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "vs" = (
@@ -10287,6 +10303,20 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
+"Fv" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1245;
+	pixel_x = 0;
+	pixel_y = -30
+	},
+/turf/open/floor/wood/parquet,
+/area/ruin/space/has_grav/bubbers/persistance/command/liason)
 "Fx" = (
 /obj/machinery/telecomms/relay/preset,
 /obj/effect/turf_decal/stripes/line{
@@ -14941,6 +14971,17 @@
 "UI" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/dark,
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1245;
+	canhear_range = 1;
+	desc = "A rusty, decrepit intercom. The speaker is incredibly quiet.";
+	pixel_y = -32;
+	pixel_x = 0;
+	broadcasting = 1
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "UJ" = (
@@ -18861,7 +18902,7 @@ xN
 bl
 NY
 nZ
-Ae
+Fv
 od
 ep
 lh
