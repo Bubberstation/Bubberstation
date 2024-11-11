@@ -17,7 +17,7 @@
 
 /obj/item/paper/fluff/ruins/interdyne/note_4
 	name = "The fourth note"
-	default_raw_text = "I was wrong. So, so wrong...Jacob succumbed to the fungal infection. And before we could contact headquarters to retrieve his body he rose up and bit two others like out of some kind of zombie movie. We're all barricaded in different rooms now but I don't know how long we can last with him out there...the others have started screaming and i've assumed the worst. I need to destroy the sample but Jacob is blocking the way to the vault, if anyone reads this. Inside the vault is a vial labeled R0-M3-ROL, destroy it. This can't be allowed to escape here..."
+	default_raw_text = "I was wrong. So, so wrong...Jacob succumbed to the fungal infection. And before we could contact headquarters to retrieve his body he rose up and bit two others like out of some kind of zombie movie. We're all barricaded in different rooms now but I don't know how long we can last with him out there...the others have started screaming and i've assumed the worst. I need to destroy the sample but Jacob is blocking the way to the vault, if anyone reads this. There's a button underneath my dresser. Inside the vault is a vial labeled R0-M3-ROL, destroy it. This can't be allowed to escape here..." //BUBBER EDIT, Added "There's a button underneath my dresser."
 
 /obj/item/paper/fluff/ruins/interdyne/note_5
 	name = "The final note"

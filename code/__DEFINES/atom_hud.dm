@@ -86,6 +86,10 @@
 #define SECHUD_UNKNOWN "hudunknown"
 #define SECHUD_CENTCOM "hudcentcom"
 #define SECHUD_SYNDICATE "hudsyndicate"
+#define SECHUD_SYNDICATE_INTERDYNE_CARG "hudsyndicateinterdynecarg" //BUBBER EDIT
+#define SECHUD_SYNDICATE_INTERDYNE_ENG "hudsyndicateinterdyneeng" //BUBBER EDIT
+#define SECHUD_SYNDICATE_INTERDYNE_GEN "hudsyndicateinterdynegen" // BUBBER EDIT
+#define SECHUD_SYNDICATE_INTERDYNE_CHEM "hudsyndicateinterdynechem" // BUBBER EDIT
 #define SECHUD_SYNDICATE_INTERDYNE "hudsyndicateinterdyne"
 #define SECHUD_SYNDICATE_INTERDYNE_HEAD "hudsyndicateinterdynehead"
 
