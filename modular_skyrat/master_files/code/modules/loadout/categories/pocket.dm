@@ -158,6 +158,10 @@
 	name = "Soda Six-Pack"
 	item_path = /obj/item/storage/cans/sixsoda
 
+/datum/loadout_item/pocket_items/soap
+	name = "Bar of Soap"
+	item_path = /obj/item/soap
+
 /datum/loadout_item/pocket_items/binoculars
 	name = "Pair of Binoculars"
 	item_path = /obj/item/binoculars
