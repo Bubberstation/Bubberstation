@@ -4,7 +4,7 @@
 	description = "Chemically condensed camphor. Causes an extreme reduction in libido and a permanent one if overdosed. Non-addictive."
 	taste_description = "tranquil celibacy"
 	color = "#D9D9D9"//rgb(255, 255, 255)
-	reagent_state = SOLID
+	reagent_state = SOLID | REAGENT_ORGANIC | REAGENT_SYNTHETIC
 	overdose_threshold = 20
 	arousal_adjust_amount = -18
 	overdose_pref_datum = /datum/preference/toggle/erp/aphro

@@ -3,7 +3,7 @@
 	description = "Uhh... Someone had fun."
 	taste_description = "astringent and sweetish"
 	color = "#ffffffb0"
-	reagent_state = LIQUID
+	reagent_state = LIQUID | REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/glass_style/drinking_glass/femcum
 	required_drink_type = /datum/reagent/consumable/femcum

@@ -15,6 +15,7 @@
 	metabolization_rate = 0.25
 	life_pref_datum = /datum/preference/toggle/erp/penis_enlargement
 	overdose_pref_datum = /datum/preference/toggle/erp
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 	/// Words for the cock when huge.
 	var/static/list/words_for_bigger_cock = list(

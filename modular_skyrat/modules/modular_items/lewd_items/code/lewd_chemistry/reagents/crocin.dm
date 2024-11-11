@@ -8,6 +8,7 @@
 	arousal_adjust_amount = 1
 	pleasure_adjust_amount = 0
 	pain_adjust_amount = 0
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 	/// Probability of the chem triggering an emote, as a %, run on mob life
 	var/emote_probability = 3
