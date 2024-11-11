@@ -14,3 +14,9 @@
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	map_generator = /datum/map_generator/jungle_generator
+
+/area/jungleplanet/nearstation
+	name = "jungle planet surface"
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	map_generator = /datum/map_generator/nearstation_jungle_generator
