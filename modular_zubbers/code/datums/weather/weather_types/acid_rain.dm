@@ -5,16 +5,18 @@
 
 	telegraph_message = span_userdanger("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
 	telegraph_duration = 400
-	telegraph_overlay = "acid_rain_light"
+	telegraph_sound = "modular_zubbers/sound/ambience/acidrain_start.ogg"
 
 	weather_message = span_boldannounce("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
 	weather_duration_lower = 1200
 	weather_duration_upper = 2400
 	use_glow = FALSE
+	weather_sound = "modular_zubbers/sound/ambience/acidrain_mid.ogg"
 
 	end_duration = 100
 	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
+	end_sound = "modular_zubbers/sound/ambience/acidrain_end.ogg"
 
 	area_type = /area
 	protect_indoors = TRUE
