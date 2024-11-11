@@ -321,6 +321,10 @@
 /obj/item/clothing/suit/armor/riot/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/adjust_fishing_difficulty, 5)
+	init_rustle_component()
+
+/obj/item/clothing/suit/armor/riot/proc/init_rustle_component()
+	AddComponent(/datum/component/item_equipped_movement_rustle)
 
 /datum/armor/armor_riot
 	melee = 50
@@ -444,6 +448,10 @@
 /obj/item/clothing/suit/armor/swat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/adjust_fishing_difficulty, 5)
+	init_rustle_component()
+
+/obj/item/clothing/suit/armor/swat/proc/init_rustle_component()
+	AddComponent(/datum/component/item_equipped_movement_rustle)
 
 
 //All of the armor below is mostly unused
@@ -543,6 +551,8 @@
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
 		)
+/obj/item/clothing/suit/armor/riot/knight/init_rustle_component()
+	return
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "knight_yellow"
