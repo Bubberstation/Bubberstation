@@ -152,7 +152,7 @@
 
 /datum/loadout_item/pocket_items/deforest_frontiermedkit
 	name = "Empty Frontier Medical Kit"
-	item_path = obj/item/storage/medkit/frontier
+	item_path = /obj/item/storage/medkit/frontier
 
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"
