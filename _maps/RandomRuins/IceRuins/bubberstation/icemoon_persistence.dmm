@@ -4560,16 +4560,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
-"ob" = (
-/obj/machinery/duct,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/iron/white/small,
-/area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "oe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -4880,13 +4870,15 @@
 "pd" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/vending/clothing{
 	density = 0;
 	pixel_y = -28;
 	all_products_free = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
@@ -5917,11 +5909,9 @@
 "sc" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "sd" = (
@@ -11640,6 +11630,9 @@
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "JP" = (
@@ -20164,7 +20157,7 @@ xw
 xw
 pd
 IQ
-ob
+Hs
 Pg
 RS
 qR

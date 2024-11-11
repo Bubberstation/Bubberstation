@@ -5273,6 +5273,9 @@
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "pP" = (
@@ -9961,11 +9964,9 @@
 "Eg" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "Eh" = (
@@ -13799,13 +13800,15 @@
 "Qm" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/vending/clothing{
 	density = 0;
 	pixel_y = -28;
 	all_products_free = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
@@ -16380,16 +16383,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"YB" = (
-/obj/machinery/duct,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/iron/white/small,
-/area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "YC" = (
 /obj/machinery/cell_charger_multi/wall_mounted/directional/north,
 /obj/effect/turf_decal/stripes/line{
@@ -20291,7 +20284,7 @@ MI
 MI
 Qm
 RN
-YB
+tL
 xz
 Ew
 LH
