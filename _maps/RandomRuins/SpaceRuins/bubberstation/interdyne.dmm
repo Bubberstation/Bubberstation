@@ -19,6 +19,17 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
+"aI" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/interdyne)
 "aM" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 4
@@ -191,6 +202,17 @@
 /obj/item/paper/fluff/ruins/interdyne2/pizza_note,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
+"de" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/line,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/interdyne)
 "dh" = (
 /obj/structure/table/reinforced/titaniumglass,
 /obj/effect/decal/cleanable/dirt,
@@ -217,6 +239,16 @@
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/space/has_grav/interdyne)
+"dA" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/line,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/interdyne)
 "dH" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -224,8 +256,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "eh" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/plasma/fulltile,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "ev" = (
@@ -515,8 +546,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/supply/visible{
 	dir = 1
 	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/plasma/fulltile,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "jw" = (
@@ -525,6 +555,17 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
+/area/ruin/space/has_grav/interdyne)
+"jD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer{
+	desc = "A console meant to control the announcement systems, and alert codes. It's screen is frozen on CODE RED. It requires the Director's DNA to use...";
+	icon_keyboard = "tech_key";
+	icon_screen = "comm";
+	name = "facility control console";
+	dir = 8
+	},
+/turf/open/floor/wood/large,
 /area/ruin/space/has_grav/interdyne)
 "jE" = (
 /obj/machinery/light/cold/directional/east,
@@ -604,10 +645,6 @@
 /obj/item/ammo_casing/a357/spent,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
-"kJ" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/interdyne)
 "kP" = (
 /obj/structure/table/wood/fancy/red,
 /obj/item/toy/plush/whiny_plushie,
@@ -633,14 +670,11 @@
 /turf/open/floor/iron/smooth_large,
 /area/ruin/space/has_grav/interdyne)
 "lE" = (
-/obj/structure/filingcabinet{
-	pixel_x = -10
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
 	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
-/turf/open/floor/carpet/royalblack,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "ma" = (
 /obj/effect/decal/cleanable/blood/trails{
@@ -939,9 +973,8 @@
 	},
 /area/ruin/space)
 "rr" = (
-/obj/structure/window/reinforced/fulltile,
-/obj/structure/grille,
 /obj/structure/barricade/wooden/crude,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "ru" = (
@@ -954,15 +987,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "rF" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple/half/contrasted{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/purple/line,
-/obj/structure/closet/crate/bin,
-/turf/open/floor/iron/white,
+/obj/structure/table/reinforced/titaniumglass,
+/obj/item/clothing/glasses/science,
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/interdyne)
 "rK" = (
 /turf/closed/indestructible/syndicate,
@@ -986,31 +1013,12 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/space/has_grav/interdyne)
-"su" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark,
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/obj/effect/turf_decal/trimline/purple/line{
-	dir = 1
-	},
-/obj/structure/fluff/paper/stack{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/interdyne)
 "sN" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "sQ" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/effect/turf_decal/trimline/blue/line{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/trails{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/white,
+/turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/interdyne)
 "sZ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -1094,11 +1102,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/interdyne)
-"uf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/bin,
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/interdyne)
 "uo" = (
 /obj/structure/table/reinforced/titaniumglass,
 /obj/item/storage/box/medipens,
@@ -1112,15 +1115,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
-"uK" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 1
+"uO" = (
+/obj/structure/filingcabinet{
+	pixel_x = -10
 	},
-/obj/effect/turf_decal/trimline/blue/line,
-/obj/structure/fluff/paper/stack{
-	dir = 8
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
 	},
-/turf/open/floor/iron/white,
+/turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/interdyne)
 "uS" = (
 /obj/item/kirbyplants/organic/plant22,
@@ -1183,9 +1186,8 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/interdyne)
 "vB" = (
-/obj/structure/fluff/paper/stack{
-	dir = 9
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/bin,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "vD" = (
@@ -1380,11 +1382,6 @@
 /obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
-"yb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/interdyne)
 "ym" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
@@ -1413,23 +1410,6 @@
 /area/ruin/space/has_grav/interdyne)
 "ys" = (
 /turf/open/floor/iron/smooth,
-/area/ruin/space/has_grav/interdyne)
-"yy" = (
-/obj/effect/decal/cleanable/blood/trails{
-	dir = 1
-	},
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/interdyne)
-"yC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A console meant to control the announcement systems, and alert codes. It's screen is frozen on CODE RED. It requires the Director's DNA to use...";
-	icon_keyboard = "tech_key";
-	icon_screen = "comm";
-	name = "facility control console";
-	dir = 8
-	},
-/turf/open/floor/wood/large,
 /area/ruin/space/has_grav/interdyne)
 "yQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1539,6 +1519,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/interdyne)
+"zY" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark,
+/obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/interdyne)
 "zZ" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp{
@@ -1616,6 +1607,12 @@
 /obj/effect/mob_spawn/corpse/human/interdyne/cargo,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
+"AC" = (
+/obj/structure/fluff/paper/stack{
+	dir = 9
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/interdyne)
 "AD" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/trails{
@@ -1685,10 +1682,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "BD" = (
-/obj/structure/window/reinforced/fulltile,
-/obj/structure/grille,
 /obj/structure/barricade/wooden/crude,
 /obj/effect/mapping_helpers/damaged_window,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "BW" = (
@@ -1850,11 +1846,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/interdyne)
-"DK" = (
-/obj/structure/table/reinforced/titaniumglass,
-/obj/item/clothing/glasses/science,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/interdyne)
 "DL" = (
 /obj/structure/chair/sofa/left/maroon{
 	dir = 4
@@ -1863,6 +1854,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/interdyne)
+"DM" = (
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "DP" = (
 /turf/open/floor/iron/white,
@@ -1879,7 +1876,9 @@
 /turf/open/floor/iron/kitchen,
 /area/ruin/space/has_grav/interdyne)
 "Eg" = (
-/obj/structure/closet/crate/bin,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "Eh" = (
@@ -1917,11 +1916,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/interdyne)
 "EU" = (
+/obj/structure/cable,
 /obj/effect/decal/cleanable/blood/trails{
-	dir = 4
+	dir = 1
 	},
-/obj/structure/fluff/paper/stack,
-/turf/open/floor/iron/white,
+/turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/interdyne)
 "Ff" = (
 /obj/structure/deployable_barricade/metal{
@@ -2003,13 +2002,6 @@
 	desc = "One of the unfortunate Interdyne employees who fell to the Romerol infection."
 	},
 /turf/open/floor/iron/herringbone,
-/area/ruin/space/has_grav/interdyne)
-"FS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/fluff/paper/stack{
-	dir = 1
-	},
-/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "FW" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -2286,11 +2278,11 @@
 /turf/closed/mineral/random,
 /area/ruin/space)
 "JH" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/blood/trails{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fluff/paper/stack{
 	dir = 1
 	},
-/turf/open/floor/iron/smooth,
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "JM" = (
 /obj/machinery/light/cold/directional/north,
@@ -2349,6 +2341,13 @@
 "Le" = (
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/iron/herringbone,
+/area/ruin/space/has_grav/interdyne)
+"Lk" = (
+/obj/structure/table/reinforced/ctf,
+/obj/item/storage/toolbox/mechanical/old/clean{
+	pixel_x = 1
+	},
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "Lu" = (
 /obj/effect/decal/cleanable/blood,
@@ -2587,17 +2586,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "Ok" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
-/turf/open/floor/iron/dark/small,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "Ol" = (
 /obj/machinery/light/cold/directional/south,
@@ -2774,10 +2764,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "RC" = (
-/obj/structure/table/reinforced/ctf,
-/obj/item/storage/toolbox/mechanical/old/clean{
-	pixel_x = 1
-	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/interdyne)
 "RW" = (
@@ -2789,12 +2776,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/corpse/human/interdyne/chemist,
 /obj/structure/sign/poster/contraband/shipstation/directional/north,
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/interdyne)
-"Sd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "Sj" = (
@@ -3068,7 +3049,9 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/interdyne)
 "Xl" = (
-/turf/open/floor/carpet/royalblack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/interdyne)
 "Xy" = (
 /obj/machinery/vending/boozeomat,
@@ -3087,6 +3070,19 @@
 /obj/structure/barricade/wooden/crude,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/dark/smooth_large,
+/area/ruin/space/has_grav/interdyne)
+"XH" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/interdyne)
 "XI" = (
 /obj/machinery/oven,
@@ -3517,7 +3513,7 @@ Fv
 rn
 nn
 Du
-Xl
+sQ
 qy
 nn
 JE
@@ -3560,7 +3556,7 @@ Yi
 Is
 nn
 bQ
-Xl
+sQ
 oG
 nn
 JE
@@ -3604,7 +3600,7 @@ zm
 nn
 dj
 hY
-lE
+uO
 nn
 JE
 JE
@@ -3670,9 +3666,9 @@ zT
 dH
 Zn
 vD
-FS
-vB
-Ok
+JH
+AC
+XH
 nn
 np
 Fg
@@ -3732,7 +3728,7 @@ cK
 Im
 jZ
 vW
-yC
+jD
 kP
 nn
 JE
@@ -3857,7 +3853,7 @@ ZC
 rv
 cf
 nn
-uf
+vB
 DP
 DP
 DP
@@ -3897,7 +3893,7 @@ ys
 rK
 nn
 As
-yb
+Xl
 po
 Df
 hT
@@ -3935,7 +3931,7 @@ rK
 qL
 Mh
 Tt
-JH
+EU
 ps
 tW
 DF
@@ -3984,7 +3980,7 @@ rK
 nn
 BW
 xO
-sQ
+aI
 nn
 eB
 Ho
@@ -4025,7 +4021,7 @@ Hh
 tp
 rK
 nn
-uK
+dA
 Jm
 xE
 nn
@@ -4204,7 +4200,7 @@ Ub
 Hc
 ls
 ko
-kJ
+RC
 ww
 KZ
 eh
@@ -4291,7 +4287,7 @@ WJ
 WJ
 jE
 CX
-RC
+Lk
 Zy
 eh
 tr
@@ -4394,13 +4390,13 @@ JE
 JE
 JE
 nn
-Eg
+Ok
 rX
 rX
 hi
 hl
-Sd
-yy
+Eg
+DM
 sN
 me
 nn
@@ -4493,7 +4489,7 @@ nn
 hq
 Cw
 Qj
-EU
+lE
 ym
 wA
 HK
@@ -4525,7 +4521,7 @@ JE
 nn
 oI
 LN
-DK
+rF
 Nz
 VF
 pS
@@ -4537,7 +4533,7 @@ xv
 Lw
 xy
 DQ
-su
+zY
 bw
 YJ
 nn
@@ -4578,7 +4574,7 @@ cF
 nn
 QM
 KQ
-rF
+de
 Nc
 HP
 ff
