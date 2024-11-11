@@ -114,7 +114,7 @@
 		"SO, SO EEPY, NYA...",
 		"Please, I need to rest...",
 		"I'm feel like I'm gonna pass out...",
-		"Why won't you let me sleep?..."
+		"Why won't you let me sleep?...",
 		"EEPY. EEPY. eepy...",
 	)
 	COOLDOWN_DECLARE(mute_pet)
