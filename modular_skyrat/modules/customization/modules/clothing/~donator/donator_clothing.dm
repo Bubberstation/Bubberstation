@@ -1592,10 +1592,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/suit/armor/hos/elofy
 	name = "anime admiral coat"
-	desc = "This coat is a near perfect replica of the uniform worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the humans and lizards in the First Contact War. \
+	desc = "This coat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
 		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government"
+		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "coat_blackblue"
@@ -1631,7 +1631,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/head/hats/hos/elofy
 	name = "anime admiral hat"
-	desc = "This hat is a near perfect replica of that worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+	desc = "This hat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
 		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
 		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
 		but hasn't had much spread outside of the Terran Government."
@@ -1653,7 +1653,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/gloves/elofy
 	name = "anime admiral gloves"
-	desc = "These gloves are a near perfect replica those that worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
 		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
 		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
 		but hasn't had much spread outside of the Terran Government."

@@ -8,8 +8,8 @@
 
 /datum/species/human/get_species_lore()
 	return list(
-		"Humans originate from Earth in the Sol system. They evolved from Primates and founded the former state of TerraGov,\
-		the NRI, and many other minor organizations. After a turbulent history, TerraGov was absorbed into the Galactic Federation,\
+		"Humans originate from Earth in the Sol system. They evolved from Primates and founded the Terran Government,\
+		the NRI, and many other minor organizations. After a turbulent history, the Terran Government was absorbed into the Galactic Federation,\
 		and humanity went along with it.",
 
 		"While most humans reside within GalFed in the current age, a large portion has migrated to every corner of the Known Galaxy,\
