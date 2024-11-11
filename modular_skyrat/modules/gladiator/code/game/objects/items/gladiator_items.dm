@@ -164,7 +164,6 @@
 		force = 18
 		wound_bonus = 8
 		armour_penetration = 15
-		block_chance = 10
 
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(user.IsImmobilized()) // no free dodgerolls
