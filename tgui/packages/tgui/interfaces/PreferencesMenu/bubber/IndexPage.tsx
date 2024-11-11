@@ -33,12 +33,13 @@ export const CharacterControls = (props: {
   );
 };
 
-export const IndexPage = (props: { setCurrentPage: (page: Page) => void }) => {
+export const IndexPage = (props: {
+  setCurrentPage: (page: Page) => void;
+  setTutorialStatus;
+}) => {
   const { act, data } = useBackend<PreferencesMenuData>();
-  const { setCurrentPage } = props;
+  const { setCurrentPage, setTutorialStatus } = props;
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
-
-  const [tutorialStatus, setTutorialStatus] = useState<string | null>(null);
 
   return (
     <Box>

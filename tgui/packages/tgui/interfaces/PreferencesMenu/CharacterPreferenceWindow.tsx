@@ -75,6 +75,7 @@ export const CharacterPreferenceWindow = (props) => {
 
   let pageContents: String | React.JSX.Element = '';
   let [multiNameInputOpen, setMultiNameInputOpen] = useState(false); // BUBBER EDIT ADDITION
+  const [tutorialStatus, setTutorialStatus] = useState<string | null>(); // BUBBER EDIT ADDITION
 
   switch (currentPage) {
     case Page.Antags:
@@ -85,7 +86,10 @@ export const CharacterPreferenceWindow = (props) => {
       break;
     case Page.Main:
       pageContents = pageContents = (
-        <IndexPage setCurrentPage={(page: Page) => setCurrentPage(page)} />
+        <IndexPage
+          setCurrentPage={(page: Page) => setCurrentPage(page)}
+          setTutorialStatus={setTutorialStatus}
+        />
       ); // BUBBER EDIT: ORIGINAL: (<MainPage openSpecies={() => setCurrentPage(Page.Species)} />)
       break;
     case Page.Species:
@@ -131,7 +135,6 @@ export const CharacterPreferenceWindow = (props) => {
   }
 
   // BUBBER EDIT START: See further on for the original code. This is very different from upstream from here on.
-  const [tutorialStatus, setTutorialStatus] = useState<string | null>();
   return (
     <Window title="Character Preferences" width={920} height={770}>
       <Window.Content scrollable>
