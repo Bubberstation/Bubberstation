@@ -2337,12 +2337,10 @@
 /area/station/security/office)
 "ajp" = (
 /obj/machinery/photocopier,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /turf/open/floor/iron,
 /area/station/security/office)
 "ajq" = (
@@ -3927,10 +3925,6 @@
 /area/station/security/warden)
 "aoS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen/prison{
-	dir = 4;
-	pixel_x = -7
-	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/security/warden)
 "aoT" = (
@@ -3947,6 +3941,10 @@
 	name = "Entrance Lockdown";
 	pixel_y = -6;
 	req_access = list("armory")
+	},
+/obj/machinery/computer/security/telescreen/prison/directional/west{
+	pixel_x = -37;
+	pixel_y = 2
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/security/warden)
@@ -5787,12 +5785,6 @@
 	c_tag = "Dormitories Fore"
 	},
 /obj/machinery/light/directional/north,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the monastery.";
-	name = "Monastery Monitor";
-	network = list("monastery");
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -6222,12 +6214,10 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Fitness Room"
 	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /turf/open/floor/iron/white/corner{
 	dir = 1
 	},
@@ -7482,12 +7472,6 @@
 /area/station/command/heads_quarters/hop)
 "aBC" = (
 /obj/structure/closet/secure_closet/hop,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the monastery.";
-	name = "Monastery Monitor";
-	network = list("monastery");
-	pixel_y = 32
-	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "aBD" = (
@@ -11230,10 +11214,7 @@
 	c_tag = "Auxiliary Base Construction"
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/computer/security/telescreen/auxbase{
-	dir = 8;
-	pixel_x = 30
-	},
+/obj/machinery/computer/security/telescreen/auxbase/directional/east,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "aRH" = (
@@ -12004,9 +11985,7 @@
 /area/station/service/theater)
 "aVm" = (
 /obj/machinery/vending/autodrobe,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/theater)
 "aVn" = (
@@ -12977,9 +12956,6 @@
 	id = "kitchenshutters";
 	name = "Kitchen Shutters"
 	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
 /obj/item/reagent_containers/condiment/saltshaker{
 	pixel_x = -2;
 	pixel_y = 2
@@ -12992,6 +12968,7 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/kitchen)
 "aYY" = (
@@ -17594,17 +17571,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
 "buk" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for monitoring medbay to ensure patient safety.";
-	dir = 1;
-	name = "Medbay Monitor";
-	network = list("medbay");
-	pixel_y = -30
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/machinery/computer/security/telescreen/med_sec/directional/south,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/medical)
 "bun" = (
@@ -18577,12 +18548,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen/cmo{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/computer/security/telescreen/cmo/directional/west,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
 "bys" = (
@@ -18959,13 +18927,6 @@
 /area/station/hallway/secondary/entry)
 "bzB" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the monastery.";
-	dir = 8;
-	name = "Monastery Monitor";
-	network = list("monastery");
-	pixel_x = 28
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
@@ -23368,12 +23329,10 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Chief Engineer's Office"
 	},
-/obj/machinery/computer/security/telescreen/ce{
-	pixel_y = 30
-	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/ce/directional/north,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "bUL" = (
@@ -23426,16 +23385,10 @@
 /obj/machinery/light/directional/west,
 /obj/item/paper_bin,
 /obj/structure/cable,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the engine containment area.";
-	dir = 4;
-	name = "Engine Monitor";
-	network = list("engine");
-	pixel_x = -32
-	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/computer/security/telescreen/engine/directional/west,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/engineering)
 "bUW" = (
@@ -29657,9 +29610,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "dsP" = (
-/obj/machinery/computer/security/telescreen/prison{
-	pixel_y = 28
-	},
+/obj/machinery/computer/security/telescreen/prison/directional/north,
 /turf/open/floor/iron,
 /area/station/security/brig)
 "dsR" = (
@@ -33855,14 +33806,11 @@
 /turf/open/floor/plating,
 /area/station/engineering/atmos/office)
 "gWo" = (
-/obj/machinery/computer/security/telescreen/ordnance{
-	dir = 1;
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/computer/security/telescreen/ordnance/directional/south,
 /turf/open/floor/iron,
 /area/station/science/ordnance/testlab)
 "gXg" = (
@@ -34184,17 +34132,11 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/engine_smes)
 "hnV" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the turbine vent.";
-	dir = 4;
-	name = "turbine vent monitor";
-	network = list("turbine");
-	pixel_x = -29
-	},
 /obj/structure/closet/radiation,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/computer/security/telescreen/turbine/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/disposal/incinerator)
 "hnY" = (
@@ -41099,12 +41041,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "nIm" = (
-/obj/machinery/computer/security/telescreen{
-	dir = 8;
-	name = "Test Chamber Monitor";
-	network = list("xeno");
-	pixel_y = 2
-	},
 /obj/structure/table/reinforced,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -42209,10 +42145,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/lawyer,
-/obj/machinery/computer/security/telescreen/prison{
-	dir = 1;
-	pixel_y = -28
-	},
+/obj/machinery/computer/security/telescreen/prison/directional/south,
 /turf/open/floor/carpet,
 /area/station/service/lawoffice)
 "oCP" = (
@@ -49038,13 +48971,7 @@
 "uco" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the engine containment area.";
-	dir = 1;
-	name = "Engine Monitor";
-	network = list("engine");
-	pixel_y = -32
-	},
+/obj/machinery/computer/security/telescreen/engine/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "ucy" = (
@@ -53092,10 +53019,6 @@
 /area/station/science/xenobiology)
 "xdL" = (
 /obj/structure/table/glass,
-/obj/machinery/computer/security/telescreen/rd{
-	dir = 1;
-	pixel_y = -26
-	},
 /obj/item/stamp/head/rd{
 	pixel_x = -8;
 	pixel_y = 14
@@ -53116,8 +53039,14 @@
 	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/machinery/computer/security/telescreen/rd/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
+"xdR" = (
+/obj/machinery/atmospherics/components/binary/pump,
+/obj/machinery/computer/security/telescreen/test_chamber/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "xdY" = (
 /obj/machinery/door/window/right/directional/east{
 	name = "Danger: Conveyor Access";
@@ -105429,7 +105358,7 @@ ezn
 aaa
 bnd
 uPA
-xxw
+xdR
 nqV
 qDU
 bsu
