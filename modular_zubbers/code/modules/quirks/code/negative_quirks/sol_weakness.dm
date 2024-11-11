@@ -19,12 +19,14 @@
 	COOLDOWN_DECLARE(sun_burn)
 
 /datum/quirk/sol_weakness/add()
+	RegisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, PROC_REF(on_blood_healing))
 	if(!quirk_holder.hud_used)
 		RegisterSignal(quirk_holder, COMSIG_MOB_HUD_CREATED, PROC_REF(add_sun_timer_hud))
 		return
 	add_sun_timer_hud()
 
 /datum/quirk/sol_weakness/remove()
+	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
 	SSsunlight.remove_sun_sufferer(quirk_holder)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 
@@ -34,15 +36,14 @@
 		return
 	return !IS_BLOODSUCKER(target)
 
-/datum/quirk/sol_weakness/process(seconds_per_tick)
-	var/datum/status_effect/blood_regen_active/regen = quirk_holder?.has_status_effect(/datum/status_effect/blood_regen_active)
-	if(in_coffin() && ishemophage(quirk_holder))
-		if(!regen)
-			return
+/datum/quirk/sol_weakness/proc/on_blood_healing(mob/owner, seconds_between_ticks, datum/status_effect/blood_regen_active/effect)
+	if(effect && in_coffin())
 		// cheaper healing as long as you're in a coffin
-		regen.cost_blood = COFFIN_HEALING_COST
-	else if(regen?.blood_to_health_multiplier == COFFIN_HEALING_COST)
-		regen.cost_blood = initial(regen.blood_to_health_multiplier)
+		effect.cost_blood = COFFIN_HEALING_COST
+	else
+		effect.cost_blood = initial(effect.cost_blood)
+	// prevent healing if sol is active
+	return SSsunlight.sunlight_active ? COMSIG_CANCEL_MOB_HEMO_BLOOD_REGEN : NONE
 
 /datum/quirk/sol_weakness/proc/add_sun_timer_hud()
 	if(!quirk_holder.hud_used)
@@ -92,5 +93,10 @@
 
 /datum/quirk/sol_weakness/proc/in_coffin()
 	return istype(quirk_holder.loc, /obj/structure/closet/crate/coffin)
+
+/datum/status_effect/blood_regen_active/tick(seconds_between_ticks)
+	if(SEND_SIGNAL(owner, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, seconds_between_ticks, src) & COMSIG_CANCEL_MOB_HEMO_BLOOD_REGEN)
+		return
+	. = ..()
 
 #undef COFFIN_HEALING_COST
