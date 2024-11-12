@@ -470,7 +470,7 @@ const PageMain = (props) => {
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 811: Advanced Atmospherics Response"
+              content="Call Sol Federation 811: Atmospherics Response"
               onClick={() => act('callTheCatmos')}
             />
           )}
