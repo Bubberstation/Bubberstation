@@ -22,8 +22,17 @@
 	shuttle_id = "whiteship_miner"
 	dir = 2
 	shuttlekeys = list(
-		"whiteship_miner"
+		"miner_indminer_ship"
 	)
+
+/datum/map_template/shuttle/ruin/independent_miner
+	port_id = "miner"
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "indminer_ship"
+
+	name = "Independent mining ship"
+	description = "Deep space mining operations vessel, \
+	still used in spite of being not as prospective as planet mining"
 
 /obj/item/circuitboard/computer/white_ship/miner
 
