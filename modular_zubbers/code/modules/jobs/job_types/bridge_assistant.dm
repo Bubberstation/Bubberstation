@@ -81,13 +81,13 @@
 		/obj/item/extinguisher/mini = 1,
 		/obj/item/assembly/flash/handheld = 1,
 		/obj/item/reagent_containers/cup/coffeepot = 1,
-		/obj/item/clipboard = 1,
+		/obj/item/reagent_containers/cup/glass/mug/nanotrasen = 1,
 	)
 
 	//uniform = /obj/item/clothing/under/trek/command/next
-	uniform = /obj/item/clothing/under/misc/vice_officer
+	uniform = /obj/item/clothing/under/misc/vice_officer // probably add like... blue-green turtleneck at some point?
 	suit = /obj/item/clothing/suit/armor/vest/bridge
-	neck = /obj/item/clothing/neck/scarf/yellow
+	neck = /obj/item/clothing/neck/large_scarf/green // from centcom officer academy
 	belt = /obj/item/storage/belt/utility/full/inducer
 	ears = /obj/item/radio/headset/headset_com
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -96,3 +96,5 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	l_pocket = /obj/item/gun/energy/e_gun/mini
 	r_pocket = /obj/item/flashlight/seclite
+
+	l_hand = /obj/item/clipboard
