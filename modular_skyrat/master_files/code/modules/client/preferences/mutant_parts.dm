@@ -35,13 +35,13 @@
 		return FALSE
 	return ..()
 
-/datum/preference/tri_color/mutant_colors
+/datum/preference/mutant_color/mutant_colors
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
 	check_mode = TRICOLOR_NO_CHECK
 
-/datum/preference/tri_color/mutant_colors/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/mutant_color/mutant_colors/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["mcolor"] = sanitize_hexcolor(value[1])
 	target.dna.features["mcolor2"] = sanitize_hexcolor(value[2])
 	target.dna.features["mcolor3"] = sanitize_hexcolor(value[3])
@@ -89,32 +89,32 @@
 /datum/preference/choiced/mutant_choice/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
-/datum/preference/tri_color/body_markings
+/datum/preference/mutant_color/body_markings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_markings_color"
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 
-/datum/preference/tri_color/body_markings/is_accessible(datum/preferences/preferences)
+/datum/preference/mutant_color/body_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
 	return FALSE
 
-/datum/preference/tri_color/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+/datum/preference/mutant_color/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
-/datum/preference/tri_bool/body_markings
+/datum/preference/emissive_toggle/body_markings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_markings_emissive"
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 
-/datum/preference/tri_bool/body_markings/is_accessible(datum/preferences/preferences)
+/datum/preference/emissive_toggle/body_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
 	return FALSE
 
-/datum/preference/tri_bool/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+/datum/preference/emissive_toggle/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
 /// Tails
@@ -129,14 +129,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	default_accessory_type = /datum/sprite_accessory/tails/none
 
-/datum/preference/tri_color/tail
+/datum/preference/mutant_color/tail
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_color"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 
-/datum/preference/tri_bool/tail
+/datum/preference/emissive_toggle/tail
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_emissive"
@@ -169,14 +169,14 @@
 	target.synchronize_bodytypes()
 	target.synchronize_bodyshapes()
 
-/datum/preference/tri_color/snout
+/datum/preference/mutant_color/snout
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_color"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 
-/datum/preference/tri_bool/snout
+/datum/preference/emissive_toggle/snout
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_emissive"
@@ -195,14 +195,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
 	default_accessory_type = /datum/sprite_accessory/horns
 
-/datum/preference/tri_color/horns
+/datum/preference/mutant_color/horns
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_color"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
 
-/datum/preference/tri_bool/horns
+/datum/preference/emissive_toggle/horns
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_emissive"
@@ -221,14 +221,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 	default_accessory_type = /datum/sprite_accessory/ears
 
-/datum/preference/tri_color/ears
+/datum/preference/mutant_color/ears
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_color"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 
-/datum/preference/tri_bool/ears
+/datum/preference/emissive_toggle/ears
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_emissive"
@@ -247,14 +247,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/wings
 	default_accessory_type = /datum/sprite_accessory/wings/none
 
-/datum/preference/tri_color/wings
+/datum/preference/mutant_color/wings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "wings_color"
 	relevant_mutant_bodypart = "wings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/wings
 
-/datum/preference/tri_bool/wings
+/datum/preference/emissive_toggle/wings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "wings_emissive"
@@ -273,14 +273,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills
 	default_accessory_type = /datum/sprite_accessory/frills
 
-/datum/preference/tri_color/frills
+/datum/preference/mutant_color/frills
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "frills_color"
 	relevant_mutant_bodypart = "frills"
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills
 
-/datum/preference/tri_bool/frills
+/datum/preference/emissive_toggle/frills
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "frills_emissive"
@@ -299,14 +299,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
 	default_accessory_type = /datum/sprite_accessory/spines
 
-/datum/preference/tri_color/spines
+/datum/preference/mutant_color/spines
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "spines_color"
 	relevant_mutant_bodypart = "spines"
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
 
-/datum/preference/tri_bool/spines
+/datum/preference/emissive_toggle/spines
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "spines_emissive"
@@ -325,14 +325,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/caps
 	default_accessory_type = /datum/sprite_accessory/caps/none
 
-/datum/preference/tri_color/caps
+/datum/preference/mutant_color/caps
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "caps_color"
 	relevant_mutant_bodypart = "caps"
 	type_to_check = /datum/preference/toggle/mutant_toggle/caps
 
-/datum/preference/tri_bool/caps
+/datum/preference/emissive_toggle/caps
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "caps_emissive"
@@ -351,14 +351,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_antennae
 	default_accessory_type = /datum/sprite_accessory/moth_antennae/none
 
-/datum/preference/tri_color/moth_antennae
+/datum/preference/mutant_color/moth_antennae
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_antennae_color"
 	relevant_mutant_bodypart = "moth_antennae"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_antennae
 
-/datum/preference/tri_bool/moth_antennae
+/datum/preference/emissive_toggle/moth_antennae
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_antennae_emissive"
@@ -388,32 +388,32 @@
 /datum/preference/choiced/mutant_choice/moth_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
-/datum/preference/tri_color/moth_markings
+/datum/preference/mutant_color/moth_markings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_markings_color"
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
 
-/datum/preference/tri_color/moth_markings/is_accessible(datum/preferences/preferences)
+/datum/preference/mutant_color/moth_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
 	return FALSE
 
-/datum/preference/tri_color/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/mutant_color/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
 	return FALSE
 
-/datum/preference/tri_bool/moth_markings
+/datum/preference/emissive_toggle/moth_markings
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_markings_emissive"
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
 
-/datum/preference/tri_bool/moth_markings/is_accessible(datum/preferences/preferences)
+/datum/preference/emissive_toggle/moth_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
 	return FALSE
 
-/datum/preference/tri_bool/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/emissive_toggle/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
 	return FALSE
 
 /// Fluff
@@ -428,14 +428,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/fluff
 	default_accessory_type = /datum/sprite_accessory/fluff/moth/none
 
-/datum/preference/tri_color/fluff
+/datum/preference/mutant_color/fluff
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "fluff_color"
 	relevant_mutant_bodypart = "fluff"
 	type_to_check = /datum/preference/toggle/mutant_toggle/fluff
 
-/datum/preference/tri_bool/fluff
+/datum/preference/emissive_toggle/fluff
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "fluff_emissive"
@@ -476,13 +476,13 @@
 	return ..()
 
 
-/datum/preference/color/mutant/ipc_screen_color
+/datum/preference/mutant_color/ipc_screen_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 
-/datum/preference/toggle/emissive/ipc_screen_emissive
+/datum/preference/emissive_toggle/ipc_screen_emissive
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_emissive"
@@ -500,7 +500,7 @@
 /datum/preference/choiced/mutant_choice/synth_antenna/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
-/datum/preference/tri_color/synth_antenna
+/datum/preference/mutant_color/synth_antenna
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_color"
@@ -508,7 +508,7 @@
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	type_to_check = /datum/preference/choiced/mutant_choice/synth_antenna
 
-/datum/preference/tri_bool/synth_antenna_emissive
+/datum/preference/emissive_toggle/synth_antenna_emissive
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_emissive"
@@ -544,7 +544,7 @@
 
 	return data
 
-/datum/preference/color/mutant/synth_chassis
+/datum/preference/mutant_color/synth_chassis
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_chassis_color"
@@ -578,7 +578,7 @@
 
 	return data
 
-/datum/preference/color/mutant/synth_head
+/datum/preference/mutant_color/synth_head
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_head_color"
@@ -646,14 +646,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/skrell_hair
 	default_accessory_type = /datum/sprite_accessory/skrell_hair/none
 
-/datum/preference/tri_color/skrell_hair
+/datum/preference/mutant_color/skrell_hair
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "skrell_hair_color"
 	relevant_mutant_bodypart = "skrell_hair"
 	type_to_check = /datum/preference/toggle/mutant_toggle/skrell_hair
 
-/datum/preference/tri_bool/skrell_hair
+/datum/preference/emissive_toggle/skrell_hair
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "skrell_hair_emissive"
@@ -672,14 +672,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
 	default_accessory_type = /datum/sprite_accessory/taur/none
 
-/datum/preference/tri_color/taur
+/datum/preference/mutant_color/taur
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "taur_color"
 	relevant_mutant_bodypart = "taur"
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
 
-/datum/preference/tri_bool/taur
+/datum/preference/emissive_toggle/taur
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "taur_emissive"
@@ -698,14 +698,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 	default_accessory_type = /datum/sprite_accessory/xenodorsal/none
 
-/datum/preference/tri_color/xenodorsal
+/datum/preference/mutant_color/xenodorsal
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_color"
 	relevant_mutant_bodypart = "xenodorsal"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 
-/datum/preference/tri_bool/xenodorsal
+/datum/preference/emissive_toggle/xenodorsal
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_emissive"
@@ -724,14 +724,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 	default_accessory_type = /datum/sprite_accessory/xenohead/none
 
-/datum/preference/tri_color/xenohead
+/datum/preference/mutant_color/xenohead
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_color"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 
-/datum/preference/tri_bool/xenohead
+/datum/preference/emissive_toggle/xenohead
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_emissive"
@@ -755,14 +755,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/head_acc
 	default_accessory_type = /datum/sprite_accessory/head_accessory/none
 
-/datum/preference/tri_color/head_acc
+/datum/preference/mutant_color/head_acc
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "head_acc_color"
 	relevant_mutant_bodypart = "head_acc"
 	type_to_check = /datum/preference/toggle/mutant_toggle/head_acc
 
-/datum/preference/tri_bool/head_acc
+/datum/preference/emissive_toggle/head_acc
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "head_acc_emissive"
@@ -785,14 +785,14 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/neck_acc
 	default_accessory_type = /datum/sprite_accessory/neck_accessory/none
 
-/datum/preference/tri_color/neck_acc
+/datum/preference/mutant_color/neck_acc
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "neck_acc_color"
 	relevant_mutant_bodypart = "neck_acc"
 	type_to_check = /datum/preference/toggle/mutant_toggle/neck_acc
 
-/datum/preference/tri_bool/neck_acc
+/datum/preference/emissive_toggle/neck_acc
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "neck_acc_emissive"
@@ -850,14 +850,14 @@
 
 	return data
 
-/datum/preference/tri_color/pod_hair_color
+/datum/preference/mutant_color/pod_hair_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "pod_hair_color"
 	relevant_mutant_bodypart = "pod_hair"
 	type_to_check = /datum/preference/choiced/mutant_choice/pod_hair
 
-/datum/preference/toggle/emissive/pod_hair_emissive
+/datum/preference/toggle/emissive_toggle/pod_hair_emissive
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "pod_hair_emissive"

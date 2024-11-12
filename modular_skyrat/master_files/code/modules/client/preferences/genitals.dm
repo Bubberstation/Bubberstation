@@ -124,14 +124,14 @@
 	return TRUE
 
 
-/datum/preference/tri_color/genital
+/datum/preference/mutant_color/genital
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
-	abstract_type = /datum/preference/tri_color/genital
+	abstract_type = /datum/preference/mutant_color/genital
 	var/skin_color_type
 
-/datum/preference/tri_color/genital/is_accessible(datum/preferences/preferences)
+/datum/preference/mutant_color/genital/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
 	var/erp_allowed = preferences.read_preference(/datum/preference/toggle/master_erp_preferences) && preferences.read_preference(/datum/preference/toggle/allow_genitals)
 	var/can_color = TRUE
@@ -142,14 +142,14 @@
 			can_color = FALSE
 	return erp_allowed && can_color && passed_initial_check
 
-/datum/preference/tri_bool/genital
+/datum/preference/emissive_toggle/genital
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
-	abstract_type = /datum/preference/tri_bool/genital
+	abstract_type = /datum/preference/emissive_toggle/genital
 	var/skin_color_type
 
-/datum/preference/tri_bool/genital/is_accessible(datum/preferences/preferences)
+/datum/preference/emissive_toggle/genital/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
 	var/erp_allowed = preferences.read_preference(/datum/preference/toggle/master_erp_preferences) && preferences.read_preference(/datum/preference/toggle/allow_genitals)
 	var/can_color = TRUE
@@ -228,13 +228,13 @@
 /datum/preference/numeric/penis_girth/create_default_value()
 	return round(max(PENIS_MIN_GIRTH, PENIS_DEFAULT_GIRTH))
 
-/datum/preference/tri_color/genital/penis
+/datum/preference/mutant_color/genital/penis
 	savefile_key = "penis_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_PENIS
 	type_to_check = /datum/preference/choiced/genital/penis
 	skin_color_type = /datum/preference/toggle/genital_skin_color/penis
 
-/datum/preference/tri_bool/genital/penis
+/datum/preference/emissive_toggle/genital/penis
 	savefile_key = "penis_emissive"
 	relevant_mutant_bodypart = ORGAN_SLOT_PENIS
 	type_to_check = /datum/preference/choiced/genital/penis
@@ -307,13 +307,13 @@
 
 	target.dna.features["testicles_uses_skincolor"] = value
 
-/datum/preference/tri_color/genital/testicles
+/datum/preference/mutant_color/genital/testicles
 	savefile_key = "testicles_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_TESTICLES
 	type_to_check = /datum/preference/choiced/genital/testicles
 	skin_color_type = /datum/preference/toggle/genital_skin_color/testicles
 
-/datum/preference/tri_bool/genital/testicles
+/datum/preference/emissive_toggle/genital/testicles
 	savefile_key = "testicles_emissive"
 	relevant_mutant_bodypart = ORGAN_SLOT_TESTICLES
 	type_to_check = /datum/preference/choiced/genital/testicles
@@ -366,13 +366,13 @@
 
 	target.dna.features["vagina_uses_skincolor"] = value
 
-/datum/preference/tri_color/genital/vagina
+/datum/preference/mutant_color/genital/vagina
 	savefile_key = "vagina_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_VAGINA
 	type_to_check = /datum/preference/choiced/genital/vagina
 	skin_color_type = /datum/preference/toggle/genital_skin_color/vagina
 
-/datum/preference/tri_bool/genital/vagina
+/datum/preference/emissive_toggle/genital/vagina
 	savefile_key = "vagina_emissive"
 	relevant_mutant_bodypart = ORGAN_SLOT_VAGINA
 	type_to_check = /datum/preference/choiced/genital/vagina
@@ -411,13 +411,13 @@
 
 	target.dna.features["breasts_uses_skincolor"] = value
 
-/datum/preference/tri_color/genital/breasts
+/datum/preference/mutant_color/genital/breasts
 	savefile_key = "breasts_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_BREASTS
 	type_to_check = /datum/preference/choiced/genital/breasts
 	skin_color_type = /datum/preference/toggle/genital_skin_color/breasts
 
-/datum/preference/tri_bool/genital/breasts
+/datum/preference/emissive_toggle/genital/breasts
 	savefile_key = "breasts_emissive"
 	relevant_mutant_bodypart = ORGAN_SLOT_BREASTS
 	type_to_check = /datum/preference/choiced/genital/breasts

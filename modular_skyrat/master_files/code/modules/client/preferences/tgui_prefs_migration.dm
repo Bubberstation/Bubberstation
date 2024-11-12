@@ -51,7 +51,7 @@ MUTANT_SYNTH_CHASSIS, \
 	else
 		mutant_colors += "#[random_color()]"
 
-	write_preference(GLOB.preference_entries[/datum/preference/tri_color/mutant_colors], mutant_colors)
+	write_preference(GLOB.preference_entries[/datum/preference/mutant_color/mutant_colors], mutant_colors)
 
 	for(var/body_part in GLOB.bodyparts_to_convert)
 		if(mutant_bodyparts[body_part])
@@ -90,7 +90,7 @@ MUTANT_SYNTH_CHASSIS, \
 						write_preference(preference, type)
 						continue
 				if(colors)
-					if(istype(preference, /datum/preference/tri_color))
+					if(istype(preference, /datum/preference/mutant_color))
 						write_preference(preference, colors)
 						continue
 

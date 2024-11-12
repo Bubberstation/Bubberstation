@@ -159,8 +159,8 @@
 				// Just let validation pick it's own value.
 
 			if(new_color)
-				write_preference(GLOB.preference_entries[/datum/preference/color/mutant/synth_chassis], new_color)
-				write_preference(GLOB.preference_entries[/datum/preference/color/mutant/synth_head], new_color)
+				write_preference(GLOB.preference_entries[/datum/preference/mutant_color/synth_chassis], new_color)
+				write_preference(GLOB.preference_entries[/datum/preference/mutant_color/synth_head], new_color)
 
 	if(current_version < VERSION_UNDERSHIRT_BRA_SPLIT)
 		var/static/list/underwear_to_underwear_bra = list(
@@ -297,7 +297,7 @@
 				mutant_bodyparts -= part
 		else
 			var/datum/preference/choiced/name = GLOB.preference_entries_by_key["feature_[part]"]
-			var/datum/preference/tri_color/color = GLOB.preference_entries_by_key["[part]_color"]
+			var/datum/preference/mutant_color/color = GLOB.preference_entries_by_key["[part]_color"]
 			if (isnull(name) || isnull(color))
 				return
 			mutant_bodyparts[part] = list()
@@ -306,7 +306,7 @@
 	if (istype(preference, /datum/preference/choiced))
 		if (part in mutant_bodyparts)
 			mutant_bodyparts[part][MUTANT_INDEX_NAME] = value
-	if (istype(preference, /datum/preference/tri_color))
+	if (istype(preference, /datum/preference/mutant_color))
 		if (part in mutant_bodyparts)
 			mutant_bodyparts[part][MUTANT_INDEX_COLOR_LIST] = value
 

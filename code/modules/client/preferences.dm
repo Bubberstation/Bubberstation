@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (isnull(requested_preference))
 				return FALSE
 
-			if (!istype(requested_preference, /datum/preference/tri_color))
+			if (!istype(requested_preference, /datum/preference/mutant_color))
 				return FALSE
 
 			var/default_value_list = read_preference(requested_preference.type)
