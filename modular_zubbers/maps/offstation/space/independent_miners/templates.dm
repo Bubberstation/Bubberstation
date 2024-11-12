@@ -22,7 +22,7 @@
 	shuttle_id = "whiteship_miner"
 	dir = 2
 	shuttlekeys = list(
-		"whiteship_miner
+		"whiteship_miner"
 	)
 
 /obj/item/circuitboard/computer/white_ship/miner
