@@ -6,7 +6,7 @@
 		sweet, sweet plasma - painstakingly digging it out of free-floating asteroids\
 		instead of flying down to the hellscape of lavaland."
 	allow_duplicates = FALSE
-	always_spawn_with = list(/datum/map_template/ruin/space/bubberstation/whiteship_miner_dock = PLACE_SPACE_RUIN)
+	always_spawn_with = list(/datum/map_template/ruin/space/bubberstation/whiteship_miner_ship = PLACE_SPACE_RUIN)
 
 	placement_weight = 3
 	always_place = TRUE
@@ -15,7 +15,7 @@
 	id = "whiteshipdock_m"
 	suffix = "whiteshipdock_m.dmm"
 	name = "Independent Miner Ship"
-	description = "An abandoned but functional vessel parked in deep space"
+	description = "An independent crewed mining vessel parked in nearby space"
 
 /obj/docking_port/stationary/picked/whiteship_miner
 	name = "Deep Space"
