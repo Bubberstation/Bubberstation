@@ -16,7 +16,7 @@ import { PageButton } from './PageButton';
 import { QuirksPage } from './QuirksPage';
 import { SpeciesPage } from './SpeciesPage';
 import { IndexPage } from './bubber/IndexPage';
-import { Button } from 'tgui-core/components';
+import { Button, Modal } from 'tgui-core/components';
 import { MultiNameInput, NameInput } from './names';
 import { LoadoutPreviewSection } from './bubber/utils';
 import { AppearancePage } from './bubber/AppearancePage';
@@ -158,7 +158,7 @@ export const CharacterPreferenceWindow = (props) => {
           />
         )}
         {tutorialStatus === 'new_player' && (
-          <Dimmer>
+          <Modal>
             <Stack vertical align="center">
               <Stack.Item preserveWhitespace>
                 So you&apos;re new here, and you want to make your first
@@ -190,11 +190,11 @@ export const CharacterPreferenceWindow = (props) => {
                   align="center"
                   onClick={() => setTutorialStatus(null)}
                 >
-                  Okay.
+                  Okay
                 </Button>
               </Stack.Item>
             </Stack>
-          </Dimmer>
+          </Modal>
         )}
         <Stack vertical fill>
           <Stack.Item>
