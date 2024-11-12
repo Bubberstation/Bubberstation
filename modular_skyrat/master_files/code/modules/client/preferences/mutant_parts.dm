@@ -35,17 +35,8 @@
 		return FALSE
 	return ..()
 
-/datum/preference/toggle/allow_emissives
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
-	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "allow_emissives_toggle" // no 'e' so it goes right after allow_mismatched_parts, not before
-	default_value = FALSE
-
-/datum/preference/toggle/allow_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return TRUE // we dont actually want this to do anything
-
 /datum/preference/tri_color/mutant_colors
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
 	check_mode = TRICOLOR_NO_CHECK
@@ -62,7 +53,7 @@
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	value = value && preferences && is_allowed(preferences)
+	value = value && preferences
 
 	var/obj/item/organ/internal/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/internal/eyes)
 	target.emissive_eyes = value
@@ -71,17 +62,6 @@
 
 /datum/preference/toggle/eye_emissives/create_default_value()
 	return FALSE
-
-/datum/preference/toggle/eye_emissives/is_accessible(datum/preferences/preferences)
-	var/passed_initial_check = ..(preferences)
-	var/allowed = is_allowed(preferences)
-	return passed_initial_check && allowed
-
-/**
- * If eye emissives are actually on.
- */
-/datum/preference/toggle/eye_emissives/proc/is_allowed(datum/preferences/preferences)
-	return preferences.read_preference(/datum/preference/toggle/allow_emissives)
 
 // Body Markings - This isn't used anymore and thus I'm making it not do anything.
 
