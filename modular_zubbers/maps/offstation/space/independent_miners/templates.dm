@@ -25,7 +25,6 @@
 		"whiteship_miner
 	)
 
-
 /obj/item/circuitboard/computer/white_ship/miner
 
 /obj/machinery/computer/shuttle/white_ship/miner
