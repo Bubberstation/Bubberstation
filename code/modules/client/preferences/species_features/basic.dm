@@ -113,9 +113,26 @@
 	savefile_key = "facial_hair_gradient"
 	relevant_head_flag = HEAD_FACIAL_HAIR
 	can_randomize = FALSE
+	var/icon/hair_icon
 
 /datum/preference/choiced/facial_hair_gradient/init_possible_values()
+	var/datum/sprite_accessory/hair/hair = SSaccessories.hairstyles_list["Floorlength Bedhead"]
+	hair_icon = icon(hair.icon, hair.icon_state, NORTH)
+
 	return assoc_to_keys_features(SSaccessories.facial_hair_gradients_list)
+
+
+/datum/preference/choiced/facial_hair_gradient/icon_for(value)
+	var/datum/sprite_accessory/gradient/gradient = SSaccessories.facial_hair_gradients_list[value]
+	if(!gradient.icon_state)
+		return icon('icons/mob/landmarks.dmi', "x")
+
+	var/icon/temp = icon(gradient.icon, gradient.icon_state)
+	temp.Blend(hair_icon, ICON_ADD)
+	temp.Blend("#ff0000", ICON_MULTIPLY)
+	var/icon/temp_hair = icon(hair_icon)
+	temp_hair.Blend(temp, ICON_OVERLAY)
+	return temp_hair
 
 /datum/preference/choiced/facial_hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_facial_hair_gradient_style(new_style = value, update = FALSE)
@@ -201,9 +218,27 @@
 	savefile_key = "hair_gradient"
 	relevant_head_flag = HEAD_HAIR
 	can_randomize = FALSE
+	should_generate_icons = TRUE
+	var/icon/hair_icon
 
 /datum/preference/choiced/hair_gradient/init_possible_values()
+	var/datum/sprite_accessory/hair/hair = SSaccessories.hairstyles_list["Floorlength Bedhead"]
+	hair_icon = icon(hair.icon, hair.icon_state, NORTH)
+
 	return assoc_to_keys_features(SSaccessories.hair_gradients_list)
+
+
+/datum/preference/choiced/hair_gradient/icon_for(value)
+	if(value == SPRITE_ACCESSORY_NONE)
+		return icon('icons/mob/landmarks.dmi', "x")
+
+	var/datum/sprite_accessory/gradient/gradient = SSaccessories.hair_gradients_list[value]
+	var/icon/temp = icon(gradient.icon, gradient.icon_state)
+	temp.Blend(hair_icon, ICON_ADD)
+	temp.Blend("#ff0000", ICON_MULTIPLY)
+	var/icon/temp_hair = icon(hair_icon)
+	temp_hair.Blend(temp, ICON_OVERLAY)
+	return temp_hair
 
 /datum/preference/choiced/hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_hair_gradient_style(new_style = value, update = FALSE)

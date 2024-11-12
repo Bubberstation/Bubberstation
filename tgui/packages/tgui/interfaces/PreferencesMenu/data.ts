@@ -207,6 +207,11 @@ export type PreferencesMenuData = {
     };
 
     randomization: Record<string, RandomSetting>;
+
+    // BUBBER EDIT ADDITION START: Better prefs
+    appearance: Record<string, unknown>;
+    appearance_list: Record<string, string>;
+    // BUBBER EDIT END
   };
 
   content_unlocked: BooleanLike;

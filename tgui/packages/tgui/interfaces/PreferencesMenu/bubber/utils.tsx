@@ -1,6 +1,13 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useBackend } from '../../../backend';
-import { Box, Button, Dropdown, Section, Stack } from '../../../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Section,
+  Stack,
+  Tooltip,
+} from '../../../components';
 import { CharacterPreview } from '../../CharacterPreview';
 import { CharacterControls } from './IndexPage';
 import { PreferencesMenuData, createSetPreference } from '../data';
@@ -54,5 +61,44 @@ export const LoadoutPreviewSection = (props: {
         </Stack.Item>
       </Stack>
     </Section>
+  );
+};
+
+// The normal one uses tables. We can't use those in newprefs because it relies on flex formatting. Fuck you, tables.
+export const SlightlyLessCrappyLabeledListItem = (props: {
+  children;
+  label;
+  tooltip;
+}) => {
+  return (
+    <LazyShortcut condition={props.tooltip}>
+      <Stack width="100%">
+        {/* There's probably a better way of doing this, but oh my fucking god I hate css - Rimi */}
+        <Stack.Item mr="5px" width="50%">
+          <Box
+            mt="auto"
+            position="relative"
+            top="50%"
+            style={{ transform: 'translateY(-50%)' }}
+            textAlign="right"
+          >
+            {props.label}:
+          </Box>
+        </Stack.Item>
+        <Stack.Item width="50%">{props.children}</Stack.Item>
+      </Stack>
+    </LazyShortcut>
+  );
+};
+
+const LazyShortcut = (props: {
+  children?: ReactNode;
+  tooltip?: any;
+  condition;
+}) => {
+  return (
+    (props.condition && <Tooltip content="">{props.children}</Tooltip>) || (
+      <>{props.children}</>
+    )
   );
 };

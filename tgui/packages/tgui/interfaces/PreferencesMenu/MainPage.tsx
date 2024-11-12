@@ -35,12 +35,12 @@ import { RandomizationButton } from './RandomizationButton';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 import { useRandomToggleState } from './useRandomToggleState';
 
-const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+export const CLOTHING_CELL_SIZE = 48;
+export const CLOTHING_SIDEBAR_ROWS = 9;
 
-const CLOTHING_SELECTION_CELL_SIZE = 48;
-const CLOTHING_SELECTION_WIDTH = 5.4;
-const CLOTHING_SELECTION_MULTIPLIER = 5.2;
+export const CLOTHING_SELECTION_CELL_SIZE = 48;
+export const CLOTHING_SELECTION_WIDTH = 5.4;
+export const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 const CharacterControls = (props: {
   handleRotate: () => void;
@@ -84,7 +84,6 @@ const CharacterControls = (props: {
 };
 
 const ChoicedSelection = (props: {
-  // BUBBER EDIT: ORIGINAL: const ChoicedSelection = (props: {
   name: string;
   catalog: FeatureChoicedServerData;
   selected: string;
@@ -203,7 +202,10 @@ const ChoicedSelection = (props: {
   );
 };
 
-const searchInCatalog = (searchText = '', catalog: Record<string, string>) => {
+export const searchInCatalog = (
+  searchText = '',
+  catalog: Record<string, string>,
+) => {
   let items = Object.entries(catalog);
   if (searchText) {
     items = filter(
@@ -368,7 +370,7 @@ const MainFeature = (props: {
   );
 };
 
-const createSetRandomization =
+export const createSetRandomization =
   (act: typeof sendAct, preference: string) => (newSetting: RandomSetting) => {
     act('set_random_preference', {
       preference,

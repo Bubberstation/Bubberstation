@@ -4,4 +4,4 @@
 	return category
 
 /datum/preference/choiced/get_category()
-	return should_generate_icons ? category : "[category]_list"
+	return should_generate_icons ? "[category]_iconed" : category

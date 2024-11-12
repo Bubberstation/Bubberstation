@@ -19,6 +19,8 @@ import { IndexPage } from './bubber/IndexPage';
 import { Button } from 'tgui-core/components';
 import { MultiNameInput, NameInput } from './names';
 import { LoadoutPreviewSection } from './bubber/utils';
+import { AppearancePage } from './bubber/AppearancePage';
+import { FoodPreferences } from '../FoodPreferences';
 
 export enum Page { // BUBBER EDIT: Original: enum Page {
   Antags,
@@ -106,7 +108,7 @@ export const CharacterPreferenceWindow = (props) => {
       pageContents = <LoadoutPage />;
       break;
 
-    // BUBBER EDIT
+    // BUBBER EDIT ADDITION: Better prefs
     case Page.Limbs:
       pageContents = <LimbsPage />;
       break;
@@ -114,13 +116,13 @@ export const CharacterPreferenceWindow = (props) => {
       pageContents = <LanguagesPage />;
       break;
     case Page.Appearance:
-      pageContents = 'null';
+      pageContents = <AppearancePage />;
       break;
     case Page.OOC:
       pageContents = 'null';
       break;
     case Page.Food:
-      pageContents = 'null';
+      pageContents = <FoodPreferences />;
       break;
     case Page.Inspection:
       pageContents = 'null';
