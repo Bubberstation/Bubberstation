@@ -191,10 +191,11 @@
 	greyscale_colors = "#46464d"
 	flags_1 = null
 
-/// Syndicate slippers, guaranteed slipping for whoever wears them.
+// Syndicate slippers, guaranteed slipping for whoever wears them.
 /obj/item/clothing/shoes/banana_slippers
 	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	name = "banana slippers"
 	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
 	icon_state = "banana_slippers"
