@@ -72,6 +72,8 @@
 	r_pocket = /obj/item/storage/bag/ore
 	belt = /obj/item/pickaxe
 	id = /obj/item/card/id/advanced/independent_miner
+	id_trim = /datum/id_trim/independent_miner
+
 	backpack_contents = list(/obj/item/radio)
 
 /obj/effect/mob_spawn/ghost_role/human/independent_miner/captain
@@ -86,10 +88,16 @@
 	l_pocket = /obj/item/melee/baton/telescopic
 	r_pocket = null
 	belt = null
-	id = /obj/item/card/id/advanced/independent_miner/captain
+	id = /obj/item/card/id/advanced
+	id_trim = /datum/id_trim/independent_miner/captain
 	backpack_contents = list(/obj/item/radio)
 
-/obj/item/card/id/advanced/independent_miner/captain
+/datum/id_trim/independent_miner
+	assignment = "Independent Miner"
+	department_color = COLOR_CARGO_BROWN
+	subdepartment_color = COLOR_CARGO_BROWN
+	access = list(ACCESS_INDMINER)
 
-
-/obj/item/card/id/advanced/independent_miner
+/datum/id_trim/independent_miner/captain
+	assignment = "Independent Miner captain"
+	access = list(ACCESS_INDMINER, ACCESS_INDMINER_CAPTAIN)
