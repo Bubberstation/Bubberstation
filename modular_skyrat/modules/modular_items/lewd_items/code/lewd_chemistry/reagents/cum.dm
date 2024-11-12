@@ -23,7 +23,8 @@
 	description = "A fluid secreted by the sexual organs of many species."
 	taste_description = "musky and salty"
 	color = "#ffffffff"
-	reagent_state = LIQUID | REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	reagent_state = LIQUID
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/glass_style/drinking_glass/cum
 	required_drink_type = /datum/reagent/consumable/cum
