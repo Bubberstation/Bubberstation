@@ -71,7 +71,7 @@
 	l_pocket = /obj/item/mining_voucher
 	r_pocket = /obj/item/storage/bag/ore
 	belt = /obj/item/pickaxe
-	id = /obj/item/card/id/advanced/independent_miner
+	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/independent_miner
 
 	backpack_contents = list(/obj/item/radio)
