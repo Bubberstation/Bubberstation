@@ -11,31 +11,24 @@ import {
 } from '../preferences/features/base';
 import {
   CLOTHING_SELECTION_CELL_SIZE,
-  CLOTHING_SELECTION_MULTIPLIER,
-  CLOTHING_SELECTION_WIDTH,
-  PreferenceList,
   createSetRandomization,
   getRandomization,
   searchInCatalog,
 } from '../MainPage';
 import { useBackend } from '../../../backend';
 import { useRandomToggleState } from '../useRandomToggleState';
-import {
-  Autofocus,
-  Box,
-  Button,
-  Dimmer,
-  Flex,
-  Input,
-  LabeledList,
-  Modal,
-  Section,
-} from '../../../components';
+import { Autofocus, Box, Button, Input } from '../../../components';
 import { classes } from 'common/react';
 import { RandomizationButton } from '../RandomizationButton';
 import { useState } from 'react';
 import features from '../preferences/features';
 import { BetterPrefList, SlightlyLessCrappyLabeledListItem } from './utils';
+import { map } from 'common/collections';
+
+type MainFeatureServerData = FeatureChoicedServerData & {
+  name: string;
+  supplemental_features?: string[];
+};
 
 export const BubberPrefStack = (props: {
   category: string;
@@ -54,10 +47,7 @@ export const BubberPrefStack = (props: {
   const selectedPrefCatalogue =
     !!serverData &&
     !!currentPref &&
-    (serverData[currentPref] as FeatureChoicedServerData & {
-      name: string;
-      supplemental_feature?: string;
-    });
+    (serverData[currentPref] as MainFeatureServerData);
 
   return (
     <>
@@ -66,14 +56,8 @@ export const BubberPrefStack = (props: {
           <Stack.Item height="100%">
             <BubberPrefDetails
               catalog={selectedPrefCatalogue}
-              currentValue={data.character_preferences[category][currentPref]}
-              supplementalFeature={selectedPrefCatalogue.supplemental_feature}
-              supplementalValue={
-                selectedPrefCatalogue.supplemental_feature &&
-                data.character_preferences.supplemental_features[
-                  selectedPrefCatalogue.supplemental_feature
-                ]
-              }
+              category={category}
+              currentPref={currentPref}
               onSelect={createSetPreference(act, currentPref)}
             />
           </Stack.Item>
@@ -105,7 +89,7 @@ export const BubberPrefStack = (props: {
 
                 return (
                   catalog && (
-                    <MainFeature
+                    <ZubberFeature
                       key={entryKey}
                       catalog={catalog}
                       currentValue={entry as string}
@@ -194,11 +178,8 @@ const TwinStack = (props: { first; second }) => {
   );
 };
 
-const MainFeature = (props: {
-  catalog: FeatureChoicedServerData & {
-    name: string;
-    supplemental_feature?: string;
-  };
+const ZubberFeature = (props: {
+  catalog: MainFeatureServerData;
   currentValue: string;
   handleOpen: () => void;
   randomization?: RandomSetting;
@@ -283,21 +264,16 @@ const MainFeature = (props: {
 };
 
 const BubberPrefDetails = (props: {
-  catalog: FeatureChoicedServerData & {
-    name: string;
-  };
-  currentValue: string;
-  supplementalFeature?: string;
-  supplementalValue?: unknown;
+  catalog: MainFeatureServerData;
+  category: string;
+  currentPref: string;
   onSelect: (value: string) => void;
 }) => {
-  const {
-    catalog,
-    currentValue,
-    supplementalFeature,
-    supplementalValue,
-    onSelect,
-  } = props;
+  const { catalog, category, currentPref, onSelect } = props;
+
+  const { data } = useBackend<PreferencesMenuData>();
+
+  const currentValue = data.character_preferences[category][currentPref];
 
   const { act } = useBackend();
 
@@ -325,21 +301,32 @@ const BubberPrefDetails = (props: {
               Extra options for {catalog.name.toLowerCase()}
             </Box>
           </Stack.Item>
-          <Stack.Item grow>
-            {(supplementalFeature && (
-              <BetterPrefList key={supplementalFeature}>
-                <SlightlyLessCrappyLabeledListItem
-                  label={features[supplementalFeature].name}
-                  tooltip={features[supplementalFeature].description}
-                >
-                  <FeatureValueInput
-                    act={act}
-                    feature={features[supplementalFeature]}
-                    featureId={supplementalFeature}
-                    shrink
-                    value={supplementalValue}
-                  />
-                </SlightlyLessCrappyLabeledListItem>
+          <Stack.Item>
+            {(!!catalog.supplemental_features && (
+              <BetterPrefList>
+                {map(
+                  catalog.supplemental_features,
+                  (supplementalFeature, _, __) => {
+                    return (
+                      <SlightlyLessCrappyLabeledListItem
+                        label={features[supplementalFeature].name}
+                        tooltip={features[supplementalFeature].description}
+                      >
+                        <FeatureValueInput
+                          act={act}
+                          feature={features[supplementalFeature]}
+                          featureId={supplementalFeature}
+                          shrink
+                          value={
+                            data.character_preferences.supplemental_features[
+                              supplementalFeature
+                            ]
+                          }
+                        />
+                      </SlightlyLessCrappyLabeledListItem>
+                    );
+                  },
+                )}
               </BetterPrefList>
             )) ||
               'Nothing here!'}

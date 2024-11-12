@@ -267,7 +267,7 @@ const GenderButton = (props: {
 const MainFeature = (props: {
   catalog: FeatureChoicedServerData & {
     name: string;
-    supplemental_feature?: string;
+    supplemental_features?: string[];
   };
   currentValue: string;
   isOpen: boolean;
@@ -290,7 +290,9 @@ const MainFeature = (props: {
     setRandomization,
   } = props;
 
-  const supplementalFeature = catalog.supplemental_feature;
+  const supplementalFeature = catalog.supplemental_features
+    ? catalog.supplemental_features[0]
+    : undefined;
 
   return (
     <Popper

@@ -5,7 +5,11 @@ import {
   FeatureColorInput,
   FeatureValueProps,
 } from './base';
-import { FeatureDropdownInput } from './dropdowns';
+import {
+  FeatureDropdownInput,
+  FeatureIconnedDropdownInput,
+  FeatureWithIcons,
+} from './dropdowns';
 
 export const eye_color: Feature<string> = {
   name: 'Eye color',
@@ -17,13 +21,9 @@ export const facial_hair_color: Feature<string> = {
   component: FeatureColorInput,
 };
 
-export const facial_hair_gradient: FeatureChoiced = {
+export const facial_hair_gradient: FeatureWithIcons<string> = {
   name: 'Facial hair gradient',
-  component: (
-    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
-  ) => {
-    return <FeatureDropdownInput buttons {...props} />;
-  },
+  component: FeatureIconnedDropdownInput,
 };
 
 export const facial_hair_gradient_color: Feature<string> = {
@@ -36,13 +36,9 @@ export const hair_color: Feature<string> = {
   component: FeatureColorInput,
 };
 
-export const hair_gradient: FeatureChoiced = {
+export const hair_gradient: FeatureWithIcons<string> = {
   name: 'Hair gradient',
-  component: (
-    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
-  ) => {
-    return <FeatureDropdownInput buttons {...props} />;
-  },
+  component: FeatureIconnedDropdownInput,
 };
 
 export const hair_gradient_color: Feature<string> = {
