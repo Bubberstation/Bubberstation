@@ -5,8 +5,7 @@
 /datum/material/cobolterium
 	name = "cobolterium"
 	desc = "Cobolterium"
-	color = list(0.2,0.5,0.7,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
-	greyscale_colors = "#264d61"
+	color = "#264d61"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
 	sheet_type = /obj/item/stack/sheet/cobolterium
 
@@ -34,8 +33,7 @@
 /datum/material/copporcitite
 	name = "copporcitite"
 	desc = "Copporcitite"
-	color = list(0.8,0.35,0.1,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
-	greyscale_colors = "#c55a1d"
+	color = "#c55a1d"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
 	sheet_type = /obj/item/stack/sheet/copporcitite
 
@@ -63,8 +61,7 @@
 /datum/material/tinumium
 	name = "tinumium"
 	desc = "Tinumium"
-	color = list(0.45,0.5,0.6,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
-	greyscale_colors = "#717e97"
+	color = "#717e97"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
 	sheet_type = /obj/item/stack/sheet/tinumium
 
@@ -92,8 +89,7 @@
 /datum/material/brussite
 	name = "brussite"
 	desc = "Brussite"
-	color = list(0.9,0.75,0.4,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
-	greyscale_colors = "#E1C16E"
+	color = "#E1C16E"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL = TRUE)
 	sheet_type = /obj/item/stack/sheet/brussite
 
