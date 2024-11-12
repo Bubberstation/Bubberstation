@@ -35,7 +35,7 @@ import { classes } from 'common/react';
 import { RandomizationButton } from '../RandomizationButton';
 import { useState } from 'react';
 import features from '../preferences/features';
-import { SlightlyLessCrappyLabeledListItem } from './utils';
+import { BetterPrefList, SlightlyLessCrappyLabeledListItem } from './utils';
 
 export const BubberPrefStack = (props: {
   category: string;
@@ -60,9 +60,9 @@ export const BubberPrefStack = (props: {
     });
 
   return (
-    <Stack vertical fill ml="5px">
+    <>
       {currentPref && selectedPrefCatalogue && (
-        <>
+        <Stack vertical fill>
           <Stack.Item height="100%">
             <BubberPrefDetails
               catalog={selectedPrefCatalogue}
@@ -89,20 +89,13 @@ export const BubberPrefStack = (props: {
               Done
             </Button>
           </Stack.Item>
-        </>
+        </Stack>
       )}
       {!currentPref && mainFeaturesExist && (
-        <>
-          <Stack.Item
-            width="100%"
-            style={{
-              background: 'rgba(0, 0, 0, 0.5)',
-              padding: '4px',
-            }}
-            overflowX="hidden"
-            overflowY="scroll"
-          >
-            <Stack wrap width="100%">
+        <TwinStack
+          first={
+            <Stack wrap>
+              <StackHeader>Main settings for {category}</StackHeader>
               {Object.entries(mainFeatures).map(([entryKey, entry]) => {
                 const catalog =
                   serverData &&
@@ -125,25 +118,77 @@ export const BubberPrefStack = (props: {
                 );
               })}
             </Stack>
-          </Stack.Item>
-          {listExists && (
-            <Stack.Item height="100%">
-              <Stack vertical fill>
-                <PreferenceList
-                  act={act}
-                  preferences={data.character_preferences[category]}
-                  randomizations={getRandomization(
-                    data.character_preferences.secondary_features || [],
-                    serverData,
-                    data.character_preferences['misc'].random_body !==
-                      RandomSetting.Disabled || useRandomToggleState()[0],
-                  )}
-                  maxHeight=""
-                />
+          }
+          second={
+            listExists && (
+              <Stack wrap>
+                <StackHeader>Secondary settings for {category}</StackHeader>
+                <Stack.Item grow>
+                  <BetterPrefList
+                    act={act}
+                    preferences={data.character_preferences[category]}
+                    randomizations={getRandomization(
+                      data.character_preferences.secondary_features || [],
+                      serverData,
+                      data.character_preferences['misc'].random_body !==
+                        RandomSetting.Disabled || useRandomToggleState()[0],
+                    )}
+                  />
+                </Stack.Item>
               </Stack>
-            </Stack.Item>
-          )}
-        </>
+            )
+          }
+        />
+      )}
+    </>
+  );
+};
+
+export const StackHeader = (props: { children }) => {
+  return (
+    <Stack.Item minHeight="2rem" width="100%">
+      <Box
+        style={{
+          borderBottom: '1px solid #888',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          textAlign: 'center',
+        }}
+      >
+        {props.children}
+      </Box>
+    </Stack.Item>
+  );
+};
+
+const TwinStack = (props: { first; second }) => {
+  return (
+    <Stack fill>
+      <Stack.Item
+        height="100%"
+        width={props.second ? '50%' : '100%'}
+        style={{
+          background: 'rgba(0, 0, 0, 0.5)',
+          padding: '4px',
+        }}
+        overflowX="hidden"
+        overflowY="scroll"
+      >
+        {props.first}
+      </Stack.Item>
+      {!!props.second && (
+        <Stack.Item
+          height="100%"
+          width="50%"
+          style={{
+            background: 'rgba(0, 0, 0, 0.5)',
+            padding: '4px',
+          }}
+          overflowX="hidden"
+          overflowY="scroll"
+        >
+          {props.second}
+        </Stack.Item>
       )}
     </Stack>
   );
@@ -169,7 +214,7 @@ const MainFeature = (props: {
       pr={2}
       pb={1}
       ml={0}
-      width={'23%' /* I hate this */}
+      width={'45%' /* I hate this */}
       position="relative"
     >
       <Stack>
@@ -257,62 +302,51 @@ const BubberPrefDetails = (props: {
   const { act } = useBackend();
 
   return (
-    <Stack vertical fill ml="5px">
-      <Stack.Item
-        width="100%"
-        style={{
-          background: 'rgba(0, 0, 0, 0.5)',
-          padding: '4px',
-        }}
-      >
-        <Stack fill>
-          <Stack.Item width="50%">
-            <ChoicedSelection
-              name={catalog.name}
-              catalog={catalog}
-              selected={currentValue}
-              onSelect={onSelect}
-            />
+    <TwinStack
+      first={
+        <ChoicedSelection
+          name={catalog.name}
+          catalog={catalog}
+          selected={currentValue}
+          onSelect={onSelect}
+        />
+      }
+      second={
+        <Stack vertical fill>
+          <Stack.Item minHeight="2rem">
+            <Box
+              style={{
+                borderBottom: '1px solid #888',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                textAlign: 'center',
+              }}
+            >
+              Extra options for {catalog.name.toLowerCase()}
+            </Box>
           </Stack.Item>
-
           <Stack.Item grow>
-            <Stack vertical fill>
-              <Stack.Item minHeight="2rem">
-                <Box
-                  style={{
-                    borderBottom: '1px solid #888',
-                    fontWeight: 'bold',
-                    fontSize: '14px',
-                    textAlign: 'center',
-                  }}
+            {(supplementalFeature && (
+              <BetterPrefList key={supplementalFeature}>
+                <SlightlyLessCrappyLabeledListItem
+                  label={features[supplementalFeature].name}
+                  tooltip={features[supplementalFeature].description}
                 >
-                  Extra options for {catalog.name.toLowerCase()}
-                </Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                {(supplementalFeature && (
-                  <SlightlyLessCrappyLabeledListItem
-                    key={supplementalFeature}
-                    label={features[supplementalFeature].name}
-                    tooltip={features[supplementalFeature].description}
-                    centered="true"
-                  >
-                    <FeatureValueInput
-                      act={act}
-                      feature={features[supplementalFeature]}
-                      featureId={supplementalFeature}
-                      shrink
-                      value={supplementalValue}
-                    />
-                  </SlightlyLessCrappyLabeledListItem>
-                )) ||
-                  'Nothing here!'}
-              </Stack.Item>
-            </Stack>
+                  <FeatureValueInput
+                    act={act}
+                    feature={features[supplementalFeature]}
+                    featureId={supplementalFeature}
+                    shrink
+                    value={supplementalValue}
+                  />
+                </SlightlyLessCrappyLabeledListItem>
+              </BetterPrefList>
+            )) ||
+              'Nothing here!'}
           </Stack.Item>
         </Stack>
-      </Stack.Item>
-    </Stack>
+      }
+    />
   );
 };
 

@@ -378,7 +378,7 @@ export const createSetRandomization =
     });
   };
 
-const sortPreferences = (array: [string, unknown][]) =>
+export const sortPreferences = (array: [string, unknown][]) =>
   sortBy(array, ([featureId, _]) => {
     const feature = features[featureId];
     return feature?.name;
