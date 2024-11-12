@@ -114,6 +114,7 @@
 	if(GLOB.cargo_ripley)
 		qdel(GLOB.cargo_ripley)
 
+/* BUBBER EDIT REMOVAL
 /datum/station_trait/job/bridge_assistant
 	name = "Bridge Assistant"
 	button_desc = "Sign up to become the Bridge Assistant and watch over the Bridge."
@@ -126,12 +127,14 @@
 /datum/station_trait/job/bridge_assistant/New()
 	. = ..()
 	RegisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(add_coffeemaker))
+*/
 /* SKYRAT EDIT REMOVAL
 /datum/station_trait/job/bridge_assistant/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	. = ..()
 	overlays += "bridge_assistant"
 */
-/// Creates a coffeemaker in the bridge, if we don't have one yet.
+/* BUBBER EDIT REMOVAL
+/ Creates a coffeemaker in the bridge, if we don't have one yet.
 /datum/station_trait/job/bridge_assistant/proc/add_coffeemaker(datum/source)
 	SIGNAL_HANDLER
 	var/area/bridge = GLOB.areas_by_type[/area/station/command/bridge]
@@ -167,7 +170,7 @@
 	new /obj/machinery/coffeemaker/impressa(picked_turf)
 	new /obj/item/reagent_containers/cup/coffeepot(picked_turf)
 	new /obj/item/storage/box/coffeepack(picked_turf)
-
+*/
 /datum/station_trait/job/veteran_advisor
 	name = "Veteran Advisor"
 	button_desc = "Sign up to become a DISABLED but hard boiled Veteran Advisor of Nanotrasen Security Force. Advise HoS and Captain, train Officers, all while fighting your PTSD."

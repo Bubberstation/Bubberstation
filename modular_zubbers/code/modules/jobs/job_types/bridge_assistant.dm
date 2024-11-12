@@ -1,12 +1,12 @@
-/* BUBBER EDIT REMOVAL - see our own code/modules/jobs/bridge_assistant.dm
 /datum/job/bridge_assistant
 	title = JOB_BRIDGE_ASSISTANT
-	description = "Watch over the Bridge, command its consoles, and spend your days brewing coffee for higher-ups."
+	description = "Run erra... I mean, assist command in their tasks. \
+	Be the only assistant type in the bridge. - Keep the place clean and functioning."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD //not really a head but close enough
 	department_head = list(JOB_CAPTAIN)
 	faction = FACTION_STATION
-	total_positions = 0
-	spawn_positions = 0
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the Captain, and in non-Bridge related situations the other heads"
 	minimal_player_age = 7
 	exp_requirements = 300
@@ -16,9 +16,10 @@
 
 	outfit = /datum/outfit/job/bridge_assistant
 	plasmaman_outfit = /datum/outfit/plasmaman/bridge_assistant
+	akula_outfit = /datum/outfit/akula
 
 	paycheck = PAYCHECK_CREW
-	paycheck_department = ACCOUNT_CIV
+	paycheck_department = ACCOUNT_CMD
 
 	liver_traits = list(TRAIT_PRETENDER_ROYAL_METABOLISM)
 
@@ -30,15 +31,24 @@
 	mail_goodies = list(
 		/obj/item/storage/fancy/cigarettes = 1,
 		/obj/item/pen/fountain = 1,
+		/obj/item/reagent_containers/spray/cleaner = 1,
 	)
-	rpg_title = "Royal Guard"
+	rpg_title = "Royal Page"
 	allow_bureaucratic_error = FALSE
-	job_flags = STATION_JOB_FLAGS | STATION_TRAIT_JOB_FLAGS
+	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
 
-/datum/job/bridge_assistant/after_spawn(mob/living/spawned, client/player_client)
-	. = ..()
-	ADD_TRAIT(spawned, TRAIT_NO_TWOHANDING, JOB_TRAIT)
+	alt_titles = list(
+		"Bridge Assistant",
+		"Bridge Officer",
+		"Command Aide",
+		"Command Cadet",
+		"Ensign",
+		"Site Secretary",
+		"Bridge Maid",
+		"Lackey",
+		"Bridge Pet",
+	)
 
 /datum/job/bridge_assistant/get_roundstart_spawn_point()
 	var/list/chair_turfs = list()
@@ -67,10 +77,17 @@
 	id_trim = /datum/id_trim/job/bridge_assistant
 	backpack_contents = list(
 		/obj/item/modular_computer/pda/bridge_assistant = 1,
+		/obj/item/reagent_containers/spray/cleaner = 1,
+		/obj/item/extinguisher/mini = 1,
+		/obj/item/assembly/flash/handheld = 1,
+		/obj/item/reagent_containers/cup/coffeepot = 1,
+		/obj/item/clipboard = 1,
 	)
 
-	uniform = /obj/item/clothing/under/trek/command/next
-	neck = /obj/item/clothing/neck/large_scarf/blue
+	//uniform = /obj/item/clothing/under/trek/command/next
+	uniform = /obj/item/clothing/under/misc/vice_officer
+	suit = /obj/item/clothing/suit/armor/vest/bridge
+	neck = /obj/item/clothing/neck/scarf/yellow
 	belt = /obj/item/storage/belt/utility/full/inducer
 	ears = /obj/item/radio/headset/headset_com
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -78,5 +95,4 @@
 	head = /obj/item/clothing/head/soft/black
 	shoes = /obj/item/clothing/shoes/laceup
 	l_pocket = /obj/item/gun/energy/e_gun/mini
-	r_pocket = /obj/item/assembly/flash/handheld
-*/
+	r_pocket = /obj/item/flashlight/seclite
