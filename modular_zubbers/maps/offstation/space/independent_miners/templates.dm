@@ -9,17 +9,22 @@
 	always_spawn_with = list(/datum/map_template/ruin/space/bubberstation/whiteship_miner_dock = PLACE_SPACE_RUIN)
 
 	placement_weight = 3
+	always_place = TRUE
 
-/datum/map_template/ruin/space/bubberstation/independent_miner_asteroid/load(turf/T, centered)
-	. = ..()
-	if(.)
-		SSmapping.config.shuttles["whiteship_miner"] = "whiteship_miner"
-
-/datum/map_template/ruin/space/bubberstation/whiteship_miner_dock
+/datum/map_template/ruin/space/bubberstation/whiteship_miner_ship
 	id = "whiteshipdock_m"
-	suffix = "whiteshipdock.dmm"
-	name = "Whiteship Dock - Miner"
+	suffix = "whiteshipdock_m.dmm"
+	name = "Independent Miner Ship"
 	description = "An abandoned but functional vessel parked in deep space"
+
+/obj/docking_port/stationary/picked/whiteship_miner
+	name = "Deep Space"
+	shuttle_id = "whiteship_miner"
+	dir = 2
+	shuttlekeys = list(
+		"whiteship_miner
+	)
+
 
 /obj/item/circuitboard/computer/white_ship/miner
 
