@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			cell_phone_number = "Dogginos"
 			list_to_use = "dogginos"
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg', has_important_message=TRUE, color_override = "yellow")
-	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, ROLE_DEATHSQUAD)
+	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/solfed, role_name_text = "solfed response team")
 
 	if(candidates.len)
 		//Pick the (un)lucky players
@@ -224,13 +224,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Sol Federation [called_group_pretty].")
 	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
 		sentence."
-	if(tgui_input_list(user, call_911_msg_are_you_sure, "Call 911", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, call_911_msg_are_you_sure, "Call 911", list("No", "Yes")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty 911 call consequences.")
-	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("No", "Yes")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has read and acknowleged the recommendations for what to call and not call [called_group_pretty] for.")
-	var/reason_to_call_911 = stripped_input(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
+	var/reason_to_call_911 = tgui_input_text(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_911)
 		to_chat(user, "You decide not to call 911.")
 		return
@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/solfed_reporter/swat_caller/questions(mob/user)
 	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
 		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
-	if(tgui_input_list(user, question, "S.W.A.T. Backup Caller", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, question, "S.W.A.T. Backup Caller", list("No", "Yes")) != "Yes")
 		to_chat(user, "You decide not to request S.W.A.T. backup.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
@@ -678,7 +678,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			administrative action against your account."
 	)
 	for(var/question in list_of_questions)
-		if(tgui_input_list(user, question, "Treason Reporter", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, question, "Treason Reporter", list("No", "Yes")) != "Yes")
 			to_chat(user, "You decide not to declare the station as treasonous.")
 			return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
@@ -705,7 +705,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	cell_phone_number = "Dogginos"
 
 /obj/item/solfed_reporter/pizza_managers/questions(mob/user)
-	if(tgui_input_list(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("No", "Yes")) != "Yes")
 		to_chat(user, "You decide not to request management assist you with the delivery.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon Dogginos management to resolve the lack of payment.")
