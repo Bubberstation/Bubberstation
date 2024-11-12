@@ -134,7 +134,7 @@
 	temp.Blend("#ff0000", ICON_MULTIPLY)
 	var/icon/temp_hair = icon(hair_icon)
 	temp_hair.Blend(temp, ICON_OVERLAY)
-	temp_hair.Crop(8, 3, 24, 18)
+	temp_hair.Crop(8, 29, 24, 14)
 	temp_hair.Scale(32, 32)
 	return temp_hair
 
