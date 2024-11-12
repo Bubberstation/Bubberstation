@@ -135,6 +135,7 @@
 	var/icon/temp_hair = icon(hair_icon)
 	temp_hair.Blend(temp, ICON_OVERLAY)
 	temp_hair.Crop(8, 3, 24, 18)
+	temp_hair.Scale(32, 32)
 	return temp_hair
 
 /datum/preference/choiced/facial_hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
