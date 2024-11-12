@@ -3,7 +3,8 @@
 	description = "This looks familiar... Wait, it's milk!"
 	taste_description = "warm and creamy"
 	color = "#ffffffff"
-	reagent_state = LIQUID | REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	reagent_state = LIQUID
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/glass_style/drinking_glass/breast_milk
 	required_drink_type = /datum/reagent/consumable/breast_milk
