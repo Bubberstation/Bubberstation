@@ -101,6 +101,7 @@
 	abstract_type = /datum/preference/choiced/mutant_choice
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
+	should_generate_icons = TRUE
 
 	/// Path to the default sprite accessory
 	var/datum/sprite_accessory/default_accessory_type = /datum/sprite_accessory/blank
