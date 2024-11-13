@@ -29,6 +29,10 @@
 	savefile_key = "feature_xenohead"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
+	crop_area = list(11, 22, 21, 32) // We want just the head area.
+
+/datum/preference/choiced/mutant/xenohead/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_xenohead_[original_icon_state]_ADJ[suffix]"
 
 /datum/preference/mutant_color/xenohead
 	savefile_key = "xenohead_color"

@@ -11,8 +11,8 @@
 /datum/preference/choiced/mutant/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
-/datum/preference/choiced/mutant/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
-	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER"
+/datum/preference/choiced/mutant/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER[suffix]"
 
 /datum/preference/choiced/mutant/ipc_screen/compile_constant_data()
 	var/list/data = ..()

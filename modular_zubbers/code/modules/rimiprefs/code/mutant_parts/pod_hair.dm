@@ -4,31 +4,25 @@
 	relevant_mutant_bodypart = "pod_hair"
 	default_accessory_name = "Ivy"
 	should_generate_icons = TRUE
+	var/icon/pod_head
 
-/datum/preference/choiced/mutant/pod_hair/init_possible_values()
-	var/list/values = list()
-
-	var/icon/pod_head = icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
+/datum/preference/choiced/mutant/pod_hair/New()
+	. = ..()
+	pod_head = icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
 	pod_head.Blend(COLOR_GREEN, ICON_MULTIPLY)
 
-	for (var/pod_name in SSaccessories.pod_hair_list)
-		var/datum/sprite_accessory/pod_hair/pod_hair = SSaccessories.pod_hair_list[pod_name]
-		if(pod_hair.locked)
-			continue
+/datum/preference/choiced/mutant/pod_hair/generate_icon(datum/sprite_accessory/pod_hair, dir)
+	var/icon/icon_with_hair = new(pod_head)
+	var/icon/icon_adj = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
+	var/icon/icon_front = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+	icon_front.Blend(COLOR_MAGENTA, ICON_MULTIPLY)
+	icon_adj.Blend(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
+	icon_adj.Blend(icon_front, ICON_OVERLAY)
+	icon_with_hair.Blend(icon_adj, ICON_OVERLAY)
+	icon_with_hair.Scale(64, 64)
+	icon_with_hair.Crop(15, 64, 15 + 31, 64 - 31)
 
-		var/icon/icon_with_hair = new(pod_head)
-		var/icon/icon_adj = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
-		var/icon/icon_front = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
-		icon_front.Blend(COLOR_MAGENTA, ICON_MULTIPLY)
-		icon_adj.Blend(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
-		icon_adj.Blend(icon_front, ICON_OVERLAY)
-		icon_with_hair.Blend(icon_adj, ICON_OVERLAY)
-		icon_with_hair.Scale(64, 64)
-		icon_with_hair.Crop(15, 64, 15 + 31, 64 - 31)
-
-		values[pod_hair.name] = icon_with_hair
-
-	return values
+	return icon_with_hair
 
 /datum/preference/choiced/mutant/pod_hair/is_part_enabled(datum/preferences/preferences)
 	return TRUE

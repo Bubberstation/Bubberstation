@@ -6,6 +6,10 @@
 	savefile_key = "feature_spines"
 	relevant_mutant_bodypart = "spines"
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
+	sprite_direction = NORTH
+
+/datum/preference/choiced/mutant/spines/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_spines_[original_icon_state]_ADJ[suffix]"
 
 /datum/preference/mutant_color/spines
 	savefile_key = "spines_color"

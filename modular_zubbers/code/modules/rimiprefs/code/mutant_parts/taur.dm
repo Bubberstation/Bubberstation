@@ -6,6 +6,10 @@
 	savefile_key = "feature_taur"
 	relevant_mutant_bodypart = "taur"
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
+	sprite_direction = EAST
+
+/datum/preference/choiced/mutant/taur/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_taur_[original_icon_state]_ADJ[suffix]"
 
 /datum/preference/mutant_color/taur
 	savefile_key = "taur_color"

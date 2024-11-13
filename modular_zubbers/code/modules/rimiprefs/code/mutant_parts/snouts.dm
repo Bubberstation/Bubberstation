@@ -6,6 +6,11 @@
 	savefile_key = "feature_snout"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
+	sprite_direction = EAST
+	crop_area = list(14, 22, 24, 32) // We want just the head.
+
+/datum/preference/choiced/mutant/snout/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_snout_[original_icon_state]_ADJ[suffix]"
 
 /datum/preference/choiced/mutant/snout/apply_to_human(mob/living/carbon/human/target, value)
 	. = ..()

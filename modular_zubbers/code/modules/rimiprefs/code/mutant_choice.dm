@@ -109,7 +109,7 @@
 
 	for(var/datum/sprite_accessory/accessory as anything in accessories)
 		accessory = accessories[accessory]
-		if(!accessory || !accessory.name)
+		if(!accessory || !accessory.name || accessory.locked)
 			continue
 
 		if(islist(accessories_to_ignore))
