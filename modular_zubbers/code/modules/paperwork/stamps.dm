@@ -24,3 +24,9 @@
 	icon_state = "stamp-crow"
 	desc = "A rubber stamp for stamping vaguely legal contracts."
 	dye_color = DYE_BLACK
+
+/obj/item/stamp/warden
+	name = "warden's rubber stamp"
+	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
+	icon_state = "stamp-warden"
+	dye_color = DYE_HOS
