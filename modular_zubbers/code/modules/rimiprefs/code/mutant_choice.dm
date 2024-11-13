@@ -163,6 +163,6 @@
 	return icon_to_return
 
 /datum/preference/choiced/mutant/icon_for(value)
-	generate_icon(sprite_accessory[value], sprite_direction)
+	return generate_icon(sprite_accessory[value], sprite_direction)
 
 #undef REQUIRED_CROP_LIST_SIZE
