@@ -16,6 +16,7 @@
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "lace"
 	cooldown_time = 10 SECONDS
+	click_to_activate = FALSE
 
 	///Strength of the leap, extends the height and length of the jump
 	var/leap_strength = 1
@@ -28,10 +29,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/leap/Trigger(trigger_flags, atom/target)
-	. = ..()
-	if(!.)
-		return
+/datum/action/cooldown/mob_cooldown/leap/Activate(atom/target)
 	var/mob/living/carbon/bunny = owner // We already know they're a carbon, see IsAvailable()
 	var/leap_height = 16 * leap_strength
 	var/leap_length = leap_strength * LEAP_TIME_MODIFIER
@@ -39,7 +37,7 @@
 	// Fast way up, slow way down
 	animate(bunny, pixel_y = leap_height, time = leap_length/3)
 	animate(pixel_y = 0, time = (2 * leap_length)/3)
-	return TRUE
+	StartCooldown()
 
 /datum/status_effect/bunny_hop
 	id = "bigleap"
