@@ -14,14 +14,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/head_acc
 
 /datum/preference/mutant_color/head_acc
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "head_acc_color"
 	relevant_mutant_bodypart = "head_acc"
 	type_to_check = /datum/preference/toggle/mutant_toggle/head_acc
 
 /datum/preference/emissive_toggle/head_acc
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "head_acc_emissive"
 	relevant_mutant_bodypart = "head_acc"
@@ -42,14 +40,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/neck_acc
 
 /datum/preference/mutant_color/neck_acc
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "neck_acc_color"
 	relevant_mutant_bodypart = "neck_acc"
 	type_to_check = /datum/preference/toggle/mutant_toggle/neck_acc
 
 /datum/preference/emissive_toggle/neck_acc
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "neck_acc_emissive"
 	relevant_mutant_bodypart = "neck_acc"

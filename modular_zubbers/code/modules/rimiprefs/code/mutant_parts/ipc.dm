@@ -3,7 +3,6 @@
 /datum/preference/choiced/mutant/ipc_screen
 	savefile_key = "feature_ipc_screen"
 	main_feature_name = "IPC Screen"
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 	should_generate_icons = TRUE
 	crop_area = list(11, 22, 21, 32) // We want just the head.
@@ -37,7 +36,6 @@
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 
 /datum/preference/emissive_toggle/ipc_screen_emissive
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
@@ -54,7 +52,6 @@
 	return TRUE
 
 /datum/preference/mutant_color/synth_antenna
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
@@ -62,7 +59,6 @@
 	type_to_check = /datum/preference/choiced/mutant/synth_antenna
 
 /datum/preference/emissive_toggle/synth_antenna_emissive
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
@@ -74,7 +70,6 @@
 /datum/preference/choiced/mutant/synth_chassis
 	savefile_key = "feature_ipc_chassis"
 	main_feature_name = "Chassis Appearance"
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = MUTANT_SYNTH_CHASSIS
 	default_accessory_name = "Default Chassis"
 	should_generate_icons = TRUE
@@ -107,7 +102,6 @@
 /datum/preference/choiced/mutant/synth_head
 	savefile_key = "feature_ipc_head"
 	main_feature_name = "Head Appearance"
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = MUTANT_SYNTH_HEAD
 	default_accessory_name = "Default Head"
 	should_generate_icons = TRUE

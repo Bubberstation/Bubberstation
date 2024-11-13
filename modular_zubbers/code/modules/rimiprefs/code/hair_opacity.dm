@@ -16,8 +16,8 @@
 
 /datum/preference/numeric/hair_opacity/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
-	var/allowed = preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts) && preferences.read_preference(/datum/preference/toggle/mutant_toggle/hair_opacity)
-	return passed_initial_check || allowed
+	// var/allowed = preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts) && preferences.read_preference(/datum/preference/toggle/mutant_toggle/hair_opacity)
+	return passed_initial_check //|| allowed
 
 /**
  * Actually applied. Slimmed down version of the logic in is_available() that actually works when spawning or drawing the character.
@@ -29,8 +29,8 @@
  * * preferences - The relevant character preferences.
  */
 /datum/preference/numeric/hair_opacity/proc/is_visible(mob/living/carbon/human/target, datum/preferences/preferences)
-	if(!preferences.read_preference(/datum/preference/toggle/mutant_toggle/hair_opacity))
-		return FALSE
+	// if(!preferences.read_preference(/datum/preference/toggle/mutant_toggle/hair_opacity))
+		// return FALSE
 
 	if(preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts))
 		return TRUE

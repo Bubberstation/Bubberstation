@@ -19,7 +19,6 @@
 	return FALSE
 
 /datum/preference/mutant_color/moth_markings
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_markings_color"
 	relevant_mutant_bodypart = "moth_markings"
@@ -33,7 +32,6 @@
 	return FALSE
 
 /datum/preference/emissive_toggle/moth_markings
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_markings_emissive"
 	relevant_mutant_bodypart = "moth_markings"

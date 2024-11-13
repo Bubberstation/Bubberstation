@@ -8,14 +8,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
 
 /datum/preference/mutant_color/spines
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "spines_color"
 	relevant_mutant_bodypart = "spines"
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
 
 /datum/preference/emissive_toggle/spines
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "spines_emissive"
 	relevant_mutant_bodypart = "spines"

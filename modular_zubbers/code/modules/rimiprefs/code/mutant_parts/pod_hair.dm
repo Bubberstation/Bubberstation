@@ -1,7 +1,6 @@
 /datum/preference/choiced/mutant/pod_hair
 	savefile_key = "feature_pod_hair"
 	main_feature_name = "Hairstyle"
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	relevant_mutant_bodypart = "pod_hair"
 	default_accessory_name = "Ivy"
 	should_generate_icons = TRUE
@@ -56,7 +55,6 @@
 	type_to_check = /datum/preference/choiced/mutant/pod_hair
 
 /datum/preference/emissive_toggle/pod_hair_emissive
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "pod_hair_emissive"
 	relevant_mutant_bodypart = "pod_hair"

@@ -8,14 +8,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
 
 /datum/preference/mutant_color/taur
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "taur_color"
 	relevant_mutant_bodypart = "taur"
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
 
 /datum/preference/emissive_toggle/taur
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "taur_emissive"
 	relevant_mutant_bodypart = "taur"

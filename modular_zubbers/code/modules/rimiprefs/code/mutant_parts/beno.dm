@@ -10,14 +10,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 
 /datum/preference/mutant_color/xenodorsal
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_color"
 	relevant_mutant_bodypart = "xenodorsal"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 
 /datum/preference/emissive_toggle/xenodorsal
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_emissive"
 	relevant_mutant_bodypart = "xenodorsal"
@@ -35,14 +33,12 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 
 /datum/preference/mutant_color/xenohead
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_color"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 
 /datum/preference/emissive_toggle/xenohead
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_emissive"
 	relevant_mutant_bodypart = "xenohead"
