@@ -1,8 +1,15 @@
+/// Amount of blood taken from a target on bite
 #define BLOODFLEDGE_DRAIN_AMT 50
+/// Base amount of time to bite a target before adjustments
 #define BLOODFLEDGE_DRAIN_TIME 50
+/// Cooldown for the bite ability
 #define BLOODFLEDGE_COOLDOWN_BITE 60 // Six seconds
+/// Cooldown for the revive ability
 #define BLOODFLEDGE_COOLDOWN_REVIVE 3000 // Five minutes
+/// How much blood can be held after biting
 #define BLOODFLEDGE_BANK_CAPACITY (BLOODFLEDGE_DRAIN_AMT * 2)
+/// How much damage is healed in a coffin
+#define BLOODFLEDGE_HEAL_AMT -2
 
 /datum/quirk/item_quirk/bloodfledge
 	name = "Bloodsucker Fledgling"
@@ -14,6 +21,8 @@
 	mob_trait = TRAIT_BLOODFLEDGE
 	hardcore_value = -2
 	icon = FA_ICON_CHAMPAGNE_GLASSES
+	/// Toggle between using blood volume or nutrition. Blood volume is used for hemophages.
+	var/use_nutrition = TRUE
 
 /datum/quirk/item_quirk/bloodfledge/add()
 	// Define quirk mob
@@ -34,6 +43,12 @@
 	// Register examine text
 	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(quirk_examine_bloodfledge))
 
+	// Register coffin interaction
+	RegisterSignal(quirk_holder, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
+
+	// Register wooden stake interaction
+	RegisterSignal(quirk_holder, COMSIG_MOB_STAKED, PROC_REF(on_staked))
+
 	// Teach how to make the Hemorrhagic Sanguinizer
 	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
 
@@ -43,14 +58,22 @@
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
-	// Define tongue slot
-	//var/target_tongue = quirk_mob.get_organ_slot(ORGAN_SLOT_TONGUE)
+	// Define owner tongue
+	var/obj/item/organ/internal/tongue/target_tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
 
-	// Check for hemophage or pre-corrupted tongue
-	//if(ishemophage(quirk_mob) || istype(target_tongue, /obj/item/organ/internal/tongue/hemophage))
+	// Check if tongue exists
+	if(target_tongue)
+		// Force preference for bloody food
+		target_tongue.disliked_foodtypes &= ~BLOODY
+		target_tongue.liked_foodtypes |= BLOODY
+
+	// Check for hemophage
 	if(ishemophage(quirk_mob))
 		// Warn user
 		to_chat(quirk_mob, span_warning("Because you possess the tumor's corruption, you have not been granted any additional bite abilities. Your feeding power will manifest shortly."))
+
+		// Disable nutrition mode
+		use_nutrition = FALSE
 
 	// User does not have a corrupted tongue
 	else
@@ -71,73 +94,97 @@
 		act_revive.Grant(quirk_mob)
 
 // Processing is currently only used for coffin healing
-// This is started and stopped by a proc in crates.dm
 /datum/quirk/item_quirk/bloodfledge/process(seconds_per_tick)
 	// Define potential coffin
 	var/quirk_coffin = quirk_holder.loc
 
 	// Check if the current area is a coffin
-	if(istype(quirk_coffin, /obj/structure/closet/crate/coffin))
-		// Define quirk mob
-		var/mob/living/carbon/human/quirk_mob = quirk_holder
+	if(!istype(quirk_coffin, /obj/structure/closet/crate/coffin))
+		// Warn user
+		to_chat(quirk_holder, span_warning("Your connection to the other-world is broken upon leaving the coffin!"))
 
-		// Quirk mob must be injured
-		if(quirk_mob.health >= quirk_mob.maxHealth)
-			// Warn user
-			to_chat(quirk_mob, span_notice("[quirk_coffin] does nothing more to help you, as your body is fully mended."))
+		// Stop processing and return
+		STOP_PROCESSING(SSquirks, src)
+		return
 
-			// Stop processing and return
-			STOP_PROCESSING(SSquirks, src)
-			return
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
-		// Nutrition (blood) level must be above STARVING
+	// Quirk mob must be injured
+	if(quirk_mob.health >= quirk_mob.maxHealth)
+		// Warn user
+		to_chat(quirk_mob, span_notice("[quirk_coffin] does nothing more to help you, as your body is fully mended."))
+
+		// Stop processing and return
+		STOP_PROCESSING(SSquirks, src)
+		return
+
+	/// Define if nutrition or blood volume is sufficent. Will stop healing if FALSE.
+	var/has_enough_blood = TRUE
+
+	// Check if using nutrition mode
+	if(use_nutrition)
+		// Nutrition level must be above STARVING
 		if(quirk_mob.nutrition <= NUTRITION_LEVEL_STARVING)
-			// Warn user
-			to_chat(quirk_mob, span_warning("[quirk_coffin] requires blood to operate, which you are currently lacking. Your connection to the other-world fades once again."))
+			// Set variable
+			has_enough_blood = FALSE
 
-			// Stop processing and return
-			STOP_PROCESSING(SSquirks, src)
-			return
+	// Using blood volume mode
+	else
+		// Blood level must be above SURVIVE
+		if(quirk_mob.blood_volume <= BLOOD_VOLUME_SURVIVE)
+			// Set variable
+			has_enough_blood = FALSE
 
-		// Define initial health
-		var/health_start = quirk_mob.health
+	// Check if nutrition or blood volume is high enough
+	if(!has_enough_blood)
+		// Warn user
+		to_chat(quirk_mob, span_warning("[quirk_coffin] requires blood to operate, which you are currently lacking. Your connection to the other-world fades once again."))
 
-		// Heal brute and burn
-		// Accounts for robotic limbs
-		quirk_mob.heal_overall_damage(2,2)
-		// Heal oxygen
-		quirk_mob.adjustOxyLoss(-2)
-		// Heal clone
-		//quirk_mob.adjustCloneLoss(-2) //not implemented yet
+		// Stop processing and return
+		STOP_PROCESSING(SSquirks, src)
+		return
 
-		// Check for slime race
-		// NOT a slime
-		if(!isslimeperson(quirk_mob))
-			// Heal toxin
-			quirk_mob.adjustToxLoss(-2)
-		// IS a slime
-		else
-			// Grant toxin (heals slimes)
-			quirk_mob.adjustToxLoss(2)
+	// Define initial health
+	var/health_start = quirk_mob.health
 
+	// Define health needing updates
+	var/need_mob_update = FALSE
+
+	// Queue healing compatible damage types
+	need_mob_update += quirk_holder.adjustBruteLoss(BLOODFLEDGE_HEAL_AMT, updating_health = FALSE, required_bodytype = BODYTYPE_ORGANIC)
+	need_mob_update += quirk_holder.adjustFireLoss(BLOODFLEDGE_HEAL_AMT, updating_health = FALSE, required_bodytype = BODYTYPE_ORGANIC)
+	need_mob_update += quirk_holder.adjustToxLoss(BLOODFLEDGE_HEAL_AMT, updating_health = FALSE, required_biotype = MOB_ORGANIC, forced = TRUE)
+	need_mob_update += quirk_holder.adjustOxyLoss(BLOODFLEDGE_HEAL_AMT, updating_health = FALSE, required_biotype = MOB_ORGANIC)
+
+	// Check if healing will be applied
+	if(need_mob_update)
 		// Update health
-		quirk_mob.updatehealth()
+		quirk_holder.updatehealth()
 
-		// Determine healed amount
-		var/health_restored = quirk_mob.health - health_start
-
-		// Remove nutrition (blood) as compensation for healing
-		// Amount is equal to 50% of healing done
-		quirk_mob.adjust_nutrition(health_restored*-1)
-
-	// User is not in a coffin
-	// This should not occur without teleportation
+	// No healing will occur
 	else
 		// Warn user
-		to_chat(quirk_holder, span_warning("Your connection to the other-world is broken upon leaving the [quirk_coffin]!"))
+		to_chat(quirk_mob, span_warning("[quirk_coffin] cannot mend any more damage to your body."))
 
-		// Stop processing
+		// Stop processing and return
 		STOP_PROCESSING(SSquirks, src)
+		return
+
+	// Determine healed amount
+	var/health_restored = quirk_mob.health - health_start
+
+	// Remove a resource as compensation for healing
+	// Amount is equal to healing done
+
+	// Check if using nutrition mode
+	if(use_nutrition)
+		quirk_mob.adjust_nutrition(health_restored*-1)
+
+	// Using blood volume mode
+	else
+		quirk_mob.blood_volume -= (health_restored*-1)
+
 
 /datum/quirk/item_quirk/bloodfledge/remove()
 	// Define quirk mob
@@ -224,6 +271,11 @@
 		)
 	)
 
+/**
+ * Special examine text for Bloodfledges
+ * * Displays hunger level notices
+ * * Indicates that the holder has a revive ability
+*/
 /datum/quirk/item_quirk/bloodfledge/proc/quirk_examine_bloodfledge(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
@@ -239,6 +291,16 @@
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
+	// Define pronouns
+	var/holder_they = quirk_holder.p_They()
+	var/holder_their = quirk_holder.p_Their()
+	var/holder_are = quirk_holder.p_are()
+
+	// Check if dead
+	if(quirk_holder.stat >= DEAD)
+		// Add potential revival text
+		examine_list += span_info("[holder_their] body radiates an unnatural energy, as though [quirk_holder.p_they()] could spring to life at any moment...")
+
 	// Define hunger texts
 	var/examine_hunger_public
 	var/examine_hunger_secret
@@ -247,13 +309,13 @@
 	switch(quirk_mob.nutrition)
 		// Hungry
 		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			examine_hunger_secret = "[quirk_holder.p_they(TRUE)] [quirk_holder.p_are()] blood starved!"
-			examine_hunger_public = "[quirk_holder.p_they(TRUE)] seem[quirk_holder.p_s()] on edge from something."
+			examine_hunger_secret = "[holder_they] [holder_are] blood starved!"
+			examine_hunger_public = "[holder_they] seem[quirk_holder.p_s()] on edge from something."
 
 		// Starving
 		if(0 to NUTRITION_LEVEL_STARVING)
-			examine_hunger_secret = "[quirk_holder.p_they(TRUE)] [quirk_holder.p_are()] in dire need of blood!"
-			examine_hunger_public = "[quirk_holder.p_they(TRUE)] [quirk_holder.p_are()] radiating an aura of frenzied hunger!"
+			examine_hunger_secret = "[holder_they] [holder_are] in dire need of blood!"
+			examine_hunger_public = "[holder_they] [holder_are] radiating an aura of frenzied hunger!"
 
 		// Invalid hunger
 		else
@@ -261,9 +323,9 @@
 			return
 
 	// Check if examiner shares the quirk
-	if((examiner))
+	if(isbloodfledge(examiner))
 		// Add detection text
-		examine_list += span_info("[quirk_holder.p_their(TRUE)] hunger makes it easy to identify [quirk_holder.p_them()] as a fellow sanguine!")
+		examine_list += span_info("[holder_their] hunger makes it easy to identify [quirk_holder.p_them()] as a fellow sanguine!")
 
 		// Add hunger text
 		examine_list += span_warning(examine_hunger_secret)
@@ -272,6 +334,77 @@
 	else
 		// Add hunger text
 		examine_list += span_warning(examine_hunger_public)
+
+/**
+ * Coffin check for Bloodfledges. Enables quirk processing if all conditions pass.
+ *
+ * Requires the following
+ * * Organic mob biotype
+ * * No HOLY anti-magic
+ * * No garlic reagent
+ * * No stake embedded
+*/
+/datum/quirk/item_quirk/bloodfledge/proc/on_enter_coffin(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin, mob/living/carbon/user)
+	SIGNAL_HANDLER
+
+	// Check for organic user
+	if(!(user.mob_biotypes & MOB_ORGANIC))
+		// Warn user and return
+		to_chat(quirk_holder, span_warning("Your body don't respond to [coffin]'s sanguine connection! Regeneration will not be possible."))
+		return
+
+	// Check for holy anti-magic
+	if(user.can_block_magic(MAGIC_RESISTANCE_HOLY))
+		// Warn user and return
+		to_chat(quirk_holder, span_warning("[coffin] fails to form a connection with your body amidst the strong magical interference!!"))
+		return
+
+	// Check for garlic
+	if(user.has_reagent(/datum/reagent/consumable/garlic, 5))
+		// Warn user and return
+		to_chat(quirk_holder, span_warning("The Allium Sativum in your system interferes with your regeneration!"))
+		return
+
+	// Check for stake
+	if(user.am_staked())
+		// Warn user and return
+		to_chat(quirk_holder, span_warning("Your body cannot regenerate while impaled with a stake!"))
+		return
+
+	// User is allowed to heal!
+
+	// Alert user
+	to_chat(quirk_holder, span_good("[coffin] begins to mend your body!"))
+
+	// Start processing
+	START_PROCESSING(SSquirks, src)
+
+/**
+ * Staked interaction for Bloodfledges
+ * * Causes instant death if the target is unconsious
+ * * Warns normally if the target is consious
+*/
+/datum/quirk/item_quirk/bloodfledge/proc/on_staked(atom/target, forced)
+	SIGNAL_HANDLER
+
+	// Check if unconsious
+	if(quirk_holder.IsSleeping() || quirk_holder.stat >= UNCONSCIOUS)
+		// Warn the user
+		to_chat(target, span_userdanger("You have been staked while unconsious!"))
+
+		// Kill the user
+		quirk_holder.death()
+
+		// Log the death
+		quirk_holder.investigate_log("Died as a bloodfledge from staking.", INVESTIGATE_DEATHS)
+
+		// Do nothing else
+		return
+
+	// User is consious
+	// Warn the user of staking
+	to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place."))
+	target.balloon_alert(target, "you have been staked!")
 
 //
 // Bloodfledge actions
@@ -287,7 +420,7 @@
 	button_icon_state = "power_feed"
 	buttontooltipstyle = "cult"
 
-	// Toggle between blood or nutrition
+	/// Toggle between using blood volume or nutrition. Blood volume is used for hemophages.
 	var/use_nutrition = TRUE
 
 /datum/action/cooldown/bloodfledge/Grant()
@@ -298,27 +431,44 @@
 		// Disable nutrition mode
 		use_nutrition = FALSE
 
-// Basic can-use check
-/datum/action/cooldown/bloodfledge/IsAvailable(feedback)
-	. = ..()
-
-	// Check parent return
-	if(!.)
+/**
+ * Check if Bloodfledge power is allowed to be used
+ *
+ * Requires the following:
+ * * No HOLY anti-magic
+ * * No garlic reagent
+ * * No stake embedded
+ * * Not just a brain
+*/
+/datum/action/cooldown/bloodfledge/proc/can_use(mob/living/carbon/action_owner)
+	// Check for deleted owner
+	if(QDELETED(owner))
 		return FALSE
 
 	// Check for holyness
-	if(HAS_TRAIT(owner, TRAIT_HOLY))
+	if(owner.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		// Warn user and return
 		to_chat(owner, span_warning("A holy force prevents you from using your powers!"))
+		owner.balloon_alert(owner, "holy interference!")
 		return FALSE
-
-	// Define action owner carbon mob
-	var/mob/living/carbon/action_owner = owner
 
 	// Check for garlic
 	if(action_owner.has_reagent(/datum/reagent/consumable/garlic, 5))
 		// Warn user and return
 		to_chat(owner, span_warning("The Allium Sativum in your system is stifling your powers!"))
+		owner.balloon_alert(owner, "garlic interference!")
+		return FALSE
+
+	// Check for stake
+	if(action_owner.am_staked())
+		to_chat(owner, span_warning("Your powers are useless while you have a stake in your chest!"))
+		owner.balloon_alert(owner, "staked!")
+		return FALSE
+
+	// Check if just a brain
+	if(isbrain(owner))
+		to_chat(owner, span_warning("You think extra hard about how you can't do this right now!"))
+		owner.balloon_alert(owner, "just a brain!")
 		return FALSE
 
 	// Action can be used
@@ -331,9 +481,11 @@
 	button_icon_state = "power_feed"
 	cooldown_time = BLOODFLEDGE_COOLDOWN_BITE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED | AB_CHECK_LYING | AB_CHECK_PHASED
+
+	/// How long it takes to bite a target
 	var/time_interact = BLOODFLEDGE_DRAIN_TIME
 
-	// Reagent holder, used to change reaction type
+	/// Reagent holder, used to change reaction type
 	var/datum/reagents/blood_bank
 
 // Corrupted tongue variant
@@ -355,27 +507,51 @@
 		time_interact*= 0.5
 
 /datum/action/cooldown/bloodfledge/bite/Activate()
+	// Check if powers are allowed
+	if(!can_use(owner))
+		return FALSE
+
 	// Define action owner carbon mob
 	var/mob/living/carbon/action_owner = owner
 
 	// Check for any grabbed target
 	if(!action_owner.pulling)
 		// Warn the user, then return
-		to_chat(action_owner, span_warning("You need a victim first!"))
-		return
+		//to_chat(action_owner, span_warning("You need a victim first!"))
+		action_owner.balloon_alert(action_owner, "need a victim!")
+		return FALSE
+
+	// Check for muzzle
+	// Unimplemented here
+	/*
+	if(action_owner.is_muzzled())
+		// Warn the user, then return
+		to_chat(action_owner, span_warning("You can't bite things while muzzled!"))
+		owner.balloon_alert(owner, "muzzled!")
+		return FALSE
+	*/
+
+	// Check for covered mouth
+	if(action_owner.is_mouth_covered())
+		// Warn the user, then return
+		to_chat(action_owner, span_warning("You can't bite things with your mouth covered!"))
+		owner.balloon_alert(owner, "mouth covered!")
+		return FALSE
 
 	// Using nutrition mode
 	if(use_nutrition)
 		// Limit maximum nutrition
 		if(action_owner.nutrition >= NUTRITION_LEVEL_FAT)
 			// Warn the user, then return
-			to_chat(action_owner, span_notice("You are too full to drain any more."))
+			to_chat(action_owner, span_warning("You are too full to drain any more."))
+			owner.balloon_alert(owner, "too full!")
 			return
 
 		// Limit maximum potential nutrition
 		if(action_owner.nutrition + BLOODFLEDGE_DRAIN_AMT >= NUTRITION_LEVEL_FAT)
 			// Warn the user, then return
-			to_chat(action_owner, span_notice("You would become too full by draining any more blood."))
+			to_chat(action_owner, span_warning("You would become too full by draining any more blood."))
+			owner.balloon_alert(owner, "too full!")
 			return
 
 	// Using blood volume mode
@@ -383,29 +559,16 @@
 		// Limit maximum blood volume
 		if(action_owner.blood_volume >= BLOOD_VOLUME_MAXIMUM)
 			// Warn the user, then return
-			to_chat(action_owner, span_notice("Your body contains too much blood to drain any more."))
+			to_chat(action_owner, span_warning("Your body contains too much blood to drain any more."))
+			owner.balloon_alert(owner, "too full!")
 			return
 
 		// Limit maximum potential blood volume
 		if(action_owner.blood_volume + BLOODFLEDGE_DRAIN_AMT >= BLOOD_VOLUME_MAXIMUM)
 			// Warn the user, then return
-			to_chat(action_owner, span_notice("You body would become overwhelmed by draining any more blood."))
+			to_chat(action_owner, span_warning("You body would become overwhelmed by draining any more blood."))
+			owner.balloon_alert(owner, "too full!")
 			return
-
-	// Check for muzzle
-	// Unimplemented here
-	/*
-	if(action_owner.is_muzzled())
-		// Warn the user, then return
-		to_chat(action_owner, span_notice("You can't bite things while muzzled!"))
-		return FALSE
-	*/
-
-	// Check for covered mouth
-	if(action_owner.is_mouth_covered())
-		// Warn the user, then return
-		to_chat(action_owner, span_notice("You can't bite things with your mouth covered!"))
-		return FALSE
 
 	// Define pulled target
 	var/pull_target = action_owner.pulling
@@ -413,7 +576,7 @@
 	// Define bite target
 	var/mob/living/carbon/human/bite_target
 
-	// Define if action owner is dumb
+	/// Does action owner dumb has the dumb trait? Changes the result of some failure interactions.
 	var/action_owner_dumb = HAS_TRAIT(action_owner, TRAIT_DUMB)
 
 	// Face the target
@@ -469,12 +632,14 @@
 	// Define zone name
 	var/target_zone_name = "flesh"
 
-	// Define if target zone has special effects
+	/// Does the target zone have unique interactions?
 	var/target_zone_effects = FALSE
 
-	// Define if zone should be checked
-	// Uses dismember check to determine if it can be missing
-	// Missing limbs are assumed to be dismembered
+	/**
+	* If targeted zone should be checked
+	* * Uses dismember check to determine if it can be missing.
+	* * Missing limbs are assumed to be dismembered.
+	*/
 	var/target_zone_check = bite_bodypart?.can_dismember() || TRUE
 
 	// Set zone name based on region
@@ -503,6 +668,7 @@
 			if(!bite_target.has_eyes() == REQUIRE_GENITAL_EXPOSED)
 				// Warn user and return
 				to_chat(action_owner, span_warning("You can't find [bite_target]'s eyes to bite them!"))
+				owner.balloon_alert(owner, "no eyes?")
 				return
 
 			// Set region data normally
@@ -514,6 +680,7 @@
 			// Check if mouth is covered
 			if(bite_target.is_mouth_covered())
 				to_chat(action_owner, span_warning("You can't reach [bite_target]'s lips to bite them!"))
+				owner.balloon_alert(owner, "no lips?")
 				return
 
 			// Set region data normally
@@ -543,12 +710,13 @@
 		if(!bite_bodypart)
 			// Warn user and return
 			to_chat(action_owner, span_warning("[bite_target] doesn't have a [target_zone_name] for you to bite!"))
+			owner.balloon_alert(owner, "no [target_zone_name]?")
 			return
 
 		// Check if bodypart is organic
 		if(!IS_ORGANIC_LIMB(bite_bodypart))
 			// Display local message
-			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but is unable to penetrate the mechanical prosthetic!"), span_warning("You attempt to bite [bite_target]'s [target_zone_name], but can't penetrate the mechanical prosthetic!"))
+			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but is unable to penetrate the mechanical prosthetic!"), span_warning("You attempt to bite [bite_target]'s [target_zone_name], but can't penetrate the mechanical prosthetic!"), ignored_mobs=bite_target)
 
 			// Warn user
 			to_chat(bite_target, span_warning("[action_owner] tries to bite your [target_zone_name], but is unable to penetrate the mechanical prosthetic!"))
@@ -567,7 +735,7 @@
 		// Check for a dumb user
 		if(action_owner_dumb)
 			// Display local message
-			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but bursts into flames just as [action_owner.p_they()] come[action_owner.p_s()] into contact with [bite_target.p_them()]!"), span_userdanger("Surges of pain course through your body as you attempt to bite [bite_target]! What were you thinking?"))
+			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but bursts into flames just as [action_owner.p_they()] come[action_owner.p_s()] into contact with [bite_target.p_them()]!"), span_userdanger("Surges of pain course through your body as you attempt to bite [bite_target]! What were you thinking?"), ignored_mobs=bite_target)
 
 			// Warn target
 			to_chat(bite_target, span_warning("[action_owner] tries to bite you, but bursts into flames just as [action_owner.p_they()] come[action_owner.p_s()] into contact with you!"))
@@ -592,7 +760,7 @@
 		// Check for a dumb user
 		if(action_owner_dumb)
 			// Display local message
-			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but immediately recoils in disgust upon touching [bite_target.p_them()]!"), span_userdanger("An intense wave of disgust washes over your body as you attempt to bite [bite_target]! What were you thinking?"))
+			action_owner.visible_message(span_danger("[action_owner] tries to bite [bite_target]'s [target_zone_name], but immediately recoils in disgust upon touching [bite_target.p_them()]!"), span_userdanger("An intense wave of disgust washes over your body as you attempt to bite [bite_target]! What were you thinking?"), ignored_mobs=bite_target)
 
 			// Warn target
 			to_chat(bite_target, span_warning("[action_owner] tries to bite your [target_zone_name], but recoils in disgust just as [action_owner.p_they()] come[action_owner.p_s()] into contact with you!"))
@@ -645,7 +813,7 @@
 	// Check for pierce immunity
 	if(HAS_TRAIT(bite_target, TRAIT_PIERCEIMMUNE))
 		// Display local chat message
-		action_owner.visible_message(span_danger("[action_owner] tries to bite down on [bite_target]'s [target_zone_name], but can't seem to pierce [bite_target.p_them()]!"), span_danger("You try to bite down on [bite_target]'s [target_zone_name], but are completely unable to pierce [bite_target.p_them()]!"))
+		action_owner.visible_message(span_danger("[action_owner] tries to bite down on [bite_target]'s [target_zone_name], but can't seem to pierce [bite_target.p_them()]!"), span_danger("You try to bite down on [bite_target]'s [target_zone_name], but are completely unable to pierce [bite_target.p_them()]!"), ignored_mobs=bite_target)
 
 		// Warn bite target
 		to_chat(bite_target, span_userdanger("[action_owner] tries to bite your [target_zone_name], but is unable to piece you!"))
@@ -661,7 +829,10 @@
 			// Snout type is a string that cannot use subtype search
 			if(findtext(bite_target.dna?.features["snout"], "Synthetic Lizard"))
 				// Display local chat message
-				action_owner.visible_message(span_notice("[action_owner]'s fangs clank harmlessly against [bite_target]'s face screen!"), span_notice("Your fangs clank harmlessly against [bite_target]'s face screen!"))
+				action_owner.visible_message(span_notice("[action_owner]'s fangs clank harmlessly against [bite_target]'s face-screen!"), span_notice("Your fangs clank harmlessly against [bite_target]'s face-screen!"), ignored_mobs=bite_target)
+
+				// Alert bite target
+				to_chat(bite_target, span_notice("[action_owner]'s fangs clank harmlessly against your face-screen"))
 
 				// Play glass tap sound
 				playsound(bite_target, 'sound/effects/glass/glasshit.ogg', 50, 1, -2)
@@ -680,15 +851,27 @@
 				var/obj/item/organ/internal/eyes/target_eyes = bite_target.get_organ_slot(ORGAN_SLOT_EYES)
 
 				// Check if eyes exist
-				if(target_eyes)
-					// Display warning
-					to_chat(bite_target, span_userdanger("Your [target_eyes] rupture in pain as [action_owner]'s fangs pierce their surface!"))
+				// This should always be the case since eyes exposed was checked above
+				if(!target_eyes)
+					// Warn user and return
+					to_chat(bite_target, span_userdanger("Something has gone terribly wrong with [bite_target]'s eyes! Please report this to a coder!"))
+					return
 
-					// Blur vision equal to drunkenness
-					bite_target.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
+				// Check for cybernetic eyes
+				if(IS_ROBOTIC_ORGAN(target_eyes))
+					// Warn users and return
+					to_chat(action_owner, span_danger("Your fangs aren't powerful enough to penetrate robotic eyes!"))
+					to_chat(bite_target, span_danger("[action_owner] tries to bite into your [target_eyes], but can't break through!"))
+					return
 
-					// Add organ damage
-					target_eyes.apply_organ_damage(rand(10, 20))
+				// Display warning
+				to_chat(bite_target, span_userdanger("Your [target_eyes] rupture in pain as [action_owner]'s fangs pierce their surface!"))
+
+				// Blur vision equal to drunkenness
+				bite_target.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
+
+				// Add organ damage
+				target_eyes.apply_organ_damage(rand(10, 20))
 
 			// Zone is mouth
 			if(BODY_ZONE_PRECISE_MOUTH)
@@ -696,7 +879,7 @@
 				bite_target.set_stutter_if_lower(10 SECONDS)
 
 	// Display local chat message
-	action_owner.visible_message(span_danger("[action_owner] bites down on [bite_target]'s [target_zone_name]!"), span_danger("You bite down on [bite_target]'s [target_zone_name]!"))
+	action_owner.visible_message(span_danger("[action_owner] bites down on [bite_target]'s [target_zone_name]!"), span_danger("You bite down on [bite_target]'s [target_zone_name]!"), ignored_mobs=bite_target)
 
 	// Play a bite sound effect
 	playsound(action_owner, 'sound/items/weapons/bite.ogg', 30, 1, -2)
@@ -708,7 +891,10 @@
 	if(!do_after(action_owner, time_interact, target = bite_target))
 		// When failing
 		// Display a local chat message
-		action_owner.visible_message(span_danger("[action_owner]'s fangs are prematurely torn from [bite_target]'s [target_zone_name], spilling some of [bite_target.p_their()] blood!"), span_danger("Your fangs are prematurely torn from [bite_target]'s [target_zone_name], spilling some of [bite_target.p_their()] blood!"))
+		action_owner.visible_message(span_danger("[action_owner]'s fangs are prematurely torn from [bite_target]'s [target_zone_name], spilling some of [bite_target.p_their()] blood!"), span_danger("Your fangs are prematurely torn from [bite_target]'s [target_zone_name], spilling some of [bite_target.p_their()] blood!"), ignored_mobs=bite_target)
+
+		// Warn bite target
+		to_chat(bite_target, span_userdanger("[action_owner]\'s fangs are prematurely torn from your [target_zone_name], spilling some of your blood!"))
 
 		// Bite target "drops" 20% of the blood
 		// This creates large blood splatter
@@ -745,14 +931,13 @@
 		// Return
 		return
 	else
-		// Variable for species with non-blood blood volumes
+		/// Is this valid nourshing blood? Does not grant nutrition if FALSE.
 		var/blood_valid = TRUE
 
-		// Variable for gaining blood volume
+		/// Should blood be transferred anyway? Used when blood_valid is FALSE.
 		var/blood_transfer = FALSE
 
-		// Name of blood volume to be taken
-		// Action owner assumes blood until after drinking
+		/// Name of exotic blood substitute determined by species
 		var/blood_name = "blood"
 
 		// Check if target has exotic bloodtype
@@ -761,7 +946,7 @@
 			var/blood_type_owner = action_owner.dna?.species?.exotic_bloodtype
 			var/blood_type_target = bite_target.dna?.species?.exotic_bloodtype
 
-			// Define if blood types match
+			/// Define if owner and target blood types match. Used for providing a mood bonus and immunity to exotic blood mood penalties.
 			var/blood_type_match = (blood_type_owner == blood_type_target ? TRUE : FALSE)
 
 			// Check if types matched
@@ -838,7 +1023,7 @@
 			var/blood_type_owner = action_owner.dna?.species?.exotic_blood
 			var/blood_type_target = bite_target.dna?.species?.exotic_blood
 
-			// Define if blood types match
+			/// Define if owner and target blood types match. Used for providing a mood bonus and immunity to exotic blood mood penalties.
 			var/blood_type_match = (blood_type_owner == blood_type_target ? TRUE : FALSE)
 
 			// Check if types matched
@@ -1039,7 +1224,7 @@
 
 		// Check if bite target has cursed blood
 		if(HAS_TRAIT(bite_target, TRAIT_CURSED_BLOOD))
-			// Check action owner for cursed blood
+			/// Does action owner have the cursed blood quirk?
 			var/owner_cursed = HAS_TRAIT(action_owner, TRAIT_CURSED_BLOOD)
 
 			// Set chat message based on action owner's trait status
@@ -1065,25 +1250,30 @@
 	cooldown_time = BLOODFLEDGE_COOLDOWN_REVIVE
 
 /datum/action/cooldown/bloodfledge/revive/Activate()
-	// Define mob
-	var/mob/living/carbon/human/action_owner = owner
+	// Check if powers are allowed
+	if(!can_use(owner))
+		return FALSE
 
 	// Early check for being dead
 	// Users are most likely to click this while alive
-	if(action_owner.stat != DEAD)
+	if(owner.stat != DEAD)
 		// Warn user and return
-		to_chat(action_owner, "You can't use this ability while alive!")
+		//to_chat(action_owner, "You can't use this ability while alive!")
+		owner.balloon_alert(owner, "not dead!")
 		return
 
-	// Define failure message
+	/// Define failure messages. Will not revive if any failure message is set.
 	var/revive_failed
 
 	// Disabled check
 	/*
 	// Condition: Mob isn't in a closed coffin
-	if(!istype(action_owner.loc, /obj/structure/closet/crate/coffin))
+	if(!istype(owner.loc, /obj/structure/closet/crate/coffin))
 		revive_failed += "\n- You need to be in a closed coffin!"
 	*/
+
+	// Define mob
+	var/mob/living/carbon/human/action_owner = owner
 
 	// Condition: Insufficient nutrition
 	if(use_nutrition)
@@ -1100,12 +1290,9 @@
 	if(!action_owner.can_be_revived())
 		revive_failed += "\n- Your body is too weak to sustain life!"
 
-	// Disabled check
-	/*
 	// Condition: Damage limit, brute
 	if(action_owner.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE)
 		revive_failed += "\n- Your body is too battered!"
-	*/
 
 	// Condition: Damage limit, burn
 	if(action_owner.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
@@ -1141,7 +1328,15 @@
 		// Return
 		return
 
+	// Remove oxygen damage
+	action_owner.adjustOxyLoss(-100, FALSE)
+
+	// Heal and revive the action owner
+	action_owner.heal_and_revive()
+
 	// Check if health is too low to use revive()
+	// Obsolete as of heal_and_revive
+	/*
 	if(action_owner.health <= HEALTH_THRESHOLD_DEAD)
 		// Set health high enough to revive
 		// Based on defib.dm
@@ -1181,13 +1376,10 @@
 
 		// Return without revival
 		return
-
-	// Define time dead
-	// Used for revive policy
-	var/time_dead = world.time - action_owner.timeofdeath
+	*/
 
 	// Revive the action owner
-	action_owner.revive()
+	//action_owner.revive()
 
 	// Alert the user in chat of success
 	action_owner.visible_message(span_notice("An ominous energy radiates from the [action_owner.loc]..."), span_warning("You've expended all remaining blood to bring your body back to life!"))
@@ -1196,15 +1388,15 @@
 	to_chat(action_owner, span_userdanger("[CONFIG_GET(string/blackoutpolicy)]"))
 
 	// Log the revival
-	action_owner.log_message("revived using a vampire quirk ability after being dead for [time_dead] deciseconds.", LOG_GAME)
+	action_owner.log_message("revived using a bloodfledge quirk ability.", LOG_GAME)
 
 	// Play a haunted sound effect
 	playsound(action_owner, 'sound/effects/hallucinations/growl1.ogg', 30, 1, -2)
 
 	// Nutrition mode
 	if(use_nutrition)
-		// Remove all nutrition (blood)
-		action_owner.set_nutrition(0)
+		// Set nutrition to starving
+		action_owner.set_nutrition(NUTRITION_LEVEL_STARVING)
 
 	// Blood volume mode
 	else
@@ -1297,3 +1489,4 @@
 #undef BLOODFLEDGE_COOLDOWN_BITE
 #undef BLOODFLEDGE_COOLDOWN_REVIVE
 #undef BLOODFLEDGE_BANK_CAPACITY
+#undef BLOODFLEDGE_HEAL_AMT
