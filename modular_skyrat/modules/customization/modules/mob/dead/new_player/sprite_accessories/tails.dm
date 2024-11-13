@@ -55,7 +55,7 @@
 
 /datum/sprite_accessory/tails/monkey/default
 	name = "Monkey"
-	icon_state = "monkey"
+	icon_state = "monkey_default"
 	icon = 'icons/mob/human/species/monkey/monkey_tail.dmi'
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_MAMMAL, SPECIES_MONKEY, SPECIES_GHOUL)
 	organ_type = /obj/item/organ/external/tail/monkey

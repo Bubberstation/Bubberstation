@@ -9,7 +9,13 @@
 	sprite_direction = EAST
 
 /datum/preference/choiced/mutant/taur/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
-	return "m_taur_[original_icon_state]_ADJ[suffix]"
+	if(icon_exists(sprite_accessory.icon, "m_taur_[original_icon_state]_ADJ[suffix]"))
+		return "m_taur_[original_icon_state]_ADJ[suffix]"
+
+	if(icon_exists(sprite_accessory.icon, "m_taur_[original_icon_state]_FRONT_UNDER[suffix]"))
+		return "m_taur_[original_icon_state]_FRONT_UNDER[suffix]"
+
+	return "m_taur_[original_icon_state]_BEHIND[suffix]"
 
 /datum/preference/mutant_color/taur
 	savefile_key = "taur_color"

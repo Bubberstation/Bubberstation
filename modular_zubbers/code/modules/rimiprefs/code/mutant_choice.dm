@@ -5,7 +5,6 @@
 #define REQUIRED_CROP_LIST_SIZE 4
 
 /datum/preference/choiced/mutant
-	priority = PREFERENCE_PRIORITY_NAME_MODIFICATIONS // Otherwise organs will get qdel'd on body replacement.
 	abstract_type = /datum/preference/choiced/mutant
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -37,7 +36,7 @@
 			"[key]_emissive",
 		)
 
-	sprite_accessory = SSaccessories.sprite_accessories[sprite_accessory || relevant_mutant_bodypart]
+	sprite_accessory = SSaccessories.sprite_accessories[sprite_accessory ? sprite_accessory : relevant_mutant_bodypart]
 
 /datum/preference/choiced/mutant/create_default_value()
 	return "None"
@@ -149,9 +148,10 @@
 
 		if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
 			icon_to_process.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
-			icon_to_process.Scale(32, 32)
 		else if(crop_area)
 			stack_trace("Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!")
+
+		icon_to_process.Scale(32, 32)
 
 		if(greyscale_color && sprite_accessory.color_src) // I intentionally use greyscale_color here.
 			// Turns out I ended up making this perfect. Welp.

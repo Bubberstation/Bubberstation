@@ -9,8 +9,17 @@
 	sprite_direction = NORTH
 
 
-/datum/preference/choiced/mutant/lizard_tail/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
-	return "m_wingsopen_[original_icon_state]_FRONT[suffix]"
+/datum/preference/choiced/mutant/wings/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	if(icon_exists(sprite_accessory.icon, "m_wingsopen_[original_icon_state]_FRONT[suffix]"))
+		return "m_wingsopen_[original_icon_state]_FRONT[suffix]"
+
+	if(icon_exists(sprite_accessory.icon, "m_wingsopen_[original_icon_state]_ADJ[suffix]"))
+		return "m_wingsopen_[original_icon_state]_ADJ[suffix]"
+
+	if(icon_exists(sprite_accessory.icon, "m_wings_[original_icon_state]_ADJ[suffix]"))
+		return "m_wingsopen_[original_icon_state]_ADJ[suffix]"
+
+	return "m_wings_[original_icon_state]_FRONT[suffix]"
 
 /datum/preference/mutant_color/wings
 	savefile_key = "wings_color"

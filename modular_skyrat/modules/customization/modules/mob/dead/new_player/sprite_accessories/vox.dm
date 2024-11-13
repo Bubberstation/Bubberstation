@@ -140,23 +140,23 @@
 
 /datum/sprite_accessory/spines/vox/vox_bands
 	name = "Vox Bands"
-	icon_state = "bands"
+	icon_state = "vox_bands"
 
 /datum/sprite_accessory/tail_spines/vox/vox_bands
 	name = "Vox Bands"
-	icon_state = "bands"
+	icon_state = "vox_bands"
 
 /datum/sprite_accessory/spines/vox/vox_tip
 	name = "Vox Tip"
-	icon_state = "tip"
+	icon_state = "vox_tip"
 
 /datum/sprite_accessory/tail_spines/vox/vox_tip
 	name = "Vox Tip"
-	icon_state = "tip"
+	icon_state = "vox_tip"
 /datum/sprite_accessory/spines/vox/vox_stripe
 	name = "Vox Stripe"
-	icon_state = "stripe"
+	icon_state = "vox_stripe"
 
 /datum/sprite_accessory/tail_spines/vox/vox_stripe
 	name = "Vox Stripe"
-	icon_state = "stripe"
+	icon_state = "vox_stripe"
