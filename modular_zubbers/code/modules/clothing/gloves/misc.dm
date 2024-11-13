@@ -5,3 +5,8 @@
 	desc = "An old pair of gloves used by a now-defunct mining coalition."
 	icon_state = "diver"
 	worn_icon_state = "diver"
+
+/obj/item/clothing/gloves/tackler/combat/classic
+	name = "gorilla gloves"
+	desc = "Premium quality combative gloves, heavily reinforced to give the user an edge in close combat tackles, though they are more taxing to use than normal gripper gloves. These ones are colored the classic black color. Fireproof to boot!"
+	icon_state = "black"
