@@ -8,6 +8,7 @@
 	savefile_key = "feature_xenodorsal"
 	relevant_mutant_bodypart = "xenodorsal"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
+	should_generate_icons = FALSE
 
 /datum/preference/mutant_color/xenodorsal
 	savefile_key = "xenodorsal_color"
