@@ -8,13 +8,11 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills
 
 /datum/preference/mutant_color/frills
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "frills_color"
 	relevant_mutant_bodypart = "frills"
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills
 
 /datum/preference/emissive_toggle/frills
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "frills_emissive"
 	relevant_mutant_bodypart = "frills"
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills

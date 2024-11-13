@@ -10,13 +10,11 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 
 /datum/preference/mutant_color/tail
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_color"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 
 /datum/preference/emissive_toggle/tail
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_emissive"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail

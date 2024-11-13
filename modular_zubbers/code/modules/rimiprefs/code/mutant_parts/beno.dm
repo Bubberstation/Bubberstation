@@ -10,13 +10,11 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 
 /datum/preference/mutant_color/xenodorsal
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_color"
 	relevant_mutant_bodypart = "xenodorsal"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 
 /datum/preference/emissive_toggle/xenodorsal
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenodorsal_emissive"
 	relevant_mutant_bodypart = "xenodorsal"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
@@ -33,13 +31,11 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 
 /datum/preference/mutant_color/xenohead
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_color"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead
 
 /datum/preference/emissive_toggle/xenohead
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "xenohead_emissive"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead

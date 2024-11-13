@@ -31,12 +31,10 @@
 
 /datum/preference/mutant_color/ipc_screen_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 
 /datum/preference/emissive_toggle/ipc_screen_emissive
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 	check_mode = TRICOLOR_CHECK_ACCESSORY
@@ -52,14 +50,12 @@
 	return TRUE
 
 /datum/preference/mutant_color/synth_antenna
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	type_to_check = /datum/preference/choiced/mutant/synth_antenna
 
 /datum/preference/emissive_toggle/synth_antenna_emissive
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
 	check_mode = TRICOLOR_CHECK_ACCESSORY
@@ -93,7 +89,6 @@
 
 /datum/preference/mutant_color/synth_chassis
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_chassis_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_CHASSIS
 
@@ -125,6 +120,5 @@
 
 /datum/preference/mutant_color/synth_head
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_head_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_HEAD

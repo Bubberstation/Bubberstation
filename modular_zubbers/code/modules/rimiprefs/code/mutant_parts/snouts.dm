@@ -22,13 +22,11 @@
 	target.synchronize_bodyshapes()
 
 /datum/preference/mutant_color/snout
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_color"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 
 /datum/preference/emissive_toggle/snout
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_emissive"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout

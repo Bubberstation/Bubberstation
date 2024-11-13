@@ -49,13 +49,11 @@
 
 /datum/preference/mutant_color/pod_hair_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "pod_hair_color"
 	relevant_mutant_bodypart = "pod_hair"
 	type_to_check = /datum/preference/choiced/mutant/pod_hair
 
 /datum/preference/emissive_toggle/pod_hair_emissive
-	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "pod_hair_emissive"
 	relevant_mutant_bodypart = "pod_hair"
 	// This makes it so that it appears only when we have pod hair or allow mismatched parts.
