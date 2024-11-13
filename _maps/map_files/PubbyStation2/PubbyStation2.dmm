@@ -14634,18 +14634,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/circuit/green,
 /area/station/science/robotics/mechbay)
-"bgS" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 13;
-	name = "pubby arrivals";
-	roundstart_template = /datum/map_template/shuttle/arrival/pubby;
-	shuttle_id = "arrival_stationary";
-	width = 6
-	},
-/turf/open/genturf/orange,
-/area/jungleplanet/nearstation)
 "bgU" = (
 /obj/structure/rack,
 /obj/item/wrench,
@@ -33050,6 +33038,18 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"gsH" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 13;
+	name = "arrivals";
+	roundstart_template = /datum/map_template/shuttle/arrival/pubby;
+	shuttle_id = "arrivals_stationary";
+	width = 5
+	},
+/turf/open/genturf/orange,
+/area/jungleplanet/nearstation)
 "gsP" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /mob/living/basic/pet/dog/corgi,
@@ -75724,9 +75724,9 @@ bbR
 hXW
 rDK
 rDK
-bgS
 rDK
 rDK
+gsH
 rDK
 hXW
 bbR
