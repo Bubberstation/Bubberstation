@@ -214,10 +214,6 @@
 	name = "Jester Shoes"
 	item_path = /obj/item/clothing/shoes/jester_shoes
 
-/datum/loadout_item/shoes/pirate_boots
-	name = "Pirate Boots"
-	item_path = /obj/item/clothing/shoes/pirate
-
 /*
 *	SEASONAL
 */

@@ -269,10 +269,6 @@
 	name = "Witch Robe"
 	item_path = /obj/item/clothing/suit/wizrobe/marisa/fake
 
-/datum/loadout_item/suit/pirate_coat
-	name = "Pirate coat"
-	item_path = /obj/item/clothing/suit/costume/pirate
-
 /*
 *	SEASONAL
 */
