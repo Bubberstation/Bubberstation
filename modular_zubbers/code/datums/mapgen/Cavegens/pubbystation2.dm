@@ -40,7 +40,7 @@
 		/obj/structure/flora/rock/pile/jungle/large/style_random = 1,
 	)
 	flora_density = 3
-	fauna_types = list(/mob/living/basic/spider/giant/tarantula = 1)
+	fauna_types = list(/mob/living/basic/bee = 1)
 	fauna_density = 1
 
 /datum/biome/plains
@@ -58,7 +58,7 @@
 	)
 	flora_density = 1
 	fauna_types = list(
-		/mob/living/carbon/human/species/monkey = 1,
+		/mob/living/basic/snake = 1,
 		/mob/living/basic/chicken = 1
 	)
 	fauna_density = 1
@@ -83,8 +83,11 @@
 	flora_density = 65
 	fauna_types = list(
 		/mob/living/basic/gorilla = 1,
-		/mob/living/carbon/human/species/monkey = 6,
+		/mob/living/basic/snake/banded/harmless = 6,
+		/mob/living/basic/frog = 5,
 		/mob/living/basic/chicken = 4,
+		/mob/living/basic/leaper = 1,
+		/mob/living/basic/mega_arachnid = 1,
 		)
 	fauna_density = 1
 
