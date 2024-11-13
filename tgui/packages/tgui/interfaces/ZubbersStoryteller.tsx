@@ -58,18 +58,21 @@ export const ZubbersStoryteller = (props) => {
     <Window width={1200} height={680}>
       <Window.Content height="100%">
         <Stack fill vertical>
-          <Stack.Item>
+          <Stack.Item grow>
             <ZubbersStorytellerRoundData />
-          </Stack.Item>
-          <Stack.Divider />
-          <Stack.Item>
+            <Stack.Divider />
             <ZubbersStorytellerTrackData />
           </Stack.Item>
-          <Stack.Item>
-            <ZubbersStorytellerScheduledData />
-          </Stack.Item>
+
           <Stack.Item grow>
-            <ZubbersStorytellerEventPanel />
+            <Stack fill vertical>
+              <Stack.Item>
+                <ZubbersStorytellerScheduledData />
+              </Stack.Item>
+              <Stack.Item grow>
+                <ZubbersStorytellerEventPanel />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
         </Stack>
       </Window.Content>
