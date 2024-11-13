@@ -6,13 +6,13 @@
 	savefile_key = "feature_moth_antennae"
 	relevant_mutant_bodypart = "moth_antennae"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_antennae
-	var/icon/moth_head_base
+	var/icon/moth_head
 
 /datum/preference/choiced/mutant/moth_antennae/New()
 	. = ..()
-	var/icon/moth_head = icon('icons/mob/species/moth/bodyparts.dmi', "moth_head")
-	moth_head.Blend(icon('icons/mob/species/human/human_face.dmi', "motheyes_l"), ICON_OVERLAY)
-	moth_head.Blend(icon('icons/mob/species/human/human_face.dmi', "motheyes_r"), ICON_OVERLAY)
+	moth_head = icon('icons/mob/human/species/moth/bodyparts.dmi', "moth_head")
+	moth_head.Blend(icon('icons/mob/human/human_face.dmi', "motheyes_l"), ICON_OVERLAY)
+	moth_head.Blend(icon('icons/mob/human/human_face.dmi', "motheyes_r"), ICON_OVERLAY)
 
 /datum/preference/choiced/mutant/moth_antennae/generate_icon(datum/sprite_accessory/sprite_accessory, dir)
 	var/icon/icon_with_antennae = new(moth_head)
