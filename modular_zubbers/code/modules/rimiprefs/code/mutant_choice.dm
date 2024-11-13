@@ -28,18 +28,21 @@
 /datum/preference/choiced/mutant/New()
 	. = ..()
 
+	var/key = replacetext(savefile_key, "feature_", "")
 	// Lazy coder's joy
 	if (!islist(supplemental_features))
-		var/key = replacetext(savefile_key, "feature_", "")
 		supplemental_features = list(
 			"[key]_color",
 			"[key]_emissive",
 		)
 
+	if (!main_feature_name)
+		main_feature_name = full_capitalize(replacetext(key, "_", " "))
+
 	sprite_accessory = SSaccessories.sprite_accessories[sprite_accessory ? sprite_accessory : relevant_mutant_bodypart]
 
 /datum/preference/choiced/mutant/create_default_value()
-	return "None"
+	return default_accessory_name
 
 /datum/preference/choiced/mutant/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
