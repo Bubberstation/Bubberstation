@@ -364,6 +364,16 @@ multiple modular subtrees with behaviors
 ///Runs any actions that are currently running
 /datum/ai_controller/process(seconds_per_tick)
 
+	if(current_movement_target)
+		if(!isatom(current_movement_target))
+			stack_trace("[pawn]'s current movement target is not an atom, rather a [current_movement_target.type]! Did you accidentally set it to a weakref?")
+			CancelActions()
+			return
+
+		if(get_dist(pawn, current_movement_target) > max_target_distance) //The distance is out of range
+			CancelActions()
+			return
+
 	for(var/datum/ai_behavior/current_behavior as anything in current_behaviors)
 
 		// Convert the current behaviour action cooldown to realtime seconds from deciseconds.current_behavior
