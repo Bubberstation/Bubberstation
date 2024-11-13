@@ -8,6 +8,18 @@
 	power_path = /datum/action/cooldown/mob_cooldown/leap
 	instability = 25
 
+/datum/mutation/human/strong_legs/modify()
+	. = ..()
+	var/datum/action/cooldown/mob_cooldown/leap/ability = .
+	if(!istype(ability)) // null or invalid
+		return
+
+	if(GET_MUTATION_POWER(src) <= 1) // we only care about power from here on
+		ability.leap_strength = initial(ability.leap_strength)
+		return
+
+	ability.leap_strength += 1
+
 #define LEAP_TIME_MODIFIER 0.5 SECONDS
 
 /datum/action/cooldown/mob_cooldown/leap
