@@ -3,7 +3,7 @@
 /datum/controller/subsystem/gamemode/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Zubbers_Storyteller", "Storyteller control panel")
+		ui = new(user, src, "ZubbersStoryteller", "Storyteller control panel")
 		ui.open()
 
 /datum/controller/subsystem/gamemode/ui_data(mob/user)

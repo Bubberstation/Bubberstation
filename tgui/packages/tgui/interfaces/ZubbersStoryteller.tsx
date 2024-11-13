@@ -53,7 +53,7 @@ export type Storyteller_Event_Category = {
   events: Record<string, Storyteller_Event>;
 };
 
-export const Zubbers_Storyteller = (props) => {
+export const ZubbersStoryteller = (props) => {
   return (
     <Window width={1200} height={680}>
       <Window.Content height="100%">
