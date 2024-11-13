@@ -108,3 +108,15 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
 	)
+
+/datum/design/module/mind_transfer
+	name = "Mind Transference Module"
+	id = "mod_mind_transfer"
+	materials = list(
+		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
+	)
+	build_path = /obj/item/mod/module/mind_swap
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_GENERAL
+	)
