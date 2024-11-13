@@ -5,25 +5,19 @@ import {
   ServerData,
   createSetPreference,
 } from '../data';
+import { FeatureChoicedServerData } from '../preferences/features/base';
 import {
-  FeatureChoicedServerData,
-  FeatureValueInput,
-} from '../preferences/features/base';
-import {
-  CLOTHING_SELECTION_CELL_SIZE,
+  ChoicedSelection,
+  PreferenceList,
   createSetRandomization,
   getRandomization,
-  searchInCatalog,
 } from '../MainPage';
 import { useBackend } from '../../../backend';
 import { useRandomToggleState } from '../useRandomToggleState';
-import { Autofocus, Box, Button, Input } from '../../../components';
+import { Box, Button, Popper } from '../../../components';
 import { classes } from 'common/react';
 import { RandomizationButton } from '../RandomizationButton';
 import { useState } from 'react';
-import features from '../preferences/features';
-import { BetterPrefList, SlightlyLessCrappyLabeledListItem } from './utils';
-import { map } from 'common/collections';
 
 type MainFeatureServerData = FeatureChoicedServerData & {
   name: string;
@@ -43,49 +37,17 @@ export const BubberPrefStack = (props: {
   const mainFeatures = data.character_preferences[category + '_iconed'];
 
   const listExists = !!data.character_preferences[category];
-  const mainFeaturesExist = !!mainFeatures;
-  const selectedPrefCatalogue =
-    !!serverData &&
-    !!currentPref &&
-    (serverData[currentPref] as MainFeatureServerData);
 
   return (
     <>
-      {currentPref && selectedPrefCatalogue && (
-        <Stack vertical fill>
-          <Stack.Item height="100%">
-            <BubberPrefDetails
-              catalog={selectedPrefCatalogue}
-              category={category}
-              currentPref={currentPref}
-              onSelect={createSetPreference(act, currentPref)}
-            />
-          </Stack.Item>
-          <Stack.Item align="center">
-            <Button
-              icon="check"
-              p="5px"
-              pr="20px"
-              pl="20px"
-              onClick={() => setCurrentPref(null)}
-              fontSize={1.2}
-            >
-              Done
-            </Button>
-          </Stack.Item>
-        </Stack>
-      )}
-      {!currentPref && mainFeaturesExist && (
+      {
         <TwinStack
           first={
             <Stack wrap>
               <StackHeader>Main settings for {category}</StackHeader>
               {Object.entries(mainFeatures).map(([entryKey, entry]) => {
                 const catalog =
-                  serverData &&
-                  (serverData[entryKey] as FeatureChoicedServerData & {
-                    name: string;
-                  });
+                  serverData && (serverData[entryKey] as MainFeatureServerData);
 
                 return (
                   catalog && (
@@ -96,6 +58,11 @@ export const BubberPrefStack = (props: {
                       handleOpen={() => {
                         setCurrentPref(entryKey);
                       }}
+                      handleClose={() => setCurrentPref(null)}
+                      handleSelect={(value) =>
+                        createSetPreference(act, entryKey)(value)
+                      }
+                      isOpen={currentPref === entryKey}
                       setRandomization={createSetRandomization(act, entryKey)}
                     />
                   )
@@ -108,7 +75,7 @@ export const BubberPrefStack = (props: {
               <Stack wrap>
                 <StackHeader>Secondary settings for {category}</StackHeader>
                 <Stack.Item grow>
-                  <BetterPrefList
+                  <PreferenceList
                     act={act}
                     preferences={data.character_preferences[category]}
                     randomizations={getRandomization(
@@ -117,13 +84,14 @@ export const BubberPrefStack = (props: {
                       data.character_preferences['misc'].random_body !==
                         RandomSetting.Disabled || useRandomToggleState()[0],
                     )}
+                    maxHeight="100%"
                   />
                 </Stack.Item>
               </Stack>
             )
           }
         />
-      )}
+      }
     </>
   );
 };
@@ -181,12 +149,23 @@ const TwinStack = (props: { first; second }) => {
 const ZubberFeature = (props: {
   catalog: MainFeatureServerData;
   currentValue: string;
+  handleClose: () => void;
   handleOpen: () => void;
+  handleSelect: (newClothing: string) => void;
+  isOpen: boolean;
   randomization?: RandomSetting;
   setRandomization: (newSetting: RandomSetting) => void;
 }) => {
-  const { catalog, currentValue, handleOpen, randomization, setRandomization } =
-    props;
+  const {
+    catalog,
+    currentValue,
+    handleClose,
+    handleOpen,
+    isOpen,
+    handleSelect,
+    randomization,
+    setRandomization,
+  } = props;
 
   return (
     <Stack.Item
@@ -198,239 +177,84 @@ const ZubberFeature = (props: {
       width={'45%' /* I hate this */}
       position="relative"
     >
-      <Stack>
-        <Stack.Item>
-          <Button
-            inline
-            onClick={(event) => {
-              event.stopPropagation();
-              handleOpen();
-            }}
-            style={{
-              height: `48px`,
-              width: `48px`,
-            }}
-            position="relative"
-          >
-            <Box
-              className={classes([
-                'preferences32x32',
-                catalog.icons![currentValue],
-                'centered-image',
-              ])}
-              style={{
-                transform: randomization
-                  ? 'translateX(-70%) translateY(-70%) scale(1.1)'
-                  : 'translateX(-50%) translateY(-50%) scale(1.3)',
+      <Popper
+        placement="bottom-start"
+        isOpen={isOpen}
+        onClickOutside={handleClose}
+        baseZIndex={1} // Below the default popper at z 2
+        content={
+          <ChoicedSelection
+            name={catalog.name}
+            catalog={catalog}
+            selected={currentValue}
+            supplementalFeatures={catalog.supplemental_features}
+            onClose={handleClose}
+            onSelect={handleSelect}
+          />
+        }
+      >
+        <Stack>
+          <Stack.Item>
+            <Button
+              inline
+              onClick={(event) => {
+                event.stopPropagation();
+                handleOpen();
               }}
-            />
-
-            {randomization && (
-              <RandomizationButton
-                dropdownProps={{
-                  dropdownStyle: {
-                    bottom: 0,
-                    position: 'absolute',
-                    right: '1px',
-                  },
-
-                  onOpen: (event) => {
-                    // We're a button inside a button.
-                    // Did you know that's against the W3C standard? :)
-                    event.cancelBubble = true;
-                    event.stopPropagation();
-                  },
+              style={{
+                height: `48px`,
+                width: `48px`,
+              }}
+              position="relative"
+            >
+              <Box
+                className={classes([
+                  'preferences32x32',
+                  catalog.icons![currentValue],
+                  'centered-image',
+                ])}
+                style={{
+                  transform: randomization
+                    ? 'translateX(-70%) translateY(-70%) scale(1.1)'
+                    : 'translateX(-50%) translateY(-50%) scale(1.3)',
                 }}
-                value={randomization}
-                setValue={setRandomization}
               />
-            )}
-          </Button>
-        </Stack.Item>
-        {/* There's probably a better way of doing this, but oh my fucking god I hate css - Rimi */}
-        <Stack.Item fontSize={1.2} ml="5px" height="48px">
-          <Box
-            mt="auto"
-            position="relative"
-            top="50%"
-            style={{ transform: 'translateY(-50%)' }}
-          >
-            {catalog.name}
-          </Box>
-        </Stack.Item>
-      </Stack>
+
+              {randomization && (
+                <RandomizationButton
+                  dropdownProps={{
+                    dropdownStyle: {
+                      bottom: 0,
+                      position: 'absolute',
+                      right: '1px',
+                    },
+
+                    onOpen: (event) => {
+                      // We're a button inside a button.
+                      // Did you know that's against the W3C standard? :)
+                      event.cancelBubble = true;
+                      event.stopPropagation();
+                    },
+                  }}
+                  value={randomization}
+                  setValue={setRandomization}
+                />
+              )}
+            </Button>
+          </Stack.Item>
+          {/* There's probably a better way of doing this, but oh my fucking god I hate css - Rimi */}
+          <Stack.Item fontSize={1.2} ml="5px" height="48px">
+            <Box
+              mt="auto"
+              position="relative"
+              top="50%"
+              style={{ transform: 'translateY(-50%)' }}
+            >
+              {catalog.name}
+            </Box>
+          </Stack.Item>
+        </Stack>
+      </Popper>
     </Stack.Item>
-  );
-};
-
-const BubberPrefDetails = (props: {
-  catalog: MainFeatureServerData;
-  category: string;
-  currentPref: string;
-  onSelect: (value: string) => void;
-}) => {
-  const { catalog, category, currentPref, onSelect } = props;
-
-  const { data } = useBackend<PreferencesMenuData>();
-
-  const currentValue = data.character_preferences[category][currentPref];
-
-  const { act } = useBackend();
-
-  return (
-    <TwinStack
-      first={
-        <ChoicedSelection
-          name={catalog.name}
-          catalog={catalog}
-          selected={currentValue}
-          onSelect={onSelect}
-        />
-      }
-      second={
-        <Stack vertical fill>
-          <Stack.Item minHeight="2rem">
-            <Box
-              style={{
-                borderBottom: '1px solid #888',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                textAlign: 'center',
-              }}
-            >
-              Extra options for {catalog.name.toLowerCase()}
-            </Box>
-          </Stack.Item>
-          <Stack.Item>
-            {(!!catalog.supplemental_features && (
-              <BetterPrefList>
-                {map(
-                  catalog.supplemental_features,
-                  (supplementalFeature, _, __) => {
-                    return (
-                      <SlightlyLessCrappyLabeledListItem
-                        label={features[supplementalFeature].name}
-                        tooltip={features[supplementalFeature].description}
-                      >
-                        <FeatureValueInput
-                          act={act}
-                          feature={features[supplementalFeature]}
-                          featureId={supplementalFeature}
-                          shrink
-                          value={
-                            data.character_preferences.supplemental_features[
-                              supplementalFeature
-                            ]
-                          }
-                        />
-                      </SlightlyLessCrappyLabeledListItem>
-                    );
-                  },
-                )}
-              </BetterPrefList>
-            )) ||
-              'Nothing here!'}
-          </Stack.Item>
-        </Stack>
-      }
-    />
-  );
-};
-
-const ChoicedSelection = (props: {
-  name: string;
-  selected: string;
-  catalog: FeatureChoicedServerData;
-  onSelect: (value: string) => void;
-}) => {
-  const { act } = useBackend<PreferencesMenuData>();
-
-  const { catalog } = props;
-  const [getSearchText, searchTextSet] = useState('');
-
-  if (!catalog.icons) {
-    return <Box color="red">Provided catalog had no icons!</Box>;
-  }
-
-  return (
-    <Stack vertical height="100%">
-      <Stack.Item>
-        <Stack vertical fill>
-          <Stack.Item grow minHeight="2rem">
-            <Box
-              style={{
-                borderBottom: '1px solid #888',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                textAlign: 'center',
-              }}
-            >
-              Select {props.name.toLowerCase()}
-            </Box>
-          </Stack.Item>
-
-          <Stack.Item>
-            <Input
-              placeholder="Search..."
-              style={{
-                margin: '0px 5px',
-                width: '95%',
-              }}
-              onInput={(_, value) => searchTextSet(value)}
-            />
-          </Stack.Item>
-        </Stack>
-      </Stack.Item>
-
-      <Stack.Item overflowX="hidden" overflowY="scroll" height="100%">
-        <Autofocus>
-          <Stack wrap>
-            {searchInCatalog(getSearchText, catalog.icons).map(
-              ([name, image], index) => {
-                return (
-                  <Stack.Item width="48%" ml="1px">
-                    <Stack fill>
-                      <Stack.Item>
-                        <Button
-                          onClick={() => {
-                            props.onSelect(name);
-                          }}
-                          selected={name === props.selected}
-                          tooltip={name}
-                          tooltipPosition="right"
-                          style={{
-                            height: `${CLOTHING_SELECTION_CELL_SIZE}px`,
-                            width: `${CLOTHING_SELECTION_CELL_SIZE}px`,
-                          }}
-                        >
-                          <Box
-                            className={classes([
-                              'preferences32x32',
-                              image,
-                              'centered-image',
-                            ])}
-                          />
-                        </Button>
-                      </Stack.Item>
-                      {/* There's probably a better way of doing this, but oh my fucking god I hate css - Rimi */}
-                      <Stack.Item mr="5px">
-                        <Box
-                          mt="auto"
-                          position="relative"
-                          top="50%"
-                          style={{ transform: 'translateY(-50%)' }}
-                        >
-                          {name}
-                        </Box>
-                      </Stack.Item>
-                    </Stack>
-                  </Stack.Item>
-                );
-              },
-            )}
-          </Stack>
-        </Autofocus>
-      </Stack.Item>
-    </Stack>
   );
 };

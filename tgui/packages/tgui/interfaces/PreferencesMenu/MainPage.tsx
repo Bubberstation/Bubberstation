@@ -39,8 +39,8 @@ export const CLOTHING_CELL_SIZE = 48;
 export const CLOTHING_SIDEBAR_ROWS = 9;
 
 export const CLOTHING_SELECTION_CELL_SIZE = 48;
-export const CLOTHING_SELECTION_WIDTH = 5.4;
-export const CLOTHING_SELECTION_MULTIPLIER = 5.2;
+export const CLOTHING_SELECTION_WIDTH = 8.4;
+export const CLOTHING_SELECTION_MULTIPLIER = 8.2;
 
 const CharacterControls = (props: {
   handleRotate: () => void;
@@ -83,18 +83,22 @@ const CharacterControls = (props: {
   );
 };
 
-const ChoicedSelection = (props: {
+export const ChoicedSelection = (props: {
   name: string;
   catalog: FeatureChoicedServerData;
   selected: string;
-  supplementalFeature?: string;
-  supplementalValue?: unknown;
+  // supplementalFeature?: string;
+  // supplementalValue?: unknown;
+  supplementalFeatures?: string[];
   onClose: () => void;
   onSelect: (value: string) => void;
 }) => {
-  const { act } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>();
 
-  const { catalog, supplementalFeature, supplementalValue } = props;
+  const {
+    catalog,
+    supplementalFeatures /*supplementalFeature, supplementalValue*/,
+  } = props;
   const [getSearchText, searchTextSet] = useState('');
 
   if (!catalog.icons) {
@@ -116,18 +120,6 @@ const ChoicedSelection = (props: {
       <Stack vertical fill>
         <Stack.Item>
           <Stack fill>
-            {supplementalFeature && (
-              <Stack.Item>
-                <FeatureValueInput
-                  act={act}
-                  feature={features[supplementalFeature]}
-                  featureId={supplementalFeature}
-                  shrink
-                  value={supplementalValue}
-                />
-              </Stack.Item>
-            )}
-
             <Stack.Item grow>
               <Box
                 style={{
@@ -148,6 +140,28 @@ const ChoicedSelection = (props: {
             </Stack.Item>
           </Stack>
         </Stack.Item>
+
+        {supplementalFeatures && (
+          <Stack.Item>
+            <PreferenceList
+              act={act}
+              preferences={(() => {
+                // Lazy hack fraud method
+                const thing: Record<string, unknown> = new Object() as Record<
+                  string,
+                  unknown
+                >;
+                supplementalFeatures.forEach((value) => {
+                  thing[value] =
+                    data.character_preferences.supplemental_features[value];
+                });
+                return thing;
+              })()}
+              randomizations={new Object() as Record<string, RandomSetting>}
+              maxHeight=""
+            />
+          </Stack.Item>
+        )}
 
         <Stack.Item overflowX="hidden" overflowY="scroll">
           <Autofocus>
@@ -264,7 +278,7 @@ const GenderButton = (props: {
   );
 };
 
-const MainFeature = (props: {
+export const MainFeature = (props: {
   catalog: FeatureChoicedServerData & {
     name: string;
     supplemental_features?: string[];
@@ -290,9 +304,7 @@ const MainFeature = (props: {
     setRandomization,
   } = props;
 
-  const supplementalFeature = catalog.supplemental_features
-    ? catalog.supplemental_features[0]
-    : undefined;
+  //const supplementalFeature = catalog.supplemental_feature;
 
   return (
     <Popper
@@ -305,13 +317,14 @@ const MainFeature = (props: {
           name={catalog.name}
           catalog={catalog}
           selected={currentValue}
-          supplementalFeature={supplementalFeature}
-          supplementalValue={
-            supplementalFeature &&
-            data.character_preferences.supplemental_features[
-              supplementalFeature
-            ]
-          }
+          // supplementalFeature={supplementalFeature}
+          // supplementalValue={
+          //   supplementalFeature &&
+          //   data.character_preferences.supplemental_features[
+          //     supplementalFeature
+          //   ]
+          // }
+          supplementalFeatures={catalog.supplemental_features}
           onClose={handleClose}
           onSelect={handleSelect}
         />
