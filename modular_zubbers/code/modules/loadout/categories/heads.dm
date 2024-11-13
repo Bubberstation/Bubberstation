@@ -72,4 +72,10 @@
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE
 
+/datum/loadout_item/head/mime_bunny_ears
+	name = "Mime's Bunny Ears"
+	item_path = /obj/item/clothing/head/playbunnyears/mime
 
+//datum/loadout_item/head/kabuto
+//    name = "Kabuto"
+//	item_path = /obj/item/clothing/head/costume/kabuto

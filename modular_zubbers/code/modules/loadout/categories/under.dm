@@ -61,3 +61,11 @@
 /datum/loadout_item/uniform/miscellaneous/miniskirt
 	name = "recolourable miniskirt"
 	item_path = /obj/item/clothing/under/dress/miniskirt
+
+/datum/loadout_item/uniform/miscellaneous/pirate_outfit
+	name = "Pirate Outfit"
+	item_path = /obj/item/clothing/under/costume/pirate
+
+/datum/loadout_item/uniform/miscellaneous/bunny_suit
+	name = "Bunny Suit"
+	item_path = /obj/item/clothing/under/costume/bunnylewd

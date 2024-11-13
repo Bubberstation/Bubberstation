@@ -550,14 +550,6 @@
 	name = "Blastwave Uniform"
 	item_path = /obj/item/clothing/under/blastwave
 
-/datum/loadout_item/uniform/miscellaneous/pirate_outfit
-	name = "Pirate Outfit"
-	item_path = /obj/item/clothing/under/costume/pirate
-
-/datum/loadout_item/uniform/miscellaneous/bunny_suit
-	name = "Bunny Suit"
-	item_path = /obj/item/clothing/under/costume/bunnylewd
-
 //HALLOWEEN
 /datum/loadout_item/uniform/miscellaneous/pj_blood
 	name = "Blood-red Pajamas"
