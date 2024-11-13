@@ -269,6 +269,18 @@
 	name = "Witch Robe"
 	item_path = /obj/item/clothing/suit/wizrobe/marisa/fake
 
+/datum/loadout_item/suit/pirate_coat
+	name = "Pirate coat"
+	item_path = /obj/item/clothing/suit/costume/pirate
+
+/datum/loadout_item/suit/bunny_tailcoat
+	name = "Tailcoat"
+	item_path = /obj/item/clothing/suit/jacket/tailcoat
+
+/datum/loadout_item/suit/samurai_armor
+	name = "Samurai armor"
+	item_path = /obj/item/clothing/suit/costume/samurai
+
 /*
 *	SEASONAL
 */

@@ -374,6 +374,14 @@
 	name = "Blastwave Peaked Cap"
 	item_path = /obj/item/clothing/head/blastwave/officer
 
+//datum/loadout_item/head/bunny_ears_headband
+//    name = "Bunny ears headband"
+//	item_path = /obj/item/clothing/head/playbunnyears
+
+//datum/loadout_item/head/kabuto
+//    name = "Kabuto"
+//	item_path = /obj/item/clothing/head/costume/kabuto
+
 /*
 *	COWBOY
 */
