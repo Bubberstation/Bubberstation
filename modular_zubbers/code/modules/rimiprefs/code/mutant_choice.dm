@@ -58,7 +58,7 @@
 	return preferences.read_preference(type_to_check)
 
 /datum/preference/choiced/mutant/init_possible_values()
-	return generate_mutant_valid_values(sprite_accessory, sprite_direction, accessories_to_ignore)
+	return generate_mutant_valid_values(sprite_accessory, accessories_to_ignore)
 
 /**
  * Actually rendered. Slimmed down version of the logic in is_available() that actually works when spawning or drawing the character.
@@ -104,7 +104,7 @@
 	return bodypart_is_visible
 
 /// Automatically handles generating icon states and values for mutant parts.
-/datum/preference/choiced/mutant/proc/generate_mutant_valid_values(list/accessories, dir = SOUTH, accessories_to_ignore = null)
+/datum/preference/choiced/mutant/proc/generate_mutant_valid_values(list/accessories, accessories_to_ignore = null)
 	var/list/data = list()
 
 	for(var/datum/sprite_accessory/accessory as anything in accessories)
@@ -117,7 +117,7 @@
 				if(istype(accessory, path))
 					continue
 
-		data[initial(accessory.name)] = generate_icon(accessory, dir)
+		data += initial(accessory.name)
 
 	return data
 
@@ -161,5 +161,8 @@
 		icon_to_return.Blend(icon_to_process, ICON_OVERLAY)
 
 	return icon_to_return
+
+/datum/preference/choiced/mutant/icon_for(value)
+	generate_icon(sprite_accessory[value], sprite_direction)
 
 #undef REQUIRED_CROP_LIST_SIZE
