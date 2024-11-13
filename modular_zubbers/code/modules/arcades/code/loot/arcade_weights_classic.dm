@@ -98,11 +98,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool_classic, list(
 		/obj/item/grenade/chem_grenade/glitter/white = 1,
 	) = 100,
 	list(
-		/obj/item/gun/ballistic/automatic/toy/unrestricted = 50,
+		/obj/item/gun/ballistic/automatic/toy = 50,
 		/obj/item/gun/ballistic/automatic/pistol/toy = 75,
 		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted = 25,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 100,
-		/obj/item/gun/ballistic/shotgun/toy/unrestricted = 100,
+		/obj/item/gun/ballistic/shotgun/toy/riot = 100,
 		/obj/item/gun/energy/laser/practice = 10
 	) = 50,
 	list(

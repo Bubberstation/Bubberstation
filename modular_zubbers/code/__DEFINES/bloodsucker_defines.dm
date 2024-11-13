@@ -1,4 +1,4 @@
-///Uncomment this to enable testing of Bloodsucker features (such as vassalizing people with a mind instead of a client).
+///Uncomment this to enable testing of Bloodsucker features (such as ghoulizing people with a mind instead of a client).
 // #define BLOODSUCKER_TESTING // if this isn't commented out, someone is a dumbfuck
 
 /// You have special interactions with Bloodsuckers
@@ -18,8 +18,8 @@
 #define TORTURE_BLOOD_HALF_COST 4
 /// Cost to convert someone after successful torture, in blood
 #define TORTURE_CONVERSION_COST 10
-/// How much blood it costs you to make a vassal into a special vassal
-#define SPECIAL_VASSAL_COST 150
+/// How much blood it costs you to make a ghoul into a special ghoul
+#define SPECIAL_GHOUL_COST 150
 /// Minimum and maximum frenzy blood thresholds
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 25
@@ -57,14 +57,14 @@
 #define TIME_BLOODSUCKER_SOL_DELAY 90
 
 /**
- * Vassal defines
+ * Ghoul defines
  */
-///If someone passes all checks and can be vassalized
-#define VASSALIZATION_ALLOWED 0
-///If someone has to accept vassalization
-#define VASSALIZATION_DISLOYAL 1
-///If someone is not allowed under any circimstances to become a Vassal
-#define VASSALIZATION_BANNED 2
+///If someone passes all checks and can be ghouled
+#define GHOULING_ALLOWED 0
+///If someone has to accept ghouling
+#define GHOULING_DISLOYAL 1
+///If someone is not allowed under any circimstances to become a Ghoul
+#define GHOULING_BANNED 2
 
 /**
  * Cooldown defines
@@ -92,9 +92,9 @@
 #define CLAN_MALKAVIAN "Malkavian Clan"
 #define CLAN_TZIMISCE "Tzimisce Clan"
 
-#define TREMERE_VASSAL "tremere_vassal"
-#define FAVORITE_VASSAL "favorite_vassal"
-#define REVENGE_VASSAL "revenge_vassal"
+#define TREMERE_GHOUL "tremere_ghoul"
+#define FAVORITE_GHOUL "favorite_ghoul"
+#define REVENGE_GHOUL "revenge_ghoul"
 
 /**
  * Power defines
@@ -116,10 +116,13 @@
 #define BLOODSUCKER_DEFAULT_POWER (1<<1)
 /// This Power can be purchased by Tremere Bloodsuckers
 #define TREMERE_CAN_BUY (1<<2)
-/// This Power can be purchased by Vassals
-#define VASSAL_CAN_BUY (1<<3)
+
+/// This Power can be purchased by Ghouls
+#define GHOUL_CAN_BUY (1<<3)
+
 /// If this Power can be bought if you already own it
 #define CAN_BUY_OWNED (1<<4)
+
 
 /// This Power is a Continuous Effect, processing every tick
 #define BP_CONTINUOUS_EFFECT (1<<0)
@@ -134,7 +137,7 @@
 #define DEACTIVATE_POWER_NO_COOLDOWN (1<<1)
 
 // ability levels that are used cross-file
-#define DOMINATE_VASSALIZE_LEVEL 2
+#define DOMINATE_GHOULIZE_LEVEL 2
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
 
 #define COFFIN_HEAL_COST_MULT 0.5
@@ -152,14 +155,14 @@
  */
 ///Called when a Bloodsucker ranks up: (datum/bloodsucker_datum, mob/owner, mob/target)
 #define COMSIG_BLOODSUCKER_RANK_UP "bloodsucker_rank_up"
-///Called when a Bloodsucker interacts with a Vassal on their persuasion rack.
-#define COMSIG_BLOODSUCKER_INTERACT_WITH_VASSAL "bloodsucker_interact_with_vassal"
-///Called when a Bloodsucker makes a Vassal into their Favorite Vassal: (datum/vassal_datum, mob/master)
+///Called when a Bloodsucker interacts with a Ghoul on their persuasion rack.
+#define COMSIG_BLOODSUCKER_INTERACT_WITH_GHOUL "bloodsucker_interact_with_ghoul"
+///Called when a Bloodsucker makes a Ghoul into their Favorite Ghoul: (datum/ghoul_datum, mob/master)
 #define COMSIG_BLOODSUCKER_MAKE_FAVORITE "bloodsucker_make_favorite"
-// called when a bloodsucker looses their favorite vassal, cleaning up whatever they gained
+// called when a bloodsucker looses their favorite ghoul, cleaning up whatever they gained
 #define COMSIG_BLOODSUCKER_LOOSE_FAVORITE "bloodsucker_loose_favorite"
-///Called when a new Vassal is successfully made: (datum/bloodsucker_datum)
-#define COMSIG_BLOODSUCKER_MADE_VASSAL "bloodsucker_made_vassal"
+///Called when a new Ghoul is successfully made: (datum/bloodsucker_datum)
+#define COMSIG_BLOODSUCKER_MADE_GHOUL "bloodsucker_made_ghoul"
 ///Called when a Bloodsucker exits Torpor.
 #define COMSIG_BLOODSUCKER_EXIT_TORPOR "bloodsucker_exit_torpor"
 ///Called when a Bloodsucker reaches Final Death.
@@ -188,7 +191,7 @@
 #define COMSIG_SOL_RISE_TICK "comsig_sol_rise_tick"
 #define COMSIG_SOL_NEAR_START "comsig_sol_near_start"
 #define COMSIG_SOL_END "comsig_sol_end"
-///Sent when a warning for Sol is meant to go out: (danger_level, vampire_warning_message, vassal_warning_message)
+///Sent when a warning for Sol is meant to go out: (danger_level, vampire_warning_message, ghoul_warning_message)
 #define COMSIG_SOL_WARNING_GIVEN "comsig_sol_warning_given"
 ///Called on a Bloodsucker's Lifetick.
 #define COMSIG_BLOODSUCKER_ON_LIFETICK "comsig_bloodsucker_on_lifetick"
@@ -228,7 +231,7 @@
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
 
-#define VASSAL_TRAIT "vassal_trait"
+#define GHOUL_TRAIT "ghoul_trait"
 
 /// Source trait for dominate related traits
 #define MESMERIZE_TRAIT "meserize_trait"
@@ -243,13 +246,13 @@
 
 ///Whether a mob is a Bloodsucker
 #define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
-///Whether a mob is a Vassal
-#define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
-///Whether a mob is a Favorite Vassal
-#define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
-///Whether a mob is a Revenge Vassal
-#define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
-#define IS_EX_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ex_vassal))
+///Whether a mob is a Ghoul
+#define IS_GHOUL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ghoul))
+///Whether a mob is a Favorite Ghoul
+#define IS_FAVORITE_GHOUL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ghoul/favorite))
+///Whether a mob is a Revenge Ghoul
+#define IS_REVENGE_GHOUL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ghoul/revenge))
+#define IS_EX_GHOUL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ex_ghoul))
 
 ///Whether a mob is a Monster Hunter-NOT NEEDED RIGHT NOW
 // #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
@@ -257,7 +260,7 @@
 #define IS_MONSTERHUNTER(mob) (FALSE)
 
 #define BLOODSUCKER_SIGHT_COLOR_CUTOFF list(25, 8, 5)
-#define POLL_IGNORE_VASSAL "vassal"
+#define POLL_IGNORE_GHOUL "ghoul"
 
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
 #define BLOODSUCKER_PROTECTED_ROLES list( \
