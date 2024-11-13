@@ -127,7 +127,7 @@
 
 /// Generates and allows for post-processing on icons, such as greyscaling and cropping.
 /datum/preference/choiced/mutant/proc/generate_icon(datum/sprite_accessory/sprite_accessory, dir = SOUTH)
-	if(!sprite_accessory.icon_state || lowertext(sprite_accessory.icon_state) == "none")
+	if(!sprite_accessory.icon_state || sprite_accessory.name == SPRITE_ACCESSORY_NONE)
 		return icon('icons/mob/landmarks.dmi', "x")
 
 	var/list/icon_states_to_use = list()
