@@ -227,12 +227,12 @@ export const ZubbersStorytellerScheduledData = (props) => {
           <Table.Cell>Actions</Table.Cell>
         </Table.Row>
         {Object.entries(scheduled_data).map(([event_name, event_data]) => {
-          const time = event_data['time'];
+          const timeNum = Number(event_data['time'])?.toFixed(1);
           return (
             <Table.Row key={event_name}>
               <Table.Cell>{event_name}</Table.Cell>
               <Table.Cell>{event_data['track']}</Table.Cell>
-              <Table.Cell>{time ? time + ' s' : 'Roundstart'}</Table.Cell>
+              <Table.Cell>{timeNum ? timeNum + ' s' : 'Roundstart'}</Table.Cell>
               <Table.Cell>
                 <Button
                   color="red"
