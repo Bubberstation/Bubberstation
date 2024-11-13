@@ -12222,8 +12222,9 @@
 	pixel_y = -2
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/right/directional/north,
-/obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/machinery/door/window/right/directional/north{
+	req_access = list("cargo")
+	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "aWt" = (
@@ -12233,8 +12234,9 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/machinery/door/window/right/directional/north,
-/obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/machinery/door/window/right/directional/north{
+	req_access = list("cargo")
+	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "aWu" = (
