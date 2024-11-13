@@ -1,5 +1,5 @@
 // Moved from modular skyrat so I can find these more easily.
-// Also, these function nothing like the old SR counterparts.
+// Also, these function somewhat differently from the SR ones.
 
 /// The required list size for crop parameters in generate_icon.
 #define REQUIRED_CROP_LIST_SIZE 4
@@ -10,7 +10,8 @@
 	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
 	savefile_identifier = PREFERENCE_CHARACTER
 	should_generate_icons = TRUE
-	can_randomize = FALSE // Let's not force folk with mutant horrors beyond their comprehension, and force them to clean up a crappy randomly generated partslist.
+
+	var/default_accessory_name = SPRITE_ACCESSORY_NONE
 	/// The global list containing the sprite accessories to use. Override New to set.
 	var/list/sprite_accessory
 	/// Direction to render the preview on. Can take NORTH, SOUTH, EAST, WEST.
@@ -29,12 +30,12 @@
 	. = ..()
 
 	// Lazy coder's joy
-	LAZYINITLIST(supplemental_features)
-	supplemental_features += "[savefile_key]_color"
-
-	// Lazy coder's joy pt2
-	if(!type_to_check)
-		type_to_check = replacetext("[src.type]", "choiced", "toggle")
+	if (!islist(supplemental_features))
+		var/key = replacetext(savefile_key, "feature_", "")
+		supplemental_features = list(
+			"[key]_color",
+			"[key]_emissive",
+		)
 
 /datum/preference/choiced/mutant/create_default_value()
 	return "None"

@@ -134,20 +134,20 @@
 			var/list/new_color
 
 			if(old_species == "synthhuman")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_chassis], "Human Chassis")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_head], "Human Head")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_chassis], "Human Chassis")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_head], "Human Head")
 				// Get human skintone instead of mutant color
 				new_color = save_data["skin_tone"]
 				new_color = skintone2hex(new_color)
 			else if(old_species == "synthliz")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_chassis], "Lizard Chassis")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_head], "Lizard Head")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_chassis], "Lizard Chassis")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_head], "Lizard Head")
 			if(old_species == "synthmammal")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_chassis], "Mammal Chassis")
-				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/synth_head], "Mammal Head")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_chassis], "Mammal Chassis")
+				write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/synth_head], "Mammal Head")
 
 			// Sorry, but honestly, you folk might like to browse the IPC screens now they've got previews.
-			write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/ipc_screen], "None")
+			write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant/ipc_screen], "None")
 			// Unfortunately, you will get a human last name applied due to load behaviours. Nothing I can do about it.
 			write_preference(GLOB.preference_entries[/datum/preference/choiced/species], "synth")
 

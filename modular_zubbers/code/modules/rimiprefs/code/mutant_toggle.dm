@@ -1,5 +1,6 @@
 // Probably the only thing that isn't supidly simplified.
 // Still pretty simple though.
+// TODO: Look into using "none" prefs instead
 
 /**
  * Base class for character feature togglers

@@ -1,4 +1,5 @@
 /datum/preference/mutant_color
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	abstract_type = /datum/preference/mutant_color
 	var/type_to_check = /datum/preference/toggle/allow_mismatched_parts
 	var/check_mode = TRICOLOR_CHECK_BOOLEAN
