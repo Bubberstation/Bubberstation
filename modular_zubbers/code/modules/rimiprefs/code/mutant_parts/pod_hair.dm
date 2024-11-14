@@ -4,6 +4,7 @@
 	relevant_mutant_bodypart = "pod_hair"
 	default_accessory_name = "Ivy"
 	should_generate_icons = TRUE
+	supplemental_features = list("pod_hair_color")
 	var/icon/pod_head
 
 /datum/preference/choiced/mutant/pod_hair/New()
@@ -33,13 +34,6 @@
 		return
 
 	return ..()
-
-/datum/preference/choiced/mutant/pod_hair/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "pod_hair_color"
-
-	return data
 
 /datum/preference/mutant_color/pod_hair_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES

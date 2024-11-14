@@ -1,9 +1,5 @@
-/datum/preference/choiced/socks/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "socks_color"
-
-	return data
+/datum/preference/choiced/socks
+	supplemental_features = list("socks_color")
 
 /datum/preference/choiced/socks/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
@@ -13,12 +9,8 @@
 	var/datum/species/species = new species_type
 	return !(TRAIT_NO_UNDERWEAR in species.inherent_traits)
 
-/datum/preference/choiced/undershirt/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "undershirt_color"
-
-	return data
+/datum/preference/choiced/underwear
+	supplemental_features = list("underwear_color")
 
 /datum/preference/choiced/undershirt/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
@@ -42,6 +34,7 @@
 	main_feature_name = "Bra"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
+	supplemental_features = list("bra_color")
 
 /datum/preference/choiced/bra/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.bra_list)
@@ -67,13 +60,6 @@
 
 /datum/preference/choiced/bra/apply_to_human(mob/living/carbon/human/target, value)
 	target.bra = value
-
-/datum/preference/choiced/bra/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "bra_color"
-
-	return data
 
 /datum/preference/choiced/bra/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))

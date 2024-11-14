@@ -7,19 +7,13 @@
 	should_generate_icons = TRUE
 	crop_area = list(11, 22, 21, 32) // We want just the head.
 	greyscale_color = DEFAULT_SYNTH_SCREEN_COLOR
+	supplemental_features = list("ipc_screen_color")
 
 /datum/preference/choiced/mutant/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
 /datum/preference/choiced/mutant/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
 	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER[suffix]"
-
-/datum/preference/choiced/mutant/ipc_screen/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "ipc_screen_color"
-
-	return data
 
 /datum/preference/choiced/mutant/ipc_screen/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)
@@ -75,6 +69,7 @@
 	should_generate_icons = TRUE
 	crop_area = list(8, 8, 24, 24) // We want just the body.
 	greyscale_color = DEFAULT_SYNTH_PART_COLOR
+	supplemental_features = list("ipc_chassis_color")
 
 /datum/preference/choiced/mutant/synth_chassis/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	// If this isn't the right type, we have much bigger problems.
@@ -83,13 +78,6 @@
 
 /datum/preference/choiced/mutant/synth_chassis/is_part_enabled(datum/preferences/preferences)
 	return TRUE
-
-/datum/preference/choiced/mutant/synth_chassis/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "ipc_chassis_color"
-
-	return data
 
 /datum/preference/mutant_color/synth_chassis
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
@@ -106,6 +94,7 @@
 	should_generate_icons = TRUE
 	crop_area = list(11, 22, 21, 32) // We want just the head.
 	greyscale_color = DEFAULT_SYNTH_PART_COLOR
+	supplemental_features = list("ipc_head_color")
 
 /datum/preference/choiced/mutant/synth_head/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	// If this isn't the right type, we have much bigger problems.
@@ -114,13 +103,6 @@
 
 /datum/preference/choiced/mutant/synth_head/is_part_enabled(datum/preferences/preferences)
 	return TRUE
-
-/datum/preference/choiced/mutant/synth_head/compile_constant_data()
-	var/list/data = ..()
-
-	data[SUPPLEMENTAL_FEATURE_KEY] = "ipc_head_color"
-
-	return data
 
 /datum/preference/mutant_color/synth_head
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
