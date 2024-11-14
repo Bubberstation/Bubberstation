@@ -96,6 +96,11 @@
 
 /datum/action/gargoyle/transform/Trigger(trigger_flags)
 	. = ..()
+
+	// Check parent return
+	if(!.)
+		return
+
 	var/mob/living/carbon/human/H = owner
 	var/datum/quirk/gargoyle/T = H.get_quirk(/datum/quirk/gargoyle)
 	if(!T.cooldown)
@@ -133,6 +138,11 @@
 
 /datum/action/gargoyle/check/Trigger(trigger_flags)
 	. = ..()
+
+	// Check parent return
+	if(!.)
+		return
+
 	var/mob/living/carbon/human/H = owner
 	var/datum/quirk/gargoyle/T = H.get_quirk(/datum/quirk/gargoyle)
 	to_chat(H, span_warning("You have [T.energy]/100 energy remaining!"))
@@ -145,6 +155,11 @@
 
 /datum/action/gargoyle/pause/Trigger(trigger_flags)
 	. = ..()
+
+	// Check parent return
+	if(!.)
+		return
+
 	var/mob/living/carbon/human/H = owner
 	var/datum/quirk/gargoyle/T = H.get_quirk(/datum/quirk/gargoyle)
 

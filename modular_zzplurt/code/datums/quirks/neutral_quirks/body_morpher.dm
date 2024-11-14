@@ -12,7 +12,6 @@
 		/obj/item/toy/foamblade = 1 // Fake changeling
 	)
 	hidden_quirk = TRUE
-	var/datum/action/innate/alter_form/alter_form_action
 
 /datum/quirk/body_morpher/add(client/client_source)
 	. = ..()
@@ -21,8 +20,8 @@
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
 	// Add quirk ability action datum
-	alter_form_action = new
-	alter_form_action.Grant(quirk_mob)
+	var/datum/action/innate/alter_form/quirk_action = new
+	quirk_action.Grant(quirk_mob)
 
 /datum/quirk/body_morpher/remove()
 	. = ..()
@@ -31,5 +30,5 @@
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
 	// Remove quirk ability action datum
-	alter_form_action.Remove(quirk_mob)
-	QDEL_NULL(alter_form_action)
+	var/datum/action/innate/alter_form/quirk_action = locate() in quirk_mob.actions
+	quirk_action.Remove(quirk_mob)

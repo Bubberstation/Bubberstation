@@ -84,7 +84,7 @@
 	desc = "Report this to a coder."
 	button_icon = 'icons/obj/lighting.dmi'
 	button_icon_state = "slime-on"
-	var/obj/effect/dummy/lighting_obj/moblight/cosglow_light
+	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/cosglow/update_glow
 	name = "Modify Glow"
@@ -136,6 +136,10 @@
 
 /datum/action/cosglow/update_glow/Trigger(trigger_flags)
 	. = ..()
+
+	// Check parent return
+	if(!.)
+		return
 
 	// Define user mob
 	var/mob/living/carbon/human/action_mob = owner
