@@ -6146,10 +6146,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
-"sJ" = (
-/obj/structure/lattice/catwalk/mining,
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/icemoon/underground/explored)
 "sL" = (
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -14050,6 +14046,24 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
+"Ra" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = 32;
+	faction = list("Syndicate","neutral")
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Rb" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/stripes/red/line{
@@ -17165,8 +17179,8 @@ uQ
 uQ
 uQ
 uQ
-XC
 nc
+Ra
 nc
 nc
 nc
@@ -17235,7 +17249,7 @@ Pd
 Fc
 Nq
 Fc
-sJ
+Fc
 DN
 qr
 qr
