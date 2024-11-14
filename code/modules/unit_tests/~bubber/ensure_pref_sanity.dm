@@ -3,7 +3,7 @@
 /datum/unit_test/bubber/ensure_pref_sanity/Run()
 	for (var/datum/preference/preference as anything in GLOB.preference_entries)
 		preference = GLOB.preference_entries[preference]
-		if (preference.abstract_type == togglepreference) // You're safe... for now.
+		if (preference.abstract_type == preference.type) // You're safe... for now.
 			continue
 
 		if (!istype(preference, /datum/preference/choiced/mutant))

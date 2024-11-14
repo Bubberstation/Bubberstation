@@ -23,7 +23,7 @@
 	priority = PREFERENCE_PRIORITY_BODYPARTS
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/color/eye_color/apply_to_human(mob/living/carbon/human/target, value)
@@ -55,7 +55,7 @@
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
 	savefile_key = "facial_style_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Facial hair"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_FACIAL_HAIR
@@ -176,7 +176,7 @@
 	priority = PREFERENCE_PRIORITY_BODY_TYPE // Happens after gender so we can picka hairstyle based on that
 	savefile_key = "hairstyle_name"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_HAIR

@@ -7,7 +7,7 @@
  */
 /datum/preference/toggle/mutant_toggle
 	abstract_type = /datum/preference/toggle/mutant_toggle
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 

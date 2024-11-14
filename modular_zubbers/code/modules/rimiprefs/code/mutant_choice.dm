@@ -6,7 +6,7 @@
 
 /datum/preference/choiced/mutant
 	abstract_type = /datum/preference/choiced/mutant
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_identifier = PREFERENCE_CHARACTER
 	should_generate_icons = TRUE
 

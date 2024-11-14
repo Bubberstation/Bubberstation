@@ -2,7 +2,7 @@
 	default = FALSE
 
 /datum/preference/toggle/allow_mismatched_parts
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "allow_mismatched_parts_toggle"
 	default_value = FALSE
 
@@ -20,7 +20,7 @@
 	return ..()
 
 /datum/preference/toggle/allow_mismatched_hair_color
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "allow_mismatched_hair_color_toggle"
 	default_value = TRUE
 
@@ -45,7 +45,7 @@
 
 /datum/preference/toggle/eye_emissives
 	savefile_key = "eye_emissives"
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -86,7 +86,7 @@
 	return FALSE
 
 /datum/preference/mutant_color/body_markings
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "body_markings_color"
 	relevant_mutant_bodypart = "body_markings"
 // 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
@@ -99,7 +99,7 @@
 	return FALSE
 
 /datum/preference/emissive_toggle/body_markings
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "body_markings_emissive"
 	relevant_mutant_bodypart = "body_markings"
 // 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings

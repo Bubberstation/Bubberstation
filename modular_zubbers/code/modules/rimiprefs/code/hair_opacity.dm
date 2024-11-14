@@ -4,7 +4,7 @@
 // 	relevant_mutant_bodypart = MUTANT_SYNTH_HAIR
 
 /datum/preference/numeric/hair_opacity
-	category = PREFERENCE_CATEGORY_BUBBER_APPEARANCE
+	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "feature_hair_opacity"
 	// relevant_mutant_bodypart = MUTANT_SYNTH_HAIR
