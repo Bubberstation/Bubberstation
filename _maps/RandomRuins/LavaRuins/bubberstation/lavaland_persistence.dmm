@@ -135,9 +135,6 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"aw" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "ay" = (
 /obj/structure/cable,
 /obj/machinery/light/directional/east,
@@ -188,6 +185,9 @@
 	density = 0;
 	pixel_x = 30;
 	all_products_free = 1
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
@@ -2059,8 +2059,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/emergency_shield/cult/weak{
@@ -2178,6 +2177,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/hidden,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "gB" = (
@@ -4023,6 +4023,24 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
+"lS" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_y = -32
+	},
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
+	network = list("persistence_ext")
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "lT" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -5060,8 +5078,7 @@
 "pm" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
@@ -5386,6 +5403,24 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/icemoon/underground/explored)
+"qh" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = 32
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "qi" = (
 /obj/structure/sign/poster/contraband/free_key/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -6661,6 +6696,12 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
+"tW" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/hidden,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/persistance/med)
 "tY" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/reagentgrinder{
@@ -8120,7 +8161,6 @@
 /obj/structure/lattice/catwalk/mining,
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	faction = list("Syndicate","neutral");
 	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
@@ -9543,8 +9583,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_y = 32;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -11152,8 +11191,7 @@
 "Ia" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -11557,8 +11595,7 @@
 "Jd" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /obj/machinery/camera/autoname/directional/south{
 	name = "Persistence Exterior South";
@@ -12079,8 +12116,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -12300,8 +12336,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -12348,8 +12383,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -12914,8 +12948,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
@@ -13580,8 +13613,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
@@ -13985,8 +14017,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = -32;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
@@ -14767,8 +14798,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
@@ -15179,15 +15209,6 @@
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
-"UO" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/icemoon/underground/explored)
 "UP" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -15230,8 +15251,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -16439,8 +16459,7 @@
 "YJ" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -16929,6 +16948,10 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"ZZ" = (
+/turf/open/space/basic,
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/icemoon/underground/explored)
 
 (1,1,1) = {"
 FW
@@ -17177,7 +17200,7 @@ gq
 gq
 gq
 gq
-yf
+qh
 VG
 VG
 VG
@@ -17188,7 +17211,7 @@ gq
 gq
 gq
 gq
-yf
+qh
 VG
 VG
 VG
@@ -17196,7 +17219,7 @@ VG
 VG
 VG
 VG
-yf
+qh
 qg
 gq
 gq
@@ -17249,7 +17272,7 @@ Ll
 hY
 ki
 hY
-hY
+ZZ
 dl
 gw
 gw
@@ -17260,7 +17283,7 @@ hY
 hY
 ki
 hY
-hY
+ZZ
 Vm
 Vm
 lA
@@ -17270,13 +17293,13 @@ lA
 Vm
 Vm
 AQ
-UO
+qg
 hY
 hY
 xe
 hY
 hY
-yf
+qh
 gq
 oI
 gq
@@ -19167,7 +19190,7 @@ FW
 FW
 gq
 gq
-Nx
+lS
 tb
 tb
 tb
@@ -19455,7 +19478,7 @@ FW
 FW
 gq
 gq
-Nx
+lS
 tb
 tb
 fo
@@ -19671,7 +19694,7 @@ FW
 FW
 gq
 gq
-Nx
+lS
 Yd
 UV
 UV
@@ -20047,7 +20070,7 @@ Dz
 IQ
 tn
 Qc
-aw
+Ds
 Ds
 Ds
 Ds
@@ -20193,7 +20216,7 @@ lD
 lD
 qw
 Jm
-Jm
+tW
 hV
 Sl
 Og
@@ -20319,7 +20342,7 @@ FW
 FW
 gq
 gq
-Nx
+lS
 Yd
 LF
 QX

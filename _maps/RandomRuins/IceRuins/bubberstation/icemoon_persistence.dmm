@@ -454,6 +454,20 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
+"bC" = (
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/turf/open/floor/pod/dark,
+/area/icemoon/underground/explored)
 "bD" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -1421,8 +1435,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -1648,8 +1661,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
@@ -1989,6 +2001,12 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
+"gn" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/hidden,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/persistance/med)
 "gp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -3749,6 +3767,23 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+"lU" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = 32
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "lV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -4944,8 +4979,7 @@
 "pq" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
@@ -6112,6 +6146,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
+"sJ" = (
+/obj/structure/lattice/catwalk/mining,
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/icemoon/underground/explored)
 "sL" = (
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -7301,8 +7339,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /obj/machinery/camera/autoname/directional/south{
 	name = "Persistence Exterior South";
@@ -8154,8 +8191,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = -32;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -8253,8 +8289,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -8636,8 +8671,7 @@
 "AD" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -10426,6 +10460,9 @@
 	pixel_x = 30;
 	all_products_free = 1
 	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Gb" = (
@@ -11899,8 +11936,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -12279,7 +12315,6 @@
 /obj/structure/lattice/catwalk/mining,
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	faction = list("Syndicate","neutral");
 	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
@@ -13040,8 +13075,7 @@
 "Om" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -13937,8 +13971,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_y = -32;
-	pixel_x = 32;
-	faction = list("Syndicate","neutral")
+	pixel_x = 32
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -13964,6 +13997,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/hidden,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "QO" = (
@@ -14050,8 +14084,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -15086,8 +15119,7 @@
 	},
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/west{
 	name = "Persistence Exterior West";
@@ -15493,8 +15525,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 32;
-	faction = list("Syndicate","neutral")
+	pixel_y = 32
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -15616,8 +15647,7 @@
 "VX" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
-	pixel_y = -32;
-	faction = list("Syndicate","neutral")
+	pixel_y = -32
 	},
 /obj/machinery/camera/autoname/directional/south{
 	name = "Persistence Exterior South";
@@ -16302,8 +16332,7 @@
 /obj/machinery/porta_turret/syndicate{
 	dir = 8;
 	pixel_y = 32;
-	pixel_x = -32;
-	faction = list("Syndicate","neutral")
+	pixel_x = -32
 	},
 /obj/machinery/camera/autoname/directional/north{
 	name = "Persistence Exterior North";
@@ -17141,14 +17170,14 @@ nc
 nc
 nc
 nc
+Er
 XC
-nc
+uQ
 uQ
 uQ
 uQ
 uQ
 XC
-nc
 nc
 nc
 nc
@@ -17206,7 +17235,7 @@ Pd
 Fc
 Nq
 Fc
-Fc
+sJ
 DN
 qr
 qr
@@ -17217,7 +17246,7 @@ Fc
 Fc
 Nq
 Fc
-Fc
+bC
 Tm
 Tm
 eR
@@ -17233,7 +17262,7 @@ Fc
 Cx
 Fc
 Fc
-XC
+lU
 uQ
 ou
 uQ
@@ -20068,7 +20097,7 @@ mu
 mu
 FP
 qQ
-qQ
+gn
 po
 Pl
 pF
