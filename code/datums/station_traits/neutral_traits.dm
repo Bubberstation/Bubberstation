@@ -545,7 +545,7 @@
 	threat_reduction = 15
 	dynamic_threat_id = "Background Checks"
 
-
+/* BUBBER EDIT REMOVAL BEGIN - Lobby buttons
 /datum/station_trait/pet_day
 	name = "Bring Your Pet To Work Day"
 	trait_type = STATION_TRAIT_NEUTRAL
@@ -588,3 +588,5 @@
 
 /datum/station_trait/pet_day/proc/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	overlays += "select_pet"
+
+*/// BUBBER EDIT REMOVAL END
