@@ -75,7 +75,7 @@
 /datum/preference/choiced/mutant/body_markings
 	savefile_key = "feature_body_markings"
 	relevant_mutant_bodypart = "body_markings"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
+	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 	should_generate_icons = FALSE
 
 /datum/preference/choiced/mutant/body_markings/is_accessible(datum/preferences/preferences)
@@ -89,7 +89,7 @@
 	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "body_markings_color"
 	relevant_mutant_bodypart = "body_markings"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
+	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 
 /datum/preference/mutant_color/body_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
@@ -102,7 +102,7 @@
 	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_key = "body_markings_emissive"
 	relevant_mutant_bodypart = "body_markings"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
+	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 
 /datum/preference/emissive_toggle/body_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.

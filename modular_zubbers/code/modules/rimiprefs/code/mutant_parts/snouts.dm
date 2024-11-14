@@ -5,7 +5,7 @@
 /datum/preference/choiced/mutant/snout
 	savefile_key = "feature_snout"
 	relevant_mutant_bodypart = "snout"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
+	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 	sprite_direction = EAST
 	crop_area = list(14, 22, 24, 32) // We want just the head.
 
@@ -32,9 +32,9 @@
 /datum/preference/mutant_color/snout
 	savefile_key = "snout_color"
 	relevant_mutant_bodypart = "snout"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
+	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 
 /datum/preference/emissive_toggle/snout
 	savefile_key = "snout_emissive"
 	relevant_mutant_bodypart = "snout"
-// 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
+	type_to_check = /datum/preference/toggle/mutant_toggle/snout
