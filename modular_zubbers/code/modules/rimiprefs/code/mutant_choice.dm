@@ -140,9 +140,6 @@
 	else
 		icon_states_to_use += generate_icon_state(sprite_accessory, sprite_accessory.icon_state)
 
-	for(var/icon_state in icon_states_to_use)
-		icon_exists(sprite_accessory.icon, icon_state, TRUE)
-
 	var/icon/icon_to_return = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 	var/color = sanitize_hexcolor(greyscale_color)
 
