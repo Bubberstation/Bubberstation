@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (isnull(requested_preference))
 				return FALSE
 
-			if (!istype(requested_preference, /datum/preference/tri_color))
+			if (!istype(requested_preference, /datum/preference/mutant_color))
 				return FALSE
 
 			var/default_value_list = read_preference(requested_preference.type)
@@ -402,9 +402,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/value = read_preference(preference.type)
 		var/data = preference.compile_ui_data(user, value)
 
-		LAZYINITLIST(preferences[preference.category])
-		preferences[preference.category][preference.savefile_key] = data
+		// BUBBER EDIT START: Better prefs
+		var/preference_category = preference.get_category()
 
+		LAZYINITLIST(preferences[preference_category])
+		preferences[preference_category][preference.savefile_key] = data
+
+		// LAZYINITLIST(preferences[preference.category]) // ORIGINAL CODE
+		// preferences[preference.category][preference.savefile_key] = data
+		// BUBBER EDIT END
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/list/append_character_preferences = preference_middleware.get_character_preferences(user)
@@ -430,6 +436,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /// A preview of a character for use in the preferences menu
 /atom/movable/screen/map_view/char_preview
+	bound_height = 96
+	bound_width = 96
 	name = "character_preview"
 
 	/// The body that is displayed
@@ -456,12 +464,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		body.wipe_state()
 
-	appearance = preferences.render_new_preview_appearance(body, show_job_clothes)
+	preferences.render_new_preview_appearance(body, show_job_clothes)
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)
 
 	body = new
+	body.forceMove(src)
+	body.pixel_x = 32
+	body.update_gravity(STANDARD_GRAVITY)
+	vis_contents += body
 
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()
