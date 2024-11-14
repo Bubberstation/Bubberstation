@@ -2,7 +2,8 @@
 	default = FALSE
 
 /datum/preference/toggle/allow_mismatched_parts
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_mismatched_parts_toggle"
 	default_value = FALSE
 
@@ -20,7 +21,8 @@
 	return ..()
 
 /datum/preference/toggle/allow_mismatched_hair_color
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_mismatched_hair_color_toggle"
 	default_value = TRUE
 
@@ -44,8 +46,9 @@
 	target.dna.features["mcolor3"] = sanitize_hexcolor(value[3])
 
 /datum/preference/toggle/eye_emissives
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "eye_emissives"
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -57,56 +60,4 @@
 		eyes_organ.is_emissive = value
 
 /datum/preference/toggle/eye_emissives/create_default_value()
-	return FALSE
-
-// Body Markings - This isn't used anymore and thus I'm making it not do anything.
-
-/datum/preference/toggle/mutant_toggle/body_markings
-	savefile_key = "body_markings_toggle"
-	relevant_mutant_bodypart = "body_markings"
-
-/datum/preference/toggle/mutant_toggle/body_markings/is_accessible(datum/preferences/preferences)
-	. = ..() // Got to do this because of linters.
-	return FALSE
-
-/datum/preference/toggle/mutant_toggle/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
-
-/datum/preference/choiced/mutant/body_markings
-	savefile_key = "feature_body_markings"
-	relevant_mutant_bodypart = "body_markings"
-	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
-	should_generate_icons = FALSE
-
-/datum/preference/choiced/mutant/body_markings/is_accessible(datum/preferences/preferences)
-	. = ..() // Got to do this because of linters.
-	return FALSE
-
-/datum/preference/choiced/mutant/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
-
-/datum/preference/mutant_color/body_markings
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
-	savefile_key = "body_markings_color"
-	relevant_mutant_bodypart = "body_markings"
-	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
-
-/datum/preference/mutant_color/body_markings/is_accessible(datum/preferences/preferences)
-	. = ..() // Got to do this because of linters.
-	return FALSE
-
-/datum/preference/mutant_color/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
-
-/datum/preference/emissive_toggle/body_markings
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
-	savefile_key = "body_markings_emissive"
-	relevant_mutant_bodypart = "body_markings"
-	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
-
-/datum/preference/emissive_toggle/body_markings/is_accessible(datum/preferences/preferences)
-	. = ..() // Got to do this because of linters.
-	return FALSE
-
-/datum/preference/emissive_toggle/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
