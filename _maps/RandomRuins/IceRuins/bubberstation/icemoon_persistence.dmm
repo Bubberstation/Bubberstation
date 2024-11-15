@@ -1748,15 +1748,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
-"fz" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "fB" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -8288,7 +8279,7 @@
 	pixel_y = 32
 	},
 /turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "zr" = (
 /obj/structure/drain,
 /turf/open/floor/iron/white/small,
@@ -14465,7 +14456,7 @@
 	network = list("persistence_ext")
 	},
 /turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "Sl" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
@@ -15508,6 +15499,19 @@
 /obj/structure/fans/tiny/forcefield,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"Vz" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "VA" = (
 /obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/machinery/hydroponics/constructable,
@@ -15542,7 +15546,7 @@
 	pixel_y = 32
 	},
 /turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "VG" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
@@ -16335,6 +16339,23 @@
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
+"Ye" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_y = 32
+	},
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
+	network = list("persistence_ext")
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "Yf" = (
 /obj/machinery/syndicatebomb/empty,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -17349,11 +17370,11 @@ rt
 rt
 uQ
 Bk
-fz
-fz
-fz
-fz
-FJ
+nc
+nc
+nc
+nc
+Vz
 VE
 uQ
 mc
@@ -17704,7 +17725,7 @@ HE
 ki
 aL
 Bk
-VE
+Ye
 uQ
 uQ
 mc
@@ -17774,7 +17795,7 @@ Bk
 Bk
 Bk
 Bk
-Er
+nc
 uQ
 uQ
 mc

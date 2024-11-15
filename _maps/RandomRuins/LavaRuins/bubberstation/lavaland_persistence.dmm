@@ -3115,16 +3115,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
-"jq" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "jr" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
@@ -13491,6 +13481,25 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
+"Pb" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = 32;
+	faction = list("Syndicate","neutral")
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Pc" = (
 /obj/structure/table,
 /obj/item/storage/bag/xenoarch,
@@ -16474,24 +16483,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
-"YJ" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = 32
-	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
-	network = list("persistence_ext")
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/smooth/lava_land_surface,
-/area/icemoon/underground/explored)
 "YK" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/elevatorshaft,
@@ -17222,8 +17213,8 @@ VG
 VG
 VG
 VG
-yf
 VG
+Pb
 gq
 gq
 gq
@@ -17756,7 +17747,7 @@ qA
 AY
 Uk
 an
-Tv
+Nr
 gq
 gq
 gq
@@ -17828,7 +17819,7 @@ an
 an
 an
 an
-jq
+VG
 gq
 gq
 gq
@@ -18763,7 +18754,7 @@ uZ
 PD
 Ai
 uZ
-YJ
+Ia
 gq
 gq
 gq

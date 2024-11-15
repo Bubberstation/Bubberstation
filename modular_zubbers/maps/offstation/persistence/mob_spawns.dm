@@ -232,7 +232,8 @@
 	r_pocket = /obj/item/mining_voucher
 	head = /obj/item/clothing/head/soft/black
 
-/datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
+//gives syndicate role so turrets don't shoot operative
+/datum/outfit/persistence/syndicate/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
 
@@ -294,3 +295,9 @@
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/rigmanager
+
+
+//gives syndicate role so turrets don't shoot operatives
+/datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
+	syndicate.faction |= ROLE_SYNDICATE
+	return ..()
