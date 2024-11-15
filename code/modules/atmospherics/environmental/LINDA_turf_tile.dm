@@ -679,7 +679,7 @@ Then we space some of our heat, and think about if we should stop conducting.
 		return
 	// Heat should be positive in most cases
 	// coefficient applied first because some turfs have very big heat caps.
-	var/heat = CALCULATE_CONDUCTION_ENERGY(thermal_conductivity * delta_temperature, HEAT_CAPACITY_VACUUM, heat_capacity)
+	var/heat = CALCULATE_CONDUCTION_ENERGY(thermal_conductivity * delta_temperature, /*HEAT_CAPACITY_VACUUM*/ 7000, heat_capacity) // BUBBER EDIT
 	temperature -= heat / heat_capacity
 
 /turf/open/proc/temperature_share_open_to_solid(turf/sharer)
