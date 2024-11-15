@@ -29,20 +29,17 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "ao" = (
-/obj/effect/turf_decal/siding/wideplating_new{
+/obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
 	dir = 4
 	},
-/obj/structure/cable,
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/bar)
+"aw" = (
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
-"aw" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "ax" = (
 /obj/effect/turf_decal/bot_white/left,
 /obj/structure/cable,
@@ -81,16 +78,12 @@
 /obj/item/mop,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"aV" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new,
-/obj/structure/cable,
+"aS" = (
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/obj/structure/alien/gelpod,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "aW" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
@@ -169,14 +162,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
-"bI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/light/floor,
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "bO" = (
 /obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 4
@@ -217,7 +202,15 @@
 "cs" = (
 /obj/structure/alien/weeds/creature,
 /mob/living/basic/creature/hatchling,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"cv" = (
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "cC" = (
 /obj/effect/spawner/structure/window,
@@ -261,6 +254,12 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"di" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/space/has_grav/derelictoutpost/bar)
 "dj" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -268,11 +267,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"dk" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/dark/corner,
-/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "dn" = (
 /obj/structure/closet/crate/radiation,
 /obj/item/clothing/suit/utility/radiation,
@@ -309,14 +303,15 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "dw" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 8
-	},
-/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "dC" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -325,6 +320,13 @@
 	id = "tradepostsecurity";
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"dI" = (
+/obj/structure/cable,
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "dL" = (
@@ -339,6 +341,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron/dark/corner{
 	dir = 4
 	},
@@ -358,6 +361,10 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
+"ea" = (
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/glass/reinforced,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ee" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light/directional/south,
@@ -421,16 +428,6 @@
 /obj/item/kirbyplants/organic/plant21,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
-"eE" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new,
-/obj/item/ammo_casing/c45/spent,
-/obj/structure/cable,
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "eJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -466,12 +463,19 @@
 /obj/effect/turf_decal/siding/thinplating_new/corner,
 /obj/structure/cable,
 /obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eP" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4
+	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/glass/reinforced,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "eV" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -522,14 +526,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"fj" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 4
-	},
-/obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "fl" = (
 /obj/effect/turf_decal/tile/red/real_red/half/contrasted{
 	dir = 1
@@ -564,11 +560,22 @@
 /obj/item/paper/fluff/junkmail_generic,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
-"fx" = (
+"fw" = (
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	dir = 1
+	},
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
-/turf/open/floor/glass/reinforced,
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
+"fx" = (
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	icon_state = "wall_thermite";
+	name = "melted wall"
+	},
+/area/ruin/space/has_grav/derelictoutpost/maints)
 "fA" = (
 /obj/effect/turf_decal/tile/red/real_red/half/contrasted{
 	dir = 1
@@ -594,22 +601,26 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "fV" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8
+	},
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/dark/smooth_large,
-/area/ruin/space/has_grav/derelictoutpost/bar)
+/obj/structure/alien/resin/wall/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "fW" = (
-/obj/effect/turf_decal/bot_white,
+/obj/structure/chair,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "gc" = (
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/obj/structure/glowshroom/single,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/public)
 "gm" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -649,6 +660,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"gz" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "gA" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -674,13 +692,18 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/dark/corner,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
+"gG" = (
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "gH" = (
-/obj/structure/chair{
-	dir = 4
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "gI" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8
@@ -843,6 +866,10 @@
 "ib" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/bar)
+"ic" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "ij" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/crate/secure/weapon,
@@ -885,10 +912,20 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "iF" = (
-/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/derelictoutpost/securityoffice)
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"iH" = (
+/obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 6
+	},
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "iO" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 4
@@ -1049,7 +1086,6 @@
 "kD" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/maints)
 "kH" = (
@@ -1127,9 +1163,8 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "lC" = (
-/obj/structure/alien/weeds/creature,
-/obj/structure/alien/gelpod,
-/turf/open/floor/plating,
+/obj/structure/alien/resin/wall/creature,
+/turf/open/space/basic,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "lD" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -1167,10 +1202,12 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "lL" = (
-/obj/structure/table,
+/obj/effect/turf_decal/bot_white,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/obj/structure/alien/gelpod,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "lM" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/structure/cable,
@@ -1328,22 +1365,26 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "nN" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 8
+/obj/structure/door_assembly/door_assembly_mai{
+	density = 0;
+	desc = "A pried-open airlock. Scratch marks mark the sidings of the door.";
+	name = "pried-open airlock"
 	},
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/maints)
 "nP" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "nU" = (
-/obj/structure/chair/stool/bar/directional/south,
-/mob/living/basic/creature/hatchling,
+/obj/machinery/light/directional/north,
+/obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/bar)
+/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "nY" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
@@ -1353,16 +1394,23 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "oj" = (
-/obj/structure/cable,
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
-"oq" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table_frame/wood,
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/bar)
+"om" = (
+/obj/structure/chair/stool/bar/directional/south,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/bar)
+"oq" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8
+	},
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "os" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -1409,10 +1457,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "oK" = (
-/obj/machinery/light/directional/north,
+/obj/item/kirbyplants/organic/plant21,
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/arrivals)
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "oT" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
@@ -1480,6 +1528,11 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"ps" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "pt" = (
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/structure/table,
@@ -1495,6 +1548,9 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"pF" = (
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "pG" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/effect/turf_decal/siding/thinplating_new/light{
@@ -1530,7 +1586,10 @@
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "pW" = (
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
+/mob/living/basic/creature/hatchling,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "qd" = (
@@ -1545,13 +1604,23 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"qe" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "qf" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "qj" = (
+/obj/structure/chair{
+	dir = 8
+	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/derelictoutpost/bar)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "qs" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8
@@ -1576,9 +1645,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "qA" = (
-/obj/structure/alien/resin/wall/creature,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/bar)
 "qF" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
@@ -1652,14 +1723,27 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "ro" = (
-/obj/structure/alien/weeds/creature,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
+/obj/structure/chair/stool/bar/directional/south,
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/bar)
 "rr" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/structure/door_assembly/door_assembly_mai{
+	density = 0;
+	desc = "A pried-open airlock. Scratch marks mark the sidings of the door.";
+	name = "pried-open airlock"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/maints)
+"rt" = (
+/obj/structure/alien/weeds/creature,
+/mob/living/basic/creature/hatchling,
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "rz" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -1681,9 +1765,12 @@
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "rD" = (
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/glass/reinforced,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "rJ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
@@ -1722,11 +1809,23 @@
 	},
 /obj/effect/decal/cleanable/glass,
 /obj/machinery/door/poddoor/shutters/preopen{
-	dir = 1
+	dir = 1;
+	name = "Tradepost Security Office Shutters"
 	},
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"sc" = (
+/obj/effect/turf_decal/siding/thinplating_new/light,
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 1
+	},
+/obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "sd" = (
 /obj/machinery/light/small/directional/north,
 /obj/structure/sign/warning/vacuum/directional/east{
@@ -1772,10 +1871,15 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "sE" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/crate/medical,
@@ -1839,12 +1943,12 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "ts" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 6
+	},
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "tz" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -1882,13 +1986,6 @@
 /obj/structure/sign/departments/cargo/directional/south,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
-"uf" = (
-/obj/effect/turf_decal/siding/thinplating_new/corner{
-	dir = 1
-	},
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "uh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
@@ -1919,10 +2016,12 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "uy" = (
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/arrivals)
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "uA" = (
 /obj/structure/cable,
 /obj/structure/fluff/paper/stack{
@@ -1960,15 +2059,9 @@
 /turf/open/floor/iron/white/herringbone,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "vb" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new,
-/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "vc" = (
 /obj/machinery/vending/coffee{
 	onstation = 0
@@ -2017,10 +2110,19 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
+"vw" = (
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "vA" = (
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
-/turf/open/misc/asteroid/airless,
+/obj/effect/decal/cleanable/blood/trails,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "vB" = (
 /obj/machinery/vending/snack/orange{
@@ -2063,10 +2165,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "vT" = (
-/obj/structure/chair/stool/bar/directional/south,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/bar)
+/obj/structure/alien/gelpod,
+/obj/effect/decal/cleanable/blood,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "vV" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2078,6 +2181,9 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "wk" = (
@@ -2119,10 +2225,13 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
 "wC" = (
-/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8
+	},
 /obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "wG" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
@@ -2164,14 +2273,13 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "wZ" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 1
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/obj/effect/turf_decal/siding/thinplating_new,
-/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
+/mob/living/basic/creature/hatchling,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "xe" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/blood/trails,
@@ -2189,25 +2297,23 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
+"xw" = (
+/obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "xI" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/bar)
-"xJ" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 1
-	},
-/obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "xK" = (
-/obj/effect/turf_decal/bot_white,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "xL" = (
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/effect/turf_decal/tile/red/real_red{
@@ -2248,17 +2354,14 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"xX" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "xY" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"ya" = (
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/glass/reinforced,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "ye" = (
 /obj/structure/sign/departments/cargo/directional/south,
 /turf/template_noop,
@@ -2384,8 +2487,8 @@
 "zz" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/corpse/human/cargo_tech,
 /obj/structure/alien/weeds/creature,
+/obj/structure/alien/gelpod,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "zB" = (
@@ -2400,6 +2503,11 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
+"zF" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "zG" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
@@ -2452,12 +2560,14 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Ah" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 8
-	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/mob/living/basic/creature/hatchling,
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Aj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2472,7 +2582,9 @@
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Au" = (
@@ -2503,6 +2615,16 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"AQ" = (
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/item/ammo_casing/c45/spent,
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "AY" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 4
@@ -2530,6 +2652,9 @@
 	},
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 6
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
 "Bv" = (
@@ -2548,6 +2673,11 @@
 /obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
+"BH" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/public)
 "BJ" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/bot_white,
@@ -2555,11 +2685,6 @@
 /obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
-"BL" = (
-/obj/item/kirbyplants/organic/plant21,
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "BM" = (
 /obj/effect/decal/cleanable/blood/trails{
 	dir = 4
@@ -2605,12 +2730,17 @@
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "BZ" = (
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/public)
 "Cc" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/derelictoutpost/bar)
+"Cd" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
+/turf/open/floor/glass/reinforced,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "Cl" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 4
@@ -2707,15 +2837,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "Dc" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted{
+/obj/effect/turf_decal/siding/wideplating_new{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
-/turf/open/floor/iron/dark/corner{
-	dir = 4
-	},
-/area/ruin/space/has_grav/derelictoutpost/public)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "De" = (
 /obj/structure/cable,
 /obj/structure/closet/crate/mail/full,
@@ -2730,9 +2860,17 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"Ds" = (
+"Dr" = (
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"Ds" = (
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Dt" = (
@@ -2747,6 +2885,15 @@
 /obj/structure/chair/stool/bar/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/bar)
+"Dw" = (
+/obj/effect/decal/cleanable/blood/trails,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "DD" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/structure/cable,
@@ -2804,10 +2951,6 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
-"Ec" = (
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/white/herringbone,
-/area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "Ee" = (
 /obj/effect/turf_decal/stripes/white/full,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -2826,6 +2969,14 @@
 	dir = 4
 	},
 /turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
+"Eg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "El" = (
 /obj/structure/closet/crate/secure/loot,
@@ -2847,6 +2998,12 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"Ew" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/alien/weeds/creature,
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Ey" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
@@ -2857,6 +3014,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+"EG" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/dark/corner,
+/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "EH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/structure/alien/weeds/creature,
@@ -2898,14 +3060,9 @@
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/structure/alien/weeds/creature,
 /obj/structure/alien/gelpod,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
-"Fh" = (
-/obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/obj/structure/glowshroom/single,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Fo" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
@@ -2937,7 +3094,6 @@
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "FG" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/corpse/human/cargo_tech,
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/glass/reinforced,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
@@ -2953,6 +3109,7 @@
 	dir = 1
 	},
 /obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "FU" = (
@@ -2969,11 +3126,18 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Gf" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/corpse/human/cargo_tech,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/bot_white,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"Gg" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/alien/weeds/creature,
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "Gi" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -2988,29 +3152,38 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Gw" = (
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 8
-	},
-/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargohall)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "GD" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "GJ" = (
 /obj/effect/turf_decal/siding/thinplating_new{
-	dir = 4
+	dir = 8
 	},
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
 "GT" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"GX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "Hb" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -3042,6 +3215,9 @@
 /obj/structure/cable,
 /obj/structure/sign/departments/security/directional/north,
 /obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "Hp" = (
@@ -3076,11 +3252,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "HA" = (
-/obj/effect/mob_spawn/corpse/human/bartender{
-	outfit = /datum/outfit/job/bartender
-	},
 /obj/effect/decal/cleanable/blood,
 /obj/structure/alien/weeds/creature,
+/obj/structure/alien/gelpod,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/bar)
 "HN" = (
@@ -3166,6 +3340,9 @@
 "II" = (
 /obj/structure/chair,
 /obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "IO" = (
@@ -3201,7 +3378,11 @@
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "IZ" = (
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 1
+	},
+/obj/item/clothing/head/utility/hardhat,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Jb" = (
@@ -3263,6 +3444,12 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"Kc" = (
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Kf" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -3375,11 +3562,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Lg" = (
-/obj/item/clothing/head/utility/hardhat,
 /obj/structure/alien/weeds/creature,
 /obj/structure/alien/gelpod,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"Lk" = (
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/maints)
 "Lm" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/crate/internals,
@@ -3431,9 +3622,17 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "LC" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "LG" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
@@ -3454,10 +3653,13 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "LL" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/public)
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "LN" = (
 /obj/item/paper/crumpled/bloody/ruins/bigderelict1/newnotes/bridgeofficer{
 	pixel_y = -3
@@ -3488,14 +3690,6 @@
 /obj/structure/glowshroom/single,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
-"Ml" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
-	},
-/obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Mn" = (
 /obj/effect/turf_decal/tile/red/real_red/anticorner/contrasted,
 /obj/machinery/recharger,
@@ -3510,7 +3704,7 @@
 "Mv" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/gelpod,
+/obj/structure/glowshroom/single,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Mw" = (
@@ -3581,6 +3775,14 @@
 /obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
+"MP" = (
+/obj/effect/turf_decal/siding/thinplating_new/light,
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "MW" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 1
@@ -3593,13 +3795,14 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Ne" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/cable,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Nf" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
@@ -3638,12 +3841,18 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "No" = (
-/obj/effect/turf_decal/siding/wideplating_new{
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/mob/living/basic/creature/hatchling,
+/obj/effect/decal/cleanable/blood/trails{
 	dir = 4
 	},
-/obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Ns" = (
 /obj/structure/window/fulltile,
 /turf/open/floor/plating,
@@ -3657,8 +3866,14 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Ny" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron/dark/corner{
+	dir = 4
+	},
 /area/ruin/space/has_grav/derelictoutpost/public)
 "NC" = (
 /obj/structure/filingcabinet{
@@ -3692,12 +3907,16 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/control)
 "NV" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron/dark/small,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
+/mob/living/basic/creature/hatchling,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Od" = (
 /obj/structure/table/wood,
 /turf/open/floor/iron,
@@ -3742,6 +3961,15 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"Oq" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/mob/living/basic/creature/hatchling,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "Or" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters{
@@ -3766,6 +3994,13 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"OC" = (
+/obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "OJ" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -3781,13 +4016,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/maints)
-"OW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Pb" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/item/ammo_casing/c45/spent,
@@ -3857,10 +4085,21 @@
 /obj/structure/fluff/empty_sleeper,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
+"PE" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargohall)
 "PF" = (
 /obj/item/ammo_casing/shotgun/buckshot/spent,
 /obj/structure/alien/weeds/creature,
 /obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/bar)
 "PG" = (
@@ -3880,6 +4119,14 @@
 "PW" = (
 /turf/open/floor/glass/reinforced,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
+"Qa" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "Qb" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/vending/cola/blue{
@@ -3935,6 +4182,11 @@
 /obj/item/stack/spacecash/c10000,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/control)
+"QQ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/alien/weeds/creature,
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "QS" = (
 /obj/machinery/light_switch/directional/west,
 /obj/structure/alien/weeds/creature,
@@ -3998,6 +4250,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light/corner{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/white/herringbone,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "Rx" = (
@@ -4010,7 +4263,7 @@
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "Ry" = (
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "RC" = (
@@ -4052,13 +4305,12 @@
 /turf/closed/mineral/random,
 /area/ruin/space)
 "RO" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/obj/structure/alien/resin/membrane/creature,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "RP" = (
 /obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "RR" = (
@@ -4119,6 +4371,12 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"Sy" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/corpse/human/cargo_tech,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Sz" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/glass,
@@ -4129,6 +4387,12 @@
 /obj/structure/glowshroom/single,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"SA" = (
+/obj/effect/turf_decal/bot_white,
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "SG" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external/ruin{
@@ -4137,12 +4401,38 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+"SH" = (
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	icon_state = "wall_thermite";
+	name = "melted wall"
+	},
+/area/ruin/space/has_grav/derelictoutpost/bar)
+"SK" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "ST" = (
 /obj/structure/sign/warning/vacuum/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
+"SV" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"SW" = (
+/obj/structure/table,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Tc" = (
-/mob/living/basic/creature/hatchling,
+/obj/structure/alien/weeds/creature,
 /turf/open/floor/glass/reinforced,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Tf" = (
@@ -4188,6 +4478,14 @@
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"Tp" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Tu" = (
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/glass/reinforced,
@@ -4222,6 +4520,14 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
+"Uf" = (
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Ug" = (
 /obj/structure/extinguisher_cabinet/directional/south,
 /obj/structure/alien/weeds/creature,
@@ -4235,13 +4541,6 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
-"Uq" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "Us" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
@@ -4260,6 +4559,13 @@
 "Uy" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
+"Uz" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/turf_decal/siding/thinplating_new/dark,
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "UK" = (
 /obj/effect/turf_decal/tile/red/real_red/half/contrasted,
 /obj/structure/table/reinforced,
@@ -4272,6 +4578,10 @@
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"UP" = (
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron/white/herringbone,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "UU" = (
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -4290,8 +4600,11 @@
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
 "Vc" = (
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
+/turf/open/misc/asteroid,
+/area/ruin/space)
 "Vg" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -4326,17 +4639,21 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "VC" = (
-/obj/structure/dresser,
 /obj/structure/alien/weeds/creature,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
-"VG" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
 	},
-/mob/living/basic/creature/hatchling,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/derelictoutpost/staffhall)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/derelictoutpost/maints)
+"VG" = (
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/alien/weeds/creature,
+/obj/structure/glowshroom/single,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
 "VJ" = (
 /obj/effect/decal/cleanable/blood/trails{
 	dir = 1
@@ -4417,8 +4734,20 @@
 "WL" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/alien/weeds/creature,
+/obj/structure/alien/gelpod,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
+"WN" = (
+/obj/structure/alien/weeds/creature,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"WW" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/arrivals)
 "WX" = (
 /obj/structure/chair{
 	dir = 8
@@ -4433,6 +4762,9 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/structure/alien/weeds/creature,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Xf" = (
@@ -4484,7 +4816,7 @@
 	dir = 4
 	},
 /obj/structure/alien/weeds/creature,
-/obj/structure/alien/resin/wall/creature,
+/mob/living/basic/creature/hatchling,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "Xu" = (
@@ -4522,6 +4854,7 @@
 /obj/effect/decal/cleanable/blood/trails{
 	dir = 6
 	},
+/obj/structure/alien/resin/wall/creature,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "XL" = (
@@ -4549,10 +4882,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Yj" = (
+/obj/structure/dresser,
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "Yl" = (
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/bar)
@@ -4573,10 +4906,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Yz" = (
-/obj/structure/alien/weeds/creature,
 /obj/structure/alien/resin/wall/creature,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/public)
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "YE" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -4632,6 +4964,13 @@
 /obj/machinery/power/smes,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+"Zm" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/structure/alien/weeds/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "Zq" = (
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/effect/turf_decal/tile/brown{
@@ -4651,6 +4990,14 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
+"Zx" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4
+	},
+/obj/structure/alien/weeds/creature,
+/obj/structure/alien/resin/wall/creature,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "ZD" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -4661,13 +5008,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ZG" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
-	},
 /obj/structure/alien/weeds/creature,
-/obj/structure/glowshroom/single,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/space/has_grav/derelictoutpost/cafeteria)
 "ZI" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4697,19 +5040,10 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ZU" = (
-/obj/effect/decal/cleanable/blood/trails,
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/structure/alien/weeds/creature,
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
-"ZV" = (
-/obj/structure/alien/weeds/creature,
-/obj/structure/alien/gelpod,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "ZX" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/full,
@@ -4717,8 +5051,8 @@
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "ZY" = (
 /obj/structure/alien/resin/wall/creature,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/derelictoutpost/cafeteria)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/derelictoutpost/public)
 
 (1,1,1) = {"
 kU
@@ -5035,7 +5369,7 @@ MO
 qW
 MO
 Re
-GJ
+eP
 rU
 Rd
 wB
@@ -5082,12 +5416,12 @@ VW
 Tu
 Tu
 Tu
-fx
+Cd
 Tu
-fx
+Cd
 FG
 oI
-xJ
+LL
 rr
 jR
 Lv
@@ -5125,16 +5459,16 @@ Tu
 Km
 gQ
 VR
-Gw
+fV
 Kq
-Gw
+fV
 qs
-Gw
-dw
-Kq
+fV
+Oq
+GJ
 Bh
 pe
-uf
+fw
 yi
 jR
 Lv
@@ -5169,7 +5503,7 @@ LZ
 LZ
 vm
 Tu
-sD
+PE
 CM
 CM
 uh
@@ -5199,8 +5533,8 @@ Us
 Us
 qL
 dd
-Ah
-Ah
+oq
+oq
 OA
 Xl
 Us
@@ -5224,11 +5558,11 @@ sR
 oE
 Nj
 dZ
-Xs
+Zx
 eO
 kb
 eK
-fj
+Xs
 oE
 jR
 Lv
@@ -5246,33 +5580,33 @@ Xq
 Xq
 Xq
 Xq
-ZG
-No
-Ml
-No
+vw
+uy
+wZ
+uy
 Xq
 kc
 kc
 kc
 yN
-ao
+VG
 bO
 ox
 Pb
 Qz
 xe
 wy
-rD
+ya
 Nf
 CM
 ew
-wC
+ZU
 NC
 oE
 pI
 kh
 DR
-wZ
+An
 DR
 ba
 BJ
@@ -5294,7 +5628,7 @@ Aj
 pB
 pB
 pB
-bI
+Eg
 VS
 pB
 pB
@@ -5319,7 +5653,7 @@ oE
 eZ
 QC
 Jf
-An
+sD
 hX
 Lm
 KI
@@ -5349,7 +5683,7 @@ Sc
 Xf
 Xf
 kZ
-Gf
+Sy
 wJ
 Fv
 fi
@@ -5364,11 +5698,11 @@ uA
 fs
 oE
 BT
-Mv
+lL
 np
-wZ
+An
 dY
-RO
+Mv
 Qi
 oE
 jR
@@ -5413,7 +5747,7 @@ oE
 sE
 fL
 DR
-aV
+No
 sm
 CE
 th
@@ -5457,11 +5791,11 @@ xP
 jm
 hY
 oE
-Mv
+lL
 hX
 oZ
-wZ
-Mv
+LC
+lL
 jZ
 oG
 oE
@@ -5505,11 +5839,11 @@ De
 hN
 oE
 Lz
-RO
-CQ
-wZ
-mZ
 Mv
+CQ
+Ne
+mZ
+lL
 KQ
 oE
 jR
@@ -5538,7 +5872,7 @@ bU
 Oe
 Xf
 zH
-vb
+Dc
 KY
 Fv
 jH
@@ -5551,13 +5885,13 @@ nJ
 BP
 er
 oE
-nN
+wC
 lA
 Cr
 vk
 gI
 sN
-nN
+wC
 oE
 jR
 Lv
@@ -5586,7 +5920,7 @@ Xf
 Xf
 zH
 MW
-fW
+Gf
 fi
 jH
 jH
@@ -5596,7 +5930,7 @@ mo
 AI
 BP
 BP
-BL
+oK
 oE
 oE
 Ff
@@ -5631,10 +5965,10 @@ Bd
 Xf
 Xf
 kZ
-aw
-eE
-xK
-fW
+Ew
+AQ
+SA
+Gf
 JG
 AI
 bD
@@ -5673,9 +6007,9 @@ Hm
 AN
 Hm
 Hm
-OW
+rD
 BM
-OW
+rD
 Hm
 Hm
 Jb
@@ -5688,9 +6022,9 @@ jq
 HT
 Vh
 CM
-NV
-Ne
-VC
+Uz
+GX
+Yj
 CM
 Px
 TP
@@ -5722,7 +6056,7 @@ MH
 MH
 XL
 Xp
-ZU
+Dw
 lU
 zf
 BX
@@ -5736,7 +6070,7 @@ bC
 UU
 CM
 Ys
-ts
+gH
 ac
 CM
 Px
@@ -5779,11 +6113,11 @@ PG
 JC
 nP
 Zq
-Tc
+ea
 Ac
 CM
 Cy
-VG
+qe
 ex
 Ub
 IG
@@ -5826,7 +6160,7 @@ wk
 wk
 wk
 kY
-eP
+Tc
 nY
 CM
 Cx
@@ -5873,7 +6207,7 @@ qx
 Ig
 wk
 xL
-eP
+Tc
 lH
 CM
 aD
@@ -5920,7 +6254,7 @@ vF
 pi
 cI
 Dn
-eP
+Tc
 ZJ
 CM
 eu
@@ -5928,7 +6262,7 @@ IO
 sS
 CM
 Px
-pG
+MP
 TB
 CM
 jR
@@ -5975,7 +6309,7 @@ IO
 tQ
 CM
 Px
-pG
+sc
 zJ
 CM
 jR
@@ -6022,7 +6356,7 @@ Rs
 Rs
 Rs
 CM
-rr
+nN
 CM
 CM
 jR
@@ -6061,7 +6395,7 @@ vF
 Bv
 dC
 jN
-Ec
+UP
 ai
 wk
 RN
@@ -6069,8 +6403,8 @@ RN
 RN
 Lv
 td
-jR
-jR
+VC
+Lk
 jR
 jR
 Lv
@@ -6111,12 +6445,12 @@ zY
 AY
 zK
 sV
-rC
+pF
 RN
 RN
 Lv
 Lv
-Lv
+fx
 Lv
 Lv
 Lv
@@ -6158,12 +6492,12 @@ DD
 kI
 Xo
 sV
-rC
-rC
+ic
+vb
 RN
 RN
 RN
-rC
+Vc
 RN
 RN
 RN
@@ -6198,19 +6532,19 @@ rC
 wk
 VU
 CP
-iF
+gG
 To
 dC
 uY
 pU
 Rw
-sV
-rC
-rC
-rC
-rC
-rC
-rC
+dI
+Gg
+QQ
+SK
+vb
+vb
+Qa
 RN
 RN
 rC
@@ -6256,9 +6590,9 @@ RN
 RN
 RN
 RN
-rC
-rC
-rC
+xw
+ts
+RO
 rC
 rC
 rC
@@ -6303,7 +6637,7 @@ ne
 ne
 ne
 ne
-ne
+SH
 ne
 RN
 rC
@@ -6350,7 +6684,7 @@ Od
 IW
 ib
 bh
-Yl
+ao
 ne
 ne
 RN
@@ -6391,13 +6725,13 @@ pi
 cI
 uk
 Pv
-LL
+BZ
 Cc
 bT
 ib
 ib
 Cc
-Yl
+qA
 lo
 ne
 RN
@@ -6438,13 +6772,13 @@ Mn
 wk
 Hn
 lK
-Yz
+BH
 XN
 yh
 EZ
 Du
-fV
-qj
+di
+ao
 Xu
 ne
 RN
@@ -6489,8 +6823,8 @@ YJ
 yp
 XC
 hc
-vT
-oq
+om
+oj
 PF
 MA
 ne
@@ -6532,11 +6866,11 @@ AM
 Of
 mj
 uH
-Ny
+gc
 XN
 yh
 EU
-nU
+ro
 PH
 HA
 ee
@@ -6578,7 +6912,7 @@ wG
 aG
 IX
 dV
-LL
+BZ
 lK
 Cc
 gs
@@ -6618,8 +6952,8 @@ kU
 qf
 qf
 qf
-oK
-uy
+nU
+aw
 Uw
 wG
 gF
@@ -6673,12 +7007,12 @@ Pu
 VJ
 LG
 XD
-EY
+ZY
 CC
-Yj
+zF
 QS
-Vc
-Vc
+ZG
+ZG
 Uy
 Gr
 Gr
@@ -6722,10 +7056,10 @@ iC
 EY
 EY
 Jv
-Ry
-Vc
+xK
+ZG
 Xy
-gH
+Zm
 bg
 tH
 Gr
@@ -6769,9 +7103,9 @@ hK
 EY
 EY
 xR
-Vc
+ZG
 GT
-lL
+SW
 uw
 uw
 uw
@@ -6863,8 +7197,8 @@ de
 bE
 Ty
 Jv
-Uy
-IR
+Kc
+gz
 tH
 mz
 tH
@@ -6911,8 +7245,8 @@ EY
 yL
 Jv
 DG
-IR
-oj
+SV
+cv
 En
 En
 LJ
@@ -6950,15 +7284,15 @@ Ws
 wG
 gn
 gn
-Uq
+WW
 gF
 Of
 gv
 EY
-Ny
+gc
 Jv
 Uy
-Uy
+Ds
 RT
 RT
 WX
@@ -6997,19 +7331,19 @@ qf
 jd
 wG
 Uw
-uy
-dk
+aw
+EG
 bG
-Ny
-Ny
+gc
+gc
 Mh
 Jv
 Uy
-Vc
+OC
 II
-Ds
-pW
-Ds
+Ry
+RP
+Ry
 Gr
 RN
 RN
@@ -7044,17 +7378,17 @@ VB
 wS
 rk
 rk
-xX
+qj
 Ri
 Of
 bS
-LL
-Ny
-Yh
-Vc
-Ds
-Ry
 BZ
+gc
+Yh
+ZG
+Ry
+NV
+vA
 FR
 wd
 Gr
@@ -7098,13 +7432,13 @@ Lo
 EY
 EY
 Yh
-pW
-Ds
+RP
+Ry
 OB
-Ds
+Ry
 Oo
-cs
-ZY
+pW
+lC
 RN
 rC
 rC
@@ -7142,17 +7476,17 @@ gn
 gF
 vp
 Vn
-Ny
+gc
 EY
 xR
-Ds
+Ry
 kt
-Ds
-pW
-pW
+Ry
 RP
-pW
-qA
+RP
+Dr
+RP
+Yz
 rC
 kU
 kU
@@ -7188,19 +7522,19 @@ wG
 wG
 gF
 pV
-Dc
+Ny
 lK
 EY
 YT
-pW
-Fh
+RP
+Ah
 Lg
 qd
 Fz
-RP
-vA
-qA
-qA
+Gw
+Tp
+Yz
+Yz
 kU
 kU
 kU
@@ -7236,18 +7570,18 @@ wG
 gF
 bG
 Xx
-Ny
+gc
 EY
 Yh
-Ds
-II
-pW
-pW
-pW
-IZ
+Ry
+fW
 RP
-ro
-qA
+RP
+RP
+ps
+Dr
+WN
+Yz
 kU
 kU
 kU
@@ -7286,15 +7620,15 @@ Qb
 vc
 vB
 CC
-pW
-BZ
+RP
+iF
 cs
-pW
-lC
-pW
-gc
-ro
-qA
+RP
+aS
+RP
+rt
+WN
+Yz
 kU
 kU
 kU
@@ -7335,13 +7669,13 @@ GD
 Gr
 Gr
 Gr
-RP
-BZ
-LC
-RP
-ro
-qA
-qA
+Gw
+Uf
+IZ
+dw
+iH
+Yz
+Yz
 kU
 kU
 kU
@@ -7382,12 +7716,12 @@ rC
 RN
 RN
 RN
-qA
-qA
-qA
-ZV
-qA
-qA
+Yz
+Yz
+Yz
+vT
+Yz
+Yz
 kU
 kU
 kU
@@ -7431,9 +7765,9 @@ RN
 rC
 rC
 kU
-qA
-qA
-qA
+Yz
+Yz
+Yz
 kU
 kU
 kU
