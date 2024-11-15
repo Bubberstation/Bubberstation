@@ -151,7 +151,7 @@
 			if("No")
 				return
 			if("Maybe")
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 				audible_message(span_warning("The [src] buzzes!"))
 				return
 
@@ -1448,9 +1448,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	hoodtype = /obj/item/clothing/head/hooded/sigmarcoat
 	supports_variations_flags = NONE
 
-// Donation reward for Sonicgotnuked
+// Donation reward for The Sharkenning
 
-/obj/item/clothing/gloves/ring/hypno/nuke
+/obj/item/clothing/gloves/ring/hypno/sharkenning
 	name = "suspiciously glossy ring"
 	desc = "This ring oozes with an assertive edge as sharp light bends along the smooth, black bronze. Like the finger that wears it, an exceptional amount of polish repels nearly all the light that glances along its surface. If you look closer, a slight golden hue indicates the precious metals inside the alloy."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
@@ -1461,7 +1461,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	righthand_file = null
 	spans = list("glossy")
 
-/obj/item/clothing/ears/kinky_headphones/nuke
+/obj/item/clothing/ears/kinky_headphones/sharkenning
 	name = "suspiciously glossy headphones"
 	desc = "Black metalic headphones with a glossy finish. The soft rubber cushions are comftorable and form fitting"
 	icon_state = "kinkphones_black_off"

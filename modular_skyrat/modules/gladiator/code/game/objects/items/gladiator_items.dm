@@ -47,6 +47,7 @@
 	icon_state = "berk_suit"
 	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/berserker/gatsu
 	w_class = WEIGHT_CLASS_BULKY
 	armor_type = /datum/armor/berserker_gatsu
@@ -153,6 +154,17 @@
 	. = ..()
 	if(is_nemesis_faction)
 		force -= faction_bonus_force
+	if(lavaland_equipment_pressure_check(get_turf(user)))
+		force = initial(force)
+		wound_bonus = initial(wound_bonus)
+		armour_penetration = initial(armour_penetration)
+		block_chance = initial(block_chance)
+		return ..()
+	else
+		force = 18
+		wound_bonus = 8
+		armour_penetration = 15
+		block_chance = 10
 
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(user.IsImmobilized()) // no free dodgerolls
@@ -183,7 +195,7 @@
 /datum/status_effect/dodgeroll_iframes/proc/whiff()
 	SIGNAL_HANDLER
 	owner.balloon_alert_to_viewers("MISS!")
-	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	playsound(src, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return SUCCESSFUL_BLOCK
 
 /obj/item/claymore/dragonslayer/very_fucking_loud

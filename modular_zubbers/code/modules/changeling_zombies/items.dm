@@ -10,13 +10,13 @@
 	var/blood_chance = 100
 
 	var/static/list/attack_living_sounds = list(
-		'sound/hallucinations/growl1.ogg',
-		'sound/hallucinations/growl2.ogg',
-		'sound/hallucinations/growl3.ogg'
+		'sound/effects/hallucinations/growl1.ogg',
+		'sound/effects/hallucinations/growl2.ogg',
+		'sound/effects/hallucinations/growl3.ogg'
 	)
 
 	var/static/list/attack_inanimate_sounds = list(
-		'sound/hallucinations/wail.ogg',
+		'sound/effects/hallucinations/wail.ogg',
 	)
 
 	COOLDOWN_DECLARE(sound_cooldown)

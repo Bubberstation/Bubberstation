@@ -39,7 +39,7 @@
 /obj/structure/bloodsucker/attackby(obj/item/item, mob/living/user, params)
 	/// If a Bloodsucker tries to wrench it in place, yell at them.
 	if(item.tool_behaviour == TOOL_WRENCH && !anchored && IS_BLOODSUCKER(user))
-		user.playsound_local(null, 'sound/machines/buzz-sigh.ogg', 40, FALSE, pressure_affected = FALSE)
+		user.playsound_local(null, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE, pressure_affected = FALSE)
 		to_chat(user, span_announce("* Bloodsucker Tip: Examine Bloodsucker structures to understand how they function!"))
 		return
 	return ..()
@@ -66,7 +66,7 @@
 			return FALSE
 		switch(secure_response)
 			if("Yes")
-				user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
+				user.playsound_local(null, 'sound/items/tools/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 				bolt(user)
 				return FALSE
 		return FALSE
@@ -166,7 +166,7 @@
 		return
 	// Don't buckle Silicon to it please.
 	if(issilicon(living_target))
-		to_chat(user, span_danger("You realize that this machine cannot be ghoulized, therefore it is useless to buckle them."))
+		to_chat(user, span_danger("You realize that this machine cannot be ghouled, therefore it is useless to buckle them."))
 		return
 	if(do_after(user, 5 SECONDS, living_target))
 		attach_victim(living_target, user)
@@ -253,7 +253,7 @@
 		user_unbuckle_mob(buckled_carbons, user)
 		return
 	if(!bloodsuckerdatum.my_clan)
-		to_chat(user, span_warning("You can't ghoulize people until you enter a Clan (Through your Antagonist UI button)"))
+		to_chat(user, span_warning("You can't ghoul people until you enter a Clan (Through your Antagonist UI button)"))
 		user.balloon_alert(user, "join a clan first!")
 		return
 	var/datum/antagonist/ghoul/ghouldatum = IS_GHOUL(buckled_carbons)
@@ -262,7 +262,7 @@
 		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_GHOUL, ghouldatum)
 		return
 	if(bloodsuckerdatum.free_ghoul_slots() < 1)
-		to_chat(user, span_warning("You can't ghoulize more people until you level up more! You are currently at [bloodsuckerdatum.free_ghoul_slots()] active / [bloodsuckerdatum.max_ghouls()] max ghouls."))
+		to_chat(user, span_warning("You can't ghoul more people until you level up more! You are currently at [bloodsuckerdatum.free_ghoul_slots()] active / [bloodsuckerdatum.max_ghouls()] max ghouls."))
 		user.balloon_alert(user, "not enough ghoul slots!")
 		return
 
@@ -286,9 +286,9 @@
 			return FALSE
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
-	if(disloyalty_requires == GHOULIZATION_BANNED)
+	if(disloyalty_requires == GHOULING_BANNED)
 		if(target.ckey)
-			balloon_alert(user, "can't be ghoulized!")
+			balloon_alert(user, "can't be ghouled!")
 		else
 			balloon_alert(user, "target has no mind!")
 		return FALSE
@@ -399,7 +399,7 @@
 		if("Accept")
 			disloyalty_confirm = TRUE
 		else
-			target.balloon_alert_to_viewers("stares defiantly", "refused ghoulization!")
+			target.balloon_alert_to_viewers("stares defiantly", "refused ghouling!")
 	disloyalty_offered = FALSE
 	return TRUE
 
@@ -409,10 +409,10 @@
 #else
 	if(!target?.mind || !target?.client)
 #endif
-		return GHOULIZATION_BANNED
+		return GHOULING_BANNED
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		return GHOULIZATION_DISLOYAL
+		return GHOULING_DISLOYAL
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	return bloodsuckerdatum.AmValidAntag(target)
 
