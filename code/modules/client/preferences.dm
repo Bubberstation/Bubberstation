@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Lemon from the future: this issue appears to replicate if the byond map (what we're relaying here)
 		// Is shown while the client's mouse is on the screen. As soon as their mouse enters the main map, it's properly scaled
 		// I hate this place
-		addtimer(CALLBACK(character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body)), 1.5 SECONDS)
+		addtimer(CALLBACK(character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body)), 1 SECONDS)
 
 /datum/preferences/ui_state(mob/user)
 	return GLOB.always_state
@@ -429,8 +429,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /// A preview of a character for use in the preferences menu
 /atom/movable/screen/map_view/char_preview
-	bound_height = 96
-	bound_width = 96
 	name = "character_preview"
 
 	/// The body that is displayed
@@ -439,17 +437,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/preferences/preferences
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
+
+	// BUBBER EDIT ADDITION START: Better character preview: Rescales between 32x32, 64x64 and 96x96.
 	var/image/canvas
 	var/last_canvas_size
+	// BUBBER EDIT END
 
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
 /atom/movable/screen/map_view/char_preview/Destroy()
-	QDEL_NULL(body)
+	// BUBBER EDIT ADDITION START: Better character preview
 	canvas.cut_overlays()
 	QDEL_NULL(canvas)
+	// BUBBER EDIT END
+	QDEL_NULL(body)
 	preferences?.character_preview_view = null
 	preferences = null
 	return ..()
@@ -460,6 +463,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		create_body()
 	else
 		body.wipe_state()
+
+	// BUBBER STATION EDIT BEGIN: Better character preview
+	// appearance = preferences.render_new_preview_appearance(body, show_job_clothes) // ORIGINAL CODE
 
 	if (canvas)
 		canvas.cut_overlays()
@@ -494,13 +500,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	canvas.add_overlay(body.appearance)
 	appearance = canvas.appearance
+	// BUBBER EDIT END
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)
 
 	body = new
-	body.forceMove(src)
-	body.pixel_x = 32
 
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()

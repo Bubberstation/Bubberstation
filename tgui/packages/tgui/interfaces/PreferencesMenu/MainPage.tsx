@@ -98,17 +98,16 @@ const CharacterControls = (props: {
 
 const ChoicedSelection = (props: {
   name: string;
-  catalog: FeatureChoicedServerData & { supplemental_features?: string[] };
+  catalog: FeatureChoicedServerData & { supplemental_features?: string[] }; // BUBBER EDIT: Better prefs: ORIGINAL: catalog: FeatureChoicedServerData;
   selected: string;
-  // supplementalFeature?: string;
-  // supplementalValue?: unknown;
+  supplementalFeature?: string;
+  supplementalValue?: unknown;
   onClose: () => void;
   onSelect: (value: string) => void;
 }) => {
-  const { act, data } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>(); // BUBBER EDIT: Better prefs: Add data var
 
-  const { catalog /*supplementalFeature, supplementalValue*/ } = props;
-  const supplementalFeatures = catalog.supplemental_features;
+  const { catalog, supplementalFeature, supplementalValue } = props;
   const [getSearchText, searchTextSet] = useState('');
 
   if (!catalog.icons) {
@@ -169,21 +168,19 @@ const ChoicedSelection = (props: {
 
         {
           // BUBBER EDIT ADDITION: Better prefs: Make supplemental features display fully under the header
-          supplementalFeatures && (
+          catalog.supplemental_features && (
             <Stack.Item>
               <PreferenceList
                 act={act}
                 preferences={(() => {
                   // Lazy hack fraud method
-                  const thing: Record<string, unknown> = new Object() as Record<
-                    string,
-                    unknown
-                  >;
-                  supplementalFeatures.forEach((value) => {
-                    thing[value] =
+                  const supplementalsRecord: Record<string, unknown> =
+                    new Object() as Record<string, unknown>;
+                  catalog.supplemental_features.forEach((value) => {
+                    supplementalsRecord[value] =
                       data.character_preferences.supplemental_features[value];
                   });
-                  return thing;
+                  return supplementalsRecord;
                 })()}
                 randomizations={new Object() as Record<string, RandomSetting>}
                 maxHeight=""
@@ -232,7 +229,7 @@ const ChoicedSelection = (props: {
                             'centered-image',
                           ])}
                           style={{
-                            // BUBBERS EDIT ADDITION: Better prefs: Force the icon to fill the button, some sprites are kind of small.
+                            // BUBBER EDIT ADDITION: Better prefs: Force the icon to fill the button, some sprites are kind of small.
                             transform:
                               'translateX(-50%) translateY(-50%) scale(1.3)',
                           }}
@@ -353,6 +350,7 @@ const MainFeature = (props: {
           name={catalog.name}
           catalog={catalog}
           selected={currentValue}
+          // BUBBER EDIT REMOVAL: Better prefs: These aren't used anymore
           // supplementalFeature={supplementalFeature}
           // supplementalValue={
           //   supplementalFeature &&
@@ -749,7 +747,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                           key={clothingKey}
                           mt={0.5}
                           px={0.5}
-                          width={`${CLOTHING_CELL_SIZE}px`} // BUBBER EDIT ADDITION: Better prefs: This was somehow becoming 9.5rem??
+                          width={`${CLOTHING_CELL_SIZE}px`} // BUBBER EDIT ADDITION: Better prefs: width was somehow becoming 9.5rem??
                         >
                           <MainFeature
                             catalog={catalog}

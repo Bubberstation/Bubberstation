@@ -40,7 +40,7 @@
 
 /// For main feature preferences, this key refers to a feature considered supplemental.
 /// For instance, hair color being supplemental to hair.
-#define SUPPLEMENTAL_FEATURE_KEY "supplemental_features"
+#define SUPPLEMENTAL_FEATURE_KEY "supplemental_features" // BUBBER EDIT: Better prefs: plural because it's a list now
 
 /// An assoc list list of types to instantiated `/datum/preference` instances
 GLOBAL_LIST_INIT(preference_entries, init_preference_entries())
@@ -373,8 +373,6 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	/// this is the name of the feature that will be presented.
 	var/main_feature_name
 
-	var/list/supplemental_features
-
 	abstract_type = /datum/preference/choiced
 
 /// Returns a list of every possible value.
@@ -447,9 +445,6 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	if (!isnull(main_feature_name))
 		data["name"] = main_feature_name
-
-	if (supplemental_features)
-		data[SUPPLEMENTAL_FEATURE_KEY] = supplemental_features
 
 	return data
 

@@ -394,7 +394,7 @@ export const JobsPage = () => {
   return (
     <>
       <JoblessRoleDropdown />
-      <Stack vertical fill mt="3rem">
+      <Stack vertical fill>
         <Gap amount={22} />
 
         <Stack.Item>
@@ -444,9 +444,8 @@ export const JobsPage = () => {
                 <Gap amount={6} />
               </Department>
 
-              {/* // BUBBER EDIT: Better prefs: Original: <Department department="Medical"/> */}
+              {/* // BUBBER EDIT START: Better prefs: Original: <Department department="Medical"/> */}
               <Department department="Medical">
-                {/* BUBBER EDIT ADDITION START: Better prefs: Medical gap, add Assistant and Sillycones */}
                 <Gap amount={6} />
               </Department>
 
@@ -455,6 +454,7 @@ export const JobsPage = () => {
               </Department>
 
               <Department department="Assistant" />
+              {/* BUBBER EDIT END */}
             </Stack.Item>
           </Stack>
         </Stack.Item>
