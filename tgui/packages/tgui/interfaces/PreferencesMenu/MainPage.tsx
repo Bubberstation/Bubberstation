@@ -231,6 +231,11 @@ const ChoicedSelection = (props: {
                             image,
                             'centered-image',
                           ])}
+                          style={{
+                            // BUBBERS EDIT ADDITION: Better prefs: Force the icon to fill the button, some sprites are kind of small.
+                            transform:
+                              'translateX(-50%) translateY(-50%) scale(1.3)',
+                          }}
                         />
                       </Button>
                     </Flex.Item>
