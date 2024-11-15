@@ -12,6 +12,16 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /turf/open/floor/iron/white/herringbone,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"aj" = (
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/light,
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 10
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "am" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/cable,
@@ -596,6 +606,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "gD" = (
@@ -604,8 +615,9 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/obj/item/stack/sheet/mineral/sandbags,
 /obj/effect/mapping_helpers/apc/unlocked,
+/obj/structure/table/reinforced,
+/obj/item/gps/spaceruin,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "gF" = (
@@ -665,6 +677,14 @@
 "hj" = (
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 8
+	},
+/obj/structure/sign/directions/command/directional/west{
+	dir = 2;
+	pixel_y = -3
+	},
+/obj/structure/sign/directions/dorms/directional/west{
+	pixel_y = 3;
+	dir = 2
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
@@ -743,6 +763,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "hX" = (
@@ -874,6 +895,8 @@
 	},
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/all_access,
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "jG" = (
@@ -932,6 +955,9 @@
 	},
 /obj/effect/turf_decal/siding/thinplating_new/light/corner{
 	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/trails{
+	dir = 6
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
@@ -1074,7 +1100,9 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
-/obj/machinery/firealarm/directional/south,
+/obj/structure/sign/directions/evac/directional/south{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "lK" = (
@@ -1256,6 +1284,8 @@
 	dir = 1
 	},
 /obj/structure/alien/weeds/node,
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/all_access,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "oj" = (
@@ -1347,6 +1377,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Cryogenics"
 	},
+/obj/effect/decal/cleanable/blood/trails,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "pe" = (
@@ -1541,6 +1572,7 @@
 "rn" = (
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
 /obj/machinery/light/directional/east,
+/obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "ro" = (
@@ -1719,6 +1751,7 @@
 	dir = 4
 	},
 /obj/structure/alien/weeds/node,
+/obj/structure/sign/departments/maint/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargohall)
 "td" = (
@@ -1769,6 +1802,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"ua" = (
+/obj/structure/sign/departments/cargo/directional/south,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "uh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
@@ -1960,6 +1997,7 @@
 /obj/effect/turf_decal/trimline/yellow/corner{
 	dir = 4
 	},
+/obj/structure/sign/warning/engine_safety/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "wy" = (
@@ -2076,8 +2114,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/structure/sign/departments/security/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "xM" = (
@@ -2112,6 +2149,10 @@
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+"ye" = (
+/obj/structure/sign/departments/cargo/directional/south,
+/turf/template_noop,
+/area/template_noop)
 "yf" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -2120,6 +2161,7 @@
 	dir = 1
 	},
 /mob/living/basic/alien,
+/obj/structure/sign/departments/engineering/directional/west,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "yh" = (
@@ -2259,6 +2301,13 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"zJ" = (
+/obj/structure/fluff/empty_sleeper{
+	dir = 1
+	},
+/obj/structure/sign/departments/maint/directional/east,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "zK" = (
 /obj/effect/turf_decal/siding/thinplating_new/light/corner{
 	dir = 4
@@ -2282,6 +2331,9 @@
 	},
 /obj/effect/mob_spawn/corpse/human/cargo_tech,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/sign/directions/engineering/directional/south{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "Ah" = (
@@ -2368,6 +2420,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/sign/departments/maint/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "BJ" = (
@@ -2432,6 +2485,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/blood/trails,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "Co" = (
@@ -2837,6 +2891,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/xenoblood/xgibs/up,
+/obj/structure/sign/departments/security/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/public)
 "Hp" = (
@@ -2867,6 +2922,7 @@
 "Hv" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
+/obj/structure/sign/clock/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "HA" = (
@@ -2951,6 +3007,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/securityoffice)
+"IG" = (
+/obj/structure/fluff/empty_sleeper/bloodied,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/derelictoutpost/staffhall)
 "II" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -3036,6 +3096,7 @@
 "JG" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light/directional/south,
+/obj/structure/sign/departments/cargo/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "JZ" = (
@@ -3307,10 +3368,6 @@
 	pixel_x = 7
 	},
 /obj/structure/sign/warning/vacuum/directional/west,
-/obj/item/paper/crumpled/bloody/ruins/bigderelict1/newnotes/coward{
-	pixel_x = 7;
-	pixel_y = -2
-	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "Mz" = (
@@ -3345,6 +3402,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "MN" = (
+/obj/item/paper/crumpled/bloody/ruins/bigderelict1/newnotes/coward,
 /obj/item/pen{
 	pixel_x = -8;
 	pixel_y = 10
@@ -4152,6 +4210,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/arrivals)
 "Wx" = (
+/obj/effect/decal/cleanable/blood/trails,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "WL" = (
@@ -4293,6 +4352,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
+/obj/structure/sign/calendar/directional/north,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/derelictoutpost/staffhall)
 "Yv" = (
@@ -4394,6 +4454,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light/directional/south,
 /obj/structure/alien/resin/wall,
+/obj/structure/sign/departments/cargo/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ZI" = (
@@ -4409,6 +4470,7 @@
 	},
 /obj/machinery/light/directional/south,
 /mob/living/basic/alien,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ZR" = (
@@ -4905,7 +4967,7 @@ rC
 kU
 "}
 (11,1,1) = {"
-rC
+ua
 yS
 Yf
 vV
@@ -5469,7 +5531,7 @@ kU
 kU
 "}
 (23,1,1) = {"
-kU
+ye
 yS
 dr
 Sh
@@ -5500,8 +5562,8 @@ Cy
 IO
 ex
 Ub
-Px
-TP
+IG
+aj
 zC
 CM
 jR
@@ -5690,7 +5752,7 @@ tQ
 CM
 Px
 pG
-zC
+zJ
 CM
 jR
 Lv
