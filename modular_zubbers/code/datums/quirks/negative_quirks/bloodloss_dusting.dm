@@ -16,7 +16,7 @@
 		return
 	if(source.blood_volume < BLOOD_VOLUME_SURVIVE)
 		to_chat(quirk_holder, span_danger("You ran out of blood!"))
-		quirk_holder.investigate_log("has been dusted by a lack of blood (quirk_holder).", INVESTIGATE_DEATHS)
+		quirk_holder.investigate_log("has been dusted by a lack of blood. Caused by [src.name] quirk", INVESTIGATE_DEATHS)
 		quirk_holder.dust()
 
 /datum/quirk/bloodloss_dusting/remove()
