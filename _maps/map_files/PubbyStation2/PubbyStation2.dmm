@@ -15483,18 +15483,18 @@
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "bkQ" = (
-/obj/machinery/vending/snack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
-"bkR" = (
-/obj/machinery/light/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/light/directional/north,
 /obj/machinery/camera/autoname/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
+"bkR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/closet/firecloset,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bkS" = (
@@ -25503,6 +25503,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/service/library)
+"chz" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "chA" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
@@ -29471,6 +29478,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/research)
+"duG" = (
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/hallway/secondary/entry)
 "duQ" = (
 /obj/machinery/camera/directional/south{
 	c_tag = "Departure Lounge Aft"
@@ -40933,6 +40949,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
+"nFR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "nFT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53613,6 +53636,14 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
+"xtW" = (
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock";
+	space_dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/station/hallway/secondary/entry)
 "xud" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Bay"
@@ -72754,8 +72785,8 @@ rDK
 rDK
 rDK
 rDK
-rDK
-rDK
+aZx
+aZx
 aZx
 aZx
 aZx
@@ -73011,9 +73042,9 @@ rDK
 rDK
 rDK
 rDK
-rDK
-rDK
-aZx
+xtW
+xeP
+duG
 bop
 bon
 aZx
@@ -73269,9 +73300,9 @@ rDK
 rDK
 rDK
 aZx
-aZx
-aZx
-wmY
+hXW
+hXW
+ntG
 pVS
 aZx
 rDK
@@ -73525,9 +73556,9 @@ rDK
 rDK
 rDK
 rDK
-bbQ
-xeP
-bdV
+aZx
+chz
+bbR
 wmY
 bon
 aZx
@@ -73783,9 +73814,9 @@ rDK
 rDK
 rDK
 aZx
-hXW
-hXW
-ntG
+nFR
+bop
+wmY
 uib
 aZx
 rDK
@@ -74039,9 +74070,9 @@ rDK
 rDK
 rDK
 rDK
-aZx
+hXW
 bkQ
-bbR
+bop
 wmY
 bon
 aZx
@@ -74296,7 +74327,7 @@ rDK
 rDK
 rDK
 rDK
-hXW
+aZx
 bkR
 bop
 rCg
