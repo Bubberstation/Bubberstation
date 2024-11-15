@@ -812,7 +812,8 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                     </PageButton>
                   </Stack.Item>
                 </Stack>
-                <Stack fill vertical>
+                {/* BUBBER EDIT: Better prefs: Use 92% height as a workaround for prefs being improperly scrollable */}
+                <Stack /*fill*/ vertical height="92%">
                   <Stack.Divider />
                   {prefPageContents}
                 </Stack>
