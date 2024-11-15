@@ -21,6 +21,7 @@ import {
   Species,
 } from './data';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
+import { BubberSpeciesPageInner } from './bubber/BubberSpeciesInner';
 
 const FOOD_ICONS = {
   [Food.Bugs]: 'bug',
@@ -123,7 +124,8 @@ const FoodList = (props: {
   );
 };
 
-const Diet = (props: { diet: Species['diet'] }) => {
+export const Diet = (props: { diet: Species['diet'] }) => {
+  // BUBBER EDIT: Export
   if (!props.diet) {
     return null;
   }
@@ -193,7 +195,8 @@ const SpeciesPerk = (props: { className: string; perk: Perk }) => {
   );
 };
 
-const SpeciesPerks = (props: { perks: Species['perks'] }) => {
+export const SpeciesPerks = (props: { perks: Species['perks'] }) => {
+  // BUBBER EDIT: Export
   const { positive, negative, neutral } = props.perks;
 
   return (
@@ -271,16 +274,10 @@ const SpeciesPageInner = (props: {
           <Stack.Item>
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {species.map(([speciesKey, species]) => {
-                // SKYRAT EDIT START - Veteran-only species
-                let speciesPage = (
+                return (
                   <Button
                     key={speciesKey}
-                    onClick={() => {
-                      if (species.veteran_only && !data.is_veteran) {
-                        return;
-                      }
-                      setSpecies(speciesKey);
-                    }}
+                    onClick={() => setSpecies(speciesKey)}
                     selected={
                       data.character_preferences.misc.species === speciesKey
                     }
@@ -297,16 +294,6 @@ const SpeciesPageInner = (props: {
                     />
                   </Button>
                 );
-                if (species.veteran_only && !data.is_veteran) {
-                  let tooltipContent =
-                    species.name +
-                    ' - You need to be a veteran to select this race, apply today!';
-                  speciesPage = (
-                    <Tooltip content={tooltipContent}>{speciesPage}</Tooltip>
-                  );
-                }
-                return speciesPage;
-                // SKYRAT EDIT END
               })}
             </Box>
           </Stack.Item>
@@ -326,24 +313,8 @@ const SpeciesPageInner = (props: {
                         )
                       }
                     >
-                      {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
-                      <Section
-                        title="Description"
-                        maxHeight="14vh"
-                        overflowY="auto"
-                      >
-                        {/* SKYRAT EDIT CHANGE END */}
-                        {currentSpecies.desc.map((text, index) => (
-                          <Box key={index} maxWidth="100%">
-                            {text}
-                            {index !== currentSpecies.desc.length - 1 && (
-                              <>
-                                <br />
-                                <br />
-                              </>
-                            )}
-                          </Box>
-                        ))}
+                      <Section title="Description">
+                        {currentSpecies.desc}
                       </Section>
 
                       <Section title="Features">
@@ -363,12 +334,18 @@ const SpeciesPageInner = (props: {
 
               <Box mt={1}>
                 <Section title="Lore">
-                  <BlockQuote /* SKYRAT EDIT START - scrollable lore */
-                    overflowY="auto"
-                    maxHeight="45vh"
-                    mr={-1} /* SKYRAT EDIT END */
-                  >
-                    {currentSpecies.desc}
+                  <BlockQuote>
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
                   </BlockQuote>
                 </Section>
               </Box>
@@ -386,7 +363,7 @@ export const SpeciesPage = (props: { closeSpecies: () => void }) => {
       render={(serverData) => {
         if (serverData) {
           return (
-            <SpeciesPageInner
+            <BubberSpeciesPageInner // BUBBER EDIT: Use bubber species page instead
               handleClose={props.closeSpecies}
               species={serverData.species}
             />
