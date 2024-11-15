@@ -12,4 +12,4 @@
 
 /obj/item/paper/crumpled/bloody/ruins/bigderelict1/newnotes/bridgeofficer
 	name = "officer's last note"
-	default_raw_text = "Fucking imbeciles, they sent us some odd specimen for storage until it is shipped off, but we barely even got it off the ship before someone fucked up. Hell, nobody noticed the thing until it was already too late, our security detail wasn't prepared to deal with it, and now it has gotten even worse. While I'm still breathing, I might as well steal the tradepost's funds. Fuck, I'm bleeding heavily, whoever finds thi--"
+	default_raw_text = "Fucking imbeciles, they sent us some odd specimen for storage until it is shipped off, but we barely even got it off the ship before someone fucked up. Hell, nobody noticed the thing until it was already too late, our security detail wasn't prepared as they got ambushed, and now it has gotten even worse. Whoever finds thi--"
