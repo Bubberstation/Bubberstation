@@ -11,7 +11,7 @@
 	should_generate_icons = TRUE
 
 	var/default_accessory_name = SPRITE_ACCESSORY_NONE
-	/// The global list containing the sprite accessories to use. Can be set to a string to override the key used to get the sprite accessories.
+	/// The global list containing the sprite accessories to use.
 	var/list/sprite_accessory
 	/// Direction to render the preview on. Can take NORTH, SOUTH, EAST, WEST.
 	var/sprite_direction = SOUTH
@@ -39,10 +39,7 @@
 			"[key]_emissive",
 		)
 
-	if (!main_feature_name)
-		main_feature_name = full_capitalize(replacetext(key, "_", " "))
-
-	sprite_accessory = SSaccessories.sprite_accessories[sprite_accessory ? sprite_accessory : relevant_mutant_bodypart]
+	sprite_accessory = SSaccessories.sprite_accessories[relevant_mutant_bodypart]
 
 /datum/preference/choiced/mutant/create_default_value()
 	return default_accessory_name
