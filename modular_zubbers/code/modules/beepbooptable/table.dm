@@ -3,23 +3,24 @@
 /obj/structure/table/optable/proc/ekg(mob/living/carbon/patient)
 	var/most_severe
 	if(!patient)
+		most_severe = TRUE
 		return
 	if(patient.stat >= HARD_CRIT)
-		playsound(src, 'modular_zubbers/sound/machines/operating_table/flatline.ogg', 20)
+		playsound(computer, 'modular_zubbers/sound/machines/operating_table/flatline.ogg', 5)
 		most_severe = TRUE
 	if(patient.stat == SOFT_CRIT || BLOOD_VOLUME_SURVIVE > patient.blood_volume || organ_fatal_test(patient) && !most_severe)
-		playsound(src, pick('modular_zubbers/sound/machines/operating_table/ekg_alert.ogg', 'modular_zubbers/sound/machines/operating_table/flatline.ogg'), 40)
+		playsound(computer, pick('modular_zubbers/sound/machines/operating_table/ekg_alert.ogg', 'modular_zubbers/sound/machines/operating_table/flatline.ogg'), 5)
 		most_severe = TRUE
 	for(var/datum/wound/wound in patient.all_wounds && !most_severe)
 		if(wound.severity >= WOUND_SEVERITY_MODERATE)
-			playsound(src, 'modular_zubbers/sound/machines/operating_table/quiet_double_beep.ogg', 40)
+			playsound(computer, 'modular_zubbers/sound/machines/operating_table/quiet_double_beep.ogg', 5)
 			most_severe = TRUE
 			break
 	if(patient.health <= patient.maxHealth && !most_severe)
-		playsound(src, 'modular_zubbers/sound/machines/operating_table/quiet_beep.ogg', 40)
+		playsound(computer, 'modular_zubbers/sound/machines/operating_table/quiet_beep.ogg', 5)
 
-	if(patient)
-		addtimer(CALLBACK(src, .proc/ekg, patient), 2 SECONDS) // SFX length
+	if(patient && patient.loc == src.loc)
+		addtimer(CALLBACK(src, .proc/ekg, patient), 2 SECONDS, TIMER_OVERRIDE) // SFX length
 
 
 /obj/structure/table/optable/proc/organ_fatal_test(mob/living/carbon/patient)
