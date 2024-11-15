@@ -38,6 +38,7 @@
 
 /datum/preference/choiced/mutant/synth_antenna
 	savefile_key = "feature_ipc_antenna"
+	main_feature_name = "IPC Antenna"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
 	supplemental_features = list("ipc_antenna_color", "ipc_antenna_emissive")
 	crop_area = list(11, 22, 21, 32) // We want just the head.
