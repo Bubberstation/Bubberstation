@@ -31,7 +31,6 @@
 /datum/preference/emissive_toggle/ipc_screen_emissive
 	savefile_key = "ipc_screen_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
-	check_mode = TRICOLOR_CHECK_ACCESSORY
 	type_to_check = /datum/preference/choiced/mutant/ipc_screen
 
 /// IPC Antennas
