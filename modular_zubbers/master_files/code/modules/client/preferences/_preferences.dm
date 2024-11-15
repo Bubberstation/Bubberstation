@@ -3,7 +3,7 @@
 	var/list/supplemental_features
 
 /datum/preference/choiced/compile_constant_data()
-	data = ..()
+	var/list/data = ..()
 
 	if (supplemental_features)
 		data[SUPPLEMENTAL_FEATURE_KEY] = supplemental_features
