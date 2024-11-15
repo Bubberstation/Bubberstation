@@ -502,9 +502,9 @@ export const feature_ipc_screen: Feature<string> = {
   },
 };
 
-export const ipc_screen_color: Feature<string> = {
+export const ipc_screen_color: Feature<string[]> = {
   name: 'IPC Screen Greyscale Color',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
 
 export const ipc_screen_emissive: Feature<boolean> = {
@@ -548,11 +548,11 @@ export const feature_ipc_chassis: Feature<string> = {
   },
 };
 
-export const ipc_chassis_color: Feature<string> = {
+export const ipc_chassis_color: Feature<string[]> = {
   name: 'Synth Chassis Colors',
   description:
     'Only works for Synths and chassis that support greyscale coloring.',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
 
 export const feature_ipc_head: Feature<string> = {
@@ -565,9 +565,9 @@ export const feature_ipc_head: Feature<string> = {
   },
 };
 
-export const ipc_head_color: Feature<string> = {
+export const ipc_head_color: Feature<string[]> = {
   name: 'Synth Head Colors',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
 
 export const feature_hair_opacity_toggle: Feature<boolean> = {
