@@ -25,6 +25,9 @@
 
 	var/type_to_check
 
+	// Automagically add a human sprite for the part to render over?
+	var/use_human_base = TRUE
+
 /datum/preference/choiced/mutant/New()
 	. = ..()
 
@@ -132,6 +135,11 @@
 	if(!sprite_accessory.icon_state || sprite_accessory.name == SPRITE_ACCESSORY_NONE)
 		return icon('icons/mob/landmarks.dmi', "x")
 
+	var/static/icon/human_icon
+	if (isnull(human_icon))
+		human_icon = icon('icons/mob/human/human.dmi', "human_basic")
+		human_icon.Blend(skintone2hex("caucasian1"), ICON_MULTIPLY)
+
 	var/list/icon_states_to_use = list()
 
 	if(sprite_accessory.color_src == USE_MATRIXED_COLORS)
@@ -140,27 +148,42 @@
 	else
 		icon_states_to_use += generate_icon_state(sprite_accessory, sprite_accessory.icon_state)
 
-	var/icon/icon_to_return = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 	var/color = sanitize_hexcolor(greyscale_color)
+	var/icon/base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
+	if (icon_states_to_use.len)
+		// Hate.
+		var/icon/i_need_just_your_size_fuck = icon(sprite_accessory.icon, icon_states_to_use[1], sprite_direction, 1)
+		base.Scale(i_need_just_your_size_fuck.Width(), i_need_just_your_size_fuck.Height())
+	if (!base || base.Width() < 32) // Fucking sprite accessory bullshit
+		base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
+
+
+	var/human_body_offset = round((base.Width()/2) - 15)
+	if (use_human_base)
+		base.Blend(icon(human_icon, "human_basic", sprite_direction, 1), ICON_OVERLAY, human_body_offset, 1)
 
 	for(var/icon_state in icon_states_to_use)
-		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, dir, 1)
+		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, sprite_direction, 1)
 
-		if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
-			icon_to_process.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
-		else if(crop_area)
-			stack_trace("Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!")
-
-		icon_to_process.Scale(32, 32)
-
-		if(greyscale_color && sprite_accessory.color_src) // I intentionally use greyscale_color here.
-			// Turns out I ended up making this perfect. Welp.
+		if(greyscale_color && sprite_accessory.color_src)
 			icon_to_process.Blend(color, ICON_MULTIPLY)
 			color = "#[darken_color(darken_color(copytext(color, 2)))]" // Darken colour for the next layer to be able to tell it apart. YES, I KNOW THIS IS CURSED, BUT I DON'T WANT TO THINK ABOUT CHARACTER CODES - Rimi
 
-		icon_to_return.Blend(icon_to_process, ICON_OVERLAY)
+		// THIS DOESN'T WORK. HI WINGS, YOU SUCK.
+		// if (sprite_accessory.center)
+		// 	center_blend_icon(base, icon_to_process, sprite_accessory.dimension_x, sprite_accessory.dimension_y)
+		// else if (istype(sprite_accessory, /datum/sprite_accessory/wings))
+		// 	base.Blend(icon_to_process, ICON_OVERLAY, human_body_offset) // Fucking wings.
+		// else
+		base.Blend(icon_to_process, ICON_OVERLAY)
 
-	return icon_to_return
+	if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
+		base.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
+	else if(crop_area)
+		stack_trace("Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!")
+	base.Scale(32, 32)
+
+	return icon(base, base.IconStates()[1], sprite_direction, 1) // :sob: I fucking tried, but that FUCKING MONKEY TAIL AND THE FUCKING WINGS, I DON'T UNDERSTAND WHY THE ABOVE CODE DOESN'T FUCKING STOP IT, BUT IT LETS MULTIPLE DIRECTIONS LEAK WITHOUT THIS STEP
 
 /datum/preference/choiced/mutant/icon_for(value)
 	return generate_icon(sprite_accessory[value], sprite_direction)

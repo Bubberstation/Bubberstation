@@ -8,6 +8,7 @@
 	crop_area = list(11, 22, 21, 32) // We want just the head.
 	greyscale_color = DEFAULT_SYNTH_SCREEN_COLOR
 	supplemental_features = list("ipc_screen_color")
+	use_human_base = FALSE
 
 /datum/preference/choiced/mutant/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
@@ -68,6 +69,7 @@
 	crop_area = list(8, 8, 24, 24) // We want just the body.
 	greyscale_color = DEFAULT_SYNTH_PART_COLOR
 	supplemental_features = list("ipc_chassis_color")
+	use_human_base = FALSE
 
 /datum/preference/choiced/mutant/synth_chassis/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	// If this isn't the right type, we have much bigger problems.
@@ -93,6 +95,7 @@
 	crop_area = list(11, 22, 21, 32) // We want just the head.
 	greyscale_color = DEFAULT_SYNTH_PART_COLOR
 	supplemental_features = list("ipc_head_color")
+	use_human_base = FALSE
 
 /datum/preference/choiced/mutant/synth_head/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	// If this isn't the right type, we have much bigger problems.

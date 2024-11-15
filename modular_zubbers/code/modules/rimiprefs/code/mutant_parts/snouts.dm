@@ -7,6 +7,7 @@
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 	sprite_direction = EAST
+	greyscale_color = COLOR_DARK_BROWN
 	crop_area = list(14, 22, 24, 32) // We want just the head.
 
 /datum/preference/choiced/mutant/snout/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)

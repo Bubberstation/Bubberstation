@@ -6,6 +6,7 @@
 	savefile_key = "feature_horns"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
+	greyscale_color = COLOR_DARK_BROWN
 	crop_area = list(11, 22, 21, 32) // We want just the head area.
 
 /datum/preference/choiced/mutant/horns/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)

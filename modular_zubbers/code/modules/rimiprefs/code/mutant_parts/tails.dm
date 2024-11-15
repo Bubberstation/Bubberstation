@@ -9,8 +9,8 @@
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	sprite_direction = NORTH
-	greyscale_color = COLOR_VIBRANT_LIME
-	crop_area = list(1, 1, 20, 20) // We want just the lower+mid left legs+torso area.
+	greyscale_color = COLOR_DARK_BROWN
+	// crop_area = list(5, 5, 28, 28) // We'd *ideally* take part of the sprite, but mammal tails will be... mammal tails. - Rimi
 
 /datum/preference/choiced/mutant/tail/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
 	if (icon_exists(sprite_accessory.icon, "m_snout_[original_icon_state]_ADJ[suffix]"))

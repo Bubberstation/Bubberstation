@@ -23,3 +23,24 @@
 				break
 
 	return new_color
+
+/proc/center_blend_icon(icon/target, icon/source, x_dimension, y_dimension)
+	if(!x_dimension || !y_dimension)
+		return
+
+	if((x_dimension == ICON_SIZE_X) && (y_dimension == ICON_SIZE_Y))
+		return
+
+	//Offset the image so that its bottom left corner is shifted this many pixels
+	//This makes it infinitely easier to draw larger inhands/images larger than world.iconsize
+	//but still use them in game
+	var/x_offset = -((x_dimension / ICON_SIZE_X) - 1) * (ICON_SIZE_X * 0.5)
+	var/y_offset = -((y_dimension / ICON_SIZE_Y) - 1) * (ICON_SIZE_Y * 0.5)
+
+	//Correct values under icon_size
+	if(x_dimension < ICON_SIZE_X)
+		x_offset *= -1
+	if(y_dimension < ICON_SIZE_Y)
+		y_offset *= -1
+
+	target.Blend(source, ICON_OVERLAY, x_offset, y_offset)

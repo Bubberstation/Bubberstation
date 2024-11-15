@@ -6,6 +6,7 @@
 	savefile_key = "feature_ears"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
+	greyscale_color = COLOR_DARK_BROWN
 	crop_area = list(11, 22, 21, 32) // We want just the head area.
 
 /datum/preference/choiced/mutant/ears/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
