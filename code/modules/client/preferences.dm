@@ -402,15 +402,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/value = read_preference(preference.type)
 		var/data = preference.compile_ui_data(user, value)
 
-		// BUBBER EDIT START: Better prefs
-		var/preference_category = preference.get_category()
-
-		LAZYINITLIST(preferences[preference_category])
-		preferences[preference_category][preference.savefile_key] = data
-
-		// LAZYINITLIST(preferences[preference.category]) // ORIGINAL CODE
-		// preferences[preference.category][preference.savefile_key] = data
-		// BUBBER EDIT END
+		LAZYINITLIST(preferences[preference.category])
+		preferences[preference.category][preference.savefile_key] = data
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/list/append_character_preferences = preference_middleware.get_character_preferences(user)

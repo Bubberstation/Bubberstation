@@ -80,9 +80,9 @@
 	return TRUE
 
 /datum/preference/mutant_color/synth_chassis
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "ipc_chassis_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_CHASSIS
+	type_to_check = /datum/preference/choiced/mutant/synth_chassis
 
 /// IPC Head
 
@@ -105,6 +105,6 @@
 	return TRUE
 
 /datum/preference/mutant_color/synth_head
-	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "ipc_head_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_HEAD
+	type_to_check = /datum/preference/choiced/mutant/synth_head
