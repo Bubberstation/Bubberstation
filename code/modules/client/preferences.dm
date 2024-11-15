@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Lemon from the future: this issue appears to replicate if the byond map (what we're relaying here)
 		// Is shown while the client's mouse is on the screen. As soon as their mouse enters the main map, it's properly scaled
 		// I hate this place
-		addtimer(CALLBACK(character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body)), 1 SECONDS)
+		addtimer(CALLBACK(character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body)), 2 SECONDS)
 
 /datum/preferences/ui_state(mob/user)
 	return GLOB.always_state
@@ -439,6 +439,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/preferences/preferences
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
+	var/image/canvas
+	var/last_canvas_size
 
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
 	. = ..()
@@ -446,6 +448,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /atom/movable/screen/map_view/char_preview/Destroy()
 	QDEL_NULL(body)
+	canvas.cut_overlays()
+	QDEL_NULL(canvas)
 	preferences?.character_preview_view = null
 	preferences = null
 	return ..()
@@ -457,7 +461,39 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		body.wipe_state()
 
+	if (canvas)
+		canvas.cut_overlays()
+
 	preferences.render_new_preview_appearance(body, show_job_clothes)
+
+	var/canvas_size = 0
+
+	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+		if (preferences.all_quirks.Find("Oversized"))
+			canvas_size = 2
+		else
+			canvas_size = 1
+	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
+		canvas_size = 1
+	else if (preferences.all_quirks.Find("Oversized"))
+		canvas_size = 1
+
+	if (last_canvas_size != canvas_size)
+		QDEL_NULL(canvas)
+		if (!canvas_size)
+			body.pixel_x = 0
+			canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = "blank_template")
+		else if (canvas_size == 1)
+			body.pixel_x = 16
+			canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = "blank_template")
+		else
+			body.pixel_x = 32
+			canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = "blank_template")
+
+	last_canvas_size = canvas_size
+
+	canvas.add_overlay(body.appearance)
+	appearance = canvas.appearance
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)
@@ -465,8 +501,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	body = new
 	body.forceMove(src)
 	body.pixel_x = 32
-	body.update_gravity(STANDARD_GRAVITY)
-	vis_contents += body
 
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()
