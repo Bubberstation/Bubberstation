@@ -50,13 +50,24 @@ export const BubberSpeciesPageInner = (props: {
 
   return (
     <Stack vertical fill>
-      <Stack.Item align="center" fontSize="1.2em">
-        <Button
-          icon="check"
-          onClick={() => setSpecies(previewedSpecies)}
-          children="Apply Species"
-          style={{ padding: '5px' }}
-        />
+      <Stack.Item>
+        <Stack width="100%">
+          <Stack.Item>
+            <Button
+              icon="arrow-left"
+              onClick={props.handleClose}
+              content="Go Back"
+            />
+          </Stack.Item>
+          <Stack.Item ml="auto" mr="auto" fontSize="1.2em">
+            <Button
+              icon="check"
+              onClick={() => setSpecies(previewedSpecies)}
+              children="Apply Species"
+              style={{ padding: '5px' }}
+            />
+          </Stack.Item>
+        </Stack>
       </Stack.Item>
       <Stack.Item grow>
         <Stack fill>
@@ -134,12 +145,12 @@ export const BubberSpeciesPageInner = (props: {
                     </Section>
                   </Stack.Item>
 
-                  {/* <Stack.Item width="30%"> // BUBBER EDIT REMOVAL
+                  <Stack.Item width="30%">
                     <CharacterPreview
                       id={data.character_preview_view}
                       height="100%"
                     />
-                  </Stack.Item> */}
+                  </Stack.Item>
                 </Stack>
               </Box>
 
