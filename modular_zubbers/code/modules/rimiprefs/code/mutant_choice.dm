@@ -18,18 +18,17 @@
 	/// A list of types to exclude, including their subtypes.
 	var/list/accessories_to_ignore
 
-	/// A list of the four co-ordinates to crop to, if `generate_icons` is enabled. Useful for icons whose main contents are smaller than 32x32. Please keep it square. (x1, y1, x2, y2)
-	var/list/crop_area
 	/// A color to apply to the icon if it's greyscale, and `generate_icons` is enabled.
 	var/greyscale_color
 
 	var/type_to_check
 
-	// Automagically add a human sprite for the part to render over?
-	var/use_human_base = TRUE
+	var/static/datum/bodypart_overlay/overlay_for_procs
 
 /datum/preference/choiced/mutant/New()
 	. = ..()
+	if (!overlay_for_procs)
+		overlay_for_procs = new()
 
 	var/key = replacetext(savefile_key, "feature_", "")
 	// Lazy coder's joy
@@ -124,26 +123,36 @@
 	return data
 
 /// Allows for dynamic assigning of icon states.
-/datum/preference/choiced/mutant/proc/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
-	return "[original_icon_state][suffix]"
+/// Can be a list or text.
+/datum/preference/choiced/mutant/proc/generate_icon_states(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+	return "m_[relevant_mutant_bodypart]_[original_icon_state]_$layer[suffix]"
 
 /// Generates and allows for post-processing on icons, such as greyscaling and cropping.
 /datum/preference/choiced/mutant/proc/generate_icon(datum/sprite_accessory/sprite_accessory, dir = SOUTH)
 	if(!sprite_accessory.icon_state || sprite_accessory.name == SPRITE_ACCESSORY_NONE)
 		return icon('icons/mob/landmarks.dmi', "x")
 
-	var/static/icon/human_icon
-	if (isnull(human_icon))
-		human_icon = icon('icons/mob/human/human.dmi', "human_basic")
-		human_icon.Blend(skintone2hex("caucasian1"), ICON_MULTIPLY)
+	var/icon/human_icon = sprite_accessory.get_base_preview_icon()
 
-	var/list/icon_states_to_use = list()
+	var/list/icon_state_templates_to_use = list()
 
 	if(sprite_accessory.color_src == USE_MATRIXED_COLORS)
 		for(var/index in sprite_accessory.color_layer_names)
-			icon_states_to_use += generate_icon_state(sprite_accessory, sprite_accessory.icon_state, "_[sprite_accessory.color_layer_names[index]]")
+			icon_state_templates_to_use += generate_icon_states(sprite_accessory, sprite_accessory.icon_state, "_[sprite_accessory.color_layer_names[index]]")
 	else
-		icon_states_to_use += generate_icon_state(sprite_accessory, sprite_accessory.icon_state)
+		icon_state_templates_to_use += generate_icon_states(sprite_accessory, sprite_accessory.icon_state)
+
+	var/list/icon_states_to_use = list()
+	var/list/behind_icon_states_to_use = list()
+
+
+	if (BODY_BEHIND_LAYER in sprite_accessory.relevent_layers)
+		for (var/state in icon_state_templates_to_use)
+			behind_icon_states_to_use += replacetext(state, "$layer", "BEHIND")
+	for (var/layer in (sprite_accessory.relevent_layers - BODY_BEHIND_LAYER))
+		var/explosive = overlay_for_procs.mutant_bodyparts_layertext(layer)
+		for(var/state in icon_state_templates_to_use)
+			icon_states_to_use += replacetext(state, "$layer", explosive)
 
 	var/color = sanitize_hexcolor(greyscale_color)
 	var/icon/base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
@@ -156,8 +165,24 @@
 
 
 	var/human_body_offset = round((base.Width()/2) - 15)
-	if (use_human_base)
-		base.Blend(icon(human_icon, "human_basic", sprite_direction, 1), ICON_OVERLAY, human_body_offset, 1)
+
+	for(var/icon_state in behind_icon_states_to_use)
+		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, sprite_direction, 1)
+
+		if(greyscale_color && sprite_accessory.color_src)
+			icon_to_process.Blend(color, ICON_MULTIPLY)
+			color = "#[darken_color(darken_color(copytext(color, 2)))]" // Darken colour for the next layer to be able to tell it apart. YES, I KNOW THIS IS CURSED, BUT I DON'T WANT TO THINK ABOUT CHARACTER CODES - Rimi
+
+		// THIS DOESN'T WORK. HI WINGS, YOU SUCK.
+		// if (sprite_accessory.center)
+		// 	center_blend_icon(base, icon_to_process, sprite_accessory.dimension_x, sprite_accessory.dimension_y)
+		// else if (istype(sprite_accessory, /datum/sprite_accessory/wings))
+		// 	base.Blend(icon_to_process, ICON_OVERLAY, human_body_offset) // Fucking wings.
+		// else
+		base.Blend(icon_to_process, ICON_OVERLAY)
+
+	if (human_icon)
+		base.Blend(human_icon, ICON_OVERLAY, human_body_offset, 1)
 
 	for(var/icon_state in icon_states_to_use)
 		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, sprite_direction, 1)
@@ -174,10 +199,11 @@
 		// else
 		base.Blend(icon_to_process, ICON_OVERLAY)
 
+	var/list/crop_area = sprite_accessory.crop_area
 	if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
 		base.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
 	else if(crop_area)
-		stack_trace("Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!")
+		stack_trace("Invalid crop paramater! The provided crop area list for [sprite_accessory.type] is not four entries long, or is not a list!")
 	base.Scale(32, 32)
 
 	return icon(base, base.IconStates()[1], sprite_direction, 1) // :sob: I fucking tried, but that FUCKING MONKEY TAIL AND THE FUCKING WINGS, I DON'T UNDERSTAND WHY THE ABOVE CODE DOESN'T FUCKING STOP IT, BUT IT LETS MULTIPLE DIRECTIONS LEAK WITHOUT THIS STEP
