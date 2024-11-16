@@ -104,10 +104,8 @@
 			spawn_cloud(pos, smoke_range)
 	if(moan_chance > 0)
 		if(prob(moan_chance))
-			//playsound(hit_mob, pick('modular_skyrat/master_files/sound/effects/lungbust_moan1.ogg','modular_skyrat/master_files/sound/effects/lungbust_moan2.ogg', 'modular_skyrat/master_files/sound/effects/lungbust_moan3.ogg'), 50, TRUE) //BUBBER EDIT: STOP MAKING THIS GOD AWFUL SOUND
 			hit_mob.emote("moan")
 		else
-			//playsound(hit_mob, pick('modular_skyrat/master_files/sound/effects/lungbust_cough1.ogg','modular_skyrat/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE) //BUBBER EDIT: STOP MAKING THIS GOD AWFUL SOUND
 			hit_mob.emote("cough")
 	if(bong_hits <= 0)
 		balloon_alert(hit_mob, "out of uses!")

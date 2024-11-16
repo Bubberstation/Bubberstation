@@ -89,19 +89,6 @@
 /datum/preference/toggle/erp/sex_toy_sounds
 	savefile_key = "sextoy_sounds_pref"
 
-/* BUBBER REMOVAL START
-/datum/preference/toggle/erp/vore_pred
-	savefile_key = "vore_pred_pref"
-
-/datum/preference/toggle/erp/vore_prey
-	savefile_key = "vore_prey_pref
-BUBBER REMOVAL END */
-
-// BUBBER EDIT START: ERP HYPNO PREF 2.0
-/datum/preference/toggle/erp/hypnosis
-	savefile_key = "hypnosis_pref"
-// BUBBER EDIT END: ERP HYPNO PREF 2.0
-
 /datum/preference/toggle/erp/bimbofication
 	savefile_key = "bimbofication_pref"
 
