@@ -8,7 +8,7 @@
 
 		var/supplementals_failed = FALSE
 		var/list/data = preference.compile_constant_data()
-		if (!data || !isnull(data[SUPPLEMENTAL_FEATURE_KEY]) || !islist(data[SUPPLEMENTAL_FEATURE_KEY]))
+		if (data && !isnull(data[SUPPLEMENTAL_FEATURE_KEY]) && !islist(data[SUPPLEMENTAL_FEATURE_KEY]))
 			TEST_FAIL("[preference.type] : Supplemental feature list isn't actually a list!")
 			supplementals_failed = TRUE
 
