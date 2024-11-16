@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "snout"
 
 /datum/preference/choiced/mutant/snout
+	main_feature_name = "Snout"
 	savefile_key = "feature_snout"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout

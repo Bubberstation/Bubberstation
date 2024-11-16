@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "spines"
 
 /datum/preference/choiced/mutant/spines
+	main_feature_name = "Spines"
 	savefile_key = "feature_spines"
 	relevant_mutant_bodypart = "spines"
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines

@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "taur"
 
 /datum/preference/choiced/mutant/taur
+	main_feature_name = "Taur Body"
 	savefile_key = "feature_taur"
 	relevant_mutant_bodypart = "taur"
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur

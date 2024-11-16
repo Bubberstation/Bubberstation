@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "skrell_hair"
 
 /datum/preference/choiced/mutant/skrell_hair
+	main_feature_name = "Skrell Hair"
 	savefile_key = "feature_skrell_hair"
 	relevant_mutant_bodypart = "skrell_hair"
 	type_to_check = /datum/preference/toggle/mutant_toggle/skrell_hair

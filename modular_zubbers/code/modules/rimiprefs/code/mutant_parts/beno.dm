@@ -27,6 +27,7 @@
 	relevant_mutant_bodypart = "xenohead"
 
 /datum/preference/choiced/mutant/xenohead
+	main_feature_name = "Xeno Head"
 	savefile_key = "feature_xenohead"
 	relevant_mutant_bodypart = "xenohead"
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenohead

@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "moth_antennae"
 
 /datum/preference/choiced/mutant/moth_antennae
+	main_feature_name = "Moth Antennae"
 	savefile_key = "feature_moth_antennae"
 	relevant_mutant_bodypart = "moth_antennae"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_antennae

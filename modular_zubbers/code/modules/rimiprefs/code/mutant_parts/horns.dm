@@ -3,6 +3,7 @@
 	relevant_mutant_bodypart = "horns"
 
 /datum/preference/choiced/mutant/horns
+	main_feature_name = "Horns"
 	savefile_key = "feature_horns"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns

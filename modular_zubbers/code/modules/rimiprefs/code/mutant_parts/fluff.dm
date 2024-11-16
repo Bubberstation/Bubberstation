@@ -8,6 +8,7 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/fluff
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	should_generate_icons = FALSE
+	supplemental_features = null
 
 /datum/preference/mutant_color/fluff
 	savefile_key = "fluff_color"
