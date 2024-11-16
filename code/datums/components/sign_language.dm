@@ -238,7 +238,7 @@
 	return SPELL_INVOCATION_ALWAYS_SUCCEED
 
 /// Signal proc for [COMSIG_LIVING_TREAT_MESSAGE]
-/// Changes our message based on conditions that limit or alter our ability to communicate 
+/// Changes our message based on conditions that limit or alter our ability to communicate
 /datum/component/sign_language/proc/on_treat_living_message(atom/movable/source, list/message_args)
 	SIGNAL_HANDLER
 
@@ -332,7 +332,7 @@
 #undef SIGN_HANDS_FULL
 #undef SIGN_ARMLESS
 #undef SIGN_ARMS_DISABLED
-#undef SIGN_TRAIT_BLOCKED
+// #undef SIGN_TRAIT_BLOCKED BUBBER CHANGE used in modular_zubbers/code/datums/components/sign_language.dm
 #undef SIGN_HANDS_COMPLETELY_RESTRAINED
 #undef SIGN_SLOWLY_FROM_CUFFS
 #undef TONE_NEUTRAL
