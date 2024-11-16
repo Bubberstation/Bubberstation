@@ -4,10 +4,10 @@
 /datum/sprite_accessory/synth_chassis/get_base_preview_icon()
 	return
 
-/datum/sprite_accessory/synth_chassis
+/datum/sprite_accessory/synth_head
 	crop_area = list(11, 22, 21, 32) // We want just the head.
 
-/datum/sprite_accessory/synth_chassis/get_base_preview_icon()
+/datum/sprite_accessory/synth_head/get_base_preview_icon()
 	return
 
 /datum/sprite_accessory/antenna

@@ -133,6 +133,7 @@
 		return icon('icons/mob/landmarks.dmi', "x")
 
 	var/icon/human_icon = sprite_accessory.get_base_preview_icon()
+	human_icon = icon(human_icon, human_icon.IconStates()[1], sprite_direction, 1)
 
 	var/list/icon_state_templates_to_use = list()
 
@@ -145,16 +146,24 @@
 	var/list/icon_states_to_use = list()
 	var/list/behind_icon_states_to_use = list()
 
-
+	var/color
 	if (BODY_BEHIND_LAYER in sprite_accessory.relevent_layers)
+		color = sanitize_hexcolor(greyscale_color)
 		for (var/state in icon_state_templates_to_use)
-			behind_icon_states_to_use += replacetext(state, "$layer", "BEHIND")
+			state = replacetext(state, "$layer", "BEHIND")
+			if (icon_exists(sprite_accessory.icon, state))
+				behind_icon_states_to_use[state] = color
+			color = "#[darken_color(darken_color(copytext(color, 2)))]"
+
 	for (var/layer in (sprite_accessory.relevent_layers - BODY_BEHIND_LAYER))
+		color = sanitize_hexcolor(greyscale_color)
 		var/explosive = overlay_for_procs.mutant_bodyparts_layertext(layer)
 		for(var/state in icon_state_templates_to_use)
-			icon_states_to_use += replacetext(state, "$layer", explosive)
+			state = replacetext(state, "$layer", explosive)
+			if (icon_exists(sprite_accessory.icon, state))
+				icon_states_to_use[state] = color
+			color = "#[darken_color(darken_color(copytext(color, 2)))]"
 
-	var/color = sanitize_hexcolor(greyscale_color)
 	var/icon/base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 	if (icon_states_to_use.len)
 		// Hate.
@@ -163,15 +172,13 @@
 	if (!base || base.Width() < 32) // Fucking sprite accessory bullshit
 		base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 
-
 	var/human_body_offset = round((base.Width()/2) - 15)
 
 	for(var/icon_state in behind_icon_states_to_use)
 		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, sprite_direction, 1)
 
 		if(greyscale_color && sprite_accessory.color_src)
-			icon_to_process.Blend(color, ICON_MULTIPLY)
-			color = "#[darken_color(darken_color(copytext(color, 2)))]" // Darken colour for the next layer to be able to tell it apart. YES, I KNOW THIS IS CURSED, BUT I DON'T WANT TO THINK ABOUT CHARACTER CODES - Rimi
+			icon_to_process.Blend(behind_icon_states_to_use[icon_state], ICON_MULTIPLY)
 
 		// THIS DOESN'T WORK. HI WINGS, YOU SUCK.
 		// if (sprite_accessory.center)
@@ -188,8 +195,7 @@
 		var/icon/icon_to_process = icon(sprite_accessory.icon, icon_state, sprite_direction, 1)
 
 		if(greyscale_color && sprite_accessory.color_src)
-			icon_to_process.Blend(color, ICON_MULTIPLY)
-			color = "#[darken_color(darken_color(copytext(color, 2)))]" // Darken colour for the next layer to be able to tell it apart. YES, I KNOW THIS IS CURSED, BUT I DON'T WANT TO THINK ABOUT CHARACTER CODES - Rimi
+			icon_to_process.Blend(icon_states_to_use[icon_state], ICON_MULTIPLY)
 
 		// THIS DOESN'T WORK. HI WINGS, YOU SUCK.
 		// if (sprite_accessory.center)
