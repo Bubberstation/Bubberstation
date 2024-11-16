@@ -1,3 +1,5 @@
+// Note: Please stop adding stuff to one monolithic file. Please create a new one or use a relevant one in the folder for your sprite accessories.
+
 /datum/sprite_accessory/hair/hyenamane
 	name = "Hyena Mane"
 	icon_state = "hair_hyenamane"

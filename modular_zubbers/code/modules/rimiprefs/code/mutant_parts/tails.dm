@@ -13,12 +13,6 @@
 	greyscale_color = COLOR_DARK_BROWN
 	// crop_area = list(5, 5, 28, 28) // We'd *ideally* take part of the sprite, but mammal tails will be... mammal tails. - Rimi
 
-/datum/preference/choiced/mutant/tail/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
-	if (icon_exists(sprite_accessory.icon, "m_snout_[original_icon_state]_ADJ[suffix]"))
-		return "m_tail_[original_icon_state]_ADJ[suffix]"
-
-	return "m_tail_[original_icon_state]_FRONT[suffix]"
-
 /datum/preference/mutant_color/tail
 	savefile_key = "tail_color"
 	relevant_mutant_bodypart = "tail"

@@ -13,7 +13,7 @@
 	should_generate_icons =  FALSE // YOU FUCKERS BREAK IN TWO DIFFERENT WAYS. I'M AT MY WIT'S END. FUCK YOU. - Rimi
 
 // Dead code. If you want to try making wings work, be my guest. You will lose hours to this bullshit.
-/datum/preference/choiced/mutant/wings/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+/datum/preference/choiced/mutant/wings/generate_icon_states(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
 	if(icon_exists(sprite_accessory.icon, "m_wingsopen_[original_icon_state]_FRONT[suffix]"))
 		return "m_wingsopen_[original_icon_state]_FRONT[suffix]"
 

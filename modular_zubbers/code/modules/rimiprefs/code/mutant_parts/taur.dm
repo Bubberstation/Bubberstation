@@ -9,9 +9,8 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/taur
 	greyscale_color = COLOR_DARK_BROWN
 	sprite_direction = EAST
-	crop_area = list(1, 1, 42, 42)
 
-/datum/preference/choiced/mutant/taur/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
+/datum/preference/choiced/mutant/taur/generate_icon_states(datum/sprite_accessory/sprite_accessory, original_icon_state, suffix)
 	if(icon_exists(sprite_accessory.icon, "m_taur_[original_icon_state]_ADJ[suffix]"))
 		return "m_taur_[original_icon_state]_ADJ[suffix]"
 
