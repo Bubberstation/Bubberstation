@@ -1,7 +1,7 @@
 /datum/unit_test/bubber/ensure_pref_sanity
 
 /datum/unit_test/bubber/ensure_pref_sanity/Run()
-	var/mob/living/carbon/human/human = allocate(mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human/consistent)
 
 	for (var/datum/preference/preference as anything in GLOB.preference_entries)
 		preference = GLOB.preference_entries[preference]
