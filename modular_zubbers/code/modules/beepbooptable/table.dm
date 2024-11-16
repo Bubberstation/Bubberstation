@@ -19,8 +19,8 @@
 	if(patient.health <= patient.maxHealth && !most_severe)
 		playsound(computer, 'modular_zubbers/sound/machines/operating_table/quiet_beep.ogg', 5, ignore_walls = FALSE,  extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
-	if(patient && patient.loc == src.loc)
-		addtimer(CALLBACK(src, .proc/ekg, patient), 2 SECONDS, TIMER_OVERRIDE) // SFX length
+	if(patient && patient.loc == src.loc && !computer.muted)
+		addtimer(CALLBACK(src, .proc/ekg, patient), 2 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE) // SFX length
 
 
 /obj/structure/table/optable/proc/organ_fatal_test(mob/living/carbon/patient)
@@ -33,3 +33,14 @@
 		return fatal_liver
 	if(fatal_lungs.organ_flags & ORGAN_FAILING)
 		return fatal_lungs
+
+/obj/machinery/computer/operating/
+	var/muted = FALSE
+
+/obj/machinery/computer/operating/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+
+	switch(action)
+		if("mute")
+			muted = TRUE
+	return TRUE
