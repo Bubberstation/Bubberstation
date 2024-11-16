@@ -35,12 +35,10 @@
 		ViewManifest()
 		return
 
-	//BUBBER EDIT ADDITION BEGIN: ADDS CHARACTER DIRECTORY TO LOBBY
 	if(href_list["character_directory"])
 		play_lobby_button_sound()
 		client.show_character_directory()
 		return
-	//BUBBER EDIT ADDITION END
 
 	if(href_list["toggle_antag"])
 		play_lobby_button_sound()
@@ -67,7 +65,6 @@
 
 	if(href_list["toggle_ready"])
 		play_lobby_button_sound()
-		//BUBBER EDIT BEGIN: SILICON FLAVOR TEXT
 		if(CONFIG_GET(flag/min_flavor_text))
 			var/datum/preferences/preferences = client.prefs
 			var/uses_silicon_flavortext = (is_silicon_job(preferences?.get_highest_priority_job()) && length_char(client?.prefs?.read_preference(/datum/preference/text/silicon_flavor_text)) < CONFIG_GET(number/silicon_flavor_text_character_requirement))
@@ -78,7 +75,6 @@
 			if(uses_normal_flavortext)
 				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
 				return
-		//BUBBER EDIT END: SILICON FLAVOR TEXT
 
 		ready = !ready
 		client << output(ready, "title_browser:toggle_ready")
