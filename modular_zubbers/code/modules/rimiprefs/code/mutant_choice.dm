@@ -133,7 +133,8 @@
 		return icon('icons/mob/landmarks.dmi', "x")
 
 	var/icon/human_icon = sprite_accessory.get_base_preview_icon()
-	human_icon = icon(human_icon, human_icon.IconStates()[1], sprite_direction, 1)
+	if (human_icon)
+		human_icon = icon(human_icon, human_icon.IconStates()[1], sprite_direction, 1)
 
 	var/list/icon_state_templates_to_use = list()
 
