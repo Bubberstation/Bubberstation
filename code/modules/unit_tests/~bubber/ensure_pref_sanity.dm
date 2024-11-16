@@ -1,7 +1,7 @@
 /datum/unit_test/bubber/ensure_pref_sanity
 
 /datum/unit_test/bubber/ensure_pref_sanity/Run()
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human/consistent)
+	var/mob/living/carbon/human/human = allocate(mob/living/carbon/human/consistent)
 
 	for (var/datum/preference/preference as anything in GLOB.preference_entries)
 		preference = GLOB.preference_entries[preference]
@@ -23,19 +23,19 @@
 		if (istype(preference, /datum/preference/emissive_toggle))
 			emissive_checks(preference, supplementals_failed)
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/color_checks(/datum/preference/mutant_color/mutant, supplementals_failed)
+/datum/unit_test/bubber/ensure_pref_sanity/proc/color_checks(datum/preference/mutant_color/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
 		if(choice.category == PREFERENCE_CATEGORY_FEATURES && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/emissive_checks(/datum/preference/emissive_toggle/mutant, supplementals_failed)
+/datum/unit_test/bubber/ensure_pref_sanity/proc/emissive_checks(datum/preference/emissive_toggle/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
 		if(choice.category == PREFERENCE_CATEGORY_FEATURES && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/mutant_checks(/datum/preference/choiced/mutant/mutant, supplementals_failed)
+/datum/unit_test/bubber/ensure_pref_sanity/proc/mutant_checks(datum/preference/choiced/mutant/mutant, supplementals_failed)
 	if (mutant.should_generate_icons && !mutant.main_feature_name)
 		TEST_FAIL("[mutant.type] : Missing a main feature name!")
 
