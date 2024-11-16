@@ -55,12 +55,16 @@ with open(file_reference, 'r') as file:
             break
         elif not reading:
             continue
-        # SKYRAT EDIT START - Modular unit tests
+        # BUBBER EDIT START - Modular unit tests
         elif line == "// SKYRAT EDIT START":
             continue
         elif line == "// SKYRAT EDIT END":
             continue
-        # SKYRAT EDIT END
+        elif line == "// BUBBER EDIT START":
+            continue
+        elif line == "// BUBBER EDIT END":
+            continue
+        # BUBBER EDIT END
 
         lines.append(line)
 
