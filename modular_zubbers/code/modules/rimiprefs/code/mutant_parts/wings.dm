@@ -9,7 +9,7 @@
 	greyscale_color = COLOR_AMETHYST
 	sprite_direction = NORTH
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	supplemental_features = null
+	supplemental_features = list()
 	should_generate_icons =  FALSE // YOU FUCKERS BREAK IN TWO DIFFERENT WAYS. I'M AT MY WIT'S END. FUCK YOU. - Rimi
 
 // Dead code. If you want to try making wings work, be my guest. You will lose hours to this bullshit.

@@ -183,6 +183,8 @@
 	return icon(base, base.IconStates()[1], sprite_direction, 1) // :sob: I fucking tried, but that FUCKING MONKEY TAIL AND THE FUCKING WINGS, I DON'T UNDERSTAND WHY THE ABOVE CODE DOESN'T FUCKING STOP IT, BUT IT LETS MULTIPLE DIRECTIONS LEAK WITHOUT THIS STEP
 
 /datum/preference/choiced/mutant/icon_for(value)
+	if (!should_generate_icons)
+		CRASH("Tried to generate a mutant icon for [type], even though should_generate_icons = FALSE!")
 	return generate_icon(sprite_accessory[value], sprite_direction)
 
 #undef REQUIRED_CROP_LIST_SIZE
