@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from '../../components';
 import { CharacterPreview } from '../common/CharacterPreview';
+import { BubberSpeciesPageInner } from './bubber/BubberSpeciesInner';
 import {
   createSetPreference,
   Food,
@@ -21,7 +22,6 @@ import {
   Species,
 } from './data';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
-import { BubberSpeciesPageInner } from './bubber/BubberSpeciesInner';
 
 const FOOD_ICONS = {
   [Food.Bugs]: 'bug',

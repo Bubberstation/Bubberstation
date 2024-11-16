@@ -2,6 +2,8 @@
 // It's not worth it, just make a new file, man. - Rimi
 
 import { classes } from 'common/react';
+import { useState } from 'react';
+
 import { useBackend } from '../../../backend';
 import {
   BlockQuote,
@@ -11,14 +13,13 @@ import {
   Stack,
   Tooltip,
 } from '../../../components';
+import { CharacterPreview } from '../../CharacterPreview';
 import {
+  createSetPreference,
   PreferencesMenuData,
   ServerData,
   Species,
-  createSetPreference,
 } from '../data';
-import { CharacterPreview } from '../../CharacterPreview';
-import { useState } from 'react';
 import { Diet, SpeciesPerks } from '../SpeciesPage';
 
 export const BubberSpeciesPageInner = (props: {
@@ -63,9 +64,10 @@ export const BubberSpeciesPageInner = (props: {
             <Button
               icon="check"
               onClick={() => setSpecies(previewedSpecies)}
-              children="Apply Species"
               style={{ padding: '5px' }}
-            />
+            >
+              Apply Species
+            </Button>
           </Stack.Item>
         </Stack>
       </Stack.Item>
