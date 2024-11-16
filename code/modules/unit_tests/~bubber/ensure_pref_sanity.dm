@@ -1,8 +1,6 @@
 /datum/unit_test/bubber/ensure_pref_sanity
 
 /datum/unit_test/bubber/ensure_pref_sanity/Run()
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human/consistent)
-
 	for (var/datum/preference/preference as anything in GLOB.preference_entries)
 		preference = GLOB.preference_entries[preference]
 		if (preference.abstract_type == preference.type) // You're safe... for now.
@@ -26,13 +24,13 @@
 /datum/unit_test/bubber/ensure_pref_sanity/proc/color_checks(datum/preference/mutant_color/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
-		if(choice.category == PREFERENCE_CATEGORY_FEATURES && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
+		if((choice.category == PREFERENCE_CATEGORY_FEATURES || choice.category == PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE) && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
 /datum/unit_test/bubber/ensure_pref_sanity/proc/emissive_checks(datum/preference/emissive_toggle/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
-		if(choice.category == PREFERENCE_CATEGORY_FEATURES && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
+		if((choice.category == PREFERENCE_CATEGORY_FEATURES || choice.category == PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE) && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
 /datum/unit_test/bubber/ensure_pref_sanity/proc/mutant_checks(datum/preference/choiced/mutant/mutant, supplementals_failed)
@@ -40,7 +38,7 @@
 		TEST_FAIL("[mutant.type] : Missing a main feature name!")
 
 	if(supplementals_failed)
-		continue // Supplementals format is wrong, so don't bother trying to test them
+		return // Supplementals format is wrong, so don't bother trying to test them
 
 	for (var/supplemental_feature in mutant.supplemental_features)
 		var/datum/preference/found_pref = GLOB.preference_entries_by_key[supplemental_feature]
