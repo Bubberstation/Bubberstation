@@ -449,7 +449,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /atom/movable/screen/map_view/char_preview/Destroy()
 	// BUBBER EDIT ADDITION START: Better character preview
-	canvas.cut_overlays()
+	canvas?.cut_overlays()
 	QDEL_NULL(canvas)
 	// BUBBER EDIT END
 	QDEL_NULL(body)
