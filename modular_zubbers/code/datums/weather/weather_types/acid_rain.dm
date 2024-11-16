@@ -26,13 +26,6 @@
 
 	barometer_predictable = FALSE
 
-/datum/weather/acid_rain/weather_act(mob/living/living)
-	var/resist = living.getarmor(null, "acid")
-	if(prob(max(0,100-resist)))
-		living.acid_act(90, 10)
-	living.adjustFireLoss(4)
-
-
 // since acid rain is on a station z level, add extra checks to not annoy everyone
 /datum/weather/acid_rain/can_get_alert(mob/player)
 	if(!..())
@@ -63,3 +56,93 @@
 	perpetual = TRUE
 
 	probability = 0
+
+/// Copied from sand_storm.dm to get the acid rain to work properly. Surely there's a better way to do this.
+/datum/weather/acid_rain/generate_overlay_cache()
+	// We're ending, so no overlays at all
+	if(stage == END_STAGE)
+		return list()
+
+	var/weather_state = ""
+	switch(stage)
+		if(STARTUP_STAGE)
+			weather_state = telegraph_overlay
+		if(MAIN_STAGE)
+			weather_state = weather_overlay
+		if(WIND_DOWN_STAGE)
+			weather_state = end_overlay
+
+	// Use all possible offsets
+	// Yes this is a bit annoying, but it's too slow to calculate and store these from turfs, and it shouldn't (I hope) look weird
+	var/list/gen_overlay_cache = list()
+	for(var/offset in 0 to SSmapping.max_plane_offset)
+		// Note: what we do here is effectively apply two overlays to each area, for every unique multiz layer they inhabit
+		// One is the base, which will be masked by lighting. the other is "glowing", and provides a nice contrast
+		// This method of applying one overlay per z layer has some minor downsides, in that it could lead to improperly doubled effects if some have alpha
+		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
+		// LU
+		var/mutable_appearance/glow_overlay = mutable_appearance('modular_zubbers/icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, ABOVE_LIGHTING_PLANE, 100, offset_const = offset)
+		glow_overlay.color = weather_color
+		gen_overlay_cache += glow_overlay
+
+		var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		weather_overlay.color = weather_color
+		gen_overlay_cache += weather_overlay
+
+	return gen_overlay_cache
+
+/datum/weather/acid_rain/can_get_alert(mob/player)
+
+	if(!..())
+		return FALSE
+
+	if(isobserver(player))
+		return TRUE
+
+	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
+		return TRUE
+
+	if(istype(get_area(player), /area/jungleplanet/nearstation || /area/jungleplanet/surface))
+		return TRUE
+
+	return FALSE
+
+/mob/Login()
+	. = ..()
+	if(.)
+		AddElement(/datum/element/weather_listener, /datum/weather/acid_rain, ZTRAIT_ACIDRAIN)
+
+/datum/component/object_possession/bind_to_new_object(obj/target)
+
+	. = ..()
+	if(.)
+		target.AddElement(/datum/element/weather_listener, /datum/weather/acid_rain, ZTRAIT_ACIDRAIN)
+
+/datum/component/object_possession/cleanup_object_binding()
+
+	var/was_valid = possessed && !QDELETED(possessed)
+
+	. = ..()
+
+	if(was_valid)
+		possessed.RemoveElement(/datum/element/weather_listener, /datum/weather/acid_rain, ZTRAIT_ACIDRAIN)
+
+
+#define WEATHER_ACID_BASE_DAMAGE 2
+
+/datum/weather/acid_rain/weather_act(mob/living/carbon/human/victim)
+	if(!istype(victim))
+		return
+	if(victim.resistance_flags & ACID_PROOF)
+		return
+	var/dealt_damage = FALSE
+	for(var/obj/item/bodypart/bodypart as anything in victim.bodyparts)
+		var/acid_armor = victim.check_armor(bodypart, ACID)
+		if(acid_armor < 60) // You need acid armor above a certain value to not get affected, adjust for stronger rains!
+			if(prob(max(0, (100-acid_armor))))
+				bodypart.receive_damage(burn = WEATHER_ACID_BASE_DAMAGE)
+				dealt_damage = TRUE
+	if(dealt_damage)
+		playsound(victim, 'sound/items/tools/welder.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+
+#undef WEATHER_ACID_BASE_DAMAGE
