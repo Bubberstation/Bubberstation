@@ -28,6 +28,7 @@
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "ipc_screen_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
+	type_to_check = /datum/preference/choiced/mutant/ipc_screen
 
 /datum/preference/emissive_toggle/ipc_screen_emissive
 	savefile_key = "ipc_screen_emissive"
