@@ -121,9 +121,10 @@
 	//okay, so we didn't find an incomplete item to hammer, do we have a hammerable item?
 	var/obj/locate_obj = locate() in contents
 	if(locate_obj && (locate_obj.skyrat_obj_flags & ANVIL_REPAIR))
-		//BUBBER EDIT START - Repairing weapons with imbued reagents takes skill
+		// Repairing weapons with imbued reagents takes skill
 		// God this code is so terrible who the fuck wrote it in two different components that dont share a parent
 		// I doubt this can be made pretty without skyrat refactoring whatever the fuck all of the stuff around this codeblock is
+		// BUBBER TODO - Refactor this into two components with same parent!
 		//
 		// I'll give you hugs if you refactor it yourself
 		// ~Waterpig
@@ -137,7 +138,6 @@
 			if(length(reagent_component.imbued_reagent) && user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 				to_chat(user, span_danger("You need more experience to repair imbued weapons!"))
 				return ITEM_INTERACT_SUCCESS
-		//BUBBER EDIT END
 		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
 			balloon_alert(user, "already repaired")
 			return ITEM_INTERACT_SUCCESS
