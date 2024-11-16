@@ -1680,9 +1680,7 @@
 /area/station/engineering/atmos/mix)
 "avc" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/camera/directional/south{
-	id = "guh"
-	},
+/obj/machinery/camera/directional/south,
 /obj/structure/closet/emcloset/wall{
 	pixel_y = -30
 	},
@@ -5337,9 +5335,7 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat/teleporter)
 "bkR" = (
-/obj/structure/chair/comfy/black{
-	color = s
-	},
+/obj/structure/chair/comfy,
 /turf/open/floor/carpet/black{
 	icon_state = "carpet_black-110"
 	},
@@ -8291,10 +8287,10 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
-/obj/structure/bed/medical{
-	dir = 4
-	},
 /obj/machinery/light/directional/east,
+/obj/structure/chair/office/light{
+	dir = 1
+	},
 /turf/open/floor/iron/white/side{
 	dir = 8
 	},
@@ -32204,12 +32200,11 @@
 /turf/open/floor/iron/smooth,
 /area/station/engineering/supermatter/room)
 "hjs" = (
-/obj/structure/table/glass,
 /obj/structure/window/spawner/directional/west,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
 	},
-/obj/item/healthanalyzer,
+/obj/machinery/computer/crew,
 /turf/open/floor/iron/white/corner,
 /area/station/medical/treatment_center)
 "hjx" = (
@@ -35065,10 +35060,8 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
-/obj/structure/table/glass,
 /obj/structure/extinguisher_cabinet/directional/north,
-/obj/effect/spawner/random/medical/minor_healing,
-/obj/effect/spawner/random/medical/minor_healing,
+/obj/machinery/computer/records/medical,
 /turf/open/floor/iron/white/corner{
 	dir = 8
 	},
@@ -43744,7 +43737,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "jMk" = (
-/obj/structure/window/spawner/directional/west,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
@@ -54019,7 +54011,6 @@
 /obj/item/implanter/mortis,
 /obj/structure/sign/calendar/directional/north,
 /obj/structure/closet/secure_closet{
-	icon_state = "cabinet";
 	name = "Holy Supplies";
 	req_access = list("chapel_office")
 	},
@@ -57830,9 +57821,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/hfr_room)
 "mWv" = (
-/obj/machinery/computer/crew{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
 	},
@@ -57852,6 +57840,9 @@
 	req_access = list("medical");
 	pixel_y = -8;
 	pixel_x = -34
+	},
+/obj/machinery/computer/records/medical{
+	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
@@ -94059,9 +94050,7 @@
 /obj/structure/sign/painting{
 	pixel_y = 26
 	},
-/obj/structure/chair/comfy/black{
-	color = s
-	},
+/obj/structure/chair/comfy,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
 "vfP" = (
@@ -99105,7 +99094,7 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/delivery,
-/obj/structure/transit_tube/station/dispenser/reverse{
+/obj/structure/transit_tube/station/dispenser/reverse/flipped{
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
