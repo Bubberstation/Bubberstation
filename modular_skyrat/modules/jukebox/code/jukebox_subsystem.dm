@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(jukeboxes)
 		if(!(M.client.prefs.read_preference(/datum/preference/toggle/sound_instruments)))
 			continue
 
-		M.playsound_local(M, null, (jukebox.volume / 2), channel = youvegotafreejukebox[2], sound_to_use = song_to_init) // BUBBER EDIT - Halves the volume
+		M.playsound_local(M, null, (jukebox.volume / 2), channel = youvegotafreejukebox[2], sound_to_use = song_to_init)
 	return activejukeboxes.len
 
 /datum/controller/subsystem/jukeboxes/proc/removejukebox(IDtoremove)
