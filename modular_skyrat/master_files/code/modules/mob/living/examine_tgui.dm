@@ -53,8 +53,8 @@
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
-	var/name = "" //BUBBER EDIT
-	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine) // BUBBER EDIT
+	var/name = ""
+	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine)
 	var/ooc_notes = ""
 	var/headshot = ""
 
@@ -77,6 +77,7 @@
 		// If other variants of mob/living need to be handled at some point, put them here
 		if(issilicon(holder))
 			flavor_text = preferences.read_preference(/datum/preference/text/silicon_flavor_text)
+			// Silicon prefs and headshot
 			custom_species = preferences.read_preference(/datum/preference/text/custom_species/silicon)
 			custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
 			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
@@ -85,7 +86,10 @@
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT - EXAMINE PREFS
+		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && \
+		obscurity_examine_pref || \
+		(holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref)
+
 		//Check if the mob is obscured, then continue to headshot and species lore
 		ooc_notes += holder_human.dna?.features["ooc_notes"]
 		if(obscured || !holder_human.dna)
