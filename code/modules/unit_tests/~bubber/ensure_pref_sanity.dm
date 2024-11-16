@@ -1,6 +1,6 @@
-/datum/unit_test/bubber/ensure_pref_sanity
+/datum/unit_test/bubber_ensure_pref_sanity
 
-/datum/unit_test/bubber/ensure_pref_sanity/Run()
+/datum/unit_test/bubber_ensure_pref_sanity/Run()
 	for (var/datum/preference/preference as anything in GLOB.preference_entries)
 		preference = GLOB.preference_entries[preference]
 		if (preference.abstract_type == preference.type) // You're safe... for now.
@@ -8,7 +8,7 @@
 
 		var/supplementals_failed = FALSE
 		var/list/data = preference.compile_constant_data()
-		if (!data && !isnull(data[SUPPLEMENTAL_FEATURE_KEY]) && !islist(data[SUPPLEMENTAL_FEATURE_KEY]))
+		if (!data || !isnull(data[SUPPLEMENTAL_FEATURE_KEY]) || !islist(data[SUPPLEMENTAL_FEATURE_KEY]))
 			TEST_FAIL("[preference.type] : Supplemental feature list isn't actually a list!")
 			supplementals_failed = TRUE
 
@@ -21,19 +21,19 @@
 		if (istype(preference, /datum/preference/emissive_toggle))
 			emissive_checks(preference, supplementals_failed)
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/color_checks(datum/preference/mutant_color/mutant, supplementals_failed)
+/datum/unit_test/bubber_ensure_pref_sanity/proc/color_checks(datum/preference/mutant_color/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
 		if((choice.category == PREFERENCE_CATEGORY_FEATURES || choice.category == PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE) && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/emissive_checks(datum/preference/emissive_toggle/mutant, supplementals_failed)
+/datum/unit_test/bubber_ensure_pref_sanity/proc/emissive_checks(datum/preference/emissive_toggle/mutant, supplementals_failed)
 	if (ispath(mutant.type_to_check, /datum/preference/choiced/mutant))
 		var/datum/preference/choiced/mutant/choice = GLOB.preference_entries[mutant.type_to_check]
 		if((choice.category == PREFERENCE_CATEGORY_FEATURES || choice.category == PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE) && mutant.check_mode == TRICOLOR_CHECK_ACCESSORY)
 			TEST_FAIL("[mutant.type] : Check mode is TRICOLOR_CHECK_ACCESSORY when the preference to check is a main feature! This WILL cause TGUI BSODs!")
 
-/datum/unit_test/bubber/ensure_pref_sanity/proc/mutant_checks(datum/preference/choiced/mutant/mutant, supplementals_failed)
+/datum/unit_test/bubber_ensure_pref_sanity/proc/mutant_checks(datum/preference/choiced/mutant/mutant, supplementals_failed)
 	if (mutant.should_generate_icons && !mutant.main_feature_name)
 		TEST_FAIL("[mutant.type] : Missing a main feature name!")
 
