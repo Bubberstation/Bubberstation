@@ -2,12 +2,12 @@
 #define ANIMAL_ALIVE 1
 #define ANIMAL_DEAD 2
 
-#define MEOW_NORMAL 'sound/creatures/cat/cat_meow1.ogg'
+#define MEOW_NORMAL 'sound/mobs/non-humanoids/cat/cat_meow1.ogg'
 #define MEOW_SAD 'modular_zubbers/code/modules/nyamagotchi/sound/cat_sad.ogg'
 #define MEOW_CRITICAL 'modular_zubbers/code/modules/nyamagotchi/sound/cat_alert.ogg'
 #define EAT_FOOD 'modular_zubbers/code/modules/nyamagotchi/sound/cat_eat.ogg'
-#define PURR_PLAY 'sound/creatures/cat/cat_purr1.ogg'
-#define PURR_SLEEP 'sound/creatures/cat/cat_purr3.ogg'
+#define PURR_PLAY 'sound/mobs/non-humanoids/cat/cat_purr1.ogg'
+#define PURR_SLEEP 'sound/mobs/non-humanoids/cat/cat_purr3.ogg'
 
 /obj/item/toy/nyamagotchi
 	name = "Nyamagotchi"
