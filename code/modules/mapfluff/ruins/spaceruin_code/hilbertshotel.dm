@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/list/static/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
