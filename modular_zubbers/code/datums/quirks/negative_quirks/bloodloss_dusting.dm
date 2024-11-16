@@ -4,7 +4,7 @@
 	value = -8
 	gain_text = span_danger("You start to worry even more about running out of blood.")
 	lose_text = span_notice("You feel like running out of blood isn't /quite/ as scary.")
-	medical_record_text = "Patient's body has an extreme reaction to bloodloss to the point of crumbling to dust. I'd suggest keeping them full of blood."
+	medical_record_text = "Patient's body has an extreme reaction to bloodloss to the point of crumbling to dust. Keeping blood levels steady recommended."
 	icon = FA_ICON_DROPLET_SLASH
 
 /datum/quirk/bloodloss_dusting/add(client/client_source)
