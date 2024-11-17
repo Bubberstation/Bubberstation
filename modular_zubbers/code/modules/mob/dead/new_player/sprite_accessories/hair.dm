@@ -44,3 +44,14 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Inari"
 	icon_state = "hair_inari"
+
+// short_side and ponytails_berly sprites by Cepha
+/datum/sprite_accessory/hair/short_side
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Short (Side)"
+	icon_state = "hair_short_side"
+
+/datum/sprite_accessory/hair/ponytails_berly
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Ponytails (Berly)"
+	icon_state = "hair_tails_berly"

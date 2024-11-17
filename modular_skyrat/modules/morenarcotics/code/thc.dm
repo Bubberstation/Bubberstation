@@ -80,7 +80,6 @@
 		M.say("[cg420_message]")
 	M.adjust_drowsiness(0.2 SECONDS * REM * normalise_creation_purity() * seconds_per_tick)
 	if(SPT_PROB(3.5, seconds_per_tick))
-		//playsound(M, pick('modular_skyrat/master_files/sound/effects/lungbust_cough1.ogg','modular_skyrat/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE) //BUBBER EDIT: STOP MAKING THIS GOD AWFUL SOUND
 		M.emote("cough")
 	..()
 	. = TRUE

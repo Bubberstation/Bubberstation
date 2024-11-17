@@ -190,3 +190,79 @@
 	name = "dark grey heels"
 	greyscale_colors = "#46464d"
 	flags_1 = null
+
+// Syndicate slippers, guaranteed slipping for whoever wears them.
+/obj/item/clothing/shoes/banana_slippers
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	name = "banana slippers"
+	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
+	icon_state = "banana_slippers"
+	worn_icon_state = "banana_slippers"
+	can_be_tied = FALSE
+	strip_delay = 10 SECONDS
+
+// Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
+/obj/item/clothing/shoes/banana_slippers/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
+	. = ..()
+	// if the thrown object's target zone isn't the head
+	if(thrownthing.target_zone != BODY_ZONE_L_LEG && thrownthing.target_zone != BODY_ZONE_R_LEG)
+		return
+	// Just in case someone adds storage down the line on the slippers
+	if(LAZYLEN(contents))
+		return
+	if(iscarbon(hit_atom))
+		var/mob/living/carbon/hit_carbon = hit_atom
+		if(istype(hit_carbon.shoes, /obj/item))
+			var/obj/item/hit_carbon_shoes = hit_carbon.shoes
+			// check if the item has NODROP
+			if(HAS_TRAIT(hit_carbon_shoes, TRAIT_NODROP))
+				hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes.name], falling to the floor."))
+				return
+			// check if the item is an actual clothing feet item, since some non-clothing items can be worn
+			if(istype(hit_carbon_shoes, /obj/item/clothing/shoes))
+				var/obj/item/clothing/head/hit_carbon_shoes_confirmed = hit_carbon_shoes
+				// SNUG_FIT shoes are immune to being knocked off
+				if(hit_carbon_shoes_confirmed.clothing_flags & SNUG_FIT)
+					hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes_confirmed.name], falling to the floor."))
+					return
+			// if the slippers manages to knock something off
+			if(hit_carbon.dropItemToGround(hit_carbon_shoes))
+				hit_carbon.visible_message(span_warning("[src] slips [hit_carbon_shoes] off [hit_carbon]'s feet!"), span_warning("[hit_carbon_shoes] is suddenly slipped off your feet by [src]!"))
+		if(hit_carbon.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
+			hit_carbon.visible_message(span_notice("[src] lands neatly on [hit_carbon]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
+			hit_carbon.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
+		return
+	if(iscyborg(hit_atom))
+		return
+
+/obj/item/clothing/shoes/banana_slippers/Initialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 80)
+	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
+
+/obj/item/clothing/shoes/banana_slippers/proc/on_step()
+	SIGNAL_HANDLER
+	if(iscarbon(src.loc))
+		var/mob/living/carbon/stepping_mob = src.loc
+		stepping_mob.slip(80)
+
+/obj/item/clothing/shoes/banana_slippers/equipped(mob/user, slot)
+	. = ..()
+	if(slot & ITEM_SLOT_FEET)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+
+/obj/item/clothing/shoes/banana_slippers/dropped(mob/user)
+	. = ..()
+	// Could have been blown off in an explosion from the previous owner
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+
+/obj/item/clothing/shoes/banana_slippers/canStrip(mob/stripper, mob/owner)
+	return TRUE
+
+/obj/item/clothing/shoes/banana_slippers/doStrip(mob/stripper, mob/owner)
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+	if (!owner.dropItemToGround(src))
+		return FALSE
+	return TRUE
