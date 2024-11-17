@@ -81,9 +81,10 @@
 	cost = PAYCHECK_CREW * 15
 	contains = list(/obj/item/storage/medkit/surgery)
 
+//For @unionheart
 /datum/supply_pack/goody/security_maid
 	name = "CnC Maid Operator Kit"
 	desc = "Contains a set of armoured janitorial kit for combat scenario."
-	cost = PAYCHECK_COMMAND * 3
+	cost = PAYCHECK_COMMAND * 4
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/clothing/under/rank/security/maid, /obj/item/clothing/suit/armor/vest/maid, /obj/item/clothing/head/security_maid, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	contains = list(/obj/item/clothing/under/rank/security/maid, /obj/item/clothing/suit/armor/vest/maid, /obj/item/clothing/head/security_maid, /obj/item/pushbroom)
