@@ -1,18 +1,43 @@
-/// Phrases said in chat by the holder while "dreaming"
+/**
+ * Phrases said in chat by the holder while "dreaming"
+ * These should be in first person
+ */
 #define CURSEDBLOOD_DREAM_PHRASES_SAY pick(\
-	"Somebody help me...",\
+	"[deity_name] please help me...",\
 	"Unshackle me please...",\
-	"Anybody... I've had enough of this dream...",\
-	"The night blocks all sight...",\
-	"Oh, somebody, please..."\
+	"[deity_name]... I've had enough of this dream...",\
+	"Oh, [deity_name], please...",\
+	"[deity_name], why have you forsaken me?",\
+	"[deity_name], let my soul be free...",\
+	"The fog hides everything, but it's coming for me...",\
+	"I've walked this road too long...",\
+	"[deity_name]... why do I still walk?",\
+	"The night's cruel heart beats in mine...",\
+	"In the city of beasts, I am prey...",\
+	"[deity_name], where is the light in this place?",\
+	"Beneath [deity_name]'s gaze, I lose my way...",\
+	"[deity_name], why do I feel its presence?",\
+	"The shadows will consume me whole",\
+	"I've seen too much to be sane now",\
+	"In dreams, I see the horrors that await",\
 	)
 
-/// Phrases the holder hears in chat while "dreaming"
+/**
+ * Phrases said in chat by the holder while "dreaming"
+ * These should be in second person or have no subject
+ */
 #define CURSEDBLOOD_DREAM_PHRASES_HALLUCINATE pick(\
+	"The night blocks all sight...",\
 	"The moon is close. It will be a long hunt tonight.",\
-	"Ludwig, why have you forsaken me?",\
 	"The night is near its end...",\
-	"Fear the blood..."\
+	"Fear the blood...",\
+	"A beast is at your door.",\
+	"No light can save you now.",\
+	"Find the lanterns in the dark...",\
+	"Let the hunter become the hunted...",\
+	"Beneath the moonlight, the darkness stirs...",\
+	"Beyond the gates lies madness...",\
+	"Unseen hands grasp for your soul..."\
 	)
 
 /// Potential burn damage taken while "dreaming"
@@ -29,10 +54,12 @@
 
 /// Time to become unconscious during dream phase 2
 #define CURSEDBLOOD_DREAM_TIME_UNCONSCIOUS 5 SECONDS
+/// Duration of the dream status effect when splashed
+#define CURSEDBLOOD_DREAM_DURATION_SPLASH 10 SECONDS
 
 /datum/quirk/cursed_blood
 	name = "Cursed Blood"
-	desc = "Your lineage is cursed with the paleblood curse. Best to stay away from holy water... Hell water, on the other hand..."
+	desc = "Your lineage is afflicted with a blood-born curse. Avoid coming into contact with Holy Water. Hell Water, on the other hand..."
 	value = 0
 	gain_text = span_notice("A curse from a land where men return as beasts runs deep in your blood.")
 	lose_text = span_notice("You feel the weight of the curse in your blood finally gone.")
@@ -41,7 +68,7 @@
 	hardcore_value = 1
 	icon = FA_ICON_FIRE_FLAME_CURVED
 	mail_goodies = list (
-		// This may be the only way to get hell water.
+		// This may be the only way to get Hell Water.
 		/obj/item/reagent_containers/cup/glass/bottle/holywater/hell = 1
 	)
 
@@ -49,20 +76,36 @@
 	// Register reagent interactions
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER, PROC_REF(expose_holywater))
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER, PROC_REF(process_hellwater))
+	RegisterSignals(quirk_holder, list(COMSIG_REAGENT_METABOLIZE_END_HOLYWATER,COMSIG_LIVING_DEATH), PROC_REF(end_holywater))
 
 /datum/quirk/cursed_blood/remove()
 	// Unregister reagent interactions
 	UnregisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER)
 	UnregisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER)
 
-/// Handle effects applied by consuming Holy Water
-/datum/quirk/cursed_blood/proc/expose_holywater()
+/// Called when exposed to Holy Water. Applies the dream status effect.
+/datum/quirk/cursed_blood/proc/expose_holywater(mob/living/carbon/affected_mob, datum/reagent/handled_reagent, methods, reac_volume, show_message, touch_protection)
 	SIGNAL_HANDLER
 
 	// Handled via status effect because .say cannot be used by a signal handler
 
+	// Define if this effect should expire automatically
+	var/duration_override = FALSE
+
+	// Check for splashing
+	if(methods & TOUCH)
+		// Set effect duration
+		duration_override = CURSEDBLOOD_DREAM_DURATION_SPLASH
+
 	// Add status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming, duration_override)
+
+/// Called when done metabolizing Holy Water or on death. Clears the dream status effect.
+/datum/quirk/cursed_blood/proc/end_holywater()
+	SIGNAL_HANDLER
+
+	// Remove status effect
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming)
 
 /// Handle effects applied by consuming Hell Water
 /datum/quirk/cursed_blood/proc/process_hellwater()
@@ -74,12 +117,31 @@
 	quirk_holder.adjust_nutrition(6)
 	//quirk_holder.adjust_thirst(6)
 
+// Status effect for Cursed Blood that applies Holy Water effects
 /datum/status_effect/quirk_cursed_blood/dreaming
 	id = "cursed_blood_dream"
-	duration = 10 SECONDS
+	//duration = 10 SECONDS
 	tick_interval = 2 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/cursed_blood_dream
 	remove_on_fullheal = TRUE
+
+	/// Name of the target's religious deity
+	var/deity_name = "God"
+
+// Status effect condition checks
+/datum/status_effect/quirk_cursed_blood/dreaming/on_creation(mob/living/new_owner, duration_override)
+	// Check for duration override
+	if(duration_override)
+		// Set limited duration
+		src.duration = duration_override
+
+	// Set deity name
+	if(GLOB.deity)
+		deity_name = GLOB.deity
+
+	// Run normally
+	return ..()
 
 // Status effect alert
 /atom/movable/screen/alert/status_effect/cursed_blood_dream

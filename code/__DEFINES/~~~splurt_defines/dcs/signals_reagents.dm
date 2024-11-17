@@ -39,6 +39,12 @@
  */
 #define COMSIG_REAGENT_METABOLIZE_HOLYWATER "reagent_metabolize_holywater"
 
+/**
+ * Triggered when done metabolizing Holy Water
+ * * Used by quirk: Cursed Blood
+ */
+#define COMSIG_REAGENT_METABOLIZE_END_HOLYWATER "reagent_metabolize_end_holywater"
+
 //
 // PROCESSING SIGNALS
 //

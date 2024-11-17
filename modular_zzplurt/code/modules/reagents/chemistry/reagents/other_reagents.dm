@@ -31,6 +31,12 @@
 
 	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_METABOLIZE_HOLYWATER)
 
+// Reagent end metabolize: Holy Water
+/datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/affected_mob)
+	. = ..()
+
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_METABOLIZE_END_HOLYWATER)
+
 // Reagent process: Holy Water
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
