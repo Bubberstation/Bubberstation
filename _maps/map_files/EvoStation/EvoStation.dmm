@@ -9259,14 +9259,12 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/library)
 "ceJ" = (
-/obj/structure/sign/departments/botany/botany/alt3{
-	pixel_y = 33
-	},
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
 	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/loading_area,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "ceR" = (
@@ -18348,6 +18346,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
+"efa" = (
+/obj/effect/turf_decal/tile/green/full,
+/obj/machinery/biogenerator{
+	pixel_x = 1
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/large,
+/area/station/service/hydroponics)
 "efk" = (
 /obj/structure/sign/painting{
 	pixel_y = -27
@@ -28222,9 +28228,6 @@
 /area/station/maintenance/central/greater)
 "goa" = (
 /obj/structure/cable,
-/obj/structure/sign/departments/botany/botany/alt3{
-	pixel_y = 33
-	},
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -31244,11 +31247,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/green/opposingcorners,
-/obj/effect/turf_decal/bot,
-/obj/machinery/chem_master/condimaster{
-	desc = "Used to separate out liquids - useful for purifying botanical extracts. Also dispenses condiments.";
-	name = "SapMaster XP"
-	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light/directional/east,
@@ -54206,6 +54204,10 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/turf_decal/bot,
+/obj/machinery/chem_master/condimaster{
+	desc = "Used to separate out liquids - useful for purifying botanical extracts. Also dispenses condiments.";
+	name = "SapMaster XP"
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "mhJ" = (
@@ -57250,6 +57252,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname/directional/south,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "mQU" = (
@@ -99075,11 +99078,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal/incinerator)
 "wlw" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/biogenerator{
-	pixel_x = 1
-	},
-/turf/closed/wall,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
 /area/station/service/kitchen)
 "wlA" = (
 /obj/structure/cable,
@@ -103743,7 +103743,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "xpm" = (
@@ -107485,6 +107484,9 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/effect/spawner/random/vending/colavend,
+/obj/structure/sign/departments/botany/botany/alt3{
+	pixel_y = 33
+	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "yhb" = (
@@ -207770,7 +207772,7 @@ hwB
 exW
 lUr
 xpk
-uiN
+efa
 ceJ
 qSk
 fsu
