@@ -10,6 +10,7 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/xenodorsal
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	should_generate_icons = FALSE
+	supplemental_features = list()
 
 /datum/preference/mutant_color/xenodorsal
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
