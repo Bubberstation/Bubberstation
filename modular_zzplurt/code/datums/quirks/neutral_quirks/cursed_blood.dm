@@ -1,3 +1,35 @@
+/// Phrases said in chat by the holder while "dreaming"
+#define CURSEDBLOOD_DREAM_PHRASES_SAY pick(\
+	"Somebody help me...",\
+	"Unshackle me please...",\
+	"Anybody... I've had enough of this dream...",\
+	"The night blocks all sight...",\
+	"Oh, somebody, please..."\
+	)
+
+/// Phrases the holder hears in chat while "dreaming"
+#define CURSEDBLOOD_DREAM_PHRASES_HALLUCINATE pick(\
+	"The moon is close. It will be a long hunt tonight.",\
+	"Ludwig, why have you forsaken me?",\
+	"The night is near its end...",\
+	"Fear the blood..."\
+	)
+
+/// Potential burn damage taken while "dreaming"
+#define CURSEDBLOOD_DREAM_DAMAGE_BURN 20
+/// Potential toxin damage taken while "dreaming"
+#define CURSEDBLOOD_DREAM_DAMAGE_TOX 20
+
+/// Chance of triggering dream phase 1: Speech
+#define CURSEDBLOOD_DREAM_CHANCE_1 25
+/// Chance of triggering dream phase 2: Seisure
+#define CURSEDBLOOD_DREAM_CHANCE_2 10
+/// Chance of triggering dream phase 3: Burning
+#define CURSEDBLOOD_DREAM_CHANCE_3 25
+
+/// Time to become unconscious during dream phase 2
+#define CURSEDBLOOD_DREAM_TIME_UNCONSCIOUS 5 SECONDS
+
 /datum/quirk/cursed_blood
 	name = "Cursed Blood"
 	desc = "Your lineage is cursed with the paleblood curse. Best to stay away from holy water... Hell water, on the other hand..."
@@ -12,3 +44,98 @@
 		// This may be the only way to get hell water.
 		/obj/item/reagent_containers/cup/glass/bottle/holywater/hell = 1
 	)
+
+/datum/quirk/cursed_blood/add(client/client_source)
+	// Register reagent interactions
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER, PROC_REF(expose_holywater))
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER, PROC_REF(process_hellwater))
+
+/datum/quirk/cursed_blood/remove()
+	// Unregister reagent interactions
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER)
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER)
+
+/// Handle effects applied by consuming Holy Water
+/datum/quirk/cursed_blood/proc/expose_holywater()
+	SIGNAL_HANDLER
+
+	// Handled via status effect because .say cannot be used by a signal handler
+
+	// Add status effect
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming)
+
+/// Handle effects applied by consuming Hell Water
+/datum/quirk/cursed_blood/proc/process_hellwater()
+	SIGNAL_HANDLER
+
+	// Reduce disgust, hunger, and thirst
+	// These effects should match Hallowed bonus for Holy Water
+	quirk_holder.adjust_disgust(-2)
+	quirk_holder.adjust_nutrition(6)
+	//quirk_holder.adjust_thirst(6)
+
+/datum/status_effect/quirk_cursed_blood/dreaming
+	id = "cursed_blood_dream"
+	duration = 10 SECONDS
+	tick_interval = 2 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/cursed_blood_dream
+	remove_on_fullheal = TRUE
+
+// Status effect alert
+/atom/movable/screen/alert/status_effect/cursed_blood_dream
+	name = "Endless Dream"
+	desc = "The night blocks all sight."
+	icon_state = "terrified"
+	alerttooltipstyle = "cult"
+
+// Processing dreaming status effect
+/datum/status_effect/quirk_cursed_blood/dreaming/tick(seconds_between_ticks)
+	// Random chance to continue
+	if(!prob(CURSEDBLOOD_DREAM_CHANCE_1))
+		return
+
+	// Character speaks nonsense
+	owner.say(CURSEDBLOOD_DREAM_PHRASES_SAY, forced = "holy water", spans = list("cult_italic"))
+
+	// Random chance to continue
+	if(!prob(CURSEDBLOOD_DREAM_CHANCE_2))
+		return
+
+	// Trigger a seisure
+
+	// Alert in chat
+	owner.visible_message(span_danger("[owner] starts having a seizure!"), span_userdanger("You have a seizure!"))
+
+	// Set unconscious
+	owner.Unconscious(CURSEDBLOOD_DREAM_TIME_UNCONSCIOUS)
+
+	// Display messages
+	to_chat(owner, span_cult("[CURSEDBLOOD_DREAM_PHRASES_HALLUCINATE]"))
+
+	// Add damage to queue
+	owner.adjustFireLoss(CURSEDBLOOD_DREAM_DAMAGE_BURN, updating_health = FALSE)
+	owner.adjustToxLoss(CURSEDBLOOD_DREAM_DAMAGE_TOX, updating_health = FALSE, forced = TRUE)
+
+	// Update health
+	owner.updatehealth()
+
+	// Random chance to continue
+	if(!prob(CURSEDBLOOD_DREAM_CHANCE_3))
+		return
+
+	// Ignite mob
+	owner.adjust_fire_stacks(2)
+	owner.ignite_mob()
+
+// Set status examine text
+/datum/status_effect/quirk_cursed_blood/dreaming/get_examine_text()
+	return span_notice("[owner.p_They()] will never wake from this dream.")
+
+#undef CURSEDBLOOD_DREAM_PHRASES_SAY
+#undef CURSEDBLOOD_DREAM_PHRASES_HALLUCINATE
+#undef CURSEDBLOOD_DREAM_DAMAGE_BURN
+#undef CURSEDBLOOD_DREAM_DAMAGE_TOX
+#undef CURSEDBLOOD_DREAM_CHANCE_1
+#undef CURSEDBLOOD_DREAM_CHANCE_2
+#undef CURSEDBLOOD_DREAM_CHANCE_3
+#undef CURSEDBLOOD_DREAM_TIME_UNCONSCIOUS

@@ -11,12 +11,16 @@
 	icon = FA_ICON_FAUCET_DRIP
 	erp_quirk = TRUE
 	var/timer_crave
+	var/is_craving
 
 /datum/quirk/dumb_for_cum/add(client/client_source)
 	. = ..()
 
 	// Set timer
 	timer_crave = addtimer(CALLBACK(src, PROC_REF(crave)), D4C_CRAVE_TIME, TIMER_STOPPABLE)
+
+	// Register special reagent interaction
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_CUM, PROC_REF(handle_fluids))
 
 /datum/quirk/dumb_for_cum/remove()
 	. = ..()
@@ -34,6 +38,18 @@
 
 	// Remove timer
 	deltimer(timer_crave)
+
+	// Unregister special reagent interaction
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_ADD_CUM)
+
+/// Proc to handle reagent interactions with bodily fluids
+/datum/quirk/dumb_for_cum/proc/handle_fluids(datum/reagent/handled_reagent, amount)
+	SIGNAL_HANDLER
+
+	// Check if currently craving
+	if(is_craving)
+		// Remove craving
+		uncrave()
 
 /datum/quirk/dumb_for_cum/proc/crave()
 	// Check if conscious
@@ -54,6 +70,9 @@
 	// Add active status trait
 	ADD_TRAIT(quirk_holder, TRAIT_DUMB_CUM_CRAVE, DUMB_CUM_TRAIT)
 
+	// Set craving variable
+	is_craving = TRUE
+
 	// Add illiterate, dumb, and pacifist
 	ADD_TRAIT(quirk_holder, TRAIT_ILLITERATE, DUMB_CUM_TRAIT)
 	ADD_TRAIT(quirk_holder, TRAIT_DUMB, DUMB_CUM_TRAIT)
@@ -65,6 +84,9 @@
 /datum/quirk/dumb_for_cum/proc/uncrave()
 	// Remove active status trait
 	REMOVE_TRAIT(quirk_holder, TRAIT_DUMB_CUM_CRAVE, DUMB_CUM_TRAIT)
+
+	// Set craving variable
+	is_craving = FALSE
 
 	// Remove penalty traits
 	REMOVE_TRAIT(quirk_holder, TRAIT_ILLITERATE, DUMB_CUM_TRAIT)

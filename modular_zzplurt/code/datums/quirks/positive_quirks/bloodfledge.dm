@@ -10,6 +10,8 @@
 #define BLOODFLEDGE_BANK_CAPACITY (BLOODFLEDGE_DRAIN_AMT * 2)
 /// How much damage is healed in a coffin
 #define BLOODFLEDGE_HEAL_AMT -2
+/// Maximum damage taken when splashed with Holy Water
+#define BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP 20
 
 /datum/quirk/item_quirk/bloodfledge
 	name = "Bloodsucker Fledgling"
@@ -29,7 +31,7 @@
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
 	// Add quirk traits
-	ADD_TRAIT(quirk_mob, TRAIT_NO_PROCESS_FOOD, TRAIT_BLOODFLEDGE)
+	ADD_TRAIT(quirk_mob, TRAIT_LIVERLESS_METABOLISM, TRAIT_BLOODFLEDGE)
 	//ADD_TRAIT(quirk_mob, TRAIT_NOTHIRST, TRAIT_BLOODFLEDGE) // Not yet implemented
 
 	// Set skin tone, if possible
@@ -48,6 +50,15 @@
 
 	// Register wooden stake interaction
 	RegisterSignal(quirk_holder, COMSIG_MOB_STAKED, PROC_REF(on_staked))
+
+	// Register holy water reagent processing interaction
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HOLYWATER, PROC_REF(process_holywater))
+
+	// Register holy water reagent mob exposed interaction
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER, PROC_REF(expose_holywater))
+
+	// Register blood consumption interaction
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_BLOOD, PROC_REF(on_consume_blood))
 
 	// Teach how to make the Hemorrhagic Sanguinizer
 	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
@@ -405,6 +416,94 @@
 	// Warn the user of staking
 	to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place."))
 	target.balloon_alert(target, "you have been staked!")
+
+/// Handle effects applied by consuming Holy Water
+/datum/quirk/item_quirk/bloodfledge/proc/process_holywater()
+	SIGNAL_HANDLER
+
+	// Add disgust and reduce nutrition
+	quirk_holder.adjust_disgust(2)
+	quirk_holder.adjust_nutrition(-6)
+
+/// Handle effects applied by being exposed to Holy Water
+/datum/quirk/item_quirk/bloodfledge/proc/expose_holywater(mob/living/carbon/affected_mob, datum/reagent/handled_reagent, methods, reac_volume, show_message, touch_protection)
+	SIGNAL_HANDLER
+
+	// Play burning sound
+	playsound(quirk_holder, SFX_SEAR, 30, TRUE)
+
+	// Damage cap taken from bugkiller
+	// Intended to prevent instant crit from beaker splash
+	var/damage = min(round(0.4 * reac_volume, 0.1), BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP)
+	if(damage < 1)
+		return
+
+	// Cause burn damage based on amount
+	quirk_holder.adjustFireLoss(damage)
+
+/**
+ * Blood nourishment for Bloodfledges
+ * * Checks if the blood was synthesized or from an invalid mob
+ * * Checks if the owner tried to drink their own blood
+ * * Converts any valid blood into Notriment
+*/
+/datum/quirk/item_quirk/bloodfledge/proc/on_consume_blood(mob/living/target, datum/reagent/blood/handled_reagent, amount, data)
+	SIGNAL_HANDLER
+
+	// Check for data
+	if(!data)
+		// Log warning and return
+		log_game("[quirk_holder] attempted to ingest blood that had no data!")
+		return
+
+	// Define blood DNA
+	var/blood_DNA = data["blood_DNA"]
+
+	// Debug output
+	#ifdef TESTING
+	to_chat(quirk_holder, span_boldwarning("INGESTED DNA IS: [blood_DNA]"))
+	#endif
+
+	// Check for valid DNA
+	if(!blood_DNA)
+		// Warn user
+		to_chat(quirk_holder, span_warning("Something about that blood tasted terribly wrong..."))
+
+		// Add mood penalty
+		quirk_holder.add_mood_event(QMOOD_BFLED_DRANK_BLOOD_FAKE, /datum/mood_event/bloodfledge/drankblood/blood_fake)
+
+		// End here
+		return
+
+	// Define quirk mob
+	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Define quirk mob's DNA
+	var/quirk_mob_dna = quirk_mob?.dna?.unique_enzymes
+
+	// Debug output
+	#ifdef TESTING
+	to_chat(quirk_holder, span_boldwarning("YOUR DNA IS: [quirk_mob_dna]"))
+	#endif
+
+	// Check for own blood
+	if(blood_DNA == quirk_mob_dna)
+		// Warn user
+		to_chat(quirk_holder, span_warning("You should know better than to drink your own blood..."))
+
+		// Add mood penalty
+		quirk_holder.add_mood_event(QMOOD_BFLED_DRANK_BLOOD_SELF, /datum/mood_event/bloodfledge/drankblood/blood_self)
+
+		// End here
+		return
+
+	// Check for valid reagent
+	if(ispath(handled_reagent))
+		// Remove reagent
+		quirk_holder.reagents.remove_reagent(handled_reagent, amount)
+
+	// Add Notriment
+	quirk_holder.reagents.add_reagent(/datum/reagent/consumable/notriment, amount)
 
 //
 // Bloodfledge actions
@@ -1484,9 +1583,18 @@
 	description = "I can feel a pale curse from the blood I drank."
 	mood_change = -1
 
+// Drinking own blood
+/datum/mood_event/bloodfledge/drankblood/blood_self
+	description = "I drink my own blood. Why would I do that?"
+
+// Drinking fake blood (no DNA)
+/datum/mood_event/bloodfledge/drankblood/blood_fake
+	description = "I drink artifical blood. I should know better."
+
 #undef BLOODFLEDGE_DRAIN_AMT
 #undef BLOODFLEDGE_DRAIN_TIME
 #undef BLOODFLEDGE_COOLDOWN_BITE
 #undef BLOODFLEDGE_COOLDOWN_REVIVE
 #undef BLOODFLEDGE_BANK_CAPACITY
 #undef BLOODFLEDGE_HEAL_AMT
+#undef BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP

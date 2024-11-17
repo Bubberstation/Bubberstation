@@ -25,6 +25,10 @@
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hallowed)
 
+	// Register holy water interactions
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_HOLYWATER, PROC_REF(metabolize_holywater))
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HOLYWATER, PROC_REF(process_holywater))
+
 /datum/quirk/hallowed/remove()
 	// Define quirk mob.
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
@@ -37,6 +41,30 @@
 
 	// Remove status effect
 	quirk_holder.remove_status_effect(/datum/status_effect/quirk_hallowed)
+
+	// Unregister holy water interactions
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_HOLYWATER)
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HOLYWATER)
+
+/// Handle effects applied by metabolizing Holy Water
+/datum/quirk/hallowed/proc/metabolize_holywater()
+	SIGNAL_HANDLER
+
+	// Alert user of holy water effect.
+	to_chat(quirk_holder, span_nicegreen("The holy water nourishes you!"))
+
+	// Add positive mood.
+	quirk_holder.add_mood_event("fav_food", /datum/mood_event/favorite_food)
+
+/// Handle effects applied by consuming Holy Water
+/datum/quirk/hallowed/proc/process_holywater()
+	SIGNAL_HANDLER
+
+	// Reduce disgust, hunger, and thirst
+	// These effects should be a foil to bloodfledge penalties
+	quirk_holder.adjust_disgust(-2)
+	quirk_holder.adjust_nutrition(6)
+	//quirk_holder.adjust_thirst(6)
 
 // Examine text status effect
 /datum/status_effect/quirk_hallowed

@@ -81,7 +81,16 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 
 	// Direct mechanical conflict
 	list(/datum/quirk/bad_touch, /datum/quirk/headpat_slut),
-	list(/datum/quirk/bad_touch, /datum/quirk/excitable)
+	list(/datum/quirk/bad_touch, /datum/quirk/excitable),
+
+	// Addict quirks fail if the mob has TRAIT_LIVERLESS_METABOLISM
+	// Any quirk that gives this trait should be blacklisted
+	list(/datum/quirk/item_quirk/addict/alcoholic, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/alcoholic, /datum/quirk/concubus),
+	list(/datum/quirk/item_quirk/addict/junkie, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/junkie, /datum/quirk/concubus),
+	list(/datum/quirk/item_quirk/addict/smoker, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/smoker, /datum/quirk/concubus),
 	//SPLURT EDIT ADDITION END
 ))
 

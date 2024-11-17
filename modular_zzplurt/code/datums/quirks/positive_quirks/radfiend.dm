@@ -28,6 +28,9 @@
 	// Add radiation immunity
 	ADD_TRAIT(quirk_mob, TRAIT_RADIMMUNE, TRAIT_RAD_FIEND)
 
+	// Register reagent interactions
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_NUKACOLA, PROC_REF(metabolize_nuka))
+
 /datum/quirk/rad_fiend/remove()
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
@@ -41,3 +44,13 @@
 
 	// Remove radiation immunity
 	REMOVE_TRAIT(quirk_mob, TRAIT_RADIMMUNE, TRAIT_RAD_FIEND)
+
+	// Unregister reagent interactions
+	UnregisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_NUKACOLA)
+
+/// Handle effects applied by consuming Nuka Cola
+/datum/quirk/rad_fiend/proc/metabolize_nuka()
+	SIGNAL_HANDLER
+
+	// Add mood bonus
+	quirk_holder.add_mood_event("fav_food", /datum/mood_event/favorite_food)

@@ -32,8 +32,6 @@
 #define TRAIT_MASKED_MOOK		"masked_mook"
 #define TRAIT_TOUGH				"tough"
 #define TRAIT_THIRSTY			"thirsty"
-// Prevents processing any type of consumable reagent, including nutriment
-#define TRAIT_NO_PROCESS_FOOD	"no-process-food"
 #define TRAIT_CONCUBUS			"concubus"
 #define TRAIT_MODULAR_LIMBS		"modular_limbs"
 #define TRAIT_VACUUM_RESIST		"vacuum_resist"
