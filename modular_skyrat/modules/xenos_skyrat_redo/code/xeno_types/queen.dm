@@ -5,6 +5,7 @@
 	desc = "A hulking beast of an alien, for some reason this one seems more important than the others, you should probably quit staring at it and do something."
 	caste = "queen"
 	maxHealth = 500
+	status_flags = NONE //can't shove or KO the queen, kiddo.
 	health = 500
 	icon_state = "alienqueen"
 	melee_damage_lower = 30
