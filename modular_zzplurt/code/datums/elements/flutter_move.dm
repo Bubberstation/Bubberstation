@@ -12,7 +12,7 @@
 	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH_ON_HOST_DESTROY
 	argument_hash_start_idx = 2
 
-/datum/element/flutter_move/Attach(datum/target, datum/movespeed_modifier/off_web_slowdown)
+/datum/element/flutter_move/Attach(datum/target)
 	. = ..()
 
 	// Check for living target
@@ -28,7 +28,7 @@
 	// Unregister movement signal
 	UnregisterSignal(source, COMSIG_MOB_CLIENT_MOVE_NOGRAV)
 
-/// When we move, check if we're still on a web
+/// When moving, check for valid air pressure. Apply force if valid.
 /datum/element/flutter_move/proc/on_moved(mob/living/source)
 	SIGNAL_HANDLER
 
