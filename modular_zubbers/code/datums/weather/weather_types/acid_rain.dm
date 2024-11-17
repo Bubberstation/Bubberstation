@@ -132,7 +132,7 @@
 	. = ..()
 	if(!. || !ishuman(mob_to_check))
 		return FALSE
-	if(victim.resistance_flags & ACID_PROOF)
+	if(mob_to_check.resistance_flags & ACID_PROOF)
 		return FALSE
 	return TRUE
 
