@@ -261,6 +261,7 @@ DEFINE_BITFIELD(mob_biotypes, list(
 
 DEFINE_BITFIELD(mob_flags, list(
 	"MOB_HAS_SCREENTIPS_NAME_OVERRIDE" = MOB_HAS_SCREENTIPS_NAME_OVERRIDE,
+	"MOB_IGNORES_CRUSHER_MARK" = MOB_IGNORES_CRUSHER_MARK, // BUBBER EDIT ADDITION: Make mobs able to ignore crusher marks
 ))
 
 DEFINE_BITFIELD(mob_respiration_type, list(
