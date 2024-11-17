@@ -18346,14 +18346,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
-"efa" = (
-/obj/effect/turf_decal/tile/green/full,
-/obj/machinery/biogenerator{
-	pixel_x = 1
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron/large,
-/area/station/service/hydroponics)
 "efk" = (
 /obj/structure/sign/painting{
 	pixel_y = -27
@@ -24091,7 +24083,6 @@
 "ftm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/supermatter/room)
@@ -25032,6 +25023,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "fFd" = (
@@ -32975,6 +32967,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen/coldroom)
+"hsQ" = (
+/obj/effect/turf_decal/tile/green/full,
+/obj/machinery/biogenerator{
+	pixel_x = 1
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/large,
+/area/station/service/hydroponics)
 "hsS" = (
 /obj/structure/chair{
 	dir = 8
@@ -38304,7 +38304,6 @@
 /area/station/cargo/sorting)
 "izB" = (
 /obj/item/kirbyplants/photosynthetic,
-/obj/structure/cable,
 /obj/machinery/status_display/ai/directional/south,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/aisat_interior)
@@ -45070,7 +45069,6 @@
 "kbz" = (
 /obj/structure/table/wood,
 /obj/item/storage/photo_album/chapel{
-	pixel_x = -;
 	pixel_y = -3
 	},
 /obj/item/flashlight/lamp/green,
@@ -46732,6 +46730,13 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/command/storage/satellite)
+"kwP" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "kwV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
 /obj/effect/turf_decal/delivery,
@@ -54636,7 +54641,6 @@
 /obj/structure/cable,
 /obj/machinery/light/small/directional/west,
 /obj/machinery/duct,
-/obj/machinery/duct,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/department/science/central)
@@ -62096,6 +62100,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/security/brig)
 "nUL" = (
@@ -81643,7 +81648,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small/directional/north,
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
@@ -88820,6 +88824,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/supermatter/room)
 "tZF" = (
@@ -90402,6 +90407,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/security/brig)
 "uqY" = (
@@ -91079,7 +91085,6 @@
 /area/station/maintenance/radshelter)
 "uyN" = (
 /obj/effect/turf_decal/tile/red,
-/obj/structure/cable,
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
@@ -207772,7 +207777,7 @@ hwB
 exW
 lUr
 xpk
-efa
+hsQ
 ceJ
 qSk
 fsu
@@ -209090,11 +209095,11 @@ rTh
 rTh
 wmy
 rTh
-fzA
-fzA
+kwP
+kwP
 tNq
 eLD
-fzA
+kwP
 fEZ
 ttw
 aEw
