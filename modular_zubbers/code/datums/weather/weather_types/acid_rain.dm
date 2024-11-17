@@ -128,13 +128,19 @@
 		possessed.RemoveElement(/datum/element/weather_listener, /datum/weather/acid_rain, ZTRAIT_ACIDRAIN)
 
 
-#define WEATHER_ACID_BASE_DAMAGE 2
-
-/datum/weather/acid_rain/weather_act(mob/living/carbon/human/victim)
-	if(!istype(victim))
-		return
+/datum/weather/acid_rain/can_weather_act(mob/living/mob_to_check)
+	. = ..()
+	if(!. || !ishuman(mob_to_check))
+		return FALSE
 	if(victim.resistance_flags & ACID_PROOF)
-		return
+		return FALSE
+	return TRUE
+
+#define WEATHER_ACID_BASE_DAMAGE 0.5
+
+/datum/weather/acid_rain/weather_act(mob/living/carbon/human/victim) // We know they are a human from can_weather_act
+	if(prob(50))
+		return FALSE
 	var/dealt_damage = FALSE
 	for(var/obj/item/bodypart/bodypart as anything in victim.bodyparts)
 		var/acid_armor = victim.check_armor(bodypart, ACID)
