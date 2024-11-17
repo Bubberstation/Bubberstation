@@ -9,10 +9,11 @@
 	hardcore_value = -1
 	icon = FA_ICON_PLANE
 
-/mob/Process_Spacemove(movement_dir, continuous_move)
-	if(HAS_TRAIT(src, TRAIT_FLUTTER))
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/environment = T.return_air()
-		if(environment.return_pressure() > 30)
-			return TRUE
-	. = ..()
+/datum/quirk/flutter/add(client/client_source)
+	// Add movement element
+	quirk_holder.AddElement(/datum/element/flutter_move)
+
+/datum/quirk/flutter/remove()
+	// Remove movement element
+	quirk_holder.RemoveElement(/datum/element/flutter_move)
+
