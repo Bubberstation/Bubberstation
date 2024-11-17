@@ -154,17 +154,6 @@
 	. = ..()
 	if(is_nemesis_faction)
 		force -= faction_bonus_force
-	if(lavaland_equipment_pressure_check(get_turf(user)))
-		force = initial(force)
-		wound_bonus = initial(wound_bonus)
-		armour_penetration = initial(armour_penetration)
-		block_chance = initial(block_chance)
-		return ..()
-	else
-		force = 18
-		wound_bonus = 8
-		armour_penetration = 15
-		block_chance = 10
 
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(user.IsImmobilized()) // no free dodgerolls
