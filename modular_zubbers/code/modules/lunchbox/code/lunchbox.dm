@@ -13,10 +13,14 @@
 
 /obj/item/storage/lunchbox/Initialize(mapload)
 	. = ..()
-	atom_storage.max_slots = 4
+	atom_storage.max_slots = 8
 	atom_storage.set_holdable(list(
 		/obj/item/food,
 		/obj/item/reagent_containers/cup,
+		/obj/item/reagent_containers/condiment,
+		/obj/item/storage/box/gum,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/lighter,
 		))
 
 /obj/item/storage/lunchbox/nanotrasen
