@@ -105,7 +105,6 @@
 	cost_change_upper = 2000
 	can_roundstart_pick = FALSE
 
-// Bubber Edits Begin
 
 // SAR Inc. sells recreations of antique firearms
 /datum/cargo_company/sar_inc
@@ -115,5 +114,3 @@
 	cost_change_lower = -1000
 	cost_change_upper = 1000
 	can_roundstart_pick = FALSE
-
-// Bubber Edits End
