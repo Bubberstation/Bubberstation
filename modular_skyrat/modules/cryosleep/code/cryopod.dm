@@ -211,23 +211,44 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	if(!control_computer_weakref)
 		find_control_computer(TRUE)
 	if((isnull(target) || isliving(target)) && state_open && !panel_open)
-		..(target)
-		var/mob/living/mob_occupant = occupant
-		if(mob_occupant && mob_occupant.stat != DEAD)
-			to_chat(occupant, span_notice("<b>You feel cool air surround you. You go numb as your senses turn inward.</b>"))
-			stored_ckey = mob_occupant.ckey
-			stored_name = mob_occupant.name
+		state_open = FALSE
+		set_density(density_to_set)
 
-			if(mob_occupant.mind)
-				stored_rank = mob_occupant.mind.assigned_role.title
-				if(isnull(stored_ckey))
-					stored_ckey = mob_occupant.mind.key // if mob does not have a ckey and was placed in cryo by someone else, we can get the key this way
+		if(!target)
+			for(var/atom in loc)
+				if (!(can_be_occupant(atom)))
+					continue
+				var/atom/movable/current_atom = atom
+				if(current_atom.has_buckled_mobs())
+					continue
+				if(isliving(current_atom))
+					var/mob/living/current_mob = atom
+					if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE)
+						continue
+				target = atom
 
-		var/mob/living/carbon/human/human_occupant = occupant
-		if(istype(human_occupant) && human_occupant.mind)
-			human_occupant.save_individual_persistence(stored_ckey)
+	var/mob/living/mobtarget = target
+	if(target && !target.has_buckled_mobs() && (!isliving(target) || !mobtarget.buckled))
+		set_occupant(target)
+		target.forceMove(src)
+	update_appearance()
 
-		COOLDOWN_START(src, despawn_world_time, time_till_despawn)
+	var/mob/living/mob_occupant = occupant
+	if(mob_occupant && mob_occupant.stat != DEAD)
+		to_chat(occupant, span_notice("<b>You feel cool air surround you. You go numb as your senses turn inward.</b>"))
+		stored_ckey = mob_occupant.ckey
+		stored_name = mob_occupant.name
+
+		if(mob_occupant.mind)
+			stored_rank = mob_occupant.mind.assigned_role.title
+			if(isnull(stored_ckey))
+				stored_ckey = mob_occupant.mind.key // if mob does not have a ckey and was placed in cryo by someone else, we can get the key this way
+
+	var/mob/living/carbon/human/human_occupant = occupant
+	if(istype(human_occupant) && human_occupant.mind)
+		human_occupant.save_individual_persistence(stored_ckey)
+
+	COOLDOWN_START(src, despawn_world_time, time_till_despawn)
 
 /obj/machinery/cryopod/open_machine(drop = TRUE, density_to_set = FALSE)
 	..()
@@ -389,7 +410,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	GLOB.joined_player_list -= stored_ckey
 
 	handle_objectives()
-	mob_occupant.ghostize(FALSE) // BUBBER EDIT FIX - Added FALSE.You are going to get qdelled. You should not keep your mind linked. Cmon skyrat you could do better
+	mob_occupant.ghostize(FALSE)
 	QDEL_NULL(occupant)
 	open_machine()
 	name = initial(name)
