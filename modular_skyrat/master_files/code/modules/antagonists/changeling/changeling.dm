@@ -1,7 +1,3 @@
-/* /datum/antagonist/changeling/forge_objectives()
-	return
- */ // BUBBER EDIT - Changelings get objectives
-
 /datum/changeling_profile
 	/// The bra worn by the profile source
 	var/bra

@@ -1,7 +1,7 @@
 #define MAX_IMBUE_STORAGE 250
 #define REAGENT_CLOTHING_INJECT_AMOUNT 0.5
 #define REAGENT_WEAPON_INJECT_AMOUNT 1
-#define REAGENT_WEAPON_DAMAGE_MULTIPLIER 3 // BUBBER EDIT 2 -> 3
+#define REAGENT_WEAPON_DAMAGE_MULTIPLIER 3
 
 //the component that is attached to clothes that allows them to be imbued
 //ONLY USE THIS FOR CLOTHING
@@ -107,7 +107,7 @@
 	var/mob/living_target = target
 	for(var/create_reagent in imbued_reagent)
 		living_target.reagents.add_reagent(create_reagent, REAGENT_WEAPON_INJECT_AMOUNT)
-		parent_weapon.take_damage(length(imbued_reagent) * REAGENT_WEAPON_DAMAGE_MULTIPLIER) //BUBBER EDIT ADD - REAGENT WEAPONS BREAK AGAIN
+		parent_weapon.take_damage(length(imbued_reagent) * REAGENT_WEAPON_DAMAGE_MULTIPLIER)
 
 
 #undef MAX_IMBUE_STORAGE
