@@ -69,6 +69,7 @@
 	infusion_desc = "fluffy"
 	tier = DNA_MUTANT_TIER_ZERO
 
+/*
 /datum/infuser_entry/lizard
 	name = "Lizard"
 	infuse_mob_name = "lacertilia"
@@ -92,6 +93,7 @@
 	)
 	infusion_desc = "scaly"
 	tier = DNA_MUTANT_TIER_ZERO
+*/
 
 /datum/infuser_entry/felinid
 	name = "Cat"
