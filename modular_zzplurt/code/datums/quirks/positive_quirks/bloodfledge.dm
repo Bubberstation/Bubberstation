@@ -39,6 +39,9 @@
 		quirk_mob.skin_tone = "albino"
 		quirk_mob.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
 
+	// Add vampiric biotype
+	quirk_mob.mob_biotypes |= MOB_VAMPIRIC
+
 	// Add quirk language
 	quirk_mob.grant_language(/datum/language/vampiric, ALL, LANGUAGE_QUIRK)
 
@@ -204,6 +207,11 @@
 	// Remove quirk traits
 	REMOVE_TRAIT(quirk_mob, TRAIT_NOHUNGER, ROUNDSTART_TRAIT)
 	//REMOVE_TRAIT(quirk_mob, TRAIT_NOTHIRST, ROUNDSTART_TRAIT)
+
+	// Check if species should still be vampiric
+	if(!(quirk_mob.dna?.species?.inherent_biotypes & MOB_VAMPIRIC))
+		// Remove vampiric biotype
+		quirk_mob.mob_biotypes -= MOB_VAMPIRIC
 
 	// Remove quirk ability action datums
 	var/datum/action/cooldown/bloodfledge/bite/act_bite = locate() in quirk_mob.actions
