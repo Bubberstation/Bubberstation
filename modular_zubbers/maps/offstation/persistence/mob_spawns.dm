@@ -19,6 +19,15 @@
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/service
 	spawner_job_path = /datum/job/persistence
+	/// If true, this spawner will give it's target exploitables access.
+	var/give_exploitables = TRUE
+
+/obj/effect/mob_spawn/ghost_role/human/persistence/special(mob/living/spawned_mob, mob/mob_possessor)
+	. = ..()
+
+	if (give_exploitables)
+		spawned_mob.mind?.has_exploitables_override = TRUE
+		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate
 	name = "Syndicate Operative"
@@ -44,6 +53,7 @@
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel can throw you into lava or plasma outside if you antagonize them."
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
+	give_exploitables = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service
 	outfit = /datum/outfit/persistence/syndicate/service
