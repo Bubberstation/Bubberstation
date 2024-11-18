@@ -66,6 +66,9 @@
 	// Teach how to make the Hemorrhagic Sanguinizer
 	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
 
+	// Add chapel penalty
+	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/chapel_weakness)
+
 /datum/quirk/item_quirk/bloodfledge/post_add()
 	. = ..()
 
@@ -225,6 +228,9 @@
 	// Unregister examine text
 	// Examine temporarily disabled
 	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
+
+	// Remove chapel penalty
+	REMOVE_TRAIT(quirk_holder, TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE)
 
 /datum/quirk/item_quirk/bloodfledge/add_unique(client/client_source)
 	// Define quirk mob

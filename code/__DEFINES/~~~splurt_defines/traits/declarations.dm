@@ -74,3 +74,6 @@
 #define TRAIT_VACUUM_RESIST		"vacuum_resist"
 /// Trait for quirk: Overweight
 #define TRAIT_OVERWEIGHT		"overweight"
+
+/// Trait used by the Chapel Weakness element
+#define TRAIT_CHAPEL_WEAKNESS		"chapel_weakness"
