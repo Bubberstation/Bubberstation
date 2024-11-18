@@ -19,10 +19,10 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/advcutter
 	materials = list(
-		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/plasma =SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT*5,
 	)
 	construction_time = 40
 	category = list(
@@ -88,9 +88,9 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/processor
 	materials = list(
-		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
-		/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
-		/datum/material/silver =SHEET_MATERIAL_AMOUNT*2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	construction_time = 4 SECONDS
 	category = list(
@@ -103,7 +103,7 @@
 	desc = "A version of the experiment scanner that allows for performing experiment scans from a distance."
 	id = "bs_experi_scanner_cyborg"
 	build_type = MECHFAB
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT*2.5)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
 	build_path = /obj/item/borg/upgrade/experi_scanner
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
@@ -113,8 +113,8 @@
 	name = "Mind Transference Module"
 	id = "mod_mind_transfer"
 	materials = list(
-		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = SMALL_MATERIAL_AMOUNT * 5,
 	)
 	build_path = /obj/item/mod/module/mind_swap
 	category = list(
