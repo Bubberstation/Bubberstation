@@ -51,7 +51,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/blood_regen_active
 	/// Current multiplier for how much blood they spend healing themselves for every point of damage healed.
 	var/blood_to_health_multiplier = 1
-	var/cost_blood = 1 /// BUBBER CHANGE, allows scaling of hemophage healing blood cost.
+	var/cost_blood = 1
 
 
 /datum/status_effect/blood_regen_active/on_apply()
@@ -136,7 +136,7 @@
 		regenerator.remove_status_effect(/datum/status_effect/blood_regen_active)
 		return
 
-	regenerator.blood_volume = max(regenerator.blood_volume - blood_used * cost_blood, MINIMUM_VOLUME_FOR_REGEN) // BUBBER CHANGE, allows scaling of hemophage healing blood cost.
+	regenerator.blood_volume = max(regenerator.blood_volume - blood_used * cost_blood, MINIMUM_VOLUME_FOR_REGEN)
 
 
 /datum/movespeed_modifier/hemophage_dormant_state

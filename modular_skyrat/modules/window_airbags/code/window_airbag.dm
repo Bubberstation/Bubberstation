@@ -47,8 +47,8 @@
 	INVOKE_ASYNC(src, PROC_REF(disarm_airbag), clicked_atom, clicker)
 
 /datum/element/airbag/proc/disarm_airbag(atom/movable/clicked_atom, mob/living/clicker)
-	if(!istype(clicker)) // BUBBER EDIT
-		return // BUBBER EDIT
+	if(!istype(clicker))
+		return
 	clicked_atom.balloon_alert(clicker, "disarming airbag...")
 	if(do_after(clicker, DISARM_TIME, clicked_atom))
 		clicked_atom.balloon_alert(clicker, "airbag disarmed!")
