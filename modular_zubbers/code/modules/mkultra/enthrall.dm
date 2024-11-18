@@ -137,11 +137,11 @@
 			owner.remove_status_effect(src)
 			return
 		if(SLEEPER_AGENT)
-			if (cooldown > 0)
+			if(cooldown > 0)
 				cooldown -= 1
 			return
 		if(ENTHRALL_IN_PROGRESS)
-			if (enthrall_tally >= 48)
+			if(enthrall_tally >= 48)
 				phase = PARTIALLY_ENTHRALLED
 				mental_capacity -= resistance_tally //leftover resistance per step is taken away from mental_capacity.
 				resistance_tally /= 2
@@ -152,7 +152,7 @@
 				else
 					to_chat(owner, span_velvet_notice("Your conciousness slips, as you feel more drawn to following [enthrall_mob]."))
 
-			else if (resistance_tally >= 48)
+			else if(resistance_tally >= 48)
 				phase = ENTHRALL_BROKEN
 				to_chat(owner, span_warning("You break free of the influence in your mind, your thoughts suddenly turning lucid!"))
 				if(distance_apart < 10)
@@ -162,7 +162,7 @@
 			if(prob(10))
 				if(lewd)
 					to_chat(owner, span_velvet("[pick("It feels so good to listen to [enthrall_mob].", "You can't keep your eyes off [enthrall_mob].", "[enthrall_mob]'s voice is making you feel so sleepy.",  "You feel so comfortable with [enthrall_mob]", "[enthrall_mob] is so dominant, it feels right to obey them.")]."))
-		if (PARTIALLY_ENTHRALLED)
+		if(PARTIALLY_ENTHRALLED)
 			if(enthrall_tally >= 96)
 				phase = FULLY_ENTHRALLED
 				mental_capacity -= resistance_tally//leftover resistance per step is taken away from mental_capacity.
@@ -175,7 +175,7 @@
 					to_chat(owner, span_userdanger("You are unable to put up a resistance any longer, and now are under the influence of [enthrall_mob]. However you find that in your intoxicated state you are unable to resort to violence. Equally you are unable to commit suicide, even if ordered to, as you cannot follow [enthrall_mob] in death."))
 				to_chat(enthrall_mob, span_notice("Your [(lewd?"pet":"follower")] [owner] appears to have fully fallen under your sway."))
 				SSblackbox.record_feedback("tally", "fermi_chem", 1, "thralls fully enthralled.")
-			else if (resistance_tally >= 96)
+			else if(resistance_tally >= 96)
 				enthrall_tally *= 0.5
 				phase = ENTHRALL_IN_PROGRESS
 				resistance_tally = 0
@@ -183,8 +183,8 @@
 				to_chat(owner, span_notice("You manage to shake some of the effects from your addled mind, however you can still feel yourself drawn towards [enthrall_mob]."))
 			if(lewd && prob(10))
 				to_chat(owner, span_velvet("[pick("It feels so good to listen to [enthrall_gender].", "You can't keep your eyes off [enthrall_gender].", "[enthrall_gender]'s voice is making you feel so sleepy.",  "You feel so comfortable with [enthrall_gender]", "[enthrall_gender] is so dominant, it feels right to obey them.")]."))
-		if (FULLY_ENTHRALLED)
-			if ((resistance_tally >= 96 && withdrawl_progress >= 72) || (HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD) && (resistance_tally >= 48)))
+		if(FULLY_ENTHRALLED)
+			if((resistance_tally >= 96 && withdrawl_progress >= 72) || (HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD) && (resistance_tally >= 48)))
 				enthrall_tally = 0
 				phase = PARTIALLY_ENTHRALLED
 				resistance_tally = 0
@@ -193,8 +193,8 @@
 				REMOVE_TRAIT(owner, TRAIT_PACIFISM, "MKUltra")
 			if(lewd && prob(1) && !custom_echo)
 				to_chat(owner, span_userlove("[pick("I belong to [enthrall_gender].", "[enthrall_gender] knows whats best for me.", "Obedence is pleasure.",  "I exist to serve [enthrall_gender].", "[enthrall_gender] is so dominant, it feels right to obey them.")]."))
-		if (OVERDOSE_ENTHRALLED) //mindbroken
-			if (mental_capacity >= 499 && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) <=0 || HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD)) && !owner.reagents.has_reagent(/datum/reagent/mkultra))
+		if(OVERDOSE_ENTHRALLED) //mindbroken
+			if(mental_capacity >= 499 && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) <= 0 || HAS_TRAIT(enthrall_victim, TRAIT_MINDSHIELD)) && !owner.reagents.has_reagent(/datum/reagent/mkultra))
 				phase = PARTIALLY_ENTHRALLED
 				mental_capacity = 500
 				custom_triggers = list()
@@ -203,10 +203,10 @@
 				enthrall_victim.set_confusion(0)
 				resist_modifier = 0
 			else
-				if (cooldown > 0)
-					cooldown -= (0.8 + (mental_capacity/500))
+				if(cooldown > 0)
+					cooldown -= (0.8 + (mental_capacity / 500))
 					cooldown_sent = FALSE
-				else if (cooldown_sent == FALSE)
+				else if(cooldown_sent == FALSE)
 					if(distance_apart < 10)
 						if(lewd)
 							to_chat(enthrall_mob, span_notice("Your pet [owner] appears to have finished internalising your last command."))
@@ -228,16 +228,16 @@
 			if(phase <= PARTIALLY_ENTHRALLED)
 				// Collars speed up the enthralment process.
 				if(enthrall_victim.wear_neck?.kink_collar == TRUE)
-					enthrall_tally += round(distance_multiplier[get_dist(enthrall_mob, owner)+1] * 1.5, 0.1)
+					enthrall_tally += round(distance_multiplier[get_dist(enthrall_mob, owner) + 1] * 1.5, 0.1)
 				else
-					enthrall_tally += round(distance_multiplier[get_dist(enthrall_mob, owner)+1], 0.1)
+					enthrall_tally += round(distance_multiplier[get_dist(enthrall_mob, owner) + 1], 0.1)
 			if(withdrawl_progress > 0)
 				withdrawl_progress -= 2
 			//calming effects
 			enthrall_victim.set_hallucinations(0)
 			enthrall_victim.set_stutter(0)
 			enthrall_victim.set_jitter(0)
-			if(owner.get_organ_loss(ORGAN_SLOT_BRAIN) >=20)
+			if(owner.get_organ_loss(ORGAN_SLOT_BRAIN) >= 20)
 				owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -0.2)
 			if(withdrawl_active == TRUE)
 				REMOVE_TRAIT(owner, TRAIT_PACIFISM, "MKUltra")
@@ -250,7 +250,7 @@
 			withdrawl_active = TRUE
 
 	//withdrawl_active subproc:
-	if (withdrawl_active == TRUE)//Your minions are really REALLY needy.
+	if(withdrawl_active == TRUE)//Your minions are really REALLY needy.
 		switch(withdrawl_progress)//denial
 			if(4) // 00:20 - To reduce spam
 				to_chat(owner, span_userdanger("You are unable to complete [(lewd?"your [enthrall_gender]":"[enthrall_mob]")]'s orders without their presence, and any commands and objectives given to you prior are not in effect until you are back with them."))
@@ -346,17 +346,16 @@
 
 	//Status subproc - statuses given to you from your enthrall_mob
 	//currently 3 statuses; antiresist -if you press resist, increases your enthrallment instead, HEAL - which slowly heals the pet, CHARGE - which breifly increases speed, PACIFY - makes pet a pacifist, ANTIRESIST - frustrates resist presses.
-	if (status)
-
+	if(status)
 		if(status == "Antiresist")
-			if (status_strength < 0)
+			if(status_strength < 0)
 				status = null
 				to_chat(owner, span_notice("Your mind feels able to resist oncemore."))
 			else
 				status_strength -= 1
 
 		else if(status == "heal")
-			if (status_strength < 0)
+			if(status_strength < 0)
 				status = null
 				to_chat(owner, span_notice("You finish licking your wounds."))
 			else
@@ -372,8 +371,8 @@
 			else
 				to_chat(owner, span_hear("[enthrall_mob]'s command fills you with a burst of speed!"))
 
-		else if (status == "charged")
-			if (status_strength < 0)
+		else if(status == "charged")
+			if(status_strength < 0)
 				status = null
 				owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/mkultra)
 				owner.StaminaKnockdown(50)
@@ -382,7 +381,7 @@
 				status_strength -= 1
 				cooldown += 1 //Cooldown doesn't process till status is done
 
-		else if (status == "pacify")
+		else if(status == "pacify")
 			var/mob/living/carbon/carbon_owner = owner
 			carbon_owner.gain_trauma(/datum/brain_trauma/severe/pacifism)
 			status = null
@@ -394,18 +393,18 @@
 	if(custom_echo && withdrawl_active == FALSE && lewd)
 		if(prob(2))
 			if(!custom_span) //just in case!
-				custom_span = "notice"
-			to_chat(owner, "<span class='[custom_span]'><i>[custom_echo].</i></span>")
+				custom_span = "hear"
+			to_chat(owner, "<span class='[custom_span]'>[custom_echo].</span>")
 
 	//final tidying
 	resistance_tally  += delta_resist
 	delta_resist = 0
 	if(trigger_cached >= 0)
 		trigger_cached -= 1
-	if (cooldown > 0)
-		cooldown -= (0.8 + (mental_capacity/500))
+	if(cooldown > 0)
+		cooldown -= (0.8 + (mental_capacity / 500))
 		cooldown_sent = FALSE
-	else if (cooldown_sent == FALSE)
+	else if(cooldown_sent == FALSE)
 		if(distance_apart < 10)
 			if(lewd)
 				to_chat(enthrall_mob, span_hear("Your pet [owner] appears to have finished internalising your last command."))
@@ -413,9 +412,9 @@
 				to_chat(enthrall_mob, span_hear("Your thrall [owner] appears to have finished internalising your last command."))
 		cooldown_sent = TRUE
 		cooldown = 0
-	if (trance_time > 0 && trance_time != 25) //custom trances only last 24 ticks.
+	if(trance_time > 0 && trance_time != 25) //custom trances only last 24 ticks.
 		trance_time -= 1
-	else if (trance_time == 0) //remove trance after.
+	else if(trance_time == 0) //remove trance after.
 		enthrall_victim.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY)
 		enthrall_victim.remove_status_effect(/datum/status_effect/trance)
 		trance_time = 25
@@ -442,85 +441,85 @@
 /datum/status_effect/chem/enthrall/proc/owner_hear(datum/source, list/hearing_args)
 	if(lewd == FALSE)
 		return
-	if (trigger_cached > 0)
+	if(trigger_cached > 0)
 		return
-	var/mob/living/carbon/C = owner
+	var/mob/living/carbon/enthralled_mob = owner
 	var/raw_message = lowertext(hearing_args[HEARING_RAW_MESSAGE])
-	for (var/trigger in custom_triggers)
+	for(var/trigger in custom_triggers)
 		var/cached_trigger = lowertext(trigger)
-		if (findtext(raw_message, cached_trigger))//if trigger1 is the message
+		if(findtext(raw_message, cached_trigger))//if trigger1 is the message
 			trigger_cached = 5 //Stops triggerparties and as a result, stops servercrashes.
 
 			//Speak (Forces player to talk)
-			if (lowertext(custom_triggers[trigger][1]) == "speak")//trigger2
+			if(lowertext(custom_triggers[trigger][1]) == "speak")//trigger2
 				var/saytext = "Your mouth moves on it's own before you can even catch it."
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, C, "<span class='notice'><i>[saytext]</i></span>"), 5)
-				addtimer(CALLBACK(C, /atom/movable/proc/say, "[custom_triggers[trigger][2]]"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_hear(saytext)), 5)
+				addtimer(CALLBACK(enthralled_mob, /atom/movable/proc/say, "[custom_triggers[trigger][2]]"), 5)
 
 
 			//Echo (repeats message!) allows customisation, but won't display var calls! Defaults to hypnophrase.
-			else if (lowertext(custom_triggers[trigger][1]) == "echo")//trigger2
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, C, "<span class='velvet'><i>[custom_triggers[trigger][2]]</i></span>"), 5)
+			else if(lowertext(custom_triggers[trigger][1]) == "echo")//trigger2
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_velvet("[custom_triggers[trigger][2]]")), 5)
 				//(to_chat(owner, "<span class='hypnophrase'><i>[custom_triggers[trigger][2]]</i></span>"))//trigger3
 
 			//Shocking truth!
-			else if (lowertext(custom_triggers[trigger]) == "shock")
-				if (lewd && ishuman(C))
-					var/mob/living/carbon/human/H = C
-					H.adjust_arousal(5)
-				C.adjust_jitter(10 SECONDS)
-				C.adjust_stutter(5 SECONDS)
-				C.StaminaKnockdown(60)
-				C.Stun(60)
-				to_chat(owner, "<span class='warning'><i>Your muscles seize up, then start spasming wildy!</i></span>")
+			else if(lowertext(custom_triggers[trigger]) == "shock")
+				if(lewd && ishuman(enthralled_mob))
+					var/mob/living/carbon/human/human_mob = enthralled_mob
+					human_mob.adjust_arousal(5)
+				enthralled_mob.adjust_jitter(10 SECONDS)
+				enthralled_mob.adjust_stutter(5 SECONDS)
+				enthralled_mob.StaminaKnockdown(60)
+				enthralled_mob.Stun(60)
+				to_chat(owner, span_warning("Your muscles seize up, then start spasming wildy!"))
 
 			//kneel (knockdown)
-			else if (lowertext(custom_triggers[trigger]) == "kneel")//as close to kneeling as you can get, I suppose.
-				to_chat(owner, "<span class='notice'><i>You drop to the ground unsurreptitiously.</i></span>")
-				C.toggle_resting()
+			else if(lowertext(custom_triggers[trigger]) == "kneel")//as close to kneeling as you can get, I suppose.
+				to_chat(owner, span_hear("You drop to the ground unsurreptitiously."))
+				enthralled_mob.toggle_resting()
 
 			//strip (some) clothes
-			else if (lowertext(custom_triggers[trigger]) == "strip")//This wasn't meant to just be a lewd thing oops.
-				var/mob/living/carbon/human/o = owner
-				var/items = o.get_contents()
-				for(var/obj/item/W in items)
-					if(W == o.w_uniform || W == o.wear_suit)
-						o.dropItemToGround(W, TRUE)
-				to_chat(owner,"<span class='notice'><i>You feel compelled to strip your clothes.</i></span>")
+			else if(lowertext(custom_triggers[trigger]) == "strip")//This wasn't meant to just be a lewd thing oops.
+				var/mob/living/carbon/human/human_mob = owner
+				var/items = human_mob.get_contents()
+				for(var/obj/item/storage_item in items)
+					if(storage_item == human_mob.w_uniform || storage_item == human_mob.wear_suit)
+						human_mob.dropItemToGround(storage_item, TRUE)
+				to_chat(owner, span_hear("You feel compelled to strip your clothes."))
 
 			//trance
-			else if (lowertext(custom_triggers[trigger]) == "trance")//Maaaybe too strong. Weakened it, only lasts 50 ticks.
-				var/mob/living/carbon/human/o = owner
-				o.apply_status_effect(/datum/status_effect/trance, 200, TRUE)
+			else if(lowertext(custom_triggers[trigger]) == "trance")//Maaaybe too strong. Weakened it, only lasts 50 ticks.
+				var/mob/living/carbon/human/human_mob = owner
+				human_mob.apply_status_effect(/datum/status_effect/trance, 200, TRUE)
 				trance_time = 50
 
 	return
 
 /datum/status_effect/chem/enthrall/proc/owner_resist()
 	var/mob/living/carbon/enthrall_victim = owner
-	to_chat(owner, "<span class='notice'><i>You attempt to fight against [enthrall_mob]'s influence!</i></span>")
+	to_chat(owner, span_hear("You attempt to fight against [enthrall_mob]'s influence!"))
 
 	//Able to resist checks
-	if (status == "Sleeper" || phase == SLEEPER_AGENT)
+	if(status == "Sleeper" || phase == SLEEPER_AGENT)
 		return
-	else if (phase == OVERDOSE_ENTHRALLED)
+	else if(phase == OVERDOSE_ENTHRALLED)
 		if(lewd)
-			to_chat(owner, "<span class='warning'><i>Your mind is too far gone to even entertain the thought of resisting. Unless you can fix the brain damage, you won't be able to break free of your [enthrall_gender]'s control.</i></span>")
+			to_chat(owner, span_warning("Your mind is too far gone to even entertain the thought of resisting. Unless you can fix the brain damage, you won't be able to break free of your [enthrall_gender]'s control."))
 		else
-			to_chat(owner, "<span class='warning'><i>Your brain is too overwhelmed with from the high volume of chemicals in your system, rendering you unable to resist, unless you can fix the brain damage.</i></span>")
+			to_chat(owner, span_warning("Your brain is too overwhelmed with from the high volume of chemicals in your system, rendering you unable to resist, unless you can fix the brain damage."))
 		return
-	else if (phase == FULLY_ENTHRALLED && withdrawl_active == FALSE)
+	else if(phase == FULLY_ENTHRALLED && withdrawl_active == FALSE)
 		if(lewd)
-			to_chat(owner, "<span class='hypnophrase'><i>The presence of your [enthrall_gender] fully captures the horizon of your mind, removing any thoughts of resistance. If you get split up from them, then you might be able to entertain the idea of resisting.</i></span>")
+			to_chat(owner, span_hypnophrase("The presence of your [enthrall_gender] fully captures the horizon of your mind, removing any thoughts of resistance. If you get split up from them, then you might be able to entertain the idea of resisting."))
 		else
-			to_chat(owner, "<span class='hypnophrase'><i>You are unable to resist [enthrall_mob] in your current state. If you get split up from them, then you might be able to resist.</i></span>")
+			to_chat(owner, span_hypnophrase("You are unable to resist [enthrall_mob] in your current state. If you get split up from them, then you might be able to resist."))
 		return
-	else if (status == "Antiresist")//If ordered to not resist; resisting while ordered to not makes it last longer, and increases the rate in which you are enthralled.
-		if (status_strength > 0)
+	else if(status == "Antiresist")//If ordered to not resist; resisting while ordered to not makes it last longer, and increases the rate in which you are enthralled.
+		if(status_strength > 0)
 			if(lewd)
-				to_chat(owner, "<span class='warning'><i>The order from your [enthrall_gender] to give in is conflicting with your attempt to resist, drawing you deeper into trance! You'll have to wait a bit before attemping again, lest your attempts become frustrated again.</i></span>")
+				to_chat(owner, span_warning("The order from your [enthrall_gender] to give in is conflicting with your attempt to resist, drawing you deeper into trance! You'll have to wait a bit before attemping again, lest your attempts become frustrated again."))
 			else
-				to_chat(owner, "<span class='warning'><i>The order from your [enthrall_mob] to give in is conflicting with your attempt to resist. You'll have to wait a bit before attemping again, lest your attempts become frustrated again.</i></span>")
+				to_chat(owner, span_warning("The order from your [enthrall_mob] to give in is conflicting with your attempt to resist. You'll have to wait a bit before attemping again, lest your attempts become frustrated again."))
 			status_strength += 1
 			enthrall_tally += 1
 			return
@@ -528,7 +527,7 @@
 			status = null
 
 	//base resistance
-	if (delta_resist != 0)//So you can't spam it, you get one delta_resistance per tick.
+	if(delta_resist != 0)//So you can't spam it, you get one delta_resistance per tick.
 		delta_resist += 0.1 //Though I commend your spamming efforts.
 		return
 	else
@@ -546,22 +545,22 @@
 
 
 	if(prob(5))
-		enthrall_victim.emote("me",1,"squints, shaking their head for a moment.")//shows that you're trying to resist sometimes
+		enthrall_victim.emote("me", 1, "squints, shaking their head for a moment.")//shows that you're trying to resist sometimes
 		delta_resist *= 1.5
 
 	//chemical resistance, brain and annaphros are the key to undoing, but the subject has to to be willing to resist.
-	if (owner.reagents.has_reagent(/datum/reagent/medicine/mannitol))
+	if(owner.reagents.has_reagent(/datum/reagent/medicine/mannitol))
 		delta_resist *= 1.25
-	if (owner.reagents.has_reagent(/datum/reagent/medicine/neurine))
+	if(owner.reagents.has_reagent(/datum/reagent/medicine/neurine))
 		delta_resist *= 1.5
 	//Antag resistance
 	//cultists are already brainwashed by their god
 	if(IS_CULTIST(owner))
 		delta_resist *= 1.3
-	else if (IS_CLOCK(owner))
+	else if(IS_CLOCK(owner))
 		delta_resist *= 1.3
 	//antags should be able to resist, so they can do their other objectives. This chem does frustrate them, but they've all the tools to break free when an oportunity presents itself.
-	else if (owner.mind.assigned_role in GLOB.antagonists)
+	else if(owner.mind.assigned_role in GLOB.antagonists)
 		delta_resist *= 1.2
 
 	//role resistance
@@ -575,9 +574,9 @@
 	//Happiness resistance
 	//Your Thralls are like pets, you need to keep them happy.
 	if(owner.nutrition < 300)
-		delta_resist += (300-owner.nutrition)/6
+		delta_resist += (300 - owner.nutrition) / 6
 	if(owner.health < 100)//Harming your thrall will make them rebel harder.
-		delta_resist *= ((120-owner.health)/100)+1
+		delta_resist *= ((120 - owner.health) / 100) + 1
 	//if(owner.mood.mood) //datum/component/mood TO ADD in FERMICHEM 2
 	//Add cold/hot, oxygen, sanity, happiness? (happiness might be moot, since the mood effects are so strong)
 	//Mental health could play a role too in the other direction
