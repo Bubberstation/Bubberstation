@@ -33,6 +33,8 @@
 	var/silent_feed = TRUE
 	///Have we notified you already that you are at maximum blood?
 	var/notified_overfeeding = FALSE
+	///assoc list of weakrefs to targets and how much blood we've taken from them.
+	var/list/targets_and_blood = list()
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
 	. = list()
@@ -131,7 +133,7 @@
 		target_ref = null
 		return FALSE
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
-		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
+		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
@@ -157,7 +159,7 @@
 			continue
 		if(watchers.is_blind() || watchers.is_nearsighted_currently())
 			continue
-		if(IS_BLOODSUCKER(watchers) || IS_VASSAL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
+		if(IS_BLOODSUCKER(watchers) || IS_GHOUL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
 			continue
 		owner.balloon_alert(owner, "feed noticed!")
 		bloodsuckerdatum_power.give_masquerade_infraction()
@@ -206,7 +208,11 @@
 		feed_strength_mult = 1
 	else
 		feed_strength_mult = 0.3
-	blood_taken += bloodsuckerdatum_power.handle_feeding(feed_target, feed_strength_mult, level_current)
+	var/already_drunk = targets_and_blood[target_ref] || 0
+	var/blood_eaten = bloodsuckerdatum_power.handle_feeding(feed_target, feed_strength_mult, level_current, already_drunk)
+	blood_taken += blood_eaten
+	targets_and_blood[target_ref] += blood_eaten
+	decrement_blood_drunk(blood_eaten * 0.5)
 
 	if(feed_strength_mult > 5 && feed_target.stat < DEAD)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood)
@@ -244,7 +250,7 @@
 	if(owner.pulling && isliving(owner.pulling))
 		if(!can_feed_from(owner.pulling, give_warnings = TRUE))
 			return FALSE
-		target_ref = WEAKREF(owner.pulling)
+		set_target(owner.pulling)
 		return TRUE
 
 	var/list/close_living_mobs = list()
@@ -259,15 +265,29 @@
 	//Check living first
 	for(var/mob/living/suckers in close_living_mobs)
 		if(can_feed_from(suckers))
-			target_ref = WEAKREF(suckers)
+			set_target(suckers)
 			return TRUE
 	//If not, check dead
 	for(var/mob/living/suckers in close_dead_mobs)
 		if(can_feed_from(suckers))
-			target_ref = WEAKREF(suckers)
+			set_target(suckers)
 			return TRUE
 	//No one to suck blood from.
 	return FALSE
+
+// this lets us compare and access things by weakrefs, if we use the actual same weakref instance in the assoc list
+/datum/action/cooldown/bloodsucker/feed/proc/set_target(mob/living/target)
+	if(!length(targets_and_blood))
+		target_ref = WEAKREF(target)
+		return
+
+	for(var/datum/weakref/weakref as anything in targets_and_blood)
+		var/mob/living/old_target = weakref.resolve()
+		if(old_target == target)
+			target_ref = weakref
+			break
+	if(!target_ref)
+		target_ref = WEAKREF(target)
 
 /datum/action/cooldown/bloodsucker/feed/proc/can_feed_from(mob/living/target, give_warnings = FALSE)
 	if(istype(target, /mob/living/basic/mouse))
@@ -314,6 +334,14 @@
 		return
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
 	owner.balloon_alert(owner, "you cannot move while feeding! Click the power to stop.")
+
+/datum/action/cooldown/bloodsucker/feed/proc/decrement_blood_drunk(amount = 0)
+	for(var/datum/weakref/weakref as anything in targets_and_blood)
+		if(weakref == target_ref)
+			continue
+		targets_and_blood[weakref] = max(0, targets_and_blood[weakref] - amount)
+		if(targets_and_blood[weakref] <= 0)
+			targets_and_blood -= weakref
 
 #undef FEED_NOTICE_RANGE
 #undef FEED_DEFAULT_TIMER

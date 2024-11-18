@@ -142,14 +142,6 @@
 	experiment_proper = TRUE
 	required_gas = /datum/gas/hypernoblium
 
-/datum/experiment/ordnance/gaseous/halon
-	name = "Halon Gas Shells"
-	description = "The delivery of Halon gas into an area of operation might prove useful. Perform research and publish papers on this field."
-	gain = list(10,30,60)
-	target_amount = list(15,55,250)
-	experiment_proper = TRUE
-	required_gas = /datum/gas/halon
-
 /datum/experiment/scanning/random/material/meat
 	name = "Biological Material Scanning Experiment"
 	description = "They told us we couldn't make chairs out of every material in the world. You're here to prove those nay-sayers wrong."

@@ -4,7 +4,7 @@
 #define BALLOON_TEXT_FULLY_VISIBLE_TIME (0.7 SECONDS)
 #define BALLOON_TEXT_TOTAL_LIFETIME(mult) (BALLOON_TEXT_SPAWN_TIME + BALLOON_TEXT_FULLY_VISIBLE_TIME*mult + BALLOON_TEXT_FADE_TIME)
 /// The increase in duration per character in seconds
-#define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT (0.05)
+#define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT (0.07) // BUBBER EDIT CHANGE - Original: 0.05
 /// The amount of characters needed before this increase takes into effect
 #define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN 10
 
@@ -44,7 +44,7 @@
 	if (isnull(viewer_client))
 		return
 
-	var/bound_width = world.icon_size
+	var/bound_width = ICON_SIZE_X
 	if (ismovable(src))
 		var/atom/movable/movable_source = src
 		bound_width = movable_source.bound_width
@@ -64,7 +64,7 @@
 
 	animate(
 		balloon_alert,
-		pixel_y = world.icon_size * 1.2,
+		pixel_y = ICON_SIZE_Y * 1.2,
 		time = BALLOON_TEXT_TOTAL_LIFETIME(length_mult),
 		easing = SINE_EASING | EASE_OUT,
 	)

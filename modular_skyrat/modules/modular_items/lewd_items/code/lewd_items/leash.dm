@@ -11,8 +11,8 @@
 	/// Weakref to the leash component we're using, if it exists.
 	var/datum/weakref/our_leash_component
 
-	/// Leash line visual for the hooked item // BUBBER EDIT //
-	var/datum/beam/leash_line/leash_line // BUBBER EDIT
+	/// Leash line visual for the hooked item
+	var/datum/beam/leash_line/leash_line
 
 	unique_reskin = list(
 		"Pink" = "neckleash_pink",
@@ -83,8 +83,8 @@
 	// Owner Signals
 	RegisterSignal(owner, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_item_attack_self))
 	RegisterSignal(owner, COMSIG_ITEM_DROPPED, PROC_REF(on_item_dropped))
-	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED, PROC_REF(on_item_dropped)) // Bubber Edit
-	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED_AS_OUTFIT, PROC_REF(on_item_dropped)) // Bubber Edit
+	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED, PROC_REF(on_item_dropped))
+	RegisterSignal(owner, COMSIG_ITEM_EQUIPPED_AS_OUTFIT, PROC_REF(on_item_dropped))
 	// Parent Signals
 	RegisterSignal(parent, COMSIG_LIVING_RESIST, PROC_REF(on_parent_resist))
 	if(istype(owner, /obj/item/clothing/erp_leash))
@@ -145,10 +145,8 @@
 			qdel(src)
 	else qdel(src) // If they're not an item; something is very wrong - qdel anyways without the breakout time.
 
-// LEASH Line BUBBER ADDON
-// Bubber EDIT STARTS HERE
-// Adds leash as beam, definetly not copy pasted from fishing line
-
+/// create_leash_line
+/// Adds leash as beam, definetly not copy pasted from fishing line
 /obj/item/clothing/erp_leash/proc/create_leash_line(atom/movable/target, target_py = null)
 	var/mob/user = loc
 	if(!istype(user))
@@ -212,5 +210,3 @@
 /datum/beam/leash_line/proc/update_offsets(user_dir)
 	override_origin_pixel_x = lefthand ? lefthand_px : righthand_px
 	override_origin_pixel_y = lefthand ? lefthand_py : righthand_py
-
-// Bubber addon ends here

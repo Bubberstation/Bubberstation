@@ -245,7 +245,7 @@
 
 			// Everything else will just get fried
 			if(isnull(ingredient.reagents) && !is_type_in_list(ingredient, required_ingredients))
-				ingredient.AddElement(/datum/element/fried_item, 30)
+				ingredient.AddElement(/datum/element/fried_item, 30 SECONDS)
 				continue
 
 			// Things that had reagents or ingredients in the soup will get deleted
@@ -710,7 +710,7 @@
 
 /datum/chemical_reaction/food/soup/bloodsoup
 	required_reagents = list(
-		/datum/reagent/water/salt = 10, // SKYRAT EDIT CHANGE - ORIGINAL: /datum/reagent/water = 10,
+		/datum/reagent/water = 10,
 		/datum/reagent/blood = 10,
 	)
 	required_ingredients = list(

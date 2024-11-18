@@ -411,3 +411,9 @@
 /datum/loadout_item/toys/purple_laser
 	name = "Purple Laser Pointer"
 	item_path = /obj/item/laser_pointer/limited/purple
+
+/datum/loadout_item/toys/nyamagotchi
+	name = "Nyamagotchi"
+	item_path = /obj/item/toy/nyamagotchi
+	ui_icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
+	ui_icon_state = "nya"

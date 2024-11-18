@@ -126,30 +126,6 @@
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	cost = PAYCHECK_COMMAND * 8
 
-/*
-/datum/armament_entry/company_import/sol_defense/longarm/bogseo
-	item_type = /obj/item/gun/ballistic/automatic/xhihao_smg
-	cost = PAYCHECK_COMMAND * 10
-	contraband = TRUE
-//Begone
-
-
-/datum/armament_entry/company_import/sol_defense/longarm/infanterie
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle
-	cost = PAYCHECK_COMMAND * 14
-	// contraband = TRUE - Bubberstation Edit
-
-These one are simply rediculous, but we'll keep it there incase someone has idea
-/datum/armament_entry/company_import/sol_defense/longarm/outomaties
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
-	cost = PAYCHECK_COMMAND * 23
-	contraband = TRUE
-
-/datum/armament_entry/company_import/sol_defense/longarm/kiboko
-	item_type = /obj/item/gun/ballistic/automatic/sol_grenade_launcher
-	cost = PAYCHECK_COMMAND * 46
-	contraband = TRUE
-*/
 /datum/armament_entry/company_import/sol_defense/magazines
 	subcategory = "Magazines"
 	cost = PAYCHECK_CREW

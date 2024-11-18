@@ -73,6 +73,7 @@
 	doorobjective.doors_required = rand(15,40)
 	doorobjective.explanation_text = "Use your gloves to doorjack [doorobjective.doors_required] airlocks on the station."
 	objectives += doorobjective
+
 	//SKYRAT EDIT START
 	if(length(get_crewmember_minds()) >= BOMB_POP_REQUIREMENT)
 		//Explosive plant, the bomb will register its completion on priming
@@ -91,11 +92,11 @@
 	//Security Scramble, set to complete upon using your gloves on a security console
 	var/datum/objective/securityobjective = new /datum/objective/security_scramble()
 	objectives += securityobjective
-	/* SKYRAT EDIT REMOVAL
+
 	//Message of Terror, set to complete upon using your gloves a communication console
 	var/datum/objective/communicationobjective = new /datum/objective/terror_message()
 	objectives += communicationobjective
-	*/
+
 	//Survival until end
 	var/datum/objective/survival = new /datum/objective/survive()
 	survival.owner = owner
@@ -103,7 +104,7 @@
 
 /datum/antagonist/ninja/greet()
 	. = ..()
-	SEND_SOUND(owner.current, sound('sound/effects/ninja_greeting.ogg'))
+	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
 	to_chat(owner.current, span_danger("I am an elite mercenary of the mighty Spider Clan!"))
 	to_chat(owner.current, span_warning("Surprise is my weapon. Shadows are my armor. Without them, I am nothing."))
 	to_chat(owner.current, span_notice("The station is located to your [dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]. A thrown ninja star will be a great way to get there."))
@@ -122,13 +123,13 @@
 	equip_space_ninja(owner.current)
 	owner.current.add_quirk(/datum/quirk/freerunning)
 	owner.current.add_quirk(/datum/quirk/light_step)
-	owner.current.mind.set_assigned_role(SSjob.GetJobType(/datum/job/space_ninja))
+	owner.current.mind.set_assigned_role(SSjob.get_job_type(/datum/job/space_ninja))
 	owner.current.mind.special_role = ROLE_NINJA
 	operative.mind.active = TRUE // BUBBER EDIT END
 	return ..()
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
-	new_owner.set_assigned_role(SSjob.GetJobType(/datum/job/space_ninja))
+	new_owner.set_assigned_role(SSjob.get_job_type(/datum/job/space_ninja))
 	new_owner.special_role = ROLE_NINJA
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has ninja'ed [key_name_admin(new_owner)].")
