@@ -22,7 +22,7 @@
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT*5,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
 	)
 	construction_time = 40
 	category = list(
@@ -35,7 +35,7 @@
 	id = "borg_upgrade_advancedanalyzer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/healthanalyzer
-	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 4 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH,
