@@ -111,6 +111,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/silicon = 0.1)
 	growthstages = 2
+	rarity = 20
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -146,6 +147,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/uranium = 0.1)
 	growthstages = 2
+	rarity = 20
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -181,6 +183,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/toxin/plasma = 0.1)
 	growthstages = 2
+	rarity = 40
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -216,6 +219,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/bluespace = 0.1)
 	growthstages = 2
+	rarity = 60
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -251,6 +255,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/silver = 0.1)
 	growthstages = 2
+	rarity = 20
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -286,6 +291,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/gold = 0.1)
 	growthstages = 2
+	rarity = 40
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -321,6 +327,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/carbon = 0.1)
 	growthstages = 2
+	rarity = 60
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -356,6 +363,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/iron = 0.1)
 	growthstages = 2
+	rarity = 20
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -390,6 +398,7 @@
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
+	rarity = 40
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -423,6 +432,7 @@
 	mutatelist = list(/obj/item/seeds/runescooper)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
+	rarity = 60
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -456,6 +466,7 @@
 	mutatelist = list(/obj/item/seeds/bananiumberry)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
+	rarity = 60
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
@@ -490,6 +501,7 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/consumable/nutriment/soup/clown_tears = 0.1)
 	growthstages = 2
+	rarity = 60
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
