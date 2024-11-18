@@ -10,8 +10,6 @@
 #define BLOODFLEDGE_BANK_CAPACITY (BLOODFLEDGE_DRAIN_AMT * 2)
 /// How much damage is healed in a coffin
 #define BLOODFLEDGE_HEAL_AMT -2
-/// Maximum damage taken when splashed with Holy Water
-#define BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP 20
 
 /datum/quirk/item_quirk/bloodfledge
 	name = "Bloodsucker Fledgling"
@@ -54,20 +52,15 @@
 	// Register wooden stake interaction
 	RegisterSignal(quirk_holder, COMSIG_MOB_STAKED, PROC_REF(on_staked))
 
-	// Register holy water reagent processing interaction
-	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HOLYWATER, PROC_REF(process_holywater))
-
-	// Register holy water reagent mob exposed interaction
-	RegisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER, PROC_REF(expose_holywater))
-
 	// Register blood consumption interaction
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_BLOOD, PROC_REF(on_consume_blood))
 
 	// Teach how to make the Hemorrhagic Sanguinizer
 	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
 
-	// Add chapel penalty
+	// Add profane penalties
 	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/chapel_weakness)
+	quirk_holder.AddElementTrait(TRAIT_HOLYWATER_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/holywater_weakness)
 
 /datum/quirk/item_quirk/bloodfledge/post_add()
 	. = ..()
@@ -229,8 +222,9 @@
 	// Examine temporarily disabled
 	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
 
-	// Remove chapel penalty
+	// Remove profane penalties
 	REMOVE_TRAIT(quirk_holder, TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE)
+	REMOVE_TRAIT(quirk_holder, TRAIT_HOLYWATER_WEAKNESS, TRAIT_BLOODFLEDGE)
 
 /datum/quirk/item_quirk/bloodfledge/add_unique(client/client_source)
 	// Define quirk mob
@@ -430,30 +424,6 @@
 	// Warn the user of staking
 	to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place."))
 	target.balloon_alert(target, "you have been staked!")
-
-/// Handle effects applied by consuming Holy Water
-/datum/quirk/item_quirk/bloodfledge/proc/process_holywater()
-	SIGNAL_HANDLER
-
-	// Add disgust and reduce nutrition
-	quirk_holder.adjust_disgust(2)
-	quirk_holder.adjust_nutrition(-6)
-
-/// Handle effects applied by being exposed to Holy Water
-/datum/quirk/item_quirk/bloodfledge/proc/expose_holywater(mob/living/carbon/affected_mob, datum/reagent/handled_reagent, methods, reac_volume, show_message, touch_protection)
-	SIGNAL_HANDLER
-
-	// Play burning sound
-	playsound(quirk_holder, SFX_SEAR, 30, TRUE)
-
-	// Damage cap taken from bugkiller
-	// Intended to prevent instant crit from beaker splash
-	var/damage = min(round(0.4 * reac_volume, 0.1), BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP)
-	if(damage < 1)
-		return
-
-	// Cause burn damage based on amount
-	quirk_holder.adjustFireLoss(damage)
 
 /**
  * Blood nourishment for Bloodfledges
@@ -1611,4 +1581,3 @@
 #undef BLOODFLEDGE_COOLDOWN_REVIVE
 #undef BLOODFLEDGE_BANK_CAPACITY
 #undef BLOODFLEDGE_HEAL_AMT
-#undef BLOODFLEDGE_SPLASH_HOLYWATER_DAMAGE_CAP

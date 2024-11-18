@@ -78,16 +78,18 @@
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER, PROC_REF(process_hellwater))
 	RegisterSignals(quirk_holder, list(COMSIG_REAGENT_METABOLIZE_END_HOLYWATER,COMSIG_LIVING_DEATH), PROC_REF(end_holywater))
 
-	// Add chapel penalty
+	// Add profane penalties
 	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_CURSED_BLOOD, /datum/element/chapel_weakness)
+	quirk_holder.AddElementTrait(TRAIT_HOLYWATER_WEAKNESS, TRAIT_CURSED_BLOOD, /datum/element/holywater_weakness)
 
 /datum/quirk/cursed_blood/remove()
 	// Unregister reagent interactions
 	UnregisterSignal(quirk_holder, COMSIG_REAGENT_EXPOSE_HOLYWATER)
 	UnregisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HELLWATER)
 
-	// Remove chapel penalty
+	// Remove profane penalties
 	REMOVE_TRAIT(quirk_holder, TRAIT_CHAPEL_WEAKNESS, TRAIT_CURSED_BLOOD)
+	REMOVE_TRAIT(quirk_holder, TRAIT_HOLYWATER_WEAKNESS, TRAIT_CURSED_BLOOD)
 
 /// Called when exposed to Holy Water. Applies the dream status effect.
 /datum/quirk/cursed_blood/proc/expose_holywater(mob/living/carbon/affected_mob, datum/reagent/handled_reagent, methods, reac_volume, show_message, touch_protection)

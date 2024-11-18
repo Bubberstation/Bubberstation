@@ -77,3 +77,5 @@
 
 /// Trait used by the Chapel Weakness element
 #define TRAIT_CHAPEL_WEAKNESS		"chapel_weakness"
+/// Trait used by the Holy Water Weakness element
+#define TRAIT_HOLYWATER_WEAKNESS	"holywater_weakness"
