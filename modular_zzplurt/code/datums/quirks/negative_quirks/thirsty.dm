@@ -17,7 +17,7 @@
 // Copy pasted from old code
 // Thirst has not been implemented yet
 /*
-/datum/quirk/thirsty/add()
+/datum/quirk/thirsty/add(client/client_source)
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

@@ -3,7 +3,7 @@
 	desc = "You don't like physical affection, and have a slight chance of retaliating against others who attempt it."
 	value = 0
 
-/datum/quirk/bad_touch/post_add()
+/datum/quirk/bad_touch/add(client/client_source)
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_bad_touch_warning)
 

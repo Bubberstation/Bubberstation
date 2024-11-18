@@ -14,8 +14,6 @@
 	var/is_craving
 
 /datum/quirk/dumb_for_cum/add(client/client_source)
-	. = ..()
-
 	// Set timer
 	timer_crave = addtimer(CALLBACK(src, PROC_REF(crave)), D4C_CRAVE_TIME, TIMER_STOPPABLE)
 
@@ -23,8 +21,6 @@
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_CUM, PROC_REF(handle_fluids))
 
 /datum/quirk/dumb_for_cum/remove()
-	. = ..()
-
 	// Remove status trait
 	REMOVE_TRAIT(quirk_holder, TRAIT_DUMB_CUM_CRAVE, DUMB_CUM_TRAIT)
 

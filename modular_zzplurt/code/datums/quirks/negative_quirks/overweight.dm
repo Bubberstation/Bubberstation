@@ -6,7 +6,7 @@
 	lose_text = span_notice("Your weight returns to an average level.")
 	mob_trait = TRAIT_OVERWEIGHT
 
-/datum/quirk/overweight/add()
+/datum/quirk/overweight/add(client/client_source)
 	// Set nutrition value
 	quirk_holder.nutrition = rand(NUTRITION_LEVEL_FAT + NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_FAT + NUTRITION_LEVEL_START_MAX)
 

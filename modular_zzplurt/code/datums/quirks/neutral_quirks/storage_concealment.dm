@@ -14,8 +14,6 @@
 	//quirk_flags = /datum/quirk::quirk_flags | QUIRK_MOODLET_BASED | QUIRK_PROCESSES
 
 /datum/quirk/storage_concealment/add_unique(client/client_source)
-	. = ..()
-
 	// Create a new augment item
 	var/obj/item/implant/hide_backpack/put_in = new
 

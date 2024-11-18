@@ -14,8 +14,6 @@
 	hidden_quirk = TRUE
 
 /datum/quirk/body_morpher/add(client/client_source)
-	. = ..()
-
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
@@ -24,8 +22,6 @@
 	quirk_action.Grant(quirk_mob)
 
 /datum/quirk/body_morpher/remove()
-	. = ..()
-
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

@@ -12,13 +12,10 @@
 	hidden_quirk = TRUE
 
 /datum/quirk/flimsy/add(client/client_source)
-	. = ..()
-
 	quirk_holder.maxHealth *= 0.8
 
 /datum/quirk/flimsy/remove()
-	. = ..()
-
 	if(!quirk_holder)
 		return
+
 	quirk_holder.maxHealth *= 1.25

@@ -15,16 +15,12 @@
 	var/is_masked
 
 /datum/quirk/masked_mook/add(client/client_source)
-	. = ..()
-
 	// Register signal handlers
 	// Equip and unequip check for wearing the mask
 	// Stat change checks if the mask is adjusted
 	RegisterSignals(quirk_holder, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(check_outfit))
 
 /datum/quirk/masked_mook/post_add()
-	. = ..()
-
 	// Evaluate outfit
 	check_outfit()
 

@@ -18,8 +18,6 @@
 	)
 
 /datum/quirk/concubus/add(client/client_source)
-	. = ..()
-
 	// Define quirk holder
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
@@ -38,8 +36,6 @@
 	RegisterSignals(quirk_holder, list(COMSIG_REAGENT_ADD_CUM, COMSIG_REAGENT_ADD_BREASTMILK), PROC_REF(handle_fluids))
 
 /datum/quirk/concubus/remove()
-	. = ..()
-
 	// Define quirk holder
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

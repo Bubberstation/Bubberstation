@@ -11,7 +11,7 @@
 	icon = FA_ICON_PAW
 	hidden_quirk = TRUE
 
-/datum/quirk/werewolf/post_add()
+/datum/quirk/werewolf/add(client/client_source)
 	// Define quirk action
 	var/datum/action/cooldown/werewolf/transform/quirk_action = new
 

@@ -25,7 +25,7 @@
 	mail_goodies = list (
 		/obj/item/flashlight/glowstick = 1
 	)
-/datum/quirk/cosglow/add()
+/datum/quirk/cosglow/add(client/client_source)
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

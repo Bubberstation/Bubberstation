@@ -24,7 +24,7 @@
 	/// Toggle between using blood volume or nutrition. Blood volume is used for hemophages.
 	var/use_nutrition = TRUE
 
-/datum/quirk/item_quirk/bloodfledge/add()
+/datum/quirk/item_quirk/bloodfledge/add(client/client_source)
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
@@ -55,9 +55,6 @@
 	// Register blood consumption interaction
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_BLOOD, PROC_REF(on_consume_blood))
 
-	// Teach how to make the Hemorrhagic Sanguinizer
-	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
-
 	// Add profane penalties
 	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/chapel_weakness)
 	quirk_holder.AddElementTrait(TRAIT_HOLYWATER_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/holywater_weakness)
@@ -67,6 +64,9 @@
 
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
+
+	// Teach how to make the Hemorrhagic Sanguinizer
+	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
 
 	// Define owner tongue
 	var/obj/item/organ/internal/tongue/target_tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)

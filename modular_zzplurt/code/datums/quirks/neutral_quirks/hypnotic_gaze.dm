@@ -18,7 +18,7 @@
 	erp_quirk = TRUE
 	hidden_quirk = TRUE
 
-/datum/quirk/hypnotic_gaze/add()
+/datum/quirk/hypnotic_gaze/add(client/client_source)
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

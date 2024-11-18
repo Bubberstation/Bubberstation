@@ -22,7 +22,6 @@
 	hidden_quirk = TRUE
 
 /datum/quirk/gargoyle/add(client/client_source)
-	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 	if (!H)
 		return

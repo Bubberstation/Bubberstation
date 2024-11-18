@@ -13,14 +13,8 @@
 	)
 
 /datum/quirk/hallowed/add(client/client_source)
-	// Define quirk mob.
-	var/mob/living/carbon/human/quirk_mob = quirk_holder
-
 	// Give the holy trait.
-	ADD_TRAIT(quirk_mob, TRAIT_HOLY, "quirk_hallowed")
-
-	// Makes the user holy.
-	quirk_mob.mind.holy_role = HOLY_ROLE_DEACON
+	ADD_TRAIT(quirk_holder, TRAIT_HOLY, TRAIT_HALLOWED)
 
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hallowed)
@@ -29,15 +23,21 @@
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_HOLYWATER, PROC_REF(metabolize_holywater))
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_PROCESS_HOLYWATER, PROC_REF(process_holywater))
 
+/datum/quirk/hallowed/post_add()
+	// Makes the user holy.
+	quirk_holder.mind?.holy_role = HOLY_ROLE_DEACON
+
 /datum/quirk/hallowed/remove()
 	// Define quirk mob.
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
 	// Remove the holy trait.
-	REMOVE_TRAIT(quirk_mob, TRAIT_HOLY, "quirk_hallowed")
+	REMOVE_TRAIT(quirk_mob, TRAIT_HOLY, TRAIT_HALLOWED)
 
-	// Makes the user not holy.
-	quirk_mob.mind.holy_role = NONE
+	// Check if the holder is a deacon
+	if(quirk_holder.mind?.holy_role == HOLY_ROLE_DEACON)
+		// Revoke the holder's deacon status
+		quirk_mob.mind?.holy_role = NONE
 
 	// Remove status effect
 	quirk_holder.remove_status_effect(/datum/status_effect/quirk_hallowed)

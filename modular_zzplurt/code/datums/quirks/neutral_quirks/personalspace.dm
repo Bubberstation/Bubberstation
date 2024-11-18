@@ -3,7 +3,7 @@
 	desc = "You'd rather people keep their hands off your rear end. Anyone who tries to slap your rock-hard posterior usually gets a broken hand!"
 	medical_record_text = "Patient demonstrates negative reactions to their posterior being touched. Said posterior has developed a supernatural level of durability."
 
-/datum/quirk/personalspace/post_add()
+/datum/quirk/personalspace/add(client/client_source)
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_personalspace_warning)
 

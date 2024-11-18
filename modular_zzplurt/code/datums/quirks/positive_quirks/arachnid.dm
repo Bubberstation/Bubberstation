@@ -8,7 +8,7 @@
 	lose_text = span_notice("You feel like you can't spin webs anymore...")
 	icon = FA_ICON_SPIDER
 
-/datum/quirk/arachnid/add()
+/datum/quirk/arachnid/add(client/client_source)
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

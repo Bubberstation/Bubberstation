@@ -10,7 +10,7 @@
     mob_trait = TRAIT_UNDEAD
     icon = FA_ICON_HEAD_SIDE_VIRUS
 
-/datum/quirk/undead/add()
+/datum/quirk/undead/add(client/client_source)
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

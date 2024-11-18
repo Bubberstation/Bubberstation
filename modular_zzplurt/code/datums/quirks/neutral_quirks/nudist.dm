@@ -14,14 +14,10 @@
 	var/is_nude
 
 /datum/quirk/nudist/add(client/client_source)
-	. = ..()
-
 	// Register signal handlers
 	RegisterSignals(quirk_holder, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(check_outfit))
 
 /datum/quirk/nudist/remove()
-	. = ..()
-
 	// Remove status effect
 	quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
 
@@ -33,8 +29,6 @@
 	)
 
 /datum/quirk/nudist/post_add()
-	. = ..()
-
 	// Evaluate outfit
 	check_outfit()
 

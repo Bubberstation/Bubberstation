@@ -17,7 +17,7 @@
 // Production scales based on size and mob arousal
 
 // Increase fluids
-/datum/quirk/cum_plus/add()
+/datum/quirk/cum_plus/add(client/client_source)
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 

@@ -14,7 +14,7 @@
 	)
 	COOLDOWN_DECLARE(wiggle_cooldown)
 
-/datum/quirk/jiggly_ass/add()
+/datum/quirk/jiggly_ass/add(client/client_source)
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_jiggly_ass)
 

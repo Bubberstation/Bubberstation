@@ -11,7 +11,7 @@
 	icon = FA_ICON_HAND
 	hidden_quirk = TRUE
 
-/datum/quirk/headpat_hater/post_add()
+/datum/quirk/headpat_hater/add(client/client_source)
 	// Add status effect
 	quirk_holder.apply_status_effect(/datum/status_effect/quirk_headpat_hater)
 
