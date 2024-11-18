@@ -44,7 +44,7 @@
 
 ///Despite being in the medical.dm file, it's still used to fill your hunger up, as such, technically, is food.
 /datum/design/glucose
-	name = "EVA Glucose Injector"
+	name = "Glucose Injector"
 	id = "slavic_glupen"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
