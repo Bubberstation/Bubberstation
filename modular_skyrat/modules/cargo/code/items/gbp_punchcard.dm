@@ -1,4 +1,4 @@
-#define GBP_PUNCH_REWARD 100
+#define GBP_PUNCH_REWARD 150
 
 /obj/item/card/id
 	COOLDOWN_DECLARE(gbp_redeem_cooldown)
@@ -6,7 +6,7 @@
 /obj/item/gbp_punchcard
 	name = "Good Assistant Points punchcard"
 	desc = "The Good Assistant Points program is designed to supplement the income of otherwise unemployed or unpaid individuals on board Nanotrasen vessels and colonies.<br>\
-	Simply get your punchcard stamped by a Head of Staff to earn 100 credits per punch upon turn-in at a Good Assistant Point machine!<br>\
+	Simply get your punchcard stamped by a Head of Staff's PDA to earn 150 credits per punch upon turn-in at a Good Assistant Point machine!<br>\
 	Maximum of six punches per any given card. Card replaced upon redemption of existing card. Do not lose your punchcard."
 	icon = 'modular_skyrat/modules/cargo/icons/punchcard.dmi'
 	icon_state = "punchcard_0"
@@ -18,12 +18,21 @@
 /obj/item/gbp_punchcard/starting
 	icon_state = "punchcard_1"
 	punches = 1 // GBP_PUNCH_REWARD credits by default
+	req_access = list(ACCESS_COMMAND)
 
 /obj/item/gbp_punchcard/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if(istype(attacking_item, /obj/item/gbp_puncher))
+
+	var/is_valid_item = istype(attacking_item, /obj/item/gbp_puncher)
+	if(!is_valid_item && istype(attacking_item, /obj/item/modular_computer/pda))
+		var/obj/item/modular_computer/pda/pda = attacking_item
+		is_valid_item = check_access(pda.computer_id_slot)
+		if (!is_valid_item)
+			balloon_alert(user, "no access!")
+
+	if(is_valid_item)
 		if(!COOLDOWN_FINISHED(src, gbp_punch_cooldown))
-			balloon_alert(user, "cooldown! [DisplayTimeText(COOLDOWN_TIMELEFT(src, gbp_punch_cooldown))]")
+			balloon_alert(user, "cooldown! ([DisplayTimeText(COOLDOWN_TIMELEFT(src, gbp_punch_cooldown))])")
 			return
 		if(punches < max_punches)
 			punches++
@@ -122,49 +131,6 @@
 	build_path = /obj/machinery/gbp_redemption
 	req_components = list(
 		/datum/stock_part/servo = 1)
-
-
-/datum/outfit/job/rd/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1
-	)
-
-/datum/outfit/job/hos/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
-
-/datum/outfit/job/hop/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
-
-/datum/outfit/job/ce/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
-
-/datum/outfit/job/cmo/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
-
-/datum/outfit/job/captain/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
-
-/datum/outfit/job/quartermaster/pre_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	backpack_contents += list(
-		/obj/item/gbp_puncher = 1,
-	)
 
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
