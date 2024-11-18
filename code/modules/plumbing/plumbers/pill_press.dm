@@ -37,7 +37,7 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			"Bottles" = list(/obj/item/reagent_containers/cup/bottle, /obj/item/reagent_containers/cup/bottle/large),
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES],
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
 		)
 

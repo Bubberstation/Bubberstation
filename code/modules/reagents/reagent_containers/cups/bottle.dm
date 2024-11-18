@@ -31,6 +31,8 @@
 		icon_state = "bottle_large"
 	update_appearance()
 
+/obj/item/reagent_containers/cup/bottle/medi
+
 /obj/item/reagent_containers/cup/bottle/epinephrine
 	name = "epinephrine bottle"
 	desc = "A small bottle. Contains epinephrine - used to stabilize patients."
