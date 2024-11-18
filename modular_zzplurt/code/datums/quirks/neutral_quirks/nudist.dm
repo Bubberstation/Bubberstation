@@ -19,7 +19,7 @@
 
 /datum/quirk/nudist/remove()
 	// Remove status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/nudist)
 
 	// Unregister signals
 	UnregisterSignal(quirk_holder, list(
@@ -55,10 +55,10 @@
 		quirk_mob.add_mood_event(QMOOD_NUDIST, /datum/mood_event/nudist_positive)
 
 		// Remove old status effect
-		quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/nudist)
 
 		// Apply positive status effect
-		quirk_holder.apply_status_effect(/datum/status_effect/quirk_nudist/positive)
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/nudist/positive)
 
 		// Check if already set
 		if(is_nude)
@@ -76,10 +76,10 @@
 		quirk_mob.add_mood_event(QMOOD_NUDIST, /datum/mood_event/nudist_negative)
 
 		// Remove old status effect
-		quirk_holder.remove_status_effect(/datum/status_effect/quirk_nudist)
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/nudist)
 
 		// Apply negative status effect
-		quirk_holder.apply_status_effect(/datum/status_effect/quirk_nudist/negative)
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/nudist/negative)
 
 		// Check if already set
 		if(!is_nude)
@@ -102,15 +102,13 @@
 	mood_change = -4
 
 // Examine text status effect
-/datum/status_effect/quirk_nudist
-	id = "quirk_nudist"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/nudist
+	id = QUIRK_EXAMINE_NUDIST
 
 // Set effect examine text - Positive
-/datum/status_effect/quirk_nudist/positive/get_examine_text()
+/datum/status_effect/quirk_examine/nudist/positive/get_examine_text()
 	return span_notice("[owner.p_They()] appear[owner.p_s()] content with [owner.p_their()] lack of clothing.")
 
 // Set effect examine text - Negative
-/datum/status_effect/quirk_nudist/negative/get_examine_text()
+/datum/status_effect/quirk_examine/nudist/negative/get_examine_text()
 	return span_warning("[owner.p_They()] appear[owner.p_s()] disturbed by wearing clothing.")

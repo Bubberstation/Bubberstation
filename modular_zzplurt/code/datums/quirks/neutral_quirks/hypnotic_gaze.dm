@@ -27,7 +27,7 @@
 	act_hypno.Grant(quirk_mob)
 
 	// Add status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hypnotic_gaze)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/hypnotic_gaze)
 
 /datum/quirk/hypnotic_gaze/remove()
 	// Define quirk mob
@@ -38,16 +38,14 @@
 	act_hypno.Remove(quirk_mob)
 
 	// Remove status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_hypnotic_gaze)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/hypnotic_gaze)
 
 // Examine text status effect
-/datum/status_effect/quirk_hypnotic_gaze
-	id = "quirk_hypnotic_gaze"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/hypnotic_gaze
+	id = QUIRK_EXAMINE_HYPNOTIC_GAZE
 
 // Set effect examine text
-/datum/status_effect/quirk_hypnotic_gaze/get_examine_text()
+/datum/status_effect/quirk_examine/hypnotic_gaze/get_examine_text()
 	return span_purple("[owner.p_Their()] eyes glimmer with an entrancing power.")
 
 //

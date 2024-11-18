@@ -16,20 +16,18 @@
 
 /datum/quirk/jiggly_ass/add(client/client_source)
 	// Add status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_jiggly_ass)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/jiggly_ass)
 
 /datum/quirk/jiggly_ass/remove()
 	// Remove status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_jiggly_ass)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/jiggly_ass)
 
 // Examine text status effect
-/datum/status_effect/quirk_jiggly_ass
-	id = "quirk_jiggly_ass"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/jiggly_ass
+	id = QUIRK_EXAMINE_JIGGLY_ASS
 
 // Set effect examine text
-/datum/status_effect/quirk_jiggly_ass/get_examine_text()
+/datum/status_effect/quirk_examine/jiggly_ass/get_examine_text()
 	return span_purple("[owner.p_Their()] butt could use a firm smack.")
 
 // Equal to 'pet animal'

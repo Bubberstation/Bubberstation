@@ -45,16 +45,14 @@
 	quirk_mob.remove_filter("rad_fiend_glow")
 
 // Light emitting status effect
-/datum/status_effect/quirk_cosglow
-	id = "quirk_cosglow"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/cosglow
+	id = QUIRK_EXAMINE_COSGLOW
 	status_type = STATUS_EFFECT_REPLACE
 
 	// Light effect object
 	var/obj/effect/dummy/lighting_obj/moblight/cosglow_light_obj
 
-/datum/status_effect/quirk_cosglow/on_apply()
+/datum/status_effect/quirk_examine/cosglow/on_apply()
 	// Dynamic color is disabled
 	/*
 	// Get glow action
@@ -71,11 +69,11 @@
 
 	return TRUE
 
-/datum/status_effect/quirk_cosglow/on_remove()
+/datum/status_effect/quirk_examine/cosglow/on_remove()
 	// Remove light
 	QDEL_NULL(cosglow_light_obj)
 
-/datum/status_effect/quirk_cosglow/get_examine_text()
+/datum/status_effect/quirk_examine/cosglow/get_examine_text()
 	return span_notice("[owner.p_They()] emit[owner.p_s()] a harmless glowing aura.")
 
 // Glow actions
@@ -120,7 +118,7 @@
 	animate(alpha = 40, time = 2.5 SECONDS)
 
 	// Apply status effect
-	action_mob.apply_status_effect(/datum/status_effect/quirk_cosglow, TRAIT_COSGLOW)
+	action_mob.apply_status_effect(/datum/status_effect/quirk_examine/cosglow, TRAIT_COSGLOW)
 
 /datum/action/cosglow/update_glow/Remove(mob/remove_from)
 	. = ..()
@@ -132,7 +130,7 @@
 	action_mob.remove_filter("rad_fiend_glow")
 
 	// Remove status effect
-	action_mob.remove_status_effect(/datum/status_effect/quirk_cosglow, TRAIT_COSGLOW)
+	action_mob.remove_status_effect(/datum/status_effect/quirk_examine/cosglow, TRAIT_COSGLOW)
 
 /datum/action/cosglow/update_glow/Trigger(trigger_flags)
 	. = ..()
@@ -201,7 +199,7 @@
 	animate(alpha = 40, time = 2.5 SECONDS)
 
 	// Find status effect
-	var/datum/status_effect/quirk_cosglow/glow_effect = locate() in action_mob.status_effects
+	var/datum/status_effect/quirk_examine/cosglow/glow_effect = locate() in action_mob.status_effects
 
 	// Update status effect light color
 	//glow_effect?.cosglow_light_obj?.set_light_color(glow_color) // Unused

@@ -17,7 +17,7 @@
 	ADD_TRAIT(quirk_holder, TRAIT_HOLY, TRAIT_HALLOWED)
 
 	// Add status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_hallowed)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/hallowed)
 
 	// Register holy water interactions
 	RegisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_HOLYWATER, PROC_REF(metabolize_holywater))
@@ -40,7 +40,7 @@
 		quirk_mob.mind?.holy_role = NONE
 
 	// Remove status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_hallowed)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/hallowed)
 
 	// Unregister holy water interactions
 	UnregisterSignal(quirk_holder, COMSIG_REAGENT_METABOLIZE_HOLYWATER)
@@ -67,12 +67,10 @@
 	//quirk_holder.adjust_thirst(6)
 
 // Examine text status effect
-/datum/status_effect/quirk_hallowed
-	id = "quirk_hallowed"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/hallowed
+	id = QUIRK_EXAMINE_HALLOWED
 
 // Set effect examine text
-/datum/status_effect/quirk_hallowed/get_examine_text()
+/datum/status_effect/quirk_examine/hallowed/get_examine_text()
 	return span_notice("[owner.p_They()] radiate[owner.p_s()] divine power.")
 

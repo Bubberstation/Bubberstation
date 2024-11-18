@@ -11,20 +11,18 @@
 
 /datum/quirk/headpat_slut/add(client/client_source)
 	// Add examine text status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_headpat_slut)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/headpat_slut)
 
 /datum/quirk/headpat_slut/remove()
 	// Remove examine text status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_headpat_slut)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/headpat_slut)
 
 // Examine text status effect
-/datum/status_effect/quirk_headpat_slut
-	id = "quirk_headpat_slut"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/headpat_slut
+	id = QUIRK_EXAMINE_HEADPAT_SLUT
 
 // Set effect examine text
-/datum/status_effect/quirk_headpat_slut/get_examine_text()
+/datum/status_effect/quirk_examine/headpat_slut/get_examine_text()
 	return span_purple("[owner.p_Their()] head could use a good patting.")
 
 // Base mood event

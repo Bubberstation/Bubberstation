@@ -39,10 +39,10 @@
 		quirk_mob.add_mood_event(QMOOD_MASKED_MOOK, /datum/mood_event/masked_mook/positive)
 
 		// Remove old status effect
-		quirk_holder.remove_status_effect(/datum/status_effect/quirk_masked_mook)
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/masked_mook)
 
 		// Apply positive status effect
-		quirk_holder.apply_status_effect(/datum/status_effect/quirk_masked_mook/positive)
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/masked_mook/positive)
 
 		// Check if already set
 		if(is_masked)
@@ -60,10 +60,10 @@
 		quirk_mob.add_mood_event(QMOOD_MASKED_MOOK, /datum/mood_event/masked_mook/negative)
 
 		// Remove old status effect
-		quirk_holder.remove_status_effect(/datum/status_effect/quirk_masked_mook)
+		quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/masked_mook)
 
 		// Apply negative status effect
-		quirk_holder.apply_status_effect(/datum/status_effect/quirk_masked_mook/negative)
+		quirk_holder.apply_status_effect(/datum/status_effect/quirk_examine/masked_mook/negative)
 
 		// Check if already set
 		if(!is_masked)
@@ -79,7 +79,7 @@
 	. = ..()
 
 	// Remove status effect
-	quirk_holder.remove_status_effect(/datum/status_effect/quirk_masked_mook)
+	quirk_holder.remove_status_effect(/datum/status_effect/quirk_examine/masked_mook)
 
 	// Remove mood event
 	quirk_holder.clear_mood_event(QMOOD_MASKED_MOOK)
@@ -105,15 +105,13 @@
 	mood_change = -4
 
 // Examine text status effect
-/datum/status_effect/quirk_masked_mook
-	id = "quirk_masked_mook"
-	duration = -1
-	alert_type = null
+/datum/status_effect/quirk_examine/masked_mook
+	id = QUIRK_EXAMINE_MASKED_MOOK
 
 // Set effect examine text - Positive
-/datum/status_effect/quirk_masked_mook/positive/get_examine_text()
+/datum/status_effect/quirk_examine/masked_mook/positive/get_examine_text()
 	return span_notice("[owner.p_They()] wear[owner.p_s()] [owner.p_their()] mask with a particular finesse.")
 
 // Set effect examine text - Negative
-/datum/status_effect/quirk_masked_mook/negative/get_examine_text()
+/datum/status_effect/quirk_examine/masked_mook/negative/get_examine_text()
 	return span_warning("[owner.p_They()] seem[owner.p_s()] uncomfortable with [owner.p_their()] unprotected face.")

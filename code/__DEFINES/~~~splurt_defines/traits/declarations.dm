@@ -1,3 +1,6 @@
+///
+/// Quirk traits
+///
 /// Trait for quirk: Sodium Sensitivity
 #define TRAIT_SALT_SENSITIVE 	"salt_sensitive"
 /// Trait for quirk: Rad Fiend
@@ -75,6 +78,9 @@
 /// Trait for quirk: Overweight
 #define TRAIT_OVERWEIGHT		"overweight"
 
+///
+// Element traits
+///
 /// Trait used by the Chapel Weakness element
 #define TRAIT_CHAPEL_WEAKNESS		"chapel_weakness"
 /// Trait used by the Holy Water Weakness element
