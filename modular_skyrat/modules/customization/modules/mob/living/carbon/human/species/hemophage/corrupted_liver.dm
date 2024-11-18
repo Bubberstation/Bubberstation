@@ -38,10 +38,9 @@
 	if(HAS_TRAIT(target_mob, TRAIT_AGEUSIA)) // They don't taste anything, their body shouldn't react strongly to the taste of that stuff.
 		return
 
-// BUBBER EDIT START
 	if(HAS_TRAIT(target_mob, TRAIT_MASQUERADE_FOOD)) // Their tumor has adapted the ability to consume normal food without violently rejecting it.
 		return
-// BUBBER EDIT END
+
 	if(container.reagents.has_chemical_flag_skyrat(REAGENT_BLOOD_REGENERATING, container.reagents.total_volume * MINIMUM_BLOOD_REGENING_REAGENT_RATIO)) // At least 75% of the content of the cup needs to be something that's counting as blood-regenerating for the tumor not to freak out.
 		return
 
