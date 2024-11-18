@@ -71,6 +71,8 @@
 		// This may be the only way to get Hell Water.
 		/obj/item/reagent_containers/cup/glass/bottle/holywater/hell = 1
 	)
+	/// Deity name to use in Dream messages
+	var/pref_deity
 
 /datum/quirk/cursed_blood/add(client/client_source)
 	// Register reagent interactions
@@ -81,6 +83,23 @@
 	// Add profane penalties
 	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_CURSED_BLOOD, /datum/element/chapel_weakness)
 	quirk_holder.AddElementTrait(TRAIT_HOLYWATER_WEAKNESS, TRAIT_CURSED_BLOOD, /datum/element/holywater_weakness)
+
+/datum/quirk/cursed_blood/post_add()
+	// Try to read client preference
+	var/client_pref_deity = quirk_holder.client?.prefs?.read_preference(/datum/preference/name/deity)
+
+	// Check if pref exists and is not the default value
+	if(client_pref_deity && (client_pref_deity != DEFAULT_DEITY))
+		// Set new preferred deity
+		pref_deity = client_pref_deity
+
+	// No preference set
+	else
+		// Pick a random crew member's name
+		var/datum/record/crew/random_crew = pick(GLOB.manifest.general)
+
+		// Set deity to that name
+		pref_deity = random_crew?.name
 
 /datum/quirk/cursed_blood/remove()
 	// Unregister reagent interactions
@@ -106,7 +125,7 @@
 		duration_override = CURSEDBLOOD_DREAM_DURATION_SPLASH
 
 	// Add status effect
-	quirk_holder.apply_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming, duration_override)
+	quirk_holder.apply_status_effect(/datum/status_effect/quirk_cursed_blood/dreaming, duration_override, pref_deity)
 
 /// Called when done metabolizing Holy Water or on death. Clears the dream status effect.
 /datum/quirk/cursed_blood/proc/end_holywater()
@@ -134,19 +153,43 @@
 	alert_type = /atom/movable/screen/alert/status_effect/cursed_blood_dream
 	remove_on_fullheal = TRUE
 
-	/// Name of the target's religious deity
-	var/deity_name = "God"
+	/// Default name of the target's religious deity
+	var/deity_name = DEFAULT_DEITY
 
 // Status effect condition checks
-/datum/status_effect/quirk_cursed_blood/dreaming/on_creation(mob/living/new_owner, duration_override)
+/datum/status_effect/quirk_cursed_blood/dreaming/on_creation(mob/living/new_owner, duration_override, pref_deity)
 	// Check for duration override
 	if(duration_override)
 		// Set limited duration
 		src.duration = duration_override
 
-	// Set deity name
-	if(GLOB.deity)
+	// Check if owner is a blood cultist
+	if(IS_CULTIST(new_owner))
+		// Set name to blood cultist god
+		deity_name = "Nar'Sie"
+
+	// Check if owner is a clock cultist
+	else if(IS_CLOCK(new_owner))
+		// Set name to clock cultist god
+		deity_name = "Ratvar"
+
+	// Check disabled: Requires /carbon/human
+	/*
+	// Check if owner is a clown
+	else if(is_clown_job(new_owner.mind?.assigned_role))
+		// Set name to clown god
+		deity_name = "Honkmother"
+	*/
+
+	// Check if a global deity is set
+	else if(GLOB.deity)
+		// Set global deity name
 		deity_name = GLOB.deity
+
+	// Check if a client preference was given
+	else if(pref_deity)
+		// Use preferred deity
+		deity_name = pref_deity
 
 	// Run normally
 	return ..()
