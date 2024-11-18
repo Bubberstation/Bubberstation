@@ -4411,17 +4411,6 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/station/commons/dorms/laundry)
-"aqY" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 6;
-	name = "Station";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/large;
-	shuttle_id = "monastery_shuttle_station";
-	width = 5
-	},
-/turf/open/misc/dirt/dark/jungle,
-/area/jungleplanet/nearstation)
 "aqZ" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -5069,7 +5058,6 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/commons/dorms/laundry)
 "atk" = (
-/obj/structure/sign/warning/pods/directional/west,
 /turf/open/floor/plating,
 /area/station/commons/dorms)
 "atl" = (
@@ -15476,6 +15464,7 @@
 	},
 /obj/machinery/light/directional/north,
 /obj/machinery/camera/autoname/directional/north,
+/obj/machinery/computer/shuttle/arrivals,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bkR" = (
@@ -20103,16 +20092,6 @@
 /obj/item/chair,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
-"bFE" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 6;
-	name = "monastery";
-	shuttle_id = "monastery_shuttle_asteroid";
-	width = 5
-	},
-/turf/open/genturf/orange,
-/area/jungleplanet/nearstation)
 "bFF" = (
 /obj/machinery/atmospherics/components/tank/air{
 	dir = 1
@@ -24032,7 +24011,7 @@
 /area/station/engineering/main)
 "bYq" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold/yellow/visible{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -24075,6 +24054,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/monastery)
+"bYD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
+/turf/open/floor/plating,
+/area/station/engineering/atmos)
 "bYI" = (
 /obj/item/kirbyplants/organic/plant21{
 	pixel_y = 3
@@ -35599,6 +35583,10 @@
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /turf/open/floor/iron,
 /area/station/security/brig)
+"iUx" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/misc/dirt/dark/jungle,
+/area/station/commons/dorms)
 "iUX" = (
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
@@ -37830,7 +37818,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "kTo" = (
-/obj/machinery/computer/shuttle/monastery_shuttle,
+/obj/machinery/computer/shuttle/mining/common{
+	name = "public shuttle console"
+	},
 /turf/open/floor/iron/dark,
 /area/station/commons/dorms)
 "kUj" = (
@@ -43396,11 +43386,11 @@
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
 "pFG" = (
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/bridge_pipe/cyan/visible,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/layer_manifold/yellow/visible{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "pFQ" = (
@@ -47530,6 +47520,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
+"sYw" = (
+/obj/structure/sign/warning/docking/directional/north,
+/turf/open/floor/iron,
+/area/station/commons/dorms)
 "sYE" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/hangover,
@@ -51069,7 +51063,7 @@
 /obj/machinery/atmospherics/pipe/bridge_pipe/green/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/dark/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "vJH" = (
@@ -53015,7 +53009,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "xci" = (
@@ -54644,6 +54638,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/brig)
+"ylY" = (
+/obj/docking_port/stationary/mining_home/common/northstar,
+/turf/open/misc/dirt/dark/jungle,
+/area/jungleplanet/nearstation)
 "ymb" = (
 /obj/machinery/camera/directional/east{
 	c_tag = "Engineering Telecomms Access";
@@ -68940,7 +68938,7 @@ rDK
 rDK
 rDK
 rDK
-bFE
+rDK
 bGF
 bHJ
 pbm
@@ -90286,7 +90284,7 @@ bWO
 eVD
 qsH
 qFJ
-rGo
+bYD
 fda
 caB
 oOo
@@ -94056,13 +94054,13 @@ rLh
 rLh
 rLh
 rLh
-rLh
-rLh
-rLh
+apX
+iUx
+iUx
 apX
 apX
 apX
-com
+sYw
 awv
 axr
 ayq
@@ -94312,11 +94310,11 @@ rLh
 rLh
 rLh
 rLh
-rLh
-rLh
-rLh
-aqY
+ylY
 asi
+atk
+atk
+atk
 atk
 izB
 com
@@ -94570,9 +94568,9 @@ rLh
 rLh
 rLh
 rLh
-rLh
-rLh
-rLh
+apX
+iUx
+iUx
 asj
 atl
 aum
