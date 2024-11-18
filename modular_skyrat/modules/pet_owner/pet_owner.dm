@@ -34,14 +34,12 @@
 	var/new_desc = client_source?.prefs.read_preference(/datum/preference/text/pet_desc)
 	if (new_desc)
 		pet.desc = new_desc
-// BUBBER EDIT BEGIN
 	var/new_gender = client_source?.prefs.read_preference(/datum/preference/choiced/pet_gender)
 	if (new_gender == "Random")
 		pet.gender = pick(list(MALE, FEMALE))
 	else if (new_gender)
 		pet.gender = new_gender
 	pet.befriend(quirk_holder) // Make sure the player is a friend.
-// BUBBER EDIT END
 	carrier.add_occupant(pet)
 	give_item_to_holder(
 		carrier,

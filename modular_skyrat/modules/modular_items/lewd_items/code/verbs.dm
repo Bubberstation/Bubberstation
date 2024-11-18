@@ -41,7 +41,6 @@
 	if(CONFIG_GET(flag/disable_lewd_items))
 		verbs -= /mob/living/carbon/human/verb/safeword
 
-/* BUBBER EDIT START: Rename remove_lewd_items to OOC Safe Word */
 /mob/living/carbon/human/verb/remove_lewd_items()
 	set name = "Remove Lewd Items"
 	set category = "OOC"
@@ -72,7 +71,6 @@
 		forceMove(get_turf(src))
 
 	return TRUE
-/* BUBBER EDIT END */
 
 /mob/living/carbon/human/verb/lick(mob/living/carbon/human/target in get_adjacent_humans())
 	set name = "Lick"

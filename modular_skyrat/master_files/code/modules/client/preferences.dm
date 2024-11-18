@@ -48,9 +48,6 @@
 	// Determines if the player has undergone TGUI preferences migration, if so, this will prevent constant loading.
 	var/tgui_prefs_migration = TRUE
 
-	/// A photo of the character, visible on close examine
-	var/headshot = ""
-
 /// An assoc list of food types to liked or dislike values. If null or empty, default species tastes are used instead on application.
 	/// If a food doesn't exist in this list, it uses the default value.
 	var/list/food_preferences = list()
