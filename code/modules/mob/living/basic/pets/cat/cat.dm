@@ -52,22 +52,25 @@
 	///icon state of our cult icon
 	var/cult_icon_state = "cat_cult"
 
-/datum/emote/living/basic/pet/cat/meow
-	key = "meow"
-	key_third_person = "meows"
+/datum/emote/cat
+	mob_type_allowed_typecache = /mob/living/basic/pet/cat
+	mob_type_blacklist_typecache = list()
+
+/datum/emote/living/petmeow // BUBBER EDIT CHANGE - Original: /datum/emote/cat/meow
+	key = "petmeow" // BUBBER EDIT CHANGE - 'meow' used by /datum/emote/living/meow
+	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	message = "meows!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_CAT_MEOW
 
-/datum/emote/living/basic/pet/cat/purr
-	key = "purr"
-	key_third_person = "purrs"
+/datum/emote/living/petpurr // BUBBER EDIT CHANGE - Original: /datum/emote/cat/purr
+	key = "petpurr" // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
+	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	message = "purrs."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_CAT_PURR
-
 
 /mob/living/basic/pet/cat/Initialize(mapload)
 	. = ..()

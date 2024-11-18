@@ -19,7 +19,8 @@
 
 /datum/crafting_recipe/mosin_pro
 	name = "Sakhno to Xhihao 'Rengo' Conversion"
-	desc = "It's actually really easy to change the stock on your Sakhno. Anyone can do it. It takes roughly thirty seconds and a screwdriver."
+	desc = "It's actually really easy to change the stock on your Sakhno. Anyone can do it. \
+	It takes roughly thirty seconds and a screwdriver."
 	result = /obj/item/gun/ballistic/rifle/boltaction/sporterized/empty
 	reqs = list(
 		/obj/item/gun/ballistic/rifle/boltaction = 1,
@@ -34,7 +35,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/mosin_pro/New()
-	..()
+	. = ..()
 	blacklist |= subtypesof(/obj/item/gun/ballistic/rifle/boltaction) - list(/obj/item/gun/ballistic/rifle/boltaction/surplus)
 
 /datum/crafting_recipe/mosin_pro/check_requirements(mob/user, list/collected_requirements)
