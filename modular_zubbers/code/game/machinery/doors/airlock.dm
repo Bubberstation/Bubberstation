@@ -40,6 +40,10 @@
 	doorOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
 	doorClose = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
 
+/obj/machinery/door/airlock/colony_prefab
+	doorOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
+	doorClose = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
+
 /obj/machinery/door/airlock/centcom
 	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
@@ -118,5 +122,9 @@
 	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
 
 /obj/machinery/door/airlock/cmo
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+
+/obj/machinery/door/airlock/ce
 	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
