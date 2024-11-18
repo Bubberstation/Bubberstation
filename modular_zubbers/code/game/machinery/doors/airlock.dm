@@ -4,8 +4,8 @@
 	doorClose = 'modular_zubbers/sound/machines/door/covert1c.ogg'
 
 /obj/machinery/door/airlock/command
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/security
 	doorOpen = 'modular_zubbers/sound/machines/door/sec1o_2.ogg'
@@ -32,8 +32,8 @@
 	doorClose = 'modular_zubbers/sound/machines/door/hall3c.ogg'
 
 /obj/machinery/door/airlock/external
-	doorOpen = 'modular_zubbers/sound/machines/door/space1o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/space1c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/space1c_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/space1o.ogg'
 
 //They are the same because hall1c & hall1o were loud
 /obj/machinery/door/airlock/public
@@ -45,12 +45,12 @@
 	doorClose = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
 
 /obj/machinery/door/airlock/centcom
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/grunge
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 
 /obj/machinery/door/airlock/hatch
@@ -102,29 +102,29 @@
 	doorClose = 'modular_zubbers/sound/machines/door/cmd1c.ogg'
 
 /obj/machinery/door/airlock/corporate
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/hos
 	doorOpen = 'modular_zubbers/sound/machines/door/cmd1o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/cmd1c.ogg'
 
 /obj/machinery/door/airlock/hop
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/rd
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/qm
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/cmo
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/ce
-	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/cmd3c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o_2.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
