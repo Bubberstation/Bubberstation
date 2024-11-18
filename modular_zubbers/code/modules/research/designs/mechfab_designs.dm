@@ -48,8 +48,8 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/brped
 	materials = list(
-		/datum/material/iron =SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
 	)
 	construction_time = 12 SECONDS
 	category = list(
