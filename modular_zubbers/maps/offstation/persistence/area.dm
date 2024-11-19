@@ -1,7 +1,7 @@
 // Persistance Areas - Lavaland
 
 /area/ruin/space/has_grav/bubbers/persistance
-	name = "SSV Persistance"
+	name = "SSV Persistence"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
 	outdoors = FALSE
@@ -10,15 +10,15 @@
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/persistance/cargo
-	name = "Persistance Hangarbay"
+	name = "Persistence Hangarbay"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/cargo/dispoals
-	name = "Persistance Dispoals System"
+	name = "Persistence Dispoals System"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone
-	name = "Persistance Long Range Monitoring and Drone Deployment"
+	name = "Persistence Long Range Monitoring and Drone Deployment"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/cargo/mining
@@ -28,21 +28,21 @@
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/persistance/engineering
-	name = "Persistance Engineering Bay"
+	name = "Persistence Engineering Bay"
 
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics
-	name = "Persistance Atmospherics Room"
+	name = "Persistence Atmospherics Room"
 
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining
-	name = "Persistance Bluespace Mining"
+	name = "Persistence Bluespace Mining"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas
-	name = "Persistance Gas Harvesting and Storage"
+	name = "Persistence Gas Harvesting and Storage"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities
-	name = "Persistance Utilities System"
+	name = "Persistence Utilities System"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Service - Recreation
@@ -51,139 +51,139 @@
 	name = "Main Hall"
 
 /area/ruin/space/has_grav/bubbers/persistance/evac
-	name = "Persistance Evacuation Capsule Bay"
+	name = "Persistence Evacuation Capsule Bay"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/diner
-	name = "Persistance Diner"
+	name = "Persistence Diner"
 	mood_bonus = 3
 	mood_message = "I love being in the diner!"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen
-	name = "Persistance Kitchen"
+	name = "Persistence Kitchen"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer
-	name = "Persistance Kitchen Freezer"
+	name = "Persistence Kitchen Freezer"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro
-	name = "Persistance Hydroponics"
+	name = "Persistence Hydroponics"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/shower
-	name = "Persistance Crew Showers"
+	name = "Persistence Crew Showers"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers
-	name = "Persistance Locker Room"
+	name = "Persistence Locker Room"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/service/gym
-	name = "Persistance Gym"
+	name = "Persistence Gym"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge
-	name = "Persistance Lounge"
+	name = "Persistence Lounge"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 	mood_bonus = 5
 	mood_message = "I feel at ease here."
 
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial
-	name = "Persistance Janitor Storage"
+	name = "Persistence Janitor Storage"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/service/salon
-	name = "Persistance Salon"
+	name = "Persistence Salon"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna
-	name = "Persistance Sauna"
+	name = "Persistence Sauna"
 	mood_bonus = 5
 	mood_message = "This place is quite relaxing."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 //dorms
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms
-	name = "Persistance Dormitories"
+	name = "Persistence Dormitories"
 	mood_bonus = 5
 	mood_message = "I feel at ease here."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering
-	name = "Persistance Engineering Quarters"
+	name = "Persistence Engineering Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science
-	name = "Persistance Researcher Quarters"
+	name = "Persistence Researcher Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef
-	name = "Persistance Bartender Quarters"
+	name = "Persistence Bartender Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor
-	name = "Persistance Sanitation Technician Quarters"
+	name = "Persistence Sanitation Technician Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/cargo
-	name = "Persistance Quarter Master Quarters"
+	name = "Persistence Quarter Master Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/liason
-	name = "Persistance Corporate Liason Quarters"
+	name = "Persistence Corporate Liason Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant
-	name = "Persistance Assistant"
+	name = "Persistence Assistant"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale
-	name = "Persistance Morale Officer Quarters"
+	name = "Persistence Morale Officer Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa
-	name = "Persistance Master At Arms Quarters"
+	name = "Persistence Master At Arms Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig
-	name = "Persistance Brig Officer Quarters"
+	name = "Persistence Brig Officer Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical
-	name = "Persistance Medical Officer Quarters"
+	name = "Persistence Medical Officer Quarters"
 
 // Science
 
 /area/ruin/space/has_grav/bubbers/persistance/sci
-	name = "Persistance Science"
+	name = "Persistence Science"
 
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd
-	name = "Persistance Experimentation Lab"
+	name = "Persistence Experimentation Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics
-	name = "Persistance Robotics Lab"
+	name = "Persistence Robotics Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance
-	name = "Persistance Ordnance Lab"
+	name = "Persistence Ordnance Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio
-	name = "Persistance Xenobiology Lab"
+	name = "Persistence Xenobiology Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenoarchology
-	name = "Persistance Archology Lab"
+	name = "Persistence Archology Lab"
 
 // Medical
 
 /area/ruin/space/has_grav/bubbers/persistance/med
-	name = "Persistance Medical"
+	name = "Persistence Medical"
 
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment
-	name = "Persistance Treatment Bay"
+	name = "Persistence Treatment Bay"
 
 /area/ruin/space/has_grav/bubbers/persistance/med/storage
-	name = "Persistance Medical Storage"
+	name = "Persistence Medical Storage"
 
 /area/ruin/space/has_grav/bubbers/persistance/med/chem
-	name = "Persistance Chemistry Lab"
+	name = "Persistence Chemistry Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/med/viro
-	name = "Persistance Virology Lab"
+	name = "Persistence Virology Lab"
 
 /area/ruin/space/has_grav/bubbers/persistance/command
-	name = "Persistance Command"
+	name = "Persistence Command"
 
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge
-	name = "Persistance Bridge"
+	name = "Persistence Bridge"
 
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral
-	name = "Persistance Office"
+	name = "Persistence Office"
 
 /area/ruin/space/has_grav/bubbers/persistance/command/liason
 	name = "Corporate Liason Office"
@@ -197,22 +197,22 @@
 //Security - Prison
 
 /area/ruin/space/has_grav/bubbers/persistance/sec
-	name = "Persistance Security"
+	name = "Persistence Security"
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance
-	name = "Persistance Brig Desk and Cell"
+	name = "Persistence Brig Desk and Cell"
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding
 	name = "Holding Cells"
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory
-	name = "Persistance Armory"
+	name = "Persistence Armory"
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/interrogation
 	name = "Interrogation and Solutions"
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison // Prison
-	name = "Persistance General Population"
+	name = "Persistence General Population"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/holding
