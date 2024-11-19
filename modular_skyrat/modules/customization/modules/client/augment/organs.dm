@@ -16,6 +16,7 @@
 
 /datum/augment_item/organ/brain/cortical
 	name = "Cortically-Augmented Brain"
+	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/internal/brain/cybernetic/cortical
 	cost = 1
 
