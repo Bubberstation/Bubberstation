@@ -65,14 +65,34 @@
 				to_chat(dead_mob, "[link] [rendered]")
 
 
-/obj/item/organ/internal/cyberimp/brain/arcade
-	name = "arcade implant"
-	desc = "Corporate has decided that your spare grey-matter is better off running recreational activites than supporting your survival. Hooray!" //no this isnt final
+/obj/item/organ/internal/cyberimp/brain/minesweeper
+	name = "minesweeper implant"
+	desc = "A research intern had misinterpreted a request for a bomb-seeking implant, and came out with this. It's a better use of your neural functions, really." //no this isnt final
 	icon_state = "brain_implant_antidrop"
 	var/active = FALSE
 	var/list/stored_items = list()
 	slot = ORGAN_SLOT_BRAIN_AUG
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
+	
+	var/datum/minesweeper/board
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/proc/implant_ready()
+	if(owner)
+		to_chat(owner, span_purple("Your rebooter implant is ready."))
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/proc/reboot()
+	organ_flags &= ~ORGAN_FAILING
+	implant_ready()
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/emp_act(severity)
+	. = ..()
+	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
+		return
+	organ_flags |= ORGAN_FAILING
+	addtimer(CALLBACK(src, PROC_REF(reboot)), 10 / severity)
+	
+//the rest of the minesweeper implant's code is in minesweeper.dm
+	
 
 /obj/item/organ/internal/cyberimp/brain/remote
 	name = "remote access implant"

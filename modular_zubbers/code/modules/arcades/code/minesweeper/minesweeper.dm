@@ -298,6 +298,119 @@
 			return TRUE
 
 
+//IMPLANT MINESWEEPER
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/ui_action_click(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+		to_chat(owner, span_purple("The button's working."))
+	if(organ_flags & ORGAN_FAILING)
+		to_chat(owner, span_purple("bad organ_flags check?"))
+		return
+	if(!ui)
+		to_chat(owner, span_purple("UI isn't opening."))
+		ui = new(user, src, "ImplantMinesweeper", name)
+		ui.open()
+	
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/Initialize(obj/item/modular_computer/comp)
+	. = ..()
+	board = new /datum/minesweeper()
+	board.emaggable = FALSE
+	board.host = comp
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/Destroy()
+	board.host = null
+	QDEL_NULL(board)
+	. = ..()
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/minesweeper),
+	)
+
+/obj/item/organ/internal/cyberimp/brain/minesweeper/ui_act(action, list/params, mob/user)
+	if(..())
+		return TRUE
+
+	if(!board)
+		return
+
+	switch(action)
+		if("PRG_do_tile")
+			var/x = params["x"]
+			var/y = params["y"]
+			var/flagging = params["flag"]
+			if(!x || !y)
+				return
+
+			return board.do_tile(x,y,flagging,user)
+
+		if("PRG_new_game")
+			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
+			return board.new_game()
+
+		if("PRG_difficulty")
+			var/diff = params["difficulty"]
+			if(!diff)
+				return
+			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
+			return board.change_difficulty(diff)
+
+		if("PRG_height")
+			var/cin = params["height"]
+			if(!cin)
+				return
+			return board.set_custom_height(cin)
+
+		if("PRG_width")
+			var/cin = params["width"]
+			if(!cin)
+				return
+			cin = text2num(cin)
+			if(cin < 5 || cin > 30)
+				cin = clamp(cin, 5, 30)
+			board.custom_width = cin
+			board.custom_mines = min(board.custom_mines, FLOOR(board.custom_width*board.custom_height/2,1))
+			board.difficulty = MINESWEEPER_CUSTOM
+			return TRUE
+
+		if("PRG_mines")
+			var/cin = params["mines"]
+			if(!cin)
+				return
+			cin = text2num(cin)
+			if(cin < 5 || cin > FLOOR(board.custom_width*board.custom_height/2,1))
+				cin = clamp(cin, 5, FLOOR(board.custom_width*board.custom_height/2,1))
+			board.custom_mines = cin
+			board.difficulty = MINESWEEPER_CUSTOM
+			return TRUE
+
+		if("PRG_toggle_flag")
+			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
+			board.flag_mode = !board.flag_mode
+			return TRUE
+			
+/obj/item/organ/internal/cyberimp/brain/minesweeper/ui_data(mob/user)
+	var/list/data = list()
+
+	data["board_data"] = board.board_data
+	data["game_status"] = board.game_status
+	data["difficulty"] = board.diff_text(board.difficulty)
+	data["current_difficulty"] = board.current_difficulty
+	data["emagged"] = FALSE
+	data["flag_mode"] = board.flag_mode
+	data["tickets"] = board.ticket_count
+	data["flags"] = board.flags
+	data["current_mines"] = board.current_mines
+	data["custom_height"] = board.custom_height
+	data["custom_width"] = board.custom_width
+	data["custom_mines"] = board.custom_mines
+	var/display_time = (board.time_frozen ? board.time_frozen : REALTIMEOFDAY - board.starting_time) / 10
+	data["time_string"] = board.starting_time ? "[add_leading(num2text(FLOOR(display_time / 60,1)), 2, "0")]:[add_leading(num2text(display_time % 60), 2, "0")]" : "00:00"
+
+	return data
+
 /datum/minesweeper
 	var/ticket_count = 0
 	var/flag_mode = FALSE
