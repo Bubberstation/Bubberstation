@@ -78,7 +78,7 @@
 	#ifdef UNIT_TESTS
 	/turf/open
 	if (istype(loc, /turf/open/openspace) || istype(loc, /turf/open/space/openspace) && is_station_level(z))
-		STACK_TRACE("Floating railing at [x], [y], [z]!")
+		stack_trace("Floating railing at [x], [y], [z]!")
 	#endif
 
 /obj/structure/railing/examine(mob/user)
