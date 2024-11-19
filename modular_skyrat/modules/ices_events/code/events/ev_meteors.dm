@@ -48,18 +48,6 @@
 
 	log_game("EVENT: Meteor Wave: ICES requested intensity is [wave_name]")
 
-/* BUBBER EDIT REMOVAL BEGIN - moved to modular_zubbers/code/modules/events/meteor_wave.dm
-/datum/round_event/meteor_wave/New()
-	. = ..()
-	start_when = rand(METEOR_WAVE_MIN_NOTICE, METEOR_WAVE_MAX_NOTICE)
-	end_when = start_when + METEOR_WAVE_DURATION
-
-/datum/round_event/meteor_wave/announce(fake)
-	priority_announce("Meteors have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [start_when * 2] seconds. Ensure all sensitive areas and equipment are shielded.", "Meteor Alert", ANNOUNCER_METEORS)
-	if(wave_name == "threatening" || wave_name == "spooky")
-		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level/, minimum_security_level), SEC_LEVEL_ORANGE, TRUE, FALSE)
-*/// BUBBER EDIT REMOVAL END
-
 
 /datum/round_event/meteor_wave/tick(seconds_between_ticks)
 	if(ISMULTIPLE(activeFor, METEOR_TICKS_BETWEEN_WAVES))
