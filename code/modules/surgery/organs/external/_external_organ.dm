@@ -30,7 +30,14 @@
 	///Which flags does a 'modification tool' need to have to restyle us, if it all possible (located in code/_DEFINES/mobs)
 	var/restyle_flags = NONE
 
+// BUBBER EDIT - OR BEGIN
 /**mob_sprite is optional if you havent set sprite_datums for the object, and is used mostly to generate sprite_datums from a persons DNA
+// OR NEW BELOW
+	///If not null, overrides the appearance with this sprite accessory datum
+	var/sprite_accessory_override
+
+/**accessory_type is optional if you haven't set sprite_datums for the object, and is used mostly to generate sprite_datums from a persons DNA
+*/ // BUBBER EDIT - OR END
 * For _mob_sprite we make a distinction between "Round Snout" and "round". Round Snout is the name of the sprite datum, while "round" would be part of the sprite
 * I'm sorry
 */
@@ -335,6 +342,11 @@
 
 /datum/bodypart_overlay/mutant/antennae/get_base_icon_state()
 	return burnt ? burn_datum.icon_state : sprite_datum.icon_state
+
+/datum/bodypart_overlay/mutant/antennae/can_draw_on_bodypart(mob/living/carbon/human/human)
+	if(!(human.head?.flags_inv & HIDEANTENNAE))
+		return TRUE
+	return FALSE
 
 ///The leafy hair of a podperson
 /obj/item/organ/external/pod_hair

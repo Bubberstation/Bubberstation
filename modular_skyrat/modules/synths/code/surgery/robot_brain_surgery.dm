@@ -112,7 +112,7 @@
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
-	playsound(source = get_turf(target), soundin = 'sound/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
+	playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	if(prob(75))

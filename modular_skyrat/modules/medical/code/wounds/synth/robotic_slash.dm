@@ -533,7 +533,7 @@
 	process_shock_spark_count_min = 1
 
 	wirecut_repair_percent = 0.1
-	wire_repair_percent = 0.023
+	wire_repair_percent = 0.0368
 
 	initial_sparks_amount = 1
 
@@ -576,7 +576,7 @@
 	process_shock_spark_count_min = 1
 
 	wirecut_repair_percent = 0.09
-	wire_repair_percent = 0.015
+	wire_repair_percent = 0.03
 
 	initial_sparks_amount = 3
 
@@ -621,7 +621,7 @@
 	process_shock_spark_count_min = 2
 
 	wirecut_repair_percent = 0.08
-	wire_repair_percent = 0.01
+	wire_repair_percent = 0.027
 
 	initial_sparks_amount = 8
 

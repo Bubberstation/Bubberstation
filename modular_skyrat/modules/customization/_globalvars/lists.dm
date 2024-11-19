@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(robotic_styles_list, list(
 	"Xion Manufacturing Group" = 'modular_skyrat/master_files/icons/mob/augmentation/xmgipc.dmi',
 	"Xion Manufacturing Group 2.0" = 'modular_skyrat/master_files/icons/mob/augmentation/xm2ipc.dmi',
 	"Zeng-Hu Pharmaceuticals" = 'modular_skyrat/master_files/icons/mob/augmentation/zhpipc.dmi',
-	"Mariinsky Ballet Company" = 'modular_skyrat/master_files/icons/mob/augmentation/mariinskyipc.dmi' //Bubber Edit - It wouldn't let me make a modular file. I tried. I really tried.
+	"Mariinsky Ballet Company" = 'modular_skyrat/master_files/icons/mob/augmentation/mariinskyipc.dmi'
 	))
 
 //ghoul colors

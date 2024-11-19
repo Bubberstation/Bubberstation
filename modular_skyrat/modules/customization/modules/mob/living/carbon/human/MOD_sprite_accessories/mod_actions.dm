@@ -15,7 +15,7 @@
 		mod.choose_sprite_accessories(usr)
 
 /obj/item/mod/control/proc/quick_sprite_accessories(mob/living/carbon/human/user)
-	playsound(user, 'sound/mecha/mechmove03.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+	playsound(user, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	user.mutant_part_visibility(quick_toggle = TRUE)
 
 /obj/item/mod/control/proc/choose_sprite_accessories(mob/living/carbon/human/user)

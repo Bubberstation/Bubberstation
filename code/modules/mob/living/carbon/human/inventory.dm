@@ -45,11 +45,15 @@
 			return r_store
 		if(ITEM_SLOT_SUITSTORE)
 			return s_store
+
 	return ..()
 
 /mob/living/carbon/human/get_slot_by_item(obj/item/looking_for)
 	if(looking_for == belt)
 		return ITEM_SLOT_BELT
+
+	if(belt && (looking_for in belt))
+		return ITEM_SLOT_BELTPACK
 
 	if(looking_for == wear_id)
 		return ITEM_SLOT_ID
@@ -203,13 +207,16 @@
 				return
 			s_store = equipping
 			update_suit_storage()
-
+		if(ITEM_SLOT_BELTPACK)
+			if(!belt || !belt.atom_storage?.attempt_insert(equipping, src, override = TRUE, force = indirect_action ? STORAGE_SOFT_LOCKED : STORAGE_NOT_LOCKED))
+				not_handled = TRUE
 		else
 			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot. Report this to a coder!"))
 
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
 	if(!not_handled)
 		has_equipped(equipping, slot, initial)
+		hud_used?.update_locked_slots()
 
 		// Send a signal for when we equip an item that used to cover our feet/shoes. Used for bloody feet
 		if(equipping.body_parts_covered & FEET || (equipping.flags_inv | equipping.transparent_protection) & HIDESHOES)
@@ -307,6 +314,7 @@
 
 	update_equipment_speed_mods()
 	update_obscured_slots(I.flags_inv)
+	hud_used?.update_locked_slots()
 
 /mob/living/carbon/human/toggle_internals(obj/item/tank, is_external = FALSE)
 	// Just close the tank if it's the one the mob already has open.
@@ -381,7 +389,7 @@
 /// take the most recent item out of a slot or place held item in a slot
 
 /mob/living/carbon/human/proc/smart_equip_targeted(slot_type = ITEM_SLOT_BELT, slot_item_name = "belt")
-	if(incapacitated())
+	if(incapacitated)
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_item = get_item_by_slot(slot_type)

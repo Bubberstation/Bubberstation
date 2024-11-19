@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			cell_phone_number = "Dogginos"
 			list_to_use = "dogginos"
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg', has_important_message=TRUE, color_override = "yellow")
-	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, ROLE_DEATHSQUAD)
+	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/solfed, role_name_text = "solfed response team")
 
 	if(candidates.len)
 		//Pick the (un)lucky players
@@ -170,8 +170,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			var/datum/antagonist/ert/request_911/ert_antag = new cops_to_send
 
 			cop.mind.add_antag_datum(ert_antag)
-			cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
-			SSjob.SendToLateJoin(cop)
+			cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
+			SSjob.send_to_late_join(cop)
 			cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos) // charge for atmos techs
@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 	if (GLOB.cops_arrived)
 		to_chat(user, span_warning("911 has already been called this shift!"))
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 		return FALSE
 
 	if (!issilicon(user))
@@ -209,11 +209,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
 			to_chat(user, span_warning("You need to swipe your ID!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
 			to_chat(user, span_warning("You are not authorized to do this!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
 		to_chat(user, "The console refuses to let you dial 911 as an AI or Cyborg!")
@@ -224,13 +224,13 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Sol Federation [called_group_pretty].")
 	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
 		sentence."
-	if(tgui_input_list(user, call_911_msg_are_you_sure, "Call 911", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, call_911_msg_are_you_sure, "Call 911", list("No", "Yes")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty 911 call consequences.")
-	if(tgui_input_list(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("No", "Yes")) != "Yes")
 		return
 	message_admins("[ADMIN_LOOKUPFLW(user)] has read and acknowleged the recommendations for what to call and not call [called_group_pretty] for.")
-	var/reason_to_call_911 = stripped_input(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
+	var/reason_to_call_911 = tgui_input_text(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_911)
 		to_chat(user, "You decide not to call 911.")
 		return
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 	call_911(called_group)
 	to_chat(user, span_notice("Authorization confirmed. 911 call dispatched to the Sol Federation [called_group_pretty]."))
-	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /datum/antagonist/ert/request_911
 	name = "911 Responder"
@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/encryptionkey/headset_solfed/atmos
 	name = "\improper SolFed adv. atmos encryption key"
 	icon_state = "cypherkey_medical"
-	independent = TRUE
+	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(RADIO_CHANNEL_SOLFED = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_COMMAND = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_medical
 	greyscale_colors = "#ebebeb#2b2793"
@@ -608,8 +608,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					var/datum/antagonist/ert/request_911/ert_antag = new type_to_summon
 
 					cop.mind.add_antag_datum(ert_antag)
-					cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
-					SSjob.SendToLateJoin(cop)
+					cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
+					SSjob.send_to_late_join(cop)
 					cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 					var/obj/item/gangster_cellphone/phone = new() // biggest gang in the city
@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/solfed_reporter/swat_caller/questions(mob/user)
 	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
 		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
-	if(tgui_input_list(user, question, "S.W.A.T. Backup Caller", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, question, "S.W.A.T. Backup Caller", list("No", "Yes")) != "Yes")
 		to_chat(user, "You decide not to request S.W.A.T. backup.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
@@ -678,7 +678,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			administrative action against your account."
 	)
 	for(var/question in list_of_questions)
-		if(tgui_input_list(user, question, "Treason Reporter", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, question, "Treason Reporter", list("No", "Yes")) != "Yes")
 			to_chat(user, "You decide not to declare the station as treasonous.")
 			return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
@@ -705,7 +705,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	cell_phone_number = "Dogginos"
 
 /obj/item/solfed_reporter/pizza_managers/questions(mob/user)
-	if(tgui_input_list(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("No", "Yes")) != "Yes")
 		to_chat(user, "You decide not to request management assist you with the delivery.")
 		return FALSE
 	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon Dogginos management to resolve the lack of payment.")
@@ -772,14 +772,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 				else
 					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
-				playsound(pulling_turf, 'sound/magic/Repulse.ogg', 100, 1)
+				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
 				var/datum/effect_system/spark_spread/quantum/sparks = new
 				sparks.set_up(10, 1, pulling_turf)
 				sparks.attach(pulling_turf)
 				sparks.start()
 				qdel(living_user.pulling)
 			var/turf/user_turf = get_turf(living_user)
-			playsound(user_turf, 'sound/magic/Repulse.ogg', 100, 1)
+			playsound(user_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
 			var/datum/effect_system/spark_spread/quantum/sparks = new
 			sparks.set_up(10, 1, user_turf)
 			sparks.attach(user_turf)

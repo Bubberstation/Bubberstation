@@ -93,7 +93,7 @@
 	area_flags = UNIQUE_AREA | FLORA_ALLOWED
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
-	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/moonstation/surface
 	name = "Lunar Surface"

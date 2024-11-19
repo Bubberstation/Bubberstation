@@ -143,7 +143,7 @@
 	new /obj/item/storage/bag/garment/secmed(src)
 
 //Prevents secmed hours from counting towards HoS
-/datum/controller/subsystem/job/SetupOccupations()
+/datum/controller/subsystem/job/setup_occupations()
     . = ..()
     var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
     for(var/datum/job/job_type in sec_exp_list)

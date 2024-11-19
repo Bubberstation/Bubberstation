@@ -31,8 +31,8 @@
 		/obj/item/knife = 25,
 		/obj/item/shard = 5,
 	)
-	preop_sound = 'sound/items/ratchet_slow.ogg'
-	success_sound = 'sound/machines/doorclick.ogg'
+	preop_sound = 'sound/items/tools/ratchet_slow.ogg'
+	success_sound = 'sound/machines/airlock/doorclick.ogg'
 
 /datum/surgery_step/bioreactor/repair/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(

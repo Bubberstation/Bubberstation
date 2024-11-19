@@ -60,6 +60,7 @@
 #define CYBORG_ICON_SCI_TALL 'modular_zubbers/code/modules/silicons/borgs/sprites/tallrobot_sci.dmi'
 #define CYBORG_ICON_SCI_LARGE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/largerobot_sci.dmi'
 #define CYBORG_ICON_SCI 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_sci.dmi'
+#define CYBORG_ICON_SCI_HAYDEE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/curverobot_sci.dmi'
 
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
 

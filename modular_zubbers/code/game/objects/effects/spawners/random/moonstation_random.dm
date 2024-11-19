@@ -195,9 +195,9 @@
 	icon_state = "random_vending"
 	loot = list(
 		/obj/machinery/vending/assist = 400,
-		/obj/machinery/vending/autodrobe/all_access = 200,
+		/obj/machinery/vending/autodrobe = 200,
 		/obj/machinery/vending/barbervend = 50,
-		/obj/machinery/vending/boozeomat/all_access = 100,
+		/obj/machinery/vending/boozeomat = 100,
 		/obj/machinery/vending/cigarette = 50,
 		/obj/machinery/vending/cigarette/beach = 25,
 		/obj/machinery/vending/cigarette/syndicate = 10,

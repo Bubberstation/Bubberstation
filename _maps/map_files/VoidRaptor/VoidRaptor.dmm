@@ -634,10 +634,12 @@
 "aiU" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/sign/warning/hot_temp/directional/north,
-/obj/structure/bodycontainer/crematorium{
-	dir = 4;
-	id = "crematoriumSecurity"
+/obj/structure/rack,
+/obj/item/storage/box/hug/plushes,
+/obj/effect/turf_decal/trimline/dark/filled/warning{
+	dir = 9
 	},
+/obj/item/storage/box/hug/plushes,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/office)
 "ajb" = (
@@ -12357,12 +12359,6 @@
 /area/station/cargo/storage)
 "dGX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/trimline/dark/filled/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 1
 	},
@@ -17087,7 +17083,12 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/bodybags,
-/obj/item/pushbroom,
+/obj/item/pushbroom{
+	pixel_x = -10
+	},
+/obj/item/mop{
+	pixel_x = 7
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "eWh" = (
@@ -22722,8 +22723,17 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Security - Morgue"
 	},
-/obj/structure/table,
-/obj/item/clothing/gloves/latex,
+/obj/structure/rack,
+/obj/effect/spawner/random/entertainment/plushie{
+	pixel_y = 9
+	},
+/obj/effect/spawner/random/entertainment/plushie{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/effect/spawner/random/entertainment/plushie{
+	pixel_x = -13
+	},
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/security/office)
 "gGg" = (
@@ -24562,7 +24572,7 @@
 /area/station/service/chapel/funeral)
 "hgo" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Morgue"
+	name = "Plushie Storage"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -47834,13 +47844,8 @@
 /area/station/maintenance/starboard/greater)
 "nuV" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning{
-	dir = 9
+	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/closet/l3closet/security,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "nvc" = (
@@ -51917,6 +51922,8 @@
 /obj/item/flashlight/lamp,
 /obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/tile/dark_red/fourcorners,
+/obj/item/clothing/suit/jacket/straight_jacket,
+/obj/item/clothing/mask/muzzle,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "oBK" = (
@@ -56510,15 +56517,16 @@
 /area/station/science/robotics/mechbay)
 "pOs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/button/crematorium{
-	id = "crematoriumSecurity";
-	pixel_y = 25
+/obj/structure/rack,
+/obj/effect/spawner/random/entertainment/plushie_delux{
+	pixel_x = 4
 	},
 /obj/effect/turf_decal/trimline/dark/filled/warning{
-	dir = 9
+	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/item/toy/plush/skyrat/duffmoth{
+	pixel_x = -11;
+	pixel_y = 6
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
@@ -63984,7 +63992,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/wood/large,
 /area/station/commons/fitness/recreation/entertainment)
 "rSu" = (
@@ -75582,17 +75590,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
 "uXb" = (
-/obj/structure/bed/medical{
-	dir = 4
-	},
-/obj/item/clothing/glasses/blindfold,
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 5
 	},
-/obj/item/clothing/suit/jacket/straight_jacket,
-/obj/item/clothing/glasses/blindfold,
-/obj/item/clothing/mask/muzzle,
 /obj/structure/sink/directional/south,
+/obj/structure/rack,
+/obj/item/toy/plush/skyrat/sechound,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "uXf" = (

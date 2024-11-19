@@ -65,7 +65,7 @@
 	new_mob.name = new_mob.real_name
 	new_mob.stored_changeling = user
 	user.loc = new_mob
-	user.status_flags |= GODMODE
+	ADD_TRAIT(user, TRAIT_GODMODE, INNATE_TRAIT)
 	user.mind.transfer_to(new_mob)
 	user.spawn_gibs()
 	//feedback_add_details("changeling_powers","HF")
