@@ -16,24 +16,24 @@
 	doorClose = 'modular_zubbers/sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/medical
-	doorOpen = 'modular_zubbers/sound/machines/door/med1o_2.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/med1c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/med2o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/med2c.ogg'
 
 /obj/machinery/door/airlock/virology
-	doorOpen = 'modular_zubbers/sound/machines/door/med1o_2.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/med1c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/med2o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/med2c.ogg'
 
 /obj/machinery/door/airlock/psych
-	doorOpen = 'modular_zubbers/sound/machines/door/med1o_2.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/med1c_2.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/med2o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/med2c.ogg'
 
 /obj/machinery/door/airlock/maintenance
 	doorOpen = 'modular_zubbers/sound/machines/door/hall3o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/hall3c.ogg'
 
 /obj/machinery/door/airlock/external
-	doorOpen = 'modular_zubbers/sound/machines/door/space1c_2.ogg'
-	doorClose = 'modular_zubbers/sound/machines/door/space1o.ogg'
+	doorOpen = 'modular_zubbers/sound/machines/door/space1o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/space1c_2.ogg'
 
 //They are the same because hall1c & hall1o were loud
 /obj/machinery/door/airlock/public

@@ -144,6 +144,13 @@
 	var/autoname = FALSE
 	var/doorOpen = 'sound/machines/airlock/airlock.ogg'
 	var/doorClose = 'sound/machines/airlock/airlockclose.ogg'
+
+	//BUBBER EDIT BEGIN - FANCY AIRLOCKS
+	//They are the same as above but down the chain it's diffrent.
+	var/legacy_open = 'sound/machines/airlock/airlock.ogg'
+	var/legacy_close = 'sound/machines/airlock/airlockclose.ogg'
+	//BUBBER EDIT END - FANCY AIRLOCKS
+
 	var/doorDeni = 'sound/machines/beep/deniedbeep.ogg' // i'm thinkin' Deni's
 	var/boltUp = 'sound/machines/airlock/boltsup.ogg'
 	var/boltDown = 'sound/machines/airlock/boltsdown.ogg'
@@ -1311,15 +1318,35 @@
 		if(DEFAULT_DOOR_CHECKS) // Regular behavior.
 			if(!hasPower() || wires.is_cut(WIRE_OPEN) || (obj_flags & EMAGGED))
 				return FALSE
+			//BUBBER EDIT BEGIN
+			for(var/P in GLOB.player_list)
+				var/mob/M = P
+				if(!M || !M.client)
+					continue
+				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
+					playsound(src, legacy_open, 30, TRUE)
+				else
+					playsound(src, doorOpen, 25, TRUE)
+			//BUBBER EDIT END
 			use_energy(50 JOULES)
-			playsound(src, doorOpen, 30, TRUE)
+			//playsound(src, doorOpen, 30, TRUE) BUBBER EDIT - USES PREFS
 			return TRUE
 
 		if(FORCING_DOOR_CHECKS) // Only one check.
 			if(obj_flags & EMAGGED)
 				return FALSE
+			//BUBBER EDIT BEGIN
+			for(var/P in GLOB.player_list)
+				var/mob/M = P
+				if(!M || !M.client)
+					continue
+				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
+					playsound(src, legacy_open, 30, TRUE)
+				else
+					playsound(src, doorOpen, 25, TRUE)
+			//BUBBER EDIT END
 			use_energy(50 JOULES)
-			playsound(src, doorOpen, 30, TRUE)
+			//playsound(src, doorOpen, 30, TRUE) BUBBER EDIT - USES PREFS
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS) // No power usage, special sound, get it open.
@@ -1397,8 +1424,18 @@
 		if(DEFAULT_DOOR_CHECKS to FORCING_DOOR_CHECKS)
 			if(obj_flags & EMAGGED)
 				return FALSE
+			//BUBBER EDIT BEGIN
+			for(var/P in GLOB.player_list)
+				var/mob/M = P
+				if(!M || !M.client)
+					continue
+				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
+					playsound(src, legacy_close, 30, TRUE)
+				else
+					playsound(src, doorClose, 25, TRUE)
+			//BUBBER EDIT END
 			use_energy(50 JOULES)
-			playsound(src, doorClose, 30, TRUE)
+			//playsound(src, doorClose, 30, TRUE) BUBBER EDIT - USES PREFS
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS)

@@ -1,6 +1,6 @@
 /obj/machinery/door/airlock
-	doorOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
-	doorClose = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
+	legacy_open = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
+	legacy_close = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
 	boltUp = 'modular_skyrat/modules/aesthetics/airlock/sound/bolts_up.ogg'
 	boltDown = 'modular_skyrat/modules/aesthetics/airlock/sound/bolts_down.ogg'
 	var/forcedOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open_force.ogg' //Come on guys, why aren't all the sound files like this.
