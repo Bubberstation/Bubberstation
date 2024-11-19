@@ -86,6 +86,7 @@
 		/obj/item/soap,
 		/obj/item/wirebrush,
 	)
+
 /obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
