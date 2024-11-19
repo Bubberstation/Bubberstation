@@ -48,12 +48,18 @@
 		return TRUE
 	return FALSE
 
+// bubber edit - updated to numbered severity system and added alert text
 /obj/item/organ/internal/brain/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
+	if(owner.stat == DEAD)
+		return
 	switch(severity) // Hard cap on brain damage from EMP
-		if (EMP_HEAVY)
+		if (1)
+			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
 			apply_organ_damage(20, BRAIN_DAMAGE_SEVERE)
-		if (EMP_LIGHT)
+		if (2)
+			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
 			apply_organ_damage(10, BRAIN_DAMAGE_MILD)
+// edit end

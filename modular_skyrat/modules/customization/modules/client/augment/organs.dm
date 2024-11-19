@@ -10,6 +10,15 @@
 	new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
 	new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
+//BRAINS
+/datum/augment_item/organ/brain
+	slot = AUGMENT_SLOT_BRAIN
+
+/datum/augment_item/organ/brain/cortical
+	name = "Cortically-Augmented Brain"
+	path = /obj/item/organ/internal/brain/cybernetic/cortical
+	cost = 1
+
 //HEARTS
 /datum/augment_item/organ/heart
 	slot = AUGMENT_SLOT_HEART
