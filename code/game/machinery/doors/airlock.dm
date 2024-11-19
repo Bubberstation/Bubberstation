@@ -1326,7 +1326,7 @@
 				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
 					playsound(src, legacy_open, 30, TRUE)
 				else
-					playsound(src, doorOpen, 25, TRUE)
+					playsound(src, doorOpen, 25, FALSE)
 			//BUBBER EDIT END
 			use_energy(50 JOULES)
 			//playsound(src, doorOpen, 30, TRUE) BUBBER EDIT - USES PREFS
@@ -1343,7 +1343,7 @@
 				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
 					playsound(src, legacy_open, 30, TRUE)
 				else
-					playsound(src, doorOpen, 25, TRUE)
+					playsound(src, doorOpen, 25, FALSE)
 			//BUBBER EDIT END
 			use_energy(50 JOULES)
 			//playsound(src, doorOpen, 30, TRUE) BUBBER EDIT - USES PREFS
@@ -1432,7 +1432,7 @@
 				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
 					playsound(src, legacy_close, 30, TRUE)
 				else
-					playsound(src, doorClose, 25, TRUE)
+					playsound(src, doorClose, 25, FALSE)
 			//BUBBER EDIT END
 			use_energy(50 JOULES)
 			//playsound(src, doorClose, 30, TRUE) BUBBER EDIT - USES PREFS
