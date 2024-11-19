@@ -34,10 +34,9 @@
 	if(parent_organ.owner && HAS_TRAIT(parent_organ.owner, TRAIT_AGEUSIA)) // They don't taste anything, their body shouldn't react strongly to the taste of that stuff.
 		return
 
-// BUBBER EDIT START
 	if(parent_organ.owner && HAS_TRAIT(parent_organ.owner, TRAIT_MASQUERADE_FOOD)) // Their tumor has adapted the ability to consume normal food without violently rejecting it.
 		return
-// BUBBER EDIT END
+
 	var/mob/living/carbon/body = parent_organ.owner
 	ASSERT(istype(body))
 

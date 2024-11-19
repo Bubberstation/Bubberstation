@@ -14,43 +14,43 @@
 	// First lets proc default code
 	. = ..()
 	if(!.) // If true, ears already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden frills for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/frills/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, frills already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden head accessory for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/head_accessory/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, head accessory already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden horns for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/horns/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, horns already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden antenna for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/antenna/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, antenna already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden moth antenna for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/moth_antennae/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, moth antenna already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden skrell hair for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/skrell_hair/is_hidden(mob/living/carbon/human/target_human)
 	. = ..()
 	if(!.) // If true, skrell hair already hidden
-		return lewd_is_hidden(target_human)
+		return lewd_is_hidden(target_human, hide_if_catsuit = FALSE, hide_if_sleeping_bag = FALSE)
 
 // Extends default proc check for hidden skrell hair for supporting our sleepbag and catsuit too
 /datum/sprite_accessory/tails/is_hidden(mob/living/carbon/human/target_human)
