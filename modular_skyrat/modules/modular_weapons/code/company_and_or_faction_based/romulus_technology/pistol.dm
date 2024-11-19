@@ -78,7 +78,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/gold
 	name = "gold trimmed m1911"
-	desc = "A Kayian reproduction of Terran handgun rechambered to .460 ceres  with a small magazine capacity. Now trimmed in gold"
+	desc = "A classic .460 ceres handgun with a small magazine capacity. Now trimmed in gold"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/pistol.dmi'
 	icon_state = "m1911"
 
