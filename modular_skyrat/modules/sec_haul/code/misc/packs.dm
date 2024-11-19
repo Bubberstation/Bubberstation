@@ -45,7 +45,6 @@
 	desc = "A common modern shotgun used by Solarian State Police."
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	cost = PAYCHECK_COMMAND * 22
-	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/double_barrel
 	name = "Double-barreled Shotgun Single-Pack"
