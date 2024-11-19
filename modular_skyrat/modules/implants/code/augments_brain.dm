@@ -1,0 +1,77 @@
+#define LANGUAGE_IMPLANT "implant"
+
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor
+	name = "empathic sensor implant"
+	desc = "Questionably-ethical experiments on hybridized xenomorphs and shadekin have allowed for new strides in mass-communication technologies." //not final
+	icon_state = "brain_implant_antidrop"
+	var/active = FALSE
+	var/list/stored_items = list()
+	slot = ORGAN_SLOT_BRAIN_AUG
+	var/modifies_speech = TRUE
+	
+// This should appropriately grant and remove empathy from the implant - important if you are a shadekin for some reason, and allow the procs to work
+
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_remove(mob/living/carbon/implant_owner)
+	. = ..()
+	UnregisterSignal(implant_owner, COMSIG_MOB_SAY)
+	implant_owner.remove_language(/datum/language/marish/empathy/, source = LANGUAGE_IMPLANT)
+	to_chat(implant_owner, span_abductor("Your mind closes from others. It's quiet, now."))
+
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_insert(mob/living/carbon/receiver)
+	. = ..()
+	RegisterSignal(receiver, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	receiver.grant_language(/datum/language/marish/empathy/, source = LANGUAGE_IMPLANT)
+	to_chat(receiver, span_abductor("Your mind opens to others. You can hear the thoughts of those around you, but only faintly."))
+
+//code mostly lifted from shadekins
+
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
+	if(speech_args[SPEECH_LANGUAGE] == /datum/language/marish/empathy )
+		return modify_speech(source, speech_args)
+	
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/modify_speech(datum/source, list/speech_args)
+	ASYNC
+		actually_modify_speech(source, speech_args)
+	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
+
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/actually_modify_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	var/mob/living/carbon/human/user = source
+	user.balloon_alert_to_viewers("briefly meditate", "projecting thoughts...")
+
+	if(!do_after(source, 2 SECONDS, source))
+		message = full_capitalize(rot13(message))
+	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
+
+	user.log_talk(message, LOG_SAY, tag="shadekin")
+	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
+		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+		if(!istype(ears))
+			continue
+		to_chat(living_mob, rendered)
+		if(living_mob != user)
+			living_mob.balloon_alert_to_viewers("shiver", "transmission heard...")
+
+	if(length(GLOB.dead_mob_list))
+		for(var/mob/dead_mob in GLOB.dead_mob_list)
+			if(dead_mob.client)
+				var/link = FOLLOW_LINK(dead_mob, user)
+				to_chat(dead_mob, "[link] [rendered]")
+
+/obj/item/organ/internal/cyberimp/brain/arcade
+	name = "arcade implant"
+	desc = "Corporate has decided that your spare grey-matter is better off running recreational activites than supporting your survival. Hooray!" //no this isnt final
+	icon_state = "brain_implant_antidrop"
+	var/active = FALSE
+	var/list/stored_items = list()
+	slot = ORGAN_SLOT_BRAIN_AUG
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
+
+/obj/item/organ/internal/cyberimp/brain/remote
+	name = "remote access implant"
+	desc = "An implant to allow one to control wireless devices with your mind."
+	icon_state = "brain_implant_antidrop"
+	var/active = FALSE
+	var/list/stored_items = list()
+	slot = ORGAN_SLOT_BRAIN_AUG
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
