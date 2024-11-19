@@ -1,9 +1,6 @@
 /datum/skill/athletics
 	/// How much bigger your mob becomes per level (these effects don't stack together)
 	var/static/size_boost = list(0, 1/16, 1/8, 3/16, 2/8, 3/8, 4/8)
-
-	skill_item_path = /obj/item/clothing/gloves/boxing/golden
-
 /datum/skill/athletics/level_gained(datum/mind/mind, new_level, old_level, silent)
     . = ..()
 
