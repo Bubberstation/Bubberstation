@@ -265,10 +265,13 @@
 	resistance_flags = FIRE_PROOF
 
 /******CALIGRA DONATIONS******/
+// NOTE: Caligram is being replaced with Blacktide Mercenary Fleet. Items keep their sprites and paths but are being re-flavored to be for Blacktide instead.
+// NOTE 2: References to tajarans & Ixians are replaced with Ghouls and Dustworld as per lore
+
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight
-	name = "\improper FIR-36 half-face rebreather"
-	desc = "A close-fitting respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-36 Rebreather is commonly used by Military and Civilian Personnel alike. It reeks of Militarism."
+    name = "\improper 'Royez' half-face rebreather"
+    desc = "A close-fitting respirator designed by the ghouls of Dustworld and originally meant to help avoid further mutation, the 'Royez' Rebreather is commonly used by both soldiers and civilians in the wasteland. It makes you want to reach for your trusty Bunker 21 canteen."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "fir36"
@@ -297,22 +300,22 @@
 
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight/fir22
-	name = "\improper FIR-22 full-face rebreather"
-	desc = "A full-face respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-22 Rebreather is a snout-covering variant often seen used by Tajaran Military Personnel. It reeks of militarism."
+    name = "\improper 'Kimball' full-face rebreather"
+    desc = "A full-face respirator designed by the ghouls of Dustworld and originally meant to help avoid further mutation, the 'Kimball' Rebreather is an alternative variant often seen used by the less humanoid mutants of the wasteland. It makes you want to reach for your trusty Bunker 21 canteen."
 	icon_state = "fir22"
 
 // Donation reward for Raxraus
 /obj/item/clothing/head/caligram_cap_tan
-	name = "\improper Caligram tan softcap"
-	desc = "A Caligram's Fleet-branded hat in a '/surprisingly/' tasteful shade of brown."
+    name = "\improper Blacktide tan softcap"
+    desc = "A Blacktide Mercenary hat in a dusty shade of brown, fresh from the wasteland."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
-	name = "\improper Caligram tan fatigues"
-	desc = "A set of tan and brown work fatigues bearing a Caligram's Fleet insigna on an armband. Lacks the typical Tajaran extravagance."
+    name = "\improper Blacktide tan fatigues"
+    desc = "A tan and brown uniform bearing a Blacktide Mercenary insignia on the armband. Hardy and reliable for a mercenary company, like the Ghouls themselves. A common sight on their home planet of Dustworld."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -321,8 +324,8 @@
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/jacket/caligram_parka_tan
-	name = "\improper Caligram tan parka"
-	desc = "A tan parka with a fancy black belt and '/Caligram's Fleet/' stitched onto its armband."
+    name = "\improper Blacktide tan coat"
+    desc = "A tan coat with a black belt and '/Blacktide Mercenary Corps/' stitched onto the armband."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_tan"
@@ -331,8 +334,8 @@
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
-	name = "\improper Caligram armored tan parka"
-	desc = "A tan parka with a fancy black belt, a lightly armored vest and '/Caligram's Fleet/' stitched onto its armband."
+    name = "\improper Blacktide armored coat"
+    desc = "A tan coat with a black belt, a lightly armored vest and '/Blacktide Mercenary Corps/' stitched onto its armband."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_vest_tan"
