@@ -1,10 +1,10 @@
 /mob/living/silicon/robot/examine(mob/user)
-	. = list()
+	. = list("<span class='info'>This is [icon2html(src, user)] <EM>[src]</EM>!")
 	if(desc)
 		. += "[desc]"
 
 	var/model_name = model ? "\improper [model.name]" : "\improper Default"
-	. += "It is currently <b>\a [model_name]-type</b> cyborg."
+	. += "\nIt is currently \a \"[span_bold("[model_name]")]\"-type cyborg.\n"
 
 	var/obj/act_module = get_active_held_item()
 	if(act_module)
@@ -14,13 +14,13 @@
 		if (getBruteLoss() < maxHealth*0.5)
 			. += span_warning("It looks slightly dented.")
 		else
-			. += span_boldwarning("It looks severely dented!")
+			. += span_warning("<B>It looks severely dented!</B>")
 	if (getFireLoss() || getToxLoss())
 		var/overall_fireloss = getFireLoss() + getToxLoss()
 		if (overall_fireloss < maxHealth * 0.5)
 			. += span_warning("It looks slightly charred.")
 		else
-			. += span_boldwarning("It looks severely burnt and heat-warped!")
+			. += span_warning("<B>It looks severely burnt and heat-warped!</B>")
 	if (health < -maxHealth*0.5)
 		. += span_warning("It looks barely operational.")
 	if (fire_stacks < 0)
@@ -52,3 +52,6 @@
 	. += "</span>"
 
 	. += ..()
+
+/mob/living/silicon/robot/get_examine_string(mob/user, thats = FALSE)
+	return null

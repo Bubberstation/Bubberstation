@@ -34,7 +34,7 @@
 /datum/status_effect/genetic_damage/tick(seconds_between_ticks)
 	if(ismonkey(owner) && total_damage >= GORILLA_MUTATION_MINIMUM_DAMAGE && SPT_PROB(GORILLA_MUTATION_CHANCE_PER_SECOND, seconds_between_ticks))
 		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.gorillize(genetics_gorilla = TRUE)
+		carbon_owner.gorillize()
 		qdel(src)
 		return
 
@@ -46,20 +46,15 @@
 		qdel(src)
 		return
 
-/datum/status_effect/genetic_damage/proc/on_healthscan(datum/source, list/render_list, advanced, mob/user, mode, tochat)
+/datum/status_effect/genetic_damage/proc/on_healthscan(datum/source, list/render_list, advanced)
 	SIGNAL_HANDLER
 
-	var/message = ""
 	if(advanced)
-		message = "Genetic damage: [round(total_damage / minimum_before_tox_damage * 100, 0.1)]%"
+		render_list += "<span class='alert ml-1'>Genetic damage: [round(total_damage / minimum_before_tox_damage * 100, 0.1)]%</span>\n"
 	else if(total_damage >= minimum_before_tox_damage)
-		message = "Severe genetic damage detected."
+		render_list += "<span class='alert ml-1'>Severe genetic damage detected.</span>\n"
 	else
-		message = "Minor genetic damage detected."
-
-	if(message)
-		render_list += conditional_tooltip("<span class='alert ml-1'>[message]</span>", "Irreparable under normal circumstances - will decay over time.", tochat)
-		render_list += "<br>"
+		render_list += "<span class='alert ml-1'>Minor genetic damage detected.</span>\n"
 
 #undef GORILLA_MUTATION_CHANCE_PER_SECOND
 #undef GORILLA_MUTATION_MINIMUM_DAMAGE

@@ -6,13 +6,7 @@
 
 import { classes } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import {
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { PropsWithChildren, ReactNode, useEffect } from 'react';
 
 import { backendSuspendStart, useBackend } from '../backend';
 import { globalStore } from '../backend';
@@ -57,19 +51,9 @@ export const Window = (props: Props) => {
 
   const { config, suspended } = useBackend();
   const { debugLayout = false } = useDebug();
-  const [isReadyToRender, setIsReadyToRender] = useState(false);
-
-  // We need to set the window to be invisible before we can set its geometry
-  // Otherwise, we get a flicker effect when the window is first rendered
-  useLayoutEffect(() => {
-    Byond.winset(Byond.windowId, {
-      'is-visible': false,
-    });
-    setIsReadyToRender(true);
-  }, []);
 
   useEffect(() => {
-    if (!suspended && isReadyToRender) {
+    if (!suspended) {
       const updateGeometry = () => {
         const options = {
           ...config.window,
@@ -83,10 +67,6 @@ export const Window = (props: Props) => {
           setWindowKey(config.window.key);
         }
         recallWindowGeometry(options);
-        Byond.winset(Byond.windowId, {
-          'is-visible': true,
-        });
-        logger.log('set to visible');
       };
 
       Byond.winset(Byond.windowId, {
@@ -99,7 +79,7 @@ export const Window = (props: Props) => {
         logger.log('unmounting');
       };
     }
-  }, [isReadyToRender, width, height]);
+  }, [width, height]);
 
   const dispatch = globalStore.dispatch;
   const fancy = config.window?.fancy;

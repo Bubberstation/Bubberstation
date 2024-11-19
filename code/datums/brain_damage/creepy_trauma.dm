@@ -66,8 +66,7 @@
 
 /datum/brain_trauma/special/obsessed/on_lose()
 	..()
-	if (owner.mind.remove_antag_datum(/datum/antagonist/obsessed))
-		owner.mind.add_antag_datum(/datum/antagonist/former_obsessed)
+	owner.mind.remove_antag_datum(/datum/antagonist/obsessed)
 	owner.clear_mood_event("creeping")
 	if(obsession)
 		log_game("[key_name(owner)] is no longer obsessed with [key_name(obsession)].")

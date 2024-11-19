@@ -1,5 +1,3 @@
-//Nodes that are found inside Bepis Disks.
-
 /datum/techweb_node/light_apps
 	id = TECHWEB_NODE_LIGHT_APPS
 	display_name = "Illumination Applications"
@@ -12,7 +10,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_COMMON)
 
 /datum/techweb_node/extreme_office
 	id = TECHWEB_NODE_EXTREME_OFFICE
@@ -25,7 +22,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_COMMON)
 
 /datum/techweb_node/spec_eng
 	id = TECHWEB_NODE_SPEC_ENG
@@ -38,7 +34,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 /datum/techweb_node/aus_security
 	id = TECHWEB_NODE_AUS_SECURITY
@@ -51,7 +46,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 /datum/techweb_node/interrogation
 	id = TECHWEB_NODE_INTERROGATION
@@ -64,7 +58,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 /datum/techweb_node/sticky_advanced
 	id = TECHWEB_NODE_STICKY_ADVANCED
@@ -77,7 +70,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_COMMON)
 
 /datum/techweb_node/tackle_advanced
 	id = TECHWEB_NODE_TACKLE_ADVANCED
@@ -91,7 +83,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 /datum/techweb_node/mod_experimental
 	id = TECHWEB_NODE_MOD_EXPERIMENTAL
@@ -106,7 +97,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_COMMON)
 
 /datum/techweb_node/posisphere
 	id = TECHWEB_NODE_POSITRONIC_SPHERE
@@ -118,4 +108,3 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	announce_channels = list(RADIO_CHANNEL_SCIENCE)

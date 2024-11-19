@@ -90,7 +90,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	AddComponent(/datum/component/plumbing/simple_demand, extend_pipe_to_edge = TRUE)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -120,7 +119,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	balloon_alert(user, "turned [intended_on ? "on" : "off"]")
 
 	return TRUE
-
 
 //SKYRAT EDIT ADDITION
 /obj/machinery/shower/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
@@ -197,6 +195,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	deconstruct()
 	return TRUE
 
+/obj/machinery/shower/setDir(newdir)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
+
 /obj/machinery/shower/update_overlays()
 	. = ..()
 	if(!actually_on)
@@ -204,14 +206,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	var/mutable_appearance/water_falling = mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER)
 	water_falling.color = mix_color_from_reagents(reagents.reagent_list)
 	switch(dir)
-		if(NORTH)
-			water_falling.pixel_y += pixel_shift
+
 		if(SOUTH)
-			water_falling.pixel_y -= pixel_shift
+			water_falling.pixel_z -= 24
 		if(EAST)
-			water_falling.pixel_x += pixel_shift
+			water_falling.pixel_w += 16
 		if(WEST)
-			water_falling.pixel_x -= pixel_shift
+			water_falling.pixel_w -= 16
+
 	. += water_falling
 
 /obj/machinery/shower/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -242,33 +244,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		qdel(mist)
 
 
-/obj/machinery/shower/proc/on_entered(datum/source, atom/movable/enterer)
+/obj/machinery/shower/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-
 	if(actually_on && reagents.total_volume)
-		wash_atom(enterer)
-
-/obj/machinery/shower/proc/on_exited(datum/source, atom/movable/exiter)
-	SIGNAL_HANDLER
-
-	if(!isliving(exiter))
-		return
-
-	var/obj/machinery/shower/locate_new_shower = locate() in get_turf(exiter)
-	if(locate_new_shower && isturf(exiter.loc))
-		return
-	var/mob/living/take_his_status_effect = exiter
-	take_his_status_effect.remove_status_effect(/datum/status_effect/shower_regen)
+		wash_atom(AM)
 
 /obj/machinery/shower/proc/wash_atom(atom/target)
 	target.wash(CLEAN_RAD | CLEAN_WASH)
 	reagents.expose(target, (TOUCH), SHOWER_EXPOSURE_MULTIPLIER * SHOWER_SPRAY_VOLUME / max(reagents.total_volume, SHOWER_SPRAY_VOLUME))
-	if(!isliving(target))
-		return
-	var/mob/living/living_target = target
-	check_heat(living_target)
-	living_target.add_mood_event("shower", /datum/mood_event/nice_shower)
-	living_target.apply_status_effect(/datum/status_effect/shower_regen)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		check_heat(living_target)
+		living_target.add_mood_event("shower", /datum/mood_event/nice_shower)
 
 /**
  * Toggle whether shower is actually on and outputting water.

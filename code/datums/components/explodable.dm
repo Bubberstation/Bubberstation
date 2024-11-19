@@ -60,11 +60,10 @@
 		return
 	check_if_detonate(I)
 
-/datum/component/explodable/proc/explodable_impact(datum/source, atom/hit_atom, datum/thrownthing/throwing_datum, caught)
+/datum/component/explodable/proc/explodable_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER
 
-	if(!caught)
-		check_if_detonate(hit_atom)
+	check_if_detonate(hit_atom)
 
 /datum/component/explodable/proc/explodable_bump(datum/source, atom/A)
 	SIGNAL_HANDLER

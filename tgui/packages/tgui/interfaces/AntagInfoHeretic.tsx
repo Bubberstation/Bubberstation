@@ -101,6 +101,7 @@ const IntroductionSection = (props) => {
             <Stack.Divider />
             <InformationSection />
             <Stack.Divider />
+
             {!ascended && (
               <Stack.Item>
                 <ObjectivePrintout

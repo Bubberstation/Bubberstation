@@ -42,7 +42,7 @@
 	process_shock_spark_count_min = 1
 
 	wirecut_repair_percent = 0.078
-	wire_repair_percent = 0.036
+	wire_repair_percent = 0.018
 
 	initial_sparks_amount = 1
 
@@ -85,11 +85,11 @@
 	process_shock_spark_count_min = 1
 
 	wirecut_repair_percent = 0.046
-	wire_repair_percent = 0.024
+	wire_repair_percent = 0.01
 
 	initial_sparks_amount = 3
 
-	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/severe
+	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/moderate
 
 	a_or_from = "a"
 
@@ -130,11 +130,11 @@
 	process_shock_spark_count_min = 2
 
 	wirecut_repair_percent = 0.032
-	wire_repair_percent = 0.017
+	wire_repair_percent = 0.008
 
 	initial_sparks_amount = 8
 
-	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/critical
+	status_effect_type = /datum/status_effect/wound/electrical_damage/pierce/moderate
 
 	a_or_from = "a"
 

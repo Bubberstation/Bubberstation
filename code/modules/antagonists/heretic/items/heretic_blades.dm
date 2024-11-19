@@ -10,7 +10,6 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	obj_flags = CONDUCTS_ELECTRICITY
-	slot_flags = ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 20
@@ -19,7 +18,7 @@
 	bare_wound_bonus = 15
 	toolspeed = 0.375
 	demolition_mod = 0.8
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	armour_penetration = 35
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
@@ -230,7 +229,7 @@
 /obj/item/melee/sickly_blade/cursed/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	. = ..()
 
-	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
+	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
 	if(!heretic_datum)
 		return NONE
 

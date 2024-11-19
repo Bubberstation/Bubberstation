@@ -79,11 +79,6 @@ export const ForceRecutParameter = new Juke.Parameter({
   name: "force-recut",
 });
 
-export const SkipIconCutter = new Juke.Parameter({
-  type: 'boolean',
-  name: "skip-icon-cutter",
-});
-
 export const WarningParameter = new Juke.Parameter({
   type: 'string[]',
   alias: 'W',
@@ -91,7 +86,7 @@ export const WarningParameter = new Juke.Parameter({
 
 export const NoWarningParameter = new Juke.Parameter({
   type: 'string[]',
-  alias: 'I',
+  alias: 'NW',
 });
 
 export const CutterTarget = new Juke.Target({
@@ -209,10 +204,10 @@ export const DmMapsIncludeTarget = new Juke.Target({
 });
 
 export const DmTarget = new Juke.Target({
-  parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter, SkipIconCutter],
+  parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
-    !get(SkipIconCutter) && IconCutterTarget,
+    IconCutterTarget,
   ],
   inputs: [
     '_maps/map_files/generic/**',
@@ -223,7 +218,6 @@ export const DmTarget = new Juke.Target({
     'interface/**',
     'modular_skyrat/**', ///SKYRAT EDIT ADDITION - Making the CBT work
     'modular_zubbers/**', ///BUBBER EDIT ADDITION - Making the CBT work
-    'sound/**',
     `${DME_NAME}.dme`,
     NamedVersionFile,
   ],

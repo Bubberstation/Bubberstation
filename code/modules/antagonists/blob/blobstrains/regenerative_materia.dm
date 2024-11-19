@@ -12,7 +12,6 @@
 
 /datum/reagent/blob/regenerative_materia
 	name = "Regenerative Materia"
-	description = "Chemical that inflicts toxin damage and makes the target believe they are fully healed. Regenerative materia blobs inject this into their victims."
 	taste_description = "heaven"
 	color = "#A88FB7"
 

@@ -24,21 +24,16 @@
 	throwforce = 0
 	throw_range = 7
 	throw_speed = 3
-	drop_sound = 'sound/items/handling/tools/multitool_drop.ogg'
-	pickup_sound = 'sound/items/handling/tools/multitool_pickup.ogg'
+	drop_sound = 'sound/items/handling/multitool_drop.ogg'
+	pickup_sound = 'sound/items/handling/multitool_pickup.ogg'
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5, /datum/material/glass= SMALL_MATERIAL_AMOUNT * 0.2)
 	custom_premium_price = PAYCHECK_COMMAND * 3
 	toolspeed = 1
-	usesound = 'sound/items/weapons/empty.ogg'
+	usesound = 'sound/weapons/empty.ogg'
 	var/datum/buffer // simple machine buffer for device linkage
 	var/mode = 0
 	var/apc_scanner = TRUE
 	COOLDOWN_DECLARE(next_apc_scan)
-
-/obj/item/multitool/Destroy()
-	if(buffer)
-		remove_buffer(buffer)
-	return ..()
 
 /obj/item/multitool/examine(mob/user)
 	. = ..()
@@ -75,10 +70,9 @@
 /obj/item/multitool/proc/set_buffer(datum/buffer)
 	if(src.buffer)
 		UnregisterSignal(src.buffer, COMSIG_QDELETING)
-		remove_buffer(src.buffer)
 	src.buffer = buffer
 	if(!QDELETED(buffer))
-		RegisterSignal(buffer, COMSIG_QDELETING, PROC_REF(remove_buffer))
+		RegisterSignal(buffer, COMSIG_QDELETING, PROC_REF(on_buffer_del))
 
 /**
  * Called when the buffer's stored object is deleted
@@ -86,9 +80,8 @@
  * This proc does not clear the buffer of the multitool, it is here to
  * handle the deletion of the object the buffer references
  */
-/obj/item/multitool/proc/remove_buffer(datum/source)
+/obj/item/multitool/proc/on_buffer_del(datum/source)
 	SIGNAL_HANDLER
-	SEND_SIGNAL(src, COMSIG_MULTITOOL_REMOVE_BUFFER, source)
 	buffer = null
 
 // Syndicate device disguised as a multitool; it will turn red when an AI camera is nearby.

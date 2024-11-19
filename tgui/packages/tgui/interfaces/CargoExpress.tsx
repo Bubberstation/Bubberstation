@@ -15,7 +15,7 @@ import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 type Data = {
   locked: BooleanLike;
   points: number;
-  using_beacon: BooleanLike;
+  usingBeacon: BooleanLike;
   beaconzone: string;
   beaconName: string;
   canBuyBeacon: BooleanLike;
@@ -44,7 +44,7 @@ function CargoExpressContent(props) {
     hasBeacon,
     message,
     points,
-    using_beacon,
+    usingBeacon,
     beaconzone,
     beaconName,
     canBuyBeacon,
@@ -64,11 +64,11 @@ function CargoExpressContent(props) {
       >
         <LabeledList>
           <LabeledList.Item label="Landing Location">
-            <Button selected={!using_beacon} onClick={() => act('LZCargo')}>
+            <Button selected={!usingBeacon} onClick={() => act('LZCargo')}>
               Cargo Bay
             </Button>
             <Button
-              selected={using_beacon}
+              selected={usingBeacon}
               disabled={!hasBeacon}
               onClick={() => act('LZBeacon')}
             >

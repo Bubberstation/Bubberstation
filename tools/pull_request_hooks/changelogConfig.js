@@ -54,13 +54,6 @@ export const CHANGELOG_ENTRIES = [
 	],
 
 	[
-		["map"],
-		{
-			placeholders: ["added/modified/removed map content"],
-		},
-	],
-
-	[
 		["spellcheck", "typo"],
 		{
 			placeholders: ["fixed a few typos"],

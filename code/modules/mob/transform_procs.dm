@@ -311,7 +311,7 @@
 	qdel(src)
 	return new_crab
 
-/mob/living/carbon/proc/gorillize(genetics_gorilla = FALSE)
+/mob/living/carbon/proc/gorillize()
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 	ADD_TRAIT(src, TRAIT_NO_TRANSFORM, PERMANENT_TRANSFORMATION_TRAIT)
@@ -327,8 +327,7 @@
 	regenerate_icons()
 	icon = null
 	SetInvisibility(INVISIBILITY_MAXIMUM)
-	var/gorilla_type = genetics_gorilla ? /mob/living/basic/gorilla/genetics : /mob/living/basic/gorilla
-	var/mob/living/basic/gorilla/new_gorilla = new gorilla_type(get_turf(src))
+	var/mob/living/basic/gorilla/new_gorilla = new (get_turf(src))
 	new_gorilla.set_combat_mode(TRUE)
 	if(mind)
 		mind.transfer_to(new_gorilla)

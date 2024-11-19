@@ -29,12 +29,8 @@ class Typepath:
 class Filename:
     path: str
 
-    def __str__(self) -> str:
-        return self.path
-
 @dataclass
 class Null:
-    def __str__(self) -> str:
-        return "null"
+    pass
 
 Constant = str | float | Filename | Typepath | Null | list['Constant'] | dict['Constant', 'Constant']

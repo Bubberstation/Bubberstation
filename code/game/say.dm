@@ -12,7 +12,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_SECURITY]" = "secradio",
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI_PRIVATE]" = "aiprivradio",
-	"[FREQ_ENTERTAINMENT]" = "enteradio",
 	"[FREQ_SYNDICATE]" = "syndradio",
 	"[FREQ_UPLINK]" = "syndradio",  // this probably shouldnt appear ingame
 	"[FREQ_CENTCOM]" = "centcomradio",
@@ -295,7 +294,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 //HACKY VIRTUALSPEAKER STUFF BEYOND THIS POINT
 //these exist mostly to deal with the AIs hrefs and job stuff.
 
-/atom/movable/proc/get_job() //Get a job, you lazy butte
+/atom/movable/proc/GetJob() //Get a job, you lazy butte
 
 /atom/movable/proc/GetSource()
 
@@ -342,7 +341,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	else  // Unidentifiable mob
 		job = "Unknown"
 
-/atom/movable/virtualspeaker/get_job()
+/atom/movable/virtualspeaker/GetJob()
 	return job
 
 /atom/movable/virtualspeaker/GetSource()

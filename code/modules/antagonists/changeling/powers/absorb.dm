@@ -41,14 +41,9 @@
 	owner.visible_message(span_danger("[owner] sucks the fluids from [target]!"), span_notice("We have absorbed [target]."))
 	to_chat(target, span_userdanger("You are absorbed by the changeling!"))
 
-	var/true_absorbtion = (!isnull(target.client) || !isnull(target.mind) || !isnull(target.last_mind))
-	if (!true_absorbtion)
-		to_chat(owner, span_changeling(span_bold("You absorb [target], but their weak DNA is not enough to satisfy your hunger.")))
-
 	if(!changeling.has_profile_with_dna(target.dna))
 		changeling.add_new_profile(target)
-		if (true_absorbtion)
-			changeling.true_absorbs++
+		changeling.true_absorbs++
 
 	if(owner.nutrition < NUTRITION_LEVEL_WELL_FED)
 		owner.set_nutrition(min((owner.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED))
@@ -62,8 +57,7 @@
 	is_absorbing = FALSE
 
 	changeling.adjust_chemicals(10)
-	if (true_absorbtion)
-		changeling.can_respec++
+	changeling.can_respec = TRUE
 
 	if(target.stat != DEAD)
 		target.investigate_log("has died from being changeling absorbed.", INVESTIGATE_DEATHS)

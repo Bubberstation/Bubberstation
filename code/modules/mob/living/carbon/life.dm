@@ -183,7 +183,7 @@
 /mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)
 	. = TRUE
 
-	if(HAS_TRAIT(src, TRAIT_GODMODE))
+	if(status_flags & GODMODE)
 		failed_last_breath = FALSE
 		clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
 		return
@@ -711,8 +711,6 @@
  * * capped (optional) default True used to cap step mode
  */
 /mob/living/carbon/adjust_bodytemperature(amount, min_temp=0, max_temp=INFINITY, use_insulation=FALSE, use_steps=FALSE, capped=TRUE)
-	if(HAS_TRAIT(src, TRAIT_HYPOTHERMIC) && amount > 0) //Prevent warming up
-		return
 	// apply insulation to the amount of change
 	if(use_insulation)
 		amount *= (1 - get_insulation_protection(bodytemperature + amount))

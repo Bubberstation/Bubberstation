@@ -22,7 +22,6 @@
 	new /obj/item/construction/plumbing/engineering(src) //SKYRAT EDIT ADDITION
 	new /obj/item/circuitboard/machine/rodstopper(src) //SKYRAT EDIT ADDITION
 	new /obj/item/card/id/departmental_budget/eng(src) //SKYRAT EDIT ADDITION
-	new /obj/item/storage/box/stickers/chief_engineer(src)
 
 /obj/structure/closet/secure_closet/engineering_chief/populate_contents_immediate()
 	. = ..()

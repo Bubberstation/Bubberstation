@@ -67,7 +67,7 @@
 	msg += "</tr></table>"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	to_chat(src, span_infoplain("[msg]"))
+	to_chat(src, "<span class='infoplain'>[msg]</span>")
 
 /client/verb/adminwho()
 	set category = "Admin"

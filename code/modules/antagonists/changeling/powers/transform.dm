@@ -142,7 +142,7 @@
 	if(hud_icon)
 		var/image/holder = user.hud_list[ID_HUD]
 		var/icon/I = icon(user.icon, user.icon_state, user.dir)
-		holder.pixel_y = I.Height() - ICON_SIZE_Y
+		holder.pixel_y = I.Height() - world.icon_size
 		holder.icon_state = hud_icon
 
 /**
@@ -156,10 +156,10 @@
 
 /obj/item/changeling/id/get_id_examine_strings(mob/user)
 	. = ..()
-	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "hugeicon")]")
+	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "bigicon")]")
 
-/obj/item/changeling/id/get_examine_icon(mob/user)
-	return icon2html(get_cached_flat_icon(), user)
+/obj/item/changeling/id/get_examine_string(mob/user, thats = FALSE)
+	return "[icon2html(get_cached_flat_icon(), user)] [thats? "That's ":""][get_examine_name(user)]" //displays all overlays in chat
 
 //Change our DNA to that of somebody we've absorbed.
 /datum/action/changeling/transform/sting_action(mob/living/carbon/human/user)
@@ -170,6 +170,7 @@
 		return
 	..()
 	changeling.transform(user, chosen_prof)
+
 	SEND_SIGNAL(user, COMSIG_CHANGELING_TRANSFORM)
 	return TRUE
 

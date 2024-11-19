@@ -18,9 +18,9 @@
 	update_appearance()
 
 /// Forces the airlock to close and bolt
-/obj/machinery/door/airlock/proc/secure_close(force_crush = FALSE)
+/obj/machinery/door/airlock/proc/secure_close()
 	locked = FALSE
-	close(forced = TRUE, force_crush = force_crush)
+	close(forced = TRUE)
 
 	locked = TRUE
 	stoplag(0.2 SECONDS)

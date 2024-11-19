@@ -72,10 +72,6 @@
 	icon_state = "ftc_boots"
 	inhand_icon_state = null
 
-/obj/item/clothing/shoes/jackboots/floortile/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //tacticool
-
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
@@ -178,10 +174,6 @@
 	desc = "Yarr."
 	icon_state = "pirateboots"
 	inhand_icon_state = null
-
-/obj/item/clothing/shoes/pirate/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 /obj/item/clothing/shoes/pirate/armored
 	armor_type = /datum/armor/shoes_pirate

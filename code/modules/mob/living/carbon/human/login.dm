@@ -4,7 +4,6 @@
 	dna?.species?.on_owner_login(src)
 
 	if(SStts.tts_enabled && isnull(voice)) // SKYRAT EDIT - None option for TTS - ORIGINAL: if(SStts.tts_enabled && !voice)
-
 		voice = pick(SStts.available_speakers)
 
 	if(!LAZYLEN(afk_thefts))

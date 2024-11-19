@@ -30,4 +30,3 @@
 #pragma UnsafeClientAccess disabled
 #pragma SuspiciousSwitchCase error
 #pragma AssignmentInConditional error
-#pragma AmbiguousInOrder error

@@ -35,7 +35,7 @@
 	var/last_feeding
 
 	/// Can fish reproduce in this quarium.
-	var/reproduction_and_growth = TRUE
+	var/allow_breeding = TRUE
 
 	//This is the area where fish can swim
 	var/aquarium_zone_min_px = 2
@@ -295,7 +295,7 @@
 		else
 			dead_fish++
 
-	var/morb = HAS_MIND_TRAIT(user, TRAIT_MORBID)
+	var/morb = HAS_TRAIT(user, TRAIT_MORBID)
 	//Check if there are live fish - good mood
 	//All fish dead - bad mood.
 	//No fish - nothing.
@@ -307,30 +307,14 @@
 
 /obj/structure/aquarium/ui_data(mob/user)
 	. = ..()
-	.["fluidType"] = fluid_type
+	.["fluid_type"] = fluid_type
 	.["temperature"] = fluid_temp
-	.["allowBreeding"] = reproduction_and_growth
-	.["fishData"] = list()
-	.["feedingInterval"] = feeding_interval / (1 MINUTES)
-	.["propData"] = list()
-	for(var/atom/movable/item in contents)
-		if(isfish(item))
-			var/obj/item/fish/fish = item
-			.["fishData"] += list(list(
-				"fish_ref" = REF(fish),
-				"fish_name" = fish.name,
-				"fish_happiness" = fish.get_happiness_value(),
-				"fish_icon" = fish::icon,
-				"fish_icon_state" = fish::icon_state,
-				"fish_health" = fish.health,
-			))
-			continue
-		.["propData"] += list(list(
-			"prop_ref" = REF(item),
-			"prop_name" = item.name,
-			"prop_icon" = item::icon,
-			"prop_icon_state" = item::icon_state,
-		))
+	.["allow_breeding"] = allow_breeding
+	.["feeding_interval"] = feeding_interval / (1 MINUTES)
+	var/list/content_data = list()
+	for(var/atom/movable/fish in contents)
+		content_data += list(list("name"=fish.name,"ref"=ref(fish)))
+	.["contents"] = content_data
 
 /obj/structure/aquarium/ui_static_data(mob/user)
 	. = ..()
@@ -338,9 +322,8 @@
 	.["minTemperature"] = min_fluid_temp
 	.["maxTemperature"] = max_fluid_temp
 	.["fluidTypes"] = fluid_types
-	.["heartIcon"] = 'icons/effects/effects.dmi'
 
-/obj/structure/aquarium/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/structure/aquarium/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -356,25 +339,20 @@
 				fluid_type = params["fluid"]
 				SEND_SIGNAL(src, COMSIG_AQUARIUM_FLUID_CHANGED, fluid_type)
 				. = TRUE
-		if("reproduction_and_growth")
-			reproduction_and_growth = !reproduction_and_growth
+		if("allow_breeding")
+			allow_breeding = !allow_breeding
 			. = TRUE
 		if("feeding_interval")
 			feeding_interval = params["feeding_interval"] MINUTES
 			. = TRUE
-		if("pet_fish")
-			var/obj/item/fish/fish = locate(params["fish_reference"]) in contents
-			fish?.pet_fish(user)
-		if("remove_item")
-			var/atom/movable/item = locate(params["item_reference"]) in contents
-			item?.forceMove(drop_location())
-			to_chat(user, span_notice("You take out [item] from [src]."))
-		if("rename_fish")
-			var/new_name = sanitize_name(params["chosen_name"])
-			if(!new_name)
-				return
-			var/atom/movable/fish = locate(params["fish_reference"]) in contents
-			fish.name = new_name
+		if("remove")
+			var/atom/movable/inside = locate(params["ref"]) in contents
+			if(inside)
+				if(isitem(inside))
+					user.put_in_hands(inside)
+				else
+					inside.forceMove(get_turf(src))
+				to_chat(user,span_notice("You take out [inside] from [src]."))
 
 /obj/structure/aquarium/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -396,7 +374,7 @@
 		possible_destinations_for_fish = get_adjacent_open_turfs(droploc)
 	else
 		possible_destinations_for_fish = list(droploc)
-	playsound(src, 'sound/effects/glass/glassbr3.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/glassbr3.ogg', 100, TRUE)
 	for(var/atom/movable/fish in contents)
 		fish.forceMove(pick(possible_destinations_for_fish))
 	if(fluid_type != AQUARIUM_FLUID_AIR)
@@ -421,13 +399,9 @@
 	new /obj/item/aquarium_prop/sand(src)
 	new /obj/item/aquarium_prop/seaweed(src)
 
-	if(prob(85))
-		new /obj/item/fish/goldfish/gill(src)
-		reagents.add_reagent(/datum/reagent/consumable/nutriment, 2)
-	else
-		new /obj/item/fish/goldfish/three_eyes/gill(src)
-		reagents.add_reagent(/datum/reagent/toxin/mutagen, 2) //three eyes goldfish feed on mutagen.
+	new /obj/item/fish/goldfish/gill(src)
 
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, 2)
 
 /obj/structure/aquarium/prefilled
 	anchored = TRUE

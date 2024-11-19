@@ -13,7 +13,6 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	fishing_modifier = 0
 
 /datum/armor/space_beret
 	melee = 80
@@ -42,7 +41,6 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	fishing_modifier = 0
 
 /datum/armor/space_officer
 	melee = 80

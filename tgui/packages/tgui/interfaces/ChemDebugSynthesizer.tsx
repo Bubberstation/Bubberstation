@@ -6,14 +6,13 @@ import { Beaker, BeakerDisplay } from './common/BeakerDisplay';
 
 type Data = {
   amount: number;
-  temp: number;
   purity: number;
   beaker: Beaker;
 };
 
 export const ChemDebugSynthesizer = (props) => {
   const { act, data } = useBackend<Data>();
-  const { amount, temp, purity, beaker } = data;
+  const { amount, purity, beaker } = data;
 
   return (
     <Window width={390} height={330}>
@@ -32,19 +31,6 @@ export const ChemDebugSynthesizer = (props) => {
                   stepPixelSize={2}
                   onChange={(value) =>
                     act('amount', {
-                      amount: value,
-                    })
-                  }
-                />
-                <NumberInput
-                  value={temp}
-                  unit="K"
-                  minValue={0}
-                  maxValue={1000}
-                  step={1}
-                  stepPixelSize={2}
-                  onChange={(value) =>
-                    act('temp', {
                       amount: value,
                     })
                   }

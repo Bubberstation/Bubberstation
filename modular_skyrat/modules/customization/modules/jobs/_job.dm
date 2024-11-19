@@ -127,7 +127,6 @@
 /datum/job/cyborg
 	loadout = FALSE
 
-// BUBBER TODO - Change this mess of required languages
 //Service
 /datum/job/cook
 	required_languages = null
@@ -152,6 +151,7 @@
 
 /datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+// START OF BUBBERSTATION ADDITION
 
 /datum/job/mime
 	required_languages = null
@@ -171,18 +171,20 @@
 /datum/job/chaplain
 	required_languages = null
 
-// ENGINEERING
+// END OF BUBBERSTATION ADDITION
+
+// ENGINEERING (BUBBERSTATION ADDITION)
 
 /datum/job/station_engineer
-	required_languages = null
+	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/atmospheric_technician
-	required_languages = null
+	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/engineering_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// CARGO
+// CARGO (BUBBERSTATION ADDITION)
 /datum/job/cargo_technician
 	required_languages = null
 
@@ -195,7 +197,7 @@
 /datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// MEDICAL
+// MEDICAL (BUBBERSTATION ADDITION)
 
 /datum/job/chemist
 	required_languages = null
@@ -215,7 +217,7 @@
 /datum/job/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// SCIENCE
+// SCIENCE (BUBBERSTATION ADDITION)
 
 /datum/job/scientist
 	required_languages = null

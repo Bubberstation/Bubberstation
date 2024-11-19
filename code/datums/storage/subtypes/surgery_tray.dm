@@ -18,7 +18,6 @@
 		/obj/item/cautery,
 		/obj/item/circular_saw,
 		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, // SKYRAT EDIT ADDITION
 		/obj/item/hemostat,
 		/obj/item/razor,
 		/obj/item/retractor,

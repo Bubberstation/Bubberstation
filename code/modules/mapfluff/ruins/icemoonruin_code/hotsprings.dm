@@ -11,7 +11,6 @@
  */
 
 /turf/open/water/cursed_spring
-	name = "cursed spring"
 	baseturfs = /turf/open/water/cursed_spring
 	planetary_atmos = TRUE
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS

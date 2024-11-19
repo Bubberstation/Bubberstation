@@ -94,7 +94,7 @@
 	desc = "Used to call and send the mining shuttle."
 	circuit = /obj/item/circuitboard/computer/mining_shuttle
 	shuttleId = "mining"
-	possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
+	possible_destinations = "mining_home;mining_away;landing_zone_dock"
 	no_destination_swap = TRUE
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -160,7 +160,6 @@
 	close_sound = 'sound/machines/trapdoor/trapdoor_shut.ogg'
 	set_dir_on_move = TRUE
 	can_buckle = TRUE
-	can_weld_shut = FALSE
 
 	/// Whether we're on a set of rails or just on the ground
 	var/on_rails = FALSE
@@ -321,7 +320,7 @@
 		return
 	update_rail_state(FALSE)
 	Move(new_destination)
-	var/sound/thud_sound = sound('sound/items/weapons/thudswoosh.ogg')
+	var/sound/thud_sound = sound('sound/weapons/thudswoosh.ogg')
 	thud_sound.pitch = 0.5
 	playsound(src, thud_sound, 50, TRUE)
 

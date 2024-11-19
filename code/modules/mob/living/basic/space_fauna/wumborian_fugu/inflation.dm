@@ -58,12 +58,13 @@
 		return FALSE
 	RegisterSignal(fugu, COMSIG_MOB_STATCHANGE, PROC_REF(check_death))
 	fugu.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/inflated)
-	fugu.add_traits(list(TRAIT_FUGU_GLANDED, TRAIT_GODMODE), TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(fugu, TRAIT_FUGU_GLANDED, TRAIT_STATUS_EFFECT(id))
 	fugu.AddElement(/datum/element/wall_tearer, allow_reinforced = FALSE)
 	fugu.mob_size = MOB_SIZE_LARGE
 	fugu.icon_state = "Fugu1"
 	fugu.melee_damage_lower = 15
 	fugu.melee_damage_upper = 20
+	fugu.status_flags |= GODMODE
 	fugu.obj_damage = 60
 	fugu.ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, TRUE)
 	fugu.ai_controller.CancelActions()
@@ -75,11 +76,12 @@
 		return // Check again in case you changed mob after application but somehow kept the status effect
 	UnregisterSignal(fugu, COMSIG_MOB_STATCHANGE)
 	fugu.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/inflated)
-	fugu.remove_traits(list(TRAIT_FUGU_GLANDED, TRAIT_GODMODE), TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(fugu, TRAIT_FUGU_GLANDED, TRAIT_STATUS_EFFECT(id))
 	fugu.RemoveElement(/datum/element/wall_tearer, allow_reinforced = FALSE)
 	fugu.mob_size = MOB_SIZE_SMALL
 	fugu.melee_damage_lower = 0
 	fugu.melee_damage_upper = 0
+	fugu.status_flags &= ~GODMODE
 	if (fugu.stat != DEAD)
 		fugu.icon_state = "Fugu0"
 	fugu.obj_damage = 0

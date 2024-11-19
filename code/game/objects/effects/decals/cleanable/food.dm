@@ -10,9 +10,6 @@
 	icon_state = "tomato_floor1"
 	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
 
-/obj/effect/decal/cleanable/food/tomato_smudge/can_bloodcrawl_in()
-	return TRUE // why? why not.
-
 /obj/effect/decal/cleanable/food/plant_smudge
 	name = "plant smudge"
 	desc = "Chlorophyll? More like borophyll!"
@@ -61,14 +58,3 @@
 	name = "flour"
 	desc = "It's still good. Four second rule!"
 	icon_state = "flour"
-
-/obj/effect/decal/cleanable/food/squid_ink
-	name = "ink smear"
-	desc = "a smear from some inky substance..."
-	icon = 'icons/mob/silicon/robots.dmi'
-	icon_state = "floor1"
-	color = COLOR_DARK
-
-/obj/effect/decal/cleanable/food/squid_ink/Initialize(mapload, list/datum/disease/diseases)
-	icon_state = "floor[rand(1, 7)]"
-	return ..()

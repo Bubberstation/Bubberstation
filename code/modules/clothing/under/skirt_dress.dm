@@ -40,10 +40,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	flags_inv = HIDESHOES
 
-/obj/item/clothing/under/dress/wedding_dress/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 4) //You aren't going to fish with this are you?
-
 /obj/item/clothing/under/dress/eveninggown
 	name = "evening gown"
 	desc = "Fancy dress for space bar singers."
@@ -53,10 +49,6 @@
 	greyscale_config_worn = /datum/greyscale_config/evening_dress/worn
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_colors = "#e11f1f"
-
-/obj/item/clothing/under/dress/eveninggown/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 4) //You aren't going to fish with this are you?
 
 /obj/item/clothing/under/dress/skirt
 	name = "cardigan skirt"

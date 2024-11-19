@@ -7,7 +7,7 @@
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/hud/implants.dmi'
 	button_icon_state = "adrenal"
-	// sound = 'sound/effects/magic/whistlereset.ogg' I have no idea why this was commented out
+	// sound = 'sound/magic/whistlereset.ogg'
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 6 SECONDS

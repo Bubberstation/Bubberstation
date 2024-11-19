@@ -1,5 +1,5 @@
 /// Define to mimic a span macro but for the purple font that vote specifically uses.
-//#define vote_font(text) ("<font color='purple'>" + text + "</font>") // BUBBER EDIT REMOVAL - Moved to code/__DEFINES/~~bubber_defines/span.dm - Why TG didn't define this properly, it is a mystery
+#define vote_font(text) ("<font color='purple'>" + text + "</font>")
 
 SUBSYSTEM_DEF(vote)
 	name = "Vote"
@@ -101,28 +101,24 @@ SUBSYSTEM_DEF(vote)
 
 	// stringify the winners to prevent potential unimplemented serialization errors.
 	// Perhaps this can be removed in the future and we assert that vote choices must implement serialization.
-	var/final_winner_string = (final_winner && "[final_winner]") || "NO WINNER"
+	var/final_winner_string = final_winner && "[final_winner]"
 	var/list/winners_string = list()
-
-	if(length(winners))
-		for(var/winner in winners)
-			winners_string += "[winner]"
-	else
-		winners_string = list("NO WINNER")
+	for(var/winner in winners)
+		winners_string += "[winner]"
 
 	var/list/vote_log_data = list(
-		"type" = "[current_vote.type]",
 		"choices" = vote_choice_data,
 		"total" = total_votes,
 		"winners" = winners_string,
 		"final_winner" = final_winner_string,
 	)
-	log_vote("vote finalized", vote_log_data)
-	if(to_display)
-		to_chat(world, examine_block(vote_font("[to_display]"))) // BUBBER EDIT CHANGE -  span_infoplain changed to examine_block
+	var/log_string = replacetext(to_display, "\n", "\\n") // 'keep' the newlines, but dont actually print them as newlines
+	log_vote(log_string, vote_log_data)
+	to_chat(world, span_infoplain(vote_font("\n[to_display]")))
 
 	// Finally, doing any effects on vote completion
-	current_vote.finalize_vote(final_winner)
+	if (final_winner) // if no one voted, or the vote cannot be won, final_winner will be null
+		current_vote.finalize_vote(final_winner)
 
 /**
  * One selection per person, and the selection with the most votes wins.
@@ -237,9 +233,9 @@ SUBSYSTEM_DEF(vote)
 	var/to_display = current_vote.initiate_vote(vote_initiator_name, duration)
 
 	log_vote(to_display)
-	to_chat(world, examine_block(vote_font("[span_bold(to_display)]\n\
+	to_chat(world, span_infoplain(vote_font("\n[span_bold(to_display)]\n\
 		Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\n\
-		You have [DisplayTimeText(duration)] to vote.")))  // BUBBER EDIT CHANGE - span_infoplain changed to examine_block
+		You have [DisplayTimeText(duration)] to vote.")))
 
 	// And now that it's going, give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
@@ -367,7 +363,7 @@ SUBSYSTEM_DEF(vote)
 	data["VoteCD"] = CONFIG_GET(number/vote_delay)
 	return data
 
-/datum/controller/subsystem/vote/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/controller/subsystem/vote/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -489,4 +485,4 @@ SUBSYSTEM_DEF(vote)
 
 	return ..()
 
-//#undef vote_font // BUBBER EDIT REMOVAL - Moved to code/__DEFINES/~~bubber_defines/span.dm
+#undef vote_font

@@ -100,18 +100,18 @@
 /obj/item/storage/portable_chem_mixer/ex_act(severity, target)
 	return severity > EXPLODE_LIGHT ? ..() : FALSE
 
-/obj/item/storage/portable_chem_mixer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/item/storage/portable_chem_mixer/storage_insert_on_interacted_with(datum/storage, obj/item/weapon, mob/living/user)
 	if (!atom_storage.locked || \
-		(tool.item_flags & ABSTRACT) || \
-		(tool.flags_1 & HOLOGRAM_1) || \
-		!is_reagent_container(tool) || \
-		!tool.is_open_container() \
+		(weapon.item_flags & ABSTRACT) || \
+		(weapon.flags_1 & HOLOGRAM_1) || \
+		!is_reagent_container(weapon) || \
+		!weapon.is_open_container() \
 	)
-		return NONE // continue with regular storage handling
+		return TRUE //continue with regular insertion
 
-	replace_beaker(user, tool)
+	replace_beaker(user, weapon)
 	update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return FALSE //block insertion cause we handled it ourselves
 
 /**
  * Replaces the beaker of the portable chemical mixer with another beaker, or simply adds the new beaker if none is in currently
@@ -128,7 +128,7 @@
 		user.put_in_hands(beaker)
 
 	if(!QDELETED(new_beaker))
-		if(!user.transferItemToLoc(new_beaker, src, silent = FALSE))
+		if(!user.transferItemToLoc(new_beaker, src))
 			return
 		beaker = new_beaker
 

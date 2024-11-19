@@ -6,7 +6,6 @@ export type NtMessage = {
   photo_path?: string;
   everyone: BooleanLike;
   timestamp: string;
-  subtle: BooleanLike; // BUBBER EDIT ADDITION - SUBTLE MESSAGES
 };
 
 export type NtPicture = {

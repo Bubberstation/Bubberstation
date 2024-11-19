@@ -19,7 +19,7 @@
 
 	// This is necessary because list propererties are not defined until initialization
 	picked_infusion = infusions[picked_infusion]
-	picked_infusion = new picked_infusion()
+	picked_infusion = new picked_infusion
 
 	if(!length(picked_infusion.output_organs))
 		return FALSE
@@ -27,8 +27,7 @@
 	. = picked_infusion
 	for(var/obj/item/organ/infusion_organ as anything in picked_infusion.output_organs)
 		var/obj/item/organ/new_organ = new infusion_organ()
-		new_organ.replace_into(target)
-		if(new_organ.owner != target)
+		if(!new_organ.replace_into(target))
 			to_chat(usr, span_notice("[target] is unable to carry [new_organ]!"))
 			qdel(new_organ)
 			. = FALSE

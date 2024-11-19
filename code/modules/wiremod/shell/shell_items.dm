@@ -39,7 +39,6 @@
 	name = "drone assembly"
 	icon_state = "setup_medium_med-open"
 	shell_to_spawn = /mob/living/circuit_drone
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/shell/server
 	name = "server assembly"
@@ -53,7 +52,6 @@
 	icon_state = "construction"
 	shell_to_spawn = /obj/machinery/door/airlock/shell
 	screw_delay = 10 SECONDS
-	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/shell/dispenser
 	name = "circuit dispenser assembly"
@@ -64,7 +62,6 @@
 	name = "brain-computer interface assembly"
 	icon_state = "bci-open"
 	shell_to_spawn = /obj/item/organ/internal/cyberimp/bci
-	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/shell/scanner_gate
 	name = "scanner gate assembly"

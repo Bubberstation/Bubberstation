@@ -3,49 +3,27 @@
 #define SPAWN_UNLIKELY 35
 #define SPAWN_RARE 10
 
-
-/// Handles spawning mobs for this landmark. Sends a signal when done.
-/obj/effect/landmark/bitrunning/mob_segment/proc/spawn_mobs(turf/origin, datum/modular_mob_segment/segment)
-	var/list/mob/living/spawned_mobs = list()
-
-	spawned_mobs += segment.spawn_mobs(origin)
-
-	SEND_SIGNAL(src, COMSIG_BITRUNNING_MOB_SEGMENT_SPAWNED, spawned_mobs)
-
-	var/list/datum/weakref/mob_refs = list()
-	for(var/mob/living/spawned as anything in spawned_mobs)
-		if(QDELETED(spawned))
-			continue
-
-		mob_refs += WEAKREF(spawned)
-
-	return mob_refs
-
-
-/**
- * A list for mob spawning landmarks to use.
- */
 /datum/modular_mob_segment
+	/// Spawn no more than this amount
+	var/max = 4
 	/// Set this to false if you want explicitly what's in the list to spawn
 	var/exact = FALSE
 	/// The list of mobs to spawn
-	var/list/mobs = list()
-	/// Spawn no more than this amount
-	var/max = 4
+	var/list/mob/living/mobs = list()
+	/// The mobs spawned from this segment
+	var/list/spawned_mob_refs = list()
 	/// Chance this will spawn (1 - 100)
 	var/probability = SPAWN_LIKELY
-
 
 /// Spawns mobs in a circle around the location
 /datum/modular_mob_segment/proc/spawn_mobs(turf/origin)
 	if(!prob(probability))
 		return
 
-	var/list/mob/living/spawned_mobs = list()
-
-	var/total_amount = exact ? length(mobs) : rand(1, max)
+	var/total_amount = exact ? rand(1, max) : length(mobs)
 
 	shuffle_inplace(mobs)
+
 
 	var/list/turf/nearby = list()
 	for(var/turf/tile as anything in RANGE_TURFS(2, origin))
@@ -68,10 +46,7 @@
 
 		var/mob/living/mob = new path(destination)
 		nearby -= destination
-		spawned_mobs += mob
-
-	return spawned_mobs
-
+		spawned_mob_refs.Add(WEAKREF(mob))
 
 // Some generic mob segments. If you want to add generic ones for any map, add them here
 
@@ -180,20 +155,6 @@
 		/mob/living/basic/alien/sentinel,
 		/mob/living/basic/alien/drone,
 	)
-
-
-/datum/modular_mob_segment/deer
-	max = 1
-	mobs = list(
-		/mob/living/basic/deer,
-	)
-
-
-/datum/modular_mob_segment/revolutionary
-	mobs = list(
-		/mob/living/basic/revolutionary,
-	)
-
 
 #undef SPAWN_ALWAYS
 #undef SPAWN_LIKELY

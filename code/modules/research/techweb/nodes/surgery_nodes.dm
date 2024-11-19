@@ -20,7 +20,6 @@
 		"surgery_heal_burn_upgrade",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	announce_channels = list(RADIO_CHANNEL_MEDICAL)
 
 /datum/techweb_node/surgery_adv
 	id = TECHWEB_NODE_SURGERY_ADV
@@ -38,7 +37,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	required_experiments = list(/datum/experiment/autopsy/human)
-	announce_channels = list(RADIO_CHANNEL_MEDICAL)
 
 /datum/techweb_node/surgery_exp
 	id = TECHWEB_NODE_SURGERY_EXP
@@ -69,7 +67,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	discount_experiments = list(/datum/experiment/autopsy/nonhuman = TECHWEB_TIER_3_POINTS)
-	announce_channels = list(RADIO_CHANNEL_MEDICAL)
 
 /datum/techweb_node/surgery_tools
 	id = TECHWEB_NODE_SURGERY_TOOLS
@@ -83,4 +80,3 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	discount_experiments = list(/datum/experiment/autopsy/xenomorph = TECHWEB_TIER_4_POINTS)
-	announce_channels = list(RADIO_CHANNEL_MEDICAL)

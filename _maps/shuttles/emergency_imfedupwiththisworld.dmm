@@ -30,7 +30,9 @@
 /area/shuttle/escape)
 "k" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	req_access = null
+	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/shuttle/escape)

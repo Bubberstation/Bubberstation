@@ -53,10 +53,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/incapacitate
 	max_ammo = 3
 
-/obj/item/ammo_box/magazine/internal/shot/single
-	name = "single-barrel shotgun internal magazine"
-	max_ammo = 1
-
-/obj/item/ammo_box/magazine/internal/shot/single/musket
+/obj/item/ammo_box/magazine/internal/shot/musket
 	name = "donk co musket internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/fletchette
+	max_ammo = 1

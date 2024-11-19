@@ -42,7 +42,6 @@
 		"super_cell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 /datum/techweb_node/parts_adv
 	id = TECHWEB_NODE_PARTS_ADV
@@ -60,7 +59,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 
 /datum/techweb_node/parts_bluespace
@@ -80,7 +78,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier3_any = TECHWEB_TIER_4_POINTS)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 /datum/techweb_node/telecomms
 	id = TECHWEB_NODE_TELECOMS
@@ -148,13 +145,6 @@
 		"light_tube",
 		"crossing_signal",
 		"guideway_sensor",
-		"manuunloader",
-		"manusmelter",
-		"manucrusher",
-		"manucrafter",
-		"manulathe",
-		"manusorter",
-		"manurouter",
 	)
 
 /datum/techweb_node/energy_manipulation
@@ -166,8 +156,6 @@
 		"apc_control",
 		"powermonitor",
 		"smes",
-		"portable_smes",
-		"power_connector",
 		"emitter",
 		"grounding_rod",
 		"tesla_coil",
@@ -179,7 +167,6 @@
 		"tray_goggles",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 /datum/techweb_node/holographics
 	id = TECHWEB_NODE_HOLOGRAPHICS
@@ -224,7 +211,6 @@
 		"ci-sechud",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING, RADIO_CHANNEL_SECURITY, RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
 
 /datum/techweb_node/night_vision
 	id = TECHWEB_NODE_NIGHT_VISION
@@ -240,4 +226,3 @@
 		"security_hud_night",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
-	announce_channels = list(RADIO_CHANNEL_ENGINEERING, RADIO_CHANNEL_SECURITY, RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)

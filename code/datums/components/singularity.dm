@@ -373,7 +373,7 @@
 	for(var/mob/living/target as anything in GLOB.mob_living_list)
 		if(target.z != atom_parent.z)
 			continue
-		if(HAS_TRAIT(target, TRAIT_GODMODE))
+		if(target.status_effects & GODMODE)
 			continue
 		var/distance_from_target = get_dist(target, atom_parent)
 		if(distance_from_target < closest_distance)

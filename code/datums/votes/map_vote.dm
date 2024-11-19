@@ -29,7 +29,7 @@
 	//BUBBERSTATION EDIT START, CHOICE SAFETY STUFF.
 	//This basically just re-does map selection, but ignores persistent blocked maps and the currently voted map.
 	//Prevents situations where there are no maps to vote.
-	if(length(choices <= 3))
+	if(length(choices) <= 3)
 		var/list/maps = shuffle(global.config.maplist)
 		for(var/map in maps)
 			var/datum/map_config/possible_config = config.maplist[map]
@@ -37,7 +37,7 @@
 				continue
 			choices += possible_config.map_name
 		choices -= get_choices_invalid_for_population()
-		if(SSmapping.config && length(choices >= 4)) //Remove the current map if there is more than 4 possible maps.
+		if(SSmapping.config && length(choices) >= 4) //Remove the current map if there is more than 4 possible maps.
 			choices -= SSmapping.config.map_name
 	//BUBBERSTATION EDIT END.
 

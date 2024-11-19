@@ -37,15 +37,6 @@
 	if(!length(bit_array))
 		return
 
-	var/to_convert = number.value
-	var/is_negative
-	if(number.value < 0)
-		is_negative = TRUE
-		to_convert = -to_convert
-	var/len = length(bit_array)
-	for(var/iteration in 1 to len)
+	for(var/iteration in 1 to length(bit_array))
 		var/datum/port/output/bit = bit_array[iteration]
-		if(iteration == 1 && is_negative)
-			bit.set_output(1)
-			continue
-		bit.set_output(!!(to_convert & (1<< (len - iteration))))
+		bit.set_output(number.value & (2 ** (iteration - 1)))

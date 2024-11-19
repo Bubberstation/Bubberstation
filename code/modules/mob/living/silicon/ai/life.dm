@@ -13,13 +13,13 @@
 		view_core()
 
 	// Handle power damage (oxy)
-	if (battery <= 0)
-		to_chat(src, span_warning("Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable."))
-		adjustOxyLoss(200)
-
 	if(aiRestorePowerRoutine)
 		// Lost power
-		battery--
+		if (!battery)
+			to_chat(src, span_warning("Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable."))
+			adjustOxyLoss(200)
+		else
+			battery--
 	else
 		// Gain Power
 		if (battery < 200)
@@ -47,7 +47,7 @@
 			return !T || !A || ((!A.power_equip || isspaceturf(T)) && !is_type_in_list(loc, list(/obj/item, /obj/vehicle/sealed/mecha)))
 
 /mob/living/silicon/ai/updatehealth()
-	if(HAS_TRAIT(src, TRAIT_GODMODE))
+	if(status_flags & GODMODE)
 		return
 
 	var/old_health = health
@@ -63,7 +63,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
 /mob/living/silicon/ai/update_stat()
-	if(HAS_TRAIT(src, TRAIT_GODMODE))
+	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
 		if(health <= HEALTH_THRESHOLD_DEAD)

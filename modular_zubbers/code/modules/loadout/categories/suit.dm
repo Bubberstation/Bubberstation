@@ -11,10 +11,6 @@
 	name = "Henchmen Coat"
 	item_path = /obj/item/clothing/suit/jacket/henchmen_coat
 
-/datum/loadout_item/suit/suit_harness
-	name = "Suit Harness"
-	item_path = /obj/item/clothing/suit/misc/suit_harness
-
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi

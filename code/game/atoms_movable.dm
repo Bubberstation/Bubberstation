@@ -17,7 +17,7 @@
 	var/tk_throw_range = 10
 	var/mob/pulledby = null
 	/// What language holder type to init as
-	var/initial_language_holder = /datum/language_holder/atom_basic
+	var/initial_language_holder = /datum/language_holder
 	/// Holds all languages this mob can speak and understand
 	VAR_PRIVATE/datum/language_holder/language_holder
 	/// The list of factions this atom belongs to
@@ -33,10 +33,8 @@
 	var/speech_span
 	///Are we moving with inertia? Mostly used as an optimization
 	var/inertia_moving = FALSE
-	///Multiplier for inertia based movement in space
-	var/inertia_move_multiplier = 1
-	///Object "weight", higher weight reduces acceleration applied to the object
-	var/inertia_force_weight = 1
+	///Delay in deciseconds between inertia based movement
+	var/inertia_move_delay = 5
 	///The last time we pushed off something
 	///This is a hack to get around dumb him him me scenarios
 	var/last_pushoff
@@ -111,9 +109,6 @@
 
 	/// The pitch adjustment that this movable uses when speaking.
 	var/pitch = 0
-
-	/// Datum that keeps all data related to zero-g drifting and handles related code/comsigs
-	var/datum/drift_handler/drift_handler
 
 	/// The filter to apply to the voice when processing the TTS audio message.
 	var/voice_filter = ""
@@ -206,7 +201,6 @@
 /atom/movable/Destroy(force)
 	QDEL_NULL(language_holder)
 	QDEL_NULL(em_block)
-	QDEL_NULL(drift_handler)
 
 	unbuckle_all_mobs(force = TRUE)
 
@@ -239,10 +233,6 @@
 		SSspatial_grid.force_remove_from_grid(src)
 
 	LAZYNULL(client_mobs_in_contents)
-
-	// These lists cease existing when src does, so we need to clear any lua refs to them that exist.
-	DREAMLUAU_CLEAR_REF_USERDATA(vis_contents)
-	DREAMLUAU_CLEAR_REF_USERDATA(vis_locs)
 
 	. = ..()
 
@@ -468,7 +458,7 @@
 	var/static/list/not_falsey_edits = list(NAMEOF_STATIC(src, bound_width) = TRUE, NAMEOF_STATIC(src, bound_height) = TRUE)
 	if(banned_edits[var_name])
 		return FALSE //PLEASE no.
-	if(careful_edits[var_name] && (var_value % ICON_SIZE_ALL) != 0)
+	if(careful_edits[var_name] && (var_value % world.icon_size) != 0)
 		return FALSE
 	if(not_falsey_edits[var_name] && !var_value)
 		return FALSE
@@ -782,7 +772,7 @@
 				if(!. && set_dir_on_move && update_dir && !face_mouse) // SKYRAT EDIT CHANGE - && !face_mouse
 					setDir(first_step_dir)
 				else if(!inertia_moving)
-					newtonian_move(dir2angle(direct))
+					newtonian_move(direct)
 				if(client_mobs_in_contents)
 					update_parallax_contents()
 			moving_diagonally = 0
@@ -856,8 +846,8 @@
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 
-	if (!moving_diagonally && !inertia_moving && momentum_change && movement_dir)
-		newtonian_move(dir2angle(movement_dir))
+	if (!inertia_moving && momentum_change)
+		newtonian_move(movement_dir)
 	// If we ain't moving diagonally right now, update our parallax
 	// We don't do this all the time because diag movements should trigger one call to this, not two
 	// Waste of cpu time, and it fucks the animate
@@ -1135,7 +1125,7 @@
 	RESOLVE_ACTIVE_MOVEMENT
 
 	var/atom/oldloc = loc
-	var/is_multi_tile = bound_width > ICON_SIZE_X || bound_height > ICON_SIZE_Y
+	var/is_multi_tile = bound_width > world.icon_size || bound_height > world.icon_size
 
 	SET_ACTIVE_MOVEMENT(oldloc, NONE, TRUE, null)
 
@@ -1158,8 +1148,8 @@
 				var/list/new_locs = block(
 					destination,
 					locate(
-						min(world.maxx, destination.x + ROUND_UP(bound_width / ICON_SIZE_X)),
-						min(world.maxy, destination.y + ROUND_UP(bound_height / ICON_SIZE_Y)),
+						min(world.maxx, destination.x + ROUND_UP(bound_width / 32)),
+						min(world.maxy, destination.y + ROUND_UP(bound_height / 32)),
 						destination.z
 					)
 				)
@@ -1279,19 +1269,15 @@
 
 /// Only moves the object if it's under no gravity
 /// Accepts the direction to move, if the push should be instant, and an optional parameter to fine tune the start delay
-/// Drift force determines how much acceleration should be applied. Controlled cap, if set, will ensure that if the object was moving slower than the cap before, it cannot accelerate past the cap from this move.
-/atom/movable/proc/newtonian_move(inertia_angle, instant = FALSE, start_delay = 0, drift_force = 1 NEWTONS, controlled_cap = null)
-	if(!isturf(loc) || Process_Spacemove(angle2dir(inertia_angle), continuous_move = TRUE))
+/atom/movable/proc/newtonian_move(direction, instant = FALSE, start_delay = 0)
+	if(!isturf(loc) || Process_Spacemove(direction, continuous_move = TRUE))
 		return FALSE
 
-	if (!isnull(drift_handler))
-		if (drift_handler.newtonian_impulse(inertia_angle, start_delay, drift_force, controlled_cap))
-			return TRUE
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_NEWTONIAN_MOVE, direction, start_delay) & COMPONENT_MOVABLE_NEWTONIAN_BLOCK)
+		return TRUE
 
-	new /datum/drift_handler(src, inertia_angle, instant, start_delay, drift_force)
-	// Something went wrong and it failed to create itself, most likely we have a higher priority loop already
-	if (QDELETED(drift_handler))
-		return FALSE
+	AddComponent(/datum/component/drift, direction, instant, start_delay)
+
 	return TRUE
 
 /atom/movable/set_explosion_block(explosion_block)
@@ -1304,22 +1290,16 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	set waitfor = FALSE
 	var/hitpush = TRUE
-	var/impact_flags = pre_impact(hit_atom, throwingdatum)
-	if(impact_flags & COMPONENT_MOVABLE_IMPACT_NEVERMIND)
-		return // in case a signal interceptor broke or deleted the thing before we could process our hit
-	if(impact_flags & COMPONENT_MOVABLE_IMPACT_FLIP_HITPUSH)
-		hitpush = FALSE
-	var/caught = hit_atom.hitby(src, throwingdatum=throwingdatum, hitpush=hitpush)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum, caught)
-	return caught
+	var/impact_signal = SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_IMPACT, hit_atom, throwingdatum)
+	if(impact_signal & COMPONENT_MOVABLE_IMPACT_FLIP_HITPUSH)
+		hitpush = FALSE // hacky, tie this to something else or a proper workaround later
 
-///Called before we attempt to call hitby and send the COMSIG_MOVABLE_IMPACT signal
-/atom/movable/proc/pre_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/impact_flags = SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_IMPACT, hit_atom, throwingdatum)
-	var/target_flags = SEND_SIGNAL(hit_atom, COMSIG_ATOM_PREHITBY, src, throwingdatum)
-	if(target_flags & COMSIG_HIT_PREVENTED)
-		impact_flags |= COMPONENT_MOVABLE_IMPACT_NEVERMIND
-	return impact_flags
+	if(impact_signal && (impact_signal & COMPONENT_MOVABLE_IMPACT_NEVERMIND))
+		return // in case a signal interceptor broke or deleted the thing before we could process our hit
+	if(SEND_SIGNAL(hit_atom, COMSIG_ATOM_PREHITBY, src, throwingdatum) & COMSIG_HIT_PREVENTED)
+		return
+	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
+	return hit_atom.hitby(src, throwingdatum=throwingdatum, hitpush=hitpush)
 
 /atom/movable/hitby(atom/movable/hitting_atom, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum)
 	if(HAS_TRAIT(src, TRAIT_NO_THROW_HITPUSH))
@@ -1472,7 +1452,6 @@
 	return
 
 /atom/movable/proc/get_spacemove_backup()
-	var/atom/secondary_backup
 	for(var/checked_range in orange(1, get_turf(src)))
 		if(isarea(checked_range))
 			continue
@@ -1480,18 +1459,12 @@
 			var/turf/turf = checked_range
 			if(!turf.density)
 				continue
-			if (get_dir(src, turf) in GLOB.cardinals)
-				return turf
-			secondary_backup = turf
-			continue
+			return turf
 		var/atom/movable/checked_atom = checked_range
 		if(checked_atom.density || !checked_atom.CanPass(src, get_dir(src, checked_atom)))
 			if(checked_atom.last_pushoff == world.time)
 				continue
-			if (get_dir(src, checked_atom) in GLOB.cardinals)
-				return checked_atom
-			secondary_backup = checked_atom
-	return secondary_backup
+			return checked_atom
 
 ///called when a mob resists while inside a container that is itself inside something.
 /atom/movable/proc/relay_container_resist_act(mob/living/user, obj/container)
@@ -1641,14 +1614,8 @@
 
 /* End language procs */
 
-/**
- * Returns an atom's power cell, if it has one. Overload for individual items.
- * Args
- *
- * * /atom/movable/interface - the atom that is trying to interact with this cell
- * * mob/user - the mob that is holding the interface
- */
-/atom/movable/proc/get_cell(atom/movable/interface, mob/user)
+//Returns an atom's power cell, if it has one. Overload for individual items.
+/atom/movable/proc/get_cell()
 	return
 
 /atom/movable/proc/can_be_pulled(user, grab_state, force)

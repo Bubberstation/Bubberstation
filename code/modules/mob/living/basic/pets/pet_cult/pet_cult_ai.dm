@@ -111,7 +111,9 @@
 	if(isnull(revive_mob) || revive_mob.stat != DEAD || !(revive_mob.mind in cult_team.members))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
-	controller.ai_interact(target = target)
+	var/mob/living/basic/living_pawn = controller.pawn
+	living_pawn.melee_attack(target)
+
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/activate_rune/finish_action(datum/ai_controller/controller, success, target_key)

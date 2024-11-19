@@ -14,7 +14,7 @@
 	handle_emp_damage(seconds_per_tick, times_fired)
 
 /mob/living/brain/update_stat()
-	if(HAS_TRAIT(src, TRAIT_GODMODE))
+	if(status_flags & GODMODE)
 		return
 	if(health > HEALTH_THRESHOLD_DEAD)
 		return

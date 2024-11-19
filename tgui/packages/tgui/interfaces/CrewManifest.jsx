@@ -1,5 +1,5 @@
 import { Icon, Section, Table, Tooltip } from 'tgui-core/components';
-import { classes } from '../../common/react';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -10,7 +10,7 @@ const commandJobs = [
   'Chief Engineer',
   'Research Director',
   'Chief Medical Officer',
-  'Quartermaster',
+  'Quartermaster', // SKYRAT EDIT
   'Nanotrasen Consultant', // SKYRAT EDIT
 ];
 

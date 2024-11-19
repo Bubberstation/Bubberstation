@@ -36,8 +36,6 @@
 
 #define VENDING_MACHINE_TRAIT "vending_machine"
 
-///A trait given by a held item
-#define HELD_ITEM_TRAIT "held-item-trait"
 #define ABSTRACT_ITEM_TRAIT "abstract-item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
@@ -47,8 +45,7 @@
 
 /// Trait given by an Action datum
 #define ACTION_TRAIT "action"
-///A trait given by someone blocking.
-#define BLOCKING_TRAIT "blocking"
+
 #define CLOTHING_TRAIT "clothing"
 #define HELMET_TRAIT "helmet"
 /// inherited from the mask
@@ -196,9 +193,6 @@
 /// Trait given by a fulton extraction pack
 #define FULTON_PACK_TRAIT "fulton-pack"
 
-/// Trait from mob/living/update_transform()
-#define UPDATE_TRANSFORM_TRAIT "update_transform"
-
 /// Trait granted by the berserker hood.
 #define BERSERK_TRAIT "berserk_trait"
 /// Trait granted by [/obj/item/rod_of_asclepius]
@@ -299,11 +293,5 @@
 /// Trait when a drink was renamed by a shaker
 #define SHAKER_LABEL_TRAIT "shaker_trait"
 
-/// Trait given by a jetpack
-#define JETPACK_TRAIT "jetpack_trait"
-
 /// Trait added by style component
 #define STYLE_TRAIT "style"
-
-/// Trait from an engraving
-#define ENGRAVED_TRAIT "engraved"

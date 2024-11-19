@@ -168,9 +168,10 @@
 		span_noticealien("The queen has granted you a promotion to Praetorian!"),
 	)
 
-	var/mob/living/carbon/alien/lucky_winner = to_promote
-	var/mob/living/carbon/alien/adult/royal/praetorian/new_prae = new(lucky_winner.loc)
-	lucky_winner.alien_evolve(new_prae)
+	var/mob/living/carbon/alien/adult/royal/praetorian/new_prae = new(to_promote.loc)
+	to_promote.mind.transfer_to(new_prae)
+
+	qdel(to_promote)
 	qdel(src)
 	return TRUE
 

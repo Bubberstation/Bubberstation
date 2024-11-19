@@ -18,7 +18,6 @@ import { DmIcon, Input } from '../components';
 import { Window } from '../layouts';
 
 type VendingData = {
-  all_products_free: boolean;
   onstation: boolean;
   department: string;
   jobDiscount: number;
@@ -219,7 +218,7 @@ const ProductDisplay = (props: {
   } = props;
   const {
     stock,
-    all_products_free,
+    onstation,
     user,
     displayed_currency_icon,
     displayed_currency_name,
@@ -232,7 +231,7 @@ const ProductDisplay = (props: {
       title="Products"
       buttons={
         <Stack>
-          {!all_products_free && user && (
+          {!!onstation && user && (
             <Stack.Item fontSize="16px" color="green">
               {(user && user.cash) || 0}
               {displayed_currency_name}{' '}
@@ -278,15 +277,15 @@ const ProductDisplay = (props: {
 const VendingRow = (props) => {
   const { data } = useBackend<VendingData>();
   const { custom, product, productStock } = props;
-  const { access, department, jobDiscount, all_products_free, user } = data;
-  const free = all_products_free || product.price === 0;
+  const { access, department, jobDiscount, onstation, user } = data;
+  const free = !onstation || product.price === 0;
   const discount = !product.premium && department === user?.department;
   const remaining = custom ? product.amount : productStock.amount;
   const redPrice = Math.round(product.price * jobDiscount);
   const disabled =
     remaining === 0 ||
-    (!all_products_free && !user) ||
-    (!all_products_free &&
+    (onstation && !user) ||
+    (onstation &&
       !access &&
       (discount ? redPrice : product.price) > user?.cash);
 

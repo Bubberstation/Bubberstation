@@ -14,10 +14,6 @@
 ## Proof Of Testing
 
 <!-- Compile and run your code locally. Make sure it works. This is the place to show off your changes! We are not responsible for testing your features. -->
-<details>
-<summary>Screenshots/Videos</summary>
-
-</details>
 
 ## Changelog
 
@@ -32,7 +28,6 @@ balance: rebalanced something
 fix: fixed a few things
 sound: added/modified/removed audio or sound effects
 image: added/modified/removed some icons or images
-map: added/modified/removed map content
 spellcheck: fixed a few typos
 code: changed some code
 refactor: refactored some code

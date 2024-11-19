@@ -23,7 +23,7 @@
 
 /datum/element/consumable_mob/proc/on_consume(atom/movable/source, mob/living/consumer)
 	SIGNAL_HANDLER
-	if(!consumer.combat_mode || !consumer.reagents || HAS_TRAIT(consumer, TRAIT_PACIFISM))
+	if(!consumer.combat_mode || !consumer.reagents)
 		return
 	for(var/reagent_type in reagents_list)
 		if(isnull(reagents_list[reagent_type]))

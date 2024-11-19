@@ -4,7 +4,6 @@
 	var/teleport_chance = 4
 
 /datum/idle_behavior/idle_ghost_item/perform_idle_behavior(seconds_per_tick, datum/ai_controller/controller)
-	. = ..()
 	var/obj/item/item_pawn = controller.pawn
 	if(ismob(item_pawn.loc)) //Being held. dont teleport
 		return

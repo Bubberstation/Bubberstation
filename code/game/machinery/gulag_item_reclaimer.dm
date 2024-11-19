@@ -82,7 +82,7 @@
 
 	return data
 
-/obj/machinery/gulag_item_reclaimer/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/gulag_item_reclaimer/ui_act(action, params)
 	. = ..()
 	if(.)
 		return

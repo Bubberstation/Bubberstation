@@ -1,4 +1,4 @@
-/*/obj/machinery/camera //BUBBER REMOVAL: Restores camera sprites // BUBBER TODO - Look into wiping out these fully
+/*/obj/machinery/camera //BUBBER REMOVAL: Restores camera sprites
 	icon = 'modular_skyrat/modules/aesthetics/camera/icons/camera.dmi'
 
 /obj/item/wallframe/camera

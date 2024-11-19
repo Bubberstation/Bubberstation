@@ -1,6 +1,6 @@
 /obj/item/kirbyplants
 	name = "potted plant"
-	//icon = 'icons/obj/fluff/flora/plants.dmi' // SKYRAT EDIT - ORIGINAL
+	//icon = 'icons/obj/fluff/flora/plants.dmi' // ORIGINAL
 	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' // SKYRAT EDIT CHANGE
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
@@ -71,8 +71,7 @@
 		generate_states()
 	var/current = random_plant_states.Find(icon_state)
 	var/next = WRAP(current+1,1,length(random_plant_states))
-	base_icon_state = random_plant_states[next]
-	update_appearance(UPDATE_ICON)
+	icon_state = random_plant_states[next]
 
 /obj/item/kirbyplants/proc/generate_states()
 	random_plant_states = list()
@@ -91,7 +90,7 @@
 
 /obj/item/kirbyplants/random/Initialize(mapload)
 	. = ..()
-	//icon = 'icons/obj/flora/plants.dmi' // SKYRAT EDIT - ORIGINAL
+	//icon = 'icons/obj/flora/plants.dmi' // ORIGINAL
 	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' //SKYRAT EDIT CHANGE
 	randomize_base_icon_state()
 

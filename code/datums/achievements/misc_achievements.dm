@@ -234,13 +234,7 @@
 	icon_state = "sisyphus"
 
 /datum/award/achievement/misc/cigarettes
-	name = "Unhealthy Snacks"
+	name = "Unhealthy snacks"
 	desc = "You were curious to taste it. And then another. You must have more!"
 	database_id = MEDAL_CIGARETTES
 	icon_state = "cigarettes"
-
-/datum/award/achievement/misc/sharkdragon
-	name = "You're What You Eat"
-	desc = "Nutritionists often recommend a balanced and varied diet. However that clearly isn't the case for some creatures."
-	database_id = MEDAL_SHARKDRAGON
-	icon_state = "dragon_plus_fish"

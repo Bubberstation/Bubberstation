@@ -138,7 +138,6 @@
 	remove_control_flags(M, ALL)
 	remove_passenger_actions(M)
 	LAZYREMOVE(occupants, M)
-//	LAZYREMOVE(contents, M)
 	cleanup_actions_for_mob(M)
 	after_remove_occupant(M)
 	return TRUE

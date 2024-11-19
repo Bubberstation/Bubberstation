@@ -101,10 +101,11 @@
 	if(QDELETED(target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
+	pawn.set_combat_mode(FALSE)
 	if(held_item)
 		held_item.melee_attack_chain(pawn, target)
 	else
-		controller.ai_interact(target = target, combat_mode = FALSE)
+		pawn.UnarmedAttack(target, TRUE)
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

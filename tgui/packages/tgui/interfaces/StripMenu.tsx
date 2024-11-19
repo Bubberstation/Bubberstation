@@ -213,7 +213,6 @@ const SLOTS: Record<
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
-
   // SKYRAT EDIT ADDITION
   vagina: {
     displayName: 'vagina',
@@ -240,7 +239,6 @@ const SLOTS: Record<
   },
 };
 // SKYRAT EDIT END
-
 enum ObscuringLevel {
   Completely = 1,
   Hidden = 2,

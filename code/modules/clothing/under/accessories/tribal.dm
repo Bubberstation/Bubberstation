@@ -12,7 +12,7 @@
 	attachment_slot = GROIN
 
 /obj/item/clothing/accessory/skilt
-	name = "sinew skirt"
+	name = "Sinew Skirt"
 	desc = "For the last time. IT'S A KILT not a skirt."
 	icon_state = "skilt"
 	minimize_when_attached = FALSE

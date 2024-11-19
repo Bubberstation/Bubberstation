@@ -8,7 +8,6 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	can_install_electronics = FALSE
 	paint_jobs = null
-	can_weld_shut = FALSE
 
 /obj/structure/closet/crate/necropolis/tendril
 	desc = "It's watching you suspiciously. You need a skeleton key to open it."

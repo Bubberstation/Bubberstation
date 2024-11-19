@@ -27,7 +27,6 @@
 	preferences.key_bindings = deep_copy_list(GLOB.default_hotkeys)
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
 	preferences.update_static_data(user)
-	user.client.update_special_keybinds()
 
 	return TRUE
 
@@ -42,11 +41,10 @@
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
 
 	preferences.update_static_data(user)
-	user.client.update_special_keybinds()
 
 	return TRUE
 
-/datum/preference_middleware/keybindings/proc/set_keybindings(list/params, mob/user)
+/datum/preference_middleware/keybindings/proc/set_keybindings(list/params)
 	var/keybind_name = params["keybind_name"]
 
 	if (isnull(GLOB.keybindings_by_name[keybind_name]))
@@ -74,8 +72,6 @@
 
 	preferences.key_bindings[keybind_name] = hotkeys
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
-
-	user.client.update_special_keybinds()
 
 	return TRUE
 
