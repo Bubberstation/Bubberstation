@@ -25,3 +25,4 @@
 // Shows extended examine option when worn
 #define TRAIT_WORN_EXAMINE "worn_examine"
 
+#define TRAIT_SIGN_LANGUAGE_BLOCKED "sign_language_blocked"
