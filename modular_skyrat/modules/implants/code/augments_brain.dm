@@ -2,14 +2,14 @@
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor
 	name = "empathic sensor implant"
-	desc = "Questionably-ethical experiments on hybridized xenomorphs and shadekin have allowed for new strides in mass-communication technologies." //not final
+	desc = "This won't fix your social issues, but it may help you repress them better." //not final
 	icon_state = "brain_implant_antidrop"
 	var/active = FALSE
 	var/list/stored_items = list()
 	slot = ORGAN_SLOT_BRAIN_AUG
 	var/modifies_speech = TRUE
 	
-// This should appropriately grant and remove empathy from the implant - important if you are a shadekin for some reason, and allow the procs to work
+// This should appropriately grant and remove empathy from the implant - important if you are a shadekin for some reason to not remove native languages, and allow the procs to work
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_remove(mob/living/carbon/implant_owner)
 	. = ..()
@@ -34,10 +34,11 @@
 		actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
 
+//cumbersomely copied from the empathy language....
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	user.balloon_alert_to_viewers("briefly meditate", "projecting thoughts...")
+	user.balloon_alert_to_viewers("ears vibrate", "projecting thoughts...")
 
 	if(!do_after(source, 2 SECONDS, source))
 		message = full_capitalize(rot13(message))
@@ -45,18 +46,24 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
+	//turn this into a trait maybe?
 		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		if(!istype(ears))
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+
+		if(!istype(ears) && !istype(empathic_sensor))
 			continue
+			
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
-			living_mob.balloon_alert_to_viewers("shiver", "transmission heard...")
+			living_mob.balloon_alert_to_viewers("ears vibrate", "transmission heard...")
+		
 
 	if(length(GLOB.dead_mob_list))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)
 			if(dead_mob.client)
 				var/link = FOLLOW_LINK(dead_mob, user)
 				to_chat(dead_mob, "[link] [rendered]")
+
 
 /obj/item/organ/internal/cyberimp/brain/arcade
 	name = "arcade implant"

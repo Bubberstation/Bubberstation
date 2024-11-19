@@ -64,9 +64,13 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
+	//turn this into a trait maybe...
 		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		if(!istype(ears))
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+
+		if(!istype(ears) && !istype(empathic_sensor))
 			continue
+			
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			living_mob.balloon_alert_to_viewers("ears vibrate", "transmission heard...")
@@ -76,4 +80,3 @@
 			if(dead_mob.client)
 				var/link = FOLLOW_LINK(dead_mob, user)
 				to_chat(dead_mob, "[link] [rendered]")
-
