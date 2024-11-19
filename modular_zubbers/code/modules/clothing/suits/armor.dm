@@ -64,7 +64,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "security_maid"
-	armor_type = /datum/armor/suit_armor
 	allowed = list(
 		/obj/item/access_key,
 		/obj/item/assembly/mousetrap,
