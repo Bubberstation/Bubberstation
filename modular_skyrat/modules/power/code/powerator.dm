@@ -64,10 +64,8 @@
 	/// how many credits this machine has actually made so far
 	var/credits_made = 0
 
-	//BUBBER ADDITION BEGIN - This is required since we now allow dauntless to have a powerator, and we need to overwrite the default account
 	/// the account credits will be sent towards
 	var/credits_account = ""
-	//BUBBER ADDITION END
 
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
@@ -169,10 +167,7 @@
 	attached_cable.add_delayedload(current_power)
 
 	var/money_ratio = round(current_power * divide_ratio) * SSpowerator_penality.diminishing_gains_multiplier
-	//BUBBER EDIT CHANGE BEGIN - Use credits_account variable for our department look up
-	//var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR) - BUBBER EDIT - ORIGINAL
 	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
-	//BUBBER EDIT CHANGE END
 	synced_bank_account.adjust_money(money_ratio)
 	credits_made += money_ratio
 

@@ -4,7 +4,7 @@
 #define BALLOON_TEXT_FULLY_VISIBLE_TIME (0.7 SECONDS)
 #define BALLOON_TEXT_TOTAL_LIFETIME(mult) (BALLOON_TEXT_SPAWN_TIME + BALLOON_TEXT_FULLY_VISIBLE_TIME*mult + BALLOON_TEXT_FADE_TIME)
 /// The increase in duration per character in seconds
-#define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT (0.05)
+#define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT (0.07) // BUBBER EDIT CHANGE - Original: 0.05
 /// The amount of characters needed before this increase takes into effect
 #define BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN 10
 

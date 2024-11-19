@@ -56,7 +56,7 @@
 	mob_type_allowed_typecache = /mob/living/basic/pet/cat
 	mob_type_blacklist_typecache = list()
 
-/datum/emote/cat/meow
+/datum/emote/living/petmeow // BUBBER EDIT CHANGE - Original: /datum/emote/cat/meow
 	key = "petmeow" // BUBBER EDIT CHANGE - 'meow' used by /datum/emote/living/meow
 	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	message = "meows!"
@@ -64,7 +64,7 @@
 	vary = TRUE
 	sound = SFX_CAT_MEOW
 
-/datum/emote/cat/purr
+/datum/emote/living/petpurr // BUBBER EDIT CHANGE - Original: /datum/emote/cat/purr
 	key = "petpurr" // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	message = "purrs."
