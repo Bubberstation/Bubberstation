@@ -39,7 +39,6 @@
 	cost = PAYCHECK_COMMAND * 20
 	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
 
-
 /datum/supply_pack/goody/rensoter_shotgun
 	name = "Renoster Shotgun Single-Pack"
 	desc = "A common modern shotgun used by Solarian State Police."
