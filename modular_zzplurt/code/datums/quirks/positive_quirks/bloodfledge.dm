@@ -12,12 +12,12 @@
 #define BLOODFLEDGE_HEAL_AMT -2
 
 /datum/quirk/item_quirk/bloodfledge
-	name = "Bloodsucker Fledgling"
-	desc = "You are a hybrid fledgling belonging to ancient Bloodsucker bloodline. Only blood will sate your hungers, and holy energies will cause your flesh to char."
+	name = "Bloodfledge"
+	desc = "You are apprentice sanguine sorcerer endowed with vampiric power beyond that of a common hemophage. While not truly undead, many of the same conditions still apply."
 	value = 4
 	gain_text = span_notice("A sanguine blessing flows through your body, granting it new strength.")
 	lose_text = span_notice("The sanguine blessing fades away...")
-	medical_record_text = "Patient exhibits onset symptoms of a sanguine curse."
+	medical_record_text = "Patient appears to possess a paranormal connection to otherworldly forces."
 	mob_trait = TRAIT_BLOODFLEDGE
 	hardcore_value = -2
 	icon = FA_ICON_CHAMPAGNE_GLASSES
@@ -28,9 +28,33 @@
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
+	// Register examine text
+	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(quirk_examine_bloodfledge))
+
+	// Register wooden stake interaction
+	RegisterSignal(quirk_holder, COMSIG_MOB_STAKED, PROC_REF(on_staked))
+
+	// Add quirk language
+	quirk_mob.grant_language(/datum/language/vampiric, ALL, LANGUAGE_QUIRK)
+
+	/**
+	 * Hemophage check
+	 *
+	 * Check if the quirk holder is a hemophage.
+	 * Ignore remaining features if they are
+	 */
+	if(ishemophage(quirk_mob))
+		return
+
 	// Add quirk traits
 	ADD_TRAIT(quirk_mob, TRAIT_LIVERLESS_METABOLISM, TRAIT_BLOODFLEDGE)
 	//ADD_TRAIT(quirk_mob, TRAIT_NOTHIRST, TRAIT_BLOODFLEDGE) // Not yet implemented
+
+	// Register blood consumption interaction
+	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_BLOOD, PROC_REF(on_consume_blood))
+
+	// Register coffin interaction
+	RegisterSignal(quirk_holder, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
 
 	// Set skin tone, if possible
 	if(HAS_TRAIT(quirk_mob, TRAIT_USES_SKINTONES) && !(quirk_mob.skin_tone != initial(quirk_mob.skin_tone)))
@@ -39,21 +63,6 @@
 
 	// Add vampiric biotype
 	quirk_mob.mob_biotypes |= MOB_VAMPIRIC
-
-	// Add quirk language
-	quirk_mob.grant_language(/datum/language/vampiric, ALL, LANGUAGE_QUIRK)
-
-	// Register examine text
-	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(quirk_examine_bloodfledge))
-
-	// Register coffin interaction
-	RegisterSignal(quirk_holder, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
-
-	// Register wooden stake interaction
-	RegisterSignal(quirk_holder, COMSIG_MOB_STAKED, PROC_REF(on_staked))
-
-	// Register blood consumption interaction
-	RegisterSignal(quirk_holder, COMSIG_REAGENT_ADD_BLOOD, PROC_REF(on_consume_blood))
 
 	// Add profane penalties
 	quirk_holder.AddElementTrait(TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE, /datum/element/chapel_weakness)
@@ -68,29 +77,6 @@
 	// Teach how to make the Hemorrhagic Sanguinizer
 	quirk_mob.mind?.teach_crafting_recipe(/datum/crafting_recipe/emag_bloodfledge)
 
-	// Define owner tongue
-	var/obj/item/organ/internal/tongue/target_tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
-
-	// Check if tongue exists
-	if(target_tongue)
-		// Force preference for bloody food
-		target_tongue.disliked_foodtypes &= ~BLOODY
-		target_tongue.liked_foodtypes |= BLOODY
-
-	// Check for hemophage
-	if(ishemophage(quirk_mob))
-		// Warn user
-		to_chat(quirk_mob, span_warning("Because you possess the tumor's corruption, you have not been granted any additional bite abilities. Your feeding power will manifest shortly."))
-
-		// Disable nutrition mode
-		use_nutrition = FALSE
-
-	// User does not have a corrupted tongue
-	else
-		// Define and grant ability Bite
-		var/datum/action/cooldown/bloodfledge/bite/act_bite = new
-		act_bite.Grant(quirk_mob)
-
 	// Check for non-organic mob
 	// Robotic and other mobs have technical issues with adjusting damage
 	if(!(quirk_mob.mob_biotypes & MOB_ORGANIC))
@@ -102,6 +88,35 @@
 		// Define and grant ability Revive
 		var/datum/action/cooldown/bloodfledge/revive/act_revive = new
 		act_revive.Grant(quirk_mob)
+
+	/**
+	 * Hemophage check
+	 *
+	 * Check if the quirk holder is a hemophage.
+	 * Ignore remaining features if they are
+	 */
+	if(ishemophage(quirk_mob))
+		// Warn user
+		to_chat(quirk_mob, span_warning("Because you already possess the tumor's corruption, some redundant bloodfledge abilities remain dormant. Your bite ability will manifest once the tumor's corruption takes hold."))
+
+		// Disable nutrition mode
+		use_nutrition = FALSE
+
+		// Ignore remaining features
+		return
+
+	// Define owner tongue
+	var/obj/item/organ/internal/tongue/target_tongue = quirk_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
+
+	// Check if tongue exists
+	if(target_tongue)
+		// Force preference for bloody food
+		target_tongue.disliked_foodtypes &= ~BLOODY
+		target_tongue.liked_foodtypes |= BLOODY
+
+	// Define and grant ability Bite
+	var/datum/action/cooldown/bloodfledge/bite/act_bite = new
+	act_bite.Grant(quirk_mob)
 
 // Processing is currently only used for coffin healing
 /datum/quirk/item_quirk/bloodfledge/process(seconds_per_tick)
@@ -200,8 +215,27 @@
 	// Define quirk mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 
+	// Remove quirk ability action datums
+	var/datum/action/cooldown/bloodfledge/revive/act_revive = locate() in quirk_mob.actions
+	act_revive?.Remove(quirk_mob)
+
+	// Remove quirk language
+	quirk_mob.remove_language(/datum/language/vampiric, ALL, LANGUAGE_QUIRK)
+
+	// Unregister examine text
+	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
+
+	/**
+	 * Hemophage check
+	 *
+	 * Check if the quirk holder is a hemophage.
+	 * Ignore remaining features if they are
+	 */
+	if(ishemophage(quirk_mob))
+		return
+
 	// Remove quirk traits
-	REMOVE_TRAIT(quirk_mob, TRAIT_NOHUNGER, ROUNDSTART_TRAIT)
+	REMOVE_TRAIT(quirk_mob, TRAIT_LIVERLESS_METABOLISM, ROUNDSTART_TRAIT)
 	//REMOVE_TRAIT(quirk_mob, TRAIT_NOTHIRST, ROUNDSTART_TRAIT)
 
 	// Check if species should still be vampiric
@@ -211,16 +245,7 @@
 
 	// Remove quirk ability action datums
 	var/datum/action/cooldown/bloodfledge/bite/act_bite = locate() in quirk_mob.actions
-	var/datum/action/cooldown/bloodfledge/revive/act_revive = locate() in quirk_mob.actions
 	act_bite?.Remove(quirk_mob)
-	act_revive?.Remove(quirk_mob)
-
-	// Remove quirk language
-	quirk_mob.remove_language(/datum/language/vampiric, ALL, LANGUAGE_QUIRK)
-
-	// Unregister examine text
-	// Examine temporarily disabled
-	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
 
 	// Remove profane penalties
 	REMOVE_TRAIT(quirk_holder, TRAIT_CHAPEL_WEAKNESS, TRAIT_BLOODFLEDGE)
