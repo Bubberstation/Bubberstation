@@ -48,10 +48,10 @@
 	///ALL Powers currently owned
 	var/list/datum/action/cooldown/bloodsucker/powers = list()
 
-	///Vassals under my control. Periodically remove the dead ones.
-	var/list/datum/antagonist/vassal/vassals = list()
-	///Special vassals I own, to not have double of the same type.
-	var/list/datum/antagonist/vassal/special_vassals = list()
+	///Ghouls under my control. Periodically remove the dead ones.
+	var/list/datum/antagonist/ghoul/ghouls = list()
+	///Special ghouls I own, to not have double of the same type.
+	var/list/datum/antagonist/ghoul/special_ghouls = list()
 
 	///How many ranks we have, don't modify this directly, use AdjustRank() and use GetRank() to get the current value.
 	VAR_PRIVATE/bloodsucker_level = 0
@@ -62,7 +62,7 @@
 	var/bloodsucker_regen_rate = 0.3
 
 	// Used for Bloodsucker Objectives
-	var/area/bloodsucker_lair_area
+	var/area/bloodsucker_haven_area
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 
@@ -78,8 +78,8 @@
 
 	/// Static typecache of all bloodsucker powers.
 	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, ignore_root_path = TRUE)
-	/// Antagonists that cannot be Vassalized no matter what
-	var/static/list/vassal_banned_antags = list(
+	/// Antagonists that cannot be Ghouled no matter what
+	var/static/list/ghoul_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		// /datum/antagonist/monsterhunter,
 		/datum/antagonist/changeling,
@@ -137,7 +137,7 @@
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
-	new /obj/structure/bloodsucker/vassalrack(user_loc)
+	new /obj/structure/bloodsucker/ghoulrack(user_loc)
 #endif
 
 /**
@@ -237,7 +237,7 @@
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
-	free_all_vassals()
+	free_all_ghouls()
 	if(!owner?.current)
 		return
 	unregister_sol_signals()
@@ -387,22 +387,22 @@
 				objectives_complete = FALSE
 				break
 
-	// Now list their vassals
-	if(vassals.len)
-		report += "<span class='header'>Their Vassals were...</span>"
-		for(var/datum/antagonist/vassal/all_vassals as anything in vassals)
-			if(!all_vassals.owner)
+	// Now list their ghouls
+	if(ghouls.len)
+		report += "<span class='header'>Their Ghouls were...</span>"
+		for(var/datum/antagonist/ghoul/all_ghouls as anything in ghouls)
+			if(!all_ghouls.owner)
 				continue
-			var/list/vassal_report = list()
-			vassal_report += "<b>[all_vassals.owner.name]</b>"
+			var/list/ghoul_report = list()
+			ghoul_report += "<b>[all_ghouls.owner.name]</b>"
 
-			if(all_vassals.owner.assigned_role)
-				vassal_report += " the [all_vassals.owner.assigned_role.title]"
-			if(IS_FAVORITE_VASSAL(all_vassals.owner.current))
-				vassal_report += " and was the <b>Favorite Vassal</b>"
-			else if(IS_REVENGE_VASSAL(all_vassals.owner.current))
-				vassal_report += " and was the <b>Revenge Vassal</b>"
-			report += vassal_report.Join()
+			if(all_ghouls.owner.assigned_role)
+				ghoul_report += " the [all_ghouls.owner.assigned_role.title]"
+			if(IS_FAVORITE_GHOUL(all_ghouls.owner.current))
+				ghoul_report += " and was the <b>Favorite Ghoul</b>"
+			else if(IS_REVENGE_GHOUL(all_ghouls.owner.current))
+				ghoul_report += " and was the <b>Revenge Ghoul</b>"
+			report += ghoul_report.Join()
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
@@ -522,16 +522,16 @@
 	return TRUE
 
 /datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
-	// Claim a Lair Objective
-	var/datum/objective/bloodsucker/lair/lair_objective = new
-	lair_objective.owner = owner
-	objectives += lair_objective
+	// Claim a haven Objective
+	var/datum/objective/bloodsucker/haven/haven_objective = new
+	haven_objective.owner = owner
+	objectives += haven_objective
 	// Survive Objective
 	var/datum/objective/survive/bloodsucker/survive_objective = new
 	survive_objective.owner = owner
 	objectives += survive_objective
 
-	// Objective 1: Vassalize a Head/Command, or a specific target
+	// Objective 1: Ghoulize a Head/Command, or a specific target
 	switch(rand(1, 3))
 		if(1) // Conversion Objective
 			var/datum/objective/bloodsucker/conversion/chosen_subtype = pick(subtypesof(/datum/objective/bloodsucker/conversion))

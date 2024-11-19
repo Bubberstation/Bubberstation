@@ -4,8 +4,12 @@
 @use '../functions';
 @use '../colors';
 
+// BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES
 $msgcolor-outgoing: hsl(213, 50%, 35%);
-$msgcolor-incoming: hsl(213, 0%, 20%);
+$msgcolor-incoming: hsl(213, 50%, 12%);
+$msgcolor-subtle-outgoing: hsl(327, 60%, 35%);
+$msgcolor-subtle-incoming: hsl(327, 60%, 12%);
+// BUBBER EDIT ADDITION END - SUBTLE MESSAGES
 
 $msgpadding: 0.7rem;
 
@@ -49,6 +53,20 @@ $msgpadding: 0.7rem;
     text-align: right;
     float: right;
   }
+
+  // BUBBER EDIT ADDITION BEGIN - SUBTLE MESSAGES
+  &_subtle_outgoing {
+    @extend .NtosChatMessage;
+    background-color: $msgcolor-subtle-outgoing;
+    text-align: right;
+    float: right;
+  }
+
+  &_subtle {
+    @extend .NtosChatMessage;
+    background-color: $msgcolor-subtle-incoming;
+  }
+  // BUBBER EDIT ADDITION END - SUBTLE MESSAGES
 
   &__timestamp {
     height: 0.9rem;

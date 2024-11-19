@@ -36,6 +36,9 @@ GLOBAL_LIST(end_titles)
 
 /client/proc/RollCredits()
 	set waitfor = FALSE
+	var/credit_pref = mob.client?.prefs?.read_preference(/datum/preference/toggle/see_credits)
+	if(!credit_pref)
+		return
 
 	LAZYINITLIST(credits)
 
@@ -192,6 +195,13 @@ GLOBAL_LIST(end_titles)
 	titles += "<center><span style='font-size:6pt;'>[JOINTEXT(disclaimer)]</span></center>"
 
 	return titles
+
+/// Enables the choice of players disabling seeing the credits
+/datum/preference/toggle/see_credits
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "see_credits"
+	savefile_identifier = PREFERENCE_PLAYER
+	default_value = TRUE
 
 #undef CREDIT_ROLL_SPEED
 #undef CREDIT_SPAWN_SPEED

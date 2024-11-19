@@ -72,7 +72,7 @@
 	shake_camera(owner, 2, 2)
 
 	for(var/mob/living/carbon/human/screech_target in get_hearers_in_view(7, get_turf(queenie)))
-		screech_target.soundbang_act(intensity = 5, stun_pwr = 50, damage_pwr = 10, deafen_pwr = 30) //Only being deaf will save you from the screech
+		screech_target.soundbang_act(intensity = 3, stun_pwr = 80, damage_pwr = 5, deafen_pwr = 10) // Only being deaf or in space with protection will save you
 		shake_camera(screech_target, 4, 3)
 		to_chat(screech_target, span_doyourjobidiot("[queenie] lets out a deafening screech!"))
 

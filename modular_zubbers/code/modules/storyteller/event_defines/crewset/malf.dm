@@ -29,7 +29,7 @@
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
 	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = TRUE, restricted_roles = restricted_roles)
 	. = list()
-	var/datum/job/aijob = SSjob.GetJob(JOB_AI)
+	var/datum/job/aijob = SSjob.get_job(JOB_AI)
 	for(var/mob/candidate as anything in candidates)
 		if(SSjob.check_job_eligibility(candidate, aijob) == JOB_AVAILABLE)
 			. += candidate
@@ -40,7 +40,7 @@
 	if(!.)
 		return .
 
-	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
+	var/datum/job/ai_job = SSjob.get_job_type(/datum/job/ai)
 	if(!(ai_job.total_positions - ai_job.current_positions && ai_job.spawn_positions))
 		return FALSE
 	else

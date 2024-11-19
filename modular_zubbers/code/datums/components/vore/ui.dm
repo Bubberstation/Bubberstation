@@ -426,7 +426,7 @@
 				to_chat(living_parent, "[prey] is absorbed, you can't help them.")
 				return
 			// If they're otherwise incapacitated
-			if(living_parent.incapacitated())
+			if(living_parent.incapacitated)
 				return
 
 			to_chat(living_parent, span_notice(span_green("You begin to push [prey] to freedom!")))

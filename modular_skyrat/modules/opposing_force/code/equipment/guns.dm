@@ -214,7 +214,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/syndie_revolver
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/syndie_revolver/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/syndicate(src)
+	new /obj/item/gun/ballistic/revolver(src)
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/ammo_box/a357(src)
 
@@ -246,7 +246,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/foamforce_smg_basic
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/foamforce_smg_basic/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/toy/unrestricted(src)
+	new /obj/item/gun/ballistic/automatic/toy/riot(src)
 	new /obj/item/ammo_box/magazine/toy/smg/riot(src)
 	new /obj/item/ammo_box/magazine/toy/smg/riot(src)
 

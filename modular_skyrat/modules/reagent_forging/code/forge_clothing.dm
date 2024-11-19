@@ -12,7 +12,7 @@
 	resistance_flags = FIRE_PROOF
 	skyrat_obj_flags = ANVIL_REPAIR
 	armor_type = /datum/armor/armor_forging_plate_armor
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
 /datum/armor/armor_forging_plate_armor
 	melee = 40
@@ -42,7 +42,7 @@
 
 	body_parts_covered = parent_type::body_parts_covered | ARMS
 	armor_type = /datum/armor/gloves_forging_plate_gloves
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
 /datum/armor/gloves_forging_plate_gloves
 	melee = 40
@@ -70,7 +70,7 @@
 	flags_inv = null
 	skyrat_obj_flags = ANVIL_REPAIR
 	armor_type = /datum/armor/helmet_forging_plate_helmet
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
 /datum/armor/helmet_forging_plate_helmet
 	melee = 40
@@ -98,7 +98,7 @@
 
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_forging_plate_boots
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	resistance_flags = FIRE_PROOF
 	skyrat_obj_flags = ANVIL_REPAIR
 	can_be_tied = FALSE
@@ -122,7 +122,7 @@
 
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_horseshoe
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	resistance_flags = FIRE_PROOF
 	skyrat_obj_flags = ANVIL_REPAIR
 	can_be_tied = FALSE
@@ -143,7 +143,7 @@
 	icon_state = "ringsilver"
 	worn_icon_state = "sring"
 	inhand_icon_state = null
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/clothing/gloves/ring/reagent_clothing/Initialize(mapload)
@@ -160,7 +160,7 @@
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_SMALL
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/clothing/neck/collar/reagent_clothing/Initialize(mapload)
@@ -170,7 +170,7 @@
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"
 	desc = "A pair of handcuffs that are ready to keep someone captive."
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/restraints/handcuffs/reagent_clothing/Initialize(mapload)

@@ -3,7 +3,7 @@
 	description = "Closer to Animals than Bloodsuckers, known as Werewolves waiting to happen, \n\
 		these are the most fearful of True Faith, being the most lethal thing they would ever see the night of. \n\
 		Full Moons do not seem to have an effect, despite common-told stories. \n\
-		The Favorite Vassal turns into a Werewolf whenever their Master does."
+		The Favorite Ghoul turns into a Werewolf whenever their Master does."
 	joinable_clan = FALSE
 	blood_drink_type = BLOODSUCKER_DRINK_INHUMANELY
 
@@ -27,7 +27,7 @@
 	description = "The most charming Clan of them all, allowing them to very easily disguise among the crew. \n\
 		More in touch with their morals, they suffer and benefit more strongly from humanity cost or gain of their actions. \n\
 		Known as 'The most humane kind of vampire', they have an obsession with perfectionism and beauty \n\
-		The Favorite Vassal gains the Mesmerize ability."
+		The Favorite Ghoul gains the Mesmerize ability."
 	joinable_clan = FALSE
 	blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 
@@ -36,7 +36,7 @@
 	description = "The Brujah Clan has proven to be the strongest in melee combat, boasting a powerful punch. \n\
 		They also appear to be more calm than the others, entering their 'frenzies' whenever they want, but dont seem affected much by them. \n\
 		Be wary, as they are fearsome warriors, rebels and anarchists, with an inclination towards Frenzy. \n\
-		The Favorite Vassal gains brawn and a massive increase in brute damage from punching."
+		The Favorite Ghoul gains brawn and a massive increase in brute damage from punching."
 	joinable_clan = FALSE
 
 /datum/bloodsucker_clan/tzimisce

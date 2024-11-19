@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/storage/fancy/candle_box = 200,
 		/obj/item/storage/inflatable = 200,
 		/obj/item/storage/lockbox/dueling = 25,
-		/obj/item/storage/box/skub = 5,
+		/obj/item/storage/box/stickers/skub = 5,
 		/obj/item/storage/box/stickers/anti_skub = 5,
 		/obj/item/storage/box/fishing_hooks = 1,
 		/obj/item/storage/box/fishing_lines = 1,

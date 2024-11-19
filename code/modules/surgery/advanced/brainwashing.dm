@@ -5,6 +5,10 @@
 	special_desc_requirement = EXAMINE_CHECK_JOB // SKYRAT EDIT
 	special_desc_jobs = list("Medical Doctor, Chief Medical Officer, Roboticist") // SKYRAT EDIT CHANGE //You mean to tell me the roles that get this role-exclusive item know what it does?
 	special_desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
+	surgeries = list(
+		/datum/surgery/advanced/brainwashing,
+		/datum/surgery/advanced/brainwashing/mechanic,
+	)
 
 /datum/surgery/advanced/brainwashing
 	name = "Brainwashing"
@@ -48,9 +52,9 @@
 		/obj/item/stack/package_wrap = 35,
 		/obj/item/stack/cable_coil = 15)
 	time = 200
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/hemostat1.ogg'
-	failure_sound = 'sound/surgery/organ2.ogg'
+	preop_sound = 'sound/items/handling/surgery/hemostat1.ogg'
+	success_sound = 'sound/items/handling/surgery/hemostat1.ogg'
+	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
 	var/objective
 
 /datum/surgery_step/brainwash/mechanic
@@ -65,7 +69,7 @@
 	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 
 /datum/surgery_step/brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	objective = tgui_input_text(user, "Choose the objective to imprint on your victim's brain", "Brainwashing")
+	objective = tgui_input_text(user, "Choose the objective to imprint on your victim's brain", "Brainwashing", max_length = MAX_MESSAGE_LEN)
 	if(!objective)
 		return SURGERY_STEP_FAIL
 	display_results(

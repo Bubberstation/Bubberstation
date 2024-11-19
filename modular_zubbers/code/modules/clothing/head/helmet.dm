@@ -39,7 +39,7 @@
 	if(!COOLDOWN_FINISHED(src, pinwheel_toggle_cooldown))
 		return FALSE
 	COOLDOWN_START(src, pinwheel_toggle_cooldown, 1 SECONDS)
-	return TRUE
+	return ..()
 
 /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	name = "magnificent pinwheel hat"

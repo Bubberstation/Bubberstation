@@ -126,9 +126,7 @@ export const CharacterPreferenceWindow = (props) => {
               Buy BYOND premium for more slots!
             </Stack.Item>
           )}
-
           <Stack.Divider />
-
           <Stack.Item>
             <Stack fill>
               <Stack.Item grow>
@@ -211,9 +209,7 @@ export const CharacterPreferenceWindow = (props) => {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-
           <Stack.Divider />
-
           <Stack.Item>{pageContents}</Stack.Item>
         </Stack>
       </Window.Content>

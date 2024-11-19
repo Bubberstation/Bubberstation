@@ -34,7 +34,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ENDED,
 				vampire_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
-				vassal_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
+				ghoul_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
 			)
 		return ..()
 
@@ -50,7 +50,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SECOND_WARNING,
 				vampire_warning_message = span_userdanger("Solar Flares are about to bombard the station! You have [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds to find cover!"),
-				vassal_warning_message = span_danger("In [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds, your master will be at risk of a Solar Flare. Make sure they find cover!"),
+				ghoul_warning_message = span_danger("In [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds, your master will be at risk of a Solar Flare. Make sure they find cover!"),
 			)
 		if(TIME_BLOODSUCKER_BURN_INTERVAL)
 			warn_daylight(
@@ -65,12 +65,12 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ROSE,
 				vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"),
-				vassal_warning_message = span_userdanger("Solar flares bombard the station with UV light!"),
+				ghoul_warning_message = span_userdanger("Solar flares bombard the station with UV light!"),
 			)
 	..()
 
-/datum/controller/subsystem/processing/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
-	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, vassal_warning_message)
+/datum/controller/subsystem/processing/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, ghoul_warning_message)
+	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, ghoul_warning_message)
 
 /datum/controller/subsystem/processing/sunlight/proc/add_sun_sufferer(mob/victim)
 	if(is_sufferer(victim))
@@ -119,9 +119,9 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 		if(DANGER_LEVEL_THIRD_WARNING)
 			target.playsound_local(null, 'sound/effects/alert.ogg', 75, TRUE)
 		if(DANGER_LEVEL_SOL_ROSE)
-			target.playsound_local(null, 'sound/ambience/ambimystery.ogg', 75, TRUE)
+			target.playsound_local(null, 'sound/ambience/misc/ambimystery.ogg', 75, TRUE)
 		if(DANGER_LEVEL_SOL_ENDED)
-			target.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, TRUE)
+			target.playsound_local(null, 'sound/music/antag/bloodcult/ghosty_wind.ogg', 90, TRUE)
 
 /datum/controller/subsystem/processing/sunlight/proc/is_sufferer(mob/victim)
 	if(!sun_sufferers)
