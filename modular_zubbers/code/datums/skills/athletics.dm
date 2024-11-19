@@ -4,10 +4,6 @@
 
 	skill_item_path = /obj/item/clothing/gloves/boxing/golden
 
-/datum/skill/athletics/New()
-	. = ..()
-	levelUpMessages[SKILL_LEVEL_NOVICE] = span_nicegreen("I am just getting started on my [name] journey! I think I should be able to identify other people who are working to improve their body by sight.")
-
 /datum/skill/athletics/level_gained(datum/mind/mind, new_level, old_level, silent)
     . = ..()
 
