@@ -48,18 +48,18 @@
 		return TRUE
 	return FALSE
 
-// bubber edit - updated to numbered severity system and added alert text
+// bubber edit - parity with vox; Caps brain damage to 150, decreases it from 30/20 to 20/10, added alert text, can't be emp'd while dead
 /obj/item/organ/internal/brain/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(owner.stat == DEAD)
 		return
-	switch(severity) // Hard cap on brain damage from EMP
-		if (1)
+	switch(severity) // 
+		if (EMP_HEAVY)
 			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
-			apply_organ_damage(20, BRAIN_DAMAGE_SEVERE)
-		if (2)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 150)
+		if (EMP_LIGHT)
 			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
-			apply_organ_damage(10, BRAIN_DAMAGE_MILD)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
 // edit end

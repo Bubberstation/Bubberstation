@@ -43,5 +43,4 @@
 *			owner.set_jitter_if_lower(30 SECONDS)
 *			owner.adjust_stutter(30 SECONDS)
 *			owner.adjust_confusion(3 SECONDS)
-*
 */
