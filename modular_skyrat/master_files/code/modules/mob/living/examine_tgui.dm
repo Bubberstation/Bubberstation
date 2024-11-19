@@ -59,39 +59,36 @@
 	var/headshot = ""
 
 	//  Handle OOC notes first
-	if(preferences && preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
-		var/e_prefs = preferences.read_preference(/datum/preference/choiced/erp_status)
-		var/e_prefs_hypno = preferences.read_preference(/datum/preference/choiced/erp_status_hypno)
-		var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
-		var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
-		var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
-		ooc_notes += "ERP: [e_prefs]\n"
-		ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
-		ooc_notes += "Vore: [e_prefs_v]\n"
-		ooc_notes += "Non-Con: [e_prefs_nc]\n"
-		ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
-		ooc_notes += "\n"
+	if(preferences)
+		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
+			var/e_prefs = preferences.read_preference(/datum/preference/choiced/erp_status)
+			var/e_prefs_hypno = preferences.read_preference(/datum/preference/choiced/erp_status_hypno)
+			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
+			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
+			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
+			ooc_notes += "ERP: [e_prefs]\n"
+			ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
+			ooc_notes += "Vore: [e_prefs_v]\n"
+			ooc_notes += "Non-Con: [e_prefs_nc]\n"
+			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
+			ooc_notes += "\n"
 
-	// Now we handle silicon and/or human, order doesn't really matter
-	// If other variants of mob/living need to be handled at some point, put them here
-	if(preferences && issilicon(holder))
-		flavor_text = preferences?.read_preference(/datum/preference/text/silicon_flavor_text)
-		// Silicon prefs and headshot
-		custom_species = preferences?.read_preference(/datum/preference/text/custom_species/silicon)
-		custom_species_lore = preferences?.read_preference(/datum/preference/text/custom_species_lore/silicon)
-		ooc_notes += preferences?.read_preference(/datum/preference/text/ooc_notes/silicon)
-		headshot += preferences?.read_preference(/datum/preference/text/headshot/silicon)
-		name = holder.name
+		// Now we handle silicon and/or human, order doesn't really matter
+		// If other variants of mob/living need to be handled at some point, put them here
+		if(issilicon(holder))
+			flavor_text = preferences.read_preference(/datum/preference/text/silicon_flavor_text)
+			// Silicon prefs and headshot
+			custom_species = preferences.read_preference(/datum/preference/text/custom_species/silicon)
+			custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
+			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
+			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
+			name = holder.name
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = ( \
-		holder_human.wear_mask && \
-		(holder_human.wear_mask.flags_inv & HIDEFACE)) && \
+		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && \
 		obscurity_examine_pref || \
-		(holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && \
-		obscurity_examine_pref \
-		)
+		(holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref)
 
 		//Check if the mob is obscured, then continue to headshot and species lore
 		ooc_notes += holder_human.dna?.features["ooc_notes"]
@@ -101,7 +98,7 @@
 			flavor_text = "Obscured"
 			name = "Unknown"
 		else
-			headshot += preferences?.read_preference(/datum/preference/text/headshot)
+			headshot = holder_human.dna.features["headshot"]
 			flavor_text = holder_human.dna.features["flavor_text"]
 			name = holder.name
 		//Custom species handling. Reports the normal custom species if there is not one set.
