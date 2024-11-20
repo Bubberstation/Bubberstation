@@ -1,9 +1,9 @@
 // Peacekeeper jumpsuit
 
 /obj/item/clothing/under/sol_peacekeeper
-	name = "sol peacekeeper uniform"
+	name = "terran peacekeeper uniform"
 	desc = "A military-grade uniform with military grade comfort (none at all), often seen on \
-		SolFed's various peacekeeping forces, and usually alongside a blue helmet."
+		TerraGov's various peacekeeping forces, and usually alongside a blue helmet."
 	icon = 'modular_skyrat/modules/goofsec/icons/uniforms.dmi'
 	icon_state = "peacekeeper"
 	worn_icon = 'modular_skyrat/modules/goofsec/icons/uniforms_worn.dmi'
@@ -17,8 +17,8 @@
 // EMT jumpsuit
 
 /obj/item/clothing/under/sol_emt
-	name = "sol emergency medical uniform"
-	desc = "A copy of SolFed's peacekeeping uniform, recolored and re-built paramedics in mind."
+	name = "terran emergency medical uniform"
+	desc = "A copy of TerraGov's peacekeeping uniform, recolored and re-built paramedics in mind."
 	icon = 'modular_skyrat/modules/goofsec/icons/uniforms.dmi'
 	icon_state = "emt"
 	worn_icon = 'modular_skyrat/modules/goofsec/icons/uniforms_worn.dmi'
@@ -29,11 +29,11 @@
 	has_sensor = SENSOR_COORDS
 	random_sensor = FALSE
 
-// Solfed flak jacket, for marshals
+// Terragov flak jacket, for marshals
 
-/obj/item/clothing/suit/armor/vest/det_suit/sol
+/obj/item/clothing/suit/armor/vest/det_suit/terra
 	name = "'Gordyn' flak vest"
-	desc = "A light armored jacket common on SolFed personnel who need armor, but find a full vest \
+	desc = "A light armored jacket common on TerraGov personnel who need armor, but find a full vest \
 		too impractical or uneeded."
 	icon = 'modular_skyrat/modules/goofsec/icons/uniforms.dmi'
 	icon_state = "flak"

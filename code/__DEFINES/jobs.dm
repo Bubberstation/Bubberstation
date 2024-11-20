@@ -144,8 +144,8 @@
 #define JOB_NAVAL_FLEET_ADMIRAL "Fleet Admiral"
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
-#define JOB_SOLFED "SolFed"
-#define JOB_SOLFED_LIASON "SolFed Liason"
+#define JOB_TERRAGOV "TerraGov"
+#define JOB_TERRAGOV_LIASON "TerraGov Liason"
 // SKYRAT EDIT ADDITION END
 
 #define JOB_GROUP_ENGINEERS list( \
