@@ -58,8 +58,8 @@
 	switch(severity) // 
 		if (EMP_HEAVY)
 			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 150)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 190)
 		if (EMP_LIGHT)
 			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
 // edit end

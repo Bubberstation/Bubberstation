@@ -15,11 +15,6 @@
     name = "Empathic Sensor"
     cost = 4
     path = /obj/item/organ/internal/cyberimp/brain/empathic_sensor
-	
-/datum/augment_item/implant/brain/minesweeper
-    name = "Minesweeper"
-    cost = 0
-    path = /obj/item/organ/internal/cyberimp/brain/minesweeper
 
 //CHEST IMPLANTS
 /datum/augment_item/implant/chest
