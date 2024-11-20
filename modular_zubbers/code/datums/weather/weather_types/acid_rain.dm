@@ -38,7 +38,7 @@
 	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
 		return TRUE
 
-	for(var/area/acid_area as anything in affected_areas)
+	for(var/area/acid_area as anything in impacted_areas)
 		if(locate(acid_area) in view(player))
 			return TRUE
 
