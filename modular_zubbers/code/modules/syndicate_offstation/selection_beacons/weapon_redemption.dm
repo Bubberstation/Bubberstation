@@ -42,7 +42,7 @@
 		"M90-GL" = /obj/item/storage/toolbox/guncase/m90gl,
 		"Bulldog" = /obj/item/storage/toolbox/guncase/bulldog,
 		"Stolen Revolver" = /obj/item/storage/toolbox/guncase/skyrat/hos_revolver,
-		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r,
+		"Energy Sword" = /obj/item/melee/energy/sword/saber,
 	)
 
 	return selectable_gun_types
@@ -55,6 +55,7 @@
 		"Stechkin APS" = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps,
 		"Ansem Pistol Kit" = /obj/item/storage/toolbox/guncase/clandestine,
 		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r,
+		"Energy Sword" = /obj/item/melee/energy/sword/saber,
 
 	)
 
@@ -67,7 +68,7 @@
 	var/static/list/selectable_gun_types = list(
 		"Stechkin APS" = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps,
 		"Ansem Pistol Kit" = /obj/item/storage/toolbox/guncase/clandestine,
-		"C-20r SMG" = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/c20r,
+		"Energy Sword" = /obj/item/melee/energy/sword/saber,
 		"Waffle Co. Revolver" = /obj/item/storage/toolbox/guncase/revolver
 	)
 

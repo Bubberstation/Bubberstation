@@ -1344,7 +1344,6 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
-/obj/structure/closet/secure_closet/interdynefob/maa_locker,
 /obj/item/choice_beacon/music,
 /obj/effect/spawner/random/exotic/syndie,
 /obj/item/mod/module/shooting_assistant,
@@ -1352,6 +1351,7 @@
 /obj/effect/spawner/random/entertainment/plushie,
 /obj/effect/spawner/random/entertainment/plushie_delux,
 /obj/item/clothing/suit/jacket/runner/syndicate,
+/obj/structure/closet/secure_closet/persistence/maa_locker,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
 "ea" = (
@@ -2787,9 +2787,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/suppressor,
-/obj/item/suppressor,
-/obj/item/suppressor,
 /obj/machinery/button/door/directional/north{
 	name = "Armory Shutters";
 	id = "armory_s";
@@ -2797,6 +2794,8 @@
 	pixel_x = 24;
 	pixel_y = 0
 	},
+/obj/item/storage/toolbox/guncase/c20r,
+/obj/item/storage/toolbox/guncase/c20r,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "io" = (
@@ -3330,6 +3329,9 @@
 /obj/structure/closet/crate/secure/syndicate/cybersun/night{
 	name = "Cybersun Operative Equipment"
 	},
+/obj/item/suppressor,
+/obj/item/suppressor,
+/obj/item/suppressor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "jU" = (
@@ -7920,6 +7922,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "xO" = (
@@ -10306,9 +10309,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Fb" = (
-/obj/machinery/ammo_workbench/unlocked,
 /obj/item/disk/ammo_workbench/advanced,
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/machinery/ammo_workbench,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Fc" = (
@@ -10786,7 +10789,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/light/directional/west,
-/obj/item/gun/ballistic/automatic/sol_grenade_launcher/evil/no_mag,
+/obj/item/gun/ballistic/shotgun/riot/sol/evil{
+	pixel_y = 10
+	},
+/obj/item/gun/ballistic/shotgun/riot/sol/evil{
+	pixel_y = 10
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "GE" = (
@@ -15618,12 +15626,6 @@
 /obj/structure/rack/gunrack,
 /obj/structure/sign/poster/contraband/energy_swords/directional/west,
 /obj/structure/disposalpipe/segment,
-/obj/item/gun/ballistic/shotgun/riot/sol/evil{
-	pixel_y = 10
-	},
-/obj/item/gun/ballistic/shotgun/riot/sol/evil{
-	pixel_y = 10
-	},
 /obj/item/gun/microfusion/mcr01/syndie,
 /obj/item/gun/microfusion/mcr01/syndie,
 /turf/open/floor/mineral/plastitanium/red,
@@ -16303,17 +16305,14 @@
 	pixel_x = -3;
 	pixel_y = 10
 	},
-/obj/item/melee/energy/sword/saber/red{
-	pixel_x = 4
-	},
-/obj/item/melee/energy/sword/saber/red{
-	pixel_x = 10
-	},
-/obj/item/melee/energy/sword/saber/purple{
-	pixel_x = 16
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/item/melee/energy/sword/saber{
+	pixel_x = 3
+	},
+/obj/item/melee/energy/sword/saber{
+	pixel_x = 8
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "XU" = (
