@@ -38,7 +38,7 @@
 	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
 		return TRUE
 
-	for(var/area/acid_area in impacted_areas)
+	for(var/area/acid_area as anything in affected_areas)
 		if(locate(acid_area) in view(player))
 			return TRUE
 
@@ -90,7 +90,7 @@
 	for(var/obj/item/bodypart/bodypart as anything in victim.bodyparts)
 		var/acid_armor = victim.check_armor(bodypart, ACID)
 		if(acid_armor < 60) // You need acid armor above a certain value to not get affected, adjust for stronger rains!
-			if(prob(max(0, (100-acid_armor))))
+			if(prob(max(0, (100 - acid_armor))))
 				bodypart.receive_damage(burn = WEATHER_ACID_BASE_DAMAGE)
 				dealt_damage = TRUE
 	if(dealt_damage)
