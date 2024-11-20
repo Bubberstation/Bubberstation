@@ -42,8 +42,8 @@
 	if(!istype(account))
 		return
 
-	//if(!(SSeconomy.times_fired % 3 == 0)) // commented for my sanity in testing
-	//	return
+	if(!(SSeconomy.times_fired % 3 == 0))
+		return
 
 	if(!account.bank_cards.len)
 		return
