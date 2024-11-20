@@ -78,9 +78,3 @@ export const send_sound_blooper: FeatureToggle = {
   category: 'SOUND',
   component: CheckboxInput,
 };
-
-export const fancy_airlock_sounds: FeatureToggle = {
-  name: 'Enable Fancy Airlock sounds',
-  category: 'SOUND',
-  component: CheckboxInput,
-};
