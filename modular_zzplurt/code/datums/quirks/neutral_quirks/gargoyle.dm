@@ -266,7 +266,7 @@
 		petrified_mob.dna.features["body_size"] = old_size
 		petrified_mob.dna.update_body_size()
 		var/damage = deconstructed ? petrified_mob.health : petrified_mob.health*(old_max_health/petrified_mob.maxHealth) - atom_integrity + 100
-		petrified_mob.take_overall_damage(damage) //any new damage the statue incurred is transfered to the mob
+		petrified_mob.take_overall_damage(damage) //any new damage the statue incurred is transferred to the mob
 		petrified_mob.transform = transform
 		if(was_lying)
 			petrified_mob.set_body_position(LYING_DOWN)

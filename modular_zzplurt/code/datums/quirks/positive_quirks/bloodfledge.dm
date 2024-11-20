@@ -144,7 +144,7 @@
 		STOP_PROCESSING(SSquirks, src)
 		return
 
-	/// Define if nutrition or blood volume is sufficent. Will stop healing if FALSE.
+	/// Define if nutrition or blood volume is sufficient. Will stop healing if FALSE.
 	var/has_enough_blood = TRUE
 
 	// Check if using nutrition mode
@@ -425,16 +425,16 @@
 
 /**
  * Staked interaction for Bloodfledges
- * * Causes instant death if the target is unconsious
- * * Warns normally if the target is consious
+ * * Causes instant death if the target is unconscious
+ * * Warns normally if the target is conscious
 */
 /datum/quirk/item_quirk/bloodfledge/proc/on_staked(atom/target, forced)
 	SIGNAL_HANDLER
 
-	// Check if unconsious
+	// Check if unconscious
 	if(quirk_holder.IsSleeping() || quirk_holder.stat >= UNCONSCIOUS)
 		// Warn the user
-		to_chat(target, span_userdanger("You have been staked while unconsious!"))
+		to_chat(target, span_userdanger("You have been staked while unconscious!"))
 
 		// Kill the user
 		quirk_holder.death()
@@ -445,7 +445,7 @@
 		// Do nothing else
 		return
 
-	// User is consious
+	// User is conscious
 	// Warn the user of staking
 	to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place."))
 	target.balloon_alert(target, "you have been staked!")
@@ -553,7 +553,7 @@
 	if(QDELETED(owner))
 		return FALSE
 
-	// Check for holyness
+	// Check for holiness
 	if(owner.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		// Warn user and return
 		to_chat(owner, span_warning("A holy force prevents you from using your powers!"))
@@ -1039,7 +1039,7 @@
 		// Return
 		return
 	else
-		/// Is this valid nourshing blood? Does not grant nutrition if FALSE.
+		/// Is this valid nourishing blood? Does not grant nutrition if FALSE.
 		var/blood_valid = TRUE
 
 		/// Should blood be transferred anyway? Used when blood_valid is FALSE.
