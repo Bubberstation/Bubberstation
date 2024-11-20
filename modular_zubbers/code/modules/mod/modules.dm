@@ -72,6 +72,12 @@
 	var/wearer_key
 	cooldown_time = 30 SECONDS
 
+/obj/item/mod/module/mind_swap/on_select()
+	if(!mod.ai_assistant)
+		balloon_alert(mod.wearer, "No AI present for swap.")
+		return
+	return ..()
+
 /obj/item/mod/module/mind_swap/on_activation()
 	swap_minds()
 
