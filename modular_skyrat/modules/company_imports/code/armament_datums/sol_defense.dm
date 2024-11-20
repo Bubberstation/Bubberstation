@@ -2,7 +2,7 @@
 	category = COMPANY_NAME_SOL_DEFENSE_DEFENSE
 	company_bitflag = CARGO_COMPANY_SOL_DEFENSE
 
-// Beautiful SolFed clothing
+// Beautiful TerraGov clothing
 
 /datum/armament_entry/company_import/sol_defense/clothing
 	subcategory = "Surplus Clothing"
@@ -33,7 +33,7 @@
 	item_type = /obj/item/clothing/suit/armor/sf_peacekeeper
 
 /datum/armament_entry/company_import/sol_defense/armor/flak_jacket
-	item_type = /obj/item/clothing/suit/armor/vest/det_suit/sol
+	item_type = /obj/item/clothing/suit/armor/vest/det_suit/terra
 
 /datum/armament_entry/company_import/sol_defense/armor/slim_vest
 	name = "type I vest"

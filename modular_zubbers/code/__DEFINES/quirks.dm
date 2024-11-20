@@ -1,0 +1,3 @@
+
+#define COMSIG_MOB_HEMO_BLOOD_REGEN_TICK "blood_regen_apply"
+	#define COMSIG_CANCEL_MOB_HEMO_BLOOD_REGEN (1<<0)
