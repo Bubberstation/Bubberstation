@@ -274,10 +274,10 @@
 	icon_state = "fir36"
 	actions_types = list(/datum/action/item_action/adjust)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS //same flags as actual sec hailer gas mask
-	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right? // BUBBER TODO: Modularity
+	flags_inv = HIDESNOUT
 	flags_cover = NONE
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit // BUBBER TODO: Modularity
+	visor_flags_inv = HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
 	tint = 0
 	interaction_flags_click = NEED_DEXTERITY
@@ -1127,8 +1127,6 @@
 		"snuggle",
 		"cuddle",
 		"kiss",
-		//"feed Dan Kelly", /bubber edit on request/
-		//"hoard Shinzo Shore", /bubber edit on request/
 		"spoil friends",
 		"hold hands",
 		"have this license",
@@ -1412,6 +1410,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "short_coat"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/neck/flower_collar
