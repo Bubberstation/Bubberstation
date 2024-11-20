@@ -5,7 +5,7 @@
 	icon_state = "coin_valid"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE
-	usesound = 'sound/weapons/taserhit.ogg'
+	usesound = 'sound/items/weapons/taserhit.ogg'
 	// Name of the job of that trim. I tried to do it otherwise but it was annoying so this is how it's going to be.
 	var/assignment = "Unassigned"
 	// Trim to add to the ID.

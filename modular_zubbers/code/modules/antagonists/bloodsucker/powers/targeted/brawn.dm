@@ -140,7 +140,7 @@
 			target_atom.Knockdown(GetKnockdown())
 		// Attack!
 		owner.balloon_alert(owner, "you punch [target_atom]!")
-		playsound(get_turf(target_atom), 'sound/weapons/punch4.ogg', 60, 1, -1)
+		playsound(get_turf(target_atom), 'sound/items/weapons/punch4.ogg', 60, 1, -1)
 		user.do_attack_animation(target_atom, ATTACK_EFFECT_SMASH)
 		var/obj/item/bodypart/affecting = target_atom.get_bodypart(ran_zone(target_atom.zone_selected))
 		target_atom.apply_damage(hitStrength, BRUTE, affecting)
@@ -171,7 +171,7 @@
 			target.balloon_alert(user, "ability level too low to break open!")
 			return FALSE
 		var/obj/machinery/door/target_airlock = target
-		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
+		playsound(get_turf(user), 'sound/machines/airlock/airlock_alien_prying.ogg', 40, TRUE, -1)
 		owner.balloon_alert(owner, "you prepare to tear open [target_airlock]...")
 		if(!do_after(user, 2.5 SECONDS, target_airlock))
 			user.balloon_alert(user, "interrupted!")

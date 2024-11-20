@@ -44,11 +44,11 @@
 			ghoul_job = bloodsucker_ghouls.owner.assigned_role
 		// Mob Assigned
 		else if(bloodsucker_ghouls.owner?.current?.job)
-			ghoul_job = SSjob.GetJob(bloodsucker_ghouls.owner.current.job)
+			ghoul_job = SSjob.get_job(bloodsucker_ghouls.owner.current.job)
 		// PDA Assigned
 		else if(bloodsucker_ghouls.owner?.current && ishuman(bloodsucker_ghouls.owner.current))
 			var/mob/living/carbon/human/ghoul = bloodsucker_ghouls.owner.current
-			ghoul_job = SSjob.GetJob(ghoul.get_assignment())
+			ghoul_job = SSjob.get_job(ghoul.get_assignment())
 		if(ghoul_job)
 			all_ghoul_jobs += ghoul_job
 	return all_ghoul_jobs
@@ -98,13 +98,13 @@
 
 /// Ghoulify a certain person / people
 /datum/objective/bloodsucker/conversion
-	name = "ghoulization"
+	name = "ghouling"
 
 /////////////////////////////////
 
 // Ghoulify a head of staff
 /datum/objective/bloodsucker/conversion/command
-	name = "ghoulizationcommand"
+	name = "ghoulingcommand"
 	target_amount = 1
 
 // EXPLANATION

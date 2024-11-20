@@ -157,7 +157,7 @@
 
 /datum/computer_file/program/messenger/ui_state(mob/user)
 	if(issilicon(user))
-		return GLOB.reverse_contained_state
+		return GLOB.deep_inventory_state
 	return GLOB.default_state
 
 /datum/computer_file/program/messenger/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -165,7 +165,7 @@
 	switch(action)
 		if("PDA_ringSet")
 			var/mob/living/user = usr
-			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, encode = FALSE)
+			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
 			if(!computer.can_interact(user))
 				computer.balloon_alert(user, "can't reach!")
 				return FALSE
@@ -401,7 +401,7 @@
 		chat.can_reply = FALSE
 		return
 	var/target_name = target.computer.saved_identification
-	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]. Start with # for subtle.", "NT Messaging[target_name ? " ([target_name])" : ""]", encode = FALSE) // BUBBER EDIT CHANGE - SUBTLE MESSAGES
+	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]. Start with # for subtle.", "NT Messaging[target_name ? " ([target_name])" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE) // BUBBER EDIT CHANGE - SUBTLE MESSAGES
 	send_message(user, input_message, list(chat), subtle = subtle) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: send_message(user, input_message, list(chat))
 
 /// Helper proc that sends a message to everyone
@@ -597,7 +597,7 @@
 		if(sender)
 			to_chat(sender, span_notice("ERROR: Network unavailable, please try again later."))
 		if(alert_able && !alert_silenced)
-			playsound(computer, 'sound/machines/terminal_error.ogg', 15, TRUE)
+			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 	// used for logging
@@ -629,7 +629,7 @@
 		if(sender)
 			to_chat(sender, span_notice("ERROR: Server is not responding."))
 		if(alert_able && !alert_silenced)
-			playsound(computer, 'sound/machines/terminal_error.ogg', 15, TRUE)
+			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 	// SKYRAT EDIT BEGIN - PDA messages show a visible message; again!
@@ -665,10 +665,13 @@
 			to_chat(listener, "[FOLLOW_LINK(listener, source)] [ghost_message]")
 		// Log to public log
 		log_public_file(public_message)
-	// BUBBER EDIT CHANGE END
 
 	if(sender)
-		to_chat(sender, span_info("PDA message sent to [signal.format_target()]: \"[message]\""))
+		if(subtle)
+			to_chat(sender, span_subtlepda("Subtle PDA message sent to [signal.format_target()]: \"[message]\""))
+		else
+			to_chat(sender, span_info("PDA message sent to [signal.format_target()]: \"[message]\""))
+	// BUBBER EDIT CHANGE END
 
 	if (alert_able && !alert_silenced)
 		computer.send_sound()
@@ -688,6 +691,7 @@
 	var/is_fake_user = is_rigged || is_automated || isnull(signal.data["ref"])
 	var/fake_name = is_fake_user ? signal.data["fakename"] : null
 	var/fake_job = is_fake_user ? signal.data["fakejob"] : null
+	var/is_subtle = signal.data["subtle"] // BUBBER EDIT ADDITION - SUBTLE MESSAGES
 
 	var/sender_ref = signal.data["ref"]
 
@@ -739,7 +743,12 @@
 		var/inbound_message = "[signal.format_message()]"
 
 		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
-		to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+		// BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES
+		if(is_subtle)
+			to_chat(messaged_mob, span_subtlepda("[icon2html(computer, messaged_mob)] <b>Subtle PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+		else
+			to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+		// BUBBER EDIT CHANGE END - SUBTLE MESSAGES
 
 		SEND_SIGNAL(computer, COMSIG_COMPUTER_RECEIVED_MESSAGE, sender_title, inbound_message, photo_message)
 

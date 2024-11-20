@@ -181,8 +181,7 @@
 	},
 /obj/machinery/vending/drugs{
 	name = "\improper SyndiDrug Plus";
-	onstation = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
@@ -310,10 +309,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/vending/security/noaccess{
-	onstation = 0;
 	density = 0;
-	onstation_override = 1;
-	pixel_y = 32
+	pixel_y = 32;
+	all_products_free = 1
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
@@ -537,11 +535,10 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 8
 	},
-/obj/machinery/vending/medical/syndicate_access/cybersun{
+/obj/machinery/vending/medical/syndicate/cybersun{
 	desc = "An advanced vendor that dispenses medical drugs, both recreational and medicinal. It's said to have been salvaged from an old decommissioned Cybersun Cruiser.";
 	name = "\improper SyndiMed ++";
-	onstation = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
@@ -708,10 +705,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/vending/security/noaccess{
-	onstation = 0;
 	pixel_x = -32;
 	density = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
@@ -844,10 +840,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "eg" = (
 /obj/machinery/vending/dorms/prison{
-	onstation = 0;
-	onstation_override = 1;
 	density = 0;
-	pixel_x = -27
+	pixel_x = -27;
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
@@ -900,8 +895,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "et" = (
 /obj/machinery/vending/games{
-	onstation = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
@@ -1267,10 +1261,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/machinery/vending/wardrobe/syndie_wardrobe{
-	onstation = 0;
-	onstation_override = 1;
 	pixel_x = 28;
-	density = 0
+	density = 0;
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -1918,8 +1911,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/vending/dorms{
-	onstation_override = 1;
-	onstation = 0
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -2319,10 +2311,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/vending/clothing{
-	onstation = 0;
-	onstation_override = 1;
 	pixel_x = 27;
-	density = 0
+	density = 0;
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -4449,8 +4440,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "tx" = (
 /obj/machinery/vending/dinnerware{
-	onstation = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
@@ -4568,10 +4558,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/cigarette/syndicate{
-	onstation = 0;
-	onstation_override = 1;
 	density = 0;
-	pixel_x = -29
+	pixel_x = -29;
+	all_products_free = 1
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -5065,18 +5054,16 @@
 	dir = 8
 	},
 /obj/machinery/vending/hydronutrients{
-	onstation = 0;
-	onstation_override = 1;
 	pixel_x = -28;
 	can_astar_pass = 1;
-	density = 0
+	density = 0;
+	all_products_free = 1
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "vX" = (
-/obj/machinery/vending/boozeomat/syndicate_access{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/vending/boozeomat/syndicate{
+	all_products_free = 1
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/curtain/cloth{
@@ -5889,7 +5876,7 @@
 	name = "green"
 	},
 /obj/machinery/vending/sustenance{
-	onstation = 0
+	all_products_free = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -6297,10 +6284,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/wardrobe/sec_wardrobe/red{
-	onstation = 0;
-	onstation_override = 1;
 	pixel_x = 28;
-	density = 0
+	density = 0;
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -10776,8 +10762,7 @@
 	dir = 8
 	},
 /obj/machinery/vending/imported/tiziran{
-	onstation = 0;
-	onstation_override = 1
+	all_products_free = 1
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -10967,10 +10952,9 @@
 "UV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/vending/cigarette{
-	onstation = 0;
-	onstation_override = 1;
 	density = 0;
-	pixel_x = -27
+	pixel_x = -27;
+	all_products_free = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
@@ -11604,11 +11588,10 @@
 	dir = 10
 	},
 /obj/machinery/vending/hydroseeds{
-	onstation = 0;
-	onstation_override = 1;
 	pixel_x = -28;
 	can_astar_pass = 1;
-	density = 0
+	density = 0;
+	all_products_free = 1
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)

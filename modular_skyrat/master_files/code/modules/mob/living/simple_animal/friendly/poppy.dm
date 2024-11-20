@@ -128,7 +128,7 @@
 	upset = TRUE
 	icon_state = "poppypossum_aaa"
 
-	emote("sweatdrop")
+	//emote("sweatdrop") - BUBBER TODO - Make this not lint
 	do_jitter_animation(60)
 	manual_emote("'s fur stands up, [src.p_their()] body trembling...")
 

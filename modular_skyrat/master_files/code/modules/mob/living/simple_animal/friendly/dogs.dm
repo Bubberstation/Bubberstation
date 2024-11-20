@@ -209,7 +209,7 @@
 		fired_projectile = new /obj/projectile/beam(loc)
 		fired_projectile.icon = 'icons/mob/effects/genetics.dmi'
 		fired_projectile.icon_state = "eyelasers"
-		fire_sound = 'sound/weapons/taser.ogg'
+		fire_sound = 'sound/items/weapons/taser.ogg'
 
 	playsound(loc, fire_sound, vol = 75, vary = TRUE)
 	fired_projectile.preparePixelProjectile(target, source_turf)

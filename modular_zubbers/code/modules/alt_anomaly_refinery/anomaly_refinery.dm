@@ -58,7 +58,7 @@
 
 	playsound(
 		src,
-		pick('sound/effects/explosion1.ogg','sound/effects/explosion2.ogg','sound/effects/explosion3.ogg'),
+		pick('sound/effects/explosion/explosion1.ogg','sound/effects/explosion/explosion2.ogg','sound/effects/explosion/explosion3.ogg'),
 		50
 	)
 

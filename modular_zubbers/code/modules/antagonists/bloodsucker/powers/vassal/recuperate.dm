@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(user.stat >= DEAD || user.incapacitated())
+	if(user.stat >= DEAD || user.incapacitated)
 		user.balloon_alert(user, "you are incapacitated...")
 		return FALSE
 	return TRUE
@@ -62,7 +62,7 @@
 /datum/action/cooldown/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
 	if(user.stat >= DEAD)
 		return FALSE
-	if(user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
+	if(INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS))
 		owner?.balloon_alert(owner, "too exhausted...")
 		return FALSE
 	return TRUE

@@ -107,59 +107,63 @@
 /obj/machinery/compostbin/proc/visible_volume()
 	return reagents.total_volume
 
-/obj/machinery/compostbin/attacked_by(obj/item/weapon, mob/living/user)
-	if(!machine_stat)
-		if(user.combat_mode)
-			return ..()
+/obj/machinery/compostbin/base_item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(. == ITEM_INTERACT_BLOCKING)
+		return
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
 
-		if(istype(weapon, /obj/item/storage/bag))
-			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_warning("\The [src] is already full of compost."))
-				return TRUE
+	. = ITEM_INTERACT_BLOCKING
+	if(istype(tool, /obj/item/storage/bag))
+		if(reagents.total_volume >= reagents.maximum_volume)
+			to_chat(user, span_warning("\The [src] is already full of compost."))
+			return
 
+		if(current_item_count >= max_items)
+			to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
+			return
+
+		var/obj/item/storage/bag/bag = tool
+
+		for(var/obj/item/food/item in bag.contents)
 			if(current_item_count >= max_items)
-				to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
-				return TRUE
+				break
 
-			var/obj/item/storage/bag/bag = weapon
+			if(bag.atom_storage.attempt_remove(item, src))
+				current_item_count++
 
-			for(var/obj/item/food/item in bag.contents)
-				if(current_item_count >= max_items)
-					break
+		if(bag.contents.len == 0)
+			to_chat(user, span_info("You empty \the [bag] into \the [src]."))
 
-				if(bag.atom_storage.attempt_remove(item, src))
-					current_item_count++
-
-			if(bag.contents.len == 0)
-				to_chat(user, span_info("You empty \the [bag] into \the [src]."))
-
-			else if (current_item_count >= max_items)
-				to_chat(user, span_info("You fill \the [src] from \the [bag] to its capacity."))
-
-			else
-				to_chat(user, span_info("You fill \the [src] from \the [bag]."))
-
-			start_process()
-			return TRUE //no afterattack
-
-		else if(istype(weapon, /obj/item/food))
-			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_warning("\The [src] is already full of compost."))
-				return TRUE
-
-			if(current_item_count >= max_items)
-				to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
-
-			else
-				if(user.transferItemToLoc(weapon, src))
-					current_item_count++
-					to_chat(user, span_info("You insert \the [weapon] in \the [src]"))
-
-			start_process()
-			return TRUE //no afterattack
+		else if (current_item_count >= max_items)
+			to_chat(user, span_info("You fill \the [src] from \the [bag] to its capacity."))
 
 		else
-			to_chat(user, span_warning("You cannot put \the [weapon] in \the [src]!"))
+			to_chat(user, span_info("You fill \the [src] from \the [bag]."))
+
+		start_process()
+		return ITEM_INTERACT_SUCCESS
+
+	else if(istype(tool, /obj/item/food))
+		if(reagents.total_volume >= reagents.maximum_volume)
+			to_chat(user, span_warning("\The [src] is already full of compost."))
+			return
+
+		if(current_item_count >= max_items)
+			to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
+
+		else
+			if(user.transferItemToLoc(tool, src))
+				current_item_count++
+				to_chat(user, span_info("You insert \the [tool] in \the [src]"))
+
+		start_process()
+		return ITEM_INTERACT_SUCCESS
+
+	else
+		to_chat(user, span_warning("You cannot put \the [tool] in \the [src]!"))
+		return
 
 /obj/machinery/compostbin/proc/start_process()
 	if(machine_stat != NONE)

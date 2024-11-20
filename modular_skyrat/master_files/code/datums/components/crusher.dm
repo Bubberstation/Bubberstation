@@ -151,7 +151,7 @@
 	if(target.dir & get_dir(user, target))
 		backstabbed = TRUE
 		dealt_damage += backstab_bonus
-		playsound(user, 'sound/weapons/kinetic_accel.ogg', 100, TRUE)
+		playsound(user, 'sound/items/weapons/kinetic_accel.ogg', 100, TRUE)
 
 	damage_effect.total_damage += dealt_damage
 	new /obj/effect/temp_visual/kinetic_blast(get_turf(target))
@@ -206,7 +206,7 @@
 
 	// just typing spawn(-1) is faster ugghhh tg
 	INVOKE_ASYNC(destabilizer, TYPE_PROC_REF(/obj/projectile, fire))
-	playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
+	playsound(user, 'sound/items/weapons/plasma_cutter.ogg', 100, TRUE)
 
 	var/obj/item/crusher = parent
 	charged = FALSE
@@ -220,5 +220,5 @@
 	var/obj/item/crusher = parent
 	charged = TRUE
 	crusher.update_appearance()
-	playsound(crusher.loc, 'sound/weapons/kinetic_reload.ogg', 60, TRUE)
+	playsound(crusher.loc, 'sound/items/weapons/kinetic_reload.ogg', 60, TRUE)
 
