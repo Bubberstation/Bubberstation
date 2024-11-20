@@ -23,7 +23,7 @@
 	update_appearance()
 
 // previously NO_DECONSTRUCTION
-/obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/railing/wooden_fencing/wirecutter_act(mob/living/user, obj/item/I)
 	return NONE
 
 // Fence gates for the above mentioned fences

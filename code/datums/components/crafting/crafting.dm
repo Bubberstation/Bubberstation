@@ -256,8 +256,8 @@
 	if(ismob(crafter))
 		crafter_mob = crafter
 		skill_modifier = crafter_mob.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER)
-	if(!do_after(crafter, recipe.time * skill_modifier, target = crafter))
-		return "."
+		if(!do_after(crafter, recipe.time * skill_modifier, target = crafter))
+			return "."
 	contents = get_surroundings(crafter, recipe.blacklist)
 	if(!check_contents(crafter, recipe, contents))
 		return ", missing component."
