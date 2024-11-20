@@ -22425,6 +22425,13 @@
 "hNy" = (
 /turf/closed/mineral/random/stationside/asteroid/porus,
 /area/station/asteroid)
+"hNI" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/holosign/barrier/atmos/leaf{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/hallway/primary/central/aft)
 "hNO" = (
 /obj/structure/cable,
 /turf/open/floor/circuit,
@@ -29767,14 +29774,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
-"kqy" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Laser Room"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/turf/open/floor/plating,
-/area/station/engineering/supermatter/room)
 "kqB" = (
 /obj/structure/railing,
 /obj/structure/table/glass,
@@ -30571,6 +30570,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
+"kDP" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter/room)
 "kDV" = (
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/iron/white,
@@ -42043,10 +42046,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/engineering/gravity_generator)
-"osk" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/station/engineering/supermatter/room)
 "oso" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -53012,6 +53011,14 @@
 /obj/structure/statue/bone/skull,
 /turf/open/water/jungle/biodome,
 /area/station/maintenance/central/greater)
+"seM" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Laser Room"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/turf/open/floor/plating,
+/area/station/engineering/supermatter/room)
 "seP" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/closed/wall/mineral/wood,
@@ -62637,6 +62644,7 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/airalarm/directional/south,
 /obj/structure/cable,
+/obj/effect/spawner/random/decoration/carpet/luxury,
 /turf/open/floor/iron/checker,
 /area/station/service/bar/backroom)
 "vDB" = (
@@ -70298,13 +70306,6 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
-"ydn" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/holosign/barrier/atmos/leaf{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/hallway/primary/central/aft)
 "ydq" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood/large,
@@ -110055,7 +110056,7 @@ jLf
 siV
 siV
 uSw
-kqy
+seM
 jLf
 uSw
 siV
@@ -111078,7 +111079,7 @@ nuO
 mNK
 oRg
 vOf
-osk
+kDP
 jjW
 oRg
 oRg
@@ -177841,9 +177842,9 @@ cDb
 cDb
 cDb
 ijZ
-ydn
-ydn
-ydn
+hNI
+hNI
+hNI
 ijZ
 ofe
 xkY
