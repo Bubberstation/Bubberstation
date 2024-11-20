@@ -2,12 +2,13 @@
 	name = "acid rainstorm"
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 	probability = 90
+	weather_effects_icon = 'modular_zubbers/icons/effects/weather_effects.dmi'
 
-	telegraph_message = span_userdanger("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
+	telegraph_message = span_boldannounce("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
 	telegraph_duration = 400
 	telegraph_sound = 'modular_zubbers/sound/ambience/acidrain_start.ogg'
 
-	weather_message = span_boldannounce("<i>Acidic rain pours down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
 	weather_overlay = "acid_rain"
 	weather_duration_lower = 1200
 	weather_duration_upper = 2400
@@ -34,15 +35,8 @@
 	if(!is_station_level(player.z))
 		return TRUE  // bypass checks
 
-	if(isobserver(player))
-		return TRUE
-
 	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
 		return TRUE
-
-	if(istype(get_area(player), /area/mine))
-		return TRUE
-
 
 	for(var/area/acid_area in impacted_areas)
 		if(locate(acid_area) in view(player))
@@ -57,56 +51,7 @@
 
 	probability = 0
 
-/// Copied from sand_storm.dm to get the acid rain to work properly. Surely there's a better way to do this.
-/datum/weather/acid_rain/generate_overlay_cache()
-	// We're ending, so no overlays at all
-	if(stage == END_STAGE)
-		return list()
-
-	var/weather_state = ""
-	switch(stage)
-		if(STARTUP_STAGE)
-			weather_state = telegraph_overlay
-		if(MAIN_STAGE)
-			weather_state = weather_overlay
-		if(WIND_DOWN_STAGE)
-			weather_state = end_overlay
-
-	// Use all possible offsets
-	// Yes this is a bit annoying, but it's too slow to calculate and store these from turfs, and it shouldn't (I hope) look weird
-	var/list/gen_overlay_cache = list()
-	for(var/offset in 0 to SSmapping.max_plane_offset)
-		// Note: what we do here is effectively apply two overlays to each area, for every unique multiz layer they inhabit
-		// One is the base, which will be masked by lighting. the other is "glowing", and provides a nice contrast
-		// This method of applying one overlay per z layer has some minor downsides, in that it could lead to improperly doubled effects if some have alpha
-		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
-		// LU
-		var/mutable_appearance/glow_overlay = mutable_appearance('modular_zubbers/icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, ABOVE_LIGHTING_PLANE, 100, offset_const = offset)
-		glow_overlay.color = weather_color
-		gen_overlay_cache += glow_overlay
-
-		var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
-		weather_overlay.color = weather_color
-		gen_overlay_cache += weather_overlay
-
-	return gen_overlay_cache
-
-/datum/weather/acid_rain/can_get_alert(mob/player)
-
-	if(!..())
-		return FALSE
-
-	if(isobserver(player))
-		return TRUE
-
-	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
-		return TRUE
-
-	if(istype(get_area(player), /area/jungleplanet/nearstation || /area/jungleplanet/surface))
-		return TRUE
-
-	return FALSE
-
+/// Copied from sand_storm.dm to get the acid rain to work properly.
 /mob/Login()
 	. = ..()
 	if(.)
