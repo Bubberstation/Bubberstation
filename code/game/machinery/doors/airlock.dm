@@ -1397,22 +1397,13 @@
 		if(DEFAULT_DOOR_CHECKS to FORCING_DOOR_CHECKS)
 			if(obj_flags & EMAGGED)
 				return FALSE
-			//BUBBER EDIT BEGIN
-			for(var/P in GLOB.player_list)
-				var/mob/M = P
-				if(!M || !M.client)
-					continue
-				if(!(M.client.prefs?.read_preference(/datum/preference/toggle/fancy_airlock_sounds))) // Do we have old sounds enabled?
-					playsound(src, legacy_close, 30, TRUE)
-				else
-					playsound(src, doorClose, 25, FALSE)
-			//BUBBER EDIT END
 			use_energy(50 JOULES)
-			//playsound(src, doorClose, 30, TRUE) BUBBER EDIT - USES PREFS
+			playsound(src, doorClose, 30, TRUE)
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS)
-			playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
+			// playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE) - Original
+			playsound(src, forcedClosed, 30, TRUE) // BUBBER EDIT CHANGE - AESTHETICS
 			return TRUE
 
 		else
