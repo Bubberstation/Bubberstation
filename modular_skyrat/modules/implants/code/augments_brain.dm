@@ -67,8 +67,6 @@
 
 	if(!do_after(source, 2 SECONDS, source))
 		message = full_capitalize(rot13(message))
-	if((organ_flags & ORGAN_FAILING)) // damaged/emped brain corrodes the message sent
-		message = stars(message)
 	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
