@@ -67,7 +67,7 @@
 	desc = "A repair kit that allows for NIFs to be repaired without the use of surgery"
 	special_desc = "The effects of capitalism and industry run deep, and they run within the Nanite Implant Framework industry as well. \
 	Frameworks, complicated devices as they are, are normally locked at the firmware level to requiring specific 'approved' brands of repair paste or repair-docks. \
-	This hacked-kit has been developed by the Altspace Coven as a freeware alternative, spread far and wide throughout extra-Solarian space for quality of life \
+	This hacked-kit has been developed by the Altspace Coven as a freeware alternative, spread far and wide throughout extra-Terran space for quality of life \
 	for users located on the peripheries of society."
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/devices.dmi'
 	icon_state = "repair_paste"
