@@ -75,9 +75,9 @@
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
 	//turn this into a trait maybe?
 		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
 
-		if(!istype(ears) && !istype(empathic_sensor))
+		if(!istype(ears) && !istype(implant))
 			continue
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
