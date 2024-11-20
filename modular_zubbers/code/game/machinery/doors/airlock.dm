@@ -9,7 +9,7 @@
 				if(AIRLOCK_OPENING)
 					listening_mob.playsound_local(turf_source = src.loc, soundin = sound_dept_open, vol = 25, vary = FALSE)
 				if(AIRLOCK_CLOSING)
-					listening_mob.playsound_local(turf_source = src.loc, soundin = sound_dept_open, vol = 25, vary = FALSE)
+					listening_mob.playsound_local(turf_source = src.loc, soundin = sound_dept_close, vol = 25, vary = FALSE)
 		else
 			switch(airlock_state)
 				if(AIRLOCK_OPENING)
