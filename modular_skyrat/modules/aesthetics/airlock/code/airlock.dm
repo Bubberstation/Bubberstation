@@ -1,11 +1,14 @@
 /obj/machinery/door/airlock
-	legacy_open = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
-	legacy_close = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
+	doorOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
+	doorClose = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
 	boltUp = 'modular_skyrat/modules/aesthetics/airlock/sound/bolts_up.ogg'
 	boltDown = 'modular_skyrat/modules/aesthetics/airlock/sound/bolts_down.ogg'
 	var/forcedOpen = 'modular_skyrat/modules/aesthetics/airlock/sound/open_force.ogg' //Come on guys, why aren't all the sound files like this.
 	var/forcedClosed = 'modular_skyrat/modules/aesthetics/airlock/sound/close_force.ogg'
-
+	/// Department specific airlock open sound
+	var/sound_dept_open = 'modular_skyrat/modules/aesthetics/airlock/sound/open.ogg'
+	/// Department specific airlock close sound
+	var/sound_dept_close = 'modular_skyrat/modules/aesthetics/airlock/sound/close.ogg'
 	/// For those airlocks you might want to have varying "fillings" for, without having to
 	/// have an icon file per door with a different filling.
 	var/fill_state_suffix = null

@@ -1312,14 +1312,14 @@
 			if(!hasPower() || wires.is_cut(WIRE_OPEN) || (obj_flags & EMAGGED))
 				return FALSE
 			use_energy(50 JOULES)
-			playsound(src, doorOpen, 30, TRUE)
+			airlock_sound(AIRLOCK_OPENING) // BUBBER EDIT CHANGE - Original: playsound(src, doorOpen, 30, TRUE)
 			return TRUE
 
 		if(FORCING_DOOR_CHECKS) // Only one check.
 			if(obj_flags & EMAGGED)
 				return FALSE
 			use_energy(50 JOULES)
-			playsound(src, doorOpen, 30, TRUE)
+			airlock_sound(AIRLOCK_OPENING) // BUBBER EDIT CHANGE - Original: playsound(src, doorOpen, 30, TRUE)
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS) // No power usage, special sound, get it open.
@@ -1398,7 +1398,7 @@
 			if(obj_flags & EMAGGED)
 				return FALSE
 			use_energy(50 JOULES)
-			playsound(src, doorClose, 30, TRUE)
+			airlock_sound(AIRLOCK_CLOSING) // BUBBER EDIT CHANGE - Original: playsound(src, doorClose, 30, TRUE)
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS)
