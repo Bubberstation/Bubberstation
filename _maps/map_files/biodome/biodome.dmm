@@ -15895,6 +15895,13 @@
 /obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/iron/dark/small,
 /area/station/science/genetics)
+"fvT" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/space/openspace,
+/area/space/nearstation)
 "fvX" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/trimline/dark/line,
@@ -24974,7 +24981,9 @@
 /area/station/cargo/miningdock)
 "iIL" = (
 /obj/effect/decal/cleanable/blood/gibs/torso,
-/turf/open/misc/asteroid/dug,
+/turf/open/misc/asteroid/dug{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/station/asteroid)
 "iIV" = (
 /obj/effect/landmark/navigate_destination/bar,
@@ -39128,11 +39137,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
-"nuq" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/burgundy,
-/turf/open/space/openspace,
-/area/space/nearstation)
 "nuD" = (
 /obj/structure/shipping_container/deforest,
 /turf/open/misc/asteroid/airless,
@@ -43756,7 +43760,9 @@
 /area/station/maintenance/port/central)
 "oWn" = (
 /obj/effect/decal/cleanable/ants/fire,
-/turf/open/misc/asteroid/dug,
+/turf/open/misc/asteroid/dug{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/station/asteroid)
 "oWu" = (
 /obj/effect/turf_decal/tile/dark/diagonal_centre,
@@ -59235,10 +59241,8 @@
 /turf/open/openspace,
 /area/station/science/xenobiology)
 "upy" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 1
-	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
 /turf/open/space/openspace,
 /area/space/nearstation)
 "upK" = (
@@ -61620,6 +61624,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
+"vjq" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/sign/departments/restroom/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "vjs" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -67320,12 +67330,6 @@
 /obj/structure/bookcase/manuals/engineering,
 /turf/open/floor/plating/elevatorshaft,
 /area/station/maintenance/department/science)
-"xaK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/sign/departments/restroom/directional/east,
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
 "xbr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -149608,7 +149612,7 @@ hHc
 hHc
 hHc
 hHc
-nuq
+upy
 dUQ
 qlI
 qlI
@@ -150636,7 +150640,7 @@ hHc
 hHc
 hHc
 hHc
-nuq
+upy
 dUQ
 qlI
 qlI
@@ -158620,7 +158624,7 @@ wuF
 txv
 fmZ
 fmZ
-xaK
+vjq
 tTk
 dWa
 oup
@@ -166670,7 +166674,7 @@ vnI
 vnI
 vnI
 vnI
-upy
+fvT
 hHc
 hHc
 hHc
