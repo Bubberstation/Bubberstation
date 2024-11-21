@@ -85,7 +85,8 @@
 	swap_minds()
 
 /obj/item/mod/module/mind_swap/on_suit_activation()
-	ai_key = mod.ai_assistant.key
+
+	ai_key = mod.ai_assistant?.key
 	wearer_key = mod.wearer.key
 
 /obj/item/mod/module/mind_swap/on_suit_deactivation(deleting = FALSE)
