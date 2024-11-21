@@ -55,6 +55,8 @@
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
 	give_exploitables = FALSE
 
+// crew spawners
+
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service
 	outfit = /datum/outfit/persistence/syndicate/service
 
@@ -75,6 +77,11 @@
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/quartermaster
 	outfit = /datum/outfit/persistence/syndicate/quartermaster
+
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer
+	outfit = /datum/outfit/persistence/syndicate/moraleofficer
+
+//command spawners
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/masteratarms
 	outfit = /datum/outfit/persistence/command/masteratarms
@@ -241,6 +248,16 @@
 	l_pocket = /obj/item/card/mining_point_card
 	r_pocket = /obj/item/mining_voucher
 	head = /obj/item/clothing/head/soft/black
+
+/datum/outfit/persistence/syndicate/moraleofficer
+	name = "Persistence Morale Officer"
+	uniform = /obj/item/clothing/under/syndicate/sniper
+	head = /obj/item/clothing/head/fedora
+	shoes = /obj/item/clothing/shoes/laceup
+	back = /obj/item/storage/backpack/satchel
+	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/moraleofficer
+	mask = /obj/item/clothing/mask/gas/clown_hat
+
 
 //gives syndicate role so turrets don't shoot operative
 /datum/outfit/persistence/syndicate/post_equip(mob/living/carbon/human/syndicate)

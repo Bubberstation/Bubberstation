@@ -89,7 +89,7 @@
 	assignment = "Persistence Morale Officer"
 	trim_state = "trim_clown"
 	sechud_icon_state = SECHUD_CLOWN
-	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
+	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS)
 
 /datum/id_trim/syndicom/bubberstation/persistence/assistant
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
