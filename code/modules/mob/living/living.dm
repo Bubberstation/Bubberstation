@@ -565,6 +565,7 @@
 			to_chat(src, text="You are unable to succumb to death! This life continues.", type=MESSAGE_TYPE_INFO)
 			return
 	log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
+	balloon_alert_to_viewers("succumbed to their wounds...", "succumbed...", 9) // BUBBER EDIT ADDITION - ALERT OBSERVERS THAT THEY SUCCUMBED
 	adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
 	updatehealth()
 	if(!whispered)
