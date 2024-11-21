@@ -1,5 +1,5 @@
 ///the minimum size of a pill or patch
-#define MIN_VOLUME 5
+#define MIN_VOLUME 1
 ///the maximum size a pill or patch can be
 #define MAX_VOLUME 100
 ///max amount of pills allowed on our tile before we start storing them instead
