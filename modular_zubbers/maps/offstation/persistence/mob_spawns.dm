@@ -17,7 +17,7 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
-	computer_area = /area/ruin/space/has_grav/bubbers/persistance/service
+	computer_area = /area/ruin/space/has_grav/bubbers/persistance/service/lockers
 	spawner_job_path = /datum/job/persistence
 	/// If true, this spawner will give it's target exploitables access.
 	var/give_exploitables = TRUE
