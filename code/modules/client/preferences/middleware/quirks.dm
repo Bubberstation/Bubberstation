@@ -54,7 +54,6 @@
 			"value" = initial(quirk.value),
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
-			"veteran_only" = initial(quirk.veteran_only), // SKYRAT EDIT - Veteran quirks
 			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
 		)
 
