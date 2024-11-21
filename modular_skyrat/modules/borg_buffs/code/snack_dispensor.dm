@@ -148,6 +148,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/food/snacks.dmi'
 	icon_state = "bacon_strip"
 	foodtypes = MEAT
+	tastes = list("bacon" = 1)
 
 /obj/item/food/cookie/cloth
 	name = "odd cookie"
@@ -155,3 +156,4 @@
 	icon = 'modular_skyrat/master_files/icons/obj/food/snacks.dmi'
 	icon_state = "cookie_cloth"
 	foodtypes = CLOTH
+	tastes = list("synthetic clothing fibers" = 1)
