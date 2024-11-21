@@ -15,75 +15,49 @@
 	. = ..()
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
-	if(owner.stat == DEAD)
-		return
 	
 	owner.adjust_stutter(30 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(reboot)), 90 / severity)
-	implant_disabled()
+	addtimer(CALLBACK(src, PROC_REF(reboot)), 180 / severity)
 	to_chat(owner, span_warning("You feel overwhelmed!"))
+	implant_disabled()
 
-/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/reboot()
-	organ_flags &= ~ORGAN_FAILING
-	implant_ready()
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/implant_disabled()
 	organ_flags |= ORGAN_FAILING
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
-	owner.remove_language(/datum/language/marish/empathy/, source = LANGUAGE_IMPLANT)
+	owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/implant_ready()
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-	owner.grant_language(/datum/language/marish/empathy/, source = LANGUAGE_IMPLANT)
+	owner.grant_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 	if(owner)
 		to_chat(owner, span_abductor("Your mind opens to others. You can hear the thoughts of those around you, but only faintly."))
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_remove(mob/living/carbon/implant_owner)
 	. = ..()
-	implant_disabled()
+	if(QDELETED(src))
+		return
 	to_chat(implant_owner, span_abductor("Your mind closes from others. It's quiet, now."))
+	implant_disabled(owner = implant_owner)
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_insert(mob/living/carbon/receiver)
 	. = ..()
-	to_chat(receiver, span_abductor("You begin to feel an awareness of those around you."))
+	to_chat(owner, span_abductor("You begin to feel an awareness of those around you."))
 	addtimer(CALLBACK(src, PROC_REF(implant_ready)), 90)
 
-//code mostly lifted from shadekins
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/reboot()
+	organ_flags &= ~ORGAN_FAILING
+	implant_ready()
 
-/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
-	if(speech_args[SPEECH_LANGUAGE] == /datum/language/marish/empathy )
-		return modify_speech(source, speech_args)
+//code mostly lifted from shadekins
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/modify_speech(datum/source, list/speech_args)
 	ASYNC
-		actually_modify_speech(source, speech_args)
+	if(!(organ_flags & ORGAN_FAILING))
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/organ/internal/tongue/shadekin/, actually_modify_speech), source = owner, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
+	
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
+	if(speech_args[SPEECH_LANGUAGE] == /datum/language/marish/empathy)
+		modify_speech(source, speech_args)
 
-//cumbersomely copied from the empathy language....
-/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/actually_modify_speech(datum/source, list/speech_args)
-	var/message = speech_args[SPEECH_MESSAGE]
-	var/mob/living/carbon/human/user = source
-	user.balloon_alert_to_viewers("ears vibrate", "projecting thoughts...")
-
-	if(!do_after(source, 2 SECONDS, source))
-		message = full_capitalize(rot13(message))
-	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
-
-	user.log_talk(message, LOG_SAY, tag="shadekin")
-	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-	//turn this into a trait maybe?
-		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
-
-		if(!istype(ears) && !istype(implant))
-			continue
-		to_chat(living_mob, rendered)
-		if(living_mob != user)
-			living_mob.balloon_alert_to_viewers("ears vibrate", "transmission heard...")
-		
-
-	if(length(GLOB.dead_mob_list))
-		for(var/mob/dead_mob in GLOB.dead_mob_list)
-			if(dead_mob.client)
-				var/link = FOLLOW_LINK(dead_mob, user)
-				to_chat(dead_mob, "[link] [rendered]")

@@ -46,8 +46,6 @@
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
 		return modify_speech(source, speech_args)
 
-
-
 /obj/item/organ/internal/tongue/shadekin/modify_speech(datum/source, list/speech_args)
 	ASYNC
 		actually_modify_speech(source, speech_args)
@@ -64,16 +62,16 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-	//turn this into a trait maybe...
 		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
 
-		if(!istype(ears) && !istype(empathic_sensor))
+		if(!istype(ears) && !istype(implant))
 			continue
 			
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
-			living_mob.balloon_alert_to_viewers("ears vibrate", "transmission heard...")
+			var/mode = istype(ears)
+			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
 
 	if(length(GLOB.dead_mob_list))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)
