@@ -5321,6 +5321,12 @@
 	dir = 4;
 	name = "Gas to Chamber"
 	},
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
+/obj/effect/mapping_helpers/airalarm/engine_access,
+/obj/effect/mapping_helpers/airalarm/link{
+	chamber_id = "engine"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "bQd" = (
@@ -34928,11 +34934,9 @@
 	network = list("ss13","engine")
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/engine_access,
 /obj/structure/cable/layer1,
 /turf/open/floor/engine,
-/area/station/engineering/supermatter)
+/area/station/engineering/supermatter/room)
 "lZD" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -35600,6 +35604,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/red/box,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "mjV" = (
@@ -36674,6 +36679,10 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/service/library)
+"mDV" = (
+/obj/machinery/button/delam_scram,
+/turf/closed/wall/r_wall,
+/area/station/engineering/main)
 "mEd" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /turf/open/floor/circuit/green{
@@ -44428,12 +44437,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "phY" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "External Gas to Loop"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/incident_display/delam/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/stripes/red/box,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pil" = (
@@ -44450,6 +44455,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
+"piZ" = (
+/obj/machinery/air_sensor/engine_chamber,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "pje" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/carpet,
@@ -63015,6 +63024,13 @@
 "vJH" = (
 /turf/closed/wall,
 /area/station/command/heads_quarters/qm)
+"vJN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/delam_scram/directional/west,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "vJS" = (
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -106450,7 +106466,7 @@ gMZ
 gMZ
 lvd
 cMI
-ttj
+mDV
 ttj
 mSg
 mSg
@@ -106707,7 +106723,7 @@ nfe
 nfe
 nfe
 kEZ
-nlO
+phY
 gvA
 nlO
 nlO
@@ -107478,7 +107494,7 @@ gXp
 bGq
 gtH
 lBW
-phY
+lBW
 uXD
 uve
 tkq
@@ -108251,8 +108267,8 @@ ppF
 tIT
 hiO
 aiH
-qvF
-hiO
+vJN
+piZ
 esB
 pSY
 myo
