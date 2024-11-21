@@ -4,13 +4,19 @@
 /area/centcom/central_command_areas/admin/interlink)
 "b" = (
 /obj/machinery/holopad/secure,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "d" = (
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/effect/mapping_helpers/apc/cell_10k,
 /obj/structure/cable,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "e" = (
 /obj/machinery/modular_computer/preset/id/centcom,
@@ -18,30 +24,67 @@
 /area/centcom/central_command_areas/admin/interlink)
 "g" = (
 /obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/item/folder/blue{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/folder/yellow{
+	pixel_x = 3;
+	pixel_y = 2
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "h" = (
 /obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	pixel_y = 24;
+	density = 0
+	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "j" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/centcom/double,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
+/area/centcom/central_command_areas/admin/interlink)
+"k" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("secret")
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "l" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	density = 0;
+	pixel_y = 24
+	},
+/turf/open/floor/wood/large,
+/area/centcom/central_command_areas/admin/interlink)
+"m" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/vending/boozeomat/cafe{
+	pixel_y = 32;
+	density = 0
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "n" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/central_command_areas/admin/interlink)
 "o" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "p" = (
 /obj/structure/table/wood,
@@ -56,10 +99,22 @@
 /obj/item/stamp{
 	pixel_y = 10
 	},
-/obj/machinery/requests_console/auto_name/directional/north,
+/obj/machinery/requests_console/auto_name/directional/north{
+	pixel_x = 3;
+	pixel_y = 31
+	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
+/obj/machinery/button/door/directional/north{
+	name = "Admin Shutter Control";
+	id = "admin_shutters";
+	pixel_x = -5;
+	pixel_y = 21
+	},
+/obj/item/toy/crayon/white{
+	pixel_x = 9
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "q" = (
@@ -69,11 +124,11 @@
 /obj/structure/chair/comfy/beige{
 	dir = 4
 	},
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "r" = (
 /obj/structure/dresser,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "s" = (
 /obj/structure/filingcabinet/employment,
@@ -93,7 +148,13 @@
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "admin_shutters"
 	},
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
+/area/centcom/central_command_areas/admin/interlink)
+"v" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "x" = (
 /obj/machinery/light/directional/east,
@@ -102,24 +163,31 @@
 "z" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/light/directional/west,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "A" = (
 /obj/structure/bookcase/random/reference,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "C" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "D" = (
 /obj/machinery/computer/camera_advanced,
-/obj/machinery/button/door/directional/north{
-	name = "Admin Shutter Control";
-	id = "admin_shutters";
-	pixel_x = -7
+/obj/structure/chalkboard{
+	pixel_y = 32
 	},
 /turf/open/floor/carpet/executive,
+/area/centcom/central_command_areas/admin/interlink)
+"E" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "F" = (
 /obj/machinery/door/airlock/corporate{
@@ -130,21 +198,22 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "G" = (
 /obj/structure/table/wood,
-/obj/item/pen/fourcolor{
-	pixel_x = 8;
-	pixel_y = 3
+/obj/item/flashlight/lamp/green{
+	pixel_x = -8;
+	pixel_y = 2
 	},
+/obj/item/feather,
 /obj/item/pen/fountain/captain{
 	pixel_y = -1;
 	pixel_x = 6
 	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = -8;
-	pixel_y = 2
+/obj/item/pen/fourcolor{
+	pixel_x = 8;
+	pixel_y = 3
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
@@ -155,20 +224,31 @@
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "J" = (
-/obj/machinery/vending/wardrobe/cent_wardrobe,
-/turf/open/floor/wood/tile,
+/obj/machinery/vending/wardrobe/cent_wardrobe{
+	density = 0;
+	pixel_y = 31;
+	pixel_x = 6
+	},
+/obj/machinery/vending/access/command{
+	pixel_x = 28;
+	density = 0
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "K" = (
 /obj/machinery/light_switch/directional/south,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "L" = (
-/obj/structure/bed/dogbed,
+/obj/machinery/photocopier/gratis,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "M" = (
 /obj/item/banner/command/mundane,
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "N" = (
 /obj/structure/fireplace,
@@ -176,7 +256,10 @@
 	pixel_y = -5;
 	pixel_x = -10
 	},
-/turf/open/floor/wood/tile,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "O" = (
 /obj/structure/table/wood,
@@ -184,7 +267,7 @@
 	fax_name = "Administrative Office"
 	},
 /obj/effect/turf_decal/siding/wood/corner,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "P" = (
 /obj/structure/table/wood,
@@ -195,7 +278,15 @@
 /area/centcom/central_command_areas/admin/interlink)
 "R" = (
 /obj/structure/sign/flag/nanotrasen/directional/south,
-/turf/open/floor/wood/tile,
+/obj/structure/bed/dogbed,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/pet/penguin/emperor/neuter{
+	desc = "Empress of all she surveys. No wonder the room is kept so cold though!";
+	name = "Pengy The Mighty"
+	},
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "S" = (
 /obj/effect/turf_decal/siding/wood{
@@ -204,7 +295,7 @@
 /obj/machinery/door/airlock/corporate,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "T" = (
 /turf/open/floor/carpet/royalblack,
@@ -213,14 +304,14 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "W" = (
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "X" = (
 /obj/machinery/light_switch/directional/west,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 
 (1,1,1) = {"
@@ -240,8 +331,8 @@ t
 (2,1,1) = {"
 n
 h
-W
-W
+U
+U
 M
 z
 u
@@ -257,7 +348,7 @@ l
 T
 T
 T
-W
+v
 u
 t
 t
@@ -267,7 +358,7 @@ t
 "}
 (4,1,1) = {"
 n
-W
+m
 T
 T
 T
@@ -282,9 +373,9 @@ t
 (5,1,1) = {"
 n
 N
-W
+E
 b
-W
+E
 d
 n
 t
@@ -296,10 +387,10 @@ t
 (6,1,1) = {"
 n
 O
-U
+q
 q
 U
-U
+k
 n
 t
 t

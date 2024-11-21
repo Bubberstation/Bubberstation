@@ -240,7 +240,7 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Ghoulization unlocked!")
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Ghouling unlocked!")
 	return TRUE
 
 
@@ -292,16 +292,16 @@
 		option.image = image(icon = initial(ghouldatums.hud_icon), icon_state = initial(ghouldatums.antag_hud_name), pixel_y = -12, pixel_x = -12)
 		option.info = "[initial(ghouldatums.name)] - [span_boldnotice(initial(ghouldatums.ghoul_description))]"
 		radial_display[initial(ghouldatums.name)] = option
-
-	if(!options.len)
+	if(!length(options))
 		master.balloon_alert(master, "Out of Special Ghoul slots!")
 		return FALSE
 
 	to_chat(master, span_notice("You can change who this Ghoul is, who are they to you? This will cost [SPECIAL_GHOUL_COST] blood."))
 	var/ghoul_response = show_radial_menu(master, servant, radial_display)
-	if(!ghoul_response)
+	if(!ghoul_response || !is_valid_ghoul(options[ghoul_response]))
 		return FALSE
 	var/datum/antagonist/ghoul/ghoul_type = options[ghoul_response]
+
 	// let's ask if the ghoul themselves actually wants to be a favorite
 #ifndef BLOODSUCKER_TESTING
 	servant.balloon_alert(master, "asking...")
@@ -312,6 +312,7 @@
 #endif
 	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !ghoul_type)
 		return FALSE
+
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
 		to_chat(master, span_notice("You took too long to make your ghoul, you no longer have enough blood!"))
 		return FALSE
@@ -319,6 +320,10 @@
 	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_GHOUL_COST)
 	return TRUE
 
+/datum/bloodsucker_clan/proc/is_valid_ghoul(datum/antagonist/ghoul/ghoul_type)
+	if(!ghoul_type)
+		return FALSE
+	return TRUE
 /**
  * Called when we are successfully turn a Ghoul into a Favorite Ghoul
  * args:

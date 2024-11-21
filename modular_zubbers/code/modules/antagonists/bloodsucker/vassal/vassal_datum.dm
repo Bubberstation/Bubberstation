@@ -76,7 +76,7 @@
 /// This is called when the antagonist is successfully mindshielded.
 /datum/antagonist/ghoul/on_mindshield(mob/implanter, mob/living/mob_override)
 	owner.remove_antag_datum(/datum/antagonist/ghoul)
-	owner.current.log_message("has been deconverted from Ghoulization by [implanter]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been deconverted from Ghouling by [implanter]!", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
 
 /datum/antagonist/ghoul/proc/on_examined(datum/source, mob/examiner, examine_text)
@@ -98,7 +98,7 @@
 		master.special_ghouls[special_type] |= src
 	master.ghouls += src
 	owner.enslave_mind_to_creator(master.owner.current)
-	owner.current.log_message("has been ghoulized by [master.owner.current]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("has been ghouled by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
 	BuyPower(/datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives

@@ -1,5 +1,5 @@
 
-#define EMOTE_DELAY (1 SECONDS) //To prevent spam emotes. - BUBBER EDIT 5 to 1 SECOND CHANGE IN COOLDOWN
+#define EMOTE_DELAY (1 SECONDS) // BUBBER TODO - Look over how these work and why they borked
 
 /mob
 	var/nextsoundemote = 1 //Time at which the next emote can be played

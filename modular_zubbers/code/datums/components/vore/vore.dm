@@ -364,9 +364,10 @@
 
 /proc/check_vore_grab(mob/living/grabber)
 	var/mob/living/grabee = grabber.pulling
+	var/minimum_grab_state = iscyborg(grabee) ? GRAB_PASSIVE : GRAB_AGGRESSIVE
 	if(!istype(grabee))
 		return FALSE
-	if(ishuman(grabber) && grabber.grab_state < GRAB_AGGRESSIVE)
+	if(ishuman(grabber) && grabber.grab_state < minimum_grab_state)
 		return FALSE
 	return TRUE
 

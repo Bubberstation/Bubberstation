@@ -13,6 +13,12 @@
 	write_cache()
 	update_tally_printout()
 
+	var/list/message_data = list()
+	for(var/map_id in map_vote.choices)
+		var/datum/map_config/map = config.maplist[map_id]
+		message_data += "[map.map_name] - [map_vote_cache[map_id]]"
+	var/filtered_vote_results = "[span_bold("Vote Results (Including Carryover)")]\n\n[message_data.Join("\n")]"
+
 	if(admin_override)
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
@@ -36,11 +42,11 @@
 
 	ASSERT(winner, "No winner found in map vote.")
 	set_next_map(config.maplist[winner])
-	var/list/messages = list(tally_printout)
-	messages += list("<hr>Next Map: [span_cyan(span_bold(next_map_config.map_name))]")
+	var/list/vote_result_message = list(filtered_vote_results)
+	vote_result_message += list("<hr>Next Map: [span_cyan(span_bold(next_map_config.map_name))]")
 	var/carryover_percentage = CONFIG_GET(number/map_vote_tally_carryover_percentage)
 	if(carryover_percentage)
-		messages += list("\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.")
+		vote_result_message += list("\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.")
 
 	// do not reset tallies if only one map is even possible
 	if(length(valid_maps) > 1)
@@ -48,9 +54,9 @@
 		write_cache()
 		update_tally_printout()
 	else
-		messages += "Only one map was possible, tallies were not reset."
+		vote_result_message += "Only one map was possible, tallies were not reset."
 
-	send_map_vote_notice(arglist(messages))
+	send_map_vote_notice(arglist(vote_result_message))
 
 /datum/controller/subsystem/map_vote/send_map_vote_notice(...)
 	var/static/last_message_at
@@ -66,4 +72,4 @@
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
 		data += "[map.map_name] - [map_vote_cache[map_id]]"
-	tally_printout = "[span_bold("Vote Results (Including Carryover)")]\n\n[data.Join("\n")]"
+	tally_printout = "[span_bold("Current Map Tallies (Including Carryover)")]\n\n[data.Join("\n")]"
