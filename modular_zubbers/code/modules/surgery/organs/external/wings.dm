@@ -47,7 +47,7 @@
 		to_chat(owner, span_warning("There's far too little air for your wings to work against!"))
 		return
 
-	if(owner.incapacitated())
+	if(owner.incapacitated)
 		return
 
 	if(!COOLDOWN_FINISHED(src, dash_cooldown))
@@ -58,7 +58,7 @@
 
 	ADD_TRAIT(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)
 	if (owner.throw_at(dash_target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
-		playsound(owner, 'sound/voice/moth/moth_flutter.ogg', 50, TRUE, TRUE)
+		playsound(owner, 'sound/mobs/humanoids/moth/moth_flutter.ogg', 50, TRUE, TRUE)
 		owner.visible_message(span_warning("[usr] propels themselves forwards with a heavy wingbeat!"))
 		COOLDOWN_START(src, dash_cooldown, 6 SECONDS)
 		var/mob/living/dash_user = owner
@@ -69,7 +69,7 @@
 
 /datum/emote/living/mothic_dash
 	key = "mdash"
-	key_third_person = "mdash"
+	key_third_person = "mothdash"
 	cooldown = 6 SECONDS
 
 /datum/emote/living/mothic_dash/run_emote(mob/living/user, params, type_override, intentional)
@@ -90,65 +90,25 @@
 	spell_requirements = NONE
 	antimagic_flags = NONE
 
-	hand_path = /obj/item/climbing_moth_wings
+	hand_path = /obj/item/climbing_hook/climbing_moth_wings
 	draw_message = span_notice("You outstretch your wings, ready to climb upwards.")
 	drop_message = span_notice("Your wings tuck back behind you.")
 
-/obj/item/climbing_moth_wings
+/obj/item/climbing_hook/climbing_moth_wings
 	name = "outstretched wings"
 	desc = "Useful for climbing up onto high places, though tiresome."
 	icon = 'icons/mob/human/species/moth/moth_wings.dmi'
 	icon_state = "m_moth_wings_monarch_BEHIND"
-	var/climb_time = 2.5 SECONDS
+	climb_time = 2.5 SECONDS
+	force = 0
+	throwforce = 0
+	climbsound = 'sound/mobs/humanoids/moth/moth_flutter.ogg'
 
-/obj/item/climbing_moth_wings/examine(mob/user)
-	. = ..()
-	var/list/look_binds = user.client.prefs.key_bindings["look up"]
-	. += span_notice("Firstly, look upwards by holding <b>[english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or ")]!</b>")
-	. += span_notice("Then, click solid ground adjacent to the hole above you.")
-
-/obj/item/climbing_moth_wings/afterattack(turf/open/target, mob/living/user, proximity_flag, click_parameters)
-	. = ..()
-	if(target.z == user.z)
-		return
-	if(!istype(target) || isopenspaceturf(target))
-		return
-
-	var/turf/user_turf = get_turf(user)
-	var/datum/gas_mixture/environment = user_turf.return_air()
-	var/turf/above = GET_TURF_ABOVE(user_turf)
-	if(target_blocked(target, above))
-		return
+/obj/item/climbing_hook/climbing_moth_wings/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/turf/check_turf = get_turf(user)
+	var/datum/gas_mixture/environment = check_turf.return_air()
 	if(environment.return_pressure() < (HAZARD_LOW_PRESSURE))
 		to_chat(user, span_warning("There's far too little air for your wings to work against!"))
-		return
-	if(!isopenspaceturf(above) || !above.Adjacent(target)) //are we below a hole, is the target blocked, is the target adjacent to our hole
-		user.balloon_alert(user, "blocked!")
-		return
-
-	var/away_dir = get_dir(above, target)
-	user.visible_message(span_notice("[user] begins pushing themselves upwards with their wings!"), span_notice("Your wings start fluttering violently as you begin going upwards."))
-	playsound(target, 'sound/voice/moth/moth_flutter.ogg', 50) //plays twice so people above and below can hear
-	playsound(user_turf, 'sound/voice/moth/moth_flutter.ogg', 50)
-	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(target, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))
-
-	if(do_after(user, climb_time, target))
-		user.forceMove(target)
-		user.adjustStaminaLoss(100)
-		playsound(user_turf, 'sound/voice/moth/moth_flutter.ogg', 50) //a third time for seasoning
-	QDEL_LIST(effects)
-
-/obj/item/climbing_moth_wings/proc/target_blocked(turf/target, turf/above)
-	if(target.density || above.density)
-		return TRUE
-
-	for(var/atom/movable/atom_content as anything in target.contents)
-		if(isliving(atom_content))
-			continue
-		if(HAS_TRAIT(atom_content, TRAIT_CLIMBABLE))
-			continue
-		if((atom_content.flags_1 & ON_BORDER_1) && atom_content.dir != get_dir(target, above)) //if the border object is facing the hole then it is blocking us, likely
-			continue
-		if(atom_content.density)
-			return TRUE
-	return FALSE
+		return ITEM_INTERACT_BLOCKING
+	. = ..()
+	qdel(src)

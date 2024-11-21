@@ -14,7 +14,7 @@
 
 	/// How much blood we have, starting off at default blood levels. Do not adjust this directly, use adjustBloodVolume(), and use getBloodVolume() to get the current value.
 	VAR_PRIVATE/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
-	/// How much blood we can have at once, increases per level.
+	/// How much blood we can have without it deckaying quickly, increases per level.
 	var/max_blood_volume = 600
 
 	var/datum/bloodsucker_clan/my_clan
@@ -48,27 +48,28 @@
 	///ALL Powers currently owned
 	var/list/datum/action/cooldown/bloodsucker/powers = list()
 
-	///Vassals under my control. Periodically remove the dead ones.
-	var/list/datum/antagonist/vassal/vassals = list()
-	///Special vassals I own, to not have double of the same type.
-	var/list/datum/antagonist/vassal/special_vassals = list()
+	///Ghouls under my control. Periodically remove the dead ones.
+	var/list/datum/antagonist/ghoul/ghouls = list()
+	///Special ghouls I own, to not have double of the same type.
+	var/list/datum/antagonist/ghoul/special_ghouls = list()
 
 	///How many ranks we have, don't modify this directly, use AdjustRank() and use GetRank() to get the current value.
 	VAR_PRIVATE/bloodsucker_level = 0
-	/// Unspent ranks, don't modify this directly, use AdjustUnspentRanks() and use GetUnspentRanks() to get the current value.
+	/// Unspent ranks, don't modify this directly, use AdjustUnspentRank() and use GetUnspentRank() to get the current value.
 	VAR_PRIVATE/bloodsucker_level_unspent = 1
 	var/additional_regen
 	var/blood_over_cap = 0
 	var/bloodsucker_regen_rate = 0.3
 
 	// Used for Bloodsucker Objectives
-	var/area/bloodsucker_lair_area
+	var/area/bloodsucker_haven_area
 	var/obj/structure/closet/crate/coffin
 	var/total_blood_drank = 0
 
 	/// Used for Bloodsuckers gaining levels from drinking blood
 	var/blood_level_gain = 0
-	var/blood_level_gain_amount = 0
+	/// How many levels you can get from Sol
+	var/sol_levels = 3
 
 	///Blood display HUD
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
@@ -77,8 +78,8 @@
 
 	/// Static typecache of all bloodsucker powers.
 	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, ignore_root_path = TRUE)
-	/// Antagonists that cannot be Vassalized no matter what
-	var/static/list/vassal_banned_antags = list(
+	/// Antagonists that cannot be Ghouled no matter what
+	var/static/list/ghoul_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		// /datum/antagonist/monsterhunter,
 		/datum/antagonist/changeling,
@@ -98,7 +99,6 @@
 		TRAIT_AGEUSIA,
 		TRAIT_COLDBLOODED,
 		TRAIT_VIRUSIMMUNE,
-		TRAIT_HARDLY_WOUNDED,
 		TRAIT_NO_MIRROR_REFLECTION,
 		TRAIT_DRINKS_BLOOD,
 		TRAIT_TOXIMMUNE,
@@ -106,10 +106,6 @@
 		TRAIT_STABLELIVER
 	)
 	var/static/biotype = MOB_VAMPIRIC
-	/// Weakref to the owner mob's heart, without bloodsucker_life stops and they die. Handled via signals due to the fact that
-	/// Bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
-	/// Saved here so we can keep a track of it and remove signals properly
-	var/datum/weakref/heart
 
 /**
  * Apply innate effects is everything given to the mob
@@ -123,8 +119,10 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
-	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_removal))
-	RegisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
+	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_owner_deletion))
+	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
+	RegisterSignal(current_mob, COMSIG_MOB_STAKED, PROC_REF(on_staked))
+	RegisterSignal(current_mob, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_removal))
 	talking_head()
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
@@ -136,13 +134,10 @@
 		RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
 	if(ishuman(current_mob))
 		current_mob?.dna?.species.on_bloodsucker_gain(current_mob)
-		add_signals_to_heart(current_mob)
-		// check if we already somehow don't have a heart, if this is possible, something is fucked up.
-		on_organ_removal(null, current_mob)
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
-	new /obj/structure/bloodsucker/vassalrack(user_loc)
+	new /obj/structure/bloodsucker/ghoulrack(user_loc)
 #endif
 
 /**
@@ -153,8 +148,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	remove_signals_from_heart(current_mob)
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING))
+	unregister_body_signals()
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -164,7 +158,8 @@
 		QDEL_NULL(vamprank_display)
 
 	SSsunlight.remove_sun_sufferer(owner.current) //check if sunlight should end
-	current_mob.dna?.species?.on_bloodsucker_loss(current_mob)
+	if(iscarbon(current_mob))
+		current_mob?.dna.species.on_bloodsucker_loss(current_mob)
 	if(current_mob.client)
 		// We need to let the bloodsucker antag datum get removed before we can re-add quirks
 		addtimer(CALLBACK(SSquirks, TYPE_PROC_REF(/datum/controller/subsystem/processing/quirks, AssignQuirks), current_mob, current_mob.client), 1 SECONDS)
@@ -191,14 +186,17 @@
 	SIGNAL_HANDLER
 	if(!ishuman(owner.current))
 		return
-	add_signals_to_heart(target)
 	var/mob/living/carbon/human/user = owner.current
 	user?.dna?.species.on_bloodsucker_gain(target)
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
 	.["Set blood level"] = CALLBACK(src, PROC_REF(admin_set_blood))
-	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp), TRUE)
+	.["Give Level"] = CALLBACK(src, PROC_REF(admin_rankup))
+	// I know admins can technically do it via VV's dropdown, but it's super inconvenient.
+	.["Give Power"] = CALLBACK(src, PROC_REF(admin_give_power))
+	.["Remove Power"] = CALLBACK(src, PROC_REF(admin_remove_power))
+	.["Set Power Level"] = CALLBACK(src, PROC_REF(admin_set_power_level))
 	if(bloodsucker_level_unspent >= 1)
 		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
@@ -221,9 +219,8 @@
 	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
 	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as Bloodsuckers.
+	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as roundstart Bloodsuckers.
 		bloodsucker_level_unspent = 0
-		show_in_roundend = FALSE
 	else
 		// Start Sunlight if first Bloodsucker
 		// Name and Titles
@@ -240,14 +237,18 @@
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
-	free_all_vassals()
+	free_all_ghouls()
 	if(!owner?.current)
 		return
+	unregister_sol_signals()
+	if(is_head(owner.current))
+		cleanup_talking_head()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
 		user?.dna?.species.regenerate_organs(user, null, TRUE)
 	clear_powers_and_stats()
 	ventrue_sired = null
+	coffin?.unclaim_coffin(FALSE, TRUE)
 	return ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
@@ -317,7 +318,7 @@
 
 // Called when using admin tools to give antag status
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
-	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
+	var/levels = tgui_input_number(admin, "How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", GetUnspentRank(), 100, 0)
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
 	if(levels > 1)
 		bloodsucker_level_unspent = levels
@@ -386,22 +387,22 @@
 				objectives_complete = FALSE
 				break
 
-	// Now list their vassals
-	if(vassals.len)
-		report += "<span class='header'>Their Vassals were...</span>"
-		for(var/datum/antagonist/vassal/all_vassals as anything in vassals)
-			if(!all_vassals.owner)
+	// Now list their ghouls
+	if(ghouls.len)
+		report += "<span class='header'>Their Ghouls were...</span>"
+		for(var/datum/antagonist/ghoul/all_ghouls as anything in ghouls)
+			if(!all_ghouls.owner)
 				continue
-			var/list/vassal_report = list()
-			vassal_report += "<b>[all_vassals.owner.name]</b>"
+			var/list/ghoul_report = list()
+			ghoul_report += "<b>[all_ghouls.owner.name]</b>"
 
-			if(all_vassals.owner.assigned_role)
-				vassal_report += " the [all_vassals.owner.assigned_role.title]"
-			if(IS_FAVORITE_VASSAL(all_vassals.owner.current))
-				vassal_report += " and was the <b>Favorite Vassal</b>"
-			else if(IS_REVENGE_VASSAL(all_vassals.owner.current))
-				vassal_report += " and was the <b>Revenge Vassal</b>"
-			report += vassal_report.Join()
+			if(all_ghouls.owner.assigned_role)
+				ghoul_report += " the [all_ghouls.owner.assigned_role.title]"
+			if(IS_FAVORITE_GHOUL(all_ghouls.owner.current))
+				ghoul_report += " and was the <b>Favorite Ghoul</b>"
+			else if(IS_REVENGE_GHOUL(all_ghouls.owner.current))
+				ghoul_report += " and was the <b>Revenge Ghoul</b>"
+			report += ghoul_report.Join()
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
@@ -454,8 +455,8 @@
  */
 /datum/antagonist/bloodsucker/proc/clear_powers_and_stats()
 	// Remove clan first
-	if(my_clan)
-		QDEL_NULL(my_clan)
+	// if(my_clan)
+	// 	QDEL_NULL(my_clan)
 	// Powers
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		RemovePower(all_powers)
@@ -494,6 +495,8 @@
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks()
 	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
+	if(!bad_quirk)
+		return
 	// silently remove the quirk if it's not valid
 	bad_quirk.remove_from_current_holder(TRUE)
 	owner.current.remove_quirk(/datum/quirk/sol_weakness)
@@ -509,17 +512,26 @@
 		return "<font color=red>Final Death</font>"
 	return ..()
 
+/datum/antagonist/bloodsucker/proc/considered_alive(datum/mind/player_mind, enforce_human)
+	if(!player_mind?.current) // no owner.current means there is no body, thus we final-death'd
+		return FALSE
+	if(is_head(player_mind.current))
+		return FALSE
+	if(am_staked())
+		return FALSE
+	return TRUE
+
 /datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
-	// Claim a Lair Objective
-	var/datum/objective/bloodsucker/lair/lair_objective = new
-	lair_objective.owner = owner
-	objectives += lair_objective
+	// Claim a haven Objective
+	var/datum/objective/bloodsucker/haven/haven_objective = new
+	haven_objective.owner = owner
+	objectives += haven_objective
 	// Survive Objective
 	var/datum/objective/survive/bloodsucker/survive_objective = new
 	survive_objective.owner = owner
 	objectives += survive_objective
 
-	// Objective 1: Vassalize a Head/Command, or a specific target
+	// Objective 1: Ghoulize a Head/Command, or a specific target
 	switch(rand(1, 3))
 		if(1) // Conversion Objective
 			var/datum/objective/bloodsucker/conversion/chosen_subtype = pick(subtypesof(/datum/objective/bloodsucker/conversion))

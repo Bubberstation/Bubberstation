@@ -118,9 +118,6 @@
 	balloon_alert(user, "transferring [amount_per_transfer_from_this]u")
 	mode_change_message(user)
 
-/obj/item/reagent_containers/attack(mob/M, mob/living/user, def_zone)
-	if(user.combat_mode)
-		return ..()
 /obj/item/reagent_containers/pre_attack_secondary(atom/target, mob/living/user, params)
 	if(HAS_TRAIT(target, TRAIT_DO_NOT_SPLASH))
 		return ..()
@@ -258,7 +255,6 @@
 			reagents.expose(target, TOUCH)
 		//SKYRAT EDIT END
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
-		//reagents.expose(target, TOUCH) //SKYRAT EDIT REMOVAL
 		if(QDELETED(src))
 			return
 

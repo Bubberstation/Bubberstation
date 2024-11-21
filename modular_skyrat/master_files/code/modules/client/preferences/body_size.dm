@@ -2,8 +2,12 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_size"
+	//SPLURT EDIT CHANGE - Sizecode
+	/*
 	minimum = BODY_SIZE_MIN
 	maximum = BODY_SIZE_MAX
+	*/
+	//SPLURT EDIT END
 	step = 0.01
 
 /datum/preference/numeric/body_size/is_accessible(datum/preferences/preferences)

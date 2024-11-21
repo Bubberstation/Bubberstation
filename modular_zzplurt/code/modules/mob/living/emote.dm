@@ -670,8 +670,8 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snore/snore2/run_emote(mob/user, params)
-	var/datum/dna/D = user.has_dna()
-	var/say_mod = (D ? D.species.say_mod : "says")
+	var/obj/item/organ/internal/tongue/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/say_mod = (tongue ? tongue.say_mod : "says")
 	var/list/aaauughh = list(
 		"lets out an <b>earthshaking</b> snore.",
 		"lets out what sounds like a <b>painful</b> snore.",
@@ -790,8 +790,8 @@
 	sound = 'modular_zzplurt/sound/voice/barks/poyo.ogg'
 
 /datum/emote/living/poyo/run_emote(mob/user, params, type_override, intentional)
-	var/datum/dna/D = user.has_dna()
-	var/say_mod = (D ? D.species.say_mod : "says")
+	var/obj/item/organ/internal/tongue/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/say_mod = (tongue ? tongue.say_mod : "says")
 	message = replacetextEx(message, "%SAYS", say_mod)
 	. = ..()
 

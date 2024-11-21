@@ -1,19 +1,24 @@
-/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+/datum/antagonist/bloodsucker/proc/can_claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+	if(coffin)
+		return FALSE
 	// ALREADY CLAIMED
 	if(claimed.resident)
-		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
-		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+		if(claimed.resident != owner.current)
+			claimed.balloon_alert(owner.current, "already claimed by another!")
 		return FALSE
 	if(!(GLOB.the_station_areas.Find(current_area.type)))
 		claimed.balloon_alert(owner.current, "not part of station!")
 		return
-	// This is my Lair
+	return TRUE
+
+/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+	if(!can_claim_coffin(claimed, current_area))
+		return FALSE
+	// This is my Haven
 	coffin = claimed
-	bloodsucker_lair_area = current_area
-	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your lair is now [bloodsucker_lair_area]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the Structures tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
+	bloodsucker_haven_area = current_area
+	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your haven is now [bloodsucker_haven_area]."))
+	to_chat(owner, span_announce("Bloodsucker Tip: Find new haven recipes in the Structures tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Ghouls."))
 	return TRUE
 
 /// From crate.dm
@@ -128,7 +133,7 @@
 
 /// NOTE: This can be any coffin that you are resting AND inside of.
 /obj/structure/closet/crate/coffin/proc/claim_coffin(mob/living/claimant, area/current_area)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = claimant.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(claimant)
 	// Successfully claimed?
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
@@ -142,48 +147,48 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/structure/closet/crate/coffin/process(mob/living/user)
+/obj/structure/closet/crate/coffin/process()
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user in src)
-		var/list/turf/area_turfs = get_area_turfs(get_area(src))
-		// Create Dirt etc.
-		var/turf/T_Dirty = pick(area_turfs)
-		if(T_Dirty && !T_Dirty.density)
-			// Default: Dirt
-			// STEP ONE: COBWEBS
-			// CHECK: Wall to North?
-			var/turf/check_N = get_step(T_Dirty, NORTH)
-			if(istype(check_N, /turf/closed/wall))
-				// CHECK: Wall to West?
-				var/turf/check_W = get_step(T_Dirty, WEST)
-				if(istype(check_W, /turf/closed/wall))
-					new /obj/effect/decal/cleanable/cobweb(T_Dirty)
-				// CHECK: Wall to East?
-				var/turf/check_E = get_step(T_Dirty, EAST)
-				if(istype(check_E, /turf/closed/wall))
-					new /obj/effect/decal/cleanable/cobweb/cobweb2(T_Dirty)
-			new /obj/effect/decal/cleanable/dirt(T_Dirty)
+	var/list/turf/area_turfs = get_area_turfs(get_area(src))
+	// Create Dirt etc.
+	var/turf/T_Dirty = pick(area_turfs)
+	if(T_Dirty && !T_Dirty.density)
+		// Default: Dirt
+		// STEP ONE: COBWEBS
+		// CHECK: Wall to North?
+		var/turf/check_N = get_step(T_Dirty, NORTH)
+		if(istype(check_N, /turf/closed/wall))
+			// CHECK: Wall to West?
+			var/turf/check_W = get_step(T_Dirty, WEST)
+			if(istype(check_W, /turf/closed/wall))
+				new /obj/effect/decal/cleanable/cobweb(T_Dirty)
+			// CHECK: Wall to East?
+			var/turf/check_E = get_step(T_Dirty, EAST)
+			if(istype(check_E, /turf/closed/wall))
+				new /obj/effect/decal/cleanable/cobweb/cobweb2(T_Dirty)
+		new /obj/effect/decal/cleanable/dirt(T_Dirty)
 
-/obj/structure/closet/crate/proc/unclaim_coffin(manual = FALSE)
+/obj/structure/closet/crate/proc/unclaim_coffin(manual = FALSE, silent = FALSE)
 	// Unanchor it (If it hasn't been broken, anyway)
 	anchored = FALSE
 	if(!resident || !resident.mind)
 		return
 	un_enlarge(resident)
 	// Unclaiming
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(resident)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
 		bloodsuckerdatum.coffin = null
-		bloodsuckerdatum.bloodsucker_lair_area = null
+		bloodsuckerdatum.bloodsucker_haven_area = null
 	for(var/obj/structure/bloodsucker/bloodsucker_structure in get_area(src))
 		if(bloodsucker_structure.owner == resident)
 			bloodsucker_structure.unbolt()
-	if(manual)
-		to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
-	else
-		to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
+	if(!silent)
+		if(manual)
+			to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
+		else
+			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred haven has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
 
@@ -197,7 +202,7 @@
 			update_icon()
 		locked = FALSE
 		return TRUE
-	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
+	playsound(get_turf(src), 'sound/machines/door/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
@@ -213,32 +218,24 @@
 		return FALSE
 	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
-	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
-	if(bloodsuckerdatum && (user in src))
-		if(prompt_coffin_claim(bloodsuckerdatum))
-			LockMe(user)
-		//Level up if possible.
-		if(!bloodsuckerdatum.my_clan)
-			user.balloon_alert("enter a clan!")
-			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
-		else if(!bloodsuckerdatum.frenzied)
-			if(bloodsuckerdatum.GetUnspentRank() < 1)
-				bloodsuckerdatum.blood_level_gain()
-			// Level ups cost 30% of your max blood volume, which scales with your rank.
-			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
+// /obj/structure/closet/crate/coffin/proc/is_claimable_coffin(datum/antagonist/bloodsucker/dracula, area/current_area)
+// 	if(!dracula)
+// 		return FALSE
+// 	if(resident == dracula.owner.current)
+// 		return TRUE
+// 	if(!dracula.can_claim_coffin(src, current_area))
+// 		return FALSE
+// 	if(!dracula.coffin && resident)
+// 		return FALSE
+// 	return TRUE
+
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
-	if(!dracula)
-		return FALSE
-	if(resident == dracula.owner.current)
-		return TRUE
 	var/area/current_area = get_area(src)
-	if(!dracula.coffin && !resident)
-		switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
-			if("Yes")
-				return claim_coffin(dracula.owner.current, current_area)
+	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your haven.", "Claim Haven", list("Yes", "No")))
+		if("Yes")
+			return claim_coffin(dracula.owner.current, current_area)
 	return FALSE
 
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
@@ -327,12 +324,13 @@
 				to_chat(user, span_notice("You flip a secret latch and lock yourself inside [src]."))
 			else
 				to_chat(user, span_notice("You flip a secret latch and unlock [src]."))
-			return
+			return TRUE
 		// Broken? Let's fix it.
 		to_chat(resident, span_notice("The secret latch that would lock [src] from the inside is broken. You set it back into place..."))
 		if(!do_after(resident, 5 SECONDS, src))
 			to_chat(resident, span_notice("You fail to fix [src]'s mechanism."))
-			return
+			return FALSE
 		to_chat(resident, span_notice("You fix the mechanism and lock it."))
 		broken = FALSE
 		locked = TRUE
+		return TRUE

@@ -337,7 +337,7 @@ ADMIN_VERB(log_viewer_new, R_ADMIN|R_DEBUG, "View Round Logs", "View the rounds 
 		var/datum/data = data_list[key]
 
 		if(isnull(data))
-			// do nothing - nulls are allowed
+			pass() // nulls are allowed
 
 		else if(islist(data))
 			data = recursive_jsonify(data, semvers)

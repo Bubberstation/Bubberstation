@@ -7,8 +7,8 @@
 	should_draw_greyscale = FALSE
 
 	unarmed_attack_verbs = list("slash", "scratch", "claw")
-	unarmed_attack_sound = 'sound/weapons/slash.ogg'
-	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/arm/right/arachnid
 	limb_id = SPECIES_ARACHNID
@@ -19,8 +19,8 @@
 	should_draw_greyscale = FALSE
 
 	unarmed_attack_verbs = list("slash", "scratch", "claw")
-	unarmed_attack_sound = 'sound/weapons/slash.ogg'
-	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/leg/left/arachnid
 	limb_id = SPECIES_ARACHNID

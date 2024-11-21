@@ -30,6 +30,7 @@
 	if(user.ears_extra)
 		user.ears_extra.add_fingerprint(user, ignoregloves = TRUE)
 
+/* Apparently was removed, keeping it just in case
 /datum/outfit/copy_outfit_from_target(mob/living/carbon/human/H)
 	. = ..()
 	if(!.)
@@ -47,6 +48,7 @@
 		wrists = H.wrists.type
 	if(H.ears_extra)
 		ears_extra = H.ears_extra.type
+*/
 
 /datum/outfit/get_types_to_preload()
 	. = ..()

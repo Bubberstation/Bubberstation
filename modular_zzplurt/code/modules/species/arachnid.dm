@@ -18,7 +18,6 @@
 	mutanttongue = /obj/item/organ/internal/tongue/arachnid
 	changesource_flags = MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | WABBAJACK | MIRROR_BADMIN | SLIME_EXTRACT
 
-	say_mod = "chitters"
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	external_organs = list(
 		/obj/item/organ/external/mandibles = "Plain",
