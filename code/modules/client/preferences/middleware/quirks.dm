@@ -69,12 +69,6 @@
 
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
-
-	//SKYRAT EDIT ADDITION
-	var/list/quirks = SSquirks.get_quirks()
-	var/datum/quirk/quirk = quirks[quirk_name]
-	//SKYRAT EDIT END
-
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks, preferences.augments) != new_quirks)// SKYRAT EDIT - AUGMENTS+
 		// If the client is sending an invalid give_quirk, that means that
@@ -111,10 +105,6 @@
 	var/list/selected_quirks = list()
 
 	for (var/quirk in preferences.all_quirks)
-		//SKYRAT EDIT ADDITION
-		var/list/quirks = SSquirks.get_quirks()
-		var/datum/quirk/quirk_datum = quirks[quirk]
-		//SKYRAT EDIT END
 		selected_quirks += sanitize_css_class_name(quirk)
 
 	return selected_quirks
