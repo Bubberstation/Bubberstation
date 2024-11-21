@@ -1,4 +1,14 @@
-import { CheckboxInput, Feature, FeatureChoicedServerData, FeatureNumberInput, FeatureNumeric, FeatureToggle, FeatureTriBoolInput, FeatureTriColorInput, FeatureValueProps } from '../../base';
+import {
+  CheckboxInput,
+  Feature,
+  FeatureChoicedServerData,
+  FeatureNumberInput,
+  FeatureNumeric,
+  FeatureToggle,
+  FeatureTriBoolInput,
+  FeatureTriColorInput,
+  FeatureValueProps,
+} from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const scaled_appearance: FeatureToggle = {
