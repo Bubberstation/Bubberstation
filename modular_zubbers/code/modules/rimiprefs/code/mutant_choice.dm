@@ -207,7 +207,7 @@
 
 	var/list/crop_area = sprite_accessory.crop_area
 	if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
-		base.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
+		base.Crop(crop_area[1] + human_body_offset, crop_area[2], crop_area[3], crop_area[4] + human_body_offset)
 	else if(crop_area)
 		stack_trace("Invalid crop paramater! The provided crop area list for [sprite_accessory.type] is not four entries long, or is not a list!")
 	base.Scale(32, 32)
