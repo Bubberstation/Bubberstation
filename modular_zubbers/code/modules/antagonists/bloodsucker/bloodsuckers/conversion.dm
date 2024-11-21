@@ -83,11 +83,6 @@
  * creator - Person attempting to convert them.
  */
 /datum/mind/proc/can_make_special(datum/mind/creator)
-	var/mob/living/user = current
-	if(!(user.mob_biotypes & MOB_ORGANIC))
-		if(creator)
-			to_chat(creator, span_danger("[user]'s DNA isn't compatible!"))
-		return FALSE
 	return TRUE
 
 /// Check if this is a valid person to actually be a bloodsucker

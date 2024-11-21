@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_INTERDYNE]" = "syndradio", //SKYRAT EDIT ADDITION - MAPPING
 	"[FREQ_GUILD]" = "syndradio", //SKYRAT EDIT ADDITION - MAPPING
 	"[FREQ_TARKON]" = "engradio", //SKYRAT EDIT ADDITION - MAPPING
-	"[FREQ_SOLFED]" = "medradio", //SKYRAT EDIT ADDITION - SOLFED
+	"[FREQ_TERRAGOV]" = "medradio", //BUBBER EDIT ADDITION - TERRAGOV
 	"[FREQ_CTF_RED]" = "redteamradio",
 	"[FREQ_CTF_BLUE]" = "blueteamradio",
 	"[FREQ_CTF_GREEN]" = "greenteamradio",
