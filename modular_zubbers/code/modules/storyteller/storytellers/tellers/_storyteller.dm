@@ -55,7 +55,7 @@
 /datum/storyteller/vv_edit_var(var_name, var_value) // Appends any name changes with the original storyteller
 	. = ..()
 	if(var_name == NAMEOF(src, name))
-		return name = "[var_value] ([inital(name)])"
+		name = "[var_value] ([initial(name)])"
 
 /// Add points to all tracks while respecting the multipliers.
 /datum/storyteller/proc/add_points(delta_time)
