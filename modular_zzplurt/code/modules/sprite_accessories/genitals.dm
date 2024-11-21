@@ -5,9 +5,8 @@
 	key = ORGAN_SLOT_BUTT
 	color_src = USE_MATRIXED_COLORS
 	always_color_customizable = TRUE
-	relevent_layers = list(BODY_ADJ_LAYER)
+	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
-
 
 /datum/sprite_accessory/genital/butt/none
 	icon_state = "none"
@@ -18,7 +17,6 @@
 /datum/sprite_accessory/genital/butt/pair
 	icon_state = "pair"
 	name = "Pair"
-
 
 
 /datum/sprite_accessory/genital/anus
