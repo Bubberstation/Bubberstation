@@ -30166,7 +30166,8 @@
 "ebZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/right/directional/south{
-	name = "Representative's Desk"
+	name = "Representative's Desk";
+	req_access = list("cent_general")
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "reps";
@@ -30178,6 +30179,14 @@
 	pixel_x = 27;
 	req_access = list("cent_general");
 	pixel_y = 6
+	},
+/obj/item/paper_bin{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/stamp/centcom{
+	pixel_x = 9;
+	pixel_y = 3
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
