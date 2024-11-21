@@ -140,6 +140,9 @@
 	else
 		icon_state_templates_to_use += generate_icon_states(sprite_accessory, sprite_accessory.icon_state)
 
+	if(icon_state_templates_to_use.len && findtext(icon_state_templates_to_use[1], "m_snout"))
+		log_world(icon_state_templates_to_use[1])
+
 	var/list/icon_states_to_use = list()
 	var/list/behind_icon_states_to_use = list()
 
@@ -209,7 +212,7 @@
 		stack_trace("Invalid crop paramater! The provided crop area list for [sprite_accessory.type] is not four entries long, or is not a list!")
 	base.Scale(32, 32)
 
-	return icon(base, base.IconStates()[1], sprite_direction, 1) // :sob: I fucking tried, but that FUCKING MONKEY TAIL AND THE FUCKING WINGS, I DON'T UNDERSTAND WHY THE ABOVE CODE DOESN'T FUCKING STOP IT, BUT IT LETS MULTIPLE DIRECTIONS LEAK WITHOUT THIS STEP
+	return base
 
 /datum/preference/choiced/mutant/icon_for(value)
 	if (!should_generate_icons)
