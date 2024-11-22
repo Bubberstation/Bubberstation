@@ -4,6 +4,7 @@
 
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/skirt_peeking)
 	AddElement(/datum/element/mob_holder/micro)
 
 /mob/living/carbon/human/on_entered(datum/source, mob/living/carbon/human/moving)
