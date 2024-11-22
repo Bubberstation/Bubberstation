@@ -7,6 +7,7 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/security/loaded(src)
+	new /obj/item/restraints/legcuffs/bola/tactical(src)
 	update_appearance()
 
 /obj/item/storage/belt/security/redsec/full/PopulateContents()
