@@ -10,10 +10,11 @@
 	new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
 	new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
+//BUBBER EDIT - New brain
 //BRAINS
 /datum/augment_item/organ/brain
 	slot = AUGMENT_SLOT_BRAIN
-//BUBBER EDIT - New brain
+
 /datum/augment_item/organ/brain/cortical
 	name = "Cortically-Augmented Brain"
 	slot = AUGMENT_SLOT_BRAIN
