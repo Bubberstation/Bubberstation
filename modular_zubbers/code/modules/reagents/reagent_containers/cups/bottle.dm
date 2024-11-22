@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/cup/bottle/large
 	name = "large bottle"
 	desc = "A large bottle."
-	icon = 'modular_zubbers/icons/obj/drinks/bottles.dmi'
+	icon = 'modular_zubbers/icons/obj/medical/chemical.dmi'
 	icon_state = "bottle_large"
 	fill_icon = 'modular_zubbers/icons/obj/medical/reagent_fillings.dmi'
 	fill_icon_state = "bottle_large"
