@@ -1,7 +1,9 @@
 /obj/item/reagent_containers/cup/bottle/large
 	name = "large bottle"
 	desc = "A large bottle."
+	icon = 'modular_zubbers/icons/obj/drinks/bottles.dmi'
 	icon_state = "bottle_large"
+	fill_icon = 'modular_zubbers/icons/obj/medical/reagent_fillings.dmi'
 	fill_icon_state = "bottle_large"
 	possible_transfer_amounts = list(5, 10, 15, 25, 50, 100)
 	volume = 100
