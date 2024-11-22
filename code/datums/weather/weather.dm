@@ -84,12 +84,12 @@
 	var/next_hit_time = 0
 	/// This causes the weather to only end if forced to
 	var/perpetual = FALSE
-	///BUBBER ADDITION START - MODULAR WEATHER
+	// BUBBER EDIT START - MODULAR WEATHER
 	/// The file path for normal weather icons
 	var/weather_effects_icon = 'icons/effects/weather_effects.dmi'
 	/// The file path for glow weather icons
 	var/glow_weather_icon = 'icons/effects/glow_weather.dmi'
-	/// BUBBER ADDITION END - MODULAR WEATHER
+	// BUBBER EDIT END - MODULAR WEATHER
 /datum/weather/New(z_levels)
 	..()
 	impacted_z_levels = z_levels
