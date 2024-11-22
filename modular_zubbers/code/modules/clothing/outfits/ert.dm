@@ -21,7 +21,7 @@
 	l_hand = /obj/item/gun/energy/modular_laser_rifle
 
 /datum/outfit/centcom/private_security
-	name = "Nanotrasen Private Security Officer"
+	name = "Nanotrasen Private Security ERT Officer"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/private_security
@@ -57,7 +57,7 @@
 	return ..()
 
 /datum/outfit/centcom/private_security/commander
-	name = "Nanotrasen Private Security Commander"
+	name = "Nanotrasen Private Security ERT Commander"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/private_security/commander
