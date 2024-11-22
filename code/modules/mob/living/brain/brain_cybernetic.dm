@@ -48,18 +48,20 @@
 		return TRUE
 	return FALSE
 
-// bubber edit - parity with vox; Caps brain damage to 150, decreases it from 30/20 to 20/10, added alert text, can't be emp'd while dead
+//Bubber edits marked
 /obj/item/organ/internal/brain/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(owner.stat == DEAD)
+//BUBBER EDIT - can't be emp'd if dead
+	if(owner.stat == DEAD) 
 		return
-	switch(severity) // 
+//EDIT END
+	switch(severity)
 		if (EMP_HEAVY)
-			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 190)
+			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 190) //BUBBER EDIT - damage reduced from 30->20, capped at 190
 		if (EMP_LIGHT)
-			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-// edit end
+			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190) //BUBBER EDIT - damage reduced from 20->10, capped at 190
+end

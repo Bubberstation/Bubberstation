@@ -18,7 +18,7 @@
 	cold_level_3_threshold = 0
 	organ_flags = ORGAN_ROBOTIC
 
-/* customized
+/* BUBBER EDIT - Replaced by /obj/item/organ/internal/brain/cybernetic/cortical/vox
 *
 * /obj/item/organ/internal/brain/vox
 *	name = "vox brain"

@@ -13,12 +13,12 @@
 //BRAINS
 /datum/augment_item/organ/brain
 	slot = AUGMENT_SLOT_BRAIN
-
+//BUBBER EDIT - New brain
 /datum/augment_item/organ/brain/cortical
 	name = "Cortically-Augmented Brain"
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/internal/brain/cybernetic/cortical
-	cost = 1
+//EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart

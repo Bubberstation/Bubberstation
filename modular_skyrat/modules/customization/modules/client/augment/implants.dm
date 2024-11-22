@@ -11,10 +11,12 @@
 /datum/augment_item/implant/brain
 	slot = AUGMENT_SLOT_BRAIN_IMPLANT
 
+//BUBBER EDIT
 /datum/augment_item/implant/brain/empathic_sensor
     name = "Empathic Sensor"
     cost = 4
     path = /obj/item/organ/internal/cyberimp/brain/empathic_sensor
+//EDIT END
 
 //CHEST IMPLANTS
 /datum/augment_item/implant/chest
