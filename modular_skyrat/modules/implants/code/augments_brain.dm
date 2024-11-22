@@ -17,25 +17,22 @@
 		return
 	
 	owner.adjust_stutter(30 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(reboot)), 180 / severity)
-	to_chat(owner, span_warning("You feel overwhelmed!"))
-	implant_disabled(owner)
-
-
-/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/implant_disabled()
 	organ_flags |= ORGAN_FAILING
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 	owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), 180 / severity)
+	to_chat(owner, span_warning("You feel overwhelmed!"))
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/implant_ready()
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	owner.grant_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
-	if(owner)
-		to_chat(owner, span_abductor("Your mind opens to others. You can hear the thoughts of those around you, but only faintly."))
+	to_chat(owner, span_abductor("Your mind opens to others. You can hear the thoughts of those around you, but only faintly."))
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_remove(mob/living/carbon/implant_owner)
 	. = ..()
-	implant_disabled(owner = implant_owner)
+	organ_flags |= ORGAN_FAILING
+	UnregisterSignal(owner, COMSIG_MOB_SAY)
+	owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 	if(QDELETED(src))
 		return
 	to_chat(implant_owner, span_abductor("Your mind closes from others. It's quiet, now."))
@@ -52,13 +49,11 @@
 //code mostly lifted from shadekins
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/modify_speech(datum/source, list/speech_args)
-	ASYNC
-		if((organ_flags & ORGAN_FAILING))
-			return
-		CALLBACK(source, TYPE_PROC_REF(/obj/item/organ/internal/tongue/shadekin, actually_modify_speech), source = owner, speech_args)
+	if(!(organ_flags & ORGAN_FAILING))
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/organ/internal/tongue/shadekin, actually_modify_speech), source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] == /datum/language/marish/empathy)
-		modify_speech(source, speech_args)
+		return modify_speech(source, speech_args)
 

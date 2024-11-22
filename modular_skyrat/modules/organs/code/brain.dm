@@ -8,8 +8,8 @@
 	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi' 
 	icon_state = "brain-c"
 
-//More damage from EMPs, and visual effects	
-/obj/item/organ/internal/brain/cybernetic/emp_act(severity)
+//Extra damage from EMPs, and visual effects	
+/obj/item/organ/internal/brain/cybernetic/cortical/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
@@ -17,16 +17,14 @@
 		return
 	switch(severity)
 		if(1)
-			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 150)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
 			owner.set_jitter_if_lower(30 SECONDS)
 			owner.adjust_stutter(30 SECONDS)
 			owner.adjust_confusion(10 SECONDS)
 		if(2)
-			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
 			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
-			owner.set_jitter_if_lower(30 SECONDS)
-			owner.adjust_stutter(30 SECONDS)
+			owner.set_jitter_if_lower(15 SECONDS)
+			owner.adjust_stutter(15 SECONDS)
 			owner.adjust_confusion(3 SECONDS)
 			
 
