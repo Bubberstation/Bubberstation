@@ -708,20 +708,20 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 #define BODY_ADJ_LAYER 43 // SKYRAT EDIT CHANGE - ORIGINAL: 31
 /// Underwear, undershirts, socks, eyes, lips(makeup)
 #define BODY_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 30
+// SPLURT EDIT undies
+#define UNDERWEAR_LAYER			41
+#define SOCKS_LAYER				40
+#define BRA_LAYER				39
+#define SHIRT_LAYER				38
+// SPLURT EDIT END
 /// Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define FRONT_MUTATIONS_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 29
+#define FRONT_MUTATIONS_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 29
 /// Damage indicators (cuts and burns)
-#define DAMAGE_LAYER 40 // SKYRAT EDIT CHANGE - ORIGINAL: 28
+#define DAMAGE_LAYER 36 // SKYRAT EDIT CHANGE - ORIGINAL: 28
 // SKYRAT EDIT ADDITION START
 /// This layer is used for things that shouldn't be over clothes, but should be over mutations
-#define BODY_FRONT_UNDER_CLOTHES 39
+#define BODY_FRONT_UNDER_CLOTHES 35
 // SKYRAT EDIT ADDITION END
-// SPLURT EDIT undies
-#define UNDERWEAR_LAYER			38
-#define SOCKS_LAYER				37
-#define BRA_LAYER				36
-#define SHIRT_LAYER				35
-// SPLURT EDIT END
 /// Jumpsuit clothing layer
 #define UNIFORM_LAYER 34 // SKYRAT EDIT CHANGE - ORIGINAL: 27 //SPLURT EDIT undies
 // SKYRAT EDIT ADDITION BEGIN - cursed layers under clothing

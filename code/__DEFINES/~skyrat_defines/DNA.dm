@@ -72,11 +72,11 @@
 #define PENIS_MAX_GIRTH 20
 #define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
-#define PENIS_MAX_LENGTH 36
+#define PENIS_MAX_LENGTH 128 //SPLURT EDIT
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
-#define TESTICLES_MAX_SIZE 6
+#define TESTICLES_MAX_SIZE 8 //SPLURT EDIT
 
 #define SHEATH_NONE	"None"
 #define SHEATH_NORMAL "Sheath"

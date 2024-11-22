@@ -8,13 +8,21 @@
 
 /obj/item/clothing/underwear/shirt/equipped(mob/living/user, slot)
 	. = ..()
+	var/slot_noextra = slot & ~ITEM_SLOT_EXTRA
 	if(!istype(user, /mob/living/carbon/human) || istype(src, /obj/item/clothing/underwear/shirt/bra))
 		return
 	var/mob/living/carbon/human/human = user
-	if(slot == ITEM_SLOT_SHIRT)
+	if(slot & ITEM_SLOT_EXTRA && slot_noextra & ITEM_SLOT_SHIRT)
 		human.undershirt = name
 	else
 		human.undershirt = "Nude"
+
+/obj/item/clothing/underwear/shirt/dropped(mob/living/user)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	human.undershirt = "Nude"
 
 /obj/item/clothing/underwear/shirt/bra
 	name = "bra"
@@ -26,13 +34,21 @@
 
 /obj/item/clothing/underwear/shirt/bra/equipped(mob/living/user, slot)
 	. = ..()
+	var/slot_noextra = slot & ~ITEM_SLOT_EXTRA
 	if(!istype(user, /mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/human = user
-	if(slot == ITEM_SLOT_BRA)
+	if(slot & ITEM_SLOT_EXTRA && slot_noextra & ITEM_SLOT_BRA)
 		human.bra = name
 	else
 		human.bra = "Nude"
+
+/obj/item/clothing/underwear/shirt/bra/dropped(mob/living/user)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	human.bra = "Nude"
 
 /**
  * Do not declare new shirt or bra objects directly through typepaths, use SHIRT_OBJECT(class)/BRA_OBJECT(class) instead

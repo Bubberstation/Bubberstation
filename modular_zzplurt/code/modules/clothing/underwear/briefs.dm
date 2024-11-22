@@ -7,13 +7,21 @@
 
 /obj/item/clothing/underwear/briefs/equipped(mob/living/user, slot)
 	. = ..()
+	var/slot_noextra = slot & ~ITEM_SLOT_EXTRA
 	if(!istype(user, /mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/human = user
-	if(slot == ITEM_SLOT_UNDERWEAR)
+	if(slot & ITEM_SLOT_EXTRA && slot_noextra & ITEM_SLOT_UNDERWEAR)
 		human.underwear = name
 	else
 		human.underwear = "Nude"
+
+/obj/item/clothing/underwear/briefs/dropped(mob/living/user)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	human.underwear = "Nude"
 
 /**
  * Do not declare new briefs objects directly through typepaths, use BRIEFS_OBJECT(class) instead
