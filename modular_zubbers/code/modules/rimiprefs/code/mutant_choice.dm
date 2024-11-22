@@ -140,9 +140,6 @@
 	else
 		icon_state_templates_to_use += generate_icon_states(sprite_accessory, sprite_accessory.icon_state)
 
-	if(icon_state_templates_to_use.len && findtext(icon_state_templates_to_use[1], "m_snout"))
-		log_world(icon_state_templates_to_use[1])
-
 	var/list/icon_states_to_use = list()
 	var/list/behind_icon_states_to_use = list()
 
