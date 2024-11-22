@@ -1,5 +1,5 @@
-/datum/outfit/solfed_bitrun
-	name = "Bitrunning SolFed Marine"
+/datum/outfit/terragov_bitrun
+	name = "Bitrunning TerraGov Marine"
 
 	uniform = /obj/item/clothing/under/rank/security/officer/hecu
 	head = null
@@ -10,20 +10,20 @@
 	back = /obj/item/storage/backpack/ert/odst/hecu
 	glasses = null
 	ears = /obj/item/radio/headset/headset_faction/bowman
-	id = /obj/item/card/id/advanced/solfed
+	id = /obj/item/card/id/advanced/terragov
 	r_hand = null
 	l_hand = null
 	backpack_contents = null
 	belt = null
-	id_trim = /datum/id_trim/solfed_bitrun
+	id_trim = /datum/id_trim/terragov_bitrun
 
-/datum/id_trim/solfed_bitrun
+/datum/id_trim/terragov_bitrun
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	assignment = "SolFed Marine"
-	trim_state = "trim_solfed"
-	department_color = COLOR_SOLFED_GOLD
-	subdepartment_color = COLOR_SOLFED_GOLD
-	sechud_icon_state = SECHUD_SOLFED
+	assignment = "TerraGov Marine"
+	trim_state = "trim_terragov"
+	department_color = COLOR_TERRAGOV_GOLD
+	subdepartment_color = COLOR_TERRAGOV_GOLD
+	sechud_icon_state = SECHUD_TERRAGOV
 
 /datum/outfit/cin_soldier_corpse
 	name = "Coalition Operative Corpse"
