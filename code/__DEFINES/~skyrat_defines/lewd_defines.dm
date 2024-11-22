@@ -29,4 +29,8 @@
 #define BREAST_SIZE_N "N"
 #define BREAST_SIZE_O "O"
 #define BREAST_SIZE_P "P"
+//splurt sizes here
+#define BREAST_SIZE_R "R"
+#define BREAST_SIZE_S "S"
+#define BREAST_SIZE_T "T"
 #define BREAST_SIZE_BEYOND_MEASUREMENT "beyond measurement"

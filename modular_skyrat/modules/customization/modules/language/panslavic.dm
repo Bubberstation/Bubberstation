@@ -1,6 +1,6 @@
 /datum/language/panslavic
 	name = "Pan-Slavic"
-	desc = "An elaborate mix of various Slavic languages with similar properties that has long since become the official language of the NRI, with a steady amount of relevance in SolFed colonies with Slavic descendants and various types of trading posts and spaceports across Human space - it even managed to find a niche in communication with other species."
+	desc = "An elaborate mix of various Slavic languages with similar properties that has long since become the official language of the NRI, with a steady amount of relevance in TerraGov colonies with Slavic descendants and various types of trading posts and spaceports across Human space - it even managed to find a niche in communication with other species."
 	key = "P"
 	flags = TONGUELESS_SPEECH
 	syllables = list(

@@ -139,14 +139,11 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				standing += eye_organ.generate_body_overlay(species_human)
 
 	//Underwear, Undershirts & Socks
-	//SPLURT EDIT - Extra Inventory
+	//SPLURT EDIT REMOVAL - Extra Inventory - Moved to modular
+	/*
 	if(!HAS_TRAIT(species_human, TRAIT_NO_UNDERWEAR))
-		if(species_human.underwear && species_human.underwear != "Nude")
+		if(species_human.underwear && !(species_human.underwear_visibility & UNDERWEAR_HIDE_UNDIES))
 			var/datum/sprite_accessory/underwear/underwear = SSaccessories.underwear_list[species_human.underwear]
-			if(underwear && !species_human.w_underwear)
-				var/obj/item/clothing/underwear/briefs/briefs_obj = new underwear.briefs_obj(species_human)
-				species_human.equip_to_slot_or_del(briefs_obj, ITEM_SLOT_UNDERWEAR)
-			/*
 			var/mutable_appearance/underwear_overlay
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
 			if(underwear)
@@ -161,14 +158,10 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				if(!underwear.use_static)
 					underwear_overlay.color = species_human.underwear_color
 				standing += underwear_overlay
-			*/
 
-		if(species_human.bra && species_human.bra != "Nude")
+		if(species_human.bra && !(species_human.underwear_visibility & UNDERWEAR_HIDE_BRA))
 			var/datum/sprite_accessory/bra/bra = SSaccessories.bra_list[species_human.bra]
-			if(bra && !species_human.w_bra)
-				var/obj/item/clothing/underwear/shirt/bra/bra_obj = new bra.bra_obj(species_human)
-				species_human.equip_to_slot_or_del(bra_obj, ITEM_SLOT_BRA)
-			/*
+
 			if(bra)
 				var/mutable_appearance/bra_overlay
 				var/icon_state = bra.icon_state
@@ -176,14 +169,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				if(!bra.use_static)
 					bra_overlay.color = species_human.bra_color
 				standing += bra_overlay
-			*/
 
-		if(species_human.undershirt && !species_human.undershirt != "Nude")
+		if(species_human.undershirt && !(species_human.underwear_visibility & UNDERWEAR_HIDE_SHIRT))
 			var/datum/sprite_accessory/undershirt/undershirt = SSaccessories.undershirt_list[species_human.undershirt]
-			if(undershirt && !species_human.w_shirt)
-				var/obj/item/clothing/underwear/shirt/shirt_obj = new undershirt.shirt_obj(species_human)
-				species_human.equip_to_slot_or_del(shirt_obj, ITEM_SLOT_SHIRT)
-			/*
 			if(undershirt)
 				var/mutable_appearance/undershirt_overlay
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE)
@@ -193,13 +181,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				if(!undershirt.use_static)
 					undershirt_overlay.color = species_human.undershirt_color
 				standing += undershirt_overlay
-			*/
-		if(species_human.socks && species_human.num_legs >= 2 && !(mutant_bodyparts["taur"]) && !species_human.socks != "Nude")
+
+		if(species_human.socks && species_human.num_legs >= 2 && !(mutant_bodyparts["taur"]) && !(species_human.underwear_visibility & UNDERWEAR_HIDE_SOCKS))
 			var/datum/sprite_accessory/socks/socks = SSaccessories.socks_list[species_human.socks]
-			if(socks && !species_human.w_socks)
-				var/obj/item/clothing/underwear/socks/socks_obj = new socks.socks_obj(species_human)
-				species_human.equip_to_slot_or_del(socks_obj, ITEM_SLOT_SOCKS)
-			/*
 			if(socks)
 				var/mutable_appearance/socks_overlay
 				var/icon_state = socks.icon_state
@@ -209,8 +193,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				if(!socks.use_static)
 					socks_overlay.color = species_human.socks_color
 				standing += socks_overlay
-			*/
-	// SPLURT EDIT END
+	*/
+	//SPLURT EDIT END
+
 	if(standing.len)
 		species_human.overlays_standing[BODY_LAYER] = standing
 
