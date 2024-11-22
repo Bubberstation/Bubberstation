@@ -28,7 +28,7 @@
 	uniform = /obj/item/clothing/under/rank/security/nanotrasen
 	suit = /obj/item/clothing/suit/armor/vest
 	back = /obj/item/storage/backpack/satchel/sec/redsec
-	box = /obj/item/storage/box/survival
+	box = /obj/item/storage/box/survival/centcom
 	belt = /obj/item/storage/belt/security/redsec/full
 	ears = /obj/item/radio/headset/headset_cent
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
@@ -64,7 +64,7 @@
 	uniform = /obj/item/clothing/under/rank/security/nanotrasen/hr
 	suit = /obj/item/clothing/suit/armor/vest
 	back = /obj/item/storage/backpack/satchel/sec/redsec
-	box = /obj/item/storage/box/survival
+	box = /obj/item/storage/box/survival/centcom
 	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne/privatesec/full
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
