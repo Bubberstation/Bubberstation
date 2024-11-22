@@ -37,7 +37,7 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES],
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
 		)
 
