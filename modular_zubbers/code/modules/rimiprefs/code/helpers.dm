@@ -24,6 +24,7 @@
 
 	return new_color
 
+/// Similar to center_icon, but actually paints the source onto the target icon.
 /proc/center_blend_icon(icon/target, icon/source, x_dimension, y_dimension)
 	if(!x_dimension || !y_dimension)
 		return
@@ -44,3 +45,19 @@
 		y_offset *= -1
 
 	target.Blend(source, ICON_OVERLAY, x_offset, y_offset)
+
+/// Converts the various layer defines. Made into a global proc because I'm fed up with code constantly rewriting the exact same check.
+/proc/convert_layer_to_text(layer_flag)
+	var/layer
+	switch(layer_flag)
+		if(BODY_FRONT_LAYER)
+			layer = "FRONT"
+		if(BODY_ADJ_LAYER)
+			layer = "ADJ"
+		if(BODY_FRONT_UNDER_CLOTHES)
+			layer = "FRONT_UNDER"
+		if(ABOVE_BODY_FRONT_HEAD_LAYER)
+			layer = "FRONT_OVER"
+		else
+			layer = "BEHIND"
+	return layer

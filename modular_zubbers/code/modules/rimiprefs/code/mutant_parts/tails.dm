@@ -11,7 +11,6 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	sprite_direction = NORTH
 	greyscale_color = COLOR_DARK_BROWN
-	// crop_area = list(5, 5, 28, 28) // We'd *ideally* take part of the sprite, but mammal tails will be... mammal tails. - Rimi
 
 /datum/preference/mutant_color/tail
 	savefile_key = "tail_color"

@@ -169,7 +169,7 @@
 		// Hate.
 		var/icon/i_need_just_your_size_fuck = icon(sprite_accessory.icon, (behind_icon_states_to_use + icon_states_to_use)[1], sprite_direction, 1)
 		base.Scale(i_need_just_your_size_fuck.Width(), i_need_just_your_size_fuck.Height())
-	if (!base || base.Width() < 32) // Fucking sprite accessory bullshit
+	if (!base || base.Width() < 32 || base.Height() < 32) // Fucking sprite accessory bullshit
 		base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 
 	var/human_body_offset = round((base.Width()/2) - 15)
@@ -218,20 +218,5 @@
 	if (!should_generate_icons)
 		CRASH("Tried to generate a mutant icon for [type], even though should_generate_icons = FALSE!")
 	return generate_icon(sprite_accessory[value], sprite_direction)
-
-/datum/preference/choiced/mutant/proc/convert_layer_to_text(layer_flag)
-	var/layer
-	switch(layer_flag)
-		if(BODY_FRONT_LAYER)
-			layer = "FRONT"
-		if(BODY_ADJ_LAYER)
-			layer = "ADJ"
-		if(BODY_FRONT_UNDER_CLOTHES)
-			layer = "FRONT_UNDER"
-		if(ABOVE_BODY_FRONT_HEAD_LAYER)
-			layer = "FRONT_OVER"
-		else
-			layer = "BEHIND"
-	return layer
 
 #undef REQUIRED_CROP_LIST_SIZE
