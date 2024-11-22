@@ -130,6 +130,11 @@
 #define JOB_CENTCOM_RESEARCH_OFFICER "Research Officer"
 #define JOB_CENTCOM_SPECIAL_OFFICER "Special Ops Officer"
 #define JOB_CENTCOM_PRIVATE_SECURITY "Private Security Force"
+// Bubber Edit Start
+#define JOB_CENTCOM_PRIVATE_SECURITY_ERT "Private Security Officer"
+#define JOB_CENTCOM_PRIVATE_SECURITY_ERT_SERGEANT "Private Security Sergeant"
+#define JOB_CENTCOM_PRIVATE_SECURITY_ERT_COMMANDER "Private Security Commander"
+// Bubber Edit End
 // SKYRAT EDIT ADDITION START
 #define JOB_BLUESHIELD "Blueshield"
 #define JOB_NT_REP "Nanotrasen Consultant"

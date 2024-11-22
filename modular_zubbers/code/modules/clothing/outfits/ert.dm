@@ -19,3 +19,65 @@
 
 /datum/outfit/centcom/ert/engineer/alert
 	l_hand = /obj/item/gun/energy/modular_laser_rifle
+
+/datum/outfit/centcom/private_security
+	name = "Nanotrasen Private Security Officer"
+
+	id = /obj/item/card/id/advanced/centcom
+	id_trim = /datum/id_trim/centcom/private_security
+	uniform = /obj/item/clothing/under/rank/security/nanotrasen
+	suit = /obj/item/clothing/suit/armor/vest
+	back = /obj/item/storage/backpack/satchel/sec/redsec
+	box = /obj/item/storage/box/survival
+	belt = /obj/item/storage/belt/security/redsec/full
+	ears = /obj/item/radio/headset/headset_cent
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
+	head = /obj/item/clothing/head/helmet/swat/nanotrasen
+	mask = /obj/item/clothing/mask/gas/sechailer/swat
+	gloves = /obj/item/clothing/gloves/tackler/combat/classic
+	shoes = /obj/item/clothing/shoes/combat
+	l_pocket = /obj/item/restraints/handcuffs
+	r_pocket = /obj/item/ammo_box/magazine/m45
+	l_hand = /obj/item/gun/ballistic/automatic/wt550
+	backpack_contents = list(
+		/obj/item/melee/baton/security/loaded = 1,
+		/obj/item/storage/box/handcuffs = 1,
+		/obj/item/gun/ballistic/automatic/pistol/m1911 = 1,
+		/obj/item/ammo_box/magazine/wt550m9 = 3,
+	)
+
+/datum/outfit/centcom/private_security/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/card/id/W = H.wear_id
+	W.registered_name = H.real_name
+	W.update_label()
+	W.update_icon()
+	return ..()
+
+/datum/outfit/centcom/private_security/commander
+	name = "Nanotrasen Private Security Commander"
+
+	id = /obj/item/card/id/advanced/centcom
+	id_trim = /datum/id_trim/centcom/private_security/commander
+	uniform = /obj/item/clothing/under/rank/security/nanotrasen/hr
+	suit = /obj/item/clothing/suit/armor/vest
+	back = /obj/item/storage/backpack/satchel/sec/redsec
+	box = /obj/item/storage/box/survival
+	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne/privatesec/full
+	ears = /obj/item/radio/headset/headset_cent/commander
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
+	head = /obj/item/clothing/head/helmet/swat/nanotrasen/commander
+	mask = /obj/item/clothing/mask/gas/sechailer/swat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	shoes = /obj/item/clothing/shoes/combat/swat
+	l_pocket = /obj/item/restraints/handcuffs
+	r_pocket = /obj/item/ammo_box/magazine/m45a5/ap
+	l_hand = /obj/item/gun/ballistic/automatic/rom_flech/blueshield
+	backpack_contents = list(
+		/obj/item/melee/baton/security/loaded = 1,
+		/obj/item/storage/box/handcuffs = 1,
+		/obj/item/gun/ballistic/automatic/pistol/m45a5 = 1,
+		/obj/item/ammo_box/magazine/caflechette = 3,
+	)

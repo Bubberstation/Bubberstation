@@ -515,3 +515,17 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
+
+/obj/item/clothing/head/helmet/swat/nanotrasen/hr
+	name = "\improper SWAT officer helmet"
+	desc = "An extremely robust helmet with the Nanotrasen logo emblazoned on the top in gold, worn by Nanotrasen Private Security's NCOs."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "swathr"
+
+/obj/item/clothing/head/helmet/swat/nanotrasen/commander
+	name = "\improper Commander's beret"
+	desc = "A robust beret in red, with a golden Nanotrasen logo badge on it, you feel whoever's wearing this must be some commanding officer."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "swatcomm"
