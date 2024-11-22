@@ -1,7 +1,7 @@
 ///the minimum size of a pill or patch
 #define MIN_VOLUME 1 // BUBBER EDIT - 5 -> 1
 ///the maximum size a pill or patch can be
-#define MAX_VOLUME 100
+#define MAX_VOLUME 100 // BUBBER EDIT - 50 -> 100
 ///max amount of pills allowed on our tile before we start storing them instead
 #define MAX_FLOOR_PRODUCTS 10
 
