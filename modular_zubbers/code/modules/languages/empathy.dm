@@ -54,7 +54,9 @@
 /obj/item/organ/internal/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	user.balloon_alert_to_viewers("ears vibrate", "projecting thoughts...")
+	var/obj/item/organ/internal/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/mode = istype(user_ears)
+	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
 
 	if(!do_after(source, 2 SECONDS, source))
 		message = full_capitalize(rot13(message))
@@ -62,15 +64,15 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/target_implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
 
-		if(!istype(ears) && !istype(implant))
+		if(!istype(target_ears) && !istype(target_implant))
 			continue
 			
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
-			var/mode = istype(ears)
+			mode = istype(target_ears)
 			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
 
 	if(length(GLOB.dead_mob_list))

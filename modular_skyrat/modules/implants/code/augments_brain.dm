@@ -49,11 +49,43 @@
 //code mostly lifted from shadekins
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/modify_speech(datum/source, list/speech_args)
-	if(!(organ_flags & ORGAN_FAILING))
-		INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/organ/internal/tongue/shadekin, actually_modify_speech), source, speech_args)
+	ASYNC
+		if(!(organ_flags & ORGAN_FAILING))
+			actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] == /datum/language/marish/empathy)
 		return modify_speech(source, speech_args)
+
+//I couldnt get this to work as a TYPE_PROC_REF. So it's copied.
+/obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/actually_modify_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	var/mob/living/carbon/human/user = source
+	var/obj/item/organ/internal/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/mode = istype(user_ears)
+	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
+
+	if(!do_after(source, 2 SECONDS, source))
+		message = full_capitalize(rot13(message))
+	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
+
+	user.log_talk(message, LOG_SAY, tag="shadekin")
+	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
+		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/target_implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+
+		if(!istype(target_ears) && !istype(target_implant))
+			continue
+			
+		to_chat(living_mob, rendered)
+		if(living_mob != user)
+			mode = istype(target_ears)
+			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
+
+	if(length(GLOB.dead_mob_list))
+		for(var/mob/dead_mob in GLOB.dead_mob_list)
+			if(dead_mob.client)
+				var/link = FOLLOW_LINK(dead_mob, user)
+				to_chat(dead_mob, "[link] [rendered]")
 
