@@ -3,7 +3,7 @@
 
 /obj/item/ammo_casing/c40sol
 	name = ".40 Sol Long lethal bullet casing"
-	desc = "A SolFed standard caseless lethal rifle round."
+	desc = "A TerraGov standard caseless lethal rifle round."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "40sol"
@@ -46,7 +46,7 @@
 
 /obj/item/ammo_casing/c40sol/fragmentation
 	name = ".40 Sol Long fragmentation bullet casing"
-	desc = "A SolFed standard caseless fragmentation rifle round. Shatters upon impact, ejecting sharp shrapnel that can potentially incapacitate targets."
+	desc = "A TerraGov standard caseless fragmentation rifle round. Shatters upon impact, ejecting sharp shrapnel that can potentially incapacitate targets."
 
 	icon_state = "40sol_disabler"
 
@@ -96,7 +96,7 @@
 
 /obj/item/ammo_casing/c40sol/pierce
 	name = ".40 Sol Long match bullet casing"
-	desc = "A SolFed standard caseless match grade rifle round. Fires at a higher pressure and thus fires slightly faster projectiles. \
+	desc = "A TerraGov standard caseless match grade rifle round. Fires at a higher pressure and thus fires slightly faster projectiles. \
 		Rumors say you can do sick ass wall bounce trick shots with these, though the official suggestion is to just shoot your target and \
 		not the wall next to them."
 
@@ -157,7 +157,7 @@
 
 /obj/item/ammo_casing/c40sol/incendiary
 	name = ".40 Sol Long incendiary bullet casing"
-	desc = "A SolFed standard caseless incendiary rifle round. Leaves no flaming trail, only igniting targets on impact."
+	desc = "A TerraGov standard caseless incendiary rifle round. Leaves no flaming trail, only igniting targets on impact."
 
 	icon_state = "40sol_flame"
 
