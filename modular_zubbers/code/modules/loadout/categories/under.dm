@@ -69,3 +69,11 @@
 /datum/loadout_item/uniform/miscellaneous/bunny_suit
 	name = "Bunny Suit"
 	item_path = /obj/item/clothing/under/costume/bunnylewd
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_replica
+	name = "CentCom turtleneck replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer/replica
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_skirt_replica
+	name = "CentCom turtleneck skirt replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer_skirt
