@@ -293,7 +293,7 @@
 		chance *= 5.5
 		delay_mult *= 0.85
 		knows_wires = TRUE
-	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD) || HAS_TRAIT(user, TRAIT_RESEARCH_CYBORG)) // BUBBER EDIT - Research cyborgs
+	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD) || HAS_TRAIT(user, TRAIT_RESEARCH_CYBORG))
 		if (knows_wires)
 			chance *= 1.25 // ((10 * 8) * 1.25) = 100%
 		else
