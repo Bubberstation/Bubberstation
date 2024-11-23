@@ -132,7 +132,6 @@
 #define JOB_CENTCOM_PRIVATE_SECURITY "Private Security Force"
 // Bubber Edit Start
 #define JOB_CENTCOM_PRIVATE_SECURITY_ERT "Private Security Officer"
-#define JOB_CENTCOM_PRIVATE_SECURITY_ERT_SERGEANT "Private Security Sergeant"
 #define JOB_CENTCOM_PRIVATE_SECURITY_ERT_COMMANDER "Private Security Commander"
 // Bubber Edit End
 // SKYRAT EDIT ADDITION START

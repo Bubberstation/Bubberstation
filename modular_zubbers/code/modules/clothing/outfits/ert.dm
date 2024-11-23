@@ -68,7 +68,7 @@
 	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne/privatesec/full
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	head = /obj/item/clothing/head/helmet/swat/nanotrasen/commander
+	head = /obj/item/clothing/head/beret/commander
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	shoes = /obj/item/clothing/shoes/combat/swat
