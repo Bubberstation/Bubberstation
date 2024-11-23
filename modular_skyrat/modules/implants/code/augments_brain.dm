@@ -6,7 +6,7 @@
 	icon_state = "brain_implant_antidrop"
 	var/active = FALSE
 	var/list/stored_items = list()
-	slot = ORGAN_SLOT_BRAIN_AUG
+	slot = ORGAN_SLOT_BRAIN_CEREBELLUM
 	var/modifies_speech = TRUE
 	
 // This should appropriately grant and remove empathy from the implant - important if you are a shadekin for some reason to not remove native languages, and allow the procs to work
@@ -73,7 +73,7 @@
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
 		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/target_implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_AUG)
+		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/target_implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_CEREBELLUM)
 
 		if(!istype(target_ears) && !istype(target_implant))
 			continue
