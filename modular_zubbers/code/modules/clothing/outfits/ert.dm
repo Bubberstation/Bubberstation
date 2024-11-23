@@ -63,7 +63,7 @@
 	id_trim = /datum/id_trim/centcom/private_security/commander
 	uniform = /obj/item/clothing/under/rank/security/nanotrasen/hr
 	suit = /obj/item/clothing/suit/armor/vest
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec/redsec/gold
 	box = /obj/item/storage/box/survival/centcom
 	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne/privatesec/full
 	ears = /obj/item/radio/headset/headset_cent/commander
