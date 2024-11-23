@@ -36,6 +36,9 @@
 /datum/unit_test/bubber_ensure_pref_sanity/proc/mutant_checks(datum/preference/choiced/mutant/mutant, supplementals_failed)
 	if (mutant.should_generate_icons && !mutant.main_feature_name)
 		TEST_FAIL("[mutant.type] : Missing a main feature name!")
+	var/static/list/valid_categories = list(PREFERENCE_CATEGORY_FEATURES, PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE)
+	if (mutant.should_generate_icons && !(category in valid_categories))
+		TEST_FAIL("[mutant.type] : Category isn't set correctly! Should be a feature, or a bubber mutant feature!")
 
 	if(supplementals_failed)
 		return // Supplementals format is wrong, so don't bother trying to test them
