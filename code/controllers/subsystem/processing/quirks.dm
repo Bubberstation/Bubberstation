@@ -42,8 +42,56 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//BUBBER EDIT ADDITION BEGIN
 	list(/datum/quirk/featherweight, /datum/quirk/oversized),
 	list(/datum/quirk/overweight, /datum/quirk/obese),
-	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained)
+	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
 	//BUBBER EDIT ADDITION END
+	//SPLURT EDIT ADDITION BEGIN
+
+	// Hallowed is a direct foil to both quirks.
+	// Causes a conflict with Holy Water effects.
+	// Bloodsuckers cannot interact with Hallowed users.
+	list(/datum/quirk/hallowed, /datum/quirk/cursed_blood),
+	list(/datum/quirk/hallowed, /datum/quirk/item_quirk/bloodfledge),
+
+	// Bloodfledges do not use standard thirst
+	list(/datum/quirk/item_quirk/bloodfledge, /datum/quirk/thirsty),
+
+	// Causes a direct mechanical conflict.
+	//list(/datum/quirk/jiggly_ass,/datum/quirk/buns_of_steel),
+	list(/datum/quirk/jiggly_ass,/datum/quirk/personalspace),
+
+	// Both quirks add a cosmetic glow effect.
+	list(/datum/quirk/rad_fiend, /datum/quirk/cosglow),
+
+	// You have an irremovable suit.
+	list(/datum/quirk/nudist,/datum/quirk/equipping/entombed),
+
+	// Conflicting health add-remove effect.
+	//list(/datum/quirk/flimsy,/datum/quirk/tough),
+
+	// You must have working eyes for hypnotic gaze.
+	// NOTE: Quirk was replaced by NIFsoft
+	list(/datum/quirk/hypnotic_gaze,/datum/quirk/item_quirk/blindness),
+	list(/datum/quirk/hypnotic_gaze,/datum/quirk/echolocation),
+
+	// You can't smell anything!
+	list(/datum/quirk/cum_sniff,/datum/quirk/item_quirk/anosmia),
+
+	// You can't choke if you don't breathe
+	list(/datum/quirk/choke_slut, /datum/quirk/breathless),
+
+	// Direct mechanical conflict
+	list(/datum/quirk/bad_touch, /datum/quirk/headpat_slut),
+	list(/datum/quirk/bad_touch, /datum/quirk/excitable),
+
+	// Addict quirks fail if the mob has TRAIT_LIVERLESS_METABOLISM
+	// Any quirk that gives this trait should be blacklisted
+	list(/datum/quirk/item_quirk/addict/alcoholic, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/alcoholic, /datum/quirk/concubus),
+	list(/datum/quirk/item_quirk/addict/junkie, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/junkie, /datum/quirk/concubus),
+	list(/datum/quirk/item_quirk/addict/smoker, /datum/quirk/item_quirk/bloodfledge),
+	list(/datum/quirk/item_quirk/addict/smoker, /datum/quirk/concubus),
+	//SPLURT EDIT ADDITION END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())

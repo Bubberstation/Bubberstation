@@ -8,6 +8,24 @@
 	LAZYADD(offset_features, extra_offset_features)
 	. = ..()
 
+// Radiation handling
+// Currently unused
+/*
+/datum/species/handle_radiation(mob/living/carbon/human/target_mob)
+	// Check for Rad Fiend quirk
+	if(HAS_TRAIT(target_mob, TRAIT_RAD_FIEND))
+		// Define radiation component
+		var/datum/component/irradiated/rad_effect = target_mob.GetComponent(/datum/component/irradiated)
+
+		// Check if time threshold is met
+		if(rad_effect?.beginning_of_irradiation < RADFIEND_IMMUNITY_TIME)
+			// Return without effects
+			return
+
+	// Run normally
+	. = ..()
+*/
+
 /datum/species/handle_body(mob/living/carbon/human/species_human)
 	. = ..()
 
