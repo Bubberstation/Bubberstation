@@ -12,8 +12,8 @@
 	polldesc = "a Nanotrasen asset protection team"
 
 /datum/ert/private_security // just putting this here to make my life easier.
-	roles = list(/datum/outfit/centcom/private_security)
-	leader_role = /datum/outfit/centcom/private_security/commander
+	roles = list(/datum/antagonist/ert/private_security)
+	leader_role = /datum/antagonist/ert/private_security/commander
 	teamsize = 5
 	opendoors = FALSE
 	rename_team = "Private Security Squad"
