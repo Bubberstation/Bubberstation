@@ -31,7 +31,7 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/hats_warden
 
-/obj/item/clothing/head/helmet/sec/sol
+/obj/item/clothing/head/helmet/sec/terra
 	name = "sol police helmet"
 	desc = "A helmet to protect any officer from bludgeoning attacks, or the occasional bullet."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
