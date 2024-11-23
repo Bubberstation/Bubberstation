@@ -73,7 +73,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	shoes = /obj/item/clothing/shoes/combat/swat
 	l_pocket = /obj/item/restraints/handcuffs
-	r_pocket = /obj/item/ammo_box/magazine/m45a5/ap
+	r_pocket = /obj/item/gun/energy/e_gun/mini
 	l_hand = /obj/item/gun/ballistic/automatic/ar
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded = 1,
@@ -81,4 +81,5 @@
 		/obj/item/shield/riot/tele = 1,
 		/obj/item/gun/ballistic/automatic/pistol/m45a5 = 1,
 		/obj/item/ammo_box/magazine/m223 = 3,
+		/obj/item/ammo_box/magazine/m45a5 = 1,
 	)
