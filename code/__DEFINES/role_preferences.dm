@@ -142,7 +142,7 @@
 #define ROLE_VAMPIRICACCIDENT "Bloodsucker (Midround)"
 #define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
 #define ROLE_MONSTERHUNTER "Monster Hunter"
-#define ROLE_VASSAL "Vassal"
+#define ROLE_VASSAL "Ghoul"
 
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 //BUBBER EDIT END

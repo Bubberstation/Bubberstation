@@ -34,10 +34,11 @@
 					/obj/item/clothing/head/security_garrison = 10,
 					/obj/item/clothing/head/security_cap = 10,
 					/obj/item/clothing/head/beret/sec/peacekeeper = 6,
-					/obj/item/clothing/head/helmet/sec/sol = 6,
+					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
+					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 				),
 			),
 		list(
@@ -68,6 +69,9 @@
 					/obj/item/clothing/suit/armor/security_tailcoat/assistant = 6,
 					/obj/item/clothing/neck/tie/bunnytie/security_assistant = 6,
 					/obj/item/clothing/mask/bandana/red = 6,
+					/obj/item/clothing/neck/pauldron = 6,
+					/obj/item/clothing/neck/pauldron/commander = 6,
+					/obj/item/clothing/neck/pauldron/captain = 6,
 					/obj/item/clothing/gloves/color/black = 6,
 					/obj/item/clothing/gloves/combat/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
@@ -88,6 +92,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
+					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/playbunnyears/brig_phys = 3,
 					/obj/item/clothing/under/rank/security/brig_phys_bunnysuit = 3,
 					/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec = 3,
@@ -127,7 +132,7 @@
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
 					/obj/item/clothing/glasses/hud/ar/projector/security = 3,
-					/obj/item/clothing/mask/gas/sechailer/half_mask = 3,
+					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
 					/obj/item/clothing/head/playbunnyears/prisoner = 6,
 					/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,

@@ -141,11 +141,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	add_to_dead_mob_list()
 
-	for(var/v in GLOB.active_alternate_appearances)
-		if(!v)
-			continue
-		var/datum/atom_hud/alternate_appearance/AA = v
-		AA.onNewMob(src)
+	for(var/datum/atom_hud/alternate_appearance/alt_hud as anything in GLOB.active_alternate_appearances)
+		alt_hud.apply_to_new_mob(src)
 
 	. = ..()
 
@@ -325,7 +322,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghostize(TRUE) // Can return with TRUE
 		return TRUE
 	// SKYRAT EDIT ADDITION END
-	var/response = tgui_alert(usr, "Are you sure you want to ghost? If you ghost whilst still alive you cannot re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
+	var/response = tgui_alert(usr, "Are you sure you want to ghost? You won't be able to re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
 	if(response != "Ghost")
 		return FALSE//didn't want to ghost after-all
 	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
@@ -420,7 +417,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		//SKYRAT EDIT ADDITION - DNR TRAIT (Technically this is just to fix ghost-DNR'ing not actually DNR'ing, but it pairs with the trait so)
 		if(!current_mob.has_quirk(/datum/quirk/dnr))
 			current_mob.add_quirk(/datum/quirk/dnr)
-		var/datum/job/job_to_free = SSjob.GetJob(current_mob.mind.assigned_role.title)
+		var/datum/job/job_to_free = SSjob.get_job(current_mob.mind.assigned_role.title)
 		if(job_to_free)
 			job_to_free.current_positions = max(0, job_to_free.current_positions - 1)
 		//SKYRAT EDIT ADDITION END - DNR TRAIT
@@ -504,7 +501,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/icon_dimensions = get_icon_dimensions(target.icon)
 	var/orbitsize = (icon_dimensions["width"] + icon_dimensions["height"]) * 0.5
-	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
+	orbitsize -= (orbitsize/ICON_SIZE_ALL)*(ICON_SIZE_ALL*0.25)
 
 	var/rot_seg
 
@@ -1082,31 +1079,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/tray_view()
 	set category = "Ghost"
-	set name = "T-ray view"
-	set desc = "Toggles a view of sub-floor objects"
+	set name = "T-ray scan"
+	set desc = "Perfom a scan to view sub-floor objects"
 
-	var/static/t_ray_view = FALSE
-	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder && !t_ray_view)
+	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
 		to_chat(usr, span_notice("That verb is currently globally disabled."))
 		return
-	t_ray_view = !t_ray_view
 
-	var/list/t_ray_images = list()
-	var/static/list/stored_t_ray_images = list()
-	for(var/obj/O in orange(client.view, src) )
-		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-			var/image/I = new(loc = get_turf(O))
-			var/mutable_appearance/MA = new(O)
-			MA.alpha = 128
-			MA.dir = O.dir
-			I.appearance = MA
-			t_ray_images += I
-	stored_t_ray_images += t_ray_images
-	if(length(t_ray_images))
-		if(t_ray_view)
-			client.images += t_ray_images
-		else
-			client.images -= stored_t_ray_images
+	t_ray_scan(src)
 
 /mob/dead/observer/default_lighting_cutoff()
 	var/datum/preferences/prefs = client?.prefs

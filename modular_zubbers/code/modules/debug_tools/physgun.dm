@@ -17,23 +17,23 @@
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 1
-	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
+	drop_sound = 'sound/items/handling/tools/screwdriver_drop.ogg'
 	pickup_sound = 'modular_zubbers/sound/phystools/physgun_pickup.ogg'
 
-	//The dragged object.
-	var/atom/movable/handlet_atom
-	//The creature that is using the physgun.
+	/// The dragged object
+	var/atom/movable/handled_atom
+	/// The creature that is using the physgun
 	var/mob/living/physgun_user
-	//Datum of the beam between the user and the dragged object.
+	/// Datum of the beam between the user and the dragged object
 	var/datum/beam/physgun_beam
-	//Color of the physgun.
+	/// Color of the physgun
 	var/effects_color = COLOR_CARP_BLUE
-	//The effect that is tracking the cursor.
+	/// The effect that is tracking the cursor
 	var/atom/movable/screen/fullscreen/cursor_catcher/physgun_catcher
 
-	//If the physgun is empowered?
+	/// If the physgun is empowered
 	var/force_grab = FALSE
-	//Can the physgun use advanced settings?
+	/// Whether the physgun use advanced settings
 	var/advanced = FALSE
 
 	var/use_cooldown = 3 SECONDS
@@ -46,23 +46,23 @@
 
 /obj/item/physic_manipulation_tool/Destroy(force)
 	. = ..()
-	if(handlet_atom)
+	if(handled_atom)
 		release_atom()
 	qdel(loop_sound)
 
 /**
  * The control of the dragging.
  */
-/obj/item/physic_manipulation_tool/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/physic_manipulation_tool/ranged_interact_with_atom(atom/movable/target, mob/living/user, list/modifiers)
 	. = ..()
 	if(istype(target))
 		if(!can_catch(target, user))
 			playsound(user, 'modular_zubbers/sound/phystools/physgun_cant_grab.ogg', 100, TRUE)
 			return
-		if(!COOLDOWN_FINISHED(src, grab_cooldown) && !handlet_atom)
+		if(!COOLDOWN_FINISHED(src, grab_cooldown) && !handled_atom)
 			user.balloon_alert(user, "On cooldown!")
 			return
-		if(!range_check(target, user) && !handlet_atom)
+		if(!range_check(target, user) && !handled_atom)
 			user.balloon_alert(user, "Too far!")
 			return
 		catch_atom(target, user)
@@ -72,12 +72,12 @@
 
 /obj/item/physic_manipulation_tool/dropped(mob/user, silent)
 	. = ..()
-	if(handlet_atom)
+	if(handled_atom)
 		release_atom()
 
 /obj/item/physic_manipulation_tool/click_alt(mob/user)
 	. = ..()
-	var/choised_color = input(usr, "Pick new effects color", "Physgun color") as color|null
+	var/choised_color = input(usr, "Pick new effect color", "Physgun color") as color|null
 	effects_color = choised_color
 	color = choised_color
 	update_appearance()
@@ -99,27 +99,27 @@
 	if(!physgun_user)
 		release_atom()
 		return
-	if(!range_check(handlet_atom, physgun_user))
+	if(!range_check(handled_atom, physgun_user))
 		release_atom()
 		return
 	if(physgun_catcher.mouse_params)
 		physgun_catcher.calculate_params()
 	if(!physgun_catcher.given_turf)
 		return
-	physgun_user.setDir(get_dir(physgun_user, handlet_atom))
-	if(handlet_atom.loc == physgun_catcher.given_turf)
-		if(handlet_atom.pixel_x == physgun_catcher.given_x - world.icon_size/2 && handlet_atom.pixel_y == physgun_catcher.given_y - world.icon_size/2)
+	physgun_user.setDir(get_dir(physgun_user, handled_atom))
+	if(handled_atom.loc == physgun_catcher.given_turf)
+		if(handled_atom.pixel_x == physgun_catcher.given_x - world.icon_size/2 && handled_atom.pixel_y == physgun_catcher.given_y - world.icon_size/2)
 			return
-		animate(handlet_atom, 0.2 SECONDS, pixel_x = handlet_atom.base_pixel_x + physgun_catcher.given_x - world.icon_size/2, pixel_y = handlet_atom.base_pixel_y + physgun_catcher.given_y - world.icon_size/2)
+		animate(handled_atom, 0.2 SECONDS, pixel_x = handled_atom.base_pixel_x + physgun_catcher.given_x - world.icon_size/2, pixel_y = handled_atom.base_pixel_y + physgun_catcher.given_y - world.icon_size/2)
 		physgun_beam.redrawing()
 		return
-	animate(handlet_atom, 0.2 SECONDS, pixel_x = handlet_atom.base_pixel_x + physgun_catcher.given_x - world.icon_size/2, pixel_y = handlet_atom.base_pixel_y + physgun_catcher.given_y - world.icon_size/2)
+	animate(handled_atom, 0.2 SECONDS, pixel_x = handled_atom.base_pixel_x + physgun_catcher.given_x - world.icon_size/2, pixel_y = handled_atom.base_pixel_y + physgun_catcher.given_y - world.icon_size/2)
 	physgun_beam.redrawing()
-	var/turf/turf_to_move = get_step_towards(handlet_atom, physgun_catcher.given_turf)
-	handlet_atom.Move(turf_to_move, get_dir(handlet_atom, turf_to_move), 8)
+	var/turf/turf_to_move = get_step_towards(handled_atom, physgun_catcher.given_turf)
+	handled_atom.Move(turf_to_move, get_dir(handled_atom, turf_to_move), 8)
 	var/pixel_x_change = 0
 	var/pixel_y_change = 0
-	var/direction = get_dir(handlet_atom, turf_to_move)
+	var/direction = get_dir(handled_atom, turf_to_move)
 	if(direction & NORTH)
 		pixel_y_change = world.icon_size/2
 	else if(direction & SOUTH)
@@ -128,7 +128,7 @@
 		pixel_x_change = world.icon_size/2
 	else if(direction & WEST)
 		pixel_x_change = -world.icon_size/2
-	animate(handlet_atom, 0.2 SECONDS, pixel_x = handlet_atom.base_pixel_x + pixel_x_change, pixel_y = handlet_atom.base_pixel_y + pixel_y_change)
+	animate(handled_atom, 0.2 SECONDS, pixel_x = handled_atom.base_pixel_x + pixel_x_change, pixel_y = handled_atom.base_pixel_y + pixel_y_change)
 
 /obj/item/physic_manipulation_tool/proc/can_catch(atom/target, mob/user)
 	if(target == user)
@@ -163,32 +163,32 @@
  * Signal controller.
  */
 
-/obj/item/physic_manipulation_tool/proc/on_clicked(atom/source, location, control, params, user)
+/obj/item/physic_manipulation_tool/proc/on_clicked(atom/source, atom/clicked_on, modifiers)
 	SIGNAL_HANDLER
-	if(!handlet_atom || !physgun_user)
+	if(!handled_atom || !physgun_user)
+		stack_trace("Physgun tried to run its click signal with no linked atoms or users.")
 		return
-
-	var/list/modifiers = params2list(params)
+	. = COMSIG_MOB_CANCEL_CLICKON
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(!advanced)
-			physgun_user.balloon_alert(physgun_user, "Not enjoy power!")
+			physgun_user.balloon_alert(physgun_user, "Not enough power!")
 			return
-		pause_atom(handlet_atom)
+		pause_atom(handled_atom)
 		return
 	else if(LAZYACCESS(modifiers, CTRL_CLICK))
-		repulse(handlet_atom, physgun_user)
+		repulse(handled_atom, physgun_user)
 		return
 	else if(LAZYACCESS(modifiers, ALT_CLICK))
-		rotate_object(handlet_atom)
+		rotate_object(handled_atom)
 		return
 	release_atom()
 
 /obj/item/physic_manipulation_tool/proc/on_living_resist(mob/living)
 	SIGNAL_HANDLER
 	if(force_grab)
-		handlet_atom.balloon_alert(handlet_atom, "Never escape!")
+		handled_atom.balloon_alert(handled_atom, "Can't escape!")
 		return
-	if(handlet_atom)
+	if(handled_atom)
 		release_atom()
 
 /**
@@ -210,13 +210,13 @@
 	physgun_beam.beam_color = effects_color
 	physgun_catcher = user.overlay_fullscreen("physgun_effect", /atom/movable/screen/fullscreen/cursor_catcher, 0)
 	physgun_catcher.assign_to_mob(user)
-	handlet_atom = target
-	handlet_atom.plane = handlet_atom.plane + 1
-	handlet_atom.set_density(FALSE)
+	handled_atom = target
+	handled_atom.plane = handled_atom.plane + 1
+	handled_atom.set_density(FALSE)
 	physgun_user = user
 	loop_sound.start()
 
-	RegisterSignal(physgun_catcher, COMSIG_CLICK, PROC_REF(on_clicked), TRUE)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_clicked), TRUE)
 	START_PROCESSING(SSfastprocess, src)
 
 /**
@@ -224,30 +224,30 @@
  */
 
 /obj/item/physic_manipulation_tool/proc/release_atom()
-	if(isliving(handlet_atom))
-		var/mob/living/L = handlet_atom
+	if(isliving(handled_atom))
+		var/mob/living/L = handled_atom
 		if(force_grab)
 			L.SetParalyzed(0)
 		if(L.has_status_effect(/datum/status_effect/physgun_pause))
 			L.remove_status_effect(/datum/status_effect/physgun_pause)
-		handlet_atom.remove_traits(list(TRAIT_HANDS_BLOCKED), REF(src))
-		UnregisterSignal(handlet_atom, COMSIG_LIVING_RESIST)
-	if(HAS_TRAIT(handlet_atom, TRAIT_PHYSGUN_PAUSE))
-		REMOVE_TRAIT(handlet_atom, TRAIT_PHYSGUN_PAUSE, PHYSGUN_EFFECTS)
-	handlet_atom.movement_type = initial(movement_type)
+		handled_atom.remove_traits(list(TRAIT_HANDS_BLOCKED), REF(src))
+		UnregisterSignal(handled_atom, COMSIG_LIVING_RESIST)
+	if(HAS_TRAIT(handled_atom, TRAIT_PHYSGUN_PAUSE))
+		REMOVE_TRAIT(handled_atom, TRAIT_PHYSGUN_PAUSE, PHYSGUN_EFFECTS)
+	handled_atom.movement_type = initial(movement_type)
 	STOP_PROCESSING(SSfastprocess, src)
-	handlet_atom.remove_filter("physgun")
+	handled_atom.remove_filter("physgun")
 	UnregisterSignal(physgun_catcher, COMSIG_CLICK)
 	physgun_catcher = null
 	physgun_user.clear_fullscreen("physgun_effect")
-	handlet_atom.pixel_x = initial(handlet_atom.pixel_x)
-	handlet_atom.pixel_y = initial(handlet_atom.pixel_y)
-	handlet_atom.anchored = initial(handlet_atom.anchored)
-	handlet_atom.density = initial(handlet_atom.density)
-	handlet_atom.plane = initial(handlet_atom.plane)
+	handled_atom.pixel_x = initial(handled_atom.pixel_x)
+	handled_atom.pixel_y = initial(handled_atom.pixel_y)
+	handled_atom.anchored = initial(handled_atom.anchored)
+	handled_atom.density = initial(handled_atom.density)
+	handled_atom.plane = initial(handled_atom.plane)
 	qdel(physgun_beam)
 	physgun_user = null
-	handlet_atom = null
+	handled_atom = null
 	loop_sound.stop()
 
 /**
@@ -263,22 +263,22 @@
  */
 
 /obj/item/physic_manipulation_tool/proc/pause_atom(atom/movable/target)
-	if(isliving(handlet_atom))
+	if(isliving(handled_atom))
 		var/mob/living/L = target
 		if(force_grab)
 			L.apply_status_effect(/datum/status_effect/physgun_pause/admin)
 		else
 			L.apply_status_effect(/datum/status_effect/physgun_pause)
 		REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, REF(src))
-	ADD_TRAIT(handlet_atom, TRAIT_PHYSGUN_PAUSE, PHYSGUN_EFFECTS)
-	handlet_atom.set_anchored(TRUE)
+	ADD_TRAIT(handled_atom, TRAIT_PHYSGUN_PAUSE, PHYSGUN_EFFECTS)
+	handled_atom.set_anchored(TRUE)
 	STOP_PROCESSING(SSfastprocess, src)
 	UnregisterSignal(physgun_catcher, list(COMSIG_CLICK, COMSIG_CLICK_ALT, COMSIG_CLICK_CTRL))
 	physgun_catcher = null
 	physgun_user.clear_fullscreen("physgun_effect")
 	qdel(physgun_beam)
 	physgun_user = null
-	handlet_atom = null
+	handled_atom = null
 	loop_sound.stop()
 
 /obj/item/physic_manipulation_tool/proc/repulse(atom/movable/target, mob/user)

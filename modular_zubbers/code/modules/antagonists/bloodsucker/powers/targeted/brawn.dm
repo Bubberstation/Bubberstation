@@ -1,39 +1,59 @@
+
+#define BRAWN_BREAKOUT_LEVEL 3
+#define BRAWN_AIRLOCK_LEVEL 4
 /datum/action/cooldown/bloodsucker/targeted/brawn
 	name = "Brawn"
-	desc = "Snap restraints, break lockers and doors, or deal terrible damage with your bare hands."
+	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	power_explanation = "Brawn:\n\
-		Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use.\n\
-		Punching a Cyborg will heavily EMP them in addition to deal damage.\n\
-		At level 3, you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use.\n\
-		At level 4, you get the ability to bash airlocks open, as long as they aren't bolted.\n\
-		Higher levels will increase the damage and knockdown when punching someone."
-	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
-	bloodcost = 8
-	cooldown_time = 9 SECONDS
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
+	bloodcost = 10
+	cooldown_time = 12 SECONDS
 	target_range = 1
-	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
 
-/datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/targeted/brawn/get_power_explanation_extended()
+	. = list()
+	. += "Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use."
+	. += "Brawn will do [GetDamage()] brute damage to the target and knockdown them for [DisplayTimeText(GetKnockdown())]."
+	. += "Punching a Cyborg will heavily EMP them in addition to deal damage."
+	. += "At level [BRAWN_BREAKOUT_LEVEL], you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use."
+	. += "At level [BRAWN_AIRLOCK_LEVEL], you get the ability to bash airlocks open, as long as they aren't bolted."
+	. += "Higher levels will increase the damage and knockdown when punching someone."
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(atom/target)
 	// Did we break out of our handcuffs?
 	if(break_restraints())
-		power_activated_sucessfully()
+		playsound(get_turf(owner), 'sound/effects/grillehit.ogg', 80, 1, -1)
+		PowerActivatedSuccesfully()
 		return FALSE
 	// Did we knock a grabber down? We can only do this while not also breaking restraints if strong enough.
-	if(level_current >= 3 && escape_puller())
-		power_activated_sucessfully()
-		return FALSE
+	if(owner.pulledby)
+		if(level_current >= BRAWN_BREAKOUT_LEVEL && escape_puller())
+			PowerActivatedSuccesfully()
+			return FALSE
+		owner.balloon_alert(owner, "ability level too low to break free!")
 	// Did neither, now we can PUNCH.
-	return ..()
+	if(HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
+		owner.balloon_alert(owner, "your hands are blocked!")
+		return FALSE
+	// check if we have atleast one arm
+	if(!owner.get_active_hand())
+		owner.balloon_alert(owner, "you need a usable arm!")
+		return FALSE
+	return TRUE
 
 // Look at 'biodegrade.dm' for reference
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_restraints()
 	var/mob/living/carbon/human/user = owner
 	///Only one form of shackles removed per use
-	var/used = FALSE
+	var/obj/handcuffed = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	if(user.buckled && handcuffed && user.buckled.unbuckle_mob(user))
+		user.visible_message(
+			span_warning("[user] breaks free of [user.buckled]!"),
+			span_warning("We break free of [user.buckled]!"),
+		)
+		user.buckled = null
+		return TRUE
 
 	// Breaks out of lockers
 	if(istype(user.loc, /obj/structure/closet))
@@ -46,22 +66,22 @@
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
 		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 1)
-		used = TRUE
+		return TRUE
 
-	// Remove both Handcuffs & Legcuffs
-	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-	if(!used && (istype(cuffs) || istype(legcuffs)))
-		user.visible_message(
-			span_warning("[user] discards their restraints like it's nothing!"),
-			span_warning("We break through our restraints!"),
-		)
-		user.clear_cuffs(cuffs, TRUE)
-		user.clear_cuffs(legcuffs, TRUE)
-		used = TRUE
+	// Remove both Handcuffs & Legcuffs in one step
+	var/legcuffed = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
+	if(handcuffed || legcuffed)
+		var/hand_cuffs = user.clear_cuffs(handcuffed, TRUE)
+		var/leg_cuffs = user.clear_cuffs(legcuffed, TRUE)
+		if(hand_cuffs || leg_cuffs)
+			user.visible_message(
+				span_warning("[user] discards their restraints like it's nothing!"),
+				span_warning("We break through our restraints!"),
+			)
+			return TRUE
 
 	// Remove Straightjackets
-	if(user.wear_suit?.breakouttime && !used)
+	if(user.wear_suit?.breakouttime)
 		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		user.visible_message(
 			span_warning("[user] rips straight through the [user.p_their()] [straightjacket]!"),
@@ -69,12 +89,8 @@
 		)
 		if(straightjacket && user.wear_suit == straightjacket)
 			qdel(straightjacket)
-		used = TRUE
-
-	// Did we end up using our ability? If so, play the sound effect and return TRUE
-	if(used)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
-	return used
+			return TRUE
+	return FALSE
 
 // This is its own proc because its done twice, to repeat code copypaste.
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_closet(mob/living/carbon/human/user, obj/structure/closet/closet)
@@ -85,8 +101,6 @@
 		closet.open()
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/escape_puller()
-	if(!owner.pulledby) // || owner.pulledby.grab_state <= GRAB_PASSIVE)
-		return FALSE
 	var/mob/pulled_mob = owner.pulledby
 	var/pull_power = pulled_mob.grab_state
 	playsound(get_turf(pulled_mob), 'sound/effects/woodhit.ogg', 75, 1, -1)
@@ -108,41 +122,42 @@
 	owner.pulledby = null // It's already done, but JUST IN CASE.
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/brawn/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/brawn/FireTargetedPower(atom/target, params)
 	. = ..()
 	var/mob/living/user = owner
 	// Target Type: Mob
-	if(isliving(target_atom))
-		var/mob/living/target = target_atom
-		var/mob/living/carbon/carbonuser = user
+	if(isliving(target))
+		var/mob/living/target_atom = target
 		//You know what I'm just going to take the average of the user's limbs max damage instead of dealing with 2 hands
-		var/obj/item/bodypart/user_active_arm = carbonuser.get_active_hand()
-		var/hitStrength = user_active_arm.unarmed_damage_high * 1.25 + 2
+		var/hitStrength = GetDamage()
 		// Knockdown!
-		var/powerlevel = min(5, 1 + level_current)
+		var/powerlevel = GetPowerLevel()
 		if(rand(5 + powerlevel) >= 5)
-			target.visible_message(
-				span_danger("[user] lands a vicious punch, sending [target] away!"), \
+			target_atom.visible_message(
+				span_danger("[user] lands a vicious punch, sending [target_atom] away!"), \
 				span_userdanger("[user] has landed a horrifying punch on you, sending you flying!"),
 			)
-			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
+			target_atom.Knockdown(GetKnockdown())
 		// Attack!
-		owner.balloon_alert(owner, "you punch [target]!")
-		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, 1, -1)
-		user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(target.zone_selected))
-		target.apply_damage(hitStrength, BRUTE, affecting)
+		owner.balloon_alert(owner, "you punch [target_atom]!")
+		playsound(get_turf(target_atom), 'sound/items/weapons/punch4.ogg', 60, 1, -1)
+		user.do_attack_animation(target_atom, ATTACK_EFFECT_SMASH)
+		var/obj/item/bodypart/affecting = target_atom.get_bodypart(ran_zone(target_atom.zone_selected))
+		target_atom.apply_damage(hitStrength, BRUTE, affecting)
 		// Knockback
-		var/send_dir = get_dir(owner, target)
-		var/turf/turf_thrown_at = get_ranged_target_turf(target, send_dir, powerlevel)
+		var/send_dir = get_dir(owner, target_atom)
+		var/turf/turf_thrown_at = get_ranged_target_turf(target_atom, send_dir, powerlevel)
 		owner.newtonian_move(send_dir) // Bounce back in 0 G
-		target.throw_at(turf_thrown_at, powerlevel, TRUE, owner) //new /datum/forced_movement(target, get_ranged_target_turf(target, send_dir, (hitStrength / 4)), 1, FALSE)
+		target_atom.throw_at(turf_thrown_at, powerlevel, TRUE, owner) //new /datum/forced_movement(target_atom, get_ranged_target_turf(target_atom, send_dir, (hitStrength / 4)), 1, FALSE)
 		// Target Type: Cyborg (Also gets the effects above)
-		if(issilicon(target))
-			target.emp_act(EMP_HEAVY)
+		if(issilicon(target_atom))
+			target_atom.emp_act(EMP_HEAVY)
 	// Target Type: Locker
-	else if(istype(target_atom, /obj/structure/closet) && level_current >= 3)
-		var/obj/structure/closet/target_closet = target_atom
+	else if(istype(target, /obj/structure/closet))
+		if(level_current <= BRAWN_BREAKOUT_LEVEL)
+			target.balloon_alert(user, "ability level too low to break open!")
+			return FALSE
+		var/obj/structure/closet/target_closet = target
 		user.balloon_alert(user, "you prepare to bash [target_closet] open...")
 		if(!do_after(user, 2.5 SECONDS, target_closet))
 			user.balloon_alert(user, "interrupted!")
@@ -151,9 +166,12 @@
 		addtimer(CALLBACK(src, PROC_REF(break_closet), user, target_closet), 1)
 		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	// Target Type: Door
-	else if(istype(target_atom, /obj/machinery/door) && level_current >= 4)
-		var/obj/machinery/door/target_airlock = target_atom
-		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
+	else if(istype(target, /obj/machinery/door))
+		if(level_current <= BRAWN_AIRLOCK_LEVEL)
+			target.balloon_alert(user, "ability level too low to break open!")
+			return FALSE
+		var/obj/machinery/door/target_airlock = target
+		playsound(get_turf(user), 'sound/machines/airlock/airlock_alien_prying.ogg', 40, TRUE, -1)
 		owner.balloon_alert(owner, "you prepare to tear open [target_airlock]...")
 		if(!do_after(user, 2.5 SECONDS, target_airlock))
 			user.balloon_alert(user, "interrupted!")
@@ -164,6 +182,23 @@
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetPowerLevel()
+	return min(5, 1 + level_current)
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetKnockdown()
+	return min(5, rand(10, 10 * GetPowerLevel()))
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetDamage()
+	var/mob/living/carbon/human/user = owner
+	var/obj/item/bodypart/user_active_arm
+	user_active_arm = user.get_active_hand()
+	if(!user || !user_active_arm)
+		return GetPunchDamage(initial(user_active_arm.unarmed_damage_high))
+	return GetPunchDamage(user_active_arm.unarmed_damage_high)
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetPunchDamage(punch_damage)
+	return punch_damage * 1.25 + 2
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -189,3 +224,6 @@
 	else if(istype(target_atom, /obj/structure/closet))
 		return TRUE
 	return FALSE
+
+#undef BRAWN_BREAKOUT_LEVEL
+#undef BRAWN_AIRLOCK_LEVEL

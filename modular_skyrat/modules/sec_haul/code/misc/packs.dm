@@ -27,7 +27,7 @@
 	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/ceremonial_rifle
-	name = "Romulus Sporting Rifle"
+	name = "Romulus Ceremonial Bolt Action Rifle"
 	desc = "A sporting rifle made of light polymer material chambered in Sol .40, poor recoil handling but quite accurate."
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/ceremonial_rifle = 1)
 	cost = PAYCHECK_COMMAND * 20
@@ -41,7 +41,7 @@
 
 /datum/supply_pack/goody/rensoter_shotgun
 	name = "Renoster Shotgun Single-Pack"
-	desc = "A common modern shotgun used by Solarian State Police."
+	desc = "A common modern shotgun used by Terran Government Police."
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	cost = PAYCHECK_COMMAND * 22
 

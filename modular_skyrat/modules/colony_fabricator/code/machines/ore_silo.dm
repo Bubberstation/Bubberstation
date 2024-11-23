@@ -9,7 +9,7 @@
 
 /obj/machinery/ore_silo/colony_lathe/silo_log(obj/machinery/machinery_in_question, action, amount, noun, list/mats)
 	. = ..()
-	playsound(src, 'sound/machines/beep.ogg', 30, TRUE)
+	playsound(src, 'sound/machines/beep/beep.ogg', 30, TRUE)
 	AddElement(/datum/element/repackable, packed_type, 10 SECONDS)
 
 /obj/machinery/ore_silo/colony_lathe/default_deconstruction_crowbar()

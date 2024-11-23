@@ -22,7 +22,7 @@
 	var/was_tooluser = FALSE
 	/// The stored Bloodsucker antag datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum
-	var/trait_list = list(TRAIT_MUTE, TRAIT_DEAF, TRAIT_STRONG_GRABBER)
+	var/trait_list = list(TRAIT_MUTE, TRAIT_SIGN_LANGUAGE_BLOCKED, TRAIT_DEAF, TRAIT_STRONG_GRABBER)
 
 /datum/status_effect/frenzy/get_examine_text()
 	return span_notice("They seem... inhumane, and feral!")
@@ -40,7 +40,7 @@
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! You will DIE if you do not get BLOOD."))
 	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you quickly accrue burn damage, instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	owner.balloon_alert(owner, "you enter a frenzy! Drink blood, or you will die!")
-	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY)
+	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_ENTERS_FRENZY)
 
 	// Give the other Frenzy effects
 	owner.add_traits(trait_list, FRENZY_TRAIT)
@@ -51,7 +51,7 @@
 	owner.add_client_colour(/datum/client_colour/manual_heart_blood)
 	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-	if(user.handcuffed || user.legcuffed)
+	if((user.handcuffed && cuffs) || (user.legcuffed && legcuffs))
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)
 	bloodsuckerdatum.frenzied = TRUE
@@ -66,7 +66,7 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/frenzy_speedup)
 	owner.remove_client_colour(/datum/client_colour/manual_heart_blood)
 
-	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY)
+	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY)
 	bloodsuckerdatum.frenzied = FALSE
 	return ..()
 

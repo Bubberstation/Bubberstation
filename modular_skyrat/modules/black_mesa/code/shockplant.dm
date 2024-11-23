@@ -37,5 +37,5 @@
 		if(faction_check_atom(entering_mob))
 			return
 		tesla_zap(src, shock_range, shock_power, shocked_targets = list(entering_mob))
-		playsound(src, 'sound/magic/lightningbolt.ogg', 100, TRUE)
+		playsound(src, 'sound/effects/magic/lightningbolt.ogg', 100, TRUE)
 		COOLDOWN_START(src, shock_cooldown_timer, shock_cooldown)

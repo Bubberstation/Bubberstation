@@ -102,7 +102,7 @@
 		if(QDELETED(target))
 			return FALSE
 		target.take_damage(force*breaching_multipler)
-		playsound(target, 'sound/weapons/sonic_jackhammer.ogg', 70)
+		playsound(target, 'sound/items/weapons/sonic_jackhammer.ogg', 70)
 		visible_message("[user] smashes the [target] forcefully with the [src]")
 		user.do_attack_animation(target, used_item = src)
 		breaching_loop(user, target)

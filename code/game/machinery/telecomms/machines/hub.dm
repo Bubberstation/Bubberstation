@@ -72,6 +72,7 @@
 		"common",
 		"command",
 		"engineering",
+		"entertainment",
 		"security",
 		"receiverA",
 		"receiverB",

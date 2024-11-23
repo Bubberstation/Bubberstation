@@ -57,7 +57,7 @@
 		if(custom_materials)
 			new_table.set_custom_materials(custom_materials)
 		user.balloon_alert_to_viewers("table flipped upright")
-		playsound(src, 'sound/items/trayhit2.ogg', 100)
+		playsound(src, 'sound/items/trayhit/trayhit2.ogg', 100)
 		qdel(src)
 
 /obj/structure/flippedtable/BorgCtrlShiftClick(mob/living/silicon/robot/user)
@@ -103,7 +103,7 @@
 		sound_volume = 40
 
 	user.balloon_alert_to_viewers(balloon_message)
-	playsound(src, 'sound/items/trayhit2.ogg', sound_volume)
+	playsound(src, 'sound/items/trayhit/trayhit2.ogg', sound_volume)
 	qdel(src)
 
 	var/turf/throw_target = get_step(flipped_table, flipped_table.dir)

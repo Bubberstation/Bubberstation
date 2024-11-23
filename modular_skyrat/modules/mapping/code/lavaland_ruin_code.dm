@@ -72,20 +72,12 @@
 	ears = /obj/item/radio/headset/interdyne/command
 	id = /obj/item/card/id/advanced/silver/generic
 	id_trim = /datum/id_trim/syndicom/skyrat/interdyne/deckofficer
-	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle //Bubberstation Edit
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deckofficer
 	name = "Interdyne Deck Officer"
 	you_are_text = "You are an Interdyne Deck Officer, employed in a top secret research facility developing biological weapons."
 	outfit = /datum/outfit/lavaland_syndicate/shaftminer/deckofficer
-
-/* Bubberstation Removal Start - Don't spawn empty sleeper
-
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deckofficer/Destroy()
-	new/obj/structure/fluff/empty_sleeper/syndicate/captain(get_turf(src))
-	return ..()
-
-Bubberstation Removal End */
 
 /datum/outfit/lavaland_syndicate/shaftminer/ice
 	name = "Icemoon Interdyne Shaft Miner"

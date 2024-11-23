@@ -92,7 +92,7 @@ export const Jukebox = () => {
                   value={volume}
                   unit="%"
                   minValue={0}
-                  maxValue={100}
+                  maxValue={50}
                   step={1}
                   stepPixelSize={1}
                   onDrag={(e, value) =>

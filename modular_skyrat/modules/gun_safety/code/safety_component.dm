@@ -5,7 +5,7 @@
 	/// Holder for the toggle safety action
 	var/datum/action/item_action/gun_safety_toggle/toggle_safety_action
 
-/datum/component/gun_safety/Initialize(safety_currently_on = TRUE)
+/datum/component/gun_safety/Initialize(safety_currently_on = FALSE)
 	. = ..()
 
 	// Obviously gun safety should only apply to guns
@@ -41,7 +41,8 @@
 	SIGNAL_HANDLER
 
 	if(safety_currently_on)
-		user.balloon_alert(user, "safety on!")
+		user.balloon_alert(user, "The safety disengages!")
+		toggle_safeties(user)
 		return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used
@@ -59,7 +60,7 @@
 
 	update_action_button_state()
 
-	playsound(parent, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(parent, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	user.visible_message(
 		span_notice("[user] toggles [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"]."),
 		span_notice("You toggle [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].")

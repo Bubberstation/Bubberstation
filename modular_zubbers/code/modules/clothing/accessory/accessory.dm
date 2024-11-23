@@ -36,3 +36,41 @@
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	icon_state = "technician"
 	inhand_icon_state = "technician"
+
+/obj/item/clothing/accessory/fake/medal
+	name = "plastic medal"
+	desc = "Yeah nice try buddy. They won't record this one. Especially since it reads 'youre winnar!!'. Alt-Click to reskin!"
+	unique_reskin = list(
+			"Bronze" = "bronze",
+			"Bronze Heart" = "bronze_heart",
+			"Silver" = "silver",
+			"Gold" = "gold",
+			"Plasma" = "plasma",
+			"Cargo" = "cargo",
+			"Paperwork" = "medal_paperwork",
+			"Medical Second Class" = "med_medal",
+			"Medical First Class" = "med_medal2",
+			"Atmosian" = "elderatmosian",
+			"Emergency Service - General" = "emergencyservices",
+			"Emergency Service - Engineering" = "emergencyservices_engi",
+			"Emergency Service - Medical" = "emergencyservices_med"
+	)
+// Pride Pin Over-ride
+/obj/item/clothing/accessory/pride
+    icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
+    worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
+
+    unique_reskin  = list(
+    "Rainbow Pride" = "pride",
+    "Bisexual Pride" = "pride_bi",
+    "Pansexual Pride" = "pride_pan",
+    "Asexual Pride" = "pride_ace",
+    "Non-binary Pride" = "pride_enby",
+    "Transgender Pride" = "pride_trans",
+    "Intersex Pride" = "pride_intersex",
+    "Lesbian Pride" = "pride_lesbian",
+    "Man-Loving-Man / Gay Pride" = "pride_mlm",
+    "Genderfluid Pride" = "pride_genderfluid",
+    "Genderqueer Pride" = "pride_genderqueer",
+    "Aromantic Pride" = "pride_aromantic",
+)

@@ -48,7 +48,7 @@
 	if((affected_mob.stat == DEAD) || (affected_mob.getBruteLoss() >= affected_mob.maxHealth))
 		affected_mob.do_jitter_animation()
 		affected_mob.death()
-		playsound(loc, 'sound/magic/exit_blood.ogg', 60)
+		playsound(loc, 'sound/effects/magic/exit_blood.ogg', 60)
 		to_chat(affected_mob, span_clockred("The last of your life is drained away..."))
 		check_special_role(affected_mob)
 		GLOB.clock_vitality += (affected_mob.client ? 30 : 10) // 100 (for clients) total in the ideal situation, since it'll take 7 pulses to go from full to crit

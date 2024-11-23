@@ -9,7 +9,6 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	cut_type = /obj/item/clothing/gloves/fingerless
-	clothing_traits = list(TRAIT_FAST_CUFFING)
 	// SKYRAT EDIT ADDITION START
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
@@ -62,6 +61,7 @@
 /obj/item/clothing/gloves/color/fingerless/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/gripperoffbrand)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 	AddElement(
 		/datum/element/slapcrafting,\

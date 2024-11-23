@@ -1,28 +1,33 @@
+
+#define LUNGE_INSTANT_LEVEL 4
+#define LUNGE_INSTANT_RANGE 6
 /datum/action/cooldown/bloodsucker/targeted/lunge
 	name = "Predatory Lunge"
 	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
-	power_explanation = "Predatory Lunge:\n\
-		Click any player to start spinning wildly and, after a short delay, dash at them.\n\
-		When lunging at someone, you will grab them, immediately starting off at aggressive.\n\
-		Riot gear and Monster Hunters are protected and will only be passively grabbed.\n\
-		You cannot use the Power if you are already grabbing someone, or are being grabbed.\n\
-		If you grab from behind, or while using cloak of darkness, you will knock the target down.\n\
-		If used on a dead body, will tear out a random organ from the zone you are targeting.\n\
-		Higher levels increase the knockdown dealt to enemies.\n\
-		At level 4, you will no longer spin, but you will be limited to tackling from only 6 tiles away."
-	power_flags = NONE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_LYING|AB_CHECK_PHASED|AB_CHECK_LYING
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
+	unset_after_click = FALSE
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/upgrade_power()
+/datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation_extended()
+	. = list()
+	. += "Click any player to start spinning wildly and, after a short delay, dash at them."
+	. += "When lunging at someone, you will grab them, immediately starting off at aggressive."
+	. += "Riot gear and Monster Hunters are protected and will only be passively grabbed."
+	. += "You cannot use the Power if you are already grabbing someone, or are being grabbed."
+	. += "If you grab from behind, or while using cloak of darkness, you will knock the target down."
+	. += "If used on a dead body, will tear out a random organ from the zone you are targeting."
+	. += "Higher levels increase how long enemies are knocked down."
+	. += "At level [LUNGE_INSTANT_LEVEL], you will no longer spin, but you will be limited to tackling from only [LUNGE_INSTANT_RANGE] tiles away."
+
+/datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
 	. = ..()
-	//range is lowered when you get stronger.
-	if(level_current > 3)
-		target_range = 6
+	//range is lowered when you get stronger, since it's instant now.
+	if(level_current > LUNGE_INSTANT_LEVEL)
+		target_range = LUNGE_INSTANT_RANGE
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -53,23 +58,19 @@
 	var/mob/living/turf_target = target_atom
 	if(!isturf(turf_target.loc))
 		return FALSE
-	// Check: can the Bloodsucker even move?
-	var/mob/living/user = owner
-	if(user.body_position == LYING_DOWN || HAS_TRAIT(owner, TRAIT_IMMOBILIZED))
-		return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_deactivate()
 	return !(datum_flags & DF_ISPROCESSING) //only if you aren't lunging
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target, params)
 	. = ..()
-	owner.face_atom(target_atom)
-	if(level_current > 3)
-		do_lunge(target_atom)
+	owner.face_atom(target)
+	if(level_current >= LUNGE_INSTANT_LEVEL)
+		do_lunge(target)
 		return
 
-	prepare_target_lunge(target_atom)
+	prepare_target_lunge(target)
 	return TRUE
 
 ///Starts processing the power and prepares the lunge by spinning, calls lunge at the end of it.
@@ -123,7 +124,7 @@
 	lunge_end(hit_atom, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/proc/lunge_end(atom/hit_atom, turf/target_turf)
-	power_activated_sucessfully()
+	PowerActivatedSuccesfully()
 	// Am I next to my target to start giving the effects?
 	if(!owner.Adjacent(hit_atom))
 		return
@@ -132,7 +133,7 @@
 	var/mob/living/carbon/target = hit_atom
 
 	// Did I slip or get knocked unconscious?
-	if(user.body_position != STANDING_UP || user.incapacitated())
+	if(user.body_position != STANDING_UP || user.incapacitated)
 		user.throw_at(target_turf, 12, 0.8)
 		user.spin(10)
 		return
@@ -180,6 +181,11 @@
 		// Did we knock them down?
 
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower(deactivate_flags)
+	. = ..()
+	if(!.)
+		return
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, BLOODSUCKER_TRAIT)
-	return ..()
+
+#undef LUNGE_INSTANT_LEVEL
+#undef LUNGE_INSTANT_RANGE
