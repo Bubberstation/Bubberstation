@@ -39,7 +39,7 @@
 	var/static/list/valid_icon_categories = list(PREFERENCE_CATEGORY_FEATURES, PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE)
 	if (mutant.should_generate_icons && !(mutant.category in valid_icon_categories))
 		TEST_FAIL("[mutant.type] : Category isn't set correctly! Should be a feature, or a bubber mutant feature!")
-	else if (mutant.should_generate_icons && (mutant.category in valid_icon_categories))
+	else if (!mutant.should_generate_icons && (mutant.category in valid_icon_categories))
 		TEST_FAIL("[mutant.type] : Category isn't set correctly! Should be a list-able feature (secondary/supplemental/etc)!")
 
 	if(supplementals_failed)
