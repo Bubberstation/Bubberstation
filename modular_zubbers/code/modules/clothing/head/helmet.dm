@@ -534,7 +534,7 @@
 	icon_state = "swatcomm"
 	armor_type = /datum/armor/beret_commander
 
-/datum/armor/datum/armor/beret_commander
+/datum/armor/beret_commander
 	melee = 80
 	bullet = 80
 	laser = 50
