@@ -522,6 +522,18 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "swathr"
+	armor_type = /datum/armor/helmet_swat_privatesec
+
+/datum/armor/helmet_swat_privatesec
+	melee = 60
+	bullet = 45
+	laser = 45
+	energy = 50
+	bomb = 50
+	bio = 90
+	fire = 100
+	acid = 100
+	wound = 15
 
 /obj/item/clothing/head/beret/commander
 	name = "\improper Commander's beret"
