@@ -79,7 +79,6 @@
 		/obj/item/melee/baton/security/loaded = 1,
 		/obj/item/storage/box/handcuffs = 1,
 		/obj/item/shield/riot/tele = 1,
-		/obj/item/gun/ballistic/automatic/pistol/m45a5 = 1,
+		/obj/item/gun/energy/e_gun/advtaser = 1,
 		/obj/item/ammo_box/magazine/m223 = 3,
-		/obj/item/ammo_box/magazine/m45a5 = 1,
 	)
