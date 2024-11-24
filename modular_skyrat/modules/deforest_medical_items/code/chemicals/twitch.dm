@@ -72,7 +72,7 @@
 	. = ..()
 
 	our_guy.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/twitch)
-	our_guy.next_move_modifier /= (overdosed ? 0.49 : 0.3)
+	our_guy.next_move_modifier /= (overdosed ? 0.49 : 0.7)
 
 	our_guy.sound_environment_override = NONE
 
