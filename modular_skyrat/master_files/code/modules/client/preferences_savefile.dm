@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 6
+#define MODULAR_SAVEFILE_VERSION_MAX 7
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -13,6 +13,7 @@
 #define VERSION_UNDERSHIRT_BRA_SPLIT 4
 #define VERSION_CHRONOLOGICAL_AGE 5
 #define VERSION_LANGUAGES 6
+#define VERSION_LOADOUT_PRESETS 7
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -258,6 +259,9 @@
 		var/list/save_languages = save_data["languages"]
 		for(var/language in save_languages)
 			languages[language] = language_number_updates[save_languages[language] + 1]// fuck you indexing from 1
+
+	if(current_version < VERSION_LOADOUT_PRESETS)
+		save_data["loadout_list"] = list("Default" = save_data["loadout_list"]) // So easy. I wish the synth refactor was this easy.
 
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
