@@ -346,7 +346,7 @@
 			[CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] \
 			have been added to your ID card.")
 	//BUBBER EDIT ADDITION START - Round Removal OPT-IN
-	if (!CONFIG_GET(flag/disable_rr_opt_in_preferences))
+	if (CONFIG_GET(flag/use_rr_opt_in_preferences))
 		if (isnum(minimum_opt_in_level) && minimum_opt_in_level > RR_OPT_OUT)
 			info += span_bolddanger("This job forces a minimum opt-in setting of [GLOB.rr_opt_in_strings["[minimum_opt_in_level]"]].")
 		if (heretic_sac_target)

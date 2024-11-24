@@ -8,7 +8,7 @@
 
 /// Updates [minimum_opt_in_level] [heretic_sac_target] and [contractable].
 /datum/job/proc/update_opt_in_vars()
-	if(CONFIG_GET(flag/disable_rr_opt_in_preferences))
+	if(!CONFIG_GET(flag/use_rr_opt_in_preferences))
 		return
 
 	if(isnull(minimum_opt_in_level))
@@ -65,7 +65,7 @@
 /datum/controller/subsystem/job/setup_occupations()
 	. = ..()
 
-	if(CONFIG_GET(flag/disable_rr_opt_in_preferences))
+	if(!CONFIG_GET(flag/use_rr_opt_in_preferences))
 		return
 
 	for(var/datum/job/job as anything in all_occupations)

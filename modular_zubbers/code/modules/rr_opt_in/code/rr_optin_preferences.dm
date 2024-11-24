@@ -1,5 +1,5 @@
-/datum/config_entry/flag/disable_rr_opt_in_preferences
-	default = FALSE
+/datum/config_entry/flag/use_rr_opt_in_preferences
+	default = TRUE
 
 /datum/preference/choiced/rr_opt_in_status
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -16,10 +16,10 @@
 	if (!..(preferences))
 		return FALSE
 
-	return !(CONFIG_GET(flag/disable_rr_opt_in_preferences))
+	return (CONFIG_GET(flag/use_rr_opt_in_preferences))
 
 /datum/preference/choiced/rr_opt_in_status/deserialize(input, datum/preferences/preferences)
-	if(CONFIG_GET(flag/disable_rr_opt_in_preferences))
+	if (!CONFIG_GET(flag/use_rr_opt_in_preferences))
 		return RR_OPT_LEVEL_DEFAULT
 
 	return ..()

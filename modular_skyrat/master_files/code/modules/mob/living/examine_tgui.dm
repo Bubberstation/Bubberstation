@@ -73,7 +73,7 @@
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
-	if(!CONFIG_GET(flag/disable_rr_opt_in_preferences)) //Round Removal opt in stuff
+	if(CONFIG_GET(flag/use_rr_opt_in_preferences)) //Round Removal opt in stuff
 		var/rr_prefs = holder.mind?.ideal_opt_in_level
 		var/effective_opt_in_level = holder.mind?.get_effective_opt_in_level()
 		if(isnull(rr_prefs))

@@ -13,8 +13,8 @@
 	return TRUE
 
 /datum/objective_item/valid_objective_for(list/potential_thieves, require_owner)
-	var/opt_in_disabled = CONFIG_GET(flag/disable_rr_opt_in_preferences)
-	if (!opt_in_disabled && require_owner && !owner_opted_in())
+	var/opt_in_enabled = !CONFIG_GET(flag/use_rr_opt_in_preferences)
+	if (!opt_in_enabled && require_owner && !owner_opted_in())
 		return FALSE
 
 	return ..()
