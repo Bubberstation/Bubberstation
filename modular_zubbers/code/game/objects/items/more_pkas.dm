@@ -153,6 +153,11 @@
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 
 //Accelerator Projectiles
+
+/obj/projectile/kinetic
+	var/mod_mult = 1 // Indicates to which value the damage modkit multiplicates its bonus, useful for multi proyectile pka's where the bonus is otherwise is applied to each proyectile and increases more than intended.
+
+
 /obj/projectile/kinetic/railgun
 	name = "hyper kinetic force"
 	icon_state = null
@@ -171,6 +176,7 @@
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 4
+	mod_mult = 0.5
 	log_override = TRUE
 
 /obj/projectile/kinetic/shotgun
@@ -180,6 +186,7 @@
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
+	mod_mult = 0.5
 	log_override = TRUE
 
 /obj/projectile/kinetic/glock
@@ -199,6 +206,11 @@
 	armor_flag = BOMB
 	range = 1
 	log_override = TRUE
+
+// PKA Upgrades Overrides
+
+/obj/item/borg/upgrade/modkit/damage/modify_projectile(obj/projectile/kinetic/kinetic_projectile) // Damage upgrade override.
+	kinetic_projectile.damage += modifier*kinetic_projectile.mod_mult
 
 //Wastes firing pin - restricts a weapon to only outside when mining - based on area defines not z-level
 
