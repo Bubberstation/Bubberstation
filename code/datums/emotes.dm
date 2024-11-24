@@ -256,6 +256,7 @@
  * Returns FALSE if the cooldown is not over, TRUE if the cooldown is over.
  */
 /datum/emote/proc/check_cooldown(mob/user, intentional)
+
 	if(SEND_SIGNAL(user, COMSIG_MOB_EMOTE_COOLDOWN_CHECK, src.key, intentional) & COMPONENT_EMOTE_COOLDOWN_BYPASS)
 		intentional = FALSE
 
@@ -265,12 +266,11 @@
 	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
-			to_chat(user, span_danger("You must wait another [DisplayTimeText(user.nextsoundemote - world.time)] before using that emote."))
+			user.balloon_alert(user, "on cooldown!") // BUBBER EDIT CHANGE - Original: to_chat(user, span_danger("You must wait another [DisplayTimeText(user.emotes_used[src] - world.time + cooldown)] before using that emote."))
 		return FALSE
-	//if(!user.emotes_used)
-	//	user.emotes_used = list()
-	//user.emotes_used[src] = world.time - SKYRAT EDIT - ORIGINAL
-	//SKYRAT EDIT CHANGE END
+	if(!user.emotes_used)
+		user.emotes_used = list()
+	user.emotes_used[src] = world.time
 	return TRUE
 
 /**
