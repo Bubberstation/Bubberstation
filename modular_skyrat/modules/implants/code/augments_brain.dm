@@ -30,16 +30,16 @@
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_remove(mob/living/carbon/implant_owner)
 	. = ..()
-	organ_flags |= ORGAN_FAILING
-	UnregisterSignal(owner, COMSIG_MOB_SAY)
-	owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
+	organ_flags &= ~ORGAN_FAILING
+	UnregisterSignal(implant_owner, COMSIG_MOB_SAY)
+	implant_owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 	if(QDELETED(src))
 		return
 	to_chat(implant_owner, span_abductor("Your mind closes from others. It's quiet, now."))
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/on_mob_insert(mob/living/carbon/receiver)
 	. = ..()
-	to_chat(owner, span_abductor("You begin to feel an awareness of those around you."))
+	to_chat(receiver, span_abductor("You begin to feel an awareness of those around you."))
 	addtimer(CALLBACK(src, PROC_REF(implant_ready)), 90)
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/reboot()
