@@ -202,8 +202,10 @@ export type PreferencesMenuData = {
       gender: Gender;
       joblessrole: JoblessRole;
       species: string;
-      loadout_list: LoadoutList;
+      // loadout_list: LoadoutList; // BUBBER EDIT REMOVAL: Multiple loadout presets
       job_clothes: BooleanLike;
+      loadout_lists: LoadoutList; // BUBBER EDIT ADDITION: Multiple loadout presets
+      loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
     };
 
     randomization: Record<string, RandomSetting>;

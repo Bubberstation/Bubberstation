@@ -1,19 +1,23 @@
 import { Fragment, useState } from 'react';
 
-import { useBackend } from '../../../backend';
+import { useBackend, useLocalState } from '../../../backend';
 import {
   Box,
   Button,
+  Dimmer,
   Divider,
+  Dropdown,
   Icon,
   Input,
+  Modal,
   NoticeBox,
   Section,
   Stack,
   Tabs,
+  TextArea,
 } from '../../../components';
 import { CharacterPreview } from '../../common/CharacterPreview';
-import { ServerData } from '../data';
+import { PreferencesMenuData, ServerData } from '../data';
 import { ServerPreferencesFetcher } from '../ServerPreferencesFetcher';
 import {
   LoadoutCategory,
@@ -23,6 +27,8 @@ import {
 } from './base';
 import { ItemIcon, LoadoutTabDisplay, SearchDisplay } from './ItemDisplay';
 import { LoadoutModifyDimmer } from './ModifyPanel';
+import { Flex } from 'tgui-core/components';
+import { removeAllSkiplines } from '../../TextInputModal';
 
 export const LoadoutPage = () => {
   return (
@@ -49,10 +55,87 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
   const [modifyItemDimmer, setModifyItemDimmer] = useState<LoadoutItem | null>(
     null,
   );
+  // BUBBER EDIT ADDITION START: Multiple loadout presets
+  const [addingPreset, setAddingPresetBase] = useLocalState(
+    'addingPreset',
+    false,
+  );
+  const { act } = useBackend();
+  const [input, setInput] = useState('');
+  const setAddingPreset = (value) => {
+    setAddingPresetBase(value);
+    setInput('');
+  };
+  const onType = (value: string) => {
+    if (value === input) {
+      return;
+    }
+    setInput(removeAllSkiplines(value));
+  };
+  // BUBBER EDIT END
 
   return (
     <Stack vertical fill>
       <Stack.Item>
+        {/* BUBBER EDIT ADDITION START: Multiple loadout presets */}
+        {addingPreset && (
+          <Dimmer style={{ zIndex: '100' }}>
+            <Stack
+              vertical
+              width="400px"
+              backgroundColor="#101010"
+              style={{
+                borderRadius: '2px',
+                position: 'relative',
+                display: 'inline-block',
+                padding: '5px',
+              }}
+            >
+              <Stack.Item height="20px" width="100%">
+                <Flex>
+                  <Flex.Item fontSize="1.3rem">Add Loadout Preset</Flex.Item>
+                  <Flex.Item ml="auto">
+                    <Button
+                      icon="times"
+                      color="red"
+                      onClick={() => {
+                        setAddingPreset(false);
+                      }}
+                    />
+                  </Flex.Item>
+                </Flex>
+              </Stack.Item>
+              <Stack.Item width="100%" height="20px">
+                <Input
+                  placeholder="Maximum of 24 characters long"
+                  width="100%"
+                  maxLength={24}
+                  onChange={(_, value) => onType(value)}
+                  onInput={(_, value) => onType(value)}
+                  onEnter={(event) => {
+                    event.preventDefault();
+                    act('add_loadout_preset', { name: input });
+                    setAddingPreset(false);
+                  }}
+                  onEscape={() => setAddingPreset(false)}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack justify="center">
+                  <Button
+                    onClick={() => {
+                      act('add_loadout_preset', { name: input });
+                      setAddingPreset(false);
+                    }}
+                  >
+                    Done
+                  </Button>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          </Dimmer>
+        )}
+        {/* BUBBER EDIT END */}
         {!!modifyItemDimmer && (
           <LoadoutModifyDimmer
             modifyItemDimmer={modifyItemDimmer}
@@ -126,13 +209,68 @@ const LoadoutTabs = (props: {
   });
   const searching = currentSearch.length > 1;
 
+  // BUBBER EDIT ADDITION START: Multiple loadout presets
+  const { act, data } = useBackend<PreferencesMenuData>();
+  const [_, setAddingPreset] = useLocalState('addingPreset', false);
+  // BUBBER EDIT END
+
   return (
     <Stack fill height="550px">
       <Stack.Item align="center" width="250px" height="100%">
         <Stack vertical fill>
-          <Stack.Item height="60%">
+          <Stack.Item
+            height="50%" // BUBBER EDIT: Better loadout pref: ORIGINAL: 60%
+          >
             <LoadoutPreviewSection />
           </Stack.Item>
+          {/* BUBBER EDIT ADDITION START: Multiple loadout presets */}
+          <Stack.Item>
+            <Section>
+              <Stack vertical>
+                <Stack.Item>
+                  <Dropdown
+                    mb="2px"
+                    width="100%"
+                    options={Object.keys(
+                      data.character_preferences.misc.loadout_lists,
+                    )}
+                    selected={data.character_preferences.misc.loadout_index}
+                    onSelected={(value) =>
+                      act('set_loadout_preset', { name: value })
+                    }
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button.Confirm
+                    icon="times"
+                    color="red"
+                    align="center"
+                    disabled={
+                      data.character_preferences.misc.loadout_index ===
+                      'Default'
+                    }
+                    tooltip={
+                      data.character_preferences.misc.loadout_index ===
+                      'Default'
+                        ? "Can't delete the default loadout entry."
+                        : 'Delete the current loadout entry.'
+                    }
+                    onClick={() => act('remove_loadout')}
+                  >
+                    Delete Loadout
+                  </Button.Confirm>
+                  <Button
+                    onClick={() => setAddingPreset(true)}
+                    icon="plus"
+                    width="116px"
+                  >
+                    Add Loadout
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Stack.Item>
+          {/* BUBBER EDIT END */}
           <Stack.Item grow>
             <LoadoutSelectedSection
               all_tabs={loadout_tabs}
@@ -248,7 +386,11 @@ const LoadoutSelectedSection = (props: {
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
 }) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const { loadout_list } = data.character_preferences.misc;
+  const loadout_list =
+    !!data.character_preferences.misc.loadout_lists &&
+    data.character_preferences.misc.loadout_lists[
+      data.character_preferences.misc.loadout_index
+    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
   const { all_tabs, modifyItemDimmer, setModifyItemDimmer } = props;
 
   return (
@@ -291,16 +433,16 @@ const LoadoutPreviewSection = () => {
   return (
     <Section
       fill
-      title="&nbsp;"
-      buttons={
-        <Button.Checkbox
-          align="center"
-          checked={data.job_clothes}
-          onClick={() => act('toggle_job_clothes')}
-        >
-          Job Clothes
-        </Button.Checkbox>
-      }
+      // BUBBER EDIT REMOVAL: Better loadout pref
+      // buttons={
+      //   <Button.Checkbox
+      //     align="center"
+      //     checked={data.job_clothes}
+      //     onClick={() => act('toggle_job_clothes')}
+      //   >
+      //     Job Clothes
+      //   </Button.Checkbox>
+      // }
     >
       <Stack vertical fill>
         <Stack.Item grow align="center">
@@ -309,6 +451,18 @@ const LoadoutPreviewSection = () => {
         <Stack.Divider />
         <Stack.Item align="center">
           <Stack>
+            {/* BUBBER EDIT ADDITION: Better loadout pref */}
+            <Stack.Item>
+              <Dropdown
+                selected={data.preview_selection}
+                options={data.preview_options}
+                onSelected={(value) =>
+                  act('update_preview', {
+                    updated_preview: value,
+                  })
+                }
+              />
+            </Stack.Item>
             <Stack.Item>
               <Button
                 icon="chevron-left"
