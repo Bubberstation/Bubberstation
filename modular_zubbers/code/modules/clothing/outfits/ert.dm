@@ -75,10 +75,10 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/gun/energy/e_gun/mini
 	r_hand = /obj/item/gun/energy/e_gun/advtaser
-	l_hand = /obj/item/gun/ballistic/automatic/ar
+	l_hand = /obj/item/gun/ballistic/automatic/wt550
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded = 1,
 		/obj/item/storage/box/handcuffs = 1,
 		/obj/item/shield/riot/tele = 1,
-		/obj/item/ammo_box/magazine/m223 = 3,
+		/obj/item/ammo_box/magazine/wt550m9 = 3,
 	)
