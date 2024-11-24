@@ -1,8 +1,8 @@
 /datum/emote
-	cooldown = 0.7 SECONDS
+	cooldown = FLIP_EMOTE_DURATION
 
 /datum/emote/jump
 	cooldown = 0.4 SECONDS
 
-/datum/emote/kiss
-	cooldown = 1 SECONDS
+/datum/emote/living/kiss
+	cooldown = TAUNT_EMOTE_DURATION
