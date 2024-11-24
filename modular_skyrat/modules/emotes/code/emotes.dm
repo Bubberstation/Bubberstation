@@ -1,11 +1,5 @@
 
-#define EMOTE_DELAY (1 SECONDS) // BUBBER TODO - Look over how these work and why they borked
-
-/mob
-	var/nextsoundemote = 1 //Time at which the next emote can be played
-
 /datum/emote
-	cooldown = EMOTE_DELAY
 	var/muzzle_ignore = FALSE
 
 //Disables the custom emote blacklist from TG that normally applies to slimes.
@@ -77,12 +71,6 @@
 					return
 				carbon_user.next_smell = world.time + SMELL_COOLDOWN
 			current_turf.pollution.smell_act(user)
-
-/datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
-	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
-		user.balloon_alert(user, "not nimble enough!")
-		return FALSE
-	return ..()
 
 /datum/emote/living/peep
 	key = "peep"
