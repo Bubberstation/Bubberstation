@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { Flex } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../../../backend';
 import {
@@ -9,14 +10,13 @@ import {
   Dropdown,
   Icon,
   Input,
-  Modal,
   NoticeBox,
   Section,
   Stack,
   Tabs,
-  TextArea,
 } from '../../../components';
 import { CharacterPreview } from '../../common/CharacterPreview';
+import { removeAllSkiplines } from '../../TextInputModal';
 import { PreferencesMenuData, ServerData } from '../data';
 import { ServerPreferencesFetcher } from '../ServerPreferencesFetcher';
 import {
@@ -27,8 +27,6 @@ import {
 } from './base';
 import { ItemIcon, LoadoutTabDisplay, SearchDisplay } from './ItemDisplay';
 import { LoadoutModifyDimmer } from './ModifyPanel';
-import { Flex } from 'tgui-core/components';
-import { removeAllSkiplines } from '../../TextInputModal';
 
 export const LoadoutPage = () => {
   return (
@@ -60,7 +58,7 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
     'addingPreset',
     false,
   );
-  const { act } = useBackend();
+  const { act, data } = useBackend<PreferencesMenuData>();
   const [input, setInput] = useState('');
   const setAddingPreset = (value) => {
     setAddingPresetBase(value);
@@ -94,6 +92,14 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
               <Stack.Item height="20px" width="100%">
                 <Flex>
                   <Flex.Item fontSize="1.3rem">Add Loadout Preset</Flex.Item>
+                  <Flex.Item ml="6px" mt="4px">
+                    (
+                    {
+                      Object.keys(data.character_preferences.misc.loadout_lists)
+                        .length
+                    }{' '}
+                    of 6 total)
+                  </Flex.Item>
                   <Flex.Item ml="auto">
                     <Button
                       icon="times"
@@ -255,7 +261,11 @@ const LoadoutTabs = (props: {
                         ? "Can't delete the default loadout entry."
                         : 'Delete the current loadout entry.'
                     }
-                    onClick={() => act('remove_loadout')}
+                    onClick={() =>
+                      act('remove_loadout_preset', {
+                        name: data.character_preferences.misc.loadout_index,
+                      })
+                    }
                   >
                     Delete Loadout
                   </Button.Confirm>
