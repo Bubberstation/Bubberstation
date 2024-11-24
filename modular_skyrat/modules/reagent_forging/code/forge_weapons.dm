@@ -133,11 +133,6 @@
 	bare_wound_bonus = 15
 	sharpness = SHARP_POINTY
 
-/datum/embed_data/forged_spear
-	embed_chance = 75
-	fall_chance = 0
-	pain_mult = 6
-
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting, max_tile_charge = 9, min_tile_charge = 6)
