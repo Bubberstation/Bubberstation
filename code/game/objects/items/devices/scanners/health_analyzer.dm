@@ -93,7 +93,7 @@
 	balloon_alert(user, "analyzing vitals")
 	playsound(user.loc, 'sound/items/healthanalyzer.ogg', 50)
 
-	var/readability_check = user.can_read(src) && !user.is_blind()
+	var/readability_check = user.can_read(src) // BUBBER EDIT CHANGE - Blind people can analyze again - ORIGINAL: user.can_read(src) && !user.is_blind()
 	switch (scanmode)
 		if (SCANMODE_HEALTH)
 			last_scan_text = healthscan(user, M, mode, advanced, tochat = readability_check)
@@ -283,7 +283,7 @@
 		var/list/missing_organs = list()
 		if(!humantarget.get_organ_slot(ORGAN_SLOT_BRAIN))
 			missing_organs[ORGAN_SLOT_BRAIN] = "Brain"
-		if(!humantarget.needs_heart() && !humantarget.get_organ_slot(ORGAN_SLOT_HEART))
+		if(humantarget.needs_heart() && !humantarget.get_organ_slot(ORGAN_SLOT_HEART))
 			missing_organs[ORGAN_SLOT_HEART] = "Heart"
 		if(!HAS_TRAIT_FROM(humantarget, TRAIT_NOBREATH, SPECIES_TRAIT) && !isnull(humantarget.dna.species.mutantlungs) && !humantarget.get_organ_slot(ORGAN_SLOT_LUNGS))
 			missing_organs[ORGAN_SLOT_LUNGS] = "Lungs"

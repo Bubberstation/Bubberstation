@@ -1,4 +1,4 @@
-//SKYRAT AND SOL AMMO
+//TERRAGOV AMMO
 
 /datum/supply_pack/security/lethalsolpistols
 	name = ".35 Ammunition Crates"
@@ -53,7 +53,7 @@
 	crate_name = "anti riot shotgun ammo crate"
 
 
-//SOL GUNS
+//TERRAGOV GUNS
 
 /datum/supply_pack/security/wespe
 	name = "Wespe Three-Pack Crates"
