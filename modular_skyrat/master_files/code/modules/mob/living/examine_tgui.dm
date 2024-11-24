@@ -63,15 +63,26 @@
 		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
 			var/e_prefs = preferences.read_preference(/datum/preference/choiced/erp_status)
 			var/e_prefs_hypno = preferences.read_preference(/datum/preference/choiced/erp_status_hypno)
-			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
+			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
 			ooc_notes += "ERP: [e_prefs]\n"
-			ooc_notes += "Non-Con: [e_prefs_nc]\n"
 			ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
 			ooc_notes += "Vore: [e_prefs_v]\n"
+			ooc_notes += "Non-Con: [e_prefs_nc]\n"
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
+
+		// Now we handle silicon and/or human, order doesn't really matter
+		// If other variants of mob/living need to be handled at some point, put them here
+		if(issilicon(holder))
+			flavor_text = preferences.read_preference(/datum/preference/text/silicon_flavor_text)
+			// Silicon prefs and headshot
+			custom_species = preferences.read_preference(/datum/preference/text/custom_species/silicon)
+			custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
+			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
+			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
+			name = holder.name
 
 	//Round Removal opt in stuff
 	if(CONFIG_GET(flag/use_rr_opt_in_preferences))
@@ -82,17 +93,6 @@
 		ooc_notes += "Current Round Removal Opt-In Status: [GLOB.rr_opt_in_strings[num2text(effective_opt_in_level)]]\n"
 		ooc_notes += "Round Removal Opt-In Status (Preferences): [GLOB.rr_opt_in_strings[num2text(rr_prefs)]]\n"
 		ooc_notes += "\n"
-
-	// Now we handle silicon and/or human, order doesn't really matter
-	// If other variants of mob/living need to be handled at some point, put them here
-	if(preferences && issilicon(holder))
-		flavor_text = preferences?.read_preference(/datum/preference/text/silicon_flavor_text)
-		// Silicon prefs and headshot
-		custom_species = preferences?.read_preference(/datum/preference/text/custom_species/silicon)
-		custom_species_lore = preferences?.read_preference(/datum/preference/text/custom_species_lore/silicon)
-		ooc_notes += preferences?.read_preference(/datum/preference/text/ooc_notes/silicon)
-		headshot += preferences?.read_preference(/datum/preference/text/headshot/silicon)
-		name = holder.name
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
