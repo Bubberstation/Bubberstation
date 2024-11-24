@@ -315,7 +315,7 @@
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/caw.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox/mia
-	name = "silver fox plushie" //bubber edit on request
+	name = "silver fox plushie"
 	desc = "A small stuffed silver fox with a collar tag that says “Eavy” and a tiny bell in its fluffy tail."
 	icon_state = "miafox"
 

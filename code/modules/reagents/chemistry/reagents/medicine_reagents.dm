@@ -1036,7 +1036,7 @@
 	else
 		tips = world.file2list("strings/chemistrytips.txt")
 	var/message = pick(tips)
-	send_tip_of_the_round(affected_mob, message)
+	send_tip_of_the_round(affected_mob, message, source = "Chemical-induced wisdom")
 
 /datum/reagent/medicine/neurine
 	name = "Neurine"
@@ -1093,7 +1093,7 @@
 	var/mob/living/carbon/human/human_mob = affected_mob
 	if (ismonkey(human_mob))
 		if (!HAS_TRAIT(human_mob, TRAIT_BORN_MONKEY))
-			human_mob.dna.remove_mutation(/datum/mutation/human/race)
+			human_mob.dna.remove_mutation(/datum/mutation/human/race, mutadone = TRUE)
 	else if (HAS_TRAIT(human_mob, TRAIT_BORN_MONKEY))
 		human_mob.monkeyize()
 
