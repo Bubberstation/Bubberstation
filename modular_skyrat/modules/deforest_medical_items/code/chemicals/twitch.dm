@@ -146,7 +146,7 @@
 
 	RegisterSignal(our_guy, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(dodge_bullets))
 
-	our_guy.next_move_modifier -= 0.7 // Overdosing makes you a liiitle faster but you know has some really bad consequences
+	our_guy.next_move_modifier *= 0.7 // Overdosing makes you a liiitle faster but you know has some really bad consequences
 
 	if(!our_guy.hud_used)
 		return
