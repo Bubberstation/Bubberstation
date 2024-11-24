@@ -3,10 +3,10 @@
 		resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | LAVA_PROOF
 
 /datum/armor/cloak_godslayer
-	melee = 65
+	melee = 75
 	bullet = 15
-	laser = 40
-	energy = 40
+	laser = 30
+	energy = 30
 	bomb = 70
 	bio = 60
 	fire = 100
