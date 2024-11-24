@@ -444,6 +444,7 @@ const LoadoutPreviewSection = () => {
     <Section
       fill
       // BUBBER EDIT REMOVAL: Better loadout pref
+      // title="&nbsp;"
       // buttons={
       //   <Button.Checkbox
       //     align="center"
