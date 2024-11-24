@@ -123,7 +123,7 @@
 		data["error_message"] = "Unable to connect to the power network!"
 		return data
 	if(!cold_circ && !hot_circ)
-		data["error_message"] = "Unable to locate any parts! Multitool the machine to sync to nearby parts."
+		data["error_message"] = "Unable to locate any parts! Open and wrench the machine to connect to nearby parts."
 		return data
 	if(!cold_circ)
 		data["error_message"] = "Unable to locate cold circulator!"

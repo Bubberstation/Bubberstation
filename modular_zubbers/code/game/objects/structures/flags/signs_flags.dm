@@ -16,8 +16,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 	icon_state = "flag_tizira"
 
 /obj/structure/sign/flag/terragov
-	name = "flag of the Solarian State"
-	desc = "Previously the flag of the Sol Federation, before it was dissolved."
+	name = "flag of the Terran Government"
+	desc = "The flag of the Terran Government, home of humanity."
 
 /obj/item/sign/flag/galfed
 	name = "folded flag of the Galactic Federation"
@@ -33,8 +33,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 	icon_state = "folded_tizira"
 
 /obj/item/sign/flag/terragov
-	name = "folded flag of the Solarian State"
-	desc = "The folded flag of the Solarian State."
+	name = "folded flag of the Terran Government"
+	desc = "The folded flag of the Terran Government."
 
 /obj/structure/sign/flag/nri
 	name = "flag of the Novaya Rossiyskaya Imperiya"

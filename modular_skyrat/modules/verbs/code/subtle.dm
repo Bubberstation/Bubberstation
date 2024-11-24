@@ -90,7 +90,7 @@
 		to_chat(user, span_warning("You cannot send IC messages (muted)."))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler Anti-Ghost" , null, MAX_MESSAGE_LEN, TRUE) // Bubber Edit - Improves distinction between Subtle and Subtler text boxes: "Subtler" > "Subtler Anti-Ghost"
+		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler Anti-Ghost" , null, MAX_MESSAGE_LEN, TRUE)
 		if(!subtler_emote)
 			return FALSE
 
@@ -139,22 +139,20 @@
 		var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 		if((get_dist(user.loc, target_mob.loc) <= subtler_range) || (hologram && get_dist(hologram.loc, target_mob.loc) <= subtler_range))
 			target_mob.show_message(subtler_message, alt_msg = subtler_message)
-			// BUBBER EDIT BEGIN - Subtler sounds
+			// Subtler sounds
 			var/datum/preferences/prefs = target_mob.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-			// BUBBER EDIT END
 		else
 			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
 	else if(istype(target, /obj/effect/overlay/holo_pad_hologram))
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
 			hologram.Impersonation.show_message(subtler_message, alt_msg = subtler_message)
-			// BUBBER EDIT BEGIN - Subtler sounds
+			// Subtler sounds
 			var/datum/preferences/prefs = hologram.Impersonation.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-			// BUBBER EDIT END
 	else
 		var/ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
 
@@ -168,11 +166,10 @@
 
 		for(var/mob/receiver in ghostless)
 			receiver.show_message(subtler_message, alt_msg = subtler_message)
-			// BUBBER EDIT BEGIN - Subtler sounds
+			// Subtler sounds
 			var/datum/preferences/prefs = receiver.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-			// BUBBER EDIT END
 
 	return TRUE
 

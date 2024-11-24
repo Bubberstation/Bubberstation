@@ -8,8 +8,8 @@
 
 /datum/species/human/get_species_lore()
 	return list(
-		"Humans originate from Earth in the Sol system. They evolved from Primates and founded the former state of SolFed,\
-		the NRI, and many other minor organizations. After a turbulent history, SolFed was absorbed into the Galactic Federation,\
+		"Humans originate from Earth in the Sol system. They evolved from Primates and founded the Terran Government,\
+		the NRI, and many other minor organizations. After a turbulent history, the Terran Government was absorbed into the Galactic Federation,\
 		and humanity went along with it.",
 
 		"While most humans reside within GalFed in the current age, a large portion has migrated to every corner of the Known Galaxy,\
@@ -17,16 +17,16 @@
 		The human stereotype of adaptability holds true even in space.",
 
 		"Humans entered space around when many other species did, fully-entering into the space age in the mid 2040s.\
-		SolFed erupted with massive growth, sprawling many star systems and colonizing hundreds of planets.\
-		Around the 2080s SolFed encountered the Alliance, the predecessors to GalFed, and engaged in a long-standing rivalry with them until 2140.\
+		TerraGov erupted with massive growth, sprawling many star systems and colonizing hundreds of planets.\
+		Around the 2080s TerraGov encountered the Alliance, the predecessors to GalFed, and engaged in a long-standing rivalry with them until 2140.\
 		During this period, Sol found itself in 9 wars with the Alliance, winning 5 and losing 4. The last of these wars were a crushing defeat, \
-		and left SolFed under the influence of the Alliance.",
+		and left TerraGov under the influence of the Alliance.",
 
 		"Around this time, the NRI had made its roots in a collection of far-colonies, establishing the second, \
-		and eventually the largest Human-led nation in the Known Galaxy. When SolFed was absorbed into the Galactic Federation during its founding, \
+		and eventually the largest Human-led nation in the Known Galaxy. When TerraGov was absorbed into the Galactic Federation during its founding, \
 		the NRI exploded in population and started a rivalry with GalFed that spanned longer than Sol and the Alliance’s rivalry by a long shot.",
 
 		"In the current day and age, the NRI is still the largest Human primary nation, though even they have taken on a massive population of non-humans.\
-		What remains of Sol is the Solarian State, otherwise known as SolGov, and it is a bustling state of commerce and military advancement. \
+		What remains of Sol is the Terran Government, otherwise known as TerraGov, and it is a bustling state of commerce and military advancement. \
 		Human thriftiness is often considered the reason for GalFed’s economic explosion and current dominance over markets across the entirety of the Known Galaxy.",
 	)
