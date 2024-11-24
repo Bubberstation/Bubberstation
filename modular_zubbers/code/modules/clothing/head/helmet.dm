@@ -506,3 +506,12 @@
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
+//Maid SEC
+/obj/item/clothing/head/security_maid //Icon by Onule!
+	name = "cnc maid headband"
+	desc = "A highly durable headband with the 'cleaning and clearing' insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	icon_state = "security_maid"
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	armor_type = /datum/armor/head_helmet
+	strip_delay = 60

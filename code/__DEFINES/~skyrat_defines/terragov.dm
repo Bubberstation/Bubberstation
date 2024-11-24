@@ -1,0 +1,5 @@
+#define RADIO_CHANNEL_TERRAGOV "TerraGov"
+#define RADIO_KEY_TERRAGOV "l"
+#define RADIO_TOKEN_TERRAGOV ":l"
+
+#define FREQ_TERRAGOV 1377
