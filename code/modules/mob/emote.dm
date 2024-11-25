@@ -84,8 +84,8 @@
 // BUBBER EDIT CHANGE BEGIN - Flip Cooldown
 /datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
 	. = ..()
-	var/mob/living/carbon/flippy_mcgee = user
-	if(flippy_mcgee)
+	if(iscarbon(user))
+		var/mob/living/carbon/flippy_mcgee = user
 		flippy_mcgee.set_confusion_if_lower(FLIP_EMOTE_DURATION)
 		if(flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 			flippy_mcgee.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
