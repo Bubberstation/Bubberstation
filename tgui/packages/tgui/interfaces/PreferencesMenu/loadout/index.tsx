@@ -54,14 +54,14 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
     null,
   );
   // BUBBER EDIT ADDITION START: Multiple loadout presets
-  const [addingPreset, setAddingPresetBase] = useLocalState(
-    'addingPreset',
-    false,
+  const [managingPreset, _setManagingPreset] = useLocalState<string | null>(
+    'managingPreset',
+    null,
   );
   const { act, data } = useBackend<PreferencesMenuData>();
   const [input, setInput] = useState('');
-  const setAddingPreset = (value) => {
-    setAddingPresetBase(value);
+  const setManagingPreset = (value) => {
+    _setManagingPreset(value);
     setInput('');
   };
   const onType = (value: string) => {
@@ -76,7 +76,7 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
     <Stack vertical fill>
       <Stack.Item>
         {/* BUBBER EDIT ADDITION START: Multiple loadout presets */}
-        {addingPreset && (
+        {!!managingPreset && (
           <Dimmer style={{ zIndex: '100' }}>
             <Stack
               vertical
@@ -91,21 +91,26 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
             >
               <Stack.Item height="20px" width="100%">
                 <Flex>
-                  <Flex.Item fontSize="1.3rem">Add Loadout Preset</Flex.Item>
-                  <Flex.Item ml="6px" mt="4px">
-                    (
-                    {
-                      Object.keys(data.character_preferences.misc.loadout_lists)
-                        .length
-                    }{' '}
-                    of 6 total)
+                  <Flex.Item fontSize="1.3rem">
+                    {managingPreset} Loadout Preset
                   </Flex.Item>
+                  {managingPreset === 'Add' && (
+                    <Flex.Item ml="6px" mt="4px">
+                      (
+                      {
+                        Object.keys(
+                          data.character_preferences.misc.loadout_lists,
+                        ).length
+                      }{' '}
+                      of 6 total)
+                    </Flex.Item>
+                  )}
                   <Flex.Item ml="auto">
                     <Button
                       icon="times"
                       color="red"
                       onClick={() => {
-                        setAddingPreset(false);
+                        setManagingPreset(null);
                       }}
                     />
                   </Flex.Item>
@@ -120,18 +125,22 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
                   onInput={(_, value) => onType(value)}
                   onEnter={(event) => {
                     event.preventDefault();
-                    act('add_loadout_preset', { name: input });
-                    setAddingPreset(false);
+                    act(`${managingPreset.toLowerCase()}_loadout_preset`, {
+                      name: input,
+                    });
+                    setManagingPreset(null);
                   }}
-                  onEscape={() => setAddingPreset(false)}
+                  onEscape={() => setManagingPreset(null)}
                 />
               </Stack.Item>
               <Stack.Item>
                 <Stack justify="center">
                   <Button
                     onClick={() => {
-                      act('add_loadout_preset', { name: input });
-                      setAddingPreset(false);
+                      act(`${managingPreset.toLowerCase()}_loadout_preset`, {
+                        name: input,
+                      });
+                      setManagingPreset(null);
                     }}
                   >
                     Done
@@ -217,7 +226,10 @@ const LoadoutTabs = (props: {
 
   // BUBBER EDIT ADDITION START: Multiple loadout presets
   const { act, data } = useBackend<PreferencesMenuData>();
-  const [_, setAddingPreset] = useLocalState('addingPreset', false);
+  const [_, setManagingPreset] = useLocalState<string | null>(
+    'managingPreset',
+    null,
+  );
   // BUBBER EDIT END
 
   return (
@@ -267,15 +279,15 @@ const LoadoutTabs = (props: {
                       })
                     }
                   >
-                    Delete Loadout
+                    Delete
                   </Button.Confirm>
-                  <Button
-                    onClick={() => setAddingPreset(true)}
-                    icon="plus"
-                    width="116px"
-                  >
+                  <Button onClick={() => setManagingPreset('Add')} icon="plus">
                     Add Loadout
                   </Button>
+                  <Button
+                    icon="pen"
+                    onClick={() => setManagingPreset('Rename')}
+                  />
                 </Stack.Item>
               </Stack>
             </Section>
