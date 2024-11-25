@@ -4,7 +4,6 @@
 	taste_description = "astringent and sweetish"
 	color = "#ffffffb0"
 	reagent_state = LIQUID
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/glass_style/drinking_glass/femcum
 	required_drink_type = /datum/reagent/consumable/femcum
@@ -24,7 +23,6 @@
 	taste_description = "musky and salty"
 	color = "#ffffffff"
 	reagent_state = LIQUID
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/glass_style/drinking_glass/cum
 	required_drink_type = /datum/reagent/consumable/cum
