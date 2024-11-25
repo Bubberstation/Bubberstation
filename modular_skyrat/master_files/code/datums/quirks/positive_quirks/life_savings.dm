@@ -25,7 +25,7 @@
 /datum/quirk/life_savings/proc/post_payout(datum/bank_account/account)
 	SIGNAL_HANDLER
 	if(!istype(account))
-		return
+		CRASH("post_payout() called on non-account datum, WTF?!")
 	var/funds = round(PAYCHECK_CREW * 0.25)
 	account.adjust_money(funds, "Personal fund")
 	SSblackbox.record_feedback("amount", "personal_income", funds)
