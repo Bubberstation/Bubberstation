@@ -122,7 +122,7 @@
 	inhand_icon_state = "spear"
 	worn_icon_state = "spear_back"
 	throwforce = 15 //not a javelin, throwing specialty is for the axe.
-	embed_data = /datum/embed_data/forged_spear
+	embed_data = /datum/embed_data/spear
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
@@ -132,11 +132,6 @@
 	wound_bonus = -15
 	bare_wound_bonus = 15
 	sharpness = SHARP_POINTY
-
-/datum/embed_data/forged_spear
-	embed_chance = 75
-	fall_chance = 0
-	pain_mult = 6
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
