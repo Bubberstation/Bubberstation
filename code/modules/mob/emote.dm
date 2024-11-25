@@ -87,7 +87,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/flippy_mcgee = user
 		flippy_mcgee.set_confusion_if_lower(FLIP_EMOTE_DURATION)
-		if(flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
+		if(!issynthetic(flippy_mcgee) && flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 			flippy_mcgee.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 			return
 
