@@ -181,13 +181,13 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/mapping_helpers/airlock/access/all/away/command,
-/obj/machinery/door/airlock/hos/glass{
-	name = "Manager's Office";
-	id_tag = "allamerican_bolt"
-	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/hos{
+	id_tag = "allamerican_bolt";
+	name = "Manager's Office"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/allamericandiner)
 "eQ" = (
@@ -1399,10 +1399,8 @@
 "Mm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/safe,
-/obj/effect/spawner/random/entertainment/money_medium,
-/obj/effect/spawner/random/entertainment/money_medium,
-/obj/effect/spawner/random/entertainment/money_medium,
 /obj/item/research_paper,
+/obj/effect/spawner/random/entertainment/money_large,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/allamericandiner)
 "Ms" = (

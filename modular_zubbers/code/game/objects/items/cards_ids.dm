@@ -20,11 +20,13 @@
 
 /obj/item/card/id/advanced/allamerican
 	name = "employee identification card"
-	desc = "An employee ID card that All-American Diner employees use to get into placed, it looks more like a keycard or nametag, some corporate-styled card."
+	desc = "An employee ID card that All-American Diner employees use to get into places, it looks more like a keycard or nametag, some corporate-styled card."
 	icon = 'modular_zubbers/icons/obj/card.dmi'
 	icon_state = "allamerican_employee"
+	assigned_icon_state = null
 
 /obj/item/card/id/advanced/allamerican/manager
 	name = "manager identification card"
-	desc = "An employee ID card that All-American Diner employees use to get into placed, it looks more like a keycard or nametag, some corporate-styled card. This one is suited for a Manager, due to the gold stripe."
+	desc = "An employee ID card that All-American Diner employees use to get into places, it looks more like a keycard or nametag, some corporate-styled card. This one is suited for a Manager, due to the gold stripe."
 	icon_state = "allamerican_manager"
+	assigned_icon_state = null
