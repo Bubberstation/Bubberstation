@@ -102,7 +102,7 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
                           data.character_preferences.misc.loadout_lists,
                         ).length
                       }{' '}
-                      of 6 total)
+                      of 12 total)
                     </Flex.Item>
                   )}
                   <Flex.Item ml="auto">
