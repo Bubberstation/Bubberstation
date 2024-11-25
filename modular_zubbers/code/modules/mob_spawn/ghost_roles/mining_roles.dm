@@ -69,6 +69,7 @@
 	suit = /obj/item/clothing/suit/misc/allamerican
 	back = /obj/item/storage/backpack/satchel/leather
 	belt = /obj/item/gun/energy/e_gun/mini
+	neck = /obj/item/clothing/neck/tie/black/tied
 	box = /obj/item/storage/box/survival
 	shoes = /obj/item/clothing/shoes/laceup
 	ears = null
