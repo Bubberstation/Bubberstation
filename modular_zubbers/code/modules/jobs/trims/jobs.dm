@@ -82,3 +82,11 @@
 /datum/id_trim/job/nanotrasen_consultant
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim
+
+/datum/id_trim/away/allamerican
+	assignment = "All-American Diner Employee"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINEERING)
+
+/datum/id_trim/away/allamerican/manager
+	assignment = "All-American Diner Manager"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINEERING, ACCESS_AWAY_COMMAND)

@@ -461,6 +461,7 @@ BUBBERSTATION REMOVAL END */
 
 /datum/map_template/ruin/space/allamericandiner
 	id = "allamericandiner"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/"
 	suffix = "allamericandiner.dmm"
 	name = "Space-Ruin The All-American Diner"
 	description = "A mothballed \"Restaurant\" station of the popular \"The All-American Diner\" franchise."

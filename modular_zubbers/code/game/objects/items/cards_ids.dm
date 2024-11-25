@@ -17,3 +17,14 @@
 	inhand_icon_state = "korven"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/advanced/allamerican
+	name = "employee identification card"
+	desc = "An employee ID card that All-American Diner employees use to get into placed, it looks more like a keycard or nametag, some corporate-styled card."
+	icon = 'modular_zubbers/icons/obj/card.dmi'
+	icon_state = "allamerican_employee"
+
+/obj/item/card/id/advanced/allamerican/manager
+	name = "manager identification card"
+	desc = "An employee ID card that All-American Diner employees use to get into placed, it looks more like a keycard or nametag, some corporate-styled card. This one is suited for a Manager, due to the gold stripe."
+	icon_state = "allamerican_manager"
