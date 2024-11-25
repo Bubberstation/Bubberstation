@@ -75,6 +75,7 @@
 	name = "Bridge Assistant"
 	jobtype = /datum/job/bridge_assistant
 
+	id = /obj/item/card/id/advanced/silver
 	id_trim = /datum/id_trim/job/bridge_assistant
 	backpack_contents = list(
 		/obj/item/modular_computer/pda/bridge_assistant = 1,
