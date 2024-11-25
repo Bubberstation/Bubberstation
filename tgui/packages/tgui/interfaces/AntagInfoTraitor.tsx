@@ -1,7 +1,13 @@
-import { BooleanLike } from 'common/react';
+import {
+  BlockQuote,
+  Button,
+  Dimmer,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { BlockQuote, Button, Dimmer, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
 import { Objective, ObjectivePrintout } from './common/Objectives';
@@ -230,12 +236,11 @@ const CodewordsSection = (props) => {
   );
 };
 
-// SKYRAT EDIT: change height from 580 to 650
 export const AntagInfoTraitor = (props) => {
   const { data } = useBackend<Info>();
   const { theme, given_uplink } = data;
   return (
-    <Window width={620} height={650} theme={theme}>
+    <Window width={620} height={580} theme={theme}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item grow>

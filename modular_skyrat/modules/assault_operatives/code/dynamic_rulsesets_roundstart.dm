@@ -36,7 +36,7 @@
 			break
 		var/mob/candidate = pick_n_take(candidates)
 		assigned += candidate.mind
-		candidate.mind.set_assigned_role(SSjob.GetJobType(/datum/job/assault_operative))
+		candidate.mind.set_assigned_role(SSjob.get_job_type(/datum/job/assault_operative))
 		candidate.mind.special_role = ROLE_ASSAULT_OPERATIVE
 		GLOB.pre_setup_antags += candidate.mind
 	return TRUE

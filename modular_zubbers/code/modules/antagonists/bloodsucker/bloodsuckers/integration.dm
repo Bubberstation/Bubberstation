@@ -8,10 +8,12 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-
-	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
+	if(!(methods & (INJECT|INGEST)))
 		return ..()
-	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_MAXIMUM)
+
+	if(bloodsuckerdatum.my_clan && istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
+		return ..()
+	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_NORMAL)
 		return ..()
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
@@ -19,7 +21,7 @@
 	. = ..()
 	if(!mind)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
 	if(!bloodsuckerdatum)
 		return
 	bloodsuckerdatum.AdjustBloodVolume(-amount)
@@ -53,7 +55,7 @@
 	. = ..()
 	if(!mind)
 		return ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
@@ -113,9 +115,3 @@
 	if(IS_BLOODSUCKER(src))
 		return TRUE
 	. =..()
-
-// prevents players being trapped in their brain, alive, yet limbless and voiceless
-/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
-	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
-	brain?.brainmob.death()
-	. = ..()

@@ -33,6 +33,9 @@
 	name = "Biter's Horns"
 	icon_state = "biterhorns"
 
+/datum/sprite_accessory/horns/bubber/fullstub
+	name = "Full Stubby"
+	icon_state = "fullstub"
 
 /datum/sprite_accessory/horns/bubber/big
 	icon = 'modular_zubbers/icons/customization/horns_big.dmi'
@@ -52,3 +55,23 @@
 /datum/sprite_accessory/horns/bubber/halo //Sprites from Aurora Station
 	name = "Halo"
 	icon_state = "halo"
+
+/datum/sprite_accessory/horns/bubber/big/antlers //sprites by Gavla
+	name = "Aged Antlers"
+	icon_state = "antlers_more"
+
+/datum/sprite_accessory/horns/bubber/big/antlers/large
+	name = "Large Antlers"
+	icon_state = "antlers_large"
+
+/datum/sprite_accessory/horns/bubber/big/antlers/regal
+	name = "Regal Antlers"
+	icon_state = "antlers_regal"
+
+/datum/sprite_accessory/horns/bubber/big/antlers/monarch
+	name = "Monarch Antlers"
+	icon_state = "antlers_monarch"
+
+/datum/sprite_accessory/horns/bubber/big/antlers/short	//end of sprites by Gavla
+	name = "Short Antlers"
+	icon_state = "antlers_short"

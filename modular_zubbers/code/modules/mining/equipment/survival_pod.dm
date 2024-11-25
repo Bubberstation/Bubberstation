@@ -17,3 +17,232 @@
 /datum/orderable_item/mining/capsule_sauna
 	item_path = /obj/item/survivalcapsule/sauna
 	cost_per_order = 7000
+
+/obj/item/storage/backpack/duffelbag/mining_bunny
+	name = "Bunny Kit"
+	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
+	icon_state = "duffel-explorer"
+	inhand_icon_state = "duffel-explorer"
+
+/obj/item/storage/backpack/duffelbag/mining_bunny/PopulateContents()
+	new /obj/item/clothing/head/playbunnyears/miner(src)
+	new /obj/item/clothing/neck/tie/bunnytie/miner(src)
+	new /obj/item/clothing/suit/jacket/tailcoat/miner(src)
+	new /obj/item/clothing/under/rank/cargo/miner/bunnysuit(src)
+	new /obj/item/clothing/shoes/workboots/mining/heeled(src)
+
+/datum/orderable_item/mining/bunny
+	item_path = /obj/item/storage/backpack/duffelbag/mining_bunny
+	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
+	cost_per_order = 500
+
+/obj/item/survivalcapsule/medical
+	name = "medical trauma pod"
+	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
+	template_id = "shelter_delta"
+
+/obj/item/survivalcapsule/chemistry
+	name = "chemical refinement pod"
+	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
+	template_id = "shelter_echo"
+
+/datum/armament_entry/company_import/deforest/equipment/medpod
+	item_type = /obj/item/survivalcapsule/medical
+	cost = PAYCHECK_COMMAND * 40
+
+/datum/armament_entry/company_import/deforest/equipment/chempod
+	item_type = /obj/item/survivalcapsule/chemistry
+	cost = PAYCHECK_COMMAND * 20
+
+/*****************************Botany Pods - Home is where the green is...********************************/
+/obj/item/survivalcapsule/botany
+	name = "botany control capsule"
+	desc = "A bluespace pod, containing botanical equipment."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_botany"
+	used = FALSE
+
+/datum/map_template/shelter/botany
+	name = "Botany Control"
+	shelter_id = "shelter_botany"
+	description = "A contained and interconnectable botany pod."
+	mappath = "_maps/bubber/pods/shelter_botany.dmm"
+
+/datum/map_template/shelter/botany/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/trays
+	name = "botany trays capsule"
+	desc = "A bluespace pod, containing botanical equipment."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_trays"
+	used = FALSE
+
+/datum/map_template/shelter/trays
+	name = "Botany Trays"
+	shelter_id = "shelter_trays"
+	description = "A contained and interconnectable botany pod."
+	mappath = "_maps/bubber/pods/shelter_trays.dmm"
+
+/datum/map_template/shelter/trays/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/fan
+	name = "airlock fan capsule"
+	desc = "A bluespace pod, containing a deployable fan, to keep the pressure in."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_fan"
+	used = FALSE
+
+/datum/map_template/shelter/fan
+	name = "Airlock fan deployer"
+	shelter_id = "shelter_fan"
+	description = "A contained and interconnectable botany pod."
+	mappath = "_maps/bubber/pods/shelter_fan.dmm"
+
+/datum/map_template/shelter/fan/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/o2
+	name = "oxygen harvesting capsule"
+	desc = "A bluespace pod, containing a small pumping station, to harvest breathable O2."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_o2"
+	used = FALSE
+
+/datum/map_template/shelter/o2
+	name = "o2 harvester deployer"
+	shelter_id = "shelter_o2"
+	description = "A contained O2 harvesting pod, for planetary use."
+	mappath = "_maps/bubber/pods/shelter_o2.dmm"
+
+/datum/map_template/shelter/o2/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/kitchen
+	name = "deployable kitchen capsule"
+	desc = "A bluespace pod, containing a kitchen."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_kitchen"
+	used = FALSE
+
+/datum/map_template/shelter/kitchen
+	name = "kitchen deployer"
+	shelter_id = "shelter_kitchen"
+	description = "A contained kitchen."
+	mappath = "_maps/bubber/pods/shelter_kitchen.dmm"
+
+/datum/map_template/shelter/kitchen/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/cabin
+	name = "deployable comfort capsule"
+	desc = "A bluespace pod, containing a wooden cabin."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_cabin"
+	used = FALSE
+
+/datum/map_template/shelter/cabin
+	name = "comfort cabin deployer"
+	shelter_id = "shelter_cabin"
+	description = "A contained comfort cabin."
+	mappath = "_maps/bubber/pods/shelter_cabin.dmm"
+
+/datum/map_template/shelter/cabin/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/threebythree
+	name = "deployable small emtpy capsule"
+	desc = "A bluespace pod, containing an empty 3x3 capsule."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_threebythree"
+	used = FALSE
+
+/datum/map_template/shelter/threebythree
+	name = "small capsule deployer"
+	shelter_id = "shelter_threebythree"
+	description = "A contained small capsule."
+	mappath = "_maps/bubber/pods/shelter_3x3.dmm"
+
+/datum/map_template/shelter/threebythree/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/obj/item/survivalcapsule/sixbysix
+	name = "deployable large emtpy capsule"
+	desc = "A bluespace pod, containing an empty 6x6 capsule."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_sixbysix"
+	used = FALSE
+
+/datum/map_template/shelter/sixbysix
+	name = "large capsule deployer"
+	shelter_id = "shelter_sixbysix"
+	description = "A contained large capsule."
+	mappath = "_maps/bubber/pods/shelter_6x6.dmm"
+
+/datum/map_template/shelter/sixbysix/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/datum/armament_entry/company_import/nri_surplus/misc/botanypod
+	item_type = /obj/item/survivalcapsule/botany
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/armament_entry/company_import/nri_surplus/misc/botanytrayspod
+	item_type = /obj/item/survivalcapsule/trays
+	cost = PAYCHECK_COMMAND * 2
+
+/datum/armament_entry/company_import/nri_surplus/misc/kitchenpod
+	item_type = /obj/item/survivalcapsule/kitchen
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/armament_entry/company_import/nri_surplus/misc/o2pod
+	item_type = /obj/item/survivalcapsule/o2
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/armament_entry/company_import/nri_surplus/misc/fanpod
+	item_type = /obj/item/survivalcapsule/fan
+	cost = PAYCHECK_COMMAND * 1
+
+/datum/armament_entry/company_import/nri_surplus/misc/threebythree
+	item_type = /obj/item/survivalcapsule/threebythree
+	cost = PAYCHECK_COMMAND * 1
+
+/datum/armament_entry/company_import/nri_surplus/misc/sixbysix
+	item_type = /obj/item/survivalcapsule/sixbysix
+	cost = PAYCHECK_COMMAND * 2
+
+/datum/armament_entry/company_import/nri_surplus/misc/cabin
+	item_type = /obj/item/survivalcapsule/cabin
+	cost = PAYCHECK_COMMAND * 2

@@ -18,8 +18,7 @@
 		. += "It currently has the character [name] loaded, with loadouts [(include_loadout ? "enabled" : "disabled")]"
 		. += span_notice("Ctrl-Click to change loadout loading")
 
-/obj/item/bitrunning_disk/prefs/CtrlClick(mob/user)
-	. = ..()
+/obj/item/bitrunning_disk/prefs/item_ctrl_click(mob/user)
 	include_loadout = !include_loadout // We just switch this around. Elegant!
 	balloon_alert(user, include_loadout ? "Loadout enabled" : "Loadout disabled")
 

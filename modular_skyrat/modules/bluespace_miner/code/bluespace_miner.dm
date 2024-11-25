@@ -105,7 +105,7 @@
 		update_appearance()
 	// Check if it is nonzero
 	if(mining_stat)
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE, ignore_walls = FALSE)
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		return FALSE
 	// mining_stat = 0, we are ready to go
 	return TRUE
@@ -256,10 +256,10 @@
 	id = "bluespace_miner"
 	display_name = "Bluespace Miner"
 	description = "The future is here, where we can mine ores from the great bluespace sea."
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	prereq_ids = list("base")
+	prereq_ids = list("applied_bluespace")
 	design_ids = list(
 		"bluespace_miner",
 	)

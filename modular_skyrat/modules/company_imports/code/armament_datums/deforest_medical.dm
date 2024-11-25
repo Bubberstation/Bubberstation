@@ -1,5 +1,5 @@
 /datum/armament_entry/company_import/deforest
-	category = DEFOREST_MEDICAL_NAME
+	category = COMPANY_NAME_DEFOREST_MEDICAL
 	company_bitflag = CARGO_COMPANY_DEFOREST
 
 // Precompiled first aid kits, ready to go if you don't want to bother getting individual items
@@ -29,11 +29,15 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/first_responder
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 10.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/orange_satchel
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked
-	cost = PAYCHECK_COMMAND * 8
+	cost = PAYCHECK_COMMAND * 9.5
+
+/datum/armament_entry/company_import/deforest/first_aid_kit/technician_satchel
+	item_type = /obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked
+	cost = PAYCHECK_COMMAND * 11.75
 
 // Basic first aid supplies like gauze, sutures, mesh, so on
 
@@ -192,11 +196,7 @@
 /datum/armament_entry/company_import/deforest/equipment/loaded_belt_defib
 	item_type = /obj/item/defibrillator/compact/loaded
 	cost = PAYCHECK_COMMAND*2
-/* BUBBER EDIT START - OBVIOUSLY WE ARE NOT ADDING THIS
-/datum/armament_entry/company_import/deforest/equipment/loaded_belt_defib2
-	item_type = /obj/item/defibrillator/compact/combat/loaded/nanotrasen
-	cost = PAYCHECK_COMMAND*8
-BUBBER EDIT END*/
+
 /datum/armament_entry/company_import/deforest/equipment/surgical_tools
 	item_type = /obj/item/surgery_tray/full
 	cost = PAYCHECK_COMMAND
@@ -220,6 +220,10 @@ BUBBER EDIT END*/
 /datum/armament_entry/company_import/deforest/equipment/advanced_cautery
 	item_type = /obj/item/cautery/advanced
 	cost = PAYCHECK_COMMAND * 3
+
+/datum/armament_entry/company_import/deforest/equipment/advanced_blood_filter
+	item_type = /obj/item/blood_filter/advanced
+	cost = PAYCHECK_COMMAND * 9
 
 /datum/armament_entry/company_import/deforest/equipment/medigun_upgrade
 	item_type = /obj/item/device/custom_kit/medigun_fastcharge
@@ -248,7 +252,7 @@ BUBBER EDIT END*/
 /datum/armament_entry/company_import/deforest/equipment/medhud_night_sci
 	item_type = /obj/item/clothing/glasses/hud/health/night/science
 	cost = PAYCHECK_COMMAND * 6
-//BUBBER EDIT ADD START
+
 /datum/armament_entry/company_import/deforest/equipment/hypospray_case
 	item_type = /obj/item/storage/hypospraykit
 	cost = PAYCHECK_LOWER * 2
@@ -278,8 +282,6 @@ BUBBER EDIT END*/
 	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
 	cost = PAYCHECK_COMMAND * 5
 
-//BUBBER EDIT END
-
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 
 /datum/armament_entry/company_import/deforest/medical_modules
@@ -290,9 +292,9 @@ BUBBER EDIT END*/
 	name = "MOD injector module"
 	item_type = /obj/item/mod/module/injector
 
-/datum/armament_entry/company_import/deforest/medical_modules/organ_thrower
-	name = "MOD organ thrower module"
-	item_type = /obj/item/mod/module/organ_thrower
+/datum/armament_entry/company_import/deforest/medical_modules/organizer
+	name = "MOD organizer module"
+	item_type = /obj/item/mod/module/organizer
 
 /datum/armament_entry/company_import/deforest/medical_modules/patient_transport
 	name = "MOD patient transport module"

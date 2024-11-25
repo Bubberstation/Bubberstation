@@ -258,6 +258,16 @@
 "du" = (
 /turf/closed/indestructible/fakedoor,
 /area/deathmatch)
+"dy" = (
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/obj/machinery/flasher/directional/north{
+	id = "visitorflash"
+	},
+/turf/open/floor/iron,
+/area/deathmatch)
 "dA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -451,12 +461,7 @@
 /area/deathmatch)
 "hS" = (
 /obj/structure/table/wood,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = 30
-	},
+/obj/machinery/computer/security/telescreen/prison/directional/north,
 /obj/item/flashlight/lamp/green{
 	pixel_x = 1;
 	pixel_y = 5
@@ -531,10 +536,6 @@
 	dir = 5
 	},
 /turf/open/indestructible,
-/area/deathmatch)
-"jB" = (
-/obj/machinery/light_switch/directional/west,
-/turf/open/indestructible/dark,
 /area/deathmatch)
 "jN" = (
 /obj/structure/table,
@@ -894,10 +895,6 @@
 	},
 /turf/open/indestructible,
 /area/deathmatch)
-"oy" = (
-/obj/machinery/light_switch/directional/west,
-/turf/open/floor/iron/grimy,
-/area/deathmatch)
 "oA" = (
 /obj/machinery/light/directional/north,
 /turf/open/indestructible,
@@ -1160,13 +1157,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/oil/slippery,
-/turf/open/indestructible,
-/area/deathmatch)
-"rN" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/machinery/light_switch/directional/east,
 /turf/open/indestructible,
 /area/deathmatch)
 "sb" = (
@@ -1526,9 +1516,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/light_switch/directional/west{
-	pixel_y = -12
-	},
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/indestructible/dark,
 /area/deathmatch)
@@ -1648,8 +1635,13 @@
 /turf/open/indestructible/dark,
 /area/deathmatch)
 "yN" = (
-/turf/cordon,
-/area/template_noop)
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/deathmatch)
 "yO" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -1683,7 +1675,6 @@
 "yT" = (
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/light/directional/west,
-/obj/machinery/light_switch/directional/west,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -2344,16 +2335,6 @@
 	},
 /turf/open/indestructible/dark,
 /area/deathmatch)
-"Ii" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light_switch/directional/east,
-/turf/open/indestructible/dark,
-/area/deathmatch)
 "Ik" = (
 /obj/effect/turf_decal/trimline/red/filled/corner,
 /turf/open/indestructible,
@@ -2909,13 +2890,7 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "PV" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	dir = 1;
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = -30
-	},
+/obj/machinery/computer/security/telescreen/prison/directional/south,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -3021,11 +2996,6 @@
 /obj/structure/cable,
 /obj/item/crowbar,
 /turf/open/indestructible,
-/area/deathmatch)
-"RL" = (
-/obj/machinery/light_switch/directional/south,
-/obj/structure/cable,
-/turf/open/floor/carpet,
 /area/deathmatch)
 "RR" = (
 /obj/structure/cable,
@@ -3587,7 +3557,7 @@
 /turf/open/floor/iron/white,
 /area/deathmatch)
 "Zj" = (
-/obj/machinery/door/window/brigdoor/security/holding/left/directional/south{
+/obj/machinery/door/window/brigdoor/security/holding{
 	id = "Holding Cell";
 	name = "Holding Cell"
 	},
@@ -3663,8 +3633,8 @@ IJ
 Yh
 Yh
 Yh
-yN
-yN
+dy
+YW
 yN
 IJ
 IJ
@@ -4117,7 +4087,7 @@ tH
 xi
 Am
 EP
-Ii
+tH
 Kh
 Rv
 UU
@@ -4172,7 +4142,7 @@ yH
 uD
 xk
 Bf
-jB
+Ux
 JU
 YW
 yy
@@ -4462,7 +4432,7 @@ Hz
 Ik
 Zv
 ad
-oy
+Pt
 Pt
 eD
 QG
@@ -4563,7 +4533,7 @@ Cx
 ri
 yO
 cW
-rN
+Os
 Os
 Hp
 UQ
@@ -4671,7 +4641,7 @@ cf
 cf
 YN
 aE
-RL
+cf
 Yh
 Wg
 qP

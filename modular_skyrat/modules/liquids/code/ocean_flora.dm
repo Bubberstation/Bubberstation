@@ -61,7 +61,7 @@
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
 
-	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+	playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
 	if(first)
 		to_chat(user, span_notice("You start slicing the [src]..."))
 	if(I.use_tool(src, user, 2 SECONDS))
@@ -81,7 +81,10 @@
 #undef SCRAP_METAL_YIELD_HIGH
 
 /obj/effect/spawner/liquids_spawner
-	name = "Liquids Spawner"
+	name = "Liquids Spawner (Water, Waist-Deep)"
+	icon = 'modular_skyrat/modules/liquids/icons/obj/effects/liquid.dmi'
+	icon_state = "spawner"
+	color = "#AAAAAA77"
 	var/reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_WAIST_LEVEL_HEIGHT)
 	var/temp = T20C
 
@@ -93,11 +96,21 @@
 	var/turf/T = loc
 	T.add_liquid_list(reagent_list, FALSE, temp)
 
-/obj/effect/spawner/liquids_spawner/acid_puddle
-	reagent_list = list(/datum/reagent/toxin/acid = ONE_LIQUIDS_HEIGHT)
+/obj/effect/spawner/liquids_spawner/puddle
+	name = "Liquids Spawner (Water, Puddle)"
+	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT)
 
-/obj/effect/spawner/liquids_spawner/acid_waist
-	reagent_list = list(/datum/reagent/toxin/acid = ONE_LIQUIDS_HEIGHT*LIQUID_WAIST_LEVEL_HEIGHT)
+/obj/effect/spawner/liquids_spawner/ankles
+	name = "Liquids Spawner (Water, Ankle-Deep)"
+	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_ANKLES_LEVEL_HEIGHT)
+
+/obj/effect/spawner/liquids_spawner/shoulders
+	name = "Liquids Spawner (Water, Shoulder-Deep)"
+	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_SHOULDERS_LEVEL_HEIGHT)
+
+/obj/effect/spawner/liquids_spawner/fulltile
+	name = "Liquids Spawner (Water, Fulltile)"
+	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_FULLTILE_LEVEL_HEIGHT)
 
 /obj/effect/spawner/ocean_curio
 	name = "Ocean Curio Spawner"

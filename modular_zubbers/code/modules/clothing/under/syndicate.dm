@@ -22,3 +22,19 @@
 	icon_state = "syndimaid_corset"
 	minimize_when_attached = FALSE
 	attachment_slot = null
+
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured
+	name = "utility overalls turtleneck"
+	desc = "A pair of spiffy overalls with a turtleneck underneath, useful for both engineering and botanical work."
+	icon_state = "syndicate_overalls"
+	armor_type = /datum/armor/clothing_under/none
+	has_sensor = HAS_SENSORS
+	can_adjust = TRUE
+
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+	name = "utility overalls skirtleneck"
+	desc = "A pair of spiffy overalls with a turtleneck underneath, this one is a skirt instead, breezy."
+	icon_state = "syndicate_overallskirt"
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

@@ -61,7 +61,7 @@
 /obj/item/fancy_pillow/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated())
+	if(user.incapacitated)
 		return FALSE
 	return TRUE
 
@@ -363,7 +363,7 @@
 		return ..()
 
 //to prevent creating metal chair from pillow
-/obj/structure/chair/pillow_small/MouseDrop(over_object, src_location, over_location)
+/obj/structure/chair/pillow_small/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	return
 
 /*

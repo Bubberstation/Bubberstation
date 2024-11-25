@@ -52,7 +52,6 @@
 /obj/structure/showcase/machinery/oldpod/used/psyker
 	name = "opened mental energizer"
 	desc = "A mental energizer that has recently discharged its occupant. The pod appears non-functional."
-	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "psykerpod-open"
 
 /obj/structure/showcase/cyborg/old
@@ -65,13 +64,13 @@
 /obj/structure/showcase/mecha/marauder
 	name = "combat mech exhibit"
 	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees."
-	icon = 'icons/mob/mecha.dmi'
+	icon = 'icons/mob/rideables/mecha.dmi'
 	icon_state = "marauder"
 
 /obj/structure/showcase/mecha/ripley
 	name = "construction mech exhibit"
 	desc = "A stand with a retired construction mech bolted to it. The clamps are rated at 9300PSI. It seems to be falling apart."
-	icon = 'icons/mob/mecha.dmi'
+	icon = 'icons/mob/rideables/mecha.dmi'
 	icon_state = "firefighter"
 
 /obj/structure/showcase/machinery/implanter

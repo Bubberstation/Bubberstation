@@ -11,14 +11,18 @@
 
 	min_players = 30
 	max_occurrences = 1
-	weight = 1
+	weight = 10
 	earliest_start = 60 MINUTES
+
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
 
 /datum/round_event/wizard_dice
 	announce_when = 5
 
 /datum/round_event/wizard_dice/announce(fake)
-	priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
+	if(prob(80)) //Announcement Optimization
+		priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
 
 /datum/round_event/wizard_dice/start()
 

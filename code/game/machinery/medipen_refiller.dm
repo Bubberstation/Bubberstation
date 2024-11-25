@@ -70,7 +70,7 @@
 		return
 	if(istype(weapon, /obj/item/reagent_containers/hypospray/medipen))
 		var/obj/item/reagent_containers/hypospray/medipen/medipen = weapon
-		if(!(LAZYFIND(allowed_pens, medipen.type)))
+		if(!(LAZYFIND(allowed_pens, medipen.type) || LAZYFIND(moreallowed_pens, medipen.type))) // BUBBER EDIT - Original if(!(LAZYFIND(allowed_pens, medipen.type)))
 			balloon_alert(user, "medipen incompatible!")
 			return
 		if(medipen.reagents?.reagent_list.len)

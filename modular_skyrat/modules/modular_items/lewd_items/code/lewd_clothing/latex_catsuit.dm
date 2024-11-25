@@ -42,27 +42,27 @@
 		affected_mob.update_worn_undersuit()
 
 	breasts_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi', "none")
-	update_overlays()
 
 	//Breasts overlay for catsuit
-	if(affected_breasts?.genital_size >= 6 || affected_breasts?.genital_type == "pair")
-		breasts_overlay.icon_state = "breasts_double"
-		breasts_icon_overlay.icon_state = "iconbreasts_double"
-		accessory_overlay = breasts_overlay
-		add_overlay(breasts_icon_overlay)
-		update_overlays()
-	if(affected_breasts?.genital_type == "quad")
-		breasts_overlay.icon_state = "breasts_quad"
-		breasts_icon_overlay.icon_state = "iconbreasts_quad"
-		accessory_overlay = breasts_overlay
-		add_overlay(breasts_icon_overlay)
-		update_overlays()
-	if(affected_breasts?.genital_type == "sextuple")
-		breasts_overlay.icon_state = "breasts_sextuple"
-		breasts_icon_overlay.icon_state = "iconbreasts_sextuple"
-		accessory_overlay = breasts_overlay
-		add_overlay(breasts_icon_overlay)
-		update_overlays()
+	if(affected_breasts && affected_breasts.genital_size >= 6)
+		switch(affected_breasts.genital_type)
+			if("pair")
+				breasts_overlay.icon_state = "breasts_double"
+				breasts_icon_overlay.icon_state = "iconbreasts_double"
+				accessory_overlay = breasts_overlay
+				add_overlay(breasts_icon_overlay)
+			if("quad")
+				breasts_overlay.icon_state = "breasts_quad"
+				breasts_icon_overlay.icon_state = "iconbreasts_quad"
+				accessory_overlay = breasts_overlay
+				add_overlay(breasts_icon_overlay)
+			if("sextuple")
+				breasts_overlay.icon_state = "breasts_sextuple"
+				breasts_icon_overlay.icon_state = "iconbreasts_sextuple"
+				accessory_overlay = breasts_overlay
+				add_overlay(breasts_icon_overlay)
+
+	update_overlays()
 
 	affected_human.regenerate_icons()
 
@@ -74,7 +74,8 @@
 	breasts_icon_overlay.icon_state = "none"
 
 //Plug to bypass the bug with instant suit equip/drop
-/obj/item/clothing/under/misc/latex_catsuit/MouseDrop(atom/over_object)
+/obj/item/clothing/under/misc/latex_catsuit/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+	return
 
 /obj/item/clothing/under/misc/latex_catsuit/Initialize(mapload)
 	. = ..()

@@ -1,11 +1,11 @@
 /mob/living/basic/trooper/cin_soldier
 	name = "Coalition Operative"
-	desc = "Death to SolFed."
+	desc = "Death to TerraGov."
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cut"
-	attack_sound = 'sound/weapons/blade1.ogg'
+	attack_sound = 'sound/items/weapons/blade1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	faction = list(ROLE_SYNDICATE)
 	loot = list(/obj/effect/mob_spawn/corpse/human/cin_soldier)

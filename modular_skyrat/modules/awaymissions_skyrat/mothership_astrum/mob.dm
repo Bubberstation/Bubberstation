@@ -21,7 +21,7 @@
 	melee_damage_upper = 10
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 
 	combat_mode = TRUE
 	status_flags = CANPUSH
@@ -50,7 +50,7 @@
 	melee_damage_upper = 20
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 
 
@@ -85,7 +85,7 @@
 
 /mob/living/basic/abductor/ranged/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ranged_attacks, projectile_sound = 'sound/weapons/laser.ogg', projectile_type = /obj/projectile/beam/laser)
+	AddComponent(/datum/component/ranged_attacks, projectile_sound = 'sound/items/weapons/laser.ogg', projectile_type = /obj/projectile/beam/laser)
 
 
 // Tankier variant

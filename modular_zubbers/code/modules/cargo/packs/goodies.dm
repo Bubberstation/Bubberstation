@@ -1,6 +1,6 @@
 /datum/supply_pack/goody/sol_pistol_single
 	name = "Sol 'Wespe' Pistol Single Pack"
-	desc = "The standard issue service pistol of the Solar Federation's various military branches. Comes with an attached light and a spare magazine."
+	desc = "The standard issue service pistol of the Terran Government's various military branches. Comes with an attached light and a spare magazine."
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
 	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
 	)
@@ -33,7 +33,7 @@
 /datum/supply_pack/goody/miniegun_single
 	name = "Mini E-Gun Single-Pack"
 	desc = "Contains one mini e-gun, for when your Bridge Officer loses theirs to the clown."
-	cost = PAYCHECK_COMMAND * 12
+	cost = PAYCHECK_COMMAND * 5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
@@ -74,3 +74,17 @@
 
 /datum/supply_pack/goody/thermal_single
 	special = FALSE
+
+/datum/supply_pack/goody/medkit_surgery
+	name = "High Capacity Surgical Medkit"
+	desc = "A high capacity aid kit, full of medical supplies and basic surgical equipment."
+	cost = PAYCHECK_CREW * 15
+	contains = list(/obj/item/storage/medkit/surgery)
+
+//For @unionheart
+/datum/supply_pack/goody/security_maid
+	name = "CnC Maid Operator Kit"
+	desc = "Contains a set of armoured janitorial kit for combat scenario."
+	cost = PAYCHECK_COMMAND * 4
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/clothing/under/rank/security/maid, /obj/item/clothing/suit/armor/vest/maid, /obj/item/clothing/head/security_maid, /obj/item/pushbroom)

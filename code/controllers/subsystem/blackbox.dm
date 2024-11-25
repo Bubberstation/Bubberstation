@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(blackbox)
 	/* // SKYRAT EDIT CHANGE - MULTISERVER - ORIGINAL:
 	var/datum/db_query/query_record_playercount = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id)
-		VALUES (:playercount, :admincount, NOW(), INET_ATON(:server_ip), :server_port, :round_id) 
+		VALUES (:playercount, :admincount, NOW(), INET_ATON(:server_ip), :server_port, :round_id)
 	*/
 	var/datum/db_query/query_record_playercount = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_name, server_ip, server_port, round_id)
@@ -158,6 +158,8 @@ SUBSYSTEM_DEF(blackbox)
 			record_feedback("tally", "radio_usage", 1, "centcom")
 		if(FREQ_AI_PRIVATE)
 			record_feedback("tally", "radio_usage", 1, "ai private")
+		if(FREQ_ENTERTAINMENT)
+			record_feedback("tally", "radio_usage", 1, "entertainment")
 		if(FREQ_CTF_RED)
 			record_feedback("tally", "radio_usage", 1, "CTF red team")
 		if(FREQ_CTF_BLUE)
@@ -196,7 +198,7 @@ feedback data can be recorded in 5 formats:
 	used to track the number of occurances of multiple related values i.e. how many times each type of gun is fired
 	further calls to the same key will:
 		add or subtract from the saved value of the data key if it already exists
-		append the key and it's value if it doesn't exist
+		append the key and its value if it doesn't exist
 	calls: SSblackbox.record_feedback("tally", "example", 1, "sample data")
 			SSblackbox.record_feedback("tally", "example", 4, "sample data")
 			SSblackbox.record_feedback("tally", "example", 2, "other data")
@@ -208,7 +210,7 @@ feedback data can be recorded in 5 formats:
 	all data list elements must be strings
 	further calls to the same key will:
 		add or subtract from the saved value of the data key if it already exists in the same multi-dimensional position
-		append the key and it's value if it doesn't exist
+		append the key and its value if it doesn't exist
 	calls: SSblackbox.record_feedback("nested tally", "example", 1, list("fruit", "orange", "apricot"))
 			SSblackbox.record_feedback("nested tally", "example", 2, list("fruit", "orange", "orange"))
 			SSblackbox.record_feedback("nested tally", "example", 3, list("fruit", "orange", "apricot"))
@@ -366,7 +368,7 @@ Versioning
 		"z_coord" = L.z,
 		"last_words" = L.last_words,
 		"suicide" = did_they_suicide,
-		"map" = SSmapping.config.map_name,
+		"map" = SSmapping.current_map.map_name,
 		"server_name" = CONFIG_GET(string/serversqlname),  // SKYRAT EDIT ADDITION - MULTISERVER
 		"internet_address" = world.internet_address || "0",
 		"port" = "[world.port]",

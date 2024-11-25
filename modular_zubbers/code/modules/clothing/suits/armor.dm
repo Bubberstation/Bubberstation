@@ -31,3 +31,61 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
+
+/obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
+	name = "security jacket"
+	desc = "A red jacket in red Security colors. It has hi-vis stripes all over it."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "secjacket"
+	inhand_icon_state = "armor"
+	armor_type = /datum/armor/suit_armor
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS|HANDS
+	heat_protection = CHEST|GROIN|ARMS|HANDS
+	resistance_flags = FLAMMABLE
+	dog_fashion = null
+
+/obj/item/clothing/suit/armor/vest/secjacket/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
+
+/obj/item/clothing/suit/armor/vest/secjacket/blue // Port from TG Station (DrTuxedo)
+	name = "security jacket"
+	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
+	icon_state = "secjacket_blue"
+
+//Maid SEC
+//Icon by Onule!
+/obj/item/clothing/suit/armor/vest/maid
+	name = "cnc discreet armour vest"
+	desc = "An armored durathread apron. This relatively innocent at first glance outfit is actually the specialized type worn by Nanotrasen's infamous high profile 'Cleaning and Clearing' kill squads. It's a lot more robust than it's janitorial counterpart. There are loops on the back for holding your 'mop'."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "security_maid"
+	allowed = list(
+		/obj/item/access_key,
+		/obj/item/assembly/mousetrap,
+		/obj/item/clothing/gloves,
+		/obj/item/flashlight,
+		/obj/item/forcefield_projector,
+		/obj/item/grenade/chem_grenade,
+		/obj/item/holosign_creator,
+		/obj/item/key/janitor,
+		/obj/item/lightreplacer,
+		/obj/item/melee/flyswatter,
+		/obj/item/mop,
+		/obj/item/mop/advanced,
+		/obj/item/paint/paint_remover,
+		/obj/item/plunger,
+		/obj/item/pushbroom,
+		/obj/item/reagent_containers/cup/bucket,
+		/obj/item/reagent_containers/spray,
+		/obj/item/soap,
+		/obj/item/wirebrush,
+	)
+
+/obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed

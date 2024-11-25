@@ -411,7 +411,9 @@
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "nA" = (
-/obj/machinery/vending/ashclothingvendor,
+/obj/machinery/vending/ashclothingvendor{
+	all_products_free = 1
+	},
 /obj/structure/stone_tile/slab,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -1192,11 +1194,6 @@
 /obj/structure/stone_tile/block/cracked,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"RV" = (
-/obj/machinery/smartfridge/drying_rack,
-/obj/structure/stone_tile/slab,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "Sf" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile{
@@ -1634,7 +1631,7 @@ UO
 DN
 QI
 DN
-RV
+vg
 Hz
 Hz
 DN

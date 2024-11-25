@@ -54,7 +54,7 @@
 /obj/item/clothing/head/utility/chefhat/proc/on_mouse_emote(mob/living/source, key, emote_message, type_override)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/wearer = loc
-	if(!wearer || wearer.incapacitated(IGNORE_RESTRAINTS))
+	if(!wearer || INCAPACITATED_IGNORING(wearer, INCAPABLE_RESTRAINTS))
 		return
 	if (!prob(mouse_control_probability))
 		return COMPONENT_CANT_EMOTE
@@ -68,7 +68,7 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Didn't roll well enough or on cooldown
 
 	var/mob/living/carbon/wearer = loc
-	if(!wearer || wearer.incapacitated(IGNORE_RESTRAINTS))
+	if(!wearer || INCAPACITATED_IGNORING(wearer, INCAPABLE_RESTRAINTS))
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Not worn or can't move
 
 	var/move_direction = get_dir(wearer, moved_to)
@@ -310,7 +310,7 @@
 		else
 			balloon_alert(wearer, "can't put in hands!")
 			break
-			
+
 	return .
 
 /obj/item/clothing/head/fedora/inspector_hat/attackby(obj/item/item, mob/user, params)
@@ -385,6 +385,8 @@
 	name = "beret"
 	desc = "A beret, a mime's favorite headwear."
 	icon_state = "beret"
+	icon_preview = 'icons/obj/clothing/head/beret.dmi'
+	icon_state_preview = "beret"
 	dog_fashion = /datum/dog_fashion/head/beret
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
@@ -410,8 +412,8 @@
 		/datum/crafting_recipe/sturdy_shako,\
 		)
 
-	AddComponent(
-		/datum/component/slapcrafting,\
+	AddElement(
+		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
@@ -619,8 +621,12 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
-	//flags_inv = HIDEHAIR //Cover your head doctor! (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
+	flags_inv = HIDEHAIR //Cover your head doctor!
 	w_class = WEIGHT_CLASS_SMALL //surgery cap can be easily crumpled
+
+/obj/item/clothing/head/utility/surgerycap/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
 
 /obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
 	. = ..()
@@ -664,6 +670,10 @@
 	icon_state = "headmirror"
 	body_parts_covered = NONE
 
+/obj/item/clothing/head/utility/head_mirror/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+
 /obj/item/clothing/head/utility/head_mirror/examine(mob/user)
 	. = ..()
 	. += span_notice("In a properly lit room, you can use this to examine people's eyes, ears, and mouth <i>closer</i>.")
@@ -699,7 +709,7 @@
 	else
 		var/obj/item/organ/internal/tongue/has_tongue = human_examined.get_organ_slot(ORGAN_SLOT_TONGUE)
 		var/pill_count = 0
-		for(var/datum/action/item_action/hands_free/activate_pill/pill in human_examined.actions)
+		for(var/datum/action/item_action/activate_pill/pill in human_examined.actions)
 			pill_count++
 
 		if(pill_count >= 1 && has_tongue)
