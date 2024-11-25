@@ -7,7 +7,7 @@
 	worn_icon_state = "diver"
 
 /obj/item/clothing/gloves/latex/allamerican
-	name = "All-American Diner latex gloves"
+	name = "all-american diner latex gloves"
 	desc = "A sterile pair of gloves for preparing food without the risk of contamination! The old fashion american style."
 	icon_state = "latex_black"
 	worn_icon_state = "latex_black"
