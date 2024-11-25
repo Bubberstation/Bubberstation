@@ -939,9 +939,6 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
 "ahx" = (
@@ -1742,7 +1739,6 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/command/gateway)
 "amQ" = (
-/obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue/filled/warning{
 	dir = 4
 	},
@@ -2297,7 +2293,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore/lesser)
 "apy" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
@@ -6766,7 +6761,7 @@
 /obj/item/clothing/head/helmet/space/plasmaman/prisoner,
 /obj/item/restraints/handcuffs/cable/zipties/fake,
 /obj/effect/spawner/random/burgerstation/loot/odd_safe,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "aHu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -6777,9 +6772,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
@@ -8546,7 +8538,7 @@
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/light/small/directional/east,
 /obj/effect/mapping_helpers/airalarm/tlv_cold_room,
-/turf/open/floor/iron/showroomfloor,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
 "aNP" = (
 /obj/machinery/modular_computer/preset/cargochat/service,
@@ -8852,7 +8844,7 @@
 /area/station/service/library)
 "aOT" = (
 /obj/machinery/gibber,
-/turf/open/floor/iron/showroomfloor,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
 "aOU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -9876,13 +9868,6 @@
 /obj/machinery/keycard_auth{
 	pixel_x = -1;
 	pixel_y = 8
-	},
-/obj/machinery/button/door{
-	id = "bridge blast";
-	name = "Bridge Blast Door Control";
-	pixel_x = 28;
-	pixel_y = -2;
-	req_access = list("command")
 	},
 /turf/open/floor/iron,
 /area/station/command/bridge)
@@ -19615,7 +19600,7 @@
 /obj/structure/broken_flooring/pile/directional/east,
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/status_display/evac/directional/west,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "bzv" = (
 /obj/structure/cable,
@@ -26601,7 +26586,7 @@
 /obj/item/toy/plush/bigdeer{
 	name = "turbine deer"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "caK" = (
 /obj/structure/rack,
@@ -29596,7 +29581,7 @@
 "csg" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera/directional/north,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/engineering/main)
 "csm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible{
@@ -34118,9 +34103,6 @@
 /area/station/security/checkpoint/engineering)
 "dpq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
@@ -39429,7 +39411,7 @@
 "gTq" = (
 /obj/structure/lattice/catwalk,
 /obj/effect/spawner/random/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "gTG" = (
 /obj/machinery/status_display/ai{
@@ -42041,6 +42023,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/warning{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/holding_cell)
@@ -48478,7 +48463,7 @@
 /area/station/medical/pharmacy)
 "myQ" = (
 /obj/item/toy/plush/plasmamanplushie,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "myW" = (
 /turf/open/floor/plastic,
@@ -54641,7 +54626,6 @@
 	c_tag = "Prison Hallway West";
 	network = list("ss13","prison")
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -55817,7 +55801,7 @@
 /obj/item/toy/basketball,
 /obj/item/clothing/shoes/sneakers/red,
 /obj/structure/closet/crate/bin,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "rmB" = (
 /obj/machinery/shower/directional/north,
@@ -60194,7 +60178,7 @@
 /obj/machinery/door/airlock/shuttle{
 	name = "Upper Floors"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/maintenance/aft)
 "tZO" = (
 /obj/structure/chair/pew/left{
@@ -60224,7 +60208,7 @@
 /area/station/maintenance/dorm_room)
 "uam" = (
 /obj/structure/trash_pile,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "uar" = (
 /obj/structure/sign/warning/vacuum/external/directional/north,
@@ -61259,9 +61243,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/security/prison)
-"uQq" = (
-/turf/open/floor/plating,
-/area/space/nearstation)
 "uQH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -62286,14 +62267,6 @@
 /obj/machinery/light/small/broken/directional/south,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"vvZ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/port/fore)
 "vwd" = (
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/rd)
@@ -82757,7 +82730,7 @@ anI
 ljy
 ajK
 ajK
-vvZ
+ajK
 aol
 aol
 atr
@@ -86097,7 +86070,7 @@ alU
 amC
 alU
 xzh
-uQq
+uRx
 alU
 arO
 osB
@@ -99558,7 +99531,7 @@ ccw
 ccw
 ccw
 cig
-uQq
+uRx
 xzh
 xzh
 xzh
@@ -107937,7 +107910,7 @@ arm
 hyp
 xzh
 xzh
-uQq
+uRx
 tHv
 gZj
 aDw
@@ -108707,7 +108680,7 @@ aPj
 arm
 hyp
 xzh
-uQq
+uRx
 myQ
 tHv
 tHv
