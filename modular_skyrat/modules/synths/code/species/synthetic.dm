@@ -50,8 +50,10 @@
 	var/datum/action/innate/monitor_change/screen
 	/// This is the screen that is given to the user after they get revived. On death, their screen is temporarily set to BSOD before it turns off, hence the need for this var.
 	var/saved_screen = "Blank"
+
 	/// Set to TRUE if the species was emagged before
 	var/emag_effect = FALSE
+
 /datum/species/synthetic/allows_food_preferences()
 	return FALSE
 
