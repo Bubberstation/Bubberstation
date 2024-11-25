@@ -273,11 +273,7 @@ const LoadoutTabs = (props: {
                         ? "Can't delete the default loadout entry."
                         : 'Delete the current loadout entry.'
                     }
-                    onClick={() =>
-                      act('remove_loadout_preset', {
-                        name: data.character_preferences.misc.loadout_index,
-                      })
-                    }
+                    onClick={() => act('remove_loadout_preset')}
                   >
                     Delete
                   </Button.Confirm>
