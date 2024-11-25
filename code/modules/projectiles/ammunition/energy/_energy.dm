@@ -6,6 +6,7 @@
 	slot_flags = null
 	var/e_cost = LASER_SHOTS(12, STANDARD_CELL_CHARGE) //The amount of energy a cell needs to expend to create this shot.
 	var/select_name = CALIBER_ENERGY
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'sound/items/weapons/laser.ogg'
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/red
 	var/select_color = FALSE //SKYRAT EDIT ADDITION - This is the color that shows up when selecting an ammo type. Disabled by default
+	newtonian_force = 0.5

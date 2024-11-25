@@ -202,7 +202,7 @@
 			update_icon()
 		locked = FALSE
 		return TRUE
-	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
+	playsound(get_turf(src), 'sound/machines/door/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)

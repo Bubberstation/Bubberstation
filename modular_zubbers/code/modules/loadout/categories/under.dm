@@ -57,3 +57,7 @@
 /datum/loadout_item/uniform/miscellaneous/loincloth/cloth
 	name = "loincloth"
 	item_path = /obj/item/clothing/under/costume/loincloth/cloth/sensor
+
+/datum/loadout_item/uniform/miscellaneous/miniskirt
+	name = "recolourable miniskirt"
+	item_path = /obj/item/clothing/under/dress/miniskirt

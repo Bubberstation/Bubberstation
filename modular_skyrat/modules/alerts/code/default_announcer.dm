@@ -1,9 +1,9 @@
 /datum/centcom_announcer/default
-	welcome_sounds = list('sound/ai/default/welcome.ogg')
+	welcome_sounds = list('sound/announcer/default/welcome.ogg')
 	alert_sounds = list('modular_skyrat/modules/alerts/sound/alerts/alert2.ogg')
 	command_report_sounds = list('modular_skyrat/modules/alerts/sound/alerts/commandreport.ogg')
 	event_sounds = list(
-		ANNOUNCER_AIMALF = 'sound/ai/default/aimalf.ogg',
+		ANNOUNCER_AIMALF = 'sound/announcer/default/aimalf.ogg',
 		ANNOUNCER_ALIENS = 'modular_skyrat/modules/alerts/sound/alerts/lifesigns.ogg',
 		ANNOUNCER_ANIMES = 'modular_skyrat/modules/alerts/sound/alerts/animes.ogg',
 		ANNOUNCER_INTERCEPT = 'modular_skyrat/modules/alerts/sound/alerts/alert2.ogg',

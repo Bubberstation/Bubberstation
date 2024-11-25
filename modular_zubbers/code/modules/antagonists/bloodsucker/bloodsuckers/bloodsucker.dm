@@ -78,7 +78,7 @@
 
 	/// Static typecache of all bloodsucker powers.
 	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, ignore_root_path = TRUE)
-	/// Antagonists that cannot be Ghoulized no matter what
+	/// Antagonists that cannot be Ghouled no matter what
 	var/static/list/ghoul_banned_antags = list(
 		/datum/antagonist/bloodsucker,
 		// /datum/antagonist/monsterhunter,

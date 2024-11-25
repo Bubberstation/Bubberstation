@@ -31,7 +31,7 @@
 
 /datum/map_template/shuttle/emergency/lance/New()
 	. = ..()
-	if(SSmapping.config.map_name == "Moon Station")
+	if(SSmapping.current_map.map_name == "Moon Station")
 		who_can_purchase = null
 
 /datum/map_template/shuttle/emergency/vortex

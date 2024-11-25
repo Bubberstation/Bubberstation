@@ -37,7 +37,11 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
-export const MESSAGE_TYPE_MENTOR = 'mentor'; // SKYRAT EDIT ADDITION
+// BUBBER EDIT ADDITION BEGIN
+export const MESSAGE_TYPE_MENTOR = 'mentor';
+export const MESSAGE_TYPE_LOOC = 'looc';
+export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
+// BUBBER EDIT ADDITION END
 
 // Metadata for each message type
 export const MESSAGE_TYPES = [
@@ -54,7 +58,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .looc',
+    selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
@@ -87,8 +91,22 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
-    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain, .looc, .rlooc',
+    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
+  // BUBBER EDIT ADDITION BEGIN
+  {
+    type: MESSAGE_TYPE_LOOC,
+    name: 'LOOC',
+    description: 'Local OOC messages.',
+    selector: '.looc',
+  },
+  {
+    type: MESSAGE_TYPE_MENTOR,
+    name: 'Mentor Log',
+    description: 'Mentor PMs and other mentor things.',
+    selector: '.mentor, .mentornotice',
+  },
+  // BUBBER EDIT ADDITION END
   {
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
@@ -146,10 +164,13 @@ export const MESSAGE_TYPES = [
     description: 'DEBUG: SSPlanets subsystem Recover().',
     admin: true,
   },
+  // BUBBER EDIT ADDITION BEGIN
   {
-    type: MESSAGE_TYPE_MENTOR, // SKYRAT EDIT
-    name: 'Mentor Log',
-    description: 'Mentor PMs and other mentor things.',
-    selector: '.mentor, .mentornotice',
+    type: MESSAGE_TYPE_REMOTE_LOOC,
+    name: 'Remote LOOC',
+    description: 'Yes, admins can read your LOOC no matter where you are.',
+    selector: '.rlooc',
+    admin: true,
   },
+  // BUBBER EDIT ADDITION END
 ];

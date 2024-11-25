@@ -18,12 +18,12 @@
 
 	if(action)
 		var/priority_target = params["target"]
-		var/datum/job/silicon = SSjob.GetJob(priority_target)
+		var/datum/job/silicon = SSjob.get_job(priority_target)
 		if(silicon in SSjob.prioritized_jobs)
 			SSjob.prioritized_jobs -= silicon
 		else
 			SSjob.prioritized_jobs += silicon
-		playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+		playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 		return TRUE
 
 /datum/computer_file/program/silicon_management/ui_data(mob/user)
@@ -35,8 +35,8 @@
 		authed = TRUE
 
 	var/list/silicon_jobs = list(
-		SSjob.GetJob(JOB_AI),
-		SSjob.GetJob(JOB_CYBORG)
+		SSjob.get_job(JOB_AI),
+		SSjob.get_job(JOB_CYBORG)
 	)
 	data["authed"] = authed
 
