@@ -366,8 +366,8 @@
 /area/ruin/space/has_grav/allamericandiner)
 "kA" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/obj/effect/turf_decal/siding/thinplating_new/dark/end{
-	dir = 1
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 5
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/allamericandiner)
@@ -413,6 +413,14 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/iron/kitchen/small,
+/area/ruin/space/has_grav/allamericandiner)
+"lL" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line,
+/turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
 "mh" = (
 /obj/structure/chair/sofa/left/maroon{
@@ -639,9 +647,6 @@
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
@@ -1002,8 +1007,8 @@
 /obj/item/storage/box/monkeycubes{
 	pixel_x = 6
 	},
-/obj/effect/turf_decal/siding/thinplating_new/dark/end{
-	dir = 1
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 9
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/allamericandiner)
@@ -1020,9 +1025,6 @@
 /obj/item/choice_beacon/ingredient,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
-	dir = 1
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/allamericandiner)
@@ -1668,6 +1670,16 @@
 "RP" = (
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/allamericandiner)
+"RR" = (
+/obj/machinery/gibber{
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/allamericandiner)
 "RX" = (
 /obj/item/reagent_containers/condiment/flour,
 /obj/item/reagent_containers/condiment/flour,
@@ -1791,10 +1803,7 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/allamericandiner)
 "VC" = (
-/obj/machinery/gibber{
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark{
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/small,
@@ -2672,8 +2681,8 @@ bl
 bl
 tc
 Oj
-Bz
-Is
+lL
+RR
 VC
 tc
 vV
