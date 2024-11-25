@@ -122,7 +122,7 @@
 	inhand_icon_state = "spear"
 	worn_icon_state = "spear_back"
 	throwforce = 15 //not a javelin, throwing specialty is for the axe.
-	embed_data = /datum/embed_data/forged_spear
+	embed_data = /datum/embed_data/spear
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
@@ -132,11 +132,6 @@
 	wound_bonus = -15
 	bare_wound_bonus = 15
 	sharpness = SHARP_POINTY
-
-/datum/embed_data/forged_spear
-	embed_chance = 75
-	fall_chance = 0
-	pain_mult = 6
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
@@ -314,7 +309,7 @@
 /obj/item/forging/reagent_weapon/bokken
 	name = "reagent bokken"
 	desc = "A bokken that is capable of blocking attacks when wielding in two hands, possibly including bullets should the user be brave enough."
-	force = 16
+	force = 8
 	icon_state = "bokken"
 	inhand_icon_state = "bokken"
 	worn_icon_state = "bokken_back"
@@ -349,7 +344,7 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
 	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
-	AddComponent(/datum/component/two_handed, force_multiplier = 0.5)
+	AddComponent(/datum/component/two_handed, force_multiplier = 1.5)
 
 /obj/item/forging/reagent_weapon/bokken/proc/on_wield()
 	SIGNAL_HANDLER
