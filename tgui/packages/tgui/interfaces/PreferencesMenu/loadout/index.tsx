@@ -283,6 +283,10 @@ const LoadoutTabs = (props: {
                   <Button
                     icon="pen"
                     onClick={() => setManagingPreset('Rename')}
+                    disabled={
+                      data.character_preferences.misc.loadout_index ===
+                      'Default'
+                    }
                   />
                 </Stack.Item>
               </Stack>
