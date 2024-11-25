@@ -233,7 +233,7 @@
 		/obj/item/clothing/suit/misc/allamerican = 1,
 		/obj/item/clothing/neck/tie/black/tied = 1,
 		/obj/item/clothing/under/costume/allamerican/manager = 1,
-		/obj/item/clothing/gloves/color/black = 1,
+		/obj/item/clothing/gloves/latex/allamerican = 3,
 		/obj/item/clothing/shoes/laceup = 1,
 	)
 
