@@ -44,7 +44,7 @@
 
 	. += "The Sindano submachinegun was originally produced for military contract. \
 		These guns were seen in the hands of anyone from medics, ship techs, logistics officers, \
-		and shuttle pilots often had several just to show off. Due to SolFed's quest to \
+		and shuttle pilots often had several just to show off. Due to TerraGov's quest to \
 		extend the lifespans of their logistics officers and quartermasters, the weapon \
 		uses the same standard pistol cartridge that most other miltiary weapons of \
 		small caliber use. This results in interchangeable magazines between pistols \
