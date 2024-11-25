@@ -231,6 +231,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				icon = 'modular_zubbers/icons/obj/machines/wintergreen_supermatter.dmi'
 				name = "wintergreen supermatter crystal"
 				desc = "A strangely translucent and iridescent crystal. Green doesn't make it run cooler."
+			if(3)
+				icon = 'icons/obj/machines/engine/supermatter.dmi'
 		// BUBBER EDIT ADDITION END
 		holiday_lights()
 
