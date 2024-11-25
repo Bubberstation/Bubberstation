@@ -140,7 +140,6 @@
 	if (def_zone != BODY_ZONE_HEAD || !prob(proj.damage * 0.1) || !(proj.damage_type == BRUTE || proj.damage_type == BURN))
 		return
 
-	var/blocked = source.check_projectile_armor(def_zone, proj, is_silent = TRUE)
 	if (blocked && source.is_eyes_covered())
 		if (!proj.armour_penetration || prob(blocked - proj.armour_penetration))
 			return
