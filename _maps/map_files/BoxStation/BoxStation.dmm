@@ -799,7 +799,7 @@
 /area/station/security/medical)
 "agm" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/station/common/cryopods)
 "agn" = (
 /turf/closed/wall/r_wall,
@@ -5476,6 +5476,9 @@
 /area/station/maintenance/abandon_arcade)
 "aBW" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "aBX" = (
@@ -21172,6 +21175,12 @@
 "bEQ" = (
 /obj/effect/landmark/start/shaft_miner,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bES" = (
@@ -24963,6 +24972,12 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "bUy" = (
@@ -41219,11 +41234,11 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "iax" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/mineral_door/wood{
 	name = "Maintenance Bar"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/space/basic,
+/turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
 "iaz" = (
 /obj/structure/table,
@@ -42615,12 +42630,6 @@
 "iSr" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/primary/fore)
-"iSu" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/port/aft)
 "iSB" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -47909,6 +47918,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/drone_bay)
 "meo" = (
@@ -52427,10 +52437,6 @@
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
-"phF" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/station/maintenance/abandon_cafeteria)
 "phS" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -53973,8 +53979,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/fore)
 "qgC" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/north,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
 "qgF" = (
@@ -55154,7 +55160,6 @@
 	c_tag = "Cargo - Drone Bay";
 	dir = 6
 	},
-/obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/drone_bay)
 "qTo" = (
@@ -55982,6 +55987,9 @@
 /obj/effect/mapping_helpers/airlock/access/any/supply/mining,
 /obj/machinery/door/airlock/mining{
 	name = "Drone Bay"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/drone_bay)
@@ -89734,7 +89742,7 @@ qhp
 qhp
 qhp
 bHE
-phF
+hFS
 qgC
 aIi
 aIi
@@ -89991,8 +89999,8 @@ chJ
 jyo
 nQl
 bHE
-phF
-wqq
+hFS
+tlT
 bYb
 fey
 rhV
@@ -91273,7 +91281,7 @@ nQl
 nQl
 nQl
 sxT
-iSu
+bHE
 tIl
 caq
 caq
