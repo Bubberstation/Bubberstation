@@ -161,7 +161,7 @@
 		return
 
 	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
-		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0, vomit_type = (issynthetic(user) && /obj/effect/decal/cleanable/vomit/nanites || /obj/effect/decal/cleanable/vomit/toxic))
+		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0, vomit_type = (issynthetic(user) && /obj/effect/decal/cleanable/vomit/nanites || /obj/effect/decal/cleanable/vomit/toxic)) // BUBBER EDIT CHANGE - Original: user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 		return
 
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
