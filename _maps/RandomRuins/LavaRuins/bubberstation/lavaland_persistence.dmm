@@ -713,6 +713,9 @@
 /obj/item/clothing/shoes/magboots/syndie{
 	pixel_y = 8
 	},
+/obj/structure/closet/crate/secure/syndicate/cybersun/noon{
+	name = "Engineering Supplies"
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "cp" = (
@@ -3725,7 +3728,9 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer,
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer{
+	name = "Persistence Morale Officer"
+	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "lb" = (
@@ -11171,7 +11176,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "HL" = (
 /obj/machinery/light/directional/south,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "HN" = (
 /obj/structure/cable,
@@ -13554,7 +13560,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "Pf" = (
 /obj/structure/sign/warning/gas_mask/directional/south,
-/obj/structure/reagent_dispensers/foamtank,
+/obj/machinery/light/directional/south,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Pg" = (

@@ -80,7 +80,6 @@
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "ar" = (
-/obj/structure/noticeboard/directional/east,
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
@@ -5679,7 +5678,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "rm" = (
 /obj/structure/sign/warning/gas_mask/directional/south,
-/obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ro" = (
@@ -7827,7 +7825,9 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer,
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer{
+	name = "Persistence Morale Officer"
+	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "xK" = (
@@ -14724,6 +14724,12 @@
 	},
 /obj/structure/noticeboard/directional/north,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/paper/dark_matteor_summoning,
+/obj/item/paper/crumpled/muddy/fluff/cannon_instructions,
+/obj/item/paper/crumpled/retired_designs,
+/obj/item/paper/crumpled/plap,
+/obj/item/paper/crumpled/rbmk2,
+/obj/item/paper/default_lawset_list,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "SO" = (
@@ -15389,8 +15395,8 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "UZ" = (
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/south,
+/obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Va" = (
@@ -15522,6 +15528,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/item/paper/default_lawset_list,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "Vx" = (
