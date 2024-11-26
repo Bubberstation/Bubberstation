@@ -155,6 +155,7 @@
 		"manulathe",
 		"manusorter",
 		"manurouter",
+		"holomap", // BUBBER EDIT ADDITION: Holomaps: Put in construction so holomaps can be easily replaced if broken due to roundstart shenanigans.
 	)
 
 /datum/techweb_node/energy_manipulation
@@ -204,6 +205,7 @@
 		"modular_shield_relay",
 		"modular_shield_charger",
 		"modular_shield_well",
+		"engineering_holomap", // BUBBER EDIT ADDITION: Holomaps
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
