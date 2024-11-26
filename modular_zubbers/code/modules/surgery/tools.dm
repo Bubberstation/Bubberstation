@@ -141,7 +141,7 @@
 		),
 	)
 
-/obj/item/cautery
+/obj/item/cautery/advanced
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"korve" = list(
@@ -151,5 +151,18 @@
 		"default" = list(
 		RESKIN_ICON = 'icons/obj/medical/surgery_tools.dmi',
 		RESKIN_ICON_STATE = "e_cautery",
+		),
+	)
+
+/obj/item/blood_filter/advanced
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"korve" = list(
+		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "combitool",
+		),
+		"default" = list(
+		RESKIN_ICON = 'modular_skyrat/modules/filtersandsetters/icons/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "combitool",
 		),
 	)
