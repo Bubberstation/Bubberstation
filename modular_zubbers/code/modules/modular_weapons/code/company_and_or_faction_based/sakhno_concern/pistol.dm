@@ -2,8 +2,8 @@
 	name = "\improper Yinbi Derringer"
 	desc = "A very compact twin-barreled pistol, chambered in .310 strilka. \
 		Despite using a rifle cartridge, the short barrels leave a lot to be desired for ballistic performance."
-	icon_state = "dshotgun"
-	inhand_icon_state = "shotgun_db"
+	icon = 'modular_zubbers/code/modules/modular_weapons/icons/sakhno_concern_guns32x.dmi'
+	icon_state = "derringer"
 	w_class = WEIGHT_CLASS_SMALL
 	weapon_weight = WEAPON_LIGHT
 	force = 5
@@ -19,15 +19,15 @@
 /obj/item/gun/ballistic/derringer/process_fire() //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
 	if(chambered.loaded_projectile)
 		var/projectileDamage = chambered.loaded_projectile.damage
-		var/projectileStamina = chamered.loaded_projectile.stamina
-		//Damage fall-off is 10% of the projectile's total damage at firing, including the multiplier penalty. Checks for stamina and regular damage independantly.
-		chambered.loaded_projectile.damage_falloff_tile = ((projectileDamage * projectile_damage_multiplier) * 0.1)
-		chambered.loaded_projectile.stamina_falloff_tile = ((projectileStamina * projectile_damage_multiplier) * 0.1)
+		var/projectileStamina = chambered.loaded_projectile.stamina
+		//Damage fall-off is 5% of the projectile's total damage at firing, including the multiplier penalty. This will deal about 25 damage at a screen's length away
+		chambered.loaded_projectile.damage_falloff_tile = ((projectileDamage * projectile_damage_multiplier) * -0.05)
+		chambered.loaded_projectile.stamina_falloff_tile = ((projectileStamina * projectile_damage_multiplier) * -0.05)
 
 	. = ..()
 
 /obj/item/gun/ballistic/derringer/give_manufacturer_examine()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_XHIHAO)
+	AddElement(/datum/element/manufacturer_examine, COMPANY_SAKHNO)
 
 /obj/item/gun/ballistic/derringer/examine_more(mob/user)
 	. = ..()
@@ -36,6 +36,7 @@
 		allowing the user to have a easy to carry and conceal self-defence weapon without having to \
 		keep several calibers of ammo on hand. While initial sales were promising, the poor ranged \
 		performance ultimately lead to production halting for this model. Most of the remaining stock \
-		was liquidated, and they are now found at rather affordable prices on the secondary market."
+		was liquidated, and they are now found at rather affordable prices on the secondary market. \
+		Unlike the rifles they were partnered with, they have held up much better over the years."
 
 	return .
