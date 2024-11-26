@@ -137,6 +137,10 @@ GLOBAL_LIST_INIT(bio_state_anatomy, list(
 #define WOUND_SERIES_WIRE_PIERCE_ELECTRICAL_DAMAGE "wound_series_metal_pierce_electrical_damage_basic"
 // SKYRAT EDIT ADDITION END
 
+//Bubbers Edit addition begin - permanent limp quirk
+#define WOUND_SERIES_PERM_LIMP_BASIC "b_wound_series_perm_limp"
+//Bubbers Edit addition end
+
 /// A assoc list of (wound typepath -> wound_pregen_data instance). Every wound should have a pregen data.
 GLOBAL_LIST_INIT_TYPED(all_wound_pregen_data, /datum/wound_pregen_data, generate_wound_static_data())
 
