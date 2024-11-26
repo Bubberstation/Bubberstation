@@ -11,11 +11,10 @@
 
 
 /datum/supply_pack/misc/ouija_board/fill(obj/structure/closet/crate/our_crate)
-	new	/obj/item/storage/fancy/candle_box(our_crate)
-	new	/obj/item/clothing/suit/hooded/chaplain_hoodie(our_crate)
+	new /obj/item/storage/fancy/candle_box(our_crate)
+	new /obj/item/clothing/suit/hooded/chaplain_hoodie(our_crate)
 	if(prob(85))
 		new /obj/structure/spirit_board(our_crate)
 	else
 		new /obj/structure/spirit_board/weegee(our_crate)
-//comment to fix a little issue with line endings I hope! Let's see!
 
