@@ -1839,15 +1839,11 @@
 "and" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	id_tag = "Dorm1";
+	id_tag = "dorm1";
 	name = "Cabin 1"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
-	},
-/obj/machinery/button/door/directional/east{
-	name = "Dormitory Door Lock";
-	id = "Dorm1"
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/dorms)
@@ -1993,6 +1989,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/machinery/light/small/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/security/holding_cell)
 "anX" = (
@@ -2041,6 +2038,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/carpet/donk,
 /area/station/commons/dorms)
 "aof" = (
@@ -2628,7 +2626,8 @@
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/shutters/preopen{
 	name = "Sauna Privacy Shutters";
-	id = "fruity"
+	id = "fruity";
+	id_tag = "fruity"
 	},
 /turf/open/floor/plating,
 /area/station/common/pool/sauna)
@@ -2827,10 +2826,8 @@
 /turf/open/floor/plating,
 /area/station/cargo/storage)
 "ask" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/line{
-	dir = 9
-	},
-/turf/closed/wall,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/dark,
 /area/station/security/brig)
 "asl" = (
 /obj/machinery/disposal/bin,
@@ -3599,6 +3596,7 @@
 	pixel_y = 7
 	},
 /obj/item/book/manual/wiki/security_space_law,
+/obj/machinery/camera/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/security/holding_cell)
 "avo" = (
@@ -4261,7 +4259,7 @@
 /area/station/commons/locker)
 "axt" = (
 /obj/machinery/button/door/directional/east{
-	id = "Dorm2";
+	id = "dorm2";
 	name = "Dormitory Door Lock";
 	normaldoorcontrol = 1;
 	specialfunctions = 4
@@ -6411,13 +6409,18 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/dorms)
 "aGe" = (
-/obj/machinery/airalarm/directional/west,
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/microwave/engineering/cell_included{
 	pixel_y = 7
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/machinery/button/door/directional/west{
+	specialfunctions = 4;
+	id = "dorm3";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1
 	},
 /turf/open/floor/wood/tile,
 /area/station/commons/dorms)
@@ -19082,12 +19085,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	id_tag = "Dorm4";
+	id_tag = "dorm4";
 	name = "Cabin 4"
-	},
-/obj/machinery/button/door/directional/west{
-	name = "Dormitory Door Lock";
-	id = "Dorm4"
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/dorms)
@@ -21958,10 +21957,15 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/drone_bay)
 "bHz" = (
-/obj/machinery/airalarm/directional/west,
 /obj/structure/closet/crate/bin,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/machinery/button/door/directional/west{
+	specialfunctions = 4;
+	id = "dorm4";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1
 	},
 /turf/open/floor/wood/tile,
 /area/station/commons/dorms)
@@ -24546,7 +24550,8 @@
 "bSp" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	name = "Sauna Privacy Shutters";
-	id = "fruity"
+	id = "fruity";
+	id_tag = "fruity"
 	},
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -33197,6 +33202,7 @@
 /area/station/command/bridge)
 "cQt" = (
 /obj/structure/cable,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "cQL" = (
@@ -34498,6 +34504,7 @@
 "dBS" = (
 /obj/machinery/light/small/directional/west,
 /obj/item/kirbyplants/random/fullysynthetic,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood/tile,
 /area/station/commons/dorms)
 "dCe" = (
@@ -35929,6 +35936,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/iron/dark,
 /area/station/common/cryopods)
 "eyQ" = (
@@ -38345,7 +38354,7 @@
 /obj/structure/grille/broken,
 /obj/machinery/door/airlock{
 	name = "Cabin 5";
-	id_tag = "Dorm5"
+	id_tag = "dorm5"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/dorm_room)
@@ -39834,7 +39843,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	id_tag = "Dorm2";
+	id_tag = "dorm2";
 	name = "Cabin 2"
 	},
 /turf/open/floor/iron/dark,
@@ -41805,6 +41814,14 @@
 /obj/item/kirbyplants/organic/plant11,
 /turf/open/floor/wood/parquet,
 /area/station/service/bar)
+"iqH" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/box/blue,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/security/holding_cell)
 "iqK" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -42429,6 +42446,7 @@
 	color = "#c45c57"
 	},
 /obj/machinery/light/small/directional/west,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood/tile,
 /area/station/commons/dorms)
 "iLX" = (
@@ -46212,7 +46230,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
 "kWH" = (
@@ -49846,7 +49863,6 @@
 /turf/open/floor/wood/tile,
 /area/station/common/pool/sauna)
 "nww" = (
-/obj/machinery/camera/directional/north,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 1
 	},
@@ -49857,6 +49873,7 @@
 /obj/structure/closet/secure_closet/brig/genpop,
 /obj/item/clothing/under/rank/prisoner/skirt/lowsec,
 /obj/item/clothing/under/rank/prisoner/lowsec,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/security/holding_cell)
 "nwE" = (
@@ -53474,6 +53491,7 @@
 "pQs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "pQw" = (
@@ -57273,6 +57291,12 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/science/genetics)
 "sgA" = (
+/obj/machinery/button/door/directional/south{
+	id = "dorm1";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/wood/tile,
 /area/station/commons/dorms)
 "sgJ" = (
@@ -60204,7 +60228,10 @@
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/button/door/directional/south{
-	id = "Dorm5"
+	id = "dorm5";
+	normaldoorcontrol = 1;
+	no_damage_feedback = "Dormitory Door Lock";
+	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -62473,12 +62500,8 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock{
-	id_tag = "Dorm3";
+	id_tag = "dorm3";
 	name = "Cabin 3"
-	},
-/obj/machinery/button/door/directional/west{
-	name = "Dormitory Door Lock";
-	id = "Dorm3"
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/dorms)
@@ -92754,7 +92777,7 @@ aEh
 akG
 fwV
 mVz
-bUe
+ask
 wYB
 gnf
 mkk
@@ -93266,7 +93289,7 @@ vnk
 qHR
 lwU
 yls
-ask
+agj
 gaj
 wcS
 wYB
@@ -100205,7 +100228,7 @@ asp
 lKh
 asp
 asf
-asf
+iqH
 apw
 wHs
 ajm
