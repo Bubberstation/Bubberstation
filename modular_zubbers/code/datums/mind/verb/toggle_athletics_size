@@ -1,8 +1,12 @@
 /datum/mind/verb/toggle_athletics_size()
-	set category = "OOC"
+	set category = "Skills"
 	set name = "Toggle Athletics Size Scaling"
-	set desc = "Enable or disable the size scaling for athletics skill."
 
 	athletics_size_scaling = !athletics_size_scaling
 	var/status = athletics_size_scaling ? "enabled" : "disabled"
 	to_chat(src, "Athletics size scaling is now [status].")
+
+/mob/living/carbon/human/verb/toggle_athletics_size()
+	set name = "Toggle Athletics Scaling"
+	set category = "OOC"
+	set desc = "Stops the size scaling buff from Athletics"
