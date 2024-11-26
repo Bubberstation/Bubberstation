@@ -588,7 +588,7 @@
 	l_hand = /obj/item/melee/energy/sword
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/stimulants
 	l_pocket = /obj/item/soap/syndie
-	belt = /obj/item/gun/ballistic/revolver/syndicate
+	belt = /obj/item/gun/ballistic/revolver
 
 /datum/outfit/deathmatch_loadout/nukie
 	name = "Deathmatch: Nuclear Operative"

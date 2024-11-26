@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(player_ranks)
 	var/datum/player_rank_controller/mentor/mentor_controller
 	/// The veteran player rank controller.
 	var/datum/player_rank_controller/veteran/veteran_controller
-	var/datum/player_rank_controller/vetted/vetted_controller // BUBBER EDIT ADDITION // BUBBER TODO: See if we can somehow make this modular
+	var/datum/player_rank_controller/vetted/vetted_controller
 
 /datum/controller/subsystem/player_ranks/Initialize()
 	if(IsAdminAdvancedProcCall())
@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(player_ranks)
 	load_donators()
 	load_mentors()
 	load_veterans()
-	load_vetted_ckeys() // BUBBER EDIT ADDITION // BUBBER TODO: Modularity
+	load_vetted_ckeys()
 	return SS_INIT_SUCCESS
 
 
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(player_ranks)
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(veteran_controller)
-	QDEL_NULL(vetted_controller) // BUBBER EDIT ADDITION // BUBBER TODO: Modularity
+	QDEL_NULL(vetted_controller)
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -86,21 +86,8 @@ SUBSYSTEM_DEF(player_ranks)
  * * admin_bypass - Whether or not admins can succeed this check, even if they
  * do not actually possess the role. Defaults to `TRUE`.
  */
-/datum/controller/subsystem/player_ranks/proc/is_veteran(client/user, admin_bypass = TRUE)
-
-// BUBBER EDIT REMOVAL - Down with sponsored metacliques and player elistism systems.
+/datum/controller/subsystem/player_ranks/proc/is_veteran(client/user, admin_bypass = TRUE) // BUBBER TODO - Remove the remnants of the skyrat elitism system
 	return TRUE
-/* 	if(!istype(user))
-		CRASH("Invalid user type provided to is_veteran(), expected 'client' and obtained '[user ? user.type : "null"]'.")
-
-	if(GLOB.veteran_list[user.ckey])
-		return TRUE
-
-	if(admin_bypass && is_admin(user))
-		return TRUE
-
-	return FALSE */
-
 
 /// Handles loading donators either via SQL or using the legacy system,
 /// based on configs.

@@ -239,7 +239,7 @@
 	key = "kiss"
 	key_third_person = "kisses"
 	cooldown = 3 SECONDS
-/* BUBBER EDIT modularized - modular_zubbers\code\modules\mob\living\emote.dm
+
 /datum/emote/living/kiss/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
 	var/kiss_type = /obj/item/hand_item/kisser
@@ -256,7 +256,7 @@
 	else
 		qdel(kiss_blower)
 		to_chat(user, span_warning("You're incapable of blowing a kiss in your current state."))
-*/
+
 /datum/emote/living/laugh
 	key = "laugh"
 	key_third_person = "laughs"
@@ -436,7 +436,6 @@
 		return
 	return user.dna.species.get_sniff_sound(user)
 
-
 /datum/emote/living/snore
 	key = "snore"
 	key_third_person = "snores"
@@ -444,6 +443,12 @@
 	message_mime = "sleeps soundly."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	stat_allowed = UNCONSCIOUS
+
+// eventually we want to give species their own "snoring" sounds
+/datum/emote/living/snore/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_snore_sound(user)
 
 /datum/emote/living/stare
 	key = "stare"
