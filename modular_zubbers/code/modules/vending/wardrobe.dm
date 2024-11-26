@@ -80,6 +80,8 @@
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	zubbers_products = list(
+	/obj/item/clothing/suit/toggle/labcoat/skyrat/medical = 3,
+	/obj/item/clothing/suit/toggle/labcoat/skyrat/medical/dark = 3,
 	/obj/item/clothing/glasses/hud/health/surgerygoggles = 3,
 	/obj/item/clothing/gloves/latex/nitrile/longrubbergloves = 3,
 	/obj/item/clothing/suit/leatherapron = 3,
