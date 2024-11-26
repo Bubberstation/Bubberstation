@@ -159,6 +159,10 @@
 		return
 	if(!iscarbon(user))
 		return
+	// BUBBER EDIT ADDITION BEGIN - Freerunning Quirk
+	if(HAS_TRAIT(user, TRAIT_FREERUNNING))
+		return
+	// BUBBER EDIT ADDITION END
 
 	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
