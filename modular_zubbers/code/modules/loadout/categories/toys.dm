@@ -70,3 +70,7 @@
 /datum/loadout_item/toys/suspicious_protogen
 	name = "Suspicious Protogen Plush"
 	item_path = /obj/item/toy/plush/suspicious_protogen
+
+/datum/loadout_item/toys/foxy_plush
+	name = "Tired Teshari Plushie"
+	item_path = /obj/item/toy/plush/foxy_plush
