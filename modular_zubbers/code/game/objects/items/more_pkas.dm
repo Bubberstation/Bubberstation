@@ -89,6 +89,10 @@
 	weapon_weight = WEAPON_LIGHT
 	max_mod_capacity = 75
 
+/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	target = get_edge_target_turf(user, user.dir)
+	return ..()
+
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79
 	name = "proto-kinetic grenade launcher"
 	desc = "Made in a drunk frenzy during the creation of the kinetic railgun, the kinetic grenade launcher fires the same bombs used by \
