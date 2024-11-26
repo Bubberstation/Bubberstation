@@ -1,6 +1,7 @@
 /datum/mind/verb/toggle_athletics_size()
-	set category = "Skills"
+	set category = "OOC"
 	set name = "Toggle Athletics Size Scaling"
+	set desc = "Enable or disable the size scaling for athletics skill."
 
 	athletics_size_scaling = !athletics_size_scaling
 	var/status = athletics_size_scaling ? "enabled" : "disabled"
