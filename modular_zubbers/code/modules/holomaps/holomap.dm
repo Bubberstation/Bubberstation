@@ -180,10 +180,11 @@
 	if(construction_state == "unwired" && istype(tool, /obj/item/stack/cable_coil)) // Someone else can expand on holomap construction if they really want.
 		var/obj/item/stack/cable_coil/coil = tool
 		if(!coil.use(5))
-			return
+			return TRUE
 
 		construction_state = null
 		update_icon()
+		return TRUE
 
 /obj/machinery/holomap/screwdriver_act(mob/living/user, obj/item/tool)
 	if(construction_state)
@@ -200,15 +201,19 @@
 	return TRUE
 
 /obj/machinery/holomap/wirecutter_act(mob/living/user, obj/item/tool)
-	if(!panel_open || construction_state)
-		return
+	if(construction_state || !panel_open)
+		return TRUE
 
 	tool.play_tool_sound(user, 50)
 	construction_state = "unwired"
+	new /obj/item/stack/cable_coil/five(get_turf(src))
 	update_icon()
-	return
+	return TRUE
 
 /obj/machinery/holomap/multitool_act(mob/living/user, obj/item/tool)
+	if(construction_state)
+		to_chat(user, span_warning("You need to finish building this before you can change \the [src]'[p_s()] settings!"))
+		return TRUE
 	if(!panel_open)
 		to_chat(user, span_warning("You need to open the panel to change \the [src]'[p_s()] settings!"))
 		return TRUE
@@ -234,10 +239,10 @@
 
 	tool.play_tool_sound(src, 50)
 	if(machine_stat & BROKEN)
-		var/obj/item/stack/stack = new /obj/item/stack/sheet/iron(loc)
+		var/obj/item/stack/stack = new /obj/item/stack/sheet/iron(get_turf(src))
 		stack.amount = 2
 	else
-		new wall_frame_type(loc)
+		new wall_frame_type(get_turf(src))
 	qdel(src)
 
 /obj/machinery/holomap/emp_act(severity)
