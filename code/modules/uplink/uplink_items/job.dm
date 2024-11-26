@@ -48,6 +48,14 @@
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	surplus = 25
 
+/datum/uplink_item/role_restricted/banana_slippers
+	name = "Banana Slippers"
+	desc = "For the criminal trying to take their shoe-stealing game to the next level. Simply throw at a would-be victims legs, slipping guaranteed or your TC back! WARNING: Removal will require the help of a friend."
+	item = /obj/item/clothing/shoes/banana_slippers
+	cost = 4
+	restricted_roles = list(JOB_CLOWN)
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
+
 /datum/uplink_item/role_restricted/ancient_jumpsuit
 	name = "Ancient Jumpsuit"
 	desc = "A tattered old jumpsuit that will provide absolutely no benefit to you."
@@ -364,7 +372,7 @@ BUBBER REMOVE END*/
 	name = "Simian Agent Reinforcements"
 	desc = "Call in an extremely well trained monkey secret agent from our Syndicate Banana Department. \
 		They've been trained to operate machinery and can read, but they can't speak Common. \
-		Please note that these are free-range monkeys that don't react with Mutadone."
+		Please note that these are free-range monkeys that don't react with Mutadone. May contain severe allergies to species-changing phenomena."
 	item = /obj/item/antag_spawner/loadout/monkey_man
 	cost = 6
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_GENETICIST, JOB_ASSISTANT, JOB_MIME, JOB_CLOWN, JOB_PUN_PUN)
