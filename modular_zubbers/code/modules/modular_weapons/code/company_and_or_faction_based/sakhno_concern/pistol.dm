@@ -9,6 +9,11 @@
 	force = 5
 	projectile_damage_multiplier = 0.75 //Drops damage to "45" from 60, for base .310 strikla
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/derringer
+	fire_sound = 'sound/items/weapons/gun/revolver/shot_alt.ogg'
+	load_sound = 'sound/items/weapons/gun/revolver/load_bullet.ogg'
+	eject_sound = 'sound/items/weapons/gun/revolver/empty.ogg'
+	fire_sound_volume = 65
+	dry_fire_sound = 'sound/items/weapons/gun/revolver/dry_fire.ogg'
 	hidden_chambered = TRUE
 	rack_sound_volume = 0
 	fire_delay = 3
