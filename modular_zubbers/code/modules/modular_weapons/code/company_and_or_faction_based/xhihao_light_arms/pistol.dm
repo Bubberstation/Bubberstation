@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	weapon_weight = WEAPON_LIGHT
 	force = 5
-	projectile_damage_multiplier = 0.67 //Drops damage to "40" from 60, for base .310 strikla
+	projectile_damage_multiplier = 0.75 //Drops damage to "45" from 60, for base .310 strikla
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/derringer
 	hidden_chambered = TRUE
 	rack_sound_volume = 0
@@ -18,9 +18,16 @@
 
 /obj/item/gun/ballistic/derringer/process_fire() //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
 	if(chambered.loaded_projectile)
-		chambered.loaded_projectile.damage_falloff_tile = -5
+		var/projectileDamage = chambered.loaded_projectile.damage
+		var/projectileStamina = chamered.loaded_projectile.stamina
+		//Damage fall-off is 10% of the projectile's total damage at firing, including the multiplier penalty. Checks for stamina and regular damage independantly.
+		chambered.loaded_projectile.damage_falloff_tile = ((projectileDamage * projectile_damage_multiplier) * 0.1)
+		chambered.loaded_projectile.stamina_falloff_tile = ((projectileStamina * projectile_damage_multiplier) * 0.1)
 
 	. = ..()
+
+/obj/item/gun/ballistic/derringer/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_XHIHAO)
 
 /obj/item/gun/ballistic/derringer/examine_more(mob/user)
 	. = ..()
@@ -32,14 +39,3 @@
 		was liquidated, and they are now found at rather affordable prices on the secondary market."
 
 	return .
-
-/*
-	///How much we want to drop damage per tile as it travels through the air
-	var/damage_falloff_tile
-	///How much we want to drop stamina damage (defined by the stamina variable) per tile as it travels through the air
-	var/stamina_falloff_tile
-	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
-	var/wound_falloff_tile
-	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
-	var/embed_falloff_tile
-*/
