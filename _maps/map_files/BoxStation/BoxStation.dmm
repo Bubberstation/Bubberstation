@@ -2636,9 +2636,14 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "arq" = (
-/obj/structure/reagent_water_basin,
 /obj/item/reagent_containers/cup/bucket/wooden{
 	pixel_y = 4
+	},
+/obj/structure/water_source/puddle{
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi';
+	base_icon_state = "water_basin";
+	icon_state = "water_basin";
+	name = "filled water basin"
 	},
 /turf/open/floor/wood/tile,
 /area/station/common/pool/sauna)
@@ -3483,7 +3488,9 @@
 	dir = 8
 	},
 /obj/structure/fans/tiny,
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/wood{
+	name = "Pool and Sauna"
+	},
 /turf/open/floor/iron/dark,
 /area/station/common/pool/sauna)
 "auV" = (
@@ -60788,10 +60795,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/aisat/hallway)
-"uxd" = (
-/obj/structure/fans/tiny,
-/turf/open/floor/wood/tile,
-/area/station/common/pool/sauna)
 "uxl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/public/glass{
@@ -105891,7 +105894,7 @@ aCf
 gWB
 aBT
 aDs
-uxd
+aEO
 phU
 aEO
 aro
