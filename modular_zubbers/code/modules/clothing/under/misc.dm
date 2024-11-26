@@ -568,7 +568,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	can_adjust = FALSE
-	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/costume/allamerican/manager
 	name = "all-american diner manager uniform"

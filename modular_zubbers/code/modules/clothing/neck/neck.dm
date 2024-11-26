@@ -550,3 +550,11 @@
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
+/obj/item/clothing/neck/tie/allamerican
+	name = "all-american diner manager tie"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "allamerican"
+	greyscale_colors = null
+	is_tied = TRUE
+	clip_on = TRUE
