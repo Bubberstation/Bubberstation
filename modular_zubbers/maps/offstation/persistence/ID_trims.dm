@@ -51,7 +51,7 @@
 
 /datum/id_trim/syndicom/bubberstation/persistence/cargo
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	assignment = "Persistence Quarter Master"
+	assignment = "Persistence Cargo Technician"
 	trim_state = "trim_ds2miningofficer"
 	sechud_icon_state = SECHUD_DS2_MININGOFFICER
 	access = list(ACCESS_SYNDICATE)
@@ -79,7 +79,7 @@
 
 /datum/id_trim/syndicom/bubberstation/persistence/rigmanager
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	assignment = "Rig Manager"
+	assignment = "Persistence Admiral"
 	trim_state = "trim_ds2admiral"
 	sechud_icon_state = SECHUD_DS2_ADMIRAL
 	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
