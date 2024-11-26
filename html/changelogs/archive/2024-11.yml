@@ -421,3 +421,190 @@
   - map: Fixed incorrect evac sign on Void Raptor
   xPokee, LT3:
   - rscadd: added MKUltra, chemical enthrallment
+2024-11-21:
+  StrangeWeirdKitten:
+  - admin: Storyteller name changes will append it with the original story teller
+      name.
+2024-11-22:
+  Absolucy:
+  - bugfix: Allow dot radio prefixes to also work with the tgui-say radio prefix display.
+  Ben10Omintrix:
+  - code_imp: animals' food hunting behavior has been refactored, please report any
+      bugs
+  - rscadd: adds a new station trait, "bring your pet to work" day
+  - bugfix: fixes ashdrake arena attack not clearing out lavaland walls
+  Cruix:
+  - bugfix: Fixed chameleon clothing sometimes making you bald or hiding other parts
+      of your sprite.
+  DATA-xPUNGED:
+  - bugfix: Xeno queens can once again promote Drones to Praetorians
+  - bugfix: They can also once again do hand emotes
+  - bugfix: Ghosts can now see the details of an ID from any distance
+  - bugfix: Server Hopping should fade your screen into black, as it should.
+  EEASAS:
+  - bugfix: adds plasma to wawastation's xenobio
+  EnterTheJake:
+  - bugfix: Dark matter singularity no longer gets stuck on other z levels when summoned.
+  - bugfix: Space Phase now makes the Heretic Space proof.
+  EuSouAFazer:
+  - balance: '[TGC] Rebalances nearly every card in the game.'
+  - balance: '[TGC] Several keywords had their effects modified.'
+  - bugfix: '[TGC] Black Gaia is no longer an "Artifact", Fryer no longer mentions
+      tapping it.'
+  - spellcheck: '[TGC] Replaced "Tap this card:" with just "Tap:" alongside other
+      wording improvements'
+  - spellcheck: '[TGC] Mana has been replaced with Plasma. This is a completely cosmetic
+      change.'
+  - refactor: '[TGC] Merged many, many redudant card subtypes (the mechanic, not the
+      byond code stuff) into more comprehensive ones.'
+  FlufflesTheDog:
+  - bugfix: Mops and similar work properly on multi-z stations
+  Ghommie:
+  - bugfix: Fish like slimefish, unmarine bonemass and deepfryer fish can now be used
+      for DNA infusions.
+  - rscadd: The fishing skillchip now grants an action that dispenses fishing tips.
+  - rscadd: You can buy a fishing rod pre-equipped with a rescue hook from the mining
+      order console.
+  - balance: Paramedics can get a rescue fishing hook as a heirloom.
+  - bugfix: fixed fish infusion. Whoopsies.
+  - rscadd: Feeding fish certain reagents may have some effects. Mutagen for increased
+      evolution probability. Growth serum for faster growth. Teslium for electrogenesis.
+  - bugfix: The fishing portal generator (fish-porter 3000) now correctly links with
+      lava turfs from lavaland.
+  Hardly3D:
+  - spellcheck: fixes a small error in text when adjusting kitsune masks
+  Iajret:
+  - bugfix: health analyzers will show if your heart is missing once again
+  Jewelry-x:
+  - bugfix: fixed reagents not being applied correctly by venomous mobs
+  - bugfix: dead borgs no longer become invisible upon changing z level
+  - bugfix: the ghost "t-ray view" no longer requires a double press to activate a
+      second time.
+  - qol: renamed "t-ray view" to "t-ray scan" for clarity.
+  - bugfix: fixed mech step sound playing twice diagonally
+  - bugfix: fixed turn sound playing every time you move diagonally, now only plays
+      when the sprite turns
+  KazooBard:
+  - rscadd: More cardboard cutout icons (Pirate, ninja, changeling, heretic, abductor)
+  Mamaii:
+  - rscadd: shower will give felinids negative mood effect
+  - bugfix: fixed shower hater status effect alert not showing
+  Melbert:
+  - bugfix: Fixed medipens injecting 2x their contents
+  - bugfix: Fixes stuff staying on your body after removing your clothes
+  - bugfix: Dead bees maintain their color and reagents
+  Qwertytoforty:
+  - bugfix: Anomalies no longer spawn in objects or mobs from the supermatter.
+  SmArtKar:
+  - bugfix: Untie shoes should have its cooldown increased correctly when casting
+      it from a long distance
+  - qol: Jetpack movement near walls should be much smoother
+  - spellcheck: Fixed a typo in multiple lives component
+  - balance: You can no longer view operating computer UI while lying down
+  - rscadd: New station trait "Spiked Drinks" that will add booze to most sodas has
+      been added to rotation.
+  - bugfix: Ghosts can no longer cut people's tethers
+  StrangeWeirdKitten:
+  - admin: The Law Panel now properly logs and communicates law edits.
+  Striders13:
+  - balance: replaced gas mask fov with pepperspray applying tint to gas masks, making
+      the wearer blind until washed off.
+  SyncIt21:
+  - bugfix: you can drop/put drone tools back in the toolbox
+  - bugfix: you cannot dump the contents of the drone toolbox
+  YakumoChen:
+  - spellcheck: Proofreads some faxes sent during radioactive nebulae
+  ZephyrTFA:
+  - qol: map votes are now winner take all instead of weighted.
+  Zydras, RimiNosha:
+  - map: Biodome got a ton of fixes and tweaks, send feedback to RimiNosha so more
+      can be done!
+  carlarctg:
+  - rscadd: Added the FOSBURY skillchip, found in hacked toy vendors. This skillchip
+      allows you to bypass the emote cooldown when flipping or spinning. However,
+      if used too often, it will lower the chip's integrity and cause malfunctions.
+  - rscadd: Added the Chipped quirk. It allows you to spawn with one base skillchip.
+      (not the one above)
+  - rscadd: Added the Chip Connector quirk. It contains a new implant, the chip connector,
+      which allows you to install and take out skillchips at any time.
+  - code_imp: Renamed the organ slots for brain implants and made the connector implant
+      take the CNS slot.
+  - rscadd: you can use lizards to get lizard organs in the dna infuser
+  grungussuss:
+  - sound: plate armor now makes sound when moving around in it
+  - sound: helmets and their visors make sounds now
+  - code_imp: cleaned up laser tag helmet code a bit
+  - sound: ballistics have new handling sounds
+  - sound: gas analyzer now has handling sounds
+  - sound: reagent containers now make sounds if there is liquid in them when picked
+      up or dropped
+  - sound: fire extinguishers now make sounds when dropped or picked up
+  - bugfix: a lot of items that shouldn't slosh when picked up will no longer slosh
+  - balance: all chainsaws can now behead people
+  - bugfix: removed a few var edits from maps
+  - sound: medical, jani, soulstone, grenade belts got sounds
+  - rscadd: a lot of basic mobs and pets got new emotes
+  - refactor: emotes triggered by petting pets work differently now, please report
+      any oddities with these behaviors.
+  - sound: new emotes for basic mobs got sounds
+  - qol: offering an item displays a balloon alert
+  - sound: cards have new handling sounds
+  - bugfix: snore emote works properly now
+  junkgle01:
+  - image: resprited surplus limbs
+  necromanceranne:
+  - rscadd: Fundamentally Evil quirk. You might act normal, but you know deep down
+      that you totally don't give a shit about anyone but yourself. Empaths better
+      watch out.
+  - bugfix: Pyrokinesis/Cryokinesis cast range matches its projectile range.
+  - code_imp: Pyrokinesis and Cindikinesis are now their own types and not subtypes
+      of Cryokinesis and Geladikinesis. This allows you to not have to mutate yourself
+      in a specific order to not lock yourself out of the other mutation.
+  unit0016:
+  - bugfix: Shuttles that land next to plasma turfs no longer ruin the mass hallucination
+      that is Icebox having Plasma and not just super-deadly; spiky basalt deltas.
+      You're welcome; unreality fans.
+  vinylspiders:
+  - bugfix: fixes a bunch of improper static list declarations
+  wonderinghost:
+  - rscadd: Adds a few lights
+  - bugfix: removes the darkspot in wawa med
+2024-11-23:
+  GoreDem:
+  - rscdel: removed burst mode action button from the bulldog
+  MajManatee:
+  - rscadd: Chemical press can now fill large bottles (100u)
+  - rscadd: Adds large bottles
+  - qol: Chemical press can now fill large hypos fully (100u)
+  - qol: Chemical press can now dispense pills and patches at 1u
+  pixelkitty286:
+  - rscadd: Engineering grippers to engineering cyborgs and traitorous counterpart
+  - image: 1 Icon in modular robot_items.dmi
+  thegrb93:
+  - bugfix: Shutter animations fixed
+2024-11-24:
+  Arturlang:
+  - bugfix: the shockwave KPA can no longer be shot in a way that lets you stack all
+      of it's shots in one tile
+  LT3:
+  - bugfix: Emote cooldowns work properly
+  - rscdel: Removed Freerunning restriction on the flip emote
+  MajManatee:
+  - rscadd: LOOC now has runetext! (As an option)
+  ReturnToZender:
+  - rscadd: You can now put a damp rag in your lapel pocket protector.
+  RimiNosha:
+  - bugfix: Fixed assistant uniforms replacing loadout uniforms in certain conditions.
+  xPokee:
+  - rscadd: you can now pick up snakes and wear them as a scarf
+2024-11-25:
+  Flvffi:
+  - image: Modified 4 Haydee .dmi files
+  LT3:
+  - bugfix: Ghosts can use the flip emote again
+  OrbisAnima (code for 1), ReturnToZender (code for 2):
+  - bugfix: Fixes an exploit with Twitch, and the reagent forged spear's embedding.
+  ReturnToZender:
+  - rscdel: Replaces the NTC's captain fountain pen with a regular fountain pen
+  thegrb93:
+  - bugfix: Synths vomit nanites when flipping too many times
