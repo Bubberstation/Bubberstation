@@ -8,11 +8,10 @@
 		species_visible = FALSE
 	else
 		species_visible = TRUE
-
 	if(!species_visible)
 		species_name_string = ""
 	else if (!dna.species.lore_protected && dna.features["custom_species"])
-		species_name_string = ", [prefix_a_or_an(dna.features["custom_species"])] <EM>[dna.features["custom_species"]]</EM>"
+		species_name_string = ", [prefix_a_or_an(dna.features["custom_species"])] <EM>[dna.features["custom_species"]] [isobserver(user) ? "([dna.species.name])" : ""]</EM>"
 	else
 		species_name_string = ", [prefix_a_or_an(dna.species.name)] <EM>[dna.species.name]</EM>"
 
