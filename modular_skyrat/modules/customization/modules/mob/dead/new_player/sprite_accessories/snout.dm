@@ -457,3 +457,9 @@
 	color_src = USE_MATRIXED_COLORS
 	name = "Acrador 4 (Normal)"
 	icon_state = "acrador_4"
+
+/datum/sprite_accessory/snouts/renamon
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
+	color_src = USE_MATRIXED_COLORS
+	name = "Renamon"
+	icon_state = "renamon"

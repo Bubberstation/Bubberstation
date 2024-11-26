@@ -1,4 +1,4 @@
-/// Used by Vassals
+/// Used by Ghouls
 /datum/action/cooldown/bloodsucker/recuperate
 	name = "Sanguine Recuperation"
 	desc = "Slowly heals you overtime using your master's blood, in exchange for some of your own blood and effort."
@@ -20,11 +20,10 @@
 	. = ..()
 	if(!.)
 		return
-	if(user.stat >= DEAD || user.incapacitated())
+	if(user.stat >= DEAD || user.incapacitated)
 		user.balloon_alert(user, "you are incapacitated...")
 		return FALSE
 	return TRUE
-
 
 /datum/action/cooldown/bloodsucker/recuperate/ActivatePower(trigger_flags)
 	. = ..()
@@ -40,16 +39,21 @@
 	if(!active)
 		return
 	var/mob/living/carbon/user = owner
-	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(user)
-	vassaldatum.master.AdjustBloodVolume(-1)
+	var/datum/antagonist/ghoul/ghouldatum = IS_GHOUL(user)
+	if(!ghouldatum || QDELETED(ghouldatum.master))
+		to_chat(owner, span_warning("No master to draw blood from!"))
+		DeactivatePower()
+		return
+	ghouldatum.master.AdjustBloodVolume(-1)
 	user.set_timed_status_effect(5 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	user.adjustStaminaLoss(bloodcost * 1.1)
-	user.adjustBruteLoss(-2.5)
-	user.adjustToxLoss(-2, forced = TRUE)
+	user.adjustBruteLoss(-2.5, updating_health = FALSE)
+	user.adjustToxLoss(-2, forced = TRUE, updating_health = FALSE)
 	// Plasmamen won't lose blood, they don't have any, so they don't heal from Burn.
 	if(!HAS_TRAIT(user, TRAIT_NOBLOOD))
 		user.blood_volume -= bloodcost
-		user.adjustFireLoss(-1.5)
+		user.adjustFireLoss(-1.5, updating_health = FALSE)
+	user.updatehealth()
 	// Stop Bleeding
 	if(istype(user) && user.is_bleeding())
 		for(var/obj/item/bodypart/part in user.bodyparts)
@@ -58,8 +62,8 @@
 /datum/action/cooldown/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
 	if(user.stat >= DEAD)
 		return FALSE
-	if(user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
-		owner.balloon_alert(owner, "too exhausted...")
+	if(INCAPACITATED_IGNORING(user, INCAPABLE_GRAB|INCAPABLE_RESTRAINTS))
+		owner?.balloon_alert(owner, "too exhausted...")
 		return FALSE
 	return TRUE
 

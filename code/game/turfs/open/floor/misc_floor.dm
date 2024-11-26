@@ -257,6 +257,14 @@
 	AddElement(/datum/element/rust)
 	color = null
 
+/turf/open/floor/plating/heretic_rust
+	color = COLOR_GREEN_GRAY
+
+/turf/open/floor/plating/heretic_rust/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rust/heretic)
+	color = null
+
 /turf/open/floor/plating/plasma
 	initial_gas_mix = ATMOS_TANK_PLASMA
 
@@ -326,7 +334,7 @@
 
 /turf/open/floor/iron/tgmcemblem
 	name = "TGMC Emblem"
-	desc = "The symbol of the Terran Goverment."
+	desc = "The symbol of the Terran Government."
 	icon_state = "tgmc_emblem"
 
 /turf/open/floor/iron/tgmcemblem/center

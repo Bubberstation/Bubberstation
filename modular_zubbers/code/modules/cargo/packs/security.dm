@@ -42,7 +42,7 @@
 	crate_name = "security medic crate"
 	desc = "Contains a medical technician kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 5.5
+	cost = CARGO_CRATE_VALUE * 7.125
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked,
 	)
@@ -52,7 +52,7 @@
 	crate_name = "security medic crate"
 	desc = "Contains a first responder surgical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 5
+	cost = CARGO_CRATE_VALUE * 3.9
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
 	)
@@ -62,7 +62,25 @@
 	crate_name = "security medic crate"
 	desc = "Contains a large satchel medical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 4.5
+	cost = CARGO_CRATE_VALUE * 7.125
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)
+
+/datum/supply_pack/security/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooter Single-Pack"
+	crate_name = "Gwiadza Plasma Sharpshooter Crate"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery for it."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Single-Pack"
+	crate_name = "Miecz submachinegun crate"
+	desc = "Contains a Miecz submachinegun and a spare magazine for it."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
+	/obj/item/ammo_box/magazine/miecz = 1)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY

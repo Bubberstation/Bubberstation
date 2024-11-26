@@ -104,7 +104,6 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/trash/vendor_trash/moth_bag = 5,
 		/obj/item/trash/vendor_trash/mothmallow = 5,
 		/obj/item/trash/vendor_trash/rice_crackers = 5,
-		/obj/item/trash/waffles = 5,
 		/obj/item/popsicle_stick = 20,
 		/obj/item/trash/candy/hundred_credit_bar = 5,
 		/obj/item/trash/candy/coconut_joy = 5,

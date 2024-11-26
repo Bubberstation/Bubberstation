@@ -41,11 +41,11 @@
 		return
 	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
 	to_chat(owner.current, span_cult_bold_italic("You have broken the Masquerade!"))
-	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Vassals are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
+	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Ghouls are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
 	broke_masquerade = TRUE
 	antag_hud_name = "masquerade_broken"
 	add_team_hud(owner.current)
-	SEND_GLOBAL_SIGNAL(COMSIG_BLOODSUCKER_BROKE_MASQUERADE)
+	SEND_GLOBAL_SIGNAL(COMSIG_BLOODSUCKER_BROKE_MASQUERADE, src)
 
 ///This is admin-only of reverting a broken masquerade, sadly it doesn't remove the Malkavian objectives yet.
 /datum/antagonist/bloodsucker/proc/fix_masquerade(mob/admin)
@@ -74,7 +74,7 @@
 		return
 	// Spend Rank Immediately?
 	if(!is_valid_coffin())
-		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Vassal on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
+		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Ghoul on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
 		return
@@ -124,18 +124,18 @@
 	update_rank_hud()
 /**
  * Called when a Bloodsucker reaches Final Death
- * Releases all Vassals and gives them the ex_vassal datum.
+ * Releases all Ghouls and gives them the ex_ghoul datum.
  */
-/datum/antagonist/bloodsucker/proc/free_all_vassals()
-	for(var/datum/antagonist/vassal/all_vassals in vassals)
-		// Skip over any Bloodsucker Vassals, they're too far gone to have all their stuff taken away from them
-		if(IS_BLOODSUCKER(all_vassals.owner.current))
-			all_vassals.owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+/datum/antagonist/bloodsucker/proc/free_all_ghouls()
+	for(var/datum/antagonist/ghoul/all_ghouls in ghouls)
+		// Skip over any Bloodsucker Ghouls, they're too far gone to have all their stuff taken away from them
+		if(IS_BLOODSUCKER(all_ghouls.owner.current))
+			all_ghouls.owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/ghoul_edition)
 			continue
-		if(all_vassals.special_type == REVENGE_VASSAL || !all_vassals.owner)
+		if(all_ghouls.special_type == REVENGE_GHOUL || !all_ghouls.owner)
 			continue
-		all_vassals.owner.add_antag_datum(/datum/antagonist/ex_vassal)
-		all_vassals.owner.remove_antag_datum(/datum/antagonist/vassal)
+		all_ghouls.owner.add_antag_datum(/datum/antagonist/ex_ghoul)
+		all_ghouls.owner.remove_antag_datum(/datum/antagonist/ghoul)
 
 /**
  * Returns a Vampire's examine strings.
@@ -145,14 +145,14 @@
 /datum/antagonist/bloodsucker/proc/return_vamp_examine(mob/living/viewer)
 	if(!viewer.mind && !isobserver(viewer))
 		return FALSE
-	// Viewer is Target's Vassal?
-	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals))
+	// Viewer is Target's Ghoul?
+	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/ghoul) in ghouls))
 		var/returnString = "\[<span class='warning'><EM>This is your Master!</EM></span>\]"
 		var/returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "bloodsucker")]"
 		returnString += "\n"
 		return returnIcon + returnString
-	// Viewer not a Vamp AND not the target's vassal?
-	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
+	// Viewer not a Vamp AND not the target's ghoul?
+	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in ghouls))
 		if(!(HAS_TRAIT(viewer.mind, TRAIT_BLOODSUCKER_HUNTER) && broke_masquerade))
 			return FALSE
 	// Default String
@@ -166,30 +166,42 @@
 	//returnString += "\n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
 
+/datum/antagonist/bloodsucker/proc/can_gain_blood_rank(silent = TRUE, requires_blood = FALSE)
+	var/level_cost = get_level_cost()
+	var/mob/living/carbon/user = owner.current
+	if(blood_level_gain < level_cost)
+		if(!silent)
+			user.balloon_alert(user, "not enough blood thickening points!")
+		return FALSE
+	if(requires_blood && bloodsucker_blood_volume < level_cost)
+		if(!silent)
+			user.balloon_alert(user, "not enough blood!")
+		return FALSE
+	return TRUE
+
 // Blood level gain is used to give Bloodsuckers more levels if they are being agressive and drinking from real, sentient people.
 // The maximum blood that counts towards this
-/datum/antagonist/bloodsucker/proc/blood_level_gain()
+/datum/antagonist/bloodsucker/proc/blood_level_gain(silent = TRUE, requires_blood = FALSE)
 	var/level_cost = get_level_cost()
-	if(blood_level_gain >= level_cost && bloodsucker_blood_volume >= level_cost) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
-		switch(tgui_alert(owner.current, "You have drunk enough blood from the living to thicken your blood, this will cost you [level_cost] blood and give you another level",  "Thicken your blood?.", list("Yes", "No"))) //asks user if they want to spend their blood on a level
-			if("Yes")
-				AdjustUnspentRank(1) // gives level
-				blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
+	if(can_gain_blood_rank(silent, requires_blood)) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
+		var/input = tgui_alert(owner.current, "You have drunk enough blood from the living to thicken your blood, this will cost you [level_cost] blood and give you another level",  "Thicken your blood?.", list("Yes", "No")) //asks user if they want to spend their blood on a level
+		if(input == "Yes")
+			AdjustUnspentRank(1) // gives level
+			blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
+			if(requires_blood)
 				AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
-				blood_level_gain_amount += 1 // Increments the variable that makes future levels more expensive
+			return TRUE
+	return FALSE
 
 /datum/antagonist/bloodsucker/proc/get_level_cost()
-	var/level_cost = (0.3 + (0.05 * blood_level_gain_amount))
-	level_cost = min(level_cost, BLOOD_LEVEL_GAIN_MAX)
-	level_cost = max_blood_volume * level_cost
-	return level_cost
+	var/percentage_needed = my_clan ? my_clan.level_cost : BLOODSUCKER_LEVELUP_PERCENTAGE
+	return max_blood_volume * percentage_needed
 
+/datum/antagonist/bloodsucker/proc/max_ghouls()
+	return round(bloodsucker_level * 0.5)
 
-/datum/antagonist/bloodsucker/proc/max_vassals()
-	return bloodsucker_level
-
-/datum/antagonist/bloodsucker/proc/free_vassal_slots()
-	return max(max_vassals() - length(vassals), 0)
+/datum/antagonist/bloodsucker/proc/free_ghoul_slots()
+	return max(max_ghouls() - length(ghouls), 0)
 
 /datum/antagonist/bloodsucker/proc/frenzy_enter_threshold()
 	return FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)
@@ -350,11 +362,11 @@
 		if(GetUnspentRank() < 1)
 			blood_level_gain()
 		// Level ups cost 30% of your max blood volume, which scales with your rank.
-		SpendRank(blood_cost = max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+		SpendRank()
 
 /datum/antagonist/bloodsucker/proc/on_owner_deletion(mob/living/deleted_mob)
 	SIGNAL_HANDLER
-	free_all_vassals()
+	free_all_ghouls()
 	if(deleted_mob != owner.current)
 		return
 	if(is_head(deleted_mob))

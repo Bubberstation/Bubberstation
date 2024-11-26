@@ -13,8 +13,8 @@
 		var/mob/living/carbon/human/H = user
 		if(isnull(H.selected_laugh)) //For things that don't have a selected laugh(npcs)
 			if(user.gender == MALE)
-				return pick('sound/voice/human/manlaugh1.ogg',
-						'sound/voice/human/manlaugh2.ogg')
+				return pick('sound/mobs/humanoids/human/laugh/manlaugh1.ogg',
+						'sound/mobs/humanoids/human/laugh/manlaugh2.ogg')
 			else
 				return pick('modular_skyrat/modules/emotes/sound/emotes/female/female_giggle_1.ogg',
 					'modular_skyrat/modules/emotes/sound/emotes/female/female_giggle_2.ogg')

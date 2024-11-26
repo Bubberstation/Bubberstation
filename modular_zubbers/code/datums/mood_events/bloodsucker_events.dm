@@ -46,7 +46,7 @@
 	mood_change = -6
 	timeout = 6 MINUTES
 
-///Candelabrum's mood event to non Bloodsucker/Vassals
+///Candelabrum's mood event to non Bloodsucker/Ghouls
 /datum/mood_event/vampcandle
 	description = "<span class='boldwarning'>Something is making your mind feel... loose.</span>\n"
 	mood_change = -15

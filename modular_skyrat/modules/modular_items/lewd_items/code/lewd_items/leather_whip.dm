@@ -11,7 +11,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	hitsound = 'sound/weapons/whip.ogg'
+	hitsound = 'sound/items/weapons/whip.ogg'
 	clothing_flags = INEDIBLE_CLOTHING
 	//When taking that thing in mouth
 	flags_cover = MASKCOVERSMOUTH
@@ -130,7 +130,7 @@
 /obj/item/clothing/mask/leatherwhip/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated())
+	if(user.incapacitated)
 		return FALSE
 	return TRUE
 
@@ -165,8 +165,11 @@
 	. = ..()
 	if(target.stat == DEAD)
 		return
-	var/mob/living/carbon/human/carbon_target = target
-	if(!carbon_target && !iscyborg(target))
+
+	var/mob/living/carbon/human/carbon_target
+	if(ishuman(target))
+		carbon_target = target
+	else if(!iscyborg(target))
 		return
 
 	var/message = ""
@@ -177,7 +180,7 @@
 
 	switch(user.zone_selected) //to let code know what part of body we gonna whip
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			if(!carbon_target?.has_feet())
+			if(carbon_target && !carbon_target.has_feet())
 				to_chat(user, span_danger("Looks like [target] is missing their legs!"))
 				return
 
@@ -193,7 +196,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.Paralyze(1)//don't touch it. It's domination tool, it should have ability to put someone on kneels. I already inserted check for PREF YOU CAN'T ABUSE THIS ITEM
 				target.adjust_pain(5)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 			else
 				message = (user == target) ? pick("knocks [target.p_them()]self down with [src]",
 						"gently uses [src] to knock [target.p_them()]self on the ground") \
@@ -205,7 +208,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.Paralyze(1)
 				target.adjust_pain(3)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 		if(BODY_ZONE_HEAD)
 			message = (user == target) ? pick("wraps [src] around [target.p_their()] neck, choking [target.p_them()]self",
@@ -219,7 +222,7 @@
 			conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 80)
 
 		if(BODY_ZONE_PRECISE_GROIN)
-			if(!carbon_target?.is_bottomless())
+			if(carbon_target && !carbon_target.is_bottomless())
 				to_chat(user, span_danger("Looks like [target]'s butt is covered!"))
 				return
 			if(current_whip_type == "weak")
@@ -236,7 +239,7 @@
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM) || HAS_TRAIT(target, TRAIT_BIMBO))
 					target.add_mood_event("pervert spanked", /datum/mood_event/perv_spanked)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 			else
 				message = (user == target) ? pick("roughly flogs [target.p_them()]self with [src]",
@@ -253,7 +256,7 @@
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM) || HAS_TRAIT(target, TRAIT_BIMBO))
 					target.add_mood_event("pervert spanked", /datum/mood_event/perv_spanked)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 		else
 			if(current_whip_type == "hard")
 				message = (user == target) ? pick("disciplines [target.p_them()]self with [src]",
@@ -265,7 +268,7 @@
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.do_jitter_animation()
 				target.adjust_pain(7)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 100)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 
 			else
 				message = (user == target) ? pick("whips [target.p_them()]self with [src]",
@@ -280,7 +283,7 @@
 				target.do_jitter_animation()
 				target.adjust_pain(4)
 				carbon_target?.adjust_arousal(5)
-				conditional_pref_sound(loc, 'sound/weapons/whip.ogg', 60)
+				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 	user.visible_message(span_purple("[user] [message]!"))
 

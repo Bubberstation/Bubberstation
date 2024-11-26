@@ -19,8 +19,8 @@
 	is_dimorphic = TRUE
 	unarmed_attack_verbs = list("bite", "chomp")
 	unarmed_attack_effect = ATTACK_EFFECT_BITE
-	unarmed_attack_sound = 'sound/weapons/bite.ogg'
-	unarmed_miss_sound = 'sound/weapons/bite.ogg'
+	unarmed_attack_sound = 'sound/items/weapons/bite.ogg'
+	unarmed_miss_sound = 'sound/items/weapons/bite.ogg'
 	unarmed_damage_low = 1 // Yeah, biteing is pretty weak, blame the monkey super-nerf
 	unarmed_damage_high = 3
 	unarmed_effectiveness = 0
@@ -196,10 +196,6 @@
 				worn_face_offset.apply_offset(eye_right)
 
 			// SKYRAT EDIT ADDITION START - Customization (Emissives and synths)
-			if(eyes.eye_icon_state == "None")
-				eye_left.alpha = 0
-				eye_right.alpha = 0
-
 			if (eyes.is_emissive) // Because it was done all weird up there.
 				var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, src, -BODY_LAYER, eye_left.alpha)
 				var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, src, -BODY_LAYER, eye_right.alpha)

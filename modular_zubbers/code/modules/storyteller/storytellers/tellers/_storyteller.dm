@@ -52,6 +52,11 @@
 	add_points(delta_time)
 	handle_tracks()
 
+/datum/storyteller/vv_edit_var(var_name, var_value) // Appends any name changes with the original storyteller
+	. = ..()
+	if(var_name == NAMEOF(src, name))
+		name = "[var_value] ([initial(name)])"
+
 /// Add points to all tracks while respecting the multipliers.
 /datum/storyteller/proc/add_points(delta_time)
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
@@ -138,4 +143,4 @@
 			///If the event has occured already, apply a penalty multiplier based on amount of occurences
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
 		/// Write it
-		event.calculated_weight = weight_total
+		event.calculated_weight = round(weight_total, 1)

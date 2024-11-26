@@ -27,7 +27,7 @@
 	icon_state = "switchblade"
 	base_icon_state = "switchblade"
 	desc = "A sharp, concealable, spring-loaded comb."
-	hitsound = 'sound/weapons/genhit.ogg'
+	hitsound = 'sound/items/weapons/genhit.ogg'
 	resistance_flags = FIRE_PROOF
 	var/extended = FALSE
 
@@ -40,7 +40,7 @@
 	extended = !extended
 	icon_state = "switchblade[extended ? "_on" : ""]"
 
-	playsound(user || src, 'sound/weapons/batonextend.ogg', 30, TRUE)
+	playsound(user || src, 'sound/items/weapons/batonextend.ogg', 30, TRUE)
 
 
 /// This makes it so you have to extend it.

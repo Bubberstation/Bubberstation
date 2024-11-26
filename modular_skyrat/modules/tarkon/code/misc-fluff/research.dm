@@ -5,11 +5,6 @@
 	organization = "Tarkon Industries"
 	should_generate_points = TRUE
 
-/datum/techweb/interdyne
-	id = "INTERDYNE"
-	organization = "Interdyne Pharmaceutics"
-	should_generate_points = TRUE
-
 /datum/techweb/tarkon/New()
 	. = ..()
 	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
@@ -27,11 +22,11 @@
 	design_ids = list(
 		"mod_plating_tarkon",
 		"arcs",
-		"rcd_tarkon", //BUBBER EDIT (comma)
-		"powerator_tarkon",//BUBBER EDIT Addition start
+		"rcd_tarkon",
+		"powerator_tarkon",
 		"cargoconsole_tarkon",
-		"bountypad_tarkon", 
-		"bountyconsole_tarkon"//BUBBER EDIT Addition end
+		"bountypad_tarkon",
+		"bountyconsole_tarkon"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
@@ -84,7 +79,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
-	
+
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
@@ -133,51 +128,5 @@
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon
 
-//Interdyne equipment
 
-/obj/machinery/rnd/production/protolathe/interdyne
-	name = "Interdyne Branded Protolathe"
-	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
-	circuit = /obj/item/circuitboard/machine/protolathe/interdyne
-	stripe_color = "#d40909"
-
-/obj/item/circuitboard/machine/protolathe/interdyne
-	name = "Interdyne Branded Protolathe"
-	greyscale_colors = CIRCUIT_COLOR_SECURITY
-	build_path = /obj/machinery/rnd/production/protolathe/interdyne
-
-/obj/item/circuitboard/machine/rdserver/interdyne
-	name = "Interdyne Pharmaceutics R&D Server"
-	build_path = /obj/machinery/rnd/server/interdyne
-
-/obj/machinery/rnd/server/interdyne
-	name = "\improper Interdyne Pharmaceutics R&D Server"
-	circuit = /obj/item/circuitboard/machine/rdserver/interdyne
-	req_access = list(ACCESS_RESEARCH)
-
-/obj/machinery/rnd/server/interdyne/Initialize(mapload)
-	var/datum/techweb/interdyne_techweb = locate(/datum/techweb/interdyne) in SSresearch.techwebs
-	stored_research = interdyne_techweb
-	return ..()
-
-/obj/machinery/rnd/server/interdyne/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
-	if(held_item && istype(held_item, /obj/item/research_notes))
-		context[SCREENTIP_CONTEXT_LMB] = "Generate research points"
-		return CONTEXTUAL_SCREENTIP_SET
-
-/obj/machinery/rnd/server/interdyne/examine(mob/user)
-	. = ..()
-	if(!in_range(user, src) && !isobserver(user))
-		return
-	. += span_notice("Insert [EXAMINE_HINT("Research Notes")] to generate points.")
-
-/obj/machinery/rnd/server/interdyne/attackby(obj/item/attacking_item, mob/user, params)
-	if(istype(attacking_item, /obj/item/research_notes) && stored_research)
-		var/obj/item/research_notes/research_notes = attacking_item
-		stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_notes.value))
-		playsound(src, 'sound/machines/copier.ogg', 50, TRUE)
-		qdel(research_notes)
-		return
-	return ..()
 

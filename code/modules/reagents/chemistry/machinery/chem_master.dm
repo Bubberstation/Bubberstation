@@ -486,11 +486,13 @@
 			if(ispath(selected_container, /obj/item/reagent_containers/cup/vial) || ispath(selected_container, /obj/item/reagent_containers/syringe/smartdart))
 				item_name_default = "[master_reagent.name] [item_name_default]"
 			// SKYRAT EDIT ADDITION END
-			var/item_name = tgui_input_text(usr,
+			var/item_name = tgui_input_text(
+				usr,
 				"Container name",
 				"Name",
 				item_name_default,
-				MAX_NAME_LEN)
+				max_length = MAX_NAME_LEN,
+			)
 			if(!item_name)
 				return FALSE
 

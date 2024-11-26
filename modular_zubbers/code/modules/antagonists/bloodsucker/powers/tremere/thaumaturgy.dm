@@ -22,6 +22,7 @@
 	level_current = 1
 	button_icon_state = "power_thaumaturgy"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
+	purchase_flags = TREMERE_CAN_BUY
 	// custom cooldown handling based on charges
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 5
@@ -173,7 +174,7 @@
 	handle_shot(user, target)
 
 	pay_cost(THAUMATURGY_BLOOD_COST_PER_CHARGE)
-	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
+	playsound(user, 'sound/effects/magic/wand_teleport.ogg', 60, TRUE)
 	charges -= 1
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 	if(charges <= 0)
@@ -194,8 +195,8 @@
 		for(var/mob/living/possible_target as anything in orange(1, target))
 			if(!ismob(possible_target))
 				continue
-			var/datum/antagonist/vassal/vassal = IS_VASSAL(possible_target)
-			if(length(bloodsuckerdatum_power?.vassals) && vassal && (vassal in bloodsuckerdatum_power?.vassals))
+			var/datum/antagonist/ghoul/ghoul = IS_GHOUL(possible_target)
+			if(length(bloodsuckerdatum_power?.ghouls) && ghoul && (ghoul in bloodsuckerdatum_power?.ghouls))
 				continue
 			targets += possible_target
 		if(length(targets))

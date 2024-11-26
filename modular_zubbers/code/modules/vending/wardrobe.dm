@@ -127,6 +127,7 @@
 		/obj/item/clothing/under/rank/rnd/scientist/bunnysuit = 3,
 		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science = 3,
 		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
+		/obj/item/storage/bag/xeno = 3,
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe

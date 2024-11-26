@@ -291,6 +291,11 @@
 	name = "Low Wings Jeweled (Top)"
 	icon_state = "low_jewel_top"
 
+/datum/sprite_accessory/wings/low_wings/renamon
+	name = "Renamon"
+	icon_state = "renamon"
+	color_src = USE_MATRIXED_COLORS
+// Ryva was here :3
 /*
 *	MOTH
 */
