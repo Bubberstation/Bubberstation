@@ -85,7 +85,7 @@
 ///Modifier given to users with TRAIT_MORBID on certain surgeries
 #define SURGERY_SPEED_MORBID_CURIOSITY 0.7
 ///Modifier given to patients with TRAIT_ANALGESIA
-#define SURGERY_SPEED_TRAIT_ANALGESIA 0.8
+#define SURGERY_SPEED_TRAIT_ANALGESIA 0.84 // BUBBER EDIT CHANGE - Original: 0.80
 
 /datum/surgery_step/proc/initiate(mob/living/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	// Only followers of Asclepius have the ability to use Healing Touch and perform miracle feats of surgery.
@@ -119,10 +119,12 @@
 	if(check_morbid_curiosity(user, tool, surgery))
 		speed_mod *= SURGERY_SPEED_MORBID_CURIOSITY
 
-	// BUBBER EDIT ADDITION BEGIN - Speed bonus for surgery room
+	// BUBBER EDIT ADDITION BEGIN - Speed bonus for surgery room and cleanliness
 	var/area/patient_area = get_area(target)
 	if(istype(patient_area, /area/station/medical/surgery))
 		speed_mod *= 0.64
+	if(patient_area.clean_medical)
+		speed_mod *= 0.92
 	// BUBBER EDIT ADDITION END
 
 	if(has_sterilizine(target)) // BUBBER EDIT CHANGE - Speed boost applied via sterilizine - Original: if(HAS_TRAIT(target, TRAIT_ANALGESIA))
@@ -134,7 +136,7 @@
 
 	speed_mod /= (get_location_modifier(target) * (1 + surgery.speed_modifier) * implement_speed_mod) * target.mob_surgery_speed_mod
 	var/modded_time = time * speed_mod
-	user.balloon_alert_to_viewers("surgery speed [round(1 / speed_mod, 0.15)]x") // BUBBER EDIT ADDITION - Show surgery speed to viewers
+	user.balloon_alert_to_viewers("surgery speed [round(1 / speed_mod, 0.1)]x") // BUBBER EDIT ADDITION - Show surgery speed to viewers
 
 
 	fail_prob = min(max(0, modded_time - (time * SURGERY_SLOWDOWN_CAP_MULTIPLIER)),99)//if modded_time > time * modifier, then fail_prob = modded_time - time*modifier. starts at 0, caps at 99

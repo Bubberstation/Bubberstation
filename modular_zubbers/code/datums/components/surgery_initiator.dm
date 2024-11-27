@@ -1,0 +1,6 @@
+/datum/component/surgery_initiator/try_choose_surgery(mob/user, mob/living/target, datum/surgery/surgery)
+	var/turf/mob_turf = get_turf(target)
+	var/obj/structure/table/optable/operating_table = locate(/obj/structure/table/optable, mob_turf)
+	if(!isnull(operating_table))
+		operating_table.blood_check()
+	return ..()
