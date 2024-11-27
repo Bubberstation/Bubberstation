@@ -233,7 +233,7 @@
 		pai_card.set_personality(src)
 	card = pai_card
 	forceMove(pai_card)
-	 // BUBBER EDIT REMOVAL: PAI Freedom: ORIGINAL: leash = AddComponent(/datum/component/leash, pai_card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
+	// BUBBER EDIT REMOVAL: PAI Freedom: ORIGINAL: leash = AddComponent(/datum/component/leash, pai_card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
 	addtimer(VARSET_WEAK_CALLBACK(src, holochassis_ready, TRUE), HOLOCHASSIS_INIT_TIME)
 	if(!holoform)
 		add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), PAI_FOLDED)
