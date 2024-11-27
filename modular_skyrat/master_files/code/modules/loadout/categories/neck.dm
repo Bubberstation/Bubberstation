@@ -245,11 +245,6 @@
 /*
 *	MISC
 */
-/* BUBBER EDIT START
-/datum/loadout_item/neck/cursed_ashen_necklace
-	name = "Cursed Ashen Necklace"
-	item_path = /obj/item/clothing/neck/necklace/ashwalker/cursed
-BUBBER EDIT END */
 /datum/loadout_item/neck/stethoscope
 	name = "Stethoscope"
 	item_path = /obj/item/clothing/neck/stethoscope
