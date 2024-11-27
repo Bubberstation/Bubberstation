@@ -6437,7 +6437,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
-/obj/machinery/status_display/ai/directional/west,
+/obj/machinery/holomap/directional/west,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -10136,6 +10136,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/storage_shared)
 "dbc" = (
@@ -27893,11 +27895,11 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/primary/aft)
 "idO" = (
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
 	},
+/obj/machinery/holomap/engineering/directional/north,
 /turf/open/floor/iron/smooth,
 /area/station/engineering/storage_shared)
 "ieb" = (
@@ -30033,6 +30035,7 @@
 /obj/effect/turf_decal/trimline/dark_red/arrow_cw{
 	dir = 8
 	},
+/obj/machinery/holomap/directional/west,
 /turf/open/floor/iron/small,
 /area/station/hallway/secondary/exit/departure_lounge)
 "iHA" = (
@@ -30318,6 +30321,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/holomap/directional/south,
 /turf/open/floor/iron/smooth,
 /area/station/hallway/secondary/entry)
 "iMC" = (
@@ -31697,6 +31701,7 @@
 	c_tag = "Aft Central Primary Hallway - Aft";
 	name = "hallway camera"
 	},
+/obj/machinery/holomap/directional/east,
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
@@ -32911,6 +32916,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/holomap/directional/north,
 /turf/open/floor/iron/edge,
 /area/station/hallway/primary/central)
 "jvx" = (
@@ -40854,6 +40860,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
 	},
+/obj/machinery/holomap/engineering/directional/west,
 /turf/open/floor/iron/smooth,
 /area/station/engineering/main)
 "lBW" = (
@@ -44423,6 +44430,18 @@
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/iron/smooth_large,
 /area/station/command/gateway)
+"mAI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/holomap/directional/east,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/station/hallway/secondary/command)
 "mAQ" = (
 /obj/structure/table/reinforced/rglass,
 /obj/machinery/door/firedoor,
@@ -46895,6 +46914,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/machinery/holomap/directional/west,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -47146,6 +47166,7 @@
 	dir = 1
 	},
 /obj/item/kirbyplants/monkey,
+/obj/machinery/holomap/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/science/lab)
 "nkQ" = (
@@ -61778,6 +61799,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
+/obj/machinery/holomap/engineering/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "rjI" = (
@@ -68240,6 +68262,16 @@
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/hallway/secondary/exit/departure_lounge)
+"sZk" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/holomap/directional/north,
+/turf/open/floor/iron/smooth_edge,
+/area/station/hallway/primary/aft)
 "sZm" = (
 /obj/effect/turf_decal/trimline/green/corner{
 	dir = 8
@@ -79211,6 +79243,7 @@
 /area/station/service/chapel)
 "vYJ" = (
 /obj/item/kirbyplants/random,
+/obj/machinery/holomap/directional/north,
 /turf/open/floor/iron/smooth,
 /area/station/hallway/secondary/entry)
 "vYP" = (
@@ -118566,7 +118599,7 @@ vBP
 mwS
 aKt
 uhX
-lTE
+oMC
 nkH
 fvs
 kCV
@@ -124711,7 +124744,7 @@ lSD
 ggM
 lSD
 evR
-lSD
+mAI
 lSD
 lSD
 lSD
@@ -125088,8 +125121,8 @@ fUu
 qTe
 xLN
 wyP
-oQl
-wkU
+uhe
+sZk
 sZO
 xpO
 ufS
