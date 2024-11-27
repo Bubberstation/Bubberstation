@@ -224,6 +224,7 @@
 		"Tavern Chef",
 		"Confectionist",
 		"Pastry Chef",
+		"All-American Diner Employee",
 	)
 
 /datum/job/coroner

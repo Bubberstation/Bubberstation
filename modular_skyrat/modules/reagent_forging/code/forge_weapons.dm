@@ -3,7 +3,7 @@
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_worn.dmi'
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	obj_flags = UNIQUE_RENAME
 	skyrat_obj_flags = ANVIL_REPAIR
 
@@ -24,7 +24,7 @@
 	inhand_icon_state = "sword"
 	worn_icon_state = "sword_back"
 	belt_icon_state = "sword_belt"
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	throwforce = 10
 	block_chance = 25 //either we make it melee block only or we don't give it too much. It's bulkly so the buckler is superior
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -49,7 +49,7 @@
 	inhand_icon_state = "katana"
 	worn_icon_state = "katana_back"
 	belt_icon_state = "katana_belt"
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	throwforce = 10
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
@@ -71,7 +71,7 @@
 	inhand_icon_state = "dagger"
 	worn_icon_state = "dagger_back"
 	belt_icon_state = "dagger_belt"
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	embed_type = /datum/embed_data/forged_dagger
 	throwforce = 10
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -122,21 +122,16 @@
 	inhand_icon_state = "spear"
 	worn_icon_state = "spear_back"
 	throwforce = 15 //not a javelin, throwing specialty is for the axe.
-	embed_data = /datum/embed_data/forged_spear
+	embed_data = /datum/embed_data/spear
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
 	wound_bonus = -15
 	bare_wound_bonus = 15
 	sharpness = SHARP_POINTY
-
-/datum/embed_data/forged_spear
-	embed_chance = 75
-	fall_chance = 0
-	pain_mult = 6
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
@@ -224,7 +219,7 @@
 	transparent = FALSE
 	max_integrity = 150 //over double that of a wooden one
 	w_class = WEIGHT_CLASS_NORMAL
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_AFFECT_STATISTICS
 	skyrat_obj_flags = ANVIL_REPAIR
 	shield_break_sound = 'sound/effects/bang.ogg'
 	shield_break_leftover = /obj/item/forging/complete/plate
@@ -312,52 +307,48 @@
 #define INCREASE_BLOCK_CHANGE 2
 
 /obj/item/forging/reagent_weapon/bokken
-	name = "reagent bokken"
-	desc = "A bokken that is capable of blocking attacks when wielding in two hands, possibly including bullets should the user be brave enough."
-	force = 16
+	name = "bokken"
+	desc = "A wooden sword that is capable of wielded in two hands. It seems to be made to prevent permanent injuries."
+	force = 17
+	armour_penetration = 40
 	icon_state = "bokken"
 	inhand_icon_state = "bokken"
 	worn_icon_state = "bokken_back"
-	throwforce = 10
 	block_chance = 20
-	slot_flags = ITEM_SLOT_BACK
+	block_sound = 'sound/items/weapons/parry.ogg'
+	damtype = STAMINA
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FLAMMABLE
 	attack_verb_continuous = list("bonks", "bashes", "whacks", "pokes", "prods")
 	attack_verb_simple = list("bonk", "bash", "whack", "poke", "prod")
-	///whether the bokken is being wielded or not
 	var/wielded = FALSE
-
-/obj/item/forging/reagent_weapon/bokken/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
-	if(wielded)
-		final_block_chance *= INCREASE_BLOCK_CHANGE
-	if(prob(final_block_chance))
-		if(attack_type == PROJECTILE_ATTACK)
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
-			playsound(src, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, TRUE)
-		else
-			playsound(src, 'sound/weapons/parry.ogg', 75, TRUE)
-			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
-		var/owner_turf = get_turf(owner)
-		new block_effect(owner_turf, COLOR_YELLOW)
-		return TRUE
-	return FALSE
-
-#undef INCREASE_BLOCK_CHANGE
+	var/unwielded_block_chance = 20
+	var/wielded_block_chance = 40
 
 /obj/item/forging/reagent_weapon/bokken/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
-	AddComponent(/datum/component/two_handed, force_multiplier = 0.5)
+	AddComponent(/datum/component/two_handed,\
+		force_multiplier = 1.5, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
 
 /obj/item/forging/reagent_weapon/bokken/proc/on_wield()
-	SIGNAL_HANDLER
 	wielded = TRUE
+	block_chance = wielded_block_chance
 
 /obj/item/forging/reagent_weapon/bokken/proc/on_unwield()
-	SIGNAL_HANDLER
 	wielded = FALSE
+	block_chance = unwielded_block_chance
+
+/obj/item/forging/reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
+	. = ..()
+	if(!iscarbon(target_mob))
+		user.visible_message(span_warning("The [src] seems to be ineffective against the [target_mob]!"))
+		playsound(src, 'sound/items/weapons/genhit.ogg', 75, TRUE)
+		return
+	playsound(src, pick('sound/items/weapons/genhit1.ogg', 'sound/items/weapons/genhit2.ogg', 'sound/items/weapons/genhit3.ogg'), 100, TRUE)
 
 /obj/item/spear/Initialize(mapload)
 	. = ..()

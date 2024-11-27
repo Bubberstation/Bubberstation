@@ -108,7 +108,7 @@
 /obj/item/modular_computer/pda/nanotrasen_consultant
 	name = "nanotrasen consultant's PDA"
 	inserted_disk = /obj/item/computer_disk/command/captain
-	inserted_item = /obj/item/pen/fountain/captain
+	inserted_item = /obj/item/pen/fountain/green
 	greyscale_colors = "#017941#0060b8"
 
 /obj/item/storage/bag/garment/nanotrasen_consultant
