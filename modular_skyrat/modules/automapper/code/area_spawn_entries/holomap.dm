@@ -10,7 +10,7 @@
 /datum/area_spawn/holomap/bar
 	target_areas = list(/area/station/commons/lounge)
 
-/datum/area_spawn/cafe
+/datum/area_spawn/holomap/cafe
 	target_areas = list(/area/station/service/cafeteria)
 
 /datum/area_spawn/holomap/security
