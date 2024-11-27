@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Returns whether or not this preference is accessible.
 /// If FALSE, will not show in the UI and will not be editable (by update_preference).
-/datum/preference/proc/is_accessible(datum/preferences/preferences)
+/datum/preference/proc/is_accessible(datum/preferences/preferences, check_page = TRUE) // BUBBER EDIT: Better prefs: check_page var, which skips category checks. Good for special cases like mutant parts.
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 
@@ -348,7 +348,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		if (!(savefile_key in species.get_features()))
 			return FALSE
 
-	if (!should_show_on_page(preferences.current_window))
+	if (check_page && !should_show_on_page(preferences.current_window)) // BUBBER EDIT: Better prefs: ORIGINAL: if (!should_show_on_page(preferences.current_window))
 		return FALSE
 
 	return TRUE

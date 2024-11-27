@@ -39,44 +39,16 @@
 /datum/preference/choiced/mutant/create_default_value()
 	return default_accessory_name
 
-/datum/preference/choiced/mutant/is_accessible(datum/preferences/preferences)
-	var/passed_initial_check = ..(preferences)
-	var/overriding = preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts)
-	var/part_enabled = is_part_enabled(preferences)
-	return (passed_initial_check || overriding) && part_enabled
+/datum/preference/choiced/mutant/is_accessible(datum/preferences/preferences, check_page = TRUE)
+	var/species_allows_part = ..() // The parent check checks if the species has the part, and if the player's looking on the right page.
 
-/**
- * Is this part enabled by the player?
- *
- * Arguments:
- * * preferences - The relevant character preferences.
- */
-/datum/preference/choiced/mutant/proc/is_part_enabled(datum/preferences/preferences)
-	return preferences.read_preference(type_to_check)
+	if(!species_allows_part && !preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts))
+		return FALSE
+
+	return !type_to_check || preferences.read_preference(type_to_check)
 
 /datum/preference/choiced/mutant/init_possible_values()
 	return generate_mutant_valid_values(sprite_accessory, accessories_to_ignore)
-
-/**
- * Actually rendered. Slimmed down version of the logic in is_available() that actually works when spawning or drawing the character.
- *
- * Returns TRUE if feature is visible.
- *
- * Arguments:
- * * target - The character this is being applied to.
- * * preferences - The relevant character preferences.
- */
-/datum/preference/choiced/mutant/proc/is_visible(mob/living/carbon/human/target, datum/preferences/preferences)
-	if(!is_part_enabled(preferences))
-		return FALSE
-
-	if(preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts))
-		return TRUE
-
-	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
-	species = new species
-
-	return (savefile_key in species.get_features())
 
 /// Apply this preference onto the given human.
 /// May be overriden by subtypes.
@@ -85,7 +57,7 @@
 /// Returns whether the bodypart is actually visible.
 /datum/preference/choiced/mutant/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	// body part is not the default/none value.
-	var/bodypart_is_visible = preferences && is_visible(target, preferences)
+	var/bodypart_is_visible = preferences && is_accessible(preferences, FALSE)
 
 	if(!bodypart_is_visible)
 		value = create_default_value()
