@@ -44,7 +44,8 @@
 	desc = "During the crusher design pizza party, one member of the Mining Research and Development team brought out a real riot shotgun, and killed three \
 	other research members with one blast. The MR&D Director immedietly thought of a genuis idea, creating the proto-kinetic shotgun moments later, which he \
 	immedietly used to execute the research member who brought the real shotgun. The proto-kinetic shotgun trades off some mod capacity and cooldown in favor \
-	of firing three shots at once with reduce range and power. The total damage of all three shots is higher than a regular PKA but the individual shots are weaker."
+	of firing three shots at once with reduce range and power. The total damage of all three shots is higher than a regular PKA but the individual shots are weaker. \
+	Looks like you need both hands to use it effectively."
 	icon = 'modular_zubbers/icons/obj/guns/guns.dmi'
 	icon_state = "kineticshotgun"
 	base_icon_state = "kineticshotgun"
@@ -53,7 +54,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/shotgun)
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
-	weapon_weight = WEAPON_LIGHT
+	weapon_weight = WEAPON_HEAVY
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
@@ -153,11 +154,6 @@
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 
 //Accelerator Projectiles
-
-/obj/projectile/kinetic
-	var/mod_mult = 1 // Indicates to which value the damage modkit multiplicates its bonus, useful for multi proyectile pka's where the bonus is otherwise is applied to each proyectile and increases more than intended.
-
-
 /obj/projectile/kinetic/railgun
 	name = "hyper kinetic force"
 	icon_state = null
@@ -176,7 +172,6 @@
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 4
-	mod_mult = 0.5
 	log_override = TRUE
 
 /obj/projectile/kinetic/shotgun
@@ -186,7 +181,6 @@
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
-	mod_mult = 0.5
 	log_override = TRUE
 
 /obj/projectile/kinetic/glock
@@ -206,11 +200,6 @@
 	armor_flag = BOMB
 	range = 1
 	log_override = TRUE
-
-// PKA Upgrades Overrides
-
-/obj/item/borg/upgrade/modkit/damage/modify_projectile(obj/projectile/kinetic/kinetic_projectile) // Damage upgrade override.
-	kinetic_projectile.damage += modifier*kinetic_projectile.mod_mult
 
 //Wastes firing pin - restricts a weapon to only outside when mining - based on area defines not z-level
 
