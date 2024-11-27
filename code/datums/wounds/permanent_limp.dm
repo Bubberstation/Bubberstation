@@ -46,15 +46,19 @@
 /datum/wound_pregen_data/perm_limp/right
 	abstract = FALSE
 	wound_path_to_generate = /datum/wound/perm_limp/right
+
 /datum/wound_pregen_data/perm_limp/right/moderate
 	wound_path_to_generate = /datum/wound/perm_limp/right/moderate
+
 /datum/wound_pregen_data/perm_limp/right/major
 	wound_path_to_generate = /datum/wound/perm_limp/right/major
 
 /datum/wound_pregen_data/perm_limp/left
 	abstract = FALSE
 	wound_path_to_generate = /datum/wound/perm_limp/left
+
 /datum/wound_pregen_data/perm_limp/left/moderate
 	wound_path_to_generate = /datum/wound/perm_limp/left/moderate
+
 /datum/wound_pregen_data/perm_limp/left/major
 	wound_path_to_generate = /datum/wound/perm_limp/left/major
