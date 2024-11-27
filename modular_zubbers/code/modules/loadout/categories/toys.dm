@@ -72,5 +72,5 @@
 	item_path = /obj/item/toy/plush/suspicious_protogen
 
 /datum/loadout_item/toys/foxy_plush
-	name = "Tired Teshari Plushie"
+	name = "Colorful Fox Plush"
 	item_path = /obj/item/toy/plush/foxy_plush
