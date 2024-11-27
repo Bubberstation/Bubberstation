@@ -35,11 +35,8 @@
 /datum/area_spawn/holomap/medbay_paramed
 	target_areas = list(/area/station/medical/paramedic)
 
-// Mining ones are false cause mining REALLY needs these.
 /datum/area_spawn/holomap/mine_lounge
 	target_areas = list(/area/mine/lounge)
-	optional = FALSE
 
 /datum/area_spawn/holomap/mine_mining
 	target_areas = list(/area/mine/production)
-	optional = FALSE
