@@ -50,8 +50,10 @@
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/modify_speech(datum/source, list/speech_args)
 	ASYNC
-		if(!(organ_flags & ORGAN_FAILING))
-			actually_modify_speech(source, speech_args)
+		if(organ_flags & ORGAN_FAILING) //just in case they somehow activate this while the implant is disabled...
+			to_chat(owner, span_abductor("You are unable to project your thoughts."))
+			return
+		actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally
 	
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/handle_speech(datum/source, list/speech_args)
@@ -88,4 +90,3 @@
 			if(dead_mob.client)
 				var/link = FOLLOW_LINK(dead_mob, user)
 				to_chat(dead_mob, "[link] [rendered]")
-

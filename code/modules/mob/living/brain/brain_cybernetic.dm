@@ -63,4 +63,4 @@
 		if (EMP_LIGHT)
 			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
 			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190) //BUBBER EDIT - damage reduced from 20->10, capped at 190
-end
+

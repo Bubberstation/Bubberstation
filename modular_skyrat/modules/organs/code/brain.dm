@@ -1,5 +1,4 @@
 //Unifying vox brains and android brains, so that when one is updated the other is as well.
-//Vox and basic cybernetic (cortical) brains will have both the robotic and organic brain surgery options; while android only has robotic.
 
 //The accessible cybernetic brain
 /obj/item/organ/internal/brain/cybernetic/cortical
@@ -8,7 +7,8 @@
 	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi' 
 	icon_state = "brain-c"
 
-//Extra damage from EMPs, and visual effects	
+//Extra damage from EMPs, and visual effects
+//Note that /obj/item/organ/internal/brain/cybernetic's base damage is capped at 190 while this one is capped at 150. This means that the brain will take 10 less damage from 150-190.
 /obj/item/organ/internal/brain/cybernetic/cortical/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
