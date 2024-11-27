@@ -12588,11 +12588,6 @@
 /turf/open/floor/iron/dark,
 /area/station/service/janitor)
 "aXQ" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
 	},
@@ -12622,6 +12617,8 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/door/window/right/directional/west,
+/obj/machinery/door/window/left/directional/east,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aXZ" = (
@@ -12843,13 +12840,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/service/hydroponics)
-"aYQ" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 11
 	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
@@ -14239,6 +14229,8 @@
 "bfk" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green/half/contrasted,
+/obj/machinery/door/window/right/directional/east,
+/obj/machinery/door/window/left/directional/west,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "bfl" = (
@@ -14246,13 +14238,10 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
-"bfm" = (
-/obj/item/reagent_containers/cup/bucket,
-/turf/open/floor/iron,
-/area/station/service/hydroponics)
 "bfn" = (
 /obj/structure/reagent_dispensers/watertank/high,
 /obj/effect/turf_decal/tile/green,
+/obj/item/reagent_containers/cup/bucket,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "bfp" = (
@@ -17870,6 +17859,8 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/machinery/door/window/left/directional/east,
+/obj/machinery/door/window/right/directional/west,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "bvZ" = (
@@ -33416,6 +33407,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
+"gMA" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green,
+/obj/machinery/door/window/right/directional/east,
+/turf/open/floor/iron,
+/area/station/service/hydroponics)
 "gMF" = (
 /obj/item/toy/basketball,
 /obj/effect/turf_decal/stripes/white/line{
@@ -35509,6 +35506,8 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/door/window/left/directional/north,
+/obj/machinery/door/window/right/directional/south,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "iNw" = (
@@ -42571,6 +42570,15 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"oTU" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/door/window/right/directional/south,
+/obj/machinery/door/window/right/directional/north,
+/turf/open/floor/iron,
+/area/station/service/hydroponics)
 "oUa" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -80478,7 +80486,7 @@ aXQ
 ydZ
 iNg
 aYN
-aYN
+oTU
 ydZ
 aXQ
 bfj
@@ -80731,7 +80739,7 @@ bei
 aUT
 aRL
 bvW
-bfm
+aZW
 aZW
 aZW
 bba
@@ -80995,7 +81003,7 @@ aZT
 aZT
 bdj
 aZW
-bfl
+gMA
 bdm
 oGZ
 xPQ
@@ -81509,7 +81517,7 @@ gLd
 gLd
 bdl
 bei
-bfm
+aZW
 bdm
 dyg
 xPQ
@@ -82788,7 +82796,7 @@ iNR
 iNR
 afu
 hwo
-aYQ
+aZW
 wxO
 bbe
 bcd
