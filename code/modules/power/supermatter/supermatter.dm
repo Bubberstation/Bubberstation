@@ -222,6 +222,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	soundloop = new(src, TRUE)
 
 	if(!isnull(check_holidays(FESTIVE_SEASON)))
+		// BUBBER EDIT EDITION BEGIN - Festive Supermatter
+		switch(rand(1, 3))
+			if(1)
+				icon = 'modular_zubbers/icons/obj/machines/festive_supermatter.dmi'
+				name = "festive supermatter crystal"
+			if(2)
+				icon = 'modular_zubbers/icons/obj/machines/wintergreen_supermatter.dmi'
+				name = "wintergreen supermatter crystal"
+				desc = "A strangely translucent and iridescent crystal. Green doesn't make it run cooler."
+			if(3)
+				icon = 'icons/obj/machines/engine/supermatter.dmi'
+		// BUBBER EDIT ADDITION END
 		holiday_lights()
 
 	if (!moveable)
