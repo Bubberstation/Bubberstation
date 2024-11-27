@@ -8,6 +8,7 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/caps
 	should_generate_icons = FALSE
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	supplemental_features = list()
 
 /datum/preference/mutant_color/caps
 	savefile_key = "caps_color"
