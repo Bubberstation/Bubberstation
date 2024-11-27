@@ -2,9 +2,9 @@
 	name = "Permanent Limp"
 	desc = "One of your legs has a permanent limp."
 	icon = FA_ICON_PERSON_CANE
-	value = -1
-	gain_text = null // Handled by trauma.
-	lose_text = null
+	value = -3
+	gain_text = "You start to walk with a limp"
+	lose_text = "Your limp is cured"
 	medical_record_text = "Patient has an untreatable impairment in motive capability in the lower extremities."
 	hardcore_value = 2
 	mail_goodies = list(/obj/item/cane/crutch)
