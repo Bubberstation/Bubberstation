@@ -188,7 +188,7 @@
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_HAIR
-	supplemental_features = list("hair_color", "hair_gradient", "hair_gradient_color") // BUBBER EDIT ADDITION: Better prefs
+	supplemental_features = list("hair_color", "hair_gradient", "hair_gradient_color", "feature_hair_opacity") // BUBBER EDIT ADDITION: Better prefs
 
 /datum/preference/choiced/hairstyle/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.hairstyles_list)

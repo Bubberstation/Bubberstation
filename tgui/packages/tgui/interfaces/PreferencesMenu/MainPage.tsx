@@ -335,9 +335,11 @@ const MainFeature = (props: {
 
   // const supplementalFeature = catalog.supplemental_feature; // BUBBER EDIT REMOVAL: Better prefs
 
-  if (!catalog.icons) {
+  // BUBBER EDIT ADDITION START: Better prefs: Makes debugging UI issues easier, also prevents BSODs
+  if (!catalog?.icons) {
     return 'Fuck, ' + catalog.name + ' has no icons!';
   }
+  // BUBBER EDIT END
 
   return (
     <Popper

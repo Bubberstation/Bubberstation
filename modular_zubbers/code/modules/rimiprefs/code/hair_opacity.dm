@@ -1,5 +1,5 @@
 /datum/preference/numeric/hair_opacity
-	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "feature_hair_opacity"
 	maximum = 255
