@@ -8,6 +8,7 @@
 		species_visible = FALSE
 	else
 		species_visible = TRUE
+
 	if(!species_visible)
 		species_name_string = ""
 	else if (!dna.species.lore_protected && dna.features["custom_species"])
