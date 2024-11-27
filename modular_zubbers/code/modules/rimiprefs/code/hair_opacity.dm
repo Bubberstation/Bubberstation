@@ -1,8 +1,3 @@
-// Why was this ever a pref, this is just boat rimi
-// /datum/preference/toggle/mutant_toggle/hair_opacity
-// 	savefile_key = "feature_hair_opacity_toggle"
-// 	relevant_mutant_bodypart = MUTANT_SYNTH_HAIR
-
 /datum/preference/numeric/hair_opacity
 	category = PREFERENCE_CATEGORY_BUBBER_MUTANT_FEATURE
 	savefile_identifier = PREFERENCE_CHARACTER
