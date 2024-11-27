@@ -48,7 +48,6 @@
 		return TRUE
 	return FALSE
 
-//Bubber edits marked
 /obj/item/organ/internal/brain/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
