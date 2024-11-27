@@ -214,4 +214,4 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "FoxyPlush"
 	gender = MALE
-	squeak_override = list('modular_skyrat\modules\emotes\sound\emotes\claponce1.ogg' = 1)
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/claponce1.ogg' = 1)
