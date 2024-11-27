@@ -23,6 +23,9 @@
 /datum/ert/intern
 	code = "Unpaid"
 
+/datum/ert/private_security
+	code = "Security Red"
+
 /datum/ert/bounty_hunters
 	code = "Bounty Orange"
 

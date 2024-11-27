@@ -515,3 +515,44 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
+
+/obj/item/clothing/head/helmet/swat/nanotrasen/hr
+	name = "\improper SWAT officer helmet"
+	desc = "An extremely robust helmet with the Nanotrasen logo emblazoned on the top in gold, worn by Nanotrasen Private Security's field officers."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "swathr"
+	armor_type = /datum/armor/helmet_swat_privatesec
+
+/datum/armor/helmet_swat_privatesec
+	melee = 60
+	bullet = 45
+	laser = 45
+	energy = 50
+	bomb = 50
+	bio = 90
+	fire = 100
+	acid = 100
+	wound = 15
+
+/obj/item/clothing/head/beret/commander
+	name = "\improper Commander's beret"
+	desc = "A robust beret in red, with a golden Nanotrasen logo badge on it, you feel whoever's wearing this must be some commanding officer. You'd think cause it's a beret that it might be as weak as a fabric, it's been perfected with Nanotrasen's top technology to both armor, and also allow for style."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
+	icon_state = "swatcomm"
+	armor_type = /datum/armor/beret_commander
+
+/datum/armor/beret_commander
+	melee = 80
+	bullet = 80
+	laser = 50
+	energy = 50
+	bomb = 100
+	bio = 100
+	fire = 100
+	acid = 90
+	wound = 10

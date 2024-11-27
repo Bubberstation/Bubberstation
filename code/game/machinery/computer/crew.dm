@@ -172,6 +172,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_ERT_CHAPLAIN = 225,
 		JOB_ERT_JANITOR = 226,
 		JOB_ERT_DEATHSQUAD = 227,
+		JOB_CENTCOM_PRIVATE_SECURITY_ERT = 228,
+		JOB_CENTCOM_PRIVATE_SECURITY_ERT_COMMANDER = 229,
 		JOB_NT_REP = 230, // SKYRAT EDIT ADDITION
 		JOB_BLUESHIELD = 231, // SKYRAT EDIT ADDITION
 
@@ -262,7 +264,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			var/trim_assignment = id_card.get_trim_assignment()
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
-				
+
 		// SKYRAT EDIT BEGIN: Checking for robotic race
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE

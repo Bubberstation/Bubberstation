@@ -12,3 +12,17 @@
 	name = "Asset Protection Officer"
 	outfit = /datum/outfit/centcom/asset_protection
 	role = "Officer"
+
+/datum/antagonist/ert/private_security // Putting these here to make my life easier. Bubber changes.
+	name = "Private Security Officer"
+	outfit = /datum/outfit/centcom/private_security
+	role = "Officer"
+
+/datum/antagonist/ert/private_security/New()
+	. = ..()
+	name_source = GLOB.commando_names
+
+/datum/antagonist/ert/private_security/commander
+	name = "Private Security Commander"
+	outfit = /datum/outfit/centcom/private_security/commander
+	role = "Commander"

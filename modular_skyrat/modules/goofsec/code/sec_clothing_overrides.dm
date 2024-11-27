@@ -828,6 +828,15 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-security"
+	current_skin = "satchel-security" //prevents reskinning // Bubber edit.
+
+/obj/item/storage/backpack/satchel/sec/redsec/gold // For specifically Private Security.
+	name = "security satchel"
+	desc = "A robust satchel for security related needs, this one has a golden buckle."
+	icon = 'modular_zubbers/icons/obj/storage/backpack.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "satchel-security-gold"
+	current_skin = "satchel-security-gold" //prevents reskinning // Bubber edit.
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'

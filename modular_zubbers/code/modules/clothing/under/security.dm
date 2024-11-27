@@ -20,3 +20,17 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/maidsec.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
+
+/obj/item/clothing/under/rank/security/nanotrasen
+	name = "private security uniform"
+	desc = "A classic red tactical security uniform for Nanotrasen's private security force, complete with a Nanotrasen logo belt buckle."
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "nanotrasenlr"
+
+/obj/item/clothing/under/rank/security/nanotrasen/hr
+	name = "private security officer uniform"
+	desc = "A classic red tactical security uniform for Nanotrasen's private security force, complete with a golden Nanotrasen logo belt buckle, as well as gold ranking on the shoulders and wrists."
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "nanotrasenhr"
