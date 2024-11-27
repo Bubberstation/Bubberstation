@@ -35,6 +35,7 @@
 /obj/machinery/holomap/open
 	panel_open = TRUE
 	construction_state = "unwired"
+	icon_state = "station_map_unwired"
 
 /obj/machinery/holomap/Initialize(mapload)
 	. = ..()
@@ -274,6 +275,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/holomap/open, 32)
 /obj/machinery/holomap/engineering/open
 	panel_open = TRUE
 	construction_state = "unwired"
+	icon_state = "station_map_engi_unwired"
 
 /obj/machinery/holomap/engineering/attack_hand(mob/user)
 	. = ..()
