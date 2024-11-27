@@ -209,7 +209,7 @@
 
 // Plush for ZeferwasnttakenFR
 /obj/item/toy/plush/foxy_plush
-	name = "Tiny Prankster Fox Plush"
+	name = "tiny prankster fox plush"
 	desc = "A fox plush made to look like a certain prankster fox. Unsuprisingly it also smells like ocean breeze and a nice warm forge. \ Batteries not included for the plastic arm!"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "FoxyPlush"
