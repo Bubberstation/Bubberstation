@@ -137,7 +137,6 @@
 	item_type = /obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit
 	cost = PAYCHECK_COMMAND * 8
 
-/*
 /datum/armament_entry/company_import/sol_defense/longarm/renoster
 	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
 	cost = PAYCHECK_COMMAND * 6
@@ -149,6 +148,8 @@
 /datum/armament_entry/company_import/sol_defense/longarm/elite
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
 	cost = PAYCHECK_COMMAND * 8
+
+/*
 
 
 
