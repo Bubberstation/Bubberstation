@@ -573,17 +573,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
             },
           ),
           // BUBBER EDIT ADDITION START: Better prefs
-          ...Object.entries(data.character_preferences.mutant_feature).filter(
-            ([featureName]) => {
-              if (!currentSpeciesData) {
-                return false;
-              }
-
-              return (
-                currentSpeciesData.enabled_features.indexOf(featureName) !== -1
-              );
-            },
-          ),
+          ...Object.entries(data.character_preferences.mutant_feature),
           // BUBBER EDIT END
         ];
 
