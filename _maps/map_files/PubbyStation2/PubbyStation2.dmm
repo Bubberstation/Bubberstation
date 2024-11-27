@@ -13753,7 +13753,6 @@
 /turf/open/floor/plating,
 /area/station/cargo/warehouse)
 "bcX" = (
-/obj/structure/sign/warning/vacuum/external/directional/south,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "bcY" = (
@@ -17386,7 +17385,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 2"
+	name = "Escape Pod Bay";
+	space_dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
@@ -17395,7 +17395,8 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 2"
+	name = "Escape Pod Bay";
+	space_dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
@@ -28480,6 +28481,12 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron,
 /area/station/science/breakroom)
+"cBO" = (
+/obj/docking_port/stationary/escape_pod{
+	dir = 8
+	},
+/turf/open/genturf/orange,
+/area/jungleplanet/nearstation)
 "cBT" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -51844,6 +51851,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/closed/wall,
 /area/station/maintenance/department/medical/central)
+"wjZ" = (
+/obj/structure/sign/warning/pods/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "wkm" = (
 /obj/machinery/requests_console/directional/east{
 	department = "Security";
@@ -75106,7 +75117,7 @@ bon
 aZx
 rDK
 rDK
-rDK
+cBO
 rDK
 rDK
 rDK
@@ -75878,7 +75889,7 @@ bop
 bop
 aZx
 btM
-aZx
+hXW
 hXW
 bxY
 bzz
@@ -76135,7 +76146,7 @@ bop
 bop
 bop
 nCW
-bop
+wjZ
 bwq
 bxZ
 bzA
