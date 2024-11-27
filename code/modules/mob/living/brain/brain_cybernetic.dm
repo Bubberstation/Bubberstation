@@ -53,10 +53,10 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-//BUBBER EDIT - can't be emp'd if dead
+//BUBBER EDIT BEGIN - can't be emp'd if dead
 	if(owner.stat == DEAD) 
 		return
-//EDIT END
+//BUBBER EDIT END
 	switch(severity)
 		if (EMP_HEAVY)
 			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
