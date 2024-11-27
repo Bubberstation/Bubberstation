@@ -4102,6 +4102,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/machinery/holomap/directional/north,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -5531,7 +5532,6 @@
 /area/station/service/hydroponics/garden)
 "aBy" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Unit 3"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -13103,6 +13103,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/holomap/directional/north,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "bcz" = (
@@ -16179,6 +16180,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai_upload)
+"bnq" = (
+/obj/machinery/holomap/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central)
 "bns" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -20196,6 +20201,7 @@
 /area/station/hallway/primary/central)
 "bBj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/holomap/engineering/directional/north,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/break_room)
 "bBl" = (
@@ -27233,9 +27239,7 @@
 /area/station/maintenance/starboard/aft)
 "cdb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/musician/piano{
-	icon_state = "piano"
-	},
+/obj/structure/musician/piano,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "cdc" = (
@@ -28258,6 +28262,7 @@
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 1
 	},
+/obj/machinery/holomap/engineering/directional/west,
 /turf/open/floor/iron/white/corner,
 /area/station/command/heads_quarters/ce)
 "cin" = (
@@ -42123,9 +42128,7 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/station/science/explab)
 "iYy" = (
-/obj/structure/musician/piano{
-	icon_state = "piano"
-	},
+/obj/structure/musician/piano,
 /obj/structure/railing{
 	dir = 1
 	},
@@ -42475,6 +42478,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/machinery/holomap/engineering/directional/north,
 /turf/open/floor/iron/smooth_corner{
 	dir = 1
 	},
@@ -42524,6 +42528,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/warning{
 	dir = 6
 	},
+/obj/machinery/holomap/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
 "jkG" = (
@@ -43146,6 +43151,10 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/station/service/hydroponics)
+"jCE" = (
+/obj/machinery/holomap/directional/east,
+/turf/open/floor/iron,
+/area/station/commons/storage/primary)
 "jCY" = (
 /obj/effect/spawner/random/structure/crate,
 /obj/effect/decal/cleanable/dirt,
@@ -46426,9 +46435,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/mob/living/basic/goat/pete{
-	name = "Pete"
-	},
+/mob/living/basic/goat/pete,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
 "lQR" = (
@@ -46914,6 +46921,10 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/station/service/bar)
+"mjE" = (
+/obj/machinery/holomap/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "mjF" = (
 /obj/item/toy/crayon/white{
 	pixel_y = 26;
@@ -49914,6 +49925,13 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
 /area/station/science/explab)
+"oug" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/holomap/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "ouv" = (
 /obj/structure/dresser,
 /obj/machinery/light/small/directional/north,
@@ -50720,6 +50738,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/holomap/engineering/directional/north,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "oZw" = (
@@ -53656,7 +53675,6 @@
 /area/station/hallway/primary/starboard)
 "qYe" = (
 /obj/machinery/door/airlock/medical/glass{
-	id_tag = null;
 	name = "Medbay Foyer"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -55081,6 +55099,11 @@
 	},
 /turf/open/floor/stone,
 /area/station/service/bar)
+"rUK" = (
+/obj/effect/landmark/start/hangover,
+/obj/machinery/holomap/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central)
 "rVc" = (
 /obj/structure/toilet{
 	dir = 4
@@ -55434,6 +55457,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
+"sjN" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/holomap/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/primary/aft)
 "sjV" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -58867,10 +58898,6 @@
 "uGw" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/ce/double,
-/obj/machinery/button/door/directional/north{
-	id = "ceprivacy";
-	name = "Privacy Shutters Control"
-	},
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/ce)
 "uGy" = (
@@ -59397,6 +59424,10 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
+"uYU" = (
+/obj/machinery/holomap/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "uZR" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
@@ -60012,6 +60043,14 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
+"vvx" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/holomap/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "vvD" = (
 /turf/closed/wall/r_wall,
 /area/station/service/lawoffice)
@@ -76913,7 +76952,7 @@ awx
 awM
 awP
 axF
-axF
+vvx
 ayC
 azG
 aBn
@@ -77166,7 +77205,7 @@ aMO
 ayl
 aNb
 ayl
-ayl
+mjE
 ayl
 aIK
 ayl
@@ -83840,7 +83879,7 @@ aoX
 atJ
 alU
 aDq
-aDo
+jCE
 aFZ
 aHE
 aJc
@@ -89519,7 +89558,7 @@ bgG
 bid
 aYl
 aHn
-lfF
+rUK
 bnN
 boY
 bqw
@@ -93142,7 +93181,7 @@ bSA
 bJz
 bSA
 bSA
-bSA
+sjN
 ogG
 eNI
 bLI
@@ -93929,8 +93968,8 @@ bYG
 cfb
 cfb
 eSV
-cfc
-cfc
+cfb
+cfb
 cfb
 cfb
 ccw
@@ -94867,7 +94906,7 @@ agW
 kdi
 aii
 agn
-qEg
+oug
 aEh
 pmL
 vad
@@ -95207,7 +95246,7 @@ bWQ
 bYN
 bRm
 caA
-caA
+bWQ
 bBj
 ccs
 bZu
@@ -97724,7 +97763,7 @@ aAh
 feM
 aAh
 aJq
-aJq
+bnq
 aJq
 aJq
 aRt
@@ -98251,7 +98290,7 @@ baa
 aJC
 ikq
 iKz
-aYV
+uYU
 bfF
 nQI
 bio
@@ -102877,7 +102916,7 @@ bak
 iaU
 hXL
 iKz
-aYV
+uYU
 bBN
 bBN
 bBN
