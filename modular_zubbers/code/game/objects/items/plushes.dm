@@ -207,7 +207,7 @@
 	gender = FEMALE
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
 
-// Plush for ZeferwasnttakenFR SHows up as "Tired Teshari Plush"
+// Plush for ZeferwasnttakenFR
 /obj/item/toy/plush/foxy_plush
 	name = "Tiny Prankster Fox Plush"
 	desc = "A fox plush made to look like a certain prankster fox. Unsuprisingly it also smells like ocean breeze and a nice warm forge. \ Batteries not included for the plastic arm!"
