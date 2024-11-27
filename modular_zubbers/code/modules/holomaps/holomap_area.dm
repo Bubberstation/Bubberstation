@@ -109,7 +109,7 @@
 /area/mine/medical
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
-// Lavaland/Icemoon
+// Lavaland/Icemoon/Moon
 /area/lavaland/surface/outdoors
 	holomap_should_draw = FALSE
 
@@ -127,6 +127,9 @@
 
 /area/icemoon/surface/outdoors/unexplored/rivers/no_monsters
 	holomap_should_draw = TRUE
+
+/area/moonstation/surface
+	holomap_should_draw = FALSE
 
 // Hallways
 /area/station/hallway
