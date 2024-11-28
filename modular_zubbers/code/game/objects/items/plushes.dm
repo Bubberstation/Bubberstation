@@ -164,6 +164,16 @@
 	gender = MALE
 	squeak_override = list('sound/mobs/non-humanoids/dog/growl2.ogg' = 1)
 
+/obj/item/toy/plush/bottomsynf
+	name = "\improper CentCom Synth Fox Plush"
+	desc = "The plush of a synth fox who enjoys being high in the chain of command. Or so it seems. It's wearing its favourite CentCom formal coat."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "bottomsynf"
+	attack_verb_continuous = list("emags", "hacks", "geckers")
+	attack_verb_simple = list("beeps", "boops", "pings", "geckers")
+	gender = MALE
+	squeak_override = list('sound/machines/terminal_alert_short.ogg' = 1)
+
 // Silly plush for kurzaen, sprited and coded by Waterpig
 // Spontaneously combusts when touched by other plushies
 /obj/item/toy/plush/cat_annoying

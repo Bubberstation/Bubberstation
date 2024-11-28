@@ -70,3 +70,7 @@
 /datum/loadout_item/toys/suspicious_protogen
 	name = "Suspicious Protogen Plush"
 	item_path = /obj/item/toy/plush/suspicious_protogen
+
+/datum/loadout_item/toys/bottomsynf
+	name = "CentCom Synth Fox Plush"
+	item_path = /obj/item/toy/plush/bottomsynf
