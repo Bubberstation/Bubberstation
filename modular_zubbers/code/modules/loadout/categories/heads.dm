@@ -34,6 +34,10 @@
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
+/datum/loadout_item/head/sombrero
+	name = "Sombrero"
+	item_path = /obj/item/clothing/head/costume/sombrero
+
 /datum/loadout_item/head/hats/caphat/drill
 	name = "Captain's Campaign Hat"
 	item_path = /obj/item/clothing/head/hats/warden/drill/captain
@@ -67,4 +71,5 @@
 	name = "Tactical Maid Headband"
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE
+
 
