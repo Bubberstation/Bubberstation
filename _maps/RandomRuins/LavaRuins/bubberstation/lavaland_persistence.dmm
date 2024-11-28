@@ -29,15 +29,11 @@
 "ai" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/firealarm/directional/east,
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	piping_layer = 5;
-	dir = 8
-	},
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix,
 /obj/item/wrench/medical,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
 /obj/item/wrench/medical,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "aj" = (
@@ -213,6 +209,7 @@
 /obj/structure/cable,
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "aN" = (
@@ -6480,7 +6477,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/obj/machinery/atmospherics/pipe/layer_manifold/orange/hidden{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "tx" = (
