@@ -136,7 +136,7 @@
 
 	speed_mod /= (get_location_modifier(target) * (1 + surgery.speed_modifier) * implement_speed_mod) * target.mob_surgery_speed_mod
 	var/modded_time = time * speed_mod
-	user.balloon_alert_to_viewers("surgery speed [round(1 / speed_mod, 0.1)]x") // BUBBER EDIT ADDITION - Show surgery speed to viewers
+	user.balloon_alert(user, "surgery speed [round(1 / speed_mod, 0.1)]x") // BUBBER EDIT ADDITION - Show surgery speed to viewers
 
 
 	fail_prob = min(max(0, modded_time - (time * SURGERY_SLOWDOWN_CAP_MULTIPLIER)),99)//if modded_time > time * modifier, then fail_prob = modded_time - time*modifier. starts at 0, caps at 99
