@@ -127,7 +127,7 @@
 		speed_mod *= 0.92
 	// BUBBER EDIT ADDITION END
 
-	if(has_sterilizine(target)) // BUBBER EDIT CHANGE - Speed boost applied via sterilizine - Original: if(HAS_TRAIT(target, TRAIT_ANALGESIA))
+	if(target.has_sterilizine()) // BUBBER EDIT CHANGE - Speed boost applied via sterilizine/cryostylane - Original: if(HAS_TRAIT(target, TRAIT_ANALGESIA))
 		speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
 
 	var/implement_speed_mod = 1
