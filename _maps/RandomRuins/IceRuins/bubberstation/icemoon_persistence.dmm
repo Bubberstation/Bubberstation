@@ -342,6 +342,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/mapping_helpers/apc/full_charge,
 /turf/open/floor/carpet/stellar,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/cargo)
 "bb" = (
@@ -2048,7 +2049,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
 "gn" = (
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/turf_decal/siding/dark_green{
 	dir = 8
 	},
@@ -3476,7 +3476,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "kW" = (
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
@@ -5538,10 +5537,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"qE" = (
-/obj/machinery/airalarm/directional/south,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "qF" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/box/firingpins/syndicate,
@@ -7412,9 +7407,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "vQ" = (
 /obj/structure/cable,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/full_charge,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "vR" = (
@@ -8228,6 +8220,9 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "yu" = (
@@ -11767,9 +11762,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold/orange/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "JD" = (
@@ -11811,6 +11804,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "JK" = (
 /obj/machinery/firealarm/directional/south,
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "JL" = (
@@ -17101,7 +17096,6 @@
 /obj/structure/cable,
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer5,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "ZA" = (
@@ -20205,7 +20199,7 @@ fk
 kW
 UL
 WS
-qE
+UL
 cB
 cB
 cB
