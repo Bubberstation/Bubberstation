@@ -43,6 +43,10 @@ GLOBAL_LIST_INIT(reagent_containers, list(
 	CAT_DARTS = typecacheof(list(
 		/obj/item/reagent_containers/syringe/smartdart
 	)),
+	CAT_MEDBOTTLES = typecacheof(list(
+		/obj/item/reagent_containers/cup/bottle/medi,
+		/obj/item/reagent_containers/cup/bottle/large
+	)),
 	// SKYRAT EDIT ADDITION END
 ))
 
