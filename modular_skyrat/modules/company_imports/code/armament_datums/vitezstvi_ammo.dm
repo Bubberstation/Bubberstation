@@ -55,6 +55,9 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_disabler
 	item_type = /obj/item/ammo_box/c585trappiste/incapacitator
 
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_rubber
+	item_type = /obj/item/ammo_box/c310_cargo_box/rubber
+
 // Revolver speedloaders
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
