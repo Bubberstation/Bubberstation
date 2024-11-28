@@ -32,3 +32,24 @@
 		/obj/item/radio,
 		/obj/item/storage/belt/holster,
 	)
+
+/obj/item/clothing/suit/misc/allamerican
+	name = "all-american diner manager's vest"
+	desc = "A soft fabric vest, with a nametag of the employee on it. It says, MANAGER on the back, making you obvious for the Karens who just NEED your attention."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/misc.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/misc.dmi'
+	icon_state = "allamerican"
+	worn_icon_state = "allamerican"
+	attachment_slot_override = CHEST
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	body_parts_covered = CHEST|GROIN
+	allowed = list(
+		/obj/item/flashlight,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/toy,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/lighter,
+		/obj/item/radio,
+		/obj/item/storage/belt/holster,
+	)
