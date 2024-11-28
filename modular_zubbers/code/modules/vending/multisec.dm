@@ -40,7 +40,7 @@
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
-					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle - it's my dono item and has identical stats to the other vests.
+					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
 				),
 			),
 		list(
