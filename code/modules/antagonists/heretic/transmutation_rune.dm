@@ -7,8 +7,7 @@
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	plane = FLOOR_PLANE
-	layer = RUNE_LAYER
+	layer = SIGIL_LAYER
 	///Used mainly for summoning ritual to prevent spamming the rune to create millions of monsters.
 	var/is_in_use = FALSE
 
@@ -223,8 +222,8 @@
 	pixel_x = -30
 	pixel_y = 18
 	pixel_z = -48
-	plane = FLOOR_PLANE
-	layer = RUNE_LAYER
+	plane = GAME_PLANE
+	layer = SIGIL_LAYER
 	greyscale_config = /datum/greyscale_config/heretic_rune
 	/// We only set this state after setting the colour, otherwise the animation doesn't colour correctly
 	var/animation_state = "transmutation_rune_draw"

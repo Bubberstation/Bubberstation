@@ -11,7 +11,6 @@
 
 /datum/action/item_action/backup
 	name = "BACKUP!"
-	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
 /// Add the Radio
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)

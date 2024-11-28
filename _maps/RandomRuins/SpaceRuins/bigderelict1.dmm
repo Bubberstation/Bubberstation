@@ -573,7 +573,13 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "cC" = (
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/hatchling,
+/mob/living/basic/creature{
+	desc = "Awh its so sm-OH GOD WHAT THE FUCK.";
+	health = 25;
+	maxHealth = 25;
+	name = "hatchling";
+	current_size = 0.85
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost)
 "cD" = (
@@ -759,7 +765,9 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "dl" = (
 /obj/structure/alien/weeds/creature,
-/mob/living/basic/creature/tiggles,
+/mob/living/basic/creature{
+	name = "Miss Tiggles"
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/derelictoutpost)
 "dm" = (

@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/crafter
 	name = "manufacturing assembling machine"
-	desc = "Assembles (crafts) the set recipe until it runs out of resources. Inputs irrelevant to the recipe are ignored, and it may only hold exactly what the recipe needs."
+	desc = "Assembles (crafts) the set recipe until it runs out of resources. Inputs irrelevant to the recipe are ignored."
 	icon_state = "crafter"
 	circuit = /obj/item/circuitboard/machine/manucrafter
 	/// power used per process() spent crafting
@@ -19,8 +19,6 @@
 /obj/machinery/power/manufacturing/crafter/Initialize(mapload)
 	. = ..()
 	craftsman = AddComponent(/datum/component/personal_crafting/machine)
-	if(ispath(recipe))
-		recipe = locate(recipe) in (cooking ? GLOB.cooking_recipes : GLOB.crafting_recipes)
 
 /obj/machinery/power/manufacturing/crafter/examine(mob/user)
 	. = ..()
@@ -51,24 +49,21 @@
 	for(var/requirement_path in recipe.reqs)
 		if(!ispath(checking.type, requirement_path) || recipe.blacklist.Find(checking.type))
 			continue
-		var/amount = recipe.reqs[requirement_path]
-		if(count_path(requirement_path) >= amount)
-			continue
 		return TRUE
 
-/obj/machinery/power/manufacturing/crafter/proc/count_path(path)
-	. = 0
-	for(var/atom/content as anything in contents - circuit)
-		if(!ispath(path, content.type))
+/obj/machinery/power/manufacturing/crafter/proc/contains_type(path)
+	. = FALSE
+	for(var/content in contents - circuit)
+		if(!istype(content, path))
 			continue
-		.++
+		return TRUE
 
 /obj/machinery/power/manufacturing/crafter/receive_resource(obj/receiving, atom/from, receive_dir)
 	if(isnull(recipe) || !isitem(receiving) || surplus() < power_cost)
 		return MANUFACTURING_FAIL
 	if(receive_dir == dir || !valid_for_recipe(receiving))
 		return MANUFACTURING_FAIL
-	if(isstack(receiving) && count_path(receiving.type) && !may_merge_in_contents_and_do_so(receiving))
+	if(!may_merge_in_contents(receiving) && contains_type(receiving.type))
 		return MANUFACTURING_FAIL_FULL
 	receiving.Move(src, get_dir(receiving, src))
 	START_PROCESSING(SSmanufacturing, src)
@@ -91,7 +86,6 @@
 	for(var/atom/movable/thing as anything in contents - circuit)
 		thing.Move(dump_target)
 	recipe = result
-	balloon_alert(user, "set")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/manufacturing/crafter/Exited(atom/movable/gone, direction)

@@ -121,7 +121,7 @@
 	icon_state = "imperium_monk"
 	inhand_icon_state = "imperium_monk"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDEBELT
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	allowed = list(/obj/item/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/cup/glass/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/flashlight/flare/candle, /obj/item/tank/internals/emergency_oxygen)
 
 /obj/item/clothing/suit/costume/chickensuit
@@ -219,7 +219,6 @@
 	icon_state = "classicponcho"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)
-	flags_inv = HIDEBELT
 
 /obj/item/clothing/suit/costume/poncho/green
 	name = "green poncho"
@@ -249,7 +248,7 @@
 	icon_state = "white_dress"
 	inhand_icon_state = "w_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
-	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEBELT
+	flags_inv = HIDEJUMPSUIT|HIDESHOES
 
 /obj/item/clothing/suit/hooded/carp_costume
 	name = "carp costume"
@@ -504,7 +503,6 @@
 	desc = "Perfect for those who want to stalk around a corner of a bar."
 	icon_state = "gothcoat"
 	inhand_icon_state = null
-	flags_inv = HIDEBELT
 
 /obj/item/clothing/suit/costume/xenos
 	name = "xenos suit"
@@ -512,7 +510,7 @@
 	icon_state = "xenos"
 	inhand_icon_state = "xenos_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDEBELT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	allowed = list(/obj/item/clothing/mask/facehugger/toy)
 
 /obj/item/clothing/suit/costume/nemes

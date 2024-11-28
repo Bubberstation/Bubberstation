@@ -261,7 +261,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	desc = "It's good overthrowing the king."
-	icon_state = "terragov_bicorne"
+	icon_state = "solgov_bicorne"
 	worn_y_offset = 2
 
 /obj/item/clothing/head/hats/caphat/sonnensoldner

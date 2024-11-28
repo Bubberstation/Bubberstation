@@ -89,11 +89,6 @@
 		return 'sound/mobs/humanoids/human/sniff/female_sniff.ogg'
 	return 'sound/mobs/humanoids/human/sniff/male_sniff.ogg'
 
-/datum/species/human/get_snore_sound(mob/living/carbon/human/human)
-	if(human.physique == FEMALE)
-		return SFX_SNORE_FEMALE
-	return SFX_SNORE_MALE
-
 /datum/species/human/get_species_description()
 	return "Humans are the dominant species in the known galaxy. \
 		Their kind extend from old Earth to the edges of known space."
@@ -130,9 +125,7 @@
 				to humans. As a human, silicons are required to both protect and obey you.",
 		))
 
-	var/human_authority_setting = CONFIG_GET(string/human_authority)
-
-	if(human_authority_setting == HUMAN_AUTHORITY_NON_HUMAN_WHITELIST || human_authority_setting == HUMAN_AUTHORITY_ENFORCED)
+	if(CONFIG_GET(flag/enforce_human_authority))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bullhorn",

@@ -1,6 +1,6 @@
 /mob/living/basic/trooper/cin_soldier
 	name = "Coalition Operative"
-	desc = "Death to TerraGov."
+	desc = "Death to SolFed."
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	attack_verb_continuous = "cuts"

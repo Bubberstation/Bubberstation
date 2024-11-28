@@ -206,8 +206,7 @@ export class TguiSay extends Component<{}, State> {
     // Is it a valid prefix?
     const prefix = typed
       .slice(0, 3)
-      ?.toLowerCase()
-      ?.replace('.', ':') as keyof typeof RADIO_PREFIXES;
+      ?.toLowerCase() as keyof typeof RADIO_PREFIXES;
     if (!RADIO_PREFIXES[prefix] || prefix === this.currentPrefix) {
       return;
     }

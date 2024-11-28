@@ -367,7 +367,7 @@
 		return UI_CLOSE
 	if(!user.can_read(src))
 		return UI_CLOSE
-	if(in_contents_of(/obj/machinery/door/airlock) || in_contents_of(/obj/item/clipboard) || in_contents_of(/obj/item/folder))
+	if(in_contents_of(/obj/machinery/door/airlock) || in_contents_of(/obj/item/clipboard))
 		return UI_INTERACTIVE
 	return ..()
 

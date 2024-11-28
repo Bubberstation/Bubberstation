@@ -1226,7 +1226,6 @@
 	event_list.Add(event)
 	if(launch_status == ENDGAME_LAUNCHED)
 		event.start_up_event(0)
-	return event
 
 #ifdef TESTING
 #undef DOCKING_PORT_HIGHLIGHT

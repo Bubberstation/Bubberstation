@@ -98,7 +98,7 @@
 	box = /obj/item/storage/box
 	ears = /obj/item/radio/headset
 	gloves = /obj/item/clothing/gloves/color/red
-	head = /obj/item/clothing/head/helmet/taghelm/red
+	head = /obj/item/clothing/head/helmet/redtaghelm
 	shoes = /obj/item/clothing/shoes/sneakers/red
 
 /datum/outfit/traitor_cutout
@@ -141,7 +141,7 @@
 	suit = /obj/item/clothing/suit/bluetag
 	suit_store = /obj/item/gun/energy/laser/bluetag
 	gloves = /obj/item/clothing/gloves/color/blue
-	head = /obj/item/clothing/head/helmet/taghelm/blue
+	head = /obj/item/clothing/head/helmet/bluetaghelm
 	shoes = /obj/item/clothing/shoes/sneakers/blue
 
 /datum/outfit/tunnel_clown

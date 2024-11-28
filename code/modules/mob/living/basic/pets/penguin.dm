@@ -17,15 +17,6 @@
 	///the egg it carries
 	var/obj/carried_egg
 
-/datum/emote/penguin
-	mob_type_allowed_typecache = /mob/living/basic/pet/penguin
-	mob_type_blacklist_typecache = list()
-
-/datum/emote/penguin/honk
-	key = "honk"
-	key_third_person = "honks"
-	message = "honks happily!"
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/pet/penguin/Initialize(mapload)
 	. = ..()
@@ -33,7 +24,7 @@
 	AddElement(/datum/element/wears_collar)
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/ai_flee_while_injured)
-	AddElement(/datum/element/pet_bonus, "honk")
+	AddElement(/datum/element/pet_bonus, "honks happily!")
 	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 	if(!can_lay_eggs)
 		return

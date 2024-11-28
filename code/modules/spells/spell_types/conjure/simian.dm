@@ -98,7 +98,7 @@
 		weapon.attack_self(summoned_monkey)
 
 	// Fashionable ape wear, organised by tier
-	var/static/list/monky_hats = list(
+	var/list/static/monky_hats = list(
 		null, // nothin here
 		/obj/item/clothing/head/costume/garland,
 		/obj/item/clothing/head/helmet/durathread,

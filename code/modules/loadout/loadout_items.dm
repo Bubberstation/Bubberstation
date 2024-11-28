@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	ASSERT(!isnull(equipped_item))
 
 	if(!visuals_only)
-		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, TRAIT_SOURCE_LOADOUT)
+		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, "Loadout")
 
 	var/list/item_details = preference_list[item_path]
 	var/update_flag = NONE
@@ -296,9 +296,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			equipped_item.desc = trim(item_details[INFO_DESCRIBED], PREVENT_CHARACTER_TRIM_LOSS(MAX_DESC_LEN))
 			renamed = 1
 		if(renamed)
-			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, TRAIT_SOURCE_LOADOUT)
-			equipped_item.AddElement(/datum/element/examined_when_worn)
-			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED)
+			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, "Loadout")
+			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED) // BUBBER EDIT
 	// SKYRAT EDIT END
 
 	if(can_be_reskinned && item_details?[INFO_RESKIN])

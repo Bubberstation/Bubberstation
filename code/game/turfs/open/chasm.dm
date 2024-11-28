@@ -50,8 +50,8 @@
 
 
 /turf/open/chasm/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = /turf/open/misc/asteroid/basalt::icon
-	underlay_appearance.icon_state = /turf/open/misc/asteroid/basalt::icon_state
+	underlay_appearance.icon = 'icons/turf/floors.dmi'
+	underlay_appearance.icon_state = "basalt"
 	return TRUE
 
 /turf/open/chasm/attackby(obj/item/C, mob/user, params, area/area_restriction)
@@ -100,11 +100,6 @@
 	light_power = 0.65
 	light_color = LIGHT_COLOR_PURPLE
 
-/turf/open/chasm/icemoon/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = /turf/open/misc/asteroid/snow/icemoon::icon
-	underlay_appearance.icon_state = /turf/open/misc/asteroid/snow/icemoon::icon_state
-	return TRUE
-
 // Chasms for the jungle, with planetary atmos and a different icon
 /turf/open/chasm/jungle
 	icon = 'icons/turf/floors/junglechasm.dmi'
@@ -114,8 +109,8 @@
 	baseturfs = /turf/open/chasm/jungle
 
 /turf/open/chasm/jungle/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = /turf/open/misc/dirt::icon
-	underlay_appearance.icon_state = /turf/open/misc/dirt::icon_state
+	underlay_appearance.icon = 'icons/turf/floors.dmi'
+	underlay_appearance.icon_state = "dirt"
 	return TRUE
 
 // Chasm that doesn't do any z-level nonsense and just kills/stores whoever steps into it.

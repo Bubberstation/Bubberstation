@@ -12,7 +12,7 @@
 	var/charges = INFINITY
 	var/antimagic_flags = MAGIC_RESISTANCE
 
-	var/static/list/ignore_typecache
+	var/list/static/ignore_typecache
 	var/list/mob/immune_minds = list()
 
 	var/sparks = TRUE
@@ -30,7 +30,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-	if(isnull(ignore_typecache))
+	if(!ignore_typecache)
 		ignore_typecache = typecacheof(list(
 			/obj/effect,
 			/mob/dead,

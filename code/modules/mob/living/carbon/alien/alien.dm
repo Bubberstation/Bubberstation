@@ -29,8 +29,6 @@
 		/obj/item/toy/toy_xeno,
 		/obj/item/sticker, //funny ~Jimmyl
 		/obj/item/toy/plush/rouny,
-		/obj/item/hand_item,
-		/obj/item/queen_promotion,
 	))
 
 /mob/living/carbon/alien/Initialize(mapload)

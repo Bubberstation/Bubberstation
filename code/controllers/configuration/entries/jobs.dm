@@ -133,11 +133,6 @@
 		var/list/working_list = list()
 		for(var/config_datum_key in job_config_datum_singletons)
 			var/datum/job_config_type/config_datum = job_config_datum_singletons[config_datum_key]
-
-			// Dont make the entry if it doesn't apply to this job
-			if(!config_datum.validate_entry(occupation))
-				continue
-
 			var/config_read_value = job_config[job_key][config_datum_key]
 			if(!config_datum.validate_value(config_read_value))
 				working_list += list(
@@ -160,11 +155,6 @@
 	var/returnable_list = list()
 	for(var/config_datum_key in job_config_datum_singletons)
 		var/datum/job_config_type/config_datum = job_config_datum_singletons[config_datum_key]
-
-		// Dont make the entry if it doesn't apply to this job
-		if(!config_datum.validate_entry(new_occupation))
-			continue
-
 		// Remember, every time we write the TOML from scratch, we want to have it commented out by default.
 		// This is to ensure that the server operator knows that they are overriding codebase defaults when they remove the comment.
 		// Having comments mean that we allow server operators to defer to codebase standards when they deem acceptable. They must uncomment to override the codebase default.
@@ -181,11 +171,6 @@
 	var/list/datums_to_read = job_config_datum_singletons - list(JOB_CONFIG_TOTAL_POSITIONS, JOB_CONFIG_SPAWN_POSITIONS)
 	for(var/config_datum_key in datums_to_read)
 		var/datum/job_config_type/config_datum = job_config_datum_singletons[config_datum_key]
-
-		// Dont make the entry if it doesn't apply to this job
-		if(!config_datum.validate_entry(new_occupation))
-			continue
-
 		returnable_list += list(
 			"# [config_datum_key]" = config_datum.get_current_value(new_occupation),
 		)

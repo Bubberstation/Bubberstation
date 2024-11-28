@@ -21,14 +21,11 @@
 	return ""
 
 /datum/preference/text/flavor_text_nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target.dna.features["flavor_text_nsfw"] = value
+	return FALSE
 
 //This is just a silicon variant of the NSFW flavor text.
 /datum/preference/text/flavor_text_nsfw/silicon
 	savefile_key = "silicon_flavor_text_nsfw"
-
-/datum/preference/text/flavor_text_nsfw/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
 
 //Lets the client choose when their NSFW flavor text is visible on a per-character basis.
 /datum/preference/choiced/show_nsfw_flavor_text
@@ -53,7 +50,7 @@
 	savefile_key = "headshot_nsfw"
 
 /datum/preference/text/headshot/nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target.dna.features["headshot_nsfw"] = value
+	return FALSE
 
 /datum/preference/text/headshot/nsfw/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)

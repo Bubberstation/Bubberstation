@@ -67,10 +67,6 @@ Assistant
 	give_jumpsuit(target)
 
 /datum/outfit/job/assistant/proc/give_jumpsuit(mob/living/carbon/human/target)
-	// SKYRAT EDIT - Loadouts (we don't want jumpsuits to override the person's loadout item)
-	if(modified_outfit_slots & ITEM_SLOT_ICLOTHING)
-		return
-	// SKYRAT EDIT END
 	var/static/jumpsuit_number = 0
 	jumpsuit_number += 1
 
@@ -79,6 +75,11 @@ Assistant
 		GLOB.colored_assistant = new configured_type
 
 	var/index = (jumpsuit_number % GLOB.colored_assistant.jumpsuits.len) + 1
+
+	// SKYRAT EDIT - Loadouts (we don't want jumpsuits to override the person's loadout item)
+	if(modified_outfit_slots & ITEM_SLOT_ICLOTHING)
+		return
+	// SKYRAT EDIT END
 
 	//We don't cache these, because they can delete on init
 	//Too fragile, better to just eat the cost

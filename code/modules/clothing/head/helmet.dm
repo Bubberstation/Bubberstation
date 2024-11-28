@@ -33,12 +33,6 @@
 
 /obj/item/clothing/head/helmet/sec
 	var/flipped_visor = FALSE
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
-	visor_toggle_up_sound = SFX_VISOR_UP
-	visor_toggle_down_sound = SFX_VISOR_DOWN
 
 /obj/item/clothing/head/helmet/sec/Initialize(mapload)
 	. = ..()
@@ -76,10 +70,8 @@
 	icon_state = base_icon_state
 	if (flipped_visor)
 		flags_cover &= ~HEADCOVERSEYES
-		playsound(src, SFX_VISOR_DOWN, 20, TRUE, -1)
 	else
 		flags_cover |= HEADCOVERSEYES
-		playsound(src, SFX_VISOR_UP, 20, TRUE, -1)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -87,10 +79,6 @@
 	name = "press helmet"
 	desc = "A blue helmet used to distinguish <i>non-combatant</i> \"PRESS\" members, like if anyone cares."
 	icon_state = "helmet_press"
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /obj/item/clothing/head/helmet/press/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = ..()
@@ -104,10 +92,6 @@
 	inhand_icon_state = "helmet"
 	armor_type = /datum/armor/helmet_alt
 	dog_fashion = null
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /datum/armor/helmet_alt
 	melee = 15
@@ -134,10 +118,6 @@
 	clothing_flags = STOPSPRESSUREDAMAGE | STACKABLE_HELMET_EXEMPT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	dog_fashion = null
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /datum/armor/helmet_marine
 	melee = 50
@@ -181,10 +161,6 @@
 	name = "degrading helmet"
 	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
 	tint = 2
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /obj/item/clothing/head/helmet/blueshirt
 	name = "blue helmet"
@@ -192,10 +168,6 @@
 	icon_state = "blueshift"
 	inhand_icon_state = "blueshift_helmet"
 	custom_premium_price = PAYCHECK_COMMAND
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 
 /obj/item/clothing/head/helmet/toggleable
@@ -228,12 +200,6 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
-	visor_toggle_up_sound = SFX_VISOR_UP
-	visor_toggle_down_sound = SFX_VISOR_DOWN
 
 /obj/item/clothing/head/helmet/toggleable/riot/Initialize(mapload)
 	. = ..()
@@ -275,12 +241,6 @@
 	COOLDOWN_DECLARE(visor_toggle_cooldown)
 	///Looping sound datum for the siren helmet
 	var/datum/looping_sound/siren/weewooloop
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
-	visor_toggle_up_sound = SFX_VISOR_UP
-	visor_toggle_down_sound = SFX_VISOR_DOWN
 
 /obj/item/clothing/head/helmet/toggleable/justice/adjust_visor(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, visor_toggle_cooldown))
@@ -323,10 +283,6 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	dog_fashion = null
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /obj/item/clothing/head/helmet/swat/Initialize(mapload)
 	. = ..()
@@ -432,17 +388,17 @@
 	flags_cover = HEADCOVERSEYES
 	dog_fashion = null
 
-/obj/item/clothing/head/helmet/taghelm
+/obj/item/clothing/head/helmet/redtaghelm
+	name = "red laser tag helmet"
+	desc = "They have chosen their own end."
+	icon_state = "redtaghelm"
 	flags_cover = HEADCOVERSEYES
+	inhand_icon_state = "redtag_helmet"
+	armor_type = /datum/armor/helmet_redtaghelm
 	// Offer about the same protection as a hardhat.
-	armor_type = /datum/armor/helmet_taghelm
 	dog_fashion = null
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
-/datum/armor/helmet_taghelm
+/datum/armor/helmet_redtaghelm
 	melee = 15
 	bullet = 10
 	laser = 20
@@ -450,17 +406,23 @@
 	bomb = 20
 	acid = 50
 
-/obj/item/clothing/head/helmet/taghelm/red
-	name = "red laser tag helmet"
-	desc = "They have chosen their own end."
-	icon_state = "redtaghelm"
-	inhand_icon_state = "redtag_helmet"
-
-/obj/item/clothing/head/helmet/taghelm/blue
+/obj/item/clothing/head/helmet/bluetaghelm
 	name = "blue laser tag helmet"
 	desc = "They'll need more men."
 	icon_state = "bluetaghelm"
+	flags_cover = HEADCOVERSEYES
 	inhand_icon_state = "bluetag_helmet"
+	armor_type = /datum/armor/helmet_bluetaghelm
+	// Offer about the same protection as a hardhat.
+	dog_fashion = null
+
+/datum/armor/helmet_bluetaghelm
+	melee = 15
+	bullet = 10
+	laser = 20
+	energy = 10
+	bomb = 20
+	acid = 50
 
 /obj/item/clothing/head/helmet/knight
 	name = "medieval helmet"
@@ -529,10 +491,6 @@
 	icon_state = "rus_helmet"
 	inhand_icon_state = "rus_helmet"
 	armor_type = /datum/armor/helmet_rus_helmet
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /datum/armor/helmet_rus_helmet
 	melee = 25
@@ -601,10 +559,6 @@
 	strip_delay = 80
 	dog_fashion = null
 	armor_type = /datum/armor/helmet_military
-	sound_vary = TRUE
-	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
-	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
-	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /datum/armor/helmet_military
 	melee = 45

@@ -88,6 +88,7 @@
 	air_contents = new
 	air_contents.temperature = T20C
 	air_contents.volume = volume
+	refresh_pressure_limit()
 
 	if(gas_type)
 		fill_to_pressure(gas_type)
@@ -120,7 +121,7 @@
 		. += span_notice("The pipe port can be moved or closed with a [wrench_hint].")
 	. += span_notice("A holographic sticker on it says that its maximum safe pressure is: [siunit_pressure(max_pressure, 0)].")
 
-/obj/machinery/atmospherics/components/tank/finalize_material_effects(list/materials)
+/obj/machinery/atmospherics/components/tank/set_custom_materials(list/materials, multiplier)
 	. = ..()
 	refresh_pressure_limit()
 

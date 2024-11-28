@@ -1,10 +1,3 @@
-/obj/item/clothing/neck
-	/// If this collar counts as a pet collar for kink purposes, such as with MKUltra
-	var/kink_collar = FALSE
-
-/obj/item/clothing/neck/petcollar
-	kink_collar = TRUE
-
 /datum/storage/pockets/small/collar
 	max_slots = 1
 
@@ -28,7 +21,6 @@
 	greyscale_colors = "#44BBEE#FFCC00"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	alternate_worn_layer = UNDER_SUIT_LAYER
-	kink_collar = TRUE
 	/// What's the name on the tag, if any?
 	var/tagname = null
 	/// What treat item spawns inside the collar?

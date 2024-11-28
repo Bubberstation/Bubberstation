@@ -7,7 +7,6 @@
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/operating
-	interaction_flags_machine = parent_type::interaction_flags_machine | INTERACT_MACHINE_REQUIRES_STANDING
 
 	var/obj/structure/table/optable/table
 	var/list/advanced_surgeries = list()
@@ -78,7 +77,7 @@
 			break
 
 /obj/machinery/computer/operating/ui_state(mob/user)
-	return GLOB.standing_state
+	return GLOB.not_incapacitated_state
 
 /obj/machinery/computer/operating/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()

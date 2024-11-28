@@ -453,7 +453,6 @@
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "sentrybot"
 	icon_living = "sentrybot"
-	icon_dead = "sentrybot_d"
 	casingtype = /obj/item/ammo_casing/c45
 	projectilesound = 'sound/items/weapons/gun/smg/shot.ogg'
 	health = 250

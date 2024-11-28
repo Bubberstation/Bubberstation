@@ -53,7 +53,6 @@
 	limb_id = BODYPART_ID_DIGITIGRADE
 	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
 
 /obj/item/bodypart/leg/left/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()
@@ -70,7 +69,6 @@
 	limb_id = BODYPART_ID_DIGITIGRADE
 	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
 
 /obj/item/bodypart/leg/right/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()

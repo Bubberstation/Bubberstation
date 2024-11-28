@@ -20,8 +20,7 @@
 	desc = "Dust from a brimdemon. It is considered valuable for its' botanical abilities."
 	icon_state = "brimdust"
 	icon = 'icons/obj/mining.dmi'
-	plane = GAME_PLANE
-	layer = GAME_CLEAN_LAYER
+	layer = FLOOR_CLEAN_LAYER
 	mergeable_decal = FALSE
 
 /obj/effect/decal/cleanable/brimdust/Initialize(mapload)

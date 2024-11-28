@@ -408,15 +408,10 @@
 
 	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
 
-	. = FALSE
 	for(var/name in names)
 		if(filter_data[name])
 			filter_data -= name
-			. = TRUE
-
-	if(.)
-		update_filters()
-	return .
+	update_filters()
 
 /datum/proc/clear_filters()
 	ASSERT(isatom(src) || isimage(src))

@@ -100,8 +100,13 @@
 	return ..()
 
 /mob/living/basic/bee/death(gibbed)
-	if(!(flags_1 & HOLOGRAM_1) && !gibbed)
-		spawn_corpse()
+	if(beehome)
+		beehome.bees -= src
+		beehome = null
+	beegent = null
+	if(flags_1 & HOLOGRAM_1 || gibbed)
+		return ..()
+	spawn_corpse()
 	return ..()
 
 /// Leave something to remember us by

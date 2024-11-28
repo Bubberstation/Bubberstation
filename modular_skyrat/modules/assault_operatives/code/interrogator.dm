@@ -97,7 +97,7 @@
 		return FALSE
 	if(!is_station_level(z))
 		return FALSE
-	if(human_occupant.stat == DEAD)
+	if(human_occupant.stat == DEAD) // BUBBER EDIT - DNR TRAIT REWORK
 		return FALSE
 	return TRUE
 

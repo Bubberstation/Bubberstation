@@ -17,11 +17,11 @@
 
 /datum/armament_entry/company_import/blacksteel/blade/bowie_knife
 	item_type = /obj/item/storage/belt/bowie_sheath
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 3
 
 /datum/armament_entry/company_import/blacksteel/blade/shamshir_sabre
 	item_type = /obj/item/storage/belt/sabre/cargo
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 3
 
 // Forging tools, blacksteel company sells the tools and materials they use as well!
 

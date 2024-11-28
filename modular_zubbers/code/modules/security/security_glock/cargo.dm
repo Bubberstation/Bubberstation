@@ -38,4 +38,3 @@
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/firing_pin/alert_level = 4)
 	crate_name = "alert level firing pin crate"
-

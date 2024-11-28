@@ -69,7 +69,6 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 	)),
 	"carps" = typecacheof(list(
 		/mob/living/basic/carp,
-		/mob/living/basic/space_dragon,
 	)),
 	"conspiracies" = typecacheof(list(
 		/mob/living/basic/drone,
@@ -248,7 +247,6 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 		/obj/item/clothing/mask/gas/carp,
 		/obj/item/cigarette/carp,
 		/obj/item/clothing/under/suit/carpskin,
-		/obj/item/fish/baby_carp,
 		/obj/item/food/cubancarp,
 		/obj/item/food/fishmeat/carp,
 		/obj/item/grenade/clusterbuster/spawner_spesscarp,
