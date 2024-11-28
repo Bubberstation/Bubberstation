@@ -176,6 +176,8 @@ These one are simply rediculous, but we'll keep it there incase someone has idea
 	cost = PAYCHECK_COMMAND * 46
 	contraband = TRUE
 
+*/
+
 /datum/armament_entry/company_import/sol_defense/magazines
 	subcategory = "Magazines"
 	cost = PAYCHECK_CREW
