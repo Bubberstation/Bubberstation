@@ -5,14 +5,7 @@ import { classes } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../../../backend';
-import {
-  BlockQuote,
-  Box,
-  Button,
-  Section,
-  Stack,
-  Tooltip,
-} from '../../../components';
+import { BlockQuote, Box, Button, Section, Stack } from '../../../components';
 import { CharacterPreview } from '../../CharacterPreview';
 import {
   createSetPreference,
