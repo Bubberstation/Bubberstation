@@ -60,7 +60,3 @@
 /// Defines whether the server uses the legacy mentor system with mentors.txt or the SQL system.
 /datum/config_entry/flag/mentor_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
-
-/// Defines whether the server uses the legacy veteran system with veteran_players.txt or the SQL system.
-/datum/config_entry/flag/veteran_legacy_system
-	protection = CONFIG_ENTRY_LOCKED
