@@ -48,6 +48,4 @@
 	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/double_barrel
-	name = "Double-barreled Shotgun Single-Pack"
-	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
 	cost = PAYCHECK_COMMAND * 14 //This is outclassed by peacekeeper combat shotgun
