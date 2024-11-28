@@ -36,9 +36,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 
 		if(SSplayer_ranks.is_mentor(player.client, admin_bypass = FALSE))
 			player_ranks += "Mentor"
-
-		if(SSplayer_ranks.is_veteran(player.client, admin_bypass = FALSE))
-			player_ranks += "Veteran"
 		//BUBBER ADDITION START
 		if(SSplayer_ranks.is_vetted(player.client, admin_bypass = FALSE))
 			player_ranks |= "Vetted"

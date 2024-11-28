@@ -348,7 +348,7 @@
 		var/datum/species/targetspecies = humantarget.dna.species
 		var/mutant = HAS_TRAIT(humantarget, TRAIT_HULK)
 
-		render_list += "<span class='info ml-1'>Species: [targetspecies.name][mutant ? "-derived mutant" : ""]</span><br>"
+		render_list += "<span class='info ml-1'>Species: <b>[targetspecies.name][mutant ? "-derived mutant" : ""]</b></span><br>" // Bubber Edit: Bold species name
 		var/core_temperature_message = "Core temperature: [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)"
 		if(humantarget.coretemperature >= humantarget.get_body_temp_heat_damage_limit())
 			render_list += "<span class='alert ml-1'>☼ [core_temperature_message] ☼</span><br>"
