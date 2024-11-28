@@ -29,3 +29,5 @@
 #define TRAIT_PET_SKILLCHIP "mkii_ultra"
 
 #define TRAIT_SIGN_LANGUAGE_BLOCKED "sign_language_blocked"
+
+#define TRAIT_CULT_SOUL_SUCKED "cult_soul_sucked"

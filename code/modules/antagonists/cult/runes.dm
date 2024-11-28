@@ -387,15 +387,31 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return TRUE
 	if(sacrificial && (signal_result & DUST_SACRIFICE)) // No soulstone when dusted
 		playsound(sacrificial, 'sound/effects/magic/teleport_diss.ogg', 100, TRUE)
-		sacrificial.investigate_log("has been sacrificially dusted by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.dust(TRUE, FALSE, TRUE)
+		// BUBBER EDIT: removes cult dusting a player
+		sacrificial.investigate_log("has been sacrificially gutted by the cult.", INVESTIGATE_DEATHS)
+		var/obj/item/organ/chest/chest
+		sacrificial.spill_organs(DROP_ALL_REMAINS)
+		sacrificial.apply_damage(250, BRUTE)
+		// BUBBER EDIT END
 	else if (sacrificial)
+		// BUBBER EDIT: removes cult gibbing a player
 		var/obj/item/soulstone/stone = new(loc)
-		if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
-			stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
 		playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
 		sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.gib(DROP_ALL_REMAINS)
+		sacrificial.spill_organs(DROP_ALL_REMAINS)
+		sacrificial.apply_damage(250, BRUTE)
+		var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+			check_jobban = ROLE_CULTIST,
+			poll_time = 20 SECONDS,
+			checked_target = src,
+			ignore_category = POLL_IGNORE_SHADE,
+			alert_pic = /mob/living/basic/shade,
+			jump_target = src,
+			role_name_text = "a shade",
+			chat_text_border_icon = /mob/living/basic/shade,
+		)
+		stone.on_poll_concluded(invokers[1], sacrificial, chosen_one)
+		// BUBBER EDIT END
 
 	try_spawn_sword() // after sharding and gibbing, which potentially dropped a null rod
 

@@ -67,6 +67,10 @@
 	var/list/possible_spells = list()
 	for(var/I in subtypesof(/datum/action/innate/cult/blood_spell))
 		var/datum/action/innate/cult/blood_spell/J = I
+		// BUBBER ADDITION START
+		if(!initial(J.can_carve))
+			continue
+		// BUBBER ADDITION END
 		var/cult_name = initial(J.name)
 		possible_spells[cult_name] = J
 	possible_spells += "(REMOVE SPELL)"
@@ -120,6 +124,8 @@
 	/// If false, the spell will not delete after running out of charges
 	var/deletes_on_empty = TRUE
 
+	var/can_carve = TRUE // bubber addition
+
 /datum/action/innate/cult/blood_spell/Grant(mob/living/owner, datum/action/innate/cult/blood_magic/BM)
 	if(health_cost)
 		desc += "<br>Deals <u>[health_cost] damage</u> to your arm per use."
@@ -164,6 +170,7 @@
 	button_icon_state = "hand"
 	magic_path = /obj/item/melee/blood_magic/stun
 	health_cost = 10
+	can_carve = FALSE // bubber addition
 
 /datum/action/innate/cult/blood_spell/teleport
 	name = "Teleport"

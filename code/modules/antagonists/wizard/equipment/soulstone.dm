@@ -315,12 +315,19 @@
 			to_chat(user, "[span_userdanger("Capture failed!")]: Kill or maim the victim first!")
 			return FALSE
 
-	victim.grab_ghost()
-	if(victim.client)
-		init_shade(victim, user)
-		return TRUE
+	// BUBBER REMOVAL START CULT RR removal
+	// victim.grab_ghost()
+	// if(victim.client)
+	// 	init_shade(victim, user)
+	// 	return TRUE
+	if(HAS_TRAIT(victim, TRAIT_CULT_SOUL_SUCKED)) //todo remove this on defib
+		to_chat(user, span_warning("This soul has already been harvested!"))
+		return FALSE
 
-	to_chat(user, "[span_userdanger("Capture failed!")]: The soul has already fled its mortal frame. You attempt to bring it back...")
+	ADD_TRAIT(victim, TRAIT_CULT_SOUL_SUCKED, src)
+	// BUBBBER REMOVAL END
+
+	to_chat(user, span_cult("You try and bring forth a soul using the lifeless body of [victim].")) // BUBBER CHANGE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		check_jobban = ROLE_CULTIST,
 		poll_time = 20 SECONDS,
@@ -424,7 +431,8 @@
 			to_chat(user, "[span_info("<b>Capture successful!</b>:")] [victim.real_name]'s soul has been ripped \
 				from [victim.p_their()] body and stored within [src].")
 
-	victim.dust(drop_items = TRUE)
+	// victim.dust(drop_items = TRUE) // BUBBER REMOVAL - removing cult RR'S
+	victim.death()
 
 /**
  * Assigns the bearer as the new master of a shade.
