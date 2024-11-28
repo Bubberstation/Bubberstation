@@ -87,8 +87,8 @@
 	var/burn_healed = burnhealing
 	var/dead_patient = FALSE
 	if(target.stat == DEAD) //dead patients get way less additional heal from the damage they have.
-		brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.2)),0.1)
-		burn_healed += round((target.getFireLoss() * (burn_multiplier * 0.2)),0.1)
+		brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.75)),0.1) // BUBBER EDIT CHANGE - Original: brute_multiplier * 0.2
+		burn_healed += round((target.getFireLoss() * (burn_multiplier * 0.75)),0.1) // BUBBER EDIT CHANGE - Original: burn_multiplier * 0.2
 		dead_patient = TRUE
 	else
 		brute_healed += round((target.getBruteLoss() * brute_multiplier),0.1)
