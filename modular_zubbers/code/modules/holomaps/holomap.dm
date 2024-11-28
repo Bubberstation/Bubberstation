@@ -81,7 +81,7 @@
 
 	if(!holomap_datum)
 		// Something is very wrong if we have to un-fuck ourselves here.
-		message_admins("\[HOLOMAP] WARNING: Holomap at [x], [y], [z] [ADMIN_FLW(src)] had to set itself up on interact! Something during Initialize went very wrong!")
+		stack_trace("\[HOLOMAP] WARNING: Holomap at [x], [y], [z] [ADMIN_FLW(src)] had to set itself up on interact! Something during Initialize went very wrong!")
 		setup_holomap()
 
 	holomap_datum.update_map(handle_overlays())
