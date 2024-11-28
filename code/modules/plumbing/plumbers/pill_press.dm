@@ -1,7 +1,7 @@
 ///the minimum size of a pill or patch
-#define MIN_VOLUME 5
+#define MIN_VOLUME 1 // BUBBER EDIT - 5 -> 1
 ///the maximum size a pill or patch can be
-#define MAX_VOLUME 50
+#define MAX_VOLUME 100 // BUBBER EDIT - 50 -> 100
 ///max amount of pills allowed on our tile before we start storing them instead
 #define MAX_FLOOR_PRODUCTS 10
 
@@ -25,6 +25,10 @@
 	var/packaging_category
 	/// list of products stored in the machine, so we dont have 610 pills on one tile
 	var/list/stored_products = list()
+	// BUBBER EDIT BEGIN
+	/// Increases the standard plumbing machine buffer to account for the increased max volume
+	buffer = MAX_VOLUME
+	// BUBBER EDIT END
 
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt, layer)
 	. = ..()
@@ -35,9 +39,8 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			"Bottles" = list(/obj/item/reagent_containers/cup/bottle),
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
-
 		)
 
 		packaging_types = list()
