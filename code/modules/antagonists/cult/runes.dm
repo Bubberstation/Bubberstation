@@ -389,7 +389,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 		playsound(sacrificial, 'sound/effects/magic/teleport_diss.ogg', 100, TRUE)
 		// BUBBER EDIT: removes cult dusting a player
 		sacrificial.investigate_log("has been sacrificially gutted by the cult.", INVESTIGATE_DEATHS)
-		var/obj/item/organ/chest/chest
 		sacrificial.spill_organs(DROP_ALL_REMAINS)
 		sacrificial.apply_damage(250, BRUTE)
 		// BUBBER EDIT END
