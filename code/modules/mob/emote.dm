@@ -88,7 +88,7 @@
 		var/mob/living/carbon/flippy_mcgee = user
 		flippy_mcgee.set_confusion_if_lower(FLIP_EMOTE_DURATION)
 		if(flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
-			flippy_mcgee.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0, vomit_type = (issynthetic(flippy_mcgee) && /obj/effect/decal/cleanable/vomit/nanites || /obj/effect/decal/cleanable/vomit/toxic))
+			flippy_mcgee.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 			return
 
 	user.SpinAnimation(FLIP_EMOTE_DURATION, 1)
@@ -127,7 +127,7 @@
 
 	var/mob/living/flippy_mcgee = user
 	var/sickness = flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion)
-	if(sickness)
+	if(sickness && !(HAS_TRAIT(flippy_mcgee, TRAIT_FREERUNNING)))
 		if(prob(20))
 			flippy_mcgee.Knockdown(1.5 SECONDS)
 			flippy_mcgee.visible_message(
@@ -159,9 +159,13 @@
 		return
 	if(!iscarbon(user))
 		return
+	// BUBBER EDIT ADDITION BEGIN - Freerunning Quirk
+	if(HAS_TRAIT(user, TRAIT_FREERUNNING))
+		return
+	// BUBBER EDIT ADDITION END
 
 	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
-		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0, vomit_type = (issynthetic(user) && /obj/effect/decal/cleanable/vomit/nanites || /obj/effect/decal/cleanable/vomit/toxic)) // BUBBER EDIT CHANGE - Original: user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
+		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 		return
 
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))

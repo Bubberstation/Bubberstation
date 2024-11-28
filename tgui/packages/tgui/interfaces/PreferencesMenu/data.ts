@@ -52,8 +52,6 @@ export type Species = {
 
   enabled_features: string[];
 
-  veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
-
   perks: {
     positive: Perk[];
     negative: Perk[];
@@ -81,7 +79,6 @@ export type Job = {
   description: string;
   department: string;
   // SKYRAT EDIT
-  veteran?: boolean;
   alt_titles?: string[];
   // SKYRAT EDIT END
 };
@@ -93,7 +90,6 @@ export type Quirk = {
   value: number;
   customizable: boolean;
   customization_options?: string[];
-  veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
   species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
@@ -182,7 +178,6 @@ export type PreferencesMenuData = {
   preview_options: string[]; // SKYRAT EDIT ADDITION
   preview_selection: string; // SKYRAT EDIT ADDITION
 
-  is_veteran: BooleanLike; // SKYRAT EDIT - Veteran status
   is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
