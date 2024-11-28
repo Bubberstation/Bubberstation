@@ -22,11 +22,11 @@
 	design_ids = list(
 		"mod_plating_tarkon",
 		"arcs",
-		"rcd_tarkon", //BUBBER EDIT (comma)
-		"powerator_tarkon",//BUBBER EDIT Addition start
+		"rcd_tarkon",
+		"powerator_tarkon",
 		"cargoconsole_tarkon",
 		"bountypad_tarkon",
-		"bountyconsole_tarkon"//BUBBER EDIT Addition end
+		"bountyconsole_tarkon"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
