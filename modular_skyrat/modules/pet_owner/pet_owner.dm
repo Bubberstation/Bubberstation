@@ -4,7 +4,6 @@
 	icon = FA_ICON_HORSE
 	value = 4
 	mob_trait = TRAIT_PET_OWNER
-	veteran_only = TRUE
 	gain_text = span_notice("You brought your pet with you to work.")
 	lose_text = span_danger("You feel lonely, as if leaving somebody behind...")
 	medical_record_text = "Patient mentions their fondness for their pet."
