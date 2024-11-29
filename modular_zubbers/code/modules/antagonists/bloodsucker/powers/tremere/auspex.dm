@@ -35,6 +35,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc_extended()
 	. = "Hide yourself within a Cloak of Darkness, click on a tile to teleport"
+	. = "Costs [AUSPEX_BLOOD_COST_PER_TILE] blood per tile teleported."
 	if(target_range)
 		. += " up to [target_range] tiles away."
 	else
@@ -64,7 +65,7 @@
 	var/turf/target_turf = target_atom
 	if(target_turf.is_blocked_turf_ignore_climbable())
 		return FALSE
-	if(level_current >= !(target_turf in view(owner.client.view, owner.client)))
+	if(level_current < AUSPEX_ANYWHERE_LEVEL && !(target_turf in view(owner.client.view, owner.client)))
 		owner.balloon_alert(owner, "out of view!")
 		return FALSE
 	return TRUE
