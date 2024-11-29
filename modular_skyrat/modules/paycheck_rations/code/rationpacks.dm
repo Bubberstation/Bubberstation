@@ -130,16 +130,3 @@
 	new bread_slice(src)
 	var/cheese_slice = pick(/obj/item/food/cheese/wedge, /obj/item/food/cheese/firm_cheese_slice, /obj/item/food/cheese/cheese_curds, /obj/item/food/cheese/mozzarella)
 	new cheese_slice(src)
-
-// vegetarian ration, no meat here
-
-/obj/item/storage/box/papersack/ration_vege
-	name = "vegetarian ration bag"
-	desc = "A dusty old paper sack that should ideally contain your plant-based foods"
-
-/obj/item/storage/box/papersack/ration_bread_slice/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 3
-
-/obj/item/storage/box/papersack/ration_vege/PopulateContents()
-	// tofu and random veggies?
