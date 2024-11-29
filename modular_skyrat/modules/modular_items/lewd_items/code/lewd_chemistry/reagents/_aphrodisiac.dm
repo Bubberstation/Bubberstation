@@ -31,7 +31,7 @@
 	var/balls_increase_chance = 10
 
 	/// Largest length the chem can make a mob's penis
-	var/penis_max_length = PENIS_MAX_LENGTH
+	var/penis_max_length = INFINITY
 	/// Smallest size the chem can make a mob's penis
 	var/penis_min_length = PENIS_MIN_LENGTH
 	/// How much the penis is increased in size each time it's run
@@ -61,7 +61,7 @@
 	var/balls_enormous_size_threshold = PENIS_MAX_LENGTH - 4
 
 	/// Largest size the chem can make a mob's breasts
-	var/max_breast_size = 16
+	var/max_breast_size = INFINITY
 	/// How much breasts are increased in size each time it's run
 	var/breast_size_increase_step = 1
 	/// Smallest size the chem can make a mob's breasts
