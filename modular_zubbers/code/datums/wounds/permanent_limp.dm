@@ -42,6 +42,7 @@
 	required_wounding_types = list(WOUND_ALL)
 
 	wound_series = WOUND_SERIES_PERM_LIMP_BASIC
+	can_be_randomly_generated = FALSE
 
 /datum/wound_pregen_data/perm_limp/right
 	abstract = FALSE
