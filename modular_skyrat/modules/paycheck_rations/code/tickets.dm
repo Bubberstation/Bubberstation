@@ -28,6 +28,8 @@
 		"Seafood Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_fish"),
 		"Tizirian Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_lizard"),
 		"Ethereal Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_ethereal"),
+		"Blood" = image(icon = 'icons/obj/medical/bloodpack.dmi', icon_state = "bloodpack"),
+		"Glucose Medipens" = image(icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi', icon_state = "glupens"),
 	)
 
 	var/meats_choice = show_radial_menu(user, object_we_attack, radial_meat_options, require_near = TRUE)
@@ -47,6 +49,11 @@
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/lizard
 		if("Ethereal Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/ethereal
+		if("Blood")
+			items_we_deliver += /obj/item/reagent_containers/blood/a_plus //"highest quality blood - actually to stop people using it for transfusions"
+		if("Glucose Medipens")
+			items_we_deliver += /obj/item/reagent_containers/hypospray/medipen/glucose
+			items_we_deliver += /obj/item/reagent_containers/hypospray/medipen/glucose
 
 	// List of produce options we get
 	var/list/radial_produce_options = list(
@@ -179,7 +186,8 @@
 		"Navy Rum" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "navy_rum"),
 		"Ginger Beer" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "gingie_beer"),
 		"Kortara" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "kortara"),
-		"Voltaic Wine" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "wine_voltaic_canned")
+		"Voltaic Wine" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "wine_voltaic_canned"),
+		"Hemoglobin Iced Tea" = image(icon = 'modular_zubbers/icons/obj/drinks/soda.dmi', icon_state = "blood_tea"),
 	)
 
 	var/alcohol_choice = show_radial_menu(user, object_we_attack, radial_alcohol_options, require_near = TRUE)
@@ -202,6 +210,9 @@
 		if("Voltaic Wine")
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
+		if("Hemoglobin Iced Tea")
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
 
 	// List of produce options we get
 	var/list/radial_consumables_options = list(
