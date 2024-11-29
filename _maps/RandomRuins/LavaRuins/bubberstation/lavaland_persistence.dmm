@@ -33,7 +33,10 @@
 /obj/item/wrench/medical,
 /obj/item/wrench/medical,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/portables_connector/layer2,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "aj" = (
@@ -206,6 +209,7 @@
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "aN" = (
@@ -459,6 +463,9 @@
 	req_access = list("syndicate")
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "bH" = (
@@ -865,6 +872,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "cV" = (
@@ -1234,6 +1242,9 @@
 /obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Chemistry";
 	req_access = list("syndicate")
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold/orange/hidden{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
@@ -1786,6 +1797,10 @@
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/space/has_grav/bubbers/persistance/evac)
+"fA" = (
+/obj/effect/turf_decal/siding/dark/corner,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "fB" = (
 /obj/effect/turf_decal/siding,
 /obj/machinery/duct,
@@ -5156,6 +5171,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
+"px" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light/directional/east,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "pz" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/dark/visible{
@@ -5534,6 +5557,9 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "qO" = (
@@ -5705,6 +5731,12 @@
 /obj/item/vending_refill/hotdog,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
+"rk" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "rl" = (
 /obj/structure/chair{
 	dir = 8
@@ -5750,9 +5782,6 @@
 /obj/machinery/light_switch/directional/south,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/box/beakers/bluespace,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = -4
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "ru" = (
@@ -6506,9 +6535,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold/orange/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "tx" = (
@@ -6693,12 +6721,12 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "tZ" = (
 /obj/structure/sign/poster/official/periodic_table/directional/west,
-/obj/machinery/chem_heater/withbuffer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "ua" = (
@@ -6870,6 +6898,9 @@
 "uu" = (
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -7689,6 +7720,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/light/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "wY" = (
@@ -8475,13 +8507,6 @@
 	dir = 8
 	},
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
-"zf" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/firealarm/directional/east,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "zg" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
@@ -8592,10 +8617,10 @@
 "zz" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/structure/sign/warning/no_smoking/directional/west,
-/obj/machinery/chem_dispenser/fullupgrade,
 /obj/machinery/light/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/chem_heater/withbuffer,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "zB" = (
@@ -8890,6 +8915,9 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/reagentgrinder{
 	pixel_y = 5
+	},
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = -4
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
@@ -10252,6 +10280,7 @@
 	pixel_x = 3;
 	pixel_y = 6
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "Er" = (
@@ -10655,6 +10684,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
 "Fq" = (
@@ -11086,10 +11116,6 @@
 "GH" = (
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
-"GI" = (
-/obj/machinery/light/directional/south,
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "GK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -11617,6 +11643,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/noslip/tram,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
@@ -12367,13 +12396,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"Kt" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 2;
-	icon_state = "siding_plain_end"
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "Ku" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -17145,6 +17167,9 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "Zz" = (
@@ -18211,11 +18236,11 @@ aC
 RB
 it
 BW
-Pz
+fA
 uu
 qM
 Zw
-Kt
+Zo
 GD
 kZ
 JX
@@ -18283,7 +18308,7 @@ Nu
 Xl
 it
 We
-iS
+rk
 qV
 ig
 AB
@@ -19873,8 +19898,8 @@ eA
 uX
 SQ
 iC
-FJ
-zf
+px
+iC
 iC
 iC
 iC
@@ -20018,7 +20043,7 @@ hU
 Hi
 qW
 cT
-GI
+HY
 HY
 HY
 HY
@@ -21094,7 +21119,7 @@ Jr
 UV
 UV
 UV
-ZZ
+Yd
 qB
 JM
 Ik
