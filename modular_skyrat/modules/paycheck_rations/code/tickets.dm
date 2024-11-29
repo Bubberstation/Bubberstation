@@ -29,7 +29,7 @@
 		"Tizirian Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_lizard"),
 		"Ethereal Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_ethereal"),
 		"Blood" = image(icon = 'icons/obj/medical/bloodpack.dmi', icon_state = "bloodpack"),
-		"Glucose Medipens" = image(icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi', icon_state = "glupens"),
+		"Glucose Medipens" = image(icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi', icon_state = "glupen"),
 	)
 
 	var/meats_choice = show_radial_menu(user, object_we_attack, radial_meat_options, require_near = TRUE)
@@ -50,7 +50,7 @@
 		if("Ethereal Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/ethereal
 		if("Blood")
-			items_we_deliver += /obj/item/reagent_containers/blood/a_plus //"highest quality blood - actually to stop people using it for transfusions"
+			items_we_deliver += /obj/item/reagent_containers/blood/random
 		if("Glucose Medipens")
 			items_we_deliver += /obj/item/reagent_containers/hypospray/medipen/glucose
 			items_we_deliver += /obj/item/reagent_containers/hypospray/medipen/glucose
@@ -188,6 +188,7 @@
 		"Kortara" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "kortara"),
 		"Voltaic Wine" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "wine_voltaic_canned"),
 		"Hemoglobin Iced Tea" = image(icon = 'modular_zubbers/icons/obj/drinks/soda.dmi', icon_state = "blood_tea"),
+		"Soda" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "soda_water")
 	)
 
 	var/alcohol_choice = show_radial_menu(user, object_we_attack, radial_alcohol_options, require_near = TRUE)
@@ -213,12 +214,16 @@
 		if("Hemoglobin Iced Tea")
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
+		if("Soda")
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/soda_water_moth
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/lemonade
 
 	// List of produce options we get
 	var/list/radial_consumables_options = list(
 		"Cigarettes" = image(icon = 'icons/obj/cigarettes.dmi', icon_state = "robust"),
 		"Coffee Powder" = image(icon = 'icons/obj/food/cartridges.dmi', icon_state = "cartridge_blend"),
 		"Tea Powder" = image(icon = 'icons/obj/service/hydroponics/harvest.dmi', icon_state = "tea_aspera_leaves"),
+		"Mixed Gum" = image(icon = 'modular_skyrat/modules/food_replicator/icons/rationpack.dmi', icon_state = "bubblegum"),
 	)
 
 	var/consumables_choice = show_radial_menu(user, object_we_attack, radial_consumables_options, require_near = TRUE)
@@ -237,6 +242,8 @@
 			items_we_deliver += /obj/item/reagent_containers/cup/glass/bottle/small/tiny/coffee
 		if("Tea Powder")
 			items_we_deliver += /obj/item/reagent_containers/cup/glass/bottle/small/tiny/tea
+		if("Mixed Gum")
+			items_we_deliver += /obj/item/storage/box/gum/colonial
 
 	items_we_deliver += /obj/item/reagent_containers/cup/glass/bottle/small/tiny/honey
 	items_we_deliver += /obj/item/reagent_containers/cup/glass/bottle/small/tiny/caramel
