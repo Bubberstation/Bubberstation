@@ -142,7 +142,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_MASK
 	grind_results = list()
-	heat = 415 //BUBBER EDIT CHANGE - Limits heat exposure to prevent condensing THC or turning space drugs to fentanyl. Original: 1000.
+	heat = 1000
 	throw_verb = "flick"
 	/// Whether this cigarette has been lit.
 	VAR_FINAL/lit = FALSE
