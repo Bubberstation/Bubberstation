@@ -550,3 +550,12 @@
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
+/obj/item/clothing/neck/tie/allamerican
+	name = "all-american diner manager tie"
+	desc = "A dark grey tie with a golden clip on it, makes you look formal in a joint usually covered in grease!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "allamerican"
+	greyscale_colors = null
+	is_tied = TRUE
+	clip_on = TRUE
