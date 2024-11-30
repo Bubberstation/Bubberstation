@@ -28,7 +28,7 @@
 	donator_only = TRUE //Dono item for Kan3
 
 /datum/loadout_item/suit/collared_vest
-	name = "Collared Vest"
+	name = "GLP-C 'Úlfur' Vest"
 	item_path = /obj/item/clothing/suit/armor/vest/collared_vest
 	restricted_roles = list(JOB_NT_REP, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD)
 	donator_only = TRUE //Dono item for offwrldr
