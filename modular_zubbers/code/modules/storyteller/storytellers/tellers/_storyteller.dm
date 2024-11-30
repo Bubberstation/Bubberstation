@@ -65,7 +65,11 @@
 		mode.event_track_points[track] += point_gain
 		mode.last_point_gains[track] = point_gain
 
-/// Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
+/**
+ * Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
+ *
+ * Additionally updates static ui data once it's done incase event track data has changed
+ */
 /datum/storyteller/proc/handle_tracks()
 	. = FALSE //Has return value for the roundstart loop
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
@@ -73,6 +77,7 @@
 		var/points = mode.event_track_points[track]
 		if(points >= mode.point_thresholds[track] && find_and_buy_event_from_track(track))
 			. = TRUE
+	mode.update_static_data_for_all_viewers()
 
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/find_and_buy_event_from_track(track)
@@ -128,7 +133,9 @@
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
 
-/// Calculates the weights of the events from a passed track.
+/**
+ * Calculates the weights of the events from a passed track.
+ */
 /datum/storyteller/proc/calculate_weights(track)
 	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
 		var/weight_total = event.weight
@@ -144,3 +151,9 @@
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
 		/// Write it
 		event.calculated_weight = round(weight_total, 1)
+
+/datum/storyteller/proc/calculate_weights_all()
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	for(var/track in mode.event_tracks)
+		calculate_weights(track)
+	mode.update_static_data_for_all_viewers()
