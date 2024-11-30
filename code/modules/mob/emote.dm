@@ -127,7 +127,7 @@
 
 	var/mob/living/flippy_mcgee = user
 	var/sickness = flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion)
-	if(sickness)
+	if(sickness && !(HAS_TRAIT(flippy_mcgee, TRAIT_FREERUNNING)))
 		if(prob(20))
 			flippy_mcgee.Knockdown(1.5 SECONDS)
 			flippy_mcgee.visible_message(
@@ -159,6 +159,10 @@
 		return
 	if(!iscarbon(user))
 		return
+	// BUBBER EDIT ADDITION BEGIN - Freerunning Quirk
+	if(HAS_TRAIT(user, TRAIT_FREERUNNING))
+		return
+	// BUBBER EDIT ADDITION END
 
 	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
