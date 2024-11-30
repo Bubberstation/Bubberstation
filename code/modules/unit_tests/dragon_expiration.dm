@@ -25,6 +25,7 @@
 
 	// BUBBER CHANGE START: dragon doesn't have a riftTimer anymore
 	dragon_time.death()
+	qdel(dragon_time)
 	// dragon_antag_datum.riftTimer = dragon_antag_datum.maxRiftTimer + 1
 	// dragon_antag_datum.rift_checks()
 
