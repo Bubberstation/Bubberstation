@@ -54,4 +54,6 @@
 /obj/item/gun/ballistic/automatic/rom_smg/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
 
+/obj/item/gun/ballistic/automatic/rom_smg/no_mag
+	spawnwithmagazine = FALSE
 //Does not have additional examine text.. Yet
