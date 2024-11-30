@@ -132,19 +132,21 @@
 /datum/antagonist/space_dragon/proc/rift_checks()
 	if((rifts_charged == 3 || (SSshuttle.emergency.mode == SHUTTLE_DOCKED && rifts_charged > 0)) && !objective_complete)
 		victory()
-		return
-	if(riftTimer == -1)
-		return
-	riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
-	if(riftTimer == (maxRiftTimer - 60))
-		to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
-		return
-	if(riftTimer >= maxRiftTimer)
-		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You're being pulled back from whence you came!"))
-		destroy_rifts()
-		SEND_SOUND(owner.current, sound('sound/effects/magic/demon_dies.ogg'))
-		owner.current.death(/* gibbed = */ TRUE)
-		QDEL_NULL(owner.current)
+	// BUBBER REMOVAL START
+	// 	return
+	// if(riftTimer == -1)
+	// 	return
+	// riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
+	// if(riftTimer == (maxRiftTimer - 60))
+	// 	to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
+	// 	return
+	// if(riftTimer >= maxRiftTimer)
+	// 	to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You're being pulled back from whence you came!"))
+	// 	destroy_rifts()
+	// 	SEND_SOUND(owner.current, sound('sound/effects/magic/demon_dies.ogg'))
+	// 	owner.current.death(/* gibbed = */ TRUE)
+	// 	QDEL_NULL(owner.current)
+	// BUBBER REMOVAL END
 
 /**
  * Destroys all of Space Dragon's current rifts.
