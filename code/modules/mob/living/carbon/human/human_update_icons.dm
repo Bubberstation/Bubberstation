@@ -1011,7 +1011,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		var/checked_bodyshape = limb.bodyshape
 		// accounts for stuff like snouts
 		for(var/obj/item/organ/organ in limb)
-			checked_bodyshape |= organ.external_bodyshapes
+			checked_bodyshape |= organ.owner.bodyshape
 
 		// any limb needs to be updated, so stop here and do it
 		if(checked_bodyshape & check_shapes)
