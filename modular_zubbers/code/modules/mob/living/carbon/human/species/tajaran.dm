@@ -109,7 +109,7 @@
 
 	return to_add
 
-/obj/item/bodypart/chest/tajaran/get_butt_sprite()
+/obj/item/bodypart/chest/mutant/tajaran/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_CAT)
 
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
