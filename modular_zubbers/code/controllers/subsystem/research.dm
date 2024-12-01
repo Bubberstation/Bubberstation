@@ -13,6 +13,7 @@
 		/area/ruin/syndicate_lava_base, // Interdyne (ice moon)
 		/area/ruin/space/has_grav/bubbers/dauntless, // SSV Dauntless (lavalands)
 		/area/ruin/space/has_grav/bubbers/dauntless_space, // SSV Dauntless (space)
+		/area/ruin/space/has_grav/bubbers/persistance, // Both Persistence maps
 	))
 
 	var/is_syndie_machine = is_type_in_typecache(location_area.loc, syndie_typecache) // If the machine is located within a Syndie tagged area
