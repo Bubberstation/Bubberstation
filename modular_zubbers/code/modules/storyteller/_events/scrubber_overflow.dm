@@ -10,10 +10,10 @@
 		/datum/reagent/consumable/condensedcapsaicin,
 		/datum/reagent/consumable/cream,
 		/datum/reagent/consumable/ethanol/antifreeze,
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/consumable/ethanol/fernet_cola,
 		/datum/reagent/consumable/ethanol/sugar_rush,
+		/datum/reagent/consumable/ethanol/singulo,
 		/datum/reagent/consumable/ethanol/synthanol,
+		/datum/reagent/consumable/ethanol/whiskey,
 		/datum/reagent/consumable/flour,
 		/datum/reagent/consumable/ice,
 		/datum/reagent/consumable/laughter,
@@ -43,3 +43,11 @@
 		/datum/reagent/water/salt,
 		/datum/reagent/yuck,
 	)
+	reagents_amount = 40
+
+/datum/round_event/scrubber_overflow/threatening
+	reagents_amount = 60
+
+/datum/round_event/scrubber_overflow/catastrophic
+	reagents_amount = 80
+
