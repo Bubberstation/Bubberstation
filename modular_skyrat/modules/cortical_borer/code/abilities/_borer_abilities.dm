@@ -409,6 +409,24 @@
 	cooldown_time = 12 SECONDS
 	button_icon_state = "fear"
 
+/datum/action/cooldown/mob_cooldown/borer/fear_human/Activate(target)
+	. = ..()
+	if(!ishuman(target)) //no nonhuman hosts
+		owner.balloon_alert(owner, "not human!")
+		return FALSE
+	var/mob/living/carbon/human/human_target = target
+	if(human_target.stat == DEAD) //no dead hosts
+		owner.balloon_alert(owner, "dead!")
+		return FALSE
+	if(!owner.Adjacent(human_target))
+		owner.balloon_alert(owner, "chosen target too far")
+		return FALSE
+	if(considered_afk(human_target.mind))
+		owner.balloon_alert(owner, "mind inactive!")
+		return FALSE
+	incite_fear(target)
+	return TRUE
+
 /datum/action/cooldown/mob_cooldown/borer/fear_human/Trigger(trigger_flags, atom/target)
 	. = ..()
 	if(!.)
@@ -416,32 +434,15 @@
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
 	if(cortical_owner.host_sugar())
 		owner.balloon_alert(owner, "cannot function with sugar in host")
-		return
+		return FALSE
 	if(cortical_owner.human_host)
+		if(considered_afk(cortical_owner.human_host.mind))
+			owner.balloon_alert(owner, "mind inactive!")
+			return FALSE
 		incite_internal_fear()
+		unset_click_ability(owner, FALSE)
 		StartCooldown()
-		return
-	var/list/potential_freezers = list()
-	for(var/mob/living/carbon/human/listed_human in range(1, cortical_owner))
-		if(!ishuman(listed_human)) //no nonhuman hosts
-			continue
-		if(listed_human.stat == DEAD) //no dead hosts
-			continue
-		if(considered_afk(listed_human.mind)) //no afk hosts
-			continue
-		potential_freezers += listed_human
-	if(length(potential_freezers) == 1)
-		incite_fear(potential_freezers[1])
-		return
-	var/mob/living/carbon/human/choose_fear = tgui_input_list(cortical_owner, "Choose who you will fear!", "Fear Choice", potential_freezers)
-	if(!choose_fear)
-		owner.balloon_alert(owner, "no target chosen")
-		return
-	if(get_dist(choose_fear, cortical_owner) > 1)
-		owner.balloon_alert(owner, "chosen target too far")
-		return
-	incite_fear(choose_fear)
-	StartCooldown()
+		return TRUE
 
 /datum/action/cooldown/mob_cooldown/borer/fear_human/proc/incite_fear(mob/living/carbon/human/singular_fear)
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
@@ -506,17 +507,20 @@
 	if(!cortical_owner.inside_human())
 		owner.balloon_alert(owner, "must be in a host")
 		return
-	var/borer_message = input(cortical_owner, "What would you like to force your host to say?", "Force Speak") as message|null
+	// Don't encode as say will do that for usq
+	var/borer_message = tgui_input_text(cortical_owner, "What would you like to force your host to say?", "Force Speak", "", MAX_MESSAGE_LEN, FALSE, FALSE)
 	if(!borer_message)
 		owner.balloon_alert(owner, "no message given")
 		return
-	borer_message = sanitize(borer_message)
+	// check if it's a good message and give feedback to the borer (IC filters)
+	if(!owner.try_speak(borer_message))
+		return
 	var/mob/living/carbon/human/cortical_host = cortical_owner.human_host
 	to_chat(cortical_host, span_boldwarning("Your voice moves without your permission!"))
 	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * cortical_owner.host_harm_multiplier)
-	cortical_host.say(message = borer_message, forced = TRUE)
+	cortical_host.say(borer_message, forced = "forced by [owner]", filterproof = TRUE) // don't filter it again, allow a admin borer to bypass the filter
 	var/turf/human_turf = get_turf(cortical_owner.human_host)
 	var/logging_text = "[key_name(cortical_owner)] forced [key_name(cortical_owner.human_host)] to say [borer_message] at [loc_name(human_turf)]"
 	cortical_owner.log_message(logging_text, LOG_GAME)
