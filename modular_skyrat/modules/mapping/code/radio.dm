@@ -4,7 +4,7 @@
 	special_channels = RADIO_SPECIAL_CENTCOM
 
 /obj/item/encryptionkey/headset_syndicate/interdyne
-	name = "interdyne radio encryption key"
+	name = "Interdyne radio encryption key"
 	channels = list(RADIO_CHANNEL_INTERDYNE = 1)
 	special_channels = RADIO_SPECIAL_CENTCOM
 
