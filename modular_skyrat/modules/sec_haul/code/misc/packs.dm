@@ -38,14 +38,14 @@
 	desc = "A classic Shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
 	cost = PAYCHECK_COMMAND * 20
 	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
+	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/rensoter_shotgun
 	name = "Renoster Shotgun Single-Pack"
 	desc = "A common modern shotgun used by Terran Government Police."
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	cost = PAYCHECK_COMMAND * 22
+	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/double_barrel
-	name = "Double-barreled Shotgun Single-Pack"
-	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
 	cost = PAYCHECK_COMMAND * 14 //This is outclassed by peacekeeper combat shotgun
