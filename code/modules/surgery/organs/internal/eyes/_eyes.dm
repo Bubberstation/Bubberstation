@@ -69,8 +69,8 @@
 
 	eye_recipient.cure_blind(NO_EYES)
 	apply_damaged_eye_effects()
-	refresh(receiver, call_update = TRUE)
-	RegisterSignal(receiver, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
+	refresh(eye_recipient, call_update = TRUE)
+	RegisterSignal(eye_recipient, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 
 /// Refreshes the visuals of the eyes
 /// If call_update is TRUE, we also will call update_body
@@ -126,10 +126,10 @@
 	if(!special)
 		eye_owner.become_blind(NO_EYES)
 
-	organ_owner.update_tint()
-	organ_owner.update_sight()
+	eye_owner.update_tint()
+	eye_owner.update_sight()
 	is_emissive = FALSE // SKYRAT EDIT ADDITION
-	UnregisterSignal(organ_owner, COMSIG_ATOM_BULLET_ACT)
+	UnregisterSignal(eye_owner, COMSIG_ATOM_BULLET_ACT)
 
 /obj/item/organ/internal/eyes/proc/on_bullet_act(datum/source, obj/projectile/proj, def_zone)
 	SIGNAL_HANDLER

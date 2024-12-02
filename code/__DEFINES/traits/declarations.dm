@@ -278,6 +278,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Applied into wounds when they're scanned with the wound analyzer, halves time to treat them manually.
 #define TRAIT_WOUND_SCANNED "wound_scanned"
 
+/// Owner will ignore any fire protection when calculating fire damage
+#define TRAIT_IGNORE_FIRE_PROTECTION "ignore_fire_protection"
+
 #define TRAIT_NODEATH "nodeath"
 #define TRAIT_NOHARDCRIT "nohardcrit"
 #define TRAIT_NOSOFTCRIT "nosoftcrit"
