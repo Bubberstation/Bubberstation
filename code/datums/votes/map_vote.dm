@@ -7,7 +7,7 @@
 	default_choices = list(
 		"MetaStation",
 		"Birdshot Station",
-		"IceBox",
+		"Ice Box Station",
 		"Tramstation",
 	)
 
