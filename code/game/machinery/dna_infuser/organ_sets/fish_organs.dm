@@ -161,7 +161,7 @@
 	greyscale_colors = FISH_ORGAN_COLOR
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/fish
-	dna_block = DNA_FISH_TAIL_BLOCK
+	// dna_block = DNA_FISH_TAIL_BLOCK // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	wag_flags = WAG_ABLE
 	organ_traits = list(TRAIT_FLOPPING)
 
@@ -202,6 +202,9 @@
 	feature_key = "fish_tail"
 	color_source = ORGAN_COLOR_HAIR
 
+//BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION
+/*
+
 /datum/bodypart_overlay/mutant/tail/fish/on_mob_insert(obj/item/organ/parent, mob/living/carbon/receiver)
 	//Initialize the related dna feature block if we don't have any so it doesn't error out.
 	//This isn't tied to any species, but I kinda want it to be mutable instead of having a fixed sprite accessory.
@@ -211,8 +214,11 @@
 
 	return ..()
 
+*/
+// BUBBER EDIT REMOVAL END
+
 /datum/bodypart_overlay/mutant/tail/fish/get_global_feature_list()
-	return SSaccessories.tails_list_fish
+	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_fish
 
 
 ///Lungs that replace the need of oxygen with water vapor or being wet
