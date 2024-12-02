@@ -433,9 +433,9 @@
 	if(!owner.Adjacent(human_target))
 		owner.balloon_alert(owner, "chosen target too far")
 		return FALSE
-	// if(considered_afk(human_target.mind))
-	// 	owner.balloon_alert(owner, "mind inactive!")
-	// 	return FALSE
+	if(considered_afk(human_target.mind))
+		owner.balloon_alert(owner, "mind inactive!")
+		return FALSE
 
 	incite_fear(target)
 	StartCooldown()
@@ -449,10 +449,10 @@
 	if(cortical_owner.host_sugar())
 		owner.balloon_alert(owner, "cannot function with sugar in host")
 		return FALSE
-	// if(cortical_owner.human_host)
-	// 	if(considered_afk(cortical_owner.human_host.mind))
-	// 		owner.balloon_alert(owner, "mind inactive!")
-	// 		return FALSE
+	if(cortical_owner.human_host)
+		if(considered_afk(cortical_owner.human_host.mind))
+			owner.balloon_alert(owner, "mind inactive!")
+			return FALSE
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/borer/fear_human/pre_intercept_trigger(trigger_flags, atom/target)
