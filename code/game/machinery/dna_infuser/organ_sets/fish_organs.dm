@@ -200,7 +200,7 @@
 
 /datum/bodypart_overlay/mutant/tail/fish
 	feature_key = "fish_tail"
-	color_source = ORGAN_COLOR_HAIR
+	// color_source = ORGAN_COLOR_HAIR // BUBBER EDIT REMOVAL
 
 //BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION
 /*
