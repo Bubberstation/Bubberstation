@@ -13,7 +13,7 @@
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
-	var/maxRiftTimer = 300
+	var/maxRiftTimer = 80
 	/// A list of all of the rifts created by Space Dragon.  Used for setting them all to infinite carp spawn when Space Dragon wins, and removing them when Space Dragon dies.
 	var/list/obj/structure/carp_rift/rift_list = list()
 	/// How many rifts have been successfully charged
@@ -132,21 +132,18 @@
 /datum/antagonist/space_dragon/proc/rift_checks()
 	if((rifts_charged == 3 || (SSshuttle.emergency.mode == SHUTTLE_DOCKED && rifts_charged > 0)) && !objective_complete)
 		victory()
-	// BUBBER REMOVAL START
-	// 	return
-	// if(riftTimer == -1)
-	// 	return
-	// riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
-	// if(riftTimer == (maxRiftTimer - 60))
-	// 	to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
-	// 	return
-	// if(riftTimer >= maxRiftTimer)
-	// 	to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You're being pulled back from whence you came!"))
-	// 	destroy_rifts()
-	// 	SEND_SOUND(owner.current, sound('sound/effects/magic/demon_dies.ogg'))
-	// 	owner.current.death(/* gibbed = */ TRUE)
-	// 	QDEL_NULL(owner.current)
-	// BUBBER REMOVAL END
+	if(riftTimer == -1)
+		return
+	riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
+	if(riftTimer == (maxRiftTimer - 60))
+		to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
+		return
+	if(riftTimer >= maxRiftTimer)
+		// BUBBER CHANGE START: dragons don't die to not summoning a rift
+		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You will be slowed down until you do so!"))
+		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression/no_portal)
+		riftTimer = -1
+		// BUBBER CHANGE END
 
 /**
  * Destroys all of Space Dragon's current rifts.
