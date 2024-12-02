@@ -33,10 +33,6 @@
 	name = "Biter's Horns"
 	icon_state = "biterhorns"
 
-/datum/sprite_accessory/horns/bubber/fullstub
-	name = "Full Stubby"
-	icon_state = "fullstub"
-
 /datum/sprite_accessory/horns/bubber/big
 	icon = 'modular_zubbers/icons/customization/horns_big.dmi'
 
