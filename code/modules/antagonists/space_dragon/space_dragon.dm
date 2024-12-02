@@ -13,7 +13,7 @@
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
-	var/maxRiftTimer = 80
+	var/maxRiftTimer = 300
 	/// A list of all of the rifts created by Space Dragon.  Used for setting them all to infinite carp spawn when Space Dragon wins, and removing them when Space Dragon dies.
 	var/list/obj/structure/carp_rift/rift_list = list()
 	/// How many rifts have been successfully charged
