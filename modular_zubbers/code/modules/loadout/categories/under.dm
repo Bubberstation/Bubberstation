@@ -61,3 +61,7 @@
 /datum/loadout_item/uniform/miscellaneous/miniskirt
 	name = "recolourable miniskirt"
 	item_path = /obj/item/clothing/under/dress/miniskirt
+
+/datum/loadout_item/uniform/miscellaneous/latex_catsuit
+	name = "Latex Catsuit"
+	item_path = /obj/item/clothing/under/misc/latex_catsuit
