@@ -8,7 +8,7 @@
 		"MetaStation",
 		"Birdshot Station",
 		"IceBox",
-		"TramStation",
+		"Tramstation",
 	)
 
 /datum/vote/map_vote/create_vote()
