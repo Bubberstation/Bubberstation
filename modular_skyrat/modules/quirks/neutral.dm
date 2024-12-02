@@ -236,6 +236,13 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	mob_trait = TRAIT_FELINID
 	icon = FA_ICON_CAT
 
+// Felinids hate water, who would've thunk it
+/datum/quirk/felinid_aspect/add(client/client_source)
+	ADD_TRAIT(quirk_holder, TRAIT_WATER_HATER, QUIRK_TRAIT)
+
+/datum/quirk/felinid_aspect/remove()
+	REMOVE_TRAIT(quirk_holder, TRAIT_WATER_HATER, QUIRK_TRAIT)
+
 /datum/quirk/felinid_aspect/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/organ/internal/tongue/cat/new_tongue = new(get_turf(human_holder))

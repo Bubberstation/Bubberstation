@@ -9,6 +9,7 @@
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_MUTANT_COLORS,
 		TRAIT_CATLIKE_GRACE,
+		TRAIT_WATER_HATER,
 	)
 	mutanteyes = /obj/item/organ/internal/eyes/tajaran
 	mutantears = /obj/item/organ/internal/ears/cat/tajaran
