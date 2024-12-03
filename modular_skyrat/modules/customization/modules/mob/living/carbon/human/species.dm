@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/body_size_restricted = FALSE
 	/// Are we lore protected? This prevents people from changing the species lore or species name.
 	var/lore_protected = FALSE
+	/// When set to TRUE, prevents customizable dna features from being applied
+	var/disallow_customizable_dna_features
 
 /// Returns a list of the default mutant bodyparts, and whether or not they can be randomized or not
 /datum/species/proc/get_default_mutant_bodyparts()

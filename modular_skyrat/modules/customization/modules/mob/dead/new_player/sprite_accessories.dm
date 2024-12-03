@@ -22,6 +22,10 @@
 	///Notable things that have it set to FALSE are things that need special setup, such as genitals
 	var/generic
 
+	/// Whether or not this sprite accessory has an additional overlay added to
+	/// it as an "inner" part, which is pre-colored.
+	var/has_inner = FALSE
+
 	/// For all the flags that you need to pass from a sprite_accessory to an organ, when it's linked to one.
 	/// (i.e. passing through the fact that a snout should or shouldn't use a muzzled sprite for head worn items)
 	var/flags_for_organ = NONE

@@ -169,7 +169,7 @@
 	var/inner_layer = EXTERNAL_FRONT
 
 /datum/bodypart_overlay/mutant/cat_ears/get_global_feature_list()
-	return SSaccessories.ears_list
+	return SSaccessories.sprite_accessories["ears"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.ears_list
 
 /datum/bodypart_overlay/mutant/cat_ears/can_draw_on_bodypart(mob/living/carbon/human/human)
 	if((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR))
@@ -191,7 +191,6 @@
 
 	base_ears.overlays += inner_ears
 	return base_ears
-*/ // // BUBBER EDIT - OR END
 
 /obj/item/organ/internal/ears/penguin
 	name = "penguin ears"
