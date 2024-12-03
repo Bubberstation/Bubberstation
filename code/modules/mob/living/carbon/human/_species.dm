@@ -1483,15 +1483,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_snore_sound(mob/living/carbon/human/human)
 	return
 
-// BUBBER EDIT - OR BEGIN
-/datum/species/proc/get_types_to_preload()
-	var/list/to_store = list()
-	to_store += mutant_organs
-	for(var/obj/item/organ/horny as anything in mutant_organs)
-		to_store += horny //Haha get it?
-	return to_store
-
-/*
 /datum/species/proc/get_mut_organs(include_brain = TRUE)
 	var/list/mut_organs = list()
 	mut_organs += mutant_organs
@@ -1511,7 +1502,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/get_types_to_preload()
 	return get_mut_organs(FALSE)
-*/ // BUBBER EDIT - OR END
 
 /**
  * Owner login
