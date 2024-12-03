@@ -29,12 +29,10 @@
 
 /datum/action/sing_tones/proc/on_species_loss(mob/living/carbon/human/human)
 	SIGNAL_HANDLER
-
 	qdel(src)
 
 /datum/action/sing_tones/proc/on_emag_act(mob/living/carbon/human/source, mob/user)
 	SIGNAL_HANDLER
-
 	if(emagged)
 		return
 	emagged = TRUE
