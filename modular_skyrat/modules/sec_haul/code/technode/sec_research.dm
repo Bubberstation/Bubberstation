@@ -104,8 +104,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/s12c_antitide
-	name = "12 Gauge Advanced Anti Riot Ammunition Box(Non-Lethal)"
-	desc = "A 12 gauge ammunition box for shotgun shells. These are less lethal and will embed into target"
+	name = "12 Gauge Advanced Anti Riot cartridge(Non-Lethal)"
+	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into target."
 	id = "s12c_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 1)
