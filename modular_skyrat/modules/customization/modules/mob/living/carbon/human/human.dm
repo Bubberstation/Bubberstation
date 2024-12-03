@@ -123,7 +123,7 @@
 	// The total list of parts choosable
 	var/static/list/total_selection = list(
 		ORGAN_SLOT_EXTERNAL_HORNS = "horns",
-		ORGAN_SLOT_EXTERNAL_EARS = "ears",
+		ORGAN_SLOT_EARS = "ears",
 		ORGAN_SLOT_EXTERNAL_WINGS = "wings",
 		ORGAN_SLOT_EXTERNAL_TAIL = "tail",
 		ORGAN_SLOT_EXTERNAL_SYNTH_ANTENNA = "ipc_antenna",
