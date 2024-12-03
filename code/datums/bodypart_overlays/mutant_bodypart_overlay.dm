@@ -27,8 +27,16 @@
 	if(imprint_on_next_insertion) //We only want this set *once*
 		var/feature_name = receiver.dna.features[feature_key]
 		if (isnull(feature_name))
+		/* BUBBER EDIT - Customization - ORIGINAL:
 			feature_name = receiver.dna.species.mutant_organs[parent.type]
-		set_appearance_from_name(feature_name)
+		*/ // BUBBER EDIT START
+			if(!set_appearance_from_dna(receiver.dna))
+				set_appearance_from_name(receiver.dna.species.mutant_organs[parent.type])
+		// BUBBER EDIT END
+		// BUBBER EDIT START - Puts the following line in an else block
+		else
+			set_appearance_from_name(feature_name)
+		// BUBBER EDIT END
 		imprint_on_next_insertion = FALSE
 
 /datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
