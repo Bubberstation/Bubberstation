@@ -68,7 +68,7 @@
 
 /datum/design/surgery/lobotomy/blessed
 	name = "Blessed Lobotomy"
-	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
 	id = "surgery_blessed_lobotomy"
 	surgery = /datum/surgery/advanced/blessed_lobotomy
 
