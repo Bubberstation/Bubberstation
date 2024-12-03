@@ -15,6 +15,7 @@
 	..()
 	RegisterSignal(grant_to, COMSIG_SPECIES_LOSS, PROC_REF(on_species_loss))
 	RegisterSignal(grant_to, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+	RegisterSignal(grant_to, COMSIG_MOB_STATCHANGE, PROC_REF(on_soft_crit))
 	song = new(grant_to, allowed_instrument_ids, 15)
 	if(isethereal(grant_to))
 		desc = "Use your electric discharger to sing!"
@@ -44,3 +45,8 @@
 	if(!.)
 		return
 	song.ui_interact(owner)
+
+/datum/action/sing_tones/proc/on_soft_crit(mob/living/carbon/human/source)
+	SIGNAL_HANDLER
+	if(song && source.stat >= SOFT_CRIT)
+		song.stop_playing()
