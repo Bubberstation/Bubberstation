@@ -28,28 +28,33 @@
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
-"d" = (
-/obj/structure/chair/comfy/beige{
-	dir = 8
-	},
-/turf/open/floor/wood,
+"f" = (
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/wood,
+/turf/closed/wall,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
+"j" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "k" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "l" = (
@@ -63,21 +68,29 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "n" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
+"o" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "nt_rep_priv";
+	name = "Privacy Shutter"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
 	},
-/turf/open/floor/wood/large,
+/turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "q" = (
-/turf/closed/wall,
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "r" = (
 /obj/machinery/status_display/evac/directional/west,
@@ -87,10 +100,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
-"s" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
 "t" = (
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
@@ -100,10 +109,14 @@
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
-"w" = (
+"v" = (
 /obj/machinery/time_clock/directional/south,
 /turf/template_noop,
 /area/station/hallway/primary/central)
+"w" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "x" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin/carbon{
@@ -155,6 +168,8 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "D" = (
@@ -192,23 +207,24 @@
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "J" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
+/obj/structure/chair/comfy/beige{
+	dir = 8
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "K" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "nt_rep_priv";
-	name = "Privacy Shutter"
-	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/corporate{
+	name = "NT Consultant's Office"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
 /obj/machinery/vending/boozeomat,
@@ -280,6 +296,8 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
@@ -306,7 +324,7 @@ S
 D
 P
 X
-q
+g
 t
 F
 Q
@@ -318,11 +336,11 @@ y
 S
 D
 h
-h
+j
 Y
-V
+A
 C
-h
+f
 x
 D
 y
@@ -331,8 +349,8 @@ y
 S
 D
 U
-h
-q
+n
+g
 Z
 k
 a
@@ -345,10 +363,10 @@ S
 D
 I
 O
-q
 g
-s
-J
+w
+A
+q
 T
 D
 y
@@ -360,9 +378,9 @@ D
 D
 D
 L
-s
-d
-d
+A
+J
+J
 D
 D
 "}
@@ -371,9 +389,9 @@ y
 r
 l
 B
-K
-K
-s
+o
+o
+A
 M
 V
 z
@@ -385,7 +403,7 @@ y
 y
 y
 y
-K
+o
 i
 A
 b
@@ -398,8 +416,8 @@ y
 y
 y
 y
-K
-K
+o
+o
 W
 E
 D
@@ -412,7 +430,7 @@ y
 y
 y
 y
-n
+K
 G
 D
 D
@@ -424,7 +442,7 @@ y
 y
 y
 y
-w
+v
 D
 D
 D
