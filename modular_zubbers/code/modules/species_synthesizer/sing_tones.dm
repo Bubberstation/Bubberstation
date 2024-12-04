@@ -12,7 +12,7 @@
 	var/emagged = FALSE
 
 /datum/action/sing_tones/Grant(mob/grant_to)
-	..()
+	. = ..()
 	RegisterSignal(grant_to, COMSIG_SPECIES_LOSS, PROC_REF(on_species_loss))
 	RegisterSignal(grant_to, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
 	RegisterSignal(grant_to, COMSIG_MOB_STATCHANGE, PROC_REF(on_soft_crit))
@@ -21,7 +21,7 @@
 		desc = "Use your electric discharger to sing!"
 
 /datum/action/sing_tones/Remove(mob/remove_from)
-	..()
+	. = ..()
 	QDEL_NULL(song)
 	UnregisterSignal(remove_from, list(
 		COMSIG_SPECIES_LOSS,
