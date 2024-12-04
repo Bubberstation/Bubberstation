@@ -534,8 +534,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/sol_smg_rapidfire_kit //this is currently un-balanced, please fix it when convenient
-	name = "Romulus SMG Twin-Burst Conversion Kit(Very Lethal)"
-	desc = "The kit to brutalise your functional submachine gun into a monstrosity that fires in two round-burst at a faster rate."
+	name = "Romulus SMG 'Shaytan' Full-Auto Conversion Kit(Very Lethal)"
+	desc = "The kit to brutalise your functional submachine gun into a monstrosity that fires full-auto, all the time."
 	id = "sol_smg_rapidfire_kit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SHEET_MATERIAL_AMOUNT * 3.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
