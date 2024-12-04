@@ -24,6 +24,10 @@
 
 /datum/quirk/equipping/entombed/process(seconds_per_tick)
 	var/mob/living/carbon/human/human_holder = quirk_holder
+	if(human_holder.stat == DEAD)
+		// We don't want to be smacking permanent tox damage if the person is dead. It doesn't make sense, and it's a huge pain in the ass for revival.
+		// This also helps for when the modsuit is out of power, as (to my awareness), there is no way currently to turn on someone else's entombed modsuit.
+		return
 	if (!modsuit || life_support_failed)
 		// we've got no modsuit or life support. take damage ow
 		human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
