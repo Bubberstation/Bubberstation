@@ -607,7 +607,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			override_features[feature] = dna.features[feature]
 		dna.features = override_features
 
-	apply_customizable_dna_features_to_species()
+	if(dna.species.disallow_customizable_dna_features) // for species where we do not want to carry anything like this over
+		dna.mutant_bodyparts = dna.species.get_mutant_bodyparts(dna.features)
+		dna.body_markings = list()
+		dna.species.mutant_bodyparts = dna.species::mutant_bodyparts || list()
+		dna.species.body_markings = dna.species::body_markings || list()
+	else
+		apply_customizable_dna_features_to_species()
 	dna.unique_features = dna.generate_unique_features()
 
 	dna.update_body_size()
