@@ -104,7 +104,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/s12c_antitide
-	name = "12 Gauge Advanced Anti Riot cartridge(Less-Lethal)"
+	name = "12 Gauge Advanced Anti Riot Cartridge(Less-Lethal)"
 	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into target."
 	id = "s12c_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE

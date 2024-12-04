@@ -1,6 +1,6 @@
 /obj/item/weaponcrafting/gunkit/sol_rifle_carbine_kit
 	name = "Romulus Carbine Conversion Kit"
-	desc = "A Romulus-produced conversion kit. This kit includes a lighter frame, and shorter stock and barrel to reduce the overall length and bulk of the Carwo-Cawil rifle. Despite this, it makes it easier to handle the gun's recoil, and keep shots on target. Accepts any standard Sol rifle magazine."
+	desc = "A Romulus-produced conversion kit. This kit includes a lighter frame, and maginally shorter stock and barrel to reduce the overall length and bulk of the Carwo-Cawil rifle. Because of the lighter bolt carrier components, the firearm has a higher cyclic rate, and fires faster. Accepts any standard Sol rifle magazine."
 
 /obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit
 	name = "Romulus Sindano 'Shaytan' Conversion Kit"
