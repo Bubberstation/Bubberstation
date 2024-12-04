@@ -104,7 +104,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/s12c_antitide
-	name = "12 Gauge Advanced Anti Riot cartridge(Non-Lethal)"
+	name = "12 Gauge Advanced Anti Riot cartridge(Less-Lethal)"
 	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into target."
 	id = "s12c_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -156,7 +156,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/advancedgaugeboxes_antitide
-	name = "12 Gauge Advanced Anti Riot Ammunition Box(Non-Lethal)"
+	name = "12 Gauge Advanced Anti Riot Ammunition Box(Less-Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -216,7 +216,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/advancedgaugeboxes_beanbagslug
-	name = "12 Gauge Advanced Bean Bag Ammunition Box(Non-Lethal)"
+	name = "12 Gauge Advanced Bean Bag Ammunition Box(Less-Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_bslug"
 	build_type = PROTOLATHE | AWAY_LATHE
