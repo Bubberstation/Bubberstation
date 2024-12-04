@@ -125,7 +125,7 @@
 		speed_mod *= 0.64
 	if(patient_area.clean_medical)
 		speed_mod *= 0.92
-	if(iscyborg(user)) // Borgs can't use anlgesia or clean the area
+	if(iscyborg(user)) // Borgs can't use analgesia or clean the area
 		speed_mod *= 0.68
 	// BUBBER EDIT ADDITION END
 
