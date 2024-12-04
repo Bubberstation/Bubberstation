@@ -105,7 +105,7 @@
 
 /datum/design/s12c_antitide
 	name = "12 Gauge Advanced Anti Riot Cartridge(Less-Lethal)"
-	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into target."
+	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into a target."
 	id = "s12c_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 1)
