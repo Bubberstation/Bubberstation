@@ -29,3 +29,7 @@
 #define TRAIT_PET_SKILLCHIP "mkii_ultra"
 
 #define TRAIT_SIGN_LANGUAGE_BLOCKED "sign_language_blocked"
+
+// makes the mob immune to crusher marks even if they are within the required mob size
+#define TRAIT_CRUSHER_MARK_IMMUNE "crusher_mark_immune"
+

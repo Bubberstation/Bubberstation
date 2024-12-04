@@ -15,6 +15,18 @@
 	name = "Suit Harness"
 	item_path = /obj/item/clothing/suit/misc/suit_harness
 
+/datum/loadout_item/suit/samurai_armor
+	name = "Samurai armor"
+	item_path = /obj/item/clothing/suit/costume/samurai
+
+/datum/loadout_item/suit/bunny_tailcoat
+	name = "Bunny Tailcoat"
+	item_path = /obj/item/clothing/suit/jacket/tailcoat
+
+/datum/loadout_item/suit/pirate_coat
+	name = "Pirate coat"
+	item_path = /obj/item/clothing/suit/costume/pirate
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi

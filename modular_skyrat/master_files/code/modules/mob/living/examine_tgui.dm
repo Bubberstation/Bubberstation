@@ -92,7 +92,7 @@
 
 		//Check if the mob is obscured, then continue to headshot and species lore
 		ooc_notes += holder_human.dna?.features["ooc_notes"]
-		if(obscured || !holder_human.dna)
+		if((obscured || !holder_human.dna) && !isobserver(user))
 			custom_species = "Obscured"
 			custom_species_lore = "Obscured"
 			flavor_text = "Obscured"
