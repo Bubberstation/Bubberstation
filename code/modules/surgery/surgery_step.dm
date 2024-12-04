@@ -125,6 +125,8 @@
 		speed_mod *= 0.64
 	if(patient_area.clean_medical)
 		speed_mod *= 0.92
+	if(iscyborg(user)) // Borgs can't use anlgesia or clean the area
+		speed_mod *= 0.68
 	// BUBBER EDIT ADDITION END
 
 	if(target.has_sterilizine()) // BUBBER EDIT CHANGE - Speed boost applied via sterilizine/cryostylane - Original: if(HAS_TRAIT(target, TRAIT_ANALGESIA))
