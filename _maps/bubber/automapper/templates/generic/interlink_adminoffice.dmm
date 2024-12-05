@@ -16,6 +16,9 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/away_general_access,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "e" = (
@@ -24,25 +27,14 @@
 /area/centcom/central_command_areas/admin/interlink)
 "g" = (
 /obj/structure/table/wood,
-/obj/item/folder/red{
-	pixel_x = 7;
-	pixel_y = 7
-	},
-/obj/item/folder/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/folder/yellow{
-	pixel_x = 3;
-	pixel_y = 2
-	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "h" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
-	pixel_y = 24;
-	density = 0
+	pixel_y = 19;
+	density = 0;
+	pixel_x = 3
 	},
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/siding/wood/corner,
@@ -67,7 +59,8 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
 	density = 0;
-	pixel_y = 24
+	pixel_y = 19;
+	pixel_x = -3
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
@@ -103,7 +96,6 @@
 	pixel_x = 3;
 	pixel_y = 31
 	},
-/obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/machinery/button/door/directional/north{
@@ -112,9 +104,19 @@
 	pixel_x = -5;
 	pixel_y = 21
 	},
-/obj/item/toy/crayon/white{
-	pixel_x = 9
+/obj/item/folder/blue{
+	pixel_x = 1;
+	pixel_y = -3
 	},
+/obj/item/folder/red{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/folder/yellow{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/effect/mapping_helpers/requests_console/announcement,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "q" = (
@@ -131,12 +133,23 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "s" = (
-/obj/structure/filingcabinet/employment,
+/obj/structure/filingcabinet/employment{
+	name = "Employment Contracts";
+	pixel_x = 1;
+	pixel_y = 20;
+	density = 0
+	},
 /obj/structure/filingcabinet/medical{
-	pixel_x = 10
+	pixel_x = 11;
+	name = "Medical Records";
+	pixel_y = 20;
+	density = 0
 	},
 /obj/structure/filingcabinet/security{
-	pixel_x = -10
+	pixel_x = -9;
+	name = "Security Records";
+	pixel_y = 20;
+	density = 0
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
@@ -158,6 +171,10 @@
 /area/centcom/central_command_areas/admin/interlink)
 "x" = (
 /obj/machinery/light/directional/east,
+/obj/machinery/photocopier/gratis{
+	pixel_x = 4;
+	pixel_y = -6
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "z" = (
@@ -174,6 +191,10 @@
 /area/centcom/central_command_areas/admin/interlink)
 "C" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/modular_computer/pda/clear,
+/obj/item/paper_bin,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "D" = (
@@ -206,14 +227,13 @@
 	pixel_x = -8;
 	pixel_y = 2
 	},
-/obj/item/feather,
-/obj/item/pen/fountain/captain{
-	pixel_y = -1;
-	pixel_x = 6
+/obj/item/feather{
+	pixel_x = 9;
+	pixel_y = 2
 	},
-/obj/item/pen/fourcolor{
-	pixel_x = 8;
-	pixel_y = 3
+/obj/item/toy/crayon/white{
+	pixel_x = 11;
+	pixel_y = -3
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
@@ -240,7 +260,11 @@
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "L" = (
-/obj/machinery/photocopier/gratis,
+/obj/structure/table/reinforced,
+/obj/structure/statue/bronze/marx{
+	desc = "A bust depicting the current CEO of Trasen-Knox, better known as Nanotrasen.";
+	name = "\improper Nanotrasen CEO bust"
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "M" = (
@@ -264,7 +288,9 @@
 "O" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
-	fax_name = "Administrative Office"
+	fax_name = "Administrative Office";
+	pixel_x = 0;
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/wood/large,
@@ -272,7 +298,17 @@
 "P" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	papertype = /obj/item/paper/paperslip/corporate
+	papertype = /obj/item/paper/paperslip/corporate;
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/pen/fourcolor{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/pen/fountain/green{
+	pixel_x = -8;
+	pixel_y = 2
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)

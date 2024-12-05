@@ -30,21 +30,9 @@
 	var/mob/living/silicon/robot/robot_spawn = spawned
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
 	//SKYRAT EDIT START
-	var/list/malf_ais = list()
-	var/list/regular_ais = list()
-	for(var/mob/living/silicon/ai/ai_possible as anything in GLOB.ai_list)
-		if(ai_possible.mind?.has_antag_datum(/datum/antagonist/malf_ai))
-			malf_ais |= ai_possible
-			continue
-		regular_ais |= ai_possible
-	var/mob/selected_ai
-	if(length(malf_ais))
-		selected_ai = pick(malf_ais)
-	if(length(regular_ais) && !selected_ai)
-		selected_ai = pick(regular_ais)
-	if(selected_ai)
-		robot_spawn.set_connected_ai(selected_ai)
-		log_combat(selected_ai, robot_spawn, "synced cyborg [robot_spawn] to [selected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
+	robot_spawn.set_connected_ai(select_active_ai_with_fewest_borgs(robot_spawn.z))
+	if(robot_spawn.mainframe)
+		log_combat(robot_spawn.mainframe, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.mainframe] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
 		if(robot_spawn.shell) //somehow?
 			robot_spawn.undeploy()
 			robot_spawn.notify_ai(AI_NOTIFICATION_AI_SHELL)
