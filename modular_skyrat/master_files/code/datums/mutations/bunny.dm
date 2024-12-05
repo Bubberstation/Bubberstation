@@ -20,8 +20,6 @@
 
 	ability.leap_strength += 1
 
-#define LEAP_TIME_MODIFIER 0.5 SECONDS
-
 /datum/action/cooldown/mob_cooldown/leap
 	name = "Leap"
 	desc = "You propel yourself into the air, allowing you to cross short gaps."
@@ -44,48 +42,42 @@
 /datum/action/cooldown/mob_cooldown/leap/Activate(atom/target)
 	var/mob/living/carbon/bunny = owner // We already know they're a carbon, see IsAvailable()
 	var/leap_height = 16 * leap_strength
-	var/leap_length = leap_strength * LEAP_TIME_MODIFIER
-	bunny.apply_status_effect(/datum/status_effect/bunny_hop, leap_length)
+	var/leap_duration = leap_strength * 0.5 SECONDS
+
+	// Sets up our signals and callback
+	RegisterSignal(bunny, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
+	ADD_TRAIT(bunny, TRAIT_MOVE_FLYING, type)
+	addtimer(CALLBACK(src, PROC_REF(clear_effects), bunny), leap_duration)
+
 	// Fast way up, slow way down
-	animate(bunny, pixel_y = leap_height, time = leap_length/3)
-	animate(pixel_y = 0, time = (2 * leap_length)/3)
+	animate(bunny, pixel_y = leap_height, time = leap_duration/2, easing = CIRCULAR_EASING | EASE_OUT)
+	animate(pixel_y = 0, time = leap_duration/2, easing = CIRCULAR_EASING | EASE_IN)
 	StartCooldown()
 
-/datum/status_effect/bunny_hop
-	id = "bigleap"
+/datum/action/cooldown/mob_cooldown/leap/proc/clear_effects(mob/living/carbon/bunny)
+	UnregisterSignal(bunny, COMSIG_MOVABLE_BUMP)
+	REMOVE_TRAIT(bunny, TRAIT_MOVE_FLYING, type)
 
-	duration = LEAP_TIME_MODIFIER
-	tick_interval = 0.2 SECONDS
-
-	alert_type = null
-
-/datum/status_effect/bunny_hop/on_creation(mob/living/new_owner, duration = LEAP_TIME_MODIFIER, ...)
-	src.duration = duration
-	. = ..()
-
-/datum/status_effect/bunny_hop/on_apply()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
-	ADD_TRAIT(owner, TRAIT_MOVE_FLYING, type)
-	return TRUE
-
-/datum/status_effect/bunny_hop/Destroy()
-	UnregisterSignal(owner, COMSIG_MOVABLE_BUMP)
-	REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, type)
-	. = ..()
-
-/datum/status_effect/bunny_hop/proc/on_bump(mob/living/carbon/source, atom/bumped_atom)
+/datum/action/cooldown/mob_cooldown/leap/proc/on_bump(mob/living/carbon/source, atom/bumped_atom)
 	SIGNAL_HANDLER
 	if(!istype(source))
 		return
-	if(!istype(bumped_atom, /obj/structure/window))
+	if(istype(bumped_atom, /obj/structure/window))
+		on_window_bump(source, bumped_atom)
 		return
-	var/obj/structure/window/bumped_window = bumped_atom
+	if(istype(bumped_atom, /obj/structure/grille))
+		on_grille_bump(source, bumped_atom)
+		return
+
+/datum/action/cooldown/mob_cooldown/leap/proc/on_window_bump(mob/living/carbon/source, obj/structure/window/bumped_window)
 	if(!bumped_window.reinf)
-		source.forceMove(get_turf(bumped_window))
+		var/turf/new_turf = get_turf(bumped_window)
 		bumped_window.deconstruct(disassembled = FALSE)
 		source.apply_damage(damage = 5, damagetype = BRUTE)
 		source.visible_message(span_warning("[source] slams [source.p_their()] body through the window!"))
+		for(var/obj/structure/grille/poorgrille in new_turf)
+			on_grille_bump(source, poorgrille, do_move = FALSE)
+		source.forceMove(new_turf)
 	else
 		source.adjustStaminaLoss(20, forced = TRUE)
 		source.Paralyze(0.5 SECONDS, ignore_canstun = FALSE)
@@ -97,7 +89,13 @@
 			affecting.force_wound_upwards(/datum/wound/blunt/bone/severe)
 		source.visible_message(span_warning("[source] smacks [source.p_their()] head against the window[harsh_crash ? " and cracks their skull open" : ""]! Ouch."))
 
-#undef LEAP_TIME_MODIFIER
+/datum/action/cooldown/mob_cooldown/leap/proc/on_grille_bump(mob/living/carbon/source, obj/structure/grille/bumped_grille, do_move = TRUE)
+	bumped_grille.shock(source, 70)
+	var/turf/new_turf = get_turf(bumped_grille)
+	bumped_grille.deconstruct(disassembled = FALSE)
+	source.apply_damage(damage = rand(0,5), damagetype = BRUTE)
+	if(do_move)
+		source.forceMove(new_turf)
 
 /obj/item/dnainjector/strong_legs
 	name = "\improper DNA injector (Strong Legs)"
