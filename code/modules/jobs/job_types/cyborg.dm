@@ -30,17 +30,17 @@
 	var/mob/living/silicon/robot/robot_spawn = spawned
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
 	//SKYRAT EDIT START
-	robot_spawn.set_connected_ai(select_active_ai_with_fewest_borgs(robot_spawn.z))
-	if(robot_spawn.mainframe)
-		log_combat(robot_spawn.mainframe, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.mainframe] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
+	robot_spawn.set_connected_ai(select_active_ai_with_fewest_borgs())
+	if(robot_spawn.connected_ai)
+		log_combat(robot_spawn.connected_ai, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.connected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
 		if(robot_spawn.shell) //somehow?
 			robot_spawn.undeploy()
 			robot_spawn.notify_ai(AI_NOTIFICATION_AI_SHELL)
 		else
 			robot_spawn.notify_ai(TRUE)
 		robot_spawn.visible_message(span_notice("[robot_spawn] gently chimes."), span_notice("LawSync protocol engaged."))
-		robot_spawn.lawsync()
 		robot_spawn.lawupdate = TRUE
+		robot_spawn.lawsync()
 		robot_spawn.show_laws()
 	//SKYRAT EDIT END
 	if(!robot_spawn.connected_ai) // Only log if there's no Master AI
