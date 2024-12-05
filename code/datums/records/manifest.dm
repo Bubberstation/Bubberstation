@@ -137,6 +137,10 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		// Locked specifics
 		locked_dna = record_dna,
 		mind_ref = person.mind,
+		// BUBBER EDIT ADDITION BEGIN - Records
+		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
+		background_information = person_client?.prefs.read_preference(/datum/preference/text/background) || "",
+		// BUBBER EDIT END
 	)
 
 	new /datum/record/crew(
@@ -160,8 +164,6 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		minor_disabilities_desc = person.get_quirk_string(TRUE, CAT_QUIRK_MINOR_DISABILITY),
 		quirk_notes = person.get_quirk_string(TRUE, CAT_QUIRK_NOTES),
 		// SKYRAT EDIT START - RP Records
-		background_information = person_client?.prefs.read_preference(/datum/preference/text/background) || "",
-		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
 		past_general_records = person_client?.prefs.read_preference(/datum/preference/text/general) || "",
 		past_medical_records = person_client?.prefs.read_preference(/datum/preference/text/medical) || "",
 		past_security_records = person_client?.prefs.read_preference(/datum/preference/text/security) || "",
