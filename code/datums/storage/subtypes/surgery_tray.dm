@@ -20,6 +20,7 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/reagent_containers/medigel/sterilizine, // BUBBER EDIT ADDITION
 		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, // BUBBER EDIT ADDITION
+		/obj/item/storage/pill_bottle/lidocaine,  // BUBBER EDIT ADDITION
 		/obj/item/hemostat,
 		/obj/item/razor,
 		/obj/item/retractor,

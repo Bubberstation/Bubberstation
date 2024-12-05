@@ -85,7 +85,9 @@
 ///Modifier given to users with TRAIT_MORBID on certain surgeries
 #define SURGERY_SPEED_MORBID_CURIOSITY 0.7
 ///Modifier given to patients with TRAIT_ANALGESIA
-#define SURGERY_SPEED_TRAIT_ANALGESIA 0.84 // BUBBER EDIT CHANGE - Original: 0.80
+#define SURGERY_SPEED_TRAIT_ANALGESIA 0.92 // BUBBER EDIT CHANGE - Original: 0.80
+///Modifier given to patients with sterilization spray
+#define SURGERY_SPEED_TRAIT_STERILE 0.84 // BUBBER EDIT ADDITION
 
 /datum/surgery_step/proc/initiate(mob/living/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	// Only followers of Asclepius have the ability to use Healing Touch and perform miracle feats of surgery.
@@ -119,18 +121,13 @@
 	if(check_morbid_curiosity(user, tool, surgery))
 		speed_mod *= SURGERY_SPEED_MORBID_CURIOSITY
 
-	// BUBBER EDIT ADDITION BEGIN - Speed bonus for surgery room and cleanliness
-	var/area/patient_area = get_area(target)
-	if(istype(patient_area, /area/station/medical/surgery))
-		speed_mod *= 0.64
-	if(patient_area.clean_medical)
-		speed_mod *= 0.92
-	if(iscyborg(user)) // Borgs can't use analgesia or clean the area
-		speed_mod *= 0.68
-	// BUBBER EDIT ADDITION END
-
-	if(target.has_sterilizine()) // BUBBER EDIT CHANGE - Speed boost applied via sterilizine/cryostylane - Original: if(HAS_TRAIT(target, TRAIT_ANALGESIA))
+	// BUBBER EDIT CHANGE BEGIN - Surgery Modifiers
+	if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
 		speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
+
+	if(target.has_sterilizine())
+		speed_mod *= SURGERY_SPEED_TRAIT_STERILE
+	// BUBBER EDIT CHANGE END
 
 	var/implement_speed_mod = 1
 	if(implement_type) //this means it isn't a require hand or any item step.
@@ -346,3 +343,4 @@
 #undef SURGERY_STATE_FAILURE
 #undef SURGERY_STATE_SUCCESS
 #undef SURGERY_MOOD_CATEGORY
+#undef SURGERY_SPEED_TRAIT_STERILE // BUBBER EDIT ADDITION

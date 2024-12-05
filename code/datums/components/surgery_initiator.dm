@@ -333,9 +333,6 @@
 		span_notice("You drape [parent] over [target]'s [target.parse_zone_with_bodypart(selected_zone)] to prepare for \an [procedure.name]."),
 	)
 
-	if(!(HAS_TRAIT(target, TRAIT_ANALGESIA) || target.stat >= UNCONSCIOUS)) ///skyrat add start - warning for unanesthetized surgery
-		target.balloon_alert(user, "not numbed!") ///skyrat add end
-
 	log_combat(user, target, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 
 	return TRUE // BUBBER EDIT ADDITION - For modular_zubbers/code/datums/components/surgery_initiator.dm
