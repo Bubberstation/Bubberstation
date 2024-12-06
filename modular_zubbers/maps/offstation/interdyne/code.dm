@@ -10,5 +10,6 @@
 	suffix = "icemoon_interdyne.dmm"
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless)
-	always_place = TRUE
+	always_place = FALSE
+	unpickable = TRUE
 	ruin_type = ZTRAIT_ICE_RUINS_UNDERGROUND
