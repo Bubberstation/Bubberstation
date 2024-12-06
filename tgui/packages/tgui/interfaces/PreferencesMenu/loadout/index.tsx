@@ -98,9 +98,8 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
                     <Flex.Item ml="6px" mt="4px">
                       (
                       {
-                        Object.keys(
-                          data.character_preferences.misc.loadout_lists,
-                        ).length
+                        data.character_preferences.misc.loadout_lists.loadouts
+                          .length
                       }{' '}
                       of 12 total)
                     </Flex.Item>
@@ -249,9 +248,9 @@ const LoadoutTabs = (props: {
                   <Dropdown
                     mb="2px"
                     width="100%"
-                    options={Object.keys(
-                      data.character_preferences.misc.loadout_lists,
-                    )}
+                    options={
+                      data.character_preferences.misc.loadout_lists.loadouts
+                    }
                     selected={data.character_preferences.misc.loadout_index}
                     onSelected={(value) =>
                       act('set_loadout_preset', { name: value })
@@ -408,11 +407,7 @@ const LoadoutSelectedSection = (props: {
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
 }) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const loadout_list =
-    !!data.character_preferences.misc.loadout_lists &&
-    data.character_preferences.misc.loadout_lists[
-      data.character_preferences.misc.loadout_index
-    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
+  const loadout_list = data.character_preferences.misc.loadout_lists.loadout; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
   const { all_tabs, modifyItemDimmer, setModifyItemDimmer } = props;
 
   return (
