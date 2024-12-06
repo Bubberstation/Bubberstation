@@ -44,5 +44,5 @@
 	for(var/key in data)
 		data += key
 	data = list("loadout" = data[user?.client?.prefs.read_preference(/datum/preference/loadout_index)] || "Default") // Fail nicely and hopefully avoid runtiming, though this is client bullshit we're on about
-	data["loadouts" = loadout_list]
+	data["loadouts"] = loadout_list
 	return data
