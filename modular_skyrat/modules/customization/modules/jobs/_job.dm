@@ -16,10 +16,6 @@
 	/// Which languages does the job require, associative to UNDERSTOOD_LANGUAGE or (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 	var/list/required_languages = list(/datum/language/common = (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE))
 
-	///Is this job veteran only? If so, then this job requires the player to be in the veteran_players.txt
-	var/veteran_only = FALSE
-
-
 /datum/job/proc/has_banned_quirk(datum/preferences/pref)
 	if(!pref) //No preferences? We'll let you pass, this time (just a precautionary check,you dont wanna mess up gamemode setting logic)
 		return FALSE
