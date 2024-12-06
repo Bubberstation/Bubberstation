@@ -10,20 +10,17 @@
 
 /datum/preference/loadout_index/create_informed_default_value(datum/preferences/preferences)
 	var/list/loadouts = preferences.read_preference(/datum/preference/loadout)
-	var/name
+	// Explanation so I don't get more questions:
+	// You can't get a list of keys for assoc lists, so you have to iterate said list to get them.
+	// I only need the fist one, so I just immediately return on the first loop.
 	for (name in loadouts) // Lazy hack fraud
-		break
-	return name
+		return name
 
 /datum/preference/loadout_index/deserialize(input, datum/preferences/preferences)
 	if (istext(input))
 		return input
 
-	var/list/loadouts = preferences.read_preference(/datum/preference/loadout)
-	var/name
-	for (name in loadouts) // Lazy hack fraud
-		break
-	return name
+	return create_informed_default_value(preferences)
 
 /datum/preference/loadout_index/is_valid(value)
 	return istext(value)

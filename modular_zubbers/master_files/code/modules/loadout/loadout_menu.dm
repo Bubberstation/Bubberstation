@@ -15,7 +15,7 @@
 		return TRUE
 
 	var/loadout_name = params["name"]
-	if (!istext(loadout_name) || length(loadout_name) >= LOADOUT_MAX_NAME_LENGTH || length(loadout_name) < 1)
+	if (!istext(loadout_name) || length(loadout_name) > LOADOUT_MAX_NAME_LENGTH || length(loadout_name) < 1)
 		return TRUE
 
 	if (islist(loadout_entries[loadout_name]))

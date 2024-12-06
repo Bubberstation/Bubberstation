@@ -474,7 +474,7 @@ const LoadoutPreviewSection = () => {
         <Stack.Divider />
         <Stack.Item align="center">
           <Stack>
-            {/* BUBBER EDIT ADDITION: Better loadout pref */}
+            {/* BUBBER EDIT ADDITION START: Better loadout pref */}
             <Stack.Item>
               <Dropdown
                 selected={data.preview_selection}
@@ -486,6 +486,7 @@ const LoadoutPreviewSection = () => {
                 }
               />
             </Stack.Item>
+            {/* BUBBER EDIT END */}
             <Stack.Item>
               <Button
                 icon="chevron-left"
