@@ -389,16 +389,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 		playsound(sacrificial, 'sound/effects/magic/teleport_diss.ogg', 100, TRUE)
 		// BUBBER EDIT: removes cult dusting a player
 		sacrificial.investigate_log("has been sacrificially gutted by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.spill_organs(DROP_ALL_REMAINS)
-		sacrificial.apply_damage(250, BRUTE)
+		sacrificial.spill_organs(DROP_ORGANS)
+		sacrificial.apply_damage(250, BRUTE, wound_bonus = 50)
+		sacrifical.AddComponent(/datum/component/sacrificed, "offer rune")
 		// BUBBER EDIT END
 	else if (sacrificial)
 		// BUBBER EDIT: removes cult gibbing a player
 		var/obj/item/soulstone/stone = new(loc)
 		playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
-		sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.spill_organs(DROP_ALL_REMAINS)
-		sacrificial.apply_damage(250, BRUTE)
+		sacrificial.investigate_log("has been sacrificially gutted by the cult.", INVESTIGATE_DEATHS)
+		sacrificial.spill_organs(DROP_ORGANS)
+		sacrificial.apply_damage(250, BRUTE, wound_bonus = 50)
+		sacrifical.AddComponent(/datum/component/sacrificed, "offer rune")
 		var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 			check_jobban = ROLE_CULTIST,
 			poll_time = 20 SECONDS,
