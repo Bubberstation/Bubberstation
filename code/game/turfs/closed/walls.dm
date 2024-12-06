@@ -94,6 +94,7 @@
 
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
+	set_materials(sheet_type) // BUBBER EDIT ADDITION: Toblering: Needs to be done first.
 	if(!can_engrave)
 		ADD_TRAIT(src, TRAIT_NOT_ENGRAVABLE, INNATE_TRAIT)
 	if(is_station_level(z))
