@@ -25,7 +25,7 @@
 /datum/preferences/proc/savefile_needs_update_skyrat(list/save_data)
 	var/savefile_version = save_data["modular_version"]
 
-	if(savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
+	if(save_data.len && savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
 		return savefile_version
 
 	return MODULAR_SAVEFILE_UP_TO_DATE
