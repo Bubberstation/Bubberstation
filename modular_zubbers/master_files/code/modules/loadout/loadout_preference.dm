@@ -13,7 +13,7 @@
 	// Explanation so I don't get more questions:
 	// You can't get a list of keys for assoc lists, so you have to iterate said list to get them.
 	// I only need the fist one, so I just immediately return on the first loop.
-	for (name in loadouts) // Lazy hack fraud
+	for (var/name in loadouts) // Lazy hack fraud
 		return name
 
 /datum/preference/loadout_index/deserialize(input, datum/preferences/preferences)
