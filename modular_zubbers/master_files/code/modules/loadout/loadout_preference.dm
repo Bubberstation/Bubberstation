@@ -39,10 +39,10 @@
 	return list("Default" = list())
 
 /datum/preference/loadout/compile_ui_data(mob/user, value)
-	var/list/data = serialize(value)
+	var/list/data = ..()
 	var/list/loadout_list = list()
 	for(var/key in data)
-		data += key
+		loadout_list += key
 	data = list("loadout" = data[user?.client?.prefs.read_preference(/datum/preference/loadout_index)] || "Default") // Fail nicely and hopefully avoid runtiming, though this is client bullshit we're on about
 	data["loadouts"] = loadout_list
 	return data
