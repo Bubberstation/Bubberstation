@@ -91,7 +91,7 @@ export const flavor_text_nsfw: Feature<string> = {
 };
 
 export const silicon_flavor_text_nsfw: Feature<string> = {
-  name: 'NSFW Silicon Flavor Text',
+  name: 'Silicon NSFW Flavor Text',
   description:
     'A portion of your flavor text that is stored in examine, used for Silicons. Used to store visual sexual details.',
   component: FeatureTextInput,
