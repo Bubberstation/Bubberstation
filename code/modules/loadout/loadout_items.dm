@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Reskin options of this item if it can be reskinned.
 	VAR_FINAL/list/cached_reskin_options
 
-	//SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION START
 	/// If set, it's a list containing ckeys which only can get the item
 	var/list/ckeywhitelist
 	/// If set, is a list of job names of which can get the loadout item
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/required_season = null
 	/// If the item won't appear when the ERP config is disabled
 	var/erp_item = FALSE
-
+	// BUBBER EDIT END
 
 /datum/loadout_item/New(category)
 	src.category = category
