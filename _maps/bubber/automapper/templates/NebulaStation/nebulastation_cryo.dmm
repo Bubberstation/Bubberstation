@@ -2,6 +2,18 @@
 "a" = (
 /turf/closed/wall,
 /area/station/commons/locker)
+"b" = (
+/obj/machinery/cryopod,
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
+/area/station/commons/locker)
+"d" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
+/area/station/commons/locker)
 "e" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -27,11 +39,14 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/timeclock_psa/directional/east,
-/turf/open/floor/iron/large,
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "j" = (
 /obj/machinery/cryopod,
-/turf/open/floor/iron/large,
+/obj/machinery/digital_clock/directional/north,
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "k" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -40,24 +55,27 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron/dark/side{
+	dir = 5
+	},
 /area/station/commons/locker)
 "l" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/thinplating_new/dark,
-/turf/open/floor/iron/dark,
-/area/station/commons/locker)
-"o" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/thinplating_new/dark,
+/turf/open/floor/iron/dark/side,
+/area/station/commons/locker)
+"o" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner,
-/turf/open/floor/iron/dark/side{
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/turf/open/floor/iron/dark/corner{
 	dir = 4
 	},
 /area/station/commons/locker)
@@ -76,25 +94,30 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 1
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 6
+	},
 /area/station/commons/locker)
 "u" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark,
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
-	dir = 4
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
 	},
-/turf/open/floor/iron/dark/side{
-	dir = 6
-	},
+/turf/open/floor/iron/dark/side,
 /area/station/commons/locker)
 "y" = (
 /obj/machinery/cryopod{
 	dir = 1
 	},
-/turf/open/floor/iron/large,
+/obj/machinery/digital_clock/directional/south,
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "z" = (
 /obj/effect/spawner/structure/window,
@@ -114,27 +137,30 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/station/commons/locker)
 "F" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
-/area/station/commons/locker)
-"G" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/station/commons/locker)
+"G" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/side{
-	dir = 4
-	},
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "J" = (
 /obj/effect/turf_decal/delivery,
@@ -145,15 +171,10 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "N" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/side{
-	dir = 4
-	},
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "O" = (
 /obj/effect/turf_decal/bot_white,
@@ -180,7 +201,8 @@
 "V" = (
 /obj/machinery/cryopod,
 /obj/structure/sign/poster/timeclock_psa/directional/east,
-/turf/open/floor/iron/large,
+/obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark/herringbone,
 /area/station/commons/locker)
 "W" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -189,7 +211,12 @@
 /obj/effect/landmark/navigate_destination{
 	location = "Cryopods"
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
 /area/station/commons/locker)
 "X" = (
 /obj/structure/chair/sofa/bench/tram/left{
@@ -222,13 +249,13 @@ a
 "}
 (2,1,1) = {"
 a
-j
+b
 E
 h
 J
 O
 l
-y
+d
 a
 "}
 (3,1,1) = {"
