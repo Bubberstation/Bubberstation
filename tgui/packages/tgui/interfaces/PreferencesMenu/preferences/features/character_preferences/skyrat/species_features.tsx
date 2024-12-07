@@ -41,7 +41,7 @@ export const flavor_text: Feature<string> = {
 };
 
 export const silicon_flavor_text: Feature<string> = {
-  name: 'Flavor Text (Silicon)',
+  name: 'Silicon Flavor Text',
   description: "Only appears if you're playing as a borg/AI.",
   component: FeatureTextInput,
 };

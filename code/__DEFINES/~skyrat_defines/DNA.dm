@@ -57,6 +57,7 @@
 #define ORGAN_SLOT_EXTERNAL_TAUR "taur"
 #define ORGAN_SLOT_EXTERNAL_XENODORSAL "xenodorsal"
 #define ORGAN_SLOT_EXTERNAL_XENOHEAD "xenohead"
+#define ORGAN_SLOT_BORER "borer"
 
 //Defines for an accessory to be randomed
 #define ACC_RANDOM		"random"

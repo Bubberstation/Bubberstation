@@ -11,8 +11,8 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/sol_smg_rapidfire_kit
-	name = "Sol SMG Conversion"
-	result = /obj/item/gun/ballistic/automatic/rom_smg
+	name = "'Shaytan' SMG Conversion" //edited by Bangle
+	result = /obj/item/gun/ballistic/automatic/rom_smg/no_mag
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/sol_smg = 1,
 		/obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit = 1,

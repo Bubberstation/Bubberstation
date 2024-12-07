@@ -37,8 +37,14 @@
 	desc = "Now redesigned with data gathered from the extensive disco and plasma research."
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
 /obj/machinery/jukebox/public
 	req_access = list()
+	falloff_dist_offset = 10
+	falloff_dist_divider = 50
+
+/obj/machinery/jukebox/no_access
+	req_access = null
 	falloff_dist_offset = 10
 	falloff_dist_divider = 50
 

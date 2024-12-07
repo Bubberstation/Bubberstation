@@ -1758,7 +1758,7 @@
 
 	to_chat(user, span_notice("You try to put [equipping] on [target]..."))
 
-	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red", redacted_copy = "is putting [equipping] on [target]") // BUBBER EDIT - PUBLIC LOGS
+	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red")
 	target.log_message("is having [equipping] put on them by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /obj/item/update_atom_colour()
