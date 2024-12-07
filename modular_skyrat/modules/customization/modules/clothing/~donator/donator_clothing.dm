@@ -265,10 +265,12 @@
 	resistance_flags = FIRE_PROOF
 
 /******CALIGRA DONATIONS******/
+// NOTE: Caligram is being renamed to Blacktide Mercenary Fleet. I'll be reflavoring them to that, with the Molerats/Dustworld stuff coming in its own unique PR later
+
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight
-	name = "\improper FIR-36 half-face rebreather"
-	desc = "A close-fitting respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-36 Rebreather is commonly used by Military and Civilian Personnel alike. It reeks of Militarism."
+	name = "\improper BT-36 respirator"
+	desc = "A combat respirator designed by Blacktide for their original contingent of humanoid recruits. Sleek and black."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "fir36"
@@ -297,49 +299,96 @@
 
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight/fir22
-	name = "\improper FIR-22 full-face rebreather"
-	desc = "A full-face respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-22 Rebreather is a snout-covering variant often seen used by Tajaran Military Personnel. It reeks of militarism."
+	name = "\improper BT-22 extended respirator"
+	desc = "A variant on the BT-36 respirator with an extended visor, developed to fit on Blacktide recruits with longer snouts. Just as sleek and black as its older brother."
 	icon_state = "fir22"
 
 // Donation reward for Raxraus
 /obj/item/clothing/head/caligram_cap_tan
-	name = "\improper Caligram tan softcap"
-	desc = "A Caligram's Fleet-branded hat in a '/surprisingly/' tasteful shade of brown."
+	name = "\improper Blacktide softcap"
+	desc = "A softcap, made for Blacktide for operating in all environments, comes in tan and a tasteful blue variant."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_cap_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_cap_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_cap_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_cap_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
-	name = "\improper Caligram tan fatigues"
-	desc = "A set of tan and brown work fatigues bearing a Caligram's Fleet insigna on an armband. Lacks the typical Tajaran extravagance."
+	name = "\improper Blacktide fatigues"
+	desc = "A set of fatigues developed by Blacktide for their operators, designed for all environments. Comes in a brown and a tasteful blue variant."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "caligram_fatigues_tan"
 	worn_icon_state = "caligram_fatigues_tan"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_fatigues_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_fatigues_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_fatigues_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_fatigues_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/jacket/caligram_parka_tan
-	name = "\improper Caligram tan parka"
-	desc = "A tan parka with a fancy black belt and '/Caligram's Fleet/' stitched onto its armband."
+	name = "\improper Blacktide coat"
+	desc = "A coat with a black belt and '/Blacktide Mercenary Corps/' stitched onto the armband. Comes in tan, blue, and patchless blue variants."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_tan"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_blue"
+		),
+		"Blue Patchless Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_patchless_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_patchless_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
-	name = "\improper Caligram armored tan parka"
-	desc = "A tan parka with a fancy black belt, a lightly armored vest and '/Caligram's Fleet/' stitched onto its armband."
+	name = "\improper Blacktide armored coat"
+	desc = "A coat with a black belt, a lightly armored vest and '/Blacktide Mercenary Corps/' stitched onto its armband. Comes in tan and blue variants."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_vest_tan"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_vest_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_vest_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_blue"
+		)
+	)
 
 // Donation reward for ChillyLobster
 /obj/item/clothing/suit/jacket/brasspriest

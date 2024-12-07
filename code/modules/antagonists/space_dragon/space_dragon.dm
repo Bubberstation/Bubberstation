@@ -140,11 +140,11 @@
 		to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
 		return
 	if(riftTimer >= maxRiftTimer)
-		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You're being pulled back from whence you came!"))
-		destroy_rifts()
-		SEND_SOUND(owner.current, sound('sound/effects/magic/demon_dies.ogg'))
-		owner.current.death(/* gibbed = */ TRUE)
-		QDEL_NULL(owner.current)
+		// BUBBER CHANGE START: dragons don't die to not summoning a rift
+		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You will be slowed down until you do so!"))
+		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression/no_portal)
+		riftTimer = -1
+		// BUBBER CHANGE END
 
 /**
  * Destroys all of Space Dragon's current rifts.

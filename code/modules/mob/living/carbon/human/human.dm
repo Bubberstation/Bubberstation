@@ -380,16 +380,22 @@
 					return
 
 	//SKYRAT EDIT ADDITION BEGIN - VIEW RECORDS
-	if(href_list["bgrecords"])
-		if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
-			var/examined_name = get_face_name(get_id_name(""))
-			var/datum/record/crew/target_record = find_record(examined_name)
-			to_chat(usr, "<b>Background information:</b> [target_record.background_information]")
-	if(href_list["exprecords"])
-		if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
-			var/examined_name = get_face_name(get_id_name("")) //Named as such because this is the name we see when we examine
-			var/datum/record/crew/target_record = find_record(examined_name)
-			to_chat(usr, "<b>Exploitable information:</b> [target_record.exploitable_information]")
+	var/examined_name = get_face_name(get_id_name(""))
+	var/datum/record/locked/target_locked_record = find_record(examined_name, TRUE)
+	var/datum/record/crew/target_record = find_record(examined_name, FALSE)
+	if(isobserver(usr))
+		if(target_record)
+			if(href_list["secrecords"])
+				to_chat(usr, "<b>Security Record:</b> [target_record.past_security_records]")
+			if(href_list["medrecords"])
+				to_chat(usr, "<b>Medical Record:</b> [target_record.past_medical_records]")
+			if(href_list["genrecords"])
+				to_chat(usr, "<b>General Record:</b> [target_record.past_general_records]")
+		if(target_locked_record && href_list["bgrecords"])
+			to_chat(usr, "<b>Background information:</b> [target_locked_record.background_information]")
+	if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
+		if(target_locked_record && href_list["exprecords"])
+			to_chat(usr, "<b>Exploitable information:</b> [target_locked_record.exploitable_information]")
 	//SKYRAT EDIT END
 	..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that.
 
