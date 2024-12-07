@@ -6,7 +6,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit
 	/// When set to TRUE, this particular suit is not able to use the functional toggle
 	var/only_functional
-	/// A temp list to restore the intitial functional values (for armor, cold protection, etc) to the state they were in prior to using the functional toggle
+	/// temp list to restore the intitial functional values (for armor, cold protection, etc) to the state they were in prior to using the functional toggle
 	var/list/functional_suit_values
 
 /obj/item/clothing/suit/Initialize(mapload)
