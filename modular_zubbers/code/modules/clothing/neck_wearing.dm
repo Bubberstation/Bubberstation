@@ -11,7 +11,6 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 
 /obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
-
 	if(!(flags_1 & HAS_CONTEXTUAL_SCREENTIPS_1))
 		register_context()
 
