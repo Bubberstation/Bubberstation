@@ -35,6 +35,7 @@
 	update_cable_icons_on_turf(get_turf(src))
 	return ..()
 
+/* BUBBER EDIT REMOVAL: Toblering: Handled in the toblering file.
 /obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	update_appearance()
@@ -50,6 +51,7 @@
 /obj/structure/grille/update_icon_state()
 	icon_state = "[base_icon_state][((atom_integrity / max_integrity) <= 0.5) ? "50_[rand(0, 3)]" : null]"
 	return ..()
+*/// BUBBER EDIT END
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()

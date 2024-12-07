@@ -1447,6 +1447,13 @@
 		icon = initial(airlock.icon)
 	overlays_file = initial(airlock.overlays_file)
 	assemblytype = initial(airlock.assemblytype)
+
+	stripe_overlays = initial(airlock.stripe_overlays)
+	color_overlays = initial(airlock.color_overlays)
+	glass_fill_overlays = initial(airlock.glass_fill_overlays)
+	note_overlay_file = initial(airlock.note_overlay_file)
+	airlock_paint = initial(airlock.airlock_paint)
+	stripe_paint = initial(airlock.stripe_paint)
 	update_appearance()
 
 /obj/machinery/door/airlock/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
