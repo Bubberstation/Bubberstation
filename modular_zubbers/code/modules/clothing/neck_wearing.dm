@@ -68,7 +68,6 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 
 /obj/item/clothing/suit/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
-
 	if(only_functional)
 		return
 	if(slot_flags == ITEM_SLOT_NECK)
