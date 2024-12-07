@@ -67,6 +67,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 #undef PREV_HEAT_PROTECTION
 #undef PREV_SLOWDOWN
 #undef PREV_ARMOR_DATUM
+
 /obj/item/clothing/suit/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 
