@@ -2,13 +2,13 @@
 /datum/armament_entry/company_import/allstar
 	category = COMPANY_NAME_ALLSTAR_ENERGY
 	company_bitflag = CARGO_COMPANY_ALLSTAR_ENERGY
-
+/*
 // Basic lethal/disabler beam weapons, includes the base mcr
 
 /datum/armament_entry/company_import/allstar/basic_energy_weapons
 	subcategory = "Basic Energy Smallarms"
 	restricted = TRUE
-/*
+
 /datum/armament_entry/company_import/allstar/basic_energy_weapons/disabler
 	item_type = /obj/item/gun/energy/disabler
 	cost = PAYCHECK_CREW * 5
