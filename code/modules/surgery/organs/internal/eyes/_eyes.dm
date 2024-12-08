@@ -100,34 +100,34 @@
 	if(call_update)
 		affected_human.update_body()
 
-/obj/item/organ/internal/eyes/mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/internal/eyes/Remove(mob/living/carbon/eye_owner, special, movement_flags)
 	. = ..()
 
-	if(ishuman(organ_owner))
-		var/mob/living/carbon/human/human_owner = organ_owner
+	if(ishuman(eye_owner))
+		var/mob/living/carbon/human/human_owner = eye_owner
 		if(initial(eye_color_left))
 			human_owner.eye_color_left = old_eye_color_left
 		if(initial(eye_color_right))
 			human_owner.eye_color_right = old_eye_color_right
 		if(native_fov)
-			organ_owner.remove_fov_trait(type)
+			eye_owner.remove_fov_trait(type)
 		if(!special)
 			human_owner.update_body()
 
 	// Cure blindness from eye damage
-	organ_owner.cure_blind(EYE_DAMAGE)
-	organ_owner.cure_nearsighted(EYE_DAMAGE)
+	eye_owner.cure_blind(EYE_DAMAGE)
+	eye_owner.cure_nearsighted(EYE_DAMAGE)
 	// Eye blind and temp blind go to, even if this is a bit of cheesy way to clear blindness
-	organ_owner.remove_status_effect(/datum/status_effect/eye_blur)
-	organ_owner.remove_status_effect(/datum/status_effect/temporary_blindness)
+	eye_owner.remove_status_effect(/datum/status_effect/eye_blur)
+	eye_owner.remove_status_effect(/datum/status_effect/temporary_blindness)
 	// Then become blind anyways (if not special)
 	if(!special)
-		organ_owner.become_blind(NO_EYES)
+		eye_owner.become_blind(NO_EYES)
 
-	organ_owner.update_tint()
-	organ_owner.update_sight()
+	eye_owner.update_tint()
+	eye_owner.update_sight()
 	is_emissive = FALSE // BUBBER EDIT ADDITION
-	UnregisterSignal(organ_owner, COMSIG_ATOM_BULLET_ACT)
+	UnregisterSignal(eye_owner, COMSIG_ATOM_BULLET_ACT)
 
 /obj/item/organ/internal/eyes/proc/on_bullet_act(datum/source, obj/projectile/proj, def_zone)
 	SIGNAL_HANDLER
