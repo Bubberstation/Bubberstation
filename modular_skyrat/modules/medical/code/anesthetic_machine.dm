@@ -1,5 +1,11 @@
 //Credit to Beestation for the original anesthetic machine code: https://github.com/BeeStation/BeeStation-Hornet/pull/3753
 
+/obj/structure/closet/secure_closet/medical2/Initialize(mapload)
+	. = ..()
+	new /obj/machinery/anesthetic_machine/n2o(loc)
+	new /obj/machinery/anesthetic_machine/n2o(loc)
+	qdel(src)
+
 /obj/machinery/anesthetic_machine
 	name = "portable anesthetic tank stand"
 	desc = "A stand on wheels, similar to an IV drip, that can hold a canister of anesthetic along with a gas mask."
@@ -14,6 +20,9 @@
 	var/obj/item/tank/attached_tank = null
 	/// Is the attached mask currently out?
 	var/mask_out = FALSE
+
+/obj/machinery/anesthetic_machine/n2o
+	attached_tank = new /obj/item/tank/internals/anesthetic
 
 /obj/machinery/anesthetic_machine/examine(mob/user)
 	. = ..()
