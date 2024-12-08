@@ -29,5 +29,5 @@
 	if(length(failed_check) > 0)
 		to_chat(user, span_boldnotice("<b>You could increase surgery speed by [english_list(failed_check)].</b>"))
 
-	if(!(HAS_TRAIT(target, TRAIT_ANALGESIA) || target.stat == DEAD))
+	if(!(HAS_TRAIT(target, TRAIT_ANALGESIA) || target.stat == DEAD) && !issynthetic(target))
 		to_chat(user, span_bolddanger("[target] has no treatment to manage surgery pain!"))

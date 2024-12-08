@@ -120,13 +120,15 @@
 
 	if(check_morbid_curiosity(user, tool, surgery))
 		speed_mod *= SURGERY_SPEED_MORBID_CURIOSITY
-
 	// BUBBER EDIT CHANGE BEGIN - Surgery Modifiers
-	if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
-		speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
-
-	if(target.has_sterilizine())
+	if(issynthetic(target))
 		speed_mod *= SURGERY_SPEED_TRAIT_STERILE
+	else
+		if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
+			speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
+
+		if(target.has_sterilizine())
+			speed_mod *= SURGERY_SPEED_TRAIT_STERILE
 	// BUBBER EDIT CHANGE END
 
 	var/implement_speed_mod = 1
