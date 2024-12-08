@@ -17,15 +17,10 @@
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
 
-	var/list/valid_maps = filter_cache_to_valid_maps()
-	if(!length(valid_maps))
-		send_map_vote_notice("No valid maps.")
-		return
-
 	var/list/message_data = list()
 	var/winner
 	var/winner_amount = 0
-	for(var/map in valid_maps)
+	for(var/map in map_vote.choices)
 		message_data += "[map] - [map_vote_cache[map]]"
 		if(!winner_amount)
 			winner = map
@@ -47,7 +42,7 @@
 		vote_result_message += list("\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.")
 
 	// do not reset tallies if only one map is even possible
-	if(length(valid_maps) > 1)
+	if(length(map_vote.choices) > 1)
 		map_vote_cache[winner] = CONFIG_GET(number/map_vote_minimum_tallies)
 		write_cache()
 		update_tally_printout()
