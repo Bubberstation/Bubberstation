@@ -181,6 +181,10 @@
 /datum/armament_entry/company_import/deforest/equipment
 	subcategory = "Medical Equipment"
 
+/datum/armament_entry/company_import/deforest/equipment/treatment_zone_projector
+	item_type = /obj/item/holosign_creator/medical/treatment_zone
+	cost = PAYCHECK_LOWER
+
 /datum/armament_entry/company_import/deforest/equipment/health_analyzer
 	item_type = /obj/item/healthanalyzer
 	cost = PAYCHECK_LOWER
