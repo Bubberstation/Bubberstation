@@ -1,0 +1,7 @@
+/datum/mind/verb/toggle_athletics_size()
+	set category = "Skills"
+	set name = "Toggle Athletics Size Scaling"
+
+	athletics_size_scaling = !athletics_size_scaling
+	var/status = athletics_size_scaling ? "enabled" : "disabled"
+	to_chat(src, "Athletics size scaling is now [status].")
