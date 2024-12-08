@@ -464,3 +464,56 @@
 		/obj/item/storage/box/bandages,
 		/obj/item/bodybag,
 	))
+
+/datum/design/deforest_medical
+	name = "Satchel Medical Bag"
+	id = "satchel_medical"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_medkit
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/deforest_technician
+	name = "Medical Technician Bag"
+	id = "satchel_tech"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_paramedic
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/deforest_surgical
+	name = "First Responder Surgical Bag"
+	id = "satchel_surgical"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_surgical
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/techweb_node/medbay_equip_adv/New()
+	design_ids += list(
+		"satchel_medical",
+		"satchel_tech",
+		"satchel_surgical",
+	)
+	return ..()
