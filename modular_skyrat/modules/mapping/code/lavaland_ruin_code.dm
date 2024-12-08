@@ -107,6 +107,9 @@
 	keyslot = /obj/item/encryptionkey/headset_syndicate/interdyne
 	keyslot2 = /obj/item/encryptionkey/syndicate
 
+/obj/item/radio/headset/interdyne/empty
+	keyslot = null
+
 /obj/structure/closet/crate/freezer/sansufentanyl
 	name = "sansufentanyl crate"
 	desc = "A freezer. Contains refrigerated Sansufentanyl, for managing Hereditary Manifold Sickness. A product of Interdyne Pharmaceuticals."

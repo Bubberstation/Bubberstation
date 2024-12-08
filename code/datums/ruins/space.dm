@@ -449,6 +449,7 @@ BUBBERSTATION REMOVAL END */
 
 /datum/map_template/ruin/space/interdyne
 	id = "interdyne"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" //BUBBER EDIT
 	suffix = "interdyne.dmm"
 	name = "Space-Ruin Interdyne Spinward Research Base"
 	description = "An Interdyne facility abandoned due to the accidental discovery of Romerol"
