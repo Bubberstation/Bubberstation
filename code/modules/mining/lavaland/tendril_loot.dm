@@ -694,8 +694,8 @@
 
 /datum/armor/drake_empowerment
 	melee = 35
-	laser = 30
-	energy = 20
+	laser = 10 //BUBBER EDIT: Removes overpowered empowerment
+//	energy = 20 //BUBBER EDIT: Removes overpowered empowerment
 	bomb = 20
 
 /obj/item/clothing/suit/hooded/berserker/Initialize(mapload)
