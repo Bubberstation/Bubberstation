@@ -313,6 +313,15 @@
 	if (flavor_text_link)
 		. += flavor_text_link
 
+	//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
+	if (isobserver(usr) || mind.can_see_exploitables || mind.has_exploitables_override)
+		var/perpname = get_face_name(get_id_name(""))
+		var/datum/record/locked/target_records = find_record(perpname, TRUE) //apparantly golden is okay with offstation roles having no records, FYI
+		var/exploitable_text = target_records?.exploitable_information
+		if (target_records && ((length(exploitable_text) > RECORDS_INVISIBLE_THRESHOLD) && ((exploitable_text) != EXPLOITABLE_DEFAULT_TEXT)))
+			. += "<a href='?src=[REF(src)];exprecords=1'>\[View exploitable info\]</a>"
+	//BUBBER EDIT END
+
 	//Temporary flavor text addition:
 	if(temporary_flavor_text)
 		if(length_char(temporary_flavor_text) < TEMPORARY_FLAVOR_PREVIEW_LIMIT)
