@@ -13,12 +13,6 @@
 	write_cache()
 	update_tally_printout()
 
-	var/list/message_data = list()
-	for(var/map_id in map_vote.choices)
-		var/datum/map_config/map = config.maplist[map_id]
-		message_data += "[map.map_name] - [map_vote_cache[map_id]]"
-	var/filtered_vote_results = "[span_bold("Vote Results (Including Carryover)")]\n\n[message_data.Join("\n")]"
-
 	if(admin_override)
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
@@ -28,9 +22,11 @@
 		send_map_vote_notice("No valid maps.")
 		return
 
+	var/list/message_data = list()
 	var/winner
 	var/winner_amount = 0
 	for(var/map in valid_maps)
+		message_data += "[map] - [map_vote_cache[map]]"
 		if(!winner_amount)
 			winner = map
 			winner_amount = map_vote_cache[map]
@@ -39,6 +35,8 @@
 			continue
 		winner = map
 		winner_amount = map_vote_cache[map]
+
+	var/filtered_vote_results = "[span_bold("Vote Results (Including Carryover)")]\n\n[message_data.Join("\n")]"
 
 	ASSERT(winner, "No winner found in map vote.")
 	set_next_map(config.maplist[winner])
