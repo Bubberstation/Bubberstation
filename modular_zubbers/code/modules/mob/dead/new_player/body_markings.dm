@@ -119,6 +119,12 @@
 	default_color = DEFAULT_PRIMARY
 	affected_bodyparts = CHEST
 
+/datum/body_marking/bubber/weight3
+	name = "Body Weight (No nipples, side-view)"
+	icon_state = "weight3"
+	default_color = DEFAULT_PRIMARY
+	affected_bodyparts = CHEST
+
 /datum/body_marking/bubber/bellybutton //a literal pixel addition
 	icon_state = "bellybutton"
 	name = "Belly Button"
