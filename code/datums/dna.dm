@@ -607,7 +607,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			override_features[feature] = dna.features[feature]
 		dna.features = override_features
 
-	apply_customizable_dna_features_to_species()
+	if(dna.species.disallow_customizable_dna_features) // for species where we do not want to carry anything like this over
+		dna.mutant_bodyparts = dna.species.get_mutant_bodyparts(dna.features)
+		dna.body_markings = list()
+		dna.species.mutant_bodyparts = dna.species::mutant_bodyparts || list()
+		dna.species.body_markings = dna.species::body_markings || list()
+	else
+		apply_customizable_dna_features_to_species()
 	dna.unique_features = dna.generate_unique_features()
 
 	dna.update_body_size()
@@ -766,8 +772,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(dna.features["pod_hair"])
 		dna.features["pod_hair"] = SSaccessories.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), length(SSaccessories.pod_hair_list))]
 
-	for(var/obj/item/organ/external/external_organ in organs)
-		external_organ.mutate_feature(features, src)
+	for(var/obj/item/organ/organ in organs)
+		organ.mutate_feature(features, src)
 
 	if(icon_update)
 		update_body(is_creating = mutcolor_update)
