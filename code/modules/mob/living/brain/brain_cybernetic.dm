@@ -52,8 +52,15 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity) // Hard cap on brain damage from EMP
+//BUBBER EDIT BEGIN - can't be emp'd if dead
+	if(owner.stat == DEAD) 
+		return
+//BUBBER EDIT END
+	switch(severity)
 		if (EMP_HEAVY)
-			apply_organ_damage(20, BRAIN_DAMAGE_SEVERE)
+			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 190) //BUBBER EDIT - damage reduced from 30->20, capped at 190
 		if (EMP_LIGHT)
-			apply_organ_damage(10, BRAIN_DAMAGE_MILD)
+			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190) //BUBBER EDIT - damage reduced from 20->10, capped at 190
+
