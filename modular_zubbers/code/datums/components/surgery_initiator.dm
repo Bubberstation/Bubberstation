@@ -14,15 +14,16 @@
 			passed_check += "the operating table"
 			failed_check += "an operating computer"
 
-	if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
-		passed_check += "pain management"
-	else if(!(HAS_TRAIT(target, TRAIT_STASIS)))
-		failed_check += "using anesthetics or painkillers"
+	if(!issynthetic(target))
+		if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
+			passed_check += "pain management"
+		else if(!(HAS_TRAIT(target, TRAIT_STASIS)))
+			failed_check += "using anesthetics or painkillers"
 
-	if(target.has_sterilizine(target))
-		passed_check += "sterilizine/cryostylane"
-	else
-		failed_check += "using sterilizine or cryostylane"
+		if(target.has_sterilizine(target))
+			passed_check += "sterilizine/cryostylane"
+		else
+			failed_check += "using sterilizine or cryostylane"
 
 	if(length(passed_check) > 0)
 		to_chat(user, span_greenannounce("You have surgery speed bonuses from [english_list(passed_check)]!"))
