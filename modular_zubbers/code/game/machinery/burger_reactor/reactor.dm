@@ -202,12 +202,12 @@
 				return FALSE
 		stored_rod.forceMove(T)
 		stored_rod.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(3,6),5)
-		playsound(src, 'sound/weapons/gun/general/grenade_launch.ogg', 50, TRUE, extrarange = -3)
+		playsound(src, 'sound/items/weapons/gun/general/grenade_launch.ogg', 50, TRUE, extrarange = -3)
 	else
 		if(jammed)
 			return FALSE
 		stored_rod.forceMove(T)
-		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = -1, extrarange = -3)
+		playsound(src, 'sound/items/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = -1, extrarange = -3)
 	stored_rod = null
 	update_appearance(UPDATE_ICON)
 	if(user)
@@ -224,7 +224,7 @@
 	stored_rod = desired_rod
 	update_appearance(UPDATE_ICON)
 	START_PROCESSING(SSmachines, src)
-	playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = 1, extrarange = -3)
+	playsound(src, 'sound/items/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = 1, extrarange = -3)
 	if(user)
 		user.log_message("inserted a rod into [src]", LOG_GAME)
 		investigate_log("had a rod inserted by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)

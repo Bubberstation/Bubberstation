@@ -55,7 +55,7 @@
 
 	is_toggled = !is_toggled //Changes the toggle to the reverse of what it is.
 	src.ammo_type = is_toggled ? primary_mode : secondary_mode
-	playsound(loc,is_toggled ? 'sound/machines/defib_SaftyOn.ogg' : 'sound/machines/defib_saftyOff.ogg', 50)
+	playsound(loc,is_toggled ? 'sound/machines/defib/defib_SaftyOn.ogg' : 'sound/machines/defib/defib_SaftyOff.ogg', 50)
 
 	if(medicell_examine)
 		balloon_alert(user, "safety [is_toggled ? "enabled" : "disabled"]")

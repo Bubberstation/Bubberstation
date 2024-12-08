@@ -1,9 +1,9 @@
 // .35 Sol Short
-// Pistol caliber caseless round used almost exclusively by SolFed weapons
+// Pistol caliber caseless round used almost exclusively by TerraGov weapons
 
 /obj/item/ammo_casing/c35sol
 	name = ".35 Sol Short lethal bullet casing"
-	desc = "A SolFed standard caseless lethal pistol round."
+	desc = "A TerraGov standard caseless lethal pistol round."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "35sol"
@@ -20,10 +20,10 @@
 
 /obj/projectile/bullet/c35sol
 	name = ".35 Sol Short bullet"
-	damage = 25
+	damage = 20
 
-	wound_bonus = 10 // Normal bullets are 20
-	bare_wound_bonus = 20
+	wound_bonus = 5 // Normal bullets are 20
+	bare_wound_bonus = 25
 
 
 /obj/item/ammo_box/c35sol
@@ -46,7 +46,7 @@
 
 /obj/item/ammo_casing/c35sol/incapacitator
 	name = ".35 Sol Short incapacitator bullet casing"
-	desc = "A SolFed standard caseless less-lethal pistol round. Exhausts targets on hit, has a tendency to bounce off walls at shallow angles."
+	desc = "A TerraGov standard caseless less-lethal pistol round. Exhausts targets on hit, has a tendency to bounce off walls at shallow angles."
 
 	icon_state = "35sol_disabler"
 
@@ -56,7 +56,7 @@
 
 /obj/projectile/bullet/c35sol/incapacitator
 	name = ".35 Sol Short incapacitator bullet"
-	damage = 5
+	damage = 8
 	stamina = 30
 
 	wound_bonus = -40
@@ -75,7 +75,7 @@
 
 	shrapnel_type = null
 	sharpness = NONE
-	embedding = null
+	embed_data = null
 
 
 /obj/item/ammo_box/c35sol/incapacitator
@@ -91,7 +91,7 @@
 
 /obj/item/ammo_casing/c35sol/ripper
 	name = ".35 Sol Short ripper bullet casing"
-	desc = "A SolFed standard caseless ripper pistol round. Causes slashing wounds on targets, but is weak to armor."
+	desc = "A TerraGov standard caseless ripper pistol round. Causes slashing wounds on targets, but is weak to armor."
 
 	icon_state = "35sol_shrapnel"
 	projectile_type = /obj/projectile/bullet/c35sol/ripper
@@ -108,22 +108,22 @@
 
 	sharpness = SHARP_EDGED
 
-	wound_bonus = 20
-	bare_wound_bonus = 20
+	wound_bonus = 25
+	bare_wound_bonus = 25
 
-	embedding = list(
-		embed_chance = 75,
-		fall_chance = 3,
-		jostle_chance = 4,
-		ignore_throwspeed_threshold = TRUE,
-		pain_stam_pct = 0.4,
-		pain_mult = 5,
-		jostle_pain_mult = 6,
-		rip_time = 1 SECONDS,
-	)
+	embed_type = /datum/embed_data/c35sol_ripper
 
 	embed_falloff_tile = -15
 
+/datum/embed_data/c35sol_ripper
+	embed_chance = 75
+	fall_chance = 3
+	jostle_chance = 4
+	ignore_throwspeed_threshold = TRUE
+	pain_stam_pct = 0.4
+	pain_mult = 5
+	jostle_pain_mult = 6
+	rip_time = 1 SECONDS
 
 /obj/item/ammo_box/c35sol/ripper
 	name = "ammo box (.35 Sol Short ripper)"

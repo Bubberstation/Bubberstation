@@ -20,3 +20,18 @@
 
 /datum/controller/subsystem/job/
 	var/list/latejoin_override_trackers = list()
+
+/obj/effect/landmark/navigate_destination/cryo
+	location = "Cryopods"
+
+/obj/effect/landmark/navigate_destination/cryo_west
+	location = "Cryopods (West)"
+
+/obj/effect/landmark/navigate_destination/cryo_east
+	location = "Cryopods (East)"
+
+/obj/effect/landmark/navigate_destination/cryo_central
+	location = "Cryopods (Central)"
+
+/obj/effect/landmark/navigate_destination/dockpublicmining
+	location = "Public Mining"

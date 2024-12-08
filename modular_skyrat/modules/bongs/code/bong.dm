@@ -91,7 +91,7 @@
 	if(!packed_item || !lit)
 		return
 	hit_mob.visible_message(span_notice("[user] starts [hit_mob == user ? "taking a hit from [src]." : "forcing [hit_mob] to take a hit from [src]!"]"), hit_mob == user ? span_notice("You start taking a hit from [src].") : span_userdanger("[user] starts forcing you to take a hit from [src]!"))
-	playsound(src, 'sound/chemistry/heatdam.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/chemistry/heatdam.ogg', 50, TRUE)
 	if(!do_after(user, 40))
 		return
 	to_chat(hit_mob, span_notice("You finish taking a hit from the [src]."))
@@ -104,10 +104,8 @@
 			spawn_cloud(pos, smoke_range)
 	if(moan_chance > 0)
 		if(prob(moan_chance))
-			playsound(hit_mob, pick('modular_skyrat/master_files/sound/effects/lungbust_moan1.ogg','modular_skyrat/master_files/sound/effects/lungbust_moan2.ogg', 'modular_skyrat/master_files/sound/effects/lungbust_moan3.ogg'), 50, TRUE)
 			hit_mob.emote("moan")
 		else
-			playsound(hit_mob, pick('modular_skyrat/master_files/sound/effects/lungbust_cough1.ogg','modular_skyrat/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE)
 			hit_mob.emote("cough")
 	if(bong_hits <= 0)
 		balloon_alert(hit_mob, "out of uses!")

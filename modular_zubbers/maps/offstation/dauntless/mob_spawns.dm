@@ -19,6 +19,15 @@
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service
 	spawner_job_path = /datum/job/dauntless
+	/// If true, this spawner will give it's target exploitables access.
+	var/give_exploitables = TRUE
+
+/obj/effect/mob_spawn/ghost_role/human/dauntless/special(mob/living/spawned_mob, mob/mob_possessor)
+	. = ..()
+
+	if (give_exploitables)
+		spawned_mob.mind?.has_exploitables_override = TRUE
+		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
 	name = "Syndicate Operative"
@@ -44,6 +53,7 @@
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Dauntless personnel can throw you into lava if you antagonize them."
 	outfit = /datum/outfit/dauntless/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
+	give_exploitables = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service
 	outfit = /datum/outfit/dauntless/syndicate/service
@@ -59,6 +69,9 @@
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/brigoff
 	outfit = /datum/outfit/dauntless/syndicate/brigoff
+
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/miningoff
+	outfit = /datum/outfit/dauntless/syndicate/miningoff
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command/masteratarms
 	outfit = /datum/outfit/dauntless/command/masteratarms
@@ -125,6 +138,9 @@
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/syndicate/brigoff
 	outfit = /datum/outfit/dauntless/syndicate/brigoff
 
+/obj/effect/mob_spawn/ghost_role/human/space_dauntless/syndicate/miningoff
+	outfit = /datum/outfit/dauntless/syndicate/miningoff
+
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/command/masteratarms
 	outfit = /datum/outfit/dauntless/command/masteratarms
 
@@ -163,7 +179,7 @@
 		id_card.registered_name = syndicate.real_name
 		id_card.update_label()
 		id_card.update_icon()
-
+	syndicate.apply_pref_name(/datum/preference/name/syndicate, syndicate.client)
 	handlebank(syndicate)
 	return ..()
 
@@ -179,7 +195,7 @@
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
-	name = "Dauntless Opporative"
+	name = "Dauntless Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne
@@ -257,6 +273,28 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/interdyne
 
+/datum/outfit/dauntless/syndicate/miningoff
+	name = "Dauntless Mining Officer"
+	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
+	belt = /obj/item/storage/bag/ore
+	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/miner
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	suit = /obj/item/clothing/suit/armor/bulletproof/old
+	back = /obj/item/storage/backpack/satchel/explorer
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/knife/combat/survival = 1,
+		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
+		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
+		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
+		)
+	mask = /obj/item/clothing/mask/gas/syndicate
+	ears = /obj/item/radio/headset/interdyne
+	l_pocket = /obj/item/card/mining_point_card
+	r_pocket = /obj/item/mining_voucher
+	head = /obj/item/clothing/head/soft/black
+
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
@@ -313,7 +351,3 @@
 /datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
-
-
-
-

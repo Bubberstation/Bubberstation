@@ -48,7 +48,7 @@
 	)
 
 /obj/vehicle/sealed/mecha/marauder/loaded/populate_parts()
-	cell = new /obj/item/stock_parts/cell/bluespace(src)
+	cell = new /obj/item/stock_parts/power_store/cell/bluespace(src)
 	scanmod = new /obj/item/stock_parts/scanning_module/triphasic(src)
 	capacitor = new /obj/item/stock_parts/capacitor/quadratic(src)
 	servo = new /obj/item/stock_parts/servo/femto(src)
@@ -79,7 +79,7 @@
 	to_chat(owner, "[icon2html(chassis, owner)]<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 	if(chassis.zoom_mode)
 		owner.client.view_size.setTo(4.5)
-		SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg', volume=50))
+		SEND_SOUND(owner, sound('sound/vehicles/mecha/imag_enh.ogg', volume=50))
 	else
 		owner.client.view_size.resetToDefault()
 	build_all_button_icons()
@@ -169,7 +169,7 @@
 	max_ammo()
 
 /obj/vehicle/sealed/mecha/marauder/mauler/loaded/populate_parts()
-	cell = new /obj/item/stock_parts/cell/bluespace(src)
+	cell = new /obj/item/stock_parts/power_store/cell/bluespace(src)
 	scanmod = new /obj/item/stock_parts/scanning_module/triphasic(src)
 	capacitor = new /obj/item/stock_parts/capacitor/quadratic(src)
 	servo = new /obj/item/stock_parts/servo/femto(src)

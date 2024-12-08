@@ -22,22 +22,18 @@
 	key = "clap"
 	key_third_person = "claps"
 	message = "claps."
-	muzzle_ignore = TRUE
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 
 /datum/emote/living/carbon/clap/get_sound(mob/living/user)
-	if(!ishuman(user))
-		return
 	if(!user.get_bodypart(BODY_ZONE_L_ARM) || !user.get_bodypart(BODY_ZONE_R_ARM))
 		return
 	return pick(
-		'sound/misc/clap1.ogg',
-		'sound/misc/clap2.ogg',
-		'sound/misc/clap3.ogg',
-		'sound/misc/clap4.ogg',
+		'sound/mobs/humanoids/human/clap/clap1.ogg',
+		'sound/mobs/humanoids/human/clap/clap2.ogg',
+		'sound/mobs/humanoids/human/clap/clap3.ogg',
+		'sound/mobs/humanoids/human/clap/clap4.ogg',
 	)
 */
 //SKYRAT EDIT REMOVAL END
@@ -46,11 +42,11 @@
 	key = "crack"
 	key_third_person = "cracks"
 	message = "cracks their knuckles."
-	sound = 'sound/misc/knuckles.ogg'
+	sound = 'sound/mobs/humanoids/human/knuckle_crack/knuckles.ogg'
 	hands_use_check = TRUE
 	cooldown = 6 SECONDS
 
-/datum/emote/living/carbon/crack/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
+/datum/emote/living/carbon/crack/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional, params)
 	if(!iscarbon(user) || user.usable_hands < 2)
 		return FALSE
 	return ..()
@@ -60,7 +56,6 @@
 	key_third_person = "cries"
 	message = "cries."
 	message_mime = "sobs silently."
-	audio_cooldown = 5 SECONDS
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
 	stat_allowed = SOFT_CRIT
@@ -105,8 +100,6 @@
 
 /datum/emote/living/carbon/noogie/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	if(!.)
-		return
 	var/obj/item/hand_item/noogie/noogie = new(user)
 	if(user.put_in_hands(noogie))
 		to_chat(user, span_notice("You ready your noogie'ing hand."))
@@ -155,8 +148,6 @@
 
 /datum/emote/living/carbon/slap/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	if(!.)
-		return
 	var/obj/item/hand_item/slapper/N = new(user)
 	if(user.put_in_hands(N))
 		to_chat(user, span_notice("You ready your slapping hand."))
@@ -173,9 +164,6 @@
 
 /datum/emote/living/carbon/hand/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	if(!.)
-		return
-
 	var/obj/item/hand_item/hand/hand = new(user)
 	if(user.put_in_hands(hand))
 		to_chat(user, span_notice("You ready your hand."))
@@ -183,7 +171,7 @@
 		qdel(hand)
 		to_chat(user, span_warning("You're incapable of using your hand in your current state."))
 
-
+/* Bubber removal begin - moved to modular_zubbers\code\modules\emotes\emotes.dm - /datum/emote/living/snap
 /datum/emote/living/carbon/snap
 	key = "snap"
 	key_third_person = "snaps"
@@ -191,12 +179,15 @@
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	hands_use_check = TRUE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/carbon/snap/get_sound(mob/living/user)
 	if(ishuman(user))
-		return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
+		return pick(
+			'sound/mobs/humanoids/human/snap/fingersnap1.ogg',
+			'sound/mobs/humanoids/human/snap/fingersnap2.ogg',
+			)
 	return null
+Bubber removal end */
 
 /datum/emote/living/carbon/shoesteal
 	key = "shoesteal"
@@ -206,8 +197,6 @@
 
 /datum/emote/living/carbon/shoesteal/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	if (!.)
-		return
 	var/obj/item/hand_item/stealer/stealing_hand = new(user)
 	if (user.put_in_hands(stealing_hand))
 		user.balloon_alert(user, "preparing to steal shoes...")

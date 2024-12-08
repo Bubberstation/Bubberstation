@@ -3,7 +3,7 @@
 	desc = "Circumstances have rendered this protective suit into someone's second skin. Literally."
 	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
 
-	default_skin = "civilian"
+	default_skin = "standard"
 	armor_type = /datum/armor/mod_entombed
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
@@ -46,9 +46,9 @@
 
 /obj/item/mod/control/pre_equipped/entombed
 	theme = /datum/mod_theme/entombed
-	applied_cell = /obj/item/stock_parts/cell/high
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
-		/obj/item/mod/module/storage
+		/obj/item/mod/module/storage/large_capacity
 	)
 
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)
@@ -76,7 +76,7 @@
 			if (istype(part, /obj/item/clothing)) // make sure it's a modsuit piece and not a module, we retract those too
 				if (!istype(part, /obj/item/clothing/head/mod)) // they can only retract the helmet, them's the sticks
 					human_user.balloon_alert(human_user, "part is fused to you - can't retract!")
-					playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+					playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 					return
 	return ..()
 
@@ -87,7 +87,7 @@
 		//if we're deploy_locked, just disable this functionality entirely
 		if (tomb_quirk && tomb_quirk.deploy_locked)
 			human_user.balloon_alert(human_user, "you can only retract your helmet, and only manually!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	return ..()
 

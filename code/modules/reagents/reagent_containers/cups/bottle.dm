@@ -129,6 +129,11 @@
 	desc = "A small bottle. Contains cold sauce."
 	list_reagents = list(/datum/reagent/consumable/frostoil = 30)
 
+/obj/item/reagent_containers/cup/bottle/strange_reagent
+	name = "Strange Reagent Bottle"
+	desc = "A small bottle. May be used to revive people."
+	list_reagents = list(/datum/reagent/medicine/strange_reagent = 30)
+
 /obj/item/reagent_containers/cup/bottle/traitor
 	name = "syndicate bottle"
 	desc = "A small bottle. Contains a random nasty chemical."
@@ -431,7 +436,7 @@
 
 /obj/item/reagent_containers/cup/bottle/thermite
 	name = "thermite bottle"
-	list_reagents = list(/datum/reagent/thermite = 30)
+	list_reagents = list(/datum/reagent/thermite = 50)
 
 // Bottles for mail goodies.
 
@@ -510,7 +515,7 @@
 		balloon_alert(user, "transferred [transfer_amount] unit\s")
 		flick("syrup_anim",src)
 
-	if(istype(attacking_item, /obj/item/pen))
+	if(IS_WRITING_UTENSIL(attacking_item))
 		rename(user, attacking_item)
 
 	attacking_item.update_appearance()

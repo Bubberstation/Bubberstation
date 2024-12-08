@@ -4,6 +4,7 @@
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 7
+	caliber = CALIBER_357
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	item_flags = NO_MAT_REDEMPTION
 	ammo_band_icon = "+357_ammo_band"
@@ -35,6 +36,7 @@
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 6
+	caliber = CALIBER_38
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*10)
 	ammo_band_icon = "+38_ammo_band"
@@ -127,6 +129,12 @@
 /obj/item/ammo_box/strilka310/surplus
 	name = "stripper clip (.310 Surplus)"
 	ammo_type = /obj/item/ammo_casing/strilka310/surplus
+
+/obj/item/ammo_box/strilka310/phasic
+	name = "stripper clip (.310 Phasic)"
+	desc = "A stripper clip filled with phasic bullets, hastily developed after an incident where a misfire resulted in the destruction of Atrakor Silverscale's priceless Vigoxian Fabergé egg. \
+		These fancy bullets pass right though valuables until they end up in a far less expensive human skull."
+	ammo_type = /obj/item/ammo_casing/strilka310/phasic
 
 /obj/item/ammo_box/n762
 	name = "ammo box (7.62x38mmR)"

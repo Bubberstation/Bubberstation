@@ -133,7 +133,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		to_chat(affected_mob, "You feel confused and disoriented.")
 		if(prob(30))
-			SEND_SOUND(affected_mob, sound('sound/weapons/flash_ring.ogg'))
+			SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -1036,7 +1036,7 @@
 	else
 		tips = world.file2list("strings/chemistrytips.txt")
 	var/message = pick(tips)
-	send_tip_of_the_round(affected_mob, message)
+	send_tip_of_the_round(affected_mob, message, source = "Chemical-induced wisdom")
 
 /datum/reagent/medicine/neurine
 	name = "Neurine"
@@ -1093,7 +1093,7 @@
 	var/mob/living/carbon/human/human_mob = affected_mob
 	if (ismonkey(human_mob))
 		if (!HAS_TRAIT(human_mob, TRAIT_BORN_MONKEY))
-			human_mob.dna.remove_mutation(/datum/mutation/human/race)
+			human_mob.dna.remove_mutation(/datum/mutation/human/race, mutadone = TRUE)
 	else if (HAS_TRAIT(human_mob, TRAIT_BORN_MONKEY))
 		human_mob.monkeyize()
 
@@ -1349,6 +1349,9 @@
 	if (affected_mob.get_timed_status_effect_duration(/datum/status_effect/hallucination) >= 10 SECONDS)
 		affected_mob.adjust_hallucinations(-10 SECONDS * REM * seconds_per_tick)
 
+	if(affected_mob.getStaminaLoss() >= 100)
+		affected_mob.reagents.remove_reagent(type, 2 * REM * seconds_per_tick)
+
 	var/need_mob_update = FALSE
 	if(SPT_PROB(10, seconds_per_tick))
 		need_mob_update += affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1, 50, affected_organ_flags)
@@ -1376,7 +1379,7 @@
 	. = ..()
 	affected_mob.add_traits(list(TRAIT_SLEEPIMMUNE, TRAIT_BATON_RESISTANCE), type)
 	affected_mob.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
-	RegisterSignal(affected_mob, COMSIG_CARBON_ENTER_STAMCRIT, PROC_REF(on_stamcrit))
+	RegisterSignal(affected_mob, COMSIG_LIVING_ENTER_STAMCRIT, PROC_REF(on_stamcrit))
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
@@ -1384,7 +1387,7 @@
 	affected_mob.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	affected_mob.remove_status_effect(/datum/status_effect/dizziness)
 	affected_mob.remove_status_effect(/datum/status_effect/jitter)
-	UnregisterSignal(affected_mob, COMSIG_CARBON_ENTER_STAMCRIT)
+	UnregisterSignal(affected_mob, COMSIG_LIVING_ENTER_STAMCRIT)
 
 /datum/reagent/medicine/changelingadrenaline/proc/on_stamcrit(mob/living/affected_mob)
 	SIGNAL_HANDLER

@@ -8,13 +8,13 @@
 	if(!istype(target, /obj/structure/destructible/clockwork/gear_base))
 		return ELEMENT_INCOMPATIBLE
 
-	RegisterSignal(target, COMSIG_ATOM_AFTER_ATTACKEDBY, PROC_REF(print_info))
+	RegisterSignal(target, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(print_info))
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 
 /datum/element/clockwork_structure_info/Detach(datum/target)
 	. = ..()
-	UnregisterSignal(target, COMSIG_ATOM_AFTER_ATTACKEDBY)
+	UnregisterSignal(target, COMSIG_ATOM_ITEM_INTERACTION)
 	UnregisterSignal(target, COMSIG_ATOM_EXAMINE)
 
 /**
@@ -26,7 +26,7 @@
  *  * weapon - The item that attacked the structure
  * 	* user - The one who attacked the structure
  */
-/datum/element/clockwork_structure_info/proc/print_info(obj/structure/destructible/clockwork/gear_base/source, obj/item/weapon, mob/user, proximity_flag, click_parameters)
+/datum/element/clockwork_structure_info/proc/print_info(obj/structure/destructible/clockwork/gear_base/source, mob/user, obj/item/weapon)
 	SIGNAL_HANDLER
 
 	if(!IS_CLOCK(user) || !istype(weapon, /obj/item/clockwork/clockwork_slab))
@@ -44,6 +44,7 @@
 		assembled_string += "This structure is connected to <b>[LAZYLEN(powered_source.transmission_sigils)]</b> transmission sigil[LAZYLEN(powered_source.transmission_sigils) == 1 ? "" : "s"]."
 
 	to_chat(user, span_brass(assembled_string))
+	return ITEM_INTERACT_BLOCKING
 
 /**
  *

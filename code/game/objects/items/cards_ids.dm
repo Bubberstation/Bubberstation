@@ -26,6 +26,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
+	pickup_sound = 'sound/items/handling/id_card/id_card_pickup1.ogg'
+	drop_sound = 'sound/items/handling/id_card/id_card_drop1.ogg'
+	sound_vary = TRUE
 
 	/// Cached icon that has been built for this card. Intended to be displayed in chat. Cardboards IDs and actual IDs use it.
 	var/icon/cached_flat_icon
@@ -87,7 +90,7 @@
 	var/holopay_name = "holographic pay stand"
 
 	/// Registered owner's age.
-	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (13)
+	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (30)
 
 	/// The job name registered on the card (for example: Assistant).
 	var/assignment
@@ -103,6 +106,11 @@
 
 	/// Boolean value. If TRUE, the [Intern] tag gets prepended to this ID card when the label is updated.
 	var/is_intern = FALSE
+
+	///If true, the wearer will have bigger arrow when pointing at things. Passed down by trims.
+	var/big_pointer = FALSE
+	///If set, the arrow will have a different color.
+	var/pointer_color
 
 /datum/armor/card_id
 	fire = 100
@@ -120,7 +128,7 @@
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
 
-	var/datum/bank_account/blank_bank_account = new("Unassigned", SSjob.GetJobType(/datum/job/unassigned), player_account = FALSE)
+	var/datum/bank_account/blank_bank_account = new("Unassigned", SSjob.get_job_type(/datum/job/unassigned), player_account = FALSE)
 	registered_account = blank_bank_account
 	registered_account.replaceable = TRUE
 
@@ -144,12 +152,35 @@
 		QDEL_NULL(my_store)
 	return ..()
 
+/obj/item/card/id/equipped(mob/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_ID)
+		RegisterSignal(user, COMSIG_MOVABLE_POINTED, PROC_REF(on_pointed))
+
+/obj/item/card/id/proc/on_pointed(mob/living/user, atom/pointed, obj/effect/temp_visual/point/point)
+	SIGNAL_HANDLER
+	if((!big_pointer && !pointer_color) || HAS_TRAIT(user, TRAIT_UNKNOWN))
+		return
+	if(point.icon_state != /obj/effect/temp_visual/point::icon_state) //it differs from the original icon_state already.
+		return
+	if(big_pointer)
+		point.icon_state = "arrow_large"
+	if(pointer_color)
+		point.icon_state = "[point.icon_state]_white"
+		point.color = pointer_color
+		var/mutable_appearance/highlight = mutable_appearance(point.icon, "[point.icon_state]_highlights", appearance_flags = RESET_COLOR)
+		point.add_overlay(highlight)
+
+/obj/item/card/id/dropped(mob/user)
+	UnregisterSignal(user, COMSIG_MOVABLE_POINTED)
+	return ..()
+
 /obj/item/card/id/get_id_examine_strings(mob/user)
 	. = ..()
-	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "bigicon")]")
+	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "hugeicon")]")
 
-/obj/item/card/id/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(get_cached_flat_icon(), user)] [thats? "That's ":""][get_examine_name(user)]"
+/obj/item/card/id/get_examine_icon(mob/user)
+	return icon2html(get_cached_flat_icon(), user)
 
 /**
  * Helper proc, checks whether the ID card can hold any given set of wildcards.
@@ -552,31 +583,31 @@
 				if(ispath(trim))
 					SSid_access.apply_trim_to_card(src, trim)
 
-/obj/item/card/id/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/rupee))
+/obj/item/card/id/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/rupee))
 		to_chat(user, span_warning("Your ID smartly rejects the strange shard of glass. Who knew, apparently it's not ACTUALLY valuable!"))
-		return
-	else if(iscash(W))
-		insert_money(W, user)
-		return
-	else if(istype(W, /obj/item/storage/bag/money))
-		var/obj/item/storage/bag/money/money_bag = W
+		return ITEM_INTERACT_BLOCKING
+	else if(iscash(tool))
+		return insert_money(tool, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
+	else if(istype(tool, /obj/item/storage/bag/money))
+		var/obj/item/storage/bag/money/money_bag = tool
 		var/list/money_contained = money_bag.contents
 		var/money_added = mass_insert_money(money_contained, user)
-		if (money_added)
-			to_chat(user, span_notice("You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account."))
-		return
+		if(!money_added)
+			return ITEM_INTERACT_BLOCKING
+		to_chat(user, span_notice("You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account."))
+		return ITEM_INTERACT_SUCCESS
 	/// SKYRAT EDIT BEGINS - Trim Tokens - Proc defined in modular_skyrat/modules/trim_tokens/code/cards_id.dm
-	else if(istype(W, /obj/item/trim_token))
-		apply_token(W, user)
+	else if(istype(tool, /obj/item/trim_token))
+		apply_token(tool, user)
 		return
 	/// SKYRAT EDIT ENDS
-	else
-		return ..()
+	return NONE
 
 /**
  * Insert credits or coins into the ID card and add their value to the associated bank account.
  *
+ * Returns TRUE if the money was successfully inserted, FALSE otherwise.
  * Arguments:
  * money - The item to attempt to convert to credits and insert into the card.
  * user - The user inserting the item.
@@ -589,11 +620,11 @@
 
 	if(!registered_account)
 		to_chat(user, span_warning("[src] doesn't have a linked account to deposit [money] into!"))
-		return
+		return FALSE
 	var/cash_money = money.get_item_credit_value()
 	if(!cash_money)
 		to_chat(user, span_warning("[money] doesn't seem to be worth anything!"))
-		return
+		return FALSE
 	registered_account.adjust_money(cash_money, "System: Deposit")
 	SSblackbox.record_feedback("amount", "credits_inserted", cash_money)
 	log_econ("[cash_money] credits were inserted into [src] owned by [src.registered_name]")
@@ -604,6 +635,7 @@
 
 	to_chat(user, span_notice("The linked account now reports a balance of [registered_account.account_balance] cr."))
 	qdel(money)
+	return TRUE
 
 /**
  * Insert multiple money or money-equivalent items at once.
@@ -743,7 +775,7 @@
 		if(HAS_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD) && (user.is_holding(src) || (user.CanReach(src) && user.put_in_hands(src, ignore_animation = FALSE))))
 			ADD_TRAIT(src, TRAIT_NODROP, "psycho")
 			. += span_hypnophrase("Look at that subtle coloring... The tasteful thickness of it. Oh my God, it even has a watermark...")
-			var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
+			var/sound/slowbeat = sound('sound/effects/health/slowbeat.ogg', repeat = TRUE)
 			user.playsound_local(get_turf(src), slowbeat, 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 			if(isliving(user))
 				var/mob/living/living_user = user
@@ -786,7 +818,7 @@
 		if(registered_account.replaceable)
 			. += span_info("Alt-Right-Click the ID to change the linked bank account.")
 		if(registered_account.civilian_bounty)
-			. += "<span class='info'><b>There is an active civilian bounty.</b>"
+			. += span_info("<b>There is an active civilian bounty.</b>")
 			. += span_info("<i>[registered_account.bounty_text()]</i>")
 			. += span_info("Quantity: [registered_account.bounty_num()]")
 			. += span_info("Reward: [registered_account.bounty_value()]")
@@ -819,8 +851,9 @@
 /// Updates the name based on the card's vars and state.
 /obj/item/card/id/proc/update_label()
 	var/name_string = registered_name ? "[registered_name]'s ID Card" : initial(name)
-	var/assignment_string
+	var/assignment_string = get_job_title() // BUBBER EDIT: Adds a new proc which is used to get a job title
 
+	/* BUBBER EDIT: Moved to `get_job_title()`
 	if(is_intern)
 		if(assignment)
 			assignment_string = trim?.intern_alt_name || "Intern [assignment]"
@@ -828,6 +861,7 @@
 			assignment_string = "Intern"
 	else
 		assignment_string = assignment
+	*/
 
 	name = "[name_string] ([assignment_string])"
 
@@ -838,6 +872,11 @@
 /// Returns the trim sechud icon state.
 /obj/item/card/id/proc/get_trim_sechud_icon_state()
 	return trim?.sechud_icon_state || SECHUD_UNKNOWN
+
+/obj/item/card/id/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(iscash(interacting_with))
+		return insert_money(interacting_with, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
+	return NONE
 
 /obj/item/card/id/away
 	name = "\proper a perfectly generic identification card"
@@ -958,20 +997,46 @@
 
 	return ..()
 
+/obj/item/card/id/advanced/proc/after_input_check(mob/user)
+	if(QDELETED(user) || QDELETED(src) || !user.client || !user.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH))
+		return FALSE
+	return TRUE
 
-/obj/item/card/id/advanced/attackby(obj/item/W, mob/user, params)
+/obj/item/card/id/advanced/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
-	if(istype(W, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/our_crayon = W
-		if(tgui_alert(usr, "Recolor Department or Subdepartment?", "Recoloring ID...", list("Department", "Subdepartment")) == "Department")
-			if(!do_after(user, 2 SECONDS)) // Doesn't technically require a spraycan's cap to be off but shhh
-				return
+	if(.)
+		return .
+
+	if(istype(tool, /obj/item/toy/crayon))
+		return recolor_id(user, tool)
+
+/obj/item/card/id/advanced/proc/recolor_id(mob/living/user, obj/item/toy/crayon/our_crayon)
+	if(our_crayon.is_capped)
+		balloon_alert(user, "take the cap off first!")
+		return ITEM_INTERACT_BLOCKING
+	var/choice = tgui_alert(usr, "Recolor Department or Subdepartment?", "Recoloring ID...", list("Department", "Subdepartment"))
+	if(isnull(choice) \
+		|| QDELETED(user) \
+		|| QDELETED(src) \
+		|| QDELETED(our_crayon) \
+		|| !usr.can_perform_action(src, ALLOW_RESTING) \
+		|| !usr.can_perform_action(our_crayon, ALLOW_RESTING) \
+	)
+		return ITEM_INTERACT_BLOCKING
+
+	switch(choice)
+		if("Department")
+			if(!do_after(user, 2 SECONDS))
+				return ITEM_INTERACT_BLOCKING
 			department_color_override = our_crayon.paint_color
 			balloon_alert(user, "recolored")
-		else if(do_after(user, 1 SECONDS))
+		if("Subdepartment")
+			if(!do_after(user, 1 SECONDS))
+				return ITEM_INTERACT_BLOCKING
 			subdepartment_color_override = our_crayon.paint_color
 			balloon_alert(user, "recolored")
-		update_icon()
+	update_icon()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/proc/update_intern_status(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
@@ -1239,7 +1304,7 @@
 	. = ..()
 	registered_account = new(player_account = FALSE)
 	registered_account.account_id = ADMIN_ACCOUNT_ID // this is so bank_card_talk() can work.
-	registered_account.account_job = SSjob.GetJobType(/datum/job/admin)
+	registered_account.account_job = SSjob.get_job_type(/datum/job/admin)
 	registered_account.account_balance += 999999 // MONEY! We add more money to the account every time we spawn because it's a debug item and infinite money whoopie
 
 /obj/item/card/id/advanced/debug/alt_click_can_use_id(mob/living/user)
@@ -1280,27 +1345,38 @@
 	/// Time left on a card till they can leave.
 	var/time_left = 0
 
-/obj/item/card/id/advanced/prisoner/attackby(obj/item/card/id/C, mob/user)
-	..()
-	var/list/id_access = C.GetAccess()
+/obj/item/card/id/advanced/prisoner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(.)
+		return .
+
+	if(isidcard(tool))
+		return set_sentence_time(user, tool)
+
+/obj/item/card/id/advanced/prisoner/proc/set_sentence_time(mob/living/user, obj/item/card/id/our_card)
+	var/list/id_access = our_card.GetAccess()
 	if(!(ACCESS_BRIG in id_access))
-		return FALSE
-	if(loc != user)
+		balloon_alert(user, "access denied!")
+		return ITEM_INTERACT_BLOCKING
+	if(!user.is_holding(src))
 		to_chat(user, span_warning("You must be holding the ID to continue!"))
-		return FALSE
-	if(timed)
+		return ITEM_INTERACT_BLOCKING
+
+	if(timed) // If we already have a time set, reset the card
 		timed = FALSE
 		time_to_assign = initial(time_to_assign)
 		registered_name = initial(registered_name)
 		STOP_PROCESSING(SSobj, src)
-		to_chat(user, "Restating prisoner ID to default parameters.")
-		return
+		to_chat(user, "Resetting prisoner ID to default parameters.")
+		return ITEM_INTERACT_SUCCESS
+
 	var/choice = tgui_input_number(user, "Sentence time in seconds", "Sentencing")
-	if(!choice || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH) || loc != user)
-		return FALSE
+	if(isnull(choice) || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || !user.is_holding(src))
+		return ITEM_INTERACT_BLOCKING
 	time_to_assign = choice
-	to_chat(user, "You set the sentence time to [time_to_assign] seconds.")
+	to_chat(user, "You set the sentence time to [DisplayTimeText(time_to_assign * 10)].")
 	timed = TRUE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/prisoner/proc/start_timer()
 	say("Sentence started, welcome to the corporate rehabilitation center!")
@@ -1312,10 +1388,15 @@
 		return
 
 	if(timed)
-		if(time_left <= 0)
+		if(time_to_assign > 0)
+			. += span_notice("The digital timer on the card is set to [DisplayTimeText(time_to_assign * 10)]. The timer will start once the prisoner passes through the prison gate scanners.")
+		else if(time_left <= 0)
 			. += span_notice("The digital timer on the card has zero seconds remaining. You leave a changed man, but a free man nonetheless.")
 		else
-			. += span_notice("The digital timer on the card has [time_left] seconds remaining. Don't do the crime if you can't do the time.")
+			. += span_notice("The digital timer on the card has [DisplayTimeText(time_left * 10)] remaining. Don't do the crime if you can't do the time.")
+
+	. += span_notice("[EXAMINE_HINT("Swipe")] a security ID on the card to [timed ? "re" : ""]set the genpop sentence time.")
+	. += span_notice("Remember to [EXAMINE_HINT("swipe")] the card on a genpop locker to link it.")
 
 /obj/item/card/id/advanced/prisoner/process(seconds_per_tick)
 	if(!timed)
@@ -1376,6 +1457,44 @@
 	trim = /datum/id_trim/highlander
 	wildcard_slots = WILDCARD_LIMIT_ADMIN
 
+/// An ID that you can flip with attack_self_secondary, overriding the appearance of the ID (useful for plainclothes detectives for example).
+/obj/item/card/id/advanced/plainclothes
+	name = "Plainclothes ID"
+	///The trim that we use as plainclothes identity
+	var/alt_trim = /datum/id_trim/job/assistant
+
+/obj/item/card/id/advanced/plainclothes/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	context[SCREENTIP_CONTEXT_LMB] = "Show/Flip ID"
+
+/obj/item/card/id/advanced/plainclothes/examine(mob/user)
+	. = ..()
+	if(trim_assignment_override)
+		. += span_smallnotice("it's currently under plainclothes identity.")
+	else
+		. += span_smallnotice("flip it to switch to the plainclothes identity.")
+
+/obj/item/card/id/advanced/plainclothes/attack_self(mob/user)
+	var/popup_input = tgui_input_list(user, "Choose Action", "Two-Sided ID", list("Show", "Flip"))
+	if(!popup_input || !after_input_check(user))
+		return TRUE
+	if(popup_input == "Show")
+		return ..()
+	balloon_alert(user, "flipped")
+	if(trim_assignment_override)
+		SSid_access.remove_trim_from_chameleon_card(src)
+	else
+		SSid_access.apply_trim_to_chameleon_card(src, alt_trim)
+	update_label()
+	update_appearance()
+
+/obj/item/card/id/advanced/plainclothes/update_label()
+	if(!trim_assignment_override)
+		return ..()
+	var/name_string = registered_name ? "[registered_name]'s ID Card" : initial(name)
+	var/datum/id_trim/fake = SSid_access.trim_singletons_by_path[alt_trim]
+	name = "[name_string] ([fake.assignment])"
+
 /obj/item/card/id/advanced/chameleon
 	name = "agent card"
 	desc = "A highly advanced chameleon ID card. Touch this card on another ID card or player to choose which accesses to copy. \
@@ -1404,7 +1523,7 @@
 		theft_target = WEAKREF(interacting_with)
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
-	return NONE
+	return ..()
 
 /obj/item/card/id/advanced/chameleon/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	// If we're attacking a human, we want it to be covert. We're not ATTACKING them, we're trying
@@ -1516,7 +1635,7 @@
 
 	return data
 
-/obj/item/card/id/advanced/chameleon/ui_act(action, list/params)
+/obj/item/card/id/advanced/chameleon/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -1590,8 +1709,9 @@
 		to_chat(user, span_notice("You successfully reset the ID card."))
 		return
 
-	///forge the ID if not forged.
-	var/input_name = tgui_input_text(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+	///forge the ID if not forged.s
+	var/input_name = tgui_input_text(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN, encode = FALSE)
+
 	if(!after_input_check(user))
 		return TRUE
 	if(input_name)
@@ -1621,7 +1741,7 @@
 		if(!after_input_check(user))
 			return TRUE
 
-	var/target_occupation = tgui_input_text(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_NAME_LEN)
+	var/target_occupation = tgui_input_text(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels.", "Agent card job assignment", assignment ? assignment : "Assistant", max_length = MAX_NAME_LEN)
 	if(!after_input_check(user))
 		return TRUE
 
@@ -1657,11 +1777,6 @@
 			account.bank_cards += src
 			registered_account = account
 			to_chat(user, span_notice("Your account number has been automatically assigned."))
-
-/obj/item/card/id/advanced/chameleon/proc/after_input_check(mob/user)
-	if(QDELETED(user) || QDELETED(src) || !user.client || !user.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH))
-		return FALSE
-	return TRUE
 
 /obj/item/card/id/advanced/chameleon/add_item_context(obj/item/source, list/context, atom/target, mob/living/user,)
 	. = ..()
@@ -1742,6 +1857,8 @@
 	var/scribbled_trim
 	///The colors for each of the above variables, for when overlays are updated.
 	var/details_colors = list(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK)
+	pickup_sound = 'sound/items/handling/materials/cardboard_pick_up.ogg'
+	drop_sound = 'sound/items/handling/materials/cardboard_drop.ogg'
 
 /obj/item/card/cardboard/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
@@ -1766,11 +1883,10 @@
 		voice_name += " (as [scribbled_name])"
 	stored_name[NAME_PART_INDEX] = voice_name
 
-/obj/item/card/cardboard/attackby(obj/item/item, mob/living/user, params)
-	if(user.can_write(item, TRUE))
-		INVOKE_ASYNC(src, PROC_REF(modify_card), user, item)
-		return TRUE
-	return ..()
+/obj/item/card/cardboard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.can_write(tool, TRUE))
+		INVOKE_ASYNC(src, PROC_REF(modify_card), user, tool)
+		return ITEM_INTERACT_SUCCESS
 
 ///Lets the user write a name, assignment or trim on the card, or reset it. Only the name is important for the component.
 /obj/item/card/cardboard/proc/modify_card(mob/living/user, obj/item/item)
@@ -1781,15 +1897,15 @@
 		return
 	switch(popup_input)
 		if("Name")
-			var/input_name = tgui_input_text(user, "What name would you like to put on this card?", "Cardboard card name", scribbled_name || (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
-			input_name = sanitize_name(input_name, allow_numbers = TRUE)
+			var/raw_input = tgui_input_text(user, "What name would you like to put on this card?", "Cardboard card name", scribbled_name || (ishuman(user) ? user.real_name : user.name), max_length = MAX_NAME_LEN)
+			var/input_name = sanitize_name(raw_input, allow_numbers = TRUE)
 			if(!after_input_check(user, item, input_name, scribbled_name))
 				return
 			scribbled_name = input_name
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_NAME_COLOR] = details["color"] || COLOR_BLACK
 		if("Assignment")
-			var/input_assignment = tgui_input_text(user, "What assignment would you like to put on this card?", "Cardboard card job ssignment", scribbled_assignment || "Assistant", MAX_NAME_LEN)
+			var/input_assignment = tgui_input_text(user, "What assignment would you like to put on this card?", "Cardboard card job ssignment", scribbled_assignment || "Assistant", max_length = MAX_NAME_LEN)
 			if(!after_input_check(user, item, input_assignment, scribbled_assignment))
 				return
 			scribbled_assignment = sanitize(input_assignment)
@@ -1822,7 +1938,7 @@
 /obj/item/card/cardboard/proc/after_input_check(mob/living/user, obj/item/item, input, value)
 	if(!input || (value && input == value))
 		return FALSE
-	if(QDELETED(user) || QDELETED(item) || QDELETED(src) || user.incapacitated() || !user.is_holding(item) || !user.CanReach(src) || !user.can_write(item))
+	if(QDELETED(user) || QDELETED(item) || QDELETED(src) || user.incapacitated || !user.is_holding(item) || !user.CanReach(src) || !user.can_write(item))
 		return FALSE
 	return TRUE
 
@@ -1859,10 +1975,10 @@
 
 /obj/item/card/cardboard/get_id_examine_strings(mob/user)
 	. = ..()
-	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "bigicon")]")
+	. += list("[icon2html(get_cached_flat_icon(), user, extra_classes = "hugeicon")]")
 
-/obj/item/card/cardboard/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(get_cached_flat_icon(), user)] [thats? "That's ":""][get_examine_name(user)]"
+/obj/item/card/cardboard/get_examine_icon(mob/user)
+	return icon2html(get_cached_flat_icon(), user)
 
 /obj/item/card/cardboard/examine(mob/user)
 	. = ..()

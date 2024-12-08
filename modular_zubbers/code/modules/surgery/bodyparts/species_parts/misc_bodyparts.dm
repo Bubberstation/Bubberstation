@@ -5,38 +5,38 @@
 	limb_id = SPECIES_SHADEKIN
 	is_dimorphic = TRUE
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/chest/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
 	is_dimorphic = TRUE
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/arm/left/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/arm/right/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/leg/left/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/leg/right/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
 	brute_modifier = 1.2
-	burn_modifier = 1.1
+	burn_modifier = 1.2
 
 // MUTANT HUMAN PART OVERRIDES - HEMOPHAGE AND HUMANOID SPRITE OVERRIDES//
 

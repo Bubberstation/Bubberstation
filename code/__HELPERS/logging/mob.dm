@@ -1,5 +1,5 @@
 /**
- * Logs a mesage to the mob_tags log, including the mobs tag
+ * Logs a message to the mob_tags log, including the mobs tag
  * Arguments:
  * * text - text to log.
  */
@@ -11,7 +11,7 @@
 
 
 /// Logs a message in a mob's individual log, and in the global logs as well if log_globally is true
-/mob/log_message(message, message_type, color = null, log_globally = TRUE, list/data, redacted_copy) // BUBBER EDIT
+/mob/log_message(message, message_type, color = null, log_globally = TRUE, list/data)
 	if(!LAZYLEN(message))
 		stack_trace("Empty message")
 		return

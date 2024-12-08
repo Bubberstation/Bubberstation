@@ -21,40 +21,38 @@
 			return FALSE
 		to_chat(user, span_notice("You insert [O] into [src]!"))
 		loaded_vial = O
-		playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+		playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 		update_appearance()
 
 /obj/item/rna_extractor/attack_self(mob/living/user)
-	if(user.incapacitated())
+	if(user.incapacitated)
 		return
 	unload_vial(user)
 
-/obj/item/rna_extractor/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
+/obj/item/rna_extractor/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!ishuman(interacting_with))
 		return
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/target = interacting_with
 	if(!loaded_vial)
 		to_chat(user, span_danger("[src] is empty!"))
 		return
 	if(loaded_vial.contains_rna)
 		to_chat(user, span_danger("[src] already has RNA data in it, upload it to the combinator!"))
 		return
-	if(!ismutant(H))
-		to_chat(user, span_danger("[H] does not register as infected!"))
+	if(!ismutant(target))
+		to_chat(user, span_danger("[target] does not register as infected!"))
 		return
-	var/datum/component/mutant_infection/ZI = H.GetComponent(/datum/component/mutant_infection)
-	if(!ZI)
-		to_chat(user, span_danger("[H] does not register as infected!"))
+	var/datum/component/mutant_infection/target_infection = target.GetComponent(/datum/component/mutant_infection)
+	if(!target_infection)
+		to_chat(user, span_danger("[target] does not register as infected!"))
 		return
-	if(ZI.extract_rna())
-		loaded_vial.load_rna(H)
-		to_chat(user, span_notice("[src] successfully scanned [H], and now holds a sample virus RNA data."))
+	if(target_infection.extract_rna())
+		loaded_vial.load_rna(target)
+		to_chat(user, span_notice("[src] successfully scanned [target], and now holds a sample virus RNA data."))
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 		update_appearance()
 	else
-		to_chat(user, span_warning("[H] has no useable RNA!"))
+		to_chat(user, span_warning("[target] has no useable RNA!"))
 
 /obj/item/rna_extractor/proc/unload_vial(mob/living/user)
 	if(loaded_vial)
@@ -63,7 +61,7 @@
 		to_chat(user, span_notice("You remove [loaded_vial] from [src]."))
 		loaded_vial = null
 		update_appearance()
-		playsound(loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, span_notice("[src] isn't loaded!"))
 		return
@@ -185,7 +183,7 @@
 	to_chat(user, span_notice("You insert [weapon] to into [src] reciprocal."))
 	flick("h_lathe_load", src)
 	update_appearance()
-	playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 
 
 /obj/machinery/rnd/rna_recombinator/ui_interact(mob/user)
@@ -266,7 +264,7 @@
 	vial.contains_rna = FALSE
 	vial.update_appearance()
 	ejectItem()
-	playsound(loc, 'sound/items/rped.ogg', 60, 1)
+	playsound(loc, 'sound/items/tools/rped.ogg', 60, 1)
 	flick("h_lathe_wloop", src)
 	use_energy(3000 JOULES)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(recombinate_step)), recombination_step_time, TIMER_STOPPABLE)
@@ -285,7 +283,7 @@
 		return
 	flick("h_lathe_wloop", src)
 	use_energy(3000 JOULES)
-	playsound(loc, 'sound/items/rped.ogg', 60, 1)
+	playsound(loc, 'sound/items/tools/rped.ogg', 60, 1)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(recombinate_step)), recombination_step_time, TIMER_STOPPABLE)
 
 /obj/machinery/rnd/rna_recombinator/proc/recombinate_finish()

@@ -1,8 +1,8 @@
 /obj/item/food/grown/cannabis/on_grind()
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_DRIED))
-		grind_results = list(/datum/reagent/drug/thc/hash = 0.15*src.seed.potency)
-		reagents.clear_reagents() //prevents anything else from coming out
+		reagents.clear_reagents()
+		reagents.add_reagent(/datum/reagent/drug/thc/hash, 0.15 * seed.potency)
 
 /datum/chemical_reaction/hash
 	required_reagents = list(/datum/reagent/drug/thc/hash = 10)
@@ -80,7 +80,6 @@
 		M.say("[cg420_message]")
 	M.adjust_drowsiness(0.2 SECONDS * REM * normalise_creation_purity() * seconds_per_tick)
 	if(SPT_PROB(3.5, seconds_per_tick))
-		playsound(M, pick('modular_skyrat/master_files/sound/effects/lungbust_cough1.ogg','modular_skyrat/master_files/sound/effects/lungbust_cough2.ogg'), 50, TRUE)
 		M.emote("cough")
 	..()
 	. = TRUE

@@ -29,8 +29,6 @@
 	suppressor_x_offset = 0
 	suppressor_y_offset = 0
 
-	can_bayonet = FALSE
-
 	burst_size = 1
 	fire_delay = 0.2 SECONDS
 	actions_types = list()
@@ -55,7 +53,7 @@
 		into the wild, typically the frontier. It was built alongside the round it fires, the \
 		.27-54 Cesarzawa pistol round. Based on the proven Lanca design, it seeks to bring that \
 		same reliable weapon design into the factor of a submachinegun. While it is significantly \
-		larger than many comparable weapons in SolFed use, it more than makes up for it with ease \
+		larger than many comparable weapons in TerraGov use, it more than makes up for it with ease \
 		of control and significant firerate."
 
 	return .

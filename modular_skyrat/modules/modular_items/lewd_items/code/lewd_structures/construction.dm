@@ -21,17 +21,13 @@
 	. += span_purple("[src] can be assembled by using <b>Ctrl+Shift+Click</b> while [src] is on the floor.")
 
 /obj/item/construction_kit/click_ctrl_shift(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
 	if((item_flags & IN_INVENTORY) || (item_flags & IN_STORAGE))
-		return FALSE
+		return
 
 	to_chat(user, span_notice("You begin to assemble [src]..."))
 	if(!do_after(user, construction_time, src))
 		to_chat(user, span_warning("You fail to assemble [src]!"))
-		return FALSE
+		return
 
 	var/obj/structure/chair/final_structure = new resulting_structure (get_turf(user))
 	if(current_color && istype(final_structure, /obj/structure/chair/milking_machine))
@@ -49,7 +45,6 @@
 
 	qdel(src)
 	to_chat(user, span_notice("You assemble [src]."))
-	return TRUE
 
 // MILKER
 

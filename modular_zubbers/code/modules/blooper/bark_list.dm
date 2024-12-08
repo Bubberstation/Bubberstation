@@ -31,13 +31,13 @@
 /datum/blooper/squeaky
 	name = "Squeaky"
 	id = "squeak"
-	soundpath = 'sound/items/toysqueak1.ogg'
+	soundpath = 'sound/items/toy_squeak/toysqueak1.ogg'
 	maxspeed = 4
 
 /datum/blooper/beep
 	name = "Beepy"
 	id = "beep"
-	soundpath = 'sound/machines/terminal_select.ogg'
+	soundpath = 'sound/machines/terminal/terminal_select.ogg'
 	maxpitch = 1 //Bringing the pitch higher just hurts your ears :<
 	maxspeed = 4 //This soundbyte's too short for larger speeds to not sound awkward
 
@@ -55,13 +55,13 @@
 /datum/blooper/synthetic
 	name = "Synthetic (Normal)"
 	id = "synth"
-	soundpath = 'sound/machines/uplinkerror.ogg'
+	soundpath = 'sound/machines/uplink/uplinkerror.ogg'
 
 /datum/blooper/bullet
 	name = "Windy"
 	id = "bullet"
 	maxpitch = 1.6
-	soundpath = 'sound/weapons/bulletflyby.ogg'
+	soundpath = 'sound/items/weapons/bulletflyby.ogg'
 
 /datum/blooper/coggers
 	name = "Brassy"

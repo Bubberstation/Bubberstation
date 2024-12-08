@@ -18,17 +18,23 @@
 		user.balloon_alert_to_viewers("stops typing", "stopped typing")
 		playsound(src, 'modular_skyrat/master_files/sound/items/tts/stopped_type.ogg', 50, TRUE)
 		return
-	src.say(str)
+
+	chat_color_name = name
+	chat_color = user.client?.prefs?.read_preference(/datum/preference/color/chat_color)
+	if(chat_color)
+		chat_color_darkened = process_chat_color(chat_color, sat_shift = 0.85, lum_shift = 0.85)
+
+	say(str)
 	str = null
 
 /obj/item/ttsdevice/item_ctrl_click(mob/living/user)
 	var/noisechoice = tgui_input_list(user, "What noise would you like to make?", "Robot Noises", list("Beep","Buzz","Ping"))
 	if(noisechoice == "Beep")
 		user.audible_message("makes their TTS beep!", audible_message_flags = EMOTE_MESSAGE)
-		playsound(user, 'sound/machines/twobeep.ogg', 50, 1, -1)
+		playsound(user, 'sound/machines/beep/twobeep.ogg', 50, 1, -1)
 	if(noisechoice == "Buzz")
 		user.audible_message("makes their TTS buzz!", audible_message_flags = EMOTE_MESSAGE)
-		playsound(user, 'sound/machines/buzz-sigh.ogg', 50, 1, -1)
+		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 50, 1, -1)
 	if(noisechoice == "Ping")
 		user.audible_message("makes their TTS ping!", audible_message_flags = EMOTE_MESSAGE)
 		playsound(user, 'sound/machines/ping.ogg', 50, 1, -1)

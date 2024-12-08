@@ -21,10 +21,11 @@
 #define SECHUD_DS2_MININGOFFICER "hud_ds2miningofficer"
 #define SECHUD_DS2_GENSTAFF "hud_ds2generalstaff"
 #define SECHUD_DS2_PRISONER "hud_ds2prisoner"
-//SR SolFed
+//SR TerraGov
 #define SECHUD_SPACE_POLICE "hudspacepolice"
-#define SECHUD_SOLFED "hudsolfed"
-#define SECHUD_SOLFED_LIASON "hudsolfedliasion"
+#define SECHUD_TERRAGOV "hudterragov"
+#define SECHUD_TERRAGOV_LIASON "hudterragovliasion"
 //SR Misc
 #define SECHUD_BARBER "hudbarber"
 #define SECHUD_SCRAMBLED "hudscrambled"
+#define SECHUD_TELECOMMS_SPECIALIST "hudtelecommsspecialist"

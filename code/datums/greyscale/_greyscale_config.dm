@@ -257,7 +257,7 @@
 /datum/greyscale_config/proc/GenerateBundle(list/colors, list/render_steps, icon/last_external_icon)
 	if(!istype(colors))
 		colors = SSgreyscale.ParseColorString(colors)
-	if(length(colors) != expected_colors)
+	if(length(colors) < expected_colors)
 		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 
 	var/list/generated_icons = list()
@@ -286,8 +286,9 @@
 	for(var/datum/greyscale_layer/layer as anything in group)
 		var/icon/layer_icon
 		if(islist(layer))
+			var/list/layer_list = layer
 			layer_icon = GenerateLayerGroup(colors, layer, render_steps, new_icon || last_external_icon)
-			layer = layer[1] // When there are multiple layers in a group like this we use the first one's blend mode
+			layer = layer_list[1] // When there are multiple layers in a group like this we use the first one's blend mode
 		else
 			layer_icon = layer.Generate(colors, render_steps, new_icon || last_external_icon)
 

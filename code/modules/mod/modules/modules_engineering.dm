@@ -15,7 +15,8 @@
 /obj/item/mod/module/welding/on_suit_activation()
 	var/obj/item/clothing/head_cover = mod.get_part_from_slot(ITEM_SLOT_HEAD) || mod.get_part_from_slot(ITEM_SLOT_MASK) || mod.get_part_from_slot(ITEM_SLOT_EYES)
 	if(istype(head_cover))
-		head_cover.flash_protect = FLASH_PROTECTION_WELDER
+		//this is a screen that displays an image, so flash sensitives can use this to protect against flashes.
+		head_cover.flash_protect = FLASH_PROTECTION_WELDER_HYPER_SENSITIVE
 
 /obj/item/mod/module/welding/on_suit_deactivation(deleting = FALSE)
 	if(deleting)
@@ -92,23 +93,25 @@
 	cooldown_time = 1.5 SECONDS
 	required_slots = list(ITEM_SLOT_GLOVES)
 
-/obj/item/mod/module/tether/used()
-	if(mod.wearer.has_gravity(get_turf(src)))
-		balloon_alert(mod.wearer, "too much gravity!")
-		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 25, TRUE)
-		return FALSE
-	return ..()
-
 /obj/item/mod/module/tether/on_select_use(atom/target)
 	. = ..()
 	if(!.)
 		return
-	var/obj/projectile/tether = new /obj/projectile/tether(mod.wearer.loc)
+	var/obj/projectile/tether = new /obj/projectile/tether(mod.wearer.loc, src)
 	tether.preparePixelProjectile(target, mod.wearer)
 	tether.firer = mod.wearer
-	playsound(src, 'sound/weapons/batonextend.ogg', 25, TRUE)
+	playsound(src, 'sound/items/weapons/batonextend.ogg', 25, TRUE)
 	INVOKE_ASYNC(tether, TYPE_PROC_REF(/obj/projectile, fire))
 	drain_power(use_energy_cost)
+
+/obj/item/mod/module/tether/get_configuration()
+	. = ..()
+	.["cut_tethers"] = add_ui_configuration("Cut Tethers", "pin", TRUE)
+
+/obj/item/mod/module/tether/configure_edit(key, value)
+	if (key != "cut_tethers")
+		return
+	SEND_SIGNAL(src, COMSIG_MOD_TETHER_SNAP)
 
 /obj/projectile/tether
 	name = "tether"
@@ -116,12 +119,34 @@
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	damage = 0
 	range = 10
-	hitsound = 'sound/weapons/batonextend.ogg'
-	hitsound_wall = 'sound/weapons/batonextend.ogg'
+	hitsound = 'sound/items/weapons/batonextend.ogg'
+	hitsound_wall = 'sound/items/weapons/batonextend.ogg'
 	suppressed = SUPPRESSED_VERY
-	hit_threshhold = LATTICE_LAYER
+	hit_threshhold = ABOVE_NORMAL_TURF_LAYER
+	embed_type = /datum/embed_data/tether_projectile
+	shrapnel_type = /obj/item/tether_anchor
 	/// Reference to the beam following the projectile.
 	var/line
+	/// Last turf that we passed before impact
+	var/turf/open/last_turf
+	/// MODsuit tether module that fired us
+	var/obj/item/mod/module/tether/parent_module
+
+/obj/projectile/tether/Initialize(mapload, module)
+	. = ..()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_EMBEDDED, PROC_REF(on_embedded))
+	if (!isnull(module))
+		parent_module = module
+
+/obj/projectile/tether/proc/on_embedded(datum/source, obj/item/payload, atom/hit)
+	SIGNAL_HANDLER
+
+	firer.AddComponent(/datum/component/tether, hit, 7, "MODtether", payload, parent_module = parent_module)
+
+/obj/projectile/tether/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	if (isopenturf(loc))
+		last_turf = loc
 
 /obj/projectile/tether/fire(setAngle)
 	if(firer)
@@ -130,12 +155,102 @@
 
 /obj/projectile/tether/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(firer)
-		firer.throw_at(target, 10, 1, firer, FALSE, FALSE, null, MOVE_FORCE_NORMAL, TRUE)
+	if (!firer)
+		return
+
+	// Funni is handled separately
+	if (ismob(target))
+		return
+
+	if (istype(target, /obj/item/tether_anchor) || isstructure(target) || ismachinery(target))
+		firer.AddComponent(/datum/component/tether, target, 7, "MODtether", parent_module = parent_module)
+		return
+
+	var/hitx
+	var/hity
+	if(target == original)
+		hitx = target.pixel_x + p_x - 16
+		hity = target.pixel_y + p_y - 16
+	else
+		hitx = target.pixel_x + rand(-8, 8)
+		hity = target.pixel_y + rand(-8, 8)
+
+	if (!isnull(last_turf) && last_turf != target && last_turf != target.loc)
+		var/turf_dir = get_dir(last_turf, get_turf(target))
+		if (turf_dir & NORTH)
+			hity += 32
+		if (turf_dir & SOUTH)
+			hity -= 32
+		if (turf_dir & EAST)
+			hitx += 32
+		if (turf_dir & WEST)
+			hitx -= 32
+
+	var/obj/item/tether_anchor/anchor = new(last_turf || get_turf(target))
+	anchor.pixel_x = hitx
+	anchor.pixel_y = hity
+	anchor.anchored = TRUE
+	firer.AddComponent(/datum/component/tether, anchor, 7, "MODtether", parent_module = parent_module)
 
 /obj/projectile/tether/Destroy()
 	QDEL_NULL(line)
 	return ..()
+
+/obj/item/tether_anchor
+	name = "tether anchor"
+	desc = "A reinforced anchor with a tether attachment point. A centuries old EVA tool which saved countless engineers' lives."
+	icon_state = "tether_latched"
+	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
+	max_integrity = 60
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
+
+/obj/item/tether_anchor/examine(mob/user)
+	. = ..()
+	. += span_info("It can be secured by using a wrench on it. Use right-click to tether yourself to [src].")
+	. += span_info("LMB shortens the tether while RMB lengthens it. Ctrl-click to cut the tether.")
+
+/obj/item/tether_anchor/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/tether_anchor/attack_hand_secondary(mob/user, list/modifiers)
+	if (!can_interact(user) || !user.CanReach(src) || !isturf(loc))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+	balloon_alert(user, "attached tether")
+	user.AddComponent(/datum/component/tether, src, 7, "tether")
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/tether_anchor/mouse_drop_receive(atom/target, mob/user, params)
+	if (!can_interact(user) || !user.CanReach(src) || !isturf(loc))
+		return
+
+	if (!isliving(target) || !target.CanReach(src))
+		return
+
+	if (target == user)
+		balloon_alert(user, "attached tether")
+		user.AddComponent(/datum/component/tether, src, 7, "tether")
+		return
+
+	balloon_alert(user, "attaching tether...")
+	to_chat(target, span_userdanger("[user] is trying to attach a tether to you!"))
+	if (!do_after(user, 5 SECONDS, target))
+		return
+
+	balloon_alert(user, "attached tether")
+	to_chat(target, span_userdanger("[user] attaches a tether to you!"))
+	target.AddComponent(/datum/component/tether, src, 7, "tether")
+
+/datum/embed_data/tether_projectile
+	embed_chance=65 // spiky
+	fall_chance=2
+	ignore_throwspeed_threshold=TRUE
+	pain_stam_pct=0.4
+	pain_mult=3
+	jostle_pain_mult=2
+	rip_time=1 SECONDS
 
 ///Radiation Protection - Protects the user from radiation, gives them a geiger counter and rad info in the panel.
 /obj/item/mod/module/rad_protection
@@ -217,10 +332,10 @@
 	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/infiltrator)
 	required_slots = list(ITEM_SLOT_HEAD)
 
-/obj/item/mod/module/constructor/on_suit_activation()
+/obj/item/mod/module/headprotector/on_suit_activation()
 	ADD_TRAIT(mod.wearer, TRAIT_HEAD_INJURY_BLOCKED, MOD_TRAIT)
 
-/obj/item/mod/module/constructor/on_suit_deactivation(deleting = FALSE)
+/obj/item/mod/module/headprotector/on_suit_deactivation(deleting = FALSE)
 	REMOVE_TRAIT(mod.wearer, TRAIT_HEAD_INJURY_BLOCKED, MOD_TRAIT)
 
 ///Mister - Sprays water over an area.

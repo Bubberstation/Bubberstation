@@ -41,7 +41,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 
 #define THUNDERDOME_TEMPLATE_FILE "admin_thunderdome.dmm"
 #define HIGHLANDER_DELAY_TEXT "40 seconds (crush the hope of a normal shift)"
-/datum/secrets_menu/ui_act(action, params)
+/datum/secrets_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -84,7 +84,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 		if("infinite_sec")
 			if(!is_debugger)
 				return
-			var/datum/job/sec_job = SSjob.GetJobType(/datum/job/security_officer)
+			var/datum/job/sec_job = SSjob.get_job_type(/datum/job/security_officer)
 			sec_job.total_positions = -1
 			sec_job.spawn_positions = -1
 			message_admins("[key_name_admin(holder)] has removed the cap on security officers.")
@@ -257,6 +257,11 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				return
 			holder.anon_names()
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Anonymous Names"))
+		if("tripleAI")
+			if(!is_funmin)
+				return
+			holder.triple_ai()
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Triple AI"))
 		if("onlyone")
 			if(!is_funmin)
 				return
@@ -604,6 +609,25 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			message_admins("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "enabled" : "disabled"] instagib mode in CTF game: [selected_game]")
 			log_admin("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "enabled" : "disabled"] instagib mode in CTF game: [selected_game]")
 
+		if("mass_heal")
+			if(!is_funmin)
+				return
+			var/heal_mobs = tgui_alert(usr, "Heal all mobs and return ghosts to their bodies?", "Mass Healing", list("Yes", "No"))
+			if(!heal_mobs || heal_mobs != "Yes")
+				return
+
+			for(var/mob/dead/observer/ghost in GLOB.player_list) //Return all ghosts if possible
+				if(!ghost.mind || !ghost.mind.current) //won't do anything if there is no body
+					continue
+				ghost.reenter_corpse()
+
+			for(var/mob/living/player in GLOB.player_list)
+				player.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
+
+			sound_to_playing_players('sound/effects/pray_chaplain.ogg')
+			message_admins("[key_name_admin(holder)] healed everyone.")
+			log_admin("[key_name(holder)] healed everyone.")
+
 	if(E)
 		E.processing = FALSE
 		if(E.announce_when>0)
@@ -624,12 +648,12 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 /proc/portalAnnounce(announcement, playlightning)
 	set waitfor = FALSE
 	if (playlightning)
-		sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
+		sound_to_playing_players('sound/effects/magic/lightning_chargeup.ogg')
 		sleep(8 SECONDS)
 	priority_announce(replacetext(announcement, "%STATION%", station_name()))
 	if (playlightning)
 		sleep(2 SECONDS)
-		sound_to_playing_players('sound/magic/lightningbolt.ogg')
+		sound_to_playing_players('sound/effects/magic/lightningbolt.ogg')
 
 /// Spawns a portal storm that spawns in sentient/non sentient mobs
 /// portal_appearance is a list in the form (turf's plane offset + 1) -> appearance to use
@@ -647,7 +671,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			H.equipOutfit(humanoutfit)
 	var/turf/T = get_step(loc, SOUTHWEST)
 	T.flick_overlay_static(portal_appearance[GET_TURF_PLANE_OFFSET(T) + 1], 15)
-	playsound(T, 'sound/magic/lightningbolt.ogg', rand(80, 100), TRUE)
+	playsound(T, 'sound/effects/magic/lightningbolt.ogg', rand(80, 100), TRUE)
 
 /datum/everyone_is_an_antag_controller
 	var/chosen_antag = ""

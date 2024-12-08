@@ -91,10 +91,7 @@
 			var/efficiency = TEG_EFFICIENCY
 			var/energy_transfer = delta_temperature*hot_air_heat_capacity*cold_air_heat_capacity/(hot_air_heat_capacity+cold_air_heat_capacity)
 			var/heat = energy_transfer*(1-efficiency)
-			//BUBBER EDIT CHANGE BEGIN - Buff TEG machines - Increase the gen rate by 10
-			//lastgen += (1000000 * (LOGISTIC_FUNCTION(2,0.5,(delta_temperature/10000),0)-1)) - BUBBER EDIT - ORIGINAL
-			lastgen += (10000000 * (LOGISTIC_FUNCTION(2,0.5,(delta_temperature/10000),0)-1))
-			//BUBBER EDIT CHANGE END
+			lastgen += (1000000 * (LOGISTIC_FUNCTION(2,0.5,(delta_temperature/10000),0)-1))
 			hot_air.temperature = hot_air.temperature - energy_transfer/hot_air_heat_capacity
 			cold_air.temperature = cold_air.temperature + heat/cold_air_heat_capacity
 
@@ -126,7 +123,7 @@
 		data["error_message"] = "Unable to connect to the power network!"
 		return data
 	if(!cold_circ && !hot_circ)
-		data["error_message"] = "Unable to locate any parts! Multitool the machine to sync to nearby parts."
+		data["error_message"] = "Unable to locate any parts! Open and wrench the machine to connect to nearby parts."
 		return data
 	if(!cold_circ)
 		data["error_message"] = "Unable to locate cold circulator!"

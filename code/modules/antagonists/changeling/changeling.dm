@@ -14,6 +14,8 @@
 	can_assign_self_objectives = TRUE
 	default_custom_objective = "Consume the station's most valuable genomes."
 	hardcore_random_bonus = TRUE
+	stinger_sound = 'sound/music/antag/ling_alert.ogg'
+
 	/// Whether to give this changeling objectives or not
 	var/give_objectives = TRUE
 	/// Weather we assign objectives which compete with other lings
@@ -39,7 +41,7 @@
 	/// The max chemical storage the changeling currently has.
 	var/total_chem_storage = 75
 	/// The chemical recharge rate per life tick.
-	var/chem_recharge_rate = 0.5
+	var/chem_recharge_rate = 1
 	/// Any additional modifiers triggered by changelings that modify the chem_recharge_rate.
 	var/chem_recharge_slowdown = 0
 	/// The range this ling can sting things.
@@ -58,7 +60,7 @@
 	/// The voice we're mimicing via the changeling voice ability.
 	var/mimicing = ""
 	/// Whether we can currently respec in the cellular emporium.
-	var/can_respec = FALSE
+	var/can_respec = 0
 
 	/// The currently active changeling sting.
 	var/datum/action/changeling/sting/chosen_sting
@@ -139,6 +141,7 @@
 /datum/antagonist/changeling/Destroy()
 	QDEL_NULL(emporium_action)
 	QDEL_NULL(cellular_emporium)
+	current_profile = null
 	return ..()
 
 /datum/antagonist/changeling/on_gain()
@@ -149,7 +152,6 @@
 	if(give_objectives)
 		forge_objectives()
 	owner.current.get_language_holder().omnitongue = TRUE
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_alert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	return ..()
 
 /datum/antagonist/changeling/apply_innate_effects(mob/living/mob_override)
@@ -284,14 +286,18 @@
 	SIGNAL_HANDLER
 
 	var/delta_time = DELTA_WORLD_TIME(SSmobs)
+	var/mob/living/living_owner = owner.current
 
 	// If dead, we only regenerate up to half chem storage.
 	if(owner.current.stat == DEAD)
 		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time, total_chem_storage * 0.5)
 
-	// If we're not dead - we go up to the full chem cap.
+	// If we're not dead and not on fire - we go up to the full chem cap at normal speed. If on fire we only regenerate at 1/4th the normal speed
 	else
-		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time)
+		if(living_owner.fire_stacks && living_owner.on_fire)
+			adjust_chemicals((chem_recharge_rate - 0.75) * delta_time)
+		else
+			adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time)
 
 /**
  * Signal proc for [COMSIG_LIVING_POST_FULLY_HEAL]
@@ -460,7 +466,7 @@
 
 	to_chat(owner.current, span_notice("We have removed our evolutions from this form, and are now ready to readapt."))
 	remove_changeling_powers()
-	can_respec = FALSE
+	can_respec -= 1
 	SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, "Readapt")
 	log_changeling_power("[key_name(owner)] readapted their changeling powers")
 	return TRUE
@@ -556,11 +562,11 @@
 
 	// Clothes, of course
 	new_profile.underwear = target.underwear
+	new_profile.underwear_color = target.underwear_color
 	new_profile.undershirt = target.undershirt
 	new_profile.socks = target.socks
 	// SKYRAT EDIT ADDITION START
 	new_profile.bra = target.bra
-	new_profile.underwear_color = target.underwear_color
 	new_profile.undershirt_color = target.undershirt_color
 	new_profile.socks_color = target.socks_color
 	new_profile.bra_color = target.bra_color
@@ -569,6 +575,8 @@
 	new_profile.emissive_eyes = target.emissive_eyes
 	new_profile.scream_type = target.selected_scream?.type || /datum/scream_type/none
 	new_profile.laugh_type = target.selected_laugh?.type || /datum/laugh_type/none
+	new_profile.target_body_scaling = target.get_mob_height()
+	new_profile.target_size = target.mob_size
 	//SKYRAT EDIT ADDITION END
 	// Hair and facial hair gradients, alongside their colours.
 	//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
@@ -595,7 +603,7 @@
 	// Grab the target's sechut icon.
 	new_profile.id_icon = target.wear_id?.get_sechud_job_icon_state()
 
-	var/list/slots = list("head", "wear_mask", "wear_neck", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store") // SKYRAT EDIT
+	var/list/slots = list("head", "wear_mask", "wear_neck", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
 		if(!(slot in target.vars))
 			continue
@@ -637,7 +645,7 @@
 
 	if(!first_profile)
 		first_profile = new_profile
-		current_profile = first_profile  // SKYRAT EDIT
+		current_profile = first_profile
 
 	stored_profiles += new_profile
 	absorbed_count++
@@ -788,7 +796,7 @@
 	var/static/list/slot2slot = list(
 		"head" = ITEM_SLOT_HEAD,
 		"wear_mask" = ITEM_SLOT_MASK,
-		"wear_neck" = ITEM_SLOT_NECK, // SKYRAT EDIT
+		"wear_neck" = ITEM_SLOT_NECK,
 		"back" = ITEM_SLOT_BACK,
 		"wear_suit" = ITEM_SLOT_OCLOTHING,
 		"w_uniform" = ITEM_SLOT_ICLOTHING,
@@ -804,6 +812,7 @@
 	var/datum/dna/chosen_dna = chosen_profile.dna
 	user.real_name = chosen_profile.name
 	user.underwear = chosen_profile.underwear
+	user.underwear_color = chosen_profile.underwear_color
 	user.undershirt = chosen_profile.undershirt
 	user.socks = chosen_profile.socks
 	user.age = chosen_profile.age
@@ -812,7 +821,6 @@
 	// SKYRAT EDIT ADDITION START
 	user.bra = chosen_profile.bra
 
-	user.underwear_color = chosen_profile.underwear_color
 	user.undershirt_color = chosen_profile.undershirt_color
 	user.socks_color = chosen_profile.socks_color
 	user.bra_color = chosen_profile.bra_color
@@ -951,6 +959,9 @@
 	user.regenerate_icons()
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
+	user.mob_size = chosen_profile.target_size
+	//this has to be at the end of the proc or it breaks everything below it, womp womp
+	user.set_mob_height(chosen_profile.target_body_scaling)
 	// SKYRAT EDIT END
 //THE BUBBER EDIT ADDITION BEGIN - Voice Bark
 	user.blooper = null
@@ -987,6 +998,8 @@
 	var/list/worn_icon_state_list = list()
 	/// The underwear worn by the profile source
 	var/underwear
+	/// The colour of the underwear worn by the profile source
+	var/underwear_color
 	/// The undershirt worn by the profile source
 	var/undershirt
 	/// The socks worn by the profile source
@@ -1012,10 +1025,10 @@
 	/// The TTS filter of the profile filter
 	var/voice_filter = ""
 
-
 /datum/changeling_profile/Destroy()
 	qdel(dna)
 	LAZYCLEARLIST(stored_scars)
+	QDEL_LAZYLIST(quirks)
 	return ..()
 
 /*
@@ -1035,6 +1048,7 @@
 	new_profile.righthand_file_list = righthand_file_list.Copy()
 	new_profile.inhand_icon_state_list = inhand_icon_state_list.Copy()
 	new_profile.underwear = underwear
+	new_profile.underwear_color = underwear_color
 	new_profile.undershirt = undershirt
 	new_profile.socks = socks
 	new_profile.worn_icon_list = worn_icon_list.Copy()
@@ -1050,7 +1064,6 @@
 	new_profile.voice = voice
 	new_profile.voice_filter = voice_filter
 	// SKYRAT EDIT ADDITION START
-	new_profile.underwear_color = underwear_color
 	new_profile.undershirt_color = undershirt_color
 	new_profile.socks_color = socks_color
 	new_profile.bra = bra
@@ -1110,11 +1123,11 @@
 	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
 	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
 
-	final_icon.Shift(WEST, world.icon_size / 2)
-	final_icon.Shift(EAST, world.icon_size / 2)
+	final_icon.Shift(WEST, ICON_SIZE_X / 2)
+	final_icon.Shift(EAST, ICON_SIZE_X / 2)
 
-	split_icon.Shift(EAST, world.icon_size / 2)
-	split_icon.Shift(WEST, world.icon_size / 2)
+	split_icon.Shift(EAST, ICON_SIZE_X / 2)
+	split_icon.Shift(WEST, ICON_SIZE_X / 2)
 
 	final_icon.Blend(split_icon, ICON_OVERLAY)
 
@@ -1147,6 +1160,7 @@
 	total_chem_storage = 50
 
 /datum/antagonist/changeling/headslug/greet()
+	play_stinger()
 	to_chat(owner, span_boldannounce("You are a fresh changeling birthed from a headslug! \
 		You aren't as strong as a normal changeling, as you are newly born."))
 
@@ -1159,6 +1173,7 @@
 	return finish_preview_icon(final_icon)
 
 /datum/antagonist/changeling/space/greet()
+	play_stinger()
 	to_chat(src, span_changeling("Our mind stirs to life, from the depths of an endless slumber..."))
 
 /datum/outfit/changeling

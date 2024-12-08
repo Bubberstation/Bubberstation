@@ -53,19 +53,19 @@
 /obj/structure/stripper_pole/click_ctrl(mob/user)
 	var/choice = show_radial_menu(user, src, pole_designs, radius = 50, require_near = TRUE)
 	if(!choice)
-		return FALSE
+		return CLICK_ACTION_BLOCKING
 	current_pole_color = choice
 	light_color = pole_lights[choice]
 	update_icon()
 	update_brightness()
-	return TRUE
+	return CLICK_ACTION_SUCCESS
 
 
 // Alt-click to turn the lights on or off.
 /obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
 	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
-	playsound(user, lights_enabled ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
 	update_brightness()
@@ -92,9 +92,11 @@
 
 
 //trigger dance if character uses LBM
-/obj/structure/stripper_pole/attack_hand(mob/living/user)
+/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag)
 	. = ..()
 	if(.)
+		return
+	if(!proximity_flag)
 		return
 	if(pole_in_use)
 		balloon_alert(user, "already in use!")
@@ -154,10 +156,6 @@
 		dancer = null
 
 /obj/structure/stripper_pole/click_ctrl_shift(mob/user)
-	. = ..()
-	if(. == FALSE)
-		return FALSE
-
 	add_fingerprint(user)
 	balloon_alert(user, "disassembling...")
 	if(!do_after(user, 8 SECONDS, src))
@@ -167,7 +165,6 @@
 	balloon_alert(user, "disassembled")
 	new /obj/item/construction_kit/pole(get_turf(user))
 	qdel(src)
-	return TRUE
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()

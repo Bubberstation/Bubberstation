@@ -14,8 +14,9 @@
 /proc/make_datum_reference_lists()
 	// I tried to eliminate this proc but I couldn't untangle their init-order interdependencies -Dominion/Cyberboss
 	init_keybindings()
-	GLOB.emote_list = init_emote_list() // WHY DOES THIS NEED TO GO HERE? IT JUST INITS DATUMS
 	make_skyrat_datum_references() //SKYRAT EDIT ADDITION - CUSTOMIZATION
+	GLOB.emote_list = init_emote_list() // WHY DOES THIS NEED TO GO HERE? IT JUST INITS DATUMS
+	init_skyrat_stack_recipes() //SKYRAT EDIT ADDITION - More sheet recipes
 	init_crafting_recipes()
 	init_crafting_recipes_atoms()
 
@@ -179,7 +180,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INTERIOR, typecacheof(list(
 	/obj/machinery/defibrillator_mount,
 	/obj/machinery/firealarm,
 	/obj/machinery/flasher,
-	/obj/machinery/keycard_auth,
+	/obj/machinery/keycard_auth/wall_mounted,
 	/obj/machinery/light_switch,
 	/obj/machinery/newscaster,
 	/obj/machinery/power/apc,

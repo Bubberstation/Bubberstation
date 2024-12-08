@@ -4,7 +4,6 @@
 
 /datum/emote/living/mark_turf
 	key = "turf"
-	key_third_person = "turf"
 	cooldown = 4 SECONDS
 	/// The current turf ID that the user selected in the radial menu.
 	var/current_turf
@@ -65,7 +64,6 @@
 		var/taur_mode = human_user.get_taur_mode()
 		if(taur_mode & STYLE_TAUR_SNAKE)
 			user.allowed_turfs -= list("pawprint", "hoofprint", "clawprint")
-			user.allowed_turfs += "constrict"
 
 		//clothing
 		var/obj/item/shoes = user.get_item_by_slot(ITEM_SLOT_FEET)
@@ -113,16 +111,13 @@
 				user.owned_turf.color = human_user.dna.features["mcolor"]
 
 
-		var/list/body_part = list("tails", "constrict")
+		var/list/body_part = list("tails")
 		if(current_turf in body_part) //These turfs can be a body part and need color/size applied
 			var/key = null
 
 			var/list/tail_emotes = list("tails")
 			if(current_turf in tail_emotes)
 				key = "tail"
-			var/list/taur_emotes = list("constrict")
-			if(current_turf in taur_emotes)
-				key = "taur"
 
 			//coloring
 			var/list/finished_list = list()
@@ -174,8 +169,6 @@
 	if(user.owned_turf != null)
 		return FALSE
 	if(isspaceturf(get_turf(user)))
-		return FALSE
-	if(user.buckled)
 		return FALSE
 	else
 		return TRUE

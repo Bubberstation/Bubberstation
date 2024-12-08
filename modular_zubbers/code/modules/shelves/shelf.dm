@@ -33,7 +33,9 @@
 	return
 
 /obj/structure/cargo_shelf/Destroy()
-	QDEL_LIST(shelf_contents)
+	for(var/obj/structure/closet/crate/crate in shelf_contents)
+		crate.forceMove(loc)
+	shelf_contents = null
 	return ..()
 
 /obj/structure/cargo_shelf/examine(mob/user)
@@ -146,7 +148,7 @@
 	var/mob/living/user = usr
 //	if(!isliving(user))
 //		return // Ghosts busted.
-//	if(!isturf(user.loc) || user.incapacitated() || user.body_position == LYING_DOWN)
+//	if(!isturf(user.loc) || user.incapacitated || user.body_position == LYING_DOWN)
 //		return // If the user is in a weird state, don't bother trying.
 	if(istype(drop_atom, /turf/open) && istype(loc, /obj/structure/cargo_shelf) && user.Adjacent(drop_atom))
 		var/obj/structure/cargo_shelf/shelf = loc

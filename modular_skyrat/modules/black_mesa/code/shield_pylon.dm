@@ -91,6 +91,6 @@
 		shielded_mobs[iterating_mob] = null
 		shielded_mobs -= iterating_mob
 	shielded_mobs = null
-	playsound(src, 'sound/magic/lightningbolt.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/magic/lightningbolt.ogg', 100, TRUE)
 	new /obj/item/grenade/xen_crystal(get_turf(src))
 	return ..()

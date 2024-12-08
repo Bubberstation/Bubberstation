@@ -10,7 +10,7 @@
 	power_use_amount = POWER_CELL_USE_LOW
 	// We don't use fuel
 	change_icons = FALSE
-	var/cell_override = /obj/item/stock_parts/cell/high
+	var/cell_override = /obj/item/stock_parts/power_store/cell/high
 	var/powered = FALSE
 	max_fuel = 20
 
@@ -24,7 +24,7 @@
 		if(!(item_use_power(power_use_amount, user, TRUE) & COMPONENT_POWER_SUCCESS))
 			return
 	powered = !powered
-	playsound(src, 'sound/effects/sparks4.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 100, TRUE)
 	if(powered)
 		to_chat(user, span_notice("You turn [src] on."))
 		switched_on()
@@ -38,7 +38,7 @@
 	light_on = TRUE
 	force = 15
 	damtype = BURN
-	hitsound = 'sound/items/welder.ogg'
+	hitsound = 'sound/items/tools/welder.ogg'
 	set_light_on(powered)
 	update_appearance()
 	START_PROCESSING(SSobj, src)

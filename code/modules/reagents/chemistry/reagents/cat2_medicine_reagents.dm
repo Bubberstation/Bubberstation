@@ -534,19 +534,19 @@
 	carbies.add_mood_event("painful_medicine", /datum/mood_event/painful_medicine)
 	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN) && carbies.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT))
 		carbies.cure_husk(BURN)
-		carbies.visible_message("<span class='nicegreen'>A rubbery liquid coats [carbies]'s burns. [carbies] looks a lot healthier!") //we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something
-	// SKYRAT EDIT ADDITION BEGIN - non-modular changeling balancing
-	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, CHANGELING_DRAIN) && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_LING_UNHUSK_AMOUNT))//Costs a little more than a normal husk
-		carbies.cure_husk(CHANGELING_DRAIN)
-		carbies.visible_message("<span class='nicegreen'>A rubbery liquid coats [carbies]'s tissues. [carbies] looks a lot healthier!")
-	// SKYRAT EDIT ADDITION END
+		carbies.visible_message(span_nicegreen("A rubbery liquid coats [carbies]'s burns. [carbies] looks a lot healthier!")) //we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something
+		// SKYRAT EDIT ADDITION BEGIN - non-modular changeling balancing
+		if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, CHANGELING_DRAIN) && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_LING_UNHUSK_AMOUNT))//Costs a little more than a normal husk
+			carbies.cure_husk(CHANGELING_DRAIN)
+			carbies.visible_message(span_nicegreen("A rubbery liquid coats [carbies]'s tissues. [carbies] looks a lot healthier!"))
+		// SKYRAT EDIT ADDITION END
 
 /******ORGAN HEALING******/
 /*Suffix: -rite*/
 /*
 *How this medicine works:
 *Penthrite if you are not in crit only stabilizes your heart.
-*As soon as you pass crit threshold it's special effects kick in. Penthrite forces your heart to beat preventing you from entering
+*As soon as you pass crit threshold its special effects kick in. Penthrite forces your heart to beat preventing you from entering
 *soft and hard crit, but there is a catch. During this you will be healed and you will sustain
 *heart damage that will not imapct you as long as penthrite is in your system.
 *If you reach the threshold of -60 HP penthrite stops working and you get a heart attack, penthrite is flushed from your system in that very moment,

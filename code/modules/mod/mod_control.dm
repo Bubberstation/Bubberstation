@@ -117,7 +117,6 @@
 		uninstall(module, deleting = TRUE)
 	if(core)
 		QDEL_NULL(core)
-	QDEL_NULL(wires)
 	QDEL_NULL(mod_link)
 	for(var/datum/mod_part/part_datum as anything in get_part_datums(all = TRUE))
 		part_datum.part_item = null
@@ -129,8 +128,6 @@
 		wearer.visible_message(span_danger("[src] fall[p_s()] apart, completely destroyed!"), vision_distance = COMBAT_MESSAGE_RANGE)
 		clean_up()
 	for(var/obj/item/mod/module/module as anything in modules)
-		for(var/obj/item/item in module)
-			item.forceMove(drop_location())
 		uninstall(module)
 	if(ai_assistant)
 		if(ispAI(ai_assistant))
@@ -147,9 +144,6 @@
 	if(active)
 		. += span_notice("Charge: [core ? "[get_charge_percent()]%" : "No core"].")
 		. += span_notice("Selected module: [selected_module || "None"].")
-	if(atom_storage)
-		. += span_notice("<i>While the suit's panel is open, \
-			being on <b>combat mode</b> will prevent you from inserting items into it when clicking on it.</i>")
 	if(!open && !active)
 		if(!wearer)
 			. += span_notice("You could equip it to turn it on.")
@@ -165,7 +159,7 @@
 		else
 			. += span_notice("You could use a <b>MOD core</b> on it to install one.")
 		if(isnull(ai_assistant))
-			. += span_notice("You could install a pAI with a <b>pAI card</b>.") // SKYRAT EDIT CHANGE - ORIGINAL: . += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
+			. += span_notice("You could install an AI or pAI using their <b>storage card</b>.")
 		else if(isAI(ai_assistant))
 			. += span_notice("You could remove [ai_assistant] with an <b>intellicard</b>.")
 	. += span_notice("You could copy/set link frequency with a <b>multitool</b>.")
@@ -229,7 +223,7 @@
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc != src)
 			balloon_alert(user, "retract parts first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 
 /obj/item/mod/control/mouse_drop_dragged(atom/over_object, mob/user)
@@ -238,19 +232,19 @@
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc != src)
 			balloon_alert(wearer, "retract parts first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 			return
 
 	// SKYRAT EDIT ADDITION START - Can't remove your MODsuit from your back when it's still active (as it can cause runtimes and even the MODsuit control unit to delete itself)
 	if(active)
-		if(!wearer.incapacitated())
+		if(!wearer.incapacitated)
 			balloon_alert(wearer, "deactivate first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, FALSE, SILENCED_SOUND_EXTRARANGE)
 
 		return
 	// SKYRAT EDIT ADDITION END
 
-	if(!wearer.incapacitated())
+	if(!wearer.incapacitated)
 		var/atom/movable/screen/inventory/hand/ui_hand = over_object
 		if(wearer.putItemFromInventoryInHandIfPossible(src, ui_hand.held_index))
 			add_fingerprint(user)
@@ -276,7 +270,7 @@
 /obj/item/mod/control/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(active || activating || ai_controller)
 		balloon_alert(user, "deactivate suit first!")
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert(user, "[open ? "closing" : "opening"] cover...")
 	screwdriver.play_tool_sound(src, 100)
@@ -291,17 +285,16 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/crowbar_act(mob/living/user, obj/item/crowbar)
-	. = ..()
 	if(!open)
 		balloon_alert(user, "open the cover first!")
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	if(!allowed(user))
 		balloon_alert(user, "insufficient access!")
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	if(SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVAL, user) & MOD_CANCEL_REMOVAL)
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_BLOCKING
 	if(length(modules))
 		var/list/removable_modules = list()
@@ -318,60 +311,71 @@
 		SEND_SIGNAL(src, COMSIG_MOD_MODULE_REMOVED, user)
 		return ITEM_INTERACT_SUCCESS
 	balloon_alert(user, "no modules!")
-	playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+	playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return ITEM_INTERACT_BLOCKING
 
-/obj/item/mod/control/storage_insert_on_interacted_with(datum/storage, obj/item/inserted, mob/living/user)
-	if(user.combat_mode)
-		// Block all item-click-inserts when we're open
-		// Other form of insertion will still function (mousedrop, hotkey)
-		if(open)
-			return FALSE
-		// ...You have to open it up somehow though
-		if(inserted.tool_behaviour == TOOL_SCREWDRIVER)
-			return FALSE
-	return TRUE
-
-/obj/item/mod/control/item_interaction(mob/living/user, obj/item/attacking_item, list/modifiers)
-	if(istype(attacking_item, /obj/item/pai_card))
+// Makes use of tool act to prevent shoving stuff into our internal storage
+/obj/item/mod/control/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/pai_card))
 		if(!open)
 			balloon_alert(user, "open the cover first!")
-			return ITEM_INTERACT_BLOCKING
-		insert_pai(user, attacking_item)
+			return NONE // shoves the card in the storage anyways
+		insert_pai(user, tool)
 		return ITEM_INTERACT_SUCCESS
-	if(istype(attacking_item, /obj/item/mod/module))
+	if(istype(tool, /obj/item/mod/paint))
+		var/obj/item/mod/paint/paint_kit = tool
+		if(active || activating)
+			balloon_alert(user, "suit is active!")
+			return ITEM_INTERACT_BLOCKING
+		if(LAZYACCESS(modifiers, RIGHT_CLICK)) // Right click
+			if(paint_kit.editing_mod == src)
+				return ITEM_INTERACT_BLOCKING
+			paint_kit.editing_mod = src
+			paint_kit.proxy_view = new()
+			paint_kit.proxy_view.generate_view("color_matrix_proxy_[REF(user.client)]")
+
+			paint_kit.proxy_view.appearance = paint_kit.editing_mod.appearance
+			paint_kit.proxy_view.color = null
+			paint_kit.proxy_view.display_to(user)
+			paint_kit.ui_interact(user)
+			return ITEM_INTERACT_SUCCESS
+		else // Left click
+			paint_kit.paint_skin(src, user)
+			return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/mod/module))
 		if(!open)
 			balloon_alert(user, "open the cover first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
-		install(attacking_item, user)
+		install(tool, user)
 		SEND_SIGNAL(src, COMSIG_MOD_MODULE_ADDED, user)
 		return ITEM_INTERACT_SUCCESS
-	if(istype(attacking_item, /obj/item/mod/core))
+	if(istype(tool, /obj/item/mod/core))
 		if(!open)
 			balloon_alert(user, "open the cover first!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
 		if(core)
 			balloon_alert(user, "core already installed!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return ITEM_INTERACT_BLOCKING
-		var/obj/item/mod/core/attacking_core = attacking_item
+		var/obj/item/mod/core/attacking_core = tool
 		attacking_core.install(src)
 		balloon_alert(user, "core installed")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 	if(open)
-		if(is_wire_tool(attacking_item))
+		if(is_wire_tool(tool))
 			wires.interact(user)
 			return ITEM_INTERACT_SUCCESS
-		if(attacking_item.GetID())
-			update_access(user, attacking_item.GetID())
+		var/obj/item/id = tool.GetID()
+		if(id)
+			update_access(user, id)
 			return ITEM_INTERACT_SUCCESS
-	return NONE
+	return ..()
 
 /obj/item/mod/control/get_cell()
-	var/obj/item/stock_parts/cell/cell = get_charge_source()
+	var/obj/item/stock_parts/power_store/cell = get_charge_source()
 	if(!istype(cell))
 		return null
 	return cell
@@ -461,6 +465,7 @@
 	SEND_SIGNAL(src, COMSIG_MOD_WEARER_SET, wearer)
 	RegisterSignal(wearer, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
 	RegisterSignal(wearer, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
+	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(click_on))
 	update_charge_alert()
 	for(var/obj/item/mod/module/module as anything in modules)
 		module.on_equip()
@@ -468,7 +473,7 @@
 /obj/item/mod/control/proc/unset_wearer()
 	for(var/obj/item/mod/module/module as anything in modules)
 		module.on_unequip()
-	UnregisterSignal(wearer, list(COMSIG_ATOM_EXITED, COMSIG_SPECIES_GAIN))
+	UnregisterSignal(wearer, list(COMSIG_ATOM_EXITED, COMSIG_SPECIES_GAIN, COMSIG_MOB_CLICKON))
 	SEND_SIGNAL(src, COMSIG_MOD_WEARER_UNSET, wearer)
 	wearer.update_spacesuit_hud_icon("0")
 	wearer = null
@@ -502,7 +507,14 @@
 		forceMove(drop_location())
 		return
 
-/obj/item/mod/control/proc/quick_module(mob/user)
+/obj/item/mod/control/proc/click_on(mob/source, atom/A, list/modifiers)
+	SIGNAL_HANDLER
+
+	if (LAZYACCESS(modifiers, CTRL_CLICK) && LAZYACCESS(modifiers, source.client?.prefs.read_preference(/datum/preference/choiced/mod_select) || MIDDLE_CLICK))
+		INVOKE_ASYNC(src, PROC_REF(quick_module), source, get_turf(A))
+		return COMSIG_MOB_CANCEL_CLICKON
+
+/obj/item/mod/control/proc/quick_module(mob/user, anchor_override = null)
 	if(!length(modules))
 		return
 	var/list/display_names = list()
@@ -524,7 +536,9 @@
 	var/radial_anchor = src
 	if(istype(user.loc, /obj/effect/dummy/phased_mob))
 		radial_anchor = get_turf(user.loc) //they're phased out via some module, anchor the radial on the turf so it may still display
-	var/pick = show_radial_menu(user, radial_anchor, items, custom_check = FALSE, require_near = TRUE, tooltips = TRUE)
+	if (!isnull(anchor_override))
+		radial_anchor = anchor_override
+	var/pick = show_radial_menu(user, radial_anchor, items, custom_check = FALSE, require_near = isnull(anchor_override), tooltips = TRUE, user_space = !isnull(anchor_override))
 	if(!pick)
 		return
 	var/module_reference = display_names[pick]
@@ -545,19 +559,24 @@
 		if(is_type_in_list(new_module, old_module.incompatible_modules) || is_type_in_list(old_module, new_module.incompatible_modules))
 			if(user)
 				balloon_alert(user, "[new_module] incompatible with [old_module]!")
-				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)
 		if(user)
 			balloon_alert(user, "[new_module] would make [src] too complex!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	if(!new_module.has_required_parts(mod_parts))
 		if(user)
 			balloon_alert(user, "[new_module] incompatible with [src]'s parts!")
-			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		return
+	if(!new_module.can_install(src))
+		if(user)
+			balloon_alert(user, "[new_module] cannot be installed into [src]!")
+			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	new_module.forceMove(src)
 	modules += new_module
@@ -594,7 +613,7 @@
 /obj/item/mod/control/proc/update_access(mob/user, obj/item/card/id/card)
 	if(!allowed(user))
 		balloon_alert(user, "insufficient access!")
-		playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	req_access = card.access.Copy()
 	balloon_alert(user, "access updated")

@@ -31,8 +31,16 @@
 	// Calculate new position (searches through beacons in world)
 	var/obj/item/beacon/chosen
 	var/list/possible = list()
-	for(var/obj/item/beacon/W in GLOB.teleportbeacons)
-		possible += W
+	for(var/obj/item/beacon/beacon in GLOB.teleportbeacons)
+		var/turf/turf = get_turf(beacon)
+		if(!turf)
+			continue
+		if(is_centcom_level(turf.z) || is_away_level(turf.z))
+			continue
+		var/area/area = get_area(turf)
+		if(!area || (area.area_flags & NOTELEPORT))
+			continue
+		possible += beacon
 
 	if(possible.len > 0)
 		chosen = pick(possible)
@@ -45,7 +53,7 @@
 	var/turf/TO = get_turf(chosen) // the turf of origin we're travelling TO
 
 	playsound(TO, 'sound/effects/phasein.ogg', 100, TRUE)
-	priority_announce("Massive bluespace translocation detected.", "Anomaly Alert", ANNOUNCER_TRANSLOCATION) //SKYRAT EDIT CHANGE - ANNOUNCER
+	priority_announce("Massive bluespace translocation detected.", "Anomaly Alert")
 
 	var/list/flashers = list()
 	for(var/mob/living/carbon/C in viewers(TO, null))

@@ -42,6 +42,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 #endif
 
+#ifndef TESTING
+	if (LOWER_TEXT(hsrc_command) == "_debug") //disable the integrated byond vv in the client side debugging tools since it doesn't respect vv read protections
+		return
+#endif
+
 	// asset_cache
 	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
@@ -490,7 +495,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		display_unread_notes(src, time_stamp)
 	qdel(query_last_connected)
 
-	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
+	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need its current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		player_age = 0
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
@@ -545,7 +550,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
-	update_ambience_pref()
+	update_ambience_pref(prefs.read_preference(/datum/preference/toggle/sound_ambience))
 	check_ip_intel()
 
 	//This is down here because of the browse() calls in tooltip/New()
@@ -610,7 +615,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	QDEL_NULL(view_size)
 	QDEL_NULL(void)
 	QDEL_NULL(tooltips)
-	QDEL_NULL(open_loadout_ui) //SKYRAT EDIT ADDITION
 	QDEL_NULL(loot_panel)
 	QDEL_NULL(parallax_rock)
 	QDEL_LIST(parallax_layers_cached)
@@ -656,7 +660,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!query_client_in_db.Execute())
 		qdel(query_client_in_db)
 		return
-/*
+/* SKYRAT EDIT - ORIGINAL:
 	var/client_is_in_db = query_client_in_db.NextRow()
 	// If we aren't an admin, and the flag is set (the panic bunker is enabled).
 	if(CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
@@ -1164,8 +1168,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		winset(src, "default.Shift", "is-disabled=true")
 		winset(src, "default.ShiftUp", "is-disabled=true")
 
-/client/proc/update_ambience_pref()
-	if(prefs.read_preference(/datum/preference/toggle/sound_ambience))
+/client/proc/update_ambience_pref(value)
+	if(value)
 		if(SSambience.ambience_listening_clients[src] > world.time)
 			return // If already properly set we don't want to reset the timer.
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
@@ -1242,6 +1246,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		winset(usr, "mainwindow", "can-resize=true")
 		winset(usr, "mainwindow", "is-maximized=false")
 		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport")
+	attempt_auto_fit_viewport()
 
 /client/verb/toggle_status_bar()
 	set name = "Toggle Status Bar"
