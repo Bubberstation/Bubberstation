@@ -1,3 +1,6 @@
+/**********************************************************************
+						Component damage!
+***********************************************************************/
 //* Raw Damage *//
 
 /mob/living/silicon/robot/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_bodytype, updating_health = TRUE, forced = FALSE)

@@ -1,3 +1,7 @@
+/**********************************************************************
+						Components oh god oh fuck
+***********************************************************************/
+
 // Ported from Citadel Roleplay 13 & Nebula
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
 /datum/robot_component/var/name
@@ -230,7 +234,7 @@
 
 /obj/item/broken_device
 	name = "broken component"
-	icon = 'modular_zubbers/code/modules/borgs/components/sprites/robot_component.dmi'
+	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_component.dmi'
 	icon_state = "broken"
 
 /obj/item/broken_device/random
@@ -246,7 +250,7 @@
 	icon_state = pick(possible_icons)
 
 /obj/item/robot_parts/robot_component
-	icon = 'modular_zubbers/code/modules/borgs/components/sprites/robot_component.dmi'
+	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_component.dmi'
 	icon_state = "working"
 	var/brute = 0
 	var/burn = 0

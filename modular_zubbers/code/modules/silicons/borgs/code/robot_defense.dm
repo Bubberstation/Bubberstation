@@ -17,6 +17,10 @@
 		diag_hud_set_borgcell()
 	return TRUE
 
+/**********************************************************************
+						Components oh god oh fuck
+***********************************************************************/
+
 //Component removal
 /mob/living/silicon/robot/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(!cell)

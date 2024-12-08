@@ -5,8 +5,23 @@
 	held_rh = 'icons/mob/inhands/pai_item_rh.dmi'
 	held_state = "cat"
 
+//Cyborgs that are being held should act almost as how the AI behaves when carded.
+/mob/living/silicon/robot/mob_pickup(mob/living/user)
+	drop_all_held_items()
+	toggle_headlamp(TRUE)
+	return ..()
 
-	/// Components! These are basically robot organs
+/mob/living/silicon/robot/mob_try_pickup(mob/living/user, instant=FALSE)
+	if(stat == DEAD || HAS_TRAIT(src, TRAIT_GODMODE))
+		return
+	return ..()
+
+
+/**********************************************************************
+						Components oh god oh fuck
+***********************************************************************/
+
+/// Components! These are basically robot organs
 	var/list/components = list()
 	var/obj/machinery/camera/camera = null
 
@@ -42,15 +57,3 @@
 	else
 		C.toggled = 1
 		to_chat(src, span_warning("You enable [C.name]!"))
-
-
-//Cyborgs that are being held should act almost as how the AI behaves when carded.
-/mob/living/silicon/robot/mob_pickup(mob/living/user)
-	drop_all_held_items()
-	toggle_headlamp(TRUE)
-	return ..()
-
-/mob/living/silicon/robot/mob_try_pickup(mob/living/user, instant=FALSE)
-	if(stat == DEAD || HAS_TRAIT(src, TRAIT_GODMODE))
-		return
-	return ..()
