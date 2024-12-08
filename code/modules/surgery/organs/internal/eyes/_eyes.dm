@@ -55,19 +55,19 @@
 	var/scarring = NONE
 
 
-/obj/item/organ/internal/eyes/mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/internal/eyes/Insert(mob/living/carbon/eye_recipient, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	// If we don't do this before everything else, heterochromia will be reset leading to eye_color_right no longer being accurate
-	if(ishuman(receiver))
-		var/mob/living/carbon/human/human_recipient = receiver
+	if(ishuman(eye_recipient))
+		var/mob/living/carbon/human/human_recipient = eye_recipient
 		old_eye_color_left = human_recipient.eye_color_left
 		old_eye_color_right = human_recipient.eye_color_right
 
 	. = ..()
 
-	receiver.cure_blind(NO_EYES)
+	eye_recipient.cure_blind(NO_EYES)
 	apply_damaged_eye_effects()
-	refresh(receiver, call_update = TRUE)
-	RegisterSignal(receiver, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
+	refresh(eye_recipient, call_update = TRUE)
+	RegisterSignal(eye_recipient, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 
 /// Refreshes the visuals of the eyes
 /// If call_update is TRUE, we also will call update_body
