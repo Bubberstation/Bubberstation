@@ -62,7 +62,10 @@
 	bio = 70
 	fire = 100
 	acid = 100
-	wound = -10
+	
+/datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
+	laser = 10
+	energy = 0
 
 /datum/armor/drake_empowerment_gatsu
 	melee = 35
@@ -92,6 +95,7 @@
 /obj/item/clothing/head/hooded/berserker/gatsu/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	AddComponent(/datum/component/anti_magic, ALL, inventory_flags = ITEM_SLOT_OCLOTHING)
 	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
