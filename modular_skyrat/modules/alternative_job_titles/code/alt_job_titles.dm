@@ -363,7 +363,6 @@
 		"Central Command Consultant",
 		"Central Command Advisor",
 		"Central Command Diplomat",
-		"Central Command Representative",
 		"Central Command Liason",
 		"Corporate Liason",
 		"Corporate Consultant",
