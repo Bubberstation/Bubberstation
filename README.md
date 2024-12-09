@@ -52,6 +52,7 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
 You are responsible for the testing of your content. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server.
 
 ## DOWNLOADING
+## DOWNLOADING
 
 [Downloading](.github/guides/DOWNLOADING.md)
 
