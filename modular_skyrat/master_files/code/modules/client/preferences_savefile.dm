@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 6
+#define MODULAR_SAVEFILE_VERSION_MAX 7
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -13,6 +13,7 @@
 #define VERSION_UNDERSHIRT_BRA_SPLIT 4
 #define VERSION_CHRONOLOGICAL_AGE 5
 #define VERSION_LANGUAGES 6
+#define VERSION_LOADOUT_PRESETS 7
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -24,7 +25,7 @@
 /datum/preferences/proc/savefile_needs_update_skyrat(list/save_data)
 	var/savefile_version = save_data["modular_version"]
 
-	if(savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
+	if(save_data.len && savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
 		return savefile_version
 
 	return MODULAR_SAVEFILE_UP_TO_DATE
@@ -78,8 +79,8 @@
 	languages = save_languages
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
-	if(!tgui_prefs_migration)
-		to_chat(parent, examine_block(span_redtext("PREFERENCE MIGRATION BEGINNING FOR.\
+	if(!tgui_prefs_migration && save_data.len) // If save_data is empty, this is definitely a new character
+		to_chat(parent, examine_block(span_redtext("PREFERENCE MIGRATION BEGINNING.\
 		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		")))
@@ -95,6 +96,7 @@
 
 /// Brings a savefile up to date with modular preferences. Called if savefile_needs_update_skyrat() returned a value higher than 0
 /datum/preferences/proc/update_character_skyrat(current_version, list/save_data)
+	to_chat(parent, examine_block(span_redtext("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
 	if(current_version < VERSION_GENITAL_TOGGLES)
 		// removed genital toggles, with the new choiced prefs paths as assoc
 		var/static/list/old_toggles
@@ -259,6 +261,11 @@
 		for(var/language in save_languages)
 			languages[language] = language_number_updates[save_languages[language] + 1]// fuck you indexing from 1
 
+	if(current_version < VERSION_LOADOUT_PRESETS)
+		write_preference(GLOB.preference_entries[/datum/preference/loadout], list("Default" = save_data["loadout_list"])) // So easy. I wish the synth refactor was this easy.
+
+	to_chat(parent, examine_block(span_greentext("Updated preferences!")))
+
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
 		to_chat(parent, examine_block(span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
@@ -324,3 +331,6 @@
 #undef VERSION_BREAST_SIZE_CHANGE
 #undef VERSION_SYNTH_REFACTOR
 #undef VERSION_UNDERSHIRT_BRA_SPLIT
+#undef VERSION_CHRONOLOGICAL_AGE
+#undef VERSION_LANGUAGES
+#undef VERSION_LOADOUT_PRESETS

@@ -1,5 +1,5 @@
 // 7mm (SAW)
-
+// BUBBER BUFFS modular_zubbers\code\modules\projectiles\projectile\bullets\lmg.dm
 /obj/item/ammo_casing/m7mm
 	name = "7mm bullet casing"
 	desc = "A 7mm bullet casing."
