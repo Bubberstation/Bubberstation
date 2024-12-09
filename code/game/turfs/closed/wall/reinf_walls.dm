@@ -2,8 +2,8 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
-	icon_state = "reinforced_wall-0"
-	base_icon_state = "reinforced_wall"
+	// icon_state = "reinforced_wall-0"
+	// base_icon_state = "reinforced_wall"
 	opacity = TRUE
 	density = TRUE
 	turf_flags = IS_SOLID
@@ -188,26 +188,26 @@
 				return TRUE
 	return FALSE
 
-/turf/closed/wall/r_wall/update_icon(updates=ALL)
-	. = ..()
-	if(d_state != INTACT)
-		smoothing_flags = NONE
-		return
-	if (!(updates & UPDATE_SMOOTHING))
-		return
-	smoothing_flags = SMOOTH_BITMASK
-	QUEUE_SMOOTH_NEIGHBORS(src)
-	QUEUE_SMOOTH(src)
+// /turf/closed/wall/r_wall/update_icon(updates=ALL)
+// 	. = ..()
+// 	if(d_state != INTACT)
+// 		smoothing_flags = NONE
+// 		return
+// 	if (!(updates & UPDATE_SMOOTHING))
+// 		return
+// 	smoothing_flags = SMOOTH_BITMASK
+// 	QUEUE_SMOOTH_NEIGHBORS(src)
+// 	QUEUE_SMOOTH(src)
 
 // We don't react to smoothing changing here because this else exists only to "revert" intact changes
-/turf/closed/wall/r_wall/update_icon_state()
-	if(d_state != INTACT)
-		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_states.dmi'
-		icon_state = "[base_decon_state]-[d_state]"
-	else
-		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_wall.dmi'
-		icon_state = "[base_icon_state]-[smoothing_junction]"
-	return ..()
+// /turf/closed/wall/r_wall/update_icon_state()
+// 	if(d_state != INTACT)
+// 		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_states.dmi'
+// 		icon_state = "[base_decon_state]-[d_state]"
+// 	else
+// 		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_wall.dmi'
+// 		icon_state = "[base_icon_state]-[smoothing_junction]"
+// 	return ..()
 
 /turf/closed/wall/r_wall/wall_singularity_pull(current_size)
 	if(current_size >= STAGE_FIVE)
@@ -233,8 +233,8 @@
 	name = "hull"
 	desc = "The armored hull of an ominous looking ship."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "plastitanium_wall-0"
-	base_icon_state = "plastitanium_wall"
+	// icon_state = "plastitanium_wall-0"
+	// base_icon_state = "plastitanium_wall"
 	explosive_resistance = 20
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	hardness = 25 //plastitanium
@@ -249,8 +249,8 @@
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "map-shuttle_nd"
-	base_icon_state = "plastitanium_wall"
+	// icon_state = "map-shuttle_nd"
+	// base_icon_state = "plastitanium_wall"
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/r_wall/syndicate/overspace
