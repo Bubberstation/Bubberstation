@@ -64,9 +64,6 @@
 
 	. = ..()
 
-	if(!.)
-		return
-
 	eye_recipient.cure_blind(NO_EYES)
 	apply_damaged_eye_effects()
 	refresh(eye_recipient, call_update = TRUE)
@@ -105,6 +102,7 @@
 
 /obj/item/organ/internal/eyes/Remove(mob/living/carbon/eye_owner, special, movement_flags)
 	. = ..()
+
 	if(ishuman(eye_owner))
 		var/mob/living/carbon/human/human_owner = eye_owner
 		if(initial(eye_color_left))
@@ -128,7 +126,7 @@
 
 	eye_owner.update_tint()
 	eye_owner.update_sight()
-	is_emissive = FALSE // SKYRAT EDIT ADDITION
+	is_emissive = FALSE // BUBBER EDIT ADDITION
 	UnregisterSignal(eye_owner, COMSIG_ATOM_BULLET_ACT)
 
 /obj/item/organ/internal/eyes/proc/on_bullet_act(datum/source, obj/projectile/proj, def_zone)
