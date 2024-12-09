@@ -25,7 +25,7 @@
 /datum/design/adv_matter_bin
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/super_cell
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | MECHFAB
 /datum/design/water_recycler
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/card_reader
@@ -55,9 +55,9 @@
 /datum/design/super_matter_bin
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/hyper_cell
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | MECHFAB
 /datum/design/hyper_battery
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | MECHFAB
 
 /datum/design/adv_part_disk
 	name = "Advanced components design disk"

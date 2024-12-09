@@ -84,21 +84,21 @@ export const display_gender: FeatureChoiced = {
 };
 
 export const flavor_text_nsfw: Feature<string> = {
-  name: 'Flavor Text (NSFW)',
+  name: 'NSFW Flavor Text',
   description:
     'A portion of your flavor text that is censored in examine. Used to store visual sexual details.',
   component: FeatureTextInput,
 };
 
 export const silicon_flavor_text_nsfw: Feature<string> = {
-  name: 'Flavor Text (Silicon, NSFW)',
+  name: 'Silicon NSFW Flavor Text',
   description:
     'A portion of your flavor text that is stored in examine, used for Silicons. Used to store visual sexual details.',
   component: FeatureTextInput,
 };
 
 export const headshot_silicon: Feature<string> = {
-  name: 'Headshot (Silicon)',
+  name: 'Silicon Headshot',
   description:
     'Requires a link ending with .png, .jpeg, or .jpg, starting with \
   https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List. \
@@ -109,7 +109,7 @@ export const headshot_silicon: Feature<string> = {
 };
 
 export const headshot_nsfw: Feature<string> = {
-  name: 'Headshot (NSFW)',
+  name: 'NSFW Headshot',
   description:
     'Headshot, but for NSFW references. \
     Requires a link ending with .png, .jpeg, or .jpg, starting with \
@@ -121,7 +121,7 @@ export const headshot_nsfw: Feature<string> = {
 };
 
 export const headshot_silicon_nsfw: Feature<string> = {
-  name: 'Headshot (Silicon) (NSFW)',
+  name: 'Silicon NSFW Headshot',
   description:
     'Headshot, but for NSFW references on Silicons. \
     Requires a link ending with .png, .jpeg, or .jpg, starting with \
@@ -139,14 +139,14 @@ export const ooc_notes_silicon: Feature<string> = {
 };
 
 export const custom_species_silicon: Feature<string> = {
-  name: 'Custom Model Name',
+  name: 'Silicon Model Name',
   description:
     'The name of the module for your Silicon company, such as "Armadyne Pleasure Model."',
   component: FeatureShortTextInput,
 };
 
 export const custom_species_lore_silicon: Feature<string> = {
-  name: 'Custom Model Lore',
+  name: 'Silicon Model Lore',
   description:
     'Lore for your silicon, typically its company, make, model, and details regarding its creation.',
   component: FeatureTextInput,

@@ -45,6 +45,22 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 20
 
+/datum/supply_pack/goody/plasma_projector
+	name = "Słońce Plasma Projector Single-Pack"
+	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 6
+
+/datum/supply_pack/goody/sakhno_derringer_single
+	name = "Sakhno 'Yinbi' Derringer Single Pack"
+	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
+	contains = list(/obj/item/gun/ballistic/derringer = 1,
+	/obj/item/ammo_box/c310_cargo_box = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 
