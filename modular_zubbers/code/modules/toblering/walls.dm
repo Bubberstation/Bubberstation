@@ -30,13 +30,21 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	/// Paint color of which the stripe has been painted with. Will not overlay a stripe if no paint is applied
 	var/stripe_paint
 
+	/// If TRUE, this wall will not try to use any of the fancy toblerone wall systems. Used for some things that don't have proper mats (meat/pizza walls, for example)
+	var/custom_wall
+
 	/// Appearance cache key. This is very touchy.
 	VAR_PRIVATE/cache_key
 
 	var/static/list/bad_walls = list()
+	var/static/list/custom_walls = list()
+	var/static/list/material_cache = list()
 
 /// Most of this code is pasted within /obj/structure/falsewall. Be mindful of this
 /turf/closed/wall/update_overlays()
+	if(custom_wall)
+		return ..()
+
 	var/plating_color = wall_paint || material_color
 	var/stripe_color = stripe_paint || wall_paint || material_color
 
@@ -98,9 +106,27 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	if(!plating_mat)
 		CRASH("Something tried to set wall plating to null!")
 
-	var/datum/material/plating_mat_ref = GET_MATERIAL_REF(initial(plating_mat.material_type))
+	var/datum/material/plating_mat_ref
+	if(plating_mat && initial(plating_mat.material_type))
+		plating_mat_ref = GET_MATERIAL_REF(initial(plating_mat.material_type))
+	else
+		plating_mat_ref = material_cache[plating_mat]
+		if(!plating_mat_ref && plating_mat_ref != FALSE)
+			var/obj/thing = new plating_mat // Fuck I hate this fucking why byond
+			if(thing.custom_materials && thing.custom_materials[1]) // Hail mary for weird walls that don't use normal mats.
+				plating_mat_ref = GET_MATERIAL_REF(thing.custom_materials[1])
+				material_cache[plating_mat] = plating_mat_ref
+			else
+				custom_wall = TRUE
+				custom_walls |= type
+				return
+		else
+			custom_wall = TRUE
+			custom_walls |= type
+			return
 
 	if(!plating_mat_ref)
+		stack_trace("[type] has no valid material!")
 		bad_walls |= type
 		return
 
