@@ -24,6 +24,12 @@
 	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
 	icon_state = "noselick"
 
+/datum/sprite_accessory/facial_hair/fullstub
+	name = "Full Stub"
+	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
+	icon_state = "facial_fullstub_s"
+	natural_spawn = FALSE //Only works with the full face snout.
+
 /datum/sprite_accessory/hair/twistedlong
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Twisted Long"
@@ -44,3 +50,14 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Inari"
 	icon_state = "hair_inari"
+
+// short_side and ponytails_berly sprites by Cepha
+/datum/sprite_accessory/hair/short_side
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Short (Side)"
+	icon_state = "hair_short_side"
+
+/datum/sprite_accessory/hair/ponytails_berly
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Ponytails (Berly)"
+	icon_state = "hair_tails_berly"
