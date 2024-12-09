@@ -358,6 +358,7 @@
 		"Nanotrasen Consultant",
 		"Nanotrasen Advisor",
 		"Nanotrasen Diplomat",
+		"Nanotrasen Representative",
 		"Nanotrasen Liason",
 		"Central Command Consultant",
 		"Central Command Advisor",
