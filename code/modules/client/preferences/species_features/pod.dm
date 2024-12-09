@@ -1,4 +1,4 @@
-// SKYRAT EDIT: REPLACED BY /datum/preference/choiced/mutant_choice/pod_hair IN mutant_parts.dm
+// SKYRAT EDIT: REPLACED BY /datum/preference/choiced/mutant/pod_hair IN pod_hair.dm
 /*
 /datum/preference/choiced/pod_hair
 	savefile_key = "feature_pod_hair"

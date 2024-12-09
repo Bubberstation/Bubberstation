@@ -59,6 +59,7 @@
 	main_feature_name = "Facial hair"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_FACIAL_HAIR
+	supplemental_features = list("facial_hair_color", "facial_hair_gradient", "facial_hair_gradient_color") // BUBBER EDIT ADDITION: Better prefs
 
 /datum/preference/choiced/facial_hairstyle/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.facial_hairstyles_list)
@@ -86,12 +87,14 @@
 
 	return picked_beard
 
-/datum/preference/choiced/facial_hairstyle/compile_constant_data()
-	var/list/data = ..()
+// BUBBER EDIT REMOVAL START: Better prefs
+// /datum/preference/choiced/facial_hairstyle/compile_constant_data()
+// 	var/list/data = ..()
 
-	data[SUPPLEMENTAL_FEATURE_KEY] = /datum/preference/color/facial_hair_color::savefile_key
+// 	data[SUPPLEMENTAL_FEATURE_KEY] = /datum/preference/color/facial_hair_color::savefile_key
 
-	return data
+// 	return data
+// BUBBER EDIT END
 
 /datum/preference/color/facial_hair_color
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE // Need to happen after hair oclor is set so we can match by default
@@ -108,11 +111,35 @@
 
 /datum/preference/choiced/facial_hair_gradient
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "facial_hair_gradient"
 	relevant_head_flag = HEAD_FACIAL_HAIR
 	can_randomize = FALSE
+
+// BUBBER EDIT START: Better prefs
+	should_generate_icons = TRUE
+	var/icon/hair_icon
+
+/datum/preference/choiced/facial_hair_gradient/New()
+	. = ..()
+	var/datum/sprite_accessory/hair/hair = SSaccessories.facial_hairstyles_list["Beard (Very Long)"]
+	hair_icon = icon(hair.icon, hair.icon_state, SOUTH)
+
+/datum/preference/choiced/facial_hair_gradient/icon_for(value)
+	if(value == SPRITE_ACCESSORY_NONE)
+		return icon('icons/mob/landmarks.dmi', "x")
+
+	var/datum/sprite_accessory/gradient/gradient = SSaccessories.facial_hair_gradients_list[value]
+	var/icon/temp = icon(gradient.icon, gradient.icon_state)
+	temp.Blend(hair_icon, ICON_ADD)
+	temp.Blend("#ff0000", ICON_MULTIPLY)
+	var/icon/temp_hair = icon(hair_icon)
+	temp_hair.Blend(temp, ICON_OVERLAY)
+	temp_hair.Crop(8, 29, 24, 14)
+	temp_hair.Scale(32, 32)
+	return temp_hair
+// BUBBER EDIT END
 
 /datum/preference/choiced/facial_hair_gradient/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.facial_hair_gradients_list)
@@ -125,7 +152,7 @@
 
 /datum/preference/color/facial_hair_gradient
 	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES // BUBBER EDIT: Better prefs: ORIGINAL: SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "facial_hair_gradient_color"
 	relevant_head_flag = HEAD_FACIAL_HAIR
@@ -133,10 +160,12 @@
 /datum/preference/color/facial_hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_facial_hair_gradient_color(new_color = value, update = FALSE)
 
-/datum/preference/color/facial_hair_gradient/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-	return preferences.read_preference(/datum/preference/choiced/facial_hair_gradient) != /datum/sprite_accessory/gradient/none::name
+// BUBBER EDIT REMOVAL START: Better prefs
+// /datum/preference/color/facial_hair_gradient/is_accessible(datum/preferences/preferences)
+// 	if (!..(preferences))
+// 		return FALSE
+// 	return preferences.read_preference(/datum/preference/choiced/facial_hair_gradient) != /datum/sprite_accessory/gradient/none::name
+// BUBBER EDIT END
 
 /datum/preference/color/hair_color
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
@@ -159,6 +188,7 @@
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
 	relevant_head_flag = HEAD_HAIR
+	supplemental_features = list("hair_color", "hair_gradient", "hair_gradient_color", "feature_hair_opacity") // BUBBER EDIT ADDITION: Better prefs
 
 /datum/preference/choiced/hairstyle/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.hairstyles_list)
@@ -187,20 +217,45 @@
 
 	return picked_hair
 
-/datum/preference/choiced/hairstyle/compile_constant_data()
-	var/list/data = ..()
+// BUBBER EDIT REMOVAL START: Better prefs
+// /datum/preference/choiced/hairstyle/compile_constant_data()
+// 	var/list/data = ..()
 
-	data[SUPPLEMENTAL_FEATURE_KEY] = /datum/preference/color/hair_color::savefile_key
+// 	data[SUPPLEMENTAL_FEATURE_KEY] = /datum/preference/color/hair_color::savefile_key
 
-	return data
+// 	return data
+// BUBBER EDIT END
 
 /datum/preference/choiced/hair_gradient
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES // BUBBER EDIT: Better prefs: ORIGINAL: SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "hair_gradient"
 	relevant_head_flag = HEAD_HAIR
 	can_randomize = FALSE
+
+
+// BUBBER EDIT ADDITION START: Better prefs
+	should_generate_icons = TRUE
+	var/icon/hair_icon
+
+/datum/preference/choiced/hair_gradient/New()
+	. = ..()
+	var/datum/sprite_accessory/hair/hair = SSaccessories.hairstyles_list["Floorlength Bedhead"]
+	hair_icon = icon(hair.icon, hair.icon_state, NORTH)
+
+/datum/preference/choiced/hair_gradient/icon_for(value)
+	if(value == SPRITE_ACCESSORY_NONE)
+		return icon('icons/mob/landmarks.dmi', "x")
+
+	var/datum/sprite_accessory/gradient/gradient = SSaccessories.hair_gradients_list[value]
+	var/icon/temp = icon(gradient.icon, gradient.icon_state)
+	temp.Blend(hair_icon, ICON_ADD)
+	temp.Blend("#ff0000", ICON_MULTIPLY)
+	var/icon/temp_hair = icon(hair_icon)
+	temp_hair.Blend(temp, ICON_OVERLAY)
+	return temp_hair
+// BUBBER EDIT END
 
 /datum/preference/choiced/hair_gradient/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.hair_gradients_list)
@@ -213,7 +268,7 @@
 
 /datum/preference/color/hair_gradient
 	priority = PREFERENCE_PRIORITY_BODY_TYPE
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES // BUBBER EDIT: Better prefs: ORIGINAL: SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "hair_gradient_color"
 	relevant_head_flag = HEAD_HAIR
@@ -221,7 +276,9 @@
 /datum/preference/color/hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_hair_gradient_color(new_color = value, update = FALSE)
 
-/datum/preference/color/hair_gradient/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-	return preferences.read_preference(/datum/preference/choiced/hair_gradient) != /datum/sprite_accessory/gradient/none::name
+// BUBBER EDIT REMOVAL START: Better prefs
+// /datum/preference/color/hair_gradient/is_accessible(datum/preferences/preferences)
+// 	if (!..(preferences))
+// 		return FALSE
+// 	return preferences.read_preference(/datum/preference/choiced/hair_gradient) != /datum/sprite_accessory/gradient/none::name
+// BUBBER EDIT END
