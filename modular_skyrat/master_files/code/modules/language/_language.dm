@@ -19,4 +19,4 @@
 	secret = TRUE
 
 /datum/language/xenocommon
-	secret = FALSE //Bubber edit: Makes Xenocommon an available language.
+	secret = FALSE

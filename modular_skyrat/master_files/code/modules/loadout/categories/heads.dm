@@ -577,7 +577,7 @@
 	name = "Chemist Beret"
 	item_path = /obj/item/clothing/head/beret/medical/chemist
 
-/datum/loadout_item/head/beret_coroner		//Bubbers Addition
+/datum/loadout_item/head/beret_coroner
 	name = "Coroner Beret"
 	item_path = /obj/item/clothing/head/beret/medical/coroner
 	restricted_roles = list(JOB_CORONER, JOB_CHIEF_MEDICAL_OFFICER)

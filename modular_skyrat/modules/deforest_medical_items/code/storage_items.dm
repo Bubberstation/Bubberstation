@@ -293,7 +293,7 @@
 		/obj/item/stack/medical/gauze/sterilized = 1,
 		/obj/item/reagent_containers/medigel/sterilizine = 1,
 		/obj/item/stack/sticky_tape/surgical = 1,
-		/obj/item/storage/pill_bottle/painkiller = 1, // BUBBER EDIT CHANGE - Original: Bone Gel
+		/obj/item/storage/pill_bottle/painkiller = 1,
 	)
 	generate_items_inside(items_inside,src)
 

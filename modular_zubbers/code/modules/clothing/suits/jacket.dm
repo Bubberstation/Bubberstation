@@ -55,15 +55,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 
-/obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed  //Donor item for LT3
-	name = "expedition medical jacket"
-	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
-	icon_state = "labcoat_skyymed"
-	icon = 'modular_zubbers/icons/donator/skyymed.dmi'
-	worn_icon = 'modular_zubbers/icons/donator/skyymed_worn.dmi'
-	armor_type = /datum/armor/toggle_labcoat
-	toggle_noun = "zipper"
-
 // Henchmen Sprites by Cannibal Hunter of MonkeStation
 
 /obj/item/clothing/suit/jacket/henchmen_coat
@@ -606,3 +597,22 @@
 	greyscale_colors = null
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+// Medical Jackets
+/obj/item/clothing/suit/toggle/labcoat/skyrat/medical
+	name = "medical department jacket"
+	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/labcoat.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/labcoat.dmi'
+	icon_state = "labcoat_med_light"
+	body_parts_covered = CHEST|ARMS|GROIN
+	cold_protection = CHEST|ARMS|GROIN
+	toggle_noun = "zipper"
+
+/obj/item/clothing/suit/toggle/labcoat/skyrat/medical/dark
+	name = "medical expedition jacket"
+	icon_state = "labcoat_med_dark"
+
+/obj/item/clothing/suit/toggle/jacket/sec/medical
+	name = "medical praetorian jacket"
+	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
