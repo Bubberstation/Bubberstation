@@ -2,8 +2,8 @@
 	icon = 'modular_zubbers/icons/obj/smooth_structures/grille.dmi'
 	icon_state = "grille-0"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_GRILLE)
-	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_GRILLE
+	smoothing_groups = SMOOTH_GROUP_GRILLE
+	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS
 	color = "#545454"
 
 /obj/structure/grille/update_icon_state()
