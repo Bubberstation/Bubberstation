@@ -13,7 +13,7 @@ type LoadoutInfoValue = string;
 // Info about a loadout item (key to info, such as color, reskin, layer, etc)
 type LoadoutListInfo = Record<LoadoutInfoKey, LoadoutInfoValue> | [];
 // Typepath to info about the item
-export type LoadoutList = Record<typePath, LoadoutListInfo>;
+export type LoadoutList = { loadouts: string[]; loadout: LoadoutListInfo }; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: export type LoadoutList = Record<typePath, LoadoutListInfo>;
 
 // Used for holding reskin information
 export type ReskinOption = {

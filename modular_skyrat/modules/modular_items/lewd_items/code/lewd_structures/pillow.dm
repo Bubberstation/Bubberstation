@@ -251,7 +251,7 @@
 	base_icon_state = "pillowpile_small"
 	pseudo_z_axis = 4
 	var/current_color = "pink"
-	var/mutable_appearance/armrest
+	has_armrest = TRUE
 
 	//Containing pillows that we have here.
 	var/pillow1_color = "pink"
@@ -272,7 +272,7 @@
 	update_icon()
 	return ..()
 
-/obj/structure/chair/pillow_small/proc/GetArmrest()
+/obj/structure/chair/pillow_small/GetArmrest()
 	if(current_color == "pink")
 		return mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_small_pink_overlay")
 	if(current_color == "teal")
