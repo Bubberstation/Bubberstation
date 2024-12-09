@@ -9,5 +9,6 @@ This was done to preserve that's left of my already pretty fucked sanity.
 
 ## Credit
 
-Thank you to crumpaloo for getting the initial spritework done on these walls for Artea.
-Rimi (me) has then modified them so bubber doesn't accidentally start to take on artea's overall artstyle, as retroactively making them similar would be a monumental undertaking, and likely undesired.
+Thank you to (especially) horizon, pariah, and daedalus for doing a lot of the heavy lifting for the implementations over the years.
+Crumpaloo for getting the initial spritework done on the walls and especially the wallmounts for Artea.
+Rimi (me) for modifying the code to work with tgwalls modularly, as adding lowwalls and wall reinforcement would be a complete nightmare. Also some sprite changes to ensure bubber doesn't start inhering Artea's art style.
