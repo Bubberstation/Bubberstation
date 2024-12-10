@@ -14,3 +14,13 @@
 
 #define WALL_SHINE_SOLID_ICON 'modular_zubbers/icons/turf/walls/solid_wall_shine.dmi'
 #define WALL_SHINE_REINFORCED_ICON 'modular_zubbers/icons/turf/walls/solid_wall_reinforced_shine.dmi'
+
+///from base of atom/set_smoothed_icon_state(): (new_junction)
+#define COMSIG_ATOM_SET_SMOOTHED_ICON_STATE "set_smoothed_icon_state"
+
+/// This turf contains something using split visiblity
+#define TRAIT_CONTAINS_SPLITVIS "contains_splitvis"
+
+// Defines used to convert dirs to 32,32 pixel offsets
+#define DIR_TO_PIXEL_Y(dir) ((dir & NORTH) ? 32 : (dir & SOUTH) ? -32 : 0)
+#define DIR_TO_PIXEL_X(dir) ((dir & EAST) ? 32 : (dir & WEST) ? -32 : 0)

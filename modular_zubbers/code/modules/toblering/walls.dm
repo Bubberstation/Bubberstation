@@ -146,6 +146,8 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	matset_name = name
 
 	lighting_uses_jen = TRUE
+	AddElement(/datum/element/split_visibility, 'modular_zubbers/icons/turf/walls/solid_wall_splitvis.dmi', color)
+	icon = null
 
 	update_appearance()
 
