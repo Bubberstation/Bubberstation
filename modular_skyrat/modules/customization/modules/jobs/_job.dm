@@ -16,10 +16,6 @@
 	/// Which languages does the job require, associative to UNDERSTOOD_LANGUAGE or (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 	var/list/required_languages = list(/datum/language/common = (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE))
 
-	///Is this job veteran only? If so, then this job requires the player to be in the veteran_players.txt
-	var/veteran_only = FALSE
-
-
 /datum/job/proc/has_banned_quirk(datum/preferences/pref)
 	if(!pref) //No preferences? We'll let you pass, this time (just a precautionary check,you dont wanna mess up gamemode setting logic)
 		return FALSE
@@ -127,6 +123,7 @@
 /datum/job/cyborg
 	loadout = FALSE
 
+// BUBBER TODO - Change this mess of required languages
 //Service
 /datum/job/cook
 	required_languages = null
@@ -151,7 +148,6 @@
 
 /datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-// START OF BUBBERSTATION ADDITION
 
 /datum/job/mime
 	required_languages = null
@@ -171,20 +167,18 @@
 /datum/job/chaplain
 	required_languages = null
 
-// END OF BUBBERSTATION ADDITION
-
-// ENGINEERING (BUBBERSTATION ADDITION)
+// ENGINEERING
 
 /datum/job/station_engineer
-	required_languages = null // BUBBERSTATION ADDITION
+	required_languages = null
 
 /datum/job/atmospheric_technician
-	required_languages = null // BUBBERSTATION ADDITION
+	required_languages = null
 
 /datum/job/engineering_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// CARGO (BUBBERSTATION ADDITION)
+// CARGO
 /datum/job/cargo_technician
 	required_languages = null
 
@@ -197,7 +191,7 @@
 /datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// MEDICAL (BUBBERSTATION ADDITION)
+// MEDICAL
 
 /datum/job/chemist
 	required_languages = null
@@ -217,7 +211,7 @@
 /datum/job/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-// SCIENCE (BUBBERSTATION ADDITION)
+// SCIENCE
 
 /datum/job/scientist
 	required_languages = null

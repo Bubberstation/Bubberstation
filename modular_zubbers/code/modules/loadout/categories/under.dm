@@ -61,3 +61,23 @@
 /datum/loadout_item/uniform/miscellaneous/miniskirt
 	name = "recolourable miniskirt"
 	item_path = /obj/item/clothing/under/dress/miniskirt
+
+/datum/loadout_item/uniform/miscellaneous/pirate_outfit
+	name = "Pirate Outfit"
+	item_path = /obj/item/clothing/under/costume/pirate
+
+/datum/loadout_item/uniform/miscellaneous/bunny_suit
+	name = "Bunny Suit"
+	item_path = /obj/item/clothing/under/costume/bunnylewd
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_replica
+	name = "CentCom turtleneck replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer/replica
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_skirt_replica
+	name = "CentCom turtleneck skirt replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer_skirt
+
+/datum/loadout_item/uniform/miscellaneous/latex_catsuit
+	name = "Latex Catsuit"
+	item_path = /obj/item/clothing/under/misc/latex_catsuit

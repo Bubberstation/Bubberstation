@@ -13,7 +13,8 @@
 	suffix = "lavaland_dauntless.dmm"
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/icemoon/bubberstation/syndicate_base)
-	always_place = TRUE
+	always_place = FALSE
+	unpickable = TRUE
 
 /datum/map_template/ruin/space/bubberstation/dauntless
 	name = "SSV Dauntless (Space)"

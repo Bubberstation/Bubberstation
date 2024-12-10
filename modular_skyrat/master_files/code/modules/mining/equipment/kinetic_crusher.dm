@@ -34,6 +34,9 @@
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
 
+	var/current_inhand_icon_state = "crusher" //variable used by retool kits when changing the crusher's appearance
+	var/projectile_icon = "pulse1" //variable used by retool kits when changing the crusher's projectile sprite
+
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 110)
@@ -74,7 +77,7 @@
 	return COMSIG_SABOTEUR_SUCCESS
 
 /obj/item/kinetic_crusher/update_icon_state()
-	inhand_icon_state = "crusher[HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
+	inhand_icon_state = "[current_inhand_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
 	return ..()
 
 /obj/item/kinetic_crusher/update_overlays()
@@ -109,7 +112,6 @@
 
 /obj/projectile/destabilizer
 	name = "destabilizing force"
-	icon_state = "pulse1"
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
 	armor_flag = BOMB

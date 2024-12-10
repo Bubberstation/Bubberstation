@@ -70,13 +70,13 @@ GLOBAL_VAR(first_officer)
 		"Interdyne Pharmaceuticals Chemical Factory" = 5,
 		"Free Teshari League Engineering Station" = 5,
 		"Agurkrral Military Base" = 5,
-		"Sol Federation Embassy" = 5,
+		"Terran Government Embassy" = 5,
 		"Novaya Rossiyskaya Imperiya Civilian Port" = 5,
 	))
 	///"right" = Right for the raiders to use as an argument; usually pretty difficult to avoid.
 	var/right_pick = pick(
 		"high probability of NRI-affiliated civilian casualties aboard the facility",
-		"highly increased funding by the SolFed authorities; neglected NRI-backed subsidiaries' contracts",
+		"highly increased funding by the TerraGov authorities; neglected NRI-backed subsidiaries' contracts",
 		"unethical hiring practices and unfair payment allocation for the NRI citizens",
 		"recently discovered BSA-[number] or similar model in close proximity to the neutral space aboard this or nearby affiliated facility",
 	)
@@ -84,7 +84,7 @@ GLOBAL_VAR(first_officer)
 	var/wrong_pick = pick(
 		"inadequate support of the local producer",
 		"unregulated production of Gauss weaponry aboard this installation",
-		"SolFed-backed stationary military formation on the surface of Indecipheres",
+		"TerraGov-backed stationary military formation on the surface of Indecipheres",
 		"AUTOMATED REGULATORY VIOLATION DETECTION SYSTEM CRITICAL FAILURE. PLEASE CONTACT AND INFORM THE DISPATCHED AUTHORITIES TO RESOLVE THE ISSUE. \
 		ANY POSSIBLE INDENTURE HAS BEEN CLEARED. WE APOLOGIZE FOR THE INCONVENIENCE",
 	)
@@ -450,7 +450,7 @@ GLOBAL_VAR(first_officer)
 	<br> It was not designed for any kind of long-term deployments and anything more aggressive than shooting up a bunch of punks, so expect frequent power outages and a significant lack of raiding machinery.
 	<br> We have done some quick modifications to make it more suitable for military use, and smuggled you some defensive and military-grade medical equipment to balance it out. And some SMGs that were so convenient to \"go out of service and get scrapped". It should do the job for now.
 	<br> It is worth mentioning that your fourth marine, the maintenance crew man, went on a vacation. Dude's been pretty nervous as of late so it's only fair to let him get some well deserved rest - he has been maintaining this ship the whole time you've been in cryosleep. This should not affect your performance anyways.
-	<br> As for the broken Krinkov, there is nothing we can do for now. Will have to use the policemen's, not like you're here to fight the solarians anyways.
+	<br> As for the broken Krinkov, there is nothing we can do for now. Will have to use the policemen's, not like you're here to fight the terrans anyways.
 	<br> And, please, for the love of God and the Eternal Empress - do not make this mission into a shootout. We can't afford any more casualties in this sector, especially with the most of our military being on the frontline.
 	<br>
 	<br> Don't screw this up,
