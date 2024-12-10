@@ -107,6 +107,7 @@
 	design_ids += "wt550_ammo_incendiary"
 	design_ids += "s12g_magnum"
 	design_ids += "s12g_express"
+	design_ids += "mod_mind_transfer"
 	. = ..()
 
 /datum/techweb_node/nerd
