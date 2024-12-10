@@ -1357,6 +1357,7 @@
 /obj/structure/closet/crate/secure/freezer/interdyne/blood,
 /obj/machinery/biogenerator/medstation/directional/north,
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "ef" = (
@@ -2376,7 +2377,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/statuebust/hippocratic/evil,
 /obj/machinery/digital_clock/directional/north,
-/obj/machinery/light/directional/north,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
 "hC" = (
@@ -9181,6 +9181,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Bs" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/forging/hammer,
+/obj/item/forging/tongs,
+/obj/item/forging/billow,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Bt" = (
@@ -12986,7 +12989,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
-/obj/machinery/light/directional/north,
 /obj/structure/cable,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
@@ -13882,6 +13884,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
 "Px" = (
@@ -15205,7 +15210,8 @@
 "To" = (
 /obj/machinery/vending/wardrobe/chap_wardrobe/unholy{
 	all_products_free = 1;
-	pixel_x = -28
+	pixel_x = -28;
+	density = 0
 	},
 /turf/open/floor/carpet/donk,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
@@ -16079,7 +16085,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
-/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Wj" = (
@@ -17000,6 +17005,7 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/structure/cable,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
 "YQ" = (
@@ -19944,7 +19950,7 @@ Gh
 lC
 PD
 QG
-ua
+Fw
 Cg
 ua
 Cg
