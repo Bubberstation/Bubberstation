@@ -100,6 +100,5 @@
 	if(new_stage == 4 && being_stealthy)
 		to_chat(affected_mob, span_danger("[pick("You feel as though your atoms are accelerating in place.", "You feel like you're being torn apart!")]"))
 		affected_mob.emote("scream")
-		affected_mob.adjustBruteLoss(10, updating_health = FALSE)
-		affected_mob.updatehealth()
+		affected_mob.adjustBruteLoss(10)
 		being_stealthy = FALSE
