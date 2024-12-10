@@ -5,7 +5,7 @@
 /obj/item/gun/ballistic/rifle/boltaction/sporterized
 	name = "\improper Rengo Precision Rifle"
 	desc = "A heavily modified Sakhno rifle, parts made by Xhihao light arms based around Jupiter herself. \
-		Has a higher capacity than standard Sakhno rifles, fitting ten .310 cartridges."
+		Has a higher capacity than standard Sakhno rifles, fitting eight .310 cartridges."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/xhihao_light_arms/guns40x.dmi'
 	icon_state = "rengo"
 	worn_icon_state = "enchanted_rifle" // Not actually magical looking, just looks closest to this one
