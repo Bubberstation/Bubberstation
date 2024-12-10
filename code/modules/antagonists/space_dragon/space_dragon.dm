@@ -162,7 +162,7 @@
 	riftTimer = -1
 	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
 		to_chat(owner.current, span_warning("You will be able to make a new rift in 5 minutes."))
-		addtimer(CALLBACK(src, PROC_REF(rift_checks)), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(give_rift_ability)), 5 MINUTES)
 	SEND_SOUND(owner.current, sound('sound/vehicles/rocketlaunch.ogg'))
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.dragon = null
