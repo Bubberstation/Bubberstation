@@ -73,6 +73,7 @@
 		/obj/item/knife/combat/survival)
 
 	id_trim = /datum/id_trim/chameleon/operative
+	implants = list(/obj/item/implant/explosive)
 
 /datum/outfit/syndicateinfiltrator/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
