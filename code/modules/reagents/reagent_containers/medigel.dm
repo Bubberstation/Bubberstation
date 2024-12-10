@@ -100,4 +100,3 @@
 	current_skin = "medigel_blue"
 	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 60)
 	custom_price = PAYCHECK_CREW * 2
-	amount_per_transfer_from_this = 5 // BUBBER EDIT ADDITION

@@ -35,7 +35,7 @@
 /obj/item/storage/pill_bottle/lidocaine
 	name = "lidocaine pill bottle"
 	desc = "A bottle of nonsteroidal anti-inflammatory pills, used in surgery to numb patients."
-	custom_price = PAYCHECK_LOWER
+	custom_price = PAYCHECK_LOWER * 3
 
 /obj/item/storage/pill_bottle/lidocaine/PopulateContents()
 	for(var/i in 1 to 7)
