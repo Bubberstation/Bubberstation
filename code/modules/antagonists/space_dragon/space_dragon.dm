@@ -13,7 +13,7 @@
 	/// Current time since the the last rift was activated.  If set to -1, does not increment.
 	var/riftTimer = 0
 	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
-	var/maxRiftTimer = 30
+	var/maxRiftTimer = 300
 	/// A list of all of the rifts created by Space Dragon.  Used for setting them all to infinite carp spawn when Space Dragon wins, and removing them when Space Dragon dies.
 	var/list/obj/structure/carp_rift/rift_list = list()
 	/// How many rifts have been successfully charged
@@ -161,14 +161,18 @@
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 	riftTimer = -1
 	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
-		rift_ability = new() // BUBBER ADDITION
-		rift_ability.Grant(owner.current) // BUBBER ADDITION
+		to_chat(owner.current, span_warning("You will be able to make a new rift in 5 minutes."))
+		addtimer(CALLBACK(src, PROC_REF(rift_checks)), 5 MINUTES)
 	SEND_SOUND(owner.current, sound('sound/vehicles/rocketlaunch.ogg'))
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.dragon = null
 		rift_list -= rift
 		if(!QDELETED(rift))
 			QDEL_NULL(rift)
+
+/datum/antagonist/space_dragon/proc/give_rift_ability()
+	rift_ability = new()
+	rift_ability.Grant(owner.current)
 
 /**
  * Sets up Space Dragon's victory for completing the objectives.
