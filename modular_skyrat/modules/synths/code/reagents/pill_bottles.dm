@@ -31,21 +31,3 @@
 /obj/item/storage/pill_bottle/system_cleaner/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/system_cleaner(src)
-
-/obj/item/storage/pill_bottle/lidocaine
-	name = "lidocaine pill bottle"
-	desc = "A bottle of nonsteroidal anti-inflammatory pills, used in surgery to numb patients."
-	custom_price = PAYCHECK_LOWER * 3
-
-/obj/item/storage/pill_bottle/lidocaine/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/lidocaine(src)
-
-/obj/item/reagent_containers/pill/lidocaine
-	name = "lidocaine pill"
-	desc = "A strong, nonsteroidal anti-inflammatory drug used in surgery to numb patients."
-	icon_state = "pill3"
-	list_reagents = list(
-		/datum/reagent/medicine/lidocaine = 17,
-		/datum/reagent/consumable/astrotame = 7,
-	)
