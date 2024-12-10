@@ -161,7 +161,7 @@
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 	riftTimer = -1
 	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
-		if(owner.current.stat == MOB_DEAD)
+		if(owner.current.stat == DEAD)
 			return
 		to_chat(owner.current, span_warning("You will be able to make a new rift in 5 minutes."))
 		addtimer(CALLBACK(src, PROC_REF(give_rift_ability)), 5 MINUTES)
@@ -173,7 +173,7 @@
 			QDEL_NULL(rift)
 
 /datum/antagonist/space_dragon/proc/give_rift_ability()
-	if(owner.current.stat == MOB_DEAD)
+	if(owner.current.stat == DEAD)
 		return
 	rift_ability = new()
 	rift_ability.Grant(owner.current)
