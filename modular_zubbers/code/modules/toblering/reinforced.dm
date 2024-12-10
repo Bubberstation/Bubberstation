@@ -1,5 +1,4 @@
 /turf/closed/wall/r_wall
-	icon_state = "reinforced_wall-0" // The TG icon is used until initialize, this is to make sure the wall displays properly in strongdmm
 	base_icon_state = "wall"
 
 /turf/closed/wall/r_wall/get_cache_key(plating_color, stripe_color, neighbor_stripe)
@@ -15,5 +14,4 @@
 	return new_overlays
 
 /turf/closed/wall/r_wall/syndicate
-	icon_state = "plastitanium_wall-0"
 	smoothing_flags = SMOOTH_BITMASK // We don't believe in diagonals here.
