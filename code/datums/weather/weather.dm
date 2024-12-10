@@ -84,7 +84,12 @@
 	var/next_hit_time = 0
 	/// This causes the weather to only end if forced to
 	var/perpetual = FALSE
-
+	// BUBBER EDIT START - MODULAR WEATHER
+	/// The file path for normal weather icons
+	var/weather_effects_icon = 'icons/effects/weather_effects.dmi'
+	/// The file path for glow weather icons
+	var/glow_weather_icon = 'icons/effects/glow_weather.dmi'
+	// BUBBER EDIT END - MODULAR WEATHER
 /datum/weather/New(z_levels)
 	..()
 	impacted_z_levels = z_levels
@@ -261,11 +266,11 @@
 		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
 		// LU
 		if(use_glow)
-			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset)
+			var/mutable_appearance/glow_overlay = mutable_appearance(glow_weather_icon, weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset) //BUBBER EDIT - PREVIOUS: var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset)
 			glow_overlay.color = weather_color
 			gen_overlay_cache += glow_overlay
 
-		var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		var/mutable_appearance/new_weather_overlay = mutable_appearance(weather_effects_icon, weather_state, overlay_layer, plane = overlay_plane, offset_const = offset) //BUBBER EDIT - PREVIOUS: var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
 		new_weather_overlay.color = weather_color
 		gen_overlay_cache += new_weather_overlay
 
