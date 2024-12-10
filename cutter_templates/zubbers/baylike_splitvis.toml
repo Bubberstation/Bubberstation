@@ -1,0 +1,24 @@
+# Rimi note: Under NO CIRCUMSTANCES should a wall with a long animation use this template. You WILL cause lag, and you WILL get yelled at.
+
+# This mode is for an experiment with directional visibility within one tile.
+# It first performs a bitmask slice, and then does an extra cut where it cuts out a "direction"
+# version for each direction. This "direction" version is intended to represent what would be
+# visible from that side of the wall
+template = "zubbers/baylike_32x32.toml"
+mode = "BitmaskDirectionalVis"
+
+[cut_pos]
+x = 16
+y = 5
+
+# This is the actual new config of dir visibility
+# This represents the line at which to make the cut
+# the section opposite the side declared gets discarded
+# Ex: the west dir cut discards the east side, leaving only the region before the slice point
+# The rest becomes transparency.
+# "west" and "east" count from the left edge, while "north" and "south" count from the top edge
+[slice_point]
+north = 9
+south = 3
+east = 14
+west = 18
