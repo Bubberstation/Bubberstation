@@ -10,3 +10,8 @@
 	. = ..()
 	if(wear_neck && body_position == STANDING_UP && loc == NewLoc && has_gravity(loc))
 		SEND_SIGNAL(wear_neck, COMSIG_NECK_STEP_ACTION)
+
+/mob/living/carbon/human/verb/toggle_athletics_size()
+	set name = "Toggle Athletics Scaling"
+	set category = "OOC"
+	set desc = "Stops the size scaling buff from Athletics"

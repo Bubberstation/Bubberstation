@@ -35,7 +35,19 @@
 	if(new_level >= SKILL_LEVEL_NOVICE && old_level < SKILL_LEVEL_NOVICE)
 		ADD_TRAIT(mind, TRAIT_EXAMINE_FITNESS, SKILL_TRAIT)
 
+	var/old_gym_size = RESIZE_DEFAULT_SIZE + size_boost[old_level]
+	var/new_gym_size = RESIZE_DEFAULT_SIZE + size_boost[new_level]
+
+	if(mind.current)
+		mind.current.update_transform(new_gym_size / old_gym_size)
+
 /datum/skill/athletics/level_lost(datum/mind/mind, new_level, old_level, silent)
 	. = ..()
 	if(old_level >= SKILL_LEVEL_NOVICE && new_level < SKILL_LEVEL_NOVICE)
 		REMOVE_TRAIT(mind, TRAIT_EXAMINE_FITNESS, SKILL_TRAIT)
+
+	var/old_gym_size = RESIZE_DEFAULT_SIZE + size_boost[old_level]
+	var/new_gym_size = RESIZE_DEFAULT_SIZE + size_boost[new_level]
+
+	if(mind.current)
+		mind.current.update_transform(new_gym_size / old_gym_size)
