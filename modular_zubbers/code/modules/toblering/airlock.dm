@@ -35,3 +35,7 @@
 
 	var/airlock_paint
 	var/stripe_paint
+
+/obj/machinery/Initialize(mapload)
+	color = null // Get rid of the color used to help mappers.
+	return ..()
