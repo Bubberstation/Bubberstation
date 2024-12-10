@@ -13,3 +13,7 @@
 		new_overlays += decon_overlay
 
 	return new_overlays
+
+/turf/closed/wall/r_wall/syndicate
+	icon_state = "plastitanium_wall-0"
+	smoothing_flags = SMOOTH_BITMASK // We don't believe in diagonals here.
