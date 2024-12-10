@@ -56,9 +56,6 @@
 	laser = 10
 	energy = 15
 
-#define WEARER_CONTROL 0
-#define AI_CONTROL 1
-
 /obj/item/mod/module/mind_swap
 	name = "MOD Neural Transference module"
 	desc = "Swaps the MOD wearer's and Assistant AI's neural pathways."
@@ -66,7 +63,7 @@
 	required_slots = list(ITEM_SLOT_FEET, ITEM_SLOT_GLOVES, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD)
 	module_type = MODULE_ACTIVE
 	//Who's in control of the wearer's body
-	var/controller = WEARER_CONTROL
+	var/ai_control = FALSE
 	//Ckey of the original AI
 	var/ai_key
 	//Ckey of the original wearer
@@ -75,7 +72,7 @@
 
 /obj/item/mod/module/mind_swap/on_select()
 	if(!mod.ai_assistant)
-		balloon_alert(mod.wearer, "No AI present for swap.")
+		balloon_alert(mod.wearer, "no AI present")
 		return
 	return ..()
 
@@ -86,7 +83,6 @@
 	swap_minds()
 
 /obj/item/mod/module/mind_swap/on_suit_activation()
-
 	ai_key = mod.ai_assistant?.key
 	wearer_key = mod.wearer.key
 
@@ -95,19 +91,13 @@
 		swap_minds()
 
 /obj/item/mod/module/mind_swap/proc/swap_minds()
-	switch(controller)
-		if(WEARER_CONTROL)
-			mod.wearer.ghostize(FALSE)
-			mod.ai_assistant.ghostize(FALSE)
-			mod.wearer.key = ai_key
-			mod.ai_assistant.key = wearer_key
-			controller = AI_CONTROL
-		if(AI_CONTROL)
-			mod.wearer.ghostize(FALSE)
-			mod.ai_assistant.ghostize(FALSE)
-			mod.wearer.key = wearer_key
-			mod.ai_assistant.key = ai_key
-			controller = WEARER_CONTROL
+	mod.wearer.ghostize(FALSE)
+	mod.ai_assistant.ghostize(FALSE)
+	if(ai_control)
+		mod.wearer.key = wearer_key
+		mod.ai_assistant.key = ai_key
+	else
+		mod.wearer.key = ai_key
+		mod.ai_assistant.key = wearer_key
+	ai_control = !ai_control
 
-#undef WEARER_CONTROL
-#undef AI_CONTROL
