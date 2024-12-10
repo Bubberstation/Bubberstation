@@ -1,21 +1,30 @@
 //Credit to Beestation for the original anesthetic machine code: https://github.com/BeeStation/BeeStation-Hornet/pull/3753
 
-/obj/machinery/anesthetic_machine
-	name = "portable anesthetic tank stand"
-	desc = "A stand on wheels, similar to an IV drip, that can hold a canister of anesthetic along with a gas mask."
-	icon = 'modular_skyrat/modules/medical/icons/obj/machinery.dmi'
+/obj/structure/closet/secure_closet/medical2/Initialize(mapload)
+	. = ..()
+	new /obj/machinery/breath_machine/anesthetic(loc)
+	new /obj/machinery/breath_machine/anesthetic(loc)
+	qdel(src)
+
+/obj/machinery/breath_machine
+	name = "portable breath machine"
+	desc = "A stand on wheels with a digital regulator, similar to an IV drip, that can hold a canister of gas along with a gas mask.<br>Is it N2 for humans and N2O for vox again? Other way? What's O2? I'm not the doctor here."
+	icon = 'modular_zubbers/icons/obj/medical/breath_machine.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	use_power = NO_POWER_USE
-	/// The mask attached to the anesthetic machine
-	var/obj/item/clothing/mask/breath/anesthetic/attached_mask
-	/// the tank attached to the anesthetic machine, by default it does not come with one.
+	/// The mask attached to the breath machine
+	var/obj/item/clothing/mask/breath/machine/attached_mask
+	/// the tank attached to the breath machine, by default it does not come with one.
 	var/obj/item/tank/attached_tank = null
 	/// Is the attached mask currently out?
 	var/mask_out = FALSE
 
-/obj/machinery/anesthetic_machine/examine(mob/user)
+/obj/machinery/breath_machine/anesthetic
+	attached_tank = new /obj/item/tank/internals/anesthetic
+
+/obj/machinery/breath_machine/examine(mob/user)
 	. = ..()
 
 	. += "<b>Right-clicking</b> with a wrench will deconstruct the stand, if there is no tank attached."
@@ -24,12 +33,12 @@
 	if(attached_tank)
 		. += "<b>Alt + Click</b> to remove [attached_tank]."
 
-/obj/machinery/anesthetic_machine/Initialize(mapload)
+/obj/machinery/breath_machine/Initialize(mapload)
 	. = ..()
-	attached_mask = new /obj/item/clothing/mask/breath/anesthetic(src)
-	update_icon()
+	attached_mask = new /obj/item/clothing/mask/breath/machine(src)
+	update_appearance(UPDATE_OVERLAYS)
 
-/obj/machinery/anesthetic_machine/wrench_act_secondary(mob/living/user, obj/item/tool)
+/obj/machinery/breath_machine/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(user.combat_mode)
 		return ..()
 
@@ -41,32 +50,52 @@
 		to_chat(user, span_warning("[attached_tank] must be removed from [src] first!"))
 		return TRUE
 
-	new /obj/item/anesthetic_machine_kit(get_turf(src))
+	new /obj/item/breath_machine_kit(get_turf(src))
 	tool.play_tool_sound(user)
 	to_chat(user, span_notice("You deconstruct the [src]."))
 	qdel(src)
 	return TRUE
 
-/obj/machinery/anesthetic_machine/update_icon()
+/obj/machinery/breath_machine/update_overlays()
 	. = ..()
+	var/static/generic_overlay
+	var/static/anesthetic_overlay
+	var/static/oxygen_overlay
+	var/static/nitrogen_overlay
+	var/static/on_overlay
+	var/static/off_overlay
+	if(isnull(generic_overlay))
+		generic_overlay = iconstate2appearance(icon, "tank_generic")
+		anesthetic_overlay = iconstate2appearance(icon, "tank_anesthetic")
+		oxygen_overlay = iconstate2appearance(icon, "tank_oxygen")
+		nitrogen_overlay = iconstate2appearance(icon, "tank_nitrogen")
+		on_overlay = iconstate2appearance(icon, "mask_on")
+		off_overlay = iconstate2appearance(icon, "mask_off")
 
 	cut_overlays()
 
 	if(attached_tank)
-		add_overlay("tank_on")
+		if(istype(attached_tank, /obj/item/tank/internals/anesthetic))
+			add_overlay(anesthetic_overlay)
+		else if(istype(attached_tank, /obj/item/tank/internals/oxygen))
+			add_overlay(oxygen_overlay)
+		else if(istype(attached_tank, /obj/item/tank/internals/nitrogen))
+			add_overlay(nitrogen_overlay)
+		else
+			add_overlay(generic_overlay)
 
 	if(mask_out)
-		add_overlay("mask_off")
-		return
-	add_overlay("mask_on")
+		add_overlay(off_overlay)
+	else
+		add_overlay(on_overlay)
 
-/obj/machinery/anesthetic_machine/attack_hand(mob/living/user)
+/obj/machinery/breath_machine/attack_hand(mob/living/user)
 	. = ..()
 	if(!retract_mask())
 		return FALSE
 	visible_message(span_notice("[user] retracts [attached_mask] back into [src]."))
 
-/obj/machinery/anesthetic_machine/attackby(obj/item/attacking_item, mob/user, params)
+/obj/machinery/breath_machine/attackby(obj/item/attacking_item, mob/user, params)
 	if(!istype(attacking_item, /obj/item/tank))
 		return ..()
 
@@ -76,22 +105,22 @@
 	attacking_item.forceMove(src) // Put new tank in, set it as attached tank
 	visible_message(span_notice("[user] inserts [attacking_item] into [src]."))
 	attached_tank = attacking_item
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
-/obj/machinery/anesthetic_machine/click_alt(mob/user)
+/obj/machinery/breath_machine/click_alt(mob/user)
 	if(!attached_tank)
 		return CLICK_ACTION_BLOCKING
 
 	attached_tank.forceMove(loc)
 	to_chat(user, span_notice("You remove the [attached_tank]."))
 	attached_tank = null
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 	if(mask_out)
 		retract_mask()
 	return CLICK_ACTION_SUCCESS
 
 ///Retracts the attached_mask back into the machine
-/obj/machinery/anesthetic_machine/proc/retract_mask()
+/obj/machinery/breath_machine/proc/retract_mask()
 	if(!mask_out)
 		return FALSE
 
@@ -105,10 +134,10 @@
 		attached_mask.forceMove(src)
 
 	mask_out = FALSE
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 	return TRUE
 
-/obj/machinery/anesthetic_machine/mouse_drop_dragged(mob/living/carbon/target, mob/user, src_location, over_location, params)
+/obj/machinery/breath_machine/mouse_drop_dragged(mob/living/carbon/target, mob/user, src_location, over_location, params)
 	. = ..()
 	if(!istype(target))
 		return
@@ -122,8 +151,8 @@
 
 	// if we somehow lost the mask, let's just make a brand new one. the wonders of technology!
 	if(QDELETED(attached_mask))
-		attached_mask = new /obj/item/clothing/mask/breath/anesthetic(src)
-		update_icon()
+		attached_mask = new /obj/item/clothing/mask/breath/machine(src)
+		update_appearance(UPDATE_OVERLAYS)
 
 	user.visible_message(span_warning("[user] attemps to attach the [attached_mask] to [target]."), span_notice("You attempt to attach the [attached_mask] to [target]"))
 	if(!do_after(user, 5 SECONDS, target))
@@ -138,9 +167,9 @@
 	target.open_internals(attached_tank, is_external = TRUE)
 	mask_out = TRUE
 	START_PROCESSING(SSmachines, src)
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
-/obj/machinery/anesthetic_machine/process()
+/obj/machinery/breath_machine/process()
 	if(!mask_out) // If not on someone, stop processing
 		return PROCESS_KILL
 
@@ -154,7 +183,7 @@
 	if(attached_tank && istype(carbon_target) && !carbon_target.external && !attached_mask.up)
 		carbon_target.open_internals(attached_tank, is_external = TRUE)
 
-/obj/machinery/anesthetic_machine/Destroy()
+/obj/machinery/breath_machine/Destroy()
 	if(mask_out)
 		retract_mask()
 
@@ -165,20 +194,20 @@
 	QDEL_NULL(attached_mask)
 	return ..()
 
-/// This a special version of the breath mask used for the anesthetic machine.
-/obj/item/clothing/mask/breath/anesthetic
+/// This a special version of the breath mask used for the breath machine.
+/obj/item/clothing/mask/breath/machine
 	/// What machine is the mask currently attached to?
 	var/datum/weakref/attached_machine
 
-/obj/item/clothing/mask/breath/anesthetic/Initialize(mapload)
+/obj/item/clothing/mask/breath/machine/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 	// Make sure we are not spawning outside of a machine
-	if(istype(loc, /obj/machinery/anesthetic_machine))
+	if(istype(loc, /obj/machinery/breath_machine))
 		attached_machine = WEAKREF(loc)
 
-	var/obj/machinery/anesthetic_machine/our_machine
+	var/obj/machinery/breath_machine/our_machine
 	if(attached_machine)
 		our_machine = attached_machine.resolve()
 
@@ -186,20 +215,20 @@
 		attached_machine = null
 		if(mapload)
 			stack_trace("Abstract, undroppable item [name] spawned at ([loc]) at [AREACOORD(src)] in \the [get_area(src)]. \
-				Please remove it. This item should only ever be created by the anesthetic machine.")
+				Please remove it. This item should only ever be created by the breath machine.")
 		return INITIALIZE_HINT_QDEL
 
-/obj/item/clothing/mask/breath/anesthetic/Destroy()
+/obj/item/clothing/mask/breath/machine/Destroy()
 	attached_machine = null
 	return ..()
 
-/obj/item/clothing/mask/breath/anesthetic/dropped(mob/user)
+/obj/item/clothing/mask/breath/machine/dropped(mob/user)
 	. = ..()
 
 	if(isnull(attached_machine))
 		return
 
-	var/obj/machinery/anesthetic_machine/our_machine = attached_machine.resolve()
+	var/obj/machinery/breath_machine/our_machine = attached_machine.resolve()
 	// no machine, then delete it
 	if(!our_machine)
 		attached_machine = null
@@ -210,7 +239,7 @@
 		to_chat(user, span_notice("[src] retracts back into the [our_machine]."))
 		our_machine.retract_mask()
 
-/obj/item/clothing/mask/breath/anesthetic/adjust_visor(mob/living/carbon/user)
+/obj/item/clothing/mask/breath/machine/adjust_visor(mob/living/carbon/user)
 	. = ..()
 	// Air only goes through the mask, so temporarily pause airflow if mask is getting adjusted.
 	// Since the mask is NODROP, the only possible user is the wearer
@@ -218,16 +247,16 @@
 	if(up && carbon_target.external)
 		carbon_target.close_externals()
 
-/// A boxed version of the Anesthetic Machine. This is what is printed from the medical prolathe.
-/obj/item/anesthetic_machine_kit
-	name = "anesthetic stand parts kit"
-	desc = "Contains all of the parts needed to assemble a portable anesthetic stand. Use in hand to construct."
+/// A boxed version of the breath Machine. This is what is printed from the medical prolathe.
+/obj/item/breath_machine_kit
+	name = "breath stand parts kit"
+	desc = "Contains all of the parts needed to assemble a portable breath stand. Use in hand to construct."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "plasticbox"
 
-/obj/item/anesthetic_machine_kit/attack_self(mob/user)
-	new /obj/machinery/anesthetic_machine(user.loc)
+/obj/item/breath_machine_kit/attack_self(mob/user)
+	new /obj/machinery/breath_machine(user.loc)
 
 	playsound(get_turf(user), 'sound/items/weapons/circsawhit.ogg', 50, TRUE)
 	qdel(src)
