@@ -71,11 +71,6 @@
 	name = "White Eyepatch"
 	item_path = /obj/item/clothing/glasses/eyepatch/white
 
-/datum/loadout_item/glasses/medical_eyepatch
-	name = "Medical Eyepatch"
-	item_path = /obj/item/clothing/glasses/eyepatch/medical
-
-
 /datum/loadout_item/glasses/fakeblindfold
 	name = "Fake Blindfold"
 	item_path = /obj/item/clothing/glasses/trickblindfold
