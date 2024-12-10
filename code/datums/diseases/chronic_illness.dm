@@ -13,10 +13,10 @@
 	agent = "Quantum Entanglement"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "A disease discovered in an Interdyne laboratory caused by subjection to timesteam correction technology."
-	bypasses_immunity = TRUE//Bubber addition
+	bypasses_immunity = TRUE // BUBBER EDIT ADD
 	severity = DISEASE_SEVERITY_UNCURABLE
 	bypasses_immunity = TRUE
-	var/being_stealthy = TRUE // Bubber addition
+	var/being_stealthy = TRUE // BUBBER EDIT ADD
 
 /datum/disease/chronic_illness/stage_act(seconds_per_tick, times_fired)
 	. = ..()
@@ -26,31 +26,31 @@
 	switch(stage)
 		if(1)
 			carrier = FALSE // Go fuck yourself
-			being_stealthy = TRUE // Bubber addition
+			being_stealthy = TRUE // BUBBER EDIT ADD
 		if(2)
 			if(SPT_PROB(0.5, seconds_per_tick))
 				to_chat(affected_mob, span_warning("You feel dizzy."))
 				affected_mob.adjust_confusion(6 SECONDS)
-				being_stealthy = FALSE // Bubber addition
+				being_stealthy = FALSE // BUBBER EDIT ADD
 			if(SPT_PROB(0.5, seconds_per_tick))
 				to_chat(affected_mob, span_notice("You look at your hand. Your vision blurs."))
 				affected_mob.set_eye_blur_if_lower(10 SECONDS)
-				being_stealthy = FALSE // Bubber addition
+				being_stealthy = FALSE // BUBBER EDIT ADD
 		if(3)
 			var/need_mob_update = FALSE
 			if(SPT_PROB(0.5, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel a very sharp pain in your chest!"))
-				being_stealthy = FALSE // Bubber addition
+				being_stealthy = FALSE // BUBBER EDIT ADD
 				if(prob(45))
 					affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 20)
 			if(SPT_PROB(0.5, seconds_per_tick))
 				to_chat(affected_mob, span_userdanger("[pick("You feel your heart slowing...", "You relax and slow your heartbeat.")]"))
 				need_mob_update += affected_mob.adjustStaminaLoss(70, updating_stamina = FALSE)
-				being_stealthy = FALSE // Bubber addition
+				being_stealthy = FALSE // BUBBER EDIT ADD
 			if(SPT_PROB(1, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel a buzzing in your brain."))
 				SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
-				being_stealthy = FALSE // Bubber addition
+				being_stealthy = FALSE // BUBBER EDIT ADD
 			if(SPT_PROB(0.5, seconds_per_tick))
 				need_mob_update += affected_mob.adjustBruteLoss(1, updating_health = FALSE)
 			if(need_mob_update)
@@ -94,7 +94,7 @@
 					affected_mob.ghostize(can_reenter_corpse = FALSE)
 					qdel(affected_mob)
 
-//Bubbers addition - Costly warning if it sneaks through to stage four.
+//BUBBER EDIT BEGIN - Costly warning if it sneaks through to stage four.
 /datum/disease/chronic_illness/update_stage(new_stage)
 	. = ..()
 	if(new_stage == 4 && being_stealthy)
@@ -102,3 +102,4 @@
 		affected_mob.emote("scream")
 		affected_mob.adjustBruteLoss(10)
 		being_stealthy = FALSE
+// BUBBER EDIT END
