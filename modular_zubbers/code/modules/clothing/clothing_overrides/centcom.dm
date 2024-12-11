@@ -30,7 +30,6 @@
 	icon_state = "rep_skirt"
 
 /obj/item/clothing/under/rank/centcom/official
-	name = "\improper CentCom official's suit"
 	desc = "A formal suit worn by CentCom's paper pushers, a generic uniform usually used by Inspectors. The silver belt buckle denotes their rank with ease."
 	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
