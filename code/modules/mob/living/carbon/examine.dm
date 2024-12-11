@@ -446,6 +446,9 @@
 			. += span_warning("<B>[t_His] eyes are glowing with an unnatural red aura!</B>")
 		else if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
 			. += span_warning("<B>[t_His] eyes are bloodshot!</B>")
+	//ears
+	if(ears && !(obscured & ITEM_SLOT_EARS) && !(ears.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_has] [ears.examine_title_worn(user)] on [t_his] ears."
 // BUBBER EDIT END
 
 // Yes there's a lot of copypasta here, we can improve this later when carbons are less dumb in general
