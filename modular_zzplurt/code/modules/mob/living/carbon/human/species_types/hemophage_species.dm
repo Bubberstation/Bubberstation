@@ -10,7 +10,7 @@
 	mutantlungs = /datum/species::mutantlungs
 
 	// Disable veteran restriction
-	veteran_only = FALSE
+	// /veteran_only = FALSE Veteran cut from the Bubberstation build.
 
 	// Return original
 	. = ..()
