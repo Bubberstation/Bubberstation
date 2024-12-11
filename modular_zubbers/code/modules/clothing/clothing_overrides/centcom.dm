@@ -6,7 +6,6 @@
 * UNIFORMS
 */
 /obj/item/clothing/under/rank/centcom/commander
-	name = "\improper CentCom commander's suit"
 	desc = "An elegant uniform worn by CentCom's finest, comfortable trousers and gold marking denoting the rank of \"Commander\"."
 	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
