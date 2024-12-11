@@ -142,7 +142,7 @@
 	if(riftTimer >= maxRiftTimer)
 		// BUBBER CHANGE START: dragons don't die to not summoning a rift
 		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You will be slowed down until you do so!"))
-		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression/no_portal)
+		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 		riftTimer = -1
 		// BUBBER CHANGE END
 
