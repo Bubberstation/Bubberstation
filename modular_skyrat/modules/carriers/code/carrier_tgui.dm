@@ -200,14 +200,14 @@
 			return TRUE
 
 		if("change_room_color")
-			var/new_room_color = input(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) as color
+			var/new_room_color = tgui_color_picker(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!new_room_color)
 				return FALSE
 
 			target_room.room_color = new_room_color
 
 		if("change_overlay_color")
-			var/new_overlay_color = input(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) as color
+			var/new_overlay_color = tgui_color_picker(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			// It's okay for us not to have an overlay color
 
 			target_room.overlay_color = new_overlay_color
