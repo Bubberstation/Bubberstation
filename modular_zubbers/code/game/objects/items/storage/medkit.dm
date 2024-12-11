@@ -1,7 +1,7 @@
 
 /obj/item/storage/pill_bottle/lidocaine
 	name = "lidocaine pills"
-	desc = "A package of nonsteroidal anti-inflammatory pills, used in surgery to numb patients."
+	desc = "A package of local anesthetic medication, used in surgery to numb patients."
 	icon = 'modular_zubbers/icons/obj/storage/medkit.dmi'
 	icon_state = "lidocaine_box"
 	custom_price = PAYCHECK_LOWER * 3
@@ -12,7 +12,7 @@
 
 /obj/item/reagent_containers/pill/lidocaine
 	name = "lidocaine pill"
-	desc = "A strong, nonsteroidal anti-inflammatory drug used in surgery to numb patients."
+	desc = "A local anesthetic medication used in surgery to numb patients."
 	icon_state = "pill3"
 	list_reagents = list(
 		/datum/reagent/medicine/lidocaine = 17,
