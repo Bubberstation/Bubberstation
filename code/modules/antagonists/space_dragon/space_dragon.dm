@@ -157,7 +157,7 @@
 	if(objective_complete)
 		return
 	rifts_charged = 0
-	ADD_TRAIT(owner.current, TRAIT_RIFT_FAILURE, REF(src))
+	ADD_TRAIT(owner.current, TRAIT_RIFT_FAILURE, DRAGON_PORTAL_LOSS) // BUBBER CHANGE
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 	riftTimer = -1
 	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
