@@ -11,7 +11,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
 
 /obj/item/clothing/under/rank/centcom/centcom_skirt
-	name = "\improper CentCom commander's suitskirt"
 	desc = "An elegant uniform worn by CentCom's finest, comfortable skirt and gold marking denoting the rank of \"Commander\"."
 	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
