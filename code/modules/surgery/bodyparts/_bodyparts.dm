@@ -981,18 +981,21 @@
 	if(should_draw_greyscale) //Should the limb be colored?
 		draw_color ||= species_color || (skin_tone ? skintone2hex(skin_tone) : null)
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	var/datum/species/owner_species = human_owner.dna.species
 
 	if(owner_species && owner_species.specific_alpha != 255)
 		alpha = owner_species.specific_alpha
 
-	markings = LAZYCOPY(owner_species.body_markings[body_zone])
-	if(aux_zone)
-		aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
-	markings_alpha = owner_species.markings_alpha
-	// SKYRAT EDIT END
-	recolor_external_organs()
+	if(body_zone in owner_species.body_markings)
+		markings = LAZYCOPY(owner_species.body_markings[body_zone])
+		if(aux_zone)
+			aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
+		markings_alpha = owner_species.markings_alpha
+	else
+		markings = list()
+	// BUBBER EDIT END
+	recolor_bodypart_overlays()
 	return TRUE
 
 //to update the bodypart's icon when not attached to a mob
@@ -1364,7 +1367,7 @@
 		QDEL_NULL(current_gauze)
 
 ///Loops through all of the bodypart's external organs and update's their color.
-/obj/item/bodypart/proc/recolor_external_organs()
+/obj/item/bodypart/proc/recolor_bodypart_overlays()
 	for(var/datum/bodypart_overlay/mutant/overlay in bodypart_overlays)
 		overlay.inherit_color(src, force = TRUE)
 
