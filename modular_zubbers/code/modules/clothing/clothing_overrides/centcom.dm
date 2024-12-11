@@ -37,7 +37,7 @@
 /obj/item/clothing/under/rank/centcom/official/turtleneck
 	name = "\improper CentCom official's turtleneck"
 	desc = "A formal suit, with an added comfortable and warm turtleneck worn by CentCom's paper pushers, a generic uniform usually used by Inspectors. The silver belt buckle denotes their rank with ease."
-	icon_state = "official_turtleneck"
+	icon_state = "official_turtleneck"// Sprites by Ebin-Halcyon
 
 /obj/item/clothing/under/rank/centcom/intern
 	name = "\improper CentCom intern's uniform"
