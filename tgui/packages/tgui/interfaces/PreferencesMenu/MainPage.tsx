@@ -174,15 +174,16 @@ const ChoicedSelection = (props: {
                 act={act}
                 preferences={(() => {
                   // Lazy hack fraud method
-                  const supplementalsRecord: Record<string, unknown> =
-                    new Object() as Record<string, unknown>;
+                  const supplementalsRecord = new Object() as Record<
+                    string,
+                    unknown
+                  >;
                   catalog.supplemental_features.forEach((value) => {
                     supplementalsRecord[value] =
                       data.character_preferences.supplemental_features[value];
                   });
                   return supplementalsRecord;
                 })()}
-                randomizations={new Object() as Record<string, RandomSetting>}
                 maxHeight=""
               />
             </Stack.Item>
@@ -437,7 +438,7 @@ const sortPreferences = (array: [string, unknown][]) =>
 export const PreferenceList = (props: {
   act: typeof sendAct;
   preferences: Record<string, unknown>;
-  randomizations: Record<string, RandomSetting>;
+  randomizations?: Record<string, RandomSetting>; // BUBBER EDIT: Better prefs: ORIGINAL: randomizations: Record<string, RandomSetting>;
   maxHeight: string;
   children?: ReactNode;
 }) => {
@@ -457,7 +458,8 @@ export const PreferenceList = (props: {
         {sortPreferences(Object.entries(props.preferences)).map(
           ([featureId, value]) => {
             const feature = features[featureId];
-            const randomSetting = props.randomizations[featureId];
+            const randomSetting =
+              props.randomizations && props.randomizations[featureId]; // BUBBER EDIT: Better prefs: ORIGINAL: const randomSetting = props.randomizations[featureId];
 
             if (feature === undefined) {
               return (
