@@ -63,7 +63,7 @@
 	icon_state = "maintcentral"
 
 /area/station/terminal/maintenance/fore
-	name = "\improper Arrivals Terminal Fore Maintenance"
+	name = "\improper Arrivals Terminal Disposals"
 	icon_state = "maintfore"
 
 /area/station/terminal/maintenance/aft
