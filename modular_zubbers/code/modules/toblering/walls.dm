@@ -130,6 +130,9 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 		bad_walls |= type
 		return
 
+	base_icon_state = "wall" // I CBA going through all the subtypes.
+	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS // Ditto
+
 	icon = plating_mat_ref.wall_icon
 	stripe_icon = plating_mat_ref.wall_stripe_icon
 
@@ -145,7 +148,7 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 
 	matset_name = name
 
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /turf/closed/wall/proc/get_cache_key(plating_color, stripe_color, neighbor_stripe)
 	return "[icon]:[smoothing_junction]:[plating_color]:[stripe_icon]:[stripe_color]:[neighbor_stripe]:[shiny_wall]"
