@@ -14,6 +14,7 @@
 	smoothing_flags = null
 	smoothing_groups = null
 	canSmoothWith = null
+	custom_wall = TRUE
 
 /turf/closed/wall/mineral/titanium/shuttle_wall/AfterChange(flags, oldType)
 	. = ..()
