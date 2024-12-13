@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 
 	. = ..()
 
-	current_underlay = mutable_appearance('modular_zubbers/icons/turf/walls/wall_lighting.dmi', (source.lighting_uses_jen ? "wall-jen-[source.smoothing_junction]" : "light"), source.z * 0.01, source, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM) // BUBBER EDIT: Toblering: ORIGINAL: current_underlay = new(GLOB.default_lighting_underlays_by_z[source.z])
+	current_underlay = mutable_appearance('modular_zubbers/icons/turf/walls/wall_lighting.dmi', (source.lighting_uses_jen ? "wall-jen-[source.smoothing_junction]" : "light"), source.z * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM) // BUBBER EDIT: Toblering: ORIGINAL: current_underlay = new(GLOB.default_lighting_underlays_by_z[source.z])
 
 	affected_turf = source
 	if (affected_turf.lighting_object)
