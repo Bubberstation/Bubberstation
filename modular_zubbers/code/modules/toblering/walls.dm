@@ -145,8 +145,6 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 
 	matset_name = name
 
-	lighting_uses_jen = TRUE
-
 	update_appearance()
 
 /turf/closed/wall/proc/get_cache_key(plating_color, stripe_color, neighbor_stripe)
