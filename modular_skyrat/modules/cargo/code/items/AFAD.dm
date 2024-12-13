@@ -1,5 +1,5 @@
-#define PHYSICAL_DAMAGE_HEALING -0.2
-#define EXOTIC_DAMAGE_HEALING -0.1
+#define PHYSICAL_DAMAGE_HEALING -0.6
+#define EXOTIC_DAMAGE_HEALING -0.3
 
 /obj/item/gun/medbeam/afad
 	name = "Automated First Aid Device"
