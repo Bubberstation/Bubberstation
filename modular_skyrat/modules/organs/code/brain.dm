@@ -19,12 +19,10 @@
 		return
 	switch(severity)
 		if(1)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
 			owner.set_jitter_if_lower(30 SECONDS)
 			owner.adjust_stutter(30 SECONDS)
 			owner.adjust_confusion(10 SECONDS)
 		if(2)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
 			owner.set_jitter_if_lower(15 SECONDS)
 			owner.adjust_stutter(15 SECONDS)
 			owner.adjust_confusion(3 SECONDS)
