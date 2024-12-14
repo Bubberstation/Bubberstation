@@ -259,7 +259,6 @@
 	message = "claps."
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
@@ -333,7 +332,7 @@
 	message = "rolls their eyes."
 
 /datum/emote/living/huff
-	key = "huffs"
+	key = "huff"
 	key_third_person = "huffs"
 	message = "huffs!"
 
@@ -423,7 +422,6 @@
 	key_third_person = "howls"
 	message = "lets out a long howl."
 	emote_type = EMOTE_AUDIBLE
-	audio_cooldown = 30 SECONDS
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/howl.ogg'
 
@@ -436,7 +434,6 @@
 	key = "pant"
 	key_third_person = "pants"
 	message = "pants like a dog!"
-	audio_cooldown = 15 SECONDS
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/pant.ogg'
