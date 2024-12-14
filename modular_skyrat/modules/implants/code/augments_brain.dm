@@ -16,12 +16,18 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	
-	owner.adjust_stutter(30 SECONDS)
 	organ_flags |= ORGAN_FAILING
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 	owner.remove_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 	addtimer(CALLBACK(src, PROC_REF(reboot)), 180 / severity)
 	to_chat(owner, span_warning("You feel overwhelmed!"))
+	switch(severity)
+		if (EMP_HEAVY)
+			owner.adjust_stutter(180 SECONDS)
+			owner.adjust_silence(30 SECONDS)
+		if (EMP_LIGHT)
+			owner.adjust_stutter(90 SECONDS)
+			owner.adjust_silence(10 SECONDS)
 
 /obj/item/organ/internal/cyberimp/brain/empathic_sensor/proc/implant_ready()
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
