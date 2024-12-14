@@ -380,16 +380,22 @@
 					return
 
 	//SKYRAT EDIT ADDITION BEGIN - VIEW RECORDS
-	if(href_list["bgrecords"])
-		if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
-			var/examined_name = get_face_name(get_id_name(""))
-			var/datum/record/crew/target_record = find_record(examined_name)
-			to_chat(usr, "<b>Background information:</b> [target_record.background_information]")
-	if(href_list["exprecords"])
-		if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
-			var/examined_name = get_face_name(get_id_name("")) //Named as such because this is the name we see when we examine
-			var/datum/record/crew/target_record = find_record(examined_name)
-			to_chat(usr, "<b>Exploitable information:</b> [target_record.exploitable_information]")
+	var/examined_name = get_face_name(get_id_name(""))
+	var/datum/record/locked/target_locked_record = find_record(examined_name, TRUE)
+	var/datum/record/crew/target_record = find_record(examined_name, FALSE)
+	if(isobserver(usr))
+		if(target_record)
+			if(href_list["secrecords"])
+				to_chat(usr, "<b>Security Record:</b> [target_record.past_security_records]")
+			if(href_list["medrecords"])
+				to_chat(usr, "<b>Medical Record:</b> [target_record.past_medical_records]")
+			if(href_list["genrecords"])
+				to_chat(usr, "<b>General Record:</b> [target_record.past_general_records]")
+		if(target_locked_record && href_list["bgrecords"])
+			to_chat(usr, "<b>Background information:</b> [target_locked_record.background_information]")
+	if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
+		if(target_locked_record && href_list["exprecords"])
+			to_chat(usr, "<b>Exploitable information:</b> [target_locked_record.exploitable_information]")
 	//SKYRAT EDIT END
 	..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that.
 
@@ -1124,6 +1130,26 @@
 		mutation.class = MUT_OTHER
 
 	add_traits(list(TRAIT_NO_DNA_SCRAMBLE, TRAIT_BADDNA, TRAIT_BORN_MONKEY), SPECIES_TRAIT)
+
+/mob/living/carbon/human/proc/is_atmos_sealed(additional_flags = null, check_hands = FALSE, alt_flags = FALSE)
+	var/chest_covered = FALSE
+	var/head_covered = FALSE
+	var/hands_covered = FALSE
+	for (var/obj/item/clothing/equipped in get_equipped_items())
+		// We don't really have space-proof gloves, so even if we're checking them we ignore the flags
+		if ((equipped.body_parts_covered & HANDS) && num_hands >= default_num_hands)
+			hands_covered = TRUE
+		if (!alt_flags && !isnull(additional_flags) && !(equipped.clothing_flags & additional_flags))
+			continue
+		if ((equipped.clothing_flags & (STOPSPRESSUREDAMAGE | (alt_flags ? additional_flags : NONE))) && (equipped.body_parts_covered & CHEST))
+			chest_covered = TRUE
+		if ((equipped.clothing_flags & (STOPSPRESSUREDAMAGE | (alt_flags ? additional_flags : NONE))) && (equipped.body_parts_covered & HEAD))
+			head_covered = TRUE
+	if (!chest_covered)
+		return FALSE
+	if (!hands_covered && check_hands)
+		return FALSE
+	return head_covered || HAS_TRAIT(src, TRAIT_NOFIRE_SPREAD)
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor

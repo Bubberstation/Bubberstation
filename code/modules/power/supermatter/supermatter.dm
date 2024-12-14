@@ -227,6 +227,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(1)
 				icon = 'modular_zubbers/icons/obj/machines/festive_supermatter.dmi'
 				name = "festive supermatter crystal"
+				desc = "A strangely translucent and festive crystal. If you stare at it long enough, some say you can hallucinate the distilled essence of the holidays staring back at you."
 			if(2)
 				icon = 'modular_zubbers/icons/obj/machines/wintergreen_supermatter.dmi'
 				name = "wintergreen supermatter crystal"
