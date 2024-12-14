@@ -20,7 +20,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
-/datum/design/nitrogen_tank
+/datum/design/nitrogen_tank_belt
 	name = "Nitrogen Internals Tank"
 	desc = "An empty nitrogen tank designed specifically for use as internals."
 	id = "nitrogen_tank_belt"
