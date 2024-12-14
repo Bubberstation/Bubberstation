@@ -35,7 +35,7 @@
 /datum/design/anesthetic_tank
 	name = "Anesthetic Tank"
 	desc = "An empty tank designed specifically for use with anesthetics."
-	id = "nitrogen_tank"
+	id = "anesthetic_tank"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/tank/internals/anesthetic
