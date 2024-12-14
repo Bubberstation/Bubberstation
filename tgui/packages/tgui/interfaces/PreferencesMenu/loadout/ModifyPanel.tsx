@@ -30,10 +30,7 @@ const LoadoutModifyButton = (props: {
   modifyItemDimmer: LoadoutItem;
 }) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const loadout_list =
-    data.character_preferences.misc.loadout_lists[
-      data.character_preferences.misc.loadout_index
-    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
+  const loadout_list = data.character_preferences.misc.loadout_lists.loadout; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
   const { button, modifyItemDimmer } = props;
 
   const buttonIsActive =
@@ -77,10 +74,7 @@ const LoadoutModifyButton = (props: {
 
 const LoadoutModifyButtons = (props: { modifyItemDimmer: LoadoutItem }) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const loadout_list =
-    data.character_preferences.misc.loadout_lists[
-      data.character_preferences.misc.loadout_index
-    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
+  const loadout_list = data.character_preferences.misc.loadout_lists.loadout; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
   const { modifyItemDimmer } = props;
 
   const isActive = (item: LoadoutItem, reskin: ReskinOption) => {

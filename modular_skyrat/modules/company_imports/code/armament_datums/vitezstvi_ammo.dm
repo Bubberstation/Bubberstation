@@ -52,6 +52,9 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_disabler
 	item_type = /obj/item/ammo_box/c40sol/fragmentation
 
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_rubber
+	item_type = /obj/item/ammo_box/c310_cargo_box/rubber
+
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_disabler
 	item_type = /obj/item/ammo_box/c585trappiste/incapacitator
 
@@ -109,6 +112,7 @@
 */
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
+	cost = PAYCHECK_LOWER
 
 // Boxes of kiboko launcher ammo
 

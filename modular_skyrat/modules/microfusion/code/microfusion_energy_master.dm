@@ -36,10 +36,10 @@
 
 	/// The microfusion lens used for generating the beams.
 	var/obj/item/ammo_casing/energy/laser/microfusion/microfusion_lens
-	/// The time it takes for someone to (tactically) reload this gun. In deciseconds.
-	var/tactical_reload_time = 4 SECONDS
-	/// The time it takes for someone to normally reload this gun. In deciseconds.
-	var/normal_reload_time = 2 SECONDS
+	/// The time it takes for someone to (tactically) reload this gun.
+	var/tactical_reload_time = 6 SECONDS
+	/// The time it takes for someone to normally reload this gun.
+	var/normal_reload_time = 4 SECONDS
 	/// The sound played when you insert a cell.
 	var/sound_cell_insert = 'modular_skyrat/modules/microfusion/sound/mag_insert.ogg'
 	/// Should the insertion sound played vary?
@@ -93,6 +93,7 @@
 	else
 		cell = new(src)
 	cell.parent_gun = src
+	cell.chargerate = STANDARD_CELL_CHARGE * 0.2
 	if(!dead_cell)
 		cell.give(cell.maxcharge)
 	if(phase_emitter_type)
@@ -609,6 +610,7 @@
 		playsound(src, sound_cell_insert, sound_cell_insert_volume, sound_cell_insert_vary)
 	cell = inserting_cell
 	inserting_cell.forceMove(src)
+	inserting_cell.inserted_into_weapon()
 	cell.parent_gun = src
 	normal_reload_time = inserting_cell.reloading_time
 	tactical_reload_time = inserting_cell.reloading_time_tactical
