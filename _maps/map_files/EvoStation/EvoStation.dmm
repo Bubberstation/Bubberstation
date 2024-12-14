@@ -86,9 +86,11 @@
 /area/station/maintenance/starboard)
 "abp" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/kirbyplants/random,
 /obj/structure/sign/warning/secure_area/directional/west,
 /obj/machinery/light/directional/west,
+/obj/structure/chair/sofa/bench/right{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "abv" = (
@@ -1259,6 +1261,9 @@
 /area/station/engineering/break_room)
 "apR" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/chair/sofa/bench/left{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "apW" = (
@@ -12179,7 +12184,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "cLB" = (
-/obj/machinery/computer/security/telescreen/normal/directional/west,
+/obj/machinery/computer/security/telescreen/command/directional/west{
+	name = "Command Camera Monitor"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/captain)
 "cLH" = (
@@ -47871,12 +47878,11 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness)
 "kRR" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
-	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "kSg" = (
@@ -72623,8 +72629,7 @@
 	c_tag = "Command - HoP Office";
 	network = list("ss13","command")
 	},
-/obj/machinery/computer/security/telescreen/normal/directional/east{
-	network = list("service");
+/obj/machinery/computer/security/telescreen/service/directional/east{
 	name = "Service Camera Monitor"
 	},
 /turf/open/floor/carpet/executive,
@@ -75415,8 +75420,8 @@
 /turf/closed/wall/r_wall,
 /area/station/service/theater)
 "rfO" = (
-/obj/machinery/computer/security/telescreen/ce/directional/east{
-	network = list("engine","tcomms","engineering")
+/obj/machinery/computer/security/telescreen/engineering/directional/east{
+	name = "Chief Engineer's Camera Monitor"
 	},
 /turf/open/floor/iron/checker,
 /area/station/command/heads_quarters/ce)
@@ -89787,13 +89792,11 @@
 /area/station/medical/coldroom)
 "urC" = (
 /obj/structure/sign/departments/telecomms/directional/west,
-/obj/structure/chair/sofa/bench/left{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/full,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/hallway/primary/fore)
 "urH" = (
@@ -105785,11 +105788,11 @@
 /area/station/service/theater)
 "xUM" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/chair/sofa/bench/right{
-	dir = 4
-	},
 /obj/machinery/camera/directional/south{
 	c_tag = "Fore Hall - Telecomms Hallway"
+	},
+/obj/machinery/vending/coffee{
+	name = "Coder's Supply"
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
@@ -106418,8 +106421,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/computer/security/telescreen/normal/directional/east{
-	network = list("command");
+/obj/machinery/computer/security/telescreen/command/directional/east{
 	name = "Command Camera Monitor"
 	},
 /turf/open/floor/iron/dark,
