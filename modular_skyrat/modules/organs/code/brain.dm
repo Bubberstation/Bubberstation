@@ -6,6 +6,8 @@
 	desc = "A brain which has been in some part mechanized."
 	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi' 
 	icon_state = "brain-c"
+	emp_dmg_mult = 1.5
+	emp_dmg_max = 150
 
 //Extra damage from EMPs, and visual effects
 //Note that /obj/item/organ/internal/brain/cybernetic's base damage is capped at 190 while this one is capped at 150. This means that the brain will take 10 less damage from 150-190.
@@ -46,3 +48,4 @@
 /obj/item/organ/internal/brain/cybernetic/cortical/vox
 	name = "vox brain"
 	desc = "A brain which has been in some part mechanized. The components are seamlessly integrated into the flesh."
+	emp_dmg_mult = 1 //vox get a little treat
