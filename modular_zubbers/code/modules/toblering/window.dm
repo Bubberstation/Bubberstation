@@ -39,7 +39,7 @@
 	icon = 'modular_zubbers/icons/obj/smooth_structures/window_reinforced.dmi'
 	icon_state = "window-0"
 	base_icon_state = "window"
-	color = "#3b5461"
+	color = "#2f4049"
 	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS
 
 /obj/structure/window/reinforced/shuttle
