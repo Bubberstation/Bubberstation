@@ -27,7 +27,7 @@
 	inhand_icon_state = "nitrogen"
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
-	volume = 12 // changed from previous 24, its the same as double oxy. I think it was suposed to be double oxy equivalent suggesting icon state name.
+	volume = 12
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tank/internals/nitrogen/belt/full/populate_gas()
