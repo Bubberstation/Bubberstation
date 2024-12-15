@@ -26,7 +26,7 @@
 	sharpness = SHARP_EDGED
 	force = 18
 	armour_penetration = 20
-	wound_bonus = 20
+	wound_bonus = 10
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
 	hitsound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'
 
