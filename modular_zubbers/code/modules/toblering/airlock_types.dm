@@ -207,52 +207,52 @@
 // Mineral airlocks
 
 /obj/machinery/door/airlock/gold
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#9F891F"
 	airlock_paint = "#9F891F"
 
 /obj/machinery/door/airlock/silver
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#C9C9C9"
 	airlock_paint = "#C9C9C9"
 
 /obj/machinery/door/airlock/diamond
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#4AB4B4"
 	airlock_paint = "#4AB4B4"
 
 /obj/machinery/door/airlock/uranium
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#174207"
 	airlock_paint = "#174207"
 
 /obj/machinery/door/airlock/plasma
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#65217B"
 	airlock_paint = "#65217B"
 
 /obj/machinery/door/airlock/bananium
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#FFFF00"
 	airlock_paint = "#FFFF00"
 
 /obj/machinery/door/airlock/sandstone
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#C09A72"
 	airlock_paint = "#C09A72"
 
 /obj/machinery/door/airlock/wood
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#805F44"
 	airlock_paint = "#805F44"
 
 /obj/machinery/door/airlock/titanium
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#b3c0c7"
 	airlock_paint = "#b3c0c7"
 
 /obj/machinery/door/airlock/bronze
-	MINERAL_AIRLOCK
+	MATERIAL_AIRLOCK
 	color = "#9c5f05"
 	airlock_paint = "#9c5f05"
 
@@ -269,6 +269,7 @@
 	EXTERNAL_AIRLOCK
 	color = "#9F2828"
 	airlock_paint = "#9F2828"
+	door_align_type = null
 
 /*
 	CentCom Airlocks

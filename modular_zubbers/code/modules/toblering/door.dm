@@ -1,7 +1,7 @@
 /obj/machinery/door
 	/// What door types do we want to align with if any
 	var/door_align_type
-	var/align_to_windows = FALSE
+	var/align_to_windows
 	var/auto_dir_align = TRUE
 
 /obj/machinery/door/post_machine_initialize()
