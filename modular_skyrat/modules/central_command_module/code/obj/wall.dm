@@ -13,6 +13,7 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_TITANIUM_WALLS
+	sheet_type = /obj/item/stack/sheet/mineral/silver
 
 /turf/closed/indestructible/titanium/nodiagonal
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
