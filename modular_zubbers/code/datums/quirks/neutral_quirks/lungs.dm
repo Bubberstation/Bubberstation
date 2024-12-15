@@ -22,7 +22,6 @@
 	if(!isnull(lungs_holding))
 		lungs_holding.moveToNullspace() // save them for later
 	carbon_holder.dna.species.mutantlungs = /obj/item/organ/internal/lungs/nitrogen
-	RegisterSignal(carbon_holder, COMSIG_LIVING_REVIVE, TYPE_PROC_REF(/datum/quirk/equipping/lungs/nitrogen, on_revive))
 
 /datum/quirk/equipping/lungs/remove()
 	var/mob/living/carbon/carbon_holder = quirk_holder
@@ -34,7 +33,6 @@
 		return
 	lungs_holding.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	lungs_holding.organ_flags &= ~ORGAN_FROZEN
-	UnregisterSignal(carbon_holder, COMSIG_LIVING_REVIVE)
 	carbon_holder.dna.species.mutantlungs = initial(carbon_holder.dna.species.mutantlungs)
 
 /datum/quirk/equipping/lungs/on_equip_item(obj/item/equipped, success)
@@ -92,10 +90,3 @@
 		return
 	carbon_holder.internal = equipped
 
-/datum/quirk/equipping/lungs/nitrogen/proc/on_revive(mob/user)
-	SIGNAL_HANDLER
-	if(!user.get_organ_by_type(/obj/item/organ/internal/lungs/nitrogen))
-		var/lungs = user.get_organ_slot(ORGAN_SLOT_LUNGS)
-		qdel(lungs)
-		var/obj/item/organ/target_organ = new /obj/item/organ/internal/lungs/nitrogen
-		target_organ.Insert(user, special = TRUE)
