@@ -24,7 +24,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = CONDUCTS_ELECTRICITY
 	sharpness = SHARP_EDGED
-	force = 15
+	force = 18
 	armour_penetration = 20
 	wound_bonus = 20
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
