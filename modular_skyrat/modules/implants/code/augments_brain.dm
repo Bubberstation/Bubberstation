@@ -78,7 +78,7 @@
 		message = full_capitalize(rot13(message))
 	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
 
-	user.log_talk(message, LOG_SAY, tag="shadekin")
+	user.log_talk(message, LOG_SAY, tag="empathic-sensor")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
 		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
 		var/obj/item/organ/internal/cyberimp/brain/empathic_sensor/target_implant = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN_CEREBELLUM)
