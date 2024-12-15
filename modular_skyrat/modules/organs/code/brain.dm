@@ -10,7 +10,7 @@
 	emp_dmg_max = 150
 
 //Extra damage from EMPs, and visual effects
-//Note that /obj/item/organ/internal/brain/cybernetic's base damage is capped at 190 while this one is capped at 150. This means that the brain will take 10 less damage from 150-190.
+//Note that /obj/item/organ/internal/brain/cybernetic's base damage is capped at 190 while this one is capped at 150.
 /obj/item/organ/internal/brain/cybernetic/cortical/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
