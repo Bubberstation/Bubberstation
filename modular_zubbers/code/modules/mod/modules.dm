@@ -74,6 +74,11 @@
 	if(!mod.ai_assistant)
 		balloon_alert(mod.wearer, "no AI present")
 		return
+	if(isnull(mod.wearer.client))
+		balloon_alert(mod.ai_assistant, "host is unresponsive")
+		return
+	if(isnull(mod.ai_assistant.client))
+		balloon_alert(mod.wearer, "AI is unresponsive")
 	return ..()
 
 /obj/item/mod/module/mind_swap/on_activation()
