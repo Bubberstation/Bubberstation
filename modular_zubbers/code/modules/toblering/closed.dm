@@ -37,8 +37,9 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	/// Appearance cache key. This is very touchy.
 	VAR_PRIVATE/cache_key
 
-	var/static/list/bad_walls = list()
 	var/static/list/custom_walls = list()
+
+	/// A lookup list cause calculating the material from scratch can take a few steps, and micro-ops to this does have a slight benefit to init times.
 	var/static/list/material_cache = list()
 
 /// Most of this code is pasted within /obj/structure/falsewall. Be mindful of this
@@ -117,7 +118,7 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 		plating_mat_ref = material_cache[plating_mat]
 		if(!plating_mat_ref && plating_mat_ref != FALSE)
 			var/obj/thing = new plating_mat // Fuck I hate this fucking why byond
-			if(thing.custom_materials && thing.custom_materials[1]) // Hail mary for weird walls that don't use normal mats.
+			if(thing.custom_materials?.len && thing.custom_materials[1]) // Hail mary for weird walls that don't use normal mats.
 				plating_mat_ref = GET_MATERIAL_REF(thing.custom_materials[1])
 				material_cache[plating_mat] = plating_mat_ref
 			else
@@ -134,8 +135,9 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 		bad_walls |= type
 		return
 
-	base_icon_state = "wall" // I CBA going through all the subtypes.
-	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS // Ditto
+	// Lazy code, cause I CBA going through all the subtypes.
+	base_icon_state = "wall"
+	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS
 	smoothing_groups = SMOOTH_GROUP_WALLS
 
 	icon = plating_mat_ref.wall_icon
