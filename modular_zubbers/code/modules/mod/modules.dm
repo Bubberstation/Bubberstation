@@ -97,11 +97,12 @@
 		swap_minds()
 
 /obj/item/mod/module/mind_swap/proc/swap_minds()
+	if(!mod.ai_assistant)
+		mod.wearer.ghostize(FALSE)
+		mod.ai_assistant.key = ai_key
+		return
 	mod.wearer.ghostize(FALSE)
 	mod.ai_assistant.ghostize(FALSE)
-	if(!mod.ai_assistant)
-		mod.wearer.key = wearer_key
-		return
 	if(ai_control)
 		mod.wearer.key = wearer_key
 		mod.ai_assistant.key = ai_key
