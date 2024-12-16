@@ -110,6 +110,11 @@
 
 /obj/machinery/door/airlock/security
 	STATION_AIRLOCK
+	color = "#384b70"
+	airlock_paint = "#384b70"
+	stripe_paint = "#313038"
+
+/obj/machinery/door/airlock/security/old
 	color = "#9F2828"
 	airlock_paint = "#9F2828"
 	stripe_paint = "#D27428"
@@ -334,3 +339,15 @@
 	color = "#333333"
 	airlock_paint = "#333333"
 	stripe_paint = "#610000"
+
+/*
+	Multi Tile
+	Fuck, I hate these.
+*/
+/obj/machinery/door/airlock/multi_tile
+
+/obj/machinery/door/airlock/multi_tile/glass
+
+/obj/machinery/door/airlock/multi_tile/metal
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
+	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
