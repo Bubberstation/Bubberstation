@@ -119,6 +119,9 @@
 	airlock_paint = "#9F2828"
 	stripe_paint = "#D27428"
 
+/obj/machinery/door/airlock/security/old/glass
+	glass = TRUE
+
 /obj/machinery/door/airlock/engineering
 	STATION_AIRLOCK
 	color = "#A28226"
