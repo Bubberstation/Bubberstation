@@ -21,7 +21,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 	
 /* Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
-*/datum/design/nitrogen_tank_belt
+* /datum/design/nitrogen_tank_belt
 *	name = "Nitrogen Internals Tank"
 *	desc = "An empty nitrogen tank."
 *	id = "nitrogen_tank_belt"
