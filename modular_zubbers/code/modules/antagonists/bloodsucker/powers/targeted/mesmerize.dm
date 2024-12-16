@@ -161,7 +161,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
 	if(!isliving(target))
-		CRASH("[src] somehow casted on a non-living taDrget, should have been stopped by CheckCanTarget.")
+		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
 	if(timer || !COOLDOWN_FINISHED(src, mesmerize_cooldown))
 		return
 	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
