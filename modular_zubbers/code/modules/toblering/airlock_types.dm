@@ -72,6 +72,15 @@
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
 
+/obj/machinery/door/airlock/captain
+	STATION_AIRLOCK
+	color = "#334E6D"
+	airlock_paint = "#334E6D"
+	stripe_paint = "#c9ac2c"
+
+/obj/machinery/door/airlock/captain/glass
+	glass = TRUE
+
 /obj/machinery/door/airlock/hop
 	STATION_AIRLOCK
 	color = "#334E6D"
