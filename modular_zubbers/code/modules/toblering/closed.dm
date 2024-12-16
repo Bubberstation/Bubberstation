@@ -132,7 +132,6 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 
 	if(!plating_mat_ref)
 		stack_trace("[type] has no valid material!")
-		bad_walls |= type
 		return
 
 	// Lazy code, cause I CBA going through all the subtypes.
