@@ -28,7 +28,7 @@
 	/// At what level this ability will blind the target at. Level 0 = never.
 	var/blind_at_level = 0
 	/// if the ability requires you to be physically facing the target
-	var/requires_facing_target = TRUE
+	var/requires_facing_target = FALSE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
 	/// if the ability will knockdown on secondary click
@@ -161,7 +161,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
 	if(!isliving(target))
-		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
+		CRASH("[src] somehow casted on a non-living taDrget, should have been stopped by CheckCanTarget.")
 	if(timer || !COOLDOWN_FINISHED(src, mesmerize_cooldown))
 		return
 	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
