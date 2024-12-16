@@ -91,6 +91,7 @@
 /obj/item/mod/module/mind_swap/on_suit_activation()
 	ai_key = mod.ai_assistant?.key
 	wearer_key = mod.wearer.key
+	ai_control = FALSE
 
 /obj/item/mod/module/mind_swap/on_suit_deactivation(deleting = FALSE)
 	if(wearer_key != mod.wearer.key)
