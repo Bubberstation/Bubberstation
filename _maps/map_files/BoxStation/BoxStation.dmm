@@ -14129,8 +14129,8 @@
 /turf/open/floor/carpet/blue,
 /area/station/maintenance/dorm_room)
 "bgT" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1
+/obj/structure/disposalpipe/junction/flip{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
@@ -20837,15 +20837,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/service/janitor)
-"bDQ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/spawner/random/entertainment/drugs,
-/turf/open/floor/plating,
-/area/station/maintenance/aft)
 "bDR" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -41542,10 +41533,10 @@
 /turf/open/floor/iron/dark,
 /area/station/security/mechbay)
 "ieu" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/spawner/random/vending/colavend,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/station/maintenance/department/security)
+/area/station/maintenance/aft)
 "ieC" = (
 /obj/structure/table/reinforced/rglass,
 /obj/item/aicard{
@@ -52711,6 +52702,7 @@
 /obj/structure/cable,
 /obj/structure/rack,
 /obj/effect/spawner/random/maintenance/three,
+/obj/effect/spawner/random/entertainment/drugs,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "phU" = (
@@ -54211,7 +54203,7 @@
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /obj/machinery/light_switch/directional/north,
 /obj/machinery/button/door/directional/east{
-	id = "apt1";
+	id = "apt2";
 	name = "Apartment Door Lock";
 	normaldoorcontrol = 1;
 	specialfunctions = 4
@@ -98700,7 +98692,7 @@ apG
 bDs
 bCv
 hxs
-bHo
+bRa
 bLK
 bMK
 bMK
@@ -98957,7 +98949,7 @@ bCv
 bCv
 bCv
 hxs
-bZN
+bHo
 bLK
 bML
 bNT
@@ -99214,7 +99206,7 @@ bCv
 rhx
 hzQ
 hxs
-bBR
+bZN
 bLK
 bMN
 bNV
@@ -99471,7 +99463,7 @@ tud
 bAw
 cze
 hxs
-vmy
+ieu
 bLK
 bMM
 alX
@@ -99982,7 +99974,7 @@ aXf
 bzs
 bzs
 bFm
-bDQ
+bHW
 bHW
 cBD
 bKD
@@ -101208,7 +101200,7 @@ agZ
 eHT
 xsV
 goN
-ieu
+goN
 goN
 goN
 goN

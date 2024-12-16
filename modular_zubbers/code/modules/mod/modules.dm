@@ -74,6 +74,12 @@
 	if(!mod.ai_assistant)
 		balloon_alert(mod.wearer, "no AI present")
 		return
+	if(isnull(mod.wearer.client))
+		balloon_alert(mod.ai_assistant, "host is unresponsive")
+		return
+	if(isnull(mod.ai_assistant.client))
+		balloon_alert(mod.wearer, "AI is unresponsive")
+		return
 	return ..()
 
 /obj/item/mod/module/mind_swap/on_activation()
@@ -85,12 +91,17 @@
 /obj/item/mod/module/mind_swap/on_suit_activation()
 	ai_key = mod.ai_assistant?.key
 	wearer_key = mod.wearer.key
+	ai_control = FALSE
 
 /obj/item/mod/module/mind_swap/on_suit_deactivation(deleting = FALSE)
 	if(wearer_key != mod.wearer.key)
 		swap_minds()
 
 /obj/item/mod/module/mind_swap/proc/swap_minds()
+	if(!mod.ai_assistant)
+		mod.wearer.ghostize(FALSE)
+		mod.ai_assistant.key = ai_key
+		return
 	mod.wearer.ghostize(FALSE)
 	mod.ai_assistant.ghostize(FALSE)
 	if(ai_control)
