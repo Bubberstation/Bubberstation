@@ -31,6 +31,12 @@
 
 /turf/closed/indestructible/riveted
 
+/turf/closed/indestructible/riveted/boss
+	custom_wall = TRUE
+
+/turf/closed/indestructible/riveted/hierophant
+	custom_wall = TRUE
+
 /turf/closed/indestructible/reinforced
 
 /turf/closed/indestructible/paper
