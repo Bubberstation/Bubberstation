@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 
 	// Lazy code, cause I CBA going through all the subtypes.
 	base_icon_state = "wall"
-	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHUTTERS
+	canSmoothWith = SMOOTH_GROUP_SHUTTERS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
 	smoothing_groups = SMOOTH_GROUP_WALLS
 
 	icon = plating_mat_ref.wall_icon
