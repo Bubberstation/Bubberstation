@@ -79,6 +79,7 @@
 		return
 	if(isnull(mod.ai_assistant.client))
 		balloon_alert(mod.wearer, "AI is unresponsive")
+		return
 	return ..()
 
 /obj/item/mod/module/mind_swap/on_activation()
