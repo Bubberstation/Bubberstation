@@ -66,14 +66,14 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 		if(potential_overlays)
 			overlays = potential_overlays
 			if(color)
-				remove_atom_colour(color, FIXED_COLOUR_PRIORITY)
+				remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
 			color = plating_color
-			add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+			add_atom_colour(FIXED_COLOUR_PRIORITY, color)
 		else
 			if(color)
-				remove_atom_colour(color, FIXED_COLOUR_PRIORITY)
+				remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
 			color = plating_color
-			add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+			add_atom_colour(FIXED_COLOUR_PRIORITY, color)
 			//Updating the unmanaged wall overlays (unmanaged for optimisations)
 			overlays.len = 0
 			var/list/new_overlays = update_changed_overlays(plating_color, stripe_color, neighbor_stripe)
