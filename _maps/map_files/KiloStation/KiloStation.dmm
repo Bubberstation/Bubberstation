@@ -61495,7 +61495,7 @@
 "udt" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining";
+	id = "packagereturn";
 	name = "crate return belt"
 	},
 /obj/machinery/door/window/left/directional/north{
@@ -70985,7 +70985,8 @@
 "xcj" = (
 /obj/effect/turf_decal/siding/green,
 /obj/machinery/door/window/left{
-	name = "Animal Pen"
+	name = "Animal Pen";
+	req_access = list("maint_tunnels")
 	},
 /turf/open/misc/sandy_dirt,
 /area/station/service/hydroponics/garden)
