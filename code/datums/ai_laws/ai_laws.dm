@@ -79,7 +79,7 @@ GLOBAL_VAR(round_default_lawset)
 /proc/pick_weighted_lawset()
 	var/datum/ai_laws/lawtype
 	var/list/law_weights = CONFIG_GET(keyed_list/law_weight)
-	var/list/specified_law_ids = CONFIG_GET(keyed_list/specified_laws) // BUBBER CHANGE
+	var/list/specified_law_ids = CONFIG_GET(keyed_list/specified_laws) // BUBBER EDIT
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
 		switch(CONFIG_GET(number/default_laws)) // BUBBER EDIT START
