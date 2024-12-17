@@ -14,6 +14,7 @@
 
 
 /datum/status_effect/primitive_skill
+	id = "primitive_skill"
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 5 SECONDS
 	alert_type = null
