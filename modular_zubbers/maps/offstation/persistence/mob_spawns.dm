@@ -34,7 +34,7 @@
 	prompt_name = "a Syndicate Operative"
 	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler."
 	flavour_text = "The Syndicate managed Persistence mining rig has been assigned to stealthily monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform your duties and keep a low profile while maintaining your front as a mining operation."
-	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp for ignificant interaction with the station and its crew"
 	outfit = /datum/outfit/persistence/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command
@@ -42,7 +42,7 @@
 	prompt_name = "a Syndicate leader"
 	you_are_text = "you are a Syndicate Command Operative assigned to lead the SSV Persistence and guide it forward in its goals"
 	flavour_text = "The Syndicate managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets under the cover of a legal mining operation. Your orders are to lead the Persistence while ensuring a low profile is maintained."
-	important_text = "You are a command role and held to a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	important_text = "You are a command role and held to a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp for significant interaction with the station and its crew"
 	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
