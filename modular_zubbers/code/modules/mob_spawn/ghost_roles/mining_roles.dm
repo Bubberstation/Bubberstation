@@ -28,5 +28,5 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	hermit.mind.teach_crafting_recipe(/datum/crafting_recipe/research_paper)
+	hermit.mind?.teach_crafting_recipe(/datum/crafting_recipe/research_paper)
 	to_chat(hermit, span_notice("You learn the recipe of the <b>research paper</b> to craft everything from nothing."))
