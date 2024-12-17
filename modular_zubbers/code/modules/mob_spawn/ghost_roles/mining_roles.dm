@@ -20,3 +20,13 @@
 	gloves = /obj/item/clothing/gloves/fingerless
 	head = /obj/item/clothing/head/soft/purple
 	l_pocket = /obj/item/modular_computer/pda
+
+/datum/outfit/hermit
+	backpack_contents = list(/obj/item/research_paper = 1)
+
+/datum/outfit/hermit/post_equip(mob/living/carbon/human/hermit, visualsOnly)
+	. = ..()
+	if(visualsOnly)
+		return
+	hermit.mind?.teach_crafting_recipe(/datum/crafting_recipe/research_paper)
+	to_chat(hermit, span_notice("You learn the recipe for the <b>research paper</b>, giving you the ability to craft everything from nothing."))
