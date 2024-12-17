@@ -633,7 +633,7 @@
 		return FALSE
 
 	// SKYRAT EDIT BEGIN - PDA messages show a visible message; again!
-	sender.visible_message(span_notice("[sender]'s PDA rings out with the soft sound of keypresses"), vision_distance = COMBAT_MESSAGE_RANGE)
+	sender.visible_message(span_notice("[sender]'s PDA rings out with the soft sound of keypresses."), vision_distance = COMBAT_MESSAGE_RANGE)
 	// SKYRAT EDIT END
 
 	var/shell_addendum = ""
