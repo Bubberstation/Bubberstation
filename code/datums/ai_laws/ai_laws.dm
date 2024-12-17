@@ -86,7 +86,7 @@ GLOBAL_VAR(round_default_lawset)
 			if(CONFIG_ASIMOV)
 				law_weights -= AI_LAWS_ASIMOV
 			if(CONFIG_CUSTOM)
-				law_weights -= specified_law_ids // BUBBER CHANGE END
+				law_weights -= specified_law_ids // BUBBER EDIT END
 	while(!lawtype && law_weights.len)
 		var/possible_id = pick_weight(law_weights)
 		lawtype = lawid_to_type(possible_id)
