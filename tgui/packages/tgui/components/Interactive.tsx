@@ -31,19 +31,14 @@ const getRelativePosition = (
   event: MouseEvent,
 ): Interaction => {
   const rect = node.getBoundingClientRect();
+  const parentWindow = getParentWindow(node);
+
+  const offsetX = event.pageX - (rect.left + parentWindow.pageXOffset);
+  const offsetY = event.pageY - (rect.top + parentWindow.pageYOffset);
+
   return {
-    left: clamp(
-      (event.pageX - (rect.left + getParentWindow(node).pageXOffset)) /
-        rect.width,
-      0,
-      1,
-    ),
-    top: clamp(
-      (event.pageY - (rect.top + getParentWindow(node).pageYOffset)) /
-        rect.height,
-      0,
-      1,
-    ),
+    left: clamp(offsetX / rect.width, 0, 1),
+    top: clamp(offsetY / rect.height, 0, 1),
   };
 };
 

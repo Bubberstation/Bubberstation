@@ -13,7 +13,7 @@ import {
   hsvaToRgba,
   rgbaToHsva,
   validHex,
-} from 'common/color';
+} from 'common/colorpicker';
 import { clamp } from 'common/math';
 import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -738,12 +738,13 @@ const RGBSlider: React.FC<RGBSliderProps> = React.memo(
 
     const nodeClassName = classes([`react-colorful__${target}`, className]);
 
-    const selected =
-      target === 'r'
-        ? `rgb(${Math.round(rgb.r)},0,0)`
-        : target === 'g'
-          ? `rgb(0,${Math.round(rgb.g)},0)`
-          : `rgb(0,0,${Math.round(rgb.b)})`;
+    const channels = {
+      r: `rgb(${Math.round(rgb.r)},0,0)`,
+      g: `rgb(0,${Math.round(rgb.g)},0)`,
+      b: `rgb(0,0,${Math.round(rgb.b)})`,
+    };
+
+    const selected = channels[target];
 
     return (
       <div className={nodeClassName}>
