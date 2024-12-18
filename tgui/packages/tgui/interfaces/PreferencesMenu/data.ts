@@ -203,6 +203,8 @@ export type PreferencesMenuData = {
     };
 
     randomization: Record<string, RandomSetting>;
+
+    mutant_feature: Record<string, string>; // BUBBER EDIT ADDITION: Better prefs
   };
 
   content_unlocked: BooleanLike;
