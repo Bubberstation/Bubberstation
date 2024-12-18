@@ -51,8 +51,12 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	var/stripe_color = stripe_paint || wall_paint || material_color
 
 	var/neighbor_stripe = NONE
-	for (var/cardinal = NORTH; cardinal <= WEST; cardinal *= 2) //No list copy please good sir
+	var/area/source_area = get_area(src)
+	for (var/cardinal in GLOB.cardinals)
 		var/turf/step_turf = get_step(src, cardinal)
+		var/area/target_area = get_area(step_turf)
+		if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing)))
+			continue
 		for(var/atom/movable/movable_thing as anything in step_turf)
 			if(GLOB.neighbor_typecache[movable_thing.type])
 				neighbor_stripe ^= cardinal

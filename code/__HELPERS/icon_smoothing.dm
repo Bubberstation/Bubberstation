@@ -356,11 +356,19 @@ xxx xxx xxx
 	var/smooth_obj = (smoothing_flags & SMOOTH_OBJ)
 	var/border_object_smoothing = (smoothing_flags & SMOOTH_BORDER_OBJECT)
 
+	var/area/source_area = get_area(src) // BUBBER EDIT ADDITION: Toblering
+
 	// Did you know you can pass defines into other defines? very handy, lets take advantage of it here to allow 0 cost variation
 	#define SEARCH_ADJ_IN_DIR(direction, direction_flag, ADJ_FOUND, WORLD_BORDER, BORDER_CHECK) \
 		do { \
 			var/turf/neighbor = get_step(src, direction); \
 			if(neighbor && ##BORDER_CHECK(neighbor, direction)) { \
+				/* BUBBER EDIT ADDITION START: Toblering: Fix shuttles smoothing with station. I didn't touch the lines between this to ensure diff stays easy to maintain. */ \
+				var/area/target_area = get_area(neighbor); \
+				if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing))) { \
+					continue; \
+				} \
+				/* BUBBER EDIT END */ \
 				var/neighbor_smoothing_groups = neighbor.smoothing_groups; \
 				if(neighbor_smoothing_groups) { \
 					for(var/target in canSmoothWith) { \
