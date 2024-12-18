@@ -10,6 +10,12 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/auxdock)
+"cQ" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/cerulean,
+/turf/open/space/basic,
+/area/space/nearstation)
 "dQ" = (
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/auxdock)
@@ -127,7 +133,8 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/auxdock)
 "nF" = (
-/turf/open/floor/glass/reinforced,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron/dark/textured,
 /area/station/commons/auxdock)
 "pl" = (
 /obj/structure/cable,
@@ -145,6 +152,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Auxiliary Ship Dock"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/fitness/recreation)
 "pE" = (
@@ -152,7 +160,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 24;
-	name = "SS13: Auxiliary Dock, Station-Port";
+	name = "Auxiliary Station Dock";
 	shuttle_id = "whiteship_home";
 	width = 35
 	},
@@ -163,6 +171,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Auxiliary Ship Dock"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/fitness/recreation)
 "sC" = (
@@ -210,12 +219,19 @@
 	dir = 10
 	},
 /area/station/maintenance/aft/lesser)
+"wn" = (
+/obj/structure/closet/emcloset/wall,
+/turf/closed/wall,
+/area/station/commons/auxdock)
 "wN" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Auxiliary Ship Dock";
-	normalspeed = 0
-	},
-/turf/open/floor/iron/dark/textured,
+/obj/structure/lattice/catwalk,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/marker_beacon/cerulean,
+/turf/open/space/basic,
+/area/space/nearstation)
+"xf" = (
+/obj/structure/closet/firecloset/wall,
+/turf/closed/wall,
 /area/station/commons/auxdock)
 "xr" = (
 /obj/structure/cable,
@@ -231,6 +247,7 @@
 	name = "Auxiliary Ship Dock"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/commons/auxdock)
 "xs" = (
@@ -263,6 +280,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/auxdock)
 "yN" = (
@@ -277,6 +295,10 @@
 	dir = 9
 	},
 /area/station/maintenance/aft/lesser)
+"zA" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/auxdock)
 "Aj" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -296,6 +318,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Auxiliary Ship Dock"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/fitness/recreation)
 "CC" = (
@@ -405,6 +428,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
 "TG" = (
@@ -433,6 +457,10 @@
 "VS" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/aft/lesser)
+"We" = (
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/auxdock)
 "WA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -677,14 +705,14 @@ kJ
 tj
 tj
 tj
-tj
+xf
 xr
 tj
-tj
+wn
 tj
 Rn
 Rn
-tj
+wN
 xs
 "}
 (14,1,1) = {"
@@ -696,11 +724,11 @@ mE
 xw
 CC
 tt
-wN
+We
 dQ
 SU
-nF
-nF
+zA
+zA
 SU
 pE
 "}
@@ -713,7 +741,7 @@ Jy
 WA
 Et
 Et
-wN
+dQ
 dQ
 SU
 nF
@@ -735,7 +763,7 @@ Iy
 tj
 gY
 gY
-tj
+cQ
 xs
 "}
 (17,1,1) = {"
