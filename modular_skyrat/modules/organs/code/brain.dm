@@ -47,3 +47,10 @@
 	name = "vox brain"
 	desc = "A brain which has been in some part mechanized. The components are seamlessly integrated into the flesh."
 	emp_dmg_mult = 1 //vox get a little treat
+
+//surplus
+/obj/item/organ/internal/brain/cybernetic/cortical/surplus
+	name = "cortically-enhanced brain"
+	desc = "A brain which has been in some part mechanized."
+	maxHealth = BRAIN_DAMAGE_DEATH*0.5
+	emp_dmg_max = maxHealth+1 //death
