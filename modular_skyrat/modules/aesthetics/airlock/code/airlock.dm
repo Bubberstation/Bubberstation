@@ -135,7 +135,7 @@
 		. += get_airlock_overlay("sealed", overlays_file, src, em_block = TRUE)
 
 	if(hasPower() && unres_sides)
-		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
+		for(var/heading in GLOB.cardinals)
 			if(!(unres_sides & heading))
 				continue
 			var/mutable_appearance/floorlight = mutable_appearance('icons/obj/doors/airlocks/station/overlays.dmi', "unres_[heading]", FLOAT_LAYER, src, ABOVE_LIGHTING_PLANE)
