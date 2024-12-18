@@ -1469,6 +1469,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
+/obj/machinery/light/cold/directional/north,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ev" = (
@@ -2332,13 +2333,6 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
-"hp" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "hq" = (
 /obj/effect/spawner/liquids_spawner/shoulders,
 /obj/structure/chair/sofa/bench{
@@ -3288,6 +3282,7 @@
 /obj/structure/cable,
 /obj/structure/sign/warning/electric_shock/directional/south,
 /obj/machinery/duct,
+/obj/machinery/light/cold/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "kr" = (
@@ -3442,11 +3437,6 @@
 /obj/machinery/suit_storage_unit/industrial/commsoperative,
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
-"kP" = (
-/obj/structure/cable,
-/obj/structure/aquarium/bioelec_gen/prefilled,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "kQ" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -4479,7 +4469,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "nx" = (
 /obj/structure/cable,
@@ -5422,12 +5412,6 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
-"qi" = (
-/obj/machinery/light/cold/directional/north,
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "qj" = (
 /obj/structure/flora/rock/style_random,
 /turf/closed/mineral/random/snow/underground,
@@ -6867,6 +6851,18 @@
 /obj/machinery/biogenerator/medstation/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"uf" = (
+/obj/structure/cable,
+/obj/structure/closet/crate/secure/syndicate/arc{
+	name = "Fish storage"
+	},
+/obj/item/fish_feed,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "uk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8
@@ -7014,10 +7010,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"uC" = (
-/obj/machinery/light/cold/directional/north,
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "uD" = (
 /obj/structure/reagent_forge,
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -7405,8 +7397,6 @@
 	},
 /obj/structure/cable,
 /obj/item/mmi/syndie,
-/obj/item/mmi/posibrain/sphere,
-/obj/item/mmi/posibrain/sphere,
 /obj/item/radio/intercom/directional/east{
 	name = "two-way prisoner intercom";
 	freerange = 1;
@@ -7857,6 +7847,10 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"xi" = (
+/obj/structure/aquarium/bioelec_gen/prefilled,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "xk" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
@@ -9070,7 +9064,6 @@
 "Bb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Be" = (
@@ -10819,18 +10812,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
-"Gm" = (
-/obj/structure/cable,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/fish_feed,
-/obj/structure/closet/crate/secure/syndicate/arc{
-	name = "Fish storage"
-	},
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Go" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -10957,11 +10938,6 @@
 /obj/machinery/duct,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"GG" = (
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "GI" = (
 /obj/effect/turf_decal/vg_decals/atmos/carbon_dioxide,
 /turf/open/floor/plating/reinforced,
@@ -12448,6 +12424,7 @@
 	default_raw_text = "<h1>SSV Dauntless Cargo Guide</h1><p>The SSV Dauntless has made a corporate deal with Gorlex Industries to test out their new 1100mm rail cannon reverse engineered off the 1500mm delivery system that Nanotrasen utilizes.</p><p>Please note, if at all the base has fallen into the wrong hands, it is required that these boards are to be destroyed as it contains our cryptography private seeds.</p><p>All cargo goods are logged and maintained, any misuse of funds will be traced back to agent, and will be reprimanded.</p><p></p><ul><li>Express Supply Console Computer</li>Install into a computer frame and print a beacon. Wrench the beacon down in a clear area (and ideally away from explosive goods).<li>Ancient Powerator</li>This is used to generate credits for orders. Ideally used to consume excess power from an upgraded turbine.<li>Bounty Pad</li>A quantum pad that teleports any materials of value into our black market vendors. Credits sold is deposited instantaneously into the SSV Dauntless account.<li>Bounty Control Terminal</li>This is used to activate the bounty pad to sell goods. Install into a computer frame and link the bounty pad using a multi-tool.</ul><p>Please note: Physical money can be directly sent to our black market vendors to be exchanged into credits.</p>";
 	name = "paper- 'SSV Dauntless Cargo Guide'"
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Lj" = (
@@ -12549,6 +12526,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/mmi/posibrain/sphere,
+/obj/item/mmi/posibrain/sphere,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Lw" = (
@@ -12852,14 +12832,6 @@
 /obj/machinery/netpod,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"MB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "MC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -13456,7 +13428,7 @@
 	name = "Energy Shield"
 	},
 /turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "On" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
 /turf/open/floor/mineral/plastitanium/red,
@@ -15030,6 +15002,10 @@
 /obj/item/mod/module/jump_jet,
 /obj/item/mod/module/jump_jet,
 /obj/structure/closet/crate/robust,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "SL" = (
@@ -15269,7 +15245,8 @@
 	pixel_y = -32;
 	all_products_free = 1;
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	density = 0
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -16171,11 +16148,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
-"Wx" = (
-/obj/machinery/light/cold/directional/north,
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "WA" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -16559,12 +16531,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "XD" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/spawner/random/mod/maint,
-/obj/effect/spawner/random/mod/maint,
-/obj/effect/spawner/random/mod/maint,
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/pai_card,
 /obj/machinery/ecto_sniffer,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
@@ -16938,6 +16906,7 @@
 "YG" = (
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "YH" = (
@@ -18283,9 +18252,9 @@ vN
 XK
 XD
 Tm
-Cc
-Cc
-Cc
+Ug
+uf
+Ug
 dy
 Cc
 Qu
@@ -18354,7 +18323,7 @@ fh
 FB
 Tm
 YG
-aY
+xi
 Cc
 dy
 Cc
@@ -18417,15 +18386,15 @@ jt
 oW
 Gc
 ne
-uC
+Jf
 XU
 um
 fh
 st
 Tm
-Wx
+Ug
 Cc
-Cc
+Ug
 Fr
 Cc
 Qu
@@ -18563,9 +18532,9 @@ xL
 Xk
 vK
 Tm
-Ug
-Gm
-Ug
+Cc
+Cc
+Cc
 bK
 Ev
 zu
@@ -18633,8 +18602,8 @@ gr
 Jw
 Fd
 Tm
-GG
-kP
+Cc
+Cc
 Cc
 GM
 FV
@@ -18703,7 +18672,7 @@ Ma
 la
 sC
 Tm
-qi
+Cc
 Cc
 Bb
 os
@@ -19870,7 +19839,7 @@ QL
 cu
 ya
 cu
-MB
+cu
 cu
 cu
 cV
@@ -20495,7 +20464,7 @@ bH
 zG
 Ll
 Ll
-hp
+Ll
 pg
 BT
 Lf
