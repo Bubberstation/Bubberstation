@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aX" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "ba" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/decal/cleanable/dirt,
@@ -6,25 +14,74 @@
 /obj/structure/railing,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
-"cK" = (
-/obj/machinery/airalarm/directional/south,
+"bK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"cK" = (
+/obj/structure/flora/bush/sparsegrass/style_2,
+/obj/structure/flora/bush/grassy/style_2,
+/obj/structure/flora/bush/flowers_yw,
+/obj/structure/flora/bush/sunny/style_random,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/bush/flowers_pp,
+/obj/structure/flora/bush/large{
+	pixel_y = -4
+	},
+/obj/structure/marker_beacon/lime,
+/turf/open/floor/grass,
+/area/station/commons/dock/aux)
 "cQ" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/cerulean,
 /turf/open/space/basic,
 /area/space/nearstation)
+"dl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 9
+	},
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "dQ" = (
+/obj/structure/chair/sofa/bench/right{
+	dir = 1
+	},
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/glass/reinforced,
+/area/station/commons/dock/aux)
+"fK" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating_new/dark,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "gt" = (
-/obj/effect/spawner/random/vending/colavend,
-/obj/effect/turf_decal/bot_white,
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 5
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "gD" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/cerulean,
@@ -39,17 +96,62 @@
 /obj/structure/flora/bush/ferny/style_random,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/marker_beacon/lime,
+/obj/structure/marker_beacon/lime,
 /turf/open/floor/grass,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "gY" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
 "hC" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/machinery/light/small/dim/directional/north,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/button/door/directional/north{
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	name = "Toilet Lock";
+	id = "ToiletAux"
+	},
+/obj/effect/landmark/start/hangover,
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/dock/aux)
+"hK" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/corner{
+	dir = 4
+	},
+/obj/structure/sign/warning/vacuum/external/directional/east,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
+"if" = (
+/obj/machinery/digital_clock/directional/north,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
+"jm" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
+"kc" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/random/directional/north,
 /obj/structure/broken_flooring/singular/directional/east{
 	color = "#73737a"
 	},
@@ -58,19 +160,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 6
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/aft/lesser)
-"if" = (
-/obj/machinery/digital_clock/directional/north,
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
-"kc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
@@ -89,14 +178,13 @@
 /turf/template_noop,
 /area/template_noop)
 "kU" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/trimline/blue/warning{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/maintenance/aft/lesser)
+/obj/effect/landmark/navigate_destination/dockaux,
+/obj/effect/turf_decal/siding/thinplating_new/dark,
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/generic_maintenance_landmark,
+/obj/effect/landmark/blobstart,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "li" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -129,13 +217,17 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
 	},
-/obj/machinery/camera/autoname/directional/west,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/machinery/status_display/evac/directional/west,
+/obj/effect/spawner/random/engineering/tracking_beacon,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "nF" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/turf/open/floor/glass/reinforced,
+/area/station/commons/dock/aux)
 "pl" = (
 /obj/structure/cable,
 /obj/structure/broken_flooring/pile/directional/east{
@@ -149,11 +241,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "ps" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Auxiliary Ship Dock"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron/dark/textured,
+/turf/closed/wall,
 /area/station/commons/fitness/recreation)
 "pE" = (
 /obj/docking_port/stationary{
@@ -169,7 +257,7 @@
 "pF" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/public/glass{
-	name = "Auxiliary Ship Dock"
+	name = "Auxiliary Station Dock"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
@@ -177,7 +265,6 @@
 "sC" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_floor,
-/obj/machinery/digital_clock/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -186,19 +273,18 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "sD" = (
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
-"sW" = (
-/turf/open/floor/plating,
-/area/station/commons/auxdock)
-"tj" = (
+/obj/structure/closet/emcloset/wall,
 /turf/closed/wall,
-/area/station/commons/auxdock)
+/area/station/maintenance/aft/lesser)
+"sW" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/box,
+/turf/open/floor/plating,
+/area/station/commons/dock/aux)
 "tn" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
 "tt" = (
@@ -208,8 +294,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "uo" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 4
@@ -222,7 +311,17 @@
 "wn" = (
 /obj/structure/closet/emcloset/wall,
 /turf/closed/wall,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"wJ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/corner,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "wN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -232,7 +331,7 @@
 "xf" = (
 /obj/structure/closet/firecloset/wall,
 /turf/closed/wall,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "xr" = (
 /obj/structure/cable,
 /obj/structure/broken_flooring/singular/directional/east{
@@ -244,24 +343,35 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Auxiliary Ship Dock"
+	name = "Laser Tag Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "xs" = (
 /turf/open/space/basic,
 /area/space)
 "xw" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/light/directional/west,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/dim/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "xz" = (
-/obj/effect/landmark/navigate_destination/dockaux,
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/obj/structure/chair/sofa/bench/left{
+	dir = 1
+	},
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/glass/reinforced,
+/area/station/commons/dock/aux)
 "yb" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -270,8 +380,9 @@
 /obj/structure/flora/grass/jungle/a/style_3,
 /obj/structure/flora/bush/flowers_br,
 /obj/structure/flora/bush/ferny/style_random,
+/obj/structure/marker_beacon/lime,
 /turf/open/floor/grass,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "yh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -279,10 +390,15 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light/directional/north,
-/obj/machinery/firealarm/directional/north,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/item/radio/intercom/directional/north{
+	pixel_x = 2
+	},
+/obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "yN" = (
 /obj/structure/sign/poster/random/directional/north,
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner,
@@ -297,56 +413,90 @@
 /area/station/maintenance/aft/lesser)
 "zA" = (
 /obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/glass/reinforced,
+/area/station/commons/dock/aux)
+"Aj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"AG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "Br" = (
-/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 6
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Cn" = (
-/obj/machinery/computer/security/telescreen/entertainment/directional/east,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Cy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/public/glass{
-	name = "Auxiliary Ship Dock"
+	name = "Auxiliary Station Dock"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/fitness/recreation)
 "CC" = (
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
-"DX" = (
-/obj/structure/closet/firecloset,
-/obj/effect/turf_decal/trimline/red/warning{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/maintenance/aft/lesser)
-"DY" = (
-/obj/structure/cable,
-/obj/effect/mapping_helpers/broken_floor,
-/obj/effect/spawner/random/maintenance,
+/area/station/commons/dock/aux)
+"DU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 5
 	},
-/turf/open/floor/plating,
+/obj/structure/sign/poster/contraband/random/directional/east,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
+"DX" = (
+/obj/effect/turf_decal/bot_blue,
+/obj/effect/spawner/random/structure/crate_loot,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
+"DY" = (
+/turf/closed/wall,
+/area/station/commons/dock/aux)
+"Eq" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall,
+/area/station/commons/dock/aux)
 "Et" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/corner,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Iy" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "Engineering External Access"
@@ -356,7 +506,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Jy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -364,20 +514,41 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "JA" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/spawner/random/engineering/atmospherics_portable,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
+"Lv" = (
+/obj/structure/sink/directional/west,
+/obj/structure/mirror/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/landmark/start/assistant,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/dock/aux)
 "Qg" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
+/obj/structure/flora/bush/fullgrass,
+/obj/structure/flora/bush/grassy/style_random,
+/obj/structure/flora/bush/flowers_br/style_2,
+/obj/structure/marker_beacon/lime,
+/obj/machinery/computer/security/telescreen/entertainment/directional/north{
+	pixel_x = 4
 	},
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/machinery/camera/autoname/directional/north,
+/turf/open/floor/grass,
+/area/station/commons/dock/aux)
 "Rn" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/lattice,
@@ -397,28 +568,27 @@
 /area/station/maintenance/aft/lesser)
 "SU" = (
 /obj/machinery/door/airlock/external/glass{
-	name = "Auxiliary Ship Dock"
+	name = "Auxiliary Station Dock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "ferry_upper"
 	},
 /turf/open/floor/iron/dark/textured_large,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "SY" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
+/obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
 	},
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/generic_maintenance_landmark,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Tq" = (
-/obj/structure/hedge,
-/turf/open/floor/plating,
-/area/station/maintenance/aft/lesser)
-"TA" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/public/glass{
-	name = "Auxiliary Ship Dock"
+/obj/machinery/door/airlock/maintenance{
+	name = "Engineering Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -427,11 +597,22 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
+"TA" = (
+/obj/machinery/door/airlock/silver{
+	name = "Bathroom/Shower";
+	id_tag = "ToiletAux"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/dock/aux)
 "TG" = (
 /obj/effect/spawner/random/vending/snackvend,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Uq" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "Engineering External Access"
@@ -441,11 +622,17 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "Uw" = (
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/obj/structure/curtain,
+/obj/machinery/shower/directional/south,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/drain,
+/turf/open/floor/noslip/tram{
+	name = "shower tile";
+	color = "#6e9eb4"
+	},
+/area/station/commons/dock/aux)
 "UI" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -453,33 +640,62 @@
 "VS" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/aft/lesser)
-"We" = (
-/obj/machinery/firealarm/directional/west,
+"Wa" = (
+/obj/effect/spawner/random/vending/colavend,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"We" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/generic_maintenance_landmark,
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "WA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new/dark/corner,
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"Xw" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured,
+/area/station/commons/dock/aux)
 "XV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "YE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
+/obj/structure/cable,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/textured,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "YK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
 "YX" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -487,8 +703,13 @@
 /obj/structure/flora/bush/grassy/style_2,
 /obj/structure/flora/grass/jungle/a/style_3,
 /obj/structure/flora/bush/flowers_br,
+/obj/structure/marker_beacon/lime,
 /turf/open/floor/grass,
-/area/station/commons/auxdock)
+/area/station/commons/dock/aux)
+"ZQ" = (
+/obj/structure/closet/firecloset/wall,
+/turf/closed/wall,
+/area/station/maintenance/aft/lesser)
 
 (1,1,1) = {"
 kJ
@@ -698,14 +919,14 @@ xs
 kJ
 kJ
 kJ
-tj
-tj
-tj
-xf
+DY
+DY
+DY
+Eq
 xr
-tj
+xf
 wn
-tj
+DY
 Rn
 Rn
 wN
@@ -713,15 +934,15 @@ xs
 "}
 (14,1,1) = {"
 pF
-CC
+dl
 CC
 SY
 mE
 xw
-CC
+Xw
 tt
 We
-dQ
+AG
 SU
 zA
 zA
@@ -730,15 +951,15 @@ pE
 "}
 (15,1,1) = {"
 Cy
-Et
+DU
+Aj
+Aj
+bK
 WA
-WA
-Jy
-WA
+wJ
 Et
-Et
-dQ
-dQ
+hK
+Cn
 SU
 nF
 nF
@@ -747,63 +968,63 @@ xs
 "}
 (16,1,1) = {"
 ps
-Cn
-Uw
+DY
+DY
 Qg
 Jy
-dQ
+kU
 xz
-sD
-tj
+cK
+DY
 Iy
-tj
+DY
 gY
 gY
 cQ
 xs
 "}
 (17,1,1) = {"
-lr
-lr
-lr
-lr
+DY
+Uw
+DY
+DY
 yh
-dQ
+jm
 dQ
 cK
-tj
+DY
 sW
-tj
+DY
 xs
 xs
 xs
 xs
 "}
 (18,1,1) = {"
-lr
+DY
 hC
-mD
+Lv
 TA
 YE
-dQ
-dQ
-tj
-tj
+jm
+Wa
+DY
+DY
 Uq
-tj
+DY
 xs
 kJ
 kJ
 kJ
 "}
 (19,1,1) = {"
-lr
 DY
-Tq
-lr
+DY
+DY
+DY
 if
-dQ
-dQ
+fK
+aX
 YK
 UI
 li
@@ -814,10 +1035,10 @@ kJ
 kJ
 "}
 (20,1,1) = {"
-lr
+sD
 kc
-kU
-lr
+mD
+Tq
 gt
 Br
 TG
@@ -831,7 +1052,7 @@ kJ
 kJ
 "}
 (21,1,1) = {"
-lr
+ZQ
 pl
 DX
 lr

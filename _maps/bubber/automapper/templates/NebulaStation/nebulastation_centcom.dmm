@@ -7,7 +7,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "bu" = (
 /turf/open/space/openspace,
 /area/space)
@@ -18,9 +18,23 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/machinery/light/warm/directional/north,
+/obj/machinery/light/floor,
+/obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
+"cB" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
 "dS" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/space/openspace,
@@ -33,11 +47,18 @@
 /obj/effect/turf_decal/trimline/yellow/corner,
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/siding/dark,
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "fv" = (
 /turf/closed/wall,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
+"fZ" = (
+/obj/effect/landmark/generic_maintenance_landmark,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
 "gl" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
@@ -46,15 +67,15 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "iy" = (
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "iK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/status_display/evac/directional/north,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "iO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -64,7 +85,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "kv" = (
 /obj/effect/turf_decal/trimline/yellow,
 /obj/effect/turf_decal/trimline/yellow/corner{
@@ -79,8 +100,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "lw" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/lattice/catwalk,
@@ -98,7 +121,7 @@
 /obj/effect/turf_decal/trimline/dark/filled/corner,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "nr" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/lattice,
@@ -113,7 +136,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "nI" = (
 /obj/effect/turf_decal/trimline/yellow/corner{
 	dir = 4
@@ -128,8 +151,10 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/generic_maintenance_landmark,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "rS" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/lattice,
@@ -140,38 +165,45 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral,
-/obj/machinery/light/warm/directional/south,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "sM" = (
 /turf/open/space/openspace,
 /area/space/nearstation)
+"tm" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark/filled/line{
+	dir = 1
+	},
+/obj/effect/spawner/random/decoration/showcase,
+/turf/open/floor/iron/dark/small,
+/area/station/commons/dock/secondary)
 "ul" = (
+/obj/structure/sign/nanotrasen,
 /turf/closed/wall,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "uv" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "uB" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "vt" = (
 /obj/effect/turf_decal/trimline/yellow,
 /obj/effect/turf_decal/trimline/yellow/corner{
@@ -184,8 +216,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "vS" = (
 /obj/docking_port/stationary{
 	dheight = 3;
@@ -208,12 +242,13 @@
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 9
 	},
+/obj/machinery/digital_clock/directional/north,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "ym" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "yI" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark,
@@ -223,8 +258,11 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/effect/spawner/random/engineering/tracking_beacon,
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/textured_large,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "AM" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
@@ -234,10 +272,11 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Ei" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
@@ -247,10 +286,13 @@
 	},
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/camera/autoname/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "ET" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
@@ -258,7 +300,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Fj" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -266,22 +308,35 @@
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 10
 	},
-/obj/item/kirbyplants/organic/plant10,
+/obj/item/kirbyplants/organic/plant19,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "GH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Hz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/navigate_destination/docksec,
+/obj/machinery/holopad,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
+"HQ" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
 "Ia" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -294,7 +349,7 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/firedoor,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "IE" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -302,7 +357,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Jn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -317,7 +372,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Jp" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/lattice/catwalk,
@@ -325,20 +380,21 @@
 /turf/open/space/openspace,
 /area/space/nearstation)
 "Ko" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
+/obj/machinery/light/floor,
+/obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Lv" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "LP" = (
 /obj/effect/turf_decal/trimline/dark/filled/corner,
 /obj/effect/turf_decal/trimline/dark/filled/corner{
@@ -350,7 +406,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "MB" = (
 /obj/effect/turf_decal/trimline/yellow/corner{
 	dir = 8
@@ -364,16 +420,46 @@
 /obj/effect/turf_decal/trimline/dark/filled/corner{
 	dir = 4
 	},
+/obj/effect/landmark/event_spawn,
+/obj/effect/landmark/generic_maintenance_landmark,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
+"ME" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "ert-lz-starboard"
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "Secondary Station Dock"
+	},
+/obj/structure/sign/warning/vacuum/external/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
+"MW" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/dark/filled/line{
+	dir = 5
+	},
+/obj/effect/spawner/random/decoration/showcase,
+/turf/open/floor/iron/dark/small,
+/area/station/commons/dock/secondary)
 "Nj" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "NF" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/tile/neutral,
@@ -384,14 +470,16 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "OI" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "OW" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -404,7 +492,16 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
+"OY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/blobstart,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "PI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -419,7 +516,16 @@
 	name = "Secondary Station Dock"
 	},
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
+"Re" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
 "UH" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
@@ -428,11 +534,25 @@
 	dir = 5
 	},
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "UO" = (
-/obj/structure/closet/emcloset/wall,
+/obj/structure/closet/firecloset/wall,
 /turf/closed/wall,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
+"Va" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/item/kirbyplants/organic/plant10,
+/turf/open/floor/iron/dark,
+/area/station/commons/dock/secondary)
 "VM" = (
 /obj/effect/turf_decal/trimline/yellow/corner,
 /obj/effect/turf_decal/siding/dark/corner,
@@ -443,7 +563,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "VN" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/tile/neutral,
@@ -451,15 +571,26 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "WM" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
+"WU" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/dark/filled/line{
+	dir = 9
+	},
+/obj/machinery/camera/autoname/directional/north,
+/obj/effect/spawner/random/decoration/showcase,
+/turf/open/floor/iron/dark/small,
+/area/station/commons/dock/secondary)
 "Xd" = (
-/obj/structure/closet/firecloset/wall,
+/obj/structure/closet/emcloset/wall,
 /turf/closed/wall,
-/area/station/hallway/secondary/dock)
+/area/station/commons/dock/secondary)
 "Yj" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -469,7 +600,7 @@
 	},
 /obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "Yt" = (
 /obj/effect/turf_decal/trimline/yellow,
 /obj/effect/turf_decal/trimline/yellow/corner{
@@ -485,8 +616,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "YV" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -499,7 +632,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 "Zv" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -507,8 +640,9 @@
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 10
 	},
+/obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/dark/small,
-/area/station/service/theater)
+/area/station/commons/dock/secondary)
 
 (1,1,1) = {"
 bu
@@ -531,7 +665,7 @@ bu
 (3,1,1) = {"
 bu
 lw
-ns
+cB
 GH
 NF
 Jp
@@ -540,17 +674,17 @@ bu
 (4,1,1) = {"
 bu
 rS
-ns
+HQ
 iy
-VN
+Re
 nr
 bu
 "}
 (5,1,1) = {"
 bu
 rS
-ym
-PI
+fv
+ME
 PI
 nr
 bu
@@ -558,9 +692,9 @@ bu
 (6,1,1) = {"
 bu
 rS
-ns
-iy
-VN
+Va
+GH
+NF
 nr
 bu
 "}
@@ -586,22 +720,22 @@ bu
 xw
 Xd
 bZ
-iy
+fZ
 ss
 UO
 xw
 "}
 (10,1,1) = {"
 xw
-ul
+fv
 AM
 Lv
 Ei
-ul
+fv
 xw
 "}
 (11,1,1) = {"
-xw
+OY
 Jn
 OI
 yI
@@ -611,25 +745,25 @@ xw
 "}
 (12,1,1) = {"
 xw
-ul
+fv
 gl
 uB
 ET
-ul
+fv
 xw
 "}
 (13,1,1) = {"
 xw
-ul
+fv
 iK
 uv
 Ko
-ul
+fv
 xw
 "}
 (14,1,1) = {"
 xw
-xw
+fv
 xy
 OW
 Zv
@@ -638,7 +772,7 @@ xw
 "}
 (15,1,1) = {"
 xw
-xw
+WU
 VM
 kv
 nI
@@ -647,7 +781,7 @@ xw
 "}
 (16,1,1) = {"
 xw
-xw
+tm
 eQ
 Hz
 vt
@@ -656,7 +790,7 @@ xw
 "}
 (17,1,1) = {"
 xw
-xw
+MW
 MB
 Yt
 mD
@@ -665,7 +799,7 @@ xw
 "}
 (18,1,1) = {"
 xw
-xw
+fv
 UH
 aF
 Yj
