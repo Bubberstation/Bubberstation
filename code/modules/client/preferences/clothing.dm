@@ -180,6 +180,7 @@
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
 	can_randomize = FALSE
+	supplemental_features = list("underwear_color") // BUBBER EDIT ADDITION: Better prefs
 
 /datum/preference/choiced/underwear/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.underwear_list)
@@ -209,9 +210,11 @@
 	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return !(TRAIT_NO_UNDERWEAR in species.inherent_traits)
 
-/datum/preference/choiced/underwear/compile_constant_data()
-	var/list/data = ..()
+// BUBBER EDIT REMOVAL START: Better prefs
+// /datum/preference/choiced/underwear/compile_constant_data()
+// 	var/list/data = ..()
 
-	data[SUPPLEMENTAL_FEATURE_KEY] = "underwear_color"
+// 	data[SUPPLEMENTAL_FEATURE_KEY] = "underwear_color"
 
-	return data
+// 	return data
+// BUBBER EDIT END
