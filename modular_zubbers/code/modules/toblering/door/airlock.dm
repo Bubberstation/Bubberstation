@@ -1,5 +1,5 @@
 // This is a modular override of a global proc.
-/get_airlock_overlay(icon_state, icon_file, em_block, state_color)
+/get_airlock_overlay(icon_state, icon_file, em_block, state_color, dir)
 	var/static/list/airlock_overlays = list()
 
 	var/base_icon_key = "[icon_state][icon_file][state_color]"
@@ -35,7 +35,3 @@
 
 	var/airlock_paint
 	var/stripe_paint
-
-/obj/machinery/Initialize(mapload)
-	color = null // Get rid of the color used to help mappers.
-	return ..()

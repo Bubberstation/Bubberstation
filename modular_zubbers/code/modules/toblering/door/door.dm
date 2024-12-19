@@ -4,10 +4,15 @@
 	var/align_to_windows
 	var/auto_dir_align = TRUE
 
-/obj/machinery/door/post_machine_initialize()
+/obj/machinery/door/Initialize(mapload)
 	. = ..()
+	// Get rid of the color used to help mappers
+	color = null
 	// Automatically align the direction of the airlock
 	auto_dir_align()
+	// To prevent invalid dirs slipping through
+	if(dir != SOUTH && dir != WEST)
+		dir = SOUTH
 
 /obj/machinery/door/proc/auto_dir_align()
 	if(!auto_dir_align)
