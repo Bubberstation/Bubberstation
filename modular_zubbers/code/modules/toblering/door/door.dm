@@ -10,9 +10,6 @@
 	color = null
 	// Automatically align the direction of the airlock
 	auto_dir_align()
-	// To prevent invalid dirs slipping through
-	if(dir != SOUTH && dir != WEST)
-		dir = SOUTH
 
 /obj/machinery/door/proc/auto_dir_align()
 	if(!auto_dir_align)
@@ -69,3 +66,6 @@
 		setDir(align_dir)
 	else
 		setDir(block_dir)
+	// To prevent invalid dirs slipping through
+	if(dir != SOUTH && dir != WEST)
+		dir = SOUTH
