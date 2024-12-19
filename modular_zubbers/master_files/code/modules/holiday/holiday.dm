@@ -111,30 +111,30 @@
 
 /datum/holiday/xmas/New()
 	. = ..()
-	var/palette = rand(1, 9)
+	var/palette = rand(1, 11)
 	switch(palette)
-		if(1, 2)
+		if(1, 2, 3, 4)
 			holiday_colors += list(
 				COLOR_CHRISTMAS_GREEN,
 				COLOR_CHRISTMAS_RED,
-			)
-		if(3, 4)
-			holiday_colors += list(
-				COLOR_CHRISTMAS_GREEN,
-				COLOR_CHRISTMAS_RED,
-				GREY_LIGHT,
 			)
 		if(5, 6)
 			holiday_colors += list(
 				COLOR_CHRISTMAS_GREEN,
+				COLOR_CHRISTMAS_RED,
 				GREY_LIGHT,
 			)
 		if(7, 8)
 			holiday_colors += list(
+				COLOR_CHRISTMAS_GREEN,
+				GREY_LIGHT,
+			)
+		if(9, 10)
+			holiday_colors += list(
 				COLOR_CHRISTMAS_RED,
 				GREY_LIGHT,
 			)
-		if(9)
+		if(11)
 			holiday_colors += list(
 				COLOR_PRIDE_PURPLE,
 				COLOR_PRIDE_BLUE,
