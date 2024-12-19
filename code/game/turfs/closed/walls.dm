@@ -93,6 +93,10 @@
 	update_fov()
 
 /turf/closed/wall/Initialize(mapload)
+	// BUBBER EDIT ADDITION START: Toblering: Needs to be done first.
+	if(!custom_wall)
+		set_materials(sheet_type)
+	// BUBBER EDIT END
 	. = ..()
 	if(!can_engrave)
 		ADD_TRAIT(src, TRAIT_NOT_ENGRAVABLE, INNATE_TRAIT)

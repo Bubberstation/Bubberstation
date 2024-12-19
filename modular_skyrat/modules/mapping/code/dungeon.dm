@@ -9,6 +9,7 @@
 	icon_state = "wall"
 	base_icon_state = "wall"
 	explosive_resistance = INFINITY
+	custom_wall = TRUE
 
 /turf/closed/indestructible/dungeon/corner
 	icon_state = "wall-corner"

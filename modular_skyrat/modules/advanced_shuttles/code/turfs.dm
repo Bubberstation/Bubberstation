@@ -12,8 +12,9 @@
 	icon_state = ""
 	base_icon_state = ""
 	smoothing_flags = null
-	smoothing_groups = null
+	smoothing_groups = SMOOTH_GROUP_SHIPWALLS
 	canSmoothWith = null
+	custom_wall = TRUE
 
 /turf/closed/wall/mineral/titanium/shuttle_wall/AfterChange(flags, oldType)
 	. = ..()
