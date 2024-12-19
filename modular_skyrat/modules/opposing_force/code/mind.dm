@@ -16,7 +16,9 @@
 			fail_message += " You have to be in the current round at some point to have one."
 		to_chat(src, span_warning(fail_message))
 		return
-
+	if(mind?.assigned_role.title == ROLE_GHOST_CAFE)
+		to_chat(src, span_warning("You have to be inside the current round to request an opfor."))
+		return
 	if(is_banned_from(ckey, BAN_ANTAGONIST))
 		to_chat(src, span_warning("You are antagonist banned!"))
 		return

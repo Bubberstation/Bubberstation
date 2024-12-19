@@ -57,7 +57,11 @@
 			return FALSE
 
 		if(is_type_in_list(atom_check, consumed_components))
-			qdel(atom_check)
+			if(istype(atom_check, /obj/item/stack))
+				var/obj/item/stack/pile = atom_check
+				pile.use(1, transfer = FALSE)
+			else
+				qdel(atom_check)
 			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
 
 		else
