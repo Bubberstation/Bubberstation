@@ -82,7 +82,7 @@
 
 	. += get_airlock_overlay(frame_state, icon, src, em_block = TRUE)
 	if(airlock_material)
-		. += get_airlock_overlay("[airlock_material]_[frame_state]", overlays_file, src, em_block = TRUE)
+		. += get_airlock_overlay("[airlock_material]_[frame_state]", glass_fill_overlays, src, em_block = TRUE)
 	else
 		. += get_airlock_overlay("fill_[frame_state + fill_state_suffix]", icon, src, em_block = TRUE)
 
