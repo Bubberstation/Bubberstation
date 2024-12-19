@@ -23,6 +23,7 @@
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
+		#include "map_files\PubbyStation2\PubbyStation2.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING
