@@ -211,7 +211,7 @@
 	return "<font color='[used_color]'>very pretty colors</font> to imbue the destabilizer shots"
 
 /obj/item/crusher_trophy/watcher_eye/attack_self(mob/user, modifiers)
-	var/chosen_color = input(user, "Pick a new color", "[src]", used_color) as color|null
+	var/chosen_color = tgui_color_picker(user, "Pick a new color", "[src]", used_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	if(chosen_color)
 		used_color = chosen_color
 		to_chat(user, span_notice("You recolor [src]."))

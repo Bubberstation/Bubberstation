@@ -169,7 +169,7 @@
 				prey.clear_fullscreen("vore", FALSE)
 				show_fullscreen(prey)
 		if("overlay_color")
-			var/new_color = input(usr, "Pick a belly color", "Belly Color", overlay_color) as color|null
+			var/new_color = tgui_color_picker(usr, "Pick a belly color", "Belly Color", overlay_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(new_color)
 				overlay_color = new_color
 			for(var/mob/living/prey in src)
