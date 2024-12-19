@@ -236,15 +236,7 @@
 
 /datum/loadout_item/head/santa
 	name = "Santa Hat"
-	item_path = /obj/item/clothing/head/costume/santa
-
-/datum/loadout_item/head/christmas
-	name = "Red Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas
-
-/datum/loadout_item/head/christmas/green
-	name = "Green Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas/green
+	item_path = /obj/item/clothing/head/costume/santa/gags
 
 /*
 *	HALLOWEEN
