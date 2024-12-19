@@ -1161,7 +1161,9 @@
 	taste_description = "bitterness"
 	ph = 10.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_AFFECTS_WOUNDS
+	metabolization_rate = REAGENTS_METABOLISM * 0.25 // BUBBER EDIT ADDITION
 
+/* BUBBER EDIT REMOVAL BEGIN - Moved to code/modules/surgery/surgery_step.dm
 /datum/reagent/space_cleaner/sterilizine/expose_mob(mob/living/carbon/exposed_carbon, methods=TOUCH, reac_volume)
 	. = ..()
 	if(!(methods & (TOUCH|VAPOR|PATCH)))
@@ -1169,6 +1171,7 @@
 
 	for(var/datum/surgery/surgery as anything in exposed_carbon.surgeries)
 		surgery.speed_modifier = max(0.2, surgery.speed_modifier)
+*/// BUBBER EDIT REMOVAL END
 
 /datum/reagent/space_cleaner/sterilizine/on_burn_wound_processing(datum/wound/burn/flesh/burn_wound)
 	burn_wound.sanitization += 0.9
