@@ -11,6 +11,7 @@
 #define AUGMENT_SLOT_R_LEG			"Right Leg"
 //Organs
 #define AUGMENT_CATEGORY_ORGANS		"Organs"
+#define AUGMENT_SLOT_BRAIN			"Brain"
 #define AUGMENT_SLOT_HEART			"Heart"
 #define AUGMENT_SLOT_LUNGS			"Lungs"
 #define AUGMENT_SLOT_LIVER			"Liver"
