@@ -11,6 +11,7 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_VIRUSIMMUNE,
+		TRAIT_NOTHIRST, // SPLURT ADDITION - THIRST
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/abductor
 	mutantstomach = null

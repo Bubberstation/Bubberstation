@@ -17,6 +17,16 @@
 		hunger_loss *= 2
 	adjust_nutrition(-1 * hunger_loss)
 
+	// SPLURT ADDITION START - THIRST
+	if(HAS_TRAIT(src, TRAIT_NOTHIRST))
+		set_thirst(THIRST_LEVEL_QUENCHED - 1)
+	else if(water_level && stat != DEAD)
+		var/loss = THIRST_FACTOR / 10
+		if(move_intent == MOVE_INTENT_RUN)
+			loss *= 2
+		adjust_thirst(-1 * loss)
+	// SPLURT ADDITION END - THIRST
+
 /mob/living/carbon/set_usable_legs(new_value)
 	. = ..()
 	if(isnull(.))

@@ -91,7 +91,7 @@
 #define ui_health "EAST-1:28,CENTER-1:19"
 #define ui_internal "EAST-1:28,CENTER+1:21"
 #define ui_mood "EAST-1:28,CENTER:21"
-#define ui_hunger "EAST-1:2,CENTER:21"
+#define ui_hunger "EAST-1:2,CENTER-1:21" // SPLURT EDIT - "EAST-1:2,CENTER:21"
 #define ui_spacesuit "EAST-1:28,CENTER-4:14"
 #define ui_stamina "EAST-1:28,CENTER-3:14"
 

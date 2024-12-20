@@ -90,6 +90,7 @@
 		alt_hud.apply_to_new_mob(src)
 
 	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
+	set_thirst(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX)) // SPLURT ADDITION - THIRST
 	. = ..()
 	setup_hud_traits()
 	update_config_movespeed()

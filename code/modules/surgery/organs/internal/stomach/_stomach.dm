@@ -51,6 +51,7 @@
 		var/mob/living/carbon/human/humi = owner
 		if(!(organ_flags & ORGAN_FAILING))
 			handle_hunger(humi, seconds_per_tick, times_fired)
+			handle_thirst(humi, seconds_per_tick, times_fired) // SPLURT ADDITION - THIRST
 
 	var/mob/living/carbon/body = owner
 

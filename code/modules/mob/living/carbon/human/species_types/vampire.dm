@@ -15,6 +15,7 @@
 		TRAIT_NOHUNGER,
 		TRAIT_USES_SKINTONES,
 		TRAIT_NO_MIRROR_REFLECTION,
+		TRAIT_NOTHIRST, // SPLURT ADDITION - THIRST
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutant_bodyparts = list("wings" = "None")
