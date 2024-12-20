@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(wall_overlays_cache)
 	for (var/cardinal in GLOB.cardinals)
 		var/turf/step_turf = get_step(src, cardinal)
 		var/area/target_area = get_area(step_turf)
-		if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing)))
+		if(!target_area || ((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing))))
 			continue
 		for(var/atom/movable/movable_thing as anything in step_turf)
 			if(GLOB.neighbor_typecache[movable_thing.type])
