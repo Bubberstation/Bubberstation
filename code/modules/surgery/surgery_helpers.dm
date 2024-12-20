@@ -18,7 +18,7 @@
 	var/obj/structure/table/optable/operating_table = locate(/obj/structure/table/optable, mob_turf)
 	if(!isnull(operating_table))
 		if(operating_table.computer?.is_operational)
-			return 1.3
+			return OPERATING_COMPUTER_MODIFIER
 		else
 			return 1
 	else if(locate(/obj/structure/bed/medical, mob_turf))

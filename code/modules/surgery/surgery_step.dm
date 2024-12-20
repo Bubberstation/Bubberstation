@@ -151,9 +151,15 @@
 
 		if((prob(100-fail_prob) || (iscyborg(user) && !silicons_obey_prob)) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
-				user.balloon_alert(user, "[round(1 / speed_mod, 0.1)]x speed") // BUBBER EDIT ADDITION - Show surgery speed to viewers
 				update_surgery_mood(target, SURGERY_STATE_SUCCESS)
 				play_success_sound(user, target, target_zone, tool, surgery)
+				// BUBBER EDIT ADDITION BEGIN - Show surgery speed to viewers
+				var/feedback_bubble = get_feedback_message(user, target, speed_mod)
+				if(!isnull(feedback_bubble))
+					user.balloon_alert(user, feedback_bubble)
+				else
+					user.balloon_alert(user, "[round(1 / speed_mod, 0.1)]x speed")
+				// BUBBER EDIT ADDITION END
 				advance = TRUE
 		else
 			if(failure(user, target, target_zone, tool, surgery, fail_prob))

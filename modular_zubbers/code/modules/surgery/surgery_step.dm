@@ -1,3 +1,7 @@
+/datum/surgery_step
+	/// Information about the result of the last cycle of the surgery step
+	var/feedback_value = null
+
 /// Checks if a mob under surgery has sterilizine applied
 /mob/living/proc/has_sterilizine()
 	if(!length(reagents.reagent_list))

@@ -87,6 +87,7 @@
 	var/burn_healed = burnhealing
 	var/dead_patient = FALSE
 	var/status_msg = list() // BUBBER EDIT ADDITION
+	feedback_value = null // BUBBER EDIT ADDITION
 	if(target.stat == DEAD) //dead patients get way less additional heal from the damage they have.
 		// BUBBER EDIT CHANGE BEGIN - Husks get reduced bonus, but dead patients are full speed
 		//brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.2)),0.1)
@@ -114,6 +115,7 @@
 	if(length(status_msg) > 0)
 		user_msg += " as best as you can while [target.p_they()] [english_list(status_msg)]"
 		target_msg += " as best as [user.p_they()] can while [target.p_they()] [english_list(status_msg)]"
+	feedback_value = brute_healed + burn_healed
 	// BUBBER EDIT ADDITION END
 	target.heal_bodypart_damage(brute_healed,burn_healed)
 
@@ -126,7 +128,7 @@
 	display_results(
 		user,
 		target,
-		span_notice("[user_msg]."),
+		get_feedback_message(user, target, 1) ? null : span_notice("[user_msg]."), // BUBBER EDIT CHANGE - Original: span_notice("[user_msg].")
 		span_notice("[target_msg]."),
 		span_notice("[target_msg]."),
 	)
