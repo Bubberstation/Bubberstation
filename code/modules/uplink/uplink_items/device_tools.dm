@@ -178,6 +178,7 @@
 	cost = 3
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
+/* BUBBER EDIT REMOVAL START: Remove CRAB-17: This shit's been a dead meme for years, let's not force folk who don't want to lose all their money have to ram into a single room.
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
 	desc = "The Protocol CRAB-17 Phone, a phone borrowed from an unknown third party, it can be used to crash the space market, funneling the losses of the crew to your bank account.\
@@ -186,6 +187,7 @@
 	restricted = TRUE
 	cost = 7
 	limited_stock = 1
+*/
 
 /datum/uplink_item/device_tools/binary
 	name = "Binary Translator Key"
