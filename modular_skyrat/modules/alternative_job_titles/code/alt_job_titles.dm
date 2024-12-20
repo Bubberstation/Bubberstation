@@ -286,8 +286,8 @@
 		"Virologist",
 		"Epidemiologist",
 		"Pathologist",
-		"Junior Pathologist"
-		"Veterinarian"
+		"Junior Pathologist",
+		"Veterinarian",
 		"Veterinarian Intern",
 	)
 
