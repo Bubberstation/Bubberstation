@@ -172,6 +172,7 @@
 	weak_against_armour = TRUE
 	damage_falloff_tile = -1 // Five tiles will halve the effectiveness dramatically
 	wound_falloff_tile = -3
+
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
@@ -279,10 +280,6 @@
 		else
 			demolition_mod = 2
 			damage = 15
-
-/obj/projectile/bullet/shotgun_slug // Dead simple slug. Hurts like a bitch
-	damage = 30
-	armour_penetration = 40 // Can bypass 40 percent bullet resist
 
 /obj/item/ammo_casing/shotgun/hunter
 	name = "hunter slug shell"
