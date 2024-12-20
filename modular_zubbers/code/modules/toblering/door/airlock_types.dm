@@ -328,9 +328,6 @@
 /obj/machinery/door/airlock/multi_tile
 	MULTITILE_AIRLOCK
 
-/obj/machinery/door/airlock/multi_tile/glass // The normal TG one IS glass? What the fuck are you doing skyrat? Yes, this causes mapcompile issues if I remove this type.
-	MULTITILE_AIRLOCK
-
 /obj/machinery/door/airlock/multi_tile/metal
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
