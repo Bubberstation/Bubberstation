@@ -75,7 +75,7 @@
 			else
 				pre_light_color = AIRLOCK_POWERON_LIGHT_COLOR
 			if(light_state)
-			light_state += "_open"
+				light_state += "_open"
 		if(AIRLOCK_OPENING)
 			frame_state = AIRLOCK_FRAME_OPENING
 			light_state = AIRLOCK_LIGHT_OPENING
