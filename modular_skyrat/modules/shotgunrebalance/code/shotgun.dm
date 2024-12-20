@@ -157,7 +157,7 @@
 	icon_state = "fshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
 	pellets = 5
-	variance = 8
+	variance = 15
 	custom_materials = AMMO_MATS_SHOTGUN_FLECH
 	advanced_print_req = TRUE
 
@@ -166,12 +166,11 @@
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
 	icon_state = "flechette"
 	damage = 10
-	wound_bonus = 5
-	bare_wound_bonus = 10
+	wound_bonus = 10
+	bare_wound_bonus = 15
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
-	weak_against_armour = FALSE
-	damage_falloff_tile = 0
-	armour_penetration = 50
+	weak_against_armour = TRUE
+	damage_falloff_tile = 0.5
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
 	. = ..()
@@ -280,6 +279,10 @@
 		else
 			demolition_mod = 2
 			damage = 15
+
+/obj/projectile/bullet/shotgun_slug
+	damage = 30
+	armour_penetration = 30 // Can bypass 30 percent bullet resist
 
 /obj/item/ammo_casing/shotgun/hunter
 	name = "hunter slug shell"
