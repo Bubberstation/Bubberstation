@@ -318,6 +318,9 @@
 	STATION_AIRLOCK
 	AIRLOCK_COLORS("#333333", "#610000")
 
+/obj/machinery/door/airlock/cult/unruned
+	STATION_AIRLOCK
+
 /*
 	Multi Tile
 	Fuck, I hate these.
