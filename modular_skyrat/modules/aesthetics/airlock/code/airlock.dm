@@ -61,7 +61,7 @@
 		if(AIRLOCK_OPEN)
 			frame_state = AIRLOCK_FRAME_OPEN
 			if(locked)
-				light_state = AIRLOCK_LIGHT_BOLTS
+				light_state = null
 				pre_light_color = AIRLOCK_BOLTS_LIGHT_COLOR
 			else if(emergency)
 				light_state = AIRLOCK_LIGHT_EMERGENCY
@@ -74,6 +74,7 @@
 				pre_light_color = AIRLOCK_ENGINEERING_LIGHT_COLOR
 			else
 				pre_light_color = AIRLOCK_POWERON_LIGHT_COLOR
+			if(light_state)
 			light_state += "_open"
 		if(AIRLOCK_OPENING)
 			frame_state = AIRLOCK_FRAME_OPENING
@@ -96,7 +97,7 @@
 		if(!glass && has_fill_overlays)
 			. += get_airlock_overlay("fill_[frame_state]", stripe_overlays, state_color = stripe_paint)
 
-	if(lights && hasPower() && has_environment_lights)
+	if(lights && hasPower() && has_environment_lights && light_state)
 		. += get_airlock_overlay("lights_[light_state]", overlays_file, src, em_block = FALSE)
 		. += emissive_appearance(overlays_file, "lights_[light_state]", src, alpha = src.alpha)
 
