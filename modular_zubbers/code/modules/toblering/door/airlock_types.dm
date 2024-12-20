@@ -332,6 +332,10 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
 
+// Pod Airlocks
+/obj/machinery/door/airlock/survival_pod
+	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/survival/overlays.dmi'
+
 #undef AIRLOCK_COLORS
 #undef CENTCOM_AIRLOCK
 #undef EXTERNAL_AIRLOCK
