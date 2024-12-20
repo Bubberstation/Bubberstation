@@ -170,7 +170,7 @@
 	bare_wound_bonus = 15
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
 	weak_against_armour = TRUE
-	damage_falloff_tile = 0.5
+	damage_falloff_tile = -1 // Five tiles will halve the effectiveness dramatically
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
 	. = ..()
@@ -195,8 +195,8 @@
 	icon_state = "hornet"
 	damage = 4
 	stamina = 15
-	damage_falloff_tile = 1
-	stamina_falloff_tile = 1
+	damage_falloff_tile = -1
+	stamina_falloff_tile = -1
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = 0
@@ -231,8 +231,8 @@
 	icon_state = "stardust"
 	damage = 15
 	stamina = 33
-	damage_falloff_tile = 0.2
-	stamina_falloff_tile = 0.3
+	damage_falloff_tile = -0.2
+	stamina_falloff_tile = -0.3
 	wound_bonus = 40
 	bare_wound_bonus = 40
 	stutter = 3 SECONDS
@@ -280,9 +280,9 @@
 			demolition_mod = 2
 			damage = 15
 
-/obj/projectile/bullet/shotgun_slug
+/obj/projectile/bullet/shotgun_slug // Dead simple slug. Hurts like a bitch
 	damage = 30
-	armour_penetration = 30 // Can bypass 30 percent bullet resist
+	armour_penetration = 40 // Can bypass 40 percent bullet resist
 
 /obj/item/ammo_casing/shotgun/hunter
 	name = "hunter slug shell"
