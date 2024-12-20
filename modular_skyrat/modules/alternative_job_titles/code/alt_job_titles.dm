@@ -286,7 +286,9 @@
 		"Virologist",
 		"Epidemiologist",
 		"Pathologist",
-		"Junior Pathologist",
+		"Junior Pathologist"
+		"Veterinarian"
+		"Veterinarian Intern",
 	)
 
 /datum/job/engineering_guard //see orderly
