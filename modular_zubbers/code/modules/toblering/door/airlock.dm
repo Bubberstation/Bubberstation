@@ -26,8 +26,8 @@
 	align_to_windows = TRUE
 	door_align_type = /obj/machinery/door/airlock
 
-	var/stripe_overlays = 'modular_zubbers/icons/obj/doors/airlocks/station/airlock_stripe.dmi'
-	var/color_overlays = 'modular_zubbers/icons/obj/doors/airlocks/station/airlock_color.dmi'
+	var/stripe_overlays
+	var/color_overlays
 	var/glass_fill_overlays = 'modular_zubbers/icons/obj/doors/airlocks/station/glass_overlays.dmi'
 	note_overlay_file = 'modular_zubbers/icons/obj/doors/airlocks/station/note_overlays.dmi' //Used for papers and photos pinned to the airlock
 
