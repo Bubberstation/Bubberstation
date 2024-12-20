@@ -171,7 +171,7 @@
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
 	weak_against_armour = TRUE
 	damage_falloff_tile = -1 // Five tiles will halve the effectiveness dramatically
-
+	wound_falloff_tile = -3
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
