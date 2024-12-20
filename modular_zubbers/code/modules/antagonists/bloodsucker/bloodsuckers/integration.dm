@@ -1,4 +1,10 @@
 
+// this suggests that your heart is beating, when it is not
+/mob/living/carbon/bleed_warn(bleed_amt = 0, forced = FALSE)
+	if(mind && IS_BLOODSUCKER(src) && !HAS_TRAIT(src, TRAIT_MASQUERADE))
+		return
+	. = ..()
+
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
