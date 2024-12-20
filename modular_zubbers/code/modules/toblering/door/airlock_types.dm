@@ -72,125 +72,96 @@
 	glass_fill_overlays = 'modular_zubbers/icons/obj/doors/airlocks/glass_large/overlays.dmi'; \
 	note_overlay_file = 'modular_zubbers/icons/obj/doors/airlocks/station/note_overlays.dmi';
 
+#define AIRLOCK_COLORS(primary, secondary) color = primary; airlock_paint = primary; stripe_paint = secondary;
+
 // I'm not putting this into the main airlocks file. Who the fuck at TG thought that was a good idea?
 
 /obj/machinery/door/airlock/command
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/captain
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#c9ac2c"
+	AIRLOCK_COLORS("#334E6D", "#c9ac2c")
 
 /obj/machinery/door/airlock/captain/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/hop
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/hop/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/hos
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/hos/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/ce
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/ce/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/rd
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/rd/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/qm
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/qm/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/cmo
 	STATION_AIRLOCK
-	color = "#334E6D"
-	airlock_paint = "#334E6D"
-	stripe_paint = "#43769D"
+	AIRLOCK_COLORS("#334E6D", "#43769D")
 
 /obj/machinery/door/airlock/cmo/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/security
 	STATION_AIRLOCK
-	color = "#384b70"
-	airlock_paint = "#384b70"
-	stripe_paint = "#313038"
+	AIRLOCK_COLORS("#384b70", "#313038")
 
 /obj/machinery/door/airlock/security/old
-	color = "#9F2828"
-	airlock_paint = "#9F2828"
-	stripe_paint = "#D27428"
+	AIRLOCK_COLORS("#9F2828", "#D27428")
 
 /obj/machinery/door/airlock/security/old/glass
 	glass = TRUE
 
 /obj/machinery/door/airlock/engineering
 	STATION_AIRLOCK
-	color = "#A28226"
-	airlock_paint = "#A28226"
-	stripe_paint = "#7F292F"
+	AIRLOCK_COLORS("#A28226", "#7F292F")
 
 /obj/machinery/door/airlock/medical
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#5995BA"
+	AIRLOCK_COLORS("#BBBBBB", "#5995BA")
 
 /obj/machinery/door/airlock/psych
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#5995BA"
+	AIRLOCK_COLORS("#BBBBBB", "#5995BA")
 
 /obj/machinery/door/airlock/asylum
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#464849"
+	AIRLOCK_COLORS("#BBBBBB", "#464849")
 
 /obj/machinery/door/airlock/bathroom
 	STATION_AIRLOCK
-	color = "#ebebeb"
-	airlock_paint = "#ebebeb"
+	AIRLOCK_COLORS("#ebebeb", null)
 
 /obj/machinery/door/airlock/hydroponics
 	STATION_AIRLOCK
-	color = "#559958"
-	airlock_paint = "#559958"
-	stripe_paint = "#0650A4"
+	AIRLOCK_COLORS("#559958", "#0650A4")
 
 /obj/machinery/door/airlock/maintenance
 	STATION_AIRLOCK
@@ -202,102 +173,77 @@
 
 /obj/machinery/door/airlock/mining
 	STATION_AIRLOCK
-	color = "#967032"
-	airlock_paint = "#967032"
-	stripe_paint = "#5F350B"
+	AIRLOCK_COLORS("#967032", "#5F350B")
 
 /obj/machinery/door/airlock/atmos
 	STATION_AIRLOCK
-	color = "#A28226"
-	airlock_paint = "#A28226"
-	stripe_paint = "#469085"
+	AIRLOCK_COLORS("#A28226", "#469085")
 
 /obj/machinery/door/airlock/research
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#563758"
+	AIRLOCK_COLORS("#BBBBBB", "#563758")
 
 /obj/machinery/door/airlock/freezer
 	HIGHSEC_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
+	AIRLOCK_COLORS("#BBBBBB", null)
 
 /obj/machinery/door/airlock/science
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#6633CC"
+	AIRLOCK_COLORS("#BBBBBB", "#6633CC")
 
 /obj/machinery/door/airlock/virology
 	STATION_AIRLOCK
-	color = "#BBBBBB"
-	airlock_paint = "#BBBBBB"
-	stripe_paint = "#2a7a25"
+	AIRLOCK_COLORS("#BBBBBB", "#2a7a25")
 
 /obj/machinery/door/airlock/corporate
 	STATION_AIRLOCK
-	color = "#a1a1a1"
-	airlock_paint = "#a1a1a1"
-	stripe_paint = "#235d81"
+	AIRLOCK_COLORS("#a1a1a1", "#235d81")
 
 /obj/machinery/door/airlock/service
 	STATION_AIRLOCK
-	color = "#559958"
-	airlock_paint = "#559958"
-	stripe_paint = "#3b3b3b"
+	AIRLOCK_COLORS("#559958", "#3b3b3b")
 
 // Mineral airlocks
 
 /obj/machinery/door/airlock/gold
 	MATERIAL_AIRLOCK
-	color = "#9F891F"
-	airlock_paint = "#9F891F"
+	AIRLOCK_COLORS("#9F891F", null)
 
 /obj/machinery/door/airlock/silver
 	MATERIAL_AIRLOCK
-	color = "#C9C9C9"
-	airlock_paint = "#C9C9C9"
+	AIRLOCK_COLORS("#C9C9C9", null)
 
 /obj/machinery/door/airlock/diamond
 	MATERIAL_AIRLOCK
-	color = "#4AB4B4"
-	airlock_paint = "#4AB4B4"
+	AIRLOCK_COLORS("#4AB4B4", null)
 
 /obj/machinery/door/airlock/uranium
 	MATERIAL_AIRLOCK
-	color = "#174207"
-	airlock_paint = "#174207"
+	AIRLOCK_COLORS("#174207", null)
 
 /obj/machinery/door/airlock/plasma
 	MATERIAL_AIRLOCK
-	color = "#65217B"
-	airlock_paint = "#65217B"
+	AIRLOCK_COLORS("#65217B", null)
 
 /obj/machinery/door/airlock/bananium
 	MATERIAL_AIRLOCK
-	color = "#FFFF00"
-	airlock_paint = "#FFFF00"
+	AIRLOCK_COLORS("#FFFF00", null)
 
 /obj/machinery/door/airlock/sandstone
 	MATERIAL_AIRLOCK
-	color = "#C09A72"
-	airlock_paint = "#C09A72"
+	AIRLOCK_COLORS("#C09A72", null)
 
 /obj/machinery/door/airlock/wood
 	MATERIAL_AIRLOCK
-	color = "#805F44"
-	airlock_paint = "#805F44"
+	AIRLOCK_COLORS("#805F44", null)
 
 /obj/machinery/door/airlock/titanium
 	MATERIAL_AIRLOCK
-	color = "#b3c0c7"
-	airlock_paint = "#b3c0c7"
+	AIRLOCK_COLORS("#b3c0c7", null)
 
 /obj/machinery/door/airlock/bronze
 	MATERIAL_AIRLOCK
-	color = "#9c5f05"
-	airlock_paint = "#9c5f05"
+	AIRLOCK_COLORS("#9c5f05", null)
 
 // Station 2
 
@@ -310,8 +256,7 @@
 
 /obj/machinery/door/airlock/external
 	EXTERNAL_AIRLOCK
-	color = "#9F2828"
-	airlock_paint = "#9F2828"
+	AIRLOCK_COLORS("#9F2828", null)
 	door_align_type = null
 
 /*
@@ -359,14 +304,11 @@
 
 /obj/machinery/door/airlock/shuttle
 	EXTERNAL_AIRLOCK
-	color = "#b3c0c7"
-	airlock_paint = "#b3c0c7"
+	AIRLOCK_COLORS("#b3c0c7", null)
 
 /obj/machinery/door/airlock/abductor
 	EXTERNAL_AIRLOCK
-	color = "#333333"
-	airlock_paint = "#333333"
-	stripe_paint = "#6633CC"
+	AIRLOCK_COLORS("#333333", "#6633CC")
 
 /*
 	Cult Airlocks
@@ -374,9 +316,7 @@
 
 /obj/machinery/door/airlock/cult
 	STATION_AIRLOCK
-	color = "#333333"
-	airlock_paint = "#333333"
-	stripe_paint = "#610000"
+	AIRLOCK_COLORS("#333333", "#610000")
 
 /*
 	Multi Tile
@@ -391,3 +331,14 @@
 /obj/machinery/door/airlock/multi_tile/metal
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
+
+#undef AIRLOCK_COLORS
+#undef CENTCOM_AIRLOCK
+#undef EXTERNAL_AIRLOCK
+#undef HATCH_AIRLOCK
+#undef HIGHSEC_AIRLOCK
+#undef MATERIAL_AIRLOCK
+#undef STATION_AIRLOCK
+#undef STATION2_AIRLOCK
+#undef VAULT_AIRLOCK
+#undef MULTITILE_AIRLOCK
