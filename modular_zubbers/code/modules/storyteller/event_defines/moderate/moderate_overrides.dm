@@ -54,4 +54,3 @@
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
 	weight = 25
 	earliest_start = 45 MINUTES
-	min_players = 45
