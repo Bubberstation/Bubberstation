@@ -95,11 +95,17 @@
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
 
+/obj/machinery/door/airlock/hop/glass
+	glass = TRUE
+
 /obj/machinery/door/airlock/hos
 	STATION_AIRLOCK
 	color = "#334E6D"
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
+
+/obj/machinery/door/airlock/hos/glass
+	glass = TRUE
 
 /obj/machinery/door/airlock/ce
 	STATION_AIRLOCK
@@ -107,11 +113,17 @@
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
 
+/obj/machinery/door/airlock/ce/glass
+	glass = TRUE
+
 /obj/machinery/door/airlock/rd
 	STATION_AIRLOCK
 	color = "#334E6D"
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
+
+/obj/machinery/door/airlock/rd/glass
+	glass = TRUE
 
 /obj/machinery/door/airlock/qm
 	STATION_AIRLOCK
@@ -119,11 +131,17 @@
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
 
+/obj/machinery/door/airlock/qm/glass
+	glass = TRUE
+
 /obj/machinery/door/airlock/cmo
 	STATION_AIRLOCK
 	color = "#334E6D"
 	airlock_paint = "#334E6D"
 	stripe_paint = "#43769D"
+
+/obj/machinery/door/airlock/cmo/glass
+	glass = TRUE
 
 /obj/machinery/door/airlock/security
 	STATION_AIRLOCK
