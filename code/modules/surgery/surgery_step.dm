@@ -137,7 +137,6 @@
 
 	speed_mod /= (get_location_modifier(target) * (1 + surgery.speed_modifier) * implement_speed_mod) * target.mob_surgery_speed_mod
 	var/modded_time = time * speed_mod
-	user.balloon_alert(user, "[round(1 / speed_mod, 0.1)]x speed") // BUBBER EDIT ADDITION - Show surgery speed to viewers
 
 
 	fail_prob = min(max(0, modded_time - (time * SURGERY_SLOWDOWN_CAP_MULTIPLIER)),99)//if modded_time > time * modifier, then fail_prob = modded_time - time*modifier. starts at 0, caps at 99
@@ -152,6 +151,7 @@
 
 		if((prob(100-fail_prob) || (iscyborg(user) && !silicons_obey_prob)) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
+				user.balloon_alert(user, "[round(1 / speed_mod, 0.1)]x speed") // BUBBER EDIT ADDITION - Show surgery speed to viewers
 				update_surgery_mood(target, SURGERY_STATE_SUCCESS)
 				play_success_sound(user, target, target_zone, tool, surgery)
 				advance = TRUE
