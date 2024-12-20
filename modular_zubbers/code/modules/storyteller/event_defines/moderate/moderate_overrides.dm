@@ -49,3 +49,9 @@
 
 /datum/round_event_control/obsessed
 	tags = list(TAG_TARGETED)
+
+/datum/round_event_control/santa
+	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
+	weight = 25
+	earliest_start = 45 MINUTES
+	min_players = 45

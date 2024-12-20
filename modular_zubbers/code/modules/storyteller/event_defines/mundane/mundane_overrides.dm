@@ -111,7 +111,3 @@
 	weight = 0
 	max_occurrences = 0
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE, TAG_SPOOKY)
-
-/datum/round_event_control/santa
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
