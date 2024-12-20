@@ -856,6 +856,8 @@
 	if(potential_patient.body_position == LYING_DOWN && potential_patient.loc == loc)
 		patient = potential_patient
 		chill_out(patient) // SKYRAT EDIT - Operation Table Numbing
+		computer.muted = FALSE // BUBBER EDIT
+		addtimer(CALLBACK(src, .proc/ekg, patient), 2 SECONDS) // BUBBER EDIT ADDITION: EKG SOUNDS
 		return
 
 	if(!isnull(patient)) // SKYRAT EDIT - Operation Table Numbing
