@@ -336,6 +336,15 @@
 /obj/machinery/door/airlock/survival_pod
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/survival/overlays.dmi'
 
+// Tram Airlocks
+/obj/machinery/door/airlock/tram
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/tram/tram.dmi'
+	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/tram/tram_overlays.dmi'
+	glass_fill_overlays = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/tram/tram_overlays.dmi'
+
+/obj/machinery/door/airlock/tram/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_angle, l_dir, l_height, l_on)
+	return
+
 #undef AIRLOCK_COLORS
 #undef CENTCOM_AIRLOCK
 #undef EXTERNAL_AIRLOCK
