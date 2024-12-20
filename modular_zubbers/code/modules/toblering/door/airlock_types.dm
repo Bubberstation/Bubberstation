@@ -64,6 +64,14 @@
 	glass_fill_overlays = 'modular_zubbers/icons/obj/doors/airlocks/station/glass_overlays.dmi'; \
 	note_overlay_file = 'modular_zubbers/icons/obj/doors/airlocks/station/note_overlays.dmi';
 
+#define MULTITILE_AIRLOCK \
+	icon = 'modular_zubbers/icons/obj/doors/airlocks/glass_large/glass_large.dmi'; \
+	overlays_file = 'modular_zubbers/icons/obj/doors/airlocks/glass_large/overlays.dmi'; \
+	stripe_overlays = null; \
+	color_overlays = null; \
+	glass_fill_overlays = 'modular_zubbers/icons/obj/doors/airlocks/glass_large/overlays.dmi'; \
+	note_overlay_file = 'modular_zubbers/icons/obj/doors/airlocks/station/note_overlays.dmi';
+
 // I'm not putting this into the main airlocks file. Who the fuck at TG thought that was a good idea?
 
 /obj/machinery/door/airlock/command
@@ -357,8 +365,10 @@
 	Fuck, I hate these.
 */
 /obj/machinery/door/airlock/multi_tile
+	MULTITILE_AIRLOCK
 
-/obj/machinery/door/airlock/multi_tile/glass
+/obj/machinery/door/airlock/multi_tile/glass // The normal TG one IS glass? What the fuck are you doing skyrat? Yes, this causes mapcompile issues if I remove this type.
+	MULTITILE_AIRLOCK
 
 /obj/machinery/door/airlock/multi_tile/metal
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
