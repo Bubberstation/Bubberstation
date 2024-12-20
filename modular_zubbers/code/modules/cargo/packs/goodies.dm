@@ -53,6 +53,14 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 6
 
+/datum/supply_pack/goody/sakhno_derringer_single
+	name = "Sakhno 'Yinbi' Derringer Single Pack"
+	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
+	contains = list(/obj/item/gun/ballistic/derringer = 1,
+	/obj/item/ammo_box/c310_cargo_box = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 

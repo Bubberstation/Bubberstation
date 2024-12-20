@@ -28,7 +28,7 @@
 		return
 	if(dom.stat == DEAD)
 		return
-	examine_list += span_purple("You can't look at <b>[dom]</b> for long for long before flustering away")
+	examine_list += span_purple("You can't look at <b>[dom]</b> for long before flustering away")
 
 	if(TIMER_COOLDOWN_FINISHED(dom, DOMINANT_COOLDOWN_EXAMINE))
 		to_chat(dom, span_purple("<b>[source]</b> tries to look at you but immediately looks away with a red face..."))

@@ -269,6 +269,10 @@
 	},
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+"aW" = (
+/obj/structure/aquarium/bioelec_gen/prefilled,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "bb" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
@@ -944,7 +948,8 @@
 	pixel_y = -32;
 	all_products_free = 1;
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	density = 0
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -1365,7 +1370,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/closet/crate/forging_items,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ed" = (
@@ -1681,6 +1685,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "fi" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/forging/hammer,
+/obj/item/forging/tongs,
+/obj/item/forging/billow,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "fk" = (
@@ -2176,12 +2183,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "gI" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/spawner/random/mod/maint,
-/obj/effect/spawner/random/mod/maint,
-/obj/effect/spawner/random/mod/maint,
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/pai_card,
 /obj/machinery/ecto_sniffer,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
@@ -2415,8 +2418,6 @@
 	},
 /obj/structure/cable,
 /obj/item/mmi/syndie,
-/obj/item/mmi/posibrain/sphere,
-/obj/item/mmi/posibrain/sphere,
 /obj/item/radio/intercom/directional/east{
 	name = "two-way prisoner intercom";
 	freerange = 1;
@@ -2482,11 +2483,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
-"hA" = (
-/obj/machinery/light/cold/directional/north,
-/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "hC" = (
@@ -4625,6 +4621,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
+/obj/machinery/light/cold/directional/north,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "nY" = (
@@ -4652,18 +4649,6 @@
 "od" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
-"oe" = (
-/obj/structure/cable,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/storage/fish_case/syndicate/persistence,
-/obj/item/fish_feed,
-/obj/structure/closet/crate/secure/syndicate/arc{
-	name = "Fish storage"
-	},
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "of" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -6112,6 +6097,10 @@
 /obj/item/mod/module/jump_jet,
 /obj/item/mod/module/jump_jet,
 /obj/structure/closet/crate/robust,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
+/obj/effect/spawner/random/mod/maint,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "sm" = (
@@ -6305,7 +6294,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
-/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "sP" = (
@@ -6933,6 +6921,7 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/structure/cable,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
 "uC" = (
@@ -7173,11 +7162,6 @@
 	name = "Robotics Airlock";
 	req_access = list("syndicate")
 	},
-/obj/item/mod/module/jump_jet,
-/obj/item/mod/module/jump_jet,
-/obj/item/mod/module/jump_jet,
-/obj/item/mod/module/jump_jet,
-/obj/item/mod/module/jump_jet,
 /obj/structure/closet/crate/secure/syndicate/self{
 	name = "S.E.L.F. access override crate"
 	},
@@ -8433,7 +8417,6 @@
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "yU" = (
-/obj/machinery/light/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
@@ -9976,11 +9959,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
-"Dy" = (
-/obj/structure/cable,
-/obj/structure/aquarium/bioelec_gen/prefilled,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Dz" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/med)
@@ -10429,6 +10407,7 @@
 	default_raw_text = "<h1>SSV Dauntless Cargo Guide</h1><p>The SSV Dauntless has made a corporate deal with Gorlex Industries to test out their new 1100mm rail cannon reverse engineered off the 1500mm delivery system that Nanotrasen utilizes.</p><p>Please note, if at all the base has fallen into the wrong hands, it is required that these boards are to be destroyed as it contains our cryptography private seeds.</p><p>All cargo goods are logged and maintained, any misuse of funds will be traced back to agent, and will be reprimanded.</p><p></p><ul><li>Express Supply Console Computer</li>Install into a computer frame and print a beacon. Wrench the beacon down in a clear area (and ideally away from explosive goods).<li>Ancient Powerator</li>This is used to generate credits for orders. Ideally used to consume excess power from an upgraded turbine.<li>Bounty Pad</li>A quantum pad that teleports any materials of value into our black market vendors. Credits sold is deposited instantaneously into the SSV Dauntless account.<li>Bounty Control Terminal</li>This is used to activate the bounty pad to sell goods. Install into a computer frame and link the bounty pad using a multi-tool.</ul><p>Please note: Physical money can be directly sent to our black market vendors to be exchanged into credits.</p>";
 	name = "paper- 'SSV Dauntless Cargo Guide'"
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "EK" = (
@@ -10821,21 +10800,10 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"FL" = (
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "FN" = (
 /obj/item/storage/backpack/satchel/flat,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
-"FP" = (
-/obj/machinery/light/cold/directional/north,
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "FQ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -11811,6 +11779,7 @@
 "IT" = (
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "IU" = (
@@ -11918,6 +11887,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
 "Jg" = (
@@ -12170,7 +12142,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/statuebust/hippocratic/evil,
 /obj/machinery/digital_clock/directional/north,
-/obj/machinery/light/directional/north,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
 "JN" = (
@@ -12229,7 +12200,8 @@
 "JX" = (
 /obj/machinery/vending/wardrobe/chap_wardrobe/unholy{
 	all_products_free = 1;
-	pixel_x = -28
+	pixel_x = -28;
+	density = 0
 	},
 /turf/open/floor/carpet/donk,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
@@ -12619,7 +12591,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
-/obj/machinery/light/directional/north,
 /obj/structure/cable,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
@@ -14164,7 +14135,6 @@
 "Qk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ql" = (
@@ -14436,6 +14406,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/mmi/posibrain/sphere,
+/obj/item/mmi/posibrain/sphere,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Rc" = (
@@ -14866,6 +14839,7 @@
 /obj/structure/cable,
 /obj/structure/sign/warning/electric_shock/directional/south,
 /obj/machinery/duct,
+/obj/machinery/light/cold/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Sx" = (
@@ -15718,6 +15692,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
+"Vg" = (
+/obj/structure/cable,
+/obj/structure/closet/crate/secure/syndicate/arc{
+	name = "Fish storage"
+	},
+/obj/item/fish_feed,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/obj/item/storage/fish_case/syndicate/persistence,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Vh" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
@@ -15755,7 +15741,6 @@
 /obj/machinery/cell_charger_multi,
 /obj/machinery/light/directional/west,
 /obj/machinery/firealarm/directional/west,
-/obj/item/research_paper,
 /obj/item/experi_scanner,
 /obj/structure/sign/poster/official/science/directional/south,
 /turf/open/floor/iron/smooth,
@@ -16753,10 +16738,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"Yk" = (
-/obj/machinery/light/cold/directional/north,
-/turf/closed/wall/r_wall/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Yl" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/mapping_helpers/apc/syndicate_access,
@@ -17208,17 +17189,11 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"ZG" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ZI" = (
 /obj/structure/closet/crate/secure/freezer/interdyne/blood,
 /obj/machinery/biogenerator/medstation/directional/north,
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "ZK" = (
@@ -18267,9 +18242,9 @@ Uv
 or
 gI
 Vm
-gV
-gV
-gV
+Mj
+Vg
+Mj
 Rr
 gV
 aT
@@ -18340,7 +18315,7 @@ EK
 gZ
 Vm
 IT
-QD
+aW
 gV
 Rr
 gV
@@ -18405,15 +18380,15 @@ Vd
 iw
 XD
 CF
-Yk
+BT
 xf
 Qy
 EK
 vn
 Vm
-hA
+Mj
 gV
-gV
+Mj
 hF
 gV
 aT
@@ -18555,9 +18530,9 @@ ws
 Yw
 hq
 Vm
-Mj
-oe
-Mj
+gV
+gV
+gV
 tV
 GH
 cZ
@@ -18627,8 +18602,8 @@ xM
 lK
 sa
 Vm
-FL
-Dy
+gV
+gV
 gV
 ZR
 Ic
@@ -18699,7 +18674,7 @@ rb
 Vz
 Gv
 Vm
-FP
+gV
 gV
 Qk
 hm
@@ -19982,7 +19957,7 @@ YO
 YF
 jB
 Qe
-lW
+TT
 sh
 lW
 sh
@@ -20543,7 +20518,7 @@ Io
 OG
 Nz
 Nz
-ZG
+Nz
 Rx
 VC
 zd
