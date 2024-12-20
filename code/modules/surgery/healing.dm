@@ -116,10 +116,12 @@
 		user_msg += " as best as you can while [target.p_they()] [english_list(status_msg)]"
 		target_msg += " as best as [user.p_they()] can while [target.p_they()] [english_list(status_msg)]"
 	feedback_value = brute_healed + burn_healed
-	// BUBBER EDIT ADDITION END
+
 	target.heal_bodypart_damage(brute_healed,burn_healed)
 
-	user_msg += get_progress(user, target, brute_healed, burn_healed)
+	if(!get_feedback_message(user, target))
+		user_msg += get_progress(user, target, brute_healed, burn_healed)
+	// BUBBER EDIT ADDITION END
 
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user) && !dead_patient) //Morbid folk don't care about tending the dead as much as tending the living
 		var/mob/living/carbon/human/morbid_weirdo = user
@@ -128,7 +130,7 @@
 	display_results(
 		user,
 		target,
-		get_feedback_message(user, target, 1) ? null : span_notice("[user_msg]."), // BUBBER EDIT CHANGE - Original: span_notice("[user_msg].")
+		span_notice("[user_msg]."),
 		span_notice("[target_msg]."),
 		span_notice("[target_msg]."),
 	)

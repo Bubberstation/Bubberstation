@@ -40,10 +40,10 @@
 	burn_multiplier = 0.2
 	time = 1.5 SECONDS
 
-/datum/surgery_step/proc/get_feedback_message(mob/living/user, mob/living/target, speed_mod)
+/datum/surgery_step/proc/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	return
 
-/datum/surgery_step/heal/brute/get_feedback_message(mob/living/user, mob/living/target, speed_mod)
+/datum/surgery_step/heal/brute/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	var/show_message = FALSE
 	if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD))
 		show_message = TRUE
@@ -55,7 +55,7 @@
 	if(show_message)
 		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
-/datum/surgery_step/heal/burn/get_feedback_message(mob/living/user, mob/living/target, speed_mod)
+/datum/surgery_step/heal/burn/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	var/show_message = FALSE
 	if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD))
 		show_message = TRUE
@@ -67,7 +67,7 @@
 	if(show_message)
 		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
-/datum/surgery_step/heal/combo/get_feedback_message(mob/living/user, mob/living/target, speed_mod)
+/datum/surgery_step/heal/combo/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	var/show_message = FALSE
 	if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD))
 		show_message = TRUE
