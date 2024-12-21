@@ -119,7 +119,7 @@
 
 /obj/item/canvas/drawingtablet/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/dtselectcolor))
-		currentcolor = input(user, "", "Choose Color", currentcolor) as color|null
+		currentcolor = tgui_color_picker(usr, "", "Choose Color", currentcolor) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	else if(istype(action, /datum/action/item_action/dtcolormenu))
 		var/list/selects = colors.Copy()
 		selects["Save"] = "Save"
