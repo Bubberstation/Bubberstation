@@ -55,6 +55,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/sexuality = ""
 	*/
 
+/* SPLURT EDIT REMOVAL - Interactions - Refractored in modular
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE
@@ -86,6 +87,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			else
 				CRASH("Unimplemented interaction requirement '[requirement]'")
 	return TRUE
+*/ //SPLURT EDIT END
 
 /datum/interaction/proc/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!allow_act(user, target))
