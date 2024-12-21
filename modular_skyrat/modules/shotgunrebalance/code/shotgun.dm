@@ -153,7 +153,7 @@
 
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
-	desc = "A 12 gauge flechette shell that specializes in ripping armoured targets apart."
+	desc = "A 12 gauge flechette shell that specializes in ripping unarmoured targets apart. These are exceptionally weak against armored targets."
 	icon_state = "fshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
 	pellets = 5
