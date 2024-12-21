@@ -82,11 +82,13 @@ GLOBAL_VAR(round_default_lawset)
 	var/list/specified_law_ids = CONFIG_GET(keyed_list/specified_laws) // BUBBER EDIT
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
-		switch(CONFIG_GET(number/default_laws)) // BUBBER EDIT START
+	// BUBBER EDIT START
+		switch(CONFIG_GET(number/default_laws))
 			if(CONFIG_ASIMOV)
 				law_weights -= AI_LAWS_ASIMOV
 			if(CONFIG_CUSTOM)
-				law_weights -= specified_law_ids // BUBBER EDIT END
+				law_weights -= specified_law_ids
+	// BUBBER EDIT END
 	while(!lawtype && law_weights.len)
 		var/possible_id = pick_weight(law_weights)
 		lawtype = lawid_to_type(possible_id)
