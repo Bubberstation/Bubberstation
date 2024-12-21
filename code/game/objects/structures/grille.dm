@@ -47,9 +47,11 @@
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & USES_SMOOTHING))
 		QUEUE_SMOOTH(src)
 
+/* BUBBER EDIT REMOVAL: Toblering: Handled in the toblering file.
 /obj/structure/grille/update_icon_state()
 	icon_state = "[base_icon_state][((atom_integrity / max_integrity) <= 0.5) ? "50_[rand(0, 3)]" : null]"
 	return ..()
+*/// BUBBER EDIT END
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()
