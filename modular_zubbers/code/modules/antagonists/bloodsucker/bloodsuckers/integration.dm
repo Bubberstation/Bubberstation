@@ -1,8 +1,9 @@
-// Prevents Bloodsuckers from getting affected by blood
-/mob/living/carbon/human/handle_blood(seconds_per_tick, times_fired)
-	if(mind && IS_BLOODSUCKER(src))
-		return FALSE
-	return ..()
+
+// this suggests that your heart is beating, when it is not
+/mob/living/carbon/bleed_warn(bleed_amt = 0, forced = FALSE)
+	if(mind && IS_BLOODSUCKER(src) && !HAS_TRAIT(src, TRAIT_MASQUERADE))
+		return
+	. = ..()
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
@@ -40,7 +41,7 @@
 		return 0
 	return ..()
 
-// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
+// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /// todo move this to it's own trait or something
 /mob/living/carbon/get_traumas()
 	if(!mind)

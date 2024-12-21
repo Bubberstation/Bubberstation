@@ -29,8 +29,8 @@
 		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled, owner_datum.GetRank())
 		ogler.adjust_disgust(owner_datum.GetRank() * 10)
 	// show that they are dangerous nosferatu, as if you're gazing upon them with fear, without mentioning the clan name/antagonist name, describe their appearance
-	examine_text += span_danger("[ogled.p_They()] look like a pale, grotesque hunchback, with a mouth full of jagged yellowy teeth, and breath that reeks of fresh blood. You feel both afraid and disgusted as you gaze upon them.")
-	examine_text += span_userdanger("[ogled.p_They()] are clearly a BLOODSUCKER!")
+	examine_text += span_danger("[ogled.p_They()] look[ogled.p_s()] like a pale, grotesque hunchback, with a mouth full of jagged yellowy teeth, and breath that reeks of fresh blood. You feel both afraid and disgusted as you gaze upon [ogled.p_them()].")
+	examine_text += span_userdanger("[ogled.p_They()] [ogled.p_are()] clearly a BLOODSUCKER!")
 
 /datum/bloodsucker_clan/nosferatu/Destroy(force)
 	var/datum/action/cooldown/bloodsucker/feed/suck = locate() in bloodsuckerdatum.powers
