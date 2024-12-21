@@ -15,7 +15,7 @@
 
 	wound_bonus = -35
 	bare_wound_bonus = -60
-	stamina_falloff_tile = 0.3
+	stamina_falloff_tile = -0.3
 
 /obj/item/ammo_casing/c460rowland/dart
 	name = ".460 Rowland Armour Piercing bullet casing"
