@@ -15,3 +15,14 @@
 	fill_icon = 'modular_zubbers/icons/obj/medical/reagent_fillings.dmi'
 	fill_icon_state = "ornate"
 	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
+
+/obj/item/reagent_containers/cup/glass/bottle/scrumpy
+	name = "\improper Bottle O' Scrumpy"
+	desc = "Me Bottle O' Scrumpy"
+	icon = 'modular_zubbers/icons/obj/drinks/bottles.dmi'
+	icon_state = "scrumpy"
+	volume = 100
+	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
+
+/obj/item/reagent_containers/cup/glass/bottle/scrumpy/filled
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
