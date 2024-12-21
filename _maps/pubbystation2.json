@@ -1,0 +1,31 @@
+{
+	"version": 1,
+	"map_name": "Pubby Station 2",
+	"map_path": "map_files/PubbyStation2",
+	"map_file": "PubbyStation2.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"emergency": "emergency_pubby",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_pubby",
+		"cargo": "cargo_pubby"
+	},
+	"traits": [
+		{
+			"Gravity": true,
+			"Baseturf": "/turf/open/misc/dirt/jungle",
+			"No Parallax": true,
+			"Weather_Acid_Rain": true
+		}
+	],
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/bar/atrium"]
+		},
+		"Captain": {
+			"special_charter": "planet"
+		}
+	}
+}
