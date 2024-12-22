@@ -107,6 +107,25 @@
 	)
 	var/static/biotype = MOB_VAMPIRIC
 
+	var/list/body_signals = list(
+		COMSIG_ATOM_EXAMINE = PROC_REF(on_examine),
+		COMSIG_LIVING_LIFE = PROC_REF(LifeTick),
+		COMSIG_LIVING_DEATH = PROC_REF(on_death),
+		COMSIG_SPECIES_GAIN = PROC_REF(on_species_gain),
+		COMSIG_QDELETING = PROC_REF(on_owner_deletion),
+		COMSIG_ENTER_COFFIN = PROC_REF(on_enter_coffin),
+		COMSIG_MOB_STAKED = PROC_REF(on_staked),
+		COMSIG_CARBON_LOSE_ORGAN = PROC_REF(on_organ_removal),
+		COMSIG_HUMAN_ON_HANDLE_BLOOD = PROC_REF(HandleBlood),
+	)
+	var/list/sol_signals = list(
+		COMSIG_SOL_RANKUP_BLOODSUCKERS = PROC_REF(sol_rank_up),
+		COMSIG_SOL_NEAR_START = PROC_REF(sol_near_start),
+		COMSIG_SOL_END = PROC_REF(on_sol_end),
+		COMSIG_SOL_RISE_TICK = PROC_REF(handle_sol),
+		COMSIG_SOL_WARNING_GIVEN = PROC_REF(give_warning),
+	)
+
 /**
  * Apply innate effects is everything given to the mob
  * When a body is tranferred, this is called on the new mob
@@ -115,18 +134,11 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
-	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
-	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
-	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_owner_deletion))
-	RegisterSignal(current_mob, COMSIG_ENTER_COFFIN, PROC_REF(on_enter_coffin))
-	RegisterSignal(current_mob, COMSIG_MOB_STAKED, PROC_REF(on_staked))
-	RegisterSignal(current_mob, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(on_organ_removal))
-	talking_head()
+	register_body_signals(current_mob)
+	talking_head(current_mob)
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
-	remove_invalid_quirks()
+	remove_invalid_quirks(current_mob)
 
 	if(current_mob.hud_used)
 		on_hud_created()
@@ -148,7 +160,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	unregister_body_signals()
+	unregister_body_signals(current_mob)
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -157,7 +169,7 @@
 		QDEL_NULL(blood_display)
 		QDEL_NULL(vamprank_display)
 
-	SSsunlight.remove_sun_sufferer(owner.current) //check if sunlight should end
+	SSsunlight.remove_sun_sufferer(current_mob) //check if sunlight should end
 	if(iscarbon(current_mob))
 		current_mob?.dna.species.on_bloodsucker_loss(current_mob)
 	if(current_mob.client)
@@ -214,11 +226,7 @@
 /datum/antagonist/bloodsucker/on_gain()
 	if(!owner?.current)
 		return ..()
-	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up))
-	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(sol_near_start))
-	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
-	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
-	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
+	register_sol_signals()
 	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as roundstart Bloodsuckers.
 		bloodsucker_level_unspent = 0
 	else
@@ -493,7 +501,7 @@
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
 	user.update_sight()
 
-/datum/antagonist/bloodsucker/proc/remove_invalid_quirks()
+/datum/antagonist/bloodsucker/proc/remove_invalid_quirks(mob/target)
 	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
 	if(!bad_quirk)
 		return

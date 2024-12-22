@@ -608,3 +608,120 @@
   - rscdel: Replaces the NTC's captain fountain pen with a regular fountain pen
   thegrb93:
   - bugfix: Synths vomit nanites when flipping too many times
+2024-11-26:
+  KazooBard:
+  - rscadd: "Ouija boards can be now ordered from cargo (S\xE9ance kit)"
+  LT3:
+  - bugfix: Health analyzers now let you know blessed lobotomy exists
+  - image: A more festive supermatter for the holidays
+  ReturnToZender:
+  - rscdel: Removes the Lanca and Sol LMG completely from cargo orders, leaves the
+      Sakhno to the mosin order
+  - rscdel: Re-removes the ion carbine from imports (it's in the goodies tab)
+  - rscdel: Removes extra ammunition types for no longer used weapons from import
+      order
+  - rscadd: Removed company imports added to goodies and security orders
+  - balance: adjusts prices on some company imports to not be essentially free, such
+      as medical supplies and armor
+  StrangeWeirdKitten:
+  - rscadd: Species name shows up in bold on the health analyzer.
+  - rscdel: True species name will no longer show up when examining someone.
+  nevimer:
+  - refactor: public logging uses regex for cases of mechanics now.
+  xPokee:
+  - bugfix: fixed reskinning medical items so that you can now back out of reskinning
+      them
+  - image: added a korve sprite for the combitool
+2024-11-27:
+  ChromeFoxxity:
+  - rscadd: Gives the chef All-American Diner uniforms & alt title.
+  Erol509:
+  - rscadd: Added white sec beret to their clothing vendor.
+  LT3:
+  - rscadd: Light and dark medical jackets now available in the MediDrobe
+  - rscadd: Dark medical jacket no longer donator ckey locked
+  - qol: Light medical jacket can hold medical gear in the suit slot, same as medical
+      winter jacket
+  - bugfix: Freerunners are immune to flip and spin sickness
+  OrbisAnima:
+  - balance: '''Forged'' Bokken, the wooden sword that can be made on the workbench
+      with no anvil or fuel, its now flammable, doesnt affect mobs, and does entirely
+      stamina damage. It has 40 AP, in one hand it does 17 damage and has a block
+      chance of 20, while wielded does 25.5 damage and has a 40 block chance. It no
+      longer blocks proyectiles, it behaves like any other sword in the game albeit
+      with a high block chance.'
+  SmArtKar:
+  - image: Carp infusion now changes how your skin looks to reflect your fishy nature
+2024-11-28:
+  Bangle:
+  - rscadd: Added new mechanics or gameplay changes - added Shaytan SMG conversion
+      kit to Cargo. Added the BNGL Collared Vest to MultiSec - it has identical stats
+      and I don't wanna lock it behind a donowall.
+  - rscadd: Added more things - added Shaytan SMG conversion kit
+  - image: added/modified/removed some icons or images - changed a bunch of the sprites,
+      including my own Collared Vest
+  - spellcheck: fixed a few typos - changed descriptions and renamed my Collared Vest.
+      I think it's the BNGL Collared Vest now.
+  - code_imp: changed some code - see above.
+  Cerami:
+  - rscadd: 'Adds a new negative quirk: permanent limp'
+  ChromeFoxxity:
+  - rscadd: Adds all Prisoner Uniforms to Loadout.
+  PhazeJump:
+  - rscadd: Adds the CentCom Synth Fox Plushie
+  okithedoki:
+  - rscadd: Akula now have a proper description and lore.
+  projectkepler-ru:
+  - bugfix: shotgun not access locked
+  - spellcheck: Kayian M1911 updated description
+  xPokee:
+  - qol: all clothing can now be renamed with pens
+2024-11-29:
+  CydiaButt13:
+  - rscadd: 'REAGENT_SYNTHETIC and REAGENT_ORGANIC to all horny chems, allowing synthetic
+      carbons to use them
+
+      :cl:'
+  LT3:
+  - bugfix: The select species menu is back
+  Majkl-J:
+  - admin: New storyteller admin panel
+  - admin: More logging to the storyteller panel actions and to it spawning things
+  shayoki:
+  - map: Box Station's Brig layout has been revamped to support improvements for the
+      department's Interrogation Room, Education Chamber, Holding Cells, Evidence
+      Storage, Lawyer's Office, Detective's Office. The halls leading to the Brig
+      has also been slightly expanded to accommodate for the repositioning of the
+      Lawyer and Detective's Offices.
+  - map: Box Station's Dorms has been expanded.
+  - map: Box Station's Fore Starboard Maintenance has been improved to compensate
+      for Dorm's expansion.
+  - map: Box Station's Cargo now has a Warehouse. And Bitrunning has an exit to Aft
+      Port Maintenance.
+  - map: Box Station's mailing disposals properly work for the Lawyer and Detective
+      office.
+  - map: Box Station's MULE delivery drop-off is now at Medbay's Storage. The old
+      spot was replaced with a west exit.
+  - map: Box Station's Medbay now has a Synth Chute system at the Morgue.
+  - map: Box Station's Science now has a Synth Retrieval system at Robotics.
+  - map: Box Station's pool has been replaced with a sauna room at Dorms.
+  - map: Box Station's Bridge has had their consoles re-ordered.
+  - map: Box Station's EVA has been divided into two sections.
+  - map: Box Station's Kitchen now has a table under its food processor. You are welcome
+      waterpig.
+  - map: Box Station's Departures has had its directional glass windows removed and
+      replaced with hedges.
+  - map: Box Station's fax machine inside of the Unisex restrooms in Service has been
+      removed.
+  - bugfix: Places a missing cable leading to the drone bay on Box Station
+2024-11-30:
+  Majkl-J:
+  - bugfix: fixed rations permanently setting your income to 0.5 instead of decreasing
+      the modifier
+  - bugfix: fixed life savings quirk not doing anything
+  - code_imp: Improved the way paycheck bound quirks handle their code, making it
+      run faster
+  fludd12:
+  - balance: Cigarettes only have a heat of 410K. Joints will no longer boil out their
+      own THC or turn space drugs to fentanyl.
+  - bugfix: Grinding dried cannabis now makes hash as originally intended.
