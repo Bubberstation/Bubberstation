@@ -13,7 +13,7 @@
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
 		TRAIT_USES_SKINTONES,
-		TRAIT_NO_MIRROR_REFLECTION
+		TRAIT_NO_MIRROR_REFLECTION,
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutant_bodyparts = list("wings" = "None")
