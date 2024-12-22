@@ -1,4 +1,4 @@
-GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
+GLOBAL_VAR_INIT(blooper_allowed, FALSE) // For administrators
 
 // we let borgs have some bark too
 /mob/living/silicon/Login()
