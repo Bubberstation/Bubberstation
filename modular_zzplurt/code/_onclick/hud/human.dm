@@ -70,6 +70,9 @@
 	extra_inventory += inv_box
 	//
 
+	thirst = new /atom/movable/screen/thirst(null, src) // SPLURT ADDITION - THIRST
+	infodisplay += thirst // SPLURT ADDITION - THIRST
+
 	for(var/atom/movable/screen/inventory/inv in extra_inventory)
 		if(inv.slot_id)
 			inv_slots.Add(inv) // Bit shift stuffs don't work for this situation

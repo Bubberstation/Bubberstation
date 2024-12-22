@@ -1,6 +1,10 @@
 /datum/hud
 	var/atom/movable/screen/thirst
 
+/datum/hud/Destroy()
+	. = ..()
+	thirst = null
+
 /atom/movable/screen/thirst
 	name = "thirst"
 	icon_state = "hungerbar"

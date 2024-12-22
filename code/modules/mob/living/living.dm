@@ -1027,7 +1027,6 @@
 
 	// I don't really care to keep this under a flag
 	set_nutrition(NUTRITION_LEVEL_FED + 50)
-	set_thirst(THIRST_LEVEL_QUENCHED + 50) // SPLURT ADDITION - THIRST
 	overeatduration = 0
 	satiety = 0
 

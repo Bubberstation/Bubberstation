@@ -62,6 +62,11 @@
 		if(1.21 to INFINITY)
 			mob_size = MOB_SIZE_LARGE
 
+/mob/living/fully_heal(heal_flags)
+	set_thirst(THIRST_LEVEL_QUENCHED + 50)
+	. = ..()
+
+
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if(NAMEOF(src, current_size))
