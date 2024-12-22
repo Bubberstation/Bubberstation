@@ -132,8 +132,8 @@
 	UnregisterSignal(eye_owner, COMSIG_ATOM_BULLET_ACT)
 
 // BUBBER EDIT - REPLACES organ/eyes with organ/internal/eyes until someone can pull the rework - Needed for some qol in proc
-/obj/item/organ/internal/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone)
-// /obj/item/organ/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone)
+/obj/item/organ/internal/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone, piercing_hit, blocked)
+// /obj/item/organ/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone, piercing_hit, blocked)
 	SIGNAL_HANDLER
 
 	// Once-a-dozen-rounds level of rare
