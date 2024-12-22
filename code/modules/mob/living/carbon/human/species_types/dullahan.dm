@@ -9,7 +9,6 @@
 		TRAIT_ADVANCEDTOOLUSER, // Normally applied by brain but we don't have one
 		TRAIT_LITERATE,
 		TRAIT_CAN_STRIP,
-		TRAIT_NOTHIRST, // SPLURT ADDITION - THIRST
 	)
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,

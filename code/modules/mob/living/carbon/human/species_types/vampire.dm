@@ -1,4 +1,3 @@
-
 ///how many vampires exist in each house
 #define VAMPIRES_PER_HOUSE 5
 ///maximum a vampire will drain, they will drain less if they hit their cap
@@ -14,8 +13,7 @@
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
 		TRAIT_USES_SKINTONES,
-		TRAIT_NO_MIRROR_REFLECTION,
-		TRAIT_NOTHIRST, // SPLURT ADDITION - THIRST
+		TRAIT_NO_MIRROR_REFLECTION
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutant_bodyparts = list("wings" = "None")

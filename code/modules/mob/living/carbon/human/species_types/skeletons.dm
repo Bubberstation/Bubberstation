@@ -21,8 +21,7 @@
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_UNHUSKABLE,
-		TRAIT_XENO_IMMUNE,
-		TRAIT_NOTHIRST, // SPLURT ADDITION - THIRST
+		TRAIT_XENO_IMMUNE
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/internal/tongue/bone
