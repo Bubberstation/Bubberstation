@@ -125,12 +125,15 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			SEND_SOUND(sound_cache, mob)
 
 	if(lewd)
-		user.adjust_pleasure(user_pleasure)
+		user.adjust_pleasure(user_pleasure, target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
 		user.adjust_arousal(user_arousal)
-		user.adjust_pain(user_pain)
-		target.adjust_pleasure(target_pleasure)
+		user.adjust_pain(user_pain, target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
+		target.adjust_pleasure(target_pleasure, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
 		target.adjust_arousal(target_arousal)
-		target.adjust_pain(target_pain)
+		target.adjust_pain(target_pain, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
+
+	post_interaction(user, target) //SPLURT EDIT - Interactions
+	return TRUE
 
 /datum/interaction/proc/load_from_json(path)
 	var/fpath = path

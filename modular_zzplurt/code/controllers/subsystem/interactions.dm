@@ -7,19 +7,17 @@ SUBSYSTEM_DEF(interactions)
 		/mob/dead,
 		/mob/dview,
 		/mob/camera,
-		/mob/living/simple_animal/pet,
-		/mob/living/simple_animal/cockroach,
-		/mob/living/simple_animal/babyKiwi,
-		/mob/living/simple_animal/butterfly,
-		/mob/living/simple_animal/chick,
-		/mob/living/simple_animal/chicken,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/kiwi,
-		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/sloth,
-		/mob/living/simple_animal/pickle,
-		/mob/living/simple_animal/hostile/retaliate/goat
+		/mob/living/basic/pet,
+		/mob/living/basic/cockroach,
+		/mob/living/basic/butterfly,
+		/mob/living/basic/chick,
+		/mob/living/basic/chicken,
+		/mob/living/basic/cow,
+		/mob/living/basic/crab,
+		/mob/living/basic/kiwi,
+		/mob/living/basic/parrot,
+		/mob/living/basic/sloth,
+		/mob/living/basic/goat
 	)
 	VAR_PROTECTED/initialized_blacklist
 
@@ -37,7 +35,7 @@ SUBSYSTEM_DEF(interactions)
 	return ..()
 
 /datum/controller/subsystem/interactions/proc/prepare_interactions()
-	QDEL_LIST(interactions)
+	QDEL_LIST_ASSOC_VAL(interactions)
 	QDEL_NULL(interactions)
 	interactions = list()
 	populate_interaction_instances()

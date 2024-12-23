@@ -1,6 +1,10 @@
+//SPLURT EDIT REMOVAL BEGIN - Interactions - Moved climax defines to global defines
+/*
 #define CLIMAX_VAGINA "Vagina"
 #define CLIMAX_PENIS "Penis"
 #define CLIMAX_BOTH "Both"
+*/
+//SPLURT EDIT REMOVAL END
 
 #define CLIMAX_ON_FLOOR "On the floor"
 #define CLIMAX_IN_OR_ON "Climax in or on someone"
@@ -9,7 +13,7 @@
 	/// Used to prevent nightmare scenarios.
 	var/refractory_period
 
-/mob/living/carbon/human/proc/climax(manual = TRUE)
+/mob/living/carbon/human/proc/climax(manual = TRUE, mob/living/carbon/human/partner, datum/interaction/climax_interaction, interaction_position)
 	if (CONFIG_GET(flag/disable_erp_preferences))
 		return
 
@@ -39,7 +43,10 @@
 		else if(has_penis())
 			genitals.Add(CLIMAX_PENIS)
 		climax_choice = tgui_alert(src, "You are climaxing, choose which genitalia to climax with.", "Genitalia Preference!", genitals)
-
+	//SPLURT EDIT ADDITION BEGIN - Interactions
+	else if(climax_interaction)
+		climax_choice = climax_interaction.cum_genital[interaction_position]
+	//SPLURT EDIT ADDITION END
 	switch(gender)
 		if(MALE)
 			conditional_pref_sound(get_turf(src), pick('modular_skyrat/modules/modular_items/lewd_items/sounds/final_m1.ogg',
@@ -81,7 +88,7 @@
 			if(interactable_inrange_humans.len)
 				buttons += CLIMAX_IN_OR_ON
 
-			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
+			var/penis_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons) //SPLURT EDIT CHANGE - Interactions
 
 			var/create_cum_decal = FALSE
 
@@ -91,13 +98,13 @@
 					span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 
 			else
-				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans)
+				var/target_choice = climax_interaction && !manual ? partner.name : tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans) //SPLURT EDIT CHANGE - Interactions
 				if(!target_choice)
 					create_cum_decal = TRUE
 					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
 						span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 				else
-					var/mob/living/carbon/human/target_human = interactable_inrange_humans[target_choice]
+					var/mob/living/carbon/human/target_human = climax_interaction && !manual ? partner : interactable_inrange_humans[target_choice] //SPLURT EDIT CHANGE - Interactions
 					var/target_human_them = target_human.p_them()
 
 					var/list/target_buttons = list()
@@ -107,16 +114,28 @@
 					if(target_human.has_vagina(REQUIRE_GENITAL_EXPOSED))
 						target_buttons += ORGAN_SLOT_VAGINA
 					if(target_human.has_anus(REQUIRE_GENITAL_EXPOSED))
-						target_buttons += "asshole"
+						target_buttons += ORGAN_SLOT_ANUS //SPLURT EDIT CHANGE - Interactions - Changed asshole to anus for consistency
 					if(target_human.has_penis(REQUIRE_GENITAL_EXPOSED))
 						var/obj/item/organ/external/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
 						if(other_penis.sheath != "None")
 							target_buttons += "sheath"
 					target_buttons += "On [target_human_them]"
 
-					var/climax_into_choice = tgui_input_list(src, "Where on or in [target_human] do you wish to cum?", "Final frontier!", target_buttons)
+					//SPLURT EDIT CHANGE BEGIN - Interactions
+					var/climax_into_choice
+					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons[climax_interaction?.cum_target[interaction_position]] //SPLURT EDIT CHANGE - Interactions
 
-					if(!climax_into_choice)
+					if(climax_interaction && !manual && interaction_inside)
+						climax_into_choice = climax_interaction.cum_target[interaction_position]
+					else if(manual)
+						climax_into_choice = tgui_input_list(src, "Where on or in [target_human] do you wish to cum?", "Final frontier!", target_buttons)
+					else
+						climax_into_choice = "On [target_human_them]"
+
+					if(climax_interaction && !manual && climax_interaction.show_climax(src, target_human, interaction_position))
+						create_cum_decal = !interaction_inside
+					else if(!climax_into_choice)
+					//SPLURT EDIT CHANGE END
 						create_cum_decal = TRUE
 						visible_message(span_userlove("[src] shoots their sticky load onto the floor!"), \
 							span_userlove("You shoot string after string of hot cum, hitting the floor!"))
@@ -144,11 +163,14 @@
 
 	if(climax_choice == CLIMAX_VAGINA || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/external/genital/vagina/vagina = get_organ_slot(ORGAN_SLOT_VAGINA)
+		var/climax_text_override = climax_interaction && !manual && climax_interaction.show_climax(src, partner, interaction_position) //SPLURT EDIT CHANGE - Interactions
 		if(is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-			visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
+			if(!climax_text_override) //SPLURT EDIT CHANGE - Interactions
+				visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
 			add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else
-			visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
+			if(!climax_text_override) //SPLURT EDIT CHANGE - Interactions
+				visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
 						span_userlove("You cum in your underwear from your vagina! Eww."))
 			self_orgasm = TRUE
 
@@ -156,10 +178,20 @@
 	apply_status_effect(/datum/status_effect/climax_cooldown)
 	if(self_orgasm)
 		add_mood_event("orgasm", /datum/mood_event/climaxself)
+
+	// SPLURT EDIT ADDITION BEGIN - Interactions
+	if(climax_interaction && !manual)
+		climax_interaction.post_climax(src, partner, interaction_position)
+	//SPLURT EDIT ADDITION END
 	return TRUE
 
+//SPLURT EDIT REMOVAL BEGIN - Interactions - Moved climax defines to global defines
+/*
 #undef CLIMAX_VAGINA
 #undef CLIMAX_PENIS
 #undef CLIMAX_BOTH
+*/
+//SPLURT EDIT REMOVAL END
+
 #undef CLIMAX_ON_FLOOR
 #undef CLIMAX_IN_OR_ON
