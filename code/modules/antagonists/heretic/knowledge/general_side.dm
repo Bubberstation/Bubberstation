@@ -12,7 +12,7 @@
 	)
 	cost = 0 // BUBBER EDIT
 	route = PATH_SIDE
-	depth = 8
+	depth = 6
 	research_tree_icon_path = 'icons/mob/actions/actions_animal.dmi'
 	research_tree_icon_state = "gaze"
 

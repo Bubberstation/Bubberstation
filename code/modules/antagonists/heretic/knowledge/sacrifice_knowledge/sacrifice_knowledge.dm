@@ -28,7 +28,7 @@
 	/// Lazylist of minds that we won't pick as targets.
 	var/list/datum/mind/target_blacklist
 	/// A list of areas that make a person immune to being sacrificed, if they are there. So dorms protection.
-	var/area/protected_areas //
+	var/area/protected_areas
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 	/// Evil organs we can put in people
