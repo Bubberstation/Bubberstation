@@ -3,7 +3,8 @@
 
 	mob_panel = new(src)
 
-/mob/Initialize()
+/mob/Initialize(mapload)
+	set_thirst(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 	. = ..()
 	create_player_panel()
 

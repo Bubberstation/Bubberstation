@@ -138,6 +138,10 @@
 			. += span_hypnophrase("[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.")
 		else
 			. += "<b>[t_He] [t_is] quite chubby.</b>"
+
+	if(water_level < THIRST_LEVEL_PARCHED - 50) // SPLURT ADDITION - THIRST
+		. += "[t_He] [t_is] parched.\n" // SPLURT ADDITION - THIRST
+
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			. += "[t_He] look[p_s()] a bit grossed out."

@@ -1,4 +1,3 @@
-
 ///how many vampires exist in each house
 #define VAMPIRES_PER_HOUSE 5
 ///maximum a vampire will drain, they will drain less if they hit their cap
