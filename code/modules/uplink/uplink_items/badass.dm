@@ -106,9 +106,3 @@
 		Contains enough special solution to spray a single super-size seditious symbol, subjecting station staff to slippery suffering."
 	item = /obj/item/traitor_spraycan
 	cost = 1
-
-/datum/uplink_item/badass/plushie
-	name = "Syndicate Support Plushie"
-	desc = "For agents in the field requiring urgent emotional support."
-	item = /obj/item/toy/plush/nukeplushie
-	cost = 1
