@@ -6,7 +6,7 @@
 	desc = "A brain which has been in some part mechanized."
 	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi' 
 	icon_state = "brain-c"
-	emp_dmg_mult = 1.5
+	emp_dmg_mult = 1.25
 	emp_dmg_max = 150
 
 //Extra damage from EMPs, and visual effects
@@ -53,4 +53,4 @@
 	name = "cortically-enhanced brain"
 	desc = "A brain which has been in some part mechanized."
 	maxHealth = BRAIN_DAMAGE_DEATH*0.5
-	emp_dmg_max = maxHealth+1 //death
+	emp_dmg_max = 999
