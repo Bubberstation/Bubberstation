@@ -6,9 +6,8 @@
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless,
 							/datum/map_template/ruin/lavaland/bubberstation/syndicate_crawler)
-	always_place = FALSE
+	always_place = TRUE
 	ruin_type = ZTRAIT_ICE_RUINS_UNDERGROUND
-	unpickable = TRUE
 
 /datum/map_template/ruin/lavaland/bubberstation/syndicate_crawler
 	name = "Syndicate Lavaland Land Crawler"
@@ -18,5 +17,4 @@
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless,
 							/datum/map_template/ruin/icemoon/bubberstation/syndicate_crawler)
-	always_place = FALSE
-	unpickable = TRUE
+	always_place = TRUE
