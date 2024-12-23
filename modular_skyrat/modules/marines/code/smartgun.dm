@@ -152,4 +152,4 @@
 	name = "10x28mm bullet"
 	damage = 6
 	wound_bonus = -5
-	wound_falloff_tile = 1
+	wound_falloff_tile = -1
