@@ -13,6 +13,7 @@
 		#include "map_files\Mining\Lavaland.dmm"
 		//#include "map_files\NorthStar\north_star.dmm" BUBBER EDIT - UNUSED
 		#include "map_files\tramstation\tramstation.dmm"
+		#include "map_files\NebulaStation\NebulaStation.dmm"
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"

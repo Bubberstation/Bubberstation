@@ -48,9 +48,6 @@
 	// Determines if the player has undergone TGUI preferences migration, if so, this will prevent constant loading.
 	var/tgui_prefs_migration = TRUE
 
-	/// A photo of the character, visible on close examine
-	var/headshot = ""
-
 /// An assoc list of food types to liked or dislike values. If null or empty, default species tastes are used instead on application.
 	/// If a food doesn't exist in this list, it uses the default value.
 	var/list/food_preferences = list()
@@ -166,7 +163,7 @@
 		return FALSE
 
 /// This proc saves the damage currently on `character` (human) and reapplies it after `safe_transfer_prefs()` is applied to the `character`.
-/datum/preferences/proc/safe_transfer_prefs_to_with_damage(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/proc/safe_transfer_prefs_to_with_damage(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
 	if(!istype(character))
 		return FALSE
 
@@ -174,10 +171,10 @@
 	if(!added_tracker)
 		return FALSE
 
-	safe_transfer_prefs_to(character, icon_updates, is_antag)
+	safe_transfer_prefs_to(character, icon_updates, is_antag, visuals_only = visuals_only)
 	qdel(added_tracker)
 
 // Updates the mob's chat color in the global cache
-/datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
 	. = ..()
 	GLOB.chat_colors_by_mob_name[character.name] = list(character.chat_color, character.chat_color_darkened) // by now the mob has had its prefs applied to it

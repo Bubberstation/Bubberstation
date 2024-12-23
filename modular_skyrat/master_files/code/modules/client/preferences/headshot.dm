@@ -11,11 +11,10 @@
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
 /datum/preference/text/headshot/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target?.dna.features["headshot"] = preferences?.headshot
+	target.dna.features["headshot"] = value
 
 /datum/preference/text/headshot/is_valid(value)
 	if(!length(value)) // Just to get blank ones out of the way
-		usr?.client?.prefs?.headshot = null
 		return TRUE
 
 	var/find_index = findtext(value, "https://")
@@ -48,6 +47,5 @@
 		to_chat(usr, span_notice("If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser."))
 		to_chat(usr, span_notice("Keep in mind that the photo will be downsized to 250x250 pixels, so the more square the photo, the better it will look."))
 		log_game("[usr] has set their Headshot image to '[value]'.")
-	stored_link[usr?.ckey] = value
-	usr?.client?.prefs.headshot = value
+	stored_link[usr.ckey] = value
 	return TRUE

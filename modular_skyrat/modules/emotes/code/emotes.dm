@@ -1,11 +1,5 @@
 
-#define EMOTE_DELAY (1 SECONDS) // BUBBER TODO - Look over how these work and why they borked
-
-/mob
-	var/nextsoundemote = 1 //Time at which the next emote can be played
-
 /datum/emote
-	cooldown = EMOTE_DELAY
 	var/muzzle_ignore = FALSE
 
 //Disables the custom emote blacklist from TG that normally applies to slimes.
@@ -77,12 +71,6 @@
 					return
 				carbon_user.next_smell = world.time + SMELL_COOLDOWN
 			current_turf.pollution.smell_act(user)
-
-/datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
-	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
-		user.balloon_alert(user, "not nimble enough!")
-		return FALSE
-	return ..()
 
 /datum/emote/living/peep
 	key = "peep"
@@ -271,7 +259,6 @@
 	message = "claps."
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
@@ -345,7 +332,7 @@
 	message = "rolls their eyes."
 
 /datum/emote/living/huff
-	key = "huffs"
+	key = "huff"
 	key_third_person = "huffs"
 	message = "huffs!"
 
@@ -435,7 +422,6 @@
 	key_third_person = "howls"
 	message = "lets out a long howl."
 	emote_type = EMOTE_AUDIBLE
-	audio_cooldown = 30 SECONDS
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/howl.ogg'
 
@@ -448,7 +434,6 @@
 	key = "pant"
 	key_third_person = "pants"
 	message = "pants like a dog!"
-	audio_cooldown = 15 SECONDS
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/pant.ogg'

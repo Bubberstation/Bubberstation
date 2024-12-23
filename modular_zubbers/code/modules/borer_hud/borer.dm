@@ -18,13 +18,13 @@
 	static_inventory += using
 
 	using = new /atom/movable/screen/navigate
-	using.screen_loc = ui_alien_navigate_menu
 	using.hud = src
 	static_inventory += using
 
 	healthdoll = new /atom/movable/screen/healthdoll/living()
 	healthdoll.hud = src
 	infodisplay += healthdoll
+
 /mob/living/basic/cortical_borer/Life(seconds_per_tick, times_fired)
 	. = ..()
 	update_health_hud() // it literally won't otherwise.
