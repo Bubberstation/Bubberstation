@@ -2,7 +2,7 @@
 	name = "mail sorter flatpack"
 
 /datum/area_spawn/mailsorter
-	target_areas = list(/area/station/cargo/storage)
+	target_areas = list(/area/station/cargo/office)
 	desired_atom = /obj/item/flatpack/mailsorter
 
 /datum/area_spawn/mailsorter/try_spawn()
