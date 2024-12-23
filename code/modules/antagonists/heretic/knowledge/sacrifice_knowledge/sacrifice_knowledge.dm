@@ -28,7 +28,6 @@
 	/// Lazylist of minds that we won't pick as targets.
 	var/list/datum/mind/target_blacklist
 	/// A list of areas that make a person immune to being sacrificed, if they are there. So dorms protection.
-	var/area/protected_areas
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 	/// Evil organs we can put in people
@@ -135,7 +134,7 @@
 			continue
 		if(!HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
 			continue
-		for(protected_areas as anything in GLOB.dorms_areas)
+		for(var/area/protected_areas as anything in GLOB.dorms_areas)
 			if(!is_type_in_list(get_area(possible_target), protected_areas))
 				continue
 		valid_targets += possible_target
