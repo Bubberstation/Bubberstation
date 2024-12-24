@@ -41,6 +41,7 @@ export const MESSAGE_TYPE_DEBUG = 'debug';
 export const MESSAGE_TYPE_MENTOR = 'mentor';
 export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
+export const MESSAGE_TYPE_ENTERTAINMENT = 'enteradio';
 // BUBBER EDIT ADDITION END
 
 // Metadata for each message type
@@ -105,6 +106,12 @@ export const MESSAGE_TYPES = [
     name: 'Mentor Log',
     description: 'Mentor PMs and other mentor things.',
     selector: '.mentor, .mentornotice',
+  },
+  {
+    type: MESSAGE_TYPE_ENTERTAINMENT,
+    name: 'Entertainment Channel',
+    description: 'Entertainment channel broadcasts.',
+    selector: '.enteradio',
   },
   // BUBBER EDIT ADDITION END
   {
