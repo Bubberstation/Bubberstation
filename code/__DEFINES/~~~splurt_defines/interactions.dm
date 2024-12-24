@@ -33,5 +33,11 @@
 
 // Extreme types
 #define INTERACTION_EXTREME (1<<0)
-#define INTERACTION_EXTREME_HARMFUL INTERACTION_EXTREME | (1<<1)
+#define INTERACTION_HARMFUL (1<<1) // If you use this on an interaction, add INTERACTION_EXTREME to it as well
 #define INTERACTION_UNHOLY (1<<2)
+
+// Interaction categories
+#define INTERACTION_CAT_LEWD "lewd"
+#define INTERACTION_CAT_EXTREME "extreme"
+#define INTERACTION_CAT_HARMFUL "harmful"
+#define INTERACTION_CAT_UNHOLY "unholy"

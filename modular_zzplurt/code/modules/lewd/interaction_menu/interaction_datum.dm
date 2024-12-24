@@ -19,7 +19,7 @@
 
 	var/list/unsafe_flags = list(
 		"extreme" = INTERACTION_EXTREME,
-		"extremeharm" = INTERACTION_EXTREME_HARMFUL,
+		"extremeharm" = INTERACTION_EXTREME | INTERACTION_HARMFUL,
 		"unholy" = INTERACTION_UNHOLY,
 	)
 
@@ -46,7 +46,7 @@
 	if(unsafe_types & INTERACTION_EXTREME)
 		if(!(user.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) != "No") || !(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) != "No"))
 			return FALSE
-	if(unsafe_types & INTERACTION_EXTREME_HARMFUL)
+	if(unsafe_types & INTERACTION_HARMFUL)
 		if(!(user.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) != "No") || !(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) != "No"))
 			return FALSE
 	if(unsafe_types & INTERACTION_UNHOLY)
