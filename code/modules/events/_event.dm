@@ -103,8 +103,15 @@
 
 	triggering = TRUE
 
-	// We sleep HERE, in pre-event setup (because there's no sense doing it in run_event() since the event is already running!) for the given amount of time to make an admin has enough time to cancel an event un-fitting of the present round.
-
+	// We sleep HERE, in pre-event setup (because there's no sense doing it in run_event() since the event is already running!) for the given amount of time to make an admin has enough time to cancel an event un-fitting of the present round or at least reroll it.
+	//message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='byond://?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)")
+	//sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)
+	//var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+	//if(!can_spawn_event(players_amt))
+		//message_admins("Second pre-condition check for [name] failed, rerolling...")
+		//SSevents.spawnEvent(excluded_event = src)
+		//return EVENT_INTERRUPTED
+ // THIS section is screwed - Restore this entire file to TG and start from scratch if you want to restore this. 
 // 	if(alert_observers) BUBBER EDIT REMOVAL - No effect
 		// message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)") // SKYRAT EDIT REMOVAL
 		// sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME) // SKYRAT EDIT REMOVAL
