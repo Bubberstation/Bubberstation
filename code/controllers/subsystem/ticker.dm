@@ -169,7 +169,13 @@ SUBSYSTEM_DEF(ticker)
 				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), CONFIG_GET(string/channel_announce_new_game)) // SKYRAT EDIT - Role ping and round ID in game-alert
 			// SKYRAT EDIT END
 			current_state = GAME_STATE_PREGAME
-			SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE) // BUBBER EDIT ADDITION
+		// BUBBERSTATION EDIT START
+			var/storyteller = CONFIG_GET(string/default_storyteller)
+			if(storyteller)
+				SSgamemode.set_storyteller(text2path(storyteller), TRUE)
+			else
+				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
+		// BUBBERSTATION EDIT END
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
 			//Everyone who wants to be an observer is now spawned
