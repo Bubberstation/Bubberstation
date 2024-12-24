@@ -9,28 +9,6 @@
 	var/obj/item/organ/new_organ = new path()
 	new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
 	new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	
-//because it's not an extremity
-/datum/augment_item/organ/brain/apply(mob/living/carbon/human/human_holder, character_setup = FALSE, datum/preferences/prefs)
-	var/obj/item/organ/internal/brain/new_brain = new path(human_holder)
-	var/obj/item/organ/internal/brain/old_brain = human_holder.get_organ_slot(ORGAN_SLOT_BRAIN)
-	
-	if(!new_brain)
-		return
-		
-	var/datum/mind/keep_me_safe = human_holder.mind
-	new_brain = new new_brain()
-
-	new_brain.modular_persistence = old_brain.modular_persistence
-	old_brain.modular_persistence = null
-
-	new_brain.Insert(human_holder, movement_flags = DELETE_IF_REPLACED)
-
-	// Prefs can be applied to mindless mobs, let's not try to move the non-existent mind back in!
-	if(!keep_me_safe)
-		return
-
-	keep_me_safe.transfer_to(human_holder, TRUE)
 
 //BUBBER EDIT - New brain
 //BRAINS
