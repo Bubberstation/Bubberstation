@@ -260,9 +260,9 @@
 		return
 
 	if(heals_brute)
-		return "[round(1 / speed_mod, DAMAGE_ROUNDING)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 	else
-		return "[round(1 / speed_mod, DAMAGE_ROUNDING)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
 #undef DAMAGE_ROUNDING
 #undef FAIL_DAMAGE_MULTIPLIER
