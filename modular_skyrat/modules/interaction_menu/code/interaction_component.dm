@@ -34,7 +34,7 @@
 			if(interaction.unsafe_types & INTERACTION_EXTREME)
 				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) == "No")
 					continue
-			if(interaction.unsafe_types & INTERACTION_EXTREME_HARMFUL)
+			if(interaction.unsafe_types & INTERACTION_HARMFUL)
 				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) == "No")
 					continue
 			if(interaction.unsafe_types & INTERACTION_UNHOLY)
