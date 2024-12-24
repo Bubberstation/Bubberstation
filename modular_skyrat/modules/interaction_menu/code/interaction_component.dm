@@ -30,6 +30,17 @@
 		if(interaction.lewd)
 			if(!self.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 				continue
+			// SPLURT EDIT ADDITION - Interaction preferences
+			if(interaction.unsafe_types & INTERACTION_EXTREME)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) == "No")
+					continue
+			if(interaction.unsafe_types & INTERACTION_EXTREME_HARMFUL)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) == "No")
+					continue
+			if(interaction.unsafe_types & INTERACTION_UNHOLY)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_unholy) == "No")
+					continue
+			// SPLURT EDIT END
 			/*
 			SPLURT EDIT REMOVAL - Interactions
 			if(interaction.sexuality != "" && interaction.sexuality != self.client?.prefs?.read_preference(/datum/preference/choiced/erp_sexuality))

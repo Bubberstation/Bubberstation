@@ -30,3 +30,8 @@
 //Climaxing targets (use these if you're not using organ slots)
 #define CLIMAX_TARGET_MOUTH "mouth"
 #define CLIMAX_TARGET_SHEATH "sheath"
+
+// Extreme types
+#define INTERACTION_EXTREME (1<<0)
+#define INTERACTION_EXTREME_HARMFUL INTERACTION_EXTREME | (1<<1)
+#define INTERACTION_UNHOLY (1<<2)

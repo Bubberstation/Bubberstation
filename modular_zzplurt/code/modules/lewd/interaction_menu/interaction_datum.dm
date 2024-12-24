@@ -9,11 +9,20 @@
 	var/list/cum_self_text_overrides = list(CLIMAX_POSITION_USER = list(), CLIMAX_POSITION_TARGET = list())
 	/// override of the text to display to the partner when the interaction cums (use this if you're not using a cum_target)
 	var/list/cum_partner_text_overrides = list(CLIMAX_POSITION_USER = list(), CLIMAX_POSITION_TARGET = list())
+	/// Is the interaction considered extreme/harmful/unholy?
+	var/unsafe_types = NONE
 
 /datum/interaction/load_from_json(path)
 	. = ..()
 	if(!.)
 		return FALSE
+
+	var/list/unsafe_flags = list(
+		"extreme" = INTERACTION_EXTREME,
+		"extremeharm" = INTERACTION_EXTREME_HARMFUL,
+		"unholy" = INTERACTION_UNHOLY,
+	)
+
 	var/list/json = json_decode(file2text(path))
 	cum_genital[CLIMAX_POSITION_USER] = sanitize_text(json["cum_genital_user"])
 	cum_genital[CLIMAX_POSITION_TARGET] = sanitize_text(json["cum_genital_target"])
@@ -26,9 +35,23 @@
 	cum_partner_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(json["cum_partner_text_overrides_user"], list())
 	cum_partner_text_overrides[CLIMAX_POSITION_TARGET] = sanitize_islist(json["cum_partner_text_overrides_target"], list())
 
+	var/list/unsafe_list = sanitize_islist(json["unsafe_types"], list())
+	for(var/unsafe_type in unsafe_list)
+		unsafe_types |= unsafe_flags[unsafe_type]
+
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE
+
+	if(unsafe_types & INTERACTION_EXTREME)
+		if(!(user.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) != "No") || !(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) != "No"))
+			return FALSE
+	if(unsafe_types & INTERACTION_EXTREME_HARMFUL)
+		if(!(user.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) != "No") || !(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) != "No"))
+			return FALSE
+	if(unsafe_types & INTERACTION_UNHOLY)
+		if(!(user.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_unholy) != "No") || !(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_unholy) != "No"))
+			return FALSE
 
 	if(user_required_parts.len)
 		for(var/slot in user_required_parts)
