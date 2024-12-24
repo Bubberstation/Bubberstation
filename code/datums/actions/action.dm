@@ -427,5 +427,5 @@
 		if(source.next_click > world.time)
 			return
 		else
-			source.next_click = world.time + CLICK_CD_RANGE
+			source.next_click = world.time + CLICK_CD_ACTIVATE_ABILITY
 	INVOKE_ASYNC(src, PROC_REF(Trigger))
