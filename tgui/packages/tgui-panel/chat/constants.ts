@@ -41,7 +41,7 @@ export const MESSAGE_TYPE_DEBUG = 'debug';
 export const MESSAGE_TYPE_MENTOR = 'mentor';
 export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
-export const MESSAGE_TYPE_ENTERTAINMENT = 'enteradio';
+export const MESSAGE_TYPE_ENTERTAINMENT = 'entertainment';
 // BUBBER EDIT ADDITION END
 
 // Metadata for each message type
@@ -109,9 +109,9 @@ export const MESSAGE_TYPES = [
   },
   {
     type: MESSAGE_TYPE_ENTERTAINMENT,
-    name: 'Entertainment Channel',
-    description: 'Entertainment channel broadcasts.',
-    selector: '.enteradio',
+    name: 'Entertainment',
+    description: 'Entertainment and newscaster broadcasts.',
+    selector: '.enteradio, .newscaster',
   },
   // BUBBER EDIT ADDITION END
   {
