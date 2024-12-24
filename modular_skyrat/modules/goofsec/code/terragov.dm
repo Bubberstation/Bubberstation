@@ -410,6 +410,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/rwd/loaded = 1,
 		/obj/item/beamout_tool = 1,
 		/obj/item/terragov_reporter/swat_caller = 1,
+		/obj/item/inducer = 1,
 	)
 	id_trim = /datum/id_trim/terragov/atmos
 
