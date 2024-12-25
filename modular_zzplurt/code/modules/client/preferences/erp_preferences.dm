@@ -118,3 +118,15 @@
 
 	minimum = 10
 	maximum = 25
+
+/datum/preference/toggle/erp/butt_enlargement
+	savefile_key = "butt_enlargement_pref"
+
+/datum/preference/toggle/erp/butt_shrinkage
+	savefile_key = "butt_shrinkage_pref"
+
+/datum/preference/toggle/erp/belly_enlargement
+	savefile_key = "belly_enlargement_pref"
+
+/datum/preference/toggle/erp/belly_shrinkage
+	savefile_key = "belly_shrinkage_pref"
