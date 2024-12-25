@@ -1,3 +1,4 @@
+/*
 /datum/antagonist/traitor/forge_single_generic_objective()
 	if(prob(KILL_PROB))
 
@@ -13,3 +14,4 @@
 /datum/uplink_handler/generate_objectives()
 	on_update()
 	return FALSE
+*/
