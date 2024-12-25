@@ -31,3 +31,11 @@ export const belly_shrinkage_pref: FeatureToggle = {
     'Determines if you wish to receive the effects of belly shrinkage chemicals.',
   component: CheckboxInput,
 };
+
+export const forced_neverboner_pref: FeatureToggle = {
+  name: 'Forced neverboner',
+  category: 'ERP',
+  description:
+    'Determines if you wish to receive the effects of forced neverboner chemicals.',
+  component: CheckboxInput,
+};
