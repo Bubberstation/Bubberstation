@@ -1610,15 +1610,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
-"aBl" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/siding/dark_blue{
-	dir = 8
-	},
-/turf/open/floor/wood/large,
-/area/station/biodome/aft)
 "aBm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
@@ -8494,18 +8485,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/station/medical/treatment_center)
-"cTZ" = (
-/obj/effect/landmark/start/blueshield,
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/obj/machinery/button/curtain{
-	id = "bscurtain2";
-	pixel_x = -28;
-	pixel_y = -3
-	},
-/turf/open/floor/carpet/executive,
-/area/station/command/heads_quarters/blueshield)
 "cUa" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
@@ -11950,7 +11929,6 @@
 /obj/structure/closet/secure_closet/blueshield,
 /obj/item/storage/medkit/tactical/blueshield,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/newscaster/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "edq" = (
@@ -16044,6 +16022,17 @@
 /obj/structure/railing/corner,
 /turf/open/openspace,
 /area/station/biodome/fore)
+"fyk" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
+	icon_state = "bounty-closed";
+	icon_type = "bounty";
+	id = "bscurtain2";
+	name = "curtain"
+	},
+/turf/open/floor/plating,
+/area/station/command/heads_quarters/blueshield)
 "fyu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -28911,6 +28900,19 @@
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
+"kcP" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/storage/fancy/donut_box{
+	pixel_y = 16
+	},
+/obj/machinery/recharger{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
+/turf/open/floor/carpet/executive,
+/area/station/command/heads_quarters/blueshield)
 "kcS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -32886,19 +32888,6 @@
 "lqK" = (
 /turf/closed/wall,
 /area/station/cargo/sorting)
-"lqO" = (
-/obj/structure/table/wood/fancy/cyan,
-/obj/item/storage/fancy/donut_box{
-	pixel_y = 16
-	},
-/obj/machinery/recharger{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/cable,
-/turf/open/floor/carpet/executive,
-/area/station/command/heads_quarters/blueshield)
 "lqP" = (
 /obj/machinery/rnd/production/techfab/department/service,
 /obj/structure/sign/poster/official/random/directional/west,
@@ -49288,6 +49277,7 @@
 	name = "Blueshield's Armory"
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/newscaster/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "qTg" = (
@@ -55995,16 +55985,14 @@
 /turf/open/floor/wood/large,
 /area/station/service/theater)
 "tgT" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
-	icon_state = "bounty-closed";
-	icon_type = "bounty";
-	id = "bscurtain2";
-	name = "curtain"
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/station/command/heads_quarters/blueshield)
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/aft)
 "tgU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/engine,
@@ -58381,6 +58369,15 @@
 "tYp" = (
 /turf/open/floor/carpet/red,
 /area/station/hallway/secondary/exit/departure_lounge)
+"tYG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark_blue{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/aft)
 "tYO" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/molten_object/large,
@@ -63156,6 +63153,18 @@
 /obj/structure/chair/sofa/bench/left,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"vLB" = (
+/obj/effect/landmark/start/blueshield,
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/obj/machinery/button/curtain{
+	id = "bscurtain2";
+	pixel_x = -28;
+	pixel_y = -3
+	},
+/turf/open/floor/carpet/executive,
+/area/station/command/heads_quarters/blueshield)
 "vLD" = (
 /obj/structure/chair/stool/directional/south,
 /obj/effect/turf_decal/trimline/red/warning,
@@ -65899,15 +65908,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
-"wCV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
-/turf/open/floor/wood/large,
-/area/station/biodome/aft)
 "wDd" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -66878,6 +66878,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/navigate_destination/autoname,
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
+/obj/machinery/door/firedoor,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "wUh" = (
@@ -111068,8 +111069,8 @@ fNG
 vMh
 gGd
 nsf
-cTZ
-tgT
+vLB
+fyk
 svn
 pnf
 pnf
@@ -111325,8 +111326,8 @@ pFO
 jGx
 rGd
 dGy
-lqO
-tgT
+kcP
+fyk
 pnf
 pnf
 pnf
@@ -111835,10 +111836,10 @@ izf
 wFQ
 fOu
 fOu
-wCV
+tgT
 kqS
 kqS
-aBl
+tYG
 mZn
 rsY
 rsY
