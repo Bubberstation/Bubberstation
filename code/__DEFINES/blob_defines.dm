@@ -1,6 +1,6 @@
 // Overmind defines
 
-#define OVERMIND_MAX_POINTS_DEFAULT 999 // Max point storage. Bubber edit, original: 100. Good luck reaching that cap.
+#define OVERMIND_MAX_POINTS_DEFAULT 175 // Max point storage. Bubber edit, original: 100. Good luck reaching that cap.
 #define OVERMIND_STARTING_POINTS 60 // Points granted upon start
 #define OVERMIND_STARTING_REROLLS 1 // Free strain rerolls at the start
 #define OVERMIND_STARTING_MIN_PLACE_TIME (1 MINUTES) // Minimum time before the core can be placed
