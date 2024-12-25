@@ -61,3 +61,8 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Ponytails (Berly)"
 	icon_state = "hair_tails_berly"
+
+/datum/sprite_accessory/hair/edgerunner
+    icon = 'modular_zubbers/icons/customization/hair_big.dmi'
+    name = "Edgerunner"
+    icon_state = "edgerunner"
