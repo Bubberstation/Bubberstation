@@ -51,7 +51,7 @@
 /datum/preference/choiced/erp_status_extmharm/deserialize(input, datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		return "No"
-	if(!preferences.read_preference(/datum/preference/toggle/master_erp_preferences) || !(preferences.read_preference(/datum/preference/choiced/erp_status_extm) != "Yes"))
+	if(!preferences.read_preference(/datum/preference/toggle/master_erp_preferences) || !(preferences.read_preference(/datum/preference/choiced/erp_status_extm) != "No"))
 		return "No"
 	. = ..()
 
