@@ -25,7 +25,7 @@
 		to_chat(exposed_mob, span_notice("Your mind is free. Your thoughts are pure and innocent once more."))
 		REMOVE_TRAIT(exposed_mob, TRAIT_BIMBO, TRAIT_LEWDCHEM)
 		return
-	if(!HAS_TRAIT(exposed_mob, TRAIT_NEVERBONER))
+	if(!HAS_TRAIT(exposed_mob, TRAIT_NEVERBONER) && !exposed_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/forced_neverboner)) // SPLURT EDIT - Added a preference to force neverboner
 		to_chat(exposed_mob, span_notice("You feel like you'll never feel aroused again..."))
 		ADD_TRAIT(exposed_mob, TRAIT_NEVERBONER, TRAIT_LEWDCHEM)
 

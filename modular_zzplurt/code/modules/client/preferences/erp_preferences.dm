@@ -130,3 +130,6 @@
 
 /datum/preference/toggle/erp/belly_shrinkage
 	savefile_key = "belly_shrinkage_pref"
+
+/datum/preference/toggle/erp/forced_neverboner
+	savefile_key = "forced_neverboner_pref"
