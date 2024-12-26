@@ -128,9 +128,10 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		user.adjust_pleasure(user_pleasure, target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
 		user.adjust_arousal(user_arousal)
 		user.adjust_pain(user_pain, target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
-		target.adjust_pleasure(target_pleasure, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
-		target.adjust_arousal(target_arousal)
-		target.adjust_pain(target_pain, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
+		if(usage == INTERACTION_OTHER) //SPLURT EDIT - Interactions
+			target.adjust_pleasure(target_pleasure, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
+			target.adjust_arousal(target_arousal)
+			target.adjust_pain(target_pain, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
 
 	post_interaction(user, target) //SPLURT EDIT - Interactions
 	return TRUE
@@ -210,6 +211,10 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 /proc/populate_interaction_instances()
 	for(var/spath in subtypesof(/datum/interaction))
 		var/datum/interaction/interaction = new spath()
+		//SPLURT EDIT - Interactions
+		if(interaction.name == /datum/interaction::name || interaction.description == /datum/interaction::description)
+			continue
+		//SPLURT EDIT END
 		SSinteractions.interactions[interaction.name] = interaction //SPLURT EDIT - Interactions subsystem - Original: GLOB.interaction_instances[interaction.name] = interaction
 	populate_interaction_jsons(INTERACTION_JSON_FOLDER)
 

@@ -19,9 +19,9 @@
 /// Climax definitions
 
 //Climaxing genitals
-#define CLIMAX_VAGINA "Vagina"
-#define CLIMAX_PENIS "Penis"
-#define CLIMAX_BOTH "Both"
+#define CLIMAX_VAGINA "vagina"
+#define CLIMAX_PENIS "penis"
+#define CLIMAX_BOTH "both"
 
 //Climaxing positions
 #define CLIMAX_POSITION_USER "climax_user"
