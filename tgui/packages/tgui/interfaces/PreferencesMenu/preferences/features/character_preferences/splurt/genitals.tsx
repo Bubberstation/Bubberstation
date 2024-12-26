@@ -125,14 +125,15 @@ export const erp_status_pref_unholy: FeatureChoiced = {
 };
 
 export const erp_lust_tolerance_pref: FeatureNumeric = {
-  name: 'Lust tolerance',
+  name: 'Lust tolerance multiplier',
   description:
-    'Set how long you can last without climaxing. \n(75 = minimum, 200 = maximum.)',
+    'Set your lust tolerance multiplier. \n(0.5 = half tolerance, 2 = double tolerance)',
   component: FeatureNumberInput,
 };
 
 export const erp_sexual_potency_pref: FeatureNumeric = {
-  name: 'Sexual potency',
-  description: 'Set your sexual potency. \n(10 = minimum, 25 = maximum.)',
+  name: 'Sexual potency multiplier',
+  description:
+    'Set your sexual potency multiplier. \n(0.5 = half potency, 2 = double potency)',
   component: FeatureNumberInput,
 };

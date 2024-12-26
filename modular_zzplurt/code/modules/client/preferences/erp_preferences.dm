@@ -93,14 +93,15 @@
 	savefile_key = "erp_lust_tolerance_pref"
 	savefile_identifier = PREFERENCE_CHARACTER
 
-	minimum = 75
-	maximum = 200
+	minimum = 0.5
+	maximum = 2.0
+	step = 0.01
 
 /datum/preference/numeric/erp_lust_tolerance/apply_to_human(mob/living/carbon/human/target, value)
-	target.age = value
+	target.dna.features["lust_tolerance"] = value
 
 /datum/preference/numeric/erp_lust_tolerance/create_informed_default_value(datum/preferences/preferences)
-	return 100
+	return 1.0
 
 /datum/preference/numeric/erp_lust_tolerance/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
@@ -116,8 +117,24 @@
 	savefile_key = "erp_sexual_potency_pref"
 	savefile_identifier = PREFERENCE_CHARACTER
 
-	minimum = 10
-	maximum = 25
+	minimum = 0.5
+	maximum = 2.0
+	step = 0.01
+
+/datum/preference/numeric/erp_sexual_potency/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features["sexual_potency"] = value
+
+/datum/preference/numeric/erp_sexual_potency/create_informed_default_value(datum/preferences/preferences)
+	return 1.0
+
+/datum/preference/numeric/erp_sexual_potency/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+
+	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
 /datum/preference/toggle/erp/butt_enlargement
 	savefile_key = "butt_enlargement_pref"
