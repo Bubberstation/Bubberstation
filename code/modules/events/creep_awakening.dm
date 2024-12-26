@@ -11,7 +11,7 @@
 
 /datum/round_event/obsessed/start()
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.player_list))
-		if(!H.client || !(ROLE_OBSESSED in H.client.prefs.be_special))
+		if(!H.client || !(ROLE_OBSESSED in H.client.prefs.be_special) || !H.client.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		if(H.stat == DEAD)
 			continue

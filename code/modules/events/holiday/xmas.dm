@@ -53,7 +53,7 @@
 	/// Christmas tree, no presents included.
 	var/festive_tree = /obj/structure/flora/tree/pine/xmas
 	/// Christmas tree, presents included.
-	var/christmas_tree = /obj/structure/flora/tree/pine/xmas/presents/safe //Bubberstation Edition
+	var/christmas_tree = /obj/structure/flora/tree/pine/xmas/presents
 
 /obj/effect/spawner/xmastree/Initialize(mapload)
 	. = ..()
