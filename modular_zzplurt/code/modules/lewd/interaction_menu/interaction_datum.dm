@@ -12,6 +12,15 @@
 	/// Is the interaction considered extreme/harmful/unholy?
 	var/unsafe_types = NONE
 
+/datum/interaction/New()
+	cum_message_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(cum_message_text_overrides[CLIMAX_POSITION_USER], list())
+	cum_self_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(cum_self_text_overrides[CLIMAX_POSITION_USER], list())
+	cum_partner_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(cum_partner_text_overrides[CLIMAX_POSITION_USER], list())
+	cum_message_text_overrides[CLIMAX_POSITION_TARGET] = sanitize_islist(cum_message_text_overrides[CLIMAX_POSITION_TARGET], list())
+	cum_self_text_overrides[CLIMAX_POSITION_TARGET] = sanitize_islist(cum_self_text_overrides[CLIMAX_POSITION_TARGET], list())
+	cum_partner_text_overrides[CLIMAX_POSITION_TARGET] = sanitize_islist(cum_partner_text_overrides[CLIMAX_POSITION_TARGET], list())
+	. = ..()
+
 /datum/interaction/load_from_json(path)
 	. = ..()
 	if(!.)
