@@ -26774,6 +26774,18 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
+/obj/item/paper_bin{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/folder/red{
+	pixel_x = 9;
+	pixel_y = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/security/checkpoint/science/research)
 "hMN" = (
@@ -28159,10 +28171,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
 	},
-/obj/structure/rack,
-/obj/item/crowbar,
-/obj/item/wrench,
-/obj/item/radio,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/iron/smooth,
 /area/station/security/checkpoint/supply)
 "ijj" = (
@@ -56060,6 +56069,10 @@
 /area/station/hallway/primary/aft)
 "pHC" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/structure/rack,
+/obj/item/radio,
+/obj/item/crowbar,
+/obj/item/wrench,
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -56258,19 +56271,7 @@
 	c_tag = "Security Post - Science";
 	network = list("ss13","rd")
 	},
-/obj/structure/table,
-/obj/item/folder/red{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/paper_bin{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = 5;
-	pixel_y = 4
-	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -65352,7 +65353,7 @@
 "snJ" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/item/radio/intercom/directional/west,
-/obj/structure/sink/directional/east,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/iron/freezer,
 /area/station/security/checkpoint/medical)
 "snO" = (
