@@ -1,9 +1,90 @@
 # Changes to anything in the _map subfolder
 Map Edit:
 - changed-files:
-  - any-glob-to-any-file: '_maps/**'
+    - any-glob-to-any-file: '_maps/**'
 
 # Changes to a .dmi
 Sprites:
 - changed-files:
-  - any-glob-to-any-file: '**/*.dmi'
+    - any-glob-to-any-file: '**/*.dmi'
+
+# Changes to .dm files
+Code:
+- changed-files:
+    - any-glob-to-any-file: '**/*.dm'
+
+# Changes to admin files or specific logging files
+Administration:
+- changed-files:
+    - any-glob-to-any-file: '**/admin/**'
+    - any-glob-to-any-file: '**/logging.dm'
+    - any-glob-to-any-file: '**/_logging.dm'
+
+# Changes to datums ruins or shuttles files regardless of root
+Mapping:
+- changed-files:
+    - any-glob-to-any-file: '**/datums/ruins/**'
+    - any-glob-to-any-file: '**/datums/shuttles/**'
+    - any-glob-to-any-file: '**/datums/shuttles.dm'
+
+# Any file within the config subfolder
+Requires Config Change:
+- changed-files:
+    - any-glob-to-any-file: 'config/**'
+
+# Changes to dependency files
+Dependencies:
+- changed-files:
+    - any-glob-to-any-file: '**/package.json'
+    - any-glob-to-any-file: '**/package-lock.json'
+    - any-glob-to-any-file: '**/yarn.lock'
+
+# When the .DME is changed
+DME Edit:
+- changed-files:
+    - any-glob-to-any-file: './*.dme'
+    - any-glob-to-any-file: '**/*.dme'
+
+# Changes to JavaScript files
+Javascript:
+- changed-files:
+    - any-glob-to-any-file: '**/*.js'
+
+# Changes to a .ogg or anything in the sound folder
+Sound:
+- changed-files:
+    - any-glob-to-any-file: '**/*.ogg'
+    - any-glob-to-any-file: '**/*.wav'
+    - any-glob-to-any-file: 'sound/**'
+
+# Changes to SQL
+SQL:
+- changed-files:
+    - any-glob-to-any-file: 'SQL/**'
+
+# Encompasses both the tgui and the tgui-next folder
+TGUI:
+- changed-files:
+    - any-glob-to-any-file: 'tgui/**'
+    - any-glob-to-any-file: 'tgui-next/**'
+
+# Changes to the .Github folder
+Github:
+- changed-files:
+    - any-glob-to-any-file: '.github/**'
+
+# Changes to the tools folder
+Tools:
+- changed-files:
+    - any-glob-to-any-file: 'tools/**'
+
+# Changes to image files
+Image:
+- changed-files:
+    - any-glob-to-any-file: '**/*.png'
+    - any-glob-to-any-file: '**/*.jpg'
+    - any-glob-to-any-file: '**/*.jpeg'
+    - any-glob-to-any-file: '**/*.gif'
+    - any-glob-to-any-file: '**/*.bmp'
+    - any-glob-to-any-file: '**/*.webp'
+    - any-glob-to-any-file: '**/*.svg'

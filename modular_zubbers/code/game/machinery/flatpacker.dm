@@ -1,5 +1,5 @@
 /obj/item/flatpack/mailsorter
-	name = "flatpack (mail sorter)"
+	name = "mail sorter flatpack"
 
 /datum/area_spawn/mailsorter
 	target_areas = list(/area/station/cargo/office)
