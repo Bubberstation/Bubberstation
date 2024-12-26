@@ -116,6 +116,7 @@
 					if(target_human.has_anus(REQUIRE_GENITAL_EXPOSED))
 						target_buttons += ORGAN_SLOT_ANUS //SPLURT EDIT CHANGE - Interactions - Changed asshole to anus for consistency
 					if(target_human.has_penis(REQUIRE_GENITAL_EXPOSED))
+						target_buttons += ORGAN_SLOT_PENIS
 						var/obj/item/organ/external/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
 						if(other_penis.sheath != "None")
 							target_buttons += "sheath"
@@ -149,9 +150,32 @@
 						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
 
 			var/obj/item/organ/external/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
-			testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6) // yep. we are sending semen to nullspace
 			if(create_cum_decal)
-				add_cum_splatter_floor(get_turf(src))
+			//SPLURT EDIT CHANGE BEGIN - Interactions
+				if(HAS_TRAIT(src, TRAIT_MESSY))
+					// Transfer reagents to the turf using liquids system
+					var/datum/reagents/R = new(testicles.internal_fluid_maximum)
+					testicles.transfer_internal_fluid(R, testicles.internal_fluid_count * 0.6)
+					if(partner && partner != src)
+						// Get turf between src and partner for directional splatter
+						var/turf/T = get_turf(partner)
+						T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
+					else
+						var/turf/T = get_turf(src)
+						T.add_liquid_from_reagents(R, FALSE, 1)
+					qdel(R)
+				else
+					testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
+					add_cum_splatter_floor(get_turf(src))
+			else if(partner)
+				// Transfer reagents directly to partner
+				var/datum/reagents/R = new(testicles.internal_fluid_maximum)
+				testicles.transfer_internal_fluid(R, testicles.internal_fluid_count * 0.6)
+				R.trans_to(partner, R.total_volume)
+				qdel(R)
+			else
+				testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
+			//SPLURT EDIT CHANGE END
 
 		try_lewd_autoemote("moan")
 		if(climax_choice == CLIMAX_PENIS)
@@ -163,17 +187,102 @@
 
 	if(climax_choice == CLIMAX_VAGINA || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/external/genital/vagina/vagina = get_organ_slot(ORGAN_SLOT_VAGINA)
-		var/climax_text_override = climax_interaction && !manual && climax_interaction.show_climax(src, partner, interaction_position) //SPLURT EDIT CHANGE - Interactions
-		if(is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-			if(!climax_text_override) //SPLURT EDIT CHANGE - Interactions
-				visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
-			add_cum_splatter_floor(get_turf(src), female = TRUE)
-		else
-			if(!climax_text_override) //SPLURT EDIT CHANGE - Interactions
-				visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
-						span_userlove("You cum in your underwear from your vagina! Eww."))
+		//SPLURT EDIT CHANGE BEGIN - Interactions
+		if(!is_bottomless() && vagina.visibility_preference != GENITAL_ALWAYS_SHOW)
+			visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
+					span_userlove("You cum in your underwear from your vagina! Eww."))
 			self_orgasm = TRUE
+		else
+			var/list/interactable_inrange_humans = list()
 
+			for(var/mob/living/carbon/human/iterating_human in (view(1, src) - src))
+				interactable_inrange_humans[iterating_human.name] = iterating_human
+
+			var/list/buttons = list(CLIMAX_ON_FLOOR)
+			if(interactable_inrange_humans.len)
+				buttons += CLIMAX_IN_OR_ON
+
+			var/vagina_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to squirt.", "Squirt preference!", buttons)
+
+			var/create_cum_decal = FALSE
+
+			if(!vagina_climax_choice || vagina_climax_choice == CLIMAX_ON_FLOOR)
+				create_cum_decal = TRUE
+				visible_message(span_userlove("[src] twitches and moans as [p_they()] squirt on the floor!"), \
+					span_userlove("You twitch and moan as you squirt on the floor!"))
+
+			else
+				var/target_choice = climax_interaction && !manual ? partner.name : tgui_input_list(src, "Choose who to squirt on.", "Choose target!", interactable_inrange_humans)
+				if(!target_choice)
+					create_cum_decal = TRUE
+					visible_message(span_userlove("[src] twitches and moans as [p_they()] squirt on the floor!"), \
+						span_userlove("You twitch and moan as you squirt on the floor!"))
+				else
+					var/mob/living/carbon/human/target_human = climax_interaction && !manual ? partner : interactable_inrange_humans[target_choice]
+					var/target_human_them = target_human.p_them()
+
+					var/list/target_buttons = list()
+
+					if(!target_human.wear_mask)
+						target_buttons += "mouth"
+					if(target_human.has_vagina(REQUIRE_GENITAL_EXPOSED))
+						target_buttons += ORGAN_SLOT_VAGINA
+					if(target_human.has_anus(REQUIRE_GENITAL_EXPOSED))
+						target_buttons += ORGAN_SLOT_ANUS
+					if(target_human.has_penis(REQUIRE_GENITAL_EXPOSED))
+						target_buttons += ORGAN_SLOT_PENIS
+						var/obj/item/organ/external/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
+						if(other_penis.sheath != "None")
+							target_buttons += "sheath"
+					target_buttons += "On [target_human_them]"
+
+					var/climax_into_choice
+					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons[climax_interaction?.cum_target[interaction_position]]
+
+					if(climax_interaction && !manual && interaction_inside)
+						climax_into_choice = climax_interaction.cum_target[interaction_position]
+					else if(manual)
+						climax_into_choice = tgui_input_list(src, "Where on or in [target_human] do you wish to squirt?", "Final frontier!", target_buttons)
+					else
+						climax_into_choice = "On [target_human_them]"
+
+					if(climax_interaction && !manual && climax_interaction.show_climax(src, target_human, interaction_position))
+						create_cum_decal = !interaction_inside
+					else if(!climax_into_choice)
+						create_cum_decal = TRUE
+						visible_message(span_userlove("[src] squirts on the floor!"), \
+							span_userlove("You squirt on the floor!"))
+					else if(climax_into_choice == "On [target_human_them]")
+						create_cum_decal = TRUE
+						visible_message(span_userlove("[src] squirts all over [target_human]!"), \
+							span_userlove("You squirt all over [target_human]!"))
+					else
+						visible_message(span_userlove("[src] squirts into [target_human]'s [climax_into_choice]!"), \
+							span_userlove("You squirt into [target_human]'s [climax_into_choice]!"))
+						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with [src]'s fluids."))
+
+			if(create_cum_decal)
+				if(HAS_TRAIT(src, TRAIT_MESSY))
+					var/datum/reagents/R = new(vagina.internal_fluid_maximum)
+					vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
+					if(partner && partner != src)
+						var/turf/T = get_turf(partner)
+						T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
+					else
+						var/turf/T = get_turf(src)
+						T.add_liquid_from_reagents(R, FALSE, 1)
+					qdel(R)
+				else
+					vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
+					add_cum_splatter_floor(get_turf(src), female = TRUE)
+			else if(partner)
+				var/datum/reagents/R = new(vagina.internal_fluid_maximum)
+				vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
+				R.trans_to(partner, R.total_volume)
+				qdel(R)
+			else
+				vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
+		//SPLURT EDIT CHANGE END
 	apply_status_effect(/datum/status_effect/climax)
 	apply_status_effect(/datum/status_effect/climax_cooldown)
 	if(self_orgasm)

@@ -105,7 +105,7 @@
 
 // Called when either the user or target is cumming from the interaction, makes the interaction text
 /datum/interaction/proc/show_climax(mob/living/carbon/human/cumming, mob/living/carbon/human/came_in, position)
-	var/override_check = length(cum_message_text_overrides[position]) && length(cum_self_text_overrides[position]) && length(cum_partner_text_overrides[position])
+	var/override_check = length(cum_message_text_overrides[position]) && length(cum_self_text_overrides[position]) && (length(cum_partner_text_overrides[position]) || usage == INTERACTION_SELF)
 	if(!override_check)
 		return FALSE
 
@@ -137,6 +137,9 @@
 		self_message = replacetext(self_message, "%CUM_GENITAL%", "[genital_used]")
 		self_message = replacetext(self_message, "%CUM_TARGET%", "[hole_used]")
 
+		cumming.visible_message(span_userlove(message), span_userlove(self_message))
+
+		if(usage == INTERACTION_OTHER)
 		var/partner_message = pick(cum_partner_text_overrides[position])
 		partner_message = replacetext(partner_message, "%CUMMING%", "[cumming]")
 		partner_message = replacetext(partner_message, "%CUMMING_THEIR%", "[cumming_their]")
@@ -147,8 +150,7 @@
 		partner_message = replacetext(partner_message, "%CUM_GENITAL%", "[genital_used]")
 		partner_message = replacetext(partner_message, "%CUM_TARGET%", "[hole_used]")
 
-		cumming.visible_message(span_userlove(message), span_userlove(self_message))
-		to_chat(came_in, span_userlove(partner_message))
+				to_chat(came_in, span_userlove(partner_message))
 		return TRUE
 
 /// Called after either the user or target cums from the interaction
