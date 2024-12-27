@@ -1,5 +1,5 @@
 /datum/interaction/lewd/finger_self_vagina
-	name = "Finger Pussy"
+	name = "Finger Pussy (self)"
 	description = "Finger your own pussy."
 	interaction_requires = list(INTERACTION_REQUIRE_SELF_HAND)
 	user_required_parts = list(ORGAN_SLOT_VAGINA = REQUIRE_GENITAL_EXPOSED)
@@ -27,7 +27,8 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 4
+	user_arousal = 6
 
 /datum/interaction/lewd/finger_self_vagina/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/reagent_containers/liquid_container
@@ -71,7 +72,7 @@
 	. = ..()
 
 /datum/interaction/lewd/finger_self_anus
-	name = "Finger Ass"
+	name = "Finger Ass (self)"
 	description = "Finger your own ass."
 	interaction_requires = list(INTERACTION_REQUIRE_SELF_HAND)
 	user_required_parts = list(ORGAN_SLOT_ANUS = REQUIRE_GENITAL_EXPOSED)
@@ -87,4 +88,5 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 3
+	user_arousal = 5

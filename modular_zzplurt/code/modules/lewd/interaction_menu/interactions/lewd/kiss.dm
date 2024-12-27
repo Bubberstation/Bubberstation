@@ -30,10 +30,5 @@
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 0
-
-/datum/interaction/lewd/kiss/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user.arousal < 5)
-		user.adjust_arousal(5)
-	if(target.arousal < 5)
-		target.adjust_arousal(5)
-	. = ..()
+	user_arousal = 2
+	target_arousal = 2

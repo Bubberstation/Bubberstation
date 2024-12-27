@@ -39,12 +39,15 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
-	target_pleasure = 15
+	target_pleasure = 5
+	user_arousal = 3
+	target_arousal = 7
 
 /datum/interaction/lewd/oral_vagina/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(prob((target.dna.features["sexual_potency"] * 10) + 15))
 		user.adjustOxyLoss(3)
 		target_pleasure = 20
+		target_arousal = 22
 	. = ..()
 
 /datum/interaction/lewd/oral_penis
@@ -88,10 +91,13 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
-	target_pleasure = 15
+	target_pleasure = 5
+	user_arousal = 3
+	target_arousal = 7
 
 /datum/interaction/lewd/oral_penis/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(prob((target.dna.features["sexual_potency"] * 10) + 15))
 		user.adjustOxyLoss(3)
 		target_pleasure = 20
+		target_arousal = 22
 	. = ..()

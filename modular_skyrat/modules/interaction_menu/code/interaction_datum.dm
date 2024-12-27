@@ -121,9 +121,13 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			message_admins("Deprecated sound handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
 			sound_possible = list(sound_possible)
 		sound_cache = pick(sound_possible)
+		//SPLURT EDIT - Interactions - For some reason the original code didn't send any sound
+		/*
 		for(var/mob/mob in view(sound_range, user))
 			SEND_SOUND(sound_cache, mob)
-
+		*/
+		conditional_pref_sound(user, sound_cache, 80, TRUE, falloff_distance = sound_range, pref_to_check = /datum/preference/toggle/erp/sounds)
+		//SPLURT EDIT END
 	if(lewd)
 		user.adjust_pleasure(user_pleasure * (target.dna.features["sexual_potency"] || 1), target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
 		user.adjust_arousal(user_arousal)

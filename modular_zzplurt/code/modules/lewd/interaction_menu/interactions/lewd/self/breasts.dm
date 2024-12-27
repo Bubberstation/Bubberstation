@@ -1,5 +1,5 @@
 /datum/interaction/lewd/titgrope_self
-	name = "Grope Breasts"
+	name = "Grope Breasts (self)"
 	description = "Grope your own breasts."
 	interaction_requires = list(INTERACTION_REQUIRE_SELF_HAND)
 	user_required_parts = list(ORGAN_SLOT_BREASTS = REQUIRE_GENITAL_ANY)
@@ -19,7 +19,8 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 3
+	user_pleasure = 2
+	user_arousal = 3
 
 /datum/interaction/lewd/titgrope_self/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(prob(5 + user.arousal))
@@ -57,7 +58,7 @@
 	. = ..()
 
 /datum/interaction/lewd/self_nipsuck
-	name = "Suck Nipples"
+	name = "Suck Nipples (self)"
 	description = "Suck your own nipples."
 	interaction_requires = list(INTERACTION_REQUIRE_SELF_MOUTH)
 	user_required_parts = list(ORGAN_SLOT_BREASTS = REQUIRE_GENITAL_EXPOSED)
@@ -73,7 +74,8 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 5
+	user_pleasure = 3
+	user_arousal = 5
 
 /datum/interaction/lewd/self_nipsuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
@@ -86,6 +88,6 @@
 		var/transfer_amount = rand(1, 3 * milk_multiplier)
 		var/datum/reagents/R = new(breasts.internal_fluid_maximum)
 		breasts.transfer_internal_fluid(R, transfer_amount)
-		R.trans_to(user.reagents, R.total_volume)
+		R.trans_to(user, R.total_volume)
 		qdel(R)
 	. = ..()

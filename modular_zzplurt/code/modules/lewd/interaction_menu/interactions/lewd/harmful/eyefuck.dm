@@ -30,9 +30,11 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
+	user_pleasure = 5
 	target_pleasure = 0
-	target_pain = 20
+	user_arousal = 8
+	target_arousal = 0
+	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/eyefuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(prob(15))
@@ -74,9 +76,11 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
+	user_pleasure = 5
 	target_pleasure = 0
-	target_pain = 20
+	user_arousal = 8
+	target_arousal = 0
+	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/eyesocketfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(prob(15))
