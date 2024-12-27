@@ -44,7 +44,7 @@
 
 /datum/interaction/lewd/nut_smack/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/original_pleasure = target_pleasure
-	if(HAS_TRAIT(target, TRAIT_MASOCHIST))
+	if(HAS_TRAIT(target, TRAIT_MASOCHISM))
 		target_pleasure = abs(original_pleasure) * 1.5 // Masochists get 50% more pleasure from the pain
 	. = ..()
 	target_pleasure = original_pleasure
