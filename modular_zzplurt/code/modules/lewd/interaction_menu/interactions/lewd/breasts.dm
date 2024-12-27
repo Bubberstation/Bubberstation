@@ -15,7 +15,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 2
+	user_arousal = 3
 	target_pleasure = 0
+	target_arousal = 2
 
 /datum/interaction/lewd/breastfeed/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
@@ -63,7 +65,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
+	user_arousal = 2
 	target_pleasure = 3
+	target_arousal = 5
 
 /datum/interaction/lewd/titgrope/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/reagent_containers/liquid_container

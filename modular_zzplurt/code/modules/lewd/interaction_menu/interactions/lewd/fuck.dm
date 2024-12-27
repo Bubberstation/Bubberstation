@@ -17,8 +17,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
-	target_pleasure = 15
+	user_pleasure = 8
+	target_pleasure = 8
+	user_arousal = 12
+	target_arousal = 12
 
 /datum/interaction/lewd/fuck/anal
 	name = "Anal Fuck"
@@ -37,8 +39,12 @@
 		'modular_zzplurt/sound/interactions/bang2.ogg',
 		'modular_zzplurt/sound/interactions/bang3.ogg'
 	)
-	user_pleasure = 15
-	target_pleasure = 10
+	sound_use = TRUE
+	user_pleasure = 8
+	target_pleasure = 4
+	user_arousal = 12
+	target_arousal = 8
+	target_pain = 3
 
 /datum/interaction/lewd/breastfuck
 	name = "Breast Fuck"
@@ -60,8 +66,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 4
 	target_pleasure = 0
+	user_arousal = 8
+	target_arousal = 3
 
 /datum/interaction/lewd/footfuck
 	name = "Foot Fuck"
@@ -106,8 +114,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 3
 	target_pleasure = 0
+	user_arousal = 6
+	target_arousal = 2
 
 /datum/interaction/lewd/footfuck/double
 	name = "Double Foot Fuck"
@@ -143,6 +153,8 @@
 		"thrusts their cock between %TARGET%'s feet.",
 		"grinds their cock between %TARGET%'s feet."
 	)
+	user_arousal = 15
+	target_arousal = 5
 
 /datum/interaction/lewd/footfuck/vag
 	name = "Vaginal Foot Grind"
@@ -178,6 +190,9 @@
 		"rubs their clit on %TARGET%'s foot.",
 		"ruts on %TARGET%'s foot."
 	)
+	sound_use = TRUE
 	user_pleasure = 15
 	target_pleasure = 0
+	user_arousal = 20
+	target_arousal = 5
 

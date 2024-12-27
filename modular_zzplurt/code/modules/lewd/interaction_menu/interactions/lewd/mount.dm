@@ -18,8 +18,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
-	target_pleasure = 15
+	user_pleasure = 7
+	target_pleasure = 7
+	user_arousal = 10
+	target_arousal = 10
 
 /datum/interaction/lewd/mount_anus
 	name = "Mount (Anus)"
@@ -41,8 +43,11 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
-	target_pleasure = 15
+	user_pleasure = 4
+	target_pleasure = 7
+	user_arousal = 8
+	target_arousal = 10
+	user_pain = 3
 
 /datum/interaction/lewd/mount_face
 	name = "Mount Face"
@@ -64,3 +69,5 @@
 	sound_use = TRUE
 	user_pleasure = 3
 	target_pleasure = 0
+	user_arousal = 5
+	target_arousal = 3

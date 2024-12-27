@@ -20,6 +20,8 @@
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 0
+	user_arousal = 3
+	target_arousal = 3
 
 /datum/interaction/lewd/grindface/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
@@ -54,6 +56,8 @@
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 0
+	user_arousal = 3
+	target_arousal = 3
 
 /datum/interaction/lewd/grindmouth/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
@@ -107,8 +111,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
+	target_pleasure = 4
 	user_pleasure = 0
-	target_pleasure = 12
+	user_arousal = 3
+	target_arousal = 6
 
 /datum/interaction/lewd/footjob/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
@@ -159,6 +165,10 @@
 		"rubs their %FEET% on %TARGET%'s shaft.",
 		"works their %FEET% up and down on %TARGET%'s cock."
 	)
+	user_pleasure = 0
+	target_pleasure = 5
+	user_arousal = 4
+	target_arousal = 7
 
 /datum/interaction/lewd/footjob/double/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
@@ -212,5 +222,7 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 0
-	target_pleasure = 12
+	user_pleasure = 4
+	target_pleasure = 0
+	user_arousal = 6
+	target_arousal = 2

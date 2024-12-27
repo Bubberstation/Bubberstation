@@ -1,5 +1,5 @@
 /datum/interaction/lewd/jack_self
-	name = "Jack Off"
+	name = "Jack Off (self)"
 	description = "Jerk yourself off."
 	interaction_requires = list(INTERACTION_REQUIRE_SELF_HAND)
 	user_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
@@ -29,7 +29,8 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 4
+	user_arousal = 6
 
 /datum/interaction/lewd/jack_self/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/reagent_containers/liquid_container

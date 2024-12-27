@@ -18,8 +18,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 4
 	target_pleasure = 0
+	user_arousal = 6
+	target_arousal = 2
 
 /datum/interaction/lewd/thighs_vagina
 	name = "Thigh Smother (Vagina)"
@@ -41,5 +43,7 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 10
+	user_pleasure = 4
 	target_pleasure = 0
+	user_arousal = 6
+	target_arousal = 2

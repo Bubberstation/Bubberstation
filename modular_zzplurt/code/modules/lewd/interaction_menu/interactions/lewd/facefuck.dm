@@ -19,8 +19,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
+	user_pleasure = 5
+	user_arousal = 8
 	target_pleasure = 0
+	target_arousal = 3
 
 /datum/interaction/lewd/facefuck_penis
 	name = "Facefuck (Penis)"
@@ -43,8 +45,10 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
+	user_pleasure = 5
 	target_pleasure = 0
+	user_arousal = 8
+	target_arousal = 3
 
 /datum/interaction/lewd/extreme/throatfuck
 	name = "Throatfuck"
@@ -64,8 +68,11 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 20
+	user_pleasure = 7
 	target_pleasure = 0
+	user_arousal = 10
+	target_arousal = 2
+	target_pain = 5
 
 /datum/interaction/lewd/throatfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/stat_before = target.stat

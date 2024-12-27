@@ -17,6 +17,8 @@
 	user_pleasure = 0
 	target_pleasure = 0
 	target_pain = 10
+	user_arousal = 2
+	target_arousal = 0
 
 /datum/interaction/lewd/slap/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/original_pleasure = target_pleasure

@@ -49,8 +49,10 @@
 	)
 	sound_use = TRUE
 	sound_range = 1
-	user_pleasure = 10
-	target_pleasure = 10
+	user_pleasure = 6
+	target_pleasure = 6
+	user_arousal = 10
+	target_arousal = 10
 
 /datum/interaction/lewd/tribadism
 	name = "Tribadism"
@@ -72,5 +74,7 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 15
-	target_pleasure = 15
+	user_pleasure = 6
+	target_pleasure = 6
+	user_arousal = 10
+	target_arousal = 10

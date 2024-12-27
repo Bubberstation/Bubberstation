@@ -15,7 +15,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
+	user_arousal = 2
 	target_pleasure = 3
+	target_arousal = 5
 
 /datum/interaction/lewd/nipsuck/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
@@ -28,6 +30,7 @@
 				"aggressively sucks %TARGET%'s nipple."
 			)
 			target_pleasure = 4 // Aggressive sucking has higher rewards
+			target_arousal = 5
 		if("disarm")
 			message = list(
 				"playfully nibbles %TARGET%'s nipple.",
@@ -41,6 +44,7 @@
 				"glomps %TARGET%'s nipple."
 			)
 			target_pleasure = 4 // Intent sucking has higher rewards
+			target_arousal = 5
 	. = ..()
 	message = original_messages
 

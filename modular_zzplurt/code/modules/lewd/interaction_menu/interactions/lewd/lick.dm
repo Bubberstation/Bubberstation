@@ -17,7 +17,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
-	target_pleasure = 10
+	target_pleasure = 4
+	user_arousal = 3
+	target_arousal = 6
 
 /datum/interaction/lewd/lickfeet
 	name = "Lick Feet"
@@ -35,7 +37,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
-	target_pleasure = 3
+	target_pleasure = 0
+	user_arousal = 3
+	target_arousal = 3
 
 /datum/interaction/lewd/lickfeet/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()

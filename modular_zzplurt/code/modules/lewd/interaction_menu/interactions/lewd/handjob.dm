@@ -40,7 +40,9 @@
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
-	target_pleasure = 12
+	user_arousal = 3
+	target_pleasure = 4
+	target_arousal = 6
 
 /datum/interaction/lewd/handjob/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/reagent_containers/liquid_container

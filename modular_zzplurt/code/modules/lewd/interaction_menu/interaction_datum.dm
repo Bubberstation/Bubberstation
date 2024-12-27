@@ -52,6 +52,38 @@
 	for(var/unsafe_type in unsafe_list)
 		unsafe_types |= unsafe_flags[unsafe_type]
 
+/datum/interaction/json_save(path)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/file = file(path)
+	var/list/json = json_decode(file2text(path))
+
+	json["cum_genital_user"] = cum_genital[CLIMAX_POSITION_USER]
+	json["cum_genital_target"] = cum_genital[CLIMAX_POSITION_TARGET]
+	json["cum_target_user"] = cum_target[CLIMAX_POSITION_USER]
+	json["cum_target_target"] = cum_target[CLIMAX_POSITION_TARGET]
+	json["cum_message_text_overrides_user"] = cum_message_text_overrides[CLIMAX_POSITION_USER]
+	json["cum_message_text_overrides_target"] = cum_message_text_overrides[CLIMAX_POSITION_TARGET]
+	json["cum_self_text_overrides_user"] = cum_self_text_overrides[CLIMAX_POSITION_USER]
+	json["cum_self_text_overrides_target"] = cum_self_text_overrides[CLIMAX_POSITION_TARGET]
+	json["cum_partner_text_overrides_user"] = cum_partner_text_overrides[CLIMAX_POSITION_USER]
+	json["cum_partner_text_overrides_target"] = cum_partner_text_overrides[CLIMAX_POSITION_TARGET]
+
+	var/list/unsafe_flags = list()
+	if(unsafe_types & INTERACTION_EXTREME)
+		unsafe_flags += "extreme"
+	if(unsafe_types & INTERACTION_HARMFUL)
+		unsafe_flags += "extremeharm"
+	if(unsafe_types & INTERACTION_UNHOLY)
+		unsafe_flags += "unholy"
+	json["unsafe_types"] = unsafe_flags
+
+	WRITE_FILE(file, json_encode(json))
+	return TRUE
+
+
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE

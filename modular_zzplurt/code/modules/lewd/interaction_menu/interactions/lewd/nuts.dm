@@ -21,6 +21,8 @@
 	sound_use = TRUE
 	user_pleasure = 3
 	target_pleasure = 0
+	user_arousal = 5
+	target_arousal = 2
 
 /datum/interaction/lewd/nut_smack
 	name = "Smack Nuts"
@@ -41,6 +43,8 @@
 	user_pleasure = 0
 	target_pleasure = -10
 	target_pain = 15
+	user_arousal = 2
+	target_arousal = 0
 
 /datum/interaction/lewd/nut_smack/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/original_pleasure = target_pleasure
