@@ -125,10 +125,13 @@
 	var/obj/item/clothing/shoes/worn_shoes = cumming.get_item_by_slot(ITEM_SLOT_FEET)
 	var/feet_text = worn_shoes?.name || pick("foot", "sole")
 
-	// Store original lists
-	var/list/original_message_overrides = cum_message_text_overrides[position].Copy()
-	var/list/original_self_overrides = cum_self_text_overrides[position].Copy()
-	var/list/original_partner_overrides = cum_partner_text_overrides[position].Copy()
+	// Store original lists, with null checks
+	var/list/original_message_overrides = cum_message_text_overrides[position]
+	var/list/original_self_overrides = cum_self_text_overrides[position]
+	var/list/original_partner_overrides = cum_partner_text_overrides[position]
+	original_message_overrides = original_message_overrides?.Copy()
+	original_self_overrides = original_self_overrides?.Copy()
+	original_partner_overrides = original_partner_overrides?.Copy()
 
 	// Pick and modify one message from each list
 	var/message_override = replacetext(pick(cum_message_text_overrides[position]), "%FEET%", feet_text)

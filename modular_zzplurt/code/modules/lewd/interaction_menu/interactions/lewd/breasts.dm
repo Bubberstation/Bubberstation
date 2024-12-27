@@ -83,7 +83,7 @@
 		return
 
 	// Handle different intents
-	switch(resolve_intent_name(user.a_intent))
+	switch(resolve_intent_name(user.combat_mode))
 		if("harm")
 			message = list(
 				"aggressively gropes %TARGET%'s breast.",
@@ -136,7 +136,7 @@
 				breasts.internal_fluid_count = max(0, breasts.internal_fluid_count - transfer_amount)
 
 	// Handle arousal effects based on intent
-	var/intent = resolve_intent_name(user.a_intent)
+	var/intent = resolve_intent_name(user.combat_mode)
 	if(intent != "harm" && prob(5 + target.arousal))
 		var/list/arousal_messages
 		switch(intent)
