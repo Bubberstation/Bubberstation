@@ -88,7 +88,7 @@
 			if(interactable_inrange_humans.len)
 				buttons += CLIMAX_IN_OR_ON
 
-			var/penis_climax_choice = climax_interaction?.cum_target[interaction_position] && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons) //SPLURT EDIT CHANGE - Interactions
+			var/penis_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons) //SPLURT EDIT CHANGE - Interactions
 
 			var/create_cum_decal = FALSE
 
@@ -98,7 +98,7 @@
 					span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 
 			else
-				var/target_choice = climax_interaction?.cum_target[interaction_position] && !manual ? partner.name : tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans) //SPLURT EDIT CHANGE - Interactions
+				var/target_choice = climax_interaction && !manual ? partner?.name : tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans) //SPLURT EDIT CHANGE - Interactions
 				if(!target_choice)
 					create_cum_decal = TRUE
 					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
