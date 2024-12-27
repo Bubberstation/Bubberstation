@@ -22,7 +22,7 @@
 	user_pleasure = 3
 
 /datum/interaction/lewd/titgrope_self/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(prob(5 + user.get_lust()))
+	if(prob(5 + user.arousal))
 		user.visible_message(span_lewd("<b>\The [user]</b> [pick(
 			"shivers in arousal.",
 			"moans quietly.",
@@ -86,6 +86,6 @@
 		var/transfer_amount = rand(1, 3 * milk_multiplier)
 		var/datum/reagents/R = new(breasts.internal_fluid_maximum)
 		breasts.transfer_internal_fluid(R, transfer_amount)
-		R.trans_to(user, R.total_volume)
+		R.trans_to(user.reagents, R.total_volume)
 		qdel(R)
 	. = ..()
