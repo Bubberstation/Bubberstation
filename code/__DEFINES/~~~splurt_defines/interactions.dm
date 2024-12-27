@@ -50,5 +50,4 @@
 	)
 
 // Interaction flags (used for logic but normally not sent to the interaction menu)
-#define INTERACTION_ALWAYS_CUM_OUTSIDE (1<<0)
-#define INTERACTION_OVERRIDE_FLUID_TRANSFER (1<<1)
+#define INTERACTION_OVERRIDE_FLUID_TRANSFER (1<<0)

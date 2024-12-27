@@ -100,7 +100,7 @@
 
 			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
 
-			var/create_cum_decal = !!(climax_interaction?.interaction_modifier_flags & INTERACTION_ALWAYS_CUM_OUTSIDE) //SPLURT EDIT CHANGE - Interactions
+			var/create_cum_decal = FALSE
 
 			if(!penis_climax_choice || penis_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
@@ -168,7 +168,7 @@
 
 					//SPLURT EDIT CHANGE BEGIN - Interactions
 					var/climax_into_choice
-					var/interaction_inside = (partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])) && !create_cum_decal //SPLURT EDIT CHANGE - Interactions
+					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])
 
 					if(climax_interaction && !manual && interaction_inside)
 						climax_into_choice = climax_interaction.cum_target[interaction_position]
@@ -249,7 +249,7 @@
 
 			var/vagina_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to squirt.", "Squirt preference!", buttons)
 
-			var/create_cum_decal = !!(climax_interaction?.interaction_modifier_flags & INTERACTION_ALWAYS_CUM_OUTSIDE) //SPLURT EDIT CHANGE - Interactions
+			var/create_cum_decal = FALSE
 
 			if(!vagina_climax_choice || vagina_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
@@ -282,7 +282,7 @@
 					target_buttons += "On [target_human_them]"
 
 					var/climax_into_choice
-					var/interaction_inside = (partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])) && !create_cum_decal
+					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])
 
 					if(climax_interaction && !manual && interaction_inside)
 						climax_into_choice = climax_interaction.cum_target[interaction_position]
