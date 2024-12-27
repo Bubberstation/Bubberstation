@@ -32,3 +32,25 @@
 	target_pleasure = 0
 	user_arousal = 2
 	target_arousal = 2
+
+/datum/interaction/lewd/kiss/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	var/original_user_lust = user_lust
+	var/original_target_lust = target_lust
+	var/original_user_arousal = user_arousal
+	var/original_target_arousal = target_arousal
+
+	// Check if user has TRAIT_KISS_SLUT and increase their lust
+	if(HAS_TRAIT(user, TRAIT_KISS_SLUT))
+		user_lust += 10
+		user_arousal += 10
+	// Check if target has TRAIT_KISS_SLUT and increase their lust
+	if(HAS_TRAIT(target, TRAIT_KISS_SLUT))
+		target_lust += 10
+		target_arousal += 10
+
+	. = ..()
+
+	user_lust = original_user_lust
+	target_lust = original_target_lust
+	user_arousal = original_user_arousal
+	target_arousal = original_target_arousal

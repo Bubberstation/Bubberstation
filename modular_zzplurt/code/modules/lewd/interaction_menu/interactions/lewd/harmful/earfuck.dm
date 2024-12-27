@@ -37,12 +37,12 @@
 	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/earfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	if(prob(15))
 		target.bleed(2)
 	if(prob(25))
 		target.adjustOrganLoss(ORGAN_SLOT_EARS, rand(3,7))
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
-	. = ..()
 
 /datum/interaction/lewd/extreme/harmful/earsocketfuck
 	name = "Earsocketfuck"
@@ -83,8 +83,8 @@
 	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/earsocketfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	if(prob(15))
 		target.bleed(2)
 	if(prob(25))
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
-	. = ..()

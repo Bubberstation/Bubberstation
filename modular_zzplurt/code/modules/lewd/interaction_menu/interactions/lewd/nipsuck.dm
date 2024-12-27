@@ -49,6 +49,7 @@
 	message = original_messages
 
 /datum/interaction/lewd/nipsuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	var/obj/item/organ/external/genital/breasts/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(breasts?.internal_fluid_datum)
 		// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
@@ -97,7 +98,3 @@
 
 		if(arousal_messages)
 			message = list(pick(arousal_messages))
-			. = ..()
-			if(target.arousal < 5)
-				target.arousal = 5
-	. = ..()

@@ -33,6 +33,7 @@
 	message = original_messages
 
 /datum/interaction/lewd/breastfeed/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(breasts?.internal_fluid_datum)
 		// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
@@ -45,7 +46,6 @@
 		breasts.transfer_internal_fluid(R, transfer_amount)
 		R.trans_to(target, R.total_volume)
 		qdel(R)
-	. = ..()
 
 /datum/interaction/lewd/titgrope
 	name = "Grope Breasts"
@@ -118,6 +118,7 @@
 	message = original_messages
 
 /datum/interaction/lewd/titgrope/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	if(interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER)
 		var/obj/item/reagent_containers/liquid_container
 
@@ -175,9 +176,6 @@
 				)
 
 		if(arousal_messages)
-			message = list(pick(arousal_messages))
-			. = ..()
-			if(target.arousal < 5)
-				target.adjust_arousal(5)
-			return
-	. = ..()
+			var/target_message = list(pick(arousal_messages))
+			target.visible_message(span_lewd(replacetext(target_message, "%TARGET%", target)))
+
