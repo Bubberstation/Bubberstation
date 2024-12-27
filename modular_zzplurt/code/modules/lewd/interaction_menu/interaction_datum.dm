@@ -11,6 +11,10 @@
 	var/list/cum_partner_text_overrides = list(CLIMAX_POSITION_USER = list(), CLIMAX_POSITION_TARGET = list())
 	/// Is the interaction considered extreme/harmful/unholy?
 	var/unsafe_types = NONE
+	/// Additional details to display in the interaction menu and used in some interaction logic
+	var/list/additional_details = list()
+	/// Interaction modifier flags, edits how the interaction works from its original definition
+	var/interaction_modifier_flags = NONE
 
 /datum/interaction/New()
 	cum_message_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(cum_message_text_overrides[CLIMAX_POSITION_USER], list())

@@ -41,3 +41,14 @@
 #define INTERACTION_CAT_EXTREME "extreme"
 #define INTERACTION_CAT_HARMFUL "harmful"
 #define INTERACTION_CAT_UNHOLY "unholy"
+
+// Additional details sent to the interaction menu
+#define INTERACTION_FILLS_CONTAINERS list( \
+	"info" = "You can fill a container if you have it in your active hand or are pulling it", \
+	"icon" = "flask", \
+	"color" = "transparent" \
+	)
+
+// Interaction flags (used for logic but normally not sent to the interaction menu)
+#define INTERACTION_ALWAYS_CUM_OUTSIDE (1<<0)
+#define INTERACTION_OVERRIDE_FLUID_TRANSFER (1<<1)
