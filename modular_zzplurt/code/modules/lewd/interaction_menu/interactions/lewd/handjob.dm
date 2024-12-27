@@ -82,10 +82,13 @@
 				liquid_container = cached_item
 
 		if(liquid_container)
-			// Store original lists
-			var/list/original_message_overrides = cum_message_text_overrides[position].Copy()
-			var/list/original_self_overrides = cum_self_text_overrides[position].Copy()
-			var/list/original_partner_overrides = cum_partner_text_overrides[position].Copy()
+			// Store original lists, with null checks
+			var/list/original_message_overrides = cum_message_text_overrides[position]
+			var/list/original_self_overrides = cum_self_text_overrides[position]
+			var/list/original_partner_overrides = cum_partner_text_overrides[position]
+			original_message_overrides = original_message_overrides?.Copy()
+			original_self_overrides = original_self_overrides?.Copy()
+			original_partner_overrides = original_partner_overrides?.Copy()
 
 			// Set container-specific messages
 			cum_message_text_overrides[position] = list("cums into \the [liquid_container].")
