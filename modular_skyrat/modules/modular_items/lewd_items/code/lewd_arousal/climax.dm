@@ -100,7 +100,7 @@
 
 			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
 
-			var/create_cum_decal = FALSE
+			var/create_cum_decal = !!(climax_interaction?.interaction_modifier_flags & INTERACTION_ALWAYS_CUM_OUTSIDE) //SPLURT EDIT CHANGE - Interactions
 
 			if(!penis_climax_choice || penis_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
@@ -168,7 +168,7 @@
 
 					//SPLURT EDIT CHANGE BEGIN - Interactions
 					var/climax_into_choice
-					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons[climax_interaction?.cum_target[interaction_position]] //SPLURT EDIT CHANGE - Interactions
+					var/interaction_inside = (partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])) && !create_cum_decal //SPLURT EDIT CHANGE - Interactions
 
 					if(climax_interaction && !manual && interaction_inside)
 						climax_into_choice = climax_interaction.cum_target[interaction_position]
@@ -194,32 +194,32 @@
 						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
 
 			var/obj/item/organ/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
-			testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6) // yep. we are sending semen to nullspace
-			if(create_cum_decal)
 			//SPLURT EDIT CHANGE BEGIN - Interactions
-				if(HAS_TRAIT(src, TRAIT_MESSY))
-					// Transfer reagents to the turf using liquids system
+			if(!(climax_interaction?.interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER))
+				if(create_cum_decal)
+					if(HAS_TRAIT(src, TRAIT_MESSY))
+						// Transfer reagents to the turf using liquids system
+						var/datum/reagents/R = new(testicles.internal_fluid_maximum)
+						testicles.transfer_internal_fluid(R, testicles.internal_fluid_count * 0.6)
+						if(partner && partner != src)
+							// Get turf between src and partner for directional splatter
+							var/turf/T = get_turf(partner)
+							T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
+						else
+							var/turf/T = get_turf(src)
+							T.add_liquid_from_reagents(R, FALSE, 1)
+						qdel(R)
+					else
+						testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
+						add_cum_splatter_floor(get_turf(src))
+				else if(partner)
+					// Transfer reagents directly to partner
 					var/datum/reagents/R = new(testicles.internal_fluid_maximum)
 					testicles.transfer_internal_fluid(R, testicles.internal_fluid_count * 0.6)
-					if(partner && partner != src)
-						// Get turf between src and partner for directional splatter
-						var/turf/T = get_turf(partner)
-						T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
-					else
-						var/turf/T = get_turf(src)
-						T.add_liquid_from_reagents(R, FALSE, 1)
+					R.trans_to(partner, R.total_volume)
 					qdel(R)
 				else
 					testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
-					add_cum_splatter_floor(get_turf(src))
-			else if(partner)
-				// Transfer reagents directly to partner
-				var/datum/reagents/R = new(testicles.internal_fluid_maximum)
-				testicles.transfer_internal_fluid(R, testicles.internal_fluid_count * 0.6)
-				R.trans_to(partner, R.total_volume)
-				qdel(R)
-			else
-				testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
 			//SPLURT EDIT CHANGE END
 
 		try_lewd_autoemote("moan")
@@ -249,7 +249,7 @@
 
 			var/vagina_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to squirt.", "Squirt preference!", buttons)
 
-			var/create_cum_decal = FALSE
+			var/create_cum_decal = !!(climax_interaction?.interaction_modifier_flags & INTERACTION_ALWAYS_CUM_OUTSIDE) //SPLURT EDIT CHANGE - Interactions
 
 			if(!vagina_climax_choice || vagina_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
@@ -282,7 +282,7 @@
 					target_buttons += "On [target_human_them]"
 
 					var/climax_into_choice
-					var/interaction_inside = partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons[climax_interaction?.cum_target[interaction_position]]
+					var/interaction_inside = (partner?.get_organ_slot(climax_interaction?.cum_target[interaction_position]) || target_buttons.Find(climax_interaction?.cum_target[interaction_position])) && !create_cum_decal
 
 					if(climax_interaction && !manual && interaction_inside)
 						climax_into_choice = climax_interaction.cum_target[interaction_position]
@@ -306,28 +306,30 @@
 							span_userlove("You squirt into [target_human]'s [climax_into_choice]!"))
 						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with [src]'s fluids."))
 
-			if(create_cum_decal)
-				if(HAS_TRAIT(src, TRAIT_MESSY))
+			if(!(climax_interaction?.interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER))
+				if(create_cum_decal)
+					if(HAS_TRAIT(src, TRAIT_MESSY))
+						var/datum/reagents/R = new(vagina.internal_fluid_maximum)
+						vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
+						if(partner && partner != src)
+							var/turf/T = get_turf(partner)
+							T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
+						else
+							var/turf/T = get_turf(src)
+							T.add_liquid_from_reagents(R, FALSE, 1)
+						qdel(R)
+					else
+						vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
+						add_cum_splatter_floor(get_turf(src), female = TRUE)
+				else if(partner)
 					var/datum/reagents/R = new(vagina.internal_fluid_maximum)
 					vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
-					if(partner && partner != src)
-						var/turf/T = get_turf(partner)
-						T.add_liquid_from_reagents(R, FALSE, 1, get_turf(src), partner)
-					else
-						var/turf/T = get_turf(src)
-						T.add_liquid_from_reagents(R, FALSE, 1)
+					R.trans_to(partner, R.total_volume)
 					qdel(R)
 				else
 					vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
-					add_cum_splatter_floor(get_turf(src), female = TRUE)
-			else if(partner)
-				var/datum/reagents/R = new(vagina.internal_fluid_maximum)
-				vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
-				R.trans_to(partner, R.total_volume)
-				qdel(R)
-			else
-				vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
 		//SPLURT EDIT CHANGE END
+
 	apply_status_effect(/datum/status_effect/climax)
 	apply_status_effect(/datum/status_effect/climax_cooldown)
 	if(self_orgasm)
