@@ -39,8 +39,10 @@
 			milk_multiplier = 0.5 + (1.5 * (breasts.internal_fluid_count / breasts.internal_fluid_maximum))
 
 		var/transfer_amount = rand(1, 3 * milk_multiplier)
-		target.reagents.add_reagent(breasts.internal_fluid_datum, transfer_amount)
-		breasts.internal_fluid_count = max(0, breasts.internal_fluid_count - transfer_amount)
+		var/datum/reagents/R = new(breasts.internal_fluid_maximum)
+		breasts.transfer_internal_fluid(R, transfer_amount)
+		R.trans_to(target, R.total_volume)
+		qdel(R)
 	. = ..()
 
 /datum/interaction/lewd/titgrope
@@ -132,8 +134,10 @@
 					milk_multiplier = 0.5 + (1.5 * (breasts.internal_fluid_count / breasts.internal_fluid_maximum))
 
 				var/transfer_amount = rand(1, 3 * milk_multiplier)
-				liquid_container.reagents.add_reagent(breasts.internal_fluid_datum, transfer_amount)
-				breasts.internal_fluid_count = max(0, breasts.internal_fluid_count - transfer_amount)
+				var/datum/reagents/R = new(breasts.internal_fluid_maximum)
+				breasts.transfer_internal_fluid(R, transfer_amount)
+				R.trans_to(liquid_container, R.total_volume)
+				qdel(R)
 
 	// Handle arousal effects based on intent
 	var/intent = resolve_intent_name(user.combat_mode)

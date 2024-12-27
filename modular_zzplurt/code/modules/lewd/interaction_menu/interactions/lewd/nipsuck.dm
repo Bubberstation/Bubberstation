@@ -57,8 +57,10 @@
 		if(intent == "harm" || intent == "grab")
 			transfer_amount = rand(1, 3 * milk_multiplier) // More aggressive sucking gets more milk
 
-		user.reagents.add_reagent(breasts.internal_fluid_datum, transfer_amount)
-		breasts.internal_fluid_count = max(0, breasts.internal_fluid_count - transfer_amount)
+		var/datum/reagents/R = new(breasts.internal_fluid_maximum)
+		breasts.transfer_internal_fluid(R, transfer_amount)
+		R.trans_to(user, R.total_volume)
+		qdel(R)
 
 	if(!user.combat_mode && prob(5 + target.arousal))
 		var/list/arousal_messages
