@@ -75,9 +75,8 @@
 	target_pain = 5
 
 /datum/interaction/lewd/throatfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	var/stat_before = target.stat
 	target.adjustOxyLoss(3)
 	if(target.stat == UNCONSCIOUS && stat_before != UNCONSCIOUS)
 		message = list("%TARGET% passes out on %USER%'s cock.")
-		. = ..()
-	. = ..()

@@ -37,12 +37,12 @@
 	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/eyefuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	if(prob(15))
 		target.bleed(2)
 	if(prob(25))
 		target.adjustOrganLoss(ORGAN_SLOT_EYES, rand(3,7))
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
-	. = ..()
 
 /datum/interaction/lewd/extreme/harmful/eyesocketfuck
 	name = "Eyesocketfuck"
@@ -83,8 +83,8 @@
 	target_pain = 15
 
 /datum/interaction/lewd/extreme/harmful/eyesocketfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	if(prob(15))
 		target.bleed(2)
 	if(prob(25))
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
-	. = ..()

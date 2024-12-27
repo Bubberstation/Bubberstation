@@ -1,3 +1,5 @@
+#define isclownjob(A) (is_species(A, /datum/species/human) && A?.mind?.assigned_role?.title == "Clown")
+
 /datum/interaction
 	/// Which genital the interaction cums with (must be penis, vagina or both)
 	var/list/cum_genital = list(CLIMAX_POSITION_USER = null, CLIMAX_POSITION_TARGET = null)
@@ -15,6 +17,30 @@
 	var/list/additional_details = list()
 	/// Interaction modifier flags, edits how the interaction works from its original definition
 	var/interaction_modifier_flags = NONE
+
+	/// List of clown-specific messages for different genital types
+	var/static/list/clown_genital_messages = list(
+		ORGAN_SLOT_VAGINA = list(
+			"\The <b>%OWNER%</b>'s clussy honks[pick(" loudly", "")]!",
+			"\The <b>%OWNER%</b>'s pussy squeaks[pick(" loudly", "")]!"
+		),
+		ORGAN_SLOT_PENIS = list(
+			"\The <b>%OWNER%</b>'s cock honks[pick(" loudly", "")]!",
+			"\The <b>%OWNER%</b>'s penis squeaks[pick(" loudly", "")]!"
+		),
+		ORGAN_SLOT_ANUS = list(
+			"\The <b>%OWNER%</b>'s fun hole honks[pick(" loudly", "")]!",
+			"\The <b>%OWNER%</b>'s ass squeaks[pick(" loudly", "")]!"
+		),
+		ORGAN_SLOT_BREASTS = list(
+			"\The <b>%OWNER%</b>'s honkers produce a loud squeak!",
+			"\The <b>%OWNER%</b>'s breasts honk[pick(" loudly", "")]!"
+		),
+		ORGAN_SLOT_MOUTH = list(
+			"\The <b>%OWNER%</b>'s mouth honks[pick(" loudly", "")]!",
+			"\The <b>%OWNER%</b>'s throat squeaks[pick(" loudly", "")]!"
+		)
+	)
 
 /datum/interaction/New()
 	cum_message_text_overrides[CLIMAX_POSITION_USER] = sanitize_islist(cum_message_text_overrides[CLIMAX_POSITION_USER], list())
@@ -146,7 +172,36 @@
 
 /// Called when the interaction is performed
 /datum/interaction/proc/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	handle_clown_interaction(user, target)
 	return
+
+/// Handles clown-specific interaction effects
+/datum/interaction/proc/handle_clown_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(!prob(50))  // 50% chance for honk effects
+		return
+
+	var/is_user_clown = isclownjob(user)
+	var/is_target_clown = target ? isclownjob(target) : FALSE
+	if(!is_user_clown && !is_target_clown)
+		return
+
+	// Handle user's genitals if they're a clown
+	if(is_user_clown)
+		for(var/genital_slot in user_required_parts)
+			if(clown_genital_messages[genital_slot])
+				var/message = pick(clown_genital_messages[genital_slot])
+				message = replacetext(message, "%OWNER%", user)
+				user.visible_message(span_lewd(message))
+				playsound(user, 'sound/items/bikehorn.ogg', 40, TRUE, -1)
+
+	// Handle target's genitals if they're a clown
+	if(is_target_clown && target)
+		for(var/genital_slot in target_required_parts)
+			if(clown_genital_messages[genital_slot])
+				var/message = pick(clown_genital_messages[genital_slot])
+				message = replacetext(message, "%OWNER%", target)
+				target.visible_message(span_lewd(message))
+				playsound(target, 'sound/items/bikehorn.ogg', 40, TRUE, -1)
 
 // Called when either the user or target is cumming from the interaction, makes the interaction text
 /datum/interaction/proc/show_climax(mob/living/carbon/human/cumming, mob/living/carbon/human/came_in, position)
@@ -201,3 +256,5 @@
 /// Called after either the user or target cums from the interaction
 /datum/interaction/proc/post_climax(mob/living/carbon/human/cumming, mob/living/carbon/human/came_in, position)
 	return
+
+#undef isclownjob
