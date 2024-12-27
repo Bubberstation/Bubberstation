@@ -6,9 +6,24 @@
 		return
 
 	var/obj/item/organ/organ_path = path // cast this to an organ so we can get the slot from it using initial()
-	var/obj/item/organ/new_organ = new path()
-	new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
-	new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	
+	if(slot == AUGMENT_SLOT_BRAIN)
+		var/datum/mind/keep_me_safe = human_holder.mind
+		var/obj/item/organ/internal/brain/old_brain = human_holder.get_organ_slot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/internal/brain/new_brain = new path()
+
+		new_brain.modular_persistence = old_brain.modular_persistence
+		old_brain.modular_persistence = null
+		
+		new_brain.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+		
+		if(keep_me_safe)
+			keep_me_safe.transfer_to(human_holder, TRUE)
+	else
+		var/obj/item/organ/new_organ = new path()
+	
+		new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
+		new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 //BUBBER EDIT - New brain
 //BRAINS
