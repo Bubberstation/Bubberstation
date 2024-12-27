@@ -4,7 +4,7 @@
 	user_required_parts = list(ORGAN_SLOT_VAGINA = REQUIRE_GENITAL_EXPOSED)
 	target_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_VAGINA, CLIMAX_POSITION_TARGET = CLIMAX_PENIS)
-	cum_target = list(CLIMAX_POSITION_USER = CLIMAX_TARGET_PENIS, CLIMAX_POSITION_TARGET = CLIMAX_TARGET_VAGINA)
+	cum_target = list(CLIMAX_POSITION_USER = ORGAN_SLOT_PENIS, CLIMAX_POSITION_TARGET = ORGAN_SLOT_VAGINA)
 	message = list(
 		"rides %TARGET%'s cock.",
 		"forces %TARGET%'s cock into their pussy.",
@@ -27,7 +27,7 @@
 	user_required_parts = list(ORGAN_SLOT_ANUS = REQUIRE_GENITAL_EXPOSED)
 	target_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_BOTH, CLIMAX_POSITION_TARGET = CLIMAX_PENIS)
-	cum_target = list(CLIMAX_POSITION_USER = null, CLIMAX_POSITION_TARGET = CLIMAX_TARGET_ANUS)
+	cum_target = list(CLIMAX_POSITION_USER = null, CLIMAX_POSITION_TARGET = ORGAN_SLOT_ANUS)
 	message = list(
 		"rides %TARGET%'s cock with their ass.",
 		"forces %TARGET%'s cock into their ass.",
