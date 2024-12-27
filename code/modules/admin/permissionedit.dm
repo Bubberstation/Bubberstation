@@ -148,7 +148,6 @@ ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit adm
 	if (!target_admin_datum && task != "add")
 		return
 	var/use_db
-	var/task = href_list["editrights"]
 	var/skip
 	var/legacy_only
 	if(task == "activate" || task == "deactivate" || task == "sync" || task == "verify")
@@ -158,7 +157,7 @@ ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit adm
 			to_chat(usr, "<span class='admin prefix'>Editing the rank of this admin is blocked by server configuration.</span>", confidential = TRUE)
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
-		if((D.ranks & GLOB.protected_ranks).len > 0)
+		if((target_admin_datum.ranks & GLOB.protected_ranks).len > 0)
 			to_chat(usr, "<span class='admin prefix'>Editing the flags of this rank is blocked by server configuration.</span>", confidential = TRUE)
 			return
 	if(CONFIG_GET(flag/load_legacy_ranks_only) && (task == "add" || task == "rank" || task == "permissions"))
@@ -195,24 +194,24 @@ ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit adm
 
 			change_admin_rank(admin_ckey, admin_key, use_db, null, legacy_only)
 		if("remove")
-			remove_admin(admin_ckey, admin_key, use_db, D)
+			remove_admin(admin_ckey, admin_key, use_db, target_admin_datum)
 		if("rank")
-			change_admin_rank(admin_ckey, admin_key, use_db, D, legacy_only)
+			change_admin_rank(admin_ckey, admin_key, use_db, target_admin_datum, legacy_only)
 		if("permissions")
-			change_admin_flags(admin_ckey, admin_key, D)
+			change_admin_flags(admin_ckey, admin_key, target_admin_datum)
 		if("activate")
-			force_readmin(admin_key, D)
+			force_readmin(admin_key, target_admin_datum)
 		if("deactivate")
-			force_deadmin(admin_key, D)
+			force_deadmin(admin_key, target_admin_datum)
 		if("sync")
-			sync_lastadminrank(admin_ckey, admin_key, D)
+			sync_lastadminrank(admin_ckey, admin_key, target_admin_datum)
 		if("verify")
 			var/msg = "has authenticated [admin_ckey]"
 			message_admins("[key_name_admin(usr)] [msg]")
 			log_admin("[key_name(usr)] [msg]")
 
-			D.bypass_2fa = TRUE
-			D.associate(GLOB.directory[admin_ckey])
+			target_admin_datum.bypass_2fa = TRUE
+			target_admin_datum.associate(GLOB.directory[admin_ckey])
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
