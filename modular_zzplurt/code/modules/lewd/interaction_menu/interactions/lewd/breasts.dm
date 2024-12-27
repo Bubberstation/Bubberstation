@@ -14,7 +14,7 @@
 	)
 	sound_range = 1
 	sound_use = TRUE
-	user_pleasure = 0
+	user_pleasure = 2
 	target_pleasure = 0
 
 /datum/interaction/lewd/breastfeed/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
