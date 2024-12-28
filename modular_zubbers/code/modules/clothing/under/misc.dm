@@ -24,19 +24,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/costume/custom_playbunny
-	name = "tailormade bunny suit"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
-	greyscale_config = /datum/greyscale_config/custom_bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
-	flags_1 = IS_PLAYER_COLORABLE_1
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
-
 /obj/item/clothing/under/syndicate/syndibunny //heh
 	name = "blood-red bunny suit"
 	desc = "The staple of any bunny themed syndicate assassins. Are those carbon nanotube stockings?"
@@ -101,6 +88,12 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
+
+/obj/item/clothing/under/costume/playbunny/custom_playbunny
+	name = "tailormade bunny suit"
+	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
+	greyscale_config = /datum/greyscale_config/custom_bunnysuit
+	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
 
 //CAPTAIN
 

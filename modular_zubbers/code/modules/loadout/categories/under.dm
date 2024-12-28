@@ -84,4 +84,4 @@
 
 /datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
 	name = "Custom Bunnysuit"
-	item_path = /obj/item/clothing/under/costume/custom_playbunny
+	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
