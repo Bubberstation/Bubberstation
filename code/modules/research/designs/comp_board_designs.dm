@@ -395,3 +395,23 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RECORDS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design/board/aiupload
+	name = "Public Lavaland Shuttle Board"
+	desc = "Allows for the construction of circuit boards used to build a Lavaland Shuttle Console."
+	id = "lavalandshuttle"
+	build_path = /obj/item/circuitboard/computer/mining_shuttle/common
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/board/aiupload
+	name = "Mining Shuttle Board"
+	desc = "Allows for the construction of circuit boards used to build a Mining Shuttle Console."
+	id = "miningshuttle"
+	build_path = /obj/item/circuitboard/computer/mining_shuttle
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
