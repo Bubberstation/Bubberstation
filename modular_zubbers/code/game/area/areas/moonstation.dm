@@ -63,7 +63,7 @@
 	icon_state = "maintcentral"
 
 /area/station/terminal/maintenance/fore
-	name = "\improper Arrivals Terminal Fore Maintenance"
+	name = "\improper Arrivals Terminal Disposals"
 	icon_state = "maintfore"
 
 /area/station/terminal/maintenance/aft
@@ -93,7 +93,7 @@
 	area_flags = UNIQUE_AREA | FLORA_ALLOWED
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
-	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/moonstation/surface
 	name = "Lunar Surface"

@@ -34,6 +34,10 @@
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
+/datum/loadout_item/head/sombrero
+	name = "Sombrero"
+	item_path = /obj/item/clothing/head/costume/sombrero
+
 /datum/loadout_item/head/hats/caphat/drill
 	name = "Captain's Campaign Hat"
 	item_path = /obj/item/clothing/head/hats/warden/drill/captain
@@ -68,3 +72,14 @@
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE
 
+/datum/loadout_item/head/mime_bunny_ears
+	name = "Mime's Bunny Ears"
+	item_path = /obj/item/clothing/head/playbunnyears/mime
+
+/datum/loadout_item/head/kabuto
+	name = "Kabuto"
+	item_path = /obj/item/clothing/head/costume/kabuto
+
+/datum/loadout_item/head/bunny_ears_headband
+	name = "Bunny ears headband"
+	item_path = /obj/item/clothing/head/playbunnyears

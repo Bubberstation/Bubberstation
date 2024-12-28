@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Ensures that we always load the last used save, QOL
 	var/default_slot = 1
 	/// The maximum number of slots we're allowed to contain
-	var/max_save_slots = 30 //SKYRAT EDIT - ORIGINAL 3
+	var/max_save_slots = 50 // BUBBER EDIT: original is 3
 
 	/// Bitflags for communications that are muted
 	var/muted = NONE
@@ -109,10 +109,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		load_path(parent.ckey)
 		if(load_and_save && !fexists(path))
 			try_savefile_type_migration()
-		unlock_content = !!parent.IsByondMember()
-		donator_status = !!GLOB.donator_list[parent.ckey] //SKYRAT EDIT ADD - DONATOR CHECK
-		if(unlock_content || donator_status) //SKYRAT EDIT - ADD DONATOR CHECK
-			max_save_slots = 50 //SKYRAT EDIT - ORIGINAL 8
+
+		refresh_membership()
 	else
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()
@@ -204,7 +202,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	data["character_profiles"] = create_character_profiles()
 
 	data["character_preview_view"] = character_preview_view.assigned_map
-	data["overflow_role"] = SSjob.GetJobType(SSjob.overflow_role).title
+	data["overflow_role"] = SSjob.get_job_type(SSjob.overflow_role).title
 	data["window"] = current_window
 
 	data["content_unlocked"] = unlock_content
@@ -581,9 +579,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return preferences.chat_toggles
 
 /// Sanitizes the preferences, applies the randomization prefs, and then applies the preference to the human mob.
-/datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE) // BUBBER EDIT - Customization - ORIGINAL: /datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
 	apply_character_randomization_prefs(is_antag)
-	apply_prefs_to(character, icon_updates)
+	apply_prefs_to(character, icon_updates, visuals_only = visuals_only) // BUBBER EDIT - Customization - ORIGINAL: apply_prefs_to(character, icon_updates)
 
 /// Applies the given preferences to a human mob.
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
@@ -593,7 +591,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type), src)
+		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
 
 	// SKYRAT EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
@@ -639,3 +637,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			default_randomization[preference_key] = RANDOM_ENABLED
 
 	return default_randomization
+
+/datum/preferences/proc/refresh_membership()
+	var/byond_member = parent.IsByondMember()
+	if(isnull(byond_member)) // Connection failure, retry once
+		byond_member = parent.IsByondMember()
+		var/static/admins_warned = FALSE
+		if(!admins_warned)
+			admins_warned = TRUE
+			message_admins("BYOND membership lookup had a connection failure for a user. This is most likely an issue on the BYOND side but if this consistently happens you should bother your server operator to look into it.")
+		if(isnull(byond_member)) // Retrying didn't work, warn the user
+			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error.")
+		else
+			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error but succeeded after retry.")
+
+	if(isnull(byond_member))
+		to_chat(parent, span_warning("There's been a connection failure while trying to check the status of your BYOND membership. Reconnecting may fix the issue, or BYOND could be experiencing downtime."))
+
+	unlock_content = !!byond_member
+	if(unlock_content)
+		max_save_slots = 8

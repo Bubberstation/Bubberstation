@@ -54,7 +54,7 @@
 
 /datum/outfit/job/assistant/gimmick/skater
 	name = "Gimmick Assistant - Skater"
-	head = /obj/item/clothing/head/helmet/redtaghelm
+	head = /obj/item/clothing/head/helmet/taghelm/red
 	suit = /obj/item/clothing/suit/redtag
 
 	l_hand = /obj/item/melee/skateboard
@@ -65,7 +65,7 @@
 
 /datum/outfit/job/assistant/gimmick/rollerskater
 	name = "Gimmick Assistant - Rollerskater"
-	head = /obj/item/clothing/head/helmet/bluetaghelm
+	head = /obj/item/clothing/head/helmet/taghelm/blue
 	suit = /obj/item/clothing/suit/bluetag
 
 	shoes = /obj/item/clothing/shoes/wheelys/rollerskates
@@ -129,7 +129,7 @@
 	mask = /obj/item/clothing/mask/whistle
 	uniform = /obj/item/clothing/under/color/red
 
-	//neck = /obj/item/camera SKYRAT EDIT REMOVAL
+	//neck = /obj/item/camera //SKYRAT TODO - Figure out why this adding to Wardrobe canon list makes holodisks with clowns harddel cameras
 
 	outfit_weight = 2
 

@@ -603,3 +603,53 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_BALLOON_SUTRA))
 		return TRUE
+
+/datum/crafting_recipe/press_armor
+	name = "press armor vest"
+	result = /obj/item/clothing/suit/armor/vest/press
+	time = 2 SECONDS
+	tool_paths = list(/obj/item/clothing/accessory/press_badge)
+	reqs = list(
+		/obj/item/clothing/suit/armor/vest = 1,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/press_helmet
+	name = "press helmet vest"
+	result = /obj/item/clothing/head/helmet/press
+	time = 2 SECONDS
+	tool_paths = list(/obj/item/clothing/accessory/press_badge)
+	reqs = list(
+		/obj/item/clothing/head/helmet/sec = 1,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/press_vest
+	name = "press vest"
+	result = /obj/item/clothing/suit/hazardvest/press
+	time = 2 SECONDS
+	tool_paths = list(/obj/item/clothing/accessory/press_badge)
+	reqs = list(
+		/obj/item/clothing/suit/hazardvest = 1,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/press_fedora
+	name = "press fedora"
+	result = /obj/item/clothing/head/fedora/beige/press
+	time = 2 SECONDS
+	tool_paths = list(/obj/item/clothing/accessory/press_badge)
+	reqs = list(
+		/obj/item/clothing/head/fedora/beige = 1,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/jonkler
+	name = "gamer's wig and mask"
+	result = /obj/item/clothing/mask/gas/jonkler
+	time = 10 SECONDS
+	tool_paths = list(/obj/item/toy/crayon/green)
+	reqs = list(
+		/obj/item/clothing/mask/gas/clown_hat = 1,
+	)
+	category = CAT_CLOTHING

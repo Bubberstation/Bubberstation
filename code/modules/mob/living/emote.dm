@@ -4,6 +4,16 @@
 	mob_type_allowed_typecache = /mob/living
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 
+/datum/emote/living/taunt
+	key = "taunt"
+	key_third_person = "taunts"
+	message = "taunts!"
+	cooldown = 1.6 SECONDS //note when changing this- this is used by the matrix taunt to block projectiles.
+
+/datum/emote/living/taunt/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	user.spin(TAUNT_EMOTE_DURATION, 0.1 SECONDS)
+
 /datum/emote/living/blush
 	key = "blush"
 	key_third_person = "blushes"
@@ -182,9 +192,16 @@
 		return
 
 	var/mob/living/carbon/human/human_user = user
-	if(human_user.gender == FEMALE) // SKYRAT EDIT CHANGE
-		return pick('sound/voice/human/gasp_female1.ogg', 'sound/voice/human/gasp_female2.ogg', 'sound/voice/human/gasp_female3.ogg')
-	return pick('sound/voice/human/gasp_male1.ogg', 'sound/voice/human/gasp_male2.ogg')
+	if(human_user.physique == FEMALE)
+		return pick(
+			'sound/mobs/humanoids/human/gasp/gasp_female1.ogg',
+			'sound/mobs/humanoids/human/gasp/gasp_female2.ogg',
+			'sound/mobs/humanoids/human/gasp/gasp_female3.ogg',
+			)
+	return pick(
+		'sound/mobs/humanoids/human/gasp/gasp_male1.ogg',
+		'sound/mobs/humanoids/human/gasp/gasp_male2.ogg',
+		)
 
 /datum/emote/living/gasp/shock
 	key = "gaspshock"
@@ -225,25 +242,11 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
-/datum/emote/living/jump
-	key = "jump"
-	key_third_person = "jumps"
-	message = "jumps!"
-	hands_use_check = TRUE
-
-/datum/emote/living/jump/run_emote(mob/living/user, params, type_override, intentional)
-	. = ..()
-	animate(user, pixel_y = user.pixel_y + 4, time = 0.1 SECONDS)
-	animate(pixel_y = user.pixel_y - 4, time = 0.1 SECONDS)
-
-/datum/emote/living/jump/get_sound(mob/living/user)
-	return 'sound/weapons/thudswoosh.ogg'
-
 /datum/emote/living/kiss
 	key = "kiss"
 	key_third_person = "kisses"
 	cooldown = 3 SECONDS
-/* BUBBER EDIT modularized - modular_zubbers\code\modules\mob\living\emote.dm
+
 /datum/emote/living/kiss/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
 	var/kiss_type = /obj/item/hand_item/kisser
@@ -260,14 +263,14 @@
 	else
 		qdel(kiss_blower)
 		to_chat(user, span_warning("You're incapable of blowing a kiss in your current state."))
-*/
+
 /datum/emote/living/laugh
 	key = "laugh"
 	key_third_person = "laughs"
 	message = "laughs."
 	message_mime = "laughs silently!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
-	audio_cooldown = 5 SECONDS
+	specific_emote_audio_cooldown = 8 SECONDS
 	vary = TRUE
 
 /datum/emote/living/laugh/can_run_emote(mob/living/user, status_check = TRUE , intentional, params)
@@ -316,7 +319,6 @@
 	message = "sneezes."
 	message_mime = "acts out an exaggerated silent sneeze."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 
 /datum/emote/living/sneeze/get_sound(mob/living/carbon/human/user)
@@ -330,7 +332,6 @@
 	message = "coughs!"
 	message_mime = "acts out an exaggerated cough!"
 	vary = TRUE
-	audio_cooldown = 5 SECONDS
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE | EMOTE_RUNECHAT
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional, params)
@@ -440,8 +441,6 @@
 		return
 	return user.dna.species.get_sniff_sound(user)
 
-
-
 /datum/emote/living/snore
 	key = "snore"
 	key_third_person = "snores"
@@ -449,6 +448,12 @@
 	message_mime = "sleeps soundly."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	stat_allowed = UNCONSCIOUS
+
+// eventually we want to give species their own "snoring" sounds
+/datum/emote/living/snore/get_sound(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	return user.dna.species.get_snore_sound(user)
 
 /datum/emote/living/stare
 	key = "stare"
@@ -744,9 +749,8 @@
 	key_third_person = "whistles"
 	message = "whistles."
 	message_mime = "whistles silently!"
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/carbon/whistle/get_sound(mob/living/user)
-	return 'sound/voice/human/whistle1.ogg'
+	return 'sound/mobs/humanoids/human/whistle/whistle1.ogg'

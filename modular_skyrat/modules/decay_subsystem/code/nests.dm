@@ -55,7 +55,7 @@
 				number = 1
 			for(var/i in 1 to number)
 				new path (loc)
-	playsound(src, 'sound/effects/blobattack.ogg', 100)
+	playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
 	return ..()
 
 /obj/structure/mob_spawner/Destroy()
@@ -154,7 +154,7 @@
 	to_chat(user, span_danger("You begin to crack open [src]..."))
 	if(do_after(user, 3 SECONDS, src))
 		to_chat(user, span_userdanger("You crack [src] open, something monsterous crawls out!"))
-		playsound(src, 'sound/effects/blobattack.ogg', 100)
+		playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
 		new /mob/living/basic/spider/giant/ (user.loc)
 		qdel(src)
 
@@ -181,7 +181,7 @@
 /obj/structure/mob_spawner/beehive/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(!swarmed)
-		playsound(src, 'sound/creatures/bee.ogg', 100)
+		playsound(src, 'sound/mobs/non-humanoids/bee/bee.ogg', 100)
 		visible_message(span_userdanger("[src] buzzes violently as bees pour out!"))
 		for(var/i=1, i<max_mobs, ++i)
 			new /mob/living/basic/bee (loc)
@@ -230,7 +230,7 @@
 				number = 1
 			for(var/i in 1 to number)
 				new path (loc)
-	playsound(src, 'sound/effects/blobattack.ogg', 100)
+	playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
 	new /mob/living/simple_animal/hostile/vatbeast(loc)
 	return ..()
 

@@ -1,6 +1,6 @@
 /datum/supply_pack/goody/sol_pistol_single
 	name = "Sol 'Wespe' Pistol Single Pack"
-	desc = "The standard issue service pistol of the Solar Federation's various military branches. Comes with an attached light and a spare magazine."
+	desc = "The standard issue service pistol of the Terran Government's various military branches. Comes with an attached light and a spare magazine."
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
 	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
 	)
@@ -45,6 +45,22 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 20
 
+/datum/supply_pack/goody/plasma_projector
+	name = "Słońce Plasma Projector Single-Pack"
+	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 6
+
+/datum/supply_pack/goody/sakhno_derringer_single
+	name = "Sakhno 'Yinbi' Derringer Single Pack"
+	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
+	contains = list(/obj/item/gun/ballistic/derringer = 1,
+	/obj/item/ammo_box/c310_cargo_box = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 
@@ -74,3 +90,17 @@
 
 /datum/supply_pack/goody/thermal_single
 	special = FALSE
+
+/datum/supply_pack/goody/medkit_surgery
+	name = "High Capacity Surgical Medkit"
+	desc = "A high capacity aid kit, full of medical supplies and basic surgical equipment."
+	cost = PAYCHECK_CREW * 15
+	contains = list(/obj/item/storage/medkit/surgery)
+
+//For @unionheart
+/datum/supply_pack/goody/security_maid
+	name = "CnC Maid Operator Kit"
+	desc = "Contains a set of armoured janitorial kit for combat scenario."
+	cost = PAYCHECK_COMMAND * 4
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/clothing/under/rank/security/maid, /obj/item/clothing/suit/armor/vest/maid, /obj/item/clothing/head/security_maid, /obj/item/pushbroom)

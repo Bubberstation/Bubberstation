@@ -36,10 +36,10 @@
 
 	/// The microfusion lens used for generating the beams.
 	var/obj/item/ammo_casing/energy/laser/microfusion/microfusion_lens
-	/// The time it takes for someone to (tactically) reload this gun. In deciseconds.
-	var/tactical_reload_time = 4 SECONDS
-	/// The time it takes for someone to normally reload this gun. In deciseconds.
-	var/normal_reload_time = 2 SECONDS
+	/// The time it takes for someone to (tactically) reload this gun.
+	var/tactical_reload_time = 6 SECONDS
+	/// The time it takes for someone to normally reload this gun.
+	var/normal_reload_time = 4 SECONDS
 	/// The sound played when you insert a cell.
 	var/sound_cell_insert = 'modular_skyrat/modules/microfusion/sound/mag_insert.ogg'
 	/// Should the insertion sound played vary?
@@ -93,6 +93,7 @@
 	else
 		cell = new(src)
 	cell.parent_gun = src
+	cell.chargerate = STANDARD_CELL_CHARGE * 0.2
 	if(!dead_cell)
 		cell.give(cell.maxcharge)
 	if(phase_emitter_type)
@@ -265,7 +266,7 @@
 	if(!phase_emitter)
 		balloon_alert(user, "no phase emitter!")
 		return
-	playsound(src, 'sound/items/crowbar.ogg', 70, TRUE)
+	playsound(src, 'sound/items/tools/crowbar.ogg', 70, TRUE)
 	remove_emitter()
 
 /obj/item/gun/microfusion/click_alt(mob/user)
@@ -609,6 +610,7 @@
 		playsound(src, sound_cell_insert, sound_cell_insert_volume, sound_cell_insert_vary)
 	cell = inserting_cell
 	inserting_cell.forceMove(src)
+	inserting_cell.inserted_into_weapon()
 	cell.parent_gun = src
 	normal_reload_time = inserting_cell.reloading_time
 	tactical_reload_time = inserting_cell.reloading_time_tactical
@@ -663,7 +665,7 @@
 
 /obj/item/gun/microfusion/proc/remove_attachment(obj/item/microfusion_gun_attachment/microfusion_gun_attachment, mob/living/user)
 	balloon_alert(user, "removed attachment")
-	playsound(src, 'sound/items/screwdriver.ogg', 70)
+	playsound(src, 'sound/items/tools/screwdriver.ogg', 70)
 	microfusion_gun_attachment.forceMove(get_turf(src))
 	attachments -= microfusion_gun_attachment
 	microfusion_gun_attachment.remove_attachment(src)

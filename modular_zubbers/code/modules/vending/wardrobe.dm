@@ -80,6 +80,8 @@
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	zubbers_products = list(
+	/obj/item/clothing/suit/toggle/labcoat/skyrat/medical = 3,
+	/obj/item/clothing/suit/toggle/labcoat/skyrat/medical/dark = 3,
 	/obj/item/clothing/glasses/hud/health/surgerygoggles = 3,
 	/obj/item/clothing/gloves/latex/nitrile/longrubbergloves = 3,
 	/obj/item/clothing/suit/leatherapron = 3,
@@ -127,6 +129,7 @@
 		/obj/item/clothing/under/rank/rnd/scientist/bunnysuit = 3,
 		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science = 3,
 		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
+		/obj/item/storage/bag/xeno = 3,
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
@@ -174,6 +177,9 @@
 		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
 		/obj/item/clothing/neck/tie/bunnytie/bitrunner = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/bitrunner = 3,
+	)
+	zubbers_premium = list(
+		/obj/item/flatpack/export_gate = 1,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
@@ -226,6 +232,14 @@
 		/obj/item/clothing/under/rank/civilian/cook_bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/cook = 2,
 		/obj/item/clothing/neck/tie/bunnytie/cook = 2,
+		/obj/item/clothing/gloves/latex = 2,
+		/obj/item/clothing/head/soft/allamerican = 3,
+		/obj/item/clothing/under/costume/allamerican = 2,
+		/obj/item/clothing/suit/misc/allamerican = 1,
+		/obj/item/clothing/neck/tie/allamerican = 1,
+		/obj/item/clothing/under/costume/allamerican/manager = 1,
+		/obj/item/clothing/gloves/latex/allamerican = 3,
+		/obj/item/clothing/shoes/laceup = 1,
 	)
 
 /obj/machinery/vending/wardrobe/hydro_wardrobe

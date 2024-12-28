@@ -65,7 +65,7 @@
 /obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
 	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
-	playsound(user, lights_enabled ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
 	update_brightness()
@@ -92,14 +92,12 @@
 
 
 //trigger dance if character uses LBM
-/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag) //Bubber edit add proximity_flag
+/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag)
 	. = ..()
 	if(.)
 		return
-// Bubber edit begin
 	if(!proximity_flag)
 		return
-// Bubber edit end
 	if(pole_in_use)
 		balloon_alert(user, "already in use!")
 		return

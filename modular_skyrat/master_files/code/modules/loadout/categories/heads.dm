@@ -236,15 +236,7 @@
 
 /datum/loadout_item/head/santa
 	name = "Santa Hat"
-	item_path = /obj/item/clothing/head/costume/santa
-
-/datum/loadout_item/head/christmas
-	name = "Red Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas
-
-/datum/loadout_item/head/christmas/green
-	name = "Green Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas/green
+	item_path = /obj/item/clothing/head/costume/santa/gags
 
 /*
 *	HALLOWEEN
@@ -577,7 +569,7 @@
 	name = "Chemist Beret"
 	item_path = /obj/item/clothing/head/beret/medical/chemist
 
-/datum/loadout_item/head/beret_coroner		//Bubbers Addition
+/datum/loadout_item/head/beret_coroner
 	name = "Coroner Beret"
 	item_path = /obj/item/clothing/head/beret/medical/coroner
 	restricted_roles = list(JOB_CORONER, JOB_CHIEF_MEDICAL_OFFICER)

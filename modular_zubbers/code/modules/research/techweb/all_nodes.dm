@@ -41,6 +41,15 @@
 		"limbdesign_tajaran",
 	)
 
+//ENGINEERING
+/datum/techweb_node/atmos/New()
+	. = ..()
+	design_ids += list(
+		"nitrogen_tank",
+		//"nitrogen_tank_belt", | Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
+		"anesthetic_tank",
+	)
+
 // TOOLS
 
 /datum/techweb_node/mining/New()
@@ -90,7 +99,6 @@
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
 	design_ids += "s12g_incinslug"
-	design_ids += "s12g_flechette"
 	design_ids += "wt550_ammo_normal"
 	design_ids += "sol35_shortextmag"
 	design_ids += "sol40_riflemag"
@@ -108,6 +116,7 @@
 	design_ids += "wt550_ammo_incendiary"
 	design_ids += "s12g_magnum"
 	design_ids += "s12g_express"
+	design_ids += "mod_mind_transfer"
 	. = ..()
 
 /datum/techweb_node/nerd

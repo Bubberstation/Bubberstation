@@ -16,7 +16,8 @@
 	name = "Ice-Ruin Lizard Gas Station"
 	id = "lizgasruin"
 	description = "A gas station. It appears to have been recently open and is in mint condition."
-	suffix = "icemoon_surface_gas.dmm"
+	prefix = "_maps/RandomRuins/IceRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "icemoon_surface_gas_bubber.dmm" //BUBBER EDIT - ORIGINAL: icemoon_surface_gas.dmm
 
 /datum/map_template/ruin/icemoon/lust
 	name = "Ice-Ruin Ruin of Lust"
@@ -48,6 +49,38 @@
 	id = "abandoned_homestead"
 	description = "This homestead was once host to a happy homesteading family. It's now host to hungry bears."
 	suffix = "icemoon_underground_abandoned_homestead.dmm"
+
+/datum/map_template/ruin/icemoon/entemology
+	name = "Ice-Ruin Insect Research Station"
+	id = "bug_habitat"
+	description = "An independently funded research outpost, long abandoned. Their mission, to boldly go where no insect life would ever live, ever, and look for bugs."
+	suffix = "icemoon_surface_bughabitat.dmm"
+
+/datum/map_template/ruin/icemoon/pizza
+	name = "Ice-Ruin Moffuchi's Pizzeria"
+	id = "pizzeria"
+	description = "Moffuchi's Family Pizzeria chain has a reputation for providing affordable artisanal meals of questionable edibility. This particular pizzeria seems to have been abandoned for some time."
+	suffix = "icemoon_surface_pizza.dmm"
+
+/datum/map_template/ruin/icemoon/Lodge
+	name = "Ice-Ruin Hunters Lodge"
+	id = "lodge"
+	description = "An old hunting hunting lodge. I wonder if anyone is still home?"
+	suffix = "icemoon_surface_lodge.dmm"
+
+/datum/map_template/ruin/icemoon/frozen_phonebooth
+	name = "Ice-Ruin Frozen Phonebooth"
+	id = "frozen_phonebooth"
+	description = "A venture by Nanotrasen to help popularize the use of holopads. This one was sent to a icemoon."
+	suffix = "icemoon_surface_phonebooth.dmm"
+
+/datum/map_template/ruin/icemoon/smoking_room
+	name = "Ice-Ruin Smoking Room"
+	id = "smoking_room"
+	description = "Here lies Charles Morlbaro. He died the way he lived."
+	suffix = "icemoon_surface_smoking_room.dmm"
+
+// above and below ground together
 
 /datum/map_template/ruin/icemoon/entemology
 	name = "Ice-Ruin Insect Research Station"
@@ -160,6 +193,12 @@
 	description = "This is where all of your paychecks went. Signed, the management."
 	suffix = "icemoon_underground_mailroom.dmm"
 
+/datum/map_template/ruin/icemoon/underground/biodome
+	name = "Ice-Ruin Syndicate Bio-Dome"
+	id = "biodome"
+	description = "Unchecked experimention gone awry."
+	suffix = "icemoon_underground_syndidome.dmm"
+
 /datum/map_template/ruin/icemoon/underground/frozen_comms
 	name = "Ice-Ruin Frozen Communicatons Outpost"
 	id = "frozen_comms"
@@ -171,6 +210,15 @@
 	id = "icemoon_comms_agent"
 	description = "Radio signals are being detected and the source is this completely innocent pile of snow."
 	suffix = "icemoon_underground_comms_agent.dmm"
+	//begin bubber edit
+	unpickable = TRUE
+	//end bubber edit
+
+/datum/map_template/ruin/icemoon/underground/syndie_lab
+	name = "Ice-Ruin Syndicate Lab"
+	id = "syndie_lab"
+	description = "A small laboratory and living space for Syndicate agents."
+	suffix = "icemoon_underground_syndielab.dmm"
 
 //TODO: Bottom-Level ONLY Spawns after Refactoring Related Code
 /datum/map_template/ruin/icemoon/underground/plasma_facility

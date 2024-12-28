@@ -93,6 +93,7 @@
 		"Blueshield",
 		"Command Bodyguard",
 		"Executive Protection Agent",
+		"Command Protection Officer",
 	)
 
 /datum/job/botanist
@@ -224,6 +225,7 @@
 		"Tavern Chef",
 		"Confectionist",
 		"Pastry Chef",
+		"All-American Diner Employee",
 	)
 
 /datum/job/coroner
@@ -269,6 +271,7 @@
 		"Forensic Scientist",
 		"Forensic Technician",
 		"Private Investigator",
+		"CID Officer",
 	)
 
 /datum/job/doctor
@@ -363,6 +366,7 @@
 		"Central Command Representative",
 		"Central Command Liason",
 		"Corporate Liason",
+		"Corporate Consultant",
 	)
 
 /datum/job/orderly
@@ -461,6 +465,8 @@
 		"Security Cadet",
 		"Junior Officer",
 		"Security Assistant",
+		"Security Specialist",
+		"Defense Contractor",
 	)
 
 /datum/job/shaft_miner
@@ -472,6 +478,8 @@
 		"Prospector",
 		"Spelunker",
 		"Apprentice Miner",
+		"Dredger",
+		"Contract Miner",
 	)
 
 /datum/job/station_engineer

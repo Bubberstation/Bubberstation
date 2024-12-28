@@ -549,3 +549,28 @@
 
 /obj/item/clothing/under/costume/loincloth/cloth/sensor
 	has_sensor = HAS_SENSORS
+
+/obj/item/clothing/under/costume/lizardgas
+	name = "lizard gas uniform"
+	desc = "A purple shirt with a nametag, and some ill-fitting jeans. The bare minimum required by company standards."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "lizardgas"
+	body_parts_covered = CHEST|GROIN|LEGS
+	has_sensor = NO_SENSORS //you're not NT employed, so they don't care about you
+
+/obj/item/clothing/under/costume/allamerican
+	name = "all-american diner employee uniform"
+	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "allamerican"
+	body_parts_covered = CHEST|GROIN|LEGS
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/allamerican/manager
+	name = "all-american diner manager uniform"
+	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
+	icon_state = "allamerican_manager"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS

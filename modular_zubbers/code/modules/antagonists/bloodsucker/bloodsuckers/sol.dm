@@ -20,7 +20,7 @@
 ///Called when Sol is near starting.
 /datum/antagonist/bloodsucker/proc/sol_near_start(atom/source)
 	SIGNAL_HANDLER
-	if(bloodsucker_lair_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
+	if(bloodsucker_haven_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
 		BuyPower(/datum/action/cooldown/bloodsucker/gohome)
 
 ///Called when Sol first ends.
@@ -70,7 +70,7 @@
 	owner.current.updatehealth()
 	owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 
-/datum/antagonist/bloodsucker/proc/give_warning(atom/source, danger_level, vampire_warning_message, vassal_warning_message)
+/datum/antagonist/bloodsucker/proc/give_warning(atom/source, danger_level, vampire_warning_message, ghoul_warning_message)
 	SIGNAL_HANDLER
 	SSsunlight.warn_notify(owner.current, danger_level, vampire_warning_message)
 

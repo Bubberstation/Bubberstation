@@ -143,7 +143,7 @@
 
 	tool_behaviour = (active ? TOOL_BONESET : TOOL_BLOODFILTER)
 	balloon_alert(user, "tools set to [active ? "set bones" : "filter blood"]")
-	playsound(user ? user : src, 'sound/items/change_drill.ogg', 50, TRUE)
+	playsound(user ? user : src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/blood_filter/advanced/examine()

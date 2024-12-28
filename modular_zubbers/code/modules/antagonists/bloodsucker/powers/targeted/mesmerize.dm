@@ -14,7 +14,7 @@
 	name = "Mesmerize"
 	button_icon_state = "power_mez"
 	power_flags = NONE
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 30 SECONDS
 	target_range = 4
@@ -28,7 +28,7 @@
 	/// At what level this ability will blind the target at. Level 0 = never.
 	var/blind_at_level = 0
 	/// if the ability requires you to be physically facing the target
-	var/requires_facing_target = TRUE
+	var/requires_facing_target = FALSE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
 	/// if the ability will knockdown on secondary click

@@ -20,3 +20,10 @@
 	name = "Latex Heels"
 	item_path = /obj/item/clothing/shoes/latex_heels
 
+/datum/loadout_item/shoes/pirate_boots
+	name = "Pirate Boots"
+	item_path = /obj/item/clothing/shoes/pirate
+
+/datum/loadout_item/shoes/Wheely_heels
+	name = "Wheely-Heels"
+	item_path = /obj/item/clothing/shoes/wheelys

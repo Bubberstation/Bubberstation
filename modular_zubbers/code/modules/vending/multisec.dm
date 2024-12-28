@@ -34,11 +34,13 @@
 					/obj/item/clothing/head/security_garrison = 10,
 					/obj/item/clothing/head/security_cap = 10,
 					/obj/item/clothing/head/beret/sec/peacekeeper = 6,
-					/obj/item/clothing/head/helmet/sec/sol = 6,
+					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
+					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
+					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
 				),
 			),
 		list(
@@ -117,6 +119,7 @@
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,
 					/obj/item/clothing/suit/armor/vest/blueshirt = 3,
+					/obj/item/riding_saddle/leather/peacekeeper = 3,
 	)
 
 //CONTRABAND: Basically for less serious/hard to cat stuff like the Cowboy and Bluecoat stuff. And for stuff that shouldn't be easy to get like HUD varients.

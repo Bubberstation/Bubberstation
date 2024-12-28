@@ -182,6 +182,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	else if(ispath(old_type, /turf/open/space))
 		for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
 			space_tile.enable_starlight()
+
 	//SKYRAT EDIT ADDITION
 	if(old_liquids)
 		if(!isnull(new_turf.liquids)) //isnull is faster

@@ -21,8 +21,6 @@
 		return
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !is_in_torpor())
 		INVOKE_ASYNC(src, PROC_REF(AdjustBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
-	INVOKE_ASYNC(src, PROC_REF(update_blood))
-	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 
 /datum/antagonist/bloodsucker/proc/life_active()
 	if(HandleHealing())
@@ -113,10 +111,7 @@
 			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
 			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
 			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
-		if(IS_VASSAL(target)) // Checks if the target is a vassal
-			blood_level_gain += blood_for_leveling / 4
-		else
-			blood_level_gain += blood_for_leveling
+		blood_level_gain += blood_for_leveling
 	return blood_taken
 
 /**
@@ -201,7 +196,7 @@
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = missing_bodypart.max_damage
 		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
 /*
@@ -231,8 +226,7 @@
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 
 	bloodsuckeruser.cure_husk(BURN)
-	for(var/datum/wound/wound as anything in bloodsuckeruser.all_wounds)
-		wound.remove_wound()
+
 	if(bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 
@@ -281,9 +275,9 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	if(QDELETED(owner.current))
-		if(length(vassals))
-			free_all_vassals()
-		vassals = list()
+		if(length(ghouls))
+			free_all_ghouls()
+		ghouls = list()
 		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
@@ -293,6 +287,11 @@
 	if(is_in_torpor() || isbrain(owner.current))
 		return
 	check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
+
+/datum/antagonist/bloodsucker/proc/HandleBlood()
+	INVOKE_ASYNC(src, PROC_REF(update_blood))
+	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
+	return HANDLE_BLOOD_NO_OXYLOSS | HANDLE_BLOOD_NO_NUTRITION_DRAIN
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
 	// Nutrition - The amount of blood is how full we are.
@@ -349,8 +348,8 @@
 	owner.current.blood_volume = bloodsucker_blood_volume
 
 /// Turns the bloodsucker into a wacky talking head.
-/datum/antagonist/bloodsucker/proc/talking_head()
-	var/mob/living/poor_fucker = owner.current
+/datum/antagonist/bloodsucker/proc/talking_head(mob/target)
+	var/mob/living/poor_fucker = target
 	if(QDELETED(poor_fucker))
 		return
 	// Don't do anything if we're not actually inside a brain and a head
@@ -399,7 +398,7 @@
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
-	free_all_vassals()
+	free_all_ghouls()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(DROP_ITEMS)

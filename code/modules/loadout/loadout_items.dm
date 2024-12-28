@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Reskin options of this item if it can be reskinned.
 	VAR_FINAL/list/cached_reskin_options
 
-	//SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION START
 	/// If set, it's a list containing ckeys which only can get the item
 	var/list/ckeywhitelist
 	/// If set, is a list of job names of which can get the loadout item
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/required_season = null
 	/// If the item won't appear when the ERP config is disabled
 	var/erp_item = FALSE
-
+	// BUBBER EDIT END
 
 /datum/loadout_item/New(category)
 	src.category = category
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(manager.menu)
 		return FALSE
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/list/allowed_configs = list()
 	if(initial(item_path.greyscale_config))
 		allowed_configs += "[initial(item_path.greyscale_config)]"
@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!istype(open_menu))
 		CRASH("set_slot_greyscale called without a greyscale menu!")
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])
 		return FALSE
 
@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		return FALSE
 
 	loadout[item_path][INFO_GREYSCALE] = colors.Join("")
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return TRUE // update UI
 
 /// Sets the name of the item.
@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 // Generally, if this conflicts, name_slot is to be put anywhere where INFO_NAMED appears in tgcode
 /datum/loadout_item/proc/set_name(datum/preference_middleware/loadout/manager, mob/user, name_slot = INFO_NAMED)
 	var/isname = (name_slot == INFO_NAMED)
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/input_name = tgui_input_text(
 		user = user,
 		message = "What [isname ? "name" : "description"] do you want to give the [name]? Leave blank to clear.",
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(QDELETED(src) || QDELETED(user) || QDELETED(manager) || QDELETED(manager.preferences))
 		return FALSE
 
-	loadout = manager.preferences.read_preference(/datum/preference/loadout) // Make sure no shenanigans happened
+	loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout = manager.preferences.read_preference(/datum/preference/loadout) // Make sure no shenanigans happened
 	if(!loadout?[item_path])
 		return FALSE
 
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	else if(input_name == "")
 		loadout[item_path] -= name_slot
 
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return FALSE // no update needed
 // SKYRAT EDIT END
 
@@ -232,12 +232,12 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!cached_reskin_options[reskin_to])
 		return FALSE
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])
 		return FALSE
 
 	loadout[item_path][INFO_RESKIN] = reskin_to
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return TRUE // always update UI
 
 /**
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	ASSERT(!isnull(equipped_item))
 
 	if(!visuals_only)
-		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, "Loadout")
+		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, TRAIT_SOURCE_LOADOUT)
 
 	var/list/item_details = preference_list[item_path]
 	var/update_flag = NONE
@@ -296,8 +296,9 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			equipped_item.desc = trim(item_details[INFO_DESCRIBED], PREVENT_CHARACTER_TRIM_LOSS(MAX_DESC_LEN))
 			renamed = 1
 		if(renamed)
-			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, "Loadout")
-			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED) // BUBBER EDIT
+			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, TRAIT_SOURCE_LOADOUT)
+			equipped_item.AddElement(/datum/element/examined_when_worn)
+			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED)
 	// SKYRAT EDIT END
 
 	if(can_be_reskinned && item_details?[INFO_RESKIN])
@@ -340,7 +341,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	formatted_item["ckey_whitelist"] = ckeywhitelist
 	formatted_item["donator_only"] = donator_only
 	formatted_item["restricted_roles"] = restricted_roles
-	formatted_item["blacklisted_roles"] = restricted_roles
+	formatted_item["blacklisted_roles"] = blacklisted_roles
 	// SKYRAT EDIT END
 
 	return formatted_item
@@ -441,4 +442,3 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		))
 
 	return reskins
-

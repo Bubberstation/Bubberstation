@@ -133,7 +133,7 @@
 		target_ref = null
 		return FALSE
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
-		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
+		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
@@ -159,7 +159,7 @@
 			continue
 		if(watchers.is_blind() || watchers.is_nearsighted_currently())
 			continue
-		if(IS_BLOODSUCKER(watchers) || IS_VASSAL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
+		if(IS_BLOODSUCKER(watchers) || IS_GHOUL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
 			continue
 		owner.balloon_alert(owner, "feed noticed!")
 		bloodsuckerdatum_power.give_masquerade_infraction()

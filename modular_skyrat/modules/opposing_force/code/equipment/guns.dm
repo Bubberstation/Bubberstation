@@ -3,7 +3,7 @@
 
 /datum/opposing_force_equipment/ranged/renoster
 	name = "Renoster Shotgun"
-	description = "A twelve guage shotgun with an eight shell capacity underneath."
+	description = "A twelve gauge shotgun with an eight shell capacity underneath."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster/PopulateContents()
@@ -13,7 +13,7 @@
 
 /datum/opposing_force_equipment/ranged/infanteria
 	name = "Carwo-Cawil Battle Rifle"
-	description = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard SolFed rifle magazine."
+	description = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard TerraGov rifle magazine."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria/PopulateContents()
@@ -159,7 +159,7 @@
 
 /datum/opposing_force_equipment/ranged_stealth/wespe
 	name = "Wespe Pistol"
-	description = "The standard issue service pistol of SolFed's various military branches. Comes with attached light."
+	description = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe/PopulateContents()
@@ -214,7 +214,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/syndie_revolver
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/syndie_revolver/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/syndicate(src)
+	new /obj/item/gun/ballistic/revolver(src)
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/ammo_box/a357(src)
 
@@ -246,7 +246,7 @@
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/foamforce_smg_basic
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/foamforce_smg_basic/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/toy/unrestricted(src)
+	new /obj/item/gun/ballistic/automatic/toy/riot(src)
 	new /obj/item/ammo_box/magazine/toy/smg/riot(src)
 	new /obj/item/ammo_box/magazine/toy/smg/riot(src)
 

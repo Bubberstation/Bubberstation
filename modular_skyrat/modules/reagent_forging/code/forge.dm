@@ -397,7 +397,7 @@
 			minimum_target_temperature = 25 // This won't matter except in a few cases here, but we still need to cover those few cases
 			forge_level = FORGE_LEVEL_LEGENDARY
 
-	playsound(src, 'sound/weapons/parry.ogg', 50, TRUE) // Play a feedback sound to really let players know we just did an upgrade
+	playsound(src, 'sound/items/weapons/parry.ogg', 50, TRUE) // Play a feedback sound to really let players know we just did an upgrade
 
 //this will allow click dragging certain items
 /obj/structure/reagent_forge/mouse_drop_receive(atom/attacking_item, mob/user, params)
@@ -570,11 +570,9 @@
 
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
-	//BUBBER EDIT START - Makes imbuing need skill again
 	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
 		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
 		return
-	//BUBBER EDIT END
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
 		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
@@ -609,17 +607,15 @@
 	attacking_weapon.color = mix_color_from_reagents(attacking_weapon.reagents.reagent_list)
 	balloon_alert_to_viewers("imbued [attacking_weapon]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
-	playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	in_use = FALSE
 	return TRUE
 
 /// Handles clothing imbuing, extremely similar to weapon imbuing but not in the same proc because of how uhh... goofy the way this has to be done is
 /obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
-	//BUBBER EDIT START - Makes imbuing need skill again
 	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
 		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
 		return
-	//BUBBER EDIT END
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
 		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
@@ -654,7 +650,7 @@
 	attacking_clothing.color = mix_color_from_reagents(attacking_clothing.reagents.reagent_list)
 	balloon_alert_to_viewers("imbued [attacking_clothing]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
-	playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	in_use = FALSE
 	return TRUE
 

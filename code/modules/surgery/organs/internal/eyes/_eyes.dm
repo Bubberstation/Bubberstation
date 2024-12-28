@@ -13,12 +13,12 @@
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD //threshold at 30
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD //threshold at 20
 
-	low_threshold_passed = "<span class='info'>Distant objects become somewhat less tangible.</span>"
-	high_threshold_passed = "<span class='info'>Everything starts to look a lot less clear.</span>"
-	now_failing = "<span class='warning'>Darkness envelopes you, as your eyes go blind!</span>"
-	now_fixed = "<span class='info'>Color and shapes are once again perceivable.</span>"
-	high_threshold_cleared = "<span class='info'>Your vision functions passably once more.</span>"
-	low_threshold_cleared = "<span class='info'>Your vision is cleared of any ailment.</span>"
+	low_threshold_passed = span_info("Distant objects become somewhat less tangible.")
+	high_threshold_passed = span_info("Everything starts to look a lot less clear.")
+	now_failing = span_warning("Darkness envelopes you, as your eyes go blind!")
+	now_fixed = span_info("Color and shapes are once again perceivable.")
+	high_threshold_cleared = span_info("Your vision functions passably once more.")
+	low_threshold_cleared = span_info("Your vision is cleared of any ailment.")
 
 	/// Sight flags this eye pair imparts on its user.
 	var/sight_flags = NONE
@@ -50,7 +50,10 @@
 	/// indication that the eyes are undergoing some negative effect
 	var/damaged = FALSE
 	/// Native FOV that will be applied if a config is enabled
-	var/native_fov = FOV_180_DEGREES //SKYRAT EDIT CHANGE
+	var/native_fov = FOV_180_DEGREES //SKYRAT EDIT CHANGE - Original FOV_90_DEGREES
+	/// Scarring on this organ
+	var/scarring = NONE
+
 
 /obj/item/organ/internal/eyes/Insert(mob/living/carbon/eye_recipient, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	// If we don't do this before everything else, heterochromia will be reset leading to eye_color_right no longer being accurate
@@ -67,6 +70,7 @@
 	eye_recipient.cure_blind(NO_EYES)
 	apply_damaged_eye_effects()
 	refresh(eye_recipient, call_update = TRUE)
+	RegisterSignal(eye_recipient, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 
 /// Refreshes the visuals of the eyes
 /// If call_update is TRUE, we also will call update_body
@@ -125,16 +129,81 @@
 	eye_owner.update_tint()
 	eye_owner.update_sight()
 	is_emissive = FALSE // SKYRAT EDIT ADDITION
+	UnregisterSignal(eye_owner, COMSIG_ATOM_BULLET_ACT)
+
+// BUBBER EDIT - REPLACES organ/eyes with organ/internal/eyes until someone can pull the rework - Needed for some qol in proc
+/obj/item/organ/internal/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone)
+// /obj/item/organ/eyes/proc/on_bullet_act(mob/living/carbon/source, obj/projectile/proj, def_zone)
+	SIGNAL_HANDLER
+
+	// Once-a-dozen-rounds level of rare
+	if (def_zone != BODY_ZONE_HEAD || !prob(proj.damage * 0.1) || !(proj.damage_type == BRUTE || proj.damage_type == BURN))
+		return
+
+	var/blocked = source.check_projectile_armor(def_zone, proj, is_silent = TRUE)
+	if (blocked && source.is_eyes_covered())
+		if (!proj.armour_penetration || prob(blocked - proj.armour_penetration))
+			return
+
+	var/valid_sides = list()
+	if (!(scarring & RIGHT_EYE_SCAR))
+		valid_sides += RIGHT_EYE_SCAR
+	if (!(scarring & LEFT_EYE_SCAR))
+		valid_sides += LEFT_EYE_SCAR
+	if (!length(valid_sides))
+		return
+
+	var/picked_side = pick(valid_sides)
+	to_chat(owner, span_userdanger("You feel searing pain shoot though your [picked_side == RIGHT_EYE_SCAR ? "right" : "left"] eye!"))
+	// oof ouch my eyes
+	apply_organ_damage(rand((maxHealth - high_threshold) * 0.5, maxHealth - low_threshold))
+	var/datum/wound/pierce/bleed/severe/eye/eye_puncture = new
+	eye_puncture.apply_wound(bodypart_owner, wound_source = "bullet impact", right_side = picked_side)
+	apply_scar(picked_side)
 
 #define OFFSET_X 1
 #define OFFSET_Y 2
+
+/// Similar to get_status_text, but appends the text after the damage report, for additional status info
+/obj/item/organ/internal/eyes/get_status_appendix(advanced, add_tooltips)
+	if(owner.stat == DEAD || HAS_TRAIT(owner, TRAIT_KNOCKEDOUT))
+		return
+	if(owner.is_blind())
+		if(advanced)
+			if(owner.is_blind_from(QUIRK_TRAIT))
+				return conditional_tooltip("Subject is permanently blind.", "Irreparable under normal circumstances.", add_tooltips)
+			if(owner.is_blind_from(EYE_SCARRING_TRAIT))
+				return conditional_tooltip("Subject is blind from widespread ocular scarring.", "Surgically replace eyes, irreparable otherwise.", add_tooltips)
+			if(owner.is_blind_from(TRAUMA_TRAIT))
+				return conditional_tooltip("Subject is blind from mental trauma.", "Repair via treatment of associated trauma.", add_tooltips)
+			if(owner.is_blind_from(GENETIC_MUTATION))
+				return conditional_tooltip("Subject is genetically blind.", "Use medication such as [/datum/reagent/medicine/mutadone::name].", add_tooltips)
+			if(owner.is_blind_from(EYE_DAMAGE))
+				return conditional_tooltip("Subject is blind from eye damage.", "Repair surgically, use medication such as [/datum/reagent/medicine/oculine::name], or protect eyes with a blindfold.", add_tooltips)
+		return "Subject is blind."
+	if(owner.is_nearsighted())
+		if(advanced)
+			if(owner.is_nearsighted_from(QUIRK_TRAIT))
+				return conditional_tooltip("Subject is permanently nearsighted.", "Irreparable under normal circumstances. Prescription glasses will assuage the effects.", add_tooltips)
+			if(owner.is_nearsighted_from(TRAIT_RIGHT_EYE_SCAR) || owner.is_nearsighted_from(TRAIT_LEFT_EYE_SCAR))
+				return conditional_tooltip("Subject is nearsighted from severe ocular scarring.", "Surgically replace eyes, irreparable otherwise.", add_tooltips)
+			if(owner.is_nearsighted_from(GENETIC_MUTATION))
+				return conditional_tooltip("Subject is genetically nearsighted.", "Use medication such as [/datum/reagent/medicine/mutadone::name]. Prescription glasses will assuage the effects.", add_tooltips)
+			if(owner.is_nearsighted_from(EYE_DAMAGE))
+				return conditional_tooltip("Subject is nearsighted from eye damage.", "Repair surgically or use medication such as [/datum/reagent/medicine/oculine::name]. Prescription glasses will assuage the effects.", add_tooltips)
+		return "Subject is nearsighted."
+	return ""
+
+/obj/item/organ/internal/eyes/show_on_condensed_scans()
+	// Always show if we have an appendix
+	return ..() || (owner.stat != DEAD && !HAS_TRAIT(owner, TRAIT_KNOCKEDOUT) && (owner.is_blind() || owner.is_nearsighted()))
 
 /// This proc generates a list of overlays that the eye should be displayed using for the given parent
 /obj/item/organ/internal/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
 	if(!istype(parent) || parent.get_organ_by_type(/obj/item/organ/internal/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
 
-	if(isnull(eye_icon_state))
+	if(isnull(eye_icon_state) || eye_icon_state == "None") // SKYRAT EDIT - Synths, adds eye_icon_state == "None"
 		return list()
 
 	var/eye_icon = parent.dna?.species.eyes_icon || 'icons/mob/human/human_face.dmi' // SKYRAT EDIT ADDITION
@@ -145,22 +214,43 @@
 
 	var/obscured = parent.check_obscured_slots(TRUE)
 	if(overlay_ignore_lighting && !(obscured & ITEM_SLOT_EYES))
-		overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -eyes_layer, alpha = eye_left.alpha) // SKYRAT EDIT CHANGE - ORIGINAL: overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -BODY_LAYER, alpha = eye_left.alpha)
-		overlays += emissive_appearance(eye_right.icon, eye_right.icon_state, parent, -eyes_layer, alpha = eye_right.alpha) // SKYRAT EDIT CHANGE - ORIGINAL: overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -BODY_LAYER, alpha = eye_left.alpha)
+		overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -eyes_layer, alpha = eye_left.alpha)
+		overlays += emissive_appearance(eye_right.icon, eye_right.icon_state, parent, -eyes_layer, alpha = eye_right.alpha)
+
 	var/obj/item/bodypart/head/my_head = parent.get_bodypart(BODY_ZONE_HEAD)
-	if(my_head)
-		if(my_head.head_flags & HEAD_EYECOLOR)
+
+	if(!my_head)
+		return overlays
+
+	if(my_head.head_flags & HEAD_EYECOLOR)
+		if(IS_ROBOTIC_ORGAN(src) || !my_head.draw_color || (parent.appears_alive() && !HAS_TRAIT(parent, TRAIT_KNOCKEDOUT)))
+			// show the eyes as open
 			eye_right.color = eye_color_right
 			eye_left.color = eye_color_left
-		if(my_head.worn_face_offset)
-			my_head.worn_face_offset.apply_offset(eye_left)
-			my_head.worn_face_offset.apply_offset(eye_right)
+		else
+			// show the eyes as closed, and as such color them like eyelids wound be colored
+			var/list/base_color = rgb2num(my_head.draw_color, COLORSPACE_HSL)
+			base_color[2] *= 0.85
+			base_color[3] *= 0.85
+			var/eyelid_color = rgb(base_color[1], base_color[2], base_color[3], (length(base_color) >= 4 ? base_color[4] : null), COLORSPACE_HSL)
+			eye_right.color = eyelid_color
+			eye_left.color = eyelid_color
 
-	// SKYRAT EDIT START - Customization (Synths + Emissives)
-	if(eye_icon_state == "None")
-		eye_left.alpha = 0
-		eye_right.alpha = 0
+	if (scarring & RIGHT_EYE_SCAR)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_right", -BODY_LAYER)
+		right_scar.color = my_head.draw_color
+		overlays += right_scar
 
+	if (scarring & LEFT_EYE_SCAR)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_left", -BODY_LAYER)
+		left_scar.color = my_head.draw_color
+		overlays += left_scar
+
+	if(my_head.worn_face_offset)
+		my_head.worn_face_offset.apply_offset(eye_left)
+		my_head.worn_face_offset.apply_offset(eye_right)
+
+	// SKYRAT EDIT START - Customization Emissives)
 	if (is_emissive) // Because it was done all weird up there.
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
@@ -175,6 +265,61 @@
 	// SKYRAT EDIT END
 
 	return overlays
+
+/obj/item/organ/internal/eyes/update_overlays()
+	. = ..()
+	if (scarring & RIGHT_EYE_SCAR)
+		. += mutable_appearance('icons/obj/medical/organs/organs.dmi', "eye_scar_right")
+	if (scarring & LEFT_EYE_SCAR)
+		. += mutable_appearance('icons/obj/medical/organs/organs.dmi', "eye_scar_left")
+
+/obj/item/organ/internal/eyes/proc/apply_scar(side)
+	if (scarring & side)
+		return
+	scarring |= side
+	maxHealth -= 15
+	update_appearance()
+	apply_scarring_effects()
+
+/obj/item/organ/internal/eyes/proc/apply_scarring_effects()
+	if (!owner)
+		return
+	var/datum/status_effect/grouped/nearsighted/nearsightedness = owner.is_nearsighted()
+	// Even if eyes have enough health, our owner still becomes nearsighted
+	if (scarring & RIGHT_EYE_SCAR)
+		owner.become_nearsighted(TRAIT_RIGHT_EYE_SCAR)
+	if (scarring & LEFT_EYE_SCAR)
+		owner.become_nearsighted(TRAIT_LEFT_EYE_SCAR)
+	if (isnull(nearsightedness)) // We aren't nearsighted from any other source
+		nearsightedness = owner.is_nearsighted()
+		nearsightedness.set_nearsighted_severity(1)
+	if ((scarring & RIGHT_EYE_SCAR) && (scarring & LEFT_EYE_SCAR))
+		owner.become_blind(EYE_SCARRING_TRAIT)
+	owner.update_body()
+
+/obj/item/organ/internal/eyes/proc/fix_scar(side)
+	if (!(scarring & side))
+		return
+	scarring &= ~side
+	maxHealth += 15
+	update_appearance()
+	if (!owner)
+		return
+	owner.cure_nearsighted(side == RIGHT_EYE_SCAR ? TRAIT_RIGHT_EYE_SCAR : TRAIT_LEFT_EYE_SCAR)
+	owner.cure_blind(EYE_SCARRING_TRAIT)
+	owner.update_body()
+
+/obj/item/organ/internal/eyes/on_mob_insert(mob/living/carbon/eye_owner)
+	. = ..()
+	if (scarring)
+		apply_scarring_effects()
+
+/obj/item/organ/internal/eyes/on_mob_remove(mob/living/carbon/eye_owner)
+	. = ..()
+	if (scarring)
+		eye_owner.cure_nearsighted(TRAIT_RIGHT_EYE_SCAR)
+		eye_owner.cure_nearsighted(TRAIT_LEFT_EYE_SCAR)
+		eye_owner.cure_blind(EYE_SCARRING_TRAIT)
 
 #undef OFFSET_X
 #undef OFFSET_Y
@@ -220,7 +365,7 @@
 		owner.become_nearsighted(EYE_DAMAGE)
 		// update the severity of our nearsightedness based on our eye damage
 		var/datum/status_effect/grouped/nearsighted/nearsightedness = owner.is_nearsighted()
-		nearsightedness.set_nearsighted_severity(damage > high_threshold ? 2 : 1)
+		nearsightedness.set_nearsighted_severity(damage > high_threshold ? 3 : 2)
 
 	damaged = TRUE
 

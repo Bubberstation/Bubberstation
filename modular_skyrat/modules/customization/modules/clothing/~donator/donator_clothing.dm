@@ -151,7 +151,7 @@
 			if("No")
 				return
 			if("Maybe")
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 				audible_message(span_warning("The [src] buzzes!"))
 				return
 
@@ -265,19 +265,21 @@
 	resistance_flags = FIRE_PROOF
 
 /******CALIGRA DONATIONS******/
+// NOTE: Caligram is being renamed to Blacktide Mercenary Fleet. I'll be reflavoring them to that, with the Molerats/Dustworld stuff coming in its own unique PR later
+
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight
-	name = "\improper FIR-36 half-face rebreather"
-	desc = "A close-fitting respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-36 Rebreather is commonly used by Military and Civilian Personnel alike. It reeks of Militarism."
+	name = "\improper BT-36 respirator"
+	desc = "A combat respirator designed by Blacktide for their original contingent of humanoid recruits. Sleek and black."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "fir36"
 	actions_types = list(/datum/action/item_action/adjust)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS //same flags as actual sec hailer gas mask
-	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right? // BUBBER TODO: Modularity
+	flags_inv = HIDESNOUT
 	flags_cover = NONE
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit // BUBBER TODO: Modularity
+	visor_flags_inv = HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
 	tint = 0
 	interaction_flags_click = NEED_DEXTERITY
@@ -297,49 +299,96 @@
 
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight/fir22
-	name = "\improper FIR-22 full-face rebreather"
-	desc = "A full-face respirator designed by Forestfel Intersystem Industries and originally meant for Ixian Tajarans, the FIR-22 Rebreather is a snout-covering variant often seen used by Tajaran Military Personnel. It reeks of militarism."
+	name = "\improper BT-22 extended respirator"
+	desc = "A variant on the BT-36 respirator with an extended visor, developed to fit on Blacktide recruits with longer snouts. Just as sleek and black as its older brother."
 	icon_state = "fir22"
 
 // Donation reward for Raxraus
 /obj/item/clothing/head/caligram_cap_tan
-	name = "\improper Caligram tan softcap"
-	desc = "A Caligram's Fleet-branded hat in a '/surprisingly/' tasteful shade of brown."
+	name = "\improper Blacktide softcap"
+	desc = "A softcap, made for Blacktide for operating in all environments, comes in tan and a tasteful blue variant."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_cap_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_cap_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_cap_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_cap_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
-	name = "\improper Caligram tan fatigues"
-	desc = "A set of tan and brown work fatigues bearing a Caligram's Fleet insigna on an armband. Lacks the typical Tajaran extravagance."
+	name = "\improper Blacktide fatigues"
+	desc = "A set of fatigues developed by Blacktide for their operators, designed for all environments. Comes in a brown and a tasteful blue variant."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "caligram_fatigues_tan"
 	worn_icon_state = "caligram_fatigues_tan"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_fatigues_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_fatigues_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_fatigues_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_fatigues_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/jacket/caligram_parka_tan
-	name = "\improper Caligram tan parka"
-	desc = "A tan parka with a fancy black belt and '/Caligram's Fleet/' stitched onto its armband."
+	name = "\improper Blacktide coat"
+	desc = "A coat with a black belt and '/Blacktide Mercenary Corps/' stitched onto the armband. Comes in tan, blue, and patchless blue variants."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_tan"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_blue"
+		),
+		"Blue Patchless Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_patchless_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_patchless_blue"
+		)
+	)
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
-	name = "\improper Caligram armored tan parka"
-	desc = "A tan parka with a fancy black belt, a lightly armored vest and '/Caligram's Fleet/' stitched onto its armband."
+	name = "\improper Blacktide armored coat"
+	desc = "A coat with a black belt, a lightly armored vest and '/Blacktide Mercenary Corps/' stitched onto its armband. Comes in tan and blue variants."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_vest_tan"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Tan Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_vest_tan",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_tan"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "caligram_parka_vest_blue",
+			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_blue"
+		)
+	)
 
 // Donation reward for ChillyLobster
 /obj/item/clothing/suit/jacket/brasspriest
@@ -479,7 +528,7 @@
 	var/goggles = FALSE
 
 /obj/item/clothing/head/avipilot/proc/adjust_goggles(mob/living/carbon/user)
-	if(user?.incapacitated())
+	if(user?.incapacitated)
 		return
 	if(goggles)
 		icon_state = "avipilotup"
@@ -560,6 +609,7 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	alternate_worn_layer = UNDER_SUIT_LAYER
+	kink_collar = TRUE
 	/// What's the name on the tag, if any?
 	var/tagname = null
 	/// What treat item spawns inside the collar?
@@ -1127,8 +1177,6 @@
 		"snuggle",
 		"cuddle",
 		"kiss",
-		//"feed Dan Kelly", /bubber edit on request/
-		//"hoard Shinzo Shore", /bubber edit on request/
 		"spoil friends",
 		"hold hands",
 		"have this license",
@@ -1356,10 +1404,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 /obj/item/coin/donator/marsoc
 	name = "MARSOC Challenge Coin"
 	desc = "This is a challenge coin given to all MARSOC members upon honorable separation from the Corps. \
-			The coin has the insignia of the Marine Special Operations Command on one side, and the Sol Federation Marine Corps logo on the other. \
+			The coin has the insignia of the Marine Special Operations Command on one side, and the Terran Government Marine Corps logo on the other. \
 			This one has an engraving on the Marine Corps logo side, etched in a circle around it: \
 			\"To Staff Sargent Henry Rockwell, for his exemplary service to the Special Operations community and his outstanding moral fiber \
-			and shining example to the core values of the Sol Federation Marine Corps.\""
+			and shining example to the core values of the Terran Government Marine Corps.\""
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	sideslist = list("MARSOC", "SFMC")
 
@@ -1412,6 +1460,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "short_coat"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/neck/flower_collar
@@ -1420,6 +1469,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/necklaces.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 	icon_state = "flower_collar"
+	kink_collar = TRUE
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/under/costume/skyrat/kimono/sigmar
@@ -1448,9 +1498,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	hoodtype = /obj/item/clothing/head/hooded/sigmarcoat
 	supports_variations_flags = NONE
 
-// Donation reward for Sonicgotnuked
+// Donation reward for The Sharkenning
 
-/obj/item/clothing/gloves/ring/hypno/nuke
+/obj/item/clothing/gloves/ring/hypno/sharkenning
 	name = "suspiciously glossy ring"
 	desc = "This ring oozes with an assertive edge as sharp light bends along the smooth, black bronze. Like the finger that wears it, an exceptional amount of polish repels nearly all the light that glances along its surface. If you look closer, a slight golden hue indicates the precious metals inside the alloy."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
@@ -1461,7 +1511,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	righthand_file = null
 	spans = list("glossy")
 
-/obj/item/clothing/ears/kinky_headphones/nuke
+/obj/item/clothing/ears/kinky_headphones/sharkenning
 	name = "suspiciously glossy headphones"
 	desc = "Black metalic headphones with a glossy finish. The soft rubber cushions are comftorable and form fitting"
 	icon_state = "kinkphones_black_off"
@@ -1591,8 +1641,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "digicoat_interdyne"
 
 /obj/item/clothing/suit/armor/hos/elofy
-	name = "solar admiral coat"
-	desc = "A traditional naval officer uniform of the late 63rd Expeditionary Fleet. This faithful recreation bears the admiral's crest of the Luna Wolves Legion. It is uniquely tailored to the form of a certain wolf girl."
+	name = "anime admiral coat"
+	desc = "This coat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
+		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
+		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "coat_blackblue"
@@ -1627,7 +1680,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 
 /obj/item/clothing/head/hats/hos/elofy
-	name = "solar admiral hat"
+	name = "anime admiral hat"
+	desc = "This hat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
+		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
+		but hasn't had much spread outside of the Terran Government."
 	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "hat_black"
@@ -1645,7 +1702,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 
 /obj/item/clothing/gloves/elofy
-	name = "solar admiral gloves"
+	name = "anime admiral gloves"
+	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
+		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
+		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
@@ -1662,7 +1723,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	)
 
 /obj/item/clothing/shoes/jackboots/elofy
-	name = "solar admiral boots"
+	name = "anime admiral boots"
+	desc = "These boots are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
+		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
+		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
+		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	icon_state = "boots_blackblue"

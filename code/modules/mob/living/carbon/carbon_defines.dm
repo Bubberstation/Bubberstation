@@ -12,6 +12,8 @@
 	mobility_flags = MOBILITY_FLAGS_CARBON_DEFAULT
 	blocks_emissive = EMISSIVE_BLOCK_NONE
 	living_flags = ALWAYS_DEATHGASP
+	maxHealth = HUMAN_MAXHEALTH // Bubber Edit - Buff cyborg Health
+	health = HUMAN_MAXHEALTH // Bubber Edit - Buff Cyborg Health
 	///List of [/obj/item/organ]s in the mob. They don't go in the contents for some reason I don't want to know.
 	var/list/obj/item/organ/organs = list()
 	///Same as [above][/mob/living/carbon/var/organs], but stores "slot ID" - "organ" pairs for easy access.
@@ -125,6 +127,5 @@
 	var/bodyshape = BODYSHAPE_HUMANOID
 
 	COOLDOWN_DECLARE(bleeding_message_cd)
-
 
 	var/next_smell = 0 //SKYRAT EDIT ADDITION /// Cooldown for the next smell

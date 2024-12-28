@@ -11,7 +11,7 @@
 
 	var/list/departments_by_type = SSjob.joinable_departments_by_type
 
-	for(var/datum/record/crew/crew_record in GLOB.manifest.general)
+	for(var/datum/record/locked/crew_record in GLOB.manifest.locked)
 		var/exploitables = crew_record.exploitable_information
 
 		var/exploitables_empty = ((length(exploitables) < 1) || ((exploitables) == EXPLOITABLE_DEFAULT_TEXT))
@@ -22,7 +22,7 @@
 		var/name = crew_record.name
 		var/rank = crew_record.rank
 //		var/truerank = crew_record.truerank
-		var/datum/job/job = SSjob.GetJob(rank)
+		var/datum/job/job = SSjob.get_job(rank)
 
 		if(!job || !(job.job_flags & JOB_CREW_MANIFEST) || !LAZYLEN(job.departments_list) && (!exploitables_empty)) // In case an unlawful custom rank is added.
 			var/list/exp_misc_list = exp_manifest_out[DEPARTMENT_UNASSIGNED]
@@ -82,13 +82,13 @@
 
 	if(action == "show_exploitables")
 		var/exploitable_id = params["exploitable_id"]
-		var/datum/record/crew/target_record = find_record(exploitable_id)
+		var/datum/record/locked/target_record = find_record(exploitable_id, TRUE)
 		if(!isnull(target_record)) // this can be null
 			to_chat(usr, "<b>Exploitable information:</b> [target_record.exploitable_information]")
 
 	else if(action == "show_background")
 		var/background_id = params["background_id"]
-		var/datum/record/crew/target_record = find_record(background_id)
+		var/datum/record/locked/target_record = find_record(background_id, TRUE)
 		if(!isnull(target_record))
 			to_chat(usr, "<b>Background information:</b> [target_record.background_information]")
 

@@ -152,7 +152,7 @@
 	research_tree_icon_state = "blade_upgrade_moon"
 
 /datum/heretic_knowledge/blade_upgrade/moon/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	if(source == target)
+	if(source == target || !isliving(target))
 		return
 
 	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 100)
@@ -208,7 +208,7 @@
 		text = "[generate_heretic_text()] Laugh, for the ringleader [user.real_name] has ascended! \
 				The truth shall finally devour the lie! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_moon.ogg',
+		sound = 'sound/music/antag/heretic/ascend_moon.ogg',
 		color_override = "pink",
 	)
 

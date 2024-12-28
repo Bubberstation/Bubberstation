@@ -24,19 +24,16 @@
 	message = "claps."
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-	audio_cooldown = 5 SECONDS
 	vary = TRUE
 
 /datum/emote/living/carbon/clap/get_sound(mob/living/user)
-	if(!ishuman(user))
-		return
 	if(!user.get_bodypart(BODY_ZONE_L_ARM) || !user.get_bodypart(BODY_ZONE_R_ARM))
 		return
 	return pick(
-		'sound/misc/clap1.ogg',
-		'sound/misc/clap2.ogg',
-		'sound/misc/clap3.ogg',
-		'sound/misc/clap4.ogg',
+		'sound/mobs/humanoids/human/clap/clap1.ogg',
+		'sound/mobs/humanoids/human/clap/clap2.ogg',
+		'sound/mobs/humanoids/human/clap/clap3.ogg',
+		'sound/mobs/humanoids/human/clap/clap4.ogg',
 	)
 */
 //SKYRAT EDIT REMOVAL END
@@ -45,7 +42,7 @@
 	key = "crack"
 	key_third_person = "cracks"
 	message = "cracks their knuckles."
-	sound = 'sound/misc/knuckles.ogg'
+	sound = 'sound/mobs/humanoids/human/knuckle_crack/knuckles.ogg'
 	hands_use_check = TRUE
 	cooldown = 6 SECONDS
 
@@ -59,7 +56,6 @@
 	key_third_person = "cries"
 	message = "cries."
 	message_mime = "sobs silently."
-	audio_cooldown = 5 SECONDS
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
 	stat_allowed = SOFT_CRIT
@@ -186,7 +182,10 @@
 
 /datum/emote/living/carbon/snap/get_sound(mob/living/user)
 	if(ishuman(user))
-		return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
+		return pick(
+			'sound/mobs/humanoids/human/snap/fingersnap1.ogg',
+			'sound/mobs/humanoids/human/snap/fingersnap2.ogg',
+			)
 	return null
 Bubber removal end */
 

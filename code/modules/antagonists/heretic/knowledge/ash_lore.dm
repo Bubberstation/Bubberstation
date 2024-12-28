@@ -165,7 +165,7 @@
 	research_tree_icon_state = "blade_upgrade_ash"
 
 /datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	if(source == target)
+	if(source == target || !isliving(target))
 		return
 
 	target.adjust_fire_stacks(1)
@@ -230,7 +230,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] Fear the blaze, for the Ashlord, [user.real_name] has ascended! The flames shall consume all! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_ash.ogg',
+		sound = 'sound/music/antag/heretic/ascend_ash.ogg',
 		color_override = "pink",
 	)
 

@@ -1,37 +1,37 @@
 /**
  * Checks if the target has antag datums and, if so,
- * are they allowed to be Vassalized, or not, or banned.
+ * are they allowed to be Ghouled, or not, or banned.
  * Args:
  * target - The person we check for antag datums.
  */
 /datum/antagonist/bloodsucker/proc/AmValidAntag(mob/target)
 	if(HAS_TRAIT(target, TRAIT_UNCONVERTABLE))
-		return VASSALIZATION_BANNED
+		return GHOULING_BANNED
 
-	var/vassalization_status = VASSALIZATION_ALLOWED
+	var/ghouling_status = GHOULING_ALLOWED
 	for(var/datum/antagonist/antag_datum as anything in target.mind.antag_datums)
-		if(antag_datum.type in vassal_banned_antags)
-			return VASSALIZATION_BANNED
-		vassalization_status = VASSALIZATION_DISLOYAL
-	return vassalization_status
+		if(antag_datum.type in ghoul_banned_antags)
+			return GHOULING_BANNED
+		ghouling_status = GHOULING_DISLOYAL
+	return ghouling_status
 
 /**
- * # can_make_vassal
+ * # can_make_ghoul
  * Checks if the person is allowed to turn into the Bloodsucker's
- * Vassal, ensuring they are a player and valid.
- * If they are a Vassal themselves, will check if their master
+ * Ghoul, ensuring they are a player and valid.
+ * If they are a Ghoul themselves, will check if their master
  * has broken the Masquerade, to steal them.
  * Args:
- * conversion_target - Person being vassalized
+ * conversion_target - Person being ghouled
  */
-/datum/antagonist/bloodsucker/proc/can_make_vassal(mob/living/conversion_target)
+/datum/antagonist/bloodsucker/proc/can_make_ghoul(mob/living/conversion_target)
 	if(!iscarbon(conversion_target) || (conversion_target.stat < CONSCIOUS))
 		return FALSE
 	// No Mind!
 	if(!conversion_target.mind)
-		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Vassal."))
+		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Ghoul."))
 		return FALSE
-	if(AmValidAntag(conversion_target) == VASSALIZATION_BANNED)
+	if(AmValidAntag(conversion_target) == GHOULING_BANNED)
 		to_chat(owner.current, span_danger("[conversion_target] resists the power of your blood to dominate their mind!"))
 		return FALSE
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()
@@ -39,55 +39,50 @@
 		return TRUE
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(master)
 	if(bloodsuckerdatum && bloodsuckerdatum.broke_masquerade)
-		//vassal stealing
+		//ghoul stealing
 		return TRUE
 	to_chat(owner.current, span_danger("[conversion_target]'s mind is overwhelmed with too much external force to put your own!"))
 	return FALSE
 
 /**
- * First will check if the target can be turned into a Vassal, if so then it will
+ * First will check if the target can be turned into a Ghoul, if so then it will
  * turn them into one, log it, sync their minds, then updates the Rank
  * Args:
  * conversion_target - The person converted.
  */
-/datum/antagonist/bloodsucker/proc/make_vassal(mob/living/conversion_target)
+/datum/antagonist/bloodsucker/proc/make_ghoul(mob/living/conversion_target)
 #ifndef BLOODSUCKER_TESTING
-	if(!can_make_vassal(conversion_target))
+	if(!can_make_ghoul(conversion_target))
 		return FALSE
 #endif
-	//Check if they used to be a Vassal and was stolen.
-	var/datum/antagonist/vassal/old_vassal = IS_VASSAL(conversion_target)
-	if(old_vassal)
-		conversion_target.mind.remove_antag_datum(/datum/antagonist/vassal)
+	//Check if they used to be a Ghoul and was stolen.
+	var/datum/antagonist/ghoul/old_ghoul = IS_GHOUL(conversion_target)
+	if(old_ghoul)
+		conversion_target.mind.remove_antag_datum(/datum/antagonist/ghoul)
 
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	bloodsuckerdatum.SelectTitle(am_fledgling = FALSE)
 
 	//set the master, then give the datum.
-	var/datum/antagonist/vassal/vassaldatum = new(conversion_target.mind)
-	vassaldatum.master = bloodsuckerdatum
-	conversion_target.mind.add_antag_datum(vassaldatum)
+	var/datum/antagonist/ghoul/ghouldatum = new(conversion_target.mind)
+	ghouldatum.master = bloodsuckerdatum
+	conversion_target.mind.add_antag_datum(ghouldatum)
 
-	message_admins("[conversion_target] has become a Vassal, and is enslaved to [owner.current].")
-	log_admin("[conversion_target] has become a Vassal, and is enslaved to [owner.current].")
+	message_admins("[conversion_target] has become a Ghoul, and is enslaved to [owner.current].")
+	log_admin("[conversion_target] has become a Ghoul, and is enslaved to [owner.current].")
 	return TRUE
 
 /*
  *	# can_make_special
  *
- * MIND Helper proc that ensures the person can be a Special Vassal,
+ * MIND Helper proc that ensures the person can be a Special Ghoul,
  * without actually giving the antag datum to them.
- * This is because Special Vassals get special abilities, without the unique Bloodsucker blood tracking,
+ * This is because Special Ghouls get special abilities, without the unique Bloodsucker blood tracking,
  * and we don't want this to be infinite.
  * Args:
  * creator - Person attempting to convert them.
  */
 /datum/mind/proc/can_make_special(datum/mind/creator)
-	var/mob/living/user = current
-	if(!(user.mob_biotypes & MOB_ORGANIC))
-		if(creator)
-			to_chat(creator, span_danger("[user]'s DNA isn't compatible!"))
-		return FALSE
 	return TRUE
 
 /// Check if this is a valid person to actually be a bloodsucker

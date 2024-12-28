@@ -8,6 +8,7 @@
 	resistance_flags = FIRE_PROOF
 	icon_state = "plasmaman_suit"
 	inhand_icon_state = "plasmaman_suit"
+	fishing_modifier = 0
 	var/next_extinguish = 0
 	var/extinguish_cooldown = 100
 	var/extinguishes_left = 10
@@ -57,6 +58,7 @@
 	light_power = 0.8
 	light_color = "#ffcc99"
 	light_on = FALSE
+	fishing_modifier = 0
 	var/helmet_on = FALSE
 	var/smile = FALSE
 	var/smile_color = COLOR_RED
@@ -68,6 +70,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF
 	visor_flags_inv = HIDEEYES|HIDEFACE
+	slowdown = 0
 
 /datum/armor/space_plasmaman
 	bio = 100
@@ -78,12 +81,26 @@
 	. = ..()
 	visor_toggling()
 	update_appearance()
-	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+	register_context()
+
+/obj/item/clothing/head/helmet/space/plasmaman/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle Welding Screen"
+
+	if(attached_hat)
+		context[SCREENTIP_CONTEXT_RMB] = "Remove hat"
+
+	if(istype(held_item, /obj/item/clothing/head))
+		context[SCREENTIP_CONTEXT_LMB] = "Attach hat"
+
+	if(istype(held_item, /obj/item/toy/crayon))
+		context[SCREENTIP_CONTEXT_LMB] = "Vandalize"
+
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/head/helmet/space/plasmaman/examine()
 	. = ..()
 	if(attached_hat)
-		. += span_notice("There's [attached_hat.name] placed on the helmet. Right-click to remove it.")
+		. += span_notice("There's [attached_hat.name] placed on the helmet.")
 	else
 		. += span_notice("There's nothing placed on the helmet.")
 
@@ -106,7 +123,7 @@
 		to_chat(user, span_notice("Your helmet's torch can't pass through your welding visor!"))
 		set_light_on(FALSE)
 		helmet_on = FALSE
-	playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
+	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
 	update_appearance()
 
 /obj/item/clothing/head/helmet/space/plasmaman/update_icon_state()
@@ -194,13 +211,13 @@
 
 	update_item_action_buttons()
 
-/obj/item/clothing/head/helmet/space/plasmaman/proc/on_saboteur(datum/source, disrupt_duration)
-	SIGNAL_HANDLER
+/obj/item/clothing/head/helmet/space/plasmaman/on_saboteur(datum/source, disrupt_duration)
+	. = ..()
 	if(!helmet_on)
-		return
+		return FALSE
 	helmet_on = FALSE
 	update_appearance()
-	return COMSIG_SABOTEUR_SUCCESS
+	return TRUE
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_hand_secondary(mob/user)
 	..()

@@ -2,7 +2,7 @@
 //Main Rifle
 /obj/item/gun/ballistic/automatic/rom_carbine
 	name = "\improper RomTech Carbine"
-	desc = "An unusual variation of the Carwo-Carwil Battle rifle fielded as service rifle in Romulus Federation, preferred by some law enforcement agency for the compact nature. Accepts any standard .40 SolFed rifle magazine."
+	desc = "An unusual variation of the Carwo-Carwil Battle rifle fielded as service rifle in Romulus Federation, preferred by some law enforcement agency for the compact nature. Accepts any standard .40 TerraGov rifle magazine."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
 	icon_state = "carbine"
@@ -63,6 +63,9 @@
 
 	return .
 
+/obj/item/gun/ballistic/automatic/rom_carbine/no_mag
+	spawnwithmagazine = FALSE
+
 //Bolt Action Rifle
 /obj/item/gun/ballistic/rifle/carwil
 	name = "\improper RomTech Ceremonial Rifle"
@@ -83,8 +86,8 @@
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	suppressed_sound = 'modular_skyrat/modules/modular_weapons/sounds/suppressed_rifle.ogg'
 	fire_sound_volume = 90
-	load_sound = 'sound/weapons/gun/sniper/mag_insert.ogg'
-	rack_sound = 'sound/weapons/gun/sniper/rack.ogg'
+	load_sound = 'sound/items/weapons/gun/sniper/mag_insert.ogg'
+	rack_sound = 'sound/items/weapons/gun/sniper/rack.ogg'
 	recoil = 2
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
@@ -149,7 +152,7 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/caflechette
 	spawn_magazine_type = /obj/item/ammo_box/magazine/caflechette
-	var/folding_sound = 'sound/weapons/batonextend.ogg'
+	var/folding_sound = 'sound/items/weapons/batonextend.ogg'
 	/// is our stock collapsed?
 	var/folded = FALSE
 	/// how long does it take to extend/collapse the stock
