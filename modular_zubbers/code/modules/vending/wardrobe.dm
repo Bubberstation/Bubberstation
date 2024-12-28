@@ -178,6 +178,9 @@
 		/obj/item/clothing/neck/tie/bunnytie/bitrunner = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/bitrunner = 3,
 	)
+	zubbers_premium = list(
+		/obj/item/flatpack/export_gate = 1,
+	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
 	zubbers_products = list(
