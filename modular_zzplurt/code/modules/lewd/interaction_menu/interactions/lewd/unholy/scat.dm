@@ -59,6 +59,10 @@
 	user_arousal = 2
 	target_arousal = 2
 
+/datum/interaction/lewd/unholy/crotchshit/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
+
 /datum/interaction/lewd/unholy/shitfuck
 	name = "Shit Fuck"
 	description = "Fuck their ass + shit."
