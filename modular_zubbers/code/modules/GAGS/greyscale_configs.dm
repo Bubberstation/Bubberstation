@@ -50,6 +50,9 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit_worn.json'
 
+/datum/greyscale_config/custom_bunnysuit_worn/digi
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+
 /datum/greyscale_config/tailcoat
 	name = "Tailcoat"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
