@@ -19,13 +19,17 @@
 		"You're forced to smell %USER%'s fart",
 		"%USER%'s flatulence fills your nostrils"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 0
 	user_arousal = 2
 	target_arousal = 2
+
+/datum/interaction/lewd/unholy/facefart/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
 
 /datum/interaction/lewd/unholy/crotchfart
 	name = "Crotch Fart"
@@ -47,13 +51,17 @@
 		"You feel %USER%'s fart on your groin",
 		"%USER%'s flatulence washes over your genitals"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 2
 	user_arousal = 3
 	target_arousal = 4
+
+/datum/interaction/lewd/unholy/crotchfart/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
 
 /datum/interaction/lewd/unholy/fartfuck
 	name = "Fart Fuck"
@@ -88,12 +96,17 @@
 		'modular_zzplurt/sound/interactions/bang2.ogg',
 		'modular_zzplurt/sound/interactions/bang3.ogg'
 	)
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 6
 	target_pleasure = 4
 	user_arousal = 8
 	target_arousal = 6
+
+/datum/interaction/lewd/unholy/fartfuck/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
 
 /datum/interaction/lewd/unholy/fartfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
@@ -125,10 +138,14 @@
 		"You feel %USER%'s mouth pulling gas from your hole",
 		"%USER% inhales your flatulence eagerly"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 3
 	user_arousal = 4
 	target_arousal = 5
+
+/datum/interaction/lewd/unholy/suck_fart/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()

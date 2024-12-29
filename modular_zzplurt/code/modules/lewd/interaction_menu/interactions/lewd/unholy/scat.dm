@@ -19,13 +19,17 @@
 		"You're forced to experience %USER%'s mess",
 		"%USER%'s waste covers your face"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 0
 	user_arousal = 2
 	target_arousal = 2
+
+/datum/interaction/lewd/unholy/faceshit/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
 
 /datum/interaction/lewd/unholy/crotchshit
 	name = "Crotch Shit"
@@ -47,7 +51,7 @@
 		"You feel %USER%'s mess on your groin",
 		"%USER%'s waste covers your genitals"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
@@ -95,6 +99,10 @@
 	user_arousal = 8
 	target_arousal = 6
 
+/datum/interaction/lewd/unholy/shitfuck/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
+
 /datum/interaction/lewd/unholy/shitfuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	conditional_pref_sound(user, pick('modular_zzplurt/sound/interactions/bang1.ogg',
@@ -125,10 +133,14 @@
 		"You feel %USER%'s mouth pulling your mess from your hole",
 		"%USER% eagerly consumes your waste"
 	)
-	sound_possible = GLOB.brap_noises
+	sound_possible = list()
 	sound_range = 1
 	sound_use = TRUE
 	user_pleasure = 0
 	target_pleasure = 3
 	user_arousal = 4
 	target_arousal = 5
+
+/datum/interaction/lewd/unholy/suck_shit/New()
+	sound_possible = GLOB.brap_noises // GLOB.brap_noises: expected a constant expression
+	. = ..()
