@@ -26,8 +26,8 @@
 		qdel(src)
 
 /obj/structure/sign/flag/ssc
-	name = "flag of the Kingdom of Agurkrral"
-	desc = "The flag of the Kingdom of Agurkrral."
+	name = "flag of the Akula Democratic Union"
+	desc = "The flag of the Akula Democratic Union. A flag flown by a proud people, representing the oceans they came from, and will return to."
 	icon_state = "flag_agurk"
 	item_flag = /obj/item/sign/flag/ssc
 
@@ -56,9 +56,9 @@
 	item_flag = /obj/item/sign/flag/mars
 
 /obj/structure/sign/flag/terragov
-	name = "flag of Sol Federation"
-	desc = "The flag of Sol Federation. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
-	icon_state = "flag_solfed"
+	name = "flag of Terran Government"
+	desc = "The flag of Terran Government. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
+	icon_state = "flag_terragov"
 	item_flag = /obj/item/sign/flag/terragov
 
 /obj/structure/sign/flag/nri
@@ -70,11 +70,8 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/nri, 32)
 
 /obj/structure/sign/flag/azulea
-	name = "flag of the Azulean Nation"
-	desc = "The foundations of this banner stretch back almost a millennium, devised by the first King among the Azulean people to unite them under it. \n\
-		Dark blue, representing the seas of Azulean worlds, and light blue, representing the seas inbetween. \
-		Both make waves on each other, but both are pulled in and swallowed by all of the people of Agurkrral coming together as one; as one violent, restless maelstrom. \n\n\
-		It's common to see this banner just about everywhere in both the Old and New Principalities, reminding all of their purpose and unity."
+	name = "banner of the Akula Democratic Union"
+	desc = "A banner often hung proudly by Akula with a great love of their people. Often hung in pairs in places of command."
 	icon_state = "flag_azulea"
 	item_flag = /obj/item/sign/flag/azulea
 
@@ -123,15 +120,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 	sign_path = /obj/structure/sign/flag/nanotrasen
 
 /obj/item/sign/flag/ssc
-	name = "folded flag of the Kingdom of Agurkrral"
-	desc = "The folded flag of the Kingdom of Agurkrral."
+	name = "folded flag of the Akula Democratic Union"
+	desc = "The folded flag of the Akula Democratic Union."
 	icon_state = "folded_agurk"
 	sign_path = /obj/structure/sign/flag/ssc
 
 /obj/item/sign/flag/terragov
-	name = "folded flag of the Sol Federation"
-	desc = "The folded flag of Sol Federation."
-	icon_state = "folded_solfed"
+	name = "folded flag of the Terran Government"
+	desc = "The folded flag of Terran Government."
+	icon_state = "folded_terragov"
 	sign_path = /obj/structure/sign/flag/terragov
 
 /obj/item/sign/flag/tizira
@@ -159,8 +156,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 	sign_path = /obj/structure/sign/flag/nri
 
 /obj/item/sign/flag/azulea
-	name = "folded flag of Azulea"
-	desc = "The folded flag of the Akulan nation Azulea."
+	name = "folded banner of the Akula Democratic Union"
+	desc = "The folded banner of the Akula Democratic Union."
 	icon_state = "folded_azulea"
 	sign_path = /obj/structure/sign/flag/azulea
 
