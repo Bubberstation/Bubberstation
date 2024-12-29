@@ -50,7 +50,7 @@
 	user_arousal = 8
 	target_arousal = 3
 
-/datum/interaction/lewd/extreme/throatfuck
+/datum/interaction/lewd/throatfuck
 	name = "Throatfuck"
 	description = "Fuck their throat. (Warning: Causes oxygen damage)"
 	interaction_requires = list(INTERACTION_REQUIRE_TARGET_MOUTH)

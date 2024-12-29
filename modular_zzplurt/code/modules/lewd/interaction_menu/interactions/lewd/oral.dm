@@ -43,13 +43,6 @@
 	user_arousal = 3
 	target_arousal = 7
 
-/datum/interaction/lewd/oral_vagina/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	if(prob((target.dna.features["sexual_potency"] * 10) + 15))
-		user.adjustOxyLoss(3)
-		target.adjust_pleasure(10, user, interaction = src, position = CLIMAX_POSITION_TARGET)
-		target.adjust_arousal(10)
-
 /datum/interaction/lewd/oral_penis
 	name = "Suck Cock"
 	description = "Suck them off."
