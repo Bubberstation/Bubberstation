@@ -196,3 +196,44 @@
 	user_arousal = 20
 	target_arousal = 5
 
+/datum/interaction/lewd/cockfuck
+	name = "Cockfuck"
+	description = "Fuck their cock."
+	user_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
+	target_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
+	cum_genital = list(
+		CLIMAX_POSITION_USER = CLIMAX_PENIS,
+		CLIMAX_POSITION_TARGET = CLIMAX_PENIS
+	)
+	cum_target = list(
+		CLIMAX_POSITION_USER = ORGAN_SLOT_PENIS,
+		CLIMAX_POSITION_TARGET = ORGAN_SLOT_PENIS
+	)
+	message = list(
+		"pushes their cock into %TARGET%'s urethra",
+		"penetrates %TARGET%'s cock with their own",
+		"thrusts deep into %TARGET%'s cockhole",
+		"fucks %TARGET%'s cock from the inside"
+	)
+	user_messages = list(
+		"You feel %TARGET%'s cock squeezing around yours",
+		"The warmth of %TARGET%'s urethra envelops your shaft",
+		"%TARGET%'s cock tightens around yours as you thrust deeper"
+	)
+	target_messages = list(
+		"You feel %USER%'s cock stretching your urethra",
+		"%USER%'s shaft pushes deep inside your cock",
+		"The warmth of %USER%'s cock fills your shaft from within"
+	)
+	sound_possible = list(
+		'modular_zzplurt/sound/interactions/bang1.ogg',
+		'modular_zzplurt/sound/interactions/bang2.ogg',
+		'modular_zzplurt/sound/interactions/bang3.ogg'
+	)
+	sound_range = 1
+	sound_use = TRUE
+	user_pleasure = 6
+	target_pleasure = 6
+	user_arousal = 8
+	target_arousal = 8
+	target_pain = 4

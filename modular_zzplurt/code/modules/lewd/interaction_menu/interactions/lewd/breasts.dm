@@ -179,3 +179,88 @@
 			var/target_message = list(pick(arousal_messages))
 			target.visible_message(span_lewd(replacetext(target_message, "%TARGET%", target)))
 
+/datum/interaction/lewd/breastsmother
+	name = "Breast Smother"
+	description = "Smother them with your breasts."
+	interaction_requires = list(
+		INTERACTION_REQUIRE_TARGET_MOUTH
+	)
+	user_required_parts = list(ORGAN_SLOT_BREASTS = REQUIRE_GENITAL_EXPOSED)
+	message = list(
+		"presses their breasts against %TARGET%'s face",
+		"smothers %TARGET%'s face with their tits",
+		"forces %TARGET%'s face between their breasts",
+		"pins %TARGET%'s head between their boobs"
+	)
+	user_messages = list(
+		"You feel %TARGET%'s face pressed between your breasts",
+		"You hold %TARGET%'s head against your chest",
+		"You keep %TARGET%'s face buried in your cleavage"
+	)
+	target_messages = list(
+		"Your face is pressed between %USER%'s breasts",
+		"%USER%'s tits smother your face",
+		"Your vision is filled with %USER%'s cleavage"
+	)
+	sound_range = 1
+	sound_use = FALSE
+	user_pleasure = 0
+	target_pleasure = 0
+	user_arousal = 3
+	target_arousal = 3
+
+/datum/interaction/lewd/breastsmother/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
+	if(prob((user.dna.features["sexual_potency"] * 5) + 10))
+		target.adjustOxyLoss(2)
+		target.adjust_arousal(5)
+		user.adjust_arousal(8)
+
+/datum/interaction/lewd/do_boobjob
+	name = "Give Boobjob"
+	description = "Give them a boobjob."
+	target_required_parts = list(ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED)
+	user_required_parts = list(ORGAN_SLOT_BREASTS = REQUIRE_GENITAL_EXPOSED)
+	cum_genital = list(CLIMAX_POSITION_TARGET = CLIMAX_PENIS)
+	cum_message_text_overrides = list(CLIMAX_POSITION_TARGET = list(
+		"cums all over %USER%'s breasts",
+		"shoots their load onto %USER%'s tits",
+		"covers %USER%'s chest in cum"
+	))
+	cum_self_text_overrides = list(CLIMAX_POSITION_TARGET = list(
+		"%TARGET% cums all over your breasts",
+		"%TARGET% shoots their load onto your tits",
+		"%TARGET% covers your chest in cum"
+	))
+	cum_partner_text_overrides = list(CLIMAX_POSITION_TARGET = list(
+		"You cum all over %USER%'s breasts",
+		"You shoot your load onto %USER%'s tits",
+		"You cover %USER%'s chest in cum"
+	))
+	message = list(
+		"wraps their breasts around %TARGET%'s cock",
+		"works %TARGET%'s shaft between their tits",
+		"pleasures %TARGET% with their breasts",
+		"squeezes their breasts around %TARGET%'s cock"
+	)
+	user_messages = list(
+		"You feel %TARGET%'s cock throbbing between your breasts",
+		"The warmth of %TARGET%'s shaft feels nice between your tits",
+		"You squeeze your breasts around %TARGET%'s cock"
+	)
+	target_messages = list(
+		"%USER%'s soft breasts squeeze your cock",
+		"Your shaft slides between %USER%'s tits",
+		"The softness of %USER%'s breasts feels amazing"
+	)
+	sound_possible = list(
+		'modular_zzplurt/sound/interactions/bang1.ogg',
+		'modular_zzplurt/sound/interactions/bang2.ogg',
+		'modular_zzplurt/sound/interactions/bang3.ogg'
+	)
+	sound_range = 1
+	sound_use = TRUE
+	user_pleasure = 0
+	target_pleasure = 4
+	user_arousal = 4
+	target_arousal = 6
