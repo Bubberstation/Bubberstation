@@ -90,3 +90,39 @@
 		breasts.transfer_internal_fluid(R, transfer_amount)
 		R.trans_to(user, R.total_volume)
 		qdel(R)
+
+/datum/interaction/lewd/breastfuck_self
+	name = "Breastfuck (self)"
+	description = "Fuck your own breasts."
+	interaction_requires = list(INTERACTION_REQUIRE_SELF_HAND)
+	user_required_parts = list(
+		ORGAN_SLOT_PENIS = REQUIRE_GENITAL_EXPOSED,
+		ORGAN_SLOT_BREASTS = REQUIRE_GENITAL_EXPOSED
+	)
+	usage = INTERACTION_SELF
+	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_PENIS)
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list(
+		"cums all over their own breasts",
+		"shoots their load onto their tits",
+		"covers their breasts in cum"
+	))
+	cum_self_text_overrides = list(CLIMAX_POSITION_USER = list(
+		"You cum all over your own breasts",
+		"You shoot your load onto your tits",
+		"You cover your breasts in cum"
+	))
+	message = list(
+		"fucks their own breasts",
+		"slides their cock between their breasts",
+		"thrusts between their tits",
+		"pleasures themself with their breasts"
+	)
+	sound_possible = list(
+		'modular_zzplurt/sound/interactions/bang1.ogg',
+		'modular_zzplurt/sound/interactions/bang2.ogg',
+		'modular_zzplurt/sound/interactions/bang3.ogg'
+	)
+	sound_range = 1
+	sound_use = TRUE
+	user_pleasure = 4
+	user_arousal = 6
