@@ -50,10 +50,3 @@
 	user_arousal = 6
 	target_arousal = 4
 	target_pain = 2
-
-/datum/interaction/lewd/nipplefuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	if(prob((user.dna.features["sexual_potency"] * 5) + 10))
-		target.adjustOxyLoss(1)
-		target.adjust_arousal(8)
-		user.adjust_arousal(10)
