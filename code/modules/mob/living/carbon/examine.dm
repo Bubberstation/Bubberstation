@@ -219,6 +219,10 @@
 					. += "[t_He] [t_is] flushed and wheezing."
 				if (bodytemperature < dna.species.bodytemp_cold_damage_limit)
 					. += "[t_He] [t_is] shivering."
+				if(HAS_TRAIT(src, TRAIT_EVIL))
+					. += "[t_His] eyes radiate with a unfeeling, cold detachment. There is nothing but darkness within [t_his] soul."
+					living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
+					living_user.set_jitter_if_lower(15 SECONDS)
 
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
@@ -308,6 +312,15 @@
 		flavor_text_link = span_notice("<a href='?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
 	if (flavor_text_link)
 		. += flavor_text_link
+
+	//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
+	if (isobserver(usr) || mind.can_see_exploitables || mind.has_exploitables_override)
+		var/perpname = get_face_name(get_id_name(""))
+		var/datum/record/locked/target_records = find_record(perpname, TRUE) //apparantly golden is okay with offstation roles having no records, FYI
+		var/exploitable_text = target_records?.exploitable_information
+		if (target_records && ((length(exploitable_text) > RECORDS_INVISIBLE_THRESHOLD) && ((exploitable_text) != EXPLOITABLE_DEFAULT_TEXT)))
+			. += "<a href='?src=[REF(src)];exprecords=1'>\[View exploitable info\]</a>"
+	//BUBBER EDIT END
 
 	//Temporary flavor text addition:
 	if(temporary_flavor_text)
@@ -508,7 +521,7 @@
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "restrained with cable" : "handcuffed"
 		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] [cables_or_cuffs]!")
 	//belt
-	if(belt && !(belt.item_flags & EXAMINE_SKIP))
+	if(belt && !(obscured & ITEM_SLOT_BELT) && !(belt.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_has] [belt.examine_title_worn(user)] about [t_his] waist."
 	//shoes
 	if(shoes && !(obscured & ITEM_SLOT_FEET)  && !(shoes.item_flags & EXAMINE_SKIP))

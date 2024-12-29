@@ -36,6 +36,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	name = "engorged cortical borer"
 	desc = "the body of a cortical borer, full of human viscera, blood, and more."
 	zone = BODY_ZONE_HEAD
+	slot = ORGAN_SLOT_BORER
 	/// Ref to the borer who this organ belongs to
 	var/mob/living/basic/cortical_borer/borer
 

@@ -26,14 +26,9 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		. = "Connection desynchronized. Recalibration in progress."
 
 /* Check if the movable is allowed to arrive at this destination (exile implants mostly) */
-/** SKYRAT EDIT - CYBORGS CANT USE GETWAY
 /datum/gateway_destination/proc/incoming_pass_check(atom/movable/AM)
 	return TRUE
-**/
-// Just a reminder that the home gateway overrides this proc so if a borg someone finds themself in an away mission they can still leave
-/datum/gateway_destination/proc/incoming_pass_check(atom/movable/AM)
-	return !iscyborg(AM)
-// SKYRAT EDIT - END
+
 /* Get the actual turf we'll arrive at */
 /datum/gateway_destination/proc/get_target_turf()
 	CRASH("get target turf not implemented for this destination type")
@@ -139,19 +134,6 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/gateway_portal_bumper/Bumped(atom/movable/AM)
-	//SKYRAT EDIT ADDITION
-	var/list/type_blacklist = list(
-		/obj/item/mmi,
-		/mob/living/silicon,
-	)
-	if(is_type_in_list(AM, type_blacklist))
-		return
-	for(var/atom/movable/content_item as anything in AM.get_all_contents())
-		if(!is_type_in_list(content_item, type_blacklist))
-			continue
-		to_chat(AM, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
-		return
-	//SKYRAT EDIT END
 	if(get_dir(src,AM) == gateway?.dir)
 		playsound(src, 'sound/machines/gateway/gateway_travel.ogg', 70, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		gateway.Transfer(AM)
@@ -353,20 +335,6 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /obj/machinery/gateway/away/interact(mob/user)
 	. = ..()
-	//SKYRAT EDIT ADDITION
-	var/list/type_blacklist = list(
-		/obj/item/mmi,
-		/mob/living/silicon,
-		/obj/item/borg/upgrade/ai,
-	)
-	if(is_type_in_list(user, type_blacklist))
-		return
-	for(var/atom/movable/content_item as anything in user.get_contents())
-		if(!is_type_in_list(content_item, type_blacklist))
-			continue
-		to_chat(user, span_warning("[content_item] seems to be blocking you from entering the gateway!"))
-		return
-	//SKYRAT EDIT END
 	if(!target)
 		if(!GLOB.the_gateway)
 			to_chat(user,span_warning("Home gateway is not responding!"))

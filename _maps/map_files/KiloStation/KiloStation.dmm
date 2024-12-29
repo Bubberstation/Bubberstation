@@ -4259,6 +4259,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
 /turf/open/floor/engine/telecomms,
 /area/station/tcommsat/server)
 "bxE" = (
@@ -10386,7 +10387,7 @@
 "dyX" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "dzp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -10571,7 +10572,7 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/cold/directional/west,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "dCX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/cyan/visible{
@@ -11137,7 +11138,7 @@
 /area/station/maintenance/port/aft)
 "dMp" = (
 /obj/effect/decal/cleanable/food/flour,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "dMq" = (
 /obj/machinery/door/airlock/external/glass{
@@ -14989,7 +14990,7 @@
 "ffv" = (
 /obj/machinery/gibber,
 /obj/effect/turf_decal/stripes/box,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "ffC" = (
 /obj/machinery/vending/assist,
@@ -17267,6 +17268,10 @@
 	pixel_y = -24
 	},
 /obj/effect/mapping_helpers/airalarm/engine_access,
+/obj/effect/mapping_helpers/airalarm/link{
+	chamber_id = "engine"
+	},
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "fKJ" = (
@@ -18563,7 +18568,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light_switch/directional/west,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "ght" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -29418,7 +29423,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "jDI" = (
 /obj/structure/kitchenspike,
@@ -29428,7 +29433,7 @@
 	},
 /obj/effect/mapping_helpers/airalarm/tlv_cold_room,
 /obj/item/radio/intercom/directional/east,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "jDU" = (
 /obj/effect/turf_decal/loading_area,
@@ -34282,7 +34287,7 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /mob/living/basic/goat/pete,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "lhf" = (
 /obj/effect/turf_decal/bot,
@@ -36937,7 +36942,7 @@
 	name = "kitchen camera"
 	},
 /obj/machinery/light/cold/directional/east,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "mbc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -39915,7 +39920,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random/directional/south,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "mYv" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end{
@@ -44466,7 +44471,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "oGu" = (
 /obj/structure/cable,
@@ -47319,7 +47324,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "pCa" = (
 /obj/machinery/door/poddoor/preopen{
@@ -48582,7 +48587,7 @@
 /obj/item/reagent_containers/condiment/sugar,
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "pWj" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -49079,7 +49084,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/landmark/start/hangover,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "qfe" = (
 /turf/closed/wall/r_wall/rust,
@@ -50979,6 +50984,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos/storage/gas)
+"qPu" = (
+/obj/machinery/air_sensor/engine_chamber,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "qPz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -53341,7 +53350,7 @@
 /area/station/engineering/gravity_generator)
 "rzV" = (
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "rAr" = (
 /obj/effect/turf_decal/delivery,
@@ -61495,7 +61504,7 @@
 "udt" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining";
+	id = "packagereturn";
 	name = "crate return belt"
 	},
 /obj/machinery/door/window/left/directional/north{
@@ -68574,7 +68583,7 @@
 "wny" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "wnJ" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
@@ -69945,7 +69954,7 @@
 "wIL" = (
 /obj/structure/kitchenspike,
 /obj/effect/turf_decal/bot/left,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "wIR" = (
 /obj/effect/turf_decal/siding/blue/corner{
@@ -70985,7 +70994,8 @@
 "xcj" = (
 /obj/effect/turf_decal/siding/green,
 /obj/machinery/door/window/left{
-	name = "Animal Pen"
+	name = "Animal Pen";
+	req_access = list("maint_tunnels")
 	},
 /turf/open/misc/sandy_dirt,
 /area/station/service/hydroponics/garden)
@@ -110278,7 +110288,7 @@ uqD
 kBz
 vyN
 mda
-vyN
+qPu
 dGG
 vyN
 eVL
