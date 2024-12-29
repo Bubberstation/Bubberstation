@@ -74,8 +74,8 @@
 
 /datum/status_effect/blooddrunk
 	id = "blooddrunk"
-	duration = 1 SECONDS
-//	tick_interval = -1 
+	duration = 15
+	tick_interval = -1 
 	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
 /atom/movable/screen/alert/status_effect/blooddrunk
