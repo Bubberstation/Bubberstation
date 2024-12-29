@@ -45,7 +45,9 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "gp" = (
-/turf/open/floor/iron/dark/textured_large,
+/obj/machinery/vending/dorms,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/dark/textured,
 /area/station/maintenance/aft/lesser)
 "gv" = (
 /obj/structure/closet/firecloset/wall,
@@ -356,7 +358,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/iron/dark/textured,
 /area/station/maintenance/aft/lesser)
 "uZ" = (
 /obj/structure/cable,
@@ -407,7 +409,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/iron/dark/textured,
 /area/station/commons/dock/aux)
 "xk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -660,6 +662,7 @@
 "MA" = (
 /obj/effect/turf_decal/bot_blue,
 /obj/effect/spawner/random/structure/crate_loot,
+/obj/item/toy/plush/skyrat/blue_cat,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/aft/lesser)
 "Pv" = (
@@ -689,7 +692,7 @@
 	name = "Auxiliary Ship Dock"
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/iron/dark/textured,
 /area/station/commons/dock/aux)
 "QB" = (
 /obj/effect/spawner/random/vending/snackvend,
@@ -766,6 +769,13 @@
 "Yn" = (
 /turf/template_noop,
 /area/template_noop)
+"Zo" = (
+/obj/structure/hedge,
+/turf/open/floor/iron/dark/textured_large,
+/area/station/maintenance/aft/lesser)
+"Zu" = (
+/turf/open/floor/iron/dark/textured,
+/area/station/maintenance/aft/lesser)
 
 (1,1,1) = {"
 Yn
@@ -946,7 +956,7 @@ Yn
 Yn
 Yn
 Yn
-Yn
+Zo
 Yn
 Yn
 nY
@@ -963,7 +973,7 @@ Yn
 Yn
 Yn
 gp
-gp
+Zu
 uF
 Yn
 xq
