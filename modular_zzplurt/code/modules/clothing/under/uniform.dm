@@ -535,7 +535,7 @@
 	body_parts_covered = GROIN
 	greyscale_colors = "#0e0e0e"
 	greyscale_config = /datum/greyscale_config/miniskirt
-	greyscale_config_worn = /datum/greyscale_config/miniskirt_alt/worn
+	greyscale_config_worn = /datum/greyscale_config/miniskirt_alt/worn // Тыгдык
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/misc/miniskirt_sheer
