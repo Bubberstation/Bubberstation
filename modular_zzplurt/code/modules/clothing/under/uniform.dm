@@ -136,7 +136,6 @@
 	name = "vault suit"
 	desc = "A tight form fitting Vault-Tec standard issue Vault Jumpsuit! Snazzy!"
 	icon_state = "vaultsuit"
-	worn_icon_state = "b_suit"
 	can_adjust = FALSE
 	icon = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
@@ -534,7 +533,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	body_parts_covered = GROIN
 	greyscale_colors = "#0e0e0e"
-	greyscale_config = /datum/greyscale_config/miniskirt
+	greyscale_config = /datum/greyscale_config/miniskirt_alt
 	greyscale_config_worn = /datum/greyscale_config/miniskirt_alt/worn // Тыгдык
 	flags_1 = IS_PLAYER_COLORABLE_1
 
