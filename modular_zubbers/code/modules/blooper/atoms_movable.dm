@@ -88,7 +88,7 @@ It has also been further modified by Rashcat & other Fluffyfrontier contributors
 		for(var/mob/M in listening)
 			if(!M.client)
 				continue
-			if(!(M.client.prefs?.read_preference(/datum/preference/toggle/hear_sound_blooper)) || (GET_CONFIG(string/tts_http_url) && M.client.prefs?.read_preference(/datum/preference/choiced/sound_tts) == TTS_SOUND_OFF))
+			if(!(M.client.prefs?.read_preference(/datum/preference/toggle/hear_sound_blooper)) || (CONFIG_GET(string/tts_http_url) && M.client.prefs?.read_preference(/datum/preference/choiced/sound_tts) == TTS_SOUND_OFF))
 				listening -= M
 		var/bloopers = min(round((LAZYLEN(message_raw) / blooper_speed)) + 1, BLOOPER_MAX_BLOOPERS)
 		var/total_delay
