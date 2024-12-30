@@ -193,12 +193,12 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				standing += socks_overlay
 	*/
 	//SPLURT EDIT END
-	// Splurt Addition Start - Nails
+	//SPLURT ADDITION START - Nails
 	if(species_human.nail_style)
 		var/mutable_appearance/nail_overlay = mutable_appearance('modular_zzplurt/icons/mobs/nails.dmi', "nails", -BODY_LAYER)
 		nail_overlay.color = species_human.nail_color
 		standing += nail_overlay
-	// Splurt Addition End - Nails
+	//SPLURT ADDITION END - Nails
 
 	if(standing.len)
 		species_human.overlays_standing[BODY_LAYER] = standing
