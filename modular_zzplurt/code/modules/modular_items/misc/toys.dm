@@ -6,6 +6,7 @@
 	name = "colorable bone"
 	desc = "A colorable chew bone. Nothing like a good bone to chew on."
 	icon_state = "poly_bone"
+	worn_icon_state = "poly_bone"
 	throw_range = 7
 	icon = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/fluff_lefthand.dmi'
@@ -18,7 +19,7 @@
 	greyscale_config_worn = /datum/greyscale_config/bone/worn
 
 /datum/greyscale_config/bone
-	name = "bone"
+	name = "Bone"
 	icon_file = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/bone.json'
 
@@ -52,11 +53,15 @@
 	. = ..()
 	AddComponent(/datum/component/squeak)
 
-// FRISBEE
+/*
+*	FRISBEE
+*/
+
 /obj/item/toy/fluff/frisbee_greyscale
 	name = "colorable frisbee"
 	desc = "A colorable frisbee. Warning: May induce shock."
 	icon_state = "poly_frisbee"
+	worn_icon_state = "poly_frisbee"
 	throw_range = 14
 	icon = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/fluff_lefthand.dmi'
