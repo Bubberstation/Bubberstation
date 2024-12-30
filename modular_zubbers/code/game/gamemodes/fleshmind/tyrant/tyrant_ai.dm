@@ -52,7 +52,7 @@
 	button_icon_state = "low_yield_rocket"
 	cooldown_time = 3 SECONDS
 	projectile_type = /obj/projectile/bullet/rocket/weak
-	projectile_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
+	projectile_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 	can_move = FALSE
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket/attack_sequence(mob/living/firer, atom/target)

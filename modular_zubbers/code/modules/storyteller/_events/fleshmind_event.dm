@@ -35,11 +35,19 @@
 
 	shuffle(areas)
 
-	var/turf/picked_turf = get_safe_random_station_turf(areas)
+	var/list/turf/picked_turf_list // List of turfs to randomize
+	var/turf/picked_turf // Final turf
+
+	for(var/i in 1 to 5) // Get five turfs in diffrent areas.
+		var/turf = get_safe_random_station_turf(areas)
+		picked_turf_list += turf
+		areas -= get_area(turf)
+
+	picked_turf = pick(picked_turf_list) // Pick the final turf
 
 	if(!picked_turf)
-		message_admins("Fleshmind failed to pick a proper turf!")
-		return
+		message_admins("Fleshmind failed to pick a valid turf!")
+		return FALSE
 
 	make_core(picked_turf)
 

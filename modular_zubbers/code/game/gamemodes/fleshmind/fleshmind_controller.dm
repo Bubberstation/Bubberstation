@@ -198,7 +198,7 @@
 						tasks++
 						if(prob(attack_prob))
 							wireweed.do_attack_animation(object, ATTACK_EFFECT_CLAW)
-							playsound(object, 'sound/effects/attackblob.ogg', 50, TRUE)
+							playsound(object, 'sound/effects/blob/attackblob.ogg', 50, TRUE)
 							object.take_damage(wireweed.object_attack_damage, BRUTE, MELEE, 1, get_dir(object, wireweed))
 						break
 				if(could_attack)
@@ -329,7 +329,7 @@
 	make_ert(/datum/ert/deathsquad, 5, "HEAD TO AND BOARD THE EMERGENCY SHUTTLE, DO NOT USE THE FERRY, STOP THE CORRUPTION AT **ALL** COSTS!!!", "the last defense of centcom!", "GAMMA", FALSE, TRUE, TRUE, FALSE, TRUE)
 
 /datum/fleshmind_controller/proc/fleshmind_end_second_check()
-	priority_announce("ERROR, SHUTTLE QUARANTINE LOCK FAILURE. All p£$r$%%££$e*$l JOIN US, THE MANY.", "Emergency Shuttle Control", 'sound/misc/airraid.ogg')
+	priority_announce("ERROR, SHUTTLE QUARANTINE LOCK FAILURE. All p£$r$%%££$e*$l JOIN US, THE MANY.", "Emergency Shuttle Control", 'sound/announcer/alarm/airraid.ogg')
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	addtimer(CALLBACK(src, PROC_REF(fleshmind_end_final)), 1 MINUTES, TIMER_CLIENT_TIME)
 

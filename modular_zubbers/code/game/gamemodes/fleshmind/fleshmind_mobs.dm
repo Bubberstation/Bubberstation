@@ -280,7 +280,7 @@
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	armour_penetration = 10
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_emote = list("stabs", "rushes")
 	attack_speak = list(
 		"Submit for mandatory surgery.",
@@ -432,7 +432,7 @@
 	mob_size = MOB_SIZE_SMALL
 	var/projectile_type = /obj/projectile/treader/weak
 	var/ranged_cooldown = 3 SECONDS
-	var/shoot_sound = 'sound/chemistry/saturnx_fade.ogg'
+	var/shoot_sound = 'sound/effects/chemistry/saturnx_fade.ogg'
 	attack_speak = list(
 		"Your insides require cleaning.",
 		"You made us to use this acid on trash. We will use it on you.",
@@ -539,7 +539,7 @@
 	var/mob/living/carbon/human/attacked_human = target
 	if(ishuman(attacked_human))
 		attacked_human.Knockdown(30)
-		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE)
+		playsound(src, 'sound/items/weapons/egloves.ogg', 50, TRUE)
 		COOLDOWN_START(src, stun_cooldown, stun_cooldown_time)
 	return
 /**
@@ -568,7 +568,7 @@
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	mob_size = MOB_SIZE_HUMAN
-	attack_sound = 'sound/weapons/circsawhit.ogg'
+	attack_sound = 'sound/items/weapons/circsawhit.ogg'
 	alert_sounds = list(
 		'modular_zubbers/sound/fleshmind/hiborg/aggro_01.ogg',
 		'modular_zubbers/sound/fleshmind/hiborg/aggro_02.ogg',
@@ -637,7 +637,7 @@
 		return
 	var/mob/living/carbon/human/attacked_human = target_mob
 	attacked_human.Paralyze(10)
-	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE)
+	playsound(src, 'sound/items/weapons/egloves.ogg', 50, TRUE)
 
 	COOLDOWN_START(src, stun_attack, stun_attack_cooldown)
 
@@ -649,7 +649,7 @@
 			continue
 		if(faction_check(faction, iterating_mob.faction))
 			continue
-		playsound(iterating_mob, 'sound/weapons/whip.ogg', 70, TRUE)
+		playsound(iterating_mob, 'sound/items/weapons/whip.ogg', 70, TRUE)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(iterating_mob))
 
 		var/atom/throw_target = get_edge_target_turf(iterating_mob, get_dir(src, get_step_away(iterating_mob, src)))
@@ -700,7 +700,7 @@
 	speed = 2
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
@@ -853,7 +853,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/treader
 	var/projectile_type = /obj/projectile/treader
 	var/ranged_cooldown = 5 SECONDS
-	var/shoot_sound = 'sound/chemistry/saturnx_fade.ogg'
+	var/shoot_sound = 'sound/effects/chemistry/saturnx_fade.ogg'
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -861,7 +861,7 @@
 	health = 200
 	maxHealth = 200
 	speed = 3
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	light_color = FLESHMIND_LIGHT_BLUE
 	light_range = 2
 	mob_size = MOB_SIZE_HUMAN
@@ -960,7 +960,7 @@
 	health = 160
 	maxHealth = 160
 	malfunction_chance = null
-	attack_sound = 'sound/effects/attackblob.ogg'
+	attack_sound = 'sound/effects/blob/attackblob.ogg'
 	attack_verb_continuous = "warps"
 	attack_verb_simple = "warp"
 	melee_damage_lower = 10
@@ -1275,7 +1275,7 @@
 	melee_damage_upper = 30
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
-	attack_sound = 'sound/weapons/smash.ogg'
+	attack_sound = 'sound/items/weapons/smash.ogg'
 	speed = 3 // Slowish fucker
 	mob_size = MOB_SIZE_LARGE
 	move_force = MOVE_FORCE_OVERPOWERING
@@ -1367,7 +1367,7 @@
 	Shake(10, 0, 3 SECONDS)
 	do_sparks(4, FALSE, src)
 	to_chat(contained_mob, span_userdanger(pick(torment_lines)))
-	playsound(src, 'sound/weapons/drill.ogg', 70, 1)
+	playsound(src, 'sound/items/weapons/drill.ogg', 70, 1)
 
 /mob/living/basic/fleshmind/mechiver/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
@@ -1415,7 +1415,7 @@
 
 	to_chat(target_mob, span_userdanger("[src] ensnares your limbs as it pulls you inside its compartment, metal tendrils sliding around you, squeezing tight."))
 	visible_message(span_danger("[src] consumes [target_mob]!"))
-	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
+	playsound(src, 'sound/effects/blob/blobattack.ogg', 70, 1)
 
 	addtimer(CALLBACK(src, PROC_REF(release_mob)), conversion_time)
 
@@ -1435,7 +1435,7 @@
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, TRUE)
 	convert_mob(contained_mob)
 	contained_mob = null
-	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
+	playsound(src, 'sound/effects/blob/blobattack.ogg', 70, 1)
 
 /mob/living/basic/fleshmind/mechiver/proc/convert_mob(mob/living/mob_to_convert)
 	ai_controller.clear_blackboard_key(BB_MECHIVER_CONTAINED_MOB)

@@ -383,7 +383,7 @@
 		has_attacked = TRUE
 	if(has_attacked)
 		thing.visible_message(span_warning("\The [src] strikes [thing]!"), span_userdanger("\The [src] strikes you!"))
-		playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
+		playsound(loc, 'sound/effects/blob/attackblob.ogg', 100, TRUE)
 		do_attack_animation(thing, ATTACK_EFFECT_PUNCH)
 		return TRUE
 	return .
@@ -418,7 +418,7 @@
 			continue
 		if(faction_check(faction_types, iterating_mob.faction))
 			continue
-		playsound(iterating_mob, 'sound/weapons/whip.ogg', 70, TRUE)
+		playsound(iterating_mob, 'sound/items/weapons/whip.ogg', 70, TRUE)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(iterating_mob))
 
 		var/atom/throw_target = get_edge_target_turf(iterating_mob, get_dir(src, get_step_away(iterating_mob, src)))
@@ -699,7 +699,7 @@
 /obj/structure/fleshmind/structure/assembler/proc/spawn_mob()
 	if(!our_controller)
 		return
-	playsound(src, 'sound/items/rped.ogg', 100)
+	playsound(src, 'sound/items/tools/rped.ogg', 100)
 	flick("[base_icon_state]-anim", src)
 	do_squish(0.8, 1.2)
 

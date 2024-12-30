@@ -187,7 +187,7 @@
 	var/obj/machinery/parent_machinery = parent
 
 	to_chat(user_to_throw, span_userdanger("[parent_machinery] thrashes you with one of it's tendrils, sending you flying!"))
-	playsound(parent_machinery, 'sound/weapons/whip.ogg', 70, TRUE)
+	playsound(parent_machinery, 'sound/items/weapons/whip.ogg', 70, TRUE)
 	new /obj/effect/temp_visual/kinetic_blast(get_turf(user_to_throw))
 
 	var/atom/throw_target = get_edge_target_turf(user_to_throw, get_dir(parent_machinery, get_step_away(user_to_throw, parent_machinery)))
