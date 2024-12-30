@@ -15,13 +15,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	greyscale_colors = "#FFFFFF"
 	greyscale_config = /datum/greyscale_config/bone
-	greyscale_config_worn = /datum/greyscale_config/bone_worn
+	greyscale_config_worn = /datum/greyscale_config/bone/worn
 
 /datum/greyscale_config/bone
 	icon_file = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/bone.json'
 
-/datum/greyscale_config/bone_worn
+/datum/greyscale_config/bone/worn
 	icon_file = 'modular_zzplurt/icons/mob/mouthfluff.dmi'
 
 /obj/item/toy/fluff/bone_greyscale/red
@@ -64,13 +64,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	greyscale_colors = "#CCFF00#FFFFFF"
 	greyscale_config = /datum/greyscale_config/frisbee
-	greyscale_config_worn = /datum/greyscale_config/frisbee_worn
+	greyscale_config_worn = /datum/greyscale_config/frisbee/worn
 
 /datum/greyscale_config/frisbee
 	icon_file = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/frisbee.json'
 
-/datum/greyscale_config/frisbee_worn
+/datum/greyscale_config/frisbee/worn
 	icon_file = 'modular_zzplurt/icons/mob/mouthfluff.dmi'
 
 /obj/item/toy/fluff/frisbee_greyscale/red
