@@ -28,7 +28,7 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_config = /datum/greyscale_config/maid_arms
 	greyscale_config_worn = /datum/greyscale_config/maid_arms/worn
-	greyscale_colors = "#333333#FFFFFF"
+	greyscale_colors = "#FFFFFF#333333#FFFFFF"
 
 /datum/greyscale_config/maid_arms
 	name = "Maid Arms"
