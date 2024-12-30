@@ -2,6 +2,8 @@
 	name = "tailbag"
 	desc = "A bag for holding small items. It fastens around the base of the tail."
 	icon = 'modular_zzplurt/icons/obj/storage.dmi'
+	worn_icon = null
+	worn_icon_state = null
 	icon_state = "tailbag"
 
 /obj/item/storage/wallet/refreshID()

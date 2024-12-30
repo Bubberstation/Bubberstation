@@ -26,8 +26,10 @@
 	name = "invisifiber hat"
 	desc = "A hat made of transparent fibers, often used with reinforcement kits."
 	icon = 'modular_zzplurt/icons/obj/clothing/head.dmi'
+	worn_icon = null
 	// No overlay, because they're invisible!
 	icon_state = "hat_transparent"
+	worn_icon_state = null
 	// Makes the invisible hat not screw up hair.
 
 /obj/item/clothing/head/beret/black

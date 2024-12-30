@@ -54,25 +54,25 @@
 	body_parts_covered = CHEST
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/shorts/redwshort
+/obj/item/clothing/under/wshort
 	name = "Red workout short"
 	icon = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "redwshort"
+	gender = PLURAL
+	body_parts_covered = GROIN
+	female_sprite_flags = NO_FEMALE_UNIFORM
+	supports_variations_flags = CLOTHING_NO_VARIATION
+	can_adjust = FALSE
+	species_exception = list(/datum/species/golem)
 
-/obj/item/clothing/under/shorts/yellowwshort
+/obj/item/clothing/under/wshort/yellowwshort
 	name = "Yellow workout short"
-	icon = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
-	worn_icon = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
-	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "yellowwshort"
 
-/obj/item/clothing/under/shorts/pinkwshort
+/obj/item/clothing/under/wshort/pinkwshort
 	name = "Pink workout short"
-	icon = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
-	worn_icon = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
-	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "pinkwshort"
 
 /obj/item/clothing/under/domina
@@ -268,9 +268,9 @@
 	name = "black pencilskirt"
 	desc = "A clean white shirt with a tight-fitting black pencilskirt."
 	icon_state = "black_pencil"
-	icon = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
-	worn_icon = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
-	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/uniform_digi.dmi'
+	icon = 'modular_zzplurt/icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'modular_zzplurt/icons/mob/clothing/under/suits.dmi'
+	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/under/suits_digi.dmi'
 
 /obj/item/clothing/under/suit/pencil/black_really
 	name = "executive pencilskirt"
@@ -651,12 +651,12 @@
 	name = "Corset Dress (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
 
-/datum/greyscale_config/miniskirt
+/datum/greyscale_config/miniskirt_alt
 	name = "Miniskirt"
 	icon_file = 'modular_zzplurt/icons/obj/clothing/uniforms.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/miniskirt.json'
 
-/datum/greyscale_config/miniskirt/worn
+/datum/greyscale_config/miniskirt_alt/worn
 	name = "Miniskirt (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/clothing/uniform.dmi'
 

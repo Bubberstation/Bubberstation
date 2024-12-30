@@ -12,15 +12,15 @@
 
 /datum/loadout_item/uniform/shorts/redwshort
 	name = "Red workout short"
-	item_path = /obj/item/clothing/under/shorts/redwshort
+	item_path = /obj/item/clothing/under/wshort
 
 /datum/loadout_item/uniform/shorts/yellowwshort
 	name = "Yellow workout short"
-	item_path = /obj/item/clothing/under/shorts/yellowwshort
+	item_path = /obj/item/clothing/under/wshort/yellowwshort
 
 /datum/loadout_item/uniform/shorts/pinkwshort
 	name = "Pink workout short"
-	item_path = /obj/item/clothing/under/shorts/pinkwshort
+	item_path = /obj/item/clothing/under/wshort/pinkwshort
 
 /datum/loadout_item/uniform/domina
 	name = "Dominatrix Dress"

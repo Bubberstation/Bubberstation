@@ -7,6 +7,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "crocinpen"
+	inhand_icon_state = "crocinpen"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/crocin = 30)
 
 /obj/item/reagent_containers/hypospray/medipen/crocin/plus
@@ -18,6 +19,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "hcrocinpen"
+	inhand_icon_state = "hcrocinpen"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = 30)
 
 /obj/item/reagent_containers/hypospray/medipen/breastgrowth
@@ -29,6 +31,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "succupen"
+	inhand_icon_state = "succupen"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/succubus_milk = 30)
 
 /obj/item/reagent_containers/hypospray/medipen/penisgrowth
@@ -40,6 +43,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "incupen"
+	inhand_icon_state = "incupen"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/incubus_draft = 30)
 
 //
@@ -50,6 +54,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "bombpen"
+	inhand_icon_state = "bombpen"
 	volume = 30
 	amount_per_transfer_from_this = 30
 	list_reagents = list(
@@ -65,6 +70,7 @@
 	lefthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'modular_zzplurt/icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "prospen"
+	inhand_icon_state = "prospen"
 	volume = 30
 	amount_per_transfer_from_this = 30
 	list_reagents = list(/datum/reagent/growthchem = 30)
@@ -78,6 +84,7 @@
 /obj/item/storage/box/medipens/lewd
 	name = "Lewd medipen box"
 	icon = 'modular_zzplurt/icons/obj/storage.dmi'
+	icon_state = "box"
 	desc = "A box full of medipens meant to cause interesting effects on people. None of them with a close to medical application."
 	illustration = "syringe_lewd"
 
