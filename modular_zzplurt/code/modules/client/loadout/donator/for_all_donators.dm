@@ -53,10 +53,6 @@
 	name = "Pentagram Crop Top"
 	item_path = /obj/item/clothing/under/pentatop
 
-/datum/loadout_item/uniform/donator/jester_suit
-	name = "Jester Suit"
-	item_path = /obj/item/clothing/under/rank/civilian/clown/jester
-
 /datum/loadout_item/uniform/donator/chameleon
 	name = "Chameleon Suit"
 	item_path = /obj/item/clothing/under/chameleon
@@ -83,10 +79,6 @@
 /datum/loadout_item/shoes/donator/chameleon_suits
 	name = "Chameleon Shoes"
 	item_path = /obj/item/clothing/shoes/chameleon
-
-/datum/loadout_item/shoes/donator/jester_shoes
-	name = "Jester Shoes"
-	item_path = /obj/item/clothing/shoes/clown_shoes/jester
 
 // Mask
 /datum/loadout_item/mask/donator/ninja_replica

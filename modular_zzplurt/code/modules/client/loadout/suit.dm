@@ -12,10 +12,6 @@
 	name = "apron, blue"
 	item_path = /obj/item/clothing/suit/apron
 
-/datum/loadout_item/suit/overalls
-	name = "overalls"
-	item_path = /obj/item/clothing/suit/apron/overalls
-
 //
 /datum/loadout_item/suit/jacketyellow
 	name = "Yellow Jacket"

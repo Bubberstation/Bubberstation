@@ -41,10 +41,12 @@
 	greyscale_config_worn = /datum/greyscale_config/armwarmer_striped/worn
 
 /datum/greyscale_config/armwarmer_striped
+	name = "Striped Arm Warmers"
 	icon_file = 'modular_zzplurt/icons/obj/clothing/wrist.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/armwarmer_striped.json'
 
 /datum/greyscale_config/armwarmer_striped/worn
+	name = "Striped Arm Warmers (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/clothing/wrists.dmi'
 
 //Long Arm Warmers
@@ -59,8 +61,10 @@
 	greyscale_config_worn = /datum/greyscale_config/armwarmer_striped_long/worn
 
 /datum/greyscale_config/armwarmer_striped_long
+	name = "Long Striped Arm Warmers"
 	icon_file = 'modular_zzplurt/icons/obj/clothing/wrist.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/armwarmer_striped_long.json'
 
 /datum/greyscale_config/armwarmer_striped_long/worn
+	name = "Long Striped Arm Warmers (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/clothing/wrists.dmi'

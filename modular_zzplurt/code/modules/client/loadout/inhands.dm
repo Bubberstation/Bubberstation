@@ -21,10 +21,6 @@
 	name = "Yellow Lipstick"
 	item_path = /obj/item/lipstick/yellow
 
-/datum/loadout_item/pocket_items/lipstick/blue
-	name = "Blue Lipstick"
-	item_path = /obj/item/lipstick/blue
-
 /datum/loadout_item/pocket_items/lipstick/teal
 	name = "Teal Lipstick"
 	item_path = /obj/item/lipstick/teal
@@ -40,10 +36,6 @@
 /datum/loadout_item/pocket_items/lipstick/aqua
 	name = "Cyan Lipstick"
 	item_path = /obj/item/lipstick/aqua
-
-/datum/loadout_item/pocket_items/lipstick/white
-	name = "White Lipstick"
-	item_path = /obj/item/lipstick/white
 
 //Nail polish
 /datum/loadout_item/pocket_items/nailpolish_red

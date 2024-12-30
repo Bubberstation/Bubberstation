@@ -48,9 +48,6 @@
 	item_path = /obj/item/clothing/under/stripper_outfit
 
 // Suggestion #151
-/datum/loadout_item/uniform/waiter
-	name = "waiter's outfit"
-	item_path = /obj/item/clothing/under/suit/waiter
 
 /datum/loadout_item/uniform/raccveralls
 	name = "form fitting overalls"

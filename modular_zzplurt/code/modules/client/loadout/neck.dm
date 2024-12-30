@@ -7,10 +7,6 @@
 	item_path = /obj/item/clothing/neck/cloak/alt/boatcloak/command
 	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_CHIEF_ENGINEER, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_BLUESHIELD, JOB_BRIDGE_ASSISTANT)
 
-/datum/loadout_item/neck/polycloak/alt
-	name = "Colorable Alternate Cloak"
-	item_path = /obj/item/clothing/neck/cloak/colourable
-
 /datum/loadout_item/neck/holocollar
 	name = "Holo-collar"
 	item_path = /obj/item/clothing/neck/petcollar/holo
