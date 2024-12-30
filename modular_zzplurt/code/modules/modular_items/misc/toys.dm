@@ -18,10 +18,12 @@
 	greyscale_config_worn = /datum/greyscale_config/bone/worn
 
 /datum/greyscale_config/bone
+	name = "bone"
 	icon_file = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/bone.json'
 
 /datum/greyscale_config/bone/worn
+	name = "Bone (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/mouthfluff.dmi'
 
 /obj/item/toy/fluff/bone_greyscale/red
@@ -67,10 +69,12 @@
 	greyscale_config_worn = /datum/greyscale_config/frisbee/worn
 
 /datum/greyscale_config/frisbee
+	name = "Frisbee"
 	icon_file = 'modular_zzplurt/icons/obj/barkbox_fluff.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/frisbee.json'
 
 /datum/greyscale_config/frisbee/worn
+	name = "Frisbee (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/mouthfluff.dmi'
 
 /obj/item/toy/fluff/frisbee_greyscale/red
