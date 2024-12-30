@@ -31,8 +31,11 @@
 	greyscale_colors = "#333333#FFFFFF"
 
 /datum/greyscale_config/maid_arms
+	name = "Maid Arms"
 	icon_file = 'modular_zzplurt/icons/obj/clothing/gloves.dmi'
 	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/maid_arms.json'
 
 /datum/greyscale_config/maid_arms/worn
+	name = "Maid Arms (Worn)"
 	icon_file = 'modular_zzplurt/icons/mob/clothing/hands.dmi'
+	json_config = 'modular_zzplurt/code/datums/greyscale/json_configs/maid_arms.json'
