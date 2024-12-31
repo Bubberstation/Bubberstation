@@ -122,7 +122,6 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/obtain_targets(mob/living/user, silent = FALSE, datum/antagonist/heretic/heretic_datum)
 
 	// First construct a list of minds that are valid objective targets.
-	var/area/centcom/protected_areas
 	var/list/datum/mind/valid_targets = list()
 	for(var/datum/mind/possible_target as anything in get_crewmember_minds())
 		if(possible_target == user.mind)
@@ -133,9 +132,9 @@
 			continue
 		if(possible_target.current.stat == DEAD)
 			continue
-		if(!HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
+		if(HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
 			continue
-		if(!is_type_in_list(get_area(possible_target), protected_areas))
+		if(is_centcom_level(possible_target.current.z))
 			continue
 		valid_targets += possible_target
 
