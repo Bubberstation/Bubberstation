@@ -169,10 +169,6 @@ SUBSYSTEM_DEF(tts)
 
 	// For speed
 	var/list/processing_messages = current_processing_http_messages
-	// BUBBER EDIT START - RESET TTS AVERAGE
-	//if(processing_messages.len == 0 && queued_tts_messages.len == 0 && average_tts_messages_time != 0)
-	//	average_tts_messages_time = 0
-	// BUBBER EDIT END - RESET TTS AVERAGE
 	while(processing_messages.len)
 		var/datum/tts_request/current_request = processing_messages[processing_messages.len]
 		processing_messages.len--
