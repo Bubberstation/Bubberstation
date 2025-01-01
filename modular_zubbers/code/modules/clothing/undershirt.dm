@@ -20,31 +20,31 @@
 
 // Shapley Shirts//
 
-/datum/sprite_accessory/underwear/undershirt/shapelypetite
+/datum/sprite_accessory/undershirt/shapelypetite
 	name = "Shapely Shirt - Petite"
 	icon_state = "shapely_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelygirlish
+/datum/sprite_accessory/undershirt/shapelygirlish
 	name = "Shapely Shirt - Girlish"
 	icon_state = "shapely_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelycurvy
+/datum/sprite_accessory/undershirt/shapelycurvy
 	name = "Shapely Shirt - Curvy"
 	icon_state = "shapely_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelybusty
+/datum/sprite_accessory/undershirt/shapelybusty
 	name = "Shapely Shirt - Busty"
 	icon_state = "shapely_busty"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelybackbreaker
+/datum/sprite_accessory/undershirt/shapelybackbreaker
 	name = "Shapely Shirt - Backbreakers"
 	icon_state = "shapely_backbreaker"
 	gender = FEMALE
@@ -52,34 +52,34 @@
 
 	//Shapely Shoulderless (ss)
 
-/datum/sprite_accessory/underwear/undershirt/shapelyshoulderlesspetite
+/datum/sprite_accessory/undershirt/shapelyshoulderlesspetite
 	name = "Shapely Shoulderless Shirt - Petite"
 	icon_state = "shapelyss_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelyshoulderlessgirlish
+/datum/sprite_accessory/undershirt/shapelyshoulderlessgirlish
 	name = "Shapely Shoulderless Shirt - Girlish"
 	icon_state = "shapelyss_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
 
-/datum/sprite_accessory/underwear/undershirt/shapelyshoulderlesscurvy
+/datum/sprite_accessory/undershirt/shapelyshoulderlesscurvy
 	name = "Shapely Shoulderless Shirt - Curvy"
 	icon_state = "shapelyss_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
 
-/datum/sprite_accessory/underwear/undershirt/shapelyshoulderlessbusty
+/datum/sprite_accessory/undershirt/shapelyshoulderlessbusty
 	name = "Shapely Shoulderless Shirt - Busty"
 	icon_state = "shapelyss_busty"
 	gender = FEMALE
 	use_static = FALSE
 
 
-/datum/sprite_accessory/underwear/undershirt/shapelyshoulderlessbackbreaker
+/datum/sprite_accessory/undershirt/shapelyshoulderlessbackbreaker
 	name = "Shapely Shoulderless Shirt - Backbreakers"
 	icon_state = "shapelyss_backbreaker"
 	gender = FEMALE
@@ -88,31 +88,31 @@
 
 	//Shapely Tube Top (tt)
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetoppetite
+/datum/sprite_accessory/undershirt/shapelytubetoppetite
 	name = "Shapely Tube Top Shirt - Petite"
 	icon_state = "shapelytt_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopgirlish
+/datum/sprite_accessory/undershirt/shapelytubetopgirlish
 	name = "Shapely Tube Top Shirt - Girlish"
 	icon_state = "shapelytt_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopcurvy
+/datum/sprite_accessory/undershirt/shapelytubetopcurvy
 	name = "Shapely Tube Top Shirt - Curvy"
 	icon_state = "shapelytt_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopbusty
+/datum/sprite_accessory/undershirt/shapelytubetopbusty
 	name = "Shapely Tube Top Shirt - Busty"
 	icon_state = "shapelytt_busty"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopbackbreaker
+/datum/sprite_accessory/undershirt/shapelytubetopbackbreaker
 	name = "Shapely Tube Top Shirt - Backbreakers"
 	icon_state = "shapelytt_backbreaker"
 	gender = FEMALE
@@ -120,31 +120,31 @@
 
 	//Shapely Bra (bra)
 
-/datum/sprite_accessory/underwear/bra/shapelybrapetite
+/datum/sprite_accessory/bra/shapelybrapetite
 	name = "Shapely Bra - Petite"
 	icon_state = "shapelybra_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelybragirlish
+/datum/sprite_accessory/bra/shapelybragirlish
 	name = "Shapely Bra - Girlish"
 	icon_state = "shapelybra_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelybracurvy
+/datum/sprite_accessory/bra/shapelybracurvy
 	name = "Shapely Bra - Curvy"
 	icon_state = "shapelybra_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelybrabusty
+/datum/sprite_accessory/bra/shapelybrabusty
 	name = "Shapely Bra - Busty"
 	icon_state = "shapelybra_busty"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelybrabackbreaker
+/datum/sprite_accessory/bra/shapelybrabackbreaker
 	name = "Shapely Bra - Backbreakers"
 	icon_state = "shapelybra_backbreaker"
 	gender = FEMALE
@@ -152,31 +152,31 @@
 
 //Shapely Bra (cow)
 
-/datum/sprite_accessory/underwear/bra/shapelymoopetite
+/datum/sprite_accessory/bra/shapelymoopetite
 	name = "Shapely Cow Bra - Petite"
 	icon_state = "shapelymoo_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelymoogirlish
+/datum/sprite_accessory/bra/shapelymoogirlish
 	name = "Shapely Cow Bra - Girlish"
 	icon_state = "shapelymoo_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelymoocurvy
+/datum/sprite_accessory/bra/shapelymoocurvy
 	name = "Shapely Cow Bra - Curvy"
 	icon_state = "shapelymoo_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelymoobusty
+/datum/sprite_accessory/bra/shapelymoobusty
 	name = "Shapely Cow Bra - Busty"
 	icon_state = "shapelymoo_busty"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/bra/shapelymoobackbreaker
+/datum/sprite_accessory/bra/shapelymoobackbreaker
 	name = "Shapely Cow Bra - Backbreakers"
 	icon_state = "shapelymoo_backbreaker"
 	gender = FEMALE
@@ -184,32 +184,32 @@
 
 	//Shapely Tube Top w/ Fish Net (ttfn)
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopfnpetite
+/datum/sprite_accessory/undershirt/shapelytubetopfnpetite
 	name = "Shapely Tube Top w/ Netting - Petite"
 	icon_state = "shapelyttfn_petite"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopfngirlish
+/datum/sprite_accessory/undershirt/shapelytubetopfngirlish
 	name = "Shapely Tube Top w/ Netting - Girlish"
 	icon_state = "shapelyttfn_girlish"
 	gender = FEMALE
 	use_static = FALSE
 
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopfncurvy
+/datum/sprite_accessory/undershirt/shapelytubetopfncurvy
 	name = "Shapely Tube Top /w Netting - Curvy"
 	icon_state = "shapelyttfn_curvy"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopfnbusty
+/datum/sprite_accessory/undershirt/shapelytubetopfnbusty
 	name = "Shapely Tube Top w/ Netting - Busty"
 	icon_state = "shapelyttfn_busty"
 	gender = FEMALE
 	use_static = FALSE
 
-/datum/sprite_accessory/underwear/undershirt/shapelytubetopfnbackbreaker
+/datum/sprite_accessory/undershirt/shapelytubetopfnbackbreaker
 	name = "Shapely Tube Top w/  Netting - Backbreakers"
 	icon_state = "shapelyttfn_backbreaker"
 	gender = FEMALE
