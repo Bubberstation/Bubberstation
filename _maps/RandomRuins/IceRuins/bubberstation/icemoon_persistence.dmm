@@ -1399,6 +1399,7 @@
 /obj/machinery/light_switch/directional/west,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/healthanalyzer/advanced,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "ef" = (
@@ -2298,6 +2299,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
+"hb" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "dauntless_operating"
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "persistence_operating_s";
+	name = "Persistance Medical Blast Doors"
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "hc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -2383,17 +2395,6 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"ht" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "dauntless_operating"
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor{
-	id = "synditrash";
-	name = "Persistance Recycling Blast Doors"
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "hu" = (
 /obj/structure/chair/sofa/bench/right,
 /obj/structure/cable,
@@ -6186,10 +6187,10 @@
 	name = "medical window polarization"
 	},
 /obj/machinery/button/door{
-	id = "syndicatemed";
+	id = "persistence_operating_s";
 	pixel_x = 8;
 	pixel_y = -24;
-	name = "Airlock Bolts"
+	name = "Shutters"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
@@ -10978,6 +10979,7 @@
 /obj/structure/chair/plastic{
 	dir = 8
 	},
+/obj/structure/sign/departments/med/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Gw" = (
@@ -11330,13 +11332,6 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
-"HC" = (
-/obj/structure/sign/departments/med/directional/east,
-/obj/structure/chair/plastic{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "HD" = (
 /obj/structure/cable,
 /obj/structure/hedge,
@@ -16188,6 +16183,7 @@
 	pixel_x = 4;
 	pixel_y = 13
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Wj" = (
@@ -16305,7 +16301,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "WC" = (
-/obj/machinery/light/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -20051,12 +20046,12 @@ UL
 Wv
 lK
 aR
-ht
-ht
+hb
+hb
 cB
 NA
 DY
-HC
+lC
 Gu
 qo
 KV
@@ -20126,7 +20121,7 @@ MI
 aR
 cB
 cB
-cB
+hb
 cB
 OT
 LD

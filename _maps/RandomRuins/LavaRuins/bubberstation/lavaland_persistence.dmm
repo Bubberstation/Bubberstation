@@ -1271,7 +1271,6 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "dP" = (
-/obj/machinery/light/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -3368,7 +3367,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/disposal/delivery_chute{
 	dir = 1;
 	name = "disposals chute";
@@ -5680,8 +5678,8 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor{
-	id = "syndioperatings";
-	name = "Persistance Recycling Blast Doors"
+	id = "persistence_operating_s";
+	name = "Persistance Medical Blast Doors"
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/service)
@@ -6328,6 +6326,7 @@
 	pixel_x = 4;
 	pixel_y = 13
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "sP" = (
@@ -8550,13 +8549,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
-"zn" = (
-/obj/structure/sign/departments/med/directional/east,
-/obj/structure/chair/plastic{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "zo" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -11601,6 +11593,17 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
+"Iq" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "dauntless_operating"
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "persistence_operating_s";
+	name = "Persistance Medical Blast Doors"
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Ir" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -12366,6 +12369,7 @@
 /obj/structure/chair/plastic{
 	dir = 8
 	},
+/obj/structure/sign/departments/med/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Kp" = (
@@ -14458,10 +14462,10 @@
 	name = "medical window polarization"
 	},
 /obj/machinery/button/door{
-	id = "syndioperatings";
+	id = "persistence_operating_s";
 	pixel_x = 8;
 	pixel_y = -24;
-	name = "Operating Room Shutters"
+	name = "Shutters"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
@@ -17393,6 +17397,7 @@
 /obj/machinery/light_switch/directional/west,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/healthanalyzer/advanced,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "ZK" = (
@@ -17469,6 +17474,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "ZV" = (
@@ -20125,7 +20132,7 @@ ra
 LH
 RG
 PF
-zn
+YF
 Kl
 Ou
 sR
@@ -20197,7 +20204,7 @@ cT
 Hi
 HY
 HY
-HY
+Iq
 HY
 bK
 Fd
