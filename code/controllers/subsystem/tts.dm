@@ -170,8 +170,8 @@ SUBSYSTEM_DEF(tts)
 	// For speed
 	var/list/processing_messages = current_processing_http_messages
 	// BUBBER EDIT START - RESET TTS AVERAGE
-	if(processing_messages.len == 0 && queued_tts_messages.len == 0 && average_tts_messages_time != 0)
-		average_tts_messages_time = 0
+	//if(processing_messages.len == 0 && queued_tts_messages.len == 0 && average_tts_messages_time != 0)
+	//	average_tts_messages_time = 0
 	// BUBBER EDIT END - RESET TTS AVERAGE
 	while(processing_messages.len)
 		var/datum/tts_request/current_request = processing_messages[processing_messages.len]
@@ -268,9 +268,9 @@ SUBSYSTEM_DEF(tts)
 	if(!tts_enabled)
 		return
 	/// BUBBER EDIT START - TTS TIMEOUT
-	//var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? FALSE : CONFIG_GET(number/tts_timeout) < average_tts_messages_time
-	//if(tts_timeout)
-	//	return
+	var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? FALSE : CONFIG_GET(number/tts_timeout) < average_tts_messages_time
+	if(tts_timeout)
+		return
 	/// BUBBER EDIT END - TTS TIMEOUT
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))
