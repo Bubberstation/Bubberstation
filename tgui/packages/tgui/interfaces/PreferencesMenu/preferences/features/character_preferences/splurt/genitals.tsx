@@ -1,6 +1,7 @@
 import {
   CheckboxInput,
   Feature,
+  FeatureChoiced,
   FeatureChoicedServerData,
   FeatureNumberInput,
   FeatureNumeric,
@@ -106,4 +107,33 @@ export const belly_emissive: Feature<boolean[]> = {
   name: 'Belly Emissives',
   description: 'Emissive parts glow in the dark.',
   component: FeatureTriBoolInput,
+};
+
+export const erp_status_pref_extm: FeatureChoiced = {
+  name: 'Extreme ERP verbs',
+  component: FeatureDropdownInput,
+};
+
+export const erp_status_pref_extmharm: FeatureChoiced = {
+  name: 'Harmful ERP verbs',
+  component: FeatureDropdownInput,
+};
+
+export const erp_status_pref_unholy: FeatureChoiced = {
+  name: 'Unholy ERP verbs',
+  component: FeatureDropdownInput,
+};
+
+export const erp_lust_tolerance_pref: FeatureNumeric = {
+  name: 'Lust tolerance multiplier',
+  description:
+    'Set your lust tolerance multiplier. \n(0.5 = half tolerance, 2 = double tolerance)',
+  component: FeatureNumberInput,
+};
+
+export const erp_sexual_potency_pref: FeatureNumeric = {
+  name: 'Sexual potency multiplier',
+  description:
+    'Set your sexual potency multiplier. \n(0.5 = half potency, 2 = double potency)',
+  component: FeatureNumberInput,
 };
