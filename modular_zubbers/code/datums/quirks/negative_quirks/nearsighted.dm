@@ -14,7 +14,7 @@
 		to_chat(usr, span_warning("These are already prescripted!"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(usr, span_warning("You've changed out the lenses on the [interacting_with]!"))
+	to_chat(usr, span_notice("You've changed out the lenses on \the [interacting_with]."))
 	glasses.clothing_traits += TRAIT_NEARSIGHTED_CORRECTED
 	glasses.name = "prescription [glasses.name]"
 	glasses.desc += " These seem to have prescription lenses inserted in them."
