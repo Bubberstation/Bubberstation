@@ -268,9 +268,9 @@ SUBSYSTEM_DEF(tts)
 	if(!tts_enabled)
 		return
 	/// BUBBER EDIT START - TTS TIMEOUT
-	var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? FALSE : CONFIG_GET(number/tts_timeout) < average_tts_messages_time
-	if(tts_timeout)
-		return
+	//var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? FALSE : CONFIG_GET(number/tts_timeout) < average_tts_messages_time
+	//if(tts_timeout)
+	//	return
 	/// BUBBER EDIT END - TTS TIMEOUT
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))

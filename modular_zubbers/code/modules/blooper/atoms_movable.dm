@@ -91,12 +91,12 @@ It has also been further modified by Rashcat & other Fluffyfrontier contributors
 
 			var/tts_pref = M.client.prefs?.read_preference(/datum/preference/choiced/sound_tts)
 			var/hear_blooper = M.client.prefs?.read_preference(/datum/preference/toggle/hear_sound_blooper)
-			var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? TRUE : CONFIG_GET(number/tts_timeout) > SStts.average_tts_messages_time
+			//var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? TRUE : CONFIG_GET(number/tts_timeout) > SStts.average_tts_messages_time
 
 			if(!hear_blooper) // Check pref for blooper
 				listening -= M
 
-			else if (CONFIG_GET(string/tts_http_url) && SStts.tts_enabled == TRUE && tts_timeout) // Check for TTS
+			else if (CONFIG_GET(string/tts_http_url) && SStts.tts_enabled == TRUE) // Check for TTS
 				if (source.voice == "")
 				else if (tts_pref != TTS_SOUND_OFF)
 					listening -= M
