@@ -18,6 +18,7 @@
 	gender = FEMALE
 	use_static = TRUE
 
+// Additions from Coyote
 // Shapley Shirts//
 
 /datum/sprite_accessory/undershirt/shapelypetite
@@ -244,3 +245,5 @@
 	icon_state = "shapelyttfn_backbreaker"
 	gender = FEMALE
 	use_static = FALSE
+
+//Additions from Coyote end
