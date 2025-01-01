@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(tts)
 	if(!tts_enabled)
 		return
 	/// BUBBER EDIT START - TTS TIMEOUT
-	var/tts_timeout = CONFIG_GET(number/tts_timeout) >= average_tts_messages_time
+	var/tts_timeout = isnull(CONFIG_GET(number/tts_timeout)) ? FALSE : CONFIG_GET(number/tts_timeout) < average_tts_messages_time
 	if(tts_timeout)
 		return
 	/// BUBBER EDIT END - TTS TIMEOUT

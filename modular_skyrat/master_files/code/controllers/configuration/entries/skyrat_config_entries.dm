@@ -66,4 +66,4 @@
 
 /// Timeout for TTS to revert back to vocal barks
 /datum/config_entry/number/tts_timeout
-	default = -1
+	default = null
