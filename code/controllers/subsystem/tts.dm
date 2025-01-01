@@ -169,6 +169,10 @@ SUBSYSTEM_DEF(tts)
 
 	// For speed
 	var/list/processing_messages = current_processing_http_messages
+	// BUBBER EDIT START - RESET TTS AVERAGE
+	if(processing_messages.len == 0 && queued_tts_messages.len == 0 && average_tts_messages_time != 0)
+		average_tts_messages_time = 0
+	// BUBBER EDIT END - RESET TTS AVERAGE
 	while(processing_messages.len)
 		var/datum/tts_request/current_request = processing_messages[processing_messages.len]
 		processing_messages.len--
@@ -263,7 +267,11 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "")
 	if(!tts_enabled)
 		return
-
+	/// BUBBER EDIT START - TTS TIMEOUT
+	var/tts_timeout = CONFIG_GET(number/tts_timeout) >= average_tts_messages_time
+	if(tts_timeout)
+		return
+	/// BUBBER EDIT END - TTS TIMEOUT
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")

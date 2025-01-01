@@ -63,3 +63,7 @@
 
 /// If you want to have a default storyteller
 /datum/config_entry/string/default_storyteller
+
+/// Timeout for TTS to revert back to vocal barks
+/datum/config_entry/number/tts_timeout
+	default = -1
