@@ -96,7 +96,7 @@ It has also been further modified by Rashcat & other Fluffyfrontier contributors
 				listening -= M
 
 			else if (CONFIG_GET(string/tts_http_url) && SStts.tts_enabled == TRUE) // TTS for vocal barks.
-				if (source.voice == "" || source.voice == "None")
+				if (source.voice == "" || source.voice == "None") // "None" is for borgs
 					continue
 				if (tts_pref == TTS_SOUND_OFF)
 					continue
