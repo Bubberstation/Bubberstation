@@ -108,5 +108,5 @@
 /datum/supply_pack/goody/prescription_lenses
 	name = "Spare Prescription Lenses"
 	desc = "A small toolbox with one spare set of prescripted lenses. Warning: fragile."
-	cost = PAYCHECK_LOWER * 8 // glasses are expensive! woah-wee momma!
+	cost = PAYCHECK_COMMAND * 2 // glasses are expensive! woah-wee momma!
 	contains = list(/obj/item/prescription_lenses)
