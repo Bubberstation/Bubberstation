@@ -38,6 +38,9 @@
 
 /// When a user smells this pollution
 /datum/pollution/proc/smell_act(mob/living/sniffer)
+	if(HAS_TRAIT(sniffer, TRAIT_ANOSMIA))
+		return
+
 	var/list/singleton_cache = SSpollution.singletons
 	var/datum/pollutant/dominant_pollutant
 	var/dominiant_smell_power
