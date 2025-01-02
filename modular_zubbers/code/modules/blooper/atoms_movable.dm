@@ -95,9 +95,13 @@ It has also been further modified by Rashcat & other Fluffyfrontier contributors
 			if(!hear_blooper) // Check pref for blooper
 				listening -= M
 
-			else if (CONFIG_GET(string/tts_http_url) && SStts.tts_enabled == TRUE) // Check for TTS
-				if (source.voice != "" || tts_pref == TTS_SOUND_OFF)
-					listening -= M
+			else if (CONFIG_GET(string/tts_http_url) && SStts.tts_enabled == TRUE)
+				if (source.voice == "")
+					continue
+				if (tts_pref == TTS_SOUND_OFF)
+					continue
+				listening -= M
+
 
 
 		var/bloopers = min(round((LAZYLEN(message_raw) / blooper_speed)) + 1, BLOOPER_MAX_BLOOPERS)
