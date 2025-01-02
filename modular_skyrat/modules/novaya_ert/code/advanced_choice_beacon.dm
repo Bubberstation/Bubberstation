@@ -59,7 +59,7 @@
 
 
 /obj/item/advanced_choice_beacon/nri
-	name = "\improper NRI Defense Collegium supply beacon"
+	name = "\improper PSC Defense Collegium supply beacon"
 	desc = "Used to request your job supplies, use in hand to do so!"
 
 /obj/item/advanced_choice_beacon/nri/get_available_options()
@@ -77,13 +77,13 @@
 	return options
 
 /obj/item/advanced_choice_beacon/nri/engineer
-	name = "\improper NRI Defense Collegium engineering supply beacon"
+	name = "\improper PSC Defense Collegium engineering supply beacon"
 	desc = "Used to request your job supplies, use in hand to do so!"
 
 	possible_choices = list(/obj/structure/closet/crate/secure/weapon/nri/engineer/defense, /obj/structure/closet/crate/secure/weapon/nri/engineer/offense)
 
 /obj/item/advanced_choice_beacon/nri/heavy
-	name = "\improper NRI Defense Collegium heavy armaments supply beacon"
+	name = "\improper PSC Defense Collegium heavy armaments supply beacon"
 	desc = "Used to request your job supplies, use in hand to do so!"
 
 	possible_choices = list(/obj/structure/closet/crate/secure/weapon/nri/heavy/defense,/obj/structure/closet/crate/secure/weapon/nri/heavy/offense)
@@ -92,7 +92,7 @@
 	amount = 50
 
 /obj/item/storage/toolbox/emergency/turret/nri
-	name = "NRI stationary defense deployment system"
+	name = "PSC stationary defense deployment system"
 	desc = "You feel a strange urge to hit this with a wrench."
 	icon = 'modular_skyrat/modules/novaya_ert/icons/turret_deployable.dmi'
 	icon_state = "inventory"
@@ -144,7 +144,7 @@
 
 /obj/structure/closet/crate/secure/weapon/nri
 	name = "military supplies crate"
-	desc = "A secure military-grade crate. According to the markings, -as well as mixed Cyrillics-, it was shipped and provided by the NRI Defense Collegium."
+	desc = "A secure military-grade crate. According to the markings, -as well as mixed Cyrillics-, it was shipped and provided by the Pan-Slavic Defense Collegium."
 	req_access = list(ACCESS_CENT_GENERAL)
 	var/loadout_desc = "Whoever picks this is might be busy debugging this copypasted code."
 
@@ -181,7 +181,7 @@
 /obj/structure/closet/crate/secure/weapon/nri/engineer/offense
 	name = "offensive engineering supplies"
 	loadout_desc = "An assortment of engineering supplies finely tuned for rapid approach defortification and area suppression. \
-		Features way less barricades and building materials than its more defensive analogue, but includes NRI-issued viscerator grenades and a combat RCD."
+		Features way less barricades and building materials than its more defensive analogue, but includes Pan-Slavic-issued viscerator grenades and a combat RCD."
 
 /obj/structure/closet/crate/secure/weapon/nri/engineer/offense/PopulateContents()
 	new /obj/item/storage/barricade(src)

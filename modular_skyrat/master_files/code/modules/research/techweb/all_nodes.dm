@@ -192,6 +192,12 @@
 	)
 	return ..()
 
+/datum/techweb_node/chem_synthesis/New()
+	design_ids += list(
+		"plumbing_eng",
+	)
+	return ..()
+
 // Modularly removes x-ray and thermals from here, it's in adv_vision instead
 /datum/techweb_node/cyber/cyber_organs_adv/New()
 	design_ids -= list(
@@ -247,12 +253,6 @@
 /datum/techweb_node/exp_tools/New()
 	design_ids += list(
 		"multi_cell_charger",
-	)
-	return ..()
-
-/datum/techweb_node/plumbing/New()
-	design_ids += list(
-		"plumbing_eng",
 	)
 	return ..()
 
