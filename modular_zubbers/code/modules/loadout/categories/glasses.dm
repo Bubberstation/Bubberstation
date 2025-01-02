@@ -10,3 +10,7 @@
 /datum/loadout_item/glasses/salesman
 	name = "Colored Glasses"
 	item_path = /obj/item/clothing/glasses/salesman
+
+/datum/loadout_item/glasses/prescription_kit
+	name = "Spare Lens' Kit"
+	item_path = /obj/item/prescription_lenses
