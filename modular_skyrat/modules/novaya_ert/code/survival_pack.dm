@@ -1,6 +1,6 @@
 /obj/item/storage/box/nri_survival_pack
-	name = "NRI survival pack"
-	desc = "A box filled with useful emergency items, supplied by the NRI."
+	name = "PSC survival pack"
+	desc = "A box filled with useful emergency items, supplied by the PSC."
 	icon_state = "survival_pack"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/survival_pack.dmi'
 	illustration = null
