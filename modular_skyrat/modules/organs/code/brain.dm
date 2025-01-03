@@ -2,15 +2,14 @@
 
 //The accessible cybernetic brain
 /obj/item/organ/internal/brain/cybernetic/cortical
-	name = "cortically-enhanced brain"
+	name = "cortically-augmented brain"
 	desc = "A brain which has been in some part mechanized."
 	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi' 
 	icon_state = "brain-c"
-	emp_dmg_mult = 1.25
+	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
 	emp_dmg_max = 150
 
-//Extra damage from EMPs, and visual effects
-//Note that /obj/item/organ/internal/brain/cybernetic's base damage is capped at 190 while this one is capped at 150.
+//Extra effects
 /obj/item/organ/internal/brain/cybernetic/cortical/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -44,13 +43,13 @@
 	
 //New vox Brain
 /obj/item/organ/internal/brain/cybernetic/cortical/vox
-	name = "vox brain"
+	name = "vox-augmented brain"
 	desc = "A brain which has been in some part mechanized. The components are seamlessly integrated into the flesh."
-	emp_dmg_mult = 1 //vox get a little treat
+	emp_dmg_mult = 1 //Nobody notices the brain damage anyways wink wink
 
-//surplus
+//surplus; TBI to prosthetic organ quirk
 /obj/item/organ/internal/brain/cybernetic/cortical/surplus
-	name = "cortically-enhanced brain"
-	desc = "A brain which has been in some part mechanized."
-	maxHealth = BRAIN_DAMAGE_DEATH*0.5
+	name = "surplus augmented brain"
+	desc = "A brain which has been in some part mechanized. It looks a bit cheap."
+	maxHealth = BRAIN_DAMAGE_DEATH*0.5 //200 -> 100, at time of creation
 	emp_dmg_max = 999
