@@ -85,6 +85,7 @@
 		new deflated_type(get_turf(src))
 	qdel(src)
 
+/*
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
 	set category = "Object"
@@ -93,7 +94,7 @@
 	if(usr.stat || usr.can_interact())
 		return
 	deflate(FALSE)
-
+*/
 
 /obj/structure/inflatable/door
 	name = "inflatable door"
