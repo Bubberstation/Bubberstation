@@ -38,18 +38,20 @@
 	name = "repair body (crowbar/wirecutters)"
 	implements = list(TOOL_CROWBAR = 100, TOOL_WIRECUTTER = 100)
 	repeatable = TRUE
-	time = 25
+	time = 2.7 SECONDS
 
 	/// If this surgery is healing brute damage. Set during operation steps.
 	var/heals_brute = FALSE
 	/// If this surgery is healing burn damage. Set during operation steps.
 	var/heals_burn = FALSE
 	/// How much healing the sugery gives.
-	var/brute_heal_amount = 0
+	var/brute_heal_amount = 7
 	/// How much healing the sugery gives.
-	var/burn_heal_amount = 0
-	/// Heals an extra point of damage per X missing damage of type (burn damage for burn healing, brute for brute). Smaller number = more healing!
-	var/missing_health_bonus = 0
+	var/burn_heal_amount = 7
+	/// Percentage of total damaged healed per cycle. If 0, no healing of the damage is performed
+	var/brute_multiplier = 0
+	/// Percentage of total damaged healed per cycle. If 0, no healing of the damage is performed
+	var/burn_multiplier = 0
 
 /datum/surgery_step/robot_heal/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_CROWBAR && implement_type == TOOL_WIRECUTTER)
@@ -92,39 +94,49 @@
 				break
 
 /datum/surgery_step/robot_heal/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/self_message = "You succeed in fixing some of [target]'s damage" //no period, add initial space to "addons"
-	var/other_message = "[user] fixes some of [target]'s damage" //see above
-	var/healed_brute = 0
-
+	var/user_message = "You succeed in fixing some of [target]'s damage" //no period, add initial space to "addons"
+	var/target_message = "[user] fixes some of [target]'s damage" //see above
+	var/brute_healed = 0
+	var/burn_healed = 0
+	var/status_msg = list()
+	feedback_value = null
 	if(heals_brute)
-		healed_brute = brute_heal_amount
-		tool.use_tool(target, user, 0, volume = 50, amount=1)
+		brute_healed = brute_heal_amount
+		tool.use_tool(target, user, 0, volume = 50, amount = 1)
+		brute_healed += round((target.getBruteLoss() * brute_multiplier), DAMAGE_ROUNDING)
 
-	var/healed_burn = 0
 	if(heals_burn)
-		healed_burn = burn_heal_amount
-		tool.use_tool(target, user, 0, volume = 50, amount=1)
-
-	if(missing_health_bonus)
-		if(target.stat != DEAD)
-			healed_brute += round((target.getBruteLoss() / missing_health_bonus), DAMAGE_ROUNDING)
-			healed_burn += round((target.getFireLoss() / missing_health_bonus), DAMAGE_ROUNDING)
-
-		else //less healing bonus for the dead since they're expected to have lots of damage to begin with (to make TW into defib not TOO simple)
-			healed_brute += round((target.getBruteLoss() / (missing_health_bonus * 5)), DAMAGE_ROUNDING)
-			healed_burn += round((target.getFireLoss() / (missing_health_bonus * 5)), DAMAGE_ROUNDING)
+		burn_healed = burn_heal_amount
+		tool.use_tool(target, user, 0, volume = 50, amount = 1)
+		burn_healed += round((target.getFireLoss() * burn_multiplier), DAMAGE_ROUNDING)
 
 	if(!get_location_accessible(target, target_zone))
-		healed_brute *= FINAL_STEP_HEAL_MULTIPLIER
-		healed_burn *= FINAL_STEP_HEAL_MULTIPLIER
-		self_message += " as best as you can while they have clothing on"
-		other_message += " as best as they can while [target] has clothing on"
+		brute_healed *= FINAL_STEP_HEAL_MULTIPLIER
+		burn_healed *= FINAL_STEP_HEAL_MULTIPLIER
+		status_msg += "[target.p_have()] clothing on"
 
-	target.heal_bodypart_damage(healed_brute, healed_burn, 0)
+	if(length(status_msg) > 0)
+		user_message += " as best as you can while [target.p_they()] [english_list(status_msg)]"
+		target_message += " as best as [user.p_they()] can while [target.p_they()] [english_list(status_msg)]"
 
-	self_message += get_progress(user, target, healed_brute, healed_burn)
+	feedback_value = brute_healed + burn_healed
 
-	display_results(user, target, span_notice("[self_message]."), "[other_message].", "[other_message].")
+	target.heal_bodypart_damage(brute_healed, burn_healed, updating_health = FALSE)
+
+	if(!get_feedback_message(user, target))
+		user_message += get_progress(user, target, brute_healed, burn_healed)
+
+	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user) && target.stat != DEAD) //Morbid folk don't care about tending the dead as much as tending the living
+		var/mob/living/carbon/human/morbid_weirdo = user
+		morbid_weirdo.add_mood_event("morbid_tend_wounds", /datum/mood_event/morbid_tend_wounds)
+
+	display_results(
+		user,
+		target,
+		span_notice("[user_message]."),
+		span_notice("[target_message]."),
+		span_notice("[target_message]."),
+	)
 
 	if(istype(surgery, /datum/surgery/robot_healing))
 		var/datum/surgery/robot_healing/the_surgery = surgery
@@ -139,41 +151,39 @@
 		span_warning("You screwed up!"),
 		span_warning("[user] screws up!"),
 		span_notice("[user] fixes some of [target]'s damage."),
-		TRUE,
+		target_detailed = TRUE,
 	)
 
-	var/brute_damage = 0
+	var/brute_dealt = 0
+	var/burn_dealt = 0
 	if(heals_brute)
-		brute_damage = brute_heal_amount * FAIL_DAMAGE_MULTIPLIER
+		brute_dealt = brute_heal_amount * FAIL_DAMAGE_MULTIPLIER
+		brute_dealt += round((target.getBruteLoss() * (brute_multiplier * 0.5)), DAMAGE_ROUNDING)
 
-	var/burn_damage = 0
 	if(heals_burn)
-		burn_damage = burn_heal_amount * FAIL_DAMAGE_MULTIPLIER
+		burn_dealt = burn_heal_amount * FAIL_DAMAGE_MULTIPLIER
+		burn_dealt += round((target.getFireLoss() * (burn_multiplier * 0.5)), DAMAGE_ROUNDING)
 
-	if(missing_health_bonus)
-		brute_damage += round((target.getBruteLoss() / (missing_health_bonus * 2)), DAMAGE_ROUNDING)
-		burn_damage += round((target.getFireLoss() / (missing_health_bonus * 2)), DAMAGE_ROUNDING)
-
-	target.take_bodypart_damage(brute_damage, burn_damage)
+	target.take_bodypart_damage(brute_dealt, burn_dealt, wound_bonus = CANT_WOUND)
 	return FALSE
 
 /***************************TYPES***************************/
 /datum/surgery/robot_healing/basic
-	name = "Repair robotic limbs (Basic)"
-	desc = "A surgical procedure that provides repairs and maintenance to robotic limbs. Is slightly more efficient when the patient is severely damaged."
+	name = "Repair Robotic Chassis (Basic)"
+	desc = "A surgical procedure that provides repairs and maintenance to robotic chassis. Is slightly more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/basic
 	replaced_by = /datum/surgery/robot_healing/upgraded
 
 /datum/surgery/robot_healing/upgraded
-	name = "Repair robotic limbs (Adv.)"
-	desc = "A surgical procedure that provides highly effective repairs and maintenance to robotic limbs. Is somewhat more efficient when the patient is severely damaged."
+	name = "Repair Robotic Chassis (Adv.)"
+	desc = "A surgical procedure that provides highly effective repairs and maintenance to robotic chassis. Is somewhat more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/upgraded
 	replaced_by = /datum/surgery/robot_healing/experimental
 	requires_tech = TRUE
 
 /datum/surgery/robot_healing/experimental
-	name = "Repair robotic limbs (Exp.)"
-	desc = "A surgical procedure that quickly provides highly effective repairs and maintenance to robotic limbs. Is moderately more efficient when the patient is severely damaged."
+	name = "Repair Robotic Chassis (Exp.)"
+	desc = "A surgical procedure that quickly provides highly effective repairs and maintenance to robotic chassis. Is moderately more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/experimental
 	replaced_by = null
 	requires_tech = TRUE
@@ -181,22 +191,16 @@
 /***************************STEPS***************************/
 
 /datum/surgery_step/robot_heal/basic
-	brute_heal_amount = 10
-	burn_heal_amount = 10
-	missing_health_bonus = 15
-	time = 2.5 SECONDS
+	brute_multiplier = 0.07
+	burn_multiplier = 0.07
 
 /datum/surgery_step/robot_heal/upgraded
-	brute_heal_amount = 12
-	burn_heal_amount = 12
-	missing_health_bonus = 11
-	time = 2.3 SECONDS
+	brute_multiplier = 0.1
+	burn_multiplier = 0.1
 
 /datum/surgery_step/robot_heal/experimental
-	brute_heal_amount = 14
-	burn_heal_amount = 14
-	missing_health_bonus = 8
-	time = 2 SECONDS
+	brute_multiplier = 0.2
+	burn_multiplier = 0.2
 
 // Mostly a copypaste of standard tend wounds get_progress(). In order to abstract this, I'd have to rework the hierarchy of surgery upstream, so I'll just do this. Pain.
 /**
@@ -242,6 +246,23 @@
 				progress_text = ", though you feel like you're barely making a dent in treating [target.p_their()] broken body"
 
 	return progress_text
+
+/datum/surgery_step/robot_heal/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
+	var/show_message = FALSE
+	if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD) || HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD))
+		show_message = TRUE
+	else if(locate(/obj/item/healthanalyzer) in user.held_items)
+		show_message = TRUE
+	else if(get_location_modifier(target) == OPERATING_COMPUTER_MODIFIER)
+		show_message = TRUE
+
+	if(!show_message)
+		return
+
+	if(heals_brute)
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+	else
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
 #undef DAMAGE_ROUNDING
 #undef FAIL_DAMAGE_MULTIPLIER

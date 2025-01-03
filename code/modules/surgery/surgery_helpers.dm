@@ -1,3 +1,5 @@
+// BUBBER EDIT CHANGE BEGIN - Surgery Modifiers
+/*
 /proc/get_location_modifier(mob/located_mob)
 	var/turf/mob_turf = get_turf(located_mob)
 	if(locate(/obj/structure/table/optable, mob_turf))
@@ -10,6 +12,28 @@
 		return 0.7
 	else
 		return 0.5
+*/
+/proc/get_location_modifier(mob/located_mob)
+	var/turf/mob_turf = get_turf(located_mob)
+	var/obj/structure/table/optable/operating_table = locate(/obj/structure/table/optable, mob_turf)
+	if(!isnull(operating_table))
+		if(operating_table.computer?.is_operational)
+			return OPERATING_COMPUTER_MODIFIER
+		else
+			return 1
+	else if(locate(/obj/structure/bed/medical, mob_turf))
+		return 0.9
+	else if(locate(/obj/structure/bed/medical/emergency, mob_turf))
+		return 0.9
+	else if(locate(/obj/machinery/stasis, mob_turf))
+		return 0.7
+	else if(locate(/obj/structure/table, mob_turf))
+		return 0.6
+	else if(locate(/obj/structure/bed, mob_turf))
+		return 0.6
+	else
+		return 0.5
+// BUBBER EDIT CHANGE END
 
 
 /proc/get_location_accessible(mob/located_mob, location)
