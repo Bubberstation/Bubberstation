@@ -4,6 +4,9 @@
 	icon_state = "brain-c"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL
 	failing_desc = "seems to be broken, and will not work without repairs."
+	var/emp_dmg_mult = 1 //BUBBER EDIT - Variable multiplier for damage from EMPs. Note the base damage is 20.
+	var/emp_dmg_max = 999 ///BUBBER EDIT - Threshold before the organ simply stops taking damage from EMPs. Defaults to kill
+
 
 /obj/item/organ/internal/brain/cybernetic/brain_damage_examine()
 	if(suicided)
@@ -52,8 +55,15 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity) // Hard cap on brain damage from EMP
+//BUBBER EDIT BEGIN - can't be emp'd if dead
+	if(owner.stat == DEAD)
+		return
+//BUBBER EDIT END
+	switch(severity)
 		if (EMP_HEAVY)
-			apply_organ_damage(20, BRAIN_DAMAGE_SEVERE)
+			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (20*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
 		if (EMP_LIGHT)
-			apply_organ_damage(10, BRAIN_DAMAGE_MILD)
+			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (10*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
+

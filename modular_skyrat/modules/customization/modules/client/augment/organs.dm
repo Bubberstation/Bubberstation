@@ -6,9 +6,41 @@
 		return
 
 	var/obj/item/organ/organ_path = path // cast this to an organ so we can get the slot from it using initial()
-	var/obj/item/organ/new_organ = new path()
-	new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
-	new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	
+	if(slot == AUGMENT_SLOT_BRAIN)
+		var/obj/item/organ/internal/brain/old_brain = human_holder.get_organ_slot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/internal/brain/new_brain = new organ_path()
+
+		var/datum/mind/holder_mind = human_holder.mind
+
+		new_brain.modular_persistence = old_brain.modular_persistence
+		old_brain.modular_persistence = null
+		
+		new_brain.copy_traits_from(old_brain)
+		new_brain.Insert(human_holder, special = TRUE)
+		old_brain.moveToNullspace()  //for some reason it doesn't want to be deleted. So I'm using this hack method until it can be figured out why. But, it works!
+		STOP_PROCESSING(SSobj, old_brain)
+		
+		if(!holder_mind)
+			return
+			
+		holder_mind.transfer_to(human_holder, TRUE)
+	else
+		var/obj/item/organ/new_organ = new path()
+	
+		new_organ.copy_traits_from(human_holder.get_organ_slot(initial(organ_path.slot)))
+		new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+//BUBBER EDIT - New brain
+//BRAINS
+/datum/augment_item/organ/brain
+	slot = AUGMENT_SLOT_BRAIN
+
+/datum/augment_item/organ/brain/cortical
+	name = "Cortically-Augmented Brain"
+	slot = AUGMENT_SLOT_BRAIN
+	path = /obj/item/organ/internal/brain/cybernetic/cortical
+//EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart
