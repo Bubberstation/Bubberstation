@@ -1,7 +1,7 @@
 PROCESSING_SUBSYSTEM_DEF(pollution_emitters)
 	name = "Pollution Emitters"
 	priority = FIRE_PRIORITY_OBJ
-	flags = SS_BACKGROUND
+	flags = SS_NO_FIRE
 	wait = 10 SECONDS
 
 /datum/element/pollution_emitter
