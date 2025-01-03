@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from '../../components';
 import { CharacterPreview } from '../common/CharacterPreview';
+import { BubberSpeciesPageInner } from './bubber/BubberSpeciesInner';
 import {
   createSetPreference,
   Food,
@@ -123,7 +124,8 @@ const FoodList = (props: {
   );
 };
 
-const Diet = (props: { diet: Species['diet'] }) => {
+export const Diet = (props: { diet: Species['diet'] }) => {
+  // BUBBER EDIT: Export
   if (!props.diet) {
     return null;
   }
@@ -193,7 +195,8 @@ const SpeciesPerk = (props: { className: string; perk: Perk }) => {
   );
 };
 
-const SpeciesPerks = (props: { perks: Species['perks'] }) => {
+export const SpeciesPerks = (props: { perks: Species['perks'] }) => {
+  // BUBBER EDIT: Export
   const { positive, negative, neutral } = props.perks;
 
   return (
@@ -316,24 +319,8 @@ const SpeciesPageInner = (props: {
                         )
                       }
                     >
-                      {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
-                      <Section
-                        title="Description"
-                        maxHeight="14vh"
-                        overflowY="auto"
-                      >
-                        {/* SKYRAT EDIT CHANGE END */}
-                        {currentSpecies.desc.map((text, index) => (
-                          <Box key={index} maxWidth="100%">
-                            {text}
-                            {index !== currentSpecies.desc.length - 1 && (
-                              <>
-                                <br />
-                                <br />
-                              </>
-                            )}
-                          </Box>
-                        ))}
+                      <Section title="Description">
+                        {currentSpecies.desc}
                       </Section>
 
                       <Section title="Features">
@@ -353,12 +340,18 @@ const SpeciesPageInner = (props: {
 
               <Box mt={1}>
                 <Section title="Lore">
-                  <BlockQuote /* SKYRAT EDIT START - scrollable lore */
-                    overflowY="auto"
-                    maxHeight="45vh"
-                    mr={-1} /* SKYRAT EDIT END */
-                  >
-                    {currentSpecies.desc}
+                  <BlockQuote>
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
                   </BlockQuote>
                 </Section>
               </Box>
@@ -376,7 +369,7 @@ export const SpeciesPage = (props: { closeSpecies: () => void }) => {
       render={(serverData) => {
         if (serverData) {
           return (
-            <SpeciesPageInner
+            <BubberSpeciesPageInner // BUBBER EDIT: Use bubber species page instead
               handleClose={props.closeSpecies}
               species={serverData.species}
             />

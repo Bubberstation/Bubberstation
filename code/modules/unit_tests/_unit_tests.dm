@@ -295,6 +295,9 @@
 #include "weird_food.dm"
 #include "wizard_loadout.dm"
 #include "worn_icons.dm"
+// BUBBER EDIT START
+#include "~bubber\ensure_pref_sanity.dm"
+// BUBBER EDIT END
 // SKYRAT EDIT START
 #include "~skyrat\automapper.dm"
 #include "~skyrat\opposing_force.dm"
