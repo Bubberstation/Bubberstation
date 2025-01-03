@@ -214,6 +214,13 @@
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
 	SSquirks.AssignQuirks(patient, patient.client)
+	if(patient.has_quirk(/datum/quirk/equipping/lungs/nitrogen))
+		if(!patient.get_organ_by_type(/obj/item/organ/internal/lungs/nitrogen))
+			var/lungs = patient.get_organ_slot(ORGAN_SLOT_LUNGS)
+			qdel(lungs)
+			var/obj/item/organ/target_organ = new /obj/item/organ/internal/lungs/nitrogen
+			target_organ.Insert(patient, special = TRUE)
+
 	log_game("[key_name(patient)] used a Self-Actualization Device at [loc_name(src)].")
 
 	if(patient.dna.real_name != original_name)

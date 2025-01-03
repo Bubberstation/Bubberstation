@@ -8,6 +8,7 @@
 	icon_state = "oxygen_fr"
 	force = 10
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
+	distribute_pressure = 4 // see vox.dm for their intake values balance changes
 
 /obj/item/tank/internals/nitrogen/populate_gas()
 	air_contents.assert_gas(/datum/gas/nitrogen)
@@ -26,7 +27,7 @@
 	inhand_icon_state = "nitrogen"
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
-	volume = 24
+	volume = 12
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tank/internals/nitrogen/belt/full/populate_gas()
