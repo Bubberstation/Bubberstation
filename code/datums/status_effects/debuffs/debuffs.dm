@@ -395,11 +395,10 @@
 
 /datum/status_effect/stacking/saw_bleed/threshold_cross_effect()
 	owner.adjustBruteLoss(bleed_damage)
-	var/turf/T = get_turf(owner)
-	new /obj/effect/temp_visual/bleed/explode(T)
-	for(var/d in GLOB.alldirs)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d)
-	playsound(T, SFX_DESECRATION, 100, TRUE, -1)
+	new /obj/effect/temp_visual/bleed/explode(get_turf(owner))
+	for(var/splatter_dir in GLOB.alldirs)
+		owner.create_splatter(splatter_dir)
+	playsound(owner, SFX_DESECRATION, 100, TRUE, -1)
 
 /datum/status_effect/stacking/saw_bleed/bloodletting
 	id = "bloodletting"
@@ -522,7 +521,7 @@
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse/curse2.ogg', 80, TRUE, -1)
 	var/obj/projectile/curse_hand/C = new (spawn_turf)
-	C.preparePixelProjectile(owner, spawn_turf)
+	C.aim_projectile(owner, spawn_turf)
 	C.fire()
 
 /obj/effect/temp_visual/curse
@@ -884,6 +883,7 @@
 	name = "Ants!"
 	desc = span_warning("JESUS FUCKING CHRIST! CLICK TO GET THOSE THINGS OFF!")
 	icon_state = "antalert"
+	clickable_glow = TRUE
 
 /atom/movable/screen/alert/status_effect/ants/Click()
 	. = ..()

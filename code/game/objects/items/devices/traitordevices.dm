@@ -487,4 +487,4 @@ effective or pretty fucking useless.
 
 /obj/projectile/bullet/toolbox_turret
 	damage = 10
-	speed = 0.6
+	speed = 1.6

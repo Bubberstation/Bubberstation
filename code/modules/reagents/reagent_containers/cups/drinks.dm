@@ -32,11 +32,11 @@
 	target.Bumped(B)
 	return B //BUBBERSTATION CHANGE: RETURNS THE BROKEN BOTTLE.
 
-/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
+/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(QDELETED(src))
 		return
-	if(P.damage > 0 && P.damage_type == BRUTE)
+	if(proj.damage > 0 && proj.damage_type == BRUTE)
 		var/atom/T = get_turf(src)
 		smash(T)
 
