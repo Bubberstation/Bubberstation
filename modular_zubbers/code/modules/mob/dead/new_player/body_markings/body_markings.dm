@@ -4,7 +4,7 @@
 */
 
 /datum/body_marking/bubber
-	icon = 'modular_zubbers/icons/mob/body_markings/markings.dmi'
+	icon = 'modular_zubbers/icons/customization/body_markings/markings.dmi'
 	default_color = "#000000"
 	recommended_species = null
 
@@ -144,3 +144,10 @@
 	icon_state = "talon"
 	affected_bodyparts = LEG_LEFT | LEG_RIGHT
 */
+
+/datum/body_marking/bubber/cleavage
+	icon_state = "cleavage"
+	name = "Cleavage"
+	default_color = "#ffffff"
+	affected_bodyparts = CHEST
+	gendered = FALSE
