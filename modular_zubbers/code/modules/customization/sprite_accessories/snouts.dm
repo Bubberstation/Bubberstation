@@ -30,3 +30,8 @@
 	name = "Mandibles (Top)"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "mandibles1"
+
+/datum/sprite_accessory/snouts/mammal/snaggletooth
+	name = "Snaggletooth"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "snaggletooth"
