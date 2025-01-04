@@ -23,12 +23,14 @@
 	INVOKE_ASYNC(src, PROC_REF(async_set_color), attacked_mob, user)
 
 /obj/item/lipstick/quantum/proc/async_set_color(mob/attacked_mob, mob/user)
-	var/new_color = input(
+	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+	var/new_color = tgui_color_picker(
 			user,
 			"Select lipstick color",
 			null,
 			COLOR_WHITE,
-		) as color | null
+		)
+	// BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 	var/mob/living/carbon/human/target = attacked_mob
 	if(target.is_mouth_covered())
