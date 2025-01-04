@@ -24,13 +24,8 @@ SUBSYSTEM_DEF(memory_stats)
 	return trimtext(call_ext(MEMORYSTATS_DLL_PATH, "memory_stats")())
 #endif
 
-/client/proc/server_memory_stats()
-	set name = "Server Memory Stats"
-	set category = "Debug"
-	set desc = "Print various statistics about the server's current memory usage (does not work on OpenDream)"
+ADMIN_VERB(debug_memory, R_DEBUG, "Debug Memory Usage", "Debug Server Memory Usage (Does not work in open dream)", ADMIN_CATEGORY_DEBUG)
 
-	if(!check_rights(R_DEBUG))
-		return
 	var/box_color = "red"
 #ifndef OPENDREAM
 	var/result = SSmemory_stats?.initialized ? span_danger("Error fetching memory statistics!") : span_warning("SSmemory_stats hasn't been initialized yet!")
