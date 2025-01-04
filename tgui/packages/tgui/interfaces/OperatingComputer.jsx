@@ -97,6 +97,13 @@ const PatientStateView = (props) => {
           'No Patient Detected'
         )}
       </Section>
+      <Section title="Mute Patient Vitals">
+        <Button
+          icon="speaker"
+          content="Mute Patient"
+          onClick={() => act('mute')}
+        />
+      </Section>
       {procedures.length === 0 && <Section>No Active Procedures</Section>}
       {procedures.map((procedure) => (
         <Section key={procedure.name} title={procedure.name}>
