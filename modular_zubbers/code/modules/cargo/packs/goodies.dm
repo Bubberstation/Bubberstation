@@ -104,3 +104,9 @@
 	cost = PAYCHECK_COMMAND * 4
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/clothing/under/rank/security/maid, /obj/item/clothing/suit/armor/vest/maid, /obj/item/clothing/head/security_maid, /obj/item/pushbroom)
+
+/datum/supply_pack/goody/prescription_lenses
+	name = "Spare Prescription Lenses"
+	desc = "A small toolbox with one spare set of prescripted lenses. Warning: fragile."
+	cost = PAYCHECK_COMMAND * 2 // glasses are expensive! woah-wee momma!
+	contains = list(/obj/item/prescription_lenses)
