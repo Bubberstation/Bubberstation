@@ -278,6 +278,10 @@
 /obj/structure/aquarium/bioelec_gen/prefilled,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
+"aZ" = (
+/obj/structure/lattice/catwalk/mining,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "bb" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
@@ -318,9 +322,6 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "bh" = (
-/obj/machinery/exodrone_launcher,
-/obj/item/exodrone,
-/obj/item/fuel_pellet,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "bi" = (
@@ -923,7 +924,6 @@
 /obj/machinery/defibrillator_mount/charging{
 	pixel_y = -30
 	},
-/obj/item/defibrillator/loaded,
 /obj/machinery/anesthetic_machine,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
@@ -1737,7 +1737,14 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "fo" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/obj/machinery/exodrone_launcher,
+/obj/machinery/button/door/directional/north{
+	id = "scanner_shutters";
+	name = "Long Range Scanners Viewing Port";
+	req_access = list("syndicate")
+	},
+/obj/structure/sign/poster/abductor/ayylian/directional/east,
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "fq" = (
 /obj/effect/spawner/random/exotic/syndie,
@@ -2753,6 +2760,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/structure/cable,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "ip" = (
@@ -3398,8 +3406,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "kf" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/sign/poster/abductor/ayy/directional/east,
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/obj/item/fuel_pellet,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "kg" = (
@@ -5266,11 +5276,6 @@
 /obj/structure/chair/office/tactical{
 	dir = 4
 	},
-/obj/machinery/button/door/directional/north{
-	id = "scanner_shutters";
-	name = "Long Range Scanners Viewing Port";
-	req_access = list("syndicate")
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "pN" = (
@@ -6387,6 +6392,13 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+"sX" = (
+/obj/machinery/conveyor{
+	id = "syndirecycle";
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "sY" = (
 /obj/machinery/button/door{
 	id = "syndibridge_w";
@@ -7009,13 +7021,6 @@
 "uN" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
-	},
-/obj/machinery/button/door/directional/west{
-	id = "syndimed";
-	name = "Blast Doors";
-	req_access = list("syndicate");
-	pixel_x = 24;
-	pixel_y = -24
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
@@ -10321,6 +10326,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/item/defibrillator/loaded,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Et" = (
@@ -13540,23 +13546,6 @@
 "NZ" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
-"Oa" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
-	network = list("persistence_ext")
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Oc" = (
 /obj/item/flashlight/lamp/green{
 	pixel_x = -6;
@@ -15441,8 +15430,7 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "TP" = (
-/obj/structure/sign/poster/abductor/ayylian/directional/east,
-/obj/machinery/computer/exoscanner_control,
+/obj/machinery/computer/exodrone_control_console,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "TQ" = (
@@ -15530,6 +15518,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/service/gym)
+"Ue" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "syndirecycle"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Uf" = (
 /obj/machinery/digital_clock/directional/west,
 /obj/effect/turf_decal/siding/dark/end,
@@ -15677,6 +15671,20 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"UC" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
+	network = list("persistence_ext")
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "UD" = (
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
@@ -16582,7 +16590,7 @@
 "Xo" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/computer/exodrone_control_console,
+/obj/machinery/computer/exoscanner_control,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "Xp" = (
@@ -19899,8 +19907,8 @@ FW
 gq
 gq
 VG
-tb
-tb
+hZ
+lO
 pL
 Ht
 tv
@@ -20114,9 +20122,9 @@ FW
 FW
 gq
 gq
-gq
-dn
-UV
+UC
+aZ
+Ue
 UV
 UV
 UV
@@ -20187,9 +20195,9 @@ FW
 gq
 gq
 gq
-dn
 eO
 XG
+sX
 Hc
 SD
 he
@@ -21452,7 +21460,7 @@ VG
 VG
 gq
 gq
-Oa
+Lm
 Ta
 JU
 JU
