@@ -11,7 +11,7 @@
 
 	var/obj/item/clothing/glasses = interacting_with
 	if(TRAIT_NEARSIGHTED_CORRECTED in glasses.clothing_traits)
-		to_chat(usr, span_warning("These are already prescripted!"))
+		to_chat(usr, span_warning("These already have prescription lenses!"))
 		return ITEM_INTERACT_BLOCKING
 
 	to_chat(usr, span_notice("You've changed out the lenses on \the [interacting_with]."))
