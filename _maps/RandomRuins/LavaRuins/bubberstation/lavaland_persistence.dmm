@@ -924,6 +924,7 @@
 /obj/machinery/defibrillator_mount/charging{
 	pixel_y = -30
 	},
+/obj/item/defibrillator/loaded,
 /obj/machinery/anesthetic_machine,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
@@ -7021,6 +7022,13 @@
 "uN" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndimed";
+	name = "Blast Doors";
+	req_access = list("syndicate");
+	pixel_x = 24;
+	pixel_y = -24
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
@@ -13546,6 +13554,23 @@
 "NZ" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
+"Oa" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Oc" = (
 /obj/item/flashlight/lamp/green{
 	pixel_x = -6;
@@ -21446,6 +21471,15 @@ jR
 vZ
 Yh
 VG
+qg
+qg
+qg
+MK
+jh
+jR
+vZ
+Yh
+VG
 VG
 VG
 Lm
@@ -21460,7 +21494,7 @@ VG
 VG
 gq
 gq
-Lm
+Oa
 Ta
 JU
 JU

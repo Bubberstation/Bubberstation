@@ -12980,6 +12980,7 @@
 /obj/machinery/defibrillator_mount/charging{
 	pixel_y = -30
 	},
+/obj/item/defibrillator/loaded,
 /obj/machinery/anesthetic_machine,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
@@ -14247,6 +14248,13 @@
 "Qc" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndimed";
+	name = "Blast Doors";
+	req_access = list("syndicate");
+	pixel_x = 24;
+	pixel_y = -24
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
