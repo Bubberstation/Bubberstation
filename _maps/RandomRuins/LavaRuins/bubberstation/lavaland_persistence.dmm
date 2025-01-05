@@ -912,17 +912,6 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"cT" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/obj/machinery/light/directional/west,
-/obj/machinery/defibrillator_mount/charging{
-	pixel_y = -30
-	},
-/obj/machinery/anesthetic_machine,
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "cV" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -7014,12 +7003,6 @@
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
-"uN" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
-	},
-/turf/open/floor/iron/white/diagonal,
-/area/ruin/space/has_grav/bubbers/persistance/med)
 "uQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/camera/autoname/directional/east{
@@ -7946,6 +7929,23 @@
 /obj/machinery/duct,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
+"xA" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "xC" = (
 /obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate");
@@ -9652,6 +9652,19 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"Ck" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndimed";
+	name = "Blast Doors";
+	req_access = list("syndicate");
+	pixel_x = 24;
+	pixel_y = -24
+	},
+/turf/open/floor/iron/white/diagonal,
+/area/ruin/space/has_grav/bubbers/persistance/med)
 "Cl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -15285,6 +15298,18 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"Ts" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/machinery/light/directional/west,
+/obj/machinery/defibrillator_mount/charging{
+	pixel_y = -30
+	},
+/obj/item/defibrillator/loaded,
+/obj/machinery/anesthetic_machine,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "Tu" = (
 /obj/machinery/newscaster/directional/south,
 /obj/machinery/button/door/directional/west{
@@ -20204,7 +20229,7 @@ ZS
 hU
 Hi
 qW
-cT
+Ts
 Hi
 HY
 HY
@@ -21291,7 +21316,7 @@ JS
 fQ
 hw
 ew
-uN
+Ck
 QQ
 bs
 eW
@@ -21442,6 +21467,15 @@ jR
 vZ
 Yh
 VG
+qg
+qg
+qg
+MK
+jh
+jR
+vZ
+Yh
+VG
 VG
 VG
 Lm
@@ -21456,7 +21490,7 @@ VG
 VG
 gq
 gq
-Lm
+xA
 Ta
 JU
 JU
@@ -21471,15 +21505,6 @@ VG
 VG
 VG
 Lm
-VG
-VG
-TO
-gq
-gq
-gq
-gq
-gq
-FW
 "}
 (56,1,1) = {"
 FW
