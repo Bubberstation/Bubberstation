@@ -58,6 +58,7 @@
 	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. The absolute max is 20 times this.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
+	COOLDOWN_DECLARE(radiation_pulse)
 
 /datum/armor/rbmk2
 	melee = 50

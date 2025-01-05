@@ -14,7 +14,7 @@
 #define ATMOS_RADIATION_VOLUME_EXP 3
 
 /// Maximum range a radiation pulse is allowed to be from a gas reaction.
-#define GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE 20
+#define GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE 10
 
 // Water Vapor:
 /// The temperature required for water vapor to condense.

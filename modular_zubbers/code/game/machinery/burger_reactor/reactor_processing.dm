@@ -45,12 +45,15 @@
 		//This is where the fun begins.
 		// https://www.desmos.com/calculator/ffcsaaftzz
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
-		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
-		else
-			last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
+		if(COOLDOWN_FINISHED(src, radiation_pulse))
+			if(meltdown)
+				last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+				radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
+			else
+				last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+				radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
+			COOLDOWN_START(src, radiation_pulse, 5 SECONDS)
+
 		if(power && powernet && last_power_generation)
 			src.add_avail(min(last_power_generation,max_power_generation*10))
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
