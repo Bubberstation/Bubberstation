@@ -5,6 +5,22 @@ ADMIN_VERB(toggle_game_debug, R_DEBUG, "Debug-Game", "Toggles game debugging.", 
 	log_admin("[key_name(user)] [message].")
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Debug Two")
 
+ADMIN_VERB(enable_auxtools_profile, R_DEBUG, "Enable Memory Profiling", "Enable auxtools memory profiling.", ADMIN_CATEGORY_DEBUG)
+	var/filename = input(user, "Enter dump file name:") as text|null
+	if(!filename)
+		return
+
+	enable_mem_profile(filename)
+	log_admin("[key_name(user)] has enabled auxtools memory profiling.")
+	message_admins("[key_name_admin(user)] has enabled auxtools memory profiling.")
+	BLACKBOX_LOG_ADMIN_VERB("Enable Memory Profiling")
+
+ADMIN_VERB(disable_auxtools_profile, R_DEBUG, "Disable Memory Profiling", "Disable auxtools memory profiling.", ADMIN_CATEGORY_DEBUG)
+	disable_mem_profile()
+	log_admin("[key_name(user)] has disabled auxtools memory profiling.")
+	message_admins("[key_name_admin(user)] has disabled auxtools memory profiling.")
+	BLACKBOX_LOG_ADMIN_VERB("Disable Memory Profiling")
+
 ADMIN_VERB_VISIBILITY(air_status, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(air_status, R_DEBUG, "Air Status In Location", "Gets the air status for your current turf.", ADMIN_CATEGORY_DEBUG)
 	var/turf/user_turf = get_turf(user.mob)
