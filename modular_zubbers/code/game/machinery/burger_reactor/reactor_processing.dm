@@ -52,7 +52,7 @@
 			else
 				last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE/2)
 				radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
-			COOLDOWN_START(src, radiation_pulse, 2 SECONDS)
+			COOLDOWN_START(src, radiation_pulse, 3 SECONDS)
 
 		if(power && powernet && last_power_generation)
 			src.add_avail(min(last_power_generation,max_power_generation*10))
