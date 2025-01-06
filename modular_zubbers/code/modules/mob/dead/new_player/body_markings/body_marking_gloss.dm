@@ -3,7 +3,7 @@
 	body_marking_list = list("Body Gloss")
 
 /datum/body_marking/gloss
-	icon = 'modular_zubbers/icons/customization/glossy.dmi'
+	icon = 'modular_zubbers/icons/customization/body_markings/glossy.dmi'
 	icon_state = "gloss"
 	recommended_species = null
 
