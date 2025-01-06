@@ -153,7 +153,7 @@
 
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
-	desc = "A 12 gauge flechette shell that specializes in ripping unarmoured targets apart. These are exceptionally weak against armored targets."
+	desc = "A 12 gauge flechette shell that specializes in ripping unarmoured targets apart. These are exceptionally strong against armored targets."
 	icon_state = "fshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
 	pellets = 5
@@ -165,12 +165,12 @@
 	name = "flechette"
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
 	icon_state = "flechette"
-	damage = 10
-	wound_bonus = 10
-	bare_wound_bonus = 15
+	damage = 7
+	armour_penetration = 40
+	wound_bonus = 0
+	bare_wound_bonus = 0
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
-	weak_against_armour = TRUE
-	damage_falloff_tile = -1 // Five tiles will halve the effectiveness dramatically
+	damage_falloff_tile = -0.7 // Five tiles will halve the effectiveness dramatically
 	wound_falloff_tile = -3
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
