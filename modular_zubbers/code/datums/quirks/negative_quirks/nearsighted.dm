@@ -1,6 +1,6 @@
 /obj/item/prescription_lenses
 	name = "spare lens kit"
-	desc = "A little toolbox with some spare prescription lenses to switch out with a regular pair."
+	desc = "Little toolbox with some spare prescription lenses, with everything you need to switch out old lenses on glasses."
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "prescriptionkit"
 
