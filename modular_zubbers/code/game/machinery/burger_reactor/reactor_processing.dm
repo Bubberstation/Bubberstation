@@ -47,10 +47,10 @@
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 		if(COOLDOWN_FINISHED(src, radiation_pulse))
 			if(meltdown)
-				last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+				last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE/2)
 				radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 			else
-				last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+				last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE/2)
 				radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
 			COOLDOWN_START(src, radiation_pulse, 5 SECONDS)
 
