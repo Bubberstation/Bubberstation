@@ -46,12 +46,13 @@
 		// https://www.desmos.com/calculator/ffcsaaftzz
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 
+		var/range_cap = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*0.5
 		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002, GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+			last_radiation_pulse = min( last_power_generation*0.002, range_cap)
 		else
-			last_radiation_pulse = min( last_power_generation*0.001, GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+			last_radiation_pulse = min( last_power_generation*0.001, range_cap)
 
-		var/insulation_threshold_math = (GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE - last_radiation_pulse) / GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE
+		var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
 
 		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
 		//Values closer to the maximum range penetrate the most.
