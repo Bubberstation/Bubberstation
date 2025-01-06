@@ -606,48 +606,39 @@
 /datum/loadout_item/head/poppy
 	name = "Poppy Flower"
 	item_path = /obj/item/food/grown/poppy
-	donator_only = TRUE
 
 /datum/loadout_item/head/lily
 	name = "Lily Flower"
 	item_path = /obj/item/food/grown/poppy/lily
-	donator_only = TRUE
 
 /datum/loadout_item/head/geranium
 	name = "Geranium Flower"
 	item_path = /obj/item/food/grown/poppy/geranium
-	donator_only = TRUE
 
 /datum/loadout_item/head/fraxinella
 	name = "Fraxinella Flower"
 	item_path = /obj/item/food/grown/poppy/geranium/fraxinella
-	donator_only = TRUE
 
 /datum/loadout_item/head/harebell
 	name = "Harebell Flower"
 	item_path = /obj/item/food/grown/harebell
-	donator_only = TRUE
 
 /datum/loadout_item/head/rose
 	name = "Rose Flower"
 	item_path = /obj/item/food/grown/rose
-	donator_only = TRUE
 
 /datum/loadout_item/head/carbon_rose
 	name = "Carbon Rose Flower"
 	item_path = /obj/item/grown/carbon_rose
-	donator_only = TRUE
 
 /datum/loadout_item/head/sunflower
 	name = "Sunflower"
 	item_path = /obj/item/food/grown/sunflower
-	donator_only = TRUE
 
 /datum/loadout_item/head/rainbow_bunch
 	name = "Rainbow Bunch"
 	item_path = /obj/item/food/grown/rainbow_flower
 	additional_displayed_text = list(TOOLTIP_RANDOM_COLOR)
-	donator_only = TRUE
 
 // Legacy unpaintable cowboy hat because it fits a character better
 /datum/loadout_item/head/cowboyhat_legacy
