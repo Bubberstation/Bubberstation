@@ -294,3 +294,173 @@
   - bugfix: Added a maint access requirement to the animal pen on kilo, so the animals
       won't wander out.
   - bugfix: Fixed the misconfigured package return belt in cargo on Kilo station.
+2024-12-16:
+  Adrian16199:
+  - balance: Lone infiltrator has been given back their micro-bomb as the syndicate
+      intended. Budget cuts happend but we good now.
+  Arturlang:
+  - bugfix: Sol quirk should properly use the when appropiate
+  - balance: Nosferatu when examined disgust you doubly as much.
+  - rscadd: Changes nosferatu examine to be more clear on what they are
+  Odairu:
+  - bugfix: AIs can no long control a host body and themself at the same time
+  - bugfix: if the original wearer becomes the AI and cryo's, the original AI will
+      no longer be stuck in limbo
+  TealSeer:
+  - bugfix: fixed SAD duplicating your round start implants.
+  shayoki:
+  - map: Box Station's apartment airlock bolt buttons now work for their respective
+      airlocks.
+  - map: Box Station's disposal pipe in Security Maintenance correctly connects with
+      disposals.
+  - map: Removed a soda vendor in Box Station's Security Maintenance.
+  - map: Box Station's Atmospherics is given an additional reinforced wall to align
+      itself properly with Maintenance next to it.
+  shellspeed1:
+  - bugfix: Persistence Fish based power is now 100% more Osha compliant
+2024-12-17:
+  Arturlang:
+  - bugfix: Primitive skill no longer makes you stam immune
+  - balance: Mantis blades now do 20 damage, this is down from 25 force.
+  - rscadd: changes the primitive skill status effect to work every 5 seconds, instead
+      of 0.5 seconds for performance reasons.
+  - bugfix: It is no longer possible to farm primitive skill using a plant bag on
+      a wormfarm barrel.
+  Majkl-J:
+  - bugfix: ashie rituals now take only 1 from the stack
+  - bugfix: Ashie area is no longer magically powered
+  RimiNosha:
+  - bugfix: Fixed escape menu having overlapping entries.
+  StrangeWeirdKitten:
+  - balance: The research paper crafting recipe has been locked to the hermit.
+2024-12-18:
+  Majkl-J:
+  - bugfix: Chefs no longer show at the bottom of crew monitors
+  - bugfix: Miniskirts no longer wipe off your breasts
+  StrangeWeirdKitten:
+  - rscdel: Ghost Cafe can no longer make opfors.
+2024-12-19:
+  Arturlang:
+  - rscadd: Lone Infiltrator syndicate suit now has all the normal nuclear modules
+      plus their chameleon module
+  LT3:
+  - map: Nebulastation now has docks for the ERT shuttle and aux shuttles
+  - balance: Xmas week has been extended to start at 18 December, get your jollymaxxing
+      on
+  Majkl-J:
+  - bugfix: Fixed armycrawl chatspam when unable to crawl
+  - bugfix: Fixed hidden borers unable to ventcrawl
+  - spellcheck: Fixed double for long in well trained
+2024-12-20:
+  Arturlang:
+  - balance: Mesmerize no longer requires your victim to be facing the bloodsucker.
+  LT3:
+  - bugfix: Santa will now periodically visit the station
+  Majkl-J:
+  - bugfix: The ashie clothing vendor is no longer invisible and unpowered
+  StrangeWeirdKitten:
+  - bugfix: Damage falloff across various projectiles should now subtract instead
+      of add.
+  xXPawnStarrXx:
+  - bugfix: Made autodrobes dispense the right santahats.
+2024-12-21:
+  Arturlang:
+  - bugfix: Bloodsuckers "should" no longer be forever bleeding
+  Doomtail:
+  - rscadd: Adds three new variants of the hound borg sprite. Peacekeeper, service,
+      and syndicate respectively.
+  Majkl-J:
+  - rscadd: Strong legs mutation, for leaping around
+  mcbalaam:
+  - bugfix: The mail sorter no longer runtimes processing assistant mail
+  - rscadd: Added the mail sorting unit - working with mail has never been simpler!
+  - rscadd: Added two flatpack pre-defined subtypes for the flatpacker and the mail
+      sorter.
+2024-12-22:
+  LT3:
+  - bugfix: Mail sorter is now properly named in the CargoDrobe
+  nikothedude:
+  - rscadd: Quadruped taurs can now wear saddles, which allow anyone to clickdrag
+      themselves onto them to ride with free hands
+  - rscadd: Saddlebags for quadruped taurs, which are one-handed saddles that allow
+      anyone to access their storage by alt clicking the wearer
+2024-12-23:
+  Arturlang:
+  - rscadd: Dragons no longer permanently stuck unable to amke a portal if they loose
+      one, now regaining the ability in 5 minutes
+  LT3:
+  - bugfix: All the letters from Santa that have been horded at the postal service
+      have been recovered and delivered
+  StrangeWeirdKitten:
+  - config: You can set a default storyteller to bypass voting.
+  aKromatopzia:
+  - rscadd: Anesthetic and nitrogen tanks appear in relevant departmental lathes
+2024-12-24:
+  LT3:
+  - map: Multisec vendors are consistently placed in various departmental guard offices
+  Screampuff:
+  - rscadd: Added Edgerunner hairstyle for us punks
+  TealSeer:
+  - refactor: ripped out all the skyrat jukebox code in favor of tg's.
+  - map: fixed kilostation's telecomms air alarm constantly being angry.
+2024-12-25:
+  LT3:
+  - map: Moonstation's escaped security vendors have been returned to where they belong
+  TealSeer:
+  - qol: gas miner delivery pods now delete themselves after landing.
+  rintherat:
+  - bugfix: Fixes comm consoles being able to change alert level during Delta+
+  - rscadd: Adds a new plushie to the badass section in uplink.
+  shayoki:
+  - map: The Blueshield Quarters on Biodome is no longer free to access by anyone.
+      It has also been expanded.
+2024-12-26:
+  LT3:
+  - qol: Entertainment and newscaster broadcasts can be toggled in chat tabs
+  TealSeer:
+  - code_imp: cleaned up sauna oven item interaction code.
+2024-12-27:
+  TealSeer:
+  - map: Boxstation's bar jukebox is no longer access locked.
+  - map: The kitchen cold room on Kilostation is actually cold now.
+  cherdaq:
+  - bugfix: replaced a redundant var with actual
+  - map: tweaked SR/SH cargo shuttle
+  intense-skies:
+  - bugfix: Fixes a taur sprite issue
+  shayoki:
+  - map: Box Station's brig cells properly work for their respective cells.
+2024-12-28:
+  IgiariValkyr:
+  - bugfix: The updated arena for Demonic Frost Miner actually loads now
+  LT3:
+  - rscadd: Mail sorter is now available in the CargoDrobe instead of sitting on the
+      office floor
+  - rscadd: Bounty cube export gate is now available in the CargoDrobe instead of
+      sitting on the warehouse floor
+  - bugfix: Premade/vending machine flatpacks now display what board is inside
+  Majkl-J:
+  - image: Prettified the biodome leaves sprite
+  TealSeer:
+  - bugfix: fixed the engineering plumbing constructor not appearing in protolathes.
+  - map: fixed Kilostation engine room air alarm not giving readings from inside the
+      chamber.
+  xXPawnStarrXx:
+  - qol: System cleaner now sobers up synthetics.
+2024-12-30:
+  LT3:
+  - map: NebulaStation aux ship dock now has a roof, leading to 99% less suffocation
+      and freezing
+  TealSeer:
+  - map: added a growing vat to Void Raptor's cytology pen.
+2024-12-31:
+  AXLFAN2000:
+  - map: added Cytopro to Void Raptor's cytology.
+  KazooBard:
+  - qol: Selecting which spells to cast with hotkeys, and using them in general is
+      faster.
+  TealSeer:
+  - bugfix: fixed mobs with anosmia still smelling pollution.
+  okithedoki:
+  - bugfix: Fixed the Akula language description to be of consistent length with the
+      rest of the languages, instead of the wordwall it was.

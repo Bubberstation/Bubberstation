@@ -2908,6 +2908,15 @@
 /obj/effect/spawner/random/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"aWJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/aft)
 "aWO" = (
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
@@ -10612,15 +10621,14 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
 "dGy" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 8
+	dir = 6
 	},
-/obj/machinery/light_switch/directional/south,
+/obj/structure/cable,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "dGD" = (
@@ -11926,11 +11934,11 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "edp" = (
-/obj/effect/landmark/start/blueshield,
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/turf/open/floor/carpet/executive,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/closet/secure_closet/blueshield,
+/obj/item/storage/medkit/tactical/blueshield,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "edq" = (
 /obj/effect/landmark/start/paramedic,
@@ -17165,6 +17173,17 @@
 	},
 /turf/open/floor/stone,
 /area/station/biodome/fore)
+"fSp" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
+	icon_state = "bounty-closed";
+	icon_type = "bounty";
+	id = "bscurtain2";
+	name = "curtain"
+	},
+/turf/open/floor/plating,
+/area/station/command/heads_quarters/blueshield)
 "fSu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -19422,8 +19441,10 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/project)
 "gGd" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/siding/wood,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "gGf" = (
@@ -23182,7 +23203,7 @@
 /obj/structure/closet/secure_closet/tac{
 	req_access = list("captain")
 	},
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "ibC" = (
@@ -27600,10 +27621,12 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "jGx" = (
-/obj/structure/closet/secure_closet/blueshield,
-/obj/item/storage/medkit/tactical/blueshield,
-/obj/structure/window/reinforced/spawner/directional/south,
-/turf/open/floor/iron/dark/smooth_large,
+/obj/machinery/modular_computer/preset/command,
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/announcement,
+/obj/effect/mapping_helpers/requests_console/information,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "jGz" = (
 /obj/structure/table/wood,
@@ -38979,15 +39002,11 @@
 /area/station/service/library)
 "nsf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/table/wood/fancy/cyan,
-/obj/machinery/recharger{
-	pixel_x = 5;
-	pixel_y = 2
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
-/obj/item/storage/fancy/donut_box{
-	pixel_y = 16
-	},
-/turf/open/floor/carpet/executive,
+/obj/machinery/holopad,
+/turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "nsg" = (
 /obj/structure/sign/poster/random/directional/south,
@@ -42886,7 +42905,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/machinery/jukebox/public,
+/obj/machinery/jukebox/no_access,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "oGU" = (
@@ -49248,12 +49267,14 @@
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "qSY" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
+/obj/machinery/suit_storage_unit/security,
+/obj/machinery/door/window/brigdoor/right/directional/east{
+	req_access = list("captain");
+	name = "Blueshield's Armory"
 	},
-/obj/machinery/airalarm/directional/west,
-/turf/open/floor/wood/parquet,
+/obj/machinery/light/directional/west,
+/obj/machinery/newscaster/directional/west,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "qTg" = (
 /obj/structure/chair{
@@ -49479,6 +49500,19 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
+"qVO" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/storage/fancy/donut_box{
+	pixel_y = 16
+	},
+/obj/machinery/recharger{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
+/turf/open/floor/carpet/executive,
+/area/station/command/heads_quarters/blueshield)
 "qVP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -51641,10 +51675,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
 "rGd" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
+/obj/machinery/light_switch/directional/east,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
 	},
-/obj/machinery/power/apc/auto_name/directional/east,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "rGg" = (
@@ -55959,12 +55994,17 @@
 /turf/open/floor/wood/large,
 /area/station/service/theater)
 "tgT" = (
-/obj/structure/chair/comfy/brown{
+/obj/effect/landmark/start/blueshield,
+/obj/structure/chair/comfy/teal{
 	dir = 4
 	},
-/obj/effect/landmark/start/blueshield,
+/obj/machinery/button/curtain{
+	id = "bscurtain2";
+	pixel_x = -28;
+	pixel_y = -3
+	},
 /turf/open/floor/carpet/executive,
-/area/station/command/heads_quarters/captain)
+/area/station/command/heads_quarters/blueshield)
 "tgU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/engine,
@@ -56027,6 +56067,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/aft)
+"tix" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark_blue{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/aft)
 "tiC" = (
 /obj/structure/showcase/machinery/cloning_pod{
 	desc = "An old decommissioned scanner, permanently scuttled.";
@@ -63167,13 +63216,10 @@
 /turf/open/floor/plating,
 /area/station/construction)
 "vMh" = (
-/obj/machinery/suit_storage_unit/security,
-/obj/machinery/light/directional/north,
-/obj/machinery/door/window/brigdoor/right/directional/south{
-	req_access = list("captain");
-	name = "Blueshield's Armory"
-	},
-/turf/open/floor/iron/dark/smooth_large,
+/obj/machinery/computer/crew,
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "vMr" = (
 /obj/structure/cable,
@@ -66831,6 +66877,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
+/obj/machinery/door/firedoor,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
 "wUh" = (
@@ -109983,9 +110031,9 @@ fBY
 odZ
 oxI
 oHx
-tgT
+oHx
 vEK
-bmc
+upY
 bmc
 bmc
 gHP
@@ -110243,7 +110291,7 @@ vYg
 xlG
 mba
 bmc
-upY
+bmc
 pKz
 gHP
 bMe
@@ -111021,8 +111069,8 @@ fNG
 vMh
 gGd
 nsf
-pFO
-pnf
+tgT
+fSp
 svn
 pnf
 pnf
@@ -111278,8 +111326,8 @@ pFO
 jGx
 rGd
 dGy
-pFO
-pnf
+qVO
+fSp
 pnf
 pnf
 pnf
@@ -111536,7 +111584,7 @@ pFO
 pFO
 wUg
 pFO
-pnf
+pFO
 pnf
 pnf
 aZR
@@ -111788,10 +111836,10 @@ izf
 wFQ
 fOu
 fOu
+aWJ
 kqS
 kqS
-kqS
-mZn
+tix
 mZn
 rsY
 rsY
