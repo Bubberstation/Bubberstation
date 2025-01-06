@@ -118,7 +118,7 @@
 			if(stored_rod)
 				remove_rod()
 			explosion(src, devastation_range  = explosion_power*0.25, heavy_impact_range = explosion_power*0.5, light_impact_range = explosion_power, flash_range = explosion_power*2, adminlog = FALSE)
-			last_radiation_pulse = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*4 //It just keeps getting worse and worse.
+			last_radiation_pulse = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*2 //It just keeps getting worse and worse.
 			radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
 		else
 			message_admins("[src] exploded due to damage at [ADMIN_VERBOSEJMP(T)]")

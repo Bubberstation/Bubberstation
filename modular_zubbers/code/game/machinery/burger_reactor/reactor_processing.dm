@@ -122,8 +122,6 @@
 		meltdown_multiplier *= last_power_generation/max_power_generation //It just gets worse.
 		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 		var/rod_mix_heat_capacity = rod_mix.heat_capacity()
-		last_radiation_pulse = min( last_power_generation*0.003*meltdown_multiplier ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*3) //It just keeps getting worse.
-		radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
