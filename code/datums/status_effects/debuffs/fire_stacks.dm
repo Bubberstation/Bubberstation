@@ -1,3 +1,11 @@
+/////////// BUBBER EDIT THIS WILL BE FORCED TO CONFLICT READ THIS
+/*
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+
+*/
 /datum/status_effect/fire_handler
 	duration = -1
 	alert_type = null
@@ -307,13 +315,14 @@
 
 	overlays |= created_overlay
 
+/*
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"
 
 	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
 	stack_modifier = -1
 	/// If the mob has the TRAIT_SLIPPERY_WHEN_WET trait, the mob gets this component while it's wet
-	var/datum/component/slippery/slipperiness
+	//var/datum/component/slippery/slipperiness - BUBBER EDIT - REQUIRES FISH INFUSION
 
 /datum/status_effect/fire_handler/wet_stacks/on_apply()
 	. = ..()
@@ -357,3 +366,27 @@
 
 /datum/status_effect/fire_handler/wet_stacks/check_basic_mob_immunity(mob/living/basic/basic_owner)
 	return !(basic_owner.basic_mob_flags & IMMUNE_TO_GETTING_WET)
+
+BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
+/datum/status_effect/fire_handler/wet_stacks
+	id = "wet_stacks"
+
+	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
+	stack_modifier = -1
+
+/datum/status_effect/fire_handler/wet_stacks/get_examine_text()
+	return "[owner.p_They()] look[owner.p_s()] a little soaked."
+
+/datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
+	adjust_stacks(-0.5 * seconds_between_ticks)
+	if(stacks <= 0)
+		qdel(src)
+
+/datum/status_effect/fire_handler/wet_stacks/update_particles()
+	if(particle_effect)
+		return
+	particle_effect = new(owner, /particles/droplets)
+
+/datum/status_effect/fire_handler/wet_stacks/check_basic_mob_immunity(mob/living/basic/basic_owner)
+	return !(basic_owner.basic_mob_flags & IMMUNE_TO_GETTING_WET)
+/// BUBBER EDIT END
