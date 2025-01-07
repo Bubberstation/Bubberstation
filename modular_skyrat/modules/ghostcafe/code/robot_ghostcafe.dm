@@ -45,6 +45,7 @@
 		/obj/item/stack/sheet/iron,
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/borg/apparatus/beaker/service,
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/iron,
 		/obj/item/stack/cable_coil,
