@@ -46,9 +46,9 @@
 		// https://www.desmos.com/calculator/ffcsaaftzz
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 
-		var/range_cap = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*0.5
+		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
 		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002, range_cap)
+			last_radiation_pulse = min( last_power_generation*0.002, range_cap) //Double the rads, double the fun.
 		else
 			last_radiation_pulse = min( last_power_generation*0.001, range_cap)
 
@@ -58,8 +58,10 @@
 		//Values closer to the maximum range penetrate the most.
 		//Don't bother making radiation if it isn't significiant enough.
 		if(insulation_threshold_math <= RAD_LIGHT_INSULATION)
-			if(!meltdown)
-				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION, unless we're melting down.
+			if(meltdown)
+				insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
+			else
+				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
 			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
 
 		if(power && powernet && last_power_generation)
