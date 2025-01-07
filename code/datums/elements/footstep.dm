@@ -52,6 +52,11 @@
 			footstep_sounds = 'sound/effects/tank_treads.ogg'
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
 			return
+		if(FOOTSTEP_OBJ_SERVO)
+			footstep_sounds = 'sound/effects/servostep.ogg'
+			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
+			return
+
 		// BUBBER EDIT START
 		if(FOOTSTEP_MOB_SNAKE)
 			footstep_sounds = 'sound/effects/footstep/crawl1.ogg'
