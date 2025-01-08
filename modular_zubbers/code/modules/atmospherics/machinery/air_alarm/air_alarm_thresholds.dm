@@ -2,7 +2,7 @@
 	warning_min = TLV_VALUE_IGNORE
 	hazard_min = TLV_VALUE_IGNORE
 	warning_max = 7
-	hazard_max = 14
+	hazard_max = 12 // miasma negative effects start at 15kpa
 
 /datum/tlv/temperature
 	warning_min = BODYTEMP_COLD_WARNING_1 + 7
