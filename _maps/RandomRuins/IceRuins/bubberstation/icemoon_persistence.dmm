@@ -434,20 +434,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
-"bl" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
 "bo" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 9
@@ -941,6 +927,28 @@
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"cG" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "cI" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -1747,7 +1755,7 @@
 	id = "syndirecycle";
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "fj" = (
 /obj/machinery/porta_turret/syndicate{
@@ -1845,6 +1853,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
+"fz" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "fA" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -3990,7 +4001,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/lava/plasma/ice_moon,
+/turf/open/floor/pod/dark,
 /area/icemoon/underground/explored)
 "mm" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
@@ -9017,12 +9028,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/iron/terracotta/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
-"Aw" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Ay" = (
 /obj/machinery/smartfridge/food,
 /obj/effect/turf_decal/siding{
@@ -9473,8 +9478,8 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "BQ" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 4
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
@@ -10843,6 +10848,9 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
+"FT" = (
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "FV" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/sign/departments/telecomms/alt/directional/east,
@@ -11301,28 +11309,6 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"Hy" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
-	network = list("persistence_ext")
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Hz" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	polarizer_id = "dauntless_interrogation"
@@ -14394,13 +14380,13 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant)
 "Qy" = (
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
-	},
 /obj/structure/chair/comfy/barber_chair{
 	dir = 1
 	},
 /obj/structure/mirror/directional/north,
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 1
+	},
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Qz" = (
@@ -15319,13 +15305,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
-/obj/machinery/button/door/directional/west{
-	id = "syndimed";
-	name = "Blast Doors";
-	req_access = list("syndicate");
-	pixel_x = 24;
-	pixel_y = -24
-	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Tr" = (
@@ -15407,6 +15386,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
 /turf/open/floor/iron/kitchen/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "TF" = (
@@ -15539,28 +15521,6 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
-"Uh" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
-	network = list("persistence_ext")
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "Ui" = (
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/structure/cable,
@@ -19965,7 +19925,7 @@ mc
 uQ
 wt
 iW
-iW
+fz
 Yp
 Zu
 IZ
@@ -20793,7 +20753,7 @@ NR
 PF
 fH
 pk
-ST
+FT
 AD
 uQ
 mc
@@ -20850,7 +20810,7 @@ En
 vB
 Tc
 ny
-Aw
+pN
 BQ
 Ix
 Hl
@@ -21212,8 +21172,8 @@ KF
 Of
 rv
 eZ
-ST
-ST
+FT
+FT
 nc
 uQ
 mc
@@ -21275,14 +21235,14 @@ ZW
 Mb
 gG
 Mb
-Jk
+FT
 ST
 ST
 ST
-ST
+FT
 kt
 kt
-ST
+FT
 Yg
 uQ
 uQ
@@ -21315,22 +21275,22 @@ FE
 nc
 nc
 nc
-bl
+Fc
 ml
 aC
-Hy
-bl
+Rf
+Fc
 nc
 nc
 nc
 KC
 nc
 nc
-Fc
-Fc
+im
+im
 Nq
-Fc
-Rf
+im
+cG
 nc
 nc
 uQ
@@ -21345,7 +21305,7 @@ ZW
 LM
 Nq
 Fc
-Uh
+Rf
 nc
 nc
 nc
