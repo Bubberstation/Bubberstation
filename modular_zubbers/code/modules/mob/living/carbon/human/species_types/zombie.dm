@@ -5,8 +5,8 @@
 	)
 	. = ..()
 
-/obj/item/bodypart/head/zombie //Override of /tg/ default, includes EYECOLOR
-	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN|HEAD_EYECOLOR
+/obj/item/bodypart/head/zombie //Override of /tg/ default, includes EYECOLOR & EYEHOLES
+	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN|HEAD_EYECOLOR|HEAD_EYEHOLES
 
 /obj/item/bodypart/head/zombie/New(loc, ...)
 	head_flags |= (HEAD_HAIR|HEAD_FACIAL_HAIR)
