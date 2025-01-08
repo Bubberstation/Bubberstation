@@ -15,6 +15,18 @@ const customJobs = [
   'Orderly',
   'Science Guard',
   'Security Medic',
+  'Persistence Hostage',
+  'Persistence General Staff',
+  'Persistence Sanitation Technician',
+  'Persistence Researcher',
+  'Persistence Engineering Officer',
+  'Persistence Medical Officer',
+  'Persistence Cargo Technician',
+  'Persistence Master At Arms',
+  'Persistence Brig Officer',
+  'Syndicate Corporate Liaison',
+  'Persistence Admiral',
+  'Tarkon Ensign',
 ];
 // BUBBER EDIT ADDITION END - Custom observe menu icons
 
