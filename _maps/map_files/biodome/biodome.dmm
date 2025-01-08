@@ -14408,6 +14408,7 @@
 /obj/machinery/lift_indicator/directional/east{
 	linked_elevator_id = "biodome_engie_lift"
 	},
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
 "eUt" = (
@@ -15850,6 +15851,17 @@
 "fuu" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/radshelter/civil)
+"fuK" = (
+/obj/effect/turf_decal/loading_area/red{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/elevator/right/directional/west{
+	transport_linked_id = "biodome_brig_lift";
+	elevator_mode = 1
+	},
+/turf/open/floor/iron/dark/smooth_half,
+/area/station/security/brig)
 "fuM" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -16979,9 +16991,7 @@
 /turf/open/floor/carpet/black,
 /area/station/security/prison)
 "fPr" = (
-/obj/structure/railing{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/stairs/medium{
 	dir = 8
 	},
@@ -18271,6 +18281,20 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
+"glA" = (
+/obj/effect/turf_decal/loading_area/white{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/elevator/right/directional/south{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_medbay_lift"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "glD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/layer_manifold/cyan{
@@ -20999,6 +21023,17 @@
 /obj/item/plant_analyzer,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
+"hkp" = (
+/obj/effect/turf_decal/loading_area/white{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/elevator/right/directional/south{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_medbay_lift"
+	},
+/turf/open/floor/plating,
+/area/station/medical/medbay/central)
 "hkq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /turf/open/floor/iron/white,
@@ -22021,9 +22056,9 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
-/obj/machinery/door/window/elevator/left/directional/west{
-	transport_linked_id = "biodome_engie_lift";
-	elevator_mode = 1
+/obj/machinery/door/window/elevator/right/directional/west{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_engie_lift"
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/primary/aft)
@@ -27782,10 +27817,6 @@
 /turf/closed/wall,
 /area/station/maintenance/department/crew_quarters/dorms)
 "jJj" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
@@ -33936,9 +33967,7 @@
 /area/station/command/bridge)
 "lHj" = (
 /obj/structure/stairs/east,
-/obj/structure/railing{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/stairs/medium{
 	dir = 8
 	},
@@ -36014,6 +36043,10 @@
 /obj/structure/window/spawner/directional/south,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
+"mqx" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/openspace,
+/area/station/hallway/primary/aft)
 "mqy" = (
 /obj/effect/turf_decal/siding/dark_green,
 /turf/open/floor/grass,
@@ -36354,6 +36387,7 @@
 /area/station/commons/fitness)
 "mxq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "mxA" = (
@@ -37386,10 +37420,11 @@
 /turf/open/floor/wood,
 /area/station/cargo/office)
 "mPX" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "mQb" = (
@@ -39285,7 +39320,7 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "nxA" = (
 /obj/effect/landmark/start/medical_doctor,
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/junction/flip{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -48749,7 +48784,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/window/elevator/left/directional/north{
+/obj/machinery/door/window/elevator/right/directional/north{
 	elevator_mode = 1;
 	transport_linked_id = "biodome_science_lift"
 	},
@@ -56037,8 +56072,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "thM" = (
-/obj/structure/disposalpipe/junction{
-	dir = 4
+/obj/structure/disposalpipe/segment{
+	dir = 6
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -57862,7 +57897,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/door/window/elevator/left/directional/north{
+/obj/machinery/door/window/elevator/right/directional/north{
 	elevator_mode = 1;
 	transport_linked_id = "biodome_science_lift"
 	},
@@ -60570,6 +60605,15 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron,
 /area/station/commons/fitness)
+"uOv" = (
+/obj/effect/turf_decal/loading_area/red,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/elevator/right/directional/north{
+	transport_linked_id = "biodome_brig_lift"
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/floor/iron/smooth_half,
+/area/station/security/brig)
 "uOC" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/plating,
@@ -94384,7 +94428,7 @@ tSJ
 wSI
 wSI
 tlP
-sKq
+hkp
 bRw
 agt
 oAe
@@ -113939,7 +113983,7 @@ mSo
 sxr
 kHf
 kHf
-uMW
+fuK
 uMW
 kHf
 jBl
@@ -159920,7 +159964,7 @@ oqe
 eQf
 kBw
 ebY
-pEE
+glA
 bwV
 bwV
 jHc
@@ -169950,7 +169994,7 @@ xCb
 xXi
 nPx
 jVT
-jVT
+mqx
 rLL
 aLA
 xXi
@@ -170207,7 +170251,7 @@ mmT
 wYg
 nPx
 cfo
-jVT
+mqx
 rLL
 aLA
 rSn
@@ -179220,7 +179264,7 @@ uEl
 kHf
 rWr
 rWr
-odq
+uOv
 dUY
 dUY
 taA
