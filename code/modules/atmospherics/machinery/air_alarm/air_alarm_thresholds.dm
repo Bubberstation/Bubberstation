@@ -93,13 +93,10 @@
 	hazard_max = HAZARD_HIGH_PRESSURE
 
 /datum/tlv/temperature
-	//warning_min = BODYTEMP_COLD_WARNING_1+10 // BUBBER EDIT CHANGE - Original
-	warning_min = BODYTEMP_COLD_WARNING_1 + 7
-	//hazard_min = BODYTEMP_COLD_WARNING_1 // BUBBER EDIT CHANGE - Original
-	hazard_min = BODYTEMP_COLD_WARNING_1 + 1
+	warning_min = BODYTEMP_COLD_WARNING_1 + 7 // BUBBER EDIT CHANGE - Original: BODYTEMP_COLD_WARNING_1+10
+	hazard_min = BODYTEMP_COLD_WARNING_1 + 1 // BUBBER EDIT CHANGE - Original: BODYTEMP_COLD_WARNING_1
 	warning_max = BODYTEMP_HEAT_WARNING_1-27
-	//hazard_max = BODYTEMP_HEAT_WARNING_1 // BUBBER EDIT CHANGE - Original
-	hazard_max = BODYTEMP_HEAT_WARNING_1 - 4
+	hazard_max = BODYTEMP_HEAT_WARNING_1 - 4 // BUBBER EDIT CHANGE - Original: BODYTEMP_HEAT_WARNING_1
 
 /datum/tlv/cold_room_pressure
 	warning_min = ONE_ATMOSPHERE * 0.9
