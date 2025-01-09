@@ -311,8 +311,10 @@
 		if(buckled)
 			to_chat(helper, span_warning("You need to unbuckle [src] first to do that!"))
 			return
-		helper._check_pulse(src) // BUBBER EDIT ADDITION
-		helper.do_cpr(src) // BUBBER EDIT ADDITION
+		helper._check_pulse(src) // BUBBER EDIT ADDITION BEGIN
+		if(ishuman(helper))
+			var/mob/living/carbon/human/helpinghand = helper
+			helpinghand.do_cpr(src) // BUBBER EDIT ADDITION END
 		helper.visible_message(span_notice("[helper] shakes [src] trying to get [p_them()] up!"), \
 						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
 		to_chat(helper, span_notice("You shake [src] trying to pick [p_them()] up!"))
