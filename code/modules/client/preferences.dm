@@ -485,15 +485,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if (last_canvas_size != canvas_size)
 		QDEL_NULL(canvas)
-		if (!canvas_size)
-			body.pixel_x = 0
-			canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = "blank_template")
-		else if (canvas_size == 1)
-			body.pixel_x = 16
-			canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = "blank_template")
-		else
-			body.pixel_x = 32
-			canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = "blank_template")
+		switch(canvas_size)
+			if(0)
+				body.pixel_x = 0`
+				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = "blank_template")
+			if(1)
+				body.pixel_x = 16
+				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = "blank_template")
+			else
+				body.pixel_x = 32
+				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = "blank_template")
 
 	last_canvas_size = canvas_size
 
