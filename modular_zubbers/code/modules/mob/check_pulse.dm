@@ -1,8 +1,8 @@
-/mob/verb/check_pulse(atom/A as mob in view())
+/mob/verb/check_pulse(atom/atomic as mob in view())
 	set name = "Check Pulse"
 	set category = "Object"
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(_check_pulse), A))
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(_check_pulse), atomic))
 
 
 /mob/proc/_check_pulse(mob/atomic)
@@ -11,7 +11,7 @@
 	balloon_alert(client.mob, "checking pulse...")
 	if(do_after(client.mob, 4 SECONDS, atomic))
 		if(isliving(client.mob))
-			to_chat(atomic, span_userdanger("You feel [client.mob] grasp you, feeling you closely!"))
+			to_chat(atomic, span_danger("You feel [client.mob] grasp you and pause for a moment..."))
 		if(atomic.stat == DEAD || HAS_TRAIT(atomic, TRAIT_NOBREATH) || HAS_TRAIT(atomic, TRAIT_NOBLOOD))
 			balloon_alert(client.mob, "no pulse!")
 			return TRUE

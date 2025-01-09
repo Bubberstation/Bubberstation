@@ -1014,7 +1014,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(target != user)
 			log_combat(user, target, "shaken")
 		return TRUE
-
+	user._check_pulse(target) // BUBBER EDIT ADDITION
 	user.do_cpr(target)
 
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...

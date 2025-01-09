@@ -319,12 +319,12 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		if(occupant.stat == DEAD)
 			if(iscarbon(occupant))
 				var/mob/living/carbon/carbon_occupant = occupant
-				if(!carbon_occupant.can_defib_client())
-					continue
+				if(HAS_TRAIT(carbon_occupant, TRAIT_MIND_TEMPORARILY_GONE) || carbon_occupant.can_defib_client()) // BUBBER EDIT BEGIN
+					morgue_state = MORGUE_HAS_REVIVABLE
+					return // BUBBER EDIT END
 			else
 				if(HAS_TRAIT(occupant, TRAIT_SUICIDED) || HAS_TRAIT(occupant, TRAIT_BADDNA) || (!occupant.key && !occupant.get_ghost(FALSE, TRUE)))
 					continue
-		morgue_state = MORGUE_HAS_REVIVABLE
 		return
 	morgue_state = MORGUE_ONLY_BRAINDEAD
 
