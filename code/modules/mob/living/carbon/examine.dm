@@ -37,15 +37,15 @@
 
 		if(isliving(user) && (HAS_MIND_TRAIT(user, TRAIT_NAIVE) || are_we_in_weekend_at_bernies))
 			just_sleeping = TRUE
-
+/*// BUBBER EDIT BEGIN
 		if(!just_sleeping)
 			// since this is relatively important and giving it space makes it easier to read
 			ADD_NEWLINE_IF_NECESSARY(.)
 			if(HAS_TRAIT(src, TRAIT_SUICIDED))
 				. += span_warning("[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.")
 
-			. += generate_death_examine_text()
-
+			. += generate_death_examine_text()  // BUBBER EDIT END
+*/
 	//Status effects
 	var/list/status_examines = get_status_effect_examinations()
 	if (length(status_examines))
@@ -195,7 +195,7 @@
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
 		. += span_smallnoticeital("[t_He] [t_is] emitting a gentle blue glow!") // this should be signalized
 
-	if(just_sleeping)
+	if(just_sleeping || appears_dead)
 		. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
 
 	else if(!appears_dead)

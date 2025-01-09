@@ -205,10 +205,10 @@ Medical HUD! Basic mode needs suit sensors on.
 	if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
 	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
-		if(HAS_TRAIT(src, TRAIT_MIND_TEMPORARILY_GONE) || can_defib_client())
+/* 		if(HAS_TRAIT(src, TRAIT_MIND_TEMPORARILY_GONE) || can_defib_client())
 			holder.icon_state = "huddefib"
-		else
-			holder.icon_state = "huddead"
+		else */
+		holder.icon_state = "huddead" // BUBBER EDIT - EVERYONE DIES THE SAME
 	else
 		switch(virus_threat)
 			if(DISEASE_SEVERITY_UNCURABLE)
