@@ -219,7 +219,7 @@
 	gain_text = "That's when I saw them, the marked ones. They were out of reach. They screamed, and screamed."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/flesh,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_FLESH
 	mark_type = /datum/status_effect/eldritch/flesh
 

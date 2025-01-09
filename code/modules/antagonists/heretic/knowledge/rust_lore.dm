@@ -116,7 +116,7 @@
 	gain_text = "The Blacksmith looks away. To a place lost long ago. \"Rusted Hills help those in dire need... at a cost.\""
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/rust,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_RUST
 	mark_type = /datum/status_effect/eldritch/rust
 

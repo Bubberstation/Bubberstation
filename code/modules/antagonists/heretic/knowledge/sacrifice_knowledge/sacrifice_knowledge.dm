@@ -27,7 +27,6 @@
 	var/datum/mind/heretic_mind
 	/// Lazylist of minds that we won't pick as targets.
 	var/list/datum/mind/target_blacklist
-	/// A list of areas that make a person immune to being sacrificed, if they are there. So dorms protection.
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 	/// Evil organs we can put in people
@@ -132,10 +131,12 @@
 			continue
 		if(possible_target.current.stat == DEAD)
 			continue
+		////BUBBER EDIT START
 		if(HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
 			continue
 		if(is_centcom_level(possible_target.current.z))
 			continue
+		//BUBBERSEDIT END
 		valid_targets += possible_target
 
 	if(!length(valid_targets))

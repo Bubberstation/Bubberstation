@@ -128,7 +128,7 @@
 	gain_text = "The Gatekeeper was a corrupt Steward. She hindered her fellows for her own twisted amusement."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/lock,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_LOCK
 	mark_type = /datum/status_effect/eldritch/lock
 

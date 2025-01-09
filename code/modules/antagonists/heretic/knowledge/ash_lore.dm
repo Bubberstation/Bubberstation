@@ -98,7 +98,7 @@
 		He shone brightly in the darkness, until the blaze begin to die."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/ash,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_ASH
 	mark_type = /datum/status_effect/eldritch/ash
 

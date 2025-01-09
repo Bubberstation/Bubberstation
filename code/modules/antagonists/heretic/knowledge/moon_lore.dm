@@ -98,7 +98,7 @@
 		but when the night came its smile would dull forced to gaze on the earth."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/moon,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_MOON
 	mark_type = /datum/status_effect/eldritch/moon
 

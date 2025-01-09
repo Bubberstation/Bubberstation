@@ -95,7 +95,7 @@
 		I can help them, I have to help them."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/cosmic,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets)  //BUBBER EDIT
 	route = PATH_COSMIC
 	mark_type = /datum/status_effect/eldritch/cosmic
 

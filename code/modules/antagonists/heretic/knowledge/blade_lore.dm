@@ -185,7 +185,7 @@
 		He would slay the coward himself, and anyone who tried to run."
 	next_knowledge = list(
 	/datum/heretic_knowledge/knowledge_ritual/blade,
-	/datum/heretic_knowledge/reroll_targets)
+	/datum/heretic_knowledge/reroll_targets)  //BUBBER EDIT
 	route = PATH_BLADE
 	mark_type = /datum/status_effect/eldritch/blade
 
