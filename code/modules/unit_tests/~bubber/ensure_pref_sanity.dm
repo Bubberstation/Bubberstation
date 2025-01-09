@@ -15,10 +15,10 @@
 		if (istype(preference, /datum/preference/choiced/mutant))
 			mutant_checks(preference, supplementals_failed)
 
-		if (istype(preference, /datum/preference/mutant_color))
+		else if (istype(preference, /datum/preference/mutant_color))
 			color_checks(preference, supplementals_failed)
 
-		if (istype(preference, /datum/preference/emissive_toggle))
+		else if (istype(preference, /datum/preference/emissive_toggle))
 			emissive_checks(preference, supplementals_failed)
 
 /datum/unit_test/bubber_ensure_pref_sanity/proc/color_checks(datum/preference/mutant_color/mutant, supplementals_failed)
