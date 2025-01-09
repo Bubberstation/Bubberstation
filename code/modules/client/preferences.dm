@@ -487,7 +487,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		QDEL_NULL(canvas)
 		switch(canvas_size)
 			if(0)
-				body.pixel_x = 0`
+				body.pixel_x = 0
 				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = "blank_template")
 			if(1)
 				body.pixel_x = 16
