@@ -6,7 +6,7 @@
 
 
 /mob/proc/_check_pulse(mob/atomic)
-	if(client && !(atomic in view(client.view, src)) && !client in orange(1, atomic))
+	if(client && !((atomic in view(client.view, src)) && client in orange(1, atomic)))
 		return FALSE
 	balloon_alert(client.mob, "checking pulse...")
 	if(do_after(client.mob, 4 SECONDS, atomic))

@@ -550,10 +550,10 @@
 		if (DOING_INTERACTION_WITH_TARGET(src,target))
 			return FALSE
 
-		if (target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
+/* 		if (target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH)) // BUBBER EDIT BEGIN
 			balloon_alert(src, "[target.p_they()] [target.p_are()] dead!")
-			return FALSE
-
+			return FALSE */
+ // BUBBER EDIT END
 		if (is_mouth_covered())
 			balloon_alert(src, "remove your mask first!")
 			return FALSE
