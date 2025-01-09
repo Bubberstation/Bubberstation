@@ -118,6 +118,10 @@
 							attack_direction = pick(list(NORTH,SOUTH,EAST,WEST,NORTHWEST,NORTHEAST,SOUTHWEST,SOUTHEAST)),
 						)
 
+		if(istype(thing, /obj/item/pinpointer/mess_finder))
+			var/obj/item/pinpointer/mess_finder/mess_finder = thing
+			mess_finder.unique_id = REF(src)
+
 		if(istype(thing, /obj/machinery/janitorial_submit))
 			var/obj/machinery/janitorial_submit/jani_plunger = thing
 			jani_plunger.unique_id = REF(src)

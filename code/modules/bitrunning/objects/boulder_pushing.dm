@@ -12,6 +12,7 @@
 	var/speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk.ogg'
 	var/list/mad_lines = list("NO TIP FOR YOU. GOODBYE!", "At least at SpaceDonalds they serve their food FAST!", "This venue is horrendous!", "I will speak to your manager!", "I'll be sure to leave a bad Yelp review.")
 	var/list/push_lines = list("I hope there's a seat that supports my weight.", "I hope I can bring my gun in here.", "I hope they have the triple deluxe fatty burger.", "I just love the culture here.")
+	var/turf/starter_location
 
 /obj/bitrunning/hungry_customer/Initialize(mapload)
 	. = ..()
@@ -20,6 +21,7 @@
 	START_PROCESSING(SSfastprocess, src)
 	RegisterSignal(src, COMSIG_ATOM_BUMPED, PROC_REF(bumped_hit))
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(check_crossed_special))
+	starter_location = get_turf(src)
 
 /obj/bitrunning/hungry_customer/Destroy(force)
 	STOP_PROCESSING(SSfastprocess, src)

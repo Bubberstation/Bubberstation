@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(janitorial_scanners)
 /obj/machinery/janitorial_scanner/Initialize(mapload)
 	. = ..()
 	GLOB.janitorial_scanners += src
+	name = "[area_name] janitorial area scanner"
 
 /obj/machinery/janitorial_scanner/proc/scan_area()
 	for(var/turf/floor in our_room)
@@ -64,11 +65,11 @@ GLOBAL_LIST_EMPTY(janitorial_scanners)
 			continue
 		for(var/atom/possible_disqualifier in floor)
 			if(GET_ATOM_BLOOD_DNA_LENGTH(possible_disqualifier))
-				src.Beam(get_turf(possible_disqualifier), icon_state = "blood", time = 10 SECONDS)
+				src.Beam(get_turf(possible_disqualifier), icon_state = "blood", time = 3 MINUTES)
 				return "ERROR: Blood-stained [possible_disqualifier] detected in [area_name]!"
 			for(var/path in GLOB.janitorial_reject_type_to_speech)
 				if(istype(possible_disqualifier, path))
-					src.Beam(get_turf(possible_disqualifier), icon_state = "blood", time = 10 SECONDS)
+					src.Beam(get_turf(possible_disqualifier), icon_state = "blood", time = 3 MINUTES)
 					return "ERROR: [GLOB.janitorial_reject_type_to_speech[path]] detected in [area_name]!"
 			CHECK_TICK
 		CHECK_TICK
@@ -129,3 +130,55 @@ GLOBAL_LIST_EMPTY(janitorial_scanners)
 /obj/effect/bitrunner_exit_portal/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	SEND_SIGNAL(user, COMSIG_BITRUNNER_ALERT_SEVER)
+
+/obj/item/pinpointer/mess_finder
+	name = "mess finder"
+	desc = "A handheld tracking device that finds nearby messes to clean."
+	icon_state = "pinpointer_sniffer"
+	worn_icon_state = "pinpointer_black"
+	/// What's our unique identifier? Used to prevent two of the same domain being loaded breaking things.
+	var/unique_id = "we rollin' deep"
+
+/obj/item/pinpointer/mess_finder/scan_for_target()
+	if(target || !GLOB.sniffable_sheets.len)
+		return
+	var/atom/new_sheet_target
+	var/closest_distance = INFINITY
+	for(var/obj/machinery/janitorial_scanner/scanner as anything in GLOB.janitorial_scanners)
+		if(scanner.unique_id != unique_id)
+			continue
+		for(var/turf/floor in scanner.our_room)
+			if(!isopenturf(floor))
+				continue
+			for(var/atom/possible_disqualifier in floor)
+				if(GET_ATOM_BLOOD_DNA_LENGTH(possible_disqualifier))
+					var/distance_from_sniffer = get_dist(src, possible_disqualifier)
+					if(distance_from_sniffer < closest_distance)
+						closest_distance = distance_from_sniffer
+						new_sheet_target = possible_disqualifier
+				for(var/path in GLOB.janitorial_reject_type_to_speech)
+					if(istype(possible_disqualifier, path))
+						if(ishuman(possible_disqualifier))
+							var/mob/living/carbon/human/possible_body = possible_disqualifier
+							if(possible_body.stat != DEAD)
+								continue // skip it
+						var/distance_from_sniffer = get_dist(src, possible_disqualifier)
+						if(distance_from_sniffer < closest_distance)
+							closest_distance = distance_from_sniffer
+							new_sheet_target = possible_disqualifier
+				CHECK_TICK
+			CHECK_TICK
+	if(!new_sheet_target)
+		target = null
+		return
+	var/speech
+	if(GET_ATOM_BLOOD_DNA_LENGTH(new_sheet_target))
+		speech = "blood-stained"
+	if(!speech)
+		for(var/path in GLOB.janitorial_reject_type_to_speech)
+			if(istype(new_sheet_target, path))
+				speech = GLOB.janitorial_reject_type_to_speech[path]
+				break
+	say("Located [speech] [new_sheet_target]!")
+	target = new_sheet_target
+
