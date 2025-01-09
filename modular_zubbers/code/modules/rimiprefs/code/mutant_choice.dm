@@ -122,7 +122,7 @@
 			state = replacetext(state, "$layer", "BEHIND")
 			if (icon_exists(sprite_accessory.icon, state))
 				behind_icon_states_to_use[state] = color
-			color = "#[darken_color(darken_color(copytext(color, 2)))]"
+			color = darken_color(color)
 
 	for (var/layer in (sprite_accessory.relevent_layers - BODY_BEHIND_LAYER))
 		color = sanitize_hexcolor(greyscale_color)
@@ -131,7 +131,7 @@
 			state = replacetext(state, "$layer", explosive)
 			if (icon_exists(sprite_accessory.icon, state))
 				icon_states_to_use[state] = color
-			color = "#[darken_color(darken_color(copytext(color, 2)))]"
+			color = darken_color(color)
 
 	var/icon/base = icon('modular_zubbers/icons/customization/template.dmi', "blank_template", SOUTH, 1)
 	if (behind_icon_states_to_use.len || icon_states_to_use.len)

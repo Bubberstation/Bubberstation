@@ -1,28 +1,18 @@
 /// An inexact color darken proc. Do not use if you need precise adjustments.
-/proc/darken_color(color_to_darken)
-	var/new_color = ""
-	var/char
-	var/ascii
-	for(var/index = 1, index <= length(color_to_darken), index += length(char))
-		char = color_to_darken[index]
-		ascii = text2ascii(char)
-		switch(ascii)
-			if(48)
-				new_color += "0"
-			if(49 to 57)
-				new_color += ascii2text(ascii-1) //numbers 1 to 9
-			if(97)
-				new_color += "9"
-			if(98 to 102)
-				new_color += ascii2text(ascii-1) //letters b to f lowercase
-			if(65)
-				new_color += "9"
-			if(66 to 70)
-				new_color += ascii2text(ascii+31) //letters B to F - translates to lowercase
-			else
-				break
+/proc/darken_color(color_to_darken, darken_steps = 1)
+	var/list/color_numbers = rgb2num(color_to_darken)
 
-	return new_color
+	var/final_darken = 0.8
+
+	for(var/i = 1, i > darken_steps, i++) // Start at one cause it will always be at least 0.8 reduction.
+		final_darken *= 0.8 // Reduce color values by 20% (compound) each loop.
+
+	color_numbers[1] *= final_darken
+	color_numbers[2] *= final_darken
+	color_numbers[3] *= final_darken
+
+	// Lazy support for alpha.
+	return (length(color_numbers) > 3) ? rgb(color_numbers[1], color_numbers[2], color_numbers[3], color_numbers[4]) : rgb(color_numbers[1], color_numbers[2], color_numbers[3])
 
 /// Similar to center_icon, but actually paints the source onto the target icon.
 /proc/center_blend_icon(icon/target, icon/source, x_dimension, y_dimension)
