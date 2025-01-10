@@ -40,11 +40,11 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 /datum/mind/proc/update_opt_in()
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
 	if (!isnull(preference_instance))
-		ideal_opt_in_level = preference_instance.read_preference(/datum/preference/choiced/rr_opt_in_status)
+		ideal_rr = preference_instance.read_preference(/datum/preference/choiced/rr_opt_in_status)
 
 		for (var/antag_category in GLOB.rr_optin_forcing_on_spawn_antag_categories)
 			if (antag_category in preference_instance.be_special)
-				on_spawn_rr_opt_in_level = RR_OPT_LEVEL_ANTAG
+				round_removal_allowed = RR_OPT_LEVEL_ANTAG
 				break
 
 /// Sends a bold message to our holder, telling them if their optin setting has been set to a minimum due to their antag preferences.
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// Gets the actual opt-in level used for determining targets.
 /datum/mind/proc/get_effective_opt_in_level()
-	return max(ideal_opt_in_level, get_job_opt_in_level(), get_rr_opt_in_level())
+	return max(ideal_rr, get_job_opt_in_level(), get_rr_opt_in_level())
 
 /// Returns the opt in level of our job.
 /datum/mind/proc/get_job_opt_in_level()
@@ -68,8 +68,8 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns RR_OPT_LEVEL_ANTAG. RR_OPT_OUT otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
-	if (on_spawn_rr_opt_in_level == RR_OPT_OUT)
-		return on_spawn_rr_opt_in_level
+	if (round_removal_allowed == RR_OPT_OUT)
+		return round_removal_allowed
 
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
 	if (!isnull(preference_instance))
