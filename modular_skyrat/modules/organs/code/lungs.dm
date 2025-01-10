@@ -4,6 +4,7 @@
 	desc = "A set of lungs adapted to low temperatures, though they are more susceptible to high temperatures"
 	icon_state = "lungs_cold"
 	safe_oxygen_min = 7 // icebox/lavaland have lower pressure
+	safe_co2_max = 21
 	cold_level_1_threshold = 177.15
 	cold_level_2_threshold = 140.15
 	cold_level_3_threshold = 110.15
@@ -20,6 +21,7 @@
 	desc = "A set of lungs adapted to high temperatures, though they are more susceptible to low temperatures"
 	icon_state = "lungs_heat"
 	safe_oxygen_min = 7 // icebox/lavaland have lower pressure
+	safe_co2_max = 21
 	cold_level_1_threshold = 271.15
 	cold_level_2_threshold = 240.15
 	cold_level_3_threshold = 170.15
@@ -48,6 +50,7 @@
 	desc = "A set of lungs adapted to lower-pressure environments, though more susceptible to extreme temperatures."
 	icon_state = "lungs_toxin"
 	safe_oxygen_min = 4
+	safe_co2_max = 21
 	cold_level_2_threshold = 240.15
 	cold_level_3_threshold = 170.15
 	heat_level_2_threshold = 387.15
