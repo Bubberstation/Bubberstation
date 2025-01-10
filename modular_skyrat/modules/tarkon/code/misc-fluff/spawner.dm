@@ -28,6 +28,10 @@
 	id = /obj/item/card/id/advanced/tarkon
 	id_trim = /datum/id_trim/away/tarkon
 	ears = /obj/item/radio/headset/tarkon
+	var/backpack = /obj/item/storage/backpack/tarkon //bubber edit start
+	var/satchel = /obj/item/storage/backpack/satchel/tarkon
+	var/duffelbag = /obj/item/storage/backpack/duffelbag/tarkon
+	var/messenger = /obj/item/storage/backpack/messenger/tarkon
 
 /datum/outfit/tarkon/pre_equip(mob/living/carbon/human/tarkon, visuals_only = FALSE)
 	if(ispath(back, /obj/item/storage/backpack)) //we just steal this from the job outfit datum.
@@ -53,8 +57,6 @@
 			else
 				back = backpack //Department backpack
 
-	var/client/client = GLOB.directory[ckey(tarkon.mind?.key)]
-
 	if(isplasmaman(tarkon))
 		uniform = /obj/item/clothing/under/plasmaman
 		gloves = /obj/item/clothing/gloves/color/plasmaman
@@ -64,7 +66,7 @@
 	if(isvox(tarkon) || isvoxprimalis(tarkon))
 		r_hand = /obj/item/tank/internals/nitrogen/belt/full
 		mask = /obj/item/clothing/mask/breath/vox
-		internals_slot = ITEM_SLOT_HANDS
+		internals_slot = ITEM_SLOT_HANDS //bubber edit end
 
 /datum/outfit/tarkon/post_equip(mob/living/carbon/human/tarkon, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = tarkon.wear_id
