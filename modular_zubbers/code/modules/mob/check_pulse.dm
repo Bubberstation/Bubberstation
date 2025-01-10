@@ -1,13 +1,4 @@
-/mob/verb/check_pulse(atom/atomic as mob in view())
-	set name = "Check Pulse"
-	set category = "Object"
-
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(_check_pulse), atomic))
-
-
 /mob/proc/_check_pulse(mob/atomic)
-	if(client && !((atomic in view(client.view, src)) && client in orange(1, atomic)))
-		return FALSE
 	balloon_alert(client.mob, "checking pulse...")
 	if(do_after(client.mob, 4 SECONDS, atomic))
 		if(isliving(client.mob))
