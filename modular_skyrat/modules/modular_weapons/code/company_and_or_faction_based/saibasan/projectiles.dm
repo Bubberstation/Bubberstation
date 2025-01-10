@@ -12,7 +12,7 @@
 	damage = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_color = COLOR_SOFT_RED
-	wound_falloff_tile = 1
+	wound_falloff_tile = -1
 
 // Speedy sniper lasers for the big gun
 
@@ -29,7 +29,7 @@
 	speed = 0.4
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
-	wound_falloff_tile = 0.1
+	wound_falloff_tile = -0.1
 
 // Disabler machinegun for the big gun
 
@@ -45,7 +45,7 @@
 	stamina = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = COLOR_BRIGHT_BLUE
-	stamina_falloff_tile = 0.25
+	stamina_falloff_tile = -0.25
 
 // Plasma burst grenade for the big gun
 
@@ -94,7 +94,7 @@
 	weak_against_armour = TRUE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
-	damage_falloff_tile = 3
+	damage_falloff_tile = -3
 
 /obj/item/grenade/c980payload/plasma_grenade
 	shrapnel_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel
@@ -117,7 +117,7 @@
 	speed = 0.8
 	light_color = COLOR_SCIENCE_PINK
 	range = 9
-	damage_falloff_tile = 0.5
+	damage_falloff_tile = -0.5
 
 // Hellfire lasers for the little guy
 

@@ -16,8 +16,7 @@
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
-// SKYRAT EDIT START - JUKEBOX
-#define CHANNEL_JUKEBOX_START 1006
+// SKYRAT EDIT START
 #define CHANNEL_HEV 1005
 //SKYRAT EDIT CHANGE END
 
@@ -267,3 +266,14 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 #define SFX_PIG_OINK "pig_oink"
 #define SFX_VISOR_UP "visor_up"
 #define SFX_VISOR_DOWN "visor_down"
+#define SFX_SIZZLE "sizzle"
+#define SFX_GROWL "growl"
+#define SFX_POLAROID "polaroid"
+#define SFX_HALLUCINATION_TURN_AROUND "hallucination_turn_around"
+#define SFX_HALLUCINATION_I_SEE_YOU "hallucination_i_see_you"
+#define SFX_HALLUCINATION_OVER_HERE "hallucination_over_here"
+#define SFX_HALLUCINATION_I_M_HERE "hallucination_i_m_here"
+#define SFX_VOID_DEFLECT "void_deflect"
+#define SFX_LOW_HISS "low_hiss"
+
+#define SFX_INDUSTRIAL_SCAN "industrial_scan"

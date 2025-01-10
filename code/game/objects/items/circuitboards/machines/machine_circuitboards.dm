@@ -1475,6 +1475,16 @@
 		/datum/stock_part/scanning_module = 1,
 		/datum/stock_part/card_reader = 1)
 
+/obj/item/circuitboard/machine/mailsorter
+	name = "Mail Sorter"
+	greyscale_colors = CIRCUIT_COLOR_SUPPLY
+	build_path = /obj/machinery/mailsorter
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/datum/stock_part/matter_bin = 2,
+		/datum/stock_part/scanning_module = 1)
+	needs_anchored = TRUE
+
 //Tram
 /obj/item/circuitboard/machine/crossing_signal
 	name = "Crossing Signal"
@@ -1760,7 +1770,7 @@
 	build_path = /obj/machinery/power/manufacturing/lathe
 	req_components = list(
 		/obj/item/stack/sheet/iron = 5,
-		/datum/stock_part/servo = 1,
+		/datum/stock_part/matter_bin = 1,
 	)
 
 /obj/item/circuitboard/machine/manucrusher

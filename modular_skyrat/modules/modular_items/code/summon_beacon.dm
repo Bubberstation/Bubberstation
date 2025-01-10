@@ -150,4 +150,3 @@
 	)
 
 	area_string = "atmospherics"
-	supply_pod_stay = TRUE

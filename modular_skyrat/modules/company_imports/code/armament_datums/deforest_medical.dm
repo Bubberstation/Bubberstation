@@ -11,6 +11,11 @@
 	item_type = /obj/item/storage/medkit/civil_defense/stocked
 	cost = PAYCHECK_COMMAND * 2.5
 
+/datum/armament_entry/company_import/deforest/first_aid_kit/comfort
+	item_type = /obj/item/storage/medkit/civil_defense/comfort/stocked
+	cost = PAYCHECK_COMMAND * 4
+	// bubbah price, not adding it to other stuff because i dont want to mess with the changes... would make adjusting it harder, and that shit is overpriced rn
+
 /datum/armament_entry/company_import/deforest/first_aid_kit/frontier
 	item_type = /obj/item/storage/medkit/frontier/stocked
 	cost = PAYCHECK_COMMAND * 3.5

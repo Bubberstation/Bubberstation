@@ -107,7 +107,7 @@
 	suffix = "icemoon_surface_smoking_room.dmm"
 
 // above and below ground together
-/* SKYRAT EDIT REMOVAL - Mapping
+
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Ice-Ruin Mining Site"
 	id = "miningsite"
@@ -123,7 +123,7 @@
 	suffix = "icemoon_underground_mining_site.dmm"
 	has_ceiling = FALSE
 	unpickable = TRUE
-*/ // SKYRAT EDIT REMOVAL End
+
 // below ground only
 
 /datum/map_template/ruin/icemoon/underground
@@ -193,6 +193,12 @@
 	description = "This is where all of your paychecks went. Signed, the management."
 	suffix = "icemoon_underground_mailroom.dmm"
 
+/datum/map_template/ruin/icemoon/underground/biodome
+	name = "Ice-Ruin Syndicate Bio-Dome"
+	id = "biodome"
+	description = "Unchecked experimention gone awry."
+	suffix = "icemoon_underground_syndidome.dmm"
+
 /datum/map_template/ruin/icemoon/underground/frozen_comms
 	name = "Ice-Ruin Frozen Communicatons Outpost"
 	id = "frozen_comms"
@@ -204,6 +210,9 @@
 	id = "icemoon_comms_agent"
 	description = "Radio signals are being detected and the source is this completely innocent pile of snow."
 	suffix = "icemoon_underground_comms_agent.dmm"
+	//begin bubber edit
+	unpickable = TRUE
+	//end bubber edit
 
 /datum/map_template/ruin/icemoon/underground/syndie_lab
 	name = "Ice-Ruin Syndicate Lab"
