@@ -29,6 +29,43 @@
 	id_trim = /datum/id_trim/away/tarkon
 	ears = /obj/item/radio/headset/tarkon
 
+/datum/outfit/tarkon/pre_equip(mob/living/carbon/human/tarkon, visuals_only = FALSE)
+	if(ispath(back, /obj/item/storage/backpack)) //we just steal this from the job outfit datum.
+		switch(tarkon.backpack)
+			if(GBACKPACK)
+				back = /obj/item/storage/backpack //Grey backpack
+			if(GSATCHEL)
+				back = /obj/item/storage/backpack/satchel //Grey satchel
+			if(GDUFFELBAG)
+				back = /obj/item/storage/backpack/duffelbag //Grey Duffel bag
+			if(LSATCHEL)
+				back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
+			if(GMESSENGER)
+				back = /obj/item/storage/backpack/messenger //Grey messenger bag
+			if(DSATCHEL)
+				back = satchel //Department satchel
+			if(DMESSENGER)
+				back = messenger //Messenger Bags
+			if(DDUFFELBAG)
+				back = duffelbag //Department duffel bag
+			if(DMESSENGER)
+				back = messenger //Department messenger bag
+			else
+				back = backpack //Department backpack
+
+	var/client/client = GLOB.directory[ckey(tarkon.mind?.key)]
+
+	if(isplasmaman(tarkon))
+		uniform = /obj/item/clothing/under/plasmaman
+		gloves = /obj/item/clothing/gloves/color/plasmaman
+		head = /obj/item/clothing/head/helmet/space/plasmaman
+		r_hand = /obj/item/tank/internals/plasmaman/belt/full
+		internals_slot = ITEM_SLOT_HANDS
+	if(isvox(tarkon) || isvoxprimalis(tarkon))
+		r_hand = /obj/item/tank/internals/nitrogen/belt/full
+		mask = /obj/item/clothing/mask/breath/vox
+		internals_slot = ITEM_SLOT_HANDS
+
 /datum/outfit/tarkon/post_equip(mob/living/carbon/human/tarkon, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = tarkon.wear_id
 	if(istype(id_card))
