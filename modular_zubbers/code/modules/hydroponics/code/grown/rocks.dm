@@ -126,13 +126,14 @@
     distill_reagent = /datum/reagent/silicon
 
 /obj/item/stack/sheet/mineral/sandfruitcore
-    name = "sandfruit core"
-    desc = "A very fragile sandfruit core, literally composed of dozens of particles of sand... don't store in pockets."
-    icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
-    icon_state = "sandfruit"
-    merge_type = /obj/item/stack/sheet/mineral/sandfruitcore
-    max_amount = 10
-    custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
+	name = "sandfruit core"
+	desc = "A very fragile sandfruit core, literally composed of dozens of particles of sand... don't store in pockets."
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
+	singular_name = "sandfruit core"
+	icon_state = "sandfruit"
+	merge_type = /obj/item/stack/sheet/mineral/sandfruitcore
+	max_amount = 10
+	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Uranium - First on 'energy' line
 
@@ -164,6 +165,7 @@
 
 /obj/item/stack/sheet/mineral/uraniberrycore
 	name = "uraniberry core"
+	singular_name = "uraniberry core"
 	desc = "A very dense uraniberry core, don't store in pockets, unless you want extra limbs."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "uraniberry"
@@ -201,6 +203,7 @@
 
 /obj/item/stack/sheet/mineral/plasmaplumcore
 	name = "plasmaplum core"
+	singular_name = "plasmaplum core"
 	desc = "A very dense plasmaplum core, store in a cold, fire and spark free place."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "plasmaplum"
@@ -238,6 +241,7 @@
 
 /obj/item/stack/sheet/mineral/bluegemdrupecore
 	name = "bluegem drupe core"
+	singular_name = "bluegem drupe core"
 	desc = "A very dense bluegem drupe core, dropping may incur teleportation in rare cases."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bluegemdrupe"
@@ -275,6 +279,7 @@
 
 /obj/item/stack/sheet/mineral/agberginecore
 	name = "ag-bergine core"
+	singular_name = "ag-bergine core"
 	desc = "A dense agbergine core of solid, sterling silver."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "agbergine"
@@ -312,6 +317,7 @@
 
 /obj/item/stack/sheet/mineral/auberginecore
 	name = "au-bergine core"
+	singular_name = "au-bergine core"
 	desc = "A very dense au-bergine core, solid 24 karat goodness."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "aubergine"
@@ -349,6 +355,7 @@
 
 /obj/item/stack/sheet/mineral/dimantiscore
 	name = "dimantis core"
+	singular_name = "dimantis core"
 	desc = "A very dense dimantis core, the way to a woman's heart, it could probably get through her ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "dimantis"
@@ -386,6 +393,7 @@
 
 /obj/item/stack/sheet/mineral/ferrotubercore
 	name = "ferrotuber core"
+	singular_name = "ferrotuber core"
 	desc = "A dense ferrotuber core of solid iron, slightly magnetic."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "ferrotuber"
@@ -421,6 +429,7 @@
 
 /obj/item/stack/sheet/mineral/titanitubercore
 	name = "titanituber core"
+	singular_name = "titanituber core"
 	desc = "A very dense titanituber core, let's hope you didn't bite it!"
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "titanituber"
@@ -456,6 +465,7 @@
 
 /obj/item/stack/sheet/mineral/adamapplecore
 	name = "adam's apple core"
+	singular_name = "adam's apple core"
 	desc = "A dense adam's apple core of solid adamantine."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "adamapple"
@@ -491,6 +501,7 @@
 
 /obj/item/stack/sheet/mineral/runescoopercore
 	name = "runescooper core"
+	singular_name = "runescooper core"
 	desc = "A very dense runite core, a few more of these and you might be able to make a scimitar to defeat your foes..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "runescooper"
@@ -528,6 +539,7 @@
 
 /obj/item/stack/sheet/mineral/bananiumberrycore
 	name = "bananiumberry core"
+	singular_name = "bananiumberry core"
 	desc = "A very dense bananium core, the way to a clown's heart, it could probably get through their ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bananiumberry"
