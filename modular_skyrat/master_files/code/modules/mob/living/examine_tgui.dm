@@ -86,7 +86,7 @@
 
 	//Round Removal opt in stuff
 	if(CONFIG_GET(flag/use_rr_opt_in_preferences))
-		var/rr_prefs = holder.mind?.ideal_opt_in_level
+		var/rr_prefs = holder.mind?.ideal_rr
 		var/effective_opt_in_level = holder.mind?.get_effective_opt_in_level()
 		if(isnull(rr_prefs))
 			rr_prefs = preferences.read_preference(/datum/preference/choiced/rr_opt_in_status)

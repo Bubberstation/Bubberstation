@@ -62,10 +62,6 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 /datum/mind/proc/get_effective_opt_in_level()
 	return max(ideal_rr, get_job_opt_in_level(), get_rr_opt_in_level())
 
-/// Returns the opt in level of our job.
-/datum/mind/proc/get_job_opt_in_level()
-	return assigned_role?.minimum_opt_in_level || RR_OPT_OUT
-
 /// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns RR_OPT_LEVEL_ANTAG. RR_OPT_OUT otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
 	if (round_removal_allowed == RR_OPT_OUT)
