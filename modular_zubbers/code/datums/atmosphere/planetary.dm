@@ -17,7 +17,7 @@
 		/datum/gas/miasma = 1.2,
 		/datum/gas/water_vapor = 0.1,
 	)
-	restricted_chance = 0
+	restricted_chance = 0 // BUBBER EDIT: Find out why SR changed this from 30 to 0, possibly revert
 
 /datum/atmosphere/icemoon
 	id = ICEMOON_DEFAULT_ATMOS
@@ -36,5 +36,4 @@
 		/datum/gas/water_vapor = 0.1,
 		/datum/gas/miasma = 1.2,
 	)
-	restricted_chance = 0
-
+	restricted_chance = 0 // BUBBER EDIT: Find out why SR changed this from 20 to 0, possibly revert
