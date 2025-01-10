@@ -3,8 +3,8 @@
 
 /// Assoc list of stringified opt_in_## define to the front-end string to show users as a representation of the setting.
 GLOBAL_LIST_INIT(rr_opt_in_strings, list(
-	"1" = RR_OPT_IN_STRING,
-	"0" = RR_OPT_OUT_STRING,
+	TRUE = RR_OPT_IN_STRING,
+	FALSE = RR_OPT_OUT_STRING,
 ))
 
 /// Assoc list of stringified opt_in_## define to the color associated with it.
@@ -18,10 +18,10 @@ GLOBAL_LIST_INIT(rr_opt_in_colors, list(
 //command + sec roles are always opted in regardless of opt in status
 
 /// Round removal opt-in define
-#define RR_OPT_IN 1
+#define RR_OPT_IN TRUE
 
 /// Prefers not to round removed. Will still be a potential target if playing sec or command.
-#define RR_OPT_OUT 0
+#define RR_OPT_OUT FALSE
 
 /// The minimum opt-in level for people playing sec.
 #define RR_OPT_LEVEL_SECURITY RR_OPT_OUT

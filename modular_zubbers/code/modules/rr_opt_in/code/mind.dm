@@ -27,9 +27,9 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /datum/mind
 	/// The optin level set by preferences.
-	var/ideal_opt_in_level = RR_OPT_LEVEL_DEFAULT
+	var/ideal_rr = RR_OPT_LEVEL_DEFAULT
 	/// Set on mind transfer. Set by on-spawn antags (e.g. if you have traitor on and spawn, this will be set to RR_OPT_LEVEL_ANTAG and cannot change)
-	var/on_spawn_rr_opt_in_level = RR_OPT_OUT
+	var/round_removal_allowed = FALSE
 
 /datum/mind/transfer_to(mob/new_character, force_key_move)
 	. = ..()
@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns RR_OPT_LEVEL_ANTAG. RR_OPT_OUT otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
-	if (on_spawn_rr_opt_in_level > RR_OPT_OUT)
+	if (on_spawn_rr_opt_in_level == RR_OPT_OUT)
 		return on_spawn_rr_opt_in_level
 
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
