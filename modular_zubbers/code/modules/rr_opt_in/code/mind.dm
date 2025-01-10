@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// Gets the actual opt-in level used for determining targets.
 /datum/mind/proc/get_effective_opt_in_level()
-	return max(ideal_rr, get_job_opt_in_level(), get_rr_opt_in_level())
+	return max(ideal_rr, get_rr_opt_in_level())
 
 /// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns RR_OPT_LEVEL_ANTAG. RR_OPT_OUT otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
