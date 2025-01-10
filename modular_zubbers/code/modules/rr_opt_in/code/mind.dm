@@ -12,7 +12,6 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	ROLE_CHANGELING,
 	ROLE_CULTIST,
 	ROLE_HERETIC,
-	ROLE_MALF,
 	ROLE_OPERATIVE,
 	ROLE_TRAITOR,
 	ROLE_WIZARD,
