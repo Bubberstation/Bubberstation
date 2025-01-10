@@ -54982,9 +54982,13 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/security/range)
 "pdE" = (
-/obj/structure/sign/warning/cold_temp/directional/north,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/station/ai_monitored/turret_protected/aisat_interior)
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "AI Core shutters";
+	name = "AI Core Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/ai_monitored/turret_protected/ai)
 "pdG" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -248643,9 +248647,9 @@ rPu
 kTm
 nSC
 nSC
-uUJ
-uUJ
 pdE
+pdE
+mYk
 tpx
 lZT
 wte
@@ -249671,8 +249675,8 @@ qns
 cfB
 emg
 dbk
-uUJ
-uUJ
+pdE
+pdE
 mYk
 soJ
 ykM
