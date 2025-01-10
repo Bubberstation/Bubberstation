@@ -4292,6 +4292,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/any/service/library,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/station/common/pool/sauna)
 "bfV" = (
@@ -29130,13 +29131,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "hYM" = (
-/obj/machinery/turretid{
-	name = "AI Chamber turret control";
-	pixel_y = 30;
-	control_area = "/area/station/ai_monitored/turret_protected/ai"
-	},
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/station/ai_monitored/turret_protected/aisat_interior)
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/fans/tiny,
+/turf/open/floor/iron/dark/corner,
+/area/station/common/pool)
 "hYS" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
@@ -55862,6 +55862,14 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
+/obj/item/reagent_containers/cup/bucket/wooden{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/mineral/wood{
+	amount = 5;
+	pixel_x = 5
+	},
 /turf/open/floor/wood/tile,
 /area/station/common/pool/sauna)
 "pqK" = (
@@ -238938,7 +238946,7 @@ tis
 tis
 xTd
 wTv
-xLH
+hYM
 lRS
 qWH
 xrF
@@ -249665,7 +249673,7 @@ emg
 dbk
 uUJ
 uUJ
-hYM
+mYk
 soJ
 ykM
 wte
