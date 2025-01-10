@@ -59,6 +59,7 @@
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
 					/obj/item/clothing/head/helmet/sec/redsec = 6,
 					/obj/item/clothing/head/beret/sec = 6,
+					/obj/item/clothing/head/security_kepi = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/beaniesec = 6,
