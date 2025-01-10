@@ -24,6 +24,12 @@
 	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
 	icon_state = "noselick"
 
+/datum/sprite_accessory/facial_hair/fullstub
+	name = "Full Stub"
+	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
+	icon_state = "facial_fullstub_s"
+	natural_spawn = FALSE //Only works with the full face snout.
+
 /datum/sprite_accessory/hair/twistedlong
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Twisted Long"
@@ -55,3 +61,8 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Ponytails (Berly)"
 	icon_state = "hair_tails_berly"
+
+/datum/sprite_accessory/hair/edgerunner
+    icon = 'modular_zubbers/icons/customization/hair_big.dmi'
+    name = "Edgerunner"
+    icon_state = "edgerunner"

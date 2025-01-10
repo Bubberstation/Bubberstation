@@ -1,6 +1,6 @@
 /obj/item/clothing/under/colonial/nri_police
 	name = "imperial police outfit"
-	desc = "Fancy blue durathread shirt and a pair of cotton-blend pants with a black synthleather belt. A time-tested design first employed by the NRI police's \
+	desc = "Fancy blue durathread shirt and a pair of cotton-blend pants with a black synthleather belt. A time-tested design first employed by the Commonwealth police's \
 	precursor organisation, Rim-world Colonial Militia, now utilised by them as a tribute."
 	icon_state = "under_police"
 	armor_type = /datum/armor/clothing_under/rank_security
@@ -11,7 +11,7 @@
 
 /obj/item/clothing/neck/cloak/colonial/nri_police
 	name = "imperial police cloak"
-	desc = "A cloak made from heavy tarpaulin. Nigh wind- and waterproof thanks to its design. The signature white rectangle of the NRI police covers the garment's back."
+	desc = "A cloak made from heavy tarpaulin. Nigh wind- and waterproof thanks to its design. The signature white rectangle of the Commonwealth police covers the garment's back."
 	icon_state = "cloak_police"
 
 // Just some extra police equipment
@@ -26,7 +26,7 @@
 /obj/item/clothing/head/hats/colonial/nri_police
 	name = "imperial police cap"
 	desc = "A puffy cap made out of tarpaulin covered by some textile. It is sturdy and comfortable, and seems to retain its form very well. <br>\
-		Silver NRI police insignia is woven right above its visor."
+		Silver Commonwealth police insignia is woven right above its visor."
 	icon_state = "cap_police"
 	armor_type = /datum/armor/cosmetic_sec
 
