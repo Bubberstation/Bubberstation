@@ -96,6 +96,7 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
+	new /obj/item/clothing/head/hos_kepi(src)
 //BUBBER ADDITION END
 
 /obj/item/storage/bag/garment/warden/PopulateContents()

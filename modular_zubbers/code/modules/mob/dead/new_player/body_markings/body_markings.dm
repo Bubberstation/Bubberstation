@@ -4,7 +4,7 @@
 */
 
 /datum/body_marking/bubber
-	icon = 'modular_zubbers/icons/mob/body_markings/markings.dmi'
+	icon = 'modular_zubbers/icons/customization/body_markings/markings.dmi'
 	default_color = "#000000"
 	recommended_species = null
 
@@ -57,6 +57,12 @@
 /datum/body_marking/bubber/clownlips
 	name = "Clown Lips"
 	icon_state = "clownlips"
+	affected_bodyparts = HEAD
+	gendered = FALSE
+
+/datum/body_marking/bubber/cyclopssclera
+	name = "Cyclops Sclera"
+	icon_state = "cyclopssclera"
 	affected_bodyparts = HEAD
 	gendered = FALSE
 
@@ -144,3 +150,10 @@
 	icon_state = "talon"
 	affected_bodyparts = LEG_LEFT | LEG_RIGHT
 */
+
+/datum/body_marking/bubber/cleavage
+	icon_state = "cleavage"
+	name = "Cleavage"
+	default_color = "#ffffff"
+	affected_bodyparts = CHEST
+	gendered = FALSE
