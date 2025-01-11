@@ -46,3 +46,24 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/techweb_node/alien_engi
+	required_items_to_unlock = list(
+		/obj/item/abductor,
+		/obj/item/cautery/alien,
+		/obj/item/circuitboard/machine/abductor,
+		/obj/item/circular_saw/alien,
+		/obj/item/crowbar/abductor,
+		/obj/item/gun/energy/alien,
+		/obj/item/gun/energy/shrink_ray,
+		/obj/item/hemostat/alien,
+		/obj/item/melee/baton/abductor,
+		/obj/item/multitool/abductor,
+		/obj/item/retractor/alien,
+		/obj/item/scalpel/alien,
+		/obj/item/screwdriver/abductor,
+		/obj/item/surgicaldrill/alien,
+		/obj/item/weldingtool/abductor,
+		/obj/item/wirecutters/abductor,
+		/obj/item/wrench/abductor,
+	)
