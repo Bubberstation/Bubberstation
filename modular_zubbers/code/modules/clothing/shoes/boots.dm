@@ -266,3 +266,15 @@
 	if (!owner.dropItemToGround(src))
 		return FALSE
 	return TRUE
+
+/obj/item/clothing/shoes/horseshoe
+	name = "horseshoes"
+	desc = "A pair of horseshoes made out of chains."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
+	icon_state = "horseshoe"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+	body_parts_covered = parent_type::body_parts_covered | LEGS
+	resistance_flags = FIRE_PROOF
+	can_be_tied = FALSE
