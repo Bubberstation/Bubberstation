@@ -62,11 +62,9 @@
 		gloves = /obj/item/clothing/gloves/color/plasmaman
 		head = /obj/item/clothing/head/helmet/space/plasmaman
 		r_hand = /obj/item/tank/internals/plasmaman/belt/full
-		internals_slot = ITEM_SLOT_HANDS
 	if(isvox(tarkon) || isvoxprimalis(tarkon))
 		r_hand = /obj/item/tank/internals/nitrogen/belt/full
-		mask = /obj/item/clothing/mask/breath/vox
-		internals_slot = ITEM_SLOT_HANDS //bubber edit end
+		mask = /obj/item/clothing/mask/breath/vox //bubber edit end
 
 /datum/outfit/tarkon/post_equip(mob/living/carbon/human/tarkon, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = tarkon.wear_id
