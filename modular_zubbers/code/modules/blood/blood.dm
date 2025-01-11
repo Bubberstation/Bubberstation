@@ -12,7 +12,6 @@
 
 /obj/effect/decal/cleanable/blood/proc/blood_check()
 	SIGNAL_HANDLER
-	message_admins("entered blood")
 	for(var/mob/living/carbon/human/entered_mob in loc)
 		if(entered_mob.is_bleeding())
 			blood_effect()
@@ -32,7 +31,7 @@
 				flags = OUTLINE_SHARP,
 			)
 	)
-
+	poolsize++
 	if(!length(filters))
 		filters = filters_adding
 	animate(
@@ -42,5 +41,4 @@
 	)
 	for(var/mob/living/carbon/human/entered_mob in loc)
 		if(!addtimer(CALLBACK(src, PROC_REF(blood_check)), 1 SECONDS, TIMER_UNIQUE))
-			world << "looping!"
 			break
