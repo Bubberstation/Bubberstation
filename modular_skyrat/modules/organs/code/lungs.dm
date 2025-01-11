@@ -4,6 +4,7 @@
 	name = "debug-adaptive lungs"
 	desc = "if you have these, or see these, someone fucked up"
 	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
+	icon_state = "lungs_cold"
 	safe_oxygen_min = 7
 	safe_co2_max = 14
 	/// The type of air mix (hot/cold) that we are tuned for
