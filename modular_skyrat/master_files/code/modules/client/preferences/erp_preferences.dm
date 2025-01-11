@@ -56,7 +56,7 @@
 /datum/preference/toggle/erp/apply_to_client_updated(client/client, value)
 	. = ..()
 	var/mob/living/carbon/human/target = client?.mob
-	if(!value && istype(target))
+	if(!value && istype(target) && (src.type == /datum/preference/toggle/erp)) // SPLURT EDIT - make only the erp preference reset arousal, pain, and pleasure
 		target.arousal = 0
 		target.pain = 0
 		target.pleasure = 0
