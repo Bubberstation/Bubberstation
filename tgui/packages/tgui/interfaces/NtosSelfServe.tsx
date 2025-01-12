@@ -68,24 +68,36 @@ const SelfServePage = (props) => {
       <Section title="Employee Self Serve">
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
-            {authCardHOPLocked ? (
-              <NoticeBox>
-                This card is locked from changing duty status, please visit the
-                HoP window to clock in/out.
-              </NoticeBox>
-            ) : (
-              <Button
-                width="100%"
-                disabled={authCardTimeLocked}
-                onClick={() => act('PRG_change_status')}
-              >
-                <center>
-                  {trimClockedOut
-                    ? 'Return to Job Assignment'
-                    : 'Clock Out from Job Assignment'}
-                </center>
-              </Button>
-            )}
+            <Stack>
+              <Stack.Item>
+              {authCardHOPLocked ? (
+                <NoticeBox>
+                  This card is locked from changing duty status, please visit the
+                  HoP window to clock in/out.
+                </NoticeBox>
+              ) : (
+                <Button
+                  width="100%"
+                  disabled={authCardTimeLocked}
+                  onClick={() => act('PRG_change_status')}
+                >
+                  <center>
+                    {trimClockedOut
+                      ? 'Return to Job Assignment'
+                      : 'Clock Out from Job Assignment'}
+                  </center>
+                </Button>
+              )}
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  right="0px"
+                  width="100%"
+                  icon='eject'
+                  onClick={() => act('PRG_eject_id')}
+                  />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
           {!trimClockedOut ? (
             <Stack.Item width="100%" mt={1} ml={0}>

@@ -30,7 +30,7 @@
 	else
 		authenticated_card = id_card
 		authenticated_user = "[authenticated_card.name]"
-	return TRUE
+		return TRUE
 
 /datum/computer_file/program/crew_self_serve/on_start(mob/living/user)
 	. = ..()
@@ -164,6 +164,21 @@
 
 	return TRUE
 
+///Ejects the ID stored inside of the parent machine, if there is one.
+/datum/computer_file/program/crew_self_serve/proc/eject_inserted_id(mob/recepient)
+	if(!authenticated_card || !recepient)
+		return FALSE
+
+	authenticated_card.forceMove(computer.loc)
+	recepient.put_in_hands(authenticated_card)
+
+	authenticated_card = FALSE
+	computer.update_appearance()
+	computer.update_static_data_for_all_viewers()
+	playsound(computer, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+
+	return TRUE
+
 /datum/computer_file/program/crew_self_serve/kill_program(mob/user)
 	computer.crew_manifest_update = FALSE
 	if(!isnull(authenticated_card))
@@ -192,7 +207,7 @@
 			else
 				if (!authenticated_card)
 					return;
-				
+
 				log_admin("[key_name(usr)] clocked out as \an [authenticated_card.assignment].")
 				clock_out()
 				var/mob/living/carbon/human/human_user = usr
@@ -207,9 +222,13 @@
 				if(job_is_CMD_or_SEC())
 					message_admins("[key_name(usr)] has clocked out as a [authenticated_card.assignment]. [ADMIN_JMP(authenticated_card)]")
 
-			computer.update_static_data_for_all_viewers()
-			playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
+				computer.update_static_data_for_all_viewers()
+				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
 			return TRUE
+		if("PRG_eject_id")
+			eject_inserted_id(usr)
+			return TRUE
+
 
 /datum/computer_file/program/crew_self_serve/ui_data(mob/user)
 	var/list/data = list()
