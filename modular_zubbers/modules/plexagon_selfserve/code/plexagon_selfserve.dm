@@ -177,7 +177,10 @@
 	authenticate(computer.computer_id_slot)
 	switch(action)
 		if("PRG_change_status")
-			if(off_duty_check() && authenticated_card)
+			if(off_duty_check())
+				if (!authenticated_card)
+					return;
+
 				if(!(clock_in()))
 					return
 				log_admin("[key_name(usr)] clocked in as \an [authenticated_card.assignment].")
@@ -186,7 +189,10 @@
 				if(user_mind)
 					user_mind.clocked_out_of_job = FALSE
 
-			else if (authenticated_card)
+			else if
+				if (!authenticated_card)
+					return;
+				
 				log_admin("[key_name(usr)] clocked out as \an [authenticated_card.assignment].")
 				clock_out()
 				var/mob/living/carbon/human/human_user = usr
