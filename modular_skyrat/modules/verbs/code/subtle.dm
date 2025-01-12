@@ -55,7 +55,7 @@
 
 	for(var/mob/ghost as anything in GLOB.dead_mob_list)
 		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers))
-			ghost.show_message(subtle_message)
+			to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [subtle_message]")
 
 	for(var/mob/receiver in viewers)
 		receiver.show_message(subtle_message, alt_msg = subtle_message)
