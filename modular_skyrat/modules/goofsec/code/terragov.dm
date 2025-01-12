@@ -312,9 +312,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/modular_computer/pda/request_911
 	name = "Terragov PDA"
 	desc = "A small experimental microcomputer, up to Terragov 911 Responder standards."
-	greyscale_config = null
-	greyscale_colors = null
-	icon_state = "pda-library"
+	greyscale_config = /datum/greyscale_config/tablet/captain
+	greyscale_colors = "#EAEAEA#66CCFF#FFCC00#5F5F5F"
 	max_capacity = parent_type::max_capacity * 2
 	inserted_item = /obj/item/pen/fountain
 	long_ranged = TRUE
@@ -323,6 +322,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/police
 	name = "Terragov Marshal PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#CC5075"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
@@ -330,6 +330,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/atmos
 	name = "Terragov Atmospherics PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7DDEFF"
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/alarm_monitor,
@@ -338,9 +339,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/emt
 	name = "Terragov Medical PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7284D4"
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 		/datum/computer_file/program/radar/lifeline,
+		/datum/computer_file/program/supermatter_monitor,
 	)
 
 /*
