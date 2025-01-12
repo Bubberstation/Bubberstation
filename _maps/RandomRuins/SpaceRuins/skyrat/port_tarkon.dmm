@@ -2832,6 +2832,10 @@
 /obj/machinery/rnd/production/colony_lathe,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/power1)
+"ti" = (
+/obj/machinery/icecream_vat,
+/turf/open/floor/iron/freezer,
+/area/ruin/space/has_grav/port_tarkon/kitchen)
 "tj" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -3358,6 +3362,8 @@
 	},
 /obj/machinery/firealarm/directional/north,
 /obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "xe" = (
@@ -3631,6 +3637,7 @@
 /area/ruin/space/has_grav/port_tarkon/kitchen)
 "yZ" = (
 /obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "za" = (
@@ -4792,7 +4799,10 @@
 "HB" = (
 /obj/machinery/door/window/left/directional/west,
 /obj/machinery/door/window/right/directional/east,
-/obj/machinery/mineral/ore_redemption/offstation,
+/obj/machinery/mineral/ore_redemption/offstation{
+	input_dir = 4;
+	output_dir = 8
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "HC" = (
@@ -5779,7 +5789,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/computer,
+/obj/machinery/modular_computer/preset/research/away,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "NS" = (
@@ -6899,6 +6909,7 @@
 /obj/structure/noticeboard/directional/north,
 /obj/item/paper/fluff/ruins/oldstation/generator_manual,
 /obj/item/paper/fluff/ruins/tarkon,
+/obj/structure/tank_dispenser,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "Vv" = (
@@ -11117,7 +11128,7 @@ tT
 tT
 iG
 hG
-VZ
+ti
 VZ
 pP
 hG
