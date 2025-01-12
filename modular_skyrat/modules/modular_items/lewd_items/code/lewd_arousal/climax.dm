@@ -60,7 +60,7 @@
 				span_userlove("You orgasm, it feels great, but nothing comes out of your penis!"))
 
 		else if(is_wearing_condom())
-			var/obj/item/clothing/sextoy/condom/condom = vars[ORGAN_SLOT_PENIS] // bruh 💀⚰️💀⚰️💀⚰️💀⚰️💀
+			var/obj/item/clothing/sextoy/condom/condom = src.penis // bruh 💀⚰️💀⚰️💀⚰️💀⚰️💀
 			condom.condom_use()
 			visible_message(span_userlove("[src] shoots [self_their] load into the [condom], filling it up!"), \
 				span_userlove("You shoot your thick load into the [condom] and it catches it all!"))
