@@ -368,7 +368,7 @@
 // Midrange bag for paramedics, hypospray and more flexible item wise than surgical, but restricted to small items only
 /obj/item/storage/backpack/duffelbag/deforest_paramedic
 	name = "medical technician kit"
-	desc = "Compared to its sibling the first responder surgical kit, this variant is equipped with a hypospray hit for roving paramedics. Featuring rapid access pockets that are lightweight, it can however only hold smaller items."
+	desc = "A belt equippable kit with a suite of medical gear. Compared to its sibling the first responder surgical kit, this variant is equipped with a hypospray hit for roving paramedics."
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "technician"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -397,23 +397,18 @@
 		/obj/item/surgical_drapes = 1,
 		/obj/item/stack/medical/bone_gel = 1,
 		/obj/item/stack/medical/wound_recovery = 1,
-		/obj/item/stack/medical/wound_recovery/rapid_coagulant = 1,
-		/obj/item/stack/medical/mesh/advanced = 2,
-		/obj/item/stack/medical/suture/medicated = 2,
+		/obj/item/stack/medical/mesh/advanced = 1,
+		/obj/item/stack/medical/suture/medicated = 1,
 		/obj/item/stack/medical/gauze/sterilized = 1,
 		/obj/item/storage/pill_bottle/painkiller = 1,
-		/obj/item/hypospray/mkii/piercing/atropine = 1,
-		/obj/item/reagent_containers/cup/vial/small/libital = 1,
-		/obj/item/reagent_containers/cup/vial/small/lenturi = 1,
-		/obj/item/reagent_containers/cup/vial/small/seiver = 1,
-		/obj/item/healthanalyzer = 1,
+		/obj/item/storage/hypospraykit/paramedic = 1,
 	)
 	generate_items_inside(items_inside,src)
 
 /datum/storage/duffel/deforest_paramedic
-	max_specific_storage = WEIGHT_CLASS_SMALL
-	max_total_storage = 21 * WEIGHT_CLASS_SMALL
-	max_slots = 21
+	max_specific_storage = WEIGHT_CLASS_NORMAL
+	max_total_storage = 14 * WEIGHT_CLASS_NORMAL
+	max_slots = 14
 
 /datum/storage/duffel/deforest_paramedic/New()
 	. = ..()
@@ -459,8 +454,62 @@
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/storage/box/bandages,
 		/obj/item/bodybag,
 	))
+
+/datum/design/deforest_medical
+	name = "Satchel Medical Bag"
+	id = "satchel_medical"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_medkit
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/deforest_technician
+	name = "Medical Technician Bag"
+	id = "satchel_tech"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_paramedic
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/deforest_surgical
+	name = "First Responder Surgical Bag"
+	id = "satchel_surgical"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/storage/backpack/duffelbag/deforest_surgical
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/techweb_node/medbay_equip_adv/New()
+	design_ids += list(
+		"satchel_medical",
+		"satchel_tech",
+		"satchel_surgical",
+	)
+	return ..()
