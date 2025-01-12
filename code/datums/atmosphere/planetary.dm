@@ -9,7 +9,7 @@
 	normal_gases = list(
 		/datum/gas/oxygen=10,
 		/datum/gas/nitrogen=10,
-		/datum/gas/carbon_dioxide=7,
+		/datum/gas/carbon_dioxide=10,
 	)
 	restricted_gases = list(
 		/datum/gas/plasma=0.1,
