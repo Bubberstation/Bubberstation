@@ -37,9 +37,14 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	computer.crew_manifest_update = TRUE
 
-	if(!computer || !computer.computer_id_slot)
+	if(!computer)
+		to_chat(user, span_warning("Plexagon: Login failed, your computer is nonexistant!"))
+		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		return FALSE
+
+	computer.crew_manifest_update = TRUE
+	if (!computer.computer_id_slot)
 		to_chat(user, span_warning("Plexagon: Login failed, no ID card found!"))
 		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		return FALSE
