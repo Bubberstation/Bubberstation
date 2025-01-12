@@ -59,7 +59,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote',
+    selector: '.say, .emote, .subtle, .subtler', // BUBBER EDIT CHANGE - Add subtle/subtler
   },
   {
     type: MESSAGE_TYPE_RADIO,
