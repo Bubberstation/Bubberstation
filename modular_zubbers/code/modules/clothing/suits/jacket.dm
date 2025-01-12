@@ -129,15 +129,16 @@
 /obj/item/clothing/suit/jacket/tailcoat/syndicate/fake
 	armor_type = /datum/armor/none
 
-/obj/item/clothing/suit/wizrobe/magician //Not really a robe but it's MAGIC
+/obj/item/clothing/suit/jacket/tailcoat/magician //Not really a robe but it's MAGIC
 	name = "magician's tailcoat"
 	desc = "A magnificent, gold-lined tailcoat that seems to radiate power."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_wiz"
+	greyscale_config = null
+	greyscale_config_worn = null
 	inhand_icon_state = null
-	flags_inv = null
 
 /obj/item/clothing/suit/jacket/tailcoat/centcom
 	name = "Centcom tailcoat"
