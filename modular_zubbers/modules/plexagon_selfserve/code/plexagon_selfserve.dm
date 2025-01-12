@@ -141,6 +141,9 @@
 	if(!id_component)
 		return FALSE
 
+	if (id_component.on_cooldown)
+		return TRUE
+
 	if(id_component.hop_locked)
 		return TRUE
 
