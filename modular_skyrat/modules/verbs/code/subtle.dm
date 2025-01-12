@@ -62,7 +62,7 @@
 		// Optional sound notification
 		var/datum/preferences/prefs = receiver.client?.prefs
 		if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-			receiver.playsound_local(get_turf(receiver), 'sound/misc/bloop.ogg', 50)
+			receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
 	return TRUE
 
