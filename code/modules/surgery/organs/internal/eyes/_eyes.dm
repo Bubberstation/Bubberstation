@@ -50,7 +50,7 @@
 	/// indication that the eyes are undergoing some negative effect
 	var/damaged = FALSE
 	/// Native FOV that will be applied if a config is enabled
-	var/native_fov = NONE //NOVA EDIT CHANGE - ORIGINAL: var/native_fov = FOV_90_DEGREES
+	var/native_fov = NONE //SKYRAT EDIT CHANGE - ORIGINAL: var/native_fov = FOV_90_DEGREES
 	/// Scarring on this organ
 	var/scarring = NONE
 
@@ -125,7 +125,7 @@
 
 	organ_owner.update_tint()
 	organ_owner.update_sight()
-	is_emissive = FALSE // NOVA EDIT ADDITION
+	is_emissive = FALSE // SKYRAT EDIT ADDITION
 	UnregisterSignal(organ_owner, COMSIG_ATOM_BULLET_ACT)
 
 /obj/item/organ/internal/eyes/proc/on_bullet_act(datum/source, obj/projectile/proj, def_zone)

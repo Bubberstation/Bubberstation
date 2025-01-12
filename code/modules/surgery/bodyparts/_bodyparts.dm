@@ -994,7 +994,7 @@
 		markings_alpha = owner_species.markings_alpha
 	else
 		markings = list()
-	// NOVA EDIT END
+	// SKYRAT EDIT END
 	recolor_bodypart_overlays()
 	return TRUE
 

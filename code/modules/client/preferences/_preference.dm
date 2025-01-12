@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	if ( \
 		!isnull(relevant_inherent_trait) \
-		|| !isnull(relevant_mutant_bodypart) /* NOVA EDIT ADDITION - Since we still use relevant_mutant_bodypart, we need it here. */ \
+		|| !isnull(relevant_mutant_bodypart) /* SKYRAT EDIT ADDITION - Since we still use relevant_mutant_bodypart, we need it here. */ \
 		|| !isnull(relevant_external_organ) \
 		|| !isnull(relevant_head_flag) \
 		|| !isnull(relevant_body_markings) \

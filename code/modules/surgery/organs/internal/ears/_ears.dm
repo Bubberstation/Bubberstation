@@ -155,7 +155,7 @@
 
 	preference = "feature_human_ears"
 
-	//dna_block = DNA_EARS_BLOCK // NOVA EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = DNA_EARS_BLOCK // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears
 
@@ -169,7 +169,7 @@
 	var/inner_layer = EXTERNAL_FRONT
 
 /datum/bodypart_overlay/mutant/cat_ears/get_global_feature_list()
-	return SSaccessories.sprite_accessories["ears"] // NOVA EDIT - Customization - ORIGINAL: return SSaccessories.ears_list
+	return SSaccessories.sprite_accessories["ears"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.ears_list
 
 /datum/bodypart_overlay/mutant/cat_ears/can_draw_on_bodypart(mob/living/carbon/human/human)
 	if((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR))
