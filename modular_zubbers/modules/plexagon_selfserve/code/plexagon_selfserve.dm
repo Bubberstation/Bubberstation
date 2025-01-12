@@ -189,7 +189,7 @@
 				if(user_mind)
 					user_mind.clocked_out_of_job = FALSE
 
-			else if
+			else
 				if (!authenticated_card)
 					return;
 				
