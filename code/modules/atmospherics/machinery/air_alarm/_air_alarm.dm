@@ -106,6 +106,10 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			tlv_collection[gas_path] = new /datum/tlv/oxygen
 		else if(ispath(gas_path, /datum/gas/carbon_dioxide))
 			tlv_collection[gas_path] = new /datum/tlv/carbon_dioxide
+		// BUBBER EDIT ADDITION BEGIN - Miasma Air Alarm Threshold
+		else if(ispath(gas_path, /datum/gas/miasma))
+			tlv_collection[gas_path] = new /datum/tlv/miasma
+		// BUBBER EDIT ADDITION END - Miasma Air Alarm Threshold
 		else if(cached_gas_info[gas_path][META_GAS_DANGER])
 			tlv_collection[gas_path] = new /datum/tlv/dangerous
 		else
