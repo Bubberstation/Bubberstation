@@ -23,8 +23,8 @@
  * * user - Program's user.
  * * auth_card - The ID card to attempt to authenticate under.
  */
-/datum/computer_file/program/crew_self_serve/proc/authenticate(mob/user, obj/item/card/id/id_card)
-	if(isnull(id_card))
+/datum/computer_file/program/crew_self_serve/proc/authenticate(obj/item/card/id/id_card)
+	if(!id_card)
 		authenticated_card = null
 		authenticated_user = null
 		return FALSE
@@ -43,7 +43,7 @@
 		to_chat(user, span_warning("Plexagon: Login failed, no ID card found!"))
 		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		return FALSE
-	else if(authenticate(user, computer.computer_id_slot))
+	else if(authenticate(computer.computer_id_slot))
 		return TRUE
 	else
 		return FALSE
