@@ -1,9 +1,9 @@
 /datum/computer_file/program/crew_self_serve
-	filename = "plexagonselfserve"
-	filedesc = "Plexagon Crew Self Serve"
+	filename = "plexagoncrewlogin"
+	filedesc = "Plexagon Punch Clock"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "generic"
-	extended_desc = "Lets crew manage their own HR, giving the impression they have a semblance of control over their employment."
+	extended_desc = "Allows crew members to remotely clock in or clock out to their jobs."
 	program_flags = PROGRAM_ON_NTNET_STORE
 	size = 4
 	tgui_id = "NtosSelfServe"
