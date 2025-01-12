@@ -23,23 +23,23 @@
 	slot = AUGMENT_SLOT_LUNGS
 
 /datum/augment_item/organ/lungs/hot
-	name = "Lungs Adapted to Heat"
+	name = "Heat-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
-	path = /obj/item/organ/internal/lungs/hot
+	path = /obj/item/organ/internal/lungs/adaptive/hot
 	cost = 1
 
 /datum/augment_item/organ/lungs/cold
 	name = "Cold-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
-	path = /obj/item/organ/internal/lungs/cold
+	path = /obj/item/organ/internal/lungs/adaptive/cold
 	cost = 1
 /datum/augment_item/organ/lungs/toxin
-	name = "Lungs Adapted to Toxins"
+	name = "Toxins-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/internal/lungs/toxin
 	cost = 1
 /datum/augment_item/organ/lungs/oxy
-	name = "Low-Pressure Adapted Lungs"
+	name = "Low Oxygen-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/internal/lungs/oxy
 	cost = 1

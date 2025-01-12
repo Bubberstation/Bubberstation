@@ -40,6 +40,19 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bunnysuit_worn.json'
 
+/datum/greyscale_config/custom_bunnysuit
+	name = "Tailormade Bunny Suit"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit.json'
+
+/datum/greyscale_config/custom_bunnysuit_worn
+	name = "Worn Tailormade Bunny Suit"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit_worn.json'
+
+/datum/greyscale_config/custom_bunnysuit_worn/digi
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+
 /datum/greyscale_config/tailcoat
 	name = "Tailcoat"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'

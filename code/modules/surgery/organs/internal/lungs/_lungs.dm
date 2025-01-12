@@ -466,7 +466,7 @@
 	if (HAS_TRAIT(breather, TRAIT_ANOSMIA)) //Anosmia quirk holder cannot smell miasma, but can get diseases from it.
 		return
 	switch(miasma_pp)
-		if(0.25 to 5)
+		if(1 to 5) // BUBBER EDIT CHANGE: Original: 0.25 to 5
 			// At lower pp, give out a little warning
 			breather.clear_mood_event("smell")
 			if(prob(5))
