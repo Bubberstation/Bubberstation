@@ -54,9 +54,10 @@
 		return FALSE
 
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
-	if(important_job_check())
+	if(job_is_CMD_or_SEC())
 		timer_component.hop_locked = TRUE
-		log_admin("[authenticated_card.registered_name] clocked out as a head of staff and/or command")
+		log_admin("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
+		message_admins("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
 
 	var/current_assignment = authenticated_card.assignment
 	var/datum/id_trim/job/current_trim = authenticated_card.trim
@@ -106,7 +107,7 @@
 	return TRUE
 
 /// Is the job of the inserted ID being worked by a job that in an important department? If so, this proc will return TRUE.
-/datum/computer_file/program/crew_self_serve/proc/important_job_check()
+/datum/computer_file/program/crew_self_serve/proc/job_is_CMD_or_SEC()
 	if(!authenticated_card)
 		return FALSE
 
@@ -190,8 +191,8 @@
 				if(user_mind)
 					user_mind.clocked_out_of_job = TRUE
 
-				if(important_job_check())
-					message_admins("[key_name(usr)] has clocked out as a head of staff. [ADMIN_JMP(authenticated_card)]")
+				if(job_is_CMD_or_SEC())
+					message_admins("[key_name(usr)] has clocked out as a [authenticated_card.assignment]. [ADMIN_JMP(authenticated_card)]")
 
 			computer.update_static_data_for_all_viewers()
 			playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
