@@ -622,3 +622,45 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_IGNORED_BY_LIVING_FLESH, BODYPART_TRAIT)
 	AddElement(/datum/element/living_limb_initialiser)
+
+///PRISONER
+/obj/item/bodypart/head/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+	head_flags = NONE
+	teeth_count = 0
+
+/obj/item/bodypart/chest/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+	wing_types = NONE
+
+/obj/item/bodypart/arm/left/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/arm/right/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/leg/left/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/leg/right/prisoner
+	icon = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	icon_static = 'icons/mob/human/species/prisoner/prisoner.dmi'
+	limb_id = SPECIES_PRISONER
+	should_draw_greyscale = FALSE

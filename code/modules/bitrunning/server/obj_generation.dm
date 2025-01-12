@@ -46,6 +46,9 @@
 		prefs.safe_transfer_prefs_to(avatar)
 	ADD_TRAIT(avatar, TRAIT_CANNOT_CRYSTALIZE, "Bitrunning") // Stops the funny ethereal bug
 	// BUBBER EDIT END
+	if(bitrunning_network == BITRUNNER_DOMAIN_SECURITY)
+		avatar.set_species(/datum/species/prisoner)
+		avatar.fully_replace_character_name(null, "Prisoner #[rand(1000,9999)]")
 	var/outfit_path = generated_domain.forced_outfit || netsuit
 	var/datum/outfit/to_wear = new outfit_path()
 
@@ -72,19 +75,19 @@
 	if(!generated_domain.forced_outfit)
 		for(var/obj/thing in avatar.held_items)
 			qdel(thing)
+	if(!bitrunning_network == BITRUNNER_DOMAIN_SECURITY)
+		var/obj/item/storage/backpack/bag = avatar.back
+		if(istype(bag))
+			QDEL_LIST(bag.contents)
 
-	var/obj/item/storage/backpack/bag = avatar.back
-	if(istype(bag))
-		QDEL_LIST(bag.contents)
+			bag.contents += list(
+				new /obj/item/storage/box/survival,
+				new /obj/item/storage/medkit/regular,
+				new /obj/item/flashlight,
+			)
 
-		bag.contents += list(
-			new /obj/item/storage/box/survival,
-			new /obj/item/storage/medkit/regular,
-			new /obj/item/flashlight,
-		)
-
-	if(load_loadout)
-		avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
+		if(load_loadout)
+			avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
 
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
