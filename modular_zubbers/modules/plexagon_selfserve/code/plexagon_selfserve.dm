@@ -25,10 +25,12 @@
  */
 /datum/computer_file/program/crew_self_serve/proc/authenticate(mob/user, obj/item/card/id/id_card)
 	if(isnull(id_card))
+		authenticated_card = null
+		authenticated_user = null
 		return FALSE
-
-	authenticated_card = id_card
-	authenticated_user = "[authenticated_card.name]"
+	else
+		authenticated_card = id_card
+		authenticated_user = "[authenticated_card.name]"
 	return TRUE
 
 /datum/computer_file/program/crew_self_serve/on_start(mob/living/user)
@@ -164,6 +166,7 @@
 /datum/computer_file/program/crew_self_serve/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 
+	authenticate(computer.computer_id_slot)
 	switch(action)
 		if("PRG_change_status")
 			if(off_duty_check())
