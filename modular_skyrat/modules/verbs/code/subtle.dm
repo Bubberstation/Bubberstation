@@ -41,7 +41,7 @@
 
 	var/space = should_have_space_before_emote(html_decode(subtle_emote)[1]) ? " " : ""
 
-	subtle_message = span_emote("<b>[user]</b>[space]<i>[user.say_emphasis(subtle_message)]</i>")
+	subtle_message = span_subtle("<b>[user]</b>[space]<i>[user.say_emphasis(subtle_message)]</i>")
 
 	var/list/viewers = get_hearers_in_view(SUBTLE_ONE_TILE, user)
 
@@ -60,9 +60,10 @@
 	for(var/mob/receiver in viewers)
 		receiver.show_message(subtle_message, alt_msg = subtle_message)
 		// Optional sound notification
-		var/datum/preferences/prefs = receiver.client?.prefs
-		if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-			receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+		if(!isobserver(receiver))
+			var/datum/preferences/prefs = receiver.client?.prefs
+			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
 	return TRUE
 
@@ -132,7 +133,7 @@
 
 	var/space = should_have_space_before_emote(html_decode(subtler_emote)[1]) ? " " : ""
 
-	subtler_message = span_emote("<b>[user]</b>[space]<i>[user.say_emphasis(subtler_message)]</i>")
+	subtler_message = span_subtler("<b>[user]</b>[space]<i>[user.say_emphasis(subtler_message)]</i>")
 
 	if(istype(target, /mob))
 		var/mob/target_mob = target
