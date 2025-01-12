@@ -1,5 +1,17 @@
 // RESEARCH NODES
 
+/datum/techweb_node/cyber/empathy_implant
+	id = TECHWEB_NODE_EMPATHY_IMPLANT
+	display_name = "Empathic Sensor Implant"
+	description = "The result of assuredly-ethical experiments conducted on those with special minds."
+	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"ci_empathic_sensor",
+	)
+	required_experiments = list(/datum/experiment/scanning/people/open_minds)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
+
 /datum/techweb_node/botanygene
 	id = TECHWEB_NODE_BOTANY_ADV
 	display_name = "Experimental Botanical Engineering"
