@@ -559,3 +559,21 @@
 	greyscale_colors = null
 	is_tied = TRUE
 	clip_on = TRUE
+
+//PRIDE SCARVES, SPRITES BY Cephalopod222 OF BUBBERSTATION
+/obj/item/clothing/neck/scarf/pride
+	name = "pride scarf"
+	desc = "testdesc"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "scarf_rainbow"
+	obj_flags = UNIQUE_RENAME | INFINITE_RESKIN
+    unique_reskin = list(
+        "Rainbow Scarf" = "scarf_rainbow",
+        "Bisexual Scarf" = "scarf_bi",
+        "Pansexual Scarf" = "scarf_pan",
+        "Asexual Scarf" = "scarf_ace",
+        "Gay Scarf" = "scarf_gay",
+        "Transgender Scarf" = "scarf_trans",
+        "Lesbian Scarf" = "scarf_lesbian",
+    )
