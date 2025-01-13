@@ -15,6 +15,21 @@
 	///What trim is applied to inserted IDs?
 	var/target_trim = /datum/id_trim/job/assistant
 
+/datum/computer_file/program/crew_self_serve/on_start(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!computer)
+		stack_trace("[src] is running on a null computer!")
+		return FALSE
+
+	computer.crew_manifest_update = TRUE
+	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(authenticate))
+	if(computer.computer_id_slot)
+		authenticate(id_card = computer.computer_id_slot)
+
+	return TRUE
 
 /**
  * Authenticates the program based on the specific ID card.
@@ -22,36 +37,16 @@
  * Arguments:
  * * auth_card - The ID card to attempt to authenticate under.
  */
-/datum/computer_file/program/crew_self_serve/proc/authenticate(obj/item/card/id/id_card)
+/datum/computer_file/program/crew_self_serve/proc/authenticate(source, obj/item/card/id/id_card)
+	SIGNAL_HANDLER
 	if(!id_card)
 		authenticated_card = null
 		authenticated_user = null
-		return FALSE
 	else
 		authenticated_card = id_card
 		authenticated_user = "[authenticated_card.name]"
-		return TRUE
 
-/datum/computer_file/program/crew_self_serve/on_start(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(!computer)
-		to_chat(user, span_warning("Plexagon: Login failed, your computer is nonexistant!"))
-		stack_trace("Plexagon Punch Clock is running on a null computer!")
-		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		return FALSE
-
-	computer.crew_manifest_update = TRUE
-	if (!computer.computer_id_slot)
-		to_chat(user, span_warning("Plexagon: Login failed, no ID card found!"))
-		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		return FALSE
-	else if(authenticate(computer.computer_id_slot))
-		return TRUE
-	else
-		return FALSE
+	computer.update_static_data_for_all_viewers()
 
 /// Clocks out the currently inserted ID Card
 /datum/computer_file/program/crew_self_serve/proc/clock_out()
@@ -132,12 +127,12 @@
 	if(!id_component)
 		return FALSE
 
-	if(!id_component.on_cooldown)
-		return FALSE
+	if(id_component.on_cooldown)
+		return TRUE
 
-	return TRUE
+	return FALSE
 
-/// Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
+/// Is the inserted ID locked from clocking in? returns TRUE if the ID is locked
 /datum/computer_file/program/crew_self_serve/proc/id_locked_check()
 	if(!authenticated_card)
 		return FALSE
@@ -145,9 +140,6 @@
 	var/datum/component/off_duty_timer/id_component = authenticated_card.GetComponent(/datum/component/off_duty_timer)
 	if(!id_component)
 		return FALSE
-
-	if (id_component.on_cooldown)
-		return TRUE
 
 	if(id_component.hop_locked)
 		return TRUE
@@ -165,21 +157,6 @@
 
 	return TRUE
 
-///Ejects the ID stored inside of the parent machine, if there is one.
-/datum/computer_file/program/crew_self_serve/proc/eject_inserted_id(mob/recepient)
-	if(!authenticated_card || !recepient)
-		return FALSE
-
-	authenticated_card.forceMove(computer.loc)
-	recepient.put_in_hands(authenticated_card)
-
-	authenticated_card = FALSE
-	computer.update_appearance()
-	computer.update_static_data_for_all_viewers()
-	playsound(computer, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
-
-	return TRUE
-
 /datum/computer_file/program/crew_self_serve/kill_program(mob/user)
 	computer.crew_manifest_update = FALSE
 	if(!isnull(authenticated_card))
@@ -189,26 +166,27 @@
 
 /datum/computer_file/program/crew_self_serve/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-
-	authenticate(computer.computer_id_slot)
 	switch(action)
 		if("PRG_change_status")
+			if(!authenticated_card)
+				return
+
 			if(off_duty_check())
-				if (!authenticated_card)
-					return;
+				if(!authenticated_card)
+					return
 
 				if(!(clock_in()))
 					return
-				log_admin("[key_name(usr)] clocked in as \an [authenticated_card.assignment].")
 
+				log_admin("[key_name(usr)] clocked in as \an [authenticated_card.assignment].")
 				var/datum/mind/user_mind = usr.mind
 				if(user_mind)
 					user_mind.clocked_out_of_job = FALSE
 
-			else
-				if (!authenticated_card)
-					return;
+				computer.update_static_data_for_all_viewers()
+				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
 
+			else
 				log_admin("[key_name(usr)] clocked out as \an [authenticated_card.assignment].")
 				clock_out()
 				var/mob/living/carbon/human/human_user = usr
@@ -225,15 +203,21 @@
 
 				computer.update_static_data_for_all_viewers()
 				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
-			return TRUE
-		if("PRG_eject_id")
-			eject_inserted_id(usr)
+
 			return TRUE
 
+		if("PRG_eject_id")
+			var/mob/living/carbon/human/human_user = usr
+			if(human_user)
+				computer.RemoveID(human_user, silent = TRUE)
+				authenticate(id_card = computer.computer_id_slot)
+
+			return TRUE
 
 /datum/computer_file/program/crew_self_serve/ui_data(mob/user)
 	var/list/data = list()
 	data["authCard"] = authenticated_card ? authenticated_card.name : "-----"
+	data["authCardHOPLocked"] = id_locked_check()
 	data["authCardTimeLocked"] = id_cooldown_check()
 
 	return data
@@ -254,9 +238,9 @@
 	else
 		data["authIDName"] = ""
 		data["authIDRank"] = ""
-		data["authCardHOPLocked"] = FALSE
 		data["trimClockedOut"] = FALSE
 		data["trimAssignment"] = ""
+
 	return data
 
 /// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.

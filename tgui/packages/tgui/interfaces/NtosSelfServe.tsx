@@ -37,6 +37,7 @@ export const NtosSelfServe = (props) => {
 const SelfServePage = (props) => {
   const { act, data } = useBackend<Data>();
   const {
+    authCard,
     authIDName,
     authIDRank,
     authCardHOPLocked,
@@ -65,57 +66,68 @@ const SelfServePage = (props) => {
         </Stack>
       </Section>
 
-      <Section title="Employee Self Serve">
+      <Section title="Punch Clock">
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             <Stack>
               <Stack.Item>
-              {authCardHOPLocked ? (
-                <NoticeBox>
-                  This card is locked from changing duty status, please visit the
-                  HoP window to clock in/out.
-                </NoticeBox>
-              ) : (
                 <Button
                   width="100%"
-                  disabled={authCardTimeLocked}
+                  disabled={
+                    authCardHOPLocked || authCardTimeLocked || !authIDName
+                  }
                   onClick={() => act('PRG_change_status')}
                 >
                   <center>
                     {trimClockedOut
                       ? 'Return to Job Assignment'
-                      : 'Clock Out from Job Assignment'}
+                      : 'Punch Out from Job Assignment'}
                   </center>
                 </Button>
-              )}
               </Stack.Item>
               <Stack.Item>
                 <Button
                   right="0px"
                   width="100%"
-                  icon='eject'
+                  icon="eject"
                   onClick={() => act('PRG_eject_id')}
-                  />
+                />
               </Stack.Item>
             </Stack>
           </Stack.Item>
           {!trimClockedOut ? (
             <Stack.Item width="100%" mt={1} ml={0}>
               <NoticeBox info>
-                While off-duty any restricted items will be transferred to a
-                crew equipment lockbox, to be returned upon clocking in.
+                Note: While off-duty, any restricted items will be transferred
+                to a crew equipment lockbox, to be returned upon punching in.
               </NoticeBox>
             </Stack.Item>
           ) : (
             ''
           )}
-          <Stack.Item width="100%" mt={1} ml={0}>
-            <NoticeBox info>
-              Please note that security and command cannot punch in through this
-              application, and must either use their dedicated console to
-              clock in or go through an appropriate Command member.
-            </NoticeBox>
-          </Stack.Item>
+          {authCardHOPLocked ? (
+            <Stack.Item width="100%" mt={1} ml={0}>
+              <NoticeBox danger>
+                Assignment Locked!
+                <br />
+                <br />
+                Security and Command members must visit an appropriate Command
+                member to punch in!
+              </NoticeBox>
+            </Stack.Item>
+          ) : authCardTimeLocked ? (
+            <Stack.Item width="100%" mt={1} ml={0}>
+              <NoticeBox>
+                It is too early to return to your assignment!
+                <br />
+                <br />
+                Please visit the HoP window or your departmental Command member
+                for an override.
+              </NoticeBox>
+            </Stack.Item>
+          ) : (
+            ''
+          )}
         </Stack>
       </Section>
     </Section>
