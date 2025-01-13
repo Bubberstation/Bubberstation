@@ -39,6 +39,7 @@
 
 	if(!computer)
 		to_chat(user, span_warning("Plexagon: Login failed, your computer is nonexistant!"))
+		stack_trace("Plexagon Punch Clock is running on a null computer!")
 		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		return FALSE
 
