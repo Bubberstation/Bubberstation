@@ -22,6 +22,12 @@
 	return TRUE
 
 /mob/dead/new_player/proc/connect_to_second_server()
+	var/population = TGS_CLIENT_COUNT
+	var/player_cap = CONFIG_GET(number/player_soft_cap)
+
+	if(player_cap && population <= player_cap)
+		return
+
 	var/choice = tgui_alert(src, "The server is currently experiencing high demand, please consider joining our secondary server.", "High Demand", list("Stay here", "Connect me!"))
 	if(!client)
 		return
