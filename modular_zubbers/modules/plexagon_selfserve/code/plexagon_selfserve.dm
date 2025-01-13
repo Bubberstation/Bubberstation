@@ -25,7 +25,8 @@
 		return FALSE
 
 	computer.crew_manifest_update = TRUE
-	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(authenticate))
+	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(id_changed))
+	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_REMOVED_ID, PROC_REF(id_changed))
 	if(computer.computer_id_slot)
 		authenticate(id_card = computer.computer_id_slot)
 
@@ -33,7 +34,12 @@
 
 /datum/computer_file/program/crew_self_serve/kill_program(mob/user)
 	UnregisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID)
+	UnregisterSignal(computer, COMSIG_MODULAR_COMPUTER_REMOVED_ID)
 	return ..()
+
+/datum/computer_file/program/crew_self_serve/proc/id_changed(source, obj/item/card/id/id_card, mob/user)
+	SIGNAL_HANDLER
+	authenticate(id_card = computer.computer_id_slot)
 
 /**
  * Authenticates the program based on the specific ID card.
@@ -42,7 +48,6 @@
  * * auth_card - The ID card to attempt to authenticate under.
  */
 /datum/computer_file/program/crew_self_serve/proc/authenticate(source, obj/item/card/id/id_card)
-	SIGNAL_HANDLER
 	if(!id_card)
 		authenticated_card = null
 		authenticated_user = null

@@ -22,7 +22,7 @@
 #define JOB_DISPLAY_ORDER_BLACKSMITH 48
 
 /// Time after clocking out before you can clock in again
-#define TIMECLOCK_COOLDOWN 15 MINUTES
+#define TIMECLOCK_COOLDOWN 5 MINUTES
 
 /// What items do we want to remove from the person clocking out?
 #define SELF_SERVE_RETURN_ITEMS list( \
