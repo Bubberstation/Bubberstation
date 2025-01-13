@@ -565,9 +565,10 @@
 	name = "pride scarf"
 	desc = "A Nanotrasen made nano-weave scarf to show off your favourite flavour of gay and keep you nice and warm! Congratulations!"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
-	icon_preview = null
+	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "scarf_rainbow"
+	icon_state_preview = "scarf_rainbow"
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null

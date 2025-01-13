@@ -22,3 +22,4 @@
 /datum/loadout_item/neck/scarf/pride
 	name = "Pride Scarf"
 	item_path = /obj/item/clothing/neck/scarf/pride
+	can_be_reskinned = TRUE
