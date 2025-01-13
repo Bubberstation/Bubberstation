@@ -60,6 +60,12 @@
 	affected_bodyparts = HEAD
 	gendered = FALSE
 
+/datum/body_marking/bubber/cyclopssclera
+	name = "Cyclops Sclera"
+	icon_state = "cyclopssclera"
+	affected_bodyparts = HEAD
+	gendered = FALSE
+
 /datum/body_marking/bubber/longsock
 	name = "Longsock"
 	icon_state = "longsock"

@@ -661,12 +661,13 @@
 			set_beam_range(new_range)
 			return TRUE
 		if("pick_color")
-			var/new_color = input(
+			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(
 				usr,
 				"Choose eye color color:",
 				"High Luminosity Eyes Menu",
 				light_color_string
-			) as color|null
+			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 			if(new_color)
 				var/to_update = params["to_update"]
 				set_beam_color(new_color, to_update)
