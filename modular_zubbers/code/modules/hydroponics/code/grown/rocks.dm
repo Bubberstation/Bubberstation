@@ -133,7 +133,7 @@
 	icon_state = "sandfruit"
 	merge_type = /obj/item/stack/sheet/mineral/sandfruitcore
 	max_amount = 10
-	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Uranium - First on 'energy' line
 
@@ -171,7 +171,7 @@
 	icon_state = "uraniberry"
 	merge_type = /obj/item/stack/sheet/mineral/uraniberrycore
 	max_amount = 10
-	custom_materials = list(/datum/material/uranium=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/uranium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Plasma - Second stage of 'energy' line.
 
@@ -209,7 +209,7 @@
 	icon_state = "plasmaplum"
 	merge_type = /obj/item/stack/sheet/mineral/plasmaplumcore
 	max_amount = 10
-	custom_materials = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Bluespace - ending of 'energy' line.
 
@@ -247,7 +247,7 @@
 	icon_state = "bluegemdrupe"
 	merge_type = /obj/item/stack/sheet/mineral/bluegemdrupecore
 	max_amount = 10
-	custom_materials = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Silver - Agbergine (Get it? AG, silver?!) - First on 'precious' line
 
@@ -285,7 +285,7 @@
 	icon_state = "agbergine"
 	merge_type = /obj/item/stack/sheet/mineral/agberginecore
 	max_amount = 10
-	custom_materials = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Gold - Au-bergine (Pretty sure you can work this one out) - Second stage of 'precious' line.
 
@@ -323,7 +323,7 @@
 	icon_state = "aubergine"
 	merge_type = /obj/item/stack/sheet/mineral/auberginecore
 	max_amount = 10
-	custom_materials = list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Dimantis - ending of 'precious' line.
 
@@ -361,7 +361,7 @@
 	icon_state = "dimantis"
 	merge_type = /obj/item/stack/sheet/mineral/dimantiscore
 	max_amount = 10
-	custom_materials = list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Iron - Ferrotubers - First on 'metal' line
 
@@ -399,7 +399,7 @@
 	icon_state = "ferrotuber"
 	merge_type = /obj/item/stack/sheet/mineral/ferrotubercore
 	max_amount = 10
-	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Titanium - titanituber - Second stage of 'metal' line.
 
@@ -435,7 +435,7 @@
 	icon_state = "titanituber"
 	merge_type = /obj/item/stack/sheet/mineral/titanitubercore
 	max_amount = 10
-	custom_materials = list(/datum/material/titanium=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/titanium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Adamantine - First on 'misc' line
 
@@ -471,7 +471,7 @@
 	icon_state = "adamapple"
 	merge_type = /obj/item/stack/sheet/mineral/adamapplecore
 	max_amount = 10
-	custom_materials = list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Runite - Second stage of 'misc' line.
 
@@ -507,7 +507,7 @@
 	icon_state = "runescooper"
 	merge_type = /obj/item/stack/sheet/mineral/runescoopercore
 	max_amount = 10
-	custom_materials = list(/datum/material/runite=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/runite=SHEET_MATERIAL_AMOUNT*0.2)
 
 //bananiumberry - ending of 'misc' line.
 
@@ -545,4 +545,4 @@
 	icon_state = "bananiumberry"
 	merge_type = /obj/item/stack/sheet/mineral/bananiumberrycore
 	max_amount = 10
-	custom_materials = list(/datum/material/bananium=SHEET_MATERIAL_AMOUNT*0.2)
+	mats_per_unit =list(/datum/material/bananium=SHEET_MATERIAL_AMOUNT*0.2)
