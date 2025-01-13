@@ -162,7 +162,7 @@
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/opening_blast,
 		/datum/heretic_knowledge/blade_upgrade/flesh/lock,
-		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/painting,
 	)

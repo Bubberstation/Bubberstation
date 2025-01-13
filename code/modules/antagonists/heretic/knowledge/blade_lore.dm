@@ -231,7 +231,7 @@
 		He was without rival, equal, or purpose."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/blade,
-		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/rune_carver,
 		/datum/heretic_knowledge/crucible,
 		/datum/heretic_knowledge/rifle,

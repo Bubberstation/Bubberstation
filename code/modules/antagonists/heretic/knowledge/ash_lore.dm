@@ -139,7 +139,7 @@
 	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/ash,
-		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/space_phase,
 		/datum/heretic_knowledge/curse/paralysis,
 	)
