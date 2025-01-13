@@ -95,7 +95,7 @@ const SelfServePage = (props) => {
             </Stack>
           </Stack.Item>
           {!trimClockedOut ? (
-            <Stack.Item width="100%" mt={1} ml={0}>
+            <Stack.Item width="100%" mt={2} ml={0}>
               <NoticeBox info>
                 Note: While off-duty, any restricted items will be transferred
                 to a crew equipment lockbox, to be returned upon punching in.
@@ -105,7 +105,7 @@ const SelfServePage = (props) => {
             ''
           )}
           {authCardHOPLocked ? (
-            <Stack.Item width="100%" mt={1} ml={0}>
+            <Stack.Item width="100%" mt={2} ml={0}>
               <NoticeBox danger>
                 Assignment Locked!
                 <br />
@@ -115,7 +115,7 @@ const SelfServePage = (props) => {
               </NoticeBox>
             </Stack.Item>
           ) : authCardTimeLocked ? (
-            <Stack.Item width="100%" mt={1} ml={0}>
+            <Stack.Item width="100%" mt={2} ml={0}>
               <NoticeBox>
                 It is too early to return to your assignment!
                 <br />

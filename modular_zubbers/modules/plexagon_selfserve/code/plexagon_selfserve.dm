@@ -31,6 +31,10 @@
 
 	return TRUE
 
+/datum/computer_file/program/crew_self_serve/kill_program(mob/user)
+	UnregisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID)
+	return ..()
+
 /**
  * Authenticates the program based on the specific ID card.
  *
