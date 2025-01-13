@@ -23,8 +23,8 @@
 	throw_range = 3
 	attack_verb_continuous = list("drills", "screws", "jabs", "whacks")
 	attack_verb_simple = list("drill", "screw", "jab", "whack")
-	hitsound = 'sound/items/drill_hit.ogg'
-	usesound = 'sound/items/drill_use.ogg'
+	hitsound = 'sound/items/tools/drill_hit.ogg'
+	usesound = 'sound/items/tools/drill_use.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 1
 	random_color = FALSE
@@ -83,22 +83,21 @@
 		if("Screwdriver")
 			tool_behaviour = TOOL_SCREWDRIVER
 			sharpness = SHARP_POINTY
-	playsound(src, 'sound/items/change_drill.ogg', 50, vary = TRUE)
+	playsound(src, 'sound/items/tools/change_drill.ogg', 50, vary = TRUE)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/screwdriver/omni_drill/proc/check_menu(mob/user)
 	if(!istype(user))
 		return FALSE
-	if(user.incapacitated() || !user.Adjacent(src))
+	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
-// Just a completely normal crowbar except its normal sized and can force doors like jaws of life can
+// Just a completely normal crowbar except its normal sized
 
 /obj/item/crowbar/large/doorforcer
 	name = "prybar"
-	desc = "A large, sturdy crowbar, painted orange. This one just happens to be tough enough to \
-		survive <b>forcing doors open</b>."
+	desc = "A large, sturdy crowbar, painted orange. Nothing special, or unique about it. Waste of money, honestly."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "prybar"
 	toolspeed = 1.3

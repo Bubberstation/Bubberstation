@@ -18,6 +18,7 @@
 	var/uses = 5
 	///climb time
 	var/climb_time = 2.5 SECONDS
+	var/climbsound = 'sound/effects/pickaxe/picaxe1.ogg' // BUBBER EDIT - Mothwings need this
 
 /obj/item/climbing_hook/examine(mob/user)
 	. = ..()
@@ -26,28 +27,47 @@
 	. += span_notice("Then, click solid ground adjacent to the hole above you.")
 	. += span_notice("The rope looks like you could use it [uses] times before it falls apart.")
 
-/obj/item/climbing_hook/afterattack(turf/open/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(target.z == user.z)
-		return
+/obj/item/climbing_hook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
+		return NONE
+	return ranged_interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/climbing_hook/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(interacting_with.z == user.z)
+		return NONE
+	var/turf/open/target = interacting_with
 	if(!istype(target) || isopenspaceturf(target))
-		return
-	
+		return ITEM_INTERACT_BLOCKING
+
 	var/turf/user_turf = get_turf(user)
 	var/turf/above = GET_TURF_ABOVE(user_turf)
 	if(target_blocked(target, above))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(!isopenspaceturf(above) || !above.Adjacent(target)) //are we below a hole, is the target blocked, is the target adjacent to our hole
 		balloon_alert(user, "blocked!")
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	var/away_dir = get_dir(above, target)
 	user.visible_message(span_notice("[user] begins climbing upwards with [src]."), span_notice("You get to work on properly hooking [src] and going upwards."))
-	playsound(target, 'sound/effects/picaxe1.ogg', 50) //plays twice so people above and below can hear
-	playsound(user_turf, 'sound/effects/picaxe1.ogg', 50)
+	// BUBBER EDIT BEGIN - climbsound
+	playsound(target, climbsound, 50) //plays twice so people above and below can hear
+	playsound(user_turf, climbsound, 50)
+	// BUBBER EDIT END
 	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(target, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))
 
-	if(do_after(user, climb_time, target))
+	// Our climbers athletics ability
+	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
+
+	// Misc bonuses to the climb speed.
+	var/misc_multiplier = 1
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		misc_multiplier *= potential_spine.athletics_boost_multiplier
+
+	var/final_climb_time = (climb_time - fitness_level) * misc_multiplier
+
+	if(do_after(user, final_climb_time, target))
 		user.forceMove(target)
 		uses--
 
@@ -56,6 +76,7 @@
 		qdel(src)
 
 	QDEL_LIST(effects)
+	return ITEM_INTERACT_SUCCESS
 
 // didnt want to mess up is_blocked_turf_ignore_climbable
 /// checks if our target is blocked, also checks for border objects facing the above turf and climbable stuff

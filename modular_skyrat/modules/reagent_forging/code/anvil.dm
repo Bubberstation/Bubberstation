@@ -79,8 +79,8 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
-	//regardless, we will make a sound
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, ignore_walls = FALSE)
+	//regardless, we will make a sound (if the user has the pref enabled)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, pref_to_check = /datum/preference/toggle/sound_ambience)
 
 	//do we have an incomplete item to hammer out? if so, here is our block of code
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
@@ -121,9 +121,10 @@
 	//okay, so we didn't find an incomplete item to hammer, do we have a hammerable item?
 	var/obj/locate_obj = locate() in contents
 	if(locate_obj && (locate_obj.skyrat_obj_flags & ANVIL_REPAIR))
-		//BUBBER EDIT START - Repairing weapons with imbued reagents takes skill
+		// Repairing weapons with imbued reagents takes skill
 		// God this code is so terrible who the fuck wrote it in two different components that dont share a parent
 		// I doubt this can be made pretty without skyrat refactoring whatever the fuck all of the stuff around this codeblock is
+		// BUBBER TODO - Refactor this into two components with same parent!
 		//
 		// I'll give you hugs if you refactor it yourself
 		// ~Waterpig
@@ -137,7 +138,6 @@
 			if(length(reagent_component.imbued_reagent) && user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 				to_chat(user, span_danger("You need more experience to repair imbued weapons!"))
 				return ITEM_INTERACT_SUCCESS
-		//BUBBER EDIT END
 		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
 			balloon_alert(user, "already repaired")
 			return ITEM_INTERACT_SUCCESS
@@ -174,6 +174,6 @@
 	)
 	poor_target.Paralyze(5 SECONDS)
 	poor_target.emote("scream")
-	playsound(poor_target, 'sound/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
+	playsound(poor_target, 'sound/effects/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
 	add_memory_in_range(poor_target, 7, /datum/memory/witness_vendor_crush, protagonist = poor_target, antognist = src)
 	return TRUE

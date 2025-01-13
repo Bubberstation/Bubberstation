@@ -15,7 +15,7 @@
 
 	bolt_type = BOLT_TYPE_OPEN
 
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT
 
@@ -24,8 +24,6 @@
 
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_light.ogg'
 	can_suppress = TRUE
-
-	can_bayonet = FALSE
 
 	suppressor_x_offset = 11
 
@@ -46,7 +44,7 @@
 
 	. += "The Sindano submachinegun was originally produced for military contract. \
 		These guns were seen in the hands of anyone from medics, ship techs, logistics officers, \
-		and shuttle pilots often had several just to show off. Due to SolFed's quest to \
+		and shuttle pilots often had several just to show off. Due to TerraGov's quest to \
 		extend the lifespans of their logistics officers and quartermasters, the weapon \
 		uses the same standard pistol cartridge that most other miltiary weapons of \
 		small caliber use. This results in interchangeable magazines between pistols \

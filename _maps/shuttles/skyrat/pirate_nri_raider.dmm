@@ -414,7 +414,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/breath_machine/anesthetic,
 /obj/item/tank/internals/anesthetic,
 /turf/open/floor/pod,
 /area/shuttle/pirate/nri)
@@ -452,9 +452,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger_multi,
-/obj/item/stock_parts/cell/super/empty,
-/obj/item/stock_parts/cell/super/empty,
-/obj/item/stock_parts/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
+/obj/item/stock_parts/power_store/cell/super/empty,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate/nri)
 "rg" = (
@@ -488,7 +488,7 @@
 /area/shuttle/pirate/nri)
 "tl" = (
 /obj/machinery/power/apc/auto_name/directional/east{
-	cell_type = /obj/item/stock_parts/cell/super
+	cell_type = /obj/item/stock_parts/power_store/battery/super
 	},
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/structure/cable,

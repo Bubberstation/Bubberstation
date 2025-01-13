@@ -12,7 +12,7 @@
 	maxHealth = 3000
 	health = 3000
 	atmos_requirements = null
-	projectilesound = 'sound/weapons/lasercannonfire.ogg'
+	projectilesound = 'sound/items/weapons/lasercannonfire.ogg'
 	projectiletype = /obj/projectile/nihilanth
 	ranged = TRUE
 	rapid = 3
@@ -22,7 +22,7 @@
 	melee_damage_upper = 40
 	attack_verb_continuous = "lathes"
 	attack_verb_simple = "lathe"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	status_flags = NONE
 	del_on_death = TRUE
 	wander = TRUE
@@ -40,8 +40,8 @@
 	light_range = 2
 	armor_flag = ENERGY
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
-	hitsound = 'sound/weapons/sear.ogg'
-	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	hitsound = 'sound/items/weapons/sear.ogg'
+	hitsound_wall = 'sound/items/weapons/effects/searwall.ogg'
 	nondirectional_sprite = TRUE
 
 /mob/living/simple_animal/hostile/blackmesa/xen/nihilanth/Aggro()

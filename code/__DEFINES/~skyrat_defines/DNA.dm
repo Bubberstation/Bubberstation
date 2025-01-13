@@ -57,6 +57,7 @@
 #define ORGAN_SLOT_EXTERNAL_TAUR "taur"
 #define ORGAN_SLOT_EXTERNAL_XENODORSAL "xenodorsal"
 #define ORGAN_SLOT_EXTERNAL_XENOHEAD "xenohead"
+#define ORGAN_SLOT_BORER "borer"
 
 //Defines for an accessory to be randomed
 #define ACC_RANDOM		"random"
@@ -69,14 +70,14 @@
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
-#define PENIS_MAX_GIRTH 15
+#define PENIS_MAX_GIRTH 20
 #define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
-#define PENIS_MAX_LENGTH 20
+#define PENIS_MAX_LENGTH 36
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
-#define TESTICLES_MAX_SIZE 3
+#define TESTICLES_MAX_SIZE 6
 
 #define SHEATH_NONE	"None"
 #define SHEATH_NORMAL "Sheath"

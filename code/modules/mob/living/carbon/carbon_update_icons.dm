@@ -1,7 +1,6 @@
 /mob/living/carbon/update_obscured_slots(obscured_flags)
 	..()
-	if(obscured_flags & (HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT|HIDEMUTWINGS))
-		update_body()
+	update_body()
 
 /// Updates features and clothing attached to a specific limb with limb-specific offsets
 /mob/living/carbon/proc/update_features(feature_key)
@@ -54,8 +53,8 @@
 	SEND_SIGNAL(src, COMSIG_CARBON_REMOVE_OVERLAY, cache_index, I)
 
 //used when putting/removing clothes that hide certain mutant body parts to just update those and not update the whole body.
-/mob/living/carbon/human/proc/update_mutant_bodyparts(force_update = FALSE) // SKYRAT EDIT CHANGE
-	dna?.species.handle_mutant_bodyparts(src, force_update = force_update) // SKYRAT EDIT CHANGE
+/mob/living/carbon/human/proc/update_mutant_bodyparts()
+	dna?.species.handle_mutant_bodyparts(src)
 	update_body_parts()
 
 /mob/living/carbon/update_body(is_creating = FALSE)
@@ -306,6 +305,7 @@
 			continue
 		if(isnull(damage_overlay) && (iter_part.brutestate || iter_part.burnstate))
 			damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
+			damage_overlay.color = iter_part.damage_overlay_color
 		if(iter_part.brutestate)
 			damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0") //we're adding icon_states of the base image as overlays
 		if(iter_part.burnstate)
@@ -427,7 +427,7 @@
 
 /mob/living/carbon/update_worn_handcuffs(update_obscured = TRUE)
 	remove_overlay(HANDCUFF_LAYER)
-	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT ADDED !(handcuffed.item_flags & ABSTRACT)
+	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT - ADDED !(handcuffed.item_flags & ABSTRACT)
 		if(update_obscured)
 			update_obscured_slots(handcuffed.flags_inv)
 		var/mutable_appearance/handcuff_overlay = mutable_appearance('icons/mob/simple/mob.dmi', "handcuff1", -HANDCUFF_LAYER)
@@ -480,27 +480,34 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_GET_WORN_OVERLAYS, ., standing, isinhands, icon_file)
 
 ///Checks to see if any bodyparts need to be redrawn, then does so. update_limb_data = TRUE redraws the limbs to conform to the owner.
+///Returns an integer representing the number of limbs that were updated.
 /mob/living/carbon/proc/update_body_parts(update_limb_data)
 	update_damage_overlays()
 	update_wound_overlays()
 	var/list/needs_update = list()
-	var/limb_count_update = FALSE
+	var/limb_count_update = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
+		// SKYRAT EDIT BEGIN - Don't handle abstract limbs (Taurs, etc.)
+		if(!limb.show_icon)
+			continue
+		// SKYRAT EDIT END
 		limb.update_limb(is_creating = update_limb_data) //Update limb actually doesn't do much, get_limb_icon is the cpu eater.
 
 		var/old_key = icon_render_keys?[limb.body_zone] //Checks the mob's icon render key list for the bodypart
 		icon_render_keys[limb.body_zone] = (limb.is_husked) ? limb.generate_husk_key().Join() : limb.generate_icon_key().Join() //Generates a key for the current bodypart
 
-		if(icon_render_keys[limb.body_zone] != old_key || get_top_offset() != last_top_offset) //If the keys match, that means the limb doesn't need to be redrawn
+		if(icon_render_keys[limb.body_zone] != old_key) //If the keys match, that means the limb doesn't need to be redrawn
 			needs_update += limb
 
+	limb_count_update += length(needs_update)
 	var/list/missing_bodyparts = get_missing_limbs()
 	if(((dna ? dna.species.max_bodypart_count : BODYPARTS_DEFAULT_MAXIMUM) - icon_render_keys.len) != missing_bodyparts.len) //Checks to see if the target gained or lost any limbs.
-		limb_count_update = TRUE
+		limb_count_update += 1
 		for(var/missing_limb in missing_bodyparts)
 			icon_render_keys -= missing_limb //Removes dismembered limbs from the key list
 
-	if(!needs_update.len && !limb_count_update)
+	. = limb_count_update
+	if(!.)
 		return
 
 	//GENERATE NEW LIMBS
@@ -508,15 +515,10 @@
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		if(limb in needs_update)
 			var/bodypart_icon = limb.get_limb_icon()
-			if(!istype(limb, /obj/item/bodypart/leg))
-				var/top_offset = get_top_offset()
-				for(var/image/image as anything in bodypart_icon)
-					image.pixel_y += top_offset
 			new_limbs += bodypart_icon
 			limb_icon_cache[icon_render_keys[limb.body_zone]] = bodypart_icon //Caches the icon with the bodypart key, as it is new
 		else
 			new_limbs += limb_icon_cache[icon_render_keys[limb.body_zone]] //Pulls existing sprites from the cache
-		last_top_offset = get_top_offset()
 
 
 	remove_overlay(BODYPARTS_LAYER)
@@ -525,19 +527,6 @@
 		overlays_standing[BODYPARTS_LAYER] = new_limbs
 
 	apply_overlay(BODYPARTS_LAYER)
-
-/// This looks at the chest and legs of the mob and decides how much our chest, arms, and head should be adjusted. This is useful for limbs that are larger or smaller than the scope of normal human height while keeping the feet anchored to the bottom of the tile
-/mob/living/carbon/proc/get_top_offset()
-	var/from_chest
-	var/from_leg
-	for(var/obj/item/bodypart/leg/leg_checked in bodyparts)
-		if(leg_checked.top_offset > from_leg || isnull(from_leg)) // We find the tallest leg available
-			from_leg = leg_checked.top_offset
-	if(isnull(from_leg))
-		from_leg = 0 // If we have no legs, we set this to zero to avoid any math issues that might stem from it being NULL
-	for(var/obj/item/bodypart/chest/chest_checked in bodyparts) // Take the height from the chest
-		from_chest = chest_checked.top_offset
-	return (from_chest + from_leg) // The total hight of the chest and legs together
 
 /////////////////////////
 // Limb Icon Cache 2.0 //

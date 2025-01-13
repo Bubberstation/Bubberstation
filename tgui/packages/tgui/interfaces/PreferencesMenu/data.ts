@@ -1,6 +1,7 @@
 import { BooleanLike } from 'common/react';
 
 import { sendAct } from '../../backend';
+import { LoadoutCategory, LoadoutList } from './loadout/base';
 import { Gender } from './preferences/gender';
 
 export enum Food {
@@ -42,7 +43,7 @@ export type Name = {
 
 export type Species = {
   name: string;
-  desc: string;
+  desc: string[];
   lore: string[];
   icon: string;
 
@@ -50,8 +51,6 @@ export type Species = {
   sexes: BooleanLike;
 
   enabled_features: string[];
-
-  veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
 
   perks: {
     positive: Perk[];
@@ -80,7 +79,6 @@ export type Job = {
   description: string;
   department: string;
   // SKYRAT EDIT
-  veteran?: boolean;
   alt_titles?: string[];
   // SKYRAT EDIT END
 };
@@ -92,7 +90,6 @@ export type Quirk = {
   value: number;
   customizable: boolean;
   customization_options?: string[];
-  veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
   species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
@@ -101,6 +98,8 @@ export type Language = {
   description: string;
   name: string;
   icon: string;
+  can_understand: boolean;
+  can_speak: boolean;
 };
 
 export type Marking = {
@@ -179,7 +178,6 @@ export type PreferencesMenuData = {
   preview_options: string[]; // SKYRAT EDIT ADDITION
   preview_selection: string; // SKYRAT EDIT ADDITION
 
-  is_veteran: BooleanLike; // SKYRAT EDIT - Veteran status
   is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
@@ -199,6 +197,9 @@ export type PreferencesMenuData = {
       gender: Gender;
       joblessrole: JoblessRole;
       species: string;
+      loadout_lists: LoadoutList; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout_list: LoadoutList;
+      job_clothes: BooleanLike;
+      loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
     };
 
     randomization: Record<string, RandomSetting>;
@@ -231,7 +232,10 @@ export type PreferencesMenuData = {
   quirks_balance: number;
   positive_quirk_count: number;
   species_restricted_jobs?: string[];
+  ckey: string;
+  is_donator: BooleanLike;
   // SKYRAT EDIT END
+
   keybindings: Record<string, string[]>;
   overflow_role: string;
   selected_quirks: string[];
@@ -257,6 +261,9 @@ export type ServerData = {
   quirks: QuirkInfo;
   random: {
     randomizable: string[];
+  };
+  loadout: {
+    loadout_tabs: LoadoutCategory[];
   };
   species: Record<string, Species>;
   [otheyKey: string]: unknown;

@@ -36,7 +36,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/health_scan = FALSE //Are health scans currently enabled?
 	var/chem_scan = FALSE //Are chem scans currently enabled?
 	var/gas_scan = FALSE //Are gas scans currently enabled?
-	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
 	//These variables store hair data if the ghost originates from a species with head and/or facial hair.
@@ -62,6 +61,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	/// The POI we're orbiting (orbit menu)
 	var/orbiting_ref
+
+	var/static/list/observer_hud_traits = list(
+		TRAIT_SECURITY_HUD,
+		TRAIT_MEDICAL_HUD,
+		TRAIT_DIAGNOSTIC_HUD,
+		TRAIT_BOT_PATH_HUD
+	)
 
 /mob/dead/observer/Initialize(mapload)
 	set_invisibility(GLOB.observer_default_invisibility)
@@ -92,15 +98,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
-			if(body.mind.ghostname)
-				name = body.mind.ghostname
-			else
-				name = body.mind.name
+			name = body.mind.ghostname || body.mind.name
 		else
-			if(body.real_name)
-				name = body.real_name
-			else
-				name = random_unique_name(gender)
+			name = body.real_name || generate_random_mob_name(gender)
+
 
 		mind = body.mind //we don't transfer the mind but we keep a reference to it.
 
@@ -128,8 +129,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	abstract_move(T)
 
-	if(!name) //To prevent nameless ghosts
-		name = random_unique_name(gender)
+	//To prevent nameless ghosts
+	name ||= generate_random_mob_name(FALSE)
 	real_name = name
 
 	if(!fun_verbs)
@@ -140,21 +141,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	add_to_dead_mob_list()
 
-	for(var/v in GLOB.active_alternate_appearances)
-		if(!v)
-			continue
-		var/datum/atom_hud/alternate_appearance/AA = v
-		AA.onNewMob(src)
+	for(var/datum/atom_hud/alternate_appearance/alt_hud as anything in GLOB.active_alternate_appearances)
+		alt_hud.apply_to_new_mob(src)
 
 	. = ..()
 
 	grant_all_languages()
+	setup_hud_traits()
 	show_data_huds()
 	data_huds_on = 1
 
 	SSpoints_of_interest.make_point_of_interest(src)
 	ADD_TRAIT(src, TRAIT_HEAR_THROUGH_DARKNESS, ref(src))
-	ADD_TRAIT(src, TRAIT_SECURITY_HUD, ref(src))
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -324,7 +322,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghostize(TRUE) // Can return with TRUE
 		return TRUE
 	// SKYRAT EDIT ADDITION END
-	var/response = tgui_alert(usr, "Are you sure you want to ghost? If you ghost whilst still alive you cannot re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
+	var/response = tgui_alert(usr, "Are you sure you want to ghost? You won't be able to re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
 	if(response != "Ghost")
 		return FALSE//didn't want to ghost after-all
 	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
@@ -368,6 +366,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/forceMove(atom/destination)
 	abstract_move(destination) // move like the wind
 	return TRUE
+
+/mob/dead/observer/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	var/area/new_area = get_area(src)
+	if(new_area != ambience_tracked_area)
+		update_ambience_area(new_area)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -413,7 +417,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		//SKYRAT EDIT ADDITION - DNR TRAIT (Technically this is just to fix ghost-DNR'ing not actually DNR'ing, but it pairs with the trait so)
 		if(!current_mob.has_quirk(/datum/quirk/dnr))
 			current_mob.add_quirk(/datum/quirk/dnr)
-		var/datum/job/job_to_free = SSjob.GetJob(current_mob.mind.assigned_role.title)
+		var/datum/job/job_to_free = SSjob.get_job(current_mob.mind.assigned_role.title)
 		if(job_to_free)
 			job_to_free.current_positions = max(0, job_to_free.current_positions - 1)
 		//SKYRAT EDIT ADDITION END - DNR TRAIT
@@ -497,7 +501,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/icon_dimensions = get_icon_dimensions(target.icon)
 	var/orbitsize = (icon_dimensions["width"] + icon_dimensions["height"]) * 0.5
-	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
+	orbitsize -= (orbitsize/ICON_SIZE_ALL)*(ICON_SIZE_ALL*0.25)
 
 	var/rot_seg
 
@@ -523,6 +527,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = base_pixel_y
+	// if we were autoobserving, reset perspective
+	if (!isnull(client) && !isnull(client.eye))
+		reset_perspective(null)
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -714,14 +721,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.manifest.ui_interact(src)
 
 //this is called when a ghost is drag clicked to something.
-/mob/dead/observer/MouseDrop(atom/over)
-	if(!usr || !over)
-		return
-	if (isobserver(usr) && usr.client.holder && (isliving(over) || iscameramob(over)) )
-		if (usr.client.holder.cmd_ghost_drag(src,over))
-			return
-
-	return ..()
+/mob/dead/observer/mouse_drop_dragged(atom/over, mob/user)
+	if (isobserver(user) && user.client.holder && (isliving(over) || iscameramob(over)))
+		user.client.holder.cmd_ghost_drag(src, over)
 
 /mob/dead/observer/Topic(href, href_list)
 	..()
@@ -779,14 +781,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return
 
 /mob/dead/observer/proc/show_data_huds()
-	for(var/hudtype in datahuds)
-		var/datum/atom_hud/data_hud = GLOB.huds[hudtype]
-		data_hud.show_to(src)
+	add_traits(observer_hud_traits, REF(src))
 
 /mob/dead/observer/proc/remove_data_huds()
-	for(var/hudtype in datahuds)
-		var/datum/atom_hud/data_hud = GLOB.huds[hudtype]
-		data_hud.hide_from(src)
+	remove_traits(observer_hud_traits, REF(src))
 
 /mob/dead/observer/verb/toggle_data_huds()
 	set name = "Toggle Sec/Med/Diag HUD"
@@ -859,7 +857,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.prefs.apply_character_randomization_prefs()
 
 	var/species_type = client.prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	if(species.check_head_flags(HEAD_HAIR))
 		hairstyle = client.prefs.read_preference(/datum/preference/choiced/hairstyle)
 		hair_color = ghostify_color(client.prefs.read_preference(/datum/preference/color/hair_color))
@@ -867,8 +865,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(species.check_head_flags(HEAD_FACIAL_HAIR))
 		facial_hairstyle = client.prefs.read_preference(/datum/preference/choiced/facial_hairstyle)
 		facial_hair_color = ghostify_color(client.prefs.read_preference(/datum/preference/color/facial_hair_color))
-
-	qdel(species)
 
 	update_appearance()
 
@@ -1012,9 +1008,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		game = create_mafia_game()
 	game.ui_interact(usr)
 
-/mob/dead/observer/CtrlShiftClick(mob/user)
-	if(isobserver(user) && check_rights(R_SPAWN))
-		change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
+/mob/dead/observer/AltClickOn(atom/target)
+	client.loot_panel.open(get_turf(target))
+
+/mob/dead/observer/AltClickSecondaryOn(atom/target)
+	if(client && check_rights_for(client, R_DEBUG))
+		client.toggle_tag_datum(src)
+
+/mob/dead/observer/CtrlShiftClickOn(atom/target)
+	if(isobserver(target) && check_rights(R_SPAWN))
+		var/mob/dead/observer/target_ghost = target
+
+		target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
 
 /mob/dead/observer/examine(mob/user)
 	. = ..()
@@ -1074,31 +1079,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/tray_view()
 	set category = "Ghost"
-	set name = "T-ray view"
-	set desc = "Toggles a view of sub-floor objects"
+	set name = "T-ray scan"
+	set desc = "Perfom a scan to view sub-floor objects"
 
-	var/static/t_ray_view = FALSE
-	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder && !t_ray_view)
+	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
 		to_chat(usr, span_notice("That verb is currently globally disabled."))
 		return
-	t_ray_view = !t_ray_view
 
-	var/list/t_ray_images = list()
-	var/static/list/stored_t_ray_images = list()
-	for(var/obj/O in orange(client.view, src) )
-		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-			var/image/I = new(loc = get_turf(O))
-			var/mutable_appearance/MA = new(O)
-			MA.alpha = 128
-			MA.dir = O.dir
-			I.appearance = MA
-			t_ray_images += I
-	stored_t_ray_images += t_ray_images
-	if(length(t_ray_images))
-		if(t_ray_view)
-			client.images += t_ray_images
-		else
-			client.images -= stored_t_ray_images
+	t_ray_scan(src)
 
 /mob/dead/observer/default_lighting_cutoff()
 	var/datum/preferences/prefs = client?.prefs

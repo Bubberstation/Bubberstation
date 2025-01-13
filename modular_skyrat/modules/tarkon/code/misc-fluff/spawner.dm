@@ -28,6 +28,43 @@
 	id = /obj/item/card/id/advanced/tarkon
 	id_trim = /datum/id_trim/away/tarkon
 	ears = /obj/item/radio/headset/tarkon
+	var/backpack = /obj/item/storage/backpack/tarkon //bubber edit start
+	var/satchel = /obj/item/storage/backpack/satchel/tarkon
+	var/duffelbag = /obj/item/storage/backpack/duffelbag/tarkon
+	var/messenger = /obj/item/storage/backpack/messenger/tarkon
+
+/datum/outfit/tarkon/pre_equip(mob/living/carbon/human/tarkon, visuals_only = FALSE)
+	if(ispath(back, /obj/item/storage/backpack)) //we just steal this from the job outfit datum.
+		switch(tarkon.backpack)
+			if(GBACKPACK)
+				back = /obj/item/storage/backpack //Grey backpack
+			if(GSATCHEL)
+				back = /obj/item/storage/backpack/satchel //Grey satchel
+			if(GDUFFELBAG)
+				back = /obj/item/storage/backpack/duffelbag //Grey Duffel bag
+			if(LSATCHEL)
+				back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
+			if(GMESSENGER)
+				back = /obj/item/storage/backpack/messenger //Grey messenger bag
+			if(DSATCHEL)
+				back = satchel //Department satchel
+			if(DMESSENGER)
+				back = messenger //Messenger Bags
+			if(DDUFFELBAG)
+				back = duffelbag //Department duffel bag
+			if(DMESSENGER)
+				back = messenger //Department messenger bag
+			else
+				back = backpack //Department backpack
+
+	if(isplasmaman(tarkon))
+		uniform = /obj/item/clothing/under/plasmaman
+		gloves = /obj/item/clothing/gloves/color/plasmaman
+		head = /obj/item/clothing/head/helmet/space/plasmaman
+		r_hand = /obj/item/tank/internals/plasmaman/belt/full
+	if(isvox(tarkon) || isvoxprimalis(tarkon))
+		r_hand = /obj/item/tank/internals/nitrogen/belt/full
+		mask = /obj/item/clothing/mask/breath/vox //bubber edit end
 
 /datum/outfit/tarkon/post_equip(mob/living/carbon/human/tarkon, visualsOnly = FALSE)
 	var/obj/item/card/id/id_card = tarkon.wear_id
@@ -64,7 +101,7 @@
 	glasses = /obj/item/clothing/glasses/hud/diagnostic
 	id = /obj/item/card/id/advanced/tarkon/sci
 	id_trim = /datum/id_trim/away/tarkon/sci
-	r_pocket = /obj/item/stock_parts/cell/high
+	r_pocket = /obj/item/stock_parts/power_store/cell/high
 	l_pocket = /obj/item/card/id/away/tarkonrobo
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med
@@ -220,7 +257,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/tarkon, 32)
 /obj/effect/nest_break/proc/rustle()
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 15, 1)
-	playsound(get_turf(src),'sound/effects/explosionfar.ogg', 200, TRUE)
+	playsound(get_turf(src),'sound/effects/explosion/explosionfar.ogg', 200, TRUE)
 	visible_message(span_boldannounce("The nest's entrance starts to crumble before something charges forth!"))
 	new boss_mob(loc)
 	new loot_drop(loc)

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { ByondUi, Section, Stack, Tabs } from '../components'; // Bubber edit: add Tabs
+import { ByondUi, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 const formatURLs = (text) => {
@@ -35,21 +35,21 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props) => {
-  const [tabIndex, setTabIndex] = useState(1); // Bubber edit addition
-  const [lowerTabIndex, setLowerTabIndex] = useState(1); // Bubber edit addition
+  const [tabIndex, setTabIndex] = useState(1);
+  const [lowerTabIndex, setLowerTabIndex] = useState(1);
   const { act, data } = useBackend();
   const {
     character_name,
     obscured,
     assigned_map,
     flavor_text,
-    flavor_text_nsfw, // Bubber edit addition
+    flavor_text_nsfw,
     ooc_notes,
     custom_species,
     custom_species_lore,
     character_ad,
     headshot,
-    headshot_nsfw, // Bubber edit addition
+    headshot_nsfw,
   } = data;
   return (
     <Window
@@ -57,7 +57,6 @@ export const ExaminePanel = (props) => {
       width={900}
       height={670}
     >
-      {/* BUBBER EDIT: DON'T USE ADMIN THEME*/}
       <Window.Content>
         <Stack fill>
           <Stack.Item width="30%">
@@ -101,7 +100,6 @@ export const ExaminePanel = (props) => {
             )}
           </Stack.Item>
           <Stack.Item grow>
-            {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
             <Tabs fluid>
               <Tabs.Tab
                 selected={tabIndex === 1}
@@ -209,7 +207,6 @@ export const ExaminePanel = (props) => {
                 <Stack.Item>{formatURLs(character_ad)}</Stack.Item>
               </Section>
             )}
-            {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
           </Stack.Item>
         </Stack>
       </Window.Content>

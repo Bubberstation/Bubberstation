@@ -13,7 +13,7 @@
 	if (level != null && level != JP_LOW && level != JP_MEDIUM && level != JP_HIGH)
 		return FALSE
 
-	var/datum/job/job = SSjob.GetJob(job_title)
+	var/datum/job/job = SSjob.get_job(job_title)
 
 	if (isnull(job))
 		return FALSE
@@ -33,7 +33,7 @@
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
 
-	var/datum/job/job = SSjob.GetJob(job_title)
+	var/datum/job/job = SSjob.get_job(job_title)
 
 	if (isnull(job))
 		return FALSE
@@ -75,7 +75,6 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
-			"veteran" = job.veteran_only, // SKYRAT EDIT
 			"alt_titles" = job.alt_titles, // SKYRAT EDIT
 		)
 
@@ -100,10 +99,7 @@
 
 /datum/preference_middleware/jobs/get_ui_static_data(mob/user)
 	var/list/data = list()
-	// SKYRAT EDIT
-	if(CONFIG_GET(flag/bypass_veteran_system) || SSplayer_ranks.is_veteran(user.client))
-		data["is_veteran"] = TRUE
-	// SKYRAT EDIT END
+
 	// BUBBER EDIT BEGIN
 	if(SSplayer_ranks.is_vetted(user.client))
 		data["is_vetted"] = TRUE
@@ -115,6 +111,7 @@
 	var/list/job_bans = get_job_bans(user)
 	if (job_bans.len)
 		data["job_bans"] = job_bans
+
 	return data.len > 0 ? data : null
 
 /datum/preference_middleware/jobs/proc/get_required_job_playtime(mob/user)
@@ -154,7 +151,6 @@
 			data += job.title
 
 	return data
-
 //SKYRAT EDIT ADDITION BEGIN - CHECKING FOR INCOMPATIBLE SPECIES
 //This returns a list of jobs that are unavailable for the player's current species
 /datum/preference_middleware/jobs/proc/get_unavailable_jobs_for_species()
@@ -167,3 +163,4 @@
 	return data
 
 //SKYRAT EDIT ADDITION END
+

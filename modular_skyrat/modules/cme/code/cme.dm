@@ -147,7 +147,7 @@
 			if(CME_ARMAGEDDON)
 				addtimer(CALLBACK(src, PROC_REF(cme_level_callback), SEC_LEVEL_GAMMA, TRUE, TRUE), (round((start_when * SSevents.wait) * 0.1, 0.1)) SECONDS)
 				priority_announce("Neutron Mass Ejection Detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All personnel should proceed to their nearest warpgate for evacuation, the Solar Federation has issued this mandatory alert.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				All personnel should proceed to their nearest warpgate for evacuation, the Terran Government has issued this mandatory alert.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 
 /datum/round_event/cme/tick(seconds_between_ticks)
 	if(ISMULTIPLE(activeFor, rand(cme_frequency_lower, cme_frequency_upper)))
@@ -243,7 +243,7 @@
 
 /obj/effect/cme/Initialize(mapload)
 	. = ..()
-	playsound(src,'sound/weapons/resonator_fire.ogg',75,TRUE)
+	playsound(src,'sound/items/weapons/resonator_fire.ogg',75,TRUE)
 	var/turf/open/T = get_turf(src)
 	if(istype(T))
 		T.atmos_spawn_air("o2=15;plasma=15;TEMP=5778")
@@ -258,7 +258,7 @@
 	var/pulse_range_light = rand(cme_light_range_lower, cme_light_range_upper)
 	var/pulse_range_heavy = rand(cme_heavy_range_lower, cme_heavy_range_upper)
 	empulse(src, pulse_range_heavy, pulse_range_light)
-	playsound(src,'sound/weapons/resonator_blast.ogg',100,TRUE)
+	playsound(src,'sound/items/weapons/resonator_blast.ogg',100,TRUE)
 	explosion(src, 0, 0, 2, flame_range = 3)
 	playsound(src,'modular_skyrat/modules/cme/sound/cme.ogg', 100)
 	qdel(src)
@@ -273,7 +273,7 @@
 	var/pulse_range_heavy = rand(cme_heavy_range_lower, cme_heavy_range_upper)
 	empulse(src, pulse_range_heavy, pulse_range_light)
 	explosion(src, 0, 3, 10, flame_range = 10)
-	playsound(src,'sound/weapons/resonator_blast.ogg',100,TRUE)
+	playsound(src,'sound/items/weapons/resonator_blast.ogg',100,TRUE)
 	playsound(src,'modular_skyrat/modules/cme/sound/cme.ogg', 100)
 	qdel(src)
 
@@ -281,7 +281,7 @@
 	burst()
 
 /obj/effect/cme/proc/anomalyNeutralize()
-	playsound(src,'sound/weapons/resonator_blast.ogg',100,TRUE)
+	playsound(src,'sound/items/weapons/resonator_blast.ogg',100,TRUE)
 	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 	color = COLOR_WHITE
 	light_color = COLOR_WHITE
@@ -290,7 +290,7 @@
 	new loot(loc)
 
 /obj/effect/cme/extreme/anomalyNeutralize()
-	playsound(src,'sound/weapons/resonator_blast.ogg',100,TRUE)
+	playsound(src,'sound/items/weapons/resonator_blast.ogg',100,TRUE)
 	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 	var/turf/open/T = get_turf(src)
 	if(istype(T))
@@ -302,7 +302,7 @@
 	new loot(loc)
 
 /obj/effect/cme/armageddon/anomalyNeutralize()
-	playsound(src,'sound/weapons/resonator_blast.ogg',100,TRUE)
+	playsound(src,'sound/items/weapons/resonator_blast.ogg',100,TRUE)
 	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 	var/turf/open/T = get_turf(src)
 	if(istype(T))

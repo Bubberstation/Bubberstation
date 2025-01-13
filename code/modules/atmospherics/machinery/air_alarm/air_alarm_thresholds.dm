@@ -5,7 +5,7 @@
 	var/hazard_min = 0
 	var/hazard_max = 0
 
-/** Initialize a TLV and set it's values if given arguments, mostly for map varedits.
+/** Initialize a TLV and set its values if given arguments, mostly for map varedits.
  * We provide this functionality but please consider not doing this and making proper subtypes.
  * Only by doing the latter will [datum/tlv/proc/reset_value] work.
  */
@@ -47,7 +47,7 @@
 	if(threshold_type & TLV_VAR_HAZARD_MAX)
 		hazard_max = value
 
-/** Reset this particular TLV to it's original value.
+/** Reset this particular TLV to its original value.
  *
  * Arguments:
  * * threshold_type: What kind of variable do we want to set. Accepts bitfield subsets of [TLV_VAR_ALL].
@@ -93,10 +93,10 @@
 	hazard_max = HAZARD_HIGH_PRESSURE
 
 /datum/tlv/temperature
-	warning_min = BODYTEMP_COLD_WARNING_1+10
-	hazard_min = BODYTEMP_COLD_WARNING_1
+	warning_min = BODYTEMP_COLD_WARNING_1 + 7 // BUBBER EDIT CHANGE - Original: BODYTEMP_COLD_WARNING_1+10
+	hazard_min = BODYTEMP_COLD_WARNING_1 + 1 // BUBBER EDIT CHANGE - Original: BODYTEMP_COLD_WARNING_1
 	warning_max = BODYTEMP_HEAT_WARNING_1-27
-	hazard_max = BODYTEMP_HEAT_WARNING_1
+	hazard_max = BODYTEMP_HEAT_WARNING_1 - 4 // BUBBER EDIT CHANGE - Original: BODYTEMP_HEAT_WARNING_1
 
 /datum/tlv/cold_room_pressure
 	warning_min = ONE_ATMOSPHERE * 0.9
@@ -109,3 +109,11 @@
 	hazard_min = COLD_ROOM_TEMP - 40
 	warning_max = COLD_ROOM_TEMP + 20
 	hazard_max = COLD_ROOM_TEMP + 40
+
+// BUBBER EDIT ADDITION BEGIN
+/datum/tlv/miasma
+	warning_min = TLV_VALUE_IGNORE
+	hazard_min = TLV_VALUE_IGNORE
+	warning_max = 7
+	hazard_max = 12 // miasma negative effects start at 15kpa
+// BUBBER EDIT ADDITION END

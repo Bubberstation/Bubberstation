@@ -2355,7 +2355,6 @@
 /area/centcom/holding/cafe/park)
 "aEf" = (
 /obj/structure/water_source/puddle{
-	layer = 2.89;
 	pixel_x = 14;
 	pixel_y = 9
 	},
@@ -2595,9 +2594,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/structure/window/reinforced/spawner/directional/east{
-	layer = 2.9
-	},
+/obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/grass/fairy,
 /area/centcom/holding/cafe/park)
@@ -3381,7 +3378,6 @@
 "aQD" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/reagent_containers/condiment/enzyme{
-	layer = 5;
 	name = "universally-sized universal enzyme";
 	pixel_x = -4;
 	volume = 2000
@@ -4288,6 +4284,10 @@
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/centcom/holding/cafe/park)
+"bbB" = (
+/obj/machinery/skill_station,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding/cafe)
 "bbW" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/wardrobe/gene_wardrobe/ghost_cafe,
@@ -5177,8 +5177,7 @@
 /area/centcom/interlink)
 "cna" = (
 /obj/structure/chair/wood{
-	dir = 1;
-	layer = 2.8
+	dir = 1
 	},
 /obj/structure/wall_torch/spawns_lit/directional/east,
 /turf/open/floor/wood,
@@ -5401,7 +5400,7 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 10
 	},
-/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/smartfridge/drying/rack,
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "cEy" = (
@@ -9319,11 +9318,6 @@
 	pixel_x = 7;
 	pixel_y = 5
 	},
-/obj/item/paper/fluff/junkmail_redpill/true,
-/obj/item/paper/fluff/junkmail_redpill{
-	pixel_x = 1;
-	pixel_y = 8
-	},
 /obj/item/paper/fluff/jobs/prisoner/letter,
 /obj/item/paper/fluff/jobs/security/court_judgement{
 	pixel_x = -5;
@@ -10686,9 +10680,7 @@
 /area/centcom/holding/cafe/park)
 "lCi" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north{
-	layer = 2.9
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/chair/stool/directional/south{
 	dir = 1
 	},
@@ -12569,9 +12561,7 @@
 	pixel_y = 3
 	},
 /obj/structure/flora/bush/ferny,
-/obj/structure/window/reinforced/spawner/directional/east{
-	layer = 2.9
-	},
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/grass/fairy,
 /area/centcom/holding/cafe/park)
 "oyi" = (
@@ -16235,7 +16225,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/park)
 "tYf" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -16389,9 +16379,7 @@
 /area/centcom/holding/cafe)
 "ueC" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/condiment/enzyme{
-	layer = 5
-	},
+/obj/item/reagent_containers/condiment/enzyme,
 /obj/machinery/light/directional/south,
 /obj/item/reagent_containers/cup/beaker/bluespace{
 	luminosity = 3;
@@ -65724,7 +65712,7 @@ aGo
 ayk
 aqf
 apc
-aUo
+atf
 aUo
 aUo
 aUo
@@ -66242,7 +66230,7 @@ aqf
 agV
 aUo
 aUo
-atf
+bbB
 aqf
 aqf
 ajj

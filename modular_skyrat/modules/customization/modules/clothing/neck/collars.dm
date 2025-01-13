@@ -1,3 +1,10 @@
+/obj/item/clothing/neck
+	/// If this collar counts as a pet collar for kink purposes, such as with MKUltra
+	var/kink_collar = FALSE
+
+/obj/item/clothing/neck/petcollar
+	kink_collar = TRUE
+
 /datum/storage/pockets/small/collar
 	max_slots = 1
 
@@ -21,6 +28,7 @@
 	greyscale_colors = "#44BBEE#FFCC00"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	alternate_worn_layer = UNDER_SUIT_LAYER
+	kink_collar = TRUE
 	/// What's the name on the tag, if any?
 	var/tagname = null
 	/// What treat item spawns inside the collar?
@@ -73,14 +81,14 @@
 
 /obj/item/clothing/neck/human_petcollar/locked/Initialize(mapload)
 	. = ..()
-
+	RegisterSignal(src, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(try_lock))
 	create_storage(storage_type = /datum/storage/pockets/small/collar/locked)
 
-/obj/item/clothing/neck/human_petcollar/locked/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/clothing/neck/human_petcollar/locked/proc/try_lock(atom/source, mob/user, obj/item/attacking_item, params)
 	if(istype(attacking_item, /obj/item/key/collar))
 		to_chat(user, span_warning("With a click, the collar [locked ? "unlocks" : "locks"]!"))
 		locked = !locked
-	return
+	return TRUE
 
 /obj/item/clothing/neck/human_petcollar/locked/attack_hand(mob/user)
 	if(loc == user && user.get_item_by_slot(ITEM_SLOT_NECK) && locked)

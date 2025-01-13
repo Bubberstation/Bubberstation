@@ -19,7 +19,7 @@
 	name = "security utility uniform"
 	desc = "A utility uniform worn by Lopland-certified Security officers."
 	icon_state = "util_sec"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_MONKEY_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec
@@ -130,6 +130,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
+	body_parts_covered = GROIN | LEGS
 
 /*
 *	HEAD OF SECURITY

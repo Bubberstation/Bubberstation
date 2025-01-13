@@ -8,6 +8,7 @@
 #define TOOL_ANALYZER "analyzer"
 #define TOOL_MINING "mining"
 #define TOOL_SHOVEL "shovel"
+#define TOOL_DRAPES "surgicaldrapes"
 #define TOOL_RETRACTOR "retractor"
 #define TOOL_HEMOSTAT "hemostat"
 #define TOOL_CAUTERY "cautery"
@@ -31,8 +32,23 @@
 /// Return to prevent the rest of the attack chain from being executed / preventing the item user from thwacking the target.
 /// Similar to [ITEM_INTERACT_SUCCESS], but does not necessarily indicate success.
 #define ITEM_INTERACT_BLOCKING (1<<1)
+	/// Only for people who get confused by the naming scheme
+	#define ITEM_INTERACT_FAILURE ITEM_INTERACT_BLOCKING
 /// Return to skip the rest of the interaction chain, going straight to attack.
 #define ITEM_INTERACT_SKIP_TO_ATTACK (1<<2)
 
 /// Combination flag for any item interaction that blocks the rest of the attack chain
 #define ITEM_INTERACT_ANY_BLOCKER (ITEM_INTERACT_SUCCESS | ITEM_INTERACT_BLOCKING)
+
+/// How many seconds between each fuel depletion tick ("use" proc)
+#define TOOL_FUEL_BURN_INTERVAL 5
+
+///This is a number I got by quickly searching up the temperature to melt iron/glass, though not really realistic.
+///This is used for places where lighters should not be hot enough to be used as a welding tool on.
+#define HIGH_TEMPERATURE_REQUIRED 1500
+
+/**
+ * A helper for checking if an item interaction should be skipped.
+ * This is only used explicitly because some interactions may not want to ever be skipped.
+ */
+#define SHOULD_SKIP_INTERACTION(target, item, user) (HAS_TRAIT(target, TRAIT_COMBAT_MODE_SKIP_INTERACTION) && user.combat_mode)

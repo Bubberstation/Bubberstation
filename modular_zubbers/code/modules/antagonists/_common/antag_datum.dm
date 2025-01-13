@@ -11,8 +11,10 @@
 		var/list/power_data = list()
 
 		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power?.power_explanation
 		power_data["power_icon"] = power.button_icon_state
+		if(istype(power, /datum/action/cooldown/bloodsucker))
+			var/datum/action/cooldown/bloodsucker/bloodsucker_power = power
+			power_data["power_explanation"] = bloodsucker_power.get_power_explanation()
 
 		data["powers"] += list(power_data)
 	return data

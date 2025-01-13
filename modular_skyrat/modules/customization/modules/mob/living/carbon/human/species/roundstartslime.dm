@@ -159,12 +159,13 @@
 		if("Tertiary")
 			color_target = "mcolor3"
 
-	var/new_mutant_colour = input(
+	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+	var/new_mutant_colour = tgui_color_picker(
 		alterer,
-		"Choose your character's new [color_choice = "All" ? "" : lowertext(color_choice)] color:",
+		"Choose your character's new [color_choice = "All" ? "" : LOWER_TEXT(color_choice)] color:",
 		"Form Alteration",
 		alterer.dna.features[color_target]
-	) as color|null
+	) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 	if(!new_mutant_colour)
 		return
 
@@ -264,7 +265,7 @@
 			var/hair_area = tgui_alert(alterer, "Select which color you would like to change", "Hair Color Alterations", list("Hairstyle", "Facial Hair", "Both"))
 			if(!hair_area)
 				return
-			var/new_hair_color = input(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features["mcolor"]) as color|null
+			var/new_hair_color = tgui_color_picker(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features["mcolor"]) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!new_hair_color)
 				return
 
@@ -399,7 +400,7 @@
 			new_acc_list[MUTANT_INDEX_COLOR_LIST] = selected_sprite_accessory.get_default_color(alterer.dna.features, alterer.dna.species)
 			alterer.dna.species.mutant_bodyparts[chosen_key] = new_acc_list
 			alterer.dna.mutant_bodyparts[chosen_key] = new_acc_list.Copy()
-		alterer.dna.update_uf_block(GLOB.dna_mutant_bodypart_blocks[chosen_key])
+		alterer.dna.update_uf_block(SSaccessories.dna_mutant_bodypart_blocks[chosen_key])
 	alterer.update_mutant_bodyparts()
 	alterer.update_clothing(ALL) // for any clothing that has alternate versions (e.g. muzzled masks)
 

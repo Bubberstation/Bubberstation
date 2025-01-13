@@ -16,28 +16,5 @@
 	cold_level_1_threshold = 0 // Vox should be able to breathe in cold gas without issues?
 	cold_level_2_threshold = 0
 	cold_level_3_threshold = 0
-	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/brain/vox
-	name = "vox brain"
-	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
-
-/obj/item/organ/internal/brain/vox/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(owner.stat == DEAD)
-		return
-	switch(severity)
-		if(1)
-			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!"))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 150)
-			owner.set_jitter_if_lower(30 SECONDS)
-			owner.adjust_stutter(30 SECONDS)
-			owner.adjust_confusion(10 SECONDS)
-		if(2)
-			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")]."))
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 150)
-			owner.set_jitter_if_lower(30 SECONDS)
-			owner.adjust_stutter(30 SECONDS)
-			owner.adjust_confusion(3 SECONDS)

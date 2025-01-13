@@ -25,17 +25,14 @@
 	var/list/cistern_items
 	///Lazylist of fish in the toilet, not to be mixed with the items in the cistern. Max of 3
 	var/list/fishes
-	///Static toilet water overlay given to toilets that are facing a direction we can see the water in.
-	var/static/mutable_appearance/toilet_water_overlay
 
 /obj/structure/toilet/Initialize(mapload)
 	. = ..()
-	if(isnull(toilet_water_overlay))
-		toilet_water_overlay = mutable_appearance(icon, "[base_icon_state]-water")
 	cover_open = round(rand(0, 1))
 	update_appearance(UPDATE_ICON)
 	if(mapload && SSmapping.level_trait(z, ZTRAIT_STATION))
 		AddElement(/datum/element/lazy_fishing_spot, /datum/fish_source/toilet)
+	AddElement(/datum/element/fish_safe_storage)
 	register_context()
 
 /obj/structure/toilet/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -162,7 +159,7 @@
 	if(flushing)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	flushing = TRUE
-	playsound(src, "sound/machines/toilet_flush.ogg", cover_open ? 40 : 20, TRUE)
+	playsound(src, 'sound/machines/toilet_flush.ogg', cover_open ? 40 : 20, TRUE)
 	if(cover_open && (dir & SOUTH))
 		update_appearance(UPDATE_OVERLAYS)
 		flick_overlay_view(mutable_appearance(icon, "[base_icon_state]-water-flick"), 3 SECONDS)
@@ -175,8 +172,8 @@
 
 /obj/structure/toilet/update_overlays()
 	. = ..()
-	if(!flushing && cover_open && (dir & SOUTH))
-		. += toilet_water_overlay
+	if(!flushing && cover_open)
+		. += "[base_icon_state]-water"
 
 /obj/structure/toilet/atom_deconstruct(dissambled = TRUE)
 	for(var/obj/toilet_item in cistern_items)

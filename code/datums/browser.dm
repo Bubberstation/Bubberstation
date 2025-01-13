@@ -99,7 +99,7 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on GitHub!"))
 		return
 	var/window_size = ""
 	if (width && height)
@@ -397,7 +397,7 @@
 			if ("number")
 				settings["mainsettings"][setting]["value"] = input(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]") as num
 			if ("color")
-				settings["mainsettings"][setting]["value"] = input(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
+				settings["mainsettings"][setting]["value"] = tgui_color_picker(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])	// BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if ("boolean")
 				settings["mainsettings"][setting]["value"] = (settings["mainsettings"][setting]["value"] == "Yes") ? "No" : "Yes"
 			if ("ckey")

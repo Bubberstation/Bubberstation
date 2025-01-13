@@ -504,7 +504,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/smartfridge/drying/rack,
 /turf/open/floor/stone/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "lZ" = (
@@ -674,7 +674,9 @@
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "oX" = (
-/obj/machinery/vending/primitive_catgirl_clothing_vendor,
+/obj/machinery/vending/primitive_catgirl_clothing_vendor{
+	all_products_free = 1
+	},
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "pa" = (
@@ -1336,7 +1338,7 @@
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "Hi" = (
-/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/smartfridge/drying/rack,
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "Hv" = (
@@ -1933,6 +1935,11 @@
 /obj/item/ammo_casing/arrow,
 /obj/item/ammo_casing/arrow,
 /obj/item/ammo_casing/arrow,
+/turf/open/misc/dirt/icemoon,
+/area/ruin/unpowered/primitive_catgirl_den)
+"VZ" = (
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/machinery/smartfridge/drying/rack,
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "WM" = (
@@ -3614,7 +3621,7 @@ gY
 wM
 eS
 pa
-Ug
+VZ
 oJ
 oJ
 sS

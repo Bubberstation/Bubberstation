@@ -4,10 +4,11 @@
 	helptext = "We will be placed in control of a small, fragile creature. We may attack a corpse like this to plant an egg which will slowly mature into a new form for us."
 	button_icon_state = "last_resort"
 	chemical_cost = 20
-	dna_cost = 1
+	dna_cost = CHANGELING_POWER_INNATE
 	req_human = TRUE
 	req_stat = DEAD
 	ignores_fakedeath = TRUE
+	disabled_by_fire = FALSE
 
 /datum/action/changeling/headcrab/sting_action(mob/living/user)
 	set waitfor = FALSE

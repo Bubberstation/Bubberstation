@@ -78,7 +78,7 @@
 	if(!timing)
 		return PROCESS_KILL
 
-	if(REALTIMEOFDAY - activation_time >= timer_duration) // SKYRAT EDIT CHANGE: original was world.time
+	if(world.time - activation_time >= timer_duration)
 		timer_end() // open doors, reset timer, clear status screen
 	update_content()
 
@@ -104,7 +104,7 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
 
-	activation_time = REALTIMEOFDAY // SKYRAT EDIT CHANGE: original was world.time
+	activation_time = world.time
 	timing = TRUE
 	begin_processing()
 
@@ -177,21 +177,21 @@
  * * seconds - Return the time in seconds if TRUE, else deciseconds.
  */
 /obj/machinery/status_display/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0, timer_duration + activation_time - REALTIMEOFDAY) // SKYRAT EDIT CHANGE: original was world.time
+	. = max(0, timer_duration + (activation_time ? activation_time - world.time : 0))
 	if(seconds)
 		. /= (1 SECONDS)
 
 /**
  * Set the timer. Does NOT automatically start counting down, but does update the display.
  *
- * returns TRUE if no change occurred
+ * returns FALSE if no change occurred
  *
  * Arguments:
  * value - time in deciseconds to set the timer for.
  */
 /obj/machinery/status_display/door_timer/proc/set_timer(value)
-	var/new_time = clamp(value, 0, MAX_TIMER + world.time - activation_time)
-	. = new_time == timer_duration //return 1 on no change
+	var/new_time = clamp(value, 0, MAX_TIMER)
+	. = new_time != timer_duration //return 1 on change
 	timer_duration = new_time
 	update_content()
 
@@ -218,7 +218,7 @@
 			break
 	return data
 
-/obj/machinery/status_display/door_timer/ui_act(action, params)
+/obj/machinery/status_display/door_timer/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -269,7 +269,7 @@
 			user.investigate_log("set cell [id]'s timer to [preset_time/10] seconds", INVESTIGATE_RECORDS)
 			user.log_message("set cell [id]'s timer to [preset_time/10] seconds", LOG_ATTACK)
 			if(timing)
-				activation_time = REALTIMEOFDAY // SKYRAT EDIT CHANGE: original was world.time
+				activation_time = world.time
 		else
 			. = FALSE
 

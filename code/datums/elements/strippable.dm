@@ -38,18 +38,30 @@
 
 	if (user == source)
 		return
-
 	if (over != user)
 		return
+	if(!user.can_perform_action(source, FORBID_TELEKINESIS_REACH | ALLOW_RESTING))
+		return
 
-	// Cyborgs buckle people by dragging them onto them, unless in combat mode.
+	// Snowflake for cyborgs buckling people by dragging them onto them, unless in combat mode.
 	if (iscyborg(user))
 		var/mob/living/silicon/robot/cyborg_user = user
 		if (!cyborg_user.combat_mode)
 			return
+	// Snowflake for xeno consumption code
+	if (isalienadult(user))
+		var/mob/living/carbon/alien/adult/alien = user
+		if (alien.grab_state == GRAB_AGGRESSIVE && alien.pulling == source)
+			return
 
 	if (!isnull(should_strip_proc_path) && !call(source, should_strip_proc_path)(user))
 		return
+
+	// Snowflake for mob scooping
+	if (isliving(source))
+		var/mob/living/mob = source
+		if (mob.can_be_held && (user.grab_state == GRAB_AGGRESSIVE) && (user.pulling == source))
+			return
 
 	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, source)
 
@@ -58,6 +70,7 @@
 		LAZYSET(strip_menus, source, strip_menu)
 
 	INVOKE_ASYNC(strip_menu, TYPE_PROC_REF(/datum/, ui_interact), user)
+	return COMPONENT_CANCEL_MOUSEDROP_ONTO
 
 /// A representation of an item that can be stripped down
 /datum/strippable_item
@@ -143,7 +156,7 @@
 	//SKYRAT EDIT CHANGE END
 
 	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
-	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "is stripping [source] of [item].") // BUBBER EDIT - PUBLIC LOGGING
+	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
 
@@ -279,7 +292,7 @@
 
 /// A utility function for `/datum/strippable_item`s to finish equipping an item to a mob.
 /proc/finish_equip_mob(obj/item/item, mob/source, mob/user)
-	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red", redacted_copy = "has put [item] on [source].") // BUBBER EDIT- PUBLIC LOGS
+	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red")
 	source.log_message("had [item] put on them by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
@@ -294,7 +307,7 @@
 	if (!item.doStrip(user, source))
 		return FALSE
 
-	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "has stripped [source] of [item])") // BUBBER EDIT - PUBLIC LOGS
+	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("has been stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 	// Updates speed in case stripped speed affecting item

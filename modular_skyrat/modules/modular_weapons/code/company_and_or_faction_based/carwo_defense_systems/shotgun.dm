@@ -1,8 +1,8 @@
-// SolFed shotgun (this was gonna be in a proprietary shotgun shell type outside of 12ga at some point, wild right?)
+// TerraGov shotgun (this was gonna be in a proprietary shotgun shell type outside of 12ga at some point, wild right?)
 
 /obj/item/gun/ballistic/shotgun/riot/sol
 	name = "\improper Renoster Shotgun"
-	desc = "A twelve gauge shotgun with a six shell capacity underneath. Made for and used by SolFed's various military branches."
+	desc = "A twelve gauge shotgun with an eight shell capacity underneath. Made for and used by TerraGov's various military branches."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "renoster"
@@ -28,6 +28,10 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
+
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/somewhatextended
+
+	fire_delay = 8
 
 /obj/item/gun/ballistic/shotgun/riot/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_CARWO)
@@ -59,7 +63,7 @@
 // Shotgun but EVIL!
 
 /obj/item/gun/ballistic/shotgun/riot/sol/evil
-	desc = "A twleve guage shotgun with an eight shell capacity underneath. This one is painted in a tacticool black."
+	desc = "A twleve gauge shotgun with an eight shell capacity underneath. This one is painted in a tacticool black."
 
 	icon_state = "renoster_evil"
 	worn_icon_state = "renoster_evil"

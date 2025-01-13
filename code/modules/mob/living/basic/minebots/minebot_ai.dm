@@ -9,6 +9,13 @@
 		BB_MINEBOT_AUTO_DEFEND = TRUE,
 		BB_BLACKLIST_MINERAL_TURFS = list(/turf/closed/mineral/gibtonite),
 		BB_AUTOMATED_MINING = FALSE,
+		BB_OWNER_SELF_HARM_RESPONSES = list(
+			"Please stop hurting yourself.",
+			"There is no need to do that.",
+			"Your actions are illogical.",
+			"Please make better choices.",
+			"Remember, you have beaten your worst days before."
+		)
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
@@ -91,7 +98,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	var/mob/living/living_pawn = controller.pawn
 	living_pawn.say("REPAIRING [target]!")
-	living_pawn.UnarmedAttack(target)
+	controller.ai_interact(target = target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/repair_drone/finish_action(datum/ai_controller/controller, success, target_key)
@@ -244,7 +251,7 @@
 
 ///store ores in our body
 /datum/ai_planning_subtree/find_and_hunt_target/hunt_ores/minebot
-	hunting_behavior = /datum/ai_behavior/hunt_target/unarmed_attack_target/consume_ores/minebot
+	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/consume_ores/minebot
 	hunt_chance = 100
 
 /datum/ai_planning_subtree/find_and_hunt_target/hunt_ores/minebot/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
@@ -256,10 +263,10 @@
 
 	return ..()
 
-/datum/ai_behavior/hunt_target/unarmed_attack_target/consume_ores/minebot
+/datum/ai_behavior/hunt_target/interact_with_target/consume_ores/minebot
 	hunt_cooldown = 2 SECONDS
 
-/datum/ai_behavior/hunt_target/unarmed_attack_target/consume_ores/minebot/target_caught(mob/living/hunter, obj/item/stack/ore/hunted)
+/datum/ai_behavior/hunt_target/interact_with_target/consume_ores/minebot/target_caught(mob/living/hunter, obj/item/stack/ore/hunted)
 	if(hunter.combat_mode)
 		hunter.set_combat_mode(FALSE)
 	return ..()
@@ -277,6 +284,10 @@
 	radial_icon = 'icons/obj/mining.dmi'
 	radial_icon_state = "pickaxe"
 	speech_commands = list("mine")
+	callout_type = /datum/callout_option/mine
+
+/datum/pet_command/automate_mining/valid_callout_target(mob/living/caller, datum/callout_option/callout, atom/target)
+	return ismineralturf(target)
 
 /datum/pet_command/automate_mining/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, TRUE)

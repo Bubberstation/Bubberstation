@@ -24,6 +24,7 @@ export const MESSAGE_TYPE_INTERNAL = 'internal';
 export const MESSAGE_TYPE_SYSTEM = 'system';
 export const MESSAGE_TYPE_LOCALCHAT = 'localchat';
 export const MESSAGE_TYPE_RADIO = 'radio';
+export const MESSAGE_TYPE_ENTERTAINMENT = 'entertainment';
 export const MESSAGE_TYPE_INFO = 'info';
 export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
@@ -37,7 +38,12 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
-export const MESSAGE_TYPE_MENTOR = 'mentor'; // SKYRAT EDIT ADDITION
+// BUBBER EDIT ADDITION BEGIN
+export const MESSAGE_TYPE_MENTOR = 'mentor';
+export const MESSAGE_TYPE_LOOC = 'looc';
+export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
+export const MESSAGE_TYPE_SUBTLE = 'subtle';
+// BUBBER EDIT ADDITION END
 
 // Metadata for each message type
 export const MESSAGE_TYPES = [
@@ -54,14 +60,20 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .looc',
+    selector: '.say, .emote',
   },
   {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .newscaster, .resonate, .abductor, .alien, .changeling',
+      '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .resonate, .abductor, .alien, .changeling',
+  },
+  {
+    type: MESSAGE_TYPE_ENTERTAINMENT,
+    name: 'Entertainment',
+    description: 'Entertainment and newscaster broadcasts',
+    selector: '.enteradio, .newscaster',
   },
   {
     type: MESSAGE_TYPE_INFO,
@@ -87,8 +99,28 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
-    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain, .looc, .rlooc',
+    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
   },
+  // BUBBER EDIT ADDITION BEGIN
+  {
+    type: MESSAGE_TYPE_LOOC,
+    name: 'LOOC',
+    description: 'Local OOC messages.',
+    selector: '.looc',
+  },
+  {
+    type: MESSAGE_TYPE_SUBTLE,
+    name: 'Subtle',
+    description: 'Subtle and Subtler actions.',
+    selector: '.subtle, .subtler',
+  },
+  {
+    type: MESSAGE_TYPE_MENTOR,
+    name: 'Mentor Log',
+    description: 'Mentor PMs and other mentor things.',
+    selector: '.mentor, .mentornotice',
+  },
+  // BUBBER EDIT ADDITION END
   {
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
@@ -146,10 +178,13 @@ export const MESSAGE_TYPES = [
     description: 'DEBUG: SSPlanets subsystem Recover().',
     admin: true,
   },
+  // BUBBER EDIT ADDITION BEGIN
   {
-    type: MESSAGE_TYPE_MENTOR, // SKYRAT EDIT
-    name: 'Mentor Log',
-    description: 'Mentor PMs and other mentor things.',
-    selector: '.mentor, .mentornotice',
+    type: MESSAGE_TYPE_REMOTE_LOOC,
+    name: 'Remote LOOC',
+    description: 'Yes, admins can read your LOOC no matter where you are.',
+    selector: '.rlooc',
+    admin: true,
   },
+  // BUBBER EDIT ADDITION END
 ];

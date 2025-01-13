@@ -367,6 +367,8 @@ You can actually force it to use a particular mob's sight to avoid aspects of th
 - [Table of Contents](#table-of-contents)
 - [Reference Entry](https://www.byond.com/docs/ref/#/mob/var/see_in_dark)
 
+`/mob/var/see_in_dark` sets the radius of a square around the mob that cuts out BYOND darkness.
+
 This is why when you stand in darkness you can see yourself, and why you can see a line of objects appear when you use mesons (horrible effect btw).
 It's quite simple, but worth describing.
 
@@ -403,6 +405,9 @@ Layer has a bit more nuance then just being lowest to highest, tho it's not a lo
 There are a few snowflake layers that can be used to accomplish niche goals, alongside floating layers, which are essentially just any layer that is negative.
 
 Floating layers will float "up" the chain of things they're being drawn onto, until they find a real layer. They'll then offset off of that.
+
+Adding `TOPDOWN_LAYER` (actual value `10000`) to another layer forces the appearance into topdown rendering, locally disabling [side map](#side_map-check-the-main-page-too).
+We can think of this as applying to planes, since we don't want it interlaying with other non topdown objects.
 
 This allows us to keep relative layer differences while not needing to make all sources static. Often very useful.
 

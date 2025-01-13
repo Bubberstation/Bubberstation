@@ -15,6 +15,7 @@
 			"name" = "Entertainers",
 			"icon" = "masks-theater",
 			"products" = list(
+				/obj/item/clothing/head/beret/clown = 3,
 				/obj/item/clothing/mask/gas/clownbald = 1,
 				/obj/item/clothing/mask/gas/clown_colourable = 1,
 				/obj/item/clothing/head/costume/jesteralt = 1,
@@ -66,8 +67,7 @@
 				/obj/item/clothing/glasses/biker = 5,
 				/obj/item/clothing/suit/trenchblack = 5,
 				/obj/item/clothing/suit/trenchbrown = 5,
-				/obj/item/clothing/head/costume/skyrat/christmas = 5,
-				/obj/item/clothing/head/costume/skyrat/christmas/green =  5,
+				/obj/item/clothing/head/costume/santa/gags = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas/green = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas/croptop = 5,

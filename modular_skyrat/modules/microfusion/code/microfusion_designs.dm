@@ -80,7 +80,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2,
 	)
-	build_path = /obj/item/stock_parts/cell/microfusion
+	build_path = /obj/item/stock_parts/power_store/cell/microfusion
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_MICROFUSION_WEAPONS + RND_MICROFUSION_CELLS,
@@ -95,7 +95,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2,
 	)
-	build_path = /obj/item/stock_parts/cell/microfusion/enhanced
+	build_path = /obj/item/stock_parts/power_store/cell/microfusion/enhanced
 
 /datum/design/microfusion/cell/advanced
 	name = "Advanced Microfusion Cell"
@@ -108,7 +108,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/stock_parts/cell/microfusion/advanced
+	build_path = /obj/item/stock_parts/power_store/cell/microfusion/advanced
 
 /datum/design/microfusion/cell/bluespace
 	name = "Bluespace Microfusion Cell"
@@ -123,10 +123,9 @@
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/stock_parts/cell/microfusion/bluespace
+	build_path = /obj/item/stock_parts/power_store/cell/microfusion/bluespace
 
 // CELL UPGRADES
-
 /datum/design/microfusion/cell_attachment
 	name = "Placeholder Cell Attachment"
 	desc = "You shouldn't be seeing this."
@@ -180,12 +179,6 @@
 	)
 
 // RAIL MODS
-
-/datum/design/microfusion/attachment/rail_slot
-	name = "Placeholder Microfusion Rail Slot Attachment"
-	category = list(
-		RND_CATEGORY_MICROFUSION_WEAPONS + RND_MICROFUSION_ATTACHMENT + RND_MICROFUSION_ATTACHMENT_RAIL,
-	)
 
 /datum/design/microfusion/attachment/rail_slot/rail
 	name = "Microfusion Weapon Rail"
@@ -298,6 +291,7 @@
 	)
 	build_path = /obj/item/microfusion_gun_attachment/barrel/scatter
 
+
 /datum/design/microfusion/attachment/barrel/scatter/max
 	name = "Crystalline Diffuser Microfusion Lens Attachment"
 	desc = "Splits the microfusion laser beam entering the lens even more."
@@ -346,6 +340,7 @@
 	)
 	build_path = /obj/item/microfusion_gun_attachment/barrel/repeater
 
+
 /datum/design/microfusion/attachment/barrel/repeater/penetrator
 	name = "Focused Repeating Phase Emitter Upgrade"
 	desc = "Upgrades the central phase emitter to repeat twice and penetrate armor."
@@ -353,9 +348,9 @@
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = SMALL_MATERIAL_AMOUNT * 5,
 		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT,
-	)
+		)
 	build_path = /obj/item/microfusion_gun_attachment/barrel/repeater/penetrator
 
 /datum/design/microfusion/attachment/barrel/xray

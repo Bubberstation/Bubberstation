@@ -5,6 +5,7 @@
 			"icon" = "hat-cowboy",
 			"products" = list(
 				/obj/item/clothing/head/beret/badge = 5,
+				/obj/item/clothing/head/beret/clown/rainbow = 5,
 				/obj/item/clothing/head/colourable_flatcap= 5,
 				/obj/item/clothing/head/cowboy/skyrat/cattleman = 5,
 				/obj/item/clothing/head/cowboy/skyrat/cattleman/wide = 5,
@@ -44,6 +45,7 @@
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/hud/ar/projector = 5,
 				/obj/item/clothing/neck/face_scarf = 5,
+				/obj/item/clothing/neck/scarf/pride = 5, //BUBBER EDIT: ADDS PRIDE SCARVES
 				/obj/item/clothing/gloves/bracer/wraps,
 			),
 		),
@@ -60,6 +62,8 @@
 				/obj/item/clothing/under/suit/skyrat/recolorable = 5,
 				/obj/item/clothing/under/suit/skyrat/recolorable/skirt = 5,
 				/obj/item/clothing/under/pants/skyrat/kilt = 5,
+				/obj/item/clothing/under/costume/skyrat/kilt/royal = 5,
+				/obj/item/clothing/under/costume/skyrat/tac/irish = 5,
 				/obj/item/clothing/under/suit/fancy = 5,
 				/obj/item/clothing/under/texas = 5,
 				/obj/item/clothing/under/sweater = 5,

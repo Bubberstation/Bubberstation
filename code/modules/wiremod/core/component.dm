@@ -14,6 +14,8 @@
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
+	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
+	w_class = WEIGHT_CLASS_TINY
 
 	/// The name of the component shown on the UI
 	var/display_name = "Generic"
@@ -268,7 +270,7 @@
 
 		var/flags = SEND_SIGNAL(parent, COMSIG_CIRCUIT_PRE_POWER_USAGE, energy_usage_per_input)
 		if(!(flags & COMPONENT_OVERRIDE_POWER_USAGE))
-			var/obj/item/stock_parts/cell/cell = parent.get_cell()
+			var/obj/item/stock_parts/power_store/cell = parent.get_cell()
 			if(!cell?.use(energy_usage_per_input))
 				return FALSE
 

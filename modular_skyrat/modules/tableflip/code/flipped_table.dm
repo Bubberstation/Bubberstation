@@ -46,7 +46,7 @@
 	if(direction == dir)
 		return COMPONENT_ATOM_BLOCK_EXIT
 
-/obj/structure/flippedtable/CtrlShiftClick(mob/living/user)
+/obj/structure/flippedtable/click_ctrl_shift(mob/living/user)
 	. = ..()
 	if(!istype(user) || !user.can_interact_with(src) || iscorticalborer(user))
 		return FALSE
@@ -57,7 +57,7 @@
 		if(custom_materials)
 			new_table.set_custom_materials(custom_materials)
 		user.balloon_alert_to_viewers("table flipped upright")
-		playsound(src, 'sound/items/trayhit2.ogg', 100)
+		playsound(src, 'sound/items/trayhit/trayhit2.ogg', 100)
 		qdel(src)
 
 /obj/structure/flippedtable/BorgCtrlShiftClick(mob/living/silicon/robot/user)
@@ -68,7 +68,7 @@
 
 
 //TABLES
-/obj/structure/table/CtrlShiftClick(mob/living/user)
+/obj/structure/table/click_ctrl_shift(mob/living/user)
 	. = ..()
 	if(!istype(user) || !user.can_interact_with(src) || iscorticalborer(user))
 		return
@@ -103,7 +103,7 @@
 		sound_volume = 40
 
 	user.balloon_alert_to_viewers(balloon_message)
-	playsound(src, 'sound/items/trayhit2.ogg', sound_volume)
+	playsound(src, 'sound/items/trayhit/trayhit2.ogg', sound_volume)
 	qdel(src)
 
 	var/turf/throw_target = get_step(flipped_table, flipped_table.dir)

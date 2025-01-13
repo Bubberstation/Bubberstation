@@ -234,12 +234,12 @@
 
 /datum/reagent/cryostylane/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
-	affected_mob.mob_surgery_speed_mod = 1-((CRYO_SPEED_PREFACTOR * (1 - creation_purity))+CRYO_SPEED_CONSTANT) //10% - 30% slower
+	//affected_mob.mob_surgery_speed_mod = 1-((CRYO_SPEED_PREFACTOR * (1 - creation_purity))+CRYO_SPEED_CONSTANT) //10% - 30% slower // BUBBER EDIT REMOVAL
 	affected_mob.color = COLOR_CYAN
 
 /datum/reagent/cryostylane/on_mob_delete(mob/living/affected_mob)
 	. = ..()
-	affected_mob.mob_surgery_speed_mod = 1
+	//affected_mob.mob_surgery_speed_mod = 1 // BUBBER EDIT REMOVAL
 	affected_mob.color = COLOR_WHITE
 
 //Pauses decay! Does do something, I promise.
@@ -312,6 +312,14 @@
 		affected_mob.electrocute_act(rand(5, 20), "Teslium in their body", 1, SHOCK_NOGLOVES) //SHOCK_NOGLOVES because it's caused from INSIDE of you
 		playsound(affected_mob, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
+/datum/reagent/teslium/used_on_fish(obj/item/fish/fish)
+	if(HAS_TRAIT_FROM(fish, TRAIT_FISH_ELECTROGENESIS, FISH_TRAIT_DATUM))
+		return FALSE
+	fish.add_traits(list(TRAIT_FISH_ON_TESLIUM, TRAIT_FISH_ELECTROGENESIS), type)
+	addtimer(TRAIT_CALLBACK_REMOVE(fish, TRAIT_FISH_ON_TESLIUM, type), fish.feeding_frequency * 0.75, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(TRAIT_CALLBACK_REMOVE(fish, TRAIT_FISH_ELECTROGENESIS, type), fish.feeding_frequency * 0.75, TIMER_UNIQUE|TIMER_OVERRIDE)
+	return TRUE
+
 /datum/reagent/teslium/on_mob_metabolize(mob/living/carbon/human/affected_mob)
 	. = ..()
 	if(!istype(affected_mob))
@@ -336,7 +344,7 @@
 	if(!isjellyperson(affected_mob)) //everyone but jellypeople get shocked as normal.
 		return ..()
 	affected_mob.AdjustAllImmobility(-40  *REM * seconds_per_tick)
-	if(affected_mob.adjustStaminaLoss(-2 * REM * seconds_per_tick, updating_stamina = FALSE))
+	if(affected_mob.adjustStaminaLoss(-10 * REM * seconds_per_tick, updating_stamina = FALSE))
 		. = UPDATE_MOB_HEALTH
 	if(is_species(affected_mob, /datum/species/jelly/luminescent))
 		var/mob/living/carbon/human/affected_human = affected_mob

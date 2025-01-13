@@ -52,7 +52,7 @@
 
 /datum/area_spawn/bar_jukebox
 	target_areas = list(/area/station/commons/lounge, /area/station/service/bar/atrium, /area/station/service/bar)
-	desired_atom = /obj/machinery/jukebox/public
+	desired_atom = /obj/machinery/jukebox/no_access
 	mode = AREA_SPAWN_MODE_OPEN
 
 // Wall mounts. Use sparingly as walls are prime real estate
@@ -109,3 +109,11 @@
 /datum/area_spawn/corrections_officer_landmark
 	desired_atom = /obj/effect/landmark/start/corrections_officer
 	target_areas = list(/area/station/security/brig, /area/station/security/prison/)
+
+/datum/area_spawn/telecomms_specialist_landmark
+	target_areas = list(
+		/area/station/tcommsat/computer,
+		/area/station/engineering/lobby,
+		/area/station/engineering/break_room,
+	)
+	desired_atom = /obj/effect/landmark/start/telecomms_specialist

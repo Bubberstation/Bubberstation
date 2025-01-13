@@ -2189,7 +2189,7 @@
 "pQ" = (
 /obj/machinery/cell_charger_multi,
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/stock_parts/cell/bluespace,
+/obj/item/stock_parts/power_store/cell/bluespace,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
@@ -2666,7 +2666,7 @@
 /area/ruin/syndicate_lava_base/main)
 "tf" = (
 /obj/machinery/light/directional/south,
-/obj/machinery/vending/medical/syndicate_access/cybersun{
+/obj/machinery/vending/medical/syndicate/cybersun{
 	desc = "An advanced vendor that dispenses medical drugs, both recreational and medicinal. It's said to have been salvaged from an old decommissioned Cybersun Cruiser.";
 	name = "\improper SyndiMed ++";
 	onstation = 0;
@@ -7072,7 +7072,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/anesthetic_machine,
+/obj/machinery/breath_machine/anesthetic,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/medbay)
 "Yi" = (
@@ -7168,7 +7168,7 @@
 /area/ruin/syndicate_lava_base/main)
 "Zi" = (
 /obj/effect/turf_decal/tile/bar,
-/obj/machinery/vending/boozeomat/syndicate_access{
+/obj/machinery/vending/boozeomat/syndicate{
 	onstation = 0;
 	onstation_override = 1
 	},

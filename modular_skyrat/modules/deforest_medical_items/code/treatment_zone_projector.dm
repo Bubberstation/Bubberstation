@@ -1,4 +1,4 @@
-// Giant 3x3 tile warning hologram that tells people they should probably stand outside of it
+// Only for cosmetic reasons, there is no longer a proximity penalty for surgery.
 
 /obj/structure/holosign/treatment_zone_warning
 	name = "treatment zone indicator"
@@ -37,7 +37,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/techweb_node/biotech/New()
+/datum/techweb_node/holographics/New()
 	. = ..()
 	design_ids.Add("treatment_zone_projector")
 

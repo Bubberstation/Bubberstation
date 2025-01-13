@@ -1,6 +1,5 @@
-/turf/open/floor/bitrunning_transport
+/turf/open/indestructible/bitrunning_transport
 	name = "circuit floor"
-	icon = 'icons/turf/floors.dmi'
 	desc = "Looks complex. You can see the circuits running through the floor."
 	icon_state = "bitrunning"
 

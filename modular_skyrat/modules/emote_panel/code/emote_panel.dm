@@ -232,7 +232,7 @@
 			available_emotes += human_emotes
 			// Checking if should apply Synth emotes
 			var/mob/living/carbon/human/current_mob = src
-			if(current_mob.dna.species.type in allowed_species_synth)
+			if(!HAS_TRAIT(current_mob, TRAIT_SILICON_EMOTES_ALLOWED))
 				available_emotes += synth_emotes
 			// Checking if can wag tail
 			var/obj/item/organ/external/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -756,7 +756,7 @@
 /mob/living/proc/emote_huff()
 	set name = "~ Huff"
 	set category = "Emotes+"
-	usr.emote("huffs", intentional = TRUE)
+	usr.emote("huff", intentional = TRUE)
 
 /mob/living/proc/emote_etwitch()
 	set name = "~ Ears twitch"

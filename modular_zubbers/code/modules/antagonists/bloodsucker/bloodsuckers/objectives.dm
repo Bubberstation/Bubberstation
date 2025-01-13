@@ -29,29 +29,29 @@
 
 	return possible_targets
 
-/// Check Vassals and get their occupations
-/datum/objective/bloodsucker/proc/get_vassal_occupations()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(!bloodsuckerdatum || !bloodsuckerdatum.vassals.len)
+/// Check Ghouls and get their occupations
+/datum/objective/bloodsucker/proc/get_ghoul_occupations()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
+	if(!bloodsuckerdatum || !bloodsuckerdatum.ghouls.len)
 		return FALSE
-	var/list/all_vassal_jobs = list()
-	var/vassal_job
-	for(var/datum/antagonist/vassal/bloodsucker_vassals in bloodsuckerdatum.vassals)
-		if(!bloodsucker_vassals || !bloodsucker_vassals.owner)	// Must exist somewhere, and as a vassal.
+	var/list/all_ghoul_jobs = list()
+	var/ghoul_job
+	for(var/datum/antagonist/ghoul/bloodsucker_ghouls in bloodsuckerdatum.ghouls)
+		if(!bloodsucker_ghouls || !bloodsucker_ghouls.owner)	// Must exist somewhere, and as a ghoul.
 			continue
 		// Mind Assigned
-		if(bloodsucker_vassals.owner?.assigned_role)
-			vassal_job = bloodsucker_vassals.owner.assigned_role
+		if(bloodsucker_ghouls.owner?.assigned_role)
+			ghoul_job = bloodsucker_ghouls.owner.assigned_role
 		// Mob Assigned
-		else if(bloodsucker_vassals.owner?.current?.job)
-			vassal_job = SSjob.GetJob(bloodsucker_vassals.owner.current.job)
+		else if(bloodsucker_ghouls.owner?.current?.job)
+			ghoul_job = SSjob.get_job(bloodsucker_ghouls.owner.current.job)
 		// PDA Assigned
-		else if(bloodsucker_vassals.owner?.current && ishuman(bloodsucker_vassals.owner.current))
-			var/mob/living/carbon/human/vassal = bloodsucker_vassals.owner.current
-			vassal_job = SSjob.GetJob(vassal.get_assignment())
-		if(vassal_job)
-			all_vassal_jobs += vassal_job
-	return all_vassal_jobs
+		else if(bloodsucker_ghouls.owner?.current && ishuman(bloodsucker_ghouls.owner.current))
+			var/mob/living/carbon/human/ghoul = bloodsucker_ghouls.owner.current
+			ghoul_job = SSjob.get_job(ghoul.get_assignment())
+		if(ghoul_job)
+			all_ghoul_jobs += ghoul_job
+	return all_ghoul_jobs
 
 //////////////////////////////////////////////////////////////////////////////////////
 //	//							 OBJECTIVES 									//	//
@@ -61,17 +61,17 @@
 //    DEFAULT OBJECTIVES    //
 //////////////////////////////
 
-/datum/objective/bloodsucker/lair
-	name = "claimlair"
+/datum/objective/bloodsucker/haven
+	name = "claimhaven"
 
 // EXPLANATION
-/datum/objective/bloodsucker/lair/update_explanation_text()
-	explanation_text = "Create a lair by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
+/datum/objective/bloodsucker/haven/update_explanation_text()
+	explanation_text = "Create a haven by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
 
 // WIN CONDITIONS?
-/datum/objective/bloodsucker/lair/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.bloodsucker_lair_area)
+/datum/objective/bloodsucker/haven/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
+	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.bloodsucker_haven_area)
 		return TRUE
 	return FALSE
 
@@ -83,42 +83,49 @@
 	name = "bloodsuckersurvive"
 	explanation_text = "Survive the entire shift without succumbing to Final Death."
 
-// WIN CONDITIONS?
-// Handled by parent
+/datum/objective/survive/bloodsucker/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/mind in owners)
+		var/datum/antagonist/bloodsucker/vamp = IS_BLOODSUCKER(mind.current)
+		if(!vamp)
+			return FALSE
+		if(!vamp.considered_alive(mind))
+			return FALSE
+	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-/// Vassalize a certain person / people
+/// Ghoulify a certain person / people
 /datum/objective/bloodsucker/conversion
-	name = "vassalization"
+	name = "ghouling"
 
 /////////////////////////////////
 
-// Vassalize a head of staff
+// Ghoulify a head of staff
 /datum/objective/bloodsucker/conversion/command
-	name = "vassalizationcommand"
+	name = "ghoulingcommand"
 	target_amount = 1
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/command/update_explanation_text()
-	explanation_text = "Guarantee a Vassal ends up as a Department Head or in a Leadership role."
+	explanation_text = "Guarantee a Ghoul ends up as a Department Head or in a Leadership role."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/conversion/command/check_completion()
-	var/list/vassal_jobs = get_vassal_occupations()
-	for(var/datum/job/checked_job in vassal_jobs)
+	var/list/ghoul_jobs = get_ghoul_occupations()
+	for(var/datum/job/checked_job in ghoul_jobs)
 		if(checked_job.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
 			return TRUE // We only need one, so we stop as soon as we get a match
 	return FALSE
 
 /////////////////////////////////
 
-// Vassalize crewmates in a department
+// Ghoulify crewmates in a department
 /datum/objective/bloodsucker/conversion/department
-	name = "vassalize department"
+	name = "ghoulify department"
 
-	///The selected department we have to vassalize.
+	///The selected department we have to ghoulify.
 	var/datum/job_department/target_department
 	///List of all departments that can be selected for the objective.
 	var/static/list/possible_departments = list(
@@ -139,14 +146,14 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/department/update_explanation_text()
-	explanation_text = "Have [target_amount] Vassal[target_amount == 1 ? "" : "s"] in the [target_department.department_name] department."
+	explanation_text = "Have [target_amount] Ghoul[target_amount == 1 ? "" : "s"] in the [target_department.department_name] department."
 	return ..()
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/conversion/department/check_completion()
-	var/list/vassal_jobs = get_vassal_occupations()
+	var/list/ghoul_jobs = get_ghoul_occupations()
 	var/converted_count = 0
-	for(var/datum/job/checked_job in vassal_jobs)
+	for(var/datum/job/checked_job in ghoul_jobs)
 		if(checked_job.departments_bitflags & target_department.department_bitflags)
 			converted_count++
 	if(converted_count >= target_amount)
@@ -200,7 +207,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/gourmand/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	var/stolen_blood = bloodsuckerdatum.total_blood_drank
@@ -216,20 +223,20 @@
 //     CLAN OBJECTIVES      //
 //////////////////////////////
 
-/// Steal the Archive of the Kindred - Nosferatu Clan objective
+/// Steal the Book of Nod - Nosferatu Clan objective
 /datum/objective/bloodsucker/kindred
-	name = "steal kindred"
+	name = "steal the Book of Nod"
 
 // EXPLANATION
 /datum/objective/bloodsucker/kindred/update_explanation_text()
 	. = ..()
-	explanation_text = "Ensure Nosferatu steals and keeps control over the Archive of the Kindred."
+	explanation_text = "A Noddist Scholar has posted a bounty on SchreckNet for a scrap of the Book of Nod located in your sector. Their advise? Read a book."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/kindred/check_completion()
 	if(!owner.current)
 		return FALSE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 
@@ -244,16 +251,19 @@
 /// Max out a Tremere Power - Tremere Clan objective
 /datum/objective/bloodsucker/tremere_power
 	name = "tremerepower"
+	var/power_level = TREMERE_OBJECTIVE_POWER_LEVEL
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
+	explanation_text = "Your Regent is doubting your abilities, level some Blood Magic to [power_level] to prove them wrong! Remember that Ghoulifying gives more Ranks!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	for(var/datum/action/cooldown/bloodsucker/targeted/tremere/tremere_powers in bloodsuckerdatum.powers)
-		if(tremere_powers.level_current >= 5)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
+	if(!bloodsuckerdatum)
+		return FALSE
+	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
+		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= power_level)
 			return TRUE
 	return FALSE
 
@@ -266,11 +276,11 @@
 // EXPLANATION
 /datum/objective/bloodsucker/embrace/update_explanation_text()
 	. = ..()
-	explanation_text = "Use the vassal rack to Rank your Favorite Vassal up enough to become a Bloodsucker."
+	explanation_text = "Your Strategoi has granted you permission to embrace your favourite ghoul , use the Rack to 'level' them up."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	for(var/datum/antagonist/bloodsucker/sired_vamp in GLOB.antagonists)
@@ -311,19 +321,19 @@
 
 
 //////////////////////////////
-//     VASSAL OBJECTIVES    //
+//     GHOUL OBJECTIVES    //
 //////////////////////////////
 
-/datum/objective/bloodsucker/vassal
+/datum/objective/bloodsucker/ghoul
 
 // EXPLANATION
-/datum/objective/bloodsucker/vassal/update_explanation_text()
+/datum/objective/bloodsucker/ghoul/update_explanation_text()
 	. = ..()
 	explanation_text = "Guarantee the success of your Master's mission!"
 
 // WIN CONDITIONS?
-/datum/objective/bloodsucker/vassal/check_completion()
-	var/datum/antagonist/vassal/antag_datum = owner.has_antag_datum(/datum/antagonist/vassal)
+/datum/objective/bloodsucker/ghoul/check_completion()
+	var/datum/antagonist/ghoul/antag_datum = owner.has_antag_datum(/datum/antagonist/ghoul)
 	return antag_datum.master?.owner?.current?.stat != DEAD
 
 
@@ -334,29 +344,29 @@
 //////////////////////////////
 
 // NOTE: Look up /assassinate in objective.dm for inspiration.
-/// Vassalize a target.
-/datum/objective/bloodsucker/vassalhim
-	name = "vassalhim"
+/// Ghoulify a target.
+/datum/objective/bloodsucker/ghoulhim
+	name = "ghoulhim"
 	var/target_department_type = FALSE
 
-/datum/objective/bloodsucker/vassalhim/New()
+/datum/objective/bloodsucker/ghoulhim/New()
 	var/list/possible_targets = return_possible_targets()
 	find_target(possible_targets)
 	..()
 
 // EXPLANATION
-/datum/objective/bloodsucker/vassalhim/update_explanation_text()
+/datum/objective/bloodsucker/ghoulhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Vassalized via the Persuasion Rack."
+		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulifyd via the Persuasion Rack."
 	else
 		explanation_text = "Free Objective"
 
-/datum/objective/bloodsucker/vassalhim/admin_edit(mob/admin)
+/datum/objective/bloodsucker/ghoulhim/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
 // WIN CONDITIONS?
-/datum/objective/bloodsucker/vassalhim/check_completion()
-	if(!target || target.has_antag_datum(/datum/antagonist/vassal))
+/datum/objective/bloodsucker/ghoulhim/check_completion()
+	if(!target || target.has_antag_datum(/datum/antagonist/ghoul))
 		return TRUE
 	return FALSE

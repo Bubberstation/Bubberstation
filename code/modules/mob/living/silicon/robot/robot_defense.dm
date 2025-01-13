@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			to_chat(user, span_warning("The wires seem fine, there's no need to fix them."))
 		return
 
-	if(istype(W, /obj/item/stock_parts/cell) && opened) // trying to put a cell inside
+	if(istype(W, /obj/item/stock_parts/power_store/cell) && opened) // trying to put a cell inside
 		if(wiresexposed)
 			to_chat(user, span_warning("Close the cover first!"))
 		else if(cell)
@@ -105,10 +105,6 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(!mind) //A player mind is required for law procs to run antag checks.
 			to_chat(user, span_warning("[src] is entirely unresponsive!"))
 			return
-		//BUBBER EDIT BEGIN: DIRECT LAW UPLOADS TAKE 2 SECONDS
-		if(!do_after(user, 2 SECONDS))
-			return
-		//BUBBER EDIT END: DIRECT LAW UPLOADS TAKE 2 SECONDS
 		MOD.install(laws, user) //Proc includes a success mesage so we don't need another one
 		return
 
@@ -190,6 +186,45 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	return ..()
 
+#define LOW_DAMAGE_UPPER_BOUND 1/3
+#define MODERATE_DAMAGE_UPPER_BOUND 2/3
+
+/mob/living/silicon/robot/proc/update_damage_particles()
+	var/brute_percent = bruteloss / maxHealth
+	var/burn_percent = fireloss / maxHealth
+
+	var/old_smoke = smoke_particles
+	if (brute_percent > MODERATE_DAMAGE_UPPER_BOUND)
+		smoke_particles = /particles/smoke/cyborg/heavy_damage
+	else if (brute_percent > LOW_DAMAGE_UPPER_BOUND)
+		smoke_particles = /particles/smoke/cyborg
+	else
+		smoke_particles = null
+
+	if (old_smoke != smoke_particles)
+		if (old_smoke)
+			remove_shared_particles(old_smoke)
+		if (smoke_particles)
+			add_shared_particles(smoke_particles)
+
+	var/old_sparks = spark_particles
+	if (burn_percent > MODERATE_DAMAGE_UPPER_BOUND)
+		spark_particles = /particles/embers/spark/severe
+	else if (burn_percent > LOW_DAMAGE_UPPER_BOUND)
+		spark_particles = /particles/embers/spark
+	else
+		spark_particles = null
+
+	if (old_sparks != spark_particles)
+		if (old_sparks)
+			remove_shared_particles(old_sparks)
+		if (spark_particles)
+			add_shared_particles(spark_particles)
+
+
+#undef LOW_DAMAGE_UPPER_BOUND
+#undef MODERATE_DAMAGE_UPPER_BOUND
+
 /mob/living/silicon/robot/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
 	if (LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(body_position == STANDING_UP)
@@ -206,7 +241,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 				log_combat(user, src, "pushed")
 				visible_message(span_danger("[user] forces back [src]!"), \
 					span_userdanger("[user] forces back [src]!"), null, COMBAT_MESSAGE_RANGE)
-			playsound(loc, 'sound/weapons/pierce.ogg', 50, TRUE, -1)
+			playsound(loc, 'sound/items/weapons/pierce.ogg', 50, TRUE, -1)
 	else
 		..()
 	return
@@ -218,7 +253,6 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!wiresexposed && !issilicon(user))
 		if(!cell)
 			return
-		cell.update_appearance()
 		cell.add_fingerprint(user)
 		to_chat(user, span_notice("You remove \the [cell]."))
 		user.put_in_active_hand(cell)
@@ -246,7 +280,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if (!getBruteLoss())
 		to_chat(user, span_warning("[src] is already in good condition!"))
 		return
-	if (!tool.tool_start_check(user, amount=1)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
+	if (!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED)) //The welder has 1u of fuel consumed by its afterattack, so we don't need to worry about taking any away.
 		return
 	if(src == user)
 		to_chat(user, span_notice("You start fixing yourself..."))
@@ -267,7 +301,11 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(locked)
 			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
 		else
-			to_chat(user, span_notice("You open the cover."))
+			// BUBBER EDIT START
+			balloon_alert_to_viewers("Cover Opening...", "Opening Cover...", 1)
+			if(!do_after(user, 0.5 SECONDS))
+				return FALSE
+			// BUBBER EDIT START
 			opened = TRUE
 			update_icons()
 
@@ -345,11 +383,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		balloon_alert(user, "expose the fires first!")
 		return FALSE
 
-	balloon_alert(user, "hacking interface...") //BUBBER EDIT: CHANGES THIS DESCRIPTION
-	//BUBBER EDIT BEGIN: NERF NO-TALK EMAGS
-	if(!do_after(user, 2 SECONDS))
-		return FALSE
-	//BUBBER EDIT END: NERF NO-TALK EMAGS
+	balloon_alert(user, "interface hacked")
 	emag_cooldown = world.time + 100
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
@@ -365,6 +399,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		ResetModel()
 		return TRUE
 
+	scrambledcodes = TRUE // BUBBER EDIT START
 	SetEmagged(1)
 	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
 	lawupdate = FALSE
@@ -410,7 +445,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(stat != DEAD)
 		adjustBruteLoss(30)
 	else
-		investigate_log("has been gibbed a blob.", INVESTIGATE_DEATHS)
+		investigate_log("has been gibbed by a blob.", INVESTIGATE_DEATHS)
 		gib(DROP_ALL_REMAINS)
 	return TRUE
 
@@ -440,8 +475,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return
 	spark_system.start()
 
-/mob/living/silicon/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	. = ..()
-	if (. || AM.throwforce < CYBORG_THROW_SLOWDOWN_THRESHOLD)
-		return
-	apply_status_effect(/datum/status_effect/borg_throw_slow)
+/mob/living/silicon/robot/attack_effects(damage_done, hit_zone, armor_block, obj/item/attacking_item, mob/living/attacker)
+	if(damage_done > 0 && attacking_item.damtype != STAMINA && stat != DEAD)
+		spark_system.start()
+		. = TRUE
+	return ..() || .

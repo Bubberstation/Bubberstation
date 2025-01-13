@@ -27,6 +27,7 @@
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.adjustToxLoss(-2 * REM * seconds_per_tick, 0)
 	affected_mob.adjust_disgust(-5 * REM * seconds_per_tick)
+	affected_mob.adjust_drunk_effect(-10 * REM * seconds_per_tick)
 	var/remove_amount = 1 * REM * seconds_per_tick;
 	for(var/thing in affected_mob.reagents.reagent_list)
 		var/datum/reagent/reagent = thing
@@ -54,7 +55,7 @@
 	description = "A localized swarm of nanomachines specialized in repairing mechanical parts. Concentrated amounts in a synthetic host will rapidly repair organ damage, damaging their exterior and overheating them. Otherwise they will safely purge from an organic host"
 	reagent_state = LIQUID
 	color = "#cccccc"
-	overdose_threshold = 10
+	overdose_threshold = 15
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
 	process_flags = REAGENT_SYNTHETIC | REAGENT_ORGANIC
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

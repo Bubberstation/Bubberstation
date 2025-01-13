@@ -15,6 +15,12 @@
 	desc = "A midnight blue kilt, padded with nano-kevlar and adorned with gold and a tartan sash."
 	icon_state = "capkilt"
 
+/obj/item/clothing/under/rank/captain/skyrat/shipdress
+	name = "captain's dress"
+	desc = "A blue dress adorned with a gold trim. Perfect for a formal dinner."
+	icon_state = "terragov_dress"
+	can_adjust = FALSE
+
 /obj/item/clothing/under/rank/captain/skyrat/imperial
 	name = "captain's naval jumpsuit"
 	desc = "A white naval suit adorned with golden epaulets and a rank badge denoting a Captain. There are two ways to destroy a person, kill him, or ruin his reputation."
@@ -32,7 +38,7 @@
 /*
 *	BLUESHIELD
 */
-//Why is this in command.dm? Simple: Centcom.dmi will already be packed with CC/NTNavy/AD/LL/SOL/FTU - all of them more event-based clothes, while this will appear
+//Why is this in command.dm? Simple: Centcom.dmi will already be packed with CC/NTNavy/AD/LL/TERRA/FTU - all of them more event-based clothes, while this will appear
 //on-station often.
 
 /obj/item/clothing/under/rank/blueshield

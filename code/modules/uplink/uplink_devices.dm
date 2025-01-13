@@ -52,7 +52,7 @@
 
 /obj/item/uplink/nuclear/debug
 	name = "debug nuclear uplink"
-	uplink_flag = UPLINK_NUKE_OPS
+	uplink_flag = UPLINK_ALL_SYNDIE_OPS
 
 /obj/item/uplink/nuclear/debug/Initialize(mapload, owner, tc_amount = 9000, datum/uplink_handler/uplink_handler_override = null)
 	. = ..()
@@ -67,6 +67,10 @@
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
 	hidden_uplink.allow_restricted = FALSE
+
+///A subtype used for lone ops, with some of the stuff they shouldn't/can't access removed from purchase.
+/obj/item/uplink/loneop
+	uplink_flag = UPLINK_LONE_OP
 
 /obj/item/uplink/clownop
 	uplink_flag = UPLINK_CLOWN_OPS
@@ -110,12 +114,12 @@
 
 // Multitool uplink
 ////obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 20, datum/uplink_handler/uplink_handler_override = null) //ORIGINAL
-/obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 35, datum/uplink_handler/uplink_handler_override = null) //SKYRAT EDIT CHANGE
+/obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 35, datum/uplink_handler/uplink_handler_override = null) //SKYRAT EDIT CHANGE. Original tc_amount = 20
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, FALSE, TRUE, UPLINK_TRAITORS, tc_amount)
 
 // Pen uplink
 ///obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 20, datum/uplink_handler/uplink_handler_override = null) //ORIGINAL
-/obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 35, datum/uplink_handler/uplink_handler_override = null) //SKYRAT EDIT CHANGE
+/obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 35, datum/uplink_handler/uplink_handler_override = null) //SKYRAT EDIT CHANGE. Original tc_amount = 20
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, TRUE, FALSE, UPLINK_TRAITORS, tc_amount)

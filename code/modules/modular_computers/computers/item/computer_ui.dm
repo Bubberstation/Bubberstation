@@ -172,7 +172,7 @@
 			var/mob/user = usr
 			var/new_color
 			while(!new_color)
-				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
+				new_color = tgui_color_picker(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 				if(!new_color)
 					return
 				if(is_color_dark(new_color, 50) ) //Colors too dark are rejected
@@ -211,7 +211,7 @@
 		if("PC_Imprint_ID")
 			imprint_id()
 			UpdateDisplay()
-			playsound(src, 'sound/machines/terminal_processing.ogg', 15, TRUE)
+			playsound(src, 'sound/machines/terminal/terminal_processing.ogg', 15, TRUE)
 
 		if("PC_Pai_Interact")
 			switch(params["option"])
