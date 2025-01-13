@@ -567,6 +567,9 @@
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "scarf_rainbow"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
 	obj_flags = UNIQUE_RENAME | INFINITE_RESKIN
 	unique_reskin = list(
 		"Rainbow Scarf" = "scarf_rainbow",
