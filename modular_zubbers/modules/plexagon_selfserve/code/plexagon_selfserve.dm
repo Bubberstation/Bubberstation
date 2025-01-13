@@ -40,13 +40,13 @@
 	if(!computer)
 		to_chat(user, span_warning("Plexagon: Login failed, your computer is nonexistant!"))
 		stack_trace("Plexagon Punch Clock is running on a null computer!")
-		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		return FALSE
 
 	computer.crew_manifest_update = TRUE
 	if (!computer.computer_id_slot)
 		to_chat(user, span_warning("Plexagon: Login failed, no ID card found!"))
-		playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		return FALSE
 	else if(authenticate(computer.computer_id_slot))
 		return TRUE
@@ -176,7 +176,7 @@
 	authenticated_card = FALSE
 	computer.update_appearance()
 	computer.update_static_data_for_all_viewers()
-	playsound(computer, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	playsound(computer, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	return TRUE
 
