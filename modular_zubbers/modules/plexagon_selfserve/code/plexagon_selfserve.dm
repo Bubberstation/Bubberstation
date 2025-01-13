@@ -239,11 +239,11 @@
 
 /datum/computer_file/program/crew_self_serve/ui_static_data(mob/user)
 	var/list/data = list()
+	data["stationAlertLevel"] = SSsecurity_level.get_current_level_as_text()
 	if(authenticated_card)
 		data["authIDName"] = authenticated_card.registered_name ? authenticated_card.registered_name : "-----"
 		data["authIDRank"] = authenticated_card.assignment ? authenticated_card.assignment : "Unassigned"
 		data["authCardHOPLocked"] = id_locked_check()
-		data["stationAlertLevel"] = SSsecurity_level.get_current_level_as_text()
 		data["trimClockedOut"] = off_duty_check()
 		if(authenticated_card.trim)
 			var/datum/id_trim/card_trim = authenticated_card.trim
@@ -251,10 +251,9 @@
 		else
 			data["trimAssignment"] = ""
 	else
-		data["authIDName"] = "-----"
-		data["authIDRank"] = "Unassigned"
-		data["authCardHOPLocked"] = TRUE
-		data["stationAlertLevel"] = "green"
+		data["authIDName"] = ""
+		data["authIDRank"] = ""
+		data["authCardHOPLocked"] = FALSE
 		data["trimClockedOut"] = FALSE
 		data["trimAssignment"] = ""
 	return data
