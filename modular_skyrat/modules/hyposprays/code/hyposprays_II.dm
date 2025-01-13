@@ -71,9 +71,6 @@
 	inject_self = DELUXE_SELF_SPRAY
 	penetrates = INJECT_CHECK_PENETRATE_THICK
 
-/obj/item/hypospray/mkii/piercing/atropine
-	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
-
 // Deluxe hypo upgrade Kit
 /obj/item/device/custom_kit/deluxe_hypo2
 	name = "hypospray Mk. II deluxe bodykit"

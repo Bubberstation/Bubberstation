@@ -24,7 +24,7 @@
 
 	var/dying_themselves = target == user
 	if(gradient_or_hair == DYE_OPTION_HAIR_COLOR)
-		var/new_color = input(usr, "Choose a hair color:", "Character Preference", "#" + human_target.hair_color) as color|null
+		var/new_color = tgui_color_picker(usr, "Choose a hair color:", "Character Preference", "#" + human_target.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 
 		if(!new_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
@@ -48,7 +48,7 @@
 		if(!new_grad_style || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		var/new_grad_color = input(usr, "Choose a secondary hair color:", "Dye Spray", human_target.grad_color) as color|null
+		var/new_grad_color = tgui_color_picker(usr, "Choose a secondary hair color:", "Dye Spray", human_target.grad_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 		if(!new_grad_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
