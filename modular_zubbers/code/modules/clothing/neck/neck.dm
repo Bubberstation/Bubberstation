@@ -568,12 +568,12 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "scarf_rainbow"
 	obj_flags = UNIQUE_RENAME | INFINITE_RESKIN
-    unique_reskin = list(
-        "Rainbow Scarf" = "scarf_rainbow",
-        "Bisexual Scarf" = "scarf_bi",
-        "Pansexual Scarf" = "scarf_pan",
-        "Asexual Scarf" = "scarf_ace",
-        "Gay Scarf" = "scarf_gay",
-        "Transgender Scarf" = "scarf_trans",
-        "Lesbian Scarf" = "scarf_lesbian",
-    )
+	unique_reskin = list(
+		"Rainbow Scarf" = "scarf_rainbow",
+		"Bisexual Scarf" = "scarf_bi",
+		"Pansexual Scarf" = "scarf_pan",
+		"Asexual Scarf" = "scarf_ace",
+		"Gay Scarf" = "scarf_gay",
+		"Transgender Scarf" = "scarf_trans",
+		"Lesbian Scarf" = "scarf_lesbian",
+	)
