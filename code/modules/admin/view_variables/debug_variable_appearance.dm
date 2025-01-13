@@ -64,6 +64,19 @@ GLOBAL_DATUM_INIT(pluto, /atom/movable, new /atom/movable(null))
 	if(var_name == NAMEOF(src, realized_underlays))
 		return FALSE
 	// Filtering out the stuff I know we don't care about
+	if(var_name == NAMEOF(src, x))
+		return FALSE
+	if(var_name == NAMEOF(src, y))
+		return FALSE
+	if(var_name == NAMEOF(src, z))
+		return FALSE
+	// Could make an argument for these but I think they will just confuse people, so yeeet
+#ifndef SPACEMAN_DMM // Spaceman doesn't believe in contents on appearances, sorry lads
+	if(var_name == NAMEOF(src, contents))
+		return FALSE
+#endif
+	if(var_name == NAMEOF(src, loc))
+		return FALSE
 	if(var_name == NAMEOF(src, vis_contents))
 		return FALSE
 	return ..()
