@@ -563,7 +563,7 @@
 //PRIDE SCARVES, SPRITES BY Cephalopod222 OF BUBBERSTATION
 /obj/item/clothing/neck/scarf/pride
 	name = "pride scarf"
-	desc = "testdesc"
+	desc = "A Nanotrasen made nano-weave scarf to show off your favourite flavour of gay and keep you nice and warm! Congratulations!"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "scarf_rainbow"
