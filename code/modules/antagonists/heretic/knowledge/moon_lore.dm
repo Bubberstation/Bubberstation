@@ -126,6 +126,7 @@
 	gain_text = "At the head of the parade he stood, the moon condensed into one mass, a reflection of the soul."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/moon,
+		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/curse/paralysis,
 		/datum/heretic_knowledge/painting,

@@ -249,6 +249,7 @@
 		The screams... once constant, now silenced by their wretched appearance. Nothing was out of reach."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/flesh,
+		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/opening_blast,
 	)

@@ -124,6 +124,7 @@
 	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/cosmic,
+		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
 		/datum/heretic_knowledge/curse/corrosion,
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/spell/space_phase,

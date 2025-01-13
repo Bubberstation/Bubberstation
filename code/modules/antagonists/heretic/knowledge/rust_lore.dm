@@ -147,6 +147,7 @@
 	gain_text = "All wise men know well not to visit the Rusted Hills... Yet the Blacksmith's tale was inspiring."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/rust,
+		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
 		/datum/heretic_knowledge/curse/corrosion,
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/crucible,

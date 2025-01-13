@@ -157,6 +157,7 @@
 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/void,
+		//datum/heretic_knowledge/reroll_targets //BUBBER EDIT
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/void_prison,
 		/datum/heretic_knowledge/rune_carver,
