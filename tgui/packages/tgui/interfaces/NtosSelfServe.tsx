@@ -23,7 +23,7 @@ export const NtosSelfServe = (props) => {
 
   return (
     <NtosWindow width={400} height={500}>
-      <NtosWindow.Content scrollable>
+      <NtosWindow.Content>
         <Stack>
           <Stack.Item width="100%">
             <SelfServePage />
@@ -37,7 +37,6 @@ export const NtosSelfServe = (props) => {
 const SelfServePage = (props) => {
   const { act, data } = useBackend<Data>();
   const {
-    authCard,
     authIDName,
     authIDRank,
     authCardHOPLocked,
@@ -49,7 +48,7 @@ const SelfServePage = (props) => {
 
   return (
     <Section title="Enterprise Resource Planning">
-      <Section title={'Welcome ' + authIDName + '!'}>
+      <Section title={'Welcome ' + authIDName}>
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             Current Assignment: {trimAssignment || '-----'}
