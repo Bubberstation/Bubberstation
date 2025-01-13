@@ -71,7 +71,7 @@ const SelfServePage = (props) => {
             <Stack>
               <Stack.Item>
                 <Button
-                  width="100%"
+                  width="342px"
                   disabled={
                     authCardHOPLocked || authCardTimeLocked || !authIDName
                   }
