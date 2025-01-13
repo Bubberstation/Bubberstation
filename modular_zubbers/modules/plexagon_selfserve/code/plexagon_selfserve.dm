@@ -250,7 +250,13 @@
 			data["trimAssignment"] = card_trim.assignment ? card_trim.assignment : ""
 		else
 			data["trimAssignment"] = ""
-
+	else
+		data["authIDName"] = "-----"
+		data["authIDRank"] = "Unassigned"
+		data["authCardHOPLocked"] = TRUE
+		data["stationAlertLevel"] = "green"
+		data["trimClockedOut"] = FALSE
+		data["trimAssignment"] = ""
 	return data
 
 /// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.
