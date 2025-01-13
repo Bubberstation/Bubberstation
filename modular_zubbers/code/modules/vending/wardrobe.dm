@@ -283,7 +283,7 @@
 	zubbers_products = list(
 		/obj/item/clothing/neck/tie/bunnytie/magician = 3,
 		/obj/item/clothing/under/costume/playbunny/magician = 3,
-		/obj/item/clothing/suit/jacket/tailcoat/magician = 3,
+		/obj/item/clothing/suit/wizrobe/magician = 3,
 	)
 
 /obj/machinery/vending/wardrobe/engi_wardrobe

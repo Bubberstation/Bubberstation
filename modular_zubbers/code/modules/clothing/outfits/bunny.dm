@@ -64,7 +64,7 @@
 /datum/outfit/wizard/bunny_magician
 	name = "Bunny Magician"
 	uniform = /obj/item/clothing/under/costume/playbunny/magician
-	suit = /obj/item/clothing/suit/jacket/tailcoat/magician
+	suit = /obj/item/clothing/suit/wizrobe/magician
 	back = /obj/item/storage/backpack/satchel/leather
 	head = /obj/item/clothing/head/playbunnyears
 	shoes = /obj/item/clothing/shoes/fancy_heels/wizard

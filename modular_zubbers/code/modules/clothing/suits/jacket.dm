@@ -67,6 +67,7 @@
 	greyscale_config = /datum/greyscale_config/henchmen
 	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
 	flags_1 = IS_PLAYER_COLORABLE_1
+
 /obj/item/clothing/suit/jacket/henchmen_coat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_icon)
@@ -129,16 +130,23 @@
 /obj/item/clothing/suit/jacket/tailcoat/syndicate/fake
 	armor_type = /datum/armor/none
 
-/obj/item/clothing/suit/jacket/tailcoat/magician //Not really a robe but it's MAGIC
+/obj/item/clothing/suit/jacket/tailcoat/magician
 	name = "magician's tailcoat"
-	desc = "A magnificent, gold-lined tailcoat that seems to radiate power."
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
-	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	desc = "A magnificent, gold-lined tailcoat."
 	icon_state = "tailcoat_wiz"
 	greyscale_config = null
 	greyscale_config_worn = null
+	greyscale_colors = null
+
+/obj/item/clothing/suit/wizrobe/magician //Not really a robe but it's MAGIC
+	name = /obj/item/clothing/suit/jacket/tailcoat/magician::name
+	desc = "A magnificent, gold-lined tailcoat that seems to radiate power."
+	worn_icon = /obj/item/clothing/suit/jacket/tailcoat/magician::worn_icon
+	worn_icon_digi = /obj/item/clothing/suit/jacket/tailcoat/magician::worn_icon_digi
+	icon = /obj/item/clothing/suit/jacket/tailcoat/magician::icon
+	icon_state = /obj/item/clothing/suit/jacket/tailcoat/magician::icon_state
 	inhand_icon_state = null
+	flags_inv = null
 
 /obj/item/clothing/suit/jacket/tailcoat/centcom
 	name = "Centcom tailcoat"
