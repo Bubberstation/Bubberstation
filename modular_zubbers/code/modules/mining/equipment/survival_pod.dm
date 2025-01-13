@@ -296,7 +296,7 @@
 /datum/supply_pack/science/xenoarchpod
 	name = "Xenoarcheology Pod"
 	desc = "A bluespace pod, containing an 3x3 xenoarcheology capsule."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/survivalcapsule/xenoarchpod)
 	crate_type = /obj/structure/closet/crate/nakamura
 
@@ -325,5 +325,5 @@
 /datum/supply_pack/medical/triagepod
 	name = "Triage Pod"
 	desc = "A bluespace pod, containing an 3x3 triage suite."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/survivalcapsule/triage)
