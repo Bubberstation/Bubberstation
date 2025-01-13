@@ -103,8 +103,12 @@
 		in_view -= GLOB.dead_mob_list
 		in_view.Remove(user)
 
-		for(var/mob/camera/ai_eye/ai_eye in in_view)
-			in_view.Remove(ai_eye)
+		for(var/mob/mob in in_view) // Filters out the AI eye and clientless mobs.
+			if(istype(/mob/camera/ai_eye))
+				continue
+			if(mob.client)
+				continue
+			in_view.Remove(mob)
 
 		var/list/targets = list(SUBTLE_ONE_TILE_TEXT, SUBTLE_SAME_TILE_TEXT) + in_view
 		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
