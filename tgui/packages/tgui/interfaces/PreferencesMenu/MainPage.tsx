@@ -40,8 +40,8 @@ const CLOTHING_CELL_SIZE = 48;
 const CLOTHING_SIDEBAR_ROWS = 13.4; // SKYRAT EDIT CHANGE - ORIGINAL:  9
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
-const CLOTHING_SELECTION_WIDTH = 5.4;
-const CLOTHING_SELECTION_MULTIPLIER = 5.2;
+const CLOTHING_SELECTION_WIDTH = 8; // BUBBER EDIT: ORIGINAL: 5.4
+const CLOTHING_SELECTION_MULTIPLIER = 8.08; // BUBBER EDIT: ORIGINAL: 5.2
 
 const CharacterControls = (props: {
   handleRotate: () => void;
@@ -98,14 +98,14 @@ const CharacterControls = (props: {
 
 const ChoicedSelection = (props: {
   name: string;
-  catalog: FeatureChoicedServerData;
+  catalog: FeatureChoicedServerData & { supplemental_features?: string[] }; // BUBBER EDIT: Better prefs: ORIGINAL: catalog: FeatureChoicedServerData;
   selected: string;
   supplementalFeature?: string;
   supplementalValue?: unknown;
   onClose: () => void;
   onSelect: (value: string) => void;
 }) => {
-  const { act } = useBackend<PreferencesMenuData>();
+  const { act, data } = useBackend<PreferencesMenuData>(); // BUBBER EDIT: Better prefs: Add data var
 
   const { catalog, supplementalFeature, supplementalValue } = props;
   const [getSearchText, searchTextSet] = useState('');
@@ -129,17 +129,21 @@ const ChoicedSelection = (props: {
       <Stack vertical fill>
         <Stack.Item>
           <Stack fill>
-            {supplementalFeature && (
-              <Stack.Item>
-                <FeatureValueInput
-                  act={act}
-                  feature={features[supplementalFeature]}
-                  featureId={supplementalFeature}
-                  shrink
-                  value={supplementalValue}
-                />
-              </Stack.Item>
-            )}
+            {
+              // BUBBER EDIT REMOVAL START: Better prefs: ORIGINAL CODE:
+              // {supplementalFeature && (
+              //   <Stack.Item>
+              //     <FeatureValueInput
+              //       act={act}
+              //       feature={features[supplementalFeature]}
+              //       featureId={supplementalFeature}
+              //       shrink
+              //       value={supplementalValue}
+              //     />
+              //   </Stack.Item>
+              // )}
+              // BUBBER EDIT END
+            }
 
             <Stack.Item grow>
               <Box
@@ -161,6 +165,30 @@ const ChoicedSelection = (props: {
             </Stack.Item>
           </Stack>
         </Stack.Item>
+
+        {
+          // BUBBER EDIT ADDITION: Better prefs: Make supplemental features display fully under the header
+          catalog.supplemental_features && (
+            <Stack.Item>
+              <PreferenceList
+                act={act}
+                preferences={(() => {
+                  // Lazy hack fraud method
+                  const supplementalsRecord = new Object() as Record<
+                    string,
+                    unknown
+                  >;
+                  catalog.supplemental_features.forEach((value) => {
+                    supplementalsRecord[value] =
+                      data.character_preferences.supplemental_features[value];
+                  });
+                  return supplementalsRecord;
+                })()}
+                maxHeight=""
+              />
+            </Stack.Item>
+          )
+        }
 
         <Stack.Item overflowX="hidden" overflowY="scroll">
           <Autofocus>
@@ -201,6 +229,11 @@ const ChoicedSelection = (props: {
                             image,
                             'centered-image',
                           ])}
+                          style={{
+                            // BUBBER EDIT ADDITION: Better prefs: Force the icon to fill the button, some sprites are kind of small.
+                            transform:
+                              'translateX(-50%) translateY(-50%) scale(1.3)',
+                          }}
                         />
                       </Button>
                     </Flex.Item>
@@ -277,7 +310,8 @@ const GenderButton = (props: {
 const MainFeature = (props: {
   catalog: FeatureChoicedServerData & {
     name: string;
-    supplemental_feature?: string;
+    supplemental_features: string[];
+    // BUBBER EDIT: Better prefs: ORIGINAL: supplemental_feature?: string;
   };
   currentValue: string;
   isOpen: boolean;
@@ -300,7 +334,13 @@ const MainFeature = (props: {
     setRandomization,
   } = props;
 
-  const supplementalFeature = catalog.supplemental_feature;
+  // const supplementalFeature = catalog.supplemental_feature; // BUBBER EDIT REMOVAL: Better prefs
+
+  // BUBBER EDIT ADDITION START: Better prefs: Makes debugging UI issues easier, also prevents BSODs
+  if (!catalog?.icons) {
+    return 'Fuck, ' + catalog.name + ' has no icons!';
+  }
+  // BUBBER EDIT END
 
   return (
     <Popper
@@ -313,13 +353,14 @@ const MainFeature = (props: {
           name={catalog.name}
           catalog={catalog}
           selected={currentValue}
-          supplementalFeature={supplementalFeature}
-          supplementalValue={
-            supplementalFeature &&
-            data.character_preferences.supplemental_features[
-              supplementalFeature
-            ]
-          }
+          // BUBBER EDIT REMOVAL: Better prefs: These aren't used anymore
+          // supplementalFeature={supplementalFeature}
+          // supplementalValue={
+          //   supplementalFeature &&
+          //   data.character_preferences.supplemental_features[
+          //     supplementalFeature
+          //   ]
+          // }
           onClose={handleClose}
           onSelect={handleSelect}
         />
@@ -397,7 +438,7 @@ const sortPreferences = (array: [string, unknown][]) =>
 export const PreferenceList = (props: {
   act: typeof sendAct;
   preferences: Record<string, unknown>;
-  randomizations: Record<string, RandomSetting>;
+  randomizations?: Record<string, RandomSetting>; // BUBBER EDIT: Better prefs: ORIGINAL: randomizations: Record<string, RandomSetting>;
   maxHeight: string;
   children?: ReactNode;
 }) => {
@@ -417,7 +458,8 @@ export const PreferenceList = (props: {
         {sortPreferences(Object.entries(props.preferences)).map(
           ([featureId, value]) => {
             const feature = features[featureId];
-            const randomSetting = props.randomizations[featureId];
+            const randomSetting =
+              props.randomizations && props.randomizations[featureId]; // BUBBER EDIT: Better prefs: ORIGINAL: const randomSetting = props.randomizations[featureId];
 
             if (feature === undefined) {
               return (
@@ -534,6 +576,9 @@ export const MainPage = (props: { openSpecies: () => void }) => {
               );
             },
           ),
+          // BUBBER EDIT ADDITION START: Better prefs
+          ...Object.entries(data.character_preferences.mutant_feature),
+          // BUBBER EDIT END
         ];
 
         const randomBodyEnabled =
@@ -687,11 +732,17 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                       serverData &&
                       (serverData[clothingKey] as FeatureChoicedServerData & {
                         name: string;
+                        supplemental_features: string[]; // BUBBER EDIT ADDITION: Better prefs
                       });
 
                     return (
                       catalog && (
-                        <Stack.Item key={clothingKey} mt={0.5} px={0.5}>
+                        <Stack.Item
+                          key={clothingKey}
+                          mt={0.5}
+                          px={0.5}
+                          width={`${CLOTHING_CELL_SIZE}px`} // BUBBER EDIT ADDITION: Better prefs: width was somehow becoming 9.5rem??
+                        >
                           <MainFeature
                             catalog={catalog}
                             currentValue={clothing}
@@ -753,7 +804,8 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                     </PageButton>
                   </Stack.Item>
                 </Stack>
-                <Stack fill vertical>
+                {/* BUBBER EDIT: Better prefs: Use 92% height as a workaround for prefs being improperly scrollable, originally had fill instead of height */}
+                <Stack vertical height="92%">
                   <Stack.Divider />
                   {prefPageContents}
                 </Stack>
