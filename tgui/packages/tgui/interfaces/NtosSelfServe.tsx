@@ -112,7 +112,8 @@ const SelfServePage = (props) => {
           <Stack.Item width="100%" mt={1} ml={0}>
             <NoticeBox info>
               Please note that security and command cannot punch in through this
-              application, and must go through an appropriate Command member.
+              application, and must either use their dedicated console to
+              clock in or go through an appropriate Command member.
             </NoticeBox>
           </Stack.Item>
         </Stack>
