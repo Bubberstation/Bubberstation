@@ -59,12 +59,16 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc_extended()
 	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
 	. += "Fire a slow seeking blood bolt at your enemy.<br>"
-	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Right click the button to create a blood shield<br>"
+		if(level_current >= THAUMATURGY_SHIELD_LEVEL)
+		. += "Having the ability active will create a blood shield<br>"
 	if(level_current >= THAUMATURGY_CLOSET_BREAK_LEVEL)
 		. += "The projectile will open lockers"
+		. += "The projectile will open doors/lockers"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 		. += " and steal blood from the target"
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_cost_desc()
+	return "[THAUMATURGY_BLOOD_COST_PER_CHARGE] blood per shot."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation_extended()
 	. = list()
@@ -73,8 +77,6 @@
 	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
 	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
 	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
-	. += "To activate the shield, right click the action button."
-	. += "At level [THAUMATURGY_CLOSET_BREAK_LEVEL], it will also break open lockers."
 	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
 	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
 
@@ -203,8 +205,8 @@
 			targets += possible_target
 		if(length(targets))
 			magic_9ball.set_homing_target(pick(targets))
-	else if(ismob(target))
-		magic_9ball.homing_target = target
+	else
+		magic_9ball.set_homing_target(target)
 	magic_9ball.homing_turn_speed = min(10 * level_current, 90)
 	magic_9ball.range = get_shot_range()
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
@@ -267,11 +269,17 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/bloodsucker/dropped(mob/user, silent)
+	. = ..()
+	qdel(src)
+
+/obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.AdjustBloodVolume(-BLOOD_SHIELD_BLOOD_COST)
+	owner.spray_blood(REVERSE_DIR(hitby.dir), min(1, damage / 10))
 	return ..()
+
 
 #undef BLOOD_SHIELD_BLOCK_CHANCE
 #undef BLOOD_SHIELD_BLOOD_COST

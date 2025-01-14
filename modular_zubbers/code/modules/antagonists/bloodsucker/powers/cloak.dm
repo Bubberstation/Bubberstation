@@ -5,13 +5,14 @@
 	name = "Cloak of Darkness"
 	desc = "Blend into the shadows and become invisible to the untrained and Artificial eye."
 	button_icon_state = "power_cloak"
-	power_explanation = "Cloak of Darkness:\n\
-		Activate this Power in the shadows and you will slowly turn nearly invisible.\n\
-		While using Cloak of Darkness, attempting to run will crush you.\n\
-		Additionally, while Cloak is active, you are completely invisible to the AI.\n\
-		Higher levels will increase how invisible you are.\n\
-		At level 2, you will no longer need to be unseen to activate this power.\n\
-		At level 4, you will be able to run while cloaked."
+	power_explanation = list(
+		"Activate this Power in the shadows and you will slowly turn nearly invisible.",
+		"While using Cloak of Darkness, attempting to run will crush you.",
+		"Additionally, while Cloak is active, you are completely invisible to the AI.",
+		"Higher levels will increase how invisible you are.",
+		"At level 2, you will no longer need to be unseen to activate this power.",
+		"At level 4, you will be able to run while cloaked."
+	)
 	power_flags = BP_CONTINUOUS_EFFECT
 	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
@@ -54,7 +55,7 @@
 	if(!active)
 		return
 	var/mob/living/user = owner
-	animate(user, alpha = max(25, owner.alpha - min(75, 10 + 5 * level_current)), time = 1.5 SECONDS)
+	animate(user, alpha = max(25, owner.alpha - min(75, 20 + 5 * level_current)), time = 1.5 SECONDS)
 	// Prevents running while on Cloak of Darkness
 	if(level_current < USE_RUN_CLOAK_LEVEL && user.move_intent != MOVE_INTENT_WALK)
 		owner.balloon_alert(owner, "you attempt to run, crushing yourself.")
