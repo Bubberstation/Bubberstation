@@ -1,5 +1,5 @@
 /datum/computer_file/program/crew_self_serve
-	filename = "plexagoncrewlogin"
+	filename = "plexagonselfserve"
 	filedesc = "Plexagon Punch Clock"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "generic"
@@ -25,8 +25,7 @@
 		return FALSE
 
 	computer.crew_manifest_update = TRUE
-	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(id_changed))
-	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_REMOVED_ID, PROC_REF(id_changed))
+	register_signals()
 	if(computer.computer_id_slot)
 		authenticate(id_card = computer.computer_id_slot)
 
@@ -36,6 +35,10 @@
 	UnregisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID)
 	UnregisterSignal(computer, COMSIG_MODULAR_COMPUTER_REMOVED_ID)
 	return ..()
+
+/datum/computer_file/program/crew_self_serve/proc/register_signals()
+	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(id_changed))
+	RegisterSignal(computer, COMSIG_MODULAR_COMPUTER_REMOVED_ID, PROC_REF(id_changed))
 
 /datum/computer_file/program/crew_self_serve/proc/id_changed(source, obj/item/card/id/id_card, mob/user)
 	SIGNAL_HANDLER
@@ -62,11 +65,17 @@
 	if(!authenticated_card)
 		return FALSE
 
+	var/important = job_is_CMD_or_SEC()
+	if(important)
+		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[src]", list("No", "Yes")) != "Yes")
+			return FALSE
+		else
+			log_game("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
+			message_admins("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
+
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
-	if(job_is_CMD_or_SEC())
+	if(important)
 		timer_component.hop_locked = TRUE
-		log_admin("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
-		message_admins("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
 
 	var/current_assignment = authenticated_card.assignment
 	var/datum/id_trim/job/current_trim = authenticated_card.trim
@@ -184,7 +193,7 @@
 				if(!authenticated_card)
 					return
 
-				if(!(clock_in()))
+				if(!clock_in())
 					return
 
 				log_admin("[key_name(usr)] clocked in as \an [authenticated_card.assignment].")
@@ -196,8 +205,10 @@
 				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
 
 			else
+				if(!clock_out())
+					return
+
 				log_admin("[key_name(usr)] clocked out as \an [authenticated_card.assignment].")
-				clock_out()
 				var/mob/living/carbon/human/human_user = usr
 				if(human_user)
 					var/obj/item/storage/lockbox/timeclock/shame_box = new /obj/item/storage/lockbox/timeclock(src, authenticated_card)

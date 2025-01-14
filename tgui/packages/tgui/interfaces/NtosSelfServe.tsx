@@ -22,7 +22,7 @@ export const NtosSelfServe = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <NtosWindow width={400} height={500}>
+    <NtosWindow width={400} height={522}>
       <NtosWindow.Content>
         <Stack>
           <Stack.Item width="100%">
@@ -94,18 +94,26 @@ const SelfServePage = (props) => {
               </Stack.Item>
             </Stack>
           </Stack.Item>
+        </Stack>
+      </Section>
+      <Section title="Assignment Information">
+        <Stack wrap="wrap">
           {!trimClockedOut ? (
-            <Stack.Item width="100%" mt={2} ml={0}>
+            <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox info>
-                Note: While off-duty, any restricted items will be transferred
-                to a crew equipment lockbox, to be returned upon punching in.
+                Before punching out, please return any job gear that is
+                important or limited to your workplace
+              </NoticeBox>
+              <NoticeBox info>
+                While off-duty, any restricted items will be transferred to a
+                crew equipment lockbox, to be returned upon punching in
               </NoticeBox>
             </Stack.Item>
           ) : (
             ''
           )}
           {authCardHOPLocked ? (
-            <Stack.Item width="100%" mt={2} ml={0}>
+            <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox danger>
                 Assignment Locked!
                 <br />
@@ -115,7 +123,7 @@ const SelfServePage = (props) => {
               </NoticeBox>
             </Stack.Item>
           ) : authCardTimeLocked ? (
-            <Stack.Item width="100%" mt={2} ml={0}>
+            <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox>
                 It is too early to return to your assignment!
                 <br />
