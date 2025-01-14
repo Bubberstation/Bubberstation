@@ -1,6 +1,6 @@
 /obj/machinery/modular_computer/preset/time_clock
-	name = "time clock"
-	desc = "Allows employees to clock in and out of their jobs"
+	name = "punch clock"
+	desc = "Allows employees to punch in and out of their jobs. Figuratively, not literally... I hope."
 	icon = 'modular_zubbers/icons/obj/machines/time_clock.dmi'
 	density = FALSE
 	starting_programs = list(
