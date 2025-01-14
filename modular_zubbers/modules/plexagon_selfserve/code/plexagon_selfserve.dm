@@ -1,8 +1,12 @@
+/datum/mind
+	/// Is our mind currently clocked out of their job?
+	var/clocked_out_of_job = FALSE
+
 /datum/computer_file/program/crew_self_serve
 	filename = "plexagonselfserve"
 	filedesc = "Plexagon Punch Clock"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
-	program_open_overlay = "generic"
+	program_open_overlay = "id"
 	extended_desc = "Allows crew members to remotely clock in or clock out to their jobs."
 	program_flags = PROGRAM_ON_NTNET_STORE
 	size = 4
