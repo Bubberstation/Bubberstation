@@ -576,10 +576,16 @@ export const MainPage = (props: { openSpecies: () => void }) => {
               );
             },
           ),
-          // BUBBER EDIT ADDITION START: Better prefs
-          ...Object.entries(data.character_preferences.mutant_feature),
-          // BUBBER EDIT END
         ];
+        // BUBBER EDIT ADDITION START: Better prefs
+        if (data.character_preferences.mutant_feature) {
+          Object.entries(data.character_preferences.mutant_feature).forEach(
+            (val) => {
+              mainFeatures.push(val);
+            },
+          );
+        }
+        // BUBBER EDIT END
 
         const randomBodyEnabled =
           data.character_preferences.non_contextual.random_body !==
