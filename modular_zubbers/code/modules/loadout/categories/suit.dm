@@ -58,3 +58,9 @@
 /datum/loadout_item/suit/flight //Donor item for ironknight060
 	name = "MA-1 flight jacket"
 	item_path = /obj/item/clothing/suit/jacket/flight
+
+// Lore Jackets
+
+/datum/loadout_item/suit/galfed_jacket
+	name = "Galactic Federation Jacket"
+	item_path = /obj/item/clothing/suit/jacket/galfed

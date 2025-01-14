@@ -630,3 +630,14 @@
 /obj/item/clothing/suit/toggle/jacket/sec/medical
 	name = "medical praetorian jacket"
 	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
+
+//Lore Jackets
+
+//Galactic Federation SPRITES BY Tonadas of Bubberstation
+/obj/item/clothing/suit/jacket/galfed
+	name = "Galactic Federation jacket"
+	desc = "A jacket worn by members of the Galactic Federation. It's a bit worn, but it's still in good condition."
+	icon = 'modular_zubbers/icons/obj/clothing/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "galfed"
+	body_parts_covered = CHEST|ARMS|GROIN
