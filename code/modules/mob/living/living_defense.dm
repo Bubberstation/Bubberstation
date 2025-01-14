@@ -120,7 +120,7 @@
 		unconscious = hitting_projectile.unconscious,
 		slur = (mob_biotypes & MOB_ROBOTIC) ? 0 SECONDS : hitting_projectile.slur, // Don't want your cyborgs to slur from being ebow'd
 		stutter = (mob_biotypes & MOB_ROBOTIC) ? 0 SECONDS : hitting_projectile.stutter, // Don't want your cyborgs to stutter from being tazed
-		eyeblur = hitting_projectile.eyeblur,
+		// eyeblur = hitting_projectile.eyeblur, BUBBER REMOVAL
 		drowsy = hitting_projectile.drowsy,
 		blocked = armor_check,
 		stamina = hitting_projectile.stamina,
