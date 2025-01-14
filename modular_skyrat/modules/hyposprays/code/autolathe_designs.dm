@@ -98,8 +98,6 @@
 /datum/techweb_node/alien_surgery/New()
 	design_ids += list(
 		"hypomkii_deluxe",
-		"hypomkii_advanced",
-		"hypomkii_combat",
 	)
 	return ..()
 
