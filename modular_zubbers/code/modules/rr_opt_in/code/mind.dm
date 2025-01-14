@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 /datum/mind/proc/send_rr_optin_reminder()
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
 	var/client/our_client = preference_instance?.parent // that moment when /mind doesnt have a ref to client :)
-	if CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG) == FALSE
+	if (CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG) == FALSE)
 		return
 	if (our_client)
 		var/rr_level = get_rr_opt_in_level()
