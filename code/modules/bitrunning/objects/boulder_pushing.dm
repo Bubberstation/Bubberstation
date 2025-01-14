@@ -36,6 +36,23 @@
 /obj/bitrunning/hungry_customer/can_be_pulled(user, grab_state, force)
 	return FALSE
 
+
+/obj/bitrunning/hungry_customer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(!arrived)
+		context[SCREENTIP_CONTEXT_RMB] = "Teleport To Start If Stuck"
+
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/bitrunning/hungry_customer/attack_hand(mob/living/user, list/modifiers)
+	. = ..()
+	if(arrived)
+		return
+	if (!LAZYACCESS(modifiers, RIGHT_CLICK))
+		return
+	var/reset_customer = tgui_alert(user, "Are you sure you want to reset the customer back to their starting location? Only do this if they're stuck.", "Reset Customer?", list("Yes", "No"))
+	if(reset_customer == "Yes")
+		do_teleport(src, starter_location, 0,  channel=TELEPORT_CHANNEL_BLUESPACE, forced = TRUE)
+
 /obj/bitrunning/hungry_customer/process(seconds_per_tick)
 	var/turf/behind_boulder = get_step(src, SOUTH)
 	if(behind_boulder == get_turf(src))
