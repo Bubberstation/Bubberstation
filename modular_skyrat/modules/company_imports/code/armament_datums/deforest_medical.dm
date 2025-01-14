@@ -266,6 +266,10 @@
 	item_type = /obj/item/hypospray/mkii
 	cost = PAYCHECK_LOWER * 2
 
+/datum/armament_entry/company_import/deforest/equipment/combat_hypo
+	cost = PAYCHECK_COMMAND * 3
+	item_type = /obj/item/hypospray/mkii/combat
+
 // Cybernetics and other things that go inside you
 
 /datum/armament_entry/company_import/deforest/implant
