@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 6
+#define MODULAR_SAVEFILE_VERSION_MAX 7
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -13,6 +13,7 @@
 #define VERSION_UNDERSHIRT_BRA_SPLIT 4
 #define VERSION_CHRONOLOGICAL_AGE 5
 #define VERSION_LANGUAGES 6
+#define VERSION_PREFS_GLOWUP 7
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -259,6 +260,12 @@
 		for(var/language in save_languages)
 			languages[language] = language_number_updates[save_languages[language] + 1]// fuck you indexing from 1
 
+	if(current_version < VERSION_PREFS_GLOWUP)
+		if(save_data["ipc_screen_emissive"] != null)
+			write_preference(GLOB.preference_entries[/datum/preference/emissive_toggle/ipc_screen_emissive], list(save_data["ipc_screen_emissive"], FALSE, FALSE))
+		if(save_data["pod_hair_emissive"] != null)
+			write_preference(GLOB.preference_entries[/datum/preference/emissive_toggle/pod_hair_emissive], list(save_data["pod_hair_emissive"], FALSE, FALSE))
+
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
 		to_chat(parent, examine_block(span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
@@ -324,3 +331,6 @@
 #undef VERSION_BREAST_SIZE_CHANGE
 #undef VERSION_SYNTH_REFACTOR
 #undef VERSION_UNDERSHIRT_BRA_SPLIT
+#undef VERSION_CHRONOLOGICAL_AGE
+#undef VERSION_LANGUAGES
+#undef VERSION_PREFS_GLOWUP
