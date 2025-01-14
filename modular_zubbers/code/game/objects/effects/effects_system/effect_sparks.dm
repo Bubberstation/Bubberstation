@@ -6,7 +6,7 @@
 	sparks.start()
 
 /obj/effect/particle_effect/sparks/quantum
-	light_color = LIGHT_COLOR_BABY_BLUE
+	light_color = LIGHT_COLOR_DARK_BLUE
 
 /obj/effect/particle_effect/sparks/quantum/harmless
 	name = "inert quantum sparks"
