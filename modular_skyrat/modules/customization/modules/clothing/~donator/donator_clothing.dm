@@ -1296,7 +1296,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "hosaltred"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
-	worn_icon_digi = null
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
 	name = "red-tinted giga HUD gar glasses"
