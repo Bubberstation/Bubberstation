@@ -91,7 +91,7 @@
 		if(isnull(rr_prefs))
 			rr_prefs = preferences.read_preference(/datum/preference/choiced/rr_opt_in_status)
 		ooc_notes += "\n"
-		ooc_notes += "Current Round Removal Opt-In Status: [GLOB.rr_opt_in_strings[num2text(effective_opt_in_level)]]\n"
+		ooc_notes += "Round Removal Opt-In Status: [GLOB.rr_opt_in_strings[num2text(effective_opt_in_level)]]\n"
 		ooc_notes += "\n"
 
 	if(ishuman(holder))

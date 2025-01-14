@@ -10,7 +10,7 @@
 	return list(RR_OPT_IN, RR_OPT_OUT)
 
 /datum/preference/choiced/rr_opt_in_status/create_default_value()
-	return RR_OPT_LEVEL_DEFAULT
+	return CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 
 /datum/preference/choiced/rr_opt_in_status/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
@@ -20,7 +20,7 @@
 
 /datum/preference/choiced/rr_opt_in_status/deserialize(input, datum/preferences/preferences)
 	if (!CONFIG_GET(flag/use_rr_opt_in_preferences))
-		return RR_OPT_LEVEL_DEFAULT
+		return CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 
 	return ..()
 

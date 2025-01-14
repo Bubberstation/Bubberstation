@@ -1,4 +1,4 @@
-/// If a player has any of these enabled, they are forced to use a minimum of RR_OPT_IN_ENABLED_LEVEL round removal optin. Dynamic - checked on the fly, not cached.
+/// If a player has any of these enabled, they are forced to use a minimum of RR_OPT_LEVEL_ANTAG round removal optin. Dynamic - checked on the fly, not cached.
 GLOBAL_LIST_INIT(rr_optin_forcing_midround_antag_categories, list(
 	ROLE_CHANGELING_MIDROUND,
 	ROLE_MALF_MIDROUND,
@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_midround_antag_categories, list(
 	ROLE_SLEEPER_AGENT,
 ))
 
-/// If a player has any of these enabled ON SPAWN, they are forced to use a minimum of RR_OPT_IN_ENABLED_LEVEL round removal optin for the rest of the round.
+/// If a player has any of these enabled ON SPAWN, they are forced to use a minimum of RR_OPT_LEVEL_ANTAG round removal optin for the rest of the round.
 GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	ROLE_BROTHER,
 	ROLE_CHANGELING,
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /datum/mind
 	/// The optin level set by preferences.
-	var/ideal_rr = RR_OPT_LEVEL_DEFAULT
+	var/ideal_rr = CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 	/// Set on mind transfer. Set by on-spawn antags (e.g. if you have traitor on and spawn, this will be set to RR_OPT_LEVEL_ANTAG and cannot change)
 	var/round_removal_allowed = FALSE
 
@@ -44,25 +44,27 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 		for (var/antag_category in GLOB.rr_optin_forcing_on_spawn_antag_categories)
 			if (antag_category in preference_instance.be_special)
-				round_removal_allowed = RR_OPT_LEVEL_ANTAG
+				round_removal_allowed = CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG)
 				break
 
 /// Sends a bold message to our holder, telling them if their optin setting has been set to a minimum due to their antag preferences.
 /datum/mind/proc/send_rr_optin_reminder()
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
 	var/client/our_client = preference_instance?.parent // that moment when /mind doesnt have a ref to client :)
+	if !CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG)
+		return
 	if (our_client)
 		var/rr_level = get_rr_opt_in_level()
 		if (rr_level <= RR_OPT_OUT)
 			return
 		var/stringified_level = GLOB.rr_opt_in_strings["[rr_level]"]
-		to_chat(our_client, span_boldnotice("Due to your antag preferences, your antag-optin status has been set to a minimum of [stringified_level]."))
+		to_chat(our_client, span_boldnotice("Due to your antag preferences, your round removal opt-in status has been set to [stringified_level]."))
 
 /// Gets the actual opt-in level used for determining targets.
 /datum/mind/proc/get_effective_opt_in_level()
 	return max(ideal_rr, get_rr_opt_in_level())
 
-/// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns RR_OPT_LEVEL_ANTAG. RR_OPT_OUT otherwise.
+/// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG). RR_OPT_OUT otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
 	if (round_removal_allowed == RR_OPT_OUT)
 		return round_removal_allowed
@@ -71,7 +73,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	if (!isnull(preference_instance))
 		for (var/antag_category in GLOB.rr_optin_forcing_midround_antag_categories)
 			if (antag_category in preference_instance.be_special)
-				return RR_OPT_LEVEL_ANTAG
+				return CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG)
 	return RR_OPT_OUT
 
 /datum/mind/Destroy()
