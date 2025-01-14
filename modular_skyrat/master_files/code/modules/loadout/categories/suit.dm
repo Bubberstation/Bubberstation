@@ -471,9 +471,6 @@
 	name = "Blastwave Trenchcoat"
 	item_path = /obj/item/clothing/suit/blastwave
 
-/datum/loadout_item/suit/galfed_jacket
-	name = "Galactic Federation Jacket"
-	item_path = /obj/item/clothing/suit/jacket/galfed
 
 /*
 *	HOODIES
