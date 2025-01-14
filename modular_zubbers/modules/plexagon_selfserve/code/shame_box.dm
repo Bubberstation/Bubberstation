@@ -19,7 +19,7 @@
 	atom_storage.max_total_storage = 99
 	if(!isnull(crew_id) || !istype(crew_id))
 		associated_card = crew_id
-	if(associated_card.registered_name)
+	if(associated_card?.registered_name)
 		name = "[initial(name)] - [associated_card.registered_name]"
 
 /obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
@@ -60,7 +60,7 @@
 
 /// Timeclock boxes are one time use. When unlocked, release the contents and go away.
 /obj/item/storage/lockbox/timeclock/proc/release_contents()
-	do_sparks(number = 4, source = src)
+	do_harmless_sparks(number = 6, source = src)
 	emptyStorage()
 	usr.visible_message(span_notice("[usr] activates the lockbox mechanism, releasing its contents before vanishing in a puff of bluespace smoke!"))
 	associated_card = null
