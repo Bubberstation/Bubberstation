@@ -31,8 +31,6 @@
 	var/requires_facing_target = FALSE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
-	/// if the ability will knockdown on secondary click
-	var/knockdown_on_secondary = FALSE
 	// string id timer of the current cast, used for combat glare
 	var/timer
 	// a cooldown to ensure you can't spam both the primary and secondary mesmerizes
@@ -40,10 +38,6 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
 	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? " and muting them" : ""].<br>"
-	if(knockdown_on_secondary)
-		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
-	else
-		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())]."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. = list()
@@ -57,7 +51,6 @@
 		. += "[src] requires you to be facing your target."
 	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
 	. += "Obviously, both parties need to not be blind."
-	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
 	. += "If your target is already mesmerized or a bloodsucker, the Power will fail."
 	. += "Once mesmerized, the target will be unable to move for [DisplayTimeText(get_power_time())] and muted for [DisplayTimeText(get_mute_time())], scaling with level."
 	. += "At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face."
@@ -159,17 +152,6 @@
 	mesmerize_effects(user, mesmerized_target)
 	PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
-	if(!isliving(target))
-		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
-	if(timer || !COOLDOWN_FINISHED(src, mesmerize_cooldown))
-		return
-	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
-	var/mob/living/mesmerized_target = target
-	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
-	perform_indicators(mesmerized_target, 3 SECONDS)
-	timer = addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
-
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
 	mute_target(mesmerized_target)
@@ -177,20 +159,6 @@
 	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
 	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
 	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
-	if(!ContinueActive(user, mesmerized_target))
-		StartCooldown(cooldown_time * 0.5)
-		owner.balloon_alert(owner, "failed!")
-		return
-	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
-	var/effect_time = combat_mesmerize_time()
-	mute_target(mesmerized_target)
-	if(knockdown_on_secondary)
-		mesmerized_target.Knockdown(effect_time)
-	else
-		mesmerized_target.adjust_confusion(effect_time)
-	PowerActivatedSuccesfully(cost_override = bloodcost * 0.5)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1 SECONDS
