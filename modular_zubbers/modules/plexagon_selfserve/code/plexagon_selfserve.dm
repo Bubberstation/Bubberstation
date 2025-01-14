@@ -7,7 +7,7 @@
 	filedesc = "Plexagon Punch Clock"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "id"
-	extended_desc = "Allows crew members to remotely clock in or clock out to their jobs."
+	extended_desc = "Allows crew members to remotely punch in or out of their job assignment, giving the impression they have a semblance of control over their lives."
 	program_flags = PROGRAM_ON_NTNET_STORE
 	size = 4
 	tgui_id = "NtosSelfServe"
@@ -73,13 +73,15 @@
 	if(important)
 		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[src]", list("No", "Yes")) != "Yes")
 			return FALSE
-		else
-			log_game("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
-			message_admins("[authenticated_card.registered_name] clocked out as a [authenticated_card.assignment]")
 
+	log_game("[ckey(usr)] ([authenticated_card.registered_name]) clocked out from role [authenticated_card.get_trim_assignment()]")
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
 	if(important)
 		timer_component.hop_locked = TRUE
+		log_game("[ckey(usr)] ([authenticated_card.registered_name]) job slot [authenticated_card.get_trim_assignment()] has been locked from clocking back in")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from [span_comradio("restricted role")]: [authenticated_card.get_trim_assignment()].")
+	else
+		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from role: [authenticated_card.get_trim_assignment()].")
 
 	var/current_assignment = authenticated_card.assignment
 	var/datum/id_trim/job/current_trim = authenticated_card.trim
@@ -87,7 +89,7 @@
 	SSjob.FreeRole(clocked_out_job.title)
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name], [current_assignment] has gone off-duty.", list(RADIO_CHANNEL_COMMON))
+	system.broadcast("[authenticated_card.registered_name], [current_assignment] has gone off-duty.", list())
 	computer.update_static_data_for_all_viewers()
 
 	SSid_access.apply_trim_to_card(authenticated_card, target_trim, TRUE)
@@ -111,15 +113,18 @@
 
 	var/datum/job/clocked_in_job = id_component.stored_trim.job
 	if(!SSjob.OccupyRole(clocked_in_job.title))
-		computer.say("[capitalize(clocked_in_job.title)] has no free slots available, unable to clock in!")
+		computer.say("[capitalize(clocked_in_job.title)] has no free slots available, unable to punch in!")
 		return FALSE
 
 
 	SSid_access.apply_trim_to_card(authenticated_card, id_component.stored_trim.type, TRUE)
 	authenticated_card.assignment = id_component.stored_assignment
 
+	log_game("[ckey(usr)] ([authenticated_card.registered_name]) clocked in to role [authenticated_card.get_trim_assignment()]")
+	message_admins("[ADMIN_LOOKUPFLW(usr)] clocked in to role: [authenticated_card.get_trim_assignment()].")
+
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name], [authenticated_card.assignment] has returned to duty.", list(RADIO_CHANNEL_COMMON))
+	system.broadcast("[authenticated_card.registered_name] has returned to assignment [authenticated_card.assignment].", list())
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
 
 	qdel(id_component)
@@ -200,7 +205,6 @@
 				if(!clock_in())
 					return
 
-				log_admin("[key_name(usr)] clocked in as \an [authenticated_card.assignment].")
 				var/datum/mind/user_mind = usr.mind
 				if(user_mind)
 					user_mind.clocked_out_of_job = FALSE
@@ -212,7 +216,6 @@
 				if(!clock_out())
 					return
 
-				log_admin("[key_name(usr)] clocked out as \an [authenticated_card.assignment].")
 				var/mob/living/carbon/human/human_user = usr
 				if(human_user)
 					var/obj/item/storage/lockbox/timeclock/shame_box = new /obj/item/storage/lockbox/timeclock(src, authenticated_card)
@@ -221,9 +224,6 @@
 				var/datum/mind/user_mind = usr.mind
 				if(user_mind)
 					user_mind.clocked_out_of_job = TRUE
-
-				if(job_is_CMD_or_SEC())
-					message_admins("[key_name(usr)] has clocked out as a [authenticated_card.assignment]. [ADMIN_JMP(authenticated_card)]")
 
 				computer.update_static_data_for_all_viewers()
 				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)

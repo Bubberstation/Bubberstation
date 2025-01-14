@@ -19,6 +19,13 @@
 	atom_storage.max_total_storage = 99
 	if(!isnull(crew_id) || !istype(crew_id))
 		associated_card = crew_id
+	if(associated_card.registered_name)
+		name = "[initial(name)] - [associated_card.registered_name]"
+
+/obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
+	. = ..()
+	if(!.)
+		to_chat(user, span_warning("[src] can only be unlocked while on-duty or by the HoP, HoS, or Captain!"))
 
 /// Timeclock boxes can only be opened while the crew member is on duty, or by a command member with the proper access.
 /obj/item/storage/lockbox/timeclock/check_access(obj/item/crew_id)
