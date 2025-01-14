@@ -79,14 +79,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
-		"hypokit_deluxe",
-		"hypomkii_advanced",
-		"hypomkii_combat",
-	)
-	return ..()
-
 /datum/design/hypomkii/deluxe
 	name = "Hypospray Mk. II Deluxe Upgrade"
 	id = "hypomkii_deluxe"
