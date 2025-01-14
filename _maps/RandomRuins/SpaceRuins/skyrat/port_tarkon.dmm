@@ -281,6 +281,7 @@
 "na" = (/obj/machinery/door/airlock/multi_tile/public/glass,/obj/machinery/door/firedoor/solid,/obj/structure/cable,/obj/effect/turf_decal/tile/blue/half{dir = 8},/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/trauma)
 "nc" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,/obj/machinery/porta_turret_construct,/obj/structure/cable,/turf/open/floor/iron/dark,/area/ruin/space/has_grav)
 "nd" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,/turf/open/floor/iron/dark,/area/ruin/space/has_grav)
+"ne" = (/mob/living/basic/carp/mega/queen,/turf/template_noop,/area/template_noop)
 "ni" = (/obj/structure/closet/crate/medical,/obj/effect/spawner/random/medical/medkit,/obj/effect/spawner/random/medical/medkit,/obj/effect/spawner/random/medical/medkit_rare,/obj/effect/spawner/random/medical/surgery_tool_advanced,/obj/effect/spawner/random/medical/surgery_tool_advanced,/obj/effect/spawner/random/medical/surgery_tool_alien,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/cargo)
 "nj" = (/obj/machinery/door/firedoor/solid,/obj/machinery/door/airlock/mining/glass,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/mining)
 "nr" = (/obj/machinery/door/poddoor/shutters/window{id = "tarkoninner"; name = "Interior Bay Shutter"},/obj/effect/turf_decal/trimline/yellow/filled/warning{dir = 1},/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/storage)
@@ -654,7 +655,6 @@
 "DS" = (/obj/machinery/griddle,/obj/structure/noticeboard/directional/south,/turf/open/floor/iron/cafeteria,/area/ruin/space/has_grav/port_tarkon/kitchen)
 "DT" = (/obj/machinery/vending/hydroseeds,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/garden)
 "DU" = (/obj/structure/safe/floor,/obj/item/blueprints/tarkon,/obj/item/circuitboard/machine/bluespace_miner,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/power1)
-"Eb" = (/mob/living/basic/carp/babydragon,/turf/template_noop,/area/template_noop)
 "Ec" = (/obj/machinery/atmospherics/components/binary/pump/off/general{dir = 8},/obj/effect/turf_decal/tile/yellow/fourcorners,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/atmos)
 "Ee" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/conveyor_switch/oneway{id = "tarkonrecycle"},/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/cargo)
 "Ej" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,/obj/structure/cable,/obj/effect/turf_decal/tile/neutral/anticorner,/obj/structure/disposalpipe/segment,/turf/open/floor/iron,/area/ruin/space/has_grav/port_tarkon/centerhall)
@@ -1206,7 +1206,7 @@ ZiZiZiZiZidimmDlGfGfZiZiZiZiZiZiZiZiZifsaPamausXhRzxsLKFKFKFKFKFKFHlNnytvGKCaudv
 ZiZiGfZiZiXXXXrgAxGfGfZiZiZiZiZiZiZiZiaPaPaPauXWmPytgTKFKFKFKFKFKFHlEcrDubuOaulHNDNDUMKXQdNXPCLLgXfpEjqMNTOpgmLIdpeDGMWgWgTPlpFHuBrLAXLJTmVFVFVFVFVFFBaPaPaPfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
 ZiZiGfXIXLZiVJXXzJCzGfZiZiZiZiZiZiZiZiaPamaPaumMmMmMvBKFKFKFKFKFKFHlDpmMmMmMauKXKXKXKXKXthWTKXKXmCaAfdAHBBoLXQXQZBAHAHhjdVAHAHAHAHrLAXEQvNvNvNvNvNtUtUWQWQWQfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
 ZiZiGfGfXLZiGfDLGTGfGfZiZiZiZiZiZiZiZiamaPaPauyePFhOBNKFKFKFKFKFKFHlvIytoMgZaufCSeftQmKXgLVmvLKXomeUWeAHtVoLXQZaXQcKMyXQXQujiBlZAHrLadDDADLOUgBSyOtUzUeOPOoxfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
-ZiZiZiGfRcdyEbZSvFGfZiZiZiZiZifsZiZiZiaPamaPaughUFytQTKFKFKFKFKFKFHlLRbeUhtjauklDUFsPIKXOwciaYKXomeUWeAHeIoLhnhnFuFuFurtGFAHiBhCAHrLAXDDJJjdTuPmKQtUwuGYXdWQfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
+ZiZiZiGfRcdyneZSvFGfZiZiZiZiZifsZiZiZiaPamaPaughUFytQTKFKFKFKFKFKFHlLRbeUhtjauklDUFsPIKXOwciaYKXomeUWeAHeIoLhnhnFuFuFurtGFAHiBhCAHrLAXDDJJjdTuPmKQtUwuGYXdWQfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
 ZiZiZiGfGfDhqdvUGfGfZiZifsfsaPaPZiZiZiaPaPamaumMmMmMZHKFKFKFKFKFKFHlTFmMmMmMlNjDiGvsBjKXKXKXKXKXitxxReAHoPcBDSfzOqOKZnZnHmAHjSWCAHrLAXDDixjdZtjamhnjEKqpSbNSfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
 ZieYZiZiGfGfGfGfGfZiZiZifsaPaPamZiZiZiamaPaPauaNpFqOXkKFKFKFKFKFKFKFXeytXvKTaupfvQvQItsYFePGOWKXijeUWeAHAHAHAHAHAHAHAHAHAHAHAHAHAHjxAXDDADjdGYYuZvDduXukVLNSVtfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
 ZiZiZiZiZiZiZiZiZiZiZiZiamamaPamZieYZiaPaPaPauQpQIytUqKFKFSpKFKFKFKFoBlWtKIgaueaKMPoVxPoPodGrdYHuekBQoEMsghpptCJwpFiMxwpyBlQjTCAaJZfVbwzVrNbPvugXUtUzkFLoQWQfsfsZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZi
