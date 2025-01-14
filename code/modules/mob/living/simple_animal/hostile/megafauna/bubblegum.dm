@@ -105,6 +105,8 @@ Difficulty: Hard
 			sound_played = 'sound/effects/meteorimpact.ogg', \
 			sound_volume = 200)
 
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/wendigum_boss.ogg', 133 SECONDS) //bubber edit: boss music
+
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Destroy()
 	triple_charge = null
 	hallucination_charge = null
