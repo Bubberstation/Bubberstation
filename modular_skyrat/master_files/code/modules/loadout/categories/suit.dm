@@ -471,7 +471,6 @@
 	name = "Blastwave Trenchcoat"
 	item_path = /obj/item/clothing/suit/blastwave
 
-
 /*
 *	HOODIES
 */
