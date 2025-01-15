@@ -4,6 +4,7 @@
 	icon_state = "shibari_arms"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
+	worn_icon_teshari = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves_teshari.dmi'
 	body_parts_covered = NONE
 	//strip_delay = 100
 	breakouttime = 5 SECONDS
@@ -11,6 +12,7 @@
 
 	greyscale_config = /datum/greyscale_config/shibari/hands
 	greyscale_config_worn = /datum/greyscale_config/shibari/hands/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/shibari/hands/worn/teshari
 	greyscale_colors = "#bd8fcf"
 
 	///should this clothing item use the emissive system
