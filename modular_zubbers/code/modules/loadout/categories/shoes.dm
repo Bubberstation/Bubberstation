@@ -27,3 +27,7 @@
 /datum/loadout_item/shoes/Wheely_heels
 	name = "Wheely-Heels"
 	item_path = /obj/item/clothing/shoes/wheelys
+
+/datum/loadout_item/shoes/horseshoes
+	name = "Horseshoes"
+	item_path = /obj/item/clothing/shoes/horseshoe
