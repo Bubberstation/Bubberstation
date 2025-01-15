@@ -14,13 +14,13 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/costume/playbunny/greyscale
 	name = "bunny suit"
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
+	icon_state = "playbunny"
 	greyscale_colors = "#39393f#39393f#ffffff#87502e"
 	greyscale_config = /datum/greyscale_config/bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
