@@ -232,6 +232,14 @@
 	icon_state = "space_near"
 	has_gravity = STANDARD_GRAVITY
 
+/area/ruin/space/has_grav/port_tarkon/aichamber
+	name = "P-T AI Chamber"
+	icon_state = "AI_chamber"
+
+/area/ruin/space/has_grav/port_tarkon/aiante
+	name = "P-T AI Antechamber"
+	icon_state = "AI_antechamber"
+
 // Cargodise Lost Freighter
 
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall
