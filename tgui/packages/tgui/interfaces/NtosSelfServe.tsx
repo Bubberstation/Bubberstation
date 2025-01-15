@@ -7,6 +7,7 @@ import { NTOSData } from '../layouts/NtosWindow';
 
 type Data = {
   authCard: string;
+  authCardTimeRemaining: string;
   authIDName: string;
   authIDRank: string;
   hasTrim: boolean;
@@ -37,6 +38,7 @@ export const NtosSelfServe = (props) => {
 const SelfServePage = (props) => {
   const { act, data } = useBackend<Data>();
   const {
+    authCardTimeRemaining,
     authIDName,
     authIDRank,
     authCardHOPLocked,
@@ -102,11 +104,11 @@ const SelfServePage = (props) => {
             <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox info>
                 Before punching out, please return any job gear that is
-                important or limited to your workplace
+                important or limited to your workplace.
               </NoticeBox>
               <NoticeBox info>
                 While off-duty, any restricted items will be transferred to a
-                crew equipment lockbox, to be returned upon punching in
+                crew equipment lockbox, to be returned upon punching in.
               </NoticeBox>
             </Stack.Item>
           ) : (
@@ -130,6 +132,8 @@ const SelfServePage = (props) => {
                 <br />
                 Please visit the HoP window or your departmental Command member
                 for an override.
+                <br />
+                Time remaining: {authCardTimeRemaining}
               </NoticeBox>
             </Stack.Item>
           ) : (

@@ -7,6 +7,8 @@
 	var/hop_locked = FALSE
 	///What was the name of the job the person was working when they clocked out?
 	var/stored_assignment = ""
+	///When was this timer added?
+	var/init_time
 
 /datum/component/off_duty_timer/Initialize(cooldown_timer = 0)
 	. = ..()
@@ -23,6 +25,7 @@
 		on_cooldown = TRUE
 		addtimer(CALLBACK(src, PROC_REF(remove_cooldown)), cooldown_timer)
 
+	init_time = world.time
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attempt_unlock))
 
 /datum/component/off_duty_timer/Destroy(force, silent)
