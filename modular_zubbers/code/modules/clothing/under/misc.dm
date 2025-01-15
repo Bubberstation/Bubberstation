@@ -77,6 +77,7 @@
 
 /obj/item/clothing/under/costume/playbunny/custom_playbunny
 	name = "tailormade bunny suit"
+	icon_state = "playbunny"
 	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
 	greyscale_config = /datum/greyscale_config/custom_bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
