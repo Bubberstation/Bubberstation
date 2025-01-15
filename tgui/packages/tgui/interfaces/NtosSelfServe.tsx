@@ -129,11 +129,11 @@ const SelfServePage = (props) => {
               <NoticeBox>
                 It is too early to return to your assignment!
                 <br />
+                Time remaining: {authCardTimeRemaining}
+                <br />
                 <br />
                 Please visit the HoP window or your departmental Command member
                 for an override.
-                <br />
-                Time remaining: {authCardTimeRemaining}
               </NoticeBox>
             </Stack.Item>
           ) : (
