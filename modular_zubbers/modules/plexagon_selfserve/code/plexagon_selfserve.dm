@@ -74,11 +74,11 @@
 		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[src]", list("No", "Yes")) != "Yes")
 			return FALSE
 
-	log_game("[ckey(usr)] ([authenticated_card.registered_name]) clocked out from role [authenticated_card.get_trim_assignment()]")
+	log_econ("[authenticated_card.registered_name] clocked out from role [authenticated_card.get_trim_assignment()]")
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
 	if(important)
 		timer_component.hop_locked = TRUE
-		log_game("[ckey(usr)] ([authenticated_card.registered_name]) job slot [authenticated_card.get_trim_assignment()] has been locked from clocking back in")
+		log_econ("[authenticated_card.registered_name] job slot [authenticated_card.get_trim_assignment()] has been locked from clocking back in")
 		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from [span_comradio("restricted role")]: [authenticated_card.get_trim_assignment()].")
 	else
 		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from role: [authenticated_card.get_trim_assignment()].")
@@ -120,7 +120,7 @@
 	SSid_access.apply_trim_to_card(authenticated_card, id_component.stored_trim.type, TRUE)
 	authenticated_card.assignment = id_component.stored_assignment
 
-	log_game("[ckey(usr)] ([authenticated_card.registered_name]) clocked in to role [authenticated_card.get_trim_assignment()]")
+	log_econ("[authenticated_card.registered_name] clocked in to role [authenticated_card.get_trim_assignment()]")
 	message_admins("[ADMIN_LOOKUPFLW(usr)] clocked in to role: [authenticated_card.get_trim_assignment()].")
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
