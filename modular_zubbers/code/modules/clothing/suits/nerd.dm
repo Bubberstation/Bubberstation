@@ -12,6 +12,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	icon_state = "nerd"
 	blood_overlay_type = "suit"
 
