@@ -104,7 +104,7 @@
 	if(!authenticated_card)
 		return FALSE
 
-	if(id_cooldown_check() > 0)
+	if(id_cooldown_check())
 		return FALSE
 
 	var/datum/component/off_duty_timer/id_component = authenticated_card.GetComponent(/datum/component/off_duty_timer)
@@ -145,33 +145,21 @@
 
 	return FALSE
 
-/// Is the inserted ID on cooldown? return -1 if invalid ID, 0 if ID is not on cooldown, and remaining time until cooldown ends otherwise.
+/// Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
 /datum/computer_file/program/crew_self_serve/proc/id_cooldown_check()
 	if(!authenticated_card)
-		return -1
+		return FALSE
 
 	var/datum/component/off_duty_timer/id_component = authenticated_card.GetComponent(/datum/component/off_duty_timer)
 	if(!id_component)
-		return -1
+		return FALSE
 
-	if(!id_component.on_cooldown)
-		return 0
+	if(id_component.on_cooldown)
+		return TRUE
 
-	return max(TIMECLOCK_COOLDOWN - (world.time - id_component.init_time), 0)
+	return FALSE
 
-/// Returns the remaining time left for the ID, as a minutes:seconds string.
-/datum/computer_file/program/crew_self_serve/proc/id_cooldown_minutes_seconds()
-	var/cooldownTics = id_cooldown_check()
-	if (cooldownTics == -1)
-		return "--:--"
-	var/cooldownMinutes = num2text(floor(cooldownTics / (1 MINUTES)))
-	var/cooldownSeconds = num2text(floor(cooldownTics / (1 SECONDS)) % (60))
-	if (length(cooldownSeconds) == 1)
-		cooldownSeconds = addtext("0", cooldownSeconds)
-
-	return addtext(cooldownMinutes, ":", cooldownSeconds)
-
-/// Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
+/// Is the inserted ID locked from clocking in? returns TRUE if the ID is locked
 /datum/computer_file/program/crew_self_serve/proc/id_locked_check()
 	if(!authenticated_card)
 		return FALSE
@@ -255,7 +243,6 @@
 	data["authCard"] = authenticated_card ? authenticated_card.name : "-----"
 	data["authCardHOPLocked"] = id_locked_check()
 	data["authCardTimeLocked"] = id_cooldown_check()
-	data["authCardTimeRemaining"] = id_cooldown_minutes_seconds()
 
 	return data
 
@@ -265,7 +252,7 @@
 	if(authenticated_card)
 		data["authIDName"] = authenticated_card.registered_name ? authenticated_card.registered_name : "-----"
 		data["authIDRank"] = authenticated_card.assignment ? authenticated_card.assignment : "Unassigned"
-		data["authCardHOPLocked"] = job_is_CMD_or_SEC()
+		data["authCardHOPLocked"] = id_locked_check()
 		data["trimClockedOut"] = off_duty_check()
 		if(authenticated_card.trim)
 			var/datum/id_trim/card_trim = authenticated_card.trim

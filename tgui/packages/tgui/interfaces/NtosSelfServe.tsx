@@ -14,8 +14,7 @@ type Data = {
   stationAlertLevel: string;
   trimClockedOut: boolean;
   authCardHOPLocked: boolean;
-  authCardTimeLocked: number;
-  authCardTimeRemaining: string;
+  authCardTimeLocked: boolean;
   selfServeBlock: boolean;
 } & NTOSData;
 
@@ -42,7 +41,6 @@ const SelfServePage = (props) => {
     authIDRank,
     authCardHOPLocked,
     authCardTimeLocked,
-    authCardTimeRemaining,
     stationAlertLevel,
     trimClockedOut,
     trimAssignment,
@@ -72,37 +70,19 @@ const SelfServePage = (props) => {
           <Stack.Item width="100%" mt={1} ml={0}>
             <Stack>
               <Stack.Item>
-              {
-                authCardHOPLocked ? (
-                  <NoticeBox>
-                  Security and Command cannot change duty status via this app, please
-                  visit the HoP window to clock in/out.
-                  </NoticeBox>
-                ) : (
-                  authCardTimeLocked > 0 ?
-                  (
-                    <NoticeBox>
-                      This card is time-locked from changing duty status, please wait or
-                      visit the HoP window to clock in/out.
-                      Time remaining: {authCardTimeRemaining}
-                    </NoticeBox>
-                  ) : (
-                    <Button
-                      width="342px"
-                      disabled={
-                        authCardHOPLocked || (authCardTimeLocked > 0) || !authIDName
-                      }
-                      onClick={() => act('PRG_change_status')}
-                    >
-                      <center>
-                        {trimClockedOut
-                          ? 'Return to Job Assignment'
-                          : 'Punch Out from Job Assignment'}
-                      </center>
-                    </Button>
-                  )
-                )
-              }
+                <Button
+                  width="342px"
+                  disabled={
+                    authCardHOPLocked || authCardTimeLocked || !authIDName
+                  }
+                  onClick={() => act('PRG_change_status')}
+                >
+                  <center>
+                    {trimClockedOut
+                      ? 'Return to Job Assignment'
+                      : 'Punch Out from Job Assignment'}
+                  </center>
+                </Button>
               </Stack.Item>
               <Stack.Item>
                 <Button
