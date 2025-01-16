@@ -101,3 +101,5 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit/armor/abductor/vest
 	only_functional = TRUE
 
+/obj/item/clothing/suit/mod/chestplate
+	only_functional = TRUE
