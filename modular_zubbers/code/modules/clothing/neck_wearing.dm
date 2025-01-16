@@ -16,8 +16,10 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 
 /obj/item/clothing/suit/examine(mob/user)
 	. = ..()
-	if(!only_functional)
-		. += span_info("Ctrl + Shift + Left Click to swap between functional (suit) and non-functional (neck) mode, to allow for things such as wearing a (nonfunctional) jacket over a piece of armor for the visual effect.")
+	if(!(HAS_TRAIT(src, TRAIT_NODROP)))
+		. += span_notice("Ctrl + Shift + Left Click to swap between functional (suit) and non-functional (neck) mode, to allow for things such as wearing a (nonfunctional) jacket over a piece of armor for the visual effect.")
+	else
+		only_functional = TRUE
 
 #define PREV_SLOT_FLAGS "fs_slots"
 #define PREV_COLD_PROTECTION "fs_cold"
@@ -99,7 +101,4 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 	only_functional = TRUE
 
 /obj/item/clothing/suit/armor/abductor/vest
-	only_functional = TRUE
-
-/obj/item/clothing/suit/mod/chestplate
 	only_functional = TRUE
