@@ -6,6 +6,6 @@
 
 /datum/status_effect/dizziness/on_creation(mob/living/new_owner, duration)
 	if(new_owner && new_owner.client?.prefs?.read_preference(/datum/preference/toggle/disable_dizzyness))
-		new_owner.adjust_eye_blur(duration)
+		new_owner.adjust_eye_blur_up_to(duration, 30 SECONDS)
 		return FALSE
 	. = ..()
