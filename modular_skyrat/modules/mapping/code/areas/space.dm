@@ -234,11 +234,11 @@
 
 /area/ruin/space/has_grav/port_tarkon/aichamber
 	name = "P-T AI Chamber"
-	icon_state = "AI_chamber"
+	icon_state = "ai_interior"
 
 /area/ruin/space/has_grav/port_tarkon/aiante
 	name = "P-T AI Antechamber"
-	icon_state = "AI_antechamber"
+	icon_state = "ai_interior"
 
 // Cargodise Lost Freighter
 
