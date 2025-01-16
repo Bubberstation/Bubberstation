@@ -156,7 +156,9 @@
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/powered/skyrat/blackmarket)
 "iF" = (
-/obj/effect/mob_spawn/ghost_role/human/blackmarket,
+/obj/effect/mob_spawn/ghost_role/human/blackmarket{
+	name = "blackmarket dealer"
+	},
 /turf/open/floor/iron/smooth_large,
 /area/ruin/space/has_grav/powered/skyrat/blackmarket)
 "iG" = (
@@ -476,8 +478,8 @@
 /area/ruin/space/has_grav/powered/skyrat/blackmarket)
 "wF" = (
 /obj/docking_port/stationary{
-	dwidth = 5;
-	height = 7;
+	dwidth = 4;
+	height = 9;
 	name = "Market";
 	roundstart_template = /datum/map_template/shuttle/ruin/blackmarket_chevvy;
 	shuttle_id = "blackmarket_chevvy_home";
@@ -982,7 +984,7 @@
 /obj/item/storage/box/rubbershot,
 /obj/effect/spawner/random/contraband/armory,
 /obj/effect/spawner/random/contraband/prison,
-/obj/effect/spawner/armory_spawn/shotguns,
+/obj/item/gun/ballistic/shotgun/lethal,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/space/has_grav/powered/skyrat/blackmarket)
 "VG" = (
@@ -1535,7 +1537,7 @@ hd
 hd
 hd
 hd
-hO
+hd
 "}
 (14,1,1) = {"
 lp
@@ -1570,8 +1572,8 @@ vy
 mg
 Qu
 ve
+mg
 hd
-hO
 "}
 (15,1,1) = {"
 lp
@@ -1606,8 +1608,8 @@ Yy
 so
 fu
 qY
+mg
 hd
-hO
 "}
 (16,1,1) = {"
 lp
@@ -1642,8 +1644,8 @@ du
 ve
 Qu
 mg
+mg
 hd
-hO
 "}
 (17,1,1) = {"
 lp
@@ -1679,7 +1681,7 @@ hd
 hd
 hd
 hd
-hO
+hd
 "}
 (18,1,1) = {"
 lp
