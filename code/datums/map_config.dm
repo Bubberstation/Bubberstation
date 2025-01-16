@@ -188,6 +188,11 @@
 	if ("planetary" in json)
 		planetary = json["planetary"]
 
+	// Bubber Edit - Allow planetary maps to access space
+	if ("allow_space_when_planetary" in json)
+		allow_space_when_planetary = json["allow_space_when_planetary"]
+	// Bubber Edit
+
 	if ("blacklist_file" in json)
 		blacklist_file = json["blacklist_file"]
 
