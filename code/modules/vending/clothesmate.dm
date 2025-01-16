@@ -110,6 +110,7 @@
 				/obj/item/clothing/suit/jacket/puffer = 3,
 				/obj/item/clothing/suit/jacket/letterman = 3,
 				/obj/item/clothing/suit/jacket/letterman_red = 3,
+				/obj/item/clothing/suit/jacket/galfed = 5,
 				/obj/item/clothing/suit/costume/hawaiian = 4,
 				/obj/item/clothing/suit/costume/poncho = 3,
 				/obj/item/clothing/under/dress/skirt = 3,
@@ -128,6 +129,7 @@
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/ian = 2,
+
 			),
 		),
 
