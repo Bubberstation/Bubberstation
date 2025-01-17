@@ -5,6 +5,7 @@
 	welcome_text = "honk"
 
 	track_data = /datum/storyteller_data/tracks/clown
+	votable = FALSE
 
 	population_min = 50
 	antag_divisor = 4
