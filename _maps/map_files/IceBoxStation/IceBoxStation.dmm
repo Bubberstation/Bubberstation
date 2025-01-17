@@ -3620,6 +3620,13 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/locker)
+"aXq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/station/maintenance/orbital_maints)
 "aXw" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/siding/white,
@@ -3809,10 +3816,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"aZl" = (
-/obj/effect/landmark/atmospheric_sanity/mark_all_station_areas_as_goal,
-/turf/open/space/basic,
-/area/space)
 "aZH" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/iron/dark,
@@ -4454,6 +4457,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 1
 	},
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
 /area/station/commons/orbital_lounge)
 "bhk" = (
@@ -10411,6 +10415,10 @@
 /obj/machinery/light/small/directional/south,
 /turf/open/openspace,
 /area/station/service/chapel)
+"cOj" = (
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
+/turf/open/floor/iron,
+/area/station/commons/orbital_dock)
 "cOk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -25595,6 +25603,10 @@
 	dir = 4
 	},
 /area/station/engineering/lobby)
+"hgJ" = (
+/obj/effect/landmark/atmospheric_sanity/mark_all_station_areas_as_goal,
+/turf/open/space/basic,
+/area/space)
 "hgS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -47607,6 +47619,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron,
 /area/station/security/orbital_checkpoint)
 "nle" = (
@@ -65831,6 +65844,7 @@
 /obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/turf_decal/bot,
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
 /area/station/engineering/orbital_utilities)
 "sqs" = (
@@ -282811,7 +282825,7 @@ bTh
 "}
 (2,1,4) = {"
 bTh
-aZl
+hgJ
 bTh
 bTh
 bTh
@@ -313250,7 +313264,7 @@ yad
 fle
 yad
 eTm
-abR
+cOj
 jNq
 abR
 uOC
@@ -315812,7 +315826,7 @@ uUx
 yeS
 aNx
 aNx
-aNx
+aXq
 nYw
 lsv
 xtQ

@@ -14455,10 +14455,6 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust/moonstation,
 /area/station/medical/virology)
-"dQh" = (
-/obj/effect/landmark/atmospheric_sanity/mark_all_station_areas_as_goal,
-/turf/open/space/basic,
-/area/space)
 "dQt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -31744,6 +31740,7 @@
 /obj/item/pen{
 	pixel_y = 4
 	},
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron,
 /area/station/security/orbital_checkpoint)
 "iyy" = (
@@ -32858,6 +32855,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
 /area/station/engineering/orbital_utilities)
 "iNA" = (
@@ -34710,6 +34708,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 1
 	},
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
 /area/station/commons/orbital_lounge)
 "jnX" = (
@@ -62154,6 +62153,12 @@
 /obj/effect/landmark/start/cyborg,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/ai_monitored/turret_protected/aisat/service)
+"qPc" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
+/turf/open/floor/iron,
+/area/station/commons/orbital_dock)
 "qPd" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable,
@@ -287065,7 +287070,7 @@ iFv
 "}
 (2,1,4) = {"
 iFv
-dQh
+iFv
 iFv
 iFv
 iFv
@@ -317762,7 +317767,7 @@ iFv
 lWn
 ePf
 qqP
-kGz
+qPc
 fSI
 scs
 oHF
