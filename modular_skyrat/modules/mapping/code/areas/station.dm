@@ -579,3 +579,35 @@
 /area/station/science/xenobiology/control
 	name = "\improper Xenobiology Control Room"
 	icon_state = "xenobio"
+
+// Orbital rooms for planet stations with an orbital platform
+
+/area/station/commons/orbital_dock
+	name = "\improper Orbital Dock"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_dock"
+
+/area/station/commons/orbital_lounge
+	name = "\improper Orbital Lounge"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_lounge"
+
+/area/station/engineering/orbital_utilities
+	name = "\improper Orbital Utilities"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_utilities"
+
+/area/station/security/orbital_checkpoint
+	name = "\improper Orbital Checkpoint"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_checkpoint"
+
+/area/station/maintenance/orbital_maints
+	name = "\improper Orbital Maintenance"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_maints"
+
+/area/station/solars/orbital
+	name = "\improper Orbital Solar Array"
+	icon = 'modular_skyrat/modules/mapping/icons/areas/areas_station.dmi'
+	icon_state = "orbital_solars"
