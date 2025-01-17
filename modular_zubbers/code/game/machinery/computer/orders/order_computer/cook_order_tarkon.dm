@@ -1,5 +1,5 @@
 /**
- * # Syndicate Produce Orders Console
+ * # Tarkon Produce Orders Console
  *
  * A produce orders console modified to use a specified department account, and only allow express orders
  *
