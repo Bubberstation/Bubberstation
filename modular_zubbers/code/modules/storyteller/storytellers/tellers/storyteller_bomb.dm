@@ -8,7 +8,7 @@
 		TAG_DESTRUCTIVE = 2
 	)
 	population_min = 25
-	antag_divisor = 10
+	antag_divisor = 13
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/bomb

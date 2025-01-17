@@ -11,7 +11,7 @@
 		TAG_CHAOTIC = 1.3
 	)
 	population_min = 35
-	antag_divisor = 5
+	antag_divisor = 6
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/gamer

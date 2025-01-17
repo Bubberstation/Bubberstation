@@ -7,7 +7,7 @@
 	track_data = /datum/storyteller_data/tracks/clown
 
 	population_min = 50
-	antag_divisor = 4
+	antag_divisor = 7
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller_data/tracks/clown
