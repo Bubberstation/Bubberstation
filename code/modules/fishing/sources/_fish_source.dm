@@ -90,6 +90,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	/// Mindless mobs that can fish will never pull up items on this list
 	var/static/list/profound_fisher_blacklist = typecacheof(list(
 		/mob/living/basic/mining/lobstrosity,
+		/mob/living/basic/mining/lobstrosity/juvenile, // BUBBER EDIT ADDITION
 		/obj/structure/closet/crate/necropolis/tendril,
 	))
 
