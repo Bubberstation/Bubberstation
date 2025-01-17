@@ -59,6 +59,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		heat_protection = functional_suit_values[PREV_HEAT_PROTECTION]
 		slowdown = functional_suit_values[PREV_SLOWDOWN]
 		set_armor(functional_suit_values[PREV_ARMOR_DATUM])
+		functional_suit_values = null
 		user.visible_message(span_notice("[user] adjusts [user.p_their()] [src] for functional use."), span_notice("You adjust your [src] for functional use."))
 	return CLICK_ACTION_SUCCESS
 
