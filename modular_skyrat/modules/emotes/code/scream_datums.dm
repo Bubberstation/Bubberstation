@@ -118,6 +118,8 @@ GLOBAL_LIST_EMPTY(scream_types)
 	name = "Xeno Scream"
 	male_screamsounds = list(
 		'sound/mobs/non-humanoids/hiss/hiss6.ogg',
+		'modular_skyrat/modules/xenos_skyrat_redo/sound/alien_roar1.ogg',
+		'modular_skyrat/modules/xenos_skyrat_redo/sound/alien_roar2.ogg',
 	)
 	female_screamsounds = null
 
