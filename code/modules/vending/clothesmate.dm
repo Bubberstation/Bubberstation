@@ -38,6 +38,7 @@
 				/obj/item/clothing/head/costume/sombrero/green = 3,
 				/obj/item/clothing/head/costume/nightcap/blue = 3,
 				/obj/item/clothing/head/costume/nightcap/red = 3,
+				/obj/item/clothing/head/soft/galfedcap = 5,
 			),
 		),
 
@@ -129,7 +130,6 @@
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/ian = 2,
-
 			),
 		),
 
