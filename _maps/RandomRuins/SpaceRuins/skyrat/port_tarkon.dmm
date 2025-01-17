@@ -227,6 +227,13 @@
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
+"br" = (
+/obj/structure/safe/floor,
+/obj/item/reagent_containers/cup/beaker/bluespace,
+/obj/item/reagent_containers/cup/beaker/bluespace,
+/obj/effect/spawner/random/medical/surgery_tool_advanced,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/trauma)
 "bs" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -741,6 +748,11 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
+"eW" = (
+/obj/structure/bed/nest,
+/obj/item/gun/ballistic/automatic/ar/modular/m44a,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "eY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -2427,6 +2439,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
+"pL" = (
+/obj/structure/bed/nest,
+/obj/effect/mob_spawn/corpse/human/tarkon,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "pM" = (
 /obj/machinery/computer/cargo/express/interdyne/tarkon{
 	dir = 8
@@ -2597,6 +2614,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"qW" = (
+/obj/structure/bed/nest,
+/obj/item/ammo_box/magazine/m44a,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "qY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -5858,6 +5880,10 @@
 /obj/effect/turf_decal/tile/yellow/half,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"Jr" = (
+/obj/item/toy/plush/xenoplush/xenomaidplush,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "Js" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/glass/fifty,
@@ -7962,6 +7988,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"VZ" = (
+/obj/structure/safe/floor,
+/obj/item/book/granter/crafting_recipe/donk_secret_recipe,
+/turf/open/floor/iron/cafeteria,
+/area/ruin/space/has_grav/port_tarkon/kitchen)
 "Wa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -8039,6 +8070,12 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
+/obj/structure/safe/floor,
+/obj/item/flatpacked_machine/ore_thumper,
+/obj/item/flatpacked_machine/ore_thumper,
+/obj/item/flatpacked_machine/ore_thumper,
+/obj/item/flatpacked_machine/ore_thumper,
+/obj/item/pipe_dispenser/bluespace,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "WF" = (
@@ -14412,7 +14449,7 @@ HW
 PF
 WG
 vV
-fH
+VZ
 oh
 GQ
 zS
@@ -14697,7 +14734,7 @@ ym
 ym
 ym
 dA
-Oe
+br
 bz
 vO
 EG
@@ -15204,7 +15241,7 @@ jA
 HB
 BK
 oE
-DJ
+oE
 oE
 oE
 oE
@@ -15304,7 +15341,7 @@ WI
 WI
 WI
 BK
-oE
+DJ
 oE
 oE
 oE
@@ -16021,7 +16058,7 @@ BK
 oE
 oE
 BK
-DJ
+oE
 BK
 DJ
 oE
@@ -16420,10 +16457,10 @@ oE
 kb
 iR
 BK
-oE
-oE
-oE
-oE
+BK
+BK
+BK
+BK
 BK
 BK
 BK
@@ -16522,13 +16559,13 @@ oE
 iR
 BK
 BK
-se
+qW
 oE
 tk
-se
-oE
-oE
-oE
+pL
+BK
+BK
+BK
 WI
 tk
 oE
@@ -16545,7 +16582,7 @@ BK
 oE
 oE
 oE
-oE
+Jr
 BK
 iR
 kb
@@ -16630,7 +16667,7 @@ oE
 oE
 oE
 tk
-DJ
+oE
 WI
 WI
 WI
@@ -16730,14 +16767,14 @@ oE
 Ym
 oE
 vy
-se
+eW
 oE
 tk
 vy
 oE
 oE
 oE
-se
+pL
 BK
 BK
 oE
@@ -17140,8 +17177,8 @@ iR
 BK
 vy
 oE
-se
-se
+pL
+qW
 oE
 oE
 BK
