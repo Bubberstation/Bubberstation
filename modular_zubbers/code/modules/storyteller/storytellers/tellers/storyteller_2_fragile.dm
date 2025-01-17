@@ -1,5 +1,5 @@
 /datum/storyteller/fragile
-	name = "The Fragile (Medium-Low Chaos)"
+	name = "Fragile (Medium-Low Chaos)"
 	desc = "The Fragile will limit destructive, combat-focused, and chaotic events. You'll rarely see midround antagonist roles that usually cause it."
 	welcome_text = "Handle with care!"
 
