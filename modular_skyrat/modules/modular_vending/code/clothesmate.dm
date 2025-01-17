@@ -45,6 +45,7 @@
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/hud/ar/projector = 5,
 				/obj/item/clothing/neck/face_scarf = 5,
+				/obj/item/clothing/neck/scarf/pride = 5, //BUBBER EDIT: ADDS PRIDE SCARVES
 				/obj/item/clothing/gloves/bracer/wraps,
 			),
 		),
