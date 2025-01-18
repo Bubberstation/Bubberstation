@@ -189,6 +189,7 @@
 
 /datum/sprite_accessory/legs/digitigrade_lizard
 	name = DIGITIGRADE_LEGS
+
 /datum/sprite_accessory/socks
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	use_static = TRUE
