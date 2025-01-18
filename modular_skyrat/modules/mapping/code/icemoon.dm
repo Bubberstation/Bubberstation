@@ -11,10 +11,3 @@
 	allow_duplicates = FALSE
 	always_place = FALSE
 	unpickable = TRUE
-
-/datum/map_template/ruin/icemoon/underground/skyrat/mining_site_below
-	name = "Ice-Ruin Mining Site Underground"
-	id = "miningsite-underground"
-	description = "The Iceminer arena."
-	suffix = "icemoon_underground_mining_site_skyrat.dmm"
-	always_place = TRUE

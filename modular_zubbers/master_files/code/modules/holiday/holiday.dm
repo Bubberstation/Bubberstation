@@ -104,10 +104,50 @@
 	. = ..()
 	queue_storyteller_celebration(event = /datum/round_event/spooky, control = /datum/round_event_control/spooky)
 
+/datum/holiday/xmas
+	name = CHRISTMAS
+	begin_day = 18
+	mail_holiday = FALSE
+	holiday_colors = list()
+
+/datum/holiday/xmas/New()
+	. = ..()
+	var/palette = rand(1, 11)
+	switch(palette)
+		if(1, 2, 3, 4)
+			holiday_colors += list(
+				COLOR_CHRISTMAS_GREEN,
+				COLOR_CHRISTMAS_RED,
+			)
+		if(5, 6)
+			holiday_colors += list(
+				COLOR_CHRISTMAS_GREEN,
+				COLOR_CHRISTMAS_RED,
+				GREY_LIGHT,
+			)
+		if(7, 8)
+			holiday_colors += list(
+				COLOR_CHRISTMAS_GREEN,
+				GREY_LIGHT,
+			)
+		if(9, 10)
+			holiday_colors += list(
+				COLOR_CHRISTMAS_RED,
+				GREY_LIGHT,
+			)
+		if(11)
+			holiday_colors += list(
+				COLOR_PRIDE_PURPLE,
+				COLOR_PRIDE_BLUE,
+				COLOR_PRIDE_GREEN,
+				COLOR_PRIDE_YELLOW,
+				COLOR_PRIDE_ORANGE,
+				COLOR_PRIDE_RED,
+			)
+
 #undef PURPLE_LIGHT
 #undef PURPLE_DARK
 #undef ORANGE_LIGHT
 #undef ORANGE_DARK
 #undef GREY_LIGHT
 #undef GREY_DARK
-

@@ -11,7 +11,7 @@
 	alert_type = null
 
 /datum/status_effect/climax/tick(seconds_between_ticks)
-	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
 	var/mob/living/carbon/human/affected_mob = owner
@@ -30,7 +30,7 @@
 
 // This one should not leave decals on the floor. Used in case if character cumming in beaker.
 /datum/status_effect/masturbation_climax/tick(seconds_between_ticks)
-	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
 	var/mob/living/carbon/human/affected_mob = owner
