@@ -24,6 +24,7 @@
 
 	/// Whether or not this sprite accessory has an additional overlay added to
 	/// it as an "inner" part, which is pre-colored.
+	/// BUBBER TODO: See about retiring this
 	var/has_inner = FALSE
 
 	/// For all the flags that you need to pass from a sprite_accessory to an organ, when it's linked to one.
