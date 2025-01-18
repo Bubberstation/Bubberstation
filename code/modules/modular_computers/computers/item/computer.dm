@@ -94,6 +94,8 @@
 	var/saved_identification
 	///The job title of the stored ID card
 	var/saved_job
+	///The saved ID card's access list
+	var/saved_id_accesses = list()
 
 	///The 'computer' itself, as an obj. Primarily used for Adjacent() and UI visibility checks, especially for computers.
 	var/obj/physical
@@ -715,16 +717,18 @@
 
 ///Imprints name and job into the modular computer, and calls back to necessary functions.
 ///Acts as a replacement to directly setting the imprints fields. All fields are optional, the proc will try to fill in missing gaps.
-/obj/item/modular_computer/proc/imprint_id(name = null, job_name = null)
+/obj/item/modular_computer/proc/imprint_id(name = null, job_name = null, obj/item/card/id/id_card = null)
 	saved_identification = name || computer_id_slot?.registered_name || saved_identification
 	saved_job = job_name || computer_id_slot?.assignment || saved_job
-	SEND_SIGNAL(src, COMSIG_MODULAR_PDA_IMPRINT_UPDATED, saved_identification, saved_job)
+	saved_id_accesses = id_card?.access || computer_id_slot?.access || saved_id_accesses
+	SEND_SIGNAL(src, COMSIG_MODULAR_PDA_IMPRINT_UPDATED, saved_identification, saved_job, id_card)
 	UpdateDisplay()
 
 ///Resets the imprinted name and job back to null.
 /obj/item/modular_computer/proc/reset_imprint()
 	saved_identification = null
 	saved_job = null
+	saved_id_accesses = null
 	SEND_SIGNAL(src, COMSIG_MODULAR_PDA_IMPRINT_RESET)
 	UpdateDisplay()
 
@@ -980,6 +984,96 @@
 	if(!include_disk_files || !inserted_disk)
 		return stored_files
 	return stored_files + inserted_disk.stored_files
+
+/// Returns how relevant the current security level is:
+/// * 0: User is not in immediate danger and not needed for some station-critical task.
+/// * 1: Danger is around, but the user is not directly needed to handle it.
+/// * 2: Danger is around and the user is responsible for handling it.
+/obj/item/modular_computer/proc/get_security_level_relevancy(var/obj/item/card/id/idToCheck)
+	var/list/id_accesses = list()
+	id_accesses = saved_id_accesses
+
+	switch (SSsecurity_level.get_current_level_as_number())
+		if (SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
+			return 2
+		if (SEC_LEVEL_EPSILON)
+			return 2
+		if (SEC_LEVEL_DELTA)
+			return 2
+		if (SEC_LEVEL_RED) // all-hands-on-deck situations, everyone is responsible for combatting a threat
+			return 2
+		if (SEC_LEVEL_AMBER) // threat confirmed and is immediately present; sec and med should be ready
+			if ((ACCESS_SECURITY in saved_id_accesses) || (ACCESS_MEDICAL in saved_id_accesses))
+				return 2
+			else
+				return 1
+		if (SEC_LEVEL_VIOLET) // biohazard threat, medical needs to be in gear; everyone else should just take caution
+			if (ACCESS_MEDICAL in saved_id_accesses)
+				return 2
+			else
+				return 1
+		if (SEC_LEVEL_ORANGE) // the "threat" is actually engineering tasks. there shouldn't be immediate danger, assuming common sense
+			if (ACCESS_ENGINEERING in saved_id_accesses)
+				return 2
+			else
+				return 0
+		if (SEC_LEVEL_BLUE) // suspected threat. security needs to be alert and possibly preparing for it, no further concerns
+			if (ACCESS_SECURITY in saved_id_accesses)
+				return 2
+			else
+				return 0
+		if (SEC_LEVEL_GREEN) // no threats, no concerns
+			return 0
+
+	return 0
+
+/// Returns strings for the current security level to display on the PDA.
+/obj/item/modular_computer/proc/get_security_level_shortform()
+	switch (SSsecurity_level.get_current_level_as_number())
+		if (SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
+			return "Γ"
+		if (SEC_LEVEL_EPSILON)
+			return "E"
+		if (SEC_LEVEL_DELTA)
+			return "Δ"
+		if (SEC_LEVEL_RED)
+			return "RED"
+		if (SEC_LEVEL_AMBER)
+			return "AMB"
+		if (SEC_LEVEL_VIOLET)
+			return "VIO"
+		if (SEC_LEVEL_ORANGE)
+			return "ORN"
+		if (SEC_LEVEL_BLUE)
+			return "BLU"
+		if (SEC_LEVEL_GREEN)
+			return "GRN"
+
+	return "NUL"
+
+/obj/item/modular_computer/proc/get_security_level_color()
+	switch (SSsecurity_level.get_current_level_as_number())
+		if (SEC_LEVEL_GAMMA)
+			return "#FFFFFF"
+		if (SEC_LEVEL_EPSILON)
+			return "#FFFFFF"
+		if (SEC_LEVEL_DELTA)
+			return "#FFFFFF"
+		if (SEC_LEVEL_RED)
+			return "#CC0000"
+		if (SEC_LEVEL_AMBER)
+			return "#e05a00"
+		if (SEC_LEVEL_ORANGE)
+			return "#ffa600"
+		if (SEC_LEVEL_GREEN)
+			return "#1fb900"
+		if (SEC_LEVEL_BLUE)
+			return "#0044d6"
+		if (SEC_LEVEL_VIOLET)
+			return "#c600e0"
+
+	return "#0000000"
+
 
 /**
  * Debug ModPC
