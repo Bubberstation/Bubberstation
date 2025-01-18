@@ -50,7 +50,7 @@
 	/// indication that the eyes are undergoing some negative effect
 	var/damaged = FALSE
 	/// Native FOV that will be applied if a config is enabled
-	var/native_fov = NONE //SKYRAT EDIT CHANGE - ORIGINAL: var/native_fov = FOV_90_DEGREES
+	var/native_fov = FOV_90_DEGREES
 	/// Scarring on this organ
 	var/scarring = NONE
 
