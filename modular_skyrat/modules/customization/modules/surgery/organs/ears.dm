@@ -15,7 +15,7 @@
 	color_source = ORGAN_COLOR_OVERRIDE
 
 /datum/bodypart_overlay/mutant/ears/set_appearance_from_name(accessory_name)
-	if(!accessory_name)
+	if(isnull(accessory_name))
 		accessory_name = "None" // Just to deal with the edge cases where there's some that wouldn't have an actual base appearance, since ears don't always need a visual component, but we have to proceed like this due to the unfortunate nature of this system.
 
 	return ..()
