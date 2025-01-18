@@ -11,7 +11,7 @@
 /mob/living/basic/alien/drone/Initialize(mapload)
 	. = ..()
 	var/list/drone_types = list(ALIEN_DRONE, ALIEN_WARRIOR, ALIEN_RUNNER, ALIEN_DEFENDER, ALIEN_RAVAGER)
-	if(isnull(drone_type) || !(drone_type in drone_types))
+	if(!(drone_type in drone_types))
 		drone_type = pick(drone_types)
 
 	set_drone_type(drone_type)
