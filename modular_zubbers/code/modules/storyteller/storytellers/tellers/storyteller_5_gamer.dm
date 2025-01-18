@@ -1,7 +1,6 @@
 /datum/storyteller/gamer
-	name = "The Gamer"
-	desc = "The Gamer will try to create the most combat focused events, while trying to avoid purely destructive ones. \
-	More combat-focused and frequent events than the Default, but tries to avoid creating a hellshift, unlike the Clown."
+	name = "Gamer (High Chaos)"
+	desc = "The Gamer will try to create the most combat focused events, while trying to avoid purely destructive ones."
 	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
 
 	track_data = /datum/storyteller_data/tracks/gamer

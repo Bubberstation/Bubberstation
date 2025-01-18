@@ -1,10 +1,11 @@
 /datum/storyteller/clown
-	name = "The Clown"
+	name = "Clown (Very-High Chaos)"
 	desc = "The Clown will try to create the most events and antagonists out of all the storytellers, not caring for their weight. \
 	As such, this storyteller is hell, and is likely to end the round prematurely. It is the most chaotic of all."
 	welcome_text = "honk"
 
 	track_data = /datum/storyteller_data/tracks/clown
+	votable = FALSE
 
 	population_min = 50
 	antag_divisor = 4
