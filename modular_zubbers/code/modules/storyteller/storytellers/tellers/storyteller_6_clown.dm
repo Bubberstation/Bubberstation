@@ -1,5 +1,5 @@
 /datum/storyteller/clown
-	name = "Clown (Very-High Chaos)"
+	name = "Clown (Highest Chaos)"
 	desc = "The Clown will try to create the most events and antagonists out of all the storytellers, not caring for their weight. \
 	As such, this storyteller is hell, and is likely to end the round prematurely. It is the most chaotic of all."
 	welcome_text = "honk"
