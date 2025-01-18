@@ -3,6 +3,7 @@
 	desc = "Finally, you can be an unpaid Discord moderator in space. Clean it up Jannie!"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = null
 
 //Clussy and Jester shoes from Splurt.
@@ -17,6 +18,7 @@
 	desc = "Annoyed scientists have finally stolen the clowns shoes as an act of revenge and ripped out these heels capabilities to waddle and squeak. Unfortunately, they still barely fit on anyone's feet!"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "clussy_heels"
 	worn_icon_state = "clussy_heels"
 
