@@ -142,7 +142,7 @@
 	if(riftTimer >= maxRiftTimer)
 		// BUBBER CHANGE START: dragons don't die to not summoning a rift
 		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You will be slowed down until you do so!"))
-		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression/no_portal)
+		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 		riftTimer = -1
 		// BUBBER CHANGE END
 
@@ -157,15 +157,26 @@
 	if(objective_complete)
 		return
 	rifts_charged = 0
-	ADD_TRAIT(owner.current, TRAIT_RIFT_FAILURE, REF(src))
+	ADD_TRAIT(owner.current, TRAIT_RIFT_FAILURE, DRAGON_PORTAL_LOSS) // BUBBER CHANGE
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 	riftTimer = -1
+	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
+		if(owner.current.stat == DEAD)
+			return
+		to_chat(owner.current, span_warning("You will be able to make a new rift in 5 minutes."))
+		addtimer(CALLBACK(src, PROC_REF(give_rift_ability)), 5 MINUTES)
 	SEND_SOUND(owner.current, sound('sound/vehicles/rocketlaunch.ogg'))
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.dragon = null
 		rift_list -= rift
 		if(!QDELETED(rift))
 			QDEL_NULL(rift)
+
+/datum/antagonist/space_dragon/proc/give_rift_ability()
+	if(owner.current.stat == DEAD)
+		return
+	rift_ability = new()
+	rift_ability.Grant(owner.current)
 
 /**
  * Sets up Space Dragon's victory for completing the objectives.

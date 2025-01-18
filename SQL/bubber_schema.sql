@@ -33,3 +33,15 @@ CREATE TABLE `vetted_list` (
   PRIMARY KEY (`ckey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `stored_faxes`;
+CREATE TABLE `stored_faxes` (
+	`sender` VARCHAR(512) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`destination_fax_machine` VARCHAR(512) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`message` MEDIUMTEXT NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`roundid` INT(11) NULL DEFAULT NULL,
+	`relayed` INT(11) NULL DEFAULT '0'
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;

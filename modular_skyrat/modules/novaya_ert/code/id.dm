@@ -1,11 +1,11 @@
 /obj/item/card/id/advanced/centcom/ert/nri
-	name = "\improper NRI ID"
-	desc = "An ID straight from the NRI."
+	name = "\improper PSC ID"
+	desc = "An ID straight from the Pan-Slavic Commonwealth."
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_centcom"
 
 /datum/id_trim/nri
-	assignment = "NRI Soldier"
+	assignment = "PSC Soldier"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_nri"
 	department_color = COLOR_RED_LIGHT
@@ -19,33 +19,33 @@
 
 
 /datum/id_trim/nri/commander
-	assignment = "NRI Platoon Commander"
+	assignment = "PSC Platoon Commander"
 	trim_state = "trim_nri_commander"
 	department_color = COLOR_RED_LIGHT
 	subdepartment_color = COLOR_COMMAND_BLUE
 	sechud_icon_state = "hud_nri_commander"
 
 /datum/id_trim/nri/heavy
-	assignment = "NRI Heavy Soldier"
+	assignment = "PSC Heavy Soldier"
 
 /datum/id_trim/nri/medic
-	assignment = "NRI Corpsman"
+	assignment = "PSC Corpsman"
 
 /datum/id_trim/nri/engineer
-	assignment = "NRI Combat Engineer"
+	assignment = "PSC Combat Engineer"
 
 /datum/id_trim/nri/diplomat
-	assignment = "NRI Diplomat"
+	assignment = "PSC Diplomat"
 	trim_state = "trim_nri_commander"
 	department_color = COLOR_RED_LIGHT
 	subdepartment_color = COLOR_COMMAND_BLUE
 	sechud_icon_state = "hud_nri_commander"
 
 /datum/id_trim/nri/diplomat/major
-	assignment = "NRI Major"
+	assignment = "PSC Major"
 
 /datum/id_trim/nri/diplomat/scientist
-	assignment = "NRI Research Inspector"
+	assignment = "PSC Research Inspector"
 
 /datum/id_trim/nri/diplomat/doctor
-	assignment = "NRI Medical Inspector"
+	assignment = "PSC Medical Inspector"

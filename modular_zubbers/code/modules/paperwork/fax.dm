@@ -8,7 +8,7 @@
 		UnHives = list(fax_name = "United Hives", fax_id = "UnHives", color = "orange", emag_needed = FALSE),
 		Tizira = list(fax_name = "Tiziran", fax_id = "Tirizian", color = "orange", emag_needed = FALSE),
 		Moghes = list(fax_name = "Moghes", fax_id = "Moghes", color = "orange", emag_needed = FALSE),
-		Nri = list(fax_name = "NRI", fax_id = "NRI", color = "orange", emag_needed = FALSE),
+		Nri = list(fax_name = "PSC", fax_id = "NRI", color = "orange", emag_needed = FALSE),
 		Ombrux = list(fax_name = "Ombrux", fax_id = "Ombrux", color = "orange", emag_needed = TRUE),
 		Soato = list(fax_name = "Soato", fax_id = "Soato", color = "orange", emag_needed = TRUE),
 		TerraGov = list(fax_name = "SBI", fax_id = "SBI", color = "orange", emag_needed = FALSE),

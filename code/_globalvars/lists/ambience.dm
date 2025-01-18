@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(icemoon_ambience,list(
 	'sound/ambience/icemoon/ambiicesting3.ogg',
 	'sound/ambience/icemoon/ambiicesting4.ogg',
 	'sound/ambience/icemoon/ambiicesting5.ogg',
+	'modular_zubbers/sound/ambiance/bangle-freezer.ogg', // Bubber Edit - Credit: Bangle
 ))
 
 GLOBAL_LIST_INIT(medical_ambience,list(
