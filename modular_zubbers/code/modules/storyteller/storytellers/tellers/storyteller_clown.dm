@@ -9,6 +9,7 @@
 	population_min = 50
 	antag_divisor = 4
 	storyteller_type = STORYTELLER_TYPE_INTENSE
+	random_weight = 40 // not common at all
 
 /datum/storyteller_data/tracks/clown
 	threshold_mundane = 700

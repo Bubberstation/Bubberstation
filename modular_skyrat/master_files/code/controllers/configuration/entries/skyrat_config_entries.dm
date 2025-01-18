@@ -63,3 +63,7 @@
 
 /// If you want to have a default storyteller
 /datum/config_entry/string/default_storyteller
+
+/// If enabled, storytellers cease being randomly picked and are voted for
+/datum/config_entry/flag/vote_for_storytellers
+	default = FALSE

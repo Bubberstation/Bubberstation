@@ -46,6 +46,9 @@
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
+	/// The weight of this storyteller, used when flag/vote_for_storytellers is FALSE. Used in pick_weight().
+	var/random_weight = 100
+
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
 		return

@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(gamemode)
 	/// Result of the storyteller vote. Defaults to the guide.
 	var/voted_storyteller = /datum/storyteller/default
 	/// List of all the storytellers. Populated at init. Associative from type
-	var/list/storytellers = list()
+	var/list/datum/storyteller/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
 	var/next_storyteller_process = 0
 	/// Associative list of even track points.
@@ -144,7 +144,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	// Populate storytellers
 	for(var/type in subtypesof(/datum/storyteller))
-		storytellers[type] = new type()
+		var/datum/storyteller/new_instance = new type()
+		storytellers[type] = new_instance
 
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/event = new type()
@@ -676,22 +677,36 @@ SUBSYSTEM_DEF(gamemode)
 	min_pop_thresholds[EVENT_TRACK_GHOSTSET] = CONFIG_GET(number/ghostset_min_pop)
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_choices()
-	var/client_amount = GLOB.clients.len
+	RETURN_TYPE(/list/datum/storyteller)
+
 	var/list/choices = list()
+	var/list/valid = get_valid_storytellers()
+
+	for(var/datum/storyteller/storyboy in valid)
+		if(!storyboy.votable)
+			choices -= storyboy
+
+		///Because the vote subsystem is dumb and does not support any descriptions, we dump them into world.
+		to_chat(world, span_notice("<b>[storyboy.name]</b>"))
+		to_chat(world, span_notice("[storyboy.desc]"))
+
+	return choices
+
+/datum/controller/subsystem/gamemode/proc/get_valid_storytellers()
+	RETURN_TYPE(/list/datum/storyteller)
+
+	var/client_amount = GLOB.clients.len
+	var/list/valid = list()
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
 		/// Prevent repeating storytellers
 		if(storyboy.storyteller_type && storyboy.storyteller_type == SSpersistence.last_storyteller_type)
 			continue
-		if(!storyboy.votable)
-			continue
 		if((storyboy.population_min && storyboy.population_min > client_amount) || (storyboy.population_max && storyboy.population_max < client_amount))
 			continue
-		choices += storyboy.name
-		///Because the vote subsystem is dumb and does not support any descriptions, we dump them into world.
-		to_chat(world, span_notice("<b>[storyboy.name]</b>"))
-		to_chat(world, span_notice("[storyboy.desc]"))
-	return choices
+		valid += storyboy.name
+
+	return valid
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
 	/// Find the winner
@@ -722,7 +737,7 @@ SUBSYSTEM_DEF(gamemode)
  * Called by the storyteller system on roundstart and after a vote finishes.
  * When forced via game panel, forced = TRUE, and force_ckey contains the ckey of the admin who forced it
 */
-/datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type, forced, force_ckey)
+/datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type, forced, force_ckey, randomly_picked = FALSE)
 	if(!storytellers[passed_type])
 		message_admins("Attempted to set an invalid storyteller type: [passed_type].")
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
@@ -735,9 +750,28 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_CREWSET] = track_data.threshold_crewset * CONFIG_GET(number/crewset_point_threshold)
 	point_thresholds[EVENT_TRACK_GHOSTSET] = track_data.threshold_ghostset * CONFIG_GET(number/ghostset_point_threshold)
 
-	to_chat(world, span_notice("<b>Storyteller is [storyteller.name]!</b>"))
+	if (randomly_picked) // making a different announcement to clarify this was random
+		to_chat(world, span_notice("<b>[storyteller.name] randomly picked as storyteller, with a weight of [storyteller.random_weight]!</b>"))
+	else
+		to_chat(world, span_notice("<b>Storyteller is [storyteller.name]!</b>"))
 	to_chat(world, span_notice("[storyteller.welcome_text]"))
 	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
+
+/**
+ * Used if voting for storytellers is disabled. Picks a random storyteller using pick_weight, and sets it.
+ */
+/datum/controller/subsystem/gamemode/proc/pick_random_storyteller()
+	var/list/datum/storyteller/valid_tellers = get_valid_storytellers()
+
+	var/list/datum/storyteller/tellers_to_weight = list()
+	for (var/datum/storyteller/teller as anything in valid_tellers)
+		tellers_to_weight[teller] = teller.random_weight
+
+	var/datum/storyteller/picked_teller = pick_weight(tellers_to_weight)
+	if (isnull(picked_teller))
+		stack_trace("No valid storyteller found during a random storyteller pick! Defaulting to extended...")
+		picked_teller = storytellers[/datum/storyteller/extended]
+	set_storyteller(picked_teller)
 
 /**
  * halt_storyteller

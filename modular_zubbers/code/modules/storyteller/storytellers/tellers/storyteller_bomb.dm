@@ -10,6 +10,7 @@
 	population_min = 25
 	antag_divisor = 10
 	storyteller_type = STORYTELLER_TYPE_INTENSE
+	random_weight = 70 // uncommon
 
 /datum/storyteller_data/tracks/bomb
 	threshold_mundane = 1800

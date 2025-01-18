@@ -174,7 +174,10 @@ SUBSYSTEM_DEF(ticker)
 			if(storyteller)
 				SSgamemode.set_storyteller(text2path(storyteller), TRUE)
 			else
-				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
+				if (CONFIG_GET(flag/vote_for_storytellers))
+					SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
+				else
+					SSgamemode.pick_random_storyteller()
 		// BUBBERSTATION EDIT END
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
