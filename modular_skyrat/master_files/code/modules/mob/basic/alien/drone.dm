@@ -8,6 +8,10 @@
 	/// Determines which subtype of drone gets created. If nothing is set it is randomly chosen upon initialization.
 	var/drone_type
 
+	unique_name = TRUE
+	pixel_x = -16
+	base_pixel_x = -16
+
 /mob/living/basic/alien/drone/Initialize(mapload)
 	. = ..()
 	var/list/drone_types = list(ALIEN_DRONE, ALIEN_WARRIOR, ALIEN_RUNNER, ALIEN_DEFENDER, ALIEN_RAVAGER)
@@ -63,9 +67,6 @@
 			health = 200
 			maxHealth = 200
 			mob_size = MOB_SIZE_LARGE
-		unique_name = TRUE
-		pixel_x = -16
-		base_pixel_x = -16
 	update_icon(updates=ALL)
 
 #undef ALIEN_DRONE

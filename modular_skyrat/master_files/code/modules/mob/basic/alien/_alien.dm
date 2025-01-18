@@ -1,6 +1,6 @@
 // Prettier Aliens
 /mob/living/basic/alien
-	icon = 'modular_skyrat/master_files/icons/mob/big_xenos.dmi'
+	icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/big_xenos.dmi'
 	icon_state = "aliendrone"
 	icon_living = "aliendrone"
 	icon_dead = "aliendrone_dead"
