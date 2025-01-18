@@ -771,7 +771,7 @@ SUBSYSTEM_DEF(gamemode)
 	if (isnull(picked_teller))
 		stack_trace("No valid storyteller found during a random storyteller pick! Defaulting to extended...")
 		picked_teller = storytellers[/datum/storyteller/extended]
-	set_storyteller(picked_teller)
+	set_storyteller(picked_teller, randomly_picked = TRUE)
 
 /**
  * halt_storyteller
