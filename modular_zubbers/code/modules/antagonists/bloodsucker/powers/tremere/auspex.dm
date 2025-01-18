@@ -95,6 +95,8 @@
 	for(var/mob/living/carbon/living_mob in range(1, targeted_turf) - user)
 		if(IS_BLOODSUCKER(living_mob) || IS_GHOUL(living_mob))
 			continue
+		if(living_mob.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+			continue
 		if(level_current >= AUSPEX_KNOCKDOWN_LEVEL)
 			living_mob.Knockdown(1 SECONDS * level_current, ignore_canstun = TRUE)
 		if(level_current >= AUSPEX_BLEED_LEVEL)

@@ -127,6 +127,10 @@
 
 	perform_indicators(mesmerized_target, mesmerize_delay)
 
+	if(mesmerized_target.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+		owner.balloon_alert(owner, "[mesmerized_target] resists your attempt to mesmerize them.")
+		return
+
 	if(issilicon(mesmerized_target))
 		var/mob/living/silicon/mesmerized = mesmerized_target
 		mesmerized.emp_act(EMP_HEAVY)
