@@ -117,6 +117,13 @@
 	var/datum/antagonist/ghoul/ghoul = IS_GHOUL(target)
 	if(!victim_has_blood(target))
 		return FALSE
+	if(target.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+		to_chat(target, span_hypnophrase("You can feel a insidious force trying to take over your mind, but manage to resist!"))
+		owner.balloon_alert(owner, "[target] resists your attempt to [src] them.")
+		return FALSE
+	if(!bloodsuckerdatum_power.can_make_ghoul(target))
+		owner.balloon_alert(owner, "not a valid target for ghouling!.")
+		return FALSE
 	if(ghoul)
 		owner.balloon_alert(owner, "attempting to revive.")
 	else

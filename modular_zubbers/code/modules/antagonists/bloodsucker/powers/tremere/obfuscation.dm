@@ -154,6 +154,8 @@
 	for(var/mob/living/carbon/living_mob in range(1, targeted_turf)-user)
 		if(IS_BLOODSUCKER(living_mob) || IS_GHOUL(living_mob))
 			continue
+		if(living_mob.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+			continue
 		if(level_current >= OBFUSCATION_BLEED_LEVEL)
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)
 			var/severity = pick(WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_CRITICAL)
