@@ -189,7 +189,6 @@
 	if (!target.get_organ_slot(ORGAN_SLOT_BRAIN)) // kept exclusively for soul purposes
 		render_list += "<span class='alert ml-1'>Subject lacks a brain.</span><br>"
 
-	var/death_consequences_status_text // SKYRAT EDIT ADDITION: Death consequences quirk
 	if(iscarbon(target))
 		var/mob/living/carbon/carbontarget = target
 		if(LAZYLEN(carbontarget.quirks))
@@ -408,8 +407,9 @@
 	// SKYRAT EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
 	if(target.GetComponent(/datum/component/mutant_infection))
 		render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
-	if(death_consequences_status_text)
-		render_list += death_consequences_status_text
+	var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
+	if(consequences)
+		render_list += consequences.get_health_analyzer_link_text(user)
 	// SKYRAT EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
