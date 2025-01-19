@@ -665,8 +665,8 @@
 	parts += printplayer(owner)
 	parts += "<b>Sacrifices Made:</b> [total_sacrifices]"
 	parts += "The heretic's sacrifice targets were: [english_list(all_sac_targets, nothing_text = "No one")]."
-	if(length(objectives)) //BUBBERSTAION EDIT START
-		var/count = 1
+	if(length(objectives)) //BUBBERSTAION EDIT START, ADDING BACK GREENTEXT FOR FLAVOUR PURPOSES
+		var/count = 1 //(Skyrat's greentext edit removed)
 		for(var/o in objectives)
 			var/datum/objective/objective = o
 			if(objective.check_completion())
@@ -696,9 +696,9 @@
 			parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
-			parts += span_greentext("The [lowertext(heretic_path)] heretic was successful!")
+			parts += span_greentext("The [LOWER_TEXT(heretic_path)] heretic was successful!")
 		else
-			parts += span_redtext("The [lowertext(heretic_path)] heretic has failed.")
+			parts += span_redtext("The [LOWER_TEXT(heretic_path)] heretic has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "//BUBBERSTAION EDIT END - SOURCED FROM YOG
 
