@@ -986,90 +986,90 @@
 	return stored_files + inserted_disk.stored_files
 
 /// Returns how relevant the current security level is:
-/// * 0: User is not in immediate danger and not needed for some station-critical task.
-/// * 1: Danger is around, but the user is not directly needed to handle it.
-/// * 2: Danger is around and the user is responsible for handling it.
+#define ALERT_RELEVANCY_SAFE = 0 /// * 0: User is not in immediate danger and not needed for some station-critical task.
+#define ALERT_RELEVANCY_WARN = 1 /// * 1: Danger is around, but the user is not directly needed to handle it.
+#define ALERT_RELEVANCY_PERTINENT = 2/// * 2: Danger is around and the user is responsible for handling it.
 /obj/item/modular_computer/proc/get_security_level_relevancy(var/obj/item/card/id/idToCheck)
 	var/list/id_accesses = list()
 	id_accesses = saved_id_accesses
 
-	switch (SSsecurity_level.get_current_level_as_number())
-		if (SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
-			return 2
-		if (SEC_LEVEL_EPSILON)
-			return 2
-		if (SEC_LEVEL_DELTA)
-			return 2
-		if (SEC_LEVEL_RED) // all-hands-on-deck situations, everyone is responsible for combatting a threat
-			return 2
-		if (SEC_LEVEL_AMBER) // threat confirmed and is immediately present; sec and med should be ready
-			if ((ACCESS_SECURITY in saved_id_accesses) || (ACCESS_MEDICAL in saved_id_accesses))
-				return 2
+	switch(SSsecurity_level.get_current_level_as_number())
+		if(SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_EPSILON)
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_DELTA)
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_RED) // all-hands-on-deck situations, everyone is responsible for combatting a threat
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_AMBER) // threat confirmed and is immediately present; sec and med should be ready
+			if((ACCESS_SECURITY in saved_id_accesses) || (ACCESS_MEDICAL in saved_id_accesses))
+				return ALERT_RELEVANCY_PERTINENT
 			else
-				return 1
-		if (SEC_LEVEL_VIOLET) // biohazard threat, medical needs to be in gear; everyone else should just take caution
-			if (ACCESS_MEDICAL in saved_id_accesses)
-				return 2
+				return ALERT_RELEVANCY_WARN
+		if(SEC_LEVEL_VIOLET) // biohazard threat, medical needs to be in gear; everyone else should just take caution
+			if(ACCESS_MEDICAL in saved_id_accesses)
+				return ALERT_RELEVANCY_PERTINENT
 			else
-				return 1
-		if (SEC_LEVEL_ORANGE) // the "threat" is actually engineering tasks. there shouldn't be immediate danger, assuming common sense
-			if (ACCESS_ENGINEERING in saved_id_accesses)
-				return 2
+				return ALERT_RELEVANCY_WARN
+		if(SEC_LEVEL_ORANGE) // the "threat" is actually engineering tasks. there shouldn't be immediate danger, assuming common sense
+			if(ACCESS_ENGINEERING in saved_id_accesses)
+				return ALERT_RELEVANCY_PERTINENT
 			else
-				return 0
-		if (SEC_LEVEL_BLUE) // suspected threat. security needs to be alert and possibly preparing for it, no further concerns
-			if (ACCESS_SECURITY in saved_id_accesses)
-				return 2
+				return ALERT_RELEVANCY_SAFE
+		if(SEC_LEVEL_BLUE) // suspected threat. security needs to be alert and possibly preparing for it, no further concerns
+			if(ACCESS_SECURITY in saved_id_accesses)
+				return ALERT_RELEVANCY_PERTINENT
 			else
-				return 0
-		if (SEC_LEVEL_GREEN) // no threats, no concerns
-			return 0
+				return ALERT_RELEVANCY_SAFE
+		if(SEC_LEVEL_GREEN) // no threats, no concerns
+			return ALERT_RELEVANCY_SAFE
 
 	return 0
 
 /// Returns strings for the current security level to display on the PDA.
 /obj/item/modular_computer/proc/get_security_level_shortform()
 	switch (SSsecurity_level.get_current_level_as_number())
-		if (SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
+		if(SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
 			return "Γ"
-		if (SEC_LEVEL_EPSILON)
+		if(SEC_LEVEL_EPSILON)
 			return "E"
-		if (SEC_LEVEL_DELTA)
+		if(SEC_LEVEL_DELTA)
 			return "Δ"
-		if (SEC_LEVEL_RED)
+		if(SEC_LEVEL_RED)
 			return "RED"
-		if (SEC_LEVEL_AMBER)
+		if(SEC_LEVEL_AMBER)
 			return "AMB"
-		if (SEC_LEVEL_VIOLET)
+		if(SEC_LEVEL_VIOLET)
 			return "VIO"
-		if (SEC_LEVEL_ORANGE)
+		if(SEC_LEVEL_ORANGE)
 			return "ORN"
-		if (SEC_LEVEL_BLUE)
+		if(SEC_LEVEL_BLUE)
 			return "BLU"
-		if (SEC_LEVEL_GREEN)
+		if(SEC_LEVEL_GREEN)
 			return "GRN"
 
 	return "NUL"
 
 /obj/item/modular_computer/proc/get_security_level_color()
 	switch (SSsecurity_level.get_current_level_as_number())
-		if (SEC_LEVEL_GAMMA)
+		if(SEC_LEVEL_GAMMA)
 			return "#FFFFFF"
-		if (SEC_LEVEL_EPSILON)
+		if(SEC_LEVEL_EPSILON)
 			return "#FFFFFF"
-		if (SEC_LEVEL_DELTA)
+		if(SEC_LEVEL_DELTA)
 			return "#FFFFFF"
-		if (SEC_LEVEL_RED)
+		if(SEC_LEVEL_RED)
 			return "#CC0000"
-		if (SEC_LEVEL_AMBER)
+		if(SEC_LEVEL_AMBER)
 			return "#e05a00"
-		if (SEC_LEVEL_ORANGE)
+		if(SEC_LEVEL_ORANGE)
 			return "#ffa600"
-		if (SEC_LEVEL_GREEN)
+		if(SEC_LEVEL_GREEN)
 			return "#1fb900"
-		if (SEC_LEVEL_BLUE)
+		if(SEC_LEVEL_BLUE)
 			return "#0044d6"
-		if (SEC_LEVEL_VIOLET)
+		if(SEC_LEVEL_VIOLET)
 			return "#c600e0"
 
 	return "#0000000"
