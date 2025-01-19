@@ -1,5 +1,5 @@
 /datum/storyteller/fragile
-	name = "The Fragile"
+	name = "Fragile (Medium-Low Chaos)"
 	desc = "The Fragile will limit destructive, combat-focused, and chaotic events. You'll rarely see midround antagonist roles that usually cause it."
 	welcome_text = "Handle with care!"
 
@@ -12,7 +12,7 @@
 		TAG_DESTRUCTIVE = 0.1,
 		TAG_CHAOTIC = 0.1
 	)
-	storyteller_type = STORYTELLER_TYPE_CALM
+	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
 /datum/storyteller_data/tracks/fragile
 	threshold_mundane = 1200
