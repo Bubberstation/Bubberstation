@@ -660,13 +660,12 @@
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
-	var/cultiewin = TRUE
-	//var/succeeded = TRUE // SKYRAT EDIT REMOVAL
+	var/cultiewin = TRUE //BUBBERSTATION EDIT
 
 	parts += printplayer(owner)
 	parts += "<b>Sacrifices Made:</b> [total_sacrifices]"
 	parts += "The heretic's sacrifice targets were: [english_list(all_sac_targets, nothing_text = "No one")]."
-	if(length(objectives))
+	if(length(objectives)) //BUBBERSTAION EDIT START
 		var/count = 1
 		for(var/o in objectives)
 			var/datum/objective/objective = o
@@ -701,7 +700,7 @@
 		else
 			parts += span_redtext("The [lowertext(heretic_path)] heretic has failed.")
 
-	parts += "<b>Knowledge Researched:</b> "
+	parts += "<b>Knowledge Researched:</b> "//BUBBERSTAION EDIT END - SOURCED FROM YOG
 
 	var/list/string_of_knowledge = list()
 
@@ -710,11 +709,11 @@
 		string_of_knowledge += knowledge.name
 
 	parts += english_list(string_of_knowledge)
-	parts += get_flavor(cultiewin, ascended, heretic_path)
+	parts += get_flavor(cultiewin, ascended, heretic_path) //BUBBERSTATION EDIT- SOURCED FROM YOG
 
 	return parts.Join("<br>")
 
-/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, heretic_path)
+/datum/antagonist/heretic/proc/get_flavor(cultiewin, ascended, heretic_path) //HUGE BUBBERSTATION EDIT, TAKEN FROM YOGS, START HERE
 	var/list/flavor = list()
 	var/flavor_message
 
@@ -895,57 +894,50 @@
 									were weak. You too, realize you are part of the cycle as your spirit drifts down into the Mansus. Falling from the \
 									Glory, you reflect on your mistakes and your miserable life. In the moments before you become nothing, you understand."
 
-	else if(heretic_path == PATH_MOON) //Mind epilogues
+	else if(heretic_path == PATH_MOON) //Moon epilogues
 
 		if(ascended)
 			message_color = "#FFD700"
 			if(escaped)
-				flavor_message += 	"Sitting tight in your seat, as you hear the hiss of the shuttle doors open everything begins to grow dark, you hear the crying of a baby and the smell of salt. \
-									Travelling to the Mansus, you find yourself once more upon the moonlit beach, though what you find is not what you expect. \
-									The child of the bloated corpse has risen from it's mother's dead womb, and turns to you with a sickly smile. Your hunt is not yet over."
+				flavor_message += 	"You slide out through the shuttle airlock, a jubilation awaits central command! All don a smile, for the lie has been slain! \
+									It's like a joke eating one up from the inside... The unbelievers first giggle, then chuckle, then their body BURSTS into dance - Wild and unknown. \
+									In your step, they followed, chained to the rhythm - Perhaps you'll give up your hat some day, and pass on the torch to a new ringleader."
 			else if(alive)
-				flavor_message += 	"As you watch the escape shuttle leave with dull eyes, you turn to the others left behind, the sickly smell of blood fills the station's corridors. \
-									You fall quickly into a dream, Mansus calls and the beach is empty, though you see your way out from this nightmare, floating above the sky, a cracked moon. \
-									You swing your blade wildly like a beast more than a man, screams and cries echo down the corridors begging you to stop, but you cannot hear them, your goal is one without end, \
-									as more and more bodies pile, you climb over each and every one piling them up to create a stairway, step by step, slice by slice, climbing towards something ever out of reach."
+				flavor_message += 	"You watch the quitters hurry home, to their BORING lives, though the fun has JUST began! You're sure the others have given them a few long-lasting parting gifts for courtesy's sake, however. \
+									The moon may be far, and you may not reach the stars - but it was always watching and SEES the deeds you have done, illuminating the stage in pale light."
 			else //Dead
-				flavor_message += 	"As your body hits the floor, you expect the sweet release of death to free you from this horrid nightmare, unfortunately as your consciousness slips away, \
-									you feel yourself dragged ever towards a familiar beach, scores of dead fish and crabs litter the shoreline, you step closer to the water's edge inch by inch. \
-									As you make it to the water, you do not slow, and more and more corpses float through the waters of the murky ocean. Those you've killed stare back at you, sacrificed to the endless tide. \
-									You simply look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
+				flavor_message += 	"The music starts to fade, the lights all get blurry - yet you feel cheer as you make friends with the cold station floor. There is no fear, for why would you fear? \
+									Not everyone has the main role - and you, my dear, have danced beautifully. Let those curtains close and bow out to the public, the backstage awaits - there's much more cheer to be had..."
 
 		else if(cultiewin) //Completed objectives
 			if(escaped)
-				flavor_message += 	"Sitting tight in your seat, as you hear the hiss of the shuttle doors open everything begins to grow dark, you hear the crying of a baby and the smell of salt. \
-									Travelling to the Mansus, you find yourself once more upon the moonlit beach, though what you find is not what you expect. \
-									You find scores of others, just like you, gathering around a bloated corpse, smiling and smirking to each other you ready your blades, hacking away at the poor dead beast. \
-									Taking your prizes, you set off for home, you do remember your way home, don't you?"
+				flavor_message += 	"What. A. PERFORMANCE! You may not have had your encore, but the emotion, oh the EFFORT! The night waits for you to seize the day once more, until then, the moon will howl to you - \
+				telling stories of what joys you could bring..."
 				message_color = "#008000"
 			else if(alive)
-				flavor_message += 	"You've survived, not many can claim the same. You wait every night for the dark dream to take you, going back to the beach upon which you expect your end.\
-									Instead your every waking moment is plagued with a hunger, a thirst. You crave the blood, that sweet sickly substance which drives even men of learning to insanity. \
-									You ready yourself once more, picking up your blade with a smile, you'll teach them to fear the old blood, one cut at a time."
+				flavor_message += 	"Your eyes watch the shuttle hurriedly lift from the station - perhaps the music was not to their taste. Though, as all know, a party must be MEMORABLE, \
+									and they will sure remember your smile, your laughter and the music echoing through their minds when a light outside their curtains shines too-brightly to let them rest. \
+									You know you'll meet the Ringleader again, you'll meet him on the dark side of the moon..."
 				message_color = "#008000"
 			else //Dead
-				flavor_message += 	"As you let out one last gasp of air, the light begins to leave your eyes as a small smile crosses your lips. \
-									You have completed all of the objectives given to you, though as the last neurons flicker in your fleshy dying brain you begin to question everything, \
-									why were you here? Who gave you this mission? Was it really all for nothing? You try to hold on to the last of your thoughts before they slip away, along with you into nothingness."
+				flavor_message += 	"You stand on that stage, in the spotlight - all eyes on you. Reciting your final piece, your act isn't yet done! Yet... The curtain is behind you already, you see it encroaching \
+									Turning your gaze away, ignoring it, you look to the shimmering tiles, the contorted lips, you preach and cheer, they clap and dance! You're flying now, it's all so much clearer than from the seats! \
+									Thrash, the curtains cover your shoulders, the world rings back it's bells at you, perhaps you should have thought some more - the view from halfway through. You wanted to play a part, to be important, \
+									well you did it. Now bow, a happy ending or a sad ending is an ending nonetheless."
 				message_color = "#517fff"
 
 		else //Failed objectives
 			if(escaped)
-				flavor_message += 	"You've escaped the station, but as the shuttle lands at Centcom it all goes dark, dragged to the Mansus you look around you \
-									a moonlit beach with only one other person, it's like you're starring into a mirror. He raises his blade, and you break into a sprint to run away. \
-									Though you may not make it very far, you take solace in knowing your body finally gets to rest after a long night."
+				flavor_message += 	"You've escaped the station, but you know this isn't the end. Performance isn't an art for yourself, it's for OTHERS - Your duty doesn't end here. So don't stop dancing, don't stop dancing till the curtains fall..."
 				message_color = "#517fff"
 			else if(alive)
-				flavor_message += 	"You step through the ruined halls of the station, the clicking of your soles against the tile your only company. \
-									You have survived, though each night you try to enter the dream, hoping to find a way out of this dying station. \
-									Nothing comes to you, the beach is forever lost, and all that remains is to carve a way out by force."
+				flavor_message += 	"The audience has left. You'd wish the red over your body was tomatoes and shame. Your grand parade was a solo hike, your grand jubilation a quiet vinyl record in a dim room... The moon turns it's gaze from you,\
+									the troupe has no place for small-fry and anything less than grand. Perhaps it's for the best, perhaps you can waltz on a lonelier path, perhaps the moon you looked up to was never there and but a trick of a sick mind. \
+									...\
+									or perhaps a different ringleader will help you smile once more, someday..."
 			else //Dead
-				flavor_message += 	"Your beaten and battered body lays there, your consciousness still trapped in it like a prison of flesh. \
-									You rally against the cage, fists pounding at the inside of your brain as you beat your fists bloody raw. \
-									Unfortunately, despite all your rage you're still just a rat in a cage. Doomed to be nothing more than a rotten corpse added to the beach at the end of time."
+				flavor_message += 	"A tragic ending. Your script has reached it's last paragraph - end of the line. The part of the ringleader eludes you, and noone will remember yet another name on a casting list. Forgotten by the troupe and their cold, unflinching smiles \
+									and deemed a lunatic by the normal. A grand parade will need more rehearsal - one day, a waxing you will turn gibbous, but that day is not today..."
 	else if(heretic_path == PATH_VOID) //Void epilogues
 
 		if(ascended)
@@ -1105,7 +1097,7 @@
 
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
-	return "<div>[flavor.Join("<br>")]</div>"
+	return "<div>[flavor.Join("<br>")]</div>" // END HERE
 
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
