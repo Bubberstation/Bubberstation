@@ -184,6 +184,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		modularInterface.inserted_disk = floppy
 		to_chat(user, span_notice("You insert the disk into the cyborg bay."))
 		to_chat(src, "----------------\nNew removable media detected...Identified as \"<b>[floppy.name]</b>\".\n----------------")
+		playsound(src, 'sound/machines/card_slide.ogg', 50)
 		return
 
 	return ..()
