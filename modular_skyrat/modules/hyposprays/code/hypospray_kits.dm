@@ -249,7 +249,7 @@
 /obj/item/storage/hypospraykit/paramedic/PopulateContents()
 	if(empty)
 		return
-	new /obj/item/hypospray/mkii(src)
+	new /obj/item/hypospray/mkii/piercing(src)
 	new /obj/item/reagent_containers/cup/vial/small/libital(src)
 	new /obj/item/reagent_containers/cup/vial/small/lenturi(src)
 	new /obj/item/reagent_containers/cup/vial/small/seiver(src)
