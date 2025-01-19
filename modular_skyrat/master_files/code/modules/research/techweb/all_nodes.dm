@@ -263,14 +263,6 @@
 	return ..()
 
 /////////////////////////robotics tech/////////////////////////
-
-/datum/techweb_node/cybernetics/New()
-	design_ids += list(
-		"borg_upgrade_expand",
-		"borg_upgrade_shrink",
-	)
-	return ..()
-
 /datum/techweb_node/robotics/New()
 	design_ids += list(
 		"borg_upgrade_snacks",
@@ -286,9 +278,6 @@
 	return ..()
 
 /datum/techweb_node/borg_utility/New()
-	design_ids -= list(
-		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
-	)
 	design_ids += list(
 		"borg_upgrade_clamp",
 		"borg_upgrade_cargo_tele",
