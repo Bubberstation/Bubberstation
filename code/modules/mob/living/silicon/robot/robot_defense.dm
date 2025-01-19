@@ -182,6 +182,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		var/obj/item/computer_disk/floppy = W
 		floppy.forceMove(modularInterface)
 		modularInterface.inserted_disk = floppy
+		to_chat(user, span_notice("You insert the disk into the cyborg bay."))
+		to_chat(src, "----------------\nNew removable media detected...Identified as \"<b>[floppy.name]</b>\".\n----------------")
 		return
 
 	return ..()
