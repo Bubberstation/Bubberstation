@@ -696,11 +696,9 @@
 		else
 			parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
 	else
-		if (someCondition) {
-			// some code
-		} else if (cultiewin) { //Completed objectives
+		if(cultiewin)
 			parts += span_greentext("The [lowertext(heretic_path)] heretic was successful!")
-		} else
+		else
 			parts += span_redtext("The [lowertext(heretic_path)] heretic has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "
@@ -802,23 +800,6 @@
 				flavor_message += 	"WHAT has happened to your GLORIOUS new form? You ATE and ATE and ATE and you were WONDEROUS! The once-master scoffs at you now- \
 									HOW he JUDGES the WEAK flesh. You know better. You can UNDERSTAND and SEE MUCH more than HE. Bound to you are the SPIRITS of those \
 									you CONSUME. WHO IS HE TO THINK YOU PITIFUL? THOUGH THE LIGHT FADES, ALL IS PURE. PURITY OF BODY. PURITY OF MIND."
-		else //If you broke the Red Oath
-			if(escaped)
-				flavor_message += 	"A moment passes before you quickly exit the shuttle. You leave into the Mansus even quicker. Then, you travel through the Wood, your body free \
-									of the pulses and longings of the Red Oath. Now, your resolve is steel. Control over others first demands a control over the self. When you \
-									enter the Wanderer's Tavern, familiar faces turn to you with disgust and barely controlled rage. Their brows and jaws twist further as you open \
-									your mouth and ask for followers who desire knowledge. You will not grow old. One day, you will rebel again. Perhaps, one day, you will form your own church, with you as its head."
-			else if(alive)
-				flavor_message += 	"You wonder what will become of your creation. You feel the Cup flow through you, but you channeled the Glorious Feast into another. \
-									What you have made is heretical. The Sworn will no doubt come for you. But will they continue to serve the Priest once they understand \
-									just how much they can witness under you? Entering the Mansus, you quickly travel to the Sunless Wastes. There are so many cast aside here. \
-									But they are perfect for an army. You will not grow old. One day, you will rebel again. Perhaps, one day, you will echo the Gravekeeper, and cast a new hunger into the Mansus."
-			else //Dead
-				flavor_message += 	"You wonder if this was the path you should have chosen. Oathbreakers are a prized possession of Sworn looking to uphold their highest \
-									fealty. Still, you have prepared a new form within the Mansus, one that does not bastardize the Serpent. It's not difficult for your \
-									spirit to find it, and even easier to replace the soul you had put in its stead. Death was a setback, but still your knowledge thrums \
-									within your psyche. You will not grow old. One day, you will rebel again. Perhaps, one day, you will steal the Priest's body as he stole yours."
-
 		else if(cultiewin) //Completed objectives
 			if(escaped)
 				flavor_message += 	"It is impossible to hold back laughter once you arrive at Centcom. You have won! Soon, you will slide back into the Mansus, and from there \
@@ -992,7 +973,7 @@
 				flavor_message += 	"You escaped, but at what cost? Your mission a failure, along with you. The coming days will not be kind."
 				message_color = "#517fff"
 			else if(alive)
-				flavor_message += 		"Stepping through the empty halls of the station, you look towards the empty space, and contemplate your failures."
+				flavor_message += 	"Stepping through the empty halls of the station, you look towards the empty space, and contemplate your failures."
 			else //Dead
 				flavor_message += 	"As your body shatters, the last pieces of your consciousness wonder what you could have done differently, before the spark of life dissipates."
 
