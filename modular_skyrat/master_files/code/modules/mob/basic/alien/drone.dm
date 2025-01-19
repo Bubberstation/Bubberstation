@@ -9,9 +9,6 @@
 	var/drone_type
 
 	unique_name = TRUE
-	pixel_x = -16
-	base_pixel_x = -16
-
 /mob/living/basic/alien/drone/Initialize(mapload)
 	. = ..()
 	var/list/drone_types = list(ALIEN_DRONE, ALIEN_WARRIOR, ALIEN_RUNNER, ALIEN_DEFENDER, ALIEN_RAVAGER)
