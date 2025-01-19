@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/ammo_casing/shotgun/stunslug = 25,
 		/obj/item/ammo_casing/shotgun/techshell = 75
 	) = 75,
-	/obj/item/anesthetic_machine_kit = 10,
+	/obj/item/breath_machine_kit = 10,
 	/obj/item/anomaly_neutralizer = 25,
 	/obj/item/aquarium_kit = 10,
 	/obj/item/assembly/flash = 10,
