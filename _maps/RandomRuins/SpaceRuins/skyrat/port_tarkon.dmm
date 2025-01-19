@@ -17,6 +17,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"aj" = (
+/obj/structure/alien/resin/membrane,
+/obj/structure/alien/resin/membrane,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "ak" = (
 /obj/machinery/door/firedoor/solid,
 /obj/machinery/door/airlock/public/glass{
@@ -245,10 +250,10 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "bt" = (
-/obj/structure/rack,
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
+/obj/effect/mob_spawn/ghost_role/human/tarkon,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
 "bu" = (
@@ -570,11 +575,16 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "dv" = (
-/obj/structure/transit_tube/horizontal,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/closed/wall,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/button/door{
+	id = "ptporthall";
+	name = "shutter controls";
+	pixel_x = -31
+	},
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "dx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -2041,7 +2051,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "mZ" = (
-/obj/machinery/light/directional/west,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "na" = (
@@ -2296,6 +2306,7 @@
 /obj/effect/turf_decal/tile/yellow/anticorner{
 	dir = 4
 	},
+/obj/effect/mob_spawn/ghost_role/human/tarkon,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
 "ou" = (
@@ -3140,7 +3151,6 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper,
 /obj/item/paper{
 	default_raw_text = "There was a few shipping crates that were left unchecked. Ive emptied out the boxes they held here. Hopefully you can get them where they have to go. Under no circumstances are you to open these orders. Last thing we need is to be seen as picking sides in this conflict.";
 	name = "Shipping Report - OVERDUE"
@@ -3646,15 +3656,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/item/gun/ballistic/automatic/surplus,
-/obj/item/gun/ballistic/automatic/surplus,
-/obj/item/gun/ballistic/automatic/surplus,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/gun/ballistic/rifle/boltaction/surplus,
+/obj/item/gun/ballistic/rifle/boltaction/surplus,
+/obj/item/gun/ballistic/rifle/boltaction/surplus,
+/obj/item/storage/toolbox/ammobox/full/mosin,
+/obj/item/storage/toolbox/ammobox/full/mosin,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "xe" = (
@@ -5357,6 +5363,13 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"Gw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/porthall)
 "Gx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5696,11 +5709,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/button/door{
-	id = "ptporthall";
-	name = "shutter controls";
-	pixel_x = -31
-	},
 /obj/structure/alien/resin/membrane,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
@@ -6094,6 +6102,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"KA" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "KB" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
@@ -8042,6 +8054,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
+"Wo" = (
+/obj/structure/alien/resin/membrane,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 "Wy" = (
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med,
 /turf/open/floor/iron,
@@ -10155,7 +10171,7 @@ Ad
 Ad
 Ad
 Zi
-pa
+qH
 pa
 uM
 qH
@@ -10358,7 +10374,7 @@ qH
 qH
 qH
 qH
-bT
+qH
 qH
 Su
 qH
@@ -10562,9 +10578,9 @@ oE
 oE
 oE
 Pn
-Pn
-Pn
-dv
+bV
+bV
+bV
 Pn
 qH
 qH
@@ -10665,7 +10681,7 @@ oE
 oE
 bV
 Zx
-mZ
+Zx
 Gs
 Pn
 oE
@@ -10970,9 +10986,9 @@ bV
 bV
 bV
 Pn
+mZ
 Zx
-Zx
-HD
+Gw
 zV
 zV
 MX
@@ -11071,7 +11087,7 @@ Ia
 Ky
 Ky
 Ky
-Ky
+dv
 Ky
 Ky
 Ed
@@ -15240,7 +15256,7 @@ cb
 jA
 HB
 BK
-oE
+DJ
 oE
 oE
 oE
@@ -15341,7 +15357,7 @@ WI
 WI
 WI
 BK
-DJ
+BK
 oE
 oE
 oE
@@ -15443,7 +15459,7 @@ oE
 oE
 oE
 BK
-oE
+BK
 oE
 oE
 oE
@@ -15955,7 +15971,7 @@ oE
 BK
 WI
 WI
-BK
+aj
 oE
 BK
 BK
@@ -16057,7 +16073,7 @@ BK
 BK
 oE
 oE
-BK
+Wo
 oE
 BK
 DJ
@@ -16261,7 +16277,7 @@ oE
 oE
 tk
 BK
-oE
+BK
 tk
 oE
 oE
@@ -16364,7 +16380,7 @@ oE
 DJ
 BK
 oE
-WI
+KA
 WI
 WI
 WI
@@ -16466,8 +16482,8 @@ BK
 BK
 BK
 oE
-oE
-oE
+Wo
+Wo
 oE
 tk
 BK
