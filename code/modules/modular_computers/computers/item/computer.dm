@@ -1027,50 +1027,68 @@
 
 	return 0
 
+#define ALERT_SHORTFORM_GAMMA = "Γ"
+#define ALERT_SHORTFORM_EPSILON = "E"
+#define ALERT_SHORTFORM_DELTA = "Δ"
+#define ALERT_SHORTFORM_RED = "RED"
+#define ALERT_SHORTFORM_AMBER = "AMB"
+#define ALERT_SHORTFORM_ORANGE = "ORN"
+#define ALERT_SHORTFORM_GREEN = "GRN"
+#define ALERT_SHORTFORM_BLUE = "BLU"
+#define ALERT_SHORTFORM_VIOLET = "VIO"
+
 /// Returns strings for the current security level to display on the PDA.
 /obj/item/modular_computer/proc/get_security_level_shortform()
 	switch (SSsecurity_level.get_current_level_as_number())
 		if(SEC_LEVEL_GAMMA) //you're just fucked if you see a greek letter
-			return "Γ"
+			return ALERT_SHORTFORM_GAMMA
 		if(SEC_LEVEL_EPSILON)
-			return "E"
+			return ALERT_SHORTFORM_EPSILON
 		if(SEC_LEVEL_DELTA)
-			return "Δ"
+			return ALERT_SHORTFORM_DELTA
 		if(SEC_LEVEL_RED)
-			return "RED"
+			return ALERT_SHORTFORM_RED
 		if(SEC_LEVEL_AMBER)
-			return "AMB"
+			return ALERT_SHORTFORM_AMBER
 		if(SEC_LEVEL_VIOLET)
-			return "VIO"
+			return ALERT_SHORTFORM_VIOLET
 		if(SEC_LEVEL_ORANGE)
-			return "ORN"
+			return ALERT_SHORTFORM_ORANGE
 		if(SEC_LEVEL_BLUE)
-			return "BLU"
+			return ALERT_SHORTFORM_BLUE
 		if(SEC_LEVEL_GREEN)
-			return "GRN"
+			return ALERT_SHORTFORM_GREEN
 
 	return "NUL"
+
+#define ALERT_COLOR_CENTCOM = "#FFFFFF"
+#define ALERT_COLOR_RED = "#CC0000"
+#define ALERT_COLOR_AMBER = "#e05a00"
+#define ALERT_COLOR_ORANGE = "#ffa600"
+#define ALERT_COLOR_GREEN = "#1fb900"
+#define ALERT_COLOR_BLUE = "#0044d6"
+#define ALERT_COLOR_VIOLET = "#c600e0"
 
 /obj/item/modular_computer/proc/get_security_level_color()
 	switch (SSsecurity_level.get_current_level_as_number())
 		if(SEC_LEVEL_GAMMA)
-			return "#FFFFFF"
+			return ALERT_COLOR_CENTCOM
 		if(SEC_LEVEL_EPSILON)
-			return "#FFFFFF"
+			return ALERT_COLOR_CENTCOM
 		if(SEC_LEVEL_DELTA)
-			return "#FFFFFF"
+			return ALERT_COLOR_CENTCOM
 		if(SEC_LEVEL_RED)
-			return "#CC0000"
+			return ALERT_COLOR_RED
 		if(SEC_LEVEL_AMBER)
-			return "#e05a00"
+			return ALERT_COLOR_AMBER
 		if(SEC_LEVEL_ORANGE)
-			return "#ffa600"
+			return ALERT_COLOR_ORANGE
 		if(SEC_LEVEL_GREEN)
-			return "#1fb900"
+			return ALERT_COLOR_GREEN
 		if(SEC_LEVEL_BLUE)
-			return "#0044d6"
+			return ALERT_COLOR_BLUE
 		if(SEC_LEVEL_VIOLET)
-			return "#c600e0"
+			return ALERT_COLOR_VIOLET
 
 	return "#0000000"
 
