@@ -106,10 +106,3 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 
 		for(var/mob/receiver in watchers)
 			receiver.show_message(narrated_message, alt_msg = narrated_message)
-
-
-
-
-
-
-
