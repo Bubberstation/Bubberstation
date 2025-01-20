@@ -86,6 +86,11 @@
 	if(!can_pay_blood(blood_cost))
 		owner.balloon_alert(owner, "not enough blood!")
 		return
+
+	if(!do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM))
+		StartCooldown()
+		return
+
 	playsound(user, 'sound/effects/magic/summon_karp.ogg', 60)
 	playsound(targeted_turf, 'sound/effects/magic/summon_karp.ogg', 60)
 
@@ -103,10 +108,9 @@
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)
 			bodypart.force_wound_upwards(/datum/wound/slash/flesh/moderate)
 			living_mob.adjustBruteLoss(5 * level_current) // 30 brute at level 6
-
-	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
 	PowerActivatedSuccesfully(cost_override = blood_cost)
+
 #undef AUSPEX_BLEED_LEVEL
 #undef AUSPEX_KNOCKDOWN_LEVEL
 #undef AUSPEX_ANYWHERE_LEVEL

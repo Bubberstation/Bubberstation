@@ -65,6 +65,9 @@
 	var/mob/living/carbon/user = owner
 	var/turf/my_turf = get_turf(owner)
 
+	if(!check_teleport_valid(owner, target_turf, TELEPORT_CHANNEL_QUANTUM))
+		return
+
 	user.visible_message(
 		span_warning("[user]'s form dissipates into a cloud of mist!"),
 		span_notice("You disspiate into formless mist."),
