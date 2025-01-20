@@ -131,7 +131,12 @@
 			continue
 		if(possible_target.current.stat == DEAD)
 			continue
-
+		////BUBBER EDIT START
+		if(HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
+			continue
+		if(is_centcom_level(possible_target.current.z))
+			continue
+		//BUBBERSEDIT END
 		valid_targets += possible_target
 
 	if(!length(valid_targets))
