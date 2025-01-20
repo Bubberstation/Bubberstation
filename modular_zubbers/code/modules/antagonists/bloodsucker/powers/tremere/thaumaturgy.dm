@@ -138,9 +138,8 @@
 	return ..(used_charges * THAUMATURGY_COOLDOWN_PER_CHARGE, override_melee_cooldown_time)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_blood_bolt_damage()
-	if(level_current >= THAUMATURGY_EXTRA_DAMAGE_LEVEL)
-		return 40
-	return 20
+	// 20 damage at level 1, 40 at level 6
+	return min(20 + (level_current - 2) * 5, 40)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_max_charges()
 	return level_current * 2
@@ -207,7 +206,7 @@
 	else
 		magic_9ball.set_homing_target(target)
 	magic_9ball.homing_turn_speed = min(10 * level_current, 90)
-	magic_9ball.range = initial(magic_9ball.range) + level_current * 10
+	magic_9ball.range = max(level_current, 1) * 5
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	// ditch the pointer to reduce harddels
 	magic_9ball = null
@@ -223,9 +222,9 @@
 	wound_bonus = 20
 	armour_penetration = 30
 	speed = 1
-	pixel_speed_multiplier = 0.6
+	pixel_speed_multiplier = 0.2
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	range = 30
+	range = 5
 	armor_flag = LASER
 	var/datum/weakref/power_ref
 
@@ -249,6 +248,8 @@
 	if(ismob(target))
 		if(bloodsucker_power.level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 			var/mob/living/person_hit = target
+			if(HAS_TRAIT(person_hit, TRAIT_NOBLOOD))
+				return ..()
 			person_hit.blood_volume -= THAUMATURGY_BLOOD_COST_PER_CHARGE
 			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(THAUMATURGY_BLOOD_COST_PER_CHARGE)
 		return ..()
