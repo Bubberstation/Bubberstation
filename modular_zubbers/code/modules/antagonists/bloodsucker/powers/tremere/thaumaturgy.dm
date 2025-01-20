@@ -150,6 +150,11 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_range()
 	return initial(magic_9ball.range) + level_current * 10
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/create_button()
+	. = ..()
+	var/atom/movable/screen/movable/action_button/button = .
+	button.maptext_x = 0
+
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/update_button_status(atom/movable/screen/movable/action_button/button, force)
 	. = ..()
 	if(next_use_time - world.time <= 0)
@@ -162,6 +167,8 @@
 		owner.balloon_alert(owner, "not enough blood!")
 		DeactivatePower()
 		return
+	// check that we don't have a gun in our hands
+	
 	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
 	owner.balloon_alert(owner, "you fire a blood bolt!")

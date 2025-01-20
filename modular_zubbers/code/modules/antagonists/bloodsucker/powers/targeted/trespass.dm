@@ -1,3 +1,6 @@
+#define TRESSPASS_NO_DISARM_LEVEL 2
+#define TRESSPASS_PAST_ANYTHING_LEVEL 3
+
 /datum/action/cooldown/bloodsucker/targeted/trespass
 	name = "Trespass"
 	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
@@ -16,12 +19,14 @@
 	. += "This power goes through all obstacles except Walls."
 	. += "Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
 	. += "It takes [DisplayTimeText(GetTeleportDelay())] to teleport."
+	. += "At level [TRESSPASS_NO_DISARM_LEVEL] you will not be disarmed when teleporting."
+	. += "At level [TRESSPASS_PAST_ANYTHING_LEVEL] you will be able to teleport through walls."
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(HAS_TRAIT(user, TRAIT_NO_TRANSFORM) || !get_turf(user))
+	if(!get_turf(user))
 		return FALSE
 	return TRUE
 
@@ -49,7 +54,7 @@
 			this_dir = get_dir(from_turf, final_turf) // Recalculate dir so we don't overshoot on a diagonal.
 		from_turf = get_step(from_turf, this_dir)
 		// ERROR! Wall!
-		if(iswallturf(from_turf))
+		if(iswallturf(from_turf) && !(i == 1 && level_current >= TRESSPASS_PAST_ANYTHING_LEVEL))
 			var/wallwarning = (i == 1) ? "in the way" : "at your destination"
 			owner.balloon_alert(owner, "There is a wall [wallwarning].")
 			return FALSE
@@ -66,6 +71,8 @@
 	var/turf/my_turf = get_turf(owner)
 
 	if(!check_teleport_valid(owner, target_turf, TELEPORT_CHANNEL_QUANTUM))
+		to_chat(owner, span_warning("You can't teleport there!"))
+		owner.balloon_alert(owner, "cannot teleport here!")
 		return
 
 	user.visible_message(
@@ -74,7 +81,7 @@
 	)
 	// Effect Origin
 	var/sound_strength = max(60, 70 - level_current * 10)
-	playsound(get_turf(owner), 'sound/effects/magic/summon_karp.ogg', sound_strength, 1)
+	playsound(get_turf(owner), 'sound/effects/magic/summon_karp.ogg', sound_strength)
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread()
 	puff.set_up(3, 0, my_turf)
 	puff.start()
@@ -82,7 +89,10 @@
 	var/mist_delay = GetTeleportDelay() // Level up and do this faster.
 
 	// Freeze Me
-	user.Stun(mist_delay, ignore_canstun = TRUE)
+	if(level_current >= TRESSPASS_NO_DISARM_LEVEL)
+		user.Paralyze(mist_delay, ignore_canstun = TRUE)
+	else
+		user.Stun(mist_delay, ignore_canstun = TRUE)
 	user.density = FALSE
 	var/invis_was = user.invisibility
 	user.invisibility = INVISIBILITY_MAXIMUM
@@ -110,3 +120,6 @@
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/proc/GetTeleportDelay()
 	return max(5, 20 - level_current * 2.5)
+
+#undef TRESSPASS_NO_DISARM_LEVEL
+#undef TRESSPASS_PAST_ANYTHING_LEVEL
