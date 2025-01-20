@@ -116,14 +116,14 @@
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
 /obj/item/food/grown/shell/sand
-    seed = /obj/item/seeds/sandfruit
-    name = "sandfruit"
-    desc = "A mutated variant of rockfruits; rough, course and now available everywhere. Just peel it for a core."
-    icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
-    icon_state = "orefruit"
-    trash_type = /obj/item/stack/sheet/mineral/sandfruitcore
-    foodtypes = FRUIT
-    distill_reagent = /datum/reagent/silicon
+	seed = /obj/item/seeds/sandfruit
+	name = "sandfruit"
+	desc = "A mutated variant of rockfruits; rough, course and now available everywhere. Just peel it for a core."
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
+	icon_state = "orefruit"
+	trash_type = /obj/item/stack/sheet/mineral/sandfruitcore
+	foodtypes = FRUIT
+	distill_reagent = /datum/reagent/silicon
 
 /obj/item/stack/sheet/mineral/sandfruitcore
 	name = "sandfruit core"
