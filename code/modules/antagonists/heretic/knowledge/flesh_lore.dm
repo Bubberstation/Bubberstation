@@ -1,7 +1,7 @@
 /// The max amount of health a ghoul has.
-#define GHOUL_MAX_HEALTH 25
+#define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 35 // BUBBER EDIT
 /// The max amount of health a voiceless dead has.
-#define MUTE_MAX_HEALTH 50
+#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT
 
 /**
  * # The path of Flesh.
