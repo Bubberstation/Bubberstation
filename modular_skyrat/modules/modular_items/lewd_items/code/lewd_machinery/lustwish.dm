@@ -24,6 +24,7 @@
 				/obj/item/clothing/sextoy/eggvib/signalvib = 8,
 				/obj/item/assembly/signaler = 8,
 				/obj/item/clothing/sextoy/vibroring = 6,
+				/obj/item/toy/plush/cescrewsplush = 1,
 
 				//Dildo (Use-on-crotch)
 				/obj/item/clothing/sextoy/dildo = 8,
