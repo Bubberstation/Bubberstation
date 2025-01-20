@@ -1480,6 +1480,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "kimono-gold"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	gets_cropped_on_taurs = FALSE
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/head/hooded/sigmarcoat
