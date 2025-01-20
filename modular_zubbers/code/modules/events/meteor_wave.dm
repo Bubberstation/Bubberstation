@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		addtimer(CALLBACK(src, PROC_REF(meteor_reminder)), ((start_when * 20) - 15 SECONDS))
 
 /datum/round_event/meteor_wave/proc/meteor_reminder()
-	event_minimum_security_level(min_level = SEC_LEVEL_ORANGE, eng_access = TRUE, maint_access = FALSE)
+	SSsecurity_level.minimum_security_level(min_level = SEC_LEVEL_ORANGE, eng_access = TRUE, maint_access = FALSE)
 	priority_announce(
 			text = "[announce_desc] approaching, brace for impact. Long range scanners indicate a high density of meteors incoming, the kind of impact that makes you rethink your life choices. So, hold on tight and try not to fly into anything too important.",
 			title = announce_prefix,
