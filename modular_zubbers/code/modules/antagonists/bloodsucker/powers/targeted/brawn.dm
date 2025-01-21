@@ -5,7 +5,7 @@
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_LYING
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 12 SECONDS
@@ -33,6 +33,9 @@
 			PowerActivatedSuccesfully()
 			return FALSE
 		owner.balloon_alert(owner, "ability level too low to break free!")
+	if(user.body_position == LYING_DOWN)
+		owner.balloon_alert(owner, "you can't punch while lying down!")
+		return FALSE
 	// Did neither, now we can PUNCH.
 	if(HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
 		owner.balloon_alert(owner, "your hands are blocked!")
