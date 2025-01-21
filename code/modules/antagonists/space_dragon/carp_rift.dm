@@ -35,7 +35,8 @@
 		return
 	if(locate(/obj/structure/carp_rift) in owner.loc)
 		return
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/dragon_depression/no_portal) // BUBBER ADDITION
+	REMOVE_TRAIT(owner, TRAIT_RIFT_FAILURE, DRAGON_PORTAL_LOSS) // BUBBER ADDITION
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/dragon_depression) // BUBBER ADDITION
 	var/obj/structure/carp_rift/new_rift = new(get_turf(owner))
 	playsound(owner.loc, 'sound/vehicles/rocketlaunch.ogg', 100, TRUE)
 	dragon.riftTimer = -1

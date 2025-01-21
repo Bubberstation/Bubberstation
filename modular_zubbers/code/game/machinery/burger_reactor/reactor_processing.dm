@@ -45,12 +45,25 @@
 		//This is where the fun begins.
 		// https://www.desmos.com/calculator/ffcsaaftzz
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
+
+		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
 		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
+			last_radiation_pulse = min( last_power_generation*0.002, range_cap) //Double the rads, double the fun.
 		else
-			last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
+			last_radiation_pulse = min( last_power_generation*0.001, range_cap)
+
+		var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
+
+		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
+		//Values closer to the maximum range penetrate the most.
+		//Don't bother making radiation if it isn't significiant enough.
+		if(insulation_threshold_math <= RAD_LIGHT_INSULATION)
+			if(meltdown)
+				insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
+			else
+				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
+			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
+
 		if(power && powernet && last_power_generation)
 			src.add_avail(min(last_power_generation,max_power_generation*10))
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
@@ -119,8 +132,6 @@
 		meltdown_multiplier *= last_power_generation/max_power_generation //It just gets worse.
 		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 		var/rod_mix_heat_capacity = rod_mix.heat_capacity()
-		last_radiation_pulse = min( last_power_generation*0.003*meltdown_multiplier ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*3) //It just keeps getting worse.
-		radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)

@@ -127,7 +127,9 @@
 		When triggered, further silences the victim and swiftly lowers the temperature of their body and the air around them."
 	gain_text = "A gust of wind? A shimmer in the air? The presence is overwhelming, \
 		my senses began to betray me. My mind is my own enemy."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/void)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/void,
+	/datum/heretic_knowledge/reroll_targets)
 	route = PATH_VOID
 	mark_type = /datum/status_effect/eldritch/void
 
@@ -155,7 +157,7 @@
 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/void,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/void_prison,
 		/datum/heretic_knowledge/rune_carver,

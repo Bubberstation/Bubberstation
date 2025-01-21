@@ -76,8 +76,12 @@
 
 /datum/loadout_item/uniform/miscellaneous/centcom_officer_skirt_replica
 	name = "CentCom turtleneck skirt replica"
-	item_path = /obj/item/clothing/under/rank/centcom/officer_skirt
+	item_path = /obj/item/clothing/under/rank/centcom/officer_skirt/replica
 
 /datum/loadout_item/uniform/miscellaneous/latex_catsuit
 	name = "Latex Catsuit"
 	item_path = /obj/item/clothing/under/misc/latex_catsuit
+
+/datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
+	name = "Custom Bunnysuit"
+	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
