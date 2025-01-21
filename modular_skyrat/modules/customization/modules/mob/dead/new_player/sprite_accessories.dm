@@ -22,6 +22,11 @@
 	///Notable things that have it set to FALSE are things that need special setup, such as genitals
 	var/generic
 
+	/// Whether or not this sprite accessory has an additional overlay added to
+	/// it as an "inner" part, which is pre-colored.
+	/// BUBBER TODO: See about retiring this
+	var/has_inner = FALSE
+
 	/// For all the flags that you need to pass from a sprite_accessory to an organ, when it's linked to one.
 	/// (i.e. passing through the fact that a snout should or shouldn't use a muzzled sprite for head worn items)
 	var/flags_for_organ = NONE
@@ -35,7 +40,7 @@
 	var/factual = TRUE
 
 	///Use this as a type path to an organ that this sprite_accessory will be associated. Make sure the organ has 'mutantpart_info' set properly.
-	var/organ_type
+	var/obj/item/organ/organ_type
 
 	///Set this to true to make an accessory appear as color customizable in preferences despite advanced color settings being off, will also prevent the accessory from being reset
 	var/always_color_customizable
@@ -170,11 +175,20 @@
 	icon_state = "none"
 
 
+/// Legs are a special case, they aren't actually sprite_accessories but are updated with them.
+/// These datums exist for selecting legs on preference, and little else
 /datum/sprite_accessory/legs
+	icon = null
+	em_block = TRUE
 	key = "legs"
-	generic = "Leg Type"
 	color_src = null
 	genetic = TRUE
+
+/datum/sprite_accessory/legs/none
+	name = NORMAL_LEGS
+
+/datum/sprite_accessory/legs/digitigrade_lizard
+	name = DIGITIGRADE_LEGS
 
 /datum/sprite_accessory/socks
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'

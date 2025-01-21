@@ -328,7 +328,7 @@
 			alter_parts(alterer)
 
 	alterer.mutant_renderkey = "" //Just in case
-	alterer.update_mutant_bodyparts()
+	alterer.update_body_parts()
 
 /**
  * Alter parts lets you adjust mutant bodyparts
@@ -401,7 +401,7 @@
 			alterer.dna.species.mutant_bodyparts[chosen_key] = new_acc_list
 			alterer.dna.mutant_bodyparts[chosen_key] = new_acc_list.Copy()
 		alterer.dna.update_uf_block(SSaccessories.dna_mutant_bodypart_blocks[chosen_key])
-	alterer.update_mutant_bodyparts()
+	alterer.update_body_parts()
 	alterer.update_clothing(ALL) // for any clothing that has alternate versions (e.g. muzzled masks)
 
 /**
