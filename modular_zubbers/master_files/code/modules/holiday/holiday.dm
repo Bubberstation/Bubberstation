@@ -107,6 +107,7 @@
 /datum/holiday/xmas
 	name = CHRISTMAS
 	begin_day = 18
+	mail_holiday = FALSE
 	holiday_colors = list()
 
 /datum/holiday/xmas/New()

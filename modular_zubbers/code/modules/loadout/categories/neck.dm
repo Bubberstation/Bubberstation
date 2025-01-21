@@ -18,3 +18,8 @@
 /datum/loadout_item/neck/bunnypendant
 	name = "Rabbit Pendant"
 	item_path = /obj/item/clothing/neck/bunny_pendant
+
+/datum/loadout_item/neck/scarf/pride
+	name = "Pride Scarf"
+	item_path = /obj/item/clothing/neck/scarf/pride
+	can_be_reskinned = TRUE

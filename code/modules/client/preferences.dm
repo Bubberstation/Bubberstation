@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (istype(requested_preference, /datum/preference/name))
 				tainted_character_profiles = TRUE
 			//SKYRAT EDIT
-			update_mutant_bodyparts(requested_preference)
+			update_body_parts(requested_preference)
 			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 				if (preference_middleware.post_set_preference(usr, requested_preference_key, value))
 					return TRUE
@@ -295,12 +295,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			var/new_color = input(
+			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 			if (!new_color)
 				return FALSE
@@ -336,12 +337,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = default_value_list[index_key]
 
 			// Yielding
-			var/new_color = input(
+			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 			if (!new_color)
 				return FALSE

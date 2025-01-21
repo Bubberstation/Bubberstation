@@ -47,11 +47,11 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
-/obj/item/organ/internal/stomach/synth/Insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/internal/stomach/synth/mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	RegisterSignal(receiver, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(on_borg_charge))
 
-/obj/item/organ/internal/stomach/synth/Remove(mob/living/carbon/stomach_owner, special)
+/obj/item/organ/internal/stomach/synth/mob_remove(mob/living/carbon/stomach_owner, special)
 	. = ..()
 	UnregisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
 
