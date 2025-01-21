@@ -25,6 +25,9 @@
 			qdel(cyborg.GetComponent(/datum/component/robot_smoke))
 			QDEL_NULL(cyborg.particles)	// Removing left over particles
 
+
+// TODO: MOVE HAT OFFSET DEFINES TO BUBBER MODULAR ROBOT_DEFINES!
+
 #define TALL_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(0, 15), "south" = list(0, 15), "east" = list(2, 15), "west" = list(-2, 15)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(0, 1), "south" = list(0, 1), "east" = list(2, 1), "west" = list(-2, 1))
