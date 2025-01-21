@@ -5,6 +5,7 @@
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_LYING
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 12 SECONDS

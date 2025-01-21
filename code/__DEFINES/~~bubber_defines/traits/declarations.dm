@@ -33,3 +33,4 @@
 // makes the mob immune to crusher marks even if they are within the required mob size
 #define TRAIT_CRUSHER_MARK_IMMUNE "crusher_mark_immune"
 
+#define TRAIT_MESMERIZE "mesmerize"

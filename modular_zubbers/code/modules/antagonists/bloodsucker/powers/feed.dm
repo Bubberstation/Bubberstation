@@ -323,7 +323,7 @@
 	return (5 + bloodsuckerdatum_power?.GetRank() || 1) SECONDS
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
-	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (bloodsuckerdatum_power?.GetRank() || 1))), 1, FEED_DEFAULT_TIMER)
+	return clamp(FEED_DEFAULT_TIMER - (1 SECONDS) * bloodsuckerdatum_power?.GetRank() || 1, 2 SECONDS, FEED_DEFAULT_TIMER)
 
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER

@@ -5,6 +5,7 @@
 	name = "Trespass"
 	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
 	button_icon_state = "power_tres"
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_LYING
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
