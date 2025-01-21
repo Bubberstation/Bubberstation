@@ -93,7 +93,9 @@
 		They will then be paralyzed for 2 seconds."
 	gain_text = "The Beast now whispered to me occasionally, only small tidbits of their circumstances. \
 		I can help them, I have to help them."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/cosmic)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/cosmic,
+	/datum/heretic_knowledge/reroll_targets)  //BUBBER EDIT
 	route = PATH_COSMIC
 	mark_type = /datum/status_effect/eldritch/cosmic
 
@@ -122,7 +124,7 @@
 	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/cosmic,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/curse/corrosion,
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/spell/space_phase,

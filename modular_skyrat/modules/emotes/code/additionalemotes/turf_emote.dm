@@ -96,7 +96,7 @@
 		user.owned_turf.dir = user.dir
 
 		if(ishuman(user))
-			human_user.update_mutant_bodyparts()
+			human_user.update_body_parts()
 
 		var/list/DNA_trail = list("shoeprint", "footprint", "pawprint", "hoofprint", "clawprint")
 		if(current_turf in DNA_trail) //These turfs leave clues of their owner

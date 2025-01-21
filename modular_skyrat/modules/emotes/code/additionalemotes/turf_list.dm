@@ -181,6 +181,6 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		human_user.update_mutant_bodyparts()
+		human_user.update_body_parts()
 
 #undef EXTRA_ABOVE_MOB_LAYER
