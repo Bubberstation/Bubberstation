@@ -24,7 +24,6 @@
 				/obj/item/clothing/sextoy/eggvib/signalvib = 8,
 				/obj/item/assembly/signaler = 8,
 				/obj/item/clothing/sextoy/vibroring = 6,
-				/obj/item/toy/plush/cescrewsplush = 1,
 
 				//Dildo (Use-on-crotch)
 				/obj/item/clothing/sextoy/dildo = 8,
@@ -155,6 +154,7 @@
 	premium = list(
 		/obj/item/clothing/neck/human_petcollar/locked/holo = 3,
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
+		/obj/item/toy/plush/cescrewsplush = 1,
 		)
 
 	contraband = list(
