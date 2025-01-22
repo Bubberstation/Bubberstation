@@ -11,8 +11,8 @@ GLOBAL_LIST_INIT(venomous_bite_choice_specs, list(
 	/datum/reagent/medicine/epinephrine = list(3, 20 SECONDS),
 	/datum/reagent/medicine/omnizine = list(2, 30 SECONDS), // barely worth it due to the damage biting does
 	// erp stuff
-	/datum/reagent/drug/aphrodisiac/crocin = list(5, 2),
-	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5),
+	/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS),
+	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS),
 ))
 
 GLOBAL_LIST_INIT(venomous_bite_choices, generate_venomous_bite_choices())
