@@ -36,7 +36,9 @@
 
 /datum/quirk/nameless/proc/generate_name()
 
-	var/prefix = quirk_holder.client?.prefs.read_preference(/datum/preference/text/nameless_quirk_option)
+	var/prefix_pref = quirk_holder.client?.prefs.read_preference(/datum/preference/text/nameless_quirk_option)
+	// So people don't have "           #1245" as a name
+	var/prefix = permissive_sanitize_name(prefix_pref) || null
 	var/job
 	var/number = pick(rand(1000, 9999))
 
