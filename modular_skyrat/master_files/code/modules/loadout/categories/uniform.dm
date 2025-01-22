@@ -105,6 +105,16 @@
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
+/datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
+	name = "Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/uniform/jumpsuit/security_skirt_hos
+	name = "Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
 /datum/loadout_item/uniform/jumpsuit/security_trousers
 	name = "Security Trousers"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers
