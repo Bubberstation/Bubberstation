@@ -17,9 +17,10 @@
 	can_randomize = FALSE
 	maximum_value_length = 20
 
-/// Some sanity to ensure you can't have "     #1000"
-
-/datum/preference/text/is_valid(value)
+/// Some sanity to ensure you can't have "     #1000" as your name.
+/datum/preference/text/nameless_quirk_option/is_valid(value)
+	if(isnull(value))
+		return TRUE
 	return !isnull(permissive_sanitize_name(value))
 
 /datum/preference/text/nameless_quirk_option/serialize(input)
