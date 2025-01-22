@@ -10,6 +10,8 @@
 	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS)
 	/// The ID card associated with the box
 	var/obj/item/card/id/associated_card
+	/// A display formatted list of the locked contents
+	var/locked_contents = null
 
 /obj/item/storage/lockbox/timeclock/Initialize(mapload, obj/item/card/id/crew_id)
 	. = ..()
@@ -21,6 +23,11 @@
 		associated_card = crew_id
 	if(associated_card?.registered_name)
 		name = "[initial(name)] - [associated_card.registered_name]"
+
+/obj/item/storage/lockbox/timeclock/examine(mob/user)
+	. = ..()
+	if(!isnull(locked_contents))
+		. += span_notice("The contents label reads: [locked_contents].")
 
 /obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
 	. = ..()

@@ -206,6 +206,38 @@
 
 	return ..()
 
+/// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.
+/datum/computer_file/program/crew_self_serve/proc/secure_items(mob/living/carbon/human/human_user, list/eligible_items)
+	var/obj/item/storage/lockbox/timeclock/shame_box = new /obj/item/storage/lockbox/timeclock(get_turf(authenticated_card), authenticated_card)
+	if(isnull(shame_box) || !istype(shame_box))
+		stack_trace("Failed to create lockbox for [authenticated_card.registered_name] trim clock-out.")
+		return FALSE
+
+	var/list/held_contents = human_user.get_contents()
+	if(!held_contents)
+		CRASH("Lockbox secure items: no items found on [authenticated_card.registered_name]. that's probably incorrect!")
+
+	var/list/shamebox_items = list()
+	for(var/obj/item/found_item in held_contents)
+		if(!is_type_in_list(found_item, eligible_items))
+			continue
+		human_user.transferItemToLoc(found_item, shame_box, force = TRUE, silent = TRUE)
+		LAZYADD(shamebox_items, "[found_item.name]")
+
+	if(!length(shame_box.contents))
+		qdel(shame_box)
+		return TRUE
+
+	shame_box.locked_contents = english_list(shamebox_items)
+	do_harmless_sparks(number = 4, source = shame_box)
+	to_chat(human_user, span_warning("You feel weight lifted off your shoulders as items are teleported off your body!"))
+	to_chat(human_user, span_notice("Items moved to lockbox: [shame_box.locked_contents]."))
+	computer.say(
+		message = "A service contract between Nanotrasen and Lustwish stipulates that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. Employees may purchase recreational provisions from an approved vendor. Your restricted items have been placed in a lockbox to be retrieved after punch in.",
+		forced = TRUE,
+	)
+	return TRUE
+
 /datum/computer_file/program/crew_self_serve/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	switch(action)
@@ -233,8 +265,7 @@
 
 				var/mob/living/carbon/human/human_user = usr
 				if(human_user)
-					var/obj/item/storage/lockbox/timeclock/shame_box = new /obj/item/storage/lockbox/timeclock(src, authenticated_card)
-					human_user.secure_items(eligible_items = SELF_SERVE_RETURN_ITEMS, incoming_box = shame_box)
+					secure_items(human_user, eligible_items = SELF_SERVE_RETURN_ITEMS)
 
 				var/datum/mind/user_mind = usr.mind
 				if(user_mind)
@@ -242,6 +273,8 @@
 
 				computer.update_static_data_for_all_viewers()
 				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
+				computer.RemoveID(human_user, silent = TRUE)
+				authenticate(id_card = computer.computer_id_slot)
 
 			return TRUE
 
@@ -282,26 +315,3 @@
 		data["trimAssignment"] = ""
 
 	return data
-
-/// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.
-/mob/living/carbon/human/proc/secure_items(list/eligible_items, obj/incoming_box)
-	var/obj/item/storage/lockbox/timeclock/shame_box = incoming_box
-	if(isnull(shame_box) || !istype(shame_box))
-		stack_trace("Failed to create lockbox for [name] trim clock-out.")
-		return FALSE
-
-	var/list/held_contents = get_contents()
-	if(!held_contents)
-		CRASH("Lockbox secure items: no items found on [name]. that's probably incorrect!")
-
-	for(var/obj/item/found_item in held_contents)
-		if(!is_type_in_list(found_item, eligible_items))
-			continue
-		transferItemToLoc(found_item, shame_box, force = TRUE, silent = TRUE)
-
-	if(!length(shame_box.contents))
-		qdel(shame_box)
-	else
-		put_in_hands(shame_box)
-
-	return TRUE
