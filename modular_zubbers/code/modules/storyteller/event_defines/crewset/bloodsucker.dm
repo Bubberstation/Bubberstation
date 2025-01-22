@@ -4,8 +4,8 @@
 
 	antag_flag = ROLE_BLOODSUCKER
 	antag_datum = /datum/antagonist/bloodsucker
-	weight = 8
-	min_players = 20
+	weight = 5
+	min_players = 30
 
 	maximum_antags_global = 3
 

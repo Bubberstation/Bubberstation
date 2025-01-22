@@ -126,9 +126,10 @@
 	var/burnt
 
 /datum/bodypart_overlay/mutant/wings/moth/New()
-	. = ..()
-
 	burn_datum = fetch_sprite_datum(burn_datum)
+
+	return ..()
+
 
 /datum/bodypart_overlay/mutant/wings/moth/get_global_feature_list()
 	return SSaccessories.sprite_accessories["wings"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.moth_wings_list
