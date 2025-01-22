@@ -64,6 +64,7 @@
 			health = 200
 			maxHealth = 200
 			mob_size = MOB_SIZE_LARGE
+	drone_type = drone_type_to_set
 	update_icon(updates=ALL)
 
 #undef ALIEN_DRONE
