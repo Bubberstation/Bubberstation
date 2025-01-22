@@ -41,6 +41,7 @@
 	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
 	player_mind.special_role = "Lone Infiltrator"
 	player_mind.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
+	spawned_mobs += operative
 
 	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into lone infiltrator.")
 	log_game("[key_name(operative)] was spawned as a lone infiltrator")
