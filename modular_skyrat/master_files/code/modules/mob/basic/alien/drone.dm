@@ -16,8 +16,8 @@
 		set_drone_type(pick(drone_types))
 
 /// Sets a drone to one of the template subtypes given an arg string.
-/mob/living/basic/alien/drone/proc/set_drone_type(drone_type)
-	switch(drone_type)
+/mob/living/basic/alien/drone/proc/set_drone_type(drone_type_to_set)
+	switch(drone_type_to_set)
 		if(ALIEN_DRONE)
 			name = "alien drone"
 			icon_state = "aliendrone"
