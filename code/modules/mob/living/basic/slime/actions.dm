@@ -104,6 +104,7 @@
 			continue
 		slime_friends += possible_friend
 
+	var/datum/component/nanites/original_nanites = GetComponent(/datum/component/nanites) // BUBBER ADDITION: NANITES
 	for(var/i in 1 to 4)
 		var/child_colour
 
@@ -130,6 +131,9 @@
 		babies += baby
 		baby.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 		SSblackbox.record_feedback("tally", "slime_babies_born", 1, baby.slime_type.colour)
+		if(original_nanites) // BUBBER ADDITION START: NANITES
+			baby.AddComponent(/datum/component/nanites, original_nanites.nanite_volume*0.25)
+			SEND_SIGNAL(baby, COMSIG_NANITE_SYNC, original_nanites, TRUE, TRUE) //The trues are to copy activation as well // BUBBER ADDITION END: NANITES
 
 	var/mob/living/basic/slime/new_slime = pick(babies) // slime that the OG slime will move into.
 	new_slime.set_combat_mode(TRUE)
