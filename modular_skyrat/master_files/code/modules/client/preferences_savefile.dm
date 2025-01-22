@@ -288,7 +288,7 @@
 		save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
 
 
-/datum/preferences/proc/update_mutant_bodyparts(datum/preference/preference)
+/datum/preferences/proc/update_body_parts(datum/preference/preference)
 	if (!preference.relevant_mutant_bodypart)
 		return
 	var/part = preference.relevant_mutant_bodypart

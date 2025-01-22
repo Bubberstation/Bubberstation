@@ -333,13 +333,10 @@
 	var/owner_staminaloss = owner.getStaminaLoss()
 	if (minimum_stamina_damage <= 0)
 		return
-	if (owner_staminaloss > (minimum_stamina_damage + 1))
-		return
-	else if ((owner_staminaloss >= (minimum_stamina_damage - 1)) && (owner_staminaloss <= (minimum_stamina_damage + 1)))
-		owner.apply_status_effect(/datum/status_effect/incapacitating/stamcrit)
+	if (owner_staminaloss > minimum_stamina_damage)
 		return
 
-	var/final_adjustment = (minimum_stamina_damage - owner_staminaloss)
+	var/final_adjustment = max((minimum_stamina_damage - owner_staminaloss), 0)
 	owner.adjustStaminaLoss(final_adjustment) // we adjust instead of set for things like stamina regen timer
 
 /**

@@ -1,5 +1,5 @@
 /datum/storyteller/gamer
-	name = "The Gamer"
+	name = "Gamer (High Chaos)"
 	desc = "The Gamer will try to create the most combat focused events, while trying to avoid purely destructive ones."
 	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
 

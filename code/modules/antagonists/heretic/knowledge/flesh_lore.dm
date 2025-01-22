@@ -1,7 +1,7 @@
 /// The max amount of health a ghoul has.
-#define GHOUL_MAX_HEALTH 25
+#define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 35 // BUBBER EDIT
 /// The max amount of health a voiceless dead has.
-#define MUTE_MAX_HEALTH 50
+#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT
 
 /**
  * # The path of Flesh.
@@ -217,7 +217,9 @@
 	desc = "Your Mansus Grasp now applies the Mark of Flesh. The mark is triggered from an attack with your Bloody Blade. \
 		When triggered, the victim begins to bleed significantly."
 	gain_text = "That's when I saw them, the marked ones. They were out of reach. They screamed, and screamed."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/flesh)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/flesh,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_FLESH
 	mark_type = /datum/status_effect/eldritch/flesh
 
@@ -247,7 +249,7 @@
 		The screams... once constant, now silenced by their wretched appearance. Nothing was out of reach."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/flesh,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/opening_blast,
 	)
