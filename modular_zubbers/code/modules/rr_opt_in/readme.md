@@ -26,6 +26,11 @@ Adds functionality to allow players to 'opt-in' to being round removed. Command 
 
 - rr_opt_in - lives in ~~bubber_defines located in __DEFINES folder. Defines named RR_OPT_IN, RR_OPT_OUT - used for managing opt in stuff.
 
+### Config:
+
+- /datum/config_entry/flag/RR_OPT_LEVEL_ANTAG   - TRUE OR FALSE, defines default antag opt in level
+- /datum/config_entry/flag/RR_OPT_LEVEL_DEFAULT - TRUE or FALSE, defines default opt in for all
+
 ### Included files that are not contained in this module:
 
 - tgui\packages\tgui\interfaces\PreferencesMenu\preferences\features\character_preferences\skyrat\antag_optin.tsx
