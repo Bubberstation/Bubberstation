@@ -15,7 +15,6 @@ export const NtosJobManager = (props) => {
 export const NtosJobManagerContent = (props) => {
   const { act, data } = useBackend();
   const { authed, cooldown, slots = [], prioritized = [] } = data;
-
   if (!authed) {
     return (
       <NoticeBox>
