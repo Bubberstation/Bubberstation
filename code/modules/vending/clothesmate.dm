@@ -38,6 +38,7 @@
 				/obj/item/clothing/head/costume/sombrero/green = 3,
 				/obj/item/clothing/head/costume/nightcap/blue = 3,
 				/obj/item/clothing/head/costume/nightcap/red = 3,
+				/obj/item/clothing/head/soft/galfedcap = 5,
 			),
 		),
 
@@ -118,6 +119,7 @@
 				/obj/item/clothing/under/rank/civilian/head_of_personnel/suit/skirt = 2,
 				/obj/item/clothing/under/rank/civilian/purple_bartender = 2,
 				/obj/item/clothing/suit/jacket/miljacket = 3,
+				/obj/item/clothing/suit/jacket/galfed = 3,
 				/obj/item/clothing/suit/apron/overalls = 3,
 				/obj/item/clothing/suit/costume/wellworn_shirt = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/graphic = 2,
