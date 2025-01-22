@@ -1,8 +1,8 @@
-#define VENEMOUS_BITE_DAMAGE 5
-#define VENEMOUS_BITE_WOUND_CHANCE 20
-#define VENEMOUS_BITE_WOUND_BONUS 40
+#define VENOMOUS_BITE_DAMAGE 5
+#define VENOMOUS_BITE_WOUND_CHANCE 20
+#define VENOMOUS_BITE_WOUND_BONUS 40
 
-/datum/action/cooldown/mob_cooldown/venemous_bite
+/datum/action/cooldown/mob_cooldown/venomous_bite
 	name = "Inject Venom"
 	desc = "Sink your fangs into another, and fill them with your venom. Not guaranteed to work against armor."
 
@@ -16,12 +16,12 @@
 	/// How much of [reagent_typepath] we will inject.
 	var/to_inject = 0
 
-/datum/action/cooldown/mob_cooldown/venemous_bite/New(Target, original, datum/reagent/our_reagent, quantity_override = null)
+/datum/action/cooldown/mob_cooldown/venomous_bite/New(Target, original, datum/reagent/our_reagent, quantity_override = null)
 	. = ..()
 
 	set_reagent(our_reagent, quantity_override)
 
-/datum/action/cooldown/mob_cooldown/venemous_bite/proc/set_reagent(datum/reagent/new_reagent, quantity_override = null, cooldown_override = null)
+/datum/action/cooldown/mob_cooldown/venomous_bite/proc/set_reagent(datum/reagent/new_reagent, quantity_override = null, cooldown_override = null)
 	reagent_typepath = new_reagent
 
 	var/list/reagent_spec = GLOB.venomous_bite_choice_specs[new_reagent]
@@ -35,14 +35,14 @@
 	else
 		cooldown_time = reagent_spec[2]
 
-/datum/action/cooldown/mob_cooldown/venemous_bite/set_click_ability(mob/on_who)
+/datum/action/cooldown/mob_cooldown/venomous_bite/set_click_ability(mob/on_who)
 	. = ..()
 	if (!.)
 		return
 
 	owner.visible_message("[owner] bares [owner.p_their()] fangs...", span_warning("You bare your fangs..."))
 
-/datum/action/cooldown/mob_cooldown/venemous_bite/Activate(atom/target_atom)
+/datum/action/cooldown/mob_cooldown/venomous_bite/Activate(atom/target_atom)
 	if (!isliving(target_atom))
 		return FALSE
 	if (iscarbon(owner))
@@ -66,7 +66,7 @@
 	return TRUE
 
 /// Does NOT inject reagents; represents the initial bite. Can end in your teeth being broken by armor. Dumbass.
-/datum/action/cooldown/mob_cooldown/venemous_bite/proc/try_bite(mob/living/target)
+/datum/action/cooldown/mob_cooldown/venomous_bite/proc/try_bite(mob/living/target)
 	var/target_zone = check_zone(owner.zone_selected)
 	var/armor = target.run_armor_check(target_zone, MELEE)
 	var/obj/item/bodypart/part = target.get_bodypart(target_zone)
@@ -101,13 +101,13 @@
 	if (covered)
 		return FALSE
 	var/wound_bonus = 0
-	if (prob(VENEMOUS_BITE_WOUND_CHANCE))
-		wound_bonus = VENEMOUS_BITE_WOUND_BONUS
-	target.apply_damage(VENEMOUS_BITE_DAMAGE, BRUTE, target_zone, armor, wound_bonus = wound_bonus, sharpness = SHARP_POINTY)
+	if (prob(VENOMOUS_BITE_WOUND_CHANCE))
+		wound_bonus = VENOMOUS_BITE_WOUND_BONUS
+	target.apply_damage(VENOMOUS_BITE_DAMAGE, BRUTE, target_zone, armor, wound_bonus = wound_bonus, sharpness = SHARP_POINTY)
 
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/venemous_bite/proc/inject(mob/living/target)
+/datum/action/cooldown/mob_cooldown/venomous_bite/proc/inject(mob/living/target)
 	var/target_zone = check_zone(owner.zone_selected)
 	if (!target.try_inject(owner, target_zone))
 		return FALSE
@@ -119,6 +119,6 @@
 
 	return TRUE
 
-#undef VENEMOUS_BITE_DAMAGE
-#undef VENEMOUS_BITE_WOUND_BONUS
-#undef VENEMOUS_BITE_WOUND_CHANCE
+#undef VENOMOUS_BITE_DAMAGE
+#undef VENOMOUS_BITE_WOUND_BONUS
+#undef VENOMOUS_BITE_WOUND_CHANCE
