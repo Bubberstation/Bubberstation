@@ -26,7 +26,7 @@
 		var/obj/item/disk/nanite_program/N = I
 		if(user.transferItemToLoc(N, src))
 			to_chat(user, span_notice("You insert [N] into [src]"))
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 			if(disk)
 				eject(user)
 			disk = N
