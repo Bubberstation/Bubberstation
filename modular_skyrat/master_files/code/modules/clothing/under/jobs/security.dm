@@ -55,7 +55,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
-	name = "security battle dress"
+	name = "head of security battle dress"
 	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the head of the security department!"
 	worn_icon_state = "security_skirt_hos"
 	icon_state = "security_skirt_hos"
