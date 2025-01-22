@@ -101,17 +101,17 @@
 	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt
-	name = "Security Battledress"
+	name = "Blue Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
-	name = "Security Battledress"
+	name = "Red Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt_hos
-	name = "Security Battledress"
+	name = "HoS Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
