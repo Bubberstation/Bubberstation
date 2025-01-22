@@ -17,6 +17,17 @@
 	can_randomize = FALSE
 	maximum_value_length = 20
 
+/// Some sanity to ensure you can't have "     #1000"
+
+/datum/preference/text/is_valid(value)
+	return !isnull(permissive_sanitize_name(value))
+
+/datum/preference/text/nameless_quirk_option/serialize(input)
+	return htmlrendertext(input)
+
+/datum/preference/text/nameless_quirk_option/deserialize(input, datum/preferences/preferences)
+	return htmlrendertext(input)
+
 /datum/preference/text/nameless_quirk_option/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -36,9 +47,7 @@
 
 /datum/quirk/nameless/proc/generate_name()
 
-	var/prefix_pref = quirk_holder.client?.prefs.read_preference(/datum/preference/text/nameless_quirk_option)
-	// So people don't have "           #1245" as a name
-	var/prefix = permissive_sanitize_name(prefix_pref) || null
+	var/prefix = quirk_holder.client?.prefs.read_preference(/datum/preference/text/nameless_quirk_option)
 	var/job
 	var/number = pick(rand(1000, 9999))
 
