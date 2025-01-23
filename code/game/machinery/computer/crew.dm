@@ -279,7 +279,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
-		// BUBBERSTATION EDIT END
 
 		// Broken sensors show garbage data
 		if (uniform?.has_sensor == BROKEN_SENSORS)
@@ -293,6 +292,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			entry["can_track"] = tracked_living_mob.can_track()
 			results[++results.len] = entry
 			continue
+		// BUBBERSTATION EDIT END - NANITES
 
 		// Current status
 		if (sensor_mode >= SENSOR_LIVING)

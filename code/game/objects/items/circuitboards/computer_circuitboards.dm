@@ -399,16 +399,6 @@
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/mecha
 
-/obj/item/circuitboard/computer/nanite_chamber_control
-	name = "Nanite Chamber Control (Computer Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/computer/nanite_chamber_control
-
-/obj/item/circuitboard/computer/nanite_cloud_controller
-	name = "Nanite Cloud Control (Computer Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/computer/nanite_cloud_controller
-
 /obj/item/circuitboard/computer/rdconsole
 	name = "R&D Console"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE

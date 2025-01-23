@@ -4,8 +4,8 @@
 	icon_state = "nanite_scanner"
 	inhand_icon_state = "electronic"
 	worn_icon_state = "electronic"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	desc = "A hand-held body scanner able to detect nanites and their programming."
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = NOBLUDGEON
@@ -17,8 +17,10 @@
 	custom_materials = list(/datum/material/iron=200)
 
 /obj/item/nanite_scanner/attack(mob/living/M, mob/living/carbon/human/user)
-	user.visible_message(span_notice("[user] analyzes [M]'s nanites."), \
-						span_notice("You analyze [M]'s nanites."))
+	user.visible_message(
+		span_notice("[user] analyzes [M]'s nanites."),
+		span_notice("You analyze [M]'s nanites.")
+	)
 
 	add_fingerprint(user)
 

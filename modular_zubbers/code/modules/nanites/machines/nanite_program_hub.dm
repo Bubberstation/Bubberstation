@@ -31,8 +31,8 @@
 	. = ..()
 	if((machine_stat & (NOPOWER|MAINT|BROKEN)) || panel_open)
 		return
-	. += mutable_appearance(icon, "nanite_program_hub_on")
-	. += emissive_appearance(icon, "nanite_program_hub_on")
+	. += mutable_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
+	. += emissive_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
 
 /obj/machinery/nanite_program_hub/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))
