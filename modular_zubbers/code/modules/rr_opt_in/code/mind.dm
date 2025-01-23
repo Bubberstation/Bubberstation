@@ -30,7 +30,8 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	/// Set on mind transfer. Set by on-spawn antags (e.g. if you have traitor on and spawn, this will be set to RR_OPT_LEVEL_ANTAG and cannot change)
 	var/round_removal_allowed = FALSE
 
-/datum/mind/Initialize()
+/datum/mind/New(_key)
+	. = ..()
 	ideal_rr = CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 
 /datum/mind/transfer_to(mob/new_character, force_key_move)
