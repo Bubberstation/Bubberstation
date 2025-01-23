@@ -9,13 +9,13 @@
 /// Value used for belly versioning independent of savefile version
 #define VORE_BELLY_VERSION "1.0"
 /// Maximum amount of bellies allowed within one layout
-#define MAX_BELLIES CONFIG_GET(number/vore_max_bellies)
+#define MAX_BELLIES CONFIG_GET(number/vore_max_bellies) // Default: 10
 /// Maximum amount of prey that can be eaten at once
-#define MAX_PREY CONFIG_GET(number/vore_max_prey)
+#define MAX_PREY CONFIG_GET(number/vore_max_prey) // Default: 3
 /// Amount of time it takes for players to eat someone
-#define VORE_DELAY CONFIG_GET(number/vore_delay)
+#define VORE_DELAY CONFIG_GET(number/vore_delay) // Default: 4 SECONDS
 /// Amount of time it takes for players to eject someone
-#define VORE_EJECT_DELAY CONFIG_GET(number/vore_eject_delay)
+#define VORE_EJECT_DELAY CONFIG_GET(number/vore_eject_delay) // Default: 2 SECONDS
 /// If true, prevents people with prey inside them from being eaten
 #define MATRYOSHKA_BANNED CONFIG_GET(flag/vore_matryoshka_banned)
 /// If true, automatically disables sensors when prey is eaten
@@ -29,7 +29,7 @@
 /// Number of rolling backups bellies will keep
 #define BELLY_BACKUP_COUNT 5
 /// Maximum number of belly layout slots
-#define MAX_BELLY_LAYOUTS CONFIG_GET(number/vore_max_belly_layouts)
+#define MAX_BELLY_LAYOUTS CONFIG_GET(number/vore_max_belly_layouts) // Default: 20
 /// Rate limit on belly creation, as it can get a little expensive
 #define BELLY_CREATION_COOLDOWN 2 SECONDS
 /// Maximum length() of a json file's text before we refuse to parse it
@@ -50,16 +50,16 @@
 #define DIGEST_MODE_UNABSORB "Unabsorb"
 
 /// Max burn damage a player is allowed to set their belly to
-#define MAX_BURN_DAMAGE CONFIG_GET(number/vore_max_burn_damage)
+#define MAX_BURN_DAMAGE CONFIG_GET(number/vore_max_burn_damage) // Default: 2.5
 /// Max brute damage a player is allowed to set their belly to
-#define MAX_BRUTE_DAMAGE CONFIG_GET(number/vore_max_brute_damage)
+#define MAX_BRUTE_DAMAGE CONFIG_GET(number/vore_max_brute_damage) // Default: 2.5
 /// Minimum time that can be set for escaping a belly
-#define MIN_ESCAPE_TIME CONFIG_GET(number/vore_min_escape_time)
-#define DEFAULT_ESCAPE_TIME CONFIG_GET(number/vore_default_escape_time)
-#define MAX_ESCAPE_TIME CONFIG_GET(number/vore_max_escape_time)
-#define MAX_VERB_LENGTH CONFIG_GET(number/vore_max_verb_length)
-#define MAX_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_max_message_length)
-#define MIN_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_min_message_length)
+#define MIN_ESCAPE_TIME CONFIG_GET(number/vore_min_escape_time) // Default: 2
+#define DEFAULT_ESCAPE_TIME CONFIG_GET(number/vore_default_escape_time) // Default: 15
+#define MAX_ESCAPE_TIME CONFIG_GET(number/vore_max_escape_time) // Default: 60
+#define MAX_VERB_LENGTH CONFIG_GET(number/vore_max_verb_length) // Default: 20
+#define MAX_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_max_message_length) // Default: 160
+#define MIN_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_min_message_length) // Default: 10
 
 /// Amount of nutrition given per point of damage dealt
 #define NUTRITION_PER_DAMAGE 2
