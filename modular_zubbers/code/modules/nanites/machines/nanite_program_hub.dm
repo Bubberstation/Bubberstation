@@ -1,7 +1,7 @@
 /obj/machinery/nanite_program_hub
 	name = "nanite program hub"
 	desc = "Compiles nanite programs from the techweb servers and downloads them into disks."
-	icon = 'icons/obj/machines/research.dmi'
+	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_machines.dmi'
 	icon_state = "nanite_program_hub"
 	use_power = IDLE_POWER_USE
 	anchored = TRUE

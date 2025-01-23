@@ -1,14 +1,14 @@
 /obj/machinery/nanite_programmer
 	name = "nanite programmer"
 	desc = "A device that can edit nanite program disks to adjust their functionality."
-	var/obj/item/disk/nanite_program/disk
-	var/datum/nanite_program/program
-	icon = 'icons/obj/machines/research.dmi'
+	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_machines.dmi'
 	icon_state = "nanite_programmer"
 	use_power = IDLE_POWER_USE
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/nanite_programmer
+	var/obj/item/disk/nanite_program/disk
+	var/datum/nanite_program/program
 
 /obj/machinery/nanite_programmer/Initialize()
 	. = ..()
