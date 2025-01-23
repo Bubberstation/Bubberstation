@@ -83,6 +83,7 @@
 	suffix = "blackmarket.dmm"
 	name = "Space-Ruin Black Market"
 	description = "Markets' open."
+	always_place = true
 
 /datum/map_template/ruin/space/skyrat/shuttle8532
 	id = "shuttle8532"
