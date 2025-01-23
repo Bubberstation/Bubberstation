@@ -13,7 +13,7 @@
 	return CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 
 /datum/preference/choiced/rr_opt_in_status/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
+	if (!..())
 		return FALSE
 
 	return (CONFIG_GET(flag/use_rr_opt_in_preferences))
