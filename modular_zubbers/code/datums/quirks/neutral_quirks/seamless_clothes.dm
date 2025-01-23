@@ -12,9 +12,11 @@
 	var/obj/item/clothing/shoes/shoes
 
 /datum/quirk/equipping/seamless_clothes/on_equip_item(obj/item/equipped, success)
-	shoes = quirk_holder.get_item_by_slot(ITEM_SLOT_FEET)
-	if(!istype(equipped, /obj/item/clothing/shoes/fancy_heels))
-		return
+	shoes = equipped
+
+/datum/quirk/equipping/seamless_clothes/post_add() // Quirks init on round start ready up before client does.
+	if(!istype(shoes, /obj/item/clothing/shoes/fancy_heels))
+		CRASH("Type mismatch on [src] during on_equip_item. Tried to equip [shoes]")
 	shoes.name = "[prefix] [initial(shoes.name)]"
 	shoes.desc = "A pair of heels which refuse to come off your feet."
 	shoes.greyscale_colors = quirk_holder.client.prefs.read_preference(/datum/preference/color/seamless_shoe_color)
