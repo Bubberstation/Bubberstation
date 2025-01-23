@@ -27,6 +27,66 @@
 	name = "Pirate coat"
 	item_path = /obj/item/clothing/suit/costume/pirate
 
+/datum/loadout_item/suit/hooded/wintercoat/security
+	name = "Security winter jacket"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/security
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/hooded/wintercoat/security/redsec
+	name = "Security winter jacket (Redsec)"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/redsec
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/toggle/jacket/sec/old
+	name = "Security jacket (Redsec)"
+	item_path = /obj/item/clothing/suit/toggle/jacket/sec/old
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/jacket/officer/blue
+	name = "Formal security jacket"
+	item_path = /obj/item/clothing/suit/jacket/officer/blue
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/jacket/officer/tan
+	name = "Formal security jacket (tan)"
+	item_path = /obj/item/clothing/suit/jacket/officer/tan
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/jacket/british_officer
+	name = "British Officer's Coat"
+	item_path = /obj/item/clothing/suit/british_officer
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/armor/vest/secjacket
+	name = "Security jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne
+	name = "Armadyne Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne/armor
+	name = "Armadyne Armor Vest"
+	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/labcoat/doctor_tailcoat/sec
+	name = "Brig Physician's tailcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/british_officer
+	name = "British Officer's uniform"
+	item_path = /obj/item/clothing/suit/british_officer
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/jacket/corrections_officer
+	name = "Correction's officer's jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/corrections_officer
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi

@@ -31,3 +31,18 @@
 /datum/loadout_item/shoes/horseshoes
 	name = "Horseshoes"
 	item_path = /obj/item/clothing/shoes/horseshoe
+
+/datum/loadout_item/shoes/jackboots/sec
+	name = "security jackboots"
+	item_path = /obj/item/clothing/shoes/jackboots/sec
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/shoes/jackboots/peacekeeper/armadyne
+	name = "Armadyne combat boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/shoes/jackboots/gogo_boots
+	name = "Tactical Go-Go boots"
+	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)

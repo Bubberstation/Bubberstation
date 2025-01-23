@@ -524,27 +524,14 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	unique_reskin = list(
-		"Red Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_red",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_red"
-		),
-		"Blue Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_blue",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_blue"
-		),
-		"White Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_white",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_white"
-		),
-		"Black Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_black",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_black"
-		),
+		"Red Security Kepi" = "kepi_sec_red",
+		"Blue Security Kepi" = "kepi_sec_blue",,
+		"White Security Kepi" = "kepi_sec_white",
+		"Black Security Kepi" = "kepi_sec_black",
 	)
 
 /obj/item/clothing/head/hos_kepi
