@@ -1,4 +1,6 @@
 import { map } from 'common/collections';
+import React from 'react';
+
 import { useBackend, useSharedState } from '../backend';
 import {
   Button,
@@ -10,8 +12,19 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+interface NaniteProgramHubProps {
+  detail_view: boolean;
+  disk: {
+    name: string;
+    desc: string;
+  };
+  has_disk: boolean;
+  has_program: boolean;
+  programs: Record<string, Array<{ id: string; name: string; desc: string }>>;
+}
+
 export const NaniteProgramHub = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NaniteProgramHubProps>();
   const { detail_view, disk, has_disk, has_program, programs = {} } = data;
   const [selectedCategory, setSelectedCategory] = useSharedState(
     context,
@@ -76,8 +89,7 @@ export const NaniteProgramHub = (props, context) => {
             <Flex>
               <Flex.Item minWidth="110px">
                 <Tabs vertical>
-                  {map((cat_contents, category) => {
-                    const progs = cat_contents || [];
+                  {map(programs, (cat_contents, category) => {
                     // Backend was sending stupid data that would have been
                     // annoying to fix
                     const tabLabel = category.substring(0, category.length - 8);
@@ -90,7 +102,7 @@ export const NaniteProgramHub = (props, context) => {
                         {tabLabel}
                       </Tabs.Tab>
                     );
-                  })(programs)}
+                  })}
                 </Tabs>
               </Flex.Item>
               <Flex.Item grow={1} basis={0}>
@@ -99,7 +111,6 @@ export const NaniteProgramHub = (props, context) => {
                     <Section
                       key={program.id}
                       title={program.name}
-                      level={2}
                       buttons={
                         <Button
                           icon="download"
@@ -125,14 +136,15 @@ export const NaniteProgramHub = (props, context) => {
                         buttons={
                           <Button
                             icon="download"
-                            content="Download"
                             disabled={!has_disk}
                             onClick={() =>
                               act('download', {
                                 program_id: program.id,
                               })
                             }
-                          />
+                          >
+                            Download
+                          </Button>
                         }
                       />
                     ))}

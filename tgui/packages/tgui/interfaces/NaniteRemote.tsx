@@ -1,14 +1,15 @@
 import { useBackend } from '../backend';
 import {
   Button,
+  Input,
   LabeledList,
+  NoticeBox,
   NumberInput,
   Section,
-  NoticeBox,
-  Input,
   Table,
 } from '../components';
 import { Window } from '../layouts';
+import { NaniteComputerProps } from './NaniteProgrammer';
 
 export const NaniteRemote = (props, context) => {
   return (
@@ -21,7 +22,7 @@ export const NaniteRemote = (props, context) => {
 };
 
 export const NaniteRemoteContent = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NaniteComputerProps>();
   const {
     code,
     locked,
@@ -73,7 +74,7 @@ export const NaniteRemoteContent = (props, context) => {
               width="47px"
               step={1}
               stepPixelSize={2}
-              onChange={(e, value) =>
+              onChange={(value) =>
                 act('set_code', {
                   code: value,
                 })
@@ -102,7 +103,7 @@ export const NaniteRemoteContent = (props, context) => {
                 width="47px"
                 step={1}
                 stepPixelSize={2}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('set_relay_code', {
                     code: value,
                   })
