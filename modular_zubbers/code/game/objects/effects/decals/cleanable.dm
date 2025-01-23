@@ -1,5 +1,11 @@
 /obj/effect/decal/cleanable/cobweb/NeverShouldHaveComeHere(turf/here_turf)
-	return !isclosedturf(here_turf)
+	. = ..()
+	if(.)
+		return
+	var/area/cobweb_area = get_area(here_turf)
+	if(isgroundlessturf(here_turf) && !(istype(here_turf, /area/template_noop) || istype(here_turf, /area/space)))
+		return TRUE
+	return
 
 /obj/effect/decal/cleanable/cum
 	icon = 'modular_zubbers/icons/effects/decals/cum.dmi'
