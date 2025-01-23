@@ -1,20 +1,3 @@
-/// Format: (reagent typepath -> list(amount to inject per bite, cooldown))
-GLOBAL_LIST_INIT(venomous_bite_choice_specs, list(
-	/datum/reagent/toxin/player_venom = list(5, 80 SECONDS),
-	/datum/reagent/toxin/venom = list(5, 180 SECONDS),
-	/datum/reagent/toxin/staminatoxin = list(5, 120 SECONDS),
-	/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than the zootoxin
-	// medicine
-	/datum/reagent/medicine/epinephrine = list(3, 20 SECONDS),
-	/datum/reagent/medicine/omnizine = list(2, 30 SECONDS), // barely worth it due to the damage biting does
-	// drugs
-	/datum/reagent/drug/space_drugs = list(5, 60 SECONDS),
-	/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS),
-	// erp stuff
-	/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS),
-	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS),
-))
-
 /datum/quirk/venomous_bite
 	name = "Venomous Bite"
 	desc = "You have a venom gland, and can bite people to inject them with a toxin of your choosing."
@@ -45,10 +28,27 @@ GLOBAL_LIST_INIT(venomous_bite_choice_specs, list(
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "venomous_bite_venom"
 	savefile_identifier = PREFERENCE_CHARACTER
+	/// Format: (reagent typepath -> list(amount to inject per bite, cooldown))
+	var/static/list/venomous_bite_choice_specs = list(
+		/datum/reagent/toxin/player_venom = list(5, 80 SECONDS),
+		/datum/reagent/toxin/venom = list(5, 180 SECONDS),
+		/datum/reagent/toxin/staminatoxin = list(5, 120 SECONDS),
+		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than the zootoxin
+		// medicine
+		/datum/reagent/medicine/epinephrine = list(5, 20 SECONDS),
+		/datum/reagent/medicine/omnizine = list(5, 90 SECONDS), // barely worth it due to the damage biting does
+		// drugs
+		/datum/reagent/drug/space_drugs = list(5, 60 SECONDS),
+		/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS),
+		// erp stuff
+		/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS),
+		/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS),
+)
+
 
 /datum/preference/choiced/venomous_bite_venom/init_possible_values()
 	var/list/choices = list()
-	for (var/entry in GLOB.venomous_bite_choice_specs)
+	for (var/entry in venomous_bite_choice_specs)
 		choices += "[entry]"
 
 	return choices
@@ -61,8 +61,8 @@ GLOBAL_LIST_INIT(venomous_bite_choice_specs, list(
 
 	var/list/titles = list()
 
-	for (var/datum/reagent/entry as anything in GLOB.venomous_bite_choice_specs)
-		var/list/specs = GLOB.venomous_bite_choice_specs[entry]
+	for (var/datum/reagent/entry as anything in venomous_bite_choice_specs)
+		var/list/specs = venomous_bite_choice_specs[entry]
 
 		var/inject = specs[1]
 		var/cooldown = specs[2]

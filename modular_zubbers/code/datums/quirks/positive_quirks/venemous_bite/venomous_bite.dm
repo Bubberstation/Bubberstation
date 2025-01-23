@@ -24,7 +24,7 @@
 /datum/action/cooldown/mob_cooldown/venomous_bite/proc/set_reagent(datum/reagent/new_reagent, quantity_override = null, cooldown_override = null)
 	reagent_typepath = new_reagent
 
-	var/list/reagent_spec = GLOB.venomous_bite_choice_specs[new_reagent]
+	var/list/reagent_spec = /datum/preference/choiced/venomous_bite_venom::venomous_bite_choice_specs[new_reagent]
 	if (isnum(quantity_override))
 		to_inject = quantity_override
 	else
@@ -50,6 +50,10 @@
 		if (carbon_holder.is_mouth_covered())
 			owner.balloon_alert("mouth covered!")
 			return FALSE
+
+	if (!owner.Adjacent(target_atom))
+		owner.balloon_alert("too far!")
+		return FALSE
 
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
 	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
