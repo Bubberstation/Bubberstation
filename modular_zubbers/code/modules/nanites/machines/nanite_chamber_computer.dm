@@ -1,7 +1,6 @@
 /obj/machinery/computer/nanite_chamber_control
 	name = "nanite chamber control console"
 	desc = "Controls a connected nanite chamber. Can inoculate nanites, load programs, and analyze existing nanite swarms."
-	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_machines.dmi'
 	icon_screen = "nanite_chamber_control"
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	var/obj/machinery/nanite_chamber/chamber

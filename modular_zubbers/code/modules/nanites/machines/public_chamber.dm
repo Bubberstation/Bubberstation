@@ -3,8 +3,8 @@
 	desc = "A device that can rapidly implant cloud-synced nanites without an external operator."
 	circuit = /obj/item/circuitboard/machine/public_nanite_chamber
 	icon = 'icons/obj/machines/bci_implanter.dmi'
-	icon_state = "nanite_chamber"
-	base_icon_state = "nanite_chamber"
+	icon_state = "bci_implanter"
+	base_icon_state = "bci_implanter"
 	layer = ABOVE_WINDOW_LAYER
 	use_power = IDLE_POWER_USE
 	anchored = TRUE
