@@ -55,6 +55,10 @@
 		owner.balloon_alert("too far!")
 		return FALSE
 
+	if (target_atom == owner)
+		owner.balloon_alert("can't bite yourself!")
+		return FALSE
+
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
 	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
 	owner.balloon_alert_to_viewers("biting...")
