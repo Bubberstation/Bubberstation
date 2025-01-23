@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	var/round_removal_allowed = FALSE
 
 /datum/mind/Initialize()
-	. = ..()
 	ideal_rr = CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
 
 /datum/mind/transfer_to(mob/new_character, force_key_move)
