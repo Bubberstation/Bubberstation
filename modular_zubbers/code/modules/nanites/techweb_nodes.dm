@@ -2,7 +2,7 @@
 	id = "nanite_base"
 	display_name = "Basic Nanite Programming"
 	description = "The basics of nanite construction and programming."
-	prereq_ids = list("datatheory")
+	prereq_ids = list(TECHWEB_NODE_BCI)
 	design_ids = list(
 		"access_nanites",
 		"debugging_nanites",
@@ -29,7 +29,7 @@
 	id = "nanite_smart"
 	display_name = "Smart Nanite Programming"
 	description = "Nanite programs that require nanites to perform complex actions, act independently, roam or seek targets."
-	prereq_ids = list("nanite_base","robotics")
+	prereq_ids = list("nanite_base", TECHWEB_NODE_PROGRAMMING)
 	design_ids = list(
 		"memleak_nanites",
 		"metabolic_nanites",
@@ -44,7 +44,7 @@
 	id = "nanite_mesh"
 	display_name = "Mesh Nanite Programming"
 	description = "Nanite programs that require static structures and membranes."
-	prereq_ids = list("nanite_base","engineering")
+	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_ENGI_ADV)
 	design_ids = list(
 		"conductive_nanites",
 		"cryo_nanites",
@@ -61,7 +61,7 @@
 	id = "nanite_bio"
 	display_name = "Biological Nanite Programming"
 	description = "Nanite programs that require complex biological interaction."
-	prereq_ids = list("nanite_base","biotech")
+	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_MEDICAL_ADV)
 	design_ids = list(
 		"bloodheal_nanites",
 		"coagulating_nanites",
@@ -96,7 +96,7 @@
 	id = "nanite_synaptic"
 	display_name = "Synaptic Nanite Programming"
 	description = "Nanite programs affecting mind and thoughts."
-	prereq_ids = list("nanite_neural","neural_programming")
+	prereq_ids = list("nanite_neural", TECHWEB_NODE_ALIEN_SURGERY)
 	design_ids = list(
 		"blinding_nanites",
 		"hallucination_nanites",
@@ -127,7 +127,7 @@
 	id = "nanite_military"
 	display_name = "Military Nanite Programming"
 	description = "Nanite programs that perform military-grade functions."
-	prereq_ids = list("nanite_harmonic", "syndicate_basic")
+	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_SYNDICATE_BASIC)
 	design_ids = list(
 		"explosive_nanites",
 		"meltdown_nanites",
@@ -141,7 +141,7 @@
 	id = "nanite_hazard"
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
-	prereq_ids = list("nanite_harmonic", "alientech")
+	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_ALIENTECH)
 	design_ids = list(
 		"mindcontrol_nanites",
 		"mitosis_nanites",
