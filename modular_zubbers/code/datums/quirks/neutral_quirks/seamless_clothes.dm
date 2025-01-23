@@ -13,6 +13,7 @@
 
 /datum/quirk/equipping/seamless_clothes/on_equip_item(obj/item/equipped, success)
 	shoes = equipped
+	QDEL_LIST(force_dropped_items) // How you going to take them off, nerd?
 
 /datum/quirk/equipping/seamless_clothes/post_add() // Quirks init on round start ready up before client does.
 	if(!istype(shoes, /obj/item/clothing/shoes/fancy_heels))
