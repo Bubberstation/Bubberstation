@@ -38,16 +38,12 @@ export const NaniteProgramHub = (props, context) => {
           title="Program Disk"
           buttons={
             <>
-              <Button
-                icon="eject"
-                content="Eject"
-                onClick={() => act('eject')}
-              />
-              <Button
-                icon="minus-circle"
-                content="Delete Program"
-                onClick={() => act('clear')}
-              />
+              <Button icon="eject" onClick={() => act('eject')}>
+                Eject
+              </Button>
+              <Button icon="minus-circle" onClick={() => act('clear')}>
+                Delete Program
+              </Button>
             </>
           }
         >
@@ -74,14 +70,13 @@ export const NaniteProgramHub = (props, context) => {
             <>
               <Button
                 icon={detail_view ? 'info' : 'list'}
-                content={detail_view ? 'Detailed' : 'Compact'}
                 onClick={() => act('toggle_details')}
-              />
-              <Button
-                icon="sync"
-                content="Sync Research"
-                onClick={() => act('refresh')}
-              />
+              >
+                {detail_view ? 'Detailed' : 'Compact'}
+              </Button>
+              <Button icon="sync" onClick={() => act('refresh')}>
+                Sync Research
+              </Button>
             </>
           }
         >
@@ -114,14 +109,15 @@ export const NaniteProgramHub = (props, context) => {
                       buttons={
                         <Button
                           icon="download"
-                          content="Download"
                           disabled={!has_disk}
                           onClick={() =>
                             act('download', {
                               program_id: program.id,
                             })
                           }
-                        />
+                        >
+                          Download
+                        </Button>
                       }
                     >
                       {program.desc}

@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Collapsible,
-  Grid,
   LabeledList,
   NoticeBox,
   NumberInput,
@@ -61,10 +60,11 @@ export const NaniteChamberControlContent = () => {
       buttons={
         <Button
           icon={locked ? 'lock' : 'lock-open'}
-          content={locked ? 'Locked' : 'Unlocked'}
           color={locked ? 'bad' : 'default'}
           onClick={() => act('toggle_lock')}
-        />
+        >
+          {locked ? 'Locked' : 'Unlocked'}
+        </Button>
       }
     >
       {!has_nanites ? (
@@ -99,8 +99,8 @@ export const NaniteChamberControlContent = () => {
               </Button>
             }
           >
-            <Grid>
-              <Grid.Column>
+            <Stack>
+              <Stack.Item>
                 <LabeledList>
                   <LabeledList.Item label="Nanite Volume">
                     {nanite_volume}
@@ -109,8 +109,8 @@ export const NaniteChamberControlContent = () => {
                     {regen_rate}
                   </LabeledList.Item>
                 </LabeledList>
-              </Grid.Column>
-              <Grid.Column>
+              </Stack.Item>
+              <Stack.Item>
                 <LabeledList>
                   <LabeledList.Item label="Safety Threshold">
                     <NumberInput
@@ -142,8 +142,8 @@ export const NaniteChamberControlContent = () => {
                     />
                   </LabeledList.Item>
                 </LabeledList>
-              </Grid.Column>
-            </Grid>
+              </Stack.Item>
+            </Stack>
           </Section>
           <Section title="Programs">
             {mob_programs.map((program) => {
@@ -198,7 +198,7 @@ export const NaniteChamberControlContent = () => {
                         {!!(
                           program.timer_restart || program.timer_shutdown
                         ) && (
-                          <Grid.Column>
+                          <Stack.Item>
                             <Section>
                               <LabeledList>
                                 {/* I mean, bruh, this indentation level
@@ -215,7 +215,7 @@ export const NaniteChamberControlContent = () => {
                                 )}
                               </LabeledList>
                             </Section>
-                          </Grid.Column>
+                          </Stack.Item>
                         )}
                       </Stack>
                     )}

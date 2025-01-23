@@ -2,7 +2,6 @@ import { useBackend } from '../backend';
 import {
   Button,
   Dropdown,
-  Grid,
   Input,
   LabeledList,
   NoticeBox,
@@ -352,7 +351,9 @@ export const NaniteProgrammerContent = (props, context) => {
       <Section
         title="Blank Disk"
         buttons={
-          <Button icon="eject" content="Eject" onClick={() => act('eject')} />
+          <Button icon="eject" onClick={() => act('eject')}>
+            Eject
+          </Button>
         }
       />
     );
@@ -361,7 +362,7 @@ export const NaniteProgrammerContent = (props, context) => {
     <Section
       title={name}
       buttons={
-        <Button icon="eject" content="Eject" onClick={() => act('eject')}>
+        <Button icon="eject" onClick={() => act('eject')}>
           Eject
         </Button>
       }
@@ -391,22 +392,23 @@ export const NaniteProgrammerContent = (props, context) => {
         buttons={
           <Button
             icon={activated ? 'power-off' : 'times'}
-            content={activated ? 'Active' : 'Inactive'}
             selected={activated}
             color="bad"
             bold
             onClick={() => act('toggle_active')}
-          />
+          >
+            {activated ? 'Active' : 'Inactive'}
+          </Button>
         }
       >
-        <Grid>
-          <Grid.Column>
+        <Stack>
+          <Stack.Item>
             <NaniteCodes />
-          </Grid.Column>
-          <Grid.Column>
+          </Stack.Item>
+          <Stack.Item>
             <NaniteDelays />
-          </Grid.Column>
-        </Grid>
+          </Stack.Item>
+        </Stack>
         {!!has_extra_settings && (
           <Section title="Special">
             <LabeledList>

@@ -9,7 +9,6 @@ import {
   Table,
 } from '../components';
 import { Window } from '../layouts';
-import { NaniteComputerProps } from './NaniteProgrammer';
 
 export const NaniteRemote = (props, context) => {
   return (
@@ -21,8 +20,27 @@ export const NaniteRemote = (props, context) => {
   );
 };
 
-export const NaniteRemoteContent = (props, context) => {
-  const { act, data } = useBackend<NaniteComputerProps>();
+interface NaniteProgramProps {
+  code: number;
+  locked: boolean;
+  mode: string;
+  program_name: string;
+  relay_code: number;
+  comms: boolean;
+  message: string;
+  saved_settings: Array<SavedSetting>;
+}
+
+interface SavedSetting {
+  id: string;
+  name: string;
+  mode: string;
+  code: number;
+  relay_code: number;
+}
+
+export const NaniteRemoteContent = () => {
+  const { act, data } = useBackend<NaniteProgramProps>();
   const {
     code,
     locked,
@@ -45,11 +63,9 @@ export const NaniteRemoteContent = (props, context) => {
       <Section
         title="Nanite Control"
         buttons={
-          <Button
-            icon="lock"
-            content="Lock Interface"
-            onClick={() => act('lock')}
-          />
+          <Button icon="lock" onClick={() => act('lock')}>
+            Lock Interface
+          </Button>
         }
       >
         <LabeledList>
@@ -64,7 +80,9 @@ export const NaniteRemoteContent = (props, context) => {
                 })
               }
             />
-            <Button icon="save" content="Save" onClick={() => act('save')} />
+            <Button icon="save" onClick={() => act('save')}>
+              Save
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label={comms ? 'Comm Code' : 'Signal Code'}>
             <NumberInput
@@ -115,14 +133,15 @@ export const NaniteRemoteContent = (props, context) => {
             {modes.map((key) => (
               <Button
                 key={key}
-                content={key}
                 selected={mode === key}
                 onClick={() =>
                   act('select_mode', {
                     mode: key,
                   })
                 }
-              />
+              >
+                {key}
+              </Button>
             ))}
           </LabeledList.Item>
         </LabeledList>
