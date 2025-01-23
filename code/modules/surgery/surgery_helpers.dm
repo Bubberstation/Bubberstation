@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // BUBBER EDIT CHANGE BEGIN - Surgery Modifiers
 /*
 /proc/get_location_modifier(mob/located_mob)
@@ -34,6 +35,23 @@
 	else
 		return 0.5
 // BUBBER EDIT CHANGE END
+=======
+/*
+ * Gets the surgery speed modifier for a given mob, based off what sort of table/bed/whatever is on their turf.
+ */
+/proc/get_location_modifier(mob/located_mob)
+	// Technically this IS a typecache, just not the usual kind :3
+	var/static/list/modifiers = zebra_typecacheof(list(
+		/obj/structure/table = 0.8,
+		/obj/structure/table/optable = 1,
+		/obj/structure/table/optable/abductor = 1.2,
+		/obj/machinery/stasis = 0.9,
+		/obj/structure/bed = 0.7,
+	))
+	. = 0.5
+	for(var/obj/thingy in get_turf(located_mob))
+		. = max(., modifiers[thingy.type])
+>>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 
 
 /proc/get_location_accessible(mob/located_mob, location)

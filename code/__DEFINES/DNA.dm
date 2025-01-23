@@ -62,6 +62,7 @@
 #define DNA_MOTH_MARKINGS_BLOCK 13
 #define DNA_MUSHROOM_CAPS_BLOCK 14
 #define DNA_POD_HAIR_BLOCK 15
+#define DNA_FISH_TAIL_BLOCK 16
 */ //SKYRAT EDIT REMOVAL END
 
 // Hey! Listen up if you're here because you're adding a species feature!

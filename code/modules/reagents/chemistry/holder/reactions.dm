@@ -216,7 +216,7 @@
 		reaction_message = equilibrium.reaction.mix_message
 		if(equilibrium.reaction.mix_sound)
 			playsound(get_turf(my_atom), equilibrium.reaction.mix_sound, 80, TRUE)
-			
+
 	//SKYRAT EDIT ADDITION
 	//If the reaction pollutes, pollute it here if we have an atom
 	if(equilibrium.reaction.pollutant_type && my_atom)

@@ -159,7 +159,6 @@ There are several things that need to be remembered:
 		my_chest?.worn_uniform_offset?.apply_offset(uniform_overlay)
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 
-	update_body_parts()
 	apply_overlay(UNIFORM_LAYER)
 	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_ICLOTHING)
 
@@ -603,7 +602,6 @@ There are several things that need to be remembered:
 		// SKYRAT EDIT END
 		overlays_standing[SUIT_LAYER] = suit_overlay
 
-	update_body_parts()
 	apply_overlay(SUIT_LAYER)
 	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_OCLOTHING)
 
@@ -675,7 +673,6 @@ There are several things that need to be remembered:
 
 	apply_overlay(FACEMASK_LAYER)
 	check_body_shape(BODYSHAPE_SNOUTED, ITEM_SLOT_MASK)
-	update_body_parts() //e.g. upgate needed because mask now hides lizard snout
 
 /mob/living/carbon/human/update_worn_back(update_obscured = TRUE)
 	remove_overlay(BACK_LAYER)
@@ -738,7 +735,7 @@ There are several things that need to be remembered:
 			t_state = worn_item.icon_state
 
 		var/mutable_appearance/hand_overlay
-		var/icon_file = held_index % 2 == 0 ? worn_item.righthand_file : worn_item.lefthand_file
+		var/icon_file = IS_RIGHT_INDEX(held_index) ? worn_item.righthand_file : worn_item.lefthand_file
 		hand_overlay = worn_item.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
 		var/obj/item/bodypart/arm/held_in_hand = hand_bodyparts[held_index]
 		held_in_hand?.held_hand_offset?.apply_offset(hand_overlay)
@@ -1008,7 +1005,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		var/checked_bodyshape = limb.bodyshape
 		// accounts for stuff like snouts
 		for(var/obj/item/organ/organ in limb)
-			checked_bodyshape |= organ.owner.bodyshape
+			checked_bodyshape |= organ.external_bodyshapes
 
 		// any limb needs to be updated, so stop here and do it
 		if(checked_bodyshape & check_shapes)

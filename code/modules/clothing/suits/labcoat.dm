@@ -40,7 +40,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/cmo/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /datum/armor/toggle_labcoat
 	bio = 50
@@ -63,12 +63,13 @@
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
-	//START SKYRAT EDIT ADDITION
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
+
+	//BUBBER EDIT ADDITION BEGIN
 	allowed += list(
 		/obj/item/storage/medkit,
 	)
-	//END SKYRAT EDIT
+	//BUBBER EDIT EDIT
 
 /obj/item/clothing/suit/toggle/labcoat/mad
 	name = "\proper The Mad's labcoat"

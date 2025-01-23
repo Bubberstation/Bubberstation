@@ -20,7 +20,11 @@
  *
  * make sure you add an update to the schema_version stable in the db changelog
  */
+<<<<<<< HEAD
 #define DB_MINOR_VERSION 31 // BUBBER EDIT
+=======
+#define DB_MINOR_VERSION 28
+>>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 
 
 //! ## Timing subsystem

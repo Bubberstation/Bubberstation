@@ -137,6 +137,8 @@
 	/// Minimal character age for this job
 	var/required_character_age
 
+	/// If set, look for a policy with this instead of the job title
+	var/policy_override
 
 /datum/job/New()
 	. = ..()
@@ -158,7 +160,7 @@
 	if(length(mind_traits))
 		spawned.mind.add_traits(mind_traits, JOB_TRAIT)
 
-	var/obj/item/organ/internal/liver/liver = spawned.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/liver/liver = spawned.get_organ_slot(ORGAN_SLOT_LIVER)
 	if(liver && length(liver_traits))
 		liver.add_traits(liver_traits, JOB_TRAIT)
 
@@ -330,7 +332,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	var/list/info = list()
 	info += "<b>You are the [alt_title].</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
-	var/related_policy = get_policy(title)
+	var/related_policy = get_policy(policy_override || title)
 	var/radio_info = get_radio_information()
 	if(related_policy)
 		info += related_policy
@@ -380,7 +382,7 @@
 
 	var/pda_slot = ITEM_SLOT_BELT
 
-/datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/pre_equip(mob/living/carbon/human/H, visuals_only = FALSE)
 	if(ispath(back, /obj/item/storage/backpack))
 		switch(H.backpack)
 			if(GBACKPACK)
@@ -419,8 +421,8 @@
 	if(client?.is_veteran() && client?.prefs.read_preference(/datum/preference/toggle/playtime_reward_cloak))
 		neck = /obj/item/clothing/neck/cloak/skill_reward/playing
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/equipped, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/job/post_equip(mob/living/carbon/human/equipped, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	var/datum/job/equipped_job = SSjob.get_job_type(jobtype)

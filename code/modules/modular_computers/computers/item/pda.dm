@@ -82,10 +82,6 @@
 	if(inserted_pai)
 		. += mutable_appearance(initial(icon), "pai_inserted")
 
-/obj/item/modular_computer/pda/attack_ai(mob/user)
-	to_chat(user, span_notice("It doesn't feel right to snoop around like that..."))
-	return // we don't want ais or cyborgs using a private role tablet
-
 /obj/item/modular_computer/pda/interact(mob/user)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_PDA_MESSAGE_MENU_RIGGED))
@@ -337,7 +333,6 @@
 		/datum/computer_file/program/robotact,
 		/datum/computer_file/program/crew_manifest, // SKYRAT EDIT ADDITION - Manifests for borgs
 		/datum/computer_file/program/messenger, // SKYRAT EDIT ADDITION - Messenger for borgs
-		/datum/computer_file/program/borg_monitor,
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/crew_manifest,
 	)

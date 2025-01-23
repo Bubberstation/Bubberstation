@@ -123,10 +123,9 @@
 	new /obj/effect/temp_visual/kinetic_blast(get_turf(target))
 	var/backstabbed = FALSE
 	var/combined_damage = detonation_damage
-	var/backstab_dir = get_dir(user, target)
 	var/def_check = target.getarmor(type = BOMB)
 	// Backstab bonus
-	if((user.dir & backstab_dir) && (target.dir & backstab_dir) || boosted_mark)
+	if(check_behind(user, target) || boosted_mark)
 		backstabbed = TRUE
 		combined_damage += backstab_bonus
 		playsound(user, 'sound/items/weapons/kinetic_accel.ogg', 100, TRUE) //Seriously who spelled it wrong
@@ -159,7 +158,7 @@
 	destabilizer.icon_state = "[projectile_icon]"
 	for(var/obj/item/crusher_trophy/attached_trophy as anything in trophies)
 		attached_trophy.on_projectile_fire(destabilizer, user)
-	destabilizer.preparePixelProjectile(target, user, modifiers)
+	destabilizer.aim_projectile(target, user, modifiers)
 	destabilizer.firer = user
 	playsound(user, 'sound/items/weapons/plasma_cutter.ogg', 100, TRUE)
 	destabilizer.fire()
@@ -440,7 +439,7 @@
 		marker.name = "deadly [marker.name]"
 		marker.icon_state = "chronobolt"
 		marker.damage = bonus_value
-		marker.speed = 2
+		marker.speed = 0.5
 		deadly_shot = FALSE
 
 /obj/item/crusher_trophy/blaster_tubes/on_mark_detonation(mob/living/target, mob/living/user)
@@ -540,6 +539,8 @@
 		pkc.projectile_icon = retool_projectile_icon
 		if(iscarbon(pkc.loc))
 			var/mob/living/carbon/holder = pkc.loc
+			holder.update_worn_back()
+			holder.update_suit_storage()
 			holder.update_held_items()
 		pkc.update_appearance()
 
@@ -549,6 +550,8 @@
 	pkc.projectile_icon = initial(pkc.projectile_icon)
 	if(iscarbon(pkc.loc))
 		var/mob/living/carbon/holder = pkc.loc
+		holder.update_worn_back()
+		holder.update_suit_storage()
 		holder.update_held_items()
 	pkc.update_appearance()
 	..()

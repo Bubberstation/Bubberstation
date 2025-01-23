@@ -310,7 +310,7 @@
 		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
 		if (required_respiration_type)
-			var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
+			var/obj/item/organ/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
 			if(isnull(affected_lungs))
 				if(!(mob_respiration_type & required_respiration_type))  // if the mob has no lungs, use mob_respiration_type
 					return FALSE
@@ -337,7 +337,7 @@
 		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
 
-		var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
+		var/obj/item/organ/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
 		if(isnull(affected_lungs))
 			if(!(mob_respiration_type & required_respiration_type))
 				return FALSE

@@ -17,6 +17,7 @@
 		log_admin("[key_name(usr)] deleted [D] [coords]")
 		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
 		BLACKBOX_LOG_ADMIN_VERB("Delete")
+		SEND_SIGNAL(D, COMSIG_ADMIN_DELETING, src)
 		if(isturf(D))
 			T = D // SKYRAT EDIT, orginal: var/turf/T = D
 			T.ScrapeAway()

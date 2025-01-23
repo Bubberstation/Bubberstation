@@ -103,9 +103,9 @@
 	l_pocket = /obj/item/food/pizzaslice/dank
 	r_pocket = /obj/item/storage/wallet/random
 
-/datum/outfit/beachbum/post_equip(mob/living/carbon/human/bum, visualsOnly = FALSE)
+/datum/outfit/beachbum/post_equip(mob/living/carbon/human/bum, visuals_only = FALSE)
 	. = ..()
-	if(visualsOnly)
+	if(visuals_only)
 		return
 	bum.dna.add_mutation(/datum/mutation/human/stoner)
 
@@ -136,7 +136,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
-/datum/outfit/spacebartender/post_equip(mob/living/carbon/human/bartender, visualsOnly = FALSE)
+/datum/outfit/spacebartender/post_equip(mob/living/carbon/human/bartender, visuals_only = FALSE)
 	. = ..()
 	var/obj/item/card/id/id_card = bartender.wear_id
 	if(bartender.age < AGE_MINOR)
@@ -331,7 +331,7 @@
 
 // SKYRAT EDIT REMOVAL BEGIN -- mapping
 /*
-/datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
+/datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visuals_only = FALSE)
 	syndicate.faction |= ROLE_SYNDICATE
 */
 // SKYRAT EDIT REMOVAL END

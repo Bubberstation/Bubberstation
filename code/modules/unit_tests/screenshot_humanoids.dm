@@ -24,7 +24,7 @@
 	moth.dna.mutant_bodyparts["moth_markings"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: moth.dna.features["moth_markings"] = "None"
 	moth.dna.mutant_bodyparts["wings"] = list(MUTANT_INDEX_NAME = "Moth (Firewatch)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: moth.dna.features["moth_wings"] = "Firewatch"
 	moth.set_species(/datum/species/moth)
-	moth.equipOutfit(/datum/outfit/job/cmo, visualsOnly = TRUE)
+	moth.equipOutfit(/datum/outfit/job/cmo, visuals_only = TRUE)
 	test_screenshot("[/datum/species/moth]", get_flat_icon_for_all_directions(moth))
 	testable_species -= /datum/species/moth
 
@@ -50,5 +50,5 @@
 	var/datum/species/dummy_species = new species
 	dummy_species.prepare_human_for_preview(dummy)
 	// SKYRAT EDIT ADDITION END
-	dummy.equipOutfit(job_outfit, visualsOnly = TRUE)
+	dummy.equipOutfit(job_outfit, visuals_only = TRUE)
 	return dummy

@@ -26,8 +26,7 @@
 
 	temperature = TCMB
 	color = "#677" //SKYRAT EDIT ADDITION
-
-	var/turf/open/floor/plating/turf_type = /turf/open/misc/asteroid/airless
+	var/turf/turf_type = /turf/open/misc/asteroid/airless
 	/// The path of the ore stack we spawn when we're mined.
 	var/obj/item/stack/ore/mineralType = null
 	/// If we spawn a boulder like on the gulag, we use this in lou of mineralType

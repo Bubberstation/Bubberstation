@@ -263,6 +263,8 @@ function tag_pr($payload, $opened) {
 			$tags[] = 'Revert';
 		if(strpos(strtolower($title), 'removes') !== FALSE)
 			$tags[] = 'Removal';
+		if(strpos(strtolower($title), 'unit test') !== FALSE)
+			$tags[] = 'Unit Tests';
 	}
 
 	$remove = array('Test Merge Candidate');
@@ -287,6 +289,7 @@ function tag_pr($payload, $opened) {
 	check_tag_and_replace($payload, '[dnm]', 'Do Not Merge', $tags);
 	check_tag_and_replace($payload, '[no gbp]', 'GBP: No Update', $tags);
 	check_tag_and_replace($payload, '[april fools]', 'April Fools', $tags);
+	check_tag_and_replace($payload, '[tm only]', 'Test Merge Only', $tags);
 
 	return array($tags, $remove);
 }
@@ -399,7 +402,6 @@ function handle_pr($payload) {
 	if (!is_blacklisted($discord_announce_blacklist, $repo_name)) {
 		discord_announce($action, $payload, $pr_flags);
 	}
-	
 	if (in_array($repo_name, $game_announce_whitelist)) {
 		game_announce($action, $payload, $pr_flags);
 	}
