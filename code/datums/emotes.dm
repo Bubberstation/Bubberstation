@@ -261,10 +261,6 @@
  * Returns FALSE if the cooldown is not over, TRUE if the cooldown is over.
  */
 /datum/emote/proc/check_cooldown(mob/user, intentional)
-<<<<<<< HEAD
-=======
-
->>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 	if(SEND_SIGNAL(user, COMSIG_MOB_EMOTE_COOLDOWN_CHECK, src.key, intentional) & COMPONENT_EMOTE_COOLDOWN_BYPASS)
 		intentional = FALSE
 
