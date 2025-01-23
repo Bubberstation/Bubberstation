@@ -11,7 +11,7 @@
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A Void Walker that drags people out of the station and into the abyss"
 	map_flags = EVENT_SPACE_ONLY
-
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_SPACE)
 	track = EVENT_TRACK_GHOSTSET
 
 /datum/round_event/ghost_role/void_walker
