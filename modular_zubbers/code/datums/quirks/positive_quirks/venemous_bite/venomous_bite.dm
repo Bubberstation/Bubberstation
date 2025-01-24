@@ -112,6 +112,11 @@
 	if (prob(VENOMOUS_BITE_WOUND_CHANCE))
 		wound_bonus = VENOMOUS_BITE_WOUND_BONUS
 	target.apply_damage(VENOMOUS_BITE_DAMAGE, BRUTE, target_zone, armor, wound_bonus = wound_bonus, sharpness = SHARP_POINTY)
+	if (iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		for (var/datum/disease/held_disease as anything in carbon_owner.diseases)
+			if (held_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || held_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				target.ContactContractDisease(held_disease, target_zone)
 
 	return TRUE
 
