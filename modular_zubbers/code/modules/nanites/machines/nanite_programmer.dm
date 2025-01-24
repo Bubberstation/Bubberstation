@@ -18,21 +18,23 @@
 	. = ..()
 	if((machine_stat & (NOPOWER|MAINT|BROKEN)) || panel_open)
 		return
-	. += mutable_appearance(icon, "nanite_programmer_on", src, alpha = src.alpha)
-	. += emissive_appearance(icon, "nanite_programmer_on", src, alpha = src.alpha)
+	. += mutable_appearance(icon, "nanite_programmer_on")
+	. += emissive_appearance(icon, "nanite_programmer_on", src)
 
-/obj/machinery/nanite_programmer/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/disk/nanite_program))
-		var/obj/item/disk/nanite_program/N = I
-		if(user.transferItemToLoc(N, src))
-			to_chat(user, span_notice("You insert [N] into [src]"))
-			playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
-			if(disk)
-				eject(user)
-			disk = N
-			program = N.program
-	else
-		..()
+/obj/machinery/nanite_programmer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(!istype(tool, /obj/item/disk/nanite_program))
+		return NONE
+	var/obj/item/disk/nanite_program/new_disk = tool
+	if(!user.transferItemToLoc(new_disk, src))
+		return NONE
+	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
+	if(disk)
+		eject(user)
+	disk = new_disk
+	program = new_disk.program
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/nanite_programmer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -54,11 +56,12 @@
 	disk = null
 	program = null
 
-/obj/machinery/nanite_programmer/click_alt(mob/user)
+/obj/machinery/nanite_program_hub/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
 	if(disk && user.can_perform_action(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
-	return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/nanite_programmer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

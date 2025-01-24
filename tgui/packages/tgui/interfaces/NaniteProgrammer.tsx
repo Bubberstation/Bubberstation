@@ -370,7 +370,7 @@ export const NaniteProgrammerContent = (props, context) => {
       <Section title="Info">
         <Stack>
           <Stack.Item>{desc}</Stack.Item>
-          <Stack.Item width={'0.7%'}>
+          <Stack.Item width={'70%'}>
             <LabeledList>
               <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
               {!!can_trigger && (

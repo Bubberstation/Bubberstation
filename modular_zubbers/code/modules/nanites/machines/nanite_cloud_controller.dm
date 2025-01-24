@@ -29,11 +29,12 @@
 	else
 		..()
 
-/obj/machinery/computer/nanite_cloud_controller/click_alt(mob/user)
+/obj/machinery/computer/nanite_cloud_controller/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
 	if(disk && user.can_perform_action(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
-	return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/computer/nanite_cloud_controller/proc/eject(mob/living/user)
 	if(!disk)

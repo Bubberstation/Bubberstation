@@ -34,17 +34,19 @@
 	. += mutable_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
 	. += emissive_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
 
-/obj/machinery/nanite_program_hub/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/disk/nanite_program))
-		var/obj/item/disk/nanite_program/N = I
-		if(user.transferItemToLoc(N, src))
-			to_chat(user, span_notice("You insert [N] into [src]."))
-			playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
-			if(disk)
-				eject(user)
-			disk = N
-	else
-		..()
+/obj/machinery/nanite_program_hub/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(!istype(tool, /obj/item/disk/nanite_program))
+		return NONE
+	var/obj/item/disk/nanite_program/new_disk = tool
+	if(!user.transferItemToLoc(new_disk, src))
+		return NONE
+	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
+	if(disk)
+		eject(user)
+	disk = new_disk
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/nanite_program_hub/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
@@ -70,11 +72,12 @@
 		disk.forceMove(drop_location())
 	disk = null
 
-/obj/machinery/nanite_program_hub/click_alt_secondary(mob/user)
+/obj/machinery/nanite_program_hub/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
 	if(disk && user.can_perform_action(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
-	return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/nanite_program_hub/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
