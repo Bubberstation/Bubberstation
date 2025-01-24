@@ -43,6 +43,8 @@
 		// erp stuff
 		/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS),
 		/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS),
+		/datum/reagent/drug/aphrodisiac/succubus_milk = list(5, 2 SECONDS),
+		/datum/reagent/drug/aphrodisiac/incubus_draft = list(5, 2 SECONDS),
 )
 
 
