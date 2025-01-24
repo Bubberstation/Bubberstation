@@ -80,3 +80,13 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Dreadtail"
 	icon_state = "hair_dreadtail"
+// short bob hair and smoothy long hair by Cepha :3
+/datum/sprite_accessory/hair/short_bob
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Short (Bob)"
+	icon_state = "hair_short_bob"
+
+/datum/sprite_accessory/hair/long_smoothy
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Long Smoothy"
+	icon_state = "hair_long_smoothy"
