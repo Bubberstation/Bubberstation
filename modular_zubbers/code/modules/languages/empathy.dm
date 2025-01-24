@@ -35,15 +35,13 @@
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	damage_multiplier = 2.5 // Shadekins big ears are easy to damage with loud noises.
-	organ_flags = ORGAN_ORGANIC | ORGAN_EDIBLE | TELEPATHY_RECEIVER_EMPATHY
+	var/flags = TELEPATHY_RECEIVER_EMPATHY
 
 /datum/language/marish/empathy
 	name = "Empathy"
 	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
 	key = "9"
 	icon_state = "empathy"
-
-
 
 /obj/item/organ/internal/tongue/shadekin/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
@@ -54,14 +52,12 @@
 		actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
 
-
-
 /obj/item/organ/internal/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	var/obj/item/organ/internal/ears/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/internal/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	var/user_mode = FALSE
-	if(user_ears.organ_flags & TELEPATHY_RECEIVER_EMPATHY)
+	if(user_ears.flags & TELEPATHY_RECEIVER_EMPATHY)
 		user_mode = TRUE
 	user.balloon_alert_to_viewers("[user_mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
 
@@ -71,15 +67,15 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/ears/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
 
-		if((target_ears.organ_flags & TELEPATHY_RECEIVER_EMPATHY))
+		if((target_ears.flags & TELEPATHY_RECEIVER_EMPATHY))
 			continue
 
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			var/target_mode = FALSE
-			if(target_ears.organ_flags & TELEPATHY_RECEIVER_EMPATHY)
+			if(target_ears.flags & TELEPATHY_RECEIVER_EMPATHY)
 				target_mode = TRUE
 			living_mob.balloon_alert_to_viewers("[target_mode ? "ears vibrate" : "shivers"]", "transmission heard...")
 
