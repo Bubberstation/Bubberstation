@@ -64,7 +64,7 @@
 	var/milkable_string = ""
 	for (var/datum/reagent/typepath as anything in /datum/preference/choiced/venomous_bite_venom::milkable_venoms)
 		if (length(milkable_string))
-			milkable_string += " "
+			milkable_string += ", "
 		milkable_string += typepath::name
 	return milkable_string
 

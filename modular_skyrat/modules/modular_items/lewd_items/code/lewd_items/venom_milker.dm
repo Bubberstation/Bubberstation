@@ -16,7 +16,7 @@
 
 	var/milkable_string = /datum/preference/choiced/venomous_bite_venom::milkable_string
 	if (length(milkable_string))
-		desc += span_notice("The following reagents cannot be filtered by the neutralizer: [milkable_string]")
+		desc += span_notice("\nThe following reagents cannot be filtered by the neutralizer: [milkable_string]")
 
 /obj/item/reagent_containers/venom_milker/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
