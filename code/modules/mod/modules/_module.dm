@@ -114,19 +114,6 @@
 		if(mod.wearer)
 			balloon_alert(mod.wearer, "not active!")
 		return
-<<<<<<< HEAD
-	// SKYRAT EDIT START - DEPLOYABLE EVERYTHING OVER EVERYTHING
-	var/can_activate = TRUE
-	if(!(allow_flags & MODULE_ALLOW_INACTIVE))
-		for(var/obj/item/part in mod.get_parts())
-			if(part.loc == mod)
-				can_activate = FALSE
-				break
-	if(!can_activate)
-		balloon_alert(mod.wearer, "not fully deployed!")
-		return
-	// SKYRAT EDIT END
-=======
 	if(!has_required_parts(mod.mod_parts, need_active = TRUE))
 		if(mod.wearer)
 			balloon_alert(mod.wearer, "required parts inactive!")
@@ -137,7 +124,6 @@
 			to_chat(mod.wearer, span_warning("[src] requires these slots to be deployed: [english_list(slot_strings)]"))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
->>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 	if(module_type != MODULE_USABLE)
 		if(active)
 			deactivate()
@@ -373,22 +359,20 @@
 	if(mask_worn_overlay)
 		module_icon = mutable_appearance(get_module_icon_cache(used_overlay), layer = standing.layer + 0.1)
 	else
-<<<<<<< HEAD
 		return
-	/* SKYRAT EDIT START - Making MODsuits mutant-compatible - ORIGINAL:
-	var/mutable_appearance/module_icon = mutable_appearance(overlay_icon_file, used_overlay, layer = standing.layer + 0.1)
-=======
+	/* BUBBER EDIT START - Making MODsuits mutant-compatible - ORIGINAL:
+	var/mutable_appearance/module_icon
+	if(mask_worn_overlay)
+		module_icon = mutable_appearance(get_module_icon_cache(used_overlay), layer = standing.layer + 0.1)
+	else
 		module_icon = mutable_appearance(overlay_icon_file, used_overlay, layer = standing.layer + 0.1)
->>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 	if(!use_mod_colors)
 		module_icon.appearance_flags |= RESET_COLOR
 
 	. += module_icon
-<<<<<<< HEAD
 	*/
-	return handle_module_icon(standing, used_overlay)
-	// SKYRAT EDIT END
-=======
+	. = handle_module_icon(standing, used_overlay)
+	// BUBBER EDIT END
 	SEND_SIGNAL(src, COMSIG_MODULE_GENERATE_WORN_OVERLAY, ., standing)
 
 /obj/item/mod/module/proc/get_current_overlay_state()
@@ -415,7 +399,6 @@
 	mod_mask.Blend(icon(overlay_icon_file, used_overlay), ICON_MULTIPLY)
 	GLOB.mod_module_overlays[mod.skin]["[covered_slots]"][used_overlay] = mod_mask
 	return GLOB.mod_module_overlays[mod.skin]["[covered_slots]"][used_overlay]
->>>>>>> 608ca741699456d863eb8a8e8d13458a7d677c5f
 
 /// Updates the signal used by active modules to be activated
 /obj/item/mod/module/proc/update_signal(value)
