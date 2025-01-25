@@ -163,10 +163,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "aU" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/aiante)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aichamber)
 "aX" = (
 /obj/structure/shipping_container/donk_co,
 /turf/open/floor/iron,
@@ -449,13 +448,10 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "cC" = (
-/obj/machinery/turretid{
-	name = "AI Chamber turret control";
-	pixel_x = 5;
-	pixel_y = -24
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/port_tarkon/aichamber)
+/obj/machinery/cryopod,
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon)
 "cE" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/light/directional/east,
@@ -867,6 +863,7 @@
 /obj/structure/chair/office,
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/item/kirbyplants/random,
+/obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "fC" = (
@@ -1851,9 +1848,6 @@
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
-"lj" = (
-/turf/closed/mineral/random/high_chance,
-/area/template_noop)
 "lm" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/machinery/camera/directional/east,
@@ -2229,9 +2223,7 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "nz" = (
@@ -2520,6 +2512,7 @@
 /obj/item/storage/box/nif_ghost_box/ghost_role,
 /obj/item/storage/box/nif_ghost_box/ghost_role,
 /obj/item/storage/box/nif_ghost_box/ghost_role,
+/obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "pz" = (
@@ -4490,10 +4483,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
-"AG" = (
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/aiante)
 "AI" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -4520,11 +4509,6 @@
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
-"AS" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/port_tarkon/aiante)
 "Be" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6877,7 +6861,6 @@
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "NB" = (
 /obj/structure/cable/layer3,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "NC" = (
@@ -7509,6 +7492,7 @@
 "Rh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/camera/directional/south,
+/obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "Ri" = (
@@ -7607,11 +7591,9 @@
 /turf/open/floor/plating/airless,
 /area/solars/tarkon)
 "RJ" = (
-/obj/machinery/porta_turret/ai{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ruin/space/has_grav/port_tarkon/aichamber)
+/mob/living/basic/carp/mega,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "RK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -9316,9 +9298,9 @@ Ad
 Ad
 Ad
 Ad
-Ad
-Ad
-Ad
+IP
+IP
+NS
 qH
 qH
 qH
@@ -9413,8 +9395,8 @@ sV
 qH
 qH
 qH
-Ad
-Ad
+IP
+NS
 HH
 NS
 Ma
@@ -9510,19 +9492,19 @@ Gl
 Gl
 Gl
 Ad
+NS
 Ad
+IP
 Ad
-Ad
-Ad
-Ad
-Ad
+IP
+IP
 Ad
 qJ
 uk
-AG
-NS
+IP
+IP
 Fa
-Ad
+NS
 qH
 qH
 qH
@@ -9601,28 +9583,28 @@ qH
 Gl
 Gl
 tU
-RJ
+tU
 dI
 Rp
-RJ
+tU
 tU
 Ai
 EF
 Gl
+dI
 Gl
-Gl
-Ad
-Ad
-NS
 NS
 Ad
+IP
+IP
 Ad
-Ad
+IP
+IP
 Ad
 HA
 qB
 Qc
-uk
+IP
 Rh
 Ad
 Ad
@@ -9703,7 +9685,7 @@ qH
 Gl
 Gl
 Oi
-KK
+aU
 nw
 ql
 sZ
@@ -9713,7 +9695,7 @@ tU
 pB
 cH
 ti
-Ad
+NS
 ml
 TB
 RS
@@ -9721,10 +9703,10 @@ gC
 bN
 Ad
 zL
-uk
-NS
+IP
+IP
 BU
-NS
+IP
 bN
 YV
 uk
@@ -9805,12 +9787,12 @@ qH
 Gl
 Gl
 KK
-cC
+dI
 Gl
 Gl
 Jk
 ma
-cq
+fR
 GD
 pB
 bq
@@ -9824,9 +9806,9 @@ QT
 uk
 NS
 nV
-NS
+IP
 Cx
-uk
+IP
 OA
 kf
 Kx
@@ -9919,12 +9901,12 @@ pF
 pF
 qc
 TF
-aU
-AS
+uk
+TF
 Lh
 IC
 Sq
-NS
+IP
 IC
 oP
 Lh
@@ -10022,9 +10004,9 @@ VM
 NS
 GN
 eF
-NS
-NS
-NS
+IP
+IP
+IP
 WR
 uk
 uk
@@ -10122,9 +10104,9 @@ dI
 rZ
 fy
 Ad
-RS
+RJ
 aY
-uk
+IP
 Jy
 bN
 Ad
@@ -10213,10 +10195,10 @@ qH
 Gl
 Gl
 Ra
-RJ
+tU
 tU
 fR
-RJ
+tU
 oD
 El
 dI
@@ -10224,9 +10206,9 @@ dI
 dI
 Gl
 Ad
-Ad
 NS
-NS
+IP
+IP
 NS
 Ad
 Ad
@@ -10236,7 +10218,7 @@ IP
 xN
 Kx
 Zy
-Ad
+NS
 NS
 Ad
 Ad
@@ -10328,7 +10310,7 @@ Gl
 Ad
 Ad
 Ad
-NS
+IP
 Ad
 NS
 Ad
@@ -10538,7 +10520,7 @@ qH
 qH
 IP
 Ad
-Ad
+NS
 Ad
 Ad
 Ad
@@ -10791,7 +10773,7 @@ oE
 iR
 kb
 kb
-lj
+kb
 qH
 "}
 (18,1,1) = {"
@@ -10893,7 +10875,7 @@ iR
 oE
 oE
 kb
-lj
+kb
 qH
 "}
 (19,1,1) = {"
@@ -10995,7 +10977,7 @@ iR
 kb
 kb
 kb
-lj
+kb
 qH
 "}
 (20,1,1) = {"
@@ -11096,8 +11078,8 @@ kb
 iR
 kb
 kb
-lj
-lj
+kb
+kb
 qH
 "}
 (21,1,1) = {"
@@ -13365,7 +13347,7 @@ oE
 qH
 qH
 oE
-kb
+iR
 iR
 BK
 BK
@@ -13466,7 +13448,7 @@ iR
 kb
 qH
 qH
-oE
+kb
 kb
 BK
 oE
@@ -13568,7 +13550,7 @@ kb
 kb
 qH
 qH
-oE
+kb
 BK
 oE
 tk
@@ -13670,7 +13652,7 @@ qH
 qH
 qH
 qH
-oE
+kb
 BK
 oE
 Ym
@@ -13772,7 +13754,7 @@ oE
 qH
 qH
 qH
-oE
+iR
 BK
 ca
 tk
@@ -13874,7 +13856,7 @@ qH
 bT
 qH
 qH
-oE
+kb
 BK
 oE
 oE
@@ -13911,7 +13893,7 @@ Yj
 Ju
 pg
 Si
-Nk
+cC
 Ju
 mf
 Si
@@ -13976,7 +13958,7 @@ qH
 qH
 qH
 qH
-oE
+kb
 BK
 oE
 oE
@@ -14078,7 +14060,7 @@ qH
 qH
 qH
 qH
-oE
+kb
 BK
 tk
 oE
@@ -14180,7 +14162,7 @@ qH
 qH
 qH
 qH
-oE
+iR
 kb
 BK
 oE
