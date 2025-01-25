@@ -3,7 +3,7 @@
 	if(.)
 		return
 	var/area/cobweb_area = get_area(here_turf)
-	if(isgroundlessturf(here_turf) && !(istype(cobweb_area, /area/template_noop) || istype(cobweb_area, /area/space)))
+	if(isgroundlessturf(here_turf) && (istype(cobweb_area, /area/template_noop) || istype(cobweb_area, /area/space)))
 		return TRUE
 	return
 
