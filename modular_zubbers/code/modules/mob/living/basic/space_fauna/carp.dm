@@ -19,5 +19,3 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 
-/mob/living/basic/carp/mega/queen/Initialize(mapload)
-	. = ..()
