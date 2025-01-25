@@ -20,7 +20,7 @@
 	///The overlay for tail spines, if any
 	var/datum/bodypart_overlay/mutant/tail_spines/tail_spines_overlay
 
-/obj/item/organ/external/tail/Insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/external/tail/mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	if(.)
 		receiver.clear_mood_event("tail_lost")
@@ -34,7 +34,7 @@
 		// If it's not your tail AND of different species, we are horrified
 		if(IS_WEAKREF_OF(receiver, original_owner))
 			receiver.add_mood_event("tail_regained", /datum/mood_event/tail_regained_right)
-		else if(type in receiver.dna.species.external_organs)
+		else if(type in receiver.dna.species.mutant_organs)
 			receiver.add_mood_event("tail_regained", /datum/mood_event/tail_regained_species)
 		else
 			receiver.add_mood_event("tail_regained", /datum/mood_event/tail_regained_wrong)
@@ -66,7 +66,7 @@
 	tail_spines_overlay.tail_spine_key = tail_spine_key
 	// SKYRAT EDIT ADDITION START
 	if(!bodypart.owner.dna.mutant_bodyparts["spines"])
-		bodypart.owner.dna.mutant_bodyparts["spines"][MUTANT_INDEX_NAME] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600"))
+		bodypart.owner.dna.mutant_bodyparts["spines"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600"))
 	// SKYRAT EDIT ADDITION END
 	var/feature_name = bodypart.owner.dna.mutant_bodyparts["spines"][MUTANT_INDEX_NAME] // SKYRAT EDIT CHANGE - ORIGINAL: var/feature_name = bodypart.owner.dna.features["spines"] //tail spines don't live in DNA, but share feature names with regular spines
 	tail_spines_overlay.set_appearance_from_dna(bodypart.owner.dna, feature_name, feature_key = "spines") // SKYRAT EDIT CHANGE - ORIGINAL: tail_spines_overlay.set_appearance_from_name(feature_name)
@@ -87,7 +87,7 @@
 
 	organ_owner.clear_mood_event("tail_regained")
 
-	if(type in organ_owner.dna.species.external_organs)
+	if(type in organ_owner.dna.species.mutant_organs)
 		organ_owner.add_mood_event("tail_lost", /datum/mood_event/tail_lost)
 		organ_owner.add_mood_event("tail_balance_lost", /datum/mood_event/tail_balance_lost)
 

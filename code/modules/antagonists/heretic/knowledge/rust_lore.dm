@@ -114,7 +114,9 @@
 		When triggered, your victim will suffer heavy disgust and confusion. \
 		Allows you to rust reinforced walls and floors as well as plasteel."
 	gain_text = "The Blacksmith looks away. To a place lost long ago. \"Rusted Hills help those in dire need... at a cost.\""
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/rust)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/rust,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_RUST
 	mark_type = /datum/status_effect/eldritch/rust
 
@@ -145,7 +147,7 @@
 	gain_text = "All wise men know well not to visit the Rusted Hills... Yet the Blacksmith's tale was inspiring."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/rust,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/curse/corrosion,
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/crucible,

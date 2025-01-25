@@ -183,7 +183,9 @@
 		The knife will block any attack directed towards you, but is consumed on use."
 	gain_text = "His general wished to end the war, but the Champion knew there could be no life without death. \
 		He would slay the coward himself, and anyone who tried to run."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/blade)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/blade,
+	/datum/heretic_knowledge/reroll_targets)  //BUBBER EDIT
 	route = PATH_BLADE
 	mark_type = /datum/status_effect/eldritch/blade
 
@@ -229,7 +231,7 @@
 		He was without rival, equal, or purpose."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/blade,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/rune_carver,
 		/datum/heretic_knowledge/crucible,
 		/datum/heretic_knowledge/rifle,

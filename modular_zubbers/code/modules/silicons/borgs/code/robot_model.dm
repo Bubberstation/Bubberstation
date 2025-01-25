@@ -372,6 +372,12 @@
 			SKIN_ICON_STATE = "HaydeeMedFix",
 			SKIN_ICON = CYBORG_ICON_MED_HAYDEE_BUBBER,
 		),
+		"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekamed",
+			SKIN_ICON = CYBORG_ICON_MED_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			TALL_HAT_OFFSET
+		),
 	)
 
 /obj/item/robot_model/engineering/Initialize(mapload)
@@ -403,6 +409,12 @@
 		"Haydee" = list(
 			SKIN_ICON_STATE = "haydeeengineclassic",
 			SKIN_ICON = CYBORG_ICON_ENG_HAYDEE_BUBBER,
+		),
+		"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekaengi",
+			SKIN_ICON = CYBORG_ICON_ENG_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			TALL_HAT_OFFSET
 		),
 	)
 
@@ -483,6 +495,12 @@
 			SKIN_ICON_STATE = "HaydeeMinerClassic",
 			SKIN_ICON = CYBORG_ICON_MINING_HAYDEE_BUBBER,
 		),
+		"NiKA (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekamine",
+			SKIN_ICON = CYBORG_ICON_MINING_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			TALL_HAT_OFFSET
+		),
 	)
 
 /obj/item/robot_model/security/Initialize(mapload)
@@ -561,6 +579,12 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			HOUND_HAT_OFFSET
 		),
+		"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekapeace",
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK,TRAIT_R_UNIQUETIP,TRAIT_R_TALL),
+			TALL_HAT_OFFSET
+		),
 	)
 
 /obj/item/robot_model/service/Initialize(mapload)
@@ -609,6 +633,12 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			HOUND_HAT_OFFSET
 		),
+		"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekaserv",
+			SKIN_ICON = CYBORG_ICON_SERVICE_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			TALL_HAT_OFFSET
+		),
 	)
 
 /obj/item/robot_model/cargo/Initialize(mapload)
@@ -630,6 +660,12 @@
 			SKIN_ICON = CYBORG_ICON_CARGO_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			DULLAHAN_HAT_OFFSET
+		),
+		"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmekacargo",
+			SKIN_ICON = CYBORG_ICON_CARGO_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			TALL_HAT_OFFSET
 		),
 	)
 
