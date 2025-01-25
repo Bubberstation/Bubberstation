@@ -39,8 +39,7 @@
 ///Gets a random drink excluding the blocked type
 /proc/get_random_drink()
 	var/list/blocked = list(
-		// BUBBER EDIT - HOLY SHTI GET RID OF THE CSV VIAL
-		/obj/item/reagent_containers/cup/glass/changeling_zombie_virus,
+		/obj/item/reagent_containers/cup/glass/changeling_zombie_virus, // BUBBER EDIT - Remove the changeling virus from slime extracts
 		/obj/item/reagent_containers/cup/soda_cans,
 		/obj/item/reagent_containers/cup/glass/bottle
 		)
