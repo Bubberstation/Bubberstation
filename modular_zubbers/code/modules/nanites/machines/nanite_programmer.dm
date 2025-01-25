@@ -18,8 +18,8 @@
 	. = ..()
 	if((machine_stat & (NOPOWER|MAINT|BROKEN)) || panel_open)
 		return
-	. += mutable_appearance(icon, "nanite_programmer_on")
-	. += emissive_appearance(icon, "nanite_programmer_on", src)
+	. += "nanite_programmer_on"
+	. += emissive_appearance(icon, "nanite_programmer_on", src, alpha = src.alpha)
 
 /obj/machinery/nanite_programmer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
@@ -56,7 +56,7 @@
 	disk = null
 	program = null
 
-/obj/machinery/nanite_program_hub/attack_hand_secondary(mob/user, list/modifiers)
+/obj/machinery/nanite_programmer/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(disk && user.can_perform_action(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))

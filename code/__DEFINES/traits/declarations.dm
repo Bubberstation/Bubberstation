@@ -733,7 +733,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Used by the honkspam element to avoid spamming the sound. Amusing considering its name.
 #define TRAIT_HONKSPAMMING "trait_honkspamming"
 /// Required by the waddling element since there are multiple sources of it.
-#define TRAIT_WADDLING "trait_waddling"
+#define TRAIT_WADDLING "t"
 /// Required by the on_hit_effect element, which is in turn added by other elements.
 #define TRAIT_ON_HIT_EFFECT "trait_on_hit_effect"
 

@@ -31,7 +31,7 @@
 	. = ..()
 	if((machine_stat & (NOPOWER|MAINT|BROKEN)) || panel_open)
 		return
-	. += mutable_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
+	. += "nanite_program_hub_on"
 	. += emissive_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
 
 /obj/machinery/nanite_program_hub/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -51,6 +51,7 @@
 /obj/machinery/nanite_program_hub/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
+		SStgui.update_uis(src)
 	return TRUE
 
 /obj/machinery/nanite_program_hub/screwdriver_act(mob/living/user, obj/item/I)
@@ -105,6 +106,11 @@
 
 /obj/machinery/nanite_program_hub/ui_static_data(mob/user)
 	var/list/data = list()
+	if(linked_techweb)
+		data["techweb"] = list(
+			"name" = linked_techweb.id,
+			"organization" = linked_techweb.organization,
+		)
 	data["programs"] = list()
 	for(var/i in linked_techweb.researched_designs)
 		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)

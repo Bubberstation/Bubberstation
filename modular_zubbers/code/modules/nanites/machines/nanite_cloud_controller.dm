@@ -9,25 +9,39 @@
 
 	var/obj/item/disk/nanite_program/disk
 	var/list/datum/nanite_cloud_backup/cloud_backups = list()
+	var/datum/techweb/linked_techweb
 	var/current_view = 0 //0 is the main menu, any other number is the page of the backup with that ID
 	var/new_backup_id = 1
+
+/obj/machinery/computer/nanite_cloud_controller/Initialize()
+	. = ..()
+	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)
+		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
 
 /obj/machinery/computer/nanite_cloud_controller/Destroy()
 	QDEL_LIST(cloud_backups) //rip backups
 	eject()
 	return ..()
 
-/obj/machinery/computer/nanite_cloud_controller/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/disk/nanite_program))
-		var/obj/item/disk/nanite_program/N = I
-		if (user.transferItemToLoc(N, src))
-			to_chat(user, span_notice("You insert [N] into [src]."))
-			playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
-			if(disk)
-				eject(user)
-			disk = N
-	else
-		..()
+/obj/machinery/computer/nanite_cloud_controller/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(!istype(tool, /obj/item/disk/nanite_program))
+		return NONE
+	var/obj/item/disk/nanite_program/new_disk = tool
+	if(!user.transferItemToLoc(new_disk, src))
+		return NONE
+	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
+	if(disk)
+		eject(user)
+	disk = new_disk
+	return ITEM_INTERACT_SUCCESS
+
+/obj/machinery/computer/nanite_cloud_controller/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
+		linked_techweb = tool.buffer
+		SStgui.update_uis(src)
+	return TRUE
 
 /obj/machinery/computer/nanite_cloud_controller/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -58,6 +72,8 @@
 	var/datum/component/nanites/cloud_copy = backup.AddComponent(/datum/component/nanites)
 	backup.cloud_id = cloud_id
 	backup.nanites = cloud_copy
+	if(linked_techweb)
+		backup.techweb = linked_techweb
 	investigate_log("[key_name(user)] created a new nanite cloud backup with id #[cloud_id]", INVESTIGATE_NANITES)
 
 /obj/machinery/computer/nanite_cloud_controller/ui_interact(mob/user, datum/tgui/ui)
@@ -67,9 +83,18 @@
 		ui = new(user, src, "NaniteCloudControl", name)
 		ui.open()
 
+/obj/machinery/computer/nanite_cloud_controller/ui_static_data(mob/user)
+	. = ..()
+	var/list/data = .
+	if(linked_techweb)
+		data["techweb"] = list(
+			"name" = linked_techweb.id,
+			"organization" = linked_techweb.organization,
+		)
+
+// a lot of this should be in static data
 /obj/machinery/computer/nanite_cloud_controller/ui_data()
 	var/list/data = list()
-
 	if(disk)
 		data["has_disk"] = TRUE
 		var/list/disk_data = list()
