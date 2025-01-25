@@ -6,8 +6,8 @@
 	name = "Inject Venom"
 	desc = "Sink your fangs into another, and fill them with your venom. Not guaranteed to work against armor."
 
-	button_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
-	button_icon_state = "power_feed"
+	button_icon = 'modular_zubbers/icons/mob/actions/quirks/venomous_bite.dmi'
+	button_icon_state = "venom"
 
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi'
 
