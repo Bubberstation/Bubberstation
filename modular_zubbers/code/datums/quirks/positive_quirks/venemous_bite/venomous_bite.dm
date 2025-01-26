@@ -81,7 +81,7 @@
 
 	var/text = "[owner] sinks [owner.p_their()] teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
 	var/self_message = "You sink your teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/victim_message = "[owner] sinks [owner.p_their()] teeth your [target.parse_zone_with_bodypart(target_zone)]!"
+	var/victim_message = "[owner] sinks [owner.p_their()] teeth into your [target.parse_zone_with_bodypart(target_zone)]!"
 
 	var/covered = FALSE
 	if (ishuman(target))
