@@ -126,7 +126,9 @@
 		Attack a marked person to bar them from all passages for the duration of the mark. \
 		This will make it so that they have no access whatsoever, even public access doors will reject them."
 	gain_text = "The Gatekeeper was a corrupt Steward. She hindered her fellows for her own twisted amusement."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/lock)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/lock,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_LOCK
 	mark_type = /datum/status_effect/eldritch/lock
 
@@ -159,8 +161,8 @@
 	gain_text = "Consorting with Burglar spirits is frowned upon, but a Steward will always want to learn about new doors."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/opening_blast,
-		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/blade_upgrade/flesh/lock,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/painting,
 	)

@@ -372,24 +372,18 @@
 	if(is_head(deleted_mob))
 		on_brainmob_qdel()
 
+/datum/antagonist/bloodsucker/proc/register_body_signals(mob/target)
+	for(var/signal in body_signals)
+		RegisterSignal(target, signal, body_signals[signal])
 
-/datum/antagonist/bloodsucker/proc/unregister_body_signals()
-	UnregisterSignal(owner.current, list(
-		COMSIG_LIVING_LIFE,
-		COMSIG_ATOM_EXAMINE,
-		COMSIG_LIVING_DEATH,
-		COMSIG_SPECIES_GAIN,
-		COMSIG_QDELETING,
-		COMSIG_ENTER_COFFIN,
-		COMSIG_MOB_STAKED,
-		COMSIG_CARBON_LOSE_ORGAN
-	))
+/datum/antagonist/bloodsucker/proc/unregister_body_signals(mob/target)
+	for(var/signal in body_signals)
+		UnregisterSignal(target, signal)
+
+/datum/antagonist/bloodsucker/proc/register_sol_signals()
+	for(var/signal in sol_signals)
+		RegisterSignal(SSsunlight, signal, sol_signals[signal])
 
 /datum/antagonist/bloodsucker/proc/unregister_sol_signals()
-	UnregisterSignal(SSsunlight, list(
-		COMSIG_SOL_RANKUP_BLOODSUCKERS,
-		COMSIG_SOL_NEAR_START,
-		COMSIG_SOL_END,
-		COMSIG_SOL_RISE_TICK,
-		COMSIG_SOL_WARNING_GIVEN
-	))
+	for(var/signal in sol_signals)
+		UnregisterSignal(SSsunlight, signal)

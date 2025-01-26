@@ -80,7 +80,7 @@
 		to_chat(preferences.parent, span_warning("You cannot select this item!"))
 		return
 
-	if(!isnull(selected_item.donator_only) && !GLOB.donator_list[preferences?.parent?.ckey])
+	if(selected_item.donator_only && !GLOB.donator_list[preferences?.parent?.ckey])
 		to_chat(preferences.parent, span_warning("This item is for donators only."))
 		return
 	// SKYRAT EDIT END
