@@ -66,6 +66,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	// SKYRAT EDIT ADDITION START - Customization
 	var/list/lizard_markings_list
 	var/list/tails_list_monkey
+	var/list/tails_list_fish
 	var/list/caps_list
 	var/list/moth_wings_list
 
