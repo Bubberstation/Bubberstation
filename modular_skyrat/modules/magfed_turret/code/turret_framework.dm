@@ -750,6 +750,7 @@ DEFINE_BITFIELD(turret_flags, list(
 		things_in_my_lawn -= whipper_snapper
 		if(target(whipper_snapper))
 			return TRUE
+	return FALSE
 
 /// Shoots at one specific target. Only happens if target is overridden. modularized for burst?
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/trytoshootfucker(datum/weakref/target_weakref)
@@ -757,10 +758,11 @@ DEFINE_BITFIELD(turret_flags, list(
 	if(isnull(overridden_target))
 		target_override = null
 		burst_target = null
-		return
+		return FALSE
 	while(overridden_target)
 		if(target(overridden_target)) //ok. It's trying to shoot a weakref. Thats the issue.
 			return TRUE
+	return FALSE
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/shootAt(atom/movable/target)
 	if(!chambered) //Ok, We need to START the cycle
