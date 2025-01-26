@@ -17,8 +17,8 @@
 		OFFSET_HAIR = list(0, 1),
 	)
 	eyes_icon = 'modular_skyrat/modules/organs/icons/akula_eyes.dmi'
-	mutanteyes = /obj/item/organ/internal/eyes/akula
-	mutanttongue = /obj/item/organ/internal/tongue/akula
+	mutanteyes = /obj/item/organ/eyes/akula
+	mutanttongue = /obj/item/organ/tongue/akula
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -106,12 +106,12 @@
 	regenerate_organs(akula, src, visual_only = TRUE)
 	akula.update_body(TRUE)
 
-/obj/item/organ/internal/eyes/akula
+/obj/item/organ/eyes/akula
 	// Eyes over hair as bandaid for the low amounts of head matching hair
 	eyes_layer = HAIR_LAYER-0.1
 
 
-/obj/item/organ/internal/tongue/akula
+/obj/item/organ/tongue/akula
 	liked_foodtypes = SEAFOOD | RAW
 	disliked_foodtypes = CLOTH | DAIRY
 	toxic_foodtypes = TOXIC

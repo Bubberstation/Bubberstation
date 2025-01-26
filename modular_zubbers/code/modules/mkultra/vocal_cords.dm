@@ -3,7 +3,7 @@
 //////////////////////////////////////
 
 //Heavily modified voice of god code
-/obj/item/organ/internal/vocal_cords/velvet
+/obj/item/organ/vocal_cords/velvet
 	name = "Velvet chords"
 	desc = "The voice spoken from these just make you want to drift off, sleep and obey."
 	icon = 'modular_zubbers/code/modules/mkultra/vocal_cords.dmi'
@@ -13,7 +13,7 @@
 
 /datum/action/item_action/organ_action/velvet
 	name = "Velvet chords"
-	var/obj/item/organ/internal/vocal_cords/velvet/cords = null
+	var/obj/item/organ/vocal_cords/velvet/cords = null
 
 /datum/action/item_action/organ_action/velvet/New()
 	..()
@@ -31,10 +31,10 @@
 		return
 	owner.say(".x[command]")
 
-/obj/item/organ/internal/vocal_cords/velvet/can_speak_with()
+/obj/item/organ/vocal_cords/velvet/can_speak_with()
 	return TRUE
 
-/obj/item/organ/internal/vocal_cords/velvet/handle_speech(message) //actually say the message
+/obj/item/organ/vocal_cords/velvet/handle_speech(message) //actually say the message
 	owner.say(message, spans = spans, sanitize = FALSE)
 	velvetspeech(message, owner, 1)
 

@@ -9,7 +9,7 @@
 	var/genital_location = GROIN
 
 /datum/sprite_accessory/genital/is_hidden(mob/living/carbon/human/target_mob)
-	var/obj/item/organ/external/genital/badonkers = target_mob.get_organ_slot(associated_organ_slot)
+	var/obj/item/organ/genital/badonkers = target_mob.get_organ_slot(associated_organ_slot)
 	if(!badonkers)
 		return TRUE
 	switch(badonkers.visibility_preference)
@@ -57,7 +57,7 @@
 
 /datum/sprite_accessory/genital/penis
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/penis_onmob.dmi'
-	organ_type = /obj/item/organ/external/genital/penis
+	organ_type = /obj/item/organ/genital/penis
 	associated_organ_slot = ORGAN_SLOT_PENIS
 	key = ORGAN_SLOT_PENIS
 	color_src = USE_MATRIXED_COLORS
@@ -133,7 +133,7 @@
 
 /datum/sprite_accessory/genital/testicles
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/testicles_onmob.dmi'
-	organ_type = /obj/item/organ/external/genital/testicles
+	organ_type = /obj/item/organ/genital/testicles
 	associated_organ_slot = ORGAN_SLOT_TESTICLES
 	key = ORGAN_SLOT_TESTICLES
 	always_color_customizable = TRUE
@@ -178,7 +178,7 @@
 
 /datum/sprite_accessory/genital/vagina
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/vagina_onmob.dmi'
-	organ_type = /obj/item/organ/external/genital/vagina
+	organ_type = /obj/item/organ/genital/vagina
 	associated_organ_slot = ORGAN_SLOT_VAGINA
 	key = ORGAN_SLOT_VAGINA
 	always_color_customizable = TRUE
@@ -229,7 +229,7 @@
 	name = "Cloaca"
 
 /datum/sprite_accessory/genital/womb
-	organ_type = /obj/item/organ/external/genital/womb
+	organ_type = /obj/item/organ/genital/womb
 	associated_organ_slot = ORGAN_SLOT_WOMB
 	key = ORGAN_SLOT_WOMB
 	genetic = TRUE
@@ -246,7 +246,7 @@
 	color_src = null
 
 /datum/sprite_accessory/genital/anus
-	organ_type = /obj/item/organ/external/genital/anus
+	organ_type = /obj/item/organ/genital/anus
 	associated_organ_slot = ORGAN_SLOT_ANUS
 	key = ORGAN_SLOT_ANUS
 	genetic = TRUE
@@ -264,7 +264,7 @@
 
 /datum/sprite_accessory/genital/breasts
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi'
-	organ_type = /obj/item/organ/external/genital/breasts
+	organ_type = /obj/item/organ/genital/breasts
 	associated_organ_slot = ORGAN_SLOT_BREASTS
 	key = ORGAN_SLOT_BREASTS
 	always_color_customizable = TRUE

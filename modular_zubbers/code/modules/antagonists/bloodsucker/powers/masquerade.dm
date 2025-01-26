@@ -49,10 +49,10 @@
 	if(target_chest)
 		target_chest.bodypart_flags &= ~BODYPART_UNREMOVABLE
 	// Handle organs
-	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	if(vampheart)
 		vampheart.Restart()
-	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = initial(eyes.flash_protect)
 		eyes.color_cutoffs = initial(eyes.color_cutoffs)
@@ -80,10 +80,10 @@
 	if(target_chest)
 		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
 	// Handle organs
-	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
 	if(vampheart)
 		vampheart.Stop()
-	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF

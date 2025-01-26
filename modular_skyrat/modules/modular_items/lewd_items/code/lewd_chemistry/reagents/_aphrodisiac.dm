@@ -202,7 +202,7 @@
 	if(!exposed_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/penis_enlargement))
 		return
 
-	var/obj/item/organ/external/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 
 	if(mob_testicles.genital_size < balls_big_size && prob(balls_increase_chance)) // Add some randomness so growth happens more gradually in most cases
 		mob_testicles.genital_size = min(mob_testicles.genital_size + testicles_size_increase_step, balls_max_size)
@@ -384,7 +384,7 @@
 * message - the message to send to chat
 */
 /datum/reagent/drug/aphrodisiac/proc/remove_genitals(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, list/genitals_to_remove, message)
-	for(var/obj/item/organ/external/genital/mob_genital in genitals_to_remove)
+	for(var/obj/item/organ/genital/mob_genital in genitals_to_remove)
 		remove_genital(exposed_mob, mob_genital, suppress_chat)
 
 	if(!suppress_chat && message)
@@ -462,7 +462,7 @@
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_PENIS][MUTANT_INDEX_COLOR_LIST] = list(colour)
 
 	// Create the new penis
-	var/obj/item/organ/external/genital/penis/new_penis = new
+	var/obj/item/organ/genital/penis/new_penis = new
 	new_penis.build_from_dna(exposed_mob.dna, ORGAN_SLOT_PENIS)
 	new_penis.Insert(exposed_mob, 0, FALSE)
 	new_penis.genital_size = 4
@@ -488,7 +488,7 @@
 	if(!exposed_mob.client?.prefs.read_preference(/datum/preference/toggle/erp/new_genitalia_growth))
 		return
 
-	var/obj/item/organ/external/genital/testicles/new_balls = new
+	var/obj/item/organ/genital/testicles/new_balls = new
 	new_balls.build_from_dna(exposed_mob.dna, ORGAN_SLOT_TESTICLES)
 	new_balls.Insert(exposed_mob, 0, FALSE)
 	new_balls.genital_size = 0
@@ -517,7 +517,7 @@
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_BREASTS][MUTANT_INDEX_NAME] = "Pair"
 
 	// Create the new breasts
-	var/obj/item/organ/external/genital/breasts/new_breasts = new
+	var/obj/item/organ/genital/breasts/new_breasts = new
 	new_breasts.build_from_dna(exposed_mob.dna, ORGAN_SLOT_BREASTS)
 	new_breasts.Insert(exposed_mob, FALSE, FALSE)
 	new_breasts.genital_size = 2
@@ -554,7 +554,7 @@
 	if (exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_VAGINA][MUTANT_INDEX_NAME] == "None")
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_VAGINA][MUTANT_INDEX_NAME] = "Human"
 
-	var/obj/item/organ/external/genital/vagina/new_vagina = new
+	var/obj/item/organ/genital/vagina/new_vagina = new
 	new_vagina.build_from_dna(exposed_mob.dna, ORGAN_SLOT_VAGINA)
 	new_vagina.Insert(exposed_mob, 0, FALSE)
 	update_appearance(exposed_mob)
@@ -577,7 +577,7 @@
 	if (exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_WOMB][MUTANT_INDEX_NAME] == "None")
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_WOMB][MUTANT_INDEX_NAME] = "Normal"
 
-	var/obj/item/organ/external/genital/womb/new_womb = new
+	var/obj/item/organ/genital/womb/new_womb = new
 	new_womb.build_from_dna(exposed_mob.dna, ORGAN_SLOT_WOMB)
 	new_womb.Insert(exposed_mob, 0, FALSE)
 	update_appearance(exposed_mob)

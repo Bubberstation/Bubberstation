@@ -1,5 +1,5 @@
 /datum/species/lizard/ashwalker
-	mutanteyes = /obj/item/organ/internal/eyes/night_vision/ashwalker
+	mutanteyes = /obj/item/organ/eyes/night_vision/ashwalker
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/lizard/ashwalker,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/lizard/ashwalker,

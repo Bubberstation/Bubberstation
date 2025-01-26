@@ -24,7 +24,7 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
 /mob/living/carbon/alien/adult/skyrat/warrior/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel
+	organs += new /obj/item/organ/alien/plasmavessel
 	..()
 
 /datum/action/cooldown/alien/skyrat/warrior_agility

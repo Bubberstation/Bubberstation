@@ -1,4 +1,4 @@
-/obj/item/organ/external/horns
+/obj/item/organ/horns
 	desc = "Why do some people even have horns? Well, this one obviously doesn't."
 	preference = "feature_horns"
 	mutantpart_key = "horns"

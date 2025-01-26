@@ -684,7 +684,7 @@
 							iterated_part.emp_act(EMP_LIGHT)
 						for (var/obj/item/organ/iterated_organ as anything in H.organs)
 							iterated_organ.emp_act(EMP_LIGHT)
-						var/obj/item/organ/internal/brain/brain_organ = H.get_organ_slot(ORGAN_SLOT_BRAIN)
+						var/obj/item/organ/brain/brain_organ = H.get_organ_slot(ORGAN_SLOT_BRAIN)
 						if (istype(brain_organ))
 							var/datum/brain_trauma/trauma = brain_organ.gain_trauma_type(SYNTH_DEFIBBED_TRAUMA_SEVERITY, TRAUMA_LIMIT_BASIC)
 							if (!QDELETED(trauma))

@@ -295,16 +295,16 @@
 		/datum/job/station_engineer = /obj/item/organ/cyberimp/arm/toolset,
 		/datum/job/warden = /obj/item/organ/cyberimp/eyes/hud/security,
 		// BUBBER EDIT ADDITION START - MODULAR JOBS
-		/datum/job/blueshield = /obj/item/organ/internal/cyberimp/brain/anti_stun,
-		/datum/job/nanotrasen_consultant = /obj/item/organ/internal/heart/cybernetic/tier3,
-		/datum/job/barber = /obj/item/organ/internal/ears/cybernetic/whisper,
-		/datum/job/corrections_officer = /obj/item/organ/internal/cyberimp/arm/flash,
-		/datum/job/orderly = /obj/item/organ/internal/cyberimp/brain/anti_drop,
-		/datum/job/science_guard = /obj/item/organ/internal/cyberimp/arm/flash,
-		/datum/job/customs_agent = /obj/item/organ/internal/cyberimp/eyes/hud/security,
-		/datum/job/bouncer = /obj/item/organ/internal/cyberimp/arm/strongarm,
-		/datum/job/engineering_guard = /obj/item/organ/internal/cyberimp/arm/flash,
-		/datum/job/telecomms_specialist = /obj/item/organ/internal/ears/cybernetic/xray,
+		/datum/job/blueshield = /obj/item/organ/cyberimp/brain/anti_stun,
+		/datum/job/nanotrasen_consultant = /obj/item/organ/heart/cybernetic/tier3,
+		/datum/job/barber = /obj/item/organ/ears/cybernetic/whisper,
+		/datum/job/corrections_officer = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/orderly = /obj/item/organ/cyberimp/brain/anti_drop,
+		/datum/job/science_guard = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/customs_agent = /obj/item/organ/cyberimp/eyes/hud/security,
+		/datum/job/bouncer = /obj/item/organ/cyberimp/arm/strongarm,
+		/datum/job/engineering_guard = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/telecomms_specialist = /obj/item/organ/ears/cybernetic/xray,
 		// BUBBER EDIT END
 	)
 

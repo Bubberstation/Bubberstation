@@ -12,12 +12,12 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
-	mutantlungs = /obj/item/organ/internal/lungs/nitrogen/vox
-	mutantbrain = /obj/item/organ/internal/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
+	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
+	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
 	breathid = "n2"
 	mutant_bodyparts = list()
 	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
-	mutanttongue = /obj/item/organ/internal/tongue/vox
+	mutanttongue = /obj/item/organ/tongue/vox
 	payday_modifier = 1.0
 	outfit_important_for_life = /datum/outfit/vox
 	species_language_holder = /datum/language_holder/vox

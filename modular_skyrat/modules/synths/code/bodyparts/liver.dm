@@ -1,4 +1,4 @@
-/obj/item/organ/internal/liver/synth
+/obj/item/organ/liver/synth
 	name = "reagent processing unit"
 	desc = "An electronic device that processes the beneficial chemicals for the synthetic user."
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
@@ -9,7 +9,7 @@
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/liver/synth/emp_act(severity)
+/obj/item/organ/liver/synth/emp_act(severity)
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -37,7 +37,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/liver/synth
+	build_path = /obj/item/organ/liver/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)

@@ -17,8 +17,8 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_slow)
 
 /mob/living/carbon/alien/adult/skyrat/sentinel/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/small
-	organs += new /obj/item/organ/internal/alien/neurotoxin/sentinel
+	organs += new /obj/item/organ/alien/plasmavessel/small
+	organs += new /obj/item/organ/alien/neurotoxin/sentinel
 	..()
 
 /datum/action/cooldown/alien/acid/skyrat
@@ -132,7 +132,7 @@
 	paralyze = 0
 	damage_type = BURN
 
-/obj/item/organ/internal/alien/neurotoxin/sentinel
+/obj/item/organ/alien/neurotoxin/sentinel
 	name = "neurotoxin gland"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH

@@ -1,4 +1,4 @@
-/obj/item/organ/external/frills
+/obj/item/organ/frills
 	preference = "feature_frills"
 	mutantpart_key = "frills"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Divinity", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))

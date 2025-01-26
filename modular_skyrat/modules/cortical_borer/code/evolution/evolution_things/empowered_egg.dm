@@ -1,4 +1,4 @@
-/obj/item/organ/internal/empowered_borer_egg
+/obj/item/organ/empowered_borer_egg
 	name = "strange egg"
 	desc = "All slimy and yuck."
 	icon_state = "innards" // not like you'll be seeing this anyway
@@ -10,26 +10,26 @@
 	/// What generation the egg will be
 	var/generation = 1
 
-/obj/item/organ/internal/empowered_borer_egg/on_find(mob/living/finder)
+/obj/item/organ/empowered_borer_egg/on_find(mob/living/finder)
 	..()
 	to_chat(finder, span_warning("You found an unknown egg in [owner]'s [zone]!"))
 
-/obj/item/organ/internal/empowered_borer_egg/Initialize(mapload)
+/obj/item/organ/empowered_borer_egg/Initialize(mapload)
 	. = ..()
 	if(iscarbon(loc))
 		Insert(loc)
 
-/obj/item/organ/internal/empowered_borer_egg/mob_insert(mob/living/carbon/M, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/empowered_borer_egg/mob_insert(mob/living/carbon/M, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	..()
 	addtimer(CALLBACK(src, PROC_REF(try_burst)), burst_time)
 
-/obj/item/organ/internal/empowered_borer_egg/mob_remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/empowered_borer_egg/mob_remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	visible_message(span_warning(span_italics("As [src] is cut out of [M], it quickly vibrates and shatters, leaving nothing but some goop!")))
 	new/obj/effect/decal/cleanable/food/egg_smudge(get_turf(src))
 	qdel(src)
 
-/obj/item/organ/internal/empowered_borer_egg/proc/try_burst()
+/obj/item/organ/empowered_borer_egg/proc/try_burst()
 	if(!owner)
 		qdel(src)
 		return

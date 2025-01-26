@@ -347,7 +347,7 @@
 			to_chat(helper, span_warning("[src] looks visibly upset as you pat [p_them()] on the head."))
 		//SKYRAT EDIT ADDITION BEGIN - EMOTES
 		if(HAS_TRAIT(src, TRAIT_EXCITABLE))
-			var/obj/item/organ/external/tail/src_tail = get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+			var/obj/item/organ/tail/src_tail = get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 			if(src_tail && !(src_tail.wag_flags & WAG_WAGGING))
 				emote("wag")
 		//SKYRAT EDIT ADDITION END

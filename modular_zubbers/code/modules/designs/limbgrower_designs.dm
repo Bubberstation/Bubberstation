@@ -3,7 +3,7 @@
 	id = "hemophageheart"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
-	build_path = /obj/item/organ/internal/heart/hemophage
+	build_path = /obj/item/organ/heart/hemophage
 	category = list(SPECIES_HEMOPHAGE)
 
 /datum/design/hemophage_liver
@@ -11,7 +11,7 @@
 	id = "hemophageliver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
-	build_path = /obj/item/organ/internal/liver/hemophage
+	build_path = /obj/item/organ/liver/hemophage
 	category = list(SPECIES_HEMOPHAGE)
 
 /datum/design/hemophage_stomach
@@ -19,7 +19,7 @@
 	id = "hemophagestomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
-	build_path = /obj/item/organ/internal/stomach/hemophage
+	build_path = /obj/item/organ/stomach/hemophage
 	category = list(SPECIES_HEMOPHAGE)
 
 /datum/design/hemophage_tongue
@@ -27,7 +27,7 @@
 	id = "hemophagetongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
-	build_path = /obj/item/organ/internal/tongue/hemophage
+	build_path = /obj/item/organ/tongue/hemophage
 	category = list(SPECIES_HEMOPHAGE)
 
 /obj/item/disk/design_disk/limbs/hemophage
@@ -46,7 +46,7 @@
 	id = "tajaraneyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
-	build_path = /obj/item/organ/internal/eyes/tajaran
+	build_path = /obj/item/organ/eyes/tajaran
 	category = list(SPECIES_TAJARAN)
 
 /datum/design/tajaran_tongue
@@ -54,7 +54,7 @@
 	id = "tajarantounge"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
-	build_path = /obj/item/organ/internal/tongue/cat/tajaran
+	build_path = /obj/item/organ/tongue/cat/tajaran
 	category = list(SPECIES_TAJARAN)
 
 /datum/design/tajaran_ears
@@ -62,7 +62,7 @@
 	id = "tajaranears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
-	build_path = /obj/item/organ/internal/ears/cat/tajaran
+	build_path = /obj/item/organ/ears/cat/tajaran
 	category = list(SPECIES_TAJARAN)
 
 /datum/design/limb_disk/tajaran
@@ -73,7 +73,7 @@
 
 /obj/item/disk/design_disk/limbs/tajaran
 	name = "Tajaran Organ Design Disk"
-	limb_designs = list(/obj/item/organ/internal/tongue/cat/tajaran, /obj/item/organ/internal/eyes/tajaran, /obj/item/organ/internal/ears/cat/tajaran)
+	limb_designs = list(/obj/item/organ/tongue/cat/tajaran, /obj/item/organ/eyes/tajaran, /obj/item/organ/ears/cat/tajaran)
 
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(

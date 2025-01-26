@@ -107,9 +107,9 @@
 	if(!mob_genital)
 		return
 
-	if(istype(mob_genital, /obj/item/organ/external/genital/penis))
+	if(istype(mob_genital, /obj/item/organ/genital/penis))
 		penis_growth_to_chat(exposed_mob, mob_genital)
-	else if(istype(mob_genital, /obj/item/organ/external/genital/testicles))
+	else if(istype(mob_genital, /obj/item/organ/genital/testicles))
 		testicles_growth_to_chat(exposed_mob, mob_genital, suppress_chat)
 
 /**

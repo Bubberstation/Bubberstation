@@ -85,7 +85,7 @@
 	var/mob/living/carbon/human/user = loc
 	if(!user || !istype(user))
 		return PROCESS_KILL
-	var/obj/item/organ/external/genital/testicles/balls = user.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/balls = user.get_organ_slot(ORGAN_SLOT_PENIS)
 	if(!toy_on || !balls)
 		return
 	user.adjust_arousal(1 * seconds_per_tick)

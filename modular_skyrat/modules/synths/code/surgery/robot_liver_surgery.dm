@@ -17,7 +17,7 @@
 	desc = "A mechanical list of actions to reset the reagent processor and purge built up minerals."
 
 /datum/surgery/reagent_pump/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/internal/liver/reagent_processor = target.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/liver/reagent_processor = target.get_organ_slot(ORGAN_SLOT_LIVER)
 	if(isnull(reagent_processor) || !issynthetic(target) || reagent_processor.damage < 10)
 		return FALSE
 	return ..()
@@ -46,7 +46,7 @@
 
 /datum/surgery_step/reagent_pump/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
-	var/obj/item/organ/internal/liver/reagent_processor = target.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/liver/reagent_processor = target.get_organ_slot(ORGAN_SLOT_LIVER)
 	patient.setOrganLoss(ORGAN_SLOT_LIVER, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 	if(reagent_processor.organ_flags & ORGAN_EMP)
 		reagent_processor.organ_flags &= ~ORGAN_EMP

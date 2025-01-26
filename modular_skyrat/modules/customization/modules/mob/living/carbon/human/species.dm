@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 	if(noggin && !(HAS_TRAIT(species_human, TRAIT_HUSK)))
 		if(noggin.head_flags & HEAD_EYESPRITES)
-			var/obj/item/organ/internal/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
 
 			if(eye_organ)
 				eye_organ.refresh(call_update = FALSE)

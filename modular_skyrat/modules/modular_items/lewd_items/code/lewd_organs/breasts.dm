@@ -1,7 +1,7 @@
-/obj/item/organ/external/genital/breasts
+/obj/item/organ/genital/breasts
 	internal_fluid_datum = /datum/reagent/consumable/breast_milk
 
-/obj/item/organ/external/genital/breasts/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/breasts/build_from_dna(datum/dna/DNA, associated_key)
 	. = ..()
 	var/breasts_capacity = 0
 	var/size = 0.5

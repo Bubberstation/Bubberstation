@@ -16,9 +16,9 @@
 	name = "Primitive Demihuman"
 	id = SPECIES_FELINE_PRIMITIVE
 
-	mutantlungs = /obj/item/organ/internal/lungs/icebox_adapted
-	mutanteyes = /obj/item/organ/internal/eyes/low_light_adapted
-	mutanttongue = /obj/item/organ/internal/tongue/cat/primitive
+	mutantlungs = /obj/item/organ/lungs/icebox_adapted
+	mutanteyes = /obj/item/organ/eyes/low_light_adapted
+	mutanttongue = /obj/item/organ/tongue/cat/primitive
 
 	species_language_holder = /datum/language_holder/primitive_felinid
 	language_prefs_whitelist = list(/datum/language/primitive_catgirl)

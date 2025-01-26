@@ -86,13 +86,13 @@
 	if(length(current_trauma_list))
 		trauma_list = current_trauma_list.Copy()
 
-	heart_damage = human_parent.check_organ_damage(/obj/item/organ/internal/heart)
-	liver_damage = human_parent.check_organ_damage(/obj/item/organ/internal/liver)
-	lung_damage = human_parent.check_organ_damage(/obj/item/organ/internal/lungs)
-	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/internal/stomach)
-	brain_damage = human_parent.check_organ_damage(/obj/item/organ/internal/brain)
-	eye_damage = human_parent.check_organ_damage(/obj/item/organ/internal/eyes)
-	ear_damage = human_parent.check_organ_damage(/obj/item/organ/internal/ears)
+	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
+	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver)
+	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs)
+	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach)
+	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain)
+	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes)
+	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears)
 
 	return TRUE
 
@@ -110,7 +110,7 @@
 	human_parent.setOrganLoss(ORGAN_SLOT_EARS, ear_damage)
 	human_parent.setOrganLoss(ORGAN_SLOT_BRAIN, brain_damage)
 
-	var/obj/item/organ/internal/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/internal/brain)
+	var/obj/item/organ/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/brain)
 	if(!human_brain)
 		return FALSE
 

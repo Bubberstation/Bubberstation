@@ -166,8 +166,8 @@ Creating a chem with a low purity will make you permanently fall in love with so
 			to_chat(mob_affected, "<span class='big love'><i>Your addled, plastic, mind bends under the chemical influence of a new [(enthrall_chem.lewd?"enthrall_mob":"leader")]. Your highest priority is now to stay by [enthrall_name]'s side, following and aiding them at all costs.</i></span>") //THIS SHOULD ONLY EVER APPEAR IF YOU MINDBREAK YOURSELF AND THEN GET INJECTED FROM SOMEONE ELSE.
 			return
 	if((mob_affected.ckey == enthrall_ckey) && (enthrall_name == mob_affected.real_name)) //same name AND same player - same instance of the player. (should work for clones?)
-		var/obj/item/organ/internal/vocal_cords/vocal_cords = mob_affected.get_organ_slot(ORGAN_SLOT_VOICE)
-		var/obj/item/organ/internal/vocal_cords/new_vocal_cords = new /obj/item/organ/internal/vocal_cords/velvet
+		var/obj/item/organ/vocal_cords/vocal_cords = mob_affected.get_organ_slot(ORGAN_SLOT_VOICE)
+		var/obj/item/organ/vocal_cords/new_vocal_cords = new /obj/item/organ/vocal_cords/velvet
 		if(vocal_cords)
 			vocal_cords.Remove()
 		new_vocal_cords.Insert(mob_affected)

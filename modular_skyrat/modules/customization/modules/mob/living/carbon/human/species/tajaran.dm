@@ -8,7 +8,7 @@
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_MUTANT_COLORS,
 	)
-	mutanttongue = /obj/item/organ/internal/tongue/cat/tajaran
+	mutanttongue = /obj/item/organ/tongue/cat/tajaran
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
@@ -32,7 +32,7 @@
 		"legs" = list("Normal Legs", FALSE),
 	)
 
-/obj/item/organ/internal/tongue/cat/tajaran
+/obj/item/organ/tongue/cat/tajaran
 	liked_foodtypes = GRAIN | MEAT
 	disliked_foodtypes = CLOTH
 

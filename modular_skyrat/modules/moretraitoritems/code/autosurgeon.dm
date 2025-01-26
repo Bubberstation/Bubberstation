@@ -1,36 +1,36 @@
 /obj/item/autosurgeon/toolset
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/toolset
+	starting_organ = /obj/item/organ/cyberimp/arm/toolset
 
 /obj/item/autosurgeon/surgery
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/surgery
+	starting_organ = /obj/item/organ/cyberimp/arm/surgery
 
 /obj/item/autosurgeon/botany
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/botany
+	starting_organ = /obj/item/organ/cyberimp/arm/botany
 
 /obj/item/autosurgeon/janitor
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/janitor
+	starting_organ = /obj/item/organ/cyberimp/arm/janitor
 
 /obj/item/autosurgeon/armblade
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/armblade
+	starting_organ = /obj/item/organ/cyberimp/arm/armblade
 
 /obj/item/autosurgeon/muscle
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/strongarm
+	starting_organ = /obj/item/organ/cyberimp/arm/strongarm
 
 //syndie
 /obj/item/autosurgeon/syndicate/hackerman
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/hacker
+	starting_organ = /obj/item/organ/cyberimp/arm/hacker
 
 /obj/item/autosurgeon/syndicate/esword_arm
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/esword
+	starting_organ = /obj/item/organ/cyberimp/arm/esword
 
 /obj/item/autosurgeon/syndicate/nodrop
-	starting_organ = /obj/item/organ/internal/cyberimp/brain/anti_drop
+	starting_organ = /obj/item/organ/cyberimp/brain/anti_drop
 
 /obj/item/autosurgeon/syndicate/baton
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/baton
+	starting_organ = /obj/item/organ/cyberimp/arm/baton
 
 /obj/item/autosurgeon/syndicate/flash
-	starting_organ = /obj/item/organ/internal/cyberimp/arm/flash
+	starting_organ = /obj/item/organ/cyberimp/arm/flash
 
 //bodypart
 /obj/item/autosurgeon/bodypart/r_arm_robotic
@@ -45,9 +45,9 @@
 	name = "strange autosurgeon"
 	icon = 'modular_skyrat/modules/moretraitoritems/icons/alien.dmi'
 	surgery_speed = 2
-	organ_whitelist = list(/obj/item/organ/internal/alien)
+	organ_whitelist = list(/obj/item/organ/alien)
 
-/obj/item/organ/internal/alien/plasmavessel/opfor
+/obj/item/organ/alien/plasmavessel/opfor
 	stored_plasma = 500
 	max_plasma = 500
 	plasma_rate = 10
@@ -62,12 +62,12 @@
 
 /obj/item/storage/organbox/strange/PopulateContents()
 	new /obj/item/autosurgeon/xeno(src)
-	new /obj/item/organ/internal/alien/plasmavessel/opfor(src)
-	new /obj/item/organ/internal/alien/resinspinner(src)
-	new /obj/item/organ/internal/alien/acid(src)
-	new /obj/item/organ/internal/alien/neurotoxin(src)
-	new /obj/item/organ/internal/alien/hivenode(src)
+	new /obj/item/organ/alien/plasmavessel/opfor(src)
+	new /obj/item/organ/alien/resinspinner(src)
+	new /obj/item/organ/alien/acid(src)
+	new /obj/item/organ/alien/neurotoxin(src)
+	new /obj/item/organ/alien/hivenode(src)
 
 /obj/item/storage/organbox/strange/eggsac/PopulateContents()
 	. = ..()
-	new /obj/item/organ/internal/alien/eggsac(src)
+	new /obj/item/organ/alien/eggsac(src)

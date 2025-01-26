@@ -231,10 +231,10 @@
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
-		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
+		var/obj/item/organ/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart?.Stop()
 
-	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes && !(current_eyes.organ_flags & ORGAN_ROBOTIC))
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
@@ -255,8 +255,8 @@
 
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/zombie_infection)
+		bloodsuckeruser.get_organ_by_type(/obj/item/organ/body_egg),
+		bloodsuckeruser.get_organ_by_type(/obj/item/organ/zombie_infection)
 	)
 	for(var/tumors in bad_organs)
 		var/obj/item/organ/yucky_organs = tumors
@@ -356,7 +356,7 @@
 	var/obj/item/bodypart/head/head = is_head(poor_fucker)
 	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
-	if(istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+	if(istype(poor_fucker.loc, /obj/item/organ/brain))
 		RegisterSignal(poor_fucker.loc, COMSIG_QDELETING, PROC_REF(on_brain_remove))
 		RegisterSignal(poor_fucker.loc, COMSIG_ORGAN_BODYPART_REMOVED, PROC_REF(on_brain_remove))
 
@@ -385,7 +385,7 @@
 
 /datum/antagonist/bloodsucker/proc/on_brainmob_qdel()
 	SIGNAL_HANDLER
-	if(istype(owner.current.loc, /obj/item/organ/internal/brain))
+	if(istype(owner.current.loc, /obj/item/organ/brain))
 		cleanup_talking_head(owner.current.loc)
 	else
 		cleanup_talking_head()

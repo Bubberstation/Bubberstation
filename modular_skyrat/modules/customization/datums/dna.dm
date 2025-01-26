@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(total_uf_len_by_block)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
 
 	if(eyeorgancolor_update)
-		var/obj/item/organ/internal/eyes/eye_organ = get_organ_slot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/eye_organ = get_organ_slot(ORGAN_SLOT_EYES)
 		eye_organ.eye_color_left = eye_color_left
 		eye_organ.eye_color_right = eye_color_right
 		eye_organ.old_eye_color_left = eye_color_left

@@ -4,7 +4,7 @@
 #define BLOOD_DRAIN_MULTIPLIER_CKEY 1.15
 
 /datum/component/organ_corruption/tongue
-	corruptable_organ_type = /obj/item/organ/internal/tongue
+	corruptable_organ_type = /obj/item/organ/tongue
 	corrupted_icon_state = "tongue"
 	/// The item action given to the tongue once it was corrupted.
 	var/tongue_action_type = /datum/action/cooldown/hemophage/drain_victim
@@ -16,7 +16,7 @@
 	if(!.)
 		return
 
-	var/obj/item/organ/internal/tongue/corrupted_tongue = corruption_target
+	var/obj/item/organ/tongue/corrupted_tongue = corruption_target
 	corrupted_tongue.liked_foodtypes = BLOODY
 	corrupted_tongue.disliked_foodtypes = NONE
 
@@ -126,7 +126,7 @@
 	// if you drained from a human with a client, congrats
 	var/drained_multiplier = (is_target_human_with_client ? BLOOD_DRAIN_MULTIPLIER_CKEY : 1)
 
-	var/obj/item/organ/internal/stomach/hemophage/stomach_reference = hemophage.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/hemophage/stomach_reference = hemophage.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(isnull(stomach_reference))
 		victim.blood_volume = clamp(victim.blood_volume - drained_blood, 0, BLOOD_VOLUME_MAXIMUM)
 

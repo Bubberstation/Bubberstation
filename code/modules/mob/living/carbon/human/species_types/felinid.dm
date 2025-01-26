@@ -50,10 +50,10 @@
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		*/
 		if(target_human.dna.features["ears"] == "Cat")
-			var/obj/item/organ/internal/ears/cat/ears = new
+			var/obj/item/organ/ears/cat/ears = new
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		else
-			mutantears = /obj/item/organ/internal/ears
+			mutantears = /obj/item/organ/ears
 		// SKYRAT EDIT -- END
 	return ..()
 

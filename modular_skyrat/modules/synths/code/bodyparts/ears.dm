@@ -1,4 +1,4 @@
-/obj/item/organ/internal/ears/synth
+/obj/item/organ/ears/synth
 	name = "auditory sensors"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "ears-ipc"
@@ -11,7 +11,7 @@
 	overrides_sprite_datum_organ_type = TRUE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
-/obj/item/organ/internal/ears/synth/emp_act(severity)
+/obj/item/organ/ears/synth/emp_act(severity)
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -39,7 +39,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/ears/synth
+	build_path = /obj/item/organ/ears/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)

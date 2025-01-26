@@ -120,7 +120,7 @@
 /datum/sprite_accessory/moth_markings
 	key = "moth_markings"
 	generic = "Moth markings"
-	// organ_type = /obj/item/organ/external/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF
+	// organ_type = /obj/item/organ/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF
 
 /datum/sprite_accessory/moth_markings/is_hidden(mob/living/carbon/human/owner)
 	return FALSE
@@ -133,7 +133,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
 	key = "pod_hair"
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
-	organ_type = /obj/item/organ/external/pod_hair
+	organ_type = /obj/item/organ/pod_hair
 
 /datum/sprite_accessory/pod_hair/none
 	name = SPRITE_ACCESSORY_NONE
@@ -146,7 +146,7 @@
 	icon = 'icons/mob/human/species/mush_cap.dmi'
 	relevent_layers = list(BODY_ADJ_LAYER)
 	color_src = USE_ONE_COLOR
-	organ_type = /obj/item/organ/external/mushroom_cap
+	organ_type = /obj/item/organ/mushroom_cap
 	genetic = TRUE
 
 /datum/sprite_accessory/caps/is_hidden(mob/living/carbon/human/human)

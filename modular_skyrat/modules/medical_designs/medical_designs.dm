@@ -27,7 +27,7 @@
 	id = "nitrogenlunggeneric"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
-	build_path = /obj/item/organ/internal/lungs/nitrogen
+	build_path = /obj/item/organ/lungs/nitrogen
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/vox_nitrogen_lungs
@@ -35,7 +35,7 @@
 	id = "nitrogenlungvox"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
-	build_path = /obj/item/organ/internal/lungs/nitrogen/vox
+	build_path = /obj/item/organ/lungs/nitrogen/vox
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 

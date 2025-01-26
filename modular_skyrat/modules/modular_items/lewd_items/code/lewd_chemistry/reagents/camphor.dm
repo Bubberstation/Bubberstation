@@ -30,7 +30,7 @@
 		exposed_mob.set_gender(exposed_mob.client?.prefs?.read_preference(/datum/preference/choiced/gender))
 
 	if(exposed_mob.get_organ_slot(ORGAN_SLOT_BREASTS))
-		var/obj/item/organ/external/genital/breasts/mob_breasts = exposed_mob.get_organ_slot(ORGAN_SLOT_BREASTS)
+		var/obj/item/organ/genital/breasts/mob_breasts = exposed_mob.get_organ_slot(ORGAN_SLOT_BREASTS)
 		var/original_breast_size = GLOB.breast_size_to_number[exposed_mob.client?.prefs.read_preference(/datum/preference/choiced/breasts_size)]
 		if(original_breast_size)
 			if(mob_breasts?.genital_size > original_breast_size)
@@ -43,7 +43,7 @@
 				modified_genitals = TRUE
 
 	if(exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS))
-		var/obj/item/organ/external/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
+		var/obj/item/organ/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 		if(exposed_mob.client?.prefs?.read_preference(/datum/preference/numeric/penis_length))
 			var/original_penis_length = exposed_mob.client?.prefs.read_preference(/datum/preference/numeric/penis_length)
 			var/original_penis_girth = exposed_mob.client?.prefs.read_preference(/datum/preference/numeric/penis_girth)
@@ -66,7 +66,7 @@
 				modified_genitals = TRUE
 
 	if(exposed_mob.get_organ_slot(ORGAN_SLOT_TESTICLES))
-		var/obj/item/organ/external/genital/testicles/mob_testicles = exposed_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
+		var/obj/item/organ/genital/testicles/mob_testicles = exposed_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
 		if(exposed_mob.client?.prefs?.read_preference(/datum/preference/numeric/balls_size))
 			var/original_ball_size = exposed_mob.client?.prefs.read_preference(/datum/preference/numeric/balls_size)
 			if(mob_testicles?.genital_size > original_ball_size)

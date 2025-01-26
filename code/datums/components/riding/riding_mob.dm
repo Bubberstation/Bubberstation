@@ -330,7 +330,7 @@
 			)
 
 	if (ride_check_flags & RIDING_TAUR)
-		var/obj/item/organ/external/taur_body/taur_body = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		return taur_body.get_riding_offset(oversized = HAS_TRAIT(H, TRAIT_OVERSIZED))
 	//BUBBER EDIT END
 

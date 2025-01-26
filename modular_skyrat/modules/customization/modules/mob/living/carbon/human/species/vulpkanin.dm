@@ -9,7 +9,7 @@
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
-	mutanttongue = /obj/item/organ/internal/tongue/vulpkanin
+	mutanttongue = /obj/item/organ/tongue/vulpkanin
 	species_language_holder = /datum/language_holder/vulpkanin
 	payday_modifier = 1.0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -33,7 +33,7 @@
 		"legs" = list("Normal Legs", FALSE),
 	)
 
-/obj/item/organ/internal/tongue/vulpkanin
+/obj/item/organ/tongue/vulpkanin
 	liked_foodtypes = RAW | MEAT
 	disliked_foodtypes = CLOTH
 	toxic_foodtypes = TOXIC

@@ -1,4 +1,4 @@
-/obj/item/organ/internal/lungs/synth
+/obj/item/organ/lungs/synth
 	name = "heatsink"
 	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. It's shape resembles lungs." //Purposefully left the 'fluid medium' ambigious for interpretation of the character, whether it be air or fluid cooling
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
@@ -14,7 +14,7 @@
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/lungs/synth/emp_act(severity)
+/obj/item/organ/lungs/synth/emp_act(severity)
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -44,7 +44,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/lungs/synth
+	build_path = /obj/item/organ/lungs/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)

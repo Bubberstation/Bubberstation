@@ -441,7 +441,7 @@
 	if(sacker_wing)
 		attack_mod += 2
 	// BUBBER EDIT START - Taj tackle bonus
-	var/obj/item/organ/internal/ears/cat/tajaran/sacker_tajaran_ears = sacker.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/ears/cat/tajaran/sacker_tajaran_ears = sacker.get_organ_slot(ORGAN_SLOT_EARS)
 	if(istype(sacker_tajaran_ears) && HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE))
 		attack_mod += 2 // UwU pounces on you
 	// BUBBER EDIT END

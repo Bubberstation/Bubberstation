@@ -30,7 +30,7 @@
 	if(!wearer?.organs)
 		return
 
-	for(var/obj/item/organ/external/to_update in wearer.organs)
+	for(var/obj/item/organ/to_update in wearer.organs)
 		to_update.bodypart_overlay.set_modsuit_status(status)
 
 

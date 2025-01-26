@@ -40,7 +40,7 @@
 	. = ..()
 	if(!istype(user))
 		return
-	var/obj/item/organ/external/genital/breasts/user_breast = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/user_breast = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 
 	if(src == user.nipples)
 		if(user_breast)
@@ -70,7 +70,7 @@
 /obj/item/clothing/sextoy/nipple_clamps/process(seconds_per_tick)
 	. = ..()
 	var/mob/living/carbon/human/target = loc
-	var/obj/item/organ/external/genital/breasts/target_breast = target.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/target_breast = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(!target || !target_breast)
 		return
 	target.adjust_arousal(1 * seconds_per_tick)
