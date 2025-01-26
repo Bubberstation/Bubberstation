@@ -90,10 +90,12 @@
 	id = /obj/item/card/id/advanced/tarkon/cargo
 	id_trim = /datum/id_trim/away/tarkon/cargo
 	l_pocket = /obj/item/mining_voucher
+	skillchips = list(/obj/item/skillchip/job/miner)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
 	prompt_name = "a port researcher"
 	outfit = /datum/outfit/tarkon/sci
+
 
 /datum/outfit/tarkon/sci
 	name = "Port Tarkon Science Outfit"
@@ -103,6 +105,7 @@
 	id_trim = /datum/id_trim/away/tarkon/sci
 	r_pocket = /obj/item/stock_parts/power_store/cell/high
 	l_pocket = /obj/item/card/id/away/tarkonrobo
+	skillchips = list(/obj/item/skillchip/job/roboticist)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med
 	prompt_name = "a port trauma medic"
@@ -117,6 +120,7 @@
 	neck = /obj/item/clothing/neck/stethoscope
 	l_pocket = /obj/item/healthanalyzer
 	r_pocket = /obj/item/stack/medical/suture/medicated
+	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/engi
 	prompt_name = "a port maintenance engineer"
@@ -132,6 +136,7 @@
 	l_hand = /obj/item/inducer
 	l_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	r_pocket = /obj/item/stack/cable_coil
+	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sec
 	prompt_name = "a port security member"
