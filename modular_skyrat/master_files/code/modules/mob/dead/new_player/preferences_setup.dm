@@ -4,6 +4,8 @@
 
 	// Set up the dummy for its photoshoot
 	apply_prefs_to(mannequin, TRUE, visuals_only = TRUE)
+	// Apply the Dummy's preview background first so we properly layer everything else on top of it.
+	mannequin.add_overlay(mutable_appearance('modular_zubbers/icons/UI_Icons/backgrounds.dmi', bgstate, layer = SPACE_LAYER))
 
 	switch(preview_pref)
 		if(PREVIEW_PREF_JOB)
@@ -36,7 +38,7 @@
 				if(gent)
 					gent.aroused = AROUSAL_FULL
 					gent.update_sprite_suffix()
-	
+
 	// Apply visual quirks
 	// Yes we do it every time because it needs to be done after job gear
 	if(SSquirks?.initialized)
