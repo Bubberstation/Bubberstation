@@ -5,6 +5,11 @@
 	savefile_identifier = PREFERENCE_PLAYER
 	should_generate_icons = FALSE
 
+/datum/preference/choiced/apply_to_client(client/client, value)
+	. = ..()
+	if(SStgui.get_open_ui(client, client.prefs))
+		INVOKE_ASYNC(client.prefs.character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body))
+
 GLOBAL_LIST_INIT(bgstate_options, list(
 	"000" = "Pure Black",
 	"midgrey" = "Grey",
@@ -22,8 +27,16 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 /datum/preference/choiced/bgstate/init_possible_values()
 	return GLOB.bgstate_options
 
-//backgrounds
+/datum/preference/choiced/bgstate/apply_to_client(client/client, value)
+	. = ..()
+
 /datum/preferences
 	var/mutable_appearance/character_background
-	var/icon/bgstate = (player.client?.prefs?.read_preference(/datum/preference/choiced/bgstate))
+	var/bgstate
+//backgrounds
+/datum/preferences/New(client/parent)
+	. = ..()
+
+	bgstate = read_preference(/datum/preference/choiced/bgstate)
+
 
