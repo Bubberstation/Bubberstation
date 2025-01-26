@@ -13,7 +13,7 @@
 /datum/status_effect/aroused
 	id = "aroused"
 	tick_interval = 1 SECONDS
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/aroused/tick(seconds_between_ticks)

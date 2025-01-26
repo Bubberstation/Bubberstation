@@ -1,6 +1,6 @@
 /datum/status_effect/death_sound
 	id = "death_sound"
-	tick_interval = -1
+	duration = STATUS_EFFECT_NO_TICK
 	alert_type = null
 	status_type = STATUS_EFFECT_REPLACE
 	var/death_sound
@@ -26,7 +26,7 @@
 
 /datum/status_effect/replace_death_sound
 	id = "replace_death_sound"
-	tick_interval = -1
+	duration = STATUS_EFFECT_NO_TICK
 	alert_type = null
 	status_type = STATUS_EFFECT_REPLACE
 	var/death_sound
