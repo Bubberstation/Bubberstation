@@ -24,7 +24,7 @@
 	REMOVE_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/carbon/alien/adult/skyrat/ravager/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel
+	organs += new /obj/item/organ/alien/plasmavessel
 	..()
 
 /datum/action/cooldown/mob_cooldown/charge/triple_charge/ravager

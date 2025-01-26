@@ -6,7 +6,7 @@
 		to reroll your sacrifice targets."
 	gain_text = "The heart is the principle that continues and preserves."
 	required_atoms = list(
-		/obj/item/organ/internal/heart = 1, //BUBBER EDIT
+		/obj/item/organ/heart = 1, //BUBBER EDIT
 		/obj/item/book = 1,
 		/obj/item/clothing/under = 1,
 	)

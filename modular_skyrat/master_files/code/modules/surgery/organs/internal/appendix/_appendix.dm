@@ -1,4 +1,4 @@
-/obj/item/organ/internal/appendix/become_inflamed()
+/obj/item/organ/appendix/become_inflamed()
 	if(engaged_role_play_check(owner, station = TRUE, dorms = TRUE))
 		return
 

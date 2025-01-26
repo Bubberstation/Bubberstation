@@ -170,7 +170,7 @@
 	return
 
 /obj/item/stake/hardened/silver/on_stake_embed(mob/living/target, mob/living/user)
-	var/obj/item/organ/internal/heart/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
 		return
 	target.visible_message(
@@ -343,9 +343,9 @@
 
 
 /// just a typepath to specify that it's monkey-owned, used for the heart thief objective
-/obj/item/organ/internal/heart/monkey
+/obj/item/organ/heart/monkey
 
-/obj/item/organ/internal/heart/examine_more(mob/user)
+/obj/item/organ/heart/examine_more(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(user)
 	if(!vampire)

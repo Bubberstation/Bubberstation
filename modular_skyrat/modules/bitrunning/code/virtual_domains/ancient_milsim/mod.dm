@@ -112,4 +112,4 @@
 	name = "MOD legion core dispenser module"
 	desc = "This module can create healing legion cores at the user's liking."
 	cooldown_time = 10 SECONDS
-	dispense_type = /obj/item/organ/internal/monster_core/regenerative_core/legion
+	dispense_type = /obj/item/organ/monster_core/regenerative_core/legion

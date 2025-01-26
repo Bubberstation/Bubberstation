@@ -1,4 +1,4 @@
-/obj/item/organ/external/head_accessory
+/obj/item/organ/head_accessory
 	name = "head accessory"
 	desc = "It goes on the head."
 	icon_state = "random_fly_1"

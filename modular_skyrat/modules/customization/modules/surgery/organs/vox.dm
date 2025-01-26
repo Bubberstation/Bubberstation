@@ -1,4 +1,4 @@
-/obj/item/organ/internal/lungs/nitrogen
+/obj/item/organ/lungs/nitrogen
 	name = "nitrogen lungs"
 	desc = "A set of lungs for breathing nitrogen."
 	safe_oxygen_min = 0	//Dont need oxygen
@@ -8,7 +8,7 @@
 	oxy_breath_dam_min = 6
 	oxy_breath_dam_max = 20
 
-/obj/item/organ/internal/lungs/nitrogen/vox
+/obj/item/organ/lungs/nitrogen/vox
 	name = "vox lungs"
 	desc = "They're filled with dust... wow."
 	icon_state = "lungs-c"

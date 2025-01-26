@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	"stored_character_slot_index",
 ))
 
-/obj/item/organ/internal/brain
+/obj/item/organ/brain
 	/// The modular persistence data for a character.
 	var/datum/modular_persistence/modular_persistence
 
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 /// The master persistence datum. Add vars onto this in your own code. Just be aware that you'll need to use simple data types, such as strings, ints, and lists.
 /datum/modular_persistence
 	/// The human that this is attached to.
-	var/obj/item/organ/internal/brain/owner
+	var/obj/item/organ/brain/owner
 	/// The owner's character slot index.
 	var/stored_character_slot_index
 
@@ -114,6 +114,6 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 
 /// Saves the persistence data for the owner.
 /mob/living/carbon/human/proc/save_individual_persistence(var/ckey)
-	var/obj/item/organ/internal/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 
 	return brain?.modular_persistence?.save_data(ckey)

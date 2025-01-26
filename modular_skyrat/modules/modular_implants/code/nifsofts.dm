@@ -41,7 +41,7 @@
 	///How long is the cooldown for?
 	var/cooldown_duration = DEFAULT_NIFSOFT_COOLDOWN
 	///What NIF models can this software be installed on?
-	var/list/compatible_nifs = list(/obj/item/organ/internal/cyberimp/brain/nif)
+	var/list/compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif)
 
 	/// How much of the NIFSoft's purchase price is paid out as reward points, if any?
 	var/rewards_points_rate = 0.5
@@ -62,7 +62,7 @@
 	if(no_rewards_points) //This is mostly so that credits can't be farmed through printed or stolen NIFSoft disks
 		rewards_points_rate = 0
 
-	compatible_nifs += /obj/item/organ/internal/cyberimp/brain/nif/debug
+	compatible_nifs += /obj/item/organ/cyberimp/brain/nif/debug
 	program_name = name
 
 	if(!recepient_nif.install_nifsoft(src))
@@ -77,7 +77,7 @@
 
 	linked_mob = null
 
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
 	if(installed_nif)
 		installed_nif.loaded_nifsofts.Remove(src)
 
@@ -85,7 +85,7 @@
 
 /// Activates the parent NIFSoft
 /datum/nifsoft/proc/activate()
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
 
 	if(!installed_nif)
 		stack_trace("NIFSoft [src] activated on a null parent!") // NIFSoft is -really- broken
@@ -121,7 +121,7 @@
 
 ///Refunds the activation cost of a NIFSoft.
 /datum/nifsoft/proc/refund_activation_cost()
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
 	if(!installed_nif)
 		return
 	installed_nif.change_power_level(-activation_cost)
@@ -153,7 +153,7 @@
 
 /// Updates the theme of the NIFSoft to match the parent NIF
 /datum/nifsoft/proc/update_theme()
-	var/obj/item/organ/internal/cyberimp/brain/nif/target_nif = parent_nif.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/target_nif = parent_nif.resolve()
 	if(!target_nif)
 		return FALSE
 
@@ -190,7 +190,7 @@
 
 /// Attempts to install the NIFSoft on the disk to the target
 /obj/item/disk/nifsoft_uploader/proc/attempt_software_install(mob/living/carbon/human/target)
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = target.get_organ_by_type(/obj/item/organ/internal/cyberimp/brain/nif)
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = target.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 
 	if(!ishuman(target) || !installed_nif)
 		return FALSE

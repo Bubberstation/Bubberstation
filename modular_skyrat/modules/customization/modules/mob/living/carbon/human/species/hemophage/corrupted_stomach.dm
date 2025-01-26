@@ -1,5 +1,5 @@
 /datum/component/organ_corruption/stomach
-	corruptable_organ_type = /obj/item/organ/internal/stomach
+	corruptable_organ_type = /obj/item/organ/stomach
 	corrupted_icon_state = "stomach"
 
 
@@ -29,7 +29,7 @@
 	if(BLOODY & eaten.foodtypes) // They're good if it's BLOODY food, they're less good if it isn't.
 		return
 
-	var/obj/item/organ/internal/parent_organ = parent
+	var/obj/item/organ/parent_organ = parent
 
 	if(parent_organ.owner && HAS_TRAIT(parent_organ.owner, TRAIT_AGEUSIA)) // They don't taste anything, their body shouldn't react strongly to the taste of that stuff.
 		return
