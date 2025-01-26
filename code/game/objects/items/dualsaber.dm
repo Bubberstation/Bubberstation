@@ -159,8 +159,8 @@
 		if(our_projectile.reflectable)
 			final_block_chance = 0 //we handle this via IsReflect(), effectively 75% block
 		else
-			final_block_chance -= 25 //We aren't AS good at blocking physical projectiles, like ballistics and thermals
-
+			final_block_chance -= 0 //We aren't AS good at blocking physical projectiles, like ballistics and thermals
+//BUBBER EDIT: final_block_chance 75% against balistics instead of 50%
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance -= 50 //We are particularly bad at blocking someone JUMPING at us..
 
