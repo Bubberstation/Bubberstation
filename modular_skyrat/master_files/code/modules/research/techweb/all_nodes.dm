@@ -110,7 +110,7 @@
 /datum/techweb_node/medbay_equip/New()
 	design_ids += list(
 		"hospital_gown",
-		"anesthetic_machine",
+		"breath_machine",
 		"smartdartgun",
 	)
 	return ..()

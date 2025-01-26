@@ -57,5 +57,3 @@
 	aura_active = FALSE
 	QDEL_NULL(aura_healing_component)
 	owner.balloon_alert(owner, "healing aura ended")
-
-

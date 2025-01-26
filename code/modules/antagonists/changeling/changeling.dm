@@ -954,7 +954,9 @@
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
 	// SKYRAT EDIT START
+	user.visual_only_organs = TRUE
 	chosen_dna.transfer_identity(user, TRUE)
+	user.visual_only_organs = initial(user.visual_only_organs)
 	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE)
 	user.regenerate_icons()
 	user.name = user.get_visible_name()
