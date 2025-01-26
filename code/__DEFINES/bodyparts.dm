@@ -51,3 +51,5 @@
 #define LIMB_COLOR_ATOM_COLOR 30
 /// Voidwalker effect color priority
 #define LIMB_COLOR_VOIDWALKER_CURSE 40
+
+#define LIMB_COLOR_SYNTH 100 // BUBBER EDIT - High priority
