@@ -188,7 +188,7 @@
 	magic_9ball.power_ref = WEAKREF(src)
 	magic_9ball.damage = get_blood_bolt_damage()
 	magic_9ball.def_zone = ran_zone(user.zone_selected, min(level_current * 10, 90))
-	magic_9ball.preparePixelProjectile(target, user)
+	magic_9ball.aim_projectile(target, user)
 	// autotarget if we aim at a turf
 	if(isturf(target))
 		var/list/targets = list()
@@ -220,7 +220,7 @@
 	wound_bonus = 20
 	armour_penetration = 30
 	speed = 1
-	pixel_speed_multiplier = 0.6
+	speed = 0.6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	range = 30
 	armor_flag = LASER

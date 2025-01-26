@@ -200,7 +200,7 @@
 	for(var/obj/item/crusher_trophy/attached_trophy as anything in stored_trophies)
 		attached_trophy.on_projectile_fire(destabilizer, user)
 
-	destabilizer.preparePixelProjectile(target, user, modifiers)
+	destabilizer.aim_projectile(target, user, modifiers)
 	destabilizer.hammer_synced = src
 	destabilizer.firer = user
 
