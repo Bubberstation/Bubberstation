@@ -12,7 +12,7 @@
 /datum/status_effect/body_fluid_regen
 	id = "body fluid regen"
 	tick_interval = 5 SECONDS
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/body_fluid_regen/vagina
