@@ -47,3 +47,5 @@
 // Color priorities for bodyparts
 #define LIMB_COLOR_HULK 10
 #define LIMB_COLOR_CARP_INFUSION 20
+
+#define LIMB_COLOR_SYNTH 100 // BUBBER EDIT - High priority
