@@ -23,6 +23,21 @@
 	eject()
 	return ..()
 
+/obj/machinery/computer/nanite_cloud_controller/examine(mob/user)
+	. = ..()
+	. += span_notice("Use with a linked multitool to link to a techweb server.")
+
+/obj/machinery/computer/nanite_cloud_controller/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(isnull(held_item))
+		return
+	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "Open Panel"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(held_item.tool_behaviour == TOOL_MULTITOOL)
+		context[SCREENTIP_CONTEXT_LMB] = "Upload Techweb"
+		return CONTEXTUAL_SCREENTIP_SET
+
 /obj/machinery/computer/nanite_cloud_controller/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	if(!istype(tool, /obj/item/disk/nanite_program))
@@ -40,6 +55,7 @@
 /obj/machinery/computer/nanite_cloud_controller/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
+		balloon_alert(user, "linked!")
 		SStgui.update_uis(src)
 	return TRUE
 

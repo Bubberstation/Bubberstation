@@ -435,9 +435,9 @@
 
 	. = jointext(render_list, "")
 
-	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER ADDITION - NANITES
 	if(tochat)
 		to_chat(user, examine_block(.), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER ADDITION - NANITES
 	return .
 
 /obj/item/healthanalyzer/click_ctrl_shift(mob/user)
