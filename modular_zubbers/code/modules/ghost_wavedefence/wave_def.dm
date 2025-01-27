@@ -25,6 +25,7 @@
 	var/reward_key // for allowing the door key to drop
 	var/reward_gun // the prize for finishing. its always a gun for now, so.
 	var/difficulty_modifier = 0 // to increase the number of mobs that can spawn
+	var/loot_rolls = 1 // number of times loot is rolled from your table
 
 /obj/item/hackc
 	name = "Hack-C repair pod signaller"
@@ -104,7 +105,7 @@
 	AddComponent(\
 		/datum/component/spawner, \
 		spawn_types = defending_mobs, \
-		spawn_time = 15 SECONDS, \
+		spawn_time = 15 SECONDS - difficulty_modifier, \
 		max_spawned = 10 + difficulty_modifier, \
 		max_spawn_per_attempt = 2 + difficulty_modifier, \
 		spawn_text = "appears to assault", \
@@ -145,8 +146,9 @@
 	qdel(GetComponent(/datum/component/gps))
 	reset_drone(success = TRUE)
 	new reward_key(loc)
-	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
-	new reward_gun(loc)
+	for(var/i = 1, i > loot_rolls, i++)
+		reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
+		new reward_gun(loc)
 
 /obj/structure/wave_defence/proc/scan_and_confirm(mob/living/user)
 	if(tapped)
@@ -194,5 +196,7 @@
 	reward_key = /obj/item/keycard/tarkon_med
 
 /obj/structure/wave_defence/tarkon/boss
-
+	defending_mobs = list(/mob/living/basic/alien, /mob/living/basic/alien/sentinel)
 	difficulty_modifier = 2
+	wave_timer = WAVE_DURATION_LARGE
+	loot_rolls = 3
