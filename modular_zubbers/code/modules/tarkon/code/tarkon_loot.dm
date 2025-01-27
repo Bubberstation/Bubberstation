@@ -26,5 +26,5 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 
 /obj/item/storage/toolbox/guncase/bmsniper
 	name = "SA-107 gun case"
-	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket = 1
+	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket
 	extra_to_spawn = /obj/item/ammo_box/magazine/sniper_rounds
