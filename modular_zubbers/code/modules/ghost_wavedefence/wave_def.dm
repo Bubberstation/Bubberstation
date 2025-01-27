@@ -19,7 +19,7 @@
 	var/spawn_drone_on_tap = TRUE
 	var/icon_state_tapped = "emerg_engine_running"
 	var/mob/living/basic/node_drone/hackc/node = null //this path is a placeholder.
-	var/wave_timer = WAVE_DURATION_LARGE
+	var/wave_timer = WAVE_DURATION_MEDIUM
 	COOLDOWN_DECLARE(wave_cooldown)
 	COOLDOWN_DECLARE(manual_vent_cooldown)
 	var/reward_key // for allowing the door key to drop
@@ -59,6 +59,7 @@
 	if(tapped)
 		icon_state = icon_state_tapped
 		update_appearance(UPDATE_ICON_STATE)
+	RegisterSignal(src, COMSIG_SPAWNER_SPAWNED_DEFAULT, PROC_REF(anti_cheese))
 	return ..()
 
 /obj/structure/ore_vent/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -166,6 +167,9 @@
 	if(!pre_wave_defense(user, spawn_drone_on_tap))
 		return
 	start_wave_defense()
+
+/obj/structure/wave_defence/proc/anti_cheese()
+	explosion(src, heavy_impact_range = 1, light_impact_range = 3, flame_range = 0, flash_range = 0, adminlog = FALSE)
 
 /obj/structure/wave_defence/is_buckle_possible(mob/living/target, force, check_loc)
 	. = ..()
