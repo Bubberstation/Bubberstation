@@ -37,9 +37,9 @@
 	name = "Hack-C drone"
 	desc = "A lightweight version of the standard NT drones. This one has been modified for basic repairs and electrical engineering work."
 	icon = 'modular_zubbers/code/modules/ghost_wavedefence/wavedef_items.dmi'
-	icon_state = "hacking_node_active"
-	icon_living = "hacking_node_active"
-	icon_dead = "hacking_node_active"
+	icon_state = "mining_node_active"
+	icon_living = "mining_node_active"
+	icon_dead = "mining_node_active"
 
 /obj/structure/wave_defence/examine(mob/user)
 	. += span_notice("This can be repaired by calling in a drone with a [span_bold("Hack-C signaller")].")
