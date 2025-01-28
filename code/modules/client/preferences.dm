@@ -488,13 +488,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		switch(canvas_size)
 			if(0)
 				body.pixel_x = 0
-				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = preferences.read_preference(/datum/preference/choiced/bgstate))
 			if(1)
 				body.pixel_x = 16
-				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = preferences.read_preference(/datum/preference/choiced/bgstate))
 			else
 				body.pixel_x = 32
-				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = preferences.read_preference(/datum/preference/choiced/bgstate))
 
 	last_canvas_size = canvas_size
 

@@ -29,13 +29,3 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 /datum/preference/choiced/bgstate/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
-
-/datum/preferences
-	var/background_icon_state
-//backgrounds
-/datum/preferences/New(client/parent)
-	. = ..()
-
-	background_icon_state = read_preference(/datum/preference/choiced/bgstate)
-
-
