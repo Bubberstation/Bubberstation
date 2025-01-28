@@ -67,7 +67,6 @@
 		"coagulating_nanites",
 		"flesheating_nanites",
 		"poison_nanites",
-		// "regenerative_nanites",
 		"sensor_crit_nanites",
 		"sensor_damage_nanites",
 		"sensor_death_nanites",
@@ -114,12 +113,13 @@
 	description = "Nanite programs that require seamless integration between nanites and biology. Passively increases nanite regeneration rate for all clouds upon researching."
 	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
 	design_ids = list(
+		"regenerative_nanites",
 		"aggressive_nanites",
 		"brainheal_plus_nanites",
 		"defib_nanites",
 		"fakedeath_nanites",
 		"purging_plus_nanites",
-		"regenerative_plus_nanites",
+		// "regenerative_plus_nanites",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 

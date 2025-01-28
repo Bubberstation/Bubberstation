@@ -10,7 +10,7 @@ import {
   Stack,
 } from '../components';
 import { Window } from '../layouts';
-import { NaniteProgram } from './NaniteProgrammer';
+import { NaniteProgram } from './Nanites/types';
 
 export const NaniteChamberControl = (props, context) => {
   return (

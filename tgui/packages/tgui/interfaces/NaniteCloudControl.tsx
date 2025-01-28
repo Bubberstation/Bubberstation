@@ -10,7 +10,8 @@ import {
   Stack,
 } from '../components';
 import { Window } from '../layouts';
-import { NaniteProgram } from './NaniteProgrammer';
+import { TechwebWarning } from './Nanites/NoTechwebWarning';
+import { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteInfoBoxProps {
   has_disk: boolean;
@@ -19,18 +20,24 @@ interface NaniteInfoBoxProps {
   current_view: number;
   backup_id: number;
   new_backup_id: number;
+  techweb: Techweb;
 }
 
 export const NaniteDiskBox = (props, context) => {
   const { data } = useBackend<NaniteInfoBoxProps>();
-  const { has_disk, has_program, disk } = data;
+  const { has_disk, has_program, disk, techweb } = data;
   if (!has_disk) {
     return <NoticeBox>No disk inserted</NoticeBox>;
   }
   if (!has_program) {
     return <NoticeBox>Inserted disk has no program</NoticeBox>;
   }
-  return <NaniteInfoBox program={disk} />;
+  return (
+    <>
+      <TechwebWarning display={!techweb} />
+      <NaniteInfoBox program={disk} />
+    </>
+  );
 };
 
 export const NaniteInfoBox = (props) => {

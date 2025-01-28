@@ -429,7 +429,7 @@
 		research_value *= 0.5
 	if(host_mob.stat == DEAD)
 		research_value *= 0.75
-	techweb.add_points_all(research_value)
+	techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_value))
 
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	SIGNAL_HANDLER

@@ -11,6 +11,8 @@ import {
   Tabs,
 } from '../components';
 import { Window } from '../layouts';
+import { TechwebWarning } from './Nanites/NoTechwebWarning';
+import { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteProgramHubProps {
   detail_view: boolean;
@@ -18,14 +20,22 @@ interface NaniteProgramHubProps {
     name: string;
     desc: string;
   };
+  techweb: Techweb;
   has_disk: boolean;
   has_program: boolean;
-  programs: Record<string, Array<{ id: string; name: string; desc: string }>>;
+  programs: Record<string, Array<NaniteProgram>>;
 }
 
 export const NaniteProgramHub = (props, context) => {
   const { act, data } = useBackend<NaniteProgramHubProps>();
-  const { detail_view, disk, has_disk, has_program, programs = {} } = data;
+  const {
+    detail_view,
+    disk,
+    has_disk,
+    has_program,
+    programs = {},
+    techweb,
+  } = data;
   const [selectedCategory, setSelectedCategory] = useSharedState(
     context,
     'category',
@@ -47,6 +57,7 @@ export const NaniteProgramHub = (props, context) => {
             </>
           }
         >
+          <TechwebWarning display={!techweb} />
           {has_disk ? (
             has_program ? (
               <LabeledList>
