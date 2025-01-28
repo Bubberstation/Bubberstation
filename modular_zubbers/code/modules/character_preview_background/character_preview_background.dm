@@ -28,7 +28,6 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	return GLOB.bgstate_options
 
 /datum/preference/choiced/bgstate/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	. = ..()
 	return
 
 /datum/preferences
