@@ -32,7 +32,7 @@
 	var/static/list/venomous_bite_choice_specs = list(
 		/datum/reagent/toxin = list(5, 80 SECONDS),
 		/datum/reagent/toxin/venom = list(5, 180 SECONDS),
-		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than the zootoxin
+		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than toxin
 		// medicine
 		/datum/reagent/medicine/epinephrine = list(5, 20 SECONDS),
 		/datum/reagent/medicine/omnizine = list(2, 90 SECONDS), // barely worth it due to the damage biting does
@@ -55,7 +55,7 @@
 	return choices
 
 /datum/preference/choiced/venomous_bite_venom/create_default_value()
-	return "/datum/reagent/toxin/player_venom"
+	return "/datum/reagent/toxin"
 
 /datum/preference/choiced/venomous_bite_venom/compile_constant_data()
 	var/list/data = ..()
