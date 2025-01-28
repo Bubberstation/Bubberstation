@@ -33,3 +33,4 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 	name = "Combat Laser Rifle gun case"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/laser
 	extra_to_spawn = /obj/item/ammo_box/magazine/recharge
+
