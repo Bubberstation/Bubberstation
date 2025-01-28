@@ -25,19 +25,14 @@ interface NaniteInfoBoxProps {
 
 export const NaniteDiskBox = (props, context) => {
   const { data } = useBackend<NaniteInfoBoxProps>();
-  const { has_disk, has_program, disk, techweb } = data;
+  const { has_disk, has_program, disk } = data;
   if (!has_disk) {
     return <NoticeBox>No disk inserted</NoticeBox>;
   }
   if (!has_program) {
     return <NoticeBox>Inserted disk has no program</NoticeBox>;
   }
-  return (
-    <>
-      <TechwebWarning display={!techweb} />
-      <NaniteInfoBox program={disk} />
-    </>
-  );
+  return <NaniteInfoBox program={disk} />;
 };
 
 export const NaniteInfoBox = (props) => {
@@ -302,10 +297,11 @@ export const NaniteCloudBackupDetails = () => {
 
 export const NaniteCloudControl = () => {
   const { act, data } = useBackend<NaniteInfoBoxProps>();
-  const { has_disk, current_view, new_backup_id } = data;
+  const { has_disk, current_view, new_backup_id, techweb } = data;
   return (
     <Window width={375} height={700}>
       <Window.Content scrollable>
+        <TechwebWarning display={!techweb} />
         <Section
           title="Program Disk"
           buttons={

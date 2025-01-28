@@ -26,6 +26,7 @@
 	. = ..()
 	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
+	register_context()
 
 /obj/machinery/nanite_program_hub/examine(mob/user)
 	. = ..()
@@ -67,7 +68,7 @@
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
 		balloon_alert(user, "linked!")
-		SStgui.update_uis(src)
+		update_static_data_for_all_viewers()
 	return TRUE
 
 /obj/machinery/nanite_program_hub/screwdriver_act(mob/living/user, obj/item/I)

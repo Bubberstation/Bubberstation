@@ -17,6 +17,7 @@
 	. = ..()
 	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
+	register_context()
 
 /obj/machinery/computer/nanite_cloud_controller/Destroy()
 	QDEL_LIST(cloud_backups) //rip backups
@@ -56,7 +57,7 @@
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
 		balloon_alert(user, "linked!")
-		SStgui.update_uis(src)
+		update_static_data_for_all_viewers()
 	return TRUE
 
 /obj/machinery/computer/nanite_cloud_controller/attack_hand_secondary(mob/user, list/modifiers)
