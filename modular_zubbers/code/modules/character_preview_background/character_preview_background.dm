@@ -1,8 +1,8 @@
 /// Enables the choice of background in the character preview menu
 /datum/preference/choiced/bgstate
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "bgstate"
-	savefile_identifier = PREFERENCE_PLAYER
+	savefile_identifier = PREFERENCE_CHARACTER
 	should_generate_icons = FALSE
 
 /datum/preference/choiced/apply_to_client(client/client, value)
