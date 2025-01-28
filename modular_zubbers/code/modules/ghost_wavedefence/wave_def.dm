@@ -19,7 +19,7 @@
 	var/spawn_drone_on_tap = TRUE
 	var/icon_state_tapped = "emerg_engine_running"
 	var/mob/living/basic/node_drone/hackc/node = null //this path is a placeholder.
-	var/wave_timer = WAVE_DURATION_MEDIUM
+	var/wave_timer = WAVE_DURATION_LARGE
 	COOLDOWN_DECLARE(wave_cooldown)
 	COOLDOWN_DECLARE(manual_vent_cooldown)
 	var/reward_key // for allowing the door key to drop
@@ -145,10 +145,9 @@
 	update_appearance(UPDATE_ICON_STATE)
 	qdel(GetComponent(/datum/component/gps))
 	reset_drone(success = TRUE)
+	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
+	new reward_gun(loc)
 	new reward_key(loc)
-	for(var/i = 1, i > loot_rolls, i++)
-		reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
-		new reward_gun(loc)
 
 /obj/structure/wave_defence/proc/scan_and_confirm(mob/living/user)
 	if(tapped)
@@ -198,5 +197,10 @@
 /obj/structure/wave_defence/tarkon/boss
 	defending_mobs = list(/mob/living/basic/alien, /mob/living/basic/alien/sentinel)
 	difficulty_modifier = 2
-	wave_timer = WAVE_DURATION_LARGE
-	loot_rolls = 3
+
+/obj/structure/wave_defence/tarkon/boss/initiate_wave_win()
+	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
+	new reward_gun(loc)
+	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
+	new reward_gun(loc)
+	return ..()

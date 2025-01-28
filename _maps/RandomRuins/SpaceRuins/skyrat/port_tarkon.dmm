@@ -106,12 +106,6 @@
 "aE" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
-"aF" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/basic/alien,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/port_tarkon/secoff)
 "aG" = (
 /obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark,
@@ -2349,11 +2343,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/observ)
-"lJ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/basic/alien,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/port_tarkon/porthall)
 "lK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -4812,11 +4801,6 @@
 /obj/machinery/flatpacker,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
-"xZ" = (
-/obj/effect/turf_decal/tile/yellow,
-/mob/living/basic/alien,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/port_tarkon/toolstorage)
 "ye" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -5289,7 +5273,6 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/shower/directional/south,
 /obj/machinery/light/small/directional/west,
-/mob/living/basic/alien,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "Aw" = (
@@ -6248,7 +6231,6 @@
 "Fy" = (
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/machinery/airalarm/directional/east,
-/mob/living/basic/alien,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "Fz" = (
@@ -7179,12 +7161,6 @@
 /obj/machinery/camera/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
-"Jw" = (
-/obj/effect/turf_decal/tile/neutral/half{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/port_tarkon/centerhall)
 "Jx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7686,6 +7662,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/emp_proof/directional/west,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "LO" = (
@@ -7995,14 +7972,6 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
-"Nm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/effect/turf_decal/tile/neutral/half{
-	dir = 1
-	},
-/mob/living/basic/alien,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/port_tarkon/porthall)
 "No" = (
 /obj/structure/transit_tube/curved/flipped,
 /turf/template_noop,
@@ -8708,10 +8677,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
-"QD" = (
-/mob/living/basic/alien,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/port_tarkon/garden)
 "QE" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Port Primary Hallway"
@@ -8778,6 +8743,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/afthall)
 "QP" = (
@@ -9017,6 +8983,7 @@
 /obj/effect/turf_decal/tile/neutral/anticorner{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "RV" = (
@@ -9188,7 +9155,6 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/mob/living/basic/alien,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "Ta" = (
@@ -9801,12 +9767,6 @@
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/power1)
-"Wj" = (
-/obj/effect/turf_decal/tile/neutral/half{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/port_tarkon/centerhall)
 "Wl" = (
 /obj/machinery/firealarm/directional/west,
 /obj/effect/turf_decal/tile/yellow/half{
@@ -15325,7 +15285,7 @@ gP
 xF
 xF
 bc
-Nm
+bD
 qR
 eP
 bc
@@ -15636,7 +15596,7 @@ qR
 qR
 uX
 Vz
-lJ
+XB
 fE
 iH
 vy
@@ -16440,7 +16400,7 @@ Oh
 VF
 dM
 yL
-xZ
+Ix
 Im
 xy
 sh
@@ -16775,7 +16735,7 @@ iw
 uZ
 xL
 Py
-aF
+uZ
 YK
 ev
 xF
@@ -18265,7 +18225,7 @@ vB
 bV
 MZ
 Iz
-Wj
+Xn
 KX
 xm
 KX
@@ -18469,7 +18429,7 @@ RE
 ny
 Sg
 ny
-Jw
+Xn
 Kz
 Kz
 Kz
@@ -18585,7 +18545,7 @@ sD
 JO
 XT
 Hu
-QD
+UO
 TI
 fX
 vY
