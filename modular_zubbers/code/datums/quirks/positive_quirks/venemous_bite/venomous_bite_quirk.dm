@@ -30,13 +30,12 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	/// Format: (reagent typepath -> list(amount to inject per bite, cooldown))
 	var/static/list/venomous_bite_choice_specs = list(
-		/datum/reagent/toxin/player_venom = list(5, 80 SECONDS),
+		/datum/reagent/toxin = list(5, 80 SECONDS),
 		/datum/reagent/toxin/venom = list(5, 180 SECONDS),
-		/datum/reagent/toxin/staminatoxin = list(5, 120 SECONDS),
 		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than the zootoxin
 		// medicine
 		/datum/reagent/medicine/epinephrine = list(5, 20 SECONDS),
-		/datum/reagent/medicine/omnizine = list(5, 90 SECONDS), // barely worth it due to the damage biting does
+		/datum/reagent/medicine/omnizine = list(2, 90 SECONDS), // barely worth it due to the damage biting does
 		// drugs
 		/datum/reagent/drug/space_drugs = list(5, 60 SECONDS),
 		/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS),
