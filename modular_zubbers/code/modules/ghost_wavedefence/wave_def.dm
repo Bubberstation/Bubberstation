@@ -195,6 +195,7 @@
 	reward_key = /obj/item/keycard/tarkon_med
 
 /obj/structure/wave_defence/tarkon/boss
+	reward_key = /obj/item/keycard/tarkon_vault
 	defending_mobs = list(/mob/living/basic/alien, /mob/living/basic/alien/sentinel)
 	difficulty_modifier = 2
 

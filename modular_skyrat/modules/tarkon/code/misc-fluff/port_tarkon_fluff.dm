@@ -13,6 +13,11 @@
 	desc = "Tarkon industries secure storage lock. This one has blue markings on it."
 	puzzle_id = "tarkon3"
 
+/obj/machinery/door/puzzle/keycard/vault
+	name = "Vault Secure Airlock"
+	desc = "Tarkon industries secure storage lock. This one has black markings on it."
+	puzzle_id = "tarkon4"
+
 /obj/item/keycard/tarkon_rnd
 	name = "Research keycard"
 	desc = "Tarkon industries secure storage lock key."
@@ -30,3 +35,9 @@
 	desc = "Tarkon industries secure storage lock key."
 	color = "#33d4ff"
 	puzzle_id = "tarkon3"
+
+/obj/item/keycard/tarkon_vault
+	name = "Vault keycard"
+	desc = "Tarkon industries secure storage lock key."
+	color = "#303030"
+	puzzle_id = "tarkon4"
