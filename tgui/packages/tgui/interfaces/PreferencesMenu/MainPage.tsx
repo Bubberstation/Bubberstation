@@ -644,15 +644,28 @@ export const MainPage = (props: { openSpecies: () => void }) => {
 
                   <Stack.Item grow>
                     <CharacterPreview
-                      height="80%" // SKYRAT EDIT - ORIGINAL: height="100%"
+                      height="60%" // SKYRAT EDIT - ORIGINAL: height="100%"
                       id={data.character_preview_view}
                     />
                   </Stack.Item>
 
-                  <Stack.Item
-                    // SKYRAT EDIT ADDITION
-                    position="relative"
-                  >
+                  {/* BUBBER EDIT ADDITION */}
+                  <Stack.Item position="relative">
+                    <Dropdown
+                      width="100%"
+                      selected={
+                        data.character_preferences.misc.background_state
+                      }
+                      options={serverData?.background_state.choices || []}
+                      onSelected={(value) =>
+                        act('update_background', {
+                          new_background: value,
+                        })
+                      }
+                    />
+                  </Stack.Item>
+
+                  <Stack.Item position="relative">
                     <Dropdown
                       width="100%"
                       selected={data.preview_selection}
@@ -664,6 +677,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                       }
                     />
                   </Stack.Item>
+                  {/* BUBBER EDIT END */}
 
                   <Stack.Item position="relative">
                     <NameInput

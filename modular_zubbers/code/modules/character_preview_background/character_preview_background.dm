@@ -1,16 +1,9 @@
 /// Enables the choice of background in the character preview menu
-/datum/preference/choiced/bgstate
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_key = "bgstate"
+/datum/preference/choiced/background_state
+	savefile_key = "background_state"
 	savefile_identifier = PREFERENCE_CHARACTER
-	should_generate_icons = FALSE
 
-/datum/preference/choiced/apply_to_client(client/client, value)
-	. = ..()
-	if(SStgui.get_open_ui(client, client.prefs))
-		INVOKE_ASYNC(client.prefs.character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body))
-
-GLOBAL_LIST_INIT(bgstate_options, list(
+GLOBAL_LIST_INIT(background_state_options, list(
 	"000",
 	"midgrey",
 	"FFF",
@@ -21,22 +14,11 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	"reinforced",
 	))
 
-/datum/preference/choiced/bgstate/create_default_value()
-	return "000"
+/datum/preference/choiced/background_state/create_default_value()
+	return GLOB.background_state_options[1]
 
-/datum/preference/choiced/bgstate/init_possible_values()
-	return GLOB.bgstate_options
+/datum/preference/choiced/background_state/init_possible_values()
+	return GLOB.background_state_options
 
-/datum/preference/choiced/bgstate/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	. = ..()
+/datum/preference/choiced/background_state/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
-
-/datum/preferences
-	var/background_icon_state
-//backgrounds
-/datum/preferences/New(client/parent)
-	. = ..()
-
-	background_icon_state = read_preference(/datum/preference/choiced/bgstate)
-
-

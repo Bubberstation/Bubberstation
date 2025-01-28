@@ -316,6 +316,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character_preview_view.update_body()
 			return TRUE
 
+		if("update_background")
+			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
+			return TRUE
+
 		if ("open_food")
 			GLOB.food_prefs_menu.ui_interact(usr)
 			return TRUE
@@ -442,6 +446,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// BUBBER EDIT ADDITION START: Better character preview: Rescales between 32x32, 64x64 and 96x96.
 	var/image/canvas
 	var/last_canvas_size
+	var/last_canvas_state
 	// BUBBER EDIT END
 
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
@@ -473,8 +478,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	preferences.render_new_preview_appearance(body, show_job_clothes)
 
 	var/canvas_size = 0
+	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
 
-	// Being a taur, or over 1.1 scales you up
+	// Being a taur, or over 1.1 scales it up
 	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
 		canvas_size = 1
 	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
@@ -483,20 +489,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if (preferences.all_quirks.Find("Oversized"))
 		canvas_size += 1
 
-	if (last_canvas_size != canvas_size)
+	if (last_canvas_size != canvas_size || last_canvas_state != canvas_state)
 		QDEL_NULL(canvas)
 		switch(canvas_size)
 			if(0)
 				body.pixel_x = 0
-				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = canvas_state)
 			if(1)
 				body.pixel_x = 16
-				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = canvas_state)
 			else
 				body.pixel_x = 32
-				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = preferences.background_icon_state)
+				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = canvas_state)
 
 	last_canvas_size = canvas_size
+	last_canvas_state = canvas_state
 
 	canvas.add_overlay(body.appearance)
 	appearance = canvas.appearance
