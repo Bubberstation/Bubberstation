@@ -4,8 +4,6 @@
 
 	// Set up the dummy for its photoshoot
 	apply_prefs_to(mannequin, TRUE, visuals_only = TRUE)
-	// Apply the Dummy's preview background first so we properly layer everything else on top of it.
-	mannequin.add_overlay(mutable_appearance('modular_zubbers/icons/UI_Icons/backgrounds.dmi', read_preference(/datum/preference/choiced/bgstate), layer = SPACE_LAYER))
 
 	switch(preview_pref)
 		if(PREVIEW_PREF_JOB)
