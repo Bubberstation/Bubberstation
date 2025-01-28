@@ -216,7 +216,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "aJ" = (
-/obj/structure/fans/tiny,
 /obj/machinery/conveyor{
 	id = "syndirecycle";
 	dir = 1
@@ -904,7 +903,6 @@
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
 "cF" = (
-/obj/structure/cable,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
@@ -5886,7 +5884,11 @@
 /obj/machinery/mineral/stacking_unit_console{
 	pixel_x = -32
 	},
-/turf/open/floor/catwalk_floor/iron_dark,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "rN" = (
 /obj/structure/sign/poster/official/pda_ad/directional/west,
@@ -9448,6 +9450,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cargo_shelf,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ce" = (
@@ -10712,6 +10715,7 @@
 	dir = 1;
 	id = "synditrashgun"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "FQ" = (
@@ -10727,7 +10731,7 @@
 /obj/machinery/door/airlock/maintenance/glass{
 	name = "Emergency Escape"
 	},
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "FR" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
@@ -11326,8 +11330,10 @@
 /turf/open/floor/carpet/donk,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "HX" = (
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "HY" = (
 /obj/machinery/duct,
@@ -12309,13 +12315,14 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/structure/cable,
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/end,
 /obj/structure/window/reinforced/plasma/spawner/directional/west,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "KU" = (
@@ -21035,7 +21042,7 @@ mc
 mc
 uQ
 nc
-UL
+Kd
 UL
 kd
 nA
@@ -21106,7 +21113,7 @@ mc
 qj
 uQ
 nc
-UL
+Kd
 UL
 Kd
 UL
