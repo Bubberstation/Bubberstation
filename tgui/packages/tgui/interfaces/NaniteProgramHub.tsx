@@ -93,7 +93,7 @@ export const NaniteProgramHub = (props, context) => {
         >
           {programs !== null ? (
             <Flex>
-              <Flex.Item minWidth="110px">
+              <Flex.Item minWidth="110px" style={{ marginRight: '15px' }}>
                 <Tabs vertical>
                   {map(programs, (cat_contents, category) => {
                     // Backend was sending stupid data that would have been
