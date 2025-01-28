@@ -129,7 +129,7 @@
 	description = "Nanite programs that perform military-grade functions."
 	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_SYNDICATE_BASIC)
 	design_ids = list(
-		"explosive_nanites",
+		// "explosive_nanites",
 		"meltdown_nanites",
 		"nanite_sting_nanites",
 		"pyro_nanites",
