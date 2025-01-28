@@ -316,6 +316,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character_preview_view.update_body()
 			return TRUE
 
+		if("update_background")
+			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
+			return TRUE
+
 		if ("open_food")
 			GLOB.food_prefs_menu.ui_interact(usr)
 			return TRUE
@@ -474,7 +478,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	preferences.render_new_preview_appearance(body, show_job_clothes)
 
 	var/canvas_size = 0
-	var/canvas_state = preferences.read_preference(/datum/preference/choiced/bgstate)
+	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
 
 	// Being a taur, or over 1.1 scales it up
 	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
