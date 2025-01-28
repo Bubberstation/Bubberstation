@@ -4646,6 +4646,7 @@
 /turf/template_noop,
 /area/template_noop)
 "vz" = (
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "vA" = (
@@ -5300,9 +5301,8 @@
 /area/ruin/space/has_grav/port_tarkon/developement)
 "yR" = (
 /obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/toy/figure/borg,
-/turf/open/floor/iron/dark,
+/obj/item/aicard,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "yT" = (
 /obj/effect/turf_decal/tile/blue/half{
@@ -5320,6 +5320,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"yV" = (
+/obj/structure/alien/egg/burst,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "yW" = (
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/wood/large,
@@ -5904,6 +5908,9 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"BJ" = (
+/turf/closed/indestructible/steel,
+/area/ruin/space/has_grav)
 "BK" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/disposalpipe/segment{
@@ -6470,6 +6477,9 @@
 /area/ruin/space/has_grav/port_tarkon/power1)
 "Es" = (
 /obj/machinery/camera/emp_proof/directional/north,
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/toy/figure/borg,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "Et" = (
@@ -7933,12 +7943,7 @@
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "KO" = (
-/obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "KP" = (
@@ -11080,8 +11085,11 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "Zg" = (
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/iron/dark,
+/obj/structure/alien/weeds/node,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "Zh" = (
 /obj/machinery/door/airlock/public/glass{
@@ -19941,8 +19949,8 @@ gP
 xF
 Qi
 Wz
-PH
-jH
+Wz
+Wz
 Wz
 VR
 JD
@@ -20044,7 +20052,7 @@ gP
 Qi
 Wz
 Es
-jH
+PH
 hY
 KA
 fi
@@ -20144,8 +20152,8 @@ vy
 gP
 xF
 Qi
+Wz
 yR
-jH
 jH
 jH
 jH
@@ -20246,8 +20254,8 @@ vy
 gP
 gP
 Qi
-KO
-VR
+Wz
+Zg
 sF
 jH
 jH
@@ -20348,8 +20356,8 @@ vy
 gP
 gP
 Qi
+Wz
 EM
-jH
 jH
 jH
 OS
@@ -20450,8 +20458,8 @@ vy
 MQ
 gP
 Qi
-Zg
-jH
+Wz
+KO
 jH
 jH
 lz
@@ -20663,8 +20671,8 @@ jH
 hY
 jH
 jH
-Qi
-DT
+Wz
+JV
 JV
 JV
 dz
@@ -20756,12 +20764,12 @@ vy
 vy
 gP
 Qi
-jH
+Wz
 PH
 VR
-jH
-vz
-jH
+RV
+yV
+VR
 vz
 QU
 io
@@ -20859,16 +20867,16 @@ vy
 gP
 Qi
 Wz
-jH
-jH
-RV
-sF
-VR
-RV
 Wz
 Wz
 Wz
-xF
+Wz
+Wz
+Wz
+Wz
+Wz
+Wz
+BJ
 xF
 xF
 gP
@@ -20970,7 +20978,7 @@ Qi
 Qi
 Qi
 Qi
-gP
+BJ
 gP
 gP
 gP
