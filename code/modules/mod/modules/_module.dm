@@ -355,20 +355,19 @@
 	var/used_overlay = get_current_overlay_state()
 	if (!used_overlay)
 		return
+	/* BUBBER EDIT START - Making MODsuits mutant-compatible - ORIGINAL:
 	var/mutable_appearance/module_icon
 	if(mask_worn_overlay)
 		module_icon = mutable_appearance(get_module_icon_cache(used_overlay), layer = standing.layer + 0.1)
 	else
-		return
-	/* SKYRAT EDIT START - Making MODsuits mutant-compatible - ORIGINAL:
 		module_icon = mutable_appearance(overlay_icon_file, used_overlay, layer = standing.layer + 0.1)
 	if(!use_mod_colors)
 		module_icon.appearance_flags |= RESET_COLOR
 
 	. += module_icon
 	*/
-	return handle_module_icon(standing, used_overlay)
-	// SKYRAT EDIT END
+	. = handle_module_icon(standing, used_overlay)
+	// BUBBER EDIT END
 	SEND_SIGNAL(src, COMSIG_MODULE_GENERATE_WORN_OVERLAY, ., standing)
 
 /obj/item/mod/module/proc/get_current_overlay_state()
