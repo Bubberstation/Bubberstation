@@ -54,3 +54,7 @@
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
 	weight = 25
 	earliest_start = 45 MINUTES
+
+/datum/round_event_control/operative
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMBAT, TAG_CHAOTIC, TAG_CREW_ANTAG)
