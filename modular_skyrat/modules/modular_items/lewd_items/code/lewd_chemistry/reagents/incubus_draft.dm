@@ -103,7 +103,7 @@
 * exposed_mob - the mob being affected by the reagent
 * genital - the genital that is causing the messages
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/mob_genital, suppress_chat = FALSE)
+/datum/reagent/drug/aphrodisiac/incubus_draft/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/mob_genital, suppress_chat = FALSE)
 	if(!mob_genital)
 		return
 
@@ -119,7 +119,7 @@
 * mob_penis - the penis that is causing the message
 * NOTE: this function doesn't get called often enough to warrant suppressing chat, hence the var's omission
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/proc/penis_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/penis/mob_penis)
+/datum/reagent/drug/aphrodisiac/incubus_draft/proc/penis_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/penis/mob_penis)
 
 	if(!mob_penis)
 		return
@@ -149,7 +149,7 @@
 * exposed_mob - the mob being affected by the reagent
 * mob_testicles - the testicles that are causing the message
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/proc/testicles_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/testicles/mob_testicles, suppress_chat = FALSE)
+/datum/reagent/drug/aphrodisiac/incubus_draft/proc/testicles_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/testicles/mob_testicles, suppress_chat = FALSE)
 
 	// So we don't spam chat
 	if(suppress_chat)
