@@ -10,7 +10,7 @@
 	var/tongue_action_type = /datum/action/cooldown/hemophage/drain_victim
 
 
-/datum/component/organ_corruption/tongue/corrupt_organ(obj/item/organ/internal/corruption_target)
+/datum/component/organ_corruption/tongue/corrupt_organ(obj/item/organ/corruption_target)
 	. = ..()
 
 	if(!.)

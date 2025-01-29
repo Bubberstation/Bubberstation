@@ -32,7 +32,7 @@
 
 	return enter_host(victim, brain)
 
-/mob/living/basic/cortical_borer/proc/enter_host(mob/living/carbon/human/victim, obj/item/organ/internal/brain/brain)
+/mob/living/basic/cortical_borer/proc/enter_host(mob/living/carbon/human/victim, obj/item/organ/brain/brain)
 	human_host = victim
 	forceMove(human_host)
 
