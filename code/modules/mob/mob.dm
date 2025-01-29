@@ -277,7 +277,7 @@
 	hearers -= ignored_mobs
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
-	for(var/mob/camera/ai/ai_eye in hearers)
+	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
 			hearers |= ai_eye.ai
@@ -367,7 +367,7 @@
 	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
-	for(var/mob/camera/ai/ai_eye in hearers)
+	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
 			hearers |= ai_eye.ai
