@@ -238,8 +238,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/tarkon, 32)
 	max_mobs = 7
 	spawn_time = 20 SECONDS
 	mob_types = list(
-		/mob/living/basic/alien,
-		/mob/living/basic/alien/drone,
+		/mob/living/basic/alien/drone/tarkon,
 		/mob/living/basic/alien/sentinel
 	)
 	spawn_text = "crawls out of"
@@ -300,7 +299,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/tarkon, 32)
 	max_mobs = 2
 	spawn_time = 30 SECONDS
 	mob_types = list(
-		/mob/living/basic/alien,
 		/mob/living/basic/alien/drone
 	)
 	boss_mob = /mob/living/basic/alien/sentinel
