@@ -52,7 +52,7 @@
 	var/away_dir = get_dir(above, interacting_with)
 	user.visible_message(span_notice("[user] begins climbing upwards with [src]."), span_notice("You get to work on properly hooking [src] and going upwards."))
 	// BUBBER EDIT BEGIN - climbsound
-	playsound(target, climbsound, 50) //plays twice so people above and below can hear
+	playsound(interacting_with, climbsound, 50) //plays twice so people above and below can hear
 	playsound(user_turf, climbsound, 50)
 	// BUBBER EDIT END
 	var/list/effects = list(new /obj/effect/temp_visual/climbing_hook(interacting_with, away_dir), new /obj/effect/temp_visual/climbing_hook(user_turf, away_dir))

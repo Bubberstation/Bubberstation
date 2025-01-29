@@ -355,11 +355,6 @@
 	var/used_overlay = get_current_overlay_state()
 	if (!used_overlay)
 		return
-	var/mutable_appearance/module_icon
-	if(mask_worn_overlay)
-		module_icon = mutable_appearance(get_module_icon_cache(used_overlay), layer = standing.layer + 0.1)
-	else
-		return
 	/* BUBBER EDIT START - Making MODsuits mutant-compatible - ORIGINAL:
 	var/mutable_appearance/module_icon
 	if(mask_worn_overlay)

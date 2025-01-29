@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 		player.save_individual_persistence()
 
 /// Loads the contents of the player's modular_persistence file to their character.
-/datum/controller/subsystem/persistence/proc/load_modular_persistence(obj/item/organ/internal/brain/brain)
+/datum/controller/subsystem/persistence/proc/load_modular_persistence(obj/item/organ/brain/brain)
 	if(!brain)
 		return FALSE
 
@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	/// The owner's character slot index.
 	var/stored_character_slot_index
 
-/datum/modular_persistence/New(obj/item/organ/internal/brain/brain, list/persistence_data)
+/datum/modular_persistence/New(obj/item/organ/brain/brain, list/persistence_data)
 	owner = brain
 	. = ..()
 

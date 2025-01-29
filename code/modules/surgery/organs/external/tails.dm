@@ -178,7 +178,7 @@
 	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
 
 /datum/bodypart_overlay/mutant/tail/cat/get_global_feature_list()
-	return SSaccessories.tails_list_felinid
+	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT ORIGINAL: return SSaccessories.tails_list_felinid
 
 /obj/item/organ/tail/monkey
 	name = "monkey tail"
