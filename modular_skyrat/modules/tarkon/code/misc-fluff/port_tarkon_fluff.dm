@@ -41,3 +41,8 @@
 	desc = "Tarkon industries secure storage lock key."
 	color = "#303030"
 	puzzle_id = "tarkon4"
+
+/mob/living/basic/alien/drone/tarkon
+	basic_mob_flags = DEL_ON_DEATH
+	var/static/list/death_loot = list(/obj/effect/decal/cleanable/xenoblood)
+	AddElement(/datum/element/death_drops, death_loot)

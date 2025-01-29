@@ -7,7 +7,7 @@
 	icon_state = "emerg_engine"
 	base_icon_state = "emerg_engine"
 	var/excavation_warning = "This will be awfully loud. Are you ready to protect the hacking pod?"
-	var/list/defending_mobs = list(/mob/living/basic/alien)
+	var/list/defending_mobs = list(/mob/living/basic/alien/drone/tarkon)
 	var/static/list/scanning_equipment = list(/obj/item/hackc)
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //This thing will take a beating.
@@ -26,6 +26,7 @@
 	var/reward_gun // the prize for finishing. its always a gun for now, so.
 	var/difficulty_modifier = 0 // to increase the number of mobs that can spawn
 	var/loot_rolls = 1 // number of times loot is rolled from your table
+	var/spawn_mod = 0 // used to adjust distance that creatures can spawn
 
 /obj/item/hackc
 	name = "Hack-C repair pod signaller"
@@ -107,9 +108,9 @@
 		spawn_types = defending_mobs, \
 		spawn_time = 15 SECONDS - difficulty_modifier, \
 		max_spawned = 10 + difficulty_modifier, \
-		max_spawn_per_attempt = 2 + difficulty_modifier, \
+		max_spawn_per_attempt = 3 + difficulty_modifier + spawn_mod, \
 		spawn_text = "appears to assault", \
-		spawn_distance = 4, \
+		spawn_distance = 4 + spawn_mod, \
 		spawn_distance_exclude = 2, \
 	)
 	COOLDOWN_START(src, wave_cooldown, wave_timer)
@@ -148,6 +149,7 @@
 	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
 	new reward_gun(loc)
 	new reward_key(loc)
+	qdel(src) // so they dont just take up room
 
 /obj/structure/wave_defence/proc/scan_and_confirm(mob/living/user)
 	if(tapped)
@@ -190,13 +192,13 @@
 
 /obj/structure/wave_defence/tarkon/engi
 	reward_key = /obj/item/keycard/tarkon_engi
+	spawn_mod = 1
 
 /obj/structure/wave_defence/tarkon/med
 	reward_key = /obj/item/keycard/tarkon_med
 
 /obj/structure/wave_defence/tarkon/boss
 	reward_key = /obj/item/keycard/tarkon_vault
-	defending_mobs = list(/mob/living/basic/alien, /mob/living/basic/alien/sentinel)
 	difficulty_modifier = 2
 
 /obj/structure/wave_defence/tarkon/boss/initiate_wave_win()
