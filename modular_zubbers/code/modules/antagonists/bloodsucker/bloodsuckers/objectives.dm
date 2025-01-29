@@ -184,7 +184,7 @@
 	update_explanation_text()
 	..()
 
-/datum/objective/steal_n_of_type/hearts/check_if_valid_item(obj/item/organ/internal/heart/current_item)
+/datum/objective/steal_n_of_type/hearts/check_if_valid_item(obj/item/organ/heart/current_item)
 	. = ..()
 	if(current_item.type == /obj/item/organ/heart/monkey || IS_ROBOTIC_ORGAN(current_item))
 		return FALSE

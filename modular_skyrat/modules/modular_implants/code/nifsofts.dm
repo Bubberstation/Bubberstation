@@ -56,7 +56,7 @@
 	///Is it a lewd item?
 	var/lewd_nifsoft = FALSE
 
-/datum/nifsoft/New(obj/item/organ/internal/cyberimp/brain/nif/recepient_nif, no_rewards_points = FALSE)
+/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recepient_nif, no_rewards_points = FALSE)
 	. = ..()
 
 	if(no_rewards_points) //This is mostly so that credits can't be farmed through printed or stolen NIFSoft disks

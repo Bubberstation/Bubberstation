@@ -77,7 +77,7 @@
  * Arguments:
  * * corruption_target - The organ that will get corrupted.
  */
-/datum/component/organ_corruption/proc/corrupt_organ(obj/item/organ/internal/corruption_target)
+/datum/component/organ_corruption/proc/corrupt_organ(obj/item/organ/corruption_target)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!corruption_target)
 		return FALSE
