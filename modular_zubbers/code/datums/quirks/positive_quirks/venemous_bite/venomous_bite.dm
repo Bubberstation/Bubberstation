@@ -48,15 +48,15 @@
 	if (iscarbon(owner))
 		var/mob/living/carbon/carbon_holder = owner
 		if (carbon_holder.is_mouth_covered())
-			owner.balloon_alert("mouth covered!")
+			owner.balloon_alert(owner, "mouth covered!")
 			return FALSE
 
 	if (!owner.Adjacent(target_atom))
-		owner.balloon_alert("too far!")
+		owner.balloon_alert(owner, "too far!")
 		return FALSE
 
 	if (target_atom == owner)
-		owner.balloon_alert("can't bite yourself!")
+		owner.balloon_alert(owner, "can't bite yourself!")
 		return FALSE
 
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
