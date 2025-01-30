@@ -411,9 +411,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 					sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
 					sacrificial.gib(DROP_ALL_REMAINS)
 				else
-					stone.capture_ghost(sacrificial, invokers[1])
 					sacrificial.death(FALSE)
 					sacrificial.become_husk(BURN)
+					stone.capture_ghost(sacrificial, invokers[1])
 		else
 			sacrificial.death(FALSE)
 			sacrificial.become_husk(BURN)
