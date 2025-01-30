@@ -339,6 +339,17 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(invoker, span_cult_italic("[sacrificial] is too greatly linked to the world! You need three acolytes!"))
 		return FALSE
 
+	//Bubber station addition. Instead of gibbing mindshielded people, just remove it and convert them.
+	if(HAS_TRAIT(sacrificial, TRAIT_MINDSHIELD))
+		// Find Mindshield & Destroy (Thanks bloodsucker code)
+		for(var/obj/item/implant/all_implants as anything in sacrificial.implants)
+			if(all_implants.type == /obj/item/implant/mindshield)
+				all_implants.removed(sacrificial, silent = TRUE)
+		//Check if this now makes them convertable. If so, do it!
+		if(is_convertable_to_cult(sacrificial, cult_team))
+			do_convert(sacrificial, invokers, cult_team)
+			return TRUE
+
 	if(sacrificial.mind)
 		LAZYADD(GLOB.sacrificed, WEAKREF(sacrificial.mind))
 		for(var/datum/objective/sacrifice/sac_objective in cult_team.objectives)
