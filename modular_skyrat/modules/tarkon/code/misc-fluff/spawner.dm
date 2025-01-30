@@ -21,8 +21,9 @@
 	head = /obj/item/clothing/head/utility/welding/hat
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
-	)
+		)
 	shoes = /obj/item/clothing/shoes/winterboots
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/advanced/tarkon
@@ -37,11 +38,11 @@
 	if(ispath(back, /obj/item/storage/backpack)) //we just steal this from the job outfit datum.
 		switch(tarkon.backpack)
 			if(GBACKPACK)
-				back = /obj/item/storage/backpack //Grey backpack
+				back = /obj/item/storage/backpack/tarkon //Tarkon backpack
 			if(GSATCHEL)
-				back = /obj/item/storage/backpack/satchel //Grey satchel
+				back = /obj/item/storage/backpack/satchel/tarkon  //Tarkon satchel
 			if(GDUFFELBAG)
-				back = /obj/item/storage/backpack/duffelbag //Grey Duffel bag
+				back = /obj/item/storage/backpack/duffelbag/tarkon //Tarkon Duffel bag
 			if(LSATCHEL)
 				back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
 			if(GMESSENGER)
@@ -91,6 +92,11 @@
 	id = /obj/item/card/id/advanced/tarkon/cargo
 	id_trim = /datum/id_trim/away/tarkon/cargo
 	l_pocket = /obj/item/mining_voucher
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		)
 	skillchips = list(/obj/item/skillchip/job/miner)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
@@ -107,6 +113,12 @@
 	id_trim = /datum/id_trim/away/tarkon/sci
 	r_pocket = /obj/item/stock_parts/power_store/cell/high
 	l_pocket = /obj/item/card/id/away/tarkonrobo
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_rnd,
+		)
 	skillchips = list(/obj/item/skillchip/job/roboticist)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med
@@ -123,6 +135,12 @@
 	neck = /obj/item/clothing/neck/stethoscope
 	l_pocket = /obj/item/healthanalyzer
 	r_pocket = /obj/item/stack/medical/suture/medicated
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_med,
+		)
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/engi
@@ -140,6 +158,12 @@
 	l_hand = /obj/item/inducer
 	l_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	r_pocket = /obj/item/stack/cable_coil
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_engi,
+		)
 	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sec
@@ -157,6 +181,12 @@
 	id_trim = /datum/id_trim/away/tarkon/sec
 	l_pocket = /obj/item/melee/baton/telescopic
 	r_pocket = /obj/item/grenade/barrier
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_sec,
+		)
 	skillchips = list(/obj/item/skillchip/chameleon/reload)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/ensign
@@ -177,6 +207,12 @@
 	id = /obj/item/card/id/advanced/tarkon/ensign
 	id_trim = /datum/id_trim/away/tarkon/ensign
 	neck = /obj/item/clothing/neck/security_cape/tarkon
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_ensign,
+		)
 	skillchips = list(/obj/item/skillchip/chameleon/reload)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/director
@@ -202,6 +238,12 @@
 	id_trim = /datum/id_trim/away/tarkon/director
 	neck = /obj/item/clothing/neck/security_cape/tarkon
 	r_pocket = /obj/item/card/id/away/tarkonrobo
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/keycard/tarkon_job_command,
+		)
 	skillchips = list(/obj/item/skillchip/chameleon/reload)
 
 /obj/machinery/computer/cryopod/tarkon

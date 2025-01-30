@@ -28,6 +28,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "ak" = (
@@ -146,6 +147,7 @@
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 8
 	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "aK" = (
@@ -254,7 +256,9 @@
 /obj/effect/turf_decal/tile/yellow/anticorner{
 	dir = 8
 	},
-/obj/effect/mob_spawn/ghost_role/human/tarkon/director,
+/obj/effect/mob_spawn/ghost_role/human/tarkon/director{
+	dir = 4
+	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
 	pixel_y = -31
@@ -295,10 +299,8 @@
 /obj/item/clothing/suit/armor/riot,
 /obj/item/shield/riot,
 /obj/item/clothing/head/helmet/toggleable/riot,
-/obj/effect/spawner/random/exotic/antag_gear,
-/obj/effect/spawner/random/exotic/antag_gear_weak,
 /obj/structure/closet/crate/secure/weapon{
-	name = "Delivery - Persistance Mining Crawler";
+	name = "Delivery - Cybersun Industries";
 	req_access = list("syndicate")
 	},
 /obj/item/storage/belt/utility/atmostech,
@@ -306,13 +308,6 @@
 /obj/item/storage/belt/utility/syndicate,
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
-/obj/item/paper{
-	default_raw_text = "Admiral, due to increased Nanotrasen presence in your sector, we are providing some extra supplies to deal with it. The telecrystals are to be held for a contact that will come to collect them in the coming weeks, a solo operative. Please ensure they get the crystals, as their mission is gravely important.";
-	name = "CONFIDENTIAL - Persistance Admiral's Eyes Only"
-	},
-/obj/item/stack/telecrystal{
-	amount = 10
-	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav)
 "bg" = (
@@ -446,6 +441,7 @@
 	name = "xenobiology camera";
 	network = list("ss13","xeno","rd")
 	},
+/obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 8
 	},
@@ -529,6 +525,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/power1)
+"bV" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "bX" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
@@ -561,6 +562,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "cf" = (
@@ -702,6 +704,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"cI" = (
+/obj/structure/alien/weeds/node,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "cJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -749,6 +756,7 @@
 /area/ruin/space/has_grav/port_tarkon/viro)
 "cO" = (
 /obj/effect/decal/cleanable/glass,
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "cP" = (
@@ -872,7 +880,9 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "dh" = (
-/obj/structure/spawner/tarkon_xenos/minor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "di" = (
@@ -1016,6 +1026,10 @@
 /obj/effect/turf_decal/tile/blue/anticorner,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"dI" = (
+/obj/machinery/door/puzzle/keycard/personal_supply,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "dJ" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav)
@@ -1055,6 +1069,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "dR" = (
@@ -1170,7 +1185,7 @@
 	dir = 8
 	},
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
@@ -1195,6 +1210,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
+"eq" = (
+/obj/machinery/door/puzzle/keycard/engi,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "er" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1630,6 +1649,13 @@
 /obj/structure/alien/weeds/node,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
+"fT" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4
+	},
+/obj/structure/alien/resin,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/comms)
 "fV" = (
 /obj/machinery/door/firedoor/solid,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -1648,7 +1674,7 @@
 /turf/open/floor/engine/plasma,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "fY" = (
-/obj/machinery/door/puzzle/keycard/med,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "fZ" = (
@@ -1715,7 +1741,9 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 8
 	},
-/obj/effect/mob_spawn/ghost_role/human/tarkon/sci,
+/obj/effect/mob_spawn/ghost_role/human/tarkon/sci{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "gl" = (
@@ -1734,6 +1762,18 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"go" = (
+/obj/structure/rack,
+/obj/item/storage/barricade,
+/obj/item/crafting_conversion_kit/mosin_pro,
+/obj/item/gun/ballistic/revolver/mateba,
+/obj/item/ammo_box/a357/heartseeker,
+/obj/item/ammo_box/a357/match,
+/obj/item/ammo_box/a357/peacemaker,
+/obj/item/ammo_box/a357/phasic,
+/obj/item/ammo_box/a357,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "gp" = (
 /obj/structure/bed/nest,
 /obj/effect/mob_spawn/corpse/human/assistant,
@@ -1874,12 +1914,21 @@
 /obj/effect/turf_decal/tile/blue/half,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
-"gQ" = (
-/obj/effect/turf_decal/tile/green/half{
-	dir = 4
+"gO" = (
+/obj/effect/turf_decal/tile/purple/anticorner{
+	dir = 8
 	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/port_tarkon/viro)
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
+"gP" = (
+/obj/machinery/door/puzzle/keycard/personal_rnd,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
+"gQ" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "gS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -1916,6 +1965,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"ha" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/port_tarkon/viro)
 "hc" = (
 /obj/structure/showcase/cyborg/old{
 	dir = 4;
@@ -2100,7 +2156,6 @@
 	name = "Delivery - Free Trade Union";
 	req_access = list("cargo")
 	},
-/obj/item/crafting_conversion_kit/mosin_pro,
 /obj/item/storage/box/shipping,
 /obj/item/cargo_teleporter,
 /obj/item/clothing/gloves/cargo_gauntlet,
@@ -2179,6 +2234,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"hM" = (
+/obj/machinery/door/puzzle/keycard/personal_med,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "hN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/brown,
@@ -2280,6 +2339,12 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/garden)
+"ii" = (
+/obj/structure/rack,
+/obj/item/storage/hypospraykit/cmo/combat,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "ij" = (
 /obj/structure/flora/tree/jungle/small/style_random,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -2511,11 +2576,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "iZ" = (
-/obj/structure/rack,
-/obj/item/documents/nanotrasen,
-/obj/item/documents/syndicate,
+/obj/machinery/door/puzzle/keycard/rnd,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav)
 "ja" = (
 /obj/structure/chair/sofa/corp{
 	dir = 8
@@ -2625,6 +2688,7 @@
 	dir = 8
 	},
 /obj/machinery/light_switch/directional/west,
+/obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "jB" = (
@@ -2712,7 +2776,6 @@
 /obj/item/bitrunning_disk/prefs,
 /obj/item/circuitboard/computer/order_console/bitrunning,
 /obj/item/market_uplink/blackmarket,
-/obj/item/circuitboard/machine/ltsrbt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "jR" = (
@@ -2761,6 +2824,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"jY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "jZ" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/portable_atmospherics/canister/bz,
@@ -2794,12 +2861,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "kg" = (
-/obj/effect/turf_decal/tile/purple/half{
-	dir = 1
-	},
-/obj/structure/alien/weeds/node,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/porthall)
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "ki" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue/half{
@@ -2853,6 +2917,7 @@
 "ku" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
 /obj/structure/cable,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "kv" = (
@@ -3264,6 +3329,16 @@
 /obj/machinery/camera/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"me" = (
+/obj/structure/rack,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/circuitboard/machine/ltsrbt,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "mf" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -3376,6 +3451,17 @@
 /obj/machinery/door/firedoor/solid,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
+"mE" = (
+/obj/structure/rack,
+/obj/item/documents/nanotrasen,
+/obj/item/documents/syndicate,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
+"mF" = (
+/obj/machinery/door/puzzle/keycard/personal_sec,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "mG" = (
 /obj/effect/turf_decal/tile/brown/anticorner{
 	dir = 8
@@ -3468,6 +3554,10 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"nb" = (
+/obj/machinery/door/puzzle/keycard/personal_engi,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "nc" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3514,13 +3604,19 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"nl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "nm" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 8
 	},
-/obj/effect/mob_spawn/ghost_role/human/tarkon/ensign,
+/obj/effect/mob_spawn/ghost_role/human/tarkon/ensign{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "nn" = (
@@ -3702,9 +3798,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/observ)
 "nV" = (
-/obj/machinery/door/puzzle/keycard/engi,
+/obj/effect/turf_decal/trimline/purple/filled/warning,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "nW" = (
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
@@ -3908,6 +4008,7 @@
 /area/ruin/space/has_grav/port_tarkon/storage)
 "oN" = (
 /obj/structure/cable/layer3,
+/obj/structure/alien/resin,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "oO" = (
@@ -3993,6 +4094,10 @@
 /obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/observ)
+"pc" = (
+/obj/machinery/door/puzzle/keycard/personal_ensign,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "pf" = (
 /obj/structure/table/reinforced,
 /obj/item/pipe_dispenser,
@@ -4003,6 +4108,15 @@
 /obj/item/construction/rcd/arcd/tarkon,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"pi" = (
+/obj/structure/rack,
+/obj/item/keycard/tarkon_job_command,
+/obj/item/binoculars,
+/obj/item/megaphone/command,
+/obj/item/storage/toolbox/guncase/m44a_shotgun,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "pl" = (
 /obj/machinery/camera/directional/south,
 /turf/open/floor/iron,
@@ -4502,17 +4616,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/power1)
 "qT" = (
-/obj/structure/closet/crate/secure/gear{
-	name = "Delivery - Central Command Frontier Division";
-	req_access = list("armory")
-	},
-/obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/effect/spawner/random/exotic/technology,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav)
+/obj/effect/turf_decal/tile/purple/half,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "qV" = (
 /obj/machinery/computer,
 /obj/machinery/light/directional/west{
@@ -4581,12 +4688,20 @@
 /area/ruin/space/has_grav/port_tarkon/park)
 "rf" = (
 /obj/structure/cable/layer3,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "rh" = (
 /obj/structure/wave_defence/tarkon/boss,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
+"ri" = (
+/obj/effect/turf_decal/trimline/purple/filled/warning{
+	dir = 8
+	},
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "rk" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/mapping_helpers/apc/full_charge,
@@ -4663,6 +4778,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/alien/resin/wall,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "rB" = (
@@ -4714,6 +4830,7 @@
 /area/ruin/space/has_grav/port_tarkon/comms)
 "rK" = (
 /obj/structure/window/reinforced/spawner/directional/north,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "rL" = (
@@ -4725,7 +4842,6 @@
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "rP" = (
 /obj/effect/decal/cleanable/robot_debris/up,
-/obj/structure/spawner/tarkon_xenos/common,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "rR" = (
@@ -4792,6 +4908,7 @@
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "se" = (
 /obj/structure/chair/pew/left,
+/obj/machinery/light/directional/north,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/park)
 "sf" = (
@@ -4932,9 +5049,15 @@
 /turf/template_noop,
 /area/template_noop)
 "sG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/misc/dirt/planet,
-/area/ruin/space/has_grav/port_tarkon/park)
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/alien/resin,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/comms)
 "sH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -4982,6 +5105,7 @@
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 4
 	},
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "sQ" = (
@@ -5040,6 +5164,13 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"sY" = (
+/obj/effect/turf_decal/tile/yellow/half{
+	dir = 8
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "sZ" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/purple/half{
@@ -5055,6 +5186,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"tc" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/port_tarkon/park)
 "td" = (
 /obj/effect/turf_decal/tile/blue/half,
 /turf/open/floor/iron/dark,
@@ -5213,6 +5348,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
+"tM" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav)
 "tO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
@@ -5306,11 +5445,8 @@
 /obj/item/stack/sheet/rglass,
 /obj/item/stack/sheet/rglass,
 /obj/item/stack/sheet/rglass,
-/obj/item/stack/sheet/rglass,
-/obj/item/stack/sheet/rglass,
-/obj/item/stack/sheet/rglass,
 /obj/item/stack/cable_coil/thirty,
-/obj/item/mmi/posibrain,
+/obj/item/mmi/posibrain/sphere,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "ug" = (
@@ -5440,6 +5576,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 4
 	},
@@ -6082,8 +6219,9 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "wY" = (
-/turf/open/misc/dirt/planet,
-/area/ruin/space/has_grav/port_tarkon/park)
+/obj/machinery/door/puzzle/keycard/personal_command,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "wZ" = (
 /obj/item/stack/sticky_tape/surgical,
 /obj/structure/table/glass,
@@ -6147,6 +6285,10 @@
 /area/ruin/space/has_grav/port_tarkon/lounge)
 "xk" = (
 /turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
+"xl" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating/rust,
 /area/ruin/space/has_grav)
 "xm" = (
 /obj/structure/cable,
@@ -6538,6 +6680,19 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"yK" = (
+/obj/structure/rack,
+/obj/item/construction/rld,
+/obj/item/circuitboard/machine/bluespace_miner,
+/obj/item/circuitboard/machine/bluespace_miner,
+/obj/item/weldingtool/advanced,
+/obj/item/wirecutters/advanced,
+/obj/item/wrench/advanced,
+/obj/item/crowbar/advanced,
+/obj/item/screwdriver/advanced,
+/obj/item/multitool/advanced,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "yL" = (
 /obj/effect/turf_decal/tile/purple/half,
 /obj/machinery/bci_implanter,
@@ -6644,6 +6799,7 @@
 "ze" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/turf_decal/tile/purple/half,
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "zf" = (
@@ -6850,6 +7006,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "zP" = (
@@ -6922,11 +7079,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "zZ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/misc/dirt/planet,
-/area/ruin/space/has_grav/port_tarkon/park)
+/obj/structure/alien/resin,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "Aa" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/spawner/structure/window{
@@ -7130,6 +7285,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "AI" = (
@@ -7288,10 +7444,12 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "Bk" = (
+/obj/effect/turf_decal/tile/red/real_red/half{
+	dir = 8
+	},
 /obj/structure/rack,
-/obj/item/mod/module/storage/syndicate,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/secoff)
 "Bl" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -7338,6 +7496,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer3,
 /turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/aichamber)
+"Bu" = (
+/obj/structure/alien/resin,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "Bv" = (
 /obj/structure/cable,
@@ -7544,8 +7706,13 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 6
 	},
+/obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_corner,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
+"Ce" = (
+/obj/structure/lattice/catwalk,
+/turf/closed/indestructible/reinforced,
+/area/ruin/space/has_grav)
 "Cf" = (
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
@@ -7553,6 +7720,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "Cj" = (
@@ -7837,6 +8005,9 @@
 "Dq" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/port_tarkon/secoff)
+"Dr" = (
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav)
 "Ds" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/storage)
@@ -7870,6 +8041,7 @@
 "DA" = (
 /obj/structure/cable/layer3,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "DB" = (
@@ -7932,6 +8104,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "DK" = (
@@ -7947,7 +8120,7 @@
 	dir = 8
 	},
 /obj/effect/mob_spawn/ghost_role/human/tarkon/cargo{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
@@ -7967,6 +8140,10 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/observ)
+"DV" = (
+/obj/structure/alien/resin,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/aichamber)
 "DW" = (
 /obj/structure/flora/bush/flowers_br,
 /turf/open/floor/grass,
@@ -7998,7 +8175,6 @@
 	req_access = list("brig")
 	},
 /obj/item/knife/combat,
-/obj/item/reagent_containers/hypospray/medipen/stimpack,
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -8156,6 +8332,7 @@
 /area/ruin/space/has_grav/port_tarkon/developement)
 "EC" = (
 /obj/effect/decal/cleanable/glass,
+/obj/structure/spawner/tarkon_xenos/minor,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "ED" = (
@@ -8279,6 +8456,11 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/power1)
+"Fc" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Fd" = (
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
@@ -8434,6 +8616,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
+"FG" = (
+/obj/effect/turf_decal/tile/purple/half,
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "FH" = (
 /obj/structure/chair/stool/directional/east,
 /turf/open/floor/iron/white,
@@ -8682,9 +8869,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "GH" = (
-/obj/machinery/door/puzzle/keycard/vault,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/port_tarkon/viro)
 "GI" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/neutral/half{
@@ -9181,6 +9368,11 @@
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"IM" = (
+/obj/structure/alien/resin/wall,
+/obj/structure/alien/resin/wall,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "IN" = (
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 4
@@ -9190,6 +9382,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"IO" = (
+/obj/machinery/door/puzzle/keycard/med,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "IP" = (
 /obj/effect/turf_decal/tile/blue/half,
 /obj/effect/spawner/structure/window{
@@ -9435,6 +9631,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
+"JL" = (
+/obj/effect/turf_decal/tile/yellow/anticorner{
+	dir = 8
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "JM" = (
 /obj/structure/sauna_oven,
 /turf/open/floor/wood/large,
@@ -9447,6 +9650,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "JQ" = (
@@ -9539,6 +9743,10 @@
 "Kj" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
+"Kl" = (
+/mob/living/basic/alien/maid,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Km" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -9562,10 +9770,12 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/power1)
 "Kp" = (
-/obj/structure/rack,
-/obj/item/mod/module/anomaly_locked/teleporter/prebuilt/locked,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/obj/structure/flora/bush/flowers_br,
+/obj/structure/flora/bush/flowers_pp,
+/obj/machinery/light/directional/south,
+/obj/machinery/light_switch/directional/south,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/port_tarkon/park)
 "Kq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -9858,6 +10068,14 @@
 /obj/machinery/door/airlock/multi_tile/metal,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
+"Lo" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Lp" = (
 /obj/effect/turf_decal/tile/purple/anticorner,
 /obj/machinery/camera/directional/east,
@@ -9938,6 +10156,10 @@
 "LC" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"LD" = (
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "LE" = (
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
@@ -9956,6 +10178,7 @@
 /area/ruin/space/has_grav/port_tarkon/power1)
 "LG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/alien/resin,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "LJ" = (
@@ -10153,6 +10376,9 @@
 "Mt" = (
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"Mv" = (
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Mx" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/yellow/half{
@@ -10694,6 +10920,9 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
+"OD" = (
+/turf/closed/indestructible/fakeglass,
+/area/ruin/space/has_grav)
 "OE" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -10992,6 +11221,18 @@
 "PL" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/port_tarkon/forehall)
+"PM" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
+"PP" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/port_tarkon/park)
 "PQ" = (
 /obj/effect/turf_decal/tile/yellow/half,
 /obj/machinery/disposal/bin,
@@ -11183,6 +11424,7 @@
 	uses = 10
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/alien/resin,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "Qx" = (
@@ -11283,6 +11525,7 @@
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "QN" = (
 /obj/machinery/camera/emp_proof/directional/west,
+/obj/structure/alien/resin,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "QO" = (
@@ -11348,6 +11591,13 @@
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"Rb" = (
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 8
+	},
+/obj/structure/alien/resin/wall,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Rc" = (
 /obj/effect/turf_decal/tile/neutral/anticorner{
 	dir = 8
@@ -11607,12 +11857,12 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "Sc" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/exotic/languagebook,
-/obj/effect/spawner/random/exotic/languagebook,
-/obj/item/language_manual/codespeak_manual/unlimited,
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 4
+	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Sd" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -11812,6 +12062,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"SI" = (
+/obj/structure/cable/layer3,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "SJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -11932,6 +12187,10 @@
 /obj/item/pen/edagger,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
+"Ta" = (
+/obj/structure/alien/resin,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/port_tarkon/aichamber)
 "Tb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
@@ -11952,6 +12211,13 @@
 /obj/item/stack/sheet/iron/fifty,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"Tf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/membrane,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Tg" = (
 /obj/structure/closet/secure_closet/freezer/meat{
 	req_access = list("tarkon")
@@ -12063,6 +12329,7 @@
 "Tv" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/light/directional/south,
+/obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Tw" = (
@@ -12108,12 +12375,12 @@
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "TD" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/exotic/antag_gear,
-/obj/effect/spawner/random/exotic/antag_gear,
-/obj/effect/spawner/random/exotic/antag_gear,
-/obj/effect/spawner/random/exotic/antag_gear,
+/obj/effect/spawner/random/exotic/languagebook,
+/obj/effect/spawner/random/exotic/languagebook,
+/obj/item/language_manual/dronespeak_manual,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav)
 "TF" = (
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
@@ -12137,6 +12404,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "TM" = (
@@ -12373,9 +12641,12 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "Up" = (
-/obj/machinery/door/puzzle/keycard/rnd,
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 4
+	},
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Ur" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
@@ -12386,6 +12657,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "Ut" = (
@@ -12533,12 +12805,14 @@
 /obj/structure/chair{
 	dir = 4
 	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "UW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "UX" = (
@@ -12571,6 +12845,7 @@
 "Vc" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
+/obj/structure/alien/resin/wall,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "Vd" = (
@@ -12608,6 +12883,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
+"Vh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Vi" = (
 /obj/structure/transit_tube/curved{
 	dir = 4
@@ -12655,10 +12935,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "Vt" = (
-/obj/structure/rack,
-/obj/item/mod/module/adrenaline_boost,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/turf/closed/indestructible/reinforced,
+/area/ruin/space/has_grav)
 "Vv" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
@@ -12780,6 +13058,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/membrane,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "VY" = (
@@ -13289,7 +13568,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "XG" = (
-/turf/closed/indestructible/steel,
+/obj/structure/alien/resin,
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "XH" = (
 /obj/effect/turf_decal/tile/purple/half{
@@ -13344,9 +13624,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "XS" = (
-/mob/living/basic/alien/maid,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/obj/structure/alien/resin/wall,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "XT" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -13389,6 +13669,17 @@
 /obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
+"Yb" = (
+/obj/structure/rack,
+/obj/item/research_paper,
+/obj/item/disk/design_disk/bepis,
+/obj/item/disk/design_disk/bepis,
+/obj/item/disk/design_disk/bepis,
+/obj/item/disk/design_disk/bepis,
+/obj/item/disk/design_disk/bepis,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Yc" = (
 /obj/effect/turf_decal/tile/purple/half,
 /obj/effect/spawner/structure/window/reinforced,
@@ -13771,6 +14062,10 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"Zu" = (
+/obj/machinery/door/puzzle/keycard/vault,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "Zv" = (
 /obj/effect/turf_decal/tile/brown/half,
 /obj/structure/disposalpipe/segment{
@@ -13870,7 +14165,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/alien/weeds/node,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "ZQ" = (
@@ -15004,8 +15298,8 @@ Ho
 Ho
 Ho
 Ho
-Ho
-Ho
+Tf
+Tf
 sw
 Ho
 pF
@@ -15120,14 +15414,14 @@ ia
 KK
 sO
 DI
-YJ
+Up
 Ah
 YJ
 YJ
 YJ
 Gt
 YJ
-YJ
+Sc
 kC
 TM
 ze
@@ -15252,7 +15546,7 @@ KK
 KK
 yT
 LU
-fp
+nV
 Yv
 TN
 Sw
@@ -15368,13 +15662,13 @@ jm
 jm
 jm
 jm
-jm
-iP
-Ad
+Rb
+ri
+gO
 KK
 eH
 LU
-kp
+FG
 JJ
 bG
 AF
@@ -15492,7 +15786,7 @@ nE
 nE
 nE
 cf
-kp
+FG
 KK
 pv
 mz
@@ -15983,8 +16277,8 @@ SF
 kp
 KK
 KX
-mz
-kp
+Lo
+qT
 JJ
 wN
 KB
@@ -16594,7 +16888,7 @@ Ad
 KK
 DE
 LU
-kp
+qT
 KK
 TS
 jm
@@ -16707,9 +17001,9 @@ KK
 ov
 hF
 oR
-oR
-oR
-oR
+PM
+PM
+PM
 zJ
 oR
 WO
@@ -16831,13 +17125,13 @@ YJ
 Ll
 vl
 jJ
-YJ
-YJ
+Up
+Up
 YJ
 oO
 KK
 Ax
-YJ
+Sc
 UP
 KK
 BC
@@ -17505,7 +17799,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -17728,7 +18022,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -18588,7 +18882,7 @@ Ne
 ir
 ld
 ld
-ld
+GH
 vX
 ld
 ld
@@ -18709,11 +19003,11 @@ KZ
 Bl
 Ei
 ld
-ld
-ld
+GH
+GH
 yV
 ld
-yr
+GH
 yV
 ut
 Ne
@@ -18794,7 +19088,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -18941,7 +19235,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -18956,7 +19250,7 @@ os
 My
 ZQ
 Bp
-TQ
+ha
 TQ
 TQ
 Us
@@ -19084,7 +19378,7 @@ RW
 UA
 Ne
 Ne
-gQ
+Ne
 Ne
 mu
 sX
@@ -19472,11 +19766,11 @@ Xa
 Kr
 AE
 is
+PP
 oV
 oV
 oV
-oV
-oV
+tc
 bM
 xw
 mj
@@ -19719,7 +20013,7 @@ is
 Dn
 AO
 AO
-wY
+oV
 zF
 CR
 Dv
@@ -19841,7 +20135,7 @@ is
 oV
 AO
 AO
-wY
+oV
 gM
 CR
 xG
@@ -19962,8 +20256,8 @@ Sh
 is
 Li
 Ub
-sG
-sG
+uF
+uF
 uF
 FV
 NC
@@ -20082,13 +20376,13 @@ WI
 is
 is
 is
-oV
+PP
 QR
-sG
+uF
 zF
 jl
 FV
-kg
+NC
 kF
 Re
 FV
@@ -20206,7 +20500,7 @@ is
 DW
 oV
 re
-sG
+uF
 oV
 oV
 FV
@@ -20328,9 +20622,9 @@ is
 jl
 oV
 AQ
-sG
+uF
 qC
-Dn
+Kp
 CR
 NC
 sU
@@ -20407,7 +20701,7 @@ za
 za
 za
 za
-za
+ZW
 Lq
 Gs
 Lq
@@ -20450,8 +20744,8 @@ is
 oV
 oV
 AQ
-sG
-wY
+uF
+oV
 NY
 FV
 NC
@@ -20528,7 +20822,7 @@ za
 za
 za
 za
-za
+ZW
 za
 Lq
 Xt
@@ -20573,8 +20867,8 @@ oV
 ij
 Mi
 hj
-zZ
-zZ
+hj
+hj
 xW
 wl
 kF
@@ -20641,6 +20935,7 @@ za
 za
 za
 za
+Ir
 za
 za
 za
@@ -20648,10 +20943,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
-za
+ZW
 Lq
 Xt
 Lq
@@ -20693,9 +20987,9 @@ II
 is
 oV
 wd
-wY
-wY
-wY
+oV
+oV
+oV
 oV
 FV
 NC
@@ -20770,9 +21064,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
+ZW
 za
 Lq
 Xt
@@ -20891,9 +21185,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
+ZW
 za
 za
 SA
@@ -21012,9 +21306,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
+ZW
 Ir
 za
 mP
@@ -21125,17 +21419,17 @@ za
 za
 "}
 (60,1,1) = {"
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+ZW
 za
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
+ZW
 za
 za
 za
@@ -21247,16 +21541,16 @@ za
 za
 "}
 (61,1,1) = {"
+Vt
+yK
+nb
+xl
+jY
+pc
+pi
+Ce
 za
-za
-za
-za
-za
-za
-za
-za
-za
-za
+ZW
 za
 za
 za
@@ -21369,15 +21663,15 @@ za
 za
 "}
 (62,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Vt
+Vt
+nl
+Dr
+Vt
+Vt
+Vt
+ZW
 za
 za
 za
@@ -21491,14 +21785,14 @@ za
 za
 "}
 (63,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Yb
+gP
+jY
+nl
+hM
+ii
+Vt
 za
 za
 za
@@ -21613,14 +21907,14 @@ za
 za
 "}
 (64,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Vt
+Vt
+jY
+nl
+Vt
+Vt
+Vt
 za
 za
 za
@@ -21735,14 +22029,14 @@ za
 za
 "}
 (65,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+go
+mF
+Dr
+nl
+dI
+me
+Vt
 za
 za
 za
@@ -21857,14 +22151,14 @@ za
 za
 "}
 (66,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Vt
+Vt
+nl
+Kl
+Vt
+Vt
+Vt
 za
 za
 za
@@ -21936,20 +22230,20 @@ AB
 As
 VZ
 UT
-FD
+sY
 FD
 FD
 FD
 ve
-mI
+JL
 ZH
+XS
 OP
 OP
+gQ
 OP
 OP
-OP
-OP
-OP
+XS
 OP
 OP
 OP
@@ -21979,17 +22273,17 @@ za
 za
 "}
 (67,1,1) = {"
+Vt
+TD
+Mv
+jY
+Mv
+wY
+mE
+Vt
 za
 za
-za
-za
-za
-za
-za
-za
-za
-za
-za
+Ir
 za
 za
 za
@@ -22071,7 +22365,7 @@ Pt
 Pt
 HA
 OP
-OP
+IM
 OP
 OP
 ic
@@ -22101,14 +22395,14 @@ za
 za
 "}
 (68,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Vt
+Vt
+Dr
+jY
+Vt
+Vt
+Vt
 za
 za
 za
@@ -22193,8 +22487,8 @@ OP
 OP
 OP
 SO
-OP
-OP
+XS
+kg
 OP
 OP
 OP
@@ -22223,14 +22517,14 @@ za
 za
 "}
 (69,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+jY
+Mv
+jY
+Dr
+Dr
+nl
+Vt
 za
 za
 za
@@ -22312,12 +22606,12 @@ Dq
 Tr
 lM
 OP
+XS
+XS
 OP
 OP
-OP
-OP
-OP
-OP
+kg
+kg
 OP
 OP
 Dg
@@ -22345,14 +22639,14 @@ za
 za
 "}
 (70,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+tM
+nl
+nl
+nl
+nl
+nl
+Vt
 za
 za
 za
@@ -22421,7 +22715,7 @@ Dq
 Dq
 Dq
 Dq
-oP
+Bk
 oP
 rk
 bI
@@ -22434,13 +22728,13 @@ Dq
 bQ
 lM
 SO
+XS
 OP
 OP
 OP
 OP
-OP
-OP
-OP
+kg
+gQ
 OP
 kO
 za
@@ -22467,14 +22761,14 @@ za
 za
 "}
 (71,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Zu
+OD
+OD
+OD
+OD
+OD
+Vt
 za
 za
 za
@@ -22543,8 +22837,8 @@ hi
 bO
 hr
 jS
-Id
-Id
+yn
+yn
 Zi
 yn
 dz
@@ -22555,8 +22849,8 @@ pl
 Dq
 sI
 lR
-OP
-OP
+XS
+XS
 OP
 tu
 OP
@@ -22589,20 +22883,20 @@ za
 za
 "}
 (72,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Mv
+iZ
+IO
+eq
+Vh
+jY
+Fc
+LE
+LE
+LE
+LE
+LE
+LE
 za
 za
 za
@@ -22678,7 +22972,7 @@ Dq
 OP
 lR
 HA
-OP
+gQ
 OP
 HA
 OP
@@ -22711,15 +23005,15 @@ za
 za
 "}
 (73,1,1) = {"
-za
-za
-za
-za
-za
-za
-za
-za
-za
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+Vt
+ZW
 za
 za
 za
@@ -22797,12 +23091,12 @@ bi
 Dq
 Dq
 Dq
-OP
-OP
-OP
-OP
-OP
-OP
+XS
+XS
+kg
+kg
+kg
+XS
 OP
 OP
 OP
@@ -22840,9 +23134,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
+ZW
 za
 za
 za
@@ -22924,7 +23218,7 @@ OP
 OP
 OP
 OP
-OP
+XS
 OP
 OP
 OP
@@ -22963,9 +23257,9 @@ za
 za
 za
 za
+ZW
 za
-za
-za
+ZW
 za
 za
 LE
@@ -23080,15 +23374,15 @@ za
 za
 za
 za
+Ir
 za
 za
 za
 za
 za
+ZW
 za
-za
-za
-za
+ZW
 za
 LE
 ia
@@ -23209,7 +23503,7 @@ za
 za
 za
 za
-za
+ZW
 za
 Pa
 Qj
@@ -23332,7 +23626,7 @@ za
 za
 za
 Ir
-za
+ZW
 Pa
 Jq
 Jq
@@ -23817,8 +24111,8 @@ za
 ia
 ia
 ia
-ab
-ab
+ia
+ia
 ia
 ia
 ab
@@ -23937,14 +24231,14 @@ za
 za
 ia
 ia
-XG
-XG
-XG
-XG
-XG
-XG
-XG
-XG
+ab
+ab
+ab
+ab
+ia
+ab
+ab
+ab
 ia
 Pa
 aL
@@ -24059,16 +24353,16 @@ za
 za
 ia
 ia
-XG
-Kp
-Vt
-TD
-XG
-Jq
-Jq
-XG
-XG
-XG
+ab
+ia
+ab
+ia
+ia
+ab
+ab
+ab
+ab
+Pa
 IJ
 Jq
 hY
@@ -24181,16 +24475,16 @@ za
 za
 ia
 ia
-XG
-Jq
-Jq
-Jq
-GH
-Jq
-Jq
-Up
-fY
-nV
+ab
+ab
+ab
+ab
+ia
+ia
+ab
+ab
+ab
+Pa
 rS
 Gy
 oW
@@ -24303,16 +24597,16 @@ za
 za
 ia
 ia
-XG
-Sc
-Bk
-iZ
-XG
-XS
-Jq
-XG
-XG
-XG
+ia
+ab
+ab
+ia
+ia
+ia
+ab
+ab
+ab
+Pa
 YY
 kw
 rI
@@ -24425,15 +24719,15 @@ za
 za
 za
 ia
-XG
-XG
-XG
-XG
-XG
-XG
-XG
-XG
 ia
+ia
+ia
+ia
+ab
+ab
+ab
+ab
+ab
 Pa
 Pa
 Bx
@@ -24552,9 +24846,9 @@ ia
 ia
 ia
 ia
-ia
-ia
-ia
+ab
+ab
+ab
 ia
 Pa
 ix
@@ -24705,7 +24999,7 @@ HP
 MV
 HP
 oK
-HP
+bV
 Sa
 Nf
 VO
@@ -24803,12 +25097,12 @@ ia
 Pa
 jc
 uA
-dh
 Jq
 Jq
 Jq
-Jq
-Jq
+fY
+fY
+fY
 XQ
 UK
 UK
@@ -24924,11 +25218,11 @@ ab
 ia
 Pa
 Sg
-uA
+sG
+XG
+XG
 Jq
-Jq
-Jq
-Jq
+fY
 oB
 Qr
 Di
@@ -24993,7 +25287,7 @@ ia
 ab
 dJ
 tG
-TO
+tG
 En
 hC
 bf
@@ -25048,7 +25342,7 @@ Pa
 wu
 uA
 BM
-Ib
+dh
 Ib
 Ib
 Ib
@@ -25239,7 +25533,7 @@ dJ
 Yp
 zs
 wm
-qT
+TO
 DZ
 dJ
 ia
@@ -25277,7 +25571,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -25294,7 +25588,7 @@ JK
 uS
 Le
 zv
-zv
+fT
 lg
 KL
 iv
@@ -25541,7 +25835,7 @@ cA
 kv
 xu
 RA
-BP
+Ta
 QN
 rP
 jq
@@ -25654,11 +25948,11 @@ ab
 ia
 xu
 Jg
-GZ
+RH
 Fu
 UV
 rf
-RH
+LD
 Hb
 zy
 xu
@@ -26020,10 +26314,10 @@ ab
 ia
 xu
 LG
-RH
-RH
+zZ
+LD
 UW
-GA
+SI
 RH
 js
 RH
@@ -26032,10 +26326,10 @@ tQ
 wj
 wX
 Yo
-jW
+Bu
 ox
 fP
-ei
+DV
 jW
 ox
 eZ
@@ -26145,10 +26439,10 @@ ZL
 RH
 RH
 rh
-js
+cI
+LD
 RH
-RH
-GZ
+zZ
 xu
 fS
 tQ
@@ -26157,7 +26451,7 @@ hc
 DA
 oN
 fP
-jW
+Bu
 jW
 ei
 tl
@@ -26268,7 +26562,7 @@ RH
 RH
 RH
 RH
-RH
+LD
 cA
 rC
 xu
@@ -26279,7 +26573,7 @@ gp
 gt
 ox
 Hs
-jW
+Bu
 Yo
 iY
 wX
@@ -26377,7 +26671,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
@@ -27252,7 +27546,7 @@ za
 za
 za
 za
-za
+Ir
 za
 za
 za
