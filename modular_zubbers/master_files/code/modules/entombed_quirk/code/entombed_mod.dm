@@ -7,7 +7,6 @@
 	armor_type = /datum/armor/mod_entombed
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	siemens_coefficient = 0
 	complexity_max = DEFAULT_MAX_COMPLEXITY - 5
 	charge_drain = DEFAULT_CHARGE_DRAIN
 	slowdown_inactive = 2.5 // very slow because the quirk infers you rely on this to move/exist
@@ -20,15 +19,15 @@
 		/obj/item/flashlight,
 	)
 
-/datum/armor/mod_entombed
-	melee = 30
-	bullet = 30
-	laser = 30
-	energy = 30
-	bio = 100
-	fire = 30
-	acid = 30
-	wound = 30
+/datum/armor/mod_entombed // Equalized its armour values to be the same as the civilian modsuit
+	melee = 5
+	bullet = 5
+	laser = 5
+	energy = 5
+	bio = 50
+	fire = 25
+	acid = 25
+	wound = 5
 
 /obj/item/mod/module/joint_torsion/entombed
 	name = "internal joint torsion adaptation"
