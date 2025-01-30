@@ -2882,6 +2882,7 @@
 /area/ruin/space/has_grav/port_tarkon/comms)
 "km" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "ko" = (
@@ -3171,6 +3172,7 @@
 	name = "Disused Storage Room"
 	},
 /obj/structure/barricade/wooden/crude,
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "ly" = (
@@ -5030,6 +5032,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "sB" = (
@@ -5529,6 +5532,14 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
+"uw" = (
+/obj/effect/turf_decal/tile/yellow/half{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "uy" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
@@ -6143,6 +6154,14 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"wE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/kitchen)
 "wG" = (
 /obj/effect/turf_decal/tile/purple/half,
 /turf/open/floor/iron/dark,
@@ -6191,6 +6210,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "wT" = (
@@ -6322,6 +6342,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor/solid,
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "xq" = (
@@ -8081,6 +8102,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "DG" = (
@@ -8400,6 +8422,10 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/engine/vacuum,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"EP" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/port_tarkon/lounge)
 "EQ" = (
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 4
@@ -8784,6 +8810,10 @@
 "Gm" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
+"Gn" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/wood/parquet,
+/area/ruin/space/has_grav/port_tarkon/lounge)
 "Go" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -10681,6 +10711,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "NF" = (
@@ -11356,6 +11387,7 @@
 "Qj" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "Qk" = (
@@ -11788,6 +11820,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/mining/glass,
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "RR" = (
@@ -12564,7 +12597,6 @@
 "Ui" = (
 /obj/item/reagent_containers/cup/beaker/large,
 /obj/item/reagent_containers/cup/beaker/large,
-/obj/machinery/camera/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -12739,6 +12771,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "UK" = (
@@ -13512,6 +13545,7 @@
 "Xw" = (
 /obj/machinery/door/firedoor/solid,
 /obj/machinery/door/airlock/mining/glass,
+/obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "Xx" = (
@@ -21857,7 +21891,7 @@ AB
 AB
 AB
 AI
-mx
+uw
 VZ
 FJ
 Lb
@@ -23095,7 +23129,7 @@ kg
 XS
 OP
 OP
-OP
+XS
 OP
 OP
 Dg
@@ -23185,7 +23219,7 @@ DG
 DG
 xv
 YD
-je
+Gn
 Yw
 WD
 DG
@@ -23217,9 +23251,9 @@ OP
 XS
 OP
 OP
-OP
-OP
-OP
+XS
+XS
+XS
 kO
 za
 za
@@ -23339,7 +23373,7 @@ OP
 OP
 OP
 OP
-OP
+XS
 OP
 OP
 kO
@@ -24161,7 +24195,7 @@ DG
 DG
 Zb
 NH
-fe
+EP
 JQ
 oT
 DG
@@ -24891,11 +24925,11 @@ NN
 mn
 Sn
 bC
-bC
+wE
 Ez
 bC
 bC
-bC
+wE
 bC
 ML
 df

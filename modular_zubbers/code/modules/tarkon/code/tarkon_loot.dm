@@ -8,7 +8,6 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 	/obj/item/gun/energy/modular_laser_rifle = 1,
 	/obj/item/gun/energy/e_gun/stun = 1,
 	/obj/item/gun/energy/laser/captain/scattershot = 1,
-	/obj/item/mod/module/smartgun = 1,
 	/obj/item/storage/toolbox/guncase/bmsniper = 1,
 	/obj/item/melee/energy/sword = 1,
 	/obj/item/fireaxe/energy = 1
@@ -33,3 +32,8 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 	name = "Combat Laser Rifle gun case"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/laser
 	extra_to_spawn = /obj/item/ammo_box/magazine/recharge
+
+/obj/item/storage/toolbox/guncase/smartgun
+	name = "MODsuit Smartgun case"
+	weapon_to_spawn = /obj/item/mod/module/smartgun
+	extra_to_spawn = /obj/item/ammo_box/magazine/smartgun_drum
