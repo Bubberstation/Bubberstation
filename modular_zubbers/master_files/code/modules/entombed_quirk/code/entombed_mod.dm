@@ -4,7 +4,7 @@
 	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
 
 	default_skin = "standard"
-	armor_type = /datum/armor/mod_entombed
+	armor_type = /datum/armor/mod_theme_civilian
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	complexity_max = DEFAULT_MAX_COMPLEXITY - 5
@@ -19,7 +19,7 @@
 		/obj/item/flashlight,
 	)
 
-/datum/armor/mod_entombed // Equalized its armour values to be the same as the civilian modsuit
+/* /datum/armor/mod_entombed  (Commented out cus entombed modsuit just refers to the civilian one directly now)
 	melee = 5
 	bullet = 5
 	laser = 5
@@ -28,7 +28,7 @@
 	fire = 25
 	acid = 25
 	wound = 5
-
+*/
 /obj/item/mod/module/joint_torsion/entombed
 	name = "internal joint torsion adaptation"
 	desc = "Your adaptation to life in this MODsuit shell allows you to ambulate in such a way that your movements recharge the suit's internal batteries slightly, but only while under the effect of gravity."
