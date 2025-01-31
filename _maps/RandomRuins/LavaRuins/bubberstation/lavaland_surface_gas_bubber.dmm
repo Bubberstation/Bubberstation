@@ -194,15 +194,7 @@
 	pixel_x = 7;
 	pixel_y = 0;
 	name = "Manager Note";
-	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>P.S, go into the backroom and set the nitrogen and oxygen pressure tanks to layer 3 with the multitool, the HVAC tech had no fucking clue what he was doing apparently!<BR><BR>-General Manager, Ra'Tahul Rekinov"
-	},
-/obj/item/multitool{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/screwdriver{
-	pixel_x = 1;
-	pixel_y = 11
+	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>-General Manager, Ra'Tahul Rekinov"
 	},
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -537,6 +529,7 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "pB" = (
+/obj/structure/cable,
 /obj/machinery/power/smes/full{
 	component_parts = 4;
 	charge = 0
@@ -913,6 +906,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "zo" = (
 /obj/machinery/atmospherics/components/tank/nitrogen{
+	piping_layer = 2;
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
@@ -1800,7 +1794,8 @@
 /area/ruin/thelizardsgas_lavaland)
 "Zt" = (
 /obj/machinery/atmospherics/components/tank/oxygen{
-	dir = 8
+	dir = 8;
+	piping_layer = 2
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
 /turf/open/floor/iron/smooth{
