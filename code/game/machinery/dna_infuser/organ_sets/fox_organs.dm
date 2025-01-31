@@ -6,6 +6,6 @@
 	visual = TRUE
 	damage_multiplier = 2
 
-	dna_block = DNA_EARS_BLOCK
+	//dna_block = DNA_EARS_BLOCK // Bubber edit - We don't use this
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears
 	sprite_accessory_override = /datum/sprite_accessory/ears/fox
