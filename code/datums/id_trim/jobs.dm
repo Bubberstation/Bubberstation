@@ -546,7 +546,6 @@
 	)
 	extra_access = list(
 		ACCESS_BRIG,
-		ACCESS_SECURITY_OUTPOST,
 	)
 	template_access = list(
 		ACCESS_CAPTAIN,
@@ -687,7 +686,6 @@
 		ACCESS_SERVICE,
 		ACCESS_SHIPPING,
 		ACCESS_WEAPONS,
-		ACCESS_SECURITY_OUTPOST,
 	)
 	minimal_wildcard_access = list(
 		ACCESS_HOS,
@@ -1056,7 +1054,6 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		ACCESS_SECURITY_OUTPOST,
 		)
 	extra_access = list(
 		ACCESS_DETECTIVE,
@@ -1245,7 +1242,6 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		ACCESS_SECURITY_OUTPOST,
 	)
 	extra_access = list()
 	template_access = list()
@@ -1278,7 +1274,6 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		ACCESS_SECURITY_OUTPOST,
 		) // See /datum/job/warden/get_access()
 	extra_access = list(
 		ACCESS_DETECTIVE,

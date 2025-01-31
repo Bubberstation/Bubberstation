@@ -219,6 +219,7 @@
 	sechud_icon_state = SECHUD_SCIENCE_GUARD
 	extra_access = list(
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_GENETICS,
 		ACCESS_MECH_SCIENCE,
 		ACCESS_MINERAL_STOREROOM,
@@ -227,13 +228,14 @@
 		ACCESS_RESEARCH,
 		ACCESS_ROBOTICS,
 		ACCESS_SCIENCE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_TECH_STORAGE,
 		ACCESS_WEAPONS,
 		ACCESS_XENOBIOLOGY,
 	)
 	minimal_access = list(
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_GENETICS,
 		ACCESS_MECH_SCIENCE,
 		ACCESS_MINERAL_STOREROOM,
@@ -242,7 +244,7 @@
 		ACCESS_RESEARCH,
 		ACCESS_ROBOTICS,
 		ACCESS_SCIENCE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_TECH_STORAGE,
 		ACCESS_WEAPONS,
 		ACCESS_XENOBIOLOGY,
@@ -321,13 +323,14 @@
 	subdepartment_color = COLOR_MEDICAL_BLUE
 	sechud_icon_state = SECHUD_ORDERLY
 	extra_access = list(
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_MECH_MEDICAL,
 		ACCESS_MEDICAL,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
 		ACCESS_PHARMACY,
 		ACCESS_PLUMBING,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_SURGERY,
 		ACCESS_VIROLOGY,
 		ACCESS_WEAPONS,
@@ -335,13 +338,14 @@
 		ACCESS_PSYCHOLOGY,
 	)
 	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_MECH_MEDICAL,
 		ACCESS_MEDICAL,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
 		ACCESS_PHARMACY,
 		ACCESS_PLUMBING,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_SURGERY,
 		ACCESS_VIROLOGY,
 		ACCESS_WEAPONS,
@@ -423,6 +427,7 @@
 	extra_access = list(
 		ACCESS_ATMOSPHERICS,
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_CONSTRUCTION,
 		ACCESS_ENGINEERING,
 		ACCESS_ENGINE_EQUIP,
@@ -430,7 +435,7 @@
 		ACCESS_MAINT_TUNNELS,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MECH_ENGINE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_TCOMMS,
 		ACCESS_TECH_STORAGE,
 		ACCESS_WEAPONS,
@@ -438,6 +443,7 @@
 	minimal_access = list(
 		ACCESS_ATMOSPHERICS,
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_CONSTRUCTION,
 		ACCESS_ENGINEERING,
 		ACCESS_ENGINE_EQUIP,
@@ -445,7 +451,7 @@
 		ACCESS_MAINT_TUNNELS,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MECH_ENGINE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_TCOMMS,
 		ACCESS_TECH_STORAGE,
 		ACCESS_WEAPONS,
@@ -523,25 +529,27 @@
 	subdepartment_color = COLOR_CARGO_BROWN
 	sechud_icon_state = SECHUD_CUSTOMS_AGENT
 	extra_access = list(
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_CARGO,
 		ACCESS_MAINT_TUNNELS,
 		ACCESS_MECH_MINING,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MINING,
 		ACCESS_MINING_STATION,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_SHIPPING,
 		ACCESS_BIT_DEN,
 		ACCESS_WEAPONS,
 	)
 	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_CARGO,
 		ACCESS_MAINT_TUNNELS,
 		ACCESS_MECH_MINING,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MINING,
 		ACCESS_MINING_STATION,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_SHIPPING,
 		ACCESS_BIT_DEN,
 		ACCESS_WEAPONS,
@@ -621,11 +629,12 @@
 	extra_access = list(
 		ACCESS_BAR,
 		ACCESS_SERVICE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_THEATRE,
 		ACCESS_WEAPONS,
 		ACCESS_JANITOR,
@@ -633,11 +642,12 @@
 	minimal_access = list(
 		ACCESS_BAR,
 		ACCESS_SERVICE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
-		ACCESS_SECURITY_OUTPOST,
+		ACCESS_SECURITY,
 		ACCESS_THEATRE,
 		ACCESS_WEAPONS,
 		ACCESS_JANITOR,
@@ -741,24 +751,24 @@
 	desc = "Contains an extra baton for Corrections Officers. \
 		Just in case you hated the idea of a normal baton in their hands."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/prison)
 
 /datum/supply_pack/service/baton_service
 	name = "Service Baton Crate"
 	desc = "Contains an extra baton for Service Guards."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/service)
 
 /datum/supply_pack/medical/baton_medical
 	name = "Medical Baton Crate"
 	desc = "Contains an extra baton for Orderlies."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/medical)
 
 /datum/supply_pack/engineering/baton_engineering
@@ -773,16 +783,16 @@
 	name = "Science Baton Crate"
 	desc = "Contains an extra baton for Science Guards."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/science)
 
 /datum/supply_pack/misc/baton_cargo
 	name = "Cargo Baton Crate"
 	desc = "Contains an extra baton for Customs Agents."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/cargo)
 /*
 * Garment Bags
