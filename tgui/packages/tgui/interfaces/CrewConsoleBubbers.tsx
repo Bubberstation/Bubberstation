@@ -133,7 +133,6 @@ type CrewSensor = {
   assignment: string | undefined;
   ijob: number;
   is_robot: any;
-  is_dnr: any;
   life_status: number;
   oxydam: number;
   toxdam: number;
@@ -239,7 +238,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
     assignment,
     ijob,
     is_robot,
-    is_dnr,
     life_status,
     oxydam,
     toxdam,
@@ -282,7 +280,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
         )}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
-        {life_status === STAT_DEAD && is_dnr ? ' (DNR)' : ''}
+        {life_status === STAT_DEAD}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (
