@@ -2,7 +2,6 @@
 
 /obj/structure/aquarium/bioelec_gen/prefilled
 	anchored = TRUE
-	reproduction_and_growth = TRUE
 
 /obj/structure/aquarium/bioelec_gen/prefilled/Initialize(mapload)
 	. = ..()
