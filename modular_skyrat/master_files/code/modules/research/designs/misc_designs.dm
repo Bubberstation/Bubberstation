@@ -62,6 +62,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/*
 /datum/design/time_clock_frame
 	name = "Time Clock Frame"
 	desc = "A frame for a time clock console, contains all of the parts needed to build a new time clock"
@@ -76,6 +77,7 @@
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MOUNTS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
+*/
 
 /datum/design/vox_gas_filter
 	name = "Vox Gas Filter"
