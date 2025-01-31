@@ -54,6 +54,26 @@
 	item_type = /obj/item/survivalcapsule/chemistry
 	cost = PAYCHECK_COMMAND * 20
 
+/datum/supply_pack/medical/medpod
+	name = "Medical Trauma Pod"
+	crate_name = "medical pod crate"
+	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
+	access = ACCESS_MEDICAL
+	cost = CARGO_CRATE_VALUE * 20
+	contains = list(
+		/obj/item/survivalcapsule/medical,
+	)
+
+/datum/supply_pack/medical/chempod
+	name = "Chemical Refinement Pod"
+	crate_name = "chemistry pod crate"
+	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
+	access = ACCESS_MEDICAL
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/survivalcapsule/chemistry,
+	)
+
 /*****************************Botany Pods - Home is where the green is...********************************/
 /obj/item/survivalcapsule/botany
 	name = "botany control capsule"
@@ -94,6 +114,8 @@
 	. = ..()
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/*********************************************Odd Pods**************************************************/
 
 /obj/item/survivalcapsule/fan
 	name = "airlock fan capsule"
@@ -176,7 +198,7 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/threebythree
-	name = "deployable small emtpy capsule"
+	name = "deployable small empty capsule"
 	desc = "A bluespace pod, containing an empty 3x3 capsule."
 	icon_state = "capsule"
 	icon = 'icons/obj/mining.dmi'
@@ -196,7 +218,7 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/sixbysix
-	name = "deployable large emtpy capsule"
+	name = "deployable large empty capsule"
 	desc = "A bluespace pod, containing an empty 6x6 capsule."
 	icon_state = "capsule"
 	icon = 'icons/obj/mining.dmi'
@@ -246,3 +268,62 @@
 /datum/armament_entry/company_import/nri_surplus/misc/cabin
 	item_type = /obj/item/survivalcapsule/cabin
 	cost = PAYCHECK_COMMAND * 2
+
+
+/************************* MED-SCI Pods***************************/
+
+/***xenoarcheology***/
+/obj/item/survivalcapsule/xenoarchpod
+	name = "deployable xenoarcheology capsule"
+	desc = "A bluespace pod, containing an 3x3 xenoarcheology capsule."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_xenoarch"
+	used = FALSE
+
+/datum/map_template/shelter/xenoarch
+	name = "xenoarch capsule deployer"
+	shelter_id = "shelter_xenoarch"
+	description = "A contained small xenoarch capsule."
+	mappath = "_maps/bubber/pods/shelterxenoarch.dmm"
+
+/datum/map_template/shelter/xenoarch/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/datum/supply_pack/science/xenoarchpod
+	name = "Xenoarcheology Pod"
+	desc = "A bluespace pod, containing an 3x3 xenoarcheology capsule."
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(/obj/item/survivalcapsule/xenoarchpod)
+	crate_type = /obj/structure/closet/crate/nakamura
+
+/***triage***/
+
+/obj/item/survivalcapsule/triage
+	name = "deployable triage capsule"
+	desc = "A bluespace pod, containing an 3x3 emergency triage."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "shelter_triage"
+	used = FALSE
+
+/datum/map_template/shelter/triage
+	name = "triage capsule deployer"
+	shelter_id = "shelter_triage"
+	description = "A contained small triage capsule."
+	mappath = "_maps/bubber/pods/shelter_triage.dmm"
+
+/datum/map_template/shelter/triage/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/datum/supply_pack/medical/triagepod
+	name = "Triage Pod"
+	desc = "A bluespace pod, containing an 3x3 triage suite."
+	cost = CARGO_CRATE_VALUE * 15
+	contains = list(/obj/item/survivalcapsule/triage)
