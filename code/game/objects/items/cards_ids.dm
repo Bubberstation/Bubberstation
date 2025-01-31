@@ -1138,6 +1138,13 @@
 	desc = "A rainbow card, promoting fun in a 'business proper' sense!"
 	icon_state = "card_rainbow"
 
+/obj/item/card/id/advanced/lizardgas
+	name = "Lizard Gas Employee Card"
+	desc = "A rainbow ID card, promoting fun in a 'business proper' sense!"
+	icon_state = "card_rainbow"
+	trim = /datum/id_trim/away/lizardgas
+	wildcard_slots = WILDCARD_LIMIT_GREY
+
 /obj/item/card/id/advanced/silver
 	name = "silver identification card"
 	desc = "A silver card which shows honour and dedication."
