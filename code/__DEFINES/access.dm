@@ -49,6 +49,8 @@
 #define ACCESS_HOS "hos"
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
+/// BUBBER EDIT: Added for departmental guard access
+#define ACCESS_SECURITY_OUTPOST "security_outpost"
 
 /// Engineering General Access, grants access to the standard parts of engineering (as well as the Supermatter and related equipment).
 #define ACCESS_ENGINEERING "engineering"
@@ -338,8 +340,9 @@
 	ACCESS_WEAPONS, \
 	ACCESS_XENOBIOLOGY, \
 	ACCESS_BARBER, \
+	ACCESS_SECURITY_OUTPOST, \
 	ACCESS_BLACKSMITH, \
-) // SKYRAT EDIT ADDITION
+) // SKYRAT EDIT ADDITION //BUBBER EDIT: added ACCESS_SECURITY_OUTPOST
 
 /// Command staff/secure accesses, think bridge/armoury, ai_upload, notably access to modify ID cards themselves. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND)
 #define COMMAND_ACCESS list( \
@@ -449,7 +452,8 @@
 	ACCESS_MECH_SECURITY, \
 	ACCESS_SECURITY, \
 	ACCESS_WEAPONS, \
-)
+	ACCESS_SECURITY_OUTPOST, \
+) //BUBBER EDIT: Added ACCESS_SECURITY_OUTPOST
 /// Name for the Medbay region.
 #define REGION_MEDBAY "Medbay"
 /// Used to seed the accesses_by_region list in SSid_access. A list of all medbay regional accesses that are overseen by the CMO.

@@ -124,7 +124,7 @@
 // SKYRAT EDIT CHANGE -- GOOFSEC DEP GUARDS
 /obj/structure/closet/secure_closet/security/cargo
 	name = "\proper customs agent's locker"
-	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_CARGO)
+	req_access = list(ACCESS_SECURITY_OUTPOST, ACCESS_CARGO)
 	icon_state = "qm"
 	icon = 'icons/obj/storage/closet.dmi'
 
@@ -135,7 +135,7 @@
 
 /obj/structure/closet/secure_closet/security/engine
 	name = "\proper engineering guard's locker"
-	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_ENGINEERING)
+	req_access = list(ACCESS_SECURITY_OUTPOST, ACCESS_ENGINEERING)
 	icon_state = "eng_secure"
 	icon = 'icons/obj/storage/closet.dmi'
 
@@ -146,7 +146,7 @@
 
 /obj/structure/closet/secure_closet/security/science
 	name = "\proper science guard's locker"
-	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_RESEARCH)
+	req_access = list(ACCESS_SECURITY_OUTPOST, ACCESS_RESEARCH)
 	icon_state = "science"
 	icon = 'icons/obj/storage/closet.dmi'
 
@@ -157,7 +157,7 @@
 
 /obj/structure/closet/secure_closet/security/med
 	name = "\proper orderly's locker"
-	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_MEDICAL)
+	req_access = list(ACCESS_SECURITY_OUTPOST, ACCESS_MEDICAL)
 	icon_state = "med_secure"
 	icon = 'icons/obj/storage/closet.dmi'
 
