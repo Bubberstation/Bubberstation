@@ -2782,7 +2782,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 		if(cargo_account) //Just in case
 			cargo_account.adjust_money(-min(ransom_price, cargo_account.account_balance)) //Not so much, especially for competent cargo. Plus this can't be mass-triggered like it has been done with contractors
-		priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.", "Nanotrasen Asset Protection", has_important_message = TRUE)
+		priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.", "Nanotrasen Asset Protection", has_important_message = TRUE, sentient = TRUE)
 
 	///The price should be high enough that the contractor can't just buy 'em back with their cut alone.
 	var/datum/market_item/hostage/market_item = new(src, black_market_price || ransom_price)

@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 			text = "[announce_desc] have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [DisplayTimeText(start_when * 20, 10)]. [announce_fluff]",
 			title = announce_prefix,
 			sound = ANNOUNCER_METEORWARNING,
+			sentient = TRUE
 		)
 
 	if(fake)
@@ -107,6 +108,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 			sound = 'sound/items/radio/radio_important.ogg', // basically silent, since the securitylevel proc will make a sound
 			sender_override = "[command_name()] Engineering Division",
 			color_override = "orange",
+			sentient = TRUE
 		)
 
 /datum/round_event_control/meteor_wave/candy

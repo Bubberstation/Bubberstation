@@ -265,7 +265,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 					priority_announce(
 						"Notice: A stolen Wizard Federation virus that \"animes(sic) the dead\" may or may not have accidentally been delivered to the station via supply pod. Please return contents of said supply pod to the nearest Nanotrasen representative. In case of accidental infection, use the cure with the instructions delivered to [chosen_turf.loc].",
 						"Reanimation Virus Alert",
-						ANNOUNCER_ANIMES
+						ANNOUNCER_ANIMES,
+						sentient = TRUE
 					)
 					podspawn(list(
 						"target" = chosen_turf,

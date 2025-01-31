@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(nightshift)
 		sound = 'sound/announcer/notice/notice2.ogg',
 		sender_override = "Automated Lighting System Announcement",
 		color_override = "grey",
+		sentient = TRUE,
 	)
 
 /datum/controller/subsystem/nightshift/proc/check_nightshift()
