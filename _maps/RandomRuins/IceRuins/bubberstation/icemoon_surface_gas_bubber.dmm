@@ -341,12 +341,6 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/powered/lizard_gas)
-"hO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
-	},
-/area/ruin/powered/lizard_gas)
 "hV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
@@ -374,7 +368,15 @@
 	pixel_x = 7;
 	pixel_y = 0;
 	name = "Manager Note";
-	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>-General Manager, Ra'Tahul Rekinov"
+	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>P.S, go into the backroom and set the nitrogen and oxygen pressure tanks to layer 3 with the multitool, the HVAC tech had no fucking clue what he was doing apparently!<BR><BR>-General Manager, Ra'Tahul Rekinov"
+	},
+/obj/item/multitool{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/screwdriver{
+	pixel_x = 0;
+	pixel_y = 0
 	},
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -1017,7 +1019,6 @@
 	component_parts = 4;
 	charge = 0
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer2,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -1232,8 +1233,7 @@
 /area/ruin/powered/lizard_gas)
 "Hq" = (
 /obj/machinery/atmospherics/components/tank/oxygen{
-	dir = 8;
-	piping_layer = 2
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
 /turf/open/floor/iron/smooth{
@@ -1499,7 +1499,7 @@
 "Qz" = (
 /obj/structure/table/wood/shuttle_bar,
 /obj/machinery/fax{
-	fax_name = LizardGasStation;
+	fax_name = "LizardGasStation";
 	name = "Manager's Fax Machine"
 	},
 /turf/open/floor/wood/parquet,
@@ -1779,7 +1779,6 @@
 /area/icemoon/underground/unexplored)
 "YL" = (
 /obj/machinery/atmospherics/components/tank/nitrogen{
-	piping_layer = 2;
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
@@ -2365,7 +2364,7 @@ Wq
 Lm
 hV
 gm
-hO
+gm
 Jb
 gm
 ZQ
