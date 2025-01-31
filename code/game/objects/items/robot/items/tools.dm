@@ -42,6 +42,10 @@
 	var/active = FALSE
 	/// activation cooldown
 	COOLDOWN_DECLARE(cycle_cooldown)
+	//BUBBER EDIT BEGIN
+	/// The datum applied to the projectile dampener field
+	var/datum/dampener_projectile_effects/projectile_effects_datum = /datum/dampener_projectile_effects/peacekeeper
+	//BUBBER EDIT END
 
 /obj/item/borg/projectile_dampen/debug
 	maxenergy = 50000
@@ -86,7 +90,7 @@
 	if(istype(dampening_field))
 		QDEL_NULL(dampening_field)
 	var/mob/living/silicon/robot/owner = get_host()
-	dampening_field = new(owner, field_radius, TRUE, src, /datum/dampener_projectile_effects/peacekeeper)
+	dampening_field = new(owner, field_radius, TRUE, src, projectile_effects_datum) // BUBBER EDIT - added projectile_effects_datum
 	RegisterSignal(dampening_field, COMSIG_DAMPENER_CAPTURE, PROC_REF(dampen_projectile))
 	RegisterSignal(dampening_field, COMSIG_DAMPENER_RELEASE, PROC_REF(restore_projectile))
 	owner?.model.allow_riding = FALSE
