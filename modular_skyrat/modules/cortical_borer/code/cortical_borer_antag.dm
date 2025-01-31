@@ -108,7 +108,7 @@
 	announce_when = rand(announce_when, announce_when + 50)
 
 /datum/round_event/ghost_role/cortical_borer/announce(fake)
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS, sentient = TRUE)
 
 /datum/round_event/ghost_role/cortical_borer/start()
 	var/list/vents = list()
