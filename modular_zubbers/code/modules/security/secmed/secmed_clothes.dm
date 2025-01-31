@@ -6,6 +6,9 @@
 	blood_overlay_type = "armor"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/skyrat_security_medic
+	unique_reskin = list(
+		"Blue Labcoat" = "secmed_labcoat_blue",
+	)
 
 /datum/armor/skyrat_security_medic
 	melee = 35
@@ -25,9 +28,6 @@
 		/obj/item/melee/baton/telescopic,
 		/obj/item/storage/medkit
 		)
-
-/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
-	icon_state = "secmed_labcoat_blue"
 
 /obj/item/clothing/suit/hazardvest/security_medic
 	name = "security medic vest"
@@ -68,9 +68,10 @@
 	name = "security medic uniform"
 	desc = "A lightly armored uniform worn by Nanotrasen's Asset Protection Medical Corps."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_medic_jumpsuit"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_state = "security_medic_jumpsuit"
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	name = "security medic turtleneck"

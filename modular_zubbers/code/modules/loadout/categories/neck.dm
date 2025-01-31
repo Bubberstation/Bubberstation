@@ -15,6 +15,31 @@
 	name = "Crow Feather Cloak"
 	item_path = /obj/item/clothing/neck/binary
 
+/datum/loadout_item/neck/security_cape
+	name = "security cape"
+	item_path = /obj/item/clothing/neck/security_cape
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/neck/security_cape/armplate
+	name = "security gauntlet"
+	item_path = /obj/item/clothing/neck/security_cape/armplate
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/neck/pauldron
+	name = "lieutenant commander's pauldron"
+	item_path = /obj/item/clothing/neck/pauldron
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/neck/pauldron/captain
+	name = "commander's pauldron"
+	item_path = /obj/item/clothing/neck/pauldron/captain
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/neck/pauldron/commander
+	name = "captain's pauldron"
+	item_path = /obj/item/clothing/neck/pauldron/commander
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
 /datum/loadout_item/neck/bunnypendant
 	name = "Rabbit Pendant"
 	item_path = /obj/item/clothing/neck/bunny_pendant

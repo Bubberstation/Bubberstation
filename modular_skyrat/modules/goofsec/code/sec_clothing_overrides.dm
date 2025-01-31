@@ -248,10 +248,9 @@
 	icon_state = "security_helmet_future"
 	base_icon_state = "security_helmet_future"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/head/helmet/sec/futuristic/blue
-	icon_state = "security_helmet_future_blue"
-	base_icon_state = "security_helmet_future_blue"
+	unique_reskin = list(
+		"Blue Variant" = "security_helmet_future_blue",
+	)
 
 //Beret replacement
 /obj/item/clothing/head/security_garrison
@@ -260,19 +259,12 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "garrison_black"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "garrison_black",
-			RESKIN_WORN_ICON_STATE = "garrison_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "garrison_blue",
-			RESKIN_WORN_ICON_STATE = "garrison_blue"
-		),
+		"Black Variant" = "garrison_black",
+		"Blue Variant" = "garrison_blue",
 	)
 
 /obj/item/clothing/head/security_cap
@@ -281,52 +273,26 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "security_cap_black"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "security_cap_black",
-			RESKIN_WORN_ICON_STATE = "security_cap_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "security_cap_blue",
-			RESKIN_WORN_ICON_STATE = "security_cap_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "security_cap_white",
-			RESKIN_WORN_ICON_STATE = "security_cap_white"
-		),
-		"Sol Variant" = list(
-			RESKIN_ICON_STATE = "policesoft",
-			RESKIN_WORN_ICON_STATE = "policesoft"
-		),
-		"Sillitoe Variant" = list(
-			RESKIN_ICON_STATE = "policetrafficsoft",
-			RESKIN_WORN_ICON_STATE = "policetrafficsoft"
-		),
-		"Cadet Variant" = list(
-			RESKIN_ICON_STATE = "policecadetsoft",
-			RESKIN_WORN_ICON_STATE = "policecadetsoft"
-		),
+		"Black Variant" = "security_cap_black",
+		"Blue Variant" = "security_cap_blue",
+		"White Variant" = "security_cap_white",
+		"Sol Variant" = "policesoft",
+		"Sillitoe Variant" = "policetrafficsoft",
+		"Cadet Variant" = "policecadetsoft",
 	)
 
 /obj/item/clothing/head/hats/warden
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "policehelm"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Cap" = list(
-			RESKIN_ICON_STATE = "policehelm",
-			RESKIN_WORN_ICON_STATE = "policehelm"
-		),
-		"Sol Cap" = list(
-			RESKIN_ICON_STATE = "policewardencap",
-			RESKIN_WORN_ICON_STATE = "policewardencap"
-		),
+		"Blue Cap" = "policehelm",
+		"Sol Cap" = "policewardencap",
 	)
 
 /obj/item/clothing/head/hats/warden/red
@@ -383,20 +349,10 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cape_black"
 	inhand_icon_state = "" //no unique inhands
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "cape_black",
-			RESKIN_WORN_ICON_STATE = "cape_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "cape_blue",
-			RESKIN_WORN_ICON_STATE = "cape_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "cape_white",
-			RESKIN_WORN_ICON_STATE = "cape_white"
-		),
+		"Black Variant" = "cape_black",
+		"Blue Variant" = "cape_blue",
+		"White Variant" = "cape_white",
 	)
 	///Decides the shoulder it lays on, false = RIGHT, TRUE = LEFT
 	var/swapped = FALSE
@@ -405,20 +361,10 @@
 	name = "security gauntlet"
 	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
 	icon_state = "armplate_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "armplate_black",
-			RESKIN_WORN_ICON_STATE = "armplate_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "armplate_blue",
-			RESKIN_WORN_ICON_STATE = "armplate_blue"
-		),
-		"Capeless Variant" = list(
-			RESKIN_ICON_STATE = "armplate",
-			RESKIN_WORN_ICON_STATE = "armplate"
-		),
+		"Black Variant" = "armplate_black",
+		"Blue Variant" = "armplate_blue",
+		"Capeless Variant" = "armplate",
 	)
 
 /obj/item/clothing/neck/security_cape/click_alt(mob/user)
@@ -445,20 +391,10 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "gloves_white"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "gloves_black",
-			RESKIN_WORN_ICON_STATE = "gloves_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "gloves_blue",
-			RESKIN_WORN_ICON_STATE = "gloves_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "gloves_white",
-			RESKIN_WORN_ICON_STATE = "gloves_white"
-		),
+		"Black Variant" = "gloves_black",
+		"Blue Variant" = "gloves_blue",
+		"White Variant" = "gloves_white",
 	)
 
 /obj/item/clothing/gloves/color/black/security/blu // Wait why these a subtype of black?!? Who did this

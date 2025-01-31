@@ -38,7 +38,7 @@
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3E3E48#FFFFFF"
 
-/obj/item/clothing/head/beaniesec
+/obj/item/clothing/head/security_beanie
 	name = "security beanie"
 	desc = "A robust beanie with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
