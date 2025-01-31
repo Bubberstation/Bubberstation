@@ -72,7 +72,7 @@
 
 /datum/map_template/shelter/botany/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/trays
@@ -92,7 +92,7 @@
 
 /datum/map_template/shelter/trays/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/fan
@@ -112,7 +112,7 @@
 
 /datum/map_template/shelter/fan/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/o2
@@ -132,7 +132,7 @@
 
 /datum/map_template/shelter/o2/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/kitchen
@@ -152,7 +152,7 @@
 
 /datum/map_template/shelter/kitchen/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/cabin
@@ -172,7 +172,7 @@
 
 /datum/map_template/shelter/cabin/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/threebythree
@@ -192,7 +192,7 @@
 
 /datum/map_template/shelter/threebythree/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /obj/item/survivalcapsule/sixbysix
@@ -212,7 +212,7 @@
 
 /datum/map_template/shelter/sixbysix/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/armament_entry/company_import/nri_surplus/misc/botanypod
