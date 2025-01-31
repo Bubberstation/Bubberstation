@@ -1,5 +1,5 @@
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation
-	name = "Lavaland Gas Station Attendant"
+	name = "Gas Station Attendant"
 	desc = "Seems like there's somebody inside, peacefully sleeping."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
@@ -9,7 +9,7 @@
 	important_text = "Do NOT let your workplace get damaged! Do not abandon it either!"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
-	loadout_enabled = FALSE
+	loadout_enabled = TRUE
 	outfit = /datum/outfit/lavaland_gasstation
 
 /datum/outfit/lavaland_gasstation
@@ -20,6 +20,16 @@
 	gloves = /obj/item/clothing/gloves/fingerless
 	head = /obj/item/clothing/head/soft/purple
 	l_pocket = /obj/item/modular_computer/pda
+	id = /obj/item/card/id/advanced/lizardgas
+
+/datum/outfit/lavaland_gasstation/post_equip(mob/living/carbon/human/clerk, visualsOnly = FALSE)
+    var/obj/item/card/id/id_card = clerk.wear_id
+    if(istype(id_card))
+        id_card.registered_name = clerk.real_name
+        id_card.update_label()
+        id_card.update_icon()
+    handlebank(clerk)
+    return ..()
 
 /datum/outfit/hermit
 	backpack_contents = list(/obj/item/research_paper = 1)
