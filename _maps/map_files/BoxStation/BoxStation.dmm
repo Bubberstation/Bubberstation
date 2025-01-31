@@ -3859,6 +3859,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 6
 	},
+/obj/structure/steam_vent,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "awf" = (
@@ -6437,6 +6438,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/burnt_floor,
+/obj/structure/steam_vent,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "aGd" = (
@@ -12578,6 +12580,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/south,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "bbv" = (
@@ -28316,7 +28319,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/aft)
 "ciT" = (
-/obj/structure/steam_vent,
+/obj/effect/spawner/random/maintenance,
+/obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "ciW" = (
@@ -34800,10 +34804,10 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "dJG" = (
-/obj/effect/spawner/random/burgerstation/blocking,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "dJI" = (
@@ -36932,6 +36936,16 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/disposal/incinerator)
 "fdC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
 /obj/structure/steam_vent,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
@@ -40565,9 +40579,19 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "hyJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
 /obj/structure/steam_vent,
 /turf/open/floor/plating,
-/area/station/maintenance/port)
+/area/station/maintenance/port/aft)
 "hyU" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/stripes/line{
@@ -43895,7 +43919,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/steam_vent,
+/obj/effect/spawner/random/burgerstation/blocking,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "jty" = (
@@ -49028,7 +49052,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "mFY" = (
@@ -54036,6 +54059,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "pXJ" = (
@@ -55765,12 +55789,15 @@
 /turf/open/floor/iron,
 /area/station/maintenance/department/electrical)
 "qYT" = (
-/obj/effect/spawner/random/structure/crate,
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/steam_vent,
 /turf/open/floor/plating,
-/area/station/maintenance/fore)
+/area/station/maintenance/aft)
 "qYY" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Security";
@@ -63843,7 +63870,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/steam_vent,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
 "wde" = (
@@ -65333,9 +65359,15 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard)
 "wWD" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 9
+	},
 /obj/structure/steam_vent,
 /turf/open/floor/plating,
-/area/station/maintenance/starboard/aft)
+/area/station/maintenance/port)
 "wWE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -87496,7 +87528,7 @@ aPz
 aPz
 aPz
 aPz
-hyJ
+aSg
 aFB
 aPz
 aAr
@@ -87752,7 +87784,7 @@ asx
 asx
 asx
 asx
-asx
+wWD
 asx
 yfx
 aPz
@@ -91582,7 +91614,7 @@ asT
 igH
 arP
 dqd
-pmF
+eup
 aph
 xKN
 hfv
@@ -91839,7 +91871,7 @@ gpE
 gpE
 arP
 qKp
-qYT
+pmF
 aph
 gvi
 iLX
@@ -93182,7 +93214,7 @@ bLv
 bLv
 bCq
 bCq
-cay
+hyJ
 tau
 lTE
 bXC
@@ -104481,7 +104513,7 @@ lOZ
 kbG
 rrA
 bRa
-hxs
+fdC
 bzs
 hLb
 hLb
@@ -109125,7 +109157,7 @@ sUi
 pjk
 bFr
 feO
-fdC
+bAw
 bzs
 bzs
 bzs
@@ -109387,7 +109419,7 @@ aek
 aek
 aek
 aek
-aek
+qYT
 aek
 jCc
 pmh
@@ -113244,7 +113276,7 @@ bDb
 bDb
 bDb
 bDb
-wWD
+cdu
 cNW
 hVD
 idU
@@ -114272,7 +114304,7 @@ qQH
 bhG
 uGf
 cNW
-cdu
+cOe
 lSv
 tkC
 cNW
