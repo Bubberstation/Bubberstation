@@ -19,16 +19,6 @@
 		/obj/item/flashlight,
 	)
 
-/* /datum/armor/mod_entombed  (Commented out cus entombed modsuit just refers to the civilian one directly now)
-	melee = 5
-	bullet = 5
-	laser = 5
-	energy = 5
-	bio = 50
-	fire = 25
-	acid = 25
-	wound = 5
-*/
 /obj/item/mod/module/joint_torsion/entombed
 	name = "internal joint torsion adaptation"
 	desc = "Your adaptation to life in this MODsuit shell allows you to ambulate in such a way that your movements recharge the suit's internal batteries slightly, but only while under the effect of gravity."
