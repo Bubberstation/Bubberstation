@@ -18,7 +18,7 @@
 	// Mean things
 	var/muffles_radio = TRUE // muffles radios used inside it
 	var/escape_chance = 100
-	var/escape_time = DEFAULT_ESCAPE_TIME
+	var/escape_time = 15 SECONDS
 	var/overlay_path = null
 	var/overlay_color = "#ffffff"
 
@@ -31,6 +31,7 @@
 	var/release_sound = "Splatter"
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
+	escape_time = DEFAULT_ESCAPE_TIME // expected a constant expression
 	. = ..()
 	if(!istype(new_owner))
 		return INITIALIZE_HINT_QDEL
@@ -334,15 +335,14 @@
 			if(AM in arrived)
 				arrived.dropItemToGround(AM, TRUE)
 			AM.forceMove(reject_location)
-		#if DISABLES_SENSORS
-		if(istype(AM, /obj/item/clothing/under))
-			var/obj/item/clothing/under/sensor_clothing = AM
-			sensor_clothing.sensor_mode = SENSOR_OFF
-			if(ishuman(arrived))
-				var/mob/living/carbon/human/H = arrived
-				if(H.w_uniform == sensor_clothing)
-					H.update_suit_sensors()
-		#endif
+		if(DISABLES_SENSORS)
+			if(istype(AM, /obj/item/clothing/under))
+				var/obj/item/clothing/under/sensor_clothing = AM
+				sensor_clothing.sensor_mode = SENSOR_OFF
+				if(ishuman(arrived))
+					var/mob/living/carbon/human/H = arrived
+					if(H.w_uniform == sensor_clothing)
+						H.update_suit_sensors()
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)

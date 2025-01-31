@@ -24,16 +24,13 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 	gurgle_noises = TRUE
 
 /mob/living/proc/vore_can_negatively_affect()
-	#if REQUIRES_PLAYER
-	// No player, no deal
-	return FALSE
-	#else
+	if(REQUIRES_PLAYER)
+		return FALSE
 	if(mind)
 		// they were at some point a player, we don't digest them until they get back
 		return FALSE
 	// Animal, melt em
 	return TRUE
-	#endif
 
 /mob/living/proc/vore_can_digest()
 	if(client)
