@@ -15,7 +15,7 @@
 	template_id = "shelter_s"
 
 /datum/orderable_item/mining/capsule_sauna
-	item_path = /obj/item/survivalcapsule/sauna
+	purchase_path = /obj/item/survivalcapsule/sauna
 	cost_per_order = 7000
 
 /obj/item/storage/backpack/duffelbag/mining_bunny
@@ -32,7 +32,7 @@
 	new /obj/item/clothing/shoes/workboots/mining/heeled(src)
 
 /datum/orderable_item/mining/bunny
-	item_path = /obj/item/storage/backpack/duffelbag/mining_bunny
+	purchase_path = /obj/item/storage/backpack/duffelbag/mining_bunny
 	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
 	cost_per_order = 500
 
