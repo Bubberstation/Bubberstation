@@ -180,3 +180,9 @@
 	assignment = "Donk Co. Executive"
 	access = list(ACCESS_SYNDICATE, ACCESS_AWAY_COMMAND)
 	big_pointer = TRUE
+
+//Lizard Gas Station ID
+/datum/id_trim/away/lizardgas
+	assignment = "Lizard Gas Employee"
+	access = list(ACCESS_FACTION_PUBLIC)
+	big_pointer = TRUE
