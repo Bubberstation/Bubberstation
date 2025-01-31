@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/bot_assembly/cleanbot = 100,
 		/obj/item/bot_assembly/ed209 = 25,
 		/obj/item/bot_assembly/firebot = 50,
-		/obj/item/bot_assembly/floorbot = 50,
+		/obj/item/bot_assembly/repairbot = 50,
 		/obj/item/bot_assembly/honkbot = 25,
 		/obj/item/bot_assembly/hygienebot = 25,
 		/obj/item/bot_assembly/medbot = 50,
