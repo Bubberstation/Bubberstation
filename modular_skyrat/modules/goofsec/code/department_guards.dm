@@ -741,8 +741,8 @@
 	desc = "Contains an extra baton for Corrections Officers. \
 		Just in case you hated the idea of a normal baton in their hands."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_SECURITY_OUTPOST
-	access = ACCESS_SECURITY_OUTPOST
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/prison)
 
 /datum/supply_pack/service/baton_service
