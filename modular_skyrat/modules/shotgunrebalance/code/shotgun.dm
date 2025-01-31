@@ -153,11 +153,11 @@
 
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
-	desc = "A 12 gauge flechette shell that specializes in ripping armoured targets apart."
+	desc = "A 12 gauge flechette shell that specializes in ripping armored targets apart. These are exceptionally strong against armored targets."
 	icon_state = "fshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
 	pellets = 5
-	variance = 8
+	variance = 15
 	custom_materials = AMMO_MATS_SHOTGUN_FLECH
 	advanced_print_req = TRUE
 
@@ -165,13 +165,13 @@
 	name = "flechette"
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
 	icon_state = "flechette"
-	damage = 10
-	wound_bonus = 5
-	bare_wound_bonus = 10
+	damage = 7
+	armour_penetration = 40
+	wound_bonus = 0
+	bare_wound_bonus = 0
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
-	weak_against_armour = FALSE
-	damage_falloff_tile = 0
-	armour_penetration = 50
+	damage_falloff_tile = -0.7 // Five tiles will halve the effectiveness dramatically
+	wound_falloff_tile = -3
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
 	. = ..()
@@ -196,8 +196,8 @@
 	icon_state = "hornet"
 	damage = 4
 	stamina = 15
-	damage_falloff_tile = 1
-	stamina_falloff_tile = 1
+	damage_falloff_tile = -1
+	stamina_falloff_tile = -1
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = 0
@@ -232,8 +232,8 @@
 	icon_state = "stardust"
 	damage = 15
 	stamina = 33
-	damage_falloff_tile = 0.2
-	stamina_falloff_tile = 0.3
+	damage_falloff_tile = -0.2
+	stamina_falloff_tile = -0.3
 	wound_bonus = 40
 	bare_wound_bonus = 40
 	stutter = 3 SECONDS
