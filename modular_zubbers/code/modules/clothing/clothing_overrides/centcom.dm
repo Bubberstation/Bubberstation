@@ -96,6 +96,7 @@
 	desc = "An luxurious coat with synthetic fur along the collar, a exotic suit worn by usually Special Operations Officers of Central Command, it's woven with excellent fabrics. This one lacks the special tech of space protection, which hinders it just as a piece of clothing."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "centcom_coat"
 
 /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	name = "CentCom carapace"
