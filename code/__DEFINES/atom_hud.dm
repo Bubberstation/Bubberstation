@@ -37,6 +37,8 @@
 #define GLAND_HUD "16"
 #define SENTIENT_DISEASE_HUD "17"
 #define AI_DETECT_HUD "18"
+#define NANITE_HUD "19"
+#define DIAG_NANITE_FULL_HUD "21"
 /// Displays launchpads' targeting reticle
 #define DIAG_LAUNCHPAD_HUD "19"
 //for antag huds. these are used at the /mob level
