@@ -546,6 +546,7 @@
 	)
 	extra_access = list(
 		ACCESS_BRIG,
+		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
 	)
 	template_access = list(
@@ -687,6 +688,7 @@
 		ACCESS_SERVICE,
 		ACCESS_SHIPPING,
 		ACCESS_WEAPONS,
+		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
 	)
 	minimal_wildcard_access = list(
@@ -1056,6 +1058,7 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
+		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
 		)
 	extra_access = list(
@@ -1245,6 +1248,7 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
+		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
 	)
 	extra_access = list()
@@ -1278,6 +1282,7 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
+		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
 		) // See /datum/job/warden/get_access()
 	extra_access = list(
