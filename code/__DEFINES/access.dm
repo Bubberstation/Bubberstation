@@ -49,6 +49,8 @@
 #define ACCESS_HOS "hos"
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
+/// Access for departmental security outposts.
+#define ACCESS_SECURITY_OUTPOST "security_outpost"
 
 /// Engineering General Access, grants access to the standard parts of engineering (as well as the Supermatter and related equipment).
 #define ACCESS_ENGINEERING "engineering"
@@ -449,6 +451,7 @@
 	ACCESS_MECH_SECURITY, \
 	ACCESS_SECURITY, \
 	ACCESS_WEAPONS, \
+	ACCESS_SECURITY_OUTPOST, \
 )
 /// Name for the Medbay region.
 #define REGION_MEDBAY "Medbay"
