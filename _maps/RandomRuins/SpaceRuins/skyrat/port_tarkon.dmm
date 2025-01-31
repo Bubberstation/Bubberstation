@@ -160,7 +160,6 @@
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "aL" = (
 /obj/structure/alien/weeds/node,
-/obj/machinery/camera/emp_proof/directional/north,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 1
 	},
@@ -2635,6 +2634,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
+"jn" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav)
 "jq" = (
 /obj/structure/alien/egg/burst,
 /turf/open/floor/circuit,
@@ -3275,6 +3278,7 @@
 /obj/effect/turf_decal/tile/red/real_red/half{
 	dir = 4
 	},
+/obj/item/crafting_conversion_kit/mosin_pro,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "lT" = (
@@ -3640,13 +3644,9 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "nq" = (
-/obj/structure/alien/weeds/node,
-/obj/effect/turf_decal/tile/blue/half{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue/diagonal_centre,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/obj/machinery/light/directional/east,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "nr" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/dark,
@@ -3851,12 +3851,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "oc" = (
-/obj/machinery/camera/emp_proof/directional/north,
-/obj/effect/turf_decal/tile/blue/half{
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/port_tarkon/comms)
+/area/ruin/space/has_grav)
 "od" = (
 /obj/structure/shipping_container/nthi,
 /turf/open/floor/iron,
@@ -7677,7 +7675,7 @@
 "BS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/misc/asteroid/airless,
-/area/template_noop)
+/area/ruin/space/has_grav)
 "BT" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 8
@@ -12784,8 +12782,7 @@
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2{
 	dir = 4
 	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/misc/asteroid/airless,
+/turf/template_noop,
 /area/template_noop)
 "UN" = (
 /obj/machinery/airalarm/directional/east,
@@ -19821,7 +19818,7 @@ ab
 ab
 ab
 ab
-gV
+xk
 BS
 BS
 BS
@@ -21697,7 +21694,7 @@ Vt
 Vt
 Vt
 nl
-Dr
+jn
 Vt
 Vt
 Vt
@@ -22018,7 +22015,7 @@ VZ
 FJ
 Lb
 li
-li
+nq
 li
 Bq
 lI
@@ -22184,7 +22181,7 @@ za
 Vt
 Vt
 Vt
-nl
+oc
 Kl
 Vt
 Vt
@@ -22674,7 +22671,7 @@ tM
 nl
 nl
 nl
-nl
+oc
 nl
 Vt
 za
@@ -23784,7 +23781,7 @@ Lc
 Jq
 Qj
 IJ
-nq
+sn
 rb
 xQ
 fi
@@ -24027,7 +24024,7 @@ ab
 ab
 ab
 Pa
-oc
+IJ
 mr
 oW
 mr
