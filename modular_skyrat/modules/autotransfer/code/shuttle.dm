@@ -9,4 +9,3 @@
 		message_admins("Round end vote passed. Shuttle has been auto-called.")
 	emergency_no_recall = TRUE
 	endvote_passed = TRUE
-	SSevents.can_fire = FALSE // we're going home

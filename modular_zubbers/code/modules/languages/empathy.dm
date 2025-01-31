@@ -33,6 +33,8 @@
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	damage_multiplier = 2.5 // Shadekins big ears are easy to damage with loud noises.
+	overrides_sprite_datum_organ_type = TRUE
+	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
 /datum/language/marish/empathy
 	name = "Empathy"
@@ -40,13 +42,9 @@
 	key = "9"
 	icon_state = "empathy"
 
-
-
 /obj/item/organ/internal/tongue/shadekin/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
 		return modify_speech(source, speech_args)
-
-
 
 /obj/item/organ/internal/tongue/shadekin/modify_speech(datum/source, list/speech_args)
 	ASYNC
@@ -56,7 +54,9 @@
 /obj/item/organ/internal/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	user.balloon_alert_to_viewers("ears vibrate", "projecting thoughts...")
+	var/obj/item/organ/internal/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/mode = istype(user_ears)
+	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
 
 	if(!do_after(source, 2 SECONDS, source))
 		message = full_capitalize(rot13(message))
@@ -64,12 +64,15 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/ears/shadekin/ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
-		if(!istype(ears))
+		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+
+		if(!istype(target_ears))
 			continue
+
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
-			living_mob.balloon_alert_to_viewers("ears vibrate", "transmission heard...")
+			mode = istype(target_ears)
+			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
 
 	if(length(GLOB.dead_mob_list))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)
