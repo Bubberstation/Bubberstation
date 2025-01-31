@@ -28,3 +28,7 @@
 /datum/map_template/ghost_cafe_rooms/library
 	name = "Library"
 	mappath = "modular_skyrat/modules/hotel_rooms/library.dmm"
+
+/datum/map_template/ghost_cafe_rooms/cultcave
+	name = "Cultist's Cavern"
+	mappath = "modular_skyrat/modules/hotel_rooms/cultcave.dmm"
