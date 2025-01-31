@@ -263,7 +263,6 @@
 	return ..()
 
 /////////////////////////robotics tech/////////////////////////
-
 /datum/techweb_node/robotics/New()
 	design_ids += list(
 		"borg_upgrade_snacks",
@@ -284,7 +283,6 @@
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
 		"borg_upgrade_brush",
-		"borg_upgrade_shrink",
 	)
 	return ..()
 
