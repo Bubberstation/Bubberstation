@@ -546,9 +546,8 @@
 	)
 	extra_access = list(
 		ACCESS_BRIG,
-		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
-	)
+	) //BUBBER EDIT: Added ACCESS_SECURITY_OUTPOST
 	template_access = list(
 		ACCESS_CAPTAIN,
 		ACCESS_CHANGE_IDS,
@@ -688,9 +687,8 @@
 		ACCESS_SERVICE,
 		ACCESS_SHIPPING,
 		ACCESS_WEAPONS,
-		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
-	)
+	) //BUBBER EDIT: added ACCESS_SECURITY_OUTPOST
 	minimal_wildcard_access = list(
 		ACCESS_HOS,
 	)
@@ -1058,9 +1056,8 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
-		)
+		) //BUBBER EDIT: added ACCESS_SECURITY_OUTPOST
 	extra_access = list(
 		ACCESS_DETECTIVE,
 		ACCESS_MAINT_TUNNELS,
@@ -1248,9 +1245,8 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
-	)
+	) //BUBBER EDIT: added ACCESS_SECURITY_OUTPOST
 	extra_access = list()
 	template_access = list()
 	job = /datum/job/veteran_advisor
@@ -1282,9 +1278,8 @@
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SECURITY,
 		ACCESS_WEAPONS,
-		/// BUBBER EDIT: Added for departmental guard access
 		ACCESS_SECURITY_OUTPOST,
-		) // See /datum/job/warden/get_access()
+		) // See /datum/job/warden/get_access() //BUBBER EDIT: added ACCESS_SECURITY_OUTPOST
 	extra_access = list(
 		ACCESS_DETECTIVE,
 		ACCESS_MAINT_TUNNELS,
