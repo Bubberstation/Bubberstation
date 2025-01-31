@@ -194,7 +194,15 @@
 	pixel_x = 7;
 	pixel_y = 0;
 	name = "Manager Note";
-	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>-General Manager, Ra'Tahul Rekinov"
+	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>P.S, go into the backroom and set the nitrogen and oxygen pressure tanks to layer 3 with the multitool, the HVAC tech had no fucking clue what he was doing apparently!<BR><BR>-General Manager, Ra'Tahul Rekinov"
+	},
+/obj/item/multitool{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/screwdriver{
+	pixel_x = 0;
+	pixel_y = 0
 	},
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -370,11 +378,11 @@
 	unsuitable_cold_damage = 0;
 	unique_name = 0;
 	ghost_controllable = 1;
-	minimum_survivable_temperature = 100;
-	damage_coeff = list("brute" = 1, "burn" = 1, "toxin" = 1, "stamina" = 0, "oxygen" = 0);
+	damage_coeff = list("brute" = 1, "burn" = 0, "toxin" = 1, "stamina" = 0, "oxygen" = 0);
 	unsuitable_atmos_damage = 0;
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
-	maximum_survivable_temperature = 600
+	unsuitable_heat_damage = 0;
+	maximum_survivable_temperature = 800
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -529,7 +537,6 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "pB" = (
-/obj/structure/cable,
 /obj/machinery/power/smes/full{
 	component_parts = 4;
 	charge = 0
@@ -906,7 +913,6 @@
 /area/ruin/thelizardsgas_lavaland)
 "zo" = (
 /obj/machinery/atmospherics/components/tank/nitrogen{
-	piping_layer = 2;
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
@@ -1103,7 +1109,7 @@
 "Fy" = (
 /obj/structure/table/wood/shuttle_bar,
 /obj/machinery/fax{
-	fax_name = LizardGasStation;
+	fax_name = "LizardGasStation";
 	name = "Manager's Fax Machine"
 	},
 /turf/open/floor/wood/parquet,
@@ -1611,12 +1617,6 @@
 	baseturfs = /turf/open/floor/plating/lavaland_baseturf
 	},
 /area/ruin/thelizardsgas_lavaland)
-"VG" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
-	},
-/area/ruin/thelizardsgas_lavaland)
 "VT" = (
 /obj/effect/spawner/random/structure/billboard/lizardsgas,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
@@ -1794,10 +1794,8 @@
 /area/ruin/thelizardsgas_lavaland)
 "Zt" = (
 /obj/machinery/atmospherics/components/tank/oxygen{
-	dir = 8;
-	piping_layer = 2
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden/layer4,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -2356,7 +2354,7 @@ xM
 WI
 Vn
 cB
-VG
+cB
 Sy
 cB
 KS
