@@ -348,24 +348,35 @@ coordinates = [105, 171, 1]
 trait_name = "Station"
 
 #Metastation Cargo Guard Office
-["template.metastation_cargoguard_office.dmm"]
+[templates.metastation_cargoguard_office]
+map_files = ["metastation_cargoguard_office.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
 coordinates = [82, 136, 1]
 trait_name = "Station"
 
 #Metastation Orderly Office
-["template.metastation_orderly_office.dmm"]
+[templates.metastation_orderly_office]
+map_files = ["metastation_orderly_office.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
 coordinates = [92, 107, 1]
 trait_name = "Station"
 
 #Metastation Engineering Guard Office
-["metastation_engineeringguard_office.dmm"]
+[templates.metastation_engineeringguard_office]
+map_files = ["metastation_engineeringguard_office.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
 coordinates = [164, 131, 1]
+trait_name = "Station"
+
+#Metastation Science Guard Office
+[templates.metastation_scienceguard_office]
+map_files = ["metastation_scienceguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [123, 95, 1]
 trait_name = "Station"
 
 # Biodome Armory
@@ -392,6 +403,62 @@ required_map = "DeltaStation2.dmm"
 coordinates = [207, 127, 1]
 trait_name = "Station"
 
+#Deltatation Engineering Guard Office
+[templates.deltastation_engineeringguard_office]
+map_files = ["deltastation_engineeringguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/DeltaStation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [103, 128, 1]
+trait_name = "Station"
+
+#Deltastation Cargo Guard Office
+[templates.deltastation_cargoguard_office]
+map_files = ["deltastation_cargoguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/DeltaStation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [161, 163, 1]
+trait_name = "Station"
+
+#Deltastation Med/Sci Guard Office
+[templates.deltastation_medsciguard_office]
+map_files = ["deltastation_medsciguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/DeltaStation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [141, 82, 1]
+trait_name = "Station"
+
+# IceBoxStation Engineering Guard Office
+[templates.icebox_engineeringguard_office]
+map_files = ["icebox_engineeringguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [115, 92, 3]
+trait_name = "Station"
+
+# IceBoxStation Science Guard Office
+[templates.icebox_scienceguard_office]
+map_files = ["icebox_scienceguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [172, 110, 3]
+trait_name = "Station"
+
+# IceBoxStation Orderly Office
+[templates.icebox_medicalguard_office]
+map_files = ["icebox_medicalguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [150, 122, 3]
+trait_name = "Station"
+
+# IceBoxStation Customs Agent Office
+[templates.icebox_supplyguard_office]
+map_files = ["icebox_supplyguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [90, 110, 3]
+trait_name = "Station"
+
 # IceBoxStation Armory
 [templates.iceboxstation_armory]
 map_files = ["iceboxstation_armory.dmm"]
@@ -414,6 +481,46 @@ map_files = ["tramstation_armory.dmm"]
 directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
 coordinates = [69, 162, 2]
+trait_name = "Station"
+
+# Tramstation Engineering Guard Office
+[templates.tramstation_engineeringguard_office]
+map_files = ["tramstation_engineeringguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [120, 92, 1]
+trait_name = "Station"
+
+# Tramstation Custom Agent Lower Office
+[templates.tramstation_cargoguard_office]
+map_files = ["tramstation_cargoguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [166, 128, 1]
+trait_name = "Station"
+
+# Tramstation Custom Agent Upper Office
+[templates.tramstation_cargoguard_office2]
+map_files = ["tramstation_cargoguard_office2.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [166, 125, 2]
+trait_name = "Station"
+
+# Tramstation Science Guard Office
+[templates.tramstation_scienceguard_office]
+map_files = ["tramstation_scienceguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [186, 92, 2]
+trait_name = "Station"
+
+# Tramstation Orderly Office
+[templates.tramstation_medicalguard_office]
+map_files = ["tramstation_medicalguard_office.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [133, 107, 2]
 trait_name = "Station"
 
 # ----- KILO DOES NOT NEED THIS SINCE UPSTREAM REMOVED IT, BUT I DON'T FEEL LIKE MAPPING IT. THIS IS A COOL REFACTOR PROJECT FOR BORED CODERS
