@@ -31,6 +31,68 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 
+/datum/techweb_node/tarkonturret //Yes. Tarkon does not start with this unlocked.
+	id = "tarkondefence"
+	display_name = "Tarkon Industries Technology"
+	description = "Tarkon Industries Blackrust Salvage division's defense designs."
+	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
+	design_ids = list(
+		"hoplite_assembly",
+		"cerberus_assembly",
+		"target_designator",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+
+/datum/design/hoplite_assembly
+	name = "Hoplite Turret Assembly"
+	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Hoplite\" model."
+	id = "hoplite_assembly"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
+		)
+	build_path = /obj/item/turret_assembly/hoplite
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+/datum/design/cerberus_assembly
+	name = "Cerberus Turret Assembly"
+	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Cerberus\" model."
+	id = "cerberus_assembly"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 20,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/turret_assembly/cerberus
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_WEAPONS_KITS,
+	)
+/datum/design/target_designator
+	name = "Turret Target Designator"
+	desc = "A basic target designator designed to control magazine-fed turrets."
+	id = "target_designator"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/target_designator
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_WEAPONS_KITS,
+	)
+
 /datum/design/mod_plating/tarkon
 	name = "MOD Tarkon Plating"
 	id = "mod_plating_tarkon"
