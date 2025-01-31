@@ -47,5 +47,5 @@
 
 /datum/orderable_item/bitrunning_tech/pref_item
 	cost_per_order = 500
-	item_path = /obj/item/bitrunning_disk/prefs
+	purchase_path = /obj/item/bitrunning_disk/prefs
 	desc = "This disk contains a program that lets you load in custom characters."
