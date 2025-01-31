@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 /datum/species/mush
 	mutant_bodyparts = list()
 
-/datum/species/vampire
+/datum/species/human/vampire
 	mutant_bodyparts = list()
 
 /datum/species/plasmaman

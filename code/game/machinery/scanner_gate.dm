@@ -5,6 +5,7 @@
 #define SCANGATE_WANTED "Wanted"
 #define SCANGATE_SPECIES "Species"
 #define SCANGATE_NUTRITION "Nutrition"
+#define SCANGATE_GENDER "Gender" // BUBBER EDIT ADDITION
 
 /obj/machinery/scanner_gate
 	name = "scanner gate"
