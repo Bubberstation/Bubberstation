@@ -7,7 +7,7 @@
 	armor_type = /datum/armor/mod_theme_civilian
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	complexity_max = DEFAULT_MAX_COMPLEXITY - 5
+	complexity_max = DEFAULT_MAX_COMPLEXITY - 2 // Sets the modsuit complexity to a total of 13 (functionally 10 as the default storage module consumes 3. ) to keep it in line with the civilian modsuit.
 	charge_drain = DEFAULT_CHARGE_DRAIN
 	slowdown_inactive = 2.5 // very slow because the quirk infers you rely on this to move/exist
 	slowdown_active = 0.95
