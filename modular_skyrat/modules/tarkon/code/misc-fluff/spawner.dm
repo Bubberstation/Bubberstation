@@ -96,6 +96,7 @@
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
+		/obj/item/keycard/tarkon_job_supply,
 		/obj/item/crowbar = 1,
 		)
 	skillchips = list(/obj/item/skillchip/job/miner)
