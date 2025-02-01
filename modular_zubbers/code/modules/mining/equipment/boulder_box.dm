@@ -3,7 +3,7 @@
 /obj/structure/ore_box/boulder_collector //We want this to automatically grab boulders and desync them from the bluespace boulder grabbers
 	name = "BSC Refinery Box"
 	desc = "An improvement on the normal boxes drudged around by miners, The \"Boulder Stabilizing Collector\" is capable of automatically picking up and safely storing ores or boulders in a set direction once established."
-	icon = 'modular_nova/modules/ghost_mining/icons/mining.dmi'
+	icon = 'modular_zubbers/icons/obj/structure/mining.dmi'
 	icon_state = "orebox"
 	resistance_flags = FIRE_PROOF|LAVA_PROOF
 	/// The current direction of `input_turf`, in relation to the orebox.
@@ -171,7 +171,7 @@
 	name = "compacted BSC Box"
 	/// For all flatpacked machines, set the desc to the type_to_deploy followed by ::desc to reuse the type_to_deploy's description
 	desc = /obj/structure/ore_box/boulder_collector::desc
-	icon = 'modular_nova/modules/ghost_mining/icons/mining.dmi'
+	icon = 'modular_zubbers/icons/obj/structure/mining.dmi'
 	icon_state = "orecube"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF|LAVA_PROOF
