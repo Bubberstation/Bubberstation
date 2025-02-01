@@ -3566,16 +3566,6 @@
 "lu" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"lw" = (
-/obj/machinery/door/poddoor{
-	id = "syndicatesauna"
-	},
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "persistence_sauna_w"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "lx" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mineral/plastitanium,
@@ -7584,6 +7574,7 @@
 	polarizer_id = "persistence_pool_w"
 	},
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "wM" = (
@@ -11436,6 +11427,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "Io" = (
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "Iq" = (
@@ -11655,6 +11647,22 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"IW" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/lattice/catwalk/mining,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
+/area/icemoon/underground/explored)
 "IX" = (
 /obj/structure/closet/generic/wall{
 	pixel_y = 32
@@ -14500,6 +14508,12 @@
 /obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
+"Re" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "Rf" = (
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
@@ -21217,15 +21231,15 @@ Di
 SD
 om
 aT
-lw
-lw
-SV
+aT
+aT
+om
 Io
-SV
+om
 wK
 wK
 wK
-SV
+Re
 Jh
 Jh
 Jh
@@ -21295,7 +21309,7 @@ nc
 nc
 im
 im
-Nq
+IW
 im
 MP
 nc
