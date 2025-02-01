@@ -1,4 +1,4 @@
-/datum/design/ntbsc
+/datum/design/bsc_nt
 	name = "NT BSC Refinery Box"
 	id = "bsc_nt"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
