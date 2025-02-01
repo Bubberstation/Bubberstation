@@ -1,4 +1,4 @@
-/datum/design/bsc
+/datum/design/ntbsc
 	name = "NT BSC Refinery Box"
 	id = "bsc_nt"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -7,7 +7,7 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
 	)
-	build_path = /obj/structure/ore_box/boulder_collector/nt
+	build_path = /obj/item/flatpacked_machine/boulder_collector/nt
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
 	)

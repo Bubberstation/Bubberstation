@@ -72,7 +72,7 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
 	)
-	build_path = /obj/structure/ore_box/boulder_collector/tarkon
+	build_path = /obj/item/flatpacked_machine/boulder_collector/tarkon
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
 	)

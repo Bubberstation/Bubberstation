@@ -226,7 +226,7 @@
 
 // Orebox but auto-picks up boulders in a tile like an ORM
 
-/datum/design/flatpack_ore_silo
+/datum/design/bsc
 	name = "Compressed BSC Refinery Box"
 	desc = "An upgrade to a normal orebox. Lavaproof, Fireproof, and auto-receive boulders into stable storage."
 	id = "flatpack_bsc"
@@ -236,7 +236,7 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
 	)
-	build_path = /obj/item/flatpacked_machine/boulder_collector
+	build_path = /obj/item/flatpacked_machine/boulder_collector/boulder_collector
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MATERIALS,
