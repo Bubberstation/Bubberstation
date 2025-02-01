@@ -12,9 +12,3 @@ GLOBAL_LIST_INIT(rr_opt_in_colors, list(
 	RR_OPT_IN_STRING = COLOR_RED,
 	RR_OPT_OUT_STRING = COLOR_EMERALD
 ))
-
-/// Round removal opt-in define
-#define RR_OPT_IN TRUE
-
-/// Prefers not to round removed.
-#define RR_OPT_OUT FALSE

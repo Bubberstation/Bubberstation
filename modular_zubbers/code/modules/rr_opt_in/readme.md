@@ -22,10 +22,6 @@ Adds functionality to allow players to 'opt-in' to being round removed. Command 
 
 - N/A
 
-### Defines:
-
-- rr_opt_in - lives in ~~bubber_defines located in __DEFINES folder. Defines named RR_OPT_IN, RR_OPT_OUT - used for managing opt in stuff.
-
 ### Config:
 
 - /datum/config_entry/flag/RR_OPT_LEVEL_ANTAG   - TRUE OR FALSE, defines default antag opt in level

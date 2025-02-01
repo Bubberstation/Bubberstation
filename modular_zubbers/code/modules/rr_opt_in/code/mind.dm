@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 		return
 	if (our_client)
 		var/rr_level = get_rr_opt_in_level()
-		if (rr_level <= RR_OPT_OUT)
+		if (rr_level <= FALSE)
 			return
 		var/stringified_level = GLOB.rr_opt_in_strings["[rr_level]"]
 		to_chat(our_client, span_boldnotice("Due to your antag preferences, your round removal opt-in status has been set to [stringified_level]."))
@@ -68,9 +68,9 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 /datum/mind/proc/get_effective_opt_in_level()
 	return max(ideal_rr, get_rr_opt_in_level())
 
-/// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG). RR_OPT_OUT otherwise.
+/// If we have any antags enabled in GLOB.rr_optin_forcing_midround_antag_categories, returns CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG). FALSE otherwise.
 /datum/mind/proc/get_rr_opt_in_level()
-	if (round_removal_allowed == RR_OPT_OUT)
+	if (round_removal_allowed == FALSE)
 		return round_removal_allowed
 
 	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 		for (var/antag_category in GLOB.rr_optin_forcing_midround_antag_categories)
 			if (antag_category in preference_instance.be_special)
 				return CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG)
-	return RR_OPT_OUT
+	return FALSE
 
 /datum/mind/Destroy()
 	log_game("Mind [src] destroying with RR [get_effective_opt_in_level() ? "enabled" : "disabled"]")

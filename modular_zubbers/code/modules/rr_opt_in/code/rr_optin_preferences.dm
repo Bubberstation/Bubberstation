@@ -7,7 +7,7 @@
 	savefile_key = "rr_opt_in_status_pref"
 
 /datum/preference/choiced/rr_opt_in_status/init_possible_values()
-	return list(RR_OPT_IN, RR_OPT_OUT)
+	return list(TRUE, FALSE)
 
 /datum/preference/choiced/rr_opt_in_status/create_default_value()
 	return CONFIG_GET(flag/RR_OPT_LEVEL_DEFAULT)
