@@ -2362,6 +2362,10 @@
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
 /turf/open/floor/engine/co2,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
+"hH" = (
+/obj/machinery/mineral/stacking_machine,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "hI" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -4655,6 +4659,10 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"om" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "on" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
@@ -5881,9 +5889,6 @@
 /turf/open/floor/iron/kitchen/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "rL" = (
-/obj/machinery/mineral/stacking_unit_console{
-	pixel_x = -32
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -10817,6 +10822,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Gf" = (
 /obj/structure/reagent_forge,
+/obj/machinery/mineral/stacking_unit_console{
+	pixel_x = -32
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Gg" = (
@@ -11320,7 +11328,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
 "HT" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall/syndicate/cruiser,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "HV" = (
 /obj/effect/turf_decal/siding/dark,
@@ -19994,7 +20002,7 @@ mc
 uQ
 nc
 UL
-UL
+hH
 UL
 UL
 UL
@@ -21207,7 +21215,7 @@ Me
 Di
 Di
 SD
-SV
+om
 aT
 lw
 lw
