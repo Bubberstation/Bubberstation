@@ -3,7 +3,7 @@
 /obj/structure/ore_box/boulder_collector //We want this to automatically grab boulders and desync them from the bluespace boulder grabbers
 	name = "BSC Refinery Box"
 	desc = "An improvement on the normal boxes drudged around by miners, The \"Boulder Stabilizing Collector\" is capable of automatically picking up and safely storing ores or boulders in a set direction once established."
-	icon = 'modular_zubbers/icons/obj/structure/mining.dmi'
+	icon = 'modular_nova/modules/ghost_mining/icons/mining.dmi'
 	icon_state = "orebox"
 	resistance_flags = FIRE_PROOF|LAVA_PROOF
 	/// The current direction of `input_turf`, in relation to the orebox.
@@ -171,7 +171,7 @@
 	name = "compacted BSC Box"
 	/// For all flatpacked machines, set the desc to the type_to_deploy followed by ::desc to reuse the type_to_deploy's description
 	desc = /obj/structure/ore_box/boulder_collector::desc
-	icon = 'modular_zubbers/icons/obj/structure/mining.dmi'
+	icon = 'modular_nova/modules/ghost_mining/icons/mining.dmi'
 	icon_state = "orecube"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF|LAVA_PROOF
@@ -184,12 +184,18 @@
 	w_class = WEIGHT_CLASS_BULKY
 	type_to_deploy = /obj/structure/ore_box/boulder_collector/syndicate
 
+/obj/item/flatpacked_machine/boulder_collector/syndicate/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_REMOVED) //pretty sus there
+
 /obj/item/flatpacked_machine/boulder_collector/tarkon
 	name = "compacted Tarkon BSC Box"
 	desc = /obj/structure/ore_box/boulder_collector/tarkon::desc
 	icon_state = "orecube_t"
 	w_class = WEIGHT_CLASS_BULKY
 	type_to_deploy = /obj/structure/ore_box/boulder_collector/tarkon
+
+/obj/item/flatpacked_machine/boulder_collector/tarkon/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_REMOVED) //tarkon doesn't have manfact examine yet. they would, however, actually make it.
 
 /obj/item/flatpacked_machine/boulder_collector/nt
 	name = "compacted NT BSC Box"
@@ -198,9 +204,15 @@
 	w_class = WEIGHT_CLASS_BULKY
 	type_to_deploy = /obj/structure/ore_box/boulder_collector/nt
 
+/obj/item/flatpacked_machine/boulder_collector/nt/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_REMOVED) //Why would Nanotrasen ARMORY build a fucking box lmao? Besides, its just atker but stolen and painted.
+
 /obj/item/flatpacked_machine/boulder_collector/gulag
-	name = "Boulder Snatchinator 3000 Build-it kit"
+	name = "\improper Boulder Snatchinator 3000 Build-it kit"
 	desc = /obj/structure/ore_box/boulder_collector/gulag::desc
 	icon_state = "orecube_g"
 	w_class = WEIGHT_CLASS_BULKY
 	type_to_deploy = /obj/structure/ore_box/boulder_collector/gulag
+
+/obj/item/flatpacked_machine/boulder_collector/gulag/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_REMOVED) //You try keeping manufacturing stamps on fucking cardboard
