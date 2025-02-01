@@ -28,9 +28,6 @@
 /datum/round_event_control/meteor_wave/catastrophic
 	weight = 0
 
-/datum/round_event_control/meteor_wave/ices
-	weight = 0
-
 /datum/round_event_control/radiation_storm
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL)
@@ -90,6 +87,3 @@
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 
-/datum/round_event_control/operative
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_CHAOTIC, TAG_CREW_ANTAG)

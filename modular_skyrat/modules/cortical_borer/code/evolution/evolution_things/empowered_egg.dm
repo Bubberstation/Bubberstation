@@ -19,11 +19,11 @@
 	if(iscarbon(loc))
 		Insert(loc)
 
-/obj/item/organ/internal/empowered_borer_egg/Insert(mob/living/carbon/M, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/internal/empowered_borer_egg/mob_insert(mob/living/carbon/M, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	..()
 	addtimer(CALLBACK(src, PROC_REF(try_burst)), burst_time)
 
-/obj/item/organ/internal/empowered_borer_egg/Remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/internal/empowered_borer_egg/mob_remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	visible_message(span_warning(span_italics("As [src] is cut out of [M], it quickly vibrates and shatters, leaving nothing but some goop!")))
 	new/obj/effect/decal/cleanable/food/egg_smudge(get_turf(src))
