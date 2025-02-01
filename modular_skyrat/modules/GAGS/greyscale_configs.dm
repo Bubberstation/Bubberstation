@@ -1587,3 +1587,16 @@ digi
 /datum/greyscale_config/primitive_catgirl_gauntlets/worn
 	name = "Gauntlets (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gauntlets_worn.json'
+
+/*
+*	DONKSOFT TURRET
+*/
+
+/datum/greyscale_config/turret
+	name = "Donksoft Turret (Deployed)"
+	icon_file = 'modular_skyrat/modules/magfed_turret/icons/turrets/cargo.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret.json'
+
+/datum/greyscale_config/turret/toolbox
+	name = "Donksoft Turret"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'
