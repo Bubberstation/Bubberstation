@@ -34,28 +34,28 @@
 			var/index = 0
 			for(var/word in GLOB.vox_sounds)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds.len)
 					dat += " / "
 		if(VOX_HL)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_hl)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_hl.len)
 					dat += " / "
 		if(VOX_MIL)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_mil)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_mil.len)
 					dat += " / "
 		if(VOX_BMS)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_bms)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_bms.len)
 					dat += " / "
 

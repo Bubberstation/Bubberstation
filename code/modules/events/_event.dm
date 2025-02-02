@@ -111,9 +111,9 @@
 		//message_admins("Second pre-condition check for [name] failed, rerolling...")
 		//SSevents.spawnEvent(excluded_event = src)
 		//return EVENT_INTERRUPTED
- // THIS section is screwed - Restore this entire file to TG and start from scratch if you want to restore this. 
+ // THIS section is screwed - Restore this entire file to TG and start from scratch if you want to restore this.
 // 	if(alert_observers) BUBBER EDIT REMOVAL - No effect
-		// message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)") // SKYRAT EDIT REMOVAL
+		// message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='byond://?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)") // SKYRAT EDIT REMOVAL
 		// sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME) // SKYRAT EDIT REMOVAL
 
 		// SKYRAT EDIT ADDITION BEGIN - Event notification Makes an attention-grabbing sound, gives admins two notifications spread over RANDOM_EVENT_ADMIN_INTERVENTION_TIME instead of just the one.
@@ -121,15 +121,15 @@
 	// BUBBER EDIT START - Only delay on roundstart
 
 	// if(alert_observers)
-	// 	message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)") // SKYRAT EDIT REMOVAL
+	// 	message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>) (<a href='byond://?src=[REF(src)];different_event=1'>SOMETHING ELSE</a>)") // SKYRAT EDIT REMOVAL
 	// 	sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME) // SKYRAT EDIT REMOVAL
 
 		// SKYRAT EDIT ADDITION BEGIN - Event notification Makes an attention-grabbing sound, gives admins two notifications spread over RANDOM_EVENT_ADMIN_INTERVENTION_TIME instead of just the one.
 		// BUBBER EDIT START - Only delay on roundstart
 /* 	if(!SSticker.HasRoundStarted())  // BUBBER EDIT - We only want ROUNDSTART DELAYS, not double delays!
 		message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (\
-			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
-			<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
+			<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a> | \
+			<a href='byond://?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
 		for(var/client/staff as anything in GLOB.admins)
 			if(staff?.prefs.read_preference(/datum/preference/toggle/comms_notification))
 				SEND_SOUND(staff, sound('sound/misc/server-ready.ogg'))
@@ -137,8 +137,8 @@
 
 		if(triggering)
 			message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)]: [name]. (\
-			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
-			<a href='?src=[REF(src)];different_event=1'>SOMETHING ELSE</a></font>")
+			<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a> | \
+			<a href='byond://?src=[REF(src)];different_event=1'>SOMETHING ELSE</a></font>")
 			sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)
 		// SKYRAT EDIT ADDITION END - Event notification
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)

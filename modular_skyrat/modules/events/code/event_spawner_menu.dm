@@ -96,10 +96,10 @@
 		var/datum/event_spawner_instance/ESI = managed_instances["[panel_id]"]
 		if(!ESI)
 			return
-		dat += "<a href='?src=[REF(src)];inst_pref=return;id=[ESI.id]'>Return</a> ----- <a href='?src=[REF(src)];inst_pref=export;id=[ESI.id]'>Export</a> <a href='?src=[REF(src)];inst_pref=import;id=[ESI.id]'>Import</a><HR>"
-		dat += "<a href='?src=[REF(src)];inst_pref=job_name;id=[ESI.id]'>Job Name:</a> <b>[ESI.job_name]</b>"
+		dat += "<a href='byond://?src=[REF(src)];inst_pref=return;id=[ESI.id]'>Return</a> ----- <a href='byond://?src=[REF(src)];inst_pref=export;id=[ESI.id]'>Export</a> <a href='byond://?src=[REF(src)];inst_pref=import;id=[ESI.id]'>Import</a><HR>"
+		dat += "<a href='byond://?src=[REF(src)];inst_pref=job_name;id=[ESI.id]'>Job Name:</a> <b>[ESI.job_name]</b>"
 		dat += "<BR><font color='#777777'><i>This will appear on the person's ID</i></font>"
-		dat += "<BR><a href='?src=[REF(src)];inst_pref=flavor_text;id=[ESI.id]'>Flavor Text:</a> <i>[ESI.flavor_text]</i>"
+		dat += "<BR><a href='byond://?src=[REF(src)];inst_pref=flavor_text;id=[ESI.id]'>Flavor Text:</a> <i>[ESI.flavor_text]</i>"
 		dat += "<BR><font color='#777777'><i>The player will be greeted with the flavor text. Tell him who his supervisors are, if any.</i></font>"
 		var/outfit_name
 		var/datum/outfit/OU
@@ -109,12 +109,12 @@
 			else
 				OU = ESI.used_outfit
 				outfit_name = initial(OU.name)
-		dat += "<BR>Allow Loadout: <a href='?src=[REF(src)];inst_pref=loadout;id=[ESI.id]'>[ESI.gets_loadout ? "Yes" : "No"]</a>"
+		dat += "<BR>Allow Loadout: <a href='byond://?src=[REF(src)];inst_pref=loadout;id=[ESI.id]'>[ESI.gets_loadout ? "Yes" : "No"]</a>"
 		dat += "<BR><font color='#777777'><i>Whether loadout from prefs is allowed.</i></font>"
-		dat += "<BR><a href='?src=[REF(src)];inst_pref=used_outfit;id=[ESI.id]'>Used Outfit:</a> [outfit_name]"
+		dat += "<BR><a href='byond://?src=[REF(src)];inst_pref=used_outfit;id=[ESI.id]'>Used Outfit:</a> [outfit_name]"
 		dat += "<BR><font color='#777777'><i>Which outfit is used for the spawned player. Below you can preview contents of the selected one.</i></font>"
 		if(ESI.used_outfit)
-			dat += "<BR><a href='?src=[REF(src)];inst_pref=show_outfit_equipment;id=[ESI.id]'>[ESI.show_outfit_equipment ? "Hide outfit equipment" : "Show outfit equipment"]</a>"
+			dat += "<BR><a href='byond://?src=[REF(src)];inst_pref=show_outfit_equipment;id=[ESI.id]'>[ESI.show_outfit_equipment ? "Hide outfit equipment" : "Show outfit equipment"]</a>"
 		if(OU && ESI.show_outfit_equipment)
 			dat += "<HR><b>Outfit equipment:</b>"
 			var/obj/item/display = initial(OU.uniform)
@@ -172,43 +172,43 @@
 		dat += "<HR>"
 		dat += "<font color='#777777'><i>Here you can add extra equipment on top of loadout, if possible those will be auto equipped.</i></font>"
 		dat += "<BR><font color='#777777'><i>You HAVE to add them as typed paths(/obj/item/gun/energy/e_gun). Search in Game Panel to find desired paths.</i></font>"
-		dat += "<BR><b>Additional equipment: <a href='?src=[REF(src)];inst_pref=add_equip;id=[ESI.id]'>Add</a></b>"
+		dat += "<BR><b>Additional equipment: <a href='byond://?src=[REF(src)];inst_pref=add_equip;id=[ESI.id]'>Add</a></b>"
 		for(var/eq in ESI.additional_equipment)
 			var/obj/item/equip = eq
-			dat += "<BR><a href='?src=[REF(src)];inst_pref=remove_equip;equip=[eq];id=[ESI.id]'>[initial(equip.name)]</a><font color='#777777'> - ([eq])</font>"
+			dat += "<BR><a href='byond://?src=[REF(src)];inst_pref=remove_equip;equip=[eq];id=[ESI.id]'>[initial(equip.name)]</a><font color='#777777'> - ([eq])</font>"
 		dat += "<HR>"
 		dat += "<font color='#777777'><i>Outfits limit on what airlocks can someone access, or what headset and frequences they have. Here you can edit those things</i></font>"
 		dat += "<BR><b>Access overrides: </b>"
 		for(var/access_key in ESI.access_override)
-			dat += "<a href='?src=[REF(src)];inst_pref=remove_access;id=[ESI.id];access=[access_key]'>[access_key]</a>"
-		dat += " <- <a href='?src=[REF(src)];inst_pref=add_access;id=[ESI.id]'>Add</a>"
+			dat += "<a href='byond://?src=[REF(src)];inst_pref=remove_access;id=[ESI.id];access=[access_key]'>[access_key]</a>"
+		dat += " <- <a href='byond://?src=[REF(src)];inst_pref=add_access;id=[ESI.id]'>Add</a>"
 		dat += "<BR><font color='#777777'><i>Add access in NUMBERS. If no numbers are in the list, then the access will not be overriden. If you want to remove all access, add only a 0</i></font>"
 		dat += "<BR><font color='#777777'><i>See '/code/__DEFINES/access.dm' for an access list. (401-Faction Public, 402-Faction Crew, 403-Faction Command)</i></font>"
 		dat += "<BR><b>Headset override: </b>"
 		if(ESI.headset_override)
 			var/obj/item/headset = ESI.headset_override
-			dat += "<a href='?src=[REF(src)];inst_pref=remove_headset;id=[ESI.id]'>[initial(headset.name)]</a><font color='#777777'> - ([ESI.headset_override])</font>"
-		dat += " <- <a href='?src=[REF(src)];inst_pref=set_headset;id=[ESI.id]'>Set</a>"
+			dat += "<a href='byond://?src=[REF(src)];inst_pref=remove_headset;id=[ESI.id]'>[initial(headset.name)]</a><font color='#777777'> - ([ESI.headset_override])</font>"
+		dat += " <- <a href='byond://?src=[REF(src)];inst_pref=set_headset;id=[ESI.id]'>Set</a>"
 		dat += "<BR><font color='#777777'><i>Here you can override the headset, make sure to pick one which has the proper key with radio frequences for your role</i></font>"
 		dat += "<HR>"
 		dat += "<b>Allowed Species:</b>"
 		for(var/spec in ESI.species_whitelist)
-			dat += "<a href='?src=[REF(src)];inst_pref=remove_species;id=[ESI.id];species=[spec]'>[spec]</a>"
-		dat += " <- <a href='?src=[REF(src)];inst_pref=add_species;id=[ESI.id]'>Add</a>"
+			dat += "<a href='byond://?src=[REF(src)];inst_pref=remove_species;id=[ESI.id];species=[spec]'>[spec]</a>"
+		dat += " <- <a href='byond://?src=[REF(src)];inst_pref=add_species;id=[ESI.id]'>Add</a>"
 		dat += "<BR><font color='#777777'><i>If no species are in the list, then any species can join as this role.</i></font>"
 		dat += "<BR><b>Allowed Genders:</b>"
 		for(var/gend in ESI.gender_whitelist)
-			dat += "<a href='?src=[REF(src)];inst_pref=remove_gender;id=[ESI.id];gender=[gend]'>[gend]</a>"
-		dat += " <- <a href='?src=[REF(src)];inst_pref=add_gender;id=[ESI.id]'>Add</a>"
+			dat += "<a href='byond://?src=[REF(src)];inst_pref=remove_gender;id=[ESI.id];gender=[gend]'>[gend]</a>"
+		dat += " <- <a href='byond://?src=[REF(src)];inst_pref=add_gender;id=[ESI.id]'>Add</a>"
 		dat += "<BR><font color='#777777'><i>If no genders are in the list, then any gender can join as this role.</i></font>"
 		dat += "<BR><b>Allowed CKEYs:</b>"
 		for(var/ckey in ESI.ckey_whitelist)
-			dat += "<a href='?src=[REF(src)];inst_pref=remove_ckey;id=[ESI.id];ckey=[ckey]'>[ckey]</a>"
-		dat += " <- <a href='?src=[REF(src)];inst_pref=add_ckey;id=[ESI.id]'>Add</a>"
+			dat += "<a href='byond://?src=[REF(src)];inst_pref=remove_ckey;id=[ESI.id];ckey=[ckey]'>[ckey]</a>"
+		dat += " <- <a href='byond://?src=[REF(src)];inst_pref=add_ckey;id=[ESI.id]'>Add</a>"
 		dat += "<BR><font color='#777777'><i>If no ckeys are in the list, then any ckey can join as this role.</i></font>"
-		dat += "<BR>Spawner disappears after spawn: <a href='?src=[REF(src)];inst_pref=disappear_after_spawn;id=[ESI.id]'>[ESI.disappear_after_spawn ? "Yes" : "No"]</a>"
-		dat += "<BR>Prompt players when spawner created: <a href='?src=[REF(src)];inst_pref=prompt_players;id=[ESI.id]'>[ESI.prompt_players ? "Yes" : "No"]</a> <font color='#777777'><i>This will only prompt ckeys which can access the spawner.</i></font>"
-		dat += "<HR><center><a href='?src=[REF(src)];inst_pref=make_spawner;id=[ESI.id]'>Create spawner on current location</a></center>"
+		dat += "<BR>Spawner disappears after spawn: <a href='byond://?src=[REF(src)];inst_pref=disappear_after_spawn;id=[ESI.id]'>[ESI.disappear_after_spawn ? "Yes" : "No"]</a>"
+		dat += "<BR>Prompt players when spawner created: <a href='byond://?src=[REF(src)];inst_pref=prompt_players;id=[ESI.id]'>[ESI.prompt_players ? "Yes" : "No"]</a> <font color='#777777'><i>This will only prompt ckeys which can access the spawner.</i></font>"
+		dat += "<HR><center><a href='byond://?src=[REF(src)];inst_pref=make_spawner;id=[ESI.id]'>Create spawner on current location</a></center>"
 		//Buttons for easy override for the faction stuff (for access and headset keys)
 
 	else
@@ -223,8 +223,8 @@
 			var/desc = ESI.flavor_text
 			if(length(desc) > 40)
 				desc = "[copytext_char(desc, 1, 57)]..."
-			dat += "<tr style='background-color:[bc_col]'><td>#[key]</td><td><b>[ESI.job_name]</b></td><td><i>[desc]</i></td><td><a href='?src=[REF(src)];pref=configure_instance;id=[key]'>Configure</a></td><td><a href='?src=[REF(src)];pref=clone_instance;id=[key]'>Clone</a></td></tr>"
-		dat += "<tr style='background-color:#33373C'><td>*</td><td><a href='?src=[REF(src)];pref=create_new_instance'>Create new</a></td><td></td><td></td><td></td></tr>"
+			dat += "<tr style='background-color:[bc_col]'><td>#[key]</td><td><b>[ESI.job_name]</b></td><td><i>[desc]</i></td><td><a href='byond://?src=[REF(src)];pref=configure_instance;id=[key]'>Configure</a></td><td><a href='byond://?src=[REF(src)];pref=clone_instance;id=[key]'>Clone</a></td></tr>"
+		dat += "<tr style='background-color:#33373C'><td>*</td><td><a href='byond://?src=[REF(src)];pref=create_new_instance'>Create new</a></td><td></td><td></td><td></td></tr>"
 		dat += "</table>"
 
 	winshow(usr, "event_spawn_window", TRUE)

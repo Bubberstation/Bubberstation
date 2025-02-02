@@ -48,7 +48,7 @@
 				if(WOUND_SEVERITY_CRITICAL)
 					. += "\t<span class='warning'><b>[t_His] [LB.name] is suffering [W.a_or_from] [W.get_topic_name(user)]!!</b></span>"
 		if(LB.current_gauze)
-			. += "\t<span class='notice'><i>[t_His] [LB.name] is [LB.current_gauze.get_gauze_usage_prefix()] with <a href='?src=[REF(LB.current_gauze)];remove=1'>[LB.current_gauze.get_gauze_description()]</a>.</i></span>"
+			. += "\t<span class='notice'><i>[t_His] [LB.name] is [LB.current_gauze.get_gauze_usage_prefix()] with <a href='byond://?src=[REF(LB.current_gauze)];remove=1'>[LB.current_gauze.get_gauze_description()]</a>.</i></span>"
 
 	if(!any_bodypart_damage)
 		. += "\t<span class='smallnotice'><i>[t_He] [t_Has] no significantly damaged bodyparts.</i></span>"
