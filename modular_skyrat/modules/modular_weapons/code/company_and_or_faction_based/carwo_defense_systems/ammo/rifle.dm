@@ -20,7 +20,7 @@
 
 /obj/projectile/bullet/c40sol
 	name = ".40 Sol Long bullet"
-	damage = 35
+	damage = 30
 
 	wound_bonus = -30
 	bare_wound_bonus = -35
@@ -115,7 +115,7 @@
 
 	speed = 0.5
 
-	damage = 25
+	damage = 22
 	armour_penetration = 20
 
 	wound_bonus = -30
