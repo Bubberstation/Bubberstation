@@ -52,11 +52,11 @@
   .shine-#{$channel} {
     background: radial-gradient(
       circle,
-      color.adjust($color, $lightness: 5%, $space: hsl),
-      color.adjust($color, $lightness: -15%, $space: hsl),
-      color.adjust($color, $lightness: 15%, $space: hsl),
-      color.adjust($color, $lightness: -15%, $space: hsl),
-      color.adjust($color, $lightness: 5%, $space: hsl)
+      color.adjust($color, $lightness: 5%, /* $space: hsl */),
+      color.adjust($color, $lightness: -15%, /* $space: hsl */),
+      color.adjust($color, $lightness: 15%, /* $space: hsl */),
+      color.adjust($color, $lightness: -15%, /* $space: hsl */),Ss
+      color.adjust($color, $lightness: 5%, /* $space: hsl */)
     );
   }
 }
