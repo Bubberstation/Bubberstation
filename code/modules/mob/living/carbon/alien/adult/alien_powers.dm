@@ -295,7 +295,7 @@ Doesn't work on other aliens/AI.*/
 		span_alertalien("You spit neurotoxin."),
 	)
 	var/obj/projectile/neurotoxin/neurotoxin = new /obj/projectile/neurotoxin(clicker.loc)
-	neurotoxin.aim_projectile(target, clicker, modifiers)
+	neurotoxin.preparePixelProjectile(target, clicker, modifiers) // BUBBER EDIT - REMOVE WITH UPSTREAM - WILL BECOME aim_projectile()
 	neurotoxin.firer = clicker
 	neurotoxin.fire()
 	clicker.newtonian_move(get_angle(target, clicker))

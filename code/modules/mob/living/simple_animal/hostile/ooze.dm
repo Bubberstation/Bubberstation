@@ -373,7 +373,7 @@
 
 	var/modifiers = params2list(params)
 	var/obj/projectile/globule/globule = new(clicker.loc)
-	globule.aim_projectile(target, clicker, modifiers)
+	globule.preparePixelProjectile(target, clicker, modifiers) // BUBBER EDIT - REMOVE WITH UPSTREAM - WILL BECOME aim_projectile()
 	globule.def_zone = clicker.zone_selected
 	globule.fire()
 

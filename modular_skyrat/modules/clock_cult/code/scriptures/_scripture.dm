@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 	return ..()
 
 
-/datum/action/cooldown/spell/pointed/slab/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/spell/pointed/slab/InterceptClickOn(mob/living/clicker, params, atom/target)
 	parent_scripture?.click_on(target)
 
 

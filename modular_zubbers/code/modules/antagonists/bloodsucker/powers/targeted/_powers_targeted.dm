@@ -107,7 +107,7 @@
 	// if(active)
 	// 	DeactivatePower()
 
-/datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/clicker, params, atom/target)
 	. = ..()
 	if(!.)
 		return FALSE
