@@ -1,5 +1,4 @@
 /// The option for not having a voice.
-#define TTS_VOICE_NONE "None"
 
 /datum/preference/choiced/voice/init_possible_values()
 	if(SStts.tts_enabled)
@@ -20,5 +19,3 @@
 		value = pick(SStts.available_speakers) // As a failsafe
 
 	target.voice = value == TTS_VOICE_NONE ? "" : value
-
-#undef TTS_VOICE_NONE
