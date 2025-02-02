@@ -53,7 +53,7 @@
 
 /obj/item/ammo_box/advanced/s12gauge/flechette
 	name = "Flechette ammo box"
-	desc = "A box of 7 flechette shells. Each shell contains a small group of tumbling blades that excel at causing terrible wounds."
+	desc = "A box of 7 flechette shells. Each shell contains a small group of tumbling blades that excel at armor penetration."
 	icon_state = "flechette"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette
 
