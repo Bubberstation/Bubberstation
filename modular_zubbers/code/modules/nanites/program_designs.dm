@@ -132,7 +132,7 @@
 	desc = "The nanites manually repair and replace organic cells, acting much faster than normal regeneration. \
 			However, this program cannot detect the difference between harmed and unharmed, causing it to consume nanites even if it has no effect."
 	id = "regenerative_plus_nanites"
-	program_type = /datum/nanite_program/regenerative_advanced
+	program_type = /datum/nanite_program/regenerative/advanced
 	category = list("Medical Nanites")
 
 /datum/design/nanites/temperature
@@ -154,7 +154,7 @@
 	desc = "The nanites purge toxins and dangerous chemicals from the host's bloodstream, while ignoring beneficial chemicals. \
 			The added processing power required to analyze the chemicals severely increases the nanite consumption rate."
 	id = "purging_plus_nanites"
-	program_type = /datum/nanite_program/purging_advanced
+	program_type = /datum/nanite_program/purging/advanced
 	category = list("Medical Nanites")
 
 /datum/design/nanites/brain_heal
@@ -182,7 +182,7 @@
 	name = "Mechanical Repair"
 	desc = "The nanites fix damage in the host's mechanical limbs."
 	id = "repairing_nanites"
-	program_type = /datum/nanite_program/repairing
+	program_type = /datum/nanite_program/regenerative/robotic
 	category = list("Medical Nanites")
 
 /datum/design/nanites/defib

@@ -18,7 +18,7 @@
 	rogue_types = list(/datum/nanite_program/glitch)
 
 /datum/nanite_program/necrotic/active_effect()
-	host_mob.adjustBruteLoss(0.75, TRUE)
+	host_mob.adjustBruteLoss(NANITE_BIO_REGENERATION * HARMFUL_PROGRAM_DAMAGE_SCALE, TRUE)
 	if(prob(1))
 		to_chat(host_mob, span_warning("You feel a mild ache from somewhere inside you."))
 
@@ -31,7 +31,7 @@
 	rogue_types = list(/datum/nanite_program/glitch)
 
 /datum/nanite_program/toxic/active_effect()
-	host_mob.adjustToxLoss(0.5)
+	host_mob.adjustToxLoss(NANITE_TOX_REGENERATION * HARMFUL_PROGRAM_DAMAGE_SCALE)
 	if(prob(1))
 		to_chat(host_mob, span_warning("You feel a bit sick."))
 
@@ -44,7 +44,7 @@
 	rogue_types = list(/datum/nanite_program/glitch)
 
 /datum/nanite_program/suffocating/active_effect()
-	host_mob.adjustOxyLoss(3, 0)
+	host_mob.adjustOxyLoss(NANITE_OXYLOSS, 0)
 	if(prob(1))
 		to_chat(host_mob, span_warning("You feel short of breath."))
 
@@ -90,7 +90,7 @@
 	rogue_types = list(/datum/nanite_program/necrotic)
 
 /datum/nanite_program/skin_decay/active_effect()
-	host_mob.adjustBruteLoss(0.25)
+	host_mob.adjustBruteLoss(NANITE_BIO_REGENERATION)
 	if(prob(5)) //itching
 		var/picked_bodypart = pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/bodypart = host_mob.get_bodypart(picked_bodypart)

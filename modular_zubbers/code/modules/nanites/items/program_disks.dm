@@ -40,7 +40,10 @@
 	program_type = /datum/nanite_program/regenerative
 
 /obj/item/disk/nanite_program/regenerative_advanced
-	program_type = /datum/nanite_program/regenerative_advanced
+	program_type = /datum/nanite_program/regenerative/advanced
+
+/obj/item/disk/nanite_program/repairing
+	program_type = /datum/nanite_program/regenerative/robotic
 
 /obj/item/disk/nanite_program/temperature
 	program_type = /datum/nanite_program/temperature
@@ -49,7 +52,7 @@
 	program_type = /datum/nanite_program/purging
 
 /obj/item/disk/nanite_program/purging_advanced
-	program_type = /datum/nanite_program/purging_advanced
+	program_type = /datum/nanite_program/purging/advanced
 
 /obj/item/disk/nanite_program/brain_heal
 	program_type = /datum/nanite_program/brain_heal
@@ -59,9 +62,6 @@
 
 /obj/item/disk/nanite_program/blood_restoring
 	program_type = /datum/nanite_program/blood_restoring
-
-/obj/item/disk/nanite_program/repairing
-	program_type = /datum/nanite_program/repairing
 
 /obj/item/disk/nanite_program/nervous
 	program_type = /datum/nanite_program/nervous

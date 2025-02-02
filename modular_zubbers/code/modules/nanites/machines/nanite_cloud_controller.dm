@@ -116,8 +116,8 @@
 		data["has_disk"] = TRUE
 		var/list/disk_data = list()
 		var/datum/nanite_program/P = disk.program
+		data["has_program"] = P ? TRUE : FALSE
 		if(P)
-			data["has_program"] = TRUE
 			disk_data["name"] = P.name
 			disk_data["desc"] = P.desc
 			disk_data["use_rate"] = P.use_rate

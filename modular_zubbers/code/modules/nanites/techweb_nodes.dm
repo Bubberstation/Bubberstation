@@ -1,10 +1,10 @@
 /datum/techweb_node/nanite_base
 	id = "nanite_base"
 	display_name = "Basic Nanite Programming"
-	description = "The basics of nanite construction and programming."
+	description = "The basics of nanite construction and programming. Nanites will passively generate science points based on how many are hosting them."
 	prereq_ids = list(TECHWEB_NODE_BCI)
 	design_ids = list(
-		"access_nanites",
+		// "access_nanites",
 		"debugging_nanites",
 		"monitoring_nanites",
 		"nanite_chamber",
@@ -38,7 +38,7 @@
 		"stealth_nanites",
 		"voice_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_mesh
 	id = "nanite_mesh"
@@ -55,7 +55,7 @@
 		"shock_nanites",
 		"temperature_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_bio
 	id = "nanite_bio"
@@ -73,7 +73,7 @@
 		"sensor_health_nanites",
 		"sensor_species_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 
 /datum/techweb_node/nanite_neural
 	id = "nanite_neural"
@@ -89,7 +89,7 @@
 		"selfscan_nanites",
 		"stun_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_synaptic
 	id = "nanite_synaptic"
@@ -105,7 +105,7 @@
 		"sleep_nanites",
 		// "speech_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_harmonic
 	id = "nanite_harmonic"
@@ -121,7 +121,7 @@
 		"purging_plus_nanites",
 		// "regenerative_plus_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_combat
 	id = "nanite_military"
@@ -135,7 +135,7 @@
 		"pyro_nanites",
 		"viral_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
@@ -147,7 +147,7 @@
 		"mitosis_nanites",
 		"spreading_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_replication_protocols
 	id = "nanite_replication_protocols"
@@ -160,7 +160,7 @@
 		"offline_nanites",
 		"pyramid_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 	hidden = TRUE
 	experimental = TRUE
 
@@ -175,6 +175,6 @@
 		"unsafe_storage_nanites",
 		"zip_nanites",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 	hidden = TRUE
 	experimental = TRUE

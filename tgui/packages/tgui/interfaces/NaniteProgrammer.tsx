@@ -322,7 +322,11 @@ export const NaniteProgrammerContent = (props, context) => {
       <Section
         title="Blank Disk"
         buttons={
-          <Button icon="eject" onClick={() => act('eject')}>
+          <Button
+            disabled={!has_disk}
+            icon="eject"
+            onClick={() => act('eject')}
+          >
             Eject
           </Button>
         }

@@ -146,16 +146,15 @@ export const NaniteChamberControlContent = () => {
             </Stack>
           </Section>
           <Section title="Programs">
-            {mob_programs.map((program) => {
+            {mob_programs?.map((program) => {
               const extra_settings = program.extra_settings || [];
               const rules = program.rules || [];
               return (
                 <Collapsible key={program.name} title={program.name}>
                   <Section>
-                    <Stack>
-                      <Stack.Item>{program.desc}</Stack.Item>
+                    <Stack vertical>
                       {scan_level >= 2 && (
-                        <Stack.Item width="60%">
+                        <Stack.Item>
                           <LabeledList>
                             <LabeledList.Item label="Activation Status">
                               <Box color={program.activated ? 'good' : 'bad'}>
@@ -168,6 +167,7 @@ export const NaniteChamberControlContent = () => {
                           </LabeledList>
                         </Stack.Item>
                       )}
+                      <Stack.Item>{program.desc}</Stack.Item>
                     </Stack>
                     {scan_level >= 2 && (
                       <Stack>

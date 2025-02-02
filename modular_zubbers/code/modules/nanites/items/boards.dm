@@ -38,9 +38,8 @@
 
 /obj/item/circuitboard/machine/public_nanite_chamber/multitool_act(mob/living/user)
 	. = ..()
-	var/new_cloud = tgui_input_number("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id, 1, 100, 1, 0, TRUE)
-	if(!new_cloud || (loc != user))
-		to_chat(user, span_warning("You must hold the circuitboard to change its Cloud ID!"))
+	var/new_cloud = tgui_input_number(user, "Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id, 100, 1, 0,)
+	if(!isnum(new_cloud))
 		return
 	cloud_id = clamp(round(new_cloud, 1), 1, 100)
 

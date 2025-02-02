@@ -32,7 +32,7 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(host_mob.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC)) && issilicon(host_mob)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+		if(!CAN_HAVE_NANITES(host_mob)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
 			return COMPONENT_INCOMPATIBLE
 
 		start_time = world.time
@@ -170,7 +170,7 @@
 	if(prob(8) && programs.len)
 		var/datum/nanite_program/NP = pick(programs)
 		NP.software_error()
-
+// todo test this
 /datum/component/nanites/proc/add_design(datum/techweb/web, datum/design/design, custom = FALSE)
 	SIGNAL_HANDLER
 	if(design.id == "nanite_harmonic")
@@ -355,7 +355,7 @@
 /datum/component/nanites/proc/check_viable_biotype()
 	SIGNAL_HANDLER
 
-	if(!(host_mob.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
+	if(!CAN_HAVE_NANITES(host_mob))
 		qdel(src) //bodytype no longer sustains nanites
 
 /datum/component/nanites/proc/check_access(datum/source, atom/locked_thing)
@@ -417,19 +417,25 @@
 	nanite_programs |= programs
 
 /datum/component/nanites/proc/add_research()
-	var/research_value = NANITE_BASE_RESEARCH
+	var/research_chance = NANITE_BASE_RESEARCH_CHANCE
 	if(!techweb)
 		return
 	if(!ishuman(host_mob))
 		if(!iscarbon(host_mob))
-			research_value *= 0.4
+			research_chance *= 0.4
 		else
-			research_value *= 0.8
+			research_chance *= 0.8
 	if(!host_mob.client)
-		research_value *= 0.5
+		research_chance *= 0.5
 	if(host_mob.stat == DEAD)
-		research_value *= 0.75
-	techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_value))
+		research_chance *= 0.75
+	if(prob(20))
+		techweb.add_point_list(
+			list(
+				TECHWEB_POINT_TYPE_GENERIC = TECHWEB_SINGLE_SERVER_INCOME,
+				TECHWEB_POINT_TYPE_NANITE = TECHWEB_SINGLE_SERVER_INCOME * NANITE_RESEARCH_BONUS
+			)
+		)
 
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	SIGNAL_HANDLER

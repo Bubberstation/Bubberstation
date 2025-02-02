@@ -49,10 +49,18 @@ export const NaniteProgramHub = (props, context) => {
           title="Program Disk"
           buttons={
             <>
-              <Button icon="eject" onClick={() => act('eject')}>
+              <Button
+                disabled={!has_disk}
+                icon="eject"
+                onClick={() => act('eject')}
+              >
                 Eject
               </Button>
-              <Button icon="minus-circle" onClick={() => act('clear')}>
+              <Button
+                disabled={!has_disk}
+                icon="minus-circle"
+                onClick={() => act('clear')}
+              >
                 Delete Program
               </Button>
             </>

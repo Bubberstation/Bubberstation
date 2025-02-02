@@ -126,7 +126,7 @@ export const NaniteInfoBox = (props) => {
       </Stack>
       <Section title="Extra Settings">
         <LabeledList>
-          {extra_settings.map((setting) => {
+          {extra_settings?.map((setting) => {
             const naniteTypesDisplayMap = {
               number: (
                 <>
