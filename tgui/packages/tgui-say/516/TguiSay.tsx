@@ -1,9 +1,9 @@
 import './styles/main.scss';
 
+import { isEscape, KEY } from 'common/keys'; // BUBBER EDIT REGRESSION
+import { BooleanLike, classes } from 'common/react'; // BUBBER EDIT REGRESSION
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { dragStartHandler } from 'tgui/drag';
-import { isEscape, KEY } from 'tgui-core/keys';
-import { BooleanLike, classes } from 'tgui-core/react';
 
 import { Channel, ChannelIterator } from '../ChannelIterator';
 import { ChatHistory } from '../ChatHistory';

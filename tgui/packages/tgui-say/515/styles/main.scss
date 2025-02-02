@@ -29,7 +29,11 @@
   $darkened: darken($color, 20%);
 
   .old-button-#{$channel} {
-    border-color: color.adjust($color, $lightness: -10%, $space: hsl);
+    border-color: color.adjust(
+      $color,
+      $lightness: -10%,
+      /*  $space: hsl BUBBER REGRESSION*/
+    );
     color: $color;
     &:hover {
       border-color: lighten($color, 10%);

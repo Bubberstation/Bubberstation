@@ -1,7 +1,7 @@
 import './styles/main.scss';
 
-import { isEscape, KEY } from 'tgui-core/keys';
-import { BooleanLike } from 'tgui-core/react';
+import { isEscape, KEY } from 'common/keys'; // BUBBER EDIT REGRESSION
+import { BooleanLike } from 'common/react'; // BUBBER EDIT REGRESSION
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 
