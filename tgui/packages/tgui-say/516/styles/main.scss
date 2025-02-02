@@ -14,14 +14,30 @@
 @include meta.load-css('./styles.scss');
 
 @each $channel, $color in colors.$channel-map {
-  $darkened: color.adjust($color, $lightness: -20%, $space: hsl);
+  $darkened: color.adjust(
+    $color,
+    $lightness: -20%,
+    /* $space: hsl BUBBER EDIT REGRESSION */
+  );
 
   .button-#{$channel} {
-    border-color: color.adjust($color, $lightness: -10%, $space: hsl);
+    border-color: color.adjust(
+      $color,
+      $lightness: -10%,
+      /* $space: hsl BUBBER EDIT REGRESSION */
+    );
     color: $color;
     &:hover {
-      border-color: color.adjust($color, $lightness: 10%, $space: hsl);
-      color: color.adjust($color, $lightness: 5%, $space: hsl);
+      border-color: color.adjust(
+        $color,
+        $lightness: 10%,
+        /* $space: hsl BUBBER EDIT REGRESSION */
+      );
+      color: color.adjust(
+        $color,
+        $lightness: 5%,
+        /* $space: hsl BUBBER EDIT REGRESSION */
+      );
     }
   }
 
