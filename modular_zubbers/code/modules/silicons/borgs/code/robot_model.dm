@@ -1,6 +1,8 @@
 // The actual code to work these in
 
-// Cyborg model trait procs below
+/******************************************************
+			Cyborg model trait procs below
+*******************************************************/
 
 //For all quadruped cyborgs
 /obj/item/robot_model/proc/update_quadruped()
@@ -16,8 +18,9 @@
 			cyborg.set_base_pixel_x(0)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 
+// TODO: Move Cat like grace to it's own thing
 //For cyborgs who have a lighter chassis
-// NOTE WORKS BEST WITH ONLY 32 X 32 CYBORBG SPRITES!!!
+// !!!NOTE WORKS BEST WITH ONLY 32 X 32 CYBORBG SPRITES!!!
 /obj/item/robot_model/proc/update_lightweight()
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
@@ -64,7 +67,9 @@
 	else
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 
-// Cyborg model types below
+
+// TODO: MOVE HAT OFFSET DEFINES TO ROBOT_DEFINES!
+//Hat offset defines
 
 #define TALL_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(0, 15), "south" = list(0, 15), "east" = list(2, 15), "west" = list(-2, 15)), \
@@ -107,6 +112,11 @@
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
+
+
+/******************************************************
+				Cyborg model types below
+*******************************************************/
 
 // Centcom cyborgs
 /obj/item/robot_model/centcom
@@ -214,8 +224,8 @@
 	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
 	borg_skins = list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SCI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SCI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -306,10 +316,22 @@
 			SKIN_ICON_STATE = "haydeesci",
 			SKIN_ICON = CYBORG_ICON_SCI_HAYDEE_BUBBER,
 		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "sci",
+			SKIN_ICON = CYBORG_ICON_SCI_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "sci",
+			SKIN_ICON = CYBORG_ICON_SCI_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
 	)
 
 
 /* BUBBER SPRITE ADDITIONS BELOW */
+
+// Clown borgs
 /obj/item/robot_model/clown/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
@@ -326,12 +348,13 @@
 		),
 	)
 
+// Standard borgs
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_GEN_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_GEN_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -342,12 +365,13 @@
 		),
 	)
 
+// Medical borgs
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MED_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MED_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -378,14 +402,25 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			TALL_HAT_OFFSET
 		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "medicat",
+			SKIN_ICON = CYBORG_ICON_MED_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "meowdical",
+			SKIN_ICON = CYBORG_ICON_MED_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
 	)
 
+// Engineering borgs
 /obj/item/robot_model/engineering/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_ENG_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_ENG_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -416,14 +451,25 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			TALL_HAT_OFFSET
 		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "engi",
+			SKIN_ICON = CYBORG_ICON_ENG_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "engi",
+			SKIN_ICON = CYBORG_ICON_ENG_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
 	)
 
+// Jani borgs
 /obj/item/robot_model/janitor/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_JANI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_JANI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -449,14 +495,20 @@
 			SKIN_ICON_STATE = "HaydeeJannieClassic",
 			SKIN_ICON = CYBORG_ICON_JANI_HAYDEE_BUBBER,
 		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "jani",
+			SKIN_ICON = CYBORG_ICON_JANI_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
 	)
 
+// Mining borgs
 /obj/item/robot_model/miner/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MINE_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MINE_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -472,6 +524,16 @@
 			SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			CORRUPT_HAT_OFFSET
+		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "mining",
+			SKIN_ICON = CYBORG_ICON_MINE_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "mining",
+			SKIN_ICON = CYBORG_ICON_MINE_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		//64x48 sprites below (Raptor)
 		"Raptor" = list(
@@ -503,14 +565,26 @@
 		),
 	)
 
+// Security borgs
 /obj/item/robot_model/security/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SEC_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SEC_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
+		),
+		//64x32 Sprites below (Wide)
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "sec",
+			SKIN_ICON = CYBORG_ICON_SEC_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "sec",
+			SKIN_ICON = CYBORG_ICON_SEC_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		//32x64 Sprites below (Tall)
 		"Meka - Bluesec" = list(
@@ -528,12 +602,13 @@
 		),
 	)
 
+// Peacekeeper borgs
 /obj/item/robot_model/peacekeeper/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_PK_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_PK_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -587,12 +662,13 @@
 		),
 	)
 
+// Service borgs
 /obj/item/robot_model/service/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SERV_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SERV_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -639,8 +715,19 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			TALL_HAT_OFFSET
 		),
+		"K1-T7Y" = list(
+			SKIN_ICON_STATE = "service",
+			SKIN_ICON = CYBORG_ICON_SERV_KITTYBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
+		),
+		"C9-T7O" = list(
+			SKIN_ICON_STATE = "service",
+			SKIN_ICON = CYBORG_ICON_SERV_CATBORG,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
 	)
 
+// Cargo borgs
 /obj/item/robot_model/cargo/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
@@ -650,8 +737,8 @@
 		SMOL_RAPTOR_HAT_OFFSET
 		),
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_CAR_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_CAR_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
 		),
@@ -669,6 +756,7 @@
 		),
 	)
 
+// Syndicate jack borgs
 /obj/item/robot_model/syndicatejack/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
@@ -699,8 +787,8 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -722,6 +810,7 @@
 		),
 	)
 
+// Syndicate borgs
 /obj/item/robot_model/syndicate
 	borg_skins = list(
 		//DEFAULT MEDICAL MODULE
@@ -740,8 +829,8 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -763,6 +852,7 @@
 		),
 	)
 
+// Syndicate medical borgs
 /obj/item/robot_model/syndicate_medical
 	borg_skins = list(
 		//DEFAULT MEDICAL MODULE
@@ -783,8 +873,8 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -806,6 +896,7 @@
 		),
 	)
 
+// Syndicate Saboteur borgs
 /obj/item/robot_model/saboteur
 	borg_skins = list(
 		//DEFAULT SABOTEUR MODULE
@@ -820,8 +911,8 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -844,7 +935,7 @@
 		),
 	)
 
-
+// Ninja borgs
 /obj/item/robot_model/ninja/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
@@ -862,8 +953,8 @@
 		),
 		*/
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -875,12 +966,13 @@
 		),
 	)
 
+// Ninja Saboteur borgs
 /obj/item/robot_model/ninja_saboteur/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_CATBORG,
-		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_FELI,
+		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL),
 		F3LINE_HAT_OFFSET
 		),
@@ -926,18 +1018,18 @@
 #undef CYBORG_ICON_CC_SMOLRAPTOR
 
 //F3-LINE
-#undef CYBORG_ICON_ALL_CATBORG
-#undef CYBORG_ICON_TYPE_GEN_CATBORG
-#undef CYBORG_ICON_TYPE_SCI_CATBORG
-#undef CYBORG_ICON_TYPE_ENG_CATBORG
-#undef CYBORG_ICON_TYPE_MED_CATBORG
-#undef CYBORG_ICON_TYPE_SERV_CATBORG
-#undef CYBORG_ICON_TYPE_PK_CATBORG
-#undef CYBORG_ICON_TYPE_JANI_CATBORG
-#undef CYBORG_ICON_TYPE_MINE_CATBORG
-#undef CYBORG_ICON_TYPE_SEC_CATBORG
-#undef CYBORG_ICON_TYPE_SYNDI_CATBORG
-#undef CYBORG_ICON_TYPE_NINJA_CATBORG
+#undef CYBORG_ICON_ALL_FELI
+#undef CYBORG_ICON_TYPE_GEN_FELI
+#undef CYBORG_ICON_TYPE_SCI_FELI
+#undef CYBORG_ICON_TYPE_ENG_FELI
+#undef CYBORG_ICON_TYPE_MED_FELI
+#undef CYBORG_ICON_TYPE_SERV_FELI
+#undef CYBORG_ICON_TYPE_PK_FELI
+#undef CYBORG_ICON_TYPE_JANI_FELI
+#undef CYBORG_ICON_TYPE_MINE_FELI
+#undef CYBORG_ICON_TYPE_SEC_FELI
+#undef CYBORG_ICON_TYPE_SYNDI_FELI
+#undef CYBORG_ICON_TYPE_NINJA_FELI
 
 //Haydeez borgs are nuts
 #undef CYBORG_ICON_MED_HAYDEE_BUBBER
@@ -948,6 +1040,23 @@
 #undef CYBORG_ICON_MINING_HAYDEE_BUBBER
 #undef CYBORG_ICON_JANI_HAYDEE_BUBBER
 #undef CYBORG_ICON_SYNDIE_HAYDEE_BUBBER
+
+//Kittyborgs
+#undef CYBORG_ICON_SCI_KITTYBORG
+#undef CYBORG_ICON_ENG_KITTYBORG
+#undef CYBORG_ICON_MED_KITTYBORG
+#undef CYBORG_ICON_SEC_KITTYBORG
+#undef CYBORG_ICON_SERV_KITTYBORG
+#undef CYBORG_ICON_JANI_KITTYBORG
+#undef CYBORG_ICON_MINE_KITTYBORG
+
+//Catborgs
+#undef CYBORG_ICON_SCI_CATBORG
+#undef CYBORG_ICON_ENG_CATBORG
+#undef CYBORG_ICON_MED_CATBORG
+#undef CYBORG_ICON_SEC_CATBORG
+#undef CYBORG_ICON_SERV_CATBORG
+#undef CYBORG_ICON_MINE_CATBORG
 
 //Hat Offsets
 #undef TALL_HAT_OFFSET
