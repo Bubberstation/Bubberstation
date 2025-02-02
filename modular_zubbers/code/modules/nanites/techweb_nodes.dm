@@ -145,7 +145,7 @@
 	design_ids = list(
 		"mindcontrol_nanites",
 		"mitosis_nanites",
-		"spreading_nanites",
+		// "spreading_nanites",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
