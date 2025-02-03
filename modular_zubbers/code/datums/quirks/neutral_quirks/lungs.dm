@@ -21,7 +21,7 @@
 	lungs_added.Insert(carbon_holder, special = TRUE)
 	if(!isnull(lungs_holding))
 		lungs_holding.moveToNullspace() // save them for later
-	carbon_holder.dna.species.mutantlungs = /obj/item/organ/internal/lungs/nitrogen
+	carbon_holder.dna.species.mutantlungs = /obj/item/organ/lungs/nitrogen
 
 /datum/quirk/equipping/lungs/remove()
 	var/mob/living/carbon/carbon_holder = quirk_holder
