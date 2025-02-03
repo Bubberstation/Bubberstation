@@ -269,7 +269,6 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "")
 	if(!tts_enabled)
 		return
-
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")

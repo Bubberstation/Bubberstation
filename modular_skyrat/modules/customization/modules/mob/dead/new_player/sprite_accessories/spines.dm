@@ -24,6 +24,10 @@
 	default_color = DEFAULT_SECONDARY
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
 
+/datum/sprite_accessory/tail_spines/none
+	name = SPRITE_ACCESSORY_NONE
+	icon_state = "none"
+
 /datum/sprite_accessory/tail_spines/is_hidden(mob/living/carbon/human/wearer)
 	var/list/used_in_turf = list("tail")
 	if(wearer.owned_turf?.name in used_in_turf)

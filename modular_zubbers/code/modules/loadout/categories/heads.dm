@@ -83,3 +83,7 @@
 /datum/loadout_item/head/bunny_ears_headband
 	name = "Bunny ears headband"
 	item_path = /obj/item/clothing/head/playbunnyears
+
+/datum/loadout_item/head/soft/galfedcap
+	name = "Galactic Federation cap"
+	item_path = /obj/item/clothing/head/soft/galfedcap
