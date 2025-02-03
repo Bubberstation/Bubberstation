@@ -616,7 +616,7 @@
 
 /datum/loadout_item/uniform/caged_dress
 	name = "Caged Purple Dress"
-	item_path = /obj/item/clothing/under/caged_dress
+	item_path = /obj/item/clothing/under/caged_dress/skirt
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/shortcoat

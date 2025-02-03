@@ -33,6 +33,8 @@
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	damage_multiplier = 2.5 // Shadekins big ears are easy to damage with loud noises.
+	overrides_sprite_datum_organ_type = TRUE
+	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
 /datum/language/marish/empathy
 	name = "Empathy"
