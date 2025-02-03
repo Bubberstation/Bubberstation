@@ -44,7 +44,7 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "bK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /turf/closed/wall/r_wall{
 	baseturfs = /turf/open/floor/plating/lavaland_baseturf
 	},
@@ -82,9 +82,11 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "cf" = (
-/obj/machinery/duct,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "cg" = (
@@ -238,10 +240,13 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "gQ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
+/obj/machinery/door/airlock/external/ruin,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizardgas_lavaland_entrance"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/duct,
+/turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
@@ -302,6 +307,14 @@
 	},
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/asphalt,
+/area/ruin/thelizardsgas_lavaland)
+"il" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1;
+	filter_types = list(/datum/gas/oxygen)
+	},
+/obj/machinery/duct,
+/turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "iE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -508,11 +521,9 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "oY" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/duct,
+/turf/closed/wall/r_wall{
+	baseturfs = /turf/open/floor/plating/lavaland_baseturf
 	},
 /area/ruin/thelizardsgas_lavaland)
 "po" = (
@@ -570,10 +581,10 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "rD" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/door/airlock/grunge{
+	name = "Plasma Hook-Up"
 	},
+/turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "rE" = (
 /obj/structure/cable,
@@ -832,12 +843,11 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "xM" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1;
-	filter_types = list(/datum/gas/oxygen)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
-/obj/machinery/duct,
-/turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "xV" = (
 /obj/structure/sign/poster/fluff/lizards_gas_payment/directional/west,
@@ -903,10 +913,10 @@
 /turf/open/floor/asphalt,
 /area/ruin/thelizardsgas_lavaland)
 "zo" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Plasma Hook-Up"
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron/smooth{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
-/turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "zz" = (
 /obj/machinery/light/directional/west,
@@ -990,15 +1000,6 @@
 "Cf" = (
 /turf/closed/wall/r_wall,
 /area/ruin/thelizardsgas_lavaland)
-"CG" = (
-/obj/structure/reagent_dispensers/plumbed/storage{
-	dir = 8;
-	reagent_id = /datum/reagent/toxin/plasma;
-	name = "plasma storage tank";
-	tank_volume = 2500
-	},
-/turf/open/floor/plating/lavaland_atmos,
-/area/ruin/thelizardsgas_lavaland)
 "CY" = (
 /obj/structure/rack,
 /obj/item/food/candy,
@@ -1033,12 +1034,9 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "DL" = (
-/obj/machinery/door/airlock/external/ruin,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "lizardgas_lavaland_entrance"
-	},
-/obj/structure/fans/tiny,
-/obj/machinery/duct,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1566,11 +1564,13 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Tc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/reagent_dispensers/plumbed/storage{
+	dir = 8;
+	reagent_id = /datum/reagent/toxin/plasma;
+	name = "plasma storage tank";
+	tank_volume = 2500
 	},
+/turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "Tk" = (
 /turf/open/misc/asteroid/basalt/lava_land_surface,
@@ -1600,7 +1600,7 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "UK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
 /turf/closed/wall/r_wall{
 	baseturfs = /turf/open/floor/plating/lavaland_baseturf
 	},
@@ -1662,7 +1662,9 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "WT" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	all_access = 1
+	},
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
 	dir = 4
 	},
@@ -2141,7 +2143,7 @@ cB
 cB
 cB
 Rb
-DL
+gQ
 cB
 YH
 Tk
@@ -2213,7 +2215,7 @@ gd
 Jp
 Jp
 Zo
-rD
+zo
 wE
 CY
 KS
@@ -2240,10 +2242,10 @@ gd
 Bf
 Is
 gn
-oY
+DL
 hC
-gQ
-gQ
+cf
+cf
 FZ
 Su
 FZ
@@ -2291,10 +2293,10 @@ hr
 cB
 pB
 Hq
-oY
+DL
 nE
 XD
-oY
+DL
 wE
 Ao
 lM
@@ -2318,7 +2320,7 @@ hr
 cB
 Xj
 yb
-rD
+zo
 eB
 Zt
 Wg
@@ -2356,7 +2358,7 @@ tD
 tD
 KS
 WZ
-Tc
+xM
 vD
 uf
 WV
@@ -2383,10 +2385,10 @@ cB
 DE
 cB
 cB
-bK
-LL
 UK
-xM
+LL
+bK
+il
 Tk
 Tk
 Tk
@@ -2413,7 +2415,7 @@ uM
 bM
 gY
 cB
-cf
+oY
 cB
 Tk
 Tk
@@ -2440,8 +2442,8 @@ ef
 BN
 bG
 cB
-CG
-zo
+Tc
+rD
 Tk
 hr
 hr
