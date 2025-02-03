@@ -6,10 +6,13 @@
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	var/valid_bodytype = BODYTYPE_ORGANIC
-	var/simplemob_valid_biotype = MOB_ORGANIC
+	var/valid_biotype = MOB_ORGANIC
 	var/healing_rate = NANITE_BIO_REGENERATION
+	var/always_active = FALSE
 
 /datum/nanite_program/regenerative/check_conditions()
+	if(always_active)
+		return TRUE
 	if(!host_mob.getBruteLoss() && !host_mob.getFireLoss())
 		return FALSE
 	if(iscarbon(host_mob))
@@ -17,7 +20,7 @@
 		var/list/parts = carbon.get_damaged_bodyparts(TRUE, TRUE, valid_bodytype)
 		if(!parts.len)
 			return FALSE
-	else if(!(host_mob.mob_biotypes & simplemob_valid_biotype))
+	else if(!(host_mob.mob_biotypes & valid_biotype))
 		return FALSE
 	return ..()
 
@@ -35,6 +38,7 @@
 	use_rate = 5.5
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 	healing_rate = NANITE_ADV_BIO_REGENERATION
+	always_active = TRUE
 
 /datum/nanite_program/regenerative/robotic
 	name = "Mechanical Repair"
@@ -94,27 +98,6 @@
 	purge_path = /datum/reagent/toxin
 	force_heal = TRUE
 
-/datum/nanite_program/brain_heal
-	name = "Neural Regeneration"
-	desc = "The nanites fix neural connections in the host's brain, reversing brain damage and minor traumas. Will not consume nanites while it would not have an effect."
-	use_rate = 1.5
-	rogue_types = list(/datum/nanite_program/brain_decay)
-
-/datum/nanite_program/brain_heal/check_conditions()
-	if(host_mob.get_organ_loss(ORGAN_SLOT_BRAIN) > 0)
-		return ..()
-	if(iscarbon(host_mob))
-		var/mob/living/carbon/carbon = host_mob
-		if (carbon.has_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC))
-			return ..()
-	return FALSE
-
-/datum/nanite_program/brain_heal/active_effect()
-	host_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -NANITE_BRAIN_REGENERATION)
-	if(iscarbon(host_mob) && prob(10))
-		var/mob/living/carbon/C = host_mob
-		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-
 /datum/nanite_program/blood_restoring
 	name = "Blood Regeneration"
 	desc = "The nanites stimulate and boost blood cell production in the host. Will not consume nanites while the host has a safe blood level."
@@ -135,6 +118,27 @@
 		var/mob/living/carbon/C = host_mob
 		C.blood_volume += 2
 
+/datum/nanite_program/brain_heal
+	name = "Neural Regeneration"
+	desc = "The nanites fix neural connections in the host's brain, reversing brain damage and minor traumas. Will not consume nanites while it would not have an effect."
+	use_rate = 1.5
+	rogue_types = list(/datum/nanite_program/brain_decay)
+
+/datum/nanite_program/brain_heal/check_conditions()
+	if(host_mob.get_organ_loss(ORGAN_SLOT_BRAIN) > 0)
+		return ..()
+	if(iscarbon(host_mob))
+		var/mob/living/carbon/carbon = host_mob
+		if (carbon.has_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC))
+			return ..()
+	return FALSE
+
+/datum/nanite_program/brain_heal/active_effect()
+	host_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -NANITE_BRAIN_REGENERATION)
+	if(iscarbon(host_mob) && prob(1))
+		var/mob/living/carbon/C = host_mob
+		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+
 /datum/nanite_program/brain_heal_advanced
 	name = "Neural Reimaging"
 	desc = "The nanites are able to backup and restore the host's neural connections, potentially replacing entire chunks of missing or damaged brain matter. Consumes nanites even if it has no effect."
@@ -143,7 +147,7 @@
 
 /datum/nanite_program/brain_heal_advanced/active_effect()
 	host_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -NANITE_ADV_BRAIN_REGENERATION)
-	if(iscarbon(host_mob) && prob(10))
+	if(iscarbon(host_mob) && prob(1))
 		var/mob/living/carbon/C = host_mob
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 
