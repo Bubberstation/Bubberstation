@@ -73,7 +73,7 @@
 #define DATA_HUD_AI_DETECT 8
 #define DATA_HUD_FAN 9
 #define DATA_HUD_MALF_APC 10
-#define DATA_HUD_PERMIT 11 //SKYRAT EDIT
+#define DATA_HUD_PERMIT 11 //BUBBER EDIT
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20
