@@ -105,6 +105,7 @@
 #define FOLLOW_OR_TURF_LINK(alice, bob, turfy) "<a href=?src=[REF(alice)];follow=[REF(bob)];x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
 
 //Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
+#define CAPLESS_MESSAGE_LEN 1e6 // Bubber Edit
 #define MAX_MESSAGE_LEN 2048 //SKYRAT EDIT CHANGE - ORIGINAL 1024 - I SAID DOUBLE IT!! FUCK THE WARNING!
 #define MAX_NAME_LEN 42
 #define MAX_BROADCAST_LEN 512
