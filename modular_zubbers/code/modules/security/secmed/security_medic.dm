@@ -118,7 +118,6 @@
 	. = ..()
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
 	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)

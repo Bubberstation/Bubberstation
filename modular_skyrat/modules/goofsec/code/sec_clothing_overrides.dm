@@ -91,6 +91,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "belt_white"
 	worn_icon_state = "belt_white"
+	uses_advanced_reskins = FALSE
 	unique_reskin = list(
 		"Black Variant" = "belt_black",
 		"Blue Variant" = "belt_blue",
@@ -333,6 +334,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "gloves_white"
+	uses_advanced_reskins = FALSE
 	unique_reskin = list(
 		"Black Variant" = "gloves_black",
 		"Blue Variant" = "gloves_blue",

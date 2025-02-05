@@ -28,6 +28,7 @@
 	name = "police patrol cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "futuristic security helmet"
@@ -66,11 +67,13 @@
 	name = "Security garrison cap"
 	item_path = /obj/item/clothing/head/security_garrison
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/security_cap
 	name = "Security cap"
 	item_path = /obj/item/clothing/head/security_cap
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/security_cap/soft
 	name = "Security cap (soft)"
@@ -111,6 +114,7 @@
 	name = "Warden's police cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/helmet/sec/redsec
 	name = "Security helmet (Redsec)"
@@ -126,6 +130,7 @@
 	name = "Security kepi"
 	item_path = /obj/item/clothing/head/security_kepi
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne corporate beret"

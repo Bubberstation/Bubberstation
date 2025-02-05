@@ -92,7 +92,6 @@
 			"products" = list(
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic = 3,
-					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,

@@ -77,6 +77,12 @@
 	item_path = /obj/item/clothing/suit/toggle/jacket/corrections_officer
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
+/datum/loadout_item/suit/jacket/security_medic
+	name = "Security medic labcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+	can_be_reskinned = TRUE
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
