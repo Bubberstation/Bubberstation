@@ -638,7 +638,7 @@
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec/medical
 	restricted_roles = list (JOB_ORDERLY, JOB_SECURITY_MEDIC, JOB_CHIEF_MEDICAL_OFFICER)
 
-/datum/loadout_item/suit/labcoat/doctor_tailcoat/sec
+/datum/loadout_item/suit/labcoat/doctor_tailcoat
 	name = "Brig Physician's tailcoat"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
 	restricted_roles = list(JOB_SECURITY_MEDIC)
