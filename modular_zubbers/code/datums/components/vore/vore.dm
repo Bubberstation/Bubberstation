@@ -3,7 +3,7 @@
 	desc = "<b>Left Click</b> to switch into vore mode<br><b>Right click</b> to see the vore UI<br>When aggressively grabbing someone in vore mode:<br><ul><li>Click on <b>yourself</b> to eat them</li><li>Click on <b>them</b> to feed yourself to them</li><li>Click on <b>someone else</b> to feed them who you're holding</li></ul>"
 	click_action = TRUE
 	ranged_mousepointer = 'modular_zubbers/icons/effects/mouse_pointers/vore.dmi'
-	default_button_position = "EAST-4:6,SOUTH+1:5" // We're bottom left, it's bottom right, it's perfect
+	default_button_position = "EAST-4:-10,SOUTH:5" // We're bottom left, it's bottom right, it's perfect
 
 	background_icon = 'modular_zubbers/icons/mob/actions/vore.dmi'
 	background_icon_state = "bg"
@@ -274,28 +274,24 @@
 		log_game("[user] tried to feed [prey] to [pred] but prey had vore disabled")
 		to_chat(user, span_danger("[prey] isn't interested in mechanical vore."))
 		return FALSE
-	#if MATRYOSHKA_BANNED
-	if(prey_component.has_prey())
+	if(MATRYOSHKA_BANNED && prey_component.has_prey())
 		return FALSE
-	#endif
-	#if REQUIRES_PLAYER
-	if(!pred.client)
-		log_game("[user] tried to feed [prey] to [pred] but pred was logged off")
-		to_chat(user, span_danger("[pred] isn't logged on."))
-		return FALSE
-	if(!prey.client)
-		log_game("[user] tried to feed [prey] to [pred] but prey was logged off")
-		to_chat(user, span_danger("[prey] isn't logged on."))
-		return FALSE
-	#endif
-	#if NO_DEAD
-	if(pred.stat)
-		to_chat(user, span_danger("[pred] doesn't look healthy enough to feed."))
-		return FALSE
-	if(prey.stat)
-		to_chat(user, span_danger("[prey] doesn't look healthy enough to eat."))
-		return FALSE
-	#endif
+	if(REQUIRES_PLAYER)
+		if(!pred.client)
+			log_game("[user] tried to feed [prey] to [pred] but pred was logged off")
+			to_chat(user, span_danger("[pred] isn't logged on."))
+			return FALSE
+		if(!prey.client)
+			log_game("[user] tried to feed [prey] to [pred] but prey was logged off")
+			to_chat(user, span_danger("[prey] isn't logged on."))
+			return FALSE
+	if(NO_DEAD)
+		if(pred.stat)
+			to_chat(user, span_danger("[pred] doesn't look healthy enough to feed."))
+			return FALSE
+		if(prey.stat)
+			to_chat(user, span_danger("[prey] doesn't look healthy enough to eat."))
+			return FALSE
 	if(!is_type_in_typecache(pred, GLOB.vore_allowed_mob_types))
 		return FALSE
 	if(!is_type_in_typecache(prey, GLOB.vore_allowed_mob_types))
