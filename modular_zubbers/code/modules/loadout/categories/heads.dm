@@ -79,16 +79,19 @@
 	name = "Security cap (soft)"
 	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's security cap (soft)"
 	item_path = /obj/item/clothing/head/soft/veteran
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_cap/colonial
 	name = "Imperial police cap"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_beanie
 	name = "Security beanie"

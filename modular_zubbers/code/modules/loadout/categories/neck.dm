@@ -56,6 +56,3 @@
 	item_path = /obj/item/clothing/neck/scarf/pride
 	can_be_reskinned = TRUE
 
-/datum/loadout_item/neck/mercbadge
-	name = "Jade badge"
-	item_path = /obj/item/clothing/accessory/badge/holo/jade
