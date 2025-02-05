@@ -34,21 +34,15 @@
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Red Pattern" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_ICON_STATE = "vest_worn_red",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_WORN_ICON_STATE = "vest_worn_red"
 		),
 		"Neutral Pattern" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_ICON_STATE = "vest_worn",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_WORN_ICON_STATE = "vest_worn",
 		),
 		"Blue Pattern" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_ICON_STATE = "vest_worn_blue",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi',
 			RESKIN_WORN_ICON_STATE = "vest_worn_blue",
 			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
 		)
