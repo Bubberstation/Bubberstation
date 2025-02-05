@@ -5,6 +5,10 @@
 	held_rh = 'icons/mob/inhands/pai_item_rh.dmi'
 	held_state = "cat"
 
+	// Components
+	var/list/components = list()
+	var/obj/machinery/camera/camera = null
+
 //Cyborgs that are being held should act almost as how the AI behaves when carded.
 /mob/living/silicon/robot/mob_pickup(mob/living/user)
 	drop_all_held_items()
@@ -17,13 +21,7 @@
 	return ..()
 
 
-/**********************************************************************
-						Components oh god oh fuck
-***********************************************************************/
-
 /// Components! These are basically robot organs
-	var/list/components = list()
-	var/obj/machinery/camera/camera = null
 
 /mob/living/silicon/robot/Initialize(mapload)
 	. = ..()
