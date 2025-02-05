@@ -172,7 +172,7 @@
 		return
 	if(get_charge())
 		//Bubber edit start - emps stronger against mechs
-		use_energy((cell.charge/2)/(severity))
+		use_energy((cell.maxcharge/3)/(severity * 2))
 		take_damage(90 / severity, BURN, ENERGY, 1)
 		//Bubber edit end
 	log_message("EMP detected", LOG_MECHA, color="red")
