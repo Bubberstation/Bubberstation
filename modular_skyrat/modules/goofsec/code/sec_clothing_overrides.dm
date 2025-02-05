@@ -248,9 +248,10 @@
 	icon_state = "security_helmet_future"
 	base_icon_state = "security_helmet_future"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		"Blue Variant" = "security_helmet_future_blue",
-	)
+
+/obj/item/clothing/head/helmet/sec/futuristic/blue
+	icon_state = "security_helmet_future_blue"
+	base_icon_state = "security_helmet_future_blue"
 
 //Beret replacement
 /obj/item/clothing/head/security_garrison
