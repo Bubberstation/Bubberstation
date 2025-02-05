@@ -355,10 +355,8 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
 	unique_reskin = list(
-		"Black Variant" = "fightgloves_black",
 		"Blue Variant" = "fightgloves_blue",
 		"Red Variant" = "fightgloves",
-		"White Variant" = "fightgloves_white",
 	)
 /*
 * SUITS
