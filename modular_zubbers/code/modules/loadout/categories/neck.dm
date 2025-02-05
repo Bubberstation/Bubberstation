@@ -40,6 +40,11 @@
 	item_path = /obj/item/clothing/neck/pauldron/commander
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
+/datum/loadout_item/neck/imperial_cloak
+	name = "Imperial Police Cloak"
+	item_path = /obj/item/clothing/neck/cloak/colonial/nri_police
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+
 /datum/loadout_item/neck/bunnypendant
 	name = "Rabbit Pendant"
 	item_path = /obj/item/clothing/neck/bunny_pendant

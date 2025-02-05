@@ -82,6 +82,11 @@
 	item_path = /obj/item/clothing/head/soft/veteran
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
+/datum/loadout_item/head/security_cap/colonial
+	name = "Imperial police cap"
+	item_path = /obj/item/clothing/head/hats/colonial/nri_police
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+
 /datum/loadout_item/head/security_beanie
 	name = "Security beanie"
 	item_path = /obj/item/clothing/head/security_beanie
@@ -111,6 +116,11 @@
 	name = "Security helmet (Redsec)"
 	item_path = /obj/item/clothing/head/helmet/sec/redsec
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/head/helmet/nri_police
+	name = "Imperial police helmet"
+	item_path = /obj/item/clothing/head/helmet/nri_police
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/hats/security_kepi
 	name = "Security kepi"
