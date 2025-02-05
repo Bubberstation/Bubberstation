@@ -502,9 +502,9 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "hos_black"
 	unique_reskin = list(
-		"Black Variant" = "hos_black"
-		"Blue Variant" = "peacekeeper_hos"
-		"Sol Variant" = "policechiefalt"
+		"Black Variant" = "hos_black",
+		"Blue Variant" = "peacekeeper_hos",
+		"Sol Variant" = "policechiefalt",
 	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
