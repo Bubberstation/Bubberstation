@@ -171,8 +171,10 @@
 	if (. & EMP_PROTECT_SELF)
 		return
 	if(get_charge())
-		use_energy((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, ENERGY, 1)
+		//Bubber edit start - emps stronger against mechs
+		use_energy((cell.charge/2)/(severity))
+		take_damage(90 / severity, BURN, ENERGY, 1)
+		//Bubber edit end
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	//Mess with the focus of the inbuilt camera if present
