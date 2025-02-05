@@ -62,6 +62,10 @@
 	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
+/datum/loadout_item/suit/jacket/fedsec
+	name = "Modern Security federation jacket"
+	item_path = /obj/item/clothing/suit/fedcoat/modern/sec
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/jacket/corrections_officer
 	name = "Correction's officer's jacket"
