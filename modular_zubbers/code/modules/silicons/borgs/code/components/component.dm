@@ -14,7 +14,6 @@
 /datum/robot_component/var/active_usage = 0 // Amount of power used for every action. Actions are module-specific. Actuator for each tile moved, etc.
 /datum/robot_component/var/max_damage = 30  // HP of this component.
 /datum/robot_component/var/mob/living/silicon/robot/owner
-/datum/robot_component/var/upgraded = 0
 
 // The actual device object that has to be installed for this.
 /datum/robot_component/var/external_type = null
