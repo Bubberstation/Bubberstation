@@ -11,6 +11,8 @@
 
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi'
 
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED | AB_CHECK_HANDS_BLOCKED // cant use it if cuffed
+
 	/// The reagent we will inject.
 	var/datum/reagent/reagent_typepath
 	/// How much of [reagent_typepath] we will inject.
