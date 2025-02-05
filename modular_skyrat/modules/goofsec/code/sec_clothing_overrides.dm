@@ -54,18 +54,9 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "backpack_security_black"
 	inhand_icon_state = "backpack_security_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "backpack_security_black",
-			RESKIN_WORN_ICON_STATE = "backpack_security_black",
-			RESKIN_INHAND_STATE = "backpack_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "backpack_security_white",
-			RESKIN_WORN_ICON_STATE = "backpack_security_white",
-			RESKIN_INHAND_STATE = "backpack_security_white"
-		),
+		"Black Variant" = "backpack_security_black",
+		"White Variant" = "backpack_security_white",
 	)
 
 /obj/item/storage/backpack/satchel/sec
@@ -75,18 +66,9 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "satchel_security_black"
 	inhand_icon_state = "satchel_security_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "satchel_security_black",
-			RESKIN_WORN_ICON_STATE = "satchel_security_black",
-			RESKIN_INHAND_STATE = "satchel_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "satchel_security_white",
-			RESKIN_WORN_ICON_STATE = "satchel_security_white",
-			RESKIN_INHAND_STATE = "satchel_security_white"
-		),
+		"Black Variant" = "satchel_security_black",
+		"White Variant" = "satchel_security_white",
 	)
 
 /obj/item/storage/backpack/duffelbag/sec
@@ -96,18 +78,9 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "duffel_security_black"
 	inhand_icon_state = "duffel_security_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "duffel_security_black",
-			RESKIN_WORN_ICON_STATE = "duffel_security_black",
-			RESKIN_INHAND_STATE = "duffel_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "duffel_security_white",
-			RESKIN_WORN_ICON_STATE = "duffel_security_white",
-			RESKIN_INHAND_STATE = "duffel_security_white"
-		),
+		"Black Variant" = "duffel_security_black",
+		"White Variant" = "duffel_security_white",
 	)
 
 /*
@@ -118,24 +91,11 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "belt_white"
 	worn_icon_state = "belt_white"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "belt_black",
-			RESKIN_WORN_ICON_STATE = "belt_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "belt_blue",
-			RESKIN_WORN_ICON_STATE = "belt_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "belt_white",
-			RESKIN_WORN_ICON_STATE = "belt_white"
-		),
-		"Slim Variant" = list(
-			RESKIN_ICON_STATE = "belt_slim",
-			RESKIN_WORN_ICON_STATE = "belt_slim"
-		),
+		"Black Variant" = "belt_black",
+		"Blue Variant" = "belt_blue",
+		"White Variant" = "belt_white",
+		"Slim Variant" = "belt_slim",
 	)
 
 /obj/item/storage/belt/security/webbing
@@ -186,16 +146,9 @@
 /obj/item/clothing/glasses/hud/security/sunglasses
 	icon_state = "security_hud_black"
 	glass_colour_type = /datum/client_colour/glass_colour/blue
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Dark-Tint Variant" = list(
-			RESKIN_ICON_STATE = "security_hud_black",
-			RESKIN_WORN_ICON_STATE = "security_hud_black"
-		),
-		"Light-Tint Variant" = list(
-			RESKIN_ICON_STATE = "security_hud_blue",
-			RESKIN_WORN_ICON_STATE = "security_hud_blue"
-		),
+		"Dark-Tint Variant" = "security_hud_black",
+		"Light-Tint Variant" = "security_hud_blue",
 	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
@@ -285,6 +238,7 @@
 		"Sol Variant" = "policesoft",
 		"Sillitoe Variant" = "policetrafficsoft",
 		"Cadet Variant" = "policecadetsoft",
+		"Redsec Variant" = "secsoft"
 	)
 
 /obj/item/clothing/head/hats/warden
@@ -307,24 +261,11 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "hoscap_blue"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Cap" = list(
-			RESKIN_ICON_STATE = "hoscap_blue",
-			RESKIN_WORN_ICON_STATE = "hoscap_blue"
-		),
-		"Sol Cap" = list(
-			RESKIN_ICON_STATE = "policechiefcap",
-			RESKIN_WORN_ICON_STATE = "policechiefcap"
-		),
-		"Sheriff Hat" = list(
-			RESKIN_ICON_STATE = "cowboyhat_black",
-			RESKIN_WORN_ICON_STATE = "cowboyhat_black"
-		),
-		"Wide Sheriff Hat" = list(
-			RESKIN_ICON_STATE = "cowboy_black",
-			RESKIN_WORN_ICON_STATE = "cowboy_black"
-		)
+		"Blue Cap" = "hoscap_blue",
+		"Sol Cap" = "policechief_cap",
+		"Sheriff Hat" = "cowboyhat_black",
+		"Wide Sheriff Hat" = "cowboy_black",
 	)
 
 //Need to quickly redefine this so the icon doesnt break
@@ -411,24 +352,11 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "fightgloves_black",
-			RESKIN_WORN_ICON_STATE = "fightgloves_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "fightgloves_blue",
-			RESKIN_WORN_ICON_STATE = "fightgloves_blue"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "fightgloves",
-			RESKIN_WORN_ICON_STATE = "fightgloves"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "fightgloves_white",
-			RESKIN_WORN_ICON_STATE = "fightgloves_white"
-		),
+		"Black Variant" = "fightgloves_black"
+		"Blue Variant" = "fightgloves_blue"
+		"Red Variant" = "fightgloves"
+		"White Variant" = "fightgloves_white"
 	)
 /*
 * SUITS
@@ -439,20 +367,10 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "vest_white"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "vest_black",
-			RESKIN_WORN_ICON_STATE = "vest_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "vest_blue",
-			RESKIN_WORN_ICON_STATE = "vest_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "vest_white",
-			RESKIN_WORN_ICON_STATE = "vest_white"
-		),
+		"Black Variant" = "vest_black"
+		"Blue Variant" = "vest_blue"
+		"White Variant" = "vest_white"
 	)
 
 /obj/item/clothing/suit/armor/hos
@@ -539,28 +457,12 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_black"
 	alt_covers_chest = TRUE
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "security_black",
-			RESKIN_WORN_ICON_STATE = "security_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "security_blue",
-			RESKIN_WORN_ICON_STATE = "security_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "security_white",
-			RESKIN_WORN_ICON_STATE = "security_white"
-		),
-		"Sol Variant" = list(
-			RESKIN_ICON_STATE = "policealt",
-			RESKIN_WORN_ICON_STATE = "policealt"
-		),
-		"Cadet Variant" = list(
-			RESKIN_ICON_STATE = "policecadetalt",
-			RESKIN_WORN_ICON_STATE = "policecadetalt"
-		),
+		"Black Variant" = "security_black",
+		"Blue Variant" = "security_blue",
+		"White Variant" = "security_white",
+		"Sol Variant" = "policealt",
+		"Cadet Variant" = "policecadetalt",
 	)
 
 /obj/item/clothing/under/rank/security/officer/formal
@@ -577,17 +479,10 @@
 	icon_state = "jumpskirt_blue"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
 	alt_covers_chest = TRUE
 	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_blue",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
-        ),
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_black",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
-		),
+		"Blue Variant" = "jumpskirt_blue",
+		"Black Variant" = "jumspkirt_black",
 	)
 
 //Warden
@@ -595,20 +490,10 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "warden_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "warden_black",
-			RESKIN_WORN_ICON_STATE = "warden_black"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "peacekeeper_warden",
-			RESKIN_WORN_ICON_STATE = "peacekeeper_warden"
-		),
-		"Sol Varient" = list(
-			RESKIN_ICON_STATE = "policewardenalt",
-			RESKIN_WORN_ICON_STATE = "policewardenalt"
-		),
+		"Black Variant" = "warden_black",
+		"Blue Variant" = "peacekeeper_warden",
+		"Sol Variant" = "policewardenalt",
 	)
 
 //HoS
@@ -616,20 +501,10 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "hos_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "hos_black",
-			RESKIN_WORN_ICON_STATE = "hos_black"
-		),
-		"Blue Varient" = list(
-			RESKIN_ICON_STATE = "peacekeeper_hos",
-			RESKIN_WORN_ICON_STATE = "peacekeeper_hos"
-		),
-		"Sol Varient" = list(
-			RESKIN_ICON_STATE = "policechiefalt",
-			RESKIN_WORN_ICON_STATE = "policechiefalt"
-		),
+		"Black Variant" = "hos_black"
+		"Blue Variant" = "peacekeeper_hos"
+		"Sol Variant" = "policechiefalt"
 	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
@@ -661,20 +536,10 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue-Trimmed Variant" = list(
-			RESKIN_ICON_STATE = "security_boots",
-			RESKIN_WORN_ICON_STATE = "security_boots"
-		),
-		"White-Trimmed Variant" = list(
-			RESKIN_ICON_STATE = "security_boots_white",
-			RESKIN_WORN_ICON_STATE = "security_boots_white"
-		),
-		"Full White Variant" = list(
-			RESKIN_ICON_STATE = "security_boots_fullwhite",
-			RESKIN_WORN_ICON_STATE = "security_boots_fullwhite"
-		),
+		"Blue-Trimmed Variant" = "security_boots",
+		"White-Trimmed Variant" = "security_boots_white",
+		"Full White Variant" = "security_boots_fullwhite",
 	)
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
