@@ -310,16 +310,9 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_cap_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_cap_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_cap_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_cap_blue"
-		)
+		"Tan Variant" = "caligram_cap_tan",
+		"Blue Variant" = "caligram_cap_blue",
 	)
 
 // Donation reward for Raxraus
@@ -331,16 +324,9 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "caligram_fatigues_tan"
 	worn_icon_state = "caligram_fatigues_tan"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_fatigues_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_fatigues_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_fatigues_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_fatigues_blue"
-		)
+		"Tan Variant" = "caligram_fatigues_tan",
+		"Blue Variant" = "caligram_fatigues_blue",
 	)
 
 // Donation reward for Raxraus
@@ -352,20 +338,10 @@
 	icon_state = "caligram_parka_tan"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_blue"
-		),
-		"Blue Patchless Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_patchless_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_patchless_blue"
-		)
+		"Tan Variant" = "caligram_parka_tan",
+		"Blue Variant" = "caligram_parka_blue",
+		"Blue Patchless Variant" = "caligram_parka_patchless_blue",
 	)
 
 // Donation reward for Raxraus
@@ -378,16 +354,9 @@
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_vest_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_vest_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_blue"
-		)
+		"Tan Variant" = "caligram_parka_vest_tan",
+		"Blue Variant" = "caligram_parka_vest_blue",
 	)
 
 // Donation reward for ChillyLobster
@@ -1657,24 +1626,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	supports_variations_flags = NONE
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black-Blue" = list(
-			RESKIN_ICON_STATE = "coat_blackblue",
-			RESKIN_WORN_ICON_STATE = "coat_blackblue"
-		),
-		"Black-Red" = list(
-			RESKIN_ICON_STATE = "coat_blackred",
-			RESKIN_WORN_ICON_STATE = "coat_blackred"
-		),
-		"White-Red" = list(
-			RESKIN_ICON_STATE = "coat_whitered",
-			RESKIN_WORN_ICON_STATE = "coat_whitered"
-		),
-		"White-Blue" = list(
-			RESKIN_ICON_STATE = "coat_whiteblue",
-			RESKIN_WORN_ICON_STATE = "coat_whiteblue"
-		)
+		"Black-Blue" = "coat_blackblue",
+		"Black-Red" = "coat_blackred",
+		"White-Red" = "coat_whitered",
+		"White-Blue" = "coat_whiteblue",
 	)
 
 /obj/item/clothing/suit/armor/hos/elofy/examine_more(mob/user)
@@ -1691,16 +1647,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "hat_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "hat_white",
-			RESKIN_WORN_ICON_STATE = "hat_white"
-		),
-		"Black" = list(
-			RESKIN_ICON_STATE = "hat_black",
-			RESKIN_WORN_ICON_STATE = "hat_black"
-		)
+		"White" = "hat_white",
+		"Black" = "hat_black",
 	)
 
 
@@ -1713,16 +1662,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "gloves_white",
-			RESKIN_WORN_ICON_STATE = "gloves_white"
-		),
-		"Black" = list(
-			RESKIN_ICON_STATE = "gloves_black",
-			RESKIN_WORN_ICON_STATE = "gloves_black"
-		)
+		"White" = "gloves_white",
+		"Black" = "gloves_black",
 	)
 
 /obj/item/clothing/shoes/jackboots/elofy
@@ -1734,20 +1676,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	icon_state = "boots_blackblue"
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Black-Red" = list(
-			RESKIN_ICON_STATE = "boots_blackred",
-			RESKIN_WORN_ICON_STATE = "boots_blackred"
-		),
-		"White-Red" = list(
-			RESKIN_ICON_STATE = "boots_whitered",
-			RESKIN_WORN_ICON_STATE = "boots_whitered"
-		),
-		"White-Blue" = list(
-			RESKIN_ICON_STATE = "boots_whiteblue",
-			RESKIN_WORN_ICON_STATE = "boots_whiteblue"
-		)
+		"Black-Red" = "boots_blackred",
+		"White-Red" = "boots_whitered",
+		"White-Blue" = "boots_whiteblue",
 	)
 
 // Donation reward for grasshand
@@ -1857,20 +1789,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "trenchcoat"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "trenchcoat_white",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_white"
-		),
-		"Tin variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_tin",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_tin"
-		),
-		"Blue variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_blue",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_blue"
-		)
+		"White" = "trenchcoat_white",
+		"Tin variant" = "trenchcoat_tin",
+		"Blue variant" = "trenchcoat_blue",
 	)
 
 //Donation reward for Jasohavents
