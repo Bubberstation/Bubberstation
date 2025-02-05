@@ -309,6 +309,43 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		ID_to_give.update_icon()
 		human_to_equip.sec_hud_set_ID()
 
+/obj/item/modular_computer/pda/request_911
+	name = "Terragov PDA"
+	desc = "A small experimental microcomputer, up to Terragov 911 Responder standards."
+	greyscale_config = /datum/greyscale_config/tablet/captain
+	greyscale_colors = "#EAEAEA#66CCFF#FFCC00#5F5F5F"
+	max_capacity = parent_type::max_capacity * 2
+	inserted_item = /obj/item/pen/fountain
+	long_ranged = TRUE
+	starting_programs = list(
+	)
+
+/obj/item/modular_computer/pda/request_911/police
+	name = "Terragov Marshal PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#CC5075"
+	inserted_item = /obj/item/pen/red/security
+	starting_programs = list(
+		/datum/computer_file/program/records/security,
+	)
+
+/obj/item/modular_computer/pda/request_911/atmos
+	name = "Terragov Atmospherics PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7DDEFF"
+	starting_programs = list(
+		/datum/computer_file/program/atmosscan,
+		/datum/computer_file/program/alarm_monitor,
+		/datum/computer_file/program/supermatter_monitor,
+	)
+
+/obj/item/modular_computer/pda/request_911/emt
+	name = "Terragov Medical PDA"
+	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7284D4"
+	starting_programs = list(
+		/datum/computer_file/program/records/medical,
+		/datum/computer_file/program/radar/lifeline,
+		/datum/computer_file/program/supermatter_monitor,
+	)
+
 /*
 *	POLICE
 */
@@ -324,6 +361,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	back = /obj/item/storage/backpack/satchel
 	uniform = /obj/item/clothing/under/sol_peacekeeper
 	suit = /obj/item/clothing/suit/armor/vest/det_suit/terra
+	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/headset_sec/alt
@@ -340,6 +378,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/beamout_tool = 1,
 		/obj/item/taperecorder = 1,
 		/obj/item/storage/box/evidence = 1,
+		/obj/item/modular_computer/pda/request_911/police = 1,
+		/obj/item/holosign_creator/security = 1,
 	)
 
 	id_trim = /datum/id_trim/terragov
@@ -364,6 +404,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	belt = /obj/item/storage/belt/utility/full/powertools/ircd
 	suit_store = /obj/item/tank/internals/oxygen/yellow
 	id = /obj/item/card/id/advanced/terragov
+	r_pocket = /obj/item/modular_computer/pda/request_911/atmos
+	l_pocket = /obj/item/holosign_creator/atmos
 	backpack_contents = list(/obj/item/storage/box/rcd_ammo = 1,
 		/obj/item/storage/box/smart_metal_foam = 1,
 		/obj/item/multitool = 1,
@@ -371,6 +413,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/rwd/loaded = 1,
 		/obj/item/beamout_tool = 1,
 		/obj/item/terragov_reporter/swat_caller = 1,
+		/obj/item/inducer = 1,
 	)
 	id_trim = /datum/id_trim/terragov/atmos
 
@@ -421,6 +464,9 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		/obj/item/terragov_reporter/swat_caller = 1,
 		/obj/item/beamout_tool = 1,
 		/obj/item/defibrillator/compact/loaded = 1,
+		/obj/item/modular_computer/pda/request_911/emt = 1,
+		/obj/item/holosign_creator/medical = 1,
+		/obj/item/holosign_creator/medical/treatment_zone = 1,
 	)
 
 	id_trim = /datum/id_trim/terragov
@@ -452,6 +498,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	back = /obj/item/storage/backpack
 	uniform = /obj/item/clothing/under/sol_peacekeeper
 	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/tackler/combat
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/headset_sec/alt
 	head = /obj/item/clothing/head/helmet/sf_peacekeeper

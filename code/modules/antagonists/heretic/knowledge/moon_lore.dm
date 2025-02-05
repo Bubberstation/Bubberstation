@@ -96,7 +96,9 @@
 	gain_text = "The troupe on the moon would dance all day long \
 		and in that dance the moon would smile upon us \
 		but when the night came its smile would dull forced to gaze on the earth."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/moon)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/moon,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_MOON
 	mark_type = /datum/status_effect/eldritch/moon
 
@@ -124,7 +126,7 @@
 	gain_text = "At the head of the parade he stood, the moon condensed into one mass, a reflection of the soul."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/moon,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/curse/paralysis,
 		/datum/heretic_knowledge/painting,

@@ -41,7 +41,7 @@
 	return TRUE
 
 
-/obj/item/organ/external/tail/Insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/external/tail/mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_WAG_ABLE)
 		wag_flags |= WAG_ABLE
 	return ..()

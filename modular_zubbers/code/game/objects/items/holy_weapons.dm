@@ -141,7 +141,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
 	if(alert("Are you sure you want to recolor your blade?", "Confirm Repaint", "Yes", "No") == "Yes")
-		var/energy_color_input = input(usr,"","Choose Energy Color",light_color) as color|null
+		var/energy_color_input = tgui_color_picker(usr,"","Choose Energy Color",light_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 		if(!energy_color_input || !user.can_perform_action(src, SILENT_ADJACENCY) || hacked)
 			return
 		set_light_color(energy_color_input)

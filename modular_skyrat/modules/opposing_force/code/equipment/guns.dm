@@ -3,7 +3,7 @@
 
 /datum/opposing_force_equipment/ranged/renoster
 	name = "Renoster Shotgun"
-	description = "A twelve guage shotgun with an eight shell capacity underneath."
+	description = "A twelve gauge shotgun with an eight shell capacity underneath."
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster
 
 /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster/PopulateContents()

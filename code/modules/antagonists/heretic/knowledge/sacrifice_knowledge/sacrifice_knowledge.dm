@@ -131,7 +131,12 @@
 			continue
 		if(possible_target.current.stat == DEAD)
 			continue
-
+		////BUBBER EDIT START
+		if(HAS_TRAIT(possible_target, TRAIT_MIND_TEMPORARILY_GONE))
+			continue
+		if(is_centcom_level(possible_target.current.z))
+			continue
+		//BUBBERSEDIT END
 		valid_targets += possible_target
 
 	if(!length(valid_targets))
@@ -210,6 +215,7 @@
 	var/datum/antagonist/cult/cultist_datum = GET_CULTIST(sacrifice)
 	// Heads give 3 points, cultists give 1 point (and a special reward), normal sacrifices give 2 points.
 	heretic_datum.total_sacrifices++
+	check_sacrifice_total(user, heretic_datum) //BUBBER EDIT
 	if((sac_job_flag & JOB_HEAD_OF_STAFF))
 		heretic_datum.knowledge_points += 3
 		heretic_datum.high_value_sacrifices++
@@ -418,20 +424,13 @@
 		usable_organs -= /obj/item/organ/internal/lungs/corrupt // Their lungs are already more cursed than anything I could give them
 
 	var/total_implant = 1 //BUBBERSTATION CHANGE: ALWAYS 1 INSTEAD OF 2 TO 4.
-	var/gave_any = FALSE
 
 	for (var/i in 1 to total_implant)
 		if (!length(usable_organs))
-			break
+			return
 		var/organ_path = pick_n_take(usable_organs)
 		var/obj/item/organ/internal/to_give = new organ_path
-		if (!to_give.Insert(sac_target))
-			qdel(to_give)
-		else
-			gave_any = TRUE
-
-	if (!gave_any)
-		return
+		to_give.Insert(sac_target)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
 	sac_target.visible_message(span_boldwarning("Several organs force themselves out of [sac_target]!"))

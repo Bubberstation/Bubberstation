@@ -112,26 +112,19 @@
 	AddComponent(/datum/component/armor_plate, 2)
 	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_FEET)
 
-/obj/item/clothing/shoes/horseshoe
-	name = "reagent horseshoe"
+/obj/item/clothing/shoes/horseshoe/reagent_clothing
+	name = "reagent horseshoes"
 	desc = "A pair of horseshoes made out of chains."
-	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
-	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
-	icon_state = "horseshoe"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_horseshoe
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	resistance_flags = FIRE_PROOF
 	skyrat_obj_flags = ANVIL_REPAIR
-	can_be_tied = FALSE
 
 /datum/armor/shoes_horseshoe
 	melee = 20
 	bullet = 20
 
-/obj/item/clothing/shoes/horseshoe/Initialize(mapload)
+/obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate, 2)
 	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_FEET)

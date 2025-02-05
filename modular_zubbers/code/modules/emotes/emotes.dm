@@ -167,3 +167,15 @@
 	var/obj/item/hand_item/bonkinghand/bonk = new(user)
 	if(user.put_in_hands(bonk))
 		to_chat(user, span_notice("You ready your hand to bonk someone."))
+
+/datum/emote/living/kweh
+	key = "kweh"
+	key_third_person = "kwehs"
+	message = "kwehs out loud!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/kweh/get_sound(mob/living/user)
+	return pick('sound/mobs/non-humanoids/raptor/raptor_1.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_4.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_5.ogg')

@@ -3,7 +3,7 @@
 /obj/item/gun/ballistic/automatic/rom_smg
 // this conversion kit was not implemented prior, and the original descriptor was lackluster. Can modularize this if need be, but uh... aside from desc and sprite, not much changed. - Bangle
 	name = "\improper Sindano 'Shaytan' SMG"
-	desc = "A Romulus-produced conversion kit. This kit comes with a modified sear to enable seamless full-automatic fire - at the cost of fire-select function. This kit includes an alloy and polymer body, a proprietary integrated flashlight, an alternate handguard and modified barrel for the addition of universal suppressors. Accepts any standard Sol pistol magazine."
+	desc = "A Romulus-designed conversion of the Sindano SMG. The sear has been modified, enabling fully-automatic fire at the cost of a fire-select. The new alloy-polymer casing houses a proprietary flashlight within the handguard, and the option to swap out handguards when fitted with a suppressor. Accepts any standard Sol pistol magazine."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun40x32.dmi'
 	icon_state = "gelato"

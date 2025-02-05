@@ -112,6 +112,7 @@
 */
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
+	cost = PAYCHECK_LOWER
 
 // Boxes of kiboko launcher ammo
 

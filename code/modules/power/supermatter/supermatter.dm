@@ -254,7 +254,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
-		SSpersistence.reset_delam_counter() // NOVA EDIT ADDITION BEGIN - DELAM SCRAM
+		SSpersistence.reset_delam_counter() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
 	return ..()
@@ -1095,7 +1095,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /// Consume the santa hat and add it as an overlay
 /obj/machinery/power/supermatter_crystal/proc/holiday_item_interaction(source, mob/living/user, obj/item/item, list/modifiers)
 	SIGNAL_HANDLER
-	if(istype(item, /obj/item/clothing/head/costume/santa) || istype(item, /obj/item/clothing/head/costume/skyrat/christmas)) // SKYRAT EDIT CHANGE - Loadouts
+	if(istype(item, /obj/item/clothing/head/costume/santa))
 		QDEL_NULL(item)
 		RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(holiday_hat_examine))
 		if(istype(src, /obj/machinery/power/supermatter_crystal/shard))

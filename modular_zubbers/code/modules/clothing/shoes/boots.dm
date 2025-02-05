@@ -61,6 +61,7 @@
 	icon_state = "explorer_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	species_exception = null
 
 /obj/item/clothing/shoes/fancy_heels/navyblue
@@ -74,6 +75,7 @@
 	icon_state = "workboots_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	species_exception = null
 
 //MEDICAL
@@ -129,6 +131,7 @@
 	icon_state = "hos_boots"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 //SERVICE
 
@@ -145,6 +148,7 @@
 	icon_state ="galoshes_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	custom_premium_price = PAYCHECK_CREW * 3
 
 /obj/item/clothing/shoes/fancy_heels/green
@@ -160,6 +164,7 @@
 	icon_state ="honk_heels"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 /obj/item/clothing/shoes/fancy_heels/darkgreen
 	name = "dark green heels"
@@ -266,3 +271,15 @@
 	if (!owner.dropItemToGround(src))
 		return FALSE
 	return TRUE
+
+/obj/item/clothing/shoes/horseshoe
+	name = "horseshoes"
+	desc = "A pair of horseshoes made out of chains."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
+	icon_state = "horseshoe"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+	body_parts_covered = parent_type::body_parts_covered | LEGS
+	resistance_flags = FIRE_PROOF
+	can_be_tied = FALSE

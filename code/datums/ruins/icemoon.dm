@@ -107,7 +107,7 @@
 	suffix = "icemoon_surface_smoking_room.dmm"
 
 // above and below ground together
-/* SKYRAT EDIT REMOVAL - Mapping
+
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Ice-Ruin Mining Site"
 	id = "miningsite"
@@ -123,7 +123,7 @@
 	suffix = "icemoon_underground_mining_site.dmm"
 	has_ceiling = FALSE
 	unpickable = TRUE
-*/ // SKYRAT EDIT REMOVAL End
+
 // below ground only
 
 /datum/map_template/ruin/icemoon/underground

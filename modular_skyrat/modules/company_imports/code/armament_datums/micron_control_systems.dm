@@ -85,10 +85,6 @@
 /datum/armament_entry/company_import/micron/cell_upgrade
 	subcategory = ARMAMENT_SUBCATEGORY_CELL_UPGRADE
 
-/datum/armament_entry/company_import/micron/cell_upgrade/recharge
-	item_type = /obj/item/microfusion_cell_attachment/rechargeable
-	cost = PAYCHECK_CREW * 6
-
 /datum/armament_entry/company_import/micron/cell_upgrade/stabilize
 	item_type = /obj/item/microfusion_cell_attachment/stabiliser
 	cost = PAYCHECK_CREW * 2
@@ -100,15 +96,6 @@
 /datum/armament_entry/company_import/micron/cell_upgrade/selfcharge
 	item_type = /obj/item/microfusion_cell_attachment/selfcharging
 	cost = PAYCHECK_CREW * 5
-
-/datum/armament_entry/company_import/micron/cell_upgrade/tactical
-	item_type = /obj/item/microfusion_cell_attachment/tactical
-	cost = PAYCHECK_CREW * 2
-
-/datum/armament_entry/company_import/micron/cell_upgrade/reloader
-	item_type = /obj/item/microfusion_cell_attachment/reloader
-	cost = PAYCHECK_CREW * 2
-
 
 /datum/armament_entry/company_import/micron/mcr_attachments
 	subcategory = "Microfusion Attachment Kits"

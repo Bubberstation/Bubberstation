@@ -34,7 +34,7 @@
 
 	//SKYRAT EDIT ADDITION
 	var/soft_player_cap = CONFIG_GET(number/player_soft_cap)
-	if(soft_player_cap >= TGS_CLIENT_COUNT)
+	if(soft_player_cap && TGS_CLIENT_COUNT >= soft_player_cap)
 		INVOKE_ASYNC(src, PROC_REF(connect_to_second_server))
 	//SKYRAT EDIT END
 

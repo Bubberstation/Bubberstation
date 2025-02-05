@@ -31,10 +31,12 @@
 		select_item(interacted_item)
 	return TRUE
 
+/* BUBBER EDIT REMOVAL: Multiple loadout presets: Handled in the modular file.
 /datum/preference_middleware/loadout/proc/action_clear_all(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], null)
 	return TRUE
+*/
 
 /datum/preference_middleware/loadout/proc/action_toggle_job_outfit(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
@@ -78,7 +80,7 @@
 		to_chat(preferences.parent, span_warning("You cannot select this item!"))
 		return
 
-	if(!isnull(selected_item.donator_only) && !GLOB.donator_list[preferences?.parent?.ckey])
+	if(selected_item.donator_only && !GLOB.donator_list[preferences?.parent?.ckey])
 		to_chat(preferences.parent, span_warning("This item is for donators only."))
 		return
 	// SKYRAT EDIT END

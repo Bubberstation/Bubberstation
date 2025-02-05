@@ -12,7 +12,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	prompt_name = "Persistence Personnel"
-	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler. Your mission objectives are to harvest materials, build outposts, produce goods, andv advance the interests of your company"
+	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler. Your mission objectives are to harvest materials, build outposts, produce goods, and advance the interests of your company"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
@@ -32,17 +32,17 @@
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate
 	name = "Syndicate Operative"
 	prompt_name = "a Syndicate Operative"
-	you_are_text = "you are an Operative assigned to the Syndicate Land Crawler Persistence, employed onboard for reasons that are yours"
-	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform you duties and keep a low profile while maintaing your front as a mining operation."
-	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler."
+	flavour_text = "The Syndicate managed Persistence mining rig has been deployed into enemy territory to stealthily monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform your duties and keep a low profile while maintaining your front as a mining operation."
+	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp for significant interaction with the station and its crew"
 	outfit = /datum/outfit/persistence/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command
 	name = "Syndicate Command Operative"
 	prompt_name = "a Syndicate leader"
 	you_are_text = "you are a Syndicate Command Operative assigned to lead the SSV Persistence and guide it forward in its goals"
-	flavour_text = "The jointly managed Persistence mining rig has been assigned to stealthly monitor Nanotrasen assets under the cover of a legal mining operation Your orders are help lead the Persistence while ensuring a low profile is maintained."
-	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	flavour_text = "The Syndicate managed Persistence mining rig has been deployed into enemy territory to stealthly monitor Nanotrasen assets under the cover of a legal mining operation. Your orders are to lead the Persistence while ensuring a low profile is maintained."
+	important_text = "You are a command role and held to a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp for significant interaction with the station and its crew"
 	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
@@ -50,7 +50,7 @@
 	prompt_name = "a Syndicate hostage"
 	you_are_text = "You are a hostage onboard an unknown vessel"
 	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel can throw you into lava or plasma outside if you antagonize them."
+	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel will throw you into lava or plasma outside if you antagonize them."
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
 	give_exploitables = FALSE

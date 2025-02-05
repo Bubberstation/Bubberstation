@@ -158,10 +158,25 @@ SUBSYSTEM_DEF(gamemode)
 
 	///Seeding events into track event pools needs to happen after event config vars are loaded
 	for(var/datum/round_event_control/event as anything in control)
-		if(event.holidayID || event.wizardevent)
+		if(event.wizardevent)
 			uncategorized += event
 			continue
-		event_pools[event.track] += event //Add it to the categorized event pools
+
+		if(event.holidayID)
+			var/holiday_categorized = FALSE
+			for(var/datum/holiday/current_holiday as anything in GLOB.holidays)
+				if(current_holiday == event.holidayID)
+					log_game("Storyteller enabled event [event] due to active holiday [current_holiday]")
+					message_admins("Storyteller enabled event [event] due to active holiday [current_holiday].")
+					event_pools[event.track] += event
+					holiday_categorized = TRUE
+					break
+			if(!holiday_categorized)
+				uncategorized += event
+			continue
+		else
+			event_pools[event.track] += event //Add it to the categorized event pools
+
 	return SS_INIT_SUCCESS
 
 

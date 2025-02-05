@@ -37,7 +37,7 @@
 				/obj/item/clothing/suit/jacket/tailcoat = 6,
 				/obj/item/clothing/neck/tie/bunnytie/magician = 6,
 				/obj/item/clothing/under/costume/playbunny/magician = 6,
-				/obj/item/clothing/suit/wizrobe/magician = 6,
+				/obj/item/clothing/suit/jacket/tailcoat/magician = 6,
 				/obj/item/clothing/head/playbunnyears/british = 6,
 				/obj/item/clothing/neck/tie/bunnytie/blue = 6,
 				/obj/item/clothing/under/costume/playbunny/british = 6,
@@ -177,6 +177,9 @@
 		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
 		/obj/item/clothing/neck/tie/bunnytie/bitrunner = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/bitrunner = 3,
+	)
+	zubbers_premium = list(
+		/obj/item/flatpack/export_gate = 1,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe

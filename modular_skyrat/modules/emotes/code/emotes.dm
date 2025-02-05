@@ -332,7 +332,7 @@
 	message = "rolls their eyes."
 
 /datum/emote/living/huff
-	key = "huffs"
+	key = "huff"
 	key_third_person = "huffs"
 	message = "huffs!"
 

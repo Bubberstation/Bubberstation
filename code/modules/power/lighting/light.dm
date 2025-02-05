@@ -99,7 +99,7 @@
 				continue
 			if(on_turf.dir != dir)
 				continue
-			stack_trace("Conflicting double stacked light [on_turf.type] found at ([our_location.x],[our_location.y],[our_location.z])")
+			stack_trace("Conflicting double stacked light [on_turf.type] found at [get_area(our_location)] ([our_location.x],[our_location.y],[our_location.z])")
 			qdel(on_turf)
 
 	if(!mapload) //sync up nightshift lighting for player made lights
@@ -382,10 +382,6 @@
 			. += span_danger("The [fitting] has been smashed.")
 	if(cell || has_mock_cell)
 		. +=  span_notice("Its backup power charge meter reads [has_mock_cell ? 100 : round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
-	//SKYRAT EDIT ADDITION
-	if(constant_flickering)
-		. += span_danger("The lighting ballast appears to be damaged, this could be fixed with a multitool.")
-	//SKYRAT EDIT END
 
 // attack with item - insert light (if right type), otherwise try to break the light
 

@@ -89,6 +89,14 @@
 	greyscale_config_worn = null
 	greyscale_colors = null
 
+/obj/item/clothing/under/costume/playbunny/custom_playbunny
+	name = "tailormade bunny suit"
+	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
+	greyscale_config = /datum/greyscale_config/custom_bunnysuit
+	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
+	greyscale_config_worn_digi = /datum/greyscale_config/custom_bunnysuit_worn/digi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 //CAPTAIN
 
 /obj/item/clothing/under/rank/captain/bunnysuit

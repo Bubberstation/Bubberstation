@@ -63,6 +63,9 @@
 
 	return .
 
+/obj/item/gun/ballistic/automatic/rom_carbine/no_mag
+	spawnwithmagazine = FALSE
+
 //Bolt Action Rifle
 /obj/item/gun/ballistic/rifle/carwil
 	name = "\improper RomTech Ceremonial Rifle"

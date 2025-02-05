@@ -119,7 +119,7 @@
 
 /obj/item/canvas/drawingtablet/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/dtselectcolor))
-		currentcolor = input(user, "", "Choose Color", currentcolor) as color|null
+		currentcolor = tgui_color_picker(usr, "", "Choose Color", currentcolor) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	else if(istype(action, /datum/action/item_action/dtcolormenu))
 		var/list/selects = colors.Copy()
 		selects["Save"] = "Save"
@@ -653,8 +653,8 @@
 	desc = "An ornate and rather sinister looking sabre sheathe."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
-	icon_state = "darksheath"
-	worn_icon_state = "darksheath"
+	icon_state = "sheath"
+	worn_icon_state = "sheath"
 
 /obj/item/storage/belt/sabre/darksabre/Initialize(mapload)
 	. = ..()
@@ -756,7 +756,8 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "lannese"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
-	supports_variations_flags = NONE
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	inhand_icon_state = "firefighter"
 	can_adjust = TRUE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -766,6 +767,7 @@
 	desc = "An alien cultural garment for women, coming from a distant planet named Cantalan. Shiny vambraces included!"
 	icon_state = "lannese_vambrace"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|FEET
 
 // Donation reward for Hacker T.Dog
@@ -1296,7 +1298,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "hosaltred"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
-	worn_icon_digi = null
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
 	name = "red-tinted giga HUD gar glasses"
@@ -1478,6 +1480,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "kimono-gold"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	gets_cropped_on_taurs = FALSE
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/head/hooded/sigmarcoat

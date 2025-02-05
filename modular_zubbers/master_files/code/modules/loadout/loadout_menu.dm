@@ -84,3 +84,7 @@
 	var/list/loadout_entries = preferences.read_preference(/datum/preference/loadout)
 	loadout_entries[preferences.read_preference(/datum/preference/loadout_index)] = loadout
 	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout_entries)
+
+/datum/preference_middleware/loadout/proc/action_clear_all(list/params, mob/user)
+	save_current_loadout(list())
+	return TRUE

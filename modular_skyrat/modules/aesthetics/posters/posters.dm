@@ -91,7 +91,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/killingjoke, 3
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_text, 32)
 
 /obj/structure/sign/poster/contraband/nri_rations
-	name = "NRI military rations advertisement"
+	name = "Commonwealth military rations advertisement"
 	desc = "This poster presumably is an advertisement for military rations produced by a certain private company as a part of the Defense Collegia's state order. This admiral's right hand man sure does look excited."
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "nri_rations"
@@ -100,7 +100,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_rations, 3
 
 /obj/structure/sign/poster/contraband/nri_voskhod
 	name = "VOSKHOD combat armor advertisement"
-	desc = "A poster showcasing recently developed VOSKHOD combat armor currently in use by NRI's troops and infantry across the border. The word 'DRIP' is written top to bottom on the left side, presumably boasting about the suit's superior design."
+	desc = "A poster showcasing recently developed VOSKHOD combat armor currently in use by Commonwealth's troops and infantry across the border. The word 'DRIP' is written top to bottom on the left side, presumably boasting about the suit's superior design."
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "nri_voskhod"
 
@@ -108,7 +108,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_voskhod, 3
 
 /obj/structure/sign/poster/contraband/nri_pistol
 	name = "Szabo-Ivanek service pistol technical poster"
-	desc = "This poster seems to be a technical documentation for Szabo-Ivanek service pistol in use by most of the NRI's state police and military institutions. Sadly, it's all written in Pan-Slavic."
+	desc = "This poster seems to be a technical documentation for Szabo-Ivanek service pistol in use by most of the Commonwealth's state police and military institutions. Sadly, it's all written in Interslavic."
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "nri_pistol"
 
@@ -124,7 +124,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_engineer, 
 
 /obj/structure/sign/poster/contraband/nri_radar
 	name = "Imperial navy enlistment poster"
-	desc = "Enlist with the imperial navy today! See the galaxy, shoot terrans, get PTSD!"
+	desc = "Enlist with the imperial navy today! See the galaxy, shoot Terrans, get PTSD!"
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "nri_radar"
 

@@ -110,7 +110,7 @@
 /datum/techweb_node/medbay_equip/New()
 	design_ids += list(
 		"hospital_gown",
-		"anesthetic_machine",
+		"breath_machine",
 		"smartdartgun",
 	)
 	return ..()
@@ -192,6 +192,12 @@
 	)
 	return ..()
 
+/datum/techweb_node/chem_synthesis/New()
+	design_ids += list(
+		"plumbing_eng",
+	)
+	return ..()
+
 // Modularly removes x-ray and thermals from here, it's in adv_vision instead
 /datum/techweb_node/cyber/cyber_organs_adv/New()
 	design_ids -= list(
@@ -250,12 +256,6 @@
 	)
 	return ..()
 
-/datum/techweb_node/plumbing/New()
-	design_ids += list(
-		"plumbing_eng",
-	)
-	return ..()
-
 /datum/techweb_node/mining/New()
 	design_ids += list(
 		"mesons_prescription",
@@ -263,7 +263,6 @@
 	return ..()
 
 /////////////////////////robotics tech/////////////////////////
-
 /datum/techweb_node/robotics/New()
 	design_ids += list(
 		"borg_upgrade_snacks",
@@ -284,7 +283,6 @@
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
 		"borg_upgrade_brush",
-		"borg_upgrade_shrink",
 	)
 	return ..()
 

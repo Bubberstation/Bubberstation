@@ -62,8 +62,8 @@
 	item_flag = /obj/item/sign/flag/terragov
 
 /obj/structure/sign/flag/nri
-	name = "flag of the Novaya Rossiyskaya Imperiya"
-	desc = "The flag of the Novaya Rossiyskaya Imperiya. The yellow, black and white colours represent its sovereignity, spirituality and pureness."
+	name = "flag of the Pan-Slavic Commonwealth"
+	desc = "The flag of the Pan-Slavic Commonwealth. The Pan-Slavic colours, blue, white, and red, as defined all the way back in 1848 on Terra."
 	icon_state = "flag_nri"
 	item_flag = /obj/item/sign/flag/nri
 
@@ -150,8 +150,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 	sign_path = /obj/structure/sign/flag/mars
 
 /obj/item/sign/flag/nri
-	name = "folded flag of the Novaya Rossiyskaya Imperiya"
-	desc = "The folded flag of the Novaya Rossiyskaya Imperiya."
+	name = "folded flag of the Pan-Slavic Commonwealth"
+	desc = "The folded flag of the Pan-Slavic Commonwealth."
 	icon_state = "folded_nri"
 	sign_path = /obj/structure/sign/flag/nri
 

@@ -211,7 +211,7 @@
 	var/mob/living/carbon/human/patient = occupant
 	var/original_name = patient.dna.real_name
 
-	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient)
+	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
 	SSquirks.AssignQuirks(patient, patient.client)
 	log_game("[key_name(patient)] used a Self-Actualization Device at [loc_name(src)].")

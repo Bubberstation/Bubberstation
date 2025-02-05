@@ -55,13 +55,27 @@
 
 /datum/armor/berserker_gatsu
 	melee = 40
-	bullet = 40
-	laser = 20
+	bullet = 30
+	laser = 15
 	energy = 25
 	bomb = 70
-	bio = 100
+	bio = 70
 	fire = 100
 	acid = 100
+	
+/datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
+	laser = 10
+	energy = 0
+
+/datum/armor/drake_empowerment_gatsu
+	melee = 35
+	laser = 10
+	bomb = 20
+
+/obj/item/clothing/suit/hooded/berserker/gatsu/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
+	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/suit/hooded/berserker/gatsu/examine()
 	. = ..()
@@ -81,6 +95,8 @@
 /obj/item/clothing/head/hooded/berserker/gatsu/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	AddComponent(/datum/component/anti_magic, ALL, inventory_flags = ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
 	. = ..()
