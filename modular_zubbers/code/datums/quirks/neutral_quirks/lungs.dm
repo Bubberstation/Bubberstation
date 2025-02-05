@@ -21,6 +21,7 @@
 	lungs_added.Insert(carbon_holder, special = TRUE)
 	if(!isnull(lungs_holding))
 		lungs_holding.moveToNullspace() // save them for later
+	carbon_holder.dna.species.mutantlungs = /obj/item/organ/internal/lungs/nitrogen
 
 /datum/quirk/equipping/lungs/remove()
 	var/mob/living/carbon/carbon_holder = quirk_holder
@@ -32,6 +33,7 @@
 		return
 	lungs_holding.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	lungs_holding.organ_flags &= ~ORGAN_FROZEN
+	carbon_holder.dna.species.mutantlungs = initial(carbon_holder.dna.species.mutantlungs)
 
 /datum/quirk/equipping/lungs/on_equip_item(obj/item/equipped, success)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -87,3 +89,4 @@
 	if (!success || !istype(carbon_holder) || !istype(equipped, /obj/item/tank/internals))
 		return
 	carbon_holder.internal = equipped
+

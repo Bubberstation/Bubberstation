@@ -92,6 +92,13 @@
 	design_ids += list(
 		"blanksynth",
 		"dominatrixmodule",
+		"borg_upgrade_expand",
+		"borg_upgrade_shrink",
+	)
+
+/datum/techweb_node/borg_utility/New()
+	design_ids -= list(
+		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
 	)
 
 // Computer Tech

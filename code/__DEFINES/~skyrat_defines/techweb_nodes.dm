@@ -21,6 +21,7 @@
 #define TECHWEB_NODE_SCYTHE_1 "t1scythe"
 #define TECHWEB_NODE_SCYTHE_2 "t2scythe"
 #define TECHWEB_NODE_TARKON "tarkontech"
+#define TECHWEB_NODE_TARKON_DEFENSE "tarkondefense"
 #define TECHWEB_NODE_XENOARCH_ADVANCED "adv_xenoarch"
 #define TECHWEB_NODE_XENOARCH_BASIC "basic_xenoarch"
 #define TECHWEB_NODE_XENOARCH_MACHINES "xenoarch_machines"
