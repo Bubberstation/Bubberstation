@@ -87,19 +87,9 @@
 	item_path = /obj/item/clothing/head/security_beanie
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/head/hats/warden
-	name = "Warden's police hat"
-	item_path = /obj/item/clothing/head/hats/warden
-	restricted_roles = list(JOB_WARDEN, JOB_HEAD_OF_SECURITY)
-
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/head/beret/sec/navyofficer
-	name = "Navy officer's beret"
-	item_path = /obj/item/clothing/head/beret/sec/navyofficer
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white

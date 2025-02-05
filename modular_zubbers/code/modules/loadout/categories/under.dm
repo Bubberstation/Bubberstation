@@ -44,11 +44,6 @@
 	item_path = /obj/item/clothing/under/rank/security/officer/formal
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/medical/scrubs/red/sec
-	name = "Security medic scrubs"
-	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
-	restricted_roles = list(JOB_SECURITY_MEDIC)
-
 /datum/loadout_item/uniform/security/peacekeeper/security_medic
 	name = "Security medic turtleneck"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
