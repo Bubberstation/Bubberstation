@@ -368,9 +368,9 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "vest_white"
 	unique_reskin = list(
-		"Black Variant" = "vest_black"
-		"Blue Variant" = "vest_blue"
-		"White Variant" = "vest_white"
+		"Black Variant" = "vest_black",
+		"Blue Variant" = "vest_blue",
+		"White Variant" = "vest_white",
 	)
 
 /obj/item/clothing/suit/armor/hos
