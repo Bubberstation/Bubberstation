@@ -38,6 +38,20 @@
 	brute_modifier = 1.2
 	burn_modifier = 1.2
 
+/obj/item/bodypart/leg/left/digitigrade
+	icon_greyscale = BODYPART_ICON_BUBBER
+	limb_id = BODYPART_ID_DIGITIGRADE
+	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
+	footprint_sprite = FOOTPRINT_SPRITE_PAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
+
+/obj/item/bodypart/leg/right/digitigrade
+	icon_greyscale = BODYPART_ICON_BUBBER
+	limb_id = BODYPART_ID_DIGITIGRADE
+	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
+	footprint_sprite = FOOTPRINT_SPRITE_PAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
+
 // MUTANT HUMAN PART OVERRIDES - HEMOPHAGE AND HUMANOID SPRITE OVERRIDES//
 
 /obj/item/bodypart/head/mhuman
