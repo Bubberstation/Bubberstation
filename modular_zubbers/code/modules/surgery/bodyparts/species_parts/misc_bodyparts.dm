@@ -52,7 +52,6 @@
 /obj/item/bodypart/leg/right/digitigrade/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = BODYPART_ID_DIGITIGRADE
-	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
 	footprint_sprite = FOOTPRINT_SPRITE_PAWS
 	footstep_type = FOOTSTEP_MOB_CLAW
 	brute_modifier = 1.2
