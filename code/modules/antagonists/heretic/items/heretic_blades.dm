@@ -24,6 +24,21 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
 	var/after_use_message = ""
+	actions_types = list(/datum/action/item_action/break_blade) //bubberstation edit start
+
+/datum/action/item_action/break_blade
+	name = "Shattering Offer"
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "shatter"
+
+/datum/action/item_action/break_blade/Trigger(trigger_flags)
+	if(target in owner.held_items)
+		var/obj/item/melee/sickly_blade/target_item = target
+		target_item.seek_safety(owner)
+		return
+//bubberstation edit end
 
 /obj/item/melee/sickly_blade/examine(mob/user)
 	. = ..()
@@ -48,9 +63,7 @@
 
 	return .
 
-/obj/item/melee/sickly_blade/attack_self(mob/user)
-	seek_safety(user)
-	return ..()
+//BUBBERSTAION EDIT
 
 /// Attempts to teleport the passed mob to somewhere safe on the station, if they can use the blade.
 /obj/item/melee/sickly_blade/proc/seek_safety(mob/user)
@@ -238,8 +251,7 @@
 
 	AddComponent(/datum/component/cult_ritual_item, span_cult(examine_text), turfs_that_boost_us = /turf) // Always fast to draw!
 
-/obj/item/melee/sickly_blade/cursed/attack_self_secondary(mob/user)
-	seek_safety(user, TRUE)
+// BUBBERSTATION EDIT
 
 /obj/item/melee/sickly_blade/cursed/seek_safety(mob/user, secondary_attack = FALSE)
 	if(IS_CULTIST(user) && !secondary_attack)
