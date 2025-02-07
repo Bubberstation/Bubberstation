@@ -23,39 +23,49 @@
 
 //Component removal
 /mob/living/silicon/robot/crowbar_act_secondary(mob/living/user, obj/item/tool)
-	if(!cell)
-		var/list/removable_components = list()
-		for(var/V in components)
-			var/datum/robot_component/C = components[V]
-			if(C.installed == 1 || C.installed == -1)
-				removable_components += V
+	if(opened)
+		if(!cell)
+			var/list/removable_components = list()
+			for(var/V in components)
+				var/datum/robot_component/C = components[V]
+				if(C.installed == 1 || C.installed == -1)
+					removable_components += V
 
-		var/remove = tgui_input_list(user, "Which component to remove?", "Component Removal", removable_components)
-		if(!remove)
-			balloon_alert(user, "no components!")
-			return TRUE
-		if(!tool.use_tool(src, user, 3 SECONDS) || !opened)
-			balloon_alert(user, "interrupted!")
-			return TRUE
-		var/obj/item/removed_item
-		if(istype(components[remove], /datum/robot_component))
-			var/datum/robot_component/C = components[remove]
-			var/obj/item/robot_parts/robot_component/I = C.wrapped
-			balloon_alert(user, "component removed")
-			if(istype(I))
-				I.brute = C.brute_damage
-				I.burn = C.electronics_damage
+			var/remove = tgui_input_list(user, "Which component do you want to pry out?", "Remove Component", removable_components)
+			if(!remove)
+				return TRUE
+			if(!tool.use_tool(src, user, 1 SECONDS) || !opened)
+				balloon_alert(user, "interrupted!")
+				return TRUE
+			var/obj/item/removed_item
+			if(istype(components[remove], /datum/robot_component))
+				var/datum/robot_component/C = components[remove]
+				var/obj/item/robot_parts/robot_component/I = C.wrapped
+				balloon_alert(user, "component removed")
+				if(istype(I))
+					I.brute = C.brute_damage
+					I.burn = C.electronics_damage
 
 				removed_item = I
+
 				if(C.installed == 1)
-					C.uninstall_component()
-			if(removed_item)
-				removed_item.forceMove(drop_location())
-				tool.play_tool_sound(src, 100)
-			return TRUE
+					C.uninstall()
+				C.installed = 0
+
+				if(I)
+					removed_item.forceMove(drop_location())
+					tool.play_tool_sound(src, 100)
+					C.wrapped = null //Sanity
+				return TRUE
 	return TRUE
 
-//Component damage
+/// Component damage below
+
+/mob/living/silicon/robot/getMaxHealth()
+	. = ..()
+	for(var/V in components)
+		var/datum/robot_component/C = components[V]
+		. += C.max_damage - initial(C.max_damage)
 
 /mob/living/silicon/robot/getBruteLoss()
 	var/amount = 0
@@ -116,7 +126,7 @@
 	var/datum/robot_component/picked = pick(parts)
 	picked.heal_damage(brute,burn)
 
-/mob/living/silicon/robot/proc/take_organ_damage(var/brute = 0, var/burn = 0, var/bypass_armour = FALSE, var/override_droplimb)
+/mob/living/silicon/robot/proc/take_organ_damage(var/brute = 0, var/burn = 0, var/bypass_armour = FALSE)
 	var/list/components = get_damageable_components()
 	if(!components.len)
 		return
@@ -129,3 +139,27 @@
 
 	var/datum/robot_component/C = pick(components)
 	C.take_damage(brute, burn)
+
+
+/mob/living/silicon/robot/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	switch(severity)
+		if(1)
+			src.take_organ_damage(0,20,bypass_armour=1)
+			emp_knockout(5 SECONDS) // Maybe not charge at the person with ions
+			drop_all_held_items()
+		if(2)
+			src.take_organ_damage(0,15,bypass_armour=1)
+			Paralyze(3 SECONDS)
+			drop_all_held_items()
+		if(3)
+			src.take_organ_damage(0,10,bypass_armour=1)
+			//Confuse(3)
+			drop_all_held_items()
+		if(4)
+			src.take_organ_damage(0,5,bypass_armour=1)
+			//Confuse(2)
+			drop_all_held_items()
+	..()

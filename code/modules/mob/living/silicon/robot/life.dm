@@ -17,6 +17,11 @@
 		use_energy(seconds_per_tick, times_fired)
 
 /mob/living/silicon/robot/proc/use_energy(seconds_per_tick, times_fired)
+	//BUBBER ADDITION START - COMPONENTS
+	for(var/V in components)
+		var/datum/robot_component/C = components[V]
+		C.update_power_state()
+	//BUBBER ADDITION END
 	if(cell?.charge)
 		if(cell.charge <= 0.01 * STANDARD_CELL_CHARGE)
 			drop_all_held_items()

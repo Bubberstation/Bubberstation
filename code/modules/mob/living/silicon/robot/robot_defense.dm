@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 					if(!user.dropItemToGround(W))
 						return
 					C.wrapped = W
-					C.install_component()
+					C.install()
 					W.forceMove(src)
 
 					var/obj/item/robot_parts/robot_component/WC = W
@@ -369,6 +369,9 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		ignite_mob()
 
+// BUBBER CHANGE BEGIN
+//Moved to modular robot_defence.dm
+/*
 /mob/living/silicon/robot/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -378,6 +381,9 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			emp_knockout(16 SECONDS)
 		if(2)
 			emp_knockout(6 SECONDS)
+
+*/
+//BUBBER CHANGE END
 
 /mob/living/silicon/robot/proc/emp_knockout(deciseconds)
 	set_stat(UNCONSCIOUS)

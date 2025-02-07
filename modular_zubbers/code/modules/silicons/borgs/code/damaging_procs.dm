@@ -1,6 +1,5 @@
-/**********************************************************************
-						Component damage!
-***********************************************************************/
+/// This file to to handle componant damage procs as well as cyborg health
+
 //* Raw Damage *//
 
 /mob/living/silicon/robot/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_bodytype, updating_health = TRUE, forced = FALSE)
@@ -21,7 +20,7 @@
 	updatehealth()
 
 /mob/living/silicon/robot/take_overall_damage(brute = 0, burn = 0, stamina = 0, required_bodytype, updating_health = TRUE, forced = FALSE)
-	if(status_flags & TRAIT_GODMODE)	return	//godmode
+	if(status_flags & (HAS_TRAIT(src, TRAIT_GODMODE)))	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
 	var/datum/robot_component/armour/A = get_armour()

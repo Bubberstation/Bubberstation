@@ -2,7 +2,6 @@
 						Components oh god oh fuck
 ***********************************************************************/
 
-// Ported from Citadel Roleplay 13 & Nebula
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
 /datum/robot_component/var/name
 /datum/robot_component/var/installed = 0
@@ -28,13 +27,24 @@
 	. = istype(thing, external_type)
 
 //Proc defines
-/datum/robot_component/proc/install_component()
-	installed = 1
+/datum/robot_component/proc/install()
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/comp = wrapped
+		max_damage = comp.max_damage
+		idle_usage = comp.idle_usage
+		active_usage = comp.active_usage
+		return
+	/*
+	if(istype(wrapped, /obj/item/cell))
+		var/obj/item/cell/cell = wrapped
+		max_damage = cell.robot_durability
+	*/
 	return
 
-/datum/robot_component/proc/uninstall_component()
-	installed = 0
-	return
+/datum/robot_component/proc/uninstall()
+	max_damage = initial(max_damage)
+	idle_usage = initial(idle_usage)
+	active_usage = initial(active_usage)
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
@@ -50,13 +60,14 @@
 
 	// The thing itself isn't there anymore, but some fried remains are.
 	installed = -1
+	uninstall()
 
 /datum/robot_component/proc/repair()
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		wrapped.icon_state = comp.icon_state
 
-	install_component()
+	install()
 
 /datum/robot_component/proc/take_damage(brute, electronics)
 	if(installed != 1) return
@@ -107,12 +118,11 @@
 	external_type = /obj/item/robot_parts/robot_component/actuator
 	max_damage = 50
 
-
 //A fixed and much cleaner implementation of /tg/'s special snowflake code.
 /datum/robot_component/actuator/is_powered()
 	return (installed == 1) && (brute_damage + electronics_damage < max_damage)
 
-//Disabled because power cell breaking is actual CBT
+//Disabled because we already lose power when emped
 /*
 // POWER CELL
 // Stores power (how unexpected..)
@@ -152,7 +162,7 @@
 /datum/robot_component/binary_communication
 	name = "binary communication device"
 	external_type = /obj/item/robot_parts/robot_component/binary_communication_device
-	max_damage = INFINITE
+	max_damage = 30
 
 
 // CAMERA
@@ -174,11 +184,11 @@
 	if (camera)
 		camera.camera_enabled = powered
 
-/datum/robot_component/camera/install_component()
+/datum/robot_component/camera/install()
 	if (camera)
 		camera.camera_enabled = TRUE
 
-/datum/robot_component/camera/uninstall_component()
+/datum/robot_component/camera/uninstall()
 	if (camera)
 		camera.camera_enabled = FALSE
 
@@ -254,33 +264,51 @@
 	var/brute = 0
 	var/burn = 0
 	var/icon_state_broken = "broken"
+	var/idle_usage = 0
+	var/active_usage = 0
+	var/max_damage = 0
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
 	icon_state = "binradio"
 	icon_state_broken = "binradio_broken"
+	idle_usage = 5
+	active_usage = 25
+	max_damage = 30
 
 /obj/item/robot_parts/robot_component/actuator
 	name = "actuator"
 	icon_state = "motor"
 	icon_state_broken = "motor_broken"
+	idle_usage = 0
+	active_usage = 200
+	max_damage = 50
 
 /obj/item/robot_parts/robot_component/armour
 	name = "armour plating"
+	desc = "A pair of flexible, adaptable armor plates, used to protect the internals of robots."
 	icon_state = "armor"
 	icon_state_broken = "armor_broken"
+	max_damage = 90
 
 /obj/item/robot_parts/robot_component/camera
 	name = "camera"
 	icon_state = "camera"
 	icon_state_broken = "camera_broken"
+	idle_usage = 10
+	max_damage = 40
 
 /obj/item/robot_parts/robot_component/diagnosis_unit
 	name = "diagnosis unit"
 	icon_state = "analyser"
 	icon_state_broken = "analyser_broken"
+	active_usage = 1000
+	max_damage = 30
 
 /obj/item/robot_parts/robot_component/radio
 	name = "radio"
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
+	idle_usage = 15
+	active_usage = 75
+	max_damage = 40

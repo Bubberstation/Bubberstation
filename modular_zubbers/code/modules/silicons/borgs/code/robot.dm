@@ -20,7 +20,6 @@
 		return
 	return ..()
 
-
 /// Components! These are basically robot organs
 
 /mob/living/silicon/robot/Initialize(mapload)
@@ -28,7 +27,8 @@
 	initialize_components()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		C.install_component()
+		C.installed = 1
+		C.install()
 		C.wrapped = new C.external_type
 
 //Component toggling - mostly used for debugging
