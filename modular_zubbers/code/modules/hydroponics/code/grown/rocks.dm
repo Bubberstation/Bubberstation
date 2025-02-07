@@ -105,7 +105,7 @@
 	plantname = "Sandfruits"
 	product = /obj/item/food/grown/shell/sand
 	mutatelist = list(/obj/item/seeds/uraniberry,
-					/obj/item/seeds/aubergine,
+					/obj/item/seeds/agbergine,
 					/obj/item/seeds/ferrotuber,
 					/obj/item/seeds/adamapple)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
