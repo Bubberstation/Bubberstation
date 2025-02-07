@@ -8,6 +8,7 @@
 	mutanteyes = /obj/item/organ/internal/eyes/shadekin
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	digitigrade_customization = DIGITIGRADE_OPTIONAL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/shadekin,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/shadekin,
@@ -28,6 +29,7 @@
 
 	)
 	species_language_holder = /datum/language_holder/shadekin
+
 
 /datum/species/shadekin/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -53,6 +55,7 @@
 		"tail" = list("Shadekin", TRUE),
 		"snout" = list("None", FALSE),
 		"ears" = list("Shadekin", TRUE),
+		"legs" = list("Normal Legs", TRUE),
 	)
 
 /datum/species/shadekin/randomize_features()
