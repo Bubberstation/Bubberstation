@@ -702,9 +702,6 @@
 	if(.)
 		return
 
-	if(do_after(user, toggle_delay, src))
-		toggle_open(null, user)
-
 /obj/structure/deployable_barricade/metal/plasteel/proc/toggle_open(state, mob/living/user)
 	if(state == closed)
 		return
