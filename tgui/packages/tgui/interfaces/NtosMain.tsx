@@ -54,22 +54,18 @@ export const NtosMain = (props) => {
                   />
                 </Stack.Item>
               ))}
-              <Stack.Item
-                right = "0px"
-              >
+              <Stack.Item right="0px">
                 <Button
-                  inline
-                  bold
-                  className = { (alert_style == 2) ? "alertBlink" : ""}
-                  right = "0px"
-                  textAlign= "center"
-                  verticalAlign = "center"
-                  textColor = { (alert_style == 0) ? alert_color : "#000000" }
-                  fontFamily = "Courier New"
-                  backgroundColor = { (alert_style == 0) ? "#0000000" : alert_color }
-                  tooltip = "The current alert level. Indicator becomes more intense when there is a threat, moreso if your department is responsible for handling it."
+                  tooltip="The current alert level. Indicator becomes more intense when there is a threat, moreso if your department is responsible for handling it."
+                  className={
+                    alert_style == 2
+                      ? 'alertReadoutButton alertReadoutButton_blink'
+                      : 'alertReadoutButton'
+                  }
+                  textColor={alert_style == 0 ? alert_color : '#000000'}
+                  backgroundColor={alert_style == 0 ? '#0000000' : alert_color}
                 >
-                  { alert_name }
+                  {alert_name}
                 </Button>
               </Stack.Item>
             </Stack>
@@ -135,7 +131,7 @@ export const NtosMain = (props) => {
                   (proposed_login.IDName
                     ? '(' + proposed_login.IDName + ')'
                     : '')
-                : proposed_login.IDName ?? ''}
+                : (proposed_login.IDName ?? '')}
             </Table.Row>
             <Table.Row>
               Assignment:{' '}
@@ -143,7 +139,7 @@ export const NtosMain = (props) => {
                 ? login.IDJob +
                   ' ' +
                   (proposed_login.IDJob ? '(' + proposed_login.IDJob + ')' : '')
-                : proposed_login.IDJob ?? ''}
+                : (proposed_login.IDJob ?? '')}
             </Table.Row>
           </Table>
         </Section>
