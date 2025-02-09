@@ -1,6 +1,9 @@
 /mob/living/basic/pet/cat/syndicat
 	name = "Syndie Cat"
 	desc = "OH GOD! RUN!! IT CAN SMELL THE DISK!"
+	icon = 'icons/mob/simple/pets.dmi'
+	held_lh = 'icons/mob/inhands/pets_held_lh.dmi'
+	held_rh = 'icons/mob/inhands/pets_held_rh.dmi'
 	icon_state = "syndicat"
 	icon_living = "syndicat"
 	icon_dead = "syndicat_dead"
