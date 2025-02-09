@@ -29,7 +29,9 @@
 
 .alertReadoutButton_blink {
   color: #ffffff;
-  animation: alertBlinkAnimation 1s infinite;
+  animation: alertBlinkAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 5;
 }
 
 @keyframes alertBlinkAnimation {
