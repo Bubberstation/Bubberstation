@@ -83,6 +83,11 @@
 	lungs_typepath = /obj/item/organ/internal/lungs/nitrogen
 	breath_type = "nitrogen"
 
+/datum/quirk/equipping/lungs/nitrogen/add(client/client_source)
+	if(isjellyperson(quirk_holder))
+		lungs_typepath = /obj/item/organ/internal/lungs/nitrogen/slime_lungs
+	. = ..()
+
 /datum/quirk/equipping/lungs/nitrogen/on_equip_item(obj/item/equipped, success)
 	. = ..()
 	var/mob/living/carbon/carbon_holder = quirk_holder
