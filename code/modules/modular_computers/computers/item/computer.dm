@@ -1061,37 +1061,6 @@
 
 	return "NUL"
 
-#define ALERT_COLOR_CENTCOM = "#FFFFFF"
-#define ALERT_COLOR_RED = "#CC0000"
-#define ALERT_COLOR_AMBER = "#e05a00"
-#define ALERT_COLOR_ORANGE = "#ffa600"
-#define ALERT_COLOR_GREEN = "#1fb900"
-#define ALERT_COLOR_BLUE = "#0044d6"
-#define ALERT_COLOR_VIOLET = "#c600e0"
-
-/obj/item/modular_computer/proc/get_security_level_color()
-	switch (SSsecurity_level.get_current_level_as_number())
-		if(SEC_LEVEL_GAMMA)
-			return ALERT_COLOR_CENTCOM
-		if(SEC_LEVEL_EPSILON)
-			return ALERT_COLOR_CENTCOM
-		if(SEC_LEVEL_DELTA)
-			return ALERT_COLOR_CENTCOM
-		if(SEC_LEVEL_RED)
-			return ALERT_COLOR_RED
-		if(SEC_LEVEL_AMBER)
-			return ALERT_COLOR_AMBER
-		if(SEC_LEVEL_ORANGE)
-			return ALERT_COLOR_ORANGE
-		if(SEC_LEVEL_GREEN)
-			return ALERT_COLOR_GREEN
-		if(SEC_LEVEL_BLUE)
-			return ALERT_COLOR_BLUE
-		if(SEC_LEVEL_VIOLET)
-			return ALERT_COLOR_VIOLET
-
-	return "#0000000"
-
 
 /**
  * Debug ModPC
