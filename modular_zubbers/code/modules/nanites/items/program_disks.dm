@@ -12,6 +12,9 @@
 	if(program_type)
 		program = new program_type
 
+/obj/item/disk/nanite_program/debugging
+	program_type = /datum/nanite_program/nanite_debugging
+
 /obj/item/disk/nanite_program/aggressive_replication
 	program_type = /datum/nanite_program/aggressive_replication
 

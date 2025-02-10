@@ -46,7 +46,7 @@
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 	valid_bodytype = BODYTYPE_ROBOTIC
-	simplemob_valid_biotype = MOB_ROBOTIC
+	valid_biotype = MOB_ROBOTIC
 	healing_rate = NANITE_ROBO_REGENERATION
 
 /datum/nanite_program/temperature

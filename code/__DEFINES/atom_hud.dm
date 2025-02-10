@@ -37,8 +37,6 @@
 #define GLAND_HUD "16"
 #define SENTIENT_DISEASE_HUD "17"
 #define AI_DETECT_HUD "18"
-#define NANITE_HUD "19"
-#define DIAG_NANITE_FULL_HUD "21"
 /// Displays launchpads' targeting reticle
 #define DIAG_LAUNCHPAD_HUD "19"
 //for antag huds. these are used at the /mob level
@@ -59,6 +57,10 @@
 /// If they have the DNR trait
 #define DNR_HUD "27"
 // SKYRAT EDIT ADDITION END
+// BUBBER ADDITION START
+#define NANITE_HUD "28"
+#define DIAG_NANITE_FULL_HUD "29"
+// BUBBER ADDITION END
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
