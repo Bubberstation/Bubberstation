@@ -94,7 +94,7 @@ GLOBAL_VAR_INIT(revolutionary_win, FALSE)
 //           BLOOD BROTHERS             //
 //                                      //
 //////////////////////////////////////////
-
+/* BUBBER EDIT - OLD BLOOD BROTHERS - MOVED TO modular_zubbers/code/game/gamemodes/dynamic/dynamic_rulesets_roundstart.dm
 /datum/dynamic_ruleset/roundstart/traitorbro
 	name = "Blood Brothers"
 	antag_flag = ROLE_BROTHER
@@ -138,7 +138,7 @@ GLOBAL_VAR_INIT(revolutionary_win, FALSE)
 		GLOB.pre_setup_antags -= mind
 
 	return TRUE
-
+*/
 //////////////////////////////////////////////
 //                                          //
 //               CHANGELINGS                //

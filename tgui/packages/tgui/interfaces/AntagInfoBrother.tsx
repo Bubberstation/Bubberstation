@@ -11,6 +11,7 @@ type Info = {
 };
 
 export const AntagInfoBrother = (props) => {
+  // BUBBER EDIT - OLD BLOOD BROTHERS - LINE 23 | Previous: You are the {antag_name}!
   const { data } = useBackend<Info>();
   const { antag_name, brothers, objectives } = data;
   return (
@@ -19,7 +20,7 @@ export const AntagInfoBrother = (props) => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item textColor="red" fontSize="20px">
-              You are the {antag_name}!
+              You are the {antag_name} of {brothers}!
             </Stack.Item>
             <Stack.Item>
               <ObjectivePrintout objectives={objectives} />
