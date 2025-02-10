@@ -9,6 +9,7 @@
 	suicide_cry = "FOR MY BROTHER!!"
 	antag_moodlet = /datum/mood_event/focused
 	hardcore_random_bonus = TRUE
+	stinger_sound = 'sound/music/antag/traitor/tatoralert.ogg'
 	VAR_PRIVATE
 		datum/team/brother_team/team
 /datum/antagonist/brother/create_team(datum/team/brother_team/new_team)
@@ -88,7 +89,6 @@
 	give_meeting_area()
 
 /datum/antagonist/brother/proc/finalize_brother()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	team.update_name()
 
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
