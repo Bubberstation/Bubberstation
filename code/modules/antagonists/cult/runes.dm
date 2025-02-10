@@ -399,7 +399,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 				user = sacrificial,
 				message = "Do you wish to become a soul shard for the cult, selecting yes will gib you and you will play as a soul shard, selecting no will husk you and your body will stay intact.",
 				title = "Choose your fate",
-				buttons = list("Accept", "Decline"),
+				buttons = list("Decline", "Accept"),
 				timeout = 10 SECONDS,
 				autofocus = TRUE
 				)
