@@ -236,7 +236,7 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
 	)
-	build_path = /obj/item/flatpacked_machine/boulder_collector/boulder_collector
+	build_path = /obj/item/flatpacked_machine/boulder_collector
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MATERIALS,
