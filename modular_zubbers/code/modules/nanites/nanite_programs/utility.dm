@@ -221,24 +221,34 @@
 	trigger_cost = 5
 	trigger_cooldown = 100
 	rogue_types = list(/datum/nanite_program/glitch, /datum/nanite_program/toxic)
+	var/decay_timer
 
 /datum/nanite_program/nanite_sting/on_trigger(comm_message)
-	var/list/mob/living/target_hosts = list()
-	for(var/mob/living/L in oview(1, host_mob))
-		if(!CAN_HAVE_NANITES(L) || SEND_SIGNAL(L, COMSIG_HAS_NANITES) || !L.Adjacent(host_mob))
-			continue
-		target_hosts += L
-	if(!target_hosts.len)
-		consume_nanites(-5)
-		return
-	var/mob/living/infectee = pick(target_hosts)
-	if(prob(100 - infectee.getarmor(null, BIO)))
+	consume_nanites(-5)
+	to_chat(host_mob, span_warning("Your hands becomes sharp and prickly."))
+	RegisterSignal(host_mob, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
+	decay_timer = addtimer(CALLBACK(src, PROC_REF(decay_sting)), 30 SECONDS, TIMER_STOPPABLE)
+
+/datum/nanite_program/nanite_sting/proc/on_attack_hand(atom/source, mob/user, modifiers)
+	SIGNAL_HANDLER
+	var/mob/living/living = source
+	if(!istype(living)) return
+	if(!CAN_HAVE_NANITES(living) || SEND_SIGNAL(living, COMSIG_HAS_NANITES) || !living.Adjacent(host_mob)) return
+
+	if(prob(100 - living.getarmor(null, BIO)))
 		//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
-		infectee.AddComponent(/datum/component/nanites, 5)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
-		infectee.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
-		to_chat(infectee, span_warning("You feel a tiny prick."))
+		living.AddComponent(/datum/component/nanites, 5)
+		SEND_SIGNAL(living, COMSIG_NANITE_SYNC, nanites)
+		SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
+		living.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(living)].", INVESTIGATE_NANITES)
+		to_chat(living, span_warning("You feel a tiny prick."))
+	decay_sting()
+
+/datum/nanite_program/nanite_sting/proc/decay_sting()
+	to_chat(host_mob, span_warning("Your hands no longer feel like they're covered in spines."))
+	deltimer(decay_timer)
+	decay_timer = null
+	UnregisterSignal(host_mob, COMSIG_ATOM_ATTACK_HAND)
 
 /datum/nanite_program/mitosis
 	name = "Mitosis"

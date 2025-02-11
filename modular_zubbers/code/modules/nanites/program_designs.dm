@@ -206,14 +206,14 @@
 	name = "Dermal Hardening"
 	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
 	id = "hardening_nanites"
-	program_type = /datum/nanite_program/hardening
+	program_type = /datum/nanite_program/dermal_armor
 	category = list("Augmentation Nanites")
 
 /datum/design/nanites/refractive
 	name = "Dermal Refractive Surface"
 	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
 	id = "refractive_nanites"
-	program_type = /datum/nanite_program/refractive
+	program_type = /datum/nanite_program/dermal_armor/refractive
 	category = list("Augmentation Nanites")
 
 /datum/design/nanites/coagulating

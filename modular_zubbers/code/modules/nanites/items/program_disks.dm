@@ -70,7 +70,7 @@
 	program_type = /datum/nanite_program/nervous
 
 /obj/item/disk/nanite_program/hardening
-	program_type = /datum/nanite_program/hardening
+	program_type = /datum/nanite_program/dermal_armor
 
 /obj/item/disk/nanite_program/coagulating
 	program_type = /datum/nanite_program/coagulating
@@ -127,7 +127,7 @@
 	program_type = /datum/nanite_program/pacifying
 
 /obj/item/disk/nanite_program/refractive
-	program_type = /datum/nanite_program/refractive
+	program_type = /datum/nanite_program/dermal_armor/refractive
 
 /obj/item/disk/nanite_program/conductive
 	program_type = /datum/nanite_program/pacifying

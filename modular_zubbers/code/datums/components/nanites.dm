@@ -20,6 +20,8 @@
 	var/diagnostics = FALSE //if TRUE, displays program list when scanned by nanite scanners
 	var/harmonic_regenerating = FALSE //if TRUE, the host is regenerating nanites at a boosted rate
 	var/datum/techweb/techweb
+	// 0 - 100
+	var/research_progress = 0
 
 /datum/component/nanites/Initialize(amount = 100, cloud = 0)
 	if(!isliving(parent) && !istype(parent, /datum/nanite_cloud_backup))

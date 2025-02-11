@@ -18,44 +18,76 @@
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.stun_mod *= 2
 
-/datum/nanite_program/hardening
+/datum/nanite_program/dermal_armor
 	name = "Dermal Hardening"
-	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
+	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts. \
+			Each hit costs nanites equilavent to damage, but the more nanites you have, the more protection you get. \
+			50 nanites = 1 flat armor. \
+			Incompatible with other dermal armor programs."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
+	var/damage_type = BRUTE
+	var/signal = COMSIG_MOB_APPLY_DAMAGE
+	var/old_flat_mod = 0
+	var/color_effect = "#ff1100"
 
-//TODO on_hit effect that turns skin grey for a moment
-
-/datum/nanite_program/hardening/enable_passive_effect()
+/datum/nanite_program/dermal_armor/enable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.brute_mod *= 0.8
+	RegisterSignal(host_mob, signal, PROC_REF(pre_damage))
 
-/datum/nanite_program/hardening/disable_passive_effect()
+/datum/nanite_program/dermal_armor/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.brute_mod *= 1.2
+	UnregisterSignal(host_mob, signal)
+	var/mob/living/carbon/human/humie = host_mob
+	if(istype(humie) && humie.physiology)
+		update_damage_modifier(humie, 0)
 
+// update and handle the damage modifier before taking damage, thus only when needed
+/datum/nanite_program/dermal_armor/proc/pre_damage(damagetype, amount, forced)
+	SIGNAL_HANDLER
+	if(damagetype != damage_type)
+		return
+	var/mob/living/carbon/human/humie = host_mob
+	if(!istype(humie) || !humie.physiology || !nanites)
+		return
+	if(amount >= nanites.nanite_volume)
+		playsound(host_mob, SFX_SHATTER)
+		host_mob.Knockdown(1 SECONDS)
+		to_chat(host_mob, span_warning("Something shatters under your skin, and you feel a sharp pain."))
+		disable_passive_effect()
+		return
+	// 1 for every 50 nanites, up to 30 flat armor, max of 10 at 500 nanites
+	var/nanite_armor = nanites.nanite_volume / 50
+	var/clamped_armor = clamp(nanite_armor, 1, 30)
+	update_damage_modifier(humie, clamped_armor)
+	INVOKE_ASYNC(src, PROC_REF(on_pre_damage), damagetype, amount, forced)
 
-/datum/nanite_program/refractive
+// stuff that we don't need to be syncronous
+/datum/nanite_program/dermal_armor/proc/on_pre_damage(damagetype, amount, forced)
+	consume_nanites(amount)
+	// how long to keep the color effect, to also indicate the damage
+	var/damage_duration = amount / (host_mob.maxHealth * 0.5) * 6 SECONDS
+	animate(host_mob, color = color_effect, time = 0.5 SECONDS)
+	animate(color = host_mob.color, time = damage_duration) // without the first arg byond chains animates
+
+/datum/nanite_program/dermal_armor/proc/update_damage_modifier(mob/living/carbon/human/humie, amount)
+	humie.physiology.flat_brute_mod -= old_flat_mod
+	old_flat_mod = amount
+	humie.physiology.flat_brute_mod += amount
+
+/datum/nanite_program/dermal_armor/refractive
 	name = "Dermal Refractive Surface"
-	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
-	use_rate = 0.50
-	rogue_types = list(/datum/nanite_program/skin_decay)
+	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts. \
+			Each hit costs nanites equilavent to damage, but the more nanites you have, the more protection you get. \
+			50 nanites = 1 flat armor. \
+			Incompatible with other dermal armor programs."
+	damage_type = BURN
+	color_effect = "#e5fd08"
 
-/datum/nanite_program/refractive/enable_passive_effect()
-	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.burn_mod *= 0.8
-
-/datum/nanite_program/refractive/disable_passive_effect()
-	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.burn_mod *= 1.2
+/datum/nanite_program/dermal_armor/refractive/update_damage_modifier(mob/living/carbon/human/humie, amount)
+	humie.physiology.flat_burn_mod -= old_flat_mod
+	old_flat_mod = amount
+	humie.physiology.flat_burn_mod += amount
 
 /datum/nanite_program/coagulating
 	name = "Vein Repressurization"
