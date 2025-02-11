@@ -403,7 +403,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 				timeout = 10 SECONDS,
 				autofocus = TRUE
 				)
-			if("Accept")
+			if(shard_choice == "Accept")
 				if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
 					stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
 				playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
