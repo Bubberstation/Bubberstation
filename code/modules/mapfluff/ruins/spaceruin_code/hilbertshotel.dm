@@ -20,7 +20,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/library/ghost_cafe_rooms_library
 	//Skyrat EDIT END
 
-	//BUBBER EDIT ADDITION BEGIN - Maps
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
 	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave
 	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
 	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_stationside = new()
 	ghost_cafe_rooms_library = new()
 	//SKYRAT EDIT END
-	//BUBBER EDIT ADDITION BEGIN - Maps
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
 	ghost_cafe_rooms_cultcave = new()
 	ghost_cafe_rooms_winterwoods = new()
 	ghost_cafe_rooms_evacuationstation = new()
@@ -208,7 +208,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Library")
 		load_from = ghost_cafe_rooms_library
 	//SKYRAT EDIT ADDITION END
-	//BUBBER EDIT ADDITION BEGIN - Maps
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
 	else if(chosen_room == "Cultist's Cavern")
 		load_from = ghost_cafe_rooms_cultcave
 
@@ -545,6 +545,22 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	requires_power = FALSE
 	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
 	has_gravity = TRUE
+
+//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
+/area/misc/winterwoods
+	name = "Winter Woods"
+	icon = 'icons/area/areas_ruins.dmi'
+	icon_state = "hilbertshotel"
+	requires_power = FALSE
+	has_gravity = TRUE
+	area_flags = NOTELEPORT | HIDDEN_AREA
+	static_lighting = TRUE
+	ambientsounds = "icemoon"
+	var/roomnumber = 0
+	var/obj/item/hilbertshotel/parentSphere
+	var/datum/turf_reservation/reservation
+	var/turf/storageTurf
+//BUBBER END
 
 /obj/item/abstracthotelstorage
 	anchored = TRUE
