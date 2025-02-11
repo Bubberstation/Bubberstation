@@ -207,13 +207,11 @@
 
 	if(ishuman(bloodsuckerdatum.owner.current))
 		var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-		var/obj/item/bodypart/user_left_hand = human_user.get_bodypart(BODY_ZONE_L_ARM)
-		var/obj/item/bodypart/user_right_hand = human_user.get_bodypart(BODY_ZONE_R_ARM)
-		user_left_hand.unarmed_damage_low += 0.5
-		user_right_hand.unarmed_damage_low += 0.5
-		// This affects the hitting power of Brawn.
-		user_left_hand.unarmed_damage_high += 0.5
-		user_right_hand.unarmed_damage_high += 0.5
+		for (var/body_zone in GLOB.limb_zones)
+			var/obj/item/bodypart/parts_to_buff = human_user.get_bodypart(body_zone) // messy but we'll fix it later.
+			parts_to_buff.unarmed_damage_low += 0.5
+			parts_to_buff.unarmed_damage_high += 0.5
+			parts_to_buff.unarmed_effectiveness += 0.5
 
 	// We're almost done - Spend your Rank now.
 	bloodsuckerdatum.AdjustRank(1)
