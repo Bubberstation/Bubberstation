@@ -16,7 +16,7 @@
 	melee_damage_lower = 7
 	melee_damage_upper = 15
 	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
-	faction = null // ...and they will fight 'til there's just one.
+	faction = list(null) // ...and they will fight 'til there's just one.
 
 
 /mob/living/basic/pet/cat/super/Initialize(mapload)
