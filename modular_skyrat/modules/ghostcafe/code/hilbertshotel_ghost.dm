@@ -36,3 +36,7 @@
 /datum/map_template/ghost_cafe_rooms/winterwoods
 	name = "Winter Woods"
 	mappath = "modular_skyrat/modules/hotel_rooms/winterwoods.dmm"
+
+/datum/map_template/ghost_cafe_rooms/evacuationstation
+	name = "Evacuated Station"
+	mappath = "modular_skyrat/modules/hotel_rooms/evacuationstation.dmm"
