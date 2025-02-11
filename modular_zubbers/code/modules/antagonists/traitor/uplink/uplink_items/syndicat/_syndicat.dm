@@ -1,5 +1,5 @@
 //Just the ears alone
-/datum/uplink_item/device_tools/super_kitty_ears
+/datum/uplink_item/implant/super_kitty_ears
 	name = "Super Syndie-Kitty Ears"
 	desc = "Developed by several Interdyne Pharmaceutics scientists and Wizard Federation archmages during a record-breaking rager, \
 			this set of feline ears combines the finest of bio-engineering and thamaturgy to allow the user to transform to and from a genetically modified cat at will, \
@@ -10,6 +10,7 @@
 	cost = 16
 	surplus = 15
 	limited_stock = 1
+	progression_minimum = 15 MINUTES
 
 /datum/uplink_item/dangerous/syndicat
 	name = "Syndie cat grenade"
