@@ -653,8 +653,8 @@
 	desc = "An ornate and rather sinister looking sabre sheathe."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
-	icon_state = "darksheath"
-	worn_icon_state = "darksheath"
+	icon_state = "sheath"
+	worn_icon_state = "sheath"
 
 /obj/item/storage/belt/sabre/darksabre/Initialize(mapload)
 	. = ..()
