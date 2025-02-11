@@ -546,21 +546,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
 	has_gravity = TRUE
 
-//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-/area/misc/winterwoods
-	name = "Winter Woods"
-	icon = 'icons/area/areas_ruins.dmi'
-	icon_state = "hilbertshotel"
-	requires_power = FALSE
-	has_gravity = TRUE
-	area_flags = NOTELEPORT | HIDDEN_AREA
-	static_lighting = TRUE
-	ambientsounds = "icemoon"
-	var/roomnumber = 0
-	var/obj/item/hilbertshotel/parentSphere
-	var/datum/turf_reservation/reservation
-	var/turf/storageTurf
-//BUBBER END
 
 /obj/item/abstracthotelstorage
 	anchored = TRUE
