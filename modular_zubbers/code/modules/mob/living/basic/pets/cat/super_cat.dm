@@ -12,7 +12,7 @@
 	maxHealth = SUPER_KITTY_HEALTH
 	speed = 0
 	can_breed = FALSE
-	gold_core_spawnable = HOSTILE_SPAWN // Stays until finding a way to get the normal kitty spell or ears to be accessable at all
+	gold_core_spawnable = HOSTILE_SPAWN
 	melee_damage_lower = 7
 	melee_damage_upper = 15
 	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
