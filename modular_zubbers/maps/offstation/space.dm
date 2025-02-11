@@ -8,4 +8,3 @@
 	suffix = "space_geovent.dmm"
 	name = "Space-Ruin Geological Site"
 	description = "A rare set of asteroids with some interesting things inside. Sadly over ran with pirates. Woops."
-	always_place = TRUE

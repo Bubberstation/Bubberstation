@@ -9,6 +9,5 @@
 	description = "A mishap during geological site testing ended a poor man's life. Anyways, Roll a d10 to loot the body."
 	suffix = "icemoon_surface_geovent.dmm"
 	allow_duplicates = FALSE
-	cost = 2 // has a body. thats about it.
+	cost = 1 // has a miner body and BSC. thats about it.
 	mineral_cost = 1 // has 1 vent. Sure its one of the reseting ones but its a vent.
-	always_place = TRUE //Testing purpose

@@ -75,6 +75,8 @@
 		reset_ores(new_boulder_size) // title. We use the variable thing PURELY for the sake of having the GPS tied here and not to reset ores
 		generate_description() // makes the description register the new ores
 		gps_name = "[new_boulder_size] oxide chunk" // should generate as "large oxide chunk"
+	else
+		boulder_bounty = initial(boulder_bounty) //Just resets to what it started with. Yes, this is all this needs.
 
 	AddComponent(/datum/component/gps, gps_name) // We let GPS be a system to let people know when it resets
 

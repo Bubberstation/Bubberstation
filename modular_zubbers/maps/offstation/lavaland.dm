@@ -11,4 +11,3 @@
 	allow_duplicates = FALSE
 	cost = 0 // We'll steal ore vent costs, since this provides 2 vents on lavaland in a public manner
 	mineral_cost = 2
-	always_place = TRUE //Testing purpose.
