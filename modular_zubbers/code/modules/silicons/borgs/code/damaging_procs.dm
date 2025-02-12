@@ -9,12 +9,12 @@
 		var/datum/robot_component/picked = pick(parts)
 
 		var/brute_was = picked.brute_damage
-		var/burn_was = picked.electronics_damage
+		var/burn_was = picked.burn_damage
 
 		picked.heal_damage(brute,burn)
 
 		brute -= (brute_was-picked.brute_damage)
-		burn -= (burn_was-picked.electronics_damage)
+		burn -= (burn_was-picked.burn_damage)
 
 		parts -= picked
 	updatehealth()
@@ -37,12 +37,12 @@
 			var/datum/robot_component/picked = pick(parts)
 
 			var/brute_was = picked.brute_damage
-			var/burn_was = picked.electronics_damage
+			var/burn_was = picked.burn_damage
 
 			picked.take_damage(brute,burn)
 
 			brute	-= (picked.brute_damage - brute_was)
-			burn	-= (picked.electronics_damage - burn_was)
+			burn	-= (picked.burn_damage - burn_was)
 
 			parts -= picked
 	updatehealth()

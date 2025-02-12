@@ -45,7 +45,7 @@
 				/*
 				if(istype(I))
 					I.brute = C.brute_damage
-					I.burn = C.electronics_damage
+					I.burn = C.burn_damage
 				*/
 
 				removed_item = I
@@ -80,7 +80,7 @@
 	var/amount = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed != 0) amount += C.electronics_damage
+		if(C.installed != 0) amount += C.burn_damage
 	return amount
 
 /mob/living/silicon/robot/proc/get_damaged_components(var/brute, var/burn, var/destroyed = 0)
@@ -88,7 +88,7 @@
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed == 1 || (C.installed == -1 && destroyed))
-			if((brute && C.brute_damage) || (burn && C.electronics_damage) || (!C.toggled) || (!C.powered && C.toggled))
+			if((brute && C.brute_damage) || (burn && C.burn_damage) || (!C.toggled) || (!C.powered && C.toggled))
 				parts += C
 	return parts
 

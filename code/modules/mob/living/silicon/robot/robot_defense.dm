@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 					var/obj/item/robot_parts/robot_component/WC = W
 					if(istype(WC))
 						C.brute_damage = WC.brute
-						C.electronics_damage = WC.burn
+						C.burn_damage = WC.burn
 					*/
 
 					to_chat(usr, span_blue("You install the [W.name]."))

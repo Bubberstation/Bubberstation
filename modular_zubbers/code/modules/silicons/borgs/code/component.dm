@@ -8,7 +8,7 @@
 /datum/robot_component/var/powered = 1
 /datum/robot_component/var/toggled = 1
 /datum/robot_component/var/brute_damage = 0
-/datum/robot_component/var/electronics_damage = 0
+/datum/robot_component/var/burn_damage = 0
 /datum/robot_component/var/required_power = 0   // Amount of power needed to function
 /datum/robot_component/var/max_damage = 30  // HP of this component.
 /datum/robot_component/var/mob/living/silicon/robot/owner
@@ -32,7 +32,7 @@
 		max_damage = comp.max_damage
 		required_power = comp.required_power
 		brute_damage = comp.brute
-		electronics_damage = comp.burn
+		burn_damage = comp.burn
 		owner.updatehealth()
 		return
 	/*
@@ -48,12 +48,12 @@
 	//Test later
 	/*
 	brute_damage = initial(brute_damage)
-	electronics_damage = initial(electronics_damage)
+	burn_damage = initial(burn_damage)
 	*/
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		comp.brute = brute_damage
-		comp.burn = electronics_damage
+		comp.burn = burn_damage
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
@@ -83,9 +83,9 @@
 	if(installed != 1) return
 
 	brute_damage += brute
-	electronics_damage += electronics
+	burn_damage += electronics
 
-	if(brute_damage + electronics_damage >= max_damage) destroy()
+	if(brute_damage + burn_damage >= max_damage) destroy()
 
 /datum/robot_component/proc/heal_damage(brute, electronics)
 	if(installed != 1)
@@ -93,10 +93,10 @@
 		return FALSE
 
 	brute_damage = max(0, brute_damage - brute)
-	electronics_damage = max(0, electronics_damage - electronics)
+	burn_damage = max(0, burn_damage - electronics)
 
 /datum/robot_component/proc/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage) && (powered)
+	return (installed == 1) && (brute_damage + burn_damage < max_damage) && (powered)
 
 /datum/robot_component/proc/update_power_state()
 	if(toggled == 0)
@@ -137,7 +137,7 @@
 /*
 //A fixed and much cleaner implementation of /tg/'s special snowflake code.
 /datum/robot_component/actuator/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage)
+	return (installed == 1) && (brute_damage + burn_damage < max_damage)
 */
 //Disabled because we already lose power when emped
 /*
