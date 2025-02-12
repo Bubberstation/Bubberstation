@@ -9,6 +9,7 @@
 /datum/robot_component/var/toggled = 1
 /datum/robot_component/var/brute_damage = 0
 /datum/robot_component/var/electronics_damage = 0
+/datum/robot_component/var/required_power = 0   // Amount of power needed to function
 /datum/robot_component/var/max_damage = 30  // HP of this component.
 /datum/robot_component/var/mob/living/silicon/robot/owner
 
@@ -29,6 +30,7 @@
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		max_damage = comp.max_damage
+		required_power = comp.required_power
 		brute_damage = comp.brute
 		electronics_damage = comp.burn
 		owner.updatehealth()
@@ -42,6 +44,7 @@
 
 /datum/robot_component/proc/uninstall()
 	max_damage = initial(max_damage)
+	required_power = initial(required_power)
 	//Test later
 	/*
 	brute_damage = initial(brute_damage)
@@ -99,7 +102,7 @@
 	if(toggled == 0)
 		powered = 0
 		return
-	if(!owner.low_power_mode) //replaces idle usage
+	if(owner.cell && owner.cell.charge >= required_power) //replaces idle usage
 		powered = 1
 	else
 		powered = 0
@@ -119,6 +122,7 @@
 // Uses no power when idle. Uses 200J for each tile the cyborg moves.
 /datum/robot_component/actuator
 	name = "actuator"
+	required_power = 0
 	external_type = /obj/item/robot_parts/robot_component/actuator
 	max_damage = 50
 
@@ -183,6 +187,7 @@
 /datum/robot_component/camera
 	name = "camera"
 	external_type = /obj/item/robot_parts/robot_component/camera
+	required_power = 10
 	max_damage = 40
 	var/obj/machinery/camera/camera
 
@@ -277,18 +282,21 @@
 	var/brute = 0
 	var/burn = 0
 	var/icon_state_broken = "broken"
+	var/required_power = 0
 	var/max_damage = 0
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
 	icon_state = "binradio"
 	icon_state_broken = "binradio_broken"
+	required_power = STANDARD_CELL_CHARGE * 0.005
 	max_damage = 30
 
 /obj/item/robot_parts/robot_component/actuator
 	name = "actuator"
 	icon_state = "motor"
 	icon_state_broken = "motor_broken"
+	required_power = 0
 	max_damage = 50
 
 /obj/item/robot_parts/robot_component/armour
@@ -302,6 +310,7 @@
 	name = "camera"
 	icon_state = "camera"
 	icon_state_broken = "camera_broken"
+	required_power = STANDARD_CELL_CHARGE * 0.010
 	max_damage = 40
 
 /obj/item/robot_parts/robot_component/diagnosis_unit
@@ -314,4 +323,5 @@
 	name = "radio"
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
+	required_power = STANDARD_CELL_CHARGE * 0.015
 	max_damage = 40
