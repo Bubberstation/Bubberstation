@@ -196,13 +196,16 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 					if(!user.dropItemToGround(W))
 						return
 					C.wrapped = W
-					C.install()
 					W.forceMove(src)
+					C.install()
+					C.installed = 1
 
+					/*
 					var/obj/item/robot_parts/robot_component/WC = W
 					if(istype(WC))
 						C.brute_damage = WC.brute
 						C.electronics_damage = WC.burn
+					*/
 
 					to_chat(usr, span_blue("You install the [W.name]."))
 

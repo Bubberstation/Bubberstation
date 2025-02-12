@@ -834,6 +834,13 @@
 	if(borgo.health < 0)
 		to_chat(user, span_warning("You have to repair the cyborg before using this module!"))
 		return ..()
+	//BUBBER ADDITION - COMPONENTS
+	for (var/V in borgo.components)
+		var/datum/robot_component/C = borgo.components[V]
+		if(istype(C.wrapped, /obj/item/broken_device) && !C)
+			to_chat(user, span_warning("You have to replace the broken cyborg components before using this module!"))
+			return ..()
+	//BUBBER ADDITION END - COMPONENTS
 	if(!(borgo.stat & DEAD))
 		to_chat(user, span_warning("This cyborg is already operational!"))
 		return ..()

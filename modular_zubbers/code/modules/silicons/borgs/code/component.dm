@@ -5,12 +5,10 @@
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
 /datum/robot_component/var/name
 /datum/robot_component/var/installed = 0
-/datum/robot_component/var/powered = 0
+/datum/robot_component/var/powered = 1
 /datum/robot_component/var/toggled = 1
 /datum/robot_component/var/brute_damage = 0
 /datum/robot_component/var/electronics_damage = 0
-/datum/robot_component/var/idle_usage = 0   // Amount of power used every MC tick. In joules.
-/datum/robot_component/var/active_usage = 0 // Amount of power used for every action. Actions are module-specific. Actuator for each tile moved, etc.
 /datum/robot_component/var/max_damage = 30  // HP of this component.
 /datum/robot_component/var/mob/living/silicon/robot/owner
 
@@ -20,8 +18,8 @@
 // The wrapped device(e.g. radio), only set if external_type isn't null
 /datum/robot_component/var/obj/item/wrapped = null
 
-/datum/robot_component/New(mob/living/silicon/robot/R)
-	src.owner = R
+/datum/robot_component/New(mob/living/silicon/robot/cyborg)
+	src.owner = cyborg
 
 /datum/robot_component/proc/accepts_component(var/obj/item/thing)
 	. = istype(thing, external_type)
@@ -31,8 +29,9 @@
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		max_damage = comp.max_damage
-		idle_usage = comp.idle_usage
-		active_usage = comp.active_usage
+		brute_damage = comp.brute
+		electronics_damage = comp.burn
+		owner.updatehealth()
 		return
 	/*
 	if(istype(wrapped, /obj/item/cell))
@@ -43,8 +42,15 @@
 
 /datum/robot_component/proc/uninstall()
 	max_damage = initial(max_damage)
-	idle_usage = initial(idle_usage)
-	active_usage = initial(active_usage)
+	//Test later
+	/*
+	brute_damage = initial(brute_damage)
+	electronics_damage = initial(electronics_damage)
+	*/
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/comp = wrapped
+		comp.brute = brute_damage
+		comp.burn = electronics_damage
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
@@ -67,6 +73,7 @@
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		wrapped.icon_state = comp.icon_state
 
+	installed = 1
 	install()
 
 /datum/robot_component/proc/take_damage(brute, electronics)
@@ -80,20 +87,19 @@
 /datum/robot_component/proc/heal_damage(brute, electronics)
 	if(installed != 1)
 		// If it's not installed, can't repair it.
-		return 0
+		return FALSE
 
 	brute_damage = max(0, brute_damage - brute)
 	electronics_damage = max(0, electronics_damage - electronics)
 
 /datum/robot_component/proc/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage) && (!idle_usage || powered)
+	return (installed == 1) && (brute_damage + electronics_damage < max_damage) && (powered)
 
 /datum/robot_component/proc/update_power_state()
 	if(toggled == 0)
 		powered = 0
 		return
-	if(owner.cell && owner.cell.charge >= idle_usage)
-		owner.cell.use(idle_usage)
+	if(!owner.low_power_mode) //replaces idle usage
 		powered = 1
 	else
 		powered = 0
@@ -113,15 +119,22 @@
 // Uses no power when idle. Uses 200J for each tile the cyborg moves.
 /datum/robot_component/actuator
 	name = "actuator"
-	idle_usage = 0
-	active_usage = 200
 	external_type = /obj/item/robot_parts/robot_component/actuator
 	max_damage = 50
 
+
+/datum/robot_component/actuator/update_power_state()
+	..()
+	if(!(TRAIT_IMMOBILIZED in owner._status_traits))// So we don't just suddenly unlock wile locked down
+		if(!(owner.mobility_flags & MOBILITY_MOVE))
+			if(owner.is_component_functioning("actuator"))
+				owner.mobility_flags = MOBILITY_FLAGS_DEFAULT
+
+/*
 //A fixed and much cleaner implementation of /tg/'s special snowflake code.
 /datum/robot_component/actuator/is_powered()
 	return (installed == 1) && (brute_damage + electronics_damage < max_damage)
-
+*/
 //Disabled because we already lose power when emped
 /*
 // POWER CELL
@@ -152,7 +165,6 @@
 /datum/robot_component/radio
 	name = "radio"
 	external_type = /obj/item/robot_parts/robot_component/radio
-	active_usage = 15	//transmit power
 	max_damage = 40
 
 
@@ -171,7 +183,6 @@
 /datum/robot_component/camera
 	name = "camera"
 	external_type = /obj/item/robot_parts/robot_component/camera
-	idle_usage = 10
 	max_damage = 40
 	var/obj/machinery/camera/camera
 
@@ -185,14 +196,17 @@
 		camera.camera_enabled = powered
 
 /datum/robot_component/camera/install()
+	..()
 	if (camera)
 		camera.camera_enabled = TRUE
 
 /datum/robot_component/camera/uninstall()
+	..()
 	if (camera)
 		camera.camera_enabled = FALSE
 
 /datum/robot_component/camera/destroy()
+	..()
 	if (camera)
 		camera.camera_enabled = FALSE
 
@@ -201,7 +215,6 @@
 // Uses 1kJ burst when analysis is done - UH NUH UH
 /datum/robot_component/diagnosis_unit
 	name = "self-diagnosis unit"
-	active_usage = 1000
 	external_type = /obj/item/robot_parts/robot_component/diagnosis_unit
 	max_damage = 30
 
@@ -211,7 +224,7 @@
 // HELPER STUFF
 
 
-
+//TODO: refactor how the list populates
 // Initializes cyborg's components. Technically, adds default set of components to new borgs
 /mob/living/silicon/robot/proc/initialize_components()
 	components["actuator"] = new/datum/robot_component/actuator(src)
@@ -264,24 +277,18 @@
 	var/brute = 0
 	var/burn = 0
 	var/icon_state_broken = "broken"
-	var/idle_usage = 0
-	var/active_usage = 0
 	var/max_damage = 0
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
 	icon_state = "binradio"
 	icon_state_broken = "binradio_broken"
-	idle_usage = 5
-	active_usage = 25
 	max_damage = 30
 
 /obj/item/robot_parts/robot_component/actuator
 	name = "actuator"
 	icon_state = "motor"
 	icon_state_broken = "motor_broken"
-	idle_usage = 0
-	active_usage = 200
 	max_damage = 50
 
 /obj/item/robot_parts/robot_component/armour
@@ -295,20 +302,16 @@
 	name = "camera"
 	icon_state = "camera"
 	icon_state_broken = "camera_broken"
-	idle_usage = 10
 	max_damage = 40
 
 /obj/item/robot_parts/robot_component/diagnosis_unit
 	name = "diagnosis unit"
 	icon_state = "analyser"
 	icon_state_broken = "analyser_broken"
-	active_usage = 1000
 	max_damage = 30
 
 /obj/item/robot_parts/robot_component/radio
 	name = "radio"
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
-	idle_usage = 15
-	active_usage = 75
 	max_damage = 40

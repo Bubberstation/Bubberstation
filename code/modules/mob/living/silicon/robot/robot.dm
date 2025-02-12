@@ -717,17 +717,6 @@
 	if(!.)
 		return
 
-	if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
-		builtInCamera.toggle_cam(src, 0)
-	if(full_heal_flags & HEAL_ADMIN)
-		locked = TRUE
-	if(eye_flash_timer)
-		deltimer(eye_flash_timer)
-		eye_flash_timer = null
-	src.set_stat(CONSCIOUS)
-	notify_ai(AI_NOTIFICATION_NEW_BORG)
-	toggle_headlamp(FALSE, TRUE) //This will reenable borg headlamps if doomsday is currently going on still.
-	update_stat()
 	//BUBBER ADDITION - COMPONENTS
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
@@ -748,11 +737,23 @@
 					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
 				if("armour")
 					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
-			C.installed = 1
 			C.install()
+			C.installed = 1
 	if(cell)
 		cell.charge = cell.maxcharge //Needed since borgs now require to have power
 	//BUBBER ADDITION END - COMPONENTS
+	if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
+		builtInCamera.toggle_cam(src, 0)
+	if(full_heal_flags & HEAL_ADMIN)
+		locked = TRUE
+	if(eye_flash_timer)
+		deltimer(eye_flash_timer)
+		eye_flash_timer = null
+	src.set_stat(CONSCIOUS)
+	notify_ai(AI_NOTIFICATION_NEW_BORG)
+	toggle_headlamp(FALSE, TRUE) //This will reenable borg headlamps if doomsday is currently going on still.
+	update_stat()
+
 	return TRUE
 
 /mob/living/silicon/robot/fully_replace_character_name(oldname, newname)

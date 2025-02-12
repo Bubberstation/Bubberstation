@@ -42,9 +42,11 @@
 				var/datum/robot_component/C = components[remove]
 				var/obj/item/robot_parts/robot_component/I = C.wrapped
 				balloon_alert(user, "component removed")
+				/*
 				if(istype(I))
 					I.brute = C.brute_damage
 					I.burn = C.electronics_damage
+				*/
 
 				removed_item = I
 
@@ -55,7 +57,7 @@
 				if(I)
 					removed_item.forceMove(drop_location())
 					tool.play_tool_sound(src, 100)
-					C.wrapped = null //Sanity
+					C.wrapped = null
 				return TRUE
 	return TRUE
 
@@ -81,19 +83,6 @@
 		if(C.installed != 0) amount += C.electronics_damage
 	return amount
 
-/mob/living/silicon/robot/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
-	SHOULD_CALL_PARENT(FALSE) // take/heal overall call update_health regardless of arg
-	if(amount > 0)
-		take_overall_damage(amount, 0)
-	else
-		heal_overall_damage(-amount, 0)
-
-/mob/living/silicon/robot/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype = ALL)
-	if(amount > 0)
-		take_overall_damage(0, amount)
-	else
-		heal_overall_damage(0, -amount)
-
 /mob/living/silicon/robot/proc/get_damaged_components(var/brute, var/burn, var/destroyed = 0)
 	var/list/datum/robot_component/parts = list()
 	for(var/V in components)
@@ -103,13 +92,14 @@
 				parts += C
 	return parts
 
+//Checks if armor is present and not broken
 /mob/living/silicon/robot/proc/get_armour()
 
 	if(!components.len) return 0
 	var/datum/robot_component/C = components["armour"]
 	if(C && C.installed == 1)
 		return C
-	return 0
+	return FALSE
 
 
 /mob/living/silicon/robot/proc/get_damageable_components()
