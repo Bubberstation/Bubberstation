@@ -410,7 +410,7 @@
 		if(PREF_SKIRT)
 			holder = "[uniform]/skirt"
 		if(PREF_BUNNY)
-			holder = "[uniform]/bunnysuit"
+			holder = "/obj/item/clothing/under/costume/playbunny/color/grey"
 		else
 			holder = "[uniform]"
 
