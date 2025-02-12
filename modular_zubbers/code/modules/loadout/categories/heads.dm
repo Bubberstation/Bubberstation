@@ -27,13 +27,13 @@
 /datum/loadout_item/head/hats/warden/police/patrol
 	name = "police patrol cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "futuristic security helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/sombrero
 	name = "Sombrero"
@@ -66,79 +66,79 @@
 /datum/loadout_item/head/security_garrison
 	name = "Security garrison cap"
 	item_path = /obj/item/clothing/head/security_garrison
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/security_cap
 	name = "Security cap"
 	item_path = /obj/item/clothing/head/security_cap
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/security_cap/soft
 	name = "Security cap (soft)"
 	item_path = /obj/item/clothing/head/soft/sec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's security cap (soft)"
 	item_path = /obj/item/clothing/head/soft/veteran
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_cap/colonial
 	name = "Imperial police cap"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_beanie
 	name = "Security beanie"
 	item_path = /obj/item/clothing/head/security_beanie
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
 	name = "Peacekeeper beret (White)"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/white
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/terra
 	name = "Sol police helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/terra
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/hats/warden/police/patrol
 	name = "Warden's police cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/helmet/sec/redsec
 	name = "Security helmet (Redsec)"
 	item_path = /obj/item/clothing/head/helmet/sec/redsec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/nri_police
 	name = "Imperial police helmet"
 	item_path = /obj/item/clothing/head/helmet/nri_police
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/hats/security_kepi
 	name = "Security kepi"
 	item_path = /obj/item/clothing/head/security_kepi
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne corporate beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
 	name = "Security Medic helmet"

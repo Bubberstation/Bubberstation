@@ -18,34 +18,34 @@
 /datum/loadout_item/neck/security_cape
 	name = "security cape"
 	item_path = /obj/item/clothing/neck/security_cape
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/security_cape/armplate
 	name = "security gauntlet"
 	item_path = /obj/item/clothing/neck/security_cape/armplate
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/pauldron
 	name = "lieutenant commander's pauldron"
 	item_path = /obj/item/clothing/neck/pauldron
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/neck/pauldron/captain
 	name = "commander's pauldron"
 	item_path = /obj/item/clothing/neck/pauldron/captain
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/neck/pauldron/commander
 	name = "captain's pauldron"
 	item_path = /obj/item/clothing/neck/pauldron/commander
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/neck/imperial_cloak
 	name = "Imperial Police Cloak"
 	item_path = /obj/item/clothing/neck/cloak/colonial/nri_police
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/neck/bunnypendant
 	name = "Rabbit Pendant"

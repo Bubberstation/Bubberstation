@@ -2,7 +2,7 @@
 	name = "Urban Camouflage BDU"
 	item_path = /obj/item/clothing/under/rank/security/officer/hecu
 	donator_only = TRUE
-	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
 
 /datum/loadout_item/uniform/command/stripper //Sprites by SierraGenevese
 	name = "Command Stripper Uniform"
@@ -22,22 +22,22 @@
 /datum/loadout_item/uniform/security/officer/redsec
 	name = "Security uniform (Redsec)"
 	item_path = /obj/item/clothing/under/rank/security/officer/redsec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/peacekeeper/armadyne
 	name = "Armadyne Corporate Uniform"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/utility/redsec
 	name = "Security utility uniform (Redsec)"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/officer/formal
 	name = "Security Officer's formal uniform"
 	item_path = /obj/item/clothing/under/rank/security/officer/formal
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic
 	name = "Security medic turtleneck"
