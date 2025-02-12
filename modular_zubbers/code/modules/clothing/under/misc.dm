@@ -537,10 +537,6 @@
 	alt_covers_chest = TRUE
 
 //colorful assistants support
-/obj/item/clothing/under/costume/playbunny/color/
-	name = "jumpsuit"
-	desc = "A standard issue colored jumpsuit. Variety is the spice of life!"
-
 /obj/item/clothing/under/costume/playbunny/color/grey
 	name = "grey jumpsuit"
 	desc = "A tasteful grey bunnysuit that reminds you of the good old bunnies."
