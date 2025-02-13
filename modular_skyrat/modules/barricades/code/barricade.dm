@@ -655,7 +655,7 @@
 
 
 /*----------------------*/
-// 
+// PLASTEEL
 /*----------------------*/
 
 /obj/structure/deployable_barricade/metal/plasteel
