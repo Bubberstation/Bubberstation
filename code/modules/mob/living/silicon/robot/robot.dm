@@ -720,10 +720,11 @@
 	//BUBBER ADDITION - COMPONENTS
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(istype(C.wrapped, /obj/item/broken_device))
-			qdel(C.wrapped)
-			C.wrapped = null
-		if(!C.wrapped)
+		if(istype(C.wrapped, /obj/item/robot_parts/robot_component))
+			C.brute_damage = 0
+			C.burn_damage = 0
+			C.repair()
+		if(!C.wrapped)// Do we have a component?
 			switch(V)
 				if("actuator")
 					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)

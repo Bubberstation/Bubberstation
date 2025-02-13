@@ -87,7 +87,7 @@
 	var/list/datum/robot_component/parts = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed == 1 || (C.installed == -1 && destroyed))
+		if(C.installed == 1 || (C.installed == -1))
 			if((brute && C.brute_damage) || (burn && C.burn_damage) || (!C.toggled) || (!C.powered && C.toggled))
 				parts += C
 	return parts

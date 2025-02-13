@@ -3,21 +3,22 @@
 ***********************************************************************/
 
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
-/datum/robot_component/var/name
-/datum/robot_component/var/installed = 0
-/datum/robot_component/var/powered = 1
-/datum/robot_component/var/toggled = 1
-/datum/robot_component/var/brute_damage = 0
-/datum/robot_component/var/burn_damage = 0
-/datum/robot_component/var/required_power = 0   // Amount of power needed to function
-/datum/robot_component/var/max_damage = 30  // HP of this component.
-/datum/robot_component/var/mob/living/silicon/robot/owner
+/datum/robot_component
+	var/name
+	var/installed = 0
+	var/powered = 1
+	var/toggled = 1
+	var/brute_damage = 0
+	var/burn_damage = 0
+	var/required_power = 0   // Amount of power needed to function
+	var/max_damage = 30  // HP of this component.
+	var/mob/living/silicon/robot/owner
 
 // The actual device object that has to be installed for this.
-/datum/robot_component/var/external_type = null
+	var/external_type = null
 
 // The wrapped device(e.g. radio), only set if external_type isn't null
-/datum/robot_component/var/obj/item/wrapped = null
+	var/obj/item/wrapped = null
 
 /datum/robot_component/New(mob/living/silicon/robot/cyborg)
 	src.owner = cyborg
@@ -60,12 +61,9 @@
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		brokenstate = comp.icon_state_broken
-	if(wrapped)
-		qdel(wrapped)
 
-
-	wrapped = new/obj/item/broken_device
 	wrapped.icon_state = brokenstate // Module-specific broken icons! Yay!
+	wrapped.update_icon_state()
 
 	// The thing itself isn't there anymore, but some fried remains are.
 	installed = -1
@@ -73,27 +71,33 @@
 
 /datum/robot_component/proc/repair()
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))
-		var/obj/item/robot_parts/robot_component/comp = wrapped
-		wrapped.icon_state = comp.icon_state
+		wrapped.icon_state = initial(wrapped.icon_state)
 
 	installed = 1
 	install()
 
-/datum/robot_component/proc/take_damage(brute, electronics)
-	if(installed != 1) return
+/datum/robot_component/proc/take_damage(brute, burn)
+	if(installed != 1)
+		return
 
 	brute_damage += brute
-	burn_damage += electronics
+	burn_damage += burn
 
-	if(brute_damage + burn_damage >= max_damage) destroy()
+	if(brute_damage + burn_damage >= max_damage)
+		destroy()
 
-/datum/robot_component/proc/heal_damage(brute, electronics)
-	if(installed != 1)
+/datum/robot_component/proc/heal_damage(brute, burn)
+	if(!(installed == 1 || installed == -1))
 		// If it's not installed, can't repair it.
 		return FALSE
 
 	brute_damage = max(0, brute_damage - brute)
-	burn_damage = max(0, burn_damage - electronics)
+	burn_damage = max(0, burn_damage - burn)
+
+	if(brute_damage + burn_damage <= max_damage)
+		if(installed == 1)
+			return FALSE
+		repair()
 
 /datum/robot_component/proc/is_powered()
 	return (installed == 1) && (brute_damage + burn_damage < max_damage) && (powered)
