@@ -229,7 +229,6 @@
 // HELPER STUFF
 
 
-//TODO: refactor how the list populates
 // Initializes cyborg's components. Technically, adds default set of components to new borgs
 /mob/living/silicon/robot/proc/initialize_components()
 	components["actuator"] = new/datum/robot_component/actuator(src)
