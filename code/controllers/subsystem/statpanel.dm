@@ -11,11 +11,11 @@ SUBSYSTEM_DEF(statpanels)
 	var/list/mc_data
 
 	///how many subsystem fires between most tab updates
-	var/default_wait = 100 // BUBBER EDIT
+	var/default_wait = 10
 	///how many subsystem fires between updates of the status tab
-	var/status_wait = 10 // BUBBER EDIT
+	var/status_wait = 2
 	///how many subsystem fires between updates of the MC tab
-	var/mc_wait = 15 // BUBBER EDIT
+	var/mc_wait = 5
 	///how many full runs this subsystem has completed. used for variable rate refreshes.
 	var/num_fires = 0
 
