@@ -22,10 +22,10 @@ export SPACEMAN_DMM_VERSION=suite-1.9
 export PYTHON_VERSION=3.9.0
 
 #//DREAMLUAU repo
-export //DREAMLUAU_REPO="tgstation///DREAMLUAU"
+export DREAMLUAU_REPO="tgstation/DREAMLUAU"
 
 #//DREAMLUAU git tag
-export //DREAMLUAU_VERSION=0.1.2
+export DREAMLUAU_VERSION=0.1.2
 
 #hypnagogic repo
 export CUTTER_REPO=spacestation13/hypnagogic
