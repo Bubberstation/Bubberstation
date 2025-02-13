@@ -97,7 +97,7 @@
 
 	if(!components.len) return 0
 	var/datum/robot_component/C = components["armour"]
-	if(C && C.installed == 1)
+	if(C && C.installed == 1 && C.toggled)
 		return C
 	return FALSE
 
