@@ -54,3 +54,7 @@
 /datum/map_template/ghost_cafe_rooms/evacuationstation
 	name = "Evacuated Station"
 	mappath = "modular_skyrat/modules/hotel_rooms/evacuationstation.dmm"
+
+/datum/map_template/ghost_cafe_rooms/prisoninfdorm
+	name = "Prison"
+	mappath = "modular_skyrat/modules/hotel_rooms/prisoninfdorm.dmm"
