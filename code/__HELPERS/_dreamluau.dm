@@ -1,12 +1,12 @@
-/* This comment bypasses grep checks */ /var/__dreamluau
+/* /* This comment bypasses grep checks */ /var/__//DREAMLUAU
 
-/* This comment also bypasses grep checks */ /var/__dreamluau_exists
+/* This comment also bypasses grep checks */ /var/__//DREAMLUAU_exists
 
-#define DREAMLUAU_EXISTS (__dreamluau_exists ||= fexists(DREAMLUAU))
+#define //DREAMLUAU_EXISTS (__//DREAMLUAU_exists ||= fexists(//DREAMLUAU))
 
-#define DREAMLUAU (world.system_type == MS_WINDOWS ? "dreamluau.dll" : (__dreamluau ||= __detect_auxtools("dreamluau")))
+#define //DREAMLUAU (world.system_type == MS_WINDOWS ? "//DREAMLUAU.dll" : (__//DREAMLUAU ||= __detect_auxtools("//DREAMLUAU")))
 
-#define DREAMLUAU_CALL(func) (!DREAMLUAU_EXISTS) ? null : call_ext(DREAMLUAU, "byond:[#func]")
+#define //DREAMLUAU_CALL(func) (!//DREAMLUAU_EXISTS) ? null : call_ext(//DREAMLUAU, "byond:[#func]")
 
 /**
  * All of the following functions will return a string if the underlying rust code returns an error or a wrapped panic.
@@ -15,11 +15,11 @@
 
 /**
  * As of 515.1631, byondapi does not provide direct access to `usr`.
- * Use this function to pass `usr` into the dreamluau binary so that luau scripts can retrieve it.
+ * Use this function to pass `usr` into the //DREAMLUAU binary so that luau scripts can retrieve it.
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_USR DREAMLUAU_CALL(set_usr)(usr)
+#define //DREAMLUAU_SET_USR //DREAMLUAU_CALL(set_usr)(usr)
 
 
 /**
@@ -29,7 +29,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(limit) DREAMLUAU_CALL(set_execution_limit_millis)((limit))
+#define //DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(limit) //DREAMLUAU_CALL(set_execution_limit_millis)((limit))
 
 /**
  * Sets the execution limit, in seconds.
@@ -38,7 +38,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_EXECUTION_LIMIT_SECS(limit) DREAMLUAU_CALL(set_execution_limit_secs)((limit))
+#define //DREAMLUAU_SET_EXECUTION_LIMIT_SECS(limit) //DREAMLUAU_CALL(set_execution_limit_secs)((limit))
 
 /**
  * Clears the execution limit, allowing scripts to run as long as they need to.
@@ -48,7 +48,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_CLEAR_EXECUTION_LIMIT DREAMLUAU_CALL(clear_execution_limit)
+#define //DREAMLUAU_CLEAR_EXECUTION_LIMIT //DREAMLUAU_CALL(clear_execution_limit)
 
 //Wrapper setters/clearers
 
@@ -63,7 +63,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_NEW_WRAPPER(wrapper) DREAMLUAU_CALL(set_new_wrapper)((wrapper))
+#define //DREAMLUAU_SET_NEW_WRAPPER(wrapper) //DREAMLUAU_CALL(set_new_wrapper)((wrapper))
 
 /**
  * Set the wrapper for reading the vars of an object.
@@ -76,7 +76,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_VAR_GET_WRAPPER(wrapper) DREAMLUAU_CALL(set_var_get_wrapper)((wrapper))
+#define //DREAMLUAU_SET_VAR_GET_WRAPPER(wrapper) //DREAMLUAU_CALL(set_var_get_wrapper)((wrapper))
 
 /**
  * Set the wrapper for writing the vars of an object.
@@ -89,7 +89,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_VAR_SET_WRAPPER(wrapper) DREAMLUAU_CALL(set_var_set_wrapper)((wrapper))
+#define //DREAMLUAU_SET_VAR_SET_WRAPPER(wrapper) //DREAMLUAU_CALL(set_var_set_wrapper)((wrapper))
 
 /**
  * Set the wrapper for calling a proc on an object.
@@ -102,7 +102,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_OBJECT_CALL_WRAPPER(wrapper) DREAMLUAU_CALL(set_object_call_wrapper)((wrapper))
+#define //DREAMLUAU_SET_OBJECT_CALL_WRAPPER(wrapper) //DREAMLUAU_CALL(set_object_call_wrapper)((wrapper))
 
 /**
  * Set the wrapper for calling a global proc.
@@ -115,7 +115,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_GLOBAL_CALL_WRAPPER(wrapper) DREAMLUAU_CALL(set_global_call_wrapper)((wrapper))
+#define //DREAMLUAU_SET_GLOBAL_CALL_WRAPPER(wrapper) //DREAMLUAU_CALL(set_global_call_wrapper)((wrapper))
 
 /**
  * Set the wrapper for printing with the `print` function.
@@ -128,7 +128,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_SET_PRINT_WRAPPER(wrapper) DREAMLUAU_CALL(set_print_wrapper)((wrapper))
+#define //DREAMLUAU_SET_PRINT_WRAPPER(wrapper) //DREAMLUAU_CALL(set_print_wrapper)((wrapper))
 
 
 
@@ -137,7 +137,7 @@
  *
  * @return a handle to the created state.
  */
-#define DREAMLUAU_NEW_STATE DREAMLUAU_CALL(new_state)
+#define //DREAMLUAU_NEW_STATE //DREAMLUAU_CALL(new_state)
 
 /**
  * Some of the following functions return values that cannot be cleanly converted from luau to DM.
@@ -172,7 +172,7 @@
  *
  * @return an associative list containing result information as specified above
  */
-#define DREAMLUAU_LOAD DREAMLUAU_CALL(load)
+#define //DREAMLUAU_LOAD //DREAMLUAU_CALL(load)
 
 /**
  * Awaken the thread at the front of the specified state's sleeping thread queue.
@@ -181,7 +181,7 @@
  *
  * @return an associative list containing result information as specified above
  */
-#define DREAMLUAU_AWAKEN(state) DREAMLUAU_CALL(awaken)((state))
+#define //DREAMLUAU_AWAKEN(state) //DREAMLUAU_CALL(awaken)((state))
 
 /**
  * Resume one of the state's yielded threads.
@@ -192,7 +192,7 @@
  *
  * @return an associative list containing result information as specified above
  */
-#define DREAMLUAU_RESUME DREAMLUAU_CALL(resume)
+#define //DREAMLUAU_RESUME //DREAMLUAU_CALL(resume)
 
 /**
  * Call a function accessible from the global table.
@@ -203,7 +203,7 @@
  *
  * @return an associative list containing result information as specified above
  */
-#define DREAMLUAU_CALL_FUNCTION DREAMLUAU_CALL(call_function)
+#define //DREAMLUAU_CALL_FUNCTION //DREAMLUAU_CALL(call_function)
 
 // State information collection functions
 
@@ -216,7 +216,7 @@
  * - "values": The actual values of the global table
  * - "variants": Variant specifiers for "values"
  */
-#define DREAMLUAU_GET_GLOBALS(state) DREAMLUAU_CALL(get_globals)((state))
+#define //DREAMLUAU_GET_GLOBALS(state) //DREAMLUAU_CALL(get_globals)((state))
 
 /**
  * List the names of all sleeping or yielded threads for the state.
@@ -227,7 +227,7 @@
  *  - "sleeps": A list of sleeping threads
  *  - "yields": A list of yielded threads
  */
-#define DREAMLUAU_LIST_THREADS(state) DREAMLUAU_CALL(list_threads)((state))
+#define //DREAMLUAU_LIST_THREADS(state) //DREAMLUAU_CALL(list_threads)((state))
 
 // Cleanup functions
 
@@ -242,7 +242,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_COLLECT_GARBAGE(state) DREAMLUAU_CALL(collect_garbage)((state))
+#define //DREAMLUAU_COLLECT_GARBAGE(state) //DREAMLUAU_CALL(collect_garbage)((state))
 
 /**
  * Remove a sleeping thread from the sleep queue, without executing it.
@@ -252,7 +252,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_KILL_SLEEPING_THREAD(state, thread) DREAMLUAU_CALL(kill_sleeping_thread)((state), (thread))
+#define //DREAMLUAU_KILL_SLEEPING_THREAD(state, thread) //DREAMLUAU_CALL(kill_sleeping_thread)((state), (thread))
 
 /**
  * Remove a yielded thread from the yield table, without executing it.
@@ -262,7 +262,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_KILL_YIELDED_THREAD(state, thread) DREAMLUAU_CALL(kill_yielded_thread)((state), (thread))
+#define //DREAMLUAU_KILL_YIELDED_THREAD(state, thread) //DREAMLUAU_CALL(kill_yielded_thread)((state), (thread))
 
 /**
  * Delete a state. The state's handle will be freed for any new states created afterwards.
@@ -271,7 +271,7 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_KILL_STATE(state) DREAMLUAU_CALL(kill_state)((state))
+#define //DREAMLUAU_KILL_STATE(state) //DREAMLUAU_CALL(kill_state)((state))
 
 /**
  * Retrieve lua traceback info, containing every lua stack frame between the lua entrypoint and the re-entry to dm code.
@@ -283,7 +283,7 @@
  *
  * @return the callstack of the specified lua level if valid, null if invalid
  */
-#define DREAMLUAU_GET_TRACEBACK(index) DREAMLUAU_CALL(get_traceback)((index))
+#define //DREAMLUAU_GET_TRACEBACK(index) //DREAMLUAU_CALL(get_traceback)((index))
 
 /**
  * Luau userdata corresponding to a ref-counted DM type counts as a hard reference for BYOND's garbage collector.
@@ -297,5 +297,6 @@
  *
  * @return null on success
  */
-#define DREAMLUAU_CLEAR_REF_USERDATA(object) DREAMLUAU_CALL(clear_ref_userdata)((object))
+#define //DREAMLUAU_CLEAR_REF_USERDATA(object) //DREAMLUAU_CALL(clear_ref_userdata)((object))
 
+ */

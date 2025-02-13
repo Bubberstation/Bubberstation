@@ -1,4 +1,4 @@
-SUBSYSTEM_DEF(lua)
+/* SUBSYSTEM_DEF(lua)
 	name = "Lua Scripting"
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	wait = 0.1 SECONDS
@@ -20,15 +20,15 @@ SUBSYSTEM_DEF(lua)
 	var/list/needs_gc_cycle = list()
 
 /datum/controller/subsystem/lua/Initialize()
-	DREAMLUAU_SET_EXECUTION_LIMIT_SECS(5)
+	//DREAMLUAU_SET_EXECUTION_LIMIT_SECS(5)
 	// Set wrappers to ensure that lua scripts are subject to the same safety restrictions as other admin tooling
-	DREAMLUAU_SET_NEW_WRAPPER("/proc/_new")
-	DREAMLUAU_SET_VAR_GET_WRAPPER("/proc/wrap_lua_get_var")
-	DREAMLUAU_SET_VAR_SET_WRAPPER("/proc/wrap_lua_set_var")
-	DREAMLUAU_SET_OBJECT_CALL_WRAPPER("/proc/wrap_lua_datum_proc_call")
-	DREAMLUAU_SET_GLOBAL_CALL_WRAPPER("/proc/wrap_lua_global_proc_call")
+	//DREAMLUAU_SET_NEW_WRAPPER("/proc/_new")
+	//DREAMLUAU_SET_VAR_GET_WRAPPER("/proc/wrap_lua_get_var")
+	//DREAMLUAU_SET_VAR_SET_WRAPPER("/proc/wrap_lua_set_var")
+	//DREAMLUAU_SET_OBJECT_CALL_WRAPPER("/proc/wrap_lua_datum_proc_call")
+	//DREAMLUAU_SET_GLOBAL_CALL_WRAPPER("/proc/wrap_lua_global_proc_call")
 	// Set the print wrapper, as otherwise, the print function is meaningless
-	DREAMLUAU_SET_PRINT_WRAPPER("/proc/wrap_lua_print")
+	//DREAMLUAU_SET_PRINT_WRAPPER("/proc/wrap_lua_print")
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/lua/OnConfigLoad()
@@ -156,3 +156,4 @@ SUBSYSTEM_DEF(lua)
 			continue
 		state.log_result(json_data)
 	return
+ */

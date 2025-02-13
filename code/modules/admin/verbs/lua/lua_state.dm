@@ -1,4 +1,4 @@
-#define MAX_LOG_REPEAT_LOOKBACK 5
+/* #define MAX_LOG_REPEAT_LOOKBACK 5
 
 GLOBAL_DATUM(lua_usr, /mob)
 GLOBAL_PROTECT(lua_usr)
@@ -9,7 +9,7 @@ GLOBAL_PROTECT(lua_state_stack)
 /datum/lua_state
 	var/display_name
 
-	/// The internal ID of the lua state stored in dreamluau's state list
+	/// The internal ID of the lua state stored in //DREAMLUAU's state list
 	var/internal_id
 
 	/// A log of every return, yield, and error for each chunk execution and function call
@@ -40,9 +40,9 @@ GLOBAL_PROTECT(lua_state_stack)
 		qdel(src)
 		return
 	display_name = _name
-	internal_id = DREAMLUAU_NEW_STATE()
+	internal_id = //DREAMLUAU_NEW_STATE()
 	if(isnull(internal_id))
-		stack_trace("dreamluau is not loaded")
+		stack_trace("//DREAMLUAU is not loaded")
 		qdel(src)
 	else if(!isnum(internal_id))
 		stack_trace(internal_id)
@@ -91,9 +91,9 @@ GLOBAL_PROTECT(lua_state_stack)
 /datum/lua_state/proc/load_script(script)
 	var/tmp_usr = GLOB.lua_usr
 	GLOB.lua_usr = usr
-	DREAMLUAU_SET_USR
+	//DREAMLUAU_SET_USR
 	GLOB.lua_state_stack += WEAKREF(src)
-	var/result = DREAMLUAU_LOAD(internal_id, script, "input")
+	var/result = //DREAMLUAU_LOAD(internal_id, script, "input")
 	SSlua.needs_gc_cycle |= src
 	pop(GLOB.lua_state_stack)
 	GLOB.lua_usr = tmp_usr
@@ -138,9 +138,9 @@ GLOBAL_PROTECT(lua_state_stack)
 
 	var/tmp_usr = GLOB.lua_usr
 	GLOB.lua_usr = usr
-	DREAMLUAU_SET_USR
+	//DREAMLUAU_SET_USR
 	GLOB.lua_state_stack += WEAKREF(src)
-	var/result = DREAMLUAU_CALL_FUNCTION(internal_id, function, call_args)
+//	var/result = //DREAMLUAU_CALL_FUNCTION(internal_id, function, call_args)
 	SSlua.needs_gc_cycle |= src
 	pop(GLOB.lua_state_stack)
 	GLOB.lua_usr = tmp_usr
@@ -165,9 +165,9 @@ GLOBAL_PROTECT(lua_state_stack)
 			return return_value
 
 /datum/lua_state/proc/awaken()
-	DREAMLUAU_SET_USR
+	//DREAMLUAU_SET_USR
 	GLOB.lua_state_stack += WEAKREF(src)
-	var/result = DREAMLUAU_AWAKEN(internal_id)
+	var/result = //DREAMLUAU_AWAKEN(internal_id)
 	SSlua.needs_gc_cycle |= src
 	pop(GLOB.lua_state_stack)
 
@@ -182,9 +182,9 @@ GLOBAL_PROTECT(lua_state_stack)
 /datum/lua_state/proc/resume(index, ...)
 	var/call_args = length(args) > 1 ? args.Copy(2) : list()
 
-	DREAMLUAU_SET_USR
+	//DREAMLUAU_SET_USR
 	GLOB.lua_state_stack += WEAKREF(src)
-	var/result = DREAMLUAU_RESUME(internal_id, index, call_args)
+	var/result = //DREAMLUAU_RESUME(internal_id, index, call_args)
 	SSlua.needs_gc_cycle |= src
 	pop(GLOB.lua_state_stack)
 
@@ -196,7 +196,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	return result
 
 /datum/lua_state/proc/get_globals()
-	var/result = DREAMLUAU_GET_GLOBALS(internal_id)
+	var/result = //DREAMLUAU_GET_GLOBALS(internal_id)
 	if(isnull(result))
 		CRASH("get_globals returned null")
 	if(istext(result))
@@ -208,7 +208,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	globals = list("values" = weakrefify_list(values), "variants" = variants)
 
 /datum/lua_state/proc/get_tasks()
-	var/result = DREAMLUAU_LIST_THREADS(internal_id)
+	var/result = //DREAMLUAU_LIST_THREADS(internal_id)
 	if(isnull(result))
 		CRASH("list_threads returned null")
 	if(istext(result))
@@ -216,12 +216,12 @@ GLOBAL_PROTECT(lua_state_stack)
 	return result
 
 /datum/lua_state/proc/kill_task(is_sleep, index)
-	var/result = is_sleep ? DREAMLUAU_KILL_SLEEPING_THREAD(internal_id, index) : DREAMLUAU_KILL_YIELDED_THREAD(internal_id, index)
+	var/result = is_sleep ? //DREAMLUAU_KILL_SLEEPING_THREAD(internal_id, index) : //DREAMLUAU_KILL_YIELDED_THREAD(internal_id, index)
 	SSlua.needs_gc_cycle |= src
 	return result
 
 /datum/lua_state/proc/collect_garbage()
-	var/result = DREAMLUAU_COLLECT_GARBAGE(internal_id)
+	var/result = //DREAMLUAU_COLLECT_GARBAGE(internal_id)
 	if(!isnull(result))
 		CRASH(result)
 
@@ -232,3 +232,4 @@ GLOBAL_PROTECT(lua_state_stack)
 			SStgui.update_uis(editor)
 
 #undef MAX_LOG_REPEAT_LOOKBACK
+ */

@@ -1,4 +1,4 @@
-/datum/lua_editor
+/* /datum/lua_editor
 	var/datum/lua_state/current_state
 
 	/// Arguments for a function call or coroutine resume
@@ -283,3 +283,4 @@
 ADMIN_VERB(lua_editor, R_DEBUG, "Open Lua Editor", "Its codin' time.", ADMIN_CATEGORY_DEBUG)
 	var/datum/lua_editor/editor = new
 	editor.ui_interact(user.mob)
+ */

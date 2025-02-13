@@ -1751,7 +1751,7 @@
 			return
 		return usr.client?.mark_datum(datum_to_mark)
 
-	else if(href_list["lua_state"])
+/* 	else if(href_list["lua_state"])
 		if(!check_rights(R_DEBUG))
 			return
 		var/datum/lua_state/state_to_view = locate(href_list["lua_state"])
@@ -1766,7 +1766,7 @@
 			if(log_entry["chunk"])
 				editor.force_view_chunk = log_entry["chunk"]
 				editor.force_modal = "viewChunk"
-		editor.ui_interact(usr)
+		editor.ui_interact(usr) */
 
 	else if(href_list["show_paper"])
 		if(!check_rights(R_ADMIN))

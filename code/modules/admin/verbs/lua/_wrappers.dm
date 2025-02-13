@@ -1,4 +1,4 @@
-/proc/wrap_lua_get_var(datum/thing, var_name)
+/* /proc/wrap_lua_get_var(datum/thing, var_name)
 	SHOULD_NOT_SLEEP(TRUE)
 	if(thing == world)
 		return world.vars[var_name]
@@ -46,3 +46,4 @@
 	var/result = list("status" = "print", "message" = print_message)
 	INVOKE_ASYNC(target_state, TYPE_PROC_REF(/datum/lua_state, log_result), result, TRUE)
 	log_lua("[target_state]: [print_message]")
+ */

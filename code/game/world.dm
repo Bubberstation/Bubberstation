@@ -487,7 +487,7 @@ GLOBAL_VAR(tracy_log)
 
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
-	DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(tick_lag * 100)
+	//DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(tick_lag * 100)
 
 /world/proc/init_byond_tracy()
 	var/library

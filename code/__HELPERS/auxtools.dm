@@ -1,4 +1,4 @@
-/// Macro for getting the auxtools library file
+/* /// Macro for getting the auxtools library file
 #define AUXLUA (world.system_type == MS_WINDOWS ? "auxlua.dll" : __detect_auxtools("auxlua"))
 
 /proc/__detect_auxtools(library)
@@ -10,3 +10,4 @@
 		return "[world.GetConfig("env", "HOME")]/.byond/bin/lib[library].so"
 	else
 		CRASH("Could not find lib[library].so")
+ */

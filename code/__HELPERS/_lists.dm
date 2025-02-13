@@ -1153,7 +1153,7 @@
 	return locate(coords[1], coords[2], coords[3])
 
 /**
- * Given a list and a list of its variant hints, appends variants that aren't explicitly required by dreamluau,
+ * Given a list and a list of its variant hints, appends variants that aren't explicitly required by //DREAMLUAU,
  * but are required by the lua editor tgui.
  */
 /proc/add_lua_editor_variants(list/values, list/variants, list/visited, path = "")

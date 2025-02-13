@@ -1,4 +1,4 @@
-/datum
+/* /datum
 	var/__auxtools_weakref_id //used by auxtools for weak references
 
 /**
@@ -237,3 +237,4 @@
  */
 /proc/__lua_kill_task(state, info)
 	CRASH("auxlua not loaded")
+ */
