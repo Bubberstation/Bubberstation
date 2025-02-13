@@ -319,6 +319,7 @@
 		computer_id_slot.forceMove(drop_location())
 
 	computer_id_slot = null
+	SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_REMOVED_ID, computer_id_slot, user) // BUBBER EDIT ADDITION - Signal on ID removal
 
 	if(!silent && !isnull(user))
 		to_chat(user, span_notice("You remove the card from the card slot."))

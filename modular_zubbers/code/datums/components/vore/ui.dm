@@ -486,11 +486,9 @@
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
 				to_chat(living_parent, span_warning("You cannot digest absorbed prey."))
 				return
-			#if !REQUIRES_PLAYER
-			if(!prey.mind)
+			if(!REQUIRES_PLAYER && !prey.mind)
 				prey_loc.digestion_death(prey)
 				return
-			#endif
 			var/datum/vore_preferences/prey_vore_prefs = prey.get_vore_prefs()
 			if(!prey_vore_prefs)
 				to_chat(living_parent, span_warning("[prey] isn't interested in being digested."))

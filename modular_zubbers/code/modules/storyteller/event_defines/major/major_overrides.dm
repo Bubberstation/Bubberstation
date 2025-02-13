@@ -62,10 +62,6 @@
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT)
 
-/datum/round_event_control/voidwalker
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_SPACE)
-
 /datum/round_event_control/cme
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
