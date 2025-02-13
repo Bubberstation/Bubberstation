@@ -8,7 +8,6 @@
 	// Components
 	var/list/components = list()
 	var/obj/machinery/camera/camera = null
-	var/skip_component_repair //Should we skip respawning all components when revived?
 
 //Cyborgs that are being held should act almost as how the AI behaves when carded.
 /mob/living/silicon/robot/mob_pickup(mob/living/user)
