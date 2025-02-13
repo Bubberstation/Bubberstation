@@ -19,9 +19,9 @@
 /datum/action/cooldown/bloodsucker/celerity/ActivatePower(atom/target)
 	var/mob/living/user = owner
 	var/datum/movespeed_modifier/celerity_mod = new()
-	celerity_mod.multiplicative_slowdown = -0.1 + 0.05*level_current //lightpink extract at level 10, just without the pacifism
+	celerity_mod.multiplicative_slowdown = -0.05*level_current //lightpink extract at level 10, just without the pacifism
 	owner.add_movespeed_modifier(celerity_mod, update = TRUE)
-	owner.next_move_modifier *= 0.1 + min(0.05*level_current, 0.5)
+	owner.next_move_modifier *= min(0.05*level_current, 0.5)
 	if(level_current > 3)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	user.balloon_alert(user, "the world slows down.")
@@ -60,9 +60,9 @@
 		return
 	var/mob/living/user = owner
 	var/datum/movespeed_modifier/celerity_mod = new()
-	celerity_mod.multiplicative_slowdown = -0.1 + -0.05*level_current
+	celerity_mod.multiplicative_slowdown = -0.05*level_current
 	owner.remove_movespeed_modifier(celerity_mod, update = TRUE)
-	owner.next_move_modifier /= 1 + min(0.05*level_current, 0.5)
+	owner.next_move_modifier /= min(0.05*level_current, 0.5)
 	if(level_current > 3)
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	user.balloon_alert(user, "the world speeds up.")
