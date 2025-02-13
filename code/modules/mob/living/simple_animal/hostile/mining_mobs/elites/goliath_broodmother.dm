@@ -53,9 +53,12 @@
 	COOLDOWN_DECLARE(random_tentacle)
 	var/list/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/children_list = list()
 
+
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_TENTACLE_IMMUNE, INNATE_TRAIT)
+
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/tumor_boss.ogg', 130 SECONDS) //bubber edit: boss music
 
 /datum/action/innate/elite_attack/tentacle_patch
 	name = "Tentacle Patch"

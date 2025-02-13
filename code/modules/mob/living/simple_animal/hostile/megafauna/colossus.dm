@@ -86,6 +86,8 @@
 	RegisterSignal(src, COMSIG_MOB_ABILITY_FINISHED, PROC_REF(finished_attack))
 	AddElement(/datum/element/projectile_shield)
 
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/colossus_boss.ogg', 160 SECONDS) //bubber edit: boss music
+
 /mob/living/simple_animal/hostile/megafauna/colossus/Destroy()
 	RemoveElement(/datum/element/projectile_shield)
 	spiral_shots = null
