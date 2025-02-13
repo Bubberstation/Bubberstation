@@ -193,7 +193,7 @@
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/borg/sight/meson,
-		/obj/item/borg_shapeshifter,
+		/obj/item/borg_shapeshifter/stable
 		)
 
 /datum/outfit/persistence/syndicate
