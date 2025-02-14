@@ -33,7 +33,9 @@
 	// Save the old DNA
 	transforming.dna.copy_dna(old_dna)
 	// Makes them into the new DNA
+	transforming.visual_only_organs = TRUE // SKYRAT EDIT ADDITION - Customization
 	new_dna.transfer_identity(transforming)
+	transforming.visual_only_organs = initial(transforming.visual_only_organs) // SKYRAT EDIT ADDITION - Customization
 	transforming.real_name = new_dna.real_name
 	transforming.name = transforming.get_visible_name()
 	transforming.updateappearance(mutcolor_update = TRUE)
@@ -44,7 +46,9 @@
 	var/mob/living/carbon/transforming = owner
 
 	if(!QDELING(owner)) // Don't really need to do appearance stuff if we're being deleted
+		transforming.visual_only_organs = TRUE // SKYRAT EDIT ADDITION - Customization
 		old_dna.transfer_identity(transforming)
+		transforming.visual_only_organs = initial(transforming.visual_only_organs) // SKYRAT EDIT ADDITION - Customization
 		transforming.updateappearance(mutcolor_update = TRUE)
 		transforming.domutcheck()
 

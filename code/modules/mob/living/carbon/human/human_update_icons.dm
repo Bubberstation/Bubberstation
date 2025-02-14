@@ -159,10 +159,9 @@ There are several things that need to be remembered:
 		my_chest?.worn_uniform_offset?.apply_offset(uniform_overlay)
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 
-
+	update_body_parts()
 	apply_overlay(UNIFORM_LAYER)
 	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_ICLOTHING)
-	update_mutant_bodyparts()
 
 /mob/living/carbon/human/update_worn_id(update_obscured = TRUE)
 	remove_overlay(ID_LAYER)
@@ -603,12 +602,10 @@ There are several things that need to be remembered:
 			my_chest?.worn_suit_offset?.apply_offset(suit_overlay)
 		// SKYRAT EDIT END
 		overlays_standing[SUIT_LAYER] = suit_overlay
-	update_body_parts()
-	update_mutant_bodyparts()
 
+	update_body_parts()
 	apply_overlay(SUIT_LAYER)
 	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_OCLOTHING)
-
 
 /mob/living/carbon/human/update_pockets()
 	if(client && hud_used)
@@ -678,7 +675,7 @@ There are several things that need to be remembered:
 
 	apply_overlay(FACEMASK_LAYER)
 	check_body_shape(BODYSHAPE_SNOUTED, ITEM_SLOT_MASK)
-	update_mutant_bodyparts() //e.g. upgate needed because mask now hides lizard snout
+	update_body_parts() //e.g. upgate needed because mask now hides lizard snout
 
 /mob/living/carbon/human/update_worn_back(update_obscured = TRUE)
 	remove_overlay(BACK_LAYER)
