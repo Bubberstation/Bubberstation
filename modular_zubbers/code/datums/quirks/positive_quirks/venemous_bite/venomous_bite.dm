@@ -124,7 +124,7 @@
 			var/mob/living/carbon/carbon_target = target
 			for (var/datum/disease/their_disease as anything in carbon_target.diseases)
 				if (their_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || their_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-					owner.ContactContractDisease(their_disease, target_zone)
+					carbon_owner.ContactContractDisease(their_disease, target_zone)
 
 	return TRUE
 
