@@ -1,9 +1,12 @@
+// Migrated to zubbers robot_movement.dm
+/*
 /mob/living/silicon/robot/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(robot_resting)
 		robot_resting = FALSE
 		on_standing_up()
 		update_icons()
+*/
 
 /mob/living/silicon/robot/toggle_resting()
 	robot_lay_down()

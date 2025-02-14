@@ -183,7 +183,38 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		floppy.forceMove(modularInterface)
 		modularInterface.inserted_disk = floppy
 		return
+	//BUBBER ADDITION START - COMPONENTS!
+	//Component installation
+	if(istype(W, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/U = W
+		if(!user.canUnEquip(U))
+			to_chat(user, span_warning("The component is stuck to you and you can't seem to let go of it!"))
+			return
+		if(U.broken)
+			to_chat(user, span_warning("The component is too damaged to be installed!"))
+			return
+		if(opened) // Are they trying to insert something?
+			for(var/V in components)
+				var/datum/robot_component/C = components[V]
+				if(!C.installed && istype(W, C.external_type))
+					if(!user.dropItemToGround(W))
+						return
+					C.wrapped = W
+					W.forceMove(src)
+					C.install()
+					C.installed = 1
 
+					/*
+					var/obj/item/robot_parts/robot_component/WC = W
+					if(istype(WC))
+						C.brute_damage = WC.brute
+						C.burn_damage = WC.burn
+					*/
+
+					to_chat(usr, span_blue("You install the [W.name]."))
+
+					return
+	//BUBBER ADDITION END
 	return ..()
 
 #define LOW_DAMAGE_UPPER_BOUND 1/3
@@ -345,6 +376,9 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		ignite_mob()
 
+// BUBBER CHANGE BEGIN
+//Moved to modular robot_defence.dm
+/*
 /mob/living/silicon/robot/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -354,6 +388,9 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			emp_knockout(16 SECONDS)
 		if(2)
 			emp_knockout(6 SECONDS)
+
+*/
+//BUBBER CHANGE END
 
 /mob/living/silicon/robot/proc/emp_knockout(deciseconds)
 	set_stat(UNCONSCIOUS)

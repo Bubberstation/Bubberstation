@@ -612,6 +612,16 @@
 /mob/living/silicon/robot/updatehealth()
 	..()
 	update_damage_particles()
+
+	//BUBBER Addition - Components
+	if(status_flags & (HAS_TRAIT(src, TRAIT_GODMODE)))
+		health = getMaxHealth()
+		set_stat(CONSCIOUS)
+		return
+	set_health(maxHealth - getFireLoss() - getBruteLoss())
+
+	//BUBBER Addition END - Components
+
 	if(!model.breakable_modules)
 		return
 
@@ -638,6 +648,8 @@
 			repair_cyborg_slot(1)
 
 	previous_health = health
+
+	return //BUBBER Addition - Components
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
@@ -705,6 +717,10 @@
 	if(!.)
 		return
 
+	//BUBBER ADDITION - COMPONENTS
+	restore_components()
+	restore_cell()
+	//BUBBER ADDITION END - COMPONENTS
 	if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
 		builtInCamera.toggle_cam(src, 0)
 	if(full_heal_flags & HEAL_ADMIN)
@@ -716,6 +732,7 @@
 	notify_ai(AI_NOTIFICATION_NEW_BORG)
 	toggle_headlamp(FALSE, TRUE) //This will reenable borg headlamps if doomsday is currently going on still.
 	update_stat()
+
 	return TRUE
 
 /mob/living/silicon/robot/fully_replace_character_name(oldname, newname)
