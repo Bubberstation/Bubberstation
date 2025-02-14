@@ -454,11 +454,6 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowturf += explode
 
-		//SKYRAT EDIT ADDITION
-		for(var/obj/machinery/light/iterating_light in explode)
-			iterating_light.start_flickering()
-		//SKYRAT EDIT END
-
 		if(prob(40) && dist < flame_range && !isspaceturf(explode) && !explode.density)
 			flameturf += explode
 

@@ -1,4 +1,4 @@
-//SKYRAT AND SOL AMMO
+//TERRAGOV AMMO
 
 /datum/supply_pack/security/lethalsolpistols
 	name = ".35 Ammunition Crates"
@@ -53,7 +53,7 @@
 	crate_name = "anti riot shotgun ammo crate"
 
 
-//SOL GUNS
+//TERRAGOV GUNS
 
 /datum/supply_pack/security/wespe
 	name = "Wespe Three-Pack Crates"
@@ -154,6 +154,7 @@
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
 
+/*
 /datum/supply_pack/imports/lmg
 	name = "Smuggled Sol Light Machinegun Crate"
 	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
@@ -166,6 +167,7 @@
 		/obj/item/gun/ballistic/automatic/sol_rifle/machinegun = 1,
 		/obj/item/ammo_box/magazine/c40sol_rifle/drum = 2,
 	)
+*/ //BUBBER EDIT: IT'S AS BAD AS YOU THOUGHT
 
 /datum/supply_pack/imports/infanterie
 	name = "Carwil Battle Rifle Crate"

@@ -499,6 +499,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf) - /datum/ai_mod
 
 /datum/action/innate/ai/destroy_rcds/Activate()
 	for(var/I in GLOB.rcd_list)
+		// BUBBER EDIT BEGIN - Ghost role RCDs are spared
+		var/turf/rcd_loc = get_turf(I)
+		if(!is_station_level(rcd_loc.z))
+			continue
+		// BUBBER EDIT END
 		if(!istype(I, /obj/item/construction/rcd/borg)) //Ensures that cyborg RCDs are spared.
 			var/obj/item/construction/rcd/RCD = I
 			RCD.detonate_pulse()

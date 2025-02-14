@@ -110,7 +110,7 @@
 /datum/techweb_node/medbay_equip/New()
 	design_ids += list(
 		"hospital_gown",
-		"anesthetic_machine",
+		"breath_machine",
 		"smartdartgun",
 	)
 	return ..()
@@ -142,12 +142,6 @@
 	return ..()
 
 ////////////////////////Computer tech////////////////////////
-
-/datum/techweb_node/consoles/New()
-	design_ids += list(
-		"time_clock_frame",
-	)
-	return ..()
 
 /datum/techweb_node/hud/New()
 	design_ids += list(
@@ -189,6 +183,12 @@
 	design_ids += list(
 		"cybernetic_tongue",
 		"cybernetic_tongue_lizard",
+	)
+	return ..()
+
+/datum/techweb_node/chem_synthesis/New()
+	design_ids += list(
+		"plumbing_eng",
 	)
 	return ..()
 
@@ -250,12 +250,6 @@
 	)
 	return ..()
 
-/datum/techweb_node/plumbing/New()
-	design_ids += list(
-		"plumbing_eng",
-	)
-	return ..()
-
 /datum/techweb_node/mining/New()
 	design_ids += list(
 		"mesons_prescription",
@@ -263,7 +257,6 @@
 	return ..()
 
 /////////////////////////robotics tech/////////////////////////
-
 /datum/techweb_node/robotics/New()
 	design_ids += list(
 		"borg_upgrade_snacks",
@@ -284,7 +277,6 @@
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
 		"borg_upgrade_brush",
-		"borg_upgrade_shrink",
 	)
 	return ..()
 

@@ -34,7 +34,8 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	icon = 'icons/obj/antags/cult/rune.dmi'
 	icon_state = "1"
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	layer = SIGIL_LAYER
+	plane = FLOOR_PLANE
+	layer = RUNE_LAYER
 	color = RUNE_COLOR_RED
 
 	/// The name of the rune to cultists
@@ -389,12 +390,35 @@ structure_check() searches for nearby cultist structures required for the invoca
 		sacrificial.investigate_log("has been sacrificially dusted by the cult.", INVESTIGATE_DEATHS)
 		sacrificial.dust(TRUE, FALSE, TRUE)
 	else if (sacrificial)
-		var/obj/item/soulstone/stone = new(loc)
-		if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
-			stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
-		playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
-		sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.gib(DROP_ALL_REMAINS)
+	//BUBBER EDIT BEGIN: removes force gib from cult
+		if(!HAS_TRAIT(sacrificial, TRAIT_HAS_BEEN_CULT_SACRIFICED))
+			ADD_TRAIT(sacrificial, TRAIT_HAS_BEEN_CULT_SACRIFICED, MAGIC_TRAIT)
+			var/obj/item/soulstone/stone = new(loc)
+
+			var/shard_choice = tgui_alert(
+				user = sacrificial,
+				message = "Do you wish to become a soul shard for the cult, selecting yes will gib you and you will play as a soul shard, selecting no will husk you and your body will stay intact.",
+				title = "Choose your fate",
+				buttons = list("Decline", "Accept"),
+				timeout = 10 SECONDS,
+				autofocus = TRUE
+				)
+			if(shard_choice == "Accept")
+				if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
+					stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
+				playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
+				sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
+				sacrificial.gib(DROP_ALL_REMAINS)
+			else
+				sacrificial.death(FALSE)
+				sacrificial.become_husk(BURN)
+				sacrificial.investigate_log("has been sacrificially husked by the cult.", INVESTIGATE_DEATHS)
+				stone.capture_ghost(sacrificial, invokers[1])
+		else
+			sacrificial.death(FALSE)
+			sacrificial.become_husk(BURN)
+			sacrificial.investigate_log("has been sacrificially husked by the cult.", INVESTIGATE_DEATHS)
+		//BUBBER EDIT END
 
 	try_spawn_sword() // after sharding and gibbing, which potentially dropped a null rod
 

@@ -3,7 +3,6 @@
 	desc = "An implant that can be placed in a user's head to control circuits using their brain."
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "bci"
-	visual = FALSE
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
 
@@ -152,6 +151,9 @@
 	))
 
 /obj/item/circuit_component/bci_core/input_received(datum/port/input/port)
+	if (!COMPONENT_TRIGGERED_BY(send_message_signal, port))
+		return
+
 	var/sent_message = trim(message.value)
 	if (!sent_message)
 		return

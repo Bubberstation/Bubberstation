@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(lorecaster)
 	name = "Lorecaster"
 	wait = 30 MINUTES
+	/// List of all stories, that have run or not
+	var/list/all_stories
 	/// List of stories yet to have been run
 	var/list/stories
 
@@ -13,10 +15,14 @@ SUBSYSTEM_DEF(lorecaster)
 
 /datum/controller/subsystem/lorecaster/fire(resumed)
 	if(!fexists(NEWS_FILE))
+		can_fire = FALSE
 		return
 
-	if(!length(stories)) // Ran out of stories? Run through 'em again
-		stories = json_load(NEWS_FILE)
+	if(!length(all_stories)) // Ran out of stories? Run through 'em again
+		all_stories = json_load(NEWS_FILE)
+
+	if(!length(stories))
+		stories = all_stories.Copy()
 		return // But skip the cycle this time
 
 	var/picked_story = pick(stories)

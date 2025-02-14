@@ -85,6 +85,7 @@
 	icon_state = "deer"
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
+	organ_type = /obj/item/organ/external/taur_body/horselike/deer
 
 /datum/sprite_accessory/taur/drake
 	name = "Drake"

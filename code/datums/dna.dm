@@ -179,9 +179,19 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	SEND_SIGNAL(holder, COMSIG_CARBON_GAIN_MUTATION, mutation_type, class)
 	return force_give(new mutation_type (class, time, copymut = mutation))
 
-/datum/dna/proc/remove_mutation(mutation_type)
+/datum/dna/proc/remove_mutation(datum/mutation/human/mutation_type, mutadone)
+
+	var/datum/mutation/human/actual_mutation = get_mutation(mutation_type)
+
+	if(!actual_mutation)
+		return FALSE
+
+	// Check that it exists first before trying to remove it with mutadone
+	if(actual_mutation.mutadone_proof && mutadone)
+		return FALSE
+
 	SEND_SIGNAL(holder, COMSIG_CARBON_LOSE_MUTATION, mutation_type)
-	return force_lose(get_mutation(mutation_type))
+	return force_lose(actual_mutation)
 
 /datum/dna/proc/check_mutation(mutation_type)
 	return get_mutation(mutation_type)
@@ -527,7 +537,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 /datum/dna/stored/add_mutation(mutation_name) //no mutation changes on stored dna.
 	return
 
-/datum/dna/stored/remove_mutation(mutation_name)
+/datum/dna/stored/remove_mutation(mutation_name, mutadone)
 	return
 
 /datum/dna/stored/check_mutation(mutation_name)
@@ -755,9 +765,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["caps"] = SSaccessories.caps_list[deconstruct_block(get_uni_feature_block(features, DNA_MUSHROOM_CAPS_BLOCK), length(SSaccessories.caps_list))]
 	if(dna.features["pod_hair"])
 		dna.features["pod_hair"] = SSaccessories.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), length(SSaccessories.pod_hair_list))]
+	if(dna.features["fish_tail"])
+		dna.features["fish_tail"] = SSaccessories.tails_list_fish[deconstruct_block(get_uni_feature_block(features, DNA_FISH_TAIL_BLOCK), length(SSaccessories.tails_list_fish))]
 
-	for(var/obj/item/organ/external/external_organ in organs)
-		external_organ.mutate_feature(features, src)
+	for(var/obj/item/organ/organ in organs)
+		organ.mutate_feature(features, src)
 
 	if(icon_update)
 		update_body(is_creating = mutcolor_update)

@@ -78,7 +78,7 @@ Slimecrossing Armor
 	if(!IsAvailable(feedback = TRUE))
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
-	var/new_color = input(owner, "Choose the lens color:", "Color change",glasses.glasses_color) as color|null
+	var/new_color = tgui_color_picker(owner, "Choose the lens color:", "Color change",glasses.glasses_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	if(!new_color)
 		return
 	RemoveElement(/datum/element/wearable_client_colour, /datum/client_colour/glass_colour, ITEM_SLOT_EYES, glasses.glasses_color, glasses.forced_glass_color)
@@ -149,6 +149,10 @@ Slimecrossing Armor
 	item_flags = IMMUTABLE_SLOW
 	slowdown = 4
 	var/hit_reflect_chance = 40
+
+/obj/item/clothing/suit/armor/heavy/adamantine/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
 
 /obj/item/clothing/suit/armor/heavy/adamantine/IsReflect(def_zone)
 	if((def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)) && prob(hit_reflect_chance))

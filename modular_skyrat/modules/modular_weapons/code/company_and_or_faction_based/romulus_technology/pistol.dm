@@ -85,7 +85,6 @@
 /obj/item/gun/ballistic/automatic/pistol/m1911/gold/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
 
-
 /obj/item/storage/toolbox/guncase/skyrat/pistol/m1911_gold
 	name = "golden m1911 .460 ceres"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/m1911/gold

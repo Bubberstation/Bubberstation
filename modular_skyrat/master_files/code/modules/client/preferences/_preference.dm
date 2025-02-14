@@ -1,5 +1,10 @@
 #define REQUIRED_CROP_LIST_SIZE 4
 
+/datum/preference
+	/// If the selected species has this in its /datum/species/mutant_bodyparts,
+	/// will show the feature as selectable.
+	var/relevant_mutant_bodypart = null
+
 /datum/preference/tri_color
 	abstract_type = /datum/preference/tri_color
 	var/type_to_check = /datum/preference/toggle/allow_mismatched_parts

@@ -1109,7 +1109,7 @@
 	. = ..()
 	if(SPT_PROB(2.5, seconds_per_tick))
 		// 20u = 1x1, 45u = 2x2, 80u = 3x3
-		var/volume_to_radius = FLOOR(sqrt(volume/5), 1) - 1
+		var/volume_to_radius = FLOOR(sqrt(volume/3), 1) - 1 // BUBBER EDIT CHANGE - Original: volume/5
 		var/suck_range = clamp(volume_to_radius, 0, 3)
 
 		if(!suck_range)

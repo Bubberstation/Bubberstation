@@ -10,6 +10,7 @@
 	metabolized_traits = list(TRAIT_ANALGESIA)
 	inverse_chem_val = 0.55
 	inverse_chem = /datum/reagent/inverse/lidocaine
+	taste_description = "vanilla"
 
 	metabolized_traits = list(TRAIT_ANALGESIA)
 

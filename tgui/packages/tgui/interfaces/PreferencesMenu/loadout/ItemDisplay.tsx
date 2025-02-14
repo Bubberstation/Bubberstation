@@ -107,7 +107,10 @@ export const ItemDisplay = (props: {
 
 const ItemListDisplay = (props: { items: LoadoutItem[] }) => {
   const { data } = useBackend<LoadoutManagerData>();
-  const { loadout_list } = data.character_preferences.misc;
+  const loadout_list =
+    data.character_preferences.misc.loadout_lists[
+      data.character_preferences.misc.loadout_index
+    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
   const itemList = FilterItemList(props.items); // SKYRAT EDIT - EXPANDED LOADOUT
   return (
     <Flex wrap>

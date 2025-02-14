@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
  * * color - color of the log text
  * * log_globally - boolean checking whether or not we write this log to the log file
  */
-/atom/proc/log_message(message, message_type, color = null, log_globally = TRUE, list/data, redacted_copy)
+/atom/proc/log_message(message, message_type, color = null, log_globally = TRUE, list/data)
 	if(!log_globally)
 		return
 
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	#endif
 	//SKYRAT EDIT ADDITION END
 	var/log_text = "[key_name_and_tag(src)] [message] [loc_name(src)]"
-	var/redacted_log_text = "[(src)]: [redacted_copy ? redacted_copy : message] @ [loc_name(src)]" // BUBBER EDIT ADDITION
+	var/redacted_log_text = "[(src)]: [message] @ [loc_name(src)]" // BUBBER EDIT ADDITION
 	switch(message_type)
 		/// ship both attack logs and victim logs to the end of round attack.log just to ensure we don't lose information
 		if(LOG_ATTACK, LOG_VICTIM)
@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		else
 			if(include_link)
 				. += "<a href='?priv_msg=[ckey]'>"
-			. += key
+			. += ("\'([key])\'") // BUBBER EDIT
 		if(!C)
 			. += "\[DC\]"
 

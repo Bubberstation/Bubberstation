@@ -65,3 +65,14 @@
 	if(prob(75))
 		target.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_MAGIC)
 	return ..()
+
+/datum/design/surgery/lobotomy/blessed
+	name = "Blessed Lobotomy"
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	id = "surgery_blessed_lobotomy"
+	surgery = /datum/surgery/advanced/blessed_lobotomy
+
+/datum/techweb_node/surgery_adv/New()
+	design_ids += "surgery_blessed_lobotomy"
+	. = ..()
+

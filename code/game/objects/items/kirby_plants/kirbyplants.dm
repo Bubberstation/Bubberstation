@@ -19,9 +19,10 @@
 	var/dead = FALSE
 	///If it's a special named plant, set this to true to prevent dead-name overriding.
 	var/custom_plant_name = FALSE
-	var/list/static/random_plant_states
+	var/static/list/random_plant_states
 	/// Maximum icon state number - KEEP THIS UP TO DATE
 	var/random_state_cap = 43 // SKYRAT EDIT ADDITION
+
 
 /obj/item/kirbyplants/Initialize(mapload)
 	. = ..()
@@ -67,23 +68,25 @@
 
 /// Cycle basic plant visuals
 /obj/item/kirbyplants/proc/change_visual()
-	if(!random_plant_states)
-		generate_states()
+	if(isnull(random_plant_states))
+		random_plant_states = generate_states()
 	var/current = random_plant_states.Find(icon_state)
 	var/next = WRAP(current+1,1,length(random_plant_states))
 	base_icon_state = random_plant_states[next]
 	update_appearance(UPDATE_ICON)
 
 /obj/item/kirbyplants/proc/generate_states()
-	random_plant_states = list()
+	var/list/plant_states = list()
 	for(var/i in 1 to random_state_cap) //SKYRAT EDIT CHANGE - ORIGINAL: for(var/i in 1 to 24)
 		var/number
 		if(i < 10)
 			number = "0[i]"
 		else
 			number = "[i]"
-		random_plant_states += "plant-[number]"
-	random_plant_states += list("applebush", "monkeyplant") //SKYRAT EDIT CHANGE - ORIGINAL:random_plant_states += "applebush"
+		plant_states += "plant-[number]"
+	plant_states += "applebush"
+	plant_states += "monkeyplant" // BUBBER EDIT ADDITION
+	return plant_states
 
 /obj/item/kirbyplants/random
 	icon = 'icons/obj/fluff/flora/_flora.dmi'

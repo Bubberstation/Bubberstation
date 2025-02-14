@@ -23,7 +23,7 @@
 
 /obj/item/borg/upgrade/syndicate_access/dauntless/examine_more(mob/user)
 	. = ..()
-	. += span_notice("This one seems to include a Interdyne communication chip. How neat!")
+	. += span_notice("This one seems to include an Interdyne communication chip. How neat!")
 
 /obj/item/borg/upgrade/syndicate_access/dauntless/action(mob/living/silicon/robot/R, user)
 	. = ..()

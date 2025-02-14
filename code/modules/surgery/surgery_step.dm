@@ -80,13 +80,14 @@
 	return FALSE
 
 #define SURGERY_SLOWDOWN_CAP_MULTIPLIER 2.5 //increase to make surgery slower but fail less, and decrease to make surgery faster but fail more
-#define SURGERY_SPEEDUP_AREA 0.5 // Skyrat Edit Addition - reward for doing surgery in surgery
 ///Modifier given to surgery speed for dissected bodies.
 #define SURGERY_SPEED_DISSECTION_MODIFIER 0.8
 ///Modifier given to users with TRAIT_MORBID on certain surgeries
 #define SURGERY_SPEED_MORBID_CURIOSITY 0.7
 ///Modifier given to patients with TRAIT_ANALGESIA
-#define SURGERY_SPEED_TRAIT_ANALGESIA 0.8
+#define SURGERY_SPEED_TRAIT_ANALGESIA 0.92 // BUBBER EDIT CHANGE - Original: 0.80
+///Modifier given to patients with sterilization spray
+#define SURGERY_SPEED_TRAIT_STERILE 0.84 // BUBBER EDIT ADDITION
 
 /datum/surgery_step/proc/initiate(mob/living/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	// Only followers of Asclepius have the ability to use Healing Touch and perform miracle feats of surgery.
@@ -119,11 +120,16 @@
 
 	if(check_morbid_curiosity(user, tool, surgery))
 		speed_mod *= SURGERY_SPEED_MORBID_CURIOSITY
+	// BUBBER EDIT CHANGE BEGIN - Surgery Modifiers
+	if(issynthetic(target))
+		speed_mod *= SURGERY_SPEED_TRAIT_STERILE
+	else
+		if((HAS_TRAIT(target, TRAIT_ANALGESIA) && !(HAS_TRAIT(target, TRAIT_STASIS))) || target.stat == DEAD)
+			speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
 
-	/* SKYRAT EDIT START - Worked in with reward buffs below
-	if(HAS_TRAIT(target, TRAIT_ANALGESIA))
-		speed_mod *= SURGERY_SPEED_TRAIT_ANALGESIA
-	*/ // SKYRAT EDIT END
+		if(target.has_sterilizine())
+			speed_mod *= SURGERY_SPEED_TRAIT_STERILE
+	// BUBBER EDIT CHANGE END
 
 	var/implement_speed_mod = 1
 	if(implement_type) //this means it isn't a require hand or any item step.
@@ -141,26 +147,19 @@
 
 	var/was_sleeping = (target.stat != DEAD && target.IsSleeping())
 
-	// Skyrat Edit Addition - reward for doing surgery on calm patients, and for using surgery rooms(ie. surgerying alone)
-	if(was_sleeping || HAS_TRAIT(target, TRAIT_ANALGESIA) || target.stat == DEAD)
-		modded_time *= SURGERY_SPEEDUP_AREA
-		to_chat(user, span_notice("You are able to work faster due to the patient's calm attitude!"))
-	var/quiet_enviromnent = TRUE
-	for(var/mob/living/carbon/loud_person in view(2, get_turf(user)))
-		if(loud_person != user && loud_person != target && loud_person.stat == CONSCIOUS)
-			quiet_enviromnent = FALSE
-			break
-	if(quiet_enviromnent)
-		modded_time *= SURGERY_SPEEDUP_AREA
-		to_chat(user, span_notice("You are able to work faster due to the quiet environment!"))
-	// Skyrat Edit End
-
 	if(do_after(user, modded_time, target = target, interaction_key = user.has_status_effect(/datum/status_effect/hippocratic_oath) ? target : DOAFTER_SOURCE_SURGERY)) //If we have the hippocratic oath, we can perform one surgery on each target, otherwise we can only do one surgery in total.
 
 		if((prob(100-fail_prob) || (iscyborg(user) && !silicons_obey_prob)) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
 				update_surgery_mood(target, SURGERY_STATE_SUCCESS)
 				play_success_sound(user, target, target_zone, tool, surgery)
+				// BUBBER EDIT ADDITION BEGIN - Show surgery speed to viewers
+				var/feedback_bubble = get_feedback_message(user, target, speed_mod)
+				if(!isnull(feedback_bubble))
+					user.balloon_alert(user, feedback_bubble)
+				else
+					user.balloon_alert(user, "[round(1 / speed_mod, 0.1)]x speed")
+				// BUBBER EDIT ADDITION END
 				advance = TRUE
 		else
 			if(failure(user, target, target_zone, tool, surgery, fail_prob))
@@ -180,7 +179,6 @@
 
 	surgery.step_in_progress = FALSE
 	return advance
-#undef SURGERY_SPEEDUP_AREA // SKYRAT EDIT ADDITION
 
 /**
  * Handles updating the mob's mood depending on the surgery states.
@@ -335,16 +333,10 @@
 /datum/surgery_step/proc/display_pain(mob/living/target, pain_message, mechanical_surgery = FALSE)
 	if(target.stat < UNCONSCIOUS)
 		if(HAS_TRAIT(target, TRAIT_ANALGESIA))
-			target.add_mood_event("mild_surgery", /datum/mood_event/mild_surgery) // SKYRAT EDIT ADDITION - Adds mood effects to surgeries
 			if(!pain_message)
 				return
 			to_chat(target, span_notice("You feel a dull, numb sensation as your body is surgically operated on."))
-		// SKYRAT EDIT ADDITION START
-		else if(mechanical_surgery == TRUE) //robots can't benefit from numbing agents like most but have no reason not to sleep - their debuff falls in-between
-			target.add_mood_event("robot_surgery", /datum/mood_event/robot_surgery)
-		// SKYRAT EDIT ADDITION END
 		else
-			target.add_mood_event("severe_surgery", /datum/mood_event/severe_surgery) // SKYRAT EDIT ADDITION - Adds mood effects to surgeries
 			if(!pain_message)
 				return
 			to_chat(target, span_userdanger(pain_message))
@@ -359,3 +351,4 @@
 #undef SURGERY_STATE_FAILURE
 #undef SURGERY_STATE_SUCCESS
 #undef SURGERY_MOOD_CATEGORY
+#undef SURGERY_SPEED_TRAIT_STERILE // BUBBER EDIT ADDITION

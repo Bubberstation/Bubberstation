@@ -171,7 +171,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 
 ///Map generation defines
-#define DEFAULT_SPACE_RUIN_LEVELS 7
+#define DEFAULT_SPACE_RUIN_LEVELS 4 // Bubber Edit - ORG: 7
 #define DEFAULT_SPACE_EMPTY_LEVELS 1
 
 #define BIOME_LOW_HEAT "low_heat"

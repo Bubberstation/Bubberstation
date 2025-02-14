@@ -12,6 +12,11 @@
 /// Used when the `get_job_unavailable_error_message` proc can't make sense of a given code.
 #define GENERIC_JOB_UNAVAILABLE_ERROR "Error: Unknown job availability."
 
+// Human authority settings
+// If you want to add another setting, make sure to also add it to the if chain in /datum/job_config_type/human_authority/validate_value()
+#define JOB_AUTHORITY_HUMANS_ONLY "HUMANS_ONLY"
+#define JOB_AUTHORITY_NON_HUMANS_ALLOWED "NON_HUMANS_ALLOWED"
+
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
 #define DEFAULT_BIBLE "Default Bible Name"
@@ -25,6 +30,7 @@
 #define JOB_CONFIG_REQUIRED_CHARACTER_AGE "Required Character Age"
 #define JOB_CONFIG_SPAWN_POSITIONS "Spawn Positions"
 #define JOB_CONFIG_TOTAL_POSITIONS "Total Positions"
+#define JOB_CONFIG_HUMAN_AUTHORITY "Human Authority Whitelist Setting"
 
 /**
  * =======================
@@ -138,8 +144,8 @@
 #define JOB_NAVAL_FLEET_ADMIRAL "Fleet Admiral"
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
-#define JOB_SOLFED "SolFed"
-#define JOB_SOLFED_LIASON "SolFed Liason"
+#define JOB_TERRAGOV "TerraGov"
+#define JOB_TERRAGOV_LIASON "TerraGov Liason"
 // SKYRAT EDIT ADDITION END
 
 #define JOB_GROUP_ENGINEERS list( \

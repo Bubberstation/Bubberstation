@@ -319,6 +319,7 @@
 		computer_id_slot.forceMove(drop_location())
 
 	computer_id_slot = null
+	SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_REMOVED_ID, computer_id_slot, user) // BUBBER EDIT ADDITION - Signal on ID removal
 
 	if(!silent && !isnull(user))
 		to_chat(user, span_notice("You remove the card from the card slot."))
@@ -559,7 +560,10 @@
 	if(!use_energy())
 		return
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
-		playsound(src, pick('sound/machines/beep/twobeep_voice1.ogg', 'sound/machines/beep/twobeep_voice2.ogg'), 50, TRUE)
+		playsound(src, pick(
+			'sound/machines/beep/twobeep_voice1.ogg',
+			'sound/machines/beep/twobeep_voice2.ogg',
+			), 50, TRUE)
 	else
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 	audible_message("*[ringtone]*")

@@ -225,14 +225,6 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
       </Stack>
     );
     // SKYRAT EDIT START
-  } else if (job.veteran && !data.is_veteran) {
-    rightSide = (
-      <Stack align="center" height="100%" pr={1}>
-        <Stack.Item grow textAlign="right">
-          <b>Veteran Only</b>
-        </Stack.Item>
-      </Stack>
-    );
   } else if (
     data.species_restricted_jobs &&
     data.species_restricted_jobs.indexOf(name) !== -1

@@ -155,7 +155,7 @@
 				/obj/item/food/vendor_tray_meal/side/moffin = 6,
 				/obj/item/food/vendor_tray_meal/side/cornbread = 6,
 				/obj/item/food/vendor_tray_meal/side/roasted_seeds = 6,
-				/obj/item/reagent_containers/condiment/moth_milk = 6, //BUBBER EDIT: ADDS MOTH MILK TO THE MOTH VENDOR. //BUBBER TODO: Modularity
+				/obj/item/reagent_containers/condiment/moth_milk = 6,
 			),
 		),
 	)

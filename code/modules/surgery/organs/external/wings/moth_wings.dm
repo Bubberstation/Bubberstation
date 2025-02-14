@@ -21,11 +21,12 @@
 	RegisterSignal(receiver, COMSIG_HUMAN_BURNING, PROC_REF(try_burn_wings))
 	RegisterSignal(receiver, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(heal_wings))
 	RegisterSignal(receiver, COMSIG_MOB_CLIENT_MOVE_NOGRAV, PROC_REF(on_client_move))
+	RegisterSignal(receiver, COMSIG_MOB_ATTEMPT_HALT_SPACEMOVE, PROC_REF(on_pushoff))
 	START_PROCESSING(SSnewtonian_movement, src)
 
 /obj/item/organ/external/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
 	. = ..()
-	UnregisterSignal(organ_owner, list(COMSIG_HUMAN_BURNING, COMSIG_LIVING_POST_FULLY_HEAL, COMSIG_MOB_CLIENT_MOVE_NOGRAV))
+	UnregisterSignal(organ_owner, list(COMSIG_HUMAN_BURNING, COMSIG_LIVING_POST_FULLY_HEAL, COMSIG_MOB_CLIENT_MOVE_NOGRAV, COMSIG_MOB_ATTEMPT_HALT_SPACEMOVE))
 	STOP_PROCESSING(SSnewtonian_movement, src)
 
 /obj/item/organ/external/wings/moth/make_flap_sound(mob/living/carbon/wing_owner)
@@ -75,6 +76,17 @@
 	source.newtonian_move(dir2angle(source.client.intended_direction), instant = TRUE, drift_force = MOTH_WING_FORCE, controlled_cap = max_drift_force)
 	source.setDir(source.client.intended_direction)
 
+/obj/item/organ/external/wings/moth/proc/on_pushoff(mob/source, movement_dir, continuous_move, atom/backup)
+	SIGNAL_HANDLER
+
+	if (get_dir(source, backup) == movement_dir || source.loc == backup.loc)
+		return
+
+	if (!allow_flight() || !source.client.intended_direction)
+		return
+
+	return COMPONENT_PREVENT_SPACEMOVE_HALT
+
 ///check if our wings can burn off ;_;
 /obj/item/organ/external/wings/moth/proc/try_burn_wings(mob/living/carbon/human/human)
 	SIGNAL_HANDLER
@@ -114,9 +126,10 @@
 	var/burnt
 
 /datum/bodypart_overlay/mutant/wings/moth/New()
-	. = ..()
-
 	burn_datum = fetch_sprite_datum(burn_datum)
+
+	return ..()
+
 
 /datum/bodypart_overlay/mutant/wings/moth/get_global_feature_list()
 	return SSaccessories.sprite_accessories["wings"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.moth_wings_list

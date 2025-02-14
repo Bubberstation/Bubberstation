@@ -6,6 +6,7 @@
 		/obj/item/stack/sheet/cloth = 4,
 	)
 	category = CAT_TOOLS
+	crafting_flags = CRAFT_MUST_BE_LEARNED
 
 /obj/item/research_paper
 	name = "research paper"

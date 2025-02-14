@@ -17,7 +17,7 @@
 	examine_limb_id = SPECIES_MAMMAL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/tajaran, // BUBBER EDIT
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/tajaran,
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,

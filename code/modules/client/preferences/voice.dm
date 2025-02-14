@@ -2,7 +2,7 @@
 /datum/preference/choiced/voice
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tts_voice"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES // BUBBER EDIT: PREFERENCE_CATEGORY_NON_CONTEXTUAL
 
 /datum/preference/choiced/voice/is_accessible(datum/preferences/preferences)
 	if(!SStts.tts_enabled)
@@ -28,7 +28,7 @@
 /datum/preference/numeric/tts_voice_pitch
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tts_voice_pitch"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES // BUBBER EDIT: PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	minimum = -12
 	maximum = 12
 

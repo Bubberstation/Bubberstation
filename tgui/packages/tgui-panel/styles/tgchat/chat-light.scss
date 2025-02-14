@@ -433,6 +433,7 @@ h2.alert {
 .bolddanger {
   color: #ff0000;
   font-weight: bold;
+  font-size: 125%; // BUBBER EDIT ADDITION
 }
 
 .danger {
@@ -1331,9 +1332,13 @@ $border-width-px: $border-width * 1px;
   }
 }
 
-// SKYRAT EDIT ADDITION END
+.subtle {
+  color: #000099;
+}
 
-/* BUBBER EDIT ADDITION BEGIN - DARK MODE CLASSES */
+.subtler {
+  color: #4a00b3;
+}
 
 .subtlepda {
   color: #9e008c;
@@ -1341,5 +1346,53 @@ $border-width-px: $border-width * 1px;
 
 .vote {
   color: #b30083;
+}
+
+.velvet {
+  color: #660015;
+  font-weight: bold;
+  animation: velvet 5000ms infinite;
+}
+@keyframes velvet {
+  0% {
+    color: #400020;
+  }
+  40% {
+    color: #ff0000;
+  }
+  50% {
+    color: #ff8888;
+  }
+  60% {
+    color: #ff0000;
+  }
+  100% {
+    color: #400020;
+  }
+}
+
+.velvet_notice {
+  color: #660015;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 125%;
+  animation: velvet 5000ms infinite;
+}
+@keyframes velvet {
+  0% {
+    color: #400020;
+  }
+  40% {
+    color: #ff0000;
+  }
+  50% {
+    color: #ff8888;
+  }
+  60% {
+    color: #ff0000;
+  }
+  100% {
+    color: #400020;
+  }
 }
 // BUBBER EDIT ADDITION END

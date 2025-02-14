@@ -89,6 +89,14 @@
 	greyscale_config_worn = null
 	greyscale_colors = null
 
+/obj/item/clothing/under/costume/playbunny/custom_playbunny
+	name = "tailormade bunny suit"
+	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
+	greyscale_config = /datum/greyscale_config/custom_bunnysuit
+	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
+	greyscale_config_worn_digi = /datum/greyscale_config/custom_bunnysuit_worn/digi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 //CAPTAIN
 
 /obj/item/clothing/under/rank/captain/bunnysuit
@@ -558,3 +566,19 @@
 	icon_state = "lizardgas"
 	body_parts_covered = CHEST|GROIN|LEGS
 	has_sensor = NO_SENSORS //you're not NT employed, so they don't care about you
+
+/obj/item/clothing/under/costume/allamerican
+	name = "all-american diner employee uniform"
+	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "allamerican"
+	body_parts_covered = CHEST|GROIN|LEGS
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/allamerican/manager
+	name = "all-american diner manager uniform"
+	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
+	icon_state = "allamerican_manager"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS

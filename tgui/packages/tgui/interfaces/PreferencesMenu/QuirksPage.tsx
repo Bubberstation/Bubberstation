@@ -344,11 +344,6 @@ export function QuirksPage(props) {
             }
           }
 
-          // SKYRAT EDIT START - Veteran quirks. Please phase these out! - Kali
-          if (quirk.veteran_only && !data.is_veteran) {
-            return 'You need to be a veteran to select this quirk, apply today!';
-          }
-          // SKYRAT EDIT END
           const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
             return quirkInfo[quirkKey].name;
           });

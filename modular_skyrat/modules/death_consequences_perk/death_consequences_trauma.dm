@@ -333,13 +333,10 @@
 	var/owner_staminaloss = owner.getStaminaLoss()
 	if (minimum_stamina_damage <= 0)
 		return
-	if (owner_staminaloss > (minimum_stamina_damage + 1))
-		return
-	else if ((owner_staminaloss >= (minimum_stamina_damage - 1)) && (owner_staminaloss <= (minimum_stamina_damage + 1)))
-		owner.apply_status_effect(/datum/status_effect/incapacitating/stamcrit)
+	if (owner_staminaloss > minimum_stamina_damage)
 		return
 
-	var/final_adjustment = (minimum_stamina_damage - owner_staminaloss)
+	var/final_adjustment = max((minimum_stamina_damage - owner_staminaloss), 0)
 	owner.adjustStaminaLoss(final_adjustment) // we adjust instead of set for things like stamina regen timer
 
 /**
@@ -366,7 +363,7 @@
 /// befitting for a death such as this.
 /datum/brain_trauma/severe/death_consequences/proc/and_so_your_story_ends()
 	ADD_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT) // you're gone bro
-	owner.AddElement(/datum/element/dnr) // BUBBER EDIT - More DNR FA_ICON_XING
+	owner.AddElement(/datum/element/dnr)
 	final_death_delivered = TRUE
 
 	// this is a sufficiently dramatic event for some dramatic to_chats
@@ -379,7 +376,7 @@
 		self_message = span_revendanger("The metaphorical \"tether\" binding you to your body finally gives way. You try holding on, but you soon find yourself \
 		falling into a deep, dark abyss...")
 		log_message = "has been permanently ghosted by their resonance instability quirk."
-		owner.ghostize(can_reenter_corpse = FALSE) // BUBBER EDIT - More DNR FA_ICON_XING
+		owner.ghostize(can_reenter_corpse = FALSE)
 	else
 		if (force_death_if_permakilled) // kill them - a violent and painful end
 			visible_message = span_revenwarning("[owner] suddenly lets out a harrowing gasp and falls to one knee, clutching their head! The remainder of their \
@@ -493,7 +490,7 @@
 	if ((heal_flags & (ADMIN_HEAL_ALL)) == ADMIN_HEAL_ALL) // but only god can actually revive you
 		final_death_delivered = FALSE
 		REMOVE_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT)
-		owner.RemoveElement(/datum/element/dnr) // BUBBER EDIT - More DNR FA_ICON_XING
+		owner.RemoveElement(/datum/element/dnr)
 
 /// Resets all our variables to our victim's preferences, if they have any. Used for the initial setup, then any time our victim manually refreshes variables.
 /datum/brain_trauma/severe/death_consequences/proc/update_variables(client/source = owner.client)

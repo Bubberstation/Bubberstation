@@ -239,6 +239,23 @@
 	new /obj/item/reagent_containers/cup/vial/large/advomni(src)
 	new /obj/item/reagent_containers/cup/vial/large/numbing(src)
 
+// Paramedic hypokit
+/obj/item/storage/hypospraykit/paramedic
+	name = "paramedic hypospray kit"
+	desc = "A hypospray kit containing an advanced hypospray and a starter set of vials."
+	icon_state = "buffs-mini"
+	current_case = "buffs"
+
+/obj/item/storage/hypospraykit/paramedic/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/mkii/piercing(src)
+	new /obj/item/reagent_containers/cup/vial/small/libital(src)
+	new /obj/item/reagent_containers/cup/vial/small/lenturi(src)
+	new /obj/item/reagent_containers/cup/vial/small/seiver(src)
+	new /obj/item/reagent_containers/cup/vial/small/convermol(src)
+	new /obj/item/reagent_containers/cup/vial/small/atropine(src)
+
 /// Boxes of empty hypovials, coming in every style.
 /obj/item/storage/box/vials
 	name = "box of hypovials"

@@ -168,10 +168,10 @@
 	new /obj/item/bonesetter(src)
 	new /obj/item/cautery(src)
 	new /obj/item/circular_saw(src)
-	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/suit/toggle/labcoat/hospitalgown(src) // SKYRAT EDIT ADDITION
+	new /obj/item/reagent_containers/medigel/sterilizine(src) // BUBBER EDIT CHANGE
+	new /obj/item/clothing/suit/toggle/labcoat/hospitalgown(src) // BUBBER EDIT ADDITION
 	new /obj/item/hemostat(src)
-	new /obj/item/razor/surgery(src)
+	new /obj/item/storage/pill_bottle/lidocaine(src) // BUBBER EDIT CHANGE - Original: /obj/item/razor/surgery
 	new /obj/item/retractor(src)
 	new /obj/item/scalpel(src)
 	new /obj/item/stack/medical/bone_gel(src)

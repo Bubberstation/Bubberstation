@@ -1,7 +1,7 @@
 /obj/item/organ/internal/lungs
 	name = "lungs"
 	icon_state = "lungs"
-	visual = FALSE
+
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
@@ -154,17 +154,16 @@
 	add_gas_reaction(/datum/gas/zauker, while_present = PROC_REF(too_much_zauker))
 
 ///Simply exists so that you don't keep any alerts from your previous lack of lungs.
-/obj/item/organ/internal/lungs/Insert(mob/living/carbon/receiver, special = FALSE, movement_flags)
+/obj/item/organ/internal/lungs/mob_insert(mob/living/carbon/receiver, special = FALSE, movement_flags)
 	. = ..()
-	if(!.)
-		return .
+
 	receiver.clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
 	receiver.clear_alert(ALERT_NOT_ENOUGH_CO2)
 	receiver.clear_alert(ALERT_NOT_ENOUGH_NITRO)
 	receiver.clear_alert(ALERT_NOT_ENOUGH_PLASMA)
 	receiver.clear_alert(ALERT_NOT_ENOUGH_N2O)
 
-/obj/item/organ/internal/lungs/Remove(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/internal/lungs/mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	// This is very "manual" I realize, but it's useful to ensure cleanup for gases we're removing happens
 	// Avoids stuck alerts and such
@@ -466,7 +465,7 @@
 	if (HAS_TRAIT(breather, TRAIT_ANOSMIA)) //Anosmia quirk holder cannot smell miasma, but can get diseases from it.
 		return
 	switch(miasma_pp)
-		if(0.25 to 5)
+		if(1 to 5) // BUBBER EDIT CHANGE: Original: 0.25 to 5
 			// At lower pp, give out a little warning
 			breather.clear_mood_event("smell")
 			if(prob(5))
@@ -524,6 +523,7 @@
 		if(!HAS_TRAIT(breather, TRAIT_ANOSMIA))
 			breather.throw_alert(ALERT_TOO_MUCH_N2O, /atom/movable/screen/alert/too_much_n2o)
 	n2o_euphoria = EUPHORIA_ACTIVE
+	ADD_TRAIT(breather, TRAIT_ANALGESIA, OXYLOSS_TRAIT) // BUBBER EDIT ADDITION - N2O numbs pain
 
 	// give them one second of grace to wake up and run away a bit!
 	if(!HAS_TRAIT(breather, TRAIT_SLEEPIMMUNE))
@@ -536,6 +536,7 @@
 /obj/item/organ/internal/lungs/proc/safe_n2o(mob/living/carbon/breather, datum/gas_mixture/breath, old_n2o_pp)
 	n2o_euphoria = EUPHORIA_INACTIVE
 	breather.clear_alert(ALERT_TOO_MUCH_N2O)
+	REMOVE_TRAIT(breather, TRAIT_ANALGESIA, OXYLOSS_TRAIT) // BUBBER EDIT ADDITION - N2O numbs pain
 
 // Breathe in nitrium. It's helpful, but has nasty side effects
 /obj/item/organ/internal/lungs/proc/too_much_nitrium(mob/living/carbon/breather, datum/gas_mixture/breath, nitrium_pp, old_nitrium_pp)

@@ -251,7 +251,6 @@
 	log_silicon("CYBORG: [key_name(cyborg)] has transformed into the [new_model] model.")
 
 	//SKYRAT EDIT ADDITION BEGIN - ALTBORGS - Old check for 'dogborg' var no longer necessary, refactored into model_features instead.
-	//new_model.update_dogborg() // BUBBER REMOVAL
 	new_model.update_tallborg()
 	//SKYRAT EDIT ADDITION END
 	//BUBBER EDIT ADDTION BEGIN
@@ -337,7 +336,13 @@
 	cyborg.logevent("Chassis model has been set to [name].")
 	sleep(0.1 SECONDS)
 	for(var/i in 1 to 4)
-		playsound(cyborg, pick('sound/items/tools/drill_use.ogg', 'sound/items/tools/jaws_cut.ogg', 'sound/items/tools/jaws_pry.ogg', 'sound/items/tools/welder.ogg', 'sound/items/tools/ratchet.ogg'), 80, TRUE, -1)
+		playsound(cyborg, pick(
+			'sound/items/tools/drill_use.ogg',
+			'sound/items/tools/jaws_cut.ogg',
+			'sound/items/tools/jaws_pry.ogg',
+			'sound/items/tools/welder.ogg',
+			'sound/items/tools/ratchet.ogg',
+			), 80, TRUE, -1)
 		sleep(0.7 SECONDS)
 	cyborg.SetLockdown(FALSE)
 	cyborg.ai_lockdown = FALSE

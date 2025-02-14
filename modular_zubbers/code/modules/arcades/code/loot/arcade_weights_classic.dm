@@ -53,6 +53,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool_classic, list(
 	/obj/item/toy/katana = 100,
 	/obj/item/toy/minimeteor = 50,
 	/obj/item/toy/nuke = 50,
+	/obj/item/toy/nyamagotchi = 75,
 	/obj/item/toy/redbutton = 50,
 	/obj/item/toy/spinningtoy = 50,
 	/obj/item/toy/spinningtoy/dark_matter = 50,
