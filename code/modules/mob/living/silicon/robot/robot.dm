@@ -742,6 +742,8 @@
 			C.installed = 1
 	if(cell)
 		cell.charge = cell.maxcharge //Needed since borgs now require to have power
+	else if(!cell)
+		cell = new /obj/item/stock_parts/power_store/cell/high(src)
 	//BUBBER ADDITION END - COMPONENTS
 	if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
 		builtInCamera.toggle_cam(src, 0)

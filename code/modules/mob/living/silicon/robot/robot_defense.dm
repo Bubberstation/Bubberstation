@@ -184,10 +184,14 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		modularInterface.inserted_disk = floppy
 		return
 	//BUBBER ADDITION START - COMPONENTS!
+	//Component installation
 	if(istype(W, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/U = W
 		if(!user.canUnEquip(U))
 			to_chat(user, span_warning("The component is stuck to you and you can't seem to let go of it!"))
+			return
+		if(U.broken)
+			to_chat(user, span_warning("The component is too damaged to be installed!"))
 			return
 		if(opened) // Are they trying to insert something?
 			for(var/V in components)

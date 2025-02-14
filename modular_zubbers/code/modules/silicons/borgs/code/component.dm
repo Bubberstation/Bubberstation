@@ -20,8 +20,8 @@
 // The wrapped device(e.g. radio), only set if external_type isn't null
 	var/obj/item/wrapped = null
 
-/datum/robot_component/New(mob/living/silicon/robot/cyborg)
-	src.owner = cyborg
+/datum/robot_component/New(mob/living/silicon/robot/R)
+	src.owner = R
 
 /datum/robot_component/proc/accepts_component(var/obj/item/thing)
 	. = istype(thing, external_type)
@@ -32,15 +32,13 @@
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		max_damage = comp.max_damage
 		required_power = comp.required_power
-		brute_damage = comp.brute
-		burn_damage = comp.burn
+		if(!(comp.broken))//Don't apply when broken only when working
+			brute_damage = comp.brute
+			burn_damage = comp.burn
+		comp.brute = initial(brute_damage)
+		comp.burn = initial(brute_damage)
 		owner.updatehealth()
 		return
-	/*
-	if(istype(wrapped, /obj/item/cell))
-		var/obj/item/cell/cell = wrapped
-		max_damage = cell.robot_durability
-	*/
 	return
 
 /datum/robot_component/proc/uninstall()
@@ -58,9 +56,11 @@
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
-	if (istype(wrapped, /obj/item/robot_parts/robot_component))
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		brokenstate = comp.icon_state_broken
+		comp.broken = TRUE
+
 
 	wrapped.icon_state = brokenstate // Module-specific broken icons! Yay!
 	wrapped.update_icon_state()
@@ -70,11 +70,13 @@
 	uninstall()
 
 /datum/robot_component/proc/repair()
-	if (istype(wrapped, /obj/item/robot_parts/robot_component))
-		wrapped.icon_state = initial(wrapped.icon_state)
-
-	installed = 1
 	install()
+	installed = 1
+	//This is after to prevent installing from applying the previous damage when last broken
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/comp = wrapped
+		wrapped.icon_state = initial(wrapped.icon_state)
+		comp.broken = FALSE
 
 /datum/robot_component/proc/take_damage(brute, burn)
 	if(installed != 1)
@@ -287,6 +289,7 @@
 	var/icon_state_broken = "broken"
 	var/required_power = 0
 	var/max_damage = 0
+	var/broken = FALSE
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
