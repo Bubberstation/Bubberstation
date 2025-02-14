@@ -62,7 +62,6 @@
 		),
 		list( //level 4
 			/datum/reagent/fuel/oil,
-			/datum/reagent/medicine/c2/multiver,
 			/datum/reagent/medicine/epinephrine,
 			/datum/reagent/medicine/haloperidol,
 			/datum/reagent/medicine/c2/libital,
@@ -78,7 +77,6 @@
 			/datum/reagent/fluorosurfactant,
 		),
 		list( // level 6
-			/datum/reagent/medicine/antihol,
 			/datum/reagent/medicine/inacusiate,
 			/datum/reagent/medicine/oculine,
 			/datum/reagent/phenol,
@@ -91,7 +89,7 @@
 			/datum/reagent/toxin/mindbreaker,
 			/datum/reagent/acetaldehyde,
 			/datum/reagent/medicine/sal_acid,
-			///datum/reagent/medicine/pen_acid, BUBBER EDIT REMOVE - Disease Transmission
+			///datum/reagent/medicine/pen_acid, BUBBER EDIT REMOVE - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/psicodine,
 		),
 		list( // level 8
@@ -560,3 +558,28 @@
 
 /datum/disease/advance/proc/totalTransmittable()
 	return properties["transmittable"]
+
+/* // BUBBER EDIT REMOVAL START - DISEASE OUTBREAK UPDATES
+/**
+ *  If the disease has an incubation time (such as event diseases) start the timer, let properties determine if there's no timer set.
+ */
+/datum/disease/advance/after_add()
+	. = ..()
+
+	if(isnull(incubation_time))
+		return
+
+	if(incubation_time < world.time)
+		make_visible()
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(make_visible)), incubation_time - world.time)
+
+
+/**
+ *  Make virus visible to heath scanners
+ */
+/datum/disease/advance/proc/make_visible()
+	visibility_flags &= ~HIDDEN_SCANNER
+	affected_mob.med_hud_set_status()
+*/ // BUBBER EDIT REMOVAL END - DISEASE OUTBREAK UPDATES

@@ -10,7 +10,7 @@
 	/// When this carrier was created
 	var/start_time
 
-/datum/disease/proc/log_virus_debug(text)
+/datum/disease/proc/log_virus_public(text)
 	if(!event_disease)
 		return
 	var/log_message = "VIRUS_DEBUG: P:[length(SSdisease.event_diseases)] [debug_id ? debug_id : "VIRUS_INIT"] [name]: [text]"
