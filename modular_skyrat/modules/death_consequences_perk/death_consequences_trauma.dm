@@ -412,7 +412,7 @@
 		return message
 
 	message += span_danger("\nCurrent degradation/max: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
-	message += span_notice("\n<a href='?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>View degradation specifics?</a>")
+	message += span_notice("\n<a href='byond://?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>View degradation specifics?</a>")
 	if (permakill_if_at_max_degradation)
 		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
 
