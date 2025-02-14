@@ -50,6 +50,8 @@
 			else
 				user.allowed_turfs += "holoseat"
 
+			user.allowed_turfs += "borgmat"
+
 		//wings
 		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/external/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
 			user.allowed_turfs += "dust" //moth's dust ✨
