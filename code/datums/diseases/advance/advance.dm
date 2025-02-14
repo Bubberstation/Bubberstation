@@ -56,16 +56,18 @@
 			/datum/reagent/consumable/salt,
 			/datum/reagent/consumable/sugar,
 			/datum/reagent/consumable/tomatojuice,
-			/datum/reagent/consumable/ethanol/antifreeze,
-			/datum/reagent/consumable/ethanol/bug_spray,
-			/datum/reagent/space_cleaner,
+			/datum/reagent/consumable/ethanol/antifreeze, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/consumable/ethanol/bug_spray, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/space_cleaner, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( //level 4
 			/datum/reagent/fuel/oil,
+			///datum/reagent/medicine/c2/multiver, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/epinephrine,
 			/datum/reagent/medicine/haloperidol,
-			/datum/reagent/medicine/c2/libital,
-			/datum/reagent/medicine/c2/lenturi,
+			///datum/reagent/medicine/mine_salve, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/c2/libital, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/c2/lenturi, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/salglu_solution,
 		),
 		list( //level 5
@@ -73,15 +75,16 @@
 			/datum/reagent/medicine/mannitol,
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/cryptobiolin,
-			/datum/reagent/medicine/c2/convermol,
-			/datum/reagent/fluorosurfactant,
+			/datum/reagent/medicine/c2/convermol, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/fluorosurfactant, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 6
+			///datum/reagent/medicine/antihol, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/inacusiate,
 			/datum/reagent/medicine/oculine,
 			/datum/reagent/phenol,
-			/datum/reagent/medicine/neurine,
-			/datum/reagent/medicine/ondansetron,
+			/datum/reagent/medicine/neurine, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/ondansetron, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 7
 			/datum/reagent/medicine/higadrite,
@@ -90,7 +93,7 @@
 			/datum/reagent/acetaldehyde,
 			/datum/reagent/medicine/sal_acid,
 			///datum/reagent/medicine/pen_acid, BUBBER EDIT REMOVE - DISEASE OUTBREAK UPDATES
-			/datum/reagent/medicine/psicodine,
+			/datum/reagent/medicine/psicodine, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 8
 			/datum/reagent/drug/happiness,

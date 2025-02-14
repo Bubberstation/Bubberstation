@@ -337,7 +337,7 @@
 
 /datum/disease/proc/Copy()
 	//note that stage is not copied over - the copy starts over at stage 1
-	/* // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES - ORIGINAL:
+	/* // BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES - ORIGINAL:
 	var/static/list/copy_vars = list("name", "visibility_flags", "disease_flags", "spread_flags", "form", "desc", "agent", "spread_text",
 									"cure_text", "max_stages", "stage_prob", "incubation_time", "viable_mobtypes", "cures", "infectivity", "cure_chance",
 									"required_organ", "bypasses_immunity", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
@@ -347,6 +347,7 @@
 									"cure_text", "max_stages", "stage_prob", "viable_mobtypes", "cures", "infectivity", "cure_chance",
 									"required_organ", "bypasses_immunity", "bypasses_disease_recovery", "spreading_modifier", "severity", "needs_all_cures", "strain_data",
 									"infectable_biotypes", "process_dead", "event_disease")
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 	var/datum/disease/D = copy_type ? new copy_type() : new type()
 	for(var/V in copy_vars)
 		var/val = vars[V]

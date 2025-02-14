@@ -43,6 +43,8 @@
 		return .
 	generate_candidates()
 	// BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
+	// if(length(disease_candidates))
+	//	return TRUE
 	if(!SSjob.is_skeleton_medical(3))
 		log_public_file("Disease outbreak check passed medbay staffing parameters with 3 or more staff.")
 		if(length(disease_candidates))
@@ -168,9 +170,8 @@
 	new_disease = new virus_type()
 	//new_disease.carrier = TRUE // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 	illness_type = new_disease.name
-	new_disease.event_disease = TRUE // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
-
 	// BUBBER EDIT ADDITION START - DISEASE OUTBREAK UPDATES
+	new_disease.event_disease = TRUE
 	var/to_infect = 3
 	if(length(GLOB.alive_player_list) > 65)
 		to_infect = 4
@@ -472,6 +473,7 @@
 	else
 		visibility_flags &= ~HIDDEN_SCANNER
 		set_spread(DISEASE_SPREAD_AIRBORNE)
+
 	*/ // BUBBER EDIT REMOVAL END - DISEASE OUTBREAK UPDATES
 
 	//Illness name from one of the symptoms
@@ -511,6 +513,8 @@
 	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	properties["transmittable"] = rand(4,7)
 	spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
+	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
+	stage_prob = max(0.4 * properties["stage_rate"], 1)
 	*/
 	properties["transmittable"] = rand(6,9)
 	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
