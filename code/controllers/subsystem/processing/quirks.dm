@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/featherweight, /datum/quirk/oversized),
 	list(/datum/quirk/overweight, /datum/quirk/obese),
 	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
+	list(/datum/quirk/equipping/entombed, /datum/quirk/equipping/seamless_clothes),
 	list(/datum/quirk/equipping/entombed, /datum/quirk/badback),
 	//BUBBER EDIT ADDITION END
 ))
