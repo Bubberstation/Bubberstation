@@ -116,9 +116,15 @@
 	target.apply_damage(VENOMOUS_BITE_DAMAGE, BRUTE, target_zone, armor, wound_bonus = wound_bonus, sharpness = SHARP_POINTY)
 	if (iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		for (var/datum/disease/held_disease as anything in carbon_owner.diseases)
-			if (held_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || held_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-				target.ContactContractDisease(held_disease, target_zone)
+		for (var/datum/disease/our_disease as anything in carbon_owner.diseases)
+			if (our_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || our_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				target.ContactContractDisease(our_disease, target_zone)
+
+		if (iscarbon(target))
+			var/mob/living/carbon/carbon_target = target
+			for (var/datum/disease/their_disease as anything in carbon_target.diseases)
+				if (their_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || their_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+					target.ContactContractDisease(their_disease, target_zone)
 
 	return TRUE
 
