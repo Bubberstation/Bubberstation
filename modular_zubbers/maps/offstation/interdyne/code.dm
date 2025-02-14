@@ -1,7 +1,3 @@
-/*----- Template for ruins, prevents needing to re-type the filepath prefix -----*/
-/datum/map_template/ruin/icemoon/bubberstation
-	prefix = "_maps/RandomRuins/IceRuins/bubberstation/"
-/*------*/
 
 /datum/map_template/ruin/icemoon/bubberstation/syndicate_base
 	name = "Syndicate Ice Base"
