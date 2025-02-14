@@ -24,7 +24,7 @@
 	item_path = /obj/item/clothing/neck/scarf/pride
 	can_be_reskinned = TRUE
 
- /datum/loadout_item/neck/holobadge/hos
+/datum/loadout_item/neck/holobadge/hos
     name = "Head of Security's Holobadge"
     item_path = /obj/item/clothing/accessory/badge/holo/hos
     restricted_roles = list(JOB_HEAD_OF_SECURITY)
