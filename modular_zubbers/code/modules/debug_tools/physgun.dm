@@ -77,7 +77,7 @@
 
 /obj/item/physic_manipulation_tool/click_alt(mob/user)
 	. = ..()
-	var/choised_color = input(usr, "Pick new effect color", "Physgun color") as color|null
+	var/choised_color = tgui_color_picker(usr, "Pick new effect color", "Physgun color") // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	effects_color = choised_color
 	color = choised_color
 	update_appearance()

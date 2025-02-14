@@ -1,11 +1,15 @@
 /datum/component/prone_mob
+	var/hand_blocking = FALSE
 
-/datum/component/prone_mob/Initialize(mob/living/source)
+/datum/component/prone_mob/Initialize(mob/living/source, block_hands = FALSE)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	source = parent
-	parent.add_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING, TRAIT_HANDS_BLOCKED), type)
+	hand_blocking = block_hands
+
+	if(hand_blocking)
+		parent.add_traits(list(TRAIT_HANDS_BLOCKED), type)
 	parent.add_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING), type)
 	passtable_on(parent, type)
 	source.layer = PROJECTILE_HIT_THRESHHOLD_LAYER

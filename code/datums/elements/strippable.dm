@@ -156,7 +156,7 @@
 	//SKYRAT EDIT CHANGE END
 
 	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
-	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "is stripping [source] of [item].") // BUBBER EDIT - PUBLIC LOGGING
+	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
 
@@ -292,7 +292,7 @@
 
 /// A utility function for `/datum/strippable_item`s to finish equipping an item to a mob.
 /proc/finish_equip_mob(obj/item/item, mob/source, mob/user)
-	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red", redacted_copy = "has put [item] on [source].") // BUBBER EDIT- PUBLIC LOGS
+	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red")
 	source.log_message("had [item] put on them by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
@@ -307,7 +307,7 @@
 	if (!item.doStrip(user, source))
 		return FALSE
 
-	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "has stripped [source] of [item])") // BUBBER EDIT - PUBLIC LOGS
+	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("has been stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 	// Updates speed in case stripped speed affecting item

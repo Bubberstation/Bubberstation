@@ -349,6 +349,20 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 	if (istype(sent, /obj/item/paper))
 		var/obj/item/paper/sent_paper = sent
 		log_paper("[usr] has sent a fax with the message \"[sent_paper.get_raw_text()]\" to [name]/[destination_id].")
+		// BUBBER EDIT BEGIN
+		var/datum/db_query/query = SSdbcore.NewQuery({"
+		INSERT INTO [format_table_name("stored_faxes")] (sender, destination_fax_machine, message, roundid, relayed)
+		VALUES (:sender, :destination_fax_machine, :message, :roundid, :relayed)
+	"}, list(
+		"sender" = usr,
+		"destination_fax_machine" = destination_id,
+		"message" = sent_paper.get_raw_text(),
+		"recipient" = name,
+		"roundid" = GLOB.round_id,
+		"relayed" = 0,
+	))
+		query.Execute()
+		// BUBBER EDIT END
 		return
 	log_game("[usr] has faxed [sent] to [name]/[destination_id].]")
 

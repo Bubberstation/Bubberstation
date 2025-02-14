@@ -26,13 +26,16 @@ These are basically advanced cells.
 
 /obj/item/stock_parts/power_store/cell/microfusion //Just a standard cell.
 	name = "microfusion cell"
-	desc = "A standard-issue microfusion cell, produced by Micron Control Systems. Smaller than a car battery, these fulfill the need for a power source where plugging into a recharger is inconvenient or unavailable; although they will eventually run dry due to being shipped without a fuel source."
+	desc = "A standard-issue microfusion cell, produced by Micron Control Systems. \
+			For safety reasons, they cannot be charged unless they are inside of a \
+			compatible Micron Control Systems firearm."
 	icon = 'modular_skyrat/modules/microfusion/icons/microfusion_cells.dmi'
 	charging_icon = "mf_in" //This is stored in cell.dmi in the aesthetics module
 	icon_state = "microfusion"
 	w_class = WEIGHT_CLASS_NORMAL
 	maxcharge = STANDARD_CELL_CHARGE //12 shots
-	chargerate = 0 //Standard microfusion cells can't be recharged, they're single use.
+	chargerate = 0 //Standard microfusion cells can't be recharged when outside of a gun
+	empty = TRUE //MF cells should start empty
 	microfusion_readout = TRUE
 	charge_light_type = "microfusion"
 
@@ -131,6 +134,9 @@ These are basically advanced cells.
 /obj/item/stock_parts/power_store/cell/microfusion/process(seconds_per_tick)
 	for(var/obj/item/microfusion_cell_attachment/microfusion_cell_attachment as anything in attachments)
 		microfusion_cell_attachment.process_attachment(src, seconds_per_tick)
+
+/obj/item/stock_parts/power_store/cell/microfusion/proc/inserted_into_weapon()
+	chargerate = STANDARD_CELL_CHARGE * 0.2
 
 /obj/item/stock_parts/power_store/cell/microfusion/examine(mob/user)
 	. = ..()

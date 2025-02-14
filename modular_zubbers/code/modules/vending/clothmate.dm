@@ -7,7 +7,7 @@
 				/obj/item/clothing/head/henchmen_hat = 5,
 				/obj/item/clothing/head/avipilot = 5,
 				/obj/item/clothing/head/costume/ushanka/frosty = 5,
-
+				/obj/item/clothing/head/costume/sombrero = 3,
 			),
 		),
 

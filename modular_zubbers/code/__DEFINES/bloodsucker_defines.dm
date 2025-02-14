@@ -30,7 +30,7 @@
 #define HUMANITY_LOST_MAXIMUM 50
 
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.45
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.40
 #define BLOODSUCKER_LEVELUP_PERCENTAGE_VENTRUE BLOODSUCKER_LEVELUP_PERCENTAGE - 0.1
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation

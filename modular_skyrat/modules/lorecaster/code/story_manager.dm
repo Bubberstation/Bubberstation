@@ -120,6 +120,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 			rustg_file_write(json_encode(current_story_copy), NEWS_FILE)
 			log_admin("[usr.ckey] has published a lorecaster article with id [id].")
 			current_stories = generate_stories(NEWS_FILE)
+			SSlorecaster.all_stories = current_stories.Copy()
 			ui.send_full_update()
 
 		if("archive_article")
@@ -140,6 +141,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 			rustg_file_write(json_encode(archive_story_copy), ARCHIVE_FILE)
 			log_admin("[usr.ckey] has archived a lorecaster article with id [id].")
 			current_stories = generate_stories(NEWS_FILE)
+			SSlorecaster.all_stories = current_stories.Copy()
 			archived_stories = generate_stories(ARCHIVE_FILE)
 			ui.send_full_update()
 
@@ -161,6 +163,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 			rustg_file_write(json_encode(archive_story_copy), ARCHIVE_FILE)
 			log_admin("[usr.ckey] has re-circulated an archived lorecaster article with id [id].")
 			current_stories = generate_stories(NEWS_FILE)
+			SSlorecaster.all_stories = current_stories.Copy()
 			archived_stories = generate_stories(ARCHIVE_FILE)
 			ui.send_full_update()
 

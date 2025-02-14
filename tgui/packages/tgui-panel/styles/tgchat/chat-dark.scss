@@ -411,6 +411,7 @@ em {
 .bolddanger {
   color: #c51e1e;
   font-weight: bold;
+  font-size: 125%; // BUBBER EDIT ADDITION
 }
 
 .danger {
@@ -868,6 +869,31 @@ em {
   }
 }
 
+.velvet_notice {
+  color: #660015;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 125%;
+  animation: velvet 5000ms infinite;
+}
+@keyframes velvet {
+  0% {
+    color: #400020;
+  }
+  40% {
+    color: #ff0000;
+  }
+  50% {
+    color: #ff8888;
+  }
+  60% {
+    color: #ff0000;
+  }
+  100% {
+    color: #400020;
+  }
+}
+
 .hexnut {
   color: #0099ff;
   font-weight: bold;
@@ -1289,7 +1315,7 @@ $border-width-px: $border-width * 1px;
     background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
   }
 }
-/* SKYRAT EDIT ADDITION START - DARK MODE CLASSES */
+/* BUBBER EDIT ADDITION START - DARK MODE CLASSES */
 
 .mentor {
   color: #8a2be2;
@@ -1387,9 +1413,13 @@ $border-width-px: $border-width * 1px;
   font-style: italic;
 }
 
-// SKYRAT EDIT ADDITION END
+.subtle {
+  color: #abc6ec;
+}
 
-/* BUBBER EDIT ADDITION BEGIN - DARK MODE CLASSES */
+.subtler {
+  color: #e2c1ff;
+}
 
 .subtlepda {
   color: #eb6bff;

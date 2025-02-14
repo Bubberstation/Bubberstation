@@ -13,7 +13,7 @@
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/internal/tongue/vox
 	mutantlungs = /obj/item/organ/internal/lungs/nitrogen/vox
-	mutantbrain = /obj/item/organ/internal/brain/vox
+	mutantbrain = /obj/item/organ/internal/brain/cybernetic/cortical/vox
 	breathid = "n2"
 	mutant_bodyparts = list()
 	payday_modifier = 1.0

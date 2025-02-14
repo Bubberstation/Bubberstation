@@ -176,7 +176,7 @@ GLOBAL_LIST(end_titles)
 		titles += "<center>STAFF'S GOOD BOYS:<br>[english_list(goodboys)]</center><br>"
 
 	var/disclaimer = "<br>Sponsored by [pick("Nanotrasen", "The Syndicate", "Armadyne Corporation")].<br>All rights reserved.<br>\
-					 This motion picture is protected under the copyright laws of the Sol Central Government<br> and other nations throughout the galaxy.<br>\
+					 This motion picture is protected under the copyright laws of the Terran Government<br> and other nations throughout the galaxy.<br>\
 					 Colony of First Publication: [pick("Mars", "Luna", "Earth", "Venus", "Phobos", "Ceres", "Tiamat", "Ceti Epsilon", "Eos", "Pluto", "Ouere",\
 					 "Lordania", "Kingston", "Cinu", "Yuklid V", "Lorriman", "Tersten", "Gaia")].<br>"
 	disclaimer += pick("Use for parody prohibited. PROHIBITED.",

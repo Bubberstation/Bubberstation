@@ -18,7 +18,7 @@
 	// Mean things
 	var/muffles_radio = TRUE // muffles radios used inside it
 	var/escape_chance = 100
-	var/escape_time = DEFAULT_ESCAPE_TIME
+	var/escape_time = 15 SECONDS
 	var/overlay_path = null
 	var/overlay_color = "#ffffff"
 
@@ -31,6 +31,7 @@
 	var/release_sound = "Splatter"
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
+	escape_time = DEFAULT_ESCAPE_TIME // expected a constant expression
 	. = ..()
 	if(!istype(new_owner))
 		return INITIALIZE_HINT_QDEL
@@ -169,7 +170,7 @@
 				prey.clear_fullscreen("vore", FALSE)
 				show_fullscreen(prey)
 		if("overlay_color")
-			var/new_color = input(usr, "Pick a belly color", "Belly Color", overlay_color) as color|null
+			var/new_color = tgui_color_picker(usr, "Pick a belly color", "Belly Color", overlay_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(new_color)
 				overlay_color = new_color
 			for(var/mob/living/prey in src)
@@ -334,15 +335,14 @@
 			if(AM in arrived)
 				arrived.dropItemToGround(AM, TRUE)
 			AM.forceMove(reject_location)
-		#if DISABLES_SENSORS
-		if(istype(AM, /obj/item/clothing/under))
-			var/obj/item/clothing/under/sensor_clothing = AM
-			sensor_clothing.sensor_mode = SENSOR_OFF
-			if(ishuman(arrived))
-				var/mob/living/carbon/human/H = arrived
-				if(H.w_uniform == sensor_clothing)
-					H.update_suit_sensors()
-		#endif
+		if(DISABLES_SENSORS)
+			if(istype(AM, /obj/item/clothing/under))
+				var/obj/item/clothing/under/sensor_clothing = AM
+				sensor_clothing.sensor_mode = SENSOR_OFF
+				if(ishuman(arrived))
+					var/mob/living/carbon/human/H = arrived
+					if(H.w_uniform == sensor_clothing)
+						H.update_suit_sensors()
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)

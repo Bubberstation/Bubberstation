@@ -7,6 +7,7 @@ $include logging.txt
 $include resources.txt
 $include skyrat/skyrat_config.txt
 $include bubbers/bubbers_config.txt
+$include bubbers/vore_config.txt
 $include interviews.txt
 $include lua.txt
 $include auxtools.txt
@@ -241,6 +242,8 @@ REQUEST_INTERNET_ALLOWED youtube\.com\/watch?v=,youtu\.be\/,soundcloud\.com\/,ba
 ## Jobs have specific "keys" tied to their in-game datums, those should sync up otherwise it will fail to load.
 ## Setting Total/Spawn Positions to -1 will open unlimited join slots for it.
 ## Playtime Requirements is in minutes, Required Account Age is in days.
+## Human Authority Whitelist Setting can either be 0 or 1.
+## Make sure to read the start of the file to get a more in-depth explanation of what each entry does!
 #LOAD_JOBS_FROM_TXT
 
 ## Uncomment this to forbid admins from possessing the singularity.
@@ -594,6 +597,9 @@ PR_ANNOUNCEMENTS_PER_ROUND 5
 
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING
+
+## Uncomment to disable TTS messages on whispering, such as radio messages or the whisper verb. Useful for reducing your TTS load.
+#TTS_NO_WHISPER
 
 ## Link to a HTTP server that's been set up on a server. Docker-compose file can be found in tools/tts
 #TTS_HTTP_URL http://localhost:5002

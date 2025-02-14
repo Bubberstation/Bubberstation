@@ -24,7 +24,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = CONDUCTS_ELECTRICITY
 	sharpness = SHARP_EDGED
-	force = 25
+	force = 20
 	armour_penetration = 20
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
 	hitsound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'

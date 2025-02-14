@@ -44,6 +44,10 @@
 #define VENTCRAWLER_NUDE 1
 #define VENTCRAWLER_ALWAYS 2
 
+// Flags for the mob_flags var on /mob
+/// May override the names used in screentips of OTHER OBJECTS hovered over.
+#define MOB_HAS_SCREENTIPS_NAME_OVERRIDE (1 << 0)
+
 //Mob bio-types flags
 ///The mob is organic, can heal from medical sutures.
 #define MOB_ORGANIC (1 << 0)
@@ -165,7 +169,10 @@
 ///The species is forced to have digitigrade legs in generation.
 #define DIGITIGRADE_FORCED 2
 
-///Digitigrade's prefs, used in features for legs if you're meant to be a Digitigrade.
+// Preferences for leg types
+/// Legs that are normal
+#define NORMAL_LEGS "Normal Legs"
+/// Digitgrade legs that are like bended and uhhh no shoes
 #define DIGITIGRADE_LEGS "Digitigrade Legs"
 
 // Health/damage defines
@@ -330,6 +337,9 @@
 
 //Slime extract crossing. Controls how many extracts is required to feed to a slime to core-cross.
 #define SLIME_EXTRACT_CROSSING_REQUIRED 10
+
+//How many slimes can be on the same tile before it can no longer reproduce.
+#define SLIME_OVERCROWD_AMOUNT 2
 
 //Slime commands defines
 #define SLIME_FRIENDSHIP_FOLLOW 3 //Min friendship to order it to follow

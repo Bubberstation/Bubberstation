@@ -19,6 +19,15 @@
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service
 	spawner_job_path = /datum/job/dauntless
+	/// If true, this spawner will give it's target exploitables access.
+	var/give_exploitables = TRUE
+
+/obj/effect/mob_spawn/ghost_role/human/dauntless/special(mob/living/spawned_mob, mob/mob_possessor)
+	. = ..()
+
+	if (give_exploitables)
+		spawned_mob.mind?.has_exploitables_override = TRUE
+		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
 	name = "Syndicate Operative"
@@ -44,6 +53,7 @@
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Dauntless personnel can throw you into lava if you antagonize them."
 	outfit = /datum/outfit/dauntless/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
+	give_exploitables = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service
 	outfit = /datum/outfit/dauntless/syndicate/service
@@ -185,7 +195,7 @@
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
-	name = "Dauntless Opporative"
+	name = "Dauntless Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne

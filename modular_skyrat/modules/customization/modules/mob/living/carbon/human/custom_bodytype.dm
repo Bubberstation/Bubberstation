@@ -120,7 +120,8 @@
 		var/list/color_list = list()
 
 		for(var/i in 1 to expected_num_colors)
-			if(length(item.species_clothing_color_coords) < i)
+			if(isnull(item.species_clothing_color_coords) || \
+			length(item.species_clothing_color_coords) < i)
 				color_list += COLOR_DARK
 				continue
 			var/coord = item.species_clothing_color_coords[i]

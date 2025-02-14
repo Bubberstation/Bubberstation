@@ -25,7 +25,7 @@
 	var/bloodloss_rate = NORMAL_BLOOD_DRAIN
 
 
-/obj/item/organ/internal/heart/hemophage/Insert(mob/living/carbon/tumorful, special, movement_flags)
+/obj/item/organ/internal/heart/hemophage/mob_insert(mob/living/carbon/tumorful, special, movement_flags)
 	. = ..()
 	if(!. || !owner)
 		return
@@ -35,7 +35,7 @@
 	RegisterSignal(tumorful, COMSIG_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_item))
 
 
-/obj/item/organ/internal/heart/hemophage/Remove(mob/living/carbon/tumorless, special = FALSE)
+/obj/item/organ/internal/heart/hemophage/mob_remove(mob/living/carbon/tumorless, special = FALSE)
 	. = ..()
 
 	SEND_SIGNAL(tumorless, COMSIG_PULSATING_TUMOR_REMOVED, tumorless)
@@ -120,7 +120,7 @@
 	if(owner.health >= owner.maxHealth || is_dormant || owner.blood_volume <= MINIMUM_VOLUME_FOR_REGEN || (!in_closet(owner) && !in_total_darkness(owner)))
 		return FALSE
 
-	return owner.getBruteLoss() || owner.getFireLoss() || owner.getToxLoss()
+	return length(owner.get_damaged_bodyparts(TRUE, TRUE, BODYTYPE_ORGANIC)) || (owner.getToxLoss() && owner.can_adjust_tox_loss())
 
 
 /// Simple helper to toggle the hemophage's vulnerability (or lack thereof) based on the status of their tumor.

@@ -5,7 +5,7 @@
 	/// Holder for the toggle safety action
 	var/datum/action/item_action/gun_safety_toggle/toggle_safety_action
 
-/datum/component/gun_safety/Initialize(safety_currently_on = FALSE) // Bubber Edit - Org: True
+/datum/component/gun_safety/Initialize(safety_currently_on = FALSE)
 	. = ..()
 
 	// Obviously gun safety should only apply to guns
@@ -41,8 +41,8 @@
 	SIGNAL_HANDLER
 
 	if(safety_currently_on)
-		user.balloon_alert(user, "The safety disengages!") // Bubber Edit
-		toggle_safeties(user) // Bubber Edit
+		user.balloon_alert(user, "The safety disengages!")
+		toggle_safeties(user)
 		return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used

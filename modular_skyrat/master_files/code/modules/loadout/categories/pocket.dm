@@ -150,17 +150,9 @@
 	name = "Random Pizza Box"
 	item_path = /obj/item/pizzabox/random
 
-/datum/loadout_item/pocket_items/medkit
-	name = "First-Aid Kit"
-	item_path = /obj/item/storage/medkit/regular
-
-/datum/loadout_item/pocket_items/deforest_cheesekit
-	name = "Civil Defense Medical Kit"
-	item_path = /obj/item/storage/medkit/civil_defense/stocked
-
 /datum/loadout_item/pocket_items/deforest_frontiermedkit
-	name = "Frontier Medical Kit"
-	item_path = /obj/item/storage/medkit/frontier/stocked
+	name = "Empty Frontier Medical Kit"
+	item_path = /obj/item/storage/medkit/frontier
 
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"
@@ -173,10 +165,6 @@
 /datum/loadout_item/pocket_items/six_soda
 	name = "Soda Six-Pack"
 	item_path = /obj/item/storage/cans/sixsoda
-
-/datum/loadout_item/pocket_items/power_cell
-	name = "Standard Power Cell"
-	item_path = /obj/item/stock_parts/power_store/cell
 
 /datum/loadout_item/pocket_items/soap
 	name = "Bar of Soap"

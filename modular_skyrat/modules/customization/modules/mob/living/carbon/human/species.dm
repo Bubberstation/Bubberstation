@@ -21,8 +21,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/markings_alpha = 255
 	///If a species can always be picked in prefs for the purposes of customizing it for ghost roles or events
 	var/always_customizable = FALSE
-	/// If a species requires the player to be a Veteran to be able to pick it.
-	var/veteran_only = FALSE
 	///Flavor text of the species displayed on character creation screeen
 	var/flavor_text = "No description."
 	///Path to BODYSHAPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
@@ -196,7 +194,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 		species_human.overlays_standing[BODY_LAYER] = standing
 
 	species_human.apply_overlay(BODY_LAYER)
-	handle_mutant_bodyparts(species_human)
 
 /datum/species/spec_stun(mob/living/carbon/human/target, amount)
 	if(istype(target))
@@ -218,7 +215,18 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			var/obj/item/organ/current_organ = target.get_organ_by_type(mutant_accessory.organ_type)
 
 			if(!current_organ || replace_current)
-				var/obj/item/organ/replacement = SSwardrobe.provide_type(mutant_accessory.organ_type)
+				var/organ_slot = mutant_accessory.organ_type::slot
+				var/obj/item/organ/current_organ_in_slot = target.get_organ_slot(organ_slot)
+				var/obj/item/organ/replacement
+
+				// If the current organ in that slot should override the replacement because it's a special organ for this species,
+				// force it to be the replacement organ.
+				if(current_organ_in_slot?.overrides_sprite_datum_organ_type && istype(current_organ_in_slot, get_mutant_organ_type_for_slot(organ_slot)))
+					replacement = SSwardrobe.provide_type(current_organ_in_slot.type)
+
+				else
+					replacement = SSwardrobe.provide_type(mutant_accessory.organ_type)
+
 				replacement.sprite_accessory_flags = mutant_accessory.flags_for_organ
 				replacement.relevant_layers = mutant_accessory.relevent_layers
 

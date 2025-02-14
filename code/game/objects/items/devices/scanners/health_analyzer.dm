@@ -93,7 +93,7 @@
 	balloon_alert(user, "analyzing vitals")
 	playsound(user.loc, 'sound/items/healthanalyzer.ogg', 50)
 
-	var/readability_check = user.can_read(src) && !user.is_blind()
+	var/readability_check = user.can_read(src) // BUBBER EDIT CHANGE - Blind people can analyze again - ORIGINAL: user.can_read(src) && !user.is_blind()
 	switch (scanmode)
 		if (SCANMODE_HEALTH)
 			last_scan_text = healthscan(user, M, mode, advanced, tochat = readability_check)
@@ -189,7 +189,6 @@
 	if (!target.get_organ_slot(ORGAN_SLOT_BRAIN)) // kept exclusively for soul purposes
 		render_list += "<span class='alert ml-1'>Subject lacks a brain.</span><br>"
 
-	var/death_consequences_status_text // SKYRAT EDIT ADDITION: Death consequences quirk
 	if(iscarbon(target))
 		var/mob/living/carbon/carbontarget = target
 		if(LAZYLEN(carbontarget.quirks))
@@ -283,7 +282,7 @@
 		var/list/missing_organs = list()
 		if(!humantarget.get_organ_slot(ORGAN_SLOT_BRAIN))
 			missing_organs[ORGAN_SLOT_BRAIN] = "Brain"
-		if(!humantarget.needs_heart() && !humantarget.get_organ_slot(ORGAN_SLOT_HEART))
+		if(humantarget.needs_heart() && !humantarget.get_organ_slot(ORGAN_SLOT_HEART))
 			missing_organs[ORGAN_SLOT_HEART] = "Heart"
 		if(!HAS_TRAIT_FROM(humantarget, TRAIT_NOBREATH, SPECIES_TRAIT) && !isnull(humantarget.dna.species.mutantlungs) && !humantarget.get_organ_slot(ORGAN_SLOT_LUNGS))
 			missing_organs[ORGAN_SLOT_LUNGS] = "Lungs"
@@ -348,7 +347,7 @@
 		var/datum/species/targetspecies = humantarget.dna.species
 		var/mutant = HAS_TRAIT(humantarget, TRAIT_HULK)
 
-		render_list += "<span class='info ml-1'>Species: [targetspecies.name][mutant ? "-derived mutant" : ""]</span><br>"
+		render_list += "<span class='info ml-1'>Species: <b>[targetspecies.name][mutant ? "-derived mutant" : ""]</b></span><br>" // Bubber Edit: Bold species name
 		var/core_temperature_message = "Core temperature: [round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)"
 		if(humantarget.coretemperature >= humantarget.get_body_temp_heat_damage_limit())
 			render_list += "<span class='alert ml-1'>☼ [core_temperature_message] ☼</span><br>"
@@ -408,8 +407,9 @@
 	// SKYRAT EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
 	if(target.GetComponent(/datum/component/mutant_infection))
 		render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
-	if(death_consequences_status_text)
-		render_list += death_consequences_status_text
+	var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
+	if(consequences)
+		render_list += consequences.get_health_analyzer_link_text(user)
 	// SKYRAT EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF

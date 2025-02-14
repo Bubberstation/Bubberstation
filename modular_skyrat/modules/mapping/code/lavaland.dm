@@ -3,8 +3,6 @@
 	prefix = "_maps/RandomRuins/LavaRuins/skyrat/"
 /*------*/
 
-/* Bubberstation Removal Start
-
 /datum/map_template/ruin/lavaland/skyrat/syndicate_base
 	name = "Lava-Ruin Syndicate Lava Base"
 	id = "lava-base"
@@ -12,6 +10,5 @@
 	suffix = "lavaland_surface_syndicate_base1_skyrat.dmm"
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/icemoon/underground/skyrat/syndicate_base)
-	always_place = TRUE
-
-Bubberstation Removal End */
+	always_place = FALSE
+	unpickable = TRUE

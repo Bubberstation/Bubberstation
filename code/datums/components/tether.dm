@@ -13,14 +13,17 @@
 	var/atom/embed_target
 	/// Beam effect
 	var/datum/beam/tether_beam
+	/// Tether module if we were created by one
+	var/obj/item/mod/module/tether/parent_module
 
-/datum/component/tether/Initialize(atom/tether_target, max_dist = 7, tether_name, atom/embed_target = null, start_distance = null)
+/datum/component/tether/Initialize(atom/tether_target, max_dist = 7, tether_name, atom/embed_target = null, start_distance = null, parent_module = null)
 	if(!ismovable(parent) || !istype(tether_target) || !tether_target.loc)
 		return COMPONENT_INCOMPATIBLE
 
 	src.tether_target = tether_target
 	src.embed_target = embed_target
 	src.max_dist = max_dist
+	src.parent_module = parent_module
 	cur_dist = max_dist
 	if (start_distance != null)
 		cur_dist = start_distance
@@ -46,6 +49,9 @@
 		RegisterSignal(embed_target, COMSIG_ITEM_UNEMBEDDED, PROC_REF(on_embedded_removed))
 		RegisterSignal(embed_target, COMSIG_QDELETING, PROC_REF(on_delete))
 
+	if (!isnull(parent_module))
+		RegisterSignals(parent_module, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_MOD_TETHER_SNAP), PROC_REF(snap))
+
 /datum/component/tether/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_MOVED))
 	if (!QDELETED(tether_target))
@@ -66,9 +72,11 @@
 		to_chat(source, span_warning("[tether_name] prevents you from entering [new_loc]!"))
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
+	// If this was called, we know its a movable
+	var/atom/movable/movable_source = source
 	var/atom/movable/anchor = (source == tether_target ? parent : tether_target)
 	if (get_dist(anchor, new_loc) > cur_dist)
-		if (!istype(anchor) || anchor.anchored || !anchor.Move(get_step_towards(anchor, new_loc)))
+		if (!istype(anchor) || anchor.anchored || !(!anchor.anchored && anchor.move_resist <= movable_source.move_force && anchor.Move(get_step_towards(anchor, new_loc))))
 			to_chat(source, span_warning("[tether_name] runs out of slack and prevents you from moving!"))
 			return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
@@ -99,7 +107,6 @@
 	if (get_dist(anchor, new_loc) != cur_dist || !ismovable(source))
 		return
 
-	var/atom/movable/movable_source = source
 	var/datum/drift_handler/handler = movable_source.drift_handler
 	if (isnull(handler))
 		return
@@ -111,8 +118,15 @@
 	var/atom/atom_target = parent
 	// Something broke us out, snap the tether
 	if (get_dist(atom_target, tether_target) > cur_dist + 1 || !isturf(atom_target.loc) || !isturf(tether_target.loc) || atom_target.z != tether_target.z)
-		atom_target.visible_message(span_warning("[atom_target]'s [tether_name] snaps!"), span_userdanger("Your [tether_name] snaps!"), span_hear("You hear a cable snapping."))
-		qdel(src)
+		snap()
+
+/datum/component/tether/proc/snap()
+	SIGNAL_HANDLER
+
+	var/atom/atom_target = parent
+	atom_target.visible_message(span_warning("[atom_target]'s [tether_name] snaps!"), span_userdanger("Your [tether_name] snaps!"), span_hear("You hear a cable snapping."))
+	playsound(atom_target, 'sound/effects/snap.ogg', 50, TRUE)
+	qdel(src)
 
 /datum/component/tether/proc/on_delete()
 	SIGNAL_HANDLER
@@ -129,10 +143,12 @@
 	INVOKE_ASYNC(src, PROC_REF(process_beam_click), source, location, params, user)
 
 /datum/component/tether/proc/process_beam_click(atom/source, atom/location, params, mob/user)
+	if (!location.can_interact(user))
+		return
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		location.balloon_alert(user, "cutting the tether...")
-		if (!do_after(user, 5 SECONDS, user))
+		if (!do_after(user, 1 SECONDS, user))
 			return
 
 		qdel(src)
@@ -164,12 +180,12 @@
 	var/atom/movable/movable_parent = parent
 	var/atom/movable/movable_target = tether_target
 
-	if (istype(movable_parent) && movable_parent.Move(get_step(movable_parent.loc, get_dir(movable_parent, movable_target))))
+	if (istype(movable_parent) && !movable_parent.anchored && movable_parent.move_resist <= movable_target.move_force && movable_parent.Move(get_step(movable_parent.loc, get_dir(movable_parent, movable_target))))
 		cur_dist -= 1
 		location.balloon_alert(user, "tether shortened")
 		return
 
-	if (istype(movable_target) && movable_target.Move(get_step(movable_target.loc, get_dir(movable_target, movable_parent))))
+	if (istype(movable_target) && !movable_target.anchored && movable_target.move_resist <= movable_parent.move_force && movable_target.Move(get_step(movable_target.loc, get_dir(movable_target, movable_parent))))
 		cur_dist -= 1
 		location.balloon_alert(user, "tether shortened")
 		return

@@ -11,6 +11,11 @@
 	item_type = /obj/item/storage/medkit/civil_defense/stocked
 	cost = PAYCHECK_COMMAND * 2.5
 
+/datum/armament_entry/company_import/deforest/first_aid_kit/comfort
+	item_type = /obj/item/storage/medkit/civil_defense/comfort/stocked
+	cost = PAYCHECK_COMMAND * 4
+	// bubbah price, not adding it to other stuff because i dont want to mess with the changes... would make adjusting it harder, and that shit is overpriced rn
+
 /datum/armament_entry/company_import/deforest/first_aid_kit/frontier
 	item_type = /obj/item/storage/medkit/frontier/stocked
 	cost = PAYCHECK_COMMAND * 3.5
@@ -233,6 +238,10 @@
 	item_type = /obj/item/device/custom_kit/deluxe_hypo2
 	cost = PAYCHECK_COMMAND * 2
 
+/datum/armament_entry/company_import/deforest/equipment/advanced_hypospray
+	item_type = /obj/item/hypospray/mkii/piercing
+	cost = PAYCHECK_COMMAND * 7
+
 /datum/armament_entry/company_import/deforest/equipment/afad
 	item_type = /obj/item/gun/medbeam/afad
 	cost = PAYCHECK_COMMAND * 5
@@ -252,7 +261,7 @@
 /datum/armament_entry/company_import/deforest/equipment/medhud_night_sci
 	item_type = /obj/item/clothing/glasses/hud/health/night/science
 	cost = PAYCHECK_COMMAND * 6
-//BUBBER EDIT ADD START
+
 /datum/armament_entry/company_import/deforest/equipment/hypospray_case
 	item_type = /obj/item/storage/hypospraykit
 	cost = PAYCHECK_LOWER * 2
@@ -281,8 +290,6 @@
 /datum/armament_entry/company_import/deforest/implant/janitor
 	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
 	cost = PAYCHECK_COMMAND * 5
-
-//BUBBER EDIT END
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 

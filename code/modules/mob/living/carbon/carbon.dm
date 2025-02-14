@@ -435,6 +435,11 @@
 	if(!force && HAS_TRAIT(src, TRAIT_STRONG_STOMACH))
 		lost_nutrition *= 0.5
 
+	// BUBBER EDIT ADDITION BEGIN - Synthetic Vomit
+	if(issynthetic(src))
+		vomit_type = /obj/effect/decal/cleanable/vomit/nanites
+	// BUBBER EDIT ADDITION END
+
 	SEND_SIGNAL(src, COMSIG_CARBON_VOMITED, distance, force)
 
 	// cache some stuff that we'll need later (at least multiple times)

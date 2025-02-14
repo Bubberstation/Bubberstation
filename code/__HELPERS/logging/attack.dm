@@ -28,9 +28,8 @@
 		saddition = " [addition]"
 
 	var/postfix = "[sobject][saddition][hp]"
-	var/redacted_copy = "[what_done] [target][postfix]"
 	var/message = "[what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red", redacted_copy = redacted_copy) // BUBBER EDIT
+	user.log_message(message, LOG_ATTACK, color="red") // BUBBER EDIT
 
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
