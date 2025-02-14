@@ -8,3 +8,20 @@
 #define COMSIG_ORGAN_BODYPART_REMOVED "organ_bodypart_removed"
 /// From /datum/controller/subsystem/economy/proc/issue_paydays()
 #define COMSIG_ON_BANK_ACCOUNT_PAYOUT "bank_account_payout"
+
+// CORRUPTION SIGNALS
+
+/// From /obj/structure/fleshmind/structure/proc/activate_ability() (src)
+#define COMSIG_CORRUPTION_STRUCTURE_ABILITY_TRIGGERED "corruption_structure_ability_triggered"
+
+/// From /mob/living/basic/fleshmind/phaser/proc/phase_move_to(atom/target, nearby = FALSE)
+#define COMSIG_PHASER_PHASE_MOVE "phaser_phase_move"
+/// from /mob/living/basic/fleshmind/phaser/proc/enter_nearby_closet()
+#define COMSIG_PHASER_ENTER_CLOSET "phaser_enter_closet"
+
+/// from /obj/structure/fleshmind/structure/core/proc/rally_troops()
+#define COMSIG_FLESHMIND_CORE_RALLY "fleshmind_core_rally"
+
+#define COMSIG_MECHIVER_CONVERT "mechiver_convert"
+
+//#define COMSIG_CORE_DEATH "fleshmind_core_death"
