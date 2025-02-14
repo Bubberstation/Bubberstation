@@ -837,8 +837,8 @@
 	//BUBBER ADDITION - COMPONENTS
 	for (var/V in borgo.components)
 		var/datum/robot_component/C = borgo.components[V]
-		if(istype(C.wrapped, /obj/item/broken_device) && !C)
-			to_chat(user, span_warning("You have to replace the broken cyborg components before using this module!"))
+		if(C.wrapped == null) //Should always have components
+			to_chat(user, span_warning("You have to replace the missing cyborg components!"))
 			return ..()
 	//BUBBER ADDITION END - COMPONENTS
 	if(!(borgo.stat & DEAD))
