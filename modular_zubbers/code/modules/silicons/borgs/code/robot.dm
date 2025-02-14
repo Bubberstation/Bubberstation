@@ -31,6 +31,40 @@
 		C.install()
 		C.wrapped = new C.external_type
 
+/// To restore any missing or broken components
+/mob/living/silicon/robot/proc/restore_components()
+	for (var/V in components)
+		var/datum/robot_component/C = components[V]
+		if(istype(C.wrapped, /obj/item/robot_parts/robot_component))
+			C.brute_damage = 0
+			C.burn_damage = 0
+			C.repair()
+		if(!C.wrapped)// Do we have a component?
+			switch(V)
+				if("actuator")
+					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+				if("radio")
+					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+				if("diagnosis unit")
+					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+				if("camera")
+					C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+				if("comms")
+					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+				if("armour")
+					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+			C.install()
+			C.installed = 1
+	return
+
+/// Checks if a cyborg has a cell and replaces or sets it to max charge
+/mob/living/silicon/robot/proc/restore_cell()
+	if(cell)
+		cell.charge = cell.maxcharge //Needed since borgs now require to have power
+	else if(!cell)
+		cell = new /obj/item/stock_parts/power_store/cell/high(src)
+	return
+
 //Component toggling - mostly used for debugging
 
 /mob/living/silicon/robot/verb/toggle_component()

@@ -718,32 +718,8 @@
 		return
 
 	//BUBBER ADDITION - COMPONENTS
-	for (var/V in components)
-		var/datum/robot_component/C = components[V]
-		if(istype(C.wrapped, /obj/item/robot_parts/robot_component))
-			C.brute_damage = 0
-			C.burn_damage = 0
-			C.repair()
-		if(!C.wrapped)// Do we have a component?
-			switch(V)
-				if("actuator")
-					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
-				if("radio")
-					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
-				if("diagnosis unit")
-					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
-				if("camera")
-					C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
-				if("comms")
-					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
-				if("armour")
-					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
-			C.install()
-			C.installed = 1
-	if(cell)
-		cell.charge = cell.maxcharge //Needed since borgs now require to have power
-	else if(!cell)
-		cell = new /obj/item/stock_parts/power_store/cell/high(src)
+	restore_components()
+	restore_cell()
 	//BUBBER ADDITION END - COMPONENTS
 	if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
 		builtInCamera.toggle_cam(src, 0)
