@@ -197,3 +197,20 @@
 /datum/sprite_accessory/taur/biglegs/stanced/bird
 	name = "Big Legs, Stanced Bird"
 	icon_state = "biglegs_bird_stanced"
+
+/datum/sprite_accessory/taur/biglegsRideable
+	name = "Big Legs (rideable)"
+	icon_state = "biglegs"
+	taur_mode = STYLE_TAUR_PAW
+
+/datum/sprite_accessory/taur/biglegsRideable/stanced
+	name = "Big Legs, Stanced (rideable)"
+	icon_state = "biglegs_stanced"
+
+/datum/sprite_accessory/taur/biglegsRideable/bird
+	name = "Big Legs, Bird (rideable)"
+	icon_state = "biglegs_bird"
+
+/datum/sprite_accessory/taur/biglegsRideable/stanced/bird
+	name = "Big Legs, Stanced Bird (rideable)"
+	icon_state = "biglegs_bird_stanced"
