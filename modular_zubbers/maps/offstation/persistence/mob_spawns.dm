@@ -70,15 +70,14 @@
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
 	if(new_spawn.client) //It should have a client, right?
-		new_spawn.dauntless_cyborg = TRUE //They can only pick syndicatejack.
 		new_spawn.faction += ROLE_SYNDICATE
+		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
 		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
 		new_spawn.radio.recalculateChannels()
+		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
+		new_spawn.SetEmagged(TRUE) //just to be sure.
 		new_spawn.laws = new /datum/ai_laws/persistence()
 		new_spawn.show_laws() //Check your laws.
-		new_spawn.lawupdate = FALSE
-		new_spawn.scrambledcodes = TRUE //This should prevent AI linking and consoles to see or lock them down.
-
 		new_spawn.custom_name = null //Taken from ghostcafe, otherwise it'll lead to a runtime if random_appeareance is set to FALSE.
 		new_spawn.updatename(new_spawn.client)
 		new_spawn.transfer_emote_pref(new_spawn.client)
@@ -193,7 +192,7 @@
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/borg/sight/meson,
-		/obj/item/borg_shapeshifter/stable
+		/obj/item/borg_shapeshifter/dauntless
 		)
 
 /datum/outfit/persistence/syndicate
@@ -395,3 +394,7 @@
 /datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
+
+//Give cyborg a specific chameleon item that do not disrupt, still lose power though.
+/obj/item/borg_shapeshifter/dauntless
+	signalCache = list()
