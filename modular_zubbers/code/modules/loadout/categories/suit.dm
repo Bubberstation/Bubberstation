@@ -27,6 +27,32 @@
 	name = "Pirate coat"
 	item_path = /obj/item/clothing/suit/costume/pirate
 
+// Fancy crop-top jackets
+
+/datum/loadout_item/suit/crop_jacket
+	name = "Colourable Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket
+
+/datum/loadout_item/suit/shortsleeve_crop_jacket
+	name = "Colourable Short-Sleeved Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve
+
+/datum/loadout_item/suit/sleeveless_crop_jacket
+	name = "Colourable Sleeveless Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless
+
+/datum/loadout_item/suit/sports_jacket
+	name = "Colourable Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/long
+
+/datum/loadout_item/suit/shortsleeve_sports_jacket
+	name = "Colourable Short-Sleeved Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve/long
+
+/datum/loadout_item/suit/sleeveless_sports_jacket
+	name = "Colourable Sleeveless Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless/long
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
