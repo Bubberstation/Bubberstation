@@ -88,6 +88,14 @@
 
 	can_ride_saddled_taurs = TRUE
 
+/obj/item/organ/external/taur_body/anthroRideable
+	left_leg_name = null
+	right_leg_name = null
+	riding_offset_side_x = 6
+	riding_offset_side_y = 6
+	can_use_saddle = TRUE
+
+
 /obj/item/organ/external/taur_body/anthro/synth
 	organ_flags = ORGAN_ROBOTIC
 
