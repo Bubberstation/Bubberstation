@@ -88,7 +88,7 @@
 
 	can_ride_saddled_taurs = TRUE
 
-/obj/item/organ/external/taur_body/anthroRideable
+/obj/item/organ/external/taur_body/anthro_rideable
 	left_leg_name = null
 	right_leg_name = null
 	riding_offset_side_x = 6

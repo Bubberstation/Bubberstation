@@ -198,20 +198,20 @@
 	name = "Big Legs, Stanced Bird"
 	icon_state = "biglegs_bird_stanced"
 
-/datum/sprite_accessory/taur/biglegsRideable
+/datum/sprite_accessory/taur/biglegs_rideable
 	name = "Big Legs (rideable)"
 	icon_state = "biglegs"
 	taur_mode = STYLE_TAUR_PAW
 	organ_type = /obj/item/organ/external/taur_body/anthroRideable
 
-/datum/sprite_accessory/taur/biglegsRideable/stanced
+/datum/sprite_accessory/taur/biglegs_rideable/stanced
 	name = "Big Legs, Stanced (rideable)"
 	icon_state = "biglegs_stanced"
 
-/datum/sprite_accessory/taur/biglegsRideable/bird
+/datum/sprite_accessory/taur/biglegs_rideable/bird
 	name = "Big Legs, Bird (rideable)"
 	icon_state = "biglegs_bird"
 
-/datum/sprite_accessory/taur/biglegsRideable/stanced/bird
+/datum/sprite_accessory/taur/biglegs_rideable/stanced/bird
 	name = "Big Legs, Stanced Bird (rideable)"
 	icon_state = "biglegs_bird_stanced"
