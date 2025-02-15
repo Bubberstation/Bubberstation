@@ -112,3 +112,30 @@
 	name = "Worn Miniskirt"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt_worn.json'
+
+// SHORT-SLEEVED CROPPED JACKET
+
+/datum/greyscale_config/shortsleeve_crop_jacket
+	name = "Tailored Jacket (Short-Sleeved)"
+	icon_file = 'modular_nova/modules/GAGS/icons/crop_jacket.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/crop_jacket/crop_jacket_short.json'
+
+/datum/greyscale_config/shortsleeve_crop_jacket/worn
+	name = "Tailored Jacket (Short-Sleeved, Worn)"
+	icon_file = 'modular_nova/modules/GAGS/icons/crop_jacket_worn.dmi'
+
+// SLEEVELESS CROPPED JACKET
+
+/datum/greyscale_config/sleeveless_crop_jacket
+	name = "Tailored Jacket"
+	icon_file = 'modular_nova/modules/GAGS/icons/sleeveless_crop_jacket.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/sleeveless_crop_jacket/sleeveless_crop_jacket.json'
+	name = "Tailored Jacket (Sleeveless)"
+	icon_file = 'modular_nova/modules/GAGS/icons/crop_jacket.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/crop_jacket/crop_jacket_none.json'
+
+/datum/greyscale_config/sleeveless_crop_jacket/worn
+	name = "Tailored Jacket (Worn)"
+	icon_file = 'modular_nova/modules/GAGS/icons/sleeveless_crop_jacket_worn.dmi'
+	name = "Tailored Jacket (Sleeveless, Worn)"
+	icon_file = 'modular_nova/modules/GAGS/icons/crop_jacket_worn.dmi'
