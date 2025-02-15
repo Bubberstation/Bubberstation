@@ -23,10 +23,11 @@
 	if(status_flags & (HAS_TRAIT(src, TRAIT_GODMODE)))	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
-	//TODO: FIX WHEN HIT WITH NO COMPONENTS
+	//TODO: Actually get a deathgasp upon death.
 	if(!parts.len && (stat = DEAD)) //Hopefully lesser chance of preventing limbo also makes you glass with out parts
 		death(FALSE)
 		investigate_log("has died from being attacked with no components installed!", INVESTIGATE_DEATHS)
+		update_stat()
 		return
 
 	var/datum/robot_component/armour/A = get_armour()

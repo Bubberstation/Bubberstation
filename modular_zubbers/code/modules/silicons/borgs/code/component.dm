@@ -30,11 +30,11 @@
 /datum/robot_component/proc/install()
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
-		max_damage = comp.max_damage
-		required_power = comp.required_power
 		if(!(comp.broken))//Don't apply when broken only when working
 			brute_damage = comp.brute
 			burn_damage = comp.burn
+		max_damage = comp.max_damage
+		required_power = comp.required_power
 		comp.brute = initial(brute_damage)
 		comp.burn = initial(brute_damage)
 		owner.updatehealth()
@@ -42,17 +42,12 @@
 	return
 
 /datum/robot_component/proc/uninstall()
-	max_damage = initial(max_damage)
-	required_power = initial(required_power)
-	//Test later
-	/*
-	brute_damage = initial(brute_damage)
-	burn_damage = initial(burn_damage)
-	*/
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		comp.brute = brute_damage
 		comp.burn = burn_damage
+	max_damage = initial(max_damage)
+	required_power = initial(required_power)
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
@@ -61,9 +56,7 @@
 		brokenstate = comp.icon_state_broken
 		comp.broken = TRUE
 
-
 	wrapped.icon_state = brokenstate // Module-specific broken icons! Yay!
-	wrapped.update_icon_state()
 
 	// The thing itself isn't there anymore, but some fried remains are.
 	installed = -1
@@ -75,8 +68,8 @@
 	//This is after to prevent installing from applying the previous damage when last broken
 	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
-		wrapped.icon_state = initial(wrapped.icon_state)
 		comp.broken = FALSE
+	wrapped.icon_state = initial(wrapped.icon_state)
 
 /datum/robot_component/proc/take_damage(brute, burn)
 	if(installed != 1)

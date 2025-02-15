@@ -39,6 +39,7 @@
 			C.brute_damage = 0
 			C.burn_damage = 0
 			C.repair()
+
 		if(!C.wrapped)// Do we have a component?
 			switch(V)
 				if("actuator")
@@ -59,10 +60,11 @@
 
 /// Checks if a cyborg has a cell and replaces or sets it to max charge
 /mob/living/silicon/robot/proc/restore_cell()
-	if(cell)
-		cell.charge = cell.maxcharge //Needed since borgs now require to have power
-	else if(!cell)
-		cell = new /obj/item/stock_parts/power_store/cell/high(src)
+	if(!opened)
+		if(cell)
+			cell.charge = cell.maxcharge //Needed since borgs now require to have power
+		else if(!cell)
+			cell = new /obj/item/stock_parts/power_store/cell/high(src)
 	return
 
 //Component toggling - mostly used for debugging
@@ -70,7 +72,7 @@
 /mob/living/silicon/robot/verb/toggle_component()
 	set category = "AI Commands"
 	set name = "Toggle Component"
-	set desc = "Toggle a component, conserving power."
+	set desc = "Toggle a component on of off."
 
 	var/list/installed_components = list()
 	for(var/V in components)
@@ -78,7 +80,7 @@
 		if(C.installed)
 			installed_components += V
 
-	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null|anything in installed_components
+	var/toggle = tgui_input_list(src, "Which component do you want to toggle?", "Toggle Component", installed_components)
 	if(!toggle)
 		return
 
