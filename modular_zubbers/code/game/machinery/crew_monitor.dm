@@ -30,9 +30,6 @@
 
 		var/obj/item/clothing/under/uniform = mob.w_uniform
 		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
-			if(mob.get_dnr()) // DNR won't beep anymore
-				continue
-			canalarm = TRUE
 			break // Why wasn't this here?
 
 	if(canalarm)
