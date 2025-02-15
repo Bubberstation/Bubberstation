@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/crop_jacket/Initialize(mapload)
-  AddComponent(/datum/component/toggle_icon)
+	AddComponent(/datum/component/toggle_icon)
 
 /obj/item/clothing/suit/crop_jacket/shortsleeve
 	name = "short-sleeved crop-top jacket"
