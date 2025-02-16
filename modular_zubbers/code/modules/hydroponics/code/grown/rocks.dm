@@ -105,7 +105,7 @@
 	plantname = "Sandfruits"
 	product = /obj/item/food/grown/shell/sand
 	mutatelist = list(/obj/item/seeds/uraniberry,
-					/obj/item/seeds/aubergine,
+					/obj/item/seeds/agbergine,
 					/obj/item/seeds/ferrotuber,
 					/obj/item/seeds/adamapple)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
@@ -121,17 +121,19 @@
 	desc = "A mutated variant of rockfruits; rough, course and now available everywhere. Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/sandfruitcore
+	trash_type = /obj/item/stack/sheet/mineral/sandfruitcore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/silicon
 
-/obj/item/grown/sandfruitcore
-	seed = /obj/item/seeds/sandfruit
+/obj/item/stack/sheet/mineral/sandfruitcore
 	name = "sandfruit core"
 	desc = "A very fragile sandfruit core, literally composed of dozens of particles of sand... don't store in pockets."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
+	singular_name = "sandfruit core"
 	icon_state = "sandfruit"
-	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/sandfruitcore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Uranium - First on 'energy' line
 
@@ -157,17 +159,19 @@
 	desc = "A mutated variant of rockfruits; you might not want to hold it for long... also not actually a berry! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/uraniberrycore
+	trash_type = /obj/item/stack/sheet/mineral/uraniberrycore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/uranium
 
-/obj/item/grown/uraniberrycore
-	seed = /obj/item/seeds/uraniberry
+/obj/item/stack/sheet/mineral/uraniberrycore
 	name = "uraniberry core"
+	singular_name = "uraniberry core"
 	desc = "A very dense uraniberry core, don't store in pockets, unless you want extra limbs."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "uraniberry"
-	custom_materials = list(/datum/material/uranium=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/uraniberrycore
+	max_amount = 10
+	mats_per_unit =list(/datum/material/uranium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Plasma - Second stage of 'energy' line.
 
@@ -193,17 +197,19 @@
 	desc = "A mutated variant of rockfruits; Incredibly volatile... also not actually a plum! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/plasmaplumcore
+	trash_type = /obj/item/stack/sheet/mineral/plasmaplumcore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/toxin/plasma
 
-/obj/item/grown/plasmaplumcore
-	seed = /obj/item/seeds/plasmaplum
+/obj/item/stack/sheet/mineral/plasmaplumcore
 	name = "plasmaplum core"
+	singular_name = "plasmaplum core"
 	desc = "A very dense plasmaplum core, store in a cold, fire and spark free place."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "plasmaplum"
-	custom_materials = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/plasmaplumcore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Bluespace - ending of 'energy' line.
 
@@ -229,29 +235,31 @@
 	desc = "A mutated variant of rockfruits; Incredibly fragile... also not actually a drupe! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/bluegemdrupecore
+	trash_type = /obj/item/stack/sheet/mineral/bluegemdrupecore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/bluespace
 
-/obj/item/grown/bluegemdrupecore
-	seed = /obj/item/seeds/bluegemdrupe
+/obj/item/stack/sheet/mineral/bluegemdrupecore
 	name = "bluegem drupe core"
+	singular_name = "bluegem drupe core"
 	desc = "A very dense bluegem drupe core, dropping may incur teleportation in rare cases."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bluegemdrupe"
-	custom_materials = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/bluegemdrupecore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.2)
 
-//Silver - Aubergine (Get it? AU, silver?!) - First on 'precious' line
+//Silver - Agbergine (Get it? AG, silver?!) - First on 'precious' line
 
-/obj/item/seeds/aubergine
-	name = "au-bergine seed pack"
+/obj/item/seeds/agbergine
+	name = "ag-bergine seed pack"
 	desc = "These seeds grow to produce fruits, with cores of solid silver."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/seeds.dmi'
-	icon_state = "seed-aubergine"
+	icon_state = "seed-agbergine"
 	species = "ore"
-	plantname = "aubergine"
-	product = /obj/item/food/grown/shell/aubergine
-	mutatelist = list(/obj/item/seeds/agbergine)
+	plantname = "agbergine"
+	product = /obj/item/food/grown/shell/agbergine
+	mutatelist = list(/obj/item/seeds/aubergine)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/silver = 0.1)
 	growthstages = 2
@@ -259,34 +267,36 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/aubergine
-	seed = /obj/item/seeds/aubergine
-	name = "au-bergine"
-	desc = "Au-bergine, get it AU? It's hilarious and valuable! Just peel it for a core."
+/obj/item/food/grown/shell/agbergine
+	seed = /obj/item/seeds/agbergine
+	name = "ag-bergine"
+	desc = "Ag-bergine, get it AG? It's hilarious and valuable! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/auberginecore
+	trash_type = /obj/item/stack/sheet/mineral/agberginecore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/silver
 
-/obj/item/grown/auberginecore
-	seed = /obj/item/seeds/aubergine
-	name = "au-bergine core"
-	desc = "A dense aubergine core of solid, sterling silver."
+/obj/item/stack/sheet/mineral/agberginecore
+	name = "ag-bergine core"
+	singular_name = "ag-bergine core"
+	desc = "A dense agbergine core of solid, sterling silver."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
-	icon_state = "aubergine"
-	custom_materials = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*0.2)
+	icon_state = "agbergine"
+	merge_type = /obj/item/stack/sheet/mineral/agberginecore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/silver=SHEET_MATERIAL_AMOUNT*0.2)
 
-//Gold - Agbergine (Pretty sure you can work this one out) - Second stage of 'precious' line.
+//Gold - Au-bergine (Pretty sure you can work this one out) - Second stage of 'precious' line.
 
-/obj/item/seeds/agbergine
-	name = "ag-bergine seed pack"
+/obj/item/seeds/aubergine
+	name = "au-bergine seed pack"
 	desc = "These seeds grow to golden cored fruits."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/seeds.dmi'
-	icon_state = "seed-agbergine"
+	icon_state = "seed-aubergine"
 	species = "ore"
-	plantname = "agbergine"
-	product = /obj/item/food/grown/shell/agbergine
+	plantname = "aubergine"
+	product = /obj/item/food/grown/shell/aubergine
 	mutatelist = list(/obj/item/seeds/dimantis)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/gold = 0.1)
@@ -295,23 +305,25 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/agbergine
-	seed = /obj/item/seeds/agbergine
-	name = "agbergine"
-	desc = "An agbergine; AG? Get it?!... My talents are wasted here! Just peel it for a core."
+/obj/item/food/grown/shell/aubergine
+	seed = /obj/item/seeds/aubergine
+	name = "aubergine"
+	desc = "An aubergine; AU? Get it?!... My talents are wasted here! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/agberginecore
+	trash_type = /obj/item/stack/sheet/mineral/auberginecore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/gold
 
-/obj/item/grown/agberginecore
-	seed = /obj/item/seeds/agbergine
-	name = "ag-bergine core"
-	desc = "A very dense ag-bergine core, solid 24 karat goodness."
+/obj/item/stack/sheet/mineral/auberginecore
+	name = "au-bergine core"
+	singular_name = "au-bergine core"
+	desc = "A very dense au-bergine core, solid 24 karat goodness."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
-	icon_state = "agbergine"
-	custom_materials = list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*0.2)
+	icon_state = "aubergine"
+	merge_type = /obj/item/stack/sheet/mineral/auberginecore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/gold=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Dimantis - ending of 'precious' line.
 
@@ -337,17 +349,19 @@
 	desc = "A fleshy fruid with a diamond core, Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/dimantiscore
+	trash_type = /obj/item/stack/sheet/mineral/dimantiscore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/carbon
 
-/obj/item/grown/dimantiscore
-	seed = /obj/item/seeds/dimantis
+/obj/item/stack/sheet/mineral/dimantiscore
 	name = "dimantis core"
+	singular_name = "dimantis core"
 	desc = "A very dense dimantis core, the way to a woman's heart, it could probably get through her ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "dimantis"
-	custom_materials = list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/dimantiscore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/diamond=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Iron - Ferrotubers - First on 'metal' line
 
@@ -373,17 +387,19 @@
 	desc = "Ferrotubers, fleshy shells with iron fillings! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/ferrotubercore
+	trash_type = /obj/item/stack/sheet/mineral/ferrotubercore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/iron
 
-/obj/item/grown/ferrotubercore
-	seed = /obj/item/seeds/ferrotuber
+/obj/item/stack/sheet/mineral/ferrotubercore
 	name = "ferrotuber core"
+	singular_name = "ferrotuber core"
 	desc = "A dense ferrotuber core of solid iron, slightly magnetic."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "ferrotuber"
-	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/ferrotubercore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Titanium - titanituber - Second stage of 'metal' line.
 
@@ -408,16 +424,18 @@
 	desc = "soft fruits with incredibly sturdy cores, watch your teeth! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/titanitubercore
+	trash_type = /obj/item/stack/sheet/mineral/titanitubercore
 	foodtypes = FRUIT
 
-/obj/item/grown/titanitubercore
-	seed = /obj/item/seeds/titanituber
+/obj/item/stack/sheet/mineral/titanitubercore
 	name = "titanituber core"
+	singular_name = "titanituber core"
 	desc = "A very dense titanituber core, let's hope you didn't bite it!"
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "titanituber"
-	custom_materials = list(/datum/material/titanium=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/titanitubercore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/titanium=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Adamantine - First on 'misc' line
 
@@ -442,16 +460,18 @@
 	desc = "Adam's apples, The garden Eden's bounty! Just peel it for a core."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/adamapplecore
+	trash_type = /obj/item/stack/sheet/mineral/adamapplecore
 	foodtypes = FRUIT
 
-/obj/item/grown/adamapplecore
-	seed = /obj/item/seeds/adamapple
+/obj/item/stack/sheet/mineral/adamapplecore
 	name = "adam's apple core"
+	singular_name = "adam's apple core"
 	desc = "A dense adam's apple core of solid adamantine."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "adamapple"
-	custom_materials = list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/adamapplecore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/adamantine=SHEET_MATERIAL_AMOUNT*0.2)
 
 //Runite - Second stage of 'misc' line.
 
@@ -476,16 +496,18 @@
 	desc = "A fruit, usually grown in wild places where men would kill each other for gain."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/runescoopercore
+	trash_type = /obj/item/stack/sheet/mineral/runescoopercore
 	foodtypes = FRUIT
 
-/obj/item/grown/runescoopercore
-	seed = /obj/item/seeds/runescooper
-	name = "ag-bergine core"
+/obj/item/stack/sheet/mineral/runescoopercore
+	name = "runescooper core"
+	singular_name = "runescooper core"
 	desc = "A very dense runite core, a few more of these and you might be able to make a scimitar to defeat your foes..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "runescooper"
-	custom_materials = list(/datum/material/runite=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/runescoopercore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/runite=SHEET_MATERIAL_AMOUNT*0.2)
 
 //bananiumberry - ending of 'misc' line.
 
@@ -511,14 +533,16 @@
 	desc = "holy honkmother... This fruit got a core of bananium, Just peel it!"
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "orefruit"
-	trash_type = /obj/item/grown/bananiumberrycore
+	trash_type = /obj/item/stack/sheet/mineral/bananiumberrycore
 	foodtypes = FRUIT
 	distill_reagent = /datum/reagent/consumable/nutriment/soup/clown_tears
 
-/obj/item/grown/bananiumberrycore
-	seed = /obj/item/seeds/bananiumberry
+/obj/item/stack/sheet/mineral/bananiumberrycore
 	name = "bananiumberry core"
+	singular_name = "bananiumberry core"
 	desc = "A very dense bananium core, the way to a clown's heart, it could probably get through their ribcage..."
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "bananiumberry"
-	custom_materials = list(/datum/material/bananium=SHEET_MATERIAL_AMOUNT*0.2)
+	merge_type = /obj/item/stack/sheet/mineral/bananiumberrycore
+	max_amount = 10
+	mats_per_unit = list(/datum/material/bananium=SHEET_MATERIAL_AMOUNT*0.2)

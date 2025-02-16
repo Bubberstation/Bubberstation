@@ -79,6 +79,7 @@
 					/obj/item/clothing/gloves/combat/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 6,
+					/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec = 6,
 					/obj/item/clothing/suit/toggle/jacket/sec/old = 6,
 					/obj/item/clothing/suit/armor/vest/secjacket = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
