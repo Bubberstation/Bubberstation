@@ -1,3 +1,17 @@
+//Basetype
+
+/obj/item/clothing/suit/crop_jacket
+	name = "crop-top jacket"
+	desc = "A jacket that, some time long past, probably made quite the effective outdoors wear. Now, \
+		some barbarian has cut the entire bottom half out."
+	icon_state = "crop_jacket"
+	greyscale_config = /datum/greyscale_config/crop_jacket
+	greyscale_config_worn = /datum/greyscale_config/crop_jacket/worn
+	greyscale_colors = "#ebebeb#a52f29#292929"
+	body_parts_covered = CHEST|ARMS
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 /obj/item/clothing/suit/crop_jacket/Initialize(mapload)
 	AddComponent(/datum/component/toggle_icon)
 
