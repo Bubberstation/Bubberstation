@@ -25,7 +25,7 @@
 /datum/preferences/proc/savefile_needs_update_skyrat(list/save_data)
 	var/savefile_version = save_data["modular_version"]
 
-	if(save_data.len && savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
+	if(savefile_version && savefile_version < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT
 		return savefile_version
 
 	return MODULAR_SAVEFILE_UP_TO_DATE
@@ -79,7 +79,7 @@
 	languages = save_languages
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
-	if(!tgui_prefs_migration && save_data.len) // If save_data is empty, this is definitely a new character
+	if(!tgui_prefs_migration && save_data["modular_version"] && save_data["modular_version"] < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT - if we're missing version from migration, then the char is new. Won't be able to migrate either.
 		to_chat(parent, examine_block(span_redtext("PREFERENCE MIGRATION BEGINNING.\
 		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
@@ -284,8 +284,9 @@
 	save_data["alt_job_titles"] = alt_job_titles
 	save_data["languages"] = languages
 	save_data["food_preferences"] = food_preferences
-	if(updated)
-		save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
+	//if(updated) // BUBBER EDIT - This is bullshit, results in newly created characters getting invalid data. Load character should forcefully migrate it, so we can safely assume its up to date
+	//	save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
+	save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
 
 
 /datum/preferences/proc/update_body_parts(datum/preference/preference)

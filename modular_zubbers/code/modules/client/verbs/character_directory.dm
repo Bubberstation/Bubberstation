@@ -84,6 +84,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /// Saves us on copypaste code
 /datum/preference/choiced/directory_character_prefs
 	savefile_key = "char_directory_char_prefs" // This is so unit checks don't scream
+	abstract_type = /datum/preference/choiced/directory_character_prefs
 
 /datum/preference/choiced/directory_character_prefs/init_possible_values()
 	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
