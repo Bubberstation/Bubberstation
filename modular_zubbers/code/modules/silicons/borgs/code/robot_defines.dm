@@ -107,6 +107,8 @@
 #define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_jani.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_min.dmi'
 #define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_cc.dmi'
+#define CYBORG_ICON_SYN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_syndie.dmi'
+#define CYBORG_ICON_NIN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_ninja.dmi'
 
 
 // F3-LINE BORG DEFINES BELOW
