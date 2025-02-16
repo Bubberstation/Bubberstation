@@ -251,6 +251,7 @@
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/storage/box/bandages,
