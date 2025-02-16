@@ -86,6 +86,7 @@
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade/female(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/imperial(src)
 	new /obj/item/clothing/suit/armor/vest/hop/hop_formal(src)
+	new /obj/item/clothing/neck/mantle/hopmantle(src)
 
 /obj/item/storage/bag/garment/hos/PopulateContents()
 	new /obj/item/clothing/under/rank/security/head_of_security/skirt(src)
@@ -112,6 +113,7 @@
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/clothing/head/hos_kepi(src)
 	new /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos(src)
+//BUBBER ADDITION END
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/hats/warden/drill/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/alt/roselia(src)
@@ -131,7 +133,6 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial(src)
 	new /obj/item/clothing/suit/jacket/hos/blue(src)
 	new /obj/item/clothing/neck/mantle/hosmantle(src)
-//BUBBER ADDITION END
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	new /obj/item/clothing/suit/armor/vest/warden(src)
