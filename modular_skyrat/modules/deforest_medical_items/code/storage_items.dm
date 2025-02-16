@@ -353,6 +353,7 @@
 		/obj/item/stamp,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes,
 		/obj/item/surgicaldrill,
