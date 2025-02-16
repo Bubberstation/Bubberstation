@@ -42,7 +42,7 @@
 	display_name = "Advanced Syndicate Encryption"
 	description = "Provides emergency use Interdyne encryption keys in case operational comms are compromised."
 	required_items_to_unlock = list(
-		/obj/item/encryptionkey/headset_syndicate/cybersun
+		/obj/item/encryptionkey/headset_syndicate/interdyne
 	)
 	design_ids = list(
 		"interdyne_encryption",
