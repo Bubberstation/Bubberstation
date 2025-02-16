@@ -47,6 +47,7 @@
 	icon_state = "berk_suit"
 	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/berserker/gatsu
 	w_class = WEIGHT_CLASS_BULKY
 	armor_type = /datum/armor/berserker_gatsu
@@ -54,13 +55,27 @@
 
 /datum/armor/berserker_gatsu
 	melee = 40
-	bullet = 40
-	laser = 20
+	bullet = 30
+	laser = 15
 	energy = 25
 	bomb = 70
-	bio = 100
+	bio = 70
 	fire = 100
 	acid = 100
+	
+/datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
+	laser = 10
+	energy = 0
+
+/datum/armor/drake_empowerment_gatsu
+	melee = 35
+	laser = 10
+	bomb = 20
+
+/obj/item/clothing/suit/hooded/berserker/gatsu/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
+	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/suit/hooded/berserker/gatsu/examine()
 	. = ..()
@@ -80,6 +95,8 @@
 /obj/item/clothing/head/hooded/berserker/gatsu/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	AddComponent(/datum/component/anti_magic, ALL, inventory_flags = ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment_gatsu, upgrade_prefix = "empowered")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
 	. = ..()
@@ -183,7 +200,7 @@
 /datum/status_effect/dodgeroll_iframes/proc/whiff()
 	SIGNAL_HANDLER
 	owner.balloon_alert_to_viewers("MISS!")
-	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	playsound(src, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return SUCCESSFUL_BLOCK
 
 /obj/item/claymore/dragonslayer/very_fucking_loud

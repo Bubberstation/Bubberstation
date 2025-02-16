@@ -65,14 +65,9 @@
 	icon_state = "piercinghypo2"
 	gags_bodystate = "hypo2_piercing"
 	desc = "The advanced variant in the DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly spray or inject the chemicals."
-	inject_wait = DELUXE_WAIT_INJECT
-	spray_wait = DELUXE_WAIT_SPRAY
 	spray_self = DELUXE_SELF_INJECT
 	inject_self = DELUXE_SELF_SPRAY
 	penetrates = INJECT_CHECK_PENETRATE_THICK
-
-/obj/item/hypospray/mkii/piercing/atropine
-	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
 
 // Deluxe hypo upgrade Kit
 /obj/item/device/custom_kit/deluxe_hypo2
@@ -191,7 +186,7 @@
 		to_chat(user, span_notice("You remove [vial] from [src]."))
 		vial = null
 		update_icon()
-		playsound(loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, span_notice("This hypo isn't loaded!"))
 		return
@@ -210,7 +205,7 @@
 			vial.forceMove(quickswap_loc)
 	vial = new_vial
 	user.visible_message(span_notice("[user] has loaded a vial into [src]."), span_notice("You have loaded [vial] into [src]."))
-	playsound(loc, 'sound/weapons/autoguninsert.ogg', 35, 1)
+	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 	update_appearance()
 
 /obj/item/hypospray/mkii/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -318,7 +313,7 @@
 
 /obj/item/hypospray/mkii/attack_hand(mob/living/user)
 	if(user && loc == user && user.is_holding(src))
-		if(user.incapacitated())
+		if(user.incapacitated)
 			return
 		else if(!vial)
 			. = ..()

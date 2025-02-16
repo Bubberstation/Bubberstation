@@ -57,7 +57,7 @@
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 4,
 	)
-	resulting_item = /obj/item/clothing/shoes/horseshoe
+	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	required_good_hits = 8
 
 /datum/crafting_bench_recipe/ring

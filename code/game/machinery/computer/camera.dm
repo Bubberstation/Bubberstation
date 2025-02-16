@@ -50,7 +50,7 @@
 
 /obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	if(!user.can_perform_action(src, NEED_DEXTERITY|ALLOW_SILICON_REACH)) //prevents monkeys from using camera consoles
+	if(!user.client) //prevents errors by trying to pass clients that don't exist.
 		return
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -67,7 +67,7 @@
 			concurrent_users += user_ref
 		// Turn on the console
 		if(length(concurrent_users) == 1 && is_living)
-			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_on.ogg', 25, FALSE)
 			use_energy(active_power_usage)
 		// Register map objects
 		cam_screen.display_to(user)
@@ -108,7 +108,7 @@
 
 	return data
 
-/obj/machinery/computer/security/ui_act(action, params)
+/obj/machinery/computer/security/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -171,7 +171,7 @@
 	if(length(concurrent_users) == 0 && is_living)
 		active_camera = null
 		last_camera_turf = null
-		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
+		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
 
 /obj/machinery/computer/security/proc/show_camera_static()
 	cam_screen.vis_contents.Cut()

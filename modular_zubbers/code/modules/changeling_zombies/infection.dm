@@ -84,7 +84,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(parent)
 		var/mob/living/carbon/human/host = parent
 		if(zombified)
-			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
+			playsound(parent, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		REMOVE_TRAITS_IN(host,TRAIT_CHANGELING_ZOMBIE)
 		host.mind?.remove_antag_datum(/datum/antagonist/changeling_zombie)
 
@@ -224,7 +224,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	host.revive(ADMIN_HEAL_ALL)
 
 	host.do_jitter_animation(10 SECONDS)
-	playsound(host, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
+	playsound(host, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 
 	host.drop_all_held_items()
 

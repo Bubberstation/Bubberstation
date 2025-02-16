@@ -28,7 +28,7 @@
 	. += "The Eland is one of the few Trappiste weapons not made for military contract. \
 		Instead, the Eland started life as a police weapon, offered as a gun to finally \
 		outmatch all others in the cheap police weapons market. Unfortunately, this \
-		coincided with nearly every SolFed police force realising they are actually \
+		coincided with nearly every TerraGov police force realising they are actually \
 		comically overfunded. With military weapons bought for police forces taking \
 		over the market, the Eland instead found home in the civilian personal defense \
 		market. That is likely the reason you are looking at this one now."

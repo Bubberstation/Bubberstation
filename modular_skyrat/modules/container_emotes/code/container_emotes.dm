@@ -12,7 +12,6 @@
 
 /datum/emote/container_emote
 	key = "exme"
-	key_third_person = "exme"
 	message = null
 
 /datum/emote/container_emote/run_emote(mob/living/user, params, type_override = null, intentional = TRUE)

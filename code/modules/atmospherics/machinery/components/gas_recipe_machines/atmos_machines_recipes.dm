@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 10
 	max_temp = 20
 	energy_release = 3500000
-	requirements = list(/datum/gas/plasma = 450, /datum/gas/bz = 15) //SKYRAT EDIT CHANGE, ORIGINAL: requirements = list(/datum/gas/plasma = 450)
+	requirements = list(/datum/gas/plasma = 450)
 	products = list(/obj/item/stack/sheet/mineral/plasma = 1)
 
 /datum/gas_recipe/crystallizer/crystal_cell

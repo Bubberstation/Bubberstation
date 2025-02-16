@@ -20,7 +20,7 @@
 
 /datum/status_effect/body_fluid_regen/vagina/tick(seconds_between_ticks)
 	var/mob/living/carbon/human/affected_human = owner
-	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy) || !istype(affected_human))
+	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
 	var/obj/item/organ/external/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
@@ -38,7 +38,7 @@
 
 /datum/status_effect/body_fluid_regen/testes/tick(seconds_between_ticks)
 	var/mob/living/carbon/human/affected_human = owner
-	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy) || !istype(affected_human))
+	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
 	var/obj/item/organ/external/genital/testicles/testes = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
@@ -53,7 +53,7 @@
 
 /datum/status_effect/body_fluid_regen/breasts/tick(seconds_between_ticks)
 	var/mob/living/carbon/human/affected_human = owner
-	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy) || !istype(affected_human))
+	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
 	var/obj/item/organ/external/genital/breasts/breasts = owner.get_organ_slot(ORGAN_SLOT_BREASTS)

@@ -70,7 +70,7 @@
 
 /datum/heretic_knowledge/spell/cosmic_runes
 	name = "Cosmic Runes"
-	desc = "Grants you Cosmic Runes, a spell that creates two runes linked with eachother for easy teleportation. \
+	desc = "Grants you Cosmic Runes, a spell that creates two runes linked with each other for easy teleportation. \
 		Only the entity activating the rune will get transported, and it can be used by anyone without a star mark. \
 		However, people with a star mark will get transported along with another person using the rune."
 	gain_text = "The distant stars crept into my dreams, roaring and screaming without reason. \
@@ -93,7 +93,9 @@
 		They will then be paralyzed for 2 seconds."
 	gain_text = "The Beast now whispered to me occasionally, only small tidbits of their circumstances. \
 		I can help them, I have to help them."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/cosmic)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/cosmic,
+	/datum/heretic_knowledge/reroll_targets)  //BUBBER EDIT
 	route = PATH_COSMIC
 	mark_type = /datum/status_effect/eldritch/cosmic
 
@@ -122,7 +124,7 @@
 	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/cosmic,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/curse/corrosion,
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/spell/space_phase,
@@ -172,7 +174,7 @@
 		ORGAN_SLOT_LIVER,
 		ORGAN_SLOT_BRAIN
 	)
-	if(source == target)
+	if(source == target || !isliving(target))
 		return
 	if(combo_timer)
 		deltimer(combo_timer)
@@ -191,7 +193,7 @@
 		combo_counter += 1
 	if(second_target_resolved)
 		new /obj/effect/temp_visual/cosmic_explosion(get_turf(second_target_resolved))
-		playsound(get_turf(second_target_resolved), 'sound/magic/cosmic_energy.ogg', 25, FALSE)
+		playsound(get_turf(second_target_resolved), 'sound/effects/magic/cosmic_energy.ogg', 25, FALSE)
 		need_mob_update = FALSE
 		need_mob_update += second_target_resolved.adjustFireLoss(14, updating_health = FALSE)
 		need_mob_update += second_target_resolved.adjustOrganLoss(pick(valid_organ_slots), 12)
@@ -199,7 +201,7 @@
 			second_target_resolved.updatehealth()
 		if(third_target_resolved)
 			new /obj/effect/temp_visual/cosmic_domain(get_turf(third_target_resolved))
-			playsound(get_turf(third_target_resolved), 'sound/magic/cosmic_energy.ogg', 50, FALSE)
+			playsound(get_turf(third_target_resolved), 'sound/effects/magic/cosmic_energy.ogg', 50, FALSE)
 			need_mob_update = FALSE
 			need_mob_update += third_target_resolved.adjustFireLoss(28, updating_health = FALSE)
 			need_mob_update += third_target_resolved.adjustOrganLoss(pick(valid_organ_slots), 14)
@@ -282,7 +284,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg',
+		sound = 'sound/music/antag/heretic/ascend_cosmic.ogg',
 		color_override = "pink",
 	)
 	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = new /mob/living/basic/heretic_summon/star_gazer(loc)

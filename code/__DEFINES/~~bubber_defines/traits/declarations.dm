@@ -16,3 +16,23 @@
 
 //basic security hud
 #define TRAIT_BASIC_SECURITY_HUD "basic_security_hud"
+
+#define TRAIT_TORPOR "torpor"
+
+//lipstick trait
+#define TRAIT_HYPNO_KISS "hypno kiss"
+
+// Shows extended examine option when worn
+#define TRAIT_WORN_EXAMINE "worn_examine"
+
+// MK Ultra Skillchip
+#define TRAIT_PET_SKILLCHIP "mkii_ultra"
+
+#define TRAIT_SIGN_LANGUAGE_BLOCKED "sign_language_blocked"
+
+// makes the mob immune to crusher marks even if they are within the required mob size
+#define TRAIT_CRUSHER_MARK_IMMUNE "crusher_mark_immune"
+
+// makes it so cult cannot get another blood stone from this mob
+#define TRAIT_HAS_BEEN_CULT_SACRIFICED "has_been_cult_sacrificed"
+

@@ -90,8 +90,10 @@
 /datum/round_event/meteor_wave/meaty
 	wave_name = "meaty"
 
+/* BUBBER EDIT REMOVAL BEGIN - moved to modular_zubbers/code/modules/events/meteor_wave.dm
 /datum/round_event/meteor_wave/meaty/announce(fake)
 	priority_announce("Meaty ores have been detected on collision course with the station.", "Oh crap, get the mop.", ANNOUNCER_METEORS)
+*/// BUBBER EDIT REMOVAL FINISH
 
 /datum/round_event_control/meteor_wave/dust_storm
 	name = "Major Space Dust"

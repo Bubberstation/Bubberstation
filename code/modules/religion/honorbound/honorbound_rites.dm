@@ -33,7 +33,7 @@
 		if(possible_crusader.stat != CONSCIOUS)
 			to_chat(user, span_warning("[possible_crusader] needs to be alive and conscious to join the crusade!"))
 			return FALSE
-		if(TRAIT_GENELESS in possible_crusader.dna.species.inherent_traits)
+		if(TRAIT_GENELESS in possible_crusader.dna.species.inherent_traits && !issynthetic(possible_crusader)) // BUBBER EDIT: Allow synths to be part of a crusade: ORIGINAL: if(TRAIT_GENELESS in possible_crusader.dna.species.inherent_traits)
 			to_chat(user, span_warning("This species disgusts [GLOB.deity]! They would never be allowed to join the crusade!"))
 			return FALSE
 		if(possible_crusader in sect.currently_asking)

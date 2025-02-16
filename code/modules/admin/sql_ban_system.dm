@@ -68,7 +68,7 @@
 		values["role"] = roles
 		sql_roles = ":role"
 
-	var/datum/db_query/query_check_ban = SSdbcore.NewQuery(/* SKYRAT EDIT CHANGE - MULTISERVER */{"
+	var/datum/db_query/query_check_ban = SSdbcore.NewQuery(/* SKYRAT EDIT CHANGE - MULTISERVER - AND [server_check] */{"
 		SELECT 1
 		FROM [format_table_name("ban")]
 		WHERE

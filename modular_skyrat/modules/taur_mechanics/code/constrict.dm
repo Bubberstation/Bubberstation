@@ -202,7 +202,7 @@
 	var/mob/living/carbon/human/old_owner = owner
 	set_owner(null)
 
-	old_owner?.update_mutant_bodyparts()
+	old_owner?.update_body_parts()
 
 	tail_overlay = null
 	return ..()
@@ -521,7 +521,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_TRY_PULL, PROC_REF(owner_tried_pull))
 	RegisterSignal(owner, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(owner_body_position_changed))
 	RegisterSignal(owner, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(sync_direction))
-	owner?.update_mutant_bodyparts()
+	owner?.update_body_parts()
 
 /// The time it takes for a constricted thing to do a break-out attempt.
 #define SERPENTINE_TAIL_UNBUCKLE_TIME 0.5 SECONDS // arbitrary
@@ -566,14 +566,14 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
-				playsound(loc, 'sound/weapons/bladeslice.ogg', 100, TRUE)
+				playsound(loc, 'sound/items/weapons/bladeslice.ogg', 100, TRUE)
 			else
-				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
+				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		if(BURN)
 			if(!damage_amount)
 				return
 
-			playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 
 /// Signal proc for when owner moves. Qdels src.

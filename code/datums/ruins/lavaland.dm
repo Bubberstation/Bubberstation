@@ -33,7 +33,8 @@
 	name = "Lava-Ruin The Lizard's Gas"
 	id = "lizgas2"
 	description = "A recently opened gas station from the Lizard's Gas franchise."
-	suffix = "lavaland_surface_gas.dmm"
+	prefix = "_maps/RandomRuins/LavaRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "lavaland_surface_gas_bubber.dmm" //BUBBER EDIT - ORIGINAL: lavaland_surface_gas.dmm
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/cube
@@ -281,7 +282,7 @@
 /datum/map_template/ruin/lavaland/lava_phonebooth
 	name = "Lava-Ruin Phonebooth"
 	id = "lava_phonebooth"
-	description = "A venture by nanotrasen to help popularize the use of holopads. This one somehow made its way here."
+	description = "A venture by Nanotrasen to help popularize the use of holopads. This one somehow made its way here."
 	suffix = "lavaland_surface_phonebooth.dmm"
 	allow_duplicates = FALSE
 	cost = 5

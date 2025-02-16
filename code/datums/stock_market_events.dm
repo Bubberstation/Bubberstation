@@ -6,7 +6,7 @@
 		"Nakamura Engineering",
 		"Robust Industries, LLC",
 		"MODular Solutions",
-		"SolGov",
+		"TerraGov",
 		"Australicus Industrial Mining",
 		"Vey-Medical",
 		"Aussec Armory",

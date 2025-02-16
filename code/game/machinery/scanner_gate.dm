@@ -193,6 +193,7 @@
 	var/beep = FALSE
 	var/color = null
 	var/detected_thing = null
+	playsound(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 	switch(scangate_mode)
 		if(SCANGATE_NONE)
 			return
@@ -357,7 +358,7 @@
 		say("[detected_thing][reverse ? " not " : " "]detected!!")
 
 	COOLDOWN_START(src, next_beep, 2 SECONDS)
-	playsound(source = src, soundin = 'sound/machines/scanbuzz.ogg', vol = 30, vary = FALSE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, falloff_distance = 4)
+	playsound(source = src, soundin = 'sound/machines/scanner/scanbuzz.ogg', vol = 30, vary = FALSE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, falloff_distance = 4)
 	set_scanline("alarm", 2 SECONDS)
 
 /obj/machinery/scanner_gate/can_interact(mob/user)
@@ -383,7 +384,7 @@
 	data["contraband_enabled"] = !!n_spect
 	return data
 
-/obj/machinery/scanner_gate/ui_act(action, params)
+/obj/machinery/scanner_gate/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return

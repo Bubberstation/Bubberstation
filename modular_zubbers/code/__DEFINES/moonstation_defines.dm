@@ -2,3 +2,4 @@
 #define MOONSTATION_ATMOS_CAVE LAVALAND_DEFAULT_ATMOS
 
 #define ZTRAIT_SANDSTORM "Weather_Sandstorm"
+#define ZTRAIT_MOONSTATION_RUINS "Moonstation Ruins"

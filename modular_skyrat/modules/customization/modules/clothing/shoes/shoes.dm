@@ -4,7 +4,6 @@
 	name = "gilded leg wraps"
 	desc = "Ankle coverings. These ones have a golden design."
 	icon_state = "gildedcuffs"
-	body_parts_covered = FALSE
 
 /obj/item/clothing/shoes/wraps/silver
 	name = "silver leg wraps"

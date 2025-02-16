@@ -10,6 +10,6 @@
 	if(user)
 		to_chat(user, span_notice("Thank you for choosing the Jab TM for your clothing purchase!"))
 		new droptype( user.loc )
-		playsound(src, 'sound/creatures/mousesqueek.ogg', 100, TRUE, TRUE)
+		playsound(src, 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg', 100, TRUE, TRUE)
 		qdel(src)
 	return

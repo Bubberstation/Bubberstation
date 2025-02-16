@@ -696,7 +696,7 @@ const BellyMessageSection = (props: {
       }
     >
       {bellyValues.map((v, i) => (
-        <Stack key={i.toString() + hasChanges}>
+        <Stack key={v}>
           <Stack.Item grow>
             <Input
               value={v}

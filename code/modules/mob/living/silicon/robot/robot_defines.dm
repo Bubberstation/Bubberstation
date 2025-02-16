@@ -42,6 +42,8 @@
 	///If this is a path, this gets created as an object in Initialize.
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
 
+	///If we've been forcibly disabled for a temporary amount of time.
+	COOLDOWN_DECLARE(disabled_time)
 	///If the lamp isn't broken.
 	var/lamp_functional = TRUE
 	///If the lamp is turned on
@@ -117,10 +119,10 @@
 	var/low_power_mode = FALSE
 	///So they can initialize sparks whenever/N
 	var/datum/effect_system/spark_spread/spark_system
-	///Smoke particle holder for brute damage
-	var/obj/effect/abstract/particle_holder/smoke_particles = null
-	///Spark particle holder for burn damage
-	var/obj/effect/abstract/particle_holder/spark_particles = null
+	///Smoke particle type for brute damage
+	var/smoke_particles
+	///Spark particle type for burn damage
+	var/spark_particles
 
 	///Jetpack-like effect.
 	var/ionpulse = FALSE

@@ -1,3 +1,4 @@
+
 /*
 
 Skyrat removal START, moved to modular file
@@ -224,6 +225,7 @@ Skyrat removal START, moved to modular file
 		cold_circ = null
 
 #undef TEG_EFFICIENCY
+
 
 Skyrat removal END
 */

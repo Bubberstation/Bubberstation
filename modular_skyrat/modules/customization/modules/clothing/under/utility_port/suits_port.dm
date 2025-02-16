@@ -49,16 +49,6 @@
 /datum/armor/jacket_sci
 	bomb = 10
 
-/obj/item/clothing/suit/toggle/jacket/med
-	name = "medbay jacket"
-	desc = "A comfortable jacket in medical blue."
-	icon_state = "med_dep_jacket"
-	armor_type = /datum/armor/jacket_med
-
-/datum/armor/jacket_med
-	bio = 50
-	acid = 45
-
 /obj/item/clothing/suit/toggle/jacket/supply
 	name = "cargo jacket"
 	desc = "A comfortable jacket in supply brown."

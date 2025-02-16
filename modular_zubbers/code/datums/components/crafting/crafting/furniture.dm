@@ -44,9 +44,9 @@
 	time = 10 SECONDS
 	category = CAT_FURNITURE
 
-/datum/crafting_recipe/vassalrack
+/datum/crafting_recipe/ghoulrack
 	name = "Persuasion Rack"
-	result = /obj/structure/bloodsucker/vassalrack
+	result = /obj/structure/bloodsucker/ghoulrack
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 3,

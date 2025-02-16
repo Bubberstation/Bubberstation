@@ -9,7 +9,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb_simple = list("cut", "stabbed", "chebbed")
 	sharpness = SHARP_EDGED
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	wound_bonus = 10
 	bare_wound_bonus = 15
 	tool_behaviour = TOOL_KNIFE

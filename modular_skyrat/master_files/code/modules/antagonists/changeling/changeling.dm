@@ -1,12 +1,6 @@
-/* /datum/antagonist/changeling/forge_objectives()
-	return
- */ // BUBBER EDIT - Changelings get objectives
-
 /datum/changeling_profile
 	/// The bra worn by the profile source
 	var/bra
-	/// The color of the underwear used by the profile source
-	var/underwear_color
 	/// The color of the undershirt used by the profile source
 	var/undershirt_color
 	/// The color of the socks used by the profile source

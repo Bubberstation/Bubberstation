@@ -18,7 +18,7 @@
 
 	user.visible_message(span_notice("[user] upgrades [interacting_with] with [src]."), span_notice("You upgrade [interacting_with] to be RSD compatible."))
 	interacting_with.AddElement(/datum/element/rsd_interface)
-	playsound(interacting_with.loc, 'sound/weapons/circsawhit.ogg', 50, vary = TRUE)
+	playsound(interacting_with.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)
 
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

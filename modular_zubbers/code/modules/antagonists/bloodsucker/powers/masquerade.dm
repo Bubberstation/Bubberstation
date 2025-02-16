@@ -14,22 +14,25 @@
 	name = "Masquerade"
 	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
 	button_icon_state = "power_human"
-	power_explanation = "Masquerade:\n\
-		Activating Masquerade will forge your identity to be practically identical to that of a human;\n\
-		- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity.\n\
-		- Your eyes turn to that of a regular human as your heart begins to beat.\n\
-		- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer.\n\
-		- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden.\n\
-		At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
-	check_flags = BP_CANT_USE_IN_FRENZY
+	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
+	check_flags = NONE
+	bloodsucker_check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 10
+	level_current = -1
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
 
-/datum/action/cooldown/bloodsucker/masquerade/ActivatePower(trigger_flags)
-	. = ..()
+/datum/action/cooldown/bloodsucker/masquerade/get_power_explanation_extended()
+	. = list()
+	. += "Masquerade will forge your identity to be practically identical to that of a human."
+	. += "- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity."
+	. += "- Your eyes turn to that of a regular human as your heart begins to beat."
+	. += "- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer."
+	. += "- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden."
+	. += "At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
+
+/datum/action/cooldown/bloodsucker/masquerade/ActivatePower(atom/target)
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned on.")
 	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest, and your eyes are no longer sensitive to the light. You may yet pass for a mortal."))
@@ -40,7 +43,7 @@
 
 	// Handle Traits
 	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
-	
+
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	var/obj/item/bodypart/chest/target_chest = user.get_bodypart(BODY_ZONE_CHEST)
 	if(target_chest)
@@ -55,10 +58,13 @@
 		eyes.color_cutoffs = initial(eyes.color_cutoffs)
 		eyes.sight_flags = initial(eyes.sight_flags)
 		user.update_sight()
+	return TRUE
 
 /// todo, make bloodsuckerification into it's own proc, ie, eyes, traits, and such
-/datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
+/datum/action/cooldown/bloodsucker/masquerade/DeactivatePower(deactivate_flags)
 	. = ..() // activate = FALSE
+	if(!.)
+		return
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned off.")
 

@@ -49,6 +49,9 @@
 
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');
+// BUBBERSTATION ADDITION START: TGUI COLOR PICKER
+@include meta.load-css('./interfaces/ColorPicker.scss');
+// BUBBERSTATION ADDITION END: TGUI COLOR PICKER
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/Emojipedia.scss');
@@ -83,6 +86,7 @@
 @include meta.load-css('./interfaces/ClockworkSlab.scss');
 @include meta.load-css('./interfaces/VorePanel.scss');
 // SKYRAT EDIT ADDITION END
+@include meta.load-css('./interfaces/DetectiveBoard.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');

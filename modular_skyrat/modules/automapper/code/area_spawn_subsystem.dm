@@ -263,7 +263,7 @@ SUBSYSTEM_DEF(area_spawn)
 	/// See code/__DEFINES/~skyrat_defines/automapper.dm
 	var/mode = AREA_SPAWN_MODE_OPEN
 	/// Map blacklist, this is used to determine what maps we should not spawn on.
-	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift")
+	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift", "Biodome")
 	/// If failing to find a suitable area is OK, then this should be TRUE or CI will fail.
 	/// Should probably be true if the target_areas are random, such as ruins.
 	var/optional = FALSE
@@ -272,7 +272,7 @@ SUBSYSTEM_DEF(area_spawn)
  * Attempts to find a location using an algorithm to spawn the desired atom.
  */
 /datum/area_spawn/proc/try_spawn()
-	if(SSmapping.config.map_name in blacklisted_stations)
+	if(SSmapping.current_map.map_name in blacklisted_stations)
 		return
 
 	// Turfs that are available
@@ -288,7 +288,7 @@ SUBSYSTEM_DEF(area_spawn)
 
 	if(!LAZYLEN(available_turfs))
 		if(!optional)
-			log_mapping("[src.type] could not find any suitable turfs on map [SSmapping.config.map_name]!")
+			log_mapping("[src.type] could not find any suitable turfs on map [SSmapping.current_map.map_name]!")
 			SSarea_spawn.failed_area_spawns += src.type
 		return
 
@@ -326,7 +326,7 @@ SUBSYSTEM_DEF(area_spawn)
  * Spawn the atoms.
  */
 /datum/area_spawn_over/proc/try_spawn()
-	if(SSmapping.config.map_name in blacklisted_stations)
+	if(SSmapping.current_map.map_name in blacklisted_stations)
 		return
 
 	for(var/area_type in target_areas)

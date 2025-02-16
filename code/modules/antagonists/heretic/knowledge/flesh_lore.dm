@@ -1,7 +1,7 @@
 /// The max amount of health a ghoul has.
-#define GHOUL_MAX_HEALTH 25
+#define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 35 // BUBBER EDIT
 /// The max amount of health a voiceless dead has.
-#define MUTE_MAX_HEALTH 50
+#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT
 
 /**
  * # The path of Flesh.
@@ -34,7 +34,7 @@
 	name = "Principle of Hunger"
 	desc = "Opens up the Path of Flesh to you. \
 		Allows you to transmute a knife and a pool of blood into a Bloody Blade. \
-		You can only create twenty at a time." //SKYRAT EDIT three to twenty
+		You can create upto twenty at a time." //SKYRAT EDIT three to twenty
 	gain_text = "Hundreds of us starved, but not me... I found strength in my greed."
 	next_knowledge = list(/datum/heretic_knowledge/limited_amount/flesh_grasp)
 	required_atoms = list(
@@ -42,7 +42,7 @@
 		/obj/effect/decal/cleanable/blood = 1,
 	)
 	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
-	limit = 3 // Bumped up so they can arm up their ghouls too.
+	limit = 20 // Bumped up so they can arm up their ghouls too.
 	route = PATH_FLESH
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
 	research_tree_icon_state = "flesh_blade"
@@ -217,7 +217,9 @@
 	desc = "Your Mansus Grasp now applies the Mark of Flesh. The mark is triggered from an attack with your Bloody Blade. \
 		When triggered, the victim begins to bleed significantly."
 	gain_text = "That's when I saw them, the marked ones. They were out of reach. They screamed, and screamed."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/flesh)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/flesh,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_FLESH
 	mark_type = /datum/status_effect/eldritch/flesh
 
@@ -247,7 +249,7 @@
 		The screams... once constant, now silenced by their wretched appearance. Nothing was out of reach."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/flesh,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/opening_blast,
 	)
@@ -329,7 +331,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] Ever coiling vortex. Reality unfolded. ARMS OUTREACHED, THE LORD OF THE NIGHT, [user.real_name] has ascended! Fear the ever twisting hand! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_flesh.ogg',
+		sound = 'sound/music/antag/heretic/ascend_flesh.ogg',
 		color_override = "pink",
 	)
 
@@ -337,7 +339,7 @@
 	worm_spell.Grant(user)
 
 
-	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
+	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	var/datum/heretic_knowledge/limited_amount/flesh_grasp/grasp_ghoul = heretic_datum.get_knowledge(/datum/heretic_knowledge/limited_amount/flesh_grasp)
 	grasp_ghoul.limit *= 3
 	var/datum/heretic_knowledge/limited_amount/flesh_ghoul/ritual_ghoul = heretic_datum.get_knowledge(/datum/heretic_knowledge/limited_amount/flesh_ghoul)

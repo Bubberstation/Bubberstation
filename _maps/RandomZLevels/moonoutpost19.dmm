@@ -1390,10 +1390,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/moonoutpost19/syndicate)
-"jE" = (
-/obj/effect/landmark/awaystart/moonoutpost,
-/turf/open/floor/mineral/titanium/blue,
-/area/awaymission/moonoutpost19/arrivals)
 "jH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1906,6 +1902,17 @@
 "mr" = (
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/moonoutpost19/arrivals)
+"ms" = (
+/obj/effect/landmark/awaystart/moonoutpost,
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/moonoutpost19/arrivals)
+"mt" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/landmark/awaystart/moonoutpost,
+/turf/open/floor/mineral/titanium/blue,
+/area/awaymission/moonoutpost19/arrivals)
 "mu" = (
 /obj/machinery/light/small/directional/east,
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -1945,6 +1952,20 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Shuttle Cockpit"
 	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/awaymission/moonoutpost19/arrivals)
+"mI" = (
+/obj/effect/landmark/awaystart/moonoutpost,
+/turf/open/floor/mineral/titanium/yellow,
+/area/awaymission/moonoutpost19/arrivals)
+"mJ" = (
+/obj/structure/sign/warning/vacuum{
+	desc = "A beacon used by a teleporter.";
+	icon = 'icons/obj/devices/tracker.dmi';
+	icon_state = "beacon";
+	name = "tracking beacon"
+	},
+/obj/effect/landmark/awaystart/moonoutpost,
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/moonoutpost19/arrivals)
 "mK" = (
@@ -4584,16 +4605,6 @@
 	temperature = 251
 	},
 /area/awaymission/moonoutpost19/syndicate)
-"Ei" = (
-/obj/structure/sign/warning/vacuum{
-	desc = "A beacon used by a teleporter.";
-	icon = 'icons/obj/devices/tracker.dmi';
-	icon_state = "beacon";
-	name = "tracking beacon"
-	},
-/obj/effect/landmark/awaystart/moonoutpost,
-/turf/open/floor/mineral/titanium/yellow,
-/area/awaymission/moonoutpost19/arrivals)
 "Ep" = (
 /turf/closed/mineral/random/labormineral,
 /area/awaymission/moonoutpost19/mines)
@@ -5128,13 +5139,6 @@
 	},
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/research)
-"HX" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/landmark/awaystart/moonoutpost,
-/turf/open/floor/mineral/titanium/blue,
-/area/awaymission/moonoutpost19/arrivals)
 "HY" = (
 /obj/structure/sign/departments/science{
 	pixel_y = 32
@@ -7674,10 +7678,6 @@
 /obj/effect/spawner/random/medical/surgery_tool,
 /turf/open/misc/asteroid/moon/dug,
 /area/awaymission/moonoutpost19/mines)
-"Zk" = (
-/obj/effect/landmark/awaystart/moonoutpost,
-/turf/open/floor/mineral/titanium/yellow,
-/area/awaymission/moonoutpost19/arrivals)
 "Zo" = (
 /turf/open/floor/pod/light,
 /area/awaymission/moonoutpost19/tent)
@@ -33419,9 +33419,9 @@ hI
 My
 Jc
 mb
-jE
-Zk
-jE
+ms
+mI
+ms
 mb
 Jc
 My
@@ -33676,9 +33676,9 @@ iM
 My
 ld
 mc
-HX
-Ei
-HX
+mt
+mJ
+mt
 mc
 ld
 My
@@ -33933,9 +33933,9 @@ iM
 My
 ld
 md
-jE
-Zk
-jE
+ms
+mI
+ms
 nh
 ld
 My

@@ -380,6 +380,7 @@ const PageMain = (props) => {
               onClick={() => act('makePriorityAnnouncement')}
             />
           )}
+
           {!!canToggleEmergencyAccess && (
             <Button.Confirm
               icon="id-card-o"
@@ -462,21 +463,21 @@ const PageMain = (props) => {
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 911: Marshals Response"
+              content="Call Terran Government 911: Marshals Response"
               onClick={() => act('callThePolice')}
             />
           )}
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 811: Advanced Atmospherics Response"
+              content="Call Terran Government 811: Atmospherics Response"
               onClick={() => act('callTheCatmos')}
             />
           )}
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 911: Medical Response"
+              content="Call Terran Government 911: Medical Response"
               onClick={() => act('callTheParameds')}
             />
           )}

@@ -15,7 +15,7 @@
 	if(!regen_core.preserve())
 		balloon_alert(user, "organ decayed!")
 		return
-	playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	balloon_alert_to_viewers("[src] revitalizes [regen_core]!")
 	return
 
@@ -53,7 +53,7 @@
 
 	if(allow_transform < REQUIRED_OBSERVERS)
 		balloon_alert_to_viewers("[src] rejects the request, not enough viewers!")
-		playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		human_user.adjustBruteLoss(10)
 		return
 
@@ -63,7 +63,7 @@
 
 		if(choice != "Yes")
 			balloon_alert_to_viewers("[src] feels rejected and punishes [human_user]!")
-			playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+			playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 			human_user.adjustBruteLoss(50)
 			return
 
@@ -79,7 +79,7 @@
 			ADD_TRAIT(human_user, TRAIT_RESISTCOLD, ROUNDSTART_TRAIT)
 
 		ADD_TRAIT(human_user, TRAIT_PRIMITIVE, ROUNDSTART_TRAIT)
-		playsound(src, 'sound/magic/demon_dies.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/magic/demon_dies.ogg', 50, TRUE)
 		meat_counter++
 
 	return ..()
@@ -107,7 +107,7 @@
 		else
 			meat_counter++
 
-		playsound(get_turf(src),'sound/magic/demon_consume.ogg', 100, TRUE)
+		playsound(get_turf(src),'sound/effects/magic/demon_consume.ogg', 100, TRUE)
 		var/delivery_key = viewable_living.fingerprintslast //key of whoever brought the body
 		var/mob/living/delivery_mob = get_mob_by_key(delivery_key) //mob of said key
 

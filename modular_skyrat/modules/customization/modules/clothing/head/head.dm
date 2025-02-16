@@ -187,7 +187,7 @@
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	flags_inv = HIDEEARS|HIDEHAIR
+	flags_inv = HIDEHAIR|HIDEEARS|SHOWSPRITEEARS
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_colors = "#4e4a43#F1F1F1"
@@ -261,7 +261,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	desc = "It's good overthrowing the king."
-	icon_state = "solgov_bicorne"
+	icon_state = "terragov_bicorne"
 	worn_y_offset = 2
 
 /obj/item/clothing/head/hats/caphat/sonnensoldner

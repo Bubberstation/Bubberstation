@@ -1,6 +1,8 @@
 /obj/item/gun/microfusion/mcr01
 	name = "MCR-01"
-	desc = "An advanced, modular energy weapon produced by Micron Control Systems. These cutting edge weapons differ from traditional beam weaponry in producing individual bolts, as well as utilizing hotswapped cells rather than being tied to immobile power sources."
+	desc = "An advanced, modular energy weapon produced by Micron Control Systems. \
+	These cutting edge weapons differ from traditional beam weaponry in producing \
+	individual bolts, as well as being customizable to the user's preferences."
 	icon_state = "mcr01"
 	inhand_icon_state = "mcr01"
 	shaded_charge = TRUE

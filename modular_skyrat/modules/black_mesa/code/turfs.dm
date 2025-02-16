@@ -85,7 +85,7 @@
 	if(isliving(arrived) && !istype(arrived, /mob/living/simple_animal/hostile/blackmesa/xen/bullsquid)) // Bull squid territory!
 		var/mob/living/unlucky_mob = arrived
 		unlucky_mob.adjustFireLoss(acid_damage)
-		playsound(unlucky_mob, 'sound/weapons/sear.ogg', 100, TRUE)
+		playsound(unlucky_mob, 'sound/items/weapons/sear.ogg', 100, TRUE)
 
 /turf/open/water/electric
 	name = "electric water"

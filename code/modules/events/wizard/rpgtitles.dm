@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/wizard/rpgtitles
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everyone gains an RPG title hovering above them."
+	description = "Everyone gains an RPG title hovering below them."
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -38,7 +38,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 /datum/rpgtitle_controller/proc/on_crewmember_join(datum/source, mob/living/new_crewmember, rank)
 	SIGNAL_HANDLER
 
-	var/datum/job/job = SSjob.GetJob(rank)
+	var/datum/job/job = SSjob.get_job(rank)
 
 	//we must prepare for the mother of all strings
 	new_crewmember.maptext_height = max(new_crewmember.maptext_height, 32)

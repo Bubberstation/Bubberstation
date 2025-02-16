@@ -12,6 +12,8 @@
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/dnr/proc/apply_dnr(mob/living/holder)
+	if(IS_CHANGELING(holder) || IS_BLOODSUCKER(holder))
+		return
 	holder.ghostize()
 	var/mob/dead/observer/dnr_person = holder.mind.get_ghost(even_if_they_cant_reenter = TRUE)
 	dnr_person.can_reenter_corpse = FALSE
@@ -24,7 +26,7 @@
 	message_admins("[holder] has died with DNR trait & element, releasing job slot in 60 seconds.")
 
 /datum/element/dnr/proc/cleanup(mob/living/holder) // What if they gib, though?
-	var/datum/job/job_to_free = SSjob.GetJob(holder.mind.assigned_role.title)
+	var/datum/job/job_to_free = SSjob.get_job(holder.mind.assigned_role.title)
 	job_to_free.current_positions--
 	holder.log_message("has been released via their current body via DNR trait - ([holder])", LOG_GAME, color = COLOR_GREEN)
 	holder.mind = null

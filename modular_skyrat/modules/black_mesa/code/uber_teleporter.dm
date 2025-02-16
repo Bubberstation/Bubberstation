@@ -6,7 +6,7 @@
 
 /obj/item/uber_teleporter/attack_self(mob/living/user, modifiers)
 	. = ..()
-	playsound(get_turf(user), 'sound/weapons/zapbang.ogg', 50, TRUE)
+	playsound(get_turf(user), 'sound/items/weapons/zapbang.ogg', 50, TRUE)
 	var/area/area_to_teleport_to = tgui_input_list(usr, "Area to teleport to", "Teleport", GLOB.teleportlocs)
 	if(!area_to_teleport_to)
 		return
@@ -45,4 +45,4 @@
 
 	if(!success)
 		do_teleport(user, possible_turfs, channel = TELEPORT_CHANNEL_FREE)
-		playsound(get_turf(user), 'sound/weapons/zapbang.ogg', 50, TRUE)
+		playsound(get_turf(user), 'sound/items/weapons/zapbang.ogg', 50, TRUE)

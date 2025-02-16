@@ -13,22 +13,22 @@
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 1
-	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
+	drop_sound = 'sound/items/handling/tools/screwdriver_drop.ogg'
 	pickup_sound = 'modular_zubbers/sound/phystools/toolgun_select.ogg'
 	resistance_flags = INDESTRUCTIBLE
 
 
-	//The mode that is chosen at the moment.
+	/// The mode that is chosen at the moment
 	var/datum/phystool_mode/selected_mode
-	//Available modes.
-	var/list/datum/phystool_mode/avaible_modes = list(
+	/// Available modes
+	var/list/datum/phystool_mode/available_modes = list(
 		/datum/phystool_mode/build_mode,
 		/datum/phystool_mode/spawn_mode,
 		/datum/phystool_mode/remove_mode,
 		/datum/phystool_mode/color_mode,
 		/datum/phystool_mode/size_mode,
 	)
-	//The datum of the beam.
+	/// The datum of the beam
 	var/datum/beam/work_beam
 
 /obj/item/phystool/examine(mob/user)
@@ -43,7 +43,7 @@
 	. = ..()
 	if(selected_mode)
 		qdel(selected_mode)
-	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "Select work mode:", "Phystool mode", avaible_modes)
+	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "Select work mode:", "Phystool mode", available_modes)
 	if(!mode_to_select)
 		return
 	selected_mode = new mode_to_select
@@ -56,7 +56,7 @@
 		return
 	selected_mode.use_act(user)
 
-/obj/item/phystool/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/phystool/ranged_interact_with_atom(atom/target, mob/user, list/modifiers)
 	. = ..()
 	if(!selected_mode)
 		return
@@ -75,7 +75,6 @@
 		return
 	do_work_effect(target, user)
 	playsound(user, 'modular_zubbers/sound/phystools/toolgun_shot1.ogg', 100, TRUE)
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/phystool/proc/do_work_effect(atom/target, mob/user)
 	if(!target)

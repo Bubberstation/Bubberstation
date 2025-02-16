@@ -109,8 +109,8 @@
 
 	return to_add
 
-/obj/item/bodypart/chest/tajaran/get_butt_sprite()
-	return icon('modular_skyrat/master_files/icons/mob/butts.dmi', BUTT_SPRITE_VULP)
+/obj/item/bodypart/chest/mutant/tajaran/get_butt_sprite()
+	return icon('icons/mob/butts.dmi', BUTT_SPRITE_CAT)
 
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
 	return list("The Tajara are a race of humanoids that possess markedly felinoid traits that include \

@@ -181,6 +181,12 @@ SUBSYSTEM_DEF(tts)
 		var/identifier = current_request.identifier
 		if(current_request.requests_errored())
 			current_request.timed_out = TRUE
+			var/datum/http_response/normal_response = current_request.request.into_response()
+			var/datum/http_response/blips_response = current_request.request_blips.into_response()
+			log_tts("TTS HTTP request errored | Normal: [normal_response.error] | Blips: [blips_response.error]", list(
+				"normal" = normal_response,
+				"blips" = blips_response
+			))
 			continue
 		current_request.audio_length = text2num(response.headers["audio-length"]) * 10
 		if(!current_request.audio_length)
@@ -263,7 +269,6 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "")
 	if(!tts_enabled)
 		return
-
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")

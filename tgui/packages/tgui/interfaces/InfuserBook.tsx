@@ -230,6 +230,7 @@ export const InfuserInstructions = (props) => {
     </Section>
   );
 };
+
 type InfuserEntryProps = {
   entry: Entry;
 };

@@ -24,11 +24,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/costume/playbunny/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/syndicate/syndibunny //heh
 	name = "blood-red bunny suit"
 	desc = "The staple of any bunny themed syndicate assassins. Are those carbon nanotube stockings?"
@@ -37,11 +32,6 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
 	icon_state = "syndibunny"
 	body_parts_covered = CHEST|GROIN|LEGS
-
-/obj/item/clothing/under/syndicate/syndibunny/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/small)
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
 	armor_type = /datum/armor/clothing_under/none
@@ -99,6 +89,14 @@
 	greyscale_config_worn = null
 	greyscale_colors = null
 
+/obj/item/clothing/under/costume/playbunny/custom_playbunny
+	name = "tailormade bunny suit"
+	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
+	greyscale_config = /datum/greyscale_config/custom_bunnysuit
+	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
+	greyscale_config_worn_digi = /datum/greyscale_config/custom_bunnysuit_worn/digi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 //CAPTAIN
 
 /obj/item/clothing/under/rank/captain/bunnysuit
@@ -110,11 +108,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/captain/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //CARGO
 
@@ -128,11 +121,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/cargo/cargo_bunnysuit
 	name = "cargo bunny suit"
 	desc = "The staple of any bunny themed cargo technicians. Nigh indistinguishable from the quartermasters bunny suit."
@@ -142,11 +130,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/cargo/cargo_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/cargo/miner/bunnysuit
 	name = "shaft miner's bunny suit"
@@ -158,11 +141,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/cargo/miner/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/cargo/mailman_bunnysuit
 	name = "mailman's bunny suit"
 	desc = "The staple of any bunny themed mailmen. A sleek mailman outfit for when you need to deliver mail as quickly and with as little wind resistance possible."
@@ -173,11 +151,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/cargo/mailman_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit
 	name = "bunrunner suit"
 	desc = "The staple of any bunny themed gamer. Has enough space for one extra soda, if you're worthy."
@@ -187,9 +160,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit/Initialize(mapload)
-	. = ..()
 
 //ENGI
 
@@ -203,11 +173,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/engineering/engineer_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit
 	name = "atmospheric technician's bunny suit"
 	desc = "The staple of any bunny themed atmospheric technicians. Perfect for any blue collar worker wanting to keep up with fashion trends."
@@ -218,11 +183,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit
 	name = "chief engineer's bunny suit"
 	desc = "The staple of any bunny themed chief engineers. The airy design helps with keeping cool when  engine fires get too hot to handle."
@@ -232,11 +192,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //MEDICAL
 
@@ -249,11 +204,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/doctor_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/medical/paramedic_bunnysuit
 	desc = "The staple of any bunny themed paramedics. Comes with spare pockets for medical supplies fastened to the leggings."
 	name = "paramedic's bunnysuit"
@@ -262,11 +212,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/medical/paramedic_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/medical/chemist/bunnysuit
 	desc = "The staple of any bunny themed chemists. The stockings are both airy and acid resistant."
@@ -277,11 +222,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/chemist/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/medical/pathologist_bunnysuit
 	desc = "The staple of any bunny themed pathologists. The stockings, while cute, do nothing to combat pathogens."
 	name = "pathologist's bunnysuit"
@@ -290,11 +230,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/medical/pathologist_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/medical/coroner_bunnysuit
 	desc = "The staple of any bunny themed coroners. A rejected mime costume."
@@ -305,11 +240,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/coroner_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/medical/cmo_bunnysuit
 	desc = "The staple of any bunny themed chief medical officers. The more vibrant blue accents denote a higher status."
 	name = "chief medical officer's bunnysuit"
@@ -318,11 +248,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/medical/cmo_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //SCIENCE
 
@@ -335,11 +260,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/rnd/scientist/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit
 	desc = "The staple of any bunny themed roboticists. The open design and thin leggings help to keep cool when piloting mechs."
 	name = "roboticist's bunnysuit"
@@ -348,11 +268,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/rnd/geneticist/bunnysuit
 	desc = "The staple of any bunny themed geneticists. Doesn’t go great with an abominable green muscled physique, but then again, what does?"
@@ -363,11 +278,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/rnd/geneticist/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/rnd/research_director/bunnysuit
 	desc = "The staple of any bunny themed head researchers. Advanced technology allows this suit to stimulate spontaneous bunny tail growth when worn, though it's nigh-indistinguishable from the standard cottonball and disappears as soon as the suit is removed."
 	name = "research director's bunnysuit"
@@ -377,11 +287,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/rnd/research_director/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //SECURITY
 
@@ -394,10 +299,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/security_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/security_assistant_bunnysuit
 	desc = "The staple of any bunny themed security assistants. Can't lost respect you don't have!"
@@ -408,10 +309,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/security_assistant_bunnysuit/Initialize(mapload)
-	. = ..()
 
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/warden_bunnysuit
 	desc = "The staple of any bunny themed wardens. The more formal security bunny suit for a less combat focused job."
@@ -422,10 +320,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/warden_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/brig_phys_bunnysuit
 	desc = "The staple of any bunny themed brig physicians. The rejected alternative to an already discontinued alternate uniform, now sold at a premium!"
@@ -436,10 +330,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/brig_phys_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/detective_bunnysuit
 	desc = "The staple of any bunny themed detectives. Capable of storing precious candy corns."
@@ -450,10 +340,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/detective_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/detective_bunnysuit/noir
 	desc = "The staple of any noir bunny themed detectives. Capable of storing precious candy corns."
@@ -464,10 +350,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/detective_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/prisoner_bunnysuit
 	desc = "The staple of any bunny themed prisoners. Great for hiding shanks and other small contrabands."
@@ -478,10 +360,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/security/prisoner_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
 	desc = "The staple of any bunny themed security commanders. Includes kevlar weave stockings and a gilded tail."
@@ -491,11 +369,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/security/head_of_security/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 //SERVICE
 
@@ -509,11 +382,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/hop_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/janitor/bunnysuit
 	name = "janitor's bunny suit"
 	desc = "The staple of any bunny themed janitors. The stockings are made of cotton to allow for easy laundering."
@@ -523,11 +391,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/civilian/janitor/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/bartender_bunnysuit
 	name = "bartender's bunnysuit"
@@ -540,11 +403,6 @@
 	alt_covers_chest = TRUE
 	custom_price = PAYCHECK_CREW
 
-/obj/item/clothing/under/rank/civilian/bartender_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/cook_bunnysuit
 	name = "cook's bunny suit"
 	desc = "The staple of any bunny themed chefs. Shame there aren't any fishnets."
@@ -554,11 +412,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/civilian/cook_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit
 	name = "botanist's bunny suit"
@@ -570,11 +423,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit
 	name = "clown's bunny suit"
 	desc = "The staple of any bunny themed clowns. Now this is just ridiculous."
@@ -584,11 +432,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/mime_bunnysuit
 	name = "mime's bunny suit"
@@ -600,10 +443,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/mime_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/chaplain_bunnysuit
 	name = "chaplain's bunny suit"
@@ -615,11 +454,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/chaplain_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_red
 	name = "curator's red bunny suit"
 	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
@@ -629,11 +463,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_red/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_green
 	name = "curator's green bunny suit"
@@ -645,11 +474,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_green/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_teal
 	name = "curator's teal bunny suit"
 	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
@@ -660,10 +484,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_teal/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_black
 	name = "lawyer's black bunny suit"
@@ -675,10 +495,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_black/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_blue
 	name = "lawyer's blue bunny suit"
@@ -690,11 +506,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_blue/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_red
 	name = "lawyer's red bunny suit"
 	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
@@ -704,11 +515,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_red/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_good
 	name = "good lawyer's bunny suit"
@@ -720,11 +526,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_good/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 /obj/item/clothing/under/rank/civilian/psychologist_bunnysuit
 	name = "psychologist's bunny suit"
 	desc = "The staple of any bunny themed psychologists. Perhaps not the best choice for making your patients feel at home."
@@ -735,9 +536,49 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit/Initialize(mapload)
-	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/tiny)
-
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+/obj/item/clothing/under/costume/loincloth
+	name = "loincloth"
+	desc = "A simple leather covering. It's better than wearing nothing at least."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "loincloth"
+	body_parts_covered = GROIN
+	can_adjust = FALSE
+	has_sensor = NO_SENSORS
+
+/obj/item/clothing/under/costume/loincloth/sensor
+	has_sensor = HAS_SENSORS
+
+/obj/item/clothing/under/costume/loincloth/cloth
+	desc = "A simple cloth covering. It's better than wearing nothing at least."
+	icon_state = "loincloth_cloth"
+
+/obj/item/clothing/under/costume/loincloth/cloth/sensor
+	has_sensor = HAS_SENSORS
+
+/obj/item/clothing/under/costume/lizardgas
+	name = "lizard gas uniform"
+	desc = "A purple shirt with a nametag, and some ill-fitting jeans. The bare minimum required by company standards."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "lizardgas"
+	body_parts_covered = CHEST|GROIN|LEGS
+	has_sensor = NO_SENSORS //you're not NT employed, so they don't care about you
+
+/obj/item/clothing/under/costume/allamerican
+	name = "all-american diner employee uniform"
+	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "allamerican"
+	body_parts_covered = CHEST|GROIN|LEGS
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	can_adjust = FALSE
+
+/obj/item/clothing/under/costume/allamerican/manager
+	name = "all-american diner manager uniform"
+	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
+	icon_state = "allamerican_manager"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS

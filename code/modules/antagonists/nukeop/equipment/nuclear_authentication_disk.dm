@@ -26,7 +26,7 @@
 
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/bed_tuckable, mapload, 6, 6, 0)
+	AddElement(/datum/element/bed_tuckable, mapload, 6, -6, 0)
 	AddComponent(/datum/component/stationloving, !fake)
 
 	if(!fake)
@@ -37,7 +37,7 @@
 
 /obj/item/disk/nuclear/proc/secured_process(last_move)
 	var/turf/new_turf = get_turf(src)
-	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control //Bubber edit - changed to work with Storyteller
 	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 		loneop.weight = max(loneop.weight - 1, 0)
 		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
@@ -55,7 +55,7 @@
 			disk_comfort_level++
 
 	if(last_move < world.time - 500 SECONDS && prob((world.time - 500 SECONDS - last_move)*0.0001))
-		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control //Bubber edit - changed to work with Storyteller
 		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
@@ -102,7 +102,7 @@
 
 /obj/item/disk/nuclear/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is going delta! It looks like [user.p_theyre()] trying to commit suicide!"))
-	playsound(src, 'sound/machines/alarm.ogg', 50, -1, TRUE)
+	playsound(src, 'sound/announcer/alarm/nuke_alarm.ogg', 50, -1, TRUE)
 	for(var/i in 1 to 100)
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, add_atom_colour), (i % 2)? COLOR_VIBRANT_LIME : COLOR_RED, ADMIN_COLOUR_PRIORITY), i)
 	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 101)

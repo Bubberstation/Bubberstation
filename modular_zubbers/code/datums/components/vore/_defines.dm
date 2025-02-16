@@ -9,27 +9,27 @@
 /// Value used for belly versioning independent of savefile version
 #define VORE_BELLY_VERSION "1.0"
 /// Maximum amount of bellies allowed within one layout
-#define MAX_BELLIES 10
+#define MAX_BELLIES CONFIG_GET(number/vore_max_bellies) // Default: 10
 /// Maximum amount of prey that can be eaten at once
-#define MAX_PREY 3
+#define MAX_PREY CONFIG_GET(number/vore_max_prey) // Default: 3
 /// Amount of time it takes for players to eat someone
-#define VORE_DELAY 4 SECONDS
+#define VORE_DELAY CONFIG_GET(number/vore_delay) // Default: 4 SECONDS
 /// Amount of time it takes for players to eject someone
-#define VORE_EJECT_DELAY 2 SECONDS
+#define VORE_EJECT_DELAY CONFIG_GET(number/vore_eject_delay) // Default: 2 SECONDS
 /// If true, prevents people with prey inside them from being eaten
-#define MATRYOSHKA_BANNED TRUE
+#define MATRYOSHKA_BANNED CONFIG_GET(flag/vore_matryoshka_banned)
 /// If true, automatically disables sensors when prey is eaten
-#define DISABLES_SENSORS TRUE
+#define DISABLES_SENSORS CONFIG_GET(flag/vore_disables_sensors)
 /// If true, prevents mobs in crit or death from engaging in vore
-#define NO_DEAD TRUE
+#define NO_DEAD CONFIG_GET(flag/vore_no_dead)
 /// If true, mobs with no player cannot be pred or prey
-#define REQUIRES_PLAYER TRUE
+#define REQUIRES_PLAYER CONFIG_GET(flag/vore_requires_player)
 /// Makes every mob spawn with a vore component, just for testing
 // #define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
 /// Number of rolling backups bellies will keep
 #define BELLY_BACKUP_COUNT 5
 /// Maximum number of belly layout slots
-#define MAX_BELLY_LAYOUTS 20
+#define MAX_BELLY_LAYOUTS CONFIG_GET(number/vore_max_belly_layouts) // Default: 20
 /// Rate limit on belly creation, as it can get a little expensive
 #define BELLY_CREATION_COOLDOWN 2 SECONDS
 /// Maximum length() of a json file's text before we refuse to parse it
@@ -50,16 +50,16 @@
 #define DIGEST_MODE_UNABSORB "Unabsorb"
 
 /// Max burn damage a player is allowed to set their belly to
-#define MAX_BURN_DAMAGE 2.5
+#define MAX_BURN_DAMAGE CONFIG_GET(number/vore_max_burn_damage) // Default: 2.5
 /// Max brute damage a player is allowed to set their belly to
-#define MAX_BRUTE_DAMAGE 2.5
+#define MAX_BRUTE_DAMAGE CONFIG_GET(number/vore_max_brute_damage) // Default: 2.5
 /// Minimum time that can be set for escaping a belly
-#define MIN_ESCAPE_TIME 2 SECONDS
-#define DEFAULT_ESCAPE_TIME 15 SECONDS
-#define MAX_ESCAPE_TIME 60 SECONDS
-#define MAX_VERB_LENGTH 20
-#define MAX_VORE_MESSAGE_LENGTH 160
-#define MIN_VORE_MESSAGE_LENGTH 10
+#define MIN_ESCAPE_TIME CONFIG_GET(number/vore_min_escape_time) // Default: 2
+#define DEFAULT_ESCAPE_TIME CONFIG_GET(number/vore_default_escape_time) // Default: 15
+#define MAX_ESCAPE_TIME CONFIG_GET(number/vore_max_escape_time) // Default: 60
+#define MAX_VERB_LENGTH CONFIG_GET(number/vore_max_verb_length) // Default: 20
+#define MAX_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_max_message_length) // Default: 160
+#define MIN_VORE_MESSAGE_LENGTH CONFIG_GET(number/vore_min_message_length) // Default: 10
 
 /// Amount of nutrition given per point of damage dealt
 #define NUTRITION_PER_DAMAGE 2
@@ -144,22 +144,22 @@ GLOBAL_LIST_INIT(vore_sounds_insert_classic, list(
 	"Squish2" = 'modular_zubbers/sound/vore/squish2.ogg',
 	"Squish3" = 'modular_zubbers/sound/vore/squish3.ogg',
 	"Squish4" = 'modular_zubbers/sound/vore/squish4.ogg',
-	"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
-	"Rustle 2 (cloth)"	= 'sound/effects/rustle2.ogg',
-	"Rustle 3 (cloth)"	= 'sound/effects/rustle3.ogg',
-	"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
-	"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
-	"Zipper" = 'sound/items/zip.ogg',
+	"Rustle (cloth)" = 'sound/effects/rustle/rustle1.ogg',
+	"Rustle 2 (cloth)"	= 'sound/effects/rustle/rustle2.ogg',
+	"Rustle 3 (cloth)"	= 'sound/effects/rustle/rustle3.ogg',
+	"Rustle 4 (cloth)"	= 'sound/effects/rustle/rustle4.ogg',
+	"Rustle 5 (cloth)"	= 'sound/effects/rustle/rustle5.ogg',
+	"Zipper" = 'sound/items/zip/zip.ogg',
 	"None" = null
 ))
 
 GLOBAL_LIST_INIT(vore_sounds_release_classic, list(
-	"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
-	"Rustle 2 (cloth)" = 'sound/effects/rustle2.ogg',
-	"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
-	"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
-	"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
-	"Zipper" = 'sound/items/zip.ogg',
+	"Rustle (cloth)" = 'sound/effects/rustle/rustle1.ogg',
+	"Rustle 2 (cloth)" = 'sound/effects/rustle/rustle2.ogg',
+	"Rustle 3 (cloth)" = 'sound/effects/rustle/rustle3.ogg',
+	"Rustle 4 (cloth)" = 'sound/effects/rustle/rustle4.ogg',
+	"Rustle 5 (cloth)" = 'sound/effects/rustle/rustle5.ogg',
+	"Zipper" = 'sound/items/zip/zip.ogg',
 	"Splatter" = 'sound/effects/splat.ogg',
 	"None" = null
 ))
@@ -177,22 +177,22 @@ GLOBAL_LIST_INIT(vore_sounds_insert_fancy, list(
 	"Squish2" = 'modular_zubbers/sound/vore/sunesound/pred/squish_02.ogg',
 	"Squish3" = 'modular_zubbers/sound/vore/sunesound/pred/squish_03.ogg',
 	"Squish4" = 'modular_zubbers/sound/vore/sunesound/pred/squish_04.ogg',
-	"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
-	"Rustle 2 (cloth)" = 'sound/effects/rustle2.ogg',
-	"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
-	"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
-	"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
-	"Zipper" = 'sound/items/zip.ogg',
+	"Rustle (cloth)" = 'sound/effects/rustle/rustle1.ogg',
+	"Rustle 2 (cloth)" = 'sound/effects/rustle/rustle2.ogg',
+	"Rustle 3 (cloth)" = 'sound/effects/rustle/rustle3.ogg',
+	"Rustle 4 (cloth)" = 'sound/effects/rustle/rustle4.ogg',
+	"Rustle 5 (cloth)" = 'sound/effects/rustle/rustle5.ogg',
+	"Zipper" = 'sound/items/zip/zip.ogg',
 	"None" = null
 ))
 
 GLOBAL_LIST_INIT(vore_sounds_release_fancy, list(
-	"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
-	"Rustle 2 (cloth)" = 'sound/effects/rustle2.ogg',
-	"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
-	"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
-	"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
-	"Zipper" = 'sound/items/zip.ogg',
+	"Rustle (cloth)" = 'sound/effects/rustle/rustle1.ogg',
+	"Rustle 2 (cloth)" = 'sound/effects/rustle/rustle2.ogg',
+	"Rustle 3 (cloth)" = 'sound/effects/rustle/rustle3.ogg',
+	"Rustle 4 (cloth)" = 'sound/effects/rustle/rustle4.ogg',
+	"Rustle 5 (cloth)" = 'sound/effects/rustle/rustle5.ogg',
+	"Zipper" = 'sound/items/zip/zip.ogg',
 	"Stomach Move" = 'modular_zubbers/sound/vore/sunesound/pred/stomachmove.ogg',
 	"Pred Escape" = 'modular_zubbers/sound/vore/sunesound/pred/escape.ogg',
 	"Splatter" = 'sound/effects/splat.ogg',

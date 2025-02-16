@@ -112,8 +112,6 @@
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
 	// SKYRAT EDIT START - RP Records
-	background_information = "",
-	exploitable_information = "",
 	past_general_records = "",
 	past_medical_records = "",
 	past_security_records = "",
@@ -129,8 +127,6 @@
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
 	// SKYRAT EDIT START - RP Records
-	src.background_information = background_information
-	src.exploitable_information = exploitable_information
 	src.past_general_records = past_general_records
 	src.past_medical_records = past_medical_records
 	src.past_security_records = past_security_records
@@ -170,6 +166,9 @@
 	/// Locked specific
 	datum/dna/locked_dna,
 	datum/mind/mind_ref,
+	// BUBBER EDIT BEGIN - Records
+	exploitable_information = "",
+	background_information = "",
 )
 	. = ..()
 	src.locked_dna = locked_dna
@@ -177,6 +176,11 @@
 	species_type = locked_dna.species.type
 
 	GLOB.manifest.locked += src
+
+	// BUBBER EDIT BEGIn - Records
+	src.background_information = background_information
+	src.exploitable_information = exploitable_information
+	// BUBBER EDIT END
 
 /datum/record/locked/Destroy()
 	GLOB.manifest.locked -= src

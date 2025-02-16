@@ -262,6 +262,7 @@ export const FeatureShortTextInput = (
       width="100%"
       value={props.value}
       maxLength={props.serverData.maximum_length}
+      updateOnPropsChange
       onChange={(_, value) => props.handleSetValue(value)}
     />
   );
@@ -277,10 +278,11 @@ export const FeatureTextInput = (
 
   return (
     <TextArea
-      height="100px"
+      height="156px"
       value={props.value}
       maxLength={props.serverData.maximum_length}
       onChange={(_, value) => props.handleSetValue(value)}
+      scrollbar
     />
   );
 };

@@ -756,7 +756,7 @@
 /mob/living/proc/emote_huff()
 	set name = "~ Huff"
 	set category = "Emotes+"
-	usr.emote("huffs", intentional = TRUE)
+	usr.emote("huff", intentional = TRUE)
 
 /mob/living/proc/emote_etwitch()
 	set name = "~ Ears twitch"

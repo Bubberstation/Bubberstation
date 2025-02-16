@@ -125,7 +125,7 @@
 
 	if (unreceived.len)
 		if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-			to_chat(client, "<span class='infoplain'>Sending Resources...</span>")
+			to_chat(client, span_infoplain("Sending Resources..."))
 
 		for (var/asset_name in unreceived)
 			var/new_asset_name = asset_name
@@ -155,7 +155,7 @@
 		if (send_assets(client, file))
 			if (!(--filerate))
 				filerate = startingfilerate
-				client.browse_queue_flush()
+//				client.browse_queue_flush() // BUBBER EDIT
 			stoplag(0) //queuing calls like this too quickly can cause issues in some client versions
 
 /// Check the config is valid to load this transport

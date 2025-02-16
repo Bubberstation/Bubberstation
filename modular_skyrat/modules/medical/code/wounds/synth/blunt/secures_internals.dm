@@ -173,7 +173,7 @@
 		victim_message = self_message
 	to_chat(victim, victim_message)
 
-	playsound(get_turf(crowbarring_item), 'sound/machines/airlock_alien_prying.ogg', 30, TRUE)
+	playsound(get_turf(crowbarring_item), 'sound/machines/airlock/airlock_alien_prying.ogg', 30, TRUE)
 	if (!crowbarring_item.use_tool(target = victim, user = user, delay = (7 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
@@ -293,7 +293,7 @@
 		chance *= 5.5
 		delay_mult *= 0.85
 		knows_wires = TRUE
-	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD) || HAS_TRAIT(user, TRAIT_RESEARCH_CYBORG)) // BUBBER EDIT - Research cyborgs
+	if (HAS_TRAIT(user, TRAIT_DIAGNOSTIC_HUD) || HAS_TRAIT(user, TRAIT_RESEARCH_CYBORG))
 		if (knows_wires)
 			chance *= 1.25 // ((10 * 8) * 1.25) = 100%
 		else

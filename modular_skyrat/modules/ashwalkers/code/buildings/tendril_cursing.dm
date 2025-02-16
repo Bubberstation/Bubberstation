@@ -4,7 +4,7 @@
 
 /obj/structure/spawner/lavaland/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/cursed_dagger))
-		playsound(get_turf(src), 'sound/magic/demon_attack1.ogg', 50, TRUE)
+		playsound(get_turf(src), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		cursed = !cursed
 		if(cursed)
 			src.add_atom_colour("#41007e", TEMPORARY_COLOUR_PRIORITY)

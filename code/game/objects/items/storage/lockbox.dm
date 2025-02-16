@@ -232,7 +232,6 @@
 /obj/item/storage/lockbox/order
 	name = "order lockbox"
 	desc = "A box used to secure small cargo orders from being looted by those who didn't order it. Yeah, cargo tech, that means you."
-	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "secure"
 	icon_closed = "secure"
 	icon_locked = "secure_locked"

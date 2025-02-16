@@ -19,7 +19,7 @@
 	melee_damage_upper = 0
 	attack_verb_continuous = "barrels into"
 	attack_verb_simple = "barrel into"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/items/weapons/punch1.ogg'
 	combat_mode = FALSE
 	speak_emote = list("screeches")
 	death_message = "stops moving as green liquid oozes from the carcass!"
@@ -52,7 +52,6 @@
 		/datum/action/cooldown/mob_cooldown/burrow = BB_BURROW_ABILITY,
 	)
 	grant_actions_by_list(innate_actions)
-
 	AddElement(/datum/element/ore_collecting)
 	AddElement(/datum/element/wall_tearer, allow_reinforced = FALSE)
 	AddComponent(/datum/component/ai_listen_to_weather)

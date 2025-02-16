@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_CAR = ACCOUNT_CAR_NAME,
 										ACCOUNT_CMD = ACCOUNT_CMD_NAME, // SKYRAT EDIT
 										ACCOUNT_INT = ACCOUNT_INT_NAME, // BUBBER EDIT
+										ACCOUNT_TAR = ACCOUNT_TAR_NAME, // END BUBBER EDIT
 										ACCOUNT_SEC = ACCOUNT_SEC_NAME)
 	var/list/departmental_accounts = list()
 	/**
@@ -159,6 +160,7 @@ SUBSYSTEM_DEF(economy)
 		if(bank_account?.account_job && !ispath(bank_account.account_job))
 			temporary_total += (bank_account.account_job.paycheck * STARTING_PAYCHECKS)
 		bank_account.payday(1)
+		SEND_SIGNAL(bank_account, COMSIG_ON_BANK_ACCOUNT_PAYOUT) // BUBBER EDIT
 		station_total += bank_account.account_balance
 		if(MC_TICK_CHECK)
 			cached_processing.Cut(1, i + 1)

@@ -6,9 +6,8 @@
 	paralyze = 10 SECONDS
 	stutter = 10 SECONDS
 	jitter = 40 SECONDS
-	hitsound = 'sound/weapons/taserhit.ogg'
-	//range = 7 //ORIGINAL
-	range = 5  //SKYRAT EDIT CHANGE - COMBAT
+	hitsound = 'sound/items/weapons/taserhit.ogg'
+	range = 7
 	tracer_type = /obj/effect/projectile/tracer/stun
 	muzzle_type = /obj/effect/projectile/muzzle/stun
 	impact_type = /obj/effect/projectile/impact/stun

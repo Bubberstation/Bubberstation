@@ -138,7 +138,7 @@
 
 	host.do_jitter_animation(30)
 	host.visible_message(span_danger("[host] suddenly convulses, as [host.p_they()][stand_up ? " stagger to [host.p_their()] feet and" : ""] gain a ravenous hunger in [host.p_their()] eyes!"), span_alien("You HUNGER!"))
-	playsound(host.loc, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
+	playsound(host.loc, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 	if(is_species(host, /datum/species/mutant/infectious/fast))
 		to_chat(host, span_redtext("You are a FAST zombie. You run fast and hit more quickly, beware however, you are much weaker and susceptible to damage."))
 	else
@@ -164,7 +164,7 @@
 		host.grab_ghost()
 	to_chat(host, span_notice("You feel an itching, both inside and \
 		outside as your tissues knit and reknit."))
-	playsound(host, 'sound/magic/demon_consume.ogg', 50, TRUE)
+	playsound(host, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	host.revive(TRUE, TRUE)
 
 /datum/component/mutant_infection/proc/create_glow()

@@ -4,7 +4,6 @@
 
 /datum/emote/living/mark_turf
 	key = "turf"
-	key_third_person = "turf"
 	cooldown = 4 SECONDS
 	/// The current turf ID that the user selected in the radial menu.
 	var/current_turf
@@ -50,6 +49,8 @@
 				user.allowed_turfs += "holobed" //taurs get the holobed instead
 			else
 				user.allowed_turfs += "holoseat"
+
+			user.allowed_turfs += "borgmat"
 
 		//wings
 		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/external/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
@@ -97,7 +98,7 @@
 		user.owned_turf.dir = user.dir
 
 		if(ishuman(user))
-			human_user.update_mutant_bodyparts()
+			human_user.update_body_parts()
 
 		var/list/DNA_trail = list("shoeprint", "footprint", "pawprint", "hoofprint", "clawprint")
 		if(current_turf in DNA_trail) //These turfs leave clues of their owner

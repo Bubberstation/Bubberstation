@@ -96,7 +96,9 @@
 	gain_text = "He was a very particular man, always watching in the dead of night. \
 		But in spite of his duty, he regularly tranced through the Manse with his blazing lantern held high. \
 		He shone brightly in the darkness, until the blaze begin to die."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/ash)
+	next_knowledge = list(
+	/datum/heretic_knowledge/knowledge_ritual/ash,
+	/datum/heretic_knowledge/reroll_targets) //BUBBER EDIT
 	route = PATH_ASH
 	mark_type = /datum/status_effect/eldritch/ash
 
@@ -137,7 +139,7 @@
 	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/ash,
-		/datum/heretic_knowledge/reroll_targets,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/space_phase,
 		/datum/heretic_knowledge/curse/paralysis,
 	)
@@ -165,7 +167,7 @@
 	research_tree_icon_state = "blade_upgrade_ash"
 
 /datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	if(source == target)
+	if(source == target || !isliving(target))
 		return
 
 	target.adjust_fire_stacks(1)
@@ -230,7 +232,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] Fear the blaze, for the Ashlord, [user.real_name] has ascended! The flames shall consume all! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_ash.ogg',
+		sound = 'sound/music/antag/heretic/ascend_ash.ogg',
 		color_override = "pink",
 	)
 

@@ -2,7 +2,7 @@
 	/// Is the soul able to leave the soulcatcher?
 	var/able_to_leave = TRUE
 	/// Did the soul live within the round? This is checked if we want to transfer the soul to another body.
-	var/round_participant = FALSE
+	var/round_participant = TRUE //BUBBER EDIT
 	/// Does the body need scanned?
 	var/body_scan_needed = FALSE
 	/// Assuming we died inside of the round? What is our previous body?

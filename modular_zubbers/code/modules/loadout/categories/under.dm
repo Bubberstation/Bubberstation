@@ -49,3 +49,39 @@
 /datum/loadout_item/uniform/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
 	name = "Tacticool Utility Skirt and Suspenders"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+
+/datum/loadout_item/uniform/miscellaneous/loincloth
+	name = "leather loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/sensor
+
+/datum/loadout_item/uniform/miscellaneous/loincloth/cloth
+	name = "loincloth"
+	item_path = /obj/item/clothing/under/costume/loincloth/cloth/sensor
+
+/datum/loadout_item/uniform/miscellaneous/miniskirt
+	name = "recolourable miniskirt"
+	item_path = /obj/item/clothing/under/dress/miniskirt
+
+/datum/loadout_item/uniform/miscellaneous/pirate_outfit
+	name = "Pirate Outfit"
+	item_path = /obj/item/clothing/under/costume/pirate
+
+/datum/loadout_item/uniform/miscellaneous/bunny_suit
+	name = "Bunny Suit"
+	item_path = /obj/item/clothing/under/costume/bunnylewd
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_replica
+	name = "CentCom turtleneck replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer/replica
+
+/datum/loadout_item/uniform/miscellaneous/centcom_officer_skirt_replica
+	name = "CentCom turtleneck skirt replica"
+	item_path = /obj/item/clothing/under/rank/centcom/officer_skirt/replica
+
+/datum/loadout_item/uniform/miscellaneous/latex_catsuit
+	name = "Latex Catsuit"
+	item_path = /obj/item/clothing/under/misc/latex_catsuit
+
+/datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
+	name = "Custom Bunnysuit"
+	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny

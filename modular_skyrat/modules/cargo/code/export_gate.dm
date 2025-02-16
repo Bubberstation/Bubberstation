@@ -17,23 +17,6 @@
 		/datum/stock_part/card_reader = 1,
 	)
 
-/obj/item/flatpack/export_gate
-	board = /obj/item/circuitboard/machine/export_gate
-
-/obj/item/flatpack/export_gate/Initialize(mapload)
-	. = ..()
-	var/turf/our_turf = get_turf(src)
-	new /obj/item/paper/fluff/export_gate(our_turf)
-
-/obj/item/flatpack/export_gate/multitool_act(mob/living/user, obj/item/tool)
-	if(isturf(loc))
-		var/turf/location = loc
-		if(!locate(/obj/machinery/conveyor) in location)
-			balloon_alert(user, "needs conveyor belt!")
-			return ITEM_INTERACT_BLOCKING
-
-	return ..()
-
 /datum/supply_pack/service/export_gate
 	name = "Bounty Cube Export Gate"
 	desc = "Automatically registers bounty cube exports, for the logistics automation nerd in you."
@@ -167,7 +150,7 @@
 		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
 	if(COOLDOWN_FINISHED(src, scanner_beep) && type != "passive")
 		COOLDOWN_START(src, scanner_beep, 0.5 SECONDS)
-		playsound(src, type == "alarm" ? 'sound/machines/buzz-sigh.ogg' : 'sound/machines/chime.ogg', 45, TRUE)
+		playsound(src, type == "alarm" ? 'sound/machines/buzz/buzz-sigh.ogg' : 'sound/machines/chime.ogg', 45, TRUE)
 
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
 	if(is_operational && istype(package, /obj/item/bounty_cube) && (!panel_open) && anchored)

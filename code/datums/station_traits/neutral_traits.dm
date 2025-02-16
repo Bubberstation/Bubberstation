@@ -479,7 +479,7 @@
 		return
 
 	if((skub_stance == RANDOM_SKUB && prob(50)) || skub_stance == PRO_SKUB)
-		var/obj/item/storage/box/skub/boxie = new(spawned.loc)
+		var/obj/item/storage/box/stickers/skub/boxie = new(spawned.loc)
 		spawned.equip_to_slot_if_possible(boxie, ITEM_SLOT_BACKPACK, indirect_action = TRUE)
 		if(ishuman(spawned))
 			var/obj/item/clothing/suit/costume/wellworn_shirt/skub/shirt = new(spawned.loc)
@@ -496,24 +496,28 @@
 		shirt.forceMove(boxie)
 
 /// A box containing a skub, for easier carry because skub is a bulky item.
-/obj/item/storage/box/skub
-	name = "skub box"
-	desc = "A box to store your skub and pro-skub shirt in. A label on the back reads: \"Skubtide, Stationwide\"."
-	icon_state = "hugbox"
-	illustration = "skub"
+/obj/item/storage/box/stickers/skub
+	name = "skub fan pack"
+	desc = "A vinyl pouch to store your skub and pro-skub shirt in. A label on the back reads: \"Skubtide, Stationwide\"."
+	icon_state = "skubpack"
+	illustration = "label_skub"
+	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/box/skub/Initialize(mapload)
+/obj/item/storage/box/stickers/skub/Initialize(mapload)
 	. = ..()
+	atom_storage.max_slots = 3
 	atom_storage.exception_hold = typecacheof(list(/obj/item/skub, /obj/item/clothing/suit/costume/wellworn_shirt/skub))
 
-/obj/item/storage/box/skub/PopulateContents()
+/obj/item/storage/box/stickers/skub/PopulateContents()
 	new /obj/item/skub(src)
 	new /obj/item/sticker/skub(src)
 	new /obj/item/sticker/skub(src)
 
 /obj/item/storage/box/stickers/anti_skub
-	name = "anti-skub stickers box"
-	desc = "The enemy may have been given a skub and a shirt, but I've more stickers! Plus the box can hold my anti-skub shirt."
+	name = "anti-skub stickers pack"
+	desc = "The enemy may have been given a skub and a shirt, but I've got more stickers! Plus the pack can hold my anti-skub shirt."
+	icon_state = "skubpack"
+	illustration = "label_anti_skub"
 
 /obj/item/storage/box/stickers/anti_skub/Initialize(mapload)
 	. = ..()
@@ -540,3 +544,49 @@
 	dynamic_category = RULESET_CATEGORY_NO_WITTING_CREW_ANTAGONISTS
 	threat_reduction = 15
 	dynamic_threat_id = "Background Checks"
+
+/* BUBBER EDIT REMOVAL BEGIN - Lobby buttons
+/datum/station_trait/pet_day
+	name = "Bring Your Pet To Work Day"
+	trait_type = STATION_TRAIT_NEUTRAL
+	show_in_report = FALSE
+	weight = 2
+	sign_up_button = TRUE
+
+/datum/station_trait/pet_day/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
+
+/datum/station_trait/pet_day/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
+	lobby_button.desc = "Want to bring your innocent pet to a giant metal deathtrap? Click here to customize it!"
+	RegisterSignal(lobby_button, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_lobby_button_update_overlays))
+	return ..()
+
+/datum/station_trait/pet_day/can_display_lobby_button(client/player)
+	return sign_up_button
+
+/datum/station_trait/pet_day/on_round_start()
+	return
+
+/datum/station_trait/pet_day/on_lobby_button_click(atom/movable/screen/lobby/button/sign_up/lobby_button, updates)
+	var/mob/our_player = lobby_button.get_mob()
+	var/client/player_client = our_player.client
+	if(isnull(player_client))
+		return
+	var/datum/pet_customization/customization = GLOB.customized_pets[REF(player_client)]
+	if(isnull(customization))
+		customization = new(player_client)
+	INVOKE_ASYNC(customization, TYPE_PROC_REF(/datum, ui_interact), our_player)
+
+/datum/station_trait/pet_day/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/spawned, client/player_client)
+	SIGNAL_HANDLER
+
+	var/datum/pet_customization/customization = GLOB.customized_pets[REF(player_client)]
+	if(isnull(customization))
+		return
+	INVOKE_ASYNC(customization, TYPE_PROC_REF(/datum/pet_customization, create_pet), spawned, player_client)
+
+/datum/station_trait/pet_day/proc/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
+	overlays += "select_pet"
+
+*/// BUBBER EDIT REMOVAL END

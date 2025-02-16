@@ -171,7 +171,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 
 ///Map generation defines
-#define DEFAULT_SPACE_RUIN_LEVELS 7
+#define DEFAULT_SPACE_RUIN_LEVELS 4 // Bubber Edit - ORG: 7
 #define DEFAULT_SPACE_EMPTY_LEVELS 1
 
 #define BIOME_LOW_HEAT "low_heat"
@@ -221,7 +221,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define CLUSTER_CHECK_ALL 30 //!Don't let anything cluster, like, at all
 
 /// Checks the job changes in the map config for the passed change key.
-#define CHECK_MAP_JOB_CHANGE(job, change) SSmapping.config.job_changes?[job]?[change]
+#define CHECK_MAP_JOB_CHANGE(job, change) SSmapping.current_map.job_changes?[job]?[change]
 
 ///Identifiers for away mission spawnpoints
 #define AWAYSTART_BEACH "AWAYSTART_BEACH"

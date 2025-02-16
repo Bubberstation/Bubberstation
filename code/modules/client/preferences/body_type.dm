@@ -27,4 +27,3 @@
 	return initial(species.sexes)
 
 #undef USE_GENDER
-

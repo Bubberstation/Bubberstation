@@ -176,7 +176,7 @@
 		playsound(user, 'modular_zubbers/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)
 	else	//Can't let you do that, star fox!
 		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
-		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
+		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
 		board.game_status = MINESWEEPER_IDLE
 
 

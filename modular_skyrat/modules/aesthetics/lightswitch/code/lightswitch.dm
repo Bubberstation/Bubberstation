@@ -9,16 +9,13 @@
 /obj/machinery/light_switch/post_machine_initialize()
 	. = ..()
 	if(prob(50) && area.lightswitch) //50% chance for area to start with lights off.
-		turn_off()
+		set_lights(FALSE)
 #endif
 
-/obj/machinery/light_switch/proc/turn_off()
-	if(!area.lightswitch)
-		return
-	area.lightswitch = FALSE
-	area.update_icon()
+/obj/machinery/light_switch/default_on
 
-	for(var/obj/machinery/light_switch/light_switch in area)
-		light_switch.update_icon()
+/obj/machinery/light_switch/default_on/post_machine_initialize()
+	. = ..()
+	set_lights(TRUE)
 
-	area.power_change()
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch/default_on, 26)
