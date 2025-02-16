@@ -163,13 +163,8 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, span_notice("<b>Welcome to [station_name()]!</b>"))
-			/* ORIGINAL:
-			send2chat("New round starting on [SSmapping.current_map.map_name]!", CONFIG_GET(string/channel_announce_new_game))
-			*/ // SKYRAT EDIT START - DISCORD SPAM PREVENTION
-			if(!discord_alerted)
-				discord_alerted = TRUE
-				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), CONFIG_GET(string/channel_announce_new_game)) // SKYRAT EDIT - Role ping and round ID in game-alert
-			// SKYRAT EDIT END
+			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+				send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
 			current_state = GAME_STATE_PREGAME
 		// BUBBERSTATION EDIT START
 			var/storyteller = CONFIG_GET(string/default_storyteller)
