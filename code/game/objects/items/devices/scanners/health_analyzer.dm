@@ -434,8 +434,10 @@
 		render_list += "<span class='alert ml-1'><b>Subject died [DisplayTimeText(round(world.time - target.timeofdeath))] ago.</b></span><br>"
 
 	. = jointext(render_list, "")
+
 	if(tochat)
 		to_chat(user, examine_block(.), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER ADDITION - NANITES
 	return .
 
 /obj/item/healthanalyzer/click_ctrl_shift(mob/user)
