@@ -64,9 +64,7 @@
 	new /obj/item/clothing/shoes/laceup(src)
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/hats/warden/drill/captain(src)
-	new /obj/item/clothing/head/hats/warden/drill/blueshield(src)
 	new /obj/item/clothing/under/rank/captain/dress(src)
-	new /obj/item/clothing/under/rank/blueshield/netra(src)
 	new /obj/item/clothing/gloves/netra(src) //These are meant to go with the dress above it.
 	new /obj/item/clothing/under/bimpcap(src)
 	new /obj/item/clothing/head/hats/caphat/bunnyears_captain(src)
@@ -158,6 +156,12 @@
 	new	/obj/item/clothing/head/playbunnyears/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
 	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
+	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
+	new /obj/item/clothing/head/hats/imperial/hos(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial(src)
+	new /obj/item/clothing/suit/jacket/hos/blue(src)
+	new /obj/item/clothing/neck/mantle/hosmantle(src)
 //BUBBER ADDITION END
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
@@ -186,6 +190,20 @@
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/neck/cloak/rd(src)
 	new /obj/item/clothing/shoes/jackboots(src)
+//Duplication from Commdrobe
+	new /obj/item/clothing/head/beret/science/rd(src)
+	new /obj/item/clothing/head/beret/science/rd/alt(src)
+	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit(src)
+	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt(src)
+	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/imperial(src)
+	new /obj/item/clothing/neck/mantle/rdmantle(src)
+	new /obj/item/clothing/suit/toggle/labcoat(src)
+	new /obj/item/clothing/suit/toggle/labcoat/research_director(src)
+	new	/obj/item/clothing/head/playbunnyears/rd(src)
+	new /obj/item/clothing/under/rank/rnd/research_director/bunnysuit(src)
+	new /obj/item/clothing/suit/jacket/research_director/tailcoat(src)
+	new /obj/item/clothing/neck/tie/bunnytie/rd(src)
+
 
 /obj/item/storage/bag/garment/chief_medical/PopulateContents()
 	new /obj/item/clothing/under/rank/medical/chief_medical_officer(src)
@@ -200,6 +218,15 @@
 	new /obj/item/clothing/head/utility/surgerycap/cmo(src)
 	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/clothing/shoes/sneakers/blue (src)
+//Duplication from Commdrobe
+	new /obj/item/clothing/head/beret/medical/cmo/alt(src)
+	new /obj/item/clothing/head/hats/imperial/cmo(src)
+	new /obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial(src)
+	new /obj/item/clothing/neck/mantle/cmomantle(src)
+	new /obj/item/clothing/head/playbunnyears/cmo(src)
+	new /obj/item/clothing/under/rank/medical/cmo_bunnysuit(src)
+	new /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo(src)
+	new /obj/item/clothing/neck/tie/bunnytie/cmo(src)
 
 /obj/item/storage/bag/garment/engineering_chief/PopulateContents()
 	new /obj/item/clothing/under/rank/engineering/chief_engineer(src)
@@ -213,6 +240,15 @@
 	new /obj/item/clothing/head/utility/hardhat/welding/white(src)
 	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+//Duplication from Commdrobe
+	new /obj/item/clothing/head/beret/engi/ce(src)
+	new /obj/item/clothing/head/hats/imperial/ce(src)
+	new /obj/item/clothing/under/rank/engineering/chief_engineer/skyrat/imperial(src)
+	new /obj/item/clothing/neck/mantle/cemantle(src)
+	new /obj/item/clothing/head/playbunnyears/ce(src)
+	new /obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit(src)
+	new /obj/item/clothing/suit/utility/fire/ce_tailcoat(src)
+	new /obj/item/clothing/neck/tie/bunnytie/ce(src)
 
 /obj/item/storage/bag/garment/quartermaster/PopulateContents()
 	new /obj/item/clothing/under/rank/cargo/qm(src)
@@ -225,3 +261,20 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/neck/cloak/qm(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+//Duplication from Comdrobe
+	new /obj/item/clothing/head/beret/cargo/qm(src)
+	new /obj/item/clothing/head/beret/cargo/qm/alt(src)
+	new /obj/item/clothing/neck/mantle/qm(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/gorka(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck/skirt(src)
+	new /obj/item/clothing/suit/brownfurrich(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/casual(src)
+	new /obj/item/clothing/suit/toggle/jacket/supply/head(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/formal(src)
+	new /obj/item/clothing/under/rank/cargo/qm/skyrat/formal/skirt(src)
+	new /obj/item/clothing/head/playbunnyears/quartermaster(src)
+	new /obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit(src)
+	new /obj/item/clothing/suit/jacket/tailcoat/quartermaster(src)
+	new /obj/item/clothing/neck/tie/bunnytie/cargo(src)
+
