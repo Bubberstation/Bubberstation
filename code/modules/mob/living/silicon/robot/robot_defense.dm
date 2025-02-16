@@ -340,6 +340,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		user.visible_message(span_notice("[user] deconstructs [src]!"), span_notice("You unfasten the securing bolts, and [src] falls to pieces!"))
 		cyborg_deconstruct()
 		return
+
 // BUBBER CHANGE BEGIN
 //Moved to modular robot_defence.dm
 /*
