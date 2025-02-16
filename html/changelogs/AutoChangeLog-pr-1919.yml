@@ -1,0 +1,11 @@
+author: "LT3"
+delete-after: True
+changes:
+  - balance: "Event diseases are no longer hidden from health analyzers during incubation periods"
+  - bugfix: "Masks and head slot items actually provide protection from airborne disease spread"
+  - bugfix: "People other than the original airborne hosts spread diseases via respiration"
+  - balance: "Reduced infection chance for contact/airborne diseases from current 95%+ on all diseases to values 15%-40% based on the transmissibility strength"
+  - code_imp: "Airborne disease spread is rolled per target, not source"
+  - balance: "Disease outbreak won't spawn during rounds with less than 3 medical staff"
+  - balance: "Disease outbreak begins with 2-3 original hosts but lower spread speed"
+  - bugfix: "Disease cure won't request both antihol and alcohol mixed together"
