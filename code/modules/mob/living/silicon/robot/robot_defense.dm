@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return
 
 // BUBBER CHANGE BEGIN
-//Moved to modular robot_defence.dm
+//Moved to modular robot_defense.dm
 /*
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
