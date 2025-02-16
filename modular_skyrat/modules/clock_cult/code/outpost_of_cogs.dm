@@ -1,6 +1,6 @@
 /datum/lazy_template/reebe
 	key = LAZY_TEMPLATE_KEY_OUTPOST_OF_COGS
-	map_dir = "_maps/skyrat/lazy_templates"
+	map_dir = "_maps/bubber/lazy_templates"
 	map_name = "reebe"
 
 
