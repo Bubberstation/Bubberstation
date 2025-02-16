@@ -482,6 +482,7 @@
 	var/skirtpath = "[uniform]/skirt"
 	preload += text2path(skirtpath)
 	var/bunnypath = "[uniform]/bunny"
+	preload += text2path(bunnypath)
 	return preload
 
 /// An overridable getter for more dynamic goodies.
