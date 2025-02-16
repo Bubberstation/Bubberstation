@@ -237,7 +237,7 @@
 
 // Sophie/Cydia's plush
 /obj/item/toy/plush/androiddog
-	name = "Android dog plushie"
+	name = "android dog plushie"
 	desc = "A faded plushie toy of an android dog. Will not bite. \ A sticker says 'Push me!' on a little heart on the hand."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "androiddog"
