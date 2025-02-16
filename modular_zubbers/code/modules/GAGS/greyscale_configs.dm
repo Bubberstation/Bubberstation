@@ -115,6 +115,15 @@
 
 // SHORT-SLEEVED CROPPED JACKET
 
+/datum/greyscale_config/crop_jacket
+	name = "Tailored Jacket"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket.json'
+
+/datum/greyscale_config/crop_jacket/worn
+	name = "Tailored Jacket (Worn)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
 /datum/greyscale_config/shortsleeve_crop_jacket
 	name = "Tailored Jacket (Short-Sleeved)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'

@@ -13,6 +13,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/crop_jacket/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/toggle_icon)
 
 /obj/item/clothing/suit/crop_jacket/shortsleeve
