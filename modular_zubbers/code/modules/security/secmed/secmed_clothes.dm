@@ -68,9 +68,10 @@
 	name = "security medic uniform"
 	desc = "A lightly armored uniform worn by Nanotrasen's Asset Protection Medical Corps."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_medic_jumpsuit"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_state = "security_medic_jumpsuit"
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	name = "security medic turtleneck"

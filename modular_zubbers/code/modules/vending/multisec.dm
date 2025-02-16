@@ -53,7 +53,6 @@
 					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
 					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
-					/obj/item/clothing/under/rank/security/peacekeeper/armadyne/tactical = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
@@ -62,7 +61,7 @@
 					/obj/item/clothing/head/security_kepi = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
-					/obj/item/clothing/head/beaniesec = 6,
+					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/head/playbunnyears/security = 6,
 					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
 					/obj/item/clothing/suit/armor/security_tailcoat = 6,
@@ -92,8 +91,8 @@
 			"icon" = "notes-medical",
 			"products" = list(
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
-					/obj/item/clothing/suit/hazardvest/security_medic = 3,
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 3,
+					/obj/item/clothing/suit/hazardvest/security_medic = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,
@@ -106,13 +105,27 @@
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic = 3,
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt = 3,
 				)
-			)
+			),
+		list(
+			"name" = "Corrections",
+			"icon" = "handcuffs",
+			"products" = list(
+				/obj/item/clothing/under/rank/security/corrections_officer = 2, //If, or more likely when the Brig Officers abandon them, you can now get 'em here! Yay! Wahoo!
+				/obj/item/clothing/under/rank/security/corrections_officer/skirt = 2,
+				/obj/item/clothing/under/rank/security/corrections_officer/sweater = 2,
+				/obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt = 2,
+				/obj/item/clothing/suit/toggle/jacket/corrections_officer = 2,
+				/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
+				/obj/item/clothing/head/playbunnyears/prisoner = 6,
+				/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,
+				/obj/item/clothing/neck/tie/bunnytie/prisoner = 6,
+			),
+		),
 	)
 	premium = list(
 					/obj/item/clothing/under/rank/security/officer/formal = 6,
 					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
-					/obj/item/clothing/under/rank/security/officer/formal = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
 					/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/metrocop = 6,
@@ -138,19 +151,10 @@
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
 					/obj/item/clothing/glasses/hud/ar/projector/security = 3,
 					/obj/item/clothing/mask/gas/half_mask = 3,
-					/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
-					/obj/item/clothing/head/playbunnyears/prisoner = 6,
-					/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,
-					/obj/item/clothing/neck/tie/bunnytie/prisoner = 6,
 					/obj/item/clothing/head/hats/caphat/parade/fedcap/sec = 3,
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
 					/obj/item/clothing/mask/gas/soviet = 3,
 					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
-					/obj/item/clothing/under/rank/security/corrections_officer = 2, //If, or more likely when the Brig Officers abandon them, you can now get 'em here! Yay! Wahoo!
-					/obj/item/clothing/under/rank/security/corrections_officer/skirt = 2,
-					/obj/item/clothing/under/rank/security/corrections_officer/sweater = 2,
-					/obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt = 2,
-					/obj/item/clothing/suit/toggle/jacket/corrections_officer = 2,
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
 	)

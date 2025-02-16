@@ -584,7 +584,7 @@
 /datum/loadout_item/suit/navybluejacketofficer
 	name = "Security Officer's Navy Blue Formal Jacket"
 	item_path = /obj/item/clothing/suit/jacket/officer/blue
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/navybluejacketwarden
 	name = "Warden's Navy Blue Formal Jacket"
@@ -609,7 +609,7 @@
 /datum/loadout_item/suit/british_jacket
 	name = "Peacekeeper Officer Coat"
 	item_path = /obj/item/clothing/suit/british_officer
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/offdep_jacket
 	name = "Off-Department Jacket"
@@ -637,6 +637,11 @@
 	name = "Medical Jacket (Orderly/SecMed)"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec/medical
 	restricted_roles = list (JOB_ORDERLY, JOB_SECURITY_MEDIC, JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/suit/labcoat/doctor_tailcoat
+	name = "Brig Physician's tailcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
+	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/supply_jacket
 	name = "Supply Jacket"
