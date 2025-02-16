@@ -73,6 +73,29 @@
 	new /obj/item/clothing/under/rank/captain/bunnysuit(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain(src)
 	new /obj/item/clothing/neck/tie/bunnytie/captain(src)
+	new /obj/item/clothing/head/hats/caphat(src)
+	new /obj/item/clothing/head/caphat/beret(src)
+	new /obj/item/clothing/head/caphat/beret/alt(src)
+	new /obj/item/clothing/head/hats/imperial/cap(src)
+	new /obj/item/clothing/under/rank/captain/dress(src)
+	new /obj/item/clothing/under/rank/captain/skyrat/kilt(src)
+	new /obj/item/clothing/under/rank/captain/skyrat/shipdress(src)
+	new /obj/item/clothing/under/rank/captain/skyrat/imperial(src)
+	new /obj/item/clothing/under/rank/captain/skyrat/pilot(src)
+	new /obj/item/clothing/under/rank/captain/skyrat/pilot/skirt(src)
+	new /obj/item/clothing/head/hats/caphat/bicorne(src)
+	new /obj/item/clothing/head/hats/caphat/sonnensoldner(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/jacket(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/robe(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/robe/overseer(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/bathrobe(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/suitjacket(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/gambison(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/winterovercoat(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/overcoat(src)
+	new /obj/item/clothing/suit/jacket/capjacket(src)
+
+
 
 /obj/item/storage/bag/garment/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
@@ -127,7 +150,6 @@
 	new	/obj/item/clothing/head/playbunnyears/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
 	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
-	new	/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos(src)
 //BUBBER ADDITION END
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
