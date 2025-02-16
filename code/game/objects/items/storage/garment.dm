@@ -62,6 +62,17 @@
 	new /obj/item/clothing/head/hats/caphat/parade(src)
 	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/clothing/shoes/laceup(src)
+//Duplication from Commdrobe
+	new /obj/item/clothing/head/hats/warden/drill/captain(src)
+	new /obj/item/clothing/head/hats/warden/drill/blueshield(src)
+	new /obj/item/clothing/under/rank/captain/dress(src)
+	new /obj/item/clothing/under/rank/blueshield/netra(src)
+	new /obj/item/clothing/gloves/netra(src) //These are meant to go with the dress above it.
+	new /obj/item/clothing/under/bimpcap(src)
+	new /obj/item/clothing/head/hats/caphat/bunnyears_captain(src)
+	new /obj/item/clothing/under/rank/captain/bunnysuit(src)
+	new /obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain(src)
+	new /obj/item/clothing/neck/tie/bunnytie/captain(src)
 
 /obj/item/storage/bag/garment/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
@@ -72,6 +83,11 @@
 	new /obj/item/clothing/head/hats/hopcap(src)
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/shoes/laceup(src)
+//Duplication from Commdrobe
+	new /obj/item/clothing/head/playbunnyears/hop(src)
+	new /obj/item/clothing/under/rank/civilian/hop_bunnysuit(src)
+	new /obj/item/clothing/suit/armor/hop_tailcoat(src)
+	new /obj/item/clothing/neck/tie/bunnytie/hop(src)
 
 /obj/item/storage/bag/garment/hos/PopulateContents()
 	new /obj/item/clothing/under/rank/security/head_of_security/skirt(src)
@@ -98,10 +114,10 @@
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/clothing/head/hos_kepi(src)
 	new /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos(src)
+//Duplication from Commdrobe
 	new /obj/item/clothing/head/hats/warden/drill/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/alt/roselia(src)
 	new	/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/redsec(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/parade/redsec(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec(src)
 	new	/obj/item/clothing/head/hats/hos/elofy(src)
