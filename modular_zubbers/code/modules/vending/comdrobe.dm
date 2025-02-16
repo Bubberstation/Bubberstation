@@ -32,14 +32,14 @@
 
 	access_lists["[ACCESS_HOP]"] += list(
 		/obj/item/clothing/head/playbunnyears/hop = 1,
-		/obj/item/clothing/under/rank/civilian/hop_bunnysuit = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/bunnysuit = 1,
 		/obj/item/clothing/suit/armor/hop_tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/hop = 1,
 	)
 
 	access_lists["[ACCESS_CMO]"] += list(
 		/obj/item/clothing/head/playbunnyears/cmo = 1,
-		/obj/item/clothing/under/rank/medical/cmo_bunnysuit = 1,
+		/obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit = 1,
 		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cmo = 1,
 	)
@@ -60,7 +60,7 @@
 
 	access_lists["[ACCESS_QM]"] += list(
 		/obj/item/clothing/head/playbunnyears/quartermaster = 1,
-		/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit = 1,
+		/obj/item/clothing/under/rank/cargo/qm/bunnysuit = 1,
 		/obj/item/clothing/suit/jacket/tailcoat/quartermaster = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cargo = 1,
 	)
