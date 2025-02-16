@@ -199,7 +199,7 @@
 		shake_camera(user, recoil + 1, recoil)
 	fire_sounds()
 	if(suppressed || !message)
-		return
+		return FALSE
 	if(tk_firing(user))
 		visible_message(
 				span_danger("[src] fires itself[pointblank ? " point blank at [pbtarget]!" : "!"]"),
@@ -227,6 +227,7 @@
 
 	if(chambered?.integrity_damage)
 		take_damage(chambered.integrity_damage, sound_effect = FALSE)
+	return TRUE
 
 /obj/item/gun/atom_destruction(damage_flag)
 	if(!isliving(loc))
@@ -497,10 +498,12 @@
 		else
 			shoot_with_empty_chamber(user)
 			return
-		process_chamber()
-		update_appearance()
-		semicd = TRUE
-		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), modified_delay)
+		// If gun gets destroyed as a result of firing
+		if (!QDELETED(src))
+			process_chamber()
+			update_appearance()
+			semicd = TRUE
+			addtimer(CALLBACK(src, PROC_REF(reset_semicd)), modified_delay)
 
 	if(user)
 		user.update_held_items()
