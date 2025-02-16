@@ -202,7 +202,7 @@
 	name = "Big Legs (rideable)"
 	icon_state = "biglegs"
 	taur_mode = STYLE_TAUR_PAW
-	organ_type = /obj/item/organ/external/taur_body/anthroRideable
+	organ_type = /obj/item/organ/external/taur_body/anthro_rideable
 
 /datum/sprite_accessory/taur/biglegs_rideable/stanced
 	name = "Big Legs, Stanced (rideable)"
