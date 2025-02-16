@@ -340,7 +340,9 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		user.visible_message(span_notice("[user] deconstructs [src]!"), span_notice("You unfasten the securing bolts, and [src] falls to pieces!"))
 		cyborg_deconstruct()
 		return
-
+// BUBBER CHANGE BEGIN
+//Moved to modular robot_defence.dm
+/*
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		ignite_mob()
@@ -354,6 +356,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			emp_knockout(16 SECONDS)
 		if(2)
 			emp_knockout(6 SECONDS)
+*/
+//BUBBER CHANGE END
 
 /mob/living/silicon/robot/proc/emp_knockout(deciseconds)
 	set_stat(UNCONSCIOUS)

@@ -16,3 +16,19 @@
 		cell.forceMove(drop_location())
 		diag_hud_set_borgcell()
 	return TRUE
+
+// Better Emp solution
+/mob/living/silicon/robot/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	switch(severity)
+		if(1)
+			Paralyze(6 SECONDS)
+			set_confusion(20 SECONDS)
+			drop_all_held_items()
+		if(2)
+			Paralyze(3 SECONDS)
+			set_confusion(15 SECONDS)
+			drop_all_held_items()
+	..()
