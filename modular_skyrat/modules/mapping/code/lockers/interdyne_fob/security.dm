@@ -34,7 +34,7 @@
 
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/storage/bag/garment/brig_officer(src)
-	new /obj/item/radio/headset/interdyne(src)
+	new /obj/item/radio/headset/syndicateciv/staff(src)
 
 /obj/structure/closet/secure_closet/interdynefob/brig_officer_locker/populate_contents_immediate()
 	. = ..()
