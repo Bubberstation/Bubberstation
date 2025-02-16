@@ -234,3 +234,13 @@
 	icon_state = "squeaky_toy"
 	gender = MALE
 	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1)
+
+// Sophie/Cydia's plush
+/obj/item/toy/plush/androiddog
+	name = "android dog plushie"
+	desc = "A faded plushie toy of an android dog. Will not bite. \ A sticker says 'Push me!' on a little heart on the hand."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "androiddog"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/emotes/arf.ogg' = 1)
+
