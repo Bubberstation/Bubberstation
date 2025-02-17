@@ -62,6 +62,8 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 		return FALSE
 	if(!(targetrole in applicant.client.prefs.be_special))
 		return FALSE
+	if(!applicant.client.prefs.read_preference(/datum/preference/toggle/be_antag))
+		return FALSE
 	if(onstation)
 		var/turf/T = get_turf(applicant)
 		if(!is_station_level(T.z))
