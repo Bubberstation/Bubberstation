@@ -1,0 +1,147 @@
+2025-02-01:
+  ArrisFairburne:
+  - map: added maintenance tunnel and bridge areas to the ghost cafe
+  Erol509:
+  - qol: Vox and people with nitrogen breathing quirk, need less nitrogen to sustain
+      themselfs.
+  - balance: Changed nitrogen tank belt max capacity of 25l to 12l
+  - bugfix: Aheal/S.A.D interaction doesnt remove nitrogen lungs on quirk holders.
+      Both Aheal/Sad will return them, replacing the one inside you. This means, cybernetic
+      lungs will be removed.
+  StrangeWeirdKitten:
+  - rscadd: TTS compatability with vocal barks
+  UvvU:
+  - bugfix: fixes darksabre
+  Zenitheevee ,MajManatee:
+  - rscadd: deployable magazine fed turrets
+  - rscadd: target designators for mag fed turrets
+  - rscadd: Tarkon faction
+  - rscadd: Added turret assemblies to new turrets when found.
+  - rscadd: Added a research node locked behind tarkon tech to print tarkon turrets.
+  - image: added icons for mag fed turrets
+  - image: added icons for target designators
+  shayoki:
+  - map: In Box Station, a couple more light fixtures in the main halls were added.
+  - map: In Box Station, an APC in the hallway before the brig was added. It no longer
+      has infinite power.
+  - map: In Box Station, a maintenance entrance in the hallway before the brig was
+      added. This slightly squishes the detective's office.
+2025-02-02:
+  StrangeWeirdKitten:
+  - balance: Signifigantly changes flechett shotgun rounds. They are a close range
+      ammo with reliable wounding and damage against unarmored with very shitty armor
+      penitration. Damage drops off signifigantly with range.
+  - bugfix: Beehive and Antitide shotgun ammo now properly subtracts damage dropoff
+      instead of adding.
+  pixelkitty286:
+  - rscadd: Big cat borgs and kitty borgs
+  - image: added kitty and cat borg images.
+  shellspeed1:
+  - qol: Persistence has been fitted with two new exterior hatches to facilitate working
+      outside. Also botany has been enlarged to fit another row of trays if so desired.
+  - bugfix: Disposal bins in persistence medical and persistence science now work,
+      addressed a misplaced air alarm and an extra tiny fan capsule in persistence
+      bluespace mining.
+  - bugfix: Persistence recycler can now be escaped.
+  - bugfix: stopped on of the persistence turrets from getting dunked in lava every
+      shift.
+2025-02-03:
+  Arturlang:
+  - balance: Eye blur from lasers is capped at maximum of 20 seconds.
+  MosleyTheMalO:
+  - config: Makes vore defines into configs
+  - bugfix: makes the down button available again
+  Rathen Ivanonv:
+  - rscadd: Added more supplies/gear to Gas Station Attendant Ghost Role
+  - rscadd: Added I.D/Bank Account to Gas Station Attendant Ghost Role
+  - rscadd: Added an additional spawn to Gas Station Attendant Ghost Role
+  - rscadd: Added a Regal Rat spawn to Lavaland/an additional one to Ice Moon
+  - rscadd: Many more beneficial changes to the Gas Station Attendant Ghost Role
+  - map: Overhauled Lavaland/Ice Moon Gas Station with three new areas
+  - balance: Removed Laser Musket from Gas Station Ghost Role, replaced with PKA Pistols
+  xXPawnStarrXx:
+  - qol: made orefruits produce sheets as cores, instead of lame objects, letting
+      them be inserted into a silo.
+  - rscadd: Added two new pods; Xenoarch and triage
+  - bugfix: fixed the robotic repair kit in the large medical pod from being empty.
+2025-02-04:
+  shellspeed1:
+  - rscdel: Removed unused map file.
+2025-02-06:
+  xXPawnStarrXx:
+  - bugfix: fixed seed pathing so silver's weren't skipped with the rockfruit mutations.
+  - rscadd: Added digilegs for shadekin.
+2025-02-07:
+  nevimer:
+  - bugfix: fixed shadekin digi legs
+2025-02-08:
+  ABoxFaux:
+  - balance: Slimepeople with the nitrogen breather quirk now no longer take toxin
+      damage from breathing oxygen, instead taking an equal amount of brute damage.
+2025-02-09:
+  Odairu:
+  - image: filled in nullspace on shadekin tail BEHIND sprite
+2025-02-10:
+  StrangeWeirdKitten:
+  - rscadd: Replaces The Clown with The House which sets weights to 1, but spawns
+      stuff at a slower pace, and allows the adminbus to come.
+  - bugfix: Voidwalker properly spawns on the ghostset now.
+2025-02-11:
+  ArrisFairburne, LT3:
+  - rscadd: Added a new app to clock in and out from any NT OS-compatible device (Plexagon
+      Punch Clock)
+  - qol: Your job items are now locked into a box instead of warped to cryo, when
+      clocking out
+  Odairu:
+  - balance: cult no longer gibs mindshields
+  xPokee:
+  - map: modified the jukebox in BoxStation's permabrig to be accessless
+2025-02-12:
+  Sebastionate:
+  - map: Added THREE new Infinite Dorms!
+  - map: Added 'Cultist's Cavern' Infinite Dorm.
+  - map: Added 'Winter Woods' Infinite Dorm.
+  - map: Added 'Evacuated Station' Infinite Dorm.
+2025-02-14:
+  EliteRiceFarmer:
+  - bugfix: Plasteel barricade delay. Now it's close properly.
+  Vanilla1040:
+  - rscadd: Readds the Large Hypobox being Printable in the Medical Lathe
+  - rscadd: Adds Advanced Hypospray into imports
+  - map: Added new Hotel room
+  - bugfix: Fixed the other hotel rooms not showing up from a different PR
+2025-02-15:
+  Vanilla1040:
+  - rscadd: Adds the Borg mat to Synth's *Turf
+  nevimer:
+  - bugfix: crew monitor alarm logic is updated to work with planetary z's
+2025-02-16:
+  ABoxFaux:
+  - rscadd: Adds pet space snacks - treats available from cargo that makes your pet
+      immune to the void of space.
+  LT3:
+  - balance: Event diseases are no longer hidden from health analyzers during incubation
+      periods
+  - bugfix: Masks and head slot items actually provide protection from airborne disease
+      spread
+  - bugfix: People other than the original airborne hosts spread diseases via respiration
+  - balance: Reduced infection chance for contact/airborne diseases from current 95%+
+      on all diseases to values 15%-40% based on the transmissibility strength
+  - code_imp: Airborne disease spread is rolled per target, not source
+  - balance: Disease outbreak won't spawn during rounds with less than 3 medical staff
+  - balance: Disease outbreak begins with 2-3 original hosts but lower spread speed
+  - bugfix: Disease cure won't request both antihol and alcohol mixed together
+  UvvU:
+  - bugfix: fixes darksabre
+  YakumoChen:
+  - balance: Removed "sidearm beacons" from spawning SecOff and HoS inventories. Complimentary
+      glocks are still available in security officer lockers.
+  - balance: Gave the HoS's silver glock to the Warden. The Head of Security only
+      has three guns at roundstart now! How will he ever recover??
+  shayoki:
+  - bugfix: Allows blood filters to fit in the medical technician bag.
+  - rscadd: Allows hypospray kits to fit in the first responder surgical kit and orange
+      satchel medical kit.
+  zeroisthebiggay:
+  - bugfix: changes The House's welcome text "The House now runs the show..." to "The
+      House always wins." because it simply makes More Sense
