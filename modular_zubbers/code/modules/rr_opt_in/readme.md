@@ -9,14 +9,12 @@ Module ID: RR_OPTIN
 
 ### Description:
 
-
-Adds functionality to allow players to 'opt-in' to being round removed. Command roles & security are automatically opted-in, contractor & heretic have their objectives adjusted to only have command staff & security as their targets.
+Adds functionality to allow players to 'opt-in' to being round removed. 
 
 ### TG Proc/File Changes:
 
-- Changes in several antag files (will list later)
 - examine_tgui.dm (Adds opt in info to OOC examine info)
-- objective.dm (target selection stuff)
+- death.dm (death logging) 
 
 ### Modular Overrides:
 
