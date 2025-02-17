@@ -1,7 +1,7 @@
 //Modular file for away mission areas that won't conflict with station areas, for use in the Build Your Own Station event then to be deleted once the map is finalized
 /area/awaymission/station
 	name = "Station Areas"
-	icon = 'icons/area/awaymission/areas_station.dmi'
+	icon = 'icons/area/areas_station.dmi'
 	icon_state = "station"
 
 //CARGO
