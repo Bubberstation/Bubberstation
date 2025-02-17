@@ -166,10 +166,6 @@
 		to_chat(src,span_userdanger("ERROR: Lockdown is engaged. Please disengage lockdown to pick module."))
 		return
 
-	if(ROLE_PERSISTENCE in faction) //Bubber EDIT - THIS IS FOR DAUNTLESS/PERSISTENCE. This also seems to be a mediocre way to do so.
-		model.transform_to(/obj/item/robot_model/syndicatejack/dauntless)
-		return
-
 	// SKYRAT EDIT START - Making the cyborg model list static to reduce how many times it's generated.
 	if(!length(GLOB.cyborg_model_list))
 		GLOB.cyborg_model_list = list(
