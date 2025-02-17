@@ -11,6 +11,20 @@
 	icon_state = "shadekinshort"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 
+/datum/sprite_accessory/tails/mammal/wagging/shadekin_big
+	name = "Shadekin Big"
+	icon_state = "shadekinbig"
+	dimension_x = 64
+	center = TRUE
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/shadekin/shadekin_long
+	name = "Shadekin Long"
+	icon_state = "shadekinlong"
+	dimension_x = 64
+	center = TRUE
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
 /datum/sprite_accessory/tails/mammal/wagging/kagnarooalt
 	name = "Kangaroo (Alt)"
 	icon_state = "kangarooalt"
