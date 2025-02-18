@@ -28,3 +28,33 @@
 /datum/map_template/ghost_cafe_rooms/library
 	name = "Library"
 	mappath = "modular_skyrat/modules/hotel_rooms/library.dmm"
+
+/datum/map_template/ghost_cafe_rooms/cultcave
+	name = "Cultist's Cavern"
+	mappath = "modular_skyrat/modules/hotel_rooms/cultcave.dmm"
+
+/datum/map_template/ghost_cafe_rooms/winterwoods
+	name = "Winter Woods"
+	mappath = "modular_skyrat/modules/hotel_rooms/winterwoods.dmm"
+
+/area/misc/winterwoods
+	name = "Winter Woods"
+	icon = 'icons/area/areas_ruins.dmi'
+	icon_state = "hilbertshotel"
+	requires_power = FALSE
+	has_gravity = TRUE
+	area_flags = NOTELEPORT | HIDDEN_AREA
+	static_lighting = TRUE
+	ambientsounds = "icemoon"
+	var/roomnumber = 0
+	var/obj/item/hilbertshotel/parentSphere
+	var/datum/turf_reservation/reservation
+	var/turf/storageTurf
+
+/datum/map_template/ghost_cafe_rooms/evacuationstation
+	name = "Evacuated Station"
+	mappath = "modular_skyrat/modules/hotel_rooms/evacuationstation.dmm"
+
+/datum/map_template/ghost_cafe_rooms/prisoninfdorm
+	name = "Prison"
+	mappath = "modular_skyrat/modules/hotel_rooms/prisoninfdorm.dmm"

@@ -25,7 +25,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 */
 /datum/preferences/proc/save_data_needs_update(list/save_data)
 	if(!save_data) // empty list, either savefile isnt loaded or its a new char
-		return -1
+		return -3 // BUBBER EDIT
 	if(save_data["version"] < SAVEFILE_VERSION_MIN)
 		return -2
 	if(save_data["version"] < SAVEFILE_VERSION_MAX)
@@ -328,7 +328,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks), augments)// SKYRAT EDIT - AUGMENTS+
 	validate_quirks()
 
-	return TRUE
+	return needs_update != -3 // BUBBER EDIT
 
 /datum/preferences/proc/save_character(update) // Skyrat edit - Choose when to update (This is stupid)
 	SHOULD_NOT_SLEEP(TRUE)
@@ -343,7 +343,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		if (!(preference.type in recently_updated_keys))
+		if (!update && !(preference.type in recently_updated_keys)) // BUBBER EDIT
 			continue
 
 		recently_updated_keys -= preference.type
@@ -376,7 +376,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (!load_character(new_slot))
 		tainted_character_profiles = TRUE
 		randomise_appearance_prefs()
-		save_character()
+		save_character(TRUE) // BUBBER EDIT
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		preference_middleware.on_new_character(usr)
