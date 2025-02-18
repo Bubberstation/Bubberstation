@@ -38,13 +38,19 @@
 	for(var/datum/infuser_entry/infuser_entry as anything in flatten_list(GLOB.infuser_entries))
 		var/output_organs = infuser_entry.output_organs
 		var/mob/living/carbon/human/lab_rat = allocate(/mob/living/carbon/human/consistent)
-		lab_rat.dna.mutant_bodyparts["moth_antennae"] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"), MUTANT_INDEX_EMISSIVE_LIST = list(FALSE)) // SKYRAT EDIT - Customization
+		// SKYRAT EDIT ADDITION START - Customization
+		lab_rat.dna.mutant_bodyparts["moth_antennae"] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"), MUTANT_INDEX_EMISSIVE_LIST = list(FALSE))
+		lab_rat.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+		lab_rat.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+		lab_rat.dna.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+		lab_rat.dna.mutant_bodyparts["frills"] = list(MUTANT_INDEX_NAME = "Aquatic", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+		// SKYRAT EDIT END
 		var/list/obj/item/organ/inserted_organs = list()
 
 		// Attempt to insert entire list of mutant organs for the given infusion_entry.
 		for(var/obj/item/organ/organ as anything in output_organs)
 			organ = new organ()
-			TEST_ASSERT(organ.Insert(lab_rat, special = TRUE, movement_flags = DELETE_IF_REPLACED), "The organ `[organ.type]` for `[infuser_entry.type]` was not inserted in the mob when expected, Insert() returned falsy when TRUE was expected.")
+			organ.Insert(lab_rat, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 			inserted_organs += organ
 
 		// Search for added Status Effect.

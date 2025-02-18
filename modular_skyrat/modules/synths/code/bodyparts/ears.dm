@@ -8,6 +8,8 @@
 	gender = PLURAL
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC
+	overrides_sprite_datum_organ_type = TRUE
+	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
 /obj/item/organ/internal/ears/synth/emp_act(severity)
 	. = ..()
