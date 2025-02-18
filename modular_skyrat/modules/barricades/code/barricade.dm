@@ -671,6 +671,8 @@
 	portable_type = /obj/item/quickdeploy/barricade/plasteel
 	///Either we react with other cades next to us ie when opening or so
 	var/linked = FALSE
+	///Open/close delay, for customisation. And because I was asked to - won't customise anything myself.
+	var/toggle_delay = 0 SECONDS
 
 /obj/structure/deployable_barricade/metal/plasteel/crowbar_act(mob/living/user, obj/item/I)
 	switch(build_state)
@@ -701,6 +703,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(do_after(user, toggle_delay, src))
+		toggle_open(null, user)
+
 
 /obj/structure/deployable_barricade/metal/plasteel/proc/toggle_open(state, mob/living/user)
 	if(state == closed)
