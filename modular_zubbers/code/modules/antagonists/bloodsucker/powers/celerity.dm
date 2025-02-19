@@ -27,9 +27,9 @@
 	celerity_mod.multiplicative_slowdown = -0.05*level_current //lightpink extract at level 10, just without the pacifism
 	owner.add_movespeed_modifier(celerity_mod, update = TRUE)
 	owner.next_move_modifier *= min(0.05*level_current, 0.5)
-	if(level_current > CELERITY_FX_LEVEL)
+	if(level_current >= CELERITY_FX_LEVEL)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
-	if(level_current > CELERITY_DODGE_LEVEL)
+	if(level_current >= CELERITY_DODGE_LEVEL)
 		user.apply_status_effect(/datum/status_effect/rapid_reflexes)
 		to_chat(owner, span_notice("Our reflexes hone themselves."))
 
@@ -44,7 +44,7 @@
 	if(!active)
 		return
 	var/mob/living/user = owner
-	user.adjustStaminaLoss(-3 * level_current * REM * seconds_per_tick)
+	user.adjustStaminaLoss(-6 * level_current * REM * seconds_per_tick)
 
 /datum/action/cooldown/bloodsucker/celerity/proc/on_movement(mob/living/carbon/user, atom/old_loc)
 	SIGNAL_HANDLER
@@ -113,7 +113,7 @@
 	celerity_mod.multiplicative_slowdown = -0.05*level_current
 	owner.remove_movespeed_modifier(celerity_mod, update = TRUE)
 	owner.next_move_modifier /= min(0.05*level_current, 0.5)
-	if(level_current > CELERITY_FX_LEVEL)
+	if(level_current >= CELERITY_FX_LEVEL)
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	user.balloon_alert(user, "the world speeds up.")
 	return TRUE
