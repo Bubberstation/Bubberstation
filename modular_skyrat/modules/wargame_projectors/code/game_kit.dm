@@ -2,7 +2,7 @@
 	name = "Holodeck - Naval Wargames"
 	template_id = "holodeck_wargame"
 	description = "more than enough space for a quick bout of naval warfare"
-	mappath = "_maps/skyrat/holodeck_wargame.dmm"
+	mappath = "_maps/bubber/holodeck_wargame.dmm"
 
 /obj/item/storage/briefcase/secure/white/wargame_kit
 	name = "DIY Wargaming Kit"
