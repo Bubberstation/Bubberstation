@@ -251,7 +251,6 @@
 	log_silicon("CYBORG: [key_name(cyborg)] has transformed into the [new_model] model.")
 
 	//SKYRAT EDIT ADDITION BEGIN - ALTBORGS - Old check for 'dogborg' var no longer necessary, refactored into model_features instead.
-	//new_model.update_dogborg() // BUBBER REMOVAL
 	new_model.update_tallborg()
 	//SKYRAT EDIT ADDITION END
 	//BUBBER EDIT ADDTION BEGIN

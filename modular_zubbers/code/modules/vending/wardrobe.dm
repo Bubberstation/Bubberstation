@@ -33,7 +33,7 @@
 				/obj/item/clothing/under/costume/dragon_maid = 3,
 				/obj/item/clothing/head/playbunnyears = 6,
 				/obj/item/clothing/neck/tie/bunnytie = 6,
-				/obj/item/clothing/under/costume/playbunny = 6,
+				/obj/item/clothing/under/costume/playbunny/greyscale = 6,
 				/obj/item/clothing/suit/jacket/tailcoat = 6,
 				/obj/item/clothing/neck/tie/bunnytie/magician = 6,
 				/obj/item/clothing/under/costume/playbunny/magician = 6,

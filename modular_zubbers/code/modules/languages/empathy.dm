@@ -33,14 +33,14 @@
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	damage_multiplier = 2.5 // Shadekins big ears are easy to damage with loud noises.
+	overrides_sprite_datum_organ_type = TRUE
+	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
 /datum/language/marish/empathy
 	name = "Empathy"
 	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
 	key = "9"
 	icon_state = "empathy"
-
-
 
 /obj/item/organ/internal/tongue/shadekin/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
@@ -68,7 +68,7 @@
 
 		if(!istype(target_ears))
 			continue
-			
+
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			mode = istype(target_ears)
