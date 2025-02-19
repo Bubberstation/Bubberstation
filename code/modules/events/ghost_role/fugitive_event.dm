@@ -127,6 +127,8 @@
 			ship = new /datum/map_template/shuttle/hunter/psyker
 		if(HUNTER_PACK_MI13)
 			ship = new/datum/map_template/shuttle/hunter/mi13_foodtruck
+		if(HUNTER_PACK_GALFEDCOPS) // BUBBER EDIT
+			ship = new /datum/map_template/shuttle/hunter/galfed
 
 	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
 	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
@@ -179,6 +181,11 @@
 			announcement_text_list += "Illegal intrusion detected in the crew monitoring network. Central Command has been informed."
 			announcement_text_list += "Please report any suspicious individuals or behaviour to your local security team."
 			announcement_title += "Nanotrasen Intrusion Countermeasures Electronics"
+		if(HUNTER_PACK_GALFEDCOPS)
+			announcement_text_list += "Attention Crew of [GLOB.station_name], this is the Galactic Federation Police. A wanted criminal has been reported taking refuge on your station."
+			announcement_text_list += "We have a warrant from the GalFed authorities to take them into custody. Officers have been dispatched to your location."
+			announcement_text_list += "We demand your cooperation in bringing this criminal to justice."
+			announcement_title += "Galactic Federation Headquarters"
 	if(!length(announcement_text_list))
 		announcement_text_list += "Unidentified ship detected near the station."
 		stack_trace("Fugitive hunter announcement was unable to generate an announcement text based on backstory: [backstory]")

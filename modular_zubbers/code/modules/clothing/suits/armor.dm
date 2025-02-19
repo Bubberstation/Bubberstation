@@ -111,3 +111,20 @@
 /obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
+
+/obj/item/clothing/suit/armor/bulletproof/galfed
+	name = "police officer's vest"
+	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent, this one has a GalFed police badge pinned on it."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "police_vest"
+
+/obj/item/clothing/suit/armor/bulletproof/galfed/chief
+	name = "police chief's armored coat"
+	desc = "A police coat with golden insignia, and GalFed patches on the shoulders. Worn by the GalFed police chief. It has a Type III heavy bulletproof vest strapped on top as well as a GalFed police badge pinned on it."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "police_chief"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS

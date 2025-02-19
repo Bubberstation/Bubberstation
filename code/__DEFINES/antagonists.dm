@@ -390,6 +390,7 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define HUNTER_PACK_BOUNTY "Bounty Fugitive Hunters"
 #define HUNTER_PACK_PSYKER "Psyker Fugitive Hunters"
 #define HUNTER_PACK_MI13 "MI13 Fugitive Hunters"
+#define HUNTER_PACK_GALFEDCOPS "GalFed Police Fugitive Hunters" //BUBBER EDIT ADDITION - GALFED POLICE
 
 /// Changeling abilities with DNA cost = this are innately given to all changelings
 #define CHANGELING_POWER_INNATE -1

@@ -21,3 +21,8 @@
 /datum/map_template/shuttle/hunter/mi13_foodtruck
 	suffix = "mi13_foodtruck"
 	name = "Perfectly Ordinary Food Truck"
+
+/datum/map_template/shuttle/hunter/galfed //BUBBER EDIT ADDITION - GALFED POLICE
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "galfed"
+	name = "Taurus Police Cruiser"

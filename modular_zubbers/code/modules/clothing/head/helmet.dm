@@ -568,3 +568,10 @@
 	)
 
 // END HATS ADDED BY APRIL
+
+/obj/item/clothing/head/helmet/alt/galfed
+	name = "police officer's helmet"
+	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent, this one has a GalFed Police badge on it."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "police_helmet"

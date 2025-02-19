@@ -20,3 +20,20 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/maidsec.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
+
+/obj/item/clothing/under/rank/security/officer/galfed
+	name = "police officer's uniform"
+	desc = "A formal uniform worn by Galactic Federation Police, used by their law enforcement to apprehend criminals that are in unowned space."
+	icon = 'icons/obj/clothing/under/security.dmi'
+	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	icon_state = "spacepol"
+	inhand_icon_state = null
+	can_adjust = FALSE
+	armor_type = /datum/armor/clothing_under/sec_uniform_spacepol
+
+/obj/item/clothing/under/rank/security/officer/galfed/chief
+	name = "police chief's uniform"
+	desc = "A formal uniform worn by Galactic Federation Police, used by their law enforcement to apprehend criminals that are in unowned space. This one has black trousers with golden stripes, used by the Chief."
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "spacepol_chief"

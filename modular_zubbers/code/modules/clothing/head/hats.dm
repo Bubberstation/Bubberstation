@@ -15,3 +15,15 @@
 	icon_state = "galfedsoft"
 	soft_type = "galfed"
 	dog_fashion = null
+
+/obj/item/clothing/head/hats/warden/police/galfed
+	name = "police officer's hat"
+	desc = "A standard-issue GalFed Police peaked cap, with the GalFed badge on the front, you really are the ACTUAL law, at least in unclaimed space."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "police_cap"
+
+/obj/item/clothing/head/hats/warden/police/galfed/chief
+	name = "police chief's hat"
+	desc = "A standard-issue GalFed Police chief's peaked cap, with the GalFed badge on the front, you really are the ACTUAL law of the law, at least in unclaimed space."
+	icon_state = "police_chief_cap"

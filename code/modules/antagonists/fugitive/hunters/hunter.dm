@@ -46,6 +46,10 @@
 			to_chat(owner, span_danger("Agents, we have detected a wanted fugitive in Nanotrasen controlled space."))
 			to_chat(owner, span_danger("Your mission is simple. Infiltrate the facility and extract the target, dead or alive."))
 			to_chat(owner, span_danger("This is a stealth infiltration mission in hostile enemy territory. Be wary, and avoid being caught if possible."))
+		if(HUNTER_PACK_GALFEDCOPS)
+			to_chat(owner, span_boldannounce("Justice has arrived. I am a member of the Galactic Federation Police!"))
+			to_chat(owner, "<B>The criminals should be on the station, we have special huds implanted to recognize them.</B>")
+			to_chat(owner, "<B>As we have almost no power in the owned megacorporation space, it's a mystery if their security will cooperate with us.</B>")
 
 	to_chat(owner, span_boldannounce("You are not an antagonist in that you may kill whomever you please, but you can do anything to ensure the capture of the fugitives, even if that means going through the station."))
 	owner.announce_objectives()

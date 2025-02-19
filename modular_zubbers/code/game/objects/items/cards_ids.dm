@@ -24,3 +24,9 @@
 	icon_state = "card_rainbow"
 	trim = /datum/id_trim/away/lizardgas
 	wildcard_slots = WILDCARD_LIMIT_GREY
+
+/obj/item/card/id/advanced/galfed
+	assignment = "Galactic Federation"
+	desc = "A golden ID with black and blue stripes on it, straight from Galactic Federation."
+	icon = 'modular_zubbers/icons/obj/card.dmi'
+	icon_state = "card_galfed"
