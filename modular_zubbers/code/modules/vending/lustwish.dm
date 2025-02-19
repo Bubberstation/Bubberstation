@@ -16,7 +16,7 @@
 			"products" = list(
 				/obj/item/clothing/head/playbunnyears = 6,
 				/obj/item/clothing/neck/tie/bunnytie = 6,
-				/obj/item/clothing/under/costume/playbunny = 6,
+				/obj/item/clothing/under/costume/playbunny/greyscale = 6,
 				/obj/item/clothing/suit/jacket/tailcoat = 6,
 				/obj/item/clothing/under/costume/loincloth/sensor = 6,
 				/obj/item/clothing/under/costume/loincloth/cloth/sensor = 6,
