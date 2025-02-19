@@ -2,7 +2,7 @@
 /datum/action/cooldown/bloodsucker/potence
 	name = "Potence"
 	desc = "Endow yourself with extraordinary strength."
-	button_icon_state = "power_strength"
+	button_icon_state = "power_potence"
 	power_flags = BP_CONTINUOUS_EFFECT
 	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
@@ -14,7 +14,7 @@
 	. = list()
 	. += "Utilize your blood to augment your strength."
 	. += "This will drain blood at a constant rate of one unit per second while active."
-	. += "Your punches will deal [GetPowerLevel()] more damage and penetrate [GetEffectiveness()] armor."
+	. += "Your unarmed attacks will deal [GetPowerLevel()] more damage and gain [GetEffectiveness()] effectiveness."
 
 /datum/action/cooldown/bloodsucker/potence/ActivatePower(atom/target)
 	. = ..()
