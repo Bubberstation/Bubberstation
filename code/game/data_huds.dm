@@ -104,10 +104,11 @@ Medical HUD! Basic mode needs suit sensors on.
 
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
-		if(!(D.visibility_flags & HIDDEN_SCANNER))
+		if(!(D.visibility_flags & HIDDEN_MEDHUD)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES - Original: HIDDEN_SCANNER
 			if(!threat || get_disease_severity_value(D.severity) > threat) //a buffing virus gets an icon
 				threat = get_disease_severity_value(D.severity)
-				severity = D.severity
+				if(D.severity == DISEASE_SEVERITY_POSITIVE || D.stage > 1) // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES - Positive viruses should always show up
+					severity = D.severity
 	return severity
 
 //helper for getting the appropriate health status
