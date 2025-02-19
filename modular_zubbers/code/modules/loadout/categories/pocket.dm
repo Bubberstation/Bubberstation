@@ -118,32 +118,32 @@
 /datum/loadout_item/pocket_items/nif_disk_med
 	name = "Medical Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/med_hud
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
+	restricted_roles = list(ALL_JOBS_MEDICAL, JOB_GENETICIST)
 
 /datum/loadout_item/pocket_items/nif_disk_diag
 	name = "Diagnostic Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/diag_hud
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST)
+	restricted_roles = list(ALL_JOBS_SCIENCE)
 
 /datum/loadout_item/pocket_items/nif_disk_sec
 	name = "Security Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/sec_hud
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS, JOB_BLUESHIELD)
 
 /datum/loadout_item/pocket_items/nif_disk_permit
 	name = "Permit Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/permit_hud
-	restricted_roles = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN, JOB_CUSTOMS_AGENT, JOB_SHAFT_MINER)
+	restricted_roles = list(ALL_JOBS_CARGO)
 
 /datum/loadout_item/pocket_items/nif_disk_sci
 	name = "Science Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/sci_hud
-	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_CHEMIST, JOB_SCIENCE_GUARD)
+	restricted_roles = list(ALL_JOBS_SCIENCE, JOB_CHEMIST)
 
 /datum/loadout_item/pocket_items/nif_disk_meson
 	name = "Meson Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/meson_hud
-	restricted_roles = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN, JOB_SHAFT_MINER, JOB_CUSTOMS_AGENT, JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEERING_GUARD)
+	restricted_roles = list(ALL_JOBS_CARGO, ALL_JOBS_ENGINEERING)
 
 /*
 *	LUNCHBOX
