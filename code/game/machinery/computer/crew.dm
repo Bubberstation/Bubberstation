@@ -45,7 +45,6 @@
 		"name",
 		"job",
 		"is_robot", //SKYRAT EDIT ADDITION - Displaying robotic species Icon
-		"is_dnr", //BUBBERSTATION EDIT ADDITION - Displays DNR status
 		"life_status",
 		"suffocation",
 		"toxin",
@@ -262,7 +261,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			var/trim_assignment = id_card.get_trim_assignment()
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
-				
+
 		// SKYRAT EDIT BEGIN: Checking for robotic race
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
@@ -281,11 +280,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			results[++results.len] = entry
 			continue
 
-		// BUBBERSTATION EDIT BEGIN: Add DNR status
-		// If sensors are above living tracking, set DNR state
-		if (sensor_mode >= SENSOR_LIVING)
-			entry["is_dnr"] = tracked_human.get_dnr()
-		// BUBBERSTATION EDIT END
 
 		// Broken sensors show garbage data
 		if (uniform.has_sensor == BROKEN_SENSORS)
