@@ -32,9 +32,11 @@
 /area/misc/hilbertshotel)
 "ca" = (
 /obj/structure/table/wood,
-/obj/item/folder{
-	pixel_x = -3;
-	pixel_y = 5
+/obj/machinery{
+	icon = 'modular_skyrat/modules/aesthetics/intercom/icons/intercom.dmi';
+	icon_state = "intercom";
+	name = "Intercom";
+	pixel_y = -1
 	},
 /turf/open/indestructible/carpet,
 /area/misc/hilbertshotel)
@@ -90,7 +92,7 @@
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/recharger{
-	pixel_x = -12;
+	pixel_x = -6;
 	pixel_y = 6
 	},
 /obj/item/flashlight/lamp/green{
@@ -126,8 +128,14 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = 16;
+	pixel_x = 19;
 	pixel_y = -4
+	},
+/obj/machinery{
+	icon = 'modular_skyrat/modules/aesthetics/intercom/icons/intercom.dmi';
+	icon_state = "intercom";
+	pixel_x = 1;
+	name = "Intercom"
 	},
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
@@ -204,8 +212,9 @@
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
 "qR" = (
-/obj/structure/bookcase/random,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/bookcase{
+	icon_state = "book-5"
+	},
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
 "rg" = (
@@ -219,7 +228,9 @@
 /area/misc/hilbertshotel)
 "rz" = (
 /obj/structure/showcase/fakeid{
-	dir = 1
+	dir = 1;
+	name = "\improper CentComm Oversight Console";
+	desc = "You can use this to watch the watchers."
 	},
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
@@ -241,9 +252,7 @@
 	dir = 8
 	},
 /obj/item/kirbyplants/organic/plant21,
-/obj/structure/sign/painting{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster/official/state_laws/directional/south,
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "yM" = (
@@ -275,19 +284,19 @@
 /turf/open/space/basic,
 /area/misc/hilbertshotel)
 "AN" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/machinery/jukebox{
+	icon = 'modular_skyrat/modules/aesthetics/intercom/icons/intercom.dmi';
+	icon_state = "intercom";
+	pixel_y = -10;
+	name = "Enviroment Sound System";
+	desc = "It's hip to be square!"
 	},
-/obj/structure/sign/painting{
-	pixel_y = 32
-	},
-/turf/open/indestructible/dark,
+/turf/closed/indestructible/riveted,
 /area/misc/hilbertshotel)
 "AU" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue{
-	pixel_x = 4
+/obj/item/documents/nanotrasen{
+	pixel_y = 3
 	},
 /turf/open/indestructible/carpet,
 /area/misc/hilbertshotel)
@@ -310,11 +319,11 @@
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
 "CA" = (
-/obj/structure/bookcase/random,
-/obj/structure/sign/painting{
-	pixel_y = 32
-	},
 /obj/machinery/light/directional/north,
+/obj/structure/sign/poster/official/work_for_a_future/directional/north,
+/obj/structure/bookcase{
+	icon_state = "book-5"
+	},
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "CQ" = (
@@ -380,7 +389,10 @@
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "Nc" = (
-/obj/structure/showcase/fakeid,
+/obj/structure/showcase/fakeid{
+	name = "\improper CentComm Communications Console";
+	desc = "You can use this to communicate... if you know the password."
+	},
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
 "Pb" = (
@@ -437,6 +449,7 @@
 	dir = 1
 	},
 /obj/item/kirbyplants/organic/plant10,
+/obj/structure/sign/poster/official/fruit_bowl/directional/north,
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "QQ" = (
@@ -483,8 +496,11 @@
 /turf/open/indestructible/hotelwood,
 /area/misc/hilbertshotel)
 "XQ" = (
-/obj/structure/bookcase/random,
 /obj/machinery/light/directional/south,
+/obj/structure/sign/poster/official/obey/directional/south,
+/obj/structure/bookcase{
+	icon_state = "book-5"
+	},
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "Zn" = (
@@ -596,8 +612,8 @@ zb
 (6,1,1) = {"
 pD
 pD
-pD
 AN
+oO
 Ew
 UR
 Jh
@@ -716,13 +732,13 @@ zb
 zb
 pD
 pD
-pD
+dE
 dE
 dZ
 le
 Kd
 dE
-pD
+dE
 pD
 pD
 zb
