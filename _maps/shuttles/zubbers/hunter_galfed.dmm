@@ -10,6 +10,9 @@
 /obj/item/ammo_box/c35sol/incapacitator,
 /obj/item/ammo_box/c35sol/incapacitator,
 /obj/item/ammo_box/c35sol/incapacitator,
+/obj/item/ammo_box/c35sol,
+/obj/item/ammo_box/c35sol,
+/obj/item/ammo_box/c35sol,
 /turf/open/floor/iron/textured_large,
 /area/shuttle/hunter/police)
 "al" = (
@@ -544,14 +547,14 @@
 /area/shuttle/hunter/police)
 "ua" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/machinery/door/airlock/corporate{
-	name = "Taurus Cryogenics"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/hunter,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/security{
+	name = "Taurus Cryogenics"
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/shuttle/hunter/police)
@@ -681,48 +684,20 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
 /obj/structure/rack/shelf,
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
-/obj/item/ammo_box/magazine/c35sol_pistol{
-	ammo_type = /obj/item/ammo_casing/c35sol/incapacitator
-	},
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
 /turf/open/floor/iron/textured_large,
 /area/shuttle/hunter/police)
 "zr" = (
 /turf/open/floor/plating/airless,
-/area/shuttle/hunter/police)
-"zJ" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters{
-	name = "Taurus Armory Shutters";
-	dir = 1;
-	id = "taurus_armory"
-	},
-/turf/open/floor/plating,
 /area/shuttle/hunter/police)
 "zQ" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -861,17 +836,6 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /turf/open/floor/pod/light,
 /area/shuttle/hunter/police)
-"Fw" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 14;
-	height = 14;
-	name = "Deep Space";
-	shuttle_id = "huntership_home";
-	width = 17
-	},
-/turf/template_noop,
-/area/template_noop)
 "FC" = (
 /obj/structure/table/reinforced/rglass,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
@@ -1031,6 +995,14 @@
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/hunter,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 14;
+	height = 14;
+	name = "Deep Space";
+	shuttle_id = "huntership_home";
+	width = 17
+	},
 /obj/docking_port/mobile{
 	dir = 2;
 	name = "hunter shuttle";
@@ -1156,14 +1128,14 @@
 /turf/open/floor/pod/light,
 /area/shuttle/hunter/police)
 "Rv" = (
-/obj/machinery/door/airlock/corporate{
-	name = "Taurus Suit Storage"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/hunter,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/security{
+	name = "Taurus Suit Storage"
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/shuttle/hunter/police)
@@ -1194,14 +1166,14 @@
 /turf/open/floor/iron/smooth,
 /area/shuttle/hunter/police)
 "UG" = (
-/obj/machinery/door/airlock/corporate/glass{
-	name = "Taurus Bridge"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/hunter,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Taurus Bridge"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -1549,7 +1521,7 @@ My
 My
 cN
 Ri
-zJ
+My
 zd
 jH
 Ev
@@ -1580,14 +1552,14 @@ nt
 (14,1,1) = {"
 nt
 nt
-Fw
+nt
 My
 My
 My
 My
 lu
 Ri
-zJ
+My
 rB
 XI
 af

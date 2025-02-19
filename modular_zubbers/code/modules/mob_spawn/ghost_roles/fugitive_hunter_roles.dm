@@ -5,6 +5,9 @@
 	you_are_text = "I am a member of the Galactic Federation Police!"
 	flavour_text = "Justice has arrived. We must capture those fugitives lurking on that station!"
 	back_story = HUNTER_PACK_GALFEDCOPS
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+	loadout_enabled = FALSE
 	outfit = /datum/outfit/spacepol/galfed
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
@@ -54,7 +57,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	glasses = /obj/item/clothing/glasses/sunglasses
-	ears = /obj/item/radio/headset/headset_galfed/alt
+	ears = /obj/item/radio/headset/headset_galfed/alt/chief
 	l_pocket = /obj/item/ammo_box/magazine/c35sol_pistol
 	r_pocket = /obj/item/restraints/handcuffs
 	id = /obj/item/card/id/advanced/galfed

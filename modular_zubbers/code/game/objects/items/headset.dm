@@ -28,6 +28,7 @@
 /obj/item/encryptionkey/headset_galfed
 	name = "\improper GalFed radio encryption key"
 	icon_state = "cypherkey_centcom"
+	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(RADIO_CHANNEL_GALFED = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_centcom
 	greyscale_colors = "#1f2f5b#dca01b"
