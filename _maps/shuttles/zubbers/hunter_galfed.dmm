@@ -861,6 +861,17 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /turf/open/floor/pod/light,
 /area/shuttle/hunter/police)
+"Fw" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 14;
+	height = 14;
+	name = "Deep Space";
+	shuttle_id = "huntership_home";
+	width = 17
+	},
+/turf/template_noop,
+/area/template_noop)
 "FC" = (
 /obj/structure/table/reinforced/rglass,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
@@ -1020,6 +1031,14 @@
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/hunter,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/docking_port/mobile{
+	dir = 2;
+	name = "hunter shuttle";
+	rechargeTime = 1800;
+	shuttle_id = "huntership";
+	port_direction = 4;
+	preferred_direction = 2
+	},
 /turf/open/floor/iron/dark/textured_half,
 /area/shuttle/hunter/police)
 "KQ" = (
@@ -1561,7 +1580,7 @@ nt
 (14,1,1) = {"
 nt
 nt
-nt
+Fw
 My
 My
 My
