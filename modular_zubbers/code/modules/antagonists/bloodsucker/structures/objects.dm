@@ -103,7 +103,7 @@
 			stakes += list(embedded_stake)
 	return stakes
 
-/datum/embed_data/stake
+/datum/embedding/stake
 	embed_chance = 20
 
 /obj/item/stake
@@ -120,7 +120,7 @@
 	attack_verb_continuous = list("staked", "stabbed", "tore into")
 	attack_verb_simple = list("staked", "stabbed", "tore into")
 	sharpness = SHARP_EDGED
-	embed_data = /datum/embed_data/stake
+	embed_data = /datum/embedding/stake
 	force = 6
 	throwforce = 10
 	max_integrity = 30
@@ -199,7 +199,7 @@
 		return TRUE
 	return FALSE
 
-/datum/embed_data/stake/hardened
+/datum/embedding/stake/hardened
 	embed_chance = 35
 	fall_chance = 0
 
@@ -211,14 +211,14 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embed_data = /datum/embed_data/stake/hardened
+	embed_data = /datum/embedding/stake/hardened
 	staketime = 12 SECONDS
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
 	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
-/datum/embed_data/stake/silver
+/datum/embedding/stake/silver
 	embed_chance = 0 // we want it to only be embeddable manually
 	fall_chance = 0
 
@@ -231,7 +231,7 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embed_data = /datum/embed_data/stake/silver
+	embed_data = /datum/embedding/stake/silver
 	staketime = 15 SECONDS
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)

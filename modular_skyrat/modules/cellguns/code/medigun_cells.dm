@@ -425,10 +425,10 @@
 	name = "salve globule"
 	icon_state = "glob_projectile"
 	shrapnel_type = /obj/item/mending_globule/hardlight
-	embed_type = /datum/embed_data/salve_globule
+	embed_type = /datum/embedding/salve_globule
 	damage = 0
 
-/datum/embed_data/salve_globule
+/datum/embedding/salve_globule
 	embed_chance = 100
 	ignore_throwspeed_threshold = TRUE
 	pain_mult = 0
@@ -514,7 +514,7 @@
 /obj/item/mending_globule/hardlight
 	name = "salve globule"
 	desc = "A ball of regenerative synthetic plant matter, contained within a soft hardlight field."
-	embed_type = /datum/embed_data/salve_globule
+	embed_type = /datum/embedding/salve_globule
 	icon = 'modular_skyrat/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "globule"
 	heals_left = 40 //This means it'll be heaing 15 damage per type max.

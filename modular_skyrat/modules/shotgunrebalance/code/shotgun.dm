@@ -241,10 +241,10 @@
 	eyeblur = 1 SECONDS
 	sharpness = NONE
 	range = 12
-	embed_type = /datum/embed_data/shotgun_buckshot/antitide
+	embed_type = /datum/embedding/shotgun_buckshot/antitide
 	reflectable = NONE
 
-/datum/embed_data/shotgun_buckshot/antitide
+/datum/embedding/shotgun_buckshot/antitide
 	embed_chance = 200
 	pain_chance = 95
 	fall_chance = 10
