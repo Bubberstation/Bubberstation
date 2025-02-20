@@ -10,6 +10,7 @@ import {
   Section,
   Stack,
   Table,
+  Tooltip,
 } from 'tgui-core/components';
 
 import { createSearch } from '../../common/string';
@@ -63,6 +64,9 @@ type UserData = {
   cash: number;
   job: string;
   department: string;
+  /** BUBBER EDIT START **/
+  species: string;
+  /** BUBBER EDIT END **/
 };
 
 type StockItem = {
@@ -70,6 +74,9 @@ type StockItem = {
   path: string;
   amount: number;
   colorable: boolean;
+  /** BUBBER EDIT START **/
+  refits_available: string[];
+  /** BUBBER EDIT END **/
 };
 
 type CustomInput = {
@@ -303,6 +310,17 @@ const VendingRow = (props) => {
           <ProductColorSelect disabled={disabled} product={product} />
         )}
       </Table.Cell>
+      <Table.Cell verticalAlign="middle">
+        {user &&
+          user.species &&
+          productStock.refits_available?.includes(
+            user.species.toLowerCase(),
+          ) && (
+            <Tooltip content="This outfit supports your species!">
+              <Icon name="fa-shirt" />
+            </Tooltip>
+          )}
+      </Table.Cell>
       <Table.Cell collapsing textAlign="right" verticalAlign="middle">
         <ProductStock custom={custom} product={product} remaining={remaining} />
       </Table.Cell>
@@ -368,7 +386,17 @@ const ProductColorSelect = (props) => {
     />
   );
 };
+/** BUBBER EDIT START **/
+/** In the case of customizable items, ie: shoes,
+ * this displays a color wheel button that opens another window.
+ */
+const RefitBadgeView = (props) => {
+  const { act } = useBackend<VendingData>();
+  const { disabled, product } = props;
 
+  return <Icon name="fa-shirt" color="gold" />;
+};
+/** BUBBER EDIT END **/
 /** Displays a colored indicator for remaining stock */
 const ProductStock = (props) => {
   const { custom, product, remaining } = props;
