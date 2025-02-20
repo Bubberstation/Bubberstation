@@ -48,11 +48,13 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	var/ridable_component = /datum/component/riding/creature/raptor
 	//pet commands when we tame the raptor
 	var/static/list/pet_commands = list(
+		/datum/pet_command/breed,
 		/datum/pet_command/idle,
+		/datum/pet_command/move,
 		/datum/pet_command/free,
-		/datum/pet_command/point_targeting/attack,
+		/datum/pet_command/attack,
 		/datum/pet_command/follow,
-		/datum/pet_command/point_targeting/fetch,
+		/datum/pet_command/fetch,
 	)
 	///things we inherited from our parent
 	var/datum/raptor_inheritance/inherited_stats
@@ -158,8 +160,8 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	if(isnull(ore_food))
 		balloon_alert(src, "no food!")
 	else
-		melee_attack(ore_food)
-	return TRUE
+		UnarmedAttack(ore_food, TRUE, modifiers)
+	return FALSE
 
 /mob/living/basic/raptor/melee_attack(mob/living/target, list/modifiers, ignore_cooldown)
 	if(!combat_mode && istype(target, /mob/living/basic/raptor/baby_raptor))
