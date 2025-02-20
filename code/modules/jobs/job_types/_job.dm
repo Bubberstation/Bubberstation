@@ -185,7 +185,7 @@
 		id_card.set_intern_status(player_joins_as_intern(player_client))
 		var/obj/item/modular_computer/pda/pda = spawned.get_item_by_slot(ITEM_SLOT_BELT)
 		if(pda && istype(pda))
-			pda.imprint_id(job_name = id_card.get_job_title())
+			pda.imprint_id(job_name = id_card.get_job_title(), id_card = id_card)
 	// BUBBER EDIT END
 
 /// Return the outfit to use
@@ -451,7 +451,7 @@
 	var/obj/item/modular_computer/pda/pda = equipped.get_item_by_slot(pda_slot)
 
 	if(istype(pda))
-		pda.imprint_id(equipped.real_name, equipped_job.title)
+		pda.imprint_id(equipped.real_name, equipped_job.title, card)
 		pda.update_ringtone(equipped_job.job_tone)
 		pda.UpdateDisplay()
 
