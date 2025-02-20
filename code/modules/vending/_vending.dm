@@ -41,6 +41,9 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 	var/age_restricted = FALSE
 	///Whether the product can be recolored by the GAGS system
 	var/colorable
+	/// BUBBER EDIT
+	var/refits_available
+	/// BUBBER EDIT END
 	/// The category the product was in, if any.
 	/// Sourced directly from product_categories.
 	var/category
@@ -448,6 +451,9 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 		new_record.age_restricted = initial(temp.age_restricted)
 		new_record.colorable = !!(initial(temp.greyscale_config) && initial(temp.greyscale_colors) && (initial(temp.flags_1) & IS_PLAYER_COLORABLE_1))
 		new_record.category = product_to_category[typepath]
+		/// BUBBER EDIT
+		new_record.refits_available = check_for_refits(temp.icon_state,temp)
+		/// BUBBER EDIT END
 		recordlist += new_record
 
 /**Builds all available inventories for the vendor - standard, contraband and premium
@@ -1307,6 +1313,11 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 		user_data = list()
 		user_data["name"] = card_used.registered_account.account_holder
 		user_data["cash"] = fetch_balance_to_use(card_used) + held_cash
+		/// BUBBER EDIT
+		if(ishuman(user))
+			var/mob/living/carbon/living_user = user
+			user_data["species"] = living_user?.dna?.species
+		/// BUBBER EDIT END
 		if(card_used.registered_account.account_job)
 			user_data["job"] = card_used.registered_account.account_job.title
 			user_data["department"] = card_used.registered_account.account_job.paycheck_department
@@ -1323,6 +1334,7 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 			path = replacetext(replacetext("[product_record.product_path]", "/obj/item/", ""), "/", "-"),
 			amount = product_record.amount,
 			colorable = product_record.colorable,
+			refits_available = product_record.refits_available
 		)
 
 		.["stock"][product_data["path"]] = product_data
