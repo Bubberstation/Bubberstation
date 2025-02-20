@@ -7,7 +7,7 @@
 	icon_state = "physgun_grayscale"
 	inhand_icon_state = "physgun_grayscale"
 	worn_icon_state = "physgun_grayscale"
-	belt_icon_state = "physgun_grayscale"
+	inside_belt_icon_state = "physgun_grayscale"
 	worn_icon = 'modular_zubbers/icons/mob/inhands/architector_items_belt.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/architector_items_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/architector_items_righthand.dmi'

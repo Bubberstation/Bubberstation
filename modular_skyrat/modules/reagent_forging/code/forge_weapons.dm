@@ -23,7 +23,7 @@
 	icon_state = "sword"
 	inhand_icon_state = "sword"
 	worn_icon_state = "sword_back"
-	belt_icon_state = "sword_belt"
+	inside_belt_icon_state = "sword_belt"
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	throwforce = 10
 	block_chance = 25 //either we make it melee block only or we don't give it too much. It's bulkly so the buckler is superior
@@ -48,7 +48,7 @@
 	icon_state = "katana"
 	inhand_icon_state = "katana"
 	worn_icon_state = "katana_back"
-	belt_icon_state = "katana_belt"
+	inside_belt_icon_state = "katana_belt"
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	throwforce = 10
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -70,7 +70,7 @@
 	icon_state = "dagger"
 	inhand_icon_state = "dagger"
 	worn_icon_state = "dagger_back"
-	belt_icon_state = "dagger_belt"
+	inside_belt_icon_state = "dagger_belt"
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	embed_type = /datum/embed_data/forged_dagger
 	throwforce = 10
