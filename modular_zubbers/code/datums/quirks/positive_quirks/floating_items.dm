@@ -2,7 +2,7 @@
 	name = "Psionic Holding"
 	desc = "You find holding items with your hands so inconvenient, and use your mind powers to do so instead."
 	value = 0
-	icon = FA_ICON_BRAIN
+	icon = FA_ICON_HORSE_HEAD
 	medical_record_text = "Subject's mind is capable of extremely limited telekinesis."
 	gain_text = "Your mind feels like it can lift weights!"
 	lose_text = "Your mind feels like it took a cheat day."
