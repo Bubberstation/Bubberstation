@@ -36,7 +36,7 @@
 				if(gent)
 					gent.aroused = AROUSAL_FULL
 					gent.update_sprite_suffix()
-	
+
 	// Apply visual quirks
 	// Yes we do it every time because it needs to be done after job gear
 	if(SSquirks?.initialized)
