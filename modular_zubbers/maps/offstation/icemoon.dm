@@ -11,3 +11,12 @@
 	allow_duplicates = FALSE
 	cost = 1 // has a miner body and BSC. thats about it.
 	mineral_cost = 1 // has 1 vent. Sure its one of the reseting ones but its a vent.
+
+/datum/map_template/ruin/icemoon/underground/bubberstation/ice_boss_vent
+	name = "Ice-ruin Frozen Rite Location"
+	id = "ice_r_boss_vent"
+	description = "They believed sacrifices could give more rewards. They were not prepared for the felling of their hubris."
+	suffix = "icemoon_underground_boss_vent.dmm"
+	allow_duplicates = FALSE
+	cost = 0
+	mineral_cost = 1

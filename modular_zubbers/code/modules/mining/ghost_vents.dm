@@ -177,11 +177,13 @@
 
 /obj/structure/ore_vent/ghost_mining/snowland
 	icon_state = "ore_vent_ice_active"
+	base_icon_state = "ore_vent_ice_active"
 	defending_mobs = list(/mob/living/basic/mining/wolf) //one of the easier snowies
 	threat_pool = list(COLONY_THREAT_SNOW)
 
 /obj/structure/ore_vent/ghost_mining/undersnow
 	icon_state = "ore_vent_ice_active"
+	base_icon_state = "ore_vent_ice_active"
 	defending_mobs = list(/mob/living/basic/mining/wolf) //one of the easier snowies
 	threat_pool = list(COLONY_THREAT_ICE_MINING)
 
@@ -203,3 +205,81 @@
 /obj/structure/ore_vent/ghost_mining/crab
 	defending_mobs = list(/mob/living/basic/crab)
 	threat_pool = list(COLONY_THREAT_BEACH)
+
+/obj/structure/ore_vent/ghost_mining/boss
+	name = "swirling oxide pool"
+	desc = "A deep mineral pool laden with massive oxide chunks. This one has an evil aura about it. Better be careful."
+	unique_vent = TRUE
+	spawn_drone_on_tap = FALSE
+	boulder_size = BOULDER_SIZE_LARGE
+	mineral_breakdown = list( // All the riches of the world, eeny meeny boulder room.
+		/datum/material/iron = 1,
+		/datum/material/glass = 1,
+		/datum/material/plasma = 1,
+		/datum/material/titanium = 1,
+		/datum/material/silver = 1,
+		/datum/material/gold = 1,
+		/datum/material/diamond = 1,
+		/datum/material/uranium = 1,
+		/datum/material/bluespace = 1,
+		/datum/material/plastic = 1,
+	)
+	defending_mobs = list(
+		/mob/living/simple_animal/hostile/megafauna/dragon,
+		/mob/living/simple_animal/hostile/megafauna/colossus,
+		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner,
+	)
+	excavation_warning = "Something big is nearby. Are you ABSOLUTELY ready to excavate this ore vent? A NODE drone will be deployed after threat is neutralized."
+	boulder_bounty = 40 // one boulder spawns roughly every minute, 40 minutes for the vent to reset
+	new_ore_cycle = FALSE //We just want the same boulder.
+	var/summoned_boss = /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner //What do we spawn? Starts with BDM
+
+/obj/structure/ore_vent/ghost_mining/boss/examine(mob/user)
+	. = ..()
+	var/boss_string = ""
+	switch(summoned_boss)
+		if(/mob/living/simple_animal/hostile/megafauna/dragon)
+			boss_string = "oily, flames dancing along the edges"
+		if(/mob/living/simple_animal/hostile/megafauna/colossus)
+			boss_string = "reflective, the mirror image glaring with judgement"
+		if(/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner)
+			boss_string = "thick with blood and the scent of alcohol"
+		if(/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom)
+			boss_string = "swirling angrily with frothy blood"
+		if(/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner)
+			boss_string = "frozen over with bloodened ice"
+		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal)
+			boss_string = "clear, showing a skull just below"
+	. += span_notice("The surface of the mineral pool is [boss_string].")
+
+/obj/structure/ore_vent/ghost_mining/boss/reset_vent()
+	. = ..()
+	var/list/boss_pool = defending_mobs
+	summoned_boss = pick(boss_pool)
+
+/obj/structure/ore_vent/ghost_mining/boss/start_wave_defense() //Stolen from original boss vent code
+	if(!COOLDOWN_FINISHED(src, wave_cooldown))
+		return
+	// Completely override the normal wave defense, and just spawn the boss.
+	var/mob/living/simple_animal/hostile/megafauna/boss = new summoned_boss(loc)
+	RegisterSignal(boss, COMSIG_LIVING_DEATH, PROC_REF(handle_wave_conclusion))
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_spawned", 1, summoned_boss)
+	COOLDOWN_START(src, wave_cooldown, INFINITY) //Basically forever
+	boss.say(boss.summon_line) //Pull their specific summon line to say. Default is meme text so make sure that they have theirs set already.
+
+/obj/structure/ore_vent/ghost_mining/boss/handle_wave_conclusion()
+	node = new /mob/living/basic/node_drone(loc) //We're spawning the vent after the boss dies, so the player can just focus on the boss.
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_killed", 1, summoned_boss)
+	COOLDOWN_RESET(src, wave_cooldown)
+	return ..()
+
+/obj/structure/ore_vent/ghost_mining/boss/icemoon
+	icon_state = "ore_vent_ice_active"
+	base_icon_state = "ore_vent_ice_active"
+	summoned_boss = /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom //Icemoon portal "reward" specific version of BDM. Better than normal BDM, But should still be easier than the other spawns
+	defending_mobs = list(
+		/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner,
+		/mob/living/simple_animal/hostile/megafauna/wendigo/noportal,
+		/mob/living/simple_animal/hostile/megafauna/colossus,
+		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom,
+	)
