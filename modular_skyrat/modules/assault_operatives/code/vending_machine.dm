@@ -9,6 +9,7 @@
 	onstation = FALSE
 	light_mask = "liberation-light-mask"
 	default_price = 0
+
 	/// Have we been FILLED?
 	var/filled = FALSE
 
@@ -69,7 +70,6 @@
 		if(!start_empty)
 			vending_product.amount = amount
 		vending_product.max_amount = amount
-		vending_product.custom_price = 0
-		vending_product.custom_premium_price = 0
+		vending_product.price = 0
 		vending_product.age_restricted = FALSE
 		recordlist += vending_product

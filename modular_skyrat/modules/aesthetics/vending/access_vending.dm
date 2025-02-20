@@ -52,7 +52,7 @@
 		var/list/data = list(
 			path = replacetext(replacetext("[record.product_path]", "/obj/item/", ""), "/", "-"),
 			name = record.name,
-			price = record.custom_price || default_price,
+			price = record.price || default_price,
 			max_amount = record.max_amount,
 			ref = REF(record)
 		)
