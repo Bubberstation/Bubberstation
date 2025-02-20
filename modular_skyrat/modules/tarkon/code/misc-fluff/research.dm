@@ -26,7 +26,8 @@
 		"powerator_tarkon",
 		"cargoconsole_tarkon",
 		"bountypad_tarkon",
-		"bountyconsole_tarkon"
+		"bountyconsole_tarkon",
+		"hackc"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
@@ -139,6 +140,20 @@
 	build_path = /obj/item/construction/rcd/arcd/tarkon
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/tarkonhackc
+	name = "Tarkon Hack-C Signaller"
+	desc = "A small device that signals a 'Hack-C' drone to repair specialized machinery."
+	id = "hackc"
+	build_path = /obj/item/hackc
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
