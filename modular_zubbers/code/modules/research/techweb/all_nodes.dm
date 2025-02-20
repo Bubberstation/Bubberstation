@@ -98,6 +98,7 @@
 	)
 
 /datum/techweb_node/borg_utility/New()
+	. = ..()
 	design_ids -= list(
 		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
 	)

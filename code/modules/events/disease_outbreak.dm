@@ -3,7 +3,7 @@
 /// Advanced virus upper limit for symptoms
 #define ADV_MAX_SYMPTOMS 4
 /// How long the virus stays hidden before announcement
-#define ADV_ANNOUNCE_DELAY 75
+#define ADV_ANNOUNCE_DELAY 60 // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES - ORIGINAL: 75
 /// Numerical define for medium severity advanced virus
 #define ADV_DISEASE_MEDIUM 1
 /// Numerical define for harmful severity advanced virus
@@ -15,7 +15,7 @@
 /// Percentile for mid severity advanced virus
 #define ADV_RNG_MID 85
 /// Percentile for high vs. low transmissibility
-#define ADV_SPREAD_THRESHOLD 85
+#define ADV_SPREAD_THRESHOLD 80 // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES - ORIGINAL: 85
 /// Admin custom low spread
 #define ADV_SPREAD_FORCED_LOW 0
 /// Admin custom med spread
@@ -42,8 +42,18 @@
 	if(!.)
 		return .
 	generate_candidates()
-	if(length(disease_candidates))
-		return TRUE
+	// BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
+	// if(length(disease_candidates))
+	//	return TRUE
+	if(!SSjob.is_skeleton_medical(3))
+		log_public_file("Disease outbreak check passed medbay staffing parameters with 3 or more staff.")
+		if(length(disease_candidates))
+			log_public_file("Disease outbreak check passed candidate parameters with [length(disease_candidates)] candidates.")
+			return TRUE
+		log_public_file("Disease outbreak check failed catastrophically. oh god how did we get here, there are zero candidates? this should never happen.")
+	else
+		log_public_file("Disease outbreak check failed medbay staffing parameters due to less than 3 staff.")
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 /**
  * Creates a list of people who are elligible to become disease carriers for the event
@@ -63,10 +73,14 @@
 			continue
 		if(!is_station_level(candidate.z) && !is_mining_level(candidate.z)) //Diseases can't really spread if the vector is in deep space.
 			continue
-		// SKYRAT EDIT ADDITION START - Station/area event candidate filtering.
+		// BUBBER EDIT ADDITION START - Station/area event candidate filtering.
+		if(candidate.internal || candidate.external || candidate.wear_mask)
+			continue
 		if(engaged_role_play_check(candidate, station = TRUE, dorms = TRUE))
 			continue
-		// SKYRAT EDIT ADDITION END
+		if(issynthetic(candidate))
+			continue
+		// BUBBER EDIT ADDITION END - Station/area event candidate filtering.
 		disease_candidates += candidate
 
 ///Handles checking and alerting admins about the number of valid candidates
@@ -106,6 +120,11 @@
 	var/list/afflicted = list()
 
 /datum/round_event/disease_outbreak/announce(fake)
+	// BUBBER EDIT ADDITION START - DISEASE OUTBREAK UPDATES
+	for(var/datum/disease/advance/active_carrier in SSdisease.event_diseases)
+		active_carrier.make_visible()
+	// BUBBER EDIT ADDITION END - DISEASE OUTBREAK UPDATES
+
 	if(!illness_type)
 		var/list/virus_candidates = list(
 			/datum/disease/anxiety,
@@ -139,27 +158,36 @@
 		virus_candidates += list(/datum/disease/flu, /datum/disease/cold9)
 
 		//The more dangerous ones
-		virus_candidates += list(/datum/disease/beesease, /datum/disease/brainrot, /datum/disease/fluspanish)
+		//virus_candidates += list(/datum/disease/beesease, /datum/disease/brainrot, /datum/disease/fluspanish) // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 
 		//The wacky ones
-		virus_candidates += list(/datum/disease/magnitis, /datum/disease/anxiety)
+		virus_candidates += list(/datum/disease/magnitis, /datum/disease/anxiety, /datum/disease/beesease) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 
 		//The rest of the diseases either aren't conventional "diseases" or are too unique/extreme to be considered for a normal event
 		virus_type = pick(virus_candidates)
 
 	var/datum/disease/new_disease
 	new_disease = new virus_type()
-	new_disease.carrier = TRUE
+	//new_disease.carrier = TRUE // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 	illness_type = new_disease.name
+	// BUBBER EDIT ADDITION START - DISEASE OUTBREAK UPDATES
+	new_disease.event_disease = TRUE
+	var/to_infect = 3
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 4
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - DISEASE OUTBREAK UPDATES
 
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		victim = pick_n_take(afflicted)
-		if(victim.ForceContractDisease(new_disease, FALSE))
+		if(victim.ForceContractDisease(new_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 			message_admins("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [ADMIN_LOOKUPFLW(victim)]!")
 			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
 			announce_to_ghosts(victim)
-			return
+			infected++ // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			// return // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target.")
@@ -280,7 +308,7 @@
 		else
 			requested_severity = ADV_DISEASE_DANGEROUS
 
-	var/datum/disease/advance/advanced_disease = new /datum/disease/advance/random/event(max_symptoms, requested_severity, requested_transmissibility)
+	var/datum/disease/advance/advanced_disease = new /datum/disease/advance/event(max_symptoms, requested_severity, requested_transmissibility) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 
 	var/list/name_symptoms = list()
 	for(var/datum/symptom/new_symptom as anything in advanced_disease.symptoms)
@@ -288,23 +316,44 @@
 
 	illness_type = advanced_disease.name
 
+	// BUBBER EDIT ADDITION START - DISEASE OUTBREAK UPDATES
+	if(advanced_disease.spread_flags & DISEASE_SPREAD_AIRBORNE)
+		for(var/datum/symptom/final_symptom in advanced_disease.symptoms)
+			if(istype(final_symptom, /datum/symptom/cough) || istype(final_symptom, /datum/symptom/sneeze))
+				announce_when = 38 // the most transmissible get an early announcement
+				break
+
+	var/to_infect = 3
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 4
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - DISEASE OUTBREAK UPDATES
+
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		victim = pick_n_take(afflicted)
-		if(victim.ForceContractDisease(advanced_disease, FALSE))
+		if(victim.ForceContractDisease(advanced_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 			message_admins("Event triggered: Disease Outbreak: Advanced - starting with patient zero [ADMIN_LOOKUPFLW(victim)]! Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_game("Event triggered: Disease Outbreak: Advanced - starting with patient zero [key_name(victim)]. Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
+			advanced_disease.log_virus_public("Event virus details: [advanced_disease.admin_details()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			announce_to_ghosts(victim)
-			return
+			infected++ // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			// return // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
 		log_game("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
+		return // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
-/datum/disease/advance/random/event
+	deadchat_broadcast("Disease Outbreak: Advanced starting with [advanced_disease.name]! Symptoms: [advanced_disease.symptoms_list()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+
+/datum/disease/advance/event // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 	name = "Event Disease"
 	copy_type = /datum/disease/advance
+	bypasses_disease_recovery = TRUE // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+	event_disease = TRUE // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
 /datum/round_event/disease_outbreak/advance/setup()
 	announce_when = ADV_ANNOUNCE_DELAY
@@ -315,7 +364,7 @@
  * Uses the parameters to create a list of symptoms, picking from various severities
  * Viral Evolution and Eternal Youth are special modifiers, so we roll separately.
  */
-/datum/disease/advance/random/event/New(max_symptoms, requested_severity, requested_transmissibility)
+/datum/disease/advance/event/New(max_symptoms, requested_severity, requested_transmissibility) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 	var/list/datum/symptom/possible_symptoms = list(
 		/datum/symptom/beard,
 		/datum/symptom/chills,
@@ -354,6 +403,31 @@
 				/datum/symptom/visionloss,
 			)
 
+	// BUBBER EDIT ADDITION START - DISEASE OUTBREAK UPDATES
+	visibility_flags |= HIDDEN_MEDHUD
+	var/transmissibility = requested_transmissibility
+
+	if(isnull(transmissibility))
+		transmissibility = rand(1,100)
+
+	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
+		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
+
+	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
+		set_spread(DISEASE_SPREAD_AIRBORNE)
+		if(prob(40))
+			var/list/datum/symptom/airborne_modifiers = list(
+				/datum/symptom/cough,
+				/datum/symptom/sneeze,
+			)
+			var/datum/symptom/chosen_airborne = pick(airborne_modifiers)
+			possible_symptoms -= chosen_airborne
+			symptoms += new chosen_airborne
+
+	else
+		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
+	// BUBBER EDIT ADDITION END - DISEASE OUTBREAK UPDATES
+
 	var/current_severity = 0
 
 	while(symptoms.len < max_symptoms)
@@ -375,6 +449,7 @@
 		if(new_symptom.severity > current_severity)
 			current_severity = new_symptom.severity
 
+	/*// BUBBER EDIT REMOVAL START - DISEASE OUTBREAK UPDATES
 	visibility_flags |= HIDDEN_SCANNER
 	var/transmissibility = requested_transmissibility
 
@@ -399,6 +474,7 @@
 		visibility_flags &= ~HIDDEN_SCANNER
 		set_spread(DISEASE_SPREAD_AIRBORNE)
 
+	*/ // BUBBER EDIT REMOVAL END - DISEASE OUTBREAK UPDATES
 
 	//Illness name from one of the symptoms
 	var/datum/symptom/picked_name = pick(symptoms)
@@ -427,23 +503,32 @@
  * If the virus is severity DANGEROUS we do not hide it from health scanners at event start.
  * If the virus is airborne, also don't hide it.
  */
-/datum/disease/advance/random/event/assign_properties()
+/datum/disease/advance/event/assign_properties() // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 
 	if(!length(properties))
 		stack_trace("Advanced virus properties were empty or null!")
 		return
 
+	/* BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES - ORIGINAL:
 	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	properties["transmittable"] = rand(4,7)
 	spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
 	stage_prob = max(0.4 * properties["stage_rate"], 1)
+	*/
+	properties["transmittable"] = rand(6,9)
+	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
+	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
+	cure_chance = rand(14, 21) // cure quickly once they've hit medbay
+	stage_prob = rand(7, 9) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate and medical to respond
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 	set_severity(properties["severity"])
 
 	//If we have an advanced (high stage) disease, add it to the name.
 	if(properties["stage_rate"] >= 7)
 		name = "Advanced [name]"
 
+	log_virus_public("stage speed is [stage_prob], spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 	generate_cure(properties)
 
 /**
@@ -451,7 +536,7 @@
  *
  * Apply the transmission methods we rolled in the assign_properties proc
  */
-/datum/disease/advance/random/event/set_spread(spread_id)
+/datum/disease/advance/event/set_spread(spread_id)// BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 	switch(spread_id)
 		if(DISEASE_SPREAD_CONTACT_FLUIDS)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS)
@@ -468,17 +553,31 @@
  *
  * Rolls one of five possible cure groups, then selects a cure from it and applies it to the virus.
  */
-/datum/disease/advance/random/event/generate_cure()
+/datum/disease/advance/event/generate_cure()// BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 	if(!length(properties))
 		stack_trace("Advanced virus properties were empty or null!")
 		return
 
+	// BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
+	/*
 	var/res = rand(4, 7)
 	cures = list(pick(advance_cures[res]))
 	oldres = res
 	// Get the cure name from the cure_id
 	var/datum/reagent/cure = GLOB.chemical_reagents_list[cures[1]]
 	cure_text = cure.name
+	*/
+	var/list/cures_list = advance_cures.Copy()
+	if(properties["stage_rate"] >= 7)
+		cures = list(pick_n_take(cures_list[rand(4, 7)]), pick_n_take(cures_list[3])) // require some help outside medbay (list 3)
+		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
+		var/datum/reagent/cure_2 = GLOB.chemical_reagents_list[cures[2]]
+		cure_text = "[cure_1.name] and [cure_2.name]"
+	else
+		cures = list(pick_n_take(cures_list[rand(4, 7)]))
+		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
+		cure_text = cure_1.name
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 #undef ADV_MIN_SYMPTOMS
 #undef ADV_MAX_SYMPTOMS
