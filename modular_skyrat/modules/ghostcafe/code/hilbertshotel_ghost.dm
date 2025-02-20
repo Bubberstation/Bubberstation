@@ -70,3 +70,7 @@
 /datum/map_template/ghost_cafe_rooms/grotto
 	name = "Grotto"
 	mappath = "modular_skyrat/modules/hotel_rooms/grotto.dmm"
+
+/datum/map_template/ghost_cafe_rooms/grotto2
+	name = "Grotto (Night)"
+	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"
