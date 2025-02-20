@@ -25,11 +25,7 @@
 	return ..()
 
 /datum/nanite_program/regenerative/active_effect()
-	if(iscarbon(host_mob))
-		host_mob.heal_overall_damage(healing_rate, healing_rate, required_bodytype = valid_bodytype)
-	else
-		host_mob.adjustBruteLoss(-healing_rate, FALSE)
-		host_mob.adjustFireLoss(-healing_rate, TRUE)
+	host_mob.heal_overall_damage(healing_rate, healing_rate, required_bodytype = valid_bodytype)
 
 /datum/nanite_program/regenerative/advanced
 	name = "Bio-Reconstruction"

@@ -24,7 +24,7 @@
 			Each hit costs nanites equilavent to damage, but the more nanites you have, the more protection you get. \
 			50 nanites = 1 flat armor. \
 			Incompatible with other dermal armor programs."
-	use_rate = 0.5
+	use_rate = 2
 	rogue_types = list(/datum/nanite_program/skin_decay)
 	var/damage_type = BRUTE
 	var/signal = COMSIG_MOB_APPLY_DAMAGE
@@ -43,7 +43,19 @@
 		update_damage_modifier(humie, 0)
 
 // update and handle the damage modifier before taking damage, thus only when needed
-/datum/nanite_program/dermal_armor/proc/pre_damage(damagetype, amount, forced)
+/datum/nanite_program/dermal_armor/proc/pre_damage(
+		mob/living/damaged_mob,
+		damage_amount,
+		damagetype,
+		def_zone,
+		blocked,
+		wound_bonus,
+		bare_wound_bonus,
+		sharpness,
+		attack_direction,
+		attacking_item,
+		wound_clothing
+	)
 	SIGNAL_HANDLER
 	if(damagetype != damage_type)
 		return
@@ -53,7 +65,7 @@
 	if(amount >= nanites.nanite_volume)
 		playsound(host_mob, SFX_SHATTER)
 		host_mob.Knockdown(1 SECONDS)
-		to_chat(host_mob, span_warning("Something shatters under your skin, and you feel a sharp pain."))
+		to_chat(host_mob, span_warning("Something shatters under your skin, and you feel a sharp pain!"))
 		disable_passive_effect()
 		return
 	// 1 for every 50 nanites, up to 30 flat armor, max of 10 at 500 nanites
