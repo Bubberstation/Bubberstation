@@ -52,7 +52,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
-		/obj/item/melee/baton/telescopic = 1,
+		/obj/item/melee/baton/telescopic/gold = 1, // BUBBER EDIT ADDITION - TG BATONS
 		/obj/item/gun/energy/e_gun/mini = 1,
 		)
 
