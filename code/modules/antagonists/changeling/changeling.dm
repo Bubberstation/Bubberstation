@@ -577,7 +577,7 @@
 	new_profile.emissive_eyes = target.emissive_eyes
 	new_profile.scream_type = target.selected_scream?.type || /datum/scream_type/none
 	new_profile.laugh_type = target.selected_laugh?.type || /datum/laugh_type/none
-	new_profile.target_body_scaling = target.get_mob_height()
+	new_profile.target_body_scaling = target.mob_height
 	new_profile.target_size = target.mob_size
 	//SKYRAT EDIT ADDITION END
 	// Hair and facial hair gradients, alongside their colours.
