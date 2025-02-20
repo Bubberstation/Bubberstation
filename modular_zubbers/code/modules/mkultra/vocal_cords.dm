@@ -104,10 +104,10 @@
 			found_string = enthrall_listener.real_name
 			power_multiplier += 0.5
 
-		else if(findtext(message, enthrall_listener.first_name(), 1, length(enthrall_listener.first_name()) + 1))
+		else if(findtext(message, first_name(enthrall_listener.real_name), 1, length(first_name(enthrall_listener.real_name)) + 1))
 			specific_listeners += enthrall_listener //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
-			found_string = enthrall_listener.first_name()
+			found_string = first_name(enthrall_listener.real_name)
 			power_multiplier += 0.5
 
 		else if(enthrall_listener.mind && enthrall_listener.mind.assigned_role && findtext(message, enthrall_listener.mind.assigned_role, 1, length(enthrall_listener.mind.assigned_role) + 1))
@@ -377,7 +377,7 @@
 			if(enthrall_chem.lewd)
 				speaktrigger += "[enthrall_chem.enthrall_gender]!"
 			else
-				speaktrigger += "[user.first_name()]!"
+				speaktrigger += "[first_name(user.real_name)]!"
 			//say it!
 			addtimer(CALLBACK(humanoid, /atom/movable/proc/say, "[speaktrigger]"), 5)
 			enthrall_chem.cooldown += 1
