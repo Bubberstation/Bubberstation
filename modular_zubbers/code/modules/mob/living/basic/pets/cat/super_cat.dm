@@ -21,8 +21,7 @@
 
 /mob/living/basic/pet/cat/super/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_NOGUNS, TRAIT_NO_TWOHANDING, TRAIT_VENTCRAWLER_NUDE), INNATE_TRAIT)
-	remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS), INNATE_TRAIT)
+	add_traits(list(TRAIT_NOGUNS, TRAIT_NO_TWOHANDING), INNATE_TRAIT)
 	AddElement(/datum/element/dextrous)
 	AddComponent(/datum/component/personal_crafting)
 
@@ -83,8 +82,7 @@
 
 /mob/living/basic/pet/cat/cak/super/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_PACIFISM, TRAIT_NO_TWOHANDING, TRAIT_VENTCRAWLER_NUDE), INNATE_TRAIT) //Passive kitty bring kind meows
-	remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS), INNATE_TRAIT)
+	add_traits(list(TRAIT_PACIFISM, TRAIT_NO_TWOHANDING), INNATE_TRAIT) //Passive kitty bring kind meows
 	AddElement(/datum/element/dextrous)
 	AddComponent(/datum/component/personal_crafting)
 
@@ -102,8 +100,7 @@
 
 /mob/living/basic/pet/cat/syndicat/super/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_NOGUNS, TRAIT_NO_TWOHANDING, TRAIT_VENTCRAWLER_NUDE), INNATE_TRAIT)
-	remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS), INNATE_TRAIT)
+	add_traits(list(TRAIT_NOGUNS, TRAIT_NO_TWOHANDING), INNATE_TRAIT)
 	AddElement(/datum/element/dextrous)
 	AddComponent(/datum/component/personal_crafting)
 	// get rid of the microbomb normal syndie cats have
