@@ -16,7 +16,7 @@
 	melee_damage_lower = 7
 	melee_damage_upper = 15
 	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
-	faction = list(null) // ...and they will fight 'til there's just one.
+	faction = list(FACTION_HOSTILE)
 
 
 /mob/living/basic/pet/cat/super/Initialize(mapload)
@@ -32,6 +32,9 @@
 		balloon_alert(src, "Your paws are too soft!")
 		return FALSE
 
+/mob/living/basic/pet/cat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
+	. = ..()
+	drop_all_held_items()
 
 /mob/living/basic/pet/cat/super/tux //Fake runtime
 	name = "Super Tux Cat"
@@ -85,6 +88,10 @@
 	AddElement(/datum/element/dextrous)
 	AddComponent(/datum/component/personal_crafting)
 
+/mob/living/basic/pet/cat/cak/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
+	. = ..()
+	drop_all_held_items()
+
 // SUPER SYNDICATS!!! GET DAT MRR MRRAW DISK!!!
 /mob/living/basic/pet/cat/syndicat/super
 	name = "Super Syndie Cat"
@@ -108,6 +115,10 @@
 	if(HAS_TRAIT(src, TRAIT_NOGUNS)) // Who am I to stop admins from making them stronger?
 		balloon_alert(src, "Your paws are too weak!")
 		return FALSE
+
+/mob/living/basic/pet/cat/syndicat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
+	. = ..()
+	drop_all_held_items()
 
 #undef SUPER_KITTY_HEALTH
 #undef SYNDIE_SUPER_KITTY_HEALTH
