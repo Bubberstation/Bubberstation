@@ -312,7 +312,7 @@
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
-		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
+		to_chat(M, boxed_message("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
 		// Add the appearance_holder to prey so they can see fellow prey
 		if(can_taste && iscarbon(M))
 			var/mob/living/carbon/H = M

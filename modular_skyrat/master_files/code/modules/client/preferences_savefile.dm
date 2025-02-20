@@ -80,7 +80,7 @@
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
 	if(!tgui_prefs_migration && save_data.len) // If save_data is empty, this is definitely a new character
-		to_chat(parent, examine_block(span_redtext("PREFERENCE MIGRATION BEGINNING.\
+		to_chat(parent, boxed_message(span_redtext("PREFERENCE MIGRATION BEGINNING.\
 		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		")))
@@ -96,7 +96,7 @@
 
 /// Brings a savefile up to date with modular preferences. Called if savefile_needs_update_skyrat() returned a value higher than 0
 /datum/preferences/proc/update_character_skyrat(current_version, list/save_data)
-	to_chat(parent, examine_block(span_redtext("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
+	to_chat(parent, boxed_message(span_redtext("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
 	if(current_version < VERSION_GENITAL_TOGGLES)
 		// removed genital toggles, with the new choiced prefs paths as assoc
 		var/static/list/old_toggles
@@ -264,11 +264,11 @@
 	if(current_version < VERSION_LOADOUT_PRESETS)
 		write_preference(GLOB.preference_entries[/datum/preference/loadout], list("Default" = save_data["loadout_list"])) // So easy. I wish the synth refactor was this easy.
 
-	to_chat(parent, examine_block(span_greentext("Updated preferences!")))
+	to_chat(parent, boxed_message(span_greentext("Updated preferences!")))
 
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
-		to_chat(parent, examine_block(span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
+		to_chat(parent, boxed_message(span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
 		message_admins("PREFERENCE MIGRATION: [ADMIN_LOOKUPFLW(parent)] has failed the process for migrating PREFERENCES. Check runtimes.")
 
 

@@ -58,7 +58,7 @@
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, examine_block(vote_font("[span_bold("Map Vote")]\n<hr>[messages.Join("\n")]")))
+	to_chat(world, boxed_message(vote_font("[span_bold("Map Vote")]\n<hr>[messages.Join("\n")]")))
 
 /datum/controller/subsystem/map_vote/update_tally_printout()
 	var/list/data = list()
