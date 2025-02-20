@@ -50,3 +50,12 @@
 				/obj/item/stack/sheet/cloth = 2)
 	time = 80
 	category = CAT_MISC
+
+/datum/crafting_recipe/makeshift/chisel //BUBBERSTATION ADDITION
+	name = "Makeshift Chisel"
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	result = /obj/item/chisel
+	reqs = list(/obj/item/stack/sheet/iron = 1,
+				/obj/item/stack/sheet/mineral/wood = 1)
+	time = 80
+	category = CAT_MISC
