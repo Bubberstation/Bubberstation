@@ -28,6 +28,8 @@
 	var/clumsy_knockdown_time = 18 SECONDS
 	/// How much stamina damage we deal on a successful hit against a living, non-cyborg mob.
 	var/stamina_damage = 55
+	/// How much armor does our baton ignore? This operates as armour penetration, but only applies to the stun attack.
+	var/stun_armour_penetration = 15
 	/// Chance of causing force_say() when stunning a human mob
 	var/force_say_chance = 33
 	/// Can we stun cyborgs?
@@ -294,6 +296,10 @@
 		user.do_attack_animation(user)
 	return
 
+/// Handles the penetration value of our baton, called during baton_effect()
+/obj/item/melee/baton/proc/get_stun_penetration_value()
+	return stun_armour_penetration
+
 /obj/item/conversion_kit
 	name = "conversion kit"
 	desc = "A strange box containing wood working tools and an instruction paper to turn stun batons into something else."
@@ -439,6 +445,8 @@
 	throwforce = 7
 	force_say_chance = 50
 	stamina_damage = 60
+	// This value is added to our stun armour penetration when called by get_stun_penetration_value(). For giving some batons extra OOMPH.
+	var/additional_stun_armour_penetration = 0
 	knockdown_time = 5 SECONDS
 	clumsy_knockdown_time = 15 SECONDS
 	cooldown = 2.5 SECONDS
@@ -648,6 +656,13 @@
 		return FALSE
 	stun_override = 0 //Avoids knocking people down prematurely.
 	return ..()
+
+/obj/item/melee/baton/security/get_stun_penetration_value()
+	if(cell)
+		var/chargepower = cell.maxcharge
+		var/zap_pen = clamp(chargepower/STANDARD_CELL_CHARGE, 0, 100)
+		return zap_pen + additional_stun_armour_penetration
+	return stun_armour_penetration + additional_stun_armour_penetration
 
 /*
  * After a target is hit, we apply some status effects.
