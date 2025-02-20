@@ -337,6 +337,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					update_objective.owner.announce_objectives()
 			qdel(objective)
 
+/**
+ * Attempt to store a given item in either the control computer or on the ground.
+ * * holder - mob holding the item being stored
+ * * target_item - the item to store
+ * * control_computer - the cryo console connected to this pod, can be null
+ */
 /obj/machinery/cryopod/proc/try_store_item(mob/living/holder, obj/item/target_item, obj/machinery/computer/cryopod/control_computer)
 	if(!istype(target_item) || HAS_TRAIT(target_item, TRAIT_NODROP))
 		return FALSE
