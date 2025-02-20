@@ -64,6 +64,11 @@
 /obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
+	//START SKYRAT EDIT ADDITION
+	allowed += list(
+		/obj/item/storage/medkit,
+	)
+	//END SKYRAT EDIT
 
 /obj/item/clothing/suit/toggle/labcoat/mad
 	name = "\proper The Mad's labcoat"
