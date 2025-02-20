@@ -2476,17 +2476,19 @@
 /datum/reagent/growthserum/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	var/newsize = current_size
-	switch(volume)
+	if(affected_mob.has_quirk(/datum/quirk/oversized)) //Bubber Addition - Preventing oversized from getting larger
+		return
+	else switch(volume) //Bubber Edit - Previous: switch(volume)
 		if(0 to 19)
 			newsize = 1.25*RESIZE_DEFAULT_SIZE
 		if(20 to 49)
 			newsize = 1.5*RESIZE_DEFAULT_SIZE
-		if(50 to 99)
+		if(50 to INFINITY) //Bubber Edit - Previous: if(50 to 99)
 			newsize = 2*RESIZE_DEFAULT_SIZE
-		if(100 to 199)
+/*		if(100 to 199) //Bubber Edit - Removal - Capping growth serum to oversized
 			newsize = 2.5*RESIZE_DEFAULT_SIZE
 		if(200 to INFINITY)
-			newsize = 3.5*RESIZE_DEFAULT_SIZE
+			newsize = 3.5*RESIZE_DEFAULT_SIZE*/
 
 	affected_mob.update_transform(newsize/current_size)
 	current_size = newsize
