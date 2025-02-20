@@ -124,7 +124,8 @@
 	if(fake)
 		priority_announce("Critical Coronal mass ejection detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [rand(200, 300)] seconds. \
 		All synthetic and non-organic lifeforms should seek shelter immediately! \
-		Ensure all sensitive equipment is shielded.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+		Ensure all sensitive equipment is shielded.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'),
+		sentient = TRUE)
 	else
 		switch(cme_intensity)
 			if(CME_UNKNOWN)
