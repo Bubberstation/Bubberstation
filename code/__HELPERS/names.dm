@@ -42,7 +42,10 @@
 
 	if(!include_all || length(languages_to_pick_from) <= 1)
 		return generate_random_name(gender, unique, languages_to_pick_from)
-
+	// Bubber Edit Add
+	if(istype(species_type, /datum/species/lizard))
+		return generate_ashwalker_name()
+	// Bubber Edit Remove
 	var/list/name_parts = list()
 	for(var/lang_type in shuffle(languages_to_pick_from))
 		name_parts += GLOB.language_datum_instances[lang_type].get_random_name(gender, name_count = 1, force_use_syllables = TRUE)
