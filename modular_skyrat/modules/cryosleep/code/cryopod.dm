@@ -421,6 +421,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 	visible_message(span_notice("[src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
 
+	var/list/nuke_disks = mob_occupant.get_all_contents_type(/obj/item/disk/nuclear) // No
+	for(var/obj/item/disk/nuclear/the_disk as anything in nuke_disks)
+		var/turf/launch_target = get_edge_target_turf(src, pick(GLOB.alldirs))
+		mob_occupant.transferItemToLoc(the_disk, drop_location(), force = TRUE, silent = TRUE)
+		the_disk.throw_at(launch_target, 8, 14)
+		visible_message(span_warning("[src] violently ejects [the_disk]!"))
+
 	for(var/obj/item/item_content as anything in mob_occupant)
 		try_store_item(mob_occupant, item_content, control_computer)
 
