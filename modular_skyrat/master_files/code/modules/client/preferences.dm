@@ -68,14 +68,14 @@
 	else if (SA.color_src == USE_ONE_COLOR)
 		shown_colors = 1
 	if((allow_advanced_colors || SA.always_color_customizable) && shown_colors)
-		dat += "<a href='?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
-	dat += "<a href='?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
+		dat += "<a href='byond://?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
+	dat += "<a href='byond://?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
 	if(allow_advanced_colors || SA.always_color_customizable)
 		if(shown_colors)
 			dat += "<BR>"
 			var/list/colorlist = mutant_bodyparts[key][MUTANT_INDEX_COLOR_LIST]
 			for(var/i in 1 to shown_colors)
-				dat += " <a href='?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
+				dat += " <a href='byond://?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
 	return dat
 
 /datum/preferences/proc/reset_colors()
