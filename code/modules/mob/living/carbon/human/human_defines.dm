@@ -104,3 +104,8 @@
 
 	/// Height of the mob
 	VAR_PROTECTED/mob_height = HUMAN_HEIGHT_MEDIUM
+	// BUBBER EDIT START - Floating Hands quirk
+	var/obj/effect/abstract/held_tk_effect/left/held_left
+	var/obj/effect/abstract/held_tk_effect/right/held_right
+	var/held_hover_color
+	// BUBBER EDIT END
