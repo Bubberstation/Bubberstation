@@ -68,6 +68,7 @@
 	. = ..()
 	design_ids += list(
 		"interdyne_mining_equipment_vendor",
+		"bsc_nt",
 	)
 
 // Robotics Tech

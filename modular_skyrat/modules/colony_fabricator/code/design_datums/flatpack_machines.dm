@@ -23,6 +23,7 @@
 		"flatpack_rtg",
 		"flatpack_thermo",
 		"flatpack_ore_silo",
+		"flatpack_bsc",
 		"flatpack_turbine_team_fortress_two",
 		"flatpack_bootleg_teg",
 	)
@@ -217,6 +218,25 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5,
 	)
 	build_path = /obj/item/flatpacked_machine/ore_silo
+	category = list(
+		RND_CATEGORY_INITIAL,
+		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MATERIALS,
+	)
+	construction_time = 1 MINUTES
+
+// Orebox but auto-picks up boulders in a tile like an ORM
+
+/datum/design/bsc
+	name = "Compressed BSC Refinery Box"
+	desc = "An upgrade to a normal orebox. Lavaproof, Fireproof, and auto-receive boulders into stable storage."
+	id = "flatpack_bsc"
+	build_type = COLONY_FABRICATOR
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
+	)
+	build_path = /obj/item/flatpacked_machine/boulder_collector
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MATERIALS,
