@@ -37,15 +37,20 @@
  * * encode_title - if TRUE, the title will be HTML encoded
  * * encode_text - if TRUE, the text will be HTML encoded
  */
-/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override)
-	if(!text)
+/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override, sentient = FALSE)
+	var/text_to_announce = text
+	if(!text_to_announce)
 		return
+	if(sentient)
+		var/sentient_text = make_ai_request(text_to_announce)
+		if(!isnull(sentient_text))
+			text_to_announce = sentient_text
 
 	if(encode_title && title && length(title) > 0)
 		title = html_encode(title)
 	if(encode_text)
-		text = html_encode(text)
-		if(!length(text))
+		text_to_announce = html_encode(text_to_announce)
+		if(!length(text_to_announce))
 			return
 
 	var/list/announcement_strings = list()
@@ -63,7 +68,7 @@
 				header += SUBHEADER_ANNOUNCEMENT_TITLE(title)
 		if(ANNOUNCEMENT_TYPE_CAPTAIN)
 			header = MAJOR_ANNOUNCEMENT_TITLE("Captain's Announcement")
-			GLOB.news_network.submit_article(text, "Captain's Announcement", "Station Announcements", null)
+			GLOB.news_network.submit_article(text_to_announce, "Captain's Announcement", "Station Announcements", null)
 		if(ANNOUNCEMENT_TYPE_SYNDICATE)
 			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate Captain's Announcement")
 		else
@@ -75,7 +80,7 @@
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
 		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(SSstation.announcer.custom_alert_message)
 	else
-		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(text)
+		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(text_to_announce)
 
 	var/finalized_announcement
 	if(color_override)
@@ -87,9 +92,9 @@
 
 	if(isnull(sender_override) && players == GLOB.player_list)
 		if(length(title) > 0)
-			GLOB.news_network.submit_article(title + "<br><br>" + text, "[command_name()]", "Station Announcements", null)
+			GLOB.news_network.submit_article(title + "<br><br>" + text_to_announce, "[command_name()]", "Station Announcements", null)
 		else
-			GLOB.news_network.submit_article(text, "[command_name()] Update", "Station Announcements", null)
+			GLOB.news_network.submit_article(text_to_announce, "[command_name()] Update", "Station Announcements", null)
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)
