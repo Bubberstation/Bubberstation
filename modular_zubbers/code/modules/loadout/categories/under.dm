@@ -140,3 +140,7 @@
 /datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
 	name = "Custom Bunnysuit"
 	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
+
+/datum/loadout_item/uniform/miscellaneous/nurse
+	name = "Nurse's suit"
+	item_path = /obj/item/clothing/under/rank/medical/doctor/nurse
