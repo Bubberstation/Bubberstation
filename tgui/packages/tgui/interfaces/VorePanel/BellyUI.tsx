@@ -16,7 +16,7 @@ import {
   TextArea,
 } from 'tgui-core/components';
 
-import { FitText } from '../../components';
+import { FitText } from 'tgui-core/components';
 import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
 import * as types from './types';
 

@@ -1,5 +1,4 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../backend';
 import {
   Box,
   Dimmer,
@@ -9,7 +8,9 @@ import {
   Stack,
   StyleableSection,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Button } from '../components/Button';
 import { Window } from '../layouts';
 

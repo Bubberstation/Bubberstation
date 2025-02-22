@@ -7,7 +7,7 @@ import {
   Dropdown,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { CharacterPreview } from '../common/CharacterPreview';
 import { PreferencesMenuData } from './data';
 

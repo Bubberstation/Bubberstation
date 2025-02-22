@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Image, Section, Stack, Tabs } from '../components';
+import { Box, Button, Image, Section, Stack, Tabs } from 'tgui-core/components';
 import { Window } from '../layouts';
 import { Objective } from './common/Objectives';
 import { PowerDetails } from './PowerInfo';

@@ -8,7 +8,7 @@ import {
   Image,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
 import { PowerInfo } from './AntagInfoBloodsucker';
 
 type PowerDetailsProps = {
