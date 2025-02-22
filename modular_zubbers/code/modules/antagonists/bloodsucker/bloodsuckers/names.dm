@@ -20,6 +20,7 @@
 			"Lucius","Gaius","Otho","Balbinus","Arcadius","Romanos","Alexios","Vitellius", // Latin
 			"Melanthus","Teuthras","Orchamus","Amyntor","Axion", // Greek
 			"Thoth","Thutmose","Osorkon,","Nofret","Minmotu","Khafra", // Egyptian
+			"Curiambro","Quixote","Sancho", // Spanish
 			"Dio",
 		)
 	else
@@ -33,6 +34,7 @@
 			"Alexia","Athanasia","Callista","Karena","Nephele","Scylla","Ursa", // Latin
 			"Alcestis","Damaris","Elisavet","Khthonia","Teodora", // Greek
 			"Nefret","Ankhesenpep", // Egyptian
+			"Nicolina","Dulcinea","Sancho", // Spanish
 		)
 
 ///Returns a Title for the Bloodsucker.
@@ -55,6 +57,7 @@
 			"Dreadlord",
 			"Lord",
 			"Master",
+			"Don",
 		)
 	else
 		bloodsucker_title = pick(
@@ -67,6 +70,7 @@
 			"Dreadlady",
 			"Lady",
 			"Mistress",
+			"Don",
 		)
 	to_chat(owner, span_announce("You have earned a title! You are now known as <i>[return_full_name()]</i>!"))
 
