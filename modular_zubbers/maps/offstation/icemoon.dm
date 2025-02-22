@@ -20,3 +20,12 @@
 	allow_duplicates = FALSE
 	cost = 0
 	mineral_cost = 1
+
+/datum/map_template/ruin/icemoon/underground/bubberstation/ice_elite_vent
+	name = "Ice-Ruin Frozen Well Location"
+	id = "ice_r_elite_vent"
+	description = "Jimmy never fell in the well. But it wasn't Jimmy that walked away"
+	suffix = "icemoon_underground_elite_vent.dmm"
+	allow_duplicates = FALSE
+	cost = 0
+	mineral_cost = 1
