@@ -250,6 +250,7 @@
 	defending_mobs = list(
 		/mob/living/simple_animal/hostile/megafauna/dragon,
 		/mob/living/simple_animal/hostile/megafauna/colossus,
+		/mob/living/simple_animal/hostile/megafauna/bubblegum,
 	)
 	excavation_warning = "Something big is nearby. Are you ABSOLUTELY ready to excavate this ore vent? A NODE drone will be deployed after threat is neutralized."
 	boulder_bounty = 40 // one boulder spawns roughly every minute, 40 minutes for the vent to reset
@@ -264,6 +265,8 @@
 			boss_string = "oily, flames dancing along the edges"
 		if(/mob/living/simple_animal/hostile/megafauna/colossus)
 			boss_string = "reflective, the mirror image glaring with judgement"
+		if(/mob/living/simple_animal/hostile/megafauna/bubblegum)
+			boss_string = "bubbling with frothing blood, emitting a sickly sweet scent"
 		if(/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner)
 			boss_string = "frozen over with bloodened ice"
 		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal) //Megafauna vent end
