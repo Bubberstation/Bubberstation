@@ -2476,13 +2476,8 @@
 /datum/reagent/growthserum/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	var/newsize = current_size
-	var/list/erp_area = list(//BUBBER ADDITION START - CAPPING GROWTH SERUM
-		/area/centcom/interlink/dorm_rooms,
-		/area/centcom/holding/cafe/dorms,
-		/area/misc/hilbertshotel,
-		/area/station/commons/dorms,
-	)
-	var/valid_area = is_type_in_list(get_area(affected_mob), erp_area)
+	//BUBBER EDIT ADDITION START - CAPPING GROWTH SERUM
+	var/valid_area = is_type_in_list(get_area(affected_mob), SIZE_WHITELISTED_AREAS)
 	if(valid_area)
 		switch(volume)
 			if(0 to 19)
@@ -2496,20 +2491,17 @@
 			if(200 to INFINITY)
 				newsize = 3.5*RESIZE_DEFAULT_SIZE
 	else
-		switch(volume) //Bubber Edit - Previous: switch(volume)
-			if(0 to 19)
-				newsize = 1.25*RESIZE_DEFAULT_SIZE
-			if(20 to 49)
-				newsize = 1.5*RESIZE_DEFAULT_SIZE
-			if(50 to INFINITY) //Bubber Edit - Previous: if(50 to 99)
-				newsize = 2*RESIZE_DEFAULT_SIZE
-	/*    if(100 to 199) //Bubber Edit - Removal - CAPPING GROWTH SERUM
-			newsize = 2.5*RESIZE_DEFAULT_SIZE
-		if(200 to INFINITY)
-			newsize = 3.5*RESIZE_DEFAULT_SIZE*/
-	if(affected_mob.has_quirk(/datum/quirk/oversized) && !valid_area)
-		newsize = RESIZE_DEFAULT_SIZE
-
+		if(affected_mob.has_quirk(/datum/quirk/oversized))
+			newsize = RESIZE_DEFAULT_SIZE
+		else
+			switch(volume)
+				if(0 to 19)
+					newsize = 1.25*RESIZE_DEFAULT_SIZE
+				if(20 to 49)
+					newsize = 1.5*RESIZE_DEFAULT_SIZE
+				if(50 to INFINITY)
+					newsize = 2*RESIZE_DEFAULT_SIZE
+	//BUBBER EDIT ADDITION END - CAPPING GROWTH SERUM
 	affected_mob.update_transform(newsize/current_size)
 	current_size = newsize
 
