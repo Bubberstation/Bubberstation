@@ -175,7 +175,8 @@
 	return "Civilian"
 
 /datum/preference/choiced/entombed_skin/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -191,7 +192,8 @@
 	maximum_value_length = 48
 
 /datum/preference/text/entombed_mod_name/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -216,7 +218,8 @@
 	can_randomize = FALSE
 
 /datum/preference/text/entombed_mod_desc/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -242,7 +245,8 @@
 	maximum_value_length = 16
 
 /datum/preference/text/entombed_mod_prefix/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
