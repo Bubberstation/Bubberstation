@@ -5,4 +5,4 @@
 		if(length_char(temporary_flavor_text) <= 40)
 			. += span_notice("[temporary_flavor_text]")
 		else
-			. += span_notice("[copytext_char(temporary_flavor_text, 1, 37)]... <a href='?src=[REF(src)];temporary_flavor=1'>More...</a>")
+			. += span_notice("[copytext_char(temporary_flavor_text, 1, 37)]... <a href='byond://?src=[REF(src)];temporary_flavor=1'>More...</a>")
