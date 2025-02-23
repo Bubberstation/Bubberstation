@@ -1,6 +1,7 @@
 // THIS IS A SKYRAT UI FILE
 import {
   Box,
+  Button,
   Dimmer,
   Divider,
   Icon,
@@ -11,7 +12,6 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Button } from '../components/Button';
 import { Window } from '../layouts';
 
 type Data = {
