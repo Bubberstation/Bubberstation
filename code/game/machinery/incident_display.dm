@@ -8,10 +8,13 @@ GLOBAL_LIST_EMPTY(map_incident_displays)
 #define DISPLAY_DELAM (1<<0)
 /// Display current number of tram hits on incident sign
 #define DISPLAY_TRAM (1<<1)
+/// Display current number of tram hits on incident sign
+#define DISPLAY_DISEASE (1<<2) // BUBBER EDIT ADDITION - Disease Counter
 
 DEFINE_BITFIELD(sign_features, list(
 	"DISPLAY_DELAM" = DISPLAY_DELAM,
 	"DISPLAY_TRAM" = DISPLAY_TRAM,
+	"DISPLAY_DISEASE" = DISPLAY_DISEASE, // BUBBER EDIT ADDITION - Disease Counter
 ))
 
 #define TREND_RISING "rising"
@@ -19,9 +22,11 @@ DEFINE_BITFIELD(sign_features, list(
 
 #define NAME_DELAM "delamination incident display"
 #define NAME_TRAM "tram incident display"
+#define NAME_DISEASE "disease incident display" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DESC_DELAM "A signs describe how long it's been since the last delamination incident. Features an advert for SAFETY MOTH."
 #define DESC_TRAM "A display that provides the number of tram related safety incidents this shift."
+#define DESC_DISEASE "A display that provides the number of active disease outbreak cases on shift.<br/><span class='boldwarning'>Doctor-Patient confidentiality is not practised on this station.</span>" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DISPLAY_PIXEL_1_W 21
 #define DISPLAY_PIXEL_1_Z -2
@@ -36,7 +41,7 @@ DEFINE_BITFIELD(sign_features, list(
 /obj/machinery/incident_display
 	name = NAME_DELAM
 	desc = DESC_DELAM
-	icon = 'icons/obj/machines/incident_display.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/incident_display.dmi' // BUBBER EDIT CHANGE - Disease Counter
 	icon_preview = "display_normal"
 	icon_state = "display_normal"
 	verb_say = "beeps"
@@ -72,6 +77,33 @@ DEFINE_BITFIELD(sign_features, list(
 	COOLDOWN_DECLARE(active_advert)
 	/// Cooldown until next advert
 	COOLDOWN_DECLARE(advert_cooldown)
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	/// Disease metric digits color
+	var/disease_display_color = COLOR_DISPLAY_GREEN
+	/// Current active event diseases
+	var/current_disease_metric = 0
+	/// Previous event disease metric
+	var/prev_disease_metric = 0
+	var/static/list/disease_examine_good = list(
+		"In the event of an epidemic, <i>please</i> try not to panic.",
+		"In the event of an epidemic, <i>please</i> try not to breathe.",
+		"Please look out for invisible and potentially lethal diseases.",
+		"Staff are reminded not to laugh at Patients whilst they are present. Thank you.",
+		"Don't interact with other crew members, you don't know where they've been.",
+		"Crew members are reminded not to be sick.",
+	)
+	var/static/list/disease_examine_bad = list(
+		"If you have any questions, first ask yourself why that might be.",
+		"Please be on high alert for invisible and potentially lethal diseases!",
+		"Staff are reminded not to laugh at Patients whilst they are present. Thank you.",
+		"We hope you've enjoyed your stay at the medbay, but not so much that you don't leave... please, eventually leave.",
+		"Pretending your doctor is better than they are may aid recovery.",
+		"Don't interact with other crew members, you don't know where they've been.",
+		"Quality of treatment may depend on Patient behaviour.",
+		"Cured Patients should leave the medbay before they catch something else.",
+		"Please don't ask how our vaccines work, as, we are not exactly sure.",
+	)
+	// BUBBER EDIT ADDITION END - Disease Counter
 
 /obj/machinery/incident_display/bridge
 
@@ -91,6 +123,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/bridge, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/delam, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
+// BUBBER EDIT ADDITION BEGIN - Disease Counter
+/// Counter board for disease outbreak
+/obj/machinery/incident_display/disease
+	name = NAME_DISEASE
+	desc = DESC_DISEASE
+	sign_features = DISPLAY_DISEASE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/disease, 32)
+// BUBBER EDIT ADDITION END - Disease Counter
+
 /obj/machinery/incident_display/Initialize(mapload)
 	..()
 	register_context()
@@ -100,6 +142,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	. = ..()
 	GLOB.map_incident_displays += src
 	update_delam_count(SSpersistence.rounds_since_engine_exploded, SSpersistence.delam_highscore)
+	update_disease_count(SSdisease.cached_event_disease_count, SSdisease.previous_event_disease_count) // BUBBER EDIT ADDITION - Disease Counter
 	RegisterSignal(SStransport, COMSIG_TRAM_COLLISION, PROC_REF(update_tram_count))
 
 	update_appearance()
@@ -135,10 +178,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		context[SCREENTIP_CONTEXT_LMB] = "repair display"
 
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL && !living_user.combat_mode)
+	/* BUBBER EDIT CHANGE BEGIN - Disease Counter
 		if(sign_features == DISPLAY_TRAM)
 			context[SCREENTIP_CONTEXT_LMB] = "change to delam mode"
 		else
 			context[SCREENTIP_CONTEXT_LMB] = "change to tram mode"
+	*/
+		if(sign_features == DISPLAY_TRAM)
+			context[SCREENTIP_CONTEXT_LMB] = "change to disease mode"
+		else if(sign_features == DISPLAY_DISEASE)
+			context[SCREENTIP_CONTEXT_LMB] = "change to delam mode"
+		else if(sign_features == DISPLAY_DELAM)
+			context[SCREENTIP_CONTEXT_LMB] = "change to tram mode"
+	// BUBBER EDIT CHANGE END - Disease Counter
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -165,6 +217,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	if(user.combat_mode)
 		return FALSE
 
+	/* BUBBER EDIT CHANGE BEGIN - Disease Counter
 	if(sign_features == DISPLAY_TRAM)
 		tool.play_tool_sound(src)
 		balloon_alert(user, "set to delam")
@@ -183,11 +236,39 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		update_tram_count(src, SSpersistence.tram_hits_this_round)
 		update_appearance()
 		return TRUE
+	*/
+	if(sign_features == DISPLAY_TRAM)
+		tool.play_tool_sound(src)
+		balloon_alert(user, "set to disease")
+		name = NAME_DISEASE
+		desc = DESC_DISEASE
+		sign_features = DISPLAY_DISEASE
+		update_appearance()
+		return TRUE
+	else if(sign_features == DISPLAY_DISEASE)
+		tool.play_tool_sound(src)
+		balloon_alert(user, "set to delam")
+		name = NAME_DELAM
+		desc = DESC_DELAM
+		sign_features = DISPLAY_DELAM
+		update_delam_count(SSpersistence.rounds_since_engine_exploded, SSpersistence.delam_highscore)
+		update_appearance()
+		return TRUE
+	else
+		tool.play_tool_sound(src)
+		balloon_alert(user, "set to tram")
+		name = NAME_TRAM
+		desc = DESC_TRAM
+		sign_features = DISPLAY_TRAM
+		update_tram_count(src, SSpersistence.tram_hits_this_round)
+		update_appearance()
+		return TRUE
+	// BUBBER EDIT CHANGE END - Disease Counter
 
 // EMP causes the display to display random numbers or outright break.
 /obj/machinery/incident_display/emp_act(severity)
 	. = ..()
-	if(prob(50))
+	if(prob(50) || sign_features & DISPLAY_DISEASE) // BUBBER EDIT CHANGE - Disease Counter
 		set_machine_stat(machine_stat | BROKEN)
 		update_appearance()
 		return
@@ -236,6 +317,21 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	hit_count = min(tram_collisions, 199)
 	update_appearance()
 
+// BUBBER EDIT ADDITION BEGIN - Disease Counter
+/**
+ * Update the disease count on the display
+ *
+ * Use the provided args to update the incident display when in disease mode.
+ * Arguments:
+ * * current - current active event disease metric
+ * * previous - previous cached event disease metric
+ */
+/obj/machinery/incident_display/proc/update_disease_count(current, previous)
+	current_disease_metric = min(current, 199)
+	prev_disease_metric = min(previous, 199)
+	update_appearance()
+// BUBBER EDIT ADDITION END - Disease Counter
+
 /**
  * Run an animated advert on the display
  *
@@ -261,6 +357,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	else if((sign_features & DISPLAY_DELAM) && last_delam <= 0) // you done fucked up
 		icon_state = "display_shame"
 		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_SHAME, l_on = TRUE)
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	else if((sign_features & DISPLAY_DISEASE) && current_disease_metric >= 8)
+		icon_state = "display_shame"
+		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_SHAME, l_on = TRUE)
+	// BUBBER EDIT ADDITION END - Disease Counter
 	else
 		icon_state = "display_normal"
 		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_NORMAL, l_on = TRUE)
@@ -361,6 +462,51 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 			. += tram_trend_overlay
 			. += tram_trend_emissive
 
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	if(sign_features & DISPLAY_DISEASE)
+		. += mutable_appearance(icon, "overlay_disease")
+		. += emissive_appearance(icon, "overlay_disease", src, alpha = DISPLAY_PIXEL_ALPHA)
+
+		var/disease_pos1 = current_disease_metric % 10
+		var/mutable_appearance/disease_pos1_overlay = mutable_appearance(icon, "num_[disease_pos1]")
+		var/mutable_appearance/disease_pos1_emissive = emissive_appearance(icon, "num_[disease_pos1]", src, alpha = DISPLAY_PIXEL_ALPHA)
+		disease_pos1_overlay.color = disease_display_color
+		disease_pos1_overlay.pixel_w = DISPLAY_PIXEL_1_W
+		disease_pos1_emissive.pixel_w = DISPLAY_PIXEL_1_W
+		disease_pos1_overlay.pixel_z = DISPLAY_PIXEL_1_Z
+		disease_pos1_emissive.pixel_z = DISPLAY_PIXEL_1_Z
+		. += disease_pos1_overlay
+		. += disease_pos1_emissive
+
+		var/disease_pos2 = (current_disease_metric / 10) % 10
+		var/mutable_appearance/disease_pos2_overlay = mutable_appearance(icon, "num_[disease_pos2]")
+		var/mutable_appearance/disease_pos2_emissive = emissive_appearance(icon, "num_[disease_pos2]", src, alpha = DISPLAY_PIXEL_ALPHA)
+		disease_pos2_overlay.color = disease_display_color
+		disease_pos2_overlay.pixel_w = DISPLAY_PIXEL_2_W
+		disease_pos2_emissive.pixel_w = DISPLAY_PIXEL_2_W
+		disease_pos2_overlay.pixel_z = DISPLAY_PIXEL_2_Z
+		disease_pos2_emissive.pixel_z = DISPLAY_PIXEL_2_Z
+		. += disease_pos2_overlay
+		. += disease_pos2_emissive
+
+		if(current_disease_metric >= 100)
+			. += mutable_appearance(icon, "num_100_blue")
+			. += emissive_appearance(icon, "num_100_blue", src, alpha = DISPLAY_BASE_ALPHA)
+
+		if(current_disease_metric > prev_disease_metric)
+			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_RISING)
+			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_RISING]", src, alpha = DISPLAY_PIXEL_ALPHA)
+			disease_trend_overlay.color = COLOR_DISPLAY_RED
+			. += disease_trend_overlay
+			. += disease_trend_emissive
+		else
+			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_FALLING)
+			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_FALLING]", src, alpha = DISPLAY_PIXEL_ALPHA)
+			disease_trend_overlay.color = COLOR_DISPLAY_GREEN
+			. += disease_trend_overlay
+			. += disease_trend_emissive
+	// BUBBER EDIT ADDITION END - Disease Counter
+
 /obj/machinery/incident_display/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
@@ -385,7 +531,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 			. += span_info("The supermatter crystal has delaminated, in case you didn't notice.")
 
 	if(sign_features & DISPLAY_TRAM)
-		. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
+		//. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
+		. += span_notice("It can be changed to display disease infections with a [EXAMINE_HINT("multitool")].") // BUBBER EDIT CHANGE - Disease Counter
 		. += span_info("The station has had [hit_count] tram incident\s this shift.")
 		switch(hit_count)
 			if(0)
@@ -401,14 +548,27 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 			else
 				. += span_info("Incredible! You're probably reading this from medbay.<br/>")
 
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	if(sign_features & DISPLAY_DISEASE)
+		. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
+		. += span_info("The station has [current_disease_metric] reported active infections incident\s at the moment.")
+		if(current_disease_metric == 0)
+			. += span_notice("<b>[pick(disease_examine_good)]</b><br/>")
+		else
+			. += span_notice("<b>[pick(disease_examine_bad)]</b><br/>")
+	// BUBBER EDIT ADDITION END - Disease Counter
+
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM
+#undef DISPLAY_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef NAME_DELAM
 #undef NAME_TRAM
+#undef NAME_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef DESC_DELAM
 #undef DESC_TRAM
+#undef DESC_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef TREND_RISING
 #undef TREND_FALLING

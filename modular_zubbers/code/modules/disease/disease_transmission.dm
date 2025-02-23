@@ -1,6 +1,31 @@
 /datum/controller/subsystem/disease
+	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
+	flags = SS_BACKGROUND
+	wait = 16 SECONDS
 	/// List of event created diseases in all mobs
 	var/list/event_diseases = list()
+	var/cached_event_disease_count = 0
+	var/previous_event_disease_count = 0
+	var/next_cache_update = 0
+
+/datum/controller/subsystem/disease/stat_entry(msg)
+	msg = "P:[length(active_diseases)] EV:[length(event_diseases)]"
+	return ..()
+
+/datum/controller/subsystem/disease/fire()
+	update_event_disease_cache()
+
+/datum/controller/subsystem/disease/proc/update_event_disease_cache()
+	if(world.time >= next_cache_update)
+		update_event_disease_metric()
+
+	cached_event_disease_count = length(event_diseases)
+	for(var/obj/machinery/incident_display/sign as anything in GLOB.map_incident_displays)
+		sign.update_disease_count(cached_event_disease_count, previous_event_disease_count)
+
+/datum/controller/subsystem/disease/proc/update_event_disease_metric()
+	previous_event_disease_count = cached_event_disease_count
+	next_cache_update = world.time + 4 MINUTES
 
 /datum/disease
 	/// Debug logs for disease transmission refactor, to verify after the fact the system is working as intended
