@@ -83,7 +83,7 @@
 	atom_storage.max_total_storage = 20000
 
 /// An extension to the default RPED part replacement action - if you don't have the requisite parts in the RPED already, it will spawn T4 versions to use.
-/obj/item/storage/part_replacer/bluespace/tier4/bst/part_replace_action(obj/attacked_object, mob/living/user)
+/obj/item/storage/part_replacer/bluespace/tier4/bst/exchange_parts(obj/attacked_object, mob/living/user)
 	// We start with setting up a list of the current contents of the RPED when using auto-clear.  This is used to detect new items after upgrades are applied & remove them.
 	var/list/old_contents = list()
 	var/list/inv_grab = atom_storage.return_inv(FALSE)
