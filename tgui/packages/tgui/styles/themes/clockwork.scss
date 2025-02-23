@@ -21,7 +21,7 @@
 
   // Components
   @include meta.load-css(
-    'pkg:tgui-styles/components/Button',
+    '~tgui-core/styles/components/Button',
     $with: (
       'color-default': colors.$primary,
       'color-disabled': hsl(46, 26%, 32%),
@@ -30,21 +30,21 @@
       'color-danger': hsl(60, 100%, 50%)
     )
   );
-  @include meta.load-css('pkg:tgui-styles/components/Input');
+  @include meta.load-css('~tgui-core/styles/components/Input');
   @include meta.load-css(
-    'pkg:tgui-styles/components/Tooltip',
+    '~tgui-core/styles/components/Tooltip',
     $with: ('background-color': #2d1400)
   );
   @include meta.load-css(
-    'pkg:tgui-styles/components/Section',
+    '~tgui-core/styles/components/Section',
     $with: ('separator-color': #d6ca85)
   );
   @include meta.load-css(
-    'pkg:tgui-styles/components/Divider',
+    '~tgui-core/styles/components/Divider',
     $with: ('color': #d6ca85)
   );
   @include meta.load-css(
-    'pkg:tgui-styles/components/ProgressBar',
+    '~tgui-core/styles/components/ProgressBar',
     $with: ('background-color': rgba(0, 0, 0, 0.5))
   );
 
