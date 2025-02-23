@@ -24,6 +24,7 @@
 	var/clear_tally = 0 //so we can track how many time it clears for data-testing purposes.
 	var/boulder_bounty = 10 //how many boulders per clear attempt. First one is small and easy
 	var/new_ore_cycle = TRUE //We want this to generate new ore types upon untapping. Var incase we want some wacky shit later.
+	var/static_threat = FALSE //do we want a static threat?
 	var/static_magnitude = null //Does this vent have a static magnitude?
 	var/static_boulder_size = null //Does this vent have a static boulder size?
 	var/static_boulder_bounty = null //does this vent have a static boulder bounty?
@@ -123,61 +124,62 @@
 
 	var/threat_pick = pick(threat_pool) //We choose from the threat pool list and use it to generate a defending_mobs list. todo: complex additive mode for funny shenanigans
 
-	switch(threat_pick)
-		if(COLONY_THREAT_CARP) // carps. space fishies. easy to kill but kinda dodgy and could outnumber
-			defending_mobs = list(
-				/mob/living/basic/carp,
-				/mob/living/basic/carp/mega,
-			)
-		if(COLONY_THREAT_PIRATES) // Pirates. Ranged could become a problem fast
-			defending_mobs = list(
-				/mob/living/basic/trooper/pirate/melee/space,
-				/mob/living/basic/trooper/pirate/ranged/space,
-			)
-		if(COLONY_THREAT_XENOS) // i lub tgmc
-			defending_mobs = list(
-				/mob/living/basic/alien,
-				/mob/living/basic/alien/drone,
-				/mob/living/basic/alien/sentinel,
-			)
-		if(COLONY_THREAT_MINING) // Lavaland mobs
-			defending_mobs = list(
-				/mob/living/basic/mining/goliath,
-				/mob/living/basic/mining/legion/spawner_made,
-				/mob/living/basic/mining/watcher,
-				/mob/living/basic/mining/lobstrosity/lava,
-				/mob/living/basic/mining/brimdemon,
-				/mob/living/basic/mining/bileworm,
-			)
-		if(COLONY_THREAT_ICE_MINING) // Ice-moon underground. Basically just surface but has two mobs that make it worse
-			defending_mobs = list(
-				/mob/living/basic/mining/ice_whelp,
-				/mob/living/basic/mining/lobstrosity,
-				/mob/living/basic/mining/legion/snow/spawner_made,
-				/mob/living/basic/mining/ice_demon,
-				/mob/living/basic/mining/wolf,
-				/mob/living/simple_animal/hostile/asteroid/polarbear,
-			)
-		if(COLONY_THREAT_SNOW) // icemoon surface
-			defending_mobs = list(
-				/mob/living/basic/mining/lobstrosity,
-				/mob/living/basic/mining/legion/snow/spawner_made,
-				/mob/living/basic/mining/wolf,
-				/mob/living/simple_animal/hostile/asteroid/polarbear,
-			)
-		if(COLONY_THREAT_BEACH) // I want to do some shit with the beach biodome later.
-			defending_mobs = list(
-				/mob/living/basic/crab,
-				/mob/living/basic/mining/lobstrosity/juvenile/lava,
-				/mob/living/basic/mining/lobstrosity/lava,
-			)
-		if(COLONY_THREAT_CULT) // Cult constructs
-			defending_mobs = list(
-				/mob/living/basic/construct/artificer/hostile,
-				/mob/living/basic/construct/juggernaut/hostile,
-				/mob/living/basic/construct/proteon/hostile,
-				/mob/living/basic/construct/wraith/hostile,
-			)
+	if(!static_threat)
+		switch(threat_pick)
+			if(COLONY_THREAT_CARP) // carps. space fishies. easy to kill but kinda dodgy and could outnumber
+				defending_mobs = list(
+					/mob/living/basic/carp,
+					/mob/living/basic/carp/mega,
+				)
+			if(COLONY_THREAT_PIRATES) // Pirates. Ranged could become a problem fast
+				defending_mobs = list(
+					/mob/living/basic/trooper/pirate/melee/space,
+					/mob/living/basic/trooper/pirate/ranged/space,
+				)
+			if(COLONY_THREAT_XENOS) // i lub tgmc
+				defending_mobs = list(
+					/mob/living/basic/alien,
+					/mob/living/basic/alien/drone,
+					/mob/living/basic/alien/sentinel,
+				)
+			if(COLONY_THREAT_MINING) // Lavaland mobs
+				defending_mobs = list(
+					/mob/living/basic/mining/goliath,
+					/mob/living/basic/mining/legion/spawner_made,
+					/mob/living/basic/mining/watcher,
+					/mob/living/basic/mining/lobstrosity/lava,
+					/mob/living/basic/mining/brimdemon,
+					/mob/living/basic/mining/bileworm,
+				)
+			if(COLONY_THREAT_ICE_MINING) // Ice-moon underground. Basically just surface but has two mobs that make it worse
+				defending_mobs = list(
+					/mob/living/basic/mining/ice_whelp,
+					/mob/living/basic/mining/lobstrosity,
+					/mob/living/basic/mining/legion/snow/spawner_made,
+					/mob/living/basic/mining/ice_demon,
+					/mob/living/basic/mining/wolf,
+					/mob/living/simple_animal/hostile/asteroid/polarbear,
+				)
+			if(COLONY_THREAT_SNOW) // icemoon surface
+				defending_mobs = list(
+					/mob/living/basic/mining/lobstrosity,
+					/mob/living/basic/mining/legion/snow/spawner_made,
+					/mob/living/basic/mining/wolf,
+					/mob/living/simple_animal/hostile/asteroid/polarbear,
+				)
+			if(COLONY_THREAT_BEACH) // I want to do some shit with the beach biodome later.
+				defending_mobs = list(
+					/mob/living/basic/crab,
+					/mob/living/basic/mining/lobstrosity/juvenile/lava,
+					/mob/living/basic/mining/lobstrosity/lava,
+				)
+			if(COLONY_THREAT_CULT) // Cult constructs
+				defending_mobs = list(
+					/mob/living/basic/construct/artificer/hostile,
+					/mob/living/basic/construct/juggernaut/hostile,
+					/mob/living/basic/construct/proteon/hostile,
+					/mob/living/basic/construct/wraith/hostile,
+				)
 
 	for(var/old_ore in mineral_breakdown) //We remove the old ore
 		mineral_breakdown -= old_ore
@@ -232,6 +234,7 @@
 /obj/structure/ore_vent/ghost_mining/boss
 	name = "swirling oxide pool"
 	desc = "A deep mineral pool laden with massive oxide chunks. This one has an evil aura about it. Better be careful."
+	static_threat = TRUE
 	unique_vent = TRUE
 	spawn_drone_on_tap = FALSE
 	boulder_size = BOULDER_SIZE_LARGE
@@ -288,7 +291,10 @@
 /obj/structure/ore_vent/ghost_mining/boss/reset_vent()
 	. = ..()
 	var/list/boss_pool = defending_mobs
+	var/old_boss = summoned_boss
+	boss_pool -= old_boss //avoid repeats.
 	summoned_boss = pick(boss_pool)
+	boss_pool += old_boss // system stupid, need to reintroduce so no empty list. Yes, the list empties without this somehow.
 
 /obj/structure/ore_vent/ghost_mining/boss/start_wave_defense() //Stolen from original boss vent code
 	if(!COOLDOWN_FINISHED(src, wave_cooldown))
