@@ -434,7 +434,7 @@
 
 	if (href_list[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA])
 		if (world.time <= time_til_scan_expires[usr])
-			to_chat(usr, examine_block(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+			to_chat(usr, boxed_message(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
 			to_chat(usr, span_warning("Your scan has expired! Try scanning again!"))
 
