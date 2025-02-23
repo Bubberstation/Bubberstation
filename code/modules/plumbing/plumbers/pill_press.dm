@@ -1,7 +1,7 @@
 ///the minimum size of a pill or patch
 #define MIN_VOLUME 5
 ///max amount of pills allowed on our tile before we start storing them instead
-#define MAX_FLOOR_PRODUCTS 10
+#define MAX_FLOOR_PRODUCTS 4 // BUBBER EDIT CHANGE - Original: 10
 
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
@@ -12,7 +12,7 @@
 	/// selected size of the product
 	var/current_volume = 10
 	/// maximum printable volume of the product
-	var/max_volume = 50
+	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
 	/// prefix for the product name
 	var/product_name = "factory"
 	/// All packaging types wrapped up in 1 big list
@@ -23,10 +23,6 @@
 	var/packaging_category
 	/// list of products stored in the machine, so we dont have 610 pills on one tile
 	var/list/stored_products = list()
-	// BUBBER EDIT BEGIN
-	/// Increases the standard plumbing machine buffer to account for the increased max volume
-	buffer = MAX_VOLUME
-	// BUBBER EDIT END
 
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt, layer)
 	. = ..()
