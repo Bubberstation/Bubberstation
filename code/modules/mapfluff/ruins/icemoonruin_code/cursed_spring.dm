@@ -16,6 +16,7 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	fishing_datum = /datum/fish_source/cursed_spring
 
+/* BUBBER EDIT REMOVAL
 /turf/open/water/hot_spring/cursed/dip_in(atom/movable/movable)
 	if(!isliving(movable))
 		return ..()
