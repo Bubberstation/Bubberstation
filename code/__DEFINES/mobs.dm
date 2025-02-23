@@ -100,6 +100,10 @@
 #define BODYTYPE_GOLEM (1<<4)
 //The limb is a peg limb
 #define BODYTYPE_PEG (1<<5)
+//The limb is plantly (and will regen if photosynthesis is active)
+#define BODYTYPE_PLANT (1<<6)
+//This limb is shadowy and will regen if shadowheal is active
+#define BODYTYPE_SHADOW (1<<7)
 // SKYRAT EDIT ADDITION
 ///The limb fits a modular custom shape
 #define BODYSHAPE_CUSTOM (1<<9)

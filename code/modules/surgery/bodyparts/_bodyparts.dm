@@ -203,6 +203,8 @@
 	var/robotic_emp_paralyze_damage_percent_threshold = 0.3
 	/// A potential texturing overlay to put on the limb
 	var/datum/bodypart_overlay/texture/texture_bodypart_overlay
+	/// Lazylist of /datum/status_effect/grouped/bodypart_effect types. Instances of this are applied to the carbon when added the limb is attached, and merged with similair limbs
+	var/list/bodypart_effects
 	// SKYRAT EDIT BEGIN
 	/// If we even wanna try and handle icons/overlays of the limb (Taurs don't, f.e.). See update_body_parts
 	var/show_icon = TRUE
@@ -268,7 +270,6 @@
 	if(owner) //trust me bro you dont want this
 		return FALSE
 	return  ..()
-
 
 /obj/item/bodypart/proc/on_forced_removal(atom/old_loc, dir, forced, list/old_locs)
 	SIGNAL_HANDLER
