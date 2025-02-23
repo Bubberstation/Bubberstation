@@ -7,7 +7,6 @@
 	taste_description = "dull bitterness"
 	taste_mult = 2
 	color = "#D9D9D9"
-	reagent_state = SOLID
 	overdose_threshold = 25 // OD will reset sizes of genitals back to normal.
 	life_pref_datum = /datum/preference/toggle/erp/aphro
 	arousal_adjust_amount = -12
