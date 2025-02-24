@@ -320,7 +320,7 @@
 
 /obj/item/borg/apparatus/service
 	name = "service apparatus"
-	desc = "A special apparatus for carrying Seeds, food, bowls, plates, oven trays, soup pots and paper."
+	desc = "A special apparatus for carrying seeds, food, bowls, plates, oven trays, soup pots, and paper."
 	icon_state = "borg_service_apparatus"
 	storable = list(
 		/obj/item/food,
