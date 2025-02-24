@@ -128,7 +128,7 @@
 	var/mob/living/carbon/human/human_parent = parent
 	apply_size(original_size)
 
-	if(isteshari(human_parent) || isvoxprimalis(human_parent)) //BUBBER EDIT: We reapply it on destroy if they were
+	if(isteshari(human_parent) || isvoxprimalis(human_parent)) // We reapply it on destroy if they were
 		human_parent.dna.species.body_size_restricted = TRUE
 	UnregisterSignal(parent, COMSIG_ENTER_AREA)
 
