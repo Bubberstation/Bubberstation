@@ -7,7 +7,7 @@
  * * icon_state - The iconstate of the item. Usually, call this by the second argument, item.icon_state
  * * obj/item - The item path that we'll operate on, to check for refits.
  */
-/proc/check_for_refits(icon_state, var/obj/item/I)
+/proc/check_for_refits(icon_state, var/obj/item/referenced_item)
 	var/list/available_refits = list()
 	var/list/supported_species = list(
 		SPECIES_TESHARI,
@@ -18,7 +18,7 @@
 	var/refit_path
 	var/item_slot
 	var/list/icons_in_refit_path
-	switch (I.slot_flags)
+	switch (referenced_item.slot_flags)
 		if (ITEM_SLOT_ICLOTHING)
 			item_slot = "UNIFORM"
 		else if (ITEM_SLOT_OCLOTHING)
@@ -45,7 +45,7 @@
 		if(cur_species==SPECIES_VOX_PRIMALIS) // Why was this named like this?
 			cur_species = "better_vox"
 		// Oh this is awful but its the only way from what I'm seeing.
-		var/wornicon = "[I]:worn_icon_[cur_species]"
+		var/wornicon = "[referenced_item]:worn_icon_[cur_species]"
 		if(!isnull(wornicon)) // If the species has a worn icon set here, count it too.
 			refit_path = "modular_skyrat/master_files/icons/mob/clothing/species/[cur_species]/[item_slot].dmi"
 			if(!fexists(refit_path))
