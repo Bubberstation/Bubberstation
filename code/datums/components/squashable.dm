@@ -12,6 +12,7 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
+	COOLDOWN_DECLARE(squish_cooldown) // BUBBER EDIT
 
 
 /datum/component/squashable/Initialize(squash_chance, squash_damage, squash_flags, squash_callback)
@@ -78,7 +79,11 @@
 	if(squash_flags & SQUASHED_SHOULD_BE_GIBBED)
 		target.gib(DROP_ALL_REMAINS)
 	else
-		target.adjustBruteLoss(squash_damage)
+		if(COOLDOWN_FINISHED(src, squish_cooldown))// BUBBER EDIT
+			target.adjustBruteLoss(squash_damage)// BUBBER EDIT
+			target.AddElement(/datum/element/squish, 20 SECONDS) // BUBBER EDIT
+			COOLDOWN_START(src, squish_cooldown, 20 SECONDS)// BUBBER EDIT
+
 
 /datum/component/squashable/UnregisterFromParent()
 	. = ..()
