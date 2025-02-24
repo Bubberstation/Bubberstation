@@ -1007,7 +1007,11 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer || default_layer
 
-	var/mutable_appearance/standing
+	var/mob/living/carbon/wearer = loc
+	var/is_digi = istype(wearer) && (wearer.bodyshape & BODYSHAPE_DIGITIGRADE) && !wearer.is_digitigrade_squished()
+
+	var/mutable_appearance/standing // this is the actual resulting MA
+	var/icon/building_icon // used to construct an icon across multiple procs before converting it to MA
 	if(female_uniform)
 		building_icon = wear_female_version(
 			icon_state = t_state,
