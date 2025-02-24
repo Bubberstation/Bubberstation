@@ -28,7 +28,9 @@
 		on_squash_callback = CALLBACK(parent, squash_callback)
 
 	AddComponent(/datum/component/connect_loc_behalf, parent, loc_connections)
-	RegisterSignal(parent, COMSIG_LIVING_MOB_BUMPED, PROC_REF(on_entered))// BUBBER EDIT - MICRO BALANCE
+	if(squash_callback) // BUBBER EDIT BEGIN- NO ROACHES SQUISHING EACH OTHER FOR THE OTHER EDIT
+		return
+	RegisterSignal(parent, COMSIG_LIVING_MOB_BUMPED, PROC_REF(on_entered))// BUBBER EDIT END - MICRO BALANCE
 
 /datum/component/squashable/Destroy(force)
 	on_squash_callback = null
