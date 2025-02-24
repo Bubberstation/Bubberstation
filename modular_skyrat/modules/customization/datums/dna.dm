@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(total_uf_len_by_block)
 	holder.transform = holder.transform.Translate(translate_x, translate_y)
 	holder.maptext_height = 32 * features["body_size"] // Adjust runechat height
 	current_body_size = features["body_size"]
-	if(current_body_size < 1) // BUBBER EDIT BEGIN
+	if(current_body_size <= BODY_SIZE_MIN) // BUBBER EDIT BEGIN
 		holder.AddComponent( \
 		/datum/component/squashable, \
 		squash_chance = 75, \
