@@ -28,6 +28,7 @@
 		on_squash_callback = CALLBACK(parent, squash_callback)
 
 	AddComponent(/datum/component/connect_loc_behalf, parent, loc_connections)
+	RegisterSignal(parent, COMSIG_LIVING_MOB_BUMPED, PROC_REF(on_entered))// BUBBER EDIT - MICRO BALANCE
 
 /datum/component/squashable/Destroy(force)
 	on_squash_callback = null
@@ -45,6 +46,7 @@
 		return
 
 	if((squash_flags & SQUASHED_SHOULD_BE_DOWN) && parent_as_living.body_position != LYING_DOWN)
+		parent_as_living.Knockdown(1 SECONDS) // BUBBER EDIT - MICRO BALANCE
 		return
 
 	var/should_squash = ((squash_flags & SQUASHED_ALWAYS_IF_DEAD) && parent_as_living.stat == DEAD) || prob(squash_chance)

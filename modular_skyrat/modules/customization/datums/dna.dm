@@ -175,6 +175,15 @@ GLOBAL_LIST_EMPTY(total_uf_len_by_block)
 	holder.transform = holder.transform.Translate(translate_x, translate_y)
 	holder.maptext_height = 32 * features["body_size"] // Adjust runechat height
 	current_body_size = features["body_size"]
+	if(current_body_size < 1) // BUBBER EDIT BEGIN
+		holder.AddComponent( \
+		/datum/component/squashable, \
+		squash_chance = 75, \
+		squash_damage = 22, \
+		squash_flags = SQUASHED_ALWAYS_IF_DEAD|SQUASHED_DONT_SQUASH_IN_CONTENTS|SQUASHED_SHOULD_BE_DOWN, \
+	)
+	else
+		qdel(holder.GetComponent(/datum/component/squashable)) // BUBBER EDIT END
 
 /mob/living/carbon/proc/apply_customizable_dna_features_to_species()
 	if(!has_dna())
