@@ -13,6 +13,31 @@
 	///Take on the dna/preference from whoever we're gonna be inserted in
 	var/imprint_on_next_insertion = TRUE
 
+/datum/bodypart_overlay/mutant/New(obj/item/organ/attached_organ)
+	. = ..()
+
+	RegisterSignal(attached_organ, COMSIG_ORGAN_IMPLANTED, PROC_REF(on_mob_insert))
+
+/datum/bodypart_overlay/mutant/proc/on_mob_insert(obj/item/organ/parent, mob/living/carbon/receiver)
+	SIGNAL_HANDLER
+
+	if(!should_visual_organ_apply_to(parent.type, receiver))
+		stack_trace("adding a [parent.type] to a [receiver.type] when it shouldn't be!")
+
+	if(imprint_on_next_insertion) //We only want this set *once*
+		var/feature_name = receiver.dna.features[feature_key]
+		if (isnull(feature_name))
+		/* SKYRAT EDIT - Customization - ORIGINAL:
+			feature_name = receiver.dna.species.mutant_organs[parent.type]
+		set_appearance_from_name(feature_name)
+		*/ // SKYRAT EDIT START
+			if(!set_appearance_from_dna(receiver.dna))
+				set_appearance_from_name(receiver.dna.species.mutant_organs[parent.type] || pick(get_global_feature_list()))
+		else
+			set_appearance_from_name(feature_name)
+		// SKYRAT EDIT END
+		imprint_on_next_insertion = FALSE
+
 /datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
 	inherit_color(limb) // If draw_color is not set yet, go ahead and do that
 	return ..()
@@ -67,7 +92,6 @@
 	return appearance
 
 /datum/bodypart_overlay/mutant/color_image(image/overlay, layer, obj/item/bodypart/limb)
-
 	overlay.color = sprite_datum.color_src ? draw_color : null
 
 /datum/bodypart_overlay/mutant/added_to_limb(obj/item/bodypart/limb)
@@ -108,7 +132,7 @@
 	alpha = bodypart_owner.alpha // SKYRAT ADDITION - Mutant bodyparts transparency are based on limb transparency
 	switch(color_source)
 		if(ORGAN_COLOR_OVERRIDE)
-			draw_color = override_color(bodypart_owner.draw_color)
+			draw_color = override_color(bodypart_owner)
 		if(ORGAN_COLOR_INHERIT)
 			draw_color = bodypart_owner.draw_color
 		if(ORGAN_COLOR_HAIR)
@@ -141,3 +165,4 @@
 		CRASH("External organ [type] couldn't find sprite accessory [accessory_name]!")
 	else
 		CRASH("External organ [type] had fetch_sprite_datum called with a null accessory name!")
+

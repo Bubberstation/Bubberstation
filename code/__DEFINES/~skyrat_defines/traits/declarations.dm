@@ -52,6 +52,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// One can breath under water, you get me?
 #define TRAIT_WATER_BREATHING "water_breathing"
 
+/// Trait to assign to pets who've already had a space treat to prevent double-feeding
+#define TRAIT_PET_SPACE_TREAT "space_pet_treat"
+
 /// The trait which Akulas inherit, for their species mechanic revolving around wet_stacks
 #define TRAIT_SLICK_SKIN "slick_skin"
 /// The trait which is applied when a `slick skin` trait haver actually gets wet_stacks

@@ -192,6 +192,12 @@
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
 
+/datum/sprite_accessory/hair/tentahair
+	name = "Tentacle hair"
+	icon_state = "ashwalker_goliath_hair"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	recommended_species = list(SPECIES_LIZARD_ASH)
+
 /datum/sprite_accessory/socks/warm_thigh
 	name = "Warm Thigh Highs"
 	icon_state = "warm_thigh"

@@ -640,6 +640,9 @@
 	if(!cortical_owner.inside_human())
 		owner.balloon_alert(owner, "host required")
 		return
+	if(cortical_owner.human_host.has_quirk(/datum/quirk/dnr))
+		owner.balloon_alert(owner, "host unrevivable")
+		return
 	cortical_owner.chemical_storage -= chemical_cost
 	if(cortical_owner.human_host.getBruteLoss())
 		cortical_owner.human_host.adjustBruteLoss(-(cortical_owner.human_host.getBruteLoss()*0.5))

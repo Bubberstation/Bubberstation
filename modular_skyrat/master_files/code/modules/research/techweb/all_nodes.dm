@@ -143,12 +143,6 @@
 
 ////////////////////////Computer tech////////////////////////
 
-/datum/techweb_node/consoles/New()
-	design_ids += list(
-		"time_clock_frame",
-	)
-	return ..()
-
 /datum/techweb_node/hud/New()
 	design_ids += list(
 		"health_hud_prescription",
@@ -263,7 +257,6 @@
 	return ..()
 
 /////////////////////////robotics tech/////////////////////////
-
 /datum/techweb_node/robotics/New()
 	design_ids += list(
 		"borg_upgrade_snacks",
@@ -284,7 +277,6 @@
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
 		"borg_upgrade_brush",
-		"borg_upgrade_shrink",
 	)
 	return ..()
 
