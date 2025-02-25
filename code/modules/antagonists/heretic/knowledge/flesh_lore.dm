@@ -269,7 +269,8 @@
 	desc = "Your Bloody Blade now causes enemies to bleed heavily on attack."
 	gain_text = "The Uncanny Man was not alone. They led me to the Marshal. \
 		I finally began to understand. And then, blood rained from the heavens."
-	next_knowledge = list(/datum/heretic_knowledge/summon/stalker)
+//	next_knowledge = list(/datum/heretic_knowledge/summon/stalker)
+	next_knowledge = list(/datum/heretic_knowledge/limited_amount/summon/stalker) //BUBBER EDIT - replaces the next knowledge with the limited one located in modular_zubbers
 	route = PATH_FLESH
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_flesh"

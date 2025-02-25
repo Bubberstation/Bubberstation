@@ -1,4 +1,5 @@
 /mob/living/basic/heretic_summon/stalker/examine(mob/user)
+
 	if(!HAS_TRAIT(src, TRAIT_DISGUISED))
 		return ..()
 
@@ -36,7 +37,7 @@
 	if(!.)
 		return FALSE
 
-	if(HAS_TRAIT(src, TRAIT_DISGUISED)) // && (melee_damage_disguised <= 0))
+	if(HAS_TRAIT(src, TRAIT_DISGUISED))
 		balloon_alert(src, "can't attack while disguised!")
 		return FALSE
 	return ..()
