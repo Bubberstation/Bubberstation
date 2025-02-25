@@ -4,17 +4,20 @@ import { sendAct, useBackend } from 'tgui/backend';
 import {
   Autofocus,
   Box,
-  Button, // SKYRAT EDIT ADDITION
+  Button, // BUBBER EDIT ADDITION
   Flex,
   Input,
   LabeledList,
   Popper,
   Stack,
 } from 'tgui-core/components';
+import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { CharacterPreview } from '../../common/CharacterPreview';
+import { PageButton } from '../components/PageButton';
+// BUBBER EDIT ADDITION
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
@@ -34,7 +37,7 @@ import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 13.4; // SKYRAT EDIT CHANGE - ORIGINAL:  9
+const CLOTHING_SIDEBAR_ROWS = 13.4; // BUBBER EDIT CHANGE - ORIGINAL:  9
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -43,7 +46,7 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 type CharacterControlsProps = {
   handleRotate: () => void;
   handleOpenSpecies: () => void;
-  handleFood: () => void; // SKYRAT EDIT ADDITION
+  handleFood: () => void; // BUBBER EDIT ADDITION
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -80,7 +83,7 @@ function CharacterControls(props: CharacterControlsProps) {
           />
         </Stack.Item>
       )}
-      {/* SKYRAT EDIT ADDITION START */}
+      {/* BUBBER EDIT ADDITION START */}
       <Stack.Item>
         <Button
           onClick={props.handleFood}
@@ -89,7 +92,7 @@ function CharacterControls(props: CharacterControlsProps) {
           tooltip="Edit Food Preferences"
           tooltipPosition="top"
         />
-        {/* SKYRAT EDIT ADDITION END */}
+        {/* BUBBER EDIT ADDITION END */}
       </Stack.Item>
     </Stack>
   );
@@ -558,6 +561,47 @@ export function MainPage(props: MainPageProps) {
     delete nonContextualPreferences['random_name'];
   }
 
+  // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
+  enum PrefPage {
+    Visual, // The visual parts
+    Lore, // Lore, Flavor Text, Age, Records
+  }
+
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+
+  let prefPageContents;
+  switch (currentPrefPage) {
+    case PrefPage.Visual:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            contextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={contextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Lore:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            nonContextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={nonContextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    default:
+      exhaustiveCheck(currentPrefPage);
+  }
+  // BUBBER EDIT ADDITION END
+
   return (
     <>
       {multiNameInputOpen && (
@@ -594,6 +638,11 @@ export function MainPage(props: MainPageProps) {
                 handleRotate={() => {
                   act('rotate');
                 }}
+                // BUBBER EDIT ADDITION BEGIN
+                handleFood={() => {
+                  act('open_food');
+                }}
+                // BUBBER EDIT ADDITION END
                 setGender={createSetPreference(act, 'gender')}
                 showGender={
                   currentSpeciesData ? !!currentSpeciesData.sexes : true
@@ -659,43 +708,52 @@ export function MainPage(props: MainPageProps) {
           </Stack>
         </Stack.Item>
 
+        {/* BUBBER EDIT CHANGE BEGIN: Swappable pref menus */}
         <Stack.Item grow basis={0}>
           <Stack vertical fill>
-            <PreferenceList
-              randomizations={getRandomization(
-                contextualPreferences,
-                serverData,
-                randomBodyEnabled,
-              )}
-              preferences={contextualPreferences}
-              maxHeight="auto"
-            />
-
-            <PreferenceList
-              randomizations={getRandomization(
-                nonContextualPreferences,
-                serverData,
-                randomBodyEnabled,
-              )}
-              preferences={nonContextualPreferences}
-              maxHeight="auto"
-            >
-              <Box my={0.5}>
-                <Button
-                  color="red"
-                  disabled={
-                    Object.values(data.character_profiles).filter(
-                      (name) => name,
-                    ).length < 2
-                  } // check if existing chars more than one
-                  onClick={() => setDeleteCharacterPopupOpen(true)}
+            <Stack>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Visual}
+                  setPage={setCurrentPrefPage}
                 >
-                  Delete Character
-                </Button>
-              </Box>
-            </PreferenceList>
+                  Character Visuals
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Lore}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Lore
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={1.25}>
+                <Box height="100%" width="100%">
+                  <Button
+                    height="100%"
+                    width="100%"
+                    textAlign="center"
+                    verticalAlignContent="middle"
+                    color="red"
+                    disabled={
+                      Object.values(data.character_profiles).filter(
+                        (name) => name,
+                      ).length < 2
+                    } // check if existing chars more than one
+                    onClick={() => setDeleteCharacterPopupOpen(true)}
+                  >
+                    Delete Character
+                  </Button>
+                </Box>
+              </Stack.Item>
+            </Stack>
+            {prefPageContents}
           </Stack>
         </Stack.Item>
+        {/* BUBBER EDIT CHANGE END: Swappable pref menus */}
       </Stack>
     </>
   );
