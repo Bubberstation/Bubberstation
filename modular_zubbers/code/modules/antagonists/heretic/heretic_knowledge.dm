@@ -2,7 +2,7 @@
  * A knowledge subtype lets the heretic summon a monster with the ritual, but capped at a limit. Copied from heretic_knowledge
  */
 /datum/heretic_knowledge/limited_amount/summon
-	abstract_parent_type = /datum/heretic_knowledge/summon
+	abstract_parent_type = /datum/heretic_knowledge/limited_amount/summon
 	/// Typepath of a mob to summon when we finish the recipe.
 	var/mob/living/mob_to_summon
 
@@ -30,7 +30,7 @@
 	summoned.move_resist = MOVE_FORCE_OVERPOWERING
 	animate(summoned, 10 SECONDS, alpha = 155)
 
- 	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
+	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, checked_target = summoned, ignore_category = poll_ignore_define, alert_pic = summoned, role_name_text = summoned.name)
 	if(isnull(chosen_one))
 		loc.balloon_alert(user, "ritual failed, no ghosts!")
@@ -43,7 +43,7 @@
 	REMOVE_TRAIT(summoned, TRAIT_NO_TRANSFORM, REF(src))
 	summoned.move_resist = initial(summoned.move_resist)
 
- 	summoned.ghostize(FALSE)
+	summoned.ghostize(FALSE)
 	summoned.key = chosen_one.key
 
 	user.log_message("created a [summoned.name], controlled by [key_name(chosen_one)].", LOG_GAME)

@@ -6,9 +6,16 @@
 	gain_text = "I was able to combine my greed and desires to summon an eldritch beast I had never seen before. \
 		An ever shapeshifting mass of flesh, it knew well my goals. The Marshal approved."
 	next_knowledge = list(
+		/*
 		/datum/heretic_knowledge/ultimate/flesh_final,
 		/datum/heretic_knowledge/spell/apetra_vulnera,
 		/datum/heretic_knowledge/spell/cleave,
+		*/ // swapped with raw prophets
+
+		/datum/heretic_knowledge/blade_upgrade/flesh,
+		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
+		/datum/heretic_knowledge/spell/blood_siphon,
+		/datum/heretic_knowledge/spell/opening_blast,
 	)
 	required_atoms = list(
  		/obj/item/organ/external/tail = 1,
@@ -21,6 +28,7 @@
 	cost = 1
 	route = PATH_FLESH
 	poll_ignore_define = POLL_IGNORE_STALKER
-	depth = 10
+//	depth = 10
+	depth = 8 // swapped with raw prophets
 	//how many flesh stalkers we can have at once
 	limit = 3

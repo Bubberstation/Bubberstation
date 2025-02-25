@@ -8,7 +8,8 @@
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 15
-	melee_damage_upper = 20
+//	melee_damage_upper = 20
+	melee_damage_upper = 15 //BUBBER EDIT - nerfs the damage a bit
 	sight = SEE_MOBS
 	ai_controller = /datum/ai_controller/basic_controller/stalker
 	/// Actions to grant on spawn

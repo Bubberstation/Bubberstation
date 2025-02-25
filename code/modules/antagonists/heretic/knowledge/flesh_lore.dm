@@ -234,7 +234,8 @@
 		This spell also allows you to heal your minions and summons, or restore failing organs to acceptable status."
 	gain_text = "But they were not out of my reach for long. With every step, the screams grew, until at last \
 		I learned that they could be silenced."
-	next_knowledge = list(/datum/heretic_knowledge/summon/raw_prophet)
+//	next_knowledge = list(/datum/heretic_knowledge/summon/raw_prophet)
+	next_knowledge = list(/datum/heretic_knowledge/limited_amount/summon/stalker) //BUBBER EDIT - replaces the flesh stalker with a bubber-modified one, also swaps stalkers/prophets
 	spell_to_add = /datum/action/cooldown/spell/touch/flesh_surgery
 	cost = 1
 	route = PATH_FLESH
@@ -248,10 +249,16 @@
 	gain_text = "I could not continue alone. I was able to summon The Uncanny Man to help me see more. \
 		The screams... once constant, now silenced by their wretched appearance. Nothing was out of reach."
 	next_knowledge = list(
+		/*
 		/datum/heretic_knowledge/blade_upgrade/flesh,
 		// /datum/heretic_knowledge/reroll_targets, // BUBBER EDIT REMOVAL
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/spell/opening_blast,
+		*/ // BUBBER EDIT - switches around flesh stalkers and raw prophets
+
+		/datum/heretic_knowledge/ultimate/flesh_final,
+		/datum/heretic_knowledge/spell/apetra_vulnera,
+		/datum/heretic_knowledge/spell/cleave,
 	)
 	required_atoms = list(
 		/obj/item/organ/internal/eyes = 1,
@@ -262,15 +269,16 @@
 	cost = 1
 	route = PATH_FLESH
 	poll_ignore_define = POLL_IGNORE_RAW_PROPHET
-	depth = 8
+//	depth = 8
+	depth = 10 // BUBBER EDIT - swap around raw prophets and flesh stalkers
 
 /datum/heretic_knowledge/blade_upgrade/flesh
 	name = "Bleeding Steel"
 	desc = "Your Bloody Blade now causes enemies to bleed heavily on attack."
 	gain_text = "The Uncanny Man was not alone. They led me to the Marshal. \
 		I finally began to understand. And then, blood rained from the heavens."
-//	next_knowledge = list(/datum/heretic_knowledge/summon/stalker)
-	next_knowledge = list(/datum/heretic_knowledge/limited_amount/summon/stalker) //BUBBER EDIT - replaces the next knowledge with the limited one located in modular_zubbers
+//	next_knowledge = list(/datum/heretic_knowledge/summon/stalker) // BUBBER EDIT - swaps flesh stalkers and raw prophets
+	next_knowledge = list(/datum/heretic_knowledge/summon/raw_prophet)
 	route = PATH_FLESH
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_flesh"
@@ -286,6 +294,7 @@
 	var/datum/wound/crit_wound = new wound_type()
 	crit_wound.apply_wound(bodypart, attack_direction = get_dir(source, target))
 
+// BUBBER EDIT - Currently unused, look to modular_zubbers
 /datum/heretic_knowledge/summon/stalker
 	name = "Lonely Ritual"
 	desc = "Allows you to transmute a tail of any kind, a stomach, a tongue, a pen and a piece of paper to create a Stalker. \

@@ -1,4 +1,4 @@
-// Given to heretic monsters.
+// Given to heretic monsters. BUBBER EDIT - Currently unused, replaced with morph assume form
 /datum/action/cooldown/spell/shapeshift/eldritch
 	name = "Shapechange"
 	desc = "A spell that allows you to take on the form of another creature, gaining their abilities. \
