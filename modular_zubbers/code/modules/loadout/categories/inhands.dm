@@ -24,3 +24,7 @@
 	item_path = /obj/item/riding_saddle/leather/peacekeeper
 
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/inhand/wheelchair
+	name = "folded wheelchair"
+	item_path = /obj/item/wheelchair
