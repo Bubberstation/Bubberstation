@@ -8,6 +8,12 @@
 "gj" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/pen/fountain{
+	pixel_y = 5
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "gE" = (
@@ -89,6 +95,20 @@
 /area/misc/hilbertshotel)
 "jV" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/cup/glass/bottle/vodka/badminka{
+	pixel_y = 20
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_y = 2
+	},
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "kS" = (
@@ -132,17 +152,16 @@
 /area/misc/hilbertshotel)
 "nW" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
-	pixel_y = 10;
-	pixel_x = 6
-	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
-	pixel_y = 4;
-	pixel_x = -6
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 21
 	},
 /obj/item/storage/fancy/cigarettes/cigpack_syndicate{
 	pixel_y = 2;
 	pixel_x = 6
+	},
+/obj/item/lighter/skull{
+	pixel_x = -6;
+	pixel_y = -2
 	},
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
@@ -162,6 +181,11 @@
 "qD" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/right,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery{
+	icon = 'modular_skyrat/modules/aesthetics/intercom/icons/intercom.dmi';
+	icon_state = "intercom";
+	name = "Intercom"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "ry" = (
@@ -184,6 +208,14 @@
 "sx" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/top/left,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+	pixel_y = 2;
+	pixel_x = -6
+	},
+/obj/item/lighter{
+	pixel_x = 15;
+	pixel_y = 4
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "sW" = (
@@ -223,6 +255,16 @@
 "wU" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/top/right,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/cup/glass/coffee/colonial{
+	pixel_x = -14;
+	pixel_y = 11
+	},
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/pen/fountain{
+	pixel_y = 5
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "xb" = (
@@ -241,6 +283,18 @@
 "yr" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/left,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/folder/red{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/pen/fountain{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/cup/glass/coffee/colonial{
+	pixel_x = -7;
+	pixel_y = 3
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "yG" = (
@@ -365,13 +419,24 @@
 	pixel_y = 6;
 	pixel_x = -4
 	},
+/obj/item/stamp{
+	pixel_x = 9;
+	pixel_y = 11
+	},
+/obj/item/stamp/denied{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/stamp/syndicate{
+	pixel_x = 9;
+	pixel_y = 3
+	},
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "NS" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/lighter/skull{
-	pixel_x = 6;
-	pixel_y = -10
+/obj/item/sign/flag/syndicate{
+	pixel_y = 3
 	},
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
@@ -440,7 +505,6 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
 	},
-/obj/item/kirbyplants/organic/plant22,
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
