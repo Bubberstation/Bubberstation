@@ -294,8 +294,8 @@
 	var/datum/wound/crit_wound = new wound_type()
 	crit_wound.apply_wound(bodypart, attack_direction = get_dir(source, target))
 
-// BUBBER EDIT - Currently unused, look to modular_zubbers
-/datum/heretic_knowledge/summon/stalker
+// BUBBER EDIT - Currently unused, look to modular_zubber
+/* /datum/heretic_knowledge/summon/stalker
 	name = "Lonely Ritual"
 	desc = "Allows you to transmute a tail of any kind, a stomach, a tongue, a pen and a piece of paper to create a Stalker. \
 		Stalkers can jaunt, release EMPs, shapeshift into animals or automatons, and are strong in combat."
@@ -317,7 +317,7 @@
 	cost = 1
 	route = PATH_FLESH
 	poll_ignore_define = POLL_IGNORE_STALKER
-//	depth = 10 //BUBBER EDIT - remove it from the tree. I hope.
+	depth = 10 */
 
 /datum/heretic_knowledge/ultimate/flesh_final
 	name = "Priest's Final Hymn"
