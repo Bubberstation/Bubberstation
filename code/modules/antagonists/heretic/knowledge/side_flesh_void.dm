@@ -30,7 +30,8 @@
 	gain_text = "\"No matter the man, we bleed all the same.\" That's what the Marshal told me."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/void_phase,
-		/datum/heretic_knowledge/summon/raw_prophet,
+//		/datum/heretic_knowledge/summon/raw_prophet,
+		/datum/heretic_knowledge/limited_amount/summon/stalker, //BUBBER EDIT - swaps around raw prophets and stalkers
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/blood_siphon
 	cost = 1
@@ -47,7 +48,8 @@
 		My smiling face turns to regard me, reflecting back in glassy eyes the empty path I have been lead down."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/void_phase,
-		/datum/heretic_knowledge/summon/raw_prophet,
+//		/datum/heretic_knowledge/summon/raw_prophet,
+		/datum/heretic_knowledge/limited_amount/summon/stalker, //BUBBER EDIT - swaps around raw prophets and stalkers
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/void_prison
 	cost = 1
@@ -61,7 +63,8 @@
 	gain_text = "At first I didn't understand these instruments of war, but the Priest \
 		told me to use them regardless. Soon, he said, I would know them well."
 	next_knowledge = list(
-		/datum/heretic_knowledge/summon/stalker,
+//		/datum/heretic_knowledge/summon/stalker,
+		/datum/heretic_knowledge/summon/raw_prophet, //BUBBER EDIT - swaps around raw prophets and stalkers
 		/datum/heretic_knowledge/spell/void_pull,
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
