@@ -34,7 +34,7 @@
 			return FALSE
 		owner.balloon_alert(owner, "ability level too low to break free!")
 	var/mob/living/living_owner = owner
-	if(istype(living) && living_owner.body_position == LYING_DOWN)
+	if(istype(living_owner) && living_owner.body_position == LYING_DOWN)
 		owner.balloon_alert(owner, "you can't punch while lying down!")
 		return FALSE
 	// Did neither, now we can PUNCH.
