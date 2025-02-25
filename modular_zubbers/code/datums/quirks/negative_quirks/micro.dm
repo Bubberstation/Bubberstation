@@ -34,8 +34,9 @@
 
 /datum/quirk/micro/post_add()
 	var/mob/living/carbon/living_as_carbon = quirk_holder
-	living_as_carbon.dna.features["body_size"] = living_as_carbon.dna.features["body_size"] - size_reduced
-	living_as_carbon.dna.update_body_size()
+	if(current_body_size == !features["body_size"])
+		living_as_carbon.dna.features["body_size"] = BODY_SIZE_NORMAL - size_reduced
+		living_as_carbon.dna.update_body_size()
 	living_as_carbon.AddComponent( \
 		/datum/component/squashable, \
 		squash_chance = squash_chance_, \
