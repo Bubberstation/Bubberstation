@@ -43,7 +43,7 @@
 		robot_spawn.lawsync()
 		robot_spawn.show_laws()
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI))
-			robot_spawn.visible_message(span_alert("Securityborg has been enabled for this shift."))
+			robot_spawn.visible_message(self_message = span_alert("Securityborg has been enabled for this shift."))
 	//SKYRAT EDIT END
 	if(!robot_spawn.connected_ai) // Only log if there's no Master AI
 		robot_spawn.log_current_laws()
