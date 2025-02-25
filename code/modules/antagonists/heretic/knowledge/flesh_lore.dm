@@ -318,8 +318,6 @@
 	route = PATH_FLESH
 	poll_ignore_define = POLL_IGNORE_STALKER
 //	depth = 10 //BUBBER EDIT - remove it from the tree. I hope.
-	. = ..()
-
 
 /datum/heretic_knowledge/ultimate/flesh_final
 	name = "Priest's Final Hymn"
