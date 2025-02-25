@@ -238,6 +238,10 @@
 	item_type = /obj/item/device/custom_kit/deluxe_hypo2
 	cost = PAYCHECK_COMMAND * 2
 
+/datum/armament_entry/company_import/deforest/equipment/advanced_hypospray
+	item_type = /obj/item/hypospray/mkii/piercing
+	cost = PAYCHECK_COMMAND * 7
+
 /datum/armament_entry/company_import/deforest/equipment/afad
 	item_type = /obj/item/gun/medbeam/afad
 	cost = PAYCHECK_COMMAND * 5

@@ -172,7 +172,7 @@
 		balloon_alert(user, "no cell installed!")
 		return ITEM_INTERACT_FAILURE
 
-	if(!powerdevice.charge)
+	if(!our_cell.charge)
 		balloon_alert(user, "no charge!")
 		return ITEM_INTERACT_FAILURE
 

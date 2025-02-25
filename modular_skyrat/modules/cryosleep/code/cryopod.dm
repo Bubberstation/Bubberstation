@@ -337,6 +337,36 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					update_objective.owner.announce_objectives()
 			qdel(objective)
 
+/**
+ * Attempt to store a given item in either the control computer or on the ground.
+ * * holder - mob holding the item being stored
+ * * target_item - the item to store
+ * * control_computer - the cryo console connected to this pod, can be null
+ */
+/obj/machinery/cryopod/proc/try_store_item(mob/living/holder, obj/item/target_item, obj/machinery/computer/cryopod/control_computer)
+	if(!istype(target_item) || HAS_TRAIT(target_item, TRAIT_NODROP))
+		return FALSE
+	if (issilicon(holder) && istype(target_item, /obj/item/mmi))
+		return FALSE
+	if(istype(target_item, /obj/item/implant/storage)) // store the contents of the storage implant
+		for(var/obj/item/nested_item as anything in target_item)
+			try_store_item(holder, nested_item, control_computer)
+		return FALSE
+	if(target_item.item_flags & DROPDEL)
+		return FALSE
+
+	if(control_computer)
+		if(istype(target_item, /obj/item/modular_computer))
+			var/obj/item/modular_computer/computer = target_item
+			for(var/datum/computer_file/program/messenger/message_app in computer.stored_files)
+				message_app.invisible = TRUE
+		holder.transferItemToLoc(target_item, control_computer, force = TRUE, silent = TRUE)
+		target_item.dropped(holder)
+		control_computer.frozen_item += target_item
+	else
+		holder.transferItemToLoc(target_item, drop_location(), force = TRUE, silent = TRUE)
+	return TRUE
+
 /// This function can not be undone; do not call this unless you are sure.
 /// Handles despawning the player.
 /obj/machinery/cryopod/proc/despawn_occupant()
@@ -391,21 +421,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 	visible_message(span_notice("[src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
 
+	var/list/nuke_disks = mob_occupant.get_all_contents_type(/obj/item/disk/nuclear) // No
+	for(var/obj/item/disk/nuclear/the_disk as anything in nuke_disks)
+		var/turf/launch_target = get_edge_target_turf(src, pick(GLOB.alldirs))
+		mob_occupant.transferItemToLoc(the_disk, drop_location(), force = TRUE, silent = TRUE)
+		the_disk.throw_at(launch_target, 8, 14)
+		visible_message(span_warning("[src] violently ejects [the_disk]!"))
+
 	for(var/obj/item/item_content as anything in mob_occupant)
-		if(!istype(item_content) || HAS_TRAIT(item_content, TRAIT_NODROP))
-			continue
-		if (issilicon(mob_occupant) && istype(item_content, /obj/item/mmi))
-			continue
-		if(control_computer)
-			if(istype(item_content, /obj/item/modular_computer))
-				var/obj/item/modular_computer/computer = item_content
-				for(var/datum/computer_file/program/messenger/message_app in computer.stored_files)
-					message_app.invisible = TRUE
-			mob_occupant.transferItemToLoc(item_content, control_computer, force = TRUE, silent = TRUE)
-			item_content.dropped(mob_occupant)
-			control_computer.frozen_item += item_content
-		else
-			mob_occupant.transferItemToLoc(item_content, drop_location(), force = TRUE, silent = TRUE)
+		try_store_item(mob_occupant, item_content, control_computer)
 
 	GLOB.joined_player_list -= stored_ckey
 

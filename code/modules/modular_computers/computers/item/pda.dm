@@ -38,10 +38,11 @@
 		/datum/computer_file/program/messenger,
 		/datum/computer_file/program/nt_pay,
 		/datum/computer_file/program/notepad,
-		// SKYRAT EDIT ADDITION START
+		/datum/computer_file/program/crew_manifest,
+		// BUBBER EDIT ADDITION START
 		/datum/computer_file/program/maintenance/camera, // Adds camera to all base tablets
-		// SKRAT EDIT ADDITION END
-		/datum/computer_file/program/crew_manifest
+		/datum/computer_file/program/crew_self_serve, // Crew Self Serve
+		// BUBBER EDIT ADDITION END
 	)
 	///List of items that can be stored in a PDA
 	var/static/list/contained_item = list(

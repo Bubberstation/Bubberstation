@@ -7,6 +7,8 @@ import {
   NoticeBox,
   Section,
   Stack,
+  Table,
+  Tooltip,
 } from 'tgui-core/components';
 import { capitalizeAll, createSearch } from 'tgui-core/string';
 
@@ -60,6 +62,9 @@ type UserData = {
   cash: number;
   job: string;
   department: string;
+  /** BUBBER EDIT START **/
+  species: string;
+  /** BUBBER EDIT END **/
 };
 
 type StockItem = {
@@ -67,6 +72,9 @@ type StockItem = {
   path: string;
   amount: number;
   colorable: boolean;
+  /** BUBBER EDIT START **/
+  refits_available: string[];
+  /** BUBBER EDIT END **/
 };
 
 type CustomInput = {
@@ -323,26 +331,49 @@ const ProductGrid = (props) => {
   const { ...priceProps } = props;
 
   return (
-    <ImageButton
-      {...baseProps}
-      tooltip={capitalizeAll(product.name)}
-      buttonsAlt={
-        <Stack fontSize={0.8}>
-          <Stack.Item grow textAlign={'left'}>
-            <ProductPrice {...priceProps} />
-          </Stack.Item>
-          <Stack.Item color={'lightgray'}>x{remaining}</Stack.Item>
-        </Stack>
-      }
-    >
-      {capitalizeAll(product.name)}
-    </ImageButton>
+    <Table.Row height="32px">
+      <Table.Cell collapsing width="36px">
+        <ProductImage product={product} />
+      </Table.Cell>
+      <Table.Cell verticalAlign="middle" bold>
+        {capitalizeAll(product.name)}
+      </Table.Cell>
+      <Table.Cell verticalAlign="middle">
+        {!!productStock?.colorable && (
+          <ProductColorSelect disabled={disabled} product={product} />
+        )}
+      </Table.Cell>
+      <Table.Cell verticalAlign="middle">
+        {user &&
+          user.species &&
+          productStock.refits_available?.includes(
+            user.species.toLowerCase(),
+          ) && (
+            <Tooltip content="This outfit supports your species!">
+              <Icon name="fa-shirt" />
+            </Tooltip>
+          )}
+      </Table.Cell>
+      <Table.Cell collapsing textAlign="right" verticalAlign="middle">
+        <ProductStock custom={custom} product={product} remaining={remaining} />
+      </Table.Cell>
+      <Table.Cell collapsing textAlign="center" verticalAlign="middle">
+        <ProductButton
+          custom={custom}
+          disabled={disabled}
+          discount={discount}
+          free={free}
+          product={product}
+          redPrice={redPrice}
+        />
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
-const ProductList = (props) => {
-  const { colorable, product, remaining, ...baseProps } = props;
-  const { ...priceProps } = props;
+/** Displays the product image. Displays a default if there is none. */
+const ProductImage = (props) => {
+  const { product } = props;
 
   return (
     <ImageButton {...baseProps} fluid imageSize={32}>
@@ -385,6 +416,33 @@ const ProductColorSelect = (props) => {
       style={disabled && { pointerEvents: 'none', opacity: 0.5 }}
       onClick={() => act('select_colors', { ref: product.ref })}
     />
+  );
+};
+/** BUBBER EDIT START **/
+/** In the case of customizable items, ie: shoes,
+ * this displays a color wheel button that opens another window.
+ */
+const RefitBadgeView = (props) => {
+  const { act } = useBackend<VendingData>();
+  const { disabled, product } = props;
+
+  return <Icon name="fa-shirt" color="gold" />;
+};
+/** BUBBER EDIT END **/
+/** Displays a colored indicator for remaining stock */
+const ProductStock = (props) => {
+  const { custom, product, remaining } = props;
+
+  return (
+    <Box
+      color={
+        (remaining <= 0 && 'bad') ||
+        (!custom && remaining <= product.max_amount / 2 && 'average') ||
+        'good'
+      }
+    >
+      {remaining} left
+    </Box>
   );
 };
 

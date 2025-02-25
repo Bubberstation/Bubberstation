@@ -18,3 +18,11 @@
 	cold_level_3_threshold = 0
 	organ_flags = ORGAN_ROBOTIC
 
+/obj/item/organ/internal/lungs/nitrogen/slime_lungs
+	name = "nitrogen-based vacuole"
+	desc = "Traditional slimeperson lungs. These ones run off nitrogen."
+	icon_state = "lungs-plasma"
+
+	oxy_damage_type = BRUTE
+	oxy_breath_dam_min = 6
+	oxy_breath_dam_max = 20

@@ -251,6 +251,7 @@
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/storage/box/bandages,
@@ -353,6 +354,7 @@
 		/obj/item/stamp,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes,
 		/obj/item/surgicaldrill,
@@ -414,6 +416,7 @@
 	. = ..()
 
 	can_hold = typecacheof(list(
+		/obj/item/blood_filter,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
