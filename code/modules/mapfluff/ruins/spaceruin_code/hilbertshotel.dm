@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
 	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
 	var/datum/map_template/ghost_cafe_rooms/center/ghost_cafe_rooms_center
-	var/datum/map_template/ghost_cafe_rooms/synoffice/ghost_cafe_rooms_synoffice
+	var/datum/map_template/ghost_cafe_rooms/soffice/ghost_cafe_rooms_soffice
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -67,7 +67,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_grotto = new()
 	ghost_cafe_rooms_grotto2 = new()
 	ghost_cafe_rooms_center = new()
-	ghost_cafe_rooms_synoffice = new()
+	ghost_cafe_rooms_soffice = new()
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -251,7 +251,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		load_from = ghost_cafe_rooms_center
 
 	else if(chosen_room == "Syndicate Office")
-		load_from = ghost_cafe_rooms_synoffice
+		load_from = ghost_cafe_rooms_soffice
 	//BUBBER EDIT END
 
 

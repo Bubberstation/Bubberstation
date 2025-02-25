@@ -17,6 +17,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "gE" = (
+/obj/structure/railing/unbreakable,
 /turf/open/floor/iron/stairs/right{
 	dir = 8
 	},
@@ -58,11 +59,10 @@
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "iN" = (
-/obj/structure/railing/unbreakable,
-/obj/item/kirbyplants/organic/plant21,
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 10
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
 	},
+/obj/machinery/light/floor,
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "jc" = (
@@ -120,6 +120,9 @@
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "nj" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
 /turf/open/floor/iron/stairs/left{
 	dir = 8
 	},
@@ -330,11 +333,8 @@
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "FL" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner,
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 8
-	},
-/obj/structure/railing/corner/end/flip{
+/obj/item/kirbyplants/organic/plant21,
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 8
 	},
 /turf/open/indestructible/dark/textured,
@@ -373,6 +373,10 @@
 	},
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
+"HD" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark/corner,
+/turf/open/indestructible/dark/textured,
+/area/misc/hilbertshotel)
 "HI" = (
 /turf/closed/indestructible/hoteldoor{
 	icon_state = "door_closed";
@@ -389,8 +393,8 @@
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Lb" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 4
+/obj/structure/railing/corner/end/flip{
+	dir = 8
 	},
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 8
@@ -492,13 +496,12 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "Rv" = (
-/obj/structure/railing/unbreakable{
-	dir = 1
+/obj/structure/railing/corner/end/unbreakable{
+	dir = 8
 	},
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 9
+	dir = 8
 	},
-/obj/item/kirbyplants/organic/plant24,
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Sb" = (
@@ -560,10 +563,6 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 8
-	},
-/obj/machinery/light/floor,
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Vp" = (
@@ -610,14 +609,15 @@
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "YG" = (
+/obj/item/kirbyplants/organic/plant24,
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 8
+	},
+/turf/open/indestructible/dark/textured,
+/area/misc/hilbertshotel)
+"Zv" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 1
-	},
-/obj/structure/railing/corner/end/unbreakable{
-	dir = 8
 	},
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
@@ -652,16 +652,16 @@ vE
 (2,1,1) = {"
 vE
 vE
-xb
-xb
-xb
+vE
+vE
+vE
 xb
 Xu
 Mw
 Vz
 xb
-xb
-xb
+vE
+vE
 vE
 vE
 vE
@@ -669,15 +669,33 @@ vE
 "}
 (3,1,1) = {"
 vE
+vE
+xb
+xb
+xb
+xb
+nj
+VU
+gE
+xb
+xb
+xb
+vE
+vE
+vE
+vE
+"}
+(4,1,1) = {"
+vE
 xb
 xb
 xb
 GJ
-iN
-nj
-VU
-gE
+FL
 Rv
+eF
+Lb
+YG
 TM
 vX
 xb
@@ -685,17 +703,17 @@ xb
 vE
 vE
 "}
-(4,1,1) = {"
+(5,1,1) = {"
 vE
 xb
 WP
 jM
 Dc
-FL
-Lb
+HD
 TY
-Lb
-YG
+iN
+TY
+Zv
 my
 Rb
 OS
@@ -703,7 +721,7 @@ xb
 vE
 vE
 "}
-(5,1,1) = {"
+(6,1,1) = {"
 vE
 xb
 Hq
@@ -721,7 +739,7 @@ xb
 vE
 vE
 "}
-(6,1,1) = {"
+(7,1,1) = {"
 vE
 hg
 Dc
@@ -739,7 +757,7 @@ hg
 vE
 vE
 "}
-(7,1,1) = {"
+(8,1,1) = {"
 vE
 xb
 xQ
@@ -757,7 +775,7 @@ xb
 vE
 vE
 "}
-(8,1,1) = {"
+(9,1,1) = {"
 vE
 xb
 QG
@@ -775,7 +793,7 @@ xb
 vE
 vE
 "}
-(9,1,1) = {"
+(10,1,1) = {"
 vE
 xb
 xb
@@ -793,7 +811,7 @@ xb
 vE
 vE
 "}
-(10,1,1) = {"
+(11,1,1) = {"
 vE
 vE
 vE
@@ -811,7 +829,7 @@ vE
 vE
 vE
 "}
-(11,1,1) = {"
+(12,1,1) = {"
 vE
 vE
 vE
@@ -829,7 +847,7 @@ vE
 vE
 vE
 "}
-(12,1,1) = {"
+(13,1,1) = {"
 vE
 vE
 vE
@@ -847,35 +865,17 @@ vE
 vE
 vE
 "}
-(13,1,1) = {"
-vE
-vE
-vE
-vE
-vE
-qx
-qx
-qx
-qx
-qx
-vE
-vE
-vE
-vE
-vE
-vE
-"}
 (14,1,1) = {"
 vE
 vE
 vE
 vE
 vE
-vE
-vE
-vE
-vE
-vE
+qx
+qx
+qx
+qx
+qx
 vE
 vE
 vE

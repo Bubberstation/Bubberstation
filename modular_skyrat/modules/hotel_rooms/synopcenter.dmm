@@ -41,7 +41,6 @@
 /turf/open/floor/carpet/royalblack,
 /area/misc/hilbertshotel)
 "cH" = (
-/obj/structure/rack/gunrack,
 /obj/effect/turf_decal/delivery,
 /obj/item/ammo_box/magazine/m9mm/rubber,
 /obj/item/ammo_box/magazine/m9mm/rubber,
@@ -49,6 +48,7 @@
 /obj/item/gun/ballistic/automatic/pistol,
 /obj/item/gun/ballistic/automatic/pistol,
 /obj/item/gun/ballistic/automatic/pistol,
+/obj/structure/rack,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "em" = (
@@ -154,7 +154,7 @@
 /obj/item/restraints/handcuffs/cable/white,
 /obj/item/restraints/handcuffs/cable/white,
 /obj/effect/turf_decal/bot,
-/obj/structure/sign/flag/usa/directional/south,
+/obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "ia" = (
@@ -334,9 +334,14 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "mV" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Shuttle Dock"
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
 	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/structure/sign/flag/usa/directional/south,
+/turf/open/floor/mineral/plastitanium,
 /area/misc/hilbertshotel)
 "nd" = (
 /obj/structure/railing/unbreakable,
@@ -413,9 +418,8 @@
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "pH" = (
-/obj/structure/mecha_wreckage/mauler{
-	anchored = 1;
-	desc = "A prized relic from the recent attack upon the Dauntless, the only mech to survive intact. Attached to the chest plate is a commemoration plaque that reads: 'Lest we forget our fallen agents.'"
+/obj/structure/showcase/mecha/marauder{
+	icon_state = "darkgygax"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
@@ -780,6 +784,7 @@
 	dir = 5
 	},
 /obj/structure/bed/maint,
+/obj/machinery/light/directional/north,
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "HB" = (
@@ -1039,6 +1044,18 @@
 "Qv" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
+/obj/item/toy/figure/syndie{
+	pixel_x = 9;
+	pixel_y = 13
+	},
+/obj/item/toy/mecha/seraph{
+	pixel_x = -3;
+	pixel_y = 18
+	},
+/obj/item/toy/figure/syndie{
+	pixel_x = 9;
+	pixel_y = 3
+	},
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "QX" = (
@@ -1063,16 +1080,18 @@
 	pixel_y = 3
 	},
 /obj/item/toy/figure/syndie{
-	pixel_x = -9;
-	pixel_y = 3
-	},
-/obj/item/toy/figure/syndie{
-	pixel_x = -1
+	pixel_x = 9;
+	pixel_y = -7
 	},
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "RH" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/top/right,
+/turf/open/floor/mineral/plastitanium/red,
+/area/misc/hilbertshotel)
+"RN" = (
+/obj/effect/turf_decal/skyrat_decals/syndicate/middle/middle,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "RP" = (
@@ -1287,7 +1306,7 @@ ac
 qB
 Pj
 wV
-Pj
+mV
 ga
 "}
 (4,1,1) = {"
@@ -1394,7 +1413,7 @@ Uk
 Is
 ZG
 Yz
-Di
+RN
 Aj
 IB
 "}
@@ -1495,9 +1514,9 @@ ga
 ga
 ga
 ga
-qB
-mV
-qB
+pg
+pg
+pg
 ga
 ga
 ga
