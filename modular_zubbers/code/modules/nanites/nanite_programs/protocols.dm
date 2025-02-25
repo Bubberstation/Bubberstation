@@ -14,7 +14,7 @@
 	return ..()
 
 /datum/nanite_program/protocol/kickstart/active_effect()
-	nanites.adjust_nanites(null, 3.5)
+	nanites.adjust_nanites(null, NANITE_PROTOCOL_KICKSTART_REPLICATION)
 
 /datum/nanite_program/protocol/factory
 	name = "Factory Protocol"

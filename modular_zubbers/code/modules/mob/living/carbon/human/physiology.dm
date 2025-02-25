@@ -2,22 +2,27 @@
 	var/flat_brute_mod = 0
 	var/flat_burn_mod = 0
 
-/mob/living/carbon/human/get_incoming_damage_modifier(
-	damage = 0,
-	damagetype = BRUTE,
-	def_zone = null,
-	sharpness = NONE,
-	attack_direction = null,
-	attacking_item,
-)
-	var/final_mod = ..()
+/mob/living/carbon/human/apply_damage(
+		damage,
+		damagetype,
+		def_zone,
+		blocked,
+		forced,
+		spread_damage,
+		wound_bonus,
+		bare_wound_bonus,
+		sharpness,
+		attack_direction,
+		attacking_item,
+		wound_clothing
+	)
 	if(!physiology)
-		return final_mod
+		return ..()
 
 	switch(damagetype)
 		if(BRUTE)
-			final_mod -= physiology.flat_brute_mod
+			blocked += physiology.flat_brute_mod
 		if(BURN)
-			final_mod -= physiology.flat_burn_mod
+			blocked += physiology.flat_burn_mod
 
-	return final_mod
+	. = ..()

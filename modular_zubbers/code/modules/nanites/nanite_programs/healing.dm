@@ -39,7 +39,7 @@
 /datum/nanite_program/regenerative/robotic
 	name = "Mechanical Repair"
 	desc = "The nanites fix damage in the host's mechanical limbs. Will not consume nanites while the host's mechanical limbs are undamaged, or while the host has no mechanical limbs."
-	use_rate = 0.5
+	use_rate = 3
 	rogue_types = list(/datum/nanite_program/necrotic)
 	valid_bodytype = BODYTYPE_ROBOTIC
 	valid_biotype = MOB_ROBOTIC

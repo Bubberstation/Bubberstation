@@ -419,25 +419,27 @@
 	nanite_programs |= programs
 
 /datum/component/nanites/proc/add_research()
-	var/research_chance = NANITE_BASE_RESEARCH_CHANCE
+	var/progress_addition = NANITE_BASE_RESEARCH_PROGRESS
 	if(!techweb)
 		return
 	if(!ishuman(host_mob))
 		if(!iscarbon(host_mob))
-			research_chance *= 0.4
+			progress_addition *= 0.4
 		else
-			research_chance *= 0.8
+			progress_addition *= 0.8
 	if(!host_mob.client)
-		research_chance *= 0.5
+		progress_addition *= 0.5
 	if(host_mob.stat == DEAD)
-		research_chance *= 0.75
-	if(prob(20))
+		progress_addition *= 0.75
+	research_progress += progress_addition
+	if(research_progress >= 100)
+		research_progress -= 100
 		techweb.add_point_list(
-			list(
-				TECHWEB_POINT_TYPE_GENERIC = TECHWEB_SINGLE_SERVER_INCOME,
-				TECHWEB_POINT_TYPE_NANITE = TECHWEB_SINGLE_SERVER_INCOME
+				list(
+					TECHWEB_POINT_TYPE_GENERIC = TECHWEB_SINGLE_SERVER_INCOME,
+					TECHWEB_POINT_TYPE_NANITE = TECHWEB_SINGLE_SERVER_INCOME
+				)
 			)
-		)
 
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	SIGNAL_HANDLER
