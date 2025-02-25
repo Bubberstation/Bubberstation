@@ -162,7 +162,7 @@
 		span_danger("You drive the [src] into [target]'s chest!"),
 	)
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
-	if(tryEmbed(target.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)) //and if it embeds successfully in their chest, cause a lot of pain
+	if(force_embed(target, target.get_bodypart(BODY_ZONE_CHEST))) //and if it embeds successfully in their chest, cause a lot of pain
 		target.apply_damage(max(10, force * 1.2), BRUTE, BODY_ZONE_CHEST, wound_bonus = 0, sharpness = TRUE)
 		on_stake_embed(target, user)
 
@@ -179,16 +179,13 @@
 	)
 	qdel(heart)
 
-/obj/item/stake/tryEmbed(atom/target, forced)
+/obj/item/stake/force_embed(mob/living/carbon/victim, obj/item/bodypart/target_limb)
 	. = ..()
-	if(!(. & COMPONENT_EMBED_SUCCESS) || !isbodypart(target))
-		return FALSE
-	var/obj/item/bodypart/bodypart = target
-	if(bodypart.body_zone != BODY_ZONE_CHEST)
-		return
-	SEND_SIGNAL(bodypart, COMSIG_BODYPART_STAKED, forced)
-	if(bodypart.owner)
-		SEND_SIGNAL(bodypart.owner, COMSIG_MOB_STAKED, forced)
+	if(!.)
+		return .
+	SEND_SIGNAL(target_limb, COMSIG_BODYPART_STAKED, TRUE)
+	SEND_SIGNAL(victim, COMSIG_MOB_STAKED, TRUE)
+	return .
 
 ///Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /mob/living/proc/can_be_staked()
