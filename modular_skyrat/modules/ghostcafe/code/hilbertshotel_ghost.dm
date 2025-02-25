@@ -67,7 +67,7 @@
 
 /datum/map_template/ghost_cafe_rooms/synopcenter
 	name = "Syndicate Operations Center"
-	mappath = "modular_skyrat/modules/hotel_rooms/synopcenter.dmm
+	mappath = "modular_skyrat/modules/hotel_rooms/synopcenter.dmm"
 
 /datum/map_template/ghost_cafe_rooms/synoffice
 	name = "Syndicate Office"
