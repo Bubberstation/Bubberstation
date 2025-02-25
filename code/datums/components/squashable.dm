@@ -40,6 +40,8 @@
 ///Handles the squashing of the mob
 /datum/component/squashable/proc/on_entered(turf/source_turf, atom/movable/crossing_movable)
 	SIGNAL_HANDLER
+	if(istype(crossing_movable, /obj)) // BUBBER EDIT -  don't get knocked down by items
+		return
 
 	if(parent == crossing_movable)
 		return
@@ -66,6 +68,7 @@
 			if(should_squash)
 				crossing_mob.visible_message(span_notice("[crossing_mob] squashed [parent_as_living]."), span_notice("You squashed [parent_as_living]."))
 				Squish(parent_as_living)
+				playsound(poor_target, 'sound/effects/blob/attackblob.ogg', 50, TRUE) // BUBBER EDIT
 			else
 				parent_as_living.visible_message(span_notice("[parent_as_living] avoids getting crushed."))
 	else if(isstructure(crossing_movable))
@@ -80,7 +83,7 @@
 		target.gib(DROP_ALL_REMAINS)
 	else
 		if(COOLDOWN_FINISHED(src, squish_cooldown))// BUBBER EDIT
-			target.adjustBruteLoss(squash_damage)// BUBBER EDIT
+			target.take_bodypart_damage(squash_damage, wound_bonus = 5)// BUBBER EDIT
 			target.AddElement(/datum/element/squish, 20 SECONDS) // BUBBER EDIT
 			COOLDOWN_START(src, squish_cooldown, 20 SECONDS)// BUBBER EDIT
 
