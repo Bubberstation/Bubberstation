@@ -134,7 +134,7 @@
 // more about grab_resists in `code\modules\mob\living\living.dm` at li 1119
 // more about slide_distance in `code\game\turfs\open\_open.dm` at li 233
 /// Lets register the signal which calls when we are above 10 wet_stacks
-/datum/species/akula/on_species_gain(mob/living/carbon/akula, datum/species/old_species, pref_load)
+/datum/species/akula/on_species_gain(mob/living/carbon/akula, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	RegisterSignal(akula, COMSIG_MOB_TRIGGER_WET_SKIN, PROC_REF(wetted), akula)
 	// lets give 15 wet_stacks on initial

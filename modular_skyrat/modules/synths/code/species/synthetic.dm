@@ -85,26 +85,26 @@
 	playsound(transformer.loc, 'sound/machines/chime.ogg', 50, TRUE)
 	transformer.visible_message(span_notice("[transformer]'s [screen ? "monitor lights up" : "eyes flicker to life"]!"), span_notice("All systems nominal. You're back online!"))
 
-/datum/species/synthetic/on_species_gain(mob/living/carbon/human/transformer)
+/datum/species/synthetic/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
-	RegisterSignal(transformer, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+	RegisterSignal(human_who_gained_species, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
 
 	var/datum/action/sing_tones/sing_action = new
-	sing_action.Grant(transformer)
+	sing_action.Grant(human_who_gained_species)
 
-	var/screen_mutant_bodypart = transformer.dna.mutant_bodyparts[MUTANT_SYNTH_SCREEN]
-	var/obj/item/organ/eyes/eyes = transformer.get_organ_slot(ORGAN_SLOT_EYES)
+	var/screen_mutant_bodypart = human_who_gained_species.dna.mutant_bodyparts[MUTANT_SYNTH_SCREEN]
+	var/obj/item/organ/eyes/eyes = human_who_gained_species.get_organ_slot(ORGAN_SLOT_EYES)
 
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
 			eyes.eye_icon_state = "None"
 
-		screen = new(transformer)
-		screen.Grant(transformer)
+		screen = new(human_who_gained_species)
+		screen.Grant(human_who_gained_species)
 
-		RegisterSignal(transformer, COMSIG_LIVING_DEATH, PROC_REF(bsod_death)) // screen displays bsod on death, if they have one
+		RegisterSignal(human_who_gained_species, COMSIG_LIVING_DEATH, PROC_REF(bsod_death)) // screen displays bsod on death, if they have one
 
 		return
 

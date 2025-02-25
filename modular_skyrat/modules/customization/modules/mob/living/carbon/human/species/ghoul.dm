@@ -50,7 +50,7 @@
 	// Called on Assign, or on Color Change (or any time proof_ghoul_features() is used)
 	fixed_mut_color = human_ghoul.dna.features["ghoulcolor"]
 
-/datum/species/ghoul/on_species_gain(mob/living/carbon/new_ghoul, datum/species/old_species, pref_load)
+/datum/species/ghoul/on_species_gain(mob/living/carbon/new_ghoul, datum/species/old_species, pref_load, regenerate_icons)
 	// Missing Defaults in DNA? Randomize!
 	proof_ghoul_features(new_ghoul.dna.features)
 

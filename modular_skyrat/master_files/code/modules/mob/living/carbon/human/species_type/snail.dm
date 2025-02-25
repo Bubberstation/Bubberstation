@@ -8,7 +8,7 @@
 
 	eyes_icon = 'modular_skyrat/modules/organs/icons/snail_eyes.dmi'
 
-/datum/species/snail/on_species_gain(mob/living/carbon/new_snailperson, datum/species/old_species, pref_load)
+/datum/species/snail/on_species_gain(mob/living/carbon/new_snailperson, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	new_snailperson.update_icons()
 
