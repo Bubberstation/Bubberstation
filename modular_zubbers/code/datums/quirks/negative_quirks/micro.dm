@@ -12,7 +12,7 @@
 	hardcore_value = 0
 	var/squash_damage_ = 14
 	var/squash_chance_ = 25
-	var/size_reduced = 20
+	var/size_reduced = 0.8
 
 /datum/quirk/micro/smaller
 	name = "Microsized"
@@ -21,7 +21,8 @@
 	icon = FA_ICON_LOCUST
 	squash_damage_ = 20
 	squash_chance_ = 40
-	size_reduced = 30
+	size_reduced = 0.7
+	value = -5
 
 /datum/quirk/micro/smallest
 	name = "Microscopic"
@@ -30,13 +31,14 @@
 	icon = FA_ICON_WINDOW_MINIMIZE
 	squash_damage_ = 40
 	squash_chance_ = 80
-	size_reduced = 40
+	size_reduced = 0.6
+	value = -6
 
 /datum/quirk/micro/post_add()
 	var/mob/living/carbon/living_as_carbon = quirk_holder
-	if(living_as_carbon.dna.current_body_size != living_as_carbon.dna.features["body_size"])
-		living_as_carbon.dna.features["body_size"] = BODY_SIZE_NORMAL - size_reduced
-		living_as_carbon.dna.update_body_size()
+	living_as_carbon.dna.features["body_size"] = size_reduced
+	living_as_carbon.maptext_height = 32 * human_parent.dna.features["body_size"]
+	living_as_carbon.dna.update_body_size()
 	living_as_carbon.AddComponent( \
 		/datum/component/squashable, \
 		squash_chance = squash_chance_, \
