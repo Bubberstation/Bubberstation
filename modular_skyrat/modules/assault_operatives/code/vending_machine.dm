@@ -57,7 +57,7 @@
 
 	filled = TRUE
 
-/obj/machinery/vending/assaultops_ammo/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
+/obj/machinery/vending/assaultops_ammo/build_inventory(list/productlist, list/recordlist, start_empty = FALSE, premium = FALSE)
 	default_price = 0
 	extra_price = 0
 	for(var/typepath in productlist)
