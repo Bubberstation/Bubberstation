@@ -37,6 +37,9 @@
 	var/current_inhand_icon_state = "crusher" //variable used by retool kits when changing the crusher's appearance
 	var/projectile_icon = "pulse1" //variable used by retool kits when changing the crusher's projectile sprite
 
+	/// List of all crusher trophies attached to this.
+	var/list/obj/item/crusher_trophy/trophies = list()
+
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 110)
