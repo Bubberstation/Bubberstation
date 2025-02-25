@@ -73,8 +73,12 @@
 #define MOB_PLANT (1 << 10)
 ///The mob is a goopy creature, probably coming from xenobiology.
 #define MOB_SLIME (1 << 11)
-/// Mob is fish or water-related.
+///The mob is fish or water-related.
 #define MOB_AQUATIC (1 << 12)
+///The mob is a mining-related mob. It's the plasma, you see. Gets in ya bones.
+#define MOB_MINING (1 << 13)
+///The mob is a crustacean. Like crabs. Or lobsters.
+#define MOB_CRUSTACEAN (1 << 14)
 // BUBBER EDIT BEGIN
 ///The mob is some kind of vampire, species or antag
 #define MOB_VAMPIRIC (1 << 16)
