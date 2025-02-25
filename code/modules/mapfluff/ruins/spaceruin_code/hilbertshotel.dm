@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Syndicate Operations Center", "Syndicate Office")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -29,6 +29,8 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/recwing/ghost_cafe_rooms_recwing
 	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
 	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
+	var/datum/map_template/ghost_cafe_rooms/synopcenter/ghostcafe_rooms_synopcenter
+	var/datum/map_template/ghost_cafe_rooms/synoffice/ghostcafe_rooms_synoffice
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -64,6 +66,8 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_recwing = new()
 	ghost_cafe_rooms_grotto = new()
 	ghost_cafe_rooms_grotto2 = new()
+	ghost_cafe_rooms_synopcenter = new()
+	ghost_cafe_rooms_synoffice = new()
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -243,6 +247,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Grotto (Night)")
 		load_from = ghost_cafe_rooms_grotto2
 
+	else if(chosen_room == "Syndicate Operations Center")
+		load_from = ghost_cafe_rooms_synopcenter
+
+	else if(chosen_room == "Syndicate Office")
+		load_from = ghost_cafe_rooms_synoffice
 	//BUBBER EDIT END
 
 
