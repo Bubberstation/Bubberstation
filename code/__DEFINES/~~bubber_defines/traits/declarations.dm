@@ -36,3 +36,6 @@
 // makes it so cult cannot get another blood stone from this mob
 #define TRAIT_HAS_BEEN_CULT_SACRIFICED "has_been_cult_sacrificed"
 
+// Enables secborg and puts silicons in control of security
+#define STATION_TRAIT_HOS_AI "station_trait_hos_ai"
+
