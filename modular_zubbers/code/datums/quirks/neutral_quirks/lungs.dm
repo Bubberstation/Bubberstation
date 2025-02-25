@@ -85,7 +85,7 @@
 
 /datum/quirk/equipping/lungs/nitrogen/add(client/client_source)
 	if(isjellyperson(quirk_holder))
-		lungs_typepath = /obj/item/organ/internal/lungs/nitrogen/slime_lungs
+		lungs_typepath = /obj/item/organ/lungs/nitrogen/slime_lungs
 	. = ..()
 
 /datum/quirk/equipping/lungs/nitrogen/on_equip_item(obj/item/equipped, success)

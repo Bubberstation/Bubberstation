@@ -18,7 +18,7 @@
 	cold_level_3_threshold = 0
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/lungs/nitrogen/slime_lungs
+/obj/item/organ/lungs/nitrogen/slime_lungs
 	name = "nitrogen-based vacuole"
 	desc = "Traditional slimeperson lungs. These ones run off nitrogen."
 	icon_state = "lungs-plasma"
