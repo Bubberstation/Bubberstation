@@ -15,6 +15,8 @@ import {
   Tabs,
 } from 'tgui-core/components';
 
+import { removeAllSkiplines } from '../../../TextInputModal';
+import { PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
 import {
   LoadoutCategory,
@@ -37,10 +39,7 @@ export function LoadoutPage(props) {
     null,
   );
   // BUBBER EDIT ADDITION START: Multiple loadout presets
-  const [managingPreset, _setManagingPreset] = useLocalState<string | null>(
-    'managingPreset',
-    null,
-  );
+  const [managingPreset, _setManagingPreset] = useState<string | null>(null);
   const { act, data } = useBackend<PreferencesMenuData>();
   const [input, setInput] = useState('');
   const setManagingPreset = (value) => {
@@ -77,21 +76,21 @@ export function LoadoutPage(props) {
               }}
             >
               <Stack.Item height="20px" width="100%">
-                <Flex>
-                  <Flex.Item fontSize="1.3rem">
+                <Stack>
+                  <Stack.Item fontSize="1.3rem">
                     {managingPreset} Loadout Preset
-                  </Flex.Item>
+                  </Stack.Item>
                   {managingPreset === 'Add' && (
-                    <Flex.Item ml="6px" mt="4px">
+                    <Stack.Item ml="6px" mt="4px">
                       (
                       {
                         data.character_preferences.misc.loadout_lists.loadouts
                           .length
                       }{' '}
                       of 12 total)
-                    </Flex.Item>
+                    </Stack.Item>
                   )}
-                  <Flex.Item ml="auto">
+                  <Stack.Item ml="auto">
                     <Button
                       icon="times"
                       color="red"
@@ -99,8 +98,8 @@ export function LoadoutPage(props) {
                         setManagingPreset(null);
                       }}
                     />
-                  </Flex.Item>
-                </Flex>
+                  </Stack.Item>
+                </Stack>
               </Stack.Item>
               <Stack.Item width="100%" height="20px">
                 <Input
@@ -214,10 +213,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
 
   // BUBBER EDIT ADDITION START: Multiple loadout presets
   const { act, data } = useBackend<PreferencesMenuData>();
-  const [_, setManagingPreset] = useLocalState<string | null>(
-    'managingPreset',
-    null,
-  );
+  const [_, setManagingPreset] = useState<string | null>(null);
   // BUBBER EDIT END
 
   return (
