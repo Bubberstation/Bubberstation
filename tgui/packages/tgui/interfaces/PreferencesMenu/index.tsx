@@ -20,7 +20,7 @@ import { ServerPrefs } from './useServerPrefs';
 
 export function PreferencesMenu(props) {
   return (
-    <Window width={920} height={770}>
+    <Window width={1024} height={770}>
       <Window.Content>
         <Suspense fallback={<LoadingScreen />}>
           <PrefsWindowInner />

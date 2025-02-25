@@ -15,6 +15,7 @@ import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
+import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { PageButton } from '../components/PageButton';
 // BUBBER EDIT ADDITION
@@ -36,8 +37,8 @@ import { useServerPrefs } from '../useServerPrefs';
 import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
 
-const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 13.4; // BUBBER EDIT CHANGE - ORIGINAL:  9
+const CLOTHING_CELL_SIZE = 54;
+const CLOTHING_SIDEBAR_ROWS = 12.4; // BUBBER EDIT CHANGE - ORIGINAL:  9
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -64,6 +65,18 @@ function CharacterControls(props: CharacterControlsProps) {
           tooltipPosition="top"
         />
       </Stack.Item>
+
+      {/* BUBBER EDIT ADDITION START */}
+      <Stack.Item>
+        <Button
+          onClick={props.handleRotate}
+          fontSize="22px"
+          icon="redo"
+          tooltip="Rotate"
+          tooltipPosition="top"
+        />
+      </Stack.Item>
+      {/* BUBBER EDIT ADDITION END */}
 
       <Stack.Item>
         <Button
@@ -650,7 +663,22 @@ export function MainPage(props: MainPageProps) {
               />
             </Stack.Item>
 
-            <Stack.Item grow>
+            {/* BUBBER EDIT ADDITION BEGIN: Preview Selection */}
+            <Stack.Item position="relative">
+              <SideDropdown
+                width="100%"
+                selected={data.preview_selection}
+                options={data.preview_options}
+                onSelected={(value) =>
+                  act('update_preview', {
+                    updated_preview: value,
+                  })
+                }
+              />
+            </Stack.Item>
+            {/* BUBBER EDIT ADDITION END: Preview Selection */}
+
+            <Stack.Item height="545px">
               <CharacterPreview
                 height="100%"
                 id={data.character_preview_view}
@@ -669,8 +697,8 @@ export function MainPage(props: MainPageProps) {
           </Stack>
         </Stack.Item>
 
-        <Stack.Item width={`${CLOTHING_CELL_SIZE * 2 + 15}px`}>
-          <Stack height="100%" vertical wrap>
+        <Stack.Item width={`${CLOTHING_CELL_SIZE + 2}px`}>
+          <Stack height="100%" vertical wrap ml="-3px" mt="-3px">
             {mainFeatures.map(([clothingKey, clothing]) => {
               const catalog = serverData?.[
                 clothingKey
@@ -709,7 +737,7 @@ export function MainPage(props: MainPageProps) {
         </Stack.Item>
 
         {/* BUBBER EDIT CHANGE BEGIN: Swappable pref menus */}
-        <Stack.Item grow basis={0}>
+        <Stack.Item grow basis={0} ml="4px">
           <Stack vertical fill>
             <Stack>
               <Stack.Item grow={2}>
@@ -730,7 +758,7 @@ export function MainPage(props: MainPageProps) {
                   Character Lore
                 </PageButton>
               </Stack.Item>
-              <Stack.Item grow={1.25}>
+              <Stack.Item grow={0.98}>
                 <Box height="100%" width="100%">
                   <Button
                     height="100%"

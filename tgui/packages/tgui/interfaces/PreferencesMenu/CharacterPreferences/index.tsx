@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Dropdown, Stack } from 'tgui-core/components';
+import { Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
+import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { PageButton } from '../components/PageButton';
+import { LanguagesPage } from '../LanguagesMenu'; // BUBBER EDIT ADDITION
+import { LimbsPage } from '../LimbsPage'; // BUBBER EDIT ADDITION
 import { PreferencesMenuData } from '../types';
 import { AntagsPage } from './AntagsPage';
 import { JobsPage } from './JobsPage';
@@ -19,6 +22,10 @@ enum Page {
   Species,
   Quirks,
   Loadout,
+  // BUBBER EDIT ADDITION BEGIN
+  Limbs,
+  Languages,
+  // BUBBER EDIT ADDITION END
 }
 
 type ProfileProps = {
@@ -50,8 +57,8 @@ function CharacterProfiles(props: ProfileProps) {
   ); */
   return (
     <Stack align="center" justify="left">
-      <Stack.Item width="39.8%">
-        <Dropdown
+      <Stack.Item width="225px">
+        <SideDropdown
           width="100%"
           selected={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
@@ -94,6 +101,17 @@ export function CharacterPreferenceWindow(props) {
       );
 
       break;
+
+    // BUBBER EDIT ADDITION BEGIN
+    case Page.Limbs:
+      pageContents = <LimbsPage />;
+      break;
+
+    case Page.Languages:
+      pageContents = <LanguagesPage />;
+      break;
+    // BUBBER EDIT ADDITION END
+
     case Page.Quirks:
       pageContents = <QuirksPage />;
       break;
@@ -147,6 +165,28 @@ export function CharacterPreferenceWindow(props) {
               Loadout
             </PageButton>
           </Stack.Item>
+
+          {/* BUBBER EDIT ADDITION BEGIN */}
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Limbs}
+              setPage={setCurrentPage}
+            >
+              Augments+
+            </PageButton>
+          </Stack.Item>
+
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Languages}
+              setPage={setCurrentPage}
+            >
+              Languages
+            </PageButton>
+          </Stack.Item>
+          {/* BUBBER EDIT ADDITION END */}
 
           <Stack.Item grow>
             <PageButton
