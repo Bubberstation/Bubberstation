@@ -28,3 +28,39 @@
 /datum/map_template/ghost_cafe_rooms/library
 	name = "Library"
 	mappath = "modular_skyrat/modules/hotel_rooms/library.dmm"
+
+/datum/map_template/ghost_cafe_rooms/cultcave
+	name = "Cultist's Cavern"
+	mappath = "modular_skyrat/modules/hotel_rooms/cultcave.dmm"
+
+/datum/map_template/ghost_cafe_rooms/winterwoods
+	name = "Winter Woods"
+	mappath = "modular_skyrat/modules/hotel_rooms/winterwoods.dmm"
+
+/area/misc/hilbertshotel/winterwoods
+	name = "Winter Woods"
+	ambientsounds = AMBIENCE_ICEMOON
+
+/datum/map_template/ghost_cafe_rooms/evacuationstation
+	name = "Evacuated Station"
+	mappath = "modular_skyrat/modules/hotel_rooms/evacuationstation.dmm"
+
+/datum/map_template/ghost_cafe_rooms/prisoninfdorm
+	name = "Prison"
+	mappath = "modular_skyrat/modules/hotel_rooms/prisoninfdorm.dmm"
+
+/datum/map_template/ghost_cafe_rooms/corporateoffice
+	name = "Corporate Office"
+	mappath = "modular_skyrat/modules/hotel_rooms/corporateoffice.dmm"
+
+/datum/map_template/ghost_cafe_rooms/recwing
+	name = "Recovery Wing"
+	mappath = "modular_skyrat/modules/hotel_rooms/recovery.dmm"
+
+/datum/map_template/ghost_cafe_rooms/grotto
+	name = "Grotto"
+	mappath = "modular_skyrat/modules/hotel_rooms/grotto.dmm"
+
+/datum/map_template/ghost_cafe_rooms/grotto2
+	name = "Grotto (Night)"
+	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"
