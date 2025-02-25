@@ -79,7 +79,7 @@
 	languages = save_languages
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
-	if(!tgui_prefs_migration && save_data.len && save_data["modular_version"] && save_data["modular_version"] < MODULAR_SAVEFILE_VERSION_MAX) // If save_data is empty, this is definitely a new character // BUBBER EDIT - if we're missing version from migration, then the char is new. Won't be able to migrate either.
+	if(!tgui_prefs_migration && save_data["modular_version"] && save_data["modular_version"] < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT - if we're missing version from migration, then the char is new. Won't be able to migrate either.
 		to_chat(parent, custom_boxed_message("red_box", span_bolddanger("PREFERENCE MIGRATION BEGINNING.\
 		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
