@@ -22,7 +22,7 @@ DEFINE_BITFIELD(sign_features, list(
 
 #define NAME_DELAM "delamination incident display"
 #define NAME_TRAM "tram incident display"
-#define NAME_DISEASE "disease incident display" // BUBBER EDIT ADDITION - Disease Counter
+#define NAME_DISEASE "epidemic display" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DESC_DELAM "A signs describe how long it's been since the last delamination incident. Features an advert for SAFETY MOTH."
 #define DESC_TRAM "A display that provides the number of tram related safety incidents this shift."
