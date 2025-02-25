@@ -33,9 +33,10 @@
 	size_reduced = 40
 
 /datum/quirk/micro/post_add()
-	holder.dna.features["body_size"] = holder.dna.features["body_size"] - size_reduced
-	holder.dna.update_body_size()
-	holder.AddComponent( \
+	var/mob/living/carbon/living_as_carbon = quirk_holder
+	living_as_carbon.dna.features["body_size"] = living_as_carbon.dna.features["body_size"] - size_reduced
+	living_as_carbon.dna.update_body_size()
+	living_as_carbon.AddComponent( \
 		/datum/component/squashable, \
 		squash_chance = squash_chance_, \
 		squash_damage = squash_damage_, \
@@ -43,7 +44,7 @@
 	)
 
 /datum/quirk/micro/remove()
-	qdel(quirk_owner.GetComponent(/datum/component/squashable))
+	qdel(quirk_holder.GetComponent(/datum/component/squashable))
 
 
 

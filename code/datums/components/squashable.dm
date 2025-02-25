@@ -68,7 +68,7 @@
 			if(should_squash)
 				crossing_mob.visible_message(span_notice("[crossing_mob] squashed [parent_as_living]."), span_notice("You squashed [parent_as_living]."))
 				Squish(parent_as_living)
-				playsound(poor_target, 'sound/effects/blob/attackblob.ogg', 50, TRUE) // BUBBER EDIT
+				playsound(parent_as_living, 'sound/effects/blob/attackblob.ogg', 50, TRUE) // BUBBER EDIT
 			else
 				parent_as_living.visible_message(span_notice("[parent_as_living] avoids getting crushed."))
 	else if(isstructure(crossing_movable))
