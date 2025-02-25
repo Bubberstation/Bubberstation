@@ -26,8 +26,13 @@
 		if(istype(problem, /mob/living))
 			actual_problems |= problem
 	var/mob/living/intheway = pick(actual_problems)
+	if(prob(75))
+		quirk_holder.disarm(intheway)
+	else
+		quirk_holder.set_combat_mode(TRUE)
+		quirk_holder.ClickOn(intheway)
 	quirk_holder.disarm(intheway) // yes we have to hunt and pec
-	COOLDOWN_START(src, shovingspam, 1 SECONDS)
+	COOLDOWN_START(src, shovingspam, 2 SECONDS)
 
 /datum/quirk/defensive/remove()
 	. = ..()
