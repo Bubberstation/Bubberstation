@@ -6,7 +6,7 @@
 	show_in_report = TRUE
 	report_message = "For experimental purposes, this station AI has been put in charge of the security department, Security Cyborgs are enabled for the duration of the shift. \
 	Do not meddle with the silicon laws unless absolutely necessary, the AI is to be treated as a member of command, and your head of Security"
-	blacklist = STATION_TRAIT_UNIQUE_AI
+	blacklist = list(/datum/station_trait/job/human_ai, /datum/station_trait/unique_ai)
 	trait_to_give = STATION_TRAIT_HOS_AI
 
 /datum/station_trait/hos_ai/New()
