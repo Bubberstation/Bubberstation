@@ -290,7 +290,7 @@
 
 /datum/map_template/shelter/xenoarch/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/supply_pack/science/xenoarchpod
@@ -319,7 +319,7 @@
 
 /datum/map_template/shelter/triage/New()
 	. = ..()
-	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/supply_pack/medical/triagepod
