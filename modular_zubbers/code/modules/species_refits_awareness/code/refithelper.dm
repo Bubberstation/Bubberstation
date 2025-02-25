@@ -40,7 +40,7 @@
 		else if (ITEM_SLOT_FEET)
 			item_slot = "SHOES"
 		else
-			CRASH("There are no item slots that exist by the name of [I].")
+			CRASH("There are no item slots that exist by the name of [referenced_item].")
 	for(var/cur_species in supported_species)
 		if(cur_species==SPECIES_VOX_PRIMALIS) // Why was this named like this?
 			cur_species = "better_vox"
