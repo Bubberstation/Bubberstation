@@ -65,7 +65,7 @@
 	name = "Grotto (Night)"
 	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"
 
-/datum/map_template/ghost_cafe_rooms/synopcenter
+/datum/map_template/ghost_cafe_rooms/center
 	name = "Syndicate Operations Center"
 	mappath = "modular_skyrat/modules/hotel_rooms/synopcenter.dmm"
 
