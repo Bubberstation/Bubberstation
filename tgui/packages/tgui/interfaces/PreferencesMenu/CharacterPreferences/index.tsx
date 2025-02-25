@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
+import { Dropdown, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { PageButton } from '../components/PageButton';
@@ -30,6 +30,7 @@ type ProfileProps = {
 function CharacterProfiles(props: ProfileProps) {
   const { activeSlot, onClick, profiles } = props;
 
+  /* BUBBER EDIT CHANGE BEGIN
   return (
     <Stack justify="center" wrap>
       {profiles.map((profile, slot) => (
@@ -46,7 +47,25 @@ function CharacterProfiles(props: ProfileProps) {
         </Stack.Item>
       ))}
     </Stack>
+  ); */
+  return (
+    <Stack align="center" justify="left">
+      <Stack.Item width="39.8%">
+        <Dropdown
+          width="100%"
+          selected={profiles[activeSlot]}
+          options={profiles.map((profile, slot) => ({
+            value: slot,
+            displayText: profile ?? 'New Character',
+          }))}
+          onSelected={(slot) => {
+            onClick(slot);
+          }}
+        />
+      </Stack.Item>
+    </Stack>
   );
+  // BUBBER EDIT CHANGE END
 }
 
 export function CharacterPreferenceWindow(props) {
