@@ -150,6 +150,8 @@
 
 	target.add_reagent(local_typepath, to_inject, reagtemp = temp)
 
+	return TRUE
+
 #undef VENOMOUS_BITE_DAMAGE
 #undef VENOMOUS_BITE_WOUND_BONUS
 #undef VENOMOUS_BITE_WOUND_CHANCE
