@@ -18,6 +18,8 @@
 		return
 	if(quirk_holder.get_active_held_item())
 		return
+	if(HAS_TRAIT(quirk_holder, TRAIT_RESTRAINED))
+		return
 	var/list/problems = oview(1, quirk_holder)
 	var/list/actual_problems = list()
 	for(var/mob/living/problem in problems)
