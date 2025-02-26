@@ -12,24 +12,24 @@
 	var/hypnotic_color
 
 /datum/quirk/hypnotic/add(client/client_source)
-	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINING, PROC_REF(on_examine))
+	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/quirk/hypnotic/post_add()
 	hypnotic_text = quirk_holder.client.prefs.read_preference(/datum/preference/text/hypnotic_text)
 	hypnotic_color = quirk_holder.client.prefs.read_preference(/datum/preference/choiced/hypnotic_span)
 
 /datum/quirk/hypnotic/remove()
-	UnregisterSignal(quirk_holder, COMSIG_MOB_EXAMINING)
+	UnregisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE)
 
 /datum/quirk/hypnotic/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	var/mob/living/examinee = user
+	var/mob/living/examinee = source
 	if(!istype(user))
 		return
-	if(!(examinee.client?.prefs.read_preference(/datum/preference/toggle/master_erp_preferences) && examinee.client.prefs.read_preference(/datum/preference/toggle/erp/hypnosis)))
+	if(!(examinee.client.prefs.read_preference(/datum/preference/toggle/erp/hypnosis)))
 		return
-	if(examinee.stat == DEAD)
+	if(user.stat == DEAD)
 		return
 	if(isnull(hypnotic_color))
 		return
@@ -80,7 +80,7 @@
 /datum/preference/choiced/hypnotic_span/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
-/datum/preference/choiced/hypnotic_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+/datum/preference/text/hypnotic_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/preference/choiced/hypnotic_span/create_default_value()
