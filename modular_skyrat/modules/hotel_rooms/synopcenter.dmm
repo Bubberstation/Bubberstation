@@ -42,21 +42,11 @@
 /area/misc/hilbertshotel)
 "cH" = (
 /obj/effect/turf_decal/delivery,
-/obj/item/ammo_box/magazine/m9mm/rubber,
-/obj/item/ammo_box/magazine/m9mm/rubber,
-/obj/item/ammo_box/magazine/m9mm/rubber,
-/obj/item/gun/ballistic/automatic/pistol,
-/obj/item/gun/ballistic/automatic/pistol,
-/obj/item/gun/ballistic/automatic/pistol,
 /obj/structure/rack,
-/turf/open/floor/mineral/plastitanium/red,
-/area/misc/hilbertshotel)
-"em" = (
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/structure/sign/poster/contraband/random/directional/east,
-/obj/effect/turf_decal/siding/dark_red,
+/obj/item/melee/baton/security/loaded,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs/cable/white,
+/obj/item/gun/ballistic/automatic/pistol,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "eq" = (
@@ -123,14 +113,10 @@
 	},
 /area/misc/hilbertshotel)
 "hz" = (
-/obj/structure/railing/unbreakable{
-	dir = 6
+/obj/machinery/door/airlock/grunge{
+	name = "Interrogation Room"
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 5
-	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "hL" = (
 /obj/structure/railing/unbreakable{
@@ -148,13 +134,9 @@
 	},
 /area/misc/hilbertshotel)
 "hN" = (
-/obj/structure/rack,
-/obj/item/melee/baton/security/loaded,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs/cable/white,
-/obj/item/restraints/handcuffs/cable/white,
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/directional/south,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "ia" = (
@@ -226,13 +208,7 @@
 /area/misc/hilbertshotel)
 "jO" = (
 /obj/effect/turf_decal/bot,
-/obj/item/storage/belt/military,
-/obj/item/storage/belt/military,
-/obj/item/storage/belt/military,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/structure/closet/crate/secure/syndicate,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "jQ" = (
@@ -380,7 +356,14 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "oH" = (
-/obj/machinery/ammo_workbench/unlocked,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 9
+	},
+/obj/item/crowbar/power/syndicate{
+	pixel_y = 3;
+	pixel_x = -1
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "pg" = (
@@ -474,9 +457,6 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning/corner,
-/obj/effect/turf_decal/trimline/yellow/filled/warning/corner{
-	dir = 1
-	},
 /obj/structure/railing/corner/unbreakable,
 /turf/open/indestructible/dark/textured{
 	icon_state = "engine"
@@ -485,16 +465,6 @@
 "sg" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/top/left,
 /obj/structure/railing/corner/end/unbreakable{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/misc/hilbertshotel)
-"so" = (
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red/corner,
-/obj/effect/turf_decal/siding/dark_red/corner{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -645,13 +615,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "Ak" = (
-/obj/effect/turf_decal/siding/dark_red/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red/corner{
+/obj/effect/turf_decal/siding/dark_red{
 	dir = 1
 	},
 /turf/open/indestructible/dark/textured{
@@ -754,7 +718,6 @@
 "FL" = (
 /obj/structure/rack/gunrack,
 /obj/effect/turf_decal/delivery,
-/obj/item/storage/box/beanbag,
 /obj/item/gun/ballistic/shotgun/riot/sol/evil,
 /obj/item/gun/ballistic/shotgun/riot/sol/evil,
 /obj/item/gun/ballistic/shotgun/riot/sol/evil,
@@ -774,10 +737,16 @@
 	},
 /area/misc/hilbertshotel)
 "GN" = (
-/obj/structure/tank_dispenser/oxygen,
-/obj/effect/turf_decal/delivery/red,
-/obj/machinery/light/directional/north,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/table,
+/obj/item/flashlight/lamp{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/restraints/handcuffs{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Hv" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -915,14 +884,15 @@
 /obj/item/melee/energy/sword/saber/red,
 /obj/item/melee/energy/sword/saber/red,
 /obj/structure/sign/poster/contraband/random/directional/west,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/storage/belt/military,
+/obj/item/storage/belt/military,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "JK" = (
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/machinery/light/small/directional/south,
+/turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "JS" = (
 /obj/structure/railing/unbreakable{
@@ -1025,9 +995,11 @@
 	},
 /area/misc/hilbertshotel)
 "OA" = (
-/obj/machinery/suit_storage_unit/syndicate,
-/obj/effect/turf_decal/bot_red/left,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Pf" = (
 /turf/open/floor/iron/stairs,
@@ -1176,14 +1148,10 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "Wi" = (
-/obj/structure/railing/unbreakable{
-	dir = 10
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/indestructible/dark/textured{
+	icon_state = "engine"
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/crowbar/power/syndicate{
-	pixel_y = 5
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/misc/hilbertshotel)
 "WV" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/left,
@@ -1221,15 +1189,7 @@
 	},
 /area/misc/hilbertshotel)
 "Za" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/handcuffs{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/disk/ammo_workbench/advanced{
-	pixel_x = -9;
-	pixel_y = 3
-	},
+/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "Zk" = (
@@ -1245,9 +1205,11 @@
 /turf/open/floor/carpet/royalblack,
 /area/misc/hilbertshotel)
 "Zt" = (
-/obj/machinery/suit_storage_unit/syndicate,
-/obj/effect/turf_decal/bot_red/right,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/sign/poster/contraband/random/directional/west,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "ZG" = (
 /turf/open/floor/iron/stairs/medium{
@@ -1366,7 +1328,7 @@ ga
 (7,1,1) = {"
 ga
 ga
-ga
+hz
 ga
 fU
 Ge
@@ -1385,8 +1347,8 @@ ga
 ga
 Zt
 JK
-hz
-Lu
+ga
+Ak
 NI
 lz
 Jh
@@ -1402,8 +1364,8 @@ qB
 (9,1,1) = {"
 ga
 GN
-so
-Pf
+ac
+Wi
 Ak
 NI
 me
@@ -1420,8 +1382,8 @@ IB
 (10,1,1) = {"
 ga
 OA
-em
-Wi
+ac
+ga
 rA
 we
 Tb
