@@ -105,7 +105,7 @@
 	return SSaccessories.sprite_accessories["taur"]
 
 
-/obj/item/organ/taur_body/mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/taur_body/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_HIDE_SHOES)
 		external_bodyshapes |= BODYSHAPE_HIDE_SHOES
 
@@ -144,7 +144,7 @@
 	return ..()
 
 
-/obj/item/organ/taur_body/mob_remove(mob/living/carbon/organ_owner, special, moving)
+/obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	if(QDELETED(owner))
 		return ..()
 

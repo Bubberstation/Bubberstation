@@ -209,7 +209,6 @@
 	ricochet_decay_damage = 1
 	ricochet_decay_chance = 1
 	ricochet_incidence_leeway = 0 //nanomachines son
-	homing = TRUE
 	homing_turn_speed = 25
 	homing_inaccuracy_min = 10
 	homing_inaccuracy_max = 80

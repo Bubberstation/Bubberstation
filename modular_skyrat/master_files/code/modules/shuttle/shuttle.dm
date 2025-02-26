@@ -35,6 +35,6 @@
 				if(!volume_multiplier)
 					return
 				if(takeoff)
-					hearing_mob.playsound_local(distant_source, takeoff_sound, volume = vol * volume_multiplier)
+					hearing_mob.playsound_local(distant_source, takeoff_sound, vol = vol * volume_multiplier)
 				else
-					hearing_mob.playsound_local(distant_source, landing_sound, volume = vol * volume_multiplier)
+					hearing_mob.playsound_local(distant_source, landing_sound, vol = vol * volume_multiplier)

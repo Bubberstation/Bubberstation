@@ -12,14 +12,14 @@
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
-/obj/item/organ/tongue/dog/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/dog/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "arfs"
 	signer.verb_exclaim = "wans"
 	signer.verb_whisper = "whimpers"
 	signer.verb_yell = "barks"
 
-/obj/item/organ/tongue/dog/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/dog/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
@@ -27,14 +27,14 @@
 	speaker.verb_sing = initial(verb_sing)
 	speaker.verb_yell = initial(verb_yell)
 
-/obj/item/organ/tongue/cat/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/cat/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "mrrps"
 	signer.verb_exclaim = "mrrowls"
 	signer.verb_whisper = "purrs"
 	signer.verb_yell = "yowls"
 
-/obj/item/organ/tongue/cat/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/cat/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
@@ -48,14 +48,14 @@
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
-/obj/item/organ/tongue/avian/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/avian/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "peeps"
 	signer.verb_exclaim = "squawks"
 	signer.verb_whisper = "murmurs"
 	signer.verb_yell = "shrieks"
 
-/obj/item/organ/tongue/avian/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/avian/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
