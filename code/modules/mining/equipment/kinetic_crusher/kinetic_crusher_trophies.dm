@@ -28,8 +28,6 @@
 		return ..()
 	add_to(attacking_item, user)
 
-// SKYRAT EDIT BEGIN - Moved to modular // BUBBER TODO - Fix the override hell
-/*
 /// Tries to add the trophy to our crusher
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
@@ -46,7 +44,6 @@
 /obj/item/crusher_trophy/proc/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user)
 	forceMove(get_turf(crusher))
 	return TRUE
-*/ // SKYRAT EDIT END
 
 /// Does an effect when you hit a mob with a crusher
 /obj/item/crusher_trophy/proc/on_melee_hit(mob/living/target, mob/living/user) //the target and the user

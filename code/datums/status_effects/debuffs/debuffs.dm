@@ -347,8 +347,6 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
-//SKYRAT EDIT START - OVERRIDEN IN MODULAR
-/*
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
@@ -389,9 +387,6 @@
 		owner.underlays -= marked_underlay
 	QDEL_NULL(marked_underlay)
 	return ..()
-
-*/
-//SKYRAT EDIT END
 
 // Object used to apply a underlay to the mob that gets this status applied
 /obj/effect/abstract/crusher_mark

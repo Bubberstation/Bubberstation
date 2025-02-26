@@ -1,4 +1,3 @@
-/* SKYRAT EDIT START - OVERRIDEN IN modular_skyrat/master_files/code/modules/mining/equipment/kinetic_crusher.dm
 /**
  * Kinetic Crusher
  *
@@ -269,7 +268,6 @@
 /obj/item/kinetic_crusher/compact //for admins
 	name = "compact kinetic crusher"
 	w_class = WEIGHT_CLASS_NORMAL
-*/ // SKYRAT EDIT END
 
 //destablizing force
 /obj/projectile/destabilizer
@@ -327,7 +325,6 @@
 		// If there is a mind, check for skill modifier to allow them to reload faster.
 		if(carbon_firer.mind && used_crusher)
 			skill_modifier = carbon_firer.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
-			// BUBBER TODO - Fix this
-			//used_crusher.attempt_recharge_projectile(used_crusher.charge_time * skill_modifier) //If you hit a mineral, you might get a quicker reload. epic gamer style.
+			used_crusher.attempt_recharge_projectile(used_crusher.charge_time * skill_modifier) //If you hit a mineral, you might get a quicker reload. epic gamer style.
 
 	return ..()
