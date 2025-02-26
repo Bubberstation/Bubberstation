@@ -31,7 +31,6 @@
 	else
 		quirk_holder.set_combat_mode(TRUE)
 		quirk_holder.ClickOn(intheway)
-	quirk_holder.disarm(intheway) // yes we have to hunt and pec
 	COOLDOWN_START(src, shovingspam, 5 SECONDS)
 
 /datum/quirk/defensive/remove()
