@@ -1,6 +1,6 @@
 /datum/station_trait/hos_ai
 	name = "Head of Security AI"
-	trait_type = STATION_TRAIT_NEUTRAL
+	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
 	weight = 3
 	show_in_report = TRUE
