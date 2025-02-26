@@ -22,5 +22,4 @@
 /datum/loadout_item/inhand/saddle_peacekeeper
 	name = "riding saddle (peacekeeper)"
 	item_path = /obj/item/riding_saddle/leather/peacekeeper
-
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER, JOB_HEAD_OF_SECURITY)
+	restricted_roles = list(ALL_JOBS_SEC)
