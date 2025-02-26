@@ -83,6 +83,9 @@
 /datum/preference/text/hypnotic_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
+/datum/preference/text/hypnotic_text/create_default_value()
+	return null
+
 /datum/preference/choiced/hypnotic_span/create_default_value()
 	return "Hypnophrase"
 
