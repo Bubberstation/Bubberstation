@@ -20,13 +20,16 @@
 
 	. = ..()
 
+	if(!.)
+		return FALSE
+
 	if( (shuttle_run_flags & EVENT_CONTROL_RUN_WHEN_SHUTTLE_IDLE) && !EMERGENCY_IDLE_OR_RECALLED)
 		return FALSE
 
 	if( (shuttle_run_flags & EVENT_CONTROL_RUN_WHEN_RECALLABLE) && EMERGENCY_PAST_POINT_OF_NO_RETURN)
 		return FALSE
 
-	if( (shuttle_run_flags & EVENT_CONTROL_RUN_WHEN_NOT_DOCKED) && !EMERGENCY_AT_LEAST_DOCKED)
+	if( (shuttle_run_flags & EVENT_CONTROL_RUN_WHEN_NOT_DOCKED) && EMERGENCY_AT_LEAST_DOCKED)
 		return FALSE
 
 //These are crew roles that require some semblence of setup (mechanics wise) and/or roleplay. Usually.
