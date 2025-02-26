@@ -239,7 +239,7 @@
 	savefile_key = "feature_ears"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
-	default_accessory_type = /datum/sprite_accessory/ears
+	default_accessory_type = /datum/sprite_accessory/ears/none
 
 /datum/preference/tri_color/ears
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES

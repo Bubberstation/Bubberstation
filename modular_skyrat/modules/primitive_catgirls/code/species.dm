@@ -70,7 +70,7 @@
 	human_for_preview.dna.species.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	human_for_preview.dna.species.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 
-	human_for_preview.update_mutant_bodyparts()
+	human_for_preview.update_body_parts()
 	human_for_preview.update_body(is_creating = TRUE)
 
 /datum/species/human/felinid/primitive/get_species_description()

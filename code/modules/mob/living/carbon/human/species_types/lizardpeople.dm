@@ -7,9 +7,8 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
-	mutant_bodyparts = list("body_markings" = "None", "legs" = "Normal Legs") // SKYRAT EDIT CHANGE - ORIGINAL: mutant_bodyparts = list("legs" = "Normal Legs")
-	//body_markings = list(/datum/bodypart_overlay/simple/body_marking/lizard = "None") // SKYRAT EDIT REMOVAL - We do this our own way
-	external_organs = list(
+	mutant_bodyparts = list("body_markings" = "None", "legs" = "Normal Legs") // SKYRAT EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/lizard = "None")
+	mutant_organs = list(
 		/obj/item/organ/external/horns = "None",
 		/obj/item/organ/external/frills = "None",
 		/obj/item/organ/external/snout = "Round",

@@ -30,19 +30,17 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	/// Format: (reagent typepath -> list(amount to inject per bite, cooldown, can be milked (venom_milker.dm)))
 	var/static/list/venomous_bite_choice_specs = list(
-		/datum/reagent/toxin/player_venom = list(5, 80 SECONDS, FALSE),
+		/datum/reagent/toxin = list(5, 80 SECONDS, FALSE),
 		/datum/reagent/toxin/venom = list(5, 180 SECONDS, FALSE),
-		/datum/reagent/toxin/staminatoxin = list(5, 120 SECONDS, FALSE),
-		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS, FALSE), // less powerful than the zootoxin
-		// medicine
-		/datum/reagent/medicine/epinephrine = list(5, 20 SECONDS, FALSE),
-		/datum/reagent/medicine/omnizine = list(5, 90 SECONDS, FALSE), // barely worth it due to the damage biting does
+		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS, FALSE), // less powerful than toxin
 		// drugs
 		/datum/reagent/drug/space_drugs = list(5, 60 SECONDS, TRUE),
 		/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS, FALSE),
 		// erp stuff
 		/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS, TRUE),
 		/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS, TRUE),
+		/datum/reagent/drug/aphrodisiac/succubus_milk = list(5, 2 SECONDS, TRUE),
+		/datum/reagent/drug/aphrodisiac/incubus_draft = list(5, 2 SECONDS, TRUE),
 )
 	var/static/list/milkable_venoms = generate_milkable_venom_list()
 	var/static/milkable_string = generate_milkable_venom_string()
@@ -76,7 +74,7 @@
 	return choices
 
 /datum/preference/choiced/venomous_bite_venom/create_default_value()
-	return "/datum/reagent/toxin/player_venom"
+	return "/datum/reagent/toxin"
 
 /datum/preference/choiced/venomous_bite_venom/compile_constant_data()
 	var/list/data = ..()

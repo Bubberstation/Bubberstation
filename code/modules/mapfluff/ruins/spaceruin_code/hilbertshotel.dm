@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -19,6 +19,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/stationside/ghost_cafe_rooms_stationside
 	var/datum/map_template/ghost_cafe_rooms/library/ghost_cafe_rooms_library
 	//Skyrat EDIT END
+
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
+	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave
+	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
+	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
+	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
+	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
 	var/datum/map_template/hilbertshotel/empty/hotelRoomTempEmpty
@@ -44,6 +51,12 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_stationside = new()
 	ghost_cafe_rooms_library = new()
 	//SKYRAT EDIT END
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
+	ghost_cafe_rooms_cultcave = new()
+	ghost_cafe_rooms_winterwoods = new()
+	ghost_cafe_rooms_evacuationstation = new()
+	ghost_cafe_rooms_prisoninfdorm = new()
+	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
 	if(currentArea.type == /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
@@ -197,6 +210,21 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Library")
 		load_from = ghost_cafe_rooms_library
 	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
+	else if(chosen_room == "Cultist's Cavern")
+		load_from = ghost_cafe_rooms_cultcave
+
+	else if(chosen_room == "Winter Woods")
+		load_from = ghost_cafe_rooms_winterwoods
+
+	else if(chosen_room == "Evacuated Station")
+		load_from = ghost_cafe_rooms_evacuationstation
+
+	else if(chosen_room == "Prison")
+		load_from = ghost_cafe_rooms_prisoninfdorm
+
+	//BUBBER EDIT END
+
 
 	load_from.load(bottom_left)
 	activeRooms["[roomNumber]"] = roomReservation
@@ -523,6 +551,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	requires_power = FALSE
 	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
 	has_gravity = TRUE
+
 
 /obj/item/abstracthotelstorage
 	anchored = TRUE

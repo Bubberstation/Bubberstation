@@ -4,12 +4,14 @@
 
 /datum/action/cooldown/mob_cooldown/venomous_bite
 	name = "Inject Venom"
-	desc = "Sink your fangs into another, and fill them with your venom. Not guaranteed to work against armor."
+	desc = "Sink your fangs into another and inject them with your venom. Ineffective against those wearing armor."
 
-	button_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
-	button_icon_state = "power_feed"
+	button_icon = 'modular_zubbers/icons/mob/actions/quirks/venomous_bite.dmi'
+	button_icon_state = "venom"
 
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi'
+
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED | AB_CHECK_HANDS_BLOCKED // cant use it if cuffed
 
 	/// The reagent we will inject.
 	var/datum/reagent/reagent_typepath
@@ -48,21 +50,21 @@
 	if (iscarbon(owner))
 		var/mob/living/carbon/carbon_holder = owner
 		if (carbon_holder.is_mouth_covered())
-			owner.balloon_alert("mouth covered!")
+			owner.balloon_alert(owner, "mouth covered!")
 			return FALSE
 
 	if (!owner.Adjacent(target_atom))
-		owner.balloon_alert("too far!")
+		owner.balloon_alert(owner, "too far!")
 		return FALSE
 
 	if (target_atom == owner)
-		owner.balloon_alert("can't bite yourself!")
+		owner.balloon_alert(owner, "can't bite yourself!")
 		return FALSE
 
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
 	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
 	owner.balloon_alert_to_viewers("biting...")
-	var/result = do_after(owner, 0.3 SECONDS, target_atom, IGNORE_HELD_ITEM)
+	var/result = do_after(owner, 0.5 SECONDS, target_atom, IGNORE_HELD_ITEM)
 	if (!result)
 		return FALSE
 
@@ -81,7 +83,7 @@
 
 	var/text = "[owner] sinks [owner.p_their()] teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
 	var/self_message = "You sink your teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/victim_message = "[owner] sinks [owner.p_their()] teeth your [target.parse_zone_with_bodypart(target_zone)]!"
+	var/victim_message = "[owner] sinks [owner.p_their()] teeth into your [target.parse_zone_with_bodypart(target_zone)]!"
 
 	var/covered = FALSE
 	if (ishuman(target))
@@ -112,6 +114,17 @@
 	if (prob(VENOMOUS_BITE_WOUND_CHANCE))
 		wound_bonus = VENOMOUS_BITE_WOUND_BONUS
 	target.apply_damage(VENOMOUS_BITE_DAMAGE, BRUTE, target_zone, armor, wound_bonus = wound_bonus, sharpness = SHARP_POINTY)
+	if (iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		for (var/datum/disease/our_disease as anything in carbon_owner.diseases)
+			if (our_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || our_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				target.ContactContractDisease(our_disease, target_zone)
+
+		if (iscarbon(target))
+			var/mob/living/carbon/carbon_target = target
+			for (var/datum/disease/their_disease as anything in carbon_target.diseases)
+				if (their_disease.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS || their_disease.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+					carbon_owner.ContactContractDisease(their_disease, target_zone)
 
 	return TRUE
 
