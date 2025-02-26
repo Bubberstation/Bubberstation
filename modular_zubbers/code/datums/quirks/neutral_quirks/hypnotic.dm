@@ -6,6 +6,7 @@
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN
 	gain_text = "Your presence grows richer."
 	lose_text = "Your potent presence dulls."
+	medical_record_text = "Patient shows signs of a far richer presence then normal."
 	erp_quirk = TRUE
 	var/hypnotic_text
 	var/hypnotic_color
@@ -75,6 +76,12 @@
 	savefile_key = "flashy_text"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
+
+/datum/preference/choiced/hypnotic_span/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
+
+/datum/preference/choiced/hypnotic_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
 
 /datum/preference/choiced/hypnotic_span/create_default_value()
 	return "Hypnophrase"
