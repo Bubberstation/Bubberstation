@@ -45,6 +45,11 @@
 	var/static/list/milkable_venoms = generate_milkable_venom_list()
 	var/static/milkable_string = generate_milkable_venom_string()
 
+/**
+ * Generates a static list of /datum/reagent that will not be transformed into [/datum/reagent/generic_milked_venom] upon being milked by a venom milker.
+ *
+ * Ran once, then never again.
+ */
 /proc/generate_milkable_venom_list()
 	RETURN_TYPE(/list)
 
@@ -58,6 +63,11 @@
 
 	return milkable
 
+/**
+ * Generates a static string appended to the venom milker's description, detailing which reagents available to the venom quirk will not be transformed into [/datum/reagent/generic_milked_venom].
+ *
+ * Ran once, then never again.
+ */
 /proc/generate_milkable_venom_string()
 	var/milkable_string = ""
 	for (var/datum/reagent/typepath as anything in /datum/preference/choiced/venomous_bite_venom::milkable_venoms)
