@@ -35,3 +35,4 @@
 
 // makes it so cult cannot get another blood stone from this mob
 #define TRAIT_HAS_BEEN_CULT_SACRIFICED "has_been_cult_sacrificed"
+
