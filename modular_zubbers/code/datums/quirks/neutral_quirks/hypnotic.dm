@@ -48,8 +48,6 @@
 			choice = "pink"
 		if("Cult")
 			choice = "cult"
-		if(hypnotic_text == "")
-			hypnotic_text = null
 
 	return "<span class='[choice]'>[isnull(hypnotic_text) ? "Their eyes are enticing to stare at." : hypnotic_text]</span>"
 
@@ -86,7 +84,7 @@
 	return
 
 /datum/preference/text/hypnotic_text/create_default_value()
-	return ""
+	return "Their eyes are inciticing to stare at."
 
 /datum/preference/choiced/hypnotic_span/create_default_value()
 	return "Hypnophrase"
