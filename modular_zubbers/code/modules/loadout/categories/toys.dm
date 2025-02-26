@@ -86,3 +86,7 @@
 /datum/loadout_item/toys/androiddog
 	name = "Android Dog Plushie"
 	item_path = /obj/item/toy/plush/androiddog
+
+/datum/loadout_item/toys/ghoul
+	name = "Intern Ghoul Plushie"
+	item_path = /obj/item/toy/plush/ghoul

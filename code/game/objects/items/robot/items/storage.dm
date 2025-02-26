@@ -320,7 +320,7 @@
 
 /obj/item/borg/apparatus/service
 	name = "service apparatus"
-	desc = "A special apparatus for carrying food, bowls, plates, oven trays, soup pots and paper."
+	desc = "A special apparatus for carrying seeds, food, bowls, plates, oven trays, soup pots, and paper."
 	icon_state = "borg_service_apparatus"
 	storable = list(
 		/obj/item/food,
@@ -329,6 +329,7 @@
 		/obj/item/plate/oven_tray,
 		/obj/item/reagent_containers/cup/bowl,
 		/obj/item/reagent_containers/cup/soup_pot,
+		/obj/item/seeds,
 	)
 
 /obj/item/borg/apparatus/service/Initialize(mapload)
