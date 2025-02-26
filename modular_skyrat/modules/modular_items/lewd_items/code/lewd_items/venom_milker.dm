@@ -105,6 +105,10 @@
 
 	return TRUE
 
+/**
+ * If a reagent milked from someone with the venom quirk is NOT in /datum/preference/choiced/venomous_bite_venom::milkable_venoms, it will be transformed into this
+ * generic chem that has no effects.
+ */
 /datum/reagent/generic_milked_venom
 	name = "Neutralized Venom"
 	description = "A venom siphon is capable of dampening most toxins extracted from a creature. \
