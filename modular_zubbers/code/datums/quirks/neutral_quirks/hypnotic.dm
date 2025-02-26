@@ -1,7 +1,7 @@
 /datum/quirk/hypnotic
 	name = "Hypnotic"
 	desc = "You are extremely captivating to people who might be suspectable to fall into a stupor"
-	icon = "face-grin-hearts"
+	icon = FA_ICON_FACE_GRIN_HEARTS
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN
 	gain_text = "Your presence grows richer."
