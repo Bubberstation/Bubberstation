@@ -1,11 +1,11 @@
 /datum/storyteller/enemy
-	name = "Enemy Within (Medium-High Chaos)"
+	name = "Enemy Within (High Chaos)"
 	desc = "The Enemy Within aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types."
 	welcome_text = "Chat, I think there is an imposter among us on this Space Station 13. I have grown suspicious."
 
 	tag_multipliers = list(
 		TAG_DESTRUCTIVE = 0.25,
-		TAG_CHAOTIC = 0.1, //*look inside medium-high chaos storyteller* *no chaos*
+		TAG_CHAOTIC = 0.1, //*look inside high chaos storyteller* *no chaos*
 		TAG_CREW_ANTAG = 2,
 		TAG_OUTSIDER_ANTAG = 0
 	)
