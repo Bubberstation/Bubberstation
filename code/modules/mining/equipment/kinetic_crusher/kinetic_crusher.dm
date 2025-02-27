@@ -60,7 +60,7 @@
 	)
 	//technically it's huge and bulky, but this provides an incentive to use it
 	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
-	register_context()
+	//register_context() // BUBBER EDIT - context is added through reskinning
 
 /obj/item/kinetic_crusher/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
