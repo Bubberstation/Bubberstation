@@ -8,8 +8,7 @@
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 15
-//	melee_damage_upper = 20
-	melee_damage_upper = 15 //BUBBER EDIT - nerfs the damage a bit
+	melee_damage_upper = 20  //BUBBER EDIT - buffs both values (200 and 25) in modular_zubbers
 	sight = SEE_MOBS
 	ai_controller = /datum/ai_controller/basic_controller/stalker
 	/// Actions to grant on spawn
@@ -26,6 +25,7 @@
 	grant_actions_by_list(actions_to_add)
 	RegisterSignal(src, COMSIG_ACTION_DISGUISED_APPEARANCE, PROC_REF(on_disguise)) //BUBBER EDIT - add a signal for the disguise, to be used in modular_zubbers
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_DISGUISED), PROC_REF(on_undisguise)) //and another
+	RegisterSignal(src, COMSIG_HOSTILE_POST_ATTACKINGTARGET, PROC_REF(post_disguise_attack)) //also a signal for when we attack to undisguise us
 
 /// Changes shape and lies in wait when it has no target, uses EMP and attacks once it does
 /datum/ai_controller/basic_controller/stalker
