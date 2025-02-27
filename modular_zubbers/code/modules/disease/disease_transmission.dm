@@ -20,8 +20,7 @@
 		update_event_disease_metric()
 
 	cached_event_disease_count = length(event_diseases)
-	for(var/obj/machinery/incident_display/sign as anything in GLOB.map_incident_displays)
-		sign.update_disease_count(cached_event_disease_count, previous_event_disease_count)
+	SEND_SIGNAL(src, COMSIG_DISEASE_COUNT_UPDATE, cached_event_disease_count, previous_event_disease_count)
 
 /datum/controller/subsystem/disease/proc/update_event_disease_metric()
 	previous_event_disease_count = cached_event_disease_count

@@ -144,6 +144,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/disease, 32)
 	update_delam_count(SSpersistence.rounds_since_engine_exploded, SSpersistence.delam_highscore)
 	update_disease_count(SSdisease.cached_event_disease_count, SSdisease.previous_event_disease_count) // BUBBER EDIT ADDITION - Disease Counter
 	RegisterSignal(SStransport, COMSIG_TRAM_COLLISION, PROC_REF(update_tram_count))
+	RegisterSignal(SSdisease, COMSIG_DISEASE_COUNT_UPDATE, PROC_REF(update_disease_count))
 
 	update_appearance()
 
@@ -326,7 +327,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/disease, 32)
  * * current - current active event disease metric
  * * previous - previous cached event disease metric
  */
-/obj/machinery/incident_display/proc/update_disease_count(current, previous)
+/obj/machinery/incident_display/proc/update_disease_count(source, current, previous)
 	current_disease_metric = min(current, 199)
 	prev_disease_metric = min(previous, 199)
 	update_appearance()
