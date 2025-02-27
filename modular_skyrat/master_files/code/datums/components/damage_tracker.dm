@@ -95,7 +95,7 @@
 				wound_list[limb.type] = list()
 			wound_list[limb.type] |= limb_wound.type
 
-heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
+	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
 	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver)
 	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs)
 	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach)
