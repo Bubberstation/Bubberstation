@@ -76,6 +76,9 @@
 	/// What brain traumas does the owner currently have?
 	var/list/trauma_list = list()
 
+	/// What wounds does the owner currently have?
+	var/list/wound_list = list()
+
 /datum/component/damage_tracker/human/update_damage_values()
 	. = ..()
 	var/mob/living/carbon/human/human_parent = parent
@@ -85,6 +88,12 @@
 	var/list/current_trauma_list = human_parent.get_traumas()
 	if(length(current_trauma_list))
 		trauma_list = current_trauma_list.Copy()
+
+	for(var/obj/item/bodypart/limb as anything in human_parent.get_wounded_bodyparts())
+		for(var/datum/wound/limb_wound as anything in limb.wounds)
+			if(!islist(wound_list[limb.type]))
+				wound_list[limb.type] = list()
+			wound_list[limb.type] |= limb_wound.type
 
 	heart_damage = human_parent.check_organ_damage(/obj/item/organ/internal/heart)
 	liver_damage = human_parent.check_organ_damage(/obj/item/organ/internal/liver)
@@ -120,6 +129,14 @@
 			continue // We don't need to torture the poor soul with the same brain trauma.
 
 		human_brain.gain_trauma(trauma_to_add)
+
+	for(var/obj/item/bodypart/limb_type as anything in wound_list)
+		var/obj/item/bodypart/limb_instance = locate(limb_type) in human_parent.bodyparts
+		if(!limb_instance)
+			continue
+		for(var/datum/wound/wound_type as anything in wound_list[limb_type])
+			var/datum/wound/new_wound = new wound_type()
+			new_wound.apply_wound(limb_instance, TRUE)
 
 	return TRUE
 
