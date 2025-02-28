@@ -299,6 +299,8 @@
 
 /datum/status_effect/physgun_pause
 	id = "physgun_pause"
+	alert_type = null
+
 	var/force = FALSE
 
 /datum/status_effect/physgun_pause/on_apply()

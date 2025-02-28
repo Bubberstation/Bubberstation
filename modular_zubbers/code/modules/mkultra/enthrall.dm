@@ -5,16 +5,19 @@
 #define FULLY_ENTHRALLED 3
 #define OVERDOSE_ENTHRALLED 4
 
+
+
 /*//////////////////////////////////////////
 		Mind control functions!
 ///////////////////////////////////////////
 */
 
 //Preamble
+/datum/status_effect/chem
+	id = STATUS_EFFECT_ID_ABSTRACT
+	alert_type = null
 
 /datum/status_effect/chem/enthrall
-	id = "enthrall"
-	alert_type = null
 	tick_interval = 4 SECONDS
 	//examine_text TODO
 	/// Keeps track of the enthralling process
