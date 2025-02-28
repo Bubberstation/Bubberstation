@@ -88,7 +88,7 @@
 
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
 
-	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste,
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/commander
 
 	gloves = /obj/item/clothing/gloves/combat/naval
