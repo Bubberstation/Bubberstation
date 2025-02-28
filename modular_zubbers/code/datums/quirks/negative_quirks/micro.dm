@@ -10,7 +10,7 @@
 	lose_text = span_notice("You feel a bit larger.")
 	medical_record_text = "Patient is short and small."
 	hardcore_value = 0
-	var/squash_damage_ = 14
+	var/squash_damage_ = 8
 	var/squash_chance_ = 25
 	var/size_reduced = 0.8
 
@@ -19,7 +19,7 @@
 	desc = "You are thirty percent smaller than others... \
 	with the drawback of being easily squashed and it HURTS!!"
 	icon = FA_ICON_LOCUST
-	squash_damage_ = 20
+	squash_damage_ = 15
 	squash_chance_ = 40
 	size_reduced = 0.7
 	value = -5
@@ -29,8 +29,8 @@
 	desc = "You are fourty percent smaller than others... People really squint their eyes to see you! \
 	You are also squished like a bug accidentally ALL the time!"
 	icon = FA_ICON_WINDOW_MINIMIZE
-	squash_damage_ = 40
-	squash_chance_ = 80
+	squash_damage_ = 30
+	squash_chance_ = 50
 	size_reduced = 0.6
 	value = -6
 
