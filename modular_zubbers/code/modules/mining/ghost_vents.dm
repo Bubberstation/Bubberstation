@@ -24,10 +24,11 @@
 	var/clear_tally = 0 //so we can track how many time it clears for data-testing purposes.
 	var/boulder_bounty = 10 //how many boulders per clear attempt. First one is small and easy
 	var/new_ore_cycle = TRUE //We want this to generate new ore types upon untapping. Var incase we want some wacky shit later.
-	var/static_threat = FALSE //do we want a static threat?
+	var/static_threat = FALSE //Is this a static threat? Useful for boss/elite vents
 	var/static_magnitude = null //Does this vent have a static magnitude?
 	var/static_boulder_size = null //Does this vent have a static boulder size?
 	var/static_boulder_bounty = null //does this vent have a static boulder bounty?
+	var/random_start = FALSE  //does this vent randomize at start?
 	var/threat_pool = list(
 		COLONY_THREAT_CARP,
 		COLONY_THREAT_PIRATES,
@@ -48,7 +49,12 @@
 	. = ..()
 	boulder_bounty -= 1
 	if(boulder_bounty == 0)
-		reset_vent()
+		reset_vent(TRUE)
+
+/obj/structure/ore_vent/ghost_mining/Initialize(mapload)
+	. = ..()
+	if(random_start)
+		reset_vent(FALSE)
 
 /obj/structure/ore_vent/ghost_mining/start_wave_defense() //We add faction and change spawn text a bit. tbh we could rebalance a bit but thats for later ideas
 	AddComponent(\
@@ -67,14 +73,15 @@
 	icon_state = icon_state_tapped
 	update_appearance(UPDATE_ICON_STATE)
 
-/obj/structure/ore_vent/ghost_mining/proc/reset_vent() // We want to re-cycle the vent to an untapped state.
+/obj/structure/ore_vent/ghost_mining/proc/reset_vent(cleared = FALSE) // We want to re-cycle the vent to an untapped state.
 	var/gps_name = "fresh oxide chunk" // Default backup incase we dont recycle ore
 	cut_overlays() // Remove the rig. Maybe later i or someone else can do some fancy animation for this.
 	tapped = FALSE //make it untapped by state, duh.
 	SSore_generation.processed_vents -= src //make it registered as untapped
 	icon_state = base_icon_state // Resets the icon
 	update_appearance(UPDATE_ICON_STATE)
-	clear_tally += 1 // data points bby
+	if(cleared)
+		clear_tally += 1 // data points bby
 	if(new_ore_cycle) //Do we want this to get new ores?
 		var/new_boulder_size = pick(ore_vent_options) // we put this here for GPS and customization reasons
 		if(static_boulder_size)
@@ -196,11 +203,17 @@
 	defending_mobs = list(/mob/living/basic/mining/legion/spawner_made) //one of the easier starting ones
 	threat_pool = list(COLONY_THREAT_MINING)
 
+/obj/structure/ore_vent/ghost_mining/lavaland/ras //random at start
+	random_start = TRUE
+
 /obj/structure/ore_vent/ghost_mining/snowland
 	icon_state = "ore_vent_ice_active"
 	base_icon_state = "ore_vent_ice_active"
 	defending_mobs = list(/mob/living/basic/mining/wolf) //one of the easier snowies
 	threat_pool = list(COLONY_THREAT_SNOW)
+
+/obj/structure/ore_vent/ghost_mining/snowland/ras
+	random_start = TRUE
 
 /obj/structure/ore_vent/ghost_mining/undersnow
 	icon_state = "ore_vent_ice_active"
@@ -230,6 +243,9 @@
 /obj/structure/ore_vent/ghost_mining/cult
 	defending_mobs = list(/mob/living/basic/construct/proteon/hostile)
 	threat_pool = list(COLONY_THREAT_CULT)
+
+/obj/structure/ore_vent/ghost_mining/ras
+	random_start = TRUE
 
 /obj/structure/ore_vent/ghost_mining/boss
 	name = "swirling oxide pool"
