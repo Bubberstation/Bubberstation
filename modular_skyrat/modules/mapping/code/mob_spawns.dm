@@ -200,6 +200,7 @@
 
 /datum/outfit/ds2/syndicate/miner
 	name = "DS-2 Mining Officer"
+	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	uniform = /obj/item/clothing/under/syndicate/skyrat/overalls
 	belt = /obj/item/storage/bag/ore
 	back = /obj/item/storage/backpack/satchel/explorer
@@ -209,7 +210,7 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
+		/obj/item/ammo_box/magazine/m9mm = 1,
 		)
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/miner
 	l_pocket = /obj/item/card/mining_point_card
