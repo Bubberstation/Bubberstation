@@ -139,7 +139,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		opened = !opened
 		update_appearance(UPDATE_ICON)
 
-/* SKYRAT EDIT REMOVAL BEGIN - AESTHETICS - MOVED TO MODULAR.
 /obj/structure/extinguisher_cabinet/update_icon_state()
 	icon_state = "extinguisher"
 
@@ -155,8 +154,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		icon_state += "_default"
 
 	return ..()
-*/
-
 
 /obj/structure/extinguisher_cabinet/update_overlays()
 	. = ..()
