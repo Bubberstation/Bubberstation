@@ -129,8 +129,6 @@
 		/mob/living/simple_animal/hostile/vox/ranged/laser,
 		/mob/living/simple_animal/hostile/vox/ranged/space,
 		/mob/living/simple_animal/hostile/vox/ranged/space/laser,
-		/mob/living/simple_animal/hostile/zombie/cheesezombie,
-		/mob/living/simple_animal/hostile/zombie/nocorpse,
 
 		// DO NOT ADD NEW ENTRIES TO THIS LIST
 		// READ THE COMMENT ABOVE
