@@ -25,13 +25,14 @@
 
 	head = /obj/item/clothing/head/beret/centcom_formal
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval
 
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/lieutenant
@@ -43,13 +44,15 @@
 
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
+
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/commander
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/lieutenant_commander
@@ -63,13 +66,15 @@
 
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
+
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/commander
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/commander
@@ -83,13 +88,14 @@
 
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste,
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/commander
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/captain
@@ -103,13 +109,15 @@
 
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
+
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/commander
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/rear_admiral
@@ -119,13 +127,15 @@
 
 	head = /obj/item/clothing/head/hats/caphat/naval
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
+
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/admiral
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/admiral
@@ -137,13 +147,14 @@
 
 	neck = /obj/item/clothing/neck/cloak/admiral
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/admiral
 
 	gloves = /obj/item/clothing/gloves/combat/naval
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)
 
 /datum/outfit/centcom/naval/fleet_admiral
@@ -155,11 +166,13 @@
 
 	neck = /obj/item/clothing/neck/cloak/fleet_admiral
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
+
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/fleet_admiral
 
 	gloves = /obj/item/clothing/gloves/combat/naval/fleet_admiral
 
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 	)

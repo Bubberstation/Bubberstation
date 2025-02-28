@@ -146,6 +146,7 @@
 	name = "Privateer Slaver Captain"
 	head = /obj/item/clothing/head/helmet/alt
 	suit = /obj/item/clothing/suit/armor/bulletproof
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/syndicate/combat
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -162,7 +163,7 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival/engineer/radio,
 		/obj/item/melee/baton/telescopic,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 		/obj/item/megaphone/command
 	)
 
