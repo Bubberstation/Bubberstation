@@ -26,7 +26,8 @@
 		"powerator_tarkon",
 		"cargoconsole_tarkon",
 		"bountypad_tarkon",
-		"bountyconsole_tarkon"
+		"bountyconsole_tarkon",
+		"tarkonbsc"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
@@ -119,6 +120,21 @@
 		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/gun/energy/recharge/resonant_system
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+
+/datum/design/tarkonbsc
+	name = "Tarkon BSC Refinery Box"
+	id = "tarkonbsc"
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3
+	)
+	build_path = /obj/item/flatpacked_machine/boulder_collector/tarkon
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
 	)
