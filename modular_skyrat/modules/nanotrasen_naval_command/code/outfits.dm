@@ -25,6 +25,7 @@
 
 	head = /obj/item/clothing/head/beret/centcom_formal
 
+	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval
 
@@ -127,6 +128,7 @@
 
 	head = /obj/item/clothing/head/hats/caphat/naval
 
+	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/admiral
@@ -147,6 +149,7 @@
 
 	neck = /obj/item/clothing/neck/cloak/admiral
 
+	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/admiral
 
@@ -166,6 +169,7 @@
 
 	neck = /obj/item/clothing/neck/cloak/fleet_admiral
 
+	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 
 	uniform = /obj/item/clothing/under/rank/centcom/skyrat/naval/fleet_admiral
