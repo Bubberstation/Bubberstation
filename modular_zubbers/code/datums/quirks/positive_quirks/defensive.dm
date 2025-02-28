@@ -29,7 +29,7 @@
 			actual_problems |= problem
 	var/mob/living/intheway = pick(actual_problems)
 	if(prob(75))
-		quirk_holder.disarm(intheway)
+		quirk_holder.ClickOn(intheway, list2params(list(RIGHT_CLICK = RIGHT_CLICK)))
 	else
 		quirk_holder.set_combat_mode(TRUE)
 		quirk_holder.ClickOn(intheway)
