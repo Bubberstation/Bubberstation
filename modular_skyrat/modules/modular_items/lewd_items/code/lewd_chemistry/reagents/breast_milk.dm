@@ -6,6 +6,5 @@
 
 /datum/glass_style/drinking_glass/breast_milk
 	required_drink_type = /datum/reagent/consumable/breast_milk
-	icon_state = "glass_white"
 	name = "glass of breast milk"
 	desc = "almost like normal milk."

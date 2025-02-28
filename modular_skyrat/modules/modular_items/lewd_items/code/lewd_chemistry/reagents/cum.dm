@@ -6,7 +6,6 @@
 
 /datum/glass_style/drinking_glass/femcum
 	required_drink_type = /datum/reagent/consumable/femcum
-	icon_state = "glass_white"
 	name = "glass of girlcum"
 	desc = "A strange white liquid... Ew!"
 
@@ -24,7 +23,6 @@
 
 /datum/glass_style/drinking_glass/cum
 	required_drink_type = /datum/reagent/consumable/cum
-	icon_state = "glass_white"
 	name = "glass of cum"
 	desc = "O-oh, my...~"
 
