@@ -14,26 +14,28 @@
 	RegisterSignal(quirk_holder, COMSIG_LIVING_MOB_BUMP, PROC_REF(on_bump))
 
 /datum/quirk/defensive/proc/on_bump(mob/living/bumped)
-	if(!COOLDOWN_FINISHED(src, shovingspam))
-		return
-	if(quirk_holder.get_active_held_item())
-		return
-	if(HAS_TRAIT(quirk_holder, TRAIT_RESTRAINED))
-		return
-	var/list/problems = oview(1, quirk_holder)
-	var/list/actual_problems = list()
-	for(var/mob/living/problem in problems)
-		if(problem == quirk_holder)
-			continue
-		if(istype(problem, /mob/living))
-			actual_problems |= problem
-	var/mob/living/intheway = pick(actual_problems)
-	if(prob(75))
-		quirk_holder.ClickOn(intheway, list2params(list(RIGHT_CLICK = RIGHT_CLICK)))
-	else
-		quirk_holder.set_combat_mode(TRUE)
-		quirk_holder.ClickOn(intheway)
-	COOLDOWN_START(src, shovingspam, 5 SECONDS)
+	SIGNAL_HANDLER
+	ASYNC
+		if(!COOLDOWN_FINISHED(src, shovingspam))
+			return
+		if(quirk_holder.get_active_held_item())
+			return
+		if(HAS_TRAIT(quirk_holder, TRAIT_RESTRAINED))
+			return
+		var/list/problems = oview(1, quirk_holder)
+		var/list/actual_problems = list()
+		for(var/mob/living/problem in problems)
+			if(problem == quirk_holder)
+				continue
+			if(istype(problem, /mob/living))
+				actual_problems |= problem
+		var/mob/living/intheway = pick(actual_problems)
+		if(prob(75))
+			quirk_holder.ClickOn(intheway, list2params(list(RIGHT_CLICK = RIGHT_CLICK)))
+		else
+			quirk_holder.set_combat_mode(TRUE)
+			quirk_holder.ClickOn(intheway)
+		COOLDOWN_START(src, shovingspam, 5 SECONDS)
 
 /datum/quirk/defensive/remove()
 	. = ..()
