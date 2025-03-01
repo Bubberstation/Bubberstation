@@ -117,7 +117,7 @@
 				/obj/item/clothing/suit/toggle/jacket/corrections_officer = 2,
 				/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
 				/obj/item/clothing/head/playbunnyears/prisoner = 6,
-				/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,
+				/obj/item/clothing/under/rank/prisoner/bunnysuit = 6,
 				/obj/item/clothing/neck/tie/bunnytie/prisoner = 6,
 			),
 		),
