@@ -53,6 +53,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/tails_list_felinid
 	var/list/tails_list_lizard
 	var/list/tails_list_monkey
+	var/list/tails_list_xeno
 	var/list/tails_list_fish
 	var/list/ears_list
 	var/list/wings_list
@@ -129,6 +130,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	tails_list_lizard = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard)[DEFAULT_SPRITE_LIST]
 	*/
 	tails_list_monkey = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey)[DEFAULT_SPRITE_LIST]
+	tails_list_xeno = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/xeno)[DEFAULT_SPRITE_LIST]
 	//tails fo fish organ infusions, not for prefs.
 	tails_list_fish = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/fish)[DEFAULT_SPRITE_LIST]
 	/*
