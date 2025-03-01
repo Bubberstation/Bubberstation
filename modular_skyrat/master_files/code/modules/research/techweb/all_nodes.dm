@@ -143,12 +143,6 @@
 
 ////////////////////////Computer tech////////////////////////
 
-/datum/techweb_node/consoles/New()
-	design_ids += list(
-		"time_clock_frame",
-	)
-	return ..()
-
 /datum/techweb_node/hud/New()
 	design_ids += list(
 		"health_hud_prescription",
