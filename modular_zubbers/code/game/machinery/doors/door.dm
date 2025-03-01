@@ -1,7 +1,7 @@
-#define LINK_DENY "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=deny'>\a (deny)</a>"
-#define LINK_OPEN "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=open'>\a (open)</a>"
-#define LINK_BOLT "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=bolt'>\a (bolt)</a>"
-#define LINK_SHOCK "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>\a (shock)</a>"
+#define LINK_DENY "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=deny'>(deny)</a>"
+#define LINK_OPEN "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=open'>(open)</a>"
+#define LINK_BOLT "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=bolt'>(bolt)</a>"
+#define LINK_SHOCK "<a href='?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>(shock)</a>"
 
 /obj/machinery/door/airlock
 	//so the AI doesn't get spammed
@@ -29,7 +29,7 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+			to_chat(AI.deployed_shell, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY] [LINK_OPEN] [LINK_BOLT] [LINK_SHOCK]")
 		if(!is_station_level(AI.registered_z))
 			continue
 		to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
