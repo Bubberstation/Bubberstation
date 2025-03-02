@@ -23,6 +23,7 @@
 	var/list/death_loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, death_loot)
 	AddComponent(/datum/component/appearance_on_aggro, aggro_state = "[icon_state]_armed")
+	AddComponent(/datum/component/aggro_emote, living_only = TRUE, emote_list = list("buzzes", "flashes", "flies", "beeps"))
 	RegisterSignal(src, COMSIG_HOSTILE_POST_ATTACKINGTARGET, PROC_REF(on_attack))
 
 /mob/living/basic/hiveswarm/Destroy()
@@ -42,7 +43,7 @@
 	)
 
 	if(isliving(target) && prob(20))
-		playsound(src, pick(hiveswarm_sounds), 40, TRUE)
+		playsound(src, pick(hiveswarm_sounds), 50, TRUE)
 
 /mob/living/basic/hiveswarm/harvester
 	name = "hiveswarm harvester"
@@ -59,11 +60,14 @@
 	laser.Grant(src)
 	ai_controller.set_blackboard_key(BB_HIVESWARM_LASER_ABILITY, laser)
 	AddElement(/datum/element/wall_tearer, allow_reinforced = TRUE, tear_time = 5 SECONDS, reinforced_multiplier = 3, do_after_key = DOAFTER_HARVESTER)
+	RegisterSignal(src, COMSIG_AI_BLACKBOARD_KEY_SET(BB_TARGET_MINERAL_WALL), PROC_REF(harvesting_walls))
 
-/mob/living/basic/hiveswarm/harvester/on_attack(atom/target, mob/living/source)
-	. = ..()
-	if(isclosedturf(target))
-		flick("hivebotharvester_harvesting", src)
+/mob/living/basic/hiveswarm/harvester/Destroy()
+	UnregisterSignal(src, COMSIG_AI_BLACKBOARD_KEY_SET(BB_TARGET_MINERAL_WALL))
+	return ..()
+
+/mob/living/basic/hiveswarm/proc/harvesting_walls()
+	flick("hivebotharvester_armed", src)
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/harvester_laser
 	name = "Main Laser"

@@ -20,6 +20,7 @@
 /datum/ai_controller/basic_controller/hiveswarm/basic
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 		/datum/ai_planning_subtree/find_and_hunt_target/hunt_objs_with_materials,
 	)
 
@@ -55,6 +56,10 @@
 /datum/ai_planning_subtree/targeted_mob_ability/hiveswarm_range/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	if(!get_dist(controller.pawn, target_key))
 		return
+	if(isliving(target_key))
+		var/mob/living/target = target_key
+		if(target.stat != CONSCIOUS)
+			return
 	return ..()
 
 /datum/ai_planning_subtree/targeted_mob_ability/continue_planning/hiveswarm_bomb

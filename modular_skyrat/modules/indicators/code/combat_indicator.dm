@@ -70,6 +70,9 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 	if(stat == DEAD)
 		combat_indicator = FALSE
 
+	if(!isnull(client)) // CI is a player thing.
+		return
+
 	if(combat_indicator == state) // If the mob is dead (should not happen) or if the combat_indicator is the same as state (also shouldnt happen) kill the proc.
 		return
 
