@@ -10,7 +10,7 @@
 	name = "red and white collared outfit"
 	icon_state = "whiteandred_kiryulmfao"
 
-/datum/loadout_item/uniform/jumpsuit/red_and_white_collared_outfit
+/datum/loadout_item/uniform/miscellaneous/red_and_white_collared_outfit
 	name = "red and white collared outfit"
 	item_path = /obj/item/clothing/under/red_and_white_collared_outfit
 
