@@ -18,7 +18,7 @@
 							/mob/living/basic/hiveswarm/bomber = 1,
 							/mob/living/basic/hiveswarm/basic = 3,
 							/mob/living/basic/hiveswarm/guardian = 2,
-							/mob/living/basic/hiveswarm/ranged = 2
+							/mob/living/basic/hiveswarm/ranged = 1
 						)
 
 /obj/structure/bubber_hivebot_beacon/Initialize()
@@ -72,7 +72,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announcement)), 3 MINUTES)
 	for(var/i = 1 to 3) // Spawn some inital chaff
 		create_mob(/mob/living/basic/hiveswarm/basic, 0, null)
-		/////////////////// ENSURE THIS WORKS ^
+
 
 /obj/structure/bubber_hivebot_beacon/proc/announcement()
 	if(QDELETED(src))
@@ -81,7 +81,7 @@
 
 /obj/structure/bubber_hivebot_beacon/proc/create_mob(mob/to_spawn, material_price, cooldown)
 	var/price = material_price
-	if(!COOLDOWN_FINISHED(src, hivebot_creation))
+	if(!COOLDOWN_FINISHED(src, hivebot_creation) && !isnull(cooldown))
 		return FALSE
 	if (material_storage >= price)
 		var/mob/living/basic/hiveswarm/new_mob = new to_spawn(get_turf(src))
