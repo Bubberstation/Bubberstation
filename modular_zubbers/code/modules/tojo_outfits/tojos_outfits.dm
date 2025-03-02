@@ -9,6 +9,7 @@
 	desc = "An outfit that screams 'I've never killed anyone!', which is probably true."
 	name = "red and white collared outfit"
 	icon_state = "whiteandred_kiryulmfao"
+	worn_icon_state = "whiteandred_kiryulmfao"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /datum/loadout_item/uniform/miscellaneous/red_and_white_collared_outfit
