@@ -151,7 +151,7 @@
 		return
 	. = combat_mode
 	combat_mode = new_mode
-	if(client)
+	if(client) //SKYRAT EDIT ADDITION
 		SEND_SIGNAL(src, COMSIG_LIVING_COMBAT_MODE_TOGGLE, new_mode) //SKYRAT EDIT ADDITION
 	if(hud_used?.action_intent)
 		hud_used.action_intent.update_appearance()
