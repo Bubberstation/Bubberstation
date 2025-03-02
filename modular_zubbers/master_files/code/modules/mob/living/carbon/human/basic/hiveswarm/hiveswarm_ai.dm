@@ -52,6 +52,11 @@
 /datum/ai_planning_subtree/targeted_mob_ability/hiveswarm_range
 	ability_key = BB_HIVESWARM_LASER_ABILITY
 
+/datum/ai_planning_subtree/targeted_mob_ability/hiveswarm_range/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	if(!get_dist(controller.pawn, target_key))
+		return
+	return ..()
+
 /datum/ai_planning_subtree/targeted_mob_ability/continue_planning/hiveswarm_bomb
 	ability_key = BB_HIVESWARM_BOMB_ABILITY
 	use_ability_behaviour = /datum/ai_behavior/targeted_mob_ability/min_range/short
@@ -63,6 +68,7 @@
 	if(controller.blackboard_key_exists(BB_TARGET_MINERAL_WALL))
 		controller.queue_behavior(/datum/ai_behavior/mine_station_wall, BB_TARGET_MINERAL_WALL)
 		return SUBTREE_RETURN_FINISH_PLANNING
+
 	controller.queue_behavior(find_wall_behavior, BB_TARGET_MINERAL_WALL)
 
 /datum/ai_behavior/mine_station_wall
@@ -77,7 +83,6 @@
 	set_movement_target(controller, target)
 
 /datum/ai_behavior/mine_station_wall/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	var/mob/living/basic/living_pawn = controller.pawn
 	var/turf/closed/mineral/target = controller.blackboard[target_key]
 	if(!controller.ai_interact(target = target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED

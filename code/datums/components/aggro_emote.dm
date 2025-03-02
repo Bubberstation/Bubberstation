@@ -12,6 +12,10 @@
 	var/subtract_chance
 	/// Minimum chance to play an emote
 	var/minimum_chance
+	/// Sound to play when attacking
+	var/sound_file
+	/// Chance to play a sound
+	var/sound_chance
 
 /datum/component/aggro_emote/Initialize(
 	target_key = BB_BASIC_MOB_CURRENT_TARGET,
@@ -20,6 +24,7 @@
 	emote_chance = 30,
 	minimum_chance = 2,
 	subtract_chance = 7,
+	sound_chance = 30,
 )
 	. = ..()
 	if (!isatom(parent))
@@ -33,6 +38,8 @@
 	src.emote_chance = emote_chance
 	src.minimum_chance = minimum_chance
 	src.subtract_chance = subtract_chance
+	src.sound_file = sound_file
+	src.sound_chance = sound_chance
 
 /datum/component/aggro_emote/RegisterWithParent()
 	. = ..()

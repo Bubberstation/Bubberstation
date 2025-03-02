@@ -22,10 +22,27 @@
 	AddElement(/datum/element/simple_flying)
 	var/list/death_loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, death_loot)
+	AddComponent(/datum/component/appearance_on_aggro, aggro_state = "[icon_state]_armed")
+	RegisterSignal(src, COMSIG_HOSTILE_POST_ATTACKINGTARGET, PROC_REF(on_attack))
 
 /mob/living/basic/hiveswarm/Destroy()
 	our_beacon = null
+	UnregisterSignal(src, COMSIG_ATOM_ATTACK_BASIC_MOB)
 	return ..()
+
+/mob/living/basic/hiveswarm/proc/on_attack(atom/target, mob/living/source)
+	SIGNAL_HANDLER
+
+	var/static/list/hiveswarm_sounds = list(
+		'modular_zubbers/sound/mob/hivebots/hivebot-attack-1.ogg',
+		'modular_zubbers/sound/mob/hivebots/hivebot-attack-2.ogg',
+		'modular_zubbers/sound/mob/hivebots/hivebot-bark-1.ogg',
+		'modular_zubbers/sound/mob/hivebots/hivebot-bark-2.ogg',
+		'modular_zubbers/sound/mob/hivebots/hivebot-bark-3.ogg'
+	)
+
+	if(isliving(target) && prob(20))
+		playsound(src, pick(hiveswarm_sounds), 40, TRUE)
 
 /mob/living/basic/hiveswarm/harvester
 	name = "hiveswarm harvester"
@@ -42,6 +59,11 @@
 	laser.Grant(src)
 	ai_controller.set_blackboard_key(BB_HIVESWARM_LASER_ABILITY, laser)
 	AddElement(/datum/element/wall_tearer, allow_reinforced = TRUE, tear_time = 5 SECONDS, reinforced_multiplier = 3, do_after_key = DOAFTER_HARVESTER)
+
+/mob/living/basic/hiveswarm/harvester/on_attack(atom/target, mob/living/source)
+	. = ..()
+	if(isclosedturf(target))
+		flick("hivebotharvester_harvesting", src)
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/harvester_laser
 	name = "Main Laser"
@@ -107,7 +129,6 @@
 			amount += materials[material_key]
 		var/datum/storage/storage_thing = item.atom_storage
 		storage_thing?.remove_all(item.loc)
-
 		our_beacon?.material_storage += amount
 		apply_wibbly_filters(item)
 		animate(item, 3 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 0, color = "#00e1ff")
