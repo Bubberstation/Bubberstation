@@ -8,6 +8,7 @@
 /obj/item/clothing/under/red_and_white_collared_outfit
 	desc = "An outfit that screams 'I've never killed anyone!', which is probably true."
 	name = "red and white collared outfit"
+	icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
 	icon_state = "whiteandred_kiryulmfao"
 	worn_icon_state = "whiteandred_kiryulmfao"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
