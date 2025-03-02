@@ -79,10 +79,14 @@
 			// I wish it didn't include the asterisk but it's modular this way.
 			hearing.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = EMOTE_MESSAGE)
 
+		var/sender_name = src.mob.name
+		if (istype(mob, /mob/dead))
+			sender_name = key
+
 		if (is_holder)
 			continue //admins are handled afterwards
 
-		to_chat(hearing_client, span_looc(span_prefix("LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]")))
+		to_chat(hearing_client, span_looc(span_prefix("LOOC[wall_pierce ? " (WALL PIERCE)" : ""]:</span> <EM>[sender_name]:</EM> <span class='message'>[msg]")))
 
 	for(var/client/cli_client as anything in GLOB.admins)
 		if (admin_seen[cli_client])
