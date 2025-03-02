@@ -497,13 +497,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/disease, 32)
 		if(current_disease_metric > prev_disease_metric)
 			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_RISING)
 			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_RISING]", src, alpha = DISPLAY_PIXEL_ALPHA)
-			disease_trend_overlay.color = COLOR_DISPLAY_RED
+			disease_trend_overlay.color = "#fb6493"
 			. += disease_trend_overlay
 			. += disease_trend_emissive
-		else if(prev_disease_metric)
+		else
 			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_FALLING)
 			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_FALLING]", src, alpha = DISPLAY_PIXEL_ALPHA)
-			disease_trend_overlay.color = COLOR_DISPLAY_GREEN
+			disease_trend_overlay.color = disease_display_color
 			. += disease_trend_overlay
 			. += disease_trend_emissive
 	// BUBBER EDIT ADDITION END - Disease Counter
