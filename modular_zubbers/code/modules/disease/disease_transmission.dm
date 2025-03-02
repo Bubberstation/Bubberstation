@@ -9,7 +9,7 @@
 	var/next_cache_update = 0
 
 /datum/controller/subsystem/disease/stat_entry(msg)
-	msg = "P:[length(active_diseases)] EV:[length(event_diseases)]"
+	msg = "P:[length(active_diseases)] EV:[cached_event_disease_count]"
 	return ..()
 
 /datum/controller/subsystem/disease/fire()
@@ -19,7 +19,13 @@
 	if(world.time >= next_cache_update)
 		update_event_disease_metric()
 
-	cached_event_disease_count = length(event_diseases)
+	var/current_infections = 0
+	for(var/datum/disease/active_infection as anything in event_diseases)
+		if(isnull(active_infection.affected_mob) || active_infection.affected_mob?.stat == DEAD)
+			continue // don't count dead people. they can't spread disease, right? right???...
+		current_infections++
+
+	cached_event_disease_count = current_infections
 	SEND_SIGNAL(src, COMSIG_DISEASE_COUNT_UPDATE, cached_event_disease_count, previous_event_disease_count)
 
 /datum/controller/subsystem/disease/proc/update_event_disease_metric()
