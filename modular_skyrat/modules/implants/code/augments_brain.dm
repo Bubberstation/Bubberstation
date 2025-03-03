@@ -30,6 +30,8 @@
 			owner.adjust_silence(10 SECONDS)
 
 /obj/item/organ/cyberimp/brain/empathic_sensor/proc/implant_ready()
+	if(isnull(owner))
+		return
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	owner.grant_language(/datum/language/marish/empathy, source = LANGUAGE_IMPLANT)
 	to_chat(owner, span_abductor("Your mind opens to others. You can hear the thoughts of those around you, but only faintly."))
