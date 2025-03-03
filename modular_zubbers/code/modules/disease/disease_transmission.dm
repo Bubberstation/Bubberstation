@@ -1,6 +1,36 @@
 /datum/controller/subsystem/disease
+	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
+	flags = SS_BACKGROUND
+	wait = 16 SECONDS
 	/// List of event created diseases in all mobs
 	var/list/event_diseases = list()
+	var/cached_event_disease_count = 0
+	var/previous_event_disease_count = 0
+	var/next_cache_update = 0
+
+/datum/controller/subsystem/disease/stat_entry(msg)
+	msg = "P:[length(active_diseases)] EV:[cached_event_disease_count]"
+	return ..()
+
+/datum/controller/subsystem/disease/fire()
+	update_event_disease_cache()
+
+/datum/controller/subsystem/disease/proc/update_event_disease_cache()
+	if(world.time >= next_cache_update)
+		update_event_disease_metric()
+
+	var/current_infections = 0
+	for(var/datum/disease/active_infection as anything in event_diseases)
+		if(isnull(active_infection.affected_mob) || active_infection.affected_mob?.stat == DEAD)
+			continue // don't count dead people. they can't spread disease, right? right???...
+		current_infections++
+
+	cached_event_disease_count = current_infections
+	SEND_SIGNAL(src, COMSIG_DISEASE_COUNT_UPDATE, cached_event_disease_count, previous_event_disease_count)
+
+/datum/controller/subsystem/disease/proc/update_event_disease_metric()
+	previous_event_disease_count = cached_event_disease_count
+	next_cache_update = world.time + 4 MINUTES
 
 /datum/disease
 	/// Debug logs for disease transmission refactor, to verify after the fact the system is working as intended
