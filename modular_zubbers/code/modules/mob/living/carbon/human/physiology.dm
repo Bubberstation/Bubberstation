@@ -21,8 +21,8 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			blocked += physiology.flat_brute_mod
+			damage += physiology.flat_brute_mod
 		if(BURN)
-			blocked += physiology.flat_burn_mod
+			damage += physiology.flat_burn_mod
 
 	. = ..()
