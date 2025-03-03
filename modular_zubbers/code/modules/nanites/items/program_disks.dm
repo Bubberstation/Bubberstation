@@ -1,5 +1,3 @@
-//Names are intentionally all the same - track your nanites, or use a hand labeler
-//This also means that you can give flesh melting nanites to your victims if you feel like it
 
 /obj/item/disk/nanite_program
 	name = "nanite program disk"
@@ -11,6 +9,12 @@
 	. = ..()
 	if(program_type)
 		program = new program_type
+	update_name()
+
+/obj/item/disk/nanite_program/proc/update_name()
+	if(!program)
+		return
+	name = "[initial(name)] \[[program.name]\]"
 
 /obj/item/disk/nanite_program/debugging
 	program_type = /datum/nanite_program/nanite_debugging
@@ -134,3 +138,6 @@
 
 /obj/item/disk/nanite_program/stun
 	program_type = /datum/nanite_program/stun
+
+/obj/item/disk/nanite_program/sting
+	program_type = /datum/nanite_program/nanite_sting

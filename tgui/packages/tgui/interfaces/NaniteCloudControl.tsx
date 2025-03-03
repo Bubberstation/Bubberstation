@@ -66,20 +66,22 @@ export const NaniteInfoBox = (props) => {
     >
       <Stack>
         <Stack.Item mr={1}>{desc}</Stack.Item>
-        <Stack.Item width={'50%'}>
-          <LabeledList>
-            <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
-            {!!can_trigger && (
-              <>
-                <LabeledList.Item label="Trigger Cost">
-                  {trigger_cost}
-                </LabeledList.Item>
-                <LabeledList.Item label="Trigger Cooldown">
-                  {trigger_cooldown}
-                </LabeledList.Item>
-              </>
-            )}
-          </LabeledList>
+        <Stack.Item>
+          <table>
+            <LabeledList>
+              <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
+              {!!can_trigger && (
+                <>
+                  <LabeledList.Item label="Trigger Cost">
+                    {trigger_cost}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Trigger Cooldown">
+                    {trigger_cooldown}
+                  </LabeledList.Item>
+                </>
+              )}
+            </LabeledList>
+          </table>
         </Stack.Item>
       </Stack>
       <Stack>

@@ -213,26 +213,33 @@
 		SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
 		infectee.investigate_log("was infected by spreading nanites with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
 
-// todo be a controlled ability
 /datum/nanite_program/nanite_sting
 	name = "Nanite Sting"
-	desc = "When triggered, projects a nearly invisible spike of nanites that attempts to infect a nearby non-host with a copy of the host's nanites cluster."
+	desc = "When triggered, builds a invisible spikes of nanites on the host's skin that \
+			can infect a nearby non-host with a copy of the host's nanites cluster. \
+			Will not work on hosts or those already infected."
 	can_trigger = TRUE
 	trigger_cost = 5
 	trigger_cooldown = 100
 	rogue_types = list(/datum/nanite_program/glitch, /datum/nanite_program/toxic)
 	var/decay_timer
 
+/datum/nanite_program/nanite_sting/Destroy()
+	. = ..()
+	if(!decay_timer)
+		return
+	decay_sting()
+
 /datum/nanite_program/nanite_sting/on_trigger(comm_message)
-	consume_nanites(-5)
+	consume_nanites(-15)
 	to_chat(host_mob, span_warning("Your hands becomes sharp and prickly."))
-	RegisterSignal(host_mob, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
+	RegisterSignal(host_mob, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 	decay_timer = addtimer(CALLBACK(src, PROC_REF(decay_sting)), 30 SECONDS, TIMER_STOPPABLE)
 
 /datum/nanite_program/nanite_sting/proc/on_attack_hand(atom/source, mob/user, modifiers)
 	SIGNAL_HANDLER
 	var/mob/living/living = source
-	if(!istype(living)) return
+	if(!istype(living)) returnd
 	if(!CAN_HAVE_NANITES(living) || SEND_SIGNAL(living, COMSIG_HAS_NANITES) || !living.Adjacent(host_mob)) return
 
 	if(prob(100 - living.getarmor(null, BIO)))
@@ -248,7 +255,7 @@
 	to_chat(host_mob, span_warning("Your hands no longer feel like they're covered in spines."))
 	deltimer(decay_timer)
 	decay_timer = null
-	UnregisterSignal(host_mob, COMSIG_ATOM_ATTACK_HAND)
+	UnregisterSignal(host_mob, COMSIG_LIVING_EARLY_UNARMED_ATTACK)
 
 /datum/nanite_program/mitosis
 	name = "Mitosis"

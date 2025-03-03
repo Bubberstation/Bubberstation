@@ -164,7 +164,7 @@
 			if(disk.program)
 				qdel(disk.program)
 			disk.program = new downloaded.program_type
-			disk.name = "[initial(disk.name)] \[[disk.program.name]\]"
+			disk.update_name()
 			playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
 			. = TRUE
 		if("refresh")

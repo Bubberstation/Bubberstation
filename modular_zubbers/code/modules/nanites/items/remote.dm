@@ -53,7 +53,13 @@
 	if(locked)
 		. += "nanite_remote_locked"
 
+/obj/item/nanite_remote/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return trigger_nanites(interacting_with, user, modifiers)
+
 /obj/item/nanite_remote/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return trigger_nanites(interacting_with, user, modifiers)
+
+/obj/item/nanite_remote/proc/trigger_nanites(atom/interacting_with, mob/living/user, list/modifiers)
 	switch(mode)
 		if(REMOTE_MODE_SELF)
 			to_chat(user, span_notice("You activate [src], signaling the nanites in your bloodstream."))
