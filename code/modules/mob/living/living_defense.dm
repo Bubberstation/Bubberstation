@@ -151,17 +151,11 @@
 		return
 	. = combat_mode
 	combat_mode = new_mode
-	SEND_SIGNAL(src, COMSIG_LIVING_COMBAT_MODE_TOGGLE, new_mode) //SKYRAT EDIT ADDITION
+	if(client) //SKYRAT EDIT ADDITION
+		SEND_SIGNAL(src, COMSIG_LIVING_COMBAT_MODE_TOGGLE, new_mode) //SKYRAT EDIT ADDITION
 	if(hud_used?.action_intent)
 		hud_used.action_intent.update_appearance()
-	//SKYRAT EDIT ADDITION BEGIN
-	if(!ishuman(src) && !ckey)
-		if(combat_mode)
-			set_combat_indicator(TRUE)
-		else
-			set_combat_indicator(FALSE)
-	face_mouse = (client?.prefs?.read_preference(/datum/preference/toggle/face_cursor_combat_mode) && combat_mode) ? TRUE : FALSE
-	//SKYRAT EDIT ADDITION END
+	face_mouse = (client?.prefs?.read_preference(/datum/preference/toggle/face_cursor_combat_mode) && combat_mode) ? TRUE : FALSE //SKYRAT EDIT ADDITION
 
 	if(silent || !(client?.prefs.read_preference(/datum/preference/toggle/sound_combatmode)))
 		return
