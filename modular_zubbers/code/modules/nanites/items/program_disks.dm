@@ -11,7 +11,8 @@
 		program = new program_type
 	update_name()
 
-/obj/item/disk/nanite_program/proc/update_name()
+/obj/item/disk/nanite_program/update_name()
+	. = ..()
 	if(!program)
 		return
 	name = "[initial(name)] \[[program.name]\]"
