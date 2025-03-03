@@ -23,3 +23,7 @@
 	name = "riding saddle (peacekeeper)"
 	item_path = /obj/item/riding_saddle/leather/peacekeeper
 	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/inhand/wheelchair
+	name = "folded wheelchair"
+	item_path = /obj/item/wheelchair
