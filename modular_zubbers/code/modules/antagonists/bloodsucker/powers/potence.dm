@@ -17,7 +17,6 @@
 	. += "Your unarmed attacks will deal [GetPowerLevel()] more damage and gain [GetEffectiveness()] effectiveness."
 
 /datum/action/cooldown/bloodsucker/potence/ActivatePower(atom/target)
-	. = ..()
 	var/mob/living/carbon/human/user = owner
 	var/hitStrength = GetPowerLevel()
 	var/hitEffectiveness = GetEffectiveness()
@@ -27,14 +26,6 @@
 		parts_to_buff.unarmed_damage_high += hitStrength
 		parts_to_buff.unarmed_effectiveness += hitEffectiveness
 	user.balloon_alert(user, "you feel stronger.")
-
-/datum/action/cooldown/bloodsucker/potence/process(seconds_per_tick)
-	// Checks that we can keep using this.
-	. = ..()
-	if(!.)
-		return
-	if(!active)
-		return
 
 /datum/action/cooldown/bloodsucker/potence/ContinueActive(mob/living/user, mob/living/target)
 	. = ..()
@@ -47,7 +38,7 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/potence/proc/GetPowerLevel()
-	return 5 + min(2*level_current, 30)
+	return 5 + min(2 * level_current, 30)
 
 /datum/action/cooldown/bloodsucker/potence/proc/GetEffectiveness() // i learned real quick you don't want unarmed effectiveness to be too high
 	return 5 + min(level_current, 10)

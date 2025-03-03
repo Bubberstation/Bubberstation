@@ -12,6 +12,8 @@
 	bloodcost = 10
 	constant_bloodcost = 1
 	cooldown_time = 20 SECONDS
+	var/celerity_speed
+	var/celerity_delay
 
 /datum/action/cooldown/bloodsucker/celerity/get_power_explanation_extended()
 	. = list()
@@ -24,9 +26,11 @@
 /datum/action/cooldown/bloodsucker/celerity/ActivatePower(atom/target)
 	var/mob/living/user = owner
 	var/datum/movespeed_modifier/celerity_mod = new()
-	celerity_mod.multiplicative_slowdown = -0.05*level_current //lightpink extract at level 10, just without the pacifism
+	celerity_speed = GetCeleritySpeed()
+	celerity_delay = GetCelerityDelay()
+	celerity_mod.multiplicative_slowdown = celerity_speed //lightpink extract at level 10, just without the pacifism
 	owner.add_movespeed_modifier(celerity_mod, update = TRUE)
-	owner.next_move_modifier *= min(0.05*level_current, 0.5)
+	owner.next_move_modifier *= celerity_delay
 	if(level_current >= CELERITY_FX_LEVEL)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	if(level_current >= CELERITY_DODGE_LEVEL)
@@ -37,11 +41,8 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/celerity/process(seconds_per_tick)
-	// Checks that we can keep using this.
 	. = ..()
 	if(!.)
-		return
-	if(!active)
 		return
 	var/mob/living/user = owner
 	user.adjustStaminaLoss(-6 * level_current * REM * seconds_per_tick)
@@ -110,13 +111,21 @@
 		return
 	var/mob/living/user = owner
 	var/datum/movespeed_modifier/celerity_mod = new()
-	celerity_mod.multiplicative_slowdown = -0.05*level_current
+	celerity_speed = GetCeleritySpeed()
+	celerity_delay = GetCelerityDelay()
+	celerity_mod.multiplicative_slowdown = celerity_speed
 	owner.remove_movespeed_modifier(celerity_mod, update = TRUE)
-	owner.next_move_modifier /= min(0.05*level_current, 0.5)
+	owner.next_move_modifier /= celerity_delay
 	if(level_current >= CELERITY_FX_LEVEL)
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	user.balloon_alert(user, "the world speeds up.")
 	return TRUE
+
+/datum/action/cooldown/bloodsucker/celerity/proc/GetCeleritySpeed()
+	return (-0.05 * level_current)
+
+/datum/action/cooldown/bloodsucker/celerity/proc/GetCelerityDelay()
+	return min(0.05 * level_current, 0.5)
 
 #undef CELERITY_FX_LEVEL
 #undef CELERITY_DODGE_LEVEL
