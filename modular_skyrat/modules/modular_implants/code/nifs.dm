@@ -305,7 +305,8 @@
 
 			calibrating = FALSE
 			is_calibrated = TRUE
-
+			if(isnull(linked_mob.mind))
+				return // BUBBER TODO - Refactor NIFs
 			if(!linked_mob.save_individual_persistence())
 				stack_trace("persistence was not saved for [linked_mob]!")
 

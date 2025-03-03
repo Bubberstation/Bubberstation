@@ -46,6 +46,8 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 /obj/item/organ/borer_body/on_mob_insert(mob/living/carbon/carbon_target, special, movement_flags)
 	. = ..()
+	if(isnull(borer))
+		return // BUBBER TODO: Refactor this mess
 	for(var/datum/borer_focus/body_focus as anything in borer.body_focuses)
 		body_focus.on_add()
 	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
