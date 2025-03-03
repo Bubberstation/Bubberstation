@@ -3,7 +3,8 @@
 
 /datum/unit_test/door_click/Run()
 	var/mob/living/carbon/human/consistent/tider = EASY_ALLOCATE()
-	var/obj/machinery/door/airlock/public/glass/door = EASY_ALLOCATE()
+	//var/obj/machinery/door/airlock/public/glass/door = EASY_ALLOCATE()
+	var/obj/machinery/door/airlock/public/glass/no_lights/door = EASY_ALLOCATE() // BUBBER EDIT CHANGE - Customized Airlocks
 
 	tider.forceMove(locate(door.x + 1, door.y, door.z))
 	door.open() // this sleeps we just have to cope
