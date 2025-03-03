@@ -216,7 +216,8 @@
 /datum/nanite_program/nanite_sting
 	name = "Nanite Sting"
 	desc = "When triggered, builds a invisible spikes of nanites on the host's skin that \
-			can infect a nearby non-host with a copy of the host's nanites cluster. \
+			can infect a nearby non-host with a copy of the host's nanites cluster \
+			that is unlinked from the cloud. \
 			Will not work on hosts or those already infected."
 	can_trigger = TRUE
 	trigger_cost = 5
@@ -239,14 +240,15 @@
 /datum/nanite_program/nanite_sting/proc/on_attack_hand(atom/source, mob/user, modifiers)
 	SIGNAL_HANDLER
 	var/mob/living/living = source
-	if(!istype(living)) returnd
+	if(!istype(living)) return
 	if(!CAN_HAVE_NANITES(living) || SEND_SIGNAL(living, COMSIG_HAS_NANITES) || !living.Adjacent(host_mob)) return
 
 	if(prob(100 - living.getarmor(null, BIO)))
 		//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
 		living.AddComponent(/datum/component/nanites, 5)
 		SEND_SIGNAL(living, COMSIG_NANITE_SYNC, nanites)
-		SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
+		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id) won't set the cloud
+		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
 		living.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(living)].", INVESTIGATE_NANITES)
 		to_chat(living, span_warning("You feel a tiny prick."))
 	decay_sting()
