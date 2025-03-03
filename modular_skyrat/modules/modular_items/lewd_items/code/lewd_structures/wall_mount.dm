@@ -3,7 +3,6 @@
 	desc = "A mount for partially sticking people into a wall."
 	can_buckle = TRUE
 	anchored = TRUE
-	density = TRUE
 	max_buckled_mobs = 1
 	buckle_lying = 0
 	buckle_prevents_pull = TRUE
@@ -31,25 +30,30 @@ var/mob/living/carbon/human/current_mob = null
 		if(ishuman(buckled_mobs[1]))
 			current_mob = buckled_mobs[1]
 
-	if(istype(buckled_mob.dna.species))
-		buckled_mob.cut_overlays()
-		for(var/limb in leg_zones)
-			var/obj/item/bodypart/limb = get_bodypart(limb)
-			if(!istype(limb))
+	var/mob/living/carbon/human/embedded_mob = buckled_mob
+
+	if(istype(embedded_mob.dna.species))
+		embedded_mob.cut_overlays()
+		for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
+			var/obj/item/bodypart/limb_object = embedded_mob.get_bodypart(limb)
+			if(!istype(limb_object))
 				return
 
-			add_overlay(limb.get_limb_icon())
-			update_worn_undersuit()
-			update_worn_shoes()
-		buckled_mob.remove_overlay(BODY_ADJ_LAYER)
+			embedded_mob.add_overlay(limb_object.get_limb_icon())
+			embedded_mob.update_worn_undersuit()
+			embedded_mob.update_worn_shoes()
+		embedded_mob.remove_overlay(BODY_ADJ_LAYER)
+		embedded_mob.add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/pillory.dmi', "mask")))
 	else
 		unbuckle_all_mobs()
 	..()
 
 
 /obj/structure/pillory/post_unbuckle_mob(mob/living/unbuckled_mob)
-	. = ..()
 	current_mob = null
+	unbuckled_mob.remove_filter("chest_removal")
+	unbuckled_mob.regenerate_icons()
+	. = ..()
 
 /obj/item/wallframe/pillory
 	name = "wall pillory frame"
