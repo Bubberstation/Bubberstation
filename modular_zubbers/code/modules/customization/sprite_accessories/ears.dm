@@ -7,3 +7,8 @@
 	name = "Renamon"
 	icon_state = "renamon"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
+
+/datum/sprite_accessory/ears/floppy
+	name = "Floppy"
+	icon_state = "floppy"
+	icon = 'modular_zubbers/icons/customization/ears.dmi'
