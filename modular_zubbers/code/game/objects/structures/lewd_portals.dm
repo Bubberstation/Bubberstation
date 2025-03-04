@@ -110,4 +110,23 @@
 
 /obj/lewd_portal_relay/Initialize(mapload, owner_ref)
 	. = ..()
+	if(!owner_ref)
+		return INITIALIZE_HINT_QDEL
 	owner = owner_ref
+	become_hearing_sensitive(ROUNDSTART_TRAIT)
+
+/obj/lewd_portal_relay/Destroy(force)
+	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
+	return ..()
+
+/obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
+	owner.attackby(attacking_item, user, params)
+
+/obj/lewd_portal_relay/attack_hand(mob/living/user, list/modifiers)
+	owner.attack_hand(user, modifiers)
+
+/obj/lewd_portal_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods, message_range)
+	. = ..()
+	if(owner)
+		owner.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, message_range)
+

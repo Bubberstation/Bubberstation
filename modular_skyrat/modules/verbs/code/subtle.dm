@@ -159,6 +159,16 @@
 			var/datum/preferences/prefs = hologram.Impersonation.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+	//BUBBER EDIT ADDITION START
+	else if(istype(target, /obj/lewd_portal_relay))
+		var/obj/lewd_portal_relay/portal_relay = target
+		if(portal_relay.owner?.client)
+			portal_relay.owner.show_message(subtler_message, alt_msg = subtler_message)
+			// Optional sound notification
+			var/datum/preferences/prefs = portal_relay.owner.client?.prefs
+			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+				portal_relay.owner.playsound_local(get_turf(portal_relay.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+	//BUBBER EDIT ADDITION END
 	else
 		var/ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
 
