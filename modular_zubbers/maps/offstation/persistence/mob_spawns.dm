@@ -55,6 +55,33 @@
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
 	give_exploitables = FALSE
 
+/obj/effect/mob_spawn/ghost_role/robot/persistence
+	name = "Syndicate Cyborg Storage"
+	prompt_name = "a syndicate robot"
+	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
+	icon_state = "robostorage"
+	anchored = TRUE
+	density = FALSE
+	spawner_job_path = /datum/job/persistence
+	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
+	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
+	deletes_on_zero_uses_left = TRUE
+
+/obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
+	. = ..()
+	if(new_spawn.client) //It should have a client, right?
+		new_spawn.faction += ROLE_SYNDICATE
+		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
+		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
+		new_spawn.radio.recalculateChannels()
+		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
+		new_spawn.SetEmagged(TRUE) //just to be sure.
+		new_spawn.laws = new /datum/ai_laws/persistence()
+		new_spawn.show_laws() //Check your laws.
+		new_spawn.custom_name = null //Taken from ghostcafe, otherwise it'll lead to a runtime if random_appeareance is set to FALSE.
+		new_spawn.updatename(new_spawn.client)
+		new_spawn.transfer_emote_pref(new_spawn.client)
+		new_spawn.gender = NEUTER
 // crew spawners
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service
@@ -128,6 +155,45 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/prisoner
 
 //Persistence Roles
+
+/obj/item/robot_model/syndicatejack/dauntless //kinda count as a outfit, nah?
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/extinguisher,
+		/obj/item/weldingtool/electric,
+		/obj/item/multitool/cyborg,
+		/obj/item/crowbar/cyborg/power,
+		/obj/item/screwdriver/cyborg/power,
+		/obj/item/construction/rcd/borg/syndicate,
+		/obj/item/pipe_dispenser,
+		/obj/item/lightreplacer/cyborg,
+		/obj/item/stack/cable_coil,
+		/obj/item/stack/sheet/iron,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/sheet/glass,
+		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/storage/part_replacer/cyborg,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
+		/obj/item/assembly/signaler/cyborg,
+		/obj/item/holosign_creator/atmos,
+		/obj/item/borg/apparatus/circuit,
+		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/electroadaptive_pseudocircuit,
+		/obj/item/shockpaddles/cyborg,
+		/obj/item/healthanalyzer/advanced,
+		/obj/item/surgical_drapes,
+		/obj/item/retractor/advanced,
+		/obj/item/cautery/advanced,
+		/obj/item/scalpel/advanced,
+		/obj/item/stack/medical/gauze,
+		/obj/item/borg/cyborghug/medical,
+		/obj/item/borg/lollipop,
+		/obj/item/borg/apparatus/beaker,
+		/obj/item/restraints/handcuffs/cable/zipties,
+		/obj/item/borg/sight/meson,
+		/obj/item/borg_shapeshifter/dauntless
+		)
 
 /datum/outfit/persistence/syndicate
 	name = "Persistence Operative"
@@ -328,3 +394,7 @@
 /datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
 	return ..()
+
+//Give cyborg a specific chameleon item that do not disrupt, still lose power though.
+/obj/item/borg_shapeshifter/dauntless
+	signalCache = list()
