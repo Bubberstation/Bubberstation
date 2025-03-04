@@ -91,7 +91,7 @@ GLOBAL_LIST(end_titles)
 	UNLINT(animate(src, alpha = 0, flags = ANIMATION_PARALLEL, time = CREDIT_EASE_DURATION, delay = CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION))
 	parent?.screen += src
 
-/atom/movable/screen/credit/proc/fadeout(var/matrix/direction)
+/atom/movable/screen/credit/proc/fadeout(matrix/direction)
 
 	sleep(CREDIT_EASE_DURATION)
 	qdel(src)

@@ -266,7 +266,7 @@
 /**
  * will create a harvest of the seeds product, with a chance to create a mutated version
  */
-/obj/structure/simple_farm/proc/create_harvest(var/obj/item/storage/bag/plants/plant_bag, var/mob/user)
+/obj/structure/simple_farm/proc/create_harvest(obj/item/storage/bag/plants/plant_bag, mob/user)
 	if(!planted_seed)
 		return
 

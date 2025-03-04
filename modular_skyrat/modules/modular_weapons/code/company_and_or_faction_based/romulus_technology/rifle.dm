@@ -178,7 +178,7 @@
 		return
 	toggle_stock(user)
 
-/obj/item/gun/ballistic/automatic/rom_flech/proc/toggle_stock(mob/user, var/forced)
+/obj/item/gun/ballistic/automatic/rom_flech/proc/toggle_stock(mob/user, forced)
 	if(!user && forced)
 		folded = !folded
 		update_fold_stats()

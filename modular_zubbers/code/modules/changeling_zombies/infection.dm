@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
-/proc/can_become_changeling_zombie(var/datum/parent)
+/proc/can_become_changeling_zombie(datum/parent)
 
 	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NO_ZOMBIFY) || HAS_TRAIT(parent,TRAIT_GENELESS))
 		return FALSE
