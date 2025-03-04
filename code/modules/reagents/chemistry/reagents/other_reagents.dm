@@ -2849,6 +2849,7 @@
 	color = "#1f8016"
 	metabolization_rate = 2.5 * REAGENTS_METABOLISM  //0.5u/second
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+	process_flags = REAGENT_SYNTHETIC | REAGENT_ORGANIC //bubberstation edit
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	. = ..()
@@ -2863,6 +2864,9 @@
 		need_mob_update += drinker.adjustFireLoss(-2 * REM * seconds_per_tick, updating_health = FALSE)
 		if(drinker.blood_volume < BLOOD_VOLUME_NORMAL)
 			drinker.blood_volume += 3 * REM * seconds_per_tick
+		if(drinker.mob_biotypes & MOB_ROBOTIC) // Bubber edit starrt
+			var/heal_amount = -2 * REM * seconds_per_tick //might as well keep this line as long as the previous
+			drinker.heal_bodypart_damage(heal_amount, heal_amount, required_bodytype = BODYTYPE_ROBOTIC) //bubber edit end
 	else
 		need_mob_update = drinker.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3 * REM * seconds_per_tick, 150)
 		need_mob_update += drinker.adjustToxLoss(2 * REM * seconds_per_tick, updating_health = FALSE)
