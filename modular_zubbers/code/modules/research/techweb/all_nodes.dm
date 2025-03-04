@@ -44,6 +44,7 @@
 	design_ids += list(
 		"crewmonitor",
 		"borg_upgrade_advancedanalyzer",
+		"medical_rcd",
 	)
 
 /datum/techweb_node/xenobiology/New()
