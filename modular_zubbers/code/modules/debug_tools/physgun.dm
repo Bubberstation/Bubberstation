@@ -319,7 +319,7 @@
 	SIGNAL_HANDLER
 
 	if(force)
-		owner.balloon_alert("Can't escape!")
+		owner.balloon_alert(owner, "Can't escape!")
 		return
 
 	if(!HAS_TRAIT(owner, TRAIT_PHYSGUN_PAUSE))
