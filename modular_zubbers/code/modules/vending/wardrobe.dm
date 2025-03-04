@@ -85,6 +85,7 @@
 	/obj/item/clothing/glasses/hud/health/surgerygoggles = 3,
 	/obj/item/clothing/gloves/latex/nitrile/longrubbergloves = 3,
 	/obj/item/clothing/suit/leatherapron = 3,
+	/obj/item/clothing/under/rank/medical/doctor/nurse = 3,
 	/obj/item/clothing/head/playbunnyears/doctor = 3,
 	/obj/item/clothing/under/rank/medical/doctor_bunnysuit = 3,
 	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat = 3,
