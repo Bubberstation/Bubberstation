@@ -171,6 +171,8 @@
 
 ///Installs preinstalled NIFSofts
 /obj/item/organ/cyberimp/brain/nif/proc/install_preinstalled_nifsofts()
+	if(isnull(linked_mob)) // BUBBER TODO: Fix the race condition here
+		return FALSE
 	if(!preinstalled_nifsofts)
 		return FALSE
 
