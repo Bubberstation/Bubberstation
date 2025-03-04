@@ -1,7 +1,8 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../../backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-import { PreferencesMenuData } from './data';
+
+import { useBackend } from '../../backend';
+import { PreferencesMenuData } from './types';
 
 export const KnownLanguage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
