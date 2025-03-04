@@ -23,4 +23,4 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/neck_accessory/get_global_feature_list()
-	return SSaccessories.sprite_accessories["neck_accessory"]
+	return SSaccessories.sprite_accessories["neck_acc"]

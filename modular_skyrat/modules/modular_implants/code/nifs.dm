@@ -165,11 +165,14 @@
 
 	if(linked_mob)
 		UnregisterSignal(linked_mob, COMSIG_LIVING_DEATH, PROC_REF(damage_on_death))
+		linked_mob = null
 
 	QDEL_LIST(loaded_nifsofts)
 
 ///Installs preinstalled NIFSofts
 /obj/item/organ/cyberimp/brain/nif/proc/install_preinstalled_nifsofts()
+	if(isnull(linked_mob)) // BUBBER TODO: Fix the race condition here
+		return FALSE
 	if(!preinstalled_nifsofts)
 		return FALSE
 
