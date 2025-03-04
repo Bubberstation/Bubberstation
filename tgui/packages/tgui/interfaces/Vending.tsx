@@ -292,6 +292,7 @@ const Product = (props) => {
     disabled: disabled,
     tooltipPosition: 'bottom',
     buttons: (
+      // BUBBER EDIT START - REFITS AVAILABLE
       <>
         {colorable && (
           <ProductColorSelect
@@ -300,12 +301,13 @@ const Product = (props) => {
             fluid={fluid}
           />
         )}
-        <ProductRefitsAvailable
-          user={user}
-          productStock={productStock}
-          fluid={fluid}
-        />
+
+        {user?.species &&
+          productStock?.refits_available?.includes(
+            user.species.toLowerCase(),
+          ) && <ProductRefitsAvailable fluid={fluid} />}
       </>
+      // BUBBER EDIT END - REFITS AVAILABLE
     ),
     product: product,
     colorable: colorable,
@@ -387,29 +389,18 @@ const ProductList = (props) => {
   );
 };
 
-// BUBBER ADDITION START - SPECIES CLOTHING IS VALID
+// BUBBER ADDITION START - REFITS AVAILABLE
 interface ProductRefitsAvailableProps {
-  user: UserData;
-  productStock: StockItem;
   fluid?: boolean;
 }
-const ProductRefitsAvailable = ({
-  user,
-  productStock,
-  fluid,
-}: ProductRefitsAvailableProps) => {
-  if (
-    !user?.species &&
-    !productStock.refits_available?.includes(user.species.toLowerCase())
-  ) {
-    return null;
-  }
+const ProductRefitsAvailable = ({ fluid }: ProductRefitsAvailableProps) => {
   return (
     <Button
       width={fluid ? '32px' : '20px'}
+      color={'transparent'}
       tooltip="This outfit supports your species!"
       icon="fa-shirt"
-      style={{ pointerEvents: 'none', opacity: 0.5 }}
+      style={{ opacity: 0.5 }}
     />
   );
 };
