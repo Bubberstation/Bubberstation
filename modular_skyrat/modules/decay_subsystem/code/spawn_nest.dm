@@ -8,7 +8,7 @@ ADMIN_VERB(spawn_mob_spawner, R_ADMIN, "Spawn mob spawner", "Spawns a mob spawne
 	var/chosen = pick_closest_path(chosen_mob, make_types_fancy(subtypesof(/mob/living)))
 
 	if (!chosen)
-		chosen = /mob/living/simple_animal/hostile/zombie
+		chosen = /mob/living/basic/zombie
 
 	var/list/settings = list(
 		"mainsettings" = list(

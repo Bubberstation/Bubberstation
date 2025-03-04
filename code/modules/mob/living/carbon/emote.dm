@@ -6,16 +6,6 @@
 	message = "is strumming the air and headbanging like a safari chimp."
 	hands_use_check = TRUE
 
-/datum/emote/living/carbon/blink
-	key = "blink"
-	key_third_person = "blinks"
-	message = "blinks."
-
-/datum/emote/living/carbon/blink_r
-	key = "blink_r"
-	name = "blink (Rapid)"
-	message = "blinks rapidly."
-
 //SKYRAT EDIT REMOVAL BEGIN - EMOTES - (Moved to modular_skyrat/modules/emotes/code/emotes.dm as /datum/emote/living/clap)
 /*
 /datum/emote/living/carbon/clap
@@ -25,6 +15,7 @@
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
+	affected_by_pitch = FALSE
 
 /datum/emote/living/carbon/clap/get_sound(mob/living/user)
 	if(!user.get_bodypart(BODY_ZONE_L_ARM) || !user.get_bodypart(BODY_ZONE_R_ARM))
@@ -85,6 +76,33 @@
 	var/obj/item/hand_item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
 		to_chat(user, span_notice("You make a circle with your hand."))
+
+/datum/emote/living/carbon/meow
+	key = "meow"
+	key_third_person = "meows"
+	vary = TRUE
+	sound = SFX_CAT_MEOW
+	message = "meows!"
+	message_mime = "meows silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/meow/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional, params)
+	if(!iscarbon(user) || (!istype(user.get_organ_slot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/cat)))
+		return FALSE
+	return ..()
+
+/datum/emote/living/carbon/purr
+	key = "purr"
+	key_third_person = "purrs"
+	vary = TRUE
+	sound = SFX_CAT_PURR
+	message = "purrs."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/purr/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional, params)
+	if(!iscarbon(user) || (!istype(user.get_organ_slot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/cat)) || HAS_MIND_TRAIT(user, TRAIT_MIMING))
+		return FALSE
+	return ..()
 
 /datum/emote/living/carbon/moan
 	key = "moan"
@@ -179,6 +197,7 @@
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	hands_use_check = TRUE
+	affected_by_pitch = FALSE
 
 /datum/emote/living/carbon/snap/get_sound(mob/living/user)
 	if(ishuman(user))
@@ -213,3 +232,18 @@ Bubber removal end */
 	key = "wink"
 	key_third_person = "winks"
 	message = "winks."
+
+/datum/emote/living/carbon/hiss
+	key = "hiss"
+	key_third_person = "hisses"
+	message = "hisses!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	vary = TRUE
+
+/datum/emote/living/carbon/hiss/get_sound(mob/living/carbon/user)
+	. = ..()
+	if(!istype(user))
+		return
+	if(isalien(user))
+		return SFX_HISS
+	return user.dna.species.get_hiss_sound()

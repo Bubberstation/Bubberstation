@@ -1,4 +1,4 @@
-/obj/item/organ/internal/tongue/synth
+/obj/item/organ/tongue/synth
 	name = "synthetic voicebox"
 	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
 	icon = 'modular_skyrat/modules/organs/icons/cyber_tongue.dmi'
@@ -15,10 +15,10 @@
 	slot = ORGAN_SLOT_TONGUE
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/tongue/synth/can_speak_language(language)
+/obj/item/organ/tongue/synth/can_speak_language(language)
 	return TRUE
 
-/obj/item/organ/internal/tongue/synth/handle_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/synth/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /datum/design/synth_tongue
@@ -31,7 +31,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/tongue/synth
+	build_path = /obj/item/organ/tongue/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)

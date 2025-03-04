@@ -9,7 +9,7 @@
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/special(mob/living/spawned_mob, mob/mob_possessor)
 	var/datum/mind/ghost_mind = mob_possessor.mind
-	if(ghost_mind?.current) // Preserves any previous bodies before making the switch
+	if(ghost_mind) // Preserves any previous bodies before making the switch
 		spawned_mob.AddComponent(/datum/component/temporary_body, ghost_mind, ghost_mind.current, TRUE)
 
 	..()
@@ -70,5 +70,5 @@
 	implants = list(/obj/item/implant/weapons_auth)
 
 
-/datum/outfit/virtual_syndicate/post_equip(mob/living/carbon/human/user, visualsOnly)
+/datum/outfit/virtual_syndicate/post_equip(mob/living/carbon/human/user, visuals_only)
 	user.faction |= ROLE_SYNDICATE

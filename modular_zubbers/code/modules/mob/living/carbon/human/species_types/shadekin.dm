@@ -2,10 +2,10 @@
 	name = "Shadekin"
 	id = SPECIES_SHADEKIN
 	eyes_icon = 'modular_zubbers/icons/mob/human/human_face.dmi'
-	mutanttongue = /obj/item/organ/internal/tongue/shadekin
-	mutantears = /obj/item/organ/internal/ears/shadekin
-	mutantbrain = /obj/item/organ/internal/brain/shadekin
-	mutanteyes = /obj/item/organ/internal/eyes/shadekin
+	mutanttongue = /obj/item/organ/tongue/shadekin
+	mutantears = /obj/item/organ/ears/shadekin
+	mutantbrain = /obj/item/organ/brain/shadekin
+	mutanteyes = /obj/item/organ/eyes/shadekin
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
@@ -101,14 +101,14 @@
 	regenerate_organs(shadekin, src, visual_only = TRUE)
 	shadekin.update_body(TRUE)
 
-/obj/item/organ/internal/brain/shadekin
+/obj/item/organ/brain/shadekin
 	name = "shadekin brain"
 	desc = "A mysterious brain."
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
 	var/applied_status = /datum/status_effect/shadekin_regeneration
 
-/obj/item/organ/internal/brain/shadekin/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/brain/shadekin/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	var/turf/owner_turf = owner.loc
 	if(!isturf(owner_turf))

@@ -5,16 +5,19 @@
 #define FULLY_ENTHRALLED 3
 #define OVERDOSE_ENTHRALLED 4
 
+
+
 /*//////////////////////////////////////////
 		Mind control functions!
 ///////////////////////////////////////////
 */
 
 //Preamble
+/datum/status_effect/chem
+	id = STATUS_EFFECT_ID_ABSTRACT
+	alert_type = null
 
 /datum/status_effect/chem/enthrall
-	id = "enthrall"
-	alert_type = null
 	tick_interval = 4 SECONDS
 	//examine_text TODO
 	/// Keeps track of the enthralling process
@@ -67,7 +70,7 @@
 /datum/status_effect/chem/enthrall/on_apply()
 	var/mob/living/carbon/enthrall_victim = owner
 	if(HAS_TRAIT(enthrall_victim, TRAIT_PET_SKILLCHIP))
-		var/obj/item/organ/internal/brain/neopet_brain = enthrall_victim.get_organ_slot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/neopet_brain = enthrall_victim.get_organ_slot(ORGAN_SLOT_BRAIN)
 		for(var/obj/item/skillchip/mkiiultra/neopet_chip in neopet_brain?.skillchips)
 			if(istype(neopet_chip) && neopet_chip.active)
 				enthrall_ckey = neopet_chip.enthrall_ckey

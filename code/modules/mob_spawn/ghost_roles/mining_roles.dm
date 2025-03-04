@@ -103,9 +103,9 @@
 	l_pocket = /obj/item/food/pizzaslice/dank
 	r_pocket = /obj/item/storage/wallet/random
 
-/datum/outfit/beachbum/post_equip(mob/living/carbon/human/bum, visualsOnly = FALSE)
+/datum/outfit/beachbum/post_equip(mob/living/carbon/human/bum, visuals_only = FALSE)
 	. = ..()
-	if(visualsOnly)
+	if(visuals_only)
 		return
 	bum.dna.add_mutation(/datum/mutation/human/stoner)
 
@@ -136,7 +136,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
-/datum/outfit/spacebartender/post_equip(mob/living/carbon/human/bartender, visualsOnly = FALSE)
+/datum/outfit/spacebartender/post_equip(mob/living/carbon/human/bartender, visuals_only = FALSE)
 	. = ..()
 	var/obj/item/card/id/id_card = bartender.wear_id
 	if(bartender.age < AGE_MINOR)
@@ -325,6 +325,8 @@
 	shoes = /obj/item/clothing/shoes/combat
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	// r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle //Bubberstation Edit
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding/up
 
 	implants = list(/obj/item/implant/weapons_auth)
 	id_trim = /datum/id_trim/syndicom/skyrat/interdyne //SKYRAT EDIT
@@ -341,6 +343,8 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	mask = /obj/item/clothing/mask/chameleon/gps
 	r_hand = /obj/item/melee/energy/sword/saber
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding/up
 
 /datum/outfit/lavaland_syndicate/comms/icemoon
 	name = "Icemoon Syndicate Comms Agent"

@@ -1,7 +1,5 @@
 // THIS IS A SKYRAT UI FILE
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -15,8 +13,9 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../components';
-import { TableCell, TableRow } from '../components/Table';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const NifPanel = (props) => {
@@ -83,8 +82,8 @@ export const NifPanel = (props) => {
                         }
                       >
                         <Table>
-                          <TableRow>
-                            <TableCell>
+                          <Table.Row>
+                            <Table.Cell>
                               <Button
                                 icon="bolt"
                                 color="yellow"
@@ -95,8 +94,8 @@ export const NifPanel = (props) => {
                                 : ' ' +
                                   (nifsoft.activation_cost / max_power) * 100 +
                                   '% per activation'}
-                            </TableCell>
-                            <TableCell>
+                            </Table.Cell>
+                            <Table.Cell>
                               <Button
                                 icon="battery-half"
                                 color="orange"
@@ -108,8 +107,8 @@ export const NifPanel = (props) => {
                                 : ' ' +
                                   (nifsoft.active_cost / max_power) * 100 +
                                   '% consumed while active'}
-                            </TableCell>
-                            <TableCell>
+                            </Table.Cell>
+                            <Table.Cell>
                               <Button
                                 icon="exclamation"
                                 color={nifsoft.active ? 'green' : 'red'}
@@ -119,8 +118,8 @@ export const NifPanel = (props) => {
                               {nifsoft.active
                                 ? ' The NIFSoft is active!'
                                 : ' The NIFSoft is inactive!'}
-                            </TableCell>
-                          </TableRow>
+                            </Table.Cell>
+                          </Table.Row>
                         </Table>
                         <br />
                         <BlockQuote preserveWhitespace>

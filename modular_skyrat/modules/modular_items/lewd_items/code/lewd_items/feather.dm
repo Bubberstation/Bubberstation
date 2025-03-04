@@ -37,7 +37,7 @@
 					"tickles [target] with [src]")
 		if(BODY_ZONE_CHEST)
 			if(carbon_target)
-				var/obj/item/organ/external/genital/badonkers = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
+				var/obj/item/organ/genital/badonkers = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
 				if(!badonkers?.is_exposed())
 					to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
 					return

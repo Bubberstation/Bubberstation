@@ -69,8 +69,13 @@ Find `BUILD.bat` here in the root folder of tgstation, and double click it to in
 
 **[How to compile in VSCode and other build options](tools/build/README.md).**
 
-## TG Guide Contributors
-[Guides for Contributors](.github/CONTRIBUTING.md)
+## Getting started
+
+<!-- For contribution guidelines refer to the [Guides for Contributors](.github/CONTRIBUTING.md). -->
+
+For getting started (dev env, compilation) see the HackMD document [here](https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide).
+
+For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
 
 ## LICENSE
 

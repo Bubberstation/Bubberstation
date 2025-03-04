@@ -100,27 +100,27 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		dat += {"<div class="container_nav">"}
 
 		if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)
-			dat += {"<a id="ready" class="menu_button" href='?src=[text_ref(src)];toggle_ready=1'>[ready == PLAYER_READY_TO_PLAY ? "<span class='checked'>☑</span> READY" : "<span class='unchecked'>☒</span> READY"]</a>"}
+			dat += {"<a id="ready" class="menu_button" href='byond://?src=[text_ref(src)];toggle_ready=1'>[ready == PLAYER_READY_TO_PLAY ? "<span class='checked'>☑</span> READY" : "<span class='unchecked'>☒</span> READY"]</a>"}
 		else
 			dat += {"
-				<a class="menu_button" href='?src=[text_ref(src)];late_join=1'>JOIN GAME</a>
-				<a class="menu_button" href='?src=[text_ref(src)];view_manifest=1'>CREW MANIFEST</a>
+				<a class="menu_button" href='byond://?src=[text_ref(src)];late_join=1'>JOIN GAME</a>
+				<a class="menu_button" href='byond://?src=[text_ref(src)];view_manifest=1'>CREW MANIFEST</a>
 			"}
-			dat += {"<a class="menu_button" href='?src=[text_ref(src)];character_directory=1'>CHARACTER DIRECTORY</a>"}
+			dat += {"<a class="menu_button" href='byond://?src=[text_ref(src)];character_directory=1'>CHARACTER DIRECTORY</a>"}
 
-		dat += {"<a class="menu_button" href='?src=[text_ref(src)];observe=1'>OBSERVE</a>"}
+		dat += {"<a class="menu_button" href='byond://?src=[text_ref(src)];observe=1'>OBSERVE</a>"}
 
 		dat += {"
 			<hr>
-			<a class="menu_button" href='?src=[text_ref(src)];character_setup=1'>SETUP CHARACTER (<span id="character_slot">[uppertext(client.prefs.read_preference(/datum/preference/name/real_name))]</span>)</a>
-			<a class="menu_button" href='?src=[text_ref(src)];game_options=1'>GAME OPTIONS</a>
-			<a id="be_antag" class="menu_button" href='?src=[text_ref(src)];toggle_antag=1'>[client.prefs.read_preference(/datum/preference/toggle/be_antag) ? "<span class='checked'>☑</span> BE ANTAGONIST" : "<span class='unchecked'>☒</span> BE ANTAGONIST"]</a>
+			<a class="menu_button" href='byond://?src=[text_ref(src)];character_setup=1'>SETUP CHARACTER (<span id="character_slot">[uppertext(client.prefs.read_preference(/datum/preference/name/real_name))]</span>)</a>
+			<a class="menu_button" href='byond://?src=[text_ref(src)];game_options=1'>GAME OPTIONS</a>
+			<a id="be_antag" class="menu_button" href='byond://?src=[text_ref(src)];toggle_antag=1'>[client.prefs.read_preference(/datum/preference/toggle/be_antag) ? "<span class='checked'>☑</span> BE ANTAGONIST" : "<span class='unchecked'>☒</span> BE ANTAGONIST"]</a>
 			<hr>
-			<a class="menu_button" href='?src=[text_ref(src)];server_swap=1'>SWAP SERVERS</a>
+			<a class="menu_button" href='byond://?src=[text_ref(src)];server_swap=1'>SWAP SERVERS</a>
 		"}
 
 		if(length(GLOB.lobby_station_traits))
-			dat += {"<a class="menu_button" href='?src=[text_ref(src)];job_traits=1'>JOB TRAITS</a>"}
+			dat += {"<a class="menu_button" href='byond://?src=[text_ref(src)];job_traits=1'>JOB TRAITS</a>"}
 
 		if(!is_guest_key(src.key))
 			dat += playerpolls()

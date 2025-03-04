@@ -345,7 +345,7 @@
 	icon_state = "plushie_zapp"
 	attack_verb_continuous = list("boops", "nuzzles")
 	attack_verb_simple = list("boop", "nuzzle")
-	squeak_override = list('sound/effects/can/can_open1.ogg' = 1, 'sound/effects/can/can_open2.ogg' = 1, 'sound/effects/can/can_open3.ogg' = 1)
+	squeak_override = list('sound/items/can/can_open1.ogg' = 1, 'sound/items/can/can_open2.ogg' = 1, 'sound/items/can/can_open3.ogg' = 1)
 	///the list that is chosen from depending on gaming skill
 	var/static/list/skill_response = list(
 		"Weak! What are you, a mobile gamer?",
@@ -383,7 +383,7 @@
 		skill_level = (max(6, skill_level))
 	say(skill_response[skill_level])
 	if(skill_level == 7)
-		playsound(src_turf, 'sound/effects/can/can_pop.ogg', 80, TRUE)
+		playsound(src_turf, 'sound/items/can/can_pop.ogg', 80, TRUE)
 		new /obj/effect/abstract/liquid_turf/pwr_gamr(src_turf)
 		playsound(src_turf, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 		qdel(src)

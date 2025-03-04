@@ -61,7 +61,7 @@
 /// From mob/living/*/set_combat_mode(): (new_state)
 #define COMSIG_LIVING_COMBAT_MODE_TOGGLE "living_combat_mode_toggle"
 
-/// From /obj/item/organ/internal/stomach/after_eat(atom/edible)
+/// From /obj/item/organ/stomach/after_eat(atom/edible)
 #define COMSIG_STOMACH_AFTER_EAT "stomach_after_eat"
 
 /// For when a Hemophage's pulsating tumor gets added to their body.

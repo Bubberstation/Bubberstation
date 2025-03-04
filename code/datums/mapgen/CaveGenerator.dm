@@ -130,7 +130,7 @@
 			new_turf.turf_flags |= NO_RUINS
 
 	var/message = "[name] terrain generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	to_chat(world, span_boldannounce("[message]"))
+	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
 
 
@@ -207,7 +207,7 @@
 		generated_turfs_per_biome[biome] = generated_turfs
 
 	var/message = "[name] terrain generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	to_chat(world, span_boldannounce("[message]"))
+	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
 
 
@@ -300,7 +300,8 @@
 		CHECK_TICK
 
 	var/message = "[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	add_startup_message(message) //SKYRAT EDIT CHANGE - ORIGINAL: to_chat(world, span_boldannounce("[message]"))
+	add_startup_message(message) //SKYRAT EDIT CHANGE
+	//to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG) //SKYRAT EDIT ORIGINAL
 	log_world(message)
 
 
@@ -323,7 +324,7 @@
 	// No sense in doing anything here if nothing is allowed anyway.
 	if(!flora_allowed && !features_allowed && !fauna_allowed)
 		var/message = "[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!"
-		to_chat(world, span_boldannounce("[message]"))
+		to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 		log_world(message)
 		return
 
@@ -334,7 +335,7 @@
 		CHECK_TICK
 
 	var/message = "[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	to_chat(world, span_boldannounce("[message]"))
+	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
 
 

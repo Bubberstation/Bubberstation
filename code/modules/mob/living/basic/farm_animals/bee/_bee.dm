@@ -57,7 +57,7 @@
 		/datum/pet_command/beehive/enter,
 		/datum/pet_command/beehive/exit,
 		/datum/pet_command/follow/bee,
-		/datum/pet_command/point_targeting/attack/swirl,
+		/datum/pet_command/attack/swirl,
 		/datum/pet_command/scatter,
 	)
 
@@ -70,6 +70,7 @@
 	AddComponent(/datum/component/swarming)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_QUEEN_BEE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
+	AddElement(/datum/element/basic_allergenic_attack, allergen = BUGS, allergen_chance = 33, histamine_add = 5)
 
 /mob/living/basic/bee/mob_pickup(mob/living/picker)
 	if(flags_1 & HOLOGRAM_1)

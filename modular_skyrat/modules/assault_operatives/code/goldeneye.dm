@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(goldeneye)
 
 /datum/status_effect/goldeneye_pinpointer
 	id = "goldeneye_pinpointer"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = PINPOINTER_PING_TIME
 	alert_type = /atom/movable/screen/alert/status_effect/goldeneye_pinpointer
 	/// The range until you're considered 'close'

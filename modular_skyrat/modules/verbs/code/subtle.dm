@@ -106,7 +106,7 @@
 		in_view.Remove(user)
 
 		for(var/mob/mob in in_view) // Filters out the AI eye and clientless mobs.
-			if(istype(mob, /mob/camera/ai_eye))
+			if(istype(mob, /mob/eye/camera/ai))
 				continue
 			if(mob.client)
 				continue

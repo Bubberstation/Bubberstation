@@ -1,4 +1,4 @@
-/obj/item/organ/external/fluff
+/obj/item/organ/fluff
 	name = "fluff"
 	desc = "Real fluffy."
 	icon_state = "random_fly_1"

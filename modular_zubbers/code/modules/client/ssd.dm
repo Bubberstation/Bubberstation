@@ -4,7 +4,7 @@
 		alpha = GHOST_ALPHA
 
 	if(!(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH))))
-		if(get_organ_by_type(/obj/item/organ/internal/brain))
+		if(get_organ_by_type(/obj/item/organ/brain))
 			if(!key)
 				alpha = GHOST_ALPHA
 

@@ -77,7 +77,7 @@
 	spell_type = /datum/action/cooldown/spell/conjure_item/infinite_guns/gun
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 3
-	no_coexistance_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
+	no_coexistence_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
 
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
@@ -85,7 +85,7 @@
 	spell_type = /datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 3
-	no_coexistance_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
+	no_coexistence_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
 /datum/spellbook_entry/barnyard
 	name = "Barnyard Curse"
@@ -99,7 +99,7 @@
 		draining from you over time. You can replenish it from your victims, specifically their necks."
 	spell_type =  /datum/action/cooldown/spell/splattercasting
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
-	no_coexistance_typecache = list(/datum/action/cooldown/spell/lichdom)
+	no_coexistence_typecache = list(/datum/action/cooldown/spell/lichdom)
 
 /datum/spellbook_entry/sanguine_strike
 	name = "Exsanguinating Strike"
@@ -116,7 +116,7 @@
 
 /datum/spellbook_entry/item/staffchaos
 	name = "Staff of Chaos"
-	desc = "A caprious tool that can fire all sorts of magic without any rhyme or reason. Using it on people you care about is not recommended."
+	desc = "A capricious tool that can fire all sorts of magic without any rhyme or reason. Using it on people you care about is not recommended."
 	item_path = /obj/item/gun/magic/staff/chaos
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 

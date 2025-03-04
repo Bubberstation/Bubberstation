@@ -1,4 +1,4 @@
-/obj/item/organ/external/mushroom_cap
+/obj/item/organ/mushroom_cap
 	icon_state = "random_fly_1"
 
 	mutantpart_key = "caps"
@@ -6,7 +6,7 @@
 	slot = ORGAN_SLOT_EXTERNAL_CAP
 	preference = "feature_caps"
 
-/obj/item/organ/external/mushroom_cap/Initialize(mapload)
+/obj/item/organ/mushroom_cap/Initialize(mapload)
 	if(!ispath(bodypart_overlay))
 		mutantpart_info[MUTANT_INDEX_COLOR_LIST] = bodypart_overlay.draw_color
 	return ..()

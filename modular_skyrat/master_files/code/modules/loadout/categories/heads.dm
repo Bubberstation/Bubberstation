@@ -278,10 +278,6 @@
 *	MISC
 */
 
-/datum/loadout_item/head/baseball
-	name = "Ballcap"
-	item_path = /obj/item/clothing/head/soft/mime
-
 /datum/loadout_item/head/pirate
 	name = "Pirate hat"
 	item_path = /obj/item/clothing/head/costume/pirate

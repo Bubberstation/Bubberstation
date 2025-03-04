@@ -23,7 +23,6 @@
 /datum/reagent/drug/pcp //to an extent this is pretty much just super bath salts
 	name = "PCP"
 	description = "Pure rage put into chemical form."
-	reagent_state = LIQUID
 	color = "#ffea2e"
 	overdose_threshold = 10 //really low overdose to keep people from abusing it too much
 	ph = 8
@@ -94,7 +93,6 @@
 /datum/reagent/pcc
 	name = "PCC"
 	description = "A chemical precursor to PCP."
-	reagent_state = SOLID
 	color = "#ffea2e" // rgb: 128, 128, 128
 	taste_description = "satiated rage"
 	ph = 7.3

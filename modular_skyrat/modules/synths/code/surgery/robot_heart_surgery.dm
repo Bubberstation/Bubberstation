@@ -17,7 +17,7 @@
 	desc = "A mechanical surgery procedure designed to repair an androids internal hydraulic pump."
 
 /datum/surgery/hydraulic_maintenance/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/internal/heart/hydraulic_pump = target.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/hydraulic_pump = target.get_organ_slot(ORGAN_SLOT_HEART)
 	if(isnull(hydraulic_pump) || !issynthetic(target) || hydraulic_pump.damage < 10)
 		return FALSE
 	return ..()
@@ -45,7 +45,7 @@
 
 /datum/surgery_step/hydraulic/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
-	var/obj/item/organ/internal/heart/hydraulic = patient.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/hydraulic = patient.get_organ_slot(ORGAN_SLOT_HEART)
 	patient.setOrganLoss(ORGAN_SLOT_HEART, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 	if(hydraulic.organ_flags & ORGAN_EMP)
 		hydraulic.organ_flags &= ~ORGAN_EMP

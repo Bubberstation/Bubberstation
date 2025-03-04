@@ -4,7 +4,6 @@
 	description = "Pure happiness"
 	taste_description = "an indescribable, slightly sour taste. Something in it relaxes you, filling you with pleasure."
 	color = "#97ffee"
-	reagent_state = LIQUID
 	overdose_threshold = 10
 	life_pref_datum = /datum/preference/toggle/erp/aphro
 	overdose_pref_datum = /datum/preference/toggle/erp/aphro

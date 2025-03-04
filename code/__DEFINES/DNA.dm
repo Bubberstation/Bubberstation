@@ -62,6 +62,7 @@
 #define DNA_MOTH_MARKINGS_BLOCK 13
 #define DNA_MUSHROOM_CAPS_BLOCK 14
 #define DNA_POD_HAIR_BLOCK 15
+#define DNA_FISH_TAIL_BLOCK 16
 */ //SKYRAT EDIT REMOVAL END
 
 // Hey! Listen up if you're here because you're adding a species feature!
@@ -80,6 +81,7 @@
 #define DNA_ETHEREAL_COLOR_BLOCK 4
 #define DNA_SKIN_COLOR_BLOCK 5
 #define DNA_POD_HAIR_BLOCK 15
+#define DNA_FISH_TAIL_BLOCK 16
 // SKYRAT EDIT ADDITION END
 
 #define DNA_SEQUENCE_LENGTH 4

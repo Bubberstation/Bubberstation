@@ -235,7 +235,7 @@
 			if(!HAS_TRAIT(current_mob, TRAIT_SILICON_EMOTES_ALLOWED))
 				available_emotes += synth_emotes
 			// Checking if can wag tail
-			var/obj/item/organ/external/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+			var/obj/item/organ/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 			if(!(tail?.wag_flags & WAG_ABLE))
 				available_emotes -= /mob/living/carbon/human/proc/emote_wag
 			// Checking if has wings

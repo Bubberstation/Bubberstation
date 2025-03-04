@@ -1,4 +1,4 @@
-/obj/item/organ/internal/heart/synth
+/obj/item/organ/heart/synth
 	name = "hydraulic pump engine"
 	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
 	organ_flags = ORGAN_ROBOTIC
@@ -10,7 +10,7 @@
 	slot = ORGAN_SLOT_HEART
 	var/last_message_time = 0
 
-/obj/item/organ/internal/heart/synth/emp_act(severity)
+/obj/item/organ/heart/synth/emp_act(severity)
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -37,7 +37,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/heart/synth
+	build_path = /obj/item/organ/heart/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)

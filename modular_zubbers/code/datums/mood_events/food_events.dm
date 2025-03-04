@@ -29,5 +29,5 @@
 			return
 		if(prob(5 + (qheal_strength * 2.5))) //Very tiny and in no way combat viable, might pick you up from crit in a very rare case
 			O.heal_bodypart_damage(brute = healpwr, burn = healpwr, required_bodytype = BODYTYPE_ORGANIC)
-			for(var/obj/item/organ/internal/stomach/S in O.organs)
+			for(var/obj/item/organ/stomach/S in O.organs)
 				S.apply_organ_damage((S.healing_factor * healpwr))

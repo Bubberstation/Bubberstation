@@ -88,12 +88,12 @@
 /obj/item/mod/module/mind_swap/on_deactivation(display_message, deleting)
 	swap_minds()
 
-/obj/item/mod/module/mind_swap/on_suit_activation()
+/obj/item/mod/module/mind_swap/on_part_activation()
 	ai_key = mod.ai_assistant?.key
 	wearer_key = mod.wearer.key
 	ai_control = FALSE
 
-/obj/item/mod/module/mind_swap/on_suit_deactivation(deleting = FALSE)
+/obj/item/mod/module/mind_swap/on_part_deactivation(deleting = FALSE)
 	if(wearer_key != mod.wearer.key)
 		swap_minds()
 

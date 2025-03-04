@@ -3,7 +3,7 @@
 //////////////////////////////////////
 
 //Heavily modified voice of god code
-/obj/item/organ/internal/vocal_cords/velvet
+/obj/item/organ/vocal_cords/velvet
 	name = "Velvet chords"
 	desc = "The voice spoken from these just make you want to drift off, sleep and obey."
 	icon = 'modular_zubbers/code/modules/mkultra/vocal_cords.dmi'
@@ -13,7 +13,7 @@
 
 /datum/action/item_action/organ_action/velvet
 	name = "Velvet chords"
-	var/obj/item/organ/internal/vocal_cords/velvet/cords = null
+	var/obj/item/organ/vocal_cords/velvet/cords = null
 
 /datum/action/item_action/organ_action/velvet/New()
 	..()
@@ -31,10 +31,10 @@
 		return
 	owner.say(".x[command]")
 
-/obj/item/organ/internal/vocal_cords/velvet/can_speak_with()
+/obj/item/organ/vocal_cords/velvet/can_speak_with()
 	return TRUE
 
-/obj/item/organ/internal/vocal_cords/velvet/handle_speech(message) //actually say the message
+/obj/item/organ/vocal_cords/velvet/handle_speech(message) //actually say the message
 	owner.say(message, spans = spans, sanitize = FALSE)
 	velvetspeech(message, owner, 1)
 
@@ -104,10 +104,10 @@
 			found_string = enthrall_listener.real_name
 			power_multiplier += 0.5
 
-		else if(findtext(message, enthrall_listener.first_name(), 1, length(enthrall_listener.first_name()) + 1))
+		else if(findtext(message, first_name(enthrall_listener.real_name), 1, length(first_name(enthrall_listener.real_name)) + 1))
 			specific_listeners += enthrall_listener //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
-			found_string = enthrall_listener.first_name()
+			found_string = first_name(enthrall_listener.real_name)
 			power_multiplier += 0.5
 
 		else if(enthrall_listener.mind && enthrall_listener.mind.assigned_role && findtext(message, enthrall_listener.mind.assigned_role, 1, length(enthrall_listener.mind.assigned_role) + 1))
@@ -377,7 +377,7 @@
 			if(enthrall_chem.lewd)
 				speaktrigger += "[enthrall_chem.enthrall_gender]!"
 			else
-				speaktrigger += "[user.first_name()]!"
+				speaktrigger += "[first_name(user.real_name)]!"
 			//say it!
 			addtimer(CALLBACK(humanoid, /atom/movable/proc/say, "[speaktrigger]"), 5)
 			enthrall_chem.cooldown += 1

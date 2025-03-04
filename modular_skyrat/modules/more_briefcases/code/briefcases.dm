@@ -2,6 +2,9 @@
 	icon = 'modular_skyrat/modules/more_briefcases/icons/briefcases.dmi'
 	inhand_icon_state = "briefcase"
 
+/obj/item/storage/lockbox/order
+	icon = 'modular_skyrat/modules/more_briefcases/icons/briefcases.dmi'
+
 /obj/item/storage/briefcase/lawyer
 	icon_state = "briefcase_black"
 	inhand_icon_state = "sec-case"

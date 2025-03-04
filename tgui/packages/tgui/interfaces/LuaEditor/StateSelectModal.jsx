@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Input, Modal, Section, Stack } from '../../components';
+import { Button, Input, Modal, Section, Stack } from 'tgui-core/components';
 
 export const StateSelectModal = (props) => {
   const { act, data } = useBackend();

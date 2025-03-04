@@ -78,7 +78,7 @@
 		return "Incompatible lifeform detected."
 
 	// No brain
-	var/obj/item/organ/internal/brain/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(QDELETED(brain))
 		return "Get a brain, moran."
 
@@ -106,8 +106,8 @@
 	. = ..()
 	var/mob/living/carbon/human/enthrall = enthrall_ref?.resolve()
 	if(!isnull(enthrall))
-		var/obj/item/organ/internal/vocal_cords/vocal_cords = enthrall.get_organ_slot(ORGAN_SLOT_VOICE)
-		var/obj/item/organ/internal/vocal_cords/new_vocal_cords = new /obj/item/organ/internal/vocal_cords/velvet
+		var/obj/item/organ/vocal_cords/vocal_cords = enthrall.get_organ_slot(ORGAN_SLOT_VOICE)
+		var/obj/item/organ/vocal_cords/new_vocal_cords = new /obj/item/organ/vocal_cords/velvet
 		if(vocal_cords)
 			vocal_cords.Remove()
 		new_vocal_cords.Insert(enthrall)

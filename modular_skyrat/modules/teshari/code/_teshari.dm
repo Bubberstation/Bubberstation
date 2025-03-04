@@ -17,7 +17,7 @@
 	digitigrade_customization = DIGITIGRADE_NEVER
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0
-	mutanttongue = /obj/item/organ/internal/tongue/teshari
+	mutanttongue = /obj/item/organ/tongue/teshari
 	custom_worn_icons = list(
 		OFFSET_HEAD = TESHARI_HEAD_ICON,
 		OFFSET_FACEMASK = TESHARI_MASK_ICON,
@@ -38,7 +38,7 @@
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + TESHARI_TEMP_OFFSET)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + TESHARI_TEMP_OFFSET)
 	species_language_holder = /datum/language_holder/teshari
-	mutantears = /obj/item/organ/internal/ears/teshari
+	mutantears = /obj/item/organ/ears/teshari
 	body_size_restricted = TRUE
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/teshari,
@@ -58,7 +58,7 @@
 	)
 
 
-/obj/item/organ/internal/tongue/teshari
+/obj/item/organ/tongue/teshari
 	liked_foodtypes = MEAT | GORE | RAW
 	disliked_foodtypes = GROSS | GRAIN
 
@@ -72,7 +72,7 @@
 	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)
 
-/datum/species/teshari/on_species_gain(mob/living/carbon/human/new_teshari, datum/species/old_species, pref_load)
+/datum/species/teshari/on_species_gain(mob/living/carbon/human/new_teshari, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	passtable_on(new_teshari, SPECIES_TRAIT)
 

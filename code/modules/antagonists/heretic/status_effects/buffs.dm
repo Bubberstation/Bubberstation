@@ -52,12 +52,12 @@
 	alert_type =/atom/movable/screen/alert/status_effect/duskndawn
 
 /datum/status_effect/duskndawn/on_apply()
-	ADD_TRAIT(owner, TRAIT_XRAY_VISION, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_XRAY_VISION, TRAIT_STATUS_EFFECT(id))
 	owner.update_sight()
 	return TRUE
 
 /datum/status_effect/duskndawn/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_XRAY_VISION, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_XRAY_VISION, TRAIT_STATUS_EFFECT(id))
 	owner.update_sight()
 
 // WOUNDED SOLDIER
@@ -138,7 +138,7 @@
 	id = "Silver Knives"
 	alert_type = null
 	status_type = STATUS_EFFECT_MULTIPLE
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	/// The number of blades we summon up to.
 	var/max_num_blades = 4
 	/// The radius of the blade's orbit.
@@ -148,13 +148,13 @@
 	/// If TRUE, we self-delete our status effect after all the blades are deleted.
 	var/delete_on_blades_gone = TRUE
 	/// What blade type to create
-	var/blade_type = /obj/effect/floating_blade
+	var/obj/effect/floating_blade/blade_type
 	/// A list of blade effects orbiting / protecting our owner
 	var/list/obj/effect/floating_blade/blades = list()
 
 /datum/status_effect/protective_blades/on_creation(
 	mob/living/new_owner,
-	new_duration = -1,
+	new_duration = STATUS_EFFECT_PERMANENT,
 	max_num_blades = 4,
 	blade_orbit_radius = 20,
 	time_between_initial_blades = 0.25 SECONDS,
@@ -216,7 +216,7 @@
 	if(HAS_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED))
 		return
 
-	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, type)
+	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, TRAIT_STATUS_EFFECT(id))
 
 	var/obj/effect/floating_blade/to_remove = blades[1]
 
@@ -229,7 +229,7 @@
 
 	qdel(to_remove)
 
-	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, type), 0.1 SECONDS)
+	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, TRAIT_STATUS_EFFECT(id)), 0.1 SECONDS)
 
 	return SUCCESSFUL_BLOCK
 
@@ -257,12 +257,12 @@
 
 /datum/status_effect/protective_blades/recharging/on_creation(
 	mob/living/new_owner,
-	new_duration = -1,
+	new_duration = STATUS_EFFECT_PERMANENT,
 	max_num_blades = 4,
 	blade_orbit_radius = 20,
 	time_between_initial_blades = 0.25 SECONDS,
+	blade_type = /obj/projectile/floating_blade,
 	blade_recharge_time = 1 MINUTES,
-	blade_type = /obj/effect/floating_blade,
 )
 
 	src.blade_recharge_time = blade_recharge_time
@@ -279,13 +279,13 @@
 /datum/status_effect/caretaker_refuge
 	id = "Caretaker’s Last Refuge"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 	var/static/list/caretaking_traits = list(TRAIT_GODMODE, TRAIT_HANDS_BLOCKED, TRAIT_IGNORESLOWDOWN, TRAIT_SECLUDED_LOCATION)
 
 /datum/status_effect/caretaker_refuge/on_apply()
 	animate(owner, alpha = 45,time = 0.5 SECONDS)
-	owner.density = FALSE
+	owner.set_density(FALSE)
 	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING), PROC_REF(on_focus_lost))
 	RegisterSignal(owner, COMSIG_MOB_BEFORE_SPELL_CAST, PROC_REF(prevent_spell_usage))
 	RegisterSignal(owner, COMSIG_ATOM_HOLYATTACK, PROC_REF(nullrod_handler))
@@ -339,11 +339,11 @@
 	alert_type = /atom/movable/screen/alert/status_effect/moon_grasp_hide
 
 /datum/status_effect/moon_grasp_hide/on_apply()
-	owner.add_traits(list(TRAIT_UNKNOWN, TRAIT_SILENT_FOOTSTEPS), id)
+	owner.add_traits(list(TRAIT_UNKNOWN, TRAIT_SILENT_FOOTSTEPS), TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/moon_grasp_hide/on_remove()
-	owner.remove_traits(list(TRAIT_UNKNOWN, TRAIT_SILENT_FOOTSTEPS), id)
+	owner.remove_traits(list(TRAIT_UNKNOWN, TRAIT_SILENT_FOOTSTEPS), TRAIT_STATUS_EFFECT(id))
 
 /atom/movable/screen/alert/status_effect/moon_grasp_hide
 	name = "Blessing of The Moon"

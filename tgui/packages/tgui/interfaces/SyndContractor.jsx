@@ -1,11 +1,8 @@
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
-  Grid,
   Icon,
   LabeledList,
   Modal,
@@ -14,9 +11,11 @@ import {
   Stack,
   Table,
   Tabs,
-} from '../components';
-import { FakeTerminal } from '../components/FakeTerminal';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
+import { FakeTerminal } from './common/FakeTerminal';
 
 const CONTRACT_STATUS_INACTIVE = 1;
 const CONTRACT_STATUS_ACTIVE = 2;
@@ -287,15 +286,13 @@ const ContractsTab = (props) => {
                 </>
               }
             >
-              <Grid>
-                <Grid.Column>{contract.message}</Grid.Column>
-                <Grid.Column size={0.5}>
-                  <Box bold mb={1}>
-                    Dropoff Location:
-                  </Box>
-                  <Box>{contract.dropoff}</Box>
-                </Grid.Column>
-              </Grid>
+              <NoticeBox>
+                <box>{contract.message}</box>
+                <Box bold mb={1}>
+                  Dropoff Location:
+                </Box>
+                <Box>{contract.dropoff}</Box>
+              </NoticeBox>
             </Section>
           );
         })}

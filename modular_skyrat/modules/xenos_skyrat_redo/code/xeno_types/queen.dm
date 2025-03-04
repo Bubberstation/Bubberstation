@@ -24,16 +24,16 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
 /mob/living/carbon/alien/adult/skyrat/queen/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/large/queen
-	organs += new /obj/item/organ/internal/alien/resinspinner
-	organs += new /obj/item/organ/internal/alien/neurotoxin/queen
-	organs += new /obj/item/organ/internal/alien/eggsac
+	organs += new /obj/item/organ/alien/plasmavessel/large/queen
+	organs += new /obj/item/organ/alien/resinspinner
+	organs += new /obj/item/organ/alien/neurotoxin/queen
+	organs += new /obj/item/organ/alien/eggsac
 	..()
 
 /mob/living/carbon/alien/adult/skyrat/queen/alien_talk(message, shown_name = name)
 	..(message, shown_name, TRUE)
 
-/obj/item/organ/internal/alien/neurotoxin/queen
+/obj/item/organ/alien/neurotoxin/queen
 	name = "neurotoxin gland"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
@@ -52,7 +52,7 @@
 		if(carbon_mob == src)
 			continue
 
-		var/obj/item/organ/internal/alien/hivenode/node = carbon_mob.get_organ_by_type(/obj/item/organ/internal/alien/hivenode)
+		var/obj/item/organ/alien/hivenode/node = carbon_mob.get_organ_by_type(/obj/item/organ/alien/hivenode)
 
 		if(istype(node))
 			node.queen_death()

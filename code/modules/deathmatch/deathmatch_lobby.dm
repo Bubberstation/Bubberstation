@@ -38,6 +38,7 @@
 		loadouts = GLOB.deathmatch_game.loadouts
 	add_player(player, loadouts[1], TRUE)
 	ui_interact(player)
+	addtimer(CALLBACK(src, PROC_REF(lobby_afk_probably)), 5 MINUTES) // being generous here
 
 /datum/deathmatch_lobby/Destroy(force, ...)
 	. = ..()
@@ -140,7 +141,7 @@
 	new_player.dna.update_dna_identity()
 	new_player.updateappearance(icon_update = TRUE, mutcolor_update = TRUE, mutations_overlay_update = TRUE)
 	new_player.add_traits(list(TRAIT_CANNOT_CRYSTALIZE, TRAIT_PERMANENTLY_MORTAL, TRAIT_TEMPORARY_BODY), INNATE_TRAIT)
-	if(!isnull(observer.mind) && observer.mind?.current)
+	if(observer.mind)
 		new_player.AddComponent( \
 			/datum/component/temporary_body, \
 			old_mind = observer.mind, \
@@ -155,8 +156,8 @@
 
 	// BUBBER EDIT BEGIN - No more abductors talking to station!
 	if(isabductor(new_player))
-		var/obj/item/organ/internal/tongue/abductor/tongue = new_player.get_organ_slot(ORGAN_SLOT_TONGUE)
-		if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
+		var/obj/item/organ/tongue/abductor/tongue = new_player.get_organ_slot(ORGAN_SLOT_TONGUE)
+		if(istype(tongue, /obj/item/organ/tongue/abductor))
 			tongue.mothership = "deathmatch"
 	// BUBBER EDIT END
 
@@ -175,6 +176,12 @@
 		return
 	announce(span_reallybig("The players have took too long! Game ending!"))
 	end_game()
+
+/datum/deathmatch_lobby/proc/lobby_afk_probably()
+	if (QDELING(src) || playing)
+		return
+	announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	GLOB.deathmatch_game.remove_lobby(host)
 
 /datum/deathmatch_lobby/proc/end_game()
 	if (!location)
@@ -310,7 +317,7 @@
 	var/max_players = map.max_players
 	for (var/possible_unlucky_loser in players)
 		max_players--
-		if (max_players <= 0)
+		if (max_players < 0)
 			var/loser_mob = players[possible_unlucky_loser]["mob"]
 			remove_ckey_from_play(possible_unlucky_loser)
 			add_observer(loser_mob)

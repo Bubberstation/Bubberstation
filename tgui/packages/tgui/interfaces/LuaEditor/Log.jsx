@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, Divider } from '../../components';
+import { Box, Button, Divider } from 'tgui-core/components';
 import { logger } from '../../logging';
 import { ListMapper } from './ListMapper';
 

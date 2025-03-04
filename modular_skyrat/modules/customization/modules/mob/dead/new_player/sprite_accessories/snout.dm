@@ -3,7 +3,7 @@
 	generic = "Snout"
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/lizard_snouts.dmi'
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE
-	organ_type = /obj/item/organ/external/snout
+	organ_type = /obj/item/organ/snout
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
@@ -14,7 +14,7 @@
 
 	return FALSE
 
-/obj/item/organ/external/snout
+/obj/item/organ/snout
 	mutantpart_key = "snout"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	external_bodyshapes = NONE // We don't actually want this to have  by default, since some of them don't apply that.
@@ -30,7 +30,7 @@
 	return !sprite_datum.is_hidden(human)
 
 
-/obj/item/organ/external/snout/mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/snout/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_MUZZLED_SPRITE)
 		external_bodyshapes |= BODYSHAPE_SNOUTED
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER)
@@ -38,14 +38,14 @@
 
 	return ..()
 
-/obj/item/organ/external/snout/top
+/obj/item/organ/snout/top
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top
 
 /datum/bodypart_overlay/mutant/snout/top
 	layers = EXTERNAL_FRONT
 
 
-/obj/item/organ/external/snout/top_adj
+/obj/item/organ/snout/top_adj
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top_adj
 
 /datum/bodypart_overlay/mutant/snout/top_adj
@@ -117,7 +117,7 @@
 	icon_state = "bug"
 	flags_for_organ = NONE
 	color_src = USE_MATRIXED_COLORS
-	organ_type = /obj/item/organ/external/snout/top_adj
+	organ_type = /obj/item/organ/snout/top_adj
 
 /datum/sprite_accessory/snouts/mammal/bug_no_eyes
 	name = "Bug (No eyes)"
@@ -251,7 +251,7 @@
 
 /datum/sprite_accessory/snouts/mammal/top
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE | SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER
-	organ_type = /obj/item/organ/external/snout/top
+	organ_type = /obj/item/organ/snout/top
 	relevent_layers = list(BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/snouts/mammal/top/fbird
@@ -267,7 +267,7 @@
 	icon_state = "fbug"
 	flags_for_organ = NONE
 	color_src = USE_MATRIXED_COLORS
-	organ_type = /obj/item/organ/external/snout/top_adj
+	organ_type = /obj/item/organ/snout/top_adj
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/snouts/mammal/top/felephant

@@ -1,7 +1,6 @@
 /datum/reagent/medicine/lidocaine
 	name = "Lidocaine"
 	description = "A numbing agent used often for surgeries, metabolizes slowly."
-	reagent_state = LIQUID
 	color = "#6dbdbd" // 109, 189, 189
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	overdose_threshold = 20
@@ -31,7 +30,6 @@
 /datum/reagent/inverse/lidocaine
 	name = "Lidopaine"
 	description = "A paining agent used often for... being a jerk, metabolizes faster than lidocaine."
-	reagent_state = LIQUID
 	color = "#85111f" // 133, 17, 31
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	ph = 6.09

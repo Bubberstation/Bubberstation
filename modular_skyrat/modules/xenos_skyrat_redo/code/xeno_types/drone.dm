@@ -16,8 +16,8 @@
 	GRANT_ACTION(/datum/action/cooldown/alien/skyrat/heal_aura)
 
 /mob/living/carbon/alien/adult/skyrat/drone/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel
-	organs += new /obj/item/organ/internal/alien/resinspinner
+	organs += new /obj/item/organ/alien/plasmavessel
+	organs += new /obj/item/organ/alien/resinspinner
 	..()
 
 /datum/action/cooldown/alien/skyrat/heal_aura

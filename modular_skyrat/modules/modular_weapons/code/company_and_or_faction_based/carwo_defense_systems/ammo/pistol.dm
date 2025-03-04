@@ -111,11 +111,11 @@
 	wound_bonus = 25
 	bare_wound_bonus = 25
 
-	embed_type = /datum/embed_data/c35sol_ripper
+	embed_type = /datum/embedding/c35sol_ripper
 
 	embed_falloff_tile = -15
 
-/datum/embed_data/c35sol_ripper
+/datum/embedding/c35sol_ripper
 	embed_chance = 75
 	fall_chance = 3
 	jostle_chance = 4

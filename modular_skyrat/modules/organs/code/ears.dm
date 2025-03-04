@@ -1,4 +1,4 @@
-/obj/item/organ/internal/ears/teshari
+/obj/item/organ/ears/teshari
 	name = "teshari ears"
 	desc = "A set of four long rabbit-like ears, a Teshari's main tool while hunting. Naturally extremely sensitive to loud sounds."
 	damage_multiplier = 1.5
@@ -6,7 +6,7 @@
 	overrides_sprite_datum_organ_type = TRUE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
-/obj/item/organ/internal/ears/teshari/on_mob_remove(mob/living/carbon/ear_owner)
+/obj/item/organ/ears/teshari/on_mob_remove(mob/living/carbon/ear_owner)
 	. = ..()
 	REMOVE_TRAIT(ear_owner, TRAIT_GOOD_HEARING, ORGAN_TRAIT)
 
@@ -41,7 +41,7 @@
 	user.visible_message(span_notice("[user], pricks up [user.p_their()] four ears, each twitching intently!"), span_notice("You perk up all four of your ears, hunting for even the quietest sounds."))
 	update_button_state("echolocation_on")
 
-	var/obj/item/organ/internal/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	if(ears)
 		ears.damage_multiplier = 3
 
@@ -53,7 +53,7 @@
 	user.visible_message(span_notice("[user] drops [user.p_their()] ears down a bit, no longer listening as closely."), span_notice("You drop your ears down, no longer paying close attention."))
 	update_button_state("echolocation_off")
 
-	var/obj/item/organ/internal/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	if(ears)
 		ears.damage_multiplier = 1.5
 

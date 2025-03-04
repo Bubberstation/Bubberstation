@@ -1,8 +1,8 @@
 // THIS IS A SKYRAT UI FILE
 import { sortBy } from 'common/collections';
+import { Box, Button, Icon, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Box, Button, Icon, Section, Table } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 

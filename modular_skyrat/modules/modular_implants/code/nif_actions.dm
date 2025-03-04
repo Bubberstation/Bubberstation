@@ -11,7 +11,7 @@
 
 /datum/action/item_action/nif/open_menu/Trigger(trigger_flags)
 	. = ..()
-	var/obj/item/organ/internal/cyberimp/brain/nif/target_nif = target
+	var/obj/item/organ/cyberimp/brain/nif/target_nif = target
 
 	if(target_nif.calibrating)
 		target_nif.send_message("The NIF is still calibrating, please wait!", TRUE)

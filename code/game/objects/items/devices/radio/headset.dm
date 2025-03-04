@@ -36,6 +36,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	interaction_flags_mouse_drop = FORBID_TELEKINESIS_REACH
 	slot_flags = ITEM_SLOT_EARS
 	dog_fashion = null
+	equip_sound = SFX_HEADSET_EQUIP
+	pickup_sound = SFX_HEADSET_PICKUP
+	drop_sound = 'sound/items/handling/headset/headset_drop1.ogg'
+	sound_vary = TRUE
 	var/obj/item/encryptionkey/keyslot2 = null
 	/// A list of all languages that this headset allows the user to understand. Populated by language encryption keys.
 	var/list/language_list
@@ -53,29 +57,38 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/examine(mob/user)
 	. = ..()
 
-	if(item_flags & IN_INVENTORY && loc == user)
-		// construction of frequency description
-		var/list/avail_chans = list("Use [RADIO_KEY_COMMON] for the currently tuned frequency")
-		if(special_channels & RADIO_SPECIAL_BINARY)
-			avail_chans += "use [MODE_TOKEN_BINARY] for [MODE_BINARY]"
-		if(length(channels))
-			for(var/i in 1 to length(channels))
-				if(i == 1)
-					avail_chans += "use [MODE_TOKEN_DEPARTMENT] or [GLOB.channel_tokens[channels[i]]] for [LOWER_TEXT(channels[i])]"
-				else
-					avail_chans += "use [GLOB.channel_tokens[channels[i]]] for [LOWER_TEXT(channels[i])]"
-		. += span_notice("A small screen on the headset displays the following available frequencies:\n[english_list(avail_chans)].")
-
-		if(command)
-			. += span_info("Alt-click to toggle the high-volume mode.")
-	else
+	if(!(item_flags & IN_INVENTORY) || loc != user)
 		. += span_notice("A small screen on the headset flashes, it's too small to read without holding or wearing the headset.")
+		return
+
+	// construction of frequency description
+	var/list/available_channels = list()
+	available_channels += "<li><b>[span_radio(RADIO_KEY_COMMON)]</b> for the currently tuned frequency</li>"
+	if(special_channels & RADIO_SPECIAL_BINARY)
+		available_channels += "<li><b>[span_binarysay(MODE_TOKEN_BINARY)] for [span_binarysay(capitalize(MODE_BINARY))]</b></li>"
+
+	for(var/i in 1 to length(channels))
+		var/channel_name = channels[i]
+		var/channel_token = GLOB.channel_tokens[channel_name]
+		var/channel_span_class = get_radio_span(GLOB.radiochannels[channel_name])
+
+		if(i == 1)
+			available_channels += "<li><b>[span_class(channel_span_class, MODE_TOKEN_DEPARTMENT)]</b> or <b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+		else
+			available_channels += "<li><b>[span_class(channel_span_class, channel_token)]</b> for <b>[span_class(channel_span_class, channel_name)]</b></li>"
+
+	. += span_notice("A small screen on the headset displays the following available frequencies:")
+	. += span_notice("<ul style='display:inline-block; margin: 0; list-style: square;'>[available_channels.Join()]</ul>")
+
+	if(command)
+		. += span_info("<b>Alt-click</b> to toggle the high-volume mode.")
 
 /obj/item/radio/headset/Initialize(mapload)
 	. = ..()
 	if(ispath(keyslot2))
 		keyslot2 = new keyslot2()
 	set_listening(TRUE)
+	set_broadcasting(TRUE)
 	recalculateChannels()
 	possibly_deactivate_in_loc()
 
@@ -120,6 +133,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	for(var/language in language_list)
 		user.remove_language(language, language_flags = UNDERSTOOD_LANGUAGE, source = LANGUAGE_RADIOKEY)
+
+// Headsets do not become hearing sensitive as broadcasting instead controls their talk_into capabilities
+/obj/item/radio/headset/set_broadcasting(new_broadcasting, actual_setting = TRUE)
+	broadcasting = new_broadcasting
+	if(actual_setting)
+		should_be_broadcasting = broadcasting
+
+	if (perform_update_icon && !isnull(overlay_mic_idle))
+		update_icon()
+	else if (!perform_update_icon)
+		should_update_icon = TRUE
+
+/obj/item/radio/headset/talk_into_impl(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
+	if (!broadcasting)
+		return
+	return ..()
 
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
 

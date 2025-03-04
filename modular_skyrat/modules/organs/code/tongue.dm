@@ -1,25 +1,25 @@
-/obj/item/organ/internal/tongue/copy_traits_from(obj/item/organ/internal/tongue/old_tongue, copy_actions = FALSE)
+/obj/item/organ/tongue/copy_traits_from(obj/item/organ/tongue/old_tongue, copy_actions = FALSE)
 	. = ..()
 	// make sure we get food preferences too, because those are now tied to tongues for some reason
 	liked_foodtypes = old_tongue.liked_foodtypes
 	disliked_foodtypes = old_tongue.disliked_foodtypes
 	toxic_foodtypes = old_tongue.toxic_foodtypes
 
-/obj/item/organ/internal/tongue/dog
+/obj/item/organ/tongue/dog
 	name = "long tongue"
 	desc = "A long and wet tongue. It seems to jump when it's called good, oddly enough."
 	say_mod = "woofs"
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
-/obj/item/organ/internal/tongue/dog/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/dog/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "arfs"
 	signer.verb_exclaim = "wans"
 	signer.verb_whisper = "whimpers"
 	signer.verb_yell = "barks"
 
-/obj/item/organ/internal/tongue/dog/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/dog/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
@@ -27,35 +27,35 @@
 	speaker.verb_sing = initial(verb_sing)
 	speaker.verb_yell = initial(verb_yell)
 
-/obj/item/organ/internal/tongue/cat/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/cat/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "mrrps"
 	signer.verb_exclaim = "mrrowls"
 	signer.verb_whisper = "purrs"
 	signer.verb_yell = "yowls"
 
-/obj/item/organ/internal/tongue/cat/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/cat/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
 	speaker.verb_whisper = initial(verb_whisper)
 	speaker.verb_yell = initial(verb_yell)
 
-/obj/item/organ/internal/tongue/avian
+/obj/item/organ/tongue/avian
 	name = "avian tongue"
 	desc = "A short and stubby tongue that craves seeds."
 	say_mod = "chirps"
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
-/obj/item/organ/internal/tongue/avian/mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/tongue/avian/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "peeps"
 	signer.verb_exclaim = "squawks"
 	signer.verb_whisper = "murmurs"
 	signer.verb_yell = "shrieks"
 
-/obj/item/organ/internal/tongue/avian/mob_remove(mob/living/carbon/speaker, special = FALSE)
+/obj/item/organ/tongue/avian/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
 	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
@@ -65,10 +65,10 @@
 
 /// This "human" tongue is only used in Character Preferences / Augmentation menu.
 /// The base tongue class lacked a say_mod. With say_mod included it makes a non-Human user sound like a Human.
-/obj/item/organ/internal/tongue/human
+/obj/item/organ/tongue/human
 	say_mod = "says"
 
-/obj/item/organ/internal/tongue/lizard/robot
+/obj/item/organ/tongue/lizard/robot
 	name = "robotic lizard voicebox"
 	desc = "A lizard-like voice synthesizer that can interface with organic lifeforms."
 	organ_flags = ORGAN_ROBOTIC
@@ -80,14 +80,14 @@
 	taste_sensitivity = 25 // not as good as an organic tongue
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
-/obj/item/organ/internal/tongue/lizard/robot/can_speak_language(language)
+/obj/item/organ/tongue/lizard/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS
 
-/obj/item/organ/internal/tongue/lizard/robot/modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/lizard/robot/modify_speech(datum/source, list/speech_args)
 	. = ..()
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
-/obj/item/organ/internal/tongue/lizard/cybernetic
+/obj/item/organ/tongue/lizard/cybernetic
 	name = "forked cybernetic tongue"
 	icon = 'modular_skyrat/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue-lizard"
@@ -97,7 +97,7 @@
 	taste_sensitivity = 20
 	modifies_speech = TRUE
 
-/obj/item/organ/internal/tongue/cybernetic
+/obj/item/organ/tongue/cybernetic
 	name = "cybernetic tongue"
 	icon = 'modular_skyrat/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue"
@@ -107,20 +107,20 @@
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
 	taste_sensitivity = 20
 
-/obj/item/organ/internal/tongue/vox
+/obj/item/organ/tongue/vox
 	name = "vox tongue"
 	desc = "A fleshy muscle mostly used for skreeing."
 	say_mod = "skrees"
 	liked_foodtypes = MEAT | FRIED
 
-/obj/item/organ/internal/tongue/dwarven
+/obj/item/organ/tongue/dwarven
 	name = "dwarven tongue"
 	desc = "A fleshy muscle mostly used for bellowing."
 	say_mod = "bellows"
 	liked_foodtypes = ALCOHOL | MEAT | DAIRY //Dwarves like alcohol, meat, and dairy products.
 	disliked_foodtypes = JUNKFOOD | FRIED | CLOTH //Dwarves hate foods that have no nutrition other than alcohol.
 
-/obj/item/organ/internal/tongue/ghoul
+/obj/item/organ/tongue/ghoul
 	name = "ghoulish tongue"
 	desc = "A fleshy muscle mostly used for rasping."
 	say_mod = "rasps"
@@ -128,7 +128,7 @@
 	disliked_foodtypes = VEGETABLES | FRUIT | CLOTH
 	toxic_foodtypes = DAIRY | PINEAPPLE
 
-/obj/item/organ/internal/tongue/insect
+/obj/item/organ/tongue/insect
 	name = "insect tongue"
 	desc = "A fleshy muscle mostly used for chittering."
 	say_mod = "chitters"
@@ -136,7 +136,7 @@
 	disliked_foodtypes = CLOTH | GRAIN | FRIED
 	toxic_foodtypes = DAIRY
 
-/obj/item/organ/internal/tongue/xeno_hybrid
+/obj/item/organ/tongue/xeno_hybrid
 	name = "alien tongue"
 	desc = "According to leading xenobiologists the evolutionary benefit of having a second mouth in your mouth is \"that it looks badass\"."
 	icon_state = "tonguexeno"
@@ -144,12 +144,12 @@
 	taste_sensitivity = 10
 	liked_foodtypes = MEAT
 
-/obj/item/organ/internal/tongue/xeno_hybrid/Initialize(mapload)
+/obj/item/organ/tongue/xeno_hybrid/Initialize(mapload)
 	. = ..()
-	var/obj/item/organ/internal/tongue/alien/alien_tongue_type = /obj/item/organ/internal/tongue/alien
+	var/obj/item/organ/tongue/alien/alien_tongue_type = /obj/item/organ/tongue/alien
 	voice_filter = initial(alien_tongue_type.voice_filter)
 
-/obj/item/organ/internal/tongue/skrell
+/obj/item/organ/tongue/skrell
 	name = "skrell tongue"
 	desc = "A fleshy muscle mostly used for warbling."
 	say_mod = "warbles"

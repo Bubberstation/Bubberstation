@@ -26,7 +26,7 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_quick)
 
 /mob/living/carbon/alien/adult/skyrat/runner/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/small/tiny
+	organs += new /obj/item/organ/alien/plasmavessel/small/tiny
 	..()
 
 /datum/action/cooldown/alien/skyrat/evade

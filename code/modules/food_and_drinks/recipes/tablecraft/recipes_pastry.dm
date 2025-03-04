@@ -418,12 +418,13 @@
 	)
 	result = /obj/item/food/donkpocket/deluxe
 	category = CAT_PASTRY
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/donkpocket/deluxe/nocarb
 	time = 15
 	name = "Deluxe Meat-pocket"
 	reqs = list(
-		/obj/item/organ/internal/heart = 1,
+		/obj/item/organ/heart = 1,
 		/obj/item/food/meatball = 1,
 		/obj/item/food/meat/slab = 1,
 		/obj/item/food/grown/herbs = 1

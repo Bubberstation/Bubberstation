@@ -1,4 +1,4 @@
-/obj/item/organ/external/synth_antenna
+/obj/item/organ/synth_antenna
 	name = "synth antenna"
 	desc = "Wonder if we'll catch Syndicate frequencies with these..."
 	icon_state = "random_fly_1"

@@ -148,9 +148,9 @@
 	ricochet_incidence_leeway = 0
 	embed_falloff_tile = -2
 	shrapnel_type = /obj/item/shrapnel/bone_fragment
-	embed_type = /datum/embed_data/tomahawk
+	embed_type = /datum/embedding/tomahawk
 
-/datum/embed_data/tomahawk
+/datum/embedding/tomahawk
 	embed_chance = 55
 	fall_chance = 2
 	jostle_chance = 7

@@ -24,9 +24,9 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
 /mob/living/carbon/alien/adult/skyrat/praetorian/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/large
-	organs += new /obj/item/organ/internal/alien/neurotoxin/spitter
-	organs += new /obj/item/organ/internal/alien/resinspinner
+	organs += new /obj/item/organ/alien/plasmavessel/large
+	organs += new /obj/item/organ/alien/neurotoxin/spitter
+	organs += new /obj/item/organ/alien/resinspinner
 	..()
 
 /datum/action/cooldown/alien/skyrat/heal_aura/juiced
@@ -106,7 +106,7 @@
 	damage = 15
 	damage_type = BURN
 
-/obj/item/organ/internal/alien/neurotoxin/spitter
+/obj/item/organ/alien/neurotoxin/spitter
 	name = "large neurotoxin gland"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH

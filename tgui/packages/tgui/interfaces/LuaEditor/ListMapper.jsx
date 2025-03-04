@@ -5,7 +5,7 @@ import {
   Collapsible,
   LabeledList,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
 
 const RefRegex = RegExp('^.+ \\[0x[0-9a-fA-F]+]$');
 const FunctionRegex = RegExp('^function: 0x[0-9a-fA-F]+$');

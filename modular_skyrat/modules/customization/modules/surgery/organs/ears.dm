@@ -1,13 +1,13 @@
-/obj/item/organ/internal/ears/mutant
+/obj/item/organ/ears/mutant
 	name = "fluffy ears"
 	desc = "Wait, there's two pairs of these?"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
-/obj/item/organ/internal/ears/cat
+/obj/item/organ/ears/cat
 
-/obj/item/organ/internal/ears/fox
+/obj/item/organ/ears/fox
 
 /datum/bodypart_overlay/mutant/ears
 	feature_key = "ears"

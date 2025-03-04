@@ -94,9 +94,9 @@ function FlavorSection(props) {
             You don't have to follow it, unless you want some
             ideas for how to spend the round.`}
           */
-          tooltip={`
+          tooltip="
             Please refer to the 'Antagonist Policy' section of the wiki
-            if you have any questions.`}
+            if you have any questions."
           tooltipPosition="bottom-start"
         />
       }

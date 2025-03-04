@@ -74,9 +74,9 @@
 		return TRUE
 
 	for (var/obj/item/organ/iter_organ as anything in target.organs)
-		if (!istype(iter_organ, /obj/item/organ/external/taur_body))
+		if (!istype(iter_organ, /obj/item/organ/taur_body))
 			continue
-		var/obj/item/organ/external/taur_body/taur_body = iter_organ
+		var/obj/item/organ/taur_body/taur_body = iter_organ
 		if (taur_body.can_use_saddle)
 			return TRUE
 

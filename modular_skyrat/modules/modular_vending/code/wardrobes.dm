@@ -83,7 +83,7 @@
 	)
 
 	skyrat_contraband = list(
-		/obj/item/organ/internal/tongue/lizard/robot = 2,
+		/obj/item/organ/tongue/lizard/robot = 2,
 	)
 
 /obj/machinery/vending/wardrobe/science_wardrobe

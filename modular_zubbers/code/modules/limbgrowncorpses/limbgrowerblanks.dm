@@ -5,7 +5,7 @@
 	. = ..()
 	death()
 
-	var/obj/item/organ/internal/brain/to_remove = get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/to_remove = get_organ_slot(ORGAN_SLOT_BRAIN)
 	QDEL_NULL(to_remove)
 
 /datum/design/wholehuman
@@ -21,5 +21,5 @@
 	id = "blankbrain"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 100)
-	build_path = /obj/item/organ/internal/brain
+	build_path = /obj/item/organ/brain
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)

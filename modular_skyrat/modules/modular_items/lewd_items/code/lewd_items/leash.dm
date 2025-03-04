@@ -75,7 +75,6 @@
 
 /datum/component/leash/erp
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	dupe_type = /datum/component/leash
 
 // 'owner' refers the leash item, while 'parent' refers to the one it's affixed to.
 /datum/component/leash/erp/RegisterWithParent()
