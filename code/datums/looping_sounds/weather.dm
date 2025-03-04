@@ -5,7 +5,7 @@
 		'sound/ambience/weather/ashstorm/outside/active_mid1.ogg'=1
 		)
 	mid_length = 80
-	start_sound = 'sound/ambience/weather/ashstorm/outside/active_start.ogg'
+	start_sound = 'modular_zubbers/sound/ambiance/bangle-ash-and-fire.ogg' // Bubber edit. Credit: Bangle
 	start_length = 130
 	end_sound = 'sound/ambience/weather/ashstorm/outside/active_end.ogg'
 	volume = 80
