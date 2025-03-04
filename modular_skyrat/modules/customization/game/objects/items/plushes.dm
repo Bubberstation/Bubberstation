@@ -208,7 +208,7 @@
 	icon_state = "plushie_seadu"
 	attack_verb_continuous = list("beeps", "sneeds", "swords")
 	attack_verb_simple = list("beep", "sneed", "sword")
-	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg' = 1,'modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg' = 1)
+	squeak_override = list('sound/machines/synth/synth_no.ogg' = 1,'sound/machines/synth/synth_yes.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/lizzyplush
 	name = "odd yoga lizzy plushie"
