@@ -14,7 +14,9 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 const FeatureBlooperDropdownInput = (
-  props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  props: FeatureValueProps<string, string, FeatureChoicedServerData> & {
+    act: (action: string, value?: unknown) => void;
+  },
 ) => {
   return (
     <Stack>

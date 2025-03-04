@@ -281,7 +281,11 @@ export const FeatureTextInput = (
   );
 };
 
-export const FeatureTriColorInput = (props: FeatureValueProps<string[]>) => {
+export const FeatureTriColorInput = (
+  props: FeatureValueProps<string[]> & {
+    act: (action: string, value?: unknown) => void;
+  },
+) => {
   const buttonFromValue = (index) => {
     return (
       <Stack.Item>
