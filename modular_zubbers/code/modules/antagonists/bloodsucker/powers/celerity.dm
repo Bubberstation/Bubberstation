@@ -122,7 +122,7 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/celerity/proc/GetCeleritySpeed()
-	return (-0.05 * level_current)
+	return -0.05 * level_current
 
 /datum/action/cooldown/bloodsucker/celerity/proc/GetCelerityDelay()
 	return min(0.05 * level_current, 0.5)
