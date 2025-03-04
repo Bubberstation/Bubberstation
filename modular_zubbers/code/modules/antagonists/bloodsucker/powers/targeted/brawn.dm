@@ -178,7 +178,6 @@
 			return FALSE
 		if(target_airlock.Adjacent(user))
 			target_airlock.visible_message(span_danger("[target_airlock] breaks open as [user] bashes it!"))
-			user.Stun(10)
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
@@ -198,7 +197,7 @@
 	return GetPunchDamage(user_active_arm.unarmed_damage_high)
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetPunchDamage(punch_damage)
-	return punch_damage * 1.25 + 2
+	return punch_damage * (1 + (0.05 * level_current))
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
 	. = ..()
