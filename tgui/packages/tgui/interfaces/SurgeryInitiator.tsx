@@ -98,8 +98,8 @@ class SurgeryInitiatorInner extends Component<
                     selected={index === this.state.selectedSurgeryIndex}
                     tooltip={
                       surgery.blocked
-                        ? surgery.blocked_reason ??
-                          'That surgery is unavailable!'
+                        ? (surgery.blocked_reason ??
+                          'That surgery is unavailable!')
                         : undefined
                     } // SKYRAT EDIT - ORIGINAL: tooltip={surgery.blocked ? "Their body is covered!" : undefined}
                     key={surgery.name}
