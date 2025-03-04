@@ -102,5 +102,9 @@ GLOBAL_LIST_INIT(prototype_organs, typecacheof(list(
 	/obj/item/organ/ears/dullahan,
 	/obj/item/organ/tongue/dullahan,
 	/obj/item/organ/eyes/dullahan,
+	// BUBBER EDIT START
+	/obj/item/organ/borer_body, // Borer bodies are an abstract base for borers to live in
+	/obj/item/organ/genital, // Base type which shouldn't appear ingame
+	// BUBBER EDIT END
 ), only_root_path = TRUE))
 
