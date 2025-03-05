@@ -678,10 +678,7 @@ export function MainPage(props: MainPageProps) {
             </Stack.Item>
             {/* BUBBER EDIT ADDITION END: Preview Selection */}
 
-            <Stack.Item height="545px">
-              <CharacterPreview height="60%" id={data.character_preview_view} />
-            </Stack.Item>
-            {/* BUBBER EDIT ADDITION */}
+            {/* BUBBER EDIT ADDITION START: Background Selection */}
             <Stack.Item position="relative">
               <SideDropdown
                 width="100%"
@@ -694,20 +691,13 @@ export function MainPage(props: MainPageProps) {
                 }
               />
             </Stack.Item>
-
-            <Stack.Item position="relative">
-              <SideDropdown
-                width="100%"
-                selected={data.preview_selection}
-                options={data.preview_options}
-                onSelected={(value) =>
-                  act('update_preview', {
-                    updated_preview: value,
-                  })
-                }
-              />
+            {/* BUBBER EDIT ADDITION END: Background Selection */}
+            <Stack.Item height="545px">
+              <CharacterPreview
+                height="100%"
+                id={data.character_preview_view}
+              />{' '}
             </Stack.Item>
-            {/* BUBBER EDIT END */}
 
             <Stack.Item position="relative">
               <NameInput
