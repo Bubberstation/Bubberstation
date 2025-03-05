@@ -52,14 +52,14 @@
 		var/list/data = list(
 			path = replacetext(replacetext("[record.product_path]", "/obj/item/", ""), "/", "-"),
 			name = record.name,
-			price = record.custom_price || default_price,
+			price = record.price || default_price,
 			max_amount = record.max_amount,
 			ref = REF(record)
 		)
 		.["product_records"] += list(data)
 
 /// Check if the list of given access is allowed to purchase the given product
-/obj/machinery/vending/access/proc/allow_purchase(var/obj/item/card/id/user_id, product_path)
+/obj/machinery/vending/access/proc/allow_purchase(obj/item/card/id/user_id, product_path)
 	if(obj_flags & EMAGGED || !onstation)
 		return TRUE
 	. = FALSE

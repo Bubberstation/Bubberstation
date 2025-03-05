@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import React, { useEffect, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
@@ -15,8 +14,9 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
+import { FitText } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { FitText } from '../../components';
 import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
 import * as types from './types';
 
