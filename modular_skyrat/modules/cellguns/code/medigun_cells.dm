@@ -425,10 +425,10 @@
 	name = "salve globule"
 	icon_state = "glob_projectile"
 	shrapnel_type = /obj/item/mending_globule/hardlight
-	embed_type = /datum/embed_data/salve_globule
+	embed_type = /datum/embedding/salve_globule
 	damage = 0
 
-/datum/embed_data/salve_globule
+/datum/embedding/salve_globule
 	embed_chance = 100
 	ignore_throwspeed_threshold = TRUE
 	pain_mult = 0
@@ -514,27 +514,21 @@
 /obj/item/mending_globule/hardlight
 	name = "salve globule"
 	desc = "A ball of regenerative synthetic plant matter, contained within a soft hardlight field."
-	embed_type = /datum/embed_data/salve_globule
+	embed_type = /datum/embedding/salve_globule
 	icon = 'modular_skyrat/modules/cellguns/icons/obj/guns/mediguns/misc.dmi'
 	icon_state = "globule"
 	heals_left = 40 //This means it'll be heaing 15 damage per type max.
 
-/obj/item/mending_globule/hardlight/unembedded()
-	. = ..()
-	qdel(src)
+/datum/embedding/salve_globule/process(seconds_per_tick)
+	var/obj/item/mending_globule/hardlight/salve = parent
 
-/obj/item/mending_globule/hardlight/process()
-	if(!bodypart)
-		return FALSE
-
-	if(!bodypart.get_damage()) //Makes it poof as soon as the body part is fully healed, no keeping this on forever.
+	if(!owner_limb.get_damage()) //Makes it poof as soon as the body part is fully healed, no keeping this on forever.
 		qdel(src)
 		return FALSE
+	owner_limb.heal_damage(0.25 * seconds_per_tick, 0.25 * seconds_per_tick)
+	salve.heals_left--
 
-	bodypart.heal_damage(0.25,0.25) //Reduced healing rate over original
-	heals_left--
-
-	if(heals_left <= 0)
+	if(salve.heals_left <= 0)
 		qdel(src)
 
 //Hardlight Emergency Bed.

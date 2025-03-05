@@ -15,6 +15,6 @@
 /datum/preference/toggle/naga_soles/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	if (value)
 		return
-	var/obj/item/organ/external/taur_body/serpentine/snake_body = target.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+	var/obj/item/organ/taur_body/serpentine/snake_body = target.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 	if (istype(snake_body))
 		snake_body.add_hardened_soles(target)
