@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Stack } from 'tgui-core/components';
+import { NoticeBox, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
@@ -127,21 +127,27 @@ export function CharacterPreferenceWindow(props) {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <CharacterProfiles
-          activeSlot={data.active_slot - 1}
-          onClick={(slot) => {
-            act('change_slot', {
-              slot: slot + 1,
-            });
-          }}
-          profiles={data.character_profiles}
-        />
+        <Stack>
+          <Stack.Item>
+            <CharacterProfiles
+              activeSlot={data.active_slot - 1}
+              onClick={(slot) => {
+                act('change_slot', {
+                  slot: slot + 1,
+                });
+              }}
+              profiles={data.character_profiles}
+            />
+          </Stack.Item>
+          {!data.content_unlocked && (
+            <Stack.Item grow align="center" mb={-1}>
+              <NoticeBox info>
+                Buy BYOND premium for more character slots!
+              </NoticeBox>
+            </Stack.Item>
+          )}
+        </Stack>
       </Stack.Item>
-      {!data.content_unlocked && (
-        <Stack.Item align="center">
-          Buy BYOND premium for more slots!
-        </Stack.Item>
-      )}
       <Stack.Divider />
       <Stack.Item>
         <Stack fill>
