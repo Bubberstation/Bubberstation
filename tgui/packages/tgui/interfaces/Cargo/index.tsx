@@ -74,6 +74,15 @@ export function CargoContent(props) {
             >
               Catalog
             </Tabs.Tab>
+            {/* BUBBER EDIT START - Company imports */}
+            <Tabs.Tab
+              icon="clipboard-list"
+              selected={tab === TAB.Imports}
+              onClick={() => act(TAB.Imports)}
+            >
+              Company Imports
+            </Tabs.Tab>
+            {/* BUBBER EDIT END */}
             <Tabs.Tab
               icon="envelope"
               textColor={
