@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/bait_can/worm = 10,
 		/obj/item/bait_can/worm/premium = 1,
 		/obj/item/cutting_board = 5,
-		/obj/item/fish_feed = 20,
+		/obj/item/reagent_containers/cup/fish_feed = 20,
 		/obj/item/fishing_hook = 10,
 		/obj/item/fishing_line = 5,
 		/obj/item/fishing_rod = 5

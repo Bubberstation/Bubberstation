@@ -16,7 +16,7 @@
 		/obj/item/mod/module/armor_booster/retractplates,
 	)
 	insignia_type = /obj/item/mod/module/insignia/engineer
-	additional_module = /obj/item/mod/module/dispenser/barrinade
+	additional_modules = /obj/item/mod/module/dispenser/barrinade
 
 /obj/item/mod/control/pre_equipped/responsory/milsim_trapper
 	applied_cell = /obj/item/stock_parts/power_store/cell/super
@@ -36,7 +36,7 @@
 		/obj/item/mod/module/armor_booster/retractplates,
 	)
 	insignia_type = /obj/item/mod/module/insignia/commander
-	additional_module = /obj/item/mod/module/dispenser/landmine
+	additional_modules = /obj/item/mod/module/dispenser/landmine
 
 /obj/item/mod/control/pre_equipped/responsory/milsim_marksman
 	applied_cell = /obj/item/stock_parts/power_store/cell/super
@@ -56,7 +56,7 @@
 		/obj/item/mod/module/armor_booster/retractplates,
 	)
 	insignia_type = /obj/item/mod/module/insignia/security
-	additional_module = /obj/item/mod/module/dispenser/smoke
+	additional_modules = /obj/item/mod/module/dispenser/smoke
 
 /obj/item/mod/control/pre_equipped/responsory/milsim_medic
 	applied_cell = /obj/item/stock_parts/power_store/cell/super
@@ -76,7 +76,7 @@
 		/obj/item/mod/module/armor_booster/retractplates,
 	)
 	insignia_type = /obj/item/mod/module/insignia/medic
-	additional_module = /obj/item/mod/module/dispenser/legion_core
+	additional_modules = /obj/item/mod/module/dispenser/legion_core
 
 /obj/item/mod/module/dispenser/barrinade
 	name = "MOD barricade grenade dispenser module"
@@ -112,4 +112,4 @@
 	name = "MOD legion core dispenser module"
 	desc = "This module can create healing legion cores at the user's liking."
 	cooldown_time = 10 SECONDS
-	dispense_type = /obj/item/organ/internal/monster_core/regenerative_core/legion
+	dispense_type = /obj/item/organ/monster_core/regenerative_core/legion

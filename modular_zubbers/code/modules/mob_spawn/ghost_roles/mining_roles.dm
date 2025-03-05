@@ -23,13 +23,13 @@
 	id = /obj/item/card/id/advanced/lizardgas
 
 /datum/outfit/lavaland_gasstation/post_equip(mob/living/carbon/human/clerk, visualsOnly = FALSE)
-    var/obj/item/card/id/id_card = clerk.wear_id
-    if(istype(id_card))
-        id_card.registered_name = clerk.real_name
-        id_card.update_label()
-        id_card.update_icon()
-    handlebank(clerk)
-    return ..()
+	var/obj/item/card/id/id_card = clerk.wear_id
+	if(istype(id_card))
+		id_card.registered_name = clerk.real_name
+		id_card.update_label()
+		id_card.update_icon()
+	handlebank(clerk)
+	return ..()
 
 /datum/outfit/hermit
 	backpack_contents = list(/obj/item/research_paper = 1)

@@ -2,7 +2,7 @@
 
 /datum/status_effect/his_grace
 	id = "his_grace"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 0.4 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/his_grace
 	var/bloodlust = 0
@@ -75,7 +75,7 @@
 /datum/status_effect/blooddrunk
 	id = "blooddrunk"
 	duration = 10
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
 /atom/movable/screen/alert/status_effect/blooddrunk
@@ -250,7 +250,7 @@
 /datum/status_effect/hippocratic_oath
 	id = "Hippocratic Oath"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 2.5 SECONDS
 	alert_type = null
 
@@ -306,26 +306,12 @@
 				newRod.activated()
 				if(!itemUser.has_hand_for_held_index(hand))
 					//If user does not have the corresponding hand anymore, give them one and return the rod to their hand
-					if(((hand % 2) == 0))
-						var/obj/item/bodypart/L = itemUser.newBodyPart(BODY_ZONE_R_ARM, FALSE, FALSE)
-						if(L.try_attach_limb(itemUser))
-							L.update_limb(is_creating = TRUE)
-							itemUser.update_body_parts()
-							itemUser.put_in_hand(newRod, hand, forced = TRUE)
-						else
-							qdel(L)
-							consume_owner() //we can't regrow, abort abort
-							return
+					var/zone = IS_LEFT_INDEX(hand) ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM
+					if(itemUser.regenerate_limb(zone, FALSE))
+						itemUser.put_in_hand(newRod, hand, forced = TRUE)
 					else
-						var/obj/item/bodypart/L = itemUser.newBodyPart(BODY_ZONE_L_ARM, FALSE, FALSE)
-						if(L.try_attach_limb(itemUser))
-							L.update_limb(is_creating = TRUE)
-							itemUser.update_body_parts()
-							itemUser.put_in_hand(newRod, hand, forced = TRUE)
-						else
-							qdel(L)
-							consume_owner() //see above comment
-							return
+						consume_owner() //we can't regrow, abort abort
+						return
 					to_chat(itemUser, span_notice("Your arm suddenly grows back with the Rod of Asclepius still attached!"))
 				else
 					//Otherwise get rid of whatever else is in their hand and return the rod to said hand
@@ -421,6 +407,7 @@
 /datum/status_effect/mayhem
 	id = "Mayhem"
 	duration = 2 MINUTES
+	alert_type = null
 	/// The chainsaw spawned by the status effect
 	var/obj/item/chainsaw/doomslayer/chainsaw
 
@@ -442,13 +429,13 @@
 
 	if(iscarbon(owner))
 		chainsaw = new(get_turf(owner))
-		ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
+		ADD_TRAIT(chainsaw, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
 		owner.put_in_hands(chainsaw, forced = TRUE)
 		chainsaw.attack_self(owner)
 		owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 25)
 
 	owner.log_message("entered a blood frenzy", LOG_ATTACK)
-	to_chat(owner, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
+	to_chat(owner, span_narsiesmall("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, NO TEAM MATES OR ALLEGIANCES! KILL THEM ALL!"))
 
 	var/datum/client_colour/colour = owner.add_client_colour(/datum/client_colour/bloodlust)
 	QDEL_IN(colour, 1.1 SECONDS)
@@ -465,6 +452,7 @@
 	duration = 2 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
+	alert_type = null
 
 /datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
@@ -517,7 +505,7 @@
 
 /datum/status_effect/nest_sustenance
 	id = "nest_sustenance"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 0.4 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/nest_sustenance
 
@@ -549,8 +537,8 @@
  */
 /datum/status_effect/blessing_of_insanity
 	id = "blessing_of_insanity"
-	duration = -1
-	tick_interval = -1
+	duration = STATUS_EFFECT_PERMANENT
+	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = /atom/movable/screen/alert/status_effect/blessing_of_insanity
 
 /atom/movable/screen/alert/status_effect/blessing_of_insanity
@@ -572,7 +560,7 @@
 	owner.AddElement(/datum/element/simple_flying)
 	owner.add_stun_absorption(source = id, priority = 4)
 	owner.add_movespeed_mod_immunities(id, /datum/movespeed_modifier/damage_slowdown)
-	ADD_TRAIT(owner, TRAIT_FREE_HYPERSPACE_MOVEMENT, id)
+	ADD_TRAIT(owner, TRAIT_FREE_HYPERSPACE_MOVEMENT, TRAIT_STATUS_EFFECT(id))
 	owner.playsound_local(get_turf(owner), 'sound/effects/chemistry/ahaha.ogg', vol = 100, vary = TRUE, use_reverb = TRUE)
 	return TRUE
 
@@ -590,7 +578,7 @@
 	owner.RemoveElement(/datum/element/simple_flying)
 	owner.remove_stun_absorption(id)
 	owner.remove_movespeed_mod_immunities(id, /datum/movespeed_modifier/damage_slowdown)
-	REMOVE_TRAIT(owner, TRAIT_FREE_HYPERSPACE_MOVEMENT, id)
+	REMOVE_TRAIT(owner, TRAIT_FREE_HYPERSPACE_MOVEMENT, TRAIT_STATUS_EFFECT(id))
 
 /// Gives you a brief period of anti-gravity
 /datum/status_effect/jump_jet
@@ -610,13 +598,14 @@
 	id = "radiation_immunity"
 	duration = 1 MINUTES
 	show_duration = TRUE
+	alert_type = null
 
 /datum/status_effect/radiation_immunity/on_apply()
-	ADD_TRAIT(owner, TRAIT_RADIMMUNE, type)
+	ADD_TRAIT(owner, TRAIT_RADIMMUNE, TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/radiation_immunity/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_RADIMMUNE, type)
+	REMOVE_TRAIT(owner, TRAIT_RADIMMUNE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/radiation_immunity/radnebula
 	alert_type = /atom/movable/screen/alert/status_effect/radiation_immunity
