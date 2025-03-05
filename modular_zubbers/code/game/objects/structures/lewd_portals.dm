@@ -109,11 +109,14 @@
 /obj/lewd_portal_relay/proc/update_visuals()
 	SIGNAL_HANDLER
 //	copy_overlays(owner, TRUE)
+	cut_overlay()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
 		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)
 		if(!istype(limb_object))
 			return
 		add_overlay(limb_object.get_limb_icon())
+	if(owner.shoes)
+		add_overlay(owner.overlays_standing[SHOES_LAYER])
 	add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 	/*
 	dummy = new/mob/living/carbon/human(src)
