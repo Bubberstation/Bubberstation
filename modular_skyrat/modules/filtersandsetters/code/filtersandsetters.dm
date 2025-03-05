@@ -8,7 +8,7 @@
 	toolspeed = 0.25
 
 /obj/item/bonesetter/alien/get_all_tool_behaviours()
-    return list(TOOL_BONESET, TOOL_ALIEN_BONESET)
+	return list(TOOL_BONESET, TOOL_ALIEN_BONESET)
 
 /datum/wound/item_can_treat(obj/item/potential_treater, mob/user)
 	. = ..()

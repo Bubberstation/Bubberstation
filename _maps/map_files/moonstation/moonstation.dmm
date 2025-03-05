@@ -23127,9 +23127,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
 "goG" = (
@@ -28053,7 +28050,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/atmospheric_sanity/ignore_area,
-/obj/machinery/time_clock/directional/west,
+/obj/machinery/modular_computer/preset/time_clock/directional/west,
 /turf/open/floor/iron/showroomfloor,
 /area/station/terminal/cryo)
 "hHF" = (
@@ -40920,7 +40917,7 @@
 /area/ruin/unpowered/ash_walkers)
 "lkQ" = (
 /obj/machinery/computer/cryopod/directional/east,
-/obj/machinery/time_clock/directional/south,
+/obj/machinery/modular_computer/preset/time_clock/directional/south,
 /obj/effect/turf_decal/tile/green/anticorner/contrasted,
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/showroomfloor,
@@ -67417,7 +67414,7 @@
 	dir = 8
 	},
 /obj/machinery/mecha_part_fabricator{
-	dir = 4
+	drop_direction = 4
 	},
 /obj/machinery/posialert/directional/west,
 /turf/open/floor/iron/dark,
@@ -72212,7 +72209,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/time_clock/directional/north,
+/obj/machinery/modular_computer/preset/time_clock/directional/north,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -72895,7 +72892,7 @@
 /area/station/tcommsat/computer)
 "uaR" = (
 /obj/machinery/computer/cryopod/directional/east,
-/obj/machinery/time_clock/directional/south,
+/obj/machinery/modular_computer/preset/time_clock/directional/south,
 /obj/effect/turf_decal/tile/green/anticorner/contrasted,
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/showroomfloor,
@@ -76533,7 +76530,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/time_clock/directional/west,
+/obj/machinery/modular_computer/preset/time_clock/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
@@ -77103,7 +77100,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "vlH" = (
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/ai_monitored/turret_protected/aisat/service)
 "vlQ" = (
@@ -82050,7 +82047,7 @@
 /area/station/hallway/primary/central/fore)
 "wGW" = (
 /obj/machinery/mecha_part_fabricator{
-	dir = 4
+	drop_direction = 4
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 8
@@ -86331,7 +86328,7 @@
 /area/station/maintenance/gamer_lair)
 "xQI" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/mob/living/basic/goose/vomit,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "xQU" = (

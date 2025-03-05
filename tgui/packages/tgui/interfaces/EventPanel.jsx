@@ -1,8 +1,14 @@
 // THIS IS A SKYRAT UI FILE
-import { toFixed } from 'common/math';
+import {
+  Button,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
-import { Button, LabeledList, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const EventPanel = (props) => {

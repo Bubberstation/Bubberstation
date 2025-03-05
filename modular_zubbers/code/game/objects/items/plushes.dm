@@ -234,3 +234,22 @@
 	icon_state = "squeaky_toy"
 	gender = MALE
 	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1)
+
+// Sophie/Cydia's plush
+/obj/item/toy/plush/androiddog
+	name = "android dog plushie"
+	desc = "A faded plushie toy of an android dog. Will not bite. \ A sticker says 'Push me!' on a little heart on the hand."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "androiddog"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/emotes/arf.ogg' = 1)
+
+// xPokee's plush
+/obj/item/toy/plush/ghoul
+	name = "intern ghoul plushie"
+	desc = "Even the marketable plushie of this thing is utterly terrifying. At least it's cuddly..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "johnghoul"
+	attack_verb_continuous = list("ghouls")
+	attack_verb_simple = list("ghoul")
+	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)

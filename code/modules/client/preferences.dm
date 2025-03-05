@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!loaded_preferences_successfully)
 		save_preferences()
-	save_character() //let's save this new random character so it doesn't keep generating new ones.
+	save_character(TRUE) //let's save this new random character so it doesn't keep generating new ones. // BUBBER EDIT
 
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	// There used to be code here that readded the preview view if you "rejoined"

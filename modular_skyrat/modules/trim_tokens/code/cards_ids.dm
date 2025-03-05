@@ -13,7 +13,6 @@
 	if(SSid_access.apply_trim_to_card(src, token.token_trim, copy_access = token.force_access))
 		playsound(src, token.usesound, 40)
 		to_chat(user, span_notice("The [token.name] fuses with your ID, replacing its trim with a [token.assignment] trim!"))
-		// If it's INFINITE (-1), it won't be affected by this.
 		if(token.uses > 0)
 			token.uses -= 1
 		if(token.uses == 0)
