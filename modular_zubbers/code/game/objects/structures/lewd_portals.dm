@@ -48,31 +48,15 @@
 
 	if(istype(current_mob.dna.species))
 		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob)
-		current_mob.cut_overlays()
-		for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
-			var/obj/item/bodypart/limb_object = current_mob.get_bodypart(limb)
-			if(!istype(limb_object))
-				return
-
-			current_mob.add_overlay(limb_object.get_limb_icon())
-			current_mob.update_worn_undersuit()
-			current_mob.update_worn_shoes()
-		current_mob.remove_overlay(BODY_ADJ_LAYER)
-		current_mob.add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
-		update_visuals()
-		RegisterSignals(current_mob, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_visuals))
+		relayed_body.update_visuals()
+		current_mob.add_filter("leg_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask reversed")))
 	else
 		unbuckle_all_mobs()
 	..()
 
-/obj/structure/lewd_portal/proc/update_visuals()
-	SIGNAL_HANDLER
-	relayed_body.appearance = current_mob.appearance
-
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
-	UnregisterSignal(current_mob, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY))
 	current_mob = null
-	unbuckled_mob.remove_filter("chest_removal")
+	unbuckled_mob.remove_filter("leg_removal")
 	qdel(relayed_body)
 	unbuckled_mob.regenerate_icons()
 	. = ..()
@@ -106,18 +90,49 @@
 
 /obj/lewd_portal_relay
 	name = "portal relay"
-	var/mob/living/owner
+	var/mob/living/carbon/human/owner
+	var/mob/living/carbon/human/dummy
 
-/obj/lewd_portal_relay/Initialize(mapload, owner_ref)
+/obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref)
 	. = ..()
 	if(!owner_ref)
 		return INITIALIZE_HINT_QDEL
 	owner = owner_ref
+	RegisterSignals(owner, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
 /obj/lewd_portal_relay/Destroy(force)
+	UnregisterSignal(owner, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY))
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	return ..()
+
+/obj/lewd_portal_relay/proc/update_visuals()
+	SIGNAL_HANDLER
+//	copy_overlays(owner, TRUE)
+	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
+		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)
+		if(!istype(limb_object))
+			return
+		add_overlay(limb_object.get_limb_icon())
+	add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+	/*
+	dummy = new/mob/living/carbon/human(src)
+	dummy.pixel_x = pixel_x
+	dummy.pixel_y = pixel_y
+	owner.dna.transfer_identity(dummy, TRUE, TRUE)
+	dummy.updateappearance(mutcolor_update = TRUE, mutations_overlay_update = TRUE)
+	dummy.cut_overlays()
+	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
+		var/obj/item/bodypart/limb_object = dummy.get_bodypart(limb)
+		if(!istype(limb_object))
+			return
+		dummy.add_overlay(limb_object.get_limb_icon())
+	dummy.update_worn_undersuit()
+	dummy.update_worn_shoes()
+	dummy.remove_overlay(BODY_ADJ_LAYER)
+	dummy.add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+	appearance = dummy
+	qdel(dummy)*/
 
 /obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
 	owner.attackby(attacking_item, user, params)
