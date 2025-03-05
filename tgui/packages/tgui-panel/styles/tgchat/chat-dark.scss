@@ -855,130 +855,6 @@ em {
   }
 }
 
-// SKYRAT EDIT ADDITION BEGIN
-
-.velvet {
-  color: #660015;
-  font-weight: bold;
-  animation: velvet 5000ms infinite;
-}
-@keyframes velvet {
-  0% {
-    color: #400020;
-  }
-  40% {
-    color: #ff0000;
-  }
-  50% {
-    color: #ff8888;
-  }
-  60% {
-    color: #ff0000;
-  }
-  100% {
-    color: #400020;
-  }
-}
-
-.velvet_notice {
-  color: #660015;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 125%;
-  animation: velvet 5000ms infinite;
-}
-@keyframes velvet {
-  0% {
-    color: #400020;
-  }
-  40% {
-    color: #ff0000;
-  }
-  50% {
-    color: #ff8888;
-  }
-  60% {
-    color: #ff0000;
-  }
-  100% {
-    color: #400020;
-  }
-}
-
-.hexnut {
-  color: #0099ff;
-  font-weight: bold;
-  animation: hexnut 5000ms infinite;
-  animation-direction: alternate;
-}
-
-@keyframes hexnut {
-  0% {
-    color: #0099ff;
-  }
-  35% {
-    color: #a64dff;
-  }
-  50% {
-    color: #00997a;
-  }
-  60% {
-    color: #ffb31a;
-  }
-  100% {
-    color: #ff33cc;
-  }
-}
-
-.doyourjobidiot {
-  color: #c51e1e;
-  text-shadow: 0 0 4px #e22525;
-  font-size: 125%;
-  font-weight: bold;
-  animation: flashingfuckingwarning 250ms infinite;
-}
-
-@keyframes flashingfuckingwarning {
-  0% {
-    color: #c51e1e;
-    text-shadow: 0 0 4px #c51e1e;
-  }
-
-  50% {
-    color: #e22525;
-    text-shadow: 0 0 8px #e22525;
-  }
-
-  100% {
-    color: #c51e1e;
-    text-shadow: 0 0 4px #c51e1e;
-  }
-}
-
-.glossy {
-  color: #9b6000;
-  font-weight: bold;
-  animation: glossy 5000ms infinite;
-}
-@keyframes glossy {
-  0% {
-    color: #9b6000;
-  }
-  30% {
-    color: #c88800;
-  }
-  60% {
-    color: #bdbd00;
-  }
-  70% {
-    color: #c88800;
-  }
-  100% {
-    color: #9b6000;
-  }
-}
-// SKYRAT EDIT ADDITION END
-
 .phobia {
   color: hsl(0, 100%, 43.3%);
   font-weight: bold;
@@ -1388,8 +1264,8 @@ $border-width-px: $border-width * 1px;
     );
   }
 }
-/* BUBBER EDIT ADDITION START - DARK MODE CLASSES */
 
+/* BUBBER EDIT ADDITION START - DARK MODE CLASSES */
 .mentor {
   color: #8a2be2;
 }
@@ -1486,4 +1362,125 @@ $border-width-px: $border-width * 1px;
 .vote {
   color: #db00a0;
 }
-// BUBBER EDIT ADDITION END
+
+.velvet {
+  color: #660015;
+  font-weight: bold;
+  animation: velvet 5000ms infinite;
+}
+@keyframes velvet {
+  0% {
+    color: #400020;
+  }
+  40% {
+    color: #ff0000;
+  }
+  50% {
+    color: #ff8888;
+  }
+  60% {
+    color: #ff0000;
+  }
+  100% {
+    color: #400020;
+  }
+}
+
+.velvet_notice {
+  color: #660015;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 125%;
+  animation: velvet 5000ms infinite;
+}
+@keyframes velvet {
+  0% {
+    color: #400020;
+  }
+  40% {
+    color: #ff0000;
+  }
+  50% {
+    color: #ff8888;
+  }
+  60% {
+    color: #ff0000;
+  }
+  100% {
+    color: #400020;
+  }
+}
+
+.hexnut {
+  color: #0099ff;
+  font-weight: bold;
+  animation: hexnut 5000ms infinite;
+  animation-direction: alternate;
+}
+
+@keyframes hexnut {
+  0% {
+    color: #0099ff;
+  }
+  35% {
+    color: #a64dff;
+  }
+  50% {
+    color: #00997a;
+  }
+  60% {
+    color: #ffb31a;
+  }
+  100% {
+    color: #ff33cc;
+  }
+}
+
+.doyourjobidiot {
+  color: #c51e1e;
+  text-shadow: 0 0 4px #e22525;
+  font-size: 125%;
+  font-weight: bold;
+  animation: flashingfuckingwarning 250ms infinite;
+}
+
+@keyframes flashingfuckingwarning {
+  0% {
+    color: #c51e1e;
+    text-shadow: 0 0 4px #c51e1e;
+  }
+
+  50% {
+    color: #e22525;
+    text-shadow: 0 0 8px #e22525;
+  }
+
+  100% {
+    color: #c51e1e;
+    text-shadow: 0 0 4px #c51e1e;
+  }
+}
+
+.glossy {
+  color: #9b6000;
+  font-weight: bold;
+  animation: glossy 5000ms infinite;
+}
+@keyframes glossy {
+  0% {
+    color: #9b6000;
+  }
+  30% {
+    color: #c88800;
+  }
+  60% {
+    color: #bdbd00;
+  }
+  70% {
+    color: #c88800;
+  }
+  100% {
+    color: #9b6000;
+  }
+}
+/* BUBBER EDIT ADDITION END - DARK MODE CLASSES */
