@@ -141,7 +141,7 @@ export function CharacterPreferenceWindow(props) {
           </Stack.Item>
           {!data.content_unlocked && (
             <Stack.Item grow align="center" mb={-1}>
-              <NoticeBox info>
+              <NoticeBox color="grey">
                 <a href="https://www.byond.com/membership">
                   Become a BYOND Member to unlock more character slots and other
                   members-only benefits!
