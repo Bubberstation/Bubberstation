@@ -15,7 +15,7 @@
 	required_atoms = list(/mob/living/carbon/human = 1)
 	cost = 0
 	priority = MAX_KNOWLEDGE_PRIORITY // Should be at the top
-	route = PATH_START
+	is_starting_knowledge = TRUE
 	research_tree_icon_path = 'icons/effects/eldritch.dmi'
 	research_tree_icon_state = "eye_close"
 	research_tree_icon_frame = 1
@@ -31,13 +31,13 @@
 	var/list/return_timers
 	/// Evil organs we can put in people
 	var/static/list/grantable_organs = list(
-		/obj/item/organ/internal/appendix/corrupt,
-		// /obj/item/organ/internal/eyes/corrupt, BUBBERSTATION REMOVAL. AWFUL OVERLAY EFFECT THAT PULSATES. JESUS CHRIST.
-		/obj/item/organ/internal/heart/corrupt,
-		// /obj/item/organ/internal/liver/corrupt, BUBBERSTATION REMOVAL. SURE LETS OD PEOPLE WHILE THEY'RE BEING TREATED OK.
-		// /obj/item/organ/internal/lungs/corrupt, BUBBERSTATION REMOVAL. HEY REMEMBER ABDUCTORS? HEY REMEMBER WE REMOVED PLASMA GENERATION FROM ABDUCTOR LUNGS? HEY LETS RE-ADD THAT BACK TO HERETIC LUNGS BECAUSE ????
-		/obj/item/organ/internal/stomach/corrupt,
-		// /obj/item/organ/internal/tongue/corrupt, BUBBERSTATION REMOVAL. LETS SLUR PEOPLE'S SPEECH AND NOT UNDERSTAND WHY THEY'RE DOING IT BECAUSE WE'RE NOT A GAME BASED ON COMMUNICATION OK.
+		/obj/item/organ/appendix/corrupt,
+		// /obj/item/organ/eyes/corrupt, // BUBBER EDIT REMOVAL
+		/obj/item/organ/heart/corrupt,
+		/obj/item/organ/liver/corrupt,
+		// /obj/item/organ/lungs/corrupt, // BUBBER EDIT REMOVAL
+		/obj/item/organ/stomach/corrupt,
+		/obj/item/organ/tongue/corrupt,
 	)
 
 /datum/heretic_knowledge/hunt_and_sacrifice/Destroy(force)
@@ -421,7 +421,7 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/curse_organs(mob/living/carbon/human/sac_target)
 	var/usable_organs = grantable_organs.Copy()
 	if (isplasmaman(sac_target))
-		usable_organs -= /obj/item/organ/internal/lungs/corrupt // Their lungs are already more cursed than anything I could give them
+		usable_organs -= /obj/item/organ/lungs/corrupt // Their lungs are already more cursed than anything I could give them
 
 	var/total_implant = 1 //BUBBERSTATION CHANGE: ALWAYS 1 INSTEAD OF 2 TO 4.
 
@@ -429,7 +429,7 @@
 		if (!length(usable_organs))
 			return
 		var/organ_path = pick_n_take(usable_organs)
-		var/obj/item/organ/internal/to_give = new organ_path
+		var/obj/item/organ/to_give = new organ_path
 		to_give.Insert(sac_target)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
@@ -525,7 +525,7 @@
 		return
 
 	// Teleport them to a random safe coordinate on the station z level.
-	var/turf/open/floor/safe_turf = get_safe_random_station_turf()
+	var/turf/open/floor/safe_turf = get_safe_random_station_turf_equal_weight()
 	var/obj/effect/landmark/observer_start/backup_loc = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
 	if(!safe_turf)
 		safe_turf = get_turf(backup_loc)

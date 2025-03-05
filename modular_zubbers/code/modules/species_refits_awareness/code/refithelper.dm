@@ -7,7 +7,7 @@
  * * icon_state - The iconstate of the item. Usually, call this by the second argument, item.icon_state
  * * obj/item - The item path that we'll operate on, to check for refits.
  */
-/proc/check_for_refits(icon_state, var/obj/item/referenced_item)
+/proc/check_for_refits(icon_state, obj/item/referenced_item)
 	var/list/available_refits = list()
 	var/list/supported_species = list(
 		SPECIES_TESHARI,

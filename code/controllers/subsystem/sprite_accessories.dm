@@ -50,9 +50,10 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/tail_spines_list
 
 	//Mutant Human bits
-	var/list/tails_list_human
+	var/list/tails_list_felinid
 	var/list/tails_list_lizard
 	var/list/tails_list_monkey
+	var/list/tails_list_fish
 	var/list/ears_list
 	var/list/wings_list
 	var/list/wings_open_list
@@ -65,6 +66,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	// SKYRAT EDIT ADDITION START - Customization
 	var/list/lizard_markings_list
 	var/list/tails_list_monkey
+	var/list/tails_list_fish
 	var/list/caps_list
 	var/list/moth_wings_list
 
@@ -119,13 +121,17 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/socks)[DEFAULT_SPRITE_LIST]
 
-	/* // SKYRAT EDIT REMOVAL START - Customization
+	/* // SKYRAT EDIT START - Customization
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/socks)[DEFAULT_SPRITE_LIST]
 
 	lizard_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
-	tails_list_human = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
+	tails_list_felinid = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/felinid, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	tails_list_lizard = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard)[DEFAULT_SPRITE_LIST]
+	*/
 	tails_list_monkey = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey)[DEFAULT_SPRITE_LIST]
+	//tails fo fish organ infusions, not for prefs.
+	tails_list_fish = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/fish)[DEFAULT_SPRITE_LIST]
+	/*
 	snouts_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts)[DEFAULT_SPRITE_LIST]
 	horns_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/horns, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	ears_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
@@ -137,7 +143,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	caps_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/caps)[DEFAULT_SPRITE_LIST]
 	moth_wings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings)[DEFAULT_SPRITE_LIST]
 	moth_antennae_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_antennae)[DEFAULT_SPRITE_LIST]
-	*/ // SKYRAT EDIT REMOVAL END
+	*/ // SKYRAT EDIT END
 	moth_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	pod_hair_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair)[DEFAULT_SPRITE_LIST]
 	// SKYRAT EDIT ADDITION START - Customization

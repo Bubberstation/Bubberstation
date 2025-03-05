@@ -419,7 +419,7 @@ In the `.ts` file you created earlier, you must now give the information of your
 
 ```ts
 import { Antagonist, Category } from "../base";
-import { multiline } from "common/string";
+import { multiline } from "tgui-core/string";
 
 const Changeling: Antagonist = {
   key: "changeling", // This must be the same as your filename
