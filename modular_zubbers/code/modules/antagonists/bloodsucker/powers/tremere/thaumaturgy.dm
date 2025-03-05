@@ -268,7 +268,7 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	block_chance = BLOOD_SHIELD_BLOCK_CHANCE
 
-/obj/item/shield/bloodsucker/Initialize()
+/obj/item/shield/bloodsucker/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 

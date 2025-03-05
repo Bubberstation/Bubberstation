@@ -503,7 +503,7 @@
 	if (isnull(source))
 		return // sanity
 
-	var/ckey = lowertext(owner.mind?.key)
+	var/ckey = LOWER_TEXT(owner.mind?.key)
 	if (isnull(ckey) || ckey != source.ckey)
 		return // sanity
 

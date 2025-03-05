@@ -924,8 +924,8 @@
 						var/list/equipment = opfor_data["selected_equipment"][iter_num]
 
 						if(\
-						!equipment["equipment_parent_category"]|| !(equipment["equipment_parent_category"] in SSopposing_force.equipment_list)\
-						 || !equipment["equipment_parent_type"] || !ispath(text2path(equipment["equipment_parent_type"]), /datum/opposing_force_equipment))
+						!equipment["equipment_parent_category"]|| !(equipment["equipment_parent_category"] in SSopposing_force.equipment_list) \
+						|| !equipment["equipment_parent_type"] || !ispath(text2path(equipment["equipment_parent_type"]), /datum/opposing_force_equipment))
 							continue
 
 						// creates a new selected equipment datum using a type gotten from the given equipment type via SSopposing_force.equipment_list

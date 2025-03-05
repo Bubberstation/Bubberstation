@@ -19,7 +19,7 @@
 		to_chat(user, span_warning("This door isn't powered."))
 		return
 
-	src.balloon_alert(user, "AI requested")
+	src.balloon_alert(user, UNLINT("AI requested"))
 
 	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
 		if(AI.stat == DEAD)

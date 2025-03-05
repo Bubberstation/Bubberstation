@@ -130,12 +130,12 @@
 
 /// bespoke subtypes for augs menu since it's a bit wonky
 /obj/item/organ/cyberimp/arm/razor_claws/right_arm
-    zone = BODY_ZONE_R_ARM
-    slot = ORGAN_SLOT_RIGHT_ARM_AUG
+	zone = BODY_ZONE_R_ARM
+	slot = ORGAN_SLOT_RIGHT_ARM_AUG
 
 /obj/item/organ/cyberimp/arm/razor_claws/left_arm
-    zone = BODY_ZONE_L_ARM
-    slot = ORGAN_SLOT_LEFT_ARM_AUG
+	zone = BODY_ZONE_L_ARM
+	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
 
 /datum/action/item_action/organ_action/toggle/razor_claws

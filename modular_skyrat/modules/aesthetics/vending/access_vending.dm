@@ -59,7 +59,7 @@
 		.["product_records"] += list(data)
 
 /// Check if the list of given access is allowed to purchase the given product
-/obj/machinery/vending/access/proc/allow_purchase(var/obj/item/card/id/user_id, product_path)
+/obj/machinery/vending/access/proc/allow_purchase(obj/item/card/id/user_id, product_path)
 	if(obj_flags & EMAGGED || !onstation)
 		return TRUE
 	. = FALSE

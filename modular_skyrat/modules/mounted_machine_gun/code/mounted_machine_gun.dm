@@ -193,12 +193,12 @@
 	if(!istype(weapon, ammo_box_type))
 		return
 	if(ammo_box)
-		balloon_alert("already loaded!")
+		balloon_alert(user, "already loaded!")
 		return
 	ammo_box = weapon
 	weapon.forceMove(src)
 	playsound(src, 'modular_skyrat/modules/mounted_machine_gun/sound/insert_ammobox.ogg', 100)
-	balloon_alert("ammo box inserted!")
+	balloon_alert(user, "ammo box inserted!")
 
 /obj/machinery/mounted_machine_gun/proc/remove_ammo_box(mob/living/user)
 	ammo_box.forceMove(drop_location())

@@ -48,7 +48,7 @@
 	hearthkin.dna.add_mutation(/datum/mutation/human/olfaction, MUT_NORMAL)
 	hearthkin.dna.activate_mutation(/datum/mutation/human/olfaction)
 
-    	// >mfw I take mutadone and my nose clogs
+	// >mfw I take mutadone and my nose clogs
 	var/datum/mutation/human/olfaction/mutation = locate() in hearthkin.dna.mutations
 	mutation.mutadone_proof = TRUE
 	mutation.instability = 0
@@ -124,7 +124,7 @@
 		"Physically, the Hearthkin always come in the form of demihumans; appearing similar to normal Earthlings, \
 			but with the tails, ears, and sometimes limbs of various arctic animals; wolves, bears, and felines to only name a few. \
 			They seem perfectly adapted to their lands of ice and mist, but find even the mild controlled temperatures of \
-			NanoTrasen stations to be swelteringly hot. Their view of 'station' genemodders is that of 'halflings': \
+			Nanotrasen stations to be swelteringly hot. Their view of 'station' genemodders is that of 'halflings': \
 			Ancestral bodies, but with the blood and spirit of the humans of Midgard, \
 			tending to look down on them even more than other aliens.",
 	)

@@ -155,7 +155,7 @@
 
 /obj/item/organ/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = ""
-	var/pname = lowertext(genital_name) == "nondescript" ? "" : lowertext(genital_name) + " "
+	var/pname = LOWER_TEXT(genital_name) == "nondescript" ? "" : LOWER_TEXT(genital_name) + " "
 	if(sheath != SHEATH_NONE && aroused != AROUSAL_FULL) //Hidden in sheath
 		switch(sheath)
 			if(SHEATH_NORMAL)
@@ -199,7 +199,7 @@
 		var/poking_out = 0
 		if(aroused == AROUSAL_PARTIAL)
 			poking_out = 1
-		return "[lowertext(sheath)]_[poking_out]"
+		return "[LOWER_TEXT(sheath)]_[poking_out]"
 
 	var/size_affix
 	var/measured_size = FLOOR(genital_size,1)
@@ -269,7 +269,7 @@
 	if(genital_name == "Internal") //Checks if Testicles are of Internal Variety
 		visibility_preference = GENITAL_SKIP_VISIBILITY //Removes visibility if yes.
 	else
-		return "You see a pair of testicles, they look [lowertext(balls_size_to_description(genital_size))]."
+		return "You see a pair of testicles, they look [LOWER_TEXT(balls_size_to_description(genital_size))]."
 
 /obj/item/organ/genital/testicles/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["testicles_uses_skincolor"]
@@ -325,8 +325,8 @@
 	layers = EXTERNAL_FRONT
 
 /obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [lowertext(genital_name)] vagina."
-	if(lowertext(genital_name) == "cloaca")
+	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
+	if(LOWER_TEXT(genital_name) == "cloaca")
 		returned_string = "You see a cloaca." //i deserve a pipebomb for this
 	switch(aroused)
 		if(AROUSAL_NONE)
@@ -397,7 +397,7 @@
 	layers = NONE
 
 /obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see an [lowertext(genital_name)]."
+	var/returned_string = "You see an [LOWER_TEXT(genital_name)]."
 	if(aroused == AROUSAL_PARTIAL)
 		returned_string += " It looks tight."
 	if(aroused == AROUSAL_FULL)
@@ -428,7 +428,7 @@
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 
 /obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [lowertext(genital_name)] of breasts."
+	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
 	var/size_description
 	var/translation = breasts_size_to_cup(genital_size)
 	switch(translation)

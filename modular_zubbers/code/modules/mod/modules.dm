@@ -78,7 +78,7 @@
 		balloon_alert(mod.ai_assistant, "host is unresponsive")
 		return
 	if(isnull(mod.ai_assistant.client))
-		balloon_alert(mod.wearer, "AI is unresponsive")
+		balloon_alert(mod.wearer, UNLINT("AI is unresponsive"))
 		return
 	return ..()
 
