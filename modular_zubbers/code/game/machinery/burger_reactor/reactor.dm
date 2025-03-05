@@ -389,15 +389,15 @@
 			. = TRUE
 		if("ventdirection")
 			toggle_reverse_vents(usr)
-			balloon_alert(usr, "After a second you feel like the vents direction changed.")
+			balloon_alert(usr, "after a second you feel like the vents direction changed.")
 			. = TRUE
 		if("safetytoggle")
 			if(safety == TRUE)
-				balloon_alert(usr, "Safety lights are off!")
+				balloon_alert(usr, "safety lights are off!")
 				safety = FALSE
 				return
 			if(safety == FALSE)
-				balloon_alert(usr, "Safety lights are on!")
+				balloon_alert(usr, "safety lights are on!")
 				safety = TRUE
 				return
 			. = TRUE

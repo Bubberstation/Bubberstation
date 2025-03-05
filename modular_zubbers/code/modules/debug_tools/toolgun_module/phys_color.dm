@@ -13,7 +13,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.client)
-			user.balloon_alert(user, "Can't color!")
+			user.balloon_alert(user, "can't color!")
 			return FALSE
 	if(!selected_color)
 		selected_color = COLOR_WHITE

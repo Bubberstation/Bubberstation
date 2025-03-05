@@ -17,8 +17,8 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_slow)
 
 /mob/living/carbon/alien/adult/skyrat/sentinel/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/small
-	organs += new /obj/item/organ/internal/alien/neurotoxin/sentinel
+	organs += new /obj/item/organ/alien/plasmavessel/small
+	organs += new /obj/item/organ/alien/neurotoxin/sentinel
 	..()
 
 /datum/action/cooldown/alien/acid/skyrat
@@ -66,40 +66,40 @@
 	build_all_button_icons()
 	on_who.update_icons()
 
-/datum/action/cooldown/alien/acid/skyrat/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/alien/acid/skyrat/InterceptClickOn(mob/living/clicker, params, atom/target)
 	. = ..()
 	if(!.)
-		unset_click_ability(caller, refund_cooldown = FALSE)
+		unset_click_ability(clicker, refund_cooldown = FALSE)
 		return FALSE
 
-	var/turf/user_turf = caller.loc
-	var/turf/target_turf = get_step(caller, target.dir)
+	var/turf/user_turf = clicker.loc
+	var/turf/target_turf = get_step(clicker, target.dir)
 	if(!isturf(target_turf))
 		return FALSE
 
 	var/modifiers = params2list(params)
-	caller.visible_message(
-		span_danger("[caller] spits [projectile_name]!"),
+	clicker.visible_message(
+		span_danger("[clicker] spits [projectile_name]!"),
 		span_alertalien("You spit [projectile_name]."),
 	)
 
 	if(acid_projectile)
-		var/obj/projectile/spit_projectile = new acid_projectile(caller.loc)
-		spit_projectile.preparePixelProjectile(target, caller, modifiers)
-		spit_projectile.firer = caller
+		var/obj/projectile/spit_projectile = new acid_projectile(clicker.loc)
+		spit_projectile.aim_projectile(target, clicker, modifiers)
+		spit_projectile.firer = clicker
 		spit_projectile.fire()
-		playsound(caller, spit_sound, 100, TRUE, 5, 0.9)
-		caller.newtonian_move(get_dir(target_turf, user_turf))
+		playsound(clicker, spit_sound, 100, TRUE, 5, 0.9)
+		clicker.newtonian_move(get_dir(target_turf, user_turf))
 		return TRUE
 
 	if(acid_casing)
-		var/obj/item/ammo_casing/casing = new acid_casing(caller.loc)
-		playsound(caller, spit_sound, 100, TRUE, 5, 0.9)
-		casing.fire_casing(target, caller, null, null, null, ran_zone(), 0, caller)
-		caller.newtonian_move(get_dir(target_turf, user_turf))
+		var/obj/item/ammo_casing/casing = new acid_casing(clicker.loc)
+		playsound(clicker, spit_sound, 100, TRUE, 5, 0.9)
+		casing.fire_casing(target, clicker, null, null, null, ran_zone(), 0, clicker)
+		clicker.newtonian_move(get_dir(target_turf, user_turf))
 		return TRUE
 
-	CRASH("Neither acid_projectile or acid_casing are set on [caller]'s spit attack!")
+	CRASH("Neither acid_projectile or acid_casing are set on [clicker]'s spit attack!")
 
 /datum/action/cooldown/alien/acid/skyrat/Activate(atom/target)
 	return TRUE
@@ -132,7 +132,7 @@
 	paralyze = 0
 	damage_type = BURN
 
-/obj/item/organ/internal/alien/neurotoxin/sentinel
+/obj/item/organ/alien/neurotoxin/sentinel
 	name = "neurotoxin gland"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
