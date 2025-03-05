@@ -13,7 +13,7 @@
 /datum/status_effect/aroused
 	id = "aroused"
 	tick_interval = 1 SECONDS
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/aroused/tick(seconds_between_ticks)
@@ -25,7 +25,7 @@
 	var/temp_pleasure = BASE_PAIN_AND_PLEASURE_ADJUSTMENT
 	var/temp_pain = BASE_PAIN_AND_PLEASURE_ADJUSTMENT
 
-	var/obj/item/organ/external/genital/testicles/balls = affected_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/testicles/balls = affected_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
 	if(balls && balls.internal_fluid_full())
 		temp_arousal += BLUEBALL_AROUSAL_MODIFIER
 

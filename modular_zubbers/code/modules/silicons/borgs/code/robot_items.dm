@@ -134,7 +134,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return ITEM_INTERACT_SUCCESS
 	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
-		user.balloon_alert(user, "Low charge!")
+		user.balloon_alert(user, "low charge!")
 		return ITEM_INTERACT_SUCCESS
 	if(!interacting_with.density && jaunt?.teleport(user, interacting_with))
 		cyborg?.cell?.use(charge_cost)
