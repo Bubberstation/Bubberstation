@@ -10,8 +10,8 @@
 		TRAIT_MUTANT_COLORS,
 		TRAIT_CATLIKE_GRACE,
 	)
-	mutanteyes = /obj/item/organ/internal/eyes/tajaran
-	mutantears = /obj/item/organ/internal/ears/cat/tajaran
+	mutanteyes = /obj/item/organ/eyes/tajaran
+	mutantears = /obj/item/organ/ears/cat/tajaran
 	//Cold resistance
 	coldmod = 0.45
 	heatmod = 1.25
@@ -24,12 +24,12 @@
 /obj/item/bodypart/chest/mutant/tajaran
 
 //Tajaran tongue
-/obj/item/organ/internal/tongue/cat/tajaran
+/obj/item/organ/tongue/cat/tajaran
 	name = "tajaran tongue"
 	modifies_speech = TRUE
 	languages_native = list(/datum/language/siiktajr)
 
-/obj/item/organ/internal/tongue/cat/tajaran/modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/cat/tajaran/modify_speech(datum/source, list/speech_args)
 	var/static/regex/tajara_roll = new("r+", "g")
 	var/static/regex/tajara_roLL = new("R+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -42,23 +42,23 @@
 
 /datum/augment_item/organ/tongue/tajaran
 	name = "Tajaran tongue"
-	path = /obj/item/organ/internal/tongue/cat/tajaran
+	path = /obj/item/organ/tongue/cat/tajaran
 
 //Tajara have the innate ability to see in the dark better than most
-/obj/item/organ/internal/eyes/tajaran
+/obj/item/organ/eyes/tajaran
 	name = "tajaran eyes"
 	desc = "they seem very cat like."
 	flash_protect = FLASH_PROTECTION_SENSITIVE //One layer protection
 	color_cutoffs = list(12, 7, 7)
 
-/obj/item/organ/internal/eyes/tajaran/on_mob_insert(mob/living/carbon/human/eyes_owner)
+/obj/item/organ/eyes/tajaran/on_mob_insert(mob/living/carbon/human/eyes_owner)
 	. = ..()
 	if(istype(eyes_owner))
 		if(HAS_TRAIT(eyes_owner, TRAIT_NIGHT_VISION)) //prevents double stacking of tajara night vision and the night vision quirk.
 			to_chat(eyes_owner, span_danger("You feel as the shadows are gone but suddenly they return!"))
 			REMOVE_TRAIT(eyes_owner, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
 
-/obj/item/organ/internal/ears/cat/tajaran
+/obj/item/organ/ears/cat/tajaran
 	name = "Tajaran ears"
 	desc = "These ears to seem to be from a feline of some type"
 
@@ -102,7 +102,7 @@
 			SPECIES_PERK_ICON = FA_ICON_PERSON_FALLING,
 			SPECIES_PERK_NAME = "Cat Grace",
 			SPECIES_PERK_DESC = "Tajara are catlike and have catlike instincts allowing them to land upright on their feet.  \
-				Instead of being knocked down from falling, you only recieve a short slowdown. \
+				Instead of being knocked down from falling, you only receive a short slowdown. \
 				However, the fall will deal additional damage since they are not the size and weight of a cat.",
 		),
 	)

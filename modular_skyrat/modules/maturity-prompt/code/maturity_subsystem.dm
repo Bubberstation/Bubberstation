@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(maturity_guard)
 
 	var/datum/db_query/add_age_to_db = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name("player_dob")] (ckey, dob_year, dob_month) VALUES(:ckey, :dob_year, :dob_month) \
-		 ON DUPLICATE KEY UPDATE dob_year = :dob_year, dob_month = :dob_month",
+		ON DUPLICATE KEY UPDATE dob_year = :dob_year, dob_month = :dob_month",
 		list("ckey" = user.ckey, "dob_year" = year, "dob_month" = month),
 	)
 
@@ -208,7 +208,7 @@ SUBSYSTEM_DEF(maturity_guard)
 	var/player_ban_notification = span_boldannounce("You have been banned by the AGE CHECK SYSTEM from the server.\nReason: You do not meet the minimum age requirements for this community. [discord_appeal_text]")
 
 	if(!SSdbcore.Connect())
-	 	// Just a stopgap measure... this really isn't intended to be used without a db attached
+		// Just a stopgap measure... this really isn't intended to be used without a db attached
 		message_admins("[user.ckey] has FAILED THE AGE CHECK but couldn't be banned due to lack of database connection.")
 		blacklisted_cache |= user.ckey
 		to_chat(user, player_ban_notification)

@@ -38,7 +38,7 @@
 /obj/item/clothing/mask/gas/sechailer/proc/emp_reset()
 	SIGNAL_HANDLER
 
-	balloon_alert(src, "Backup Hailer Recalibrated")
+	balloon_alert(src, "backup hailer recalibrated")
 	emped = FALSE
 
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
@@ -56,13 +56,13 @@
 	if (!isliving(usr) || !can_use(usr))
 		return
 	if (!COOLDOWN_FINISHED(src, backup_cooldown))
-		balloon_alert(usr, "On Cooldown!")
+		balloon_alert(usr, "on cooldown!")
 		return
 	if (emped)
-		balloon_alert(usr, "Backup Malfunctioning!")
+		balloon_alert(usr, "backup malfunctioning!")
 		return
 	if (!is_station_level(turf_location.z))
-		balloon_alert(usr, "Out of Range!")
+		balloon_alert(usr, "out of range!")
 		return
 
 	COOLDOWN_START(src, backup_cooldown, 1 MINUTES)

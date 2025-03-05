@@ -25,7 +25,6 @@
 /datum/reagent/drug/cocaine
 	name = "cocaine"
 	description = "A powerful stimulant extracted from coca leaves. Reduces stun times, but causes drowsiness and severe brain damage if overdosed."
-	reagent_state = LIQUID
 	color = "#ffffff"
 	overdose_threshold = 20
 	ph = 9

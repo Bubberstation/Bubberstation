@@ -65,7 +65,7 @@
 			)
 			if(contraband.reagents)
 				AddComponent(/datum/component/traitor_objective_register, contraband.reagents, \
-					fail_signals = list(COMSIG_REAGENTS_REM_REAGENT, COMSIG_REAGENTS_DEL_REAGENT), \
+					fail_signals = COMSIG_REAGENTS_HOLDER_UPDATED, \
 					penalty = telecrystal_penalty)
 
 /datum/traitor_objective/smuggle/generate_objective(datum/mind/generating_for, list/possible_duplicates)
