@@ -58,7 +58,7 @@
 			current_mob.update_worn_undersuit()
 			current_mob.update_worn_shoes()
 		current_mob.remove_overlay(BODY_ADJ_LAYER)
-		current_mob.add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/pillory.dmi', "mask")))
+		current_mob.add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 		update_visuals()
 		RegisterSignals(current_mob, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_visuals))
 	else
@@ -127,6 +127,8 @@
 
 /obj/lewd_portal_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods, message_range)
 	. = ..()
-	if(owner)
-		owner.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, message_range)
+	//if(owner)
+		//owner.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, message_range)
 
+#undef GLORYHOLE
+#undef WALLSTUCK

@@ -6,6 +6,11 @@
 #define SUBTLE_ONE_TILE_TEXT "1-Tile Range"
 #define SUBTLE_SAME_TILE_TEXT "Same Tile"
 
+//BUBBER EDIT ADDITION START
+#define PORTAL_ONE_TILE_TEXT "Portaled 1-Tile Range"
+#define PORTAL_SAME_TILE_TEXT "Portal Tile"
+//BUBBER EDIT ADDITION END
+
 /datum/emote/living/subtle
 	key = "subtle"
 	message = null
@@ -113,6 +118,11 @@
 			in_view.Remove(mob)
 
 		var/list/targets = list(SUBTLE_ONE_TILE_TEXT, SUBTLE_SAME_TILE_TEXT) + in_view
+		//BUBBER EDIT ADDITION START
+		var/obj/structure/lewd_portal/portal = user?.buckled
+		if(portal)
+			targets += list(PORTAL_ONE_TILE_TEXT, PORTAL_SAME_TILE_TEXT)
+		//BUBBER EDIT ADDITION END
 		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
 		if(!target)
 			return FALSE
@@ -162,6 +172,7 @@
 	//BUBBER EDIT ADDITION START
 	else if(istype(target, /obj/lewd_portal_relay))
 		var/obj/lewd_portal_relay/portal_relay = target
+		user.show_message(subtler_message, alt_msg = subtler_message)
 		if(portal_relay.owner?.client)
 			portal_relay.owner.show_message(subtler_message, alt_msg = subtler_message)
 			// Optional sound notification
@@ -170,7 +181,20 @@
 				portal_relay.owner.playsound_local(get_turf(portal_relay.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 	//BUBBER EDIT ADDITION END
 	else
-		var/ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
+		//BUBBER EDIT ADDITION START
+		var/ghostless
+		if(target == PORTAL_SAME_TILE_TEXT || target == PORTAL_ONE_TILE_TEXT)
+			switch(target)
+				if(PORTAL_ONE_TILE_TEXT)
+					target = SUBTLE_ONE_TILE
+				if(PORTAL_SAME_TILE_TEXT)
+					target = SUBTLE_SAME_TILE_DISTANCE
+			var/obj/structure/lewd_portal/portal_reference = user.buckled
+			var/obj/lewd_portal_relay/output_portal = portal_reference?.relayed_body
+			ghostless = get_hearers_in_view(target, output_portal)
+		else
+			ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
+		//BUBBER EDIT ADDITION END
 
 		var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 		if(hologram)
@@ -179,6 +203,12 @@
 		for(var/obj/effect/overlay/holo_pad_hologram/holo in ghostless)
 			if(holo?.Impersonation?.client)
 				ghostless |= holo.Impersonation
+
+		//BUBBER EDIT ADDITION START
+		for(var/obj/lewd_portal_relay/portal in ghostless)
+			if(portal?.owner?.client)
+				ghostless |= portal.owner
+		//BUBBER EDIT ADDITION END
 
 		for(var/mob/receiver in ghostless)
 			receiver.show_message(subtler_message, alt_msg = subtler_message)
