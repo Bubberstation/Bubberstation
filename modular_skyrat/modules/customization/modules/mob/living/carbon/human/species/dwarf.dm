@@ -9,7 +9,7 @@
 		TRAIT_LITERATE,
 		TRAIT_USES_SKINTONES,
 	)
-	mutanttongue = /obj/item/organ/internal/tongue/dwarven
+	mutanttongue = /obj/item/organ/tongue/dwarven
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0

@@ -38,10 +38,10 @@
 	armour_penetration = 60
 	wound_bonus = 10
 	bare_wound_bonus = 10
-	embed_type = /datum/embed_data/caflechette
+	embed_type = /datum/embedding/caflechette
 	dismemberment = 0
 
-/datum/embed_data/caflechette
+/datum/embedding/caflechette
 	embed_chance = 55
 	pain_chance = 70
 	fall_chance = 30
@@ -62,10 +62,10 @@
 	damage = 10
 	wound_bonus = 25
 	bare_wound_bonus = 35
-	embed_type = /datum/embed_data/ripper
+	embed_type = /datum/embedding/ripper
 	armour_penetration = 40 //defeat basic armour
 
-/datum/embed_data/ripper
+/datum/embedding/ripper
 	embed_chance = 200
 	pain_chance = 70
 	fall_chance = 1
@@ -91,14 +91,14 @@
 	bare_wound_bonus = 20
 	armour_penetration = 10
 	shrapnel_type = /obj/item/shrapnel/stingball
-	embed_type = /datum/embed_data/ballpoint
+	embed_type = /datum/embedding/ballpoint
 	stamina = 20
 	ricochet_chance = 50
 	ricochets_max = 3
 	ricochet_auto_aim_angle = 90
 	ricochet_auto_aim_range = 5
 
-/datum/embed_data/ballpoint
+/datum/embedding/ballpoint
 	embed_chance = 50
 	fall_chance = 5
 	jostle_chance = 5
@@ -118,10 +118,10 @@
 	damage = 5
 	wound_bonus = 15
 	bare_wound_bonus = 5
-	embed_type = /datum/embed_data/magnesium
+	embed_type = /datum/embedding/magnesium
 	armour_penetration = 100 //does really low damage
 
-/datum/embed_data/magnesium
+/datum/embedding/magnesium
 	embed_chance = 80
 	pain_chance = 10
 	fall_chance = 10

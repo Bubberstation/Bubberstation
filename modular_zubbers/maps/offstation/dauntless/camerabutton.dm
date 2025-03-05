@@ -12,7 +12,7 @@
 	cooldown = TRUE
 
 	var/killswitch = FALSE
-	var/list/cameras = get_camera_list(camera_network)
+	var/list/cameras = GLOB.cameranet.get_available_camera_by_tag_list(camera_network)
 	var/obj/machinery/camera/C
 	for(var/i in cameras)
 		C = cameras[i]
