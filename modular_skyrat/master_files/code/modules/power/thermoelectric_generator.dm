@@ -193,31 +193,31 @@
 
 	if(!panel_open) //connect/disconnect circulators
 		if(!anchored)
-			balloon_alert(user, span_warning("Anchor [src] before trying to connect the circulators!"))
+			balloon_alert(user, "Anchor [src] before trying to connect the circulators!")
 			return TRUE
 		else
 			if(hot_circ && cold_circ)
-				balloon_alert(user, span_notice("You start removing the circulators..."))
+				balloon_alert(user, "You start removing the circulators...")
 				if(I.use_tool(src, user, 30, volume=50))
 					null_circulators()
 					update_appearance()
-					balloon_alert(user, span_notice("You disconnect [src]'s circulator links."))
+					balloon_alert(user, "You disconnect [src]'s circulator links.")
 					playsound(src, 'sound/misc/box_deploy.ogg', 50)
 				return TRUE
 
-			balloon_alert(user, span_notice("You attempt to attach the circulators..."))
+			balloon_alert(user, "You attempt to attach the circulators...")
 			if(I.use_tool(src, user, 30, volume=50))
 				switch(find_circulators())
 					if(0)
-						balloon_alert(user, span_warning("No circulators found!"))
+						balloon_alert(user, "No circulators found!")
 					if(1)
-						balloon_alert(user, span_warning("Only one circulator found!"))
+						balloon_alert(user, "Only one circulator found!")
 					if(2)
-						balloon_alert(user, span_notice("You connect [src]'s circulator links."))
+						balloon_alert(user, "You connect [src]'s circulator links.")
 						playsound(src, 'sound/misc/box_deploy.ogg', 50)
 						return TRUE
 					if(3)
-						balloon_alert(user, span_warning("Both circulators are the same mode!"))
+						balloon_alert(user, "Both circulators are the same mode!")
 				return TRUE
 
 	set_anchored(!anchored)
@@ -225,7 +225,7 @@
 	if(!anchored)
 		null_circulators()
 	connect_to_network()
-	balloon_alert(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
+	balloon_alert(user, "You [anchored?"secure":"unsecure"] [src].")
 	update_appearance()
 	return TRUE
 
@@ -234,21 +234,21 @@
 		return TRUE
 
 	if(hot_circ && cold_circ)
-		balloon_alert(user, span_warning("Disconnect the circulators first!"))
+		balloon_alert(user, "Disconnect the circulators first!")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	balloon_alert(user, span_notice("You [panel_open?"open":"close"] the panel on [src]."))
+	balloon_alert(user, "You [panel_open?"open":"close"] the panel on [src].")
 	update_appearance()
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/user, obj/item/I)
 
 	if(anchored)
-		balloon_alert(user, span_warning("[src] is anchored!"))
+		balloon_alert(user, "[src] is anchored!")
 		return TRUE
 	else if(!panel_open)
-		balloon_alert(user, span_warning("Open the panel first!"))
+		balloon_alert(user, "Open the panel first!")
 		return TRUE
 	else
 		default_deconstruction_crowbar(I)
