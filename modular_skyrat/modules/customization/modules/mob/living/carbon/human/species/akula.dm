@@ -17,8 +17,8 @@
 		OFFSET_HAIR = list(0, 1),
 	)
 	eyes_icon = 'modular_skyrat/modules/organs/icons/akula_eyes.dmi'
-	mutanteyes = /obj/item/organ/internal/eyes/akula
-	mutanttongue = /obj/item/organ/internal/tongue/akula
+	mutanteyes = /obj/item/organ/eyes/akula
+	mutanttongue = /obj/item/organ/tongue/akula
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -106,12 +106,12 @@
 	regenerate_organs(akula, src, visual_only = TRUE)
 	akula.update_body(TRUE)
 
-/obj/item/organ/internal/eyes/akula
+/obj/item/organ/eyes/akula
 	// Eyes over hair as bandaid for the low amounts of head matching hair
 	eyes_layer = HAIR_LAYER-0.1
 
 
-/obj/item/organ/internal/tongue/akula
+/obj/item/organ/tongue/akula
 	liked_foodtypes = SEAFOOD | RAW
 	disliked_foodtypes = CLOTH | DAIRY
 	toxic_foodtypes = TOXIC
@@ -134,7 +134,7 @@
 // more about grab_resists in `code\modules\mob\living\living.dm` at li 1119
 // more about slide_distance in `code\game\turfs\open\_open.dm` at li 233
 /// Lets register the signal which calls when we are above 10 wet_stacks
-/datum/species/akula/on_species_gain(mob/living/carbon/akula, datum/species/old_species, pref_load)
+/datum/species/akula/on_species_gain(mob/living/carbon/akula, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	RegisterSignal(akula, COMSIG_MOB_TRIGGER_WET_SKIN, PROC_REF(wetted), akula)
 	// lets give 15 wet_stacks on initial

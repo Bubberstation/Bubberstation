@@ -231,7 +231,7 @@
 			for(var/i in 1 to number)
 				new path (loc)
 	playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
-	new /mob/living/simple_animal/hostile/vatbeast(loc)
+	new /mob/living/basic/vatbeast(loc)
 	return ..()
 
 

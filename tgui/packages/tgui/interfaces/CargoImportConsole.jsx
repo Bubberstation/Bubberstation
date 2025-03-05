@@ -1,8 +1,15 @@
 // THIS IS A SKYRAT UI FILE
 import { useState } from 'react';
+import {
+  Box,
+  Button,
+  Divider,
+  Image,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Box, Button, Divider, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const CargoImportConsole = (props) => {
