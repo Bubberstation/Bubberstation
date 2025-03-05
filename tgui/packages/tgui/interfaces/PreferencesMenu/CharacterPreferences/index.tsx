@@ -57,7 +57,7 @@ function CharacterProfiles(props: ProfileProps) {
   ); */
   return (
     <Stack align="center" justify="left">
-      <Stack.Item width="225px">
+      <Stack.Item width="285px">
         <SideDropdown
           width="100%"
           selected={profiles[activeSlot]}
@@ -175,6 +175,20 @@ export function CharacterPreferenceWindow(props) {
             </PageButton>
           </Stack.Item>
 
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Jobs}
+              setPage={setCurrentPage}
+            >
+              {/*
+                    Fun fact: This isn't "Jobs" so that it intentionally
+                    catches your eyes, because it's really important!
+                  */}
+              Occupations
+            </PageButton>
+          </Stack.Item>
+
           {/* BUBBER EDIT ADDITION BEGIN */}
           <Stack.Item grow>
             <PageButton
@@ -196,20 +210,6 @@ export function CharacterPreferenceWindow(props) {
             </PageButton>
           </Stack.Item>
           {/* BUBBER EDIT ADDITION END */}
-
-          <Stack.Item grow>
-            <PageButton
-              currentPage={currentPage}
-              page={Page.Jobs}
-              setPage={setCurrentPage}
-            >
-              {/*
-                    Fun fact: This isn't "Jobs" so that it intentionally
-                    catches your eyes, because it's really important!
-                  */}
-              Occupations
-            </PageButton>
-          </Stack.Item>
 
           <Stack.Item grow>
             <PageButton
