@@ -92,7 +92,7 @@
 				var/mob/living/silicon/robot/R = locate(params["ref"]) in GLOB.silicon_mobs
 				if(can_control(usr, R) && !..())
 					if(isAI(usr))
-						var/mob/living/silicon/ai/ai = usr
+						var/mob/living/silicon/ai/ai = usr //Bubber EDIT Addition
 						if(R.lockcharge)
 							if(R.ai_lockdown || ai.malf_picker) //Bubber EDIT - Original - if(R.ai_lockdown)
 								R.ai_lockdown = FALSE
