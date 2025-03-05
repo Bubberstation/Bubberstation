@@ -447,26 +447,26 @@
 	if(trigger_cached > 0)
 		return
 	var/mob/living/carbon/enthralled_mob = owner
-	var/raw_message = lowertext(hearing_args[HEARING_RAW_MESSAGE])
+	var/raw_message = LOWER_TEXT(hearing_args[HEARING_RAW_MESSAGE])
 	for(var/trigger in custom_triggers)
-		var/cached_trigger = lowertext(trigger)
+		var/cached_trigger = LOWER_TEXT(trigger)
 		if(findtext(raw_message, cached_trigger))//if trigger1 is the message
 			trigger_cached = 5 //Stops triggerparties and as a result, stops servercrashes.
 
 			//Speak (Forces player to talk)
-			if(lowertext(custom_triggers[trigger][1]) == "speak")//trigger2
+			if(LOWER_TEXT(custom_triggers[trigger][1]) == "speak")//trigger2
 				var/saytext = "Your mouth moves on it's own before you can even catch it."
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_hear(saytext)), 5)
 				addtimer(CALLBACK(enthralled_mob, /atom/movable/proc/say, "[custom_triggers[trigger][2]]"), 5)
 
 
 			//Echo (repeats message!) allows customisation, but won't display var calls! Defaults to hypnophrase.
-			else if(lowertext(custom_triggers[trigger][1]) == "echo")//trigger2
+			else if(LOWER_TEXT(custom_triggers[trigger][1]) == "echo")//trigger2
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_velvet("[custom_triggers[trigger][2]]")), 5)
 				//(to_chat(owner, "<span class='hypnophrase'><i>[custom_triggers[trigger][2]]</i></span>"))//trigger3
 
 			//Shocking truth!
-			else if(lowertext(custom_triggers[trigger]) == "shock")
+			else if(LOWER_TEXT(custom_triggers[trigger]) == "shock")
 				if(lewd && ishuman(enthralled_mob))
 					var/mob/living/carbon/human/human_mob = enthralled_mob
 					human_mob.adjust_arousal(5)
@@ -477,12 +477,12 @@
 				to_chat(owner, span_warning("Your muscles seize up, then start spasming wildy!"))
 
 			//kneel (knockdown)
-			else if(lowertext(custom_triggers[trigger]) == "kneel")//as close to kneeling as you can get, I suppose.
+			else if(LOWER_TEXT(custom_triggers[trigger]) == "kneel")//as close to kneeling as you can get, I suppose.
 				to_chat(owner, span_hear("You drop to the ground unsurreptitiously."))
 				enthralled_mob.toggle_resting()
 
 			//strip (some) clothes
-			else if(lowertext(custom_triggers[trigger]) == "strip")//This wasn't meant to just be a lewd thing oops.
+			else if(LOWER_TEXT(custom_triggers[trigger]) == "strip")//This wasn't meant to just be a lewd thing oops.
 				var/mob/living/carbon/human/human_mob = owner
 				var/items = human_mob.get_contents()
 				for(var/obj/item/storage_item in items)
@@ -491,7 +491,7 @@
 				to_chat(owner, span_hear("You feel compelled to strip your clothes."))
 
 			//trance
-			else if(lowertext(custom_triggers[trigger]) == "trance")//Maaaybe too strong. Weakened it, only lasts 50 ticks.
+			else if(LOWER_TEXT(custom_triggers[trigger]) == "trance")//Maaaybe too strong. Weakened it, only lasts 50 ticks.
 				var/mob/living/carbon/human/human_mob = owner
 				human_mob.apply_status_effect(/datum/status_effect/trance, 200, TRUE)
 				trance_time = 50

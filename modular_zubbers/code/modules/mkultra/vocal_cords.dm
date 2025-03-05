@@ -50,7 +50,7 @@
 	var/log_message = message
 
 	//FIND THRALLS
-	message = lowertext(message)
+	message = LOWER_TEXT(message)
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/enthrall_listener in get_hearers_in_view(8, user))
 		if(enthrall_listener.can_hear() && enthrall_listener.stat != DEAD)
@@ -578,7 +578,7 @@
 						var/trigger = html_decode(stripped_input(user, "Enter the trigger phrase", MAX_MESSAGE_LEN))
 						var/custom_words_words_list = list("Speak", "Echo", "Shock", "Kneel", "Strip", "Trance", "Cancel")
 						var/trigger2 = input(user, "Pick an effect", "Effects") in custom_words_words_list
-						trigger2 = lowertext(trigger2)
+						trigger2 = LOWER_TEXT(trigger2)
 						if ((findtext(trigger2, custom_words_words)))
 							if (trigger2 == "speak" || trigger2 == "echo")
 								var/trigger3 = html_decode(stripped_input(user, "Enter the phrase spoken. Abusing this to self antag is bannable.", MAX_MESSAGE_LEN))
@@ -616,7 +616,7 @@
 					var/trigger = stripped_input(user, "Enter the loop phrase", MAX_MESSAGE_LEN)
 					var/custom_span = list("Notice", "Warning", "Hypnophrase", "Love", "Velvet")
 					var/trigger2 = input(user, "Pick the style", "Style") in custom_span
-					trigger2 = lowertext(trigger2)
+					trigger2 = LOWER_TEXT(trigger2)
 					enthrall_chem.custom_echo = trigger
 					enthrall_chem.custom_span = trigger2
 					user.SetStun(0)
@@ -642,12 +642,12 @@
 							to_chat(user, "<span class='warning'>You can't give your pet an objective to do nothing!</b></span>")
 							continue
 						//Pets don't understand harm
-						objective = replacetext(lowertext(objective), "kill", "hug")
-						objective = replacetext(lowertext(objective), "murder", "cuddle")
-						objective = replacetext(lowertext(objective), "harm", "snuggle")
-						objective = replacetext(lowertext(objective), "decapitate", "headpat")
-						objective = replacetext(lowertext(objective), "strangle", "meow at")
-						objective = replacetext(lowertext(objective), "suicide", "self-love")
+						objective = replacetext(LOWER_TEXT(objective), "kill", "hug")
+						objective = replacetext(LOWER_TEXT(objective), "murder", "cuddle")
+						objective = replacetext(LOWER_TEXT(objective), "harm", "snuggle")
+						objective = replacetext(LOWER_TEXT(objective), "decapitate", "headpat")
+						objective = replacetext(LOWER_TEXT(objective), "strangle", "meow at")
+						objective = replacetext(LOWER_TEXT(objective), "suicide", "self-love")
 						message_admins("[humanoid] has been implanted by [user] with the objective [objective].")
 						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='notice'>[(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new objective.</span>"), 5)
 						brainwash(humanoid, objective)

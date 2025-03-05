@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return null
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	// Can't make switch() statements with non-constant values.
 	if(rank_title == donator_controller.rank_title)
@@ -231,7 +231,7 @@ SUBSYSTEM_DEF(player_ranks)
 		return FALSE
 
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 		return FALSE
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 

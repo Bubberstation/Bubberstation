@@ -191,7 +191,7 @@
 	if(!choice)
 		return
 
-	change_towel_shape(user, lowertext(choice))
+	change_towel_shape(user, LOWER_TEXT(choice))
 
 
 /obj/item/towel/attackby(obj/item/attacking_item, mob/user, params)
