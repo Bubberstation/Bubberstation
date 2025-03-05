@@ -14,7 +14,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/ghoul_edition
 	minimum_range = GHOUL_SCAN_MIN_DISTANCE
 	tick_interval = GHOUL_SCAN_PING_TIME
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	range_fuzz_factor = 0
 
 /datum/status_effect/agent_pinpointer/ghoul_edition/on_creation(mob/living/new_owner, ...)

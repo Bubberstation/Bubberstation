@@ -754,7 +754,7 @@
 		/obj/item/storage/box/colonial_rations = 1,
 		/obj/item/storage/toolbox/ammobox/strilka310 = 1,
 		/obj/item/storage/toolbox/ammobox/strilka310/surplus = 1,
-		/obj/item/storage/toolbox/maint_kit = 1,
+		/obj/item/gun_maintenance_supplies = 1,
 		/obj/item/storage/toolbox/guncase/soviet/sakhno = 2,
 		/obj/item/ammo_box/strilka310 = 1,
 		/obj/item/clothing/suit/armor/vest/cin_surplus_vest = 1,
