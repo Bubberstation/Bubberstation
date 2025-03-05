@@ -153,7 +153,7 @@
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
 	name = "Imperial Police Uniform"
 	item_path = /obj/item/clothing/under/colonial/nri_police
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/disco
 	name = "Superstar Cop Uniform"

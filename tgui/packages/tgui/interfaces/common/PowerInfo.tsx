@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { resolveAsset } from '../../assets';
 import {
   Button,
   Divider,
@@ -8,7 +6,9 @@ import {
   Image,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { resolveAsset } from '../../assets';
 import { PowerInfo } from './../AntagInfoBloodsucker';
 
 type PowerDetailsProps = {

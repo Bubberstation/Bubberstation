@@ -23,7 +23,7 @@
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 10
+	weight = 2
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

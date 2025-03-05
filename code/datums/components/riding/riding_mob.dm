@@ -12,7 +12,7 @@
 	/// abilities that are always blacklisted from sharing
 	var/list/blacklist_abilities = list()
 
-/datum/component/riding/creature/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
+/datum/component/riding/creature/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -108,7 +108,6 @@
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/mob/living/living_parent = parent
 	step(living_parent, direction)
-	var/modified_move_cooldown = vehicle_move_cooldown
 	var/modified_move_delay = vehicle_move_delay
 	if(ishuman(user) && HAS_TRAIT(user, TRAIT_ROUGHRIDER)) // YEEHAW!
 		var/mob/living/carbon/human/rough_rider = user
@@ -119,21 +118,16 @@
 			ride_benefit = rough_rider.mob_mood.sanity_level
 		switch(ride_benefit)
 			if(SANITY_LEVEL_GREAT)
-				modified_move_cooldown *= 0.8
 				modified_move_delay *= 0.8
 			if(SANITY_LEVEL_NEUTRAL)
-				modified_move_cooldown *= 0.9
 				modified_move_delay *= 0.9
 			if(SANITY_LEVEL_DISTURBED)
-				modified_move_cooldown *= 1
 				modified_move_delay *= 1
 			if(SANITY_LEVEL_CRAZY)
-				modified_move_cooldown *= 1.1
 				modified_move_delay *= 1.1
 			if(SANITY_LEVEL_INSANE)
-				modified_move_cooldown *= 1.2
 				modified_move_delay *= 1.2
-	COOLDOWN_START(src, vehicle_move_cooldown = modified_move_cooldown, modified_move_delay)
+	COOLDOWN_START(src, vehicle_move_cooldown, modified_move_delay)
 	return ..()
 
 /// Yeets the rider off, used for animals and cyborgs, redefined for humans who shove their piggyback rider off
@@ -157,7 +151,7 @@
 		return
 
 	for(var/mob/yeet_mob in user.buckled_mobs)
-		force_dismount(yeet_mob, (!user.combat_mode)) // gentle on help, byeeee if not
+		force_dismount(yeet_mob, gentle=!user.combat_mode) // gentle on help, byeeee if not
 
 
 /// If the ridden creature has abilities, and some var yet to be made is set to TRUE, the rider will be able to control those abilities
@@ -205,7 +199,7 @@
 /datum/component/riding/creature/human
 	can_be_driven = FALSE
 
-/datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
+/datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE)
 	. = ..()
 	var/mob/living/carbon/human/human_parent = parent
 	//human_parent.add_movespeed_modifier(/datum/movespeed_modifier/human_carry) // BUBBER EDIT REMOVAL
@@ -330,11 +324,11 @@
 			)
 
 	if (ride_check_flags & RIDING_TAUR)
-		var/obj/item/organ/external/taur_body/taur_body = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		return taur_body.get_riding_offset(oversized = HAS_TRAIT(H, TRAIT_OVERSIZED))
 	//BUBBER EDIT END
 
-/datum/component/riding/creature/human/force_dismount(mob/living/dismounted_rider)
+/datum/component/riding/creature/human/force_dismount(mob/living/dismounted_rider, throw_range = 8, throw_speed = 3, gentle = FALSE)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(dismounted_rider)
 	dismounted_rider.Paralyze(1 SECONDS)
@@ -482,7 +476,7 @@
 /datum/component/riding/creature/goliath/deathmatch
 	keytype = null
 
-/datum/component/riding/creature/goliath/Initialize(mob/living/riding_mob, force, ride_check_flags, potion_boost)
+/datum/component/riding/creature/goliath/Initialize(mob/living/riding_mob, force, ride_check_flags)
 	. = ..()
 	var/mob/living/basic/mining/goliath/goliath = parent
 	goliath.add_movespeed_modifier(/datum/movespeed_modifier/goliath_mount)
@@ -550,7 +544,7 @@
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(17, 46), TEXT_SOUTH = list(17,51), TEXT_EAST = list(27, 46), TEXT_WEST = list(6, 46)))
 
-/datum/component/riding/creature/leaper/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE, potion_boost = FALSE)
+/datum/component/riding/creature/leaper/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE)
 	. = ..()
 	RegisterSignal(riding_mob, COMSIG_MOVABLE_POINTED, PROC_REF(attack_pointed))
 
@@ -572,12 +566,12 @@
 	require_minigame = TRUE
 	ride_check_flags = RIDER_NEEDS_ARM | UNBUCKLE_DISABLED_RIDER
 
-/datum/component/riding/creature/raptor/Initialize(mob/living/riding_mob, force, ride_check_flags, potion_boost)
+/datum/component/riding/creature/raptor/Initialize(mob/living/riding_mob, force, ride_check_flags)
 	. = ..()
 	RegisterSignal(parent, COMSIG_PROJECTILE_PREHIT, PROC_REF(on_bullet_hit))
 	RegisterSignal(parent, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(on_attacked))
 
-/datum/component/riding/creature/raptor/proc/on_bullet_hit(atom/target, list/bullet_args, obj/projectile/hit_projectile)
+/datum/component/riding/creature/raptor/proc/on_bullet_hit(atom/target, obj/projectile/hit_projectile)
 	SIGNAL_HANDLER
 
 	if(hit_projectile.armor_flag == ENERGY)

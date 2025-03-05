@@ -1,12 +1,13 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend, useLocalState } from '../backend';
 import {
   Button,
   Collapsible,
   LabeledList,
   Section,
   TextArea,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
 type StoryManagerData = {

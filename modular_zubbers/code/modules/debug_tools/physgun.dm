@@ -7,7 +7,7 @@
 	icon_state = "physgun_grayscale"
 	inhand_icon_state = "physgun_grayscale"
 	worn_icon_state = "physgun_grayscale"
-	belt_icon_state = "physgun_grayscale"
+	inside_belt_icon_state = "physgun_grayscale"
 	worn_icon = 'modular_zubbers/icons/mob/inhands/architector_items_belt.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/architector_items_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/architector_items_righthand.dmi'
@@ -60,10 +60,10 @@
 			playsound(user, 'modular_zubbers/sound/phystools/physgun_cant_grab.ogg', 100, TRUE)
 			return
 		if(!COOLDOWN_FINISHED(src, grab_cooldown) && !handled_atom)
-			user.balloon_alert(user, "On cooldown!")
+			user.balloon_alert(user, "on cooldown!")
 			return
 		if(!range_check(target, user) && !handled_atom)
-			user.balloon_alert(user, "Too far!")
+			user.balloon_alert(user, "too far!")
 			return
 		catch_atom(target, user)
 		COOLDOWN_START(src, grab_cooldown, use_cooldown)
@@ -171,7 +171,7 @@
 	. = COMSIG_MOB_CANCEL_CLICKON
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(!advanced)
-			physgun_user.balloon_alert(physgun_user, "Not enough power!")
+			physgun_user.balloon_alert(physgun_user, "not enough power!")
 			return
 		pause_atom(handled_atom)
 		return
@@ -186,7 +186,7 @@
 /obj/item/physic_manipulation_tool/proc/on_living_resist(mob/living)
 	SIGNAL_HANDLER
 	if(force_grab)
-		handled_atom.balloon_alert(handled_atom, "Can't escape!")
+		handled_atom.balloon_alert(handled_atom, "can't escape!")
 		return
 	if(handled_atom)
 		release_atom()
@@ -299,6 +299,8 @@
 
 /datum/status_effect/physgun_pause
 	id = "physgun_pause"
+	alert_type = null
+
 	var/force = FALSE
 
 /datum/status_effect/physgun_pause/on_apply()
@@ -317,7 +319,7 @@
 	SIGNAL_HANDLER
 
 	if(force)
-		owner.balloon_alert("Can't escape!")
+		owner.balloon_alert(owner, "can't escape!")
 		return
 
 	if(!HAS_TRAIT(owner, TRAIT_PHYSGUN_PAUSE))

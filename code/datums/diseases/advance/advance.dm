@@ -56,13 +56,18 @@
 			/datum/reagent/consumable/salt,
 			/datum/reagent/consumable/sugar,
 			/datum/reagent/consumable/tomatojuice,
+			/datum/reagent/consumable/ethanol/antifreeze, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/consumable/ethanol/bug_spray, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/space_cleaner, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( //level 4
 			/datum/reagent/fuel/oil,
-			/datum/reagent/medicine/c2/multiver,
+			///datum/reagent/medicine/c2/multiver, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/epinephrine,
 			/datum/reagent/medicine/haloperidol,
-			/datum/reagent/medicine/mine_salve,
+			///datum/reagent/medicine/mine_salve, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/c2/libital, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/c2/lenturi, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/salglu_solution,
 		),
 		list( //level 5
@@ -70,18 +75,25 @@
 			/datum/reagent/medicine/mannitol,
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/cryptobiolin,
+			/datum/reagent/medicine/c2/convermol, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/fluorosurfactant, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 6
-			/datum/reagent/medicine/antihol,
+			///datum/reagent/medicine/antihol, // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 			/datum/reagent/medicine/inacusiate,
 			/datum/reagent/medicine/oculine,
 			/datum/reagent/phenol,
+			/datum/reagent/medicine/neurine, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/ondansetron, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 7
 			/datum/reagent/medicine/higadrite,
 			/datum/reagent/medicine/leporazine,
 			/datum/reagent/toxin/mindbreaker,
 			/datum/reagent/acetaldehyde,
+			/datum/reagent/medicine/sal_acid,
+			///datum/reagent/medicine/pen_acid, BUBBER EDIT REMOVE - DISEASE OUTBREAK UPDATES
+			/datum/reagent/medicine/psicodine, // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		),
 		list( // level 8
 			/datum/reagent/drug/happiness,
@@ -89,7 +101,7 @@
 			/datum/reagent/pax,
 		),
 		list( // level 9
-			/datum/reagent/medicine/sal_acid,
+			/datum/reagent/drug/blastoff,
 			/datum/reagent/toxin/chloralhydrate,
 			/datum/reagent/toxin/lipolicide,
 		),
@@ -266,7 +278,6 @@
 		properties["severity"] = round((properties["severity"] / 2), 1)
 		properties["severity"] *= (symptoms.len / VIRUS_SYMPTOM_LIMIT) //fewer symptoms, less severity
 		properties["severity"] = round(clamp(properties["severity"], 1, 7), 1)
-	properties["capacity"] = get_symptom_weights()
 
 // Assign the properties that are in the list.
 /datum/disease/advance/proc/assign_properties()
@@ -342,7 +353,7 @@
 // Will generate a random cure, the more resistance the symptoms have, the harder the cure.
 /datum/disease/advance/proc/generate_cure()
 	if(properties?.len)
-		var/res = clamp(properties["resistance"] - (symptoms.len * 0.5), 1, advance_cures.len)
+		var/res = clamp(properties["resistance"] - (symptoms.len / 2), 1, advance_cures.len)
 		if(res == oldres)
 			return
 		cures = list(pick(advance_cures[res]))
@@ -405,7 +416,7 @@
 /datum/disease/advance/proc/AddSymptom(datum/symptom/S)
 	if(HasSymptom(S))
 		return
-	while(get_symptom_weights() + S.weight > VIRUS_SYMPTOM_LIMIT)
+	if(symptoms.len >= VIRUS_SYMPTOM_LIMIT)
 		RemoveSymptom(pick(symptoms))
 	symptoms += S
 	S.OnAdd(src)
@@ -421,12 +432,6 @@
 		S.neutered = TRUE
 		S.name += " (neutered)"
 		S.OnRemove(src)
-
-/// How much of the symptom capacity is currently being used?
-/datum/disease/advance/proc/get_symptom_weights()
-	. = 0
-	for(var/datum/symptom/symptom as anything in symptoms)
-		. += symptom.weight
 
 /*
 
@@ -550,6 +555,7 @@
 /datum/disease/advance/proc/totalTransmittable()
 	return properties["transmittable"]
 
+/* // BUBBER EDIT REMOVAL START - DISEASE OUTBREAK UPDATES
 /**
  *  If the disease has an incubation time (such as event diseases) start the timer, let properties determine if there's no timer set.
  */
@@ -572,3 +578,4 @@
 /datum/disease/advance/proc/make_visible()
 	visibility_flags &= ~HIDDEN_SCANNER
 	affected_mob.med_hud_set_status()
+*/ // BUBBER EDIT REMOVAL END - DISEASE OUTBREAK UPDATES

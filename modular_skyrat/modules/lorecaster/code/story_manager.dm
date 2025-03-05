@@ -98,7 +98,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 			if(!id)
 				return
 
-			id = lowertext(id)
+			id = LOWER_TEXT(id)
 			id = replacetext(id, @"\W", "_")
 
 			if(id in current_stories)
