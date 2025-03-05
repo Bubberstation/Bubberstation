@@ -85,9 +85,9 @@ Various overrides necessary to get the persocom working, namely ui status, power
 	var/obj/item/organ/brain/synth/robotbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(robotbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "Establishing SSH login with persocom...")
+			balloon_alert(user, "establishing SSH login with persocom...")
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, "Connection established!")
+				balloon_alert(user, "connection established!")
 				to_chat(targetmachine, span_notice("[user] establishes an SSH connection between [src] and your persocom emulation."))
 				robotbrain.internal_computer.interact(user)
 			return
