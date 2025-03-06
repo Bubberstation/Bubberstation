@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 
 		var/heat_protection_flags = victim_as_human.get_heat_protection_flags(400) //400 is the minimum that shows up in the examine menu.
 
-		var/obj/item/organ/internal/eyes/victim_eyes = victim_as_human.get_organ_slot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/victim_eyes = victim_as_human.get_organ_slot(ORGAN_SLOT_EYES)
 		if(victim_eyes && !victim_as_human.is_pepper_proof() && !victim_as_human.get_eye_protection())
 			//If we're pepper spray immune or have eye protection, don't blind. This should get all masks and goggles.
 			if(!victim.is_eyes_covered())
