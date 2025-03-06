@@ -50,10 +50,10 @@ export type CommsConsoleData = {
   canSendToSectors: BooleanLike;
   canSetAlertLevel: string;
   canToggleEmergencyAccess: BooleanLike;
-  canToggleEngineeringOverride: BooleanLike;
+  canToggleEngineeringOverride: BooleanLike; // BUBBER EDIT - Engineering override
   emagged: BooleanLike;
   emergencyAccess: BooleanLike;
-  engineeringOverride: BooleanLike;
+  engineeringOverride: BooleanLike; // BUBBER EDIT - Engineering override
   hasConnection: BooleanLike;
   importantActionReady: BooleanLike;
   messages: Message[];
