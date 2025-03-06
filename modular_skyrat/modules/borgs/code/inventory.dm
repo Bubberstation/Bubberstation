@@ -8,6 +8,7 @@
 	if(check_held_item_sprites(O))
 		update_icons()
 
+/// contains a list of items that currently have sprites associated with them, and what borg-skin has them, returns true if the held item and borg skin are in the list.
 /mob/living/silicon/robot/proc/check_held_item_sprites(obj/item/O)
 	var/list/items_with_sprites = list(
 		/obj/item/melee/baton/security/loaded = list("goodra-sec"),
