@@ -1,20 +1,16 @@
-/* SKYRAT EDIT REMOVAL BEGIN
-GLOBAL_LIST_INIT(generic_ambience,list(
-	'sound/ambience/general/ambigen1.ogg',
-	'sound/ambience/general/ambigen2.ogg',
-	'sound/ambience/general/ambigen3.ogg',
-	'sound/ambience/general/ambigen4.ogg',
-	'sound/ambience/general/ambigen5.ogg',
-	'sound/ambience/general/ambigen6.ogg',
-	'sound/ambience/general/ambigen7.ogg',
-	'sound/ambience/general/ambigen8.ogg',
-	'sound/ambience/general/ambigen9.ogg',
-	'sound/ambience/general/ambigen10.ogg',
-	'sound/ambience/general/ambigen11.ogg',
-	'sound/ambience/general/ambigen13.ogg',
-	'sound/ambience/general/ambigen14.ogg',
+// SKYRAT EDIT BEGIN - Overrode generic ambience files
+GLOBAL_LIST_INIT(generic_ambience, list(
+	'modular_skyrat/master_files/sound/ambience/ambigen1.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen2.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen3.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen4.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen5.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen6.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen7.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen8.ogg',
+	'modular_skyrat/master_files/sound/ambience/ambigen9.ogg',
 ))
-*/ //SKYRAT EDIT REMOVAL END
+//SKYRAT EDIT END
 
 GLOBAL_LIST_INIT(holy_ambience,list(
 	'sound/ambience/holy/ambicha1.ogg',

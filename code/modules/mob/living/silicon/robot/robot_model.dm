@@ -231,7 +231,7 @@
 		module.emp_act(severity)
 	..()
 
-/obj/item/robot_model/proc/transform_to(new_config_type, forced = FALSE)
+/obj/item/robot_model/proc/transform_to(new_config_type, forced = FALSE, transform = TRUE)
 	var/mob/living/silicon/robot/cyborg = loc
 	var/obj/item/robot_model/new_model = new new_config_type(cyborg)
 	new_model.robot = cyborg
@@ -259,8 +259,8 @@
 	new_model.update_robot_rest()
 	new_model.update_footsteps()
 	//BUBBER EDIT ADDTION END
-
-	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
+	if(transform)
+		INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
 	qdel(src)
 	return new_model
 
@@ -435,7 +435,7 @@
 		/obj/item/borg/apparatus/sheet_manipulator,
 		/obj/item/stack/rods/cyborg,
 		/obj/item/lightreplacer/cyborg, // Skyrat Edit - Surprised Engie borgs don't get these
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/construction/rtd/borg,
 		/obj/item/stack/cable_coil,
 	)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
@@ -453,7 +453,7 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/screwdriver/cyborg,
 		/obj/item/crowbar/cyborg,
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/stack/tile/iron/base/cyborg, // haha jani will have old tiles >:D
 		/obj/item/soap/nanotrasen/cyborg,
 		/obj/item/storage/bag/trash/cyborg,
 		/obj/item/melee/flyswatter,
@@ -897,6 +897,7 @@
 		"Kent" = list(SKIN_ICON_STATE = "kent", SKIN_LIGHT_KEY = "medical", SKIN_HAT_OFFSET = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))),
 		"Tophat" = list(SKIN_ICON_STATE = "tophat", SKIN_LIGHT_KEY = NONE, SKIN_HAT_OFFSET = INFINITY),
 		"Waitress" = list(SKIN_ICON_STATE = "service_f"),
+		"Gardener" = list(SKIN_ICON_STATE = "gardener", SKIN_HAT_OFFSET = INFINITY),
 	)
 
 /obj/item/robot_model/service/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
@@ -977,7 +978,7 @@
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
 		/obj/item/stack/rods/cyborg,
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/construction/rtd/borg,
 		/obj/item/dest_tagger/borg,
 		/obj/item/stack/cable_coil,
 		/obj/item/pinpointer/syndicate_cyborg,
