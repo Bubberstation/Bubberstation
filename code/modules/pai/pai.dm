@@ -123,20 +123,6 @@
 		"puppy" = TRUE,
 		"spider" = TRUE,
 	)
-	/// List of all available card overlays.
-	var/static/list/possible_overlays = list(
-		"null",
-		"angry",
-		"cat",
-		"extremely-happy",
-		"face",
-		"happy",
-		"laugh",
-		"off",
-		"sad",
-		"sunglasses",
-		"what"
-	)
 
 /mob/living/silicon/pai/add_sensors() //pAIs have to buy their HUDs
 	return
@@ -401,7 +387,7 @@
 	master_ref = WEAKREF(master)
 	master_name = master.real_name
 	master_dna = master.dna.unique_enzymes
-	to_chat(src, span_boldannounce("You have been bound to a new master: [user.real_name]!"))
+	to_chat(src, span_bolddanger("You have been bound to a new master: [user.real_name]!"))
 	holochassis_ready = TRUE
 	return TRUE
 

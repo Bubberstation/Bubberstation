@@ -129,3 +129,6 @@
 
 /obj/item/stack/medical/gauze/improvised
 	splint_prefix = "splint_improv"
+
+#undef SELF_AID_REMOVE_DELAY
+#undef OTHER_AID_REMOVE_DELAY

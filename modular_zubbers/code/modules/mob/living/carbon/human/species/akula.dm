@@ -1,2 +1,2 @@
-/obj/item/organ/internal/tongue/akula
+/obj/item/organ/tongue/akula
 	say_mod = "bubbles"

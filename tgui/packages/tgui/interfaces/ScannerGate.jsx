@@ -1,5 +1,12 @@
+import {
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
@@ -13,98 +20,7 @@ const DISEASE_THEASHOLD_LIST = [
   'BIOHAZARD',
 ];
 
-const TARGET_SPECIES_LIST = [
-  {
-    name: 'Human',
-    value: 'human',
-  },
-  {
-    name: 'Lizardperson',
-    value: 'lizard',
-  },
-  {
-    name: 'Flyperson',
-    value: 'fly',
-  },
-  {
-    name: 'Felinid',
-    value: 'felinid',
-  },
-  {
-    name: 'Plasmaman',
-    value: 'plasma',
-  },
-  {
-    name: 'Mothperson',
-    value: 'moth',
-  },
-  {
-    name: 'Jellyperson',
-    value: 'jelly',
-  },
-  {
-    name: 'Podperson',
-    value: 'pod',
-  },
-  {
-    name: 'Golem',
-    value: 'golem',
-  },
-  {
-    name: 'Zombie',
-    value: 'zombie',
-  },
-  //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
-  {
-    name: 'Anthromorph',
-    value: 'mammal',
-  },
-  {
-    name: 'Vox',
-    value: 'vox',
-  },
-  {
-    name: 'Aquatic',
-    value: 'aquatic',
-  },
-  {
-    name: 'Anthromorphic Insect',
-    value: 'insect',
-  },
-  {
-    name: 'Xenomorph',
-    value: 'xeno',
-  },
-  {
-    name: 'Unathi',
-    value: 'unathi',
-  },
-  {
-    name: 'Tajaran',
-    value: 'tajaran',
-  },
-  {
-    name: 'Vulpkanin',
-    value: 'vulpkanin',
-  },
-  {
-    name: 'Synthetic Humanoid',
-    value: 'synth',
-  },
-  {
-    name: 'Teshari',
-    value: 'teshari',
-  },
-  {
-    name: 'Hemophage',
-    value: 'hemophage',
-  },
-  {
-    name: 'Snail',
-    value: 'snail',
-  },
-];
-
+// SKYRAT EDIT BEGIN - MORE SCANNER GATE OPTIONS
 const TARGET_GENDER_LIST = [
   {
     name: 'Male',
@@ -114,8 +30,8 @@ const TARGET_GENDER_LIST = [
     name: 'Female',
     value: 'female',
   },
-  //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
 ];
+//  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
 
 const TARGET_NUTRITION_LIST = [
   {
@@ -214,7 +130,6 @@ const ScannerGateControl = (props) => {
 
 const ScannerGateOff = (props) => {
   const { act, data } = useBackend();
-  const { contraband_enabled } = data;
   return (
     <>
       <Box mb={2}>Select a scanning mode below.</Box>
@@ -336,30 +251,32 @@ const ScannerGateDisease = (props) => {
 
 const ScannerGateSpecies = (props) => {
   const { act, data } = useBackend();
-  const { reverse, target_species } = data;
-  const species = TARGET_SPECIES_LIST.find((species) => {
-    return species.value === target_species;
+  const { reverse, target_species_id, available_species, target_zombie } = data;
+  const species = available_species.find((species) => {
+    return species.specie_id === target_species_id;
   });
   return (
     <>
       <Box mb={2}>
         Trigger if the person scanned is {reverse ? 'not' : ''} of the{' '}
-        {species.name} species.
-        {target_species === 'zombie' &&
-          ' All zombie types will be detected, including dormant zombies.'}
+        {species.specie_name} species.
+        {target_zombie
+          ? ' All zombie types will be detected, including dormant zombies.'
+          : null}
       </Box>
       <Box mb={2}>
-        {TARGET_SPECIES_LIST.map((species) => (
+        {available_species.map((species) => (
           <Button.Checkbox
-            key={species.value}
-            checked={species.value === target_species}
-            content={species.name}
+            key={species.specie_id}
+            checked={species.specie_id === target_species_id}
             onClick={() =>
               act('set_target_species', {
-                new_species: species.value,
+                new_species_id: species.specie_id,
               })
             }
-          />
+          >
+            {species.specie_name}
+          </Button.Checkbox>
         ))}
       </Box>
       <ScannerGateMode />
@@ -462,21 +379,6 @@ const ScannerGateGender = (props) => {
   );
 };
 //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
-const ScannerGateContraband = (props) => {
-  const { data } = useBackend();
-  const { reverse } = data;
-  return (
-    <>
-      <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        anything considered contraband. Requires an N-spect scanner installed to
-        enable.
-      </Box>
-      <ScannerGateMode />
-    </>
-  );
-};
-
 const ScannerGateMode = (props) => {
   const { act, data } = useBackend();
   const { reverse } = data;

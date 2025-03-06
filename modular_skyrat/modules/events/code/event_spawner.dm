@@ -24,7 +24,7 @@
 		return
 	if(used)
 		return
-	if(ckey_whitelist && !(lowertext(user.ckey) in ckey_whitelist))
+	if(ckey_whitelist && !(LOWER_TEXT(user.ckey) in ckey_whitelist))
 		alert(user, "Sorry, This spawner is not for you!", "", "Ok")
 		return
 	if(is_banned_from(user.ckey, BAN_GHOST_ROLE_SPAWNER))

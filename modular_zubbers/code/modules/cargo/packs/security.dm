@@ -1,6 +1,6 @@
 /datum/supply_pack/security/armory/wt551
 	name = "WT-551 Autorifle Crate"
-	desc = "Contains a pair of WT-551 Autorifles pre-loaded with less-lethal rubber-tipped rounds. Additional ammo sold seperately. Backwards-compatible with WT-550 magazines. NanoTrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
+	desc = "Contains a pair of WT-551 Autorifles pre-loaded with less-lethal rubber-tipped rounds. Additional ammo sold seperately. Backwards-compatible with WT-550 magazines. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/item/gun/ballistic/automatic/wt550/security/rubber = 2)
 	crate_name = "wt-550 autorifle crate"

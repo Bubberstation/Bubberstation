@@ -15,7 +15,7 @@
 	. = ..()
 
 	// prevent these from being created outside of synth brains
-	if(!istype(loc, /obj/item/organ/internal/brain/synth))
+	if(!istype(loc, /obj/item/organ/brain/synth))
 		return INITIALIZE_HINT_QDEL
 
 /* Action for opening the synthbrain computer */
@@ -26,7 +26,7 @@
 
 /datum/action/item_action/synth/open_internal_computer/Trigger(trigger_flags)
 	. = ..()
-	var/obj/item/organ/internal/brain/synth/targetmachine = target
+	var/obj/item/organ/brain/synth/targetmachine = target
 	targetmachine.internal_computer.interact(owner)
 
 /*
@@ -36,7 +36,7 @@ Various overrides necessary to get the persocom working, namely ui status, power
 	return GLOB.default_state
 
 /obj/item/modular_computer/pda/synth/ui_status(mob/user)
-	var/obj/item/organ/internal/brain/synth/brain_loc = loc
+	var/obj/item/organ/brain/synth/brain_loc = loc
 	if(!istype(brain_loc))
 		return UI_CLOSE
 
@@ -82,12 +82,12 @@ Various overrides necessary to get the persocom working, namely ui status, power
 	if(!istype(targetmachine))
 		return ..()
 
-	var/obj/item/organ/internal/brain/synth/robotbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/synth/robotbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(robotbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "Establishing SSH login with persocom...")
+			balloon_alert(user, "establishing SSH login with persocom...")
 			if(do_after(user, 5 SECONDS))
-				balloon_alert(user, "Connection established!")
+				balloon_alert(user, "connection established!")
 				to_chat(targetmachine, span_notice("[user] establishes an SSH connection between [src] and your persocom emulation."))
 				robotbrain.internal_computer.interact(user)
 			return
@@ -95,7 +95,7 @@ Various overrides necessary to get the persocom working, namely ui status, power
 
 /obj/item/modular_computer/pda/synth/get_header_data()
 	var/list/data = ..()
-	var/obj/item/organ/internal/brain/synth/brain_loc = loc
+	var/obj/item/organ/brain/synth/brain_loc = loc
 	// Battery level is now according to the synth charge
 	if(istype(brain_loc))
 		var/charge_level = (brain_loc.owner.nutrition / NUTRITION_LEVEL_ALMOST_FULL) * 100

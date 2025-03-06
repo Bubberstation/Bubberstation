@@ -7,9 +7,11 @@ $include logging.txt
 $include resources.txt
 $include skyrat/skyrat_config.txt
 $include bubbers/bubbers_config.txt
+$include bubbers/vore_config.txt
 $include interviews.txt
 $include lua.txt
 $include auxtools.txt
+$include map_vote.txt
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -186,8 +188,12 @@ IPINTEL_REJECT_BAD
 ## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
 #USEWHITELIST
 
+## The address shown for the game server in the TGS check command
+# PUBLIC_ADDRESS ss13.example.com:2506
+
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
+## This is also used to show the server's address in the TGS check command if the public address isn't set
 # SERVER ss13.example.com:2506
 
 ## forum address
@@ -597,6 +603,9 @@ PR_ANNOUNCEMENTS_PER_ROUND 5
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING
 
+## Uncomment to disable TTS messages on whispering, such as radio messages or the whisper verb. Useful for reducing your TTS load.
+#TTS_NO_WHISPER
+
 ## Link to a HTTP server that's been set up on a server. Docker-compose file can be found in tools/tts
 #TTS_HTTP_URL http://localhost:5002
 
@@ -622,3 +631,9 @@ UPLOAD_LIMIT 524288
 
 ## Restricts admin client uploads to the server, defined in bytes, default is 5MB
 UPLOAD_LIMIT_ADMIN 5242880
+
+## Uncomment to allow admins with +DEBUG to start the byond-tracy profiler during the round.
+#ALLOW_TRACY_START
+
+## Uncomment to allow admins with +DEBUG to queue the next round to run the byond-tracy profiler.
+#ALLOW_TRACY_QUEUE
