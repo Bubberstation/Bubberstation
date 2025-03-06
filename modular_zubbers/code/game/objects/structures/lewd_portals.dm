@@ -117,6 +117,9 @@
 		add_overlay(limb_object.get_limb_icon())
 	if(owner.shoes)
 		add_overlay(owner.overlays_standing[SHOES_LAYER])
+	if(owner.w_uniform)
+		add_overlay(owner.overlays_standing[UNIFORM_LAYER])
+	add_overlay(owner.overlays_standing[BODY_LAYER])
 	add_filter("chest_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 	/*
 	dummy = new/mob/living/carbon/human(src)
