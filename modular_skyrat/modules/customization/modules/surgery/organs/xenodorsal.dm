@@ -1,4 +1,4 @@
-/obj/item/organ/external/xenodorsal
+/obj/item/organ/xenodorsal
 	name = "dorsal spines"
 	desc = "How did that even fit on them...?"
 	icon_state = "random_fly_2"

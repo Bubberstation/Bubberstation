@@ -106,25 +106,25 @@
 	if(!istype(tool, /obj/item/hypospray/mkii) || !LAZYACCESS(modifiers, RIGHT_CLICK))
 		return ..()
 	if(!isnull(attached_hypo))
-		balloon_alert(user, "Mount point full!  Remove [attached_hypo] first!")
+		balloon_alert(user, "mount point full!  Remove [attached_hypo] first!")
 		return ITEM_INTERACT_BLOCKING
 	tool.moveToNullspace()
 	attached_hypo = tool
 	RegisterSignal(tool, COMSIG_QDELETING, PROC_REF(on_attached_hypo_qdel))
-	balloon_alert(user, "Attached [attached_hypo].")
+	balloon_alert(user, "attached [attached_hypo].")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/storage/hypospraykit/click_alt_secondary(mob/user)
 	if(attached_hypo != null)
 		if(user.put_in_hands(attached_hypo))
-			balloon_alert(user, "Removed [attached_hypo].")
+			balloon_alert(user, "removed [attached_hypo].")
 			UnregisterSignal(attached_hypo, COMSIG_QDELETING)
 			attached_hypo = null
 			update_appearance()
 			// Ditto here.
 		else
-			balloon_alert(user, "Couldn't pull the hypo!")
+			balloon_alert(user, "couldn't pull the hypo!")
 
 /obj/item/storage/hypospraykit/proc/on_attached_hypo_qdel()
 	if(attached_hypo)

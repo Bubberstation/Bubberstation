@@ -1,4 +1,4 @@
-/obj/item/organ/external/skrell_hair
+/obj/item/organ/skrell_hair
 	name = "skrell_hair"
 	desc = "Hair isn't really the best way to describe it, but you really can't think of any other word that makes sense."
 	icon_state = "random_fly_1"

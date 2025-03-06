@@ -7,10 +7,9 @@
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
 /*
- The damage modifiers here are modified to stay in line with teshari
- Although I'm not sure if it's redundant, better safe than sorry.
- 
- Addendum: the limbs lack "limb_id = SPECIES_TESHARI". if this becomes a problem, just put those in xoxo -aKhro
+ * The damage modifiers here are modified to stay in line with teshari
+ * Although I'm not sure if it's redundant, better safe than sorry.
+ * Addendum: the limbs lack "limb_id = SPECIES_TESHARI". if this becomes a problem, just put those in xoxo -aKhro
  */
 
 #define TESHARI_PUNCH_LOW 2

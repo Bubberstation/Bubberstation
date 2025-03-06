@@ -83,7 +83,18 @@
 	atom_storage.max_total_storage = 20000
 
 /// An extension to the default RPED part replacement action - if you don't have the requisite parts in the RPED already, it will spawn T4 versions to use.
-/obj/item/storage/part_replacer/bluespace/tier4/bst/part_replace_action(obj/attacked_object, mob/living/user)
+/obj/item/storage/part_replacer/bluespace/tier4/bst/interact_with_atom(obj/attacked_object, mob/living/user, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
+	//its very important to NOT block so frames can still interact with it
+	if(!ismachinery(attacked_object) || istype(attacked_object, /obj/machinery/computer))
+		return NONE
+
+	var/obj/machinery/attacked_machinery = attacked_object
+	if(!LAZYLEN(attacked_machinery.component_parts))
+		return ITEM_INTERACT_FAILURE
+
 	// We start with setting up a list of the current contents of the RPED when using auto-clear.  This is used to detect new items after upgrades are applied & remove them.
 	var/list/old_contents = list()
 	var/list/inv_grab = atom_storage.return_inv(FALSE)
@@ -102,12 +113,14 @@
 	else
 		// It's not a machine frame, so let's check if it's a regular machine.
 		if(ismachinery(attacked_object) && !istype(attacked_object, /obj/machinery/computer))
-			var/obj/machinery/attacked_machinery = attacked_object
 			var/obj/item/circuitboard/machine/circuit = attacked_machinery.circuit
 			// If it is, we need to use the circuit's components; there's no good way to get required components off of an already-built machine.
 			if(istype(circuit))
 				spawn_parts_for_components(user, circuit.req_components)
-	. = ..()
+
+	if(!attacked_machinery.exchange_parts(user, src))
+		return ITEM_INTERACT_FAILURE
+
 	// If auto-clear is in use,
 	if(auto_clear)
 		inv_grab.Cut()
@@ -115,6 +128,8 @@
 		for(var/obj/item/stored_item in inv_grab)
 			if(!(stored_item in old_contents))
 				qdel(stored_item)
+
+	return ITEM_INTERACT_SUCCESS
 
 /// A bespoke proc for spawning in parts
 /obj/item/storage/part_replacer/bluespace/tier4/bst/proc/spawn_parts_for_components(mob/living/user, list/required_components)

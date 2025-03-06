@@ -103,7 +103,7 @@
 			stakes += list(embedded_stake)
 	return stakes
 
-/datum/embed_data/stake
+/datum/embedding/stake
 	embed_chance = 20
 
 /obj/item/stake
@@ -120,7 +120,7 @@
 	attack_verb_continuous = list("staked", "stabbed", "tore into")
 	attack_verb_simple = list("staked", "stabbed", "tore into")
 	sharpness = SHARP_EDGED
-	embed_data = /datum/embed_data/stake
+	embed_data = /datum/embedding/stake
 	force = 6
 	throwforce = 10
 	max_integrity = 30
@@ -162,7 +162,7 @@
 		span_danger("You drive the [src] into [target]'s chest!"),
 	)
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
-	if(tryEmbed(target.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)) //and if it embeds successfully in their chest, cause a lot of pain
+	if(force_embed(target, target.get_bodypart(BODY_ZONE_CHEST))) //and if it embeds successfully in their chest, cause a lot of pain
 		target.apply_damage(max(10, force * 1.2), BRUTE, BODY_ZONE_CHEST, wound_bonus = 0, sharpness = TRUE)
 		on_stake_embed(target, user)
 
@@ -170,7 +170,7 @@
 	return
 
 /obj/item/stake/hardened/silver/on_stake_embed(mob/living/target, mob/living/user)
-	var/obj/item/organ/internal/heart/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
 		return
 	target.visible_message(
@@ -179,16 +179,13 @@
 	)
 	qdel(heart)
 
-/obj/item/stake/tryEmbed(atom/target, forced)
+/obj/item/stake/force_embed(mob/living/carbon/victim, obj/item/bodypart/target_limb)
 	. = ..()
-	if(!(. & COMPONENT_EMBED_SUCCESS) || !isbodypart(target))
-		return FALSE
-	var/obj/item/bodypart/bodypart = target
-	if(bodypart.body_zone != BODY_ZONE_CHEST)
-		return
-	SEND_SIGNAL(bodypart, COMSIG_BODYPART_STAKED, forced)
-	if(bodypart.owner)
-		SEND_SIGNAL(bodypart.owner, COMSIG_MOB_STAKED, forced)
+	if(!.)
+		return .
+	SEND_SIGNAL(target_limb, COMSIG_BODYPART_STAKED, TRUE)
+	SEND_SIGNAL(victim, COMSIG_MOB_STAKED, TRUE)
+	return .
 
 ///Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /mob/living/proc/can_be_staked()
@@ -199,7 +196,7 @@
 		return TRUE
 	return FALSE
 
-/datum/embed_data/stake/hardened
+/datum/embedding/stake/hardened
 	embed_chance = 35
 	fall_chance = 0
 
@@ -211,14 +208,14 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embed_data = /datum/embed_data/stake/hardened
+	embed_data = /datum/embedding/stake/hardened
 	staketime = 12 SECONDS
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
 	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
-/datum/embed_data/stake/silver
+/datum/embedding/stake/silver
 	embed_chance = 0 // we want it to only be embeddable manually
 	fall_chance = 0
 
@@ -231,7 +228,7 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embed_data = /datum/embed_data/stake/silver
+	embed_data = /datum/embedding/stake/silver
 	staketime = 15 SECONDS
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)
@@ -343,9 +340,9 @@
 
 
 /// just a typepath to specify that it's monkey-owned, used for the heart thief objective
-/obj/item/organ/internal/heart/monkey
+/obj/item/organ/heart/monkey
 
-/obj/item/organ/internal/heart/examine_more(mob/user)
+/obj/item/organ/heart/examine_more(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(user)
 	if(!vampire)

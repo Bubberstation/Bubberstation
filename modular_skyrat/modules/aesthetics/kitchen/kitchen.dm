@@ -23,10 +23,6 @@
 /obj/structure/showcase/machinery/microwave
 	icon = 'modular_skyrat/modules/aesthetics/kitchen/microwave.dmi'
 
-// Skyrat Coffee Maker Icons
-/obj/machinery/coffeemaker
-	icon = 'modular_skyrat/modules/aesthetics/kitchen/coffeemaker.dmi'
-
 /obj/item/reagent_containers/cup/coffeepot
 	icon = 'modular_skyrat/modules/aesthetics/kitchen/coffeemaker.dmi'
 	fill_icon = 'modular_skyrat/modules/aesthetics/kitchen/coffeemaker.dmi'

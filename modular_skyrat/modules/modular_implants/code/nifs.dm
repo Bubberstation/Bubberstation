@@ -12,7 +12,7 @@
 #define MAX_NIF_REWARDS_POINTS 2000
 
 // This is the original NIF that other NIFs are based on.
-/obj/item/organ/internal/cyberimp/brain/nif
+/obj/item/organ/cyberimp/brain/nif
 	name = "Nanite Implant Framework"
 	desc = "A brain implant that infuses the user with nanites."
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/nifs.dmi'
@@ -107,13 +107,13 @@
 	///What icon does the NIF display in chat when sending out alerts? Icon states are stored in 'modular_skyrat/modules/modular_implants/icons/chat.dmi'
 	var/chat_icon = "standard"
 
-/obj/item/organ/internal/cyberimp/brain/nif/Initialize(mapload)
+/obj/item/organ/cyberimp/brain/nif/Initialize(mapload)
 	. = ..()
 
 	durability = max_durability
 	power_level = max_power_level
 
-/obj/item/organ/internal/cyberimp/brain/nif/Destroy()
+/obj/item/organ/cyberimp/brain/nif/Destroy()
 	if(linked_mob)
 		UnregisterSignal(linked_mob, COMSIG_LIVING_DEATH, PROC_REF(damage_on_death))
 
@@ -126,7 +126,7 @@
 	QDEL_LIST(loaded_nifsofts)
 	return ..()
 
-/obj/item/organ/internal/cyberimp/brain/nif/mob_insert(mob/living/carbon/human/insertee, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+/obj/item/organ/cyberimp/brain/nif/on_mob_insert(mob/living/carbon/human/insertee, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 
 	if(linked_mob && stored_ckey != insertee.ckey && theft_protection)
@@ -153,7 +153,7 @@
 		send_message("Loading preinstalled and stored NIFSofts, please wait...")
 		addtimer(CALLBACK(src, PROC_REF(install_preinstalled_nifsofts)), 3 SECONDS)
 
-/obj/item/organ/internal/cyberimp/brain/nif/mob_remove(mob/living/carbon/organ_owner, special = FALSE)
+/obj/item/organ/cyberimp/brain/nif/on_mob_remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
 	. = ..()
 
 	organ_owner.log_message("'s [src] was removed from [organ_owner]", LOG_GAME)
@@ -165,11 +165,14 @@
 
 	if(linked_mob)
 		UnregisterSignal(linked_mob, COMSIG_LIVING_DEATH, PROC_REF(damage_on_death))
+		linked_mob = null
 
 	QDEL_LIST(loaded_nifsofts)
 
 ///Installs preinstalled NIFSofts
-/obj/item/organ/internal/cyberimp/brain/nif/proc/install_preinstalled_nifsofts()
+/obj/item/organ/cyberimp/brain/nif/proc/install_preinstalled_nifsofts()
+	if(isnull(linked_mob)) // BUBBER TODO: Fix the race condition here
+		return FALSE
 	if(!preinstalled_nifsofts)
 		return FALSE
 
@@ -182,7 +185,7 @@
 
 	return TRUE
 
-/obj/item/organ/internal/cyberimp/brain/nif/process(seconds_per_tick)
+/obj/item/organ/cyberimp/brain/nif/process(seconds_per_tick)
 	. = ..()
 
 	if(!linked_mob || broken || HAS_TRAIT(linked_mob, TRAIT_STASIS))
@@ -211,7 +214,7 @@
 	change_power_level(power_usage)
 
 ///Modifies power based off power_to_change. Negative numbers add charge, positive numbers remove charge
-/obj/item/organ/internal/cyberimp/brain/nif/proc/change_power_level(power_to_change)
+/obj/item/organ/cyberimp/brain/nif/proc/change_power_level(power_to_change)
 	if(!power_to_change)
 		return TRUE
 
@@ -226,7 +229,7 @@
 	return TRUE
 
 ///Toggles nutrition drain as a power source on NIFs on/off. Bypass - Ignores the need to perform the nutirition_check() proc.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/toggle_nutrition_drain(bypass = FALSE)
+/obj/item/organ/cyberimp/brain/nif/proc/toggle_nutrition_drain(bypass = FALSE)
 	if(!bypass && !nutrition_check())
 		return FALSE
 
@@ -244,7 +247,7 @@
 	return TRUE
 
 /// Checks to see if the mob has a nutrition that can be drain from
-/obj/item/organ/internal/cyberimp/brain/nif/proc/nutrition_check() //This is a seperate proc so that TGUI can perform this check on the menu
+/obj/item/organ/cyberimp/brain/nif/proc/nutrition_check() //This is a seperate proc so that TGUI can perform this check on the menu
 	if(!linked_mob || !linked_mob.nutrition)
 		return FALSE
 
@@ -254,7 +257,7 @@
 	return linked_mob.nutrition >= minimum_nutrition
 
 ///Toggles Blood Drain. Bypasss -  Ignores the need to perform the blood_check proc.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/toggle_blood_drain(bypass = FALSE)
+/obj/item/organ/cyberimp/brain/nif/proc/toggle_blood_drain(bypass = FALSE)
 	if(!bypass && !blood_check())
 		return
 
@@ -263,21 +266,21 @@
 	if(!blood_drain)
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
-		balloon_alert(linked_mob, "Blood draining disabled")
+		balloon_alert(linked_mob, "blood draining disabled")
 		return
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
-	balloon_alert(linked_mob, "Blood draining enabled")
+	balloon_alert(linked_mob, "blood draining enabled")
 
 ///Checks if the NIF is able to draw blood as a power source?
-/obj/item/organ/internal/cyberimp/brain/nif/proc/blood_check()
+/obj/item/organ/cyberimp/brain/nif/proc/blood_check()
 	if(!linked_mob || !linked_mob.blood_volume || (linked_mob.blood_volume <= minimum_blood_level))
 		return FALSE
 
 	return TRUE
 
 ///Calibrates the Parent NIF, this is ran every time the parent NIF is first installed inside of someone.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/perform_calibration()
+/obj/item/organ/cyberimp/brain/nif/proc/perform_calibration()
 	if(linked_mob.stat >= DEAD)
 		return FALSE
 
@@ -305,12 +308,13 @@
 
 			calibrating = FALSE
 			is_calibrated = TRUE
-
+			if(isnull(linked_mob.mind))
+				return // BUBBER TODO - Refactor NIFs
 			if(!linked_mob.save_individual_persistence())
 				stack_trace("persistence was not saved for [linked_mob]!")
 
 ///Installs the loaded_nifsoft to the parent NIF.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
+/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
 	if(broken || calibrating) //NIFSofts can't be installed to a broken NIF
 		return FALSE
 
@@ -343,7 +347,7 @@
 	return TRUE
 
 ///Removes a NIFSoft from a NIF. Silent - determines whether or not alerts will be given to the owner of the NIF
-/obj/item/organ/internal/cyberimp/brain/nif/proc/remove_nifsoft(datum/nifsoft/removed_nifsoft, silent = FALSE)
+/obj/item/organ/cyberimp/brain/nif/proc/remove_nifsoft(datum/nifsoft/removed_nifsoft, silent = FALSE)
 	if(!is_type_in_list(removed_nifsoft, loaded_nifsofts) || broken)
 		return FALSE
 
@@ -356,7 +360,7 @@
 	return TRUE
 
 ///Adjusts the NIF based on the adjustment_amount. Positive values repair, negative values damage
-/obj/item/organ/internal/cyberimp/brain/nif/proc/adjust_durability(adjustment_amount)
+/obj/item/organ/cyberimp/brain/nif/proc/adjust_durability(adjustment_amount)
 	if(!adjustment_amount || ((adjustment_amount > 0) && (durability >= max_durability) || ((adjustment_amount < 0) && (durability <= NIF_MINIMUM_DURABILITY))))
 		return FALSE
 
@@ -368,7 +372,7 @@
 	return TRUE
 
 ///Sends a message to the owner of the NIF. Typically used for messages from the NIF itself or from NIFSofts.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/send_message(message_to_send, alert = FALSE)
+/obj/item/organ/cyberimp/brain/nif/proc/send_message(message_to_send, alert = FALSE)
 	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 	var/tag = sheet.icon_tag("nif-[chat_icon]")
 	var/nif_icon = ""
@@ -386,7 +390,7 @@
 
 
 ///Changes the broken variable to be false. This does not relate to durability.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/fix_nif()
+/obj/item/organ/cyberimp/brain/nif/proc/fix_nif()
 	if(!broken)
 		return FALSE
 
@@ -395,14 +399,14 @@
 	return TRUE
 
 ///Re-enables the durability_loss_vulnerable variable, allowing the parent NIF to take durability damage again.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/make_vulnerable()
+/obj/item/organ/cyberimp/brain/nif/proc/make_vulnerable()
 	durability_loss_vulnerable = TRUE
 
 //This is here so that a TGUI can't be opened by using the implant while it isn't implanted.
-/obj/item/organ/internal/cyberimp/brain/nif/attack_self(mob/user, modifiers)
+/obj/item/organ/cyberimp/brain/nif/attack_self(mob/user, modifiers)
 	return FALSE
 
-/obj/item/organ/internal/cyberimp/brain/nif/emp_act(severity)
+/obj/item/organ/cyberimp/brain/nif/emp_act(severity)
 	if(!durability_loss_vulnerable)
 		return FALSE
 
@@ -426,7 +430,7 @@
 	send_message("<b>ELECTROMAGNETIC INTERFERENCE DETECTED.</b>", TRUE)
 
 ///Applies damage to the parent NIF whenever the user dies.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/damage_on_death()
+/obj/item/organ/cyberimp/brain/nif/proc/damage_on_death()
 	SIGNAL_HANDLER
 
 	if(!durability_loss_vulnerable)
@@ -438,7 +442,7 @@
 	addtimer(CALLBACK(src, PROC_REF(make_vulnerable)), 20 MINUTES) //Players should have a decent grace period on this.
 
 /// Removes rewards points from the parent NIF. Returns FALSE if there are not enough points to remove, returns TRUE if the points have been succesfully removed.
-/obj/item/organ/internal/cyberimp/brain/nif/proc/remove_rewards_points(points_to_remove)
+/obj/item/organ/cyberimp/brain/nif/proc/remove_rewards_points(points_to_remove)
 	if(points_to_remove > rewards_points)
 		return FALSE
 
@@ -468,7 +472,7 @@
 
 ///Checks to see if a human with a NIF has the nifsoft_to_find type of NIFSoft installed?
 /mob/living/carbon/human/proc/find_nifsoft(datum/nifsoft/nifsoft_to_find)
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = get_organ_by_type(/obj/item/organ/internal/cyberimp/brain/nif)
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 	var/list/nifsoft_list = installed_nif?.loaded_nifsofts
 
 	if(!nifsoft_list)
@@ -486,14 +490,14 @@
 	InsertAll("nif", 'modular_skyrat/modules/modular_implants/icons/chat.dmi')
 
 /obj/item/autosurgeon/organ/nif
-	starting_organ = /obj/item/organ/internal/cyberimp/brain/nif/standard
+	starting_organ = /obj/item/organ/cyberimp/brain/nif/standard
 	uses = 1
 
-/obj/item/organ/internal/cyberimp/brain/nif/debug
+/obj/item/organ/cyberimp/brain/nif/debug
 	is_calibrated = TRUE
 
 /obj/item/autosurgeon/organ/nif/debug
-	starting_organ = /obj/item/organ/internal/cyberimp/brain/nif/debug
+	starting_organ = /obj/item/organ/cyberimp/brain/nif/debug
 	uses = 1
 
 /obj/item/storage/box/nif_ghost_box
