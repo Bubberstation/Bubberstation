@@ -881,3 +881,7 @@
 			new /obj/structure/reagent_water_basin(src_turf)
 		if("Crafting Bench")
 			new /obj/structure/reagent_crafting_bench(src_turf)
+
+#undef CYBORG_FONT
+#undef MAX_PAPER_INTEGRATED_CLIPBOARD
+#undef BASE_NINJA_REAGENTS

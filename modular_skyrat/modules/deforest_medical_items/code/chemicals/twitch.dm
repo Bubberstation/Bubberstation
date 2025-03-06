@@ -206,6 +206,8 @@
 /datum/movespeed_modifier/reagent/twitch
 	multiplicative_slowdown = -0.4
 
+#undef CONSTANT_DOSE_SAFE_LIMIT
+
 #undef TWITCH_SCREEN_FILTER
 #undef TWITCH_SCREEN_BLUR
 

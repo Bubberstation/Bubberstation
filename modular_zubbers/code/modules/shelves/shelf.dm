@@ -233,3 +233,7 @@
 	var/obj/item/rack_parts/shelf/newparts = new(loc)
 	transfer_fingerprints_to(newparts)
 	qdel(src)
+
+#undef DEFAULT_SHELF_CAPACITY
+#undef DEFAULT_SHELF_USE_DELAY
+#undef DEFAULT_SHELF_VERTICAL_OFFSET

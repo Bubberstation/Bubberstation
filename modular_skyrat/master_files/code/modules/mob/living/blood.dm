@@ -13,3 +13,5 @@
 	. = ..()
 	if(data && mix_data)
 		data[MONKEY_ORIGINS] = data[MONKEY_ORIGINS] || mix_data[MONKEY_ORIGINS]
+
+#undef MONKEY_ORIGINS
