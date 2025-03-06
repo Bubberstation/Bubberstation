@@ -98,18 +98,18 @@
 	if(!owner_ref)
 		return INITIALIZE_HINT_QDEL
 	owner = owner_ref
-	RegisterSignals(owner, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_visuals))
+	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
 /obj/lewd_portal_relay/Destroy(force)
-	UnregisterSignal(owner, list(COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY))
+	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM))
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	return ..()
 
 /obj/lewd_portal_relay/proc/update_visuals()
 	SIGNAL_HANDLER
 //	copy_overlays(owner, TRUE)
-	cut_overlay()
+	cut_overlays()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
 		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)
 		if(!istype(limb_object))
