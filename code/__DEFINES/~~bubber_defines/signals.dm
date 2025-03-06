@@ -8,3 +8,7 @@
 #define COMSIG_ORGAN_BODYPART_REMOVED "organ_bodypart_removed"
 /// From /datum/controller/subsystem/economy/proc/issue_paydays()
 #define COMSIG_ON_BANK_ACCOUNT_PAYOUT "bank_account_payout"
+/// From /mob/proc/equip_to_slot_if_possible()
+#define COMSIG_MOB_POST_EQUIP "mob_post_equip"
+/// From /mob/living/carbon/human/verb/toggle_undies()
+#define COMSIG_HUMAN_TOGGLE_UNDERWEAR "human_toggle_undies"

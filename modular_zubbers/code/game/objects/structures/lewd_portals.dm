@@ -98,11 +98,11 @@
 	if(!owner_ref)
 		return INITIALIZE_HINT_QDEL
 	owner = owner_ref
-	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM), PROC_REF(update_visuals))
+	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
 /obj/lewd_portal_relay/Destroy(force)
-	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM))
+	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	return ..()
 

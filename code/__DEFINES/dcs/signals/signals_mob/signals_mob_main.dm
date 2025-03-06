@@ -274,8 +274,3 @@
 
 ///from /obj/item/crusher_trophy/on_mark_activate(): (trophy, user)
 #define COMSIG_MOB_TROPHY_ACTIVATED(identifier) "COMSIG_MOB_TROPHY_ACTIVATED[identifier]"
-
-//BUBBER EDIT ADDITION START
-///from /mob/proc/equip_to_slot_if_possible()
-#define COMSIG_MOB_POST_EQUIP "mob_post_equip"
-//BUBBER EDIT ADDITION END
