@@ -39,3 +39,5 @@
 		overlay.layer += SPINES_LAYER_OFFSET
 
 	return returned_overlays
+
+#undef SPINES_LAYER_OFFSET
