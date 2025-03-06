@@ -1,7 +1,6 @@
 // THIS IS A SKYRAT UI FILE
-import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { BlockQuote, Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 const borerColor = {

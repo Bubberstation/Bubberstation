@@ -24,8 +24,9 @@
 	var/turf/mover_turf = get_turf(source)
 	if(HAS_TRAIT(mover_turf, TRAIT_RUSTY))
 		ADD_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
-	else
-		REMOVE_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
+		return
+
+	REMOVE_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
 
 /**
  * Signal proc for [COMSIG_LIVING_LIFE].
@@ -42,18 +43,17 @@
 
 	// Heals all damage + Stamina
 	var/need_mob_update = FALSE
-	var/delta_time = DELTA_WORLD_TIME(SSmobs) * 0.5 // SSmobs.wait is 2 secs, so this should be halved.
-	need_mob_update += source.adjustBruteLoss(-3 * delta_time, updating_health = FALSE)
-	need_mob_update += source.adjustFireLoss(-3 * delta_time, updating_health = FALSE)
-	need_mob_update += source.adjustToxLoss(-3 * delta_time, updating_health = FALSE, forced = TRUE) // Slimes are people too
-	need_mob_update += source.adjustOxyLoss(-1.5 * delta_time, updating_health = FALSE)
-	need_mob_update += source.adjustStaminaLoss(-10 * delta_time, updating_stamina = FALSE)
+	need_mob_update += source.adjustBruteLoss(-3, updating_health = FALSE)
+	need_mob_update += source.adjustFireLoss(-3, updating_health = FALSE)
+	need_mob_update += source.adjustToxLoss(-3, updating_health = FALSE, forced = TRUE) // Slimes are people to
+	need_mob_update += source.adjustOxyLoss(-1.5, updating_health = FALSE)
+	need_mob_update += source.adjustStaminaLoss(-10, updating_stamina = FALSE)
 	if(need_mob_update)
 		source.updatehealth()
 	// Reduces duration of stuns/etc
-	source.AdjustAllImmobility((-0.5 SECONDS) * delta_time)
+	source.AdjustAllImmobility(-0.5 SECONDS)
 	// Heals blood loss
 	if(source.blood_volume < BLOOD_VOLUME_NORMAL)
-		source.blood_volume += 2.5 * delta_time
+		source.blood_volume += 2.5 * seconds_per_tick
 	// Slowly regulates your body temp
-	source.adjust_bodytemperature((source.get_body_temp_normal() - source.bodytemperature) / 5)
+	source.adjust_bodytemperature((source.get_body_temp_normal() - source.bodytemperature)/5)

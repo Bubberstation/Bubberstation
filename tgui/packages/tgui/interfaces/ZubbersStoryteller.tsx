@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Tooltip } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -8,9 +10,7 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export type Storyteller_Data = {

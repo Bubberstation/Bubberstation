@@ -83,9 +83,9 @@
 	gun.forceMove(src)
 	armed = FALSE
 	if(user)
-		to_chat(user, span_notice("You attach \the [gun] to \the [src]."))
+		to_chat(user, span_notice("You attach the [gun.name] to the [name]."))
 	else
-		src.visible_message(span_warning("\The [gun] snaps back onto \the [src]!"))
+		src.visible_message(span_warning("The [gun.name] snaps back onto the [name]!"))
 	update_appearance()
 	user.update_worn_back()
 

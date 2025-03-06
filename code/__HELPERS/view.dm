@@ -1,5 +1,7 @@
-/proc/getviewsize(view = world.view)
-	SHOULD_BE_PURE(TRUE)
+/proc/getviewsize(view)
+	if(!view) // Just to avoid any runtimes that could otherwise cause constant disconnect loops.
+		stack_trace("Missing value for 'view' in getviewsize(), defaulting to world.view!")
+		view = world.view
 
 	if(isnum(view))
 		var/totalviewrange = (view < 0 ? -1 : 1) + 2 * view

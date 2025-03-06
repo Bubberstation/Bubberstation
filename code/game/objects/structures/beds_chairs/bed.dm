@@ -91,8 +91,6 @@
 	build_stack_type = /obj/item/stack/sheet/mineral/titanium
 	build_stack_amount = 1
 	elevation = 0
-	buckle_sound = SFX_SEATBELT_BUCKLE
-	unbuckle_sound = SFX_SEATBELT_UNBUCKLE
 	/// The item it spawns when it's folded up.
 	var/foldable_type
 

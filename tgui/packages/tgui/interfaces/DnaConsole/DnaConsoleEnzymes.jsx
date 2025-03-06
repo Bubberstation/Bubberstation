@@ -1,3 +1,4 @@
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -9,9 +10,7 @@ import {
   NumberInput,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { PULSE_DURATION_MAX, PULSE_STRENGTH_MAX } from './constants';
 import { GeneticMakeupInfo } from './GeneticMakeupInfo';
 

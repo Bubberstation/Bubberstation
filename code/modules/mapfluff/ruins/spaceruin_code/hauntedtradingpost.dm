@@ -88,11 +88,12 @@
 
 /obj/structure/aquarium/donkfish/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH, AQUARIUM_TRAIT)
 	new /obj/item/aquarium_prop/rocks(src)
 	new /obj/item/aquarium_prop/seaweed(src)
 	new /obj/item/fish/donkfish(src)
 	new /obj/item/fish/donkfish(src)
+	create_reagents(20, SEALED_CONTAINER)
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, 20)
 
 //gimmick ketchup bottle for healing minor injuries
 /obj/item/reagent_containers/condiment/donksauce
@@ -223,7 +224,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "empdisable"
-	//trap won't damage mobs in its faction. set this to null to make it attack everyone
+	//trap wont damage mobs in its faction
 	faction = list(ROLE_SYNDICATE)
 	invisibility = INVISIBILITY_ABSTRACT
 	plane = ABOVE_GAME_PLANE
@@ -244,7 +245,7 @@
 	//is this being used as part of the haunted trading post ruin? if true, will self destruct when boss dies
 	var/donk_ai_slave = FALSE
 	// machine that the trap inhabits
-	var/obj/machinery/host_machine
+	var/obj/structure/host_machine
 	// turf that the trap is on
 	var/turf/my_turf
 	//how long until trap zaps everything, after it detects something
@@ -268,29 +269,35 @@
 	if(donk_ai_slave)
 		SSqueuelinks.add_to_queue(src, SELFDESTRUCT_QUEUE)
 
-/obj/effect/overloader_trap/HasProximity(mob/living/target as mob)
+/obj/effect/overloader_trap/proc/check_faction(mob/target)
+	for(var/faction1 in faction)
+		if(faction1 in target.faction)
+			return TRUE
+	return FALSE
+
+/obj/effect/overloader_trap/HasProximity(mob/living)
 	if(!locate(host_machine) in loc) //muh machine's gone, delete myself because im disarmed
 		qdel(src)
-		return
-	if(!isliving(target))
 		return
 	if(!COOLDOWN_FINISHED(src, trigger_cooldown)) //do nothing if we're on cooldown
 		return
 	if(uses_remaining == 0) //deletes trap if it triggers when it has no uses left. should only happen if var edited but lets just be safe
 		qdel(src)
 		return
-	if (target.stat) //ensure the guy triggering us is alive
+	if (!isliving(living)) //ensure the guy triggering us is alive
 		return
-	if (!faction_check_atom(target)) //and make sure it ain't someone on our team
-		COOLDOWN_START(src, trigger_cooldown, 4 SECONDS)
-		trap_alerted()
+	if (living.stat && check_faction(living)) //and make sure it ain't someone on our team
+		return
+	COOLDOWN_START(src, trigger_cooldown, 4 SECONDS)
+	trap_alerted()
 
 /obj/effect/overloader_trap/proc/trap_alerted()
-	if(host_machine in loc) //if someone breaks or moves the machine before the trap goes off, this should fail to do anything
+	if(host_machine in loc)
 		visible_message(span_boldwarning("Sparks fly from [host_machine] as it shakes vigorously!"))
 		do_sparks(number = 3, source = host_machine)
 		host_machine.Shake(2, 1, trigger_delay)
 		addtimer(CALLBACK(src, PROC_REF(trap_effect)), trigger_delay)
+	//if someone breaks or moves the machine before the trap goes off, this should fail to do anything
 
 /obj/effect/overloader_trap/proc/trap_effect()
 	for(var/mob/living/living_mob in range(shock_range, src))

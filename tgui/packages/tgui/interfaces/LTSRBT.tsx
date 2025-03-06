@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Button,
   Image,
@@ -6,9 +7,7 @@ import {
   Section,
   Stack,
   TextArea,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {

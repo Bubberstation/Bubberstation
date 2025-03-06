@@ -1,16 +1,17 @@
 /datum/looping_sound/reverse_bear_trap
 	mid_sounds = list('sound/effects/clock_tick.ogg' = 1)
-	mid_length = 0.35 SECONDS
+	mid_length = 3.5
 	volume = 25
+
 
 /datum/looping_sound/reverse_bear_trap_beep
 	mid_sounds = list('sound/machines/beep/beep.ogg' = 1)
-	mid_length = 6 SECONDS
+	mid_length = 60
 	volume = 10
 
 /datum/looping_sound/siren
 	mid_sounds = list('sound/items/weeoo1.ogg' = 1)
-	mid_length = 1.5 SECONDS
+	mid_length = 15
 	volume = 20
 
 /datum/looping_sound/tape_recorder_hiss

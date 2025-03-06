@@ -1,16 +1,8 @@
-import { createContext, useContext, useState } from 'react';
-import {
-  Box,
-  Button,
-  Knob,
-  Section,
-  Slider,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import { useState } from 'react';
 
-import { useBackend } from '../backend';
+import { classes } from '../../common/react';
+import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Knob, Section, Slider, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 enum Direction {
@@ -36,7 +28,9 @@ type LightTemplate = {
   id: TemplateID;
 };
 
-type CategoryList = Record<string, TemplateID[]>;
+interface CategoryList {
+  [key: string]: TemplateID[];
+}
 
 type Data = {
   templates: LightTemplate[];
@@ -45,10 +39,9 @@ type Data = {
   category_ids: CategoryList;
 };
 
-export function LightSpawn(props) {
-  const { data } = useBackend<Data>();
+export const LightSpawn = (props) => {
+  const { act, data } = useBackend<Data>();
   const { templates = [], default_id, default_category, category_ids } = data;
-
   const [currentTemplate, setCurrentTemplate] = useState(default_id);
   const [currentCategory, setCurrentCategory] = useState(default_category);
 
@@ -105,19 +98,20 @@ export function LightSpawn(props) {
       </Window.Content>
     </Window>
   );
-}
+};
 
 type LightInfoProps = {
   light: LightTemplate;
 };
 
-function LightInfo(props: LightInfoProps) {
+const LightInfo = (props: LightInfoProps) => {
+  const { act } = useBackend();
   const { light } = props;
   const { light_info } = light;
-
-  const { act } = useBackend();
-  const [workingDir] = useWorkingDirection();
-
+  const [workingDir, setWorkingDir] = useLocalState<number>(
+    'workingDir',
+    Direction.North,
+  );
   return (
     <Section>
       <Stack vertical justify="space-between" fill>
@@ -184,10 +178,10 @@ function LightInfo(props: LightInfoProps) {
       </Stack>
     </Section>
   );
-}
+};
 
 // 3 vertical stacks, setup as columns
-function DirectionSelect() {
+const DirectionSelect = () => {
   return (
     <Stack align="start" mt={0.5}>
       <Stack.Item align="center">
@@ -211,18 +205,20 @@ function DirectionSelect() {
       </Stack.Item>
     </Stack>
   );
-}
+};
 
 type DirectedButtonProps = {
   dir: number;
   icon: string;
 };
 
-function DirectionButton(props: DirectedButtonProps) {
+const DirectionButton = (props: DirectedButtonProps) => {
+  const { act, data } = useBackend<Data>();
   const { dir, icon } = props;
-
-  const [workingDir, setWorkingDir] = useWorkingDirection();
-
+  const [workingDir, setWorkingDir] = useLocalState<number>(
+    'workingDir',
+    Direction.North,
+  );
   return (
     <Button
       icon={icon}
@@ -230,15 +226,11 @@ function DirectionButton(props: DirectedButtonProps) {
       onClick={() => setWorkingDir(dir)}
     />
   );
-}
-
-type AngleSelectProps = {
-  angle: number;
 };
 
-function AngleSelect(props: AngleSelectProps) {
+const AngleSelect = (props) => {
+  const { act, data } = useBackend<Data>();
   const { angle } = props;
-
   return (
     <Knob
       mt={0.5}
@@ -251,16 +243,4 @@ function AngleSelect(props: AngleSelectProps) {
       stepPixelSize={10}
     />
   );
-}
-
-// It doesn't seem to realize directions are bitflags, so:
-type DirectionContextType = [number, (dir: number) => void];
-
-const DirectionContext = createContext<DirectionContextType>([
-  Direction.North,
-  () => {},
-]);
-
-export function useWorkingDirection() {
-  return useContext(DirectionContext);
-}
+};

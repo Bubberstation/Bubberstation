@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,10 +7,8 @@ import {
   ProgressBar,
   Section,
   Slider,
-} from 'tgui-core/components';
-import { formatPower } from 'tgui-core/format';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { formatPower } from '../format';
 import { Window } from '../layouts';
 
 // Common power multiplier
@@ -70,7 +69,7 @@ export const Smes = (props) => {
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Target Input">
-              <Flex width="100%">
+              <Flex inline width="100%">
                 <Flex.Item>
                   <Button
                     icon="fast-backward"
@@ -157,7 +156,7 @@ export const Smes = (props) => {
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Target Output">
-              <Flex width="100%">
+              <Flex inline width="100%">
                 <Flex.Item>
                   <Button
                     icon="fast-backward"

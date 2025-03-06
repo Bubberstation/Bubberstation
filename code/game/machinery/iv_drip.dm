@@ -25,8 +25,8 @@
 	use_power = NO_POWER_USE
 	interaction_flags_mouse_drop = NEED_HANDS
 
-	/// Information and effects about where the IV drip is attached to
-	var/datum/iv_drip_attachment/attachment
+	///What are we sticking our needle in?
+	var/atom/attached
 	///Are we donating or injecting?
 	var/mode = IV_INJECTING
 	///The chemicals flow speed
@@ -54,7 +54,7 @@
 	AddElement(/datum/element/noisy_movement)
 
 /obj/machinery/iv_drip/Destroy()
-	QDEL_NULL(attachment)
+	attached = null
 	QDEL_NULL(reagent_container)
 	return ..()
 
@@ -65,7 +65,7 @@
 		ui.open()
 
 /obj/machinery/iv_drip/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	if(attachment)
+	if(attached)
 		context[SCREENTIP_CONTEXT_RMB] = "Take needle out"
 	else if(reagent_container && !use_internal_storage)
 		context[SCREENTIP_CONTEXT_RMB] = "Eject container"
@@ -93,12 +93,12 @@
 	.["canRemoveContainer"] = !use_internal_storage
 
 	.["mode"] = mode == IV_INJECTING ? TRUE : FALSE
-	.["canDraw"] = inject_only || (attachment && !isliving(attachment.attached_to)) ? FALSE : TRUE
+	.["canDraw"] = inject_only || (attached && !isliving(attached)) ? FALSE : TRUE
 	.["transferRate"] = transfer_rate
 
-	.["hasObjectAttached"] = !!attachment
-	if(attachment)
-		.["objectName"] = attachment.attached_to.name
+	.["hasObjectAttached"] = attached ? TRUE : FALSE
+	if(attached)
+		.["objectName"] = attached.name
 
 	var/datum/reagents/drip_reagents = get_reagents()
 	if(drip_reagents)
@@ -131,7 +131,7 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/update_icon_state()
-	if(transfer_rate > 0 && attachment)
+	if(transfer_rate > 0 && attached)
 		icon_state = "[base_icon_state]_[mode ? "injecting" : "donating"]"
 	else
 		icon_state = "[base_icon_state]_[mode ? "injectidle" : "donateidle"]"
@@ -143,7 +143,7 @@
 	if(!reagent_container)
 		return
 
-	. += attachment ? "beakeractive" : "beakeridle"
+	. += attached ? "beakeractive" : "beakeridle"
 	var/datum/reagents/container_reagents = get_reagents()
 	if(!container_reagents)
 		return
@@ -172,9 +172,9 @@
 	if(!target.is_injectable(user))
 		to_chat(user, span_warning("Can't inject into this!"))
 		return
-	if(attachment)
-		visible_message(span_warning("[attachment.attached_to] is detached from [src]."))
-		QDEL_NULL(attachment)
+	if(attached)
+		visible_message(span_warning("[attached] is detached from [src]."))
+		attached = null
 		update_appearance(UPDATE_ICON)
 	user.visible_message(span_warning("[user] attaches [src] to [target]."), span_notice("You attach [src] to [target]."))
 	attach_iv(target, user)
@@ -214,21 +214,19 @@
 	new /obj/item/stack/sheet/iron(loc)
 
 /obj/machinery/iv_drip/process(seconds_per_tick)
-	if(!attachment)
+	if(!attached)
 		return PROCESS_KILL
 
-	var/atom/attached_to = attachment.attached_to
-
-	if(!(get_dist(src, attached_to) <= 1 && isturf(attached_to.loc)))
-		if(isliving(attached_to))
-			var/mob/living/carbon/attached_mob = attached_to
-			to_chat(attached_to, span_userdanger("The IV drip needle is ripped out of you, leaving an open bleeding wound!"))
+	if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
+		if(isliving(attached))
+			var/mob/living/carbon/attached_mob = attached
+			to_chat(attached, span_userdanger("The IV drip needle is ripped out of you, leaving an open bleeding wound!"))
 			var/list/arm_zones = shuffle(list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM))
 			var/obj/item/bodypart/chosen_limb = attached_mob.get_bodypart(arm_zones[1]) || attached_mob.get_bodypart(arm_zones[2]) || attached_mob.get_bodypart(BODY_ZONE_CHEST)
-			attached_mob.apply_damage(3, BRUTE, chosen_limb, wound_bonus = CANT_WOUND)
+			chosen_limb.receive_damage(3)
 			attached_mob.cause_wound_of_type_and_severity(WOUND_PIERCE, chosen_limb, WOUND_SEVERITY_MODERATE, wound_source = "IV needle")
 		else
-			visible_message(span_warning("[attached_to] is detached from [src]."))
+			visible_message(span_warning("[attached] is detached from [src]."))
 		detach_iv()
 		return PROCESS_KILL
 
@@ -242,12 +240,12 @@
 	// Give reagents
 	if(mode)
 		if(drip_reagents.total_volume)
-			drip_reagents.trans_to(attached_to, transfer_rate * seconds_per_tick, methods = INJECT, show_message = FALSE) //make reagents reacts, but don't spam messages
+			drip_reagents.trans_to(attached, transfer_rate * seconds_per_tick, methods = INJECT, show_message = FALSE) //make reagents reacts, but don't spam messages
 			update_appearance(UPDATE_ICON)
 
 	// Take blood
-	else if (isliving(attached_to))
-		var/mob/living/attached_mob = attached_to
+	else if (isliving(attached))
+		var/mob/living/attached_mob = attached
 		var/amount = min(transfer_rate * seconds_per_tick, drip_reagents.maximum_volume - drip_reagents.total_volume)
 		// If the beaker is full, ping
 		if(!amount)
@@ -269,8 +267,8 @@
 		return
 	if(!ishuman(user))
 		return
-	if(attachment)
-		visible_message(span_notice("[attachment.attached_to] is detached from [src]."))
+	if(attached)
+		visible_message(span_notice("[attached] is detached from [src]."))
 		detach_iv()
 	else if(reagent_container)
 		eject_beaker(user)
@@ -293,10 +291,7 @@
 	if(isliving(target))
 		var/mob/living/target_mob = target
 		target_mob.throw_alert(ALERT_IV_CONNECTED, /atom/movable/screen/alert/iv_connected)
-
-	qdel(attachment)
-	attachment = new(src, target)
-
+	attached = target
 	START_PROCESSING(SSmachines, src)
 	update_appearance(UPDATE_ICON)
 
@@ -304,13 +299,13 @@
 
 ///Called when an iv is detached. doesnt include chat stuff because there's multiple options and its better handled by the caller
 /obj/machinery/iv_drip/proc/detach_iv()
-	if(attachment)
-		visible_message(span_notice("[attachment.attached_to] is detached from [src]."))
-		if(isliving(attachment.attached_to))
-			var/mob/living/attached_mob = attachment.attached_to
+	if(attached)
+		visible_message(span_notice("[attached] is detached from [src]."))
+		if(isliving(attached))
+			var/mob/living/attached_mob = attached
 			attached_mob.clear_alert(ALERT_IV_CONNECTED, /atom/movable/screen/alert/iv_connected)
-	SEND_SIGNAL(src, COMSIG_IV_DETACH, attachment?.attached_to)
-	QDEL_NULL(attachment)
+	SEND_SIGNAL(src, COMSIG_IV_DETACH, attached)
+	attached = null
 	update_appearance(UPDATE_ICON)
 
 /// Get the reagents used by IV drip
@@ -330,8 +325,8 @@
 	if(usr.incapacitated)
 		return
 	if(reagent_container)
-		if(attachment)
-			visible_message(span_warning("[attachment?.attached_to] is detached from [src]."))
+		if(attached)
+			visible_message(span_warning("[attached] is detached from [src]."))
 			detach_iv()
 		reagent_container.forceMove(drop_location())
 		reagent_container = null
@@ -351,7 +346,7 @@
 		mode = IV_INJECTING
 		return
 	// Prevent blood draining from non-living
-	if(attachment && !isliving(attachment.attached_to))
+	if(attached && !isliving(attached))
 		mode = IV_INJECTING
 		return
 	mode = !mode
@@ -372,50 +367,7 @@
 		. += span_notice("It has an internal chemical storage.")
 	else
 		. += span_notice("No chemicals are attached.")
-	. += span_notice("[attachment ? attachment.attached_to : "Nothing"] is connected.")
-
-/// Information and effects about where an IV drip is attached to
-// Lifetime is managed by the iv_drip, which will delete the iv_drip_attachment after
-// a process if the attached object is invalid.
-// iv_drip_attachment should never outlive iv_drip.
-/datum/iv_drip_attachment
-	var/obj/machinery/iv_drip/iv_drip
-	var/atom/attached_to
-
-	VAR_PRIVATE
-		datum/beam/beam
-		datum/component/tug_towards/tug_to_me
-
-/datum/iv_drip_attachment/New(
-	obj/machinery/iv_drip/iv_drip,
-	atom/attached_to
-)
-	src.iv_drip = iv_drip
-	src.attached_to = attached_to
-
-	tug_to_me = attached_to.AddComponent(/datum/component/tug_towards, iv_drip)
-
-	beam = iv_drip.Beam(
-		attached_to,
-		icon_state = "1-full",
-		beam_color = COLOR_SILVER,
-		layer = BELOW_MOB_LAYER,
-
-		// Come out from the spout
-		override_origin_pixel_x = 9,
-		override_origin_pixel_y = 2,
-	)
-
-/datum/iv_drip_attachment/Destroy(force)
-	tug_to_me.remove_tug_target(iv_drip)
-	tug_to_me = null
-
-	iv_drip = null
-	attached_to = null
-
-	QDEL_NULL(beam)
-
-	return ..()
+	. += span_notice("[attached ? attached : "Nothing"] is connected.")
 
 /datum/crafting_recipe/iv_drip
 	name = "IV drip"

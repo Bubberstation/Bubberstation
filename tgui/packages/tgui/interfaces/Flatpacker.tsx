@@ -1,3 +1,7 @@
+import { BooleanLike } from 'common/react';
+import { toTitleCase } from 'common/string';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -8,11 +12,8 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-import { toTitleCase } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { TableCell } from '../components/Table';
 import { Window } from '../layouts';
 import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialIcon } from './Fabrication/MaterialIcon';
@@ -180,14 +181,14 @@ const CostPreview = (props: CostPreviewProps) => {
                   />
                 </div>
               </Table.Cell>
-              <Table.Cell verticalAlign="middle">
+              <TableCell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
                   {toTitleCase(material.name)}
                 </div>
-              </Table.Cell>
+              </TableCell>
               <Table.Cell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
-                  x{(material.amount / SHEET_MATERIAL_AMOUNT).toFixed(2)}
+                  {(material.amount / SHEET_MATERIAL_AMOUNT).toFixed(2)}
                 </div>
               </Table.Cell>
             </Table.Row>

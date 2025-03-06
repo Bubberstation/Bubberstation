@@ -23,10 +23,6 @@
 	resistance_flags = NONE
 	max_integrity = 300
 	storage_type = /datum/storage/backpack
-	pickup_sound = 'sound/items/handling/backpack/backpack_pickup1.ogg'
-	drop_sound = 'sound/items/handling/backpack/backpack_drop1.ogg'
-	equip_sound = 'sound/items/equip/backpack_equip.ogg'
-	sound_vary = TRUE
 
 /obj/item/storage/backpack/Initialize(mapload)
 	. = ..()
@@ -38,7 +34,7 @@
 
 /obj/item/bag_of_holding_inert
 	name = "inert bag of holding"
-	desc = "What is currently a just an unwieldy block of metal with a slot ready to accept a bluespace anomaly core."
+	desc = "What is currently a just an unwieldly block of metal with a slot ready to accept a bluespace anomaly core."
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "bag_of_holding-inert"
@@ -63,8 +59,6 @@
 	item_flags = NO_MAT_REDEMPTION
 	armor_type = /datum/armor/backpack_holding
 	storage_type = /datum/storage/bag_of_holding
-	pickup_sound = null
-	drop_sound = null
 
 /datum/armor/backpack_holding
 	fire = 60

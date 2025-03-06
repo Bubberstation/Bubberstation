@@ -8,6 +8,7 @@
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	click_to_activate = FALSE
 	cooldown_time = 6 SECONDS
+	melee_cooldown_time = 0 SECONDS
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_clock"
 	overlay_icon_state = "bg_clock_border"
@@ -56,6 +57,7 @@
 	background_icon_state = "bg_clock"
 	overlay_icon_state = "bg_clock_border"
 	cooldown_time = 8 SECONDS
+	melee_cooldown_time = 0 SECONDS
 	shared_cooldown = NONE
 	/// How close does something need to be for us to recruit it?
 	var/range = 5
@@ -65,7 +67,7 @@
 		/datum/pet_command/free,
 		/datum/pet_command/protect_owner,
 		/datum/pet_command/follow,
-		/datum/pet_command/attack/mouse
+		/datum/pet_command/point_targeting/attack/mouse
 	)
 	/// Commands you can give to glockroaches
 	var/static/list/glockroach_commands = list(
@@ -73,7 +75,7 @@
 		/datum/pet_command/free,
 		/datum/pet_command/protect_owner/glockroach,
 		/datum/pet_command/follow,
-		/datum/pet_command/attack/glockroach
+		/datum/pet_command/point_targeting/attack/glockroach
 	)
 
 /datum/action/cooldown/mob_cooldown/riot/IsAvailable(feedback = FALSE)
@@ -211,7 +213,7 @@
 	return TRUE
 
 // Command you can give to a mouse to make it kill someone
-/datum/pet_command/attack/mouse
+/datum/pet_command/point_targeting/attack/mouse
 	speech_commands = list("attack", "sic", "kill", "cheese em")
 	command_feedback = "squeak!" // Frogs and roaches can squeak too it's fine
 	pointed_reaction = "and squeaks aggressively"
@@ -219,7 +221,7 @@
 	attack_behaviour = /datum/ai_behavior/basic_melee_attack
 
 // Command you can give to a mouse to make it kill someone
-/datum/pet_command/attack/glockroach
+/datum/pet_command/point_targeting/attack/glockroach
 	speech_commands = list("attack", "sic", "kill", "cheese em")
 	command_feedback = "squeak!"
 	pointed_reaction = "and cocks its gun"
@@ -233,6 +235,7 @@
 /datum/reagent/rat_spit
 	name = "Rat Spit"
 	description = "Something coming from a rat. Dear god! Who knows where it's been!"
+	reagent_state = LIQUID
 	color = "#C8C8C8"
 	metabolization_rate = 0.03 * REAGENTS_METABOLISM
 	taste_description = "something funny"

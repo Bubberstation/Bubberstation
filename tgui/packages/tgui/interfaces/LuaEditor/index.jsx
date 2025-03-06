@@ -15,7 +15,7 @@ import {
   Stack,
   Tabs,
   TextArea,
-} from 'tgui-core/components';
+} from '../../components';
 import { Window } from '../../layouts';
 import { sanitizeText } from '../../sanitize';
 import { CallModal } from './CallModal';

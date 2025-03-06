@@ -1,3 +1,4 @@
+import { useBackend, useSharedState } from '../backend';
 import {
   Box,
   Button,
@@ -7,9 +8,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend, useSharedState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const DopplerArray = (props) => {

@@ -1,7 +1,7 @@
-import { Button, NoticeBox, Section, Stack } from 'tgui-core/components';
-import { capitalizeFirst } from 'tgui-core/string';
+import { capitalizeFirst } from 'common/string';
 
 import { useBackend } from '../backend';
+import { Button, NoticeBox, Section, Stack } from '../components';
 import { NtosWindow } from '../layouts';
 import { NTOSData } from '../layouts/NtosWindow';
 

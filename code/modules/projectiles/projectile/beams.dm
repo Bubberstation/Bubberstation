@@ -15,7 +15,7 @@
 	light_color = COLOR_SOFT_RED
 	ricochets_max = 50 //Honk!
 	ricochet_chance = 80
-	reflectable = TRUE
+	reflectable = REFLECT_NORMAL
 	wound_bonus = -20
 	bare_wound_bonus = 10
 
@@ -45,7 +45,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	damage = 9
 	wound_bonus = -40
-	speed = 0.9
+	speed = 1.1
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
@@ -53,7 +53,7 @@
 	icon_state = "hellfire"
 	wound_bonus = 0
 	damage = 30
-	speed = 1.6
+	speed = 0.6 // higher power = faster, that's how light works right
 	light_color = "#FF969D"
 
 /obj/projectile/beam/laser/heavylaser
@@ -197,7 +197,7 @@
 	wound_bonus = -40
 	bare_wound_bonus = 70
 
-/obj/projectile/beam/emitter/singularity_pull(atom/singularity, current_size)
+/obj/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
 
 /obj/projectile/beam/emitter/hitscan

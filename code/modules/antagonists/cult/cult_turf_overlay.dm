@@ -10,13 +10,12 @@
 
 /obj/effect/cult_turf/examine(mob/user)
 	if(linked)
-		return linked.examine(user)
-	return list()
+		linked.examine(user)
 
 /obj/effect/cult_turf/singularity_act()
 	return
 
-/obj/effect/cult_turf/singularity_pull(atom/singularity, current_size)
+/obj/effect/cult_turf/singularity_pull()
 	return
 
 /obj/effect/cult_turf/Destroy()

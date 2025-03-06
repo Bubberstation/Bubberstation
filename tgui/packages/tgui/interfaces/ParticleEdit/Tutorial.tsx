@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+
+import { resolveAsset } from '../../assets';
 import {
   Box,
   Button,
@@ -7,9 +9,7 @@ import {
   Modal,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { resolveAsset } from '../../assets';
+} from '../../components';
 import { ParticleContext } from '.';
 
 export const ShowDesc = (props) => {

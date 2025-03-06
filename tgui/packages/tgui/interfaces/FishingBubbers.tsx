@@ -1,18 +1,18 @@
-import { Component } from 'react';
-import { useDispatch } from 'tgui/backend';
-import { Icon, KeyListener } from 'tgui-core/components';
-import { globalEvents, KeyEvent } from 'tgui-core/events';
-import { KEY_CTRL } from 'tgui-core/keycodes';
-import { clamp } from 'tgui-core/math';
+import { KEY_CTRL } from 'common/keycodes';
+import { clamp } from 'common/math';
 import {
   randomInteger,
   randomNumber,
   randomPick,
   randomProb,
-} from 'tgui-core/random';
+} from 'common/random';
+import { Component } from 'react';
+import { useDispatch } from 'tgui/backend';
 
 import { resolveAsset } from '../assets';
 import { backendSuspendStart, useBackend } from '../backend';
+import { Icon, KeyListener } from '../components';
+import { globalEvents, KeyEvent } from '../events';
 import { Window } from '../layouts';
 
 type Bait = {

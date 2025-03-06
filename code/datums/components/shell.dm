@@ -346,11 +346,7 @@
 	))
 	if(attached_circuit.loc == parent || (!QDELETED(attached_circuit) && attached_circuit.loc == null))
 		var/atom/parent_atom = parent
-		var/drop_location = parent_atom.drop_location()
-		if(drop_location)
-			attached_circuit.forceMove(drop_location)
-		else
-			attached_circuit.moveToNullspace()
+		attached_circuit.forceMove(parent_atom.drop_location())
 
 	for(var/obj/item/circuit_component/to_remove as anything in unremovable_circuit_components)
 		attached_circuit.remove_component(to_remove)
@@ -380,7 +376,7 @@
 	return COMSIG_USB_CABLE_CONNECTED_TO_CIRCUIT
 
 /**
- * Determines if a user is authorized to see the existence of this shell. Returns false if they are not
+ * Determines if a user is authorized to see the existance of this shell. Returns false if they are not
  *
  * Arguments:
  * * user - The user to check if they are authorized

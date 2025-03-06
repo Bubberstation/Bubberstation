@@ -96,7 +96,7 @@
 		return
 
 	connected_alarm.select_mode(parent.get_creator(), options_map[mode.value])
-	connected_alarm.investigate_log("was turned to [connected_alarm.selected_mode.name] by [parent.get_creator()]", INVESTIGATE_ATMOS)
+	connected_alarm.investigate_log("was turned to [connected_alarm.selected_mode.name] by [parent.get_creator()]")
 
 /obj/item/circuit_component/air_alarm
 	display_name = "Air Alarm Core Control"

@@ -13,7 +13,7 @@
 	///The actual number of ghosts orbiting the anomaly.
 	var/ghosts_orbiting = 0
 
-/obj/effect/anomaly/ectoplasm/Initialize(mapload, new_lifespan)
+/obj/effect/anomaly/ectoplasm/Initialize(mapload, new_lifespan, drops_core)
 	. = ..()
 
 	AddComponent(/datum/component/deadchat_control/cardinal_movement, _deadchat_mode = ANARCHY_MODE, _inputs = list(), _input_cooldown = 7 SECONDS)

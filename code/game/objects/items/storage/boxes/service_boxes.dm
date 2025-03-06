@@ -91,7 +91,13 @@
 	. = ..()
 	atom_storage.max_slots = 10
 	atom_storage.set_holdable(/obj/item/match)
-	AddElement(/datum/element/ignites_matches)
+
+/obj/item/storage/box/matches/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/match))
+		var/obj/item/match/match = tool
+		match.matchignite()
+		return ITEM_INTERACT_SUCCESS
+	return ..()
 
 /obj/item/storage/box/matches/PopulateContents()
 	for(var/i in 1 to 10)

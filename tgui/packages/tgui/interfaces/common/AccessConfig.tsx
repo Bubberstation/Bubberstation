@@ -1,6 +1,7 @@
 import { sortBy } from 'common/collections';
 import { useState } from 'react';
-import { Button, Section, Stack, Tabs } from 'tgui-core/components';
+
+import { Button, Section, Stack, Tabs } from '../../components';
 
 type BaseProps = {
   accessMod: (ref: string) => void;

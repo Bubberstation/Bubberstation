@@ -1,11 +1,3 @@
-// Simple define to avoid copy-pasting the same code 3 times
-#define ABDUCTOR_SUBTYPE_UNLOCKS(X) \
-	##X/New() { \
-		. = ..(); \
-		required_items_to_unlock += subtypesof(/obj/item/abductor); \
-		required_items_to_unlock += subtypesof(/obj/item/circuitboard/machine/abductor); \
-	}
-
 /datum/techweb_node/alientech //AYYYYYYYYLMAOO tech
 	id = TECHWEB_NODE_ALIENTECH
 	display_name = "Alien Technology"
@@ -13,7 +5,9 @@
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL)
 	required_items_to_unlock = list(
 		/obj/item/stack/sheet/mineral/abductor,
+		/obj/item/abductor,
 		/obj/item/cautery/alien,
+		/obj/item/circuitboard/machine/abductor,
 		/obj/item/circular_saw/alien,
 		/obj/item/crowbar/abductor,
 		/obj/item/gun/energy/alien,
@@ -35,8 +29,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	hidden = TRUE
 
-ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alientech)
-
 /datum/techweb_node/alientech/on_station_research()
 	. = ..()
 	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_ALIENTECH] = TRUE
@@ -55,6 +47,8 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alientech)
 		"alien_wrench",
 	)
 	required_items_to_unlock = list(
+		/obj/item/abductor,
+		/obj/item/circuitboard/machine/abductor,
 		/obj/item/crowbar/abductor,
 		/obj/item/gun/energy/shrink_ray,
 		/obj/item/melee/baton/abductor,
@@ -67,8 +61,6 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alientech)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	hidden = TRUE
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
-
-ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_engi)
 
 /datum/techweb_node/alien_surgery
 	id = TECHWEB_NODE_ALIEN_SURGERY
@@ -88,7 +80,9 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_engi)
 		"surgery_zombie",
 	)
 	required_items_to_unlock = list(
+		/obj/item/abductor,
 		/obj/item/cautery/alien,
+		/obj/item/circuitboard/machine/abductor,
 		/obj/item/circular_saw/alien,
 		/obj/item/crowbar/abductor,
 		/obj/item/gun/energy/alien,
@@ -108,7 +102,3 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_engi)
 	discount_experiments = list(/datum/experiment/scanning/points/slime/hard = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 	announce_channels = list(RADIO_CHANNEL_MEDICAL)
-
-ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_surgery)
-
-#undef ABDUCTOR_SUBTYPE_UNLOCKS

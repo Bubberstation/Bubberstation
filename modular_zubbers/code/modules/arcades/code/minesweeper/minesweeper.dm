@@ -24,7 +24,7 @@
 
 	var/datum/minesweeper/board
 
-/obj/machinery/computer/arcade/minesweeper/Initialize(mapload)
+/obj/machinery/computer/arcade/minesweeper/Initialize()
 	. = ..()
 	board = new /datum/minesweeper()
 	board.emaggable = TRUE

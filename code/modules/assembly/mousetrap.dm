@@ -4,7 +4,7 @@
 	icon_state = "mousetrap"
 	inhand_icon_state = "mousetrap"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT)
-	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
+	attachable = TRUE
 	var/armed = FALSE
 	drop_sound = 'sound/items/handling/component_drop.ogg'
 	pickup_sound = 'sound/items/handling/component_pickup.ogg'
@@ -122,25 +122,26 @@
 		switch(type)
 			if("feet")
 				if(!victim.shoes)
-					affecting = victim.get_bodypart(pick(GLOB.leg_zones))
-					victim.Paralyze(6 SECONDS)
+					affecting = victim.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+					victim.Paralyze(60)
 				else
-					to_chat(victim, span_notice("Your [victim.shoes.name] protects you from [src]."))
+					to_chat(victim, span_notice("Your [victim.shoes] protects you from [src]."))
 			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 				if(!victim.gloves)
 					affecting = victim.get_bodypart(type)
-					victim.Stun(6 SECONDS)
+					victim.Stun(60)
 				else
-					to_chat(victim, span_notice("Your [victim.gloves.name] protects you from [src]."))
+					to_chat(victim, span_notice("Your [victim.gloves] protects you from [src]."))
 		if(affecting)
-			victim.apply_damage(1, BRUTE, affecting, wound_bonus = CANT_WOUND)
+			if(affecting.receive_damage(1, 0))
+				victim.update_damage_overlays()
 	else if(ismouse(target))
 		var/mob/living/basic/mouse/splatted = target
-		visible_message(span_bolddanger("SPLAT!"))
+		visible_message(span_boldannounce("SPLAT!"))
 		splatted.splat() // mousetraps are instadeath for mice
 
 	else if(isregalrat(target))
-		visible_message(span_bolddanger("Skreeeee!")) //He's simply too large to be affected by a tiny mouse trap.
+		visible_message(span_boldannounce("Skreeeee!")) //He's simply too large to be affected by a tiny mouse trap.
 
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	pulse()
@@ -156,7 +157,7 @@
 		return FALSE
 	if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		var/which_hand = BODY_ZONE_PRECISE_L_HAND
-		if(IS_RIGHT_INDEX(user.active_hand_index))
+		if(!(user.active_hand_index % 2))
 			which_hand = BODY_ZONE_PRECISE_R_HAND
 		triggered(user, which_hand)
 		user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
@@ -205,7 +206,7 @@
 		if(finder)
 			finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking their fingers."), \
 							   span_warning("You accidentally trigger [src]!"))
-			triggered(finder, (IS_RIGHT_INDEX(finder.active_hand_index)) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
+			triggered(finder, (finder.active_hand_index % 2 == 0) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
 			return TRUE //end the search!
 		else
 			visible_message(span_warning("[src] snaps shut!"))

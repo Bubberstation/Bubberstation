@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -8,9 +10,7 @@ import {
   LabeledList,
   NumberInput,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { ParticleContext } from '.';
 import {
   EntryCoordProps,

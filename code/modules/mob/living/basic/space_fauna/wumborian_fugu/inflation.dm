@@ -11,6 +11,7 @@
 	background_icon_state = "bg_fugu"
 	overlay_icon_state = "bg_fugu_border"
 	cooldown_time = 16 SECONDS
+	melee_cooldown_time = 0 SECONDS
 
 /datum/action/cooldown/fugu_expand/IsAvailable(feedback)
 	. = ..()

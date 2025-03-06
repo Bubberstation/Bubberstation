@@ -126,7 +126,7 @@ Difficulty: Extremely Hard
 	if(FROST_MINER_SHOULD_ENRAGE)
 		INVOKE_ASYNC(src, PROC_REF(check_enraged))
 		return COMPONENT_BLOCK_ABILITY_START
-	var/projectile_speed_multiplier = 1 + enraged
+	var/projectile_speed_multiplier = 1 - enraged * 0.5
 	frost_orbs.projectile_speed_multiplier = projectile_speed_multiplier
 	snowball_machine_gun.projectile_speed_multiplier = projectile_speed_multiplier
 	ice_shotgun.projectile_speed_multiplier = projectile_speed_multiplier
@@ -198,7 +198,8 @@ Difficulty: Extremely Hard
 	icon_state = "ice_1"
 	damage = 20
 	armour_penetration = 100
-	speed = 0.1
+	speed = 1
+	pixel_speed_multiplier = 0.1
 	range = 500
 	homing_turn_speed = 3
 	damage_type = BURN
@@ -213,7 +214,8 @@ Difficulty: Extremely Hard
 	icon_state = "nuclear_particle"
 	damage = 5
 	armour_penetration = 100
-	speed = 0.33
+	speed = 1
+	pixel_speed_multiplier = 0.333
 	range = 150
 	damage_type = BRUTE
 	explode_hit_objects = FALSE
@@ -223,7 +225,8 @@ Difficulty: Extremely Hard
 	icon_state = "ice_2"
 	damage = 15
 	armour_penetration = 100
-	speed = 0.33
+	speed = 1
+	pixel_speed_multiplier = 0.333
 	range = 150
 	damage_type = BRUTE
 
@@ -320,6 +323,18 @@ Difficulty: Extremely Hard
 	var/turf/T = get_turf(target)
 	mineral_scan_pulse(T, world.view + 1, src)
 	. = ..()
+
+/obj/item/crusher_trophy/ice_block_talisman
+	name = "ice block talisman"
+	desc = "A glowing trinket that a demonic miner had on him, it seems he couldn't utilize it for whatever reason."
+	icon_state = "ice_trap_talisman"
+	denied_type = /obj/item/crusher_trophy/ice_block_talisman
+
+/obj/item/crusher_trophy/ice_block_talisman/effect_desc()
+	return "mark detonation to freeze a creature in a block of ice for a period, preventing them from moving"
+
+/obj/item/crusher_trophy/ice_block_talisman/on_mark_detonation(mob/living/target, mob/living/user)
+	target.apply_status_effect(/datum/status_effect/ice_block_talisman)
 
 /datum/status_effect/ice_block_talisman
 	id = "ice_block_talisman"

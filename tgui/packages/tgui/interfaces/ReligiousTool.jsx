@@ -1,3 +1,4 @@
+import { useBackend, useSharedState } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -8,9 +9,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend, useSharedState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const ALIGNMENT2COLOR = {

@@ -295,7 +295,7 @@
 
 /obj/item/food/salad/potato_salad
 	name = "potato salad"
-	desc = "A dish of boiled potatoes mixed with boiled eggs, onions, and mayonnaise. A staple of every self-respecting barbecue."
+	desc = "A dish of boiled potatoes mixed with boiled eggs, onions, and mayonnaise. A staple of every self-respecting barbeque."
 	icon_state = "potato_salad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/vitamin = 12,

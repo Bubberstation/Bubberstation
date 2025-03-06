@@ -1,5 +1,7 @@
 import { sortBy } from 'common/collections';
 import { useState } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
 import {
   BlockQuote,
   Button,
@@ -10,9 +12,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {

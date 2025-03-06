@@ -78,8 +78,7 @@
 		if(org_zone != BODY_ZONE_CHEST)
 			return // BUBBER EDIT- OG: continue
 		organ.Remove(chest_owner)
-		if(chest_owner.loc)
-			organ.forceMove(chest_owner.loc)
+		organ.forceMove(chest_owner.loc)
 		. += organ
 
 	if(cavity_item)
@@ -95,6 +94,7 @@
 
 	SEND_SIGNAL(owner, COMSIG_CARBON_REMOVE_LIMB, src, special, dismembered)
 	SEND_SIGNAL(src, COMSIG_BODYPART_REMOVED, owner, special, dismembered)
+	update_limb(dropping_limb = TRUE)
 	bodypart_flags &= ~BODYPART_IMPLANTED //limb is out and about, it can't really be considered an implant
 	owner.remove_bodypart(src, special)
 
@@ -103,7 +103,6 @@
 		LAZYREMOVE(owner.all_scars, scar)
 
 	var/mob/living/carbon/phantom_owner = update_owner(null) // so we can still refer to the guy who lost their limb after said limb forgets 'em
-	update_limb(dropping_limb = TRUE)
 
 	for(var/datum/wound/wound as anything in wounds)
 		wound.remove_wound(TRUE)
@@ -114,6 +113,8 @@
 			qdel(surgery)
 			break
 
+	for(var/obj/item/embedded in embedded_objects)
+		embedded.forceMove(src) // It'll self remove via signal reaction, just need to move it
 	if(!phantom_owner.has_embedded_objects())
 		phantom_owner.clear_alert(ALERT_EMBEDDED_OBJECT)
 		phantom_owner.clear_mood_event("embedded")
@@ -128,6 +129,7 @@
 	update_icon_dropped()
 	phantom_owner.update_health_hud() //update the healthdoll
 	phantom_owner.update_body()
+	phantom_owner.update_body_parts()
 	if(!special)
 		phantom_owner.hud_used?.update_locked_slots()
 
@@ -199,13 +201,14 @@
 
 /obj/item/bodypart/arm/drop_limb(special, dismembered, move_to_floor = TRUE)
 	var/mob/living/carbon/arm_owner = owner
+
 	if(special || !arm_owner)
 		return ..()
+
 	if(arm_owner.hand_bodyparts[held_index] == src)
 		// We only want to do this if the limb being removed is the active hand part.
 		// This catches situations where limbs are "hot-swapped" such as augmentations and roundstart prosthetics.
 		arm_owner.dropItemToGround(arm_owner.get_item_for_held_index(held_index), 1)
-	. = ..()
 	if(arm_owner.handcuffed)
 		arm_owner.handcuffed.forceMove(drop_location())
 		arm_owner.handcuffed.dropped(arm_owner)
@@ -214,22 +217,21 @@
 	if(arm_owner.hud_used)
 		var/atom/movable/screen/inventory/hand/associated_hand = arm_owner.hud_used.hand_slots["[held_index]"]
 		associated_hand?.update_appearance()
+	. = ..()
 	if(arm_owner.num_hands == 0)
-		arm_owner.dropItemToGround(arm_owner.gloves, force = TRUE)
+		arm_owner.dropItemToGround(arm_owner.gloves, TRUE)
 	arm_owner.update_worn_gloves() //to remove the bloody hands overlay
 
 /obj/item/bodypart/leg/drop_limb(special, dismembered, move_to_floor = TRUE)
-	var/mob/living/carbon/leg_owner = owner
-	. = ..()
-	if(special || !leg_owner)
-		return
-	if(leg_owner.legcuffed)
-		leg_owner.legcuffed.forceMove(drop_location())
-		leg_owner.legcuffed.dropped(leg_owner)
-		leg_owner.legcuffed = null
-		leg_owner.update_worn_legcuffs()
-	if(leg_owner.shoes)
-		leg_owner.dropItemToGround(leg_owner.shoes, force = TRUE)
+	if(owner && !special)
+		if(owner.legcuffed)
+			owner.legcuffed.forceMove(owner.drop_location()) //At this point bodypart is still in nullspace
+			owner.legcuffed.dropped(owner)
+			owner.legcuffed = null
+			owner.update_worn_legcuffs()
+		if(owner.shoes)
+			owner.dropItemToGround(owner.shoes, TRUE)
+	return ..()
 
 /obj/item/bodypart/head/drop_limb(special, dismembered, move_to_floor = TRUE)
 	if(!special)

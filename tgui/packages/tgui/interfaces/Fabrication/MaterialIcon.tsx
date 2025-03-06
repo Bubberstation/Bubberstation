@@ -1,5 +1,6 @@
-import { Icon } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import { classes } from 'common/react';
+
+import { Icon } from '../../components';
 
 const MATERIAL_ICONS: Record<string, [number, string][]> = {
   iron: [

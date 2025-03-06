@@ -197,7 +197,7 @@
 		return
 	regenerate_image()
 
-/obj/effect/client_image_holder/singularity_pull(atom/singularity, current_size)
+/obj/effect/client_image_holder/singularity_pull()
 	return
 
 /obj/effect/client_image_holder/singularity_act()

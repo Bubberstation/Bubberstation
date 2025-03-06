@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -11,9 +12,8 @@ import {
   Stack,
   Table,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { TableCell, TableRow } from '../components/Table';
 import { NtosWindow } from '../layouts';
 
 export const NtosScipaper = (props) => {
@@ -323,13 +323,13 @@ const PartnersBrowser = (props) => {
           <LabeledList.Item label="Technology Sharing">
             <Table>
               {partner.boostedNodes.map((node) => (
-                <Table.Row key={node.id}>
-                  <Table.Cell>
+                <TableRow key={node.id}>
+                  <TableCell>
                     {visibleNodes.includes(node.id)
                       ? node.name
                       : 'Unknown Technology'}
-                  </Table.Cell>
-                  <Table.Cell>
+                  </TableCell>
+                  <TableCell>
                     <Button
                       fluid
                       tooltipPosition="left"
@@ -346,8 +346,8 @@ const PartnersBrowser = (props) => {
                         })
                       }
                     />
-                  </Table.Cell>
-                </Table.Row>
+                  </TableCell>
+                </TableRow>
               ))}
             </Table>
           </LabeledList.Item>

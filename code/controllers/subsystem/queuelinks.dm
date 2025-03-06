@@ -60,7 +60,6 @@ SUBSYSTEM_DEF(queuelinks)
 	if(what in partners)
 		return
 	partners += what
-	RegisterSignal(what, COMSIG_QDELETING, PROC_REF(link_object_deleted))
 
 	if(queue_max != 0 && max != 0 && max != queue_max)
 		CRASH("Tried to change queue size to [max] from [queue_max]!")
@@ -77,10 +76,6 @@ SUBSYSTEM_DEF(queuelinks)
 	for(var/atom/item as anything in partners)
 		item.MatchedLinks(id, partners - item)
 	qdel(src)
-
-/datum/queue_link/proc/link_object_deleted(datum/source) // because CI and stuff
-	SIGNAL_HANDLER
-	partners -= source
 
 /datum/queue_link/Destroy()
 	. = ..()

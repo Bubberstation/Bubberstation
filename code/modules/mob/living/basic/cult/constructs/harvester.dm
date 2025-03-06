@@ -53,8 +53,7 @@
 
 	carbon_target.Paralyze(6 SECONDS)
 	visible_message(span_danger("[src] knocks [carbon_target] down!"))
-	if(theme == THEME_CULT)
-		to_chat(src, span_cult_large("\"Bring [carbon_target.p_them()] to me.\""))
+	to_chat(src, span_cult_large("\"Bring [carbon_target.p_them()] to me.\""))
 
 /datum/action/innate/seek_master
 	name = "Seek your Master"
@@ -143,8 +142,8 @@
 	can_repair = FALSE
 	slowed_by_drag = FALSE
 	faction = list(FACTION_HERETIC)
-	maxHealth = 45
-	health = 45
+	maxHealth = 35
+	health = 35
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	// Dim green

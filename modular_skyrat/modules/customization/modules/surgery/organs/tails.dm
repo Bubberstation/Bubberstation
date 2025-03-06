@@ -1,4 +1,4 @@
-/obj/item/organ/tail
+/obj/item/organ/external/tail
 	mutantpart_key = "tail"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	var/can_wag = TRUE
@@ -41,22 +41,22 @@
 	return TRUE
 
 
-/obj/item/organ/tail/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/external/tail/mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_WAG_ABLE)
 		wag_flags |= WAG_ABLE
 	return ..()
 
-/obj/item/organ/tail/cat
+/obj/item/organ/external/tail/cat
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list("#FFAA00"))
 
-/obj/item/organ/tail/monkey
+/obj/item/organ/external/tail/monkey
 	wag_flags = WAG_ABLE // waggable monkey tails
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Monkey", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 
-/obj/item/organ/tail/lizard
+/obj/item/organ/external/tail/lizard
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#DDFFDD"))
 
-/obj/item/organ/tail/fluffy
+/obj/item/organ/external/tail/fluffy
 	name = "fluffy tail"
 
-/obj/item/organ/tail/fluffy/no_wag
+/obj/item/organ/external/tail/fluffy/no_wag

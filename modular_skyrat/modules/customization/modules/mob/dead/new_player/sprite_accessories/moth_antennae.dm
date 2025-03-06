@@ -3,7 +3,7 @@
 	key = "moth_antennae"
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
-	organ_type = /obj/item/organ/antennae
+	organ_type = /obj/item/organ/external/antennae
 
 /datum/sprite_accessory/moth_antennae/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.head)

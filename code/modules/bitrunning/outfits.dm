@@ -11,7 +11,7 @@
 	id = /obj/item/card/id/advanced
 
 
-/datum/outfit/echolocator/post_equip(mob/living/carbon/human/user, visuals_only)
+/datum/outfit/echolocator/post_equip(mob/living/carbon/human/user, visualsOnly)
 	. = ..()
 	user.psykerize()
 
@@ -51,7 +51,7 @@
 	)
 
 
-/datum/outfit/beachbum_combat/post_equip(mob/living/carbon/human/bum, visuals_only)
+/datum/outfit/beachbum_combat/post_equip(mob/living/carbon/human/bum, visualsOnly)
 	. = ..()
 
 	var/choice = rand(1, length(ranged_weaps))

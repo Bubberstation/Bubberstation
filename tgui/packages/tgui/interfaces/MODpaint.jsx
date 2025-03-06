@@ -1,3 +1,6 @@
+import { capitalize } from 'common/string';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,10 +9,7 @@ import {
   Section,
   Slider,
   Stack,
-} from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const colorToMatrix = (param) => {

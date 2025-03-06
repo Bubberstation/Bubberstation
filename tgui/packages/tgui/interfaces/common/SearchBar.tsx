@@ -1,5 +1,4 @@
-import { CSSProperties } from 'react';
-import { Icon, Input, Stack } from 'tgui-core/components';
+import { Icon, Input, Stack } from '../../components';
 
 type RequiredProps = {
   /** The state variable. */
@@ -16,7 +15,7 @@ type OptionalProps = Partial<{
   /** The placeholder text. */
   placeholder: string;
   /** Override styles of the search bar. */
-  style: CSSProperties;
+  style: Partial<CSSStyleDeclaration>;
 }>;
 
 type Props = RequiredProps & OptionalProps;
@@ -37,9 +36,7 @@ export function SearchBar(props: Props) {
 
   return (
     <Stack fill style={style}>
-      <Stack.Item align="center">
-        {!noIcon && <Icon name="search" />}
-      </Stack.Item>
+      <Stack.Item>{!noIcon && <Icon name="search" />}</Stack.Item>
       <Stack.Item grow>
         <Input
           autoFocus={autoFocus}

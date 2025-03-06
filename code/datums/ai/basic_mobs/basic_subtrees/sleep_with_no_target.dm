@@ -11,24 +11,23 @@
 
 /// Disables AI after a certain amount of time spent with no target, you will have to enable the AI again somewhere else
 /datum/ai_behavior/sleep_after_targetless_time
-	/// Turn off AI if we spend this many seconds without a target
-	var/time_to_wait = 10 SECONDS
+	/// Turn off AI if we spend this many seconds without a target, don't use the macro because seconds_per_tick is already in seconds
+	var/time_to_wait = 10
 
 /datum/ai_behavior/sleep_after_targetless_time/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	return (controller.blackboard_key_exists(target_key)) ? ( AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED) : ( AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED)
+	var/atom/target = controller.blackboard[target_key]
+	if(QDELETED(target))
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 
-/datum/ai_behavior/sleep_after_targetless_time/finish_action(datum/ai_controller/controller, succeeded, target_key)
+/datum/ai_behavior/sleep_after_targetless_time/finish_action(datum/ai_controller/controller, succeeded, seconds_per_tick)
 	. = ..()
 	if (!succeeded)
-		controller.clear_blackboard_key(BB_TARGETLESS_TIME)
+		controller.set_blackboard_key(BB_TARGETLESS_TIME, 0)
 		return
-
-	if (isnull(controller.blackboard[BB_TARGETLESS_TIME]))
-		controller.set_blackboard_key(BB_TARGETLESS_TIME, world.time + time_to_wait)
-
-	if (controller.blackboard[BB_TARGETLESS_TIME] < world.time)
+	controller.add_blackboard_key(BB_TARGETLESS_TIME, seconds_per_tick)
+	if (controller.blackboard[BB_TARGETLESS_TIME] > time_to_wait)
 		enter_sleep(controller)
-		controller.clear_blackboard_key(BB_TARGETLESS_TIME)
 
 /// Disables AI, override to do additional things or something else
 /datum/ai_behavior/sleep_after_targetless_time/proc/enter_sleep(datum/ai_controller/controller)

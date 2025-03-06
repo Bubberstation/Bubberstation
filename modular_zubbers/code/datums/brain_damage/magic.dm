@@ -121,7 +121,7 @@
 	/// The person able to see this tear.
 	var/mob/living/carbon/seer
 
-/obj/effect/client_image_holder/phobetor/Initialize(mapload)
+/obj/effect/client_image_holder/phobetor/Initialize()
 	. = ..()
 	created_on = world.time
 

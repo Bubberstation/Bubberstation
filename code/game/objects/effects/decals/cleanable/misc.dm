@@ -11,7 +11,7 @@
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ash"
 	plane = GAME_PLANE
-	layer = CLEANABLE_OBJECT_LAYER
+	layer = GAME_CLEAN_LAYER
 	mergeable_decal = FALSE
 	beauty = -50
 	decal_reagent = /datum/reagent/ash
@@ -153,7 +153,6 @@
 	resistance_flags = FLAMMABLE
 	beauty = -100
 	clean_type = CLEAN_TYPE_HARD_DECAL
-	is_mopped = FALSE
 
 /obj/effect/decal/cleanable/cobweb/cobweb2
 	icon_state = "cobweb2"
@@ -165,7 +164,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "molten"
 	plane = GAME_PLANE
-	layer = CLEANABLE_OBJECT_LAYER
+	layer = GAME_CLEAN_LAYER
 	mergeable_decal = FALSE
 	beauty = -150
 	clean_type = CLEAN_TYPE_HARD_DECAL
@@ -252,7 +251,7 @@
 	desc = "A pile of chemicals. You can't quite tell what's inside it."
 	gender = NEUTER
 	plane = GAME_PLANE
-	layer = CLEANABLE_OBJECT_LAYER
+	layer = GAME_CLEAN_LAYER
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ash"
 
@@ -331,7 +330,7 @@
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "paper_shreds"
 	plane = GAME_PLANE
-	layer = CLEANABLE_OBJECT_LAYER
+	layer = GAME_CLEAN_LAYER
 
 /obj/effect/decal/cleanable/wrapping/pinata
 	name = "pinata shreds"
@@ -350,7 +349,7 @@
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "garbage"
 	plane = GAME_PLANE
-	layer = CLEANABLE_OBJECT_LAYER
+	layer = GAME_CLEAN_LAYER
 	beauty = -150
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
@@ -568,9 +567,7 @@
 	mergeable_decal = FALSE
 	beauty = -10
 	plane = GAME_PLANE
-	layer = GIB_LAYER
-	clean_type = CLEAN_TYPE_HARD_DECAL
-	is_mopped = FALSE
+	layer = BELOW_OBJ_LAYER
 
 /obj/effect/decal/cleanable/rubble/Initialize(mapload)
 	. = ..()

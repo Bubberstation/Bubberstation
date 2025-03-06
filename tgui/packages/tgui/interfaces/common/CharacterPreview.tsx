@@ -1,4 +1,4 @@
-import { ByondUi } from 'tgui-core/components';
+import { ByondUi } from '../../components';
 
 export const CharacterPreview = (props: {
   width?: string; // SKYRAT EDIT
@@ -6,7 +6,7 @@ export const CharacterPreview = (props: {
   id: string;
 }) => {
   // SKYRAT EDIT
-  const { width = '225px' } = props;
+  const { width = '220px' } = props;
   // SKYRAT EDIT END
   return (
     <ByondUi

@@ -12,11 +12,9 @@
 
 /turf/open/misc/beach/Initialize(mapload)
 	. = ..()
-	add_lazy_fishing(/datum/fish_source/sand)
+	AddElement(/datum/element/lazy_fishing_spot, /datum/fish_source/sand)
 
 /turf/open/misc/beach/ex_act(severity, target)
-	if(fish_source)
-		GLOB.preset_fish_sources[fish_source].spawn_reward_from_explosion(src, severity)
 	return FALSE
 
 /turf/open/misc/beach/sand

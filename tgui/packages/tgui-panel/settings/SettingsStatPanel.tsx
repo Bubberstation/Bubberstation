@@ -1,3 +1,5 @@
+import { toFixed } from 'common/math';
+import { capitalize } from 'common/string';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Button,
@@ -6,9 +8,7 @@ import {
   Section,
   Slider,
   Stack,
-} from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-import { capitalize } from 'tgui-core/string';
+} from 'tgui/components';
 
 import { updateSettings } from './actions';
 import { selectSettings } from './selectors';

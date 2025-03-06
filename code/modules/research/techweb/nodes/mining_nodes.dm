@@ -56,6 +56,7 @@
 	description = "Research of Proto-Kinetic Accelerators (PKAs), pneumatic guns renowned for their exceptional performance in low-pressure environments."
 	prereq_ids = list(TECHWEB_NODE_MINING, TECHWEB_NODE_GAS_COMPRESSION)
 	design_ids = list(
+		"mecha_kineticgun",
 		"damagemod",
 		"rangemod",
 		"cooldownmod",

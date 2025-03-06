@@ -3,10 +3,11 @@
 /datum/ai_controller/basic_controller/bot/firebot
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/allow_turfs,
-		BB_UNREACHABLE_LIST_COOLDOWN =  3 MINUTES,
+		BB_UNREACHABLE_LIST_COOLDOWN = 45 SECONDS,
 	)
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/respond_to_summon,
+		/datum/ai_planning_subtree/manage_unreachable_list,
 		/datum/ai_planning_subtree/extinguishing_people,
 		/datum/ai_planning_subtree/extinguishing_turfs,
 		/datum/ai_planning_subtree/salute_authority,
@@ -98,7 +99,7 @@
 			continue
 		if(LAZYACCESS(ignore_list, possible_turf))
 			continue
-		if(controller.set_if_can_reach(key = target_key, target = possible_turf, bypass_add_to_blacklist = bypass_add_blacklist))
+		if(controller.set_if_can_reach(target_key, possible_turf, bypass_add_to_blacklist = bypass_add_blacklist))
 			return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
@@ -112,7 +113,7 @@
 
 	//if we couldnt path, or we successfully burnt someone, ignore them for a bit!
 	if(!succeeded || (isliving(target) && (living_bot.bot_access_flags & BOT_COVER_EMAGGED)))
-		controller.add_to_blacklist(target)
+		controller.set_blackboard_key_assoc_lazylist(BB_TEMPORARY_IGNORE_LIST, target, TRUE)
 
 	return ..()
 

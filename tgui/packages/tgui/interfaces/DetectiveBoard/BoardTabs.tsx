@@ -1,7 +1,6 @@
-import { Box, Button } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
-
+import { classes } from '../../../common/react';
 import { useBackend } from '../../backend';
+import { Box, Button } from '../../components';
 import { DataCase } from './DataTypes';
 
 type BoardTabsData = {

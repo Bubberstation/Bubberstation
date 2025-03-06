@@ -77,16 +77,16 @@
 	name = /obj/machinery/atmospherics/components/unary/vent_scrubber::name
 	desc = /obj/machinery/atmospherics/components/unary/vent_scrubber::desc
 	icon = /obj/machinery/atmospherics/components/unary/vent_scrubber::icon
-	layer = ABOVE_OPEN_TURF_LAYER
-	plane = FLOOR_PLANE
+	layer = /obj/machinery/atmospherics/components/unary/vent_scrubber::layer
+	plane = /obj/machinery/atmospherics/components/unary/vent_scrubber::plane
 	icon_state = "scrub_on"
 
 /obj/structure/fluff/fake_vent
 	name = /obj/machinery/atmospherics/components/unary/vent_pump::name
 	desc = /obj/machinery/atmospherics/components/unary/vent_pump::desc
 	icon = /obj/machinery/atmospherics/components/unary/vent_pump::icon
-	layer = ABOVE_OPEN_TURF_LAYER
-	plane = FLOOR_PLANE
+	layer = /obj/machinery/atmospherics/components/unary/vent_pump::layer
+	plane = /obj/machinery/atmospherics/components/unary/vent_pump::plane
 	icon_state = "vent_out"
 
 /turf/open/mirage

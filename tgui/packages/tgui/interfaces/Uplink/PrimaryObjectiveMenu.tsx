@@ -1,6 +1,5 @@
-import { Box, Button, Dimmer, Section, Stack } from 'tgui-core/components';
-
 import { useBackend } from '../../backend';
+import { Box, Button, Dimmer, Section, Stack } from '../../components';
 import { ObjectiveElement } from './ObjectiveMenu';
 
 type PrimaryObjectiveMenuProps = {

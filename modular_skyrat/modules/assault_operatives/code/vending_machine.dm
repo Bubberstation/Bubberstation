@@ -9,7 +9,6 @@
 	onstation = FALSE
 	light_mask = "liberation-light-mask"
 	default_price = 0
-
 	/// Have we been FILLED?
 	var/filled = FALSE
 
@@ -57,7 +56,7 @@
 
 	filled = TRUE
 
-/obj/machinery/vending/assaultops_ammo/build_inventory(list/productlist, list/recordlist, start_empty = FALSE, premium = FALSE)
+/obj/machinery/vending/assaultops_ammo/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
 	default_price = 0
 	extra_price = 0
 	for(var/typepath in productlist)
@@ -70,6 +69,7 @@
 		if(!start_empty)
 			vending_product.amount = amount
 		vending_product.max_amount = amount
-		vending_product.price = 0
+		vending_product.custom_price = 0
+		vending_product.custom_premium_price = 0
 		vending_product.age_restricted = FALSE
 		recordlist += vending_product

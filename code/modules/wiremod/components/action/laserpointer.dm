@@ -11,8 +11,8 @@
 
 	/// The input port
 	var/datum/port/input/target_input
-	var/datum/port/input/image_pixel_x
-	var/datum/port/input/image_pixel_y
+	var/datum/port/input/image_pixel_x = 0
+	var/datum/port/input/image_pixel_y = 0
 
 	var/max_range = 7
 

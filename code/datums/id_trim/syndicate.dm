@@ -17,10 +17,6 @@
 	big_pointer = FALSE
 
 /// Interdyne medical Staff
-/datum/id_trim/syndicom/Interdyne
-	honorifics = list(", PhD.")
-	honorific_positions = HONORIFIC_POSITION_LAST_FULL | HONORIFIC_POSITION_NONE
-
 /datum/id_trim/syndicom/Interdyne/pharmacist
 	assignment = "Interdyne Pharmacist"
 	trim_state = "trim_medicaldoctor"
@@ -50,9 +46,6 @@
 	access = list(ACCESS_SYNDICATE, ACCESS_MAINT_TUNNELS)
 	big_pointer = FALSE
 	pointer_color = null
-	honorifics = list("Auditor")
-	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-
 
 /datum/id_trim/syndicom/irs/auditor
 	assignment = "Internal Revenue Service Head Auditor"

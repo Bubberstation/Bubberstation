@@ -138,7 +138,7 @@
 	)
 	. = ..()
 
-/obj/item/borg/apparatus/sheet_manipulator/Initialize(mapload)
+/obj/item/borg/apparatus/sheet_manipulator/Initialize()
 	. = ..()
 	storable += /obj/item/stack/rods
 

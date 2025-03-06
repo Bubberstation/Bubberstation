@@ -1,4 +1,7 @@
+import { shallowDiffers } from 'common/react';
 import { Component } from 'react';
+
+import { resolveAsset } from '../../assets';
 import {
   Button,
   Dropdown,
@@ -6,11 +9,8 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { fetchRetry } from 'tgui-core/http';
-import { shallowDiffers } from 'tgui-core/react';
-
-import { resolveAsset } from '../../assets';
+} from '../../components';
+import { fetchRetry } from '../../http';
 import { DEFAULT_COMPONENT_MENU_LIMIT } from './constants';
 import { DisplayComponent } from './DisplayComponent';
 

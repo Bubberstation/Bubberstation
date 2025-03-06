@@ -30,9 +30,10 @@
 			continue
 
 		if (PERFORM_ALL_TESTS(focus_only/invalid_vending_machine_icon_states))
-			if (!icon_exists(icon_file, icon_state))
+			var/icon_states_list = icon_states(icon_file)
+			if (!(icon_state in icon_states_list))
 				var/icon_states_string
-				for (var/an_icon_state in icon_states(icon_file))
+				for (var/an_icon_state in icon_states_list)
 					if (!icon_states_string)
 						icon_states_string = "[json_encode(an_icon_state)]([text_ref(an_icon_state)])"
 					else

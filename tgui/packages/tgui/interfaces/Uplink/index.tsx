@@ -1,4 +1,8 @@
+import { BooleanLike } from 'common/react';
 import { Component, Fragment } from 'react';
+
+import { resolveAsset } from '../../assets';
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -8,12 +12,8 @@ import {
   Stack,
   Tabs,
   Tooltip,
-} from 'tgui-core/components';
-import { fetchRetry } from 'tgui-core/http';
-import { BooleanLike } from 'tgui-core/react';
-
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
+} from '../../components';
+import { fetchRetry } from '../../http';
 import { Window } from '../../layouts';
 import {
   calculateDangerLevel,
@@ -341,7 +341,7 @@ export class Uplink extends Component<{}, UplinkState> {
                       </Tooltip>
                     </Stack.Item>
                   )}
-                  {!!(primary_objectives || has_objectives) && (
+                  {(primary_objectives || has_objectives) && (
                     <Stack.Item grow={1}>
                       <Tabs fluid>
                         {primary_objectives && (

@@ -63,8 +63,6 @@
 	return do_after(user, delay, target, extra_checks = CALLBACK(src, PROC_REF(blueprint_change)))
 
 /obj/item/construction/proc/blueprint_change()
-	PRIVATE_PROC(TRUE)
-
 	return !blueprint_changed
 
 ///used for examining the RCD and for its UI
@@ -93,7 +91,6 @@
 
 /obj/item/construction/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	SHOULD_CALL_PARENT(TRUE)
-
 	if(istype(interacting_with, /obj/item/rcd_upgrade))
 		install_upgrade(interacting_with, user)
 		return ITEM_INTERACT_SUCCESS
@@ -103,7 +100,6 @@
 
 /obj/item/construction/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	SHOULD_CALL_PARENT(TRUE)
-
 	if(istype(tool, /obj/item/rcd_upgrade))
 		install_upgrade(tool, user)
 		return ITEM_INTERACT_SUCCESS
@@ -317,7 +313,7 @@
 
 /obj/item/rcd_upgrade/simple_circuits
 	name = "RCD advanced upgrade: simple circuits"
-	desc = "It contains the design for firelock, air alarm, fire alarm, APC circuits and crap power cells."
+	desc = "It contains the design for firelock, air alarm, fire alarm, apc circuits and crap power cells."
 	icon_state = "datadisk4"
 	upgrade = RCD_UPGRADE_SIMPLE_CIRCUITS
 

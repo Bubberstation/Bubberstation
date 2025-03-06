@@ -1,23 +1,16 @@
-/datum/component/personal_crafting
-	/// Custom screen_loc for our element
-	var/screen_loc_override
-
-/datum/component/personal_crafting/Initialize(screen_loc_override)
-	src.screen_loc_override = screen_loc_override
+/datum/component/personal_crafting/Initialize()
 	if(ismob(parent))
 		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 
-/datum/component/personal_crafting/proc/create_mob_button(mob/user, client/user_client)
+/datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	SIGNAL_HANDLER
 
-	var/datum/hud/hud = user.hud_used
-	var/atom/movable/screen/craft/craft_ui = new()
-	craft_ui.icon = hud.ui_style
-	if (screen_loc_override)
-		craft_ui.screen_loc = screen_loc_override
-	hud.static_inventory += craft_ui
-	user_client.screen += craft_ui
-	RegisterSignal(craft_ui, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(component_ui_interact))
+	var/datum/hud/H = user.hud_used
+	var/atom/movable/screen/craft/C = new()
+	C.icon = H.ui_style
+	H.static_inventory += C
+	CL.screen += C
+	RegisterSignal(C, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(component_ui_interact))
 
 #define COOKING TRUE
 #define CRAFTING FALSE
@@ -727,8 +720,7 @@
 
 /datum/component/personal_crafting/machine/get_environment(atom/crafter, list/blacklist = null, radius_range = 1)
 	. = list()
-	var/turf/crafter_loc = get_turf(crafter)
-	for(var/atom/movable/content as anything in crafter_loc.contents)
+	for(var/atom/movable/content in crafter.contents)
 		if((content.flags_1 & HOLOGRAM_1) || (blacklist && (content.type in blacklist)))
 			continue
 		if(isitem(content))

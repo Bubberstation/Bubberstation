@@ -14,16 +14,15 @@
 /obj/item/clothing/head/wig/Initialize(mapload)
 	. = ..()
 	update_appearance()
-	AddComponent(/datum/component/hat_stabilizer, loose_hat = FALSE)
 
 /obj/item/clothing/head/wig/equipped(mob/user, slot)
 	. = ..()
 	if(ishuman(user) && (slot & ITEM_SLOT_HEAD))
-		ADD_TRAIT(src, TRAIT_EXAMINE_SKIP, CLOTHING_TRAIT)
+		item_flags |= EXAMINE_SKIP
 
 /obj/item/clothing/head/wig/dropped(mob/user)
 	. = ..()
-	REMOVE_TRAIT(src, TRAIT_EXAMINE_SKIP, CLOTHING_TRAIT)
+	item_flags &= ~EXAMINE_SKIP
 
 /obj/item/clothing/head/wig/update_icon_state()
 	var/datum/sprite_accessory/hair/hair_style = SSaccessories.hairstyles_list[hairstyle]

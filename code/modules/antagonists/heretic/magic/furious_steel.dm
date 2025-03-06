@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/projectile/furious_steel
 	name = "Furious Steel"
 	desc = "Summon three silver blades which orbit you. \
-		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
+		While orbiting you, these blades will protect you from from attacks, but will be consumed on use. \
 		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
@@ -22,8 +22,6 @@
 	projectile_type = /obj/projectile/floating_blade
 	projectile_amount = 3
 
-	///Effect of the projectile that surrounds us while the spell is active
-	var/projectile_effect = /obj/effect/floating_blade
 	/// A ref to the status effect surrounding our heretic on activation.
 	var/datum/status_effect/protective_blades/blade_effect
 
@@ -45,12 +43,12 @@
 
 	unset_click_ability(source, refund_cooldown = TRUE)
 
-/datum/action/cooldown/spell/pointed/projectile/furious_steel/InterceptClickOn(mob/living/clicker, params, atom/target)
+/datum/action/cooldown/spell/pointed/projectile/furious_steel/InterceptClickOn(mob/living/caller, params, atom/target)
 	// Let the caster prioritize using items like guns over blade casts
-	if(clicker.get_active_held_item())
+	if(caller.get_active_held_item())
 		return FALSE
 	// Let the caster prioritize melee attacks like punches and shoves over blade casts
-	if(get_dist(clicker, target) <= 1)
+	if(get_dist(caller, target) <= 1)
 		return FALSE
 
 	return ..()
@@ -69,7 +67,7 @@
 		QDEL_NULL(blade_effect)
 
 	var/mob/living/living_user = on_who
-	blade_effect = living_user.apply_status_effect(/datum/status_effect/protective_blades, null, projectile_amount, 25, 0.66 SECONDS, projectile_effect)
+	blade_effect = living_user.apply_status_effect(/datum/status_effect/protective_blades, null, projectile_amount, 25, 0.66 SECONDS, projectile_type)
 	RegisterSignal(blade_effect, COMSIG_QDELETING, PROC_REF(on_status_effect_deleted))
 
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/on_deactivation(mob/on_who, refund_cooldown = TRUE)
@@ -102,7 +100,7 @@
 	name = "blade"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
-	speed = 0.5
+	speed = 2
 	damage = 25
 	armour_penetration = 100
 	sharpness = SHARP_EDGED
@@ -151,7 +149,7 @@
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/haunted
 	name = "Cursed Steel"
 	desc = "Summon two cursed blades which orbit you. \
-		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
+		While orbiting you, these blades will protect you from from attacks, but will be consumed on use. \
 		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
 	background_icon_state = "bg_heretic" // kept intentionally
 	overlay_icon_state = "bg_cult_border"
@@ -169,4 +167,3 @@
 	deactive_msg = "You conceal the cursed blades."
 	projectile_amount = 2
 	projectile_type = /obj/projectile/floating_blade/haunted
-	projectile_effect = /obj/effect/floating_blade/haunted

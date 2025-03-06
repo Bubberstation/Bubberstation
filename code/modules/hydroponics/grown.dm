@@ -139,7 +139,10 @@
 			reagents.add_reagent(/datum/reagent/consumable/ethanol/fruit_wine, reagent.volume, data, added_purity = reagent_purity)
 		reagents.del_reagent(reagent.type)
 
-/obj/item/food/grown/grind_atom(datum/reagents/target_holder, mob/user)
+/obj/item/food/grown/grind(datum/reagents/target_holder, mob/user)
+	if(on_grind() == -1)
+		return FALSE
+
 	var/grind_results_num = LAZYLEN(grind_results)
 	if(grind_results_num)
 		var/average_purity = reagents.get_average_purity()
@@ -149,7 +152,9 @@
 		for(var/reagent in grind_results)
 			reagents.add_reagent(reagent, single_reagent_amount, added_purity = average_purity)
 
-	return reagents?.trans_to(target_holder, reagents.total_volume, transferred_by = user)
+	if(reagents && target_holder)
+		reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
+	return TRUE
 
 #undef BITE_SIZE_POTENCY_MULTIPLIER
 #undef BITE_SIZE_VOLUME_MULTIPLIER

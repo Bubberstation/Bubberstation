@@ -13,7 +13,7 @@
 #define NO_RELAY "No Relay (Direct Connect)"
 
 /client/verb/go2relay()
-	var/static/list/relays = list(
+	var/list/static/relays = list(
 		US_EAST_RELAY,
 		US_WEST_RELAY,
 		SYDNEY_RELAY,

@@ -36,10 +36,13 @@
 
 	job_tone = "silence"
 
+
 /datum/job/mime/after_spawn(mob/living/spawned, client/player_client)
-	if (ishuman(spawned))
-		spawned.apply_pref_name(/datum/preference/name/mime, player_client)
-	return ..()
+	. = ..()
+	if(!ishuman(spawned))
+		return
+	spawned.apply_pref_name(/datum/preference/name/mime, player_client)
+
 
 /datum/outfit/job/mime
 	name = "Mime"
@@ -66,10 +69,10 @@
 	box = /obj/item/storage/box/survival/hug/black
 	chameleon_extras = /obj/item/stamp/mime
 
-/datum/outfit/job/mime/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
+/datum/outfit/job/mime/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 
-	if(visuals_only)
+	if(visualsOnly)
 		return
 
 	// Start our mime out with a vow of silence and the ability to break (or make) it

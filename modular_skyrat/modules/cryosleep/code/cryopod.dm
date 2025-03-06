@@ -352,7 +352,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		for(var/obj/item/nested_item as anything in target_item)
 			try_store_item(holder, nested_item, control_computer)
 		return FALSE
-	if(target_item.item_flags & (ABSTRACT|DROPDEL))
+	if(target_item.item_flags & DROPDEL)
 		return FALSE
 
 	if(control_computer)
@@ -428,8 +428,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		the_disk.throw_at(launch_target, 8, 14)
 		visible_message(span_warning("[src] violently ejects [the_disk]!"))
 
-	// get_equipped_items() prevents moving bodyparts, since those are in mob contents now
-	for(var/obj/item/item_content in mob_occupant.get_equipped_items(INCLUDE_POCKETS | INCLUDE_HELD | INCLUDE_ACCESSORIES))
+	for(var/obj/item/item_content as anything in mob_occupant)
 		try_store_item(mob_occupant, item_content, control_computer)
 
 	GLOB.joined_player_list -= stored_ckey
@@ -466,7 +465,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 // Allows players to cryo others. Checks if they have been AFK for 30 minutes.
 	if(target.key && user != target)
-		if (target.get_organ_by_type(/obj/item/organ/brain) ) //Target the Brain
+		if (target.get_organ_by_type(/obj/item/organ/internal/brain) ) //Target the Brain
 			if(!target.mind || target.ssd_indicator ) // Is the character empty / AI Controlled
 				if(target.lastclienttime + ssd_time >= world.time)
 					to_chat(user, span_notice("You can't put [target] into [src] for another [round(((ssd_time - (world.time - target.lastclienttime)) / (1 MINUTES)), 1)] minutes."))

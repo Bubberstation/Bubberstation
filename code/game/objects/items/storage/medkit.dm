@@ -180,7 +180,7 @@
 	damagetype_healed = BURN
 
 /obj/item/storage/medkit/fire/get_medbot_skin()
-	return "burn"
+	return "ointment"
 
 /obj/item/storage/medkit/fire/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!"))
@@ -231,7 +231,7 @@
 	damagetype_healed = OXY
 
 /obj/item/storage/medkit/o2/get_medbot_skin()
-	return "oxy"
+	return "o2"
 
 /obj/item/storage/medkit/o2/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins hitting [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -282,7 +282,7 @@
 	damagetype_healed = HEAL_ALL_DAMAGE
 
 /obj/item/storage/medkit/advanced/get_medbot_skin()
-	return "adv"
+	return "advanced"
 
 /obj/item/storage/medkit/advanced/PopulateContents()
 	if(empty)
@@ -694,7 +694,7 @@
 /// A box which takes in coolant and uses it to preserve organs and body parts
 /obj/item/storage/organbox
 	name = "organ transport box"
-	desc = "An advanced box with a cooling mechanism that uses cryostylane or other cold reagents to keep the organs or bodyparts inside preserved."
+	desc = "An advanced box with an cooling mechanism that uses cryostylane or other cold reagents to keep the organs or bodyparts inside preserved."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "organbox"
 	base_icon_state = "organbox"
@@ -807,7 +807,17 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	storage_type = /datum/storage/test_tube_rack
+
+/obj/item/storage/test_tube_rack/Initialize(mapload)
+	. = ..()
+	atom_storage.allow_quick_gather = TRUE
+	atom_storage.max_slots = 8
+	atom_storage.screen_max_columns = 4
+	atom_storage.screen_max_rows = 2
+	atom_storage.set_holdable(/obj/item/reagent_containers/cup/tube)
+
+/obj/item/storage/test_tube_rack/attack_self(mob/user)
+	emptyStorage()
 
 /obj/item/storage/test_tube_rack/update_icon_state()
 	icon_state = "[base_icon_state][contents.len > 0 ? contents.len : null]"
@@ -816,5 +826,4 @@
 /obj/item/storage/test_tube_rack/full/PopulateContents()
 	for(var/i in 1 to atom_storage.max_slots)
 		new /obj/item/reagent_containers/cup/tube(src)
-	update_appearance(UPDATE_ICON_STATE)
 

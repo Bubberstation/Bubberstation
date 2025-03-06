@@ -1,6 +1,5 @@
-import { Button, Icon, LabeledList, Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Button, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const ImplantChair = (props) => {

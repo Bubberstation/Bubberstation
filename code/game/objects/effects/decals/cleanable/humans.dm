@@ -75,7 +75,6 @@
 	plane = GAME_PLANE
 	vis_flags = VIS_INHERIT_PLANE
 	alpha = 180
-	is_mopped = FALSE
 
 /obj/effect/decal/cleanable/blood/splatter/over_window/NeverShouldHaveComeHere(turf/here_turf)
 	return isgroundlessturf(here_turf)
@@ -88,19 +87,15 @@
 	dryname = "dried tracks"
 	drydesc = "Some old bloody tracks left by wheels. Machines are evil, perhaps."
 
-/obj/effect/decal/cleanable/blood/trail_holder
+/obj/effect/decal/cleanable/trail_holder //not a child of blood on purpose
 	name = "blood"
-	desc = "Your instincts say you shouldn't be following these."
 	icon = 'icons/effects/blood.dmi'
-	icon_state = null
-	random_icon_states = null
+	desc = "Your instincts say you shouldn't be following these."
 	beauty = -50
 	var/list/existing_dirs = list()
 
-/obj/effect/decal/cleanable/blood/trail_holder/replace_decal(obj/effect/decal/cleanable/blood/trail_holder/blood_decal)
-	if(blood_state != blood_decal.blood_state)
-		return FALSE
-	return ..()
+/obj/effect/decal/cleanable/trail_holder/can_bloodcrawl_in()
+	return TRUE
 
 // normal version of the above trail holder object for use in less convoluted things
 /obj/effect/decal/cleanable/blood/trails
@@ -116,7 +111,7 @@
 	desc = "They look bloody and gruesome."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gib1"
-	layer = GIB_LAYER
+	layer = BELOW_OBJ_LAYER
 	plane = GAME_PLANE
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	mergeable_decal = FALSE
@@ -125,8 +120,6 @@
 	drydesc = "They look bloody and gruesome while some terrible smell fills the air."
 	decal_reagent = /datum/reagent/consumable/liquidgibs
 	reagent_amount = 5
-
-	is_mopped = TRUE // probably shouldn't be, but janitor powercreep
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -330,7 +323,7 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)
 	. = ..()
 	if((shoe_types.len + species_types.len) > 0)
-		. += "You recognise \the [src] as belonging to:"
+		. += "You recognise the [name] as belonging to:"
 		for(var/sole in shoe_types)
 			var/obj/item/clothing/item = sole
 			var/article = initial(item.gender) == PLURAL ? "Some" : "A"
@@ -363,7 +356,6 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
 	plane = GAME_PLANE
 	layer = ABOVE_WINDOW_LAYER
-	is_mopped = FALSE
 	/// The turf we just came from, so we can back up when we hit a wall
 	var/turf/prev_loc
 	/// The cached info about the blood

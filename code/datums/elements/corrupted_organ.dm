@@ -2,9 +2,9 @@
 /// Mostly just does something spooky when it is removed
 /datum/element/corrupted_organ
 
-/datum/element/corrupted_organ/Attach(obj/item/organ/target)
+/datum/element/corrupted_organ/Attach(datum/target)
 	. = ..()
-	if (!istype(target) || (target.organ_flags & ORGAN_EXTERNAL))
+	if (!isinternalorgan(target))
 		return ELEMENT_INCOMPATIBLE
 
 	RegisterSignal(target, COMSIG_ORGAN_SURGICALLY_REMOVED, PROC_REF(on_removed))

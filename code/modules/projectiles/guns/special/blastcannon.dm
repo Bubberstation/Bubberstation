@@ -49,6 +49,8 @@
 
 /obj/item/gun/blastcannon/Initialize(mapload)
 	. = ..()
+	if(!pin)
+		pin = new
 	RegisterSignal(src, COMSIG_ATOM_INTERNAL_EXPLOSION, PROC_REF(channel_blastwave))
 	AddElement(/datum/element/update_icon_updates_onmob)
 
@@ -191,7 +193,7 @@
 	SSexplosions.shake_the_room(start_turf, max(heavy, medium, light, 0), (capped_heavy * 15) + (capped_medium * 20), capped_heavy, capped_medium)
 
 	var/obj/projectile/blastwave/blastwave = new(loc, heavy, medium, light)
-	blastwave.aim_projectile(target, start_turf, params2list(modifiers), spread)
+	blastwave.preparePixelProjectile(target, start_turf, params2list(modifiers), spread)
 	blastwave.fire()
 	cached_firer = null
 	cached_target = null
@@ -312,7 +314,7 @@
 /obj/projectile/blastwave/is_hostile_projectile()
 	return TRUE
 
-/obj/projectile/blastwave/reduce_range()
+/obj/projectile/blastwave/Range()
 	. = ..()
 	if(QDELETED(src))
 		return

@@ -1,4 +1,7 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Box,
@@ -15,39 +18,32 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-import { formatSiUnit } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
 type MODsuitData = {
   // Static
   ui_theme: string;
+  control: string;
   complexity_max: number;
+  parts: PartData[];
   // Dynamic
   suit_status: SuitStatus;
   user_status: UserStatus;
   module_custom_status: ModuleCustomStatus;
   module_info: Module[];
-  control: string;
-  parts: PartData[];
 };
 
 type PartData = {
   slot: string;
   name: string;
-  deployed: BooleanLike;
-  ref: string;
 };
 
 type SuitStatus = {
   core_name: string;
-  charge_current: number;
-  charge_max: number;
-  chargebar_color: string;
-  chargebar_string: string;
+  cell_charge_current: number;
+  cell_charge_max: number;
   active: BooleanLike;
   open: BooleanLike;
   seconds_electrified: number;
@@ -57,8 +53,8 @@ type SuitStatus = {
   complexity: number;
   selected_module: string;
   ai_name: string;
-  has_pai: BooleanLike;
-  is_ai: BooleanLike;
+  has_pai: boolean;
+  is_ai: boolean;
   link_id: string;
   link_freq: string;
   link_call: string;
@@ -261,20 +257,6 @@ const ConfigurePinEntry = (props) => {
   );
 };
 
-// fuck u smartkar configs werent meant to be used as actions 🖕🖕🖕
-// and really u couldnt be bothered to make this and instead used
-// the pin entry? 🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕
-const ConfigureButtonEntry = (props) => {
-  const { name, value, module_ref } = props;
-  const { act } = useBackend();
-  return (
-    <Button
-      onClick={() => act('configure', { key: name, ref: module_ref })}
-      icon={value}
-    />
-  );
-};
-
 const ConfigureDataEntry = (props) => {
   const { name, display_name, type, value, values, module_ref } = props;
   const configureEntryTypes = {
@@ -282,7 +264,6 @@ const ConfigureDataEntry = (props) => {
     bool: <ConfigureBoolEntry {...props} />,
     color: <ConfigureColorEntry {...props} />,
     list: <ConfigureListEntry {...props} />,
-    button: <ConfigureButtonEntry {...props} />,
     pin: <ConfigurePinEntry {...props} />,
   };
   return (
@@ -366,10 +347,9 @@ const radiationLevels = (param) => {
 const SuitStatusSection = (props) => {
   const { act, data } = useBackend<MODsuitData>();
   const {
-    charge_current,
-    charge_max,
-    chargebar_color,
-    chargebar_string,
+    core_name,
+    cell_charge_current,
+    cell_charge_max,
     active,
     open,
     seconds_electrified,
@@ -388,6 +368,9 @@ const SuitStatusSection = (props) => {
     : active
       ? 'Active'
       : 'Inactive';
+  const charge_percent = Math.round(
+    (100 * cell_charge_current) / cell_charge_max,
+  );
 
   return (
     <Section
@@ -405,13 +388,31 @@ const SuitStatusSection = (props) => {
       <LabeledList>
         <LabeledList.Item label="Charge">
           <ProgressBar
-            value={charge_current / charge_max}
-            color={chargebar_color}
+            value={cell_charge_current / cell_charge_max}
+            ranges={{
+              good: [0.6, Infinity],
+              average: [0.3, 0.6],
+              bad: [-Infinity, 0.3],
+            }}
             style={{
               textShadow: '1px 1px 0 black',
             }}
           >
-            {chargebar_string}
+            {!core_name
+              ? 'No Core Detected'
+              : cell_charge_max === 1
+                ? 'Power Cell Missing'
+                : cell_charge_current === 1e31
+                  ? 'Infinite'
+                  : `${formatSiUnit(
+                      cell_charge_current,
+                      0,
+                      'J',
+                    )} of ${formatSiUnit(
+                      cell_charge_max,
+                      0,
+                      'J',
+                    )} (${charge_percent}%)`}
           </ProgressBar>
         </LabeledList.Item>
         <LabeledList.Item label="ID Lock">
@@ -482,14 +483,14 @@ const HardwareSection = (props) => {
   return (
     <Section title="Hardware" style={{ textTransform: 'capitalize' }}>
       <LabeledList>
-        <LabeledList.Item label="Control Unit">{control}</LabeledList.Item>
-        <LabeledList.Item label="Core">
-          {core_name || 'No Core Detected'}
-        </LabeledList.Item>
-        <ModParts />
         <LabeledList.Item label="AI Assistant">
           {ai_name || 'No AI Detected'}
         </LabeledList.Item>
+        <LabeledList.Item label="Core">
+          {core_name || 'No Core Detected'}
+        </LabeledList.Item>
+        <LabeledList.Item label="Control Unit">{control}</LabeledList.Item>
+        <ModParts />
       </LabeledList>
     </Section>
   );
@@ -502,18 +503,7 @@ const ModParts = (props) => {
     <>
       {parts.map((part) => {
         return (
-          <LabeledList.Item
-            key={part.slot}
-            label={part.slot + ' Slot'}
-            buttons={
-              <Button
-                selected={part.deployed}
-                icon={part.deployed ? 'arrow-down' : 'arrow-up'}
-                content={part.deployed ? 'Retract' : 'Deploy'}
-                onClick={() => act('deploy', { ref: part.ref })}
-              />
-            }
-          >
+          <LabeledList.Item key={part.slot} label={part.slot + ' Slot'}>
             {part.name}
           </LabeledList.Item>
         );

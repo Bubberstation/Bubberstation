@@ -1,5 +1,7 @@
 // THIS IS A SKYRAT UI FILE
 import { Fragment } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -10,9 +12,8 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
+} from '../components';
+import { TableRow } from '../components/Table';
 import { Window } from '../layouts';
 
 const brassColor = '#DFC69C';
@@ -220,7 +221,7 @@ const ClockworkSpellList = (props) => {
       {scriptures.map((script) =>
         script.type === selectedTab ? (
           <Fragment key={script}>
-            <Table.Row>
+            <TableRow>
               <Table.Cell bold>{script.name}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -244,8 +245,8 @@ const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </Table.Row>
-            <Table.Row>
+            </TableRow>
+            <TableRow>
               <Table.Cell>{script.desc}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -259,7 +260,7 @@ const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </Table.Row>
+            </TableRow>
             <Table.Cell>
               <Divider />
             </Table.Cell>

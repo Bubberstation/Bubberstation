@@ -20,7 +20,6 @@
 
 export type Antagonist = {
   // the antag_flag, made lowercase, and with non-alphanumerics removed.
-  // or from non_ruleset_antagonists
   key: string;
 
   name: string;

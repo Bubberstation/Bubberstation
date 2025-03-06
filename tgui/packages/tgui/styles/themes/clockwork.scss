@@ -2,15 +2,15 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $good: hsl(51, 59%, 55%),
-  $primary: hsl(44, 65%, 42%),
-  $average: hsl(44, 69%, 32%),
-  $bad: hsl(31, 74%, 21%)
+  $good: #cfba47,
+  $primary: #b18b25,
+  $average: #896b19,
+  $bad: #5f380e
 );
 @use '../base.scss' with (
-  $color-bg: hsl(31, 74%, 21%),
-  $color-bg-start: hsl(44, 65%, 42%),
-  $color-bg-end: hsl(31, 74%, 21%),
+  $color-bg: #5f380e,
+  $color-bg-start: #b18b25,
+  $color-bg-end: #5f380e,
   $color-bg-grad-spread: 6%,
   $border-radius: 2px
 );
@@ -21,30 +21,30 @@
 
   // Components
   @include meta.load-css(
-    '~tgui-core/styles/components/Button',
+    '../components/Button.scss',
     $with: (
       'color-default': colors.$primary,
-      'color-disabled': hsl(46, 26%, 32%),
-      'color-selected': hsl(51, 59%, 55%),
-      'color-caution': hsl(34, 100%, 63%),
-      'color-danger': hsl(60, 100%, 50%)
+      'color-disabled': #665c3c,
+      'color-selected': #cfba47,
+      'color-caution': #ffae42,
+      'color-danger': #ffff00
     )
   );
-  @include meta.load-css('~tgui-core/styles/components/Input');
+  @include meta.load-css('../components/Input.scss');
   @include meta.load-css(
-    '~tgui-core/styles/components/Tooltip',
+    '../components/Tooltip.scss',
     $with: ('background-color': #2d1400)
   );
   @include meta.load-css(
-    '~tgui-core/styles/components/Section',
+    '../components/Section.scss',
     $with: ('separator-color': #d6ca85)
   );
   @include meta.load-css(
-    '~tgui-core/styles/components/Divider',
+    '../components/Divider.scss',
     $with: ('color': #d6ca85)
   );
   @include meta.load-css(
-    '~tgui-core/styles/components/ProgressBar',
+    '../components/ProgressBar.scss',
     $with: ('background-color': rgba(0, 0, 0, 0.5))
   );
 
@@ -54,15 +54,15 @@
   @include meta.load-css(
     '../layouts/TitleBar.scss',
     $with: (
-      'background-color': hsl(31, 74%, 21%),
+      'background-color': #5f380e,
       'shadow-color': rgba(0, 0, 0, 0.1),
-      'text-color': hsl(51, 59%, 55%)
+      'text-color': #cfba47
     )
   );
 
   .Input {
-    color: hsl(44, 65%, 42%);
-    background-color: hsl(51, 59%, 55%);
+    color: #b18b25;
+    background-color: #cfba47;
   }
 
   .Layout__content {

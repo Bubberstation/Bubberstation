@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { Collapsible, Flex, Tooltip } from 'tgui-core/components';
 
+import { Collapsible, Flex, Tooltip } from '../../components';
 import { OrbitContext } from '.';
 import { VIEWMODE } from './constants';
 import {
-  isJobCkeyOrNameMatch,
+  isJobOrNameMatch,
   sortByDepartment,
   sortByDisplayName,
 } from './helpers';
@@ -29,7 +29,7 @@ export function OrbitCollapsible(props: Props) {
     useContext(OrbitContext);
 
   const filteredSection = section.filter((observable) =>
-    isJobCkeyOrNameMatch(observable, searchQuery),
+    isJobOrNameMatch(observable, searchQuery),
   );
 
   if (viewMode === VIEWMODE.Department) {

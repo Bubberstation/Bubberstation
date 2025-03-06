@@ -1,15 +1,7 @@
 // THIS IS A SKYRAT UI FILE
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { BooleanLike, classes } from 'tgui-core/react';
-
+import { BooleanLike, classes } from '../../common/react';
 import { useBackend } from '../backend';
+import { Box, Button, Divider, Flex, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

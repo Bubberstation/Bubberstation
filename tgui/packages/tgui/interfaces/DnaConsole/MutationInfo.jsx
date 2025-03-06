@@ -1,4 +1,6 @@
 import { filter, uniqBy } from 'common/collections';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -6,9 +8,7 @@ import {
   Dropdown,
   LabeledList,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import {
   CHROMOSOME_NEVER,
   CHROMOSOME_NONE,

@@ -56,8 +56,8 @@
 
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 
-/datum/outfit/job/curator/pre_equip(mob/living/carbon/human/H, visuals_only = FALSE)
-	if(visuals_only)
+/datum/outfit/job/curator/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
 		return ..()
 
 	/// There can be only one cameraman on this station, and no, not that kind
@@ -68,10 +68,10 @@
 	return ..()
 
 
-/datum/outfit/job/curator/post_equip(mob/living/carbon/human/translator, visuals_only = FALSE)
+/datum/outfit/job/curator/post_equip(mob/living/carbon/human/translator, visualsOnly = FALSE)
 	..()
 
-	if(visuals_only)
+	if(visualsOnly)
 		return
 
 	translator.grant_all_languages(source = LANGUAGE_CURATOR)

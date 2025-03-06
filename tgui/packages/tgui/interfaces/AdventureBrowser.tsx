@@ -1,7 +1,7 @@
 import { Box, Button, NoticeBox, Section, Table } from 'tgui-core/components';
-import { formatTime } from 'tgui-core/format';
 
-import { useBackend } from '../backend';
+import { useBackend, useLocalState } from '../backend';
+import { formatTime } from '../format';
 import { Window } from '../layouts';
 import { AdventureDataProvider, AdventureScreen } from './ExodroneConsole';
 
@@ -26,6 +26,10 @@ type AdventureBrowserData = AdventureDataProvider & {
 
 const AdventureList = (props) => {
   const { data, act } = useBackend<AdventureBrowserData>();
+  const [openAdventure, setOpenAdventure] = useLocalState<string | null>(
+    'openAdventure',
+    null,
+  );
 
   return (
     <Table>

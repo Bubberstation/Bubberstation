@@ -1,8 +1,7 @@
-import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
-
-import { RandomizationButton } from '../../components/RandomizationButton';
-import { PreferencesMenuData, RandomSetting } from '../../types';
+import { useBackend } from '../../../../backend';
+import { Button, Stack } from '../../../../components';
+import { PreferencesMenuData, RandomSetting } from '../../data';
+import { RandomizationButton } from '../../RandomizationButton';
 import { useRandomToggleState } from '../../useRandomToggleState';
 import { CheckboxInput, Feature, FeatureToggle } from './base';
 
@@ -10,7 +9,6 @@ export const random_body: Feature<RandomSetting> = {
   name: 'Random body',
   component: (props) => {
     const [randomToggle, setRandomToggle] = useRandomToggleState();
-    const { act } = useBackend();
 
     return (
       <Stack>
@@ -27,7 +25,7 @@ export const random_body: Feature<RandomSetting> = {
               <Button
                 color="green"
                 onClick={() => {
-                  act('randomize_character');
+                  props.act('randomize_character');
                   setRandomToggle(false);
                 }}
               >

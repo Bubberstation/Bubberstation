@@ -4,13 +4,15 @@
  * @license MIT
  */
 
+import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
-import { Box } from 'tgui-core/components';
-import { addScrollableNode, removeScrollableNode } from 'tgui-core/events';
-import { classes } from 'tgui-core/react';
-import { computeBoxClassName, computeBoxProps } from 'tgui-core/ui';
 
-type BoxProps = React.ComponentProps<typeof Box>;
+import {
+  BoxProps,
+  computeBoxClassName,
+  computeBoxProps,
+} from '../components/Box';
+import { addScrollableNode, removeScrollableNode } from '../events';
 
 type Props = Partial<{
   theme: string;
@@ -19,7 +21,6 @@ type Props = Partial<{
 
 export function Layout(props: Props) {
   const { className, theme = 'nanotrasen', children, ...rest } = props;
-  document.documentElement.className = `theme-${theme}`;
 
   return (
     <div className={'theme-' + theme}>

@@ -5,7 +5,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from 'tgui-core/components';
+} from 'tgui/components';
 
 import { getColor } from './helpers';
 import { Threshold } from './types';

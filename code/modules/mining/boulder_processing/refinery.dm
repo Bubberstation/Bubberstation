@@ -1,6 +1,6 @@
 /**
  * Your new favorite industrial waste magnet!
- * Accepts boulders and produces sheets of non-metallic materials.
+ * Accepts boulders and produces sheets of non-metalic materials.
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery
@@ -38,7 +38,7 @@
 
 /**
  * Your other new favorite industrial waste magnet!
- * Accepts boulders and produces sheets of metallic materials.
+ * Accepts boulders and produces sheets of metalic materials.
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery/smelter

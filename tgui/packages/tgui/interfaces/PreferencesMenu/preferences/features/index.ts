@@ -6,7 +6,7 @@
 import { Feature } from './base';
 
 // while also preventing downstreams from needing to mutate existing files.
-export const features: Record<string, Feature<unknown>> = {};
+const features: Record<string, Feature<unknown>> = {};
 
 const requireFeature = require.context('./', true, /.tsx$/);
 
@@ -19,3 +19,5 @@ for (const key of requireFeature.keys()) {
     features[featureKey] = feature as Feature<unknown>;
   }
 }
+
+export default features;

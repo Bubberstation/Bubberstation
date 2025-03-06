@@ -42,21 +42,6 @@ type ByondType = {
   windowId: string;
 
   /**
-   * True if javascript is running in BYOND.
-   */
-  IS_BYOND: boolean;
-
-  /**
-   * Version of Trident engine of Internet Explorer. Null if N/A.
-   */
-  TRIDENT: number | null;
-
-  /**
-   * Version of Blink engine of WebView2. Null if N/A.
-   */
-  BLINK: number | null;
-
-  /**
    * If `true`, unhandled errors and common mistakes result in a blue screen
    * of death, which stops this window from handling incoming messages and
    * closes the active instance of tgui datum if there was one.
@@ -100,14 +85,14 @@ type ByondType = {
    *
    * Returns a promise with a key-value object containing all properties.
    */
-  winget(id: string | null): Promise<Record<string, any>>;
+  winget(id: string | null): Promise<object>;
 
   /**
    * Retrieves all properties of the BYOND skin element.
    *
    * Returns a promise with a key-value object containing all properties.
    */
-  winget(id: string | null, propName: '*'): Promise<Record<string, any>>;
+  winget(id: string | null, propName: '*'): Promise<object>;
 
   /**
    * Retrieves an exactly one property of the BYOND skin element,
@@ -123,7 +108,7 @@ type ByondType = {
    *
    * Returns a promise with a key-value object containing listed properties.
    */
-  winget(id: string | null, propNames: string[]): Promise<Record<string, any>>;
+  winget(id: string | null, propNames: string[]): Promise<object>;
 
   /**
    * Assigns properties to BYOND skin elements in bulk.
@@ -190,13 +175,4 @@ interface Window {
   Byond: ByondType;
   __store__: Store<unknown, AnyAction>;
   __augmentStack__: (store: Store) => StackAugmentor;
-
-  // IE IndexedDB stuff.
-  msIndexedDB: IDBFactory;
-  msIDBTransaction: IDBTransaction;
-
-  // 516 byondstorage API.
-  hubStorage: Storage;
-  domainStorage: Storage;
-  serverStorage: Storage;
 }

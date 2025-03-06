@@ -1,4 +1,4 @@
-///The maximum amount of logs that can be generated before they start overwriting each other.
+s///The maximum amount of logs that can be generated before they start overwriting each other.
 #define MAX_LOG_COUNT 300
 
 SUBSYSTEM_DEF(modular_computers)

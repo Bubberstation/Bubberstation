@@ -105,12 +105,12 @@
 
 /datum/supply_pack/security/sidearmcrate
 	name = "Sidearm Crate"
-	desc = "Contains Two Sidearm Beacon, rated for Nanotrasen usage."
+	desc = "Contains Two Sidearm Beacon, rated for NanoTrasen usage."
 	access_view = ACCESS_ARMORY
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/choice_beacon/security_pistol = 2,
 	)
-	crate_name = "Nanotrasen Sidearm Crate"
+	crate_name = "NanoTrasen Sidearm Crate"
 
 // RomFed Gun
 

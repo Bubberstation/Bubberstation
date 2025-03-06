@@ -6,7 +6,7 @@
 
 import { useBackend } from './backend';
 import { useDebug } from './debug';
-import { LoadingScreen } from './interfaces/common/LoadingScreen';
+import { LoadingScreen } from './interfaces/common/LoadingToolbox';
 import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
@@ -69,7 +69,7 @@ export const getRoutedComponent = () => {
     }
   }
 
-  const name = config?.interface?.name;
+  const name = config?.interface;
   const interfacePathBuilders = [
     (name: string) => `./${name}.tsx`,
     (name: string) => `./${name}.jsx`,

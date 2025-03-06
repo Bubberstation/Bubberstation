@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Autofocus, Button, Input, Section, Stack } from 'tgui-core/components';
+
 import {
   KEY_A,
   KEY_DOWN,
@@ -7,9 +7,9 @@ import {
   KEY_ESCAPE,
   KEY_UP,
   KEY_Z,
-} from 'tgui-core/keycodes';
-
+} from '../../../common/keycodes';
 import { useBackend } from '../../backend';
+import { Autofocus, Button, Input, Section, Stack } from '../../components';
 import { InputButtons } from '../common/InputButtons';
 
 type ListInputModalProps = {
@@ -59,9 +59,7 @@ export const ListInputModal = (props: ListInputModalProps) => {
   // User presses a letter key and searchbar is visible
   const onFocusSearch = () => {
     setSearchBarVisible(false);
-    setTimeout(() => {
-      setSearchBarVisible(true);
-    }, 1);
+    setSearchBarVisible(true);
   };
   // User presses a letter key with no searchbar visible
   const onLetterSearch = (key: number) => {
@@ -183,7 +181,6 @@ const ListDisplay = (props) => {
           <Button
             color="transparent"
             fluid
-            id={index}
             key={index}
             onClick={() => onClick(index)}
             onDoubleClick={(event) => {

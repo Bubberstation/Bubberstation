@@ -1,12 +1,8 @@
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 import { VIEWMODE } from './constants';
 
-export type Antagonist = Observable & {
-  antag: string;
-  antag_group: string;
-  antag_icon: string;
-};
+export type Antagonist = Observable & { antag: string; antag_group: string };
 
 export type AntagGroup = [string, Antagonist[]];
 
@@ -36,7 +32,6 @@ export type Observable = {
   mind_job: string;
   name: string;
   orbiters: number;
-  ckey: string;
 }>;
 
 type Critical = {

@@ -1,4 +1,6 @@
 import { uniqBy } from 'common/collections';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -7,9 +9,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import {
   STORAGE_CONS_SUBMODE_CHROMOSOMES,
   STORAGE_CONS_SUBMODE_MUTATIONS,

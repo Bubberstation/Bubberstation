@@ -32,7 +32,7 @@
 /datum/status_effect/shapechange_mob/on_apply()
 	caster_mob.mind?.transfer_to(owner)
 	caster_mob.forceMove(owner)
-	ADD_TRAIT(caster_mob, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(caster_mob, TRAIT_NO_TRANSFORM, REF(src))
 	caster_mob.apply_status_effect(/datum/status_effect/grouped/stasis, STASIS_SHAPECHANGE_EFFECT)
 
 	RegisterSignal(owner, COMSIG_LIVING_PRE_WABBAJACKED, PROC_REF(on_pre_wabbajack))
@@ -86,7 +86,7 @@
 	UnregisterSignal(owner, list(COMSIG_LIVING_PRE_WABBAJACKED, COMSIG_LIVING_DEATH))
 	UnregisterSignal(caster_mob, list(COMSIG_QDELETING, COMSIG_LIVING_DEATH))
 
-	REMOVE_TRAIT(caster_mob, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(caster_mob, TRAIT_NO_TRANSFORM, REF(src))
 	caster_mob.remove_status_effect(/datum/status_effect/grouped/stasis, STASIS_SHAPECHANGE_EFFECT)
 
 	var/atom/former_loc = owner.loc
@@ -194,7 +194,7 @@
 	if(owner?.contents)
 		// Prevent round removal and consuming stuff when losing shapeshift
 		for(var/atom/movable/thing as anything in owner.contents)
-			if(thing == caster_mob || HAS_TRAIT(thing, TRAIT_NOT_BARFABLE))
+			if(thing == caster_mob)
 				continue
 			thing.forceMove(get_turf(owner))
 
@@ -243,7 +243,6 @@
 	desc = "Your form is not your own... you're shapeshifted into another creature! \
 		A wizard could turn you back - or maybe you're stuck like this for good?"
 	icon_state = "shapeshifted"
-	clickable_glow = TRUE
 
 /atom/movable/screen/alert/status_effect/shapeshifted/Click(location, control, params)
 	. = ..()

@@ -1,4 +1,4 @@
-import { Button } from 'tgui-core/components';
+import { Button } from 'tgui/components';
 
 let url: string | null = null;
 

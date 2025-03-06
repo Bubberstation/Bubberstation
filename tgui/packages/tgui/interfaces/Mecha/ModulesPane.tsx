@@ -1,4 +1,8 @@
+import { toFixed } from 'common/math';
+import { classes } from 'common/react';
 import { GasmixParser } from 'tgui/interfaces/common/GasmixParser';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -10,12 +14,8 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { formatPower } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
-import { classes } from 'tgui-core/react';
-
-import { useBackend } from '../../backend';
+} from '../../components';
+import { formatPower } from '../../format';
 import { MainData, MechModule } from './data';
 
 const moduleSlotIcon = (param) => {

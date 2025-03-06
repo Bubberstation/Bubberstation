@@ -18,7 +18,6 @@
 	)
 	summon_lifespan = 5 MINUTES
 	summon_amount = 5
-	summon_respects_density = TRUE
 
 	/// The amount of charges the traps spawn with.
 	var/trap_charges = 1

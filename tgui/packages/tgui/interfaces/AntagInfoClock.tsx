@@ -1,7 +1,6 @@
 // THIS IS A SKYRAT UI FILE
-import { Icon, Section, Stack } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Icon, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules';
 

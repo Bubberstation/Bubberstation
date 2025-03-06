@@ -230,7 +230,7 @@
 /area/solars/tarkon
 	name = "\improper P-T Solar Array"
 	icon_state = "space_near"
-	default_gravity = STANDARD_GRAVITY
+	has_gravity = STANDARD_GRAVITY
 
 // Cargodise Lost Freighter
 

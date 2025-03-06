@@ -1,6 +1,4 @@
-import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
-
+import { Button, Stack } from '../../../../../components';
 import {
   FeatureChoiced,
   FeatureChoicedServerData,
@@ -10,11 +8,9 @@ import {
 } from '../base';
 import { FeatureDropdownInput } from '../dropdowns';
 
-function FeatureTTSDropdownInput(
+const FeatureTTSDropdownInput = (
   props: FeatureValueProps<string, string, FeatureChoicedServerData>,
-) {
-  const { act } = useBackend();
-
+) => {
   return (
     <Stack>
       <Stack.Item grow>
@@ -23,7 +19,7 @@ function FeatureTTSDropdownInput(
       <Stack.Item>
         <Button
           onClick={() => {
-            act('play_voice');
+            props.act('play_voice');
           }}
           icon="play"
           width="100%"
@@ -33,7 +29,7 @@ function FeatureTTSDropdownInput(
       <Stack.Item>
         <Button
           onClick={() => {
-            act('play_voice_robot');
+            props.act('play_voice_robot');
           }}
           icon="robot"
           width="100%"
@@ -42,7 +38,7 @@ function FeatureTTSDropdownInput(
       </Stack.Item>
     </Stack>
   );
-}
+};
 
 export const tts_voice: FeatureChoiced = {
   name: 'Voice',

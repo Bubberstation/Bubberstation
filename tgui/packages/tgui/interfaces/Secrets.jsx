@@ -1,4 +1,7 @@
+import { toFixed } from 'common/math';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Flex,
@@ -7,10 +10,7 @@ import {
   RoundGauge,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const TAB2NAME = [
@@ -425,13 +425,13 @@ const FunTab = (props) => {
             />
           </Stack.Item>
           <Stack.Item>
-            <Button
-              icon="house"
-              lineHeight={lineHeightNormal}
+            <NoticeBox
+              mb={-0.5}
               width={buttonWidthNormal}
-              content="Send Shuttle Back"
-              onClick={() => act('send_shuttle_back')}
-            />
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>

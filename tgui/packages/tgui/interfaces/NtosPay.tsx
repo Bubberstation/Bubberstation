@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,9 +10,7 @@ import {
   Stack,
   Table,
   Tooltip,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 type Data = {

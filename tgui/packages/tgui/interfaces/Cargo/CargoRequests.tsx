@@ -1,8 +1,9 @@
-import { Button, NoticeBox, Section, Table } from 'tgui-core/components';
-import { formatMoney } from 'tgui-core/format';
-import { decodeHtmlEntities } from 'tgui-core/string';
+import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
+import { Button, NoticeBox, Section, Table } from '../../components';
+import { TableCell, TableRow } from '../../components/Table';
+import { formatMoney } from '../../format';
 import { CargoData } from './types';
 
 export function CargoRequests(props) {
@@ -10,20 +11,35 @@ export function CargoRequests(props) {
   const { requests = [], requestonly, can_send, can_approve_requests } = data;
 
   return (
-    <Section fill scrollable>
+    <Section
+      fill
+      scrollable
+      title="Active Requests"
+      buttons={
+        !requestonly && (
+          <Button
+            icon="times"
+            color="transparent"
+            onClick={() => act('denyall')}
+          >
+            Clear
+          </Button>
+        )
+      }
+    >
       {requests.length === 0 && <NoticeBox success>No Requests</NoticeBox>}
       {requests.length > 0 && (
         <Table>
-          <Table.Row header color="gray">
-            <Table.Cell>ID</Table.Cell>
-            <Table.Cell>Object</Table.Cell>
-            <Table.Cell>Orderer</Table.Cell>
-            <Table.Cell>Reason</Table.Cell>
-            <Table.Cell>Cost</Table.Cell>
+          <TableRow header color="gray">
+            <TableCell>ID</TableCell>
+            <TableCell>Object</TableCell>
+            <TableCell>Orderer</TableCell>
+            <TableCell>Reason</TableCell>
+            <TableCell>Cost</TableCell>
             {(!requestonly || !!can_send) && !!can_approve_requests && (
-              <Table.Cell>Actions</Table.Cell>
+              <TableCell>Actions</TableCell>
             )}
-          </Table.Row>
+          </TableRow>
 
           {requests.map((request) => (
             <Table.Row key={request.id} className="candystripe" color="label">

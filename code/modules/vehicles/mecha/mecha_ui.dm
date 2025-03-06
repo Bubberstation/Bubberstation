@@ -10,22 +10,18 @@
 		ui_view.display_to(user)
 
 /obj/vehicle/sealed/mecha/ui_status(mob/user, datum/ui_state/state)
-	var/common_status = min(
+	if(contains(user))
+		return UI_INTERACTIVE
+	return min(
 		ui_status_user_is_abled(user, src),
+		ui_status_user_has_free_hands(user, src),
+		ui_status_user_is_advanced_tool_user(user),
 		ui_status_only_living(user),
-	)
-	var/mob_specific_status = UI_INTERACTIVE
-	if(ishuman(user))
-		mob_specific_status = min(
-			ui_status_user_inside(user, src),
-			ui_status_user_has_free_hands(user, src, allowed_source = VEHICLE_TRAIT),
-			ui_status_user_is_advanced_tool_user(user),
+		max(
+			ui_status_user_is_adjacent(user, src),
+			ui_status_silicon_has_access(user, src),
 		)
-	if(isAI(user))
-		mob_specific_status = ui_status_silicon_has_access(user, src)
-	if(isbrain(user))
-		mob_specific_status = ui_status_user_inside(user, src)
-	return min(common_status, mob_specific_status)
+	)
 
 /obj/vehicle/sealed/mecha/ui_assets(mob/user)
 	return list(

@@ -40,7 +40,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/purple
 	armor_type = /datum/armor/prescription_science
 
-/obj/item/clothing/glasses/science/prescription/Initialize(mapload)
+/obj/item/clothing/glasses/science/prescription/Initialize()
 	. = ..()
 	clothing_traits += list(TRAIT_NEARSIGHTED_CORRECTED)
 

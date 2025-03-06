@@ -1,6 +1,5 @@
-import { Button, Section } from 'tgui-core/components';
-
 import { useBackend } from '../../backend';
+import { Button, Section } from '../../components';
 import { BAYS } from './constants';
 import { PodLauncherData } from './types';
 

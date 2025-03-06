@@ -52,7 +52,9 @@
 		return
 	var/mob/living/jedi = user
 	to_chat(jedi, span_userdanger("You don't feel like you are real anymore."))
-	jedi.dust(just_ash = TRUE)
+	jedi.dust_animation()
+	jedi.spawn_dust()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, attack_hand), jedi), 0.5 SECONDS)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 //The temporary tears in reality. Collapses into nothing, and has a significantly lower gravity pull range, but consumes more widely.

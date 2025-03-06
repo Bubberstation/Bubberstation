@@ -61,7 +61,7 @@
 
 /obj/item/clothing/under/rank/security/constable
 	name = "constable outfit"
-	desc = "A British-looking outfit."
+	desc = "A british looking outfit."
 	icon_state = "constable"
 	inhand_icon_state = null
 	can_adjust = FALSE

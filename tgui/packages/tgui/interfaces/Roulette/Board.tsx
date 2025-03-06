@@ -1,5 +1,4 @@
-import { Box, Table } from 'tgui-core/components';
-
+import { Box, Table } from '../../components';
 import { getNumberColor } from './helpers';
 import { RouletteNumberCell } from './NumberCell';
 

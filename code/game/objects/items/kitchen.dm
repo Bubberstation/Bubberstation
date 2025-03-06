@@ -12,7 +12,6 @@
 	icon = 'icons/obj/service/kitchen.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
-	worn_icon_state = "kitchen_tool"
 
 /obj/item/kitchen/Initialize(mapload)
 	. = ..()
@@ -22,7 +21,6 @@
 	name = "fork"
 	desc = "Pointy."
 	icon_state = "fork"
-	icon_angle = -90
 	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
@@ -108,7 +106,6 @@
 	name = "Kitchen Toolset"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_knife"
-	icon_angle = 0
 	desc = "A breakthrough in synthetic engineering, this tool is a knife programmed to dull when not used for cooking purposes, and can exchange the blade for a rolling pin"
 	force = 0
 	throwforce = 0
@@ -154,7 +151,6 @@
 	icon_state = "rolling_pin"
 	worn_icon_state = "rolling_pin"
 	inhand_icon_state = "rolling_pin"
-	icon_angle = -45
 	force = 8
 	throwforce = 5
 	throw_speed = 3
@@ -188,7 +184,6 @@
 	desc = "Just be careful your food doesn't melt the spoon first."
 	icon_state = "spoon"
 	base_icon_state = "spoon"
-	icon_angle = -90
 	w_class = WEIGHT_CLASS_TINY
 	obj_flags = CONDUCTS_ELECTRICITY
 	force = 2
@@ -211,12 +206,12 @@
 
 /obj/item/kitchen/spoon/create_reagents(max_vol, flags)
 	. = ..()
-	RegisterSignal(reagents, COMSIG_REAGENTS_HOLDER_UPDATED, PROC_REF(on_reagent_change))
+	RegisterSignals(reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_REM_REAGENT), PROC_REF(on_reagent_change))
 
-/obj/item/kitchen/spoon/proc/on_reagent_change(datum/reagents/reagents)
+/obj/item/kitchen/spoon/proc/on_reagent_change(datum/reagents/reagents, ...)
 	SIGNAL_HANDLER
-
 	update_appearance(UPDATE_OVERLAYS)
+	return NONE
 
 /obj/item/kitchen/spoon/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(target.is_open_container())
@@ -330,7 +325,6 @@
 	icon_state = "ladle"
 	base_icon_state = "ladle"
 	inhand_icon_state = "spoon"
-	icon_angle = 90
 	custom_price = PAYCHECK_LOWER * 4
 	spoon_sip_size = 3 // just a taste
 

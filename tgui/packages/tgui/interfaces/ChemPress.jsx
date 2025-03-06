@@ -1,4 +1,5 @@
 // THIS IS A SKYRAT UI FILE
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,9 +7,7 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const ChemPress = (props) => {

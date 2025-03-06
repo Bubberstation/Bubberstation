@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { createUuid } from 'tgui-core/uuid';
+import { createUuid } from 'common/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
 

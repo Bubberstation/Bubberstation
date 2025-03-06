@@ -15,33 +15,26 @@
 	var/cooldown_time = 10 SECONDS
 
 	var/static/list/possible_answers = list(
-		"Yes" = list(
-			"It is certain",
-			"It is decidedly so",
-			"Without a doubt",
-			"Yes definitely",
-			"You may rely on it",
-			"As I see it, yes",
-			"Most likely",
-			"Outlook good",
-			"Yes",
-			"Signs point to yes",
-		),
-		"Maybe" = list(
-			"Reply hazy try again",
-			"Ask again later",
-			"Better not tell you now",
-			"Cannot predict now",
-			"Concentrate and ask again",
-		),
-		"No" = list(
-			"Don't count on it",
-			"My reply is no",
-			"My sources say no",
-			"Outlook not so good",
-			"Very doubtful"
-		),
-	)
+		"It is certain",
+		"It is decidedly so",
+		"Without a doubt",
+		"Yes definitely",
+		"You may rely on it",
+		"As I see it, yes",
+		"Most likely",
+		"Outlook good",
+		"Yes",
+		"Signs point to yes",
+		"Reply hazy try again",
+		"Ask again later",
+		"Better not tell you now",
+		"Cannot predict now",
+		"Concentrate and ask again",
+		"Don't count on it",
+		"My reply is no",
+		"My sources say no",
+		"Outlook not so good",
+		"Very doubtful")
 
 /obj/item/toy/eightball/Initialize(mapload)
 	. = ..()
@@ -84,14 +77,8 @@
 /obj/item/toy/eightball/proc/start_shaking(mob/user)
 	return TRUE
 
-/// Different from get_answer().
-/obj/item/toy/eightball/proc/pick_from_answer_list()
-	//! This is for grabbing an answer from the answer matrix.
-	var/key = pick(possible_answers)
-	return pick(possible_answers[key])
-
 /obj/item/toy/eightball/proc/get_answer()
-	return pick_from_answer_list()
+	return pick(possible_answers)
 
 // A broken magic eightball, it only says "YOU SUCK" over and over again.
 
@@ -102,7 +89,7 @@
 
 /obj/item/toy/eightball/broken/Initialize(mapload)
 	. = ..()
-	fixed_answer = pick_from_answer_list()
+	fixed_answer = pick(possible_answers)
 
 /obj/item/toy/eightball/broken/get_answer()
 	return fixed_answer
@@ -117,10 +104,38 @@
 	//these kind of store the same thing but one is easier to work with.
 	var/list/votes = list()
 	var/list/voted = list()
+	var/static/list/haunted_answers = list(
+		"yes" = list(
+			"It is certain",
+			"It is decidedly so",
+			"Without a doubt",
+			"Yes definitely",
+			"You may rely on it",
+			"As I see it, yes",
+			"Most likely",
+			"Outlook good",
+			"Yes",
+			"Signs point to yes"
+		),
+		"maybe" = list(
+			"Reply hazy try again",
+			"Ask again later",
+			"Better not tell you now",
+			"Cannot predict now",
+			"Concentrate and ask again"
+		),
+		"no" = list(
+			"Don't count on it",
+			"My reply is no",
+			"My sources say no",
+			"Outlook not so good",
+			"Very doubtful"
+		)
+	)
 
 /obj/item/toy/eightball/haunted/Initialize(mapload)
 	. = ..()
-	for (var/answer in possible_answers)
+	for (var/answer in haunted_answers)
 		votes[answer] = 0
 	SSpoints_of_interest.make_point_of_interest(src)
 
@@ -138,7 +153,7 @@
 /obj/item/toy/eightball/haunted/start_shaking(mob/user)
 	// notify ghosts that someone's shaking a haunted eightball
 	// and inform them of the message, (hopefully a yes/no question)
-	selected_message = tgui_input_text(user, "What is your question?", "Eightball", max_length = CHAT_MESSAGE_MAX_LENGTH) || initial(selected_message)
+	selected_message = tgui_input_text(user, "What is your question?", "Eightball", max_length = MAX_MESSAGE_LEN) || initial(selected_message)
 	if (!(src in user.held_items))
 		return FALSE
 	notify_ghosts(
@@ -171,7 +186,7 @@
 
 	voted.Cut()
 
-	var/list/top_options = possible_answers[top_vote]
+	var/list/top_options = haunted_answers[top_vote]
 	return pick(top_options)
 
 // Only ghosts can interact because only ghosts can open the ui
@@ -195,11 +210,11 @@
 	data["question"] = selected_message
 
 	data["answers"] = list()
-	for(var/vote in possible_answers)
+	for(var/vote in haunted_answers)
 		var/list/answer_data = list()
 		answer_data["answer"] = vote
 		answer_data["amount"] = votes[vote]
-		answer_data["selected"] = (voted[user.ckey] == vote)
+		answer_data["selected"] = voted[user.ckey]
 
 		data["answers"] += list(answer_data)
 	return data
@@ -214,7 +229,7 @@
 	switch(action)
 		if("vote")
 			var/selected_answer = params["answer"]
-			if(!(selected_answer in possible_answers))
+			if(!(selected_answer in haunted_answers))
 				return
 			var/oldvote = voted[user.ckey]
 			if(oldvote)

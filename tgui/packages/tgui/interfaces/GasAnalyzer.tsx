@@ -1,6 +1,5 @@
-import { Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Section } from '../components';
 import { Window } from '../layouts';
 import {
   AtmosHandbookContent,

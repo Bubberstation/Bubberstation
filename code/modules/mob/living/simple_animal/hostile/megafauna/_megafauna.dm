@@ -56,18 +56,9 @@
 	var/list/attack_action_types = list()
 	/// Summoning line, said when summoned via megafauna vents.
 	var/summon_line = "I'll kick your ass!"
-	///any delay before we start attacking something near us
-	var/attack_delay = 0.25 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
-
-	AddComponent(\
-		/datum/component/basic_mob_attack_telegraph,\
-		display_telegraph_overlay = FALSE,\
-		telegraph_duration = attack_delay,\
-	)
-
 	AddComponent(/datum/component/seethrough_mob)
 	AddElement(/datum/element/simple_flying)
 	if(gps_name && true_spawn)
@@ -136,7 +127,7 @@
 	if(recovery_time >= world.time)
 		return
 	. = ..()
-	if(target && !CanAttack(target))
+	if(!.)
 		LoseTarget()
 		return
 	if(!isliving(target))
@@ -172,6 +163,8 @@
 		span_danger("[src] disembowels [L]!"),
 		span_userdanger("You feast on [L]'s organs, restoring your health!"))
 
+
+
 /mob/living/simple_animal/hostile/megafauna/CanAttack(atom/the_target)
 	. = ..()
 	if (!.)
@@ -180,6 +173,7 @@
 		return TRUE
 	var/mob/living/living_target = the_target
 	return !living_target.has_status_effect(/datum/status_effect/gutted)
+
 
 /mob/living/simple_animal/hostile/megafauna/ex_act(severity, target)
 	switch (severity)
@@ -221,7 +215,13 @@
 		L.add_mob_memory(/datum/memory/megafauna_slayer, antagonist = src)
 		L.client.give_award(/datum/award/achievement/boss/boss_killer, L)
 		L.client.give_award(achievement_type, L)
+		//SKYRAT EDIT START
+		/*
 		if(crusher_kill && istype(L.get_active_held_item(), /obj/item/kinetic_crusher))
+		*/
+		var/obj/item/held_item = L.get_active_held_item()
+		if(crusher_kill && (istype(held_item, /obj/item/kinetic_gauntlet) || held_item.GetComponent(/datum/component/kinetic_crusher))) //trust me, i hate this just as much as you
+		//SKYRAT EDIT END
 			L.client.give_award(crusher_achievement_type, L)
 		L.client.give_award(/datum/award/score/boss_score, L) //Score progression for bosses killed in general
 		L.client.give_award(score_achievement_type, L) //Score progression for specific boss killed

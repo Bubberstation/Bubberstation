@@ -1,6 +1,5 @@
 /atom/movable/screen/robot
 	icon = 'icons/hud/screen_cyborg.dmi'
-	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/robot/module
 	name = "cyborg module"
@@ -156,7 +155,6 @@
 
 //Installed Module
 	robit.hands = new /atom/movable/screen/robot/module(null, src)
-	robit.hands.icon_state = robit.model ? robit.model.model_select_icon : "nomod"
 	robit.hands.screen_loc = ui_borg_module
 	static_inventory += robit.hands
 

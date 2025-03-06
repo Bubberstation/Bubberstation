@@ -4,10 +4,6 @@
 
 #define PING_COOLDOWN_TIME (3 SECONDS)
 
-#define STATUS_ONLINE 3
-#define STATUS_AWAY 2
-#define STATUS_OFFLINE 1
-
 /datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
 	filedesc = "Chat Client"
@@ -23,8 +19,8 @@
 
 	///The user's screen name.
 	var/username
-	///The id of the last message sent in a channel, used to tell if someone has sent a new message yet.
-	var/last_message_id
+	///The last message you sent in a channel, used to tell if someone has sent a new message yet.
+	var/last_message
 	///The channel currently active in.
 	var/active_channel
 	///If the tablet is in Admin mode, you bypass Passwords and aren't announced when entering a channel.
@@ -62,8 +58,6 @@
 	switch(action)
 		if("PRG_speak")
 			if(!channel || isnull(active_channel))
-				return
-			if(src in channel.muted_clients) // Make sure we aren't muted
 				return
 			var/message = reject_bad_chattext(params["message"], MESSAGE_SIZE)
 			if(!message)
@@ -133,8 +127,8 @@
 			// Now we will generate HTML-compliant file that can actually be viewed/printed.
 			logfile.filename = logname
 			logfile.stored_text = "\[b\]Logfile dump from NTNRC channel [channel.title]\[/b\]\[BR\]"
-			for(var/message_id in channel.messages)
-				logfile.stored_text = "[logfile.stored_text][channel.messages[message_id]]\[BR\]"
+			for(var/logstring in channel.messages)
+				logfile.stored_text = "[logfile.stored_text][logstring]\[BR\]"
 			logfile.stored_text = "[logfile.stored_text]\[b\]Logfile dump completed.\[/b\]"
 			logfile.calculate_size()
 			if(!computer || !computer.store_file(logfile))
@@ -183,23 +177,19 @@
 
 /datum/computer_file/program/chatclient/process_tick(seconds_per_tick)
 	. = ..()
-
-	if(!(src in computer.idle_threads))
-		return
-
-	var/datum/ntnet_conversation/watched_channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
-	if(isnull(watched_channel)) // If we're not in a channel, no need for a message notification header.
-		ui_header = null
-		return
-	if(!length(watched_channel.messages)) // But if there's no messages, we do still wait for a message.
+	var/datum/ntnet_conversation/channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
+	if(src in computer.idle_threads)
 		ui_header = "ntnrc_idle.gif"
-		return
-
-	var/last_message_id_found = watched_channel.messages[length(watched_channel.messages)]
-	if(last_message_id_found == last_message_id)
+		if(channel)
+			// Remember the last message. If there is no message in the channel remember null.
+			last_message = length(channel.messages) ? channel.messages[length(channel.messages)] : null
+		else
+			last_message = null
+		return TRUE
+	if(channel?.messages?.len)
+		ui_header = (last_message == channel.messages[length(channel.messages)] ? "ntnrc_idle.gif" : "ntnrc_new.gif")
+	else
 		ui_header = "ntnrc_idle.gif"
-		return
-	ui_header = "ntnrc_new.gif"
 
 /datum/computer_file/program/chatclient/on_start(mob/living/user)
 	. = ..()
@@ -215,25 +205,6 @@
 		channel.go_offline(src)
 	active_channel = null
 	return ..()
-
-/datum/computer_file/program/chatclient/background_program(mob/user)
-	. = ..()
-	var/datum/ntnet_conversation/open_channel = SSmodular_computers.get_chat_channel_by_id(active_channel)
-	if(isnull(open_channel) || !length(open_channel.messages))
-		last_message_id = null
-		ui_header = null
-		return
-
-	last_message_id = open_channel.messages[length(open_channel.messages)]
-	ui_header = "ntnrc_idle.gif"
-
-/// Converts active/idle/closed to a numerical status for sorting clients by.
-/datum/computer_file/program/chatclient/proc/get_numerical_status()
-	if(src == computer.active_program)
-		return STATUS_ONLINE
-	if(src in computer.idle_threads)
-		return STATUS_AWAY
-	return STATUS_OFFLINE
 
 /datum/computer_file/program/chatclient/ui_static_data(mob/user)
 	var/list/data = list()
@@ -271,7 +242,6 @@
 				"away" = (channel_client in channel_client.computer.idle_threads),
 				"muted" = (channel_client in channel.muted_clients),
 				"operator" = (channel.channel_operator == channel_client),
-				"status" = channel_client.get_numerical_status(),
 				"ref" = REF(channel_client),
 			)))
 		//no fishing for ui data allowed
@@ -280,10 +250,8 @@
 			data["clients"] = clients
 			var/list/messages = list()
 			for(var/i=channel.messages.len to 1 step -1)
-				var/message_id = channel.messages[i]
 				messages.Add(list(list(
-					"key" = message_id,
-					"msg" = channel.messages[message_id],
+					"msg" = channel.messages[i],
 				)))
 			data["messages"] = messages
 			data["is_operator"] = (channel.channel_operator == src) || netadmin_mode
@@ -299,7 +267,3 @@
 #undef MESSAGE_SIZE
 
 #undef PING_COOLDOWN_TIME
-
-#undef STATUS_ONLINE
-#undef STATUS_AWAY
-#undef STATUS_OFFLINE

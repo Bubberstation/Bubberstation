@@ -242,7 +242,7 @@
 	if(iscyborg(hit_atom))
 		return
 
-/obj/item/clothing/shoes/banana_slippers/Initialize(mapload)
+/obj/item/clothing/shoes/banana_slippers/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))

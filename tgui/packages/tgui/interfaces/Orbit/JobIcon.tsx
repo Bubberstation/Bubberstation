@@ -1,5 +1,4 @@
-import { DmIcon, Icon } from 'tgui-core/components';
-
+import { DmIcon, Icon } from '../../components';
 import { JOB2ICON } from '../common/JobToIcon';
 import { Antagonist, Observable } from './types';
 
@@ -63,14 +62,12 @@ export function JobIcon(props: Props) {
 
   // We don't need to cast here but typescript isn't smart enough to know that
   const { icon = '', job = '', mind_icon = '', mind_job = '' } = item;
-  let usedIcon = realNameDisplay ? mind_icon || icon : icon;
-  let usedJob = realNameDisplay ? mind_job || job : job;
+  const usedIcon = realNameDisplay ? mind_icon || icon : icon;
+  const usedJob = realNameDisplay ? mind_job || job : job;
 
   let iconSettings: IconSettings;
-  if ('antag' in item && !realNameDisplay) {
+  if ('antag' in item) {
     iconSettings = antagIcon;
-    usedJob = item.antag;
-    usedIcon = item.antag_icon;
     // BUBBER EDIT ADDITION BEGIN - Custom observe menu icons
   } else if (customJobs.includes(usedJob)) {
     iconSettings = customIcon;

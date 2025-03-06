@@ -1,4 +1,4 @@
-import { ByondUi } from 'tgui-core/components';
+import { ByondUi } from '../components';
 
 export const CharacterPreview = (props: { height: string; id: string }) => {
   return (

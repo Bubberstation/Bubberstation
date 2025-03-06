@@ -1,8 +1,8 @@
 // THIS IS A SKYRAT UI FILE
-import { Button, Icon, Section, Table, Tooltip } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import { classes } from 'common/react';
 
 import { useBackend } from '../backend';
+import { Button, Icon, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 const commandJobs = [

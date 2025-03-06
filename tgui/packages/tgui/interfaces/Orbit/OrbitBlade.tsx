@@ -1,4 +1,7 @@
+import { capitalizeFirst, toTitleCase } from 'common/string';
 import { useContext } from 'react';
+
+import { useBackend } from '../../backend';
 import {
   Button,
   Icon,
@@ -6,10 +9,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from 'tgui-core/components';
-import { capitalizeFirst, toTitleCase } from 'tgui-core/string';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { OrbitContext } from '.';
 import { HEALTH, VIEWMODE } from './constants';
 import { getDepartmentByJob, getDisplayName } from './helpers';

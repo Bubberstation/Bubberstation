@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Input, Stack } from 'tgui-core/components';
+import { Box, Button, Input, Stack } from 'tgui/components';
 
 type Props = {
   color?: string;

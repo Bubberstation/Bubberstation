@@ -8,7 +8,7 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
+} from 'tgui/components';
 
 import { CharacterPreview } from '../common/CharacterPreview';
 import { EditableText } from '../common/EditableText';

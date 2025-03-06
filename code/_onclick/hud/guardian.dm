@@ -15,11 +15,11 @@
 	infodisplay += healths
 
 	using = new /atom/movable/screen/guardian/manifest(null, src)
-	using.screen_loc = ui_hand_position(RIGHT_HANDS)
+	using.screen_loc = ui_hand_position(2)
 	static_inventory += using
 
 	using = new /atom/movable/screen/guardian/recall(null, src)
-	using.screen_loc = ui_hand_position(LEFT_HANDS)
+	using.screen_loc = ui_hand_position(1)
 	static_inventory += using
 
 	using = new owner.toggle_button_type(null, src)
@@ -101,7 +101,6 @@
 
 /atom/movable/screen/guardian
 	icon = 'icons/hud/guardian.dmi'
-	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/guardian/manifest
 	icon_state = "manifest"

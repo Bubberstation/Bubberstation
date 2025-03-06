@@ -1,6 +1,5 @@
-import { Button, Icon, Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Button, Icon, Section } from '../components';
 import { Window } from '../layouts';
 
 type IconInfo = {

@@ -1,13 +1,7 @@
-import {
-  NoticeBox,
-  Section,
-  Stack,
-  Table,
-  Tooltip,
-} from 'tgui-core/components';
-import { toTitleCase } from 'tgui-core/string';
+import { toTitleCase } from 'common/string';
 
 import { useBackend } from '../../backend';
+import { NoticeBox, Section, Stack, Table, Tooltip } from '../../components';
 import { ANTAG2COLOR } from './constants';
 import { getAntagCategories } from './helpers';
 import { OrbitCollapsible } from './OrbitCollapsible';

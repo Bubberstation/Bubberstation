@@ -1,14 +1,7 @@
-import {
-  BlockQuote,
-  Box,
-  Dimmer,
-  Icon,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
+import { BlockQuote, Box, Dimmer, Icon, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Bounty = {

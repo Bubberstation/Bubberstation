@@ -5,7 +5,6 @@
  * * typepath The typepath of the organ to get
  */
 /mob/proc/get_organ_by_type(typepath)
-	RETURN_TYPE(/obj/item/organ)
 	return
 
 /**

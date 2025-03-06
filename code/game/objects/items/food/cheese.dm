@@ -38,7 +38,7 @@
 
 /obj/item/food/cheese/wheel
 	name = "cheese wheel"
-	desc = "A big wheel of delicious Cheddar."
+	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/fat = 10,

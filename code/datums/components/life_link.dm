@@ -123,14 +123,24 @@
 
 /// Update our health on the medical hud
 /datum/component/life_link/proc/update_med_hud_health(mob/living/mob_parent)
-	mob_parent.set_hud_image_state(HEALTH_HUD, "hud[RoundHealth(host)]")
+	var/image/holder = mob_parent.hud_list?[HEALTH_HUD]
+	if(isnull(holder))
+		return
+	holder.icon_state = "hud[RoundHealth(host)]"
+	var/icon/size_check = icon(mob_parent.icon, mob_parent.icon_state, mob_parent.dir)
+	holder.pixel_y = size_check.Height() - ICON_SIZE_Y
 
 /// Update our vital status on the medical hud
 /datum/component/life_link/proc/update_med_hud_status(mob/living/mob_parent)
+	var/image/holder = mob_parent.hud_list?[STATUS_HUD]
+	if(isnull(holder))
+		return
+	var/icon/size_check = icon(mob_parent.icon, mob_parent.icon_state, mob_parent.dir)
+	holder.pixel_y = size_check.Height() - ICON_SIZE_Y
 	if(host.stat == DEAD || HAS_TRAIT(host, TRAIT_FAKEDEATH))
-		mob_parent.set_hud_image_state(STATUS_HUD, "huddead")
+		holder.icon_state = "huddead"
 	else
-		mob_parent.set_hud_image_state(STATUS_HUD, "hudhealthy")
+		holder.icon_state = "hudhealthy"
 
 /// When our status tab updates, draw how much HP our host has in there
 /datum/component/life_link/proc/on_status_tab_updated(mob/living/source, list/items)

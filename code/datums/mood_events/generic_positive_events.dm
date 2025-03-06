@@ -122,13 +122,8 @@
 
 /datum/mood_event/heretics
 	description = "THE HIGHER I RISE, THE MORE I SEE."
-	mood_change = 10 //maybe being a heretic isnt that bad after all
+	mood_change = 10 //maybe being a cultist isnt that bad after all
 	hidden = TRUE
-
-/datum/mood_event/rift_fishing
-	description = "THE MORE I FISH, THE HIGHER I RISE."
-	mood_change = 7
-	timeout = 5 MINUTES
 
 /datum/mood_event/family_heirloom
 	description = "My family heirloom is safe with me."
@@ -290,7 +285,7 @@
 	timeout = 30 SECONDS
 
 /datum/mood_event/gamer_won
-	description = "I love winning video games!"
+	description = "I love winning videogames!"
 	mood_change = 10
 	timeout = 5 MINUTES
 

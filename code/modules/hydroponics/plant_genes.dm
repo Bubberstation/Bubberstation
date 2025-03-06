@@ -2,10 +2,8 @@
 /datum/plant_gene
 	/// The name of the gene.
 	var/name
-	/// Bonus lines displayed on examine.
-	var/description = ""
 	/// The font awesome icon name representing the gene in the seed extractor UI
-	var/icon = FA_ICON_DNA
+	var/icon = "dna"
 	/// Flags that determine if a gene can be modified.
 	var/mutability_flags
 /*
@@ -63,8 +61,7 @@
 	var/formatted_name
 	if(!(mutability_flags & PLANT_GENE_REMOVABLE))
 		formatted_name += "Fragile "
-	var/datum/reagent/reagent = reagent_id
-	formatted_name += "[reagent.name] production [rate*100]%"
+	formatted_name += "[name] production [rate*100]%"
 	return formatted_name
 
 /*
@@ -119,6 +116,8 @@
 /datum/plant_gene/trait
 	/// The rate at which this trait affects something. This can be anything really - why? I dunno.
 	var/rate = 0.05
+	/// Bonus lines displayed on examine.
+	var/description = ""
 	/// Flag - Traits that share an ID cannot be placed on the same plant.
 	var/trait_ids
 	/// Flag - Modifications made to the final product.
@@ -190,7 +189,7 @@
 /// Allows the plant to be squashed when thrown or slipped on, leaving a colored mess and trash type item behind.
 /datum/plant_gene/trait/squash
 	name = "Liquid Contents"
-	icon = FA_ICON_DROPLET
+	icon = "droplet"
 	description = "It may burst open from the internal pressure on impact."
 	trait_ids = THROW_IMPACT_ID | REAGENT_TRANSFER_ID | ATTACK_SELF_ID
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
@@ -250,7 +249,7 @@
 /datum/plant_gene/trait/slip
 	name = "Slippery Skin"
 	description = "Watch your step around this."
-	icon = FA_ICON_PERSON_FALLING
+	icon = "person-falling"
 	rate = 1.6
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -284,7 +283,7 @@
 /datum/plant_gene/trait/cell_charge
 	name = "Electrical Activity"
 	description = "It can electrocute on interaction or recharge batteries when eaten."
-	icon = FA_ICON_BOLT
+	icon = "bolt"
 	rate = 0.2
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -352,7 +351,7 @@
  */
 /datum/plant_gene/trait/glow
 	name = "Bioluminescence"
-	icon = FA_ICON_LIGHTBULB
+	icon = "lightbulb"
 	rate = 0.03
 	description = "It emits a soft glow."
 	trait_ids = GLOW_ID
@@ -381,6 +380,7 @@
  */
 /datum/plant_gene/trait/glow/shadow
 	name = "Shadow Emission"
+	icon = "lightbulb-o"
 	rate = 0.04
 	glow_color = COLOR_BIOLUMINESCENCE_SHADOW
 
@@ -431,7 +431,7 @@
 /datum/plant_gene/trait/teleport
 	name = "Bluespace Activity"
 	description = "It causes people to teleport on interaction."
-	icon = FA_ICON_RIGHT_LEFT
+	icon = "right-left"
 	rate = 0.1
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -496,7 +496,7 @@
 /datum/plant_gene/trait/maxchem
 	name = "Densified Chemicals"
 	description = "The reagent volume is doubled, halving the plant yield instead."
-	icon = FA_ICON_FLASK_VIAL
+	icon = "flask-vial"
 	rate = 2
 	trait_flags = TRAIT_HALVES_YIELD
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
@@ -518,7 +518,7 @@
 /datum/plant_gene/trait/repeated_harvest
 	name = "Perennial Growth"
 	description = "It may be harvested multiple times from the same plant."
-	icon = FA_ICON_CUBES_STACKED
+	icon = "cubes-stacked"
 	/// Don't allow replica pods to be multi harvested, please.
 	seed_blacklist = list(
 		/obj/item/seeds/replicapod,
@@ -534,7 +534,7 @@
 /datum/plant_gene/trait/battery
 	name = "Capacitive Cell Production"
 	description = "It can work like a power cell when wired properly."
-	icon = FA_ICON_CAR_BATTERY
+	icon = "car-battery"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 	/// The number of cables needed to make a battery.
 	var/cables_needed_per_battery = 5
@@ -615,7 +615,7 @@
 /datum/plant_gene/trait/stinging
 	name = "Hypodermic Prickles"
 	description = "It stings, passing some reagents in the process."
-	icon = FA_ICON_SYRINGE
+	icon = "syringe"
 	trait_ids = REAGENT_TRANSFER_ID
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -652,7 +652,7 @@
 /datum/plant_gene/trait/smoke
 	name = "Gaseous Decomposition"
 	description = "It can be smashed to turn its Liquid Contents into smoke."
-	icon = FA_ICON_CLOUD
+	icon = "cloud"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /datum/plant_gene/trait/smoke/on_new_plant(obj/item/our_plant, newloc)
@@ -685,7 +685,7 @@
 /datum/plant_gene/trait/fire_resistance
 	name = "Fire Resistance"
 	description = "Makes the seeds, plant and produce fireproof."
-	icon = FA_ICON_FIRE
+	icon = "fire"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /datum/plant_gene/trait/fire_resistance/on_new_seed(obj/item/seeds/new_seed)
@@ -708,7 +708,7 @@
 /datum/plant_gene/trait/invasive
 	name = "Invasive Spreading"
 	description = "It attempts to spread around if not contained."
-	icon = FA_ICON_VIRUS
+	icon = "virus"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /datum/plant_gene/trait/invasive/on_new_seed(obj/item/seeds/new_seed)
@@ -774,7 +774,7 @@
 /datum/plant_gene/trait/brewing
 	name = "Auto-Distilling Composition"
 	description = "Its nutriments undergo fermentation."
-	icon = FA_ICON_WINE_GLASS
+	icon = "wine-glass"
 	trait_ids = CONTENTS_CHANGE_ID
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -786,7 +786,7 @@
 /datum/plant_gene/trait/juicing
 	name = "Auto-Juicing Composition"
 	description = "Its nutriments turn into juice."
-	icon = FA_ICON_GLASS_WATER
+	icon = "glass-water"
 	trait_ids = CONTENTS_CHANGE_ID
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -798,7 +798,7 @@
 /datum/plant_gene/trait/plant_laughter
 	name = "Hallucinatory Feedback"
 	description = "Makes sounds when people slip on it."
-	icon = FA_ICON_FACE_LAUGH_SQUINT
+	icon = "face-laugh-squint"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 	/// Sounds that play when this trait triggers
 	var/list/sounds = list('sound/items/sitcom_laugh/sitcomLaugh1.ogg', 'sound/items/sitcom_laugh/sitcomLaugh2.ogg', 'sound/items/sitcom_laugh/sitcomLaugh3.ogg')
@@ -834,7 +834,7 @@
 /datum/plant_gene/trait/eyes
 	name = "Oculary Mimicry"
 	description = "It will watch after you."
-	icon = FA_ICON_EYE
+	icon = "eye"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 	/// Our googly eyes appearance.
 	var/mutable_appearance/googly
@@ -852,7 +852,7 @@
 /datum/plant_gene/trait/sticky
 	name = "Prickly Adhesion"
 	description = "It sticks to people when thrown, also passing reagents if stingy."
-	icon = FA_ICON_BANDAGE
+	icon = "bandage"
 	trait_ids = THROW_IMPACT_ID
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
@@ -863,28 +863,14 @@
 
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	our_plant.throwforce = (our_seed.potency/20)
-	var/datum/embedding/plant_embed = our_plant.get_embed()
-	if (!plant_embed)
-		if(our_seed.get_gene(/datum/plant_gene/trait/stinging))
-			our_plant.set_embed(/datum/embedding/spiky_plant)
-		else
-			our_plant.set_embed(/datum/embedding/sticky_plant)
+	if (!our_plant.get_embed())
 		return
 
-	plant_embed.ignore_throwspeed_threshold = TRUE
 	if(our_seed.get_gene(/datum/plant_gene/trait/stinging))
+		our_plant.set_embed(our_plant.get_embed().generate_with_values(ignore_throwspeed_threshold = TRUE))
 		return
 
-	plant_embed.pain_mult = 0
-	plant_embed.jostle_pain_mult = 0
-
-/datum/embedding/sticky_plant
-	pain_mult = 0
-	jostle_pain_mult = 0
-	ignore_throwspeed_threshold = TRUE
-
-/datum/embedding/spiky_plant
-	ignore_throwspeed_threshold = TRUE
+	our_plant.set_embed(our_plant.get_embed().generate_with_values(ignore_throwspeed_threshold = TRUE, pain_mult = 0, jostle_pain_mult = 0))
 
 /**
  * This trait automatically heats up the plant's chemical contents when harvested.
@@ -893,7 +879,7 @@
 /datum/plant_gene/trait/chem_heating
 	name = "Exothermic Activity"
 	description = "It consumes nutriments to heat up other reagents, halving the yield."
-	icon = FA_ICON_TEMPERATURE_ARROW_UP
+	icon = "temperatyre-arrow-up"
 	trait_ids = TEMP_CHANGE_ID
 	trait_flags = TRAIT_HALVES_YIELD
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
@@ -905,7 +891,7 @@
 /datum/plant_gene/trait/chem_cooling
 	name = "Endothermic Activity"
 	description = "It consumes nutriments to cool down other reagents, halving the yield."
-	icon = FA_ICON_TEMPERATURE_ARROW_DOWN
+	icon = "temperature-arrow-down"
 	trait_ids = TEMP_CHANGE_ID
 	trait_flags = TRAIT_HALVES_YIELD
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
@@ -926,7 +912,7 @@
 /datum/plant_gene/trait/preserved
 	name = "Natural Insecticide"
 	description = "It does not attract ants or decompose."
-	icon = FA_ICON_BUG_SLASH
+	icon = "bug-slash"
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /datum/plant_gene/trait/preserved/on_new_plant(obj/item/our_plant, newloc)
@@ -941,7 +927,7 @@
 /datum/plant_gene/trait/carnivory
 	name = "Obligate Carnivory"
 	description = "Pests have positive effect on the plant health."
-	icon = FA_ICON_SPIDER
+	icon = "spider"
 
 /// Plant type traits. Incompatible with one another.
 /datum/plant_gene/trait/plant_type
@@ -953,15 +939,15 @@
 /datum/plant_gene/trait/plant_type/weed_hardy
 	name = "Weed Adaptation"
 	description = "It is a weed that needs no nutrients and doesn't suffer from other weeds."
-	icon = FA_ICON_SEEDLING
+	icon = "seedling"
 
 /// Mushrooms need less light and have a minimum yield.
 /datum/plant_gene/trait/plant_type/fungal_metabolism
 	name = "Fungal Vitality"
 	description = "It is a mushroom that needs no water, less light and can't be overtaken by weeds."
-	icon = FA_ICON_DROPLET_SLASH
+	icon = "droplet-slash"
 
 /// Currently unused and does nothing. Appears in strange seeds.
 /datum/plant_gene/trait/plant_type/alien_properties
 	name ="?????"
-	icon = FA_ICON_DISEASE
+	icon = "reddit-alien"

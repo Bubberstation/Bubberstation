@@ -16,7 +16,7 @@
 //So we're treating each "pair" of limbs as a team, so "both" refers to them
 /mob/proc/get_inactive_hand_index()
 	var/other_hand = 0
-	if(IS_RIGHT_INDEX(active_hand_index))
+	if(!(active_hand_index % 2))
 		other_hand = active_hand_index-1 //finding the matching "left" limb
 	else
 		other_hand = active_hand_index+1 //finding the matching "right" limb
@@ -33,7 +33,7 @@
 
 //Odd = left. Even = right
 /mob/proc/held_index_to_dir(i)
-	if(IS_RIGHT_INDEX(i))
+	if(!(i % 2))
 		return "r"
 	return "l"
 
@@ -103,13 +103,6 @@
 			return I
 	return FALSE
 
-// List version of above proc
-// Returns ret_item, which is either the successfully located item or null
-/mob/proc/is_holding_item_of_types(list/typepaths)
-	for(var/typepath in typepaths)
-		var/ret_item = is_holding_item_of_type(typepath)
-		return ret_item
-
 //Checks if we're holding a tool that has given quality
 //Returns the tool that has the best version of this quality
 /mob/proc/is_holding_tool_quality(quality)
@@ -132,7 +125,7 @@
 	if(i > 2)
 		hand += "upper "
 	var/num = 0
-	if(IS_RIGHT_INDEX(i))
+	if(!(i % 2))
 		num = i-2
 		hand += "right hand"
 	else
@@ -159,7 +152,7 @@
 		return FALSE
 	return !held_items[hand_index]
 
-/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE, visuals_only = FALSE)
+/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE)
 	if(hand_index == null || !held_items.len || (!forced && !can_put_in_hand(I, hand_index)))
 		return FALSE
 
@@ -172,7 +165,7 @@
 	SET_PLANE_EXPLICIT(I, ABOVE_HUD_PLANE, src)
 	if(I.pulledby)
 		I.pulledby.stop_pulling()
-	if(!I.on_equipped(src, ITEM_SLOT_HANDS, initial = visuals_only))
+	if(!I.on_equipped(src, ITEM_SLOT_HANDS))
 		return FALSE
 	update_held_items()
 	I.pixel_x = I.base_pixel_x
@@ -183,12 +176,12 @@
 	return hand_index
 
 //Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_l_hand(obj/item/I, visuals_only = FALSE)
-	return put_in_hand(I, get_empty_held_index_for_side(LEFT_HANDS), visuals_only = visuals_only)
+/mob/proc/put_in_l_hand(obj/item/I)
+	return put_in_hand(I, get_empty_held_index_for_side(LEFT_HANDS))
 
 //Puts the item into the first available right hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_r_hand(obj/item/I, visuals_only = FALSE)
-	return put_in_hand(I, get_empty_held_index_for_side(RIGHT_HANDS), visuals_only = visuals_only)
+/mob/proc/put_in_r_hand(obj/item/I)
+	return put_in_hand(I, get_empty_held_index_for_side(RIGHT_HANDS))
 
 /mob/proc/put_in_hand_check(obj/item/I)
 	return FALSE //nonliving mobs don't have hands
@@ -200,19 +193,19 @@
 	return FALSE
 
 //Puts the item into our active hand if possible. returns TRUE on success.
-/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE, visuals_only = FALSE)
-	return put_in_hand(I, active_hand_index, forced, ignore_animation, visuals_only)
+/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE)
+	return put_in_hand(I, active_hand_index, forced, ignore_animation)
 
 
 //Puts the item into our inactive hand if possible, returns TRUE on success
-/mob/proc/put_in_inactive_hand(obj/item/I, forced = FALSE, visuals_only = FALSE)
-	return put_in_hand(I, get_inactive_hand_index(), forced, visuals_only = visuals_only)
+/mob/proc/put_in_inactive_hand(obj/item/I, forced = FALSE)
+	return put_in_hand(I, get_inactive_hand_index(), forced)
 
 
 //Puts the item our active hand if possible. Failing that it tries other hands. Returns TRUE on success.
 //If both fail it drops it on the floor (or nearby tables if germ sensitive) and returns FALSE.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, ignore_animation = TRUE, visuals_only = FALSE)
+/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, ignore_animation = TRUE)
 	if(QDELETED(I))
 		return FALSE
 
@@ -236,14 +229,14 @@
 						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
 						return TRUE
 
-	if(put_in_active_hand(I, forced, ignore_animation, visuals_only))
+	if(put_in_active_hand(I, forced, ignore_animation))
 		return TRUE
 
 	var/hand = get_empty_held_index_for_side(LEFT_HANDS)
 	if(!hand)
 		hand = get_empty_held_index_for_side(RIGHT_HANDS)
 	if(hand)
-		if(put_in_hand(I, hand, forced, ignore_animation, visuals_only))
+		if(put_in_hand(I, hand, forced, ignore_animation))
 			return TRUE
 	if(del_on_fail)
 		qdel(I)
@@ -355,10 +348,10 @@
 	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
 	I.do_drop_animation(src)
 
-//visibly unequips I but it is NOT MOVED AND REMAINS IN SRC, newloc is for signal handling checks only which hints where you want to move the object after removal
+//visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE, atom/newloc = src)
-	return doUnEquip(I, force, newloc, TRUE, idrop, silent = TRUE)
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
+	return doUnEquip(I, force, null, TRUE, idrop, silent = TRUE)
 
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs
@@ -367,7 +360,7 @@
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
 	PROTECTED_PROC(TRUE)
-	if(!I) //If there's nothing to drop, the drop is automatically successful. If(unEquip) should generally be used to check for TRAIT_NODROP.
+	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
 
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
@@ -413,7 +406,7 @@
 	return items
 
 /**
- * Returns the items that were successfully unequipped.
+ * Returns the items that were succesfully unequipped.
  */
 /mob/living/proc/unequip_everything()
 	var/list/items = list()
@@ -553,6 +546,19 @@
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_quick_equip)))
 
+/// Safely drop everything, without deconstructing the mob
+/mob/proc/drop_everything(del_on_drop, force, del_if_nodrop)
+	. = list()
+	for(var/obj/item/item in src)
+		if(!dropItemToGround(item, force))
+			if(del_if_nodrop && !(item.item_flags & ABSTRACT))
+				qdel(item)
+		if(del_on_drop)
+			qdel(item)
+		//Anything thats not deleted and isn't in the mob, so everything that is succesfully dropped to the ground, is returned
+		if(!QDELETED(item) && !(item in src))
+			. += item
+
 ///proc extender of [/mob/verb/quick_equip] used to make the verb queuable if the server is overloaded
 /mob/proc/execute_quick_equip()
 	var/obj/item/I = get_active_held_item()
@@ -601,19 +607,3 @@
 	for (var/obj/item/implant/storage/internal_bag in implants)
 		belongings += internal_bag.contents
 	return belongings
-
-/// Safely drop everything, without deconstructing the mob
-/mob/living/proc/drop_everything(del_on_drop, force, del_if_nodrop)
-	. = list() //list of items that were successfully dropped
-
-	var/list/all_gear = get_all_gear(recursive = FALSE)
-	for(var/obj/item/item in all_gear)
-		if(dropItemToGround(item, force))
-			if(QDELETED(item)) //DROPDEL can cause this item to be deleted
-				continue
-			if(del_on_drop)
-				qdel(item)
-				continue
-			. += item
-		else if(del_if_nodrop && !(item.item_flags & ABSTRACT))
-			qdel(item)

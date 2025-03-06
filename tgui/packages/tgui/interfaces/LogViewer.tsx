@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Collapsible,
@@ -6,9 +8,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type LogViewerData = {

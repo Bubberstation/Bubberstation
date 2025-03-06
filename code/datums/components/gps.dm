@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 ///Toggles the tracking for the gps
 /datum/component/gps/item/proc/toggletracking(mob/user)
-	if(!user.can_perform_action(parent, ALLOW_RESTING | ALLOW_PAI))
+	if(!user.can_perform_action(parent))
 		return //user not valid to use gps
 	if(emped)
 		to_chat(user, span_warning("It's busted!"))
@@ -137,23 +137,19 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	var/list/signals = list()
 	data["signals"] = list()
 
-	for(var/datum/component/gps/gps as anything in GLOB.GPS_list)
-		if(gps == src || gps.emped || !gps.tracking)
+	for(var/gps in GLOB.GPS_list)
+		var/datum/component/gps/G = gps
+		if(G.emped || !G.tracking || G == src)
 			continue
-		var/turf/pos = get_turf(gps.parent)
-		if(!pos || (!global_mode && pos.z != curr.z))
+		var/turf/pos = get_turf(G.parent)
+		if(!pos || !global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
-		signal["entrytag"] = gps.gpstag //Name or 'tag' of the GPS
+		signal["entrytag"] = G.gpstag //Name or 'tag' of the GPS
 		signal["coords"] = "[pos.x], [pos.y], [pos.z]"
-		// Distance is calculated for the same z-level only, and direction is calculated for crosslinked/neighboring and same z-levels.
-		if(pos.z == curr.z)
+		if(pos.z == curr.z) //Distance/Direction calculations for same z-level only
 			signal["dist"] = max(get_dist(curr, pos), 0) //Distance between the src and remote GPS turfs
 			signal["degrees"] = round(get_angle(curr, pos)) //0-360 degree directional bearing, for more precision.
-		else
-			var/angle = get_linked_z_angle(curr.z, pos.z)
-			if(!isnull(angle))
-				signal["degrees"] = angle
 		signals += list(signal) //Add this signal to the list of signals
 	data["signals"] = signals
 	return data

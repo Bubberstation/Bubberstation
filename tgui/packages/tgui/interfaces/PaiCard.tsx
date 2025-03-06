@@ -1,3 +1,7 @@
+import { decodeHtmlEntities } from 'common/string';
+
+import { BooleanLike } from '../../common/react';
+import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -6,11 +10,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-import { decodeHtmlEntities } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {

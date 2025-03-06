@@ -1,3 +1,6 @@
+import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Collapsible,
@@ -8,10 +11,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const lawtype_to_color = {

@@ -5,7 +5,7 @@
 	///Description shown in the shop, set automatically unless it's hard set by the subtype
 	var/desc
 	///Path of the item that is purchased when ordering us.
-	var/atom/movable/purchase_path
+	var/obj/item/item_path
 	///The category this item will be displayed in.
 	var/category_index = NONE
 	///How much this item costs to order.
@@ -15,9 +15,14 @@
 	. = ..()
 	if(!category_index)
 		CRASH("[type] doesn't have a category_index assigned!")
-	if(!purchase_path)
+	if(!item_path)
 		CRASH("[type] orderable item datum with no item path was created!")
 	if(!name)
-		name = initial(purchase_path.name)
+		name = initial(item_path.name)
 	if(!desc)
-		desc = initial(purchase_path.desc)
+		desc = initial(item_path.desc)
+
+/datum/orderable_item/Destroy(force)
+	if(item_path)
+		qdel(item_path)
+	return ..()

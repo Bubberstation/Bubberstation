@@ -70,7 +70,7 @@
 
 /datum/loadout_item/head/white_cap
 	name = "Cap (White)"
-	item_path = /obj/item/clothing/head/soft/mime
+	item_path = /obj/item/clothing/head/soft
 
 /datum/loadout_item/head/yellow_cap
 	name = "Cap (Yellow)"
@@ -151,12 +151,12 @@
 /datum/loadout_item/head/geranium
 	name = "Geranium"
 	item_path = /obj/item/food/grown/poppy/geranium
-
+	
 /datum/loadout_item/head/harebell
 	name = "Harebell"
 	item_path = /obj/item/food/grown/harebell
 
 /datum/loadout_item/head/wig
-	name = "Natural Wig"
+	name = "Wig"
 	item_path = /obj/item/clothing/head/wig/natural
 	additional_displayed_text = list("Hair Color")

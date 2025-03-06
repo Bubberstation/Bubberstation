@@ -28,32 +28,29 @@
 /datum/ai_movement/proc/reset_pathing_failures(datum/ai_controller/controller)
 	controller.consecutive_pathing_attempts = 0
 
+///Should the movement be allowed to happen? return TRUE if it can, FALSE otherwise
 /datum/ai_movement/proc/allowed_to_move(datum/move_loop/source)
 	SHOULD_BE_PURE(TRUE)
 
 	var/atom/movable/pawn = source.moving
 	var/datum/ai_controller/controller = source.extra_info
 
+	var/can_move = TRUE
 	if((controller.ai_traits & STOP_MOVING_WHEN_PULLED) && pawn.pulledby) //Need to store more state. Annoying.
-		return FALSE
+		can_move = FALSE
 
 	if(!isturf(pawn.loc)) //No moving if not on a turf
-		return FALSE
+		can_move = FALSE
 
 	if(isliving(pawn))
 		var/mob/living/pawn_mob = pawn
 		if(!(pawn_mob.mobility_flags & MOBILITY_MOVE))
-			return FALSE
-		// Bandaid fix: AI controllers don't call /Process_Grab because it's a client proc,
-		// and thus, we need to check that grabbed mobs cuffed/crit can't move
-		// That proc should probably be moved onto the mob instead of clients
-		if(INCAPACITATED_IGNORING(pawn_mob, INCAPABLE_STASIS) && pawn.pulledby)
-			return FALSE
+			can_move = FALSE
 
 	if(HAS_TRAIT(pawn, TRAIT_NO_TRANSFORM))
-		return FALSE
+		can_move = FALSE
 
-	return TRUE
+	return can_move
 
 ///Anything to do before moving; any checks if the pawn should be able to move should be placed in allowed_to_move() and called by this proc
 /datum/ai_movement/proc/pre_move(datum/move_loop/source)

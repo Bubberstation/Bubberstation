@@ -1,4 +1,8 @@
+import { BooleanLike, classes } from 'common/react';
+import { decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,12 +13,8 @@ import {
   Stack,
   Tabs,
   TextArea,
-} from 'tgui-core/components';
-import { formatTime } from 'tgui-core/format';
-import { BooleanLike, classes } from 'tgui-core/react';
-import { decodeHtmlEntities } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { formatTime } from '../format';
 import { Window } from '../layouts';
 
 type RoleInfo = {

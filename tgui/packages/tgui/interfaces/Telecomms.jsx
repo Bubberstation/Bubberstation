@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -8,9 +9,7 @@ import {
   NumberInput,
   Section,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
 

@@ -10,11 +10,6 @@
 	projectile_type = /obj/projectile/bullet/shotgun_slug
 	newtonian_force = 1.25
 
-/obj/item/ammo_casing/shotgun/milspec
-	name = "shotgun milspec slug"
-	desc = "A 12 gauge milspec lead slug."
-	projectile_type = /obj/projectile/bullet/shotgun_slug/milspec
-
 /obj/item/ammo_casing/shotgun/executioner
 	name = "executioner slug"
 	desc = "A 12 gauge lead slug purpose built to annihilate flesh on impact."
@@ -50,9 +45,8 @@
 	desc = "A shotgun shell which fires a spread of incendiary pellets."
 	icon_state = "ishell2"
 	projectile_type = /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
-	pellets = 6
-	variance = 15
-	randomspread = TRUE
+	pellets = 4
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/stunslug
 	name = "taser slug"
@@ -87,8 +81,7 @@
 	icon_state = "gshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
-	variance = 15
-	randomspread = TRUE
+	variance = 25
 
 /obj/item/ammo_casing/shotgun/buckshot/old
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/old
@@ -104,11 +97,6 @@
 	var/datum/effect_system/fluid_spread/smoke/smoke = new
 	smoke.set_up(0, holder = fired_from, location = fired_from)
 
-/obj/item/ammo_casing/shotgun/buckshot/milspec
-	name = "milspec buckshot shell"
-	desc = "A 12 gauge buckshot shell, used by various paramilitaries and mercernary forces."
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/milspec
-
 /obj/item/ammo_casing/shotgun/buckshot/spent
 	projectile_type = null
 
@@ -118,8 +106,7 @@
 	icon_state = "rshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
-	variance = 15
-	randomspread = TRUE
+	variance = 20
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
 /obj/item/ammo_casing/shotgun/incapacitate
@@ -138,8 +125,7 @@
 	projectile_type = /obj/projectile/bullet/pellet/flechette
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2, /datum/material/glass=SMALL_MATERIAL_AMOUNT*1)
 	pellets = 6
-	variance = 10
-	randomspread = TRUE
+	variance = 20
 
 /obj/item/ammo_casing/shotgun/ion
 	name = "ion shell"
@@ -148,8 +134,7 @@
 	icon_state = "ionshell"
 	projectile_type = /obj/projectile/ion/weak
 	pellets = 4
-	variance = 15
-	randomspread = TRUE
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/scatterlaser
 	name = "scatter laser shell"
@@ -157,8 +142,7 @@
 	icon_state = "lshell"
 	projectile_type = /obj/projectile/beam/scatter
 	pellets = 6
-	variance = 15
-	randomspread = TRUE
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/scatterlaser/emp_act(severity)
 	. = ..()

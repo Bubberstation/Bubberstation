@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   BlockQuote,
@@ -5,9 +6,7 @@ import {
   ProgressBar,
   Section,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosSkillTracker = (props) => {

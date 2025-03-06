@@ -1,3 +1,6 @@
+import { toTitleCase } from 'common/string';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -7,11 +10,8 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-import { formatSiUnit } from 'tgui-core/format';
-import { toTitleCase } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
+import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 import { Material } from './Fabrication/Types';
 

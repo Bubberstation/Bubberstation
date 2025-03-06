@@ -53,6 +53,3 @@
 
 /// Catches any invalid footstep types set for humans
 /datum/unit_test/focus_only/humanstep_validity
-
-/// Checks icon states generated at runtime are valid
-/datum/unit_test/focus_only/runtime_icon_states

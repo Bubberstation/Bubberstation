@@ -90,7 +90,7 @@
 	balloon_alert(user, "deconstructing barricade...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return
-	loc.balloon_alert(user, "barricade deconstructed")
+	balloon_alert(user, "barricade deconstructed")
 	tool.play_tool_sound(src)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 	qdel(src)

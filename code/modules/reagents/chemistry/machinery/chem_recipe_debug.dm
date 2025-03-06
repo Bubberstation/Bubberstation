@@ -29,7 +29,7 @@
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "HPLC_debug"
 	density = TRUE
-	use_power = NO_POWER_USE
+	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.4
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
 
 	///Temperature to be imposed on the reaction
@@ -63,7 +63,7 @@
 	///The target reagents to we are working with. can vary if an reaction requires a specific container
 	var/datum/reagents/target_reagents
 	///The beaker inside this machine, if null will create a new one
-	var/obj/item/reagent_containers/container
+	var/obj/item/reagent_containers/cup/beaker/bluespace/beaker
 	///The default reagent container required for the selected test reaction if any
 	var/obj/item/reagent_containers/required_container
 
@@ -72,7 +72,7 @@
 
 	create_reagents(MAXIMUM_HOLDER_VOLUME)
 	target_reagents = reagents
-	RegisterSignal(reagents, COMSIG_REAGENTS_REACTION_STEP, PROC_REF(on_reaction_step))
+	RegisterSignal(reagents, COMSIG_REAGENTS_REACTION_STEP, TYPE_PROC_REF(/obj/machinery/chem_recipe_debug, on_reaction_step))
 	register_context()
 
 	if(isnull(all_reaction_list))
@@ -85,47 +85,47 @@
 	reactions_to_test.Cut()
 	target_reagents = null
 	edit_reaction = null
-	QDEL_NULL(container)
+	QDEL_NULL(beaker)
 	QDEL_NULL(required_container)
-	return ..()
+	UnregisterSignal(reagents, COMSIG_REAGENTS_REACTION_STEP)
+	. = ..()
 
 /obj/machinery/chem_recipe_debug/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item) || (held_item.item_flags & ABSTRACT) || (held_item.flags_1 & HOLOGRAM_1))
 		return NONE
 
-	if(!QDELETED(container))
+	if(!QDELETED(beaker))
 		if(is_reagent_container(held_item)  && held_item.is_open_container())
-			context[SCREENTIP_CONTEXT_LMB] = "Replace container"
+			context[SCREENTIP_CONTEXT_LMB] = "Replace beaker"
 			return CONTEXTUAL_SCREENTIP_SET
 	else if(is_reagent_container(held_item)  && held_item.is_open_container())
-		context[SCREENTIP_CONTEXT_LMB] = "Insert container"
+		context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/chem_recipe_debug/examine(mob/user)
 	. = ..()
-	if(!QDELETED(container))
-		. += span_notice("A container of [container.reagents.maximum_volume]u capacity is inside.")
+	if(!QDELETED(beaker))
+		. += span_notice("A beaker of [beaker.reagents.maximum_volume]u capacity is inside.")
 	else
-		. += span_notice("No container is present. A new will be created when ejecting.")
+		. += span_notice("No beaker is present. A new will be created when ejecting.")
 
 /obj/machinery/chem_recipe_debug/Exited(atom/movable/gone, direction)
 	. = ..()
-	if(gone == container)
-		container = null
+	if(gone == beaker)
+		beaker = null
 
-/obj/machinery/chem_recipe_debug/item_interaction(mob/living/user, obj/item/held_item, list/modifiers)
-	. = NONE
+/obj/machinery/chem_recipe_debug/attackby(obj/item/held_item, mob/user, params)
 	if((held_item.item_flags & ABSTRACT) || (held_item.flags_1 & HOLOGRAM_1))
-		return
+		return ..()
 
 	if(is_reagent_container(held_item)  && held_item.is_open_container())
-		if(!QDELETED(container))
-			try_put_in_hand(container, user)
+		. = TRUE
+		if(!QDELETED(beaker))
+			try_put_in_hand(beaker, user)
 		if(!user.transferItemToLoc(held_item, src))
-			return ITEM_INTERACT_FAILURE
-		container = held_item
-		return ITEM_INTERACT_SUCCESS
+			return
+		beaker = held_item
 
 /**
  * Extracts a human readable name for this chemical reaction
@@ -155,11 +155,12 @@
 		var/datum/chemical_reaction/test_reaction = reactions_to_test[current_reaction_index || 1]
 		switch(temp_mode)
 			if(USE_MINIMUM_TEMPERATURE)
-				return test_reaction.required_temp
+				return test_reaction.required_temp + (test_reaction.is_cold_recipe ? - 20 : 20) //20k is good enough offset to account for reaction rate rounding
 			if(USE_OPTIMAL_TEMPERATURE)
 				return test_reaction.optimal_temp
 			if(USE_OVERHEAT_TEMPERATURE)
 				return test_reaction.overheat_temp
+
 
 /**
  * Adjusts the temperature, ph & purity of the holder
@@ -172,7 +173,7 @@
 
 	var/target_temperature = decode_target_temperature()
 	if(!isnull(target_temperature))
-		target_reagents.adjust_thermal_energy((target_temperature - target_reagents.chem_temp) * 0.45 * seconds_per_tick * target_reagents.heat_capacity())
+		target_reagents.adjust_thermal_energy((target_temperature - target_reagents.chem_temp) * 0.4 * seconds_per_tick * SPECIFIC_HEAT_DEFAULT * target_reagents.total_volume)
 
 	if(use_forced_purity)
 		target_reagents.set_all_reagents_purity(forced_purity)
@@ -186,7 +187,7 @@
 /obj/machinery/chem_recipe_debug/process(seconds_per_tick)
 	if(!target_reagents.is_reacting)
 		adjust_environment(seconds_per_tick)
-		target_reagents.handle_reactions()
+	target_reagents.handle_reactions()
 
 	//send updates to ui. faster than SStgui.update_uis
 	for(var/datum/tgui/ui in src.open_uis)
@@ -333,11 +334,12 @@
 	.["editReaction"] = reaction_data
 
 	var/list/beaker_data = null
-	if(!QDELETED(container) || target_reagents.total_volume)
+	if(target_reagents.reagent_list.len)
 		beaker_data = list()
 		beaker_data["maxVolume"] = target_reagents.maximum_volume
 		beaker_data["pH"] = round(target_reagents.ph, 0.01)
-		beaker_data["currentVolume"] = target_reagents.total_volume
+		beaker_data["purity"] = round(target_reagents.get_average_purity(), 0.01)
+		beaker_data["currentVolume"] = round(target_reagents.total_volume, CHEMICAL_VOLUME_ROUNDING)
 		beaker_data["currentTemp"] = round(target_reagents.chem_temp, 1)
 		beaker_data["purity"] = round(target_reagents.get_average_purity(), 0.001)
 		var/list/beakerContents = list()
@@ -449,7 +451,7 @@
 			return TRUE
 
 		if("pick_reaction")
-			var/mode = tgui_alert(usr, "Play all or a specific reaction?","Select Reaction", list("All", "Specific"))
+			var/mode = tgui_alert(usr, "Play all or an specific reaction?","Select Reaction", list("All", "Specific"))
 			if(mode == "All")
 				reactions_to_test.Cut()
 				for(var/reaction as anything in all_reaction_list)
@@ -529,7 +531,7 @@
 				required_container = new test_reaction.required_container(src)
 				required_container.create_reagents(MAXIMUM_HOLDER_VOLUME)
 				target_reagents = required_container.reagents
-				RegisterSignal(target_reagents, COMSIG_REAGENTS_REACTION_STEP, PROC_REF(on_reaction_step))
+				RegisterSignal(target_reagents, COMSIG_REAGENTS_REACTION_STEP, TYPE_PROC_REF(/obj/machinery/chem_recipe_debug, on_reaction_step))
 
 			//append everything required
 			var/list/reagent_list = list()
@@ -664,26 +666,12 @@
 			tgui_alert(ui.user, "Saved to [dest]")
 
 		if("eject")
-			//initialize a new container for us
-			if(QDELETED(container))
-				if(QDELETED(required_container))
-					container = new /obj/item/reagent_containers/cup/beaker/bluespace(src)
-				else
-					container = new required_container.type(src)
-
-			//transfer all reagents & ingredients if we are using a soup pot
-			container.reagents.clear_reagents()
-			target_reagents.trans_to(container, target_reagents.total_volume)
-			if(istype(container, /obj/item/reagent_containers/cup/soup_pot) && istype(required_container, /obj/item/reagent_containers/cup/soup_pot))
-				var/obj/item/reagent_containers/cup/soup_pot/pot = container
-				for(var/obj/item as anything in pot.added_ingredients)
-					qdel(item)
-				var/obj/item/reagent_containers/cup/soup_pot/holder = required_container
-				for(var/obj/item as anything in holder.added_ingredients)
-					item.forceMove(pot)
-					LAZYADD(pot.added_ingredients, item)
-			try_put_in_hand(container, ui.user)
-
+			if(!target_reagents.total_volume)
+				return
+			if(QDELETED(beaker))
+				beaker = new /obj/item/reagent_containers/cup/beaker/bluespace(src)
+			target_reagents.trans_to(beaker, target_reagents.total_volume)
+			try_put_in_hand(beaker, ui.user)
 			return TRUE
 
 #undef USE_REACTION_TEMPERATURE

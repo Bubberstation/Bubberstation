@@ -1,7 +1,6 @@
 // THIS IS A SKYRAT UI FILE
-import { Stack } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Stack } from '../components';
 import { Objective } from './common/Objectives';
 
 type Info = {
@@ -13,9 +12,7 @@ export const Rules = (props) => {
   const { data } = useBackend<Info>();
   const { antag_name } = data;
   switch (antag_name) {
-    case 'Abductor Agent':
-    case 'Abductor Scientist':
-    case 'Abductor Solo':
+    case 'Abductor Agent' || 'Abductor Scientist' || 'Abductor Solo':
       return (
         // Bubberstation Edit
         <Stack vertical>
@@ -29,6 +26,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Drifting Contractor':
       return (
         // Bubberstation Edit
@@ -43,6 +41,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Cortical Borer':
       return (
         // Bubberstation Edit
@@ -57,6 +56,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Venus Human Trap':
       return (
         // Bubberstation Edit
@@ -71,6 +71,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Obsessed':
       return (
         // Bubberstation Edit
@@ -85,6 +86,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Revenant':
       return (
         // Bubberstation Edit
@@ -99,6 +101,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Space Dragon':
       return (
         // Bubberstation Edit
@@ -113,6 +116,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Space Pirate':
       return (
         // Bubberstation Edit
@@ -127,6 +131,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Blob':
       return (
         // Bubberstation Edit
@@ -141,6 +146,7 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
     case 'Changeling':
       return (
         // Bubberstation Edit
@@ -281,5 +287,6 @@ export const Rules = (props) => {
           </Stack.Item>
         </Stack>
       );
+      break;
   }
 };

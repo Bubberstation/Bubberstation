@@ -7,7 +7,7 @@ import {
   Section,
   Table,
   Tooltip,
-} from 'tgui-core/components';
+} from 'tgui/components';
 
 import { SOFTWARE_DESC } from './constants';
 import { PaiData } from './types';

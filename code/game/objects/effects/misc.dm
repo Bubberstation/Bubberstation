@@ -15,7 +15,7 @@
 /obj/effect/beam/singularity_act()
 	return
 
-/obj/effect/beam/singularity_pull(atom/singularity, current_size)
+/obj/effect/beam/singularity_pull()
 	return
 
 /obj/effect/spawner

@@ -1,5 +1,8 @@
 // THIS IS A SKYRAT UI FILE
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,10 +12,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules';
 

@@ -4,14 +4,13 @@
  * @license MIT
  */
 
-import { Box } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
+import { classes } from 'common/react';
 
 import { useBackend } from '../backend';
+import { Box } from '../components';
+import { BoxProps } from '../components/Box';
 import { useDebug } from '../debug';
 import { Layout } from './Layout';
-
-type BoxProps = React.ComponentProps<typeof Box>;
 
 type Props = Partial<{
   theme: string;

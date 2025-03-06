@@ -74,7 +74,7 @@
 
 		to_chat(user, span_notice("You dump items from [tool] into the grinder."))
 		for(var/obj/item/obj_item in tool.contents)
-			blend(obj_item)
+			grind(obj_item)
 		return ITEM_INTERACT_SUCCESS
 	else if(!tool.tool_behaviour)
 		var/action = "[grinding ? "grind" : "juice"]"
@@ -83,7 +83,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		to_chat(user, span_notice("You attempt to [action] [tool]."))
-		blend(tool)
+		grind(tool)
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/plumbing/grinder_chemical/CanAllowThrough(atom/movable/mover, border_dir)
@@ -97,45 +97,33 @@
 /obj/machinery/plumbing/grinder_chemical/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 
-	if(!isitem(AM))
-		return
-
-	INVOKE_ASYNC(src, PROC_REF(blend), AM)
-
-
-/obj/machinery/plumbing/grinder_chemical/blended(obj/item/blended_item, grinded)
-	//don't delete slime extracts
-	if(istype(blended_item, /obj/item/slime_extract))
-		//so you can't regrind them for extra stuff
-		blended_item.grind_results = null
-
-		blended_item.forceMove(drop_location())
-
-		return TRUE
-
-	return ..()
+	INVOKE_ASYNC(src, PROC_REF(grind), AM)
 
 /**
  * Grinds/Juices the atom
  * Arguments
  * * [AM][atom] - the atom to grind or juice
  */
-/obj/machinery/plumbing/grinder_chemical/proc/blend(obj/item/I)
+/obj/machinery/plumbing/grinder_chemical/proc/grind(atom/AM)
 	PRIVATE_PROC(TRUE)
 
 	if(!is_operational || !anchored)
 		return
 	if(reagents.holder_full())
 		return
+	if(!isitem(AM))
+		return
 
+	var/obj/item/I = AM
 	if((I.item_flags & ABSTRACT) || (I.flags_1 & HOLOGRAM_1))
 		return
-	if(!I.blend_requirements(src))
-		return
 
+	var/result
 	if(!grinding)
-		I.juice(reagents, usr, src)
+		result = I.juice(reagents, usr)
 	else if(length(I.grind_results) || I.reagents?.total_volume)
-		I.grind(reagents, usr, src)
+		result = I.grind(reagents, usr)
 
 	use_energy(active_power_usage)
+	if(result)
+		qdel(I)

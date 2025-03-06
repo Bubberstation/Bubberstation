@@ -1,3 +1,6 @@
+import { decodeHtmlEntities } from 'common/string';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,10 +9,7 @@ import {
   Image,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { decodeHtmlEntities } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const Trophycase = (props) => {

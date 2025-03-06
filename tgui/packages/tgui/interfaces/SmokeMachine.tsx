@@ -1,3 +1,6 @@
+import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Box,
@@ -5,10 +8,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 import { Beaker } from './common/BeakerDisplay';
 

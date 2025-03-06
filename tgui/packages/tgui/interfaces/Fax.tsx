@@ -1,7 +1,6 @@
-import { Box, Button, LabeledList, Section, Table } from 'tgui-core/components';
-
 import { sortBy } from '../../common/collections';
 import { useBackend } from '../backend';
+import { Box, Button, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 type FaxData = {

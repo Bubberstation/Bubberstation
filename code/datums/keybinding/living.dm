@@ -16,19 +16,9 @@
 	. = ..()
 	if(.)
 		return
-	var/mob/living/owner = user.mob
-	owner.resist()
-	if (owner.hud_used?.resist_icon)
-		owner.hud_used.resist_icon.icon_state = "[owner.hud_used.resist_icon.base_icon_state]_on"
+	var/mob/living/L = user.mob
+	L.resist()
 	return TRUE
-
-/datum/keybinding/living/resist/up(client/user)
-	. = ..()
-	if(.)
-		return
-	var/mob/living/owner = user.mob
-	if (owner.hud_used?.resist_icon)
-		owner.hud_used.resist_icon.icon_state = owner.hud_used.resist_icon.base_icon_state
 
 /datum/keybinding/living/look_up
 	// hotkey_keys = list("L") // ORIGINAL
@@ -47,7 +37,6 @@
 	return TRUE
 
 /datum/keybinding/living/look_up/up(client/user)
-	. = ..()
 	var/mob/living/L = user.mob
 	L.end_look_up()
 	return TRUE
@@ -69,7 +58,6 @@
 	return TRUE
 
 /datum/keybinding/living/look_down/up(client/user)
-	. = ..()
 	var/mob/living/L = user.mob
 	L.end_look_down()
 	return TRUE
@@ -148,7 +136,6 @@
 	return TRUE
 
 /datum/keybinding/living/toggle_move_intent/up(client/user)
-	. = ..()
 	var/mob/living/M = user.mob
 	M.toggle_move_intent()
 	return TRUE

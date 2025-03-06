@@ -1,4 +1,5 @@
 // THIS IS A SKYRAT UI FILE
+import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -7,9 +8,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const ArmamentStation = (props) => {

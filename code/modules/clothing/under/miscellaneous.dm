@@ -34,9 +34,7 @@
 	desc = "Groovy!"
 	icon_state = "psyche"
 	inhand_icon_state = "p_suit"
-
-/obj/item/clothing/under/misc/psyche/get_general_color(icon/base_icon)
-	return "#3f3f3f"
+	digitigrade_greyscale_colors = "#3f3f3f"
 
 /obj/item/clothing/under/misc/vice_officer
 	name = "vice officer's jumpsuit"
@@ -63,7 +61,7 @@
 
 /obj/item/clothing/under/misc/adminsuit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -25)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -15)
 
 /datum/armor/clothing_under/adminsuit
 	melee = 100

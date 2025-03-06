@@ -1,6 +1,5 @@
-import { Box, Button, Icon, ProgressBar, Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Box, Button, Icon, ProgressBar, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosSpectreMeter = (props) => {

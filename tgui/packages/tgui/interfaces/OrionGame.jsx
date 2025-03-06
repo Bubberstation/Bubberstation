@@ -1,6 +1,5 @@
-import { Box, Button, Divider, Section, Stack } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Box, Button, Divider, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 const buttonWidth = 2;

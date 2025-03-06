@@ -1,4 +1,5 @@
 import { sortBy } from 'common/collections';
+import { BooleanLike } from 'common/react';
 import {
   ComponentType,
   createElement,
@@ -6,7 +7,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useBackend } from 'tgui/backend';
+
+import { sendAct, useBackend } from '../../../../backend';
 import {
   Box,
   Button,
@@ -16,15 +18,12 @@ import {
   Slider,
   Stack,
   TextArea, // SKYRAT EDIT ADDITION
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+} from '../../../../components';
+import { createSetPreference, PreferencesMenuData } from '../../data';
+import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 
-import { createSetPreference, PreferencesMenuData } from '../../types';
-import { useServerPrefs } from '../../useServerPrefs';
-
-export function sortChoices(array: [string, ReactNode][]) {
-  return sortBy(array, ([name]) => name);
-}
+export const sortChoices = (array: [string, ReactNode][]) =>
+  sortBy(array, ([name]) => name);
 
 export type Feature<
   TReceiving,
@@ -54,6 +53,7 @@ export type FeatureValueProps<
   TSending = TReceiving,
   TServerData = undefined,
 > = Readonly<{
+  act: typeof sendAct;
   featureId: string;
   handleSetValue: (newValue: TSending) => void;
   serverData: TServerData | undefined;
@@ -61,15 +61,12 @@ export type FeatureValueProps<
   value: TReceiving;
 }>;
 
-export function FeatureColorInput(props: FeatureValueProps<string>) {
-  const { act } = useBackend<PreferencesMenuData>();
-  const { featureId, shrink, value } = props;
-
+export const FeatureColorInput = (props: FeatureValueProps<string>) => {
   return (
     <Button
       onClick={() => {
-        act('set_color_preference', {
-          preference: featureId,
+        props.act('set_color_preference', {
+          preference: props.featureId,
         });
       }}
     >
@@ -77,12 +74,14 @@ export function FeatureColorInput(props: FeatureValueProps<string>) {
         <Stack.Item>
           <Box
             style={{
-              background: value.startsWith('#') ? value : `#${value}`,
+              background: props.value.startsWith('#')
+                ? props.value
+                : `#${props.value}`,
               border: '2px solid white',
               boxSizing: 'content-box',
               height: '11px',
               width: '11px',
-              ...(shrink
+              ...(props.shrink
                 ? {
                     margin: '1px',
                   }
@@ -91,41 +90,39 @@ export function FeatureColorInput(props: FeatureValueProps<string>) {
           />
         </Stack.Item>
 
-        {!shrink && <Stack.Item>Change</Stack.Item>}
+        {!props.shrink && <Stack.Item>Change</Stack.Item>}
       </Stack>
     </Button>
   );
-}
+};
 
 export type FeatureToggle = Feature<BooleanLike, boolean>;
 
-export function CheckboxInput(props: FeatureValueProps<BooleanLike, boolean>) {
-  const { handleSetValue, value } = props;
-
-  return (
-    <Button.Checkbox
-      checked={!!value}
-      onClick={() => {
-        handleSetValue(!value);
-      }}
-    />
-  );
-}
-
-export function CheckboxInputInverse(
+export const CheckboxInput = (
   props: FeatureValueProps<BooleanLike, boolean>,
-) {
-  const { handleSetValue, value } = props;
-
+) => {
   return (
     <Button.Checkbox
-      checked={!value}
+      checked={!!props.value}
       onClick={() => {
-        handleSetValue(!value);
+        props.handleSetValue(!props.value);
       }}
     />
   );
-}
+};
+
+export const CheckboxInputInverse = (
+  props: FeatureValueProps<BooleanLike, boolean>,
+) => {
+  return (
+    <Button.Checkbox
+      checked={!props.value}
+      onClick={() => {
+        props.handleSetValue(!props.value);
+      }}
+    />
+  );
+};
 
 export function createDropdownInput<T extends string | number = string>(
   // Map of value to display texts
@@ -133,12 +130,10 @@ export function createDropdownInput<T extends string | number = string>(
   dropdownProps?: Record<T, unknown>,
 ): FeatureValue<T> {
   return (props: FeatureValueProps<T>) => {
-    const { handleSetValue, value } = props;
-
     return (
       <Dropdown
-        selected={choices[value] as string}
-        onSelected={handleSetValue}
+        selected={choices[props.value] as string}
+        onSelected={props.handleSetValue}
         width="100%"
         options={sortChoices(Object.entries(choices)).map(
           ([dataValue, label]) => {
@@ -170,97 +165,108 @@ export type FeatureNumericData = {
 
 export type FeatureNumeric = Feature<number, number, FeatureNumericData>;
 
-export function FeatureNumberInput(
+export const FeatureNumberInput = (
   props: FeatureValueProps<number, number, FeatureNumericData>,
-) {
-  const { serverData, handleSetValue, value } = props;
+) => {
+  if (!props.serverData) {
+    return <Box>Loading...</Box>;
+  }
 
   return (
     <NumberInput
-      onChange={(value) => handleSetValue(value)}
-      disabled={!serverData}
-      minValue={serverData?.minimum || 0}
-      maxValue={serverData?.maximum || 100}
-      step={serverData?.step || 1}
-      value={value}
+      onChange={(value) => {
+        props.handleSetValue(value);
+      }}
+      minValue={props.serverData.minimum}
+      maxValue={props.serverData.maximum}
+      step={props.serverData.step}
+      value={props.value}
     />
   );
-}
+};
 
-export function FeatureSliderInput(
+export const FeatureSliderInput = (
   props: FeatureValueProps<number, number, FeatureNumericData>,
-) {
-  const { serverData, handleSetValue, value } = props;
+) => {
+  if (!props.serverData) {
+    return <Box>Loading...</Box>;
+  }
 
   return (
     <Slider
       onChange={(e, value) => {
-        handleSetValue(value);
+        props.handleSetValue(value);
       }}
-      disabled={!serverData}
-      minValue={serverData?.minimum || 0}
-      maxValue={serverData?.maximum || 100}
-      step={serverData?.step || 1}
-      value={value}
+      minValue={props.serverData.minimum}
+      maxValue={props.serverData.maximum}
+      step={props.serverData.step}
+      value={props.value}
       stepPixelSize={10}
     />
   );
-}
+};
 
-type FeatureValueInputProps = {
+export const FeatureValueInput = (props: {
   feature: Feature<unknown>;
   featureId: string;
   shrink?: boolean;
   value: unknown;
-};
 
-export function FeatureValueInput(props: FeatureValueInputProps) {
-  const { act, data } = useBackend<PreferencesMenuData>();
+  act: typeof sendAct;
+}) => {
+  const { data } = useBackend<PreferencesMenuData>();
 
   const feature = props.feature;
 
   const [predictedValue, setPredictedValue] = useState(props.value);
 
-  function changeValue(newValue: unknown) {
+  const changeValue = (newValue: unknown) => {
     setPredictedValue(newValue);
-    createSetPreference(act, props.featureId)(newValue);
-  }
+    createSetPreference(props.act, props.featureId)(newValue);
+  };
 
   useEffect(() => {
     setPredictedValue(props.value);
   }, [data.active_slot, props.value]);
 
-  const serverData = useServerPrefs();
+  return (
+    <ServerPreferencesFetcher
+      render={(serverData) => {
+        return createElement(feature.component, {
+          act: props.act,
+          featureId: props.featureId,
+          serverData: serverData?.[props.featureId] as any,
+          shrink: props.shrink,
 
-  return createElement(feature.component, {
-    featureId: props.featureId,
-    serverData: serverData?.[props.featureId] as any,
-    shrink: props.shrink,
-    handleSetValue: changeValue,
-    value: predictedValue,
-  });
-}
+          handleSetValue: changeValue,
+          value: predictedValue,
+        });
+      }}
+    />
+  );
+};
 
-type FeatureShortTextData = {
+export type FeatureShortTextData = {
   maximum_length: number;
 };
 
-export function FeatureShortTextInput(
+export const FeatureShortTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
-) {
-  const { serverData, value, handleSetValue } = props;
+) => {
+  if (!props.serverData) {
+    return <Box>Loading...</Box>;
+  }
 
   return (
     <Input
-      disabled={!serverData}
       width="100%"
-      value={value}
-      maxLength={serverData?.maximum_length}
+      value={props.value}
+      maxLength={props.serverData.maximum_length}
       updateOnPropsChange
-      onChange={(_, value) => handleSetValue(value)}
+      onChange={(_, value) => props.handleSetValue(value)}
     />
   );
-}
+};
 // SKYRAT EDIT ADDITION START - SKYRAT FEATURES DOWN HERE
 
 export const FeatureTextInput = (
@@ -281,11 +287,7 @@ export const FeatureTextInput = (
   );
 };
 
-export const FeatureTriColorInput = (
-  props: FeatureValueProps<string[]> & {
-    act: (action: string, value?: unknown) => void;
-  },
-) => {
+export const FeatureTriColorInput = (props: FeatureValueProps<string[]>) => {
   const buttonFromValue = (index) => {
     return (
       <Stack.Item>

@@ -1,4 +1,6 @@
+import { shallowDiffers } from 'common/react';
 import { Component } from 'react';
+
 import {
   Box,
   Button,
@@ -7,9 +9,7 @@ import {
   Input,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { shallowDiffers } from 'tgui-core/react';
-
+} from '../../components';
 import {
   VARIABLE_ASSOC_LIST,
   VARIABLE_LIST,

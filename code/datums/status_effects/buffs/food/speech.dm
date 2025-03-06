@@ -3,13 +3,9 @@
 
 /datum/status_effect/food/speech/italian
 	alert_type = /atom/movable/screen/alert/status_effect/italian_speech
-	on_remove_on_mob_delete = TRUE
-	/// Ref to the component so we can clear it
-	var/datum/component/speechmod
 
 /datum/status_effect/food/speech/italian/on_apply()
-	. = ..()
-	speechmod = AddComponent( \
+	AddComponent( \
 		/datum/component/speechmod, \
 		replacements = strings("italian_replacement.json", "italian"), \
 		end_string = list(
@@ -20,10 +16,7 @@
 			), \
 		end_string_chance = 3 \
 		)
-
-/datum/status_effect/food/speech/italian/on_remove()
-	. = ..()
-	QDEL_NULL(speechmod)
+	return ..()
 
 /atom/movable/screen/alert/status_effect/italian_speech
 	name = "Linguini Embrace"
@@ -32,13 +25,9 @@
 
 /datum/status_effect/food/speech/french
 	alert_type = /atom/movable/screen/alert/status_effect/french_speech
-	on_remove_on_mob_delete = TRUE
-	/// Ref to the component so we can clear it
-	var/datum/component/speechmod
 
 /datum/status_effect/food/speech/french/on_apply()
-	. = ..()
-	speechmod = owner.AddComponent( \
+	AddComponent( \
 		/datum/component/speechmod, \
 		replacements = strings("french_replacement.json", "french"), \
 		end_string = list(
@@ -48,10 +37,7 @@
 			), \
 		end_string_chance = 3, \
 		)
-
-/datum/status_effect/food/speech/french/on_remove()
-	. = ..()
-	QDEL_NULL(speechmod)
+	return ..()
 
 /atom/movable/screen/alert/status_effect/french_speech
 	name = "Café Chic"

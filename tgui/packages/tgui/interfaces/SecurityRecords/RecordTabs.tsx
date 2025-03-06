@@ -10,7 +10,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
+} from 'tgui/components';
 
 import { JOB2ICON } from '../common/JobToIcon';
 import { CRIMESTATUS2COLOR } from './constants';

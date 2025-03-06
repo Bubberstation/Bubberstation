@@ -1,13 +1,6 @@
 // THIS IS A SKYRAT UI FILE
-import {
-  Button,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Button, LabeledList, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const CryopodConsole = (props) => {

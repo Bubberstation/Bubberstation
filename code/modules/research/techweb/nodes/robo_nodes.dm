@@ -91,7 +91,6 @@
 		"balance_module",
 		"thermurderdynamic_module",
 		"damaged_module",
-		"thinkermov_module",
 		"freeformcore_module",
 		"onehuman_module",
 		"purge_module",

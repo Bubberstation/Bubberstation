@@ -10,6 +10,8 @@ import {
   useRef,
   useState,
 } from 'react';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -20,9 +22,7 @@ import {
   Stack,
   Tabs,
   TextArea,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { Window } from '../../layouts';
 import { CallModal } from './CallModal';
 import { ChunkViewModal } from './ChunkViewModal';
@@ -229,7 +229,6 @@ export const LuaEditor = () => {
                             }}
                           />
                         }*/
-                          /** @ts-ignore */
                           onDrop={async (
                             event: React.DragEvent<HTMLDivElement>,
                           ) => {

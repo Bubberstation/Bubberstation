@@ -1,8 +1,8 @@
 ///Status effect applied when casting a fishing rod at someone, provided the attached fishing hook allows it.
 /datum/status_effect/grouped/hooked
 	id = "hooked"
-	duration = STATUS_EFFECT_PERMANENT
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = -1
+	tick_interval = -1
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = /atom/movable/screen/alert/status_effect/hooked
 
@@ -12,8 +12,14 @@
 /datum/status_effect/grouped/hooked/proc/still_exists()
 	return !QDELETED(src)
 
-/datum/status_effect/grouped/hooked/source_added(datum/beam/fishing_line/source)
+/datum/status_effect/grouped/hooked/on_creation(mob/living/new_owner, datum/beam/fishing_line/source)
+	. = ..()
+	if(!.) //merged with an existing effect
+		return
 	RegisterSignal(source, COMSIG_QDELETING, PROC_REF(on_fishing_line_deleted))
+
+/datum/status_effect/grouped/hooked/merge_with_existing(datum/status_effect/grouped/hooked/existing, datum/beam/fishing_line/source)
+	existing.RegisterSignal(source, COMSIG_QDELETING, PROC_REF(on_fishing_line_deleted))
 
 /datum/status_effect/grouped/hooked/proc/on_fishing_line_deleted(datum/source)
 	SIGNAL_HANDLER
@@ -23,7 +29,6 @@
 	name = "Snagged By Hook"
 	desc = "You're being caught like a fish by some asshat! Click to safely remove the hook or move away far enough to snap it off."
 	icon_state = "hooked"
-	clickable_glow = TRUE
 
 /atom/movable/screen/alert/status_effect/hooked/Click()
 	. = ..()

@@ -1,4 +1,6 @@
 import { ReactNode, useState } from 'react';
+
+import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -8,9 +10,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../../backend';
+} from '../../components';
 
 /**
  * This describes something that influences a particular reaction

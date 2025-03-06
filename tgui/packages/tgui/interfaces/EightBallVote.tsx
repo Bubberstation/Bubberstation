@@ -1,16 +1,8 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-import { toTitleCase } from 'tgui-core/string';
+import { BooleanLike } from 'common/react';
+import { toTitleCase } from 'common/string';
 
 import { useBackend } from '../backend';
+import { Box, Button, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -29,22 +21,12 @@ export function EightBallVote(props) {
   const { data } = useBackend<Data>();
   const { shaking } = data;
 
-  const idealHeight = shaking ? 265 : 70;
   return (
-    <Window width={300} height={idealHeight}>
-      <Window.Content pb={'2.5em'}>
-        {!shaking ? (
-          <NoticeBox danger textAlign={'center'}>
-            No question is currently being asked.
-          </NoticeBox>
-        ) : (
-          <>
-            <NoticeBox success textAlign={'center'}>
-              A question is currently being asked!
-            </NoticeBox>
-            <EightBallVoteQuestion />
-          </>
-        )}
+    <Window width={400} height={600}>
+      <Window.Content>
+        {(shaking && (
+          <NoticeBox>No question is currently being asked.</NoticeBox>
+        )) || <EightBallVoteQuestion />}
       </Window.Content>
     </Window>
   );
@@ -52,25 +34,19 @@ export function EightBallVote(props) {
 
 function EightBallVoteQuestion(props) {
   const { act, data } = useBackend<Data>();
-  const { shaking, question, answers = [] } = data;
+  const { question, answers = [] } = data;
 
   return (
-    <Section height="100%">
-      <Flex bold align="start" textAlign="center" fontSize="16px" m={1}>
-        <Flex.Item>&quot;</Flex.Item>
-        <Flex.Item grow>{question}</Flex.Item>
-        <Flex.Item>&quot;</Flex.Item>
-      </Flex>
-
-      <Divider />
-
+    <Section>
+      <Box bold textAlign="center" fontSize="16px" m={1}>
+        &quot;{question}&quot;
+      </Box>
       <Stack>
         {answers.map((answer) => (
           <Stack.Item grow key={answer.answer}>
             <Button
               fluid
               bold
-              disabled={!shaking}
               selected={answer.selected}
               fontSize="16px"
               lineHeight="24px"

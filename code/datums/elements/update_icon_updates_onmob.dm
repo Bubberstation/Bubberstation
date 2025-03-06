@@ -25,3 +25,5 @@
 			M.update_held_items()
 		else
 			M.update_clothing((target.slot_flags|update_flags))
+			if(update_body)
+				M.update_body()

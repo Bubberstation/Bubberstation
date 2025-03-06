@@ -201,8 +201,11 @@ GLOBAL_LIST_EMPTY(total_uf_len_by_block)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
 
 	if(eyeorgancolor_update)
-		add_eye_color_left(eye_color_left, EYE_COLOR_ORGAN_PRIORITY, update_body = FALSE)
-		add_eye_color_right(eye_color_right, EYE_COLOR_ORGAN_PRIORITY, update_body = FALSE)
+		var/obj/item/organ/internal/eyes/eye_organ = get_organ_slot(ORGAN_SLOT_EYES)
+		eye_organ.eye_color_left = eye_color_left
+		eye_organ.eye_color_right = eye_color_right
+		eye_organ.old_eye_color_left = eye_color_left
+		eye_organ.old_eye_color_right = eye_color_right
 
 	if(HAS_TRAIT(src, TRAIT_SHAVED))
 		set_facial_hairstyle("Shaved", update = FALSE)

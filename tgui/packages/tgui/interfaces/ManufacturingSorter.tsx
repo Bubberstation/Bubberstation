@@ -1,14 +1,7 @@
-import {
-  Box,
-  Button,
-  Icon,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
+import { Box, Button, Icon, LabeledList, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

@@ -7,7 +7,6 @@
 	req_human = TRUE
 	///if we're currently absorbing, used for sanity
 	var/is_absorbing = FALSE
-	var/datum/looping_sound/changeling_absorb/absorbing_loop
 
 /datum/action/changeling/absorb_dna/can_sting(mob/living/carbon/owner)
 	if(!..())
@@ -60,7 +59,6 @@
 	if(target.mind && owner.mind)//if the victim and owner have minds
 		absorb_memories(target)
 
-	qdel(absorbing_loop)
 	is_absorbing = FALSE
 
 	changeling.adjust_chemicals(10)
@@ -108,12 +106,12 @@
 	var/list/recent_speech = target.copy_recent_speech()
 
 	if(recent_speech.len)
-		changeling.antag_memory += "Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]: "
+		changeling.antag_memory += "<B>Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]!</B><br>"
 		to_chat(owner, span_boldnotice("Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]!"))
 		for(var/spoken_memory in recent_speech)
-			changeling.antag_memory += " \"[spoken_memory]\""
+			changeling.antag_memory += "\"[spoken_memory]\"<br>"
 			to_chat(owner, span_notice("\"[spoken_memory]\""))
-		changeling.antag_memory += ". We have no more knowledge of [target]'s speech patterns. "
+		changeling.antag_memory += "<B>We have no more knowledge of [target]'s speech patterns.</B><br>"
 		to_chat(owner, span_boldnotice("We have no more knowledge of [target]'s speech patterns."))
 
 
@@ -148,7 +146,6 @@
 			if(2)
 				owner.visible_message(span_warning("[owner] extends a proboscis!"), span_notice("We extend a proboscis."))
 			if(3)
-				absorbing_loop = new(owner, start_immediately = TRUE)
 				owner.visible_message(span_danger("[owner] stabs [target] with the proboscis!"), span_notice("We stab [target] with the proboscis."))
 				to_chat(target, span_userdanger("You feel a sharp stabbing pain!"))
 				target.take_overall_damage(40)
@@ -156,7 +153,6 @@
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
 		if(!do_after(owner, 15 SECONDS, target, hidden = TRUE))
 			owner.balloon_alert(owner, "interrupted!")
-			qdel(absorbing_loop)
 			is_absorbing = FALSE
 			return FALSE
 	return TRUE

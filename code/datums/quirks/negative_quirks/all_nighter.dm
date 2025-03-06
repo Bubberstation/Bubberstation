@@ -56,12 +56,15 @@
 		return
 	bodypart_overlay = new() //creates our overlay
 	face.add_bodypart_overlay(bodypart_overlay)
+	sleepy_head.update_body_parts() //make sure to update icon
 
 ///removes the bag overlay
 /datum/quirk/all_nighter/proc/remove_bags()
 	var/mob/living/carbon/human/sleepy_head = quirk_holder
 	var/obj/item/bodypart/head/face = sleepy_head?.get_bodypart(BODY_ZONE_HEAD)
-	face?.remove_bodypart_overlay(bodypart_overlay)
+	if(face)
+		face.remove_bodypart_overlay(bodypart_overlay)
+		sleepy_head.update_body_parts()
 	QDEL_NULL(bodypart_overlay)
 
 /**

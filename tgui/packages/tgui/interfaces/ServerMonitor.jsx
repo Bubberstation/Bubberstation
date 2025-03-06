@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Divider,
@@ -9,9 +11,7 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const PacketInfo = (props) => {

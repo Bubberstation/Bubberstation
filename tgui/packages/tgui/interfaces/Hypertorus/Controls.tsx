@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -9,8 +10,7 @@ import {
   NumberInput,
   Section,
   Tooltip,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+} from 'tgui/components';
 
 import { HypertorusFilter } from '.';
 import { HelpDummy, HoverHelp } from './helpers';

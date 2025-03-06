@@ -1,43 +1,29 @@
 /**
- * ## DANGEROUS ORGAN REMOVAL ELEMENT
+ * ## DANGEROUS SURGICAL REMOVAL ELEMENT
  *
- * Makes the organ explode when removed (potentially surgically!).
+ * Makes the organ explode when removed surgically.
  * That's about it.
  */
-/datum/element/dangerous_organ_removal
-	element_flags = ELEMENT_BESPOKE
-	argument_hash_start_idx = 2
+/datum/element/dangerous_surgical_removal
 
-	/// whether the removal needs to be surgical for it to explode. If you're adding more modes, just pass the signal directly instead
-	var/surgical
-
-/datum/element/dangerous_organ_removal/Attach(datum/target, surgical = FALSE)
+/datum/element/dangerous_surgical_removal/Attach(datum/target)
 	. = ..()
 	if(!isorgan(target))
 		return ELEMENT_INCOMPATIBLE
+	RegisterSignal(target, COMSIG_ORGAN_SURGICALLY_REMOVED, PROC_REF(on_surgical_removal))
 
-	src.surgical = surgical
-
-	if(surgical)
-		RegisterSignal(target, COMSIG_ORGAN_SURGICALLY_REMOVED, PROC_REF(on_removal))
-	else
-		RegisterSignal(target, COMSIG_ORGAN_REMOVED, PROC_REF(on_removal))
-
-/datum/element/dangerous_organ_removal/Detach(datum/source)
+/datum/element/dangerous_surgical_removal/Detach(datum/source)
 	. = ..()
+	UnregisterSignal(source, COMSIG_ORGAN_SURGICALLY_REMOVED)
 
-	UnregisterSignal(source, list(COMSIG_ORGAN_SURGICALLY_REMOVED, COMSIG_ORGAN_REMOVED))
-
-/datum/element/dangerous_organ_removal/proc/on_removal(obj/item/organ/source, mob/living/user, mob/living/carbon/old_owner, target_zone, obj/item/tool)
+/datum/element/dangerous_surgical_removal/proc/on_surgical_removal(obj/item/organ/source, mob/living/user, mob/living/carbon/old_owner, target_zone, obj/item/tool)
 	SIGNAL_HANDLER
-
-	if(surgical && source.organ_flags & (ORGAN_FAILING|ORGAN_EMP))
+	if(source.organ_flags & (ORGAN_FAILING|ORGAN_EMP))
 		return
 	if(user?.Adjacent(source))
 		source.audible_message("[source] explodes on [user]'s face!")
 		user.take_bodypart_damage(15)
 	else
 		source.audible_message("[source] explodes into tiny pieces!")
-
 	explosion(source, light_impact_range = 1, explosion_cause = source)
 	qdel(source)

@@ -1,5 +1,8 @@
 import { storage } from 'common/storage';
+import { createUuid } from 'common/uuid';
 import { useEffect, useState } from 'react';
+
+import { useBackend } from '../../backend';
 import {
   Button,
   Divider,
@@ -7,10 +10,7 @@ import {
   NumberInput,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { createUuid } from 'tgui-core/uuid';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { POD_GREY } from './constants';
 import { PodLauncherData } from './types';
 
@@ -155,7 +155,7 @@ export function PresetsPage(props) {
                   borderStyle: 'solid',
                   borderColor: `hsl(${preset.hue}, 80%, 80%)`,
                 }
-              : {}
+              : ''
           }
           width="100%"
         >

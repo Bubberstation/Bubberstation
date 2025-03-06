@@ -1,4 +1,3 @@
-#ifndef DISABLE_DREAMLUAU
 #define MAX_LOG_REPEAT_LOOKBACK 5
 
 GLOBAL_DATUM(lua_usr, /mob)
@@ -233,4 +232,3 @@ GLOBAL_PROTECT(lua_state_stack)
 			SStgui.update_uis(editor)
 
 #undef MAX_LOG_REPEAT_LOOKBACK
-#endif

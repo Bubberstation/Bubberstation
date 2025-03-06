@@ -69,6 +69,3 @@
 /turf/open/misc/ashplanet/wateryrock/Initialize(mapload)
 	icon_state = "[icon_state][rand(1, 9)]"
 	. = ..()
-
-/turf/open/misc/ashplanet/wateryrock/lavaland_atmos
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS

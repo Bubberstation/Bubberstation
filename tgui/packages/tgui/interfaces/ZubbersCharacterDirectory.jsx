@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Icon,
@@ -7,9 +9,7 @@ import {
   Section,
   Table,
   Tooltip,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const erpTagColor = {

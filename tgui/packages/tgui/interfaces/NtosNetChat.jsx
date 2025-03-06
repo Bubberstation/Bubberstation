@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -6,9 +7,7 @@ import {
   Input,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 // byond defines for the program state
@@ -63,13 +62,15 @@ export const NtosNetChat = (props) => {
   } = data;
   const in_channel = active_channel !== null;
   const authorized = authed || adminmode;
-  // This list has clients ordered by operator>status>alphabetical
+  // this list has cliented ordered from their status. online > away > offline
   const displayed_clients = clients.sort((clientA, clientB) => {
-    return (
-      clientB.operator - clientA.operator ||
-      clientB.status - clientA.status ||
-      clientB.name < clientA.name
-    );
+    if (clientA.operator) {
+      return -1;
+    }
+    if (clientB.operator) {
+      return 1;
+    }
+    return clientB.status - clientA.status;
   });
   const client_color = (client) => {
     if (client.operator) {
@@ -152,7 +153,7 @@ export const NtosNetChat = (props) => {
                   {(in_channel &&
                     (authorized ? (
                       messages.map((message) => (
-                        <Box key={message.key}>{message.msg}</Box>
+                        <Box key={message.msg}>{message.msg}</Box>
                       ))
                     ) : (
                       <Box textAlign="center">
@@ -178,7 +179,6 @@ export const NtosNetChat = (props) => {
                     'Message ' + title
                   }
                   fluid
-                  disabled={this_client && this_client.muted}
                   selfClear
                   mt={1}
                   onEnter={(e, value) =>

@@ -1,5 +1,5 @@
 import { Placement } from '@popperjs/core';
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 export type PodLauncherData = {
   bayNumber: string;

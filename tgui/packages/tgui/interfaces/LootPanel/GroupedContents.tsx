@@ -1,26 +1,47 @@
-import { Box } from 'tgui-core/components';
-import { createSearch } from 'tgui-core/string';
+import { createSearch } from 'common/string';
+import { useMemo } from 'react';
 
+import { Flex } from '../../components';
 import { LootBox } from './LootBox';
 import { SearchGroup, SearchItem } from './types';
 
 type Props = {
-  contents: Record<string, SearchItem[]>;
+  contents: SearchItem[];
   searchText: string;
 };
 
 export function GroupedContents(props: Props) {
   const { contents, searchText } = props;
 
-  const filteredContents: SearchGroup[] = Object.entries(contents)
+  // limitations: items with different stack counts, charges etc.
+  const contentsByPath = useMemo(() => {
+    const acc: Record<string, SearchItem[]> = {};
+
+    for (let i = 0; i < contents.length; i++) {
+      const item = contents[i];
+      if (item.path) {
+        if (!acc[item.path]) {
+          acc[item.path] = [];
+        }
+        acc[item.path].push(item);
+      } else {
+        acc[item.ref] = [item];
+      }
+    }
+    return acc;
+  }, [contents]);
+
+  const filteredContents: SearchGroup[] = Object.entries(contentsByPath)
     .filter(createSearch(searchText, ([_, items]) => items[0].name))
     .map(([_, items]) => ({ amount: items.length, item: items[0] }));
 
   return (
-    <Box m={-0.5}>
+    <Flex wrap>
       {filteredContents.map((group) => (
-        <LootBox key={group.item.name} group={group} />
+        <Flex.Item key={group.item.name} m={1}>
+          <LootBox group={group} />
+        </Flex.Item>
       ))}
-    </Box>
+    </Flex>
   );
 }

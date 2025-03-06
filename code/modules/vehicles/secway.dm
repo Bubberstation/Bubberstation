@@ -97,9 +97,9 @@
 	return ..()
 
 //bullets will have a 60% chance to hit any riders
-/obj/vehicle/ridden/secway/bullet_act(obj/projectile/proj)
+/obj/vehicle/ridden/secway/bullet_act(obj/projectile/P)
 	if(!buckled_mobs || prob(40))
 		return ..()
 	for(var/mob/rider as anything in buckled_mobs)
-		return rider.projectile_hit(proj)
-	return ..()
+		rider.bullet_act(P)
+	return TRUE

@@ -127,8 +127,8 @@
 
 /obj/structure/showcase/katana
 	name = "seppuku katana"
-	desc = "Welp, only one way to recover your honour."
 	density = 0
+	desc = "Welp, only one way to recover your honour."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "katana"
 

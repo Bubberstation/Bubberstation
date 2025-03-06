@@ -1,5 +1,8 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 import { Tooltip } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -10,10 +13,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 
 type GenericUplinkProps = {
   currency?: string | JSX.Element;
@@ -46,7 +46,7 @@ export const GenericUplink = (props: GenericUplinkProps) => {
         <Stack vertical fill>
           <Stack.Item>
             <Stack>
-              <Stack.Item grow>
+              <Stack.Item grow={1}>
                 <Button
                   bold
                   fluid
@@ -83,7 +83,7 @@ export const GenericUplink = (props: GenericUplinkProps) => {
               fluid
             />
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item grow={1}>
             <Tabs vertical fill>
               {categories.map((category) => (
                 <Tabs.Tab
@@ -104,21 +104,20 @@ export const GenericUplink = (props: GenericUplinkProps) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item grow>
-        <Box height="100%" pr={1} mr={-1}>
-          {items.length === 0 ? (
+      <Stack.Item grow={1}>
+        <Box height="100%" pr={1} mr={-1} style={{ overflowY: 'auto' }}>
+          {items.length === 0 && (
             <NoticeBox>
               {searchText.length === 0
                 ? 'No items in this category.'
                 : 'No results found.'}
             </NoticeBox>
-          ) : (
-            <ItemList
-              compactMode={searchText.length > 0 || compactMode}
-              items={items}
-              handleBuy={handleBuy}
-            />
           )}
+          <ItemList
+            compactMode={searchText.length > 0 || compactMode}
+            items={items}
+            handleBuy={handleBuy}
+          />
         </Box>
       </Stack.Item>
     </Stack>
@@ -149,87 +148,85 @@ const ItemList = (props: ItemListProps) => {
     <Icon m={compactMode ? '10px' : '26px'} name="spinner" spin />
   );
   return (
-    <Section fill scrollable>
-      <Stack vertical mt={compactMode ? -0.5 : -1}>
-        {items.map((item, index) => (
-          <Stack.Item key={index} mt={compactMode ? 0.5 : 1}>
-            <Section key={item.name} fitted={compactMode ? true : false}>
-              <Stack>
-                <Stack.Item>
-                  <Box
+    <Stack vertical mt={compactMode ? -0.5 : -1}>
+      {items.map((item, index) => (
+        <Stack.Item key={index} mt={compactMode ? 0.5 : 1}>
+          <Section key={item.name} fitted={compactMode ? true : false}>
+            <Stack>
+              <Stack.Item>
+                <Box
+                  width={compactMode ? '32px' : '64px'}
+                  height={compactMode ? '32px' : '64px'}
+                  position="relative"
+                  m={compactMode ? '2px' : 0}
+                  mr={1}
+                >
+                  <DmIcon
+                    position="absolute"
+                    bottom="0"
+                    fallback={fallback}
+                    icon={item.icon}
+                    icon_state={item.icon_state}
                     width={compactMode ? '32px' : '64px'}
-                    height={compactMode ? '32px' : '64px'}
-                    position="relative"
-                    m={compactMode ? '2px' : 0}
-                    mr={1}
-                  >
-                    <DmIcon
-                      position="absolute"
-                      bottom="0"
-                      fallback={fallback}
-                      icon={item.icon}
-                      icon_state={item.icon_state}
-                      width={compactMode ? '32px' : '64px'}
-                    />
-                  </Box>
-                </Stack.Item>
-                <Stack.Item grow>
-                  {compactMode ? (
-                    <Stack>
-                      <Stack.Item
-                        bold
-                        grow
-                        lineHeight="36px"
-                        style={{
-                          overflow: 'hidden',
-                          whiteSpace: 'nowrap',
-                          textOverflow: 'ellipsis',
-                        }}
-                      >
-                        {item.name}
-                      </Stack.Item>
-                      <Stack.Item>
-                        <Tooltip content={item.desc}>
-                          <Icon name="info-circle" lineHeight="36px" />
-                        </Tooltip>
-                      </Stack.Item>
-                      <Stack.Item>
-                        <Button
-                          m="8px"
-                          disabled={item.disabled}
-                          onClick={(e) => handleBuy(item)}
-                        >
-                          {item.cost}
-                        </Button>
-                      </Stack.Item>
-                    </Stack>
-                  ) : (
-                    <Section
-                      title={item.name}
-                      buttons={
-                        <Button
-                          disabled={item.disabled}
-                          onClick={(e) => handleBuy(item)}
-                        >
-                          {item.cost}
-                        </Button>
-                      }
+                  />
+                </Box>
+              </Stack.Item>
+              <Stack.Item grow={1}>
+                {compactMode ? (
+                  <Stack>
+                    <Stack.Item
+                      bold
+                      grow={1}
+                      lineHeight="36px"
+                      style={{
+                        overflow: 'hidden',
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                      }}
                     >
-                      <Box
-                        style={{
-                          opacity: '0.75',
-                        }}
+                      {item.name}
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Tooltip content={item.desc}>
+                        <Icon name="info-circle" lineHeight="36px" />
+                      </Tooltip>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        m="8px"
+                        disabled={item.disabled}
+                        onClick={(e) => handleBuy(item)}
                       >
-                        {item.desc}
-                      </Box>
-                    </Section>
-                  )}
-                </Stack.Item>
-              </Stack>
-            </Section>
-          </Stack.Item>
-        ))}
-      </Stack>
-    </Section>
+                        {item.cost}
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                ) : (
+                  <Section
+                    title={item.name}
+                    buttons={
+                      <Button
+                        disabled={item.disabled}
+                        onClick={(e) => handleBuy(item)}
+                      >
+                        {item.cost}
+                      </Button>
+                    }
+                  >
+                    <Box
+                      style={{
+                        opacity: '0.75',
+                      }}
+                    >
+                      {item.desc}
+                    </Box>
+                  </Section>
+                )}
+              </Stack.Item>
+            </Stack>
+          </Section>
+        </Stack.Item>
+      ))}
+    </Stack>
   );
 };

@@ -1,10 +1,3 @@
-/// A list of movables that shouldn't be affected by the element, either because it'd look bad or barely perceptible
-GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
-	/obj/effect,
-	/mob/dead,
-	/obj/projectile,
-)))
-
 /**
  * A visual element that makes movables entering the attached turfs look immersed into that turf.
  *
@@ -16,6 +9,11 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	///An association list of turfs that have this element attached and their affected contents.
 	var/list/attached_turfs_and_movables = list()
 
+	/**
+	 * A list of movables that shouldn't be affected by the element, either because it'd look bad
+	 * or barely perceptible.
+	 */
+	var/static/list/movables_to_ignore
 	///A list of icons generated from a target and a mask, later used as appearances for the overlays.
 	var/static/list/generated_immerse_icons = list()
 	///A list of instances of /atom/movable/immerse_overlay then used as visual overlays for the immersed movables.
@@ -33,6 +31,16 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	. = ..()
 	if(!isturf(target) || !icon || !icon_state || !mask_icon)
 		return ELEMENT_INCOMPATIBLE
+
+	if(isnull(movables_to_ignore))
+		movables_to_ignore = typecacheof(list(
+			/obj/effect,
+			/mob/dead,
+			/obj/projectile,
+		))
+
+		movables_to_ignore += GLOB.WALLITEMS_INTERIOR
+		movables_to_ignore += GLOB.WALLITEMS_EXTERIOR
 
 	src.icon = icon
 	src.icon_state = icon_state
@@ -101,15 +109,11 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	SIGNAL_HANDLER
 	if(QDELETED(movable))
 		return
-	if(HAS_TRAIT(movable, TRAIT_IMMERSED) || HAS_TRAIT(movable, TRAIT_WALLMOUNTED))
+	if(HAS_TRAIT(movable, TRAIT_IMMERSED))
 		return
-	if(!ISINRANGE(movable.plane, MUTATE_PLANE(FLOOR_PLANE, source), MUTATE_PLANE(GAME_PLANE, source)))
+	if(movable.layer >= ABOVE_ALL_MOB_LAYER || !ISINRANGE(movable.plane, MUTATE_PLANE(FLOOR_PLANE, source), MUTATE_PLANE(GAME_PLANE, source)))
 		return
-	var/layer_to_check = IS_TOPDOWN_PLANE(source.plane) ? TOPDOWN_ABOVE_WATER_LAYER : ABOVE_ALL_MOB_LAYER
-	//First, floor plane objects use TOPDOWN_LAYER, second this check shouldn't apply to them anyway.
-	if(movable.layer >= layer_to_check)
-		return
-	if(is_type_in_typecache(movable, GLOB.immerse_ignored_movable))
+	if(is_type_in_typecache(movable, movables_to_ignore))
 		return
 
 	var/atom/movable/buckled
@@ -141,9 +145,7 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	var/width = icon_dimensions["width"] || ICON_SIZE_X
 	var/height = icon_dimensions["height"] || ICON_SIZE_Y
 
-	///This determines if the overlay should cover the entire surface of the object or not
-	var/layer_to_check = IS_TOPDOWN_PLANE(movable.plane) ? TOPDOWN_WATER_LEVEL_LAYER : WATER_LEVEL_LAYER
-	var/is_below_water = (movable.layer < layer_to_check) ? "underwater-" : ""
+	var/is_below_water = movable.layer < WATER_LEVEL_LAYER ? "underwater-" : ""
 
 	var/atom/movable/immerse_overlay/vis_overlay = generated_visual_overlays["[is_below_water][width]x[height]"]
 

@@ -53,10 +53,6 @@
 	/// Even snowflakier way to modify projectile wounding bonus/potential for projectiles fired from this gun.
 	var/projectile_wound_bonus = 0
 
-	/// The most reasonable way to modify projectile speed values for projectile fired from this gun. Honest.
-	/// Lower values are better, higher values are worse.
-	var/projectile_speed_multiplier = 1
-
 	var/spread = 0 //Spread induced by the gun itself.
 	var/randomspread = 1 //Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
@@ -77,9 +73,8 @@
 
 /obj/item/gun/Initialize(mapload)
 	. = ..()
-	if(ispath(pin))
-		pin = new pin
-		pin.gun_insert(new_gun = src)
+	if(pin)
+		pin = new pin(src)
 
 	add_seclight_point()
 	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
@@ -318,10 +313,6 @@
 		return
 	if(firing_burst)
 		return
-
-	if(SEND_SIGNAL(user, COMSIG_MOB_TRYING_TO_FIRE_GUN, src, target, flag, params) & COMPONENT_CANCEL_GUN_FIRE)
-		return
-
 	if(SEND_SIGNAL(src, COMSIG_GUN_TRY_FIRE, user, target, flag, params) & COMPONENT_CANCEL_GUN_FIRE)
 		return
 	if(flag) //It's adjacent, is the user, or is on the user's person
@@ -421,8 +412,7 @@
 		if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 			if(chambered.harmful) // Is the bullet chambered harmful?
 				to_chat(user, span_warning("[src] is lethally chambered! You don't want to risk harming anyone..."))
-				firing_burst = FALSE
-				return FALSE
+				return
 		var/sprd
 		if(randomspread)
 			sprd = round((rand(0, 1) - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (random_spread))
@@ -563,7 +553,7 @@
 			return TRUE
 
 /obj/item/gun/animate_atom_living(mob/living/owner)
-	new /mob/living/basic/mimic/copy/ranged(drop_location(), src, owner)
+	new /mob/living/simple_animal/hostile/mimic/copy/ranged(drop_location(), src, owner)
 
 /obj/item/gun/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
@@ -608,8 +598,7 @@
 /obj/item/gun/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)
 		qdel(pin)
-	var/obj/item/firing_pin/new_pin = new
-	new_pin.gun_insert(new_gun = src)
+	pin = new /obj/item/firing_pin
 
 //Happens before the actual projectile creation
 /obj/item/gun/proc/before_firing(atom/target,mob/user)

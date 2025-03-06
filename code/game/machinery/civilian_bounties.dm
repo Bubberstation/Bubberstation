@@ -84,16 +84,10 @@
 		return FALSE
 	status_report = "Civilian Bounty: "
 	var/obj/machinery/piratepad/civilian/pad = pad_ref?.resolve()
-	for(var/atom/movable/possible_shippable in get_turf(pad))
-		if(possible_shippable == pad)
+	for(var/atom/movable/AM in get_turf(pad))
+		if(AM == pad)
 			continue
-		if(possible_shippable.flags_1 & HOLOGRAM_1)
-			continue
-		if(isitem(possible_shippable))
-			var/obj/item/possible_shippable_item = possible_shippable
-			if(possible_shippable_item.item_flags & ABSTRACT)
-				continue
-		if(inserted_scan_id.registered_account.civilian_bounty.applies_to(possible_shippable))
+		if(inserted_scan_id.registered_account.civilian_bounty.applies_to(AM))
 			status_report += "Target Applicable."
 			playsound(loc, 'sound/machines/synth/synth_yes.ogg', 30 , TRUE)
 			return
@@ -116,19 +110,13 @@
 	var/datum/bounty/curr_bounty = inserted_scan_id.registered_account.civilian_bounty
 	var/active_stack = 0
 	var/obj/machinery/piratepad/civilian/pad = pad_ref?.resolve()
-	for(var/atom/movable/possible_shippable in get_turf(pad))
-		if(possible_shippable == pad)
+	for(var/atom/movable/AM in get_turf(pad))
+		if(AM == pad)
 			continue
-		if(possible_shippable.flags_1 & HOLOGRAM_1)
-			continue
-		if(isitem(possible_shippable))
-			var/obj/item/possible_shippable_item = possible_shippable
-			if(possible_shippable_item.item_flags & ABSTRACT)
-				continue
-		if(curr_bounty.applies_to(possible_shippable))
+		if(curr_bounty.applies_to(AM))
 			active_stack ++
-			curr_bounty.ship(possible_shippable)
-			qdel(possible_shippable)
+			curr_bounty.ship(AM)
+			qdel(AM)
 	if(active_stack >= 1)
 		status_report += "Bounty Target Found x[active_stack]. "
 	else

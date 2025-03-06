@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 import { Region } from '../common/AccessConfig';
 

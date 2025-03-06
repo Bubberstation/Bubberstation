@@ -1,17 +1,9 @@
 import { useState } from 'react';
-import {
-  Box,
-  Button,
-  Knob,
-  Section,
-  Slider,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
-import { round } from 'tgui-core/math';
-import { BooleanLike, classes } from 'tgui-core/react';
 
+import { round } from '../../common/math';
+import { BooleanLike, classes } from '../../common/react';
 import { useBackend } from '../backend';
+import { Box, Button, Knob, Section, Slider, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 enum Direction {
@@ -200,7 +192,7 @@ const LightControl = (props: LightControlProps) => {
             color="olive"
             minValue={-1}
             maxValue={5}
-            format={(value) => round(value, 2).toString()}
+            format={(value) => round(value, 2)}
             onChange={(e, value) =>
               act('set_power', {
                 value: value,

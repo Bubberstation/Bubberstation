@@ -1,13 +1,12 @@
+import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
   Box,
   Button,
   LabeledList,
   Section,
-} from 'tgui-core/components';
-import { formatMoney } from 'tgui-core/format';
-
-import { useBackend } from '../../backend';
+} from '../../components';
+import { formatMoney } from '../../format';
 import { CargoData } from './types';
 
 export function CargoStatus(props) {
@@ -30,7 +29,7 @@ export function CargoStatus(props) {
     <Section
       title={department}
       buttons={
-        <Box inline bold verticalAlign="middle">
+        <Box inline bold>
           <AnimatedNumber
             value={points}
             format={(value) => formatMoney(value)}

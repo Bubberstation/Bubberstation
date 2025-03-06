@@ -26,7 +26,7 @@
 /datum/component/technoshy/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_TRY_USE_MACHINE, COMSIG_TRY_WIRES_INTERACT))
 
-/datum/component/technoshy/PostTransfer(datum/new_parent)
+/datum/component/technoshy/PostTransfer()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 

@@ -34,13 +34,6 @@
 	. = ..()
 	. += deconstruction_hints(user)
 
-/obj/structure/lattice/Destroy(force) // so items on the lattice fall when the lattice is destroyed
-	var/turf/turfloc = loc
-	. = ..()
-	if(isturf(turfloc))
-		for(var/thing_that_falls as anything in turfloc) // as anything because turfloc can only contain movables
-			turfloc.zFall((thing_that_falls))
-
 /obj/structure/lattice/proc/deconstruction_hints(mob/user)
 	return span_notice("The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.")
 
@@ -89,7 +82,7 @@
 			return TRUE
 	return FALSE
 
-/obj/structure/lattice/singularity_pull(atom/singularity, current_size)
+/obj/structure/lattice/singularity_pull(S, current_size)
 	if(current_size >= STAGE_FOUR)
 		deconstruct()
 
@@ -162,7 +155,7 @@
 
 /obj/structure/lattice/lava/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if(!ismetaltile(attacking_item))
+	if(!istype(attacking_item, /obj/item/stack/tile/iron))
 		return
 	var/obj/item/stack/tile/iron/attacking_tiles = attacking_item
 	if(!attacking_tiles.use(1))

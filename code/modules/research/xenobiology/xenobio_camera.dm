@@ -1,20 +1,22 @@
 //Xenobio control console
-/mob/eye/camera/remote/xenobio
-	visible_to_user = TRUE
+/mob/camera/ai_eye/remote/xenobio
+	visible_icon = TRUE
+	icon = 'icons/mob/silicon/cameramob.dmi'
+	icon_state = "generic_camera"
 	var/allowed_area = null
 
-/mob/eye/camera/remote/xenobio/Initialize(mapload)
+/mob/camera/ai_eye/remote/xenobio/Initialize(mapload)
 	var/area/our_area = get_area(loc)
 	allowed_area = our_area.name
 	. = ..()
 
-/mob/eye/camera/remote/xenobio/setLoc(turf/destination, force_update = FALSE)
+/mob/camera/ai_eye/remote/xenobio/setLoc(turf/destination, force_update = FALSE)
 	var/area/new_area = get_area(destination)
 
 	if(new_area && new_area.name == allowed_area || new_area && (new_area.area_flags & XENOBIOLOGY_COMPATIBLE))
 		return ..()
 
-/mob/eye/camera/remote/xenobio/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
+/mob/camera/ai_eye/remote/xenobio/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
 	. = ..()
 	if(!.)
 		return
@@ -82,9 +84,11 @@
 		stored_slimes -= gone
 
 /obj/machinery/computer/camera_advanced/xenobio/CreateEye()
-	eyeobj = new /mob/eye/camera/remote/xenobio(get_turf(src), src)
-
-	return TRUE
+	eyeobj = new /mob/camera/ai_eye/remote/xenobio(get_turf(src))
+	eyeobj.origin = src
+	eyeobj.visible_icon = TRUE
+	eyeobj.icon = 'icons/mob/silicon/cameramob.dmi'
+	eyeobj.icon_state = "generic_camera"
 
 /obj/machinery/computer/camera_advanced/xenobio/GrantActions(mob/living/user)
 	. = ..()
@@ -147,7 +151,7 @@ Boilerplate check for a valid area to perform a camera action in.
 Checks if the AI eye is on a valid turf and then checks if the target turf is xenobiology compatible
 Due to keyboard shortcuts, the second one is not necessarily the remote eye's location.
 */
-/obj/machinery/computer/camera_advanced/xenobio/proc/validate_area(mob/living/user, mob/eye/camera/remote/xenobio/remote_eye, turf/open/target_turf)
+/obj/machinery/computer/camera_advanced/xenobio/proc/validate_area(mob/living/user, mob/camera/ai_eye/remote/xenobio/remote_eye, turf/open/target_turf)
 	if(!GLOB.cameranet.checkTurfVis(remote_eye.loc))
 		to_chat(user, span_warning("Target is not near a camera. Cannot proceed."))
 		return FALSE
@@ -165,7 +169,6 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 		stored_slime.forceMove(target_turf)
 		stored_slime.visible_message(span_notice("[stored_slime] warps in!"))
 		stored_slimes -= stored_slime
-		REMOVE_TRAIT(stored_slime, TRAIT_STASIS, XENOBIO_CONSOLE_TRAIT)
 
 ///Places every slime not controlled by a player into the internal storage, respecting its limits
 ///Returns TRUE to signal it hitting the limit, in case its being called from a loop and we want it to stop
@@ -181,7 +184,6 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	target_slime.visible_message(span_notice("[target_slime] vanishes in a flash of light!"))
 	target_slime.forceMove(src)
 	stored_slimes += target_slime
-	ADD_TRAIT(target_slime, TRAIT_STASIS, XENOBIO_CONSOLE_TRAIT)
 
 	return FALSE
 
@@ -224,7 +226,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/owner_mob = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = owner_mob.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = owner_mob.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 
 	if(!xeno_console.validate_area(owner, remote_eye, remote_eye.loc))
@@ -241,7 +243,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/owner_mob = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = owner_mob.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = owner_mob.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 
 	if(!xeno_console.validate_area(owner, remote_eye, remote_eye.loc))
@@ -260,7 +262,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/living_owner = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = living_owner.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = living_owner.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 
 	if(!xeno_console.validate_area(owner, remote_eye, remote_eye.loc))
@@ -278,7 +280,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/owner_mob = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = owner_mob.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = owner_mob.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 	var/obj/machinery/monkey_recycler/recycler = xeno_console.connected_recycler
 
@@ -301,7 +303,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/owner_mob = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = owner_mob.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = owner_mob.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 
 	if(!xeno_console.validate_area(owner, remote_eye, remote_eye.loc))
@@ -320,7 +322,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 		return
 
 	var/mob/living/owner_mob = owner
-	var/mob/eye/camera/remote/xenobio/remote_eye = owner_mob.remote_control
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = owner_mob.remote_control
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = target
 
 	if(!xeno_console.validate_area(owner, remote_eye, remote_eye.loc))
@@ -350,7 +352,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	render_list += "&bull; Alt-click a slime to feed it a potion."
 	render_list += "&bull; Ctrl-click or a dead monkey to recycle it, or the floor to place a new monkey."
 
-	to_chat(owner, boxed_message(jointext(render_list, "\n")))
+	to_chat(owner, examine_block(jointext(render_list, "\n")))
 
 //
 // Alternate clicks for slime, monkey and open turf if using a xenobio console
@@ -371,8 +373,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!isslime(target_slime))
 		return
 
-	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.validate_area(user, remote_eye, target_slime.loc))
 		return
@@ -387,8 +389,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 /obj/machinery/computer/camera_advanced/xenobio/proc/XenoSlimeClickShift(mob/living/user, mob/living/basic/slime/target_slime)
 	SIGNAL_HANDLER
 
-	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.validate_area(user, remote_eye, target_slime.loc))
 		return
@@ -400,8 +402,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	SIGNAL_HANDLER
 
 	var/mob/living/user_mob = user
-	var/mob/eye/camera/remote/xenobio/remote_eye = user_mob.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user_mob.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.validate_area(user, remote_eye, target_turf))
 		return
@@ -426,8 +428,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 		return
 
 	var/cleanup = FALSE
-	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.validate_area(user, remote_eye, target_turf))
 		return
@@ -445,8 +447,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!ismonkey(target_mob))
 		return
 
-	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.connected_recycler)
 		to_chat(user, span_warning("There is no connected monkey recycler. Use a multitool to link one."))
@@ -462,8 +464,8 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	if(!isslime(target_slime))
 		return
 
-	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin_ref.resolve()
+	var/mob/camera/ai_eye/remote/xenobio/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.validate_area(user, remote_eye, target_slime.loc))
 		return

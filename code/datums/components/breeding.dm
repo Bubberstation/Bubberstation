@@ -4,8 +4,8 @@
 /datum/component/breed
 	/// additional mobs we can breed with
 	var/list/can_breed_with
-	///weighted list of the possible baby types
-	var/list/baby_paths
+	///path of the baby
+	var/baby_path
 	///time to wait after breeding
 	var/breed_timer
 	///AI key we set when we're ready to breed
@@ -15,20 +15,20 @@
 	///callback after we give birth to the child
 	var/datum/callback/post_birth
 
-/datum/component/breed/Initialize(list/can_breed_with = list(), breed_timer = 40 SECONDS, baby_paths = list(), post_birth)
+/datum/component/breed/Initialize(list/can_breed_with = list(), breed_timer = 40 SECONDS, baby_path, post_birth)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	if(ishuman(parent)) //sin detected
 		return COMPONENT_INCOMPATIBLE
 
-	if(!length(baby_paths))
-		stack_trace("attempted to add a breeding component with invalid baby paths!")
+	if(!ispath(baby_path))
+		stack_trace("attempted to add a breeding component with invalid baby path!")
 		return
 
 	src.can_breed_with = can_breed_with
 	src.breed_timer = breed_timer
-	src.baby_paths = baby_paths
+	src.baby_path = baby_path
 	src.post_birth = post_birth
 
 	ADD_TRAIT(parent, TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM, type)
@@ -62,8 +62,7 @@
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 	var/turf/delivery_destination = get_turf(source)
-	var/chosen_baby_path = pick_weight(baby_paths)
-	var/atom/baby = new chosen_baby_path(delivery_destination)
+	var/atom/baby = new baby_path(delivery_destination)
 	new /obj/effect/temp_visual/heart(delivery_destination)
 	toggle_status(source)
 

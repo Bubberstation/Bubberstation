@@ -1,4 +1,6 @@
 import { ReactNode, useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -6,9 +8,7 @@ import {
   NoticeBox,
   Section,
   TextArea,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {

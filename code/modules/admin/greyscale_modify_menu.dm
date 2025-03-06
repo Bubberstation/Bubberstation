@@ -242,24 +242,14 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 			config.EnableAutoRefresh(config_owner_type)
 
 /datum/greyscale_modify_menu/proc/ReadColorsFromString(colorString)
-	//length validation
-	var/list/colors = splittext(colorString, "#")
-	if(length(colors) <= 1) //doesn't even begin with a # so isn't even a color
-		return FALSE
-	colors.Cut(1, 2) //removes the white space as a consequence of the string beginning with a #
-	if(colors.len != config.expected_colors) //not the expected length
-		return FALSE
-
-	//value validation
 	var/list/new_split_colors = list()
-	for(var/index in 1 to config.expected_colors)
+	var/list/colors = splittext(colorString, "#")
+	for(var/index in 2 to min(length(colors), config.expected_colors + 1))
 		var/color = "#[colors[index]]"
 		if(!findtext(color, GLOB.is_color) && (!unlocked || !findtext(color, GLOB.is_alpha_color)))
 			return FALSE
 		new_split_colors += color
 	split_colors = new_split_colors
-
-	//all good
 	return TRUE
 
 /datum/greyscale_modify_menu/proc/randomize_color(color_index)

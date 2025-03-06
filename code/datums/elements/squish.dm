@@ -6,42 +6,37 @@
  *
  * It's an element that squishes things. After the duration passes, it reverses the transformation it squished with, taking into account if they are a different orientation than they started (read: rotationally-fluid)
  *
- * Normal squishes apply vertically, as if the target is being squished from above, but you can set horizontal_squish to TRUE if you want to squish them from the sides, like if they pancake into a wall from the East or West
+ * Normal squishes apply vertically, as if the target is being squished from above, but you can set reverse to TRUE if you want to squish them from the sides, like if they pancake into a wall from the East or West
 */
 /datum/element/squish
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
-/datum/element/squish/Attach(atom/target, duration=20 SECONDS, horizontal_squish=FALSE)
+/datum/element/squish/Attach(datum/target, duration=20 SECONDS, reverse=FALSE)
 	. = ..()
-
-	if(!isatom(target))
+	if(!iscarbon(target))
 		return ELEMENT_INCOMPATIBLE
 
-	var/was_lying = FALSE
-	if(iscarbon(target))
-		var/mob/living/carbon/carboniucus = target
-		was_lying = carboniucus.body_position == LYING_DOWN
-	addtimer(CALLBACK(src, PROC_REF(Detach), target, was_lying, horizontal_squish), duration)
+	var/mob/living/carbon/C = target
+	var/was_lying = C.body_position == LYING_DOWN
+	addtimer(CALLBACK(src, PROC_REF(Detach), C, was_lying, reverse), duration)
 
-	if(horizontal_squish)
-		target.transform = target.transform.Scale(SHORT, TALL)
+	if(reverse)
+		C.transform = C.transform.Scale(SHORT, TALL)
 	else
-		target.transform = target.transform.Scale(TALL, SHORT)
+		C.transform = C.transform.Scale(TALL, SHORT)
 
-/datum/element/squish/Detach(atom/target, was_lying, horizontal_squish)
+/datum/element/squish/Detach(mob/living/carbon/C, was_lying, reverse)
 	. = ..()
-	var/is_lying = FALSE
-	if(iscarbon(target))
-		var/mob/living/carbon/carboniucus = target
-		is_lying = carboniucus.body_position == LYING_DOWN
+	if(istype(C))
+		var/is_lying = C.body_position == LYING_DOWN
 
-	if(horizontal_squish)
-		is_lying = !is_lying
+		if(reverse)
+			is_lying = !is_lying
 
-	if(was_lying == is_lying)
-		target.transform = target.transform.Scale(SHORT, TALL)
-	else
-		target.transform = target.transform.Scale(TALL, SHORT)
+		if(was_lying == is_lying)
+			C.transform = C.transform.Scale(SHORT, TALL)
+		else
+			C.transform = C.transform.Scale(TALL, SHORT)
 
 #undef SHORT
 #undef TALL

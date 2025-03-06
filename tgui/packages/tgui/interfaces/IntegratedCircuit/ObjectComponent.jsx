@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { Box, Button, Stack } from 'tgui-core/components';
-import { classes, shallowDiffers } from 'tgui-core/react';
 
+import { shallowDiffers } from '../../../common/react';
+import { Box, Button, Stack } from '../../components';
 import { ABSOLUTE_Y_OFFSET, noop } from './constants';
 import { Port } from './Port';
 
@@ -95,9 +95,8 @@ export class ObjectComponent extends Component {
       x,
       y,
       index,
-      category = 'Unassigned',
+      color = 'blue',
       removable,
-      ui_alerts,
       ui_buttons,
       locations,
       onPortUpdated = noop,
@@ -137,12 +136,10 @@ export class ObjectComponent extends Component {
         {...rest}
       >
         <Box
+          backgroundColor={color}
           py={1}
           px={1}
-          className={classes([
-            'ObjectComponent__Titlebar',
-            `ObjectComponent__Category__${category}`,
-          ])}
+          className="ObjectComponent__Titlebar"
         >
           <Stack>
             <Stack.Item grow={1} unselectable="on">
@@ -153,8 +150,8 @@ export class ObjectComponent extends Component {
                 <Stack.Item key={icon}>
                   <Button
                     icon={icon}
+                    color="transparent"
                     compact
-                    className={`ObjectComponent__Category__${category}`}
                     onClick={() =>
                       act('perform_action', {
                         component_id: index,
@@ -164,22 +161,11 @@ export class ObjectComponent extends Component {
                   />
                 </Stack.Item>
               ))}
-            {!!ui_alerts &&
-              Object.keys(ui_alerts).map((icon) => (
-                <Stack.Item key={icon}>
-                  <Button
-                    className={`ObjectComponent__Category__${category}`}
-                    icon={icon}
-                    compact
-                    tooltip={ui_alerts[icon]}
-                  />
-                </Stack.Item>
-              ))}
             <Stack.Item>
               <Button
+                color="transparent"
                 icon="info"
                 compact
-                className={`ObjectComponent__Category__${category}`}
                 onClick={(e) =>
                   act('set_examined_component', {
                     component_id: index,
@@ -192,9 +178,9 @@ export class ObjectComponent extends Component {
             {!!removable && (
               <Stack.Item>
                 <Button
+                  color="transparent"
                   icon="times"
                   compact
-                  className={`ObjectComponent__Category__${category}`}
                   onClick={() =>
                     act('detach_component', { component_id: index })
                   }

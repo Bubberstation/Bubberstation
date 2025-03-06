@@ -106,7 +106,7 @@
 
 	var/has_watchers = FALSE
 	for(var/mob/viewer in viewers(our_guy, world.view))
-		if(viewer.client && !viewer.client.is_afk())
+		if(viewer.client)
 			has_watchers = TRUE
 			break
 	if(!has_watchers)
@@ -115,9 +115,7 @@
 	if(!prob(8 * effective_luck))
 		return
 
-	var/turf/open/our_guy_pos = living_guy.loc
-	if(!isopenturf(our_guy_pos))
-		return
+	var/our_guy_pos = get_turf(living_guy)
 	for(var/obj/machinery/door/airlock/darth_airlock in our_guy_pos)
 		if(darth_airlock.locked || !darth_airlock.hasPower())
 			continue
@@ -208,11 +206,14 @@
 		INVOKE_ASYNC(our_guy, TYPE_PROC_REF(/mob, emote), "scream")
 		to_chat(our_guy, span_warning("What a horrible night... To have a curse!"))
 
-	if(prob(30 * luck_mod) && our_guy.get_bodypart(BODY_ZONE_HEAD)) /// Bonk!
-		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
+	if(prob(30 * luck_mod)) /// Bonk!
+		var/obj/item/bodypart/the_head = our_guy.get_bodypart(BODY_ZONE_HEAD)
+		if(!the_head)
+			return
+		playsound(get_turf(our_guy), 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
-		our_guy.apply_damage(75 * damage_mod, BRUTE, BODY_ZONE_HEAD, attacking_item = "slipping")
-		our_guy.apply_damage(100 * damage_mod, BRAIN)
+		the_head.receive_damage(75 * damage_mod, damage_source = "slipping")
+		our_guy.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100 * damage_mod)
 		consume_omen()
 
 	return

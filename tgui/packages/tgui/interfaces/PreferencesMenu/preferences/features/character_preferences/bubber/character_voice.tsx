@@ -1,5 +1,4 @@
-import { Button, Stack } from 'tgui-core/components';
-
+import { Button, Stack } from '../../../../../../components';
 import {
   CheckboxInput,
   Feature,
@@ -14,9 +13,7 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 const FeatureBlooperDropdownInput = (
-  props: FeatureValueProps<string, string, FeatureChoicedServerData> & {
-    act: (action: string, value?: unknown) => void;
-  },
+  props: FeatureValueProps<string, string, FeatureChoicedServerData>,
 ) => {
   return (
     <Stack>

@@ -8,7 +8,6 @@
 	callback.Invoke()
 
 /datum/ai_behavior/find_hunt_target/pollinate
-	action_cooldown = 10 SECONDS
 
 /datum/ai_behavior/find_hunt_target/pollinate/valid_dinner(mob/living/source, obj/machinery/hydroponics/dinner, radius)
 	if(!dinner.can_bee_pollinate())
@@ -17,7 +16,6 @@
 
 /datum/ai_behavior/enter_exit_hive
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
-	action_cooldown = 10 SECONDS
 
 /datum/ai_behavior/enter_exit_hive/setup(datum/ai_controller/controller, target_key, attack_key)
 	. = ..()
@@ -113,9 +111,8 @@
 	required_distance = 0
 
 ///swirl around the owner in menacing fashion
-/datum/pet_command/attack/swirl
+/datum/pet_command/point_targeting/attack/swirl
 	command_name = "Swirl"
-	requires_pointing = TRUE
 	command_desc = "Your pets will swirl around you and attack whoever you point at!"
 	speech_commands = list("swirl", "spiral", "swarm")
 	pointed_reaction = null
@@ -124,7 +121,7 @@
 	///the owner we will swarm around
 	var/key_to_swarm = BB_SWARM_TARGET
 
-/datum/pet_command/attack/swirl/try_activate_command(mob/living/commander, radial_command)
+/datum/pet_command/point_targeting/attack/swirl/try_activate_command(mob/living/commander)
 	var/mob/living/living_pawn = weak_parent.resolve()
 	if(isnull(living_pawn))
 		return
@@ -135,7 +132,7 @@
 	controller.set_blackboard_key(key_to_swarm, commander)
 	return ..()
 
-/datum/pet_command/attack/swirl/execute_action(datum/ai_controller/controller)
+/datum/pet_command/point_targeting/attack/swirl/execute_action(datum/ai_controller/controller)
 	if(controller.blackboard_key_exists(BB_CURRENT_PET_TARGET))
 		return ..()
 	controller.queue_behavior(/datum/ai_behavior/swirl_around_target, BB_SWARM_TARGET)
@@ -187,7 +184,7 @@
 	radial_icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	radial_icon_state = "beebox"
 
-/datum/pet_command/beehive/try_activate_command(mob/living/commander, radial_command)
+/datum/pet_command/beehive/try_activate_command(mob/living/commander)
 	var/mob/living/living_pawn = weak_parent.resolve()
 	if(isnull(living_pawn))
 		return

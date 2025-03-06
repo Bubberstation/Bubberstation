@@ -38,7 +38,7 @@
 /area/ruin/space/nt_commsbuoy
 	name = "\improper Nanotrasen Comms Buoy"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-	default_gravity = ZERO_GRAVITY
+	has_gravity = FALSE
 	ambientsounds = list(
 		'sound/ambience/engineering/ambisin2.ogg',
 		'sound/ambience/misc/signal.ogg',
@@ -220,7 +220,7 @@
 		<center><h5>The Spinward Project - brought to you by Nanotrasen Futures and Innovation Division, in partnership with Nanotrasen \
 		Heavy Industry.</h5></center><hr>",
 
-		"<b>14/08/2563</b> - Inbound to Forward - <br>\
+		"<b>14/08/2563</b> - Inbound to Foward - <br>\
 		<i>From: wilson_peters@NTFIDspinward.nt</i> <br>\
 		<i>Relay Target: PORT_ELLIS</i> <br>\
 		<br>\

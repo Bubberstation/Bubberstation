@@ -9,8 +9,6 @@
 	name = "exosuit drill"
 	desc = "Equipment for engineering and combat exosuits. This is the drill that'll pierce the heavens!"
 	icon_state = "mecha_drill"
-	equipment_slot = MECHA_UTILITY
-	can_be_toggled = TRUE
 	equip_cooldown = 15
 	energy_drain = 0.01 * STANDARD_CELL_CHARGE
 	force = 15
@@ -33,17 +31,6 @@
 	)
 	ADD_TRAIT(src, TRAIT_INSTANTLY_PROCESSES_BOULDERS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_BOULDER_BREAKER, INNATE_TRAIT)
-
-/obj/item/mecha_parts/mecha_equipment/drill/handle_ui_act(action, list/params)
-	if(action != "toggle")
-		return
-	if(active)
-		RegisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK, PROC_REF(on_mech_click))
-		log_message("Activated.", LOG_MECHA)
-	else
-		UnregisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK)
-		log_message("Deactivated.", LOG_MECHA)
-	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/drill/attach(obj/vehicle/sealed/mecha/new_mecha, attach_right)
 	. = ..()
@@ -77,14 +64,6 @@
 		return FALSE
 	return ..()
 
-///Redirects clicks to use the drill if possible when enabled
-/obj/item/mecha_parts/mecha_equipment/drill/proc/on_mech_click(atom/mech, mob/source, atom/target, on_cooldown, adjacent)
-	SIGNAL_HANDLER
-	if(on_cooldown || !adjacent)
-		return
-	INVOKE_ASYNC(src, PROC_REF(action), source, target, null, FALSE)
-	return COMPONENT_CANCEL_MELEE_CLICK
-
 /obj/item/mecha_parts/mecha_equipment/drill/action(mob/source, atom/target, list/modifiers, bumped)
 	//If bumped, only bother drilling mineral turfs
 	if(bumped)
@@ -111,10 +90,6 @@
 			if(target_obj.resistance_flags & (UNACIDABLE | INDESTRUCTIBLE))
 				return
 
-	// Check if we can even use the equipment to begin with.
-	if(!action_checks(target))
-		return
-
 	// You can't drill harder by clicking more.
 	if(DOING_INTERACTION_WITH_TARGET(source, target) && do_after_cooldown(target, source, DOAFTER_SOURCE_MECHADRILL))
 		return
@@ -127,6 +102,10 @@
 
 	// Drilling a turf is a one-and-done procedure.
 	if(isturf(target))
+		// Check if we can even use the equipment to begin with.
+		if(!action_checks(target))
+			return
+
 		var/turf/T = target
 		T.drill_act(src, source)
 
@@ -206,7 +185,11 @@
 	target.apply_damage(10, BRUTE, def_zone, blocked)
 
 	//blood splatters
-	target.create_splatter(get_dir(chassis, target))
+	var/splatter_dir = get_dir(chassis, target)
+	if(isalien(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target.drop_location(), splatter_dir)
+	else
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location(), splatter_dir)
 
 	//organs go everywhere
 	if(target_part && blocked < 100 && prob(10 * drill_level))

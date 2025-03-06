@@ -67,7 +67,6 @@
 		/datum/reagent/water = 10,
 	)
 	result = /obj/item/food/rice_dough
-	crafting_flags = CRAFT_CHECK_DENSITY
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/hurricane_rice

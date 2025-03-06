@@ -1,6 +1,5 @@
-import { Button, Flex, Input, Section } from 'tgui-core/components';
-
 import { useBackend, useSharedState } from '../../backend';
+import { Button, Flex, Input, Section } from '../../components';
 
 type Data = {
   upperText: string;
@@ -8,7 +7,7 @@ type Data = {
   maxStatusLineLength: number;
 };
 
-export function StatusDisplayControls(props) {
+export const StatusDisplayControls = (props) => {
   const { act, data } = useBackend<Data>();
   const {
     upperText: initialUpper,
@@ -30,55 +29,48 @@ export function StatusDisplayControls(props) {
       <Section>
         <Button
           icon="toggle-off"
+          content="Off"
           color="bad"
           onClick={() => act('setStatusPicture', { picture: 'blank' })}
-        >
-          Off
-        </Button>
+        />
         <Button
           icon="space-shuttle"
+          content="Shuttle ETA / Off"
           color=""
           onClick={() => act('setStatusPicture', { picture: 'shuttle' })}
-        >
-          Shuttle ETA / Off
-        </Button>
+        />
       </Section>
 
       <Section title="Graphics">
         <Button
           icon="flag"
+          content="Logo"
           onClick={() => act('setStatusPicture', { picture: 'default' })}
-        >
-          Logo
-        </Button>
+        />
 
         <Button
           icon="exclamation"
+          content="Security Alert Level"
           onClick={() => act('setStatusPicture', { picture: 'currentalert' })}
-        >
-          Security Alert Level
-        </Button>
+        />
 
         <Button
           icon="exclamation-triangle"
+          content="Lockdown"
           onClick={() => act('setStatusPicture', { picture: 'lockdown' })}
-        >
-          Lockdown
-        </Button>
+        />
 
         <Button
           icon="biohazard"
+          content="Biohazard"
           onClick={() => act('setStatusPicture', { picture: 'biohazard' })}
-        >
-          Biohazard
-        </Button>
+        />
 
         <Button
           icon="radiation"
+          content="Radiation"
           onClick={() => act('setStatusPicture', { picture: 'radiation' })}
-        >
-          Radiation
-        </Button>
+        />
       </Section>
 
       <Section title="Message">
@@ -105,12 +97,11 @@ export function StatusDisplayControls(props) {
             <Button
               icon="comment-o"
               onClick={() => act('setStatusMessage', { upperText, lowerText })}
-            >
-              Send
-            </Button>
+              content="Send"
+            />
           </Flex.Item>
         </Flex>
       </Section>
     </>
   );
-}
+};

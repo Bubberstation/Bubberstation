@@ -1,5 +1,8 @@
 import { map, sortBy } from 'common/collections';
+import { classes } from 'common/react';
 import { useState } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -13,10 +16,7 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
-
-import { useBackend, useLocalState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 import { sanitizeText } from '../sanitize';
 

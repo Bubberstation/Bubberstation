@@ -2,16 +2,6 @@
 	max_total_storage = 30
 	max_slots = 21
 
-/datum/storage/duffel/New(
-	atom/parent,
-	max_slots,
-	max_specific_storage,
-	max_total_storage,
-)
-	. = ..()
-	var/static/list/exception_cache = typecacheof(list(/obj/item/fish_tank))
-	exception_hold = exception_cache
-
 // Syndi bags get some FUN extras
 // You can fit any 2 bulky objects (assuming they're in the whitelist)
 // Should have traitorus stuff in here, not just useful big things
@@ -70,9 +60,6 @@
 		/obj/item/storage/bag/money,
 		// Heads!
 		/obj/item/bodypart/head,
-		// Fish
-		/obj/item/fish,
-		/obj/item/fish_tank,
 	)
 
 	// We keep the type list and the typecache list separate...

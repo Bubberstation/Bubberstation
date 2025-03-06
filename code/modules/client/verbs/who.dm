@@ -5,7 +5,7 @@
 	set name = "Who"
 	set category = "OOC"
 
-	var/msg = ""
+	var/msg = "<b>Current Players:</b>\n"
 
 	var/list/Lines = list()
 	var/columns_per_row = DEFAULT_WHO_CELLS_PER_ROW
@@ -67,7 +67,7 @@
 	msg += "</tr></table>"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_INFO)
+	to_chat(src, span_infoplain("[msg]"))
 
 /client/verb/adminwho()
 	set category = "Admin"
@@ -75,12 +75,18 @@
 
 	var/list/lines = list()
 	var/payload_string = generate_adminwho_string()
-	var/header = (payload_string == NO_ADMINS_ONLINE_MESSAGE) ? "No Admins Currently Online" : "Current Admins"
+	var/header
+
+	if(payload_string == NO_ADMINS_ONLINE_MESSAGE)
+		header = "No Admins Currently Online"
+	else
+		header = "Current Admins:"
 
 	lines += span_bold(header)
 	lines += payload_string
 
-	to_chat(src, fieldset_block(span_bold(header), jointext(lines, "\n"), "boxed_message"), type = MESSAGE_TYPE_INFO)
+	var/finalized_string = examine_block(jointext(lines, "\n"))
+	to_chat(src, finalized_string)
 
 /// Proc that generates the applicable string to dispatch to the client for adminwho.
 /client/proc/generate_adminwho_string()

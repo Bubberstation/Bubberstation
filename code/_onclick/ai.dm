@@ -73,8 +73,8 @@
 	if(world.time <= next_move)
 		return
 
-	if(setting_waypoint)
-		setting_waypoint = FALSE
+	if(waypoint_mode)
+		waypoint_mode = 0
 		set_waypoint(A)
 		return
 
@@ -115,9 +115,7 @@
 	target.AICtrlShiftClick(src)
 
 /mob/living/silicon/ai/ShiftClickOn(atom/target)
-	if(target.AIShiftClick(src))
-		return
-	return ..()
+	target.AIShiftClick(src)
 
 /mob/living/silicon/ai/CtrlClickOn(atom/target)
 	target.AICtrlClick(src)
@@ -156,7 +154,7 @@
 	return
 
 /atom/proc/AIShiftClick(mob/living/silicon/ai/user)
-	return FALSE
+	return
 
 /atom/proc/AICtrlShiftClick(mob/living/silicon/ai/user)
 	return
@@ -181,11 +179,10 @@
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
 	if(obj_flags & EMAGGED)
-		return FALSE
+		return
 
 	user_toggle_open(user)
 	add_hiddenprint(user)
-	return TRUE
 
 /obj/machinery/door/airlock/AICtrlShiftClick(mob/living/silicon/ai/user)  // Sets/Unsets Emergency Access Override
 	if(obj_flags & EMAGGED)
@@ -225,10 +222,10 @@
 /// Toggle APC lighting settings
 /obj/machinery/power/apc/AIShiftClick(mob/living/silicon/ai/user)
 	if(!can_use(user, loud = TRUE))
-		return FALSE
+		return
 
 	if(!is_operational || failure_timer)
-		return FALSE
+		return
 
 	lighting = lighting ? APC_CHANNEL_OFF : APC_CHANNEL_ON
 	if (user)
@@ -238,7 +235,6 @@
 		user.log_message("turned [enabled_or_disabled] the [src] lighting settings", LOG_GAME)
 	update_appearance()
 	update()
-	return TRUE
 
 /// Toggle APC equipment settings
 /obj/machinery/power/apc/ai_click_alt(mob/living/silicon/ai/user)

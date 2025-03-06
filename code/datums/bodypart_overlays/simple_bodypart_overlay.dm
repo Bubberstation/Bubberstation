@@ -30,8 +30,3 @@
 	icon_state = "bags"
 	draw_color = COLOR_WEBSAFE_DARK_GRAY
 	layers = EXTERNAL_ADJACENT
-
-///PENDING eyes drawn on the face
-/datum/bodypart_overlay/simple/soul_pending_eyes
-	icon_state = "soul_pending_eyes"
-	layers = EXTERNAL_FRONT

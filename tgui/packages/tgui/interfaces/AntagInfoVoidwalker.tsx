@@ -1,5 +1,4 @@
-import { BlockQuote, LabeledList, Section, Stack } from 'tgui-core/components';
-
+import { BlockQuote, LabeledList, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 const tipstyle = {

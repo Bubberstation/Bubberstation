@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'common/react';
 
 export type SubsystemData = {
   can_fire: BooleanLike;

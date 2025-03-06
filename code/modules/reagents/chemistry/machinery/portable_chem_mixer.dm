@@ -182,7 +182,7 @@
 		beaker_data["maxVolume"] = beaker.volume
 		beaker_data["transferAmounts"] = beaker.possible_transfer_amounts
 		beaker_data["pH"] = round(beaker.reagents.ph, 0.01)
-		beaker_data["currentVolume"] = beaker.reagents.total_volume
+		beaker_data["currentVolume"] = round(beaker.reagents.total_volume, CHEMICAL_VOLUME_ROUNDING)
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
@@ -205,7 +205,7 @@
 			if(isnull(target))
 				return
 
-			amount = round(target, CHEMICAL_VOLUME_ROUNDING)
+			amount = target
 			return TRUE
 
 		if("dispense")

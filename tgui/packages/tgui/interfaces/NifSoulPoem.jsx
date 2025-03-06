@@ -1,4 +1,5 @@
 // THIS IS A SKYRAT UI FILE
+import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -8,9 +9,7 @@ import {
   Input,
   LabeledList,
   Section,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const NifSoulPoem = (props) => {

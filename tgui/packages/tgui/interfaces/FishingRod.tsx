@@ -1,6 +1,5 @@
-import { Box, Button, Flex, Image, Section, Stack } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Box, Button, Flex, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

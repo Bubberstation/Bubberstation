@@ -84,9 +84,6 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	var/rolling_usage_length = 5 SECONDS
 
 /datum/controller/master/New()
-	// Ensure usr is null, to prevent any potential weirdness resulting from the MC having a usr if it's manually restarted.
-	usr = null
-
 	if(!config)
 		config = new
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
@@ -328,7 +325,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	var/mc_started = FALSE
 
 	add_startup_message("Initializing subsystems...") //SKYRAT EDIT CHANGE - Custom HTML Lobby Screen
-	// to_chat(world, span_boldannounce("Initializing subsystems..."), MESSAGE_TYPE_DEBUG) SKYRAT EDIT ORIGINAL
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
 	for (var/i in 1 to INITSTAGE_MAX)
@@ -370,7 +366,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, span_boldannounce("[msg]"), MESSAGE_TYPE_DEBUG)
+	to_chat(world, span_boldannounce("[msg]"))
 	log_world(msg)
 
 
@@ -466,8 +462,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	// SKYRAT EDIT REMOVAL END
 
 	if(result != SS_INIT_NO_MESSAGE)
-		add_startup_message(message, chat_warning) //SKYRAT EDIT CHANGE
-		//to_chat(world, chat_message, MESSAGE_TYPE_DEBUG) //SKYRAT EDIT ORIGINAL
+		add_startup_message(message, chat_warning) //SKYRAT EDIT CHANGE - ORIGINAL: to_chat(world, chat_message)
 	log_world(message)
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)

@@ -12,6 +12,7 @@ import {
 import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
+import { TableCell, TableRow } from '../components/Table';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
@@ -50,12 +51,9 @@ export const CheckboxInput = (props) => {
 
     setSelections(newSelections);
   };
-
-  const selectionsWithIndexes = (
-    selections: string[],
-    items: string[],
-  ): [string, number][] =>
-    selections.map((selected) => [selected, items.indexOf(selected) + 1]);
+  const selectionIndexes = selections.map(
+    (selected: string) => items.indexOf(selected) + 1,
+  );
 
   return (
     <Window title={title} width={425} height={300}>
@@ -73,8 +71,8 @@ export const CheckboxInput = (props) => {
             <Section fill scrollable>
               <Table>
                 {toDisplay.map((item, index) => (
-                  <Table.Row className="candystripe" key={index}>
-                    <Table.Cell>
+                  <TableRow className="candystripe" key={index}>
+                    <TableCell>
                       <Button.Checkbox
                         checked={selections.includes(item)}
                         disabled={
@@ -86,8 +84,8 @@ export const CheckboxInput = (props) => {
                       >
                         {item}
                       </Button.Checkbox>
-                    </Table.Cell>
-                  </Table.Row>
+                    </TableCell>
+                  </TableRow>
                 ))}
               </Table>
             </Section>
@@ -108,7 +106,7 @@ export const CheckboxInput = (props) => {
           </Stack>
           <Stack.Item mt={0.7}>
             <Section>
-              <InputButtons input={selectionsWithIndexes(selections, items)} />
+              <InputButtons input={[selections, selectionIndexes]} />
             </Section>
           </Stack.Item>
         </Stack>

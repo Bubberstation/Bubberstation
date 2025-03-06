@@ -73,7 +73,7 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	. = ..()
 
-/obj/effect/countdown/singularity_pull(atom/singularity, current_size)
+/obj/effect/countdown/singularity_pull()
 	return
 
 /obj/effect/countdown/singularity_act()

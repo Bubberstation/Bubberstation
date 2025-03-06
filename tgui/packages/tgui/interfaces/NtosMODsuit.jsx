@@ -1,6 +1,5 @@
-import { NoticeBox } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { NoticeBox } from '../components';
 import { NtosWindow } from '../layouts';
 import { MODsuitContent } from './MODsuit';
 

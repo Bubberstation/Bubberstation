@@ -1,12 +1,7 @@
-import {
-  Button,
-  LabeledList,
-  NumberInput,
-  Section,
-} from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
+import { Button, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Electropack = (props) => {

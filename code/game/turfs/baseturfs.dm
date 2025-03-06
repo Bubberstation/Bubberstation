@@ -34,15 +34,13 @@
 	new_baseturfs.Add(baseturfs)
 	if(isopenturf(src))
 		new_baseturfs.Add(type)
-	var/area/our_area = get_area(src)
-	flags = our_area.place_on_top_react(new_baseturfs, added_layer, flags)
 
 	return ChangeTurf(added_layer, new_baseturfs, flags)
 
 /// Places a turf on top - for map loading
 /turf/proc/load_on_top(turf/added_layer, flags)
 	var/area/our_area = get_area(src)
-	flags = our_area.place_on_top_react(list(baseturfs), added_layer, flags)
+	flags = our_area.PlaceOnTopReact(list(baseturfs), added_layer, flags)
 
 	if(flags & CHANGETURF_SKIP) // We haven't been initialized
 		if(flags_1 & INITIALIZED_1)
@@ -114,16 +112,17 @@
 /// Replaces all instances of needle_type in baseturfs with replacement_type
 /turf/proc/replace_baseturf(needle_type, replacement_type)
 	if (islist(baseturfs))
-		var/list/new_baseturfs = baseturfs.Copy()
+		var/list/new_baseturfs
 
-		for(var/base_i in 1 to length(new_baseturfs))
-			var/found_index = new_baseturfs.Find(needle_type)
+		while (TRUE)
+			var/found_index = baseturfs.Find(needle_type)
 			if (found_index == 0)
 				break
 
+			new_baseturfs ||= baseturfs.Copy()
 			new_baseturfs[found_index] = replacement_type
 
-		if (length(new_baseturfs))
+		if (!isnull(new_baseturfs))
 			baseturfs = baseturfs_string_list(new_baseturfs, src)
 	else if (baseturfs == needle_type)
 		baseturfs = replacement_type

@@ -15,7 +15,7 @@
 	if(isclosedturf(loc) && loc.density)
 		// allows for wall graffiti to be seen
 		SET_PLANE_IMPLICIT(src, GAME_PLANE)
-		layer = CLEANABLE_OBJECT_LAYER
+		layer = GAME_CLEAN_LAYER
 	if(e_name)
 		name = e_name
 	if(desc_override)

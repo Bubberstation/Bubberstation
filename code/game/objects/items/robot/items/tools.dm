@@ -31,21 +31,23 @@
 	var/mob/living/silicon/robot/host = null
 	/// The field
 	var/datum/proximity_monitor/advanced/projectile_dampener/peaceborg/dampening_field
+	var/projectile_damage_coefficient = 0.5
 	/// Energy cost per tracked projectile damage amount per second
 	var/projectile_damage_tick_ecost_coefficient = 10
+	/**
+	 * Speed coefficient
+	 * Higher the coefficient slower the projectile.
+	*/
+	var/projectile_speed_coefficient = 1.5
 	/// Energy cost per tracked projectile per second
 	var/projectile_tick_speed_ecost = 75
-	/// Projectiles dampened by our dampener
-	var/list/tracked_bullet_cost = list()
-	/// the radius of our field
+	/// Projectile sent out by the dampener
+	var/list/obj/projectile/tracked
+	var/image/projectile_effect
 	var/field_radius = 3
 	var/active = FALSE
 	/// activation cooldown
 	COOLDOWN_DECLARE(cycle_cooldown)
-	//BUBBER EDIT BEGIN
-	/// The datum applied to the projectile dampener field
-	var/datum/dampener_projectile_effects/projectile_effects_datum = /datum/dampener_projectile_effects/peacekeeper
-	//BUBBER EDIT END
 
 /obj/item/borg/projectile_dampen/debug
 	maxenergy = 50000
@@ -53,6 +55,8 @@
 	energy_recharge = 5000
 
 /obj/item/borg/projectile_dampen/Initialize(mapload)
+	projectile_effect = image('icons/effects/fields.dmi', "projectile_dampen_effect")
+	tracked = list()
 	START_PROCESSING(SSfastprocess, src)
 	host = loc
 	RegisterSignal(host, COMSIG_LIVING_DEATH, PROC_REF(on_death))
@@ -90,7 +94,7 @@
 	if(istype(dampening_field))
 		QDEL_NULL(dampening_field)
 	var/mob/living/silicon/robot/owner = get_host()
-	dampening_field = new(owner, field_radius, TRUE, src, projectile_effects_datum) // BUBBER EDIT - added projectile_effects_datum
+	dampening_field = new(owner, field_radius, TRUE, src)
 	RegisterSignal(dampening_field, COMSIG_DAMPENER_CAPTURE, PROC_REF(dampen_projectile))
 	RegisterSignal(dampening_field, COMSIG_DAMPENER_RELEASE, PROC_REF(restore_projectile))
 	owner?.model.allow_riding = FALSE
@@ -99,7 +103,8 @@
 /obj/item/borg/projectile_dampen/proc/deactivate_field()
 	QDEL_NULL(dampening_field)
 	visible_message(span_warning("\The [src] shuts off!"))
-	tracked_bullet_cost.Cut()
+	for(var/projectile in tracked)
+		restore_projectile(projectile = projectile)
 	active = FALSE
 
 	var/mob/living/silicon/robot/owner = get_host()
@@ -132,9 +137,11 @@
 
 /obj/item/borg/projectile_dampen/proc/process_usage(seconds_per_tick)
 	var/usage = 0
-	for(var/projectile as anything in tracked_bullet_cost)
+	for(var/obj/projectile/inner_projectile as anything in tracked)
+		if(!inner_projectile.is_hostile_projectile())
+			continue
 		usage += projectile_tick_speed_ecost * seconds_per_tick
-		usage += tracked_bullet_cost[projectile] * projectile_damage_tick_ecost_coefficient * seconds_per_tick
+		usage += tracked[inner_projectile] * projectile_damage_tick_ecost_coefficient * seconds_per_tick
 	energy = clamp(energy - usage, 0, maxenergy)
 	if(energy <= 0)
 		deactivate_field()
@@ -154,12 +161,18 @@
 /obj/item/borg/projectile_dampen/proc/dampen_projectile(datum/source, obj/projectile/projectile)
 	SIGNAL_HANDLER
 
-	if(projectile.is_hostile_projectile())
-		tracked_bullet_cost[REF(projectile)] = projectile.damage
+	tracked[projectile] = projectile.damage
+	projectile.damage *= projectile_damage_coefficient
+	projectile.speed *= projectile_speed_coefficient
+	projectile.add_overlay(projectile_effect)
 
 /obj/item/borg/projectile_dampen/proc/restore_projectile(datum/source, obj/projectile/projectile)
 	SIGNAL_HANDLER
-	tracked_bullet_cost -= REF(projectile)
+
+	tracked -= projectile
+	projectile.damage *= (1 / projectile_damage_coefficient)
+	projectile.speed *= (1 / projectile_speed_coefficient)
+	projectile.cut_overlay(projectile_effect)
 
 //bare minimum omni-toolset for modularity
 /obj/item/borg/cyborg_omnitool
@@ -220,24 +233,29 @@
 /obj/item/borg/cyborg_omnitool/attack_self(mob/user)
 	//build the radial menu options
 	var/list/radial_menu_options = list()
-	for(var/obj/item as anything in omni_toolkit)
-		radial_menu_options[initial(item.name)] = image(icon = initial(item.icon), icon_state = initial(item.icon_state))
+	for(var/obj/item/tool as anything in omni_toolkit)
+		radial_menu_options[initial(tool.tool_behaviour)] = image(icon = initial(tool.icon), icon_state = initial(tool.icon_state))
 
 	//assign the new tool behaviour
-	var/toolkit_menu = show_radial_menu(user, src, radial_menu_options, require_near = TRUE, tooltips = TRUE)
+	var/new_tool_behaviour = show_radial_menu(user, src, radial_menu_options, require_near = TRUE, tooltips = TRUE)
+	if(isnull(new_tool_behaviour) || new_tool_behaviour == tool_behaviour)
+		return
+	tool_behaviour = new_tool_behaviour
 
 	//set the reference & update icons
 	for(var/obj/item/tool as anything in omni_toolkit)
-		if(initial(tool.name) == toolkit_menu)
+		if(initial(tool.tool_behaviour) == new_tool_behaviour)
 			reference = tool
-			tool_behaviour = initial(tool.tool_behaviour)
 			update_appearance(UPDATE_ICON_STATE)
 			playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 			break
 
 /obj/item/borg/cyborg_omnitool/update_icon_state()
-	if (reference)
-		icon_state = reference.icon_state
+	icon_state = initial(icon_state)
+
+	if (tool_behaviour)
+		icon_state += "_[sanitize_css_class_name(tool_behaviour)]"
+
 	return ..()
 
 /**
@@ -288,20 +306,6 @@
 		for(var/obj/item/multitool/tool in atoms)
 			. += "Its multitool buffer contains [tool.buffer]"
 			break
-
-/obj/item/borg/cyborg_omnitool/botany
-	name = "botanical omni-toolset"
-	desc = "A set of botanical tools used by cyborgs to do gardening."
-	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "sili"
-
-	omni_toolkit = list(
-		/obj/item/secateurs/cyborg,
-		/obj/item/cultivator/cyborg,
-		/obj/item/hatchet/cyborg,
-		/obj/item/shovel/spade/cyborg,
-	)
-
 
 #undef PKBORG_DAMPEN_CYCLE_DELAY
 #undef POWER_RECHARGE_CYBORG_DRAIN_MULTIPLIER

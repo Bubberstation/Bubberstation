@@ -1,7 +1,7 @@
 /datum/status_effect/ashwalker_damage //tracks the damage dealt to this mob by ashwalkers
 	id = "ashwalker_damage"
-	duration = STATUS_EFFECT_PERMANENT
-	duration = STATUS_EFFECT_NO_TICK
+	duration = -1
+	tick_interval = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
 	/// How much damage has been dealt to the mob

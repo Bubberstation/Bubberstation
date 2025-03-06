@@ -17,7 +17,7 @@
 
 /datum/map_template/shelter/sauna/New()
 	. = ..()
-	blacklisted_turfs -= typesof(/turf/closed/mineral)
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/delta
@@ -29,7 +29,7 @@
 
 /datum/map_template/shelter/delta/New()
 	. = ..()
-	blacklisted_turfs -= typesof(/turf/closed/mineral)
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/echo
@@ -40,5 +40,5 @@
 
 /datum/map_template/shelter/echo/New()
 	. = ..()
-	blacklisted_turfs -= typesof(/turf/closed/mineral)
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)

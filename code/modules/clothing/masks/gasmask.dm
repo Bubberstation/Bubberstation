@@ -38,6 +38,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 
 /obj/item/clothing/mask/gas/Initialize(mapload)
 	. = ..()
+	//init_fov() BUBBER EDIT - Dear god
 
 	if((flags_cover & PEPPERPROOF) && pepper_tint)
 		AddComponent(/datum/component/clothing_dirt)
@@ -94,6 +95,9 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	var/valid_wearer = ismob(loc)
 	var/mob/wearer = loc
 	if(istype(tool, /obj/item/cigarette))
+		if(flags_cover & MASKCOVERSMOUTH)
+			balloon_alert(user, "mask's mouth is covered!")
+			return ..()
 
 		if(max_filters <= 0 || cig)
 			balloon_alert(user, "can't hold that!")
@@ -237,7 +241,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 /obj/item/clothing/mask/gas/welding/adjust_visor(mob/living/user)
 	. = ..()
 	if(.)
-		playsound(src, up ? SFX_VISOR_UP : SFX_VISOR_DOWN, 50, TRUE)
+		playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 50, TRUE)
 	if(!fishing_modifier)
 		return
 	if(up)
@@ -444,7 +448,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-	fishing_modifier = -2
+	fishing_modifier = -1
 
 /obj/item/clothing/mask/gas/carp
 	name = "carp mask"
@@ -452,7 +456,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	icon_state = "carp_mask"
 	inhand_icon_state = null
 	flags_cover = MASKCOVERSEYES
-	fishing_modifier = -4
+	fishing_modifier = -3
 
 /obj/item/clothing/mask/gas/tiki_mask
 	name = "tiki mask"
@@ -465,7 +469,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	max_integrity = 100
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = null
-	fishing_modifier = -4
+	fishing_modifier = -2
 	var/list/tikimask_designs = list()
 
 /obj/item/clothing/mask/gas/tiki_mask/Initialize(mapload)
@@ -507,7 +511,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	inhand_icon_state = "gas_atmos"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR|HIDESNOUT
-	fishing_modifier = -4
+	fishing_modifier = -2
 
 /obj/item/clothing/mask/gas/prop
 	name = "prop gas mask"

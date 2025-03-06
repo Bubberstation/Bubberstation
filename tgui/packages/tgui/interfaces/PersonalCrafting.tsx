@@ -1,5 +1,9 @@
 import { filter, sortBy } from 'common/collections';
+import { BooleanLike, classes } from 'common/react';
+import { createSearch } from 'common/string';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -12,13 +16,9 @@ import {
   Tabs,
   Tooltip,
   VirtualList,
-} from 'tgui-core/components';
-import { BooleanLike, classes } from 'tgui-core/react';
-import { createSearch } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
-import { Food } from './PreferencesMenu/types';
+import { Food } from './PreferencesMenu/data';
 
 const TYPE_ICONS = {
   'Can Make': 'utensils',
@@ -267,7 +267,6 @@ export const PersonalCrafting = (props) => {
                 <Stack.Item>
                   <Input
                     autoFocus
-                    expensive
                     placeholder={
                       'Search in ' +
                       data.recipes.length +
@@ -334,8 +333,8 @@ export const PersonalCrafting = (props) => {
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
-                <Stack.Item grow m={-1} style={{ overflowY: 'auto' }}>
-                  <Box height={'100%'} p={1}>
+                <Stack.Item grow m={-1}>
+                  <Box height={'100%'} p={1} style={{ overflowY: 'auto' }}>
                     <Tabs vertical>
                       {tabMode === TABS.foodtype &&
                         mode === MODE.cooking &&

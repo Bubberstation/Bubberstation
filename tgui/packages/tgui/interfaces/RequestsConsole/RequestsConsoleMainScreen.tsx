@@ -1,6 +1,5 @@
-import { Icon, Stack, Tabs } from 'tgui-core/components';
-
 import { useBackend, useSharedState } from '../../backend';
+import { Icon, Stack, Tabs } from '../../components';
 import { AnnouncementTab } from './AnnouncementTab';
 import { MessageViewTab } from './MessageViewTab';
 import { MessageWriteTab } from './MessageWriteTab';

@@ -37,8 +37,15 @@
 	if(greyscale_config)
 		set_greyscale(colors = list(pick(possible_colors)))
 	AddElement(/datum/element/ai_retaliate)
-	if(can_breed)
-		add_breeding_component()
+	if(!can_breed)
+		return
+	AddComponent(\
+		/datum/component/breed,\
+		can_breed_with = typecacheof(list(/mob/living/basic/mining/gutlunch)),\
+		baby_path = /mob/living/basic/mining/gutlunch/grub,\
+		post_birth = CALLBACK(src, PROC_REF(after_birth)),\
+		breed_timer = 3 MINUTES,\
+	)
 
 /mob/living/basic/mining/gutlunch/Destroy()
 	GLOB.gutlunch_count--
@@ -54,7 +61,7 @@
 	if(isnull(ore_food))
 		balloon_alert(src, "no food!")
 	else
-		UnarmedAttack(ore_food, TRUE, modifiers)
+		melee_attack(ore_food)
 	return FALSE
 
 /mob/living/basic/mining/gutlunch/proc/after_birth(mob/living/basic/mining/gutlunch/grub/baby, mob/living/partner)
@@ -70,20 +77,6 @@
 	speed = rand(MINIMUM_POSSIBLE_SPEED, input_speed)
 	maxHealth = rand(input_health, MAX_POSSIBLE_HEALTH)
 	health = maxHealth
-
-/mob/living/basic/mining/gutlunch/proc/add_breeding_component()
-	var/static/list/partner_paths = typecacheof(list(/mob/living/basic/mining/gutlunch))
-	var/static/list/baby_paths = list(
-		/mob/living/basic/mining/gutlunch/grub = 1,
-	)
-
-	AddComponent(\
-		/datum/component/breed,\
-		can_breed_with = partner_paths,\
-		baby_paths = baby_paths,\
-		post_birth = CALLBACK(src, PROC_REF(after_birth)),\
-		breed_timer = 3 MINUTES,\
-	)
 
 /mob/living/basic/mining/gutlunch/milk
 	name = "gubbuck"
@@ -118,12 +111,11 @@
 	//pet commands when we tame the gutluncher
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
-		/datum/pet_command/move,
 		/datum/pet_command/free,
-		/datum/pet_command/attack,
-		/datum/pet_command/breed/gutlunch,
+		/datum/pet_command/point_targeting/attack,
+		/datum/pet_command/point_targeting/breed/gutlunch,
 		/datum/pet_command/follow,
-		/datum/pet_command/fetch,
+		/datum/pet_command/point_targeting/fetch,
 		/datum/pet_command/mine_walls,
 	)
 
@@ -145,7 +137,7 @@
 	can_breed = FALSE
 	gender = NEUTER
 	ai_controller = /datum/ai_controller/basic_controller/gutlunch/gutlunch_baby
-	initial_size = 0.6
+	current_size = 0.6
 	///list of stats we inherited
 	var/datum/gutlunch_inherited_stats/inherited_stats
 

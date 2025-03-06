@@ -1,6 +1,6 @@
 // THIS IS A SKYRAT UI FILE
 import { useBackend } from '../backend';
-import { Collapsible, Section } from 'tgui-core/components';
+import { Collapsible, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosNewsArchive = (props) => {

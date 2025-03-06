@@ -13,13 +13,13 @@
 	throwforce = 18
 	throw_speed = 4
 	throw_range = 8
-	embed_type = /datum/embedding/tomahawk
+	embed_type = /datum/embed_data/tomahawk
 	attack_verb_continuous = list("chops", "tears", "lacerates", "cuts")
 	attack_verb_simple = list("chop", "tear", "lacerate", "cut")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
-/datum/embedding/tomahawk
+/datum/embed_data/tomahawk
 	pain_mult = 6
 	embed_chance = 60
 	fall_chance = 10

@@ -15,7 +15,7 @@
 		span_warning("You are going insane!"),
 	)
 
-/obj/effect/anomaly/hallucination/Initialize(mapload, new_lifespan)
+/obj/effect/anomaly/hallucination/Initialize(mapload, new_lifespan, drops_core)
 	. = ..()
 	apply_wibbly_filters(src)
 	generate_decoys()
@@ -55,11 +55,11 @@
 			new /obj/effect/anomaly/hallucination/decoy(floor)
 
 /obj/effect/anomaly/hallucination/decoy
-	anomaly_core = null
+	drops_core = FALSE
 	///Stores the fake analyzer scan text, so the result is always consistent for each anomaly.
 	var/report_text
 
-/obj/effect/anomaly/hallucination/decoy/Initialize(mapload, new_lifespan)
+/obj/effect/anomaly/hallucination/decoy/Initialize(mapload, new_lifespan, drops_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ILLUSORY_EFFECT, INNATE_TRAIT)
 	report_text = pick(

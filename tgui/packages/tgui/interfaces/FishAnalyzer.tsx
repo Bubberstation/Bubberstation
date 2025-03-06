@@ -1,4 +1,8 @@
+import { createSearch } from 'common/string';
 import { useState } from 'react';
+import { BooleanLike } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,11 +13,7 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-import { createSearch } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type FishData = {

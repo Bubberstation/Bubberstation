@@ -207,10 +207,10 @@
 /**
  * This confirms that the user wants to start the wave defense event, and that they can start it.
  */
-/obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE, mech_scan = FALSE)
+/obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE)
 	if(tgui_alert(user, excavation_warning, "Begin defending ore vent?", list("Yes", "No")) != "Yes")
 		return FALSE
-	if(!can_interact(user) && !mech_scan)
+	if(!can_interact(user))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node)
 		return FALSE
@@ -337,16 +337,24 @@
  * Gives a readout of the ores available in the vent that gets added to the description,
  * then asks the user if they want to start wave defense if it's already been discovered.
  * @params user The user who tapped the vent.
- * @params mech_scan If TRUE, will bypass interaction checks to allow mechs to be able to begin the wave defense.
+ * @params scan_only If TRUE, the vent will only scan, and not prompt to start wave defense. Used by the mech mineral scanner.
  */
-/obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, mech_scan = FALSE)
+/obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, scan_only = FALSE)
 	if(tapped)
 		balloon_alert_to_viewers("vent tapped!")
 		return
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node) //We're already defending the vent, so don't scan it again.
-		balloon_alert_to_viewers("protect the node drone!")
+		if(!scan_only)
+			balloon_alert_to_viewers("protect the node drone!")
 		return
 	if(!discovered)
+		if(scan_only)
+			discovered = TRUE
+			generate_description(user)
+			balloon_alert_to_viewers("vent scanned!")
+			AddComponent(/datum/component/gps, name)
+			return
+
 		if(DOING_INTERACTION_WITH_TARGET(user, src))
 			balloon_alert(user, "already scanning!")
 			return
@@ -366,8 +374,10 @@
 			user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
 			user_id_card.registered_account.bank_card_talk("You've been awarded [MINER_POINT_MULTIPLIER] mining points for discovery of an ore vent.")
 		return
+	if(scan_only)
+		return
 
-	if(!pre_wave_defense(user, spawn_drone_on_tap, mech_scan))
+	if(!pre_wave_defense(user, spawn_drone_on_tap))
 		return
 	start_wave_defense()
 

@@ -1,6 +1,5 @@
-import { Button, Flex, NoticeBox, Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Button, Flex, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const GhostPoolProtection = (props) => {

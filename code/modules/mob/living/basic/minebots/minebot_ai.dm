@@ -281,15 +281,13 @@
 /datum/pet_command/automate_mining
 	command_name = "Automate mining"
 	command_desc = "Make your minebot automatically mine!"
-	radial_icon_state = "mine"
+	radial_icon = 'icons/obj/mining.dmi'
+	radial_icon_state = "pickaxe"
 	speech_commands = list("mine")
 	callout_type = /datum/callout_option/mine
 
-/datum/pet_command/automate_mining/valid_callout_target(mob/living/speaker, datum/callout_option/callout, atom/target)
+/datum/pet_command/automate_mining/valid_callout_target(mob/living/caller, datum/callout_option/callout, atom/target)
 	return ismineralturf(target)
-
-/datum/pet_command/automate_mining/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to start mining!"
 
 /datum/pet_command/automate_mining/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, TRUE)
@@ -317,9 +315,6 @@
 	radial_icon_state = "mech_lights_off"
 	ability_key = BB_MINEBOT_LIGHT_ABILITY
 
-/datum/pet_command/minebot_ability/light/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to toggle its lights!"
-
 /datum/pet_command/minebot_ability/dump
 	command_name = "Dump ore"
 	command_desc = "Make your minebot dump all its ore!"
@@ -327,13 +322,10 @@
 	radial_icon_state = "mech_eject"
 	ability_key = BB_MINEBOT_DUMP_ABILITY
 
-/datum/pet_command/minebot_ability/light/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to dump its ore!"
-
-/datum/pet_command/attack/minebot
+/datum/pet_command/point_targeting/attack/minebot
 	attack_behaviour = /datum/ai_behavior/basic_ranged_attack/minebot
 
-/datum/pet_command/attack/minebot/execute_action(datum/ai_controller/controller)
+/datum/pet_command/point_targeting/attack/minebot/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, FALSE)
 	var/mob/living/living_pawn = controller.pawn
 	if(!living_pawn.combat_mode)
@@ -350,10 +342,9 @@
 
 /datum/pet_command/protect_owner/minebot/set_command_target(mob/living/parent, atom/target)
 	if(!parent.ai_controller.blackboard[BB_MINEBOT_AUTO_DEFEND])
-		return FALSE
+		return
 	if(!parent.ai_controller.blackboard_key_exists(BB_BASIC_MOB_CURRENT_TARGET) && !QDELETED(target)) //we are already dealing with something,
 		parent.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
-	return TRUE
 
 /datum/pet_command/protect_owner/minebot/execute_action(datum/ai_controller/controller)
 	if(controller.blackboard[BB_MINEBOT_AUTO_DEFEND])

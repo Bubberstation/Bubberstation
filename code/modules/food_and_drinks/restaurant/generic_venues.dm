@@ -86,7 +86,6 @@
 	)
 
 /obj/machinery/restaurant_portal/bar
-	name = "bar portal"
 	linked_venue = /datum/venue/bar
 
 /obj/item/holosign_creator/robot_seat/bar

@@ -262,7 +262,4 @@
 	tastes = list("spaghetti" = 1, "parmigiano reggiano" = 1,  "guanciale" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_4
-
-/obj/item/food/spaghetti/carbonara/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/love_food_buff, /datum/status_effect/food/speech/italian)
+	crafted_food_buff = /datum/status_effect/food/speech/italian
