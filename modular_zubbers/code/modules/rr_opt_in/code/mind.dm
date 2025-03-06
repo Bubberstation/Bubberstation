@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// Refreshes our ideal/on spawn round removal opt in level by accessing preferences.
 /datum/mind/proc/update_opt_in()
-	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
+	var/datum/preferences/preference_instance = GLOB.preferences_datums[LOWER_TEXT(key)]
 	if (!isnull(preference_instance))
 		ideal_rr = preference_instance.read_preference(/datum/preference/choiced/rr_opt_in_status)
 
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 
 /// Sends a bold message to our holder, telling them if their optin setting has been set to a minimum due to their antag preferences.
 /datum/mind/proc/send_rr_optin_reminder()
-	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
+	var/datum/preferences/preference_instance = GLOB.preferences_datums[LOWER_TEXT(key)]
 	var/client/our_client = preference_instance?.parent // that moment when /mind doesnt have a ref to client :)
 	if (CONFIG_GET(flag/RR_OPT_LEVEL_ANTAG) == FALSE)
 		return
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(rr_optin_forcing_on_spawn_antag_categories, list(
 	if (round_removal_allowed == FALSE)
 		return round_removal_allowed
 
-	var/datum/preferences/preference_instance = GLOB.preferences_datums[lowertext(key)]
+	var/datum/preferences/preference_instance = GLOB.preferences_datums[LOWER_TEXT(key)]
 	if (!isnull(preference_instance))
 		for (var/antag_category in GLOB.rr_optin_forcing_midround_antag_categories)
 			if (antag_category in preference_instance.be_special)
