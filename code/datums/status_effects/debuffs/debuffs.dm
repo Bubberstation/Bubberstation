@@ -362,7 +362,6 @@
 /datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, was_boosted)
 	. = ..()
 	boosted = was_boosted
-	mark_applied = world.time
 
 /datum/status_effect/crusher_mark/on_apply()
 	if(owner.mob_size < MOB_SIZE_LARGE)
