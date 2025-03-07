@@ -17,6 +17,7 @@
 	. += "Your unarmed attacks will deal [GetPowerLevel()] more damage and gain [GetEffectiveness()] effectiveness."
 
 /datum/action/cooldown/bloodsucker/potence/ActivatePower(atom/target)
+	. = ..()
 	var/mob/living/carbon/human/user = owner
 	var/hitStrength = GetPowerLevel()
 	var/hitEffectiveness = GetEffectiveness()
@@ -31,7 +32,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	/// Must be CONSCIOUS
 	if(user.stat != CONSCIOUS)
 		to_chat(owner, span_warning("you feel weaker."))
 		return FALSE
