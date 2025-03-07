@@ -371,3 +371,12 @@
 		/mob/living/simple_animal/hostile/asteroid/elite/legionnaire,
 		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom,
 	)
+
+#undef COLONY_THREAT_XENOS
+#undef COLONY_THREAT_PIRATES
+#undef COLONY_THREAT_CARP
+#undef COLONY_THREAT_SNOW
+#undef COLONY_THREAT_MINING
+#undef COLONY_THREAT_ICE_MINING
+#undef COLONY_THREAT_BEACH
+#undef COLONY_THREAT_CULT
