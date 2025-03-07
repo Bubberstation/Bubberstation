@@ -40,7 +40,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/cmo/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /datum/armor/toggle_labcoat
 	bio = 50
@@ -63,7 +63,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 	//START SKYRAT EDIT ADDITION
 	allowed += list(
 		/obj/item/storage/medkit,
@@ -162,7 +162,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/research_director
 	name = "research director's coat"
-	desc = "A mix between a labcoat and just a regular coat. It's made out of a special anti-bacterial, anti-acidic, and anti-biohazardous synthetic fabric."
+	desc = "A mix between a labcoat and just a regular coat. It's made out of a special antibacterial, anti-acidic, and anti-biohazardous synthetic fabric."
 	icon_state = "labcoat_rd"
 	armor_type = /datum/armor/jacket_research_director
 	body_parts_covered = CHEST|GROIN|ARMS

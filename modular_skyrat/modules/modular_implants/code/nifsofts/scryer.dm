@@ -16,7 +16,7 @@
 
 /datum/nifsoft/scryer/New()
 	. = ..()
-	var/obj/item/organ/internal/cyberimp/brain/nif/parent_resolved = parent_nif.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/parent_resolved = parent_nif.resolve()
 	if(!istype(parent_resolved))
 		stack_trace("[src] ([REF(src)]) tried to create a linked scryer but it had no parent_nif!")
 	if(!linked_scryer)

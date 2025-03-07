@@ -9,7 +9,7 @@
 
 /datum/status_effect/sensitivesnout
 	id = "sensitivesnout"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/sensitivesnout/get_examine_text()

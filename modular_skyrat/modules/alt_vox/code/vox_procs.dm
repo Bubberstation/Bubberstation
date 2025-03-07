@@ -34,28 +34,28 @@
 			var/index = 0
 			for(var/word in GLOB.vox_sounds)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds.len)
 					dat += " / "
 		if(VOX_HL)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_hl)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_hl.len)
 					dat += " / "
 		if(VOX_MIL)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_mil)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_mil.len)
 					dat += " / "
 		if(VOX_BMS)
 			var/index = 0
 			for(var/word in GLOB.vox_sounds_bms)
 				index++
-				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
+				dat += "<A href='byond://?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 				if(index != GLOB.vox_sounds_bms.len)
 					dat += " / "
 
@@ -93,7 +93,7 @@
 	switch(vox_type)
 		if(VOX_NORMAL)
 			for(var/word in words)
-				word = lowertext(trim(word))
+				word = LOWER_TEXT(trim(word))
 				if(!word)
 					words -= word
 					continue
@@ -101,7 +101,7 @@
 					incorrect_words += word
 		if(VOX_HL)
 			for(var/word in words)
-				word = lowertext(trim(word))
+				word = LOWER_TEXT(trim(word))
 				if(!word)
 					words -= word
 					continue
@@ -109,7 +109,7 @@
 					incorrect_words += word
 		if(VOX_MIL)
 			for(var/word in words)
-				word = lowertext(trim(word))
+				word = LOWER_TEXT(trim(word))
 				if(!word)
 					words -= word
 					continue
@@ -117,7 +117,7 @@
 					incorrect_words += word
 		if(VOX_BMS)
 			for(var/word in words)
-				word = lowertext(trim(word))
+				word = LOWER_TEXT(trim(word))
 				if(!word)
 					words -= word
 					continue
@@ -140,7 +140,7 @@
 
 /proc/play_vox_word(word, z_level, mob/only_listener, vox_type)
 
-	word = lowertext(word)
+	word = LOWER_TEXT(word)
 	var/sound_file
 	var/volume = 100
 	switch(vox_type)
