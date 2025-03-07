@@ -7,6 +7,9 @@ import { NTOSData } from '../layouts/NtosWindow';
 export const NtosMain = (props) => {
   const { act, data } = useBackend<NTOSData>();
   const {
+    alert_style,
+    alert_color,
+    alert_name,
     PC_device_theme,
     show_imprint,
     programs = [],
@@ -52,6 +55,20 @@ export const NtosMain = (props) => {
                   />
                 </Stack.Item>
               ))}
+              <Stack.Item right="0px">
+                <Button
+                  tooltip="The current alert level. Indicator becomes more intense when there is a threat, moreso if your department is responsible for handling it."
+                  className={
+                    alert_style == 2
+                      ? 'alertReadoutButton alertReadoutButton_blink'
+                      : 'alertReadoutButton'
+                  }
+                  textColor={alert_style == 0 ? alert_color : '#000000'}
+                  backgroundColor={alert_style == 0 ? '#0000000' : alert_color}
+                >
+                  {alert_name}
+                </Button>
+              </Stack.Item>
             </Stack>
             <Stack>
               {removable_media.map((device) => (
