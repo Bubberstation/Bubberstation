@@ -37,19 +37,9 @@
 	name = "Winter Woods"
 	mappath = "modular_skyrat/modules/hotel_rooms/winterwoods.dmm"
 
-/area/misc/winterwoods
+/area/misc/hilbertshotel/winterwoods
 	name = "Winter Woods"
-	icon = 'icons/area/areas_ruins.dmi'
-	icon_state = "hilbertshotel"
-	requires_power = FALSE
-	has_gravity = TRUE
-	area_flags = NOTELEPORT | HIDDEN_AREA
-	static_lighting = TRUE
-	ambientsounds = "icemoon"
-	var/roomnumber = 0
-	var/obj/item/hilbertshotel/parentSphere
-	var/datum/turf_reservation/reservation
-	var/turf/storageTurf
+	ambientsounds = AMBIENCE_ICEMOON
 
 /datum/map_template/ghost_cafe_rooms/evacuationstation
 	name = "Evacuated Station"
@@ -58,3 +48,19 @@
 /datum/map_template/ghost_cafe_rooms/prisoninfdorm
 	name = "Prison"
 	mappath = "modular_skyrat/modules/hotel_rooms/prisoninfdorm.dmm"
+
+/datum/map_template/ghost_cafe_rooms/corporateoffice
+	name = "Corporate Office"
+	mappath = "modular_skyrat/modules/hotel_rooms/corporateoffice.dmm"
+
+/datum/map_template/ghost_cafe_rooms/recwing
+	name = "Recovery Wing"
+	mappath = "modular_skyrat/modules/hotel_rooms/recovery.dmm"
+
+/datum/map_template/ghost_cafe_rooms/grotto
+	name = "Grotto"
+	mappath = "modular_skyrat/modules/hotel_rooms/grotto.dmm"
+
+/datum/map_template/ghost_cafe_rooms/grotto2
+	name = "Grotto (Night)"
+	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"

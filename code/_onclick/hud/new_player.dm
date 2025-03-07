@@ -29,6 +29,15 @@
 			lobbyscreen.RegisterSignal(src, COMSIG_HUD_LOBBY_COLLAPSED, TYPE_PROC_REF(/atom/movable/screen/lobby, collapse_button))
 			lobbyscreen.RegisterSignal(src, COMSIG_HUD_LOBBY_EXPANDED, TYPE_PROC_REF(/atom/movable/screen/lobby, expand_button))
 
+	if (!owner.client.is_localhost())
+		return
+
+	var/atom/movable/screen/lobby/button/start_now/start_button = new(our_hud = src)
+	start_button.SlowInit()
+	static_inventory += start_button
+	start_button.RegisterSignal(src, COMSIG_HUD_LOBBY_COLLAPSED, TYPE_PROC_REF(/atom/movable/screen/lobby, collapse_button))
+	start_button.RegisterSignal(src, COMSIG_HUD_LOBBY_EXPANDED, TYPE_PROC_REF(/atom/movable/screen/lobby, expand_button))
+
 /// Load and then display the buttons for relevant station traits
 /datum/hud/new_player/proc/show_station_trait_buttons()
 	if (!mymob?.client || mymob.client.interviewee || !length(GLOB.lobby_station_traits))
@@ -119,10 +128,13 @@
 	screen_loc = "TOP,CENTER:-61"
 
 /atom/movable/screen/lobby/button
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	///Is the button currently enabled?
-	var/enabled = TRUE
+	VAR_PROTECTED/enabled = TRUE
 	///Is the button currently being hovered over with the mouse?
 	var/highlighted = FALSE
+	///Should this button play the select sound?
+	var/select_sound_play = TRUE
 
 /atom/movable/screen/lobby/button/Click(location, control, params)
 	if(usr != get_mob())
@@ -136,6 +148,10 @@
 	if(!enabled)
 		return
 	flick("[base_icon_state]_pressed", src)
+	if(select_sound_play)
+		var/sound/ui_select_sound = sound('sound/misc/menu/ui_select1.ogg')
+		ui_select_sound.frequency = get_rand_frequency_low_range()
+		SEND_SOUND(hud.mymob, ui_select_sound)
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -177,6 +193,7 @@
 		return FALSE
 	enabled = status
 	update_appearance(UPDATE_ICON)
+	mouse_over_pointer = enabled ? MOUSE_HAND_POINTER : MOUSE_INACTIVE_POINTER
 	return TRUE
 
 ///Prefs menu
@@ -252,12 +269,13 @@
 	icon = 'icons/hud/lobby/join.dmi'
 	icon_state = "" //Default to not visible
 	base_icon_state = "join_game"
-	enabled = FALSE
+	enabled = null // set in init
 
 /atom/movable/screen/lobby/button/join/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	switch(SSticker.current_state)
 		if(GAME_STATE_PREGAME, GAME_STATE_STARTUP)
+			set_button_status(FALSE)
 			RegisterSignal(SSticker, COMSIG_TICKER_ENTER_SETTING_UP, PROC_REF(show_join_button))
 		if(GAME_STATE_SETTING_UP)
 			set_button_status(TRUE)
@@ -322,13 +340,14 @@
 	icon = 'icons/hud/lobby/observe.dmi'
 	icon_state = "observe_disabled"
 	base_icon_state = "observe"
-	enabled = FALSE
+	enabled = null // set in init
 
 /atom/movable/screen/lobby/button/observe/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	if(SSticker.current_state > GAME_STATE_STARTUP)
 		set_button_status(TRUE)
 	else
+		set_button_status(FALSE)
 		RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(enable_observing))
 
 /atom/movable/screen/lobby/button/observe/Click(location, control, params)
@@ -568,12 +587,14 @@
 	animate(src, transform = transform, time = SHUTTER_MOVEMENT_DURATION + SHUTTER_WAIT_DURATION)
 	//then pull the button up with the shutter and leave it on the edge of the screen
 	animate(transform = transform.Translate(x = 0, y = 134), time = SHUTTER_MOVEMENT_DURATION, easing = CUBIC_EASING|EASE_IN)
+	SEND_SOUND(hud.mymob, sound('sound/misc/menu/menu_rollup1.ogg'))
 
 ///Extends the button back to its usual spot
 ///Sends a signal on the hud for the menu hud elements to listen to
 /atom/movable/screen/lobby/button/collapse/proc/expand_menu()
 	SEND_SIGNAL(hud, COMSIG_HUD_LOBBY_EXPANDED)
 	animate(src, transform = matrix(), time = SHUTTER_MOVEMENT_DURATION, easing = CUBIC_EASING|EASE_OUT)
+	SEND_SOUND(hud.mymob, sound('sound/misc/menu/menu_rolldown1.ogg'))
 
 /atom/movable/screen/lobby/shutter
 	icon = 'icons/hud/lobby/shutter.dmi'
@@ -593,6 +614,23 @@
 
 	//pull the shutter back off-screen
 	animate(transform = matrix(), time = SHUTTER_MOVEMENT_DURATION, easing = CUBIC_EASING|EASE_IN)
+
+/// LOCALHOST ONLY - Start Now button
+/atom/movable/screen/lobby/button/start_now
+	name = "Start Now (LOCALHOST ONLY)"
+	screen_loc = "TOP:-146,CENTER:-54"
+	icon = 'icons/hud/lobby/start_now.dmi'
+	icon_state = "start_now"
+	base_icon_state = "start_now"
+	always_available = FALSE
+	select_sound_play = FALSE
+
+/atom/movable/screen/lobby/button/start_now/Click(location, control, params)
+	. = ..()
+	if(!. || !usr.client.is_localhost() || !check_rights_for(usr.client, R_SERVER))
+		return
+	SEND_SOUND(hud.mymob, sound('sound/effects/splat.ogg', volume = 50))
+	SSticker.start_immediately = TRUE
 
 #undef SHUTTER_MOVEMENT_DURATION
 #undef SHUTTER_WAIT_DURATION

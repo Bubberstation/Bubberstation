@@ -37,7 +37,7 @@
 
 /datum/greyscale_config/bunnysuit_worn
 	name = "Worn Bunny Suit"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bunnysuit_worn.json'
 
 /datum/greyscale_config/custom_bunnysuit
@@ -47,11 +47,11 @@
 
 /datum/greyscale_config/custom_bunnysuit_worn
 	name = "Worn Tailormade Bunny Suit"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit_worn.json'
 
 /datum/greyscale_config/custom_bunnysuit_worn/digi
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 
 /datum/greyscale_config/tailcoat
 	name = "Tailcoat"
@@ -112,3 +112,34 @@
 	name = "Worn Miniskirt"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt_worn.json'
+
+// SHORT-SLEEVED CROPPED JACKET
+
+/datum/greyscale_config/crop_jacket
+	name = "Tailored Jacket"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket.json'
+
+/datum/greyscale_config/crop_jacket/worn
+	name = "Tailored Jacket (Worn)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
+/datum/greyscale_config/shortsleeve_crop_jacket
+	name = "Tailored Jacket (Short-Sleeved)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket_short.json'
+
+/datum/greyscale_config/shortsleeve_crop_jacket/worn
+	name = "Tailored Jacket (Short-Sleeved, Worn)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
+// SLEEVELESS CROPPED JACKET
+
+/datum/greyscale_config/sleeveless_crop_jacket
+	name = "Tailored Jacket (Sleeveless)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket_none.json'
+
+/datum/greyscale_config/sleeveless_crop_jacket/worn
+	name = "Tailored Jacket (Sleeveless, Worn)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
