@@ -49,7 +49,7 @@
 
 	if(istype(current_mob.dna.species))
 		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob)
-		relayed_body.dir = dir
+		relayed_body.dir = linked_portal.dir
 		switch(relayed_body.dir)
 			if(NORTH)
 				relayed_body.pixel_y = 24
@@ -125,22 +125,25 @@
 	cut_overlays()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
 		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)
-		if(!istype(limb_object))
-			return
-		var/limb_icon_list = limb_object.get_limb_icon()
-		if(limb_object == owner.get_bodypart(BODY_ZONE_CHEST))
-			for(var/image/limb_icon in limb_icon_list)
-				var/limb_icon_layer = limb_icon.layer * -1
-				if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER) //Tails need to be portaled
-					limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
-		add_overlay(limb_icon_list)
+		if(istype(limb_object))
+			var/limb_icon_list = limb_object.get_limb_icon()
+			if(limb_object == owner.get_bodypart(BODY_ZONE_CHEST))
+				for(var/image/limb_icon in limb_icon_list)
+					var/limb_icon_layer = limb_icon.layer * -1
+					if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER) //Tails need to be portaled
+						limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+			add_overlay(limb_icon_list)
 	if(owner.shoes)
 		add_overlay(owner.overlays_standing[SHOES_LAYER])
 	if(owner.w_uniform)
-		add_overlay(owner.overlays_standing[UNIFORM_LAYER])
-	var/body_layer_overlays = owner.overlays_standing[BODY_LAYER]
-	for(var/image/body_layer_overlay in body_layer_overlays)
-		body_layer_overlay.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+		var/image/uniform_overlay = image(owner.overlays_standing[UNIFORM_LAYER])
+		uniform_overlay.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+		add_overlay(uniform_overlay)
+	var/body_layer_overlays = list()
+	for(var/image/body_layer_overlay in owner.overlays_standing[BODY_LAYER])
+		var/image/new_body_layer_overlay = image(body_layer_overlay)
+		new_body_layer_overlay.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+		body_layer_overlays += new_body_layer_overlay
 	add_overlay(body_layer_overlays)
 
 /obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
