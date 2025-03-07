@@ -130,3 +130,8 @@ ADMIN_VERB(play_localweb_sound, R_SOUND, "Play Local Internet Sound", "Play a gi
 		localweb_sound(usr, web_sound_input, range = number_input)
 	else
 		localweb_sound(usr, null, null, null)
+
+#undef SHELLEO_ERRORLEVEL
+#undef SHELLEO_STDOUT
+#undef SHELLEO_STDERR
+#undef COOLDOWN_LOCAL_INTERNET_SOUND
