@@ -55,9 +55,11 @@
 					hanging_object.pixel_x = -pixel_shift
 		after_attach(hanging_object)
 	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
-	if(!multi_use)
-		qdel(src)
+	if(multi_use)
+		return
 	//BUBBER EDIT END
+	qdel(src)
+
 
 /obj/item/wallframe/proc/after_attach(obj/attached_to)
 	transfer_fingerprints_to(attached_to)
