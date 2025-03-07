@@ -790,3 +790,5 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in track_events)
 		if(event.type == text2path(type))
 			return event
+
+#undef INIT_ORDER_GAMEMODE
