@@ -104,10 +104,10 @@
 /// Builds the HTML panel entry for the round end report
 /datum/opposing_force/proc/build_html_panel_entry()
 	var/list/opfor_entry = list("<b>[mind_reference.key]</b> - ")
-	opfor_entry += "<a href='?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
+	opfor_entry += "<a href='byond://?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
 	if(mind_reference.current)
-		opfor_entry += "<a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
-	opfor_entry += "<a href='?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
+		opfor_entry += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
+	opfor_entry += "<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
 	return opfor_entry.Join()
 
 /datum/opposing_force/ui_interact(mob/user, datum/tgui/ui)
@@ -296,11 +296,11 @@
 				return
 			for(var/datum/opposing_force_objective/objective as anything in objectives)
 				if(objective.status == OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED)
-					to_chat(usr, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
+					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
 					return
 			for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 				if(equipment.status == OPFOR_EQUIPMENT_STATUS_NOT_REVIEWED)
-					to_chat(usr, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
+					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
 					return
 			SSopposing_force.approve(src, usr)
 		if("approve_all")
@@ -376,7 +376,7 @@
 		if(choice == "No")
 			return
 	handling_admin = get_admin_ckey(user)
-	to_chat(mind_reference.current, examine_block(span_nicegreen("Your OPFOR application is now being handled by [handling_admin].")))
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("Your OPFOR application is now being handled by [handling_admin].")))
 	send_admins_opfor_message("HANDLE: [ADMIN_LOOKUPFLW(user)] is handling [mind_reference.key]'s OPFOR application.")
 	send_system_message("[handling_admin] has assigned themselves to this application")
 	add_log(user.ckey, "Assigned self to application")
@@ -507,7 +507,7 @@
 	add_log(user.ckey, "Submitted to the OPFOR subsystem")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has submitted the application for review")
 	send_admins_opfor_message(span_command_headset("SUBMISSION: [ADMIN_LOOKUPFLW(user)] has submitted their OPFOR application. They are number [queue_position] in the queue."))
-	to_chat(usr, examine_block(span_nicegreen(("You have been added to the queue for the OPFOR subsystem. You are number <b>[queue_position]</b> in line."))))
+	to_chat(usr, custom_boxed_message("green_box", span_nicegreen(("You have been added to the queue for the OPFOR subsystem. You are number <b>[queue_position]</b> in line."))))
 
 /datum/opposing_force/proc/modify_request(mob/user)
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED)
@@ -540,7 +540,7 @@
 		opfor.status = OPFOR_OBJECTIVE_STATUS_DENIED
 	SEND_SOUND(mind_reference.current, sound('modular_skyrat/modules/opposing_force/sound/denied.ogg'))
 	add_log(denier.ckey, "Denied application")
-	to_chat(mind_reference.current, examine_block(span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
+	to_chat(mind_reference.current, custom_boxed_message("red_box", span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
 	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
 	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
 	ticket_counter_add_handled(denier.key, 1)
@@ -559,7 +559,7 @@
 			continue
 		objective_denied = TRUE
 		break
-	to_chat(mind_reference.current, examine_block(span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
 	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
 	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
 	ticket_counter_add_handled(approver.key, 1)
@@ -701,7 +701,7 @@
 	log_admin(msg)
 
 /datum/opposing_force/proc/send_admins_opfor_message(message)
-	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
+	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = message,
@@ -732,7 +732,7 @@
 
 /datum/opposing_force/proc/broadcast_queue_change()
 	var/queue_number = SSopposing_force.get_queue_position(src)
-	to_chat(mind_reference.current, examine_block(span_nicegreen("Your OPFOR application is now number [queue_number] in the queue.")))
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("Your OPFOR application is now number [queue_number] in the queue.")))
 	send_system_message("Application is now number [queue_number] in the queue")
 
 /datum/opposing_force/proc/send_message(mob/user, message)
@@ -835,7 +835,7 @@
 		send_system_message("ERROR: You are muted.")
 		return
 	if(user.ckey != handling_admin && GLOB.directory[handling_admin])
-		to_chat(GLOB.directory[handling_admin], span_pink("OPFOR: [user] has pinged their OPFOR admin chat! (<a href='?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)"))
+		to_chat(GLOB.directory[handling_admin], span_pink("OPFOR: [user] has pinged their OPFOR admin chat! (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)"))
 		SEND_SOUND(GLOB.directory[handling_admin], sound('sound/misc/bloop.ogg'))
 		send_system_message("Handling admin pinged.")
 		COOLDOWN_START(src, ping_cooldown, OPFOR_PING_COOLDOWN)
@@ -924,8 +924,8 @@
 						var/list/equipment = opfor_data["selected_equipment"][iter_num]
 
 						if(\
-						!equipment["equipment_parent_category"]|| !(equipment["equipment_parent_category"] in SSopposing_force.equipment_list)\
-						 || !equipment["equipment_parent_type"] || !ispath(text2path(equipment["equipment_parent_type"]), /datum/opposing_force_equipment))
+						!equipment["equipment_parent_category"]|| !(equipment["equipment_parent_category"] in SSopposing_force.equipment_list) \
+						|| !equipment["equipment_parent_type"] || !ispath(text2path(equipment["equipment_parent_type"]), /datum/opposing_force_equipment))
 							continue
 
 						// creates a new selected equipment datum using a type gotten from the given equipment type via SSopposing_force.equipment_list

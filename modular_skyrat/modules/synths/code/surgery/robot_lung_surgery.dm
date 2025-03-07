@@ -18,7 +18,7 @@
 	desc = "A mechanical surgery procedure designed to repair an androids internal heatsink."
 
 /datum/surgery/heatsink/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
-	var/obj/item/organ/internal/lungs/target_lungs = target.get_organ_slot(ORGAN_SLOT_LUNGS)
+	var/obj/item/organ/lungs/target_lungs = target.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(isnull(target_lungs) || !issynthetic(target) || target_lungs.damage < 10 )
 		return FALSE
 	return ..()
@@ -46,7 +46,7 @@
 /datum/surgery_step/heatsink/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/patient = target
-		var/obj/item/organ/internal/lungs/heatsink = patient.get_organ_slot(ORGAN_SLOT_LUNGS)
+		var/obj/item/organ/lungs/heatsink = patient.get_organ_slot(ORGAN_SLOT_LUNGS)
 		patient.setOrganLoss(ORGAN_SLOT_LUNGS, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 		if(heatsink.organ_flags & ORGAN_EMP)
 			heatsink.organ_flags &= ~ORGAN_EMP

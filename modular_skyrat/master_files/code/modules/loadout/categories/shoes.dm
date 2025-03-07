@@ -33,6 +33,22 @@
 	name = "Recolorable Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/recolorable
 
+/datum/loadout_item/shoes/jackboots/sec
+	name = "security jackboots"
+	item_path = /obj/item/clothing/shoes/jackboots/sec
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+
+/datum/loadout_item/shoes/jackboots/peacekeeper
+	name = "Armadyne combat boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/shoes/jackboots/gogo_boots
+	name = "Tactical Go-Go boots"
+	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+
 /*
 *	MISC BOOTS
 */

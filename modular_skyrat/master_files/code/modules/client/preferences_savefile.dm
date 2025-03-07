@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 7
+#define MODULAR_SAVEFILE_VERSION_MAX 8
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -14,6 +14,7 @@
 #define VERSION_CHRONOLOGICAL_AGE 5
 #define VERSION_LANGUAGES 6
 #define VERSION_LOADOUT_PRESETS 7
+#define VERSION_INTERNAL_EXTERNAL_ORGANS 8
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -25,7 +26,7 @@
 /datum/preferences/proc/savefile_needs_update_skyrat(list/save_data)
 	var/savefile_version = save_data["modular_version"]
 
-	if(save_data.len && savefile_version < MODULAR_SAVEFILE_VERSION_MAX)
+	if(savefile_version && savefile_version < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT
 		return savefile_version
 
 	return MODULAR_SAVEFILE_UP_TO_DATE
@@ -36,18 +37,7 @@
 	if(!save_data)
 		save_data = list()
 
-	var/list/save_augments = SANITIZE_LIST(save_data["augments"])
-	for(var/aug_slot in save_augments)
-		var/aug_entry = save_augments[aug_slot]
-		save_augments -= aug_slot
-
-		if(istext(aug_entry))
-			aug_entry = _text2path(aug_entry)
-
-		var/datum/augment_item/aug = GLOB.augment_items[aug_entry]
-		if(aug)
-			save_augments[aug_slot] = aug_entry
-	augments = save_augments
+	load_augments(SANITIZE_LIST(save_data["augments"]))
 
 	augment_limb_styles = SANITIZE_LIST(save_data["augment_limb_styles"])
 	for(var/key in augment_limb_styles)
@@ -79,8 +69,8 @@
 	languages = save_languages
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
-	if(!tgui_prefs_migration && save_data.len) // If save_data is empty, this is definitely a new character
-		to_chat(parent, examine_block(span_redtext("PREFERENCE MIGRATION BEGINNING.\
+	if(!tgui_prefs_migration && save_data["modular_version"] && save_data["modular_version"] < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT - if we're missing version from migration, then the char is new. Won't be able to migrate either.
+		to_chat(parent, custom_boxed_message("red_box", span_bolddanger("PREFERENCE MIGRATION BEGINNING.\
 		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
 		")))
@@ -96,7 +86,7 @@
 
 /// Brings a savefile up to date with modular preferences. Called if savefile_needs_update_skyrat() returned a value higher than 0
 /datum/preferences/proc/update_character_skyrat(current_version, list/save_data)
-	to_chat(parent, examine_block(span_redtext("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
+	to_chat(parent, custom_boxed_message("red_box", span_bolddanger("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
 	if(current_version < VERSION_GENITAL_TOGGLES)
 		// removed genital toggles, with the new choiced prefs paths as assoc
 		var/static/list/old_toggles
@@ -264,11 +254,22 @@
 	if(current_version < VERSION_LOADOUT_PRESETS)
 		write_preference(GLOB.preference_entries[/datum/preference/loadout], list("Default" = save_data["loadout_list"])) // So easy. I wish the synth refactor was this easy.
 
-	to_chat(parent, examine_block(span_greentext("Updated preferences!")))
+	if(current_version < VERSION_INTERNAL_EXTERNAL_ORGANS)
+		var/list/save_augments = SANITIZE_LIST(save_data["augments"])
+		var/prefix_length = length("/obj/item/organ/internal") // Shouldn't be any external augments, but if there are, it's the same length
+		for(var/augment_name in save_augments)
+			var/augment_path_string = save_augments[augment_name]
+			if(!(findtext(augment_path_string, "/obj/item/organ/internal") || findtext(augment_path_string, "/obj/item/organ/external")))
+				continue // Make sure we don't strip something that isn't there
+			var/augment_path_string_stripped = copytext(save_augments[augment_name], prefix_length + 1)
+			save_augments[augment_name] = "/obj/item/organ[augment_path_string_stripped]"
+		load_augments(save_augments)
+
+	to_chat(parent, custom_boxed_message("green_box", span_greentext("Updated preferences!")))
 
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
-		to_chat(parent, examine_block(span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
+		to_chat(parent, custom_boxed_message("red_box", span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
 		message_admins("PREFERENCE MIGRATION: [ADMIN_LOOKUPFLW(parent)] has failed the process for migrating PREFERENCES. Check runtimes.")
 
 
@@ -284,8 +285,9 @@
 	save_data["alt_job_titles"] = alt_job_titles
 	save_data["languages"] = languages
 	save_data["food_preferences"] = food_preferences
-	if(updated)
-		save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
+	//if(updated) // BUBBER EDIT - This is bullshit, results in newly created characters getting invalid data. Load character should forcefully migrate it, so we can safely assume its up to date
+	//	save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
+	save_data["modular_version"] = MODULAR_SAVEFILE_VERSION_MAX
 
 
 /datum/preferences/proc/update_body_parts(datum/preference/preference)
@@ -323,6 +325,18 @@
 					markings[marking][title] = list(sanitize_hexcolor(markings[marking][title]), FALSE)
 	return markings
 
+/datum/preferences/proc/load_augments(list/augments_prefs)
+	var/list/augments_sanitized = list()
+	for(var/aug_slot in augments_prefs)
+		var/aug_entry = augments_prefs[aug_slot]
+
+		if(istext(aug_entry))
+			aug_entry = _text2path(aug_entry)
+
+		var/datum/augment_item/aug = GLOB.augment_items[aug_entry]
+		if(aug)
+			augments_sanitized[aug_slot] = aug_entry
+	augments = augments_sanitized
 
 #undef MODULAR_SAVEFILE_VERSION_MAX
 #undef MODULAR_SAVEFILE_UP_TO_DATE
@@ -334,3 +348,4 @@
 #undef VERSION_CHRONOLOGICAL_AGE
 #undef VERSION_LANGUAGES
 #undef VERSION_LOADOUT_PRESETS
+#undef VERSION_INTERNAL_EXTERNAL_ORGANS

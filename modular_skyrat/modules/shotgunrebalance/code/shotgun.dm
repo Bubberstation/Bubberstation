@@ -209,7 +209,6 @@
 	ricochet_decay_damage = 1
 	ricochet_decay_chance = 1
 	ricochet_incidence_leeway = 0 //nanomachines son
-	homing = TRUE
 	homing_turn_speed = 25
 	homing_inaccuracy_min = 10
 	homing_inaccuracy_max = 80
@@ -241,10 +240,10 @@
 	eyeblur = 1 SECONDS
 	sharpness = NONE
 	range = 12
-	embed_type = /datum/embed_data/shotgun_buckshot/antitide
+	embed_type = /datum/embedding/shotgun_buckshot/antitide
 	reflectable = NONE
 
-/datum/embed_data/shotgun_buckshot/antitide
+/datum/embedding/shotgun_buckshot/antitide
 	embed_chance = 200
 	pain_chance = 95
 	fall_chance = 10
