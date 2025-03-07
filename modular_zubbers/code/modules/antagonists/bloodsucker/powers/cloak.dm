@@ -1,4 +1,3 @@
-
 #define USE_SEEN_CLOAK_LEVEL 2
 #define USE_RUN_CLOAK_LEVEL 4
 
@@ -82,3 +81,6 @@
 	if(level_current < USE_RUN_CLOAK_LEVEL && was_running && user.move_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 	user.balloon_alert(user, "cloak turned off.")
+
+#undef USE_SEEN_CLOAK_LEVEL
+#undef USE_RUN_CLOAK_LEVEL
