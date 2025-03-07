@@ -21,7 +21,7 @@
 	/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
 	/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
 	/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,)
-	build_path = /obj/item/organ/internal/cyberimp/brain/empathic_sensor
+	build_path = /obj/item/organ/cyberimp/brain/empathic_sensor
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
 	)
