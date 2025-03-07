@@ -337,3 +337,6 @@
 /datum/status_effect/physgun_pause/admin
 	id = "physgun_pause_admin"
 	force = TRUE
+
+#undef TRAIT_PHYSGUN_PAUSE
+#undef PHYSGUN_EFFECTS
