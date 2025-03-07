@@ -138,7 +138,7 @@
 	)
 	. = ..()
 
-/obj/item/borg/apparatus/sheet_manipulator/Initialize()
+/obj/item/borg/apparatus/sheet_manipulator/Initialize(mapload)
 	. = ..()
 	storable += /obj/item/stack/rods
 
@@ -156,6 +156,7 @@
 					/obj/item/conveyor_switch_construct,
 					/obj/item/wallframe,
 					/obj/item/tank,
+					/obj/item/stock_parts,
 					)
 
 /obj/item/borg/apparatus/mining/examine()
