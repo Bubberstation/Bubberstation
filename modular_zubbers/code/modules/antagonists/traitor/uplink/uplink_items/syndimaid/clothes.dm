@@ -11,8 +11,8 @@
 	wound = 25
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored
-	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit.\
-	 The armor on this one is bulky and blocks the user from wearing any chest armor."
+	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit. \
+	The armor on this one is bulky and blocks the user from wearing any chest armor."
 	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = CHEST|GROIN|LEGS
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
