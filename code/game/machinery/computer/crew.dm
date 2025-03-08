@@ -275,6 +275,20 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
+
+		// Broken sensors show garbage data
+		if (uniform.has_sensor == BROKEN_SENSORS)
+			entry["life_status"] = rand(0,1)
+			entry["area"] = pick_list (ION_FILE, "ionarea")
+			entry["oxydam"] = rand(0,175)
+			entry["toxdam"] = rand(0,175)
+			entry["burndam"] = rand(0,175)
+			entry["brutedam"] = rand(0,175)
+			entry["health"] = -50
+			entry["can_track"] = tracked_living_mob.can_track()
+			results[++results.len] = entry
+			continue
+
 		// BUBBERSTATION EDIT BEGIN: Add DNR status
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
