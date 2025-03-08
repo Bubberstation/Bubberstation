@@ -7,21 +7,20 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
-	constant_bloodcost = 1
+	constant_bloodcost = 3
 	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/bloodsucker/potence/get_power_explanation_extended()
 	. = list()
 	. += "Utilize your blood to augment your strength."
 	. += "This will drain blood at a constant rate of one unit per second while active."
-	. += "Your unarmed attacks will deal [GetPowerLevel()] more damage and gain [GetEffectiveness()] effectiveness."
+	. += "Your unarmed attacks will deal [GetPowerLevel()] more damage."
 
 /datum/action/cooldown/bloodsucker/potence/ActivatePower(atom/target)
 	. = ..()
 	var/mob/living/carbon/human/user = owner
 	ADD_TRAIT(owner, TRAIT_PERFECT_ATTACKER, BLOODSUCKER_TRAIT)
 	var/hitStrength = GetPowerLevel()
-	var/hitEffectiveness = GetEffectiveness()
 	for (var/body_zone in GLOB.limb_zones)
 		var/obj/item/bodypart/parts_to_buff = user.get_bodypart(body_zone)
 		parts_to_buff.unarmed_damage_low += hitStrength
@@ -47,7 +46,6 @@
 	var/mob/living/carbon/human/user = owner
 	REMOVE_TRAIT(owner, TRAIT_PERFECT_ATTACKER, BLOODSUCKER_TRAIT)
 	var/hitStrength = GetPowerLevel()
-	var/hitEffectiveness = GetEffectiveness()
 	for (var/body_zone in GLOB.limb_zones)
 		var/obj/item/bodypart/parts_to_buff = user.get_bodypart(body_zone)
 		parts_to_buff.unarmed_damage_low -= hitStrength

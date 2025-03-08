@@ -10,7 +10,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
-	constant_bloodcost = 1
+	constant_bloodcost = 3
 	cooldown_time = 20 SECONDS
 	var/celerity_speed
 	var/celerity_delay
