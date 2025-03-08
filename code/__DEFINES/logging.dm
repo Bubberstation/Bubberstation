@@ -26,7 +26,7 @@
 #define INVESTIGATE_RECORDS "records"
 #define INVESTIGATE_RESEARCH "research"
 #define INVESTIGATE_WIRES "wires"
-#define INVESTIGATE_NANITES "nanites" // BUBBER ADDITION
+#define INVESTIGATE_NANITES "nanites" // BUBBER EDIT ADDITION
 
 
 // Logging types for log_message()

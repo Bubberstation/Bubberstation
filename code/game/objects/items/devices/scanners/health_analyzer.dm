@@ -437,7 +437,7 @@
 
 	if(tochat)
 		to_chat(user, custom_boxed_message("blue_box", .), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
-	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER ADDITION - NANITES
+	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER EDIT ADDITION - NANITES
 	return .
 
 /obj/item/healthanalyzer/click_ctrl_shift(mob/user)
