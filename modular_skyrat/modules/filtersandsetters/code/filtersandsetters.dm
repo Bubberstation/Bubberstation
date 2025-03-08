@@ -175,3 +175,4 @@
 	)
 	return ..()
 
+#undef TOOL_ALIEN_BONESET

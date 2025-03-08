@@ -1253,7 +1253,10 @@
 		/obj/item/stack/tile/catwalk_tile/iron_white,
 		/obj/item/stack/tile/catwalk_tile/iron_dark,
 		/obj/item/stack/tile/catwalk_tile/titanium,
-		/obj/item/stack/tile/catwalk_tile/iron_smooth //this is the original greenish one
+		/obj/item/stack/tile/catwalk_tile/iron_smooth, //this is the original greenish one
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/catwalk_tile/wood_smooth // You can already convert to Titanium, why not make wood?
+		// BUBBER EDIT END
 	)
 
 /obj/item/stack/tile/catwalk_tile/sixty
