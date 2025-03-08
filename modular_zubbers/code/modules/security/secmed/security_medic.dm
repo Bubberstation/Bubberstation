@@ -117,8 +117,8 @@
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic(src)
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue(src)
+	new /obj/item/clothing/suit/hazardvest/security_medic(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
 	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)
@@ -144,9 +144,9 @@
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()
-    . = ..()
-    var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
-    for(var/datum/job/job_type in sec_exp_list)
-        if(istype(job_type, /datum/job/security_medic))
-            LAZYREMOVE(sec_exp_list, job_type)
-            break
+	. = ..()
+	var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
+	for(var/datum/job/job_type in sec_exp_list)
+		if(istype(job_type, /datum/job/security_medic))
+			LAZYREMOVE(sec_exp_list, job_type)
+			break

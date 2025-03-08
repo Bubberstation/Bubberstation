@@ -56,12 +56,12 @@
 	name = "brass spear"
 	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
 	icon_state = "ratvarian_spear"
-	embed_type = /datum/embed_data/spear/brass
+	embed_type = /datum/embedding/spear/brass
 	throwforce = 36
 	force = 25
 	armour_penetration = 24
 
-/datum/embed_data/spear/brass
+/datum/embedding/spear/brass
 	impact_pain_mult = parent_type::impact_pain_mult + 8
 	remove_pain_mult = parent_type::remove_pain_mult + 8
 

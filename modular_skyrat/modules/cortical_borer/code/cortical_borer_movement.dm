@@ -25,14 +25,14 @@
 	if(get_dist(victim, src) > 1)
 		balloon_alert(src, "too far")
 		return FALSE
-	var/obj/item/organ/internal/brain/brain = victim.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/brain = victim.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(brain))
 		balloon_alert(src, "no brain")
 		return FALSE
 
 	return enter_host(victim, brain)
 
-/mob/living/basic/cortical_borer/proc/enter_host(mob/living/carbon/human/victim, obj/item/organ/internal/brain/brain)
+/mob/living/basic/cortical_borer/proc/enter_host(mob/living/carbon/human/victim, obj/item/organ/brain/brain)
 	human_host = victim
 	forceMove(human_host)
 
@@ -40,7 +40,7 @@
 		to_chat(human_host, span_notice("A chilling sensation goes down your spine..."))
 	copy_languages(human_host)
 
-	var/obj/item/organ/internal/borer_body/borer_organ = new()
+	var/obj/item/organ/borer_body/borer_organ = new()
 	borer_organ.borer = src
 	borer_organ.Insert(human_host)
 
@@ -73,7 +73,7 @@
 
 ///This is the version for correctly cleaning up the borer when qdeling/moving out. Don't call this directly
 /mob/living/basic/cortical_borer/proc/leave_host_clean()
-	var/obj/item/organ/internal/borer_body/borer_organ = locate() in human_host.organs
+	var/obj/item/organ/borer_body/borer_organ = locate() in human_host.organs
 	if(borer_organ)
 		borer_organ.Remove(human_host)
 	if(brain_host)

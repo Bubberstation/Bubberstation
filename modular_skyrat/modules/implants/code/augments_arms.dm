@@ -37,14 +37,14 @@
 	armour_penetration = 10 //Energy isn't as good at going through armor as it is through flesh alone.
 	hitsound = 'sound/items/weapons/blade1.ogg'
 
-/obj/item/organ/internal/cyberimp/arm/armblade
+/obj/item/organ/cyberimp/arm/armblade
 	name = "arm blade implant"
 	desc = "An integrated blade implant designed to be installed into a persons arm. Stylish and deadly; Although, being caught with this without proper permits is sure to draw unwanted attention."
 	items_to_create = list(/obj/item/melee/implantarmblade)
 	icon = 'modular_skyrat/modules/implants/icons/implanted_blade.dmi'
 	icon_state = "mantis_blade"
 
-/obj/item/organ/internal/cyberimp/arm/armblade/emag_act()
+/obj/item/organ/cyberimp/arm/armblade/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
 	for(var/datum/weakref/created_item in items_list)
@@ -118,7 +118,7 @@
 	qdel(stone)
 	return ..()
 
-/obj/item/organ/internal/cyberimp/arm/razor_claws
+/obj/item/organ/cyberimp/arm/razor_claws
 	name = "razor claws implant"
 	desc = "A set of hidden, retractable blades built into the fingertips; cyborg mercenary approved."
 	items_to_create = list(/obj/item/knife/razor_claws)
@@ -129,13 +129,13 @@
 	retract_sound = 'sound/items/sheath.ogg'
 
 /// bespoke subtypes for augs menu since it's a bit wonky
-/obj/item/organ/internal/cyberimp/arm/razor_claws/right_arm
-    zone = BODY_ZONE_R_ARM
-    slot = ORGAN_SLOT_RIGHT_ARM_AUG
+/obj/item/organ/cyberimp/arm/razor_claws/right_arm
+	zone = BODY_ZONE_R_ARM
+	slot = ORGAN_SLOT_RIGHT_ARM_AUG
 
-/obj/item/organ/internal/cyberimp/arm/razor_claws/left_arm
-    zone = BODY_ZONE_L_ARM
-    slot = ORGAN_SLOT_LEFT_ARM_AUG
+/obj/item/organ/cyberimp/arm/razor_claws/left_arm
+	zone = BODY_ZONE_L_ARM
+	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
 
 /datum/action/item_action/organ_action/toggle/razor_claws
@@ -144,14 +144,14 @@
 	button_icon = 'modular_skyrat/master_files/icons/hud/actions.dmi'
 	button_icon_state = "wolverine"
 
-/obj/item/organ/internal/cyberimp/arm/hacker
+/obj/item/organ/cyberimp/arm/hacker
 	name = "hacking arm implant"
 	desc = "An small arm implant containing an advanced screwdriver, wirecutters, and multitool designed for engineers and on-the-field machine modification. Actually legal, despite what the name may make you think."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	items_to_create = list(/obj/item/screwdriver/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/abductor/implant)
 
-/obj/item/organ/internal/cyberimp/arm/botany
+/obj/item/organ/cyberimp/arm/botany
 	name = "botany arm implant"
 	desc = "A rather simple arm implant containing tools used in gardening and botanical research."
 	items_to_create = list(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/hatchet, /obj/item/gun/energy/floragun, /obj/item/plant_analyzer, /obj/item/geneshears, /obj/item/secateurs, /obj/item/storage/bag/plants, /obj/item/storage/bag/plants/portaseeder)
@@ -175,7 +175,7 @@
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 
-/obj/item/organ/internal/cyberimp/arm/botany/emag_act()
+/obj/item/organ/cyberimp/arm/botany/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
 	for(var/datum/weakref/created_item in items_list)
@@ -190,12 +190,12 @@
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 
-/obj/item/organ/internal/cyberimp/arm/janitor
+/obj/item/organ/cyberimp/arm/janitor
 	name = "janitorial tools implant"
 	desc = "A set of janitorial tools on the user's arm."
 	items_to_create = list(/obj/item/lightreplacer, /obj/item/holosign_creator, /obj/item/soap/nanotrasen, /obj/item/reagent_containers/spray/cyborg_drying, /obj/item/mop/advanced, /obj/item/paint/paint_remover, /obj/item/reagent_containers/cup/beaker/large, /obj/item/reagent_containers/spray/cleaner) //Beaker if for refilling sprays
 
-/obj/item/organ/internal/cyberimp/arm/janitor/emag_act()
+/obj/item/organ/cyberimp/arm/janitor/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
 	for(var/datum/weakref/created_item in items_list)
@@ -205,12 +205,12 @@
 	obj_flags |= EMAGGED
 	return TRUE
 
-/obj/item/organ/internal/cyberimp/arm/lighter
+/obj/item/organ/cyberimp/arm/lighter
 	name = "lighter implant"
 	desc = "A... implanted lighter. Incredibly useless."
 	items_to_create = list(/obj/item/lighter/greyscale) //Hilariously useless.
 
-/obj/item/organ/internal/cyberimp/arm/lighter/emag_act()
+/obj/item/organ/cyberimp/arm/lighter/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
 	for(var/datum/weakref/created_item in items_list)

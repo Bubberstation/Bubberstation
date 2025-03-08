@@ -7,19 +7,19 @@
 		return
 	// SKYRAT EDIT END
 	if(!open) //mod must be open
-		balloon_alert(user, "suit must be open to transfer!")
+		balloon_alert(user, "panel closed!")
 		return
 	switch(interaction)
 		if(AI_TRANS_TO_CARD)
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in suit!")
+				balloon_alert(user, "no ai in unit!")
 				return
 			balloon_alert(user, "transferring to card...")
 			if(!do_after(user, 5 SECONDS, target = src))
 				balloon_alert(user, "interrupted!")
 				return
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in suit!")
+				balloon_alert(user, "no ai in unit!")
 				return
 			balloon_alert(user, "ai transferred to card")
 			ai_exit_mod(card)
@@ -37,13 +37,13 @@
 			if(intAI.stat || !intAI.client)
 				balloon_alert(user, "ai unresponsive!")
 				return
-			balloon_alert(user, "transferring to suit...")
+			balloon_alert(user, "transferring to unit...")
 			if(!do_after(user, 5 SECONDS, target = src))
 				balloon_alert(user, "interrupted!")
 				return
 			if(ai_assistant)
 				return
-			balloon_alert(user, "ai transferred to suit")
+			balloon_alert(user, "ai transferred to unit")
 			ai_enter_mod(intAI)
 			card.AI = null
 
@@ -78,14 +78,14 @@
 	if (isnull(card.pai?.mind))
 		balloon_alert(user, "pAI unresponsive!")
 		return FALSE
-	balloon_alert(user, "transferring to suit...")
+	balloon_alert(user, "transferring to unit...")
 	if (!do_after(user, 5 SECONDS, target = src))
 		balloon_alert(user, "interrupted!")
 		return FALSE
 	if (!user.transferItemToLoc(card, src))
 		balloon_alert(user, "transfer failed!")
 		return FALSE
-	balloon_alert(user, "pAI transferred to suit")
+	balloon_alert(user, "pAI transferred to unit")
 	var/mob/living/silicon/pai/pai_assistant = card.pai
 	pai_assistant.can_transmit = TRUE
 	pai_assistant.can_receive = TRUE
@@ -107,14 +107,14 @@
 		return FALSE
 	if (!forced)
 		if (!open)
-			balloon_alert(user, "suit panel closed!")
+			balloon_alert(user, "panel closed!")
 			return FALSE
 		balloon_alert(user, "uninstalling card...")
 		if (!do_after(user, 5 SECONDS, target = src))
 			balloon_alert(user, "interrupted!")
 			return FALSE
 
-	balloon_alert(user, "pAI removed from suit")
+	balloon_alert(user, "pAI removed")
 	var/mob/living/silicon/pai/pai_helper = ai_assistant
 	pai_helper.can_holo = TRUE
 	pai_helper.card.forceMove(get_turf(src))
@@ -123,7 +123,7 @@
 /// Called when a new ai assistant is inserted
 /obj/item/mod/control/proc/on_gained_assistant(mob/living/silicon/new_helper)
 	ai_assistant = new_helper
-	balloon_alert(new_helper, "transferred to a suit")
+	balloon_alert(new_helper, "transferred to a mod unit")
 	for(var/datum/action/action as anything in actions)
 		action.Grant(new_helper)
 
@@ -142,7 +142,10 @@
 #define AI_FALL_TIME (1 SECONDS)
 
 /obj/item/mod/control/relaymove(mob/user, direction)
-	if((!active && wearer) || get_charge() < CHARGE_PER_STEP  || user != ai_assistant || !COOLDOWN_FINISHED(src, cooldown_mod_move) || (wearer?.pulledby?.grab_state > GRAB_PASSIVE))
+	if((!active && wearer) || get_charge() < CHARGE_PER_STEP || user != ai_assistant || !COOLDOWN_FINISHED(src, cooldown_mod_move) || (wearer?.pulledby?.grab_state > GRAB_PASSIVE))
+		return FALSE
+	var/datum/mod_part/legs_to_move = get_part_datum_from_slot(ITEM_SLOT_FEET)
+	if(wearer && (!legs_to_move || !legs_to_move.sealed))
 		return FALSE
 	// SKYRAT EDIT START - pAIs in MODsuits with a bit more functionalities
 	if(active && !can_pai_move_suit && ispAI(ai_assistant))
@@ -159,7 +162,7 @@
 	if(ismovable(wearer?.loc))
 		return wearer.loc.relaymove(wearer, direction)
 	else if(wearer)
-		ADD_TRAIT(wearer, TRAIT_FORCED_STANDING, MOD_TRAIT)
+		ADD_TRAIT(wearer, TRAIT_FORCED_STANDING, REF(src))
 		addtimer(CALLBACK(src, PROC_REF(ai_fall)), AI_FALL_TIME, TIMER_UNIQUE | TIMER_OVERRIDE)
 	var/atom/movable/mover = wearer || src
 	return mover.try_step_multiz(direction)
@@ -172,7 +175,7 @@
 /obj/item/mod/control/proc/ai_fall()
 	if(!wearer)
 		return
-	REMOVE_TRAIT(wearer, TRAIT_FORCED_STANDING, MOD_TRAIT)
+	REMOVE_TRAIT(wearer, TRAIT_FORCED_STANDING, REF(src))
 
 /obj/item/mod/ai_minicard
 	name = "AI mini-card"
