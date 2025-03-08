@@ -1,7 +1,5 @@
 import { map } from 'common/collections';
 import React from 'react';
-
-import { useBackend, useSharedState } from '../backend';
 import {
   Button,
   Flex,
@@ -9,7 +7,9 @@ import {
   NoticeBox,
   Section,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
 import { NaniteProgram, Techweb } from './Nanites/types';

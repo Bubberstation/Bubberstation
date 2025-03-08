@@ -268,7 +268,7 @@
 			host_mob.Paralyze(120)
 			if(iscarbon(host_mob))
 				var/mob/living/carbon/carbon = host_mob
-				var/obj/item/organ/internal/ears/ears = carbon.get_organ_slot(ORGAN_SLOT_EARS)
+				var/obj/item/organ/ears/ears = carbon.get_organ_slot(ORGAN_SLOT_EARS)
 				if(ears)
 					ears.adjustEarDamage(0, 30) //nanites coming out of your ears
 				carbon.vomit(VOMIT_CATEGORY_NANITE, /obj/effect/decal/cleanable/vomit/nanites) //nanites coming out of your mouth

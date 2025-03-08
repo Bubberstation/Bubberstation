@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Button,
   Dropdown,
@@ -8,7 +7,9 @@ import {
   NumberInput,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { NaniteProgram } from './Nanites/types';
 

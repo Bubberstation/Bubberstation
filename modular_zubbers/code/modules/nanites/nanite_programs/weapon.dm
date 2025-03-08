@@ -105,7 +105,7 @@
 /datum/nanite_program/heart_stop/on_trigger(comm_message)
 	if(iscarbon(host_mob))
 		var/mob/living/carbon/carbon = host_mob
-		var/obj/item/organ/internal/heart/heart = carbon.get_organ_slot(ORGAN_SLOT_HEART)
+		var/obj/item/organ/heart/heart = carbon.get_organ_slot(ORGAN_SLOT_HEART)
 		if(heart)
 			if(heart.is_beating())
 				heart.Stop()

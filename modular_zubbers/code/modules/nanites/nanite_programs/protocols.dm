@@ -197,37 +197,37 @@
 	var/current_stage = 0
 	if(nanites.nanite_volume > 500) //Liver is the main hub of nanite replication and the first to be threatened by excess volume
 		if(prob(10))
-			var/obj/item/organ/internal/liver/liver = carbon.get_organ_slot(ORGAN_SLOT_LIVER)
+			var/obj/item/organ/liver/liver = carbon.get_organ_slot(ORGAN_SLOT_LIVER)
 			if(liver)
 				liver.apply_organ_damage(0.6)
 		current_stage++
 	if(nanites.nanite_volume > 750) //Extra volume spills out in other central organs
 		if(prob(10))
-			var/obj/item/organ/internal/stomach/stomach = carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
+			var/obj/item/organ/stomach/stomach = carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
 			if(stomach)
 				stomach.apply_organ_damage(0.75)
 		if(prob(10))
-			var/obj/item/organ/internal/lungs/lungs = carbon.get_organ_slot(ORGAN_SLOT_LUNGS)
+			var/obj/item/organ/lungs/lungs = carbon.get_organ_slot(ORGAN_SLOT_LUNGS)
 			if(lungs)
 				lungs.apply_organ_damage(0.75)
 		current_stage++
 	if(nanites.nanite_volume > 1000) //Extra volume spills out in more critical organs
 		if(prob(10))
-			var/obj/item/organ/internal/heart/heart = carbon.get_organ_slot(ORGAN_SLOT_HEART)
+			var/obj/item/organ/heart/heart = carbon.get_organ_slot(ORGAN_SLOT_HEART)
 			if(heart)
 				heart.apply_organ_damage(0.75)
 		if(prob(10))
-			var/obj/item/organ/internal/brain/brain = carbon.get_organ_slot(ORGAN_SLOT_BRAIN)
+			var/obj/item/organ/brain/brain = carbon.get_organ_slot(ORGAN_SLOT_BRAIN)
 			if(brain)
 				brain.apply_organ_damage(0.75)
 		current_stage++
 	if(nanites.nanite_volume > 1250) //Excess nanites start invading smaller organs for more space, including sensory organs
 		if(prob(13))
-			var/obj/item/organ/internal/eyes/eyes = carbon.get_organ_slot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/eyes = carbon.get_organ_slot(ORGAN_SLOT_EYES)
 			if(eyes)
 				eyes.apply_organ_damage(0.75)
 		if(prob(13))
-			var/obj/item/organ/internal/ears/ears = carbon.get_organ_slot(ORGAN_SLOT_EARS)
+			var/obj/item/organ/ears/ears = carbon.get_organ_slot(ORGAN_SLOT_EARS)
 			if(ears)
 				ears.apply_organ_damage(0.75)
 		current_stage++
