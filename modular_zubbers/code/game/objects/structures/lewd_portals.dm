@@ -4,6 +4,8 @@
 /obj/structure/lewd_portal
 	name = "LustWish Portal"
 	desc = "A portal that people can partially fit through."
+	icon = 'modular_zubbers/icons/obj/structures/lewd_portals.dmi'
+	icon_state = "portal"
 	can_buckle = TRUE
 	anchored = TRUE
 	max_buckled_mobs = 1
@@ -48,9 +50,9 @@
 			current_mob = buckled_mobs[1]
 
 	if(istype(current_mob.dna.species))
+		current_mob.dir = SOUTH
 		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob)
-		relayed_body.dir = linked_portal.dir
-		switch(relayed_body.dir)
+		switch(linked_portal.dir)
 			if(NORTH)
 				relayed_body.pixel_y = 24
 			if(SOUTH)
@@ -63,16 +65,51 @@
 				relayed_body.pixel_x = -24
 				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 		relayed_body.update_visuals()
-		current_mob.add_filter("leg_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask reversed")))
+		current_mob.add_filter("head_only", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "head_mask")))
+		head_only()
+		RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(head_only))
+		switch(dir)
+			if(NORTH)
+				current_mob.pixel_y += 12
+			if(SOUTH)
+				current_mob.pixel_y += -12
+				current_mob.transform = turn(transform, ROTATION_FLIP)
+			if(EAST)
+				current_mob.pixel_x += 12
+				current_mob.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+			if(WEST)
+				current_mob.pixel_x += -12
+				current_mob.transform = turn(transform, ROTATION_CLOCKWISE)
 	else
 		unbuckle_all_mobs()
 	..()
 
+/obj/structure/lewd_portal/proc/head_only()
+	SIGNAL_HANDLER
+	current_mob.cut_overlays()
+	current_mob.update_body_parts_head_only()
+	current_mob.update_worn_glasses()
+	current_mob.update_worn_ears()
+	current_mob.update_worn_mask()
+	current_mob.update_worn_head()
+	current_mob.remove_overlay(BODY_ADJ_LAYER)
+
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
+	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
+	current_mob.remove_filter("head_only")
 	current_mob = null
-	unbuckled_mob.remove_filter("leg_removal")
 	qdel(relayed_body)
 	unbuckled_mob.regenerate_icons()
+	switch(dir)
+		if(NORTH)
+			unbuckled_mob.pixel_y += -12
+		if(SOUTH)
+			unbuckled_mob.pixel_y += 12
+		if(EAST)
+			unbuckled_mob.pixel_x += -12
+		if(WEST)
+			unbuckled_mob.pixel_x += 12
+	unbuckled_mob.transform = initial(unbuckled_mob.transform)
 	. = ..()
 
 /obj/item/wallframe/lewd_portal
@@ -105,12 +142,12 @@
 /obj/lewd_portal_relay
 	name = "portal relay"
 	var/mob/living/carbon/human/owner
-	var/mob/living/carbon/human/dummy
 
 /obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref)
 	. = ..()
 	if(!owner_ref)
 		return INITIALIZE_HINT_QDEL
+	dir = NORTH
 	owner = owner_ref
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
