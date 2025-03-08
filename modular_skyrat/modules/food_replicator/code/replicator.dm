@@ -1,7 +1,3 @@
-#define RND_CATEGORY_NRI_FOOD "Provision"
-#define RND_CATEGORY_NRI_MEDICAL "Medicine"
-#define RND_CATEGORY_NRI_CLOTHING "Apparel"
-
 /obj/machinery/biogenerator/food_replicator
 	name = "\improper Type 34 'Colonial Supply Core'"
 	desc = "The Type 34 'Colonial Supply Core,' colloquially known as the 'Gencrate/CSC' is an ancient, boxy design first put in use by the pioneer colonists of what's now known \

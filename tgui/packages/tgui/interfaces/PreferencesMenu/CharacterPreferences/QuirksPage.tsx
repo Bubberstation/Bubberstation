@@ -348,12 +348,14 @@ export function QuirksPage(props) {
     if (!selectedQuirk) {
       continue;
     }
-
+    /* // BUBBER EDIT START - We handle this on the backend
     if (selectedQuirk.value > 0) {
       positiveQuirks += 1;
     }
 
+
     balance += selectedQuirk.value;
+    */ // BUBBER EDIT END
   }
 
   function getReasonToNotAdd(quirkName: string) {
