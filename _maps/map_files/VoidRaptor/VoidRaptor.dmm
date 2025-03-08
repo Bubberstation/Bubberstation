@@ -7132,12 +7132,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
-/obj/structure/sign/clock/directional/west,
 /obj/machinery/light_switch/directional/west{
 	pixel_y = 15
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/bot,
+/obj/machinery/requests_console/auto_name/directional/west,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -12465,6 +12466,7 @@
 	},
 /obj/effect/turf_decal/tile/blue/half,
 /obj/effect/turf_decal/bot,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "dIg" = (
@@ -13325,7 +13327,6 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "dTL" = (
-/obj/machinery/status_display/evac/directional/west,
 /obj/machinery/vending/access/command,
 /obj/item/toy/figure/wizard{
 	pixel_y = 17
@@ -21885,10 +21886,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign4";
-	pixel_y = 32
-	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "gtG" = (
@@ -25356,13 +25354,13 @@
 /turf/open/floor/circuit,
 /area/station/command/teleporter)
 "htb" = (
-/obj/machinery/status_display/evac/directional/south,
 /obj/structure/rack,
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
 	},
 /obj/machinery/light/cold/directional/south,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -27690,13 +27688,6 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
-"hZK" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 5
-	},
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/lobby)
 "hZN" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -31488,10 +31479,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/sign/warning/no_smoking/directional/east,
 /obj/effect/turf_decal/box,
 /obj/machinery/recharge_station,
 /obj/machinery/light/cold/directional/east,
+/obj/machinery/newscaster/directional/east,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -35744,9 +35735,6 @@
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen/abandoned)
 "kjS" = (
-/obj/structure/sign/logo{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
@@ -45676,10 +45664,11 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/newscaster/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/requests_console/directional/south,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -50354,7 +50343,6 @@
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},
-/obj/machinery/requests_console/auto_name/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/medical/surgery)
 "ofo" = (
@@ -53043,10 +53031,10 @@
 "oSL" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/table/reinforced/rglass,
-/obj/machinery/vending/wallmed/directional/south,
 /obj/item/storage/medkit/regular,
 /obj/effect/turf_decal/tile/blue/anticorner,
 /obj/machinery/light/cold/directional/south,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "oSS" = (
@@ -53801,11 +53789,6 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/requests_console/directional/north{
-	department = "Medbay";
-	name = "Medbay Requests Console"
-	},
-/obj/effect/mapping_helpers/requests_console/assistance,
 /obj/item/storage/box/gloves{
 	pixel_x = 4;
 	pixel_y = 6
@@ -53817,6 +53800,7 @@
 /obj/item/storage/box/rxglasses{
 	pixel_y = 1
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/central)
 "pcq" = (
@@ -61778,6 +61762,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
+/obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "rjI" = (
@@ -63372,7 +63357,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
 	},
-/obj/structure/sign/poster/official/periodic_table/directional/north,
 /obj/machinery/light/cold/directional/north,
 /obj/structure/table/reinforced/rglass,
 /obj/machinery/reagentgrinder{
@@ -69597,12 +69581,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign2";
-	pixel_y = 32
-	},
 /obj/effect/landmark/start/assistant,
 /obj/structure/chair/sofa/bench/right,
+/obj/structure/sign/warning/no_smoking/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "tsi" = (
@@ -71947,15 +71928,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign5";
-	pixel_y = 32
-	},
 /obj/machinery/camera/directional/north{
 	c_tag = "Medbay - Lobby";
 	name = "medbay camera";
 	network = list("ss13","medbay")
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "uam" = (
@@ -76420,7 +76398,7 @@
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/newscaster/directional/north,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/medical/surgery)
 "vlh" = (
@@ -83721,12 +83699,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign3";
-	pixel_y = 32
-	},
 /obj/item/storage/medkit/emergency,
 /obj/machinery/light/cold/directional/north,
+/obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "xnk" = (
@@ -119131,7 +119106,7 @@ ccc
 cnC
 ulA
 cnC
-hZK
+dZv
 vSC
 arF
 tOQ

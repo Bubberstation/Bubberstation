@@ -3,7 +3,7 @@
 	desc = "High speed, low drag combat boots."
 	icon_state = "jackboots"
 	inhand_icon_state = "jackboots"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/shoes_combat
 	strip_delay = 40
@@ -46,7 +46,7 @@
 	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	inhand_icon_state = "jackboots"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	strip_delay = 30
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -84,7 +84,7 @@
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
 	inhand_icon_state = null
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	armor_type = /datum/armor/shoes_winterboots
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
@@ -135,7 +135,7 @@
 	icon_state = "workboots"
 	inhand_icon_state = "jackboots"
 	armor_type = /datum/armor/shoes_workboots
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	strip_delay = 20
 	equip_delay_other = 40
 	lace_time = 8 SECONDS
