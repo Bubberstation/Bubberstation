@@ -10,3 +10,5 @@
 #define COMSIG_ON_BANK_ACCOUNT_PAYOUT "bank_account_payout"
 /// identical to COMSIG_MOB_APPLY_DAMAGE, but always runs, even if there is no damage
 #define COMSIG_MOB_ALWAYS_APPLY_DAMAGE "mob_always_apply_damage"
+/// From modular_zubbers/code/modules/disease/disease_transmission.dm
+#define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
