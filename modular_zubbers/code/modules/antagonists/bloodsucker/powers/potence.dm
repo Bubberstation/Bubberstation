@@ -19,13 +19,13 @@
 /datum/action/cooldown/bloodsucker/potence/ActivatePower(atom/target)
 	. = ..()
 	var/mob/living/carbon/human/user = owner
+	ADD_TRAIT(owner, TRAIT_PERFECT_ATTACKER, BLOODSUCKER_TRAIT)
 	var/hitStrength = GetPowerLevel()
 	var/hitEffectiveness = GetEffectiveness()
 	for (var/body_zone in GLOB.limb_zones)
 		var/obj/item/bodypart/parts_to_buff = user.get_bodypart(body_zone)
 		parts_to_buff.unarmed_damage_low += hitStrength
 		parts_to_buff.unarmed_damage_high += hitStrength
-		parts_to_buff.unarmed_effectiveness += hitEffectiveness
 	user.balloon_alert(user, "you feel stronger.")
 
 /datum/action/cooldown/bloodsucker/potence/ContinueActive(mob/living/user, mob/living/target)
@@ -40,19 +40,16 @@
 /datum/action/cooldown/bloodsucker/potence/proc/GetPowerLevel()
 	return 5 + min(2 * level_current, 30)
 
-/datum/action/cooldown/bloodsucker/potence/proc/GetEffectiveness() // i learned real quick you don't want unarmed effectiveness to be too high
-	return 5 + min(level_current, 10)
-
 /datum/action/cooldown/bloodsucker/potence/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return
 	var/mob/living/carbon/human/user = owner
+	REMOVE_TRAIT(owner, TRAIT_PERFECT_ATTACKER, BLOODSUCKER_TRAIT)
 	var/hitStrength = GetPowerLevel()
 	var/hitEffectiveness = GetEffectiveness()
 	for (var/body_zone in GLOB.limb_zones)
 		var/obj/item/bodypart/parts_to_buff = user.get_bodypart(body_zone)
 		parts_to_buff.unarmed_damage_low -= hitStrength
 		parts_to_buff.unarmed_damage_high -= hitStrength
-		parts_to_buff.unarmed_effectiveness -= hitEffectiveness
 	user.balloon_alert(user, "you feel weaker.")

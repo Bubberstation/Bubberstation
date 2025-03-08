@@ -125,7 +125,7 @@
 	return -0.05 * level_current
 
 /datum/action/cooldown/bloodsucker/celerity/proc/GetCelerityDelay()
-	return min(0.05 * level_current, 0.5)
+	return min(0.025 * level_current, 0.5)
 
 #undef CELERITY_FX_LEVEL
 #undef CELERITY_DODGE_LEVEL
