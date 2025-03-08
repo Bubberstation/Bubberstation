@@ -65,7 +65,6 @@
 				relayed_body.pixel_x = -24
 				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 		relayed_body.update_visuals()
-		current_mob.add_filter("head_only", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "head_mask")))
 		head_only()
 		RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(head_only))
 		switch(dir)
@@ -88,15 +87,19 @@
 	SIGNAL_HANDLER
 	current_mob.cut_overlays()
 	current_mob.update_body_parts_head_only()
-	current_mob.update_worn_glasses()
-	current_mob.update_worn_ears()
-	current_mob.update_worn_mask()
-	current_mob.update_worn_head()
 	current_mob.remove_overlay(BODY_ADJ_LAYER)
+	current_mob.remove_overlay(BODY_LAYER)
+	current_mob.remove_overlay(HANDS_LAYER)
+	var/obj/item/bodypart/head/mob_head = current_mob.get_bodypart(BODY_ZONE_HEAD)
+	if(mob_head.head_flags & HEAD_EYESPRITES)
+		var/obj/item/organ/eyes/eye_organ = current_mob.get_organ_slot(ORGAN_SLOT_EYES)
+		if(eye_organ)
+			eye_organ.refresh(call_update = FALSE)
+			current_mob.overlays_standing[BODY_LAYER] += eye_organ.generate_body_overlay(current_mob)
+			current_mob.apply_overlay(BODY_LAYER)
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
 	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
-	current_mob.remove_filter("head_only")
 	current_mob = null
 	qdel(relayed_body)
 	unbuckled_mob.regenerate_icons()
