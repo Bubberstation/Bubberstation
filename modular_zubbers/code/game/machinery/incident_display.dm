@@ -179,3 +179,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/disease, 32)
 #undef DESC_DELAM
 #undef DESC_TRAM
 #undef DESC_DISEASE
+
+#undef TREND_RISING
+#undef TREND_FALLING
