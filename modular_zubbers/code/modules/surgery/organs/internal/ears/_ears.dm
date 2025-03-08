@@ -1,5 +1,5 @@
 //Copy and paste of monkey's super kitty ears
-/obj/item/organ/internal/ears/cat/super
+/obj/item/organ/ears/cat/super
 	name = "Super Kitty Ears"
 	desc = "A pair of kitty ears that harvest the true energy of cats. Mrow!"
 	icon = 'modular_zubbers/icons/obj/clothing/head/costume.dmi'
@@ -11,35 +11,35 @@
 	/// The spell will be initialized using the initial typepath.
 	var/datum/action/cooldown/spell/shapeshift/kitty/kitty_spell = /datum/action/cooldown/spell/shapeshift/kitty
 
-/obj/item/organ/internal/ears/cat/super/Initialize(mapload)
+/obj/item/organ/ears/cat/super/Initialize(mapload)
 	if(ispath(kitty_spell))
 		kitty_spell = new kitty_spell(src)
 	else
 		stack_trace("kitty_spell is invalid typepath ([kitty_spell || "null"])")
 	return ..()
 
-/obj/item/organ/internal/ears/cat/super/Destroy()
+/obj/item/organ/ears/cat/super/Destroy()
 	QDEL_NULL(kitty_spell)
 	return ..()
 
-/obj/item/organ/internal/ears/cat/super/attack(mob/target_mob, mob/living/carbon/user, obj/target)
+/obj/item/organ/ears/cat/super/attack(mob/target_mob, mob/living/carbon/user, obj/target)
 	if(target_mob != user || !implant_on_use(user))
 		return ..()
 
-/obj/item/organ/internal/ears/cat/super/attack_self(mob/user, modifiers)
+/obj/item/organ/ears/cat/super/attack_self(mob/user, modifiers)
 	implant_on_use(user)
 	return ..()
 
-/obj/item/organ/internal/ears/cat/super/on_mob_insert(mob/living/carbon/ear_owner)
+/obj/item/organ/ears/cat/super/on_mob_insert(mob/living/carbon/ear_owner)
 	. = ..()
 	kitty_spell.Grant(ear_owner)
 
-/obj/item/organ/internal/ears/cat/super/on_mob_remove(mob/living/carbon/ear_owner, special = FALSE)
+/obj/item/organ/ears/cat/super/on_mob_remove(mob/living/carbon/ear_owner, special = FALSE)
 	. = ..()
 	kitty_spell.Remove(ear_owner)
 
 // Stole this from demon heart hard, but hey it works
-/obj/item/organ/internal/ears/cat/super/proc/implant_on_use(mob/living/carbon/user)
+/obj/item/organ/ears/cat/super/proc/implant_on_use(mob/living/carbon/user)
 	if(!iscarbon(user) || !user.is_holding(src))
 		return FALSE
 	user.visible_message(
@@ -58,5 +58,5 @@
 	return TRUE
 
 // Super syndi kitty ears!
-/obj/item/organ/internal/ears/cat/super/syndie
+/obj/item/organ/ears/cat/super/syndie
 	kitty_spell = /datum/action/cooldown/spell/shapeshift/kitty/syndie
