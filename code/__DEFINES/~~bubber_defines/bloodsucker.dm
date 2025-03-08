@@ -1,0 +1,4 @@
+#define GHOUL_SCAN_MIN_DISTANCE 5
+#define GHOUL_SCAN_MAX_DISTANCE 500
+/// 2s update time.
+#define GHOUL_SCAN_PING_TIME 20

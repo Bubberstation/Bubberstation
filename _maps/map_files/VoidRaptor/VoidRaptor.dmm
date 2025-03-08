@@ -1341,7 +1341,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/delam_scram/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "atS" = (
@@ -3684,7 +3683,7 @@
 	dir = 1
 	},
 /obj/structure/aquarium/prefilled,
-/obj/item/fish_feed{
+/obj/item/reagent_containers/cup/fish_feed{
 	pixel_x = 1;
 	pixel_y = 19
 	},
@@ -7133,12 +7132,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
-/obj/structure/sign/clock/directional/west,
 /obj/machinery/light_switch/directional/west{
 	pixel_y = 15
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/bot,
+/obj/machinery/requests_console/auto_name/directional/west,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -8959,7 +8959,7 @@
 /area/station/tcommsat/server)
 "cHJ" = (
 /obj/effect/turf_decal/siding/white,
-/obj/machinery/time_clock/directional/north,
+/obj/machinery/modular_computer/preset/time_clock/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/common/cryopods)
 "cHR" = (
@@ -12466,6 +12466,7 @@
 	},
 /obj/effect/turf_decal/tile/blue/half,
 /obj/effect/turf_decal/bot,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "dIg" = (
@@ -13326,7 +13327,6 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "dTL" = (
-/obj/machinery/status_display/evac/directional/west,
 /obj/machinery/vending/access/command,
 /obj/item/toy/figure/wizard{
 	pixel_y = 17
@@ -21886,10 +21886,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign4";
-	pixel_y = 32
-	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "gtG" = (
@@ -25357,13 +25354,13 @@
 /turf/open/floor/circuit,
 /area/station/command/teleporter)
 "htb" = (
-/obj/machinery/status_display/evac/directional/south,
 /obj/structure/rack,
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
 	},
 /obj/machinery/light/cold/directional/south,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -27691,13 +27688,6 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
-"hZK" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 5
-	},
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/lobby)
 "hZN" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -28264,7 +28254,7 @@
 /area/station/engineering/supermatter/room)
 "ikl" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/item/fish_feed{
+/obj/item/reagent_containers/cup/fish_feed{
 	pixel_x = 1;
 	pixel_y = 19
 	},
@@ -31489,10 +31479,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/sign/warning/no_smoking/directional/east,
 /obj/effect/turf_decal/box,
 /obj/machinery/recharge_station,
 /obj/machinery/light/cold/directional/east,
+/obj/machinery/newscaster/directional/east,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -35397,7 +35387,7 @@
 /obj/item/radio/intercom/directional/north{
 	pixel_y = 32
 	},
-/obj/structure/aquarium/lawyer,
+/obj/item/fish_tank/lawyer,
 /turf/open/floor/iron/grimy,
 /area/station/service/lawoffice)
 "kgb" = (
@@ -35745,9 +35735,6 @@
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen/abandoned)
 "kjS" = (
-/obj/structure/sign/logo{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
@@ -37767,11 +37754,11 @@
 /obj/structure/closet/crate/freezer{
 	name = "organ storage"
 	},
-/obj/item/organ/external/tail/cat,
-/obj/item/organ/external/tail/cat,
-/obj/item/organ/internal/ears/cat,
-/obj/item/organ/internal/ears/cat,
-/obj/item/organ/internal/heart,
+/obj/item/organ/tail/cat,
+/obj/item/organ/tail/cat,
+/obj/item/organ/ears/cat,
+/obj/item/organ/ears/cat,
+/obj/item/organ/heart,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /obj/machinery/vending/wallmed/directional/north,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -39398,7 +39385,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/structure/disposalpipe/segment,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
 	},
@@ -40061,7 +40047,7 @@
 "lqF" = (
 /obj/structure/table/wood/fancy,
 /obj/item/nullrod,
-/obj/item/organ/internal/heart,
+/obj/item/organ/heart,
 /obj/item/reagent_containers/cup/glass/bottle/holywater,
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/pod/dark,
@@ -40156,8 +40142,8 @@
 /area/station/hallway/primary/fore)
 "lrC" = (
 /obj/machinery/mecha_part_fabricator/maint{
-	dir = 1;
-	name = "forgotten exosuit fabricator"
+	name = "forgotten exosuit fabricator";
+	drop_direction = 1
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/smooth,
@@ -45678,10 +45664,11 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/newscaster/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/requests_console/directional/south,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -50356,7 +50343,6 @@
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},
-/obj/machinery/requests_console/auto_name/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/medical/surgery)
 "ofo" = (
@@ -53045,10 +53031,10 @@
 "oSL" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/table/reinforced/rglass,
-/obj/machinery/vending/wallmed/directional/south,
 /obj/item/storage/medkit/regular,
 /obj/effect/turf_decal/tile/blue/anticorner,
 /obj/machinery/light/cold/directional/south,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "oSS" = (
@@ -53803,11 +53789,6 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/requests_console/directional/north{
-	department = "Medbay";
-	name = "Medbay Requests Console"
-	},
-/obj/effect/mapping_helpers/requests_console/assistance,
 /obj/item/storage/box/gloves{
 	pixel_x = 4;
 	pixel_y = 6
@@ -53819,6 +53800,7 @@
 /obj/item/storage/box/rxglasses{
 	pixel_y = 1
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/central)
 "pcq" = (
@@ -61780,6 +61762,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
+/obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "rjI" = (
@@ -63374,7 +63357,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
 	},
-/obj/structure/sign/poster/official/periodic_table/directional/north,
 /obj/machinery/light/cold/directional/north,
 /obj/structure/table/reinforced/rglass,
 /obj/machinery/reagentgrinder{
@@ -66115,7 +66097,7 @@
 	anchored = 1;
 	dir = 8
 	},
-/obj/item/circuitboard/computer/stationalert,
+/obj/item/circuitboard/computer/station_alert,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/starboard/greater)
@@ -66948,7 +66930,6 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/greater)
 "sIZ" = (
@@ -67554,7 +67535,7 @@
 /area/station/security/prison/mess)
 "sPT" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/mob/living/basic/goose/vomit,
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -69600,12 +69581,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign2";
-	pixel_y = 32
-	},
 /obj/effect/landmark/start/assistant,
 /obj/structure/chair/sofa/bench/right,
+/obj/structure/sign/warning/no_smoking/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "tsi" = (
@@ -71266,7 +71244,7 @@
 /turf/closed/wall,
 /area/station/commons/lounge)
 "tOI" = (
-/mob/living/simple_animal/bot/floorbot,
+/mob/living/basic/bot/repairbot,
 /obj/structure/railing,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/aisat_interior)
@@ -71950,15 +71928,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign5";
-	pixel_y = 32
-	},
 /obj/machinery/camera/directional/north{
 	c_tag = "Medbay - Lobby";
 	name = "medbay camera";
 	network = list("ss13","medbay")
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "uam" = (
@@ -76423,7 +76398,7 @@
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/newscaster/directional/north,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/medical/surgery)
 "vlh" = (
@@ -83724,12 +83699,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/sign/logo{
-	icon_state = "nanotrasen_sign3";
-	pixel_y = 32
-	},
 /obj/item/storage/medkit/emergency,
 /obj/machinery/light/cold/directional/north,
+/obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "xnk" = (
@@ -86183,9 +86155,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -119137,7 +119106,7 @@ ccc
 cnC
 ulA
 cnC
-hZK
+dZv
 vSC
 arF
 tOQ

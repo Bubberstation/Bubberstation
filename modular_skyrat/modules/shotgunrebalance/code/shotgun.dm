@@ -1,19 +1,3 @@
-#define AMMO_MATS_SHOTGUN list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4) // not quite as thick as a half-sheet
-
-#define AMMO_MATS_SHOTGUN_FLECH list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
-
-#define AMMO_MATS_SHOTGUN_HIVE list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 1,\
-									/datum/material/silver = SMALL_MATERIAL_AMOUNT * 1)
-
-#define AMMO_MATS_SHOTGUN_TIDE list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 1,\
-									/datum/material/gold = SMALL_MATERIAL_AMOUNT * 1)
-
-#define AMMO_MATS_SHOTGUN_PLASMA list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
-
 /obj/item/ammo_casing/shotgun
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/shotshells.dmi'
 	desc = "A 12 gauge iron slug."
@@ -209,7 +193,6 @@
 	ricochet_decay_damage = 1
 	ricochet_decay_chance = 1
 	ricochet_incidence_leeway = 0 //nanomachines son
-	homing = TRUE
 	homing_turn_speed = 25
 	homing_inaccuracy_min = 10
 	homing_inaccuracy_max = 80
@@ -241,10 +224,10 @@
 	eyeblur = 1 SECONDS
 	sharpness = NONE
 	range = 12
-	embed_type = /datum/embed_data/shotgun_buckshot/antitide
+	embed_type = /datum/embedding/shotgun_buckshot/antitide
 	reflectable = NONE
 
-/datum/embed_data/shotgun_buckshot/antitide
+/datum/embedding/shotgun_buckshot/antitide
 	embed_chance = 200
 	pain_chance = 95
 	fall_chance = 10

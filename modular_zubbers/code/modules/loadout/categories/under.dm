@@ -1,23 +1,78 @@
-/datum/loadout_item/under/jumpsuit/security/hecu
+/datum/loadout_item/uniform/security/hecu
 	name = "Urban Camouflage BDU"
 	item_path = /obj/item/clothing/under/rank/security/officer/hecu
 	donator_only = TRUE
-	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/miscellaneous/command/stripper //Sprites by SierraGenevese
+/datum/loadout_item/uniform/command/stripper //Sprites by SierraGenevese
 	name = "Command Stripper Uniform"
 	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
 	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
 
-/datum/loadout_item/uniform/miscellaneous/nanotrasen_consultant/stripper //Sprites by SierraGenevese
+/datum/loadout_item/uniform/nanotrasen_consultant/stripper //Sprites by SierraGenevese
 	name = "consultant stripper uniform"
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/uniform/miscellaneous/medrscrubs
+/datum/loadout_item/uniform/medrscrubs
 	name = "Security Medic's Scrubs"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
 	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/uniform/security/officer/redsec
+	name = "Security uniform (Redsec)"
+	item_path = /obj/item/clothing/under/rank/security/officer/redsec
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/peacekeeper/armadyne
+	name = "Armadyne Corporate Uniform"
+	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/utility/redsec
+	name = "Security utility uniform (Redsec)"
+	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/officer/formal
+	name = "Security Officer's formal uniform"
+	item_path = /obj/item/clothing/under/rank/security/officer/formal
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/peacekeeper/security_medic
+	name = "Security medic turtleneck"
+	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/uniform/security/peacekeeper/security_medic/skirt
+	name = "Security medic skirtleneck"
+	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/uniform/security/peacekeeper/security_medic/alternate
+	name = "Security medic jumpsuit"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/uniform/security/corrections_officer
+	name = "Correction's Officer jumpsuit"
+	item_path = /obj/item/clothing/under/rank/security/corrections_officer
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
+/datum/loadout_item/uniform/security/corrections_officer
+	name = "Correction's Officer jumpskirt"
+	item_path = /obj/item/clothing/under/rank/security/corrections_officer/skirt
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
+/datum/loadout_item/uniform/security/corrections_officer
+	name = "Correction's Officer sweater"
+	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
+/datum/loadout_item/uniform/security/corrections_officer
+	name = "Correction's Officer skirt with sweater"
+	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
 /datum/loadout_item/uniform/miscellaneous/tactical_maid //Donor item for skyefree
 	name = "Tactical Maid Costume"
@@ -85,3 +140,7 @@
 /datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
 	name = "Custom Bunnysuit"
 	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
+
+/datum/loadout_item/uniform/miscellaneous/nurse
+	name = "Nurse's suit"
+	item_path = /obj/item/clothing/under/rank/medical/doctor/nurse

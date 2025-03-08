@@ -36,7 +36,7 @@ ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage wh
 	if(!(group in SKYRAT_PLAYER_RANKS))
 		CRASH("[key_name(usr)] attempted to add someone to an invalid \"[group]\" group.")
 
-	var/group_title = lowertext(group)
+	var/group_title = LOWER_TEXT(group)
 
 	var/list/choices = list("Add", "Remove")
 	switch(tgui_alert(usr, "What would you like to do?", "Manage [group]s", choices))

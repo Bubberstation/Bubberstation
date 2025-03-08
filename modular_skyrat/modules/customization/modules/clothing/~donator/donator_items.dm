@@ -33,7 +33,7 @@
 
 /obj/item/hairbrush/switchblade/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/update_icon_updates_onmob, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 ///This is called when you transform it
 /obj/item/hairbrush/switchblade/attack_self(mob/user, modifiers)

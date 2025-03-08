@@ -203,6 +203,10 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
+/obj/item/inducer{
+	pixel_x = 0;
+	pixel_y = 8
+	},
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -239,13 +243,26 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"gP" = (
+/obj/item/paper{
+	default_raw_text = "Please do not steal materials from this crate, as they are direly useful to the Employees of The Lizard Gas-- whom are currently Cryosleeping and may wake up soon!<BR><BR>-General Manager, Ra'Tahul Rekinov";
+	name = "IMPORTANT NOTE!"
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "gQ" = (
-/obj/machinery/door/airlock/external/ruin,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "lizardgas_lavaland_entrance"
 	},
 /obj/structure/fans/tiny,
 /obj/machinery/duct,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -290,7 +307,7 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "hG" = (
-/obj/structure/bonfire/prelit,
+/obj/structure/bonfire,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "hM" = (
@@ -323,7 +340,7 @@
 /obj/machinery/button/door/directional/west{
 	specialfunctions = 4;
 	normaldoorcontrol = 1;
-	id = "gasbathroom";
+	id = "corpooffice";
 	name = "Door Bolt Control"
 	},
 /turf/open/floor/wood/parquet,
@@ -625,6 +642,10 @@
 	pixel_x = -5;
 	pixel_y = 4
 	},
+/obj/item/circuitboard/machine/biogenerator/food_replicator{
+	pixel_x = -4;
+	pixel_y = -8
+	},
 /turf/open/floor/wood/lavaland,
 /area/icemoon/underground/unexplored)
 "sk" = (
@@ -690,6 +711,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /obj/machinery/duct,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters"
+	},
 /turf/open/floor/iron,
 /area/ruin/thelizardsgas_lavaland)
 "uq" = (
@@ -730,6 +754,26 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"uH" = (
+/obj/structure/cable,
+/obj/machinery/button/door/directional/east{
+	id = "lizardshutters";
+	pixel_x = 24;
+	pixel_y = 7;
+	name = "Privacy Shutters"
+	},
+/obj/machinery/button/door/directional/east{
+	pixel_x = 24;
+	pixel_y = -3;
+	name = "Entrance Doorbolts";
+	id = "lizardgasbolt";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
+/turf/open/floor/iron/smooth{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
 "uM" = (
 /obj/machinery/light/directional/north,
 /obj/structure/closet/crate/bin,
@@ -756,11 +800,17 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "vw" = (
-/obj/machinery/door/airlock/external/ruin,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "lizardgas_lavaland_entrance"
 	},
 /obj/machinery/duct,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1025,10 +1075,16 @@
 /turf/open/floor/asphalt,
 /area/ruin/thelizardsgas_lavaland)
 "DE" = (
-/obj/machinery/door/airlock/external/ruin,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "lizard-gas-back"
 	},
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1206,6 +1262,16 @@
 	name = "lizard gas satchel";
 	desc = "Useful for holding work materials."
 	},
+/obj/item/clothing/head/beret/science/rd{
+	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
+	name = "Veteran Lizard Gas Beret"
+	},
+/obj/item/clothing/head/beret/science/rd{
+	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
+	name = "Veteran Lizard Gas Beret"
+	},
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1313,14 +1379,27 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"Me" = (
+/obj/item/paper{
+	default_raw_text = "Please do not steal materials/machinery from this shed, as they are direly useful to the Employees of The Lizard Gas-- whom are currently Cryosleeping and may wake up soon!<BR><BR>-General Manager, Ra'Tahul Rekinov";
+	name = "IMPORTANT NOTE!"
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Mp" = (
-/obj/machinery/door/airlock/external/ruin,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "lizardgas_lavaland_entrance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1444,6 +1523,9 @@
 "Qi" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters"
+	},
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "QP" = (
@@ -1485,11 +1567,17 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Rb" = (
-/obj/machinery/door/airlock/external/ruin,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "lizardgas_lavaland_entrance"
 	},
 /obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/smooth{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1521,6 +1609,10 @@
 "Sh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
 /obj/machinery/duct,
+/obj/item/paper{
+	name = "IMPORTANT NOTE!";
+	default_raw_text = "Hello traveller! If you are reading this and the Blastdoors/Shutters are currently active, that means we are <B>CLOSED!</B> Please do not disturb our Lizard Gas team members or their materials as they are currently Cyrosleeping inside.<BR><BR>-General Manager, Ra'Tahul Rekinov"
+	},
 /turf/open/floor/asphalt,
 /area/ruin/thelizardsgas_lavaland)
 "Sq" = (
@@ -1663,7 +1755,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "WT" = (
 /obj/machinery/airalarm/directional/west{
-	all_access = 1
+	req_access = null
 	},
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
 	dir = 4
@@ -1697,6 +1789,9 @@
 "Xb" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters"
+	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/thelizardsgas_lavaland)
 "Xj" = (
@@ -1862,7 +1957,7 @@ Yl
 ck
 Li
 lm
-Tk
+Me
 Tk
 hr
 hr
@@ -1917,7 +2012,7 @@ yl
 Yl
 yl
 jc
-Tk
+gP
 hr
 hr
 hr
@@ -2238,7 +2333,7 @@ hr
 (17,1,1) = {"
 cB
 IG
-gd
+uH
 Bf
 Is
 gn

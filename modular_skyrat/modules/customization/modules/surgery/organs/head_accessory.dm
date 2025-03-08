@@ -1,4 +1,4 @@
-/obj/item/organ/external/head_accessory
+/obj/item/organ/head_accessory
 	name = "head accessory"
 	desc = "It goes on the head."
 	icon_state = "random_fly_1"
@@ -23,4 +23,4 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/head_accessory/get_global_feature_list()
-	return SSaccessories.sprite_accessories["head_accessory"]
+	return SSaccessories.sprite_accessories["head_acc"]
