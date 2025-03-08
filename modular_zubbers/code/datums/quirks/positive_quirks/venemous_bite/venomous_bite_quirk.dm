@@ -43,7 +43,7 @@
 		/datum/reagent/drug/aphrodisiac/incubus_draft = list(5, 2 SECONDS, TRUE),
 )
 	var/static/list/milkable_venoms = generate_milkable_venom_list()
-	var/static/milkable_string = generate_milkable_venom_string()
+	var/static/filter_immune_string = generate_filter_immune_string()
 
 /**
  * Generates a static list of /datum/reagent that will not be transformed into [/datum/reagent/generic_milked_venom] upon being milked by a venom milker.
@@ -68,13 +68,13 @@
  *
  * Ran once, then never again.
  */
-/proc/generate_milkable_venom_string()
-	var/milkable_string = ""
+/proc/generate_filter_immune_string()
+	var/filter_immune_string = ""
 	for (var/datum/reagent/typepath as anything in /datum/preference/choiced/venomous_bite_venom::milkable_venoms)
-		if (length(milkable_string))
-			milkable_string += ", "
-		milkable_string += typepath::name
-	return milkable_string
+		if (length(filter_immune_string))
+			filter_immune_string += ", "
+		filter_immune_string += typepath::name
+	return filter_immune_string
 
 /datum/preference/choiced/venomous_bite_venom/init_possible_values()
 	var/list/choices = list()

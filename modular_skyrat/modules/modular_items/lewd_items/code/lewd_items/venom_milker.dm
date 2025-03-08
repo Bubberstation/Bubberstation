@@ -14,9 +14,9 @@
 /obj/item/reagent_containers/venom_milker/Initialize(mapload)
 	. = ..()
 
-	var/milkable_string = /datum/preference/choiced/venomous_bite_venom::milkable_string
-	if (length(milkable_string))
-		desc += span_notice("\nThe following reagents cannot be filtered by the neutralizer: [milkable_string]")
+	var/filter_immune_string = /datum/preference/choiced/venomous_bite_venom::filter_immune_string
+	if (length(filter_immune_string))
+		desc += span_notice("\nThe following reagents cannot be filtered by the neutralizer: [filter_immune_string]")
 
 /obj/item/reagent_containers/venom_milker/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
@@ -52,7 +52,7 @@
  * * silent = FALSE: If TRUE, will not give user any feedback.
  */
 /obj/item/reagent_containers/venom_milker/proc/can_milk(mob/living/target, mob/living/user, silent = FALSE)
-	var/datum/action/cooldown/mob_cooldown/venomous_bite/bite = locate(/datum/action/cooldown/mob_cooldown/venomous_bite) in target.actions
+	var/datum/action/cooldown/mob_cooldown/venomous_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		if (!silent)
 			user?.balloon_alert(user, "no fangs!")
