@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(statpanels)
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
 	target.stat_panel.send_message("update_stat", list(
-		"global_data" = (target.byond_version < 516) ? global_data : (global_data + beta_notice),
+		"global_data" = global_data, // BUBBER EDIT CHANGE - Remove beta notice
 		"ping_str" = "Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)",
 		"other_str" = target.mob?.get_status_tab_items(),
 	))
