@@ -29,6 +29,7 @@
 	item_type = /obj/item/suppressor/standard
 	cost = PAYCHECK_COMMAND
 
+/*
 /datum/armament_entry/company_import/vitezstvi/accessory/small_case
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/empty
 	cost = PAYCHECK_COMMAND
@@ -36,6 +37,7 @@
 /datum/armament_entry/company_import/vitezstvi/accessory/large_case
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/empty
 	cost = PAYCHECK_COMMAND * 2
+*/
 
 // Boxes of non-shotgun ammo
 
