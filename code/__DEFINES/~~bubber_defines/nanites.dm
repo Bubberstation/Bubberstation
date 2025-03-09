@@ -68,4 +68,4 @@
 #define NES_SCAN_TYPE "Scan Type"
 #define NES_BUTTON_NAME "Button Name"
 #define NES_ICON "Icon"
-#define NANITE_HARMONIC_ID ""
+#define NANITE_HARMONIC_ID "Nano Harmonic ID"
