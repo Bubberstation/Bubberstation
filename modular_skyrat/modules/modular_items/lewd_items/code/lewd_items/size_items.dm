@@ -1,10 +1,3 @@
-/// What areas are we allowed to use size items in?
-#define SIZE_WHITELISTED_AREAS list(\
-		/area/centcom/interlink/dorm_rooms,\
-		/area/centcom/holding/cafe/dorms,\
-		/area/misc/hilbertshotel,\
-)
-
 /obj/item/clothing/neck/size_collar
 	name = "size collar"
 	desc = "A shiny black collar embeded with technology that allows the user to change their own size."
@@ -133,5 +126,3 @@
 	UnregisterSignal(parent, COMSIG_ENTER_AREA)
 
 	return ..()
-
-#undef SIZE_WHITELISTED_AREAS
