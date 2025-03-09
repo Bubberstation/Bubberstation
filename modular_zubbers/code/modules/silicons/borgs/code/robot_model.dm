@@ -148,20 +148,20 @@
 #define CYBORG_ICON_SERV_CATBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/kittycatborgs/catborgs/catborg_service.dmi'
 #define CYBORG_ICON_MINE_CATBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/kittycatborgs/catborgs/catborg_mining.dmi'
 
-// GOODRA BORG DEFINES BELOW
+// DRAGON BORG DEFINES BELOW
 
-#define CYBORG_ICON_CARGO_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_cargo.dmi'
-#define CYBORG_ICON_ENGI_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_engi.dmi'
-#define CYBORG_ICON_JANI_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_jani.dmi'
-#define CYBORG_ICON_CLOWN_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_jester.dmi'
-#define CYBORG_ICON_MEDICAL_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_med.dmi'
-#define CYBORG_ICON_MINING_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_miner.dmi'
-#define CYBORG_ICON_NINJA_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_ninja.dmi'
-#define CYBORG_ICON_PEACEKEEPER_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_peacekeeper.dmi'
-#define CYBORG_ICON_SCI_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_sci.dmi'
-#define CYBORG_ICON_SEC_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_sec.dmi'
-#define CYBORG_ICON_SERV_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_service.dmi'
-#define CYBORG_ICON_SYNDI_GOODRABORG 'modular_zubbers/code/modules/silicons/borgs/sprites/goodraborg/goodra_syndi.dmi'
+#define CYBORG_ICON_CARGO_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_cargo.dmi'
+#define CYBORG_ICON_ENGI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_engi.dmi'
+#define CYBORG_ICON_JANI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_jani.dmi'
+#define CYBORG_ICON_CLOWN_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_jester.dmi'
+#define CYBORG_ICON_MEDICAL_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_med.dmi'
+#define CYBORG_ICON_MINING_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_miner.dmi'
+#define CYBORG_ICON_NINJA_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_ninja.dmi'
+#define CYBORG_ICON_PEACEKEEPER_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_peacekeeper.dmi'
+#define CYBORG_ICON_SCI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_sci.dmi'
+#define CYBORG_ICON_SEC_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_sec.dmi'
+#define CYBORG_ICON_SERV_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_service.dmi'
+#define CYBORG_ICON_SYNDI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_syndi.dmi'
 
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
@@ -503,9 +503,9 @@
 			SKIN_ICON = CYBORG_ICON_SCI_CATBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-sci",
-			SKIN_ICON = CYBORG_ICON_SCI_GOODRABORG,
+		"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-sci",
+			SKIN_ICON = CYBORG_ICON_SCI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -527,10 +527,9 @@
 			SKIN_ICON = CYBORG_ICON_CLOWN_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			DULLAHAN_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-clown",
-			SKIN_ICON = CYBORG_ICON_CLOWN_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-clown",
+			SKIN_ICON = CYBORG_ICON_CLOWN_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -598,10 +597,9 @@
 			SKIN_ICON_STATE = "meowdical",
 			SKIN_ICON = CYBORG_ICON_MED_CATBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-med",
-			SKIN_ICON = CYBORG_ICON_MEDICAL_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-med",
+			SKIN_ICON = CYBORG_ICON_MEDICAL_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -652,10 +650,9 @@
 			SKIN_ICON_STATE = "engi",
 			SKIN_ICON = CYBORG_ICON_ENG_CATBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-engi",
-			SKIN_ICON = CYBORG_ICON_ENGI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-engi",
+			SKIN_ICON = CYBORG_ICON_ENGI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -696,10 +693,9 @@
 			SKIN_ICON_STATE = "jani",
 			SKIN_ICON = CYBORG_ICON_JANI_KITTYBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL),
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-jani",
-			SKIN_ICON = CYBORG_ICON_JANI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-jani",
+			SKIN_ICON = CYBORG_ICON_JANI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -764,10 +760,9 @@
 			SKIN_ICON = CYBORG_ICON_MINING_TALL,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			TALL_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-mining",
-			SKIN_ICON = CYBORG_ICON_MINING_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-mining",
+			SKIN_ICON = CYBORG_ICON_MINING_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -806,10 +801,9 @@
 			SKIN_ICON = CYBORG_ICON_SEC_LARGE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-sec",
-			SKIN_ICON = CYBORG_ICON_SEC_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-sec",
+			SKIN_ICON = CYBORG_ICON_SEC_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -871,10 +865,9 @@
 			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK,TRAIT_R_UNIQUETIP,TRAIT_R_TALL),
 			TALL_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-pk",
-			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-pk",
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -941,10 +934,9 @@
 			SKIN_ICON_STATE = "service",
 			SKIN_ICON = CYBORG_ICON_SERV_CATBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-serv",
-			SKIN_ICON = CYBORG_ICON_SERV_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-serv",
+			SKIN_ICON = CYBORG_ICON_SERV_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -975,10 +967,9 @@
 			SKIN_ICON = CYBORG_ICON_CARGO_TALL,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			TALL_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-cargo",
-			SKIN_ICON = CYBORG_ICON_CARGO_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-cargo",
+			SKIN_ICON = CYBORG_ICON_CARGO_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1039,10 +1030,9 @@
 		SKIN_ICON = CYBORG_ICON_SYN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-syndi",
-			SKIN_ICON = CYBORG_ICON_SYNDI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-syndi",
+			SKIN_ICON = CYBORG_ICON_SYNDI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1091,10 +1081,9 @@
 		SKIN_ICON = CYBORG_ICON_SYN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-syndi",
-			SKIN_ICON = CYBORG_ICON_SYNDI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-syndi",
+			SKIN_ICON = CYBORG_ICON_SYNDI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1145,10 +1134,9 @@
 		SKIN_ICON = CYBORG_ICON_SYN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-syndi",
-			SKIN_ICON = CYBORG_ICON_SYNDI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-syndi",
+			SKIN_ICON = CYBORG_ICON_SYNDI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1194,10 +1182,9 @@
 		SKIN_ICON = CYBORG_ICON_SYN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-syndi",
-			SKIN_ICON = CYBORG_ICON_SYNDI_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-syndi",
+			SKIN_ICON = CYBORG_ICON_SYNDI_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1235,10 +1222,9 @@
 		SKIN_ICON = CYBORG_ICON_NIN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-ninja",
-			SKIN_ICON = CYBORG_ICON_NINJA_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-ninja",
+			SKIN_ICON = CYBORG_ICON_NINJA_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1257,10 +1243,9 @@
 		SKIN_ICON = CYBORG_ICON_NIN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
-		),
-		"Goodra" = list(
-			SKIN_ICON_STATE = "goodra-ninja",
-			SKIN_ICON = CYBORG_ICON_NINJA_GOODRABORG,
+		)"Dragon" = list(
+			SKIN_ICON_STATE = "dragon-ninja",
+			SKIN_ICON = CYBORG_ICON_NINJA_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
 		),
 	)
@@ -1364,20 +1349,20 @@
 #undef CYBORG_ICON_SERV_CATBORG
 #undef CYBORG_ICON_MINE_CATBORG
 
-// Goodraborgs
+// Dragonborgs
 
-#undef CYBORG_ICON_CARGO_GOODRABORG
-#undef CYBORG_ICON_ENGI_GOODRABORG
-#undef CYBORG_ICON_JANI_GOODRABORG
-#undef CYBORG_ICON_CLOWN_GOODRABORG
-#undef CYBORG_ICON_MEDICAL_GOODRABORG
-#undef CYBORG_ICON_MINING_GOODRABORG
-#undef CYBORG_ICON_NINJA_GOODRABORG
-#undef CYBORG_ICON_PEACEKEEPER_GOODRABORG
-#undef CYBORG_ICON_SCI_GOODRABORG
-#undef CYBORG_ICON_SEC_GOODRABORG
-#undef CYBORG_ICON_SERV_GOODRABORG
-#undef CYBORG_ICON_SYNDI_GOODRABORG
+#undef CYBORG_ICON_CARGO_DRAGONBORG
+#undef CYBORG_ICON_ENGI_DRAGONBORG
+#undef CYBORG_ICON_JANI_DRAGONBORG
+#undef CYBORG_ICON_CLOWN_DRAGONBORG
+#undef CYBORG_ICON_MEDICAL_DRAGONBORG
+#undef CYBORG_ICON_MINING_DRAGONBORG
+#undef CYBORG_ICON_NINJA_DRAGONBORG
+#undef CYBORG_ICON_PEACEKEEPER_DRAGONBORG
+#undef CYBORG_ICON_SCI_DRAGONBORG
+#undef CYBORG_ICON_SEC_DRAGONBORG
+#undef CYBORG_ICON_SERV_DRAGONBORG
+#undef CYBORG_ICON_SYNDI_DRAGONBORG
 
 //Hat Offsets
 #undef TALL_HAT_OFFSET

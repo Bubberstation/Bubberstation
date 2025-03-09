@@ -20,12 +20,12 @@
 /mob/living/silicon/robot/proc/update_altborg_icons()
 	var/mutable_appearance/item_overlay
 	var/list/items_with_sprites = list(
-		/obj/item/melee/baton/security/loaded = list("goodra-sec", "baton"),
-		/obj/item/borg/projectile_dampen = list("goodra-pk", "shield"),
-		/obj/item/katana/ninja_blade = list("goodra-ninja", "katana"),
-		/obj/item/kinetic_crusher = list("goodra-mining", "hammer"),
-		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg = list("goodra-mining", "pka"),
-		/obj/item/melee/energy/sword/cyborg = list("goodra-syndi", "esword"),
+		/obj/item/melee/baton/security/loaded = list("dragon-sec", "baton"),
+		/obj/item/borg/projectile_dampen = list("dragon-pk", "shield"),
+		/obj/item/katana/ninja_blade = list("dragon-ninja", "katana"),
+		/obj/item/kinetic_crusher = list("dragon-mining", "hammer"),
+		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg = list("dragon-mining", "pka"),
+		/obj/item/melee/energy/sword/cyborg = list("dragon-syndi", "esword"),
 		/obj/item/gun/energy/laser/cyborg = list("all-sec", "laser"),
 		/obj/item/gun/energy/disabler/cyborg = list("all-sec", "disabler"),
 		/obj/item/gun/energy/e_gun/advtaser/cyborg = list("all-sec", "disabler"),
