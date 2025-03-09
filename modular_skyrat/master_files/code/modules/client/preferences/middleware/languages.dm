@@ -162,3 +162,6 @@
 	var/language_name = params["language_name"]
 	preferences.languages -= name_to_language[language_name]
 	return TRUE
+
+#undef MAX_LANGUAGES_NORMAL
+#undef MAX_LANGUAGES_LINGUIST

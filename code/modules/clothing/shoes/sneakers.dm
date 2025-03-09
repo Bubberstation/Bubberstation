@@ -9,7 +9,7 @@
 	greyscale_config_worn = /datum/greyscale_config/sneakers/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/sneakers/inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers/inhand_right
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_config_worn_digi = /datum/greyscale_config/sneakers/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
 	interaction_flags_mouse_drop = NEED_HANDS
