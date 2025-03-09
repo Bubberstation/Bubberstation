@@ -144,6 +144,8 @@
 
 /obj/lewd_portal_relay
 	name = "portal relay"
+	anchored = TRUE
+	layer = ABOVE_MOB_LAYER
 	var/mob/living/carbon/human/owner
 
 /obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref)
@@ -152,6 +154,14 @@
 		return INITIALIZE_HINT_QDEL
 	dir = NORTH
 	owner = owner_ref
+	var/species_name
+	if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == "")
+		species_name = owner.dna.species.name
+	else
+		species_name = owner.dna.features["custom_species"]
+	name = "[species_name] behind"
+
+
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
