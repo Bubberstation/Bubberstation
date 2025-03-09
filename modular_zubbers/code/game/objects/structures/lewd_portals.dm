@@ -159,9 +159,7 @@
 		species_name = owner.dna.species.name
 	else
 		species_name = owner.dna.features["custom_species"]
-	name = "[species_name] behind"
-
-
+	name = LOWER_TEXT("[species_name] behind")
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
@@ -196,11 +194,22 @@
 		body_layer_overlays += new_body_layer_overlay
 	add_overlay(body_layer_overlays)
 
-/obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
-	owner.attackby(attacking_item, user, params)
+/obj/lewd_portal_relay/attack_hand_secondary(mob/living/user)
+	if(!user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
+		return ..()
+	if(dir == NORTH)
+		dir = SOUTH
+	else
+		dir = NORTH
+	to_chat(user, span_info("You flip [name] over"))
+	to_chat(owner, span_info("You feel your behind flip over"))
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/lewd_portal_relay/attack_hand(mob/living/user, list/modifiers)
-	owner.attack_hand(user, modifiers)
+//obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
+	//owner.attackby(attacking_item, user, params)
+
+//obj/lewd_portal_relay/attack_hand(mob/living/user, list/modifiers)
+	//owner.attack_hand(user, modifiers)
 
 /obj/lewd_portal_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods, message_range)
 	. = ..()
