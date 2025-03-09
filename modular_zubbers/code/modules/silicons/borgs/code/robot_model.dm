@@ -148,7 +148,7 @@
 #define CYBORG_ICON_SERV_CATBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/kittycatborgs/catborgs/catborg_service.dmi'
 #define CYBORG_ICON_MINE_CATBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/kittycatborgs/catborgs/catborg_mining.dmi'
 
-// DRAGON BORG DEFINES BELOW - Spritework done by Triage, commissioned by SomeMemeGuy(Matica)
+// DRAGON BORG DEFINES BELOW - Spritework done by Toriate, commissioned by SomeMemeGuy(Matica)
 
 #define CYBORG_ICON_CARGO_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_cargo.dmi'
 #define CYBORG_ICON_ENGI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_engi.dmi'
