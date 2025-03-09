@@ -389,6 +389,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	human_who_gained_species.mob_respiration_type = inherent_respiration_type
 	human_who_gained_species.butcher_results = knife_butcher_results?.Copy()
 
+	// BUBBER EDIT BEGIN - Bake digitigrade into the species on apply
+	try_make_digitigrade(human_who_gained_species)
+	// BUBBER EDIT END
 	if(old_species.type != type)
 		replace_body(human_who_gained_species, src)
 
@@ -2023,32 +2026,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	new_species ||= target.dna.species //If no new species is provided, assume its src.
 	//Note for future: Potentionally add a new C.dna.species() to build a template species for more accurate limb replacement
 
-	// SKYRAT EDIT ADDITION START - Synth digitigrade sanitization
-	var/ignore_digi = FALSE // You can jack into this var with other checks, if you want.
-	if(issynthetic(target))
-		var/list/chassis = target.dna.mutant_bodyparts[MUTANT_SYNTH_CHASSIS]
-		if(chassis)
-			var/list/chassis_accessory = SSaccessories.sprite_accessories[MUTANT_SYNTH_CHASSIS]
-			var/datum/sprite_accessory/synth_chassis/body_choice
-			if(chassis_accessory)
-				body_choice = chassis_accessory[chassis[MUTANT_INDEX_NAME]]
-			if(body_choice && !body_choice.is_digi_compatible)
-				ignore_digi = TRUE
-	// SKYRAT EDIT END
-
 	var/list/final_bodypart_overrides = new_species.bodypart_overrides.Copy()
-	if(!ignore_digi && ((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)) //if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED) // SKYRAT EDIT - Digitigrade customization - ORIGINAL
-		/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
+
+	// BUBBER EDIT BEGIN REMOVAL - We bake these into the species
+	/*
+	if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)
 		final_bodypart_overrides[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
 		final_bodypart_overrides[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
-		*/ // ORIGINAL END - SKYRAT EDIT START:
-		var/obj/item/bodypart/leg/right/r_leg = new_species.bodypart_overrides[BODY_ZONE_R_LEG]
-		if(r_leg)
-			final_bodypart_overrides[BODY_ZONE_R_LEG] = initial(r_leg.digitigrade_type)
-		var/obj/item/bodypart/leg/left/l_leg = new_species.bodypart_overrides[BODY_ZONE_L_LEG]
-		if(l_leg)
-			final_bodypart_overrides[BODY_ZONE_L_LEG] = initial(l_leg.digitigrade_type)
-		// SKYRAT EDIT END
+	*/ // BUBBER EDIT END
 
 	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
 		if((old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES) || (old_part.bodypart_flags & BODYPART_IMPLANTED))
