@@ -429,6 +429,7 @@
 	//Traits: Species
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
+		user.dna?.remove_all_mutations()
 		for (var/body_zone in GLOB.limb_zones)
 			var/obj/item/bodypart/limbs = user.get_bodypart(body_zone) // messy but we'll fix it later.
 			limbs.unarmed_damage_low += 1
