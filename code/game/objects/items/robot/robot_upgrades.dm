@@ -599,7 +599,7 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
-	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features?)
+	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
 		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
 		return FALSE
 
