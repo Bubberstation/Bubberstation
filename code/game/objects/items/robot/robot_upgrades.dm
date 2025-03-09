@@ -599,7 +599,7 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
-	if(HAS_TRAIT(borg, TRAIT_EXPANDER_BLOCKED))
+	if(HAS_TRAIT(borg, TRAIT_R_EXPANDER_BLOCKED))
 		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
 		return FALSE
 
