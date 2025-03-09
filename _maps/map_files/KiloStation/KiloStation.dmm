@@ -18004,7 +18004,6 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/storage/medkit/regular,
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron/dark,
@@ -27596,6 +27595,7 @@
 	},
 /obj/item/crowbar/red,
 /obj/item/clothing/mask/gas,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "iWm" = (
@@ -27848,6 +27848,7 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "jas" = (
@@ -37657,6 +37658,8 @@
 	dir = 8
 	},
 /obj/item/storage/box/bandages,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "mlB" = (
@@ -47784,6 +47787,7 @@
 	},
 /obj/structure/curtain,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "pJs" = (
@@ -48811,9 +48815,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "qaR" = (
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall,
-/area/station/medical/paramedic)
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/machinery/incident_display/disease/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/medical/medbay/central)
 "qaZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/mix_output{
 	dir = 1
@@ -94031,7 +94039,7 @@ bXe
 huR
 bXe
 gsy
-srg
+qaR
 uZT
 gKd
 pMj
@@ -96857,7 +96865,7 @@ dkh
 oiq
 giH
 uVJ
-qaR
+xvW
 jam
 fgy
 qht
