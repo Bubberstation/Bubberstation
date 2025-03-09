@@ -50,12 +50,6 @@
 	if(disable_distribution)
 		return
 	add_points(delta_time)
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		//Don't generate any new events if the shuttle is docked with the station (or in transit towards central command.
-		return
-	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
-		//Don't generate any new events if the shuttle is in transit in a non-admin no-recall state.
-		return
 	handle_tracks()
 
 /datum/storyteller/vv_edit_var(var_name, var_value) // Appends any name changes with the original storyteller

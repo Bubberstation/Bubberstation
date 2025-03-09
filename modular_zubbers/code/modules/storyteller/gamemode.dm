@@ -181,8 +181,16 @@ SUBSYSTEM_DEF(gamemode)
 
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
+
 	if(!resumed)
 		src.currentrun = running.Copy()
+
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		//Don't run any events if the shuttle is docked with the station (or in transit towards central command.
+		return
+	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
+		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
+		return
 
 	///Handle scheduled events
 	for(var/datum/scheduled_event/sch_event in scheduled_events)
