@@ -162,10 +162,14 @@
 	name = LOWER_TEXT("[species_name] behind")
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
+	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
+	interact_component?.body_relay = src
 
 /obj/lewd_portal_relay/Destroy(force)
 	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
+	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
+	interact_component?.body_relay = null
 	return ..()
 
 /obj/lewd_portal_relay/proc/update_visuals()
@@ -201,9 +205,12 @@
 		dir = SOUTH
 	else
 		dir = NORTH
-	to_chat(user, span_info("You flip [name] over"))
-	to_chat(owner, span_info("You feel your behind flip over"))
+	to_chat(user, span_info("You flip \the [name] over."))
+	to_chat(owner, span_info("You feel your behind flip over."))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/lewd_portal_relay/click_ctrl_shift(mob/user)
+	owner.click_ctrl_shift(user)
 
 //obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
 	//owner.attackby(attacking_item, user, params)
