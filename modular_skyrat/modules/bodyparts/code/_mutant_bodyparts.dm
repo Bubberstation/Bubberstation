@@ -11,13 +11,15 @@
 /obj/item/bodypart/proc/check_mutant_compatability()
 	return
 
-/obj/item/bodypart/leg/right
+/obj/item/bodypart/leg // Abstract type, if something retrieves null from this it's your fault
 	/// This is used in digitigrade legs, when this leg is swapped out with the digitigrade version.
-	var/digitigrade_type = /obj/item/bodypart/leg/right/digitigrade
+	var/digitigrade_type
+
+/obj/item/bodypart/leg/right
+	digitigrade_type = /obj/item/bodypart/leg/right/digitigrade
 
 /obj/item/bodypart/leg/left
-	/// This is used in digitigrade legs, when this leg is swapped out with the digitigrade version.
-	var/digitigrade_type = /obj/item/bodypart/leg/left/digitigrade
+	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade
 
 
 /// General mutant bodyparts. Used in most mutant species.
