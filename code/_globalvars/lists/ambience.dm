@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(mining_ambience, list(
 	'sound/ambience/ruin/ambiruin5.ogg',
 	'sound/ambience/ruin/ambiruin6.ogg',
 	'sound/ambience/ruin/ambiruin7.ogg',
+	'modular_zubbers/sound/ambiance/bangle-graveyard-of-time.ogg' // Bubber Edit - Credit: Bangle
 ))
 
 GLOBAL_LIST_INIT(icemoon_ambience,list(
