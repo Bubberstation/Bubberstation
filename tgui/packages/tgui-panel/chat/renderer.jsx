@@ -4,11 +4,11 @@
  * @license MIT
  */
 
-import { EventEmitter } from 'common/events';
-import { classes } from 'common/react';
 import { createRoot } from 'react-dom/client';
-import { Tooltip } from 'tgui/components';
 import { createLogger } from 'tgui/logging';
+import { Tooltip } from 'tgui-core/components';
+import { EventEmitter } from 'tgui-core/events';
+import { classes } from 'tgui-core/react';
 
 import {
   COMBINE_MAX_MESSAGES,
@@ -83,6 +83,9 @@ const handleImageError = (e) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
     const node = e.target;
+    if (!node) {
+      return;
+    }
     const attempts = parseInt(node.getAttribute('data-reload-n'), 10) || 0;
     if (attempts >= IMAGE_RETRY_LIMIT) {
       logger.error(`failed to load an image after ${attempts} attempts`);

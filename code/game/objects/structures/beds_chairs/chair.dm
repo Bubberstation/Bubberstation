@@ -7,7 +7,7 @@
 	can_buckle = TRUE
 	buckle_lying = 0 //you sit in a chair, not lay
 	resistance_flags = NONE
-	max_integrity = 250
+	max_integrity = 100
 	integrity_failure = 0.1
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	layer = OBJ_LAYER
@@ -26,7 +26,7 @@
 	. = ..()
 	if(prob(0.2))
 		name = "tactical [name]"
-		fishing_modifier -= 4
+		fishing_modifier -= 8
 	MakeRotate()
 	if (has_armrest)
 		gen_armrest()
@@ -77,19 +77,28 @@
 		return
 	. = ..()
 
+/obj/structure/chair/update_atom_colour()
+	. = ..()
+	if (armrest)
+		color_atom_overlay(armrest)
+
 /obj/structure/chair/proc/gen_armrest()
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
+	armrest.appearance_flags |= KEEP_APART
 	update_armrest()
 
 /obj/structure/chair/proc/GetArmrest()
 	return mutable_appearance(icon, "[icon_state]_armrest")
 
 /obj/structure/chair/proc/update_armrest()
+	armrest = color_atom_overlay(armrest)
+	update_appearance()
+
+/obj/structure/chair/update_overlays()
+	. = ..()
 	if(has_buckled_mobs())
-		add_overlay(armrest)
-	else
-		cut_overlay(armrest)
+		. += armrest
 
 ///allows each chair to request the electrified_buckle component with overlays that dont look ridiculous
 /obj/structure/chair/proc/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
@@ -97,16 +106,16 @@
 	if(!user.temporarilyRemoveItemFromInventory(input_shock_kit))
 		return
 	if(!overlays_from_child_procs || overlays_from_child_procs.len == 0)
-		var/image/echair_over_overlay = image('icons/obj/chairs.dmi', loc, "echair_over", OBJ_LAYER)
-		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, list(echair_over_overlay), FALSE)
+		var/mutable_appearance/echair_overlay = mutable_appearance('icons/obj/chairs.dmi', "echair_over", OBJ_LAYER, src, appearance_flags = KEEP_APART)
+		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, list(echair_overlay), FALSE)
 	else
 		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, overlays_from_child_procs, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_ELECTRIFIED_BUCKLE))
-		to_chat(user, span_notice("You connect the shock kit to the [name], electrifying it "))
+		to_chat(user, span_notice("You connect the shock kit to \the [src], electrifying it "))
 	else
 		user.put_in_active_hand(input_shock_kit)
-		to_chat(user, span_notice("You cannot fit the shock kit onto the [name]!"))
+		to_chat(user, span_notice("You cannot fit the shock kit onto \the [src]!"))
 
 
 /obj/structure/chair/wrench_act_secondary(mob/living/user, obj/item/weapon)
@@ -171,11 +180,11 @@
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 	resistance_flags = FLAMMABLE
-	max_integrity = 70
+	max_integrity = 40
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 3
 	item_chair = /obj/item/chair/wood
-	fishing_modifier = -4
+	fishing_modifier = -6
 
 /obj/structure/chair/wood/narsie_act()
 	return
@@ -216,10 +225,14 @@
 	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
 	icon_state = "shuttle_chair"
 	buildstacktype = /obj/item/stack/sheet/mineral/titanium
+	buckle_sound = SFX_SEATBELT_BUCKLE
+	unbuckle_sound = SFX_SEATBELT_UNBUCKLE
 
 /obj/structure/chair/comfy/shuttle/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
 	if(!overlays_from_child_procs)
-		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1, layer = OBJ_LAYER))
+		var/mutable_appearance/echair_overlay = mutable_appearance('icons/obj/chairs.dmi', "echair_over", OBJ_LAYER, src, appearance_flags = KEEP_APART)
+		echair_overlay.pixel_x = -1
+		overlays_from_child_procs = list(echair_overlay)
 	. = ..()
 
 /obj/structure/chair/comfy/shuttle/tactical
@@ -230,13 +243,14 @@
 	desc = "A luxurious chair, the many purple scales reflect the light in a most pleasing manner."
 	icon_state = "carp_chair"
 	buildstacktype = /obj/item/stack/sheet/animalhide/carp
-	fishing_modifier = -10
+	fishing_modifier = -12
 
 /obj/structure/chair/office
+	name = "office chair"
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
-	fishing_modifier = -4
+	fishing_modifier = -6
 	icon_state = "officechair_dark"
 
 /obj/structure/chair/office/Initialize(mapload)
@@ -245,17 +259,17 @@
 
 /obj/structure/chair/office/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
 	if(!overlays_from_child_procs)
-		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1, layer = OBJ_LAYER))
+		var/mutable_appearance/echair_overlay = mutable_appearance('icons/obj/chairs.dmi', "echair_over", OBJ_LAYER, src, appearance_flags = KEEP_APART)
+		echair_overlay.pixel_x = -1
+		overlays_from_child_procs = list(echair_overlay)
 	. = ..()
 
 /obj/structure/chair/office/tactical
 	name = "tactical swivel chair"
-
-/obj/structure/chair/office/tactical/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -10)
+	fishing_modifier = -10
 
 /obj/structure/chair/office/light
+	name = "office chair"
 	icon_state = "officechair_white"
 
 //Stool
@@ -267,6 +281,7 @@
 	can_buckle = FALSE
 	buildstackamount = 1
 	item_chair = /obj/item/chair/stool
+	max_integrity = 300
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, 0)
 
@@ -278,11 +293,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, 0)
 		return
 	if(!item_chair || has_buckled_mobs())
 		return
+	if(flags_1 & HOLOGRAM_1)
+		to_chat(user, span_notice("You try to pick up \the [src], but it fades away!"))
+		qdel(src)
+		return
+
 	user.visible_message(span_notice("[user] grabs \the [src.name]."), span_notice("You grab \the [src.name]."))
-	var/obj/item/C = new item_chair(loc)
-	C.set_custom_materials(custom_materials)
-	TransferComponents(C)
-	user.put_in_hands(C)
+	var/obj/item/chair_item = new item_chair(loc)
+	chair_item.set_custom_materials(custom_materials)
+	TransferComponents(chair_item)
+	chair_item.update_integrity(get_integrity())
+	user.put_in_hands(chair_item)
 	qdel(src)
 
 /obj/structure/chair/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
@@ -308,7 +329,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	desc = "A makeshift bamboo stool with a rustic look."
 	icon_state = "bamboo_stool"
 	resistance_flags = FLAMMABLE
-	max_integrity = 60
+	max_integrity = 40
 	buildstacktype = /obj/item/stack/sheet/mineral/bamboo
 	buildstackamount = 2
 	item_chair = /obj/item/chair/stool/bamboo
@@ -319,6 +340,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair_toppled"
 	inhand_icon_state = "chair"
+	icon_angle = 180
 	lefthand_file = 'icons/mob/inhands/items/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/chairs_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
@@ -326,11 +348,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	throwforce = 10
 	demolition_mod = 1.25
 	throw_range = 3
+	max_integrity = 100
 	hitsound = 'sound/items/trayhit/trayhit1.ogg'
 	hit_reaction_chance = 50
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	item_flags = SKIP_FANTASY_ON_SPAWN
-	var/break_chance = 5 //Likely hood of smashing the chair.
+
+	// Duration of daze inflicted when the chair is smashed against someone from behind.
+	var/daze_amount = 3 SECONDS
+
+	// What structure type does this chair become when placed?
 	var/obj/structure/chair/origin_type = /obj/structure/chair
 
 /obj/item/chair/suicide_act(mob/living/carbon/user)
@@ -351,6 +378,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	if(isgroundlessturf(T))
 		to_chat(user, span_warning("You need ground to plant this on!"))
 		return
+	if(flags_1 & HOLOGRAM_1)
+		to_chat(user, span_notice("You try to place down \the [src], but it fades away!"))
+		qdel(src)
+		return
+
 	for(var/obj/A in T)
 		if(istype(A, /obj/structure/chair))
 			to_chat(user, span_warning("There is already a chair here!"))
@@ -360,10 +392,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 			return
 
 	user.visible_message(span_notice("[user] rights \the [src.name]."), span_notice("You right \the [name]."))
-	var/obj/structure/chair/C = new origin_type(get_turf(loc))
-	C.set_custom_materials(custom_materials)
-	TransferComponents(C)
-	C.setDir(user.dir)
+	var/obj/structure/chair/chair = new origin_type(get_turf(loc))
+	chair.set_custom_materials(custom_materials)
+	TransferComponents(chair)
+	chair.setDir(user.dir)
+	chair.update_integrity(get_integrity())
 	qdel(src)
 
 /obj/item/chair/proc/smash(mob/living/user)
@@ -371,7 +404,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	if(!stack_type)
 		return
 	var/remaining_mats = initial(origin_type.buildstackamount)
-	remaining_mats-- //Part of the chair was rendered completely unusable. It magically dissapears. Maybe make some dirt?
+	remaining_mats-- //Part of the chair was rendered completely unusable. It magically disappears. Maybe make some dirt?
 	if(remaining_mats)
 		for(var/M=1 to remaining_mats)
 			new stack_type(get_turf(loc))
@@ -382,18 +415,40 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == UNARMED_ATTACK && prob(hit_reaction_chance) || attack_type == LEAP_ATTACK && prob(hit_reaction_chance))
 		owner.visible_message(span_danger("[owner] fends off [attack_text] with [src]!"))
+		if(take_chair_damage(damage, damage_type, MELEE)) // Our chair takes our incoming damage for us, which can result in it smashing.
+			smash(owner)
 		return TRUE
 	return FALSE
 
 /obj/item/chair/afterattack(atom/target, mob/user, click_parameters)
-	if(!prob(break_chance))
+	if(!ishuman(target))
 		return
-	user.visible_message(span_danger("[user] smashes [src] to pieces against [target]"))
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		if(C.health < C.maxHealth*0.5)
-			C.Paralyze(20)
+
+	var/mob/living/carbon/human/give_this_fucker_the_chair = target
+
+	// Here we determine if our attack is against a vulnerable target
+	var/vulnerable_hit = check_behind(user, give_this_fucker_the_chair)
+
+	// If our attack is against a vulnerable target, we do additional damage to the chair
+	var/damage_to_inflict = vulnerable_hit ? (force * 5) : (force * 2.5)
+
+	if(!take_chair_damage(damage_to_inflict, damtype, MELEE)) // If we would do enough damage to bring our chair's integrity to 0, we instead go past the check to smash it against our target
+		return
+
+	user.visible_message(span_danger("[user] smashes [src] to pieces against [give_this_fucker_the_chair]"))
+	if(!HAS_TRAIT(give_this_fucker_the_chair, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
+		if(vulnerable_hit || give_this_fucker_the_chair.get_timed_status_effect_duration(/datum/status_effect/staggered))
+			give_this_fucker_the_chair.Knockdown(2 SECONDS, daze_amount = daze_amount)
+			if(give_this_fucker_the_chair.health < give_this_fucker_the_chair.maxHealth*0.5)
+				give_this_fucker_the_chair.adjust_confusion(10 SECONDS)
+
 	smash(user)
+
+/obj/item/chair/proc/take_chair_damage(damage_to_inflict, damage_type, armor_flag)
+	if(damage_to_inflict >= atom_integrity)
+		return TRUE
+	take_damage(damage_to_inflict, damage_type, armor_flag)
+	return FALSE
 
 /obj/item/chair/greyscale
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
@@ -404,7 +459,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	icon_state = "stool_toppled"
 	inhand_icon_state = "stool"
 	origin_type = /obj/structure/chair/stool
-	break_chance = 0 //It's too sturdy.
+	max_integrity = 300 //It's too sturdy.
 
 /obj/item/chair/stool/bar
 	name = "bar stool"
@@ -418,7 +473,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	inhand_icon_state = "stool_bamboo"
 	hitsound = 'sound/items/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/stool/bamboo
-	break_chance = 50	//Submissive and breakable unlike the chad iron stool
+	max_integrity = 40 //Submissive and breakable unlike the chad iron stool
+	daze_amount = 0 //Not hard enough to cause them to become dazed
 
 /obj/item/chair/stool/narsie_act()
 	return //sturdy enough to ignore a god
@@ -428,11 +484,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	icon_state = "wooden_chair_toppled"
 	inhand_icon_state = "woodenchair"
 	resistance_flags = FLAMMABLE
-	max_integrity = 70
+	max_integrity = 40
 	hitsound = 'sound/items/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/wood
 	custom_materials = null
-	break_chance = 50
+	daze_amount = 0
 
 /obj/item/chair/wood/narsie_act()
 	return
@@ -500,7 +556,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	item_chair = null
 	obj_flags = parent_type::obj_flags | NO_DEBRIS_AFTER_DECONSTRUCTION
 	alpha = 0
-	fishing_modifier = -20 //it only lives for 25 seconds, so we make them worth it.
+	fishing_modifier = -21 //it only lives for 25 seconds, so we make them worth it.
 
 /obj/structure/chair/mime/wrench_act_secondary(mob/living/user, obj/item/weapon)
 	return NONE
@@ -517,12 +573,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	name = "folding plastic chair"
 	desc = "No matter how much you squirm, it'll still be uncomfortable."
 	resistance_flags = FLAMMABLE
-	max_integrity = 50
+	max_integrity = 70
 	custom_materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
 	buildstacktype = /obj/item/stack/sheet/plastic
 	buildstackamount = 2
 	item_chair = /obj/item/chair/plastic
-	fishing_modifier = -8
+	fishing_modifier = -10
 
 /obj/structure/chair/plastic/post_buckle_mob(mob/living/Mob)
 	Mob.pixel_y += 2
@@ -553,7 +609,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	force = 7
 	throw_range = 5 //Lighter Weight --> Flies Farther.
 	custom_materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
-	break_chance = 25
+	max_integrity = 70
+	daze_amount = 0
 	origin_type = /obj/structure/chair/plastic
 
 /obj/structure/chair/musical

@@ -82,6 +82,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = src)
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
+	ADD_TRAIT(src, TRAIT_MOPABLE, INNATE_TRAIT)
 
 /obj/effect/rune/examine(mob/user)
 	. = ..()
@@ -390,12 +391,35 @@ structure_check() searches for nearby cultist structures required for the invoca
 		sacrificial.investigate_log("has been sacrificially dusted by the cult.", INVESTIGATE_DEATHS)
 		sacrificial.dust(TRUE, FALSE, TRUE)
 	else if (sacrificial)
-		var/obj/item/soulstone/stone = new(loc)
-		if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
-			stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
-		playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
-		sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
-		sacrificial.gib(DROP_ALL_REMAINS)
+	//BUBBER EDIT BEGIN: removes force gib from cult
+		if(!HAS_TRAIT(sacrificial, TRAIT_HAS_BEEN_CULT_SACRIFICED))
+			ADD_TRAIT(sacrificial, TRAIT_HAS_BEEN_CULT_SACRIFICED, MAGIC_TRAIT)
+			var/obj/item/soulstone/stone = new(loc)
+
+			var/shard_choice = tgui_alert(
+				user = sacrificial,
+				message = "Do you wish to become a soul shard for the cult, selecting yes will gib you and you will play as a soul shard, selecting no will husk you and your body will stay intact.",
+				title = "Choose your fate",
+				buttons = list("Decline", "Accept"),
+				timeout = 10 SECONDS,
+				autofocus = TRUE
+				)
+			if(shard_choice == "Accept")
+				if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
+					stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
+				playsound(sacrificial, 'sound/effects/magic/disintegrate.ogg', 100, TRUE)
+				sacrificial.investigate_log("has been sacrificially gibbed by the cult.", INVESTIGATE_DEATHS)
+				sacrificial.gib(DROP_ALL_REMAINS)
+			else
+				sacrificial.death(FALSE)
+				sacrificial.become_husk(BURN)
+				sacrificial.investigate_log("has been sacrificially husked by the cult.", INVESTIGATE_DEATHS)
+				stone.capture_ghost(sacrificial, invokers[1])
+		else
+			sacrificial.death(FALSE)
+			sacrificial.become_husk(BURN)
+			sacrificial.investigate_log("has been sacrificially husked by the cult.", INVESTIGATE_DEATHS)
+		//BUBBER EDIT END
 
 	try_spawn_sword() // after sharding and gibbing, which potentially dropped a null rod
 
@@ -1025,7 +1049,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		visible_message(span_warning("A cloud of red mist forms above [src], and from within steps... a [new_human.gender == FEMALE ? "wo":""]man."))
 		to_chat(user, span_cult_italic("Your blood begins flowing into [src]. You must remain in place and conscious to maintain the forms of those summoned. This will hurt you slowly but surely..."))
 		var/obj/structure/emergency_shield/cult/weak/N = new(T)
-		if(ghost_to_spawn.mind && ghost_to_spawn.mind.current)
+		if(ghost_to_spawn.mind && ghost_to_spawn.mind)
 			new_human.AddComponent( \
 				/datum/component/temporary_body, \
 				old_mind = ghost_to_spawn.mind, \
@@ -1091,7 +1115,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 
 /mob/living/carbon/human/cult_ghost/get_organs_for_zone(zone, include_children)
 	. = ..()
-	for(var/obj/item/organ/internal/brain/B in .) //they're not that smart, really
+	for(var/obj/item/organ/brain/B in .) //they're not that smart, really
 		. -= B
 
 
@@ -1172,7 +1196,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/atom/, remove_alt_appearance),"cult_apoc",TRUE), duration)
 				images += C
 		else
-			to_chat(M, span_cult_large("An Apocalypse Rune was invoked in the [place.name], it is no longer available as a summoning site!"))
+			to_chat(M, span_cult_large("An Apocalypse Rune was invoked in \the [place], it is no longer available as a summoning site!"))
 			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
 	image_handler(images, duration)
 	if(intensity >= 285) // Based on the prior formula, this means the cult makes up <15% of current players

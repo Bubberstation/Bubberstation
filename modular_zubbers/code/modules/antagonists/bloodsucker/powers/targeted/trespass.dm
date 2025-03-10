@@ -57,7 +57,7 @@
 		// ERROR! Wall!
 		if(iswallturf(from_turf) && !(i == 1 && level_current >= TRESSPASS_PAST_ANYTHING_LEVEL))
 			var/wallwarning = (i == 1) ? "in the way" : "at your destination"
-			owner.balloon_alert(owner, "There is a wall [wallwarning].")
+			owner.balloon_alert(owner, "there is a wall [wallwarning].")
 			return FALSE
 	// Done
 	target_turf = from_turf

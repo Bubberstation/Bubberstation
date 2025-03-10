@@ -30,17 +30,17 @@
 	human_holder.blood_volume_normal = BLOOD_VOLUME_OVERSIZED
 	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
-	var/obj/item/organ/internal/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_ROBOTIC || old_stomach.organ_traits & TRAIT_NOHUNGER)
 		return
 	old_stomach.Remove(human_holder, special = TRUE)
 	qdel(old_stomach)
 	if(issynthetic(human_holder))
-		var/obj/item/organ/internal/stomach/synth/oversized/new_synth_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE reactor! RIP AND TEAR YOUR HUGE reactor!
+		var/obj/item/organ/stomach/synth/oversized/new_synth_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE reactor! RIP AND TEAR YOUR HUGE reactor!
 		new_synth_stomach.Insert(human_holder, special = TRUE)
 		to_chat(human_holder, span_warning("You feel your massive engine rumble!"))
 	else
-		var/obj/item/organ/internal/stomach/oversized/new_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE GUTS! RIP AND TEAR YOUR HUGE GUTS!
+		var/obj/item/organ/stomach/oversized/new_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE GUTS! RIP AND TEAR YOUR HUGE GUTS!
 		new_stomach.Insert(human_holder, special = TRUE)
 		to_chat(human_holder, span_warning("You feel your massive stomach rumble!"))
 

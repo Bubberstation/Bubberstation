@@ -22,7 +22,7 @@
 	to_chat(target, span_warning("Your hemophage features have been removed, your nature as a bloodsucker abates the hemophage virus."))
 	// Without this any new organs would get corrupted again.
 	target.RemoveElement(/datum/element/tumor_corruption)
-	for(var/obj/item/organ/internal/organ in target.organs)
+	for(var/obj/item/organ/organ in target.organs)
 		organ.RemoveElement(/datum/element/tumor_corruption)
 	humanize_organs(target)
 

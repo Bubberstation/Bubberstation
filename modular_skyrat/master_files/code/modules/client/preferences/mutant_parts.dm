@@ -64,7 +64,7 @@
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	value = value && preferences && is_allowed(preferences)
 
-	var/obj/item/organ/internal/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/internal/eyes)
+	var/obj/item/organ/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/eyes)
 	target.emissive_eyes = value
 	if (istype(eyes_organ))
 		eyes_organ.is_emissive = value
@@ -239,7 +239,7 @@
 	savefile_key = "feature_ears"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
-	default_accessory_type = /datum/sprite_accessory/ears
+	default_accessory_type = /datum/sprite_accessory/ears/none
 
 /datum/preference/tri_color/ears
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES

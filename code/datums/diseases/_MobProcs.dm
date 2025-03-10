@@ -43,8 +43,12 @@
 	var/hands_chance = 35/2
 	var/feet_chance = 15/2
 
-	if(prob(15/disease.spreading_modifier))
+	// BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
+	// if(prob(15/disease.spreading_modifier))
+	var/infect_chance = clamp(42 + (disease.spreading_modifier * 7), 49, 77)
+	if(!prob(infect_chance))
 		return
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 	if(satiety>0 && prob(satiety/2)) // positive satiety makes it harder to contract the disease.
 		return
@@ -92,6 +96,7 @@
 					passed = prob(100-infecting_human.shoes.get_armor_rating(BIO))
 
 	if(passed)
+		disease.log_virus_public("[name] passed infection checks for CONTACT transmission. ([infect_chance]% chance)") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 		disease.try_infect(src)
 
 /**
@@ -100,6 +105,7 @@
  * * disease - the disease datum that's infecting us
  */
 /mob/living/proc/contract_airborne_disease(datum/disease/disease)
+	/* BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
 	if(!can_be_spread_airborne_disease())
 		return FALSE
 	if(!prob(min((50 * disease.spreading_modifier - 1), 50)))
@@ -107,9 +113,24 @@
 	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
 		return FALSE
 	return ForceContractDisease(disease)
+	*/
+
+	if(!can_be_spread_airborne_disease())
+		return FALSE
+	var/infect_chance = clamp(21 + (disease.spreading_modifier * 7), 28, 56)
+	if(!prob(infect_chance))
+		return FALSE
+	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
+		return FALSE
+
+	var/final_infectivity = ((infect_chance / 100) * (disease.infectivity / 100)) * 100
+
+	return ForceContractDisease(disease, TRUE, FALSE, "AIRBORNE", final_infectivity)
+	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 //Proc to use when you 100% want to try to infect someone (ignoreing protective clothing and such), as long as they aren't immune
-/mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
+// /mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
+/mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE, infect_vector, final_infectivity) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 	if(!CanContractDisease(D))
 		if(del_on_fail)
 			qdel(D)
@@ -118,10 +139,13 @@
 		if(del_on_fail)
 			qdel(D)
 		return FALSE
+	D.log_virus_public("[name] passed infection checks for [infect_vector ? infect_vector : "FORCED"] transmission. ([final_infectivity ? final_infectivity : "100"]% chance)") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 	return TRUE
 
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/disease)
+	if(issynthetic(src)) // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+		return FALSE
 	if(dna)
 		if(HAS_TRAIT(src, TRAIT_VIRUSIMMUNE) && !disease.bypasses_immunity)
 			return FALSE

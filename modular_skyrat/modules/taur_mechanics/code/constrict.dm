@@ -202,7 +202,7 @@
 	var/mob/living/carbon/human/old_owner = owner
 	set_owner(null)
 
-	old_owner?.update_mutant_bodyparts()
+	old_owner?.update_body_parts()
 
 	tail_overlay = null
 	return ..()
@@ -507,13 +507,13 @@
 		UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_GRAB, COMSIG_LIVING_TRY_PULL, COMSIG_LIVING_SET_BODY_POSITION, COMSIG_ATOM_POST_DIR_CHANGE))
 
 	if (owner)
-		var/obj/item/organ/external/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		taur_body?.hide_self = FALSE
 
 	owner = new_owner
 
 	if (owner)
-		var/obj/item/organ/external/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		taur_body?.hide_self = TRUE
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(owner_moved))
@@ -521,7 +521,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_TRY_PULL, PROC_REF(owner_tried_pull))
 	RegisterSignal(owner, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(owner_body_position_changed))
 	RegisterSignal(owner, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(sync_direction))
-	owner?.update_mutant_bodyparts()
+	owner?.update_body_parts()
 
 /// The time it takes for a constricted thing to do a break-out attempt.
 #define SERPENTINE_TAIL_UNBUCKLE_TIME 0.5 SECONDS // arbitrary
