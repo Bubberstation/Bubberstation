@@ -23,8 +23,13 @@ export const ServerPrefs = createContext<ServerData | undefined>({
     loadout_tabs: [],
   },
   species: {},
+  background_state: {
+    choices: [],
+  },
 });
-
+{
+  /* BUBBER EDIT ADDITION LINES 26 - 28 */
+}
 export function useServerPrefs() {
   return useContext(ServerPrefs);
 }
