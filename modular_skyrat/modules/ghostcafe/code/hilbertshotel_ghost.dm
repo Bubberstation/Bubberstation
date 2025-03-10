@@ -64,3 +64,12 @@
 /datum/map_template/ghost_cafe_rooms/grotto2
 	name = "Grotto (Night)"
 	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"
+
+/datum/map_template/ghost_cafe_rooms/center
+	name = "Syndicate Operations Center"
+	mappath = "modular_skyrat/modules/hotel_rooms/synopcenter.dmm"
+
+/datum/map_template/ghost_cafe_rooms/soffice
+	name = "Syndicate Office"
+	mappath = "modular_skyrat/modules/hotel_rooms/syndieoffice.dmm"
+
