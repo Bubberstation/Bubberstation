@@ -19,7 +19,7 @@
 		/obj/item/melee/energy/sword/cyborg = list("dragon-syndi"),
 		/obj/item/gun/energy/laser/cyborg = list("all-sec"),
 		/obj/item/gun/energy/e_gun/advtaser/cyborg = list("all-sec"),
-		/obj/item/gun/energy/laser/cyborg = list("all-sec"),
+		/obj/item/gun/energy/disabler/cyborg = list("all-sec"),
 	)
 	var/list/item_sprite_data = items_with_sprites[O.type]
 	if(item_sprite_data &&  (model.cyborg_base_icon == item_sprite_data[1] || item_sprite_data[1] == "all-sec"))
