@@ -1029,6 +1029,9 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if(building_icon)
 		standing = mutable_appearance(building_icon, layer = -layer2use)
 
+	// no special handling done, default it
+	standing ||= mutable_appearance(file2use, t_state, layer = -layer2use)
+
 	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
@@ -1036,9 +1039,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		else
 			standing.pixel_x -= 16 // it doesnt look right otherwise
 	// SKYRAT EDIT ADDITION END
-
-	// no special handling done, default it
-	standing ||= mutable_appearance(file2use, t_state, layer = -layer2use)
 
 	//Get the overlays for this item when it's being worn
 	//eg: ammo counters, primed grenade flashes, etc.
