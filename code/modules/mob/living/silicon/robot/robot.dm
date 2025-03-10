@@ -320,6 +320,7 @@
 			eye_lights.color = COLOR_WHITE
 			SET_PLANE_EXPLICIT(eye_lights, ABOVE_GAME_PLANE, src)
 		eye_lights.icon = icon
+		eye_lights.layer = -2 //Bubber edit
 		add_overlay(eye_lights)
 
 	if(opened && !(TRAIT_R_UNIQUEPANEL in model.model_features))
