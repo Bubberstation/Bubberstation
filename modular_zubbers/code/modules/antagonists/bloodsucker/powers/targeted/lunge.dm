@@ -90,7 +90,7 @@
 		playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE, 5)
 		if(target.stat != DEAD)
 			to_chat(user, span_userdanger("SOMETHING IS TEARING INTO YOUR [capitalize(bodypart.name)]!"))
-		var/obj/item/organ/internal/myheart_now
+		var/obj/item/organ/myheart_now
 		if(bodypart.body_zone == BODY_ZONE_CHEST)
 			myheart_now = target.get_organ_slot(ORGAN_SLOT_HEART)
 		if(!myheart_now)
