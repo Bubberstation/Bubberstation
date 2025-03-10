@@ -13,7 +13,7 @@
 	var/current_view = 0 //0 is the main menu, any other number is the page of the backup with that ID
 	var/new_backup_id = 1
 
-/obj/machinery/computer/nanite_cloud_controller/Initialize()
+/obj/machinery/computer/nanite_cloud_controller/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)

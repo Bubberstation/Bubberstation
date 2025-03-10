@@ -5,7 +5,7 @@
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	var/obj/machinery/nanite_chamber/chamber
 
-/obj/machinery/computer/nanite_chamber_control/Initialize()
+/obj/machinery/computer/nanite_chamber_control/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	find_chamber()
 

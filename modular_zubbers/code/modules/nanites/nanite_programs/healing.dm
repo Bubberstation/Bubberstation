@@ -157,6 +157,7 @@
 
 /datum/nanite_program/defib/on_trigger(comm_message)
 	host_mob.notify_revival("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
+	host_mob.grab_ghost()
 	addtimer(CALLBACK(src, .proc/zap), 50)
 
 /datum/nanite_program/defib/proc/check_revivable()
@@ -173,13 +174,17 @@
 	sleep(30)
 	playsound(C, 'sound/machines/defib/defib_zap.ogg', 50, FALSE)
 	if(check_revivable())
-		playsound(C, 'sound/machines/defib/defib_success.ogg', 50, FALSE)
-		C.set_heartattack(FALSE)
-		C.revive()
-		C.emote("gasp")
-		C.adjust_jitter_up_to(10 SECONDS, 1 MINUTES)
-		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
-		log_game("[C] has been successfully defibrillated by nanites.")
-	else
-		playsound(C, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
+		if(C.stat == DEAD)
+			var/original_oxyloss = C.getOxyLoss()
+			C.setOxyLoss(OXYLOSS_PASSOUT_THRESHOLD - 5)
+			if(C.revive())
+				playsound(C, 'sound/machines/defib/defib_success.ogg', 50, FALSE)
+				C.emote("gasp")
+				C.adjust_jitter_up_to(10 SECONDS, 1 MINUTES)
+				SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
+				log_game("[C] has been successfully defibrillated by nanites.")
+				return
+			else
+				C.setOxyLoss(original_oxyloss)
+	playsound(C, 'sound/machines/defib/defib_failed.ogg', 50, FALSE)
 

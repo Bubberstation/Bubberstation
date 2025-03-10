@@ -10,7 +10,7 @@
 	var/obj/item/disk/nanite_program/disk
 	var/datum/nanite_program/program
 
-/obj/machinery/nanite_programmer/Initialize()
+/obj/machinery/nanite_programmer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 

@@ -95,7 +95,7 @@
 	id = "nanite_synaptic"
 	display_name = "Synaptic Nanite Programming"
 	description = "Nanite programs affecting mind and thoughts."
-	prereq_ids = list("nanite_neural", TECHWEB_NODE_ALIEN_SURGERY)
+	prereq_ids = list("nanite_neural", TECHWEB_NODE_SURGERY_EXP)
 	design_ids = list(
 		"blinding_nanites",
 		"hallucination_nanites",

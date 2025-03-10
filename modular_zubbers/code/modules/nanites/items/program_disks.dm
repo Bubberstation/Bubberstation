@@ -5,7 +5,7 @@
 	var/program_type
 	var/datum/nanite_program/program
 
-/obj/item/disk/nanite_program/Initialize()
+/obj/item/disk/nanite_program/Initialize(mapload)
 	. = ..()
 	if(program_type)
 		program = new program_type
@@ -70,6 +70,9 @@
 
 /obj/item/disk/nanite_program/blood_restoring
 	program_type = /datum/nanite_program/blood_restoring
+
+/obj/item/disk/nanite_program/defib
+	program_type = /datum/nanite_program/defib
 
 /obj/item/disk/nanite_program/nervous
 	program_type = /datum/nanite_program/nervous
