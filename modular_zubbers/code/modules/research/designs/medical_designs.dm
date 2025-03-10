@@ -26,3 +26,15 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+
+/datum/design/medical_constructor
+	name = "Medical RCD Body Constructor"
+	id = "medical_rcd"
+	build_type = PROTOLATHE
+	build_path = /obj/item/construction/rcd // change
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 20)
+	construction_time = 8 SECONDS
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
+	)
