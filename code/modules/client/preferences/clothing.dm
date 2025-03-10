@@ -90,8 +90,8 @@
 			return /obj/item/clothing/under/color/grey
 		if (PREF_SKIRT)
 			return /obj/item/clothing/under/color/jumpskirt/grey
-		if (PREF_BUNNY)
-			return /obj/item/clothing/under/costume/playbunny
+		if (PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
+			return /obj/item/clothing/under/costume/playbunny //BUBBER EDIT END - Bunnysuits
 
 /datum/preference/choiced/jumpsuit/apply_to_human(mob/living/carbon/human/target, value)
 	target.jumpsuit_style = value

@@ -11,7 +11,7 @@
 	if(istype(wearer))
 		if(wearer.jumpsuit_style == PREF_SKIRT)
 			return get_random_jumpskirt()
-		if(wearer.jumpsuit_style == PREF_BUNNY)
-			return get_random_bunnysuit()
+		if(wearer.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
+			return get_random_bunnysuit() //BUBBER EDIT END - Bunnysuits
 
 	return get_random_jumpsuit()

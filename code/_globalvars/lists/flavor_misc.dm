@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(backpacklist, list(
 	//Suit/Skirt/Bunnysuit
 #define PREF_SUIT "Jumpsuit"
 #define PREF_SKIRT "Jumpskirt"
-#define PREF_BUNNY "Bunnysuit"
+#define PREF_BUNNY "Bunnysuit" //BUBBER EDIT - Bunnysuits
 
 //Uplink spawn loc
 #define UPLINK_PDA "PDA"

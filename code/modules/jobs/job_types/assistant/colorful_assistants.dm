@@ -6,17 +6,17 @@
 /datum/colored_assistant
 	var/list/jumpsuits
 	var/list/jumpskirts
-	var/list/bunnysuits
+	var/list/bunnysuits //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/grey
 	jumpsuits = list(/obj/item/clothing/under/color/grey)
 	jumpskirts = list(/obj/item/clothing/under/color/jumpskirt/grey)
-	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/grey)
+	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/grey) //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/random
 	jumpsuits = list(/obj/item/clothing/under/color/random)
 	jumpskirts = list(/obj/item/clothing/under/color/jumpskirt/random)
-	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/random)
+	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/random) //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/christmas
 	jumpsuits = list(
@@ -29,10 +29,11 @@
 		/obj/item/clothing/under/color/jumpskirt/red,
 	)
 
+	//BUBBER EDIT START - Bunnysuits
 	bunnysuits = list(
 		/obj/item/clothing/under/costume/playbunny/color/green,
 		/obj/item/clothing/under/costume/playbunny/color/red,
-	)
+	) //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant/mcdonalds
 	jumpsuits = list(
@@ -45,10 +46,11 @@
 		/obj/item/clothing/under/color/jumpskirt/red,
 	)
 
+	//BUBBER EDIT START - Bunnysuits
 	bunnysuits = list(
 		/obj/item/clothing/under/costume/playbunny/color/yellow,
 		/obj/item/clothing/under/costume/playbunny/color/red,
-	)
+	) //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant/halloween
 	jumpsuits = list(
@@ -77,10 +79,11 @@
 		/obj/item/clothing/under/color/jumpskirt/blue,
 	)
 
+	//BUBBER EDIT START - Bunnysuits
 	bunnysuits = list(
 		/obj/item/clothing/under/costume/playbunny/color/yellow,
 		/obj/item/clothing/under/costume/playbunny/color/blue,
-	)
+	) //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant/mud
 	jumpsuits = list(
@@ -93,10 +96,11 @@
 		/obj/item/clothing/under/color/jumpskirt/lightbrown,
 	)
 
+	//BUBBER EDIT START - Bunnysuits
 	bunnysuits = list(
 		/obj/item/clothing/under/costume/playbunny/color/brown,
 		/obj/item/clothing/under/costume/playbunny/color/lightbrown,
-	)
+	) //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant/warm
 	jumpsuits = list(
@@ -113,12 +117,13 @@
 		/obj/item/clothing/under/color/jumpskirt/yellow,
 	)
 
+	//BUBBER EDIT START - Bunnysuits
 	bunnysuits = list(
 		/obj/item/clothing/under/costume/playbunny/color/red,
 		/obj/item/clothing/under/costume/playbunny/color/pink,
 		/obj/item/clothing/under/costume/playbunny/color/orange,
 		/obj/item/clothing/under/costume/playbunny/color/yellow,
-	)
+	) //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant/cold
 	jumpsuits = list(
@@ -146,7 +151,7 @@
 		/obj/item/clothing/under/costume/playbunny/color/green,
 		/obj/item/clothing/under/costume/playbunny/color/lightpurple,
 		/obj/item/clothing/under/costume/playbunny/color/teal,
-	)
+	) //BUBBER EDIT
 
 /// Will pick one color, and stick with it
 /datum/colored_assistant/solid
@@ -160,11 +165,13 @@
 			jumpskirts = list(jumpskirt_type)
 			return
 
+	//BUBBER EDIT START - Bunnysuits
 	for (var/obj/item/clothing/under/costume/playbunny/color/bunnysuit_type as anything in subtypesof(/obj/item/clothing/under/costume/playbunny/color))
 		if (initial(bunnysuit_type.greyscale_colors) == initial(random_jumpsuit_type.greyscale_colors))
 			bunnysuits = list(bunnysuit_type)
 			return
+	//BUBBER EDIT END - Bunnysuits
 
 	// Couldn't find a matching jumpskirt, oh well
 	jumpskirts = list(get_random_jumpskirt())
-	bunnysuits = list(get_random_bunnysuit())
+	bunnysuits = list(get_random_bunnysuit()) //BUBBER EDIT - Bunnysuits

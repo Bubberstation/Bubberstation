@@ -414,6 +414,7 @@
 
 	//converts the uniform string into the path we'll wear, whether it's the skirt or regular variant
 	var/holder
+	//BUBBER EDIT BEGINS
 	switch(H.jumpsuit_style)
 		if(PREF_SKIRT)
 			holder = "[uniform]/skirt"
@@ -424,6 +425,7 @@
 
 	if(!text2path(holder))
 		holder = "[uniform]"
+	//BUBBER EDIT ENDS
 	uniform = text2path(holder)
 
 	var/client/client = GLOB.directory[ckey(H.mind?.key)]
@@ -489,7 +491,7 @@
 	preload += /obj/item/storage/backpack/satchel/leather
 	var/skirtpath = "[uniform]/skirt"
 	preload += text2path(skirtpath)
-	var/bunnypath = "[uniform]/bunny"
+	var/bunnypath = "[uniform]/bunny" //BUBBER EDIT - Bunnysuits
 	preload += text2path(bunnypath)
 	return preload
 

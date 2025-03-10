@@ -84,6 +84,7 @@ Assistant
 
 	//We don't cache these, because they can delete on init
 	//Too fragile, better to just eat the cost
+	//BUBBER EDIT START - Bunnysuits
 	switch(target.jumpsuit_style)
 		if (PREF_SKIRT)
 			uniform = GLOB.colored_assistant.jumpskirts[index]
@@ -91,6 +92,7 @@ Assistant
 			uniform = GLOB.colored_assistant.bunnysuits[index]
 		else
 			uniform = GLOB.colored_assistant.jumpsuits[index]
+	//BUBBER EDIT END - Bunnysuits
 
 /datum/outfit/job/assistant/consistent
 	name = "Assistant - Consistent"
@@ -115,7 +117,7 @@ Assistant
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
 	if (target.jumpsuit_style == PREF_SUIT)
 		uniform = /obj/item/clothing/under/color/grey
-	else if (target.jumpsuit_style == PREF_BUNNY)
-		uniform = /obj/item/clothing/under/costume/playbunny/color/grey
+	else if (target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
+		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
 	else
 		uniform = /obj/item/clothing/under/color/jumpskirt/grey

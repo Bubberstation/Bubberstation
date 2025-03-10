@@ -22,7 +22,7 @@ The console is located at computer/gulag_teleporter.dm
 	var/breakout_time = 600
 	var/jumpsuit_type = /obj/item/clothing/under/rank/prisoner
 	var/jumpskirt_type = /obj/item/clothing/under/rank/prisoner/skirt
-	var/bunnysuit_type = /obj/item/clothing/under/rank/prisoner/bunnysuit
+	var/bunnysuit_type = /obj/item/clothing/under/rank/prisoner/bunnysuit //BUBBER EDIT
 	var/shoes_type = /obj/item/clothing/shoes/sneakers/orange
 	var/emergency_plasglove_type = /obj/item/clothing/gloves/color/plasmaman
 	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
@@ -166,8 +166,8 @@ The console is located at computer/gulag_teleporter.dm
 		switch(prisoner.jumpsuit_style)
 			if(PREF_SKIRT)
 				suit_or_skirt = jumpskirt_type
-			if(PREF_BUNNY)
-				suit_or_skirt = bunnysuit_type
+			if(PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
+				suit_or_skirt = bunnysuit_type //BUBBER EDIT END - Bunnysuits
 			else
 				suit_or_skirt = jumpsuit_type
 
