@@ -178,7 +178,7 @@
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
-		if(!CONFIG_GET(flag/disable_secborg))
+		if(!CONFIG_GET(flag/disable_secborg) || HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI)) //Bubber edit HOS AI enable secborg
 			GLOB.cyborg_model_list["Security"] = /obj/item/robot_model/security
 
 		for(var/model in GLOB.cyborg_model_list)
