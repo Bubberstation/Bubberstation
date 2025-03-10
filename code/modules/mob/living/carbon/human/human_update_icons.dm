@@ -951,9 +951,6 @@ There are several things that need to be remembered:
 		client.screen += worn_item
 	update_observer_view(worn_item, inventory = TRUE)
 
-/obj/item
-	var/do_the_taur_thing = TRUE
-
 /*
 Does everything in relation to building the /mutable_appearance used in the mob's overlays list
 covers:
@@ -1038,8 +1035,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
-			if (do_the_taur_thing)
-				standing = wear_taur_version(standing.icon_state, standing.icon, -layer2use, female_uniform, greyscale_colors)
+			standing = wear_taur_version(standing.icon_state, standing.icon, -layer2use, female_uniform, greyscale_colors)
 		else
 			standing.pixel_x -= 16 // it doesnt look right otherwise
 	// SKYRAT EDIT ADDITION END
