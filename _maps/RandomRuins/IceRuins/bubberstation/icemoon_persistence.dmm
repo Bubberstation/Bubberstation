@@ -6209,8 +6209,10 @@
 "sy" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/grill,
-/obj/item/stack/sheet/mineral/coal/five,
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
+	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "sz" = (
@@ -16619,10 +16621,8 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "XB" = (
-/obj/machinery/jukebox{
-	req_access = list("syndicate");
-	anchored = 0
-	},
+/obj/machinery/grill,
+/obj/item/stack/sheet/mineral/coal/five,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "XC" = (
