@@ -88,7 +88,19 @@
 	research_tree_icon_path = 'icons/obj/card.dmi'
 	research_tree_icon_state = "card_gold"
 
-/datum/heretic_knowledge/limited_amount/concierge_rite // item that creates 3 max at a time heretic only barriers, probably should limit to 1 only, holy people can also pass
+/datum/heretic_knowledge/key_ring/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/obj/item/card/id = locate(/obj/item/card/id/advanced) in selected_atoms
+	if(isnull(id))
+		return FALSE
+	var/obj/item/card/id/advanced/heretic/result_item = new(loc)
+	if(!istype(result_item))
+		return FALSE
+	selected_atoms -= id
+	result_item.eat_card(id)
+	result_item.shapeshift(id)
+	return TRUE
+
+/datum/heretic_knowledge/limited_amount/concierge_rite
 	name = "Concierge's Rite"
 	desc = "Allows you to transmute a crayon, a wooden plank, and a multitool to create a Labyrinth Handbook. \
 		It can materialize a barricade at range that only you and people resistant to magic can pass. 3 uses."
@@ -112,7 +124,7 @@
 	action_to_add = /datum/action/cooldown/spell/pointed/burglar_finesse
 	cost = 1
 
-/datum/heretic_knowledge/blade_upgrade/flesh/lock //basically a chance-based weeping avulsion version of the former
+/datum/heretic_knowledge/blade_upgrade/flesh/lock
 	name = "Opening Blade"
 	desc = "Your blade has a chance to cause a weeping avulsion on attack."
 	gain_text = "The Pilgrim-Surgeon was not an Steward. Nonetheless, its blades and sutures proved a match for their keys."
