@@ -121,6 +121,16 @@
 "ax" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
+"ay" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 5
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -3
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "az" = (
 /obj/machinery/quantum_server,
 /turf/open/floor/iron/dark/small,
@@ -1323,10 +1333,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"eb" = (
-/obj/structure/closet/crate/secure/trashcart/filled,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ec" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -2400,7 +2406,7 @@
 /obj/effect/turf_decal/siding/dark/end{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank/high,
+/obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "hL" = (
@@ -2812,20 +2818,13 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "iV" = (
 /obj/structure/table,
-/obj/item/pipe_dispenser{
-	pixel_x = -3
-	},
 /obj/item/storage/box/stockparts/basic{
 	pixel_y = -3;
 	pixel_x = 5
 	},
 /obj/item/stack/sheet/plasmaglass/fifty,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 5
-	},
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/survivalcapsule/fan,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "iW" = (
@@ -3222,6 +3221,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/structure/tank_dispenser,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "kf" = (
@@ -3703,7 +3703,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/structure/tank_dispenser,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "lG" = (
@@ -4288,19 +4287,6 @@
 /area/icemoon/underground/explored)
 "nf" = (
 /obj/machinery/light/directional/east,
-/obj/item/pickaxe,
-/obj/item/grapple_gun,
-/obj/item/mining_voucher,
-/obj/item/pickaxe,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/clothing/glasses/meson/night,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/storage/belt/mining/vendor,
-/obj/item/storage/belt/mining/vendor,
-/obj/structure/closet/crate/secure/syndicate/cybersun/dusk{
-	name = "Mining gear"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -4310,12 +4296,6 @@
 	req_access = list("syndicate");
 	pixel_x = 24
 	},
-/obj/item/construction/rcd/loaded,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 5
-	},
-/obj/item/mining_voucher,
-/obj/item/suit_voucher,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ng" = (
@@ -6479,14 +6459,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/safe/abovetilefloor,
-/obj/item/blueprints/golem{
-	name = "Persistence land crawler standard blueprints"
-	},
-/obj/item/sign/flag/syndicate{
-	pixel_x = -3;
-	pixel_y = 6
-	},
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "tC" = (
@@ -7238,7 +7210,6 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/obj/machinery/suit_storage_unit/industrial/bloodredsuit,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "vK" = (
@@ -8491,6 +8462,28 @@
 /obj/item/clothing/gloves/boxing/evil,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
+"zn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/syndicate/cybersun/dusk{
+	name = "Mining gear"
+	},
+/obj/item/suit_voucher,
+/obj/item/mining_voucher,
+/obj/item/construction/rcd/loaded,
+/obj/item/storage/belt/mining/vendor,
+/obj/item/storage/belt/mining/vendor,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/mining_voucher,
+/obj/item/pickaxe,
+/obj/item/grapple_gun,
+/obj/item/pickaxe,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "zo" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -10027,6 +10020,7 @@
 	},
 /obj/machinery/incident_display/delam/directional/north,
 /obj/machinery/newscaster/directional/west,
+/obj/machinery/suit_storage_unit/industrial/bloodredsuit,
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "DS" = (
@@ -10235,6 +10229,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ew" = (
 /obj/structure/table,
+/obj/item/survivalcapsule/fan,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "Ex" = (
@@ -11623,8 +11618,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "IP" = (
-/obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/stacking_machine,
+/obj/structure/frame/machine,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "IQ" = (
@@ -14378,7 +14373,17 @@
 /obj/effect/turf_decal/siding/dark/end{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/closet/secure_closet/ds2atmos{
+	anchorable = 0;
+	anchored = 1
+	},
+/obj/item/analyzer{
+	pixel_y = 10
+	},
+/obj/item/holosign_creator/atmos,
+/obj/item/mod/module/visor/meson{
+	pixel_y = -9
+	},
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "Qz" = (
@@ -15039,6 +15044,17 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"Sv" = (
+/obj/structure/safe/abovetilefloor,
+/obj/item/blueprints/golem{
+	name = "Persistence land crawler standard blueprints"
+	},
+/obj/item/sign/flag/syndicate{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/iron/terracotta/small,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "Sy" = (
 /obj/item/clothing/glasses/night,
 /obj/item/storage/belt/military,
@@ -15768,7 +15784,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "UZ" = (
 /obj/machinery/light/directional/south,
-/obj/structure/reagent_dispensers/foamtank,
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Va" = (
@@ -16598,7 +16614,7 @@
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Xt" = (
-/obj/structure/table/reinforced/plastitaniumglass,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Xv" = (
@@ -16662,6 +16678,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
+/obj/structure/tank_dispenser,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "XJ" = (
@@ -18165,7 +18182,7 @@ QQ
 wk
 Bk
 tB
-Dc
+Sv
 Dc
 sR
 GX
@@ -19521,7 +19538,7 @@ EU
 sS
 vV
 iV
-Ew
+ay
 wx
 kc
 aw
@@ -20562,7 +20579,7 @@ hO
 Up
 pj
 JE
-eb
+JE
 JE
 pj
 fk
@@ -21121,7 +21138,7 @@ nc
 Kd
 UL
 kd
-nA
+zn
 nf
 Ms
 oe
