@@ -2316,13 +2316,6 @@
 /turf/open/floor/engine/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "hl" = (
-/obj/machinery/vending/donksnack{
-	onstation = 0;
-	onstation_override = 1;
-	pixel_x = 32;
-	density = 0;
-	all_products_free = 1
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
@@ -2331,6 +2324,13 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
+	},
+/obj/machinery/vending/cigarette/syndicate{
+	onstation = 0;
+	onstation_override = 1;
+	density = 0;
+	pixel_x = 28;
+	all_products_free = 1
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
@@ -4574,6 +4574,7 @@
 /obj/structure/table/wood/fancy/red,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/item/pai_card,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "nM" = (
@@ -5052,13 +5053,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "ph" = (
-/obj/machinery/vending/cigarette/syndicate{
-	onstation = 0;
-	onstation_override = 1;
-	density = 0;
-	pixel_x = 28;
-	all_products_free = 1
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
@@ -5066,6 +5060,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 4
 	},
+/obj/structure/sign/poster/contraband/tipper_cream_soda/directional/east,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "pj" = (
@@ -6582,7 +6577,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/light/directional/south,
 /obj/machinery/barsign/all_access/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -8777,13 +8771,7 @@
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "zv" = (
-/obj/machinery/vending/hotdog{
-	onstation = 0;
-	onstation_override = 1;
-	density = 0;
-	pixel_x = 30;
-	all_products_free = 1
-	},
+/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/east,
 /turf/open/floor/iron/stairs,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "zw" = (
@@ -11478,11 +11466,6 @@
 /obj/item/stack/sheet/mineral/wood/fifty,
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
-"GZ" = (
-/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/east,
-/obj/structure/chair/comfy/carp,
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Hc" = (
 /obj/machinery/conveyor{
 	id = "syndirecycle";
@@ -14812,6 +14795,11 @@
 "RG" = (
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/vending/hotdog{
+	onstation = 0;
+	onstation_override = 1;
+	all_products_free = 1
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "RH" = (
@@ -15069,7 +15057,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "Sx" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/vending/donksnack{
+	onstation = 0;
+	onstation_override = 1;
+	all_products_free = 1
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Sy" = (
@@ -15834,10 +15826,10 @@
 /obj/item/plant_analyzer,
 /obj/item/shovel/spade,
 /obj/item/cultivator,
-/obj/item/reagent_containers/cup/watering_can/advanced,
 /obj/structure/closet/crate/secure/syndicate/arc{
 	name = "botany supplies"
 	},
+/obj/item/reagent_containers/cup/watering_can,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "UI" = (
@@ -20276,7 +20268,7 @@ OO
 ph
 hl
 zv
-GZ
+ff
 IL
 SS
 ND
