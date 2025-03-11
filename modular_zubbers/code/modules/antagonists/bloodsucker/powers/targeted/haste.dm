@@ -100,6 +100,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	hit.Cut()
 	user.adjustStaminaLoss(-user.staminaloss)
+	disable_power_by_type(/datum/action/cooldown/bloodsucker/fortitude)
 	PowerActivatedSuccesfully(temp_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()

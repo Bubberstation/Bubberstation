@@ -81,7 +81,7 @@
 		span_notice("You disspiate into formless mist."),
 	)
 	// Effect Origin
-	var/sound_strength = max(60, 70 - level_current * 10)
+	var/sound_strength = clamp(50 - level_current * 5, 10, 50)
 	playsound(get_turf(owner), 'sound/effects/magic/summon_karp.ogg', sound_strength)
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread()
 	puff.set_up(3, 0, my_turf)

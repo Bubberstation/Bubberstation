@@ -132,6 +132,9 @@
 		owner.balloon_alert(owner, "feed stopped")
 		target_ref = null
 		return FALSE
+
+	disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
+
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())
@@ -200,6 +203,8 @@
 			INVOKE_ASYNC(feed_target, TYPE_PROC_REF(/mob, emote), "scream")
 		DeactivatePower()
 		return
+	if(!silent_feed)
+		disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
 
 	var/feed_strength_mult = 0
 	if(bloodsuckerdatum_power.frenzied)

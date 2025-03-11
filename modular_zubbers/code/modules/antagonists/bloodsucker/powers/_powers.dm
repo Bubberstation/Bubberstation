@@ -296,3 +296,8 @@
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc_extended()
 	return initial(desc)
+
+/datum/action/cooldown/bloodsucker/proc/disable_power_by_type(power_type)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		if(power.type == type)
+			power.DeactivatePower()

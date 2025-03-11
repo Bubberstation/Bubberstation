@@ -27,6 +27,9 @@
 /datum/antagonist/bloodsucker/proc/can_make_ghoul(mob/living/conversion_target)
 	if(!iscarbon(conversion_target) || (conversion_target.stat < CONSCIOUS))
 		return FALSE
+	if(free_all_ghouls() < 1)
+		to_chat(owner.current, span_danger("You have too many Ghouls!"))
+		return FALSE
 	// No Mind!
 	if(!conversion_target.mind)
 		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Ghoul."))

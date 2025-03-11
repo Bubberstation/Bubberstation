@@ -112,7 +112,7 @@
 	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= MESMERIZE_FACING_LEVEL))
 		owner.balloon_alert(owner, "[current_target] must be facing you.")
 		return FALSE
-	if(current_target.client && !(owner in viewers(current_target)))
+	if(current_target.client && !(owner in viewers(current_target.client)))
 		owner.balloon_alert(owner, "[current_target] has to be able to see you.")
 		return FALSE
 	// Gone through our checks, let's mark our guy.
