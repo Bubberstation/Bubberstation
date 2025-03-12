@@ -1,4 +1,6 @@
 2025-02-01:
+  ArrisFairburne:
+  - map: added maintenance tunnel and bridge areas to the ghost cafe
   AyIong:
   - qol: 'You can choose in preferences what layout use into the Smartfridge or Vending
       machines: Grid or List. Default TGUI Layout preference. In the future there
@@ -6,6 +8,13 @@
       now use Grid layout by default.'
   BobDABuilder9001:
   - balance: solars now make 2.5kw each instead of 1.5kw
+  Erol509:
+  - qol: Vox and people with nitrogen breathing quirk, need less nitrogen to sustain
+      themselfs.
+  - balance: Changed nitrogen tank belt max capacity of 25l to 12l
+  - bugfix: Aheal/S.A.D interaction doesnt remove nitrogen lungs on quirk holders.
+      Both Aheal/Sad will return them, replacing the one inside you. This means, cybernetic
+      lungs will be removed.
   MTandi:
   - qol: Added forensic scanner UI
   - qol: Made forensic scanner report format cleaner
@@ -13,6 +22,24 @@
   - bugfix: PENLITE defib mounts now actually charge the cell
   SmArtKar:
   - image: Premium Internals Boxes station trait now has unique box sprites
+  StrangeWeirdKitten:
+  - rscadd: TTS compatability with vocal barks
+  UvvU:
+  - bugfix: fixes darksabre
+  Zenitheevee ,MajManatee:
+  - rscadd: deployable magazine fed turrets
+  - rscadd: target designators for mag fed turrets
+  - rscadd: Tarkon faction
+  - rscadd: Added turret assemblies to new turrets when found.
+  - rscadd: Added a research node locked behind tarkon tech to print tarkon turrets.
+  - image: added icons for mag fed turrets
+  - image: added icons for target designators
+  shayoki:
+  - map: In Box Station, a couple more light fixtures in the main halls were added.
+  - map: In Box Station, an APC in the hallway before the brig was added. It no longer
+      has infinite power.
+  - map: In Box Station, a maintenance entrance in the hallway before the brig was
+      added. This slightly squishes the detective's office.
 2025-02-02:
   Arceniu:
   - spellcheck: Replaced the words "Singularity Generation Disk" with "Supermatter
@@ -27,16 +54,47 @@
   - image: Resprited reels and bobber
   - bugfix: Fixed partially missing fishing UI
   - bugfix: Fixed glowsticks not working
+  StrangeWeirdKitten:
+  - balance: Signifigantly changes flechett shotgun rounds. They are a close range
+      ammo with reliable wounding and damage against unarmored with very shitty armor
+      penitration. Damage drops off signifigantly with range.
+  - bugfix: Beehive and Antitide shotgun ammo now properly subtracts damage dropoff
+      instead of adding.
   necromanceranne:
   - rscdel: Mobile hollow bioscramblers no longer spawn from the anomaly research
       ruin, sparing everyone from the inevitable unannounced arrival of a permanent
       hollow bioscrambler aboard the station. You maybe still encounter immobile bioscramblers
       in the ruin, however.
+  pixelkitty286:
+  - rscadd: Big cat borgs and kitty borgs
+  - image: added kitty and cat borg images.
+  shellspeed1:
+  - qol: Persistence has been fitted with two new exterior hatches to facilitate working
+      outside. Also botany has been enlarged to fit another row of trays if so desired.
+  - bugfix: Disposal bins in persistence medical and persistence science now work,
+      addressed a misplaced air alarm and an extra tiny fan capsule in persistence
+      bluespace mining.
+  - bugfix: Persistence recycler can now be escaped.
+  - bugfix: stopped on of the persistence turrets from getting dunked in lava every
+      shift.
   zoomachina:
   - bugfix: showers wash things under them when they're turned on again
 2025-02-03:
   Absolucy:
   - bugfix: Random messages should no longer be dropped and not appear in chat.
+  Arturlang:
+  - balance: Eye blur from lasers is capped at maximum of 20 seconds.
+  MosleyTheMalO:
+  - config: Makes vore defines into configs
+  - bugfix: makes the down button available again
+  Rathen Ivanonv:
+  - rscadd: Added more supplies/gear to Gas Station Attendant Ghost Role
+  - rscadd: Added I.D/Bank Account to Gas Station Attendant Ghost Role
+  - rscadd: Added an additional spawn to Gas Station Attendant Ghost Role
+  - rscadd: Added a Regal Rat spawn to Lavaland/an additional one to Ice Moon
+  - rscadd: Many more beneficial changes to the Gas Station Attendant Ghost Role
+  - map: Overhauled Lavaland/Ice Moon Gas Station with three new areas
+  - balance: Removed Laser Musket from Gas Station Ghost Role, replaced with PKA Pistols
   SmArtKar:
   - bugfix: Fixed an issue with persisting brimbeams
   jlsnow301:
@@ -48,10 +106,17 @@
       damage scaling.
   siliconOpossum:
   - bugfix: Lathes interfaces are no longer unscrollable on 516
+  xXPawnStarrXx:
+  - qol: made orefruits produce sheets as cores, instead of lame objects, letting
+      them be inserted into a silo.
+  - rscadd: Added two new pods; Xenoarch and triage
+  - bugfix: fixed the robotic repair kit in the large medical pod from being empty.
 2025-02-04:
   necromanceranne:
   - bugfix: Allows MOD holsters to once again activate while the modsuit is inactive
       and undeployed.
+  shellspeed1:
+  - rscdel: Removed unused map file.
 2025-02-05:
   Melbert:
   - qol: Map vote tallies explains how they work if you hover them
@@ -97,6 +162,9 @@
       or as certain ghost roles, you will still return to your character's original
       mind, just in case you can be resurrected by some means.
   - bugfix: The basketball minigame now gives its players and referee temporary bodies.
+  xXPawnStarrXx:
+  - bugfix: fixed seed pathing so silver's weren't skipped with the rockfruit mutations.
+  - rscadd: Added digilegs for shadekin.
 2025-02-07:
   Runi-c:
   - balance: slips now make you eligible for being shove stunned
@@ -105,7 +173,12 @@
   TiviPlus:
   - server: An issue where more than 16 admin flags could not exist in the DB has
       been corrected
+  nevimer:
+  - bugfix: fixed shadekin digi legs
 2025-02-08:
+  ABoxFaux:
+  - balance: Slimepeople with the nitrogen breather quirk now no longer take toxin
+      damage from breathing oxygen, instead taking an equal amount of brute damage.
   Absolucy:
   - bugfix: Fixed some mistakes I made while fixing the void cloak.
   Holoo-1:
@@ -138,6 +211,8 @@
   - qol: Added the resin mister module to the roundstart atmos MODsuit.
   Melbert:
   - rscadd: Adds two fantasy affixes
+  Odairu:
+  - image: filled in nullspace on shadekin tail BEHIND sprite
   SmArtKar:
   - rscadd: Hydrogen Peroxide and Eldritch Essence now can rust turfs, with latter
       producing heretic instead of normal rust.
@@ -155,90 +230,6 @@
   timothymtorres:
   - code_imp: Add error message logs to screenshot CI test failure when screenshots
       do not exist.
-
-2025-02-01:
-  ArrisFairburne:
-  - map: added maintenance tunnel and bridge areas to the ghost cafe
-  Erol509:
-  - qol: Vox and people with nitrogen breathing quirk, need less nitrogen to sustain
-      themselfs.
-  - balance: Changed nitrogen tank belt max capacity of 25l to 12l
-  - bugfix: Aheal/S.A.D interaction doesnt remove nitrogen lungs on quirk holders.
-      Both Aheal/Sad will return them, replacing the one inside you. This means, cybernetic
-      lungs will be removed.
-  StrangeWeirdKitten:
-  - rscadd: TTS compatability with vocal barks
-  UvvU:
-  - bugfix: fixes darksabre
-  Zenitheevee ,MajManatee:
-  - rscadd: deployable magazine fed turrets
-  - rscadd: target designators for mag fed turrets
-  - rscadd: Tarkon faction
-  - rscadd: Added turret assemblies to new turrets when found.
-  - rscadd: Added a research node locked behind tarkon tech to print tarkon turrets.
-  - image: added icons for mag fed turrets
-  - image: added icons for target designators
-  shayoki:
-  - map: In Box Station, a couple more light fixtures in the main halls were added.
-  - map: In Box Station, an APC in the hallway before the brig was added. It no longer
-      has infinite power.
-  - map: In Box Station, a maintenance entrance in the hallway before the brig was
-      added. This slightly squishes the detective's office.
-2025-02-02:
-  StrangeWeirdKitten:
-  - balance: Signifigantly changes flechett shotgun rounds. They are a close range
-      ammo with reliable wounding and damage against unarmored with very shitty armor
-      penitration. Damage drops off signifigantly with range.
-  - bugfix: Beehive and Antitide shotgun ammo now properly subtracts damage dropoff
-      instead of adding.
-  pixelkitty286:
-  - rscadd: Big cat borgs and kitty borgs
-  - image: added kitty and cat borg images.
-  shellspeed1:
-  - qol: Persistence has been fitted with two new exterior hatches to facilitate working
-      outside. Also botany has been enlarged to fit another row of trays if so desired.
-  - bugfix: Disposal bins in persistence medical and persistence science now work,
-      addressed a misplaced air alarm and an extra tiny fan capsule in persistence
-      bluespace mining.
-  - bugfix: Persistence recycler can now be escaped.
-  - bugfix: stopped on of the persistence turrets from getting dunked in lava every
-      shift.
-2025-02-03:
-  Arturlang:
-  - balance: Eye blur from lasers is capped at maximum of 20 seconds.
-  MosleyTheMalO:
-  - config: Makes vore defines into configs
-  - bugfix: makes the down button available again
-  Rathen Ivanonv:
-  - rscadd: Added more supplies/gear to Gas Station Attendant Ghost Role
-  - rscadd: Added I.D/Bank Account to Gas Station Attendant Ghost Role
-  - rscadd: Added an additional spawn to Gas Station Attendant Ghost Role
-  - rscadd: Added a Regal Rat spawn to Lavaland/an additional one to Ice Moon
-  - rscadd: Many more beneficial changes to the Gas Station Attendant Ghost Role
-  - map: Overhauled Lavaland/Ice Moon Gas Station with three new areas
-  - balance: Removed Laser Musket from Gas Station Ghost Role, replaced with PKA Pistols
-  xXPawnStarrXx:
-  - qol: made orefruits produce sheets as cores, instead of lame objects, letting
-      them be inserted into a silo.
-  - rscadd: Added two new pods; Xenoarch and triage
-  - bugfix: fixed the robotic repair kit in the large medical pod from being empty.
-2025-02-04:
-  shellspeed1:
-  - rscdel: Removed unused map file.
-2025-02-06:
-  xXPawnStarrXx:
-  - bugfix: fixed seed pathing so silver's weren't skipped with the rockfruit mutations.
-  - rscadd: Added digilegs for shadekin.
-2025-02-07:
-  nevimer:
-  - bugfix: fixed shadekin digi legs
-2025-02-08:
-  ABoxFaux:
-  - balance: Slimepeople with the nitrogen breather quirk now no longer take toxin
-      damage from breathing oxygen, instead taking an equal amount of brute damage.
-2025-02-09:
-  Odairu:
-  - image: filled in nullspace on shadekin tail BEHIND sprite
 2025-02-10:
   StrangeWeirdKitten:
   - rscadd: Replaces The Clown with The House which sets weights to 1, but spawns
