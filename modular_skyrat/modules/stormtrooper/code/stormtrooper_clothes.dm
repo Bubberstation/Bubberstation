@@ -24,7 +24,7 @@
 	strip_delay = 30
 	equip_delay_other = 50
 	resistance_flags = NONE
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON
 	supports_variations_flags = NONE
 
 /obj/item/clothing/gloves/combat/peacekeeper/stormtrooper
