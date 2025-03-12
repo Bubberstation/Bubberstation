@@ -5,6 +5,7 @@
 /obj/machinery/quantum_server/proc/cool_off()
 	is_ready = TRUE
 	update_appearance()
+<<<<<<< HEAD
 	//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the radio from blurting out on cargo channel for dauntless prisoners
 	//If the dauntless map is removed, remove this hack!
 	var/area/curr = get_area(src)
@@ -13,6 +14,9 @@
 		return
 	//BUBBER ADDITION END
 	radio.talk_into(src, "Thermal systems within operational parameters. Proceeding to domain configuration.", RADIO_CHANNEL_SUPPLY)
+=======
+	aas_config_announce(/datum/aas_config_entry/bitrunning_QS_ready_announcement, list(), src, list(RADIO_CHANNEL_SUPPLY))
+>>>>>>> 6a42a18d128d3c9a6d965bcfa8fcfdc1a3c99bfd
 
 
 /// If there are hosted minds, attempts to get a list of their current virtual bodies w/ vitals
