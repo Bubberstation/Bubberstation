@@ -72,7 +72,7 @@
 	if(new_spawn.client) //It should have a client, right?
 		new_spawn.faction += ROLE_SYNDICATE
 		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
-		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
+		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 		new_spawn.radio.recalculateChannels()
 		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
 		new_spawn.SetEmagged(TRUE) //just to be sure.

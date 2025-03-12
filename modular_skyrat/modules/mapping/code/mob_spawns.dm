@@ -562,3 +562,11 @@
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/interdyne, 32)
 
+//CRYO CONSOLES
+/obj/machinery/computer/cryopod/cybersun
+	radio = /obj/item/radio/headset/syndicateciv/staff
+	announcement_channel = RADIO_CHANNEL_CYBERSUN
+	req_one_access = list("syndicate_leader")
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/cybersun, 32)
+
