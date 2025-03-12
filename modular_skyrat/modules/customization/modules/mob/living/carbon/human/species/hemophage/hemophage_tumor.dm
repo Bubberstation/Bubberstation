@@ -27,7 +27,7 @@
 
 /obj/item/organ/heart/hemophage/on_mob_insert(mob/living/carbon/tumorful, special, movement_flags)
 	. = ..()
-	if(!. || !owner)
+	if(!owner)
 		return
 
 	SEND_SIGNAL(tumorful, COMSIG_PULSATING_TUMOR_ADDED, tumorful)
