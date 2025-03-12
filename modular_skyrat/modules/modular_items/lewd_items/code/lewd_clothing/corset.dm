@@ -20,7 +20,7 @@
 /obj/item/clothing/suit/corset/click_alt(mob/user)
 	laced_tight = !laced_tight
 	to_chat(user, span_notice("You [laced_tight ? "tighten" : "loosen"] the corset, making it far [laced_tight ? "harder" : "easier"] to breathe."))
-	conditional_pref_sound(user, laced_tight ? 'sound/items/handling/cloth_pickup.ogg' : 'sound/items/handling/cloth_drop.ogg', 40, TRUE)
+	conditional_pref_sound(user, laced_tight ? get_sfx(SFX_CLOTH_PICKUP) : get_sfx(SFX_CLOTH_DROP), 40, TRUE)
 	. = CLICK_ACTION_SUCCESS
 	if(laced_tight)
 		slowdown = TIGHT_SLOWDOWN
