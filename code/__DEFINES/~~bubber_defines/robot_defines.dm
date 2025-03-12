@@ -149,6 +149,21 @@
 #define CYBORG_ICON_MINE_CATBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/kittycatborgs/catborgs/catborg_mining.dmi'
 
 
+// DRAGON BORG DEFINES BELOW - Spritework done by Toriate, commissioned by SomeMemeGuy(Matica)
+
+#define CYBORG_ICON_CARGO_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_cargo.dmi'
+#define CYBORG_ICON_ENGI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_engi.dmi'
+#define CYBORG_ICON_JANI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_jani.dmi'
+#define CYBORG_ICON_CLOWN_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_jester.dmi'
+#define CYBORG_ICON_MEDICAL_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_med.dmi'
+#define CYBORG_ICON_MINING_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_miner.dmi'
+#define CYBORG_ICON_NINJA_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_ninja.dmi'
+#define CYBORG_ICON_PEACEKEEPER_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_peacekeeper.dmi'
+#define CYBORG_ICON_SCI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_sci.dmi'
+#define CYBORG_ICON_SEC_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_sec.dmi'
+#define CYBORG_ICON_SERV_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_service.dmi'
+#define CYBORG_ICON_SYNDI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_syndi.dmi'
+
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
