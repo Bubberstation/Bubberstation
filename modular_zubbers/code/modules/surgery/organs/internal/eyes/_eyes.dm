@@ -5,4 +5,4 @@
 	icon_state = "eyeballs-moth"	//i'm too lazy to give them their own sprite
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	blink_animation = FALSE
-	iris_overlays = FALSE
+	iris_overlay = null
