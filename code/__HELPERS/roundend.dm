@@ -258,8 +258,9 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
 	*/
-	send2chat("The current round has ended. Please standby for your shift interlude Nanotrasen News Network's report!", CONFIG_GET(string/channel_announce_end_game))
-	send2chat(send_news_report(), CONFIG_GET(string/channel_announce_end_game))
+	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
+		send2chat("The current round has ended. Please standby for your shift interlude Nanotrasen News Network's report!", channel_tag)
+		send2chat(send_news_report(), channel_tag)
 	//SKYRAT EDIT - END
 
 	CHECK_TICK
