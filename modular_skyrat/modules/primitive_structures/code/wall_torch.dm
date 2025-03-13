@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = FALSE
 	light_color = LIGHT_COLOR_FIRE
-	base_pixel_y = 10
+	pixel_z = 11
 	max_integrity = 125
 	/// is the bonfire lit?
 	var/burning = FALSE
