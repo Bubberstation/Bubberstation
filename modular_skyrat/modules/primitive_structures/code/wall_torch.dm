@@ -8,6 +8,7 @@
 	density = FALSE
 	light_color = LIGHT_COLOR_FIRE
 	base_pixel_y = 10
+	max_integrity = 125
 	/// is the bonfire lit?
 	var/burning = FALSE
 	/// Does this torch spawn pre-lit?
