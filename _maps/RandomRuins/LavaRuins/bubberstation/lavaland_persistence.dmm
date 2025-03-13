@@ -3517,11 +3517,11 @@
 	pixel_x = 3;
 	pixel_y = 6
 	},
-/obj/item/stamp/syndicate{
-	pixel_y = -4;
-	pixel_x = 9
-	},
 /obj/item/stamp/denied{
+	pixel_y = -4
+	},
+/obj/item/stamp/persistence{
+	pixel_x = 9;
 	pixel_y = -4
 	},
 /turf/open/floor/carpet/red,
@@ -3782,14 +3782,6 @@
 "lq" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/modular_computer/laptop/preset/syndicate,
-/obj/item/stamp{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/obj/item/stamp/denied{
-	pixel_x = 8;
-	pixel_y = 6
-	},
 /obj/item/pen/fountain/captain{
 	name = "Liason's fountain pen";
 	pixel_y = 5
@@ -3798,6 +3790,18 @@
 	dir = 1
 	},
 /obj/structure/sign/flag/syndicate/directional/south,
+/obj/item/stamp/persistence{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/stamp/denied{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/stamp{
+	pixel_x = 8;
+	pixel_y = 1
+	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
 "lr" = (
@@ -10019,6 +10023,9 @@
 	pixel_x = -24
 	},
 /obj/item/stamp/chameleon,
+/obj/item/stamp/persistence{
+	pixel_x = 9
+	},
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
