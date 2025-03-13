@@ -46,7 +46,7 @@
 	quirk_holder.inertia_move_multiplier *= 0.8
 
 	var/mob/living/carbon/human/human_quirker = quirk_holder
-	human_quirker.set_mob_height(modded_height)
+	//human_quirker.set_mob_height(modded_height) // Bubber Removal - Stops Settler/Spacer from changing mob heights
 	human_quirker.physiology.pressure_mod *= 0.8
 	human_quirker.physiology.cold_mod *= 0.8
 
@@ -79,7 +79,7 @@
 	quirk_holder.remove_status_effect(/datum/status_effect/spacer)
 
 	var/mob/living/carbon/human/human_quirker = quirk_holder
-	human_quirker.set_mob_height(HUMAN_HEIGHT_MEDIUM)
+	//human_quirker.set_mob_height(HUMAN_HEIGHT_MEDIUM) // Bubber Removal - Stops Settler/Spacer from changing mob heights
 	human_quirker.physiology.pressure_mod /= 0.8
 	human_quirker.physiology.cold_mod /= 0.8
 

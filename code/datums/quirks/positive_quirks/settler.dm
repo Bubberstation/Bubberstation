@@ -25,10 +25,7 @@
 
 /datum/quirk/item_quirk/settler/add(client/client_source)
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
-	//SKYRAT EDIT BEGIN - This is so Teshari don't get the height decrease.
-	if(!isteshari(human_quirkholder))
-		human_quirkholder.set_mob_height(HUMAN_HEIGHT_SHORTEST)
-	//SKYRAT EDIT END
+	//human_quirkholder.set_mob_height(HUMAN_HEIGHT_SHORTEST) // Bubber Removal - Stops Settler/Spacer from changing mob heights
 	human_quirkholder.add_movespeed_modifier(/datum/movespeed_modifier/settler)
 	human_quirkholder.physiology.hunger_mod *= 0.5 //good for you, shortass, you don't get hungry nearly as often
 	human_quirkholder.add_traits(settler_traits, QUIRK_TRAIT)
@@ -41,7 +38,7 @@
 	if(QDELING(quirk_holder))
 		return
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
-	human_quirkholder.set_mob_height(HUMAN_HEIGHT_MEDIUM)
+	//human_quirkholder.set_mob_height(HUMAN_HEIGHT_MEDIUM) // Bubber Removal - Stops Settler/Spacer from changing mob heights
 	human_quirkholder.remove_movespeed_modifier(/datum/movespeed_modifier/settler)
 	human_quirkholder.physiology.hunger_mod *= 2
 	human_quirkholder.remove_traits(settler_traits, QUIRK_TRAIT)

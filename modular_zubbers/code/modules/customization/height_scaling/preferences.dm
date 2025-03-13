@@ -42,9 +42,11 @@
 	if (HAS_TRAIT(target, TRAIT_DWARF)) // nuh uh. your height is set mf
 		return FALSE
 
-	for (var/quirk_id as anything in preferences?.all_quirks)
-		if (quirk_id in incompatable_quirk_ids)
-			return FALSE
+	// Bubber Removal Start - Stops Settler/Spacer from changing mob heights
+	// for (var/quirk_id as anything in preferences?.all_quirks)
+	// 	if (quirk_id in incompatable_quirk_ids)
+	// 		return FALSE
+	// Bubber Removal End
 
 	target.set_mob_height(value)
 
