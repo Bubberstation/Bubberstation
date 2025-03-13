@@ -175,7 +175,7 @@
 
 /datum/status_effect/heretic_lastresort/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_STATUS_EFFECT(id))
-	owner.AdjustUnconscious(20 SECONDS, ignore_canstun = TRUE)
+	owner.AdjustUnconscious(5 SECONDS, ignore_canstun = TRUE)
 
 /// Used by moon heretics to make people mad
 /datum/status_effect/moon_converted

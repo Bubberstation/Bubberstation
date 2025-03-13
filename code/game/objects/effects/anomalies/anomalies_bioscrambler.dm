@@ -84,3 +84,6 @@
 /obj/effect/anomaly/bioscrambler/detonate()
 	COOLDOWN_RESET(src, pulse_cooldown)
 	anomalyEffect()
+
+/obj/effect/temp_visual/circle_wave/star_blast
+	color = COLOR_VOID_PURPLE
