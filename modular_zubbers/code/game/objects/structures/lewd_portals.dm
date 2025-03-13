@@ -144,6 +144,7 @@
 
 /obj/lewd_portal_relay
 	name = "portal relay"
+	desc = "Someone's behind hanging out from a portal."
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
 	var/mob/living/carbon/human/owner
@@ -172,6 +173,38 @@
 	interact_component?.body_relay = null
 	return ..()
 
+/obj/lewd_portal_relay/examine(mob/user)
+	. = ..()
+	for(var/genital in GLOB.possible_genitals)
+		if(genital == ORGAN_SLOT_BREASTS)
+			continue
+		if(owner.dna.species.mutant_bodyparts[genital])
+			var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
+			if(G)
+				if(!(G.is_hidden(owner)))
+					. += "<span class='notice'>It has exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
+					break
+
+/obj/lewd_portal_relay/Topic(href, href_list)
+	. = ..()
+	if(href_list["lookup_info"])
+		if(href_list["lookup_info"] == "genitals")
+			var/list/line = list()
+			for(var/genital in GLOB.possible_genitals)
+				if(!owner.dna.species.mutant_bodyparts[genital] || genital == ORGAN_SLOT_BREASTS)
+					continue
+				var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
+				if(!G)
+					continue
+				if(G.is_hidden(owner))
+					continue
+				var/obj/item/organ/genital/ORG = owner.get_organ_slot(G.associated_organ_slot)
+				if(!ORG)
+					continue
+				line += ORG.get_description_string(G)
+			if(length(line))
+				to_chat(usr, span_notice("[jointext(line, "\n")]"))
+
 /obj/lewd_portal_relay/proc/update_visuals()
 	SIGNAL_HANDLER
 	cut_overlays()
@@ -182,7 +215,7 @@
 			if(limb_object == owner.get_bodypart(BODY_ZONE_CHEST))
 				for(var/image/limb_icon in limb_icon_list)
 					var/limb_icon_layer = limb_icon.layer * -1
-					if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER) //Tails need to be portaled
+					if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi') //Tails need to be portaled
 						limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 			add_overlay(limb_icon_list)
 	if(owner.shoes)
