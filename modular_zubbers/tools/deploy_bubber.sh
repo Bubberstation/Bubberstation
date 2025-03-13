@@ -10,11 +10,13 @@ directories=( $(find modular_skyrat/modules/ -type d -name "icons") )
 mkdir -p \
     $1/modular_zubbers/icons \
 	$1/modular_zubbers/master_files/icons \
-	$1/modular_skyrat/master_files/icons
+	$1/modular_skyrat/master_files/icons \
+	$1/modular_skyrat/modules/aesthetics # the aesthetics module doesnt use an icon folder but it does contain DMIs. God has abandoned us
 
 cp -r modular_zubbers/icons/* $1/modular_zubbers/icons/
 cp -r modular_zubbers/master_files/icons/* $1/modular_zubbers/master_files/icons/
 cp -r modular_skyrat/master_files/icons/* $1/modular_skyrat/master_files/icons/
+cp -r modular_skyrat/modules/aesthetics/* $1/modular_skyrat/modules/aesthetics/
 
 
 for icondir in ${directories[@]}
