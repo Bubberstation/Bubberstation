@@ -144,7 +144,7 @@
 /// Generates and allows for post-processing on icons, such as greyscaling and cropping. This is cached.
 /datum/preference/choiced/mutant_choice/proc/generate_icon(datum/sprite_accessory/sprite_accessory)
 	if(!sprite_accessory.icon_state)
-		return uni_icon("icons/mob/landmarks.dmi", "x")
+		return uni_icon('icons/mob/landmarks.dmi', "x")
 
 	var/datum/universal_icon/icon_to_process = uni_icon(sprite_accessory.icon, generate_icon_state(sprite_accessory, sprite_accessory.icon_state), SOUTH, 1)
 
