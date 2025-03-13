@@ -6,10 +6,8 @@
 #define SUBTLE_ONE_TILE_TEXT "1-Tile Range"
 #define SUBTLE_SAME_TILE_TEXT "Same Tile"
 
-//BUBBER EDIT ADDITION START
 #define PORTAL_ONE_TILE_TEXT "Portal 1-Tile Range"
 #define PORTAL_SAME_TILE_TEXT "Portal Tile"
-//BUBBER EDIT ADDITION END
 
 /datum/emote/living/subtle
 	key = "subtle"
@@ -118,11 +116,9 @@
 			in_view.Remove(mob)
 
 		var/list/targets = list(SUBTLE_ONE_TILE_TEXT, SUBTLE_SAME_TILE_TEXT) + in_view
-		//BUBBER EDIT ADDITION START
 		var/obj/structure/lewd_portal/portal = user?.buckled
 		if(portal)
 			targets += list(PORTAL_ONE_TILE_TEXT, PORTAL_SAME_TILE_TEXT)
-		//BUBBER EDIT ADDITION END
 		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
 		if(!target)
 			return FALSE
@@ -169,7 +165,6 @@
 			var/datum/preferences/prefs = hologram.Impersonation.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-	//BUBBER EDIT ADDITION START
 	else if(istype(target, /obj/lewd_portal_relay)) //Direct Message to a portal user
 		var/obj/lewd_portal_relay/portal_relay = target
 		user.show_message(subtler_message, alt_msg = subtler_message)
@@ -180,9 +175,7 @@
 			var/datum/preferences/prefs = portal_relay.owner.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				portal_relay.owner.playsound_local(get_turf(portal_relay.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-	//BUBBER EDIT ADDITION END
 	else
-		//BUBBER EDIT ADDITION START
 		var/ghostless
 		if(target == PORTAL_SAME_TILE_TEXT || target == PORTAL_ONE_TILE_TEXT)
 			switch(target)
@@ -197,7 +190,6 @@
 			subtler_message = span_subtler("<b>[output_portal]</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
 		else
 			ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
-		//BUBBER EDIT ADDITION END
 
 		var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 		if(hologram)
@@ -214,7 +206,6 @@
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
-		//BUBBER EDIT ADDITION START - using a second code block as the message being sent here is anonomized
 		for(var/obj/lewd_portal_relay/portal in ghostless) //Message portal owners caught in range
 			if(portal?.owner?.client && portal?.owner != user)
 				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
@@ -222,7 +213,6 @@
 			var/datum/preferences/prefs = portal.owner.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 				portal.owner.playsound_local(get_turf(portal.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-		//BUBBER EDIT ADDITION END
 
 	return TRUE
 
@@ -263,3 +253,6 @@
 
 #undef SUBTLE_ONE_TILE_TEXT
 #undef SUBTLE_SAME_TILE_TEXT
+
+#undef PORTAL_ONE_TILE_TEXT
+#undef PORTAL_SAME_TILE_TEXT

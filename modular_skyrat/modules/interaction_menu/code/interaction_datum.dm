@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 				CRASH("Unimplemented interaction requirement '[requirement]'")
 	return TRUE
 
-/datum/interaction/proc/act(mob/living/carbon/human/user, mob/living/carbon/human/target, obj/body_relay = null) //BUBBER EDIT - Body relay var added for portal use
+/datum/interaction/proc/act(mob/living/carbon/human/user, mob/living/carbon/human/target, obj/body_relay = null)
 	if(!allow_act(user, target))
 		return
 	if(!message)
@@ -93,10 +93,8 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		message_admins("Deprecated message handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
 		message = list(message)
 	var/msg = pick(message)
-	// BUBBER EDIT ADDITION START
 	if(!isnull(body_relay))
 		msg = replacetext(msg, "%TARGET%", "\the [body_relay.name]")
-	//BUBBER EDIT ADDITION END
 	// We replace %USER% with nothing because manual_emote already prepends it.
 	msg = trim(replacetext(replacetext(msg, "%TARGET%", "[target]"), "%USER%", ""), INTERACTION_MAX_CHAR)
 	if(lewd)
@@ -105,18 +103,14 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		user.manual_emote(msg)
 	if(user_messages.len)
 		var/user_msg = pick(user_messages)
-		// BUBBER EDIT ADDITION START
 		if(!isnull(body_relay))
 			user_msg = replacetext(user_msg, "%TARGET%", "\the [body_relay.name]")
-			//BUBBER EDIT ADDITION END
 		user_msg = replacetext(replacetext(user_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		to_chat(user, user_msg)
 	if(target_messages.len)
 		var/target_msg = pick(target_messages)
-		// BUBBER EDIT ADDITION START
 		if(!isnull(body_relay))
 			target_msg = replacetext(target_msg, "%USER%", "Unknown")
-			//BUBBER EDIT ADDITION END
 		target_msg = replacetext(replacetext(target_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		to_chat(target, target_msg)
 	if(sound_use)
