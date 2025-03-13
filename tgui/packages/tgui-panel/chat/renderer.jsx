@@ -629,7 +629,10 @@ class ChatRenderer {
       .substring(0, 19)
       .replace(/[-:]/g, '')
       .replace('T', '-');
-    window.navigator.msSaveBlob(blob, `ss13-chatlog-${timestamp}.html`);
+    const a = document.createElement('a');
+    a.download = `ss13-chatlog-${timestamp}.html`;
+    a.href = URL.createObjectURL(blob);
+    a.click();
   }
 }
 
