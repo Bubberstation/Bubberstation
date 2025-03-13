@@ -41,6 +41,10 @@
 
 	target.dna.features["legs"] = value
 
+	if(value == DIGITIGRADE_LEGS)
+		target.dna.species.try_make_digitigrade(target)
+	else
+		target.set_species(target.dna.species.type) // This fucking sucks but initial doesnt do lists and we need to clear this out
 	target.update_body()
-	target.dna.species.replace_body(target, target.dna.species) // TODO: Replace this with something less stupidly expensive.
+	target.dna.species.replace_body(target,target.dna.species) // TODO: Replace this with something less stupidly expensive.
 	return TRUE

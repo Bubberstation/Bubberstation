@@ -599,6 +599,10 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
+	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
+		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
+		return FALSE
+
 	var/resize_amount = 1.6
 	// SKYRAT EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
