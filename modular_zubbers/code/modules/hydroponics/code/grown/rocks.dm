@@ -103,7 +103,7 @@
 	icon_state = "seed-sandfruit"
 	species = "ore"
 	plantname = "Sandfruits"
-	product = /obj/item/food/grown/shell/sand
+	product = /obj/item/food/grown/material_sand
 	mutatelist = list(/obj/item/seeds/uraniberry,
 					/obj/item/seeds/agbergine,
 					/obj/item/seeds/ferrotuber,
@@ -115,7 +115,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/sand
+/obj/item/food/grown/material_sand
 	seed = /obj/item/seeds/sandfruit
 	name = "sandfruit"
 	desc = "A mutated variant of rockfruits; rough, course and now available everywhere. Just peel it for a core."
@@ -144,7 +144,7 @@
 	icon_state = "seed-uraniberry"
 	species = "ore"
 	plantname = "Uraniberry"
-	product = /obj/item/food/grown/shell/uraniberry
+	product = /obj/item/food/grown/material_uraniberry
 	mutatelist = list(/obj/item/seeds/plasmaplum)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/uranium = 0.1)
@@ -153,7 +153,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/uraniberry
+/obj/item/food/grown/material_uraniberry
 	seed = /obj/item/seeds/uraniberry
 	name = "uraniberry"
 	desc = "A mutated variant of rockfruits; you might not want to hold it for long... also not actually a berry! Just peel it for a core."
@@ -182,7 +182,7 @@
 	icon_state = "seed-plasmaplum"
 	species = "ore"
 	plantname = "Plasmaplum"
-	product = /obj/item/food/grown/shell/plasmaplum
+	product = /obj/item/food/grown/material_plasmaplum
 	mutatelist = list(/obj/item/seeds/bluegemdrupe)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/toxin/plasma = 0.1)
@@ -191,7 +191,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/plasmaplum
+/obj/item/food/grown/material_plasmaplum
 	seed = /obj/item/seeds/plasmaplum
 	name = "plasmaplum"
 	desc = "A mutated variant of rockfruits; Incredibly volatile... also not actually a plum! Just peel it for a core."
@@ -220,7 +220,7 @@
 	icon_state = "seed-bluegemdrupe"
 	species = "ore"
 	plantname = "Bluegem drupe"
-	product = /obj/item/food/grown/shell/bluegemdrupe
+	product = /obj/item/food/grown/material_bluegemdrupe
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/bluespace = 0.1)
@@ -229,7 +229,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/bluegemdrupe
+/obj/item/food/grown/material_bluegemdrupe
 	seed = /obj/item/seeds/bluegemdrupe
 	name = "bluegem drupe"
 	desc = "A mutated variant of rockfruits; Incredibly fragile... also not actually a drupe! Just peel it for a core."
@@ -258,7 +258,7 @@
 	icon_state = "seed-agbergine"
 	species = "ore"
 	plantname = "agbergine"
-	product = /obj/item/food/grown/shell/agbergine
+	product = /obj/item/food/grown/material_agbergine
 	mutatelist = list(/obj/item/seeds/aubergine)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/silver = 0.1)
@@ -267,7 +267,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/agbergine
+/obj/item/food/grown/material_agbergine
 	seed = /obj/item/seeds/agbergine
 	name = "ag-bergine"
 	desc = "Ag-bergine, get it AG? It's hilarious and valuable! Just peel it for a core."
@@ -296,7 +296,7 @@
 	icon_state = "seed-aubergine"
 	species = "ore"
 	plantname = "aubergine"
-	product = /obj/item/food/grown/shell/aubergine
+	product = /obj/item/food/grown/material_aubergine
 	mutatelist = list(/obj/item/seeds/dimantis)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/gold = 0.1)
@@ -305,7 +305,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/aubergine
+/obj/item/food/grown/material_aubergine
 	seed = /obj/item/seeds/aubergine
 	name = "aubergine"
 	desc = "An aubergine; AU? Get it?!... My talents are wasted here! Just peel it for a core."
@@ -334,7 +334,7 @@
 	icon_state = "seed-dimantis"
 	species = "ore"
 	plantname = "Dimantis"
-	product = /obj/item/food/grown/shell/dimantis
+	product = /obj/item/food/grown/material_dimantis
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/carbon = 0.1)
@@ -343,7 +343,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/dimantis
+/obj/item/food/grown/material_dimantis
 	seed = /obj/item/seeds/dimantis
 	name = "dimantis drupe"
 	desc = "A fleshy fruid with a diamond core, Just peel it for a core."
@@ -372,7 +372,7 @@
 	icon_state = "seed-ferrotuber"
 	species = "ore"
 	plantname = "ferrotuber"
-	product = /obj/item/food/grown/shell/ferrotuber
+	product = /obj/item/food/grown/material_ferrotuber
 	mutatelist = list(/obj/item/seeds/titanituber)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/iron = 0.1)
@@ -381,7 +381,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/ferrotuber
+/obj/item/food/grown/material_ferrotuber
 	seed = /obj/item/seeds/ferrotuber
 	name = "ferrotuber"
 	desc = "Ferrotubers, fleshy shells with iron fillings! Just peel it for a core."
@@ -410,7 +410,7 @@
 	icon_state = "seed-titanituber"
 	species = "ore"
 	plantname = "titanituber"
-	product = /obj/item/food/grown/shell/titanituber
+	product = /obj/item/food/grown/material_titanituber
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
@@ -418,7 +418,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/titanituber
+/obj/item/food/grown/material_titanituber
 	seed = /obj/item/seeds/titanituber
 	name = "titanituber"
 	desc = "soft fruits with incredibly sturdy cores, watch your teeth! Just peel it for a core."
@@ -446,7 +446,7 @@
 	icon_state = "seed-adamapple"
 	species = "ore"
 	plantname = "adamapple"
-	product = /obj/item/food/grown/shell/adamapple
+	product = /obj/item/food/grown/material_adamapple
 	mutatelist = list(/obj/item/seeds/runescooper)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
@@ -454,7 +454,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/adamapple
+/obj/item/food/grown/material_adamapple
 	seed = /obj/item/seeds/adamapple
 	name = "Adam's apple"
 	desc = "Adam's apples, The garden Eden's bounty! Just peel it for a core."
@@ -482,7 +482,7 @@
 	icon_state = "seed-runescooper"
 	species = "ore"
 	plantname = "runescooper"
-	product = /obj/item/food/grown/shell/runescooper
+	product = /obj/item/food/grown/material_runescooper
 	mutatelist = list(/obj/item/seeds/bananiumberry)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 	growthstages = 2
@@ -490,7 +490,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/runescooper
+/obj/item/food/grown/material_runescooper
 	seed = /obj/item/seeds/runescooper
 	name = "runescooper"
 	desc = "A fruit, usually grown in wild places where men would kill each other for gain."
@@ -518,7 +518,7 @@
 	icon_state = "seed-bananiumberry"
 	species = "ore"
 	plantname = "bananiumberry"
-	product = /obj/item/food/grown/shell/bananiumberry
+	product = /obj/item/food/grown/material_bananiumberry
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1,
 						/datum/reagent/consumable/nutriment/soup/clown_tears = 0.1)
@@ -527,7 +527,7 @@
 	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/chem_cooling)
 
-/obj/item/food/grown/shell/bananiumberry
+/obj/item/food/grown/material_bananiumberry
 	seed = /obj/item/seeds/bananiumberry
 	name = "bananiumberry"
 	desc = "holy honkmother... This fruit got a core of bananium, Just peel it!"
