@@ -9,7 +9,7 @@
 /obj/structure/sign/flag/pride
 	name = "coder pride flag"
 	desc = "You probably shouldn't be seeing this. Yell at the coders about it."
-	icon = 'modular_zubbers/maps/biodome/pride_flags.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/pride_flags.dmi'
 
 /obj/structure/sign/flag/pride/gay
 	name = "gay pride flag"
@@ -76,7 +76,7 @@
 /obj/item/sign/flag/pride
 	name = "folded coder pride flag"
 	desc = "You probably shouldn't be seeing this. Yell at the coders about it."
-	icon = 'modular_zubbers/maps/biodome/pride_flags.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/pride_flags.dmi'
 
 /obj/item/sign/flag/pride/gay
 	name = "folded gay pride flag"
