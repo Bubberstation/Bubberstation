@@ -36,7 +36,7 @@
 
 /datum/bodypart_overlay/mutant/wings/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, ignore_suit = FALSE)
 	var/mob/living/carbon/human/wearer = bodypart_owner.owner
-	if(!human)
+	if(!wearer)
 		return TRUE
 	if(!wearer.w_uniform && !wearer.wear_suit)
 		return ..()
