@@ -478,6 +478,15 @@
 /datum/preference/choiced/mutant_choice/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
+/datum/preference/choiced/mutant_choice/ipc_screen/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
+
 /datum/preference/choiced/mutant_choice/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER"
 
@@ -557,6 +566,15 @@
 /datum/preference/choiced/mutant_choice/synth_chassis/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
+/datum/preference/choiced/mutant_choice/synth_chassis/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
+
 /datum/preference/choiced/mutant_choice/synth_chassis/compile_constant_data()
 	var/list/data = ..()
 
@@ -590,6 +608,15 @@
 
 /datum/preference/choiced/mutant_choice/synth_head/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/synth_head/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/synth_head/compile_constant_data()
 	var/list/data = ..()
@@ -855,6 +882,15 @@
 
 /datum/preference/choiced/mutant_choice/pod_hair/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/pod_hair/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/pod_hair/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)
