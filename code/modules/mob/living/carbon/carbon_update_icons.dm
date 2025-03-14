@@ -272,7 +272,7 @@
 							break
 
 		var/icon_file = I.lefthand_file
-		if(get_held_index_of_item(I) % 2 == 0)
+		if(IS_RIGHT_INDEX(get_held_index_of_item(I)))
 			icon_file = I.righthand_file
 
 		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
@@ -553,7 +553,7 @@
 		. += "-[jointext(overlay.generate_icon_cache(), "-")]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.get_mob_height()]"
+		. += "-[human_owner.mob_height]"
 	return .
 
 ///Generates a cache key specifically for husks
@@ -566,7 +566,7 @@
 	. += "-[body_zone]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.get_mob_height()]"
+		. += "-[human_owner.mob_height]"
 	return .
 
 /obj/item/bodypart/head/generate_icon_key()
@@ -600,6 +600,8 @@
 		if(gradient_styles?[GRADIENT_HAIR_KEY])
 			. += "-[gradient_styles[GRADIENT_HAIR_KEY]]"
 			. += "-[gradient_colors[GRADIENT_HAIR_KEY]]"
+		if(LAZYLEN(hair_masks))
+			. += "-[jointext(hair_masks, "-")]"
 
 	return .
 

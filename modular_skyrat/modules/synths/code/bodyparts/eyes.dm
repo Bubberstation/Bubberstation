@@ -1,11 +1,11 @@
-/obj/item/organ/internal/eyes/synth
+/obj/item/organ/eyes/synth
 	name = "optical sensors"
 	icon_state = "cybernetic_eyeballs"
 	desc = "A very basic set of optical sensors with no extra vision modes or functions."
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/internal/eyes/synth/emp_act(severity)
+/obj/item/organ/eyes/synth/emp_act(severity)
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -29,7 +29,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/organ/internal/eyes/synth
+	build_path = /obj/item/organ/eyes/synth
 	category = list(
 		RND_SUBCATEGORY_MECHFAB_ANDROID + RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS,
 	)
