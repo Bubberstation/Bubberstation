@@ -157,7 +157,7 @@
 	var/color = sanitize_hexcolor(greyscale_color)
 	if(color && sprite_accessory.color_src)
 		// This isn't perfect, but I don't want to add the significant overhead to make it be.
-		icon_to_process.blend_color(color, BLEND_MULTIPLY)
+		icon_to_process.blend_color(color, ICON_MULTIPLY)
 
 	return icon_to_process
 
