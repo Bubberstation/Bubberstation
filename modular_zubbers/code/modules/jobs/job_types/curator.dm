@@ -3,12 +3,9 @@
 /datum/job/curator/after_spawn(mob/living/spawned, client/player_client)
 	mind_traits += (TRAIT_BLOODSUCKER_HUNTER)
 	. = ..()
-	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
-	var/obj/item/book/kindred/book_to_spawn
-	for(var/poi in points_of_interest)
-		var/thing = points_of_interest[poi]
-		if(istype(thing, /obj/item/book/kindred))
-			return
+	var/obj/item/book/kindred/book_to_spawn = locate() in SSpoints_of_interest.get_other_pois()
+	if(book_to_spawn)
+		return
 	book_to_spawn = new(get_turf(spawned))
 	if(iscarbon(spawned))
 		var/mob/living/carbon/carbon_spawned = spawned

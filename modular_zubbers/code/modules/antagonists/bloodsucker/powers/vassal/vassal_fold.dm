@@ -22,7 +22,7 @@
 	if(!.)
 		return FALSE
 	var/datum/antagonist/ghoul/revenge/revenge_ghoul = IS_REVENGE_GHOUL(owner)
-	if(revenge_ghoul)
+	if(isnull(revenge_ghoul))
 		return FALSE
 
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
