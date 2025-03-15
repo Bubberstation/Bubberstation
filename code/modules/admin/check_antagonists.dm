@@ -183,4 +183,6 @@
 	dat += SSopposing_force.get_check_antag_listing() //SKYRAT EDIT ADDITION
 
 	dat += "</body></html>"
-	usr << browse(dat.Join(), "window=roundstatus;size=500x500")
+	var/datum/browser/browser = new(usr, "roundstatus", "Round Status", 500, 500)
+	browser.set_content(dat.Join())
+	browser.open()

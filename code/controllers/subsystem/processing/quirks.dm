@@ -103,8 +103,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		if(initial(quirk_type.erp_quirk) && CONFIG_GET(flag/disable_erp_preferences))
 			continue
 		// Hidden quirks aren't visible to TGUI or the player
+		#if !defined(UNIT_TESTS)
 		if (initial(quirk_type.hidden_quirk))
 			continue
+		#endif
 		// SKYRAT EDIT ADDITION END
 
 		quirks[initial(quirk_type.name)] = quirk_type

@@ -792,7 +792,7 @@
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
-	icon = 'icons/obj/doors/Doorfire.dmi'  // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
+	icon = 'icons/obj/doors/doorfire.dmi'  // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
@@ -807,7 +807,7 @@
 /obj/structure/firelock_frame
 	name = "firelock frame"
 	desc = "A partially completed firelock."
-	icon = 'icons/obj/doors/Doorfire.dmi' // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
+	icon = 'icons/obj/doors/doorfire.dmi' // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "frame1"
 	base_icon_state = "frame"
 	anchored = FALSE
@@ -943,7 +943,7 @@
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
 		return list("delay" = 5 SECONDS, "cost" = 16)
-	else if((constructionStep == CONSTRUCTION_NO_CIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+	else if((constructionStep == CONSTRUCTION_NO_CIRCUIT) && (the_rcd.construction_upgrades & RCD_UPGRADE_SIMPLE_CIRCUITS))
 		return list("delay" = 2 SECONDS, "cost" = 1)
 	return FALSE
 

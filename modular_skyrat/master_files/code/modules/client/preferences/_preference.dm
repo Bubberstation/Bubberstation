@@ -135,8 +135,7 @@
 		// because of the way the unit tests are set up, we need this to crash here
 		CRASH("`icon_for()` was not implemented for [type], even though should_generate_icons = TRUE!")
 
-	var/list/cached_icons = get_choices()
-	return cached_icons[value]
+	return generate_icon(SSaccessories.sprite_accessories[relevant_mutant_bodypart][value])
 
 /// Allows for dynamic assigning of icon states.
 /datum/preference/choiced/mutant_choice/proc/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
@@ -145,33 +144,25 @@
 /// Generates and allows for post-processing on icons, such as greyscaling and cropping. This is cached.
 /datum/preference/choiced/mutant_choice/proc/generate_icon(datum/sprite_accessory/sprite_accessory)
 	if(!sprite_accessory.icon_state)
-		return icon('icons/mob/landmarks.dmi', "x")
+		return uni_icon('icons/mob/landmarks.dmi', "x")
 
-	var/icon/icon_to_process = icon(sprite_accessory.icon, generate_icon_state(sprite_accessory, sprite_accessory.icon_state), SOUTH, 1)
+	var/datum/universal_icon/icon_to_process = uni_icon(sprite_accessory.icon, generate_icon_state(sprite_accessory, sprite_accessory.icon_state), SOUTH, 1)
 
 	if(islist(crop_area) && crop_area.len == REQUIRED_CROP_LIST_SIZE)
-		icon_to_process.Crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
-		icon_to_process.Scale(32, 32)
+		icon_to_process.crop(crop_area[1], crop_area[2], crop_area[3], crop_area[4])
+		icon_to_process.scale(32, 32)
 	else if(crop_area)
 		stack_trace("Invalid crop paramater! The provided crop area list is not four entries long, or is not a list!")
 
 	var/color = sanitize_hexcolor(greyscale_color)
 	if(color && sprite_accessory.color_src)
 		// This isn't perfect, but I don't want to add the significant overhead to make it be.
-		icon_to_process.ColorTone(color)
+		icon_to_process.blend_color(color, ICON_MULTIPLY)
 
 	return icon_to_process
 
 /datum/preference/choiced/mutant_choice/init_possible_values()
-	if(!initial(generate_icons))
 		return assoc_to_keys_features(SSaccessories.sprite_accessories[relevant_mutant_bodypart])
-
-	var/list/list_of_accessories = list()
-	for(var/sprite_accessory_name as anything in SSaccessories.sprite_accessories[relevant_mutant_bodypart])
-		var/datum/sprite_accessory/sprite_accessory = SSaccessories.sprite_accessories[relevant_mutant_bodypart][sprite_accessory_name]
-		list_of_accessories += list("[sprite_accessory.name]" = generate_icon(sprite_accessory))
-
-	return list_of_accessories
 
 /datum/preference/choiced/mutant_choice/create_default_value()
 	return initial(default_accessory_type.name)

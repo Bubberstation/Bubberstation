@@ -798,7 +798,7 @@
 					if(prob(40))
 						fake_emote = "cough"
 					else
-						owner.sneeze()
+						fake_emote = "sneeze"
 
 	if(fake_emote)
 		owner.emote(fake_emote)

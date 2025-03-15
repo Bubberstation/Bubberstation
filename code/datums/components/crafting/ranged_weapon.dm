@@ -43,7 +43,7 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/riflestock
+/datum/crafting_recipe/gun_maint_kit
 	name = "Makeshift Gun Maintenance Kit"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER, TOOL_SCREWDRIVER)
 	result = /obj/item/gun_maintenance_supplies/makeshift
@@ -425,5 +425,17 @@
 		/obj/item/assembly/signaler/anomaly/flux = 1,
 		/obj/item/weaponcrafting/gunkit/photon = 1,
 	)
+	time = 10 SECONDS
+	category = CAT_WEAPON_RANGED
+
+/datum/crafting_recipe/sks
+	name = "Sakhno SKS semi-automatic rifle"
+	result = /obj/item/gun/ballistic/rifle/sks/empty
+	reqs = list(
+		/obj/item/weaponcrafting/stock = 1,
+		/obj/item/weaponcrafting/receiver = 1,
+		/obj/item/weaponcrafting/gunkit/sks = 1,
+	)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED

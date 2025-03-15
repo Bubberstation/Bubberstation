@@ -34,4 +34,6 @@
 
 /datum/quirk/life_savings/remove()
 	. = ..()
+	if(QDELETED(quirk_holder))
+		return
 	UnregisterSignal(owner_account, COMSIG_ON_BANK_ACCOUNT_PAYOUT)
