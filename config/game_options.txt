@@ -127,7 +127,8 @@ PROTECT_ROLES_FROM_ANTAGONIST
 ## "HUMAN_WHITELIST": all heads-of-staff jobs will be able to be played by non-humans, unless that job incorporates the "human only" flag (Which can be configured via a variable or the job config txt).
 ## "NON_HUMAN_WHITELIST": non-humans will not be able to play as heads of staff, unless that job incorporates the "allow non-humans" flag (Which can be configured via a variable or the job config txt).
 ## "ENFORCED": non-humans cannot be heads of staff, only humans can. the "allow non-humans" setting will be ignored.
-HUMAN_AUTHORITY HUMAN_WHITELIST
+## Uncomment to enable a human authority mode of your choice.
+#HUMAN_AUTHORITY HUMAN_WHITELIST
 
 ## If late-joining players have a chance to become a traitor/changeling
 ALLOW_LATEJOIN_ANTAGONISTS
@@ -286,6 +287,7 @@ RANDOM_LAWS dagothbot
 #RANDOM_LAWS hulkamania
 #RANDOM_LAWS ten_commandments
 #RANDOM_LAWS yesman
+#RANDOM_LAWS thinkermov
 
 ## Bad idea laws. Probably shouldn't enable these
 #RANDOM_LAWS syndie
@@ -330,6 +332,7 @@ LAW_WEIGHT tyrant,3
 LAW_WEIGHT overlord,3
 LAW_WEIGHT painter,3
 LAW_WEIGHT dungeon_master,3
+LAW_WEIGHT thinkermov,3
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
@@ -544,6 +547,9 @@ MAXFINE 2000
 ## How many played hours of DRONE_REQUIRED_ROLE required to be a Maintenance Done
 #DRONE_ROLE_PLAYTIME 14
 
+## Will drones be restricted from interacting with the supermatter and atmopherics area?
+#DRONE_AREA_INTERACTION_RESTRICT 1
+
 ## Whether native FoV is enabled for all people.
 #NATIVE_FOV
 
@@ -596,50 +602,3 @@ MAX_POSITIVE_QUIRKS 6
 # If the value is lower than 1, it'll tend to even out the odds
 # If higher than 1, it'll lean toward common spawns even more.
 RANDOM_LOOT_WEIGHT_MODIFIER 1
-
-## Gamemode configurations
-
-## Multipliers for points gained over time for event tracks.
-MUNDANE_POINT_GAIN_MULTIPLIER 1
-MODERATE_POINT_GAIN_MULTIPLIER 1
-MAJOR_POINT_GAIN_MULTIPLIER 1
-CREWSET_POINT_GAIN_MULTIPLIER 1
-GHOSTSET_POINT_GAIN_MULTIPLIER 1
-
-## Multipliers for points to spend on roundstart events.
-MUNDANE_ROUNDSTART_POINT_MULTIPLIER 1
-MODERATE_ROUNDSTART_POINT_MULTIPLIER 1
-MAJOR_ROUNDSTART_POINT_MULTIPLIER 1
-CREWSET_ROUNDSTART_POINT_MULTIPLIER 1
-GHOSTSET_ROUNDSTART_POINT_MULTIPLIER 1
-
-## Minimum population caps for event tracks to run their events.
-MUNDANE_MIN_POP 0
-MODERATE_MIN_POP 0
-MAJOR_MIN_POP 20
-CREWSET_MIN_POP 0
-GHOSTSET_MIN_POP 0
-
-## Point threshold multipliers for tracks to run events. The lesser the more frequent events will be.
-MUNDANE_POINT_THRESHOLD 1
-MODERATE_POINT_THRESHOLD 1
-MAJOR_POINT_THRESHOLD 1
-CREWSET_POINT_THRESHOLD 1
-GHOSTSET_POINT_THRESHOLD 1
-
-## Allows the storyteller to scale event frequencies based on population
-ALLOW_STORYTELLER_POP_SCALING
-
-## Thresholds that population frequency scalling penalize up to.
-MUNDANE_POP_SCALE_THRESHOLD 10
-MODERATE_POP_SCALE_THRESHOLD 15
-MAJOR_POP_SCALE_THRESHOLD 40
-CREWSET_POP_SCALE_THRESHOLD 45
-GHOSTSET_POP_SCALE_THRESHOLD 40
-
-## The maximum penalties population scalling will apply to the tracks for having less pop than POP_SCALE_THRESHOLD. This is treated as percentages
-MUNDANE_POP_SCALE_PENALTY 30
-MODERATE_POP_SCALE_PENALTY 30
-MAJOR_POP_SCALE_PENALTY 30
-CREWSET_POP_SCALE_PENALTY 30
-GHOSTSET_POP_SCALE_PENALTY 30

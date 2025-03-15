@@ -18,7 +18,7 @@
 							/datum/language/marish = list(LANGUAGE_ATOM),
 							/datum/language/marish/empathy = list(LANGUAGE_ATOM),
 							)
-/obj/item/organ/internal/tongue/shadekin
+/obj/item/organ/tongue/shadekin
 	name = "shadekin tongue"
 	desc = "A mysterious tongue."
 	icon_state = "silvertongue"
@@ -27,7 +27,7 @@
 	modifies_speech = TRUE
 	languages_native = list(/datum/language/marish/empathy)
 
-/obj/item/organ/internal/ears/shadekin
+/obj/item/organ/ears/shadekin
 	name = "shadekin ears"
 	desc = "Ears, covered in fur."
 	icon = 'icons/obj/clothing/head/costume.dmi'
@@ -42,19 +42,19 @@
 	key = "9"
 	icon_state = "empathy"
 
-/obj/item/organ/internal/tongue/shadekin/handle_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/shadekin/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
 		return modify_speech(source, speech_args)
 
-/obj/item/organ/internal/tongue/shadekin/modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/shadekin/modify_speech(datum/source, list/speech_args)
 	ASYNC
 		actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
 
-/obj/item/organ/internal/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	var/obj/item/organ/internal/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	var/mode = istype(user_ears)
 	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
 
@@ -64,7 +64,7 @@
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/ears/shadekin/target_ears = living_mob.get_organ_slot(ORGAN_SLOT_EARS)
 
 		if(!istype(target_ears))
 			continue

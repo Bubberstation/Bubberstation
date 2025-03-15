@@ -39,7 +39,7 @@
 	loaded_preference = new(user.client)
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
-	balloon_alert(user, "Character set")
+	balloon_alert(user, "character set")
 	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
 
 /datum/outfit/job/bitrunner
@@ -47,5 +47,5 @@
 
 /datum/orderable_item/bitrunning_tech/pref_item
 	cost_per_order = 500
-	item_path = /obj/item/bitrunning_disk/prefs
+	purchase_path = /obj/item/bitrunning_disk/prefs
 	desc = "This disk contains a program that lets you load in custom characters."

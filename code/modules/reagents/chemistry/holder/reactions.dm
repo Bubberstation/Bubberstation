@@ -120,9 +120,6 @@
 	else
 		is_reacting = FALSE
 
-	if(.)
-		SEND_SIGNAL(src, COMSIG_REAGENTS_REACTED, .)
-
 	TEST_ONLY_ASSERT(!. || MC_RUNNING(), "We reacted during subsystem init, that shouldn't be happening!")
 
 /**
@@ -216,7 +213,7 @@
 		reaction_message = equilibrium.reaction.mix_message
 		if(equilibrium.reaction.mix_sound)
 			playsound(get_turf(my_atom), equilibrium.reaction.mix_sound, 80, TRUE)
-			
+
 	//SKYRAT EDIT ADDITION
 	//If the reaction pollutes, pollute it here if we have an atom
 	if(equilibrium.reaction.pollutant_type && my_atom)
@@ -227,7 +224,7 @@
 
 	qdel(equilibrium)
 	update_total()
-	SEND_SIGNAL(src, COMSIG_REAGENTS_REACTED, .)
+
 	return reaction_message
 
 /*
