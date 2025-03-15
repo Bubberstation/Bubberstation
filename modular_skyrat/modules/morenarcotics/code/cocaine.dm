@@ -3,7 +3,7 @@
 	required_reagents = list(/datum/reagent/drug/cocaine = 10)
 	required_temp = 250 //freeze it
 	reaction_flags = REACTION_INSTANT
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
 	mix_message = "The solution freezes into a powder!"
 
 /datum/chemical_reaction/powder_cocaine/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
@@ -11,13 +11,21 @@
 	for(var/i in 1 to created_volume)
 		new /obj/item/reagent_containers/cocaine(location)
 
-/datum/chemical_reaction/freebase_cocaine
-	required_reagents = list(/datum/reagent/drug/cocaine = 10, /datum/reagent/water = 5, /datum/reagent/ash = 10) //mix 20 cocaine, 10 water, 20 ash
-	required_temp = 480 //heat it up
-	reaction_flags = REACTION_INSTANT
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL
+/datum/chemical_reaction/crack_cooking
+	results = list(/datum/reagent/freebase_cocaine = 4)
+	required_reagents = list(/datum/reagent/drug/cocaine = 3, datum/reagent/water = 2, datum/reagent/ammonia = 2)
+	required_temp = 480 //cook it
+	purity_min = 0
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
 
-/datum/chemical_reaction/freebase_cocaine/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/crack_cooling
+	is_cold_recipe = yes
+	required_reagents = list(/datum/reagent/drug/freebase_cocaine = 10)
+	required_temp = 250 //freeze it
+	reaction_flags = REACTION_INSTANT
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
+
+/datum/chemical_reaction/crack cooling/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/reagent_containers/crack(location)
@@ -31,18 +39,15 @@
 	taste_description = "bitterness" //supposedly does taste bitter in real life
 	addiction_types = list(/datum/addiction/stimulants = 14) //5.6 per 2 seconds
 
-/datum/reagent/drug/cocaine/on_mob_metabolize(mob/living/containing_mob)
+	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
+	impure_chem = /datum/reagent/impure/cocaine_toxin
+
+/datum/reagent/drug/cocaine/on_mob_metabolize(mob/living/metabolizer)
 	..()
-	ADD_TRAIT(containing_mob, TRAIT_BATON_RESISTANCE, type)
+	containing_mob.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
 
-/datum/reagent/drug/cocaine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	. = ..()
-	if(SPT_PROB(30, seconds_per_tick))
-		if(affected_mob.adjustToxLoss(5 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
-			return UPDATE_MOB_HEALTH
-
-/datum/reagent/drug/cocaine/on_mob_end_metabolize(mob/living/containing_mob)
-	REMOVE_TRAIT(containing_mob, TRAIT_BATON_RESISTANCE, type)
+/datum/reagent/drug/cocaine/on_mob_end_metabolize(mob/living/metabolizer)
+	containing_mob.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
 	..()
 
 /datum/reagent/drug/cocaine/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
@@ -82,6 +87,7 @@
 	name = "freebase cocaine"
 	description = "A smokable form of cocaine."
 	color = "#f0e6bb"
+	impure_chem = /datum/reagent/impure/cocaine_toxin/strong
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/drug/cocaine/powder_cocaine
@@ -89,3 +95,16 @@
 	description = "The powder form of cocaine."
 	color = "#ffffff"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+// leftover chemicals (le bad)
+/datum/reagent/impure/cocaine_toxin
+	name = "Cocaine Sludge"
+	description = "Foul sludge of leftover toxic chemicals used to produce cocaine."
+	var/tox_damage = 5
+	/datum/reagent/impure/cocaine_toxin/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	if(affected_mob.adjustToxLoss(tox_damage * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
+		return UPDATE_MOB_HEALTH
+
+/datum/reagent/impure/cocaine_toxin/strong
+	var/tox_damage = 8
