@@ -23,7 +23,7 @@
 
 /obj/item/ai_module/Initialize(mapload)
 	. = ..()
-	if(mapload && HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) && is_station_level(z))
+	if(mapload && (HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) || HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI)) && is_station_level(z)) //Bubber edit HoS AI station trait
 		var/delete_module = handle_unique_ai()
 		if(delete_module)
 			return INITIALIZE_HINT_QDEL
