@@ -289,20 +289,9 @@
 
 /datum/barsign/skyrat/HeavensHallow
 	name = "Heavens Hallow"
-	icon_state = "HeavensHallow"
+	icon_state = "heavenshallow"
 	desc = ""
 	neon_color = "#000066"
-
-/datum/barsign/skyrat/greytide
-	name = "The Greytide"
-	icon_state = "thegreytide"
-	desc = "The Home Of the Greytiders"
-	neon_color = "00CACA"
-
-/datum/barsign/skyrat/combo
-	name = "The Combo"
-	icon_state = "combocafe"
-	neon_color = "#00CC00"
 
 // 96x96 signs
 
