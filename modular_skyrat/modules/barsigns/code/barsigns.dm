@@ -287,6 +287,23 @@
 	desc = "Stop by and enjoy some of the Hole's famous gyoza!"
 	neon_color = "#E2B001"
 
+/datum/barsign/skyrat/HeavensHallow
+	name = "Heavens Hallow"
+	icon_state = "HeavensHallow"
+	desc = ""
+	neon_color = "#000066"
+
+/datum/barsign/skyrat/greytide
+	name = "The Greytide"
+	icon_state = "thegreytide"
+	desc = "The Home Of the Greytiders"
+	neon_color = "00CACA"
+
+/datum/barsign/skyrat/combo
+	name = "The Combo"
+	icon_state = "combocafe"
+	neon_color = "#00CC00"
+
 // 96x96 signs
 
 /datum/barsign/skyrat/large/cyberslyph
