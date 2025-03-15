@@ -271,6 +271,7 @@
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent
+/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding
 	// fireman carry
 	if(seat.buckle_lying)
 		return list(
@@ -286,6 +287,36 @@
 		TEXT_EAST =  list(-6, 8, MOB_BELOW_PIGGYBACK_LAYER),
 		TEXT_WEST =  list( 6, 8, MOB_BELOW_PIGGYBACK_LAYER),
 	)
+*/
+	// fireman carry
+	if(seat.buckle_lying)
+		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
+			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
+			TEXT_EAST = list(0, OVERSIZED_OFFSET),
+			TEXT_WEST = list(0, OVERSIZED_OFFSET),
+		) : list(
+			TEXT_NORTH = list(0, REGULAR_OFFSET),
+			TEXT_SOUTH = list(0, REGULAR_OFFSET),
+			TEXT_EAST = list(0, REGULAR_OFFSET),
+			TEXT_WEST = list(0, REGULAR_OFFSET),
+		)
+	else if(!(ride_check_flags & RIDING_TAUR)) // piggyback
+		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
+			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
+			TEXT_EAST = list(-OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
+			TEXT_WEST = list(OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
+		) : list(
+			TEXT_NORTH = list(0, REGULAR_OFFSET),
+			TEXT_SOUTH = list(0, REGULAR_OFFSET),
+			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET),
+			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET)
+		)
+	if(ride_check_flags & RIDING_TAUR) // riding a taur
+		var/obj/item/organ/taur_body/taur_body = seat.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		return taur_body.get_riding_offset(oversized = HAS_TRAIT(seat, TRAIT_OVERSIZED))
+// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding
 
 /datum/component/riding/creature/human/get_parent_offsets_and_layers()
 	return list(
