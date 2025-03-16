@@ -1,5 +1,3 @@
-#define NEST_FACTION "nest spawned"
-
 /obj/structure/mob_spawner
 	name = "nest"
 	desc = "A nasty looking pile of sticks and debris."

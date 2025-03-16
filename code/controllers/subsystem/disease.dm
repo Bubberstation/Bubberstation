@@ -19,9 +19,12 @@ SUBSYSTEM_DEF(disease)
 		archive_diseases[prototype.GetDiseaseID()] = prototype
 	return SS_INIT_SUCCESS
 
+// BUBBER EDIT REMOVAL - Moved to modular_zubbers/code/modules/disease/disease_transmission.dm
+/*
 /datum/controller/subsystem/disease/stat_entry(msg)
 	msg = "P:[length(active_diseases)]"
 	return ..()
+*/
 
 /datum/controller/subsystem/disease/proc/get_disease_name(id)
 	var/datum/disease/advance/A = archive_diseases[id]
