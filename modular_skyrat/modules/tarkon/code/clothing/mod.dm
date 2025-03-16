@@ -101,7 +101,7 @@
 	inbuilt_modules = list()
 	charge_drain = DEFAULT_CHARGE_DRAIN * 3
 	siemens_coefficient = 0
-	slowdown_active = 1
+	slowdown_deployed = 1
 
 /obj/item/mod/control/pre_equipped/prototype/hauler
 	theme = /datum/mod_theme/prototype/hauler

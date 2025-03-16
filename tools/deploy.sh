@@ -40,3 +40,7 @@ cp -r tgui/packages/tgfont/dist/* $1/tgui/packages/tgfont/dist/
 if [ "$(uname -o)" = "Msys" ]; then
 	cp ./*.dll $1/
 fi
+
+# BUBBER EDIT ADDITION BEGIN - Call our deploy too
+source modular_zubbers/tools/deploy_bubber.sh
+# BUBBER EDIT ADDITION END - Call our deploy too

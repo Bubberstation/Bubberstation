@@ -197,9 +197,11 @@
 	item_path = /obj/item/dice/d00
 */
 
+/* BUBBER EDIT REMOVAL BEGIN - duplicate of /datum/loadout_item/pocket_items/zippolighter
 /datum/loadout_item/pocket_items/lighter
 	name = "Zippo Lighter"
 	item_path = /obj/item/lighter
+BUBBER EDIT REMOVAL END */
 
 /datum/loadout_item/pocket_items/flask
 	name = "Pocket Flask"
@@ -221,6 +223,8 @@
 	name = "Poster (Pinup)"
 	item_path = /obj/item/poster/random_contraband/pinup
 
+/* BUBBER EDIT REMOVAL BEGIN - duplicate of /datum/loadout_item/accessory/wallet
 /datum/loadout_item/pocket_items/wallet
 	name = "Wallet"
 	item_path = /obj/item/storage/wallet
+BUBBER EDIT REMOVAL END */
