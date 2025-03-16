@@ -2,7 +2,7 @@
 // Well, for some *absurd* reason, any time i tried to add sprites to a new spritesheet, they would always have a *gray* background covering the full 32x32, apart from what my sprite did. After multiple hours of debugging,
 // I settled on this, since it's not-really-harmful to have other things in an unrelated spritesheet.
 // To see my suffering, look at the convo starting at https://discord.com/channels/326822144233439242/326831214667235328/1098753337698029590
-/datum/asset/spritesheet/research_designs/create_spritesheets()
+/datum/asset/spritesheet_batched/research_designs/create_spritesheets()
 	. = ..()
 	var/list/id_list = list()
 
@@ -30,7 +30,7 @@
 
 			id_list += id
 
-			Insert(id, icon_file, icon_state)
+			insert_icon(id, uni_icon(icon_file, icon_state))
 
 		// And now scripture icons
 		for(var/datum/scripture/unlocked_scripture as anything in new_research.unlocked_scriptures)
@@ -43,6 +43,6 @@
 
 			id_list += id
 
-			Insert(id, icon_file, icon_state)
+			insert_icon(id, uni_icon(icon_file, icon_state))
 
 		qdel(new_research)
