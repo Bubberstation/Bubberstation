@@ -158,7 +158,7 @@
 	affected_bodyparts = CHEST
 	gendered = FALSE
 
-/datum/body_marking/bubber/third_eye //we love 1 pixel
+/datum/body_marking/bubber/thirdeye //we love 1 pixel
 	icon_state = "thirdeye"
 	name = "Third Eye"
 	default_color = "#FFFFFF"
