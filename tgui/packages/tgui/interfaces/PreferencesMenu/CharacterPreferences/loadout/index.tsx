@@ -143,8 +143,8 @@ export function LoadoutPage(props) {
           />
         )}
         <Section
+          fitted
           title="&nbsp;"
-          align="center"
           buttons={
             <Input
               width="200px"
@@ -177,7 +177,7 @@ export function LoadoutPage(props) {
           </Tabs>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <LoadoutTabs
           loadout_tabs={loadout_tabs}
           currentTab={selectedTabName}
@@ -217,7 +217,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
   // BUBBER EDIT END
 
   return (
-    <Stack fill height="550px">
+    <Stack fill>
       <Stack.Item align="center" width="250px" height="100%">
         <Stack vertical fill>
           <Stack.Item
@@ -401,7 +401,7 @@ function LoadoutSelectedSection(props: LoadoutSelectedSectionProps) {
 
   return (
     <Section
-      title="&nbsp;"
+      title="Selected Items"
       scrollable
       fill
       buttons={
@@ -439,17 +439,18 @@ function LoadoutPreviewSection() {
   return (
     <Section
       fill
-      // BUBBER EDIT REMOVAL: Better loadout pref
-      // title="&nbsp;"
+      // BUBBER EDIT REMOVAL BEGIN - Better loadout pref
+      // title="Preview"
       // buttons={
-      //   <Button.Checkbox
-      //     align="center"
-      //     checked={data.job_clothes}
-      //     onClick={() => act('toggle_job_clothes')}
-      //   >
-      //     Job Clothes
-      //   </Button.Checkbox>
+      //  <Button.Checkbox
+      //    align="center"
+      //    checked={data.job_clothes}
+      //    onClick={() => act('toggle_job_clothes')}
+      //  >
+      //    Job Clothes
+      //  </Button.Checkbox>
       // }
+      // BUBBER EDIT REMOVAL END - Better loadout pref
     >
       <Stack vertical fill>
         <Stack.Item grow align="center">
