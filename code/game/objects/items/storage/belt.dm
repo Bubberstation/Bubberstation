@@ -699,6 +699,14 @@
 	. = ..()
 	atom_storage.max_slots = 6
 	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL // Set to this so the  light replacer can fit.
+	// BUBBER EDIT BEGIN - Trash bag on da belt
+	var/static/list/exception_cache = typecacheof(list(
+		/obj/item/storage/bag/trash,
+	))
+	atom_storage.exception_hold = exception_cache
+	atom_storage.exception_max = 1
+	atom_storage.allow_big_nesting = TRUE
+	// BUBBER EDIT END - Trash bag on da belt
 	atom_storage.set_holdable(list(
 		/obj/item/access_key,
 		/obj/item/assembly/mousetrap,
