@@ -117,7 +117,5 @@ Assistant
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
 	if (target.jumpsuit_style == PREF_SUIT)
 		uniform = /obj/item/clothing/under/color/grey
-	else if (target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
 	else
 		uniform = /obj/item/clothing/under/color/jumpskirt/grey
