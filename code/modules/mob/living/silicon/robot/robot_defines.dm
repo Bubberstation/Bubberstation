@@ -9,12 +9,14 @@
 	real_name = "Cyborg"
 	icon = 'icons/mob/silicon/robots.dmi' //SKYRAT EDIT - Modified in modular_skyrat\modules\altborgs\code\robot_defines.dm (to allow for custom transformation animations)
 	icon_state = "robot"
-	maxHealth = 100
-	health = 100
+	maxHealth = 135 // Bubber Edit
+	health = 135 // Bubber Edit
 	bubble_icon = "robot"
 	designation = "Default" //used for displaying the prefix & getting the current model of cyborg
 	has_limbs = TRUE
 	hud_type = /datum/hud/robot
+	unique_name = TRUE
+	mouse_drop_zone = TRUE
 
 	///Represents the cyborg's model (engineering, medical, etc.)
 	var/obj/item/robot_model/model = null
@@ -110,8 +112,6 @@
 	var/ai_lockdown = FALSE
 	///Timer that allows the borg to self-unlock after a set amount of time
 	var/lockdown_timer = null
-	///Random serial number generated for each cyborg upon its initialization
-	var/ident = 0
 	var/locked = TRUE
 	req_one_access = list(ACCESS_ROBOTICS)
 
@@ -142,8 +142,6 @@
 	var/obj/item/hat
 	var/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
 
-	///What types of mobs are allowed to ride/buckle to this mob
-	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

@@ -18004,7 +18004,6 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/storage/medkit/regular,
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron/dark,
@@ -27596,6 +27595,7 @@
 	},
 /obj/item/crowbar/red,
 /obj/item/clothing/mask/gas,
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "iWm" = (
@@ -27848,6 +27848,7 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "jas" = (
@@ -37657,6 +37658,8 @@
 	dir = 8
 	},
 /obj/item/storage/box/bandages,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "mlB" = (
@@ -47729,11 +47732,11 @@
 /obj/structure/closet/crate/freezer{
 	name = "organ storage"
 	},
-/obj/item/organ/external/tail/cat,
-/obj/item/organ/external/tail/cat,
-/obj/item/organ/internal/ears/cat,
-/obj/item/organ/internal/ears/cat,
-/obj/item/organ/internal/heart,
+/obj/item/organ/tail/cat,
+/obj/item/organ/tail/cat,
+/obj/item/organ/ears/cat,
+/obj/item/organ/ears/cat,
+/obj/item/organ/heart,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
@@ -47784,6 +47787,7 @@
 	},
 /obj/structure/curtain,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "pJs" = (
@@ -47964,7 +47968,7 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/vomit/old,
 /obj/structure/sign/poster/contraband/random/directional/north,
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/mob/living/basic/goose/vomit,
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
@@ -48811,9 +48815,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "qaR" = (
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall,
-/area/station/medical/paramedic)
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/machinery/incident_display/disease/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/medical/medbay/central)
 "qaZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/mix_output{
 	dir = 1
@@ -50904,7 +50912,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "qOv" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
@@ -62278,7 +62285,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/aquarium/lawyer,
+/obj/item/fish_tank/lawyer,
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
 "unS" = (
@@ -94032,7 +94039,7 @@ bXe
 huR
 bXe
 gsy
-srg
+qaR
 uZT
 gKd
 pMj
@@ -96858,7 +96865,7 @@ dkh
 oiq
 giH
 uVJ
-qaR
+xvW
 jam
 fgy
 qht

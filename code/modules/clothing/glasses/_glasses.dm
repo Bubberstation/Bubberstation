@@ -53,7 +53,7 @@
 /obj/item/clothing/glasses/proc/thermal_overload()
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
-		var/obj/item/organ/internal/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(!H.is_blind())
 			if(H.glasses == src)
 				to_chat(H, span_danger("[src] overloads and blinds you!"))
@@ -129,10 +129,6 @@
 /datum/armor/glasses_science
 	fire = 80
 	acid = 100
-
-/obj/item/clothing/glasses/science/item_action_slot_check(slot)
-	if(slot & ITEM_SLOT_EYES)
-		return 1
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -379,7 +375,6 @@
 /obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	add_glasses_slapcraft_component()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -1)
 
 /obj/item/clothing/glasses/sunglasses/proc/add_glasses_slapcraft_component()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/hudsunsec, /datum/crafting_recipe/hudsunmed, /datum/crafting_recipe/hudsundiag, /datum/crafting_recipe/scienceglasses)
@@ -444,6 +439,12 @@
 	inhand_icon_state = "gar"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
+/obj/item/clothing/glasses/sunglasses/noir
+	name = "noir glasses"
+	desc = "A pair of sleek, futuristic glasses that allow the wearer to see the world in a different light."
+	glass_colour_type = /datum/client_colour/monochrome
+	forced_glass_color =  TRUE
+
 ///Syndicate item that upgrades the flash protection of your eyes.
 /obj/item/syndicate_contacts
 	name = "suspicious contact lens case"
@@ -457,7 +458,7 @@
 	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You have no eyes to apply the contacts to!"))
 		return
-	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 
 	to_chat(user, span_notice("You begin applying the contact lenses to your eyes..."))
 	if(!do_after(user, 3 SECONDS, src))
@@ -554,10 +555,6 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	flags_cover = GLASSESCOVERSEYES
 	glass_colour_type = /datum/client_colour/glass_colour/red
-
-/obj/item/clothing/glasses/thermal/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	. = ..()

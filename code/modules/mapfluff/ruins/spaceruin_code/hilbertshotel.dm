@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -25,6 +25,10 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
 	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
 	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
+	var/datum/map_template/ghost_cafe_rooms/corporateoffice/ghost_cafe_rooms_corporateoffice
+	var/datum/map_template/ghost_cafe_rooms/recwing/ghost_cafe_rooms_recwing
+	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
+	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -56,6 +60,10 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_winterwoods = new()
 	ghost_cafe_rooms_evacuationstation = new()
 	ghost_cafe_rooms_prisoninfdorm = new()
+	ghost_cafe_rooms_corporateoffice = new()
+	ghost_cafe_rooms_recwing = new()
+	ghost_cafe_rooms_grotto = new()
+	ghost_cafe_rooms_grotto2 = new()
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -222,6 +230,18 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	else if(chosen_room == "Prison")
 		load_from = ghost_cafe_rooms_prisoninfdorm
+
+	else if(chosen_room == "Corporate Office")
+		load_from = ghost_cafe_rooms_corporateoffice
+
+	else if(chosen_room == "Recovery Wing")
+		load_from = ghost_cafe_rooms_recwing
+
+	else if(chosen_room == "Grotto")
+		load_from = ghost_cafe_rooms_grotto
+
+	else if(chosen_room == "Grotto (Night)")
+		load_from = ghost_cafe_rooms_grotto2
 
 	//BUBBER EDIT END
 
@@ -457,7 +477,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
-	has_gravity = TRUE
+	default_gravity = STANDARD_GRAVITY
 	area_flags = NOTELEPORT | HIDDEN_AREA
 	static_lighting = TRUE
 	/* 	SKYRAT EDIT REMOVAL - GHOST HOTEL UPDATE
@@ -550,7 +570,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
 	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
-	has_gravity = TRUE
+	default_gravity = STANDARD_GRAVITY
 
 
 /obj/item/abstracthotelstorage
@@ -593,25 +613,25 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	worn_icon_state = "analyzer"
 
 /obj/item/analyzer/hilbertsanalyzer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(istype(interacting_with, /obj/item/hilbertshotel))
-		if(!Adjacent(interacting_with))
-			to_chat(user, span_warning("It's to far away to scan!"))
-			return ITEM_INTERACT_BLOCKING
-		var/obj/item/hilbertshotel/sphere = interacting_with
-		if(sphere.activeRooms.len)
-			to_chat(user, "Currently Occupied Rooms:")
-			for(var/roomnumber in sphere.activeRooms)
-				to_chat(user, roomnumber)
-		else
-			to_chat(user, "No currenty occupied rooms.")
-		if(sphere.storedRooms.len)
-			to_chat(user, "Vacated Rooms:")
-			for(var/roomnumber in sphere.storedRooms)
-				to_chat(user, roomnumber)
-		else
-			to_chat(user, "No vacated rooms.")
-		return ITEM_INTERACT_SUCCESS
-	return ..()
+	if(!istype(interacting_with, /obj/item/hilbertshotel))
+		return ..()
+	if(!user.CanReach(interacting_with))
+		to_chat(user, span_warning("It's to far away to scan!"))
+		return ITEM_INTERACT_BLOCKING
+	var/obj/item/hilbertshotel/sphere = interacting_with
+	if(sphere.activeRooms.len)
+		to_chat(user, "Currently Occupied Rooms:")
+		for(var/roomnumber in sphere.activeRooms)
+			to_chat(user, roomnumber)
+	else
+		to_chat(user, "No currenty occupied rooms.")
+	if(sphere.storedRooms.len)
+		to_chat(user, "Vacated Rooms:")
+		for(var/roomnumber in sphere.storedRooms)
+			to_chat(user, roomnumber)
+	else
+		to_chat(user, "No vacated rooms.")
+	return ITEM_INTERACT_SUCCESS
 
 /obj/effect/landmark/transport/transport_id/hilbert
 	specific_transport_id = HILBERT_LINE_1
@@ -657,9 +677,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	id_trim = /datum/id_trim/away/hilbert
 
-/datum/outfit/doctorhilbert/pre_equip(mob/living/carbon/human/hilbert, visualsOnly)
+/datum/outfit/doctorhilbert/pre_equip(mob/living/carbon/human/hilbert, visuals_only)
 	. = ..()
-	if(!visualsOnly)
+	if(!visuals_only)
 		hilbert.gender = MALE
 		hilbert.update_body()
 
@@ -776,6 +796,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 /obj/machinery/porta_turret/syndicate/teleport
 	name = "displacement turret"
 	desc = "A ballistic machine gun auto-turret that fires bluespace bullets."
-	lethal_projectile = /obj/projectile/magic/teleport
-	stun_projectile = /obj/projectile/magic/teleport
+	lethal_projectile = /obj/projectile/magic/teleport/bluespace
+	stun_projectile = /obj/projectile/magic/teleport/bluespace
 	faction = list(FACTION_TURRET)
+
+/obj/projectile/magic/teleport/bluespace
+	antimagic_flags = NONE

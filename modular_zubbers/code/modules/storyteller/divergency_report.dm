@@ -26,7 +26,7 @@
  *
  * Returns a formatted string all station goals that are available to the station.
  */
-/datum/controller/subsystem/gamemode/proc/generate_station_goal_report(var/list/station_goals)
+/datum/controller/subsystem/gamemode/proc/generate_station_goal_report(list/station_goals)
 	. = "<hr><b>Special Orders for [station_name()]:</b><BR>"
 	var/list/goal_reports = list()
 	for(var/datum/station_goal/station_goal as anything in station_goals)
