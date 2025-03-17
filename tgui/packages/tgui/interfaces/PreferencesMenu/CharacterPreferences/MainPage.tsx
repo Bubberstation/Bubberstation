@@ -670,6 +670,20 @@ export function MainPage(props: MainPageProps) {
             </Stack.Item>
             {/* BUBBER EDIT ADDITION END: Preview Selection */}
 
+            {/* BUBBER EDIT ADDITION START: Background Selection */}
+            <Stack.Item position="relative">
+              <SideDropdown
+                width="100%"
+                selected={data.character_preferences.misc.background_state}
+                options={serverData?.background_state.choices || []}
+                onSelected={(value) =>
+                  act('update_background', {
+                    new_background: value,
+                  })
+                }
+              />
+            </Stack.Item>
+            {/* BUBBER EDIT ADDITION END: Background Selection */}
             <Stack.Item height="545px">
               <CharacterPreview
                 height="100%"
