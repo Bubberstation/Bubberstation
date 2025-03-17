@@ -24,12 +24,10 @@ export const ServerPrefs = createContext<ServerData | undefined>({
   },
   species: {},
   background_state: {
+    /* BUBBER EDIT ADDITION: Background Selection - LINES 26 - 29 */
     choices: [],
   },
 });
-{
-  /* BUBBER EDIT ADDITION LINES 26 - 28 */
-}
 export function useServerPrefs() {
   return useContext(ServerPrefs);
 }

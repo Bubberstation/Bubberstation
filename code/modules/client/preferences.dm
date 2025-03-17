@@ -316,9 +316,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character_preview_view.update_body()
 			return TRUE
 
+		//BUBBER EDIT ADDITION START: Background Selection
 		if("update_background")
 			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
 			return TRUE
+		//BUBBER EDIT ADDITION END: Background Selection
 
 		if ("open_food")
 			GLOB.food_prefs_menu.ui_interact(usr)

@@ -696,7 +696,7 @@ export function MainPage(props: MainPageProps) {
               <CharacterPreview
                 height="100%"
                 id={data.character_preview_view}
-              />{' '}
+              />
             </Stack.Item>
 
             <Stack.Item position="relative">
