@@ -27916,7 +27916,6 @@
 	dir = 9
 	},
 /obj/structure/hedge,
-/obj/machinery/status_display/evac/directional/east,
 /obj/machinery/firealarm/directional/south,
 /obj/structure/sign/directions/science/directional/east{
 	pixel_y = -24
@@ -34326,7 +34325,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/newscaster/directional/north,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "jts" = (
@@ -42259,15 +42258,9 @@
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
 "lDV" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/arrow_ccw{
-	dir = 1
-	},
-/obj/structure/sign/warning/no_smoking/directional/north,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
+/obj/machinery/incident_display/disease,
+/turf/closed/wall,
+/area/station/medical/medbay/lobby)
 "lEf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -49143,10 +49136,16 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "nyl" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/starboard)
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/incident_display/disease/directional/north,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "nyo" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
@@ -50907,6 +50906,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/starboard)
 "nZr" = (
@@ -58972,7 +58972,6 @@
 	name = "Desk Shutters";
 	dir = 8
 	},
-/obj/structure/sign/warning/no_smoking/directional/north,
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -64112,7 +64111,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/machinery/status_display/evac/directional/east,
 /obj/machinery/firealarm/directional/north,
 /obj/structure/sign/directions/security/directional/north{
 	pixel_x = 32;
@@ -82780,6 +82778,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -254151,7 +254150,7 @@ rpt
 wQT
 jjc
 aCB
-hfe
+lDV
 hfe
 dac
 dac
@@ -254407,7 +254406,7 @@ bYQ
 trj
 lxZ
 sbo
-nyl
+xUZ
 hfe
 cAV
 nFM
@@ -258785,7 +258784,7 @@ arh
 fxD
 fVk
 rlX
-mMG
+hPq
 fgf
 sNI
 oFu
@@ -258796,7 +258795,7 @@ oIv
 ovV
 sIP
 jXJ
-vlE
+nyl
 mYn
 dba
 cDk
@@ -259053,7 +259052,7 @@ uiz
 nUu
 xwk
 jXJ
-dkG
+dHp
 rCm
 kOs
 eCp
@@ -259310,7 +259309,7 @@ feK
 xNX
 qNp
 qNp
-lDV
+dkG
 hSn
 msA
 sBa

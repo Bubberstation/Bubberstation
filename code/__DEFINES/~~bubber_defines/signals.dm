@@ -8,3 +8,5 @@
 #define COMSIG_ORGAN_BODYPART_REMOVED "organ_bodypart_removed"
 /// From /datum/controller/subsystem/economy/proc/issue_paydays()
 #define COMSIG_ON_BANK_ACCOUNT_PAYOUT "bank_account_payout"
+/// From modular_zubbers/code/modules/disease/disease_transmission.dm
+#define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
