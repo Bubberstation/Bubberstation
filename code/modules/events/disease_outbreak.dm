@@ -134,6 +134,7 @@
 			/datum/disease/flu,
 			/datum/disease/fluspanish,
 			/datum/disease/magnitis,
+			/datum/disease/weightlessness,
 			/// And here are some that will never roll for real, just to mess around.
 			/datum/disease/death_sandwich_poisoning,
 			/datum/disease/dna_retrovirus,
@@ -161,7 +162,7 @@
 		//virus_candidates += list(/datum/disease/beesease, /datum/disease/brainrot, /datum/disease/fluspanish) // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 
 		//The wacky ones
-		virus_candidates += list(/datum/disease/magnitis, /datum/disease/anxiety, /datum/disease/beesease) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
+		virus_candidates += list(/datum/disease/magnitis, /datum/disease/anxiety, /datum/disease/weightlessness)
 
 		//The rest of the diseases either aren't conventional "diseases" or are too unique/extreme to be considered for a normal event
 		virus_type = pick(virus_candidates)

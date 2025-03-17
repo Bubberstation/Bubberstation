@@ -13,9 +13,6 @@
 
 // ARMAMENT ENTRIES
 
-#define ARMAMENT_CATEGORY_OTHER "Miscellaneous"
-#define ARMAMENT_CATEGORY_OTHER_LIMIT 3
-
 /datum/armament_entry/assault_operatives
 	var/mags_to_spawn = 3
 
