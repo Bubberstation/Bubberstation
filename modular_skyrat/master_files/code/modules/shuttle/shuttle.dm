@@ -31,7 +31,7 @@
 			if(hearing_mob?.client)
 				var/dist = get_dist(hearing_mob.loc, distant_source.loc)
 				var/vol = clamp(50 - ((dist - 7) * 5), 10, 50) // Every tile decreases sound volume by 5
-				var/volume_multiplier = hearing_mob.client?.prefs.read_preference(/datum/preference/numeric/sound_ambience_volume)
+				var/volume_multiplier = hearing_mob.client?.prefs.read_preference(/datum/preference/numeric/volume/sound_ambience_volume)
 				if(!volume_multiplier)
 					return
 				if(takeoff)

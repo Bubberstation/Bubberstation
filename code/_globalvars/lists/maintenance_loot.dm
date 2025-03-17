@@ -263,6 +263,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/computer_disk/maintenance/modsuit_control = 1,
 		/obj/item/computer_disk/maintenance/spectre_meter = 1,
 		/obj/item/computer_disk/maintenance/arcade = 1,
+		/obj/item/disk/design_disk/liberator = 1,
 		/obj/item/computer_disk/maintenance/theme = 3,
 	) = 3, //SKYRAT EDIT CHANGE - Original : 4
 
@@ -310,6 +311,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/weldingtool/hugetank = 1,
 		/obj/item/fishing_rod/telescopic/master = 1,
 		/obj/item/spess_knife = 1,
+		/obj/item/gun/ballistic/automatic/pistol/doorhickey = 1,
 		) = 1,
 
 	list(//equipment

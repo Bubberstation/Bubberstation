@@ -47,9 +47,15 @@
 // Color priorities for bodyparts
 #define LIMB_COLOR_HULK 10
 #define LIMB_COLOR_CARP_INFUSION 20
+#define LIMB_COLOR_CS_SOURCE_SUICIDE 30
 /// Base priority for atom colors, gets atom priorities added to it
-#define LIMB_COLOR_ATOM_COLOR 30
+#define LIMB_COLOR_ATOM_COLOR 40
 /// Voidwalker effect color priority
-#define LIMB_COLOR_VOIDWALKER_CURSE 40
+#define LIMB_COLOR_VOIDWALKER_CURSE 50
 
 #define LIMB_COLOR_SYNTH 100 // BUBBER EDIT - High priority
+
+// Overlay priorities
+#define BODYPART_OVERLAY_CARP_INFUSION 1
+#define BODYPART_OVERLAY_CSS_SUICIDE 2
+#define BODYPART_OVERLAY_VOIDWALKER_CURSE 3

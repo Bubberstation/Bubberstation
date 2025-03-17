@@ -124,8 +124,8 @@
 			hair_overlay.pixel_y = hair_sprite_accessory.y_offset
 			// SKYRAT EDIT ADDITION - Species hair offset
 			if(LAZYFIND(owner?.dna?.species?.offset_features, OFFSET_HAIR))
-				hair_overlay.pixel_x += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
-				hair_overlay.pixel_y += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
+				hair_overlay.pixel_w += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
+				hair_overlay.pixel_z += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
 			// SKYRAT EDIT ADDITION END
 			//Emissive blocker
 			if(blocks_emissive != EMISSIVE_BLOCK_NONE)
@@ -141,8 +141,8 @@
 				hair_gradient_overlay.pixel_y = hair_sprite_accessory.y_offset
 				// SKYRAT EDIT ADDITION - Species hair offset
 				if(LAZYFIND(owner?.dna?.species?.offset_features, OFFSET_HAIR))
-					hair_gradient_overlay.pixel_x += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
-					hair_gradient_overlay.pixel_y += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
+					hair_gradient_overlay.pixel_w += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
+					hair_gradient_overlay.pixel_z += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
 				// SKYRAT EDIT ADDITION END
 				. += hair_gradient_overlay
 

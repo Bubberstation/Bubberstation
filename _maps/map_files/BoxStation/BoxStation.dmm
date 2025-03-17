@@ -6738,6 +6738,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"aHb" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/incident_display/disease/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "aHd" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -20978,6 +20986,7 @@
 	c_tag = "Medbay Storage";
 	network = list("ss13","medbay")
 	},
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bEi" = (
@@ -33263,6 +33272,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "cQt" = (
@@ -43397,6 +43407,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "jij" = (
@@ -46328,12 +46339,6 @@
 /obj/structure/chair/sofa/bench/left,
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/service)
-"kPj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/station/engineering/supermatter)
 "kPm" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/tlv_no_checks,
@@ -48578,8 +48583,15 @@
 /turf/open/floor/engine,
 /area/station/science/explab)
 "msc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
 /obj/structure/sign/warning/no_smoking/circle/directional/east,
-/turf/closed/wall,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "msK" = (
 /obj/machinery/camera{
@@ -96815,7 +96827,7 @@ cqj
 cSG
 crb
 cru
-kPj
+cEx
 cEx
 cEx
 cAP
@@ -104464,7 +104476,7 @@ bai
 aJC
 bcr
 iKz
-bet
+aHb
 bfH
 yiT
 jsN
@@ -104472,7 +104484,7 @@ pnL
 bln
 hHU
 boj
-msc
+bof
 jib
 bsx
 jsH
@@ -104987,7 +104999,7 @@ sjV
 bmR
 pkL
 bES
-uGy
+msc
 pnW
 jsH
 odp
