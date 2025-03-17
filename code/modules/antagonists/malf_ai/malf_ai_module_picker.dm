@@ -91,6 +91,7 @@
 		return
 	//Bubber edit begin - nuke station easier to bus
 	if(istype(AM, /datum/ai_module/malf/destructive/nuke_station) && !AI.can_purchase_nuke)
+		to_chat(AI, span_warning("Unable to purchase Nuke Station, contact your employer for assistance!"))
 		return
 	//Bubber edit end
 	if(!AI || AI.stat == DEAD)
