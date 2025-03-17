@@ -64,7 +64,7 @@
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	value = value && preferences && is_allowed(preferences)
 
-	var/obj/item/organ/internal/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/internal/eyes)
+	var/obj/item/organ/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/eyes)
 	target.emissive_eyes = value
 	if (istype(eyes_organ))
 		eyes_organ.is_emissive = value
@@ -478,6 +478,15 @@
 /datum/preference/choiced/mutant_choice/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
+/datum/preference/choiced/mutant_choice/ipc_screen/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
+
 /datum/preference/choiced/mutant_choice/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER"
 
@@ -557,6 +566,15 @@
 /datum/preference/choiced/mutant_choice/synth_chassis/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
+/datum/preference/choiced/mutant_choice/synth_chassis/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
+
 /datum/preference/choiced/mutant_choice/synth_chassis/compile_constant_data()
 	var/list/data = ..()
 
@@ -590,6 +608,15 @@
 
 /datum/preference/choiced/mutant_choice/synth_head/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/synth_head/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/synth_head/compile_constant_data()
 	var/list/data = ..()
@@ -828,33 +855,35 @@
 	should_generate_icons = TRUE
 	generate_icons = TRUE
 
-/datum/preference/choiced/mutant_choice/pod_hair/init_possible_values()
-	var/list/values = list()
+/datum/preference/choiced/mutant_choice/pod_hair/icon_for(value)
+	var/datum/sprite_accessory/pod_hair/pod_hair = SSaccessories.sprite_accessories[relevant_mutant_bodypart][value]
+	if(!pod_hair.icon_state || LOWER_TEXT(pod_hair.icon_state) == "none")
+		return uni_icon('icons/mob/landmarks.dmi', "x")
 
-	var/icon/pod_head = icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
-	pod_head.Blend(COLOR_GREEN, ICON_MULTIPLY)
+	var/datum/universal_icon/pod_head = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
+	pod_head.blend_color(COLOR_GREEN, ICON_MULTIPLY)
 
-	for (var/pod_name in SSaccessories.pod_hair_list)
-		var/datum/sprite_accessory/pod_hair/pod_hair = SSaccessories.pod_hair_list[pod_name]
-		if(pod_hair.locked)
-			continue
-
-		var/icon/icon_with_hair = new(pod_head)
-		var/icon/icon_adj = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
-		var/icon/icon_front = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
-		icon_front.Blend(COLOR_MAGENTA, ICON_MULTIPLY)
-		icon_adj.Blend(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
-		icon_adj.Blend(icon_front, ICON_OVERLAY)
-		icon_with_hair.Blend(icon_adj, ICON_OVERLAY)
-		icon_with_hair.Scale(64, 64)
-		icon_with_hair.Crop(15, 64, 15 + 31, 64 - 31)
-
-		values[pod_hair.name] = icon_with_hair
-
-	return values
+	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER_HAIR")
+	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+	icon_front.blend_color(COLOR_MAGENTA, ICON_MULTIPLY)
+	icon_adj.blend_color(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
+	icon_adj.blend_icon(icon_front, ICON_OVERLAY)
+	pod_head.blend_icon(icon_adj, ICON_OVERLAY)
+	pod_head.scale(64, 64)
+	pod_head.crop(15, 64 - 31, 15 + 31, 64)
+	return pod_head
 
 /datum/preference/choiced/mutant_choice/pod_hair/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/pod_hair/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/pod_hair/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)

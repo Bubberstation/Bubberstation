@@ -5038,15 +5038,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/mmi/posibrain/sphere,
-/obj/item/mmi/posibrain/sphere,
-/obj/item/mmi/posibrain/sphere,
 /obj/machinery/vending/robotics{
 	pixel_y = 28;
 	density = 0;
 	all_products_free = 1
 	},
+/obj/effect/mob_spawn/ghost_role/robot/persistence,
+/obj/effect/mob_spawn/ghost_role/robot/persistence,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "py" = (
@@ -6699,7 +6697,7 @@
 /obj/structure/closet/crate/secure/syndicate/arc{
 	name = "Fish storage"
 	},
-/obj/item/fish_feed,
+/obj/item/reagent_containers/cup/fish_feed,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/storage/fish_case/syndicate/persistence,
 /obj/item/storage/fish_case/syndicate/persistence,
@@ -6862,7 +6860,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "uF" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/fish_feed,
+/obj/item/reagent_containers/cup/fish_feed,
 /obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
@@ -10522,6 +10520,7 @@
 "Fm" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/cell_charger_multi/wall_mounted/directional/west,
+/obj/item/mmi/posibrain/sphere,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Fn" = (
@@ -12853,7 +12852,6 @@
 /obj/item/paper/crumpled/retired_designs,
 /obj/item/paper/crumpled/rbmk2,
 /obj/item/paper/requisition,
-/obj/item/paper/dark_matteor_summoning,
 /obj/item/paper/default_lawset_list,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
@@ -15107,7 +15105,6 @@
 	},
 /obj/structure/noticeboard/directional/north,
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/paper/dark_matteor_summoning,
 /obj/item/paper/crumpled/muddy/fluff/cannon_instructions,
 /obj/item/paper/crumpled/retired_designs,
 /obj/item/paper/crumpled/plap,
@@ -16623,6 +16620,9 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/ecto_sniffer,
+/obj/item/borg/upgrade/transform/syndicatedauntless,
+/obj/item/borg/upgrade/transform/syndicatedauntless,
+/obj/item/borg/upgrade/transform/syndicatedauntless,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "XJ" = (

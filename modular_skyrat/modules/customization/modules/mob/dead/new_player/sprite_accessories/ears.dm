@@ -1,7 +1,7 @@
 /datum/sprite_accessory/ears
 	key = "ears"
 	generic = "Ears"
-	organ_type = /obj/item/organ/internal/ears/mutant
+	organ_type = /obj/item/organ/ears/mutant
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	color_src = USE_MATRIXED_COLORS
 	genetic = TRUE
@@ -42,7 +42,7 @@
 
 /datum/sprite_accessory/ears/mutant
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/ears.dmi'
-	organ_type = /obj/item/organ/internal/ears/mutant
+	organ_type = /obj/item/organ/ears/mutant
 	color_src = USE_MATRIXED_COLORS
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_HUMANOID, SPECIES_GHOUL)
 	uses_emissives = TRUE
