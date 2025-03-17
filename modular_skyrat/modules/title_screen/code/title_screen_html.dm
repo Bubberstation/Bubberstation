@@ -181,3 +181,5 @@ GLOBAL_LIST_EMPTY(startup_messages)
 	dat += "</body></html>"
 
 	return dat
+
+#undef MAX_STARTUP_MESSAGES

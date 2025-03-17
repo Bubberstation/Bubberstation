@@ -711,7 +711,7 @@
 	cube.color = COLOR_CYAN
 	cube.set_anchored(TRUE)
 	drinker.forceMove(cube)
-	cryostylane_alert = drinker.throw_alert("cryostylane_alert", /atom/movable/screen/alert/status_effect/freon/cryostylane)
+	cryostylane_alert = drinker.throw_alert("cryostylane_alert", /atom/movable/screen/alert/status_effect/freon/stasis)
 	cryostylane_alert.attached_effect = src //so the alert can reference us, if it needs to
 
 /datum/reagent/consumable/ethanol/blizzard_brew/on_mob_delete(mob/living/carbon/drinker, amount)

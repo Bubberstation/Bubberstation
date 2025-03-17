@@ -26,6 +26,8 @@
 	var/list/tile_reskin_types
 	/// Cached associative lazy list to hold the radial options for tile dirs. See tile_reskinning.dm for more information.
 	var/list/tile_rotate_dirs
+	/// tile_rotate_dirs but before it gets converted to text
+	var/list/tile_rotate_dirs_number
 
 /obj/item/stack/tile/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -35,6 +37,7 @@
 	if(tile_reskin_types)
 		tile_reskin_types = tile_reskin_list(tile_reskin_types)
 	if(tile_rotate_dirs)
+		tile_rotate_dirs_number = tile_rotate_dirs.Copy()
 		var/list/values = list()
 		for(var/set_dir in tile_rotate_dirs)
 			values += dir2text(set_dir)
@@ -96,6 +99,17 @@
 	turf_type = /turf/open/floor/grass
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/tile/grass
+
+//Hay
+/obj/item/stack/tile/hay
+	name = "hay tile"
+	singular_name = "hay floor tile"
+	desc = "Man, I'm so hungry I could eat a-"
+	icon_state = "tile_hay"
+	inhand_icon_state = "tile-hay"
+	turf_type = /turf/open/floor/hay
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/hay
 
 //Fairygrass
 /obj/item/stack/tile/fairygrass
@@ -1253,7 +1267,10 @@
 		/obj/item/stack/tile/catwalk_tile/iron_white,
 		/obj/item/stack/tile/catwalk_tile/iron_dark,
 		/obj/item/stack/tile/catwalk_tile/titanium,
-		/obj/item/stack/tile/catwalk_tile/iron_smooth //this is the original greenish one
+		/obj/item/stack/tile/catwalk_tile/iron_smooth, //this is the original greenish one
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/catwalk_tile/wood_smooth // You can already convert to Titanium, why not make wood?
+		// BUBBER EDIT END
 	)
 
 /obj/item/stack/tile/catwalk_tile/sixty
