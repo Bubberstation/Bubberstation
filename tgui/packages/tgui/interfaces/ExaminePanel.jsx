@@ -144,7 +144,7 @@ export const ExaminePanel = () => {
                   </>
                 )}
               </Stack.Item>
-              <Stack.Item grow>
+              <Stack.Item>
                 <Tabs fluid>
                   <Tabs.Tab
                     selected={tabIndex === 1}
