@@ -181,7 +181,6 @@ SUBSYSTEM_DEF(gamemode)
 
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
-
 	if(!resumed)
 		src.currentrun = running.Copy()
 
