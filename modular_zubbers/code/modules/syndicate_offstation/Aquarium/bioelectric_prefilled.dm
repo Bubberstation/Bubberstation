@@ -2,7 +2,6 @@
 
 /obj/structure/aquarium/bioelec_gen/prefilled
 	anchored = TRUE
-	reproduction_and_growth = TRUE
 
 /obj/structure/aquarium/bioelec_gen/prefilled/Initialize(mapload)
 	. = ..()
@@ -19,6 +18,7 @@
 	stable_population = 4
 	random_case_rarity = FISH_RARITY_NOPE
 	fish_flags = parent_type::fish_flags & ~FISH_FLAG_SHOW_IN_CATALOG
+	fish_id_redirect_path = /obj/item/fish/jumpercable
 	beauty = FISH_BEAUTY_GOOD
 	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 

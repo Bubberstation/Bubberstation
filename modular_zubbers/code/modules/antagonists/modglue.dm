@@ -108,3 +108,7 @@
 	thing.screen_loc = null
 	if(thing.maptext)
 		thing.maptext = ""
+
+#undef PULL_SUIT
+#undef IGNORE_SUIT
+#undef DUMP_CONTENTS

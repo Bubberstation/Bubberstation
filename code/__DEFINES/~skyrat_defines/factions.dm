@@ -12,3 +12,12 @@
 #define FACTION_CLOCK "clock"
 
 #define FACTION_RAIDER "raider"
+
+// Tarkon faction
+#define FACTION_TARKON "tarkon"
+
+// Ruin Turret faction
+#define FACTION_MALF_TURRET "malf-turret"
+
+// Decay subsystem nest faction
+#define NEST_FACTION "nest spawned"
