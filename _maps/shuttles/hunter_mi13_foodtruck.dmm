@@ -13,12 +13,6 @@
 	},
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
-"af" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/spawner/surgery_tray/full,
-/obj/structure/sign/poster/contraband/hacking_guide/directional/south,
-/turf/open/floor/circuit/red/off,
-/area/shuttle/hunter/mi13_foodtruck)
 "ag" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/structure/cable/layer1,
@@ -97,17 +91,6 @@
 "dB" = (
 /obj/machinery/vending/clothing,
 /obj/structure/sign/poster/official/high_class_martini/directional/north,
-/turf/open/floor/circuit/red/off,
-/area/shuttle/hunter/mi13_foodtruck)
-"dC" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/binoculars{
-	pixel_y = 10
-	},
-/obj/item/storage/box/zipties{
-	pixel_y = -4;
-	pixel_x = 4
-	},
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "dJ" = (
@@ -204,10 +187,6 @@
 	pixel_y = 2
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/hunter/mi13_foodtruck)
-"hB" = (
-/obj/machinery/power/shuttle_engine/propulsion/left,
-/turf/template_noop,
 /area/shuttle/hunter/mi13_foodtruck)
 "iO" = (
 /obj/structure/noticeboard/directional/north,
@@ -336,6 +315,17 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/hunter/mi13_foodtruck)
+"pj" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/binoculars{
+	pixel_y = 10
+	},
+/obj/item/storage/box/zipties{
+	pixel_y = -4;
+	pixel_x = 4
+	},
+/turf/open/floor/circuit/red/off,
+/area/shuttle/hunter/mi13_foodtruck)
 "pQ" = (
 /obj/structure/cable/layer1,
 /obj/machinery/computer/shuttle/hunter{
@@ -357,6 +347,12 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/hunter/mi13_foodtruck)
+"rK" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/spawner/surgery_tray/full,
+/obj/structure/sign/poster/contraband/hacking_guide/directional/south,
+/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "sN" = (
 /obj/structure/table/reinforced,
@@ -544,10 +540,6 @@
 /obj/machinery/computer/crew/syndie,
 /turf/open/floor/circuit/red,
 /area/shuttle/hunter/mi13_foodtruck)
-"Cq" = (
-/obj/machinery/power/shuttle_engine/propulsion/right,
-/turf/template_noop,
-/area/shuttle/hunter/mi13_foodtruck)
 "CF" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/stripes{
@@ -702,6 +694,10 @@
 /obj/item/pinpointer/shuttle,
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
+"Td" = (
+/obj/machinery/power/shuttle_engine/propulsion/left,
+/turf/template_noop,
+/area/shuttle/hunter/mi13_foodtruck)
 "UF" = (
 /obj/machinery/door/airlock/external{
 	name = "Fire Escape";
@@ -713,6 +709,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter/mi13_foodtruck)
+"Wt" = (
+/obj/machinery/power/shuttle_engine/propulsion/right,
+/turf/template_noop,
 /area/shuttle/hunter/mi13_foodtruck)
 "Xc" = (
 /obj/effect/turf_decal/arrows{
@@ -816,7 +816,7 @@ pZ
 nh
 ku
 aj
-hB
+Td
 "}
 (4,1,1) = {"
 cm
@@ -833,7 +833,7 @@ jc
 kv
 ku
 aj
-Cq
+Wt
 "}
 (5,1,1) = {"
 Ev
@@ -935,7 +935,7 @@ Ay
 tW
 ku
 aj
-hB
+Td
 "}
 (11,1,1) = {"
 Pq
@@ -952,7 +952,7 @@ pU
 ab
 ku
 aj
-Cq
+Wt
 "}
 (12,1,1) = {"
 Pq
@@ -964,9 +964,9 @@ ku
 lX
 KV
 Yi
-dC
+pj
 kj
-af
+rK
 ku
 IG
 Pq

@@ -88,6 +88,13 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/ruin/comms_agent/maint)
+"gp" = (
+/obj/modular_map_root/syndicatebase{
+	key = "commsoffice";
+	config_file = "strings/modular_maps/syndicatebaseice.toml"
+	},
+/turf/open/space/basic,
+/area/ruin/comms_agent)
 "gt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/carpet,
@@ -246,9 +253,6 @@
 "nP" = (
 /turf/closed/wall/r_wall,
 /area/ruin/comms_agent)
-"nQ" = (
-/turf/open/space/basic,
-/area/ruin/comms_agent)
 "od" = (
 /obj/machinery/oven/range,
 /turf/open/floor/iron/white,
@@ -406,6 +410,9 @@
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
+/area/ruin/comms_agent)
+"xJ" = (
+/turf/open/space/basic,
 /area/ruin/comms_agent)
 "yD" = (
 /obj/machinery/door/airlock/external/ruin,
@@ -864,13 +871,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
-/area/ruin/comms_agent)
-"Su" = (
-/obj/modular_map_root/syndicatebase{
-	key = "commsoffice";
-	config_file = "strings/modular_maps/syndicatebaseice.toml"
-	},
-/turf/open/space/basic,
 /area/ruin/comms_agent)
 "Tp" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -2305,11 +2305,11 @@ QT
 jB
 Sc
 Jh
-Su
-nQ
-nQ
-nQ
-nQ
+gp
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 MH
@@ -2362,11 +2362,11 @@ kL
 Sc
 Tp
 Gq
-nQ
-nQ
-nQ
-nQ
-nQ
+xJ
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 MH
@@ -2419,11 +2419,11 @@ FZ
 zi
 in
 bt
-nQ
-nQ
-nQ
-nQ
-nQ
+xJ
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 sB
@@ -2476,11 +2476,11 @@ Qn
 up
 in
 ag
-nQ
-nQ
-nQ
-nQ
-nQ
+xJ
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 OM
@@ -2533,11 +2533,11 @@ nP
 dP
 tu
 kL
-nQ
-nQ
-nQ
-nQ
-nQ
+xJ
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 OM
@@ -2590,11 +2590,11 @@ nP
 nP
 nP
 Xk
-nQ
-nQ
-nQ
-nQ
-nQ
+xJ
+xJ
+xJ
+xJ
+xJ
 MH
 MH
 OM
