@@ -597,7 +597,7 @@
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS
 
-/datum/uplink_item/stealthy_weapons/romerol_kit
+/datum/uplink_item/stealthy_weapons/romerol_kit_nukies //bubber edit splitting between nukies and tots
 	name = "Romerol"
 	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. \
 		On death, these nodules take control of the dead body, causing limited revivification, \
@@ -606,7 +606,7 @@
 	cost = 25
 	population_minimum = TRAITOR_POPULATION_LOWPOP
 	progression_minimum = 30 MINUTES
-	purchasable_from = UPLINK_ALL_SYNDIE_OPS | UPLINK_TRAITORS // Don't give this to spies
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS // Don't give this to spies BUBBER EDIT - splitting between nukies and tots
 	cant_discount = TRUE
 
 // Modsuits
