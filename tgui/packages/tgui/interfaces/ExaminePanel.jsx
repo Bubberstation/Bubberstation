@@ -92,7 +92,7 @@ export const ExaminePanel = () => {
               />
             )}
             <Stack>
-              <Stack.Item width="30%">
+              <Stack.Item maxWidth="30%">
                 {!headshot ? (
                   <Section
                     fill
@@ -112,7 +112,7 @@ export const ExaminePanel = () => {
                 ) : (
                   <>
                     <Section
-                      height="310px"
+                      maxheight="310px"
                       title="Character Preview"
                       style={{ textAlign: 'center' }}
                     >
@@ -126,8 +126,9 @@ export const ExaminePanel = () => {
                         }}
                       />
                     </Section>
+
                     <Section
-                      height="310px"
+                      maxheight="310px"
                       title="Headshot"
                       style={{ textAlign: 'center' }}
                     >
@@ -145,132 +146,134 @@ export const ExaminePanel = () => {
                 )}
               </Stack.Item>
               <Stack.Item>
-                <Tabs fluid>
-                  <Tabs.Tab
-                    selected={tabIndex === 1}
-                    onClick={() => setTabIndex(1)}
-                  >
+                <Box height="610px" width="100%">
+                  <Tabs fluid>
+                    <Tabs.Tab
+                      selected={tabIndex === 1}
+                      onClick={() => setTabIndex(1)}
+                    >
+                      <Section
+                        fitted
+                        title={'Flavor Text'}
+                        style={{ textAlign: 'center' }}
+                      />
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === 2}
+                      onClick={() => setTabIndex(2)}
+                    >
+                      <Section
+                        fitted
+                        title={'NSFW (Warning)'}
+                        style={{ textAlign: 'center' }}
+                      />
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === 3}
+                      onClick={() => setTabIndex(3)}
+                    >
+                      <Section
+                        fitted
+                        title={
+                          custom_species ? custom_species : 'Unnamed Species'
+                        }
+                        style={{ textAlign: 'center' }}
+                      />
+                    </Tabs.Tab>
+                  </Tabs>
+                  {tabIndex === 1 && (
                     <Section
+                      style={{ 'overflow-y': 'scroll' }}
                       fitted
-                      title={'Flavor Text'}
-                      style={{ textAlign: 'center' }}
-                    />
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tabIndex === 2}
-                    onClick={() => setTabIndex(2)}
-                  >
+                      preserveWhitespace
+                      minHeight="50%"
+                      maxHeight="50%"
+                      fontSize="14px"
+                      lineHeight="1.7"
+                      textIndent="3em"
+                    >
+                      {formatURLs(flavor_text)}
+                    </Section>
+                  )}
+                  {tabIndex === 2 && (
                     <Section
+                      style={{ 'overflow-y': 'scroll' }}
                       fitted
-                      title={'NSFW (Warning)'}
-                      style={{ textAlign: 'center' }}
-                    />
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tabIndex === 3}
-                    onClick={() => setTabIndex(3)}
-                  >
+                      preserveWhitespace
+                      minHeight="50%"
+                      maxHeight="50%"
+                      fontSize="14px"
+                      lineHeight="1.7"
+                      textIndent="3em"
+                    >
+                      {formatURLs(flavor_text_nsfw)}
+                    </Section>
+                  )}
+                  {tabIndex === 3 && (
                     <Section
+                      style={{ 'overflow-y': 'scroll' }}
                       fitted
-                      title={
-                        custom_species ? custom_species : 'Unnamed Species'
-                      }
-                      style={{ textAlign: 'center' }}
-                    />
-                  </Tabs.Tab>
-                </Tabs>
-                {tabIndex === 1 && (
-                  <Section
-                    style={{ 'overflow-y': 'scroll' }}
-                    fitted
-                    preserveWhitespace
-                    minHeight="50%"
-                    maxHeight="50%"
-                    fontSize="14px"
-                    lineHeight="1.7"
-                    textIndent="3em"
-                  >
-                    {formatURLs(flavor_text)}
-                  </Section>
-                )}
-                {tabIndex === 2 && (
-                  <Section
-                    style={{ 'overflow-y': 'scroll' }}
-                    fitted
-                    preserveWhitespace
-                    minHeight="50%"
-                    maxHeight="50%"
-                    fontSize="14px"
-                    lineHeight="1.7"
-                    textIndent="3em"
-                  >
-                    {formatURLs(flavor_text_nsfw)}
-                  </Section>
-                )}
-                {tabIndex === 3 && (
-                  <Section
-                    style={{ 'overflow-y': 'scroll' }}
-                    fitted
-                    preserveWhitespace
-                    minHeight="50%"
-                    maxHeight="50%"
-                    fontSize="14px"
-                    lineHeight="1.7"
-                    textIndent="3em"
-                  >
-                    {custom_species
-                      ? formatURLs(custom_species_lore)
-                      : 'Just a normal space dweller.'}
-                  </Section>
-                )}
-                <Tabs fluid>
-                  <Tabs.Tab
-                    selected={lowerTabIndex === 1}
-                    onClick={() => setLowerTabIndex(1)}
-                  >
+                      preserveWhitespace
+                      minHeight="50%"
+                      maxHeight="50%"
+                      fontSize="14px"
+                      lineHeight="1.7"
+                      textIndent="3em"
+                    >
+                      {custom_species
+                        ? formatURLs(custom_species_lore)
+                        : 'Just a normal space dweller.'}
+                    </Section>
+                  )}
+                  <Tabs fluid>
+                    <Tabs.Tab
+                      selected={lowerTabIndex === 1}
+                      onClick={() => setLowerTabIndex(1)}
+                    >
+                      <Section
+                        fitted
+                        title={'OOC Notes'}
+                        style={{ textAlign: 'center' }}
+                      />
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={lowerTabIndex === 2}
+                      onClick={() => setLowerTabIndex(2)}
+                    >
+                      <Section
+                        fitted
+                        title={'Character Advert'}
+                        style={{ textAlign: 'center' }}
+                      />
+                    </Tabs.Tab>
+                  </Tabs>
+                  {lowerTabIndex === 1 && (
                     <Section
+                      style={{ 'overflow-y': 'scroll' }}
+                      preserveWhitespace
                       fitted
-                      title={'OOC Notes'}
-                      style={{ textAlign: 'center' }}
-                    />
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={lowerTabIndex === 2}
-                    onClick={() => setLowerTabIndex(2)}
-                  >
+                      minHeight="35%"
+                      maxHeight="35%"
+                      fontSize="14px"
+                      lineHeight="1.5"
+                    >
+                      <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
+                    </Section>
+                  )}
+                  {lowerTabIndex === 2 && (
                     <Section
+                      style={{ 'overflow-y': 'scroll' }}
+                      preserveWhitespace
                       fitted
-                      title={'Character Advert'}
-                      style={{ textAlign: 'center' }}
-                    />
-                  </Tabs.Tab>
-                </Tabs>
-                {lowerTabIndex === 1 && (
-                  <Section
-                    style={{ 'overflow-y': 'scroll' }}
-                    preserveWhitespace
-                    fitted
-                    minHeight="35%"
-                    maxHeight="35%"
-                    fontSize="14px"
-                    lineHeight="1.5"
-                  >
-                    <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
-                  </Section>
-                )}
-                {lowerTabIndex === 2 && (
-                  <Section
-                    style={{ 'overflow-y': 'scroll' }}
-                    preserveWhitespace
-                    fitted
-                    minHeight="35%"
-                    maxHeight="35%"
-                    fontSize="14px"
-                    lineHeight="1.5"
-                  >
-                    <Stack.Item>{formatURLs(character_ad)}</Stack.Item>
-                  </Section>
-                )}
+                      minHeight="35%"
+                      maxHeight="35%"
+                      fontSize="14px"
+                      lineHeight="1.5"
+                    >
+                      <Stack.Item>{formatURLs(character_ad)}</Stack.Item>
+                    </Section>
+                  )}
+                </Box>
               </Stack.Item>
             </Stack>
           </>
