@@ -334,11 +334,6 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(locked)
 			balloon_alert(user, "chassis cover locked!")
 		else
-			// BUBBER EDIT START
-			balloon_alert(user, "chassis cover opened")
-			if(!do_after(user, 0.5 SECONDS))
-				return FALSE
-			// BUBBER EDIT START
 			opened = TRUE
 			update_icons()
 
