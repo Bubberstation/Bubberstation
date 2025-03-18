@@ -106,9 +106,9 @@
 	//ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /datum/loadout_item/suit/holographic
-    name = "Holographic Suit V4000"
-    item_path = /obj/item/clothing/suit/misc/holographic
-    ckeywhitelist = list("blovy", "snailomi")
+	name = "Holographic Suit V4000"
+	item_path = /obj/item/clothing/suit/misc/holographic
+	ckeywhitelist = list("blovy", "snailomi")
 
 /datum/loadout_item/suit/flight //Donor item for ironknight060
 	name = "MA-1 flight jacket"
@@ -186,9 +186,9 @@
 	ckeywhitelist = list("MyGuy49")
 
 /datum/loadout_item/inhand/kanken_pack // donator item for LT3
-    name = "Kånken Backpack"
-    item_path = /obj/item/storage/backpack/kanken
-    ckeywhitelist = list("lt3", "gavla")
+	name = "Kånken Backpack"
+	item_path = /obj/item/storage/backpack/kanken
+	ckeywhitelist = list("lt3", "gavla")
 
 /*
 *	POCKETS

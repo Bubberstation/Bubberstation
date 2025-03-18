@@ -217,6 +217,10 @@
 	name = "black floor"
 	icon_state = "black"
 
+/turf/open/floor/greenscreen
+	name = "greenscreen"
+	icon_state = "green"
+
 /turf/open/floor/plastic
 	name = "plastic floor"
 	desc = "Cheap, lightweight flooring. Melts easily."
@@ -256,6 +260,9 @@
 	. = ..()
 	AddElement(/datum/element/rust)
 	color = null
+
+/turf/open/floor/plating/rust/airless
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/plating/heretic_rust
 	color = COLOR_GREEN_GRAY
@@ -359,6 +366,12 @@
 	desc = "Melted down oil can, in some cases, be used to pave road surfaces."
 	icon_state = "asphalt"
 
+/turf/open/floor/asphalt/outdoors
+	planetary_atmos = TRUE
+
 /turf/open/floor/asphalt/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/misc/asteroid/basalt
+
+/turf/open/floor/asphalt/lavaland/outdoors
+	planetary_atmos = TRUE

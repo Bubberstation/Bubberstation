@@ -1193,6 +1193,13 @@
 "ju" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_lava_base/engineering)
+"jw" = (
+/obj/structure/sign/warning/secure_area,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_lava_base/cargo)
 "jx" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/firedoor,
@@ -1593,6 +1600,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/item/defibrillator/loaded,
 /turf/open/floor/iron/white/side{
 	dir = 4
 	},
@@ -3135,6 +3143,13 @@
 /obj/machinery/duct,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/bar)
+"Gt" = (
+/obj/structure/sign/warning/secure_area,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_lava_base/arrivals)
 "Gu" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3316,7 +3331,6 @@
 /obj/structure/table/wood,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/machinery/airalarm/directional/north,
-/obj/item/crowbar/red,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_lava_base/dormitories)
@@ -4127,7 +4141,6 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/sniper_rounds,
 /obj/machinery/airalarm/directional/north,
-/obj/item/crowbar/red,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_lava_base/dormitories)
@@ -4506,7 +4519,6 @@
 /obj/structure/table/wood,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/sniper_rounds,
-/obj/item/crowbar/red,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_lava_base/dormitories)
 "Zw" = (
@@ -5425,7 +5437,7 @@ oi
 mT
 mT
 mT
-oF
+Gt
 ab
 ab
 ab
@@ -6650,7 +6662,7 @@ ab
 ab
 fx
 gh
-fx
+jw
 si
 ab
 ab

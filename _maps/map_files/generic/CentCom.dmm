@@ -2997,6 +2997,12 @@
 /obj/structure/chair/office,
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/control)
+"nO" = (
+/obj/machinery/greenscreen_camera{
+	name = "centcom-caster"
+	},
+/turf/open/floor/iron/grimy,
+/area/centcom/tdome/administration)
 "nP" = (
 /obj/machinery/modular_computer/preset/id/centcom{
 	dir = 8
@@ -4459,6 +4465,10 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/ferry)
+"uo" = (
+/obj/structure/sign/poster/greenscreen/directional/south,
+/turf/open/floor/greenscreen,
+/area/centcom/tdome/administration)
 "up" = (
 /obj/structure/table/wood,
 /obj/item/storage/briefcase,
@@ -4580,6 +4590,14 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/evacuation/ship)
+"uU" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/door/airlock/centcom{
+	name = "Sound Stage"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark,
+/area/centcom/tdome/administration)
 "uX" = (
 /obj/machinery/shower/directional/east,
 /obj/effect/turf_decal/tile/green{
@@ -4813,6 +4831,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/evacuation/ship)
+"vO" = (
+/obj/machinery/newscaster/directional/north,
+/obj/structure/chair,
+/turf/open/floor/iron/grimy,
+/area/centcom/tdome/administration)
 "vP" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "XCCcustoms2";
@@ -5242,6 +5265,10 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
 /area/centcom/tdome/observation)
+"xK" = (
+/obj/structure/chair/stool/directional/south,
+/turf/open/floor/iron/grimy,
+/area/centcom/tdome/administration)
 "xN" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron,
@@ -5797,6 +5824,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/centcom/tdome/observation)
+"zY" = (
+/obj/machinery/status_display/evac/directional/north,
+/obj/machinery/light/cold/directional/north,
+/obj/structure/chair,
+/turf/open/floor/iron/grimy,
+/area/centcom/tdome/administration)
 "zZ" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
@@ -6552,6 +6585,12 @@
 /obj/effect/mapping_helpers/airlock/access/all/admin/general,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
+"Dr" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/greenscreen,
+/area/centcom/tdome/administration)
 "Ds" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
@@ -6953,6 +6992,13 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/armory)
+"FE" = (
+/obj/structure/sign/flag/nanotrasen/directional/east,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/greenscreen,
+/area/centcom/tdome/administration)
 "FI" = (
 /obj/effect/landmark/thunderdome/two,
 /obj/effect/turf_decal/stripes/line{
@@ -9929,7 +9975,7 @@
 /area/centcom/central_command_areas/armory)
 "Vh" = (
 /obj/structure/table/reinforced,
-/obj/item/surgery_tray/full{
+/obj/effect/spawner/surgery_tray/full{
 	pixel_y = 10;
 	pixel_x = 2
 	},
@@ -10637,6 +10683,13 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/admin)
+"YR" = (
+/obj/structure/sign/flag/nanotrasen/directional/west,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/greenscreen,
+/area/centcom/tdome/administration)
 "YT" = (
 /obj/structure/table/wood,
 /obj/structure/plaque/static_plaque/thunderdome{
@@ -10881,6 +10934,11 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supplypod/loading/four)
+"ZR" = (
+/obj/item/radio/intercom/directional/north,
+/obj/structure/chair,
+/turf/open/floor/iron/grimy,
+/area/centcom/tdome/administration)
 "ZS" = (
 /obj/structure/table/reinforced,
 /obj/item/wrench,
@@ -57647,9 +57705,9 @@ Sz
 uf
 uf
 uf
-aa
-aa
-aa
+uf
+uf
+uf
 aa
 aa
 aa
@@ -57902,11 +57960,11 @@ uf
 Mv
 Mv
 uf
-aa
-aa
-aa
-aa
-aa
+ZR
+Xw
+YR
+uo
+uf
 aa
 aa
 aa
@@ -58159,11 +58217,11 @@ Sz
 Sz
 Sz
 uf
-aa
-aa
-aa
-aa
-aa
+zY
+Xw
+Dr
+uo
+uf
 aa
 aa
 aa
@@ -58415,12 +58473,12 @@ Sz
 Sz
 Sz
 Sz
+uU
+Xw
+nO
+Dr
+uo
 uf
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -58673,11 +58731,11 @@ Sz
 uf
 FU
 uf
-aa
-aa
-aa
-aa
-aa
+zY
+xK
+Dr
+uo
+uf
 aa
 aa
 aa
@@ -58930,11 +58988,11 @@ Sz
 uf
 Sz
 uf
-aa
-aa
-aa
-aa
-aa
+vO
+Xw
+FE
+uo
+uf
 aa
 aa
 aa
@@ -59187,11 +59245,11 @@ Wn
 uf
 Sz
 uf
-aa
-aa
-aa
-aa
-aa
+uf
+uf
+uf
+uf
+uf
 aa
 aa
 aa
@@ -62229,7 +62287,7 @@ xt
 xt
 xt
 xt
-xt
+PG
 xt
 Vd
 zm
@@ -62486,7 +62544,7 @@ xt
 xt
 xt
 xt
-rq
+xt
 xt
 xt
 zl
