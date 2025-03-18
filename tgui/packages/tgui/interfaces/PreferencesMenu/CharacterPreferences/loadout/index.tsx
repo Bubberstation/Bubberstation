@@ -184,6 +184,7 @@ export function LoadoutPage(props) {
           currentSearch={searchLoadout}
           modifyItemDimmer={modifyItemDimmer}
           setModifyItemDimmer={setModifyItemDimmer}
+          setManagingPreset={setManagingPreset}
         />
       </Stack.Item>
     </Stack>
@@ -196,6 +197,7 @@ type LoadoutTabsProps = {
   currentSearch: string;
   modifyItemDimmer: LoadoutItem | null;
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
+  setManagingPreset: (string) => void;
 };
 
 function LoadoutTabs(props: LoadoutTabsProps) {
@@ -205,6 +207,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
     currentSearch,
     modifyItemDimmer,
     setModifyItemDimmer,
+    setManagingPreset,
   } = props;
   const activeCategory = loadout_tabs.find((curTab) => {
     return curTab.name === currentTab;
@@ -213,7 +216,6 @@ function LoadoutTabs(props: LoadoutTabsProps) {
 
   // BUBBER EDIT ADDITION START: Multiple loadout presets
   const { act, data } = useBackend<PreferencesMenuData>();
-  const [_, setManagingPreset] = useState<string | null>(null);
   // BUBBER EDIT END
 
   return (
