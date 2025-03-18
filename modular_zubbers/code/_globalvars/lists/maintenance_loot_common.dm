@@ -852,7 +852,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/grown/rainbow_flower = 25,
 		/obj/item/food/grown/random = 100,
 		/obj/item/food/grown/rose = 25,
-		/obj/item/food/grown/shell/eggy = 25,
+		/obj/item/food/grown/eggy = 25,
 		/obj/item/food/grown/tea/catnip = 25,
 		/obj/item/food/grown/tomato = 75
 	) = 75,
