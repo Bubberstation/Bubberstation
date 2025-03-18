@@ -109,6 +109,10 @@
 	savefile_key = "art_ref_nsfw"
 	default_value = FALSE
 
+
+/datum/preference/toggle/art_ref_nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 //OOC notes for Silicons. Overwrites regular OOC notes when you are playing a Silicon character.
 //TODO: Make this your regular OOC notes if you don't have Silicon ones. Every time I've tried, for some reason regular OOC notes haven't shown.
 /datum/preference/text/ooc_notes/silicon
