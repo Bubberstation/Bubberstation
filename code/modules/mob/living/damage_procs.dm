@@ -95,7 +95,7 @@
 		if(BRAIN)
 			damage_dealt = -1 * adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
 
-	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus,sharpness, attack_direction, attacking_item, wound_clothing)
+	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
 	return damage_dealt
 
 /**
@@ -310,7 +310,7 @@
 		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
 		if (required_respiration_type)
-			var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
+			var/obj/item/organ/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
 			if(isnull(affected_lungs))
 				if(!(mob_respiration_type & required_respiration_type))  // if the mob has no lungs, use mob_respiration_type
 					return FALSE
@@ -337,7 +337,7 @@
 		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
 
-		var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
+		var/obj/item/organ/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
 		if(isnull(affected_lungs))
 			if(!(mob_respiration_type & required_respiration_type))
 				return FALSE

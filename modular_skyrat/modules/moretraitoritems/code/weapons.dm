@@ -193,12 +193,12 @@
 /obj/projectile/bullet/c14mm
 	name = "14mm bullet"
 	damage = 60
-	embed_type = /datum/embed_data/c14mm
+	embed_type = /datum/embedding/c14mm
 	dismemberment = 50
 	pierces = 1
 	projectile_piercing = PASSCLOSEDTURF|PASSGRILLE|PASSGLASS
 
-/datum/embed_data/c14mm
+/datum/embedding/c14mm
 	embed_chance = 90
 	fall_chance = 3
 	jostle_chance = 4
@@ -214,3 +214,5 @@
 	force = 15
 	block_chance = 30
 	armour_penetration = 5
+
+#undef CALIBRE_14MM

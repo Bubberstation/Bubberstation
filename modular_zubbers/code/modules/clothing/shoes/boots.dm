@@ -205,7 +205,7 @@
 	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
 	icon_state = "banana_slippers"
 	worn_icon_state = "banana_slippers"
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON
 	strip_delay = 10 SECONDS
 
 // Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
@@ -242,7 +242,7 @@
 	if(iscyborg(hit_atom))
 		return
 
-/obj/item/clothing/shoes/banana_slippers/Initialize()
+/obj/item/clothing/shoes/banana_slippers/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
@@ -282,4 +282,4 @@
 
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	resistance_flags = FIRE_PROOF
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON

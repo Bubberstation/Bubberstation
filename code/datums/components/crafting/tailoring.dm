@@ -253,7 +253,7 @@
 	name = "Lizard Cloche Hat"
 	result = /obj/item/clothing/head/costume/lizard
 	time = 1 SECONDS
-	reqs = list(/obj/item/organ/external/tail/lizard = 1)
+	reqs = list(/obj/item/organ/tail/lizard = 1)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/lizardhat_alternate
@@ -268,8 +268,8 @@
 	result = /obj/item/clothing/head/costume/kitty/genuine
 	time = 1 SECONDS
 	reqs = list(
-		/obj/item/organ/external/tail/cat = 1,
-		/obj/item/organ/internal/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
 	)
 	category = CAT_CLOTHING
 
@@ -417,6 +417,12 @@
 	)
 	reqs = list(/obj/item/stack/sheet/cloth = 4)
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/chaplain_hood/New()
+	. = ..()
+	//the resulting hoodie can be used to craft other hoodies.
+	//recipe blacklists should be refactored to only affect components and not tools.
+	blacklist -= result
 
 /datum/crafting_recipe/flower_garland
 	name = "Flower Garland"

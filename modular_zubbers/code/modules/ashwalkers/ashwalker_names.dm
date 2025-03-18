@@ -8,7 +8,7 @@
 		var/object_name = initial(object.name)
 		if(!object_name || !regex_inclusion.Find(object_name))
 			continue
-		.[capitalize(lowertext(object_name))] = TRUE
+		.[capitalize(LOWER_TEXT(object_name))] = TRUE
 
 	return .
 
