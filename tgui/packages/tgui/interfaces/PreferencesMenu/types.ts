@@ -203,6 +203,7 @@ export type PreferencesMenuData = {
       loadout_lists: LoadoutList; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout_list: LoadoutList;
       job_clothes: BooleanLike;
       loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
+      background_state: string; // BUBBER EDIT ADDITION: Swappable character editor backgrounds
     };
 
     randomization: Record<string, RandomSetting>;
@@ -269,5 +270,6 @@ export type ServerData = {
     loadout_tabs: LoadoutCategory[];
   };
   species: Record<string, Species>;
-  [otherKey: string]: unknown;
+  background_state: { choices: string[] }; // BUBBER EDIT ADDITION
+  [otheyKey: string]: unknown;
 };
