@@ -92,7 +92,7 @@ export const ExaminePanel = () => {
               />
             )}
             <Stack>
-              <Stack.Item maxWidth="30%">
+              <Stack.Item minWidth="30%">
                 {!headshot ? (
                   <Section
                     fill
