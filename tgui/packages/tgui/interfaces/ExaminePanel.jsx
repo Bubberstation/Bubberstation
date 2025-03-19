@@ -92,7 +92,7 @@ export const ExaminePanel = () => {
               />
             )}
             <Stack>
-              <Stack.Item minWidth="30%">
+              <Stack.Item style={{ width: '30%' }}>
                 {!headshot ? (
                   <Section
                     fill
@@ -145,8 +145,8 @@ export const ExaminePanel = () => {
                   </>
                 )}
               </Stack.Item>
-              <Stack.Item>
-                <Box height="610px" width="100%">
+              <Stack.Item style={{ width: '70%' }}>
+                <Box height="610px">
                   <Tabs fluid>
                     <Tabs.Tab
                       selected={tabIndex === 1}
