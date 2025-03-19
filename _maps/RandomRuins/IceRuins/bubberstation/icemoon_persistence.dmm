@@ -1558,8 +1558,10 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "eO" = (
-/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/trinary/mixer{
+	dir = 8
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "eP" = (
@@ -2484,7 +2486,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "hQ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input{
-	dir = 1;
+	dir = 8;
 	chamber_id = "dauntless_turbine"
 	},
 /turf/open/floor/engine,
@@ -5754,10 +5756,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"rq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "rr" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -6372,6 +6370,17 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"tm" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "tn" = (
 /obj/effect/turf_decal/stripes,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -8864,12 +8873,6 @@
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
-"Ao" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "As" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -11235,12 +11238,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
-"Hx" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
-	dir = 9
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Hz" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	polarizer_id = "dauntless_interrogation"
@@ -11830,7 +11827,7 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
-/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/atmospherics/pipe/smart/simple/dark/hidden,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Jw" = (
@@ -11855,8 +11852,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "JA" = (
 /obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -12590,6 +12585,9 @@
 /obj/structure/cable,
 /obj/machinery/door/firedoor/heavy,
 /obj/structure/sign/warning/fire/directional/south,
+/obj/machinery/atmospherics/pipe/smart/simple/dark{
+	dir = 4
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "LF" = (
@@ -12808,6 +12806,9 @@
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/atmospherics/pipe/smart/simple/dark{
+	dir = 4
+	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Mo" = (
@@ -14900,12 +14901,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"Sb" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
-	dir = 6
-	},
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Sc" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/white/diagonal,
@@ -15222,6 +15217,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "SW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/simple/dark{
+	dir = 5
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SX" = (
@@ -15633,12 +15631,6 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
-"Uw" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Ux" = (
 /obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/component_printer,
@@ -16181,6 +16173,13 @@
 /obj/structure/flora/bush/reed,
 /turf/open/misc/grass/jungle/station,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"Wg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/simple/dark{
+	dir = 6
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Wi" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/stasis{
@@ -16618,9 +16617,6 @@
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Xv" = (
-/obj/machinery/atmospherics/components/trinary/mixer{
-	dir = 8
-	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -16886,15 +16882,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "Yi" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/binary/pump/off/general/hidden/layer2{
+/obj/machinery/atmospherics/components/binary/pump/off/general/visible/layer2{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
@@ -18177,7 +18169,7 @@ Cc
 Qu
 Cc
 nj
-rq
+gz
 Iu
 jX
 VO
@@ -18320,7 +18312,7 @@ GP
 Tm
 Su
 HL
-VO
+Wg
 Jt
 SW
 VN
@@ -18391,7 +18383,7 @@ Tm
 dO
 Iu
 Ml
-Ao
+Gd
 hQ
 jH
 DD
@@ -18461,7 +18453,7 @@ Tm
 rl
 pi
 LE
-Uw
+Gd
 Af
 Gd
 Gd
@@ -18600,8 +18592,8 @@ zQ
 Tm
 Iu
 eU
-Sb
-Hx
+gC
+Iu
 Iu
 HL
 pi
@@ -18665,7 +18657,7 @@ qP
 Ct
 qP
 TT
-qP
+tm
 Sh
 Tm
 vb
