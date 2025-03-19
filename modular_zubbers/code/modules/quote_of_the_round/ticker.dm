@@ -15,7 +15,7 @@
 /datum/controller/subsystem/ticker/declare_completion(force_ending)
 
 	if(quote_of_the_round_text)
-		for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
+		for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 			send2chat(
 				new /datum/tgs_message_content(generate_quote_of_the_round()),
 				channel_tag
