@@ -90,3 +90,7 @@
 /datum/loadout_item/toys/ghoul
 	name = "Intern Ghoul Plushie"
 	item_path = /obj/item/toy/plush/ghoul
+
+/datum/loadout_item/toys/mold_kobold
+	name = "Hemophage Awareness Kobold"
+	item_path = /obj/item/toy/plush/mold_kobold
