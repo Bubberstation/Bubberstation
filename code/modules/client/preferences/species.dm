@@ -38,7 +38,7 @@
 	target.dna.update_body_size()
 
 	for(var/organ_key in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_PENIS, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS))
-		var/obj/item/organ/external/genital/gent = target.get_organ_slot(organ_key)
+		var/obj/item/organ/genital/gent = target.get_organ_slot(organ_key)
 		if(gent)
 			gent.aroused = prefs.arousal_preview
 			gent.update_sprite_suffix()
@@ -61,6 +61,5 @@
 		data[species_id]["enabled_features"] = species.get_features()
 		data[species_id]["perks"] = species.get_species_perks()
 		data[species_id]["diet"] =  species.get_species_diet()
-		data[species_id]["veteran_only"] = species.veteran_only // SKYRAT EDIT ADDITION - Veteran races
 
 	return data

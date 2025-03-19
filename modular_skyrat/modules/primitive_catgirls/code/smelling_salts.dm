@@ -31,7 +31,7 @@
 	user.balloon_alert_to_viewers("trying to revive [carbon_target]")
 
 	if(!do_after(user, 3 SECONDS, carbon_target))
-		user.balloon_alert("stopped reviving [carbon_target]")
+		user.balloon_alert(user, "stopped reviving [carbon_target]")
 		return
 
 	if(carbon_target.stat != DEAD)
@@ -42,7 +42,7 @@
 	var/fail_reason
 
 	switch (defib_result)
-		if (DEFIB_FAIL_SUICIDE, DEFIB_FAIL_BLACKLISTED, DEFIB_FAIL_NO_INTELLIGENCE) // BUBBER EDIT - DNR REWORK
+		if (DEFIB_FAIL_SUICIDE, DEFIB_FAIL_BLACKLISTED, DEFIB_FAIL_NO_INTELLIGENCE)
 			fail_reason = "[carbon_target] doesn't respond at all... You don't think they're coming back."
 		if (DEFIB_FAIL_NO_HEART, DEFIB_FAIL_FAILING_HEART, DEFIB_FAIL_FAILING_BRAIN)
 			fail_reason = "[carbon_target] seems to respond just a little, but something you can't see must be wrong about them..."

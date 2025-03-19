@@ -47,7 +47,7 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 	for(var/role in GLOB.special_roles)
 		if(role in list(ROLE_MALF, ROLE_PAI, ROLE_SENTIENCE, ROLE_OBSESSED))
 			continue
-		dat += "<a href='?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
 		if(antag_is_ghostrole(role))
 			dat += " (Requires Ghosts)"
 		dat += "</a><br>"
@@ -61,6 +61,8 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 	if(applicant.mind.special_role)
 		return FALSE
 	if(!(targetrole in applicant.client.prefs.be_special))
+		return FALSE
+	if(!applicant.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 		return FALSE
 	if(onstation)
 		var/turf/T = get_turf(applicant)
@@ -76,7 +78,7 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 
 /datum/admins/
 	var/MAKEANTAG_RESTRICTLIST = list()
-	var/MAKEANTAG_PL_DEFAULT_SECURITY = list(JOB_PRISONER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_HEAD_OF_SECURITY, JOB_CAPTAIN, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_BLUESHIELD, JOB_ORDERLY, JOB_BOUNCER, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_SCIENCE_GUARD) //BUBBER EDIT
+	var/MAKEANTAG_PL_DEFAULT_SECURITY = list(JOB_PRISONER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_HEAD_OF_SECURITY, JOB_CAPTAIN, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_BLUESHIELD, JOB_ORDERLY, JOB_BOUNCER, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_SCIENCE_GUARD)
 	var/MAKEANTAG_PL_DEFAULT_HEADS = list(JOB_CAPTAIN,JOB_HEAD_OF_PERSONNEL,JOB_RESEARCH_DIRECTOR,JOB_CHIEF_ENGINEER,JOB_CHIEF_MEDICAL_OFFICER,JOB_HEAD_OF_SECURITY,JOB_QUARTERMASTER)
 	var/MAKEANTAG_PL_DEFAULT_SILICON = list(JOB_AI, JOB_CYBORG)
 

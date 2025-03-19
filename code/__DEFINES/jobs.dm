@@ -144,9 +144,17 @@
 #define JOB_NAVAL_FLEET_ADMIRAL "Fleet Admiral"
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
-#define JOB_SOLFED "SolFed"
-#define JOB_SOLFED_LIASON "SolFed Liason"
+#define JOB_TERRAGOV "TerraGov"
+#define JOB_TERRAGOV_LIASON "TerraGov Liason"
 // SKYRAT EDIT ADDITION END
+
+//Lost crew
+#define JOB_LOSTCREW_ENGINEER "Visiting Engineer"
+#define JOB_LOSTCREW_MEDICAL "Visiting Doctor"
+#define JOB_LOSTCREW_SECURITY "Visiting Officer"
+#define JOB_LOSTCREW_SCIENCE "Visiting Scientist"
+#define JOB_LOSTCREW_CARGO "Visiting Technician"
+#define JOB_LOSTCREW_CIVILLIAN "Visiting Civillian"
 
 #define JOB_GROUP_ENGINEERS list( \
 	JOB_STATION_ENGINEER, \

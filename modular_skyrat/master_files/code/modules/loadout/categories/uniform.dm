@@ -13,7 +13,7 @@
 			to_chat(equipper, "Your loadout uniform was not equipped directly due to your species outfit.")
 			LAZYADD(outfit.backpack_contents, item_path)
 	else
-		if(loadout_placement_preference != LOADOUT_OVERRIDE_JOB && outfit.uniform)
+		if(loadout_placement_preference == LOADOUT_OVERRIDE_CASE && outfit.uniform)
 			LAZYADD(outfit.backpack_contents, outfit.uniform)
 		else
 			outfit.modified_outfit_slots |= ITEM_SLOT_ICLOTHING
@@ -101,9 +101,19 @@
 	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt
-	name = "Security Battledress"
+	name = "Blue Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
+	name = "Red Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/uniform/jumpsuit/security_skirt_hos
+	name = "HoS Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/uniform/jumpsuit/security_trousers
 	name = "Security Trousers"
@@ -143,7 +153,7 @@
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
 	name = "Imperial Police Uniform"
 	item_path = /obj/item/clothing/under/colonial/nri_police
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/disco
 	name = "Superstar Cop Uniform"
@@ -582,6 +592,31 @@
 /datum/loadout_item/uniform/miscellaneous/blacknwhite
 	name = "Classic Prisoner Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/prisoner/classic
+
+/datum/loadout_item/uniform/miscellaneous/protectcust
+	name = "Protective Custody Prisoner Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/prisoner/protcust
+	restricted_roles = list(JOB_PRISONER)
+
+/datum/loadout_item/uniform/miscellaneous/lowrisk
+	name = "Low Risk Prisoner Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/prisoner/lowsec
+	restricted_roles = list(JOB_PRISONER)
+
+/datum/loadout_item/uniform/miscellaneous/highrisk
+	name = "High Risk Prisoner Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/prisoner/highsec
+	restricted_roles = list(JOB_PRISONER)
+
+/datum/loadout_item/uniform/miscellaneous/supermax
+	name = "Supermax Prisoner Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/prisoner/supermax
+	restricted_roles = list(JOB_PRISONER)
+
+/datum/loadout_item/uniform/miscellaneous/syndiprison
+	name = "Syndicate Prisoner Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/prisoner/syndicate/station
+	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/redscrubs
 	name = "Red Scrubs"

@@ -63,7 +63,7 @@
 	icon_state = "maintcentral"
 
 /area/station/terminal/maintenance/fore
-	name = "\improper Arrivals Terminal Fore Maintenance"
+	name = "\improper Arrivals Terminal Disposals"
 	icon_state = "maintfore"
 
 /area/station/terminal/maintenance/aft
@@ -88,7 +88,7 @@
 	name = "DO NOT USE"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "mining"
-	has_gravity = STANDARD_GRAVITY
+	default_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = UNIQUE_AREA | FLORA_ALLOWED
 	ambience_index = AMBIENCE_ICEMOON

@@ -103,6 +103,7 @@ GLOBAL_LIST_INIT(skyrat_cloth_recipes, list(
 	new/datum/stack_recipe("eyepatch wrap", /obj/item/clothing/glasses/eyepatch/wrap, 2, category = CAT_CLOTHING),
 	new/datum/stack_recipe("eyepatch", /obj/item/clothing/glasses/eyepatch, 2, category = CAT_CLOTHING),
 	new/datum/stack_recipe("xenoarch bag", /obj/item/storage/bag/xenoarch, 4, category = CAT_CONTAINERS),
+	new/datum/stack_recipe("saddlebags", /obj/item/storage/backpack/saddlebags, 5, category = CAT_CONTAINERS),
 ))
 
 /obj/item/stack/sheet/cloth/get_main_recipes()
@@ -119,6 +120,10 @@ GLOBAL_LIST_INIT(skyrat_leather_belt_recipes, list(
 	new/datum/stack_recipe("medical bandolier", /obj/item/storage/belt/medbandolier, 5, category = CAT_CONTAINERS),
 	new/datum/stack_recipe("gear harness", /obj/item/clothing/under/misc/skyrat/gear_harness, 6, category = CAT_CLOTHING),
 	new/datum/stack_recipe("ammo pouch", /obj/item/storage/pouch/ammo, 4, category = CAT_CONTAINERS),
+	new/datum/stack_recipe_list("saddles", list(
+		new/datum/stack_recipe("riding saddle (normal)", /obj/item/riding_saddle/leather, 5, category = CAT_CLOTHING),
+		new/datum/stack_recipe("riding saddle (peacekeeper)", /obj/item/riding_saddle/leather/peacekeeper, 5, category = CAT_CLOTHING),
+	)),
 ))
 
 /obj/item/stack/sheet/leather/get_main_recipes()

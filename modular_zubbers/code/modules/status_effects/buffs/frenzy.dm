@@ -16,13 +16,13 @@
 /datum/status_effect/frenzy
 	id = "Frenzy"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	///Boolean on whether they were an AdvancedToolUser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE
 	/// The stored Bloodsucker antag datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum
-	var/trait_list = list(TRAIT_MUTE, TRAIT_DEAF, TRAIT_STRONG_GRABBER)
+	var/trait_list = list(TRAIT_MUTE, TRAIT_SIGN_LANGUAGE_BLOCKED, TRAIT_DEAF, TRAIT_STRONG_GRABBER)
 
 /datum/status_effect/frenzy/get_examine_text()
 	return span_notice("They seem... inhumane, and feral!")

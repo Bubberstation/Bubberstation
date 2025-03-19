@@ -443,6 +443,16 @@
 		)
 	list_clear_nulls(.)
 
+///Returns a list of all turfs that are adjacent to the center atom's turf, clear the list of nulls at the end.
+/proc/get_adjacent_turfs(atom/center)
+	. = list(
+		get_step(center, NORTH),
+		get_step(center, SOUTH),
+		get_step(center, EAST),
+		get_step(center, WEST)
+		)
+	list_clear_nulls(.)
+
 ///Checks if the mob provided (must_be_alone) is alone in an area
 /proc/alone_in_area(area/the_area, mob/must_be_alone, check_type = /mob/living/carbon)
 	var/area/our_area = get_area(the_area)
@@ -485,3 +495,19 @@
 		return center //Offer the center only as a default case when we don't have a valid circle.
 	return peel
 
+///check if 2 diagonal turfs are blocked by dense objects
+/proc/diagonally_blocked(turf/our_turf, turf/dest_turf)
+	if(get_dist(our_turf, dest_turf) != 1)
+		return FALSE
+	var/direction_to_turf = get_dir(dest_turf, our_turf)
+	if(!ISDIAGONALDIR(direction_to_turf))
+		return FALSE
+	for(var/direction_check in GLOB.cardinals)
+		if(!(direction_check & direction_to_turf))
+			continue
+		var/turf/test_turf = get_step(dest_turf, direction_check)
+		if(isnull(test_turf))
+			continue
+		if(!test_turf.is_blocked_turf(exclude_mobs = TRUE))
+			return FALSE
+	return TRUE

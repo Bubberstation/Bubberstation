@@ -85,7 +85,6 @@
 /obj/item/gun/ballistic/automatic/pistol/m1911/gold/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
 
-
 /obj/item/storage/toolbox/guncase/skyrat/pistol/m1911_gold
 	name = "golden m1911 .460 ceres"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/m1911/gold
@@ -139,8 +138,8 @@
 		with this design being rapidly pushed out, being made from an advanced sol design \
 		this pistol seems rather unassuming but it has been, itself, the new symbol of peace  \
 		Leaving NRI weapon in the past, as it now became the symbol of the oppressive era of Romulus\
-		To whom it may concerns, These weapon were mostly used by the new Romulus National Army,\
-		 it was a symbol of struggle and freedom \
+		To whom it may concerns, These weapon were mostly used by the new Romulus National Army, \
+		it was a symbol of struggle and freedom \
 		Weapons cannot bring people back, but it can save your life."
 
 	return .

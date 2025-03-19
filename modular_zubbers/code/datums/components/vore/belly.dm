@@ -18,7 +18,7 @@
 	// Mean things
 	var/muffles_radio = TRUE // muffles radios used inside it
 	var/escape_chance = 100
-	var/escape_time = DEFAULT_ESCAPE_TIME
+	var/escape_time = 15 SECONDS
 	var/overlay_path = null
 	var/overlay_color = "#ffffff"
 
@@ -31,6 +31,7 @@
 	var/release_sound = "Splatter"
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
+	escape_time = DEFAULT_ESCAPE_TIME // expected a constant expression
 	. = ..()
 	if(!istype(new_owner))
 		return INITIALIZE_HINT_QDEL
@@ -169,7 +170,7 @@
 				prey.clear_fullscreen("vore", FALSE)
 				show_fullscreen(prey)
 		if("overlay_color")
-			var/new_color = input(usr, "Pick a belly color", "Belly Color", overlay_color) as color|null
+			var/new_color = tgui_color_picker(usr, "Pick a belly color", "Belly Color", overlay_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(new_color)
 				overlay_color = new_color
 			for(var/mob/living/prey in src)
@@ -303,7 +304,7 @@
 		return
 	var/mob/living/living_parent = owner.parent
 	owner.play_vore_sound(get_insert_sound())
-	to_chat(living_parent, span_notice("[arrived] slides into your [lowertext(name)]."))
+	to_chat(living_parent, span_notice("[arrived] slides into your [LOWER_TEXT(name)]."))
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
@@ -311,7 +312,7 @@
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
-		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
+		to_chat(M, boxed_message("You slide into [span_notice("[owner.parent]")]'s [span_green(LOWER_TEXT(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
 		// Add the appearance_holder to prey so they can see fellow prey
 		if(can_taste && iscarbon(M))
 			var/mob/living/carbon/H = M
@@ -334,15 +335,14 @@
 			if(AM in arrived)
 				arrived.dropItemToGround(AM, TRUE)
 			AM.forceMove(reject_location)
-		#if DISABLES_SENSORS
-		if(istype(AM, /obj/item/clothing/under))
-			var/obj/item/clothing/under/sensor_clothing = AM
-			sensor_clothing.sensor_mode = SENSOR_OFF
-			if(ishuman(arrived))
-				var/mob/living/carbon/human/H = arrived
-				if(H.w_uniform == sensor_clothing)
-					H.update_suit_sensors()
-		#endif
+		if(DISABLES_SENSORS)
+			if(istype(AM, /obj/item/clothing/under))
+				var/obj/item/clothing/under/sensor_clothing = AM
+				sensor_clothing.sensor_mode = SENSOR_OFF
+				if(ishuman(arrived))
+					var/mob/living/carbon/human/H = arrived
+					if(H.w_uniform == sensor_clothing)
+						H.update_suit_sensors()
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
@@ -446,7 +446,7 @@
 					to_chat(living_parent, escape_fail_owner_message)
 				return // don't print struggle message
 		else
-			to_chat(living_parent, span_warning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]."))
+			to_chat(living_parent, span_warning("Your prey appears to be unable to make any progress in escaping your [LOWER_TEXT(name)]."))
 
 	to_chat(user, struggle_user_message)
 
@@ -455,7 +455,7 @@
 /obj/vore_belly/proc/release(atom/movable/AM)
 	var/mob/living/living_parent = owner.parent
 	AM.forceMove(living_parent.loc)
-	AM.visible_message(span_warning("[living_parent] [lowertext(release_verb)] [AM] from their [lowertext(name)]."), pref_to_check = /datum/preference/toggle/erp/vore_enable)
+	AM.visible_message(span_warning("[living_parent] [LOWER_TEXT(release_verb)] [AM] from their [LOWER_TEXT(name)]."), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 
 /// Plays sound just to pred and prey in this stomach
 /obj/vore_belly/proc/play_vore_sound_preypred(preysound, predsound, volume = VORE_SOUND_VOLUME, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)

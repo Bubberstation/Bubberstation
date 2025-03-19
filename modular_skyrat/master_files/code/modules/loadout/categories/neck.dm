@@ -245,11 +245,6 @@
 /*
 *	MISC
 */
-/* BUBBER EDIT START
-/datum/loadout_item/neck/cursed_ashen_necklace
-	name = "Cursed Ashen Necklace"
-	item_path = /obj/item/clothing/neck/necklace/ashwalker/cursed
-BUBBER EDIT END */
 /datum/loadout_item/neck/stethoscope
 	name = "Stethoscope"
 	item_path = /obj/item/clothing/neck/stethoscope
@@ -257,16 +252,6 @@ BUBBER EDIT END */
 /datum/loadout_item/neck/maid
 	name = "Maid Neck Cover"
 	item_path = /obj/item/clothing/neck/maid
-
-/datum/loadout_item/neck/holobadge
-	name = "Holobadge"
-	item_path = /obj/item/clothing/accessory/badge/holo
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
-
-/datum/loadout_item/neck/holobadge_cord
-	name = "Holobadge with Lanyard"
-	item_path = /obj/item/clothing/accessory/badge/holo/cord
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /*
 *	DONATOR

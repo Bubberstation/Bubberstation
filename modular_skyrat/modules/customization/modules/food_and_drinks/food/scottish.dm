@@ -68,9 +68,6 @@
 	foodtypes = MEAT | BREAKFAST | FRIED
 	crafting_complexity = FOOD_COMPLEXITY_3
 
-/obj/item/food/sausage/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/salami, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice")
-
 /obj/item/food/cookie/shortbread
 	name = "shortbread"
 	desc = "A rectangular piece of cooked flour. Said to control the sun during Hogmanay."

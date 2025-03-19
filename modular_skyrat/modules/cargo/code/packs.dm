@@ -51,21 +51,7 @@
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/mob/living/basic/pet/cat/fennec = 2)
 	crate_name = "fennec crate"
-/* BUBBER EDIT REMOVAL START
-/datum/supply_pack/critter/pitbull
-	name = "Pitbull Crate"
-	desc = "Contains three pitbulls. WARNING: These are NOT pedigree studs, and thus may be less than friendly."
-	cost = CARGO_CRATE_VALUE * 7
-	contains = list(
-		/mob/living/basic/gorilla/pitbull,
-	)
-	crate_name = "pitbull crate"
 
-/datum/supply_pack/critter/pitbull/generate()
-	. = ..()
-	for(var/i in 1 to 3)
-		new /mob/living/basic/gorilla/pitbull(.)
-*/// BUBBER EDIT REMOVAL END
 /datum/supply_pack/critter/pitbull/pimpy
 	name = "Pedigree Stud Pitbull Crate"
 	desc = "Contains three pitbulls. Verified at the top of Mount Bullmore to be Pedigree Studs.."
@@ -768,7 +754,7 @@
 		/obj/item/storage/box/colonial_rations = 1,
 		/obj/item/storage/toolbox/ammobox/strilka310 = 1,
 		/obj/item/storage/toolbox/ammobox/strilka310/surplus = 1,
-		/obj/item/storage/toolbox/maint_kit = 1,
+		/obj/item/gun_maintenance_supplies = 1,
 		/obj/item/storage/toolbox/guncase/soviet/sakhno = 2,
 		/obj/item/ammo_box/strilka310 = 1,
 		/obj/item/clothing/suit/armor/vest/cin_surplus_vest = 1,

@@ -50,12 +50,14 @@
 			else
 				user.allowed_turfs += "holoseat"
 
+			user.allowed_turfs += "borgmat"
+
 		//wings
-		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/external/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
+		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
 			user.allowed_turfs += "dust" //moth's dust ✨
 
 		//body parts
-		if(istype(user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL), /obj/item/organ/external/tail))
+		if(istype(user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL), /obj/item/organ/tail))
 			var/name = human_user.dna.species.mutant_bodyparts["tail"][MUTANT_INDEX_NAME]
 			var/datum/sprite_accessory/tails/tail = SSaccessories.sprite_accessories["tail"][name]
 			if(tail.fluffy)
@@ -96,7 +98,7 @@
 		user.owned_turf.dir = user.dir
 
 		if(ishuman(user))
-			human_user.update_mutant_bodyparts()
+			human_user.update_body_parts()
 
 		var/list/DNA_trail = list("shoeprint", "footprint", "pawprint", "hoofprint", "clawprint")
 		if(current_turf in DNA_trail) //These turfs leave clues of their owner

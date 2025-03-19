@@ -2,6 +2,7 @@
 	name = "emotion mask"
 	desc = "Express your happiness or hide your sorrows with this cultured cutout."
 	icon_state = "joy"
+	base_icon_state = "joy"
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDESNOUT
 	obj_flags = parent_type::obj_flags | INFINITE_RESKIN
@@ -52,7 +53,7 @@
 		. += "Use in-hand to wear as a mask!"
 		return
 	else
-		. += "Use in-hand to tie it up to wear as a hat!"
+		. += "Use in-hand to wear as a hat!"
 
 /obj/item/clothing/mask/kitsune/attack_self(mob/user)
 	adjust_visor(user)

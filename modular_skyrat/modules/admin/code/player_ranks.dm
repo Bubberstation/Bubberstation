@@ -1,5 +1,5 @@
 /// The list of the available special player ranks
-#define SKYRAT_PLAYER_RANKS list("Donator", "Mentor", "Veteran")
+#define SKYRAT_PLAYER_RANKS list("Donator", "Mentor")
 
 ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
 	if(!check_rights(R_PERMISSIONS))
@@ -7,7 +7,7 @@ ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage wh
 
 	usr.client?.holder.manage_player_ranks()
 
-/// Proc for admins to change people's "player" ranks (donator, mentor, veteran, etc.)
+/// Proc for admins to change people's "player" ranks (donator, mentor, etc.)
 /datum/admins/proc/manage_player_ranks()
 	if(IsAdminAdvancedProcCall())
 		return
@@ -36,7 +36,7 @@ ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage wh
 	if(!(group in SKYRAT_PLAYER_RANKS))
 		CRASH("[key_name(usr)] attempted to add someone to an invalid \"[group]\" group.")
 
-	var/group_title = lowertext(group)
+	var/group_title = LOWER_TEXT(group)
 
 	var/list/choices = list("Add", "Remove")
 	switch(tgui_alert(usr, "What would you like to do?", "Manage [group]s", choices))

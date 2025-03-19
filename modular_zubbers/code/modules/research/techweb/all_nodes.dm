@@ -1,5 +1,17 @@
 // RESEARCH NODES
 
+/datum/techweb_node/cyber/empathy_implant
+	id = TECHWEB_NODE_EMPATHY_IMPLANT
+	display_name = "Empathic Sensor Implant"
+	description = "The result of assuredly-ethical experiments conducted on those with special minds."
+	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"ci_empathic_sensor",
+	)
+	required_experiments = list(/datum/experiment/scanning/people/open_minds)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
+
 /datum/techweb_node/botanygene
 	id = TECHWEB_NODE_BOTANY_ADV
 	display_name = "Experimental Botanical Engineering"
@@ -41,6 +53,15 @@
 		"limbdesign_tajaran",
 	)
 
+//ENGINEERING
+/datum/techweb_node/atmos/New()
+	. = ..()
+	design_ids += list(
+		"nitrogen_tank",
+		//"nitrogen_tank_belt", | Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
+		"anesthetic_tank",
+	)
+
 // TOOLS
 
 /datum/techweb_node/mining/New()
@@ -71,6 +92,14 @@
 	design_ids += list(
 		"blanksynth",
 		"dominatrixmodule",
+		"borg_upgrade_expand",
+		"borg_upgrade_shrink",
+	)
+
+/datum/techweb_node/borg_utility/New()
+	. = ..()
+	design_ids -= list(
+		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
 	)
 
 // Computer Tech
@@ -90,7 +119,6 @@
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
 	design_ids += "s12g_incinslug"
-	design_ids += "s12g_flechette"
 	design_ids += "wt550_ammo_normal"
 	design_ids += "sol35_shortextmag"
 	design_ids += "sol40_riflemag"
@@ -108,6 +136,7 @@
 	design_ids += "wt550_ammo_incendiary"
 	design_ids += "s12g_magnum"
 	design_ids += "s12g_express"
+	design_ids += "mod_mind_transfer"
 	. = ..()
 
 /datum/techweb_node/nerd

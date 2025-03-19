@@ -17,15 +17,14 @@
 	)
 	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC
 	exotic_bloodtype = "U"
-	mutantheart = /obj/item/organ/internal/heart/hemophage
-	mutantliver = /obj/item/organ/internal/liver/hemophage
-	mutantstomach = /obj/item/organ/internal/stomach/hemophage
-	mutanttongue = /obj/item/organ/internal/tongue/hemophage
+	mutantheart = /obj/item/organ/heart/hemophage
+	mutantliver = /obj/item/organ/liver/hemophage
+	mutantstomach = /obj/item/organ/stomach/hemophage
+	mutanttongue = /obj/item/organ/tongue/hemophage
 	mutantlungs = null
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
 	skinned_type = /obj/item/stack/sheet/animalhide/human
-	veteran_only = TRUE
 
 /datum/species/hemophage/allows_food_preferences()
 	return FALSE
@@ -41,7 +40,7 @@
 
 	return ..()
 
-/datum/species/hemophage/on_species_gain(mob/living/carbon/human/new_hemophage, datum/species/old_species, pref_load)
+/datum/species/hemophage/on_species_gain(mob/living/carbon/human/new_hemophage, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	to_chat(new_hemophage, HEMOPHAGE_SPAWN_TEXT)
 	new_hemophage.update_body()

@@ -11,15 +11,28 @@
 	anchored = TRUE
 	density = TRUE
 	///How much mass this currently holds
-	var/current_mass = 5
+	var/current_mass = 3
 	///Maximum amount of mass
-	var/max_mass = 5
+	var/max_mass = 3
 	///Check to see if it is currently being used.
 	var/in_use = FALSE
+	///Cooldown for the crucible to create mass from the eldritch
+	COOLDOWN_DECLARE(refill_cooldown)
 
 /obj/structure/destructible/eldritch_crucible/Initialize(mapload)
 	. = ..()
 	break_message = span_warning("[src] falls apart with a thud!")
+	START_PROCESSING(SSobj, src)
+
+/obj/structure/destructible/eldritch_crucible/process(seconds_per_tick)
+	if(COOLDOWN_TIMELEFT(src, refill_cooldown))
+		return
+	if(current_mass >= max_mass)
+		return
+	COOLDOWN_START(src, refill_cooldown, 30 SECONDS)
+	current_mass++
+	playsound(src, 'sound/items/eatfood.ogg', 100, TRUE)
+	update_appearance(UPDATE_ICON_STATE)
 
 /obj/structure/destructible/eldritch_crucible/atom_deconstruct(disassembled = TRUE)
 	// Create a spillage if we were destroyed with leftover mass
@@ -39,6 +52,9 @@
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
 		return
+
+	if(current_mass > 0)
+		. += span_notice("You can refill an eldritch flask with this")
 
 	if(current_mass < max_mass)
 		var/to_fill = max_mass - current_mass
@@ -98,6 +114,19 @@
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		set_anchored(!anchored)
 		balloon_alert(user, "[anchored ? "":"un"]anchored")
+		return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/reagent_containers/cup/beaker/eldritch))
+		if(current_mass < max_mass)
+			balloon_alert(user, "not full enough!")
+			return ITEM_INTERACT_SUCCESS
+		var/obj/item/reagent_containers/cup/beaker/eldritch/to_fill = tool
+		if(to_fill.reagents.total_volume >= to_fill.reagents.maximum_volume)
+			balloon_alert(user, "flask is full!")
+			return ITEM_INTERACT_SUCCESS
+		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
+		do_item_attack_animation(src, used_item = tool)
+		current_mass--
+		balloon_alert(user, "refilled flask")
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/destructible/eldritch_crucible/attack_hand(mob/user, list/modifiers)
@@ -263,21 +292,21 @@
 
 /obj/item/eldritch_potion/crucible_soul
 	name = "brew of the crucible soul"
-	desc = "A glass bottle contianing a bright orange, translucent liquid."
+	desc = "A glass bottle containing a bright orange, translucent liquid."
 	icon_state = "crucible_soul"
 	status_effect = /datum/status_effect/crucible_soul
 	crucible_tip = "Allows you to walk through walls. After expiring, you are teleported to your original location. Lasts 15 seconds."
 
 /obj/item/eldritch_potion/duskndawn
 	name = "brew of dusk and dawn"
-	desc = "A glass bottle contianing a dull yellow liquid. It seems to fade in and out with regularity."
+	desc = "A glass bottle containing a dull yellow liquid. It seems to fade in and out with regularity."
 	icon_state = "clarity"
 	status_effect = /datum/status_effect/duskndawn
-	crucible_tip = "Allows you to see through walls and objects. Lasts 60 seconds."
+	crucible_tip = "Allows you to see through walls and objects. Lasts 90 seconds."
 
 /obj/item/eldritch_potion/wounded
 	name = "brew of the wounded soldier"
-	desc = "A glass bottle contianing a colorless, dark liquid."
+	desc = "A glass bottle containing a colorless, dark liquid."
 	icon_state = "marshal"
 	status_effect = /datum/status_effect/marshal
 	crucible_tip = "Causes all wounds you are experiencing to begin to heal you. Fractures, sprains, cuts, and punctures will heal bruises, \

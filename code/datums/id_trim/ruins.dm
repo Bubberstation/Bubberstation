@@ -180,3 +180,16 @@
 	assignment = "Donk Co. Executive"
 	access = list(ACCESS_SYNDICATE, ACCESS_AWAY_COMMAND)
 	big_pointer = TRUE
+
+//Film Studio Trims
+/datum/id_trim/away/actor
+	assignment = "Actor"
+
+/datum/id_trim/away/director
+	assignment = "Director"
+
+//Lizard Gas Station ID
+/datum/id_trim/away/lizardgas
+	assignment = "Lizard Gas Employee"
+	access = list(ACCESS_FACTION_PUBLIC)
+	big_pointer = TRUE

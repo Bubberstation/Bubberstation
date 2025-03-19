@@ -5,4 +5,8 @@
 		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
 		RESKIN_ICON_STATE = "bone-gel",
 		),
+		"default" = list(
+		RESKIN_ICON = 'icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "bone-gel",
+		),
 	)

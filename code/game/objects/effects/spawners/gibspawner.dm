@@ -50,10 +50,13 @@
 
 				gib.add_blood_DNA(dna_to_add)
 
+// These might streak off into space and cause annoying flaky failures with mapping nearstation tests
+#ifndef UNIT_TESTS
 				var/list/directions = gibdirections[i]
 				if(isturf(loc))
 					if(directions.len)
 						gib.streak(directions, mapload)
+#endif
 
 	return INITIALIZE_HINT_QDEL
 
@@ -70,8 +73,6 @@
 
 /obj/effect/gibspawner/generic/animal
 	gib_mob_type = /mob/living/basic/pet
-
-
 
 /obj/effect/gibspawner/human
 	gibtypes = list(/obj/effect/decal/cleanable/blood/gibs/up, /obj/effect/decal/cleanable/blood/gibs/down, /obj/effect/decal/cleanable/blood/gibs, /obj/effect/decal/cleanable/blood/gibs, /obj/effect/decal/cleanable/blood/gibs/body, /obj/effect/decal/cleanable/blood/gibs/limb, /obj/effect/decal/cleanable/blood/gibs/core)

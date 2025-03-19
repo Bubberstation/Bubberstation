@@ -458,7 +458,7 @@
 
 //Generic
 /obj/item/circuitboard/machine/component_printer
-	name = "\improper Component Printer (Machine Board)"
+	name = "\improper Component Printer"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/component_printer
 	req_components = list(
@@ -467,7 +467,7 @@
 	)
 
 /obj/item/circuitboard/machine/module_duplicator
-	name = "\improper Module Duplicator (Machine Board)"
+	name = "\improper Module Duplicator"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/module_duplicator
 	req_components = list(
@@ -843,7 +843,7 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/chem_mass_spec
-	name = "High-Performance Liquid Chromatography"
+	name = "High-Performance Liquid Chromatography Machine"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/chem_mass_spec
 	req_components = list(
@@ -1475,6 +1475,16 @@
 		/datum/stock_part/scanning_module = 1,
 		/datum/stock_part/card_reader = 1)
 
+/obj/item/circuitboard/machine/mailsorter
+	name = "Mail Sorter"
+	greyscale_colors = CIRCUIT_COLOR_SUPPLY
+	build_path = /obj/machinery/mailsorter
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/datum/stock_part/matter_bin = 2,
+		/datum/stock_part/scanning_module = 1)
+	needs_anchored = TRUE
+
 //Tram
 /obj/item/circuitboard/machine/crossing_signal
 	name = "Crossing Signal"
@@ -1611,7 +1621,7 @@
 		)
 
 /obj/item/circuitboard/machine/coffeemaker
-	name = "Coffeemaker (Machine Board)"
+	name = "Coffeemaker"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/coffeemaker
 	req_components = list(
@@ -1760,7 +1770,7 @@
 	build_path = /obj/machinery/power/manufacturing/lathe
 	req_components = list(
 		/obj/item/stack/sheet/iron = 5,
-		/datum/stock_part/servo = 1,
+		/datum/stock_part/matter_bin = 1,
 	)
 
 /obj/item/circuitboard/machine/manucrusher

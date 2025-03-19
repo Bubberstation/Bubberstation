@@ -1,11 +1,11 @@
 /obj/item/implant/interdyne
-	name = "interdyne implant"
-	desc = "Welcome to Interdyne Pharmaceutics."
+	name = "syndicate IFF implant"
+	desc = "Welcome to the syndicate."
 	actions_types = null
 
 /obj/item/implant/interdyne/get_data()
 	return "<b>Implant Specifications:</b><BR> \
-		<b>Name:</b> Interdyne Pharmaceutics Employee Implant<BR> \
+		<b>Name:</b> Syndicate IFF system Implant<BR> \
 		<b>Implant Details:</b> This implant will install a bio-metric signature that will ensure they are not targeted by lethal security devices.<BR>"
 
 /obj/item/implant/interdyne/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
@@ -29,11 +29,11 @@
 	return TRUE
 
 /obj/item/implanter/interdyne
-	name = "implanter (interdyne)"
+	name = "implanter (syndicate IFF)"
 	imp_type = /obj/item/implant/interdyne
 
 /obj/item/implantcase/interdyne
-	name = "implant case - 'interdyne'"
-	desc = "A glass case containing a Interdyne Pharmaceutics employee implant. Are you ready to join Interdyne Pharmaceutics, agent?"
+	name = "implant case - 'Syndicate Identification Friend or Foe'"
+	desc = "A glass case containing an IFF system implant manufactured by Interdyne Pharmaceutics. These do not work with the IFF systems used by the Gorlex Marauders. Are you ready to join the Syndicate, agent?"
 	imp_type = /obj/item/implant/interdyne
 

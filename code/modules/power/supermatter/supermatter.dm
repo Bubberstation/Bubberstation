@@ -222,6 +222,19 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	soundloop = new(src, TRUE)
 
 	if(!isnull(check_holidays(FESTIVE_SEASON)))
+		// BUBBER EDIT EDITION BEGIN - Festive Supermatter
+		switch(rand(1, 3))
+			if(1)
+				icon = 'modular_zubbers/icons/obj/machines/festive_supermatter.dmi'
+				name = "festive supermatter crystal"
+				desc = "A strangely translucent and festive crystal. If you stare at it long enough, some say you can hallucinate the distilled essence of the holidays staring back at you."
+			if(2)
+				icon = 'modular_zubbers/icons/obj/machines/wintergreen_supermatter.dmi'
+				name = "wintergreen supermatter crystal"
+				desc = "A strangely translucent and iridescent crystal. Green doesn't make it run cooler."
+			if(3)
+				icon = 'icons/obj/machines/engine/supermatter.dmi'
+		// BUBBER EDIT ADDITION END
 		holiday_lights()
 
 	if (!moveable)
@@ -241,7 +254,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
-		SSpersistence.reset_delam_counter() // NOVA EDIT ADDITION BEGIN - DELAM SCRAM
+		SSpersistence.reset_delam_counter() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
 	return ..()
@@ -872,7 +885,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
  * Set to a number higher than [SM_DELAM_PRIO_IN_GAME] to fully force an admin delam.
  * * delam_path: Typepath of a [/datum/sm_delam]. [SM_DELAM_STRATEGY_PURGE] means reset and put prio back to zero.
  *
- * Returns: Not used for anything, just returns true on succesful set, manual and automatic. Helps admins check stuffs.
+ * Returns: Not used for anything, just returns true on successful set, manual and automatic. Helps admins check stuffs.
  */
 /obj/machinery/power/supermatter_crystal/proc/set_delam(priority = SM_DELAM_PRIO_NONE, manual_delam_path = SM_DELAM_STRATEGY_PURGE)
 	if(priority < delam_priority)
@@ -1082,7 +1095,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /// Consume the santa hat and add it as an overlay
 /obj/machinery/power/supermatter_crystal/proc/holiday_item_interaction(source, mob/living/user, obj/item/item, list/modifiers)
 	SIGNAL_HANDLER
-	if(istype(item, /obj/item/clothing/head/costume/santa) || istype(item, /obj/item/clothing/head/costume/skyrat/christmas)) // SKYRAT EDIT CHANGE - Loadouts
+	if(istype(item, /obj/item/clothing/head/costume/santa))
 		QDEL_NULL(item)
 		RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(holiday_hat_examine))
 		if(istype(src, /obj/machinery/power/supermatter_crystal/shard))

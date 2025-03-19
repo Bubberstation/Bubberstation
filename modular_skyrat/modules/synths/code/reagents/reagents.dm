@@ -18,7 +18,6 @@
 /datum/reagent/medicine/system_cleaner
 	name = "System Cleaner"
 	description = "Neutralizes harmful chemical compounds inside synthetic systems and refreshes system software."
-	reagent_state = LIQUID
 	color = "#F1C40F"
 	taste_description = "ethanol"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -27,6 +26,7 @@
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.adjustToxLoss(-2 * REM * seconds_per_tick, 0)
 	affected_mob.adjust_disgust(-5 * REM * seconds_per_tick)
+	affected_mob.adjust_drunk_effect(-10 * REM * seconds_per_tick)
 	var/remove_amount = 1 * REM * seconds_per_tick;
 	for(var/thing in affected_mob.reagents.reagent_list)
 		var/datum/reagent/reagent = thing
@@ -38,7 +38,6 @@
 /datum/reagent/medicine/liquid_solder
 	name = "Liquid Solder"
 	description = "Repairs brain damage in synthetics."
-	reagent_state = LIQUID
 	color = "#727272"
 	taste_description = "metal"
 	process_flags = REAGENT_SYNTHETIC
@@ -52,7 +51,6 @@
 /datum/reagent/medicine/nanite_slurry
 	name = "Nanite Slurry"
 	description = "A localized swarm of nanomachines specialized in repairing mechanical parts. Concentrated amounts in a synthetic host will rapidly repair organ damage, damaging their exterior and overheating them. Otherwise they will safely purge from an organic host"
-	reagent_state = LIQUID
 	color = "#cccccc"
 	overdose_threshold = 15
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
@@ -94,7 +92,6 @@
 	name = "Taste Suppressor"
 	description = "A colorless medicine aimed to dull the sense of taste of those that consumed it, as long as it's in their system."
 	color = "#AAAAAA77"
-	reagent_state = LIQUID
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING // It has REAGENT_BLOOD_REGENERATING only because it makes it so Hemophages can safely drink it, which makes complete sense considering this is meant to suppress their tumor's reactiveness to anything that doesn't regenerate blood.

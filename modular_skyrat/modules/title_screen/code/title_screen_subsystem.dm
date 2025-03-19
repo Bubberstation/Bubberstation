@@ -28,11 +28,11 @@ SUBSYSTEM_DEF(title)
 
 /datum/controller/subsystem/title/Initialize()
 	var/dat
-	if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt")) // BUBBER EDIT - original title_html.txt
-		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read bubbers_title.txt, reverting to backup title html, please check your server config and ensure this file exists.")) // BUBBER EDIT - original title_html.txt
+	if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt"))
+		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read bubbers_title.txt, reverting to backup title html, please check your server config and ensure this file exists."))
 		dat = DEFAULT_TITLE_HTML
 	else
-		dat = file2text("[global.config.directory]/bubbers/bubbers_title.txt") // BUBBER EDIT - original title_html.txt
+		dat = file2text("[global.config.directory]/bubbers/bubbers_title.txt")
 
 	title_html = dat
 
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(title)
 		if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
 			local_title_screens += screen
 
-		if(LAZYLEN(formatted_list) > 1 && lowertext(formatted_list[1]) == "startup_splash")
+		if(LAZYLEN(formatted_list) > 1 && LOWER_TEXT(formatted_list[1]) == "startup_splash")
 			var/file_path = "[global.config.directory]/title_screens/images/[screen]"
 			ASSERT(fexists(file_path))
 			startup_splash = new(fcopy_rsc(file_path))

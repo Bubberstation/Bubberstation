@@ -171,7 +171,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 
 ///Map generation defines
-#define DEFAULT_SPACE_RUIN_LEVELS 7
+#define DEFAULT_SPACE_RUIN_LEVELS 4 // Bubber Edit - ORG: 7
 #define DEFAULT_SPACE_EMPTY_LEVELS 1
 
 #define BIOME_LOW_HEAT "low_heat"
@@ -195,8 +195,16 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 /// Shelter spot has anchored objects that restrict deployment
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+/// Sheter spot has banned objects that restrict deployment
+#define SHELTER_DEPLOY_BANNED_OBJECTS "banned objects"
 /// Shelter spot is out of bounds from the maps x/y coordinates
 #define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
+
+//Flags for survival capsules to ignore some deploy checks
+///Ignore anchored, dense objects in the area
+#define CAPSULE_IGNORE_ANCHORED_OBJECTS (1<<0)
+///Ignore banned objects in the area
+#define CAPSULE_IGNORE_BANNED_OBJECTS (1<<1)
 
 /// A map key that corresponds to being one exclusively for Space.
 #define SPACE_KEY "space"

@@ -544,7 +544,7 @@
 	greyscale_config = /datum/greyscale_config/plush_spacelizard
 	// space lizards can't hit people with their tail, it's stuck in their suit
 	attack_verb_continuous = list("claws", "hisses", "bops")
-	attack_verb_simple = list("claw", "hiss", "bops")
+	attack_verb_simple = list("claw", "hiss", "bop")
 
 /obj/item/toy/plush/lizard_plushie/space/green
 	desc = "An adorable stuffed toy that resembles a very determined spacefaring green lizardperson. To infinity and beyond, little guy. This one fills you with nostalgia and soul."
@@ -633,7 +633,7 @@
 			"I WILL DIE TO JUST ONE ATTTTTTAAAAACKKKKKK!!",
 			"I WILLLLLL NOT DROP GOOOD IITITTEEEEEMMMS!!",
 		)
-	AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)) , CALLBACK(src, PROC_REF(unsecured_process)))
+	AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)) , CALLBACK(src, PROC_REF(unsecured_process)), 0)
 
 /obj/item/toy/plush/whiny_plushie/proc/secured_process(last_move)
 	icon_state = initial(icon_state)
@@ -800,3 +800,15 @@
 	icon_state = "donkpocket"
 	attack_verb_continuous = list("donks")
 	attack_verb_simple = list("donk")
+
+/obj/item/toy/plush/human
+	name = "human plushie"
+	desc = "This is a felt plush of a human. All craftsmanship is of the lowest quality. The human is crying. The human is screaming."
+	icon_state = "plushie_human"
+	inhand_icon_state = null //i would rather not have a blue coder plushie inhand
+	attack_verb_continuous = list("screams at", "strikes", "bashes")
+	attack_verb_simple = list("scream at", "strike", "bash")
+	squeak_override = list(
+		'sound/mobs/humanoids/human/scream/malescream_2.ogg' = 10, //10% chance to scream, rare but not abysmal
+		'sound/items/weapons/smash.ogg' = 90,
+		)

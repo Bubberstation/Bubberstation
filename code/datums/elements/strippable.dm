@@ -93,6 +93,8 @@
 /datum/strippable_item/proc/try_equip(atom/source, obj/item/equipping, mob/user)
 	if(SEND_SIGNAL(user, COMSIG_TRY_STRIP, source, equipping) & COMPONENT_CANT_STRIP)
 		return FALSE
+	if(SEND_SIGNAL(source, COMSIG_BEING_STRIPPED, user, equipping) & COMPONENT_CANT_STRIP)
+		return FALSE
 
 	if (HAS_TRAIT(equipping, TRAIT_NODROP))
 		to_chat(user, span_warning("You can't put [equipping] on [source], it's stuck to your hand!"))
@@ -128,6 +130,8 @@
 	if (ismob(source))
 		if(SEND_SIGNAL(user, COMSIG_TRY_STRIP, source, item) & COMPONENT_CANT_STRIP)
 			return FALSE
+		if(SEND_SIGNAL(source, COMSIG_BEING_STRIPPED, user, item) & COMPONENT_CANT_STRIP)
+			return FALSE
 		var/mob/mob_source = source
 		if (!item.canStrip(user, mob_source))
 			return FALSE
@@ -156,7 +160,7 @@
 	//SKYRAT EDIT CHANGE END
 
 	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
-	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "is stripping [source] of [item].") // BUBBER EDIT - PUBLIC LOGGING
+	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
 
@@ -292,7 +296,7 @@
 
 /// A utility function for `/datum/strippable_item`s to finish equipping an item to a mob.
 /proc/finish_equip_mob(obj/item/item, mob/source, mob/user)
-	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red", redacted_copy = "has put [item] on [source].") // BUBBER EDIT- PUBLIC LOGS
+	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red")
 	source.log_message("had [item] put on them by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
@@ -307,7 +311,7 @@
 	if (!item.doStrip(user, source))
 		return FALSE
 
-	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "has stripped [source] of [item])") // BUBBER EDIT - PUBLIC LOGS
+	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red")
 	source.log_message("has been stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 	// Updates speed in case stripped speed affecting item
@@ -369,7 +373,7 @@
 			continue
 
 		var/obj/item/item = item_data.get_item(owner)
-		if (isnull(item) || (HAS_TRAIT(item, TRAIT_NO_STRIP) || (item.item_flags & EXAMINE_SKIP)))
+		if (isnull(item) || (HAS_TRAIT(item, TRAIT_NO_STRIP) || HAS_TRAIT(item, TRAIT_EXAMINE_SKIP)))
 			items[strippable_key] = result
 			continue
 

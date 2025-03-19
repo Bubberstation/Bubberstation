@@ -92,14 +92,12 @@
 
 
 //trigger dance if character uses LBM
-/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag) //Bubber edit add proximity_flag
+/obj/structure/stripper_pole/attack_hand(mob/living/user, proximity_flag)
 	. = ..()
 	if(.)
 		return
-// Bubber edit begin
 	if(!proximity_flag)
 		return
-// Bubber edit end
 	if(pole_in_use)
 		balloon_alert(user, "already in use!")
 		return

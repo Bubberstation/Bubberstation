@@ -117,7 +117,7 @@
  * model_features is defined in modular_skyrat\modules\altborgs\code\modules\mob\living\silicon\robot\robot_model.dm.
  */
 /mob/living/silicon/robot/proc/can_rest()
-	if(model && model.model_features && ((TRAIT_R_WIDE in model.model_features) || (TRAIT_R_TALL in model.model_features) || (TRAIT_R_SQUADRUPED in model.model_features)))// BUBBER EDIT - added small quadrupeds
+	if(model && model.model_features && ((TRAIT_R_WIDE in model.model_features) || (TRAIT_R_TALL in model.model_features) || (TRAIT_R_SQUADRUPED in model.model_features)))
 		if(TRAIT_IMMOBILIZED in _status_traits)
 			return FALSE
 		return TRUE

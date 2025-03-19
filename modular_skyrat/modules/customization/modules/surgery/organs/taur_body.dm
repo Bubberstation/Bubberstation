@@ -1,4 +1,4 @@
-/obj/item/organ/external/taur_body
+/obj/item/organ/taur_body
 	name = "taur body"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_TAUR
@@ -23,35 +23,72 @@
 	/// If true, our sprite accessory will not render.
 	var/hide_self
 
-/obj/item/organ/external/taur_body/horselike
+	/// If true, this taur body allows a saddle to be equipped and used.
+	var/can_use_saddle = FALSE
 
-/obj/item/organ/external/taur_body/horselike/synth
+	/// If true, can ride saddled taurs and be ridden by other taurs with this set to TRUE.
+	var/can_ride_saddled_taurs = FALSE
+
+	/// When being ridden via saddle, how much the rider is offset on the x axis when facing west or east.
+	var/riding_offset_side_x = 12
+	/// When being ridden via saddle, how much the rider is offset on the y axis when facing west or east.
+	var/riding_offset_side_y = 2
+
+	/// When being ridden via saddle, how much the rider is offset on the x axis when facing north or south.
+	var/riding_offset_front_x = 0
+	/// When being ridden via saddle, how much the rider is offset on the y axis when facing north or south.
+	var/riding_offset_front_y = 5
+
+	/// Lazylist of (TEXT_DIR -> y offset) to be applied to taur-specific clothing that isn't specifically made for this sprite.
+	var/list/taur_specific_clothing_y_offsets
+
+	/// When considering how much to offset our rider, we multiply size scaling against this.
+	var/riding_offset_scaling_mult = 0.8
+
+/obj/item/organ/taur_body/horselike
+	can_use_saddle = TRUE
+
+/obj/item/organ/taur_body/horselike/synth
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/external/taur_body/serpentine
+/obj/item/organ/taur_body/horselike/deer
+
+/obj/item/organ/taur_body/horselike/deer/Initialize(mapload)
+	. = ..()
+
+	taur_specific_clothing_y_offsets = list(
+		TEXT_EAST = 3,
+		TEXT_WEST = 3,
+		TEXT_NORTH = 0,
+		TEXT_SOUTH = 0,
+	)
+
+/obj/item/organ/taur_body/serpentine
 	left_leg_name = "upper serpentine body"
 	right_leg_name = "lower serpentine body"
 
-/obj/item/organ/external/taur_body/serpentine/synth
+/obj/item/organ/taur_body/serpentine/synth
 	organ_flags = ORGAN_ROBOTIC
 
-/obj/item/organ/external/taur_body/spider
+/obj/item/organ/taur_body/spider
 	left_leg_name = "left legs"
 	right_leg_name = "right legs"
 
-/obj/item/organ/external/taur_body/tentacle
+/obj/item/organ/taur_body/tentacle
 	left_leg_name = "front tentacles"
 	right_leg_name = "back tentacles"
 
-/obj/item/organ/external/taur_body/blob
+/obj/item/organ/taur_body/blob
 	left_leg_name = "outer blob"
 	right_leg_name = "inner blob"
 
-/obj/item/organ/external/taur_body/anthro
+/obj/item/organ/taur_body/anthro
 	left_leg_name = null
 	right_leg_name = null
 
-/obj/item/organ/external/taur_body/anthro/synth
+	can_ride_saddled_taurs = TRUE
+
+/obj/item/organ/taur_body/anthro/synth
 	organ_flags = ORGAN_ROBOTIC
 
 /datum/bodypart_overlay/mutant/taur_body
@@ -68,7 +105,7 @@
 	return SSaccessories.sprite_accessories["taur"]
 
 
-/obj/item/organ/external/taur_body/Insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/taur_body/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_HIDE_SHOES)
 		external_bodyshapes |= BODYSHAPE_HIDE_SHOES
 
@@ -87,10 +124,10 @@
 
 	if (left_leg_name)
 		new_left_leg.name = left_leg_name + " (Left leg)"
-		new_left_leg.plaintext_zone = lowertext(new_left_leg.name) // weird otherwise
+		new_left_leg.plaintext_zone = LOWER_TEXT(new_left_leg.name) // weird otherwise
 	if (right_leg_name)
 		new_right_leg.name = right_leg_name + " (Right leg)"
-		new_right_leg.plaintext_zone = lowertext(new_right_leg.name)
+		new_right_leg.plaintext_zone = LOWER_TEXT(new_right_leg.name)
 
 	new_left_leg.bodyshape |= external_bodyshapes
 	new_left_leg.replace_limb(receiver, TRUE)
@@ -107,7 +144,7 @@
 	return ..()
 
 
-/obj/item/organ/external/taur_body/Remove(mob/living/carbon/organ_owner, special, moving)
+/obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	if(QDELETED(owner))
 		return ..()
 
@@ -138,10 +175,21 @@
 
 	return ..()
 
-/obj/item/organ/external/taur_body/Destroy()
+/obj/item/organ/taur_body/Destroy()
 	. = ..()
 	if(old_left_leg)
 		QDEL_NULL(old_left_leg)
 
 	if(old_right_leg)
 		QDEL_NULL(old_right_leg)
+
+/obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
+	var/size_scaling = (owner.dna.features["body_size"] / BODY_SIZE_NORMAL) - 1
+	var/scaling_mult = 1 + (size_scaling * riding_offset_scaling_mult)
+
+	return list(
+		TEXT_NORTH = list(riding_offset_front_x, round((riding_offset_front_y + taur_specific_clothing_y_offsets?[TEXT_NORTH]) * scaling_mult, 1)),
+		TEXT_SOUTH = list(riding_offset_front_x, round((riding_offset_front_y + taur_specific_clothing_y_offsets?[TEXT_SOUTH]) * scaling_mult, 1)),
+		TEXT_EAST = list(round(-riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_EAST]) * scaling_mult, 1)),
+		TEXT_WEST = list(round(riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_WEST]) * scaling_mult, 1)),
+	)

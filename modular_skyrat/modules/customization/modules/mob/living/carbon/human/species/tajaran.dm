@@ -8,7 +8,7 @@
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_MUTANT_COLORS,
 	)
-	mutanttongue = /obj/item/organ/internal/tongue/cat/tajaran
+	mutanttongue = /obj/item/organ/tongue/cat/tajaran
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
@@ -17,7 +17,7 @@
 	examine_limb_id = SPECIES_MAMMAL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/tajaran, // BUBBER EDIT
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/tajaran,
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
@@ -32,7 +32,7 @@
 		"legs" = list("Normal Legs", FALSE),
 	)
 
-/obj/item/organ/internal/tongue/cat/tajaran
+/obj/item/organ/tongue/cat/tajaran
 	liked_foodtypes = GRAIN | MEAT
 	disliked_foodtypes = CLOTH
 

@@ -76,6 +76,9 @@
 	/// What brain traumas does the owner currently have?
 	var/list/trauma_list = list()
 
+	/// What wounds does the owner currently have?
+	var/list/wound_list = list()
+
 /datum/component/damage_tracker/human/update_damage_values()
 	. = ..()
 	var/mob/living/carbon/human/human_parent = parent
@@ -86,13 +89,19 @@
 	if(length(current_trauma_list))
 		trauma_list = current_trauma_list.Copy()
 
-	heart_damage = human_parent.check_organ_damage(/obj/item/organ/internal/heart)
-	liver_damage = human_parent.check_organ_damage(/obj/item/organ/internal/liver)
-	lung_damage = human_parent.check_organ_damage(/obj/item/organ/internal/lungs)
-	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/internal/stomach)
-	brain_damage = human_parent.check_organ_damage(/obj/item/organ/internal/brain)
-	eye_damage = human_parent.check_organ_damage(/obj/item/organ/internal/eyes)
-	ear_damage = human_parent.check_organ_damage(/obj/item/organ/internal/ears)
+	for(var/obj/item/bodypart/limb as anything in human_parent.get_wounded_bodyparts())
+		for(var/datum/wound/limb_wound as anything in limb.wounds)
+			if(!islist(wound_list[limb.type]))
+				wound_list[limb.type] = list()
+			wound_list[limb.type] |= limb_wound.type
+
+	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
+	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver)
+	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs)
+	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach)
+	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain)
+	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes)
+	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears)
 
 	return TRUE
 
@@ -110,7 +119,7 @@
 	human_parent.setOrganLoss(ORGAN_SLOT_EARS, ear_damage)
 	human_parent.setOrganLoss(ORGAN_SLOT_BRAIN, brain_damage)
 
-	var/obj/item/organ/internal/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/internal/brain)
+	var/obj/item/organ/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/brain)
 	if(!human_brain)
 		return FALSE
 
@@ -120,6 +129,14 @@
 			continue // We don't need to torture the poor soul with the same brain trauma.
 
 		human_brain.gain_trauma(trauma_to_add)
+
+	for(var/obj/item/bodypart/limb_type as anything in wound_list)
+		var/obj/item/bodypart/limb_instance = locate(limb_type) in human_parent.bodyparts
+		if(!limb_instance)
+			continue
+		for(var/datum/wound/wound_type as anything in wound_list[limb_type])
+			var/datum/wound/new_wound = new wound_type()
+			new_wound.apply_wound(limb_instance, TRUE)
 
 	return TRUE
 

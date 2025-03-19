@@ -12,7 +12,7 @@
 	var/require_model = FALSE
 	var/list/model_type = null
 	/// Bitflags listing model compatibility. Used in the exosuit fabricator for creating sub-categories.
-	var/list/model_flags = NONE
+	var/model_flags = NONE
 
 	/// List of items to add with the module, if any
 	var/list/items_to_add
@@ -599,6 +599,10 @@
 		return FALSE
 
 	// SKYRAT EDIT ADDITION BEGIN
+	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
+		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
+		return FALSE
+
 	var/resize_amount = 1.6
 	// SKYRAT EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
@@ -610,7 +614,13 @@
 	smoke.start()
 	sleep(0.2 SECONDS)
 	for(var/i in 1 to 4)
-		playsound(borg, pick('sound/items/tools/drill_use.ogg', 'sound/items/tools/jaws_cut.ogg', 'sound/items/tools/jaws_pry.ogg', 'sound/items/tools/welder.ogg', 'sound/items/tools/ratchet.ogg'), 80, TRUE, -1)
+		playsound(borg, pick(
+			'sound/items/tools/drill_use.ogg',
+			'sound/items/tools/jaws_cut.ogg',
+			'sound/items/tools/jaws_pry.ogg',
+			'sound/items/tools/welder.ogg',
+			'sound/items/tools/ratchet.ogg',
+			), 80, TRUE, -1)
 		sleep(1.2 SECONDS)
 	if(!prev_lockcharge)
 		borg.SetLockdown(FALSE)
@@ -644,23 +654,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
 	model_flags = BORG_MODEL_ENGINEERING
-
 	items_to_add = list(/obj/item/inducer/cyborg)
-
-/obj/item/inducer/cyborg
-	name = "Internal inducer"
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "inducer-engi"
-	powerdevice = null
-
-/obj/item/inducer/cyborg/get_cell()
-	var/obj/item/robot_model/possible_model = loc
-	var/mob/living/silicon/robot/silicon_friend = istype(possible_model) ? possible_model.robot : possible_model
-	if(istype(silicon_friend))
-		. = silicon_friend.cell
-
-/obj/item/inducer/cyborg/screwdriver_act(mob/living/user, obj/item/tool)
-	return NONE
 
 /obj/item/borg/upgrade/pinpointer
 	name = "medical cyborg crew pinpointer"
@@ -679,7 +673,7 @@
 		return .
 	crew_monitor = new /datum/action/item_action/crew_monitor(src)
 	crew_monitor.Grant(borg)
-	icon_state = "scanner"
+	icon_state = "crew_monitor"
 
 
 /obj/item/borg/upgrade/pinpointer/deactivate(mob/living/silicon/robot/borg, mob/living/user = usr)
@@ -702,7 +696,7 @@
 
 /obj/item/borg/upgrade/transform
 	name = "borg model picker (Standard)"
-	desc = "Allows you to to turn a cyborg into a standard cyborg."
+	desc = "Allows you to turn a cyborg into a standard cyborg."
 	icon_state = "module_general"
 	var/obj/item/robot_model/new_model = null
 
@@ -713,7 +707,7 @@
 
 /obj/item/borg/upgrade/transform/clown
 	name = "borg model picker (Clown)"
-	desc = "Allows you to to turn a cyborg into a clown, honk."
+	desc = "Allows you to turn a cyborg into a clown, honk."
 	icon_state = "module_honk"
 	new_model = /obj/item/robot_model/clown
 
@@ -806,6 +800,27 @@
 	model_flags = BORG_MODEL_SERVICE
 
 	items_to_add = list(/obj/item/borg/cookbook)
+
+/obj/item/borg/upgrade/botany_upgrade
+	name = "Service Cyborg Botany Tools"
+	desc = "An upgrade to the service model cyborg, that let them do gardening and plant processing."
+	icon_state = "module_service"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/service)
+	model_flags = BORG_MODEL_SERVICE
+
+	items_to_add = list(/obj/item/storage/bag/plants/cyborg, /obj/item/borg/cyborg_omnitool/botany, /obj/item/plant_analyzer)
+
+/obj/item/borg/upgrade/shuttle_blueprints
+	name = "Engineering Cyborg Shuttle Blueprint Database"
+	desc = "An upgrade to the engineering model cyborg allowing for the construction and expansion of shuttles."
+	icon_state = "module_engineer"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
+	model_flags = BORG_MODEL_ENGINEERING
+
+	items_to_add = list(/obj/item/shuttle_blueprints/borg)
+
 
 ///This isn't an upgrade or part of the same path, but I'm gonna just stick it here because it's a tool used on cyborgs.
 //A reusable tool that can bring borgs back to life. They gotta be repaired first, though.

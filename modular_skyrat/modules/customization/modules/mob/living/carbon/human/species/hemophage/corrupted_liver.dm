@@ -2,7 +2,7 @@
 #define MINIMUM_BLOOD_REGENING_REAGENT_RATIO 0.75
 
 /datum/component/organ_corruption/liver
-	corruptable_organ_type = /obj/item/organ/internal/liver
+	corruptable_organ_type = /obj/item/organ/liver
 	corrupted_icon_state = "liver"
 
 
@@ -23,7 +23,7 @@
 /datum/component/organ_corruption/liver/UnregisterFromParent()
 	. = ..()
 
-	var/obj/item/organ/internal/liver/parent_liver = parent
+	var/obj/item/organ/liver/parent_liver = parent
 
 	if(parent_liver.owner)
 		UnregisterSignal(parent_liver.owner, COMSIG_GLASS_DRANK)
@@ -38,10 +38,9 @@
 	if(HAS_TRAIT(target_mob, TRAIT_AGEUSIA)) // They don't taste anything, their body shouldn't react strongly to the taste of that stuff.
 		return
 
-// BUBBER EDIT START
 	if(HAS_TRAIT(target_mob, TRAIT_MASQUERADE_FOOD)) // Their tumor has adapted the ability to consume normal food without violently rejecting it.
 		return
-// BUBBER EDIT END
+
 	if(container.reagents.has_chemical_flag_skyrat(REAGENT_BLOOD_REGENERATING, container.reagents.total_volume * MINIMUM_BLOOD_REGENING_REAGENT_RATIO)) // At least 75% of the content of the cup needs to be something that's counting as blood-regenerating for the tumor not to freak out.
 		return
 

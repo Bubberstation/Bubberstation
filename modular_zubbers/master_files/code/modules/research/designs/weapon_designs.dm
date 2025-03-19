@@ -1,6 +1,6 @@
 /datum/design/wt550_ammo_rubber
-	name = "WT-550/WT-551 Magazine (4.6x30mm Rubber-Tipped) (Less-Than_Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains less-than-lethal rubber-tipped ammo."
+	name = "WT-550/WT-551 Magazine (4.6x30mm Rubber-Tipped) (Less-Lethal)"
+	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains less-lethal rubber-tipped ammo."
 	id = "wt550_ammo_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6)
@@ -36,7 +36,7 @@
 
 /datum/design/wt550_ammo_ap
 	name = "WT-550/WT-551 Magazine (4.6x30mm Armor-Piercing) (Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal armor-piercing ammo. NanoTrasen prefers you didn't use these on your pressurized space station."
+	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal armor-piercing ammo. Nanotrasen prefers you didn't use these on your pressurized space station."
 	id = "wt550_ammo_ap"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
