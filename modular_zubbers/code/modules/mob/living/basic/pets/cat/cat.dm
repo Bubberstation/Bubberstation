@@ -20,7 +20,7 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 35
 	mobility_flags = MOBILITY_FLAGS_DEFAULT
-	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile
 	faction = list(FACTION_CAT, ROLE_SYNDICATE)
 	gold_core_spawnable = NO_SPAWN
 	// it's clad in blood-red armor
