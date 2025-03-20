@@ -23,7 +23,7 @@
 
 	if(aroused != AROUSAL_FULL)
 		var/temperature_difference = owner.bodytemperature - owner.get_body_temp_normal()
-		if(abs(temperature_difference) > 1)
+		if(temperature_difference <= -1)
 			// https://www.desmos.com/calculator/ivauzad62s
 			//I love penis math
 			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
