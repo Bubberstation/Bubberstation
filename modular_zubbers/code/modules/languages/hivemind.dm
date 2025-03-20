@@ -8,7 +8,7 @@
 							/datum/language/xenocommon/lesser_hivemind = list(LANGUAGE_ATOM),
 							)
 
-/obj/item/organ/internal/tongue/xeno_hybrid
+/obj/item/organ/tongue/xeno_hybrid
 		modifies_speech = TRUE
 		languages_native = list(/datum/language/xenocommon/lesser_hivemind)
 
@@ -19,18 +19,18 @@
 	key = "5"
 	icon_state = "xeno"
 
-/obj/item/organ/internal/tongue/xeno_hybrid/handle_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/xeno_hybrid/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
 		return modify_speech(source, speech_args)
 
 
 
-/obj/item/organ/internal/tongue/xeno_hybrid/modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/xeno_hybrid/modify_speech(datum/source, list/speech_args)
 	ASYNC
 		actually_modify_speech(source, speech_args)
 	speech_args[SPEECH_MESSAGE] = "" // Makes it not send to chat verbally.
 
-/obj/item/organ/internal/tongue/xeno_hybrid/proc/actually_modify_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/xeno_hybrid/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
 	user.balloon_alert_to_viewers("Looks distracted...", "Concentrating...")
@@ -41,7 +41,7 @@
 
 	user.log_talk(message, LOG_SAY, tag="xeno")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/brain/xeno_hybrid/brain = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/xeno_hybrid/brain = living_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(!istype(brain))
 			continue
 		to_chat(living_mob, rendered)

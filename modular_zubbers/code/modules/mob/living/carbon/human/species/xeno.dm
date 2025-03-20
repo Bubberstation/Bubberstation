@@ -15,9 +15,9 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "biohazard",
+		SPECIES_PERK_ICON = "eye",
 		SPECIES_PERK_NAME = "Darkvision",
-		SPECIES_PERK_DESC = "Xenomorph Hybrids inherit their pure cousin's ability to see in the dark, to a lesser degree."
+		SPECIES_PERK_DESC = "Xenomorph Hybrids inherit the ability to see in the dark from pure Xenomorphs, albiet to a less powerful degree."
 	))
 
 	to_add += list(list(
