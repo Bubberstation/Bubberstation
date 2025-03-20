@@ -68,9 +68,14 @@
 
 			if(TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS in model.model_features)
 				add_overlay("[icon_state]_e")
+			if((TRAIT_R_UNIQUE_BREAST_PLATE in model.model_features) && is_breastplate_active)
+				add_overlay("[model.cyborg_base_icon]-chestrest")
+
 
 	else
 		icon_state = "[model.cyborg_base_icon]"
+		if((TRAIT_R_UNIQUE_BREAST_PLATE in model.model_features) && is_breastplate_active)
+			add_overlay("[model.cyborg_base_icon]-chest")
 
 	if((TRAIT_R_UNIQUETIP in model.model_features) && (TRAIT_IMMOBILIZED in _status_traits))
 		icon_state = "[model.cyborg_base_icon]-tipped"
