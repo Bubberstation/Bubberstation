@@ -30,7 +30,7 @@
 
 	reported_length = CEILING(reported_length,0.5)
 
-	returned_string = "You estimate it's about [genital_size] inches long, and about [girth] inches in diameter."
+	returned_string = "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
 
 	switch(aroused)
 		if(AROUSAL_NONE)
