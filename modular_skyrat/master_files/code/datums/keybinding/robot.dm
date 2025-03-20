@@ -1,5 +1,5 @@
 /datum/keybinding/robot/chesttoggle
-	hotkey_keys = list("K")
+	hotkey_keys = list("I")
 	name = "Breastplate"
 	full_name = "Toggle breast plate"
 	description = "Toggles dullahan breast plate"
