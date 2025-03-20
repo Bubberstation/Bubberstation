@@ -64,3 +64,15 @@
 /datum/map_template/ghost_cafe_rooms/grotto2
 	name = "Grotto (Night)"
 	mappath = "modular_skyrat/modules/hotel_rooms/grottoalt.dmm"
+
+/datum/map_template/ghost_cafe_rooms/foxbar
+	name = "Fox Bar"
+	mappath = "modular_skyrat/modules/hotel_rooms/foxbar.dmm"
+
+/datum/map_template/ghost_cafe_rooms/nightclub
+	name = "The Nightclub"
+	mappath = "modular_skyrat/modules/hotel_rooms/nightclub.dmm"
+
+/datum/map_template/ghost_cafe_rooms/eva
+	name = "EVA"
+	mappath = "modular_skyrat/modules/hotel_rooms/eva.dmm"
