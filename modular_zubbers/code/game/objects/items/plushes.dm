@@ -266,3 +266,19 @@
 	attack_verb_continuous = list("bites", "curses", "drains")
 	attack_verb_simple = list("bite", "invoke", "claw")
 	gender = FEMALE
+
+// Plushie for Decinomics
+/obj/item/toy/plush/sinvox
+	name = "sinister vox plushie"
+	desc = "An evil looking toy. It's got a vox beak that splits into mandibles like a bug;\
+		its tail looks like a copy of the xenomorph plushie stitched together poorly.\
+		Property and copyright of VOXXXED Studios..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "sinvox"
+	attack_verb_continuous = list("hisses at", "bites", "mauls", "quills", "tail stabs")
+	attack_verb_simple = list("hiss at", "bite", "maul", "quill", "tail stab")
+	gender = MALE
+	squeak_override = list(
+		'sound/mobs/non-humanoids/hiss/hiss2.ogg' = 1,
+		'modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1,
+	)
