@@ -466,3 +466,9 @@
 	color_src = USE_MATRIXED_COLORS
 	name = "Renamon"
 	icon_state = "renamon"
+
+/datum/sprite_accessory/snouts/exsharp
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
+	color_src = USE_MATRIXED_COLORS
+	name = "Extra Sharp"
+	icon_state = "exsharp"

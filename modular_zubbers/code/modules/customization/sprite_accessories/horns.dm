@@ -71,3 +71,23 @@
 /datum/sprite_accessory/horns/bubber/big/antlers/short	//end of sprites by Gavla
 	name = "Short Antlers"
 	icon_state = "antlers_short"
+
+/datum/sprite_accessory/horns/bubber/newsimple
+	name = "Simple (New)"
+	icon_state = "newsimple"
+
+/datum/sprite_accessory/horns/bubber/newbroken
+	name = "Broken (New)"
+	icon_state = "newbroken"
+
+/datum/sprite_accessory/horns/bubber/newram
+	name = "Ram (New)"
+	icon_state = "newram"
+
+/datum/sprite_accessory/horns/bubber/lightning
+	name = "Lightning"
+	icon_state = "lightning"
+
+/datum/sprite_accessory/horns/bubber/brimstone
+	name = "Brimstone"
+	icon_state = "brimstone"
