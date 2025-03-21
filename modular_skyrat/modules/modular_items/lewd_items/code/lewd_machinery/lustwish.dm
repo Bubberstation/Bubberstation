@@ -156,6 +156,7 @@
 		/obj/item/clothing/neck/human_petcollar/locked/holo = 3,
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
 		/obj/item/toy/plush/cescrewsplush = 1,
+		/obj/item/toy/plush/sinvox = 1,
 		)
 
 	contraband = list(
