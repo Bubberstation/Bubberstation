@@ -87,9 +87,16 @@
 
 /obj/item/clothing/suit/space/officer
 	name = "CentCom officer's coat"
-	desc = "An armored, space-proof coat used in special operations."
+	desc = "A luxurious coat with genuine fur along the collar, a exotic suit worn by usually Special Operations Officers of Central Command, it's woven with excellent fabrics, while also housing technology to render the wearer safe from space's vaccum, and freezing temperatures."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+
+/obj/item/clothing/suit/armor/vest/officerfake
+	name = "CentCom officer's coat"
+	desc = "A luxurious coat with synthetic fur along the collar, a exotic suit worn by usually Special Operations Officers of Central Command, it's woven with excellent fabrics. This one lacks the special tech of space protection, which hinders it just as a piece of clothing."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "centcom_coat"
 
 /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	name = "CentCom carapace"
