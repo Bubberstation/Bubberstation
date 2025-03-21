@@ -84,10 +84,15 @@ Assistant
 
 	//We don't cache these, because they can delete on init
 	//Too fragile, better to just eat the cost
-	if (target.jumpsuit_style == PREF_SUIT)
-		uniform = GLOB.colored_assistant.jumpsuits[index]
-	else
-		uniform = GLOB.colored_assistant.jumpskirts[index]
+	//BUBBER EDIT START - Bunnysuits
+	switch(target.jumpsuit_style)
+		if (PREF_SKIRT)
+			uniform = GLOB.colored_assistant.jumpskirts[index]
+		if (PREF_BUNNY)
+			uniform = GLOB.colored_assistant.bunnysuits[index]
+		else
+			uniform = GLOB.colored_assistant.jumpsuits[index]
+	//BUBBER EDIT END - Bunnysuits
 
 /datum/outfit/job/assistant/consistent
 	name = "Assistant - Consistent"

@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(backpacklist, list(
 	LSATCHEL,
 ))
 
-	//Suit/Skirt
+	//Suit/Skirt/Bunnysuit
 #define PREF_SUIT "Jumpsuit"
 #define PREF_SKIRT "Jumpskirt"
 

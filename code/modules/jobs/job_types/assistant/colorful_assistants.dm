@@ -26,6 +26,7 @@
 		/obj/item/clothing/under/color/jumpskirt/red,
 	)
 
+
 /datum/colored_assistant/mcdonalds
 	jumpsuits = list(
 		/obj/item/clothing/under/color/yellow,
@@ -36,6 +37,7 @@
 		/obj/item/clothing/under/color/jumpskirt/yellow,
 		/obj/item/clothing/under/color/jumpskirt/red,
 	)
+
 
 /datum/colored_assistant/halloween
 	jumpsuits = list(
@@ -48,6 +50,7 @@
 		/obj/item/clothing/under/color/jumpskirt/black,
 	)
 
+
 /datum/colored_assistant/ikea
 	jumpsuits = list(
 		/obj/item/clothing/under/color/yellow,
@@ -59,6 +62,7 @@
 		/obj/item/clothing/under/color/jumpskirt/blue,
 	)
 
+
 /datum/colored_assistant/mud
 	jumpsuits = list(
 		/obj/item/clothing/under/color/brown,
@@ -69,6 +73,7 @@
 		/obj/item/clothing/under/color/jumpskirt/brown,
 		/obj/item/clothing/under/color/jumpskirt/lightbrown,
 	)
+
 
 /datum/colored_assistant/warm
 	jumpsuits = list(
@@ -84,6 +89,7 @@
 		/obj/item/clothing/under/color/jumpskirt/orange,
 		/obj/item/clothing/under/color/jumpskirt/yellow,
 	)
+
 
 /datum/colored_assistant/cold
 	jumpsuits = list(
@@ -104,6 +110,7 @@
 		/obj/item/clothing/under/color/jumpskirt/teal,
 	)
 
+
 /// Will pick one color, and stick with it
 /datum/colored_assistant/solid
 
@@ -118,3 +125,4 @@
 
 	// Couldn't find a matching jumpskirt, oh well
 	jumpskirts = list(get_random_jumpskirt())
+	bunnysuits = list(get_random_bunnysuit()) //BUBBER EDIT - Bunnysuits
