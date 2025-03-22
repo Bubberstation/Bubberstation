@@ -133,6 +133,12 @@
 	..()
 	. = TRUE
 
+/datum/glass_style/has_foodtype/drinking_glass/coca_tea
+	required_drink_type = /datum/reagent/drug/coca_tea
+
+	name = "glass of coca tea"
+	desc = "Mixing it with cola is the best way to summon a lawyer."
+
 /datum/reagent/drug/cocaine/coca_paste
 	name = "Coca Paste"
 	description = "An acidc paste containing high amount of cocaine and toxic chemicals used to process it - consumption is ill-advised."
@@ -154,7 +160,7 @@
 	M.AdjustImmobilized(-15 * REM * seconds_per_tick)
 	M.AdjustParalyzed(-15 * REM * seconds_per_tick)
 	M.adjustStaminaLoss(-2 * REM * seconds_per_tick, 0)
-	if(SPT_PROB(2.5, seconds_per_tick))
+	if(SPT_PROB(20, seconds_per_tick))
 		M.emote(pick("scream","twitch","shiver"))
 	..()
 	. = TRUE
@@ -185,3 +191,24 @@
 	description = "The powder form of cocaine."
 	color = "#ffffff"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+// no you can't multi-coke
+/datum/chemical_reaction/cocaine_sanity // cracks your cocaine
+	required_container = /mob/living
+	required_container_accepts_subtypes = TRUE
+	results = list(/datum/reagent/drug/cocaine/freebase_cocaine = 2)
+	required_reagents = list(/datum/reagent/drug/cocaine = 1, /datum/reagent/drug/cocaine/freebase_cocaine = 1,)
+	reaction_flags = REACTION_INSTANT
+
+/datum/chemical_reaction/cocaine_sanity_paste // unpastes your paste
+	required_container = /mob/living
+	required_container_accepts_subtypes = TRUE
+	results = list(/datum/reagent/cocaine = 0.8, datum/reagent/toxin/acid/nitracid = 0.1, datum/reagent/toxin = 0.1,)
+	required_reagents = list(/datum/reagent/drug/cocaine/coca_paste = 1)
+	required_catalysts = list(/datum/reagent/drug/cocaine = 1)
+	reaction_flags = REACTION_INSTANT
+
+/datum/chemical_reaction/cocaine_sanity_paste/crack
+	required_catalysts = list(/datum/reagent/drug/cocaine/freebase_cocaine = 1)
+
+// not doing this for coca powder/tea because honestly it doesn't matter
