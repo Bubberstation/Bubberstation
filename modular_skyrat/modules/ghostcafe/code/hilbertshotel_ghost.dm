@@ -76,3 +76,11 @@
 /datum/map_template/ghost_cafe_rooms/eva
 	name = "EVA"
 	mappath = "modular_skyrat/modules/hotel_rooms/eva.dmm"
+
+/datum/map_template/ghost_cafe_rooms/oasis
+	name = "Oasis"
+	mappath = "modular_skyrat/modules/hotel_rooms/oasis.dmm"
+
+/datum/map_template/ghost_cafe_rooms/oasisalt
+	name = "Oasis (Night)"
+	mappath = "modular_skyrat/modules/hotel_rooms/oasisalt.dmm"
