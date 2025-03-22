@@ -92,3 +92,7 @@
 	name = "Brimstone"
 	icon_state = "brimstone"
 
+/datum/sprite_accessory/horns/bubber/messenger //Sprites by Sweettoothart
+	name = "Winged Messenger"
+	icon_state = "messenger"
+	color_src = USE_ONE_COLOR

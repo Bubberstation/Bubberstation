@@ -472,3 +472,9 @@
 	color_src = USE_MATRIXED_COLORS
 	name = "Extra Sharp"
 	icon_state = "exsharp"
+
+/datum/sprite_accessory/snouts/mammal/masked_wing //Sprites by Sweettoothart
+	name = "Masked Wing"
+	icon_state = "masked"
+	color_src = USE_ONE_COLOR
+	organ_type = /obj/item/organ/snout/top_adj
