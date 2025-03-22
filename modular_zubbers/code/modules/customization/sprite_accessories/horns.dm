@@ -91,3 +91,4 @@
 /datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
 	name = "Brimstone"
 	icon_state = "brimstone"
+
