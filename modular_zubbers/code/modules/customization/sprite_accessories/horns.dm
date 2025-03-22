@@ -72,7 +72,7 @@
 	name = "Short Antlers"
 	icon_state = "antlers_short"
 
-/datum/sprite_accessory/horns/bubber/newsimple
+/datum/sprite_accessory/horns/bubber/newsimple //Sprites by thgvr
 	name = "Simple (New)"
 	icon_state = "newsimple"
 
@@ -88,6 +88,6 @@
 	name = "Lightning"
 	icon_state = "lightning"
 
-/datum/sprite_accessory/horns/bubber/brimstone
+/datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
 	name = "Brimstone"
 	icon_state = "brimstone"
