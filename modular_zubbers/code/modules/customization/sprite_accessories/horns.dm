@@ -74,5 +74,5 @@
 
 /datum/sprite_accessory/horns/bubber/messenger
 	name = "Winged Messenger"
-	icon_state = "messenger"
+	icon_state = "messenger" // By @Sweettoothart
 	color_src = USE_ONE_COLOR

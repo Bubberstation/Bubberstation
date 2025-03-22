@@ -469,6 +469,6 @@
 
 /datum/sprite_accessory/snouts/mammal/masked_wing
 	name = "Masked Wing"
-	icon_state = "masked"
+	icon_state = "masked" // By @Sweettoothart
 	color_src = USE_ONE_COLOR
 	organ_type = /obj/item/organ/snout/top_adj
