@@ -160,6 +160,7 @@
 				cage_the_jailbird.no_failure = TRUE
 				objectives += cage_the_jailbird
 
+	/* // BUBBER EDIT BEGIN
 	if(prob(10))
 		var/datum/objective/martyr/leave_no_trace = new()
 		leave_no_trace.owner = owner
@@ -169,6 +170,7 @@
 		var/datum/objective/hijack/steal_the_shuttle = new()
 		steal_the_shuttle.owner = owner
 		objectives += steal_the_shuttle
+	*/ // BUBBER EDIT END
 
 	else if(prob(10)) //10% chance on 87.3% chance
 		var/datum/objective/exile/hit_the_bricks = new()
