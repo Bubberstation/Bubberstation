@@ -26,9 +26,9 @@
 /datum/sprite_accessory/ears/soaring
 	name = "Wispy Headwings"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
-	icon_state = "wispy"
+	icon_state = "wispy" // By @Sweettoothart
 	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/ears/soaring/small
 	name = "Small Headwings"
-	icon_state = "small"
+	icon_state = "small" // By @Sweettoothart
