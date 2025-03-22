@@ -1,3 +1,25 @@
+/datum/chemical_reaction/coca_paste
+	results = list(/datum/reagent/drug/cocaine/coca_paste = 5)
+	required_reagents = list(/datum/reagent/drug/coca_powder = 10, /datum/reagent/toxin/acid/nitracid = 1, /datum/reagent/water = 9)
+	required_temp = 300
+	purity_min = 0
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
+
+/datum/chemical_reaction/coca_tea
+	results = list(/datum/reagent/drug/coca_tea = 5)
+	required_reagents = list(/datum/reagent/drug/coca_powder = 1, /datum/reagent/water = 5)
+	required_temp = 300
+	purity_min = 0
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRINK
+
+/datum/chemical_reaction/cocaine
+	results = list(/datum/reagent/drug/cocaine = 10)
+	required_reagents = list(/datum/reagent/drug/cocaine/coca_paste = 8, /datum/reagent/acetone = 2, /datum/reagent/toxin/acid = 2,)
+	required_temp = 480 // cook it
+	purity_min = 0
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
+	mix_message = "The solution thickens into a paste!"
+
 /datum/chemical_reaction/powder_cocaine
 	is_cold_recipe = TRUE
 	required_reagents = list(/datum/reagent/drug/cocaine = 10)
@@ -12,27 +34,24 @@
 		new /obj/item/reagent_containers/cocaine(location)
 
 /datum/chemical_reaction/crack_cooking
-	results = list(/datum/reagent/freebase_cocaine = 4)
-	required_reagents = list(/datum/reagent/drug/cocaine = 3, datum/reagent/water = 2, datum/reagent/ammonia = 2)
+	required_reagents = list(/datum/reagent/drug/cocaine = 8, /datum/reagent/water = 12, /datum/reagent/ammonia = 4)
 	required_temp = 480 //cook it
 	purity_min = 0
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
-
-/datum/chemical_reaction/crack_cooling
-	is_cold_recipe = yes
-	required_reagents = list(/datum/reagent/drug/freebase_cocaine = 10)
-	required_temp = 250 //freeze it
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
+	mix_message = "The solution solidifies into chunks!"
 
-/datum/chemical_reaction/crack cooling/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+/datum/chemical_reaction/crack_cooking/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/reagent_containers/crack(location)
 
+/datum/movespeed_modifier/reagent/cocaine
+	multiplicative_slowdown = -0.4
+
 /datum/reagent/drug/cocaine
 	name = "cocaine"
-	description = "A powerful stimulant extracted from coca leaves. Reduces stun times, but causes drowsiness and severe brain damage if overdosed."
+	description = "A powerful stimulant extracted from coca leaves. Causes drowsiness and severe brain damage if overdosed."
 	color = "#ffffff"
 	overdose_threshold = 20
 	ph = 9
@@ -40,14 +59,13 @@
 	addiction_types = list(/datum/addiction/stimulants = 14) //5.6 per 2 seconds
 
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
-	impure_chem = /datum/reagent/impure/cocaine_toxin
 
 /datum/reagent/drug/cocaine/on_mob_metabolize(mob/living/metabolizer)
 	..()
-	containing_mob.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
+	metabolizer.add_movespeed_modifier(/datum/movespeed_modifier/reagent/cocaine)
 
 /datum/reagent/drug/cocaine/on_mob_end_metabolize(mob/living/metabolizer)
-	containing_mob.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
+	metabolizer.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/cocaine)
 	..()
 
 /datum/reagent/drug/cocaine/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
@@ -83,28 +101,87 @@
 	..()
 	. = TRUE
 
+/datum/reagent/drug/coca_powder
+	name = "coca powder"
+	description = "Ground-up and filtered coca leaves, mildly stimulating."
+	color = "#20862f"
+	taste_description = "bitterness"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/drug/coca_powder/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	M.AdjustStun(-1.5 * REM * seconds_per_tick)
+	M.AdjustKnockdown(-1.5 * REM * seconds_per_tick)
+	M.AdjustUnconscious(-1.5 * REM * seconds_per_tick)
+	M.AdjustImmobilized(-1.5 * REM * seconds_per_tick)
+	M.AdjustParalyzed(-1.5 * REM * seconds_per_tick)
+	..()
+	. = TRUE
+
+/datum/reagent/drug/coca_tea
+	name = "coca tea"
+	description = "Kind of tea made from coca leaves."
+	color = "#48a455"
+	taste_description = "bitterness"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/drug/coca_tea/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	M.AdjustStun(-1 * REM * seconds_per_tick)
+	M.AdjustKnockdown(-1 * REM * seconds_per_tick)
+	M.AdjustUnconscious(-1 * REM * seconds_per_tick)
+	M.AdjustImmobilized(-1 * REM * seconds_per_tick)
+	M.AdjustParalyzed(-1 * REM * seconds_per_tick)
+	..()
+	. = TRUE
+
+/datum/reagent/drug/cocaine/coca_paste
+	name = "coca paste"
+	description = "Acidc paste containing high amount of cocaine and toxic chemicals used to process it - consumption is ill-advised."
+	color = "#4e6444"
+	ph = 5
+	taste_description = "acidic sludge"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/drug/cocaine/coca_paste/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	M.adjustFireLoss((volume/100) * REM * normalise_creation_purity() * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
+	M.adjustToxLoss(3 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
+	if(SPT_PROB(2.5, seconds_per_tick))
+		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+		to_chat(M, span_notice("[high_message]"))
+	M.add_mood_event("zoinked", /datum/mood_event/stimulant_heavy, 1, name)
+	M.AdjustStun(-15 * REM * seconds_per_tick)
+	M.AdjustKnockdown(-15 * REM * seconds_per_tick)
+	M.AdjustUnconscious(-15 * REM * seconds_per_tick)
+	M.AdjustImmobilized(-15 * REM * seconds_per_tick)
+	M.AdjustParalyzed(-15 * REM * seconds_per_tick)
+	M.adjustStaminaLoss(-2 * REM * seconds_per_tick, 0)
+	if(SPT_PROB(2.5, seconds_per_tick))
+		M.emote("scream")
+	..()
+	. = TRUE
+	return UPDATE_MOB_HEALTH
+
+/datum/movespeed_modifier/reagent/crack
+	multiplicative_slowdown = -0.5
+
 /datum/reagent/drug/cocaine/freebase_cocaine
 	name = "freebase cocaine"
-	description = "A smokable form of cocaine."
+	description = "A smokable form of cocaine, Its higher bioavaliability results in a more intense high."
 	color = "#f0e6bb"
-	impure_chem = /datum/reagent/impure/cocaine_toxin/strong
+	overdose_threshold = 15
+	taste_description = "crunchy bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/drug/cocaine/freebase_cocaine/on_mob_metabolize(mob/living/metabolizer)
+	..()
+	metabolizer.add_movespeed_modifier(/datum/movespeed_modifier/reagent/crack)
+
+/datum/reagent/drug/cocaine/freebase_cocaine/on_mob_end_metabolize(mob/living/metabolizer)
+	metabolizer.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/crack)
+	metabolizer.adjust_drowsiness(5 SECONDS)
+	..()
 
 /datum/reagent/drug/cocaine/powder_cocaine
 	name = "powder cocaine"
 	description = "The powder form of cocaine."
 	color = "#ffffff"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-// leftover chemicals (le bad)
-/datum/reagent/impure/cocaine_toxin
-	name = "Cocaine Sludge"
-	description = "Foul sludge of leftover toxic chemicals used to produce cocaine."
-	var/tox_damage = 5
-	/datum/reagent/impure/cocaine_toxin/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	. = ..()
-	if(affected_mob.adjustToxLoss(tox_damage * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
-		return UPDATE_MOB_HEALTH
-
-/datum/reagent/impure/cocaine_toxin/strong
-	var/tox_damage = 8
