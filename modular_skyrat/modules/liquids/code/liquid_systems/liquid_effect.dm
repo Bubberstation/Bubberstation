@@ -623,7 +623,7 @@
 					reagents_string += "and "
 	while(reagents_remaining)
 
-	return lowertext(reagents_string)
+	return LOWER_TEXT(reagents_string)
 
 /obj/effect/temp_visual/liquid_splash
 	icon = 'modular_skyrat/modules/liquids/icons/obj/effects/splash.dmi'

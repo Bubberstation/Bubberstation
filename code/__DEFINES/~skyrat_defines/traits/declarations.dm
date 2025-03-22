@@ -142,6 +142,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel
 #define TRAIT_R_UNIQUEPANEL "unique_openpanel"
+/// Any model that has unique lights while resting
+#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_lights"
+/// Any model that cannot use a borg expander
+#define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 
 // Lewd traits
 #define TRAIT_MASOCHISM "masochism"

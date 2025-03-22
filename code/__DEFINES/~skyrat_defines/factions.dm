@@ -18,3 +18,6 @@
 
 // Ruin Turret faction
 #define FACTION_MALF_TURRET "malf-turret"
+
+// Decay subsystem nest faction
+#define NEST_FACTION "nest spawned"

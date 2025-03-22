@@ -6,7 +6,7 @@
 	//I love madlibs.
 	//The fallbacks should never roll but you never know.
 	var/pr_number = 40000 + (text2num(copytext("\ref[src]",2),16) % 100000) //While scientific notation is funny, it wasn't precise enough
-	var/thing_to_remove = lowertext(pick_list_replacements(ION_FILE, "ionobjects")) || "Kebab" //2006 called, they want their meme back
+	var/thing_to_remove = LOWER_TEXT(pick_list_replacements(ION_FILE, "ionobjects")) || "Kebab" //2006 called, they want their meme back
 	var/obj/machinery/nuclearbomb/selfdestruct/self_destruct = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct) //Wait, why the fuck are we trying to get the nuke??? Coder backdoor???
 	if(self_destruct)
 		if(self_destruct.r_code == NUKE_CODE_UNSET)
