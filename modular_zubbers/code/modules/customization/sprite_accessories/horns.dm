@@ -76,3 +76,23 @@
 	name = "Winged Messenger"
 	icon_state = "messenger" // By @Sweettoothart
 	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/newsimple //Sprites by thgvr
+	name = "Simple (New)"
+	icon_state = "newsimple"
+
+/datum/sprite_accessory/horns/bubber/newbroken
+	name = "Broken (New)"
+	icon_state = "newbroken"
+
+/datum/sprite_accessory/horns/bubber/newram
+	name = "Ram (New)"
+	icon_state = "newram"
+
+/datum/sprite_accessory/horns/bubber/lightning
+	name = "Lightning"
+	icon_state = "lightning"
+
+/datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
+	name = "Brimstone"
+	icon_state = "brimstone"

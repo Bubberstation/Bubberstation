@@ -179,3 +179,9 @@
 	name = "Chitin"
 	icon_state = "chitin"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/dome //Sprites by thgvr
+	icon_state = "dome"
+	name = "Dome"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
