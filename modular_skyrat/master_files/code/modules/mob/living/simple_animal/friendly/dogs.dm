@@ -27,7 +27,7 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/dog/corgi)),\
-		baby_path = /mob/living/basic/pet/dog/corgi/puppy,\
+		baby_paths = list(/mob/living/basic/pet/dog/corgi/puppy),\
 	) // no mixed breed puppies sadly
 
 /mob/living/basic/pet/dog/markus/treat_message(message)
@@ -212,7 +212,7 @@
 		fire_sound = 'sound/items/weapons/taser.ogg'
 
 	playsound(loc, fire_sound, vol = 75, vary = TRUE)
-	fired_projectile.preparePixelProjectile(target, source_turf)
+	fired_projectile.aim_projectile(target, source_turf)
 	fired_projectile.firer = src
 	fired_projectile.fired_from = src
 	fired_projectile.fire()

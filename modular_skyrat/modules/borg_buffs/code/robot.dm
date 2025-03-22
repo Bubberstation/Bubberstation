@@ -154,3 +154,8 @@
 		var/obj/item/wirebrush/brush = new (cyborg.model)
 		cyborg.model.basic_modules += brush
 		cyborg.model.add_module(brush, FALSE, TRUE)
+
+#undef BASE_SHAKER_JUICE_REAGENTS
+#undef BASE_SHAKER_ALCOHOL_REAGENTS
+#undef BASE_SHAKER_SODA_REAGENTS
+#undef BASE_SHAKER_MISC_REAGENTS

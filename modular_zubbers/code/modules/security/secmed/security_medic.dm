@@ -144,9 +144,9 @@
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()
-    . = ..()
-    var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
-    for(var/datum/job/job_type in sec_exp_list)
-        if(istype(job_type, /datum/job/security_medic))
-            LAZYREMOVE(sec_exp_list, job_type)
-            break
+	. = ..()
+	var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
+	for(var/datum/job/job_type in sec_exp_list)
+		if(istype(job_type, /datum/job/security_medic))
+			LAZYREMOVE(sec_exp_list, job_type)
+			break

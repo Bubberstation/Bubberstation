@@ -1,4 +1,4 @@
-/obj/machinery/fax/Initialize()
+/obj/machinery/fax/Initialize(mapload)
 	.=..()
 	special_networks |= list(
 		//Food Delivery

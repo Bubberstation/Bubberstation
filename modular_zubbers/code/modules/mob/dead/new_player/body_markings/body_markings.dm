@@ -157,3 +157,16 @@
 	default_color = "#ffffff"
 	affected_bodyparts = CHEST
 	gendered = FALSE
+
+/datum/body_marking/bubber/thirdeye //we love 1 pixel
+	icon_state = "thirdeye"
+	name = "Third Eye"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+	gendered = FALSE
+
+/datum/body_marking/bubber/dome //Sprites by thgvr
+	icon_state = "dome"
+	name = "Dome"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD

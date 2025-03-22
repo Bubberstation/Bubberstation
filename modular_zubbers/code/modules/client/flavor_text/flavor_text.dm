@@ -9,6 +9,7 @@
 	var/headshot_nsfw = ""
 	var/headshot_silicon = ""
 	var/headshot_silicon_nsfw = ""
+	var/art_ref = ""
 
 /datum/preference/text/flavor_text_nsfw
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -87,6 +88,30 @@
 		log_game("[usr] has set their NSFW Silicon Headshot image to '[value]'.")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.headshot_silicon_nsfw = value
+
+/datum/preference/text/headshot/art_ref
+	savefile_key = "art_ref"
+
+/datum/preference/text/headshot/art_ref
+
+/datum/preference/text/headshot/art_ref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features["art_ref"] = value
+
+/datum/preference/text/headshot/art_ref/apply_headshot(value)
+	if(stored_link[usr.ckey] != value)
+		log_game("[usr] has set their art reference image to '[value]'.")
+	stored_link[usr?.ckey] = value
+	usr?.client?.prefs.art_ref = value
+
+/datum/preference/toggle/art_ref_nsfw
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "art_ref_nsfw"
+	default_value = FALSE
+
+
+/datum/preference/toggle/art_ref_nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
 
 //OOC notes for Silicons. Overwrites regular OOC notes when you are playing a Silicon character.
 //TODO: Make this your regular OOC notes if you don't have Silicon ones. Every time I've tried, for some reason regular OOC notes haven't shown.
