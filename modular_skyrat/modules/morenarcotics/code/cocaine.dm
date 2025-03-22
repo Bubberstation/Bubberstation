@@ -203,7 +203,7 @@
 /datum/chemical_reaction/cocaine_sanity_paste // unpastes your paste
 	required_container = /mob/living
 	required_container_accepts_subtypes = TRUE
-	results = list(/datum/reagent/drug/cocaine = 0.8, datum/reagent/toxin/acid/nitracid = 0.1, datum/reagent/toxin = 0.1,)
+	results = list(/datum/reagent/drug/cocaine = 0.8, /datum/reagent/toxin/acid/nitracid = 0.1, /datum/reagent/toxin = 0.1,)
 	required_reagents = list(/datum/reagent/drug/cocaine/coca_paste = 1)
 	required_catalysts = list(/datum/reagent/drug/cocaine = 1)
 	reaction_flags = REACTION_INSTANT
