@@ -76,19 +76,20 @@ export const ExaminePanel = () => {
         {page === 'main' ? (
           <>
             {art_ref && (
-              <Button>
+              <Button
                 color={data.art_ref_nsfw ? 'pink' : 'green'}
-                tooltip=
-                {data.art_ref_nsfw ? 'NSFW Reference Image' : 'Reference Image'}
-                icon="image" style=
-                {{
+                tooltip={
+                  data.art_ref_nsfw ? 'NSFW Reference Image' : 'Reference Image'
+                }
+                icon="image"
+                style={{
                   position: 'absolute',
                   bottom: '10px',
                   right: '10px',
                   zIndex: 1,
                 }}
                 onClick={() => handlePageChange(setPage, 'image')}
-              </Button>
+              />
             )}
             <Stack>
               <Stack.Item style={{ width: '30%' }}>
