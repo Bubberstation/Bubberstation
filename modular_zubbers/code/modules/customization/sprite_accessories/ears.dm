@@ -23,12 +23,12 @@
 	icon_state = "floppy"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 
-/datum/sprite_accessory/ears/soaring
+/datum/sprite_accessory/ears/soaring //Sprites by Sweettoothart
 	name = "Wispy Headwings"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 	icon_state = "wispy"
 	color_src = USE_ONE_COLOR
 
-/datum/sprite_accessory/ears/soaring/small
+/datum/sprite_accessory/ears/soaring/small //End of sprites by Sweettoothart
 	name = "Small Headwings"
 	icon_state = "small"

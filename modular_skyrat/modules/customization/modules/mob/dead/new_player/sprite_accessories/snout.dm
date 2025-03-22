@@ -467,7 +467,7 @@
 	name = "Renamon"
 	icon_state = "renamon"
 
-/datum/sprite_accessory/snouts/mammal/masked_wing
+/datum/sprite_accessory/snouts/mammal/masked_wing //Sprites by Sweettoothart
 	name = "Masked Wing"
 	icon_state = "masked"
 	color_src = USE_ONE_COLOR

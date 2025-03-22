@@ -37,7 +37,7 @@
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
 
-/datum/sprite_accessory/wings/mammal/pinioned
+/datum/sprite_accessory/wings/mammal/pinioned //Sprites by Sweettoothart
 	name = "Pinioned Wings"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
 	icon_state = "pinioned"
