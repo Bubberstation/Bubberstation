@@ -26,6 +26,7 @@
 	var/has_been_deflated = FALSE
 
 /obj/structure/inflatable/Initialize(mapload)
+	qdel(src, TRUE) // WTF? Byond 515 compat sacrifice
 	. = ..()
 	air_update_turf(TRUE, !density)
 
@@ -147,6 +148,7 @@
 	var/torn = FALSE
 
 /obj/item/inflatable/Initialize(mapload)
+	qdel(src, TRUE)
 	. = ..()
 	update_appearance()
 
