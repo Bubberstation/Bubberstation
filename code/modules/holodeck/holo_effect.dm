@@ -65,6 +65,7 @@
 
 	// these vars are not really standardized but all would theoretically create stuff on death
 	our_mob.add_traits(list(TRAIT_PERMANENTLY_MORTAL, TRAIT_NO_BLOOD_OVERLAY, TRAIT_NOBLOOD, TRAIT_NOHUNGER), INNATE_TRAIT)
+	ADD_TRAIT(our_mob, TRAIT_NOBLOOD, INNATE_TRAIT) // BUBBER ADDITION: bloodrinking exploit fix
 	RegisterSignal(our_mob, COMSIG_QDELETING, PROC_REF(handle_mob_delete))
 	return our_mob
 
