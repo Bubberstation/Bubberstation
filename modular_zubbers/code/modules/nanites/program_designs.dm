@@ -5,7 +5,7 @@
 	build_type = NANITE_COMPILER
 	construction_time = 50
 	category = list()
-	research_icon = 'modular_zubbers/code/modules/nanites/icons/nanite_devices.dmi'
+	research_icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
 	research_icon_state = "nanite_program"
 	var/program_type = /datum/nanite_program
 

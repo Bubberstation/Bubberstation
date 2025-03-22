@@ -9,7 +9,7 @@
 	desc = "A device that can remotely control active nanites through wireless signals."
 	w_class = WEIGHT_CLASS_SMALL
 	req_access = list(ACCESS_ROBOTICS)
-	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_devices.dmi'
+	icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
 	icon_state = "nanite_remote"
 	item_flags = NOBLUDGEON
 	var/locked = FALSE //Can be locked, so it can be given to users with a set code and mode

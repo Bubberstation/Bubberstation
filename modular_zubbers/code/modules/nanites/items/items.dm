@@ -1,6 +1,6 @@
 /obj/item/nanite_scanner
 	name = "nanite scanner"
-	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_devices.dmi'
+	icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
 	icon_state = "nanite_scanner"
 	inhand_icon_state = "electronic"
 	worn_icon_state = "electronic"
@@ -40,7 +40,7 @@
 	name = "nanite injector"
 	desc = "Injects nanites into the user."
 	w_class = WEIGHT_CLASS_SMALL
-	icon = 'modular_zubbers/code/modules/nanites/icons/nanite_devices.dmi'
+	icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
 	icon_state = "nanite_remote"
 
 /obj/item/nanite_injector/attack_self(mob/user)
