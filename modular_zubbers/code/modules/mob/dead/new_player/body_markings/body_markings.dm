@@ -164,3 +164,9 @@
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
 	gendered = FALSE
+
+/datum/body_marking/bubber/dome //Sprites by thgvr
+	icon_state = "dome"
+	name = "Dome"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
