@@ -165,7 +165,7 @@
 	affected_bodyparts = HEAD
 	gendered = FALSE
 
-/datum/body_marking/bubber/splotches
+/datum/body_marking/bubber/splotches //Sprites by Avimour
 	name = "Splotches"
 	icon_state = "splotches"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
@@ -175,7 +175,7 @@
 	icon_state = "splotcheswap"
 	affected_bodyparts = HEAD
 
-/datum/body_marking/bubber/chitin
+/datum/body_marking/bubber/chitin //End of sprites by Avimour
 	name = "Chitin"
 	icon_state = "chitin"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
