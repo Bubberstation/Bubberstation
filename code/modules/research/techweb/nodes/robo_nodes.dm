@@ -64,7 +64,7 @@
 			"intellicard",
 			"mecha_tracking_ai_control",
 		)
-	else if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
+	else if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) || HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI)) //Bubber edit HoS AI station trait
 		research_costs[TECHWEB_POINT_TYPE_GENERIC] *= 3
 
 /datum/techweb_node/ai_laws
