@@ -329,7 +329,7 @@
 		. += flavor_text_link
 
 	//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
-	if (isobserver(usr) || mind.can_see_exploitables || mind.has_exploitables_override)
+	if (isobserver(user) || user.mind.can_see_exploitables || user.mind.has_exploitables_override)
 		var/perpname = get_face_name(get_id_name(""))
 		var/datum/record/locked/target_records = find_record(perpname, TRUE) //apparantly golden is okay with offstation roles having no records, FYI
 		var/exploitable_text = target_records?.exploitable_information
