@@ -36,3 +36,11 @@
 	dimension_x = 32
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/pinioned
+	name = "Pinioned Wings"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
+	icon_state = "pinioned" // By @Sweettoothart
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
