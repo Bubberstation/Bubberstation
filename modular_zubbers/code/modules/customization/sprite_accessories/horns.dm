@@ -72,6 +72,11 @@
 	name = "Short Antlers"
 	icon_state = "antlers_short"
 
+/datum/sprite_accessory/horns/bubber/messenger
+	name = "Winged Messenger"
+	icon_state = "messenger" // By @Sweettoothart
+	color_src = USE_ONE_COLOR
+
 /datum/sprite_accessory/horns/bubber/newsimple //Sprites by thgvr
 	name = "Simple (New)"
 	icon_state = "newsimple"
@@ -91,8 +96,3 @@
 /datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
 	name = "Brimstone"
 	icon_state = "brimstone"
-
-/datum/sprite_accessory/horns/bubber/messenger //Sprites by Sweettoothart
-	name = "Winged Messenger"
-	icon_state = "messenger"
-	color_src = USE_ONE_COLOR
