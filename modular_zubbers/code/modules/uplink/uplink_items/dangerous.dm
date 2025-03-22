@@ -1,6 +1,6 @@
 /datum/uplink_item/dangerous/changelingzombie
 	name = "Changeling Zombie Virus Vial"
-	desc = "Stolen from a Nanotrasen research facility, this experimental vial infects people with the changeling zombie virus on contact. \
+	desc = "Stolen from a Nanotrasen research facility, this experimental vial infects people with the infectious variant of the changeling zombie virus on contact. \
 	Our legal team says that this doesn't give you any sort of superpowers and should only be used on living beings other than yourself."
 
 	progression_minimum = 30 MINUTES
