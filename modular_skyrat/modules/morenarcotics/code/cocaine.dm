@@ -8,7 +8,7 @@
 /datum/chemical_reaction/coca_tea
 	results = list(/datum/reagent/drug/coca_tea = 5)
 	required_reagents = list(/datum/reagent/drug/coca_powder = 1, /datum/reagent/water = 5)
-	required_temp = 300
+	required_temp = 350 // heat it up, lazy way to stop the reaction from clashing with the other one
 	purity_min = 0
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRINK
 
@@ -22,7 +22,7 @@
 
 /datum/chemical_reaction/powder_cocaine
 	is_cold_recipe = TRUE
-	required_reagents = list(/datum/reagent/drug/cocaine = 10)
+	required_reagents = list(/datum/reagent/drug/cocaine = 5)
 	required_temp = 250 //freeze it
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
@@ -34,7 +34,7 @@
 		new /obj/item/reagent_containers/cocaine(location)
 
 /datum/chemical_reaction/crack_cooking
-	required_reagents = list(/datum/reagent/drug/cocaine = 8, /datum/reagent/water = 12, /datum/reagent/ammonia = 4)
+	required_reagents = list(/datum/reagent/drug/cocaine = 8, /datum/reagent/water = 12, /datum/reagent/ash = 4) // i wanted it to be ammonia but the space cleaner reaction...
 	required_temp = 480 //cook it
 	purity_min = 0
 	reaction_flags = REACTION_INSTANT
@@ -47,10 +47,10 @@
 		new /obj/item/reagent_containers/crack(location)
 
 /datum/movespeed_modifier/reagent/cocaine
-	multiplicative_slowdown = -0.4
+	multiplicative_slowdown = -0.3
 
 /datum/reagent/drug/cocaine
-	name = "cocaine"
+	name = "Cocaine"
 	description = "A powerful stimulant extracted from coca leaves. Causes drowsiness and severe brain damage if overdosed."
 	color = "#ffffff"
 	overdose_threshold = 20
@@ -102,7 +102,7 @@
 	. = TRUE
 
 /datum/reagent/drug/coca_powder
-	name = "coca powder"
+	name = "Coca Powder"
 	description = "Ground-up and filtered coca leaves, mildly stimulating."
 	color = "#20862f"
 	taste_description = "bitterness"
@@ -118,8 +118,8 @@
 	. = TRUE
 
 /datum/reagent/drug/coca_tea
-	name = "coca tea"
-	description = "Kind of tea made from coca leaves."
+	name = "Coca Tea"
+	description = "A kind of tea made from coca leaves."
 	color = "#48a455"
 	taste_description = "bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -134,15 +134,15 @@
 	. = TRUE
 
 /datum/reagent/drug/cocaine/coca_paste
-	name = "coca paste"
-	description = "Acidc paste containing high amount of cocaine and toxic chemicals used to process it - consumption is ill-advised."
+	name = "Coca Paste"
+	description = "An acidc paste containing high amount of cocaine and toxic chemicals used to process it - consumption is ill-advised."
 	color = "#4e6444"
 	ph = 5
 	taste_description = "acidic sludge"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/drug/cocaine/coca_paste/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
-	M.adjustFireLoss((volume/100) * REM * normalise_creation_purity() * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
+	M.adjustFireLoss((volume/50) * REM * normalise_creation_purity() * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
 	M.adjustToxLoss(3 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 	if(SPT_PROB(2.5, seconds_per_tick))
 		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
@@ -155,16 +155,16 @@
 	M.AdjustParalyzed(-15 * REM * seconds_per_tick)
 	M.adjustStaminaLoss(-2 * REM * seconds_per_tick, 0)
 	if(SPT_PROB(2.5, seconds_per_tick))
-		M.emote("scream")
+		M.emote(pick("scream","twitch","shiver"))
 	..()
 	. = TRUE
 	return UPDATE_MOB_HEALTH
 
 /datum/movespeed_modifier/reagent/crack
-	multiplicative_slowdown = -0.5
+	multiplicative_slowdown = -0.4
 
 /datum/reagent/drug/cocaine/freebase_cocaine
-	name = "freebase cocaine"
+	name = "Freebase Cocaine"
 	description = "A smokable form of cocaine, Its higher bioavaliability results in a more intense high."
 	color = "#f0e6bb"
 	overdose_threshold = 15
@@ -181,7 +181,7 @@
 	..()
 
 /datum/reagent/drug/cocaine/powder_cocaine
-	name = "powder cocaine"
+	name = "Powder Cocaine"
 	description = "The powder form of cocaine."
 	color = "#ffffff"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
