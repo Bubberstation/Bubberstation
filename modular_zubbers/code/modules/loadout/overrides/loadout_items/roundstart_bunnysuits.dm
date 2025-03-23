@@ -1,5 +1,3 @@
-#define PREF_BUNNY "Bunnysuit"
-
 /proc/get_random_bunnysuit()
 	return pick(
 		subtypesof(/obj/item/clothing/under/costume/playbunny/color) \
@@ -7,6 +5,7 @@
 	)
 
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
+	..()
 	if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
 		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
 
