@@ -355,6 +355,12 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digi = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_config_worn_digi = null
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
