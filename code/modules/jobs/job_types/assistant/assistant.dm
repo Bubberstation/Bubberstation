@@ -86,6 +86,8 @@ Assistant
 	//Too fragile, better to just eat the cost
 	if (target.jumpsuit_style == PREF_SUIT)
 		uniform = GLOB.colored_assistant.jumpsuits[index]
+	else if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
+		uniform = GLOB.colored_assistant.bunnysuits[index] //BUBBER EDIT END - Bunnysuits
 	else
 		uniform = GLOB.colored_assistant.jumpskirts[index]
 

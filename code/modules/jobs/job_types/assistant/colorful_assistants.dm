@@ -125,4 +125,3 @@
 
 	// Couldn't find a matching jumpskirt, oh well
 	jumpskirts = list(get_random_jumpskirt())
-	bunnysuits = list(get_random_bunnysuit()) //BUBBER EDIT - Bunnysuits

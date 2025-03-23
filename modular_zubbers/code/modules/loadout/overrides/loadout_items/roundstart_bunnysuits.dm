@@ -1,67 +1,77 @@
 /proc/get_random_bunnysuit()
 	return pick(
-		subtypesof(/obj/item/clothing/under/costume/playbunny/color) \
+		subtypesof(/obj/item/clothing/under/color/playbunny) \
 			- /obj/item/clothing/under/rank/prisoner/bunnysuit \
 	)
+
+/datum/colored_assistant/solid/New()
+	..()
+	for (var/obj/item/clothing/under/color/playbunny/playbunny_type as anything in subtypesof(/obj/item/clothing/under/color/playbunny))
+		if (findtext(playbunny_type.greyscale_colors, initial(jumpsuits[1].greyscale_colors)) == TRUE)
+			bunnysuits = list(playbunny_type)
+			return
+
+	bunnysuits = list(get_random_bunnysuit()) //BUBBER EDIT - Bunnysuits
+
 
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
 	..()
 	if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
+		uniform = /obj/item/clothing/under/color/playbunny/grey //BUBBER EDIT END - Bunnysuits
 
 /datum/colored_assistant
 	var/list/bunnysuits //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/grey
-	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/grey) //BUBBER EDIT - Bunnysuits
+	bunnysuits = list(/obj/item/clothing/under/color/playbunny/grey) //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/random
-	bunnysuits = list(/obj/item/clothing/under/costume/playbunny/color/random) //BUBBER EDIT - Bunnysuits
+	bunnysuits = list(/obj/item/clothing/under/color/playbunny/random) //BUBBER EDIT - Bunnysuits
 
 /datum/colored_assistant/christmas
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/green,
-		/obj/item/clothing/under/costume/playbunny/color/red,
+		/obj/item/clothing/under/color/playbunny/green,
+		/obj/item/clothing/under/color/playbunny/red,
 	)
 
 /datum/colored_assistant/mcdonalds
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/yellow,
-		/obj/item/clothing/under/costume/playbunny/color/red,
+		/obj/item/clothing/under/color/playbunny/yellow,
+		/obj/item/clothing/under/color/playbunny/red,
 	)
 
 /datum/colored_assistant/halloween
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/orange,
-		/obj/item/clothing/under/costume/playbunny/color/black,
+		/obj/item/clothing/under/color/playbunny/orange,
+		/obj/item/clothing/under/color/playbunny/black,
 	)
 
 /datum/colored_assistant/ikea
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/yellow,
-		/obj/item/clothing/under/costume/playbunny/color/blue,
+		/obj/item/clothing/under/color/playbunny/yellow,
+		/obj/item/clothing/under/color/playbunny/blue,
 	)
 
 /datum/colored_assistant/mud
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/brown,
-		/obj/item/clothing/under/costume/playbunny/color/lightbrown,
+		/obj/item/clothing/under/color/playbunny/brown,
+		/obj/item/clothing/under/color/playbunny/lightbrown,
 	)
 
 /datum/colored_assistant/warm
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/red,
-		/obj/item/clothing/under/costume/playbunny/color/pink,
-		/obj/item/clothing/under/costume/playbunny/color/orange,
-		/obj/item/clothing/under/costume/playbunny/color/yellow,
+		/obj/item/clothing/under/color/playbunny/red,
+		/obj/item/clothing/under/color/playbunny/pink,
+		/obj/item/clothing/under/color/playbunny/orange,
+		/obj/item/clothing/under/color/playbunny/yellow,
 	)
 
 /datum/colored_assistant/cold
 	bunnysuits = list(
-		/obj/item/clothing/under/costume/playbunny/color/blue,
-		/obj/item/clothing/under/costume/playbunny/color/darkblue,
-		/obj/item/clothing/under/costume/playbunny/color/darkgreen,
-		/obj/item/clothing/under/costume/playbunny/color/green,
-		/obj/item/clothing/under/costume/playbunny/color/lightpurple,
-		/obj/item/clothing/under/costume/playbunny/color/teal,
+		/obj/item/clothing/under/color/playbunny/blue,
+		/obj/item/clothing/under/color/playbunny/darkblue,
+		/obj/item/clothing/under/color/playbunny/darkgreen,
+		/obj/item/clothing/under/color/playbunny/green,
+		/obj/item/clothing/under/color/playbunny/lightpurple,
+		/obj/item/clothing/under/color/playbunny/teal,
 	)
