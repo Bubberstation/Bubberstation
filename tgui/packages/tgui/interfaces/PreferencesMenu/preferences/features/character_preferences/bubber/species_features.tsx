@@ -1,8 +1,10 @@
 import {
+  CheckboxInput,
   Feature,
   FeatureChoiced,
   FeatureShortTextInput,
   FeatureTextInput,
+  FeatureToggle,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
@@ -150,4 +152,19 @@ export const custom_species_lore_silicon: Feature<string> = {
   description:
     'Lore for your silicon, typically its company, make, model, and details regarding its creation.',
   component: FeatureTextInput,
+};
+
+export const art_ref: Feature<string> = {
+  name: 'Art Reference',
+  description:
+    'Art Reference that others can see for your character \
+    Requires a link ending with .png, .jpeg, or .jpg, starting with \
+    https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List.',
+  component: FeatureShortTextInput,
+};
+
+export const art_ref_nsfw: FeatureToggle = {
+  name: 'Art Reference NSFW',
+  description: 'Is your reference picture NSFW?',
+  component: CheckboxInput,
 };

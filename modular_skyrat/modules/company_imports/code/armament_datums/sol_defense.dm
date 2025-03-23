@@ -69,17 +69,6 @@
 /datum/armament_entry/company_import/sol_defense/armor_sacrifice/sacrificial_vest
 	item_type = /obj/item/clothing/suit/armor/sf_sacrificial
 
-/datum/armament_entry/company_import/sol_defense/case
-	subcategory = "Weapon Cases"
-
-/datum/armament_entry/company_import/sol_defense/case/trappiste
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/empty
-	cost = PAYCHECK_COMMAND
-
-/datum/armament_entry/company_import/sol_defense/case/carwo
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/empty
-	cost = PAYCHECK_COMMAND * 2
-
 /datum/armament_entry/company_import/sol_defense/sidearm
 	subcategory = "Sidearms"
 
