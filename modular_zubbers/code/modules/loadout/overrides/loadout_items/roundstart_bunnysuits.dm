@@ -9,16 +9,9 @@
 /datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
 	if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
 		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
-	else
-		..()
 
 /datum/colored_assistant
 	var/list/bunnysuits //BUBBER EDIT - Bunnysuits
-
-/datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
-	if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-		uniform = /obj/item/clothing/under/costume/playbunny/color/grey //BUBBER EDIT END - Bunnysuits
-	..()
 
 /datum/colored_assistant/grey
 	..()
