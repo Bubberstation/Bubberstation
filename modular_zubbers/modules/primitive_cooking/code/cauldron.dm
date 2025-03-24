@@ -1,10 +1,10 @@
 /obj/machinery/cauldron
 	name = "stone cauldron"
 	desc = "Cooks and boils stuff the old fashioned way."
-	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/cauldron.dmi'
 	icon_state = "cauldron_back_off"
 	density = TRUE
-	pass_flags_self = PASSMACHINE | PASSTABLE| LETPASSTHROW // It's roughly the height of a table.
+	pass_flags_self = PASSMACHINE | PASSTABLE | LETPASSTHROW // It's roughly the height of a table.
 	layer = BELOW_OBJ_LAYER
 	use_power = FALSE
 	circuit = null
@@ -290,7 +290,7 @@
  * * cooker - The mob that initiated the cook cycle
  */
 /obj/machinery/cauldron/proc/start(mob/cooker)
-	visible_message(span_notice("\The [src] turns on."), null, span_hear("You hear bubbling as the cauldron ignites."))
+	visible_message(span_notice("\The [src] heats up."), null, span_hear("You hear bubbling as the cauldron ignites."))
 	operating = TRUE
 	update_appearance()
 	cook_loop(cycles = 10, cooker = cooker)
