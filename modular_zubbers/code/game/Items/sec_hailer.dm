@@ -40,7 +40,7 @@
 		emped = TRUE
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/mask/gas/sechailer, emp_reset)), 3 MINUTES)
 
-/// Reset EMP after 2 minutes
+/// Reset EMP after 3 minutes
 /obj/item/clothing/mask/gas/sechailer/proc/emp_reset()
 	SIGNAL_HANDLER
 	emped = FALSE
