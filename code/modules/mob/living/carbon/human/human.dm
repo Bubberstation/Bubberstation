@@ -36,6 +36,8 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	GLOB.human_list += src
+	ADD_TRAIT(src, TRAIT_CAN_MOUNT_HUMANS, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_CAN_MOUNT_CYBORGS, INNATE_TRAIT)
 
 /mob/living/carbon/human/proc/setup_physiology()
 	physiology = new()
@@ -66,6 +68,15 @@
 
 	if (mob_mood)
 		QDEL_NULL(mob_mood)
+
+	// BUBBER EDIT START
+	if(held_left)
+		held_left.UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+		QDEL_NULL(held_left)
+	if(held_right)
+		held_right.UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+		QDEL_NULL(held_right)
+	// BUBBER EDIT END
 
 	return ..()
 
@@ -125,6 +136,10 @@
 			id_gender ||= gender
 			id_species ||= dna.species.name
 			id_blood_type ||= dna.blood_type
+
+		if(istype(id, /obj/item/card/id/advanced))
+			var/obj/item/card/id/advanced/advancedID = id
+			id_job = advancedID.trim_assignment_override || id_job
 
 		var/id_examine = span_slightly_larger(separator_hr("This is <em>[src]'s ID card</em>."))
 		id_examine += "<div class='img_by_text_container'>"
@@ -1045,14 +1060,13 @@
 
 	return buckle_mob(target, TRUE, TRUE, RIDER_NEEDS_ARMS)
 
-/mob/living/carbon/human/buckle_mob(mob/living/target, force = FALSE, check_loc = TRUE, buckle_mob_flags= NONE)
-	if(!is_type_in_typecache(target, can_ride_typecache))
+/mob/living/carbon/human/is_buckle_possible(mob/living/target, force, check_loc)
+	if(!HAS_TRAIT(target, TRAIT_CAN_MOUNT_HUMANS))
 		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
-		return
-
-	if(!force)//humans are only meant to be ridden through piggybacking and special cases
-		return
-
+		return FALSE
+	// if you don't invoke it with forced, IE via piggyback / fireman, always fail
+	if(!force)
+		return FALSE
 	return ..()
 
 /mob/living/carbon/human/reagent_check(datum/reagent/chem, seconds_per_tick, times_fired)
