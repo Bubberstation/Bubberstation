@@ -253,3 +253,16 @@
 	attack_verb_continuous = list("ghouls")
 	attack_verb_simple = list("ghoul")
 	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)
+
+// plushie for BeoTheKobold
+// sprite by Cepha, code by Mitryll
+/obj/item/toy/plush/mold_kobold
+	name = "hemophage awareness kobold"
+	desc = "A cuddly kobold plushie. Produced by Nanotrasen in the soft likeness of a hemophage employee; \
+			focus groups thought this design played less into hemophage stereotypes as opposed to the previous iteration, \
+			Lord Grog the Vile Parasite. A tag on the left leg says 10% of proceeds go to blood banks!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "themold"
+	attack_verb_continuous = list("bites", "curses", "drains")
+	attack_verb_simple = list("bite", "invoke", "claw")
+	gender = FEMALE

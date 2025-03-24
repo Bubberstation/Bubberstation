@@ -83,9 +83,9 @@
 	user.visible_message(span_purple("[user] [message]!"))
 	conditional_pref_sound(loc, \
 		pick(
-			'sound/items/handling/cloth_drop.ogg', // I duplicate this part of code because im useless shitcoder that can't make it work properly without tons of repeating code blocks
-			'sound/items/handling/cloth_pickup.ogg', // If you can make it better - go ahead, modify it, please.
-			'sound/items/handling/cloth_pickup.ogg',
+			get_sfx(SFX_CLOTH_DROP), // I duplicate this part of code because im useless shitcoder that can't make it work properly without tons of repeating code blocks
+			get_sfx(SFX_CLOTH_PICKUP), // If you can make it better - go ahead, modify it, please.
+			get_sfx(SFX_CLOTH_PICKUP),
 		), 70, 1, -1)
 
 //Mood boost
