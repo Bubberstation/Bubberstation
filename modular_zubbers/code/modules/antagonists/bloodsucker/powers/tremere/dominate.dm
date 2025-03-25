@@ -16,10 +16,11 @@
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 15
 	constant_bloodcost = 0.1
-	mesmerize_delay = 4 SECONDS
 	blind_at_level = 3
 	requires_facing_target = FALSE
 	blocked_by_glasses = FALSE
+	target_range = 5
+
 	/// Data huds to show while the power is active
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH)
 	var/list/thralls = list()
@@ -134,7 +135,10 @@
 		pay_cost(TEMP_GHOULIZE_COST - bloodcost)
 		log_combat(owner, target, "tremere revived", addition="Revived their ghoul using dominate")
 		return FALSE
-	if(!bloodsuckerdatum_power.make_ghoul(target) )
+	if(target.stat != DEAD)
+		owner.balloon_alert(owner, "not dead!")
+		return FALSE
+	if(!bloodsuckerdatum_power.make_ghoul(target))
 		owner.balloon_alert(owner, "not a valid target for ghouling!.")
 		return FALSE
 

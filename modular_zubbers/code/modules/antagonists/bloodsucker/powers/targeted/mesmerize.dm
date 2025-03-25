@@ -21,7 +21,7 @@
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE
 	prefire_message = "Whom will you subvert to your will?"
-	///Our mesmerized target - Prevents several mesmerizes.
+	/// Our mesmerized target - Prevents several mesmerizes.
 	var/datum/weakref/target_ref
 	/// How long it takes us to mesmerize our target.
 	var/mesmerize_delay = 5 SECONDS
@@ -31,9 +31,9 @@
 	var/requires_facing_target = FALSE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
-	// string id timer of the current cast, used for combat glare
+	/// string id timer of the current eye animation timer, used for canceling glare
 	var/timer
-	// a cooldown to ensure you can't spam both the primary and secondary mesmerizes
+	/// a cooldown to ensure you can't spam both the primary and secondary mesmerizes
 	COOLDOWN_DECLARE(mesmerize_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
@@ -82,6 +82,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/current_target = target_atom // We already know it's carbon due to CheckValidTarget()
+	var/mob/living/living_owner = owner
 	// No mind
 #ifndef BLOODSUCKER_TESTING
 	if(!current_target.mind)
@@ -112,8 +113,11 @@
 	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= MESMERIZE_FACING_LEVEL))
 		owner.balloon_alert(owner, "[current_target] must be facing you.")
 		return FALSE
-	if(current_target.client && !(owner in viewers(current_target.client)))
+	if(!(owner in oview(current_target)))
 		owner.balloon_alert(owner, "[current_target] has to be able to see you.")
+		return FALSE
+	if(living_owner.body_position == LYING_DOWN)
+		owner.balloon_alert(owner, "you must be standing to use [src].")
 		return FALSE
 	// Gone through our checks, let's mark our guy.
 	target_ref = WEAKREF(current_target)
@@ -145,6 +149,9 @@
 	COOLDOWN_START(src, mesmerize_cooldown, mesmerize_delay)
 	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		StartCooldown(cooldown_time * 0.5)
+		deltimer(timer)
+		timer = null
+		addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target,  "eye_close", 1 SECONDS), 1 SECONDS)
 		return
 	// Can't quite time it here, but oh well
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
@@ -161,8 +168,8 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
 	mute_target(mesmerized_target)
-	mesmerized_target.Paralyze(power_time)
-	ADD_TRAIT(mesmerized_target, TRAIT_MESMERIZE, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
+	mesmerized_target.Stun(power_time)
+	ADD_TRAIT(mesmerized_target, TRAIT_MESMERIZE, MESMERIZE_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
@@ -199,14 +206,17 @@
 	// Display an animated overlay over our head to indicate what's going on
 	eldritch_eye(target, "eye_open", 1 SECONDS)
 	var/main_duration = max(duration - 2 SECONDS, 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target, "eye_flash", main_duration), 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target,  "eye_close", 1 SECONDS), main_duration + 1 SECONDS)
+	timer = addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target, "eye_flash", main_duration), 1 SECONDS, TIMER_STOPPABLE)
 
 /// Display an animated overlay over our head to indicate what's going on
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/eldritch_eye(mob/target, icon_state = "eye_open", duration = 1 SECONDS)
-	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28) /// TODO make this disable cloak
+	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28)
 	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
 	flick_overlay_global(image, list(owner?.client, target?.client), duration)
+	close_eye(target)
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/close_eye(mob/target)
+	addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target,  "eye_close", 1 SECONDS), 1 SECONDS)
 
 #undef MESMERIZE_GLASSES_LEVEL
 #undef MESMERIZE_FACING_LEVEL
