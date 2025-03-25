@@ -41,6 +41,8 @@
 		return
 	var/obj/item/clothing/accessory/breathing/acc = equipped
 	acc.breath_type = breath_type
+	if(!human_holder?.w_uniform)
+		return
 	if (acc.can_attach_accessory(human_holder?.w_uniform, human_holder))
 		acc.attach(human_holder.w_uniform, human_holder)
 
