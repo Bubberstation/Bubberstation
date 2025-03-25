@@ -18,7 +18,7 @@
 	/// Ingredients - may only contain /atom/movables
 	var/list/ingredients = list()
 	/// When this is the nth ingredient, whats its pixel_x?
-	var/list/ingredient_shifts_x = list(
+	var/list/ingredient_shifts_w = list(
 		-1,
 		1,
 		-2,
@@ -27,7 +27,7 @@
 		0,
 	)
 	/// When this is the nth ingredient, whats its pixel_y?
-	var/list/ingredient_shifts_y = list(
+	var/list/ingredient_shifts_z = list(
 		7,
 		6,
 		5,
@@ -120,8 +120,8 @@
 			CAULDRON_INGREDIENT_OVERLAY_SIZE / icon_dimensions["height"],
 		)
 
-		ingredient_overlay.pixel_x = ingredient_shifts_x[(ingredient_count % ingredient_shifts_x.len) + 1]
-		ingredient_overlay.pixel_y = ingredient_shifts_y[(ingredient_count % ingredient_shifts_y.len) + 1]
+		ingredient_overlay.pixel_w = ingredient_shifts_w[(ingredient_count % ingredient_shifts_w.len) + 1]
+		ingredient_overlay.pixel_z = ingredient_shifts_z[(ingredient_count % ingredient_shifts_z.len) + 1]
 		ingredient_overlay.layer = FLOAT_LAYER
 		ingredient_overlay.plane = FLOAT_PLANE
 		ingredient_overlay.blend_mode = BLEND_INSET_OVERLAY
