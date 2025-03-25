@@ -53,6 +53,9 @@
 	if(!in_range(user, src) && !isobserver(user))
 		. += span_warning("You're too far away to examine [src]'s contents!")
 		return
+	if(operating)
+		. += span_notice("\The [src] is boiling.")
+		return
 
 	if(length(ingredients))
 		. += span_notice("\The [src] contains:")
@@ -204,7 +207,7 @@
 			update_appearance()
 		return
 
-	if(item.w_class <= WEIGHT_CLASS_NORMAL && !istype(item, /obj/item/storage) && !user.combat_mode)
+	if(item.w_class <= WEIGHT_CLASS_NORMAL && !user.combat_mode && isnull(item.atom_storage))
 		if(ingredients.len >= max_n_of_items)
 			balloon_alert(user, "it's full!")
 			return TRUE
