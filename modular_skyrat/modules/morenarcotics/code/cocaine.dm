@@ -47,7 +47,7 @@
 		new /obj/item/reagent_containers/crack(location)
 
 /datum/movespeed_modifier/reagent/cocaine
-	multiplicative_slowdown = -0.3
+	multiplicative_slowdown = -0.4
 
 /datum/reagent/drug/cocaine
 	name = "Cocaine"
@@ -167,7 +167,7 @@
 	return UPDATE_MOB_HEALTH
 
 /datum/movespeed_modifier/reagent/crack
-	multiplicative_slowdown = -0.4
+	multiplicative_slowdown = -0.45
 
 /datum/reagent/drug/cocaine/freebase_cocaine
 	name = "Freebase Cocaine"
@@ -180,6 +180,22 @@
 /datum/reagent/drug/cocaine/freebase_cocaine/on_mob_metabolize(mob/living/metabolizer)
 	..()
 	metabolizer.add_movespeed_modifier(/datum/movespeed_modifier/reagent/crack)
+
+/datum/reagent/drug/cocaine/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	if(SPT_PROB(2.5, seconds_per_tick))
+		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+		to_chat(M, span_notice("[high_message]"))
+	M.add_mood_event("zoinked", /datum/mood_event/stimulant_heavy, 1, name)
+	M.AdjustStun(-18 * REM * seconds_per_tick)
+	M.AdjustKnockdown(-18 * REM * seconds_per_tick)
+	M.AdjustUnconscious(-18 * REM * seconds_per_tick)
+	M.AdjustImmobilized(-18 * REM * seconds_per_tick)
+	M.AdjustParalyzed(-18 * REM * seconds_per_tick)
+	M.adjustStaminaLoss(-2.5 * REM * seconds_per_tick, 0)
+	if(SPT_PROB(2.5, seconds_per_tick))
+		M.emote("shiver")
+	..()
+	. = TRUE
 
 /datum/reagent/drug/cocaine/freebase_cocaine/on_mob_end_metabolize(mob/living/metabolizer)
 	metabolizer.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/crack)
