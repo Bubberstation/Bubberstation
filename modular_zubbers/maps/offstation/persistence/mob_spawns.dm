@@ -72,7 +72,7 @@
 	if(new_spawn.client) //It should have a client, right?
 		new_spawn.faction += ROLE_SYNDICATE
 		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
-		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
+		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 		new_spawn.radio.recalculateChannels()
 		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
 		new_spawn.SetEmagged(TRUE) //just to be sure.
@@ -199,7 +199,7 @@
 	name = "Persistence Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -291,7 +291,7 @@
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/persistence/syndicate/quartermaster
 	name = "Persistence Cargo Tech"
@@ -310,7 +310,7 @@
 		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	l_pocket = /obj/item/card/mining_point_card
 	r_pocket = /obj/item/mining_voucher
 	head = /obj/item/clothing/head/soft/black
@@ -336,7 +336,7 @@
 	name = "Persistence Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne/command
+	ears = /obj/item/radio/headset/syndicateciv/command
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
