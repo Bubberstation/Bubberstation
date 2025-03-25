@@ -9,12 +9,11 @@ Module ID: RR_OPTIN
 
 ### Description:
 
-Adds functionality to allow players to 'opt-in' to being round removed. 
+Adds functionality to allow players to 'opt-in' to being round removed.
 
 ### TG Proc/File Changes:
 
-- examine_tgui.dm (Adds opt in info to OOC examine info)
-- death.dm (death logging) 
+- death.dm (death logging)
 
 ### Modular Overrides:
 
@@ -22,12 +21,12 @@ Adds functionality to allow players to 'opt-in' to being round removed.
 
 ### Config:
 
-- /datum/config_entry/flag/RR_OPT_LEVEL_ANTAG   - TRUE OR FALSE, defines default antag opt in level
-- /datum/config_entry/flag/RR_OPT_LEVEL_DEFAULT - TRUE or FALSE, defines default opt in for all
+- /datum/config_entry/flag/rr_opt_level_default - TRUE or FALSE, defines default opt in for all
+- /datum/config_entry/flag/use_rr_opt_in_preferences - TRUE or FALSE, defines whether RR prefs are used
 
 ### Included files that are not contained in this module:
 
-- tgui\packages\tgui\interfaces\PreferencesMenu\preferences\features\character_preferences\skyrat\antag_optin.tsx
+- tgui\packages\tgui\interfaces\PreferencesMenu\preferences\features\character_preferences\bubber\round_remove.tsx
 
 ### Credits:
 
