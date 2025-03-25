@@ -1,5 +1,5 @@
 #define FEED_NOTICE_RANGE 2
-#define FEED_DEFAULT_TIMER (10 SECONDS)
+#define FEED_DEFAULT_TIMER (7 SECONDS)
 
 /datum/action/cooldown/bloodsucker/feed
 	name = "Feed"
@@ -35,12 +35,13 @@
 	var/notified_overfeeding = FALSE
 	///assoc list of weakrefs to targets and how much blood we've taken from them.
 	var/list/targets_and_blood = list()
+	var/stam_loss_per_tick = 5
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
 	. = list()
 	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
 	. += "The time needed before you start feeding is [DisplayTimeText(FEED_DEFAULT_TIMER)]."
-	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."
+	. += "Feeding off of someone while you have them aggressively grabbed will stun them for [DisplayTimeText(get_stun_duration())], and deal [stam_loss_per_tick] stamina every 2 seconds."
 	. += "While feeding, you can't speak, as you are using your mouth to drink blood."
 	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
 	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
@@ -136,10 +137,10 @@
 	disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
 
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
-		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
-			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
+		if(can_incapacitate())
+			feed_target.Stun(get_stun_duration())
 		owner.visible_message(
 			span_warning("[owner] closes [owner.p_their()] mouth around [feed_target]'s neck!"),
 			span_warning("You sink your fangs into [feed_target]'s neck."))
@@ -205,7 +206,8 @@
 		return
 	if(!silent_feed)
 		disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
-
+	if(can_incapacitate())
+		feed_target.adjustStaminaLoss(stam_loss_per_tick)
 	var/feed_strength_mult = 0
 	if(bloodsuckerdatum_power.frenzied)
 		feed_strength_mult = 2
@@ -324,8 +326,8 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/proc/get_sleep_time()
-	return (5 + bloodsuckerdatum_power?.GetRank() || 1) SECONDS
+/datum/action/cooldown/bloodsucker/feed/proc/get_stun_duration()
+	return min((2 + bloodsuckerdatum_power?.GetRank() * 0.5 || 0) SECONDS, 4 SECONDS)
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
 	return clamp(FEED_DEFAULT_TIMER - (1 SECONDS) * bloodsuckerdatum_power?.GetRank() || 1, 2 SECONDS, FEED_DEFAULT_TIMER)
@@ -347,6 +349,9 @@
 		targets_and_blood[weakref] = max(0, targets_and_blood[weakref] - amount)
 		if(targets_and_blood[weakref] <= 0)
 			targets_and_blood -= weakref
+
+/datum/action/cooldown/bloodsucker/feed/proc/can_incapacitate()
+	return !IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target)
 
 #undef FEED_NOTICE_RANGE
 #undef FEED_DEFAULT_TIMER
