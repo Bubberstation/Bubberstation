@@ -161,15 +161,15 @@ The console is located at computer/gulag_teleporter.dm
 		return
 	strip_prisoner(occupant)
 	var/mob/living/carbon/human/prisoner = occupant
-	if(!isplasmaman(prisoner) && jumpsuit_type)
+	if(!isplasmaman(prisoner) && jumpsuit_type) //BUBBER EDIT START - Bunnysuits
 		var/suit_or_skirt
 		switch(prisoner.jumpsuit_style)
 			if(PREF_SKIRT)
 				suit_or_skirt = jumpskirt_type
-			if(PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-				suit_or_skirt = bunnysuit_type //BUBBER EDIT END - Bunnysuits
+			if(PREF_BUNNY)
+				suit_or_skirt = bunnysuit_type
 			else
-				suit_or_skirt = jumpsuit_type
+				suit_or_skirt = jumpsuit_type//BUBBER EDIT END - Bunnysuits
 
 		prisoner.equip_to_appropriate_slot(new suit_or_skirt, qdel_on_fail = TRUE)
 	if(isplasmaman(prisoner) && !prisoner.gloves && emergency_plasglove_type)
