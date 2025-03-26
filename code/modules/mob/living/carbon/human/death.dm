@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
-		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()]", LOG_ATTACK)
+		log_message("has died with Round Removal [client?.prefs.read_preference(/datum/preference/toggle/be_round_removed) ? "enabled" : "disabled or unavailable"] (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()]", LOG_ATTACK) // BUBBER EDIT - Round Removal OPT-IN LOGGING
 		if(key) // Prevents log spamming of keyless mob deaths (like xenobio monkeys)
 			investigate_log("has died at [loc_name(src)].<br>\
 				BRUTE: [src.getBruteLoss()] BURN: [src.getFireLoss()] TOX: [src.getToxLoss()] OXY: [src.getOxyLoss()] STAM: [src.getStaminaLoss()]<br>\
