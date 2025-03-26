@@ -55,7 +55,6 @@
 			- /obj/item/clothing/under/rank/prisoner/skirt \
 	)
 
-
 /obj/item/clothing/under/color/jumpskirt/random
 	icon_state = "random_jumpsuit" //Skirt variant needed
 
