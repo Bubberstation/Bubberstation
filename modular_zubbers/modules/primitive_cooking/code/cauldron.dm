@@ -123,8 +123,8 @@
 			CAULDRON_INGREDIENT_OVERLAY_SIZE / icon_dimensions["height"],
 		)
 
-		ingredient_overlay.pixel_w = ingredient_shifts_w[(ingredient_count % ingredient_shifts_w.len) + 1]
-		ingredient_overlay.pixel_z = ingredient_shifts_z[(ingredient_count % ingredient_shifts_z.len) + 1]
+		ingredient_overlay.pixel_w = ingredient_shifts_x[(ingredient_count % ingredient_shifts_w.len) + 1]
+		ingredient_overlay.pixel_z = ingredient_shifts_y[(ingredient_count % ingredient_shifts_z.len) + 1]
 		ingredient_overlay.layer = FLOAT_LAYER
 		ingredient_overlay.plane = FLOAT_PLANE
 		ingredient_overlay.blend_mode = BLEND_INSET_OVERLAY
