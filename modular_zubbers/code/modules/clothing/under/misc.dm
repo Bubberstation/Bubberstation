@@ -551,76 +551,78 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	icon_state = "playbunny"
+	inhand_icon_state = "playbunny"
+	worn_icon_state = "playbunny"
 	greyscale_config = /datum/greyscale_config/bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/grey
-	name = "grey jumpsuit"
+	name = "grey bunnysuit"
 	desc = "A tasteful grey bunnysuit that reminds you of the good old dust bunnies."
 	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/black
-	name = "black jumpskirt"
+	name = "black bunnysuit"
 	greyscale_colors = "#3f3f3f#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/blue
-	name = "blue jumpsuit"
+	name = "blue bunnysuit"
 	greyscale_colors = "#52aecc#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/green
-	name = "green jumpsuit"
+	name = "green bunnysuit"
 	greyscale_colors = "#9ed63a#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/orange
-	name = "orange jumpsuit"
+	name = "orange bunnysuit"
 	desc = "Don't wear this near carrot-hungry security officers."
 	greyscale_colors = "#ff8c19#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/pink
-	name = "pink jumpsuit"
+	name = "pink bunnysuit"
 	desc = "Just looking at this makes you feel <i>fabulous</i>."
 	greyscale_colors = "#ffa69b#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/red
-	name = "red jumpsuit"
+	name = "red bunnysuit"
 	greyscale_colors = "#eb0c07#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/white
-	name = "white jumpsuit"
+	name = "white bunnysuit"
 	greyscale_colors = "#ffffff#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/yellow
-	name = "yellow jumpsuit"
+	name = "yellow bunnysuit"
 	greyscale_colors = "#ffe14d#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/darkblue
-	name = "dark blue jumpsuit"
+	name = "dark blue bunnysuit"
 	greyscale_colors = "#3285ba#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/teal
-	name = "teal jumpsuit"
+	name = "teal bunnysuit"
 	greyscale_colors = "#77f3b7#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/lightpurple
-	name = "light purple jumpsuit"
+	name = "light purple bunnysuit"
 	greyscale_colors = "#9f70cc#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/darkgreen
-	name = "dark green jumpsuit"
+	name = "dark green bunnysuit"
 	greyscale_colors = "#6fbc22#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/lightbrown
-	name = "light brown jumpsuit"
+	name = "light brown bunnysuit"
 	greyscale_colors = "#c59431#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/brown
-	name = "brown jumpsuit"
+	name = "brown bunnysuit"
 	greyscale_colors = "#a17229#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/maroon
-	name = "maroon jumpsuit"
+	name = "maroon bunnysuit"
 	greyscale_colors = "#cc295f#39393f#ffffff#87502e"
 
 
