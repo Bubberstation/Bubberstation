@@ -13,11 +13,11 @@
 
 	bunnysuits = list(get_random_bunnysuit()) //BUBBER EDIT - Bunnysuits
 
-
-/datum/outfit/job/assistant/preview/give_jumpsuit(mob/living/carbon/human/target)
+/datum/outfit/job/assistant/give_jumpsuit(mob/living/carbon/human/target)
 	..()
-	if(target.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-		uniform = /obj/item/clothing/under/color/playbunny/grey //BUBBER EDIT END - Bunnysuits
+	if(target.jumpsuit_style == PREF_BUNNY)
+		var/index = (jumpsuit_number % GLOB.colored_assistant.jumpsuits.len) + 1
+		uniform = GLOB.colored_assistant.bunnysuits[index]
 
 /datum/colored_assistant
 	var/list/bunnysuits //BUBBER EDIT - Bunnysuits
