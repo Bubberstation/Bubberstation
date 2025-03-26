@@ -56,7 +56,7 @@
 
 	slot_flags = NONE
 
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/Initialize(mapload)
 	. = ..()
