@@ -15,6 +15,7 @@
 
 /datum/outfit/job/assistant/give_jumpsuit(mob/living/carbon/human/target)
 	..()
+	var/static/jumpsuit_number
 	if(target.jumpsuit_style == PREF_BUNNY)
 		var/index = (jumpsuit_number % GLOB.colored_assistant.jumpsuits.len) + 1
 		uniform = GLOB.colored_assistant.bunnysuits[index]
