@@ -546,10 +546,7 @@
 	alt_covers_chest = TRUE
 
 //colorful assistants support
-/obj/item/clothing/under/color/playbunny/grey
-	name = "grey jumpsuit"
-	desc = "A tasteful grey bunnysuit that reminds you of the good old bunnies."
-	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
+/obj/item/clothing/under/color/playbunny
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
@@ -558,177 +555,78 @@
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/color/playbunny/grey
+	name = "grey jumpsuit"
+	desc = "A tasteful grey bunnysuit that reminds you of the good old dust bunnies."
+	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/black
 	name = "black jumpskirt"
 	greyscale_colors = "#3f3f3f#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/blue
 	name = "blue jumpsuit"
 	greyscale_colors = "#52aecc#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/green
 	name = "green jumpsuit"
 	greyscale_colors = "#9ed63a#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/orange
 	name = "orange jumpsuit"
 	desc = "Don't wear this near carrot-hungry security officers."
 	greyscale_colors = "#ff8c19#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/pink
 	name = "pink jumpsuit"
 	desc = "Just looking at this makes you feel <i>fabulous</i>."
 	greyscale_colors = "#ffa69b#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/red
 	name = "red jumpsuit"
 	greyscale_colors = "#eb0c07#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/white
 	name = "white jumpsuit"
 	greyscale_colors = "#ffffff#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/yellow
 	name = "yellow jumpsuit"
 	greyscale_colors = "#ffe14d#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/darkblue
 	name = "dark blue jumpsuit"
 	greyscale_colors = "#3285ba#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/teal
 	name = "teal jumpsuit"
 	greyscale_colors = "#77f3b7#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/lightpurple
 	name = "light purple jumpsuit"
 	greyscale_colors = "#9f70cc#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/darkgreen
 	name = "dark green jumpsuit"
 	greyscale_colors = "#6fbc22#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/lightbrown
 	name = "light brown jumpsuit"
 	greyscale_colors = "#c59431#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/brown
 	name = "brown jumpsuit"
 	greyscale_colors = "#a17229#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/maroon
 	name = "maroon jumpsuit"
 	greyscale_colors = "#cc295f#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	icon_state = "playbunny"
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 
 /obj/item/clothing/under/color/playbunny/random
 	icon_state = "random_jumpsuit" //Skirt variant needed
 	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	greyscale_config = /datum/greyscale_config/bunnysuit
-	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/color/playbunny/random/Initialize(mapload)
 	..()
