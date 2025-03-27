@@ -139,7 +139,7 @@
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
-		if(can_incapacitate())
+		if(can_incapacitate(feed_target))
 			feed_target.Stun(get_stun_duration())
 		owner.visible_message(
 			span_warning("[owner] closes [owner.p_their()] mouth around [feed_target]'s neck!"),
@@ -206,7 +206,7 @@
 		return
 	if(!silent_feed)
 		disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
-	if(can_incapacitate())
+	if(can_incapacitate(feed_target))
 		feed_target.adjustStaminaLoss(stam_loss_per_tick)
 	var/feed_strength_mult = 0
 	if(bloodsuckerdatum_power.frenzied)
@@ -350,7 +350,7 @@
 		if(targets_and_blood[weakref] <= 0)
 			targets_and_blood -= weakref
 
-/datum/action/cooldown/bloodsucker/feed/proc/can_incapacitate()
+/datum/action/cooldown/bloodsucker/feed/proc/can_incapacitate(mob/feed_target)
 	return !IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target)
 
 #undef FEED_NOTICE_RANGE

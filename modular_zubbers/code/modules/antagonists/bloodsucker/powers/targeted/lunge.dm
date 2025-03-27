@@ -8,7 +8,7 @@
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
-	range = 4
+	target_range = 4
 	var/speed = 0.5
 	var/stamina_cost = 50
 	var/datum/component/tackler/tackling
@@ -56,7 +56,7 @@
 	if(user.alpha <= 40 || user_turf.get_lumcount() <= LIGHTING_TILE_IS_DARK)
 		skill_mod += 2
 	var/knockdown = 3 SECONDS + 0.5 SECONDS * level_current
-	tackling = owner.AddComponent(/datum/component/tackler, stamina_cost = stamina_cost, base_knockdown = knockdown, range = range, speed = speed, skill_mod = skill_mod, min_distance = 2)
+	tackling = owner.AddComponent(/datum/component/tackler, stamina_cost = stamina_cost, base_knockdown = knockdown, range = target_range, speed = speed, skill_mod = skill_mod, min_distance = 2)
 	RegisterSignal(owner, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(lunge_end))
 	// something bork
 	if(user.body_position != STANDING_UP || user.incapacitated)

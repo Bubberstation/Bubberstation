@@ -282,7 +282,7 @@
 	else
 		new_desc += "<br><b>(Inherent Power)</b>"
 	if(bloodcost > 0)
-		new_desc += "<br><b>COST:</b>[get_power_cost_desc()]"
+		new_desc += "<br><b>COST:</b> [get_power_cost_desc()]"
 	if(constant_bloodcost > 0)
 		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
@@ -298,6 +298,6 @@
 	return initial(desc)
 
 /datum/action/cooldown/bloodsucker/proc/disable_power_by_type(power_type)
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum_power.powers)
 		if(power.type == type)
 			power.DeactivatePower()
