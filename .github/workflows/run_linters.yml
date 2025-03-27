@@ -62,7 +62,10 @@ jobs:
         run: ":"
       - name: Run Grep Checks
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
-        run: bash tools/ci/check_grep.sh
+        run: |
+          bash tools/ci/check_grep.sh
+          bash skyrat/tools/skyrat_check_grep.sh # SKYRAT EDIT ADDITION - checking modular_skyrat code
+          bash modular_zubbers/tools/ci/zubbers_check_grep.sh # BUBBER EDIT ADDITION - checking modular_zubbers code
       - name: Ticked File Enforcement
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |
