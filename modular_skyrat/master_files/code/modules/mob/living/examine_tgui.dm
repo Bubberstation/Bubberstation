@@ -85,6 +85,13 @@
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 			name = holder.name
 
+		//Round Removal opt in stuff
+		if(CONFIG_GET(flag/use_rr_opt_in_preferences))
+			var/rr_prefs = preferences.read_preference(/datum/preference/toggle/be_round_removed)
+			ooc_notes += "\n"
+			ooc_notes += "Round Removal Opt-In Status: [rr_prefs ? "Yes" : "No"]\n"
+			ooc_notes += "\n"
+
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && \
