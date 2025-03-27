@@ -26,7 +26,7 @@
 	icon_state = "sniper"
 	damage = 50
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	speed = 0.4
+	speed = 2.5
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 	wound_falloff_tile = -0.1
@@ -58,7 +58,7 @@
 	name = "plasma grenade"
 	icon_state = "grenade"
 	damage = 50
-	speed = 2
+	speed = 0.5
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
@@ -86,7 +86,7 @@
 	name = "plasma globule"
 	icon_state = "flare"
 	damage = 10
-	speed = 2.5
+	speed = 0.4
 	bare_wound_bonus = 55 // Lasers have a wound bonus of 40, this is a bit higher
 	wound_bonus = -50 // However we do not very much against armor
 	range = 2
@@ -114,7 +114,7 @@
 	icon_state = "because_it_doesnt_miss"
 	damage = 10
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
-	speed = 0.8
+	speed = 1.25
 	light_color = COLOR_SCIENCE_PINK
 	range = 9
 	damage_falloff_tile = -0.5
@@ -131,7 +131,7 @@
 	icon_state = "hellfire"
 	damage = 30
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	speed = 0.6
+	speed = 1.6
 	wound_bonus = 0
 	light_color = COLOR_SOFT_RED
 
@@ -172,7 +172,7 @@
 	name = "plasma flare"
 	icon_state = "flare"
 	damage = 30
-	speed = 2
+	speed = 0.5
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN

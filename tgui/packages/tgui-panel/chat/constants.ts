@@ -42,6 +42,7 @@ export const MESSAGE_TYPE_DEBUG = 'debug';
 export const MESSAGE_TYPE_MENTOR = 'mentor';
 export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
+export const MESSAGE_TYPE_SUBTLE = 'subtle';
 // BUBBER EDIT ADDITION END
 
 // Metadata for each message type
@@ -106,6 +107,12 @@ export const MESSAGE_TYPES = [
     name: 'LOOC',
     description: 'Local OOC messages.',
     selector: '.looc',
+  },
+  {
+    type: MESSAGE_TYPE_SUBTLE,
+    name: 'Subtle',
+    description: 'Subtle and Subtler actions.',
+    selector: '.subtle, .subtler',
   },
   {
     type: MESSAGE_TYPE_MENTOR,

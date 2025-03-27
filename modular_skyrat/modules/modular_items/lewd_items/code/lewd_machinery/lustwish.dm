@@ -44,6 +44,7 @@
 				/obj/item/spanking_pad = 4,
 				/obj/item/tickle_feather = 8,
 				/obj/item/borg/upgrade/dominatrixmodule = 5,
+				/obj/item/reagent_containers/venom_milker = 5,
 			),
 		),
 		list(
@@ -154,6 +155,7 @@
 	premium = list(
 		/obj/item/clothing/neck/human_petcollar/locked/holo = 3,
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
+		/obj/item/toy/plush/cescrewsplush = 1,
 		)
 
 	contraband = list(

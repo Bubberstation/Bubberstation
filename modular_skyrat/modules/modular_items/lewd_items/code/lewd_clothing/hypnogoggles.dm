@@ -24,7 +24,7 @@
 	victim = user
 	if(!(slot & ITEM_SLOT_EYES))
 		return
-	if(!(iscarbon(victim) && victim.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
+	if(!(iscarbon(victim) && victim.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy) && victim.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)))
 		return
 	if(codephrase != "")
 		victim.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(codephrase), TRAUMA_RESILIENCE_MAGIC)
@@ -138,7 +138,7 @@
 		return
 	switch(rand(1, 2))
 		if(1)
-			to_chat(owner, span_hypnophrase("<i>...[lowertext(hypnotic_phrase)]...</i>"))
+			to_chat(owner, span_hypnophrase("<i>...[LOWER_TEXT(hypnotic_phrase)]...</i>"))
 		if(2)
 			new /datum/hallucination/chat(owner, TRUE, FALSE, span_hypnophrase("[hypnotic_phrase]"))
 

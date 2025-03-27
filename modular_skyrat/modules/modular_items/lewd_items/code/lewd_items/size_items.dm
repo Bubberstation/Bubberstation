@@ -1,10 +1,3 @@
-/// What areas are we allowed to use size items in?
-#define SIZE_WHITELISTED_AREAS list(\
-		/area/centcom/interlink/dorm_rooms,\
-		/area/centcom/holding/cafe/dorms,\
-		/area/misc/hilbertshotel,\
-)
-
 /obj/item/clothing/neck/size_collar
 	name = "size collar"
 	desc = "A shiny black collar embeded with technology that allows the user to change their own size."
@@ -116,15 +109,20 @@
 	if(!human_parent || !size_to_apply || (human_parent.dna.features["body_size"] == size_to_apply))
 		return FALSE
 
+	if(isteshari(human_parent) || isvoxprimalis(human_parent)) // We check if the human_parent is a Vox Primalis or Teshari & temporarily disable the bodysize restriction
+		human_parent.dna.species.body_size_restricted = FALSE
+
 	human_parent.dna.features["body_size"] = size_to_apply
 	human_parent.maptext_height = 32 * human_parent.dna.features["body_size"]
 	human_parent.dna.update_body_size()
 	return TRUE
 
 /datum/component/temporary_size/Destroy(force, silent)
+	var/mob/living/carbon/human/human_parent = parent
 	apply_size(original_size)
+
+	if(isteshari(human_parent) || isvoxprimalis(human_parent)) // We reapply it on destroy if they were
+		human_parent.dna.species.body_size_restricted = TRUE
 	UnregisterSignal(parent, COMSIG_ENTER_AREA)
 
 	return ..()
-
-#undef SIZE_WHITELISTED_AREAS

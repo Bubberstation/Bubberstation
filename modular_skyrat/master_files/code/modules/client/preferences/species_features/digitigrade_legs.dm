@@ -7,11 +7,11 @@
 
 
 /datum/preference/choiced/digitigrade_legs/create_default_value()
-	return "Normal Legs"
+	return NORMAL_LEGS
 
 
 /datum/preference/choiced/digitigrade_legs/init_possible_values()
-	return assoc_to_keys_features(SSaccessories.sprite_accessories["legs"])
+	return list(NORMAL_LEGS, DIGITIGRADE_LEGS)
 
 /datum/preference/choiced/digitigrade_legs/is_accessible(datum/preferences/preferences)
 	return ..() && is_usable(preferences)
@@ -41,6 +41,14 @@
 
 	target.dna.features["legs"] = value
 
+	if(value == DIGITIGRADE_LEGS)
+		target.dna.species.try_make_digitigrade(target)
+	else
+		// This fucking sucks but initial doesnt do lists and we need to clear this out
+		var/datum/species/cursed_species_we_need_for_a_list
+		if(ispath(target.dna.species.type))
+			cursed_species_we_need_for_a_list = new target.dna.species.type
+		target.dna.species.bodypart_overrides = cursed_species_we_need_for_a_list.bodypart_overrides
 	target.update_body()
-	target.dna.species.replace_body(target, target.dna.species) // TODO: Replace this with something less stupidly expensive.
+	target.dna.species.replace_body(target,target.dna.species) // TODO: Replace this with something less stupidly expensive.
 	return TRUE

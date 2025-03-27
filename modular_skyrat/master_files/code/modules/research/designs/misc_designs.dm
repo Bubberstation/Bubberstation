@@ -46,22 +46,23 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/design/anesthetic_machine
-	name = "Anesthetic Machine Parts Kit"
-	desc = "All-in-one kit containing the parts to create a portable anesthetic stand, tank not included."
-	id = "anesthetic_machine"
+/datum/design/breath_machine
+	name = "Breath Machine Parts Kit"
+	desc = "All-in-one kit containing the parts to create a portable breath machine and stand, tank not included."
+	id = "breath_machine"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
-	build_path = /obj/item/anesthetic_machine_kit
+	build_path = /obj/item/breath_machine_kit
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/*
 /datum/design/time_clock_frame
 	name = "Time Clock Frame"
 	desc = "A frame for a time clock console, contains all of the parts needed to build a new time clock"
@@ -76,6 +77,7 @@
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MOUNTS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
+*/
 
 /datum/design/vox_gas_filter
 	name = "Vox Gas Filter"

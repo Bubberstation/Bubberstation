@@ -155,6 +155,13 @@ DEFINE_BITFIELD(status_flags, list(
 #define ATTACK_EFFECT_MECHTOXIN "mech_toxin"
 #define ATTACK_EFFECT_BOOP "boop" //Honk
 
+/// Attack animation for sharp items
+#define ATTACK_ANIMATION_SLASH "slash"
+/// Attack animation for pointy items
+#define ATTACK_ANIMATION_PIERCE "pierce"
+/// Animation for blunt attacks
+#define ATTACK_ANIMATION_BLUNT "blunt"
+
 //the define for visible message range in combat
 #define SAMETILE_MESSAGE_RANGE 1
 #define COMBAT_MESSAGE_RANGE 3
@@ -176,6 +183,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 //The define for base unarmed miss chance
 #define UNARMED_MISS_CHANCE_BASE 20
 #define UNARMED_MISS_CHANCE_MAX 80
+//Minimum value used to determine if a punched target can be affected by a stagger combo from a punch
+#define UNARMED_COMBO_HIT_HEALTH_BASE 40
 
 //Combat object defines
 /// The minimum value of an item's throw_speed for it to embed (Unless it has embedded_ignore_throwspeed_threshold set to 1)
@@ -184,8 +193,11 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EMBED_CHANCE_SPEED_BONUS 10
 
 //Gun weapon weight
+/// Default normal ol' gun. Akimboable, one handed.
 #define WEAPON_LIGHT 1
+/// Can't be used akimbo, but only needs one hand to fire
 #define WEAPON_MEDIUM 2
+/// Can't be used akimbo, and needs two hands to fire
 #define WEAPON_HEAVY 3
 //Gun trigger guards
 #define TRIGGER_GUARD_ALLOW_ALL -1
@@ -221,10 +233,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define SUPPRESSED_NONE 0
 #define SUPPRESSED_QUIET 1 ///standard suppressed
 #define SUPPRESSED_VERY 2 /// no message
-
-//Projectile Reflect
-#define REFLECT_NORMAL (1<<0)
-#define REFLECT_FAKEPROJECTILE (1<<1)
 
 //His Grace.
 #define HIS_GRACE_SATIATED 0 //He hungers not. If bloodthirst is set to this, His Grace is asleep.

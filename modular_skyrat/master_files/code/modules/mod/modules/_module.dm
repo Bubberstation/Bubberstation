@@ -11,12 +11,12 @@
 	var/datum/weakref/retracts_into
 
 // we need to update mob overlays on deploy/retract in order for the hiding to work because this doesn't happen otherwise
-/obj/item/mod/control/deploy(mob/user, obj/item/part)
+/obj/item/mod/control/deploy(mob/user, obj/item/part, instant = FALSE)
 	. = ..()
 	if(wearer)
 		wearer.update_clothing(slot_flags)
 
-/obj/item/mod/control/retract(mob/user, obj/item/part)
+/obj/item/mod/control/retract(mob/user, obj/item/part, instant = FALSE)
 	. = ..()
 	if(wearer)
 		wearer.update_clothing(slot_flags)

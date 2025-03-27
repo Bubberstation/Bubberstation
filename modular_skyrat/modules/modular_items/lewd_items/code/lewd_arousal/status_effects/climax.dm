@@ -11,7 +11,7 @@
 	alert_type = null
 
 /datum/status_effect/climax/tick(seconds_between_ticks)
-	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
 	var/mob/living/carbon/human/affected_mob = owner
@@ -30,7 +30,7 @@
 
 // This one should not leave decals on the floor. Used in case if character cumming in beaker.
 /datum/status_effect/masturbation_climax/tick(seconds_between_ticks)
-	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
 	var/mob/living/carbon/human/affected_mob = owner
@@ -48,10 +48,10 @@
 	alert_type = null
 
 /datum/status_effect/climax_cooldown/tick(seconds_between_ticks)
-	var/obj/item/organ/external/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/external/genital/testicles/balls = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/external/genital/testicles/penis = owner.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/external/genital/testicles/anus = owner.get_organ_slot(ORGAN_SLOT_ANUS)
+	var/obj/item/organ/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/testicles/balls = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/testicles/penis = owner.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/anus = owner.get_organ_slot(ORGAN_SLOT_ANUS)
 
 	if(penis)
 		penis.aroused = AROUSAL_NONE
@@ -61,3 +61,7 @@
 		balls.aroused = AROUSAL_NONE
 	if(anus)
 		anus.aroused = AROUSAL_NONE
+
+#undef AROUSAL_REMOVAL_AMOUNT
+#undef STAMINA_REMOVAL_AMOUNT_EXTERNAL
+#undef STAMINA_REMOVAL_AMOUNT_SELF

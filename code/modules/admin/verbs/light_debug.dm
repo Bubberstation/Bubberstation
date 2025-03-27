@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	ui_interact(usr)
 
 /atom/movable/screen/light_button/edit/ui_state(mob/user)
-	return GLOB.debug_state
+	return ADMIN_STATE(R_DEBUG)
 
 /atom/movable/screen/light_button/edit/can_interact()
 	return TRUE
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		ui.open()
 
 /atom/movable/screen/light_button/edit/ui_assets(mob/user)
-	return list(get_asset_datum(/datum/asset/spritesheet/lights))
+	return list(get_asset_datum(/datum/asset/spritesheet_batched/lights))
 
 /atom/movable/screen/light_button/edit/ui_data()
 	var/list/data = list()
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		if("set_on")
 			parent.set_light(l_on = params["value"])
 		if("change_color")
-			var/chosen_color = input(ui.user, "Pick new color", "[parent]", parent.light_color) as color|null
+			var/chosen_color = tgui_color_picker(ui.user, "Pick new color", "[parent]", parent.light_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(chosen_color)
 				parent.set_light(l_color = chosen_color)
 		if("set_power")
@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	ui_interact(usr)
 
 /datum/action/spawn_light/ui_state(mob/user)
-	return GLOB.debug_state
+	return ADMIN_STATE(R_DEBUG)
 
 /datum/action/spawn_light/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		ui.open()
 
 /datum/action/spawn_light/ui_assets(mob/user)
-	return list(get_asset_datum(/datum/asset/spritesheet/lights))
+	return list(get_asset_datum(/datum/asset/spritesheet_batched/lights))
 
 /datum/action/spawn_light/ui_data()
 	var/list/data = list()

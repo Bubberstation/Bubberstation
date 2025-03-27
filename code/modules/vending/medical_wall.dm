@@ -12,7 +12,7 @@
 		/obj/item/reagent_containers/pill/multiver = 2,
 		/obj/item/reagent_containers/medigel/libital = 2,
 		/obj/item/reagent_containers/medigel/aiuri = 2,
-		/obj/item/reagent_containers/medigel/sterilizine = 1,
+		/obj/item/reagent_containers/medigel/sterilizine = 4, // BUBBER EDIT CHANGE
 		/obj/item/healthanalyzer/simple = 2,
 		/obj/item/stack/medical/bone_gel = 2,
 		/obj/item/storage/box/bandages = 1,

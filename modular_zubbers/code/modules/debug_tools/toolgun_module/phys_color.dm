@@ -6,14 +6,14 @@
 
 /datum/phystool_mode/color_mode/use_act(mob/user)
 	. = ..()
-	selected_color = input(user, "Pick new effects color", "Physgun color") as color|null
+	selected_color = tgui_color_picker(user, "Pick new effects color", "Physgun color") // BUBBERSTATION EDIT: TGUI COLOR PICKER
 
 /datum/phystool_mode/color_mode/main_act(atom/target, mob/user)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.client)
-			user.balloon_alert(user, "Can't color!")
+			user.balloon_alert(user, "can't color!")
 			return FALSE
 	if(!selected_color)
 		selected_color = COLOR_WHITE
