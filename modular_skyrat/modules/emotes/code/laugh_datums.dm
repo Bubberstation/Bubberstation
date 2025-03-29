@@ -65,5 +65,5 @@ GLOBAL_LIST_EMPTY(laugh_types)
 
 /datum/laugh_type/vox
 	name = "Vox Laugh"
-	male_laughsounds = list('sound/mobs/humanoids/vox/vox_laugh.ogg')
+	male_laughsounds = list('modular_zubbers/sound/mobs/humanoids/vox/vox_laugh.ogg')
 	female_laughsounds = null
