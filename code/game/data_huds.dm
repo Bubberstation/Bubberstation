@@ -18,7 +18,7 @@
 /datum/atom_hud/data
 
 /datum/atom_hud/data/human/medical
-	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR_HUD
+	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD, NANITE_HUD) // BUBBER EDIT ADDITION - DNR-HUD / NANITE_HUD
 
 /datum/atom_hud/data/human/medical/basic
 
@@ -51,13 +51,13 @@
 	hud_icons = list(ID_HUD)
 
 /datum/atom_hud/data/human/security/advanced
-	hud_icons = list(ID_HUD, IMPSEC_FIRST_HUD, IMPLOYAL_HUD, IMPSEC_SECOND_HUD, WANTED_HUD, PERMIT_HUD, DNR_HUD) //SKYRAT EDIT ADDITION - PERMIT_HUD, DNR_HUD
+	hud_icons = list(ID_HUD, IMPSEC_FIRST_HUD, IMPLOYAL_HUD, IMPSEC_SECOND_HUD, WANTED_HUD, PERMIT_HUD, DNR_HUD, NANITE_HUD) // BUBBER EDIT ADDITION - DNR-HUD / NANITE_HUD
 
 /datum/atom_hud/data/human/fan_hud
 	hud_icons = list(FAN_HUD)
 
 /datum/atom_hud/data/diagnostic
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_CAMERA_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_CAMERA_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_NANITE_FULL_HUD) // BUBBER EDIT ADDITION - NANITE_HUD
 
 /datum/atom_hud/data/bot_path
 	hud_icons = list(DIAG_PATH_HUD)
