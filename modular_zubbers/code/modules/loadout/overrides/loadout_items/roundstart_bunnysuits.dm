@@ -5,7 +5,7 @@
 	)
 
 /datum/colored_assistant/solid/New()
-	..()
+	. = ..()
 	var/obj/item/clothing/under/color/chosen_suit = jumpsuits[1]
 	for (var/obj/item/clothing/under/color/playbunny/playbunny_type as anything in subtypesof(/obj/item/clothing/under/color/playbunny))
 		if (findtext(playbunny_type.greyscale_colors, initial(chosen_suit.greyscale_colors)) == TRUE)
