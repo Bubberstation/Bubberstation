@@ -5,3 +5,5 @@
 	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/robot_resting = FALSE
 	var/robot_rest_style = ROBOT_REST_NORMAL
+	//Variable to track if breastplate is active currently only for dullahan
+	var/is_breastplate_active = FALSE
