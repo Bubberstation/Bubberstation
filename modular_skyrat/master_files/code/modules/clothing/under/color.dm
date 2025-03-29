@@ -9,9 +9,10 @@
 /obj/item/clothing/under/color/random/proc/get_random_variant()
 	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer))
-		if(wearer.jumpsuit_style == PREF_SKIRT)
-			return get_random_jumpskirt()
-		if(wearer.jumpsuit_style == PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-			return get_random_bunnysuit() //BUBBER EDIT END - Bunnysuits
+		switch(wearer.jumpsuit_style)
+			if(PREF_SKIRT)
+				return get_random_jumpskirt();
+			if(PREF_BUNNY)
+				return get_random_bunnysuit();
 
 	return get_random_jumpsuit()
