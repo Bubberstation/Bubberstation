@@ -631,13 +631,13 @@
 	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
 
 /obj/item/clothing/under/color/playbunny/random/Initialize(mapload)
-	..()
-	var/obj/item/clothing/under/color/playbunny/C = get_random_bunnysuit()
+	. = ..()
+	var/obj/item/clothing/under/color/playbunny/new_bunnysuit = get_random_bunnysuit()
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		H.equip_to_slot_or_del(new C(H), ITEM_SLOT_ICLOTHING, initial=TRUE)
+		var/mob/living/carbon/human/local_human = loc
+		local_human.equip_to_slot_or_del(new new_bunnysuit(local_human), ITEM_SLOT_ICLOTHING, initial=TRUE)
 	else
-		new C(loc)
+		new new_bunnysuit(loc)
 	return INITIALIZE_HINT_QDEL
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
