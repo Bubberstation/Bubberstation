@@ -51,13 +51,13 @@
 				/obj/item/clothing/suit/jacket/tailcoat/usa = 6,
 				/obj/item/clothing/suit/jacket/tailcoat/plasmaman = 6,
 				/obj/item/clothing/head/playbunnyears/clown = 3,
-				/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit = 3,
+				/obj/item/clothing/under/rank/civilian/clown/bunnysuit = 3,
 				/obj/item/clothing/suit/jacket/tailcoat/clown = 3,
 				/obj/item/clothing/neck/tie/clown = 3,
 				/obj/item/clothing/shoes/clown_shoes/heeled = 3,
 				/obj/item/clothing/neck/bunny_pendant = 3,
 				/obj/item/clothing/head/playbunnyears/mime = 3,
-				/obj/item/clothing/under/rank/civilian/mime_bunnysuit = 3,
+				/obj/item/clothing/under/rank/civilian/mime/bunnysuit = 3,
 				/obj/item/clothing/suit/jacket/tailcoat/mime = 3,
 			),
 		),
@@ -87,15 +87,15 @@
 	/obj/item/clothing/suit/leatherapron = 3,
 	/obj/item/clothing/under/rank/medical/doctor/nurse = 3,
 	/obj/item/clothing/head/playbunnyears/doctor = 3,
-	/obj/item/clothing/under/rank/medical/doctor_bunnysuit = 3,
+	/obj/item/clothing/under/rank/medical/doctor/bunnysuit = 3,
 	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat = 3,
 	/obj/item/clothing/neck/tie/bunnytie/doctor = 3,
 	/obj/item/clothing/head/playbunnyears/paramedic = 3,
-	/obj/item/clothing/under/rank/medical/paramedic_bunnysuit = 3,
+	/obj/item/clothing/under/rank/medical/paramedic/bunnysuit = 3,
 	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/paramedic = 3,
 	/obj/item/clothing/neck/tie/bunnytie/paramedic = 3,
 	/obj/item/clothing/head/playbunnyears/psychologist = 3,
-	/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit = 3,
+	/obj/item/clothing/under/rank/civilian/psychologist/bunnysuit = 3,
 	/obj/item/clothing/suit/jacket/tailcoat/psychologist = 3,
 	)
 
@@ -110,7 +110,7 @@
 /obj/machinery/vending/wardrobe/viro_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/pathologist = 2,
-		/obj/item/clothing/under/rank/medical/pathologist_bunnysuit = 2,
+		/obj/item/clothing/under/rank/medical/virologist/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/pathologist = 2,
 		/obj/item/clothing/neck/tie/bunnytie/pathologist = 2,
 	)
@@ -118,7 +118,7 @@
 /obj/machinery/vending/wardrobe/coroner_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/coroner = 2,
-		/obj/item/clothing/under/rank/medical/coroner_bunnysuit = 2,
+		/obj/item/clothing/under/rank/medical/coroner/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/coroner = 2,
 		/obj/item/clothing/neck/tie/bunnytie/coroner = 2,
 	)
@@ -137,7 +137,7 @@
 	zubbers_products = list(
 	/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
 	/obj/item/clothing/head/playbunnyears/roboticist = 2,
-	/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
+	/obj/item/clothing/under/rank/rnd/roboticist/bunnysuit = 2,
 	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/robotics = 2,
 	/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
 	)
@@ -153,11 +153,11 @@
 /obj/machinery/vending/wardrobe/det_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/detective = 2,
-		/obj/item/clothing/under/rank/security/detective_bunnysuit = 2,
+		/obj/item/clothing/under/rank/security/detective/bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/detective = 2,
 		/obj/item/clothing/head/playbunnyears/detective/noir = 2,
-		/obj/item/clothing/under/rank/security/detective_bunnysuit/noir = 2,
+		/obj/item/clothing/under/rank/security/detective/noir/bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat/noir = 2,
 	)
 
@@ -168,7 +168,7 @@
 		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
 		/obj/item/clothing/suit/jacket/caligram_parka_tan = 3,
 		/obj/item/clothing/head/playbunnyears/cargo = 3,
-		/obj/item/clothing/under/rank/cargo/cargo_bunnysuit = 3,
+		/obj/item/clothing/under/rank/cargo/tech/bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/cargo = 3,
 		/obj/item/clothing/neck/tie/bunnytie/cargo = 3,
 		/obj/item/clothing/head/playbunnyears/mailman = 1,
@@ -189,7 +189,7 @@
 		/obj/item/clothing/neck/cross = 5,
 		/obj/item/clothing/head/anubite = 1,
 		/obj/item/clothing/head/playbunnyears/chaplain = 1,
-		/obj/item/clothing/under/rank/civilian/chaplain_bunnysuit = 1,
+		/obj/item/clothing/under/rank/civilian/chaplain/bunnysuit = 1,
 		/obj/item/clothing/suit/jacket/tailcoat/chaplain = 1,
 		/obj/item/clothing/neck/bunny_pendant = 6,
 	)
@@ -201,9 +201,9 @@
 		/obj/item/clothing/head/playbunnyears/curator_red = 2,
 		/obj/item/clothing/head/playbunnyears/curator_green = 2,
 		/obj/item/clothing/head/playbunnyears/curator_teal = 2,
-		/obj/item/clothing/under/rank/civilian/curator_bunnysuit_red = 2,
-		/obj/item/clothing/under/rank/civilian/curator_bunnysuit_green = 2,
-		/obj/item/clothing/under/rank/civilian/curator_bunnysuit_teal = 2,
+		/obj/item/clothing/under/rank/civilian/curator/bunnysuit = 2,
+		/obj/item/clothing/under/rank/civilian/curator/bunnysuit/green = 2,
+		/obj/item/clothing/under/rank/civilian/curator/bunnysuit/teal = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/curator_red = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/curator_green = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/curator_teal = 2,
@@ -224,13 +224,13 @@
 		/obj/item/clothing/suit/jacket/tailcoat/bartender = 2,
 		/obj/item/clothing/neck/tie/bunnytie/bartender = 2,
 		/obj/item/clothing/head/playbunnyears/bartender = 2,
-		/obj/item/clothing/under/rank/civilian/bartender_bunnysuit = 2,
+		/obj/item/clothing/under/rank/civilian/bartender/bunnysuit = 2,
 	)
 
 /obj/machinery/vending/wardrobe/chef_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/cook = 2,
-		/obj/item/clothing/under/rank/civilian/cook_bunnysuit = 2,
+		/obj/item/clothing/under/rank/civilian/cook/bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/cook = 2,
 		/obj/item/clothing/neck/tie/bunnytie/cook = 2,
 		/obj/item/clothing/gloves/latex = 2,
@@ -254,15 +254,15 @@
 /obj/machinery/vending/wardrobe/law_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/lawyer_black = 3,
-		/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_black = 3,
+		/obj/item/clothing/under/rank/civilian/lawyer/black/bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/lawyer_black = 3,
 		/obj/item/clothing/neck/tie/bunnytie/lawyer_black = 3,
 		/obj/item/clothing/head/playbunnyears/lawyer_red = 3,
-		/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_red = 3,
+		/obj/item/clothing/under/rank/civilian/lawyer/red/bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/lawyer_red = 3,
 		/obj/item/clothing/neck/tie/bunnytie/lawyer_red = 3,
 		/obj/item/clothing/head/playbunnyears/lawyer_blue = 3,
-		/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_blue = 3,
+		/obj/item/clothing/under/rank/civilian/lawyer/blue/bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/lawyer_blue = 3,
 		/obj/item/clothing/neck/tie/bunnytie/lawyer_blue = 3,
 		/obj/item/clothing/head/playbunnyears/lawyer_good = 3,
@@ -290,7 +290,7 @@
 /obj/machinery/vending/wardrobe/engi_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/engineer = 3,
-		/obj/item/clothing/under/rank/engineering/engineer_bunnysuit = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
 		/obj/item/clothing/neck/tie/bunnytie/engineer = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
@@ -299,7 +299,7 @@
 /obj/machinery/vending/wardrobe/atmos_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/atmos_tech = 3,
-		/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit = 3,
+		/obj/item/clothing/under/rank/engineering/atmospheric_technician/bunnysuit = 3,
 		/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/atmos_tech = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
