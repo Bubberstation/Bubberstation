@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
+import { Button, Section, Stack, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Button, Section, Stack, Table } from '../components';
 import { Window } from '../layouts';
 
 type ManipulatorData = {
@@ -69,7 +69,7 @@ export const BigManipulator = (props) => {
               tooltip="click on this button with item in hands to add filter on this item."
               onClick={() => act('add_filter')}
             />
-            {manipulate_mode === 'Use' && (
+            {manipulate_mode === 'use' && (
               <Button
                 content="Drop Use"
                 tooltip="drop item after use. othewise manipulator will use this item after cooldown."
@@ -77,7 +77,7 @@ export const BigManipulator = (props) => {
                 onClick={() => act('drop_use_change')}
               />
             )}
-            {manipulate_mode === 'Throw' && (
+            {manipulate_mode === 'throw' && (
               <Button
                 content={`Throw range: ${throw_range}`}
                 tooltip="distance an object will travel when thrown"

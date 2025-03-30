@@ -50,7 +50,7 @@
 	var/list/genes = list()
 	/// A list of reagents to add to product.
 	var/list/reagents_add
-	// Format: "reagent_id" = potency multiplier
+	// Format: /datum/reagent/type = potency multiplier
 	// Stronger reagents must always come first to avoid being displaced by weaker ones.
 	// Total amount of any reagent in plant is calculated by formula: max(round(potency * multiplier), 1)
 	///If the chance below passes, then this many weeds sprout during growth
@@ -181,24 +181,26 @@
 
 
 
-/obj/item/seeds/bullet_act(obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
-	if(istype(Proj, /obj/projectile/energy/flora/yield))
-		var/rating = 1
-		if(istype(loc, /obj/machinery/hydroponics))
-			var/obj/machinery/hydroponics/H = loc
-			rating = H.rating
-
-		if(yield == 0)//Oh god don't divide by zero you'll doom us all.
-			adjust_yield(1 * rating)
-		else if(prob(1/(yield * yield) * 100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
-			adjust_yield(1 * rating)
-	else
+/obj/item/seeds/bullet_act(obj/projectile/proj) //Works with the Somatoray to modify plant variables.
+	if(!istype(proj, /obj/projectile/energy/flora/yield))
 		return ..()
-
+	var/rating = 1
+	if(istype(loc, /obj/machinery/hydroponics))
+		var/obj/machinery/hydroponics/H = loc
+		rating = H.rating
+	if(yield == 0)//Oh god don't divide by zero you'll doom us all.
+		adjust_yield(1 * rating)
+	else if(prob(1/(yield * yield) * 100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
+		adjust_yield(1 * rating)
+	return BULLET_ACT_HIT
 
 // Harvest procs
 /obj/item/seeds/proc/getYield()
 	var/return_yield = yield
+
+	for(var/datum/plant_gene/trait/trait in genes)
+		if(trait.trait_flags & TRAIT_NO_POLLINATION)
+			return return_yield
 
 	var/obj/machinery/hydroponics/parent = loc
 	if(istype(loc, /obj/machinery/hydroponics))
@@ -218,7 +220,7 @@
 	///List of plants all harvested from the same batch.
 	var/list/result = list()
 	///Tile of the harvester to deposit the growables.
-	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
+	var/output_loc = parent.Adjacent(user) ? user.drop_location() : parent.drop_location() //needed for TK
 	///Name of the grown products.
 	var/product_name
 	///The Number of products produced by the plant, typically the yield. Modified by certain traits.
@@ -294,7 +296,7 @@
 
 		//Handles the juicing trait, swaps nutriment and vitamins for that species various juices if they exist. Mutually exclusive with distilling.
 		if(get_gene(/datum/plant_gene/trait/juicing) && grown_edible.juice_typepath)
-			grown_edible.juice()
+			grown_edible.juice(juicer = FALSE) //we pass FALSE & not null because Byond default args will subtitute it with the default value
 		else if(get_gene(/datum/plant_gene/trait/brewing))
 			grown_edible.ferment()
 

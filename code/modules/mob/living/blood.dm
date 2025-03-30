@@ -367,7 +367,10 @@
 		T = get_turf(src)
 	if(isclosedturf(T) || (isgroundlessturf(T) && !GET_TURF_BELOW(T)))
 		return
-
+	// BUBBER EDIT BEGIN - Blood pooling
+	for(var/obj/effect/decal/cleanable/blood/blood_effect in T)
+		blood_effect.increase_blood_pool()
+	// BUBBER EDIT END
 	var/list/temp_blood_DNA
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.

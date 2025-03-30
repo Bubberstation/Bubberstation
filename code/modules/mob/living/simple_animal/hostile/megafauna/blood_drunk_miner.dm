@@ -27,7 +27,7 @@ Difficulty: Medium
 	icon_living = "miner"
 	icon = 'icons/mob/simple/broadMobs.dmi'
 	health_doll_icon = "miner"
-	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SPECIAL
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SPECIAL|MOB_MINING
 	light_color = COLOR_LIGHT_GRAYISH_RED
 	speak_emote = list("roars")
 	speed = 3
@@ -106,7 +106,7 @@ Difficulty: Medium
 
 /obj/projectile/kinetic/miner
 	damage = 20
-	speed = 0.9
+	speed = 1.1
 	icon_state = "ka_tracer"
 	range = 4
 

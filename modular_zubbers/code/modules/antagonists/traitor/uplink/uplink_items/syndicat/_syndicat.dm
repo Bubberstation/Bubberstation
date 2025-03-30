@@ -6,7 +6,7 @@
 			granting them all the benefits (and downsides) of being a true genetically modified feline, such as ventcrawling. \
 			However, this form will be clad in blood-red Syndicate armor, making its origin somewhat obvious."
 	purchasable_from = ~(UPLINK_CLOWN_OPS)
-	item = /obj/item/organ/internal/ears/cat/super/syndie
+	item = /obj/item/organ/ears/cat/super/syndie
 	cost = 16
 	surplus = 15
 	limited_stock = 1

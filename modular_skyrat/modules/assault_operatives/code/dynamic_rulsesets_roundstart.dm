@@ -57,3 +57,5 @@
 /// Returns the required goldeneye keys for activation. This is to make sure we don't have an impossible to achieve goal. However, there has to be at least one key.
 /datum/dynamic_ruleset/roundstart/assault_operatives/proc/get_goldeneye_key_count()
 	return clamp(LAZYLEN(SSjob.get_all_heads()), 1, GOLDENEYE_REQUIRED_KEYS_MAXIMUM)
+
+#undef ASSAULT_OPERATIVES_COUNT
