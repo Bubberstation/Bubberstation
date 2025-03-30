@@ -291,6 +291,9 @@
 		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
 	icon_state = "stone_floor"
 
+/turf/open/floor/stone/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
 /turf/open/floor/stone/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	name = "stone brick floor"
