@@ -45,7 +45,6 @@
 	description = "The same technology used in the Sol 2351 Campaign.It is highly classified and resource intensive."
 	prereq_ids = list("syndicate_basic","storedmunition_tech_two")
 	design_ids = list(
-		"sol40_rifldrummag",
 		"m9mm_mag_ext_hp",
 		"m9mm_mag_ext",
 		"m9mm_mag_ext_b",
