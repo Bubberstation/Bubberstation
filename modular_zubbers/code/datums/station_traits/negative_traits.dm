@@ -11,22 +11,11 @@
 
 /datum/station_trait/hos_ai/New()
 	. = ..()
-	RegisterSignal(SSjob, COMSIG_OCCUPATIONS_SETUP, PROC_REF(remove_security_positions))
 	SSstation.antag_restricted_roles += /datum/job/ai::title
 
 /datum/station_trait/hos_ai/revert()
-	UnregisterSignal(SSjob, COMSIG_OCCUPATIONS_SETUP)
 	SSstation.antag_restricted_roles -= /datum/job/ai::title
 	return ..()
-
-/datum/station_trait/hos_ai/proc/remove_security_positions(datum/source)
-	SIGNAL_HANDLER
-	var/datum/job_department/department = SSjob.joinable_departments_by_type[/datum/job_department/security]
-	department.remove_job(/datum/job/head_of_security)
-	var/datum/job/officers = SSjob.type_occupations[/datum/job/security_officer]
-	officers.spawn_positions = 2
-	officers.total_positions = 2
-
 
 /datum/station_trait/hos_ai/on_round_start()
 	. = ..()
