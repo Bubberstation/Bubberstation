@@ -54,6 +54,7 @@
 		TRAIT_NO_DNA_SCRAMBLE,
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
+		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,

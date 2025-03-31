@@ -17,6 +17,9 @@
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
 	return FALSE // Can't remove the core.
 
+/obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
+	return TRUE
+
 /obj/item/mod/control/pre_equipped/protean/doStrip(mob/stripper, mob/owner) // Custom stripping code.
 	var/obj/item/mod/module/storage/inventory = locate() in src.modules
 	if(!isnull(inventory))
