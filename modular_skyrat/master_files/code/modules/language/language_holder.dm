@@ -95,6 +95,7 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/akulan = list(LANGUAGE_ATOM),
 		/datum/language/marish = list(LANGUAGE_ATOM),
 		/datum/language/carptongue = list(LANGUAGE_ATOM),
+		/datum/language/chitinclick = list(LANGUAGE_ATOM),
 	)
 	spoken_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
@@ -126,4 +127,5 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/akulan = list(LANGUAGE_ATOM),
 		/datum/language/marish = list(LANGUAGE_ATOM),
 		/datum/language/carptongue = list(LANGUAGE_ATOM),
+		/datum/language/chitinclick = list(LANGUAGE_ATOM),
 	)
