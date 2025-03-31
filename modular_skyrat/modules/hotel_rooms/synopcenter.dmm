@@ -41,12 +41,8 @@
 /turf/open/floor/carpet/royalblack,
 /area/misc/hilbertshotel)
 "cH" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/rack,
-/obj/item/melee/baton/security/loaded,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs/cable/white,
-/obj/item/gun/ballistic/automatic/pistol,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/box/zipties,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "eq" = (
@@ -89,9 +85,10 @@
 /turf/closed/indestructible/syndicate,
 /area/misc/hilbertshotel)
 "gZ" = (
-/obj/machinery/vending/wardrobe/syndie_wardrobe/ghost_cafe,
 /obj/effect/turf_decal/delivery,
 /obj/structure/secure_safe/directional/north,
+/obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/cowboy/black,
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "hg" = (
@@ -136,7 +133,11 @@
 "hN" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/directional/south,
-/obj/machinery/suit_storage_unit/syndicate,
+/obj/structure/rack,
+/obj/item/clothing/head/playbunnyears/syndicate/fake,
+/obj/item/clothing/neck/tie/bunnytie/syndicate,
+/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake,
+/obj/item/clothing/under/syndicate/syndibunny/fake,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "ia" = (
@@ -208,7 +209,9 @@
 /area/misc/hilbertshotel)
 "jO" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/suit_storage_unit/syndicate,
+/obj/item/clothing/under/misc/syndicate_souvenir,
+/obj/structure/rack,
+/obj/item/toy/balloon/syndicate,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "jQ" = (
@@ -337,6 +340,9 @@
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 9
 	},
+/obj/item/clothing/under/rank/prisoner/syndicate,
+/obj/item/clothing/under/rank/prisoner/skirt/syndicate,
+/obj/item/clothing/under/misc/syndicate_souvenir,
 /turf/open/indestructible/dark/textured{
 	icon_state = "engine"
 	},
@@ -356,14 +362,10 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "oH" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 9
-	},
-/obj/item/crowbar/power/syndicate{
-	pixel_y = 3;
-	pixel_x = -1
-	},
+/obj/structure/rack,
+/obj/effect/turf_decal/bot,
+/obj/item/clothing/under/syndicate/skyrat/maid,
+/obj/item/clothing/head/costume/maidheadband/syndicate,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "pg" = (
@@ -497,6 +499,16 @@
 	icon_state = "engine"
 	},
 /area/misc/hilbertshotel)
+"uP" = (
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
+/turf/open/floor/wood/large,
+/area/misc/hilbertshotel)
 "vr" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/structure/closet/secure_closet/freezer/kitchen/all_access,
@@ -587,11 +599,6 @@
 /area/misc/hilbertshotel)
 "Ad" = (
 /obj/structure/rack,
-/obj/machinery/vending/security/noaccess{
-	density = 0;
-	all_products_free = 1;
-	pixel_y = 31
-	},
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 5
 	},
@@ -599,7 +606,6 @@
 /obj/item/clothing/accessory/armband/syndicate,
 /obj/item/assembly/flash/handheld,
 /obj/item/restraints/handcuffs,
-/obj/item/melee/baton/telescopic,
 /turf/open/indestructible/dark/textured{
 	icon_state = "engine"
 	},
@@ -631,7 +637,9 @@
 "BT" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/item/documents/syndicate,
+/obj/item/paperwork{
+	name = "evil paperwork documents"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/misc/hilbertshotel)
 "BX" = (
@@ -716,11 +724,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "FL" = (
-/obj/structure/rack/gunrack,
-/obj/effect/turf_decal/delivery,
-/obj/item/gun/ballistic/shotgun/riot/sol/evil,
-/obj/item/gun/ballistic/shotgun/riot/sol/evil,
-/obj/item/gun/ballistic/shotgun/riot/sol/evil,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/syndicatebomb/training,
+/obj/item/wirecutters,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "FV" = (
@@ -870,24 +876,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "JI" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet{
-	name = "Lethal Ammunition Locker"
-	},
-/obj/item/storage/box/lethalshot,
-/obj/item/storage/box/lethalshot,
-/obj/item/storage/box/lethalshot,
-/obj/item/ammo_box/magazine/m9mm,
-/obj/item/ammo_box/magazine/m9mm,
-/obj/item/ammo_box/magazine/m9mm,
-/obj/item/melee/energy/sword/saber/red,
-/obj/item/melee/energy/sword/saber/red,
-/obj/item/melee/energy/sword/saber/red,
 /obj/structure/sign/poster/contraband/random/directional/west,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/storage/belt/military,
-/obj/item/storage/belt/military,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "JK" = (
@@ -1107,6 +1098,10 @@
 	desc = "This is a model of the famous Gorlex Marauders nuclear warhead. 'Some call it nuclear terrorism. We call it solutions'";
 	pixel_x = 1
 	},
+/obj/item/disk/nuclear/fake/obvious{
+	pixel_y = -8;
+	pixel_x = -3
+	},
 /turf/open/indestructible/dark/textured,
 /area/misc/hilbertshotel)
 "Tb" = (
@@ -1189,7 +1184,8 @@
 	},
 /area/misc/hilbertshotel)
 "Za" = (
-/obj/structure/tank_dispenser/oxygen,
+/obj/machinery/vending/wardrobe/syndie_wardrobe/ghost_cafe,
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/mineral/plastitanium/red,
 /area/misc/hilbertshotel)
 "Zk" = (
@@ -1435,7 +1431,7 @@ ga
 "}
 (13,1,1) = {"
 ga
-pF
+uP
 pF
 lU
 jQ
