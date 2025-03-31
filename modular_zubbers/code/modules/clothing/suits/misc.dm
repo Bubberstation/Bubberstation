@@ -53,3 +53,26 @@
 		/obj/item/radio,
 		/obj/item/storage/belt/holster,
 	)
+
+/obj/item/clothing/suit/misc/syncapcarapace/fake
+	name = "syndicate captain's vest"
+	desc = "A sinister looking vest worn over a black and red jacket. The gold collar and shoulders denote that this belongs to a high ranking syndicate officer."
+	icon = 'code/icons/mob/clothing/suits/armor.dmi'
+	worn_icon = 'code/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "syndievest"
+	worn_icon_state = "syndievest"
+	attachment_slot_override = CHEST
+	body_parts_covered = CHEST|GROIN
+	allowed = list(
+		/obj/item/flashlight,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/toy,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/lighter,
+		/obj/item/radio,
+		/obj/item/storage/belt/holster,
+	)
+
+
+
