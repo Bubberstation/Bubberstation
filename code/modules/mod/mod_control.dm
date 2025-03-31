@@ -324,6 +324,11 @@
 // Makes use of tool act to prevent shoving stuff into our internal storage
 /obj/item/mod/control/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/pai_card))
+		// Bubber Edit Start - Proteans can't interface with AIs
+		if(istype(src, /obj/item/mod/control/pre_equipped/protean))
+			balloon_alert(user, "unable to interface")
+			return NONE
+		// Bubber Edit End
 		if(!open)
 			balloon_alert(user, "cover closed!")
 			return NONE // shoves the card in the storage anyways

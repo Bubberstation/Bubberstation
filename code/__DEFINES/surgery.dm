@@ -32,6 +32,8 @@
 #define ORGAN_HAZARDOUS (1<<12)
 /// This is an external organ, not an inner one. Used in several checks.
 #define ORGAN_EXTERNAL (1<<13)
+/// Bubber Edit - Nanoswarm organ
+#define ORGAN_NANOMACHINE (1<<14)
 
 /// Scarring on the right eye
 #define RIGHT_EYE_SCAR (1<<0)
