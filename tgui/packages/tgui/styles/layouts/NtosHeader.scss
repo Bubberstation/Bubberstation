@@ -18,3 +18,33 @@
   margin-bottom: -0.5em;
   vertical-align: middle;
 }
+
+.alertReadoutButton {
+  font-weight: bold;
+  right: '0px';
+  text-align: 'center';
+  vertical-align: 'center';
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.alertReadoutButton_blink {
+  color: #ffffff;
+  animation: alertBlinkAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 5;
+}
+
+@keyframes alertBlinkAnimation {
+  0% {
+    color: #dddddd;
+  }
+  49% {
+    color: #dddddd;
+  }
+  50% {
+    color: #333333;
+  }
+  100% {
+    color: #333333;
+  }
+}
