@@ -237,3 +237,8 @@
 		/obj/item/xenoarch/useless_relic = 1,
 		/obj/item/xenoarch/broken_item = 2,
 	)
+
+#undef RND_SUBCATEGORY_MACHINE_XENOARCH
+#undef RND_SUBCATEGORY_EQUIPMENT_XENOARCH
+#undef RND_SUBCATEGORY_TOOLS_XENOARCH
+#undef RND_SUBCATEGORY_TOOLS_XENOARCH_ADVANCED

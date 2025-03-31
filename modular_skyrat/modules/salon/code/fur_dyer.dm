@@ -21,7 +21,7 @@
 	else
 		mode = COLOR_MODE_SPECIFIC
 
-	balloon_alert(user, "Set to [mode]!")
+	balloon_alert(user, "set to [mode]!")
 
 /obj/item/fur_dyer/attack(mob/living/M, mob/living/user, params)
 	if(!ishuman(M))
@@ -130,3 +130,5 @@
 
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 
+#undef COLOR_MODE_SPECIFIC
+#undef COLOR_MODE_GENERAL

@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(research)
 	)
 	var/list/errored_datums = list()
 	///Associated list of all point types that techwebs will have and their respective 'abbreviated' name.
-	var/list/point_types = list(TECHWEB_POINT_TYPE_GENERIC = "Gen. Res.")
+	var/list/point_types = list(TECHWEB_POINT_TYPE_GENERIC = "Gen. Res.", TECHWEB_POINT_TYPE_NANITE = "Nanite Res.") // BUBBER EDIT - NANITES
 	//----------------------------------------------
 	var/list/single_server_income = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_SINGLE_SERVER_INCOME,
@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(research)
 
 /datum/controller/subsystem/research/proc/initialize_all_techweb_designs(clearall = FALSE)
 	if(islist(techweb_designs) && clearall)
-		item_to_design = null
+		item_to_design = list()
 		QDEL_LIST(techweb_designs)
 	var/list/returned = list()
 	for(var/path in subtypesof(/datum/design))

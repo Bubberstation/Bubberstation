@@ -99,7 +99,6 @@
 /datum/reagent/drug/opium
 	name = "opium"
 	description = "A extract from opium poppies. Puts the user in a slightly euphoric state."
-	reagent_state = LIQUID
 	color = "#ffe669"
 	overdose_threshold = 30
 	ph = 8
@@ -134,7 +133,6 @@
 /datum/reagent/drug/opium/heroin
 	name = "heroin"
 	description = "She's like heroin to me, she's like heroin to me! She cannot... miss a vein!"
-	reagent_state = LIQUID
 	color = "#ffe669"
 	overdose_threshold = 20
 	ph = 6
@@ -153,7 +151,6 @@
 /datum/reagent/drug/opium/blacktar
 	name = "black tar heroin"
 	description = "An impure, freebase form of heroin. Probably not a good idea to take this..."
-	reagent_state = LIQUID
 	color = "#242423"
 	overdose_threshold = 10 //more easy to overdose on
 	ph = 8

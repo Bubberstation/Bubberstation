@@ -112,14 +112,18 @@
 	force = 0
 	attack_verb_continuous = list("plays", "jazzes", "trumpets", "mourns", "doots", "spooks")
 	attack_verb_simple = list("play", "jazz", "trumpet", "mourn", "doot", "spook")
+	var/single_use = FALSE
 
 /obj/item/instrument/trumpet/spectral/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/spooky)
+	AddElement(/datum/element/spooky, too_spooky = !single_use, single_use = single_use)
 
 /obj/item/instrument/trumpet/spectral/attack(mob/living/target_mob, mob/living/user, params)
 	playsound(src, 'sound/runtime/instruments/trombone/En4.mid', 1000, 1, -1)
 	return ..()
+
+/obj/item/instrument/trumpet/spectral/one_doot
+	single_use = TRUE
 
 /obj/item/instrument/saxophone
 	name = "saxophone"
@@ -136,14 +140,18 @@
 	force = 0
 	attack_verb_continuous = list("plays", "jazzes", "saxxes", "mourns", "doots", "spooks")
 	attack_verb_simple = list("play", "jazz", "sax", "mourn", "doot", "spook")
+	var/single_use = FALSE
 
 /obj/item/instrument/saxophone/spectral/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/spooky)
+	AddElement(/datum/element/spooky, too_spooky = !single_use, single_use = single_use)
 
 /obj/item/instrument/saxophone/spectral/attack(mob/living/target_mob, mob/living/user, params)
 	playsound(src, 'sound/runtime/instruments/trombone/En4.mid', 1000, 1, -1)
 	return ..()
+
+/obj/item/instrument/saxophone/spectral/one_doot
+	single_use = TRUE
 
 /obj/item/instrument/trombone
 	name = "trombone"
@@ -160,10 +168,14 @@
 	force = 0
 	attack_verb_continuous = list("plays", "jazzes", "trombones", "mourns", "doots", "spooks")
 	attack_verb_simple = list("play", "jazz", "trombone", "mourn", "doot", "spook")
+	var/single_use = FALSE
 
 /obj/item/instrument/trombone/spectral/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/spooky)
+	AddElement(/datum/element/spooky, too_spooky = !single_use, single_use = single_use)
+
+/obj/item/instrument/trombone/spectral/one_doot
+	single_use = TRUE
 
 /obj/item/instrument/trombone/spectral/attack(mob/living/target_mob, mob/living/user, params)
 	playsound(src, 'sound/runtime/instruments/trombone/Cn4.mid', 1000, 1, -1)
@@ -187,6 +199,7 @@
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
+	action_slots = ALL
 
 /obj/item/instrument/harmonica/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
@@ -211,12 +224,12 @@
 	name = "Use Instrument"
 	desc = "Use the instrument specified"
 
-/datum/action/item_action/instrument/Trigger(trigger_flags)
-	if(istype(target, /obj/item/instrument))
-		var/obj/item/instrument/I = target
-		I.interact(usr)
-		return
-	return ..()
+/datum/action/item_action/instrument/do_effect(trigger_flags)
+	if(!istype(target, /obj/item/instrument))
+		return FALSE
+	var/obj/item/instrument/instrument = target
+	instrument.interact(usr)
+	return TRUE
 
 /obj/item/instrument/bikehorn
 	name = "gilded bike horn"

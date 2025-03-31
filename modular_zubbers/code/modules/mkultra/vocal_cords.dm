@@ -3,7 +3,7 @@
 //////////////////////////////////////
 
 //Heavily modified voice of god code
-/obj/item/organ/internal/vocal_cords/velvet
+/obj/item/organ/vocal_cords/velvet
 	name = "Velvet chords"
 	desc = "The voice spoken from these just make you want to drift off, sleep and obey."
 	icon = 'modular_zubbers/code/modules/mkultra/vocal_cords.dmi'
@@ -13,7 +13,7 @@
 
 /datum/action/item_action/organ_action/velvet
 	name = "Velvet chords"
-	var/obj/item/organ/internal/vocal_cords/velvet/cords = null
+	var/obj/item/organ/vocal_cords/velvet/cords = null
 
 /datum/action/item_action/organ_action/velvet/New()
 	..()
@@ -31,10 +31,10 @@
 		return
 	owner.say(".x[command]")
 
-/obj/item/organ/internal/vocal_cords/velvet/can_speak_with()
+/obj/item/organ/vocal_cords/velvet/can_speak_with()
 	return TRUE
 
-/obj/item/organ/internal/vocal_cords/velvet/handle_speech(message) //actually say the message
+/obj/item/organ/vocal_cords/velvet/handle_speech(message) //actually say the message
 	owner.say(message, spans = spans, sanitize = FALSE)
 	velvetspeech(message, owner, 1)
 
@@ -50,7 +50,7 @@
 	var/log_message = message
 
 	//FIND THRALLS
-	message = lowertext(message)
+	message = LOWER_TEXT(message)
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/enthrall_listener in get_hearers_in_view(8, user))
 		if(enthrall_listener.can_hear() && enthrall_listener.stat != DEAD)
@@ -104,10 +104,10 @@
 			found_string = enthrall_listener.real_name
 			power_multiplier += 0.5
 
-		else if(findtext(message, enthrall_listener.first_name(), 1, length(enthrall_listener.first_name()) + 1))
+		else if(findtext(message, first_name(enthrall_listener.real_name), 1, length(first_name(enthrall_listener.real_name)) + 1))
 			specific_listeners += enthrall_listener //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
-			found_string = enthrall_listener.first_name()
+			found_string = first_name(enthrall_listener.real_name)
 			power_multiplier += 0.5
 
 		else if(enthrall_listener.mind && enthrall_listener.mind.assigned_role && findtext(message, enthrall_listener.mind.assigned_role, 1, length(enthrall_listener.mind.assigned_role) + 1))
@@ -377,7 +377,7 @@
 			if(enthrall_chem.lewd)
 				speaktrigger += "[enthrall_chem.enthrall_gender]!"
 			else
-				speaktrigger += "[user.first_name()]!"
+				speaktrigger += "[first_name(user.real_name)]!"
 			//say it!
 			addtimer(CALLBACK(humanoid, /atom/movable/proc/say, "[speaktrigger]"), 5)
 			enthrall_chem.cooldown += 1
@@ -578,7 +578,7 @@
 						var/trigger = html_decode(stripped_input(user, "Enter the trigger phrase", MAX_MESSAGE_LEN))
 						var/custom_words_words_list = list("Speak", "Echo", "Shock", "Kneel", "Strip", "Trance", "Cancel")
 						var/trigger2 = input(user, "Pick an effect", "Effects") in custom_words_words_list
-						trigger2 = lowertext(trigger2)
+						trigger2 = LOWER_TEXT(trigger2)
 						if ((findtext(trigger2, custom_words_words)))
 							if (trigger2 == "speak" || trigger2 == "echo")
 								var/trigger3 = html_decode(stripped_input(user, "Enter the phrase spoken. Abusing this to self antag is bannable.", MAX_MESSAGE_LEN))
@@ -616,7 +616,7 @@
 					var/trigger = stripped_input(user, "Enter the loop phrase", MAX_MESSAGE_LEN)
 					var/custom_span = list("Notice", "Warning", "Hypnophrase", "Love", "Velvet")
 					var/trigger2 = input(user, "Pick the style", "Style") in custom_span
-					trigger2 = lowertext(trigger2)
+					trigger2 = LOWER_TEXT(trigger2)
 					enthrall_chem.custom_echo = trigger
 					enthrall_chem.custom_span = trigger2
 					user.SetStun(0)
@@ -642,12 +642,12 @@
 							to_chat(user, "<span class='warning'>You can't give your pet an objective to do nothing!</b></span>")
 							continue
 						//Pets don't understand harm
-						objective = replacetext(lowertext(objective), "kill", "hug")
-						objective = replacetext(lowertext(objective), "murder", "cuddle")
-						objective = replacetext(lowertext(objective), "harm", "snuggle")
-						objective = replacetext(lowertext(objective), "decapitate", "headpat")
-						objective = replacetext(lowertext(objective), "strangle", "meow at")
-						objective = replacetext(lowertext(objective), "suicide", "self-love")
+						objective = replacetext(LOWER_TEXT(objective), "kill", "hug")
+						objective = replacetext(LOWER_TEXT(objective), "murder", "cuddle")
+						objective = replacetext(LOWER_TEXT(objective), "harm", "snuggle")
+						objective = replacetext(LOWER_TEXT(objective), "decapitate", "headpat")
+						objective = replacetext(LOWER_TEXT(objective), "strangle", "meow at")
+						objective = replacetext(LOWER_TEXT(objective), "suicide", "self-love")
 						message_admins("[humanoid] has been implanted by [user] with the objective [objective].")
 						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='notice'>[(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new objective.</span>"), 5)
 						brainwash(humanoid, objective)
