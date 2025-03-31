@@ -59,8 +59,8 @@
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming! You begin to see the light... ")
 
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
-	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
 	playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
