@@ -39,8 +39,15 @@
 /datum/round_event/carp_migration/pipe_carp/start()
 	var/area/sm_room = get_area_instance_from_text(/area/station/engineering/supermatter/room)
 	var/obj/machinery/atmospherics/pipe/heat_exchanging/junction/pipes = locate() in sm_room
-	var/obj/effect/landmark/carpspawn/pipe_carp_spawn = get_closest_atom(/obj/effect/landmark/carpspawn, GLOB.landmarks_list, pipes)
+	var/list/potential_spawns = list()
+	for(var/obj/effect/landmark/carpspawn/spawn_landmark in GLOB.landmarks_list)
+		if(spawn_landmark.z != GLOB.main_supermatter_engine.z)
+			continue
+		potential_spawns += spawn_landmark
+
+	var/obj/effect/landmark/carpspawn/pipe_carp_spawn = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
 	message_admins("Pipe carp spawn location is [ADMIN_LOOKUPFLW(pipe_carp_spawn)]!")
+
 	// Stores the most recent fish we spawn
 	var/mob/living/basic/carp/fish
 
