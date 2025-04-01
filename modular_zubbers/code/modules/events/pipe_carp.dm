@@ -1,5 +1,5 @@
 /mob/living/basic/carp/advanced/pipe_carp
-	name = "pipe carp"
+	name = "carpmospheric technician"
 	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
 	icon = 'modular_zubbers/icons/mob/simple/pipe_carp.dmi'
 	greyscale_config = null
@@ -14,6 +14,8 @@
 		/obj/structure/reagent_dispensers, // Carp can have a little welding fuel, as a treat
 		/obj/machinery/vending,
 		/obj/structure/window,
+		/obj/structure/table,
+		/obj/structure/closet,
 	))
 
 /mob/living/basic/carp/advanced/pipe_carp/Initialize(mapload, mob/tamer)
@@ -36,30 +38,40 @@
 /datum/round_event/carp_migration/pipe_carp
 	fluff_signal = "Unknown engineering entities"
 	carp_type = /mob/living/basic/carp/advanced/pipe_carp
+	var/turf/pipes_turf
+	var/obj/effect/landmark/carpspawn/engineering
 
 /datum/round_event/carp_migration/pipe_carp/setup()
 	start_when = rand(15, 25)
+	locate_supermatter_components()
 
-/datum/round_event/carp_migration/pipe_carp/start()
+/datum/round_event/carp_migration/pipe_carp/proc/locate_supermatter_components()
 	var/area/sm_room = get_area_instance_from_text(/area/station/engineering/supermatter/room)
 	var/obj/machinery/atmospherics/pipe/heat_exchanging/junction/pipes = locate() in sm_room
+	pipes_turf = get_turf(pipes)
 	var/list/potential_spawns = list()
 	for(var/obj/effect/landmark/carpspawn/spawn_landmark in GLOB.landmarks_list)
 		if(spawn_landmark.z != GLOB.main_supermatter_engine.z)
 			continue
 		potential_spawns += spawn_landmark
 
-	var/obj/effect/landmark/carpspawn/pipe_carp_spawn = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
-	message_admins("Pipe carp spawn location is [ADMIN_LOOKUPFLW(pipe_carp_spawn)]!")
+	engineering = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
+	message_admins("Pipe carp spawn location is [ADMIN_COORDJMP(engineering)]!")
 
+/datum/round_event/carp_migration/pipe_carp/pick_carp_migration_points(z_level_key)
+	var/travel_dir = get_dir(engineering, pipes_turf)
+	var/turf/station_turf = get_ranged_target_turf(pipes_turf, travel_dir, rand(48, 64))
+	var/turf/exit_turf = get_edge_target_turf(pipes_turf, travel_dir)
+	return list(WEAKREF(station_turf), WEAKREF(exit_turf))
+
+/datum/round_event/carp_migration/pipe_carp/start()
 	// Stores the most recent fish we spawn
 	var/mob/living/basic/carp/fish
 
-	//for(var/obj/effect/landmark/carpspawn/spawn_point in GLOB.landmarks_list)
 	for(var/i in 1 to 3)
-		fish = new carp_type(pipe_carp_spawn.loc)
+		fish = new carp_type(engineering.loc)
 
-		var/z_level_key = "[pipe_carp_spawn.z]"
+		var/z_level_key = "[engineering.z]"
 		if (!z_migration_paths[z_level_key])
 			z_migration_paths[z_level_key] = pick_carp_migration_points(z_level_key)
 		if (z_migration_paths[z_level_key]) // Still possible we failed to set anything here if we're unlucky
