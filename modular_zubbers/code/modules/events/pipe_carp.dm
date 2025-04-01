@@ -27,6 +27,7 @@
 	typepath = /datum/round_event/carp_migration/pipe_carp
 	weight = 5
 	max_occurrences = 1
+	admin_setup = null
 
 /datum/round_event/carp_migration/pipe_carp
 	fluff_signal = "Unknown engineering entities"
