@@ -10,21 +10,21 @@ macro "default"
 
 
 menu "menu"
-	elem
+	elem 
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = ""
 		command = ""
 		category = "&File"
@@ -34,7 +34,7 @@ menu "menu"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Quit\tAlt-F4"
 		command = ".quit"
 		category = "&File"
@@ -43,20 +43,21 @@ menu "menu"
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Admin Help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Hotkeys"
 		command = "Hotkeys-Help"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem  "Use Internet Routing Relay"
+	elem "Use Internet Routing Relay"
 		name = "Internet Routing Relays"
 		command = "go2relay"
 		saved-params = "is-checked"
+
 
 window "mainwindow"
 	elem "mainwindow"
@@ -99,7 +100,6 @@ window "mainwindow"
 		saved-params = ""
 	elem "commandbar_spy"
 		type = BROWSER
-		is-default = false
 		pos = 0,0
 		size = 200x200
 		anchor1 = -1,-1
@@ -124,7 +124,7 @@ window "mapwindow"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Grand9K Pixel"
-		font-size = 6pt
+		font-size = 6
 		is-default = true
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
@@ -135,48 +135,63 @@ window "mapwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
-		auto-format = false
 	elem "status_bar"
 		type = LABEL
 		pos = 0,464
 		size = 280x16
 		anchor1 = 0,100
-		is-visible = true
+		anchor2 = -1,-1
+		text-color = #ffffff
+		background-color = #222222
+		border = line
+		saved-params = ""
 		text = ""
 		align = left
-		background-color = #222222
-		text-color = #ffffff
-		border = line
 
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 281,0
+		pos = 532,296
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		outer-size = 656x538
+		outer-pos = 532,296
+		inner-pos = 8,31
+		screen-size = 2560x1400
 	elem "info"
 		type = CHILD
 		pos = 0,30
 		size = 640x445
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
+	elem "ss"
+		type = BROWSER
+		pos = 400,48
+		size = 216x216
+		anchor1 = 0,0
+		anchor2 = 0,0
+		background-color = none
+		is-default = true
+		saved-params = ""
 	elem "changelog"
 		type = BUTTON
 		pos = 0,5
 		size = 87x20
 		anchor1 = 0,0
 		anchor2 = 15,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
@@ -186,6 +201,7 @@ window "infowindow"
 		size = 87x20
 		anchor1 = 15,0
 		anchor2 = 29,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -195,6 +211,7 @@ window "infowindow"
 		size = 87x20
 		anchor1 = 29,0
 		anchor2 = 43,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -204,6 +221,7 @@ window "infowindow"
 		size = 87x20
 		anchor1 = 43,0
 		anchor2 = 57,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
@@ -213,6 +231,7 @@ window "infowindow"
 		size = 87x20
 		anchor1 = 57,0
 		anchor2 = 71,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
@@ -222,6 +241,7 @@ window "infowindow"
 		size = 87x20
 		anchor1 = 71,0
 		anchor2 = 85,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Report Issue"
 		command = "report-issue"
@@ -231,6 +251,7 @@ window "infowindow"
 		size = 88x20
 		anchor1 = 85,0
 		anchor2 = 100,0
+		background-color = none
 		saved-params = "is-checked"
 		text = "Fullscreen"
 		command = "fullscreen"
@@ -238,7 +259,7 @@ window "infowindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 0,0
+		pos = 291,0
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
@@ -246,7 +267,9 @@ window "outputwindow"
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 		outer-size = 656x538
-		inner-size = 640x499
+		outer-pos = 291,0
+		inner-pos = 8,31
+		screen-size = 2560x1400
 	elem "input"
 		type = INPUT
 		pos = 2,460
@@ -301,6 +324,7 @@ window "outputwindow"
 		size = 640x456
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		left = "output_legacy"
 		is-vert = false
@@ -312,7 +336,6 @@ window "output_legacy"
 		size = 640x456
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "output"
@@ -331,7 +354,6 @@ window "output_browser"
 		size = 640x456
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "browseroutput"
@@ -340,7 +362,6 @@ window "output_browser"
 		size = 640x456
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		saved-params = ""
 
 window "popupwindow"
