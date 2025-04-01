@@ -261,6 +261,8 @@
 	)
 
 	var/mutable_appearance/pointed_atom_appearance = new(displayed_image.appearance)
+	if(!pointed_atom_appearance)
+		return
 	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
 	pointed_atom_appearance.plane = FLOAT_PLANE
 	pointed_atom_appearance.layer = FLOAT_LAYER

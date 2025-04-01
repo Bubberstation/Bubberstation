@@ -1,15 +1,33 @@
 /datum/mood_event/high
 	mood_change = 6
 	description = "Woooow duudeeeeee... I'm tripping baaalls..."
+/datum/mood_event/high/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
 
 /datum/mood_event/stoned
 	mood_change = 6
 	description = "I'm sooooo stooooooooooooned..."
+/datum/mood_event/stoned/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
 
 /datum/mood_event/maintenance_high
 	mood_change = 6
 	description = "I'm on top of the world, baby! Tide worldwide!"
 	timeout = 2 MINUTES
+/datum/mood_event/maintenance_high/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
 
 /datum/mood_event/maintenance_high/add_effects(param)
 	var/value = rand(-1, 6) // chance for it to suck
@@ -68,12 +86,25 @@
 	mood_change = 100
 	timeout = 30 SECONDS
 	special_screen_obj = "mood_happiness_good"
+/datum/mood_event/happiness_drug_good_od/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("xdd")
+
 
 /datum/mood_event/happiness_drug_bad_od
 	description = "NO! NO!! NO!!!"
 	mood_change = -100
 	timeout = 30 SECONDS
 	special_screen_obj = "mood_happiness_bad"
+/datum/mood_event/happiness_drug_bad_od/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("fuckingdies")
 
 /datum/mood_event/narcotic_medium
 	description = "I feel comfortably numb."
@@ -84,17 +115,34 @@
 	description = "I feel like I'm wrapped up in cotton!"
 	mood_change = 9
 	timeout = 3 MINUTES
+/datum/mood_event/narcotic_heavy/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
 
 /datum/mood_event/stimulant_medium
 	description = "I have so much energy! I feel like I could do anything!"
 	mood_change = 4
 	timeout = 3 MINUTES
+/datum/mood_event/stimulant_medium/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("xdd")
 
 /datum/mood_event/stimulant_heavy
 	description = "Eh ah AAAAH! HA HA HA HA HAA! Uuuh."
 	mood_change = 6
 	timeout = 3 MINUTES
+/datum/mood_event/stimulant_heavy/add_effects()
 
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("xdd")
 #define EIGENTRIP_MOOD_RANGE 10
 
 /datum/mood_event/eigentrip
@@ -115,10 +163,22 @@
 /datum/mood_event/nicotine_withdrawal_moderate
 	description = "Haven't had a smoke in a while. Feeling a little on edge... "
 	mood_change = -5
+/datum/mood_event/nicotine_withdrawal_moderate/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("taa")
 
 /datum/mood_event/nicotine_withdrawal_severe
 	description = "Head pounding. Cold sweating. Feeling anxious. Need a smoke to calm down!"
 	mood_change = -8
+/datum/mood_event/nicotine_withdrawal_severe/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("taa")
 
 /datum/mood_event/hauntium_spirits
 	description = "I feel my soul degrading!"

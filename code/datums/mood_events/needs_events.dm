@@ -3,13 +3,34 @@
 	description = "<B>I'm so fat...</B>" //muh fatshaming
 	mood_change = -6
 
+/datum/mood_event/fat/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("zorp")
+
 /datum/mood_event/too_wellfed
 	description = "I think I've eaten too much."
 	mood_change = 0
 
+/datum/mood_event/too_wellfed/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
+
 /datum/mood_event/wellfed
 	description = "I'm stuffed!"
 	mood_change = 8
+
+/datum/mood_event/wellfed/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
 
 /datum/mood_event/fed
 	description = "I have recently had some food."
@@ -18,10 +39,23 @@
 /datum/mood_event/hungry
 	description = "I'm getting a bit hungry."
 	mood_change = -6
+/datum/mood_event/hungry/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("hmm")
 
 /datum/mood_event/starving
 	description = "I'm starving!"
 	mood_change = -10
+
+/datum/mood_event/starving/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
 
 //charge
 /datum/mood_event/supercharged
@@ -49,17 +83,47 @@
 	description = "I saw something gross."
 	mood_change = -4
 
+/datum/mood_event/gross/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
+
 /datum/mood_event/verygross
 	description = "I think I'm going to puke..."
 	mood_change = -6
+
+
+/datum/mood_event/verygross/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
 
 /datum/mood_event/disgusted
 	description = "Oh god, that's disgusting..."
 	mood_change = -8
 
+
+/datum/mood_event/disgusted/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
+
 /datum/mood_event/disgust/bad_smell
 	description = "I can smell something horribly decayed inside this room."
 	mood_change = -6
+
+/datum/mood_event/disgust/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("uncanny")
 
 /datum/mood_event/disgust/nauseating_stench
 	description = "The stench of rotting carcasses is unbearable!"

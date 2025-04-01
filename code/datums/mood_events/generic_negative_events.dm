@@ -10,15 +10,35 @@
 /datum/mood_event/on_fire
 	description = "I'M ON FIRE!!!"
 	mood_change = -12
+/datum/mood_event/on_fire/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("zorp")
 
 /datum/mood_event/suffocation
 	description = "CAN'T... BREATHE..."
 	mood_change = -12
+/datum/mood_event/suffocation/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("zorp")
+
 
 /datum/mood_event/burnt_thumb
 	description = "I shouldn't play with lighters..."
 	mood_change = -1
 	timeout = 2 MINUTES
+/datum/mood_event/burnt_thumb/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("clueless")
+
 
 /datum/mood_event/cold
 	description = "It's way too cold in here."
@@ -42,6 +62,13 @@
 	description = "I slipped. I should be more careful next time..."
 	mood_change = -2
 	timeout = 3 MINUTES
+/datum/mood_event/slipped/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("hmm")
+
 
 /datum/mood_event/eye_stab
 	description = "I used to be an adventurer like you, until I took a screwdriver to the eye."
@@ -164,6 +191,12 @@
 /datum/mood_event/family_heirloom_missing
 	description = "I'm missing my family heirloom..."
 	mood_change = -4
+/datum/mood_event/family_heirloom_missing/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("reallymad")
 
 /datum/mood_event/healsbadman
 	description = "I feel like I'm held together by flimsy string, and could fall apart at any moment!"
@@ -180,6 +213,13 @@
 /datum/mood_event/choke
 	description = "I CAN'T BREATHE!!!"
 	mood_change = -10
+/datum/mood_event/choke/add_effects()
+
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.emote("tuh")
+
 
 /datum/mood_event/vomit
 	description = "I just threw up. Gross."
