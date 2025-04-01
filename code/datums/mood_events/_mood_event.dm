@@ -30,7 +30,12 @@
 
 	current_oblong.filters = filter(type="color",color=mood_colour(),space=FILTER_COLOR_RGB)
 	mob_parent.vis_contents |= current_oblong
-
+	if(mob_parent.mind)
+		current_oblong.icon_state = "spinfloat"
+	if(mob_parent.stat)
+		current_oblong.icon_state = "still"
+	else
+		current_oblong.icon_state = "stillfloat"
 /datum/mood_event/New(mob/living/emotional_mob, ...)
 	owner = emotional_mob
 	var/list/params = args.Copy(2)
