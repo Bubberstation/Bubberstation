@@ -1,28 +1,19 @@
-/obj/item/organ/brain/protean
-	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean"
-	icon = PROTEAN_ORGAN_SPRITE
-	icon_state = "posi1"
-	zone = BODY_ZONE_CHEST
-	organ_flags = ORGAN_ROBOTIC
-	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
-
 /obj/item/organ/heart/protean
 	name = "orchestrator module"
 	desc = "A small computer, designed for highly parallel workloads."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "orchestrator"
-	organ_flags = ORGAN_ROBOTIC
+	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
 
 /obj/item/organ/stomach/protean
 	name = "refactory"
 	desc = "An extremely fragile factory used to rescyle materials and create more nanite mass"
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "refactory"
-	organ_flags = ORGAN_ROBOTIC
+	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
 	organ_traits = list(TRAIT_NOHUNGER)
 
-	/// How much max metal can we hold at any given time (In sheets)
+	/// How much max metal can we hold at any given time (In sheets). This isn't using nutrition code because nutrition code gets weird without livers.
 	var/metal_max = PROTEAN_STOMACH_FULL
 	/// How much metal are we holding currently (In sheets)
 	var/metal = PROTEAN_STOMACH_FULL
