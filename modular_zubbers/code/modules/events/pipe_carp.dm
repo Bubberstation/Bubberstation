@@ -2,11 +2,9 @@
 	name = "pipe carp"
 	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
 	icon = 'modular_zubbers/icons/mob/simple/pipe_carp.dmi'
-	greyscale_config = /datum/greyscale_config/carp/pipe_carp
-
-/mob/living/basic/carp/advanced/pipe_carp/setup_eating()
-	var/list/foods_list = list(/obj/machinery/atmospherics/pipe/heat_exchanging/simple)
-	var/list/attack_whitelist = list(
+	greyscale_config = null
+	var/static/list/pipes_list = typecacheof(list(/obj/machinery/atmospherics/pipe/heat_exchanging/simple))
+	var/static/list/attack_whitelist = typecacheof(list(
 		/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 		/obj/machinery/door,
 		/obj/structure/door_assembly,
@@ -16,10 +14,16 @@
 		/obj/structure/reagent_dispensers, // Carp can have a little welding fuel, as a treat
 		/obj/machinery/vending,
 		/obj/structure/window,
-	)
-	AddElement(/datum/element/basic_eating, food_types = foods_list)
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(foods_list))
-	ai_controller.set_blackboard_key(BB_OBSTACLE_TARGETING_WHITELIST, typecacheof(attack_whitelist))
+	))
+
+/mob/living/basic/carp/advanced/pipe_carp/Initialize(mapload, mob/tamer)
+	. = ..()
+	ai_controller.override_blackboard_key(BB_OBSTACLE_TARGETING_WHITELIST, attack_whitelist)
+	ai_controller.interesting_dist = AI_DEFAULT_INTERESTING_DIST * 2
+
+/mob/living/basic/carp/advanced/pipe_carp/setup_eating()
+	AddElement(/datum/element/basic_eating, food_types = pipes_list)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, pipes_list)
 
 /datum/round_event_control/carp_migration/pipe_carp
 	name = "Pipe Carp"
