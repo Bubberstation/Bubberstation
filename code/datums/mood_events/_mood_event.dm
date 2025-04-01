@@ -31,10 +31,10 @@
 	current_oblong.filters = filter(type="color",color=mood_colour(),space=FILTER_COLOR_RGB)
 	mob_parent.vis_contents |= current_oblong
 	if(mob_parent.mind)
-		current_oblong.icon_state = "spinfloat"
+		current_oblong.icon_state = "spinnew"
 		return
 	if(mob_parent.stat)
-		current_oblong.icon_state = "still"
+		current_oblong.icon_state = "new"
 		return
 	else
 		current_oblong.icon_state = "stillfloat"
