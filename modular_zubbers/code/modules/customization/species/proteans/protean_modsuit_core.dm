@@ -9,16 +9,16 @@
 
 /obj/item/mod/core/protean/charge_source()
 	if(isnull(linked_species))
-		CRASH("[type] does not have a linked species: [linked_species]")
+		return
 	if(isnull(linked_species.owner))
-		CRASH("[linked_species] does not have an owner.")
+		return
 	return linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 
 /obj/item/mod/core/protean/charge_amount()
 	var/obj/item/organ/stomach/protean/stomach = charge_source()
 	if(!istype(stomach))
-		return
-	return round(stomach.metal)
+		return null
+	return stomach.metal
 
 /obj/item/mod/core/protean/max_charge_amount()
 	return PROTEAN_STOMACH_FULL
@@ -35,3 +35,14 @@
 
 /obj/item/mod/core/protean/get_charge_icon_state()
 	return charge_source() ? "0" : "missing"
+
+/obj/item/mod/core/protean/get_chargebar_color()
+	if(isnull(charge_amount()))
+		return "transparent"
+	switch(charge_amount())
+		if (-INFINITY to (PROTEAN_STOMACH_FULL * 0.3))
+			return "bad"
+		if((PROTEAN_STOMACH_FULL * 0.3) to (PROTEAN_STOMACH_FULL * 0.7))
+			return "average"
+		if((PROTEAN_STOMACH_FULL * 0.7) to INFINITY)
+			return "good"

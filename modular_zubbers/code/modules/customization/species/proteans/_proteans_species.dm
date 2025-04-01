@@ -55,6 +55,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
+		TRAIT_NEVER_WOUNDED, // Does not wound.
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,

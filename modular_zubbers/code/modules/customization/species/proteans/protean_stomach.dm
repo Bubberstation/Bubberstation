@@ -49,33 +49,20 @@
 	SIGNAL_HANDLER
 
 	if(istype(eating, /obj/item/food/golem_food))
-		if(metal >= PROTEAN_STOMACH_FULL)
+		var/obj/item/food/golem_food/food = eating
+		if(metal > (PROTEAN_STOMACH_FULL - 0.3) && food.owner.loc == owner)
 			balloon_alert(owner, "storage full!")
 			return COMSIG_CARBON_BLOCK_EAT
 
 /// If we ate a sheet of metal, add it to storage.
-/obj/item/organ/stomach/protean/proc/check_eat(mob/eater, atom/eating)
-	SIGNAL_HANDLER
-
-	if(istype(eating, /obj/item/food/golem_food))
-		metal += clamp(1, 0, PROTEAN_STOMACH_FULL)
-
-/**
- * Listens to COMSIG_FOOD_EATEN registered on [/obj/item/food/golem_food] for if a protean is eating it.
- * This should probally be given its own carbon after eating signal. All carbons have is COMSIG_CARBON_ATTEMPT_EAT.
- */
-
-/obj/item/food/golem_food/proc/check_protean(mob/living/carbon/eating, mob/feeder)
-	SIGNAL_HANDLER
-
-	var/obj/item/organ/stomach/protean/stomach = eating.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(isprotean(eating))
-		if(istype(stomach))
-			stomach.metal += clamp(1, 0, PROTEAN_STOMACH_FULL)
-
-	if(!isnull(feeder) && stomach.owner.health < stomach.owner.maxHealth) // Heals if someone else feeds them.
-		stomach.owner.adjustBruteLoss(-20, forced = TRUE)
-		balloon_alert(feeder, "healed!")
+/obj/item/organ/stomach/protean/after_eat(atom/edible)
+	if(istype(edible, /obj/item/food/golem_food))
+		var/obj/item/food/golem_food/food = edible
+		metal = clamp(metal + 1, 0, PROTEAN_STOMACH_FULL)
+		if(food.owner.loc != owner) // Other people feeding them will heal them.
+			owner.adjustBruteLoss(-20, forced = TRUE)
+			var/health_check = owner.health >= owner.maxHealth ? "fully healed!" : "healed!"
+			owner.balloon_alert_to_viewers("[health_check]")
 
 #undef PROTEAN_STOMACH_FULL
 #undef PROTEAN_STOMACH_FALTERING
