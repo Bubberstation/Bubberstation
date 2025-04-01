@@ -6,7 +6,7 @@
 
 #define PROTEAN_STOMACH_FULL 10
 #define PROTEAN_STOMACH_FALTERING 0.5
-
+#define PROTEAN_METABOLISM_RATE 4000
 /**
  * PROTEAN_BODYPART_DEFINE(path, health) Macro
  * This one is very simple. It is used to give a Protean's limbs the proper bodytypes and names.

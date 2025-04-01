@@ -16,5 +16,7 @@
 /datum/element/nanite_organ/proc/on_removed(atom/organ)
 	SIGNAL_HANDLER
 
+	if(QDELETED(organ))
+		return
 	organ.balloon_alert_to_viewers("the organ melts into metallic slop")
 	qdel(organ)
