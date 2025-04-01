@@ -3,6 +3,7 @@
 	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
 	icon = 'modular_zubbers/icons/mob/simple/pipe_carp.dmi'
 	greyscale_config = null
+	ai_controller = /datum/ai_controller/basic_controller/carp/pipe_carp
 	var/static/list/pipes_list = typecacheof(list(/obj/machinery/atmospherics/pipe/heat_exchanging/simple))
 	var/static/list/attack_whitelist = typecacheof(list(
 		/obj/structure/fence,
@@ -26,6 +27,17 @@
 /mob/living/basic/carp/advanced/pipe_carp/setup_eating()
 	AddElement(/datum/element/basic_eating, food_types = pipes_list)
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, pipes_list)
+
+/datum/ai_controller/basic_controller/carp/pipe_carp
+	blackboard = list(
+		BB_BASIC_MOB_STOP_FLEEING = TRUE,
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+		BB_TARGET_PRIORITY_TRAIT = TRAIT_SCARY_FISHERMAN,
+		BB_CARPS_FEAR_FISHERMAN = TRUE,
+		BB_SEARCH_RANGE = 14,
+		BB_EAT_FOOD_COOLDOWN = 5 MINUTES,
+	)
 
 /datum/round_event_control/carp_migration/pipe_carp
 	name = "Pipe Carp"
