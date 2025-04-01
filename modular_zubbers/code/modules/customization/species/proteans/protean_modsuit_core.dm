@@ -18,7 +18,7 @@
 	var/obj/item/organ/stomach/protean/stomach = charge_source()
 	if(!istype(stomach))
 		return
-	return stomach.metal
+	return round(stomach.metal)
 
 /obj/item/mod/core/protean/max_charge_amount()
 	return PROTEAN_STOMACH_FULL

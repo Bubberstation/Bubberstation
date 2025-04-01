@@ -12,3 +12,5 @@
 #define COMSIG_MOB_ALWAYS_APPLY_DAMAGE "mob_always_apply_damage"
 /// From modular_zubbers/code/modules/disease/disease_transmission.dm
 #define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
+/// From [/obj/item/food/golem_food/proc/took_bite]: (mob/eater)
+#define COMSIG_PROTEAN_EAT "protean_eat"
