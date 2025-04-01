@@ -32,10 +32,13 @@
 	mob_parent.vis_contents |= current_oblong
 	if(mob_parent.mind)
 		current_oblong.icon_state = "spinfloat"
+		return
 	if(mob_parent.stat)
 		current_oblong.icon_state = "still"
+		return
 	else
 		current_oblong.icon_state = "stillfloat"
+		return
 /datum/mood_event/New(mob/living/emotional_mob, ...)
 	owner = emotional_mob
 	var/list/params = args.Copy(2)
