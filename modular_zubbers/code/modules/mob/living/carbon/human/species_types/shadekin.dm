@@ -106,15 +106,8 @@
 	desc = "A mysterious brain."
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
+	actions_types = list(/datum/action/cooldown/spell/jaunt/shadow_walk)
 	var/applied_status = /datum/status_effect/shadekin_regeneration
-
-	///April fools! Shadekin get nightmare jaunt
-	var/datum/action/cooldown/spell/jaunt/shadow_walk/shadekin_jaunt
-
-/obj/item/organ/brain/shadekin/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
-	. = ..()
-	shadekin_jaunt = new(brain_owner)
-	shadekin_jaunt.Grant(brain_owner)
 
 /obj/item/organ/brain/shadekin/on_life(seconds_per_tick, times_fired)
 	. = ..()
