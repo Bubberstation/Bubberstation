@@ -14,6 +14,7 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_TARGET_PRIORITY_TRAIT = TRAIT_SCARY_FISHERMAN,
 		BB_CARPS_FEAR_FISHERMAN = TRUE,
+		BB_SEARCH_RANGE = 14, // BUBBER EDIT ADD - Pipe carp expanded feeding range
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance

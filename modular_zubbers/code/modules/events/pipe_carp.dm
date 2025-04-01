@@ -5,7 +5,7 @@
 	greyscale_config = null
 	var/static/list/pipes_list = typecacheof(list(/obj/machinery/atmospherics/pipe/heat_exchanging/simple))
 	var/static/list/attack_whitelist = typecacheof(list(
-		/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+		/obj/structure/fence,
 		/obj/machinery/door,
 		/obj/structure/door_assembly,
 		/obj/structure/frame,
@@ -21,7 +21,7 @@
 /mob/living/basic/carp/advanced/pipe_carp/Initialize(mapload, mob/tamer)
 	. = ..()
 	ai_controller.override_blackboard_key(BB_OBSTACLE_TARGETING_WHITELIST, attack_whitelist)
-	ai_controller.interesting_dist = AI_DEFAULT_INTERESTING_DIST * 2
+	ai_controller.interesting_dist = 14
 
 /mob/living/basic/carp/advanced/pipe_carp/setup_eating()
 	AddElement(/datum/element/basic_eating, food_types = pipes_list)
@@ -49,13 +49,18 @@
 	var/area/sm_room = get_area_instance_from_text(/area/station/engineering/supermatter/room)
 	var/obj/machinery/atmospherics/pipe/heat_exchanging/junction/pipes = locate() in sm_room
 	pipes_turf = get_turf(pipes)
-	var/list/potential_spawns = list()
-	for(var/obj/effect/landmark/carpspawn/spawn_landmark in GLOB.landmarks_list)
-		if(spawn_landmark.z != GLOB.main_supermatter_engine.z)
-			continue
-		potential_spawns += spawn_landmark
 
-	engineering = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
+	if(SSmapping.current_map?.map_name == "Tramstation") // Not even carp teeth can crush rock!
+		var/list/tram_helper = list("x" = 101, "y" = 70, "z" = 2)
+		engineering = new(coords2turf(tram_helper))
+	else
+		var/list/potential_spawns = list()
+		for(var/obj/effect/landmark/carpspawn/spawn_landmark in GLOB.landmarks_list)
+			if(spawn_landmark.z != GLOB.main_supermatter_engine.z)
+				continue
+			potential_spawns += spawn_landmark
+		engineering = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
+
 	message_admins("Pipe carp spawn location is [ADMIN_COORDJMP(engineering)]!")
 
 /datum/round_event/carp_migration/pipe_carp/pick_carp_migration_points(z_level_key)
