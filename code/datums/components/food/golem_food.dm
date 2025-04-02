@@ -126,7 +126,3 @@
 		stack_owner.use(used = 1)
 	else
 		qdel(owner)
-	/// BUBBER EDIT START - You can see the point I give up and just make it a signal.
-	if(isprotean(eater))
-		SEND_SIGNAL(src, COMSIG_PROTEAN_EAT, eater)
-	/// BUBBER EDIT END

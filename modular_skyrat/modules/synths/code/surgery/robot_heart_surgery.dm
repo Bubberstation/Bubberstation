@@ -1,7 +1,7 @@
 /// Hydraulic Pump Surgery
 /datum/surgery/hydraulic_maintenance
 	name = "Hydraulic Pump Maintenance"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
 	steps = list(
 		/datum/surgery_step/mechanic_open,

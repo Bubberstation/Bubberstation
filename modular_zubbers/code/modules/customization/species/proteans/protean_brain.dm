@@ -81,6 +81,7 @@
 	owner.Paralyze(INFINITY, TRUE)
 	owner.dropItemToGround(suit, TRUE, TRUE, TRUE)
 	owner.forceMove(suit)
+	REMOVE_TRAIT(suit, TRAIT_NODROP, "protean")
 	owner.invisibility = initial(owner.invisibility)
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
@@ -98,6 +99,8 @@
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
 	owner.SetParalyzed(0, TRUE)
+	if(!HAS_TRAIT(suit, TRAIT_NODROP))
+		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 	if(owner.IsParalyzed())
 		to_chat(owner, span_warning("AHELP if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
 		stack_trace("Protean is immobilized coming out of their suit!")
