@@ -44,7 +44,7 @@
  */
 #define PROTEAN_LIMB_ATTACH(path) \
 ##path/try_attach_limb(limb_owner, special) {\
-	if(..()) { \
+	if(..() && qdel_timer) { \
 		deltimer(qdel_timer); \
 	} \
 }
