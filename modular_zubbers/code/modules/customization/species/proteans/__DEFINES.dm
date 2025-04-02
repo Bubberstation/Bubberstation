@@ -33,9 +33,9 @@
 #define PROTEAN_DELIMB_DEFINE(path) \
 ##path/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) {\
 	if(((get_damage() + wounding_dmg) >= max_damage)) {\
-		dismember();\
-		qdel_timer = QDEL_IN_STOPPABLE(src, PROTEAN_LIMB_TIME);\
-	}\
+		dismember(); \
+		qdel_timer = QDEL_IN_STOPPABLE(src, PROTEAN_LIMB_TIME); \
+	} \
 }
 
 /**
@@ -44,8 +44,10 @@
  */
 #define PROTEAN_LIMB_ATTACH(path) \
 ##path/try_attach_limb(limb_owner, special) {\
-	if(..() && qdel_timer) { \
+	. = ..(); \
+	if(..() && !isnull(qdel_timer)) { \
 		deltimer(qdel_timer); \
+	return TRUE; \
 	} \
 }
 
