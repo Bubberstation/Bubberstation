@@ -43,9 +43,12 @@
  * If you reattch your limb, it will delete the qdel timer.
  */
 #define PROTEAN_LIMB_ATTACH(path) \
-##path/try_attach_limb(limb_owner, special) {\
+##path/can_attach_limb(limb_owner, special) {\
 	. = ..(); \
-	if(..() && !isnull(qdel_timer)) { \
+	if(!.) {\
+		return FALSE; \
+	} \
+	if(!isnull(qdel_timer)) { \
 		deltimer(qdel_timer); \
 	return TRUE; \
 	} \
