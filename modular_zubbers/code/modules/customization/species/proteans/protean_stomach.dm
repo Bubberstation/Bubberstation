@@ -29,14 +29,19 @@
 	for(var/datum/reagent/consumable/food in reagents.reagent_list)
 		food.nutriment_factor = 0
 	. = ..()
-	metal -= ((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick)
+	handle_hunger_slowdown(owner, seconds_per_tick)
 
-/// Reused here to check if our stomach is faltering
-/obj/item/organ/stomach/protean/handle_hunger_slowdown(mob/living/carbon/human/human)
+/obj/item/organ/stomach/protean/handle_hunger_slowdown(mob/living/carbon/human/human, seconds_per_tick)
 	if(!istype(owner.dna.species, /datum/species/protean))
 		return
 	if(metal > PROTEAN_STOMACH_FALTERING)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
+		if(owner.health < owner.maxHealth && PROTEAN_STOMACH_FULL * 0.3)
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE * 10) * seconds_per_tick), 0, 10)
+			owner.adjustBruteLoss(-2, forced = TRUE)
+			owner.adjustFireLoss(-2, forced = TRUE)
+		else
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick), 0, 10)
 		return
 	owner.adjustBruteLoss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))
