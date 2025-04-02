@@ -40,7 +40,8 @@
 	if(owner.stat >= HARD_CRIT && !dead)
 		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
 		dead = TRUE
-		go_into_suit()
+		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
+		go_into_suit(TRUE)
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
 	if(dead)
@@ -58,7 +59,7 @@
 		return
 
 	if(isnull(organ) || !istype(organ, /obj/item/organ/heart/protean))
-		owner.KnockToFloor(TRUE, TRUE, 0.5 SECONDS)
+		owner.KnockToFloor(TRUE, TRUE, 1 SECONDS)
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
 		to_chat(owner, span_warning("You're struggling to walk without your orchestrator!"))
 	else
@@ -69,22 +70,46 @@
 /datum/movespeed_modifier/protean_slowdown
 	variable = TRUE
 
-/obj/item/organ/brain/protean/proc/go_into_suit()
+/obj/item/organ/brain/protean/proc/go_into_suit(forced)
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
-	suit.forceMove(owner.loc)
+	owner.invisibility = 101
+	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
+	sleep(12)
+	owner.Paralyze(INFINITY, TRUE)
+	owner.dropItemToGround(suit, TRUE, TRUE, TRUE)
 	owner.forceMove(suit)
+	owner.invisibility = initial(owner.invisibility)
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
-
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	if(dead)
 		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
 		return
-	owner.forceMove(get_turf(suit))
+	suit.invisibility = 101
+	new /obj/effect/temp_visual/protean_from_suit(get_turf(suit), owner.dir)
+	sleep(12)
+	suit.drop_suit()
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
+	suit.invisibility = initial(suit.invisibility)
+	owner.SetParalyzed(0, TRUE)
+	if(owner.IsParalyzed())
+		to_chat(owner, span_warning("AHELP if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
+		stack_trace("Protean is immobilized coming out of their suit!")
+
+/obj/effect/temp_visual/protean_to_suit
+	name = "to_suit"
+	icon = PROTEAN_ORGAN_SPRITE
+	icon_state = "to_puddle"
+	duration = 12
+
+/obj/effect/temp_visual/protean_from_suit
+	name = "from_suit"
+	icon = PROTEAN_ORGAN_SPRITE
+	icon_state = "from_puddle"
+	duration = 12

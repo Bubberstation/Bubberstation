@@ -47,6 +47,7 @@
 		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
+		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
 
 		// Synthetic lifeforms
 		TRAIT_GENELESS,
@@ -54,7 +55,6 @@
 		TRAIT_NO_DNA_SCRAMBLE,
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
-		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
 		TRAIT_NEVER_WOUNDED, // Does not wound.
 
 		// Extra cool stuff
@@ -87,7 +87,7 @@
 
 	equip_modsuit(gainer)
 	var/obj/item/mod/core/protean/core = species_modsuit.core
-	core.linked_species = src
+	core?.linked_species = src
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()

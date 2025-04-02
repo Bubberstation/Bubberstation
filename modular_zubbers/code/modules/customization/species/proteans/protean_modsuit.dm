@@ -32,3 +32,8 @@
 	stripper.balloon_alert(stripper, "can't strip a protean's suit!")
 	return ..()
 
+/obj/item/mod/control/pre_equipped/protean/proc/drop_suit()
+	if(wearer)
+		wearer.dropItemToGround(src, TRUE, TRUE)
+	else
+		forceMove(get_turf(loc))

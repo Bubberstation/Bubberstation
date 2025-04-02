@@ -6,7 +6,7 @@
 
 #define PROTEAN_STOMACH_FULL 10
 #define PROTEAN_STOMACH_FALTERING 0.5
-#define PROTEAN_METABOLISM_RATE 4000
+#define PROTEAN_METABOLISM_RATE 2000
 /**
  * PROTEAN_BODYPART_DEFINE(path, health) Macro
  * This one is very simple. It is used to give a Protean's limbs the proper bodytypes and names.
@@ -27,6 +27,7 @@
 ##path/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) {\
 	if(((get_damage() + wounding_dmg) >= max_damage)) {\
 		dismember();\
+		qdel(src);\
 	}\
 }
 

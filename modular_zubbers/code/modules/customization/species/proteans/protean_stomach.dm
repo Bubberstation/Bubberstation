@@ -36,8 +36,8 @@
 		return
 	if(metal > PROTEAN_STOMACH_FALTERING)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
-		if(owner.health < owner.maxHealth && PROTEAN_STOMACH_FULL * 0.3)
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE * 10) * seconds_per_tick), 0, 10)
+		if(owner.health < owner.maxHealth && metal > PROTEAN_STOMACH_FULL * 0.3)
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 20), 0, 10) // Healing needs metal. 0.2 sheets per tick
 			owner.adjustBruteLoss(-2, forced = TRUE)
 			owner.adjustFireLoss(-2, forced = TRUE)
 		else
