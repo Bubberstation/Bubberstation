@@ -14,11 +14,11 @@
 		to_chat(user, span_notice("You ready your hand."))
 	else
 		qdel(N)
-		to_chat(user, span_warning("You're incapable of masturbating in your current state."))
+		to_chat(user, span_warning("You're incapable of masturbating like this in your current state."))
 
 /obj/item/hand_item/coom
 	name = "cum"
-	desc = "C-can I watch...?" // 💀
+	desc = "Cum on? Cum in? Try filling a cup?" // 💀 - still cursed but actually descriptive
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "eggplant" // 🍆
 	inhand_icon_state = "nothing"
@@ -35,8 +35,6 @@
 
 	var/mob/living/carbon/human/affected_human = user
 	var/obj/item/organ/genital/testicles/mob_testicles = affected_human.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/genital/penis/mob_penis = affected_human.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/self_their = p_their()
 
 	// do you have a penis?
 	if(!user.has_penis())
@@ -46,8 +44,11 @@
 
 	// is the penis exposed?
 	if(!user.has_penis(required_state = REQUIRE_GENITAL_EXPOSED))
-		to_chat(user, span_danger("You need to expose your penis in order to masturbate."))
-		qdel(src)
+		to_chat(user, span_danger("You need to expose your penis in order to stroke it."))
+		return
+
+	if(user.is_wearing_condom()) // i give up actually, the code from climax was refusing to work and not like its contributing to the goal here... just press the climax button
+		to_chat(user, span_danger("You can't cum on something if you are wearing a condom... - Try climaxing instead."))
 		return
 
 	if(target == user)
@@ -64,14 +65,10 @@
 	if(do_after(user, 6 SECONDS, target))
 		if(!user.has_balls())
 			user.visible_message(span_warning("[user] tries to cum, but nothing comes out!"), span_danger("You try to cum, but nothing comes out!"))
-		else if(user.is_wearing_condom()) // copied over from climax, but it doesnt fucking work?
-			var/obj/item/clothing/sextoy/condom/condom = mob_penis // bruh 💀⚰️💀⚰️💀⚰️💀⚰️💀
-			condom.condom_use()
-			visible_message(span_userlove("[user] shoots [self_their] load into the [condom], filling it up!"), \
-				span_userlove("You shoot your thick load into the [condom] and it catches it all!"))
 		else if(target == user)
 			user.visible_message(span_warning("[user] cums on [target.p_them()]self!"), span_danger("You cum on yourself!"))
-
+			conditional_pref_sound(target, SFX_DESECRATION, 50, TRUE)
+			affected_human.add_cum_splatter_floor(get_turf(target))
 		else if(target.is_refillable() && target.is_drainable())
 			var/cum_volume = mob_testicles.genital_size * CUM_VOLUME_MULTIPLIER
 			var/datum/reagents/applied_reagents = new/datum/reagents(50)
