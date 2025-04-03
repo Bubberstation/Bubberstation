@@ -1,6 +1,6 @@
-#define DROP_ITEM_MODE 1
-#define USE_ITEM_MODE 2
-#define THROW_ITEM_MODE 3
+#define DROP_ITEM_MODE "drop"
+#define USE_ITEM_MODE "use"
+#define THROW_ITEM_MODE "throw"
 
 #define TAKE_ITEMS 1
 #define TAKE_CLOSETS 2
@@ -34,8 +34,9 @@
 	var/turf/drop_turf
 	/// How will manipulator manipulate the object? drop it out by default.
 	var/manipulate_mode = DROP_ITEM_MODE
-	/// Priority settings depending on the manipulator mode that are available to this manipulator. Filled during Initialize.
+	/// Priority settings depending on the manipulator drop mode that are available to this manipulator. Filled during Initialize.
 	var/list/priority_settings_for_drop = list()
+	/// Priority settings depending on the manipulator use mode that are available to this manipulator. Filled during Initialize.
 	var/list/priority_settings_for_use = list()
 	/// What priority settings are available to use at the moment.
 	/// We also use this list to sort priorities from ascending to descending.
@@ -44,12 +45,14 @@
 	var/datum/weakref/containment_obj
 	/// Obj used as filter
 	var/datum/weakref/filter_obj
+	/// Poor monkey that needs to use mode works.
+	var/datum/weakref/monkey_worker
 	/// Other manipulator component.
 	var/obj/effect/big_manipulator_hand/manipulator_hand
 	/// Here some ui setting we can on/off:
 	/// If activated: after item was used manipulator will also drop it.
 	var/drop_item_after_use = TRUE
-	/// If acrivated: will select only 1 priority and will not continue to look at the priorities below.
+	/// If activated: will select only 1 priority and will not continue to look at the priorities below.
 	var/only_highest_priority = FALSE
 	/// Var for throw item mode: changes the range from which the manipulator throws an object.
 	var/manipulator_throw_range = 1
@@ -57,6 +60,8 @@
 	var/atom/selected_type
 	/// Just a lazy number to change selected_type type in array.
 	var/selected_type_by_number = 1
+	/// Variable for the wire that disables the power button if the wire is cut.
+	var/on_button_cutted = FALSE
 	/// List where we can set selected type. Taking items by Initialize.
 	var/list/allowed_types_to_pick_up = list(
 		/obj/item,
@@ -73,6 +78,9 @@
 	selected_type = allowed_types_to_pick_up[selected_type_by_number]
 	if(on)
 		press_on(pressed_by = null)
+	set_wires(new /datum/wires/big_manipulator(src))
+
+	register_context()
 
 /// Init priority settings list for all modes.
 /obj/machinery/big_manipulator/proc/set_up_priority_settings()
@@ -85,6 +93,30 @@
 /obj/machinery/big_manipulator/examine(mob/user)
 	. = ..()
 	. += "You can change direction with alternative wrench usage."
+	var/mob/monkey_resolve = monkey_worker?.resolve()
+	if(!isnull(monkey_resolve))
+		. += "You can see [monkey_resolve]: [src] manager."
+
+/obj/machinery/big_manipulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+
+	if(isnull(held_item))
+		context[SCREENTIP_CONTEXT_LMB] = panel_open ? "Interact with wires" : "Open UI"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(held_item.tool_behaviour == TOOL_WRENCH)
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Una" : "A"]nchor"
+		context[SCREENTIP_CONTEXT_RMB] = "Rotate clockwise"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
+		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(is_wire_tool(held_item) && panel_open)
+		context[SCREENTIP_CONTEXT_LMB] = "Interact with wires"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/big_manipulator/Destroy(force)
 	. = ..()
@@ -95,6 +127,23 @@
 	if(!isnull(filter_obj))
 		var/obj/filter_resolve = filter_obj?.resolve()
 		filter_resolve?.forceMove(get_turf(filter_resolve))
+	var/mob/monkey_resolve = monkey_worker?.resolve()
+	if(!isnull(monkey_resolve))
+		monkey_resolve.forceMove(get_turf(monkey_resolve))
+
+/obj/machinery/big_manipulator/Exited(atom/movable/gone, direction)
+	if(isnull(monkey_worker))
+		return
+	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey_worker.resolve()
+	if(gone != poor_monkey)
+		return
+	if(!is_type_in_list(poor_monkey, manipulator_hand.vis_contents))
+		return
+	manipulator_hand.vis_contents -= poor_monkey
+	if(manipulate_mode == USE_ITEM_MODE)
+		change_mode()
+	poor_monkey.remove_offsets(type)
+	monkey_worker = null
 
 /obj/machinery/big_manipulator/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
@@ -150,10 +199,63 @@
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
+/obj/machinery/big_manipulator/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return NONE
+	if(!panel_open || !is_wire_tool(tool))
+		return NONE
+	wires.interact(user)
+	return ITEM_INTERACT_SUCCESS
+
 /obj/machinery/big_manipulator/RefreshParts()
 	. = ..()
 
 	manipulator_lvl()
+
+/obj/machinery/big_manipulator/mouse_drop_dragged(atom/drop_point, mob/user, src_location, over_location, params)
+	if(isnull(monkey_worker))
+		return
+	if(on_work)
+		balloon_alert(user, "turn it off first!")
+		return
+	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey_worker.resolve()
+	if(isnull(poor_monkey))
+		return
+	balloon_alert(user, "trying unbuckle...")
+	if(!do_after(user, 3 SECONDS, src))
+		balloon_alert(user, "interrupted")
+		return
+	balloon_alert(user, "unbuckled")
+	poor_monkey.drop_all_held_items()
+	poor_monkey.forceMove(drop_point)
+
+/obj/machinery/big_manipulator/mouse_drop_receive(atom/monkey, mob/user, params)
+	if(!ismonkey(monkey))
+		return
+	if(!isnull(monkey_worker))
+		return
+	if(on_work)
+		balloon_alert(user, "turn it off first!")
+		return
+	var/mob/living/carbon/human/species/monkey/poor_monkey = monkey
+	if(poor_monkey.mind)
+		balloon_alert(user, "too smart!")
+		return
+	poor_monkey.balloon_alert(user, "trying buckle...")
+	if(!do_after(user, 3 SECONDS, poor_monkey))
+		poor_monkey.balloon_alert(user, "interrupted")
+		return
+	balloon_alert(user, "buckled")
+	monkey_worker = WEAKREF(poor_monkey)
+	poor_monkey.drop_all_held_items()
+	poor_monkey.forceMove(src)
+	manipulator_hand.vis_contents += poor_monkey
+	poor_monkey.dir = manipulator_hand.dir
+	poor_monkey.add_offsets(
+		type,
+		x_add = 32 + manipulator_hand.calculate_item_offset(TRUE, pixels_to_offset = 16),
+		y_add = 32 + manipulator_hand.calculate_item_offset(FALSE, pixels_to_offset = 16)
+	)
 
 /// Creat manipulator hand effect on manipulator core.
 /obj/machinery/big_manipulator/proc/create_manipulator_hand()
@@ -215,6 +317,9 @@
 			take_here = NORTH
 			drop_here = SOUTH
 	manipulator_hand.dir = take_here
+	var/mob/monkey = monkey_worker?.resolve()
+	if(!isnull(monkey))
+		monkey.dir = manipulator_hand.dir
 	take_and_drop_turfs_check()
 
 /// Deliting hand will destroy our manipulator core.
@@ -294,7 +399,12 @@
 		target.forceMove(drop_turf)
 		target.dir = get_dir(get_turf(target), get_turf(src))
 	else
-		target.forceMove(where_we_drop)
+		var/atom/drop_target = where_we_drop
+		if(drop_target.atom_storage)
+			if(!drop_target.atom_storage.attempt_insert(target, override = TRUE, messages = FALSE))
+				target.forceMove(drop_target.drop_location())
+		else
+			target.forceMove(where_we_drop)
 	finish_manipulation()
 
 /// 3.2 take and drop proc from [take and drop procs loop]:
@@ -308,8 +418,12 @@
 	if(isnull(obj_resolve))
 		finish_manipulation()
 		return
+	var/mob/living/carbon/human/species/monkey/monkey_resolve = monkey_worker?.resolve()
+	if(isnull(monkey_resolve))
+		finish_manipulation()
+		return
 	/// If we forceMoved from manipulator we are free now.
-	if(obj_resolve.loc != src)
+	if(obj_resolve.loc != src && obj_resolve.loc != monkey_resolve)
 		finish_manipulation()
 		return
 	if(!isitem(target))
@@ -322,29 +436,21 @@
 	if(isnull(type_to_use))
 		check_end_of_use(im_item, target, item_was_used = FALSE)
 		return
-	var/mob/living/carbon/human/dummy/living_manipulator_lmfao = create_abstract_living()
-	living_manipulator_lmfao.put_in_active_hand(im_item)
-	if(!type_to_use.attackby(im_item, living_manipulator_lmfao))
-		im_item.melee_attack_chain(living_manipulator_lmfao, type_to_use)
+	monkey_resolve.put_in_active_hand(im_item)
+	if(im_item.GetComponent(/datum/component/two_handed)) /// Using two-handed items in two hands.
+		im_item.attack_self(monkey_resolve)
+	im_item.melee_attack_chain(monkey_resolve, type_to_use)
 	do_attack_animation(drop_turf)
 	manipulator_hand.do_attack_animation(drop_turf)
-	if(LAZYLEN(living_manipulator_lmfao.do_afters))
-		RegisterSignal(living_manipulator_lmfao, COMSIG_DO_AFTER_ENDED, PROC_REF(manipulator_finish_do_after))
-	else
-		im_item.forceMove(src)
-		qdel(living_manipulator_lmfao)
 	check_end_of_use(im_item, item_was_used = TRUE)
-
-/// Wait whan manipulator finish do_after and kill em.
-/obj/machinery/big_manipulator/proc/manipulator_finish_do_after(mob/living/carbon/human/dummy/abstract_manipulator)
-	SIGNAL_HANDLER
-
-	var/obj/item/my_item = abstract_manipulator.get_active_held_item()
-	my_item.forceMove(src)
-	qdel(abstract_manipulator)
 
 /// Check what we gonna do next with our item. Drop it or use again.
 /obj/machinery/big_manipulator/proc/check_end_of_use(obj/item/my_item, item_was_used)
+	if(!on)
+		my_item.forceMove(drop_turf)
+		my_item.dir = get_dir(get_turf(my_item), get_turf(src))
+		finish_manipulation()
+		return
 	if(drop_item_after_use && item_was_used)
 		my_item.forceMove(drop_turf)
 		my_item.dir = get_dir(get_turf(my_item), get_turf(src))
@@ -390,33 +496,34 @@
 /obj/machinery/big_manipulator/proc/finish_rotate_animation(backward)
 	animate(manipulator_hand, transform = matrix(180 * backward, MATRIX_ROTATE), working_speed*0.5)
 
-/obj/machinery/big_manipulator/proc/check_filter(obj/item/what_item)
-	var/filtered_obj = filter_obj?.resolve()
-	if(!istype(what_item, selected_type))
-		return
+/obj/machinery/big_manipulator/proc/check_filter(atom/movable/target)
+	if (target.anchored || HAS_TRAIT(target, TRAIT_NODROP))
+		return FALSE
+	if(!istype(target, selected_type))
+		return FALSE
 	/// We use filter only on items. closets, humans and etc don't need filter check.
-	if(istype(what_item, /obj/item))
-		if((filtered_obj && !istype(what_item, filtered_obj)))
-			return FALSE
+	if(!isitem(target))
+		return TRUE
+	var/obj/item/target_item = target
+	if (target_item.item_flags & (ABSTRACT|DROPDEL))
+		return FALSE
+	var/filtered_obj = filter_obj?.resolve()
+	if((filtered_obj && !istype(target_item, filtered_obj)))
+		return FALSE
 	return TRUE
-
-/// Create dummy to force him use our item and then delete him.
-/obj/machinery/big_manipulator/proc/create_abstract_living()
-	var/mob/living/carbon/human/dummy/abstract_living = new /mob/living/carbon/human/dummy(get_turf(src))
-	abstract_living.alpha = 0
-	abstract_living.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	ADD_TRAIT(abstract_living, TRAIT_UNDENSE, INNATE_TRAIT)
-	abstract_living.move_resist = INFINITY
-	abstract_living.invisibility = INVISIBILITY_ABSTRACT
-	abstract_living.real_name = abstract_living.name = name
-	abstract_living.mind_initialize()
-	return abstract_living
 
 /// Proc called when we changing item interaction mode.
 /obj/machinery/big_manipulator/proc/change_mode()
-	manipulate_mode++
-	if(manipulate_mode > THROW_ITEM_MODE)
-		manipulate_mode = DROP_ITEM_MODE
+	switch(manipulate_mode)
+		if(DROP_ITEM_MODE)
+			if(!isnull(monkey_worker))
+				manipulate_mode = USE_ITEM_MODE
+			else
+				manipulate_mode = THROW_ITEM_MODE
+		if(USE_ITEM_MODE)
+			manipulate_mode = THROW_ITEM_MODE
+		if(THROW_ITEM_MODE)
+			manipulate_mode = DROP_ITEM_MODE
 	update_priority_list()
 	is_work_check()
 
@@ -460,8 +567,39 @@
 		return
 	if(on)
 		RegisterSignal(take_turf, COMSIG_ATOM_ENTERED, PROC_REF(try_take_thing))
+		RegisterSignal(take_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(try_take_thing))
 	else
 		UnregisterSignal(take_turf, COMSIG_ATOM_ENTERED)
+		UnregisterSignal(take_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
+
+/// Proc that check if button not cutted when we press on button.
+/obj/machinery/big_manipulator/proc/try_press_on(mob/user)
+	if(on_button_cutted)
+		balloon_alert(user, "button is cut off!")
+		return
+	press_on(pressed_by = TRUE)
+
+/// Drop item that manipulator is manipulating.
+/obj/machinery/big_manipulator/proc/drop_containment_item()
+	if(isnull(containment_obj))
+		return
+	var/obj/obj_resolve = containment_obj?.resolve()
+	obj_resolve?.forceMove(get_turf(obj_resolve))
+	finish_manipulation()
+
+/// Changes the type of objects that the manipulator will pick up
+/obj/machinery/big_manipulator/proc/change_what_take_type()
+	selected_type_by_number++
+	if(selected_type_by_number > allowed_types_to_pick_up.len)
+		selected_type_by_number = 1
+	selected_type = allowed_types_to_pick_up[selected_type_by_number]
+	is_work_check()
+
+/// Changes range with which the manipulator throws objects, from 1 to 7.
+/obj/machinery/big_manipulator/proc/change_throw_range()
+	manipulator_throw_range++
+	if(manipulator_throw_range > 7)
+		manipulator_throw_range = 1
 
 /obj/machinery/big_manipulator/ui_interact(mob/user, datum/tgui/ui)
 	if(!anchored)
@@ -475,18 +613,10 @@
 
 /obj/machinery/big_manipulator/ui_data(mob/user)
 	var/list/data = list()
-	var/mode
-	switch(manipulate_mode)
-		if(DROP_ITEM_MODE)
-			mode = "Drop"
-		if(USE_ITEM_MODE)
-			mode = "Use"
-		if(THROW_ITEM_MODE)
-			mode = "Throw"
 	data["active"] = on
 	data["item_as_filter"] = filter_obj?.resolve()
 	data["selected_type"] = selected_type.name
-	data["manipulate_mode"] = mode
+	data["manipulate_mode"] = manipulate_mode
 	data["drop_after_use"] = drop_item_after_use
 	data["highest_priority"] = only_highest_priority
 	data["throw_range"] = manipulator_throw_range
@@ -506,21 +636,13 @@
 		return
 	switch(action)
 		if("on")
-			press_on(pressed_by = TRUE)
+			try_press_on(ui.user)
 			return TRUE
 		if("drop")
-			if(isnull(containment_obj))
-				return
-			var/obj/obj_resolve = containment_obj?.resolve()
-			obj_resolve?.forceMove(get_turf(obj_resolve))
-			finish_manipulation()
+			drop_containment_item()
 			return TRUE
 		if("change_take_item_type")
-			selected_type_by_number++
-			if(selected_type_by_number > allowed_types_to_pick_up.len)
-				selected_type_by_number = 1
-			selected_type = allowed_types_to_pick_up[selected_type_by_number]
-			is_work_check()
+			change_what_take_type()
 			return TRUE
 		if("change_mode")
 			change_mode()
@@ -544,11 +666,11 @@
 			get_active_held_item.forceMove(src)
 			is_work_check()
 			return TRUE
-		if("drop_use_change")
-			drop_item_after_use = !drop_item_after_use
-			return TRUE
 		if("highest_priority_change")
 			only_highest_priority = !only_highest_priority
+			return TRUE
+		if("drop_use_change")
+			drop_item_after_use = !drop_item_after_use
 			return TRUE
 		if("change_priority")
 			var/new_priority_number = params["priority"]
@@ -561,9 +683,7 @@
 			update_priority_list()
 			return TRUE
 		if("change_throw_range")
-			manipulator_throw_range++
-			if(manipulator_throw_range > 7)
-				manipulator_throw_range = 1
+			change_throw_range()
 			return TRUE
 
 /// Using on change_priority: looks for a setting with the same number that we set earlier and reduce it.
@@ -593,16 +713,18 @@
 
 /obj/effect/big_manipulator_hand/update_overlays()
 	. = ..()
+	. += update_item_overlay()
+
+/obj/effect/big_manipulator_hand/proc/update_item_overlay()
 	if(isnull(item_in_my_claw))
-		icon_overlay = null
-		return
+		return icon_overlay = null
 	var/atom/movable/item_data = item_in_my_claw.resolve()
-	icon_overlay = mutable_appearance(item_data.icon, item_data.icon_state, item_data.layer, src, item_data.appearance_flags)
+	icon_overlay = mutable_appearance(item_data.icon, item_data.icon_state, item_data.layer, src, item_data.plane, item_data.alpha, item_data.appearance_flags)
 	icon_overlay.color = item_data.color
 	icon_overlay.appearance = item_data.appearance
 	icon_overlay.pixel_x = 32 + calculate_item_offset(is_x = TRUE)
 	icon_overlay.pixel_y = 32 + calculate_item_offset(is_x = FALSE)
-	. += icon_overlay
+	return icon_overlay
 
 /// Updates item that is in the claw.
 /obj/effect/big_manipulator_hand/proc/update_claw(clawed_item)
@@ -610,17 +732,17 @@
 	update_appearance()
 
 /// Calculate x and y coordinates so that the item icon appears in the claw and not somewhere in the corner.
-/obj/effect/big_manipulator_hand/proc/calculate_item_offset(is_x = TRUE)
+/obj/effect/big_manipulator_hand/proc/calculate_item_offset(is_x = TRUE, pixels_to_offset = 32)
 	var/offset
 	switch(dir)
 		if(NORTH)
-			offset = is_x ? 0 : 32
+			offset = is_x ? 0 : pixels_to_offset
 		if(SOUTH)
-			offset = is_x ? 0 : -32
+			offset = is_x ? 0 : -pixels_to_offset
 		if(EAST)
-			offset = is_x ? 32 : 0
+			offset = is_x ? pixels_to_offset : 0
 		if(WEST)
-			offset = is_x ? -32 : 0
+			offset = is_x ? -pixels_to_offset : 0
 	return offset
 
 /// Priorities that manipulator use to choose to work on item with type same with what_type.
@@ -661,6 +783,11 @@
 	name = "Use on Machinery"
 	what_type = /obj/machinery
 	number = 3
+
+/datum/manipulator_priority/for_use/on_items
+	name = "Use on Items"
+	what_type = /obj/item
+	number = 4
 
 #undef DROP_ITEM_MODE
 #undef USE_ITEM_MODE

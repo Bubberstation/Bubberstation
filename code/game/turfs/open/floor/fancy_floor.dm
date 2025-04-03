@@ -113,6 +113,9 @@
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
+/turf/open/floor/bamboo/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
 /turf/open/floor/bamboo/broken_states()
 	return list("bamboodamaged")
 
@@ -188,6 +191,22 @@
 
 /turf/open/floor/grass/fairy/spawniconchange()
 	icon_state = "fairygrass[rand(0,3)]"
+
+/turf/open/floor/hay
+	name = "hay"
+	desc = "HOW hungry?"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "hay"
+	base_icon_state = "hay"
+	floor_tile = /obj/item/stack/tile/hay
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	clawfootstep = FOOTSTEP_GRASS
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+	rust_resistance = RUST_RESISTANCE_ORGANIC
 
 /turf/open/floor/fake_snow
 	gender = PLURAL
@@ -472,7 +491,7 @@
 
 /turf/open/floor/carpet/neon
 	name = "neon carpet"
-	desc = "A rubbery pad inset with a phsophorescent pattern."
+	desc = "A rubbery pad inset with a phosphorescent pattern."
 	icon = 'icons/turf/floors/carpet_black.dmi'
 	icon_state = "carpet_black-255"
 	base_icon_state = "carpet_black"

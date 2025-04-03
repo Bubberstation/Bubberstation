@@ -4,7 +4,7 @@
 
 /datum/greyscale_config/collar/ringbell
 	name = "Ring Bell Collar"
-	icon_file = 'modular_zubbers/code/modules/GAGS/icons/collar.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/collar.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/ringbell.json'
 
 /datum/greyscale_config/collar/ringbell/worn
@@ -13,7 +13,7 @@
 
 /datum/greyscale_config/collar/gps
 	name = "GPS Collar"
-	icon_file = 'modular_zubbers/code/modules/GAGS/icons/collar.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/collar.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps.json'
 
 /datum/greyscale_config/collar/gps/worn
@@ -37,7 +37,7 @@
 
 /datum/greyscale_config/bunnysuit_worn
 	name = "Worn Bunny Suit"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bunnysuit_worn.json'
 
 /datum/greyscale_config/custom_bunnysuit
@@ -47,11 +47,11 @@
 
 /datum/greyscale_config/custom_bunnysuit_worn
 	name = "Worn Tailormade Bunny Suit"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit_worn.json'
 
 /datum/greyscale_config/custom_bunnysuit_worn/digi
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 
 /datum/greyscale_config/tailcoat
 	name = "Tailcoat"
@@ -95,12 +95,12 @@
 
 /datum/greyscale_config/henchmen
 	name = "Henchmen"
-	icon_file = 'modular_zubbers/code/modules/GAGS/icons/monkehenchmenobj.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/monkehenchmenobj.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 
 /datum/greyscale_config/henchmen/worn
 	name = "Henchmen Worn"
-	icon_file = 'modular_zubbers/code/modules/GAGS/icons/monkehenchmenmob.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/monkehenchmenmob.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 
 /datum/greyscale_config/miniskirt

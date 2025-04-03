@@ -58,6 +58,8 @@
 /datum/quirk/fragile/remove()
 	. = ..()
 
+	if(QDELETED(quirk_holder))
+		return
 	var/mob/living/carbon/human/user = quirk_holder
 	var/datum/preferences/prefs = user.client.prefs
 	var/brutemod = prefs.read_preference(/datum/preference/numeric/fragile_customization/brute)

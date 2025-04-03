@@ -307,3 +307,5 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				panel = typed_target.tgui
 				panel.holder = typed_target
 			panel.ui_interact(user)
+
+#undef READ_PREFS

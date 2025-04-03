@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	"stored_character_slot_index",
 ))
 
-/obj/item/organ/internal/brain
+/obj/item/organ/brain
 	/// The modular persistence data for a character.
 	var/datum/modular_persistence/modular_persistence
 
@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 		player.save_individual_persistence()
 
 /// Loads the contents of the player's modular_persistence file to their character.
-/datum/controller/subsystem/persistence/proc/load_modular_persistence(obj/item/organ/internal/brain/brain)
+/datum/controller/subsystem/persistence/proc/load_modular_persistence(obj/item/organ/brain/brain)
 	if(!brain)
 		return FALSE
 
@@ -47,11 +47,11 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 /// The master persistence datum. Add vars onto this in your own code. Just be aware that you'll need to use simple data types, such as strings, ints, and lists.
 /datum/modular_persistence
 	/// The human that this is attached to.
-	var/obj/item/organ/internal/brain/owner
+	var/obj/item/organ/brain/owner
 	/// The owner's character slot index.
 	var/stored_character_slot_index
 
-/datum/modular_persistence/New(obj/item/organ/internal/brain/brain, list/persistence_data)
+/datum/modular_persistence/New(obj/item/organ/brain/brain, list/persistence_data)
 	owner = brain
 	. = ..()
 
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	return returned_list
 
 /// Saves the held persistence data to where it needs to go.
-/datum/modular_persistence/proc/save_data(var/ckey)
+/datum/modular_persistence/proc/save_data(ckey)
 	ckey = replacetext(ckey || owner.owner?.ckey || owner.brainmob?.ckey, "@", "")
 	if(!owner.owner && !owner.brainmob)
 		CRASH("Modular persistence save called on a brain with no owning mob or brainmob! How did this happen?! (\ref[owner], [owner])")
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	WRITE_FILE(json_file, json_encode(json))
 
 /// Saves the persistence data for the owner.
-/mob/living/carbon/human/proc/save_individual_persistence(var/ckey)
-	var/obj/item/organ/internal/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+/mob/living/carbon/human/proc/save_individual_persistence(ckey)
+	var/obj/item/organ/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 
 	return brain?.modular_persistence?.save_data(ckey)
