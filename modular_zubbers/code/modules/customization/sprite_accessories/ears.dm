@@ -13,6 +13,11 @@
 	icon_state = "shadekinbandright"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 
+/datum/sprite_accessory/ears/shadekingradient
+	name = "Shadekin Gradient"
+	icon_state = "shadekingradient"
+	icon = 'modular_zubbers/icons/customization/ears.dmi'
+
 /datum/sprite_accessory/ears/renamon
 	name = "Renamon"
 	icon_state = "renamon"
