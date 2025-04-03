@@ -1,3 +1,4 @@
+/*
 // This can probably be changed to use mind linker at some point
 /datum/action/personality_commune
 	name = "Personality Commune"
@@ -54,3 +55,4 @@
 		to_chat(dead_mob, "[FOLLOW_LINK(dead_mob, non_controller)] [span_boldnotice("[non_controller] [name]:")] [span_notice("\"[to_send]\" to")] [span_name("[trauma]")]")
 
 	return TRUE
+*/

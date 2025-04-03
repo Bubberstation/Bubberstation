@@ -12,7 +12,7 @@
 	// Requires a phase be set in New
 	trauma_blacklist += typesof(/datum/brain_trauma/hypnosis)
 	// Requires another player, sleeps in gain()
-	trauma_blacklist += typesof(/datum/brain_trauma/severe/split_personality)
+	// trauma_blacklist += typesof(/datum/brain_trauma/severe/split_personality)
 	// Requires another player, sleeps in gain()
 	trauma_blacklist += typesof(/datum/brain_trauma/special/imaginary_friend)
 	// Requires a obsession target
