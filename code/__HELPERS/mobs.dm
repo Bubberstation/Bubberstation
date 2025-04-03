@@ -559,13 +559,10 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		if(!priority)
 			. += ai
 		else
-			if(IS_MALF_AI(ai))	// malf ai first
+			if(IS_MALF_AI(ai))	// malf ai first.
 				. += ai
-				continue
-			if(isturf(ai.loc)) // AI cores are on a turf.
-				. += ai
-				continue
-			. += ai // Every other AI
+				break
+			. += ai // Every other AI just in case.
 		/// BUBBER EDIT END
 
 //Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
