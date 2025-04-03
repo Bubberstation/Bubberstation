@@ -40,7 +40,7 @@
 		new /obj/item/reagent_containers/crack(location)
 
 /datum/movespeed_modifier/reagent/cocaine
-	multiplicative_slowdown = -0.4
+	multiplicative_slowdown = -0.30
 
 /datum/reagent/drug/cocaine
 	name = "Cocaine"
@@ -165,7 +165,7 @@
 	. = TRUE
 
 /datum/movespeed_modifier/reagent/crack
-	multiplicative_slowdown = -0.45
+	multiplicative_slowdown = -0.40
 
 /datum/reagent/drug/freebase_cocaine
 	name = "Freebase Cocaine"
@@ -174,7 +174,7 @@
 	overdose_threshold = 15
 	ph = 9 // it probably shouldnt be? but im too lazy to check it, and it was 9 because it was inhereiting
 	taste_description = "crunchy bitterness"
-	addiction_types = list(/datum/addiction/stimulants = 18) // uhhh, more than 25% more addictive? i think? dunno
+	addiction_types = list(/datum/addiction/stimulants = 20) // even more addictive
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
