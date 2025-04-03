@@ -56,6 +56,10 @@
 /// If they have the DNR trait
 #define DNR_HUD "27"
 // SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION START
+#define NANITE_HUD "28"
+#define DIAG_NANITE_FULL_HUD "29"
+// BUBBER EDIT ADDITION END
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
