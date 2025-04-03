@@ -76,7 +76,7 @@
 		stomach.on_surgical_insertion(user, core.linked_species.owner)
 		balloon_alert(user, "inserted!")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
-		addtimer(CALLBACK(brian, TYPE_PROC_REF(revive)), 5 MINUTES)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/organ/brain/protean, revive)), 5 MINUTES)
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
