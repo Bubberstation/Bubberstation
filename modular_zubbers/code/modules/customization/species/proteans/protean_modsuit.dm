@@ -62,3 +62,30 @@
 	if(slot == ITEM_SLOT_BACK && modlocked)
 		ADD_TRAIT(src, TRAIT_NODROP, "protean")
 		to_chat(wearer, span_warning("The suit does not seem to be able to come off..."))
+
+/// Protean Revivial
+
+/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	var/obj/item/mod/core/protean/core
+	var/obj/item/organ/brain/protean/brain = core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/stomach/protean/refactory = core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+
+	if(brain?.dead && open && istype(tool, /obj/item/organ/stomach/protean) && do_after(user, 10 SECONDS) && !refactory)
+		var/obj/item/organ/stomach = tool
+		stomach.on_surgical_insertion(user, core.linked_species.owner)
+		balloon_alert(user, "inserted!")
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
+		addtimer(CALLBACK(brian, TYPE_PROC_REF(revive)), 5 MINUTES)
+		return ITEM_INTERACT_SUCCESS
+
+/obj/item/mod/control/pre_equipped/protean/examine(mob/user)
+	. = ..()
+	var/obj/item/mod/core/protean/core
+	var/obj/item/organ/brain/protean/brain = core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/stomach/protean/refactory = core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(!isnull(brain) || istype(brain))
+		if(brain.dead)
+			if(!open)
+				. += span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>")
+			. += isnull(refactory) && open ? span_warning("Insert a new <b>refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")

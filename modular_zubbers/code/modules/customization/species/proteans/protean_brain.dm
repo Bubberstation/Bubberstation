@@ -105,6 +105,10 @@
 		to_chat(owner, span_warning("AHELP if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
 		stack_trace("Protean is immobilized coming out of their suit!")
 
+/obj/item/organ/brain/protean/proc/revive()
+	dead = FALSE
+	owner.heal_and_revive(revive_message = "You have regained your mass and fully repaired yourself.")
+
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"
 	icon = PROTEAN_ORGAN_SPRITE
