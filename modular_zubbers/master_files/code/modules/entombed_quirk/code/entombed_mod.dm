@@ -39,6 +39,11 @@
 		/obj/item/mod/module/storage
 	)
 
+/obj/item/mod/control/pre_equipped/entombed/locked
+	applied_modules = list(
+		/obj/item/mod/module/storage/large_capacity
+	)
+
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)
 	return TRUE //you can always try, and it'll hit doStrip below
 

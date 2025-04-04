@@ -63,7 +63,15 @@
 	life_support_failed = TRUE
 
 /datum/quirk/equipping/entombed/add_unique(client/client_source)
+	var/lock_deploy = client_source?.prefs.read_preference(/datum/preference/toggle/entombed_deploy_lock)
+	if (!isnull(lock_deploy))
+		deploy_locked = lock_deploy
+
+	if(deploy_locked)
+		forced_items = list(/obj/item/mod/control/pre_equipped/entombed/locked = list(ITEM_SLOT_BACK))
+
 	. = ..()
+
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if (istype(human_holder.back, /obj/item/mod/control/pre_equipped/entombed))
 		modsuit = human_holder.back // link this up to the quirk for easy access
@@ -72,10 +80,6 @@
 		stack_trace("Entombed quirk couldn't create a fused MODsuit on [quirk_holder] and was force-removed.")
 		qdel(src)
 		return
-
-	var/lock_deploy = client_source?.prefs.read_preference(/datum/preference/toggle/entombed_deploy_lock)
-	if (!isnull(lock_deploy))
-		deploy_locked = lock_deploy
 
 	// set no dismember trait for deploy-locked dudes, i'm sorry, there's basically no better way to do this.
 	// it's a pretty ample buff but i dunno what else to do...
