@@ -2,17 +2,17 @@
 // https://github.com/CHOMPStation2/CHOMPStation2/pull/9926
 
 // because we are just running skyratcode pretty much
-/datum/sprite_accessory/tails/largeshark
+/datum/sprite_accessory/tails/mammal/largeshark
 	icon = 'modular_zubbers/modules/chomp_shark_tail/Tails64x32.dmi'
 	dimension_x = 64
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
 
-/datum/sprite_accessory/tails/largeshark/default
+/datum/sprite_accessory/tails/mammal/largeshark/default
 	name = "Large Shark"
 	icon_state = "large-shark"
 
-/datum/sprite_accessory/tails/largeshark/finless
+/datum/sprite_accessory/tails/mammal/largeshark/finless
 	name = "Large Shark (finless)"
 	icon_state = "large-shark-finless"
 
