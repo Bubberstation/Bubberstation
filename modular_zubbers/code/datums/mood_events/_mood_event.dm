@@ -1,4 +1,4 @@
-/datum/mood/proc/mood_colour()
+/datum/mood/proc/get_mood_colour()
 	switch(mob_parent.mob_mood.sanity_level)
 		if (SANITY_LEVEL_GREAT)
 			. = "#2eeb9a"
