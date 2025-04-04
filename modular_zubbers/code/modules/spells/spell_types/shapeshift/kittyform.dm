@@ -7,6 +7,7 @@
 	invocation = "MRR MRRRW!!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
 	possible_shapes = list(
 		/mob/living/basic/pet/cat/super,
