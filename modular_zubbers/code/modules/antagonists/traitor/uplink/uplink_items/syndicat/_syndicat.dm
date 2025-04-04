@@ -7,7 +7,7 @@
 			However, this form will be clad in blood-red Syndicate armor, making its origin somewhat obvious."
 	purchasable_from = ~(UPLINK_CLOWN_OPS)
 	item = /obj/item/organ/ears/cat/super/syndie
-	cost = 16
+	cost = 20
 	surplus = 15
 	limited_stock = 1
 	progression_minimum = 15 MINUTES
