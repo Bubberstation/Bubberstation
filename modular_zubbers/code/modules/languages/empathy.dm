@@ -76,7 +76,7 @@
 
 	if(empathy_timer && !do_after(source, empathy_timer, source)))
 		message = full_capitalize(rot13(message))
-	var/rendered = ("<span style=color:[user.mob_mood.mood_colour()];><b>[user.real_name]:</b> [message]</span>")
+	var/rendered = ("<span style=color:[user.mob_mood.get_mood_colour()];><b>[user.real_name]:</b> [message]</span>")
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
