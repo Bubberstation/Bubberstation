@@ -501,6 +501,7 @@
 	. = ..()
 	atom_storage.set_holdable(/obj/item/food/bonbon)
 
+
 /obj/item/storage/fancy/nugget_box
 	name = "nugget box"
 	desc = "A cardboard box used for holding chicken nuggies."
