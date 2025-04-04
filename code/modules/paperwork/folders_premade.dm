@@ -58,3 +58,9 @@
 	. = ..()
 	new /obj/item/paperwork/ancient(src)
 	update_appearance()
+
+/obj/item/folder/syndicate/red/empty
+	icon_state = "folder_sred"
+
+/obj/item/folder/syndicate/blue/empty
+	icon_state = "folder_sblue"
