@@ -20,7 +20,6 @@
 
 //Traitor's Super cat spell
 /datum/action/cooldown/spell/shapeshift/kitty/syndie
-	cooldown_time = 120 SECONDS
 	name = "SYNDICATE KITTY POWER!!"
 	desc = "Take on the shape of an kitty cat, clad in blood-red armor! Gain their powers at a loss of vitality."
 	possible_shapes = list(/mob/living/basic/pet/cat/syndicat/super)
