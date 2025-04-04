@@ -3,7 +3,7 @@
 	name = "KITTY POWER!!"
 	desc = "Take on the shape of a kitty cat! Gain their powers at a loss of vitality."
 
-	cooldown_time = 20 SECONDS
+	cooldown_time = 60 SECONDS
 	invocation = "MRR MRRRW!!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
@@ -19,6 +19,7 @@
 
 //Traitor's Super cat spell
 /datum/action/cooldown/spell/shapeshift/kitty/syndie
+	cooldown_time = 120 SECONDS
 	name = "SYNDICATE KITTY POWER!!"
 	desc = "Take on the shape of an kitty cat, clad in blood-red armor! Gain their powers at a loss of vitality."
 	possible_shapes = list(/mob/living/basic/pet/cat/syndicat/super)
