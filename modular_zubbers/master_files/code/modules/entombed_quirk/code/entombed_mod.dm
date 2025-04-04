@@ -36,7 +36,7 @@
 	theme = /datum/mod_theme/entombed
 	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
-		/obj/item/mod/module/storage/large_capacity
+		/obj/item/mod/module/storage
 	)
 
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)
