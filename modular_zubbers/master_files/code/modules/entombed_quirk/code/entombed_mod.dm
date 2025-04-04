@@ -82,3 +82,8 @@
 /obj/item/mod/control/pre_equipped/entombed/Initialize(mapload, new_theme, new_skin, new_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, QUIRK_TRAIT)
+
+/obj/item/mod/control/pre_equipped/entombed/transfer_ai(interaction, mob/user, mob/living/silicon/ai/intAI, obj/item/aicard/card)
+	SHOULD_CALL_PARENT(FALSE)
+	to_chat(user, span_warning("AI incompatable with entombed modsuit."))
+	return FALSE
