@@ -74,7 +74,7 @@
 			empathy_timer = 6 SECONDS
 			message = readable_corrupted_text(message)
 
-	if(!do_after(source, empathy_timer, source))
+	if(empathy_timer && !do_after(source, empathy_timer, source)))
 		message = full_capitalize(rot13(message))
 	var/rendered = ("<span style=color:[user.mob_mood.mood_colour()];><b>[user.real_name]:</b> [message]</span>")
 
