@@ -3,6 +3,7 @@
 	desc = "A generic brown paper food package, you aren't quite sure where this comes from."
 	icon = 'modular_skyrat/modules/imported_vendors/icons/imported_quick_foods.dmi'
 	icon_state = "foodpack_generic_big"
+	w_class = WEIGHT_CLASS_SMALL
 	illustration = null
 	custom_price = PAYCHECK_CREW * 1.8
 	///What the main course of this package is
