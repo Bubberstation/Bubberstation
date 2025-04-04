@@ -100,7 +100,7 @@
 
 //CARGO
 
-/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit
+/obj/item/clothing/under/rank/cargo/qm/bunnysuit
 	name = "quartermaster's bunny suit"
 	desc = "The staple of any bunny themed quartermasters. Complete with gold buttons and a nametag."
 	icon_state = "bunnysuit_qm"
@@ -110,7 +110,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/cargo/cargo_bunnysuit
+/obj/item/clothing/under/rank/cargo/tech/bunnysuit
 	name = "cargo bunny suit"
 	desc = "The staple of any bunny themed cargo technicians. Nigh indistinguishable from the quartermasters bunny suit."
 	icon_state = "bunnysuit_cargo"
@@ -152,7 +152,7 @@
 
 //ENGI
 
-/obj/item/clothing/under/rank/engineering/engineer_bunnysuit
+/obj/item/clothing/under/rank/engineering/engineer/bunnysuit
 	name = "engineering bunny suit"
 	desc = "The staple of any bunny themed engineers. Keeps loose clothing to a minimum in a fashionable manner."
 	icon_state = "bunnysuit_engi"
@@ -163,7 +163,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit
+/obj/item/clothing/under/rank/engineering/atmospheric_technician/bunnysuit
 	name = "atmospheric technician's bunny suit"
 	desc = "The staple of any bunny themed atmospheric technicians. Perfect for any blue collar worker wanting to keep up with fashion trends."
 	icon_state = "bunnysuit_atmos"
@@ -187,7 +187,7 @@
 
 //MEDICAL
 
-/obj/item/clothing/under/rank/medical/doctor_bunnysuit
+/obj/item/clothing/under/rank/medical/doctor/bunnysuit
 	desc = "The staple of any bunny themed doctors. The open design is great for both comfort and surgery."
 	name = "medical bunnysuit"
 	icon_state = "bunnysuit_doctor"
@@ -196,7 +196,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/paramedic_bunnysuit
+/obj/item/clothing/under/rank/medical/paramedic/bunnysuit
 	desc = "The staple of any bunny themed paramedics. Comes with spare pockets for medical supplies fastened to the leggings."
 	name = "paramedic's bunnysuit"
 	icon_state = "bunnysuit_paramedic"
@@ -214,7 +214,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/pathologist_bunnysuit
+/obj/item/clothing/under/rank/medical/virologist/bunnysuit
 	desc = "The staple of any bunny themed pathologists. The stockings, while cute, do nothing to combat pathogens."
 	name = "pathologist's bunnysuit"
 	icon_state = "bunnysuit_viro"
@@ -223,7 +223,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/coroner_bunnysuit
+/obj/item/clothing/under/rank/medical/coroner/bunnysuit
 	desc = "The staple of any bunny themed coroners. A rejected mime costume."
 	name = "coroner's bunnysuit"
 	icon_state = "bunnysuit_coroner"
@@ -232,7 +232,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/medical/cmo_bunnysuit
+/obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit
 	desc = "The staple of any bunny themed chief medical officers. The more vibrant blue accents denote a higher status."
 	name = "chief medical officer's bunnysuit"
 	icon_state = "bunnysuit_cmo"
@@ -252,7 +252,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit
+/obj/item/clothing/under/rank/rnd/roboticist/bunnysuit
 	desc = "The staple of any bunny themed roboticists. The open design and thin leggings help to keep cool when piloting mechs."
 	name = "roboticist's bunnysuit"
 	icon_state = "bunnysuit_roboticist"
@@ -282,7 +282,7 @@
 
 //SECURITY
 
-/obj/item/clothing/under/rank/security/security_bunnysuit
+/obj/item/clothing/under/rank/security/officer/bunnysuit
 	desc = "The staple of any bunny themed security officers. The red coloring helps to hide any blood that may stain this."
 	name = "security bunnysuit"
 	icon_state = "bunnysuit_sec"
@@ -305,7 +305,7 @@
 
 
 
-/obj/item/clothing/under/rank/security/warden_bunnysuit
+/obj/item/clothing/under/rank/security/warden/bunnysuit
 	desc = "The staple of any bunny themed wardens. The more formal security bunny suit for a less combat focused job."
 	name = "warden's bunnysuit"
 	icon_state = "bunnysuit_warden"
@@ -326,7 +326,7 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/security/detective_bunnysuit
+/obj/item/clothing/under/rank/security/detective/bunnysuit
 	desc = "The staple of any bunny themed detectives. Capable of storing precious candy corns."
 	name = "detective's bunnysuit"
 	icon_state = "bunnysuit_det"
@@ -337,7 +337,7 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/security/detective_bunnysuit/noir
+/obj/item/clothing/under/rank/security/detective/noir/bunnysuit
 	desc = "The staple of any noir bunny themed detectives. Capable of storing precious candy corns."
 	name = "noir detective's bunnysuit"
 	icon_state = "bunnysuit_det_noir"
@@ -348,13 +348,19 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/security/prisoner_bunnysuit
+/obj/item/clothing/under/rank/prisoner/bunnysuit
 	desc = "The staple of any bunny themed prisoners. Great for hiding shanks and other small contrabands."
 	name = "prisoner's bunnysuit"
 	icon_state = "bunnysuit_prisoner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digi = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_config_worn_digi = null
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -371,7 +377,7 @@
 
 //SERVICE
 
-/obj/item/clothing/under/rank/civilian/hop_bunnysuit
+/obj/item/clothing/under/rank/civilian/head_of_personnel/bunnysuit
 	name = "head of personnel's bunny suit"
 	desc = "The staple of any bunny themed bureaucrats. It has a spare “pocket” for holding extra pens and paper."
 	icon_state = "bunnysuit_hop"
@@ -391,7 +397,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/bartender_bunnysuit
+/obj/item/clothing/under/rank/civilian/bartender/bunnysuit
 	name = "bartender's bunnysuit"
 	desc = "The staple of any bunny themed bartenders. Looks even more stylish than the standard bunny suit."
 	icon_state = "bunnysuit_bar"
@@ -402,7 +408,7 @@
 	alt_covers_chest = TRUE
 	custom_price = PAYCHECK_CREW
 
-/obj/item/clothing/under/rank/civilian/cook_bunnysuit
+/obj/item/clothing/under/rank/civilian/cook/bunnysuit
 	name = "cook's bunny suit"
 	desc = "The staple of any bunny themed chefs. Shame there aren't any fishnets."
 	icon_state = "bunnysuit_chef"
@@ -422,7 +428,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit
+/obj/item/clothing/under/rank/civilian/clown/bunnysuit
 	name = "clown's bunny suit"
 	desc = "The staple of any bunny themed clowns. Now this is just ridiculous."
 	icon_state = "bunnysuit_clown"
@@ -432,7 +438,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/mime_bunnysuit
+/obj/item/clothing/under/rank/civilian/mime/bunnysuit
 	name = "mime's bunny suit"
 	desc = "The staple of any bunny themed mimes. Includes black and white stockings in order to comply with mime federation outfit regulations."
 	icon_state = "bunnysuit_mime"
@@ -443,7 +449,7 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/civilian/chaplain_bunnysuit
+/obj/item/clothing/under/rank/civilian/chaplain/bunnysuit
 	name = "chaplain's bunny suit"
 	desc = "The staple of any bunny themed chaplains. The wool for the stockings came from a sacrificial lamb, making them extra holy."
 	icon_state = "bunnysuit_chaplain"
@@ -453,7 +459,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_red
+/obj/item/clothing/under/rank/civilian/curator/bunnysuit
 	name = "curator's red bunny suit"
 	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
 	icon_state = "bunnysuit_curator_red"
@@ -463,7 +469,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_green
+/obj/item/clothing/under/rank/civilian/curator/bunnysuit/green
 	name = "curator's green bunny suit"
 	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
 	icon_state = "bunnysuit_curator_green"
@@ -473,7 +479,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/curator_bunnysuit_teal
+/obj/item/clothing/under/rank/civilian/curator/bunnysuit/teal
 	name = "curator's teal bunny suit"
 	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
 	icon_state = "bunnysuit_curator_teal"
@@ -484,7 +490,7 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_black
+/obj/item/clothing/under/rank/civilian/lawyer/black/bunnysuit
 	name = "lawyer's black bunny suit"
 	desc = "A black linen coat worn by bunny themed lawyers. May or may not contain souls of the damned in suit pockets."
 	icon_state = "bunnysuit_law_black"
@@ -496,7 +502,7 @@
 	alt_covers_chest = TRUE
 
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_blue
+/obj/item/clothing/under/rank/civilian/lawyer/blue/bunnysuit
 	name = "lawyer's blue bunny suit"
 	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
 	icon_state = "bunnysuit_law_blue"
@@ -507,7 +513,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_red
+/obj/item/clothing/under/rank/civilian/lawyer/red/bunnysuit
 	name = "lawyer's red bunny suit"
 	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
 	icon_state = "bunnysuit_law_red"
@@ -529,7 +535,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit
+/obj/item/clothing/under/rank/civilian/psychologist/bunnysuit
 	name = "psychologist's bunny suit"
 	desc = "The staple of any bunny themed psychologists. Perhaps not the best choice for making your patients feel at home."
 	icon_state = "bunnysuit_psychologist"
@@ -539,7 +545,104 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
+//colorful assistants support
+/obj/item/clothing/under/color/playbunny
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
+	icon_state = "playbunny"
+	inhand_icon_state = "playbunny"
+	worn_icon_state = "playbunny"
+	greyscale_config = /datum/greyscale_config/bunnysuit
+	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/color/playbunny/grey
+	name = "grey bunnysuit"
+	desc = "A tasteful grey bunnysuit that reminds you of the good old dust bunnies."
+	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/black
+	name = "black bunnysuit"
+	greyscale_colors = "#3f3f3f#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/blue
+	name = "blue bunnysuit"
+	greyscale_colors = "#52aecc#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/green
+	name = "green bunnysuit"
+	greyscale_colors = "#9ed63a#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/orange
+	name = "orange bunnysuit"
+	desc = "Don't wear this near carrot-hungry security officers."
+	greyscale_colors = "#ff8c19#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/pink
+	name = "pink bunnysuit"
+	desc = "Just looking at this makes you feel <i>fabulous</i>."
+	greyscale_colors = "#ffa69b#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/red
+	name = "red bunnysuit"
+	greyscale_colors = "#eb0c07#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/white
+	name = "white bunnysuit"
+	greyscale_colors = "#ffffff#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/yellow
+	name = "yellow bunnysuit"
+	greyscale_colors = "#ffe14d#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/darkblue
+	name = "dark blue bunnysuit"
+	greyscale_colors = "#3285ba#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/teal
+	name = "teal bunnysuit"
+	greyscale_colors = "#77f3b7#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/lightpurple
+	name = "light purple bunnysuit"
+	greyscale_colors = "#9f70cc#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/darkgreen
+	name = "dark green bunnysuit"
+	greyscale_colors = "#6fbc22#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/lightbrown
+	name = "light brown bunnysuit"
+	greyscale_colors = "#c59431#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/brown
+	name = "brown bunnysuit"
+	greyscale_colors = "#a17229#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/maroon
+	name = "maroon bunnysuit"
+	greyscale_colors = "#cc295f#39393f#ffffff#87502e"
+
+
+/obj/item/clothing/under/color/playbunny/random
+	icon_state = "random_jumpsuit" //Skirt variant needed
+	greyscale_colors = "#b3b3b3#39393f#ffffff#87502e"
+
+/obj/item/clothing/under/color/playbunny/random/Initialize(mapload)
+	. = ..()
+	var/obj/item/clothing/under/color/playbunny/new_bunnysuit = get_random_bunnysuit()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/local_human = loc
+		local_human.equip_to_slot_or_del(new new_bunnysuit(local_human), ITEM_SLOT_ICLOTHING, initial=TRUE)
+	else
+		new new_bunnysuit(loc)
+	return INITIALIZE_HINT_QDEL
+
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+
 
 /obj/item/clothing/under/costume/loincloth
 	name = "loincloth"
