@@ -728,6 +728,7 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 	if(listeningTo == user)
 		return
@@ -754,6 +755,7 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
