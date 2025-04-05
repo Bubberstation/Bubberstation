@@ -3,7 +3,7 @@
 
 // because we are just running skyratcode pretty much
 /datum/sprite_accessory/tails/mammal/largeshark
-	icon = 'modular_zubbers/modules/chomp_shark_tail/Tails64x32.dmi'
+	icon = 'modular_zubbers/icons/customization/shark_tails64x32.dmi'
 	dimension_x = 64
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
