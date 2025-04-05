@@ -17,11 +17,11 @@
 	name = "Large Shark (finless)"
 	icon_state = "large-shark-finless"
 
-/datum/sprite_accessory/tails/mammal/largeshark/default
+/datum/sprite_accessory/tails/mammal/largeshark/striped
 	name = "Large Shark (striped)"
 	icon_state = "large-shark-s"
 
-/datum/sprite_accessory/tails/mammal/largeshark/finless
+/datum/sprite_accessory/tails/mammal/largeshark/striped_finless
 	name = "Large Shark (striped, finless)"
 	icon_state = "large-shark-finless-s"
 
