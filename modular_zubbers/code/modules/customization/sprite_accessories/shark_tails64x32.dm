@@ -25,19 +25,12 @@
 	name = "Large Shark (striped, finless)"
 	icon_state = "large-shark-finless-s"
 
-// /datum/sprite_accessory/tails/longtail/largeshark/stripes
-// 	name = "Large Shark (striped)"
-// 	// extra_overlay = "large-shark-stripes"
-// 	// extra_overlay2 = "large-shark-stripes-underbelly"
+// you could definitely cook up more combinations and use the "stripes-underbelly" sprite but... yeah
 
 // /datum/sprite_accessory/tails/longtail/largeshark/stripes2
 // 	name = "Large Shark (striped, underbelly)"
 // 	// extra_overlay = "large-shark-underbelly"
 // 	// extra_overlay2 = "large-shark-stripes-underbelly"
-
-// /datum/sprite_accessory/tails/longtail/largeshark/stripes/finless
-// 	name = "Large Shark (striped, finless)"
-// 	icon_state = "large-shark-finless"
 
 // /datum/sprite_accessory/tails/longtail/largeshark/stripes2/finless
 // 	name = "Large Shark (striped, finless, underbelly)"
