@@ -1,5 +1,5 @@
 /datum/surgery/advanced/lobotomy
-	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but might cause a different, deeper trauma in return."
+	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover."
 
 /datum/surgery_step/lobotomize/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	display_results(
@@ -11,11 +11,11 @@
 	)
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
+	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
-	if(prob(75))
-		target.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_MAGIC)
 	return ..()
 
 /datum/surgery/advanced/blessed_lobotomy
@@ -58,12 +58,13 @@
 	)
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming! You begin to see the light... ")
 
+	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
+	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
 	playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
-	if(prob(75))
-		target.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_MAGIC)
 	return ..()
 
 /datum/design/surgery/lobotomy/blessed
