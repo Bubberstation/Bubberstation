@@ -185,3 +185,9 @@
 	name = "Dome"
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/claws //Sprite by xPokee
+	name = "Claws (Digi Legs)"
+	icon_state = "claws"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
