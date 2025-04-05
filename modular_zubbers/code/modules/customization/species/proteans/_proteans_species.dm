@@ -100,8 +100,8 @@
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
 	owner = null
-	//gainer.dropItemToGround(species_modsuit, TRUE)
-	qdel(species_modsuit)
+	gainer.dropItemToGround(species_modsuit, TRUE)
+	QDEL_NULL(species_modsuit)
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)
 	species_modsuit = new()

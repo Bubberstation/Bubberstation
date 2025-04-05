@@ -16,7 +16,10 @@
 
 /obj/item/mod/core/protean/charge_amount()
 	var/obj/item/organ/stomach/protean/stomach = charge_source()
+	var/obj/item/organ/brain/protean/brain = linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(stomach))
+		return null
+	if(brain.dead)
 		return null
 	return stomach.metal
 
@@ -31,7 +34,13 @@
 	return FALSE
 
 /obj/item/mod/core/protean/check_charge(amount)
-	return FALSE
+	var/obj/item/organ/stomach/protean/stomach = charge_source()
+	var/obj/item/organ/brain/protean/brain = linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(stomach.metal <= PROTEAN_STOMACH_FALTERING)
+		return FALSE
+	if(!istype(brain) || brain.dead)
+		return FALSE
+	return TRUE
 
 /obj/item/mod/core/protean/get_charge_icon_state()
 	return charge_source() ? "0" : "missing"

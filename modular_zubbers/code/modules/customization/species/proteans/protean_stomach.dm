@@ -25,6 +25,10 @@
 	UnregisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT)
 
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
+	var/datum/species/protean/species = owner?.dna.species
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	if(owner.loc == suit)
+		return
 	/// Zero out any nutrition. We do not use hunger in this species.
 	for(var/datum/reagent/consumable/food in reagents.reagent_list)
 		food.nutriment_factor = 0

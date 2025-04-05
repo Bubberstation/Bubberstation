@@ -27,15 +27,15 @@
 	var/damage_amount = 4 // How much damage per life() tick this organ should apply
 
 	for(var/obj/item/organ/organ in owner.organs)
-		if(!(organ.organ_flags & ORGAN_ORGANIC))
+		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL))
 			continue
-		apply_organ_damage(damage_amount)
+		organ.apply_organ_damage(damage_amount)
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(owner, span_warning("Your mass violently rips apart [organ]!"))
 			COOLDOWN_START(src, message_cooldown, 30 SECONDS)
 		if(organ.organ_flags & ORGAN_FAILING)
 			to_chat(owner, span_warning("Your mass violently rejects [organ]"))
-			forceMove(owner.loc)
+			organ.mob_remove(owner, TRUE)
 
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
@@ -47,7 +47,9 @@
 		go_into_suit(TRUE)
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
-	if(dead)
+	var/datum/species/protean/species = owner?.dna.species
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	if(owner.loc == suit)
 		return
 	if(isnull(organ) || !istype(organ, /obj/item/organ/stomach/protean))
 		owner.adjustBruteLoss(3, forced = TRUE)
@@ -56,7 +58,9 @@
 			COOLDOWN_START(src, refactory_cooldown, 30 SECONDS)
 
 /obj/item/organ/brain/protean/proc/handle_orchestrator(obj/item/organ) // If you're missing an orchestrator, you will have trouble walking.
-	if(dead)
+	var/datum/species/protean/species = owner?.dna.species
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	if(owner.loc == suit)
 		return
 	if(!COOLDOWN_FINISHED(src, orchestrator_cooldown))
 		return
@@ -80,11 +84,11 @@
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
-	sleep(12)
 	owner.Paralyze(INFINITY, TRUE)
 	owner.dropItemToGround(suit, TRUE, TRUE, TRUE)
 	owner.forceMove(suit)
 	REMOVE_TRAIT(suit, TRAIT_NODROP, "protean")
+	sleep(12)
 	owner.invisibility = initial(owner.invisibility)
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
@@ -99,6 +103,7 @@
 	new /obj/effect/temp_visual/protean_from_suit(get_turf(suit), owner.dir)
 	sleep(12)
 	suit.drop_suit()
+	owner.forceMove(get_turf(suit))
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
 	owner.SetParalyzed(0, TRUE)
@@ -142,6 +147,9 @@
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
 	owner.fully_heal()
+
+/obj/item/organ/brain/protean/proc/revive_timer()
+	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"

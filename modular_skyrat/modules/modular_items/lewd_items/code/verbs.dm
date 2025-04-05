@@ -52,7 +52,7 @@
 	set name = "OOC Safe Word"
 	set category = "OOC"
 	set desc = "Removes any and all lewd items from you."
-
+	SEND_SIGNAL(src, COMSIG_OOC_ESCAPE)
 	log_message("[key_name(src)] used the OOC Safe Word verb.", LOG_ATTACK)
 	for(var/obj/item/equipped_item in get_equipped_items())
 		if(!(equipped_item.type in GLOB.pref_checked_clothes))

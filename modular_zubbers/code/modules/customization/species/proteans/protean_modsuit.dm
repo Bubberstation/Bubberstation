@@ -9,6 +9,12 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // funny nanite
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
+	var/obj/item/mod/control/stored_modsuit
+	var/datum/mod_theme/stored_theme
+
+	// Antag proteans can brainwash their wearers.
+	var/brainwash = FALSE
+	var/brainwash_message
 
 /datum/mod_theme/protean
 	name = "Protean"
@@ -16,7 +22,12 @@
 /obj/item/mod/control/pre_equipped/protean/Initialize(mapload, datum/mod_theme/new_theme, new_skin, obj/item/mod/core/new_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "protean")
-	actions_types += list()
+
+/obj/item/mod/control/pre_equipped/protean/Destroy()
+	if(stored_modsuit)
+		QDEL_NULL(stored_modsuit)
+		QDEL_NULL(stored_theme)
+	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
 	return FALSE // Can't remove the core.
@@ -57,11 +68,15 @@
 /obj/item/mod/control/pre_equipped/protean/equipped(mob/user, slot, initial)
 	. = ..()
 
-	if(!isprotean(wearer))
+	if(isprotean(wearer))
 		return
-	if(slot == ITEM_SLOT_BACK && modlocked)
-		ADD_TRAIT(src, TRAIT_NODROP, "protean")
-		to_chat(wearer, span_warning("The suit does not seem to be able to come off..."))
+	if(slot == ITEM_SLOT_BACK)
+		RegisterSignal(wearer, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
+		if(modlocked)
+			ADD_TRAIT(src, TRAIT_NODROP, "protean")
+			to_chat(wearer, span_warning("The suit does not seem to be able to come off..."))
+	else
+		UnregisterSignal(wearer, COMSIG_OOC_ESCAPE)
 
 /obj/item/mod/control/pre_equipped/protean/choose_deploy(mob/user)
 	if(!isprotean(user) && modlocked && active)
@@ -71,13 +86,19 @@
 
 /obj/item/mod/control/pre_equipped/protean/toggle_activate(mob/user, force_deactivate)
 	if(!force_deactivate && modlocked && !isprotean(user) && active)
-		balloon_alert(user, "it doesn't come off")
+		balloon_alert(user, "it doesn't turn off")
 		return FALSE
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/quick_deploy(mob/user)
 	if(!isprotean(user) && modlocked && active)
 		balloon_alert(user, "it won't undeploy")
+		return FALSE
+	return ..()
+
+/obj/item/mod/control/pre_equipped/protean/retract(mob/user, obj/item/part, instant)
+	if(!isprotean(user) && modlocked && active)
+		balloon_alert(user, "the button is unresponsive")
 		return FALSE
 	return ..()
 
@@ -94,8 +115,67 @@
 		stomach.Insert(protean_core.linked_species.owner, TRUE, DELETE_IF_REPLACED)
 		balloon_alert(user, "inserted!")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/organ/brain/protean, revive)), 5 MINUTES)
+		brain.revive_timer()
 		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/mod/control))
+		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
+		if(!do_after(user, 4 SECONDS)) // Bump this time to 20 seconds
+			return
+		assimilate_modsuit(user, tool)
+		return ITEM_INTERACT_SUCCESS
+
+/obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit)
+	var/obj/item/mod/control/to_assimilate = modsuit
+
+	if(stored_modsuit)
+		to_chat(user, span_warning("Can't absorb two modsuits!"))
+		return
+	if(!user.transferItemToLoc(to_assimilate, src))
+		balloon_alert("stuck!")
+		return
+	stored_modsuit = to_assimilate
+	stored_theme = theme // Store the old theme in cache
+	theme = to_assimilate.theme // Set new theme
+	complexity_max = to_assimilate.complexity_max // Inheret complexity
+	skin = to_assimilate.skin // Inheret skin
+	theme.set_up_parts(src, skin) // Put everything together
+
+	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
+		if(install(module, user, TRUE))
+			continue
+		uninstall(module) // Drop it if failed
+
+/obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user)
+	if(active)
+		balloon_alert(user, "deactivate modsuit")
+		return
+	if(!(user.can_put_in_hand(stored_modsuit)))
+		return
+	to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
+	if(!do_after(user, 4 SECONDS)) // Bump this time to 30 seconds
+		return
+	complexity_max = initial(complexity_max)
+	for(var/obj/item/mod/module in modules) // Transfer back every module
+		if(stored_modsuit.install(module, user, TRUE))
+			continue
+		uninstall(module)
+
+
+	theme = stored_theme
+	stored_theme = null
+	skin = initial(skin)
+	theme.set_up_parts(src, skin)
+	if(user.can_put_in_hand(stored_modsuit))
+		user.put_in_hand(stored_modsuit, forced = TRUE)
+		stored_modsuit = null
+		return
+	balloon_alert("need empty hand")
+
+/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
+	set name = "Remove Assimilated Modsuit"
+
+	unassimilate_modsuit(usr)
 
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
@@ -108,6 +188,13 @@
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
+
+/obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
+	SIGNAL_HANDLER
+
+	if(isprotean(wearer))
+		return
+	drop_suit()
 
 /mob/living/carbon/proc/protean_ui()
 	set name = "Open Suit UI"
@@ -150,7 +237,7 @@
 
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	species.species_modsuit.toggle_lock()
-	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit onto [suit.wearer]"))
+	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) ? "" : "onto [suit.wearer]"]"))
 
 /mob/living/carbon/proc/suit_transformation()
 	set name = "Toggle Suit Transformation"
@@ -160,7 +247,7 @@
 
 	if(!istype(brain))
 		return
-	if(!do_after(src, 5 SECONDS, timed_action_flags = IGNORE_INCAPACITATED))
+	if(!do_after(src, 3 SECONDS, timed_action_flags = IGNORE_INCAPACITATED))
 		return
 	var/datum/species/protean/species = dna.species
 	if(loc == species.species_modsuit)
