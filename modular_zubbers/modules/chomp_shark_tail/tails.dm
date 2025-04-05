@@ -6,6 +6,7 @@
 	icon = 'modular_zubbers/icons/customization/shark_tails64x32.dmi'
 	dimension_x = 64
 	dimension_y = 32
+	center = TRUE
 	color_src = USE_MATRIXED_COLORS
 
 /datum/sprite_accessory/tails/mammal/largeshark/default
