@@ -43,6 +43,7 @@
 	. = ..()
 	design_ids += list(
 		"borg_upgrade_advancedanalyzer",
+		"medical_rcd",
 	)
 
 /datum/techweb_node/xenobiology/New()
