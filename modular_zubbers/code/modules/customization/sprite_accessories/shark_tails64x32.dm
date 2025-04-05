@@ -17,6 +17,14 @@
 	name = "Large Shark (finless)"
 	icon_state = "large-shark-finless"
 
+/datum/sprite_accessory/tails/mammal/largeshark/default
+	name = "Large Shark (striped)"
+	icon_state = "large-shark-s"
+
+/datum/sprite_accessory/tails/mammal/largeshark/finless
+	name = "Large Shark (striped, finless)"
+	icon_state = "large-shark-finless-s"
+
 // /datum/sprite_accessory/tails/longtail/largeshark/stripes
 // 	name = "Large Shark (striped)"
 // 	// extra_overlay = "large-shark-stripes"
