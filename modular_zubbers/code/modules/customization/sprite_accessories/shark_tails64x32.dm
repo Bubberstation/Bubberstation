@@ -2,6 +2,9 @@
 // https://github.com/CHOMPStation2/CHOMPStation2/pull/9926
 
 // because we are just running skyratcode pretty much
+// this system is so much worse than what they have on CHOMP apparently (lol)
+// 🦈
+
 /datum/sprite_accessory/tails/mammal/largeshark
 	icon = 'modular_zubbers/icons/customization/shark_tails64x32.dmi'
 	dimension_x = 64
@@ -26,12 +29,3 @@
 	icon_state = "large-shark-finless-s"
 
 // you could definitely cook up more combinations and use the "stripes-underbelly" sprite but... yeah
-
-// /datum/sprite_accessory/tails/longtail/largeshark/stripes2
-// 	name = "Large Shark (striped, underbelly)"
-// 	// extra_overlay = "large-shark-underbelly"
-// 	// extra_overlay2 = "large-shark-stripes-underbelly"
-
-// /datum/sprite_accessory/tails/longtail/largeshark/stripes2/finless
-// 	name = "Large Shark (striped, finless, underbelly)"
-// 	icon_state = "large-shark-finless"
