@@ -120,3 +120,9 @@
 
 /datum/species/protean/allows_food_preferences()
 	return FALSE
+
+/datum/species/protean/get_species_description()
+	return "Trillions of small machines swarm into a single crewmember. This is a Protean, a walking coherent blob of metallic mass, and a churning factory that turns materials into more of itself. \
+			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
+			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
+			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings."

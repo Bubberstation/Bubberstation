@@ -22,7 +22,8 @@
 
 /obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
 	. = ..()
-	UnregisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT)
+	if(owner)
+		UnregisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT)
 
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
 	var/datum/species/protean/species = owner?.dna.species
