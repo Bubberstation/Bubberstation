@@ -7,7 +7,7 @@
 
 /// Calls the map vote with a time offset, to account for announcements and VOX playback, etc.
 /datum/controller/subsystem/security_level/proc/offset_map_vote(offset = 7 SECONDS)
-	if(GLOB.roundend_mapvote_called)
+	if(GLOB.roundend_mapvote_called || SSmap_vote.next_map_config)
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(async_map_vote)), offset)
