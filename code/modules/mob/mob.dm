@@ -1498,6 +1498,10 @@
 /mob/proc/adjust_nutrition(change, forced = FALSE) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER) && !forced)
 		return
+	//Bubber edit BEGIN - Allow for people to get hungry faster
+	if(HAS_TRAIT(src, TRAIT_FAST_METABOLISM) && change < 0)
+		change = change * 2
+	//Bubber edit END
 
 	nutrition = max(0, nutrition + change)
 	hud_used?.hunger?.update_appearance()
