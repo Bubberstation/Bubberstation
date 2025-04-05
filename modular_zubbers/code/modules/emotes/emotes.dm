@@ -178,3 +178,14 @@
 	return pick('sound/mobs/non-humanoids/raptor/raptor_1.ogg',
 				'sound/mobs/non-humanoids/raptor/raptor_4.ogg',
 				'sound/mobs/non-humanoids/raptor/raptor_5.ogg')
+
+/datum/emote/living/kweh_sad
+	key = "skweh"
+	key_third_person = "skwehs"
+	message = "kwehs sadly"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/kweh_sad/get_sound(mob/living/user)
+	return pick('sound/mobs/non-humanoids/raptor/raptor_2.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_3.ogg')
