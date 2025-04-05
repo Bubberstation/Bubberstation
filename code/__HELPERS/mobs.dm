@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		. += borg
 
 //Returns a list of AI's
-/proc/active_ais(check_mind = FALSE, z = null, skip_syndicate = FALSE, only_syndicate = FALSE)
+/proc/active_ais(check_mind = FALSE, z = null, skip_syndicate = FALSE, only_syndicate = FALSE, priority = FALSE) // Bubber Edit: Adds priority aug.
 	. = list()
 	for(var/mob/living/silicon/ai/ai as anything in GLOB.ai_list)
 		if(ai.stat == DEAD)
@@ -555,7 +555,15 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			continue
 		if(!isnull(z) && z != ai.z && (!is_station_level(z) || !is_station_level(ai.z))) //if a Z level was specified, AND the AI is not on the same level, AND either is off the station...
 			continue
-		. += ai
+		/// BUBBER EDIT START - Adds priority Aug
+		if(!priority)
+			. += ai
+		else
+			if(IS_MALF_AI(ai))	// malf ai first.
+				. += ai
+				break
+			. += ai
+		/// BUBBER EDIT END
 
 //Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
 /proc/select_active_ai_with_fewest_borgs(z)
