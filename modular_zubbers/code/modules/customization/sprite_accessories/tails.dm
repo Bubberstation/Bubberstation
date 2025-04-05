@@ -30,3 +30,81 @@
 	name = "Gecko"
 	icon_state = "gecko"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/abdomen/fuzz_warm
+	name = "Fuzzy Abdomen (Warm)"
+	icon_state = "fuzz_warm" // Start of by @Sweettoothart
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/mammal/abdomen/fuzz_cold
+	name = "Fuzzy Abdomen (Cold)"
+	icon_state = "fuzz_cold"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/mammal/abdomen/wasp/thread
+	name = "Thread-Waisted Wasp"
+	icon_state = "wasp_thread"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/wasp/stinger
+	name = "Wasp (Stinger)"
+	icon_state = "wasp_stinger"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/wasp/stingerless
+	name = "Wasp (Stingerless)"
+	icon_state = "wasp_stingerless"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider
+	name = "Spider"
+	icon_state = "spider"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider/scarred
+	name = "Spider (Scarred)"
+	icon_state = "spider_scarred"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider/spotted
+	name = "Spider (Spotted)"
+	icon_state = "spider_spotted"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider/tipped
+	name = "Spider (Tipped)"
+	icon_state = "spider_tipped"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider/contour
+	name = "Spider (Contour)"
+	icon_state = "spider_contour"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/abdomen/spider/underbelly
+	name = "Spider (Underbelly)"
+	icon_state = "spider_underbelly"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/earwig
+	name = "Earwig"
+	icon_state = "earwig"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/mammal/centipede
+	name = "Centipede"
+	icon_state = "centipede" // End of by @Sweettoothart
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
