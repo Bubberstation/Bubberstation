@@ -6,3 +6,12 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	blink_animation = FALSE
 	iris_overlay = null
+
+/obj/item/organ/eyes/vulpkanin
+	name = "vulpkanin eyes"
+	desc = "These eyes seem adept at seeing in low light environments, not that the vulpkanin missing them can see anything right now."
+
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	blink_animation = FALSE
+	iris_overlay = null
+	lighting_cutoff = LIGHTING_CUTOFF_LOW
