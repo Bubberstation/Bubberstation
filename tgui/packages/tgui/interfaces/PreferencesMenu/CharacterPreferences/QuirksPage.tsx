@@ -403,7 +403,9 @@ export function QuirksPage(props) {
       }
       // BUBBER EDIT ADDITION END
     }
-
+    if (data.species_disallowed_quirks.includes(quirk.name)) {
+      return 'This quirk is incompatible with your selected species.';
+    }
     return;
   }
 
