@@ -98,7 +98,7 @@
 
 /obj/item/mod/control/pre_equipped/protean/retract(mob/user, obj/item/part, instant)
 	if(!isprotean(user) && modlocked && active)
-		balloon_alert(user, "the button is unresponsive")
+		balloon_alert(user, "that button is unresponsive")
 		return FALSE
 	return ..()
 
@@ -140,7 +140,7 @@
 	complexity_max = to_assimilate.complexity_max // Inheret complexity
 	skin = to_assimilate.skin // Inheret skin
 	theme.set_up_parts(src, skin) // Put everything together
-
+	name = to_assimilate.name
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
 		if(install(module, user, TRUE))
 			continue
@@ -167,6 +167,7 @@
 	stored_theme = null
 	skin = initial(skin)
 	theme.set_up_parts(src, skin)
+	name = initial(name)
 	if(user.can_put_in_hand(stored_modsuit, user.active_hand_index))
 		user.put_in_hand(stored_modsuit, user.active_hand_index)
 		stored_modsuit = null

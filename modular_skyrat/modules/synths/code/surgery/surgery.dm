@@ -51,3 +51,7 @@
 
 /datum/surgery/stomach_pump/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
+
+/// Proteans can not heal via these surgeries.
+/datum/surgery/healing/can_start(mob/user, mob/living/patient)
+	return !isprotean(patient) && ..()

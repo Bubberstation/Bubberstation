@@ -79,6 +79,12 @@
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
 
+/datum/species/protean/Destroy(force)
+	if(species_modsuit)
+		QDEL_NULL(species_modsuit)
+	owner = null
+	return ..()
+
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
