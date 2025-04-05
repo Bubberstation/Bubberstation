@@ -150,7 +150,8 @@
 	if(active)
 		balloon_alert(user, "deactivate modsuit")
 		return
-	if(!(user.can_put_in_hand(stored_modsuit)))
+	if(!(user.has_active_hand()))
+		balloon_alert(user, "need active hand")
 		return
 	to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
 	if(!do_after(user, 4 SECONDS)) // Bump this time to 30 seconds
@@ -166,11 +167,9 @@
 	stored_theme = null
 	skin = initial(skin)
 	theme.set_up_parts(src, skin)
-	if(user.can_put_in_hand(stored_modsuit))
-		user.put_in_hand(stored_modsuit, forced = TRUE)
+	if(user.can_put_in_hand(stored_modsuit, user.active_hand_index))
+		user.put_in_hand(stored_modsuit, user.active_hand_index)
 		stored_modsuit = null
-		return
-	balloon_alert("need empty hand")
 
 /obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
 	set name = "Remove Assimilated Modsuit"
