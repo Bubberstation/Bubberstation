@@ -61,6 +61,11 @@
 
 /obj/item/implant/explosive/activate(cause)
 	. = ..()
+	// BUBBER EDIT BEGIN
+	var/consent = tgui_alert(usr, "Do you want to blow up?", "ARE YOU SURE?", list("Yes", "No"))
+	if(consent != "Yes")
+		return
+	// BUBBER EDIT END
 	if(!cause || !imp_in || active)
 		return FALSE
 	if(cause == "action_button")
