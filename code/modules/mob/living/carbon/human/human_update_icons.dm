@@ -1149,9 +1149,9 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			greyscale_colors = greyscale_colors,
 		)
 	if(building_icon)
-		draw_target = mutable_appearance(building_icon)
+		draw_target = mutable_appearance(building_icon, layer = -layer2use)
 	else
-		draw_target = mutable_appearance(file2use, t_state)
+		draw_target = mutable_appearance(file2use, t_state, layer = -layer2use)
 
 	//Get the overlays for this item when it's being worn
 	//eg: ammo counters, primed grenade flashes, etc.
