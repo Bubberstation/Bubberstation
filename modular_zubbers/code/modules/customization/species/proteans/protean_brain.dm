@@ -22,6 +22,8 @@
 
 /obj/item/organ/brain/protean/on_life(seconds_per_tick, times_fired)
 	. = ..()
+	if(dead)
+		return
 	var/damage_amount = 4 // How much damage per life() tick this organ should apply
 
 	for(var/obj/item/organ/organ in owner.organs)
@@ -40,6 +42,7 @@
 	if(owner.stat >= HARD_CRIT && !dead)
 		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
 		dead = TRUE
+		owner.fully_heal(HEAL_DAMAGE)
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 		go_into_suit(TRUE)
 
@@ -105,9 +108,40 @@
 		to_chat(owner, span_warning("AHELP if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
 		stack_trace("Protean is immobilized coming out of their suit!")
 
+/obj/item/organ/brain/protean/proc/replace_limbs()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/eyes/robotic/protean/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/tongue/cybernetic/protean/tongue = owner.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/ears/cybernetic/protean/ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
+
+	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
+		to_chat(owner, span_warning("Not enough metal to heal body!"))
+		return
+	if(istype(owner.loc, /obj/item/mod/control))
+		to_chat(owner, span_warning("Not in the open. You must be inside your suit!"))
+		return
+	stomach.metal = clamp(stomach.metal - (PROTEAN_STOMACH_FULL * 0.6), 0, 10)
+	owner.fully_heal(HEAL_LIMBS)
+	if(isnull(eyes))
+		eyes = new /obj/item/organ/eyes/robotic/protean
+		eyes.on_bodypart_insert()
+		eyes.Insert(owner, TRUE)
+
+	if(isnull(tongue))
+		tongue = new /obj/item/organ/tongue/cybernetic/protean
+		tongue.on_bodypart_insert()
+		tongue.Insert(owner, TRUE)
+
+	if(isnull(ears))
+		ears = new /obj/item/organ/ears/cybernetic/protean
+		ears.on_bodypart_insert()
+		ears.Insert(owner, TRUE)
+
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
-	owner.heal_and_revive(revive_message = "You have regained your mass and fully repaired yourself.")
+	playsound(owner, 'sound/machines/ping.ogg', 30)
+	to_chat(owner, span_warning("You have regained all your mass!"))
+	owner.fully_heal()
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"
