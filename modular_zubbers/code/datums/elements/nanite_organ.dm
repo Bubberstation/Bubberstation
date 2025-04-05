@@ -18,5 +18,5 @@
 
 	if(QDELETED(organ))
 		return
-	organ.balloon_alert_to_viewers("the organ melts into metallic slop")
-	qdel(organ)
+	QDEL_IN(organ, 5 SECONDS)
+	organ.balloon_alert_to_viewers("the organ is melting")
