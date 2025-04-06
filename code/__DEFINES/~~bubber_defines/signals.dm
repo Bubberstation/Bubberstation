@@ -14,3 +14,5 @@
 #define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
 /// From [/mob/living/carbon/human/verb/safeword]: (mob/living/carbon)
 #define COMSIG_OOC_ESCAPE "ooc_escape"
+/// From [/datum/outfit]: (datum/outfit)
+#define COMSIG_OUTFIT_EQUIP "outfit_equip"

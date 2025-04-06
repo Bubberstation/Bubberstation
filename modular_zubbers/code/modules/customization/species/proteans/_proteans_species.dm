@@ -91,8 +91,8 @@
 /datum/species/protean/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 	owner = gainer
-
 	equip_modsuit(gainer)
+	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
 	var/static/protean_verbs = list(
@@ -118,6 +118,16 @@
 		gainer.dropItemToGround(item_in_slot, force = TRUE)
 	return gainer.equip_to_slot_if_possible(species_modsuit, ITEM_SLOT_BACK, disable_warning = TRUE)
 
+/datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit)
+	SIGNAL_HANDLER
+	var/obj/item/mod/control/suit
+	if(ispath(outfit.back, /obj/item/mod/control))
+		var/control_path = outfit.back
+		suit = new control_path()
+		species_modsuit.assimilate_modsuit(owner, suit, TRUE)
+		species_modsuit.quick_activation()
+		return
+	return message_admins("failed to give modsuit")
 /datum/species/protean/allows_food_preferences()
 	return FALSE
 
