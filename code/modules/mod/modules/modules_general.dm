@@ -612,7 +612,7 @@
 		var/obj/item/mod/control/pre_equipped/protean/p_suit = mod
 		var/obj/item/mod/core/protean/p_core = mod.core
 		var/datum/species/protean/species = p_core.linked_species
-		if(species.owner == p_suit.loc)
+		if(species.owner.loc == p_suit.loc)
 			return balloon_alert(p_suit.wearer, "button unresponsive")
 	/// Bubber Edit End
 	dna = mod.wearer.dna.unique_enzymes
