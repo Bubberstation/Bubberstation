@@ -1,6 +1,7 @@
 // Element added to some Protean organs.
 
 /datum/element/nanite_organ
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/nanite_organ/Attach(obj/item/organ/target)
 	. = ..()
@@ -21,5 +22,5 @@
 
 	if(QDELETED(organ))
 		return
-	organ.balloon_alert_to_viewers("the organ is melting")
+
 	QDEL_IN(organ, 5 SECONDS)
