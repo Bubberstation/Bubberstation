@@ -125,14 +125,14 @@
 		assimilate_modsuit(user, tool)
 		return ITEM_INTERACT_SUCCESS
 
-/obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit)
+/obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
 
 	if(stored_modsuit)
 		to_chat(user, span_warning("Can't absorb two modsuits!"))
 		return
-	if(!user.transferItemToLoc(to_assimilate, src))
-		balloon_alert("stuck!")
+	if(!user.transferItemToLoc(to_assimilate, src, forced))
+		balloon_alert(wearer, "stuck!")
 		return
 	stored_modsuit = to_assimilate
 	stored_theme = theme // Store the old theme in cache
