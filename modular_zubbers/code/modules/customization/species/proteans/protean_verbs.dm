@@ -18,11 +18,10 @@
 	if(!istype(brain))
 		return
 
-	if(incapacitated)
+	var/datum/species/protean/species = dna.species
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	if(incapacitated && loc != suit)
 		balloon_alert(src, "incapacitated!")
-		return
-
-	if(!do_after(src, 30 SECONDS))
 		return
 
 	brain.replace_limbs()
@@ -39,7 +38,8 @@
 
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	species.species_modsuit.toggle_lock()
-	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) ? "" : "onto [suit.wearer]"]"))
+	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) && loc != suit ? "" : "onto [suit.wearer]"]"))
+	playsound(src, 'sound/machines/click.ogg', 25)
 
 /mob/living/carbon/proc/suit_transformation()
 	set name = "Toggle Suit Transformation"

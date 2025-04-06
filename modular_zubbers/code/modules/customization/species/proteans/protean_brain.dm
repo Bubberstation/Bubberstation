@@ -85,7 +85,7 @@
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
-	owner.dropItemToGround(suit, TRUE, TRUE, TRUE)
+	suit.drop_suit()
 	owner.forceMove(suit)
 	REMOVE_TRAIT(suit, TRAIT_NODROP, "protean")
 	sleep(12)
@@ -125,6 +125,10 @@
 	if(istype(owner.loc, /obj/item/mod/control))
 		to_chat(owner, span_warning("Not in the open. You must be inside your suit!"))
 		return
+	var/datum/species/protean/species = owner.dna.species
+	if(!do_after(src, 30 SECONDS, species_modsuit))
+		return
+
 	stomach.metal = clamp(stomach.metal - (PROTEAN_STOMACH_FULL * 0.6), 0, 10)
 	owner.fully_heal(HEAL_LIMBS)
 	if(isnull(eyes))
