@@ -118,7 +118,7 @@
 		gainer.dropItemToGround(item_in_slot, force = TRUE)
 	return gainer.equip_to_slot_if_possible(species_modsuit, ITEM_SLOT_BACK, disable_warning = TRUE)
 
-/datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit)
+/datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit, visuals_only) // Very snowflakey code. I'm not making outfits for every job.
 	SIGNAL_HANDLER
 	var/obj/item/mod/control/suit
 	if(ispath(outfit.back, /obj/item/mod/control))
@@ -126,13 +126,30 @@
 		suit = new control_path()
 		species_modsuit.assimilate_modsuit(owner, suit, TRUE)
 		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
-		return
+
+	if(outfit.box)
+		if(!outfit.backpack_contents)
+			outfit.backpack_contents = list()
+		outfit.backpack_contents.Insert(1, outfit.box)
+		outfit.backpack_contents[outfit.box] = 1
+
+	if(outfit.backpack_contents)
+		for(var/path in outfit.backpack_contents)
+			var/number = outfit.backpack_contents[path]
+			if(!isnum(number))//Default to 1
+				number = 1
+			for(var/i in 1 to number) // Copy and paste of EQUIP_OUTFIT_ITEM
+				owner.equip_to_slot_or_del(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACKPACK, TRUE, TRUE)
+				var/obj/item/outfit_item = owner.get_item_by_slot(ITEM_SLOT_BACKPACK)
+				if(outfit_item && outfit_item.type == path)
+					outfit_item.on_outfit_equip(owner, visuals_only, ITEM_SLOT_BACKPACK)
 
 /datum/species/protean/allows_food_preferences()
 	return FALSE
 
 /datum/species/protean/get_species_description()
-	return "Trillions of small machines swarm into a single crewmember. This is a Protean, a walking coherent blob of metallic mass, and a churning factory that turns materials into more of itself. \
+	return list(
+			"Trillions of small machines swarm into a single crewmember. This is a Protean, a walking coherent blob of metallic mass, and a churning factory that turns materials into more of itself. \
 			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
 			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
-			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings."
+			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings.")

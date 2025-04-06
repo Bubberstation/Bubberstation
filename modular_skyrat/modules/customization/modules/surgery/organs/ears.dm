@@ -4,6 +4,7 @@
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
+	organ_flags = ORGAN_ORGANIC | ORGAN_EXTERNAL | ORGAN_VIRGIN
 
 /obj/item/organ/ears/cat
 

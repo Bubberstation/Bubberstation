@@ -1,0 +1,70 @@
+/mob/living/carbon/proc/protean_ui()
+	set name = "Open Suit UI"
+	set desc = "Opens your suit UI"
+	set category = "Protean"
+
+	var/datum/species/protean/species = dna.species
+	if(!istype(species))
+		return
+	species.species_modsuit.ui_interact(src)
+
+/mob/living/carbon/proc/protean_heal()
+	set name = "Heal Organs and Limbs"
+	set desc = "Heals your replacable organs and limbs with 6 metal."
+	set category = "Protean"
+
+	var/obj/item/organ/brain/protean/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+
+	if(!istype(brain))
+		return
+
+	if(incapacitated)
+		balloon_alert(src, "incapacitated!")
+		return
+
+	if(!do_after(src, 30 SECONDS))
+		return
+
+	brain.replace_limbs()
+
+/mob/living/carbon/proc/lock_suit()
+	set name = "Lock Suit"
+	set desc = "Locks your suit on someone"
+	set category = "Protean"
+
+	var/datum/species/protean/species = dna.species
+
+	if(!istype(species))
+		return
+
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	species.species_modsuit.toggle_lock()
+	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) ? "" : "onto [suit.wearer]"]"))
+
+/mob/living/carbon/proc/suit_transformation()
+	set name = "Toggle Suit Transformation"
+	set desc = "Either leave or enter your suit."
+	set category = "Protean"
+	var/obj/item/organ/brain/protean/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+
+	if(!istype(brain))
+		return
+	if(!do_after(src, 3 SECONDS, timed_action_flags = IGNORE_INCAPACITATED))
+		return
+	var/datum/species/protean/species = dna.species
+	if(loc == species.species_modsuit)
+		brain.leave_modsuit()
+	else if(isturf(loc) && !incapacitated)
+		brain.go_into_suit()
+/*
+/mob/living/carbon/proc/brainwash_wearer()
+	set name = "Brainwash Wearer"
+	set desc = "You can hijack a wearer to do your evil deeds"
+	set category = "Protean"
+
+	var/mob/living/carbon/user = usr
+	var/datum/species/protean/species = user.dna
+	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
+	if(user.mind.has_antag_datum() && isprotean(user))
+		suit.brainwash != suit.brainwash
+*/

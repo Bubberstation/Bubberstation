@@ -9,7 +9,8 @@
 	if(QDELETED(target))
 		return
 	RegisterSignal(target, COMSIG_ORGAN_REMOVED, PROC_REF(on_removed))
-	target.add_atom_colour(COLOR_GRAY, FIXED_COLOUR_PRIORITY) // Does a tree scream in the woods? More importantly, can you see the color of an organ that deletes itself?
+	if(!istype(target, /obj/item/organ/eyes))
+		target.add_atom_colour(COLOR_GRAY, FIXED_COLOUR_PRIORITY) // Does a tree scream in the woods? More importantly, can you see the color of an organ that deletes itself?
 
 /datum/element/nanite_organ/Detach(datum/source)
 	UnregisterSignal(COMSIG_ORGAN_REMOVED)
@@ -20,5 +21,5 @@
 
 	if(QDELETED(organ))
 		return
-	QDEL_IN(organ, 5 SECONDS)
 	organ.balloon_alert_to_viewers("the organ is melting")
+	QDEL_IN(organ, 5 SECONDS)
