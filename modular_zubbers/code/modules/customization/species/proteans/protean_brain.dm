@@ -100,10 +100,10 @@
 		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
 		return
 	suit.invisibility = 101
-	new /obj/effect/temp_visual/protean_from_suit(get_turf(suit), owner.dir)
+	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
 	sleep(12)
 	suit.drop_suit()
-	owner.forceMove(get_turf(suit))
+	owner.forceMove(suit.loc)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
 	owner.SetParalyzed(0, TRUE)

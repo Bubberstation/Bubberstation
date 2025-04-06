@@ -93,6 +93,8 @@
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
+	RegisterSignal(owner, COMSIG_ANTAGONIST_GAINED, PROC_REF(antag_gained))
+	RegisterSignal(owner, COMSIG_ANTAGONIST_REMOVED, PROC_REF(antag_removed))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
 	var/static/protean_verbs = list(
@@ -105,6 +107,7 @@
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
+	UnregisterSignal(COMSIG_ANTAGONIST_GAINED, COMSIG_ANTAGONIST_REMOVED)
 	owner = null
 	gainer.dropItemToGround(species_modsuit, TRUE)
 	QDEL_NULL(species_modsuit)
@@ -118,6 +121,26 @@
 		gainer.dropItemToGround(item_in_slot, force = TRUE)
 	return gainer.equip_to_slot_if_possible(species_modsuit, ITEM_SLOT_BACK, disable_warning = TRUE)
 
+/**
+ * Protean antag handling Procs
+ */
+
+/datum/species/protean/proc/antag_gained(mob/living/carbon/source, datum/antagonist)
+	SIGNAL_HANDLER
+	add_verb(source, /mob/living/carbon/proc/brainwash_wearer)
+
+/datum/species/protean/proc/antag_removed(mob/living/carbon/source, datum/antagonist)
+	SIGNAL_HANDLER
+	remove_verb(source, /mob/living/carbon/proc/brainwash_wearer)
+
+/**
+ * Protean Outfit Handling and Logic ----------------------------------------
+ * Proteans get really fucky with outfit logic, so I've appended a COMSIG_OUTFIT_EQUIP signal at the end of /datum/outfit/proc/equip.
+ * Basically what this does, is once outfit code has been ran, it will go through the assigned outfit again.
+ * It assimilates any modsuits, gives you a storage if you're missing it, and places contents into said storage.
+ * Yes, this is really snowflakey but I've been bashing my head against the wall for 4 hours trying to figure this out.
+ * -------------------------------------------------------------------------- */
+
 /datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit, visuals_only) // Very snowflakey code. I'm not making outfits for every job.
 	SIGNAL_HANDLER
 	var/obj/item/mod/control/suit
@@ -127,11 +150,10 @@
 		species_modsuit.assimilate_modsuit(owner, suit, TRUE)
 		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
 
-	if(outfit.box)
-		if(!outfit.backpack_contents)
-			outfit.backpack_contents = list()
-		outfit.backpack_contents.Insert(1, outfit.box)
-		outfit.backpack_contents[outfit.box] = 1
+	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
+	if(!storage)
+		storage = new()
+		species_modsuit.install(storage, owner, TRUE)
 
 	if(outfit.backpack_contents)
 		for(var/path in outfit.backpack_contents)

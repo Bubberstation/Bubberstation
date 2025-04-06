@@ -56,7 +56,7 @@
 		brain.leave_modsuit()
 	else if(isturf(loc) && !incapacitated)
 		brain.go_into_suit()
-/*
+
 /mob/living/carbon/proc/brainwash_wearer()
 	set name = "Brainwash Wearer"
 	set desc = "You can hijack a wearer to do your evil deeds"
@@ -66,5 +66,4 @@
 	var/datum/species/protean/species = user.dna
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	if(user.mind.has_antag_datum() && isprotean(user))
-		suit.brainwash != suit.brainwash
-*/
+		suit.brainwash = !suit.brainwash
