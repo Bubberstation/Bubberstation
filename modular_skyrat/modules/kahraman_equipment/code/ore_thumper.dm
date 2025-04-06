@@ -272,3 +272,5 @@
 
 /obj/item/flatpacked_machine/ore_thumper/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+
+#undef SLAM_JAM_DELAY

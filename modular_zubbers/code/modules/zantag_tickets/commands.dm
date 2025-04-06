@@ -5,7 +5,7 @@
 	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
 
 	if(!antag_ticket_rate)
-		to_chat(span_notice("Antag tickets are currently disabled."))
+		to_chat(src,span_notice("Antag tickets are currently disabled."))
 		return
 
 	var/antag_ticket_count = get_antag_tickets()

@@ -25,7 +25,6 @@
 	description = "A drug originally developed by and for plutonians to assist them during raids. \
 		Does not see wide use due to the whole reality-disassociation and heart disease thing afterwards. \
 		Can be intentionally overdosed to increase the drug's effects"
-	reagent_state = LIQUID
 	color = "#c22a44"
 	taste_description = "television static"
 	metabolization_rate = 0.65 * REAGENTS_METABOLISM
@@ -206,6 +205,8 @@
 // Movespeed modifier used by twitch when someone has it in their system
 /datum/movespeed_modifier/reagent/twitch
 	multiplicative_slowdown = -0.4
+
+#undef CONSTANT_DOSE_SAFE_LIMIT
 
 #undef TWITCH_SCREEN_FILTER
 #undef TWITCH_SCREEN_BLUR

@@ -4,4 +4,4 @@
 
 /// Gets the name of the wound with any interactable topic if possible
 /datum/wound/proc/get_topic_name(mob/user)
-	return show_wound_topic(user) ? "<a href='?src=[REF(src)];wound_topic=1'>[lowertext(name)]</a>" : lowertext(name)
+	return show_wound_topic(user) ? "<a href='byond://?src=[REF(src)];wound_topic=1'>[LOWER_TEXT(name)]</a>" : LOWER_TEXT(name)

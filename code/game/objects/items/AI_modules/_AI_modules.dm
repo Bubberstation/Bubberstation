@@ -23,7 +23,7 @@
 
 /obj/item/ai_module/Initialize(mapload)
 	. = ..()
-	if(mapload && HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) && is_station_level(z))
+	if(mapload && (HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) || HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI)) && is_station_level(z)) //Bubber edit HoS AI station trait
 		var/delete_module = handle_unique_ai()
 		if(delete_module)
 			return INITIALIZE_HINT_QDEL
@@ -36,7 +36,7 @@
 
 /obj/item/ai_module/attack_self(mob/user as mob)
 	..()
-	to_chat(user, examine_block(display_laws()))
+	to_chat(user, boxed_message(display_laws()))
 
 /// Returns a text display of the laws for the module.
 /obj/item/ai_module/proc/display_laws()

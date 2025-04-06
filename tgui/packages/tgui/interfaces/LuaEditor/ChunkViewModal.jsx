@@ -1,7 +1,7 @@
 import hljs from 'highlight.js/lib/core';
 
 import { useLocalState } from '../../backend';
-import { Box, Button, Modal, Section } from '../../components';
+import { Box, Button, Modal, Section } from 'tgui-core/components';
 import { sanitizeText } from '../../sanitize';
 
 export const ChunkViewModal = (props) => {

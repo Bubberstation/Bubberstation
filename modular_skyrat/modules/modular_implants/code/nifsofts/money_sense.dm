@@ -7,7 +7,7 @@
 	program_desc = "Connects the user's brain to a database containing the current monetary values for most items, allowing them to determine their value in realtime"
 	active_mode = TRUE
 	active_cost = 0.5
-	compatible_nifs = list(/obj/item/organ/internal/cyberimp/brain/nif/standard)
+	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
 	buying_category = NIFSOFT_CATEGORY_UTILITY
 	ui_icon = "coins"
 

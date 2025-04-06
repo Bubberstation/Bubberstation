@@ -110,8 +110,8 @@
 	inhand_icon_state = "frontier"
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/storage/medkit/frontier/stocked
@@ -140,8 +140,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	worn_icon_state = "frontier"
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 
 /obj/item/storage/medkit/combat_surgeon/Initialize(mapload)
 	. = ..()
@@ -173,8 +173,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_medkit
 	zip_slowdown = 0.25 // Most won't notice normally but it'll hurt you if you're a paramedic or in combat
@@ -251,6 +251,7 @@
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/storage/box/bandages,
@@ -269,8 +270,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_big_surgery
 	zip_slowdown = 0.5 // Its a bulkier bag and thus slows you down a little more when unzipped
@@ -353,6 +354,7 @@
 		/obj/item/stamp,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes,
 		/obj/item/surgicaldrill,
@@ -377,8 +379,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_paramedic
 	zip_slowdown = 0.3 // Midrange between the other two bags
@@ -414,6 +416,7 @@
 	. = ..()
 
 	can_hold = typecacheof(list(
+		/obj/item/blood_filter,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
