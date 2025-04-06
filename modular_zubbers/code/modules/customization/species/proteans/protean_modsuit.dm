@@ -12,10 +12,6 @@
 	var/obj/item/mod/control/stored_modsuit
 	var/datum/mod_theme/stored_theme
 
-	// Antag proteans can brainwash their wearers.
-	var/brainwash = FALSE
-	var/brainwash_message = "You are an extension of your suit's objectives. You will listen to them"
-
 /datum/mod_theme/protean
 	name = "Protean"
 
@@ -98,7 +94,7 @@
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/retract(mob/user, obj/item/part, instant)
-	if(!isprotean(user) && modlocked && active)
+	if(!isprotean(user) && modlocked && active && !instant)
 		balloon_alert(user, "that button is unresponsive")
 		return FALSE
 	return ..()
@@ -121,10 +117,17 @@
 
 	if(istype(tool, /obj/item/mod/control))
 		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
-		if(!do_after(user, 4 SECONDS)) // Bump this time to 20 seconds
+		if(!do_after(user, 4 SECONDS))
 			return
 		assimilate_modsuit(user, tool)
 		return ITEM_INTERACT_SUCCESS
+
+/obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
+	var/obj/item/mod/core/protean/source = core
+	var/datum/species/protean/species = source.linked_species
+	if(isprotean(species.owner) && species.owner == user && user.loc == src)
+		return 2
+	. = ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
@@ -156,14 +159,18 @@
 		balloon_alert(user, "need active hand")
 		return
 	to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
-	if(!do_after(user, 4 SECONDS)) // Bump this time to 30 seconds
+	if(!do_after(user, 4 SECONDS))
 		return
+	for(var/obj/item/part as anything in get_parts())
+		if(part.loc == src)
+			continue
+		retract(null, part, instant = TRUE)
+
 	complexity_max = initial(complexity_max)
 	for(var/obj/item/mod/module in modules) // Transfer back every module
 		if(stored_modsuit.install(module, user, TRUE))
 			continue
 		uninstall(module)
-
 
 	theme = stored_theme
 	stored_theme = null

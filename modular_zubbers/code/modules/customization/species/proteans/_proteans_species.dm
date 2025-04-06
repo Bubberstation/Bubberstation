@@ -93,8 +93,6 @@
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
-	RegisterSignal(owner, COMSIG_ANTAGONIST_GAINED, PROC_REF(antag_gained))
-	RegisterSignal(owner, COMSIG_ANTAGONIST_REMOVED, PROC_REF(antag_removed))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
 	var/static/protean_verbs = list(
@@ -120,18 +118,6 @@
 			stack_trace("Protean modsuit forced dropped a TRAIT_NODROP item on species equip. Type: [item_in_slot]")
 		gainer.dropItemToGround(item_in_slot, force = TRUE)
 	return gainer.equip_to_slot_if_possible(species_modsuit, ITEM_SLOT_BACK, disable_warning = TRUE)
-
-/**
- * Protean antag handling Procs
- */
-
-/datum/species/protean/proc/antag_gained(mob/living/carbon/source, datum/antagonist)
-	SIGNAL_HANDLER
-	add_verb(source, /mob/living/carbon/proc/brainwash_wearer)
-
-/datum/species/protean/proc/antag_removed(mob/living/carbon/source, datum/antagonist)
-	SIGNAL_HANDLER
-	remove_verb(source, /mob/living/carbon/proc/brainwash_wearer)
 
 /**
  * Protean Outfit Handling and Logic ----------------------------------------

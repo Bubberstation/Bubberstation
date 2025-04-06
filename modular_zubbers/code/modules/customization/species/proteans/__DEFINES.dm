@@ -2,6 +2,15 @@
  * These are Macros. Basically we have multiple body parts with identical logic. Each Macro will be explained bellow.
  * Instead of a 500 line file with identical code, element, or compoment: a macro is used as a short cut to condense the logic.
 */
+/// Brute damage messages
+#define LIGHT_NANO_BRUTE "scratched"
+#define MEDIUM_NANO_BRUTE "festering"
+#define HEAVY_NANO_BRUTE "falling apart"
+
+/// Burn damage messages
+#define LIGHT_NANO_BURN "scorched"
+#define MEDIUM_NANO_BURN "melted"
+#define HEAVY_NANO_BURN "boiling"
 
 /obj/item/bodypart
 	var/bodypart_species
@@ -23,6 +32,15 @@
 	max_damage = ##health; \
 	bodypart_species = SPECIES_PROTEAN; \
 	bodytype = parent_type::bodytype | BODYTYPE_NANO; \
+	dmg_overlay_type = "robotic"; \
+	brute_modifier = 0.8; \
+	burn_modifier = 1.2; \
+	light_brute_msg = LIGHT_NANO_BRUTE; \
+	medium_brute_msg = MEDIUM_NANO_BRUTE; \
+	heavy_brute_msg = HEAVY_NANO_BRUTE; \
+	light_burn_msg = LIGHT_NANO_BURN; \
+	medium_burn_msg = MEDIUM_NANO_BURN; \
+	heavy_burn_msg = HEAVY_NANO_BURN; \
 	var/qdel_timer; \
 }
 
