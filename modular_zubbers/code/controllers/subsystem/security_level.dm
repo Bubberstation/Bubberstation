@@ -10,9 +10,9 @@
 	if(GLOB.roundend_mapvote_called || SSmap_vote.next_map_config)
 		return
 
+	GLOB.roundend_mapvote_called = TRUE
 	addtimer(CALLBACK(src, PROC_REF(async_map_vote)), offset)
 
 /// Calls a map vote only if there has not yet been an automatically triggered map vote.
 /datum/controller/subsystem/security_level/proc/async_map_vote()
 	INVOKE_ASYNC(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), /datum/vote/map_vote, vote_initiator_name = "Map Rotation", forced = TRUE)
-	GLOB.roundend_mapvote_called = TRUE
