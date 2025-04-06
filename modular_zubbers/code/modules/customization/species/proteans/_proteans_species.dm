@@ -125,9 +125,9 @@
 		var/control_path = outfit.back
 		suit = new control_path()
 		species_modsuit.assimilate_modsuit(owner, suit, TRUE)
-		species_modsuit.quick_activation()
+		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
 		return
-	return message_admins("failed to give modsuit")
+
 /datum/species/protean/allows_food_preferences()
 	return FALSE
 
