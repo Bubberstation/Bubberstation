@@ -105,7 +105,6 @@
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
-	UnregisterSignal(COMSIG_ANTAGONIST_GAINED, COMSIG_ANTAGONIST_REMOVED)
 	owner = null
 	gainer.dropItemToGround(species_modsuit, TRUE)
 	QDEL_NULL(species_modsuit)
