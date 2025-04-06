@@ -12,6 +12,9 @@
 #define MEDIUM_NANO_BURN "melted"
 #define HEAVY_NANO_BURN "boiling"
 
+#define BRUTE_EXAMINE_NANO "deformation"
+#define BURN_EXAMINE_NANO "scorching"
+
 /obj/item/bodypart
 	var/bodypart_species
 
@@ -31,7 +34,7 @@
 ##path {\
 	max_damage = ##health; \
 	bodypart_species = SPECIES_PROTEAN; \
-	bodytype = parent_type::bodytype | BODYTYPE_NANO; \
+	bodytype = BODYTYPE_NANO | BODYTYPE_ROBOTIC; \
 	dmg_overlay_type = "robotic"; \
 	brute_modifier = 0.8; \
 	burn_modifier = 1.2; \
@@ -41,6 +44,7 @@
 	light_burn_msg = LIGHT_NANO_BURN; \
 	medium_burn_msg = MEDIUM_NANO_BURN; \
 	heavy_burn_msg = HEAVY_NANO_BURN; \
+	damage_examines = list(BRUTE = BRUTE_EXAMINE_NANO, BURN = BURN_EXAMINE_NANO); \
 	var/qdel_timer; \
 }
 
@@ -83,8 +87,61 @@ PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/chest/mutant/protean, LIMB_MAX_HP_COR
 // Limbs
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/left/mutant/protean, 40)
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/right/mutant/protean, 40)
-PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/leg/left/mutant/protean, 40)
-PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/leg/right/mutant/protean, 40)
+
+/// Legs are a little more special, so they're not macro'd
+/obj/item/bodypart/leg/right/mutant/protean
+	max_damage = 40
+	bodypart_species = SPECIES_PROTEAN
+	bodytype = BODYTYPE_NANO | BODYTYPE_ROBOTIC
+	dmg_overlay_type = "robotic"
+	brute_modifier = 0.8
+	burn_modifier = 1.2
+	light_brute_msg = LIGHT_NANO_BRUTE
+	medium_brute_msg = MEDIUM_NANO_BRUTE
+	heavy_brute_msg = HEAVY_NANO_BRUTE
+	light_burn_msg = LIGHT_NANO_BURN
+	medium_burn_msg = MEDIUM_NANO_BURN
+	heavy_burn_msg = HEAVY_NANO_BRUTE
+	damage_examines = list(BRUTE = BRUTE_EXAMINE_NANO, BURN = BURN_EXAMINE_NANO)
+	digitigrade_type = /obj/item/bodypart/leg/right/mutant/protean/digitigrade
+	var/qdel_timer
+
+/obj/item/bodypart/leg/left/mutant/protean
+	max_damage = 40
+	bodypart_species = SPECIES_PROTEAN
+	bodytype = BODYTYPE_NANO | BODYTYPE_ROBOTIC
+	dmg_overlay_type = "robotic"
+	brute_modifier = 0.8
+	burn_modifier = 1.2
+	light_brute_msg = LIGHT_NANO_BRUTE
+	medium_brute_msg = MEDIUM_NANO_BRUTE
+	heavy_brute_msg = HEAVY_NANO_BRUTE
+	light_burn_msg = LIGHT_NANO_BURN
+	medium_burn_msg = MEDIUM_NANO_BURN
+	heavy_burn_msg = HEAVY_NANO_BRUTE
+	damage_examines = list(BRUTE = BRUTE_EXAMINE_NANO, BURN = BURN_EXAMINE_NANO)
+	digitigrade_type = /obj/item/bodypart/leg/left/mutant/protean/digitigrade
+	var/qdel_timer
+
+/obj/item/bodypart/leg/right/mutant/protean/digitigrade
+	icon_greyscale = BODYPART_ICON_MAMMAL
+	limb_id = BODYPART_ID_DIGITIGRADE
+	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	base_limb_id = BODYPART_ID_DIGITIGRADE
+
+/obj/item/bodypart/leg/right/mutant/protean/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
+	. = ..()
+	check_mutant_compatability()
+
+/obj/item/bodypart/leg/left/mutant/protean/digitigrade
+	icon_greyscale = BODYPART_ICON_MAMMAL
+	limb_id = BODYPART_ID_DIGITIGRADE
+	bodyshape = parent_type::bodyshape | BODYSHAPE_DIGITIGRADE
+	base_limb_id = BODYPART_ID_DIGITIGRADE
+
+/obj/item/bodypart/leg/left/mutant/protean/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
+	. = ..()
+	check_mutant_compatability()
 
 PROTEAN_DELIMB_DEFINE(/obj/item/bodypart/arm/left/mutant/protean)
 PROTEAN_DELIMB_DEFINE(/obj/item/bodypart/arm/right/mutant/protean)
@@ -98,3 +155,4 @@ PROTEAN_LIMB_ATTACH(/obj/item/bodypart/leg/right/mutant/protean)
 
 #undef PROTEAN_BODYPART_DEFINE
 #undef PROTEAN_DELIMB_DEFINE
+#undef PROTEAN_LIMB_ATTACH

@@ -84,7 +84,7 @@
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
-	owner.Paralyze(INFINITY, TRUE)
+	owner.Stun(INFINITY, TRUE)
 	owner.dropItemToGround(suit, TRUE, TRUE, TRUE)
 	owner.forceMove(suit)
 	REMOVE_TRAIT(suit, TRAIT_NODROP, "protean")
@@ -106,7 +106,7 @@
 	owner.forceMove(suit.loc)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
-	owner.SetParalyzed(0, TRUE)
+	owner.SetStun(0, TRUE)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 	if(owner.IsParalyzed())

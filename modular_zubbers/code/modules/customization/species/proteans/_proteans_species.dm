@@ -151,6 +151,11 @@
 				if(outfit_item && outfit_item.type == path)
 					outfit_item.on_outfit_equip(owner, visuals_only, ITEM_SLOT_BACKPACK)
 
+/datum/species/protean/get_default_mutant_bodyparts()
+	return list(
+		"legs" = list("Normal Legs", FALSE)
+	)
+
 /datum/species/protean/allows_food_preferences()
 	return FALSE
 
