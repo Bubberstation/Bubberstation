@@ -203,8 +203,8 @@
 	base_icon_state = "security_eyepatch"
 
 /obj/item/clothing/glasses/hud/security/night
-	icon_state = "security_hud_nv"
-	glass_colour_type = /datum/client_colour/glass_colour/green
+	icon = 'icons/obj/clothing/glasses.dmi'
+	worn_icon = 'icons/mob/clothing/eyes.dmi'
 
 /*
 * HEAD
