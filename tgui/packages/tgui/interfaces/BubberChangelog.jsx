@@ -133,7 +133,7 @@ const ChangelogList = (props) => {
       <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
         <Box ml={3}>
           {bubberContents[date] && (
-            <Section>
+            <Section mb={-2}>
               {Object.entries(bubberContents[date]).map(([name, changes]) => (
                 <BubberChangelogEntry
                   key={name}
@@ -144,7 +144,7 @@ const ChangelogList = (props) => {
             </Section>
           )}
           {contents[date] && (
-            <Section mt={-3.5}>
+            <Section mt={-1}>
               {Object.entries(contents[date]).map(([name, changes]) => (
                 <ChangelogEntry key={name} author={name} changes={changes} />
               ))}
@@ -166,7 +166,7 @@ const BubberChangelogEntry = (props) => {
           {author} changed:
         </h4>
       </Box>
-      <Box ml={3} mt="-3px">
+      <Box ml={3} mt={-0.2}>
         <Table>
           {changes.map((change) => {
             const changeType = Object.keys(change)[0];
@@ -189,6 +189,7 @@ const BubberChangelogEntry = (props) => {
                         ? icons[changeType].icon
                         : icons['unknown'].icon
                     }
+                    verticalAlign="middle"
                   />
                 </Table.Cell>
                 <Table.Cell className="Changelog__Cell">
@@ -214,7 +215,7 @@ const ChangelogEntry = (props) => {
           {author} changed:
         </h4>
       </Box>
-      <Box ml={3} mt="-3px">
+      <Box ml={3} mt={-0.2}>
         <Table>
           {changes.map((change) => {
             const changeType = Object.keys(change)[0];
@@ -237,6 +238,7 @@ const ChangelogEntry = (props) => {
                         ? icons[changeType].icon
                         : icons['unknown'].icon
                     }
+                    verticalAlign="middle"
                   />
                 </Table.Cell>
                 <Table.Cell className="Changelog__Cell">
