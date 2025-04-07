@@ -310,10 +310,10 @@ export const BubberChangelog = (props) => {
       <h1>Bubberstation 13</h1>
       <p>
         <b>Thanks to: </b>
-        /tg/ Station, Effigy, Skyrat Space Station 13, Baystation 12,
-        /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation
-        devs, the original Space Station 13 developers, and the countless others
-        who have contributed to the game.
+        /tg/station 13, Effigy, Stellar Haven, Baystation 12, /vg/station,
+        NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the
+        original Space Station 13 developers, and the countless others who have
+        contributed to the game.
       </p>
       <p>
         {'Current organization members can be found '}
