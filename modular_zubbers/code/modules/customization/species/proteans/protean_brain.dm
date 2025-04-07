@@ -81,8 +81,9 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
-	if(!do_after(owner, 5 SECONDS) && !forced)
-		return
+	if(!forced)
+		if(!do_after(owner, 5 SECONDS))
+			return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
