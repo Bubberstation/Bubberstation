@@ -241,6 +241,11 @@
 		add_observer(ghost, (host == ckey))
 	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
 
+	//Bubber Edit - retain respawn timer
+	var/mob/dead_player_mob = get_mob_by_ckey(ckey)
+	dead_player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
+	//BUBBER EDIT END
+
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
 			unregister_player_signals(player)
