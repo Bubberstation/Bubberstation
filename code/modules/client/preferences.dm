@@ -146,10 +146,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		character_preview_view = create_character_preview_view(user)
-
 		ui = new(user, src, "PreferencesMenu")
 		ui.set_autoupdate(FALSE)
 		ui.open()
+		character_preview_view.display_to(user, ui.window)
 
 /datum/preferences/ui_state(mob/user)
 	return GLOB.always_state
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/ui_assets(mob/user)
 	var/list/assets = list(
-		get_asset_datum(/datum/asset/spritesheet/preferences),
+		get_asset_datum(/datum/asset/spritesheet_batched/preferences),
 		get_asset_datum(/datum/asset/json/preferences),
 	)
 
@@ -309,6 +309,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			character_preview_view.update_body()
 			return TRUE
 
+		//BUBBER EDIT ADDITION START: Background Selection
+		if("update_background")
+			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
+			return TRUE
+		//BUBBER EDIT ADDITION END: Background Selection
+
 		if ("open_food")
 			GLOB.food_prefs_menu.ui_interact(usr)
 			return TRUE
@@ -381,7 +387,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character_preview_view = new(null, src)
 	character_preview_view.generate_view("character_preview_[REF(character_preview_view)]")
 	character_preview_view.update_body()
-	character_preview_view.display_to(user)
 
 	return character_preview_view
 
@@ -432,11 +437,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
 
+	// BUBBER EDIT ADDITION START: Better character preview: Rescales between 32x32, 64x64 and 96x96.
+	var/image/canvas
+	var/last_canvas_size
+	var/last_canvas_state
+	// BUBBER EDIT END
+
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
 /atom/movable/screen/map_view/char_preview/Destroy()
+	// BUBBER EDIT ADDITION START: Better character preview
+	canvas?.cut_overlays()
+	QDEL_NULL(canvas)
+	// BUBBER EDIT END
 	QDEL_NULL(body)
 	preferences?.character_preview_view = null
 	preferences = null
@@ -449,7 +464,44 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		body.wipe_state()
 
-	appearance = preferences.render_new_preview_appearance(body, show_job_clothes)
+	// BUBBER STATION EDIT BEGIN: Better character preview
+	// appearance = preferences.render_new_preview_appearance(body, show_job_clothes) // ORIGINAL CODE
+	if (canvas)
+		canvas.cut_overlays()
+
+	preferences.render_new_preview_appearance(body, show_job_clothes)
+
+	var/canvas_size = 0
+	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
+
+	// Being a taur, or over 1.1 scales it up
+	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+		canvas_size = 1
+	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
+		canvas_size = 1
+	// Add extra level if we're oversized
+	if (preferences.all_quirks.Find("Oversized"))
+		canvas_size += 1
+
+	if (last_canvas_size != canvas_size || last_canvas_state != canvas_state)
+		QDEL_NULL(canvas)
+		switch(canvas_size)
+			if(0)
+				body.pixel_x = 0
+				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = canvas_state)
+			if(1)
+				body.pixel_x = 16
+				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = canvas_state)
+			else
+				body.pixel_x = 32
+				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = canvas_state)
+
+	last_canvas_size = canvas_size
+	last_canvas_state = canvas_state
+
+	canvas.add_overlay(body.appearance)
+	appearance = canvas.appearance
+	// BUBBER EDIT END
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)

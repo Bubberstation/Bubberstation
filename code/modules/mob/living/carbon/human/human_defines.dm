@@ -5,10 +5,9 @@
 	icon = 'icons/mob/human/human.dmi'
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPSEC_FIRST_HUD,IMPSEC_SECOND_HUD,ANTAG_HUD,GLAND_HUD,FAN_HUD,PERMIT_HUD, DNR_HUD) //SKYRAT EDIT ADDITION - PERMIT_HUD, DNR_HUD
+	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPSEC_FIRST_HUD,IMPSEC_SECOND_HUD,ANTAG_HUD,GLAND_HUD,FAN_HUD,PERMIT_HUD,DNR_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD) //BUBBER EDIT ADDITION - PERMIT_HUD, DNR_HUD
 	hud_type = /datum/hud/human
 	pressure_resistance = 25
-	can_buckle = TRUE
 	buckle_lying = 0
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	can_be_shoved_into = TRUE
@@ -82,13 +81,6 @@
 
 	var/datum/physiology/physiology
 
-	/// What types of mobs are allowed to ride/buckle to this mob
-	var/static/list/can_ride_typecache = typecacheof(list(
-		/mob/living/basic/parrot,
-		/mob/living/carbon/human,
-		/mob/living/basic/slime,
-	))
-
 	var/account_id
 
 	var/hardcore_survival_score = 0
@@ -109,3 +101,9 @@
 	VAR_PRIVATE/base_mob_height = HUMAN_HEIGHT_MEDIUM
 	/// Actual height of the mob. Don't touch this one, it is set via update_mob_height()
 	VAR_FINAL/mob_height = HUMAN_HEIGHT_MEDIUM
+
+	// BUBBER EDIT START - Floating Hands quirk
+	var/obj/effect/abstract/held_tk_effect/left/held_left
+	var/obj/effect/abstract/held_tk_effect/right/held_right
+	var/held_hover_color
+	// BUBBER EDIT END

@@ -26,7 +26,10 @@
 /datum/bodypart_overlay/mutant/snout/override_color(rgb_value)
 	return draw_color
 
-/datum/bodypart_overlay/mutant/snout/can_draw_on_bodypart(mob/living/carbon/human/human)
+/datum/bodypart_overlay/mutant/snout/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	var/mob/living/carbon/human/human = bodypart_owner.owner
+	if(!human)
+		return TRUE
 	return !sprite_datum.is_hidden(human)
 
 
@@ -463,3 +466,15 @@
 	color_src = USE_MATRIXED_COLORS
 	name = "Renamon"
 	icon_state = "renamon"
+
+/datum/sprite_accessory/snouts/exsharp
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
+	color_src = USE_MATRIXED_COLORS
+	name = "Extra Sharp"
+	icon_state = "exsharp"
+
+/datum/sprite_accessory/snouts/mammal/masked_wing
+	name = "Masked Wing"
+	icon_state = "masked" // By @Sweettoothart
+	color_src = USE_ONE_COLOR
+	organ_type = /obj/item/organ/snout/top_adj

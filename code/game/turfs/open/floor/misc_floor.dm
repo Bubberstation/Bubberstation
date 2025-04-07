@@ -217,6 +217,10 @@
 	name = "black floor"
 	icon_state = "black"
 
+/turf/open/floor/greenscreen
+	name = "greenscreen"
+	icon_state = "green"
+
 /turf/open/floor/plastic
 	name = "plastic floor"
 	desc = "Cheap, lightweight flooring. Melts easily."
@@ -286,6 +290,9 @@
 		out of. It only makes sense in the context of space because you're trying to keep a freezing vacuum out. Is anyone following me on this? \
 		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
 	icon_state = "stone_floor"
+
+/turf/open/floor/stone/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/stone/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
