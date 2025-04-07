@@ -34,14 +34,14 @@
 	max_total_storage,
 )
 	. = ..()
-	var/static/list/exception_cache = typecacheof(list(
+
+	set_holdable(exception_hold_list = list(
 		/obj/item/katana,
 		/obj/item/toy/katana,
 		/obj/item/nullrod/claymore/katana,
 		/obj/item/energy_katana,
 		/obj/item/gun/ballistic/automatic/tommygun,
 	))
-	exception_hold = exception_cache
 
 /datum/storage/pockets/small/fedora/detective
 	attack_hand_interact = TRUE // so the detectives would discover pockets in their hats
@@ -121,7 +121,7 @@
 		/obj/item/seeds, // BUBBER EDIT ADDITION
 		/obj/item/card, // BUBBER EDIT ADDITION
 		)
-		)
+	)
 
 /datum/storage/pockets/shoes/clown/New(
 	atom/parent,
@@ -199,10 +199,12 @@
 	max_total_storage,
 )
 	. = ..()
-	set_holdable(list(/obj/item/reagent_containers/cup/glass/bottle/vodka,
-					  /obj/item/reagent_containers/cup/glass/bottle/molotov,
-					  /obj/item/reagent_containers/cup/glass/drinkingglass,
-					  /obj/item/ammo_box/strilka310))
+	set_holdable(list(
+		/obj/item/reagent_containers/cup/glass/bottle/vodka,
+		/obj/item/reagent_containers/cup/glass/bottle/molotov,
+		/obj/item/reagent_containers/cup/glass/drinkingglass,
+		/obj/item/ammo_box/strilka310
+	))
 
 
 /datum/storage/pockets/void_cloak
@@ -217,19 +219,22 @@
 	max_total_storage,
 )
 	. = ..()
-	set_holdable(list(
-		/obj/item/ammo_box/strilka310/lionhunter,
-		/obj/item/bodypart, // Bodyparts are often used in rituals. They're also often normal sized, so you can only fit one.
-		/obj/item/clothing/neck/eldritch_amulet,
-		/obj/item/clothing/neck/heretic_focus,
-		/obj/item/codex_cicatrix,
-		/obj/item/eldritch_potion,
-		/obj/item/food/grown/poppy, // Used to regain a Living Heart.
-		/obj/item/melee/rune_carver,
-		/obj/item/melee/sickly_blade, // Normal sized, so you can only fit one.
-		/obj/item/organ, // Organs are also often used in rituals.
-		/obj/item/reagent_containers/cup/beaker/eldritch,
-	))
-
-	var/static/list/exception_cache = typecacheof(list(/obj/item/bodypart, /obj/item/melee/sickly_blade))
-	exception_hold = exception_cache
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/ammo_box/strilka310/lionhunter,
+			/obj/item/bodypart, // Bodyparts are often used in rituals. They're also often normal sized, so you can only fit one.
+			/obj/item/clothing/neck/eldritch_amulet,
+			/obj/item/clothing/neck/heretic_focus,
+			/obj/item/codex_cicatrix,
+			/obj/item/eldritch_potion,
+			/obj/item/food/grown/poppy, // Used to regain a Living Heart.
+			/obj/item/melee/rune_carver,
+			/obj/item/melee/sickly_blade, // Normal sized, so you can only fit one.
+			/obj/item/organ, // Organs are also often used in rituals.
+			/obj/item/reagent_containers/cup/beaker/eldritch,
+		),
+		exception_hold_list = list(
+			/obj/item/bodypart,
+			/obj/item/melee/sickly_blade,
+		)
+	)
