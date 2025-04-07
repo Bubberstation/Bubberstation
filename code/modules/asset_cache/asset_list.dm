@@ -148,21 +148,25 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/changelog_item/New(date)
 	item_filename = SANITIZE_FILENAME("[date].yml")
 	SSassets.transport.register_asset(item_filename, file("html/changelogs/archive/" + item_filename))
+	SSassets.transport.register_asset("bubber_[item_filename]", file("html/changelogs/bubber_archive/" + item_filename)) // BUBBER EDIT ADDITION: Changelog 2
 
 /datum/asset/changelog_item/send(client)
 	if (!item_filename)
 		return
-	. = SSassets.transport.send_assets(client, item_filename)
+	// BUBBER EDIT CHANGE: Changelog 2: Original: . = SSassets.transport.send_assets(client, item_filename)
+	. = SSassets.transport.send_assets(client, list(item_filename, "bubber_[item_filename]"))
 
 /datum/asset/changelog_item/get_url_mappings()
 	if (!item_filename)
 		return
 	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
+	. += list("bubber_[item_filename]" = SSassets.transport.get_asset_url("bubber_[item_filename]")) // BUBBER EDIT ADDITION: Changelog 2
 
 /datum/asset/changelog_item/unregister()
 	if (!item_filename)
 		return
 	SSassets.transport.unregister_asset(item_filename)
+	SSassets.transport.unregister_asset("bubber_[item_filename]") // BUBBER EDIT ADDITION: Changelog 2
 
 //Generates assets based on iconstates of a single icon
 /datum/asset/simple/icon_states
