@@ -116,9 +116,12 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/mod/control))
+		if(active)
+			balloon_alert(user, "turn it off")
+			return ITEM_INTERACT_BLOCKING
 		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
 		if(!do_after(user, 4 SECONDS))
-			return
+			return ITEM_INTERACT_BLOCKING
 		assimilate_modsuit(user, tool)
 		return ITEM_INTERACT_SUCCESS
 
@@ -131,13 +134,25 @@
 
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
-
+	var/static/list/obj/item/control/banned_modsuits = list(
+		/obj/item/mod/control/pre_equipped/infiltrator,
+	)
 	if(stored_modsuit)
 		to_chat(user, span_warning("Can't absorb two modsuits!"))
+		if(forced)
+			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
+		return
+	if(to_assimilate in banned_modsuits)
+		balloon_alert(user, "incompatable")
 		return
 	if(!user.transferItemToLoc(to_assimilate, src, forced))
-		balloon_alert(wearer, "stuck!")
+		balloon_alert(user, "stuck!")
 		return
+	if(!forced)
+		for(var/obj/item/part as anything in get_parts())
+			if(part.loc == src)
+				continue
+			retract(null, part, instant = TRUE)
 	stored_modsuit = to_assimilate
 	stored_theme = theme // Store the old theme in cache
 	theme = to_assimilate.theme // Set new theme
@@ -145,17 +160,12 @@
 	skin = to_assimilate.skin // Inheret skin
 	theme.set_up_parts(src, skin) // Put everything together
 	name = to_assimilate.name
-	if(!forced)
-		for(var/obj/item/part as anything in get_parts())
-			if(part.loc == src)
-				continue
-			retract(null, part, instant = TRUE)
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
 		if(install(module, user, TRUE))
 			continue
 		uninstall(module) // Drop it if failed
 	update_static_data_for_all_viewers()
-	/obj/item/storage()
+
 /obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user)
 	if(active)
 		balloon_alert(user, "deactivate modsuit")
