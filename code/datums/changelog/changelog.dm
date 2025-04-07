@@ -21,6 +21,13 @@
 			changelog_items[params["date"]] = changelog_item
 		return ui.send_asset(changelog_item)
 
+// BUBBER EDIT CHANGE BEGIN: Changelog 2
+/datum/changelog/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/server_logos)
+	)
+// BUBBER EDIT CHANGE END: Changelog 2
+
 /datum/changelog/ui_static_data()
 	var/list/data = list( "dates" = list() )
 	var/regex/ymlRegex = regex(@"\.yml", "g")

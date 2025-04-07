@@ -6,6 +6,7 @@ import {
   Button,
   Dropdown,
   Icon,
+  Image,
   Section,
   Stack,
   Table,
@@ -131,16 +132,20 @@ const ChangelogList = (props) => {
     .map((date) => (
       <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
         <Box ml={3}>
-          {contents[date] && (
-            <Section title="TG">
-              {Object.entries(contents[date]).map(([name, changes]) => (
-                <ChangelogEntry key={name} author={name} changes={changes} />
+          {bubberContents[date] && (
+            <Section>
+              {Object.entries(bubberContents[date]).map(([name, changes]) => (
+                <BubberChangelogEntry
+                  key={name}
+                  author={name}
+                  changes={changes}
+                />
               ))}
             </Section>
           )}
-          {bubberContents[date] && (
-            <Section title="Bubber">
-              {Object.entries(bubberContents[date]).map(([name, changes]) => (
+          {contents[date] && (
+            <Section mt="-20px">
+              {Object.entries(contents[date]).map(([name, changes]) => (
                 <ChangelogEntry key={name} author={name} changes={changes} />
               ))}
             </Section>
@@ -150,13 +155,66 @@ const ChangelogList = (props) => {
     ));
 };
 
+const BubberChangelogEntry = (props) => {
+  const { author, changes } = props;
+
+  return (
+    <Stack.Item mb={-1} pb={1} key={author}>
+      <Box>
+        <h4>
+          <Image verticalAlign="bottom" src={resolveAsset('bubber_16.png')} />{' '}
+          {author} changed:
+        </h4>
+      </Box>
+      <Box ml={3} mt="-3px">
+        <Table>
+          {changes.map((change) => {
+            const changeType = Object.keys(change)[0];
+            return (
+              <Table.Row key={changeType + change[changeType]}>
+                <Table.Cell
+                  className={classes([
+                    'Changelog__Cell',
+                    'Changelog__Cell--Icon',
+                  ])}
+                >
+                  <Icon
+                    color={
+                      icons[changeType]
+                        ? icons[changeType].color
+                        : icons['unknown'].color
+                    }
+                    name={
+                      icons[changeType]
+                        ? icons[changeType].icon
+                        : icons['unknown'].icon
+                    }
+                  />
+                </Table.Cell>
+                <Table.Cell className="Changelog__Cell">
+                  {change[changeType]}
+                </Table.Cell>
+              </Table.Row>
+            );
+          })}
+        </Table>
+      </Box>
+    </Stack.Item>
+  );
+};
+
 const ChangelogEntry = (props) => {
   const { author, changes } = props;
 
   return (
-    <Stack.Item key={author}>
-      <h4>{author} changed:</h4>
-      <Box ml={3}>
+    <Stack.Item mb={-1} pb={1} key={author}>
+      <Box>
+        <h4>
+          <Image verticalAlign="bottom" src={resolveAsset('tg_16.png')} />{' '}
+          {author} changed:
+        </h4>
+      </Box>
+      <Box ml={3} mt="-3px">
         <Table>
           {changes.map((change) => {
             const changeType = Object.keys(change)[0];
