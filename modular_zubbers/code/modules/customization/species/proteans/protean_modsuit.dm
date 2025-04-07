@@ -119,6 +119,14 @@
 		if(active)
 			balloon_alert(user, "turn it off")
 			return ITEM_INTERACT_BLOCKING
+
+		var/static/list/obj/item/mod/control/banned_modsuits = list(
+				/obj/item/mod/control/pre_equipped/infiltrator,) // Really buggy.
+
+		if(is_type_in_list(tool, banned_modsuits))
+			balloon_alert(user, "incompatable")
+			return ITEM_INTERACT_BLOCKING
+
 		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
 		if(!do_after(user, 4 SECONDS))
 			return ITEM_INTERACT_BLOCKING
@@ -134,16 +142,10 @@
 
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
-	var/static/list/obj/item/mod/control/banned_modsuits = list(
-		/obj/item/mod/control/pre_equipped/infiltrator,
-	)
 	if(stored_modsuit)
 		to_chat(user, span_warning("Can't absorb two modsuits!"))
 		if(forced)
 			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
-		return
-	if(to_assimilate in banned_modsuits)
-		balloon_alert(user, "incompatable")
 		return
 	if(!user.transferItemToLoc(to_assimilate, src, forced))
 		balloon_alert(user, "stuck!")

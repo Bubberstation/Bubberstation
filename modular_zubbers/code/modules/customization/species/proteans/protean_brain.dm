@@ -89,7 +89,7 @@
 	owner.Stun(INFINITY, TRUE)
 	suit.drop_suit()
 	owner.forceMove(suit)
-	sleep(12)
+	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
 	owner.invisibility = initial(owner.invisibility)
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
@@ -104,7 +104,7 @@
 		return
 	suit.invisibility = 101
 	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
-	sleep(12)
+	sleep(12) //Same as above
 	suit.drop_suit()
 	owner.forceMove(suit.loc)
 	if(owner.get_item_by_slot(ITEM_SLOT_BACK))
@@ -114,7 +114,7 @@
 	owner.SetStun(0, TRUE)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
-	if(owner.IsParalyzed())
+	if(owner.IsStun())
 		to_chat(owner, span_warning("<b><span class='red>AHELP</span><b> if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
 		stack_trace("Protean is immobilized coming out of their suit!")
 
