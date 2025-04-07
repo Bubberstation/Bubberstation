@@ -845,6 +845,10 @@
 /mob/proc/check_respawn_delay(override_delay = 0)
 	if(!override_delay && !CONFIG_GET(number/respawn_delay))
 		return TRUE
+	//BUBBER EDIT 30 minute grace period
+	if(world.time < 30 MINUTES)
+		return TRUE
+	//BUBBER EDIT END
 
 	var/death_time = world.time - persistent_client.time_of_death
 
