@@ -846,7 +846,8 @@
 	if(!override_delay && !CONFIG_GET(number/respawn_delay))
 		return TRUE
 	//BUBBER EDIT 30 minute grace period
-	if(world.time < 30 MINUTES)
+	var/respawn_grace_period = CONFIG_GET(number/respawn_grace_period)
+	if(world.time < respawn_grace_period)
 		return TRUE
 	//BUBBER EDIT END
 
