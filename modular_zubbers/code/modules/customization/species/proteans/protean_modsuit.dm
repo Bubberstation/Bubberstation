@@ -255,15 +255,12 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
-	ASYNC
-		if(!do_after(user, 3 SECONDS))
-			return
-		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 
-		if (isnull(strip_menu))
-			strip_menu = new(species.owner, src)
-			LAZYSET(strip_menus, species.owner, strip_menu)
-		strip_menu.ui_interact(user)
+	var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
+	if (isnull(strip_menu))
+		strip_menu = new(species.owner, src)
+		LAZYSET(strip_menus, species.owner, strip_menu)
+	strip_menu.ui_interact(user)
 
 /datum/strip_menu/protean
 
