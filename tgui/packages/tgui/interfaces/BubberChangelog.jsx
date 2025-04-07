@@ -144,7 +144,7 @@ const ChangelogList = (props) => {
             </Section>
           )}
           {contents[date] && (
-            <Section mt="-20px">
+            <Section mt={-3.5}>
               {Object.entries(contents[date]).map(([name, changes]) => (
                 <ChangelogEntry key={name} author={name} changes={changes} />
               ))}
