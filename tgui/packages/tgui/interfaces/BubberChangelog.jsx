@@ -307,23 +307,26 @@ export const BubberChangelog = (props) => {
 
   const header = (
     <Section>
-      <h1>Traditional Games Space Station 13</h1>
+      <h1>Bubberstation 13</h1>
       <p>
         <b>Thanks to: </b>
-        Baystation 12, /vg/station, NTstation, CDK Station devs,
-        FacepunchStation, GoonStation devs, the original Space Station 13
-        developers, Invisty for the title image and the countless others who
-        have contributed to the game, issue tracker or wiki over the years.
+        /tg/ Station, Effigy, Skyrat Space Station 13, Baystation 12,
+        /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation
+        devs, the original Space Station 13 developers, and the countless others
+        who have contributed to the game.
       </p>
       <p>
         {'Current organization members can be found '}
-        <a href="https://github.com/orgs/tgstation/people">here</a>
+        <a href="https://github.com/orgs/Bubberstation/people">here</a>
         {', recent GitHub contributors can be found '}
-        <a href="https://github.com/tgstation/tgstation/pulse/monthly">here</a>.
+        <a href="https://github.com/Bubberstation/Bubberstation/pulse/monthly">
+          here
+        </a>
+        .
       </p>
       <p>
         {'You can also join our discord '}
-        <a href="https://tgstation13.org/phpBB/viewforum.php?f=60">here</a>.
+        <a href="https://discord.com/invite/AvjrTqnqEx">here</a>!
       </p>
       <DateDropdown
         dates={dates}
