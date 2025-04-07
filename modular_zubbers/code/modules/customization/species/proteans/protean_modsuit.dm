@@ -134,7 +134,7 @@
 
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
-	var/static/list/obj/item/control/banned_modsuits = list(
+	var/static/list/obj/item/mod/control/banned_modsuits = list(
 		/obj/item/mod/control/pre_equipped/infiltrator,
 	)
 	if(stored_modsuit)
