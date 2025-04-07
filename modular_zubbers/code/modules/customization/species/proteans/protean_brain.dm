@@ -81,7 +81,7 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
-	if(!do_after(owner, 5 SECONDS))
+	if(!do_after(owner, 5 SECONDS) && !forced)
 		return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
@@ -131,7 +131,7 @@
 		to_chat(owner, span_warning("Not in the open. You must be inside your suit!"))
 		return
 	var/datum/species/protean/species = owner.dna.species
-	if(!do_after(owner, 30 SECONDS, species.species_modsuit))
+	if(!do_after(owner, 30 SECONDS, species.species_modsuit, IGNORE_INCAPACITATED))
 		return
 
 	stomach.metal = clamp(stomach.metal - (PROTEAN_STOMACH_FULL * 0.6), 0, 10)
