@@ -96,6 +96,7 @@
 //	SMOLRAPTOR BORG DEFINES BELOW
 
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+#define CYBORG_ICON_TYPE_SMOLRAPTOR_ALT "smolraptor_alt"
 
 #define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_gen.dmi'
 #define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sci.dmi'
@@ -104,7 +105,7 @@
 #define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_car.dmi'
 #define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_serv.dmi'
 #define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_pk.dmi'
-#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_jani.dmi'
+#define CYBORG_ICON_SEC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sec.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_min.dmi'
 #define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_cc.dmi'
 #define CYBORG_ICON_SYN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_syndie.dmi'
@@ -677,8 +678,8 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			RAPTOR_HAT_OFFSET
 		),
-		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
-		SKIN_ICON = CYBORG_ICON_JANI_SMOLRAPTOR,
+		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR_ALT,
+		SKIN_ICON = CYBORG_ICON_SERV_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
 		),
@@ -818,6 +819,16 @@
 			SKIN_ICON = CYBORG_ICON_SEC_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS, TRAIT_R_EXPANDER_BLOCKED)
 		),
+		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
+		SKIN_ICON = CYBORG_ICON_SEC_SMOLRAPTOR,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
+		SMOL_RAPTOR_HAT_OFFSET
+		),
+		"SmolRaptor BLU" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR_ALT,
+		SKIN_ICON = CYBORG_ICON_SEC_SMOLRAPTOR,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
+		SMOL_RAPTOR_HAT_OFFSET
+		),
 	)
 
 // Peacekeeper borgs
@@ -852,6 +863,11 @@
 			RAPTOR_HAT_OFFSET
 		),
 		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
+		SKIN_ICON = CYBORG_ICON_PK_SMOLRAPTOR,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
+		SMOL_RAPTOR_HAT_OFFSET
+		),
+		"SmolRaptor BLU" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR_ALT,
 		SKIN_ICON = CYBORG_ICON_PK_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE),
 		SMOL_RAPTOR_HAT_OFFSET
@@ -1315,6 +1331,7 @@
 
 //small raptors
 #undef CYBORG_ICON_TYPE_SMOLRAPTOR
+#undef CYBORG_ICON_TYPE_SMOLRAPTOR_ALT
 #undef CYBORG_ICON_GEN_SMOLRAPTOR
 #undef CYBORG_ICON_SCI_SMOLRAPTOR
 #undef CYBORG_ICON_ENG_SMOLRAPTOR
@@ -1322,8 +1339,8 @@
 #undef CYBORG_ICON_CAR_SMOLRAPTOR
 #undef CYBORG_ICON_SERV_SMOLRAPTOR
 #undef CYBORG_ICON_PK_SMOLRAPTOR
-#undef CYBORG_ICON_JANI_SMOLRAPTOR
 #undef CYBORG_ICON_MIN_SMOLRAPTOR
+#undef CYBORG_ICON_SEC_SMOLRAPTOR
 #undef CYBORG_ICON_CC_SMOLRAPTOR
 #undef CYBORG_ICON_SYN_SMOLRAPTOR
 #undef CYBORG_ICON_NIN_SMOLRAPTOR
