@@ -52,13 +52,13 @@
 
 /obj/item/mod/control/pre_equipped/protean/proc/drop_suit()
 	if(wearer)
-		wearer.dropItemToGround(src, TRUE, TRUE)
-	else
-		forceMove(get_turf(loc))
+		if(HAS_TRAIT(src, TRAIT_NODROP))
+			REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
+		wearer.dropItemToGround(src, TRUE, TRUE, TRUE)
 
 /// Proteans can lock themselves on people.
-/obj/item/mod/control/pre_equipped/protean/proc/toggle_lock()
-	if(modlocked)
+/obj/item/mod/control/pre_equipped/protean/proc/toggle_lock(forced = FALSE)
+	if(modlocked && !forced)
 		REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 	modlocked = !modlocked
 
@@ -145,12 +145,17 @@
 	skin = to_assimilate.skin // Inheret skin
 	theme.set_up_parts(src, skin) // Put everything together
 	name = to_assimilate.name
+	if(!forced)
+		for(var/obj/item/part as anything in get_parts())
+			if(part.loc == src)
+				continue
+			retract(null, part, instant = TRUE)
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
 		if(install(module, user, TRUE))
 			continue
 		uninstall(module) // Drop it if failed
 	update_static_data_for_all_viewers()
-
+	/obj/item/storage()
 /obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user)
 	if(active)
 		balloon_alert(user, "deactivate modsuit")
@@ -206,6 +211,8 @@
 	if(isprotean(wearer))
 		return
 	drop_suit()
+	if(modlocked)
+		toggle_lock(TRUE)
 
 /**
  * Protean stripping while they're in the suit.

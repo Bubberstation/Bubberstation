@@ -38,7 +38,7 @@
 
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	species.species_modsuit.toggle_lock()
-	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) && loc != suit ? "" : "onto [suit.wearer]"]"))
+	to_chat(src, span_notice("You [suit.modlocked ? "<b>lock</b>" : "<b>unlock</b>"] the suit [isprotean(suit.wearer) || loc == suit ? "" : "onto [suit.wearer]"]"))
 	playsound(src, 'sound/machines/click.ogg', 25)
 
 /mob/living/carbon/proc/suit_transformation()
@@ -49,11 +49,9 @@
 
 	if(!istype(brain))
 		return
-	if(!do_after(src, 3 SECONDS, timed_action_flags = IGNORE_INCAPACITATED))
-		return
 	var/datum/species/protean/species = dna.species
 	if(loc == species.species_modsuit)
 		brain.leave_modsuit()
-	else if(isturf(loc) && !incapacitated)
+	else if(isturf(loc))
 		brain.go_into_suit()
 

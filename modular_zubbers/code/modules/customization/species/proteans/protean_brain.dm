@@ -81,13 +81,14 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
+	if(!do_after(owner, 5 SECONDS))
+		return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
 	suit.drop_suit()
 	owner.forceMove(suit)
-	REMOVE_TRAIT(suit, TRAIT_NODROP, "protean")
 	sleep(12)
 	owner.invisibility = initial(owner.invisibility)
 
@@ -99,18 +100,22 @@
 	if(dead)
 		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
 		return
+	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
+		return
 	suit.invisibility = 101
 	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
 	sleep(12)
 	suit.drop_suit()
 	owner.forceMove(suit.loc)
+	if(owner.get_item_by_slot(ITEM_SLOT_BACK))
+		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
 	owner.SetStun(0, TRUE)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 	if(owner.IsParalyzed())
-		to_chat(owner, span_warning("AHELP if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
+		to_chat(owner, span_warning("<b><span class='red>AHELP</span><b> if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
 		stack_trace("Protean is immobilized coming out of their suit!")
 
 /obj/item/organ/brain/protean/proc/replace_limbs()
@@ -122,11 +127,11 @@
 	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
 		to_chat(owner, span_warning("Not enough metal to heal body!"))
 		return
-	if(istype(owner.loc, /obj/item/mod/control))
+	if(!istype(owner.loc, /obj/item/mod/control))
 		to_chat(owner, span_warning("Not in the open. You must be inside your suit!"))
 		return
 	var/datum/species/protean/species = owner.dna.species
-	if(!do_after(src, 30 SECONDS, species_modsuit))
+	if(!do_after(owner, 30 SECONDS, species.species_modsuit))
 		return
 
 	stomach.metal = clamp(stomach.metal - (PROTEAN_STOMACH_FULL * 0.6), 0, 10)
@@ -153,6 +158,7 @@
 	owner.fully_heal()
 
 /obj/item/organ/brain/protean/proc/revive_timer()
+	balloon_alert_to_viewers("repairing")
 	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
 
 /obj/effect/temp_visual/protean_to_suit

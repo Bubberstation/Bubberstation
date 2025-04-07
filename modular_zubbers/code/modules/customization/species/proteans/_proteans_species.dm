@@ -132,7 +132,7 @@
 	if(ispath(outfit.back, /obj/item/mod/control))
 		var/control_path = outfit.back
 		suit = new control_path()
-		species_modsuit.assimilate_modsuit(owner, suit, TRUE)
+		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control/pre_equipped/protean, assimilate_modsuit), owner, suit, TRUE)
 		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
 
 	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
@@ -141,6 +141,7 @@
 		species_modsuit.install(storage, owner, TRUE)
 
 	if(outfit.backpack_contents)
+		outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
 		for(var/path in outfit.backpack_contents)
 			var/number = outfit.backpack_contents[path]
 			if(!isnum(number))//Default to 1
