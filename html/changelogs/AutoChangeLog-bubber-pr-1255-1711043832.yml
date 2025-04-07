@@ -1,8 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - rscadd: "Adds the hemophage-only quirk, Sol weakness"
-  - code_imp: "Refactors the sol subsystem so that itself decides if it should run or not based on if anyone is using it."
-  - code_imp: "Refactors bloodsucker UI elements so that they can function fine outside a bloodsucker antag datum"
-  - code_imp: "bloodsucker_blood_volume, humanity_lost, bloodsucker_level and bloodsucker_level_unspent are now private variables due to them being used for UI updates, if you need to change them, use the procs that are written in the autodoc"
-  - code_imp: "Quirk species whitelists no longer use bitflags, but use the species ID's. Easily allowing you to add new whitelists without having to mess around with making a new bitfield"
