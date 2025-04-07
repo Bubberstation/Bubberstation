@@ -130,7 +130,7 @@ const ChangelogList = (props) => {
     .sort()
     .reverse()
     .map((date) => (
-      <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
+      <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)} pb={1}>
         <Box ml={3}>
           {bubberContents[date] && (
             <Section mb={-2}>
