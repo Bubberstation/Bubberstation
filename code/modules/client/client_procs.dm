@@ -1293,8 +1293,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/acquire_dpi()
 	window_scaling = text2num(winget(src, null, "dpi"))
 
-	debug_admins("scalies: [window_scaling]")
-
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE
 #undef CURRENT_SECOND
