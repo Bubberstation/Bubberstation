@@ -22,8 +22,6 @@
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	if(stored_modsuit)
 		drop_suit()
-		var/obj/item/mod/module/storage/storage = locate() in modules
-		storage.atom_storage.remove_all(get_turf(src))
 		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, forced = TRUE)
 	return ..()
 
@@ -199,8 +197,9 @@
 	skin = initial(skin)
 	theme.set_up_parts(src, skin)
 	name = initial(name)
-	if(forced)
-		stored_modsuit.forceMove(get_turf(src))
+	//if(forced)
+	//	stored_modsuit.forceMove(get_turf(src))
+	//	stored_modsuit = null
 	else if (user.can_put_in_hand(stored_modsuit, user.active_hand_index))
 		user.put_in_hand(stored_modsuit, user.active_hand_index)
 		stored_modsuit = null
