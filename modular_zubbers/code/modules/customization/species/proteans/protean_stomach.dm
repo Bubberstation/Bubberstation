@@ -18,7 +18,7 @@
 
 /obj/item/organ/stomach/protean/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
-	RegisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT, PROC_REF(try_eat))
+	RegisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT, PROC_REF(try_stomach_eat))
 
 /obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
 	. = ..()
@@ -55,7 +55,7 @@
 		COOLDOWN_START(src, starving_message, 20 SECONDS)
 
 /// Check to see if our metal storage is full.
-/obj/item/organ/stomach/protean/proc/try_eat(mob/eater, atom/eating)
+/obj/item/organ/stomach/protean/proc/try_stomach_eat(mob/eater, atom/eating)
 	SIGNAL_HANDLER
 
 	if(istype(eating, /obj/item/food/golem_food))

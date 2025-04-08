@@ -79,12 +79,6 @@
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
 
-/datum/species/protean/Destroy(force)
-	if(species_modsuit)
-		QDEL_NULL(species_modsuit)
-	owner = null
-	return ..()
-
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
@@ -105,9 +99,12 @@
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
-	owner = null
+	if(species_modsuit.stored_modsuit)
+		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)
-	QDEL_NULL(species_modsuit)
+	if(species_modsuit)
+		QDEL_NULL(species_modsuit)
+	owner = null
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)
 	species_modsuit = new()
@@ -128,6 +125,7 @@
 
 /datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit, visuals_only) // Very snowflakey code. I'm not making outfits for every job.
 	SIGNAL_HANDLER
+	var/get_a_job = istype(outfit, /datum/outfit/job)
 	var/obj/item/mod/control/suit
 	if(ispath(outfit.back, /obj/item/mod/control))
 		var/control_path = outfit.back
@@ -143,13 +141,15 @@
 	if(outfit.backpack_contents)
 		outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
 		for(var/path in outfit.backpack_contents)
+			if(!get_a_job)
+				continue
 			var/number = outfit.backpack_contents[path]
 			if(!isnum(number))//Default to 1
 				number = 1
 			for(var/i in 1 to number) // Copy and paste of EQUIP_OUTFIT_ITEM
 				owner.equip_to_slot_or_del(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACKPACK, TRUE, TRUE)
 				var/obj/item/outfit_item = owner.get_item_by_slot(ITEM_SLOT_BACKPACK)
-				if(outfit_item && outfit_item.type == path)
+				if(outfit_item && outfit_item.type == path && !get_a_job)
 					outfit_item.on_outfit_equip(owner, visuals_only, ITEM_SLOT_BACKPACK)
 
 /datum/species/protean/get_default_mutant_bodyparts()

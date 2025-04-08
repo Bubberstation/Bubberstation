@@ -5,7 +5,6 @@
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
-
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // funny nanite
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
@@ -22,8 +21,10 @@
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	if(stored_modsuit)
-		QDEL_NULL(stored_modsuit)
-		QDEL_NULL(stored_theme)
+		drop_suit()
+		var/obj/item/mod/module/storage/storage = locate() in modules
+		storage.atom_storage.remove_all(get_turf(src))
+		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, forced = TRUE)
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
@@ -58,7 +59,7 @@
 
 /// Proteans can lock themselves on people.
 /obj/item/mod/control/pre_equipped/protean/proc/toggle_lock(forced = FALSE)
-	if(modlocked && !forced)
+	if(modlocked && !forced && !isprotean(wearer))
 		REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 	modlocked = !modlocked
 
@@ -67,7 +68,7 @@
 
 	if(isprotean(wearer))
 		return
-	if(slot == ITEM_SLOT_BACK)
+	if(slot == ITEM_SLOT_BACK && wearer)
 		RegisterSignal(wearer, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
 		if(modlocked)
 			ADD_TRAIT(src, TRAIT_NODROP, "protean")
@@ -121,7 +122,8 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/static/list/obj/item/mod/control/banned_modsuits = list(
-				/obj/item/mod/control/pre_equipped/infiltrator,) // Really buggy.
+				/obj/item/mod/control/pre_equipped/infiltrator,
+				/obj/item/mod/control/pre_equipped/protean,)
 
 		if(is_type_in_list(tool, banned_modsuits))
 			balloon_alert(user, "incompatable")
@@ -168,16 +170,19 @@
 		uninstall(module) // Drop it if failed
 	update_static_data_for_all_viewers()
 
-/obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user)
-	if(active)
+/obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
+	if(active && !forced)
 		balloon_alert(user, "deactivate modsuit")
 		return
-	if(!(user.has_active_hand()))
+	if(!(user.has_active_hand()) && !forced)
 		balloon_alert(user, "need active hand")
 		return
-	to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
-	if(!do_after(user, 4 SECONDS))
-		return
+
+	if(!forced)
+		to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
+		if(!do_after(user, 4 SECONDS))
+			return
+
 	for(var/obj/item/part as anything in get_parts())
 		if(part.loc == src)
 			continue
@@ -194,7 +199,9 @@
 	skin = initial(skin)
 	theme.set_up_parts(src, skin)
 	name = initial(name)
-	if(user.can_put_in_hand(stored_modsuit, user.active_hand_index))
+	if(forced)
+		stored_modsuit.forceMove(get_turf(src))
+	else if (user.can_put_in_hand(stored_modsuit, user.active_hand_index))
 		user.put_in_hand(stored_modsuit, user.active_hand_index)
 		stored_modsuit = null
 	update_static_data_for_all_viewers()

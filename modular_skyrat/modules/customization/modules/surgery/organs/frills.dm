@@ -2,6 +2,7 @@
 	preference = "feature_frills"
 	mutantpart_key = "frills"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Divinity", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
+	organ_flags = ORGAN_EXTERNAL
 
 /datum/bodypart_overlay/mutant/frills
 	color_source = ORGAN_COLOR_OVERRIDE

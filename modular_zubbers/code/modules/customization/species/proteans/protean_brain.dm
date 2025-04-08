@@ -27,7 +27,7 @@
 	var/damage_amount = 4 // How much damage per life() tick this organ should apply
 
 	for(var/obj/item/organ/organ in owner.organs)
-		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL))
+		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL | ORGAN_UNREMOVABLE))
 			continue
 		organ.apply_organ_damage(damage_amount)
 		if(COOLDOWN_FINISHED(src, message_cooldown))
@@ -79,11 +79,12 @@
 
 /obj/item/organ/brain/protean/proc/go_into_suit(forced)
 	var/datum/species/protean/protean = owner.dna?.species
-	if(!istype(protean))
+	if(!istype(protean) || owner.loc == protean.species_modsuit)
 		return
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.extinguish_mob()
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
@@ -103,6 +104,9 @@
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
 		return
+	var/mob/living/carbon/mob = suit.loc
+	if(istype(mob))
+		mob.dropItemToGround(suit, TRUE)
 	suit.invisibility = 101
 	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
 	sleep(12) //Same as above

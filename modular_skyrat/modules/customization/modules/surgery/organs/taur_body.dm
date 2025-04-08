@@ -4,7 +4,7 @@
 	slot = ORGAN_SLOT_EXTERNAL_TAUR
 	external_bodyshapes = BODYSHAPE_TAUR
 	use_mob_sprite_as_obj_sprite = TRUE
-
+	organ_flags = ORGAN_EXTERNAL
 	preference = "feature_taur"
 	mutantpart_key = "taur"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
