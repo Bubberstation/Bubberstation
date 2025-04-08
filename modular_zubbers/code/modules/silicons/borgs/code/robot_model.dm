@@ -1,5 +1,7 @@
 // The actual code to work these in
+// Bubberstation custom borg sprites, to add new defines for icons and hat offsets go to code\_DEFINES\~~bubber_defines.dm
 
+/* Centcom Cyborgs */
 
 /obj/item/robot_model/centcom
 	name = "Central Command"
@@ -64,7 +66,8 @@
 	cyborg.req_access = list(ACCESS_ROBOTICS)
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
 
-//Research cyborgs
+/* Research cyborgs */
+
 /obj/item/robot_model/sci
 	name = "Research"
 	basic_modules = list(
@@ -482,7 +485,7 @@
 	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(
-		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SEC_FELI,
+		SKIN_ICON_STATE = CYBORG_ICON_STATE_SEC_FELI,
 		SKIN_ICON = CYBORG_ICON_ALL_FELI,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 		F3LINE_HAT_OFFSET
