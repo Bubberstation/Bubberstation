@@ -53,11 +53,12 @@
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/ai_flee_while_injured)
 	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/apple), tame_chance = 25, bonus_tame_chance = 15, unique = unique_tamer)
+	var/static/list/food_types = list(
+		/obj/item/food/grown/apple,
+	)
+	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 25, bonus_tame_chance = 15, unique = unique_tamer)
 
 /mob/living/basic/pony/tamed(mob/living/tamer, atom/food)
-	can_buckle = TRUE
-	buckle_lying = 0
 	playsound(src, 'sound/mobs/non-humanoids/pony/snort.ogg', 50)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pony)
 	visible_message(span_notice("[src] snorts happily."))
@@ -163,4 +164,5 @@
 	ponycolors = list("#5d566f", pick_weight(mane_colors))
 	name = pick("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 	// Only one person can tame these fellas, and they only need one apple
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/apple), tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)
+	var/static/list/food_types = list(/obj/item/food/grown/apple)
+	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)

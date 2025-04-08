@@ -63,13 +63,13 @@
 	icon_state = "hair_tails_berly"
 
 /datum/sprite_accessory/hair/edgerunner
-    icon = 'modular_zubbers/icons/customization/hair_big.dmi'
-    name = "Edgerunner"
-    icon_state = "edgerunner"
+	icon = 'modular_zubbers/icons/customization/hair_big.dmi'
+	name = "Edgerunner"
+	icon_state = "edgerunner"
 
 //-->fixed dreadlocks, added alt version for anthros, added new style <3
 /datum/sprite_accessory/hair/dreadlocks
-    icon = 'modular_zubbers/icons/customization/hair.dmi'
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
 
 /datum/sprite_accessory/hair/dreadlocks_alt
 	icon = 'modular_zubbers/icons/customization/hair.dmi'

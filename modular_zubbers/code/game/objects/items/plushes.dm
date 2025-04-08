@@ -234,3 +234,51 @@
 	icon_state = "squeaky_toy"
 	gender = MALE
 	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1)
+
+// Sophie/Cydia's plush
+/obj/item/toy/plush/androiddog
+	name = "android dog plushie"
+	desc = "A faded plushie toy of an android dog. Will not bite. \ A sticker says 'Push me!' on a little heart on the hand."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "androiddog"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/emotes/arf.ogg' = 1)
+
+// xPokee's plush
+/obj/item/toy/plush/ghoul
+	name = "intern ghoul plushie"
+	desc = "Even the marketable plushie of this thing is utterly terrifying. At least it's cuddly..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "johnghoul"
+	attack_verb_continuous = list("ghouls")
+	attack_verb_simple = list("ghoul")
+	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)
+
+// plushie for BeoTheKobold
+// sprite by Cepha, code by Mitryll
+/obj/item/toy/plush/mold_kobold
+	name = "hemophage awareness kobold"
+	desc = "A cuddly kobold plushie. Produced by Nanotrasen in the soft likeness of a hemophage employee; \
+			focus groups thought this design played less into hemophage stereotypes as opposed to the previous iteration, \
+			Lord Grog the Vile Parasite. A tag on the left leg says 10% of proceeds go to blood banks!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "themold"
+	attack_verb_continuous = list("bites", "curses", "drains")
+	attack_verb_simple = list("bite", "invoke", "claw")
+	gender = FEMALE
+
+// Plushie for Decinomics
+/obj/item/toy/plush/sinvox
+	name = "sinister vox plushie"
+	desc = "An evil looking toy. It's got a vox beak that splits into mandibles like a bug;\
+		its tail looks like a copy of the xenomorph plushie stitched together poorly.\
+		Property and copyright of VOXXXED Studios..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "sinvox"
+	attack_verb_continuous = list("hisses at", "bites", "mauls", "quills", "tail stabs")
+	attack_verb_simple = list("hiss at", "bite", "maul", "quill", "tail stab")
+	gender = MALE
+	squeak_override = list(
+		'sound/mobs/non-humanoids/hiss/hiss2.ogg' = 1,
+		'modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1,
+	)

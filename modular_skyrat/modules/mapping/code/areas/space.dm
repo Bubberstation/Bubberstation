@@ -250,7 +250,7 @@
 /area/solars/tarkon
 	name = "\improper P-T Solar Array"
 	icon_state = "space_near"
-	has_gravity = STANDARD_GRAVITY
+	default_gravity = STANDARD_GRAVITY
 
 /area/ruin/space/has_grav/port_tarkon/aichamber
 	name = "P-T AI Chamber"

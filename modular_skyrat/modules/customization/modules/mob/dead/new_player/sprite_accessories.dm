@@ -1,14 +1,5 @@
 // GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 
-/// The flag to show that snouts should use the muzzled sprite.
-#define SPRITE_ACCESSORY_USE_MUZZLED_SPRITE (1<<0)
-/// The flag to show that this tail sprite can wag.
-#define SPRITE_ACCESSORY_WAG_ABLE (1<<1)
-/// The flag that controls whether or not this sprite accessory should force the wearer to hide its shoes.
-#define SPRITE_ACCESSORY_HIDE_SHOES (1<<2)
-/// The flag to that controls whether or not this sprite accessory should force worn facewear to use layers 5 (for glasses) and 4 (for masks and hats).
-#define SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER (1<<3)
-
 /datum/sprite_accessory
 	///Unique key of an accessory. All tails should have "tail", ears "ears" etc.
 	var/key = null
@@ -120,7 +111,7 @@
 /datum/sprite_accessory/moth_markings
 	key = "moth_markings"
 	generic = "Moth markings"
-	// organ_type = /obj/item/organ/external/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF
+	// organ_type = /obj/item/organ/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF
 
 /datum/sprite_accessory/moth_markings/is_hidden(mob/living/carbon/human/owner)
 	return FALSE
@@ -133,7 +124,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
 	key = "pod_hair"
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
-	organ_type = /obj/item/organ/external/pod_hair
+	organ_type = /obj/item/organ/pod_hair
 
 /datum/sprite_accessory/pod_hair/none
 	name = SPRITE_ACCESSORY_NONE
@@ -146,7 +137,7 @@
 	icon = 'icons/mob/human/species/mush_cap.dmi'
 	relevent_layers = list(BODY_ADJ_LAYER)
 	color_src = USE_ONE_COLOR
-	organ_type = /obj/item/organ/external/mushroom_cap
+	organ_type = /obj/item/organ/mushroom_cap
 	genetic = TRUE
 
 /datum/sprite_accessory/caps/is_hidden(mob/living/carbon/human/human)

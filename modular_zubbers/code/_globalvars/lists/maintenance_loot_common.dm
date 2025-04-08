@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/bait_can/worm = 10,
 		/obj/item/bait_can/worm/premium = 1,
 		/obj/item/cutting_board = 5,
-		/obj/item/fish_feed = 20,
+		/obj/item/reagent_containers/cup/fish_feed = 20,
 		/obj/item/fishing_hook = 10,
 		/obj/item/fishing_line = 5,
 		/obj/item/fishing_rod = 5
@@ -852,7 +852,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/grown/rainbow_flower = 25,
 		/obj/item/food/grown/random = 100,
 		/obj/item/food/grown/rose = 25,
-		/obj/item/food/grown/shell/eggy = 25,
+		/obj/item/food/grown/eggy = 25,
 		/obj/item/food/grown/tea/catnip = 25,
 		/obj/item/food/grown/tomato = 75
 	) = 75,

@@ -1,0 +1,199 @@
+2024-09-01:
+  Doomtail:
+  - rscadd: Added twisted, twisted long, wicked, and inari hairstyles.
+  - rscadd: Added cervine snout.
+  - rscadd: Added naja hood frill.
+  Majkl-J:
+  - bugfix: Cargo shelves now drop crates upon being destroyed
+  Odairu:
+  - balance: removed slipstick from uplink
+2024-09-04:
+  BurgerBB:
+  - rscdel: Disables "The Bomb" storyteller from being votable because engineering
+      cryos every time it's voted.
+  - bugfix: Fixes a typo in map voting code that prevented the fallback "no maps to
+      vote for" code to work.
+  StrangeWeirdKitten:
+  - qol: Divides Jukebox volume by 2
+  plsleavemealon:
+  - bugfix: lets zombies be gendered
+2024-09-05:
+  BurgerBB:
+  - rscadd: Predictable Chaos now has 50% more antagonists.
+  Majkl-J:
+  - bugfix: Moth climb works again
+  Odairu:
+  - rscadd: hypno lipstick
+2024-09-07:
+  BurgerBB:
+  - rscadd: People who sign up roundstart get triple the starting cash compared to
+      latejoiners.
+  Swiftfeather:
+  - bugfix: Can no longer rapid fire kisses, you boykisser.
+  plsleavemealon:
+  - rscadd: Makes the numb quirk actually numb you
+2024-09-09:
+  LT3:
+  - code_imp: Modularised and updated scrubber overflow event
+2024-09-10:
+  LT3:
+  - code_imp: Boykissers resume boy kissing! Kiss emote no longer causes a progress
+      bar after using
+  - balance: Syndie/death kiss projectiles have a 1.6 second cooldown
+  Majkl-J:
+  - rscadd: Added Lone infiltrator ghost midround
+  - rscadd: Added Malf AI midround
+  - rscdel: Removes predictable chaos as all tellers now use its main gimmick as a
+      baseline
+  - qol: Storyteller votes now prevent a constant voting streak of the same type of
+      tellers
+  - balance: All storytellers now roll antags more often, but in smaller numbers per
+      roll
+  - balance: Clown storyteller no longer cares about event weights and just does whatever
+      rng decides
+  - balance: Meteors can no longer run repeatedly in a single round
+  - balance: Makes ghost roles actually roll somewhat frequently
+  - bugfix: Fixed a few bugs with storytellers, namely the tracks sometimes going
+      into negatives, and voidwalker running on planet maps
+  - refactor: Refactored how storytellers handle tracks to be easier to code with
+2024-09-13:
+  Odairu:
+  - bugfix: neck gaiter no longer has sec radio
+2024-09-14:
+  BurgerBB:
+  - bugfix: Fixes Moonstation Library Wiring and Disposal Pipe
+  nikothedude:
+  - rscadd: '*esigh, for exasperated sighing'
+2024-09-15:
+  Swiftfeather:
+  - balance: Reduced heretic weighting.
+  shellspeed1:
+  - rscadd: Cargo Companies are now available to offstation factions
+  - rscadd: Tarkon now has a cargo setup available to them
+2024-09-16:
+  Majkl-J:
+  - bugfix: Storyteller now actually rolls stuff correctly and in respect to the antag
+      cap
+  theselfish:
+  - rscadd: Adds unused Red Pauldrons to Sec Vendor, as well as the Sec Med beret
+      and Armadyne belts.
+2024-09-17:
+  BurgerBB:
+  - balance: Reduces RBMK2 temperature gain based on matter bin tier
+  - rscdel: The mold event can no longer be triggered by events except by admin intervention.
+  Odairu:
+  - balance: nerfs heretics ability to ascend
+  ShadowLarkens:
+  - bugfix: Delete button on belly messages no longer has a rendering error.
+2024-09-18:
+  KathrinBailey:
+  - rscadd: Loincloths from Sandstorm.
+  - bugfix: Jean shorts/skirt no longer covers legs and chest.
+  Majkl-J:
+  - qol: The tank manipulator now gives feedback about what's in it
+  shayoki:
+  - rscadd: Added fitness equipment to Box Station's Fitness Room.
+2024-09-20:
+  Arturlang:
+  - refactor: Heavily refactors how bloodsucker powers function.
+  - refactor: Tremere powers no longer have subtypes for each level.
+  - rscadd: Completely redoes how bloodsucker ability descriptions, both the longer
+      antag panel and the action button hover over, they will actually tell you actual
+      values that the game itself uses for damage, cooldowns, and effect durations
+  - balance: Tremere powers can now level up as far as you want.
+  - balance: Mesmerize is heavily reworked, now it no longer forces both parties to
+      stand still for it to work, but it is obvious to the victim when used, however
+      the victim is muted for the duration of the spool up, and will stun and mute
+      normally if the do_after completes.
+  - rscadd: 'Mesmerize now has a secondary that allows you to mute and confuse your
+      victim that happens on a right-click,
+
+      dominate, the tremere''s version instead knockdowns.'
+  - rscadd: Tremere's dominate now has a visual timer for temporary vassals, visible
+      only to the master's vassals and the master themselves.
+  - balance: Tremere's dominate now only requires level 2 to create temporary vassals,
+      but the duration now scales with the level. It now requires the potential vassal
+      to have more than 336 blood, and will use it all up once the duration ends,
+      effectively making it only usable once per person.
+  - balance: All tremere powers can now level up past level 4
+  - balance: Thaumaturgy is heavily reworked, it now has a charge system, and while
+      the projectile deal less damage, you can shoot a lot more of them, and the projectiles
+      will seek towards any non-vassal mob near where you cast it.
+  - refactor: Separates bloodsucker ability bitfields and action bitfields to avoid
+      overriding eachother
+  - balance: Bloodsuckers going into torpor outside of coffins will always die, but
+      will wake out of torpor at 20% maxhealth(not counting critical health)
+  - balance: A coffin being opened during sol will wake you up, given you are LITERALL
+      BURNING UN-ALIVE.
+  - balance: Bloodsuckers are no longer highly wound resistant, but their coffins
+      will now heal all wounds
+  - bugfix: Should fix the issue with bloodsucker bleeding staying active forever
+  BurgerBB:
+  - balance: Overhauls requirements for Anomaly Refinement, and removes some limits
+      and implements some more.
+  - balance: Makes Space Dragons immune to toxin + oxy damage because I saw a Space
+      Dragon die to simplemobs on Moonstation Once
+2024-09-21:
+  Arturlang:
+  - balance: The range of haste is now 5 tiles.
+2024-09-22:
+  Redrover1760:
+  - balance: Reverts 9x25mm and 9x25mm AP skyrat nerf to tg values.
+  Shadow-Quill:
+  - spellcheck: Fixed a typo in the message that appeared when someone with the Well-Trained
+      perk examined someone with the Dominant Aura trait.
+  theselfish:
+  - bugfix: The Neck Gaiter no longer hides glasses.
+2024-09-23:
+  nevimer:
+  - bugfix: airbags are no longer haunted
+2024-09-24:
+  LT3:
+  - image: Added a moth to your taskbar
+2024-09-25:
+  LT3:
+  - qol: New vote reminder notification, enabled for storyteller votes
+  ReturnToZender:
+  - balance: NTC no longer gets Stardust shells, they get only their laser.
+2024-09-26:
+  BurgerBB:
+  - bugfix: Fixes missing Moon Station wire that caused Engineering (just the area
+      outside the SM) to not be connected to the grid.
+  Shadow-Quill:
+  - balance: Oppressive Force Relocation Medicells no longer require bluespace extracts
+      to become functional.
+  theselfish:
+  - rscadd: Recent events have caused an insane amount of plastic medals to flood
+      the market.
+2024-09-27:
+  Swiftfeather:
+  - rscdel: Removed hostile pitbull crates.
+2024-09-28:
+  BurgerBB:
+  - rscdel: Removes the Mannequin in Moonstation engineering because a shaft miner
+      died to it 5 times.
+2024-09-29:
+  BurgerBB:
+  - balance: Buffs Xeno Weed temperature survivability in hotter environments. It
+      was increased from 300K to 350K, which is only slightly higher than Moon Station's
+      external temperature of 347.65K.
+  FlufflesTheDog (code), ReturnToZender (port):
+  - bugfix: A restraining order has been placed on medibots on behalf of synthetic
+      crew members due to reports of harassment.
+2024-09-30:
+  BurgerBB:
+  - balance: Heretic Transmutation Runes can no longer have Fingerprints.
+  LT3:
+  - admin: Storyteller backend updates
+  - rscdel: Disabled sandstorm random event
+  - rscdel: No more eigenstate in scrubber overflows
+  ReturnToZender:
+  - balance: Re-orders character directory sorting based on what really matters.
+  ReturnToZender (code):
+  - rscadd: The futuristic security helmet is now properly added to the multisec vendor,
+      and the loadout along with the patrol cap.
+  StrangeWeirdKitten:
+  - rscadd: Holofans and Pipescrubbers to Moon and Box's ordnance
+  - rscadd: Unbolted doors to the ordnance freeze chambers
+  - bugfix: Missing power wire to QM's office on Box
+  - rscdel: Smart Organ storage in the middle of Box' medbay

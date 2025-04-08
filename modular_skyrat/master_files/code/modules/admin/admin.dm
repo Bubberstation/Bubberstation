@@ -28,9 +28,9 @@ ADMIN_VERB(toggledchat, R_ADMIN, "Toggle Dead Chat", "Toggle dis bitch.", ADMIN_
 
 /datum/admin_help/ClosureLinks(ref_src)
 	. = ..()
-	. += " (<A HREF='?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=handle_issue'>HANDLE</A>)" //SKYRAT EDIT ADDITION
-	. += " (<A HREF='?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=pingmute'>PING MUTE</A>)" //SKYRAT EDIT ADDITION
-	. += " (<A HREF='?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=convert'>MHELP</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=handle_issue'>HANDLE</A>)" //SKYRAT EDIT ADDITION
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=pingmute'>PING MUTE</A>)" //SKYRAT EDIT ADDITION
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=convert'>MHELP</A>)"
 
 //Let the initiator know their ahelp is being handled
 /datum/admin_help/proc/handle_issue(key_name = key_name_admin(usr))

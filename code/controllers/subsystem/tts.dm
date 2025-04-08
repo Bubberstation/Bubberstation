@@ -109,13 +109,14 @@ SUBSYSTEM_DEF(tts)
 		if(QDELING(listening_mob))
 			stack_trace("TTS tried to play a sound to a deleted mob.")
 			continue
-		var/volume_to_play_at = listening_mob.client?.prefs.read_preference(/datum/preference/numeric/sound_tts_volume)
+		/// volume modifier for TTS as set by the player in preferences.
+		var/volume_modifier = listening_mob.client?.prefs.read_preference(/datum/preference/numeric/volume/sound_tts_volume)/100
 		var/tts_pref = listening_mob.client?.prefs.read_preference(/datum/preference/choiced/sound_tts)
-		if(volume_to_play_at == 0 || (tts_pref == TTS_SOUND_OFF))
+		if(volume_modifier == 0 || (tts_pref == TTS_SOUND_OFF))
 			continue
 
 		var/sound_volume = ((listening_mob == target)? 60 : 85) + volume_offset
-		sound_volume = sound_volume * (volume_to_play_at / 100)
+		sound_volume = sound_volume*volume_modifier
 		var/datum/language_holder/holder = listening_mob.get_language_holder()
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
@@ -269,7 +270,6 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "")
 	if(!tts_enabled)
 		return
-
 	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
