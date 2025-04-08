@@ -39,8 +39,6 @@
 	name = "Necktie (Loose)"
 	item_path = /obj/item/clothing/neck/tie/detective
 
-/* BUBBER EDIT REMOVAL - duplicate of /datum/loadout_item/neck/bowtie_black
 /datum/loadout_item/neck/bowtie
 	name = "Bowtie"
 	item_path = /obj/item/clothing/neck/bowtie
-BUBBER EDIT END */
