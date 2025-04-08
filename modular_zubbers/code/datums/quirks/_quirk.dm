@@ -3,6 +3,7 @@
 	var/hidden_quirk = FALSE
 	/// List of species that this quirk is valid for, or empty if it's valid for all species. Only use species ids here.
 	var/list/species_whitelist = list()
+	var/list/species_blacklist = list()
 
 /datum/quirk/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source)
 	if(!can_add(new_holder))

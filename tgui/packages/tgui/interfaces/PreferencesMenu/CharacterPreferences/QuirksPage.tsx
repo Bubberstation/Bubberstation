@@ -387,22 +387,30 @@ export function QuirksPage(props) {
         }
       }
       // BUBBER EDIT ADDITION START - Species quirks
-      const currentSpeciesID = data.character_preferences.misc.species;
-      // keys are the species_ids, values are the species names
-      const speciesWhitelistKeys = Object.keys(quirk.species_whitelist);
-      if (
-        speciesWhitelistKeys?.length &&
-        !speciesWhitelistKeys.includes(currentSpeciesID)
-      ) {
-        const speciesWhitelistNames = Object.values(quirk.species_whitelist);
-        if (speciesWhitelistNames.length === 1) {
-          return `This quirk can only be taken by the ${speciesWhitelistNames[0]} species.`;
-        }
-        const speciesList = speciesWhitelistNames.join(', ');
-        return `This quirk can only be taken by the following species: ${speciesList}.`;
+      if (isInAllowedSpecies(quirk.species_whitelist)) {
+        return `This quirk cannot be taken by the following species: ${joinSpecies(quirk.species_whitelist)}.`;
       }
-      // BUBBER EDIT ADDITION END
+      if (!isInAllowedSpecies(quirk.species_blacklist)) {
+        return `This quirk cannot be taken by the following species: ${joinSpecies(quirk.species_blacklist)}.`;
+      }
     }
+
+    function isInAllowedSpecies(species?: Record<string, string>[]) {
+      const currentSpeciesID = data?.character_preferences?.misc?.species;
+      if (!species || !currentSpeciesID) return true;
+      // keys are the species_ids, values are the species names
+      const arrayKeys = Object.keys(species);
+      if (arrayKeys?.length && !arrayKeys.includes(currentSpeciesID)) {
+        return false;
+      }
+      return true;
+    }
+
+    function joinSpecies(species?: Record<string, string>[]) {
+      if (!species) return '';
+      const speciesNames = Object.values(species);
+      return speciesNames.join(', ');
+    } // BUBBER EDIT END
 
     return;
   }

@@ -43,6 +43,7 @@
 
 		// BUBBER EDIT START - Species only quirks
 		var/list/species_whitelist = list()
+		var/list/species_blacklist = list()
 		for(var/species_id in GLOB.quirk_species_whitelist[quirk])
 			var/datum/species/species_type = GLOB.species_list[species_id]
 			var/species_name = initial(species_type.name)
@@ -55,6 +56,7 @@
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
 			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
+			"species_blacklist" = species_blacklist,
 		)
 
 	return list(
