@@ -49,6 +49,11 @@
 	var/sing_shot_length = 8
 	var/cooldown_time = 20
 
+/mob/living/simple_animal/hostile/asteroid/elite/pandora/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/tumor_boss.ogg', 130 SECONDS) //bubber edit: boss music
+
 /datum/action/innate/elite_attack/singular_shot
 	name = "Singular Shot"
 	button_icon_state = "singular_shot"

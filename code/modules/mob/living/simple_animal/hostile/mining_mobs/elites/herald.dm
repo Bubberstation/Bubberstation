@@ -54,6 +54,11 @@
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/my_mirror = null
 	var/is_mirror = FALSE
 
+/mob/living/simple_animal/hostile/asteroid/elite/herald/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/tumor_boss.ogg', 130 SECONDS) //bubber edit: boss music
+
 /mob/living/simple_animal/hostile/asteroid/elite/herald/death()
 	. = ..()
 	if(!is_mirror)
