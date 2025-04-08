@@ -200,7 +200,7 @@
 	//if(forced)
 	//	stored_modsuit.forceMove(get_turf(src))
 	//	stored_modsuit = null
-	else if (user.can_put_in_hand(stored_modsuit, user.active_hand_index))
+	if (user.can_put_in_hand(stored_modsuit, user.active_hand_index))
 		user.put_in_hand(stored_modsuit, user.active_hand_index)
 		stored_modsuit = null
 	update_static_data_for_all_viewers()

@@ -29,6 +29,8 @@
 	for(var/obj/item/organ/organ in owner.organs)
 		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL | ORGAN_UNREMOVABLE))
 			continue
+		if(istype(organ, /obj/item/organ/taur_body))
+			continue
 		organ.apply_organ_damage(damage_amount)
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(owner, span_warning("Your mass violently rips apart [organ]!"))
