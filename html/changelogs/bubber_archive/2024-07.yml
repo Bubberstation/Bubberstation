@@ -1,0 +1,196 @@
+2024-07-01:
+  BurgerBB:
+  - bugfix: Fixes the Moonstation Shuttle failing to dock properly
+  SciDragon:
+  - rscadd: Telecomms Specialist job, with a niche carved out of an underutilized
+      engineering department.
+  nikothedude:
+  - spellcheck: Fixed a typo in systemic fault's examine text
+  - balance: Synthetic electrical damage can no longer worsen if its currently being
+      repaired
+2024-07-04:
+  BurgerB:
+  - rscadd: Overhauls the design of Moonstation Engineering
+  BurgerBB:
+  - balance: You only get 1 corrupt organ when sacrificed, instead of 2 to 4.
+  - qol: Removes some corruption options because they are extremely annoying / don't
+      even work properly.
+  - rscadd: Adds Big Bertha, a unique one-of-a-kind two-handed shield for security
+      that blocks literally everything. It spawns in the Armory.
+  - rscadd: Overhauls loot that can spawn in abandoned crates, maintenance, and trash
+      piles.
+  - qol: Map Voting Occurs when the shuttle is called and cannot be recalled.
+  - balance: Only melee weapons can disembowel/dismember via damage via wounds. This
+      does not affect other sources of disembowel/dismember.
+  LT3:
+  - bugfix: Hypospray right click works again
+  - qol: Crew monitor now has sort options and a search box
+  Majkl-J:
+  - bugfix: Fixes maps failing unit tests
+  thegrb93:
+  - bugfix: Tajaran photocopier booty sprite fixed
+2024-07-05:
+  BurgerBB:
+  - rscadd: Adds Changeling Zombies to the game. This is meant to replace RNA zombies
+      and Tumor Zombies as a balanced, updated, and functional alternative.
+  - rscadd: Being husked/absorbed from a regular Changeling turns you into an unaligned/unaffiliated
+      changeling zombie. Note that this also cures your husk infection once turned.
+  - balance: Wearing the tinfoil hat no longer gives you a phobia of conspiracy theories.
+      Tinfoil hat is no longer single use and will work indefinitely until removed.
+  - balance: Adds Monkeydone, a chemical that transforms monkeys into humans. It can
+      be made by mixing 10u Unstable Mutagen + 10u Mutadone + 1u Salt to make 1u Monkeydone.
+  Cecily-C-Catherine:
+  - rscadd: Added new sprites and code to allow the choosing of sprites
+  YakumoChen:
+  - bugfix: Fixes guns being in imports again due to code reversion
+2024-07-06:
+  LT3:
+  - bugfix: Fixed certain jobs being categorized as unknown on the crew monitor
+  projectkepler-ru:
+  - bugfix: TEG Research cost not being accomodated
+2024-07-07:
+  StrangeWeirdKitten:
+  - bugfix: Dead well-trained quirk holders will no longer respond to snaps
+2024-07-09:
+  BurgerBB:
+  - rscdel: You can no longer vote for a map if it was the last 2 maps played, or
+      the current map.
+2024-07-10:
+  BurgerBB:
+  - bugfix: Fixes moonstation having space turfs on turf destruction on the upper
+      level. Fixes weirdly placed camera monitors due to upstream changes. Fixes a
+      few randomly placed doors in some areas.
+  theselfish:
+  - rscadd: Non-locked Donator have been added to vendors. Collect them all!
+2024-07-11:
+  theselfish:
+  - rscadd: A bunch of stuff is now on box. Minor, but it's there!
+  - bugfix: Weird vendors no longer spawn in front of Security on Box.
+  - bugfix: Lima and Box now compile.
+2024-07-12:
+  Icarus-The-Sun:
+  - rscadd: Added C4 Moth as a C4 reskin
+2024-07-14:
+  BurgerBB:
+  - rscadd: Adds Antag Tickets, a new currency that determines who gets antagonist
+      roles.
+  MonkeStation (sprites) TheSelfish (Port):
+  - rscadd: Multiple new Bunny Outfits are in the vendors now!
+  theselfish:
+  - rscadd: Clown Hair! Woo! Markings too!
+  xXPawnStarrXx:
+  - rscadd: Added new pods!
+2024-07-15:
+  BurgerB:
+  - bugfix: Fixes Arcade Loot not properly spawning
+  Odairu:
+  - server: ghost only votable up to 40 pop
+  nevimer:
+  - balance: chest dismember only removes one organ per occurance
+  nikothedude:
+  - bugfix: Nagas off-station or restored with the SAD should now properly have their
+      footstep sound
+  - bugfix: Losing your naga lower body now tries to restore normal footsteps
+  - bugfix: Naga footstep sounds now work properly
+  plsleavemealon:
+  - rscadd: 'New Quirk: Masquerade, exclusive to hemophages'
+2024-07-16:
+  BurgerBB:
+  - balance: Your blob strain on start will always be Distributed Neurons, instead
+      of a random strain. The cost to reroll for the first time is still free.
+  - balance: Changing to Networked Fibers will instantly alert the crew that you exist
+      (With a level 5 blob biohazard announcement), regardless of how many tiles you
+      have.
+  Majkl-J:
+  - rscdel: Removed damage emp protection as the current strength of the emp does
+      not justify it.
+  - bugfix: Loadouts in bitrunning work again
+  - bugfix: Names in bitrunning work again
+  Odairu:
+  - rscadd: DomAura quirk to dom borg module, and adds it to the tech tree
+  - spellcheck: Untility Cyborg Upgrades -> Utility Cyborg Upgrades
+  StrangeWeirdKitten:
+  - bugfix: Borg Pinpointers and synthshells are now printable once more.
+  shayoki:
+  - rscadd: Added more telescreens to BoxStation.
+  - bugfix: Fixed BoxStation broken Telescreens.
+2024-07-17:
+  BurgerBB:
+  - rscadd: Adds Quote of the Round, an entirely cosmetic way of showing off a random
+      ass message said on Common Radio. This does not ping people. By default, it
+      is posted in the same channel as roundstart announcements.
+  Doomtail:
+  - image: added new beard icons
+  Majkl-J:
+  - balance: Weight 8 for BS, Ling, Heretic
+  - balance: Weight 10 for malf
+  - balance: Weight 8 for spy and traitor
+  - bugfix: Fixes runtime in get_antag_cap()
+2024-07-18:
+  BurgerBB:
+  - rscadd: Improves Moonstation Janitorial by adding missing items found on other
+      maps.
+  Majkl-J:
+  - balance: The ninja bomb objective is now available from 30 pop
+  - bugfix: Ninja no longer spawns with quirks, making you not to randomly die and
+      have a fighting chance
+  theselfish:
+  - rscadd: New cloak to the loadout. Caw.
+2024-07-19:
+  xXPawnStarrXx:
+  - qol: made it once again possible to print parts from autolathes! You just need
+      the disk <3
+2024-07-20:
+  theselfish:
+  - rscadd: Some redsec strays have been added to the ComDrobe and SecVend. Stay tuned.
+  - code_imp: Moved the SecVend to be with the rest of the vending overrides.
+2024-07-21:
+  LT3:
+  - qol: Improved alarm function on medbay's crew monitor console
+  Majkl-J:
+  - bugfix: Blue 98 UI Style fixes
+  Shroopy:
+  - rscadd: Added a GPS tracking collar to the LustWish
+  StrangeWeirdKitten:
+  - balance: Emote delay has been set to 1 second
+2024-07-22:
+  DimWhat for spriting, SigmaPredator for helping me with organizing this, and my (theselfish) poor keyboard.:
+  - rscadd: Nearly every job has a Bunny outfit. I am not joking. Check your vendors.
+2024-07-23:
+  Arturlang:
+  - balance: Bloodsuckers can only reach 560 max blood via drinking blood bags or
+      the blood reagent, and bloodsuckers above level 4 will get 30% less blood and
+      be disgusted by it.
+  nikothedude:
+  - rscadd: Mothroaches can now be milked for moth milk
+2024-07-24:
+  TheSelfish (code) CannibalHunter of MonkeStation (sprites):
+  - rscadd: Traitors may goon. Gooning is also in the clothes mate and the vendor.
+  - rscadd: Oh and the rabbit pendant is in the loadout, the rest of the bunny stuff
+      won't be added, but this isn't especially out there.
+2024-07-26:
+  BurgerBB:
+  - balance: Adds a strict limit for how many antagonists of the same type can be
+      added in the round. This affects both midrounds and roundstarts.
+2024-07-28:
+  LT3:
+  - bugfix: Blood filter toxin removal feature now starts correctly
+  MosleyTheMalO:
+  - config: adds a config for the vetted system
+  thegrb93:
+  - bugfix: Quadruped borg hat graphics work now
+2024-07-29:
+  KathrinBailey:
+  - sound: Adds meow1 emote!
+  - sound: Adds mrowl emote!
+  Shadow-Quill:
+  - bugfix: A holy water container on Moonstation now actually contains holy water.
+  snailomi:
+  - code_imp: updated donator_personal.dm
+2024-07-30:
+  Lutowski:
+  - qol: Moon Station Pharmacy and Chemistry Lab is renovated.
+  theselfish:
+  - bugfix: Coroner Bunny stuff got fixed.
+  - bugfix: Digi tailcoats should work. They make look a bit weird.
+  - rscdel: Clown Dogborg is gone thank fuck.
