@@ -1,0 +1,185 @@
+2024-06-01:
+  BurgerBB:
+  - qol: Map voting shows total map counts for each map
+  Colfer1:
+  - bugfix: Entombed trait reskin feature works now
+2024-06-03:
+  Arturlang:
+  - qol: Becoming a special vassal will now ask the vassal in question if they wish
+      to become it, and only go through if you accept it.
+  Majkl-J:
+  - rscadd: Adds prefloading to bitrunning
+  Nevimer, Majkl-J, BurgerBB, Azarak:
+  - rscadd: Ported the storyteller event system from horizon
+  Shayoki, Crumpaloo, Keila, Wolf751, bitsynapse.:
+  - rscadd: Donator toys and clothes have arrived.
+  aKromatopzia:
+  - rscdel: Removed duplicate raptoral cybernetic defines in preferences, research
+      web nodes and fabricators
+  projectkepler-ru:
+  - bugfix: Due to a genetic sequencing error, hydrophilic slime people have once
+      again been spotted on the station
+  theselfish:
+  - rscadd: Added various clown clothing into the autodrobe.
+  - rscadd: Clown Cryto is back.
+  - code_imp: Modular Vending code from Skyrat, but for us.
+  tmyqlfpir:
+  - bugfix: Dauntless space ruin bitrunner server no longer announces cool down over
+      NT supply comms
+  - bugfix: Dauntless and Interdyne are now immune to rad storms
+  - rscadd: Added Syndie borg access cards to Interdyne
+  - qol: Replaced the polarized windows in the Interdyne sauna area with blast door
+      shutters
+  - rscadd: Added experi-scanners to Interdyne/Dauntless R&D
+  - bugfix: Interdyne never spawns on top Z level
+  - qol: Interdyne dorm rooms now have crowbars in closets
+  - qol: Interdyne deck officer does not leave empty sleeper on ghost role spawn
+2024-06-04:
+  BurgerBB:
+  - balance: Adds a damage threshold + RNG requirement for EMPs affecting heads and
+      torsos, as well as organs inside those two.
+  theselfish:
+  - rscadd: A Halo is a new 'horn' option for angel characters.
+2024-06-07:
+  shayoki:
+  - bugfix: fixed a few donator items.
+2024-06-08:
+  theselfish:
+  - rscdel: Tiny loadout folder is now annexed into the bigger one.
+  - qol: Drill hats are clickable and are in the command vendor. (Thanks to F13 for
+      the OBJ sprite.)
+2024-06-09:
+  Majkl-J:
+  - qol: Makes the vote requirements code not terrible by allowing anyone with some
+      effect on the round to use it
+  theselfish:
+  - spellcheck: Removed a reference to Skyrat, and a spelling mistake in the Credits.
+2024-06-10:
+  BurgerBB:
+  - balance: Increases the chances of the Wizard Die of Fate event running.
+  pixelkitty286:
+  - rscadd: Research cyborgs
+  - rscadd: ability to pry cyborg cells out
+  - rscdel: ~~disabled malf cyborg factory~~
+  - qol: made an alt method removing cells
+  - balance: rebalanced cyborg making
+  - image: Sprites for research cyborgs
+  - code_imp: what ever needed to get the cyborgs working
+  theselfish:
+  - bugfix: Drill Hats ACTUALLY work.
+2024-06-11:
+  theselfish:
+  - rscadd: Marge has breached containment.
+2024-06-12:
+  BurgerBB:
+  - balance: Makes the exterior of Moonstation more enclosed.
+  Majkl-J:
+  - code_imp: The storyteller failed to pick events runtime now includes more information
+  theselfish:
+  - bugfix: MASSIVE File Structure clean-up.
+2024-06-13:
+  BurgerBB:
+  - bugfix: Fixes the second layer of moonstation creating space turfs.
+  pixelkitty286:
+  - bugfix: engineering borg BRPED upgrade re-added
+2024-06-14:
+  BurgerBB:
+  - rscdel: Malfunctioning AIs can no longer purchase the "Nuke Station" module.
+2024-06-15:
+  ChromeFoxxity:
+  - rscadd: Adds Security High-Vis Jacket Red and Blue variant.
+  - image: Added icons of both variants.
+  - code_imp: Added code for both variants.
+  theselfish:
+  - rscadd: Crewimov related modules are printable now.
+2024-06-16:
+  pixelkitty286:
+  - rscadd: holding code for cyborgs
+  - rscdel: Old 32x32 F3-LINE sprites
+  - image: 32x32 F3-LINE sprites and a cargo variant
+  - code_imp: preventive flags to indicate when held
+  - admin: Two robot traits added to the trait list
+2024-06-17:
+  Majkl-J:
+  - bugfix: Fixes atmos dying
+2024-06-20:
+  nevimer:
+  - qol: allows the ghost to be voted for at any pop
+2024-06-21:
+  theselfish:
+  - bugfix: Sex Barrier is now back. Scene? Scene? Scene? Scene? Scene?
+2024-06-22:
+  'Sprites: axietheaxolotl Code: VioletN':
+  - image: Added three new selectable "rat queen" skins to the royal rat.
+2024-06-23:
+  Icarus-The-Sun:
+  - bugfix: Prevents Departmental Guards from rolling antagonist roles.
+  Rathen Ivanov:
+  - rscadd: Added Employee Of The Month Special "Chief Screws Plush" for your use
+      and carrying!
+2024-06-24:
+  theselfish:
+  - rscadd: Added some unused clothing items to the MultiSec Vendor. Perhaps you can
+      find them if you're savvy enough with a Multitool.
+  - bugfix: Fixed a few missing items not being in the MultiSec Vendor. Also removed
+      a duplicate item.
+  - image: New Multisec Vendor sprite. Two-Face edition.
+  - rscadd: The Outlast items are no longer stuck in Loadout hell, yay!
+2024-06-25:
+  Shroopy:
+  - bugfix: fixed a copy-paste error in character_directory.dm
+  codehonky:
+  - rscadd: Added new bluespace experi-scanner.
+  - image: Added a simple reskin of the experi-scanner for the bluespace variant.
+  theselfish:
+  - rscadd: The Rat Monarch gender reveal party has been cancelled.
+2024-06-27:
+  BurgerBB:
+  - rscdel: Removes the hardcoded 5 second emote delay for all emotes. Most emotes
+      now have a cooldown of 0.8 seconds, with some being increased based on what
+      /tg/ set.
+  - rscadd: Fixes some Moonstation bugs and expands maintenance a little.
+  StrangeWeirdKitten:
+  - rscadd: 'Adds two new quirks: Dominant Aura and Well-Trained'
+  nevimer:
+  - bugfix: Storyteller should only take two minutes instead of five to spawn events.
+  projectkepler-ru:
+  - rscadd: Maint area somewhat expanded, blueshield has an office, QM has a bedroom.
+      Bitrunning den their own area
+  - bugfix: Paddy not being present on this map
+  xXPawnStarrXx:
+  - rscadd: Added new survival capsules themed for medical trauma and geyser harvesting.
+2024-06-28:
+  Majkl-J:
+  - bugfix: Captain office access can't magically grant you AA anymore
+  pixelkitty286:
+  - rscdel: dogborgs (they are quadrupeds now)
+  - bugfix: Verbs not being available to both tall and dog borgs to rest
+  - code_imp: See refactor. Removed dogborg procs(commented them out)
+  - refactor: small quadrupeds, large quadrupeds, and Tall cyborgs resting verb and
+      how it populates
+2024-06-29:
+  BurgerBB:
+  - bugfix: Fixes incorrect Moonstation Dorms directions.
+  LT3:
+  - rscadd: New DeForest heavy medical kit, technician satchel
+  - rscadd: Security medic can now order a single heavy medical kit using departmental
+      order
+  - bugfix: Hyposprays that are supposed to have a starting vial now actually start
+      with the vial
+  - bugfix: Combat hypospray correctly has the combat cooldown
+  - bugfix: Hypospray switches vials as expected
+  - bugfix: Piercing hypospray now has inject/spray delay
+2024-06-30:
+  BurgerBB:
+  - balance: Significantly nerfs all arrows across the board.
+  GoreDem:
+  - rscadd: buffed bulldog back to a usable state
+  YakumoChen:
+  - balance: Reverts buff to the TEG making it output up to 20MW, now outputs 10x
+      less with a decent setup
+  theselfish:
+  - rscadd: Someone finally repaired the damn pocket watches (may need to check your
+      loadouts)
+  - spellcheck: Made a few loadout item names headline consistent.
+  - code_imp: Moved ckey locked loadout items to their own folder.
