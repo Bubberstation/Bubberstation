@@ -78,11 +78,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'microchip',
     text: 'Adjust sensors',
   },
-  // NOVA ADDITION BEGIN - entombed quirk suit reactivation
+  // BUBBER EDIT BEGIN - entombed quirk suit reactivation
   entombed_emergency_reactivate: {
     icon: 'power-off',
     text: 'Emergency MODsuit reactivation',
-  }, // NOVA ADDITION END
+  }, // BUBBER EDIT END
 };
 
 const SLOTS: Record<
