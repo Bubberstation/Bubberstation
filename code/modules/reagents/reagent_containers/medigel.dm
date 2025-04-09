@@ -104,7 +104,7 @@
 /obj/item/reagent_containers/medigel/synthflesh/attack(mob/M, mob/user, def_zone)
 	if(iscarbon(M))
 		var/mob/living/carbon/carbies = M
-		if(HAS_TRAIT(carbies, TRAIT_HUSK) && carbies.getFireLoss() > UNHUSK_DAMAGE_THRESHOLD) // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN)
+		if(HAS_TRAIT(carbies, TRAIT_HUSK) && carbies.getFireLoss() > UNHUSK_DAMAGE_THRESHOLD * 2.5) // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN)
 			// give them a warning if the mob is a husk but synthflesh won't unhusk yet
 			carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
 

@@ -47,13 +47,18 @@
 	list_reagents_purity = 1
 	icon_state = "bandaid_both"
 
-/obj/item/reagent_containers/pill/patch/synthflesh/canconsume(mob/eater, mob/user)
+/obj/item/reagent_containers/pill/patch/canconsume(mob/eater, mob/user)
 	. = ..()
-	if(iscarbon(eater))
-		var/mob/living/carbon/carbies = eater
-		if(HAS_TRAIT(carbies, TRAIT_HUSK) && carbies.getFireLoss() > UNHUSK_DAMAGE_THRESHOLD) // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN)
-			// give them a warning if the mob is a husk but synthflesh won't unhusk yet
-			carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
+	if(!iscarbon(eater))
+		return
+	var/datum/reagent/medicine/c2/synthflesh/synthflesh_patch = reagents.has_reagent(/datum/reagent/medicine/c2/synthflesh)
+	if(!synthflesh_patch)
+		return
+	// Check mob damage for synthflesh unhusking
+	var/mob/living/carbon/carbies = eater
+	if(HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN) && carbies.getFireLoss() > UNHUSK_DAMAGE_THRESHOLD * 2.5)
+		// give them a warning if the mob is a husk but synthflesh won't unhusk yet
+		carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
 
 /obj/item/reagent_containers/pill/patch/ondansetron
 	name = "ondansetron patch"
