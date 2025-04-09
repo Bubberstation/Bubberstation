@@ -3,6 +3,10 @@
 	volume = 60
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 
+/obj/item/reagent_containers/cup/beaker/synthflesh
+	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 60)
+	list_reagents_purity = 1
+
 /obj/item/reagent_containers/cup/beaker/large
 	desc = "A large beaker. Can hold up to 120 units."
 	volume = 120

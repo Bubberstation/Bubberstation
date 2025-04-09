@@ -42,9 +42,18 @@
 
 /obj/item/reagent_containers/pill/patch/synthflesh
 	name = "synthflesh patch"
-	desc = "Helps with brute and burn injuries. Slightly toxic."
+	desc = "Helps with brute and burn injuries. Slightly toxic. Three patches applied can restore a corpse husked by burns."
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 20)
+	list_reagents_purity = 1
 	icon_state = "bandaid_both"
+
+/obj/item/reagent_containers/pill/patch/synthflesh/canconsume(mob/eater, mob/user)
+	. = ..()
+	if(iscarbon(eater))
+		var/mob/living/carbon/carbies = eater
+		if(HAS_TRAIT(carbies, TRAIT_HUSK) && carbies.getFireLoss() > UNHUSK_DAMAGE_THRESHOLD) // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN)
+			// give them a warning if the mob is a husk but synthflesh won't unhusk yet
+			carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
 
 /obj/item/reagent_containers/pill/patch/ondansetron
 	name = "ondansetron patch"

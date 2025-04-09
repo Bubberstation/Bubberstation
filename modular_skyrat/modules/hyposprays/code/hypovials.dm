@@ -162,7 +162,8 @@
 /obj/item/reagent_containers/cup/vial/large/synthflesh
 	name = "large orange hypovial (synthflesh)"
 	icon_state = "hypoviallarge-crit"
-	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
+	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 60)
+	list_reagents_purity = 1
 
 /obj/item/reagent_containers/cup/vial/large/multiver
 	name = "large black hypovial (multiver)"

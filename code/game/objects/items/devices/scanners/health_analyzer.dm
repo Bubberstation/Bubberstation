@@ -168,18 +168,16 @@
 
 	// Husk detection
 	if(HAS_TRAIT(target, TRAIT_HUSK))
+		var/husk_reason = "unknown causes"
 		if(advanced)
+		// BUBBER EDIT BEGIN - Better unhusk info with rezadone and exact units mentioned
 			if(HAS_TRAIT_FROM(target, TRAIT_HUSK, BURN))
-				// BUBBER EDIT BEGIN - Better unhusk info with rezadone and exact units mentioned
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("severe burns", "Tend burns and apply [SYNTHFLESH_UNHUSK_AMOUNT]u [/datum/reagent/medicine/c2/synthflesh::name] or use [/datum/reagent/medicine/rezadone::name].", tochat)].</span><br>"
-			else if (HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("desiccation", "Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u [/datum/reagent/medicine/c2/synthflesh::name] or use [/datum/reagent/medicine/rezadone::name]", tochat)].</span><br>"
-				// BUBBER EDIT END
-			else
-				render_list += "<span class='alert ml-1'>Subject has been husked by mysterious causes.</span><br>"
+				husk_reason = "severe burns"
+			else if(HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
+				husk_reason = "desiccation"
 
-		else
-			render_list += "<span class='alert ml-1'>Subject has been husked.</span><br>"
+		render_list += "<span class='alert ml-1'>Subject has been [conditional_tooltip("husked", "Repair burns, then apply choice of: [SYNTHFLESH_UNHUSK_AMOUNT]u pure [/datum/reagent/medicine/c2/synthflesh::name] / up to [SYNTHFLESH_UNHUSK_MAX]u impure [/datum/reagent/medicine/c2/synthflesh::name] / 5u [/datum/reagent/medicine/rezadone::name].", tochat)] due to [husk_reason].</span><br>"
+		// BUBBER EDIT END
 
 	if(target.getStaminaLoss())
 		if(advanced)
@@ -420,11 +418,8 @@
 			render_list += "<span class='alert ml-1'>Treatment Guide: Euthanasia.</span>"
 		else
 			render_list += span_userdanger("Classified viral infection detected.")
-			if(cling_infection.was_changeling_husked)
-				render_list += "<span class='alert ml-1'>Treatment Guide: Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u of synthflesh or inject rezadone.</span>"
-			else
-				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
-				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
+			render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
+			render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
 	//BUBBERSTATION EDIT END
 
 	// Time of death
