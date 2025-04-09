@@ -323,7 +323,7 @@ function Department(props: DepartmentProps) {
 
   return (
     <Box>
-      <Stack vertical fill>
+      <Stack fill vertical g={0}>
         {jobsForDepartment.map(([name, job]) => {
           return (
             <JobRow /* SKYRAT EDIT START - Fixing alt titles */
@@ -342,15 +342,6 @@ function Department(props: DepartmentProps) {
       {children}
     </Box>
   );
-}
-
-// *Please* find a better way to do this, this is RIDICULOUS.
-// All I want is for a gap to pretend to be an empty space.
-// But in order for everything to align, I also need to add the 0.2em padding.
-// But also, we can't be aligned with names that break into multiple lines!
-function Gap(props: { amount: number }) {
-  // 0.2em comes from the padding-bottom in the department listing
-  return <Box height={`calc(${props.amount}px + 0.2em)`} />;
 }
 
 function JoblessRoleDropdown(props) {
@@ -392,14 +383,13 @@ export function JobsPage() {
   return (
     <>
       <JoblessRoleDropdown />
-
       <Stack vertical fill>
         <Gap amount={22} />
 
-        <Stack.Item>
+        <Stack.Item mt={15}>
           {/* BUBBER EDIT CHANGE */}
           {/*
-          <Stack fill className="PreferencesMenu__Jobs">
+          <Stack fill g={1} className="PreferencesMenu__Jobs">
             <Stack.Item mr={1}>
               <Gap amount={36} />
 
@@ -435,15 +425,28 @@ export function JobsPage() {
             </Stack.Item>
 
             <Stack.Item>
-              <Gap amount={36} />
-
-              <PriorityHeaders />
-
-              <Department department="Security">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Medical" />
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Engineering" />
+                <Department department="Science" />
+                <Department department="Silicon" />
+                <Department department="Assistant" />
+              </Stack>
+            </Stack.Item>
+            <Stack.Item mt={-5.9}>
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Captain" />
+                <Department department="Service" />
+                <Department department="Cargo" />
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Security" />
+                <Department department="Medical" />
+              </Stack>
             </Stack.Item>
           </Stack>
           */}

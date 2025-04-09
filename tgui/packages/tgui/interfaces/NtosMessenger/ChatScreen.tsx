@@ -40,7 +40,7 @@ const SEND_COOLDOWN_MS = 1000;
 
 export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
   readUnreadsTimeout: NodeJS.Timeout | null = null;
-  scrollRef: RefObject<HTMLDivElement>;
+  scrollRef: RefObject<HTMLDivElement | null>;
 
   state: ChatScreenState = {
     message: '',
@@ -189,7 +189,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
     const { message, canSend, previewingImage, selectingPhoto, subtleMode } =
       this.state;
 
-    let filteredMessages: JSX.Element[] = [];
+    let filteredMessages: React.JSX.Element[] = [];
 
     for (let index = 0; index < messages.length; index++) {
       const message = messages[index];
@@ -221,7 +221,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
       );
     }
 
-    let sendingBar: JSX.Element;
+    let sendingBar: React.JSX.Element;
 
     if (!canReply) {
       sendingBar = (
