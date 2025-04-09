@@ -162,6 +162,8 @@
 	skin = to_assimilate.skin // Inheret skin
 	theme.set_up_parts(src, skin) // Put everything together
 	name = to_assimilate.name
+	desc = to_assimilate.desc
+	extended_desc = to_assimilate.extended_desc
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
 		if(install(module, user, TRUE))
 			continue
@@ -197,6 +199,8 @@
 	skin = initial(skin)
 	theme.set_up_parts(src, skin)
 	name = initial(name)
+	desc = initial(desc)
+	extended_desc = initial(extended_desc)
 	//if(forced)
 	//	stored_modsuit.forceMove(get_turf(src))
 	//	stored_modsuit = null

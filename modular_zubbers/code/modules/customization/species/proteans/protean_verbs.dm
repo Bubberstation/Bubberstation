@@ -53,5 +53,8 @@
 	if(loc == species.species_modsuit)
 		brain.leave_modsuit()
 	else if(isturf(loc))
-		brain.go_into_suit()
+		if(!incapacitated)
+			brain.go_into_suit()
+		else
+			balloon_alert(src, "incapacitated!")
 
