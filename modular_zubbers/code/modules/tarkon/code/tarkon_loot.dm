@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 	/obj/item/storage/toolbox/guncase/m44a = 1,
-    /obj/item/storage/toolbox/guncase/m44a_shotgun = 1,
+	/obj/item/storage/toolbox/guncase/m44a_shotgun = 1,
 	/obj/item/storage/toolbox/guncase/smartgun = 1,
 	/obj/item/gun/ballistic/automatic/proto = 1,
 	/obj/item/storage/toolbox/guncase/oldlaserrifle = 1,
