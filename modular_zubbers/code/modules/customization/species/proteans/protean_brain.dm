@@ -121,12 +121,9 @@
 		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
-	owner.SetStun(0, TRUE)
+	owner.SetStun(5 SECONDS, TRUE)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
-	if(owner.IsStun())
-		to_chat(owner, span_warning("<b><span class='red>AHELP</span><b> if you can't move and contact a coder if you see this message. Tell the admin to delete your status effect."))
-		stack_trace("Protean is immobilized coming out of their suit!")
 
 /obj/item/organ/brain/protean/proc/replace_limbs()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
