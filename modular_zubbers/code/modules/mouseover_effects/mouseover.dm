@@ -51,11 +51,9 @@
 	var/atom/movable/AM = object
 
 	var/mob/living/carbon/human/hovered_mob
-	message_admins("[object]")
 	if(istype(object, /mob/living/carbon/human))
 		hovered_mob = AM // wtf, sus
 		AM = hovered_mob.mob_mood.current_oblong
-		message_admins("[object]")
 
 	// Verify if we should be showing a highlight at all.
 	if(!istype(object, /atom/movable) || !hovered_mob || istype(object, /obj/structure))
@@ -81,7 +79,6 @@
 	mouseover_highlight_dummy.vis_flags |= VIS_INHERIT_ID
 	mouseover_highlight_dummy.dir = AM.dir
 	mouseover_highlight_dummy.transform = AM.transform
-	message_admins("[mouseover_highlight_dummy]")
 
 	// For some reason you need to explicitly zero the pixel offsets of the holder object
 	// or anything with a pixel offset will not line up with the highlight. Thanks DM.
