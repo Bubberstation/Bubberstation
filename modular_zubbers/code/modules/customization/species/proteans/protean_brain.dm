@@ -109,6 +109,9 @@
 	var/mob/living/carbon/mob = suit.loc
 	if(istype(mob))
 		mob.dropItemToGround(suit, TRUE)
+	var/datum/storage/storage = suit.loc.atom_storage
+	if(istype(storage))
+		storage.remove_single(null, suit, get_turf(suit), TRUE)
 	suit.invisibility = 101
 	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
 	sleep(12) //Same as above
