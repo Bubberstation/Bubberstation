@@ -43,7 +43,7 @@
 	name = "Protean Organs"
 	desc = "Contains two sets of organs for Protean crewmembers."
 	cost = CARGO_CRATE_VALUE * 10 // Not cheap
-	contains = list(/obj/item/organ/stomach/protean = 2, /obj/item/organ/heart = 2)
+	contains = list(/obj/item/organ/stomach/protean = 2, /obj/item/organ/heart/protean = 2)
 	crate_name = "protean organs"
 	access = ACCESS_ROBOTICS
 	access_view = ACCESS_ROBOTICS
