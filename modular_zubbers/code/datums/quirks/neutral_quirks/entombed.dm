@@ -11,7 +11,6 @@
 	icon = FA_ICON_ARROW_CIRCLE_DOWN
 	forced_items = list(/obj/item/mod/control/pre_equipped/entombed = list(ITEM_SLOT_BACK))
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
-	species_blacklist = list(SPECIES_PROTEAN)
 	/// The modsuit we're stuck in
 	var/obj/item/mod/control/pre_equipped/entombed/modsuit
 	/// Has the player chosen to deploy-lock?
