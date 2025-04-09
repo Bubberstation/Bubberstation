@@ -2979,12 +2979,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
-"kE" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable/layer3,
-/obj/structure/cable/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/port_tarkon/aiante)
 "kF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5993,12 +5987,12 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/research,
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "wh" = (
@@ -8741,7 +8735,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer3,
-/obj/structure/cable/layer3,
 /obj/item/folder/white,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aiante)
@@ -9200,10 +9193,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/door/airlock/research,
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/external,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "HP" = (
@@ -12096,6 +12089,10 @@
 /obj/machinery/quantumpad,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/paper{
+	default_raw_text = "A handful of PRANKSTERS, not naming names, have been linking the quantum pad to places other than where it is supposed to go, namely the bathrooms. This sort of tomfoolery is not acceptable, and as such we have cut the connection completley. If you need to get to the southern hazardous research station, you will need a suit and take a walk along the catwalk. Have fun, assholes.";
+	name = "Quantum Pad Missuse"
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "SI" = (
@@ -26235,7 +26232,7 @@ RH
 RH
 Np
 FZ
-kE
+Yx
 CY
 Yx
 Iz
