@@ -3,7 +3,7 @@
 /obj/structure/wave_defence
 	name = "Emergency Backup Generator"
 	desc = "A small, rusty looking engine used to run emergency systems. Call in a Hack-C pod to begin the reboot sequence."
-	icon = 'modular_zubbers/code/modules/ghost_wavedefence/wavedef.dmi'
+	icon = 'modular_zubbers\icons\obj\machines\wavedef.dmi'
 	icon_state = "emerg_engine"
 	base_icon_state = "emerg_engine"
 	var/excavation_warning = "This will be awfully loud. Are you ready to protect the hacking pod?"
@@ -30,14 +30,14 @@
 
 /obj/item/hackc
 	name = "Hack-C repair pod signaller"
-	icon = 'modular_zubbers/code/modules/ghost_wavedefence/wavedef_items.dmi'
+	icon = 'modular_zubbers\icons\obj\machines\wavedef_items.dmi'
 	icon_state = "hackc"
 	desc = "A small tool with a bunch of ones and zeros on it. The label say 'For emergency use only!'"
 
 /mob/living/basic/node_drone/hackc
 	name = "Hack-C drone"
 	desc = "A lightweight version of the standard NT drones. This one has been modified for basic repairs and electrical engineering work."
-	icon = 'modular_zubbers/code/modules/ghost_wavedefence/wavedef_items.dmi'
+	icon = 'modular_zubbers\icons\obj\machines\wavedef_items.dmi'
 	icon_state = "mining_node_active"
 	icon_living = "mining_node_active"
 	icon_dead = "mining_node_active"
