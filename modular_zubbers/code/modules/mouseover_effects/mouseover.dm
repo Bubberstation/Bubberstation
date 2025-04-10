@@ -120,7 +120,7 @@
 	var/initalpha = initial(mouseover_highlight_dummy.alpha)
 	var/atom/movable/current_atom = current_highlight_atom?.resolve()
 	if(current_atom != object && mouseover_highlight_dummy)
-		animate(mouseover_highlight_dummy, pixel_y = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING, alpha = initalpha)
+		animate(mouseover_highlight_dummy, pixel_z = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING, alpha = initalpha)
 		refresh_mouseover_highlight_timer(current_atom, object)
 
 	. = ..()
