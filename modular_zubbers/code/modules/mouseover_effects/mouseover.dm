@@ -94,7 +94,7 @@
 	mouseover_highlight_dummy.plane = BALLOON_CHAT_PLANE
 	mouseover_highlight_dummy.alpha = 0
 	mouseover_highlight_dummy.appearance_flags |= (KEEP_TOGETHER|RESET_COLOR)
-	animate(mouseover_highlight_dummy, pixel_y = 48, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 180, maptext_y = 24)
+	animate(mouseover_highlight_dummy, pixel_z = 48, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 180, maptext_y = 24)
 
 	mouseover_highlight_dummy.maptext_width = 128
 	mouseover_highlight_dummy.maptext_x = -48
