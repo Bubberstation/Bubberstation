@@ -98,7 +98,7 @@
 
 	mouseover_highlight_dummy.maptext_width = 128
 	mouseover_highlight_dummy.maptext_x = -48
-	mouseover_highlight_dummy.maptext = MAPTEXT_SPESSFONT()
+//	mouseover_highlight_dummy.maptext = MAPTEXT_SPESSFONT(AM)
 	// Finally update our highlight's vis contents and location .
 	clear_vis_contents(current_highlight)
 	add_vis_contents(current_highlight, mouseover_highlight_dummy)
