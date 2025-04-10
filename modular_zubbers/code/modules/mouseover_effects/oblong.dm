@@ -19,7 +19,7 @@
 
 /datum/mood_event/proc/update_oblong()
 
-	owner.mob_mood?.update_oblong()
+	owner.mob_mood?.update_oblong() // moods are not guaranteeds to exist
 
 /obj/effect/overlay/oblong
 	icon = 'modular_zubbers/icons/oblong.dmi'
