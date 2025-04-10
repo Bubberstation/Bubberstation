@@ -23,7 +23,7 @@
 
 /obj/effect/overlay/oblong
 	icon = 'modular_zubbers/icons/oblong.dmi'
-	pixel_y = 36
+	pixel_z = 36
 	plane = BALLOON_CHAT_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 164
