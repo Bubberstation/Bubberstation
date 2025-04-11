@@ -16,7 +16,7 @@
 	/// This trait blocks us from receiving echolocation.
 	var/blocking_trait
 	/// Ref of the client color we give to the echolocator.
-	var/client_color
+	var/client_colour
 	/// Associative list of receivers to lists of atoms they are rendering (those atoms are associated to data of the image and time they were rendered at).
 	var/list/receivers = list()
 	/// All the saved appearances, keyed by icon-icon_state.
@@ -59,10 +59,10 @@
 	src.show_own_outline = show_own_outline
 	src.echo_color = personal_color
 	// SKYRAT EDIT ADDITION END
-	if(ispath(color_path))
-		client_color = echolocator.add_client_colour(color_path)
 	src.echo_group = echo_group || REF(src)
-	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_TRUE_NIGHT_VISION), echo_group) //so they see all the tiles they echolocated, even if they are in the dark
+	if(ispath(color_path))
+		client_colour = echolocator.add_client_colour(color_path, src.echo_group)
+	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_TRUE_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind(ECHOLOCATION_TRAIT)
 	// SKYRAT EDIT ADDITION START
 	if (use_echo) // add constructor toggle to not use the eye overlay
@@ -73,7 +73,7 @@
 /datum/component/echolocation/Destroy(force)
 	STOP_PROCESSING(SSfastprocess, src)
 	var/mob/living/echolocator = parent
-	QDEL_NULL(client_color)
+	QDEL_NULL(client_colour)
 	echolocator.remove_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_TRUE_NIGHT_VISION), echo_group)
 	echolocator.cure_blind(ECHOLOCATION_TRAIT)
 	echolocator.clear_fullscreen("echo")

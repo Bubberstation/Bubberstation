@@ -125,7 +125,7 @@
 	if(!quirk_transfer && lose_text)
 		to_chat(quirk_holder, lose_text)
 
-	if(mob_trait && !QDELETED(quirk_holder)) // BUBBER EDIT CHANGE - Original: if(mob_trait) - Temp fix until https://github.com/tgstation/tgstation/pull/90044
+	if(mob_trait && !QDELETED(quirk_holder))
 		REMOVE_TRAIT(quirk_holder, mob_trait, QUIRK_TRAIT)
 
 	if(quirk_flags & QUIRK_PROCESSES)

@@ -65,7 +65,7 @@
 		// Reagent containers, for synth medicine
 		/obj/item/reagent_containers/spray,
 		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/cup,
 		/obj/item/reagent_containers/syringe,
 		// Tools, including tools you might not want to use but might have to (hemostat/retractor/etc)

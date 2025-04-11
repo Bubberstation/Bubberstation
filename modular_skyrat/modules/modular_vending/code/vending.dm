@@ -52,10 +52,10 @@
 		if(premium[item] < MINIMUM_CLOTHING_STOCK && allow_increase(item))
 			premium[item] = MINIMUM_CLOTHING_STOCK
 
-	QDEL_NULL(skyrat_products)
-	QDEL_NULL(skyrat_product_categories)
-	QDEL_NULL(skyrat_premium)
-	QDEL_NULL(skyrat_contraband)
+	skyrat_products = null
+	skyrat_product_categories = null
+	skyrat_premium = null
+	skyrat_contraband = null
 	return ..()
 
 /// This proc checks for forbidden traits cause it'd be pretty bad to have 5 insuls available to assistants roundstart at the vendor!

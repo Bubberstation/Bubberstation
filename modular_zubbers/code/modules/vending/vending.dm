@@ -38,9 +38,9 @@
 		for(var/item_to_add in zubbers_contraband)
 			contraband[item_to_add] = zubbers_contraband[item_to_add]
 
-	QDEL_NULL(zubbers_products)
-	QDEL_NULL(zubbers_product_categories)
-	QDEL_NULL(zubbers_premium)
-	QDEL_NULL(zubbers_contraband)
+	zubbers_products = null
+	zubbers_product_categories = null
+	zubbers_premium = null
+	zubbers_contraband = null
 	return ..()
 

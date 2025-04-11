@@ -442,16 +442,18 @@ function LoadoutPreviewSection() {
     <Section
       fill
       // BUBBER EDIT REMOVAL BEGIN - Better loadout pref
-      // title="Preview"
-      // buttons={
-      //  <Button.Checkbox
-      //    align="center"
-      //    checked={data.job_clothes}
-      //    onClick={() => act('toggle_job_clothes')}
-      //  >
-      //    Job Clothes
-      //  </Button.Checkbox>
-      // }
+      /*
+      title="Preview"
+      buttons={
+        <Button.Checkbox
+          align="center"
+          checked={data.job_clothes}
+          onClick={() => act('toggle_job_clothes')}
+        >
+          Job Clothes
+        </Button.Checkbox>
+      }
+      */
       // BUBBER EDIT REMOVAL END - Better loadout pref
     >
       <Stack vertical fill>

@@ -84,10 +84,10 @@
 /obj/item/storage/medkit/tactical/ntrauma/PopulateContents()
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/defibrillator/compact/combat/loaded/nanotrasen(src)
-	new /obj/item/reagent_containers/pill/patch/libital(src)
-	new /obj/item/reagent_containers/pill/patch/libital(src)
-	new /obj/item/reagent_containers/pill/patch/aiuri(src)
-	new /obj/item/reagent_containers/pill/patch/aiuri(src)
+	new /obj/item/reagent_containers/applicator/patch/libital(src)
+	new /obj/item/reagent_containers/applicator/patch/libital(src)
+	new /obj/item/reagent_containers/applicator/patch/aiuri(src)
+	new /obj/item/reagent_containers/applicator/patch/aiuri(src)
 	new	/obj/item/holosign_creator/medical (src)
 
 /obj/item/clothing/gloves/latex/nitrile/ntrauma

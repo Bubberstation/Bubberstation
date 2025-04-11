@@ -1459,6 +1459,12 @@
 		to_chat(victim, span_warning("[source_item? "Something strange was in \the [source_item]..." : "I just bit something strange..."] "))
 		return discover_after
 
+	var/obj/item/organ/stomach/stomach = victim.get_organ_by_type(/obj/item/organ/stomach)
+	if (stomach?.consume_thing(src))
+		victim.losebreath += 2
+		to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in \the [source_item]..." : ""]"))
+		return FALSE
+
 	// victim's chest (for cavity implanting the item)
 	var/obj/item/bodypart/chest/victim_cavity = victim.get_bodypart(BODY_ZONE_CHEST)
 	if(victim_cavity.cavity_item)
@@ -1469,7 +1475,6 @@
 
 	victim.transferItemToLoc(src, victim, TRUE)
 	victim.losebreath += 2
-	victim_cavity.cavity_item = src
 	to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in \the [source_item]..." : ""]"))
 	return FALSE
 
@@ -1693,6 +1698,8 @@
 
 	var/image/attack_image = isnull(used_item.attack_icon) ? image(icon = used_item) : image(icon = used_item.attack_icon, icon_state = used_item.attack_icon_state)
 	attack_image.plane = attacked_atom.plane + 1
+	attack_image.pixel_w = used_item.base_pixel_x + used_item.base_pixel_w
+	attack_image.pixel_z = used_item.base_pixel_y + used_item.base_pixel_z
 	// Scale the icon.
 	attack_image.transform *= 0.5
 	// The icon should not rotate.

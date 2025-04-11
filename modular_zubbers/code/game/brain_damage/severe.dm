@@ -1,4 +1,4 @@
-/datum/brain_trauma/severe/monophobia/check_alone()
+/datum/terror_handler/simple_source/monophobia/check_condition(seconds_per_tick, terror_buildup)
 	. = ..()
 	for(var/obj/item/toy/plush/plush in oview(owner, 1))
 		if(plush.stuffed)

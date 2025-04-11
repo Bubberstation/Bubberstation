@@ -11,11 +11,9 @@
 /datum/loadout_item/shoes/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	outfit.shoes = item_path
 
-/* BUBBER EDIT REMOVAL BEGIN - duplicate of /datum/loadout_item/shoes/greyscale_sneakers
 /datum/loadout_item/shoes/sneakers
 	name = "Sneakers (Colourable)"
 	item_path = /obj/item/clothing/shoes/sneakers
-BUBBER EDIT REMOVAL END */
 
 /datum/loadout_item/shoes/sandals_laced
 	name = "Sandals (Velcro)"
@@ -41,8 +39,6 @@ BUBBER EDIT REMOVAL END */
 	name = "Boots (Cowboy, Black)"
 	item_path = /obj/item/clothing/shoes/cowboy/black/laced
 
-/* BUBBER EDIT REMOVAL BEGIN - duplicate of /datum/loadout_item/shoes/glow
 /datum/loadout_item/shoes/glow_shoes
 	name = "Shoes (Glowing, Colourable)"
 	item_path = /obj/item/clothing/shoes/glow
-BUBBER EDIT REMOVAL END */

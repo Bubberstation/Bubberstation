@@ -30,10 +30,6 @@
 	name = "Purple Lipstick"
 	item_path = /obj/item/lipstick/purple
 
-/datum/loadout_item/pocket_items/lipstick_red
-	name = "Red Lipstick"
-	item_path = /obj/item/lipstick
-
 /*
 *	MISC
 */
@@ -53,10 +49,6 @@
 /datum/loadout_item/pocket_items/cheaplighter
 	name = "Cheap Lighter"
 	item_path = /obj/item/lighter/greyscale
-
-/datum/loadout_item/pocket_items/zippolighter
-	name = "Zippo Lighter"
-	item_path = /obj/item/lighter
 
 /datum/loadout_item/pocket_items/ttsdevice
 	name = "Text-to-Speech Device"

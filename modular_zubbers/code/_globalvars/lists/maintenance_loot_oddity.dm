@@ -52,7 +52,6 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	) = 50,
 	/obj/item/clothing/glasses/nightmare_vision = 25,
 	/obj/item/clothing/head/helmet/monkey_sentience = 25,
-	/obj/item/clothing/head/soft/grey/jolly = 5,
 	/obj/item/crowbar/large/heavy = 5,,
 	/obj/item/dnainjector/h2m = 5,
 	/obj/item/flashlight/flashdark = 5,
