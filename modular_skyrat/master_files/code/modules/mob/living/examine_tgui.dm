@@ -10,7 +10,7 @@
 
 
 /datum/examine_panel/ui_close(mob/user)
-	user.client.clear_map(examine_panel_screen.assigned_map)
+	examine_panel_screen.hide_from(user)
 
 
 /atom/movable/screen/map_view/examine_panel_screen
@@ -38,10 +38,9 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		examine_panel_screen.display_to(user)
-		user.client.register_map_obj(examine_panel_screen)
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
+		examine_panel_screen.display_to(user, ui.window)
 
 
 /datum/examine_panel/ui_data(mob/user)
