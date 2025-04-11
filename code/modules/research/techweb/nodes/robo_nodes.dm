@@ -31,7 +31,9 @@
 	design_ids = list(
 		"aicore",
 		"aifixer",
+/* // BUBBER EDIT
 		"aiupload",
+*/
 		"asimov_module",
 		"borg_ai_control",
 		"corporate_module",

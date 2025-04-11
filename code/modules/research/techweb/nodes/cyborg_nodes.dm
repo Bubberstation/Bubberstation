@@ -31,7 +31,9 @@
 	prereq_ids = list(TECHWEB_NODE_AUGMENTATION)
 	design_ids = list(
 		"robocontrol",
+/* // BUBBER EDIT
 		"borgupload",
+*/
 		"cyborgrecharger",
 		"mmi_posi",
 		"mmi",
