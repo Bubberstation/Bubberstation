@@ -39,6 +39,8 @@
 		/obj/item/mod/module/storage/large_capacity
 	)
 
+// CUSTOM BEHAVIOR
+
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)
 	return TRUE //you can always try, and it'll hit doStrip below
 
@@ -82,3 +84,8 @@
 /obj/item/mod/control/pre_equipped/entombed/Initialize(mapload, new_theme, new_skin, new_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, QUIRK_TRAIT)
+
+/obj/item/mod/control/pre_equipped/entombed/dropped(mob/user)
+	. = ..()
+	// we do this so that in the rare event that someone gets gibbed/destroyed, their suit can be retrieved easily w/o requiring admin intervention
+	REMOVE_TRAIT(src, TRAIT_NODROP, QUIRK_TRAIT)
