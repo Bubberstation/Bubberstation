@@ -37,15 +37,12 @@
 /obj/item/clothing/mask/gas/sechailer/emp_act(severity)
 	. = ..()
 	if(!emped)
-		balloon_alert_to_viewers("Backup Hailer Malfunctioning!", vision_distance = 1)
 		emped = TRUE
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/mask/gas/sechailer, emp_reset)), 2 MINUTES)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/mask/gas/sechailer, emp_reset)), 3 MINUTES)
 
-/// Reset EMP after 2 minutes
+/// Reset EMP after 3 minutes
 /obj/item/clothing/mask/gas/sechailer/proc/emp_reset()
 	SIGNAL_HANDLER
-
-	balloon_alert(src, "backup hailer recalibrated")
 	emped = FALSE
 
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
@@ -68,14 +65,19 @@
 	if (emped)
 		balloon_alert(usr, "backup malfunctioning!")
 		return
+	if (HAS_TRAIT(usr, TRAIT_MUTE))
+		to_chat(usr, span_warning("You're unable to talk into the hailer!"))
+		return
 	if (!is_station_level(turf_location.z))
 		balloon_alert(usr, "out of range!")
+		return
+	if(!do_after(usr, 2 SECONDS))
 		return
 
 	COOLDOWN_START(src, backup_cooldown, 1 MINUTES)
 	radio.talk_into(usr, "Backup Requested in [location]!", RADIO_CHANNEL_SECURITY, language = /datum/language/common)
 	usr.audible_message("<font color='red' size='5'><b>BACKUP REQUESTED!</b></font>")
-	balloon_alert_to_viewers("Backup Requested!", "Backup Requested!", 7)
+	balloon_alert_to_viewers("backup Requested!", "backup Requested!", 7)
 	log_combat(usr, src, "has called for backup")
 	playsound(usr, 'sound/items/whistle/whistle.ogg', 50, FALSE, 4)
 
