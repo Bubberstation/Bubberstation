@@ -2,20 +2,14 @@
 	/// Mob that the examine panel belongs to.
 	var/mob/living/holder
 	/// The screen containing the appearance of the mob
-	var/atom/movable/screen/map_view/examine_panel_screen/examine_panel_screen
+	var/atom/movable/screen/map_view/examine_panel_screen
 
 
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
-
 /datum/examine_panel/ui_close(mob/user)
 	examine_panel_screen.hide_from(user)
-
-
-/atom/movable/screen/map_view/examine_panel_screen
-	name = "examine panel screen"
-
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	if(!examine_panel_screen)
