@@ -125,3 +125,7 @@
 
 	. = ..()
 
+#undef add_vis_contents
+#undef remove_vis_contents
+#undef clear_vis_contents
+#undef set_vis_contents
