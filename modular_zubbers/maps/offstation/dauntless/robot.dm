@@ -29,5 +29,5 @@
 	. = ..()
 
 	// Yes, this forces out and removes any other keys. Which it should, in this case.
-	R.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
+	R.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 	R.radio.recalculateChannels()
