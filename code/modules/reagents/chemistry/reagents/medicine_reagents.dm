@@ -238,8 +238,8 @@
 		return
 
 	var/mob/living/carbon/patient = exposed_mob
-	if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
-		patient.cure_husk(BURN)
+	if(reac_volume >= 5 && HAS_TRAIT(patient, TRAIT_HUSK) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone. // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN)
+		patient.cure_husk() // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: patient.cure_husk(BURN)
 		patient.visible_message(span_nicegreen("[patient]'s body rapidly absorbs moisture from the environment, taking on a more healthy appearance."))
 
 /datum/reagent/medicine/spaceacillin
