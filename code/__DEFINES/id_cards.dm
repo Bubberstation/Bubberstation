@@ -11,13 +11,13 @@
  */
 
 /// Wildcard slot define for basic grey cards. Only hold 4 common wildcards.
-#define WILDCARD_LIMIT_GREY list(WILDCARD_NAME_COMMON = list(limit = 4, usage = list()))
+#define WILDCARD_LIMIT_GREY list(WILDCARD_NAME_COMMON = list(limit = 10, usage = list())) //BUBBER EDITS: More slots
 /// Wildcard slot define for Head of Staff silver cards. Can hold 6 common, 2 command and 1 private command.
 #define WILDCARD_LIMIT_SILVER list( \
-	WILDCARD_NAME_COMMON = list(limit = 6, usage = list()), \
+	WILDCARD_NAME_COMMON = list(limit = 8, usage = list()), \
 	WILDCARD_NAME_COMMAND = list(limit = 2, usage = list()), \
 	WILDCARD_NAME_PRV_COMMAND = list(limit = 1, usage = list()) \
-)
+) //BUBBER EDIT: More slots
 /// Wildcard slot define for Captain gold cards. Can hold infinite of any Captain level wildcard.
 #define WILDCARD_LIMIT_GOLD list(WILDCARD_NAME_CAPTAIN = list(limit = -1, usage = list()))
 /// Wildcard slot define for select Syndicate-affiliated cards. Can hold infinite of any Syndicate level wildcard. Syndicate includes all station accesses.
