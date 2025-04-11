@@ -27,8 +27,8 @@
 
 /obj/structure/rack/wooden/atom_deconstruct(disassembled = TRUE)
 	set_density(FALSE)
-	var/obj/item/stack/sheet/mineral/wood/wood = new(drop_location(), 2)
-	transfer_fingerprints_to(wood)
+	var/obj/item/stack/sheet/mineral/wood/planks = new(drop_location(), 2)
+	transfer_fingerprints_to(planks)
 
 // Barrel but it works like a crate
 
