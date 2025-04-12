@@ -1,6 +1,4 @@
 /obj/docking_port/mobile
-	/// Does this shuttle play sounds upon landing and takeoff?
-	var/shuttle_sounds = TRUE
 	/// The take off sound to be played
 	var/takeoff_sound = sound('modular_skyrat/modules/advanced_shuttles/sound/engine_startup.ogg')
 	/// The landing sound to be played
