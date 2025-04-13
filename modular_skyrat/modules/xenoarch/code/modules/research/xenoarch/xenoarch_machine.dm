@@ -227,6 +227,16 @@
 	desc = "A machine that will recover the damaged, destroyed objects found within the strange rocks."
 	icon_state = "recoverer"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_recoverer
+	/// Assoc list of item type to reward pool
+	var/static/list/reward_pools = list(
+		/obj/item/xenoarch/broken_item/tech = GLOB.tech_reward,
+		/obj/item/xenoarch/broken_item/weapon = GLOB.weapon_reward,
+		/obj/item/xenoarch/broken_item/illegal = GLOB.illegal_reward,
+		/obj/item/xenoarch/broken_item/alien = GLOB.alien_reward,
+		/obj/item/xenoarch/broken_item/plant = GLOB.plant_reward,
+		/obj/item/xenoarch/broken_item/clothing = GLOB.clothing_reward,
+		/obj/item/xenoarch/broken_item/animal = GLOB.animal_reward,
+	)
 
 /obj/machinery/xenoarch/recoverer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -269,44 +279,13 @@
 		qdel(content_obj)
 		return
 
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/tech))
-		var/spawn_item = pick_weight(GLOB.tech_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/weapon))
-		var/spawn_item = pick_weight(GLOB.weapon_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/illegal))
-		var/spawn_item = pick_weight(GLOB.illegal_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/alien))
-		var/spawn_item = pick_weight(GLOB.alien_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/plant))
-		var/spawn_item = pick_weight(GLOB.plant_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
-	if(istype(content_obj, /obj/item/xenoarch/broken_item/clothing))
-		var/spawn_item = pick_weight(GLOB.clothing_reward)
-		recover_item(spawn_item, content_obj)
-		return
-
+	var/spawn_item = pick_weight(reward_pools[content_obj.type])
 	if(istype(content_obj, /obj/item/xenoarch/broken_item/animal))
-		var/spawn_item
 		for(var/looptime in 1 to rand(1,4))
-			spawn_item = pick_weight(GLOB.animal_reward)
+			spawn_item = pick_weight(reward_pools[content_obj.type])
 			new spawn_item(src_turf)
 
-		recover_item(spawn_item, content_obj)
-		return
+	recover_item(spawn_item, content_obj)
 
 /obj/machinery/xenoarch/recoverer/proc/recover_item(obj/insert_obj, obj/delete_obj)
 	var/src_turf = get_turf(src)
