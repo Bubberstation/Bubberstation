@@ -23,7 +23,7 @@
 	)
 	premium = list(
 		/obj/item/storage/belt/utility = 3,
-		///obj/item/construction/rcd/loaded = 2, // SKYRAT EDIT REMOVAL
+		/obj/item/construction/rcd/loaded = 2,
 		/obj/item/storage/box/smart_metal_foam = 1,
 	)
 	refill_canister = /obj/item/vending_refill/engivend
