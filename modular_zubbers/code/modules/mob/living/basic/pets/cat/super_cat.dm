@@ -15,7 +15,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	melee_damage_lower = 7
 	melee_damage_upper = 15
-	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile
 	faction = list(FACTION_HOSTILE)
 
 
@@ -28,7 +28,7 @@
 /mob/living/basic/pet/cat/super/can_use_guns(obj/item/G)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_NOGUNS)) // Who am I to stop admins from making them stronger?
-		balloon_alert(src, "Your paws are too soft!")
+		balloon_alert(src, "your paws are too soft!")
 		return FALSE
 
 /mob/living/basic/pet/cat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
@@ -110,7 +110,7 @@
 /mob/living/basic/pet/cat/syndicat/super/can_use_guns(obj/item/G)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_NOGUNS)) // Who am I to stop admins from making them stronger?
-		balloon_alert(src, "Your paws are too weak!")
+		balloon_alert(src, "your paws are too weak!")
 		return FALSE
 
 /mob/living/basic/pet/cat/syndicat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)

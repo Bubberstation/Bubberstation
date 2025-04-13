@@ -8,7 +8,7 @@
 	desc = "<b>Left click</b> to coil/uncoil your powerful tail around something, <b>right click</b> to begin crushing."
 	check_flags = AB_CHECK_LYING|AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_PHASED
 
-	button_icon = 'modular_skyrat/modules/taur_mechanics/sprites/ability.dmi'
+	button_icon = 'modular_skyrat/modules/taur_mechanics/icons/ability.dmi'
 	button_icon_state = "constrict"
 
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi'
@@ -125,7 +125,7 @@
 	name = "serpentine tail"
 	desc = "A scaley tail, currently coiled."
 
-	icon = 'modular_skyrat/modules/taur_mechanics/sprites/tail.dmi'
+	icon = 'modular_skyrat/modules/taur_mechanics/icons/tail.dmi'
 	icon_state = "naga"
 	pixel_x = -16
 
@@ -190,7 +190,7 @@
 	if (tail_overlay)
 		return tail_overlay // we already have it
 
-	tail_overlay = mutable_appearance('modular_skyrat/modules/taur_mechanics/sprites/tail.dmi', "naga_top", ABOVE_MOB_LAYER + 0.01, src)
+	tail_overlay = mutable_appearance('modular_skyrat/modules/taur_mechanics/icons/tail.dmi', "naga_top", ABOVE_MOB_LAYER + 0.01, src)
 	tail_overlay.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	tail_overlay.setDir(owner.dir)
 	add_overlay(tail_overlay)
@@ -507,13 +507,13 @@
 		UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_GRAB, COMSIG_LIVING_TRY_PULL, COMSIG_LIVING_SET_BODY_POSITION, COMSIG_ATOM_POST_DIR_CHANGE))
 
 	if (owner)
-		var/obj/item/organ/external/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		taur_body?.hide_self = FALSE
 
 	owner = new_owner
 
 	if (owner)
-		var/obj/item/organ/external/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		var/obj/item/organ/taur_body/taur_body = owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		taur_body?.hide_self = TRUE
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(owner_moved))
@@ -642,7 +642,7 @@
 	name = "Constricted"
 	desc = "You're being constricted by a giant tail! You can resist, attack the tail, or attack the constrictor to escape!"
 
-	icon = 'modular_skyrat/modules/taur_mechanics/sprites/ability.dmi'
+	icon = 'modular_skyrat/modules/taur_mechanics/icons/ability.dmi'
 	icon_state = "constrict"
 
 #undef CONSTRICT_BASE_PIXEL_SHIFT

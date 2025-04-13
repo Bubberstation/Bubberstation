@@ -27,7 +27,7 @@
 	lighting_cutoff_green = 25
 	lighting_cutoff_blue = 15
 
-	ai_controller = /datum/ai_controller/basic_controller/simple_hostile_obstacles
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	var/health_scaling = TRUE
 
 /mob/living/basic/creature/Initialize(mapload)
@@ -105,10 +105,11 @@
 
 /mob/living/basic/creature/tiggles
 	name = "Miss Tiggles"
+	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/creature/hatchling
 	name = "hatchling"
 	health = 25
 	maxHealth = 25
 	health_scaling = FALSE
-	current_size = 0.85
+	initial_size = 0.85

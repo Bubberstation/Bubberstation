@@ -128,7 +128,7 @@
 				return FALSE
 	return TRUE
 
-/obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(var/obj/machinery/piratepad/syndiepad/pad)
+/obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(obj/machinery/piratepad/syndiepad/pad)
 	if(!pad)
 		return
 	flick(pad.sending_state,pad)

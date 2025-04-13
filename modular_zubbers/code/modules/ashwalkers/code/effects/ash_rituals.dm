@@ -3,13 +3,13 @@
 	desc = "Prepare a meal for a drake."
 	required_components = list(
 		"north" = /obj/item/crusher_trophy/legion_skull,
-		"south" = /obj/item/organ/internal/monster_core/regenerative_core,
+		"south" = /obj/item/organ/monster_core/regenerative_core,
 		"east" = /obj/item/food/meat/steak/goliath,
 		"west" = /obj/item/stack/sheet/sinew,
 	)
 	consumed_components = list(
 		/obj/item/crusher_trophy/legion_skull,
-		/obj/item/organ/internal/monster_core/regenerative_core,
+		/obj/item/organ/monster_core/regenerative_core,
 		/obj/item/food/meat/steak/goliath,
 		/obj/item/stack/sheet/sinew,
 	)

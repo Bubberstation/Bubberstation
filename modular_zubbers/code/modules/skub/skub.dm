@@ -1,6 +1,6 @@
 /datum/holiday/april_fools/celebrate()
 	. = ..()
-	GLOB.maintenance_loot = list(
+	GLOB.maintenance_loot += list(
 		/obj/item/skub = maint_holiday_weight
 	)
 
