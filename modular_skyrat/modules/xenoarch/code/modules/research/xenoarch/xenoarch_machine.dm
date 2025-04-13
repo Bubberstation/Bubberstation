@@ -114,11 +114,13 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
-		for(var/obj/item/xenoarch/strange_rocks in tool.contents)
+		for(var/obj/item/strange_rocks in tool.contents)
+			if(!is_type_in_list(strange_rocks, accepted_types))
+				continue
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
-		balloon_alert(user, "rocks inserted!")
+		balloon_alert(user, "items inserted!")
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_type_in_list(tool, accepted_types))
@@ -326,7 +328,7 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
-		for(var/obj/item/strange_rocks in tool.contents)
+		for(var/obj/item/xenoarch/strange_rock/strange_rocks in tool.contents)
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
