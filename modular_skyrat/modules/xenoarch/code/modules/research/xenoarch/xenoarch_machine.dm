@@ -107,7 +107,7 @@
 
 /obj/machinery/xenoarch/researcher/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>[current_research]/[max_research] research available.")
+	. += span_notice("[current_research]/[max_research] research available.")
 
 /obj/machinery/xenoarch/researcher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
