@@ -254,10 +254,21 @@
 	if(istype(held_item, /obj/item/xenoarch/broken_item))
 		context[SCREENTIP_CONTEXT_LMB] = "Insert item"
 		return CONTEXTUAL_SCREENTIP_SET
+	if(istype(held_item, /obj/item/storage/bag/xenoarch))
+		context[SCREENTIP_CONTEXT_LMB] = "Dump bag into machine"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/recoverer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
+
+	if(istype(tool, /obj/item/storage/bag/xenoarch))
+		for(var/obj/item/xenoarch/broken_item/current_item in tool.contents)
+			current_item.forceMove(src)
+			xenoarch_contents += current_item
+
+		balloon_alert(user, "items inserted!")
+		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/broken_item))
 		tool.forceMove(src)
