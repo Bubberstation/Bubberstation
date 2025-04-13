@@ -22,7 +22,7 @@ jobs:
   start_gate:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
     name: Start Gate
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Mandatory Empty Step
         run: exit 0
@@ -30,7 +30,7 @@ jobs:
   run_linters:
     name: Run Linters
     needs: start_gate
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 5
 
     steps:
@@ -136,7 +136,7 @@ jobs:
   compile_all_maps:
     name: Compile Maps
     needs: collect_data
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 5
 
     steps:
@@ -158,7 +158,7 @@ jobs:
   collect_data:
     name: Collect data and setup caches for other tasks
     needs: start_gate
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     timeout-minutes: 5
     outputs:
       maps: ${{ steps.map_finder.outputs.maps }}
@@ -211,7 +211,7 @@ jobs:
     needs: [ collect_data, run_alternate_tests ]
     name: Compare Screenshot Tests
     timeout-minutes: 15
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Setup directory
@@ -270,7 +270,7 @@ jobs:
     if: always() && !cancelled()
     name: Completion Gate
     needs: [ test_windows, compare_screenshots, compile_all_maps, run_all_tests, run_alternate_tests, run_linters ]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@release/v1
