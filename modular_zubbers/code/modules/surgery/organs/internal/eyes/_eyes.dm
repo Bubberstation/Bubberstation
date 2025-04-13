@@ -6,6 +6,7 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	blink_animation = FALSE
 	iris_overlay = null
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 
 /obj/item/organ/eyes/vulpkanin
 	name = "vulpkanin eyes"
