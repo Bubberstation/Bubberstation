@@ -53,14 +53,30 @@
 
 /obj/item/organ/tongue/shadekin/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
-	var/mob/living/carbon/human/user = source
+	var/mob/living/carbon/human/user = owner
+	var/shadekin_mood = user.mob_mood.sanity_level
+	var/empathy_timer = 2 SECONDS
 	var/obj/item/organ/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	var/mode = istype(user_ears)
 	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
 
-	if(!do_after(source, 2 SECONDS, source))
+	switch(shadekin_mood)
+		if(SANITY_LEVEL_GREAT)
+			empathy_timer = 0
+		if(SANITY_LEVEL_NEUTRAL)
+			empathy_timer = 1 SECONDS
+		if(SANITY_LEVEL_UNSTABLE)
+			empathy_timer = 4 SECONDS
+		if(SANITY_LEVEL_CRAZY)
+			empathy_timer = 5 SECONDS
+			message = stars(message)
+		if(SANITY_LEVEL_INSANE)
+			empathy_timer = 6 SECONDS
+			message = readable_corrupted_text(message)
+
+	if(empathy_timer && !do_after(source, empathy_timer, source))
 		message = full_capitalize(rot13(message))
-	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
+	var/rendered = ("<span style=color:[user.mob_mood.get_mood_colour()];><b>[user.real_name]:</b> [message]</span>")
 
 	user.log_talk(message, LOG_SAY, tag="shadekin")
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)

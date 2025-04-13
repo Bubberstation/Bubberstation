@@ -6,10 +6,14 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS,
+		TRAIT_FAST_METABOLISM,
+		TRAIT_HARD_SOLES,
+		TRAIT_NIGHT_VISION,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
 	mutanttongue = /obj/item/organ/tongue/vulpkanin
+	mutanteyes = /obj/item/organ/eyes/vulpkanin
 	species_language_holder = /datum/language_holder/vulpkanin
 	payday_modifier = 1.0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -25,6 +29,45 @@
 
 	meat = /obj/item/food/meat/slab/corgi
 
+/datum/species/vulpkanin/create_pref_unique_perks()
+	var/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "face-smile-beam",
+		SPECIES_PERK_NAME = "Peanut Butter Affinity",
+		SPECIES_PERK_DESC = "Vulpkanin LOVE peanutbutter and get quite excited when eating it",
+	))
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "shoe-prints",
+		SPECIES_PERK_NAME = "Hardened Soles",
+		SPECIES_PERK_DESC = "Vulpkanin have feet that can withstand more than most species",
+	))
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "eye",
+		SPECIES_PERK_NAME = "Night Vision",
+		SPECIES_PERK_DESC = "Vulpkanin eyes can see better in the dark than most species",
+	))
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "biohazard",
+		SPECIES_PERK_NAME = "Chocolate Allergy",
+		SPECIES_PERK_DESC = "Vulpkanin will start rapidly taking toxic damage when consuming coco",
+	))
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "stomach",
+		SPECIES_PERK_NAME = "Hunger",
+		SPECIES_PERK_DESC = "Vulpkanin will get hungry twice as fast as most species",
+	))
+
+	return to_add
 /datum/species/vulpkanin/get_default_mutant_bodyparts()
 	return list(
 		"tail" = list("Fox", TRUE),

@@ -74,7 +74,22 @@
 
 /datum/sprite_accessory/horns/bubber/messenger
 	name = "Winged Messenger"
-	icon_state = "messenger" // By @Sweettoothart
+	icon_state = "messenger" // Start of by @Sweettoothart
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/antennae/bent
+	name = "Bent Antennae"
+	icon_state = "antennae_bent"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/antennae/wisteria
+	name = "Wisteria Antennae"
+	icon_state = "antennae_wisteria"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/big/antenna_slanted
+	name = "Slanted Antenna"
+	icon_state = "antenna_slanted" // End of by @Sweettoothart
 	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/horns/bubber/newsimple //Sprites by thgvr

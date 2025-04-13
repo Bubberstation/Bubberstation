@@ -845,6 +845,11 @@
 /mob/proc/check_respawn_delay(override_delay = 0)
 	if(!override_delay && !CONFIG_GET(number/respawn_delay))
 		return TRUE
+	//BUBBER EDIT 30 minute grace period
+	var/respawn_grace_period = CONFIG_GET(number/respawn_grace_period)
+	if(world.time < respawn_grace_period)
+		return TRUE
+	//BUBBER EDIT END
 
 	var/death_time = world.time - persistent_client.time_of_death
 
@@ -1498,6 +1503,10 @@
 /mob/proc/adjust_nutrition(change, forced = FALSE) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER) && !forced)
 		return
+	//Bubber edit BEGIN - Allow for people to get hungry faster
+	if(HAS_TRAIT(src, TRAIT_FAST_METABOLISM) && change < 0)
+		change = change * 2
+	//Bubber edit END
 
 	nutrition = max(0, nutrition + change)
 	hud_used?.hunger?.update_appearance()

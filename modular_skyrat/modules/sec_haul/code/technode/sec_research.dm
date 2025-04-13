@@ -52,18 +52,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/sol40_mag_drum_rifle
-	name = "Sol .40 Rifle Drum Magazine"
-	desc = "A large drum Sol .40 Rifle magazine for compatible Weaponry."
-	id = "sol40_rifldrummag"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 40)
-	build_path = /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 //Grenade Launcher stuff
 
 /datum/design/kiboko_mag

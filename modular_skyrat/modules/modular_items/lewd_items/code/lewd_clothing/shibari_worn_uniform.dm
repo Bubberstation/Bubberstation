@@ -122,6 +122,7 @@
 	greyscale_config_worn_taur_snake = /datum/greyscale_config/shibari/body/worn/taur_snake
 	greyscale_config_worn_taur_paw = /datum/greyscale_config/shibari/body/worn/taur_paw
 	greyscale_config_worn_taur_hoof = /datum/greyscale_config/shibari/body/worn/taur_hoof
+	greyscale_config_worn_teshari = /datum/greyscale_config/shibari/body/worn/teshari
 	greyscale_colors = "#bd8fcf"
 
 //processing stuff
@@ -144,6 +145,7 @@
 	greyscale_config_worn_taur_snake = /datum/greyscale_config/shibari/groin/worn/taur_snake
 	greyscale_config_worn_taur_paw = /datum/greyscale_config/shibari/groin/worn/taur_paw
 	greyscale_config_worn_taur_hoof = /datum/greyscale_config/shibari/groin/worn/taur_hoof
+	greyscale_config_worn_teshari = /datum/greyscale_config/shibari/groin/worn/teshari
 	greyscale_colors = "#bd8fcf"
 
 //stuff to apply processing on equip and add mood event for perverts
@@ -176,6 +178,7 @@
 	greyscale_config_worn_taur_snake = /datum/greyscale_config/shibari/fullbody/worn/taur_snake
 	greyscale_config_worn_taur_paw = /datum/greyscale_config/shibari/fullbody/worn/taur_paw
 	greyscale_config_worn_taur_hoof = /datum/greyscale_config/shibari/fullbody/worn/taur_hoof
+	greyscale_config_worn_teshari = /datum/greyscale_config/shibari/fullbody/worn/teshari
 	greyscale_colors = "#bd8fcf#bd8fcf"
 
 //processing stuff
