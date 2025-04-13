@@ -85,7 +85,7 @@
 	/// the max amount of value we can have
 	var/max_research = 300
 	/// the value of each accepted item
-	var/list/accepted_types = list(
+	var/static/list/accepted_types = list(
 		/obj/item/xenoarch/strange_rock = 1,
 		/obj/item/xenoarch/useless_relic = 5,
 		/obj/item/xenoarch/useless_relic/magnified = 10,
