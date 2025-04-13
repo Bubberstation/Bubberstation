@@ -95,7 +95,7 @@
 /obj/machinery/xenoarch/researcher/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Eject rocks"
+		context[SCREENTIP_CONTEXT_LMB] = "Eject all items"
 		context[SCREENTIP_CONTEXT_RMB] = "Use research points"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(is_type_in_list(held_item, accepted_types))
