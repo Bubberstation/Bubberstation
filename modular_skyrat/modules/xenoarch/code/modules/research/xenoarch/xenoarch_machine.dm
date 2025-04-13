@@ -19,6 +19,8 @@
 
 /obj/machinery/xenoarch/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
+	if(!held_item)
+		return
 	switch(held_item.tool_behaviour)
 		if(TOOL_WRENCH)
 			context[SCREENTIP_CONTEXT_LMB] = "[src.anchored ? "Unanchor" : "Anchor"]"
