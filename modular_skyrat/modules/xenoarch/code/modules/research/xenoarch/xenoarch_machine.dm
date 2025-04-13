@@ -191,6 +191,7 @@
 	var/reward_attempt = accepted_types[first_item.type]
 	current_research = min(current_research + reward_attempt, 300)
 	xenoarch_contents -= first_item
+	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 	qdel(first_item)
 
 /obj/machinery/xenoarch/scanner
@@ -374,4 +375,5 @@
 	var/obj/item/xenoarch/strange_rock/first_item = xenoarch_contents[1]
 	new first_item.hidden_item(src_turf)
 	xenoarch_contents -= first_item
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	qdel(first_item)
