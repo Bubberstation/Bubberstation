@@ -66,3 +66,28 @@
 	remove_occurence()
 	event = null
 	return ..()
+
+/datum/scheduled_event/Topic(href, list/href_list)
+	. = ..()
+	switch(href_list["action"])
+		if("cancel")
+			message_admins("[key_name_admin(usr)] cancelled scheduled event [src.event.name].")
+			log_admin_private("[key_name(usr)] cancelled scheduled event [src.event.name].")
+			SSgamemode.remove_scheduled_event(src)
+		if("refund")
+			message_admins("[key_name_admin(usr)] refunded scheduled event [src.event.name].")
+			log_admin_private("[key_name(usr)] refunded scheduled event [src.event.name].")
+			SSgamemode.refund_scheduled_event(src)
+		if("reschedule")
+			var/new_schedule = tgui_input_number(usr, "Set time in seconds in which to fire event", "Rescheduling event", 0, 3600, 0)
+			if(isnull(new_schedule) || QDELETED(src))
+				return
+			src.start_time = world.time + (new_schedule SECONDS)
+			message_admins("[key_name_admin(usr)] rescheduled event [src.event.name] to [new_schedule] seconds.")
+			log_admin_private("[key_name(usr)] rescheduled event [src.event.name] to [new_schedule] seconds.")
+		if("fire")
+			if(!SSticker.HasRoundStarted())
+				return
+			message_admins("[key_name_admin(usr)] has fired scheduled event [src.event.name].")
+			log_admin_private("[key_name(usr)] has fired scheduled event [src.event.name].")
+			src.try_fire()
