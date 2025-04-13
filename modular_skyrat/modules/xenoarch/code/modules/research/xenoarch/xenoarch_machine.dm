@@ -110,6 +110,9 @@
 	. += span_notice("[current_research]/[max_research] research available.")
 
 /obj/machinery/xenoarch/researcher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
 		for(var/obj/item/xenoarch/strange_rocks in tool.contents)
 			strange_rocks.forceMove(src)
@@ -204,6 +207,9 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/scanner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
 		for(var/obj/item/xenoarch/strange_rock/chosen_rocks in tool.contents)
 			chosen_rocks.get_scanned()
@@ -248,6 +254,9 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/recoverer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
 	if(istype(tool, /obj/item/xenoarch/broken_item))
 		tool.forceMove(src)
 		xenoarch_contents += tool
@@ -313,6 +322,9 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/digger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
 		for(var/obj/item/strange_rocks in tool.contents)
 			strange_rocks.forceMove(src)
