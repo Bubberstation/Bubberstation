@@ -137,6 +137,10 @@
 	name = "Latex Catsuit"
 	item_path = /obj/item/clothing/under/misc/latex_catsuit
 
+/datum/loadout_item/uniform/miscellaneous/latex_halfcatsuit
+	name = "Latex Half-Catsuit"
+	item_path = /obj/item/clothing/under/misc/latex_halfcatsuit
+
 /datum/loadout_item/uniform/miscellaneous/custom_bunnysuit
 	name = "Custom Bunnysuit"
 	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
