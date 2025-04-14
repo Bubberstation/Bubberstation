@@ -69,7 +69,7 @@
 
 	/**
 	 * How big the grid cells that compose the painting are in the UI (multiplied by zoom).
-	 * This impacts the size of the UI, so smaller values are generally better for bigger canvases and viceversa
+	 * This impacts the size of the UI, so smaller values are generally better for bigger canvases and vice-versa
 	 */
 	var/pixels_per_unit = 9
 
@@ -207,7 +207,7 @@
 				return FALSE
 			//I'd have this done inside the signal, but that'd have to be asynced,
 			//while we want the UI to be updated after the color is chosen, not before.
-			var/chosen_color = input(user, "Pick new color", painting_implement, params["old_color"]) as color|null
+			var/chosen_color = tgui_color_picker(user, "Pick new color", painting_implement, params["old_color"]) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!chosen_color || IS_DEAD_OR_INCAP(user) || !user.is_holding(painting_implement))
 				return FALSE
 			SEND_SIGNAL(painting_implement, COMSIG_PAINTING_TOOL_PALETTE_COLOR_CHANGED, chosen_color, params["color_index"])

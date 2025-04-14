@@ -15,8 +15,6 @@ These procs are incredibly expensive and should only really be run once. That's 
 
 #define NEST_PERCENT_CHANCE 1
 
-#define LIGHT_FLICKER_PERCENT_CHANCE 10
-
 SUBSYSTEM_DEF(decay)
 	name = "Decay System"
 	flags = SS_NO_FIRE
@@ -120,10 +118,6 @@ SUBSYSTEM_DEF(decay)
 				if(!iterating_floor.Enter(spawned_spawner))
 					qdel(spawned_spawner)
 
-		for(var/obj/machinery/light/iterating_light in iterating_maintenance)
-			if(prob(LIGHT_FLICKER_PERCENT_CHANCE))
-				iterating_light.start_flickering()
-
 /datum/controller/subsystem/decay/proc/do_engineering()
 	for(var/area/station/engineering/iterating_engineering in possible_areas)
 		for(var/turf/open/iterating_floor in iterating_engineering)
@@ -152,7 +146,11 @@ SUBSYSTEM_DEF(decay)
 				if(!iterating_floor.Enter(spawned_vomit))
 					qdel(spawned_vomit)
 
-		if(is_type_in_list(iterating_medical, list(/area/station/medical/coldroom, /area/station/medical/morgue, /area/station/medical/psychology)))
-			for(var/obj/machinery/light/iterating_light in iterating_medical)
-				if(prob(LIGHT_FLICKER_PERCENT_CHANCE))
-					iterating_light.start_flickering()
+#undef WALL_RUST_PERCENT_CHANCE
+#undef FLOOR_DIRT_PERCENT_CHANCE
+#undef FLOOR_BLOOD_PERCENT_CHANCE
+#undef FLOOR_VOMIT_PERCENT_CHANCE
+#undef FLOOR_OIL_PERCENT_CHANCE
+#undef FLOOR_TILE_MISSING_PERCENT_CHANCE
+#undef FLOOR_COBWEB_PERCENT_CHANCE
+#undef NEST_PERCENT_CHANCE

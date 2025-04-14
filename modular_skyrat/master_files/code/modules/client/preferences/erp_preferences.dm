@@ -56,7 +56,7 @@
 /datum/preference/toggle/erp/apply_to_client_updated(client/client, value)
 	. = ..()
 	var/mob/living/carbon/human/target = client?.mob
-	if(!value && istype(target))
+	if(!value && istype(target) && (src.type == /datum/preference/toggle/erp))
 		target.arousal = 0
 		target.pain = 0
 		target.pleasure = 0
@@ -74,13 +74,17 @@
 		if(ishuman(client.mob))
 			var/mob/living/carbon/human/target = client.mob
 			if(target.vagina != null)
-				target.dropItemToGround(target.vagina, TRUE, target.loc, TRUE, FALSE, TRUE)
+				target.dropItemToGround(target.vagina, TRUE, TRUE, FALSE)
+				target.vagina = null
 			if(target.anus != null)
-				target.dropItemToGround(target.anus, TRUE, target.loc, TRUE, FALSE, TRUE)
+				target.dropItemToGround(target.anus, TRUE, TRUE, FALSE)
+				target.anus = null
 			if(target.nipples != null)
-				target.dropItemToGround(target.nipples, TRUE, target.loc, TRUE, FALSE, TRUE)
+				target.dropItemToGround(target.nipples, TRUE, TRUE, FALSE)
+				target.nipples = null
 			if(target.penis != null)
-				target.dropItemToGround(target.penis, TRUE, target.loc, TRUE, FALSE, TRUE)
+				target.dropItemToGround(target.penis, TRUE, TRUE, FALSE)
+				target.penis = null
 
 
 	client.mob.hud_used.hidden_inventory_update(client.mob)

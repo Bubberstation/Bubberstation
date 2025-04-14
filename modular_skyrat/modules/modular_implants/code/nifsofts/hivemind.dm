@@ -246,7 +246,7 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 
 /datum/component/mind_linker/active_linking/nif/proc/change_chat_color()
 	var/mob/living/carbon/human/owner = parent
-	var/new_chat_color = input(owner, "", "Choose Color", COLOR_ASSEMBLY_GREEN) as color
+	var/new_chat_color = tgui_color_picker(owner, "Pick new color", COLOR_ASSEMBLY_GREEN) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 
 	if(!new_chat_color)
 		return FALSE
@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 		to_chat(user, span_warning("The link seems to have been severed."))
 		return
 
-	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
+	var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
 	var/tag = sheet.icon_tag("nif-phone")
 	var/hivemind_icon = ""
 

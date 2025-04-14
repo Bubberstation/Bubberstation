@@ -236,15 +236,7 @@
 
 /datum/loadout_item/head/santa
 	name = "Santa Hat"
-	item_path = /obj/item/clothing/head/costume/santa
-
-/datum/loadout_item/head/christmas
-	name = "Red Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas
-
-/datum/loadout_item/head/christmas/green
-	name = "Green Christmas Hat"
-	item_path = /obj/item/clothing/head/costume/skyrat/christmas/green
+	item_path = /obj/item/clothing/head/costume/santa/gags
 
 /*
 *	HALLOWEEN
@@ -285,10 +277,6 @@
 /*
 *	MISC
 */
-
-/datum/loadout_item/head/baseball
-	name = "Ballcap"
-	item_path = /obj/item/clothing/head/soft/mime
 
 /datum/loadout_item/head/pirate
 	name = "Pirate hat"
@@ -490,7 +478,7 @@
 /datum/loadout_item/head/navyblueofficerberet
 	name = "Security Officer's Navy Blue beret"
 	item_path = /obj/item/clothing/head/beret/sec/navyofficer
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/navybluewardenberet
 	name = "Warden's Navy Blue beret"
@@ -614,48 +602,39 @@
 /datum/loadout_item/head/poppy
 	name = "Poppy Flower"
 	item_path = /obj/item/food/grown/poppy
-	donator_only = TRUE
 
 /datum/loadout_item/head/lily
 	name = "Lily Flower"
 	item_path = /obj/item/food/grown/poppy/lily
-	donator_only = TRUE
 
 /datum/loadout_item/head/geranium
 	name = "Geranium Flower"
 	item_path = /obj/item/food/grown/poppy/geranium
-	donator_only = TRUE
 
 /datum/loadout_item/head/fraxinella
 	name = "Fraxinella Flower"
 	item_path = /obj/item/food/grown/poppy/geranium/fraxinella
-	donator_only = TRUE
 
 /datum/loadout_item/head/harebell
 	name = "Harebell Flower"
 	item_path = /obj/item/food/grown/harebell
-	donator_only = TRUE
 
 /datum/loadout_item/head/rose
 	name = "Rose Flower"
 	item_path = /obj/item/food/grown/rose
-	donator_only = TRUE
 
 /datum/loadout_item/head/carbon_rose
 	name = "Carbon Rose Flower"
 	item_path = /obj/item/grown/carbon_rose
-	donator_only = TRUE
 
 /datum/loadout_item/head/sunflower
 	name = "Sunflower"
 	item_path = /obj/item/food/grown/sunflower
-	donator_only = TRUE
 
 /datum/loadout_item/head/rainbow_bunch
 	name = "Rainbow Bunch"
 	item_path = /obj/item/food/grown/rainbow_flower
 	additional_displayed_text = list(TOOLTIP_RANDOM_COLOR)
-	donator_only = TRUE
 
 // Legacy unpaintable cowboy hat because it fits a character better
 /datum/loadout_item/head/cowboyhat_legacy

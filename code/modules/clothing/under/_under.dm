@@ -9,10 +9,9 @@
 	interaction_flags_click = NEED_DEXTERITY
 	armor_type = /datum/armor/clothing_under
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
-	digitigrade_greyscale_config_worn = /datum/greyscale_config/jumpsuit/worn_digi
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
+	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
 	limb_integrity = 30
 	interaction_flags_click = ALLOW_RESTING
 
@@ -70,7 +69,7 @@
 
 	var/changed = FALSE
 
-	if(isnull(held_item) && has_sensor == HAS_SENSORS)
+	if((isnull(held_item) || held_item == src) && has_sensor == HAS_SENSORS)
 		context[SCREENTIP_CONTEXT_RMB] = "Toggle suit sensors"
 		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Set suit sensors to tracking"
 		changed = TRUE
@@ -123,6 +122,14 @@
 	toggle()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
+/obj/item/clothing/under/attack_self_secondary(mob/user, modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+
+	toggle()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/item/clothing/under/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	. = ..()
 	if(damaged_state == CLOTHING_SHREDDED && has_sensor > NO_SENSORS)
@@ -143,6 +150,10 @@
 			adjusted = DIGITIGRADE_STYLE
 			update_appearance()
 		*/ // SKYRAT EDIT END
+
+/obj/item/clothing/under/generate_digitigrade_icons(icon/base_icon, greyscale_colors)
+	var/icon/legs = icon(SSgreyscale.GetColoredIconByType(/datum/greyscale_config/digitigrade, greyscale_colors), "jumpsuit_worn")
+	return replace_icon_legs(base_icon, legs)
 
 /obj/item/clothing/under/equipped(mob/living/user, slot)
 	..()

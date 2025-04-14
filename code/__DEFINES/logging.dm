@@ -26,6 +26,8 @@
 #define INVESTIGATE_RECORDS "records"
 #define INVESTIGATE_RESEARCH "research"
 #define INVESTIGATE_WIRES "wires"
+#define INVESTIGATE_NANITES "nanites" // BUBBER EDIT ADDITION
+
 
 // Logging types for log_message()
 #define LOG_ATTACK (1 << 0)
@@ -129,6 +131,7 @@
 #define LOG_CATEGORY_DEBUG_ASSET "debug-asset"
 #define LOG_CATEGORY_DEBUG_JOB "debug-job"
 #define LOG_CATEGORY_DEBUG_LUA "debug-lua"
+#define LOG_CATEGORY_DEBUG_TTS "debug-tts"
 #define LOG_CATEGORY_DEBUG_MAPPING "debug-mapping"
 #define LOG_CATEGORY_DEBUG_MOBTAG "debug-mobtag"
 #define LOG_CATEGORY_DEBUG_SQL "debug-sql"

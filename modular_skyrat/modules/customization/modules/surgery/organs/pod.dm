@@ -1,4 +1,4 @@
-/obj/item/organ/external/pod_hair
+/obj/item/organ/pod_hair
 	name = "podperson hair"
 	desc = "Base for many-o-salads."
 
@@ -40,5 +40,5 @@
 			overlays[index_to_color].color = null
 
 /datum/bodypart_overlay/mutant/pod_hair/randomize_appearance()
-    . = ..()
-    draw_color = list("#[random_color()]", "#[random_color()]", "#FFFFFF") // currently only two colors are used
+	. = ..()
+	draw_color = list("#[random_color()]", "#[random_color()]", "#FFFFFF") // currently only two colors are used

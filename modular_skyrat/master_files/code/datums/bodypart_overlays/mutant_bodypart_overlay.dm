@@ -85,7 +85,10 @@
 	return feature_key
 
 
-/datum/bodypart_overlay/mutant/can_draw_on_bodypart(mob/living/carbon/human/human)
+/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	var/mob/living/carbon/human/human = bodypart_owner.owner
+	if(!human)
+		return TRUE
 	return !sprite_datum.is_hidden(human)
 
 
@@ -136,7 +139,7 @@
 			if(mod_overlay)
 				mod_overlay.add_overlay(sprite_datum.get_custom_mod_icon(owner, image_to_return))
 
-	if(sprite_datum.hasinner)
+	if(sprite_datum.has_inner)
 		returned_images += get_singular_image(build_icon_state(gender, image_layer, feature_key_suffix = "inner"), image_layer, owner)
 
 	// Gets the icon_state of a single or matrix colored accessory and overlays it with a texture

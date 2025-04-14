@@ -11,22 +11,22 @@
 
 /// List of possible decorative job titles for additional roleplay potential
 #define NRI_JOB_LIST list( \
-	"NRI Patrol Officer", \
-	"NRI Satellite-Patrol Officer", \
-	"NRI Yefreitor-Patrol Officer", \
-	"NRI Junior Patrol Officer", \
-	"NRI Government Investigator", \
-	"NRI Field Inspector", \
-	"NRI Counter-Truancy Officer", \
+	"PSC Patrol Officer", \
+	"PSC Satellite-Patrol Officer", \
+	"PSC Yefreitor-Patrol Officer", \
+	"PSC Junior Patrol Officer", \
+	"PSC Government Investigator", \
+	"PSC Field Inspector", \
+	"PSC Counter-Truancy Officer", \
 )
 
 /// List of possible decorative leader job titles for additional roleplay potential
 #define NRI_LEADER_JOB_LIST list( \
-	"NRI Lieutenant Officer", \
-	"NRI Sergeant Officer", \
-	"NRI Senior Patrol Officer", \
-	"NRI Lead Investigator", \
-	"NRI Lead Inspector", \
+	"PSC Lieutenant Officer", \
+	"PSC Sergeant Officer", \
+	"PSC Senior Patrol Officer", \
+	"PSC Lead Investigator", \
+	"PSC Lead Inspector", \
 )
 
 /// Amount of items to "confiscate", lower amount
@@ -39,12 +39,12 @@ GLOBAL_VAR(first_officer)
 
 ///NRI police patrol with a mission to find out if the fine reason is legitimate and then act from there.
 /datum/pirate_gang/nri_raiders
-	name = "NRI IAC Police Patrol"
+	name = "PSC IAC Police Patrol"
 
 	ship_template_id = "nri_raider"
 	ship_name_pool = "imperial_names"
 
-	threat_title = "NRI Audit"
+	threat_title = "Commonwealth Audit"
 	threat_content = "Greetings %STATION, this is the %SHIPNAME dispatch outpost. \
 	Due to recent Imperial regulatory violations, such as %RESULT and many other smaller issues, your station has been fined %PAYOFF credits. \
 	Inadequate imperial police activity is currently present in your sector, thus the failure to comply might instead result in a police patrol dispatch \
@@ -56,7 +56,7 @@ GLOBAL_VAR(first_officer)
 	as all of this is grounds for preemptive self-defense procedures initiation, and might result in moral or structural damage, arrests, injury or possibly death. In case of any complaints, they are to be sent directly to your employers."
 	possible_answers = list("Submit to audit and pay the fine.", "Override the response system for an immediate police dispatch.")
 
-	response_received = "Should be it, thank you for cooperation. Novaya Rossiyskaya Imperiya collegial secretary out."
+	response_received = "Should be it, thank you for cooperation. Pan-Slavic Commonwealth collegial secretary out."
 	response_too_late = "Your response was very delayed. We have been instructed to send in the patrol ship for second attempt negotiations, stand by."
 	response_not_enough = "Your bank balance does not hold enough money at the moment or the system has been overriden. We are sending a patrol ship for second attempt negotiations, stand by."
 	announcement_color = "purple"
@@ -70,21 +70,21 @@ GLOBAL_VAR(first_officer)
 		"Interdyne Pharmaceuticals Chemical Factory" = 5,
 		"Free Teshari League Engineering Station" = 5,
 		"Agurkrral Military Base" = 5,
-		"Terran Government Embassy" = 5,
-		"Novaya Rossiyskaya Imperiya Civilian Port" = 5,
+		"Sol Federation Embassy" = 5,
+		"Pan-Slavic Commonwealth Civilian Port" = 5,
 	))
 	///"right" = Right for the raiders to use as an argument; usually pretty difficult to avoid.
 	var/right_pick = pick(
-		"high probability of NRI-affiliated civilian casualties aboard the facility",
-		"highly increased funding by the TerraGov authorities; neglected NRI-backed subsidiaries' contracts",
-		"unethical hiring practices and unfair payment allocation for the NRI citizens",
+		"high probability of PSC-affiliated civilian casualties aboard the facility",
+		"highly increased funding by the SolFed authorities; neglected PSC-backed subsidiaries' contracts",
+		"unethical hiring practices and unfair payment allocation for the PSC citizens",
 		"recently discovered BSA-[number] or similar model in close proximity to the neutral space aboard this or nearby affiliated facility",
 	)
 	///"wrong" = Loosely based accusations that can be easily disproven if people think.
 	var/wrong_pick = pick(
 		"inadequate support of the local producer",
 		"unregulated production of Gauss weaponry aboard this installation",
-		"TerraGov-backed stationary military formation on the surface of Indecipheres",
+		"SolFed-backed stationary military formation on the surface of Indecipheres",
 		"AUTOMATED REGULATORY VIOLATION DETECTION SYSTEM CRITICAL FAILURE. PLEASE CONTACT AND INFORM THE DISPATCHED AUTHORITIES TO RESOLVE THE ISSUE. \
 		ANY POSSIBLE INDENTURE HAS BEEN CLEARED. WE APOLOGIZE FOR THE INCONVENIENCE",
 	)
@@ -113,7 +113,7 @@ GLOBAL_VAR(first_officer)
 	handlebank(equipped)
 
 /datum/outfit/pirate/nri/officer
-	name = "NRI Field Officer"
+	name = "Pan-Slavic Field Officer"
 
 	head = /obj/item/clothing/head/hats/colonial/nri_police
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -145,7 +145,7 @@ GLOBAL_VAR(first_officer)
 	id_trim = /datum/id_trim/nri_police
 
 /obj/item/modular_computer/pda/nri_police
-	name = "\improper NRI police PDA"
+	name = "\improper Commonwealth police PDA"
 	device_theme = PDA_THEME_TERMINAL
 	greyscale_colors = "#363655#7878f7"
 	comp_light_luminosity = 6.3 //Matching a flashlight
@@ -158,14 +158,14 @@ GLOBAL_VAR(first_officer)
 	inserted_item = /obj/item/pen/fourcolor
 
 /obj/item/card/id/advanced/nri_police
-	name = "\improper NRI police identification card"
+	name = "\improper Commonwealth police identification card"
 	desc = "A retro-looking card model modified to work with the modern identification systems."
 	icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	icon_state = "card_nri_police"
 	assigned_icon_state = "assigned_nri_police"
 
 /datum/id_trim/nri_police
-	assignment = "NRI Field Officer"
+	assignment = "Pan-Slavic Field Officer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_nri_police"
 	department_color = COLOR_NRI_POLICE_BLUE
@@ -178,14 +178,14 @@ GLOBAL_VAR(first_officer)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider
-	name = "NRI Raider sleeper"
+	name = "Pan-Slavic Raider sleeper"
 	desc = "Cozy. You get the feeling you aren't supposed to be here, though..."
-	prompt_name = "a NRI Marine"
+	prompt_name = "a Pan-Slavic Marine"
 	icon = 'modular_skyrat/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod"
 	mob_species = /datum/species/human
 	faction = list(FACTION_RAIDER)
-	you_are_text = "You are a Novaya Rossiyskaya Imperiya task force."
+	you_are_text = "You are a Pan-Slavic Commonwealth task force."
 	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, you are here to recover the debt. Do so by demanding the funds. Force approach is usually recommended, but isn't the only method."
 	important_text = "Allowed races are humans, Akulas, IPCs. Follow your field officer's orders. Important mention - while you are listed as the pirates gamewise, you really aren't lore-and-everything-else-wise. Roleplay accordingly."
 	outfit = /datum/outfit/pirate/nri
@@ -216,9 +216,9 @@ GLOBAL_VAR(first_officer)
 	policy_index = ROLE_FUGITIVE_HUNTER
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/officer
-	name = "NRI Officer sleeper"
-	prompt_name = "a NRI Field Officer"
-	mob_name = "Novaya Rossiyskaya Imperiya police patrol's field officer"
+	name = "Pan-Slavic Officer sleeper"
+	prompt_name = "a Pan-Slavic Field Officer"
+	mob_name = "Pan-Slavic Commonwealth police patrol's field officer"
 	outfit = /datum/outfit/pirate/nri/officer
 	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, as a consequence you are here to perform a prolonged inspection."
 	important_text = "Allowed races are humans, Akulas, IPCs. Roleplay accordingly. There is an important document in your pocket I'd advise you to read and keep safe."
@@ -270,13 +270,13 @@ GLOBAL_VAR(first_officer)
 /datum/map_template/shuttle/pirate/nri_raider
 	prefix = "_maps/shuttles/skyrat/"
 	suffix = "nri_raider"
-	name = "pirate ship (NRI Enforcer-Class Starship)"
+	name = "pirate ship (PSC Enforcer-Class Starship)"
 	port_x_offset = -5
 	port_y_offset = 5
 
 
 /area/shuttle/pirate/nri
-	name = "NRI Starship"
+	name = "PSC Starship"
 	forced_ambience = TRUE
 	ambient_buzz = 'modular_skyrat/modules/encounters/sounds/amb_ship_01.ogg'
 	ambient_buzz_vol = 15
@@ -329,7 +329,7 @@ GLOBAL_VAR(first_officer)
 	armour_penetration = 10
 
 /obj/docking_port/mobile/pirate/nri_raider
-	name = "NRI IAC-PV 'Evangelium'" //Nobody will care about the translation but basically NRI Internal Affairs Collegium-Patrol Vessel
+	name = "PSC IAC-PV 'Evangelium'" //Nobody will care about the translation but basically NRI Internal Affairs Collegium-Patrol Vessel
 	initial_engine_power = 6
 	port_direction = EAST
 	preferred_direction = EAST
@@ -341,14 +341,14 @@ GLOBAL_VAR(first_officer)
 	landing_sound = sound('modular_skyrat/modules/encounters/sounds/env_ship_down.ogg')
 
 /obj/structure/plaque/static_plaque/golden/commission/ks13/nri_raider
-	desc = "NRI Terentiev-Yermolayev Orbital Shipworks, Providence High Orbit, Ship OSTs-02\n'Potato Beetle' Class Corvette\nCommissioned 10/11/2562 'Keeping Promises'"
+	desc = "formerly-NRI Terentiev-Yermolayev Orbital Shipworks, Providence High Orbit, Ship OSTs-02\n'Potato Beetle' Class Corvette\nCommissioned 10/11/2562 'Keeping Promises'"
 
 /obj/machinery/computer/centcom_announcement/nri_raider
 	name = "police announcement console"
 	desc = "A console used for making priority Internal Affairs Collegium dispatch reports."
 	req_access = null
 	circuit = null
-	command_name = "NRI Enforcer-Class Starship Telegram"
+	command_name = "PSC Enforcer-Class Starship Telegram"
 	report_sound = ANNOUNCER_NRI_RAIDERS
 
 /obj/item/storage/belt/security/nri/PopulateContents()
@@ -360,7 +360,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/item/storage/box/nri_survival_pack/raider
 	w_class = WEIGHT_CLASS_SMALL
-	desc = "A box filled with useful emergency items, supplied by the NRI. It feels particularily light."
+	desc = "A box filled with useful emergency items, supplied by the Commonwealth. It feels particularily light."
 
 /obj/item/storage/box/nri_survival_pack/raider/PopulateContents()
 	new /obj/item/oxygen_candle(src)
@@ -372,14 +372,14 @@ GLOBAL_VAR(first_officer)
 	new /obj/item/crowbar/red(src)
 
 /obj/item/paper/fluff/nri_document
-	name = "NRI Police SOPs"
-	default_raw_text = {"<h1>Novaya Rossiyskaya Imperiya Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part One: Procedures</h1><br>
-	<br><br><small>Annotation. The guide is devoted to the consideration of the legal foundations of the expeditionary patrol police of the Novaya Rossiyskaya Imperiya. The scientific analysis of the normative legal acts regulating the activities of the expeditionary patrol police allows us to establish its tasks and functions, as well as the main areas of activity. The system and methods of applying proactive self-defense in the activities of the expeditionary patrol police of the Novaya Rossiyskaya Imperiya are considered. The issues of its differences with the central and political police are touched upon. Attention is paid to the socio-practical significance of issues related to ensuring external security in the Novaya Rossiyskaya Imperiya in the fight against ordinary crime.</small>
+	name = "Commonwealth Police SOPs"
+	default_raw_text = {"<h1>Pan-Slavic Commonwealth Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part One: Procedures</h1><br>
+	<br><br><small>Annotation. The guide is devoted to the consideration of the legal foundations of the expeditionary patrol police of the Pan-Slavic Commonwealth. The scientific analysis of the normative legal acts regulating the activities of the expeditionary patrol police allows us to establish its tasks and functions, as well as the main areas of activity. The system and methods of applying proactive self-defense in the activities of the expeditionary patrol police of the Pan-Slavic Commonwealth are considered. The issues of its differences with the central and political police are touched upon. Attention is paid to the socio-practical significance of issues related to ensuring external security in the Pan-Slavic Commonwealth in the fight against ordinary crime.</small>
 	<br><br>One of the main functions of any sovereign State is to ensure national security, that is, to take measures to protect individuals, society and the state from internal and external threats. Through the implementation of this function, the territorial integrity and sustainable development of the state is ensured, its defense and security are strengthened, rights, freedoms, and a decent standard of living of the population are ensured.
-	<br>The expeditionary police plays an important role in the protective function of the Novaya Rossiyskaya Imperiya in the second half of the XXVI century. It was it who, in addition to the protective functions, was entrusted with difficult tasks of general management. The main task of the expeditionary police was to ensure and protect the interests of the imperial government at the facilities defined by agreements on interaction and cooperation. At the same time, it was the expeditionary police that was obliged to assist the political police in ensuring the internal security of the Empire.
+	<br>The expeditionary police plays an important role in the protective function of the Pan-Slavic Commonwealth in the second half of the XXVI century. It was it who, in addition to the protective functions, was entrusted with difficult tasks of general management. The main task of the expeditionary police was to ensure and protect the interests of the imperial government at the facilities defined by agreements on interaction and cooperation. At the same time, it was the expeditionary police that was obliged to assist the political police in ensuring the internal security of the Empire.
 	<br>In order to effectively carry out the activities of the expeditionary police, an Instruction was adopted to the ranks of independently functioning departments, which consolidated the organizational structure, rights and duties of the ranks of the latter. In particular, the Instruction determined that the branches have the purpose of their activities to secretly investigate and conduct inquiries in the form of preventing, eliminating, exposing and prosecuting criminal acts of an ordinary nature; expanding, consolidating and promoting the influence of the state in the sector. The Instructions drew attention to the area of activity of a chosen dispatch, as well as to the fact that all information on cases of a political nature, the heads of dispatches are required to document those immediately. Of interest is also a note in the Instructions, according to which the chiefs of the expeditionary police were minimally subordinate to the supreme headquarters, and were on self-government.
 	<br>The instruction defined the boundaries of self-defense of independent branches. In particular, clear factors were determined, consisting of obvious aggression or preparation for illegal actions on the part of the cooperating stations and the preparations necessary for their action were made. Everything, however, lies entirely on the highest rank designated by the patrol. In addition, the principles of signaling aggression were also defined. Signaling methods, code terminology, and so on will be discussed in the next part of the document set.
-	<br><br>Per current NRI External Relationships, as well as NRI Internal Affairs Collegium regulations, the following procedure must be performed, to minimse the risk of first response patrol casualties, as well as better station-to-patrol communication chances:
+	<br><br>Per current PSC External Relationships, as well as PSC Internal Affairs Collegium regulations, the following procedure must be performed, to minimse the risk of first response patrol casualties, as well as better station-to-patrol communication chances:
 	<br>1. Ensure that the station's bodyguarding dispatch is limited to one person per two heads only; with a maximum of three present if all heads are invited. This list includes Personal Protection Specialists, i.e. Blueshields, Redshields; security personnel; hired off-station mercenaries; weaponised crewmembers or other militia; weaponised animals, and so on;
 	<br>2. Ensure that the station's bodyguarding dispatch is positioned right in front of you; with a clear escape route present to you and your colleagues. It is permitted to install additional reinforcements or barricades in order to increase your chances of survival against untrustworthy elements, if deemed necessary by your commanding officer;
 	<br>3. Ensure that the station's command and security/military/defense force is not inspecting your ship, nor close approaching it, without your commanding officer's permission. It is recommended to leave a single officer as a ship's overseer, in order to minimise government property damage, as well as ensure maximum patrol efficiency in the field;
@@ -399,12 +399,12 @@ GLOBAL_VAR(first_officer)
 	<br><b>Afterwards, if any of the following procedures are to be enacted, the station is to be considered a hostile ground; and you are fully permitted to perform the preemptive self-defense procedures afterwards, without the commanding officer's approval.</b>
 	<br><br>If any of the following conditions are not met, or in the case of a Bluespace Artillery fire, you're authorised to request the preemptive self-defense procedures initiation from your commanding officer; which, in turn, allows you to disable and arrest the station's security forces, using any of the equipment available to you, or otherwise acquired.
 	<br><small>Thus, the creation of independent branches in the Empire led to the fact that these units directed the activities of the entire police to combat ordinary crimes. Prior to their formation, the task of combating corporal crime was the direct responsibility of the ranks of the local planetary patrols and, in special cases, the Planetary Guard. The ranks of independent departments were given equal rights in the investigation of criminal offenses with the ranks of the planetary police, since they acted on the basis of the same adopted normative legal acts. The provisions of the law created in accordance with the recent Instruction were more specifically defined: the goals, tasks of independent departments, their internal structure, the procedure for conducting operational investigative actions. At the same time, it, in general, has not changed the principle of organizational structure of patrols and therefore they, nevertheless, in part, remain limited in their activities within the territory under their jurisdiction. In this regard, they cannot carry out operational search activities outside the stations to which they were assigned.</small>
-	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Novaya Rossiyskaya Imperiya Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
+	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Pan-Slavic Commonwealth Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
 
 /obj/item/paper/fluff/nri_document_two
-	name = "NRI Police Codespeak"
-	default_raw_text = {"<h1>Novaya Rossiyskaya Imperiya Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part Two: Cyphering and Codewords</h1><br>
-	<br><br><small>Annotation. The guide is devoted to the consideration of the communicative foundations of the expeditionary patrol police of the Novaya Rossiyskaya Imperiya. The scientific analysis of the old time police patrol codespeak allows us to reenact their level of efficiency, as well as grants us the possibility to minimise possible information leaks to the civilian population and the possible suspects.</small>
+	name = "Commonwealth Police Codespeak"
+	default_raw_text = {"<h1>Pan-Slavic Commonwealth Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part Two: Cyphering and Codewords</h1><br>
+	<br><br><small>Annotation. The guide is devoted to the consideration of the communicative foundations of the expeditionary patrol police of the Pan-Slavic Commonwealth. The scientific analysis of the old time police patrol codespeak allows us to reenact their level of efficiency, as well as grants us the possibility to minimise possible information leaks to the civilian population and the possible suspects.</small>
 	<br>To better encode signal words and minimize information leaks, an independent detachment of each sector will receive a list of certain signal words and other terminology, which will be provided in the following list. Before each departure, it is recommended to proofread them in order to consolidate the material; and during operations, it is recommended to use them instead of the usual jargon. The list is provided below:
 	<br>In order to effectively carry out the activities of the expeditionary police, an Instruction was adopted to the ranks of independently functioning departments, which consolidated the organizational structure, rights and duties of the ranks of the latter. In particular, the Instruction determined that the branches have the purpose of their activities to secretly investigate and conduct inquiries in the form of preventing, eliminating, exposing and prosecuting criminal acts of an ordinary nature; expanding, consolidating and promoting the influence of the state in the sector. The Instructions drew attention to the area of activity of a chosen dispatch, as well as to the fact that all information on cases of a political nature, the heads of dispatches are required to document those immediately. Of interest is also a note in the Instructions, according to which the chiefs of the expeditionary police were minimally subordinate to the supreme headquarters, and were on self-government.
 	<br><small>10-0 = Use caution;
@@ -442,7 +442,7 @@ GLOBAL_VAR(first_officer)
 	<br>10-99 = Officer needs help immediately;
 	<br>12-40 = Officer requests Shoot-On-Sight order.</small>
 	<br><small>Thus, the creation of independent branches in the Empire led to the fact that these units directed the activities of the entire police to combat ordinary crimes. Prior to their formation, the task of combating corporal crime was the direct responsibility of the ranks of the local planetary patrols and, in special cases, the Planetary Guard. The ranks of independent departments were given equal rights in the investigation of criminal offenses with the ranks of the planetary police, since they acted on the basis of the same adopted normative legal acts. The provisions of the law created in accordance with the recent Instruction were more specifically defined: the goals, tasks of independent departments, their internal structure, the procedure for conducting operational investigative actions. At the same time, it, in general, has not changed the principle of organizational structure of patrols and therefore they, nevertheless, in part, remain limited in their activities within the territory under their jurisdiction. In this regard, they cannot carry out operational search activities outside the stations to which they were assigned.</small>
-	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Novaya Rossiyskaya Imperiya Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
+	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Pan-Slavic Commonwealth Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
 
 /obj/item/paper/fluff/nri_police
 	name = "hastily printed note"
@@ -450,14 +450,14 @@ GLOBAL_VAR(first_officer)
 	<br> It was not designed for any kind of long-term deployments and anything more aggressive than shooting up a bunch of punks, so expect frequent power outages and a significant lack of raiding machinery.
 	<br> We have done some quick modifications to make it more suitable for military use, and smuggled you some defensive and military-grade medical equipment to balance it out. And some SMGs that were so convenient to \"go out of service and get scrapped". It should do the job for now.
 	<br> It is worth mentioning that your fourth marine, the maintenance crew man, went on a vacation. Dude's been pretty nervous as of late so it's only fair to let him get some well deserved rest - he has been maintaining this ship the whole time you've been in cryosleep. This should not affect your performance anyways.
-	<br> As for the broken Krinkov, there is nothing we can do for now. Will have to use the policemen's, not like you're here to fight the terrans anyways.
+	<br> As for the broken Krinkov, there is nothing we can do for now. Will have to use the policemen's, not like you're here to fight the solarians anyways.
 	<br> And, please, for the love of God and the Eternal Empress - do not make this mission into a shootout. We can't afford any more casualties in this sector, especially with the most of our military being on the frontline.
 	<br>
 	<br> Don't screw this up,
 	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Defense Collegia Shipmaster, Akulan Contractor, Shinrun Kantes.</b></p></span>"}
 
 /obj/item/folder/blue/nri_cop
-	name = "NRI police SOPs"
+	name = "Commonwealth police SOPs"
 
 /obj/item/folder/blue/nri_cop/Initialize(mapload)
 	. = ..()
@@ -521,16 +521,16 @@ GLOBAL_VAR(first_officer)
 
 /obj/machinery/shuttle_scrambler/nri/send_notification()
 	if(active)
-		priority_announce("We're intercepting all of the current and future supply deliveries until you're more cooperative with the dispatch. So, please do be.","NRI IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
+		priority_announce("We're intercepting all of the current and future supply deliveries until you're more cooperative with the dispatch. So, please do be.","PSC IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
 	else
-		priority_announce("We've received a signal to stop the blockade; you're once again free to do whatever you were doing before.","NRI IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
+		priority_announce("We've received a signal to stop the blockade; you're once again free to do whatever you were doing before.","PSC IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
 
 /datum/antagonist/cop
-	name = "\improper NRI Police Officer"
+	name = "\improper Commonwealth Police Officer"
 	//Even if their goal's almost a complete antithesis to what pirates normally do, their spawn is, well, done via pirate code.
 	job_rank = ROLE_SPACE_PIRATE
 	roundend_category = "nri cops"
-	antagpanel_category = "NRI Police"
+	antagpanel_category = "Commonwealth Police"
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	suicide_cry = "God, save the Empress!!"
@@ -587,7 +587,7 @@ GLOBAL_VAR(first_officer)
 	return ..()
 
 /datum/team/cop
-	name = "\improper NRI police patrol"
+	name = "\improper Commonwealth police patrol"
 
 /datum/team/cop/proc/forge_objectives()
 	add_objective(new /datum/objective/policing)

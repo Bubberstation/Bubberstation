@@ -1,14 +1,14 @@
 /datum/ert/nri
 	roles = list(/datum/antagonist/ert/nri, /datum/antagonist/ert/nri/medic, /datum/antagonist/ert/nri/engineer)
 	leader_role = /datum/antagonist/ert/nri/commander
-	rename_team = "NRI border patrol"
+	rename_team = "Pan-Slavic border patrol"
 	code = "Red"
-	mission = "Cooperate with the station, protect NRI assets."
-	polldesc = "a squad of NRI border patrol"
+	mission = "Cooperate with the station, protect Commonwealth assets."
+	polldesc = "a squad of Pan-Slavic border patrolpeople"
 	teamsize = 4
 
 /datum/antagonist/ert/nri
-	name = "NRI border patrol"
+	name = "Commonwealth border patrol"
 	role = "Private"
 	outfit = /datum/outfit/centcom/ert/nri
 	suicide_cry = "GOD, SAVE THE EMPRESS!!"
@@ -33,19 +33,19 @@
 
 	to_chat(owner, span_boldwarning("<font size=3 color=yellow>You are the [name]</font>"))
 
-	var/missiondesc = "Your squad is responding to an emergency situation of [station_name()], with the Novaya Rossiyskaya Imperiya Defense Collegium's approval."
+	var/missiondesc = "Your squad is responding to an emergency situation of [station_name()], with the Pan-Slavic Commonwealth Defense Collegium's approval."
 	if(leader) //If Squad Leader
 		missiondesc += "<BR><B>Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready.</B>"
 
-	missiondesc += "<BR><B><font size=3 color=red>You are NOT a Nanotrasen Employee. You work for Novaya Rossiyskaya Imperiya Defense Collegium.</font></B>"
+	missiondesc += "<BR><B><font size=3 color=red>You are NOT a Nanotrasen Employee. You work for Pan-Slavic Commonwealth's Defense Collegium.</font></B>"
 	missiondesc += "<BR><B><font size=3 color=red>You are NOT a deathsquad. You are here to assist the station's Security and Command with alien infestations or enemy activity for you own gain.</font></B>"
-	missiondesc += "<BR>You are responding to emergency calls from the station for immediate NRI military intervention!\n"
+	missiondesc += "<BR>You are responding to emergency calls from the station for immediate Commonwealth military intervention!\n"
 	missiondesc += "<BR><B>Your Mission</B>:"
 	missiondesc += "<BR> <B>1.</B> Minimise civillian casualties."
 	missiondesc += "<BR> <B>2.</B> Neutralise the threat."
 	missiondesc += "<BR> <B>3.</B> Stabilise the situation."
 	missiondesc += "<BR> <B>4.</B> Contact whoever called you and assist in resolving the matter."
-	missiondesc += "<BR> <B>5.</B> Protect, ensure, and uphold the rights of Novaya Rossiyskaya Imperiya, Kingdom of Agurkrral and Free Teshari League citizens on board [station_name()]. TerraGov citizens' wellbeing is up to your discretion."
+	missiondesc += "<BR> <B>5.</B> Protect, ensure, and uphold the rights of Pan-Slavic Commonwealth's, Kingdom of Agurkrral's and Free Teshari League's citizens on board [station_name()]. TerraGov citizens' wellbeing is up to your discretion."
 	missiondesc += "<BR> <B>6.</B> Attempt to subvert the station's crew in order to shift the station's territory under control of Novaya Rossiyskaya Imperiya."
 
 	missiondesc += span_warning("<BR><B>Your Mission</B>: [ert_team.mission.explanation_text]")
@@ -66,13 +66,13 @@
 /datum/ert/nri/diplomacy
 	roles = list(/datum/antagonist/ert/nri/diplomat/scientist, /datum/antagonist/ert/nri/diplomat/doctor)
 	leader_role = /datum/antagonist/ert/nri/diplomat/major
-	rename_team = "NRI External Relationships Colleague"
+	rename_team = "Pan-Slavic External Relationships Colleague"
 	code = "Green"
-	mission = "Cooperate with the station's command, perform routine evaluation of NRI citizen's wellbeing as well as Research and Medical departments' genetical and virological researches."
-	polldesc = "NRI diplomatic mission"
+	mission = "Cooperate with the station's command, perform routine evaluation of Pan-Slavic Commonwealth citizens' wellbeing as well as Research and Medical departments' genetical and virological researches."
+	polldesc = "Pan-Slavic diplomatic mission"
 
 /datum/antagonist/ert/nri/diplomat
-	name = "NRI ERC Diplomat"
+	name = "Commonwealth ERC Diplomat"
 	role = "Diplomat"
 	outfit = /datum/outfit/centcom/ert/nri // no shit for generic role that won't even appear bruh
 

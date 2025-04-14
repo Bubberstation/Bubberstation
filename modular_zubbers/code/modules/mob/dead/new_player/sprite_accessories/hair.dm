@@ -61,3 +61,32 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Ponytails (Berly)"
 	icon_state = "hair_tails_berly"
+
+/datum/sprite_accessory/hair/edgerunner
+	icon = 'modular_zubbers/icons/customization/hair_big.dmi'
+	name = "Edgerunner"
+	icon_state = "edgerunner"
+
+//-->fixed dreadlocks, added alt version for anthros, added new style <3
+/datum/sprite_accessory/hair/dreadlocks
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+
+/datum/sprite_accessory/hair/dreadlocks_alt
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Dreadlocks Alt"
+	icon_state = "hair_dreads_alt"
+
+/datum/sprite_accessory/hair/dreadtail
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Dreadtail"
+	icon_state = "hair_dreadtail"
+// short bob hair and smoothy long hair by Cepha :3
+/datum/sprite_accessory/hair/short_bob
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Short (Bob)"
+	icon_state = "hair_short_bob"
+
+/datum/sprite_accessory/hair/long_smoothy
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Long Smoothy"
+	icon_state = "hair_long_smoothy"

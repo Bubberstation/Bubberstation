@@ -145,8 +145,6 @@
 /datum/movespeed_modifier/dragon_depression
 	multiplicative_slowdown = 5
 
-/datum/movespeed_modifier/dragon_depression/no_portal
-
 /datum/movespeed_modifier/morph_disguised
 	multiplicative_slowdown = -1
 
@@ -177,3 +175,11 @@
 
 /datum/movespeed_modifier/magic_ties
 	multiplicative_slowdown = 0.5
+
+///speed bonus given by the fish tail organ when inside water.
+/datum/movespeed_modifier/fish_on_water
+	blacklisted_movetypes = MOVETYPES_NOT_TOUCHING_GROUND
+	multiplicative_slowdown = - /turf/open/water::slowdown
+
+/datum/movespeed_modifier/tail_dragger
+	multiplicative_slowdown = 4

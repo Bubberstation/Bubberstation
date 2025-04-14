@@ -51,13 +51,13 @@
 	if(tgui_alert(linked_mob, "Do you wish to summon a new item or dispel an already existing item?", program_name, list("Summon", "Dispel")) == "Dispel")
 		refund_activation_cost()
 		if(!length(summoned_items))
-			linked_mob.balloon_alert(linked_mob, "You have no summoned items!")
+			linked_mob.balloon_alert(linked_mob, "you have no summoned items!")
 			return FALSE
 
-		var/obj/item/choice = tgui_input_list(linked_mob, "Chose an object to desummon.", program_name, summoned_items)
+		var/obj/item/choice = tgui_input_list(linked_mob, "Choose an object to desummon.", program_name, summoned_items)
 
 		if(!choice)
-			linked_mob.balloon_alert(linked_mob, "You did not chose an item!")
+			linked_mob.balloon_alert(linked_mob, "you did not choose an item!")
 			return FALSE
 
 		summoned_items -= choice
@@ -65,7 +65,7 @@
 		return TRUE
 
 	if(length(summoned_items) >= max_summoned_items)
-		linked_mob.balloon_alert(linked_mob, "You have the max ammount of items summoned!")
+		linked_mob.balloon_alert(linked_mob, "you have the max amount of items summoned!")
 		refund_activation_cost()
 		return FALSE
 

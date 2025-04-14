@@ -1654,6 +1654,21 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
 	)
 
+/datum/design/borg_upgrade_botany
+	name = "Botany Tools"
+	id = "borg_upgrade_botany"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/botany_upgrade
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT*13,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT*2 // approx. all mats that u wasting on those tools on lathe
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
+	)
+
+
 /datum/design/borg_upgrade_drink_apparatus
 	name = "Drink Apparatus"
 	id = "borg_upgrade_drink_apparatus"
@@ -1691,6 +1706,20 @@
 	construction_time = 4 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
+	)
+
+/datum/design/borg_upgrade_shuttle_blueprints
+	name = "Engineering Shuttle Blueprints"
+	id = "borg_upgrade_engineering_shuttle_blueprints"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/shuttle_blueprints
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT*5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT*2.5,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING
 	)
 
 /datum/design/borg_upgrade_expand
@@ -2786,3 +2815,14 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design/module/mister_janitor
+	name = "Cleaning Mister Module"
+	id = "mod_mister_janitor"
+	materials = list(
+		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1,
+	)
+	build_path = /obj/item/mod/module/mister/cleaner
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
+	)

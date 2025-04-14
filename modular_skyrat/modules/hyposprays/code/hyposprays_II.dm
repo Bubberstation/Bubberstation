@@ -65,14 +65,9 @@
 	icon_state = "piercinghypo2"
 	gags_bodystate = "hypo2_piercing"
 	desc = "The advanced variant in the DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly spray or inject the chemicals."
-	inject_wait = DELUXE_WAIT_INJECT
-	spray_wait = DELUXE_WAIT_SPRAY
 	spray_self = DELUXE_SELF_INJECT
 	inject_self = DELUXE_SELF_SPRAY
 	penetrates = INJECT_CHECK_PENETRATE_THICK
-
-/obj/item/hypospray/mkii/piercing/atropine
-	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
 
 // Deluxe hypo upgrade Kit
 /obj/item/device/custom_kit/deluxe_hypo2

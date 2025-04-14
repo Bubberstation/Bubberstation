@@ -152,7 +152,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_penis the penis to cause to grow
 */
-/datum/reagent/drug/aphrodisiac/proc/grow_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
+/datum/reagent/drug/aphrodisiac/proc/grow_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
 
 	// Check if we actually have a penis to grow
 	if(!mob_penis)
@@ -192,7 +192,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_testicles - the testicles to cause to grow
 */
-/datum/reagent/drug/aphrodisiac/proc/grow_balls(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/testicles/mob_testicles = exposed_mob?.get_organ_slot(ORGAN_SLOT_TESTICLES))
+/datum/reagent/drug/aphrodisiac/proc/grow_balls(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/testicles/mob_testicles = exposed_mob?.get_organ_slot(ORGAN_SLOT_TESTICLES))
 
 	//no balls
 	if(!mob_testicles)
@@ -202,7 +202,7 @@
 	if(!exposed_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/penis_enlargement))
 		return
 
-	var/obj/item/organ/external/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/penis/mob_penis = exposed_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 
 	if(mob_testicles.genital_size < balls_big_size && prob(balls_increase_chance)) // Add some randomness so growth happens more gradually in most cases
 		mob_testicles.genital_size = min(mob_testicles.genital_size + testicles_size_increase_step, balls_max_size)
@@ -221,7 +221,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_breasts the breasts to cause to grow
 */
-/datum/reagent/drug/aphrodisiac/proc/grow_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
+/datum/reagent/drug/aphrodisiac/proc/grow_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
 
 	if(!mob_breasts)
 		return
@@ -277,7 +277,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_penis the penis to shrink
 */
-/datum/reagent/drug/aphrodisiac/proc/shrink_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
+/datum/reagent/drug/aphrodisiac/proc/shrink_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
 
 	// Is there a penis to shrink?
 	if(!mob_penis)
@@ -311,7 +311,7 @@
 * mob_penis, mob_testicles - the mob's penis and testicles
 * message - the message to send to chat
 */
-/datum/reagent/drug/aphrodisiac/proc/shrink_testicles(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS), obj/item/organ/external/genital/testicles/mob_testicles = exposed_mob?.get_organ_slot(ORGAN_SLOT_TESTICLES))
+/datum/reagent/drug/aphrodisiac/proc/shrink_testicles(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS), obj/item/organ/genital/testicles/mob_testicles = exposed_mob?.get_organ_slot(ORGAN_SLOT_TESTICLES))
 
 	if(!mob_testicles)
 		return
@@ -336,7 +336,7 @@
 * mob_breasts - the breasts to be shrunk
 * message - the message to send to chat
 */
-/datum/reagent/drug/aphrodisiac/proc/shrink_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
+/datum/reagent/drug/aphrodisiac/proc/shrink_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
 
 	if(!mob_breasts)
 		return
@@ -360,7 +360,7 @@
 * mob_vagina - the vagina to shrink
 * message - the message to send to chat
 */
-/datum/reagent/drug/aphrodisiac/proc/shrink_vagina(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/vagina/mob_vagina = exposed_mob?.get_organ_slot(ORGAN_SLOT_VAGINA))
+/datum/reagent/drug/aphrodisiac/proc/shrink_vagina(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/vagina/mob_vagina = exposed_mob?.get_organ_slot(ORGAN_SLOT_VAGINA))
 	var/message = "You can the feel the muscles in your groin begin to tighten as your vagina seals itself completely shut."
 	remove_genital(exposed_mob, mob_vagina, suppress_chat, message)
 
@@ -371,7 +371,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_womb - the womb to shrink
 */
-/datum/reagent/drug/aphrodisiac/proc/shrink_womb(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/womb/mob_womb = exposed_mob?.get_organ_slot(ORGAN_SLOT_WOMB))
+/datum/reagent/drug/aphrodisiac/proc/shrink_womb(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/womb/mob_womb = exposed_mob?.get_organ_slot(ORGAN_SLOT_WOMB))
 	remove_genital(exposed_mob, mob_womb, suppress_chat)
 
 /** ---- Genital Removal ----
@@ -384,13 +384,13 @@
 * message - the message to send to chat
 */
 /datum/reagent/drug/aphrodisiac/proc/remove_genitals(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, list/genitals_to_remove, message)
-	for(var/obj/item/organ/external/genital/mob_genital in genitals_to_remove)
+	for(var/obj/item/organ/genital/mob_genital in genitals_to_remove)
 		remove_genital(exposed_mob, mob_genital, suppress_chat)
 
 	if(!suppress_chat && message)
 		to_chat(exposed_mob, span_purple(message))
 
-/datum/reagent/drug/aphrodisiac/proc/remove_genital(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/mob_genital, suppress_chat = FALSE, message)
+/datum/reagent/drug/aphrodisiac/proc/remove_genital(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/mob_genital, suppress_chat = FALSE, message)
 
 	if(!mob_genital)
 		return
@@ -433,7 +433,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_penis the mob's penis
 */
-/datum/reagent/drug/aphrodisiac/proc/create_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
+/datum/reagent/drug/aphrodisiac/proc/create_penis(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/penis/mob_penis = exposed_mob?.get_organ_slot(ORGAN_SLOT_PENIS))
 
 	// Create the new penis if we don't already have one and if prefs allow
 	if(mob_penis)
@@ -462,7 +462,7 @@
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_PENIS][MUTANT_INDEX_COLOR_LIST] = list(colour)
 
 	// Create the new penis
-	var/obj/item/organ/external/genital/penis/new_penis = new
+	var/obj/item/organ/genital/penis/new_penis = new
 	new_penis.build_from_dna(exposed_mob.dna, ORGAN_SLOT_PENIS)
 	new_penis.Insert(exposed_mob, 0, FALSE)
 	new_penis.genital_size = 4
@@ -479,7 +479,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_testicles - the mob's testicles
 */
-/datum/reagent/drug/aphrodisiac/proc/create_testicles(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/testicles/mob_balls = exposed_mob.get_organ_slot(ORGAN_SLOT_TESTICLES))
+/datum/reagent/drug/aphrodisiac/proc/create_testicles(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/testicles/mob_balls = exposed_mob.get_organ_slot(ORGAN_SLOT_TESTICLES))
 
 	// Create the new testicles if we don't already have them and if prefs allow
 	if(mob_balls)
@@ -488,7 +488,7 @@
 	if(!exposed_mob.client?.prefs.read_preference(/datum/preference/toggle/erp/new_genitalia_growth))
 		return
 
-	var/obj/item/organ/external/genital/testicles/new_balls = new
+	var/obj/item/organ/genital/testicles/new_balls = new
 	new_balls.build_from_dna(exposed_mob.dna, ORGAN_SLOT_TESTICLES)
 	new_balls.Insert(exposed_mob, 0, FALSE)
 	new_balls.genital_size = 0
@@ -503,7 +503,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_breasts - the mob's breasts
 */
-/datum/reagent/drug/aphrodisiac/proc/create_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
+/datum/reagent/drug/aphrodisiac/proc/create_breasts(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
 
 	// Make sure we don't already have them
 	if(mob_breasts)
@@ -517,7 +517,7 @@
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_BREASTS][MUTANT_INDEX_NAME] = "Pair"
 
 	// Create the new breasts
-	var/obj/item/organ/external/genital/breasts/new_breasts = new
+	var/obj/item/organ/genital/breasts/new_breasts = new
 	new_breasts.build_from_dna(exposed_mob.dna, ORGAN_SLOT_BREASTS)
 	new_breasts.Insert(exposed_mob, FALSE, FALSE)
 	new_breasts.genital_size = 2
@@ -542,7 +542,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_vagina - the mob's vagina
 */
-/datum/reagent/drug/aphrodisiac/proc/create_vagina(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/vagina/mob_vagina = exposed_mob?.get_organ_slot(ORGAN_SLOT_VAGINA))
+/datum/reagent/drug/aphrodisiac/proc/create_vagina(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/vagina/mob_vagina = exposed_mob?.get_organ_slot(ORGAN_SLOT_VAGINA))
 
 	// Add new vagina if we don't already have one. Use dna prefs before assigning a default human one.
 	if(mob_vagina)
@@ -554,7 +554,7 @@
 	if (exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_VAGINA][MUTANT_INDEX_NAME] == "None")
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_VAGINA][MUTANT_INDEX_NAME] = "Human"
 
-	var/obj/item/organ/external/genital/vagina/new_vagina = new
+	var/obj/item/organ/genital/vagina/new_vagina = new
 	new_vagina.build_from_dna(exposed_mob.dna, ORGAN_SLOT_VAGINA)
 	new_vagina.Insert(exposed_mob, 0, FALSE)
 	update_appearance(exposed_mob)
@@ -568,7 +568,7 @@
 * suppress_chat - whether or not to display a message in chat
 * mob_womb - the mob's womb
 */
-/datum/reagent/drug/aphrodisiac/proc/create_womb(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/external/genital/womb/mob_womb = exposed_mob?.get_organ_slot(ORGAN_SLOT_WOMB))
+/datum/reagent/drug/aphrodisiac/proc/create_womb(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/womb/mob_womb = exposed_mob?.get_organ_slot(ORGAN_SLOT_WOMB))
 
 	// Add a new womb if we don't already have one. Use dna prefs before assigning a default normal one.
 	if(mob_womb)
@@ -577,7 +577,7 @@
 	if (exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_WOMB][MUTANT_INDEX_NAME] == "None")
 		exposed_mob.dna.mutant_bodyparts[ORGAN_SLOT_WOMB][MUTANT_INDEX_NAME] = "Normal"
 
-	var/obj/item/organ/external/genital/womb/new_womb = new
+	var/obj/item/organ/genital/womb/new_womb = new
 	new_womb.build_from_dna(exposed_mob.dna, ORGAN_SLOT_WOMB)
 	new_womb.Insert(exposed_mob, 0, FALSE)
 	update_appearance(exposed_mob)
@@ -589,12 +589,12 @@
 * genital - the genital that is causing the messages
 * suppress_chat - whether or not to display a message in chat
 */
-/datum/reagent/drug/aphrodisiac/proc/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/genital, suppress_chat = FALSE)
+/datum/reagent/drug/aphrodisiac/proc/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/genital, suppress_chat = FALSE)
 
 /**
 * Called after growth/shrinkage to update mob sprites
 */
-/datum/reagent/drug/aphrodisiac/proc/update_appearance(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/genital, mutations_overlay = FALSE)
+/datum/reagent/drug/aphrodisiac/proc/update_appearance(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/genital, mutations_overlay = FALSE)
 	if(genital)
 		genital.update_sprite_suffix()
 	if(exposed_mob)

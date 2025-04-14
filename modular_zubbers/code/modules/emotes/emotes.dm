@@ -119,7 +119,7 @@
 	sound = 'modular_zubbers/code/modules/emotes/sound/voice/tailthump.ogg' // See https://github.com/shiptest-ss13/Shiptest/pull/2159
 
 /datum/emote/living/tail_thump/can_run_emote(mob/user, status_check, intentional, params)
-	var/obj/item/organ/external/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+	var/obj/item/organ/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 	if(isnull(tail))
 		return FALSE
 	return ..()
@@ -147,7 +147,6 @@
 	message = "yips!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
 /datum/emote/living/yip/get_sound(mob/living/user)
 	return pick('modular_zubbers/code/modules/emotes/sound/voice/yip1.ogg',
@@ -167,3 +166,26 @@
 	var/obj/item/hand_item/bonkinghand/bonk = new(user)
 	if(user.put_in_hands(bonk))
 		to_chat(user, span_notice("You ready your hand to bonk someone."))
+
+/datum/emote/living/kweh
+	key = "kweh"
+	key_third_person = "kwehs"
+	message = "kwehs out loud!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/kweh/get_sound(mob/living/user)
+	return pick('sound/mobs/non-humanoids/raptor/raptor_1.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_4.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_5.ogg')
+
+/datum/emote/living/kweh_sad
+	key = "skweh"
+	key_third_person = "skwehs"
+	message = "kwehs sadly"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/kweh_sad/get_sound(mob/living/user)
+	return pick('sound/mobs/non-humanoids/raptor/raptor_2.ogg',
+				'sound/mobs/non-humanoids/raptor/raptor_3.ogg')

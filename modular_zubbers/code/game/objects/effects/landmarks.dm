@@ -35,3 +35,9 @@
 
 /obj/effect/landmark/navigate_destination/dockpublicmining
 	location = "Public Mining"
+
+/obj/effect/landmark/navigate_destination/dockaux
+	location = "Auxiliary Ship Dock"
+
+/obj/effect/landmark/navigate_destination/docksec
+	location = "Secondary Ship Dock"

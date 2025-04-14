@@ -120,7 +120,7 @@
 
 /datum/design/xenoarch/equipment/bag
 	name = "Xenoarchaeology Bag"
-	desc = "A bag that can hold about twenty-five strange rocks."
+	desc = "A bag that can hold about twenty-five strange rocks or relics."
 	id = "xenoarch_bag"
 	build_path = /obj/item/storage/bag/xenoarch
 
@@ -132,7 +132,7 @@
 
 /datum/design/xenoarch/equipment/bag_adv
 	name = "Advanced Xenoarch Bag"
-	desc = "A bag that can hold about fifty strange rocks."
+	desc = "A bag that can hold about fifty strange rocks or relics."
 	id = "xenoarch_bag_adv"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -237,3 +237,8 @@
 		/obj/item/xenoarch/useless_relic = 1,
 		/obj/item/xenoarch/broken_item = 2,
 	)
+
+#undef RND_SUBCATEGORY_MACHINE_XENOARCH
+#undef RND_SUBCATEGORY_EQUIPMENT_XENOARCH
+#undef RND_SUBCATEGORY_TOOLS_XENOARCH
+#undef RND_SUBCATEGORY_TOOLS_XENOARCH_ADVANCED

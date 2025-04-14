@@ -65,13 +65,13 @@
 /datum/map_template/ruin/icemoon/Lodge
 	name = "Ice-Ruin Hunters Lodge"
 	id = "lodge"
-	description = "An old hunting hunting lodge. I wonder if anyone is still home?"
+	description = "An old hunting lodge. I wonder if anyone is still home?"
 	suffix = "icemoon_surface_lodge.dmm"
 
 /datum/map_template/ruin/icemoon/frozen_phonebooth
 	name = "Ice-Ruin Frozen Phonebooth"
 	id = "frozen_phonebooth"
-	description = "A venture by Nanotrasen to help popularize the use of holopads. This one was sent to a icemoon."
+	description = "A venture by Nanotrasen to help popularize the use of holopads. This one was sent to an ice moon."
 	suffix = "icemoon_surface_phonebooth.dmm"
 
 /datum/map_template/ruin/icemoon/smoking_room
@@ -107,7 +107,7 @@
 	suffix = "icemoon_surface_smoking_room.dmm"
 
 // above and below ground together
-/* SKYRAT EDIT REMOVAL - Mapping
+
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Ice-Ruin Mining Site"
 	id = "miningsite"
@@ -123,7 +123,7 @@
 	suffix = "icemoon_underground_mining_site.dmm"
 	has_ceiling = FALSE
 	unpickable = TRUE
-*/ // SKYRAT EDIT REMOVAL End
+
 // below ground only
 
 /datum/map_template/ruin/icemoon/underground
@@ -196,7 +196,7 @@
 /datum/map_template/ruin/icemoon/underground/biodome
 	name = "Ice-Ruin Syndicate Bio-Dome"
 	id = "biodome"
-	description = "Unchecked experimention gone awry."
+	description = "Unchecked experimentation gone awry."
 	suffix = "icemoon_underground_syndidome.dmm"
 
 /datum/map_template/ruin/icemoon/underground/frozen_comms
@@ -219,6 +219,12 @@
 	id = "syndie_lab"
 	description = "A small laboratory and living space for Syndicate agents."
 	suffix = "icemoon_underground_syndielab.dmm"
+
+/datum/map_template/ruin/icemoon/underground/o31
+	name = "Ice-Ruin Outpost 31"
+	id = "o31"
+	description = "Suspiciously dead silent. May or may not contain megafauna"
+	suffix = "icemoon_underground_outpost31.dmm"
 
 //TODO: Bottom-Level ONLY Spawns after Refactoring Related Code
 /datum/map_template/ruin/icemoon/underground/plasma_facility

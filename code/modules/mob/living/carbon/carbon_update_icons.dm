@@ -52,13 +52,8 @@
 		overlays_standing[cache_index] = null
 	SEND_SIGNAL(src, COMSIG_CARBON_REMOVE_OVERLAY, cache_index, I)
 
-//used when putting/removing clothes that hide certain mutant body parts to just update those and not update the whole body.
-/mob/living/carbon/human/proc/update_mutant_bodyparts()
-	dna?.species.handle_mutant_bodyparts(src)
-	update_body_parts()
-
 /mob/living/carbon/update_body(is_creating = FALSE)
-	dna?.species.handle_body(src) //This calls `handle_mutant_bodyparts` which calls `update_mutant_bodyparts()`. Don't double call!
+	dna?.species.handle_body(src)
 	update_body_parts(is_creating)
 
 /mob/living/carbon/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -277,7 +272,7 @@
 							break
 
 		var/icon_file = I.lefthand_file
-		if(get_held_index_of_item(I) % 2 == 0)
+		if(IS_RIGHT_INDEX(get_held_index_of_item(I)))
 			icon_file = I.righthand_file
 
 		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
@@ -553,12 +548,12 @@
 	if(is_invisible)
 		. += "-invisible"
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
-		if(!overlay.can_draw_on_bodypart(owner))
+		if(!overlay.can_draw_on_bodypart(src, owner))
 			continue
 		. += "-[jointext(overlay.generate_icon_cache(), "-")]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.get_mob_height()]"
+		. += "-[human_owner.mob_height]"
 	return .
 
 ///Generates a cache key specifically for husks
@@ -571,7 +566,7 @@
 	. += "-[body_zone]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.get_mob_height()]"
+		. += "-[human_owner.mob_height]"
 	return .
 
 /obj/item/bodypart/head/generate_icon_key()
@@ -605,6 +600,8 @@
 		if(gradient_styles?[GRADIENT_HAIR_KEY])
 			. += "-[gradient_styles[GRADIENT_HAIR_KEY]]"
 			. += "-[gradient_colors[GRADIENT_HAIR_KEY]]"
+		if(LAZYLEN(hair_masks))
+			. += "-[jointext(hair_masks, "-")]"
 
 	return .
 

@@ -10,45 +10,45 @@
 /obj/item/ammo_box/magazine/m9mm/rubber
 	name = "pistol magazine (9x25mm Rubber)"
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
-	icon_state = "9x19pB"
+	base_icon_state = "9x19pB"
 
 /obj/item/ammo_box/magazine/m9mm/ihdf
 	name = "pistol magazine (9x25mm Intelligent Dispersal Foam)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ihdf
-	icon_state = "9x19pp"
+	base_icon_state = "9x19pp"
 
 //Extended 9mm
 /obj/item/ammo_box/magazine/m9mm/stendo
 	name = "pistol magazine (9x25mm)"
 	ammo_type = /obj/item/ammo_casing/c9mm
-	icon_state = "g18"
+	base_icon_state = "g18"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	max_ammo = 33
 
 /obj/item/ammo_box/magazine/m9mm/stendo/fire
 	name = "pistol magazine (9x25mm Incendiary)"
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
-	icon_state = "g18_r"
+	base_icon_state = "g18_r"
 
 /obj/item/ammo_box/magazine/m9mm/stendo/rubber
 	name = "pistol magazine (9x25mm Incendiary)"
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
-	icon_state = "g18_b"
+	base_icon_state = "g18_b"
 
 /obj/item/ammo_box/magazine/m9mm/stendo/hp
 	name = "pistol magazine (9x25mm Hollow Point)"
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
-	icon_state = "g18_hp"
+	base_icon_state = "g18_hp"
 
 /obj/item/ammo_box/magazine/m9mm/stendo/ap
 	name = "pistol magazine (9x25mm Armour Piercing)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
-	icon_state = "g18_ihdf"
+	base_icon_state = "g18_ihdf"
 
 /obj/item/ammo_box/magazine/m9mm/stendo/ihdf
 	name = "pistol magazine (9x25mm Intelligent Dispersal Foam)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ihdf
-	icon_state = "g18_ihdf"
+	base_icon_state = "g18_ihdf"
 
 //Shotgun Internal Tube
 

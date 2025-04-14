@@ -20,3 +20,4 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
+	body_parts_covered = GROIN | LEGS
