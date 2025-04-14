@@ -363,7 +363,7 @@
 	if(isclosedturf(splatter_turf) || (isgroundlessturf(splatter_turf) && !GET_TURF_BELOW(splatter_turf)))
 		return
 	// BUBBER EDIT BEGIN - Blood pooling
-	for(var/obj/effect/decal/cleanable/blood/blood_effect in T)
+	for(var/obj/effect/decal/cleanable/blood/blood_effect in splatter_turf)
 		blood_effect.increase_blood_pool()
 	// BUBBER EDIT END
 	var/list/temp_blood_DNA

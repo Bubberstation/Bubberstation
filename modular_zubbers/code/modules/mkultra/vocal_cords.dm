@@ -6,7 +6,7 @@
 /obj/item/organ/vocal_cords/velvet
 	name = "Velvet chords"
 	desc = "The voice spoken from these just make you want to drift off, sleep and obey."
-	icon = 'modular_zubbers/code/modules/mkultra/vocal_cords.dmi'
+	icon = 'modular_zubbers/icons/obj/vocal_cords.dmi'
 	icon_state = "velvet_chords"
 	actions_types = list(/datum/action/item_action/organ_action/velvet)
 	spans = list("velvet")

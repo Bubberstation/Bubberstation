@@ -156,9 +156,10 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom/checkLandingTurf(turf/T, list/overlappers)
 	. = ..()
 	var/area/area = get_area(T)
-<<<<<<< HEAD
-	if(!is_type_in_list(area, GLOB.custom_shuttle_station_area_whitelist) && is_type_in_list(area, GLOB.the_station_areas))
-=======
+	if(!area.allow_shuttle_docking)
+		return SHUTTLE_DOCKER_BLOCKED
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/custom/attack_hand(mob/user)
 	if(!shuttleId)
 		to_chat(user, "<span class='warning'>You must link the console to a shuttle first.</span>")
 		return

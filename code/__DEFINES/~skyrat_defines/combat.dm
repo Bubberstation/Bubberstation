@@ -89,7 +89,7 @@
 			. = TRUE
 			try_headslam(user, target, affecting)
 		if(BODY_ZONE_CHEST)
-			if(istype(user.mind.martial_art, /datum/martial_art/cqc))
+			if(locate(/datum/martial_art/cqc) in user.martial_arts)
 			// If you know CQC, You can't suplex and instead have the ability to use the chokehold, Sorry.
 			// Sleeping people on demand is stronger anyway.
 				return FALSE

@@ -11,12 +11,18 @@ mkdir -p \
     $1/modular_zubbers/icons \
 	$1/modular_zubbers/master_files/icons \
 	$1/modular_skyrat/master_files/icons \
-	$1/modular_skyrat/modules/aesthetics # the aesthetics module doesnt use an icon folder but it does contain DMIs. God has abandoned us
+	$1/modular_skyrat/modules/aesthetics \
+	$1/modular_skyrat/modules/GAGS/json_configs \
+	$1/modular_skyrat/modules/GAGS/nsfw/json_configs \
+	$1/modular_zubbers/code/datums/greyscale/json_configs
 
 cp -r modular_zubbers/icons/* $1/modular_zubbers/icons/
 cp -r modular_zubbers/master_files/icons/* $1/modular_zubbers/master_files/icons/
 cp -r modular_skyrat/master_files/icons/* $1/modular_skyrat/master_files/icons/
-cp -r modular_skyrat/modules/aesthetics/* $1/modular_skyrat/modules/aesthetics/
+cp -r modular_skyrat/modules/aesthetics/* $1/modular_skyrat/modules/aesthetics/ # the aesthetics module doesnt use an icon folder but it does contain DMIs. God has abandoned us
+cp -r modular_skyrat/modules/GAGS/json_configs/* $1/modular_skyrat/modules/GAGS/json_configs/
+cp -r modular_skyrat/modules/GAGS/nsfw/json_configs/* $1/modular_skyrat/modules/GAGS/nsfw/json_configs/
+cp -r modular_zubbers/code/datums/greyscale/json_configs/* $1/modular_zubbers/code/datums/greyscale/json_configs/
 
 
 for icondir in ${directories[@]}

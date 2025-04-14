@@ -30,7 +30,7 @@
 	var/mob/living/silicon/robot/robot_spawn = spawned
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
 	//SKYRAT EDIT START
-	robot_spawn.set_connected_ai(select_active_ai_with_fewest_borgs())
+	robot_spawn.set_connected_ai(select_priority_ai())
 	if(robot_spawn.connected_ai)
 		log_combat(robot_spawn.connected_ai, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.connected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
 		if(robot_spawn.shell) //somehow?

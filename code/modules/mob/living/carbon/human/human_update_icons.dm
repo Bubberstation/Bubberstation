@@ -1153,14 +1153,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	else
 		draw_target = mutable_appearance(file2use, t_state)
 
-	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
-	if (mutant_styles & STYLE_TAUR_ALL)
-		if (!using_taur_variant)
-			standing = wear_taur_version(standing.icon_state, standing.icon, layer2use, female_uniform, greyscale_colors)
-		else
-			standing.pixel_x -= 16 // it doesnt look right otherwise
-	// SKYRAT EDIT ADDITION END
-
 	//Get the overlays for this item when it's being worn
 	//eg: ammo counters, primed grenade flashes, etc.
 	var/list/worn_overlays = worn_overlays(draw_target, isinhands, file2use, mutant_styles) // BUBBER EDIT CHANGE - adds mutant_styles
@@ -1177,6 +1169,14 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		standing.overlays += separate_overlays
 
 	standing = center_image(standing, isinhands ? inhand_x_dimension : worn_x_dimension, isinhands ? inhand_y_dimension : worn_y_dimension)
+
+	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
+	if (mutant_styles & STYLE_TAUR_ALL)
+		if (!using_taur_variant)
+			standing = wear_taur_version(standing.icon_state, standing.icon, layer2use, female_uniform, greyscale_colors)
+		else
+			standing.pixel_w -= 16 // it doesnt look right otherwise
+	// SKYRAT EDIT ADDITION END
 
 	//Worn offsets
 	var/list/offsets = get_worn_offsets(isinhands)

@@ -278,7 +278,7 @@
 		if(!ismining(living_mob))
 			continue
 		var/armor = living_mob.run_armor_check(def_zone, armor_flag, armour_penetration = armour_penetration)
-		living_mob.apply_damage(damage*aoe_damage_multiplier, damage_type, def_zone, armor)
+		living_mob.apply_damage(damage, damage_type, def_zone, armor)
 		to_chat(living_mob, span_userdanger("You're struck by a [name]!"))
 
 //Modkits

@@ -82,7 +82,7 @@
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/deforest/first_aid/robo_patch
-	item_type = /obj/item/reagent_containers/pill/robotic_patch/synth_repair
+	item_type = /obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/deforest/first_aid/bandaid
