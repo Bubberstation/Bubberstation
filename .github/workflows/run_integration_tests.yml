@@ -43,8 +43,6 @@ jobs:
         id: clocksource
         run: |
           sudo cat /sys/devices/system/clocksource/clocksource0/current_clocksource
-          sudo echo "tsc" > /sys/devices/system/clocksource/clocksource0/current_clocksource
-          sudo cat /sys/devices/system/clocksource/clocksource0/current_clocksource
       - name: Setup Node
         uses: ./.github/actions/setup_node
       - name: Install rust-g
