@@ -206,8 +206,9 @@
 		return
 	if(!silent_feed)
 		disable_power_by_type(/datum/action/cooldown/bloodsucker/cloak)
-	if(can_incapacitate(feed_target))
-		feed_target.adjustStaminaLoss(stam_loss_per_tick)
+		disable_power_by_type(/datum/action/cooldown/bloodsucker/targeted/tremere/auspex)
+		if(can_incapacitate(feed_target))
+			feed_target.adjustStaminaLoss(stam_loss_per_tick)
 	var/feed_strength_mult = 0
 	if(bloodsuckerdatum_power.frenzied)
 		feed_strength_mult = 2
