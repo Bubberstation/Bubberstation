@@ -64,6 +64,7 @@
 #define BIOGENERATOR (1<<4) //Uses biomass
 #define LIMBGROWER (1<<5) //Uses synthetic flesh
 #define SMELTER (1<<6) //uses various minerals
+#define NANITE_COMPILER  (1<<7) //Prints nanite disks BUBBER EDIT ADDITION - NANITES
 /// Protolathes for offstation roles. More limited tech tree.
 #define AWAY_LATHE (1<<8)
 /// Imprinters for offstation roles. More limited tech tree.
@@ -143,15 +144,6 @@
 /// Max length of a status line in the status display
 #define MAX_STATUS_LINE_LENGTH 40
 
-///Define for automated system arrival announcement
-#define AUTO_ANNOUNCE_ARRIVAL "ARRIVAL"
-///Define for automated system announcement when a head of staff arrives
-#define AUTO_ANNOUNCE_NEWHEAD "NEWHEAD"
-///Define for automated system announcement for when the arrival shuttle is broken
-#define AUTO_ANNOUNCE_ARRIVALS_BROKEN "ARRIVALS_BROKEN"
-///Define for automated system announcement for researched nodes
-#define AUTO_ANNOUNCE_NODE "NODE"
-
 /// Blank Status Display
 #define SD_BLANK 0
 /// Shows the emergency shuttle timer
@@ -160,3 +152,5 @@
 #define SD_MESSAGE 2
 /// Shows an alert picture (e.g. red alert, radiation, etc.)
 #define SD_PICTURE 3
+/// Shows whoever or whatever is on the green screen in the captain's office
+#define SD_GREENSCREEN 4

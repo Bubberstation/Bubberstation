@@ -201,7 +201,7 @@
 
 /obj/item/storage/bag/xenoarch
 	name = "xenoarch mining satchel"
-	desc = "This little bugger can be used to store and transport strange rocks."
+	desc = "This little bugger can be used to store and transport rocks and relics."
 	icon = 'modular_skyrat/modules/xenoarch/icons/xenoarch_items.dmi'
 	icon_state = "satchel"
 	worn_icon_state = "satchel"
@@ -220,7 +220,11 @@
 	atom_storage.max_total_storage = 1000
 	atom_storage.max_slots = 25
 	atom_storage.numerical_stacking = FALSE
-	atom_storage.can_hold = typecacheof(list(/obj/item/xenoarch/strange_rock))
+	atom_storage.can_hold = typecacheof(list(
+		/obj/item/xenoarch/strange_rock,
+		/obj/item/xenoarch/broken_item,
+		/obj/item/xenoarch/useless_relic,
+	))
 
 /obj/item/storage/bag/xenoarch/equipped(mob/user)
 	. = ..()
@@ -263,8 +267,8 @@
 
 	if(show_message)
 		playsound(user, SFX_RUSTLE, 50, TRUE)
-		user.visible_message(span_notice("[user] scoops up the rocks beneath [user.p_them()]."), \
-			span_notice("You scoop up the rocks beneath you with your [name]."))
+		user.visible_message(span_notice("[user] scoops up the items beneath [user.p_them()]."), \
+			span_notice("You scoop up the items beneath you with your [name]."))
 
 	spam_protection = FALSE
 

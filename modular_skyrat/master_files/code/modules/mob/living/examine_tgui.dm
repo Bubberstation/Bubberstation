@@ -2,20 +2,14 @@
 	/// Mob that the examine panel belongs to.
 	var/mob/living/holder
 	/// The screen containing the appearance of the mob
-	var/atom/movable/screen/map_view/examine_panel_screen/examine_panel_screen
+	var/atom/movable/screen/map_view/examine_panel_screen
 
 
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
-
 /datum/examine_panel/ui_close(mob/user)
-	user.client.clear_map(examine_panel_screen.assigned_map)
-
-
-/atom/movable/screen/map_view/examine_panel_screen
-	name = "examine panel screen"
-
+	examine_panel_screen.hide_from(user)
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	if(!examine_panel_screen)
@@ -38,10 +32,9 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		examine_panel_screen.display_to(user)
-		user.client.register_map_obj(examine_panel_screen)
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
+		examine_panel_screen.display_to(user, ui.window)
 
 
 /datum/examine_panel/ui_data(mob/user)
@@ -57,7 +50,8 @@
 	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine)
 	var/ooc_notes = ""
 	var/headshot = ""
-
+	var/art_ref = ""
+	var/art_ref_nsfw = preferences?.read_preference(/datum/preference/toggle/art_ref_nsfw)
 	//  Handle OOC notes first
 	if(preferences)
 		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
@@ -84,6 +78,13 @@
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 			name = holder.name
 
+		//Round Removal opt in stuff
+		if(CONFIG_GET(flag/use_rr_opt_in_preferences))
+			var/rr_prefs = preferences.read_preference(/datum/preference/toggle/be_round_removed)
+			ooc_notes += "\n"
+			ooc_notes += "Round Removal Opt-In Status: [rr_prefs ? "Yes" : "No"]\n"
+			ooc_notes += "\n"
+
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && \
@@ -100,6 +101,7 @@
 		else
 			headshot = holder_human.dna.features["headshot"]
 			flavor_text = holder_human.dna.features["flavor_text"]
+			art_ref = holder_human.dna.features["art_ref"]
 			name = holder.name
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
@@ -124,4 +126,6 @@
 	data["custom_species"] = custom_species
 	data["custom_species_lore"] = custom_species_lore
 	data["headshot"] = headshot
+	data["art_ref"] = art_ref
+	data["art_ref_nsfw"] = art_ref_nsfw
 	return data

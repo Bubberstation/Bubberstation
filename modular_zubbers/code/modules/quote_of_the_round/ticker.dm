@@ -15,10 +15,11 @@
 /datum/controller/subsystem/ticker/declare_completion(force_ending)
 
 	if(quote_of_the_round_text)
-		send2chat(
-			new /datum/tgs_message_content(generate_quote_of_the_round()),
-			CONFIG_GET(string/channel_announce_new_game)
-		)
+		for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+			send2chat(
+				new /datum/tgs_message_content(generate_quote_of_the_round()),
+				channel_tag
+			)
 		to_chat(world, span_notice("A quote of the round was found, and should have been sent to discord."))
 		log_runtime("A quote of the round was found, and should have been sent to discord.")
 

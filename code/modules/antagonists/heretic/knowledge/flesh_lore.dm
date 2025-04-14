@@ -1,7 +1,7 @@
 /// The max amount of health a ghoul has.
 #define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 35 // BUBBER EDIT
 /// The max amount of health a voiceless dead has.
-#define MUTE_MAX_HEALTH 50
+#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT
 
 /datum/heretic_knowledge_tree_column/main/flesh
 	neighbour_type_left = /datum/heretic_knowledge_tree_column/lock_to_flesh
@@ -47,8 +47,9 @@
 
 /datum/heretic_knowledge/limited_amount/flesh_grasp
 	name = "Grasp of Flesh"
+	// BUBBER CHANGE BELOW - GHOUL MAXHP
 	desc = "Your Mansus Grasp gains the ability to create a ghoul out of corpse with a soul. \
-		Ghouls have only 25 health and look like husks to the heathens' eyes, but can use Bloody Blades effectively. \
+		Ghouls have only 100 health and look like husks to the heathens' eyes, but can use Bloody Blades effectively. \
 		You can only create one at a time by this method."
 	gain_text = "My new found desires drove me to greater and greater heights."
 
@@ -115,9 +116,10 @@
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul
 	name = "Imperfect Ritual"
+	// BUBBER CHANGE BELOW - GHOUL MAXHP
 	desc = "Allows you to transmute a corpse and a poppy to create a Voiceless Dead. \
 		The corpse does not need to have a soul. \
-		Voiceless Dead are mute ghouls and only have 50 health, but can use Bloody Blades effectively. \
+		Voiceless Dead are mute ghouls and have 135 health, but can use Bloody Blades effectively. \
 		You can only create two at a time."
 	gain_text = "I found notes of a dark ritual, unfinished... yet still, I pushed forward."
 	required_atoms = list(
@@ -167,7 +169,7 @@
 			return FALSE
 		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(soon_to_be_ghoul)]) to replace an AFK player.")
 		soon_to_be_ghoul.ghostize(FALSE)
-		soon_to_be_ghoul.key = chosen_one.key
+		soon_to_be_ghoul.PossessByPlayer(chosen_one.key)
 
 	selected_atoms -= soon_to_be_ghoul
 	make_ghoul(user, soon_to_be_ghoul)

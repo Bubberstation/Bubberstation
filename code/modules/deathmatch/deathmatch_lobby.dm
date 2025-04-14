@@ -130,7 +130,9 @@
 	if (isnull(observer) || !observer.client)
 		remove_ckey_from_play(ckey)
 		return
-
+	//Bubber edit - storing time of death before deathmatch
+	player_previous_death_times[observer.ckey] = list("previous_time_of_death" = observer.persistent_client.time_of_death)
+	//Bubber edit end
 	// equip player
 	var/datum/outfit/deathmatch_loadout/loadout = players_info["loadout"]
 	if (!(loadout in loadouts))
@@ -148,7 +150,7 @@
 			old_body = observer.mind.current, \
 		)
 	new_player.equipOutfit(loadout) // Loadout
-	new_player.key = ckey
+	new_player.PossessByPlayer(ckey)
 	players_info["mob"] = new_player
 
 	for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
@@ -200,7 +202,10 @@
 		players[ckey]["mob"] = null
 		loser.ghostize(can_reenter_corpse = FALSE)
 		qdel(loser)
-
+		//bubber edit - give them their death timer back
+		var/mob/player_mob = get_mob_by_ckey(ckey)
+		player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
+		//bubber edit end
 	for(var/datum/deathmatch_modifier/modifier in modifiers)
 		GLOB.deathmatch_game.modifiers[modifier].on_end_game(src)
 
@@ -235,6 +240,11 @@
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
 	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+
+	//Bubber Edit - retain respawn timer
+	var/mob/dead_player_mob = get_mob_by_ckey(ckey)
+	dead_player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
+	//BUBBER EDIT END
 
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))

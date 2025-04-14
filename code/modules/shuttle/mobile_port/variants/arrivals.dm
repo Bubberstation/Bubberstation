@@ -19,8 +19,6 @@
 	var/perma_docked = FALSE //highlander with RESPAWN??? OH GOD!!!
 	var/obj/docking_port/stationary/target_dock  // for badminry
 
-	shuttle_sounds = FALSE //SKYRAT EDIT ADDITION
-
 /obj/docking_port/mobile/arrivals/Initialize(mapload)
 	. = ..()
 	preferred_direction = dir
@@ -80,10 +78,7 @@
 		damaged = TRUE
 		if(console)
 			console.say("Alert, hull breach detected!")
-		if (length(GLOB.announcement_systems))
-			var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
-			if(!QDELETED(announcer))
-				announcer.announce("ARRIVALS_BROKEN", channels = list())
+		aas_config_announce(/datum/aas_config_entry/arrivals_broken, list(), command_span=TRUE)
 		if(mode != SHUTTLE_CALL)
 			sound_played = FALSE
 			mode = SHUTTLE_IDLE
