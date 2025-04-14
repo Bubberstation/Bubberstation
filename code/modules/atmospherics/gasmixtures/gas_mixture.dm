@@ -120,7 +120,16 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	if(volume) // to prevent division by zero
 		var/cached_gases = gases
 		TOTAL_MOLES(cached_gases, .)
-		return . * R_IDEAL_GAS_EQUATION * temperature / volume
+		. = . * R_IDEAL_GAS_EQUATION * temperature / volume
+		if(isinf(.))
+			stack_trace("gases = [json_encode(cached_gases)]; temp = [temperature]")
+			message_admins("GAS MIXTURE PRESSURE RETURNED AN INFINITE NUMBER. PING A CODER NOW")
+			return 0
+		if(isnan(.))
+			stack_trace("gases = [json_encode(cached_gases)]; temp = [temperature]")
+			message_admins("GAS MIXTURE RETURNED NaN. PING A CODER NOW")
+			return 0
+		return .
 	return 0
 
 /// Calculate temperature in kelvins
