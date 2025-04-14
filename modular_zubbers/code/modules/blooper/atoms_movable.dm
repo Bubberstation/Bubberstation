@@ -63,13 +63,6 @@ It has also been further modified by Rashcat & other Fluffyfrontier contributors
 		blooper_pitch_range = BLOOPER_VARIANCE_RAND
 		blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
 
-/randomize_human(mob/living/carbon/human/human, randomize_mutations = FALSE)
-	. = ..()
-	human.set_blooper(pick(GLOB.blooper_list))
-	human.blooper_pitch = BLOOPER_PITCH_RAND(human.gender)
-	human.blooper_pitch_range = BLOOPER_VARIANCE_RAND
-	human.blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
-
 /mob/living/send_speech(message_raw, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language = null, list/message_mods = list(), forced = null, tts_message, list/tts_filter)
 	. = ..()
 

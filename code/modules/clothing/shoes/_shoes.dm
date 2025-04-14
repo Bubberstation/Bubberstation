@@ -58,9 +58,13 @@
 	. = ..()
 	if(isinhands)
 		return
-
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+
+/obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
+	. = ..()
+	if(isinhands)
+		return
 	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
 		if(clothing_flags & LARGE_WORN_ICON)
 			. += mutable_appearance('icons/effects/64x64.dmi', "shoeblood_large")
@@ -82,7 +86,7 @@
 /obj/item/clothing/shoes/visual_equipped(mob/user, slot)
 	..()
 	if(offset && (slot_flags & slot))
-		user.pixel_y += offset
+		user.pixel_z += offset
 		worn_y_dimension -= (offset * 2)
 		user.update_worn_shoes()
 		equipped_before_drop = TRUE
@@ -95,7 +99,7 @@
 
 /obj/item/clothing/shoes/proc/restore_offsets(mob/user)
 	equipped_before_drop = FALSE
-	user.pixel_y -= offset
+	user.pixel_z -= offset
 	worn_y_dimension = ICON_SIZE_Y
 
 /obj/item/clothing/shoes/dropped(mob/user)
@@ -173,12 +177,8 @@
 			to_chat(user, span_warning("You're already interacting with [src]!"))
 			return
 		user.visible_message(span_notice("[user] begins [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of [user.p_their()] [src.name]."), span_notice("You begin [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of your [src.name]..."))
-		// BUBBER EDIT START
-		var/tie_time = lace_time
-		if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS))
-			tie_time *= 0.5
-		if(do_after(user, tie_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy)))
-		// BUBBER EDIT END
+
+		if(do_after(user, lace_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy)))
 			to_chat(user, span_notice("You [tied ? "unknot" : "[fasten_verb()]"] the [fastening_type] of your [src.name]."))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_TIED, user)
@@ -286,13 +286,9 @@
 		return
 
 	to_chat(user, span_notice("You begin [tied ? "un" : ""][fastening_verb()] the [fastening_type] on [src]..."))
-	// BUBBER EDIT START
-	var/tie_time = lace_time
-	if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS))
-		tie_time *= 0.5
-	if(do_after(user, tie_time, target = src,extra_checks = CALLBACK(src, PROC_REF(still_shoed), user)))
-	// BUBBER EDIT END
-		to_chat(user, span_notice("You [tied ? "untie" : "tie"] the laces on [src]."))
+
+	if(do_after(user, lace_time, target = src,extra_checks = CALLBACK(src, PROC_REF(still_shoed), user)))
+		to_chat(user, span_notice("You [tied ? "un" : ""][fasten_verb()] the [fastening_type] on [src]."))
 		adjust_laces(tied ? SHOES_UNTIED : SHOES_TIED, user)
 
 /obj/item/clothing/shoes/apply_fantasy_bonuses(bonus)
@@ -310,7 +306,7 @@
 	return ..()
 
 /// Returns appropriate description for unfastened shoes
-/obj/item/clothing/shoes/verb/untied_adjective()
+/obj/item/clothing/shoes/proc/untied_adjective()
 	switch(fastening_type)
 		if (SHOES_LACED)
 			return "untied"
@@ -320,7 +316,7 @@
 	return "nonexistant"
 
 /// Returns appropriate verb for how to fasten shoes
-/obj/item/clothing/shoes/verb/fasten_verb()
+/obj/item/clothing/shoes/proc/fasten_verb()
 	switch(fastening_type)
 		if (SHOES_LACED)
 			return "tie"
@@ -330,7 +326,7 @@
 	return "do something mysterious to"
 
 /// Returns appropriate verb for fastening shoes
-/obj/item/clothing/shoes/verb/fastening_verb()
+/obj/item/clothing/shoes/proc/fastening_verb()
 	switch(fastening_type)
 		if (SHOES_LACED)
 			return "tying"

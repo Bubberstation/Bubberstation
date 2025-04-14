@@ -22,7 +22,7 @@
 				/obj/item/stack/medical/mesh = 4,
 				/obj/item/stack/medical/mesh/bloody = 2,
 				/obj/item/stack/medical/bandage = 4,
-				/obj/item/reagent_containers/pill/robotic_patch/synth_repair = 4,
+				/obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair = 4,
 				/obj/item/stack/medical/wound_recovery = 2,
 				/obj/item/stack/medical/wound_recovery/rapid_coagulant = 2,
 				/obj/item/stack/medical/wound_recovery/robofoam = 2,

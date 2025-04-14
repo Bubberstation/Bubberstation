@@ -137,7 +137,6 @@
 	inhand_icon_state = "infanterie_evil"
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
-	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY

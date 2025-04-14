@@ -2,8 +2,8 @@
 	name = "tarkon general uniform"
 	desc = "A uniform worn by civilian-ranked crew, provided by Tarkon Industries."
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/clothing/uniform.dmi'
-	worn_icon = 'modular_zubbers/code/modules/tarkon/icons/mob/clothing/uniform.dmi' //bubber edit
-	worn_icon_digi = 'modular_zubbers/code/modules/tarkon/icons/mob/clothing/uniform_digi.dmi' //bubber edit
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/uniform.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/uniform_digi.dmi'
 	icon_state = "tarkon"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
 	armor_type = /datum/armor/clothing_under/tarkon

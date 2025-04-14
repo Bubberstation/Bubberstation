@@ -39,7 +39,7 @@
 	slowdown = 0
 
 /turf/open/floor/wood/stairs
-	icon = 'modular_zubbers/maps/biodome/floor.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/floor.dmi'
 	icon_state = "woodstairs_up"
 
 /turf/open/floor/wood/stairs/down

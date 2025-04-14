@@ -54,7 +54,3 @@
 	name = "Heirloom Sinew Skirt"
 	item_path = /obj/item/clothing/accessory/skilt/armourless
 	additional_displayed_text = list(TOOLTIP_NO_ARMOR)
-
-/datum/loadout_item/accessory/wallet
-	name = "Wallet"
-	item_path = /obj/item/storage/wallet
