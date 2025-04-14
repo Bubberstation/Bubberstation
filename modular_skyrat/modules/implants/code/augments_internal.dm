@@ -2,7 +2,6 @@
 	name = "CNS jumpstarter"
 	desc = "This implant will automatically attempt to jolt you awake when it detects you have fallen unconscious outside of REM sleeping cycles. Has a short cooldown. Conflicts with the CNS Rebooter, making them incompatible with eachother."
 	icon_state = "brain_implant_rebooter"
-	implant_color = "#0356fc"
 	slot = ORGAN_SLOT_BRAIN_CNS //One or the other, not both.
 	var/cooldown
 

@@ -231,8 +231,9 @@
 					carbon.adjust_timed_status_effect(3 MINUTES, /datum/status_effect/grouped/screwy_hud/fake_dead)
 				if("healthy")
 					carbon.adjust_timed_status_effect(3 MINUTES, /datum/status_effect/grouped/screwy_hud/fake_healthy)
-		else if(hallucination_options[hal_type])
-			carbon.cause_hallucination(hallucination_options[hal_type], TRUE, hal_details)
+		else
+			if(hallucination_options[hal_type])
+				carbon.cause_hallucination(hallucination_options[hal_type], TRUE, hal_details)
 
 /datum/nanite_program/comm/hallucination/set_extra_setting(setting, value)
 	. = ..()

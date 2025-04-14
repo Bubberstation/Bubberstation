@@ -1,7 +1,7 @@
 /obj/structure/holosign/barrier/atmos/leaf
 	name = "leaf atmos barrier"
 	max_integrity = 150
-	icon = 'modular_zubbers/maps/biodome/holo_leaves.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/holo_leaves.dmi'
 	icon_state = "holo_leaves"
 
 /obj/structure/plaque/static_plaque/golden/commission/biodome

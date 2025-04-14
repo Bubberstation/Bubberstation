@@ -17,8 +17,6 @@
 		switch(cyborg_base_icon)
 			if("mekamine")
 				cyborg.AddComponent(/datum/component/robot_smoke)
-			else
-
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
 		if(cyborg.GetComponent(/datum/component/robot_smoke))

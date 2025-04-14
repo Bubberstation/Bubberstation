@@ -13,7 +13,7 @@
 	can_adjust = FALSE
 
 //Related files:
-// modular_skyrat\modules\Syndie_edits\code\syndie_edits.dm (this has the Overalls and non-Uniforms)
+// modular_skyrat\modules\syndie_edits\code\syndie_edits.dm (this has the Overalls and non-Uniforms)
 // modular_skyrat\modules\novaya_ert\code\uniform.dm (NRI uniform(s))
 
 /*

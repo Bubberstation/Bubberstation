@@ -2,7 +2,7 @@
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/home_button(
 			null,
-			/* hud_owner = */ src,
+			/* hud_owner = */ null,
 			src,
 			"Resume",
 			/* offset = */ 1,
@@ -35,7 +35,7 @@
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/home_button/admin_help(
 			null,
-			/* hud_owner = */ src,
+			/* hud_owner = */ null,
 			src,
 			"Admin Help",
 			/* offset = */ 4,
@@ -46,7 +46,7 @@
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/home_button/leave_body(
 			null,
-			/* hud_owner = */ src,
+			/* hud_owner = */ null,
 			src,
 			"Leave Body",
 			/* offset = */ 5,
@@ -169,6 +169,7 @@
 
 /atom/movable/screen/escape_menu/home_button/admin_help/Initialize(
 	mapload,
+	datum/hud/hud_owner,
 	datum/escape_menu/escape_menu,
 	button_text,
 	offset,
@@ -292,6 +293,7 @@
 
 /atom/movable/screen/escape_menu/home_button/leave_body/Initialize(
 	mapload,
+	datum/hud/hud_owner,
 	datum/escape_menu/escape_menu,
 	button_text,
 	offset,

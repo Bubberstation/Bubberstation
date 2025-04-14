@@ -12,7 +12,6 @@
 /obj/structure/closet/shuttle
 	anchored = TRUE
 	density = TRUE
-	can_be_unanchored = FALSE
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	icon_state = "wallcloset"
 	icon_door = "wallcloset_mesh"

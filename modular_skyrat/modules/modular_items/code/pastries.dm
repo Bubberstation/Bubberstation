@@ -26,6 +26,7 @@
 // RECIPE
 
 /datum/crafting_recipe/food/mince_pie
+	removed_foodtypes = JUNKFOOD | DAIRY
 	name = "Mince pie"
 	reqs = list(
 		/obj/item/food/no_raisin = 1,
@@ -36,6 +37,7 @@
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/mimce_pie
+	removed_foodtypes = JUNKFOOD | DAIRY
 	name = "Mimce pie"
 	reqs = list(
 		/obj/item/food/no_raisin = 1,

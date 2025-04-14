@@ -5,7 +5,7 @@
 		so this extra armor provides zero ability for extravehicular activity while deployed. \
 		This module has been partially reverse engineered from competing combat MOD technology, \
 		and does not help reduce the bulkiness of many of the suits it is installed in."
-	speed_added = 0 //This is to nerf your armour, not buff your modsuit speed
+	space_slowdown = 0 //This is to nerf your armour, not buff your modsuit speed
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	icon_state = "heavy" //SWAT suit icon, because I want to change the action buttons and these aren't meant to be obtainable outside the suits
 
@@ -27,7 +27,7 @@
 		so this extra armor provides zero ability for extravehicular activity while deployed. \
 		This module has been partially reverse engineered from competing combat MOD technology, \
 		though Apadyne has partially mitigated some of the excess power towards improved actuators in the suit."
-	speed_added = 0.25 //better actuators on the HoS model
+	space_slowdown = 0.5 //better actuators on the HoS model
 
 /obj/item/mod/module/armor_booster/nanotrasen/magnate //Captain
 	armor_mod = /datum/armor/mod_module_armor_boost_magnate

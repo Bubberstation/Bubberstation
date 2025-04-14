@@ -240,7 +240,7 @@
 			The brushes allow you to uncover the items within the proper depths without damaging it.<br> \
 			The tape will allow you to tag the strange rock with the current depth. Continue to examine the rock for updates.<br> \
 			The belt will allow you to store your mobile/handheld tools for easy access.<br> \
-			The bag will allow you to store and automatically pickup strange rocks that you find lying on the floor.<br> \
+			The bag will allow you to store and automatically pickup strange rocks and relics that you find lying on the floor.<br> \
 			The handheld machines allow you to not have to be stuck at the machines. There are only handheld scanners and recoverers.<br> \
 			The Scanner is a machine which allows you to tag the strange rock with its max and safe depth.<br> \
 			The Researcher is a machine that allows you to compile/condense relics and items into larger strange artifacts.<br> \

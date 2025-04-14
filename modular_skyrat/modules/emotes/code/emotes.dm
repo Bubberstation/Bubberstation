@@ -177,7 +177,8 @@
 	key = "meow"
 	key_third_person = "meows"
 	message = "meows!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "meows silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/emotes/meow.ogg'
 
