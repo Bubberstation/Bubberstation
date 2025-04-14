@@ -109,10 +109,6 @@
 *	SNEAKERS
 */
 
-/datum/loadout_item/shoes/greyscale_sneakers
-	name = "Colorable Sneakers"
-	item_path = /obj/item/clothing/shoes/sneakers
-
 /datum/loadout_item/shoes/black_sneakers
 	name = "Black Sneakers"
 	item_path = /obj/item/clothing/shoes/sneakers/black

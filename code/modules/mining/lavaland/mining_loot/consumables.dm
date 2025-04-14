@@ -204,7 +204,6 @@
 		return
 	var/obj/item/organ/wings/functional/wings = new wing_type()
 	wings.Insert(exposed_human)
-	exposed_human.dna.species.handle_mutant_bodyparts(exposed_human) // BUBBER EDIT OR BEGIN
 	if(had_wings)
 		to_chat(exposed_human, span_userdanger("A terrible pain travels down your back as your wings change shape!"))
 	else
@@ -224,7 +223,7 @@
 		accessory = SSaccessories.sprite_accessories[initial(accessory.key)][initial(accessory.name)] //SKYRAT EDIT CHANGE - ORIGINAL: accessory = SSaccessories.wings_list[initial(accessory.name)] //get the singleton instance
 		var/image/img = image(icon = accessory.icon, icon_state = "m_wingsopen_[accessory.icon_state]_BEHIND") //Process the HUD elements
 		img.transform *= 0.5
-		img.pixel_x = -32
+		img.pixel_w = -32
 		if(radial_wings[accessory.name])
 			stack_trace("Different wing types with repeated names. Please fix as this may cause issues.")
 		else

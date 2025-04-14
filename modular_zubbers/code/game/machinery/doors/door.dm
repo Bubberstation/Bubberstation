@@ -1,7 +1,7 @@
-#define LINK_DENY "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=deny'>\a (deny)</a>"
-#define LINK_OPEN "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=open'>\a (open)</a>"
-#define LINK_BOLT "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=bolt'>\a (bolt)</a>"
-#define LINK_SHOCK "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'>\a (shock)</a>"
+#define LINK_DENY "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=deny'> (deny)</a>"
+#define LINK_OPEN "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=open'> (open)</a>"
+#define LINK_BOLT "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=bolt'> (bolt)</a>"
+#define LINK_SHOCK "<a href='byond://?_src_=usr;open_door=[REF(src)];user=[REF(user)];action=shock'> (shock)</a>"
 
 /obj/machinery/door/airlock
 	//so the AI doesn't get spammed

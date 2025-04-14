@@ -90,7 +90,6 @@
 	max_integrity = 100
 	integrity_failure = 0
 	anchored = TRUE
-	can_be_unanchored = FALSE	//cannot be removed without being destroyed
 
 /obj/structure/decorative/fluff/ai_node/take_damage()
 	. = ..()

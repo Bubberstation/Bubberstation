@@ -1,9 +1,10 @@
 /datum/supply_pack/materials/glass50 // Introduced with the GMM disable. Delete this file when the GMM gets fixed.
 	name = "50 Glass Sheets"
 	desc = "Let some nice light in with fifty glass sheets!"
-	cost = CARGO_CRATE_VALUE * 2
+	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/stack/sheet/glass/fifty)
 	crate_name = "glass sheets crate"
+	test_ignored = TRUE
 
 /datum/supply_pack/materials/iron50
 	name = "50 Iron Sheets"
@@ -11,6 +12,7 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/iron/fifty)
 	crate_name = "iron sheets crate"
+	test_ignored = TRUE
 
 /datum/supply_pack/materials/plasteel20
 	name = "20 Plasteel Sheets"

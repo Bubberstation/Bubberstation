@@ -121,6 +121,7 @@
 		part_datum.part_item = mod_part
 		mod.mod_parts["[mod_part.slot_flags]"] = part_datum
 		parts += mod_part
+
 	for(var/obj/item/part as anything in parts)
 		part.name = "[name] [part.name]"
 		part.desc = "[part.desc] [desc]"
@@ -132,6 +133,7 @@
 		part.max_heat_protection_temperature = max_heat_protection_temperature
 		part.min_cold_protection_temperature = min_cold_protection_temperature
 		part.siemens_coefficient = siemens_coefficient
+
 	set_skin(mod, skin || default_skin)
 
 /datum/mod_theme/proc/set_skin(obj/item/mod/control/mod, skin)
@@ -633,7 +635,7 @@
 		/obj/item/reagent_containers/cup/bottle,
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/stack/medical,
 		/obj/item/sensor_device,
@@ -744,7 +746,7 @@
 		/obj/item/reagent_containers/cup/bottle,
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/stack/medical,
 		/obj/item/sensor_device,
@@ -1158,7 +1160,7 @@
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 3
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	siemens_coefficient = 0
-	slowdown_deployed = 0.5
+	slowdown_deployed = 0
 	ui_theme = "syndicate"
 	resistance_flags = FIRE_PROOF
 	inbuilt_modules = list(/obj/item/mod/module/armor_booster)
@@ -1265,7 +1267,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 3
 	siemens_coefficient = 0
-	slowdown_deployed = 0.5
+	slowdown_deployed = 0
 	ui_theme = "syndicate"
 	inbuilt_modules = list(/obj/item/mod/module/armor_booster)
 	allowed_suit_storage = list(
@@ -1422,7 +1424,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/restraints/handcuffs,
 		/obj/item/sensor_device,
@@ -1698,8 +1700,8 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 3
 	siemens_coefficient = 0
-	slowdown_deployed = 0.5
-	ui_theme = "terminal"
+	slowdown_deployed = 0
+	ui_theme = "ntos_terminal"
 	inbuilt_modules = list(/obj/item/mod/module/armor_booster)
 	allowed_suit_storage = list(
 		/obj/item/ammo_box,

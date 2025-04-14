@@ -68,6 +68,9 @@
 /obj/item/gun/ballistic/automatic/pistol
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
 
+/obj/item/gun/ballistic/automatic/pistol/doorhickey
+	icon = 'icons/obj/weapons/guns/ballistic.dmi'
+
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 
@@ -169,7 +172,7 @@
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 2)
 
-/obj/item/gun/ballistic/automatic/sniper_rifle/reset_semicd()
+/obj/item/gun/ballistic/automatic/sniper_rifle/reset_fire_cd()
 	. = ..()
 	if(suppressed)
 		playsound(src, 'sound/machines/eject.ogg', 25, TRUE, ignore_walls = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)

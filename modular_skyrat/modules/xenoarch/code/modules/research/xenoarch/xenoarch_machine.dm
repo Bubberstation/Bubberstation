@@ -114,11 +114,13 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
-		for(var/obj/item/xenoarch/strange_rocks in tool.contents)
+		for(var/obj/item/strange_rocks in tool.contents)
+			if(!is_type_in_list(strange_rocks, accepted_types))
+				continue
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
-		balloon_alert(user, "rocks inserted!")
+		balloon_alert(user, "items inserted!")
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_type_in_list(tool, accepted_types))
@@ -189,6 +191,7 @@
 	var/reward_attempt = accepted_types[first_item.type]
 	current_research = min(current_research + reward_attempt, 300)
 	xenoarch_contents -= first_item
+	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 	qdel(first_item)
 
 /obj/machinery/xenoarch/scanner
@@ -252,10 +255,21 @@
 	if(istype(held_item, /obj/item/xenoarch/broken_item))
 		context[SCREENTIP_CONTEXT_LMB] = "Insert item"
 		return CONTEXTUAL_SCREENTIP_SET
+	if(istype(held_item, /obj/item/storage/bag/xenoarch))
+		context[SCREENTIP_CONTEXT_LMB] = "Dump bag into machine"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/recoverer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
+
+	if(istype(tool, /obj/item/storage/bag/xenoarch))
+		for(var/obj/item/xenoarch/broken_item/current_item in tool.contents)
+			current_item.forceMove(src)
+			xenoarch_contents += current_item
+
+		balloon_alert(user, "items inserted!")
+		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/broken_item))
 		tool.forceMove(src)
@@ -326,7 +340,7 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(istype(tool, /obj/item/storage/bag/xenoarch))
-		for(var/obj/item/strange_rocks in tool.contents)
+		for(var/obj/item/xenoarch/strange_rock/strange_rocks in tool.contents)
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
@@ -361,4 +375,5 @@
 	var/obj/item/xenoarch/strange_rock/first_item = xenoarch_contents[1]
 	new first_item.hidden_item(src_turf)
 	xenoarch_contents -= first_item
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	qdel(first_item)

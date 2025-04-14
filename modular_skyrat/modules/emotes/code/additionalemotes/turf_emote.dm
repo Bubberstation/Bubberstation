@@ -81,9 +81,9 @@
 	for(var/choice in user.allowed_turfs)
 
 		var/datum/radial_menu_choice/option = new
-		option.image = image(icon = 'modular_skyrat/master_files/icons/effects/turf_effects_icons.dmi', icon_state = initial(choice))
+		option.image = image(icon = 'modular_skyrat/master_files/icons/effects/turf_effects_icons.dmi', icon_state = choice)
 
-		display_turf[initial(choice)] = option
+		display_turf[choice] = option
 
 	sort_list(display_turf)
 	var/chosen_turf = show_radial_menu(user, user, display_turf, custom_check = CALLBACK(src, PROC_REF(check_menu), user))
