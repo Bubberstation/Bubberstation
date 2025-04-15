@@ -52,8 +52,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
 
-	var/atom/movable/screen/blobpwrdisplay
-
 	var/atom/movable/screen/alien_plasma_display
 	var/atom/movable/screen/alien_queen_finder
 
@@ -272,7 +270,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	healthdoll = null
 	spacesuit = null
 	hunger = null
-	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
 
@@ -323,12 +320,14 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 /datum/hud/proc/get_plane_group(key)
 	return master_groups[key]
 
+///Creates the mob's visible HUD, returns FALSE if it can't, TRUE if it did.
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)
-		return
+		return FALSE
 	set_hud_used(new hud_type(src))
 	update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+	return TRUE
 
 /mob/proc/set_hud_used(datum/hud/new_hud)
 	hud_used = new_hud
