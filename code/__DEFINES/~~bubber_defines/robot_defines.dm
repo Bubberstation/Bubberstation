@@ -96,6 +96,7 @@
 //	SMOLRAPTOR BORG DEFINES BELOW
 
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+#define CYBORG_ICON_TYPE_SMOLRAPTOR_ALT "smolraptor_alt"
 
 #define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_gen.dmi'
 #define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sci.dmi'
@@ -104,7 +105,7 @@
 #define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_car.dmi'
 #define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_serv.dmi'
 #define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_pk.dmi'
-#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_jani.dmi'
+#define CYBORG_ICON_SEC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sec.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_min.dmi'
 #define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_cc.dmi'
 #define CYBORG_ICON_SYN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_syndie.dmi'
