@@ -206,6 +206,7 @@
 
 /mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/holographic_nature)
 	if(istype(loc, /obj/item/modular_computer))
 		give_messenger_ability()
 	START_PROCESSING(SSfastprocess, src)
