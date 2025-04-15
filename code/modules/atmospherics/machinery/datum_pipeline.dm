@@ -299,7 +299,7 @@
 		gas_mixture.pipeline_cycle = process_id
 		if(gas_mixture.volume < 0 && !reported_for_negative_volume)
 			log_runtime("Fucked up gas mix found:", gas_mixture.gases)
-			message_admins("NEGATIVE VOLUME GAS MIX DETECTED, PING A CODER NOW!!!!!!!!!!")
+			message_admins(span_yellowteamradio("NEGATIVE VOLUME GAS MIX DETECTED, PING A CODER NOW!!!!!!!!!!"))
 			print_pipeline_debug_info(src)
 			reported_for_negative_volume = TRUE
 		volume_sum += gas_mixture.volume

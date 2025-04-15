@@ -123,11 +123,11 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		. = . * R_IDEAL_GAS_EQUATION * temperature / volume
 		if(isinf(.))
 			stack_trace("gases = [json_encode(cached_gases)]; temp = [temperature]")
-			message_admins("GAS MIXTURE PRESSURE RETURNED AN INFINITE NUMBER. PING A CODER NOW")
+			message_admins(span_yellowteamradio("GAS MIXTURE PRESSURE RETURNED AN INFINITE NUMBER. PING A CODER NOW"))
 			return 0
 		if(isnan(.))
 			stack_trace("gases = [json_encode(cached_gases)]; temp = [temperature]")
-			message_admins("GAS MIXTURE RETURNED NaN. PING A CODER NOW")
+			message_admins(span_yellowteamradio("GAS MIXTURE RETURNED NaN. PING A CODER NOW"))
 			return 0
 		return .
 	return 0
