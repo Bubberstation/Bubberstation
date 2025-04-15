@@ -254,10 +254,11 @@
 		stack_trace("[src] has one or more null gas mixtures, which may cause bugs. Null mixtures will not be considered in reconcile_air().")
 
 // temp debug thing
-/proc/print_pipeline_debug_info(datum/pipeline/pipeline)
+/proc/print_pipeline_debug_info(datum/pipeline/pipeline, list/gas_mixture_list)
 	log_runtime("Negative volume detected in pipeline, dumping info...")
-	log_runtime("Pipeline pipe members:", pipeline.members)
-	log_runtime("Gas mixes connected to this pipeline:", pipeline.other_airs)
+	log_runtime("Volume vars of other gas mixtures connected to this pipeline:")
+	for(var/datum/gas_mixture/mixture in gas_mixture_list)
+		log_runtime("    [mixture.volume]")
 	log_runtime("Atmos machines on this pipeline:", pipeline.other_atmos_machines)
 	log_runtime("Ditto:", pipeline.require_custom_reconcilation)
 	log_runtime("Locations of gas pipes in net:")
@@ -298,9 +299,9 @@
 			continue
 		gas_mixture.pipeline_cycle = process_id
 		if(gas_mixture.volume < 0 && !reported_for_negative_volume)
-			log_runtime("Fucked up gas mix found:", gas_mixture.gases)
+			log_runtime("Fucked up gas mix found, volume was [gas_mixture.volume]")
 			message_admins(span_yellowteamradio("NEGATIVE VOLUME GAS MIX DETECTED, PING A CODER NOW!!!!!!!!!!"))
-			print_pipeline_debug_info(src)
+			print_pipeline_debug_info(src, gas_mixture_list)
 			reported_for_negative_volume = TRUE
 		volume_sum += gas_mixture.volume
 
