@@ -106,7 +106,7 @@
 	), PROC_REF(stop_leaning))
 
 	RegisterSignal(src, COMSIG_MOVABLE_TELEPORTED, PROC_REF(teleport_away_while_leaning))
-	RegisterSignal(src, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(lean_dir_changed))
+	// RegisterSignal(src, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(lean_dir_changed)) // BUBBER EDIT REMOVE - Don't reset leaning on direction change
 	update_fov()
 
 /// You fall on your face if you get teleported while leaning

@@ -13,7 +13,7 @@
 
 	max_idle_programs = 3
 
-	max_capacity = 64
+	max_capacity = parent_type::max_capacity * 2
 
 /obj/item/modular_computer/pda/synth/Initialize(mapload)
 	. = ..()
@@ -31,7 +31,6 @@
 	if(istype(owner))
 		var/obj/item/modular_computer/pda/job_pda = SSjob.get_pda_type_by_job(owner.job)
 		if(istype(job_pda))
-			max_capacity = job_pda.max_capacity
 			starting_programs += job_pda.starting_programs
 			var/obj/item/modular_computer/pda/heads/head_pda = job_pda
 			if(istype(head_pda))

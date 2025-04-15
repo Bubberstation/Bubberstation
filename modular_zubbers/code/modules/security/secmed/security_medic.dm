@@ -84,7 +84,7 @@
 /obj/item/radio/headset/headset_medsec
 	name = "security medic's bowman headset"
 	desc = "Used to hear how many security officers need to be stitched back together."
-	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
+	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
 	icon_state = "headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
 
@@ -101,7 +101,7 @@
 
 /obj/item/clothing/glasses/hud/medsechud/sunglasses
 	name = "health scanner security HUD sunglasses"
-	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
+	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "hud_protected"
 	worn_icon_state = "security_hud_black"
