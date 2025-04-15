@@ -20,6 +20,9 @@
 	///Is this pipeline being reconstructed?
 	var/building = FALSE
 
+	///Don't spam the log
+	var/reported_for_negative_volume = FALSE
+
 /datum/pipeline/New()
 	other_airs = list()
 	members = list()
@@ -250,6 +253,18 @@
 	if(list_clear_nulls(.))
 		stack_trace("[src] has one or more null gas mixtures, which may cause bugs. Null mixtures will not be considered in reconcile_air().")
 
+// temp debug thing
+/proc/print_pipeline_debug_info(datum/pipeline/pipeline)
+	log_runtime("Negative volume detected in pipeline, dumping info...")
+	log_runtime("Pipeline pipe members:", pipeline.members)
+	log_runtime("Gas mixes connected to this pipeline:", pipeline.other_airs)
+	log_runtime("Atmos machines on this pipeline:", pipeline.other_atmos_machines)
+	log_runtime("Ditto:", pipeline.require_custom_reconcilation)
+	log_runtime("Locations of gas pipes in net:")
+	for(var/obj/machinery/atmospherics/pipe/pipe_iter in pipeline.members)
+		log_runtime("    X: [pipe_iter.x] Y: [pipe_iter.y] Z: [pipe_iter.z] Area: [get_area(pipe_iter)]")
+
+
 /// Called when the pipenet needs to update and mix together all the air mixes
 /datum/pipeline/proc/reconcile_air()
 	var/list/datum/gas_mixture/gas_mixture_list = list()
@@ -282,6 +297,11 @@
 			gas_mixture_list -= gas_mixture
 			continue
 		gas_mixture.pipeline_cycle = process_id
+		if(gas_mixture.volume < 0 && !reported_for_negative_volume)
+			log_runtime("Fucked up gas mix found:", gas_mixture.gases)
+			message_admins("NEGATIVE VOLUME GAS MIX DETECTED, PING A CODER NOW!!!!!!!!!!")
+			print_pipeline_debug_info(src)
+			reported_for_negative_volume = TRUE
 		volume_sum += gas_mixture.volume
 
 		// This is sort of a combined merge + heat_capacity calculation
