@@ -12,7 +12,7 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain."
+	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain, removing deep-rooted traumas."
 
 /datum/surgery/robot_brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	var/obj/item/organ/brain/synth/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -28,11 +28,14 @@
 /datum/surgery_step/fix_robot_brain
 	name = "fix posibrain (multitool)"
 	implements = list(
-		TOOL_MULTITOOL = 95,
+		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 35,
 		/obj/item/pen = 15
 	)
 	repeatable = TRUE
+	preop_sound = 'sound/items/handling/tools/multitool_pickup.ogg'
+	success_sound = 'sound/items/handling/tools/multitool_drop.ogg'
+	failure_sound = 'sound/items/handling/tools/multitool_drop.ogg'
 	time = 12 SECONDS //long and complicated
 
 /datum/surgery_step/fix_robot_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -84,7 +87,7 @@
 
 /datum/surgery/robot_trauma_surgery
 	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
-	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
+	desc = "Requires Liquid Solder and Holy Water. A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest, soulbound trauma errors."
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	target_mobtypes = list(/mob/living/carbon/human)
