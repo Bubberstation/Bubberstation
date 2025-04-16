@@ -97,6 +97,24 @@
 		/datum/surgery_step/fix_robot_brain/trauma,
 		/datum/surgery_step/mechanic_close,
 	)
+	var/resilience_level = TRAUMA_RESILIENCE_LOBOTOMY
+
+/datum/surgery/robot_trauma_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/organ/brain/synth/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!istype(target_brain) && !issynthetic(target))
+		return FALSE
+
+	if(LAZYLEN(target.get_traumas()))
+		for(var/active_trauma in target.get_traumas())
+			var/datum/brain_trauma/trauma = active_trauma
+			if(trauma.resilience == resilience_level)
+				return TRUE
+
+	return FALSE
 
 /datum/surgery_step/fix_robot_brain/trauma
 	name = "reticulate splines (multitool/hemostat)"
@@ -117,18 +135,18 @@
 	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	var/datum/surgery/robot_trauma_surgery/surgery_type = surgery
+	if(surgery_type.resilience_level == TRAUMA_RESILIENCE_MAGIC)
+		target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
+		playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
 	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	return ..()
 
-/datum/surgery/robot_blessed_trauma_surgery
+/datum/surgery/robot_trauma_surgery/blessed
 	name = "Devine Debugging (Blessed Neurectomy)"
 	desc = "Requires Liquid Solder and Holy Water. A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest, soulbound trauma errors."
-	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
-	requires_bodypart_type = BODYTYPE_ROBOTIC
-	requires_tech = TRUE
-	target_mobtypes = list(/mob/living/carbon/human)
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/mechanic_unwrench,
@@ -137,6 +155,7 @@
 		/datum/surgery_step/fix_robot_brain/blessed,
 		/datum/surgery_step/mechanic_close,
 	)
+	resilience_level = TRAUMA_RESILIENCE_MAGIC
 
 /datum/surgery_step/fix_robot_brain/blessed
 	name = "trigger godmode debugging (multitool/hemostat)"
@@ -145,22 +164,3 @@
 		/datum/reagent/medicine/liquid_solder,
 		/datum/reagent/water/holywater,
 	)
-
-/datum/surgery_step/fix_robot_brain/blessed/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user,
-		target,
-		span_notice("You succeed in debugging [target]'s posibrain."),
-		"[user] successfully fixes [target]'s posibrain!",
-		"[user] completes the surgery on [target]'s posibrain.",
-	)
-
-	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
-	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
-	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
-	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
-	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
-	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
-	playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
-	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
-		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
-	return ..()

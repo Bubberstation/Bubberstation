@@ -45,5 +45,5 @@
 	name = "Devine Debugging"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest, soulbound trauma errors."
 	id = "robotic_blessed_trauma_surgery"
-	surgery = /datum/surgery/robot_blessed_trauma_surgery
+	surgery = /datum/surgery/robot_trauma_surgery/blessed
 	research_icon_state = "surgery_head"
