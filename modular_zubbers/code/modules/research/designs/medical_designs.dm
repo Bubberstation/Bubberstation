@@ -33,3 +33,17 @@
 	design_ids += "surgery_neurectomy"
 	design_ids += "surgery_blessed_neurectomy"
 	. = ..()
+
+/datum/design/surgery/robot_trauma
+	name = "Neural Defragmentation"
+	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix deep-rooted trauma errors."
+	id = "robotic_trauma_surgery"
+	surgery = /datum/surgery/robot_trauma_surgery
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/robot_trauma/blessed
+	name = "Devine Debugging"
+	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest, soulbound trauma errors."
+	id = "robotic_blessed_trauma_surgery"
+	surgery = /datum/surgery/robot_blessed_trauma_surgery
+	research_icon_state = "surgery_head"
