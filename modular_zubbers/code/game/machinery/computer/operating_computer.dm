@@ -20,10 +20,16 @@
 					trauma_treatment += "Brain Surgery"
 				if(TRAUMA_RESILIENCE_LOBOTOMY)
 					trauma_treatment += "Neurectomy"
-					chem_required += "Neurine"
+					if(issynthetic(patient))
+						chem_required += "Liquid Solder"
+					else
+						chem_required += "Neurine"
 				if(TRAUMA_RESILIENCE_MAGIC)
 					trauma_treatment += "Blessed Neurectomy"
-					chem_required += "Neurine, Holy Water"
+					if(issynthetic(patient))
+						chem_required += "Liquid Solder, Holy Water"
+					else
+						chem_required += "Neurine, Holy Water"
 				if(TRAUMA_RESILIENCE_ABSOLUTE)
 					trauma_treatment += "Untreatable"
 				if(TRAUMA_RESILIENCE_WOUND)
