@@ -2,7 +2,7 @@
 	desc = "A minor head surgery for repairing brain damage and removing mild traumas."
 
 /datum/surgery/advanced/neurectomy
-	name = "Trauma Neurectomy"
+	name = "Neurectomy"
 	desc = "Requires Neurine. An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
@@ -98,7 +98,7 @@
 	return FALSE
 
 /datum/surgery/advanced/neurectomy/blessed
-	name = "Blessed Trauma Neurectomy"
+	name = "Blessed Neurectomy"
 	desc = "Requires Neurine and Holy Water. We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
 
 /datum/surgery_step/neurectomy/blessed
