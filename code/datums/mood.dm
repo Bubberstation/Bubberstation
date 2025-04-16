@@ -374,7 +374,7 @@
 	if(drunkness)
 		msg += span_notice("My current drunkenness: [drunkness]")
 		if(get_alcohol_processing(mob_parent))
-			msg += "[span_notice(" I'm still processing what I drank...")]<br>"
+			msg += "[span_info(" I'm still processing what I drank...")]<br>"
 		else
 			msg += "<br>"
 	// BUBBER EDIT CHANGE END - ALCOHOL PROCESSING
