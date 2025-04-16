@@ -3,7 +3,7 @@
 
 /datum/surgery/advanced/neurectomy
 	name = "Neurectomy"
-	desc = "Requires Neurine. An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
+	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -63,6 +63,7 @@
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 40)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
@@ -99,7 +100,7 @@
 
 /datum/surgery/advanced/neurectomy/blessed
 	name = "Blessed Neurectomy"
-	desc = "Requires Neurine and Holy Water. We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
 
 /datum/surgery_step/neurectomy/blessed
 	name = "reticulate nerve splines (scalpel)"
@@ -119,6 +120,7 @@
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 40)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)

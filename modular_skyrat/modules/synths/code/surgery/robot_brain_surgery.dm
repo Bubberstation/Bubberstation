@@ -114,6 +114,7 @@
 	)
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
+	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
@@ -154,6 +155,7 @@
 	)
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
+	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
