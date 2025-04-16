@@ -350,6 +350,8 @@
 			if(0 to NUTRITION_LEVEL_STARVING)
 				msg += "[span_boldwarning("I'm starving!")]<br>"
 
+	// BUBBER EDIT CHANGE BEGIN - ALCOHOL PROCESSING
+	/*
 	var/drunkness = mob_parent.get_drunk_amount()
 	if(drunkness >= 1)
 		msg += span_notice("My current drunkenness: ")
@@ -366,6 +368,16 @@
 				msg += "[span_warning("I'm feeling like a mess.")]<br>"
 			if(81 to INFINITY)
 				msg += "[span_boldwarning("I'm completely wasted.")]<br>"
+	*/
+
+	var/drunkness = get_drunk_mood(mob_parent)
+	if(drunkness)
+		msg += span_notice("My current drunkenness: [drunkness]")
+		if(get_alcohol_processing(mob_parent))
+			msg += "[span_notice(" I'm still processing what I drank...")]<br>"
+		else
+			msg += "<br>"
+	// BUBBER EDIT CHANGE END - ALCOHOL PROCESSING
 
 	msg += span_notice("My current sanity: ") //Long term
 	//ORIGINAL
