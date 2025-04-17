@@ -267,7 +267,7 @@
 /datum/status_effect/tased/proc/set_firer(atom/new_firer)
 	firer = new_firer
 	if(taser != firer) // Turrets, notably, are both
-		RegisterSignal(firer, COMSIG_QDELETING, PROC_REF(end_tase))
+		RegisterSignal(firer, list(COMSIG_QDELETING, COMSIG_KB_MOB_SWAPHANDS_DOWN), PROC_REF(end_tase))
 
 	RegisterSignal(firer, COMSIG_MOB_CLICKON, PROC_REF(user_cancel_tase))
 
