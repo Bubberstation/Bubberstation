@@ -224,7 +224,7 @@
 	else
 		tase_line = null
 
-/datum/status_effect/tased/tick(atom/with_what, seconds_between_ticks)
+/datum/status_effect/tased/tick(seconds_between_ticks)
 	if(!do_tase_with(taser, seconds_between_ticks))
 		end_tase()
 		return
@@ -247,12 +247,7 @@
 
 	// the actual stunning is here
 	if(!owner.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
-	//BUBBER EDIT START
-		if(istype(with_what, /obj/item/gun/energy))
-			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY))
-		else
-			//BUBBER EDIT END
-			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //BUBBER EDIT. ORIGINAL: owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
 
 /// Sets the passed atom as the "taser"
 /datum/status_effect/tased/proc/set_taser(datum/new_taser)
