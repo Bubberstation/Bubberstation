@@ -9,6 +9,8 @@
 	background_icon_state = "tremere_power_off"
 	active_background_icon_state = "tremere_power_on"
 	base_background_icon_state = "tremere_power_off"
+	overlay_icon_state = null
+	base_overlay_icon_state = null
 	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 	power_explanation = "You can fly and see in the dark, and you heal from doing melee attacks."
 	invocation = "Master, grant me your might, BAT FORM!!"

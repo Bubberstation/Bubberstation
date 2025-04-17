@@ -226,6 +226,25 @@
 /// Steal the Book of Nod - Nosferatu Clan objective
 /datum/objective/bloodsucker/kindred
 	name = "steal the Book of Nod"
+	var/target_area = /area/station/service/library
+
+// not guaranteed to spawn due to map fuckery, so we'll pod one in!
+/datum/objective/bloodsucker/kindred/New()
+	. = ..()
+	var/obj/item/book/kindred/book_to_spawn = locate() in SSpoints_of_interest.get_other_pois()
+	if(book_to_spawn)
+		return
+	book_to_spawn = new()
+	var/area/library = locate(target_area) in GLOB.the_station_areas
+	if(!library)
+		return
+	var/list/turf/valid_turfs = get_first_open_turf_in_area(library)
+	if(!length(valid_turfs))
+		return
+	// this will explode shit, but it's fun!
+	var/obj/structure/closet/supplypod/pod = new()
+	pod.explosionSize = list(0, 0, 0, 2)
+	new /obj/effect/pod_landingzone(pick(valid_turfs), pod, book_to_spawn)
 
 // EXPLANATION
 /datum/objective/bloodsucker/kindred/update_explanation_text()

@@ -1,16 +1,6 @@
-/**
- *	# Auspex
- *
- *	Level 1 - Cloak of Darkness until clicking an area, teleports the user to the selected area (max 2 tile)
- *	Level 2 - Cloak of Darkness until clicking an area, teleports the user to the selected area (max 3 tiles)
- *	Level 3 - Cloak of Darkness until clicking an area, teleports the user to the selected area
- *	Level 4 - Cloak of Darkness until clicking an area, teleports the user to the selected area, causes nearby people to bleed.
- *	Level 5 - Cloak of Darkness until clicking an area, teleports the user to the selected area, causes nearby people to fall asleep.
- */
 
-#define AUSPEX_BLOOD_COST_PER_TILE 5
-#define AUSPEX_BLEED_LEVEL 4
-#define AUSPEX_KNOCKDOWN_LEVEL 5
+#define AUSPEX_KNOCKDOWN_LEVEL 4
+#define AUSPEX_BLEED_LEVEL 5
 #define AUSPEX_ANYWHERE_LEVEL 6
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex
 	name = "Auspex"
@@ -18,7 +8,7 @@
 	button_icon_state = "power_auspex"
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
 	purchase_flags = TREMERE_CAN_BUY
-	bloodcost = 10
+	bloodcost = 5
 	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS
 	target_range = 2
@@ -33,9 +23,11 @@
 		target_range = min(level_current + 2, 10)
 	. = ..()
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_cost_desc()
+	return "[bloodcost] blood per tile teleported."
+
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc_extended()
 	. = "Hide yourself within a Cloak of Darkness, click on a tile to teleport"
-	. = "Costs [AUSPEX_BLOOD_COST_PER_TILE] blood per tile teleported."
 	if(target_range)
 		. += " up to [target_range] tiles away."
 	else
@@ -54,7 +46,7 @@
 	. += "At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding."
 	. += "At level [AUSPEX_KNOCKDOWN_LEVEL] you will cause people at your end location to be knocked down."
 	. += "At level [AUSPEX_ANYWHERE_LEVEL] you will be able to teleport anywhere, even if you cannot properly see the tile."
-	. += "The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
+	. += "The power will cost [bloodcost] blood per tile that you teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -73,7 +65,7 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/ActivatePower(trigger_flags)
 	. = ..()
 	owner.AddElement(/datum/element/digitalcamo)
-	animate(owner, alpha = 15, time = 2 SECONDS)
+	animate(owner, alpha = 20, time = max(6 SECONDS - level_current * 0.5, 2 SECONDS))
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower(deactivate_flags)
@@ -90,31 +82,35 @@
 	auspex_blink(user, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/proc/auspex_blink(mob/living/user, turf/targeted_turf)
-	var/blood_cost = AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf)
+	var/blood_cost = bloodcost * get_dist(user, targeted_turf)
 	if(!can_pay_blood(blood_cost))
 		owner.balloon_alert(owner, "not enough blood!")
 		return
+
+	if(!do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM))
+		StartCooldown()
+		return
+
 	playsound(user, 'sound/effects/magic/summon_karp.ogg', 60)
 	playsound(targeted_turf, 'sound/effects/magic/summon_karp.ogg', 60)
 
 	new /obj/effect/particle_effect/fluid/smoke/vampsmoke(user.drop_location())
 	new /obj/effect/particle_effect/fluid/smoke/vampsmoke(targeted_turf)
 
-	for(var/mob/living/carbon/living_mob in range(1, targeted_turf)-user)
+	for(var/mob/living/carbon/living_mob in range(1, targeted_turf) - user)
 		if(IS_BLOODSUCKER(living_mob) || IS_GHOUL(living_mob))
 			continue
+		if(living_mob.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+			continue
+		if(level_current >= AUSPEX_KNOCKDOWN_LEVEL)
+			living_mob.Knockdown(1 SECONDS * level_current, ignore_canstun = TRUE)
 		if(level_current >= AUSPEX_BLEED_LEVEL)
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)
-			bodypart.force_wound_upwards(/datum/wound/slash/flesh/critical)
-			living_mob.adjustBruteLoss(15)
-		if(level_current >= AUSPEX_KNOCKDOWN_LEVEL)
-			living_mob.Knockdown(10 SECONDS, ignore_canstun = TRUE)
-
-	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+			bodypart.force_wound_upwards(/datum/wound/slash/flesh/moderate)
+			living_mob.adjustBruteLoss(5 * level_current) // 30 brute at level 6
 	user.adjustStaminaLoss(-user.staminaloss)
 	PowerActivatedSuccesfully(cost_override = blood_cost)
 
-#undef AUSPEX_BLOOD_COST_PER_TILE
 #undef AUSPEX_BLEED_LEVEL
 #undef AUSPEX_KNOCKDOWN_LEVEL
 #undef AUSPEX_ANYWHERE_LEVEL

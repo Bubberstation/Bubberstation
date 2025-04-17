@@ -61,11 +61,14 @@
 	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
 	. += "Fire a slow seeking blood bolt at your enemy.<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Right click the button to create a blood shield<br>"
+		. += "Activating the ability will summon a blood shield<br>"
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
 		. += "The projectile will open doors/lockers"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 		. += " and steal blood from the target"
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_cost_desc()
+	return "[THAUMATURGY_BLOOD_COST_PER_CHARGE] blood per shot."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation_extended()
 	. = list()
@@ -74,7 +77,7 @@
 	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
 	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
 	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
-	. += "To activate the shield, right click the action button."
+	. += "At level [THAUMATURGY_SHIELD_LEVEL] activating the ability will summon a blood shield ."
 	. += "At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors."
 	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
 	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
@@ -92,28 +95,28 @@
 	if(toggle == !!blood_shield)
 		return
 
-	if(blood_shield)
-		var/shield = blood_shield?.resolve()
+	var/obj/shield = blood_shield?.resolve()
+	if(shield)
 		owner.visible_message(
-			span_warning("[owner]\'s [blood_shield] looses it's form and dissapears into [src]'\s hands "),
-			span_warning("We unform our Blood shield!"),
+			span_warning("[owner]\'s [shield.name] looses it's form and dissapears into [owner]'\s hands "),
+			span_warning("You unform [shield]!"),
 			span_hear("You hear liquids sloshing around."),
 		)
-		owner.balloon_alert(owner, "you unform the [shield]")
+		owner.balloon_alert(owner, "you unform your [shield.name]")
 		qdel(shield)
 		blood_shield = null
 	else
 		var/obj/item/shield/bloodsucker/new_shield = new
 		blood_shield = WEAKREF(new_shield)
-		if(!owner.put_in_inactive_hand(new_shield))
+		if(!owner.put_in_inactive_hand(new_shield) && !owner.put_in_active_hand(new_shield))
 			QDEL_NULL(new_shield)
-			owner.balloon_alert(owner, "off hand is full!")
-			to_chat(owner, span_notice("[capitalize(src)] couldn't be activated as your off hand is full."))
-			return FALSE
-		owner.balloon_alert(owner, "you form the [src]")
+			owner.balloon_alert(owner, "hands are full!")
+			to_chat(owner, span_notice("[capitalize(new_shield)] couldn't be activated as your hands are full."))
+			return
+		owner.balloon_alert(owner, "you form [new_shield]")
 		owner.visible_message(
-			span_warning("[owner]\'s hands begins to bleed and forms into a [src]!"),
-			span_warning("We form our [src]!"),
+			span_warning("[owner]\'s hands begins to bleed and forms into a [new_shield.name]!"),
+			span_warning("You form your [new_shield.name]!"),
 			span_hear("You hear liquids forming together."),
 		)
 
@@ -135,9 +138,8 @@
 	return ..(used_charges * THAUMATURGY_COOLDOWN_PER_CHARGE, override_melee_cooldown_time)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_blood_bolt_damage()
-	if(level_current >= THAUMATURGY_EXTRA_DAMAGE_LEVEL)
-		return 40
-	return 20
+	// 20 damage at level 1, 40 at level 6
+	return min(20 + (level_current - 2) * 5, 40)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_max_charges()
 	return level_current * 2
@@ -147,6 +149,11 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_range()
 	return initial(magic_9ball.range) + level_current * 10
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/create_button()
+	. = ..()
+	var/atom/movable/screen/movable/action_button/button = .
+	button.maptext_x = 0
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/update_button_status(atom/movable/screen/movable/action_button/button, force)
 	. = ..()
@@ -160,6 +167,8 @@
 		owner.balloon_alert(owner, "not enough blood!")
 		DeactivatePower()
 		return
+	// check that we don't have a gun in our hands
+
 	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
 	owner.balloon_alert(owner, "you fire a blood bolt!")
@@ -201,10 +210,10 @@
 			targets += possible_target
 		if(length(targets))
 			magic_9ball.set_homing_target(pick(targets))
-	else if(ismob(target))
-		magic_9ball.homing_target = target
+	else
+		magic_9ball.set_homing_target(target)
 	magic_9ball.homing_turn_speed = min(10 * level_current, 90)
-	magic_9ball.range = initial(magic_9ball.range) + level_current * 10
+	magic_9ball.range = max(level_current, 1) * 5
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	// ditch the pointer to reduce harddels
 	magic_9ball = null
@@ -221,7 +230,7 @@
 	armour_penetration = 30
 	speed = 0.6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	range = 30
+	range = 5
 	armor_flag = LASER
 	var/datum/weakref/power_ref
 
@@ -245,6 +254,8 @@
 	if(ismob(target))
 		if(bloodsucker_power.level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 			var/mob/living/person_hit = target
+			if(HAS_TRAIT(person_hit, TRAIT_NOBLOOD))
+				return ..()
 			person_hit.blood_volume -= THAUMATURGY_BLOOD_COST_PER_CHARGE
 			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(THAUMATURGY_BLOOD_COST_PER_CHARGE)
 		return ..()
@@ -271,11 +282,17 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/bloodsucker/dropped(mob/user, silent)
+	. = ..()
+	qdel(src)
+
+/obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.AdjustBloodVolume(-BLOOD_SHIELD_BLOOD_COST)
+	owner.spray_blood(REVERSE_DIR(hitby.dir), min(1, damage / 10))
 	return ..()
+
 
 #undef BLOOD_SHIELD_BLOCK_CHANCE
 #undef BLOOD_SHIELD_BLOOD_COST

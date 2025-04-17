@@ -1,33 +1,27 @@
-
-#define LUNGE_INSTANT_LEVEL 4
-#define LUNGE_INSTANT_RANGE 6
+// TODO: add a level threshold to cause damage when lunging into people
 /datum/action/cooldown/bloodsucker/targeted/lunge
 	name = "Predatory Lunge"
-	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
+	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment are more effective."
 	button_icon_state = "power_lunge"
-	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_LYING|AB_CHECK_PHASED|AB_CHECK_LYING
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
-	unset_after_click = FALSE
+	target_range = 4
+	var/speed = 0.5
+	var/stamina_cost = 50
+	var/datum/component/tackler/tackling
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation_extended()
 	. = list()
-	. += "Click any player to start spinning wildly and, after a short delay, dash at them."
-	. += "When lunging at someone, you will grab them, immediately starting off at aggressive."
-	. += "Riot gear and Monster Hunters are protected and will only be passively grabbed."
+	. += "Click on any player to tackle them. This has a chance to knock them down, and may grab them aggresively depending on your ability's level and luck."
+	. += "Tackling into walls and windows may cause you to take a lot of damage."
+	. += "This will have a chance to knock them down, and may grab them aggresively depending on your ability's level."
+	. += "Being in the shadows or being invisible will increase the chances of a good outcome."
 	. += "You cannot use the Power if you are already grabbing someone, or are being grabbed."
-	. += "If you grab from behind, or while using cloak of darkness, you will knock the target down."
 	. += "If used on a dead body, will tear out a random organ from the zone you are targeting."
-	. += "Higher levels increase how long enemies are knocked down."
-	. += "At level [LUNGE_INSTANT_LEVEL], you will no longer spin, but you will be limited to tackling from only [LUNGE_INSTANT_RANGE] tiles away."
-
-/datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
-	. = ..()
-	//range is lowered when you get stronger, since it's instant now.
-	if(level_current > LUNGE_INSTANT_LEVEL)
-		target_range = LUNGE_INSTANT_RANGE
+	. += "Using [name] while lying down will cause you to throw yourself in a random direction."
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -42,110 +36,50 @@
 		return FALSE
 	return TRUE
 
-/// Check: Are we lunging at a person?
-/datum/action/cooldown/bloodsucker/targeted/lunge/CheckValidTarget(atom/target_atom)
-	. = ..()
-	if(!.)
-		return FALSE
-	return isliving(target_atom)
-
-/datum/action/cooldown/bloodsucker/targeted/lunge/CheckCanTarget(atom/target_atom)
-	// Default Checks
-	. = ..()
-	if(!.)
-		return FALSE
-	// Check: Turf
-	var/mob/living/turf_target = target_atom
-	if(!isturf(turf_target.loc))
-		return FALSE
-	return TRUE
-
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_deactivate()
 	return !(datum_flags & DF_ISPROCESSING) //only if you aren't lunging
 
+/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower(deactivate_flags)
+	. = ..()
+	if(!.)
+		return
+	QDEL_NULL(tackling)
+
+/datum/action/cooldown/bloodsucker/targeted/lunge/proc/get_skill_mod()
+	return 2 + level_current * 0.5
+
 /datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target, params)
 	. = ..()
-	owner.face_atom(target)
-	if(level_current >= LUNGE_INSTANT_LEVEL)
-		do_lunge(target)
-		return
-
-	prepare_target_lunge(target)
-	return TRUE
-
-///Starts processing the power and prepares the lunge by spinning, calls lunge at the end of it.
-/datum/action/cooldown/bloodsucker/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
-	START_PROCESSING(SSprocessing, src)
-	owner.balloon_alert(owner, "lunge started!")
-	//animate them shake
-	var/base_x = owner.base_pixel_x
-	var/base_y = owner.base_pixel_y
-	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
-	for(var/i in 1 to 25)
-		var/x_offset = base_x + rand(-3, 3)
-		var/y_offset = base_y + rand(-3, 3)
-		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
-
-	if(!do_after(owner, 2 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_SLOWDOWNS), extra_checks = CALLBACK(src, PROC_REF(CheckCanTarget), target_atom)))
-		end_target_lunge(base_x, base_y)
-
+	var/mob/living/user = owner
+	var/skill_mod = min(get_skill_mod(), 7)
+	var/turf/user_turf = get_turf(user)
+	if(user.alpha <= 40 || user_turf.get_lumcount() <= LIGHTING_TILE_IS_DARK)
+		skill_mod += 2
+	var/knockdown = 3 SECONDS + 0.5 SECONDS * level_current
+	tackling = owner.AddComponent(/datum/component/tackler, stamina_cost = stamina_cost, base_knockdown = knockdown, range = target_range, speed = speed, skill_mod = skill_mod, min_distance = 2)
+	RegisterSignal(owner, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(lunge_end))
+	// something bork
+	if(user.body_position != STANDING_UP || user.incapacitated)
+		user.throw_at(get_turf(target), 12, 0.8)
+		user.spin(10)
+		return TRUE
+	if(!tackling)
 		return FALSE
+	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 25, TRUE)
+	// forgive me, the cost of modularity is high
+	return SEND_SIGNAL(owner, COMSIG_MOB_CLICKON, target, list(RIGHT_CLICK = TRUE), TRUE) & COMSIG_MOB_CANCEL_CLICKON
 
-	end_target_lunge()
-	do_lunge(target_atom)
-	return TRUE
-
-///When preparing to lunge ends, this clears it up.
-/datum/action/cooldown/bloodsucker/targeted/lunge/proc/end_target_lunge(base_x, base_y)
-	animate(owner, pixel_x = base_x, pixel_y = base_y, time = 1)
-	STOP_PROCESSING(SSprocessing, src)
-
-/datum/action/cooldown/bloodsucker/targeted/lunge/process()
-	if(!active) //If running SSfasprocess (on cooldown)
-		return ..() //Manage our cooldown timers
-	if(prob(75))
-		owner.spin(8, 1)
-		owner.balloon_alert_to_viewers("spins wildly!", "you spin!")
-		return
-	do_smoke(0, owner.loc, smoke_type = /obj/effect/particle_effect/fluid/smoke/transparent)
-
-///Actually lunges the target, then calls lunge end.
-/datum/action/cooldown/bloodsucker/targeted/lunge/proc/do_lunge(atom/hit_atom)
-	var/turf/targeted_turf = get_turf(hit_atom)
-
-	var/safety = get_dist(owner, targeted_turf) * 3 + 1
-	var/consequetive_failures = 0
-	while(--safety && !hit_atom.Adjacent(owner))
-		if(!step_to(owner, targeted_turf))
-			consequetive_failures++
-		if(consequetive_failures >= 3) // If 3 steps don't work, just stop.
-			break
-
-	lunge_end(hit_atom, targeted_turf)
-
-/datum/action/cooldown/bloodsucker/targeted/lunge/proc/lunge_end(atom/hit_atom, turf/target_turf)
+/datum/action/cooldown/bloodsucker/targeted/lunge/proc/lunge_end(mob/living/carbon/user, datum/thrownthing/tackle)
+	UnregisterSignal(owner, COMSIG_MOVABLE_THROW_LANDED)
 	PowerActivatedSuccesfully()
 	// Am I next to my target to start giving the effects?
-	if(!owner.Adjacent(hit_atom))
+	var/atom/hit_atom = tackle.initial_target.resolve()
+	if(!owner.Adjacent(hit_atom) || !ishuman(hit_atom))
 		return
 
-	var/mob/living/user = owner
 	var/mob/living/carbon/target = hit_atom
 
-	// Did I slip or get knocked unconscious?
-	if(user.body_position != STANDING_UP || user.incapacitated)
-		user.throw_at(target_turf, 12, 0.8)
-		user.spin(10)
-		return
-	// Is my target a Monster hunter?
-	if(HAS_TRAIT(target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
-		user.balloon_alert(user, "pushed away!")
-		target.grabbedby(user)
-		return
-
-	user.balloon_alert(user, "you lunge at [target]!")
-	user.changeNext_move(CLICK_CD_MELEE)
-	if(target.stat == DEAD)
+	if(target.stat >= SOFT_CRIT)
 		var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(user.zone_selected))
 		if(!bodypart)
 			target.balloon_alert(user, "bodypart missing!")
@@ -157,6 +91,8 @@
 			span_warning("[user] tears into [target]'s [bodypart]!"),
 			span_warning("You tear into [target]'s [bodypart]!"))
 		playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE, 5)
+		if(target.stat != DEAD)
+			to_chat(user, span_userdanger("SOMETHING IS TEARING INTO YOUR [capitalize(bodypart.name)]!"))
 		var/obj/item/organ/myheart_now
 		if(bodypart.body_zone == BODY_ZONE_CHEST)
 			myheart_now = target.get_organ_slot(ORGAN_SLOT_HEART)
@@ -171,21 +107,3 @@
 		if(myheart_now)
 			myheart_now.Remove(target)
 			user.put_in_hands(myheart_now)
-
-	else
-		if(!is_source_facing_target(target, user) || user.alpha <= 40)
-			target.Knockdown(10 + level_current * 5)
-			target.Paralyze(0.1)
-		target.grabbedby(user)
-		target.grippedby(user, instant = TRUE)
-		// Did we knock them down?
-
-
-/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower(deactivate_flags)
-	. = ..()
-	if(!.)
-		return
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, BLOODSUCKER_TRAIT)
-
-#undef LUNGE_INSTANT_LEVEL
-#undef LUNGE_INSTANT_RANGE

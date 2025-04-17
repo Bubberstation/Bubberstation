@@ -1,16 +1,8 @@
-/**
- *	# Dominate;
- *
- *	Level 1 - Mesmerizes target
- *	Level 2 - Mesmerizes and mutes target
- *	Level 3 - Mesmerizes, blinds and mutes target
- *	Level 4 - Target (if at least in crit & has a mind) will revive as a Mute/Deaf Ghoul for 5 minutes before dying.
- *	Level 5 - Target (if at least in crit & has a mind) will revive as a Ghoul for 8 minutes before dying.
- */
 
 #define TEMP_GHOULIZE_COST 150
 #define DOMINATE_XRAY_LEVEL 3
 #define DOMINATE_NON_MUTE_GHOULIZE_LEVEL 4
+#define DOMINATE_MINDSHIELD_IGNORE_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate
 	name = "Dominate"
 	button_icon_state = "power_auspex"
@@ -24,12 +16,11 @@
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 15
 	constant_bloodcost = 0.1
-	target_range = 6
-	mesmerize_delay = 4 SECONDS
 	blind_at_level = 3
 	requires_facing_target = FALSE
 	blocked_by_glasses = FALSE
-	knockdown_on_secondary = TRUE
+	target_range = 5
+
 	/// Data huds to show while the power is active
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH)
 	var/list/thralls = list()
@@ -50,15 +41,17 @@
 	. = list()
 	. += "Click any person to, after [DisplayTimeText(mesmerize_delay)], stun them for [DisplayTimeText(get_power_time())]."
 	. += "Right clicking on your victim however will apply a knockdown will confuse and slow them down for [DisplayTimeText(get_power_time())]."
-	. += "A left click will completely immobilize, and blind them for the next [DisplayTimeText(get_power_time())] seconds, and will also mute them for [DisplayTimeText(get_power_time())] seconds."
+	. += "Finishing casting [src] completely immobilize, and blind them for the next [DisplayTimeText(get_power_time())] seconds, and will also mute them for [DisplayTimeText(get_power_time())] seconds."
 	. += "While this ability is active, you will be able to see additional information about everyone in the room."
 	. += "At level [DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active."
 	. += "At level [DOMINATE_GHOULIZE_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOULIZE_COST] blood."
 	. += "The victim must have atleast [BLOOD_VOLUME_BAD] blood to be ghouled."
 	. += "The ghoul will be mute and deaf if the level of [src] is not at least [DOMINATE_NON_MUTE_GHOULIZE_LEVEL]"
+	. += "The ghoul must not have a mindshield unless the level of [src] is at least [DOMINATE_MINDSHIELD_IGNORE_LEVEL]"
 	. += "If you use this on a currently dead normal Ghoul, they will will not suddenly cease to live as if a temporary Ghoul."
 	. += "They will have complete loyalty to you, until their death in [DisplayTimeText(get_ghoul_duration())] upon use."
 	. += "Ghoulizing or reviving a ghoul will make this ability go on cooldown for [DisplayTimeText(get_ghoulize_cooldown())]."
+	. += "Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
@@ -115,6 +108,13 @@
 	var/datum/antagonist/ghoul/ghoul = IS_GHOUL(target)
 	if(!victim_has_blood(target))
 		return FALSE
+	if(target.can_block_magic(BLOODSUCKER_ANTIMAGIC))
+		to_chat(target, span_hypnophrase("You can feel a insidious force trying to take over your mind, but manage to resist!"))
+		owner.balloon_alert(owner, "[target] resists your attempt to [src] them.")
+		return FALSE
+	if(!bloodsuckerdatum_power.can_make_ghoul(target))
+		owner.balloon_alert(owner, "not a valid target for ghouling!.")
+		return FALSE
 	if(ghoul)
 		owner.balloon_alert(owner, "attempting to revive.")
 	else
@@ -135,9 +135,12 @@
 		pay_cost(TEMP_GHOULIZE_COST - bloodcost)
 		log_combat(owner, target, "tremere revived", addition="Revived their ghoul using dominate")
 		return FALSE
-	if(!bloodsuckerdatum_power.make_ghoul(target) )
+	if(target.stat != DEAD)
+		owner.balloon_alert(owner, "not dead!")
+		return FALSE
+	if(!bloodsuckerdatum_power.make_ghoul(target))
 		owner.balloon_alert(owner, "not a valid target for ghouling!.")
-		return
+		return FALSE
 
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("Their body refuses to react..."))
@@ -152,9 +155,12 @@
 	var/living_time = get_ghoul_duration()
 	log_combat(owner, target, "tremere mindslaved", addition="Revived and converted [target] into a temporary tremere ghoul for [DisplayTimeText(living_time)].")
 	if(level_current <= DOMINATE_NON_MUTE_GHOULIZE_LEVEL)
+		to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! You are mute and deaf so protect your master!"))
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
+	else
+		to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
+
 	user.balloon_alert(target, "only [DisplayTimeText(living_time)] left to live!")
-	to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
 	var/timer_id = addtimer(CALLBACK(src, PROC_REF(end_possession), target), living_time, TIMER_STOPPABLE)
 	// timer that only the master and thrall can see
 	setup_timer(user, target, living_time, timer_id)
@@ -191,19 +197,20 @@
 		deltimer(timer_id)
 	if(!user)
 		CRASH("[src] end_possession called with no user!")
-	if(!(user in thralls))
-		return
-	thralls -= user
 	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	if(!HAS_TRAIT(user, TRAIT_NOBLOOD))
 		user.blood_volume = 0
-	if(!IS_GHOUL(user))
+	var/datum/antagonist/ghoul/ghoul = IS_GHOUL(user)
+	if(!ghoul)
 		to_chat(user, span_warning("You feel the blood keeping you alive run out!"))
-		return
-	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
+	else
+		to_chat(user, span_warning("You feel the Blood of your Master run out!"))
+	if(user in thralls)
+		thralls -= user
 	user.mind?.remove_antag_datum(/datum/antagonist/ghoul)
 	if(user.stat == DEAD)
 		return
+	// some may be able ignore bloodloss, let's not let them live
 	user.death()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_ghoul_duration()
