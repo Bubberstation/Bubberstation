@@ -25,7 +25,7 @@
 		return
 	atom_storage.max_slots += 2
 	atom_storage.max_total_storage += 4
-	desc = "An upgraded box of survival essentials, NanoTrasen must value your life a little more than usual today." // BUBBER EDIT ADDITION
+	desc = "An upgraded box of survival essentials, Nanotrasen must value your life a little more than usual today." // BUBBER EDIT ADDITION
 	name = "premium [name]" // BUBBER EDIT CHANGE
 	icon_state = "internals_large" // BUBBER EDIT CHANGE - ORIGINAL: [icon_state]_large
 
