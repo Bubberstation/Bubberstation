@@ -551,7 +551,6 @@
 	else
 		carbies.visible_message(span_boldnotice("A rubbery liquid partially coats [carbies]'s burns... It seems more is required to fully unhusk!"))
 
-
 /******ORGAN HEALING******/
 /*Suffix: -rite*/
 /*
