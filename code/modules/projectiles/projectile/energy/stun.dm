@@ -58,6 +58,8 @@
 		/*energy_drain = */STANDARD_CELL_CHARGE * 0.05,
 		/*electrode_name = */"\the [src]\s",
 		/*tase_range = */maximum_range + 1,
+		def_zone //BUBBER ADDITION
+
 	)
 
 /obj/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet
@@ -88,6 +90,7 @@
 	VAR_FINAL/electrode_name
 	/// How far can the taser reach?
 	VAR_FINAL/tase_range = 6
+	var/def_zone //BUBBER ADDITION
 
 /datum/status_effect/tased/on_creation(
 	mob/living/new_owner,
@@ -97,6 +100,7 @@
 	energy_drain = STANDARD_CELL_CHARGE * 0.05,
 	electrode_name = "the electrodes",
 	tase_range = 6,
+	def_zone //BUBBER ADDITION
 )
 	if(isnull(fired_from) || isnull(firer) || !can_tase_with(fired_from))
 		qdel(src)
@@ -106,6 +110,7 @@
 	src.energy_drain = energy_drain
 	src.electrode_name = electrode_name
 	src.tase_range = tase_range
+	src.def_zone = def_zone //BUBBER ADDITION
 
 	. = ..()
 	if(!.)
@@ -238,7 +243,7 @@
 
 	// the actual stunning is here
 	if(!owner.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
-		owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //BUBBER EDIT. ORIGINAL: owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
 
 /// Sets the passed atom as the "taser"
 /datum/status_effect/tased/proc/set_taser(datum/new_taser)
@@ -398,4 +403,9 @@
 	multiplicative_slowdown = 2
 
 /datum/movespeed_modifier/being_tased
-	multiplicative_slowdown = 4
+	multiplicative_slowdown = 2.5 //BUBBER EDIT CHANGE ORIGINAL: 4
+
+//BUBBER EDIT START
+/obj/projectile/energy/electrode/sec
+	tase_stamina = 20
+//BUBBER EDIT END
