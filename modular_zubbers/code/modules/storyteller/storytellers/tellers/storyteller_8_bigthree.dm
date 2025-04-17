@@ -8,3 +8,19 @@
 		TAG_CHAOTIC = 2,
 		TAG_DESTRUCTIVE = 1
 	)
+
+	population_min = 35
+	antag_divisor = 5
+	storyteller_type = STORYTELLER_TYPE_INTENSE
+
+	track_data = /datum/storyteller_data/tracks/gamer
+
+	guarantees_roundstart_crewset = TRUE
+
+	starting_point_multipliers = list(
+		EVENT_TRACK_MUNDANE = 0,
+		EVENT_TRACK_MODERATE = 0,
+		EVENT_TRACK_MAJOR = 0,
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 0
+	)
