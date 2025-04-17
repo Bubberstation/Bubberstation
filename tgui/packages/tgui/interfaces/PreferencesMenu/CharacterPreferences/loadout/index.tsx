@@ -18,7 +18,7 @@ import {
 import { removeAllSkiplines } from '../../../TextInputModal';
 import { PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
-import {
+import type {
   LoadoutCategory,
   LoadoutItem,
   LoadoutManagerData,
@@ -291,7 +291,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
       <Stack.Item grow>
         {searching || activeCategory?.contents ? (
           <Section
-            title={searching ? 'Searching...' : 'Catalog'}
+            title={searching ? 'Search results' : 'Catalog'}
             fill
             scrollable
             buttons={
