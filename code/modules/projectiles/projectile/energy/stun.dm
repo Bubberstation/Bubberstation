@@ -90,7 +90,8 @@
 	VAR_FINAL/electrode_name
 	/// How far can the taser reach?
 	VAR_FINAL/tase_range = 6
-	var/def_zone //BUBBER ADDITION
+	var/def_zone  = CHEST //BUBBER ADDITION
+	var/tase_slowdown = /datum/movespeed_modifier/being_tased_machine //BUBBER ADDITION
 
 /datum/status_effect/tased/on_creation(
 	mob/living/new_owner,
@@ -100,7 +101,8 @@
 	energy_drain = STANDARD_CELL_CHARGE * 0.05,
 	electrode_name = "the electrodes",
 	tase_range = 6,
-	def_zone = CHEST //BUBBER ADDITION
+	def_zone, //BUBBER ADDITION
+	tase_slowdown//BUBBER ADDITION
 )
 	if(isnull(fired_from) || isnull(firer) || !can_tase_with(fired_from))
 		qdel(src)
@@ -140,6 +142,7 @@
 		return FALSE
 	if(istype(with_what, /obj/item/gun/energy))
 		var/obj/item/gun/energy/taser_gun = with_what
+		tase_slowdown = /datum/movespeed_modifier/being_tased_handheld //BUBBER ADDITION
 		if(!taser_gun.cell?.use(energy_drain * seconds_between_ticks))
 			return FALSE
 		taser_gun.update_appearance()
@@ -147,6 +150,7 @@
 
 	if(istype(taser, /obj/machinery))
 		var/obj/machinery/taser_machine = taser
+		tase_slowdown = /datum/movespeed_modifier/being_tased_machine //BUBBER ADDITION
 		if(!taser_machine.is_operational)
 			return FALSE
 		if(!taser_machine.use_energy(energy_drain * seconds_between_ticks, force = FALSE))
@@ -178,7 +182,7 @@
 		// does not use the status effect api because we snowflake it a bit
 		owner.throw_alert(type, /atom/movable/screen/alert/tazed)
 		owner.add_mood_event("tased", /datum/mood_event/tased)
-		owner.add_movespeed_modifier(/datum/movespeed_modifier/being_tased)
+		owner.add_movespeed_modifier(tase_slowdown) //BUBBER EDIT, ORIGINAL: owner.add_movespeed_modifier(/datum/movespeed_modifier/being_tased)
 		if(!HAS_TRAIT(owner, TRAIT_ANALGESIA))
 			owner.emote("scream")
 		if(HAS_TRAIT(owner, TRAIT_HULK))
@@ -210,7 +214,7 @@
 
 	if(!QDELING(owner) && !owner.has_status_effect(type))
 		owner.adjust_jitter_up_to(10 SECONDS, 1 MINUTES)
-		owner.remove_movespeed_modifier(/datum/movespeed_modifier/being_tased)
+		owner.remove_movespeed_modifier(tase_slowdown)
 		owner.clear_alert(type)
 
 	taser = null
@@ -402,9 +406,11 @@
 /datum/movespeed_modifier/tasing_someone
 	multiplicative_slowdown = 2
 
-/datum/movespeed_modifier/being_tased
-	multiplicative_slowdown = 2.5 //BUBBER EDIT CHANGE ORIGINAL: 4
+/datum/movespeed_modifier/being_tased_machine
+	multiplicative_slowdown = 4
 
+/datum/movespeed_modifier/being_tased_handheld
+	multiplicative_slowdown = 2.5
 //BUBBER EDIT START
 /obj/projectile/energy/electrode/sec
 	tase_stamina = 20
