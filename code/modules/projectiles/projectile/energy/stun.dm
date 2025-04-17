@@ -100,7 +100,7 @@
 	energy_drain = STANDARD_CELL_CHARGE * 0.05,
 	electrode_name = "the electrodes",
 	tase_range = 6,
-	def_zone //BUBBER ADDITION
+	def_zone = CHEST //BUBBER ADDITION
 )
 	if(isnull(fired_from) || isnull(firer) || !can_tase_with(fired_from))
 		qdel(src)
