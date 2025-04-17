@@ -9,7 +9,8 @@
 	tag_multipliers = list(
 		TAG_COMBAT = 1.5,
 		TAG_DESTRUCTIVE = 0.7,
-		TAG_CHAOTIC = 1.3
+		TAG_CHAOTIC = 1.3,
+		TAG_BIG_THREE = 0,
 	)
 	population_min = 35
 	antag_divisor = 5
