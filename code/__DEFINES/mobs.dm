@@ -109,9 +109,6 @@
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
 // SKYRAT EDIT ADDITION
-
-/// Nanomachine bodypart
-#define BODYTYPE_NANO (1<<8)
 ///The limb fits a modular custom shape
 #define BODYSHAPE_CUSTOM (1<<9)
 ///The limb fits a taur body
