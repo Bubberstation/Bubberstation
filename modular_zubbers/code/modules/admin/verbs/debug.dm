@@ -56,6 +56,11 @@ ADMIN_VERB(simulate_maintenance_loot, R_DEBUG, "Simulate Maintenance Loot", "Sim
 	user << browse(returning_data, "window=maintenace_report")
 
 ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find nullspaced objects", "Popup a list of all objects with a loc of null", ADMIN_CATEGORY_DEBUG)
+	var/list/answers = list("Yes", "No")
+	var/question = tgui_alert(user, "Show VV refs to nullspaced objects? This will make them un-GC-able.", "Memory leak go brr", answers)
+	var/show_vv = FALSE
+	if(question == answers[1])
+		show_vv = TRUE
 	var/list/nullspaced_objects = list()
 	for(var/atom/object as anything)
 		if(!isnull(object.loc))
@@ -82,7 +87,12 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find nullspaced objects", "Popup a
 		var/atom/object = sub_list["object"]
 		var/refcount = sub_list["refcount"]
 		var/count = sub_list["priority"]
-		strings += "Name: [object], Type: [object_type], refs: [refcount], instances: [count], qdeleting: [QDELING(object) ? "yes" : "no"] [ADMIN_VV(object)]"
+		strings += "Name: [object], \
+			Type: [object_type], \
+			refs: [refcount], \
+			instances: [count], \
+			qdeleting: [QDELING(object) ? "yes" : "no"] \
+			[show_vv ? ADMIN_VV(object): ""]"
 		CHECK_TICK
 
 	var/title = "<h1>List of all objects with a loc of null:</h1><br>"
