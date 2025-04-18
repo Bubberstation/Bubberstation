@@ -61,7 +61,7 @@
 	))
 
 /datum/component/irradiated/Destroy(force)
-	var/mob/living//parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
+	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
 	if (istype(parent_movable))
 		parent_movable.remove_filter("rad_glow")
 
