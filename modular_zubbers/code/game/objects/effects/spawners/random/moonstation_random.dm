@@ -111,7 +111,6 @@
 		/obj/structure/closet/crate/freezer = 100,
 		/obj/structure/closet/crate/hydroponics = 100,
 		/obj/structure/closet/crate/internals = 100,
-		/obj/structure/closet/crate/large = 50,
 		/obj/structure/closet/crate/mail = 50,
 		/obj/structure/closet/crate/medical = 100,
 		/obj/structure/closet/crate/necropolis = 5, //Don't worry, doesn't contain lavaland loot.
@@ -123,12 +122,8 @@
 		/obj/structure/closet/preopen = 1000,
 		/obj/structure/rack = 1000,
 		/obj/structure/rack/shelf = 200,
-		/obj/structure/safe = 50,
-		/obj/structure/safe/floor = 10,
-
-
-
 	)
+
 	additional_loot = list(
 		/obj/effect/spawner/random/maintenance = 100,
 		/obj/effect/spawner/random/maintenance/two = 50,

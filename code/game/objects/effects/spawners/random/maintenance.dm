@@ -20,7 +20,7 @@
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
-	//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT
+	//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT, WITH CHANGED PROBABILITIES
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
 		if(prob(80))
 			loot = GLOB.uncommon_loot
@@ -50,10 +50,14 @@
 
 	//Blubberstation change: Makes it so that lots of loot only spawns on tables and such, and not bare floors.
 	if(src.loc && isfloorturf(src.loc)) //Putting a check for src.loc here because unittests spawn things in nullspace xd
+		var/trashy_loot = prob(80) //Loot optimization
 		for(var/atom/movable/M as anything in src.loc.contents)
 			if(GLOB.typecache_elevated_structures[M.type]) //Are we an elevated structure?
-				effective_lootcount *= 3
+				effective_lootcount *= 2
+				trashy_loot = FALSE
 				break
+		if(trashy_loot)
+			loot = GLOB.trash_loot //Change the loot to something trashy if it's on the floor.
 	//End of blubberstation change.
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
