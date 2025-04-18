@@ -8,9 +8,6 @@
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
 
-	paycheck = PAYCHECK_COMMAND
-	paycheck_department = ACCOUNT_CMD
-
 	liver_traits = list(TRAIT_MAINTENANCE_METABOLISM)
 
 
