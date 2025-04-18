@@ -46,11 +46,13 @@ GLOBAL_PROTECT(vetted_list)
 			world.log << "Added [line] to vetted list."
 		var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT * FROM vetted_list")
 		if(!query_load_player_rank.warn_execute())
+			qdel(query_load_player_rank)
 			return
 		while(query_load_player_rank.NextRow())
 			var/ckey = ckey(query_load_player_rank.item[1])
 			vetted_controller.add_player(ckey)
 			world.log << "Added [ckey] to vetted list."
+		qdel(query_load_player_rank)
 
 	loaded_vetted_sql = TRUE
 	return TRUE
@@ -72,8 +74,8 @@ GLOBAL_PROTECT(vetted_list)
 		list("ckey" = ckey, "admin_who_added" = ckey_admin),
 	)
 
-	if(!query_add_player_rank.warn_execute())
-		return FALSE
+	. = query_add_player_rank.warn_execute()
+	qdel(query_add_player_rank)
 
 /datum/player_rank_controller/vetted/add_player(ckey, legacy, admin)
 	ckey = ckey(ckey)
@@ -91,8 +93,8 @@ GLOBAL_PROTECT(vetted_list)
 		"DELETE FROM vetted_list WHERE ckey = :ckey",
 		list("ckey" = ckey),
 	)
-	if(!query_remove_player_vetted.warn_execute())
-		return FALSE
+	. = query_remove_player_vetted.warn_execute()
+	qdel(query_remove_player_vetted)
 
 ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to SQL", "Warning! Might be slow!", ADMIN_CATEGORY_DEBUG)
 	var/consent = tgui_input_list(usr, "Do you want to convert the vetted list to SQL?", "UH OH", list("Yes", "No"), "No")

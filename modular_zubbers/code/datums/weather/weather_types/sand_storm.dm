@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 
 	immunity_type = TRAIT_ASHSTORM_IMMUNE
 
-	probability = 60
+	probability = 40
 
 	barometer_predictable = TRUE
 	var/list/weak_sounds = list()

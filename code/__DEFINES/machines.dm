@@ -55,6 +55,9 @@
 /// We are getting this door open if it has not been physically held shut somehow. Play a special sound to signify this level of opening.
 #define BYPASS_DOOR_CHECKS 2
 
+/// Damage dealth to an airlock when prie
+#define AIRLOCK_PRY_DAMAGE 25
+
 //used in design to specify which machine can build it
 //Note: More than one of these can be added to a design but imprinter and lathe designs are incompatible.
 #define IMPRINTER (1<<0) //For circuits. Uses glass/chemicals.
@@ -64,6 +67,7 @@
 #define BIOGENERATOR (1<<4) //Uses biomass
 #define LIMBGROWER (1<<5) //Uses synthetic flesh
 #define SMELTER (1<<6) //uses various minerals
+#define NANITE_COMPILER  (1<<7) //Prints nanite disks BUBBER EDIT ADDITION - NANITES
 /// Protolathes for offstation roles. More limited tech tree.
 #define AWAY_LATHE (1<<8)
 /// Imprinters for offstation roles. More limited tech tree.

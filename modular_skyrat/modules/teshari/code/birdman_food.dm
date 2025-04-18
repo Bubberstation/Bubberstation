@@ -97,6 +97,7 @@
 			name = "[mob_meat_material.subjectjob] burger"
 
 /datum/crafting_recipe/food/chickenburger/human
+	added_foodtypes = FRIED | GORE
 	name = "Birdman Sandwich"
 	reqs = list(
 			/obj/item/food/patty/human/chicken = 1,

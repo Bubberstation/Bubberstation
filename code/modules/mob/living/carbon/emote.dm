@@ -77,6 +77,7 @@
 	if(user.put_in_hands(N))
 		to_chat(user, span_notice("You make a circle with your hand."))
 
+/* BUBBER EDIT REMOVE - moved to modular_skyrat/modules/emotes/code/emotes.dm
 /datum/emote/living/carbon/meow
 	key = "meow"
 	key_third_person = "meows"
@@ -91,7 +92,6 @@
 		return FALSE
 	return ..()
 
-/* BUBBER EDIT REMOVE - moved to modular_skyrat/modules/emotes/code/emotes.dm
 /datum/emote/living/carbon/purr
 	key = "purr"
 	key_third_person = "purrs"

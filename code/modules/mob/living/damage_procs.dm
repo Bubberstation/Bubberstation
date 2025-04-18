@@ -39,6 +39,9 @@
 	if(!forced)
 		damage_amount *= ((100 - blocked) / 100)
 		damage_amount *= get_incoming_damage_modifier(damage_amount, damagetype, def_zone, sharpness, attack_direction, attacking_item)
+
+	SEND_SIGNAL(src, COMSIG_MOB_ALWAYS_APPLY_DAMAGE, damage_amount, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing) // BUBBER ADDITION: FLAT DAMAGE MODIFIERS
+
 	if(damage_amount <= 0)
 		return 0
 
