@@ -40,3 +40,4 @@
 			T = picked_safe
 			break
 	spawned.forceMove(T)
+	spawned.put_in_hands(new /obj/item/storage/toolbox/mechanical)
