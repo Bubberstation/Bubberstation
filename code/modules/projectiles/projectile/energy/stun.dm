@@ -247,7 +247,10 @@
 
 	// the actual stunning is here
 	if(!owner.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
-		owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //BUBBER EDIT. ORIGINAL: owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		if(taser == firer) //bubber addition
+			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		else // Bubber addition
+			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //bubber addition
 
 /// Sets the passed atom as the "taser"
 /datum/status_effect/tased/proc/set_taser(datum/new_taser)
@@ -413,5 +416,5 @@
 	multiplicative_slowdown = 2.5
 //BUBBER EDIT START
 /obj/projectile/energy/electrode/sec
-	tase_stamina = 20
+	tase_stamina = 30
 //BUBBER EDIT END
