@@ -38,3 +38,5 @@
 			break
 	spawned.forceMove(T)
 	spawned.put_in_hands(new /obj/item/storage/toolbox/mechanical)
+	spawned.equip_to_slot(new /obj/item/card/cardboard, ITEM_SLOT_ID)
+
