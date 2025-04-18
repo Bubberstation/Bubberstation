@@ -61,6 +61,7 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 	var/show_vv = FALSE
 	if(question == answers[1])
 		show_vv = TRUE
+
 	var/list/nullspaced_objects = list()
 	for(var/atom/object as anything)
 		if(!isnull(object.loc))
