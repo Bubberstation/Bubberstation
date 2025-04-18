@@ -55,7 +55,7 @@ ADMIN_VERB(simulate_maintenance_loot, R_DEBUG, "Simulate Maintenance Loot", "Sim
 
 	user << browse(returning_data, "window=maintenace_report")
 
-ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find nullspaced objects", "Popup a list of all objects with a loc of null (VERY SLOW)", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find nullspaced objects", "Popup a list of all objects with a loc of null", ADMIN_CATEGORY_DEBUG)
 	var/list/nullspaced_objects = list()
 	for(var/atom/object as anything)
 		if(!isnull(object.loc))
