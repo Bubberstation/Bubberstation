@@ -55,7 +55,7 @@ ADMIN_VERB(simulate_maintenance_loot, R_DEBUG, "Simulate Maintenance Loot", "Sim
 
 	user << browse(returning_data, "window=maintenace_report")
 
-ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find nullspaced objects", "Popup a list of all objects with a loc of null", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a list of all objects with a loc of null", ADMIN_CATEGORY_DEBUG)
 	var/list/answers = list("Yes", "No")
 	var/question = tgui_alert(user, "Show VV refs to nullspaced objects? This will make them un-GC-able.", "Memory leak go brr", answers)
 	var/show_vv = FALSE
