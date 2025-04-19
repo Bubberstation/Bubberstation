@@ -6,11 +6,17 @@
 	track_data = /datum/storyteller_data/tracks/fragile
 	votable = TRUE
 
+	tag_multipliers = list(
+		TAG_BIG_THREE = 0,
+	)
+
 	population_min = 50
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 // All the weights are the same to the house
 /datum/storyteller/house/calculate_weights(track)
 	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
+		if(istype(event, /datum/round_event_control/antagonist/team/nuke_ops))
+			continue
 		if(event.weight)
 			event.calculated_weight = 1

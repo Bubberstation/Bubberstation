@@ -7,6 +7,7 @@
 		TAG_DESTRUCTIVE = 0.25,
 		TAG_CHAOTIC = 0.1, //*look inside high chaos storyteller* *no chaos*
 		TAG_CREW_ANTAG = 2,
+		TAG_BIG_THREE = 0,
 	)
 	population_min = 35
 	antag_divisor = 5

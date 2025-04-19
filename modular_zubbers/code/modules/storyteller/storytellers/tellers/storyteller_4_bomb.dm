@@ -5,7 +5,8 @@
 	track_data = /datum/storyteller_data/tracks/bomb
 
 	tag_multipliers = list(
-		TAG_DESTRUCTIVE = 1.5
+		TAG_DESTRUCTIVE = 1.5,
+		TAG_BIG_THREE = 0,
 	)
 	population_min = 25
 	antag_divisor = 10

@@ -1,0 +1,26 @@
+/datum/storyteller/black_star
+	name = "Black Star (High Chaos)"
+	desc = "The Black Star will have a chance to roll Nukies on round start and otherwise be chaotic"
+	welcome_text = "Oh my, would you look at the time..."
+
+	tag_multipliers = list(
+		TAG_BIG_THREE = 2,
+		TAG_CHAOTIC = 2,
+		TAG_DESTRUCTIVE = 1
+	)
+
+	population_min = 35
+	antag_divisor = 5
+	storyteller_type = STORYTELLER_TYPE_INTENSE
+
+	track_data = /datum/storyteller_data/tracks/gamer
+
+	guarantees_roundstart_crewset = TRUE
+
+	starting_point_multipliers = list(
+		EVENT_TRACK_MUNDANE = 0,
+		EVENT_TRACK_MODERATE = 0,
+		EVENT_TRACK_MAJOR = 0,
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 0
+	)
