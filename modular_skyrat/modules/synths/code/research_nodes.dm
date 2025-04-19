@@ -14,6 +14,8 @@
 	description = "Did you know Hephaestus actually has a free online tutorial for synthetic trauma repairs? It's true!"
 	prereq_ids = list(TECHWEB_NODE_ROBOTIC_SURGERY)
 	design_ids = list(
-		"robotic_heal_surgery_upgrade_2"
+		"robotic_heal_surgery_upgrade_2",
+		"robotic_trauma_surgery",
+		"robotic_blessed_trauma_surgery",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS) // less expensive than the organic surgery research equivalent since its JUST tend wounds
