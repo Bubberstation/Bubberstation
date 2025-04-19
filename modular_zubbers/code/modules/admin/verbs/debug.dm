@@ -102,7 +102,7 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 /proc/cleanup_nullspace_tagged_objects(list/cleanup, user)
 	if(!islist(cleanup))
 		return
-	to_chat(user, "VV tags no longer active on nullspace tagged objects.")
+	to_chat(user, span_warning("VV tags no longer active on nullspace tagged objects."))
 	for(var/atom/object as anything in cleanup)
 		if(isnull(object))
 			continue
