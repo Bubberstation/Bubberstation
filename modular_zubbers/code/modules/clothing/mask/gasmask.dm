@@ -42,20 +42,24 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/T = null
+
+	if(H.get_organ_slot(ORGAN_SLOT_TONGUE))
+		T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 
 	if(H.special_voice != modulated_name)
 		previous_special_name = H.special_voice
 
 	if(H.wear_mask == src && modulate_voice)
 		H.special_voice = modulated_name
-		T.temp_say_mod = "states"
-	else
-		H.special_voice = previous_special_name
-		T.temp_say_mod = initial(T.temp_say_mod)
-		previous_special_name = null
+		if(T)
+			T.temp_say_mod = "states"
+		return
 
-	return
+	H.special_voice = previous_special_name
+	if(T)
+		T.temp_say_mod = initial(T.temp_say_mod)
+	previous_special_name = null
 
 /obj/item/clothing/mask/gas/modulator/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
