@@ -201,6 +201,8 @@
 					/obj/item/wallframe,
 					/obj/item/tank,
 					/obj/item/stock_parts,
+					/obj/item/assembly/control,
+					/obj/item/electronics/airlock
 					)
 
 //Mining cyborg apparatus
