@@ -58,6 +58,8 @@
 		/*energy_drain = */STANDARD_CELL_CHARGE * 0.05,
 		/*electrode_name = */"\the [src]\s",
 		/*tase_range = */maximum_range + 1,
+		def_zone //BUBBER ADDITION
+
 	)
 
 /obj/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet
@@ -88,6 +90,8 @@
 	VAR_FINAL/electrode_name
 	/// How far can the taser reach?
 	VAR_FINAL/tase_range = 6
+	var/def_zone  = CHEST //BUBBER ADDITION
+	var/tase_slowdown = /datum/movespeed_modifier/being_tased_machine //BUBBER ADDITION
 
 /datum/status_effect/tased/on_creation(
 	mob/living/new_owner,
@@ -97,6 +101,8 @@
 	energy_drain = STANDARD_CELL_CHARGE * 0.05,
 	electrode_name = "the electrodes",
 	tase_range = 6,
+	def_zone, //BUBBER ADDITION
+	tase_slowdown//BUBBER ADDITION
 )
 	if(isnull(fired_from) || isnull(firer) || !can_tase_with(fired_from))
 		qdel(src)
@@ -106,6 +112,7 @@
 	src.energy_drain = energy_drain
 	src.electrode_name = electrode_name
 	src.tase_range = tase_range
+	src.def_zone = def_zone //BUBBER ADDITION
 
 	. = ..()
 	if(!.)
@@ -135,6 +142,7 @@
 		return FALSE
 	if(istype(with_what, /obj/item/gun/energy))
 		var/obj/item/gun/energy/taser_gun = with_what
+		tase_slowdown = /datum/movespeed_modifier/being_tased_handheld //BUBBER ADDITION
 		if(!taser_gun.cell?.use(energy_drain * seconds_between_ticks))
 			return FALSE
 		taser_gun.update_appearance()
@@ -142,6 +150,7 @@
 
 	if(istype(taser, /obj/machinery))
 		var/obj/machinery/taser_machine = taser
+		tase_slowdown = /datum/movespeed_modifier/being_tased_machine //BUBBER ADDITION
 		if(!taser_machine.is_operational)
 			return FALSE
 		if(!taser_machine.use_energy(energy_drain * seconds_between_ticks, force = FALSE))
@@ -173,7 +182,7 @@
 		// does not use the status effect api because we snowflake it a bit
 		owner.throw_alert(type, /atom/movable/screen/alert/tazed)
 		owner.add_mood_event("tased", /datum/mood_event/tased)
-		owner.add_movespeed_modifier(/datum/movespeed_modifier/being_tased)
+		owner.add_movespeed_modifier(tase_slowdown) //BUBBER EDIT, ORIGINAL: owner.add_movespeed_modifier(/datum/movespeed_modifier/being_tased)
 		if(!HAS_TRAIT(owner, TRAIT_ANALGESIA))
 			owner.emote("scream")
 		if(HAS_TRAIT(owner, TRAIT_HULK))
@@ -205,7 +214,7 @@
 
 	if(!QDELING(owner) && !owner.has_status_effect(type))
 		owner.adjust_jitter_up_to(10 SECONDS, 1 MINUTES)
-		owner.remove_movespeed_modifier(/datum/movespeed_modifier/being_tased)
+		owner.remove_movespeed_modifier(tase_slowdown)
 		owner.clear_alert(type)
 
 	taser = null
@@ -238,7 +247,10 @@
 
 	// the actual stunning is here
 	if(!owner.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
-		owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		if(taser == firer) //bubber addition
+			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		else // Bubber addition
+			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //bubber addition
 
 /// Sets the passed atom as the "taser"
 /datum/status_effect/tased/proc/set_taser(datum/new_taser)
@@ -258,7 +270,7 @@
 /datum/status_effect/tased/proc/set_firer(atom/new_firer)
 	firer = new_firer
 	if(taser != firer) // Turrets, notably, are both
-		RegisterSignal(firer, COMSIG_QDELETING, PROC_REF(end_tase))
+		RegisterSignal(firer, list(COMSIG_QDELETING, COMSIG_MOB_SWAP_HANDS), PROC_REF(end_tase))
 
 	RegisterSignal(firer, COMSIG_MOB_CLICKON, PROC_REF(user_cancel_tase))
 
@@ -397,5 +409,12 @@
 /datum/movespeed_modifier/tasing_someone
 	multiplicative_slowdown = 2
 
-/datum/movespeed_modifier/being_tased
+/datum/movespeed_modifier/being_tased_machine
 	multiplicative_slowdown = 4
+
+/datum/movespeed_modifier/being_tased_handheld
+	multiplicative_slowdown = 2.5
+//BUBBER EDIT START
+/obj/projectile/energy/electrode/sec
+	tase_stamina = 30
+//BUBBER EDIT END

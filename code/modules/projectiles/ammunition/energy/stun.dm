@@ -6,6 +6,12 @@
 	harmful = FALSE
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect
 
+//BUBBER EDIT START
+/obj/item/ammo_casing/energy/electrode/sec
+	projectile_type = /obj/projectile/energy/electrode/sec
+	e_cost = LASER_SHOTS(4, STANDARD_CELL_CHARGE)
+//BUBBER EDIT END
+
 /obj/item/ammo_casing/energy/electrode/spec
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 
