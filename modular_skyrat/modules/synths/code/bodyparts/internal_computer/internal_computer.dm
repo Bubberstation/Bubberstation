@@ -79,6 +79,9 @@ Various overrides necessary to get the persocom working, namely ui status, power
 		else if(istype(item, /obj/item/modular_computer))
 			var/obj/item/modular_computer/pda = item
 			computer_id_slot = pda.computer_id_slot
+		else if(istype(item, /obj/item/storage/wallet))
+			var/obj/item/storage/wallet/wallet = item
+			computer_id_slot = wallet.front_id
 		else
 			computer_id_slot = null
 	else
