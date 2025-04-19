@@ -313,7 +313,7 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "no blood!")
 		return FALSE
-	if(!target_user.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
+	if(!target_user.can_inject(owner, BODY_ZONE_HEAD))
 		if(give_warnings)
 			owner.balloon_alert(owner, "suit too thick!")
 		return FALSE
