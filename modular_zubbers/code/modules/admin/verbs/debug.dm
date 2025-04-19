@@ -76,7 +76,7 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 
 	sortTim(no_duplicates, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
 
-	var/nullspace_tagged_objects = list()
+	var/list/nullspace_tagged_objects = list()
 	var/list/strings = list()
 	for(var/object_type as anything in no_duplicates)
 		var/list/sub_list = no_duplicates[object_type]
