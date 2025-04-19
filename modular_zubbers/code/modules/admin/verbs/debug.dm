@@ -56,12 +56,6 @@ ADMIN_VERB(simulate_maintenance_loot, R_DEBUG, "Simulate Maintenance Loot", "Sim
 	user << browse(returning_data, "window=maintenace_report")
 
 ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a list of all objects with a loc of null", ADMIN_CATEGORY_DEBUG)
-	var/list/answers = list("Yes", "No")
-	var/question = tgui_alert(user, "Show VV refs to nullspaced objects? This will make them un-GC-able.", "Memory leak go brr", answers)
-	var/show_vv = FALSE
-	if(question == answers[1])
-		show_vv = TRUE
-
 	var/list/nullspaced_objects = list()
 	for(var/atom/object as anything)
 		if(!isnull(object.loc))
@@ -82,19 +76,35 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 
 	sortTim(no_duplicates, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
 
+	var/nullspace_tagged_objects = list()
 	var/list/strings = list()
 	for(var/object_type as anything in no_duplicates)
 		var/list/sub_list = no_duplicates[object_type]
 		var/atom/object = sub_list["object"]
 		var/refcount = sub_list["refcount"]
 		var/count = sub_list["priority"]
+		if(isnull(object))
+			continue
+		if(!object.tag)
+			nullspace_tagged_objects += object
 		strings += "Name: [object], \
 			Type: [object_type], \
 			refs: [refcount], \
 			instances: [count], \
 			qdeleting: [QDELING(object) ? "yes" : "no"] \
-			[show_vv ? ADMIN_VV(object): ""]"
+			[ADMIN_VV(object)]"
 		CHECK_TICK
 
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_nullspace_tagged_objects), nullspace_tagged_objects, user), 10 MINUTES)
 	var/title = "<h1>List of all objects with a loc of null:</h1><br>"
 	user << browse(HTML_SKELETON_TITLE(title, "[jointext(strings, "<br>")]"), "window=maintenace_report")
+
+/proc/cleanup_nullspace_tagged_objects(list/cleanup, user)
+	if(!islist(cleanup))
+		return
+	to_chat(user, "VV tags no longer active on nullspace tagged objects.")
+	for(var/atom/object as anything in cleanup)
+		if(isnull(object))
+			continue
+		object.tag = null
+		CHECK_TICK
