@@ -59,7 +59,7 @@
 	messenger = /obj/item/storage/backpack/messenger/eng
 
 	backpack_contents = list(
-//		/obj/item/construction/rcd/loaded, // BUBBER EDIT REMOVAL -> MOVED TO LOCKER
+		/obj/item/construction/rcd/loaded,
 	)
 
 	box = /obj/item/storage/box/survival/engineer
