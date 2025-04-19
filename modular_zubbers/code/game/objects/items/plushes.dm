@@ -282,3 +282,13 @@
 		'sound/mobs/non-humanoids/hiss/hiss2.ogg' = 1,
 		'modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1,
 	)
+
+/obj/item/toy/plush/mothroach_plush
+	name = "Mothroach Plush"
+	desc = "A plushie featuring the likeness everyone's favorite genetic freak-turned station pet. Do not soak it in milk and throw it against a wall."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "mothroach"
+	attack_verb_continuous = list("mothroaches", "moths", "roaches")
+	attack_verb_simple = list("mothroach", "moth", "roach")
+	gender = MALE
+	squeak_override = list( 'sound/mobs/humanoids/moth/scream_moth.ogg' = 1, )
