@@ -8,7 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SYNTH_ANTENNA
-
+	organ_flags = ORGAN_UNREMOVABLE
 	preference = "feature_ipc_antenna"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/synth_antenna
