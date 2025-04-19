@@ -45,7 +45,7 @@ const CLOTHING_SELECTION_WIDTH = 5.4;
 const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 type CharacterControlsProps = {
-  handleRotate: () => void;
+  handleRotate: (backwards: boolean) => void; // BUBBER EDIT CHANGE - Original: handleRotate: () => void;
   handleOpenSpecies: () => void;
   handleFood: () => void; // BUBBER EDIT ADDITION
   gender: Gender;
@@ -58,7 +58,7 @@ function CharacterControls(props: CharacterControlsProps) {
     <Stack>
       <Stack.Item>
         <Button
-          onClick={props.handleRotate}
+          onClick={() => props.handleRotate(true)} // BUBBER EDIT CHANGE - Original: onClick={props.handleRotate}
           fontSize="22px"
           icon="undo"
           tooltip="Rotate"
@@ -69,7 +69,7 @@ function CharacterControls(props: CharacterControlsProps) {
       {/* BUBBER EDIT ADDITION START */}
       <Stack.Item>
         <Button
-          onClick={props.handleRotate}
+          onClick={() => props.handleRotate(false)}
           fontSize="22px"
           icon="redo"
           tooltip="Rotate"
@@ -640,8 +640,8 @@ export function MainPage(props: MainPageProps) {
               <CharacterControls
                 gender={data.character_preferences.misc.gender}
                 handleOpenSpecies={props.openSpecies}
-                handleRotate={() => {
-                  act('rotate');
+                handleRotate={(value) => {
+                  act('rotate', { backwards: value }); // BUBBER EDIT CHANGE - Original: handleRotate={() => { act('rotate'); }}
                 }}
                 // BUBBER EDIT ADDITION BEGIN
                 handleFood={() => {
