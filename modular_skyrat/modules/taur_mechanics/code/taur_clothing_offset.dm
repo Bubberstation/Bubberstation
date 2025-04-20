@@ -35,7 +35,7 @@
 	var/offset = taur_body.taur_specific_clothing_y_offsets?["[icon_dir]"]
 	if (!offset)
 		return
-	standing.pixel_y += offset
+	standing.pixel_z += offset
 
 /// Signal handler for COMSIG_ITEM_EQUIPPED. Handles registering signals.
 /datum/component/taur_clothing_offset/proc/parent_equipped(datum/signal_source, mob/equipper, slot)
