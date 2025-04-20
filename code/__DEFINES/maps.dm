@@ -240,3 +240,4 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define AWAYSTART_SNOWCABIN "AWAYSTART_SNOWCABIN"
 #define AWAYSTART_SNOWDIN "AWAYSTART_SNOWDIN"
 #define AWAYSTART_UNDERGROUND "AWAYSTART_UNDERGROUND"
+#define AWAYSTART_WARGAMES "AWAYSTART_WARGAMES"
