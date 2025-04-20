@@ -18,9 +18,8 @@
 	guarantees_roundstart_crewset = TRUE
 
 	starting_point_multipliers = list(
-		EVENT_TRACK_MUNDANE = 0,
-		EVENT_TRACK_MODERATE = 0,
-		EVENT_TRACK_MAJOR = 0,
-		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_MUNDANE = 1.7,
+		EVENT_TRACK_MODERATE = 1.4,
+		EVENT_TRACK_MAJOR = 1.2,
 		EVENT_TRACK_GHOSTSET = 0
 	)

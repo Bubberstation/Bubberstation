@@ -7,7 +7,7 @@
 	antag_leader_datum = /datum/antagonist/nukeop/leader
 
 	weight = 1
-	tags = list(TAG_BIG_THREE)
+	tags = list(TAG_BIG_THREE, TAG_CREW_ANTAG, TAG_CHAOTIC, TAG_COMBAT)
 
 	base_antags = 2
 	maximum_antags = 5
