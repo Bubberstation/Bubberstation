@@ -251,6 +251,10 @@
 	name = "P-T Dorms"
 	icon_state = "dorms"
 
+/area/ruin/space/has_grav/port_tarkon/random_dorm
+	name = "P-T Deluxe Dorm Room"
+	icon_state = "dorms"
+
 /area/solars/tarkon
 	name = "\improper P-T Solar Array"
 	icon_state = "space_near"
