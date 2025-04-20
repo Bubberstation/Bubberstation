@@ -58,6 +58,43 @@
 		"legs" = list("Normal Legs", TRUE),
 	)
 
+/datum/species/shadekin/get_species_description()
+	return list("https://citadel-station.net/wikiRP/index.php?title=Species/Shadekin ",
+
+			"Shadekin (singular Shadekin, plural Shadekin) are a species of seemingly mammal creatures, closely resembling canines with four ears. \
+			Their own name for their species is Lumelea (singular Lumelea, plural Lumelea), but many \
+			did adopt the name Shadekin given how widespread it has become. The colors of their eyes holds great significance \
+			in their culture. ",
+
+			"Shadekin live in tribes all across the Galaxy, often in environments that would not support life for most other species. \
+			They originate from the planet Azuel I in the Azuel system, a death world that orbits a small black hole, \
+			forcing the fauna and flora that lives there to adapt to a cold, dark, and radioactive environment. \
+			Shadekin formed smaller, specialized tribes that benefited from cooperative experitise, where eye colors \
+			influenced, but not dictated, the roles that individuals take. ",
+
+			"When hatched, a Shadekin usually inherits the eye color of their mother. The eye color is representative for the mentality \
+			a Shadekin has. As a Shadekin grows over their lives, long-lasting changes in mentality and personality can change their eye color. \
+			A crucial step for young Shadekin is The Ritual, in which they will train their symbolic Bluespace muscle in order to \
+			become strong enough to achieve short-range teleportation. Rarely, this can fail, and an unsuccessful Shadekin can burn out, \
+			stunting the flow of Bluespace particles through their body and turning their eyes black. This can also occur later in life due to overuse. ",
+
+			"The only eye colors that are not tied to specific personalities are white and black. Those with white eye colors do not change \
+			their eye color, and neither do other eye colors change to white. White-eyed are a rarity, being naturally stronger, faster, and \
+			more durable than other Shadekin. Their control over Bluespace manipulation far exceeds other Shadekin, being able to teleport \
+			without restriction over long distances. Due to the exceeding natural abilities of white-eyed Shadekin, it is not feasable \
+			for players to play one without admin intervention. ",
+
+			"As eye colors are tied to personality and responses, it is generally observed that: ",
+			"Blue = Natural idealists with outgoing personalities ",
+			"Red = Determined and confrontational, projecting ruthless rationality ",
+			"Yellow = Notably shy, but passionate and creative ",
+			"Green = Intuitive, yet introverted, with unconventional perspectives ",
+			"Purple = Reserved, with a careful and methodical way of thinking ",
+			"Orange = Eager, vibrant, and spontaneous, with very social impulses ",
+			"Black = Shadekin who got burned out, often seen living among other species ",
+			"White = Very rare, stronger and more durable than others, vastly varying personalities",
+	)
+
 /datum/species/shadekin/randomize_features()
 	var/list/features = ..()
 	var/main_color
