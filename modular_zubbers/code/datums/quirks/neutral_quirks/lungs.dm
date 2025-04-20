@@ -1,9 +1,9 @@
 /datum/quirk/equipping/lungs
 	abstract_parent_type = /datum/quirk/equipping/lungs
 	icon = FA_ICON_LUNGS
-	var/obj/item/organ/internal/lungs/lungs_holding
-	var/obj/item/organ/internal/lungs/lungs_added
-	var/lungs_typepath = /obj/item/organ/internal/lungs
+	var/obj/item/organ/lungs/lungs_holding
+	var/obj/item/organ/lungs/lungs_added
+	var/lungs_typepath = /obj/item/organ/lungs
 	items = list(/obj/item/clothing/accessory/breathing = list(ITEM_SLOT_BACKPACK))
 	var/breath_type = "oxygen"
 
@@ -21,17 +21,19 @@
 	lungs_added.Insert(carbon_holder, special = TRUE)
 	if(!isnull(lungs_holding))
 		lungs_holding.moveToNullspace() // save them for later
+	carbon_holder.dna.species.mutantlungs = /obj/item/organ/lungs/nitrogen
 
 /datum/quirk/equipping/lungs/remove()
 	var/mob/living/carbon/carbon_holder = quirk_holder
 	if (!istype(carbon_holder) || !istype(lungs_holding))
 		return
-	var/obj/item/organ/internal/lungs/lungs = carbon_holder.get_organ_slot(ORGAN_SLOT_LUNGS)
+	var/obj/item/organ/lungs/lungs = carbon_holder.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if (lungs != lungs_added && lungs != lungs_holding)
 		qdel(lungs_holding)
 		return
 	lungs_holding.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	lungs_holding.organ_flags &= ~ORGAN_FROZEN
+	carbon_holder.dna.species.mutantlungs = initial(carbon_holder.dna.species.mutantlungs)
 
 /datum/quirk/equipping/lungs/on_equip_item(obj/item/equipped, success)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -39,6 +41,8 @@
 		return
 	var/obj/item/clothing/accessory/breathing/acc = equipped
 	acc.breath_type = breath_type
+	if(!human_holder?.w_uniform)
+		return
 	if (acc.can_attach_accessory(human_holder?.w_uniform, human_holder))
 		acc.attach(human_holder.w_uniform, human_holder)
 
@@ -78,8 +82,13 @@
 	forced_items = list(
 		/obj/item/clothing/mask/breath = list(ITEM_SLOT_MASK),
 		/obj/item/tank/internals/nitrogen/belt/full = list(ITEM_SLOT_HANDS, ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET))
-	lungs_typepath = /obj/item/organ/internal/lungs/nitrogen
+	lungs_typepath = /obj/item/organ/lungs/nitrogen
 	breath_type = "nitrogen"
+
+/datum/quirk/equipping/lungs/nitrogen/add(client/client_source)
+	if(isjellyperson(quirk_holder))
+		lungs_typepath = /obj/item/organ/lungs/nitrogen/slime_lungs
+	. = ..()
 
 /datum/quirk/equipping/lungs/nitrogen/on_equip_item(obj/item/equipped, success)
 	. = ..()
@@ -87,3 +96,4 @@
 	if (!success || !istype(carbon_holder) || !istype(equipped, /obj/item/tank/internals))
 		return
 	carbon_holder.internal = equipped
+

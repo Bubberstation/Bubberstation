@@ -8,7 +8,7 @@
 
 /obj/item/book/manual/fish_catalog/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -4, ITEM_SLOT_HANDS)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -7, ITEM_SLOT_HANDS)
 
 /obj/item/book/manual/fish_catalog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -111,5 +111,5 @@
 
 /obj/item/book/manual/fish_catalog/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/fish)
+		get_asset_datum(/datum/asset/spritesheet_batched/fish)
 	)

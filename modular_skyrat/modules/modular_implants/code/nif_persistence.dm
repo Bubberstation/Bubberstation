@@ -20,7 +20,7 @@
 
 /// Saves the NIF data for a individual user.
 /mob/living/carbon/human/proc/save_nif_data(datum/modular_persistence/persistence, remove_nif = FALSE)
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = get_organ_by_type(/obj/item/organ/internal/cyberimp/brain/nif)
+	var/obj/item/organ/cyberimp/brain/nif/installed_nif = get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
 
 	if(HAS_TRAIT(src, TRAIT_GHOSTROLE)) //Nothing is lost from playing a ghost role
 		return FALSE
@@ -75,7 +75,7 @@
 	if(!persistence.nif_path)
 		return
 
-	var/obj/item/organ/internal/cyberimp/brain/nif/new_nif = new persistence.nif_path
+	var/obj/item/organ/cyberimp/brain/nif/new_nif = new persistence.nif_path
 
 	new_nif.durability = persistence.nif_durability
 	new_nif.current_theme = persistence.nif_theme
@@ -108,7 +108,7 @@
 /datum/nifsoft/proc/load_persistence_data()
 	if(!linked_mob || !persistence)
 		return FALSE
-	var/obj/item/organ/internal/brain/linked_brain = linked_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/linked_brain = linked_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!linked_brain || !linked_brain.modular_persistence)
 		return FALSE
 

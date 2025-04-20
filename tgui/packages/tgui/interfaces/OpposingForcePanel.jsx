@@ -1,8 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { round } from 'common/math';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -16,7 +13,10 @@ import {
   Stack,
   Tabs,
   TextArea,
-} from '../components';
+} from 'tgui-core/components';
+import { round } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const OpposingForcePanel = (props) => {

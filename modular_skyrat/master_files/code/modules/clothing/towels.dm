@@ -191,7 +191,7 @@
 	if(!choice)
 		return
 
-	change_towel_shape(user, lowertext(choice))
+	change_towel_shape(user, LOWER_TEXT(choice))
 
 
 /obj/item/towel/attackby(obj/item/attacking_item, mob/user, params)
@@ -522,3 +522,16 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	return TRUE
 
+#undef TOWEL_WRING_AMOUNT
+#undef TOWEL_WRING_LOSS_FACTOR
+#undef TOWEL_CLOTH_AMOUNT
+#undef TOWEL_RIGHTHAND_ICON
+#undef TOWEL_LEFTHAND_ICON
+#undef TOWEL_WORN_ICON_DIGI
+#undef TOWEL_WORN_ICON
+#undef TOWEL_OBJ_ICON
+#undef TOWEL_USED
+#undef TOWEL_HEAD
+#undef TOWEL_WAIST
+#undef TOWEL_FULL
+#undef TOWEL_FOLDED

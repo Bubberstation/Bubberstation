@@ -101,9 +101,19 @@
 	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt
-	name = "Security Battledress"
+	name = "Blue Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
+	name = "Red Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/uniform/jumpsuit/security_skirt_hos
+	name = "HoS Security Battledress"
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/uniform/jumpsuit/security_trousers
 	name = "Security Trousers"
@@ -143,7 +153,7 @@
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
 	name = "Imperial Police Uniform"
 	item_path = /obj/item/clothing/under/colonial/nri_police
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/disco
 	name = "Superstar Cop Uniform"

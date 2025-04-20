@@ -6,7 +6,7 @@
 	desc = "A very compact twin-barreled pistol, chambered in .310 strilka. \
 		Despite using a rifle cartridge, the short barrels leave a lot to \
 		be desired for ballistic performance and suffer from immense dropoff."
-	icon = 'modular_zubbers/code/modules/modular_weapons/icons/sakhno_concern_guns32x.dmi'
+	icon = 'modular_zubbers/icons/obj/guns/sakhno_concern_guns32x.dmi'
 	icon_state = "derringer"
 	w_class = WEIGHT_CLASS_SMALL
 	weapon_weight = WEAPON_LIGHT

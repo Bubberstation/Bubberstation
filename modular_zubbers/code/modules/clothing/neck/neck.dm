@@ -559,3 +559,26 @@
 	greyscale_colors = null
 	is_tied = TRUE
 	clip_on = TRUE
+
+//PRIDE SCARVES, SPRITES BY Cephalopod222 OF BUBBERSTATION
+/obj/item/clothing/neck/scarf/pride
+	name = "pride scarf"
+	desc = "A Nanotrasen made nano-weave scarf to show off your favourite flavour of gay and keep you nice and warm! Congratulations!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "scarf_rainbow"
+	icon_state_preview = "scarf_rainbow"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	obj_flags = UNIQUE_RENAME | INFINITE_RESKIN
+	unique_reskin = list(
+		"Rainbow Scarf" = "scarf_rainbow",
+		"Bisexual Scarf" = "scarf_bi",
+		"Pansexual Scarf" = "scarf_pan",
+		"Asexual Scarf" = "scarf_ace",
+		"Gay Scarf" = "scarf_gay",
+		"Transgender Scarf" = "scarf_trans",
+		"Lesbian Scarf" = "scarf_lesbian",
+	)

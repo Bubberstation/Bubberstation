@@ -53,7 +53,7 @@
 			name = "[name]sis"
 		else //Last letter was a consonant
 			name = "[name]ia"
-		name = capitalize(lowertext(trim(name)))
+		name = capitalize(LOWER_TEXT(trim(name)))
 
 	var/existed = SSdisease.archive_diseases[src.GetDiseaseID()]
 

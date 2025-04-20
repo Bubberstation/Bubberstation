@@ -68,7 +68,7 @@
 	)
 
 /datum/design/borg_dominatrix
-	name = "borg dominatrix module"
+	name = "Cyborg dominatrix module"
 	id = "dominatrixmodule"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/dominatrixmodule

@@ -70,5 +70,5 @@
 	wound_bonus = -10
 	bare_wound_bonus = -10
 	armour_penetration = 45
-	speed = 0.5
+	speed = 2
 	range = 14

@@ -1,8 +1,14 @@
 // THIS IS A SKYRAT UI FILE
-import { toFixed } from 'common/math';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const BorerChem = (props) => {

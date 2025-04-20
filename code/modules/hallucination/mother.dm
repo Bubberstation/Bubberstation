@@ -1,6 +1,8 @@
 /// Your mother appears to scold you.
 /datum/hallucination/your_mother
 	random_hallucination_weight = 2
+	hallucination_tier = HALLUCINATION_TIER_VERYSPECIAL
+
 	var/obj/effect/client_image_holder/hallucination/your_mother/mother
 
 /datum/hallucination/your_mother/start()
@@ -63,7 +65,7 @@
 	neck = /obj/item/clothing/neck/beads
 	shoes = /obj/item/clothing/shoes/sandal
 
-/datum/outfit/yourmother/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
+/datum/outfit/yourmother/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()
 	user.set_hairstyle("Braided", update = TRUE) //get_dynamic_human_appearance uses bald dummies
 

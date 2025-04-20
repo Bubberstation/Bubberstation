@@ -86,10 +86,21 @@
 	var/brute_healed = brutehealing
 	var/burn_healed = burnhealing
 	var/dead_patient = FALSE
+	var/status_msg = list() // BUBBER EDIT ADDITION
+	feedback_value = null // BUBBER EDIT ADDITION
 	if(target.stat == DEAD) //dead patients get way less additional heal from the damage they have.
-		brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.2)),0.1)
-		burn_healed += round((target.getFireLoss() * (burn_multiplier * 0.2)),0.1)
+		// BUBBER EDIT CHANGE BEGIN - Husks get reduced bonus, but dead patients are full speed
+		//brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.2)),0.1)
+		//burn_healed += round((target.getFireLoss() * (burn_multiplier * 0.2)),0.1)
 		dead_patient = TRUE
+		if(HAS_TRAIT(target, TRAIT_HUSK))
+			brute_healed += round((target.getBruteLoss() * (brute_multiplier * 0.7)),0.1)
+			burn_healed += round((target.getFireLoss() * (burn_multiplier * 0.7)),0.1)
+			status_msg += "[target.p_are()] husked"
+		else
+			brute_healed += round((target.getBruteLoss() * brute_multiplier),0.1)
+			burn_healed += round((target.getFireLoss() * burn_multiplier),0.1)
+		// BUBBER EDIT CHANGE END
 	else
 		brute_healed += round((target.getBruteLoss() * brute_multiplier),0.1)
 		burn_healed += round((target.getFireLoss() * burn_multiplier),0.1)
@@ -97,11 +108,20 @@
 	if(!get_location_accessible(target, target_zone))
 		brute_healed *= 0.55
 		burn_healed *= 0.55
-		user_msg += " as best as you can while [target.p_they()] [target.p_have()] clothing on"
-		target_msg += " as best as [user.p_they()] can while [target.p_they()] [target.p_have()] clothing on"
+		status_msg += "[target.p_have()] clothing on"
+		//user_msg += " as best as you can while [target.p_they()] [target.p_have()] clothing on" // BUBBER EDIT REMOVAL
+		//target_msg += " as best as [user.p_they()] can while [target.p_they()] [target.p_have()] clothing on" // BUBBER EDIT REMOVAL
+	// BUBBER EDIT ADDITION BEGIN
+	if(length(status_msg) > 0)
+		user_msg += " as best as you can while [target.p_they()] [english_list(status_msg)]"
+		target_msg += " as best as [user.p_they()] can while [target.p_they()] [english_list(status_msg)]"
+	feedback_value = brute_healed + burn_healed
+
 	target.heal_bodypart_damage(brute_healed,burn_healed)
 
-	user_msg += get_progress(user, target, brute_healed, burn_healed)
+	if(!get_feedback_message(user, target))
+		user_msg += get_progress(user, target, brute_healed, burn_healed)
+	// BUBBER EDIT ADDITION END
 
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user) && !dead_patient) //Morbid folk don't care about tending the dead as much as tending the living
 		var/mob/living/carbon/human/morbid_weirdo = user

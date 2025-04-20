@@ -1,0 +1,218 @@
+2024-02-02:
+  BurgerBB:
+  - rscdel: ' Removes the ability for Seedlings to have multiple harvests.'
+  - balance: Sets Evil Seedling TC cost to 2 (From 8),
+  - rscadd: Organs that rot now create miasma. Note that miasma emissions will stop
+      once the organ is fully decayed.
+  - balance: The Crab17 uplink item cannot spawn in surplus crates, nor can it be
+      discounted.
+  LT3 (code):
+  - server: Makes relay text display properly
+  Majkl-J:
+  - rscadd: Secmed huds are now available for security medics
+  - rscadd: Secmed headset upgraded into a bowman
+  - image: Icons for secmed huds and secmed headset
+  NithaIsTired:
+  - rscadd: Synths now scream in agony when they die.
+  ReturnToZender:
+  - server: cleans up some relay names
+  Swiftfeather:
+  - rscdel: Door sounds from Citrp
+  - qol: better door sounds
+  - sound: changed sound back to better original airlock sound
+  - code_imp: re enables skyrat's door sound override
+  nevimer:
+  - rscadd: Malf AI Doomsday now makes a tidal wave of explosions from APC's.
+  nikothedude:
+  - spellcheck: The nobility dresscoat has been reflavored to not be nobility
+  pixelkitty286:
+  - rscadd: Door sounds from Citrp
+  - qol: Better door sounds
+  - sound: added door sound files in modular sounds folder
+  - code_imp: Disabled skyrat's door sound over rides in airlock.dm
+  theselfish:
+  - rscadd: Donator item.
+  - rscadd: Donator stamp.
+  xXPawnStarrXx:
+  - rscadd: Added new bounties for inmates.
+2024-02-03:
+  AtoriBirb:
+  - image: Security Beanie
+2024-02-04:
+  ReturnToZender:
+  - bugfix: Readying up without proper flavor text now reports the correct flavor
+      text source instead of saying you need silicon flavor.
+2024-02-05:
+  Majkl-J:
+  - image: Mouth worn sprites for rubber ducky and dog bones
+2024-02-07:
+  ReturnToZender, GenericDM (Original Version):
+  - rscadd: Cargo shelves are now craftable using metal! They store up to 3 crates
+      per shelf.
+  - bugfix: Skyrat modular shelves (such as gun racks and tall shelves) are now buildable
+      using metal.
+2024-02-09:
+  Majkl-J:
+  - rscadd: Ghosts without clients get sent back into the menu after a while.
+2024-02-11:
+  IgiariValkyr:
+  - config: Relocked some donator items from Skyrat on request
+  Majkl-J:
+  - image: New rockfruit sprites
+  - code_imp: Modularized hydroponics
+  Vynzill:
+  - rscadd: Added more perfumes to loadout.
+2024-02-12:
+  Sylphet:
+  - balance: scrubbers do not overflow with carpet and rainbow stuff anymore
+2024-02-14:
+  BurgerBB:
+  - rscadd: Makes Moon Station actually a moon now because people made fun of me.
+  - bugfix: Fixes early runtime issue with loadouts.
+2024-02-15:
+  BurgerBB:
+  - bugfix: Hopefully fixes the error handler throwing errors too early.
+  - bugfix: Fixes fake lattice linters when they spawn on lava
+  xXPawnStarrXx:
+  - code_imp: removed donator requirement from loadout flowers.
+2024-02-16:
+  BurgerBB:
+  - rscadd: Adds REAL banhammers send people to the void temporarily (similar to immortality
+      talisman or void genetic power) on hit. Hitting someone on combat mode with
+      it sends them to permabrig instead, if they're not already in the permabrig.
+  - rscdel: Replaces the High Frequency Blade the wizard gets with a REAL banhammer,
+      and reduces the spell cost from 3 to 2.
+  - bugfix: Sandstorms on Moon Station are less annoying in terms of notifications
+      and sound. Adds missing miner GPSs to lockers + table. Fixes typo in Moon Station
+      plaque. External airlocks to public areas no longer have access.
+  Majkl-J:
+  - bugfix: 'lathes now use moderate power for printing operations /:cl:'
+  - code_imp: Bubber modular greyscale files permitted
+  aKromatopzia:
+  - bugfix: icecats and ashliz can spawn on the ghost cafe.
+  destrucktoid:
+  - bugfix: Syndicate/Ninja Borg Restorative Nanites now heal Slimepeople just as
+      well as they do other people.
+  pixelkitty286:
+  - rscadd: Added night vision and cold resistance to tajara with their respective
+      debuffs and gave them sensitive hearing. tajara own meat type and cat animal
+      hide when gibed. Cat like grace to tajara.
+  - rscadd: Added modular tajaran.dm, siikmaas.dm, and meatslab.dmi
+  - qol: The Tajara DLC.
+  - balance: rebalanced how the Tajaran species works.
+  - image: added a Tajaran ass picture. Added adhomian_meat (Credit goes to Aurora.3
+      on the sprite)
+  - spellcheck: Corrected siik'tajr to be siik'maas.
+  - code_imp: modular code for tajaran species changes.
+  - refactor: Does refactoring Tajara as a species count?
+  xXPawnStarrXx:
+  - image: added GAGS versions of command stripper outfits.
+2024-02-17:
+  IgiariValkyr:
+  - config: Relocks another skyrat donor item per request.
+2024-02-18:
+  BurgerBB:
+  - balance: Adds Sex holographic barriers to warn people that there is sex in the
+      next room. It doesn't block air or movement, but it does warn people, and knowing
+      is half the battle. They can be purchased in the LustWish under the premium
+      section.
+  - balance: Heads can only be dismembered if they have a critical-tier (Compound)
+      fracture. If a head was supposed to be dismembered from a blow, a compound fracture
+      will be applied.
+2024-02-19:
+  LT3:
+  - qol: Airlocks don't flash constantly on engineering override, override/overlay
+      added for fire alarm
+  - bugfix: Airlock lighting should no longer render on top of player characters
+  - bugfix: Airlock emissives no longer overlap firedoors
+  - bugfix: Fixed missing overlays on various airlock types
+  - bugfix: Fixed status display for epsilon alert
+  - bugfix: Fixed fire alarm for epsilon alert
+  Shayoki:
+  - rscadd: Players can now choose a voice for their characters.
+  - sound: Added a lot of 'borrowed' sounds to use as voices.
+  - admin: Admins can globally disable Bloopers
+  nevimer:
+  - balance: you now hug and pat lightgeists
+2024-02-20:
+  BurgerBB:
+  - bugfix: Remaps Moon Station's robotics. Fixes some misplaced objects.
+  - rscdel: Disables Lance Shuttle on Moon Station because it caused the crew to get
+      stuck on station for 5 hours once.
+  aKromatopzia:
+  - rscadd: Unamored versions of the syndicate utility uniforms & half-mask
+2024-02-21:
+  BurgerBB:
+  - balance: The RBMK can now handle more power generation before going into meltdown
+      with upgraded parts, and also generates less power with upgraded parts.
+  - bugfix: Fixes the RBMK having an infinite meltdown state when safeties trigger
+      at the same time as a meltdown.
+  - bugfix: Fixes planetary atmos getting created when turfs inside the station are
+      destroyed.
+2024-02-22:
+  BurgerB:
+  - bugfix: Fixes Moonstation Ministation not counting blob tiles.
+2024-02-23:
+  Arturlang:
+  - rscadd: Adds backup ways for the book of kindred to spawn, either spawning on
+      a curator or on the codex gigas
+  BurgerBB:
+  - rscdel: Removes Ash Storms from Moon Station Lavaland
+2024-02-24:
+  Azarak:
+  - admin: administrators can now toggle job playtime exemption by job basis for players
+  BurgerBB:
+  - rscdel: Removes some over the top abductor victim objectives and adds some new
+      ones.
+  Erol509:
+  - rscadd: RB-MK2 now has its own tgui panel.
+  Majkl-J:
+  - bugfix: NSFW Headshots no longer override regular ones
+  Spicelet:
+  - rscadd: new dogborg shirt
+  StrangeWeirdKitten:
+  - rscdel: Removes the blast cannon from the traitor scientist uplink
+  destrucktoid:
+  - rscadd: Borers back in uplink
+2024-02-25:
+  aKromatopzia:
+  - image: icon was wrongly offset for cybernetic digitigrade right legs
+  destrucktoid:
+  - bugfix: Slimeperson Clockwork Cultists now heal toxins from the prosperity prism
+      properly.
+2024-02-26:
+  Majkl-J:
+  - bugfix: you can now rightclick to flag in minesweeper
+  ReturnToZender:
+  - balance: NTR's ACCESS_CREMATORIUM replaced with ACCESS_SERVICE
+  - rscadd: Assistants on-station may be pleased to hear that they can now wear Head
+      of Staff pet collars again. ...Again.
+  - rscadd: Nanotrasen has deemed it fit to order an upgrade to all Consultant offices
+      on stations in the Spinward Sector. Check them out!
+2024-02-27:
+  Arturlang:
+  - bugfix: Borers no longer get wasted by ash storms while inside a host
+  Majkl-J:
+  - bugfix: Void raptor now has the secmed locker
+  nikothedude:
+  - bugfix: Death degradation properly DNRs
+  - bugfix: DNR icon has been restored
+2024-02-28:
+  BurgerBB:
+  - rscdel: Replaces the Meteor Shuttle with THE CUBE. It's an emag only emergency
+      shuttle that is literally just a 16x16 cube with some engines on it.
+  Majkl-J:
+  - rscadd: Zombie can now have hair
+2024-02-29:
+  BurgerBB:
+  - bugfix: Fixes Moonstation radstorms affecting some places it's not supposed to.
+  ReturnToZender (code):
+  - bugfix: Character Directory sorting now works on all variables.
+  - bugfix: autopunctuation respects prefs again
+  - qol: Advert settings have been moved to a new category, ADVERT.
+  - rscadd: Character directory now has a search function on the name var.
+  - rscadd: Character directory now shows on the Main Menu under the Crew Manifest.
+  - rscadd: Character directory now has a randomizer, which will open a random player's
+      flavor text when clicked. Click if you dare.
+  Swiftfeather:
+  - rscdel: Removed gun safeties.

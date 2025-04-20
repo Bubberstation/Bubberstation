@@ -4,7 +4,9 @@
 
 // Shifted to glob so they are generated at world start instead of risking players doing preference stuff before the subsystem inits
 GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
-	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted, /datum/quirk/item_quirk/scarred_eye),
+	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted),
+	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/scarred_eye),
+	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/fluoride_stare),
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/touchy),
 	list(/datum/quirk/jolly, /datum/quirk/depression, /datum/quirk/apathetic, /datum/quirk/hypersensitive),
 	list(/datum/quirk/no_taste, /datum/quirk/vegetarian, /datum/quirk/deviant_tastes, /datum/quirk/gamer),
@@ -43,7 +45,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//BUBBER EDIT ADDITION BEGIN
 	list(/datum/quirk/featherweight, /datum/quirk/oversized),
 	list(/datum/quirk/overweight, /datum/quirk/obese),
-	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained)
+	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
+	list(/datum/quirk/equipping/entombed, /datum/quirk/equipping/seamless_clothes),
+	list(/datum/quirk/equipping/entombed, /datum/quirk/badback),
 	//BUBBER EDIT ADDITION END
 ))
 
@@ -99,8 +103,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		if(initial(quirk_type.erp_quirk) && CONFIG_GET(flag/disable_erp_preferences))
 			continue
 		// Hidden quirks aren't visible to TGUI or the player
+		#if !defined(UNIT_TESTS)
 		if (initial(quirk_type.hidden_quirk))
 			continue
+		#endif
 		// SKYRAT EDIT ADDITION END
 
 		quirks[initial(quirk_type.name)] = quirk_type

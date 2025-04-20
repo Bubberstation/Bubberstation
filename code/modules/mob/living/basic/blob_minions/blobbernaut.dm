@@ -72,9 +72,8 @@
 
 	// take 2.5% of max health as damage when not near the blob or if the naut has no factory, 5% if both
 	apply_damage(maxHealth * BLOBMOB_BLOBBERNAUT_HEALTH_DECAY * damage_sources * seconds_per_tick, damagetype = TOX) // We reduce brute damage
-	var/mutable_appearance/harming = mutable_appearance('icons/mob/nonhuman-player/blob.dmi', "nautdamage", MOB_LAYER + 0.01)
-	harming.appearance_flags = RESET_COLOR
-	harming.color = atom_colours[FIXED_COLOUR_PRIORITY] || COLOR_WHITE
+	var/mutable_appearance/harming = mutable_appearance('icons/mob/nonhuman-player/blob.dmi', "nautdamage", MOB_LAYER + 0.01, appearance_flags = RESET_COLOR|KEEP_APART)
+	harming = color_atom_overlay(harming)
 	harming.dir = dir
 	flick_overlay_view(harming, 0.8 SECONDS)
 	return TRUE
@@ -92,7 +91,7 @@
 	to_chat(src, span_infoplain("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> reagent [blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"]"))
 
 /// Set our attack damage based on blob's properties
-/mob/living/basic/blob_minion/blobbernaut/minion/on_strain_updated(mob/camera/blob/overmind, datum/blobstrain/new_strain)
+/mob/living/basic/blob_minion/blobbernaut/minion/on_strain_updated(mob/eye/blob/overmind, datum/blobstrain/new_strain)
 	if (isnull(overmind))
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper)

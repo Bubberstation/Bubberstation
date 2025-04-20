@@ -22,8 +22,7 @@
 	human.set_facial_hairstyle(random_facial_hairstyle(human.gender), update = FALSE)
 	human.set_haircolor("#[random_color()]", update = FALSE)
 	human.set_facial_haircolor(human.hair_color, update = FALSE)
-	human.eye_color_left = random_eye_color()
-	human.eye_color_right = human.eye_color_left
+	human.set_eye_color(random_eye_color())
 	human.skin_tone = pick(GLOB.skin_tones)
 	human.dna.species.randomize_active_underwear_only(human)
 	// Needs to be called towards the end to update all the UIs just set above
@@ -35,20 +34,25 @@
 	// Snowflake for Ethereals
 	human.updatehealth()
 	human.updateappearance(mutcolor_update = TRUE)
+	// BUBBER EDIT ADDITION BEGIN - Bloopers
+	human.set_blooper(pick(GLOB.blooper_list))
+	human.blooper_pitch = BLOOPER_PITCH_RAND(human.gender)
+	human.blooper_pitch_range = BLOOPER_VARIANCE_RAND
+	human.blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
+	// BUBBER EDIT ADDITION END - Bloopers
 
 /**
  * Randomizes a human, but produces someone who looks exceedingly average (by most standards).
  *
  * (IE, no wacky hair styles / colors)
  */
-/proc/randomize_human_normie(mob/living/carbon/human/human, randomize_mutations = FALSE)
+/proc/randomize_human_normie(mob/living/carbon/human/human, randomize_mutations = FALSE, update_body = TRUE)
 	// Sorry enbys but statistically you are not average enough
 	human.gender = human.dna.species.sexes ? pick(MALE, FEMALE) : PLURAL
 	human.physique = human.gender
 	human.real_name = human.generate_random_mob_name()
 	human.name = human.get_visible_name()
-	human.eye_color_left = random_eye_color()
-	human.eye_color_right = human.eye_color_left
+	human.set_eye_color(random_eye_color())
 	human.skin_tone = pick(GLOB.skin_tones)
 	// No underwear generation handled here
 	var/picked_color = random_hair_color()
@@ -63,4 +67,5 @@
 	// Normal DNA init stuff, these can generally be wacky but we care less, they're aliens after all
 	human.dna.initialize_dna(newblood_type = random_blood_type(), create_mutation_blocks = randomize_mutations, randomize_features = TRUE)
 	human.updatehealth()
-	human.updateappearance(mutcolor_update = TRUE)
+	if(update_body)
+		human.updateappearance(mutcolor_update = TRUE)

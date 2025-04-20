@@ -299,6 +299,9 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station2/glass.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station2/overlays.dmi'
 
+/obj/machinery/door/airlock/public/glass/no_lights
+	has_environment_lights = FALSE
+
 //EXTERNAL AIRLOCKS
 /obj/machinery/door/airlock/external
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/external/external.dmi'

@@ -4,10 +4,7 @@
 
 /turf/open/water/jungle/biodome
 	name="Biodome Lake"
-
-/turf/open/water/jungle/biodome/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/lazy_fishing_spot, /datum/fish_source/ocean/beach)
+	fishing_datum = /datum/fish_source/ocean/beach
 
 /turf/open/misc/ashplanet/wateryrock/biodome
 	name="Biodome Lake Rocks"
@@ -42,7 +39,7 @@
 	slowdown = 0
 
 /turf/open/floor/wood/stairs
-	icon = 'modular_zubbers/maps/biodome/floor.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/floor.dmi'
 	icon_state = "woodstairs_up"
 
 /turf/open/floor/wood/stairs/down

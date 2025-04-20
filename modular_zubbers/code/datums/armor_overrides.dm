@@ -14,7 +14,7 @@
 	acid = 100
 	wound = 10
 
-/obj/item/mod/control/pre_equipped/security/Initialize()
+/obj/item/mod/control/pre_equipped/security/Initialize(mapload, new_theme, new_skin, new_core)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
 	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
@@ -34,7 +34,7 @@
 	acid = 95
 	wound = 25
 
-/obj/item/mod/control/pre_equipped/safeguard/Initialize()
+/obj/item/mod/control/pre_equipped/safeguard/Initialize(mapload, new_theme, new_skin, new_core)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security/safeguard
 	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
@@ -54,7 +54,7 @@
 	acid = 100
 	wound = 20
 
-/obj/item/mod/control/pre_equipped/magnate/Initialize()
+/obj/item/mod/control/pre_equipped/magnate/Initialize(mapload, new_theme, new_skin, new_core)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/magnate
 	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
@@ -74,7 +74,7 @@
 	acid = 90
 	wound = 15
 
-/obj/item/mod/control/pre_equipped/responsory/Initialize()
+/obj/item/mod/control/pre_equipped/responsory/Initialize(mapload, new_theme, new_skin, new_core)
 	applied_modules -= list(
 		/obj/item/mod/module/welding,
 		/obj/item/mod/module/armor_booster/retractplates,
@@ -98,7 +98,7 @@
 	acid = 100
 	wound = 15
 
-/obj/item/mod/control/pre_equipped/corporate/Initialize()
+/obj/item/mod/control/pre_equipped/corporate/Initialize(mapload, new_theme, new_skin, new_core)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/corporate
 	. = ..()
 
@@ -128,6 +128,6 @@
 		/obj/item/mod/module/quick_carry,
 	)
 
-/obj/item/mod/control/pre_equipped/blueshield/Initialize()
+/obj/item/mod/control/pre_equipped/blueshield/Initialize(mapload, new_theme, new_skin, new_core)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/blueshield
 	. = ..()

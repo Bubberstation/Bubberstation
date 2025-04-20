@@ -25,7 +25,7 @@
 	var/choice = tgui_alert(src, "The server is currently experiencing high demand, please consider joining our secondary server.", "High Demand", list("Stay here", "Connect me!"))
 	if(!client)
 		return
-	if(choice != "Send me there")
+	if(choice != "Connect me!")
 		return
 	to_chat(client, span_notice("So long, spaceman."))
 	var/overflow_server_ip = CONFIG_GET(string/overflow_server_ip)

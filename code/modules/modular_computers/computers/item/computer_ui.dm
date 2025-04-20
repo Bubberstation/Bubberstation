@@ -46,14 +46,12 @@
 // Operates TGUI
 /obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
 	if(!enabled || !user.can_read(src, READING_CHECK_LITERACY))
-		if(ui)
-			ui.close()
+		ui?.close()
 		return
 
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
 	if(!screen_on && !issilicon(user))
-		if(ui)
-			ui.close()
+		ui?.close()
 		return
 
 	if(honkvirus_amount > 0) // EXTRA annoying, huh!
@@ -63,6 +61,8 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		update_tablet_open_uis(user)
+	else if(active_program?.always_update_ui)
+		active_program.ui_interact(user, ui)
 
 /obj/item/modular_computer/ui_assets(mob/user)
 	var/list/data = list()
@@ -120,6 +120,10 @@
 			"alert" = program.alert_pending,
 		))
 
+	data["alert_style"] = get_security_level_relevancy()
+	data["alert_color"] = SSsecurity_level?.current_security_level?.announcement_color
+	data["alert_name"] = SSsecurity_level?.current_security_level?.name_shortform
+
 	return data
 
 // Handles user's GUI input
@@ -172,7 +176,7 @@
 			var/mob/user = usr
 			var/new_color
 			while(!new_color)
-				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
+				new_color = tgui_color_picker(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 				if(!new_color)
 					return
 				if(is_color_dark(new_color, 50) ) //Colors too dark are rejected

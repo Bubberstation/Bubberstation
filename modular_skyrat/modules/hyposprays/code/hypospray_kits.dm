@@ -106,25 +106,25 @@
 	if(!istype(tool, /obj/item/hypospray/mkii) || !LAZYACCESS(modifiers, RIGHT_CLICK))
 		return ..()
 	if(!isnull(attached_hypo))
-		balloon_alert(user, "Mount point full!  Remove [attached_hypo] first!")
+		balloon_alert(user, "mount point full!  Remove [attached_hypo] first!")
 		return ITEM_INTERACT_BLOCKING
 	tool.moveToNullspace()
 	attached_hypo = tool
 	RegisterSignal(tool, COMSIG_QDELETING, PROC_REF(on_attached_hypo_qdel))
-	balloon_alert(user, "Attached [attached_hypo].")
+	balloon_alert(user, "attached [attached_hypo].")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/storage/hypospraykit/click_alt_secondary(mob/user)
 	if(attached_hypo != null)
 		if(user.put_in_hands(attached_hypo))
-			balloon_alert(user, "Removed [attached_hypo].")
+			balloon_alert(user, "removed [attached_hypo].")
 			UnregisterSignal(attached_hypo, COMSIG_QDELETING)
 			attached_hypo = null
 			update_appearance()
 			// Ditto here.
 		else
-			balloon_alert(user, "Couldn't pull the hypo!")
+			balloon_alert(user, "couldn't pull the hypo!")
 
 /obj/item/storage/hypospraykit/proc/on_attached_hypo_qdel()
 	if(attached_hypo)
@@ -238,6 +238,23 @@
 	new /obj/item/reagent_containers/cup/vial/large/advcrit(src)
 	new /obj/item/reagent_containers/cup/vial/large/advomni(src)
 	new /obj/item/reagent_containers/cup/vial/large/numbing(src)
+
+// Paramedic hypokit
+/obj/item/storage/hypospraykit/paramedic
+	name = "paramedic hypospray kit"
+	desc = "A hypospray kit containing an advanced hypospray and a starter set of vials."
+	icon_state = "buffs-mini"
+	current_case = "buffs"
+
+/obj/item/storage/hypospraykit/paramedic/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/mkii/piercing(src)
+	new /obj/item/reagent_containers/cup/vial/small/libital(src)
+	new /obj/item/reagent_containers/cup/vial/small/lenturi(src)
+	new /obj/item/reagent_containers/cup/vial/small/seiver(src)
+	new /obj/item/reagent_containers/cup/vial/small/convermol(src)
+	new /obj/item/reagent_containers/cup/vial/small/atropine(src)
 
 /// Boxes of empty hypovials, coming in every style.
 /obj/item/storage/box/vials

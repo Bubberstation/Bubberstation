@@ -1,4 +1,4 @@
-/obj/item/organ/external/wings/moth
+/obj/item/organ/wings/moth
 	name = "moth wings"
 	desc = "A pair of fuzzy moth wings."
 	flight_for_species = list(SPECIES_MOTH)
@@ -7,7 +7,7 @@
 	///Our associated terrorize spell, for antagonist nightmares
 	var/datum/action/cooldown/spell/moth_and_dash/our_dash
 
-/obj/item/organ/external/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 
 	if(ismoth(organ_owner))
@@ -17,7 +17,7 @@
 		our_dash = new(organ_owner)
 		our_dash.Grant(organ_owner)
 
-/obj/item/organ/external/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
+/obj/item/organ/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
 	. = ..()
 	QDEL_NULL(our_climb)
 	QDEL_NULL(our_dash)

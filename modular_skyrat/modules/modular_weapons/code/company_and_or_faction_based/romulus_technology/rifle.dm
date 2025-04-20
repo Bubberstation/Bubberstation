@@ -57,8 +57,8 @@
 		with this design being rapidly pushed out, being made from converted rifle making it easier to acquire, \
 		this rifle seems rather unassuming but it has been, itself, the new symbol of peace  \
 		Leaving NRI weapon in the past, as it now became the symbol of the oppressive era of Romulus\
-		To whom it may concerns, These weapon were mostly used by the new Romulus National Army,\
-		 it was a symbol of struggle and freedom \
+		To whom it may concerns, These weapon were mostly used by the new Romulus National Army, \
+		it was a symbol of struggle and freedom \
 		Weapons cannot bring people back, but it can save your life."
 
 	return .
@@ -137,7 +137,6 @@
 	inhand_icon_state = "infanterie_evil"
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
-	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
@@ -178,7 +177,7 @@
 		return
 	toggle_stock(user)
 
-/obj/item/gun/ballistic/automatic/rom_flech/proc/toggle_stock(mob/user, var/forced)
+/obj/item/gun/ballistic/automatic/rom_flech/proc/toggle_stock(mob/user, forced)
 	if(!user && forced)
 		folded = !folded
 		update_fold_stats()

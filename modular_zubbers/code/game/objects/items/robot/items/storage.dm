@@ -8,7 +8,7 @@
 /obj/item/borg/apparatus/research
 	name = "Research manipulation gripper"
 	desc = "A simple grasping tool suited to assist in a wide array of research applications."
-	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_sci"
 	storable = list(
 					/obj/item/slime_extract,
@@ -40,7 +40,7 @@
 /obj/item/borg/apparatus/circuit_sci
 	name = "Research circuit assembly gripper"
 	desc = "A complex grasping tool used for working with circuitry."
-	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_circ"
 	storable = list(
 					/obj/item/circuitboard,
@@ -138,15 +138,52 @@
 	)
 	. = ..()
 
-/obj/item/borg/apparatus/sheet_manipulator/Initialize()
+/obj/item/borg/apparatus/sheet_manipulator/Initialize(mapload)
 	. = ..()
 	storable += /obj/item/stack/rods
+
+	// Adds Crowbars to borg models which do not have them so they do not get stuck behind unpowered doors
+
+/obj/item/robot_model/clown/Initialize(mapload)
+	name = "Clown"
+	basic_modules += list(
+		/obj/item/crowbar/cyborg,
+	)
+	. = ..()
+
+/obj/item/robot_model/medical/Initialize(mapload)
+	name = "Medical"
+	basic_modules += list(
+		/obj/item/crowbar/cyborg,
+	)
+	. = ..()
+
+/obj/item/robot_model/peacekeeper/Initialize(mapload)
+	name = "Peacekeeper"
+	basic_modules += list(
+		/obj/item/crowbar/cyborg,
+	)
+	. = ..()
+
+/obj/item/robot_model/security/Initialize(mapload)
+	name = "Security"
+	basic_modules += list(
+		/obj/item/crowbar/cyborg,
+	)
+	. = ..()
+
+/obj/item/robot_model/service/Initialize(mapload)
+	name = "Service"
+	basic_modules += list(
+		/obj/item/crowbar/cyborg,
+	)
+	. = ..()
 
 //Engineering cyborg apparatus
 /obj/item/borg/apparatus/engineering
 	name = "Engineering manipulation gripper"
 	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks, conveyer belts and more."
-	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper"
 	storable = list(
 					/obj/item/vending_refill,
@@ -156,6 +193,7 @@
 					/obj/item/conveyor_switch_construct,
 					/obj/item/wallframe,
 					/obj/item/tank,
+					/obj/item/stock_parts,
 					)
 
 /obj/item/borg/apparatus/mining/examine()

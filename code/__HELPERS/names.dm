@@ -30,6 +30,10 @@
  */
 /proc/generate_random_name_species_based(gender, unique, datum/species/species_type, include_all = FALSE)
 	ASSERT(ispath(species_type, /datum/species))
+	// BUBBER EDIT ADDITION BEGIN - Ashwalkers
+	if(istype(species_type, /datum/species/lizard))
+		return generate_ashwalker_name()
+	// BUBBER EDIT ADDITION END - Ashwalkers
 	var/datum/language_holder/holder = GLOB.prototype_language_holders[species_type::species_language_holder]
 
 	var/list/languages_to_pick_from = list()
@@ -374,3 +378,22 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 			return "a rolling pin"
 		else
 			return "something... but the gods didn't set this up right (Please report this bug)"
+
+///Find the first name of a mob from a passed string with regex
+/proc/first_name(given_name)
+	var/static/regex/firstname = new("^\[^\\s-\]+") //First word before whitespace or "-"
+	firstname.Find(given_name)
+	return firstname.match
+
+/// Find the last name of a mob from a passed string with regex
+/proc/last_name(given_name)
+	var/static/regex/lasttname = new("\[^\\s-\]+$") //First word before whitespace or "-"
+	lasttname.Find(given_name)
+	return lasttname.match
+
+/// Find whitespace or dashes in the passed string with regex and returns TRUE if found
+/proc/is_mononym(given_name)
+	var/static/regex/breaks = regex(@"\s")
+	if(breaks.Find(given_name))
+		return FALSE
+	return TRUE

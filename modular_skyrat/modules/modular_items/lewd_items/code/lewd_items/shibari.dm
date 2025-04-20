@@ -318,15 +318,15 @@
 		if(ROPE_TIGHTNESS_HIGH)
 			tightness = ROPE_TIGHTNESS_LOW
 			conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 25)
-			balloon_alert(user, span_notice("You slightly tightened the ropes"))
+			balloon_alert(user, "you slightly tightened the ropes")
 		if(ROPE_TIGHTNESS_LOW)
 			tightness = ROPE_TIGHTNESS_MED
 			conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 50)
-			balloon_alert(user, span_notice("You moderately tightened the ropes"))
+			balloon_alert(user, "you moderately tightened the ropes")
 		if(ROPE_TIGHTNESS_MED)
 			tightness = ROPE_TIGHTNESS_HIGH
 			conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 75)
-			balloon_alert(user, span_notice("You strongly tightened the ropes"))
+			balloon_alert(user, "you strongly tightened the ropes")
 
 #undef ROPE_TIGHTNESS_LOW
 #undef ROPE_TIGHTNESS_MED

@@ -71,3 +71,43 @@
 /datum/sprite_accessory/horns/bubber/big/antlers/short	//end of sprites by Gavla
 	name = "Short Antlers"
 	icon_state = "antlers_short"
+
+/datum/sprite_accessory/horns/bubber/messenger
+	name = "Winged Messenger"
+	icon_state = "messenger" // Start of by @Sweettoothart
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/antennae/bent
+	name = "Bent Antennae"
+	icon_state = "antennae_bent"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/antennae/wisteria
+	name = "Wisteria Antennae"
+	icon_state = "antennae_wisteria"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/big/antenna_slanted
+	name = "Slanted Antenna"
+	icon_state = "antenna_slanted" // End of by @Sweettoothart
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/horns/bubber/newsimple //Sprites by thgvr
+	name = "Simple (New)"
+	icon_state = "newsimple"
+
+/datum/sprite_accessory/horns/bubber/newbroken
+	name = "Broken (New)"
+	icon_state = "newbroken"
+
+/datum/sprite_accessory/horns/bubber/newram
+	name = "Ram (New)"
+	icon_state = "newram"
+
+/datum/sprite_accessory/horns/bubber/lightning
+	name = "Lightning"
+	icon_state = "lightning"
+
+/datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
+	name = "Brimstone"
+	icon_state = "brimstone"

@@ -1,7 +1,7 @@
 /datum/reagent/consumable/garlic/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
 	if(IS_BLOODSUCKER(affected_mob))
-		affected_mob.balloon_alert(affected_mob, "The garlic you ingested suppresses your healing!")
+		affected_mob.balloon_alert(affected_mob, "the garlic you ingested suppresses your healing!")
 
 
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)

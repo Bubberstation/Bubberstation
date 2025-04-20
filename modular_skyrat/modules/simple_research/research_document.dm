@@ -11,7 +11,7 @@
 /obj/item/research_paper
 	name = "research paper"
 	desc = "Some people want to return to simpler technology, and some want to only begin researching those simple technologies."
-	icon = 'modular_skyrat/modules/simple_research/researching.dmi'
+	icon = 'modular_skyrat/modules/simple_research/icons/researching.dmi'
 	icon_state = "scroll"
 	///the list of discovered items
 	var/list/discovered_items = list()
@@ -39,9 +39,9 @@
 			GLOB.simple_research += list("[shape_pattern]" = datum_path)
 
 	radial_icons_cache = list(
-		"pyramid" = image(icon = 'modular_skyrat/modules/simple_research/researching.dmi', icon_state = "pyramid"),
-		"cube" = image(icon = 'modular_skyrat/modules/simple_research/researching.dmi', icon_state = "cube"),
-		"sphere" = image(icon = 'modular_skyrat/modules/simple_research/researching.dmi', icon_state = "sphere"),
+		"pyramid" = image(icon = 'modular_skyrat/modules/simple_research/icons/researching.dmi', icon_state = "pyramid"),
+		"cube" = image(icon = 'modular_skyrat/modules/simple_research/icons/researching.dmi', icon_state = "cube"),
+		"sphere" = image(icon = 'modular_skyrat/modules/simple_research/icons/researching.dmi', icon_state = "sphere"),
 	)
 
 /obj/item/research_paper/attack_self(mob/user, modifiers)
@@ -105,7 +105,7 @@
 /obj/item/research_scrap
 	name = "research scrap"
 	desc = "Small sketches of an item are drawn on the scrap-- if you use the materials, you might be able to craft the item on the scrap!"
-	icon = 'modular_skyrat/modules/simple_research/researching.dmi'
+	icon = 'modular_skyrat/modules/simple_research/icons/researching.dmi'
 	icon_state = "scrap"
 	///what will be spawned
 	var/obj/spawning_item

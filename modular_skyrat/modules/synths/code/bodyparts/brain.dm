@@ -1,4 +1,4 @@
-/obj/item/organ/internal/brain/synth
+/obj/item/organ/brain/synth
 	name = "compact positronic brain"
 	slot = ORGAN_SLOT_BRAIN
 	zone = BODY_ZONE_CHEST
@@ -11,7 +11,7 @@
 	var/last_message_time = 0
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 
-/obj/item/organ/internal/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
+/obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
 
 	if(brain_owner.stat != DEAD || !ishuman(brain_owner))
@@ -21,7 +21,7 @@
 	if(HAS_TRAIT(user_human, TRAIT_REVIVES_BY_HEALING) && user_human.health > SYNTH_BRAIN_WAKE_THRESHOLD)
 		user_human.revive(FALSE)
 
-/obj/item/organ/internal/brain/synth/emp_act(severity) // EMP act against the posi, keep the cap far below the organ health
+/obj/item/organ/brain/synth/emp_act(severity) // EMP act against the posi, keep the cap far below the organ health
 	. = ..()
 
 	if(!owner || . & EMP_PROTECT_SELF)
@@ -38,7 +38,7 @@
 			to_chat(owner, span_warning("Alert: Electromagnetic damage taken in central processing unit. Error Code: 401-YT"))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_EMP_BRAIN_DAMAGE_MAXIMUM, required_organ_flag = ORGAN_ROBOTIC)
 
-/obj/item/organ/internal/brain/synth/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE)
+/obj/item/organ/brain/synth/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE)
 	. = ..()
 
 	if(owner && damage > 0 && (world.time - last_message_time) > SYNTH_BRAIN_DAMAGE_MESSAGE_INTERVAL)
@@ -51,7 +51,7 @@
 		if(damage > BRAIN_DAMAGE_MILD)
 			to_chat(owner, span_warning("Alert: Minor corruption in central processing unit. Error Code: 001-HP"))
 
-/obj/item/organ/internal/brain/synth/circuit
+/obj/item/organ/brain/synth/circuit
 	name = "compact AI circuit"
 	desc = "A compact and extremely complex circuit, perfectly dimensioned to fit in the same slot as a synthetic-compatible positronic brain. It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
@@ -60,7 +60,7 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 
-/obj/item/organ/internal/brain/synth/mmi
+/obj/item/organ/brain/synth/mmi
 	name = "compact man-machine interface"
 	desc = "A compact man-machine interface, perfectly dimensioned to fit in the same slot as a synthetic-compatible positronic brain. Unfortunately, the brain seems to be permanently attached to the circuitry, and it seems relatively sensitive to it's environment. It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'

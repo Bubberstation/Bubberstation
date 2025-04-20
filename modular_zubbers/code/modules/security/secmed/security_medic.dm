@@ -84,7 +84,7 @@
 /obj/item/radio/headset/headset_medsec
 	name = "security medic's bowman headset"
 	desc = "Used to hear how many security officers need to be stitched back together."
-	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
+	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
 	icon_state = "headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
 
@@ -101,7 +101,7 @@
 
 /obj/item/clothing/glasses/hud/medsechud/sunglasses
 	name = "health scanner security HUD sunglasses"
-	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
+	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "hud_protected"
 	worn_icon_state = "security_hud_black"
@@ -117,8 +117,8 @@
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic(src)
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue(src)
+	new /obj/item/clothing/suit/hazardvest/security_medic(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
 	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)
@@ -144,9 +144,9 @@
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()
-    . = ..()
-    var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
-    for(var/datum/job/job_type in sec_exp_list)
-        if(istype(job_type, /datum/job/security_medic))
-            LAZYREMOVE(sec_exp_list, job_type)
-            break
+	. = ..()
+	var/list/sec_exp_list = experience_jobs_map[EXP_TYPE_SECURITY]
+	for(var/datum/job/job_type in sec_exp_list)
+		if(istype(job_type, /datum/job/security_medic))
+			LAZYREMOVE(sec_exp_list, job_type)
+			break
