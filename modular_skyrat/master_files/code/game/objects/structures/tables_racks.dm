@@ -3,7 +3,3 @@
 	if(!in_range(src, user))
 		return
 	return attack_hand(user, modifiers)
-
-/obj/structure/table/reinforced/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/liquids_height, 20)

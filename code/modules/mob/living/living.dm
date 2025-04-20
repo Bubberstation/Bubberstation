@@ -70,11 +70,6 @@
 	if(istype(potential_spine))
 		damage_softening_multiplier *= potential_spine.athletics_boost_multiplier
 
-	//SKYRAT EDIT ADDITION START - Landing in liquids
-	if(impacted_turf.liquids && impacted_turf.liquids.liquid_state >= LIQUID_STATE_WAIST)
-		Knockdown(2 SECONDS)
-		return
-	//SKYRAT EDIT ADDITION END
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
 	if(levels <= 1 && can_help_themselves)

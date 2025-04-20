@@ -2,13 +2,6 @@
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
-	//SKYRAT EDIT ADDITION
-	if(isopenturf(loc))
-		var/turf/open/my_our_turf = loc
-		if(my_our_turf.pollution)
-			my_our_turf.pollution.touch_act(src)
-	//SKYRAT EDIT END
-
 	if(damageoverlaytemp)
 		damageoverlaytemp = 0
 		update_damage_hud()
@@ -110,35 +103,7 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
-				//SKYRAT EDIT ADDITION
-				//Underwater breathing
-				var/turf/our_turf = loc
-				if(our_turf.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((body_position == LYING_DOWN && our_turf.liquids.liquid_state >= LIQUID_STATE_WAIST) || (body_position == STANDING_UP && our_turf.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
-					//Officially trying to breathe underwater
-					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
-						failed_last_breath = FALSE
-						clear_alert("not_enough_oxy")
-						return FALSE
-					breath = null // uh oh where'd the air go
-					check_breath(breath)
-					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && stat == CONSCIOUS)
-						to_chat(src, "<span class='userdanger'>You hold in your breath!</span>")
-					else
-						//Try and drink water
-						var/datum/reagents/tempr = our_turf.liquids.take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
-						tempr.trans_to(src, tempr.total_volume, methods = INGEST)
-						qdel(tempr)
-						visible_message("<span class='warning'>[src] chokes on [our_turf.liquids.reagents_to_text()]!</span>", \
-									"<span class='userdanger'>You're choking on [our_turf.liquids.reagents_to_text()]!</span>")
-					return FALSE
-				if(isopenturf(our_turf))
-					var/turf/open/open_turf = our_turf
-					if(open_turf.pollution)
-						if(next_smell <= world.time)
-							next_smell = world.time + SMELL_COOLDOWN
-							open_turf.pollution.smell_act(src)
-						open_turf.pollution.breathe_act(src)
-				//SKYRAT EDIT END
+
 				var/breath_moles = 0
 				if(environment)
 					breath_moles = environment.total_moles()*BREATH_PERCENTAGE

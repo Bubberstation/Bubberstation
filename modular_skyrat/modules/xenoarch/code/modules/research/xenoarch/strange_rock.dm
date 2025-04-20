@@ -198,7 +198,7 @@
 //turfs
 /turf/closed/mineral/strange_rock
 	mineralAmt = 1
-	icon = MAP_SWITCH('modular_skyrat/modules/liquids/icons/turf/smoothrocks.dmi', 'modular_skyrat/modules/xenoarch/icons/mining.dmi')
+	icon = 'modular_skyrat/modules/xenoarch/icons/mining.dmi'
 	scan_state = "rock_Strange"
 	mineralType = /obj/item/xenoarch/strange_rock
 

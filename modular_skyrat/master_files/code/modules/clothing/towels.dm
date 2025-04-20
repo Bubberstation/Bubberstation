@@ -61,7 +61,6 @@
 	. = ..()
 
 	create_reagents(max_reagent_volume)
-	AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/towel, attack_on_liquids_turf))
 	AddComponent(/datum/component/surgery_initiator) // Since you can do it with bedsheets, why not with towels too?
 
 	register_context()
@@ -295,8 +294,6 @@
 
 		transfer_towel_reagents_to(temp_holder, transfer_amount, user, loss_factor = TOWEL_WRING_LOSS_FACTOR, make_used = TRUE)
 
-		current_turf.add_liquid_from_reagents(temp_holder)
-
 		qdel(temp_holder)
 
 		user.visible_message(span_warning("[user] wrings [src], making a mess on \the [current_turf]!"), span_warning("You wring [src], making a mess on \the [current_turf]!"))
@@ -511,14 +508,11 @@
 		to_chat(user, span_warning("Your [src] can't absorb any more liquid!"))
 		return TRUE
 
-	var/datum/reagents/temp_holder = liquids.take_reagents_flat(free_space)
-	temp_holder.trans_to(reagents, temp_holder.total_volume)
 	set_wet(reagents.total_volume)
 	make_used(user, silent = TRUE)
 
 	to_chat(user, span_notice("You soak \the [src] with some liquids."))
 
-	qdel(temp_holder)
 	user.changeNext_move(CLICK_CD_MELEE)
 	return TRUE
 

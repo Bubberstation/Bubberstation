@@ -233,23 +233,13 @@
 			log_combat(thrown_by, M, "splashed", R)
 		reagents.expose(target, TOUCH, splash_multiplier)
 		reagents.expose(target_turf, TOUCH, (1 - splash_multiplier)) // 1 - splash_multiplier because it's what didn't hit the target
-		target_turf.add_liquid_from_reagents(reagents, reagent_multiplier = (1 - splash_multiplier)) // SKYRAT EDIT ADDITION - liquid spills (molotov buff) (huge)
 
 	else if(bartender_check(target) && thrown)
 		visible_message(span_notice("[src] lands onto \the [target] without spilling a single drop."))
 		return
 
 	else
-		//SKYRAT EDIT CHANGE START - liquid spills on non-mobs
-		if(target.can_liquid_spill_on_hit())
-			target.add_liquid_from_reagents(reagents, thrown_from = src, thrown_to = target)
-			if(reagents.reagent_list.len && thrown_by)
-				log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
-				log_game("[key_name(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
-				message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
-		else
-			reagents.expose(target, TOUCH)
-		//SKYRAT EDIT END
+
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
 		if(QDELETED(src))
 			return

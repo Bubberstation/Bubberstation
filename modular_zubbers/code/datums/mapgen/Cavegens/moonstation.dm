@@ -5,7 +5,6 @@
 	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar = 1)
 
 	weighted_flora_spawn_list = list(
-		/obj/structure/flora/scrap = 10,
 		/obj/structure/flora/ash/cacti = 20,
 		/obj/structure/flora/bush/ferny = 5,
 		/obj/structure/flora/bush/grassy/style_random = 1,

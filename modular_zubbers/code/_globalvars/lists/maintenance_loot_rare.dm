@@ -68,10 +68,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 	/obj/item/clothing/mask/gas/sechailer = 10,
 	/obj/item/clothing/suit/hooded/bloated_human = 5,
 	list(
-		/obj/item/construction/plumbing = 1,
-		/obj/item/construction/plumbing/engineering = 1,
-		/obj/item/construction/plumbing/mining = 1,
-		/obj/item/construction/plumbing/service = 1,
 		/obj/item/construction/rcd = 1,
 		/obj/item/construction/rld = 10,
 		/obj/item/construction/rtd = 10,

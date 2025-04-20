@@ -79,11 +79,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
 	var/old_dynamic_lumcount = dynamic_lumcount
-	//SKYRAT EDIT CHANGE
-	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
-	if(lgroup)
-		lgroup.remove_from_group(src)
-	//SKYRAT EDIT END
 	var/old_rcd_memory = rcd_memory
 	var/old_explosion_throw_details = explosion_throw_details
 	var/old_opacity = opacity
@@ -196,30 +191,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
 			space_tile.enable_starlight()
 
-	//SKYRAT EDIT ADDITION
-	if(old_liquids)
-		if(!isnull(new_turf.liquids)) //isnull is faster
-			var/liquid_cache = new_turf.liquids //Need to cache and re-set some vars due to the cleaning on Destroy(), and turf references
-			if(old_liquids.immutable)
-				old_liquids.remove_turf(src)
-			else
-				qdel(old_liquids, TRUE)
-			new_turf.liquids = liquid_cache
-			new_turf.liquids.my_turf = new_turf
-		else
-			if((flags & CHANGETURF_INHERIT_AIR) && !isspaceturf(new_turf))
-				new_turf.liquids = old_liquids
-				old_liquids.my_turf = new_turf
-				if(old_liquids.immutable)
-					new_turf.convert_immutable_liquids()
-				else
-					new_turf.reasses_liquids()
-			else
-				if(old_liquids.immutable)
-					old_liquids.remove_turf(src)
-				else
-					qdel(old_liquids, TRUE)
-	//SKYRAT EDIT END
 
 	if(old_opacity != opacity && SSticker)
 		GLOB.cameranet.bareMajorChunkChange(src)
@@ -246,17 +217,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/datum/gas_mixture/stashed_air = new()
 		stashed_air.copy_from(air)
 		var/stashed_state = excited
-		var/datum/pollution/stashed_pollution = pollution //SKYRAT EDIT ADDITION
 		var/datum/excited_group/stashed_group = excited_group
 		. = ..() //If path == type this will return us, don't bank on making a new type
 		if (!.) // changeturf failed or didn't do anything
 			return
 		var/turf/open/new_turf = .
-		//SKYRAT EDIT ADDITION
-		if(stashed_pollution)
-			new_turf.pollution = stashed_pollution
-			stashed_pollution.handle_overlay()
-		//SKYRAT EDIT END
 		new_turf.air.copy_from(stashed_air)
 		new_turf.excited = stashed_state
 		new_turf.excited_group = stashed_group
@@ -268,10 +233,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			if(stashed_group.should_display || SSair.display_all_groups)
 				stashed_group.display_turf(new_turf)
 	else
-		//SKYRAT EDIT ADDITION
-		if(pollution)
-			qdel(pollution)
-		//SKYRAT EDIT END
+
 		if(excited || excited_group)
 			SSair.remove_from_active(src) //Clean up wall excitement, and refresh excited groups
 		if(ispath(path, /turf/closed) || ispath(path, /turf/cordon))

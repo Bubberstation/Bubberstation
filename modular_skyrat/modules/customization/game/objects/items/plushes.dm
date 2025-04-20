@@ -396,13 +396,6 @@
 
 /obj/effect/abstract/liquid_turf/pwr_gamr/Initialize(mapload)
 	. = ..()
-	reagent_list = starting_mixture
-	total_reagents = 0
-	for(var/key in reagent_list)
-		total_reagents += reagent_list[key]
-	temp = starting_temp
-	calculate_height()
-	set_reagent_color_for_liquid()
 
 /obj/item/toy/plush/skyrat/rubi
 	name = "huggable bee plushie"

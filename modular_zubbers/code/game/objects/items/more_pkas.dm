@@ -228,7 +228,6 @@
 							/area/lavaland/surface/outdoors/unexplored/danger,
 							/area/lavaland/surface/outdoors/unexplored,
 							/area/lavaland/surface/outdoors/explored,
-							/area/ocean/generated,
 							/area/ruin/
 						)
 

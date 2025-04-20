@@ -361,8 +361,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	returnable_list += typesof(/obj/effect/abstract/liquid_turf)
 	//Not designed to be spawned individually.
 	returnable_list += typesof(/obj/structure/mold)
-	//Unused - not supposed to be spawned without SSliquids
-	returnable_list += typesof(/turf/open/openspace/ocean)
 	//Baseturf editors can only go up to ten, stop this.
 	returnable_list += typesof(/obj/effect/baseturf_helper)
 	// It's the abstract base type, it shouldn't be spawned.

@@ -11,24 +11,6 @@
 	canRturf = TRUE
 	construction_upgrades = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
 
-// Check for drains - we only want one per tile
-/obj/item/construction/plumbing/canPlace(turf/destination)
-	if(ispath(blueprint, /obj/structure/drain))
-		for(var/obj/structure/drain/other_drain in destination.contents)
-			if(istype(other_drain))
-				return FALSE
-	return ..()
-
-// Drain deconstruction
-/obj/item/construction/plumbing/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(!istype(interacting_with, /obj/structure/drain))
-		return ..()
-	var/obj/structure/drain/drain_target = interacting_with
-	if(do_after(user, 2 SECONDS, target = interacting_with))
-		drain_target.deconstruct() //Let's not substract matter
-		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
 
 /obj/item/construction/plumbing/mining
 	name = "mining plumbing constructor"
@@ -60,11 +42,6 @@
 			/obj/machinery/plumbing/acclimator = 10,
 			/obj/machinery/plumbing/bottler = 50,
 			/obj/machinery/iv_drip/plumbing = 20
-		),
-
-		//category 4 liquids
-		"Liquids" = list(
-			/obj/structure/drain = 5,
 		),
 	)
 

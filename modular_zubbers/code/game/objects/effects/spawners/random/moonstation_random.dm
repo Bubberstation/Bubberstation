@@ -139,7 +139,6 @@
 /obj/effect/spawner/random/burgerstation/liquid
 	icon_state = "random_liquid"
 	loot = list(
-		/obj/structure/liquid_pump = 100,
 		/obj/structure/reagent_dispensers/beerkeg = 10,
 		/obj/structure/reagent_dispensers/cooking_oil = 5,
 		/obj/structure/reagent_dispensers/foamtank = 50,
@@ -256,7 +255,6 @@
 		/obj/machinery/fax = 1,
 		/obj/machinery/microwave = 10,
 		/obj/machinery/plantgenes = 5,
-		/obj/machinery/pollution_scrubber = 10,
 		/obj/machinery/reagentgrinder = 20,
 		/obj/machinery/recharger = 5,
 		/obj/machinery/smartfridge/disks = 10,

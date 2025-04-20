@@ -14,21 +14,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design/plumbing_eng
-	name = "Engineering Plumbing Constructor"
-	desc = "A type of plumbing constructor designed to manipulate fluid."
-	id = "plumbing_eng"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/construction/plumbing/engineering
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING,
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/smartdartgun
 	name = "Medical SmartDart Gun"
