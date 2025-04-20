@@ -20,7 +20,7 @@
 	name = "cum"
 	desc = "Cum on? Cum in? Try filling a cup?" // 💀 - still cursed but actually descriptive
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
-	icon_state = "eggplant" // 🍆
+	icon_state = "eggplant"
 	inhand_icon_state = "nothing"
 
 // Jerk off into bottles and onto people.
