@@ -214,7 +214,7 @@
 
 	if(!QDELING(owner) && !owner.has_status_effect(type))
 		owner.adjust_jitter_up_to(10 SECONDS, 1 MINUTES)
-		owner.remove_movespeed_modifier(tase_slowdown)
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/being_tased_machine)
 		owner.clear_alert(type)
 
 	taser = null
