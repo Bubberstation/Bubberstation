@@ -1042,6 +1042,7 @@
 "dK" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/firealarm/directional/west,
+/obj/machinery/fishing_portal_generator/emagged,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "dL" = (
@@ -1778,6 +1779,8 @@
 /obj/item/ammo_box/a357/peacemaker,
 /obj/item/ammo_box/a357/phasic,
 /obj/item/ammo_box/a357,
+/obj/item/mod/module/shooting_assistant,
+/obj/item/mod/module/scorpion_hook,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "gp" = (
@@ -2112,6 +2115,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
 "hx" = (
@@ -2206,6 +2210,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/camera/directional/south,
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/power1)
 "hJ" = (
@@ -2349,6 +2354,8 @@
 /obj/structure/rack,
 /obj/item/storage/hypospraykit/cmo/combat,
 /obj/effect/decal/cleanable/cobweb,
+/obj/item/mod/module/dispenser/legion_core,
+/obj/item/autosurgeon/syndicate/emaggedsurgerytoolset/single_use,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "ij" = (
@@ -2373,8 +2380,7 @@
 /obj/item/reagent_containers/cup/beaker/bluespace,
 /obj/item/reagent_containers/cup/beaker/bluespace,
 /obj/item/mod/module/medbeam,
-/obj/item/reagent_containers/cup/beaker/bluespace,
-/obj/item/reagent_containers/cup/beaker/bluespace,
+/obj/item/autosurgeon/medical_hud,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "io" = (
@@ -3041,6 +3047,11 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"kR" = (
+/obj/effect/turf_decal/tile/blue/half,
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/port_tarkon/trauma)
 "kT" = (
 /obj/effect/spawner/structure/window/reinforced/no_firelock,
 /obj/machinery/door/poddoor/shutters{
@@ -3185,6 +3196,7 @@
 	dir = 8
 	},
 /obj/structure/alien/weeds/node,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "lz" = (
@@ -3196,6 +3208,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/garden)
 "lB" = (
@@ -3351,6 +3364,7 @@
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light/small/directional/west,
+/obj/item/storage/toolbox/fishing,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "mh" = (
@@ -3464,6 +3478,7 @@
 /obj/item/documents/nanotrasen,
 /obj/item/documents/syndicate,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/mod/module/megaphone,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "mF" = (
@@ -3539,6 +3554,7 @@
 	name = "Vault Report";
 	default_raw_text = "To whom it may concern: The vault has been sealed pending the end of the ongoing conflict. These supplies would piss off EITHER side if we get caught with them. Best to avoid getting all of us involved in a war that nobody wants to be a part of."
 	},
+/obj/structure/alien/egg/grown,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "mW" = (
@@ -3661,9 +3677,7 @@
 /obj/effect/turf_decal/tile/brown/anticorner{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/medkit/regular,
-/obj/item/storage/medkit/regular,
+/obj/machinery/rnd/production/protolathe/tarkon,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "nu" = (
@@ -4117,6 +4131,7 @@
 /obj/item/megaphone/command,
 /obj/item/storage/toolbox/guncase/m44a_shotgun,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/mod/module/power_kick,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "pl" = (
@@ -4428,6 +4443,11 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"qj" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "qk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4914,7 +4934,8 @@
 /area/ruin/space/has_grav/port_tarkon/park)
 "sf" = (
 /obj/structure/bodycontainer/crematorium/creamatorium{
-	dir = 4
+	dir = 4;
+	id = "crematoriumTarkon"
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
@@ -5042,6 +5063,11 @@
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
+"sE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/developement)
 "sF" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5222,6 +5248,7 @@
 "tm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/light/directional/east,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "tn" = (
@@ -5952,6 +5979,10 @@
 /obj/structure/wave_defence/tarkon/med,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
+"vY" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "vZ" = (
 /obj/item/bodypart/chest/larva,
 /turf/open/floor/iron/white,
@@ -6878,6 +6909,9 @@
 /obj/item/gun/ballistic/rifle/boltaction/surplus,
 /obj/item/gun/ballistic/rifle/boltaction/surplus,
 /obj/machinery/light/small/directional/east,
+/obj/item/weaponcrafting/gunkit/sks,
+/obj/item/weaponcrafting/gunkit/sks,
+/obj/item/weaponcrafting/gunkit/sks,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav)
 "zt" = (
@@ -7258,6 +7292,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/directional/west,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/observ)
 "AA" = (
@@ -7777,6 +7812,8 @@
 /obj/structure/safe/floor,
 /obj/item/book/granter/crafting_recipe/donk_secret_recipe,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/item/book/granter/crafting_recipe/death_sandwich,
+/obj/item/book/granter/crafting_recipe/combat_baking,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
 "Cs" = (
@@ -8283,6 +8320,13 @@
 /obj/effect/spawner/random/food_or_drink/seed_rare,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav)
+"Ep" = (
+/obj/effect/turf_decal/tile/purple/half{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/observ)
 "Er" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
@@ -8888,6 +8932,10 @@
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "GG" = (
 /obj/machinery/light/directional/north,
+/obj/machinery/button/crematorium{
+	pixel_y = 24;
+	id = "crematoriumTarkon"
+	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "GH" = (
@@ -9207,6 +9255,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
+"HR" = (
+/obj/effect/turf_decal/tile/yellow/anticorner{
+	dir = 4
+	},
+/obj/machinery/rnd/production/protolathe/tarkon,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "HS" = (
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
@@ -9505,6 +9560,13 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"Je" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/port_tarkon/trauma)
 "Jg" = (
 /obj/machinery/camera/emp_proof/directional/north,
 /obj/structure/table/reinforced,
@@ -10233,6 +10295,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"LO" = (
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 1
+	},
+/obj/machinery/rnd/production/protolathe/tarkon,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/port_tarkon/trauma)
 "LQ" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -10641,6 +10710,7 @@
 "Nr" = (
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/machinery/airalarm/directional/east,
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "Ns" = (
@@ -10833,6 +10903,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/power1)
+"Oe" = (
+/obj/effect/turf_decal/tile/yellow/anticorner,
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "Og" = (
 /obj/effect/turf_decal/tile/purple/half,
 /obj/structure/alien/weeds/node,
@@ -11170,7 +11245,6 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
 	},
-/obj/structure/sink/directional/east,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "Pt" = (
@@ -11542,6 +11616,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/developement)
+"QJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "QM" = (
@@ -12196,6 +12277,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
 "SW" = (
@@ -12410,8 +12492,9 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/exotic/languagebook,
 /obj/effect/spawner/random/exotic/languagebook,
-/obj/item/language_manual/dronespeak_manual,
 /obj/effect/decal/cleanable/cobweb,
+/obj/item/book/granter/sign_language,
+/obj/item/book_of_babel,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "TF" = (
@@ -12739,6 +12822,7 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "UD" = (
@@ -12936,6 +13020,7 @@
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Vn" = (
@@ -13515,8 +13600,9 @@
 	},
 /obj/structure/safe/floor,
 /obj/item/gun/energy/recharge/kinetic_accelerator,
-/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun,
-/obj/item/gun/energy/recharge/kinetic_accelerator/m79,
+/obj/item/storage/bag/ore/holding,
+/obj/item/mod/module/jetpack,
+/obj/item/resonator/upgraded,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "Xs" = (
@@ -13713,6 +13799,8 @@
 /obj/item/disk/design_disk/bepis,
 /obj/item/disk/design_disk/bepis,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/mod/module/anomaly_locked/teleporter/prebuilt/locked,
+/obj/item/mod/module/flamethrower,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav)
 "Yc" = (
@@ -13961,6 +14049,7 @@
 /obj/item/stack/spacecash/c10000,
 /obj/item/stack/spacecash/c10000,
 /obj/structure/safe/floor,
+/obj/item/stack/spacecash/c10000,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
 "YR" = (
@@ -13988,6 +14077,13 @@
 /obj/machinery/computer/pandemic,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
+"YV" = (
+/obj/effect/turf_decal/tile/yellow/half{
+	dir = 1
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "YW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -14008,8 +14104,13 @@
 /obj/effect/turf_decal/tile/blue/anticorner{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
+"YZ" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "Za" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -14213,6 +14314,7 @@
 /area/ruin/space/has_grav/port_tarkon/viro)
 "ZR" = (
 /obj/effect/turf_decal/tile/blue/anticorner,
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "ZS" = (
@@ -14235,6 +14337,7 @@
 /obj/item/flatpacked_machine/ore_thumper,
 /obj/item/flatpacked_machine/ore_thumper,
 /obj/item/pipe_dispenser/bluespace,
+/obj/item/autosurgeon/toolset,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "ZW" = (
@@ -15681,7 +15784,7 @@ za
 za
 za
 za
-Ir
+za
 za
 ia
 ab
@@ -17237,7 +17340,7 @@ fw
 ay
 Rq
 rK
-LN
+QJ
 bM
 vP
 WG
@@ -17725,7 +17828,7 @@ bM
 bM
 Uu
 md
-YA
+sE
 bM
 FP
 nx
@@ -18000,7 +18103,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -18231,7 +18334,7 @@ tC
 Yf
 Kz
 Xx
-nW
+Ep
 Az
 nW
 uV
@@ -18989,7 +19092,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -19123,7 +19226,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -20034,7 +20137,7 @@ gI
 AX
 Mt
 Mt
-RR
+kR
 is
 Zl
 yy
@@ -20392,7 +20495,7 @@ gV
 gV
 ab
 is
-Zl
+LO
 Mt
 ne
 Mt
@@ -20514,7 +20617,7 @@ gV
 ia
 ab
 is
-Zl
+Je
 Mt
 gI
 gI
@@ -21412,7 +21515,7 @@ wn
 VZ
 FJ
 JT
-As
+YV
 sk
 FJ
 li
@@ -21656,9 +21759,9 @@ ZG
 Tt
 FJ
 JT
-Nb
+HR
 eu
-fh
+Oe
 JZ
 mA
 ci
@@ -21778,7 +21881,7 @@ Nu
 VZ
 FJ
 Lb
-cT
+qj
 vy
 cT
 Bq
@@ -22022,9 +22125,9 @@ As
 VZ
 FJ
 Lb
-li
+vY
 nq
-li
+vY
 Bq
 lI
 Ar
@@ -23004,7 +23107,7 @@ mb
 Lk
 jR
 Dq
-OP
+YZ
 lR
 HA
 gQ
@@ -25342,7 +25445,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -26466,7 +26569,7 @@ za
 za
 za
 za
-Ir
+za
 ab
 ia
 xu
@@ -26548,7 +26651,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -26621,7 +26724,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -26706,7 +26809,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za
@@ -27042,7 +27145,7 @@ za
 za
 za
 za
-zX
+za
 za
 za
 za
@@ -27581,7 +27684,7 @@ za
 za
 za
 za
-Ir
+za
 za
 za
 za

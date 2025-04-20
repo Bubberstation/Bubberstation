@@ -19,7 +19,7 @@
 	var/spawn_drone_on_tap = TRUE
 	var/icon_state_tapped = "emerg_engine_running"
 	var/mob/living/basic/node_drone/hackc/node = null //this path is a placeholder.
-	var/wave_timer = WAVE_DURATION_LARGE
+	var/wave_timer = WAVE_DURATION_TARKON
 	COOLDOWN_DECLARE(wave_cooldown)
 	COOLDOWN_DECLARE(manual_vent_cooldown)
 	var/reward_key // for allowing the door key to drop
@@ -106,9 +106,9 @@
 	AddComponent(\
 		/datum/component/spawner, \
 		spawn_types = defending_mobs, \
-		spawn_time = 15 SECONDS - difficulty_modifier, \
+		spawn_time = 10 SECONDS - difficulty_modifier, \
 		max_spawned = 10 + difficulty_modifier, \
-		max_spawn_per_attempt = 3 + difficulty_modifier + spawn_mod, \
+		max_spawn_per_attempt = 4 + difficulty_modifier + spawn_mod, \
 		spawn_text = "appears to assault", \
 		spawn_distance = 4 + spawn_mod, \
 		spawn_distance_exclude = 2, \
