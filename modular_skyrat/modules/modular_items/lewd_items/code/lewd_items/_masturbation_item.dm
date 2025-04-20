@@ -18,7 +18,7 @@
 
 /obj/item/hand_item/coom
 	name = "cum"
-	desc = "Cum on? Cum in? Try filling a cup?" // 💀 - still cursed but actually descriptive
+	desc = "Cum on? Cum in? Try filling a cup?"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "eggplant"
 	inhand_icon_state = "nothing"
