@@ -58,7 +58,14 @@
 					/obj/item/usb_cable,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/electronics,
-					/obj/item/assembly
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/infra,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/trapdoor,
+					/obj/item/assembly/voice,
+					/obj/item/assembly/wiremod,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
