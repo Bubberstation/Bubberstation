@@ -1,0 +1,220 @@
+2025-02-01:
+  ArrisFairburne:
+  - map: added maintenance tunnel and bridge areas to the ghost cafe
+  Erol509:
+  - qol: Vox and people with nitrogen breathing quirk, need less nitrogen to sustain
+      themselfs.
+  - balance: Changed nitrogen tank belt max capacity of 25l to 12l
+  - bugfix: Aheal/S.A.D interaction doesnt remove nitrogen lungs on quirk holders.
+      Both Aheal/Sad will return them, replacing the one inside you. This means, cybernetic
+      lungs will be removed.
+  StrangeWeirdKitten:
+  - rscadd: TTS compatability with vocal barks
+  pixelkitty286:
+  - rscadd: Big cat borgs and kitty borgs
+  - image: added kitty and cat borg images.
+  shayoki:
+  - map: In Box Station, a couple more light fixtures in the main halls were added.
+  - map: In Box Station, an APC in the hallway before the brig was added. It no longer
+      has infinite power.
+  - map: In Box Station, a maintenance entrance in the hallway before the brig was
+      added. This slightly squishes the detective's office.
+  shellspeed1:
+  - qol: Persistence has been fitted with two new exterior hatches to facilitate working
+      outside. Also botany has been enlarged to fit another row of trays if so desired.
+  - bugfix: Disposal bins in persistence medical and persistence science now work,
+      addressed a misplaced air alarm and an extra tiny fan capsule in persistence
+      bluespace mining.
+  - bugfix: Persistence recycler can now be escaped.
+  - bugfix: stopped on of the persistence turrets from getting dunked in lava every
+      shift.
+2025-02-02:
+  Rathen Ivanonv:
+  - rscadd: Added more supplies/gear to Gas Station Attendant Ghost Role
+  - rscadd: Added I.D/Bank Account to Gas Station Attendant Ghost Role
+  - rscadd: Added an additional spawn to Gas Station Attendant Ghost Role
+  - rscadd: Added a Regal Rat spawn to Lavaland/an additional one to Ice Moon
+  - rscadd: Many more beneficial changes to the Gas Station Attendant Ghost Role
+  - map: Overhauled Lavaland/Ice Moon Gas Station with three new areas
+  - balance: Removed Laser Musket from Gas Station Ghost Role, replaced with PKA Pistols
+  StrangeWeirdKitten:
+  - balance: Signifigantly changes flechett shotgun rounds. They are a close range
+      ammo with reliable wounding and damage against unarmored with very shitty armor
+      penitration. Damage drops off signifigantly with range.
+  - bugfix: Beehive and Antitide shotgun ammo now properly subtracts damage dropoff
+      instead of adding.
+2025-02-03:
+  Arturlang:
+  - balance: Eye blur from lasers is capped at maximum of 20 seconds.
+  MosleyTheMalO:
+  - config: Makes vore defines into configs
+  - bugfix: makes the down button available again
+  shellspeed1:
+  - rscdel: Removed unused map file.
+  xXPawnStarrXx:
+  - qol: made orefruits produce sheets as cores, instead of lame objects, letting
+      them be inserted into a silo.
+  - rscadd: Added two new pods; Xenoarch and triage
+  - bugfix: fixed the robotic repair kit in the large medical pod from being empty.
+2025-02-05:
+  xXPawnStarrXx:
+  - bugfix: fixed seed pathing so silver's weren't skipped with the rockfruit mutations.
+2025-02-06:
+  nevimer:
+  - bugfix: fixed shadekin digi legs
+  xXPawnStarrXx:
+  - rscadd: Added digilegs for shadekin.
+2025-02-07:
+  ABoxFaux:
+  - balance: Slimepeople with the nitrogen breather quirk now no longer take toxin
+      damage from breathing oxygen, instead taking an equal amount of brute damage.
+2025-02-09:
+  Odairu:
+  - image: filled in nullspace on shadekin tail BEHIND sprite
+2025-02-10:
+  Odairu:
+  - balance: cult no longer gibs mindshields
+  StrangeWeirdKitten:
+  - rscadd: Replaces The Clown with The House which sets weights to 1, but spawns
+      stuff at a slower pace, and allows the adminbus to come.
+  - bugfix: Voidwalker properly spawns on the ghostset now.
+2025-02-11:
+  ArrisFairburne, LT3:
+  - rscadd: Added a new app to clock in and out from any NT OS-compatible device (Plexagon
+      Punch Clock)
+  - qol: Your job items are now locked into a box instead of warped to cryo, when
+      clocking out
+  xPokee:
+  - map: modified the jukebox in BoxStation's permabrig to be accessless
+2025-02-12:
+  Sebastionate:
+  - map: Added THREE new Infinite Dorms!
+  - map: Added 'Cultist's Cavern' Infinite Dorm.
+  - map: Added 'Winter Woods' Infinite Dorm.
+  - map: Added 'Evacuated Station' Infinite Dorm.
+2025-02-13:
+  EliteRiceFarmer:
+  - bugfix: Plasteel barricade delay. Now it's close properly.
+  Vanilla1040:
+  - rscadd: Readds the Large Hypobox being Printable in the Medical Lathe
+  - rscadd: Adds Advanced Hypospray into imports
+  - map: Added new Hotel room
+  - bugfix: Fixed the other hotel rooms not showing up from a different PR
+2025-02-14:
+  nevimer:
+  - bugfix: crew monitor alarm logic is updated to work with planetary z's
+2025-02-15:
+  ABoxFaux:
+  - rscadd: Adds pet space snacks - treats available from cargo that makes your pet
+      immune to the void of space.
+  LT3:
+  - balance: Event diseases are no longer hidden from health analyzers during incubation
+      periods
+  - bugfix: Masks and head slot items actually provide protection from airborne disease
+      spread
+  - bugfix: People other than the original airborne hosts spread diseases via respiration
+  - balance: Reduced infection chance for contact/airborne diseases from current 95%+
+      on all diseases to values 15%-40% based on the transmissibility strength
+  - code_imp: Airborne disease spread is rolled per target, not source
+  - balance: Disease outbreak won't spawn during rounds with less than 3 medical staff
+  - balance: Disease outbreak begins with 2-3 original hosts but lower spread speed
+  - bugfix: Disease cure won't request both antihol and alcohol mixed together
+  Vanilla1040:
+  - rscadd: Adds the Borg mat to Synth's *Turf
+  YakumoChen:
+  - balance: Removed "sidearm beacons" from spawning SecOff and HoS inventories. Complimentary
+      glocks are still available in security officer lockers.
+  - balance: Gave the HoS's silver glock to the Warden. The Head of Security only
+      has three guns at roundstart now! How will he ever recover??
+2025-02-16:
+  JustMeTheIInd:
+  - map: changed the bedsheet bin in InfiDorm apartment map to a towel bin.
+  - map: added a bedsheet bin in InfiDorm apartment map bedroom.
+  MosleyTheMalO:
+  - bugfix: fixes the issue where characters would reset after a round or on switching
+      character slots
+  shayoki:
+  - rscadd: Allows hypospray kits to fit in the first responder surgical kit and orange
+      satchel medical kit.
+  - bugfix: Allows blood filters to fit in the medical technician bag.
+  yooriss (Code), ReturnToZender (port):
+  - qol: 'The telepathy genetics mutation has had significant usability improvements:
+      it is now point-targeting based, and right-clicking the power allows for quick
+      resending to the same target, a feature mirrored by the new *treply emote. Telepathy
+      now also shows runechat messages.'
+  - rscadd: The Telepathic quirk has been added, allowing characters to start with
+      an unremovable (or activated) telepathy mutation.
+  zeroisthebiggay:
+  - bugfix: changes The House's welcome text "The House now runs the show..." to "The
+      House always wins." because it simply makes More Sense
+2025-02-17:
+  Majkl-J:
+  - image: Digitigrade variation for Captain, Security department, and Engineering
+      department bunnysuits
+  - bugfix: Lizard gas digitigrade actually works now
+  ReturnToZender:
+  - qol: Adds most of the Security cosmetics to the loadout
+  - spellcheck: Removes some spaces and spellchecks some things in the multisec vendor
+  - rscadd: Adds a corrections tab to the multisec vendor so being a corrections officer
+      is not inherently illegal
+  - rscadd: Holobadges are accessories rather than neck items now
+  urfrenthespessmen:
+  - rscadd: Croptops in loadout
+2025-02-18:
+  aKromatopzia:
+  - rscadd: syndie and ninja smolraptors
+  pixelkitty286:
+  - rscadd: Syndicats, Super cats, Super cat ears, and Super Syndicat ears
+  - balance: Cat night vision
+  - image: Syndicat sprites, and Super cat ear icon
+  - code_imp: Added a shape shifting caster variable for keeping the caster's name
+2025-02-19:
+  TealSeer:
+  - bugfix: fixed the utility cyborg upgrades node missing stuff
+  sippykot:
+  - rscadd: Syringes have been fatfinger-proofed, letting you inject in 1u and 2u
+      increments
+2025-02-20:
+  JustMeTheIInd:
+  - map: Added "Corporate Office" Infidorm map
+  - map: Added "Recovery Wing" Infidorm map
+  - map: Added "Grotto" Infidorm map
+  - map: Added "Grotto (night)" Infidorm map
+  TealSeer:
+  - bugfix: the winter woods dorm no longer kills you immediately
+  - bugfix: fixed cryoing with a storage implant dumping the contents of said implant
+      onto the floor
+  pixelkitty286:
+  - balance: forbids cats having storage implants
+  - bugfix: Super cats being able to bring things in hand in vents
+2025-02-24:
+  Alecksohs:
+  - code_imp: Vendors are now aware of sprite refits and will inform you if any are
+      available.
+  Arturlang:
+  - bugfix: 'Fixed some bugs in the malf ai screen: one bluescreen, an extra
+
+      colon, modules view'
+  KazooBard:
+  - rscadd: Chisels can be crafted [1 wood, 1 iron, screwdriver]
+  ReturnToZender:
+  - rscadd: Nurse costume suit now in loadout and medical vendor
+  SpooksAnno:
+  - rscadd: The ability to grab parts and cells as a borg.
+2025-02-25:
+  ABoxFaux:
+  - code_imp: Teshari and Vox primalis can now use size collars in dorms/interlink
+      areas.
+  StrangeWeirdKitten:
+  - rscadd: Nameless Quirk
+  - rscadd: Seamless heels quirk
+  xPokee:
+  - rscadd: added the intern ghoul plushie to both in game and the loadouts
+2025-02-26:
+  StrangeWeirdKitten:
+  - rscadd: Hypnotic Quirk
+  TealSeer:
+  - bugfix: fixed the SAD deleting wounds
+  nikothedude:
+  - rscadd: Quirk; venemous bite. Allows you to bite people and inject them with a
+      venom, or medicine, of your choosing.

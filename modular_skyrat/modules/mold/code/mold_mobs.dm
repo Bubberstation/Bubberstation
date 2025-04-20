@@ -133,7 +133,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/diseased_rat
 
 	/// The disease given on melee attacks
-	var/datum/disease/given_disease = /datum/disease/advance/gastritium
+	var/datum/disease/given_disease = /datum/disease/gastritium
 
 /mob/living/basic/mold/diseased_rat/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
