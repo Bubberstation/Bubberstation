@@ -77,7 +77,6 @@
 /area/station/hallway/secondary/service)
 "abt" = (
 /obj/machinery/shower/directional/west,
-/obj/structure/drain,
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/iron/freezer,
 /area/station/commons/dorms/laundry)
@@ -1025,8 +1024,6 @@
 /area/station/maintenance/department/electrical)
 "apD" = (
 /obj/machinery/light/floor,
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/common/pool)
 "apF" = (
 /obj/effect/turf_decal/delivery,
@@ -8241,10 +8238,6 @@
 /area/station/medical/chemistry)
 "cyd" = (
 /obj/structure/table,
-/obj/machinery/pollution_scrubber{
-	pixel_x = 7;
-	pixel_y = -5
-	},
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "cyi" = (
@@ -11202,13 +11195,6 @@
 /obj/structure/cable/layer3,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai)
-"dqZ" = (
-/obj/structure/flora/ocean/longseaweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/medical/medbay/lobby)
 "dri" = (
 /obj/structure/table,
 /obj/item/assembly/timer,
@@ -11857,20 +11843,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/crematorium,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/service/chapel/office)
-"dAz" = (
-/obj/machinery/door/firedoor,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4;
-	id = "Barshutters";
-	name = "Bar Shutters"
-	},
-/obj/machinery/pollution_scrubber{
-	pixel_x = 7;
-	pixel_y = -5
-	},
-/turf/open/floor/iron/large,
-/area/station/service/bar)
 "dAD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/structure/closet_empty,
@@ -14914,7 +14886,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
 	},
-/obj/structure/drain,
 /obj/machinery/shower/directional/north,
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/checker,
@@ -16301,14 +16272,6 @@
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/vault,
 /area/station/ai_monitored/turret_protected/ai)
-"eJY" = (
-/obj/structure/flora/ocean/coral,
-/obj/structure/flora/ocean/glowweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/commons/dorms)
 "eKj" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/green/filled/warning{
@@ -17092,8 +17055,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "eWh" = (
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/common/pool)
 "eWi" = (
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -18127,7 +18088,6 @@
 /turf/open/floor/iron/smooth,
 /area/station/cargo/lobby)
 "fnt" = (
-/obj/structure/drain,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -19409,7 +19369,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 1
 	},
-/obj/structure/drain,
 /obj/machinery/shower/directional/north,
 /turf/open/floor/iron/checker,
 /area/station/engineering/main)
@@ -21717,8 +21676,6 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/station/hallway/primary/fore)
 "grt" = (
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/security/prison)
 "grA" = (
 /obj/structure/cable,
@@ -22089,8 +22046,6 @@
 /area/station/maintenance/department/science/xenobiology)
 "gwE" = (
 /obj/item/toy/beach_ball/branded,
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/common/pool)
 "gwF" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -22928,9 +22883,6 @@
 "gIT" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/barman_recipes,
-/obj/machinery/pollution_scrubber{
-	pixel_x = -15
-	},
 /turf/open/floor/carpet/purple,
 /area/station/common/night_club)
 "gIW" = (
@@ -28942,10 +28894,6 @@
 	id = "kitchen_counter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/machinery/pollution_scrubber{
-	pixel_x = -7;
-	pixel_y = 1
-	},
 /obj/structure/table,
 /turf/open/floor/iron/large,
 /area/station/service/kitchen)
@@ -29367,7 +29315,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/drain,
 /turf/open/floor/iron/large,
 /area/station/common/pool)
 "ixt" = (
@@ -29974,10 +29921,6 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
-"iGD" = (
-/obj/structure/liquid_pump,
-/turf/open/floor/iron/smooth,
-/area/station/maintenance/department/crew_quarters/bar)
 "iGH" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -31969,8 +31912,6 @@
 /area/station/medical/chemistry)
 "jji" = (
 /obj/structure/sign/poster/contraband/crocin_pool/directional/south,
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/common/pool)
 "jjw" = (
 /obj/structure/table/wood,
@@ -32722,10 +32663,6 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/construction)
 "jtG" = (
-/obj/structure/flora/ocean/glowweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
 /turf/open/misc/asteroid,
 /area/station/medical/medbay/lobby)
 "jtH" = (
@@ -35273,7 +35210,6 @@
 /area/station/common/night_club)
 "kdK" = (
 /obj/structure/railing,
-/obj/effect/spawner/liquids_spawner,
 /turf/open/floor/iron/stairs/old{
 	dir = 8
 	},
@@ -36885,7 +36821,6 @@
 /obj/machinery/shower{
 	pixel_y = 16
 	},
-/obj/structure/drain,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -37934,9 +37869,6 @@
 	},
 /area/station/cargo/office)
 "kMZ" = (
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
 "kNt" = (
@@ -38841,13 +38773,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/security/warden)
-"kZc" = (
-/obj/structure/flora/ocean/seaweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/commons/dorms)
 "kZe" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/bush/flowers_yw,
@@ -39098,9 +39023,6 @@
 /area/station/engineering/gravity_generator)
 "lcC" = (
 /obj/structure/flora/rock/pile,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
 "lcL" = (
@@ -40247,7 +40169,6 @@
 /obj/machinery/shower{
 	pixel_y = 16
 	},
-/obj/structure/drain,
 /obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/stripes/box,
 /obj/effect/turf_decal/siding/thinplating/dark/end,
@@ -40979,8 +40900,6 @@
 /area/station/science/lab)
 "lDu" = (
 /obj/item/toy/beach_ball/branded,
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/security/prison)
 "lDz" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -47508,7 +47427,6 @@
 /turf/closed/wall,
 /area/station/hallway/secondary/construction)
 "nqC" = (
-/obj/structure/drain,
 /obj/machinery/shower/directional/south,
 /obj/structure/curtain,
 /obj/machinery/door/window/brigdoor/left/directional/south{
@@ -49821,10 +49739,6 @@
 	id = "Barshutters";
 	name = "Bar Shutters"
 	},
-/obj/machinery/pollution_scrubber{
-	pixel_x = 7;
-	pixel_y = 4
-	},
 /turf/open/floor/iron/large,
 /area/station/service/bar)
 "nWY" = (
@@ -50000,14 +49914,6 @@
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/iron/smooth_large,
 /area/station/science/ordnance/testlab)
-"nZr" = (
-/obj/structure/flora/ocean/longseaweed,
-/obj/structure/flora/ocean/glowweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/commons/dorms)
 "nZF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -52364,8 +52270,6 @@
 	dir = 2;
 	network = list("ss13","prison")
 	},
-/obj/effect/spawner/liquids_spawner,
-/turf/open/floor/iron/pool,
 /area/station/security/prison)
 "oIv" = (
 /obj/structure/flora/grass/jungle,
@@ -58914,7 +58818,6 @@
 /obj/machinery/shower{
 	pixel_y = 16
 	},
-/obj/structure/drain,
 /obj/effect/turf_decal/stripes/box,
 /obj/effect/turf_decal/siding/thinplating/dark/end,
 /turf/open/floor/iron/checker,
@@ -62263,7 +62166,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
-/obj/structure/drain,
 /obj/machinery/shower/directional/north,
 /turf/open/floor/iron/checker,
 /area/station/engineering/power_room)
@@ -63402,7 +63304,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 4
 	},
-/obj/structure/drain,
 /obj/machinery/shower/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/checker,
@@ -63429,13 +63330,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central/fore)
-"rJK" = (
-/obj/structure/flora/ocean/longseaweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/commons/dorms)
 "rJY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -65091,10 +64985,6 @@
 /obj/structure/table/wood,
 /obj/item/food/chips,
 /obj/item/reagent_containers/cup/soda_cans/cola,
-/obj/machinery/pollution_scrubber{
-	pixel_x = 6;
-	pixel_y = 1
-	},
 /turf/open/floor/carpet/green,
 /area/station/commons/dorms)
 "sjE" = (
@@ -68733,7 +68623,6 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/engine/atmos)
 "tga" = (
-/obj/structure/drain,
 /obj/item/soap/deluxe,
 /obj/item/bikehorn/rubberducky,
 /obj/structure/curtain,
@@ -69857,9 +69746,6 @@
 /area/station/commons/fitness/recreation)
 "tvN" = (
 /obj/structure/flora/rock,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
 "tvP" = (
@@ -69915,9 +69801,6 @@
 "twd" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/donut_box,
-/obj/machinery/pollution_scrubber{
-	pixel_x = -15
-	},
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "twe" = (
@@ -70133,7 +70016,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 1
 	},
-/obj/structure/drain,
 /obj/machinery/shower/directional/north,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/checker,
@@ -71228,9 +71110,7 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/medical/medbay/central)
 "tOr" = (
-/obj/effect/spawner/liquids_spawner,
 /obj/machinery/light/cold/directional/south,
-/turf/open/floor/iron/pool,
 /area/station/security/prison)
 "tOs" = (
 /obj/structure/sign/warning/pods/directional/south,
@@ -75157,7 +75037,6 @@
 	normaldoorcontrol = 1;
 	specialfunctions = 4
 	},
-/obj/structure/drain,
 /obj/effect/spawner/random/trash/soap,
 /obj/machinery/shower/directional/east,
 /obj/machinery/light/small/directional/north,
@@ -76220,7 +76099,6 @@
 	},
 /area/station/science/lab)
 "viA" = (
-/obj/effect/spawner/liquids_spawner,
 /obj/structure/railing,
 /turf/open/floor/iron/stairs{
 	dir = 4
@@ -77776,7 +77654,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/drain,
 /turf/open/floor/iron/large,
 /area/station/common/pool)
 "vFl" = (
@@ -81351,7 +81228,6 @@
 /area/station/security/brig)
 "wBY" = (
 /obj/machinery/shower/directional/east,
-/obj/structure/drain,
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/white/small,
@@ -81806,7 +81682,6 @@
 /area/station/maintenance/department/engine)
 "wHR" = (
 /obj/machinery/shower/directional/east,
-/obj/structure/drain,
 /obj/machinery/airalarm/directional/west,
 /obj/machinery/camera/directional/west{
 	c_tag = "Dormitories - Pool";
@@ -83553,9 +83428,6 @@
 /turf/open/floor/carpet,
 /area/station/security/courtroom)
 "xlC" = (
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
 /mob/living/basic/carp/mega/shorki{
 	obj_damage = 0
 	},
@@ -85445,9 +85317,7 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/aft/greater)
 "xNH" = (
-/obj/effect/spawner/liquids_spawner,
 /obj/machinery/light/cold/directional/south,
-/turf/open/floor/iron/pool,
 /area/station/common/pool)
 "xNL" = (
 /obj/structure/cable,
@@ -86025,10 +85895,6 @@
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/starboard/aft)
-"xVS" = (
-/obj/structure/liquid_pump,
-/turf/open/floor/iron/smooth,
-/area/station/maintenance/starboard/lesser)
 "xWf" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/curtain/cloth/fancy/mechanical{
@@ -115238,7 +115104,7 @@ fZv
 tPr
 ixt
 ets
-kZc
+kMZ
 kMZ
 kMZ
 ets
@@ -115497,7 +115363,7 @@ awq
 mgR
 lcC
 xlC
-rJK
+kMZ
 mgR
 mYm
 hPi
@@ -115752,7 +115618,7 @@ dTb
 wGy
 awq
 kZe
-nZr
+kMZ
 kMZ
 tvN
 kZe
@@ -116009,7 +115875,7 @@ alk
 akT
 vTW
 ets
-eJY
+kMZ
 kMZ
 kMZ
 ets
@@ -116769,7 +116635,7 @@ bvi
 aZq
 esi
 wjI
-iGD
+eWu
 hfT
 qmk
 quO
@@ -117829,7 +117695,7 @@ puL
 aXQ
 fmM
 jtG
-dqZ
+jtG
 dfF
 iNT
 cgT
@@ -118311,7 +118177,7 @@ sgE
 nWw
 eks
 eaR
-dAz
+nWw
 sgE
 hjy
 lIu
@@ -126062,7 +125928,7 @@ ryo
 xud
 mdf
 gZX
-xVS
+ctd
 onP
 onP
 onP
