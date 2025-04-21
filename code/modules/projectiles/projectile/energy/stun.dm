@@ -410,5 +410,5 @@
 
 //BUBBER EDIT START
 /obj/projectile/energy/electrode/sec
-	tase_stamina = 30
+	tase_stamina = 40
 //BUBBER EDIT END
