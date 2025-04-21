@@ -159,6 +159,7 @@
 		/obj/item/clothing/head/playbunnyears/detective/noir = 2,
 		/obj/item/clothing/under/rank/security/detective_bunnysuit/noir = 2,
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat/noir = 2,
+		/obj/item/clothing/accessory/badge/holo/detective = 2,
 	)
 
 
