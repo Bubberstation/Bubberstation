@@ -185,3 +185,17 @@
 	name = "Dome"
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/topscars_1
+	icon_state = "topscars_1"
+	name = "Top Scar Variant 1"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
+
+/datum/body_marking/bubber/topscars_2
+	icon_state = "topscars_2"
+	name = "Top Scar Variant 2"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
