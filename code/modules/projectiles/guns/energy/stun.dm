@@ -10,7 +10,8 @@
 	name = "hybrid taser"
 	desc = "A dual-mode taser designed to fire both short-range high-power electrodes and long-range disabler beams."
 	icon_state = "advtaser"
-	weapon_weight = WEAPON_MEDIUM //BUBBER ADDITIOn
+	weapon_weight = WEAPON_MEDIUM //BUBBER ADDITION
+	w_class = WEIGHT_CLASS_NORMAL //BUBBER ADDITION
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/electrode/sec) //BUBBER EDIT CHANGE - Original: /obj/item/ammo_casing/energy/electrode
 	ammo_x_offset = 2
 
