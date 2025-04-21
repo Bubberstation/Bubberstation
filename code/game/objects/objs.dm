@@ -27,7 +27,7 @@
 	/// A multiplier to an object's force when used against a structure, vehicle, machine, or robot.
 	var/demolition_mod = 1
 
-	/// Custom fire overlay icon, will just use the default overlay if this is null
+	/// Cached custom fire overlay
 	var/custom_fire_overlay
 	/// Particles this obj uses when burning, if any
 	var/burning_particles
@@ -313,8 +313,9 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	. = ..()
 	if(!(material_flags & MATERIAL_AFFECT_STATISTICS))
 		return
-	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
-	modify_max_integrity(ceil(max_integrity * integrity_mod))
+	if(uses_integrity)
+		var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+		modify_max_integrity(ceil(max_integrity * integrity_mod))
 	var/strength_mod = GET_MATERIAL_MODIFIER(material.strength_modifier, multiplier)
 	force *= strength_mod
 	throwforce *= strength_mod
@@ -326,8 +327,9 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	. = ..()
 	if(!(material_flags & MATERIAL_AFFECT_STATISTICS))
 		return
-	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
-	modify_max_integrity(floor(max_integrity / integrity_mod))
+	if(uses_integrity)
+		var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+		modify_max_integrity(floor(max_integrity / integrity_mod))
 	var/strength_mod = GET_MATERIAL_MODIFIER(material.strength_modifier, multiplier)
 	force /= strength_mod
 	throwforce /= strength_mod

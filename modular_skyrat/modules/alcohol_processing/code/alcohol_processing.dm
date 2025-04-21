@@ -19,7 +19,7 @@
 /datum/mood/proc/get_alcohol_processing(mob/user)
 	if(user.reagents.reagent_list.len)
 		for(var/datum/reagent/consumable/ethanol/booze in user.reagents.reagent_list)
-			return span_notice("I'm still processing that alcohol I drank...\n")
+			return TRUE
 
 /// Adds a moodlet entry based on the current blood alcohol content of the mob.
 /datum/mood/proc/get_drunk_mood(mob/user)
@@ -27,21 +27,21 @@
 	var/blood_alcohol_content = target.get_blood_alcohol_content()
 	switch(blood_alcohol_content)
 		if(BAC_STAGE_1_ACTIVE to BAC_STAGE_2_WARN)
-			return span_notice("Had a drink, time to relax!\n")
+			return span_info("Had a drink, time to relax!")
 		if(BAC_STAGE_2_WARN to BAC_STAGE_2_ACTIVE)
-			return span_nicegreen("Now I'm starting to feel that drink.\n")
+			return span_nicegreen("Now I'm starting to feel that drink.")
 		if(BAC_STAGE_2_ACTIVE to BAC_STAGE_3_WARN)
-			return span_nicegreen("A bit tipsy, this feels good!\n")
+			return span_nicegreen("A bit tipsy, this feels good!")
 		if(BAC_STAGE_3_WARN to BAC_STAGE_3_ACTIVE)
-			return span_nicegreen("Those drinks are really starting to hit!\n")
+			return span_nicegreen("Those drinks are really starting to hit!")
 		if(BAC_STAGE_3_ACTIVE to BAC_STAGE_4_WARN)
-			return span_nicegreen("I can't remember how many I've had, but I feel great!\n")
+			return span_nicegreen("I can't remember how many I've had, but I feel great!")
 		if(BAC_STAGE_4_WARN to BAC_STAGE_4_ACTIVE)
-			return span_warning("I think I've had too much to drink... I should probably stop... drink some water...\n")
+			return span_warning("I think I've had too much to drink... I should probably stop... drink some water...")
 		if(BAC_STAGE_4_ACTIVE to BAC_STAGE_5_WARN)
-			return span_bolddanger("I'm not feeling so hot...\n")
+			return span_bolddanger("I'm not feeling so hot...")
 		if(BAC_STAGE_5_WARN to INFINITY)
-			return span_bolddanger("Is there a doctor around? I really don't feel good...\n")
+			return span_bolddanger("Is there a doctor around? I really don't feel good...")
 
 #undef BAC_STAGE_1_ACTIVE
 #undef BAC_STAGE_2_WARN
