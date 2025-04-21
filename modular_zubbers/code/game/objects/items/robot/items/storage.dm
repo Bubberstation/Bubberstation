@@ -216,7 +216,7 @@
 /obj/item/borg/apparatus/mining
 	name = "Mining manipulation gripper"
 	desc = "A simple grasping tool suited to assist in an array of mining applications."
-	icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_mining"
 	storable = list(
 					/obj/item/organ/monster_core/,
