@@ -5,7 +5,7 @@
 
 /area/awaymission/wargames/outside
 	name = "Wargames Outside"
-	base_lighting_alpha = 180
+	base_lighting_alpha = 120
 	base_lighting_color = "#FFFFCC"
 
 /area/awaymission/wargames/tents
@@ -54,6 +54,8 @@
 
 /area/awaymission/wargames/lizards
 	name = "Wargames lizards"
+	base_lighting_alpha = 120
+	base_lighting_color = "#FFFFCC"
 
 /area/awaymission/wargames/cave
 	name = "Wargames caves"
