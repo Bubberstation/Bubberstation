@@ -95,10 +95,17 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/wargames/outside)
+"by" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/viscerator/nri,
+/obj/machinery/light/floor,
+/turf/open/floor/plating/rust,
+/area/awaymission/wargames/airfield)
 "bA" = (
 /obj/structure/frame/machine,
 /obj/item/circuitboard/machine/ore_silo,
 /obj/item/stack/cable_coil,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/production)
 "bE" = (
@@ -121,6 +128,13 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/outside)
+"bZ" = (
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced{
+	power_gen = 125000
+	},
+/turf/open/misc/grass/planet,
+/area/awaymission/wargames/cin/power)
 "cc" = (
 /mob/living/basic/alien,
 /turf/open/floor/plating/cobblestone/dungeon,
@@ -190,6 +204,7 @@
 /area/awaymission/wargames/fishingshack)
 "cF" = (
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
 "cG" = (
@@ -303,6 +318,11 @@
 /obj/structure/alien/resin/wall,
 /turf/open/floor/plating/cobblestone/dungeon,
 /area/awaymission/wargames/cave)
+"dt" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/kitchen)
 "dw" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/mapping_helpers/apc/unlocked,
@@ -332,6 +352,10 @@
 	},
 /turf/open/floor/plating/cobblestone/planet,
 /area/awaymission/wargames/lizards)
+"dD" = (
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/awaymission/wargames/tents)
 "dF" = (
 /turf/closed/wall,
 /area/awaymission/wargames/cin/medical)
@@ -392,6 +416,7 @@
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 4
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/awaymission/wargames/cin/garage)
 "em" = (
@@ -541,6 +566,11 @@
 /obj/item/ammo_casing,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/outside)
+"gJ" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron,
+/area/awaymission/wargames/outside)
 "gN" = (
 /obj/structure/fence,
 /turf/open/misc/grass/planet,
@@ -565,6 +595,14 @@
 	},
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"hc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/viscerator/nri,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/awaymission/wargames/airfield)
 "hh" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/misc/dirt/planet,
@@ -710,6 +748,11 @@
 /obj/structure/millstone,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"iE" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "iF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/nri_text/directional/north,
@@ -723,6 +766,10 @@
 "iN" = (
 /turf/open/floor/plating/cobblestone/planet,
 /area/awaymission/wargames/lizards)
+"iS" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/armory)
 "iV" = (
 /obj/machinery/iv_drip/health_station/directional/south,
 /turf/open/floor/iron/white,
@@ -783,6 +830,10 @@
 /obj/effect/mob_spawn/ghost_role/human/wargames_CIN,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/dorm)
+"jt" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "ju" = (
 /obj/machinery/griddle,
 /turf/open/floor/iron/smooth,
@@ -796,6 +847,13 @@
 /obj/item/stack/sheet/mineral/coal/ten,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"jD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/awaymission/wargames/airfield)
 "jE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -907,12 +965,18 @@
 "kN" = (
 /turf/closed/wall,
 /area/awaymission/wargames/cin/bar)
+"kQ" = (
+/obj/structure/filingcabinet/chestdrawer/wheeled,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/breifing)
 "kR" = (
 /obj/effect/spawner/random/throwturretkit,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/outside)
 "kS" = (
 /obj/structure/table,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/material)
 "la" = (
@@ -978,10 +1042,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/awaymission/wargames/cin/garage)
+"lH" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/south,
+/turf/open/floor/plating/reinforced,
+/area/awaymission/wargames/cin/garage)
 "lJ" = (
 /obj/machinery/vending/dinnerware{
 	onstation = 0
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
 "lL" = (
@@ -1005,6 +1075,10 @@
 /obj/machinery/iv_drip/health_station/directional/west,
 /turf/open/floor/iron/dark,
 /area/awaymission/wargames/outside)
+"lO" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/production)
 "lX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/freezer/donk,
@@ -1014,6 +1088,7 @@
 /obj/vehicle/ridden/atv{
 	dir = 4
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/awaymission/wargames/cin/garage)
 "lZ" = (
@@ -1094,6 +1169,17 @@
 /obj/machinery/bluespace_miner,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/awaymission/wargames/cin/material)
+"mL" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/breifing)
+"mP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
+/turf/open/floor/plating/rust,
+/area/awaymission/wargames/airfield)
 "mT" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron/smooth,
@@ -1148,6 +1234,13 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/armory)
+"na" = (
+/obj/structure/chair/stool/bar/directional/south{
+	dir = 1
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/carpet/red,
+/area/awaymission/wargames/cin/bar)
 "nb" = (
 /mob/living/basic/mining/wolf,
 /turf/open/misc/grass/planet,
@@ -1250,6 +1343,7 @@
 /area/awaymission/wargames/lizards)
 "oh" = (
 /obj/machinery/recharge_station,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/production)
 "oi" = (
@@ -1308,6 +1402,11 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/armory)
+"oG" = (
+/obj/machinery/ammo_workbench/unlocked,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/armory)
 "oK" = (
 /obj/machinery/door/airlock/public,
 /turf/open/floor/plating,
@@ -1327,6 +1426,11 @@
 /obj/item/gun/ballistic/revolver/shotgun_revolver,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/armory)
+"oR" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/obj/machinery/light/directional/north,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/awaymission/wargames/cin/material)
 "oY" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
@@ -1360,6 +1464,11 @@
 /obj/item/stack/medical/mesh/bloody,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
+"pj" = (
+/obj/machinery/recharge_station,
+/obj/machinery/light/directional/south,
+/turf/open/floor/plating/reinforced,
+/area/awaymission/wargames/cin/garage)
 "pp" = (
 /obj/structure/rack/shelf{
 	icon = 'modular_skyrat/modules/mapping/icons/unique/furniture.dmi';
@@ -1441,6 +1550,7 @@
 /area/awaymission/wargames/lizards)
 "qG" = (
 /obj/machinery/vending/boozeomat,
+/obj/machinery/light/directional/east,
 /turf/open/floor/carpet/red,
 /area/awaymission/wargames/cin/bar)
 "qL" = (
@@ -1507,6 +1617,11 @@
 /obj/item/knife/combat,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/armory)
+"ry" = (
+/obj/machinery/scanner_gate/preset_guns,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "rB" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/processor,
@@ -1521,12 +1636,17 @@
 "rI" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasmaglass/fifty,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/material)
 "rM" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
+"rO" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "rW" = (
 /obj/structure/fermenting_barrel,
 /turf/open/misc/dirt/planet,
@@ -1561,6 +1681,12 @@
 /obj/machinery/flatpacker,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/production)
+"sD" = (
+/obj/structure/table,
+/obj/item/surgery_tray/full/deployed,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/white,
+/area/awaymission/wargames/cin/medical)
 "sF" = (
 /turf/closed/wall/rust,
 /area/awaymission/wargames/gatewayroom)
@@ -1586,6 +1712,9 @@
 "tm" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /obj/structure/cable,
+/obj/machinery/power/rtg/advanced{
+	power_gen = 125000
+	},
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cin/power)
 "tp" = (
@@ -1666,6 +1795,11 @@
 /obj/structure/sign/flag/nri/directional/south,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/airfield)
+"tU" = (
+/obj/structure/table,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/guardpost)
 "tV" = (
 /obj/machinery/smartfridge/disks,
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -1763,6 +1897,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/gatewayroom)
+"uN" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/kitchen)
 "uS" = (
 /obj/structure/reagent_water_basin,
 /turf/open/misc/dirt/planet,
@@ -1776,6 +1915,10 @@
 "vi" = (
 /turf/closed/wall/r_wall,
 /area/awaymission/wargames/cin/medical)
+"vo" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/armory)
 "vA" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/iron/smooth,
@@ -1791,6 +1934,10 @@
 /obj/item/storage/box/beakers/bluespace,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
+"vP" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/armory)
 "vW" = (
 /obj/structure/rack,
 /obj/machinery/door/window/brigdoor/left/directional/south{
@@ -1893,6 +2040,13 @@
 	},
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"xt" = (
+/obj/machinery/biogenerator/food_replicator{
+	biomass = 1500
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark,
+/area/awaymission/wargames/tents)
 "xu" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1945,8 +2099,8 @@
 /area/awaymission/wargames/cin/production)
 "xL" = (
 /obj/structure/flora/bush/grassy/style_random,
-/obj/machinery/power/smes/full,
 /obj/structure/cable,
+/obj/machinery/power/smes/magical,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cin/power)
 "xV" = (
@@ -2015,6 +2169,10 @@
 /obj/item/weldingtool/mini,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"zd" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/kitchen)
 "zf" = (
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cave)
@@ -2041,6 +2199,7 @@
 /obj/machinery/seed_extractor{
 	pixel_x = -3
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
 "zo" = (
@@ -2072,6 +2231,10 @@
 	},
 /turf/open/floor/plating/cobblestone/planet,
 /area/awaymission/wargames/lizards)
+"zw" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/production)
 "zy" = (
 /obj/structure/flora/bush/grassy/style_random,
 /obj/structure/fence{
@@ -2089,6 +2252,12 @@
 /obj/structure/reagent_forge,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"zZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/awaymission/wargames/airfield)
 "Ab" = (
 /turf/closed/wall/r_wall,
 /area/awaymission/wargames/cin/armory)
@@ -2155,6 +2324,7 @@
 	pixel_y = -30
 	},
 /obj/item/defibrillator/loaded,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
 "AK" = (
@@ -2163,6 +2333,10 @@
 /obj/item/knife/hunting,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"AM" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/guardpost)
 "AP" = (
 /turf/closed/indestructible/rock,
 /area/awaymission/wargames/outside)
@@ -2401,7 +2575,9 @@
 /area/awaymission/wargames/outside)
 "DM" = (
 /obj/structure/flora/bush/fullgrass/style_random,
-/obj/machinery/power/rtg/advanced,
+/obj/machinery/power/rtg/advanced{
+	power_gen = 125000
+	},
 /obj/structure/cable,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cin/power)
@@ -2519,6 +2695,7 @@
 /area/awaymission/wargames/cin/guardpost)
 "Fy" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/breifing)
 "FI" = (
@@ -2546,6 +2723,7 @@
 /area/awaymission/wargames/cin/production)
 "Gg" = (
 /obj/machinery/rnd/production/circuit_imprinter/offstation,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/production)
 "Gp" = (
@@ -2563,6 +2741,10 @@
 /obj/structure/cable,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cin/power)
+"GF" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/awaymission/wargames/cin/material)
 "GH" = (
 /mob/living/basic/alien/queen/large,
 /turf/open/floor/plating/cobblestone/dungeon,
@@ -2683,7 +2865,9 @@
 /turf/open/floor/plating,
 /area/awaymission/wargames/airfield)
 "IB" = (
-/obj/machinery/power/rtg/advanced,
+/obj/machinery/power/rtg/advanced{
+	power_gen = 125000
+	},
 /obj/structure/cable,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/cin/power)
@@ -2701,6 +2885,10 @@
 /obj/effect/landmark/awaystart/wargames,
 /turf/open/floor/plating/rust,
 /area/awaymission/wargames/gatewayroom)
+"Jc" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/white,
+/area/awaymission/wargames/cin/medical)
 "Jm" = (
 /obj/structure/reagent_anvil,
 /obj/item/forging/hammer/primitive,
@@ -2764,6 +2952,10 @@
 	},
 /turf/open/floor/plating/cobblestone/planet,
 /area/awaymission/wargames/lizards)
+"JY" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/awaymission/wargames/outside)
 "Kb" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /turf/open/misc/grass/planet,
@@ -2793,6 +2985,10 @@
 	},
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/lizards)
+"KG" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/dorm)
 "KH" = (
 /obj/structure/cable,
 /turf/open/misc/grass/planet,
@@ -2827,6 +3023,10 @@
 /obj/structure/flora/tree/stump,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/outside)
+"Ld" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "Lh" = (
 /obj/structure/fireplace{
 	dir = 8
@@ -2885,6 +3085,7 @@
 /obj/structure/chair/stool/bar/directional/south{
 	dir = 1
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/carpet/red,
 /area/awaymission/wargames/cin/bar)
 "LE" = (
@@ -2931,6 +3132,10 @@
 "Mn" = (
 /turf/open/floor/plating/cobblestone/dungeon,
 /area/awaymission/wargames/cave)
+"Mt" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/dorm)
 "ME" = (
 /obj/structure/railing/wooden_fencing,
 /turf/open/floor/wood,
@@ -3074,6 +3279,10 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
+"NL" = (
+/obj/machinery/door/airlock/multi_tile/glass,
+/turf/open/floor/plating/reinforced,
+/area/awaymission/wargames/cin/garage)
 "NU" = (
 /turf/open/floor/carpet/red,
 /area/awaymission/wargames/cin/bar)
@@ -3083,6 +3292,10 @@
 	},
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/airfield)
+"Ob" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/awaymission/wargames/cin/garage)
 "Od" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/ntnet_relay,
@@ -3211,6 +3424,7 @@
 /area/awaymission/wargames/cin/mainhall)
 "Pr" = (
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/production)
 "Ps" = (
@@ -3481,6 +3695,7 @@
 /area/awaymission/wargames/radiopost)
 "Tt" = (
 /obj/machinery/oven/range,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/kitchen)
 "Tv" = (
@@ -3580,6 +3795,10 @@
 /obj/structure/fence,
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/airfield)
+"Uo" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/plating/reinforced,
+/area/awaymission/wargames/cin/garage)
 "Ut" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 8
@@ -3628,6 +3847,14 @@
 /obj/effect/decal/cleanable/blood/trails,
 /turf/open/misc/dirt/planet,
 /area/awaymission/wargames/outside)
+"UR" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/awaymission/wargames/cin/material)
+"UT" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/material)
 "UW" = (
 /obj/machinery/oven/stone,
 /turf/open/misc/dirt/planet,
@@ -3902,6 +4129,19 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/guardpost)
+"YW" = (
+/obj/structure/flora/bush/grassy/style_random,
+/obj/machinery/power/rtg/advanced{
+	power_gen = 125000
+	},
+/obj/structure/cable,
+/turf/open/misc/grass/planet,
+/area/awaymission/wargames/cin/power)
+"YZ" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/smooth,
+/area/awaymission/wargames/cin/production)
 "Zb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -3955,6 +4195,10 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plating/rust,
 /area/awaymission/wargames/radiopost)
+"ZE" = (
+/obj/machinery/light/floor,
+/turf/open/floor/wood/tile,
+/area/awaymission/wargames/fishingshack)
 "ZF" = (
 /obj/structure/sign/flag/nri/directional/east,
 /turf/open/misc/grass/planet,
@@ -3962,6 +4206,11 @@
 "ZH" = (
 /turf/open/floor/iron/smooth,
 /area/awaymission/wargames/cin/dorm)
+"ZP" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron,
+/area/awaymission/wargames/cin/mainhall)
 "ZU" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -8812,30 +9061,30 @@ OF
 OF
 DO
 vA
-vA
+uN
 vA
 WJ
 xc
-pG
+dt
 fR
 Kz
 Pm
+Ld
 Pm
 Pm
 Pm
 Pm
+Ld
 Pm
 Pm
 Pm
 Pm
+Ld
 Pm
 Pm
 Pm
 Pm
-Pm
-Pm
-Pm
-Pm
+Ld
 Pm
 Pm
 Xc
@@ -9563,21 +9812,21 @@ OF
 Yp
 qT
 cC
-cC
+dD
 cC
 Yp
 OF
 Yp
 WN
 cC
-cC
+dD
 WN
 Yp
 OF
 Yp
 tz
 cC
-cC
+dD
 ji
 Yp
 OF
@@ -9847,7 +10096,7 @@ fR
 pG
 lJ
 UE
-Pm
+jt
 Pm
 in
 np
@@ -9857,9 +10106,9 @@ bd
 bd
 bd
 bd
-ZH
+KG
 in
-Pm
+jt
 Pm
 kN
 NU
@@ -10108,11 +10357,11 @@ Pm
 Pm
 in
 jp
-ZH
+Mt
 jp
 ZH
 jp
-ZH
+Mt
 bd
 ZH
 in
@@ -10123,7 +10372,7 @@ qG
 NU
 MP
 Qb
-Lr
+na
 FW
 OF
 TY
@@ -10333,21 +10582,21 @@ OF
 OF
 Yp
 Pi
-cC
+dD
 cC
 JA
 Yp
 OF
 Yp
 cC
-cC
+dD
 cC
 cC
 Yp
 OF
 Yp
 cC
-cC
+dD
 cC
 cC
 Yp
@@ -10620,12 +10869,12 @@ pG
 jP
 nf
 nf
-nf
+ZP
 nf
 nf
 nf
 Sw
-nf
+ZP
 nf
 nf
 nf
@@ -10633,7 +10882,7 @@ nf
 nf
 nf
 Pm
-Pm
+Ld
 Pm
 nf
 Pm
@@ -11130,7 +11379,7 @@ NI
 NI
 NI
 fR
-fR
+zd
 UE
 nf
 Pm
@@ -11144,7 +11393,7 @@ rr
 DC
 OR
 rr
-Cb
+JY
 UC
 dF
 dF
@@ -11646,7 +11895,7 @@ eC
 zl
 sf
 UE
-nf
+iE
 Pm
 JH
 DC
@@ -11913,7 +12162,7 @@ DC
 qS
 qS
 qS
-DC
+mL
 rr
 Cb
 UC
@@ -12670,9 +12919,9 @@ TY
 OF
 OF
 VK
-Qj
+tU
 jU
-Es
+AM
 UE
 Pm
 Pm
@@ -12687,7 +12936,7 @@ qS
 DC
 JH
 Cb
-UC
+gJ
 dF
 Bi
 kw
@@ -12934,7 +13183,7 @@ UE
 Pm
 Pm
 rr
-pM
+kQ
 pM
 kg
 kg
@@ -12946,10 +13195,10 @@ rr
 Cb
 UC
 dF
-hM
+sD
 kw
 kw
-kw
+Jc
 hM
 vi
 OF
@@ -13188,8 +13437,8 @@ Fx
 Fx
 Fx
 UE
+jt
 Pm
-Pm
 rr
 rr
 JH
@@ -13200,7 +13449,7 @@ JH
 JH
 rr
 rr
-Cb
+JY
 UC
 dF
 dF
@@ -13447,6 +13696,7 @@ Pm
 ka
 Pm
 Pm
+Ld
 Pm
 Pm
 Pm
@@ -13454,13 +13704,12 @@ Pm
 Pm
 Pm
 Pm
-Pm
-Pm
+Ld
 Pm
 Pm
 nf
 Pm
-Pm
+Ld
 Pm
 Pm
 Pm
@@ -13699,7 +13948,7 @@ cI
 cI
 Pm
 Pm
-wS
+ry
 Pm
 Pm
 Pm
@@ -13708,7 +13957,7 @@ Pm
 Pm
 Pm
 Pm
-Pm
+rO
 Pm
 nf
 nf
@@ -14216,18 +14465,18 @@ TY
 OF
 Gp
 VT
-VT
+zw
 le
 xJ
 Gf
-cZ
+YZ
 cZ
 WB
 nf
 nf
 Ab
 cJ
-Ye
+oG
 Ye
 gw
 wW
@@ -14994,16 +15243,16 @@ VT
 VT
 II
 Fq
-Pm
+jt
 nf
 Ab
-cJ
+vP
 mc
 Rt
 cJ
 cG
 OW
-cJ
+vo
 Ab
 OF
 OF
@@ -15506,7 +15755,7 @@ VT
 VT
 VT
 VT
-VT
+lO
 Fq
 Pm
 nf
@@ -16025,13 +16274,13 @@ Fq
 Pm
 nf
 Ab
-cJ
+vP
 lo
 Iq
 cJ
 ut
 Ee
-cJ
+vo
 Ab
 Jo
 OF
@@ -16272,14 +16521,14 @@ OF
 OF
 em
 nE
-Cx
+GF
 mK
 iA
 tH
 rI
 my
 PG
-Pm
+jt
 nf
 Ab
 cJ
@@ -17042,7 +17291,7 @@ OF
 OF
 Kb
 em
-uj
+oR
 Cx
 Cx
 Xe
@@ -17053,13 +17302,13 @@ PG
 Pm
 nf
 Ab
-cJ
+vP
 oP
 jh
 cJ
 vW
 aR
-cJ
+vo
 Ab
 Jo
 OF
@@ -17307,7 +17556,7 @@ io
 Xe
 MR
 PG
-Pm
+jt
 nf
 Ab
 cJ
@@ -17814,22 +18063,22 @@ Jo
 Jo
 em
 mK
-Cx
+UR
 mK
 gu
 Xe
-Xe
+UT
 Xe
 Xe
 Pm
 nf
 Ab
 cJ
+iS
 cJ
 cJ
 cJ
-cJ
-cJ
+iS
 cJ
 Ab
 OF
@@ -18850,7 +19099,7 @@ vC
 tl
 tl
 zs
-lF
+lH
 BF
 xL
 VJ
@@ -19098,7 +19347,7 @@ Kb
 Jo
 Jo
 Ul
-yA
+Uo
 yA
 yA
 yA
@@ -19370,7 +19619,7 @@ Ol
 Ol
 iu
 tm
-aT
+DM
 aT
 qL
 aC
@@ -19626,8 +19875,8 @@ Ul
 Ol
 iu
 Hr
-KH
-iu
+bZ
+YW
 Ol
 ul
 OF
@@ -19878,7 +20127,7 @@ yA
 yA
 yA
 yA
-nL
+pj
 Ul
 aT
 Ol
@@ -20136,7 +20385,7 @@ yA
 yA
 yA
 yA
-BF
+NL
 iu
 Ol
 Ol
@@ -20393,7 +20642,7 @@ yA
 yA
 yA
 yA
-Ul
+yA
 Ol
 Ol
 aT
@@ -20640,7 +20889,7 @@ OF
 OF
 OF
 Ul
-tl
+Ob
 tl
 An
 tl
@@ -20867,7 +21116,7 @@ OF
 Eb
 Eb
 qT
-cC
+dD
 Jy
 cC
 cC
@@ -21640,7 +21889,7 @@ Eb
 qT
 cC
 VU
-cC
+dD
 cC
 Eb
 OF
@@ -22140,7 +22389,7 @@ OF
 lC
 Eb
 pD
-cC
+dD
 dm
 Eb
 cI
@@ -23176,7 +23425,7 @@ cI
 cI
 cI
 kd
-pD
+xt
 cC
 cC
 kd
@@ -23691,7 +23940,7 @@ cI
 cI
 ku
 JA
-cC
+dD
 cC
 ku
 OF
@@ -61610,7 +61859,7 @@ CV
 CV
 GK
 Mf
-Wd
+by
 DI
 mw
 Ou
@@ -62640,12 +62889,12 @@ GK
 jj
 ad
 jM
-HI
+zZ
 Nh
 HI
 wQ
 jl
-ad
+mP
 yo
 Nh
 HA
@@ -62693,7 +62942,7 @@ cI
 Rz
 ww
 ww
-ww
+ZE
 ww
 JQ
 ic
@@ -63411,12 +63660,12 @@ Ec
 UH
 wQ
 HI
-Uy
+jD
 Nh
 DI
 Nh
 HI
-jM
+hc
 HI
 wQ
 Nh
