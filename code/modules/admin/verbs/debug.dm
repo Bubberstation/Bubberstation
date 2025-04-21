@@ -16,6 +16,10 @@ ADMIN_VERB(enable_auxtools_profile, R_DEBUG, "Enable Memory Profiling", "Enable 
 	BLACKBOX_LOG_ADMIN_VERB("Enable Memory Profiling")
 
 ADMIN_VERB(disable_auxtools_profile, R_DEBUG, "Disable Memory Profiling", "Disable auxtools memory profiling.", ADMIN_CATEGORY_DEBUG)
+	var/confirm = input(user, "Are you sure you want to stop profiling?", "Confirm") in list("Yes", "No")
+	if(confirm != "Yes")
+		return
+
 	disable_mem_profile()
 	log_admin("[key_name(user)] has disabled auxtools memory profiling.")
 	message_admins("[key_name_admin(user)] has disabled auxtools memory profiling.")
