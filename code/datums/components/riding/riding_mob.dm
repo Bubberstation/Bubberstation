@@ -509,6 +509,7 @@
 	)
 
 /datum/component/riding/creature/megacarp
+	override_allow_spacemove = TRUE
 
 /datum/component/riding/creature/megacarp/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	return list(
