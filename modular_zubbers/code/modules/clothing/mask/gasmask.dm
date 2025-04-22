@@ -35,15 +35,16 @@
 	. = ..()
 	if ((slot & ITEM_SLOT_MASK))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-
+		RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_SIGN_LANG), PROC_REF(update_voice))
+		RegisterSignal(user, SIGNAL_REMOVETRAIT(TRAIT_SIGN_LANG), PROC_REF(update_voice))
 	else
-		UnregisterSignal(user, COMSIG_MOB_SAY)
+		UnregisterSignal(user, COMSIG_MOB_SAY, SIGNAL_ADDTRAIT(TRAIT_SIGN_LANG), SIGNAL_REMOVETRAIT(TRAIT_SIGN_LANG))
 
 	update_voice(user)
 
 /obj/item/clothing/mask/gas/modulator/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_SAY)
+	UnregisterSignal(user, COMSIG_MOB_SAY, SIGNAL_ADDTRAIT(TRAIT_SIGN_LANG), SIGNAL_REMOVETRAIT(TRAIT_SIGN_LANG))
 	update_voice(user)
 
 /obj/item/clothing/mask/gas/modulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -61,6 +62,12 @@
 	if(!user_tongue)
 		return
 
+	if(HAS_TRAIT(human_user, TRAIT_SIGN_LANG))
+		user_tongue.temp_say_mod = "signs"
+		human_user.special_voice = previous_special_name
+		previous_special_name = null
+		return
+
 	if(human_user.special_voice != modulated_name)
 		previous_special_name = human_user.special_voice
 
@@ -76,7 +83,7 @@
 /obj/item/clothing/mask/gas/modulator/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
 
-	if (!modulate_voice)
+	if (!modulate_voice || HAS_TRAIT(source, TRAIT_SIGN_LANG))
 		return
 
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
