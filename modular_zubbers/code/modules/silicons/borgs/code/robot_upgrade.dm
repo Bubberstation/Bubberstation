@@ -78,3 +78,13 @@
 /obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
 	. = ..()
 	borg.remove_quirk(/datum/quirk/dominant_aura)
+
+// Engineering RLD
+/obj/item/borg/upgrade/rld
+	name = "Engineering Cyborg Rapid Lighting Device Upgrade"
+	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
+	icon_state = "module_engineer"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/engineering)
+	model_flags = BORG_MODEL_ENGINEERING
+	items_to_add = list(/obj/item/construction/rld/cyborg)

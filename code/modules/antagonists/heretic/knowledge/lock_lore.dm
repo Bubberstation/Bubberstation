@@ -103,6 +103,18 @@
 	research_tree_icon_path = 'icons/obj/card.dmi'
 	research_tree_icon_state = "card_gold"
 
+/datum/heretic_knowledge/key_ring/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/obj/item/card/id = locate(/obj/item/card/id/advanced) in selected_atoms
+	if(isnull(id))
+		return FALSE
+	var/obj/item/card/id/advanced/heretic/result_item = new(loc)
+	if(!istype(result_item))
+		return FALSE
+	selected_atoms -= id
+	result_item.eat_card(id)
+	result_item.shapeshift(id)
+	return TRUE
+
 /datum/heretic_knowledge/mark/lock_mark
 	name = "Mark of Lock"
 	desc = "Your Mansus Grasp now applies the Mark of Lock. \

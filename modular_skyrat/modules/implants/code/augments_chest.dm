@@ -4,7 +4,6 @@
 	slot = ORGAN_SLOT_SCANNER
 	icon = 'modular_skyrat/modules/implants/icons/internal_HA.dmi'
 	icon_state = "internal_HA"
-	implant_color = null
 	actions_types = list(/datum/action/item_action/organ_action/use/internal_analyzer)
 	w_class = WEIGHT_CLASS_SMALL
 

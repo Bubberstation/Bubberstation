@@ -106,3 +106,111 @@
   aKromatopzia:
   - rscadd: sec smolraptors
   - image: fixes some errors in smolraptors
+2025-04-12:
+  TealSeer:
+  - admin: the cancel and refund buttons in storyteller event notifications will actually
+      do something now
+2025-04-13:
+  Bombermansam:
+  - rscadd: Adds Crowbars to Service, Medical, Clown, Sec and Peacekeeper borgs
+  Chestlet:
+  - admin: Improved RB-MK2 logging so admins have a full trace of exactly what happened
+      with it.
+  - bugfix: Corrected 'tritium usage' math in the RB-MK2.
+  - code_imp: We've noticed that the Radioscopical Bluespace Reactor Mark Two blueprints
+      provided to our stations came with antiquated firmware. This issue has been
+      rectified. (Significant rework of the RB-MK2 GUI)
+  Goku:
+  - bugfix: Fix wooden shelves turning into metal rack parts when broken.
+  - balance: Robotic blessed lobotomy now also requires holy water (just like the
+      organic surgery)
+  - balance: Robotic blessed lobotomy requires liquid solder instead of Palladium
+      Synthate Catalyst
+  - bugfix: Fix posibrain surgery now also cures surgery-tier brain traumas
+  - balance: Reticulate splines surgery now also cures lower tier brain traumas (surgery
+      and lobotomy)
+  - balance: Replaced advanced robotic brain surgery RNG roll with the 15-minute vulnerability
+      status effect that was added to organic brain surgery
+  LT3:
+  - qol: The medical pouch can now hold hyposprays and cable coil
+  TealSeer:
+  - qol: xenoarch machines have context tooltips now
+  - bugfix: fixed xenoarch diggers not working
+  - bugfix: fixed HEV suit not turning on properly
+  - qol: the xenoarch bag can now hold broken items and useless relics
+  - qol: you can use the bag on the researcher and the recoverer to dump items in
+  - sound: the digger and researcher now make a sound when they complete a cycle
+  UvvU:
+  - rscadd: Tackle gloves are now reskinnable.
+  nevimer:
+  - balance: reenabled the RCD vendors and moved RCD's from spawning in backpacks
+      to lockers.
+2025-04-14:
+  CydiaButt13:
+  - code_imp: Changes penis sizecap from 36 to 1024, 72 in character creator.
+  - code_imp: Changes boobs sizecap from P to 1024, still P in character creator.
+  shellspeed1:
+  - bugfix: Bitrunning sims no longer have comms access
+  - bugfix: Borgs given the persistence access upgrade no longer default to interdyne
+      and get cybersun comms instead
+2025-04-15:
+  TealSeer:
+  - sound: frogs make sounds again
+2025-04-16:
+  LT3:
+  - bugfix: Mood will show your correct drunkenness status
+  - bugfix: Surgery tray has the correct starting items
+2025-04-17:
+  LT3:
+  - bugfix: Premium internals boxes are no longer invisible
+  UvvU:
+  - rscdel: Removed metro cop armor from the sec vendors
+  sippykot:
+  - rscadd: blacksmith starts out with wood and a leather apron
+  - image: removes the sprite override for emergency medkits
+2025-04-18:
+  Boviro:
+  - rscadd: Adds top surgery scars as markings on the character creator.
+  LT3:
+  - bugfix: Fixed lidocaine/amollin pills having delayed effect
+2025-04-19:
+  Arturlang:
+  - admin: adds a verb to find all objects in nullspace
+  Shadow-Quill:
+  - spellcheck: The headset message from weapon beacons have been changed to have
+      better grammar.
+2025-04-20:
+  ArrisFairburne:
+  - rscadd: Added a Mothroach plushie to the loadout menu and toys vendor.
+  LT3:
+  - balance: SAD is now available to be built roundstart
+  - map: Added roundstart SAD to Bubberstation maps
+  - qol: Operating computer now gives information on trauma treatment
+  - qol: Trauma surgeries only show available when there's a trauma to fix
+  - rscadd: Trauma neurectomy / blessed neurectomy replacements for clearing traumas
+  - balance: Trauma / blessed neurectomy have a 100% success rate by default
+  - rscdel: Lobotomy functions like it used to (revert to TG)
+  TealSeer:
+  - bugfix: fixed both rotate buttons in character prefs rotating in the same direction
+  - bugfix: removing cargo teleporter destinations by clicking on them should work
+      again
+  - bugfix: fixed emissive overlays on body parts being offset
+  - bugfix: taur clothing should now draw on the body properly
+  UvvU:
+  - rscadd: Added a SAD to the interlink
+  - bugfix: Windoors are no longer immune to frangible slugs effects.
+2025-04-21:
+  ArrisFairburne:
+  - bugfix: Replaced placeholder text for amber, violet, orange, epsilon, and gamma
+      alerts when reading the alert level via PDA.
+  - rscadd: PDA alert readout now correctly inverts colors/blinks text to reflect
+      our different alert level behaviors compared to tgstation's.
+  LT3:
+  - code_imp: Improved storyteller vote formatting
+  - code_imp: Storyteller doesn't announce the roundstart event purchase
+  MajManatee:
+  - rscadd: With a new upgrade, Borgs get an RLD. Let there be light.
+  Shadow-Quill:
+  - bugfix: Cyborgs once more get an alert if their cover is being pried open.
+  - bugfix: It is no longer guaranteed to roll all three station goals. Now, the number
+      of goals selected will be random, weighted towards zero or one goals.
