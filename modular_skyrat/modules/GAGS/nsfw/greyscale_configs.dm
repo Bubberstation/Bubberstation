@@ -127,14 +127,17 @@
 
 /datum/greyscale_config/shibari/body/worn/taur_snake
 	name = "Shibari Body (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_paw
 	name = "Shibari Body (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_hoof
 	name = "Shibari Body (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/teshari
@@ -158,14 +161,17 @@
 
 /datum/greyscale_config/shibari/groin/worn/taur_snake
 	name = "Shibari Groin (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_paw
 	name = "Shibari Groin (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_hoof
 	name = "Shibari Groin (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/teshari
@@ -189,14 +195,17 @@
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_snake
 	name = "Shibari Fullbody (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_paw
 	name = "Shibari Fullbody (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_hoof
 	name = "Shibari Fullbody (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/teshari
