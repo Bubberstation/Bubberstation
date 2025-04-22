@@ -13,7 +13,7 @@
 	/// The reagent this plant distill to. If NULL, it uses a generic fruit_wine reagent and adjusts its variables.
 	var/distill_reagent
 
-// This may look like it's doing nothing but it's necessary, we do this to have kwargs work in New (for passing into Initialize)  
+// This may look like it's doing nothing but it's necessary, we do this to have kwargs work in New (for passing into Initialize)
 /obj/item/grown/New(loc, obj/item/seeds/new_seed)
 	return ..()
 
@@ -26,7 +26,7 @@
 
 	else if(ispath(seed))
 		// This is for adminspawn or map-placed growns. They get the default stats of their seed type.
-		seed = new seed()
+		seed = new seed(FALSE, FALSE, WEAKREF(src))
 		seed.adjust_potency(50-seed.potency)
 
 	if(offset_at_init)

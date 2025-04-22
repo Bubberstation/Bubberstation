@@ -55,7 +55,7 @@
 
 	else if(ispath(seed))
 		// This is for adminspawn or map-placed growns. They get the default stats of their seed type.
-		seed = new seed()
+		seed = new seed(FALSE, FALSE, WEAKREF(src))
 		seed.adjust_potency(50-seed.potency)
 	else if(!seed)
 		stack_trace("Grown object created without a seed. WTF")

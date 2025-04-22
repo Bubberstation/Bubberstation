@@ -63,9 +63,13 @@
 	var/graft_gene
 	///Determines if the plant should be allowed to mutate early at 30+ instability.
 	var/seed_flags = MUTATE_EARLY
+	var/currently_in
 
-/obj/item/seeds/Initialize(mapload, nogenes = FALSE)
+/obj/item/seeds/Initialize(mapload, nogenes = FALSE, datum/weakref/parent_ref)
 	. = ..()
+	if(parent_ref)
+		currently_in = parent_ref
+	// log_harddel("Seed [name] initialized with [parent_ref ? "parent ref [parent_ref.resolve()]" : "no parent ref"]")
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
 
