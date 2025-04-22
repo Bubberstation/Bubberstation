@@ -403,12 +403,7 @@
 
 // movespeed mods
 /datum/movespeed_modifier/tasing_someone
-	multiplicative_slowdown = 3
+	multiplicative_slowdown = 2
 
 /datum/movespeed_modifier/being_tased
 	multiplicative_slowdown = 4
-
-//BUBBER EDIT START
-/obj/projectile/energy/electrode/sec
-	tase_stamina = 40
-//BUBBER EDIT END
