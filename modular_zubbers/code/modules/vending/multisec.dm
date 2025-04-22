@@ -47,6 +47,11 @@
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
 					/obj/item/clothing/accessory/armband/deputy/lopland = 6,
+					/obj/item/clothing/under/colonial/nri_police = 6,
+					/obj/item/clothing/suit/armor/vest/nri_police = 6,
+					/obj/item/clothing/neck/cloak/colonial/nri_police = 6,
+					/obj/item/clothing/head/hats/colonial/nri_police = 6,
+
 
 				),
 			),
