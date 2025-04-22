@@ -8,12 +8,13 @@
 
 /obj/item/storage/pill_bottle/painkiller/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/amollin(src)
+		new /obj/item/reagent_containers/applicator/pill/amollin(src)
 
-/obj/item/reagent_containers/pill/amollin
+/obj/item/reagent_containers/applicator/pill/amollin
 	name = "amollin pill"
 	desc = "Neutralizes many common pains and ailments. A blend of Miner's Salve and Lidocaine."
 	icon_state = "pill9"
+	layers_remaining = 1
 	list_reagents = list(
 		/datum/reagent/medicine/mine_salve = 10,
 		/datum/reagent/medicine/lidocaine = 5,
@@ -33,14 +34,14 @@
 	// Make sure we can only hold alifil pills since this is nested inside a symptom support kit
 	atom_storage.max_slots = 5
 	atom_storage.set_holdable(list(
-		/obj/item/reagent_containers/pill/prescription_stimulant,
+		/obj/item/reagent_containers/applicator/pill/prescription_stimulant,
 	))
 
 /obj/item/storage/pill_bottle/prescription_stimulant/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/pill/prescription_stimulant(src)
+		new /obj/item/reagent_containers/applicator/pill/prescription_stimulant(src)
 
-/obj/item/reagent_containers/pill/prescription_stimulant
+/obj/item/reagent_containers/applicator/pill/prescription_stimulant
 	name = "alifil pill"
 	desc = "Used to treat symptoms of drowsiness and sudden loss of consciousness. Contains a mix of sugar, synaptizine and modafinil. A warning label reads: <b>Take in moderation</b>."
 	icon_state = "pill15"
@@ -244,7 +245,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/stack/medical,
@@ -343,7 +344,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,
@@ -447,7 +448,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,
