@@ -10,6 +10,3 @@
 	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/electrode/sec)
-
-/obj/item/gun/energy/e_gun/hos
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/ion/hos)
