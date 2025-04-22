@@ -11,7 +11,6 @@
 	worn_icon_taur_paw = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	supports_variations_flags = STYLE_TAUR_PAW
 	strip_delay = 80
 	var/mutable_appearance/breasts_overlay
 	var/mutable_appearance/breasts_icon_overlay
