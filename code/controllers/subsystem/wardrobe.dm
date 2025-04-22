@@ -12,9 +12,9 @@ SUBSYSTEM_DEF(wardrobe)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT // We're going to fill up our cache while players sit in the lobby
 	/// How much to cache outfit items
 	/// Multiplier, 2 would mean cache enough items to stock 1 of each preloaded order twice, etc
-	var/cache_intensity = 2
+	var/cache_intensity = 1
 	/// How many more then the template of a type are we allowed to have before we delete applicants?
-	var/overflow_lienency = 2
+	var/overflow_lienency = 1.5
 	/// List of type -> list(insertion callback, removal callback) callbacks for insertion/removal to use.
 	/// Set in setup_callbacks, used in canonization.
 	var/list/initial_callbacks = list()
