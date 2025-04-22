@@ -10,6 +10,19 @@
 	)
 	species_language_holder = /datum/language_holder/xeno_hybrid
 
+/datum/species/xeno/get_species_description()
+	return list(
+		"A 'Xenomorph Hybrid' is a loose designation for a wide variety of creatures with predominantly \
+		Xenomorph-like characteristics, rather than a specific species in its own right. As Xenomorphs themselves are \
+		parasitic hybridisations of many different 'host' species, the main distinguishing factors between a regular \
+		Xenomorph and a Hybrid are a more humanoid body shape and stature with alien features, inert or defective hive \
+		organs and a less murderous demeanour. These are not the only documented differences, though they are the most frequent.",
+
+		"Their manner of creation just as wildly varies, from lab-grown experiments to unusual genetic malformations \
+		in pure Xenomorph hives. All of this unfortunately culminates into a degree of prejudice and fear from the other \
+		races for their roots as parasites, regardless of if the Hybrid in question is even capable of performing such infestuous acts.",
+	)
+
 /datum/species/xeno/create_pref_unique_perks()
 	var/list/to_add = list()
 
