@@ -19,14 +19,15 @@
 	/// Do we get to benefit from Nanotrasen's largesse?
 	var/give_premium_goods = TRUE
 
-/obj/item/storage/box/survival/Initialize(mapload)
+/obj/item/storage/box/survival/create_storage(max_slots, max_specific_storage, max_total_storage, list/canhold, list/canthold, storage_type)
 	. = ..()
 	if(crafted || !HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		return
 	atom_storage.max_slots += 2
 	atom_storage.max_total_storage += 4
-	name = "large [name]"
-	transform = transform.Scale(1.25, 1)
+	desc = "An upgraded box of survival essentials, Nanotrasen must value your life a little more than usual today." // BUBBER EDIT ADDITION
+	name = "premium [name]" // BUBBER EDIT CHANGE
+	icon_state = "internals_large" // BUBBER EDIT CHANGE - ORIGINAL: [icon_state]_large
 
 /obj/item/storage/box/survival/PopulateContents()
 	if(crafted)

@@ -67,20 +67,20 @@ function QuirkList(props: QuirkProps & QuirkListProps) {
   } = props;
 
   return (
-    // Stack is not used here for a variety of IE flex bugs
-    <Box className="PreferencesMenu__Quirks__QuirkList">
+    <Stack vertical>
       {quirks.map(([quirkKey, quirk]) => (
-        <QuirkDisplay
-          key={quirkKey}
-          onClick={onClick}
-          quirk={quirk}
-          quirkKey={quirkKey}
-          randomBodyEnabled={randomBodyEnabled}
-          selected={selected}
-          serverData={serverData}
-        />
+        <Stack.Item key={quirkKey} m={0}>
+          <QuirkDisplay
+            onClick={onClick}
+            quirk={quirk}
+            quirkKey={quirkKey}
+            randomBodyEnabled={randomBodyEnabled}
+            selected={selected}
+            serverData={serverData}
+          />
+        </Stack.Item>
       ))}
-    </Box>
+    </Stack>
   );
 }
 
@@ -418,7 +418,7 @@ export function QuirksPage(props) {
   }
 
   return (
-    <Stack align="center" fill>
+    <Stack fill>
       <Stack.Item basis="50%">
         <Stack vertical fill align="center">
           <Stack.Item>
@@ -452,7 +452,7 @@ export function QuirksPage(props) {
               onInput={(text, value) => setSearchQuery(value)}
             />
           </Stack.Item>
-          <Stack.Item grow width="100%">
+          <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">
             <QuirkList
               selected={false}
               onClick={(quirkName, quirk) => {
@@ -487,7 +487,7 @@ export function QuirksPage(props) {
         </Stack>
       </Stack.Item>
 
-      <Stack.Item>
+      <Stack.Item align="center">
         <Icon name="exchange-alt" size={1.5} ml={2} mr={2} />
       </Stack.Item>
 
@@ -512,8 +512,8 @@ export function QuirksPage(props) {
               Current Quirks
             </Box>
           </Stack.Item>
-          &nbsp; {/* Filler to better align the menu*/}
-          <Stack.Item grow width="100%">
+          <Stack.Item p={1.5} /> {/* Filler to better align the menu*/}
+          <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">
             <QuirkList
               selected
               onClick={(quirkName, quirk) => {

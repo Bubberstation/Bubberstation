@@ -130,8 +130,8 @@
 				/obj/item/fancy_pillow = 32,
 
 				//chems
-				/obj/item/reagent_containers/pill/crocin = 20,
-				/obj/item/reagent_containers/pill/camphor = 10,
+				/obj/item/reagent_containers/applicator/pill/crocin = 20,
+				/obj/item/reagent_containers/applicator/pill/camphor = 10,
 				/obj/item/reagent_containers/cup/bottle/crocin = 6,
 				/obj/item/reagent_containers/cup/bottle/camphor = 3,
 				/obj/item/reagent_containers/cup/bottle/succubus_milk = 6, //Those are legal 'cause you can just turn off prefs in round in "CLOWN SMOKE MACHINE+PENIS ENLARGEMENT CHEMICAL CASE". Yes, i have special code-phrase for this. I've seen some shit.
@@ -156,6 +156,7 @@
 		/obj/item/clothing/neck/human_petcollar/locked/holo = 3,
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
 		/obj/item/toy/plush/cescrewsplush = 1,
+		/obj/item/toy/plush/sinvox = 1,
 		)
 
 	contraband = list(
@@ -166,8 +167,8 @@
 					/obj/item/clothing/neck/human_petcollar/locked = 4,
 					/obj/item/clothing/suit/straight_jacket/kinky_sleepbag = 2, //my favorite thing, spent 1 month on it. Don't remove please.
 					/obj/item/disk/nifsoft_uploader/dorms/contract = 5,
-					/obj/item/reagent_containers/pill/hexacrocin = 10,
-					/obj/item/reagent_containers/pill/pentacamphor = 5,
+					/obj/item/reagent_containers/applicator/pill/hexacrocin = 10,
+					/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
 					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
 					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2)
 
