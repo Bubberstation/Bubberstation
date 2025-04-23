@@ -196,6 +196,10 @@
 	name = "Otie Smile"
 	icon_state = "otiesmile"
 
+/datum/sprite_accessory/snouts/mammal/otter
+	name = "Otter"
+	icon_state = "otter"
+
 /*/datum/sprite_accessory/snouts/mammal/round
 	name = "Mammal Round"
 	icon_state = "round"
