@@ -12,3 +12,5 @@
 #define COMSIG_MOB_ALWAYS_APPLY_DAMAGE "mob_always_apply_damage"
 /// From modular_zubbers/code/modules/disease/disease_transmission.dm
 #define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
+/// From /datum/mutation/human/proc/on_acquiring(mob/living/carbon/human/acquirer)
+#define COMSIG_TRY_GAIN_MUTATION "try_gain_mutation"
