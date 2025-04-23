@@ -36,10 +36,6 @@ const MilkingMachineContent = (props) => {
     mode,
     milkTankMaxVolume,
     milkTankCurrentVolume,
-    girlcumTankMaxVolume,
-    girlcumTankCurrentVolume,
-    semenTankMaxVolume,
-    semenTankCurrentVolume,
     current_vessel,
     current_selected_organ,
     current_selected_organ_name,
@@ -446,104 +442,6 @@ const MilkingMachineContent = (props) => {
                           textAlign="center"
                           backgroundColor={palette.ButtonBackGroundColor}
                           onClick={() => act('transfer', { amount: 50 })}
-                        />
-                      </Stack.Item>
-                    </Stack>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Stack>
-                      <Stack.Item grow basis="1rem">
-                        {current_vessel === 'GirlcumContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Girlcum"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOn}
-                              textColor={palette.ControlButtonOnText}
-                              bold
-                            />
-                          </Box>
-                        )}
-                        {current_vessel !== 'GirlcumContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Girlcum"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOff}
-                              textColor={palette.ControlButtonOffText}
-                              bold
-                              onClick={() => act('setGirlcum')}
-                            />
-                          </Box>
-                        )}
-                      </Stack.Item>
-                      <Stack.Item grow basis="1rem">
-                        <Section
-                          backgroundColor={palette.SectionBackgroundColor}
-                          textAlign="center"
-                        >
-                          {Math.round(girlcumTankCurrentVolume)} /{' '}
-                          {Math.round(girlcumTankMaxVolume)}
-                        </Section>
-                      </Stack.Item>
-                      <Stack.Item align="center">
-                        <Button
-                          content="100"
-                          minWidth="30pt"
-                          textAlign="center"
-                          backgroundColor={palette.ButtonBackGroundColor}
-                          onClick={() => act('transfer', { amount: 100 })}
-                        />
-                      </Stack.Item>
-                    </Stack>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Stack>
-                      <Stack.Item grow basis="1rem">
-                        {current_vessel === 'SemenContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Semen"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOn}
-                              textColor={palette.ControlButtonOnText}
-                              bold
-                            />
-                          </Box>
-                        )}
-                        {current_vessel !== 'SemenContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Semen"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOff}
-                              textColor={palette.ControlButtonOffText}
-                              bold
-                              onClick={() => act('setSemen')}
-                            />
-                          </Box>
-                        )}
-                      </Stack.Item>
-                      <Stack.Item grow basis="1rem">
-                        <Section
-                          backgroundColor={palette.SectionBackgroundColor}
-                          textAlign="center"
-                        >
-                          {Math.round(semenTankCurrentVolume)} /{' '}
-                          {Math.round(semenTankMaxVolume)}
-                        </Section>
-                      </Stack.Item>
-                      <Stack.Item align="center">
-                        <Button
-                          content="All"
-                          minWidth="30pt"
-                          textAlign="center"
-                          backgroundColor={palette.ButtonBackGroundColor}
-                          onClick={() => act('transfer', { amount: 1000 })}
                         />
                       </Stack.Item>
                     </Stack>

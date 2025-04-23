@@ -32,8 +32,6 @@
 */
 
 	var/obj/item/reagent_containers/milk_vessel
-	var/obj/item/reagent_containers/girlcum_vessel
-	var/obj/item/reagent_containers/semen_vessel
 	var/obj/item/reagent_containers/current_vessel // Vessel selected in UI
 
 /*
@@ -72,12 +70,6 @@
 	milk_vessel = new()
 	milk_vessel.name = "MilkContainer"
 	milk_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
-	girlcum_vessel = new()
-	girlcum_vessel.name = "GirlcumContainer"
-	girlcum_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
-	semen_vessel = new()
-	semen_vessel.name = "SemenContainer"
-	semen_vessel.reagents.maximum_volume = MILKING_PUMP_MAX_CAPACITY
 	current_vessel = milk_vessel
 
 	vessel_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/milking_machine.dmi', "liquid_empty", LYING_MOB_LAYER)
@@ -353,7 +345,7 @@
 		update_all_visuals()
 		return FALSE
 
-	if((istype(current_selected_organ, /obj/item/organ/genital/testicles) && (semen_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/genital/vagina) && (girlcum_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/genital/breasts) && (milk_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)))
+	if(istype(current_selected_organ, /obj/item/organ/genital/breasts) && (milk_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY))
 		current_mode = MILKING_PUMP_MODE_OFF
 		pump_state = MILKING_PUMP_STATE_OFF
 		update_all_visuals()
@@ -363,38 +355,9 @@
 	if(pump_state != MILKING_PUMP_STATE_ON)
 		pump_state = MILKING_PUMP_STATE_ON
 
-	retrieve_liquids_from_selected_organ(seconds_per_tick)
 	increase_current_mob_arousal(seconds_per_tick)
 
 	update_all_visuals()
-	return TRUE
-
-// Liquid intake handler
-
-/obj/structure/chair/milking_machine/proc/retrieve_liquids_from_selected_organ(seconds_per_tick)
-	if(!current_mob || !current_selected_organ)
-		return FALSE
-
-	var/fluid_multiplier = 1
-	var/static/list/fluid_retrieve_amount = list("off" = 0, "low" = 1, "medium" = 2, "hard" = 3)
-
-	if(current_mob.has_status_effect(/datum/status_effect/climax))
-		fluid_multiplier = CLIMAX_RETRIEVE_MULTIPLIER
-
-	var/obj/item/reagent_containers/target_container
-
-	switch(current_selected_organ.type)
-		if(/obj/item/organ/genital/breasts)
-			target_container = milk_vessel
-		if(/obj/item/organ/genital/vagina)
-			target_container = girlcum_vessel
-		if(/obj/item/organ/genital/testicles)
-			target_container = semen_vessel
-
-	if(!target_container || current_selected_organ.internal_fluid_count <= 0)
-		return FALSE
-
-	current_selected_organ.transfer_internal_fluid(target_container.reagents, fluid_retrieve_amount[current_mode] * fluid_multiplier * seconds_per_tick)
 	return TRUE
 
 // Handling the process of the impact of the machine on the organs of the mob
@@ -497,7 +460,7 @@
 
 	// Processing changes in the capacity overlay
 	cut_overlay(vessel_overlay)
-	var/total_reagents_volume = (milk_vessel.reagents.total_volume + girlcum_vessel.reagents.total_volume + semen_vessel.reagents.total_volume)
+	var/total_reagents_volume = (milk_vessel.reagents.total_volume)
 	var/static/list/vessel_state_list = list("liquid_empty", "liquid_low", "liquid_medium", "liquid_high", "liquid_full")
 
 	var/state_to_use = 1
@@ -558,10 +521,6 @@
 	data["mode"] = current_mode
 	data["milkTankMaxVolume"] = MILKING_PUMP_MAX_CAPACITY
 	data["milkTankCurrentVolume"] = milk_vessel ? milk_vessel.reagents.total_volume : null
-	data["girlcumTankMaxVolume"] = MILKING_PUMP_MAX_CAPACITY
-	data["girlcumTankCurrentVolume"] = girlcum_vessel ? girlcum_vessel.reagents.total_volume : null
-	data["semenTankMaxVolume"] = MILKING_PUMP_MAX_CAPACITY
-	data["semenTankCurrentVolume"] = semen_vessel ? semen_vessel.reagents.total_volume : null
 	data["current_vessel"] = current_vessel ? current_vessel : null
 	data["current_selected_organ"] = current_selected_organ ? current_selected_organ : null
 	data["current_selected_organ_name"] = current_selected_organ ? current_selected_organ.name : null
@@ -655,16 +614,6 @@
 
 	if(action == "setMilk")
 		current_vessel = milk_vessel
-		update_all_visuals()
-		return TRUE
-
-	if(action == "setGirlcum")
-		current_vessel = girlcum_vessel
-		update_all_visuals()
-		return TRUE
-
-	if(action == "setSemen")
-		current_vessel = semen_vessel
 		update_all_visuals()
 		return TRUE
 
