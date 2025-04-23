@@ -1,7 +1,7 @@
 /area/awaymission/wargames
 	icon_state = "away"
 	requires_power = TRUE
-	static_lighting = FALSE
+	static_lighting = TRUE
 
 /area/awaymission/wargames/outside
 	name = "Wargames Outside"
@@ -12,9 +12,7 @@
 	name = "Wargames Tents"
 	requires_power = FALSE
 
-/area/awaymission/wargames/cin
-	requires_power = TRUE
-	static_lighting = TRUE
+/area/awaymission/wargames/cin // might need to add broad things later
 
 /area/awaymission/wargames/cin/bar
 	name = "Wargames CIN bar"
