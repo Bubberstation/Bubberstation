@@ -104,7 +104,9 @@
 			if(event.can_spawn_event(player_pop))
 				valid_events[event] = event.calculated_weight
 				if(event.roundstart)
-					log_dynamic("[event] added to roundstart event pool with calculated weight [event.calculated_weight].")
+					log_dynamic("[event] added to roundstart event pool with calculated weight [event.calculated_weight] and tags [english_list(event.tags)].")
+			else if(event.roundstart)
+				log_dynamic("[event] did not meet inclusion criteria, skipped.")
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
 			message_admins("Storyteller failed to pick an event for track of [track].")
@@ -131,7 +133,7 @@
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
-		log_dynamic("Roundstart event is [bought_event] based on weighted selection.")
+		log_dynamic("Storyteller selected roundstart event [bought_event] based on weighted selection!")
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
