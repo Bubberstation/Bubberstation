@@ -19,6 +19,7 @@
 	name = "Self-Actualization Device"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/self_actualization_device
+	req_components = list()
 
 /obj/machinery/self_actualization_device
 	name = "Self-Actualization Device"
