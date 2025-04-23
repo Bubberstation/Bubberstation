@@ -171,7 +171,7 @@
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
-		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, // BUBBER EDIT CHANGE - Original: /obj/item/clothing/mask/surgical
 		/obj/item/hemostat,
 		/obj/item/storage/pill_bottle/lidocaine, // BUBBER EDIT CHANGE - Original: /obj/item/razor/surgery
 		/obj/item/retractor,
@@ -181,7 +181,6 @@
 		/obj/item/surgical_drapes,
 		/obj/item/surgicaldrill,
 		/obj/item/reagent_containers/medigel/sterilizine, // BUBBER EDIT CHANGE
-		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, // BUBBER EDIT ADDITION
 	)
 
 /obj/item/surgery_tray/full/deployed
