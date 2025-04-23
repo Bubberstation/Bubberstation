@@ -8,15 +8,18 @@ GLOBAL_PROTECT(vetted_list)
 	var/file_path_vetted
 
 /client/
-	var/is_vetted = FALSE
+	var/is_vetted = null
 
 /datum/controller/subsystem/player_ranks/proc/is_vetted(client/user, admin_bypass = TRUE)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_vetted(), expected 'client' and obtained '[user ? user.type : "null"]'.")
-	if(user.is_vetted)
-		return TRUE
-	else if(get_user_vetted_status_hot(user.ckey))
+	if(!isnull(user.is_vetted))
+		return user.is_vetted
+	if(get_user_vetted_status_hot(user.ckey))
 		user.is_vetted = TRUE
+		return user.is_vetted
+	else
+		user.is_vetted = FALSE
 		return user.is_vetted
 
 
