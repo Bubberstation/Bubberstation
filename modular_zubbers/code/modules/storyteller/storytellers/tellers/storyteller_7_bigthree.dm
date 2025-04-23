@@ -1,6 +1,6 @@
 /datum/storyteller/black_star
-	name = "Black Star (High Chaos)"
-	desc = "The Black Star will be a chaotic shift, in addition have a chance to roll Nukies <span class='yellowteamradio'>if at least 35 players are ready at game start.</span>"
+	name = "Black Star (High Chaos+)"
+	desc = "The Black Star will be a chaotic shift. Similar to gamer, but <span class='yellowteamradio'>Nuclear Operatives</span> may roll if at least <span class='yellowteamradio'>35 players</span> are ready at game start.</span>"
 	welcome_text = "Oh my, would you look at the time..."
 
 	tag_multipliers = list(
