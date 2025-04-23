@@ -77,10 +77,6 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	name = "Underground Outpost 45 away spawn"
 	id = AWAYSTART_UNDERGROUND
 
-/obj/effect/landmark/awaystart/wargames
-	name = "Wargames away spawn"
-	id = AWAYSTART_WARGAMES
-
 /proc/generateMapList(filename)
 	. = list()
 	filename = "[global.config.directory]/[SANITIZE_FILENAME(filename)]"
