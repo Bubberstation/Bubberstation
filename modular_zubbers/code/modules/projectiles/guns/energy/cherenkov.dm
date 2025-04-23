@@ -15,7 +15,7 @@
 	name = "nanite pistol"
 	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of angry robots into the bad guys."
 	inhand_icon_state = null
-	ammo_type = list(/obj/item/ammo_casing/energy/nanite)
+	ammo_type = list(/obj/item/ammo_casing/energy/cherenkov)
 	shaded_charge = TRUE
 	ammo_x_offset = 1
 	obj_flags = UNIQUE_RENAME
@@ -54,3 +54,39 @@
                 var/mob/living/holder = loc
                 to_chat(holder, span_alert("You feel the air around the rifle growing warm... Ruh roh"))
             radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION)
+
+/obj/item/ammo_casing/energy/cherenkov
+	projectile_type = /obj/projectile/beam/cherenkov
+	select_name = "doomsday"
+	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
+	fire_sound = 'sound/items/weapons/beam_sniper.ogg'
+
+/obj/projectile/beam/cherenkov
+	name = "anti-existential beam"
+	icon_state = null
+	hitsound = 'sound/effects/explosion/explosion3.ogg'
+	damage = 100 // Does it matter?
+	damage_type = BURN
+	armor_flag = ENERGY
+	range = 150
+	jitter = 20 SECONDS
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/tracer/beam_rifle
+	var/list/cherenkov_traits = list(TRAIT_HUSK, TRAIT_BADDNA, TRAIT_IRRADIATED)
+
+
+/obj/projectile/beam/cherenkov/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(!ishuman(target))
+		if(ismob(target))
+			target.gib
+		else
+			return
+
+	if(istype(target, /mob/living/carbon))
+		var/mob/living/carbon/our_victim = target
+		our_victim.add_traits(CHERENKOV_TRAITS, src)
+		playsound(our_victim, 'sound/items/weapons/sear.ogg', 30, TRUE, -1)
+		our_victim.add_client_colour(/datum/client_colour/monochrome, REF(src))
+		our_victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199)
+		our_victim.bioscramble()
