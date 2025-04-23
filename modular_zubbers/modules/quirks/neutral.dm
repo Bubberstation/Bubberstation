@@ -9,7 +9,7 @@
 	var/glowy_color = null /// Holds player's selected color
 	var/glowy_power = 1
 	var/glowy_range = 1
-	var/obj/effect/dummy/lighting_obj/moblight/glowy
+	var/obj/effect/dummy/lighting_obj/moblight/glowy_light
 
 /datum/quirk/glowy/add_unique(client/client_source)
 	. = ..()
@@ -24,15 +24,14 @@
 	. = ..()
 	if(.)
 		return
-	glowy = owner.mob_light()
-	glowy.set_light_range_power_color(glowy_range, glowy_power, glowy_color)
+	glowy_light = owner.mob_light(glowy_range, glowy_power, glowy_color)
 
 /datum/quirk/glowy/remove()
 	. = ..()
 
 	if(QDELETED(quirk_holder))
 		return
-	QDEL_NULL(glowy)
+	QDEL_NULL(glowy_light)
 
 // Client preference for glow color
 /datum/preference/color/glowy_color
