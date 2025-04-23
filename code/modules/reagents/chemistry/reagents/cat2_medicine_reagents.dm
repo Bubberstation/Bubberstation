@@ -520,7 +520,7 @@
 	carbies.add_mood_event("painful_medicine", /datum/mood_event/painful_medicine)
 
 	//don't unhusked non husked mobs
-	if (!HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN))
+	if (!HAS_TRAIT(exposed_mob, TRAIT_HUSK)) // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: if (!HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN))
 		return
 
 	//don't try to unhusk mobs above burn damage threshold
