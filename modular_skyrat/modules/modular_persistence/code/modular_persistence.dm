@@ -60,6 +60,10 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	if(!persistence_data)
 		return
 
+	// This will update the paths of saved NIFs because /obj/item/organ/internal was refactored away
+	if(persistence_data["nif_path"] && findtext(persistence_data["nif_path"], "/obj/item/organ/internal"))
+		persistence_data["nif_path"] = replacetext(persistence_data["nif_path"], "/obj/item/organ/internal", "/obj/item/organ")
+
 	for(var/var_name in vars)
 		var/var_entry = persistence_data[var_name]
 
