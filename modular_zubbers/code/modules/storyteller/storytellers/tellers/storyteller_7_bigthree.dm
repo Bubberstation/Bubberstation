@@ -9,8 +9,8 @@
 		TAG_DESTRUCTIVE = 1
 	)
 
-	population_min = 35
-	antag_divisor = 5
+	population_min = 70
+	antag_divisor = 6
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 	track_data = /datum/storyteller_data/tracks/gamer
