@@ -133,7 +133,7 @@
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
-		log_dynamic("Roundstart event is [bought_event] based on weighted selection.")
+		log_dynamic("Storyteller selected roundstart event [bought_event] based on weighted selection!")
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
