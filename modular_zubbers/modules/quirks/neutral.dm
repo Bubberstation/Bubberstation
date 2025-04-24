@@ -24,7 +24,7 @@
 	. = ..()
 	if(.)
 		return
-	glowy_light = owner.mob_light(glowy_range, glowy_power, glowy_color)
+	glowy_light = owner.mob_light()
 
 /datum/quirk/glowy/remove()
 	. = ..()
