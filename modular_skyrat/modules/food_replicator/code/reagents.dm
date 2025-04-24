@@ -34,9 +34,6 @@
 	mix_message = "The mixture instantly heats up."
 	reaction_flags = REACTION_INSTANT
 
-//bubber removal start
-//bubber removal end
-
 /datum/reagent/consumable/powdered_lemonade
 	name = "Powdered Lemonade"
 	description = "Sweet, tangy base of a lemonade. Would be good if you'd mix it with water."

@@ -96,7 +96,6 @@
 	show_ph = FALSE
 	base_reagent_purity = 0.5
 	// God's strongest coffee machine
-	//bubber edit: Coco instead of powdered chocolate
 	dispensable_reagents = list(
 		/datum/reagent/water,
 		/datum/reagent/consumable/powdered_milk,
@@ -115,7 +114,6 @@
 		/datum/reagent/consumable/nutraslop,
 		/datum/reagent/consumable/enzyme,
 	)
-	//bubber edit end
 
 	/// Since we don't have a board to take from, we use this to give the dispenser a cell on spawning
 	var/cell_we_spawn_with = /obj/item/stock_parts/power_store/cell/high

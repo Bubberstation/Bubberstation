@@ -108,7 +108,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_FOOD,
 	)
-//bubber edit - unify chocolate
+
 /datum/design/cocoa
 	name = "Powdered Hot Chocolate"
 	id = "cocoa"
@@ -119,7 +119,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_FOOD,
 	)
-//bubber edit end
+
 /datum/design/lemonade
 	name = "Powdered Lemonade"
 	id = "slavic_lemon"
