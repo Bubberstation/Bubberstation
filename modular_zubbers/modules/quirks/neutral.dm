@@ -58,13 +58,13 @@
 
 // Handles mutation conflicts
 /datum/quirk/glowy/add(client/client_source)
-    . = ..()
-    RegisterSignal(quirk_holder, COMSIG_TRY_GAIN_MUTATION, PROC_REF(on_mutation_gained))
+	. = ..()
+	RegisterSignal(quirk_holder, COMSIG_TRY_GAIN_MUTATION, PROC_REF(on_mutation_gained))
 
 /datum/quirk/glowy/remove()
-    . = ..()
-    UnregisterSignal(quirk_holder, COMSIG_TRY_GAIN_MUTATION)
+	. = ..()
+	UnregisterSignal(quirk_holder, COMSIG_TRY_GAIN_MUTATION)
 
 /datum/quirk/glowy/proc/on_mutation_gained(datum/mutation/source, mob/living/carbon/human/acquirer)
-    if(istype(source, /datum/mutation/human/glow/anti))
-        return TRUE
+	if(istype(source, /datum/mutation/human/glow/anti))
+		return TRUE
