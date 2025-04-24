@@ -84,6 +84,12 @@ There are downstream SFW servers using this code and I'd rather them not be expo
 	name = "Blind"
 	icon_state = "blackimageoverlay"
 
+//BUBBER EDIT START
+/atom/movable/screen/fullscreen/carrier/blind_special
+	name = "Blind"
+	icon_state = "impairedoverlay3"
+//BUBBER EDIT END
+
 /atom/movable/screen/fullscreen/carrier/colorable
 	name = "Recolorable"
 	icon = 'icons/hud/screen_gen.dmi'

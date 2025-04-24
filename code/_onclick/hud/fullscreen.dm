@@ -128,6 +128,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/fullscreen)
 	layer = BLIND_LAYER
 	plane = FULLSCREEN_PLANE
 
+//BUBBER EDIT START
+/atom/movable/screen/fullscreen/blind_special
+	icon_state = "impairedoverlay3"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+//BUBBER EDIT END
+
 /atom/movable/screen/fullscreen/curse
 	icon_state = "curse"
 	layer = CURSE_LAYER
