@@ -47,6 +47,8 @@
 	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
 	new /obj/item/card/id/departmental_budget/srv(src) //SKYRAT EDIT ADDITION
+	new /obj/item/stamp/granted(src) //BUBBERSTATION EDIT ADDITIONS
+	new /obj/item/stamp/denied(src)
 
 /obj/structure/closet/secure_closet/hop/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
