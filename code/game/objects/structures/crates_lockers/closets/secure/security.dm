@@ -50,8 +50,6 @@
 
 /obj/structure/closet/secure_closet/hop/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
-	new /obj/item/stamp/granted(src) //BUBBERSTATION EDIT ADDITIONS
-	new /obj/item/stamp/denied(src)
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
