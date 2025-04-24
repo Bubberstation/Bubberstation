@@ -121,7 +121,7 @@
 		return TRUE
 	var/obj/item/spawned_item
 
-	if(prob(0.5) && length(GLOB,one_of_a_kind_loot)) // 1 in 500
+	if(prob(0.33) && length(GLOB.one_of_a_kind_loot)) // 1 in 300
 		spawned_item = pick_n_take(GLOB.one_of_a_kind_loot)
 	else
 		spawned_item = pick_weight_recursive(GLOB.trash_pile_loot)
