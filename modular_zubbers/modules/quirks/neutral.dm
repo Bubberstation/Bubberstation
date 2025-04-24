@@ -25,7 +25,8 @@
 	. = ..()
 	if(.)
 		return
-	glowy_light = owner.mob_light()
+	glowy_light = owner.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight)
+	refresh_light(owner)
 
 /datum/quirk/glowy/remove()
 	. = ..()
@@ -33,6 +34,18 @@
 	if(QDELETED(quirk_holder))
 		return
 	QDEL_NULL(glowy_light)
+
+/datum/quirk/glowy/proc/refresh_light(mob/living/carbon/human/owner)
+	SIGNAL_HANDLER
+	if(isnull(glowy_light))
+		return
+	if(owner.stat != DEAD)
+		glowy_light.set_light_range_power_color(glowy_range, glowy_power, glowy_color)
+		glowy_light.set_light_on(TRUE)
+		owner.update_body()
+	else
+		glowy_light.set_light_on(FALSE)
+		owner.update_body()
 
 // Client preference for glow color
 /datum/preference/color/glowy_color
