@@ -2,7 +2,7 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_OTHER
 
 // Traitor
-/datum/opposing_force_equipment/antagonist_powers/uplink //BUBBERSTATION EDIT
+/datum/opposing_force_equipment/antagonist_powers/uplink
 	item_type = /obj/item/uplink/standard
 	name = "Standard Syndicate Uplink"
 	description = "An mass-produced and cheap Syndicate uplink without a password and a balance of 25 telecrystals. It doesn't get more standard than this."
