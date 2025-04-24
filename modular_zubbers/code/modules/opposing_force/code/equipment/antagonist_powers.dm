@@ -2,11 +2,11 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_OTHER
 
 // Traitor
-/datum/opposing_force_equipment/antagonist_powers/uplink
-	item_type = /obj/item/uplink
-	name = "Syndicate Uplink"
-	description = "An old-school Syndicate uplink without a password and an empty TC account. Perfect for the aspiring operatives."
-	admin_note = "Traitor uplink without telecrystals."
+/datum/opposing_force_equipment/antagonist_powers/uplink //BUBBERSTATION EDIT
+	item_type = /obj/item/uplink/standard
+	name = "Standard Syndicate Uplink"
+	description = "An mass-produced and cheap Syndicate uplink without a password and a balance of 25 telecrystals. It doesn't get more standard than this."
+	admin_note = "Traitor uplink with 25 telecrystals." // LIES. LIES. LIES!!! No more.
 
 /datum/opposing_force_equipment/antagonist_powers/tc1
 	item_type = /obj/item/stack/telecrystal

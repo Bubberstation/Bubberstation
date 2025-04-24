@@ -38,6 +38,11 @@
 		uplink_handler_override = uplink_handler_override, \
 	)
 
+/obj/item/uplink/standard // BBUBER EDIT standard traitor uplink, since we don't have 20 like tg, we have 25
+
+/obj/item/uplink/standard/Initialize(mapload, owner, tc_amount = 25, datum/uplink_handler/uplink_handler_override = null)
+	. = ..()
+
 /obj/item/uplink/debug
 	name = "debug uplink"
 
