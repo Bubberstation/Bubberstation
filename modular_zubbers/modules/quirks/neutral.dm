@@ -16,9 +16,6 @@
 /datum/quirk/glowy/add_unique(client/client_source)
 	. = ..()
 	glowy_color = client_source?.prefs.read_preference(/datum/preference/color/glowy_color)
-	if (isnull(glowy_color))
-		var/mob/living/carbon/human/human_holder = quirk_holder
-		glowy_color = ("#[random_color()]")
 
 /datum/quirk_constant_data/glowy
 	associated_typepath = /datum/quirk/glowy
