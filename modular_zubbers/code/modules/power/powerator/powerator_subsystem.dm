@@ -3,10 +3,10 @@ SUBSYSTEM_DEF(powerator_penality)
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_POWERATOR_PENALITY
 
-	/// How many powerators we have build on server
+	/// Assoc list of powerator faction -> list of powerators belonging to that faction
 	var/list/powerator_list = list()
-	/// Current penality for powerator cash gain
-	var/diminishing_gains_multiplier = 1
+	/// Assoc list of powerator faction -> diminishing gains multiplier for that faction's powerators
+	var/list/diminishing_gains_multiplier_list = list()
 
 /datum/controller/subsystem/powerator_penality/Initialize()
 	return SS_INIT_SUCCESS
