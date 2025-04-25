@@ -85,23 +85,15 @@
 	. = ..()
 	if(panel_open)
 		. += span_warning("The maintainence panel is currently open, preventing [src] from working!")
-	else
-		. += span_notice("The maintainence panel is closed.")
 
 	if(!anchored)
 		. += span_warning("The anchors are not bolted to the floor, preventing [src] from working!")
-	else
-		. += span_notice("The anchors are bolted to the floor.")
 
 	if(machine_stat & (NOPOWER | BROKEN))
 		. += span_warning("There is either damage or no power being supplied, preventing [src] from working!")
-	else
-		. += span_notice("There is no damage and power is being supplied.")
 
 	if(!attached_cable)
 		. += span_warning("There is no power cable underneath, preventing [src] from working!")
-	else
-		. += span_notice("There is a power cable underneath.")
 
 	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
 	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
