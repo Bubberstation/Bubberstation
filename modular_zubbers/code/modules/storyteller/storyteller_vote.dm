@@ -23,7 +23,7 @@
 /datum/vote/storyteller/initiate_vote(initiator, duration)
 	. = ..()
 	if(CONFIG_GET(number/storyteller_secret_percentage))
-		to_chat(world, custom_boxed_message("purple_box center", vote_font("Secret is enabled! The winning storyteller may or may not be announced at the start of the round.")))
+		to_chat(world, custom_boxed_message("purple_box center", vote_font("Secret is enabled! The winning storyteller may or may not be announced at the start of the round.<br />[span_yellowteamradio("Only players who are ready and joining the game round start will be calculated in voting results.")]")))
 
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)
