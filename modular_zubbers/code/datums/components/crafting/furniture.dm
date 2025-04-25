@@ -45,3 +45,12 @@
 	)
 	result = /obj/item/sign/flag/pride/trans
 	category = CAT_FURNITURE
+
+/datum/crafting_recipe/detectiveboard
+	name = "Detective's Notice Board"
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 1,
+	)
+	result = /obj/structure/detectiveboard
+	time = 20 SECONDS
+	category = CAT_FURNITURE
