@@ -748,6 +748,13 @@ SUBSYSTEM_DEF(gamemode)
 		statpanel_display = storyteller.name
 		to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
 
+	// Notify discord about the round's selected storyteller
+	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+		send2chat(
+			new /datum/tgs_message_content("The storyteller selected for this round is [statpanel_display]!"),
+			channel_tag,
+		)
+
 /datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
 	var/list/players = list()
 	var/list/base_votes = LAZYLISTDUPLICATE(storyteller_vote_results)
