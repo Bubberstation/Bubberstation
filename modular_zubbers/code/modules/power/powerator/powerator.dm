@@ -83,7 +83,6 @@
 
 /obj/machinery/powerator/examine(mob/user)
 	. = ..()
-	. += "<br>"
 	if(panel_open)
 		. += span_warning("The maintainence panel is currently open, preventing [src] from working!")
 	else
@@ -176,7 +175,7 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", (current_power / KILO WATT), (max_power / KILO WATT), 0)
+	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", current_power / (1 KILO WATTS), max_power / (1 KILO WATTS), 0)
 	if(isnull(new_power))
 		return TRUE
 	current_power = new_power KILO WATTS

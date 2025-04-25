@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(powerator_penality)
 
 /datum/controller/subsystem/powerator_penality/proc/calculate_penalty()
 	for(var/faction in powerator_list)
-		if(length(powerator_list[faction] > 0))
+		if(length(powerator_list[faction]) > 0)
 			diminishing_gains_multiplier_list[faction] = min(1, 2 ** log(4, length(powerator_list[faction])) / length(powerator_list[faction]))
 		else
 			diminishing_gains_multiplier_list[faction] = 1
