@@ -2,9 +2,6 @@
 #define POWERATOR_FACTION_INTERDYNE "interdyne"
 #define POWERATOR_FACTION_TARKON "tarkon"
 
-GLOBAL_LIST_EMPTY(powerator_list)
-GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
-
 /obj/item/circuitboard/machine/powerator
 	name = "Powerator"
 	desc = "The powerator is a machine that allows stations to sell their power to other stations that require additional sources."
@@ -60,6 +57,11 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 	circuit = /obj/item/circuitboard/machine/powerator
 	idle_power_usage = 100
 
+	/// Assoc list of factions -> powerators
+	var/static/list/powerator_list = list()
+	/// Assoc list of factions -> powerator penalties
+	var/static/list/powerator_penalty_multiplier_list = list()
+
 	/// the current amount of power that we are trying to process
 	var/current_power = 10 KILO WATTS
 	/// the max amount of power that can be sent per process, from 100 KW (t1) to 10000 KW (t4)
@@ -77,12 +79,12 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
-	LAZYADD(GLOB.powerator_list[powerator_faction], src)
+	LAZYADD(powerator_list[powerator_faction], src)
 	update_penalty()
 	register_context()
 
 /obj/machinery/powerator/Destroy()
-	LAZYREMOVE(GLOB.powerator_list[powerator_faction], src)
+	LAZYREMOVE(powerator_list[powerator_faction], src)
 	update_penalty()
 	attached_cable = null
 	. = ..()
@@ -120,8 +122,8 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 
 	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
 	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
-	if(length(GLOB.powerator_list[powerator_faction]) > 1)
-		. += span_notice("Multiple powerators detected, total efficiency reduced by [(GLOB.powerator_penalty_multiplier_list[powerator_faction])*100]%")
+	if(length(powerator_list[powerator_faction]) > 1)
+		. += span_notice("Multiple powerators detected, total efficiency reduced by [(powerator_penalty_multiplier_list[powerator_faction])*100]%")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -181,7 +183,7 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 		current_power = attached_cable.newavail()
 	attached_cable.add_delayedload(current_power)
 
-	var/money_ratio = round(current_power * divide_ratio) * GLOB.powerator_penalty_multiplier_list[powerator_faction]
+	var/money_ratio = round(current_power * divide_ratio) * powerator_penalty_multiplier_list[powerator_faction]
 	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account)
 	synced_bank_account.adjust_money(money_ratio)
 	credits_made += money_ratio
@@ -213,10 +215,10 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 
 /// Update the penalty multiplier for this powerator's faction
 /obj/machinery/powerator/proc/update_penalty()
-	if(length(GLOB.powerator_list[powerator_faction]) > 0)
-		GLOB.powerator_penalty_multiplier_list[powerator_faction] = min(1, 2 ** log(4, length(GLOB.powerator_list[powerator_faction])) / length(GLOB.powerator_list[powerator_faction]))
+	if(length(powerator_list[powerator_faction]) > 0)
+		powerator_penalty_multiplier_list[powerator_faction] = min(1, 2 ** log(4, length(powerator_list[powerator_faction])) / length(powerator_list[powerator_faction]))
 	else
-		GLOB.powerator_penalty_multiplier_list[powerator_faction] = 1
+		powerator_penalty_multiplier_list[powerator_faction] = 1
 
 // Ghost role versions
 
