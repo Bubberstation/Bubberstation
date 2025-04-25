@@ -15,36 +15,36 @@
 	genetic = TRUE
 	var/can_have_sheath = TRUE
 
-/datum/sprite_accessory/genital/penis/nondescript
-	icon_state = "nondescript"
+/datum/sprite_accessory/genital/penis/nondescriptalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Nondescript (Alt)"
 
-/datum/sprite_accessory/genital/penis/knotted
-	icon_state = "knotted"
+/datum/sprite_accessory/genital/penis/knottedalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Knotted (Alt)"
 
-/datum/sprite_accessory/genital/penis/flared
-	icon_state = "flared"
+/datum/sprite_accessory/genital/penis/flaredalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Flared (Alt)"
 
-/datum/sprite_accessory/genital/penis/barbknot
-	icon_state = "barbknot"
+/datum/sprite_accessory/genital/penis/barbknotalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Barbed, Knotted (Alt)"
 
-/datum/sprite_accessory/genital/penis/tapered
-	icon_state = "tapered"
+/datum/sprite_accessory/genital/penis/taperedalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Tapered (Alt)"
 
-/datum/sprite_accessory/genital/penis/tentacle
-	icon_state = "tentacle"
+/datum/sprite_accessory/genital/penis/tentaclealt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Tentacled (Alt)"
 
-/datum/sprite_accessory/genital/penis/hemi
-	icon_state = "hemi"
+/datum/sprite_accessory/genital/penis/hemialt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Hemi (Alt)"
 
-/datum/sprite_accessory/genital/penis/hemiknot
-	icon_state = "hemiknot"
+/datum/sprite_accessory/genital/penis/hemiknotalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
 	name = "Knotted Hemi (Alt)"
 
 /datum/sprite_accessory/genital/splurtbreasts
@@ -65,17 +65,17 @@
 	factual = FALSE
 	color_src = null
 
-/datum/sprite_accessory/genital/breasts/pair
-	icon_state = "pair (Alt)"
-	name = "Pair"
+/datum/sprite_accessory/genital/breasts/pairalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
+	name = "Pair (Alt)"
 
-/datum/sprite_accessory/genital/breasts/quad
-	icon_state = "quad (Alt)"
-	name = "Quad"
+/datum/sprite_accessory/genital/breasts/quadalt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
+	name = "Quad (Alt)"
 
-/datum/sprite_accessory/genital/breasts/sextuple
-	icon_state = "sextuple (Alt)"
-	name = "Sextuple"
+/datum/sprite_accessory/genital/breasts/sextuplealt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
+	name = "Sextuple (Alt)"
 
 /datum/sprite_accessory/genital/splurttesticles
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
@@ -89,9 +89,9 @@
 	genetic = TRUE
 	var/has_size = TRUE
 
-/datum/sprite_accessory/genital/testicles/pair
+/datum/sprite_accessory/genital/testicles/pairalt
 	name = "Pair (Alt)"
-	icon_state = "pair"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
 	has_skintone_shading = TRUE
 
 /datum/sprite_accessory/genital/butt
