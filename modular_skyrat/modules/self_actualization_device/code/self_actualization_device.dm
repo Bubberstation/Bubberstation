@@ -16,9 +16,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /obj/item/circuitboard/machine/self_actualization_device
-	name = "Self-Actualization Device (Machine Board)"
+	name = "Self-Actualization Device"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/self_actualization_device
+	req_components = list()
 
 /obj/machinery/self_actualization_device
 	name = "Self-Actualization Device"
