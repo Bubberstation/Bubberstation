@@ -24,7 +24,7 @@
 	return SSgamemode.storyteller_desc(vote_name)
 
 /datum/vote/storyteller/get_result_text(winners, final_winner, non_voters)
-	return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Voting results are secret.", "boxed_message purple_box")
+	return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Selected storyteller may be revealed at round start.", "boxed_message purple_box")
 
 /datum/vote/storyteller/create_vote()
 	. = ..()

@@ -315,7 +315,8 @@ const ChoicesPanel = (props) => {
                   }
                 >
                   {user.multiSelection &&
-                  user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
+                  // BUBBER EDIT CHANGE - Original: [user.ckey.concat(choice.name)]
+                  user.multiSelection[`${user.ckey}*${choice.name}`] === 1 ? (
                     <Icon align="right" mr={2} color="blue" name="vote-yea" />
                   ) : null}
                   {

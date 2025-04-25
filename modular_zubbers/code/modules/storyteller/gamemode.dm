@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/storyteller/storyteller
 	/// Result of the storyteller vote. Defaults to the guide.
 	var/voted_storyteller = /datum/storyteller/default
+	/// Storyteller displayed to the statpanel, depending if the round is secret or not
+	var/statpanel_display = "N/A"
 	/// List of all the storytellers. Populated at init. Associative from type
 	var/list/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
@@ -722,11 +724,13 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
 		log_dynamic("Roundstart storyteller has been set by admins to [storyteller.name], the vote was not considered.")
 		return
+
 	var/datum/storyteller/storyteller_pick
 	if(!voted_storyteller)
 		storyteller_pick = pick(storytellers)
 		log_dynamic("Roundstart picked storyteller [storyteller.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
+
 	if(ready_only_vote)
 		var/processed_storyteller = process_storyteller_vote()
 		if(!isnull(processed_storyteller))
@@ -734,7 +738,15 @@ SUBSYSTEM_DEF(gamemode)
 			storyteller_vote_results = null
 		else
 			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
+
 	set_storyteller(voted_storyteller)
+	var/secret_percentage = CONFIG_GET(number/storyteller_secret_percentage)
+	if(prob(secret_percentage))
+		statpanel_display = "Secret"
+		to_chat(world, vote_font(fieldset_block("Storyteller: Secret", "The storyteller for this round is secret! What could it be, it is a mystery...", "boxed_message purple_box")))
+	else
+		statpanel_display = storyteller.name
+		to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
 
 /datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
 	var/list/players = list()
