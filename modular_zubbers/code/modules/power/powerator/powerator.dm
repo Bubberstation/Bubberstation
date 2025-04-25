@@ -75,11 +75,29 @@
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
 	SSpowerator_penality.add_powerator(src)
+	register_context()
 
 /obj/machinery/powerator/Destroy()
 	SSpowerator_penality.remove_powerator(src)
 	attached_cable = null
 	. = ..()
+
+/obj/machinery/powerator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(!held_item)
+		context[SCREENTIP_CONTEXT_LMB] = "Adjust power draw"
+		return CONTEXTUAL_SCREENTIP_SET
+	switch(held_item.tool_behaviour)
+		if(TOOL_WRENCH)
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unanchor" : "Anchor"]"
+			return CONTEXTUAL_SCREENTIP_SET
+		if(TOOL_SCREWDRIVER)
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			return CONTEXTUAL_SCREENTIP_SET
+		if(TOOL_CROWBAR)
+			if(panel_open)
+				context[SCREENTIP_CONTEXT_LMB] = "Dismantle machine"
+				return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/powerator/examine(mob/user)
 	. = ..()
