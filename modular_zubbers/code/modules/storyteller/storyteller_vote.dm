@@ -40,6 +40,11 @@
 /datum/vote/storyteller/finalize_vote(winning_option)
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
+	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+		send2chat(
+			new /datum/tgs_message_content("The storyteller has been set to [winning_option]. Get ready!"),
+			channel_tag
+		)
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
