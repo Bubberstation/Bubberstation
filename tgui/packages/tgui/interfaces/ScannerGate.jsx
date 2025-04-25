@@ -93,10 +93,6 @@ const SCANNER_GATE_ROUTES = {
     component: () => ScannerGateGender,
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
-  Contraband: {
-    title: 'Scanner Mode: Contraband',
-    component: () => ScannerGateContraband,
-  },
   // BUBBER EDIT START - NANITES
   Nanites: {
     title: 'Scanner Mode: Nanites',
@@ -168,12 +164,6 @@ const ScannerGateOff = (props) => {
           onClick={() => act('set_mode', { new_mode: 'Nanites' })}
         />
         {/* BUBBER EDIT END - NANITES */}
-
-        <Button
-          content="Contraband"
-          disabled={contraband_enabled ? false : true}
-          onClick={() => act('set_mode', { new_mode: 'Contraband' })}
-        />
       </Box>
     </>
   );
