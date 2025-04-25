@@ -158,6 +158,12 @@ const ScannerGateOff = (props) => {
           content="Nutrition"
           onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
         />
+        {/* BUBBER EDIT START - NANITES */}
+        <Button
+          content="Nanites"
+          onClick={() => act('set_mode', { new_mode: 'Nanites' })}
+        />
+        {/* BUBBER EDIT END - NANITES */}
       </Box>
     </>
   );
