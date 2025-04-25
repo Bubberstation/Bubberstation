@@ -32,7 +32,7 @@
 
 /datum/area_spawn/ammo_workbench
 	target_areas = list(/area/station/security/lockers, /area/station/security/office)
-	desired_atom = /obj/machinery/ammo_workbench
+	desired_atom = /obj/machinery
 	mode = AREA_SPAWN_MODE_HUG_WALL
 
 /datum/area_spawn/lustwish_public
