@@ -135,6 +135,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/wizardmode = FALSE
 
 	var/storyteller_voted = FALSE
+	var/ready_only_vote = FALSE
+	var/list/storyteller_vote_results = list()
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	. = ..()
@@ -725,7 +727,52 @@ SUBSYSTEM_DEF(gamemode)
 		storyteller_pick = pick(storytellers)
 		log_dynamic("Roundstart picked storyteller [storyteller.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
+	if(ready_only_vote)
+		var/processed_storyteller = process_storyteller_vote()
+		if(!isnull(processed_storyteller))
+			voted_storyteller = processed_storyteller
+			storyteller_vote_results = null
+		else
+			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
 	set_storyteller(voted_storyteller)
+
+/datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
+	var/list/players = list()
+	var/list/base_votes = LAZYLISTDUPLICATE(storyteller_vote_results)
+	var/list/processed_votes = list()
+	if(!base_votes)
+		return
+
+	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+		if(player.ready == PLAYER_READY_TO_PLAY)
+			players += player.ckey
+
+	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
+
+	for(var/vote as anything in base_votes)
+		if(base_votes[vote] == 0)
+			continue
+		var/vote_string = "[vote]"
+		var/list/vote_components = splittext(vote_string, "*")
+		var/vote_ckey = vote_components[1]
+		var/vote_storyteller = vote_components[2]
+		if(LAZYFIND(players, vote_ckey))
+			log_dynamic("VALID: [vote_ckey] voted for [vote_storyteller]")
+			processed_votes[vote_storyteller]++
+		else
+			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
+
+	log_dynamic("Storyteller vote tally is: [english_list_assoc(processed_votes)]")
+	message_admins(span_yellowteamradio("Storyteller vote tally is: [english_list_assoc(processed_votes)]"))
+	var/vote_winner = pick_weight(processed_votes)
+	log_dynamic("Storyteller vote winner is [vote_winner]")
+	message_admins(span_yellowteamradio("Storyteller vote winner is [vote_winner]"))
+	for(var/storyteller_type in storytellers)
+		var/datum/storyteller/storyboy = storytellers[storyteller_type]
+		if(storyboy.name == vote_winner)
+			return storyteller_type
+
+	stack_trace("Storyteller [vote_winner] was declared vote winner, but couldn't locate datum in storytellers! This should never happen!")
 
 /**
  * set_storyteller

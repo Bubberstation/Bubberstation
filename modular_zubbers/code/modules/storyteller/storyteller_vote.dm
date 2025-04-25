@@ -1,4 +1,5 @@
-/datum/vote/var/has_desc = FALSE
+/datum/vote
+	var/has_desc = FALSE
 
 /datum/vote/proc/return_desc(vote_name)
 	return ""
@@ -10,15 +11,20 @@
 	count_method = VOTE_COUNT_METHOD_MULTI
 	winner_method = VOTE_WINNER_METHOD_SIMPLE
 	vote_reminder = TRUE
+	display_statistics = FALSE
+	/// Only readied players can vote
+	var/ready_only = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()
 	default_choices = list()
 	default_choices = SSgamemode.storyteller_vote_choices()
 
-
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)
+
+/datum/vote/storyteller/get_result_text(winners, final_winner, non_voters)
+	return fieldset_block("Storyteller Vote", "Storyteller voting is now closed!", "boxed_message purple_box")
 
 /datum/vote/storyteller/create_vote()
 	. = ..()
@@ -38,8 +44,13 @@
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)
-	SSgamemode.storyteller_vote_result(winning_option)
-	SSgamemode.storyteller_voted = TRUE
+	if(ready_only)
+		SSgamemode.ready_only_vote = TRUE
+		SSgamemode.storyteller_voted = TRUE
+		SSgamemode.storyteller_vote_results = LAZYLISTDUPLICATE(choices_by_ckey)
+	else
+		SSgamemode.storyteller_vote_result(winning_option)
+		SSgamemode.storyteller_voted = TRUE
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
