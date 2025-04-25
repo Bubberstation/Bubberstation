@@ -44,13 +44,11 @@
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)
+	SSgamemode.storyteller_vote_result(winning_option)
+	SSgamemode.storyteller_voted = TRUE
 	if(ready_only)
 		SSgamemode.ready_only_vote = TRUE
-		SSgamemode.storyteller_voted = TRUE
 		SSgamemode.storyteller_vote_results = LAZYLISTDUPLICATE(choices_by_ckey)
-	else
-		SSgamemode.storyteller_vote_result(winning_option)
-		SSgamemode.storyteller_voted = TRUE
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
