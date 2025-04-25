@@ -175,10 +175,10 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", current_power / (1 KILO WATTS), max_power / (1 KILO WATTS), 0)
+	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", energy_to_power(current_power) / (1 KILO WATTS), energy_to_power(max_power) / (1 KILO WATTS), 0)
 	if(isnull(new_power))
 		return TRUE
-	current_power = new_power KILO WATTS
+	current_power = power_to_energy(new_power) KILO WATTS
 	return TRUE
 
 /obj/machinery/powerator/screwdriver_act(mob/living/user, obj/item/tool)
