@@ -153,7 +153,6 @@
 
 
 	contraband = list(
-					/obj/item/clothing/under/colonial/nri_police = 3,
 					/obj/item/clothing/suit/british_officer = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
