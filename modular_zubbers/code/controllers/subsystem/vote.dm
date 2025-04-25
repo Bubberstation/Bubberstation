@@ -30,4 +30,4 @@
 		if(current_vote.vote_sound && (late_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements)))
 			SEND_SOUND(late_voter, sound(current_vote.vote_sound))
 
-		to_chat(late_voter, fieldset_block("Storyteller Vote", "It's time to make your choices! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.", "boxed_message purple_box"))
+		to_chat(late_voter, vote_font(fieldset_block("Storyteller Vote", "It's time to make your choices! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.", "boxed_message purple_box")))
