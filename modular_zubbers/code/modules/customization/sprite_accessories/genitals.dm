@@ -1,98 +1,132 @@
 /datum/sprite_accessory/genital/vagina/cloaca
 	icon = 'modular_zubbers/icons/customization/genitals/vagina.dmi'
 
-/datum/sprite_accessory/genital/splurtpenis
+/datum/sprite_accessory/genital/penis/human
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	organ_type = /obj/item/organ/genital/penis
-	associated_organ_slot = ORGAN_SLOT_PENIS
-	key = ORGAN_SLOT_PENIS
+	name = "Human"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/nondescript
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Nondescript"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/knotted
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Knotted"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/flared
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Flared"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/barbknot
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Barbed, Knotted"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/tapered
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Tapered"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/tentacle
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Tentacled"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/hemi
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Hemi"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/hemiknot
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
+	name = "Knotted Hemi"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/penis/human_old
+	icon_state = /datum/sprite_accessory/genital/penis/human::icon_state
+	name = /datum/sprite_accessory/genital/penis/human::name + " (Old)"
+	color_src = /datum/sprite_accessory/genital/penis/human::color_src
+	default_color = /datum/sprite_accessory/genital/penis/human::default_color
+	has_skintone_shading = /datum/sprite_accessory/genital/penis/human::has_skintone_shading
+	can_have_sheath = /datum/sprite_accessory/genital/penis/human::can_have_sheath
+
+/datum/sprite_accessory/genital/penis/nondescript_old
+	icon_state = /datum/sprite_accessory/genital/penis/nondescript::icon_state
+	name = /datum/sprite_accessory/genital/penis/nondescript::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/knotted_old
+	icon_state = /datum/sprite_accessory/genital/penis/knotted::icon_state
+	name = /datum/sprite_accessory/genital/penis/knotted::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/flared_old
+	icon_state = /datum/sprite_accessory/genital/penis/flared::icon_state
+	name = /datum/sprite_accessory/genital/penis/flared::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/barbknot_old
+	icon_state = /datum/sprite_accessory/genital/penis/barbknot::icon_state
+	name = /datum/sprite_accessory/genital/penis/barbknot::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/tapered_old
+	icon_state = /datum/sprite_accessory/genital/penis/tapered::icon_state
+	name = /datum/sprite_accessory/genital/penis/tapered::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/tentacle_old
+	icon_state = /datum/sprite_accessory/genital/penis/tentacle::icon_state
+	name = /datum/sprite_accessory/genital/penis/tentacle::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/hemi_old
+	icon_state = /datum/sprite_accessory/genital/penis/hemi::icon_state
+	name = /datum/sprite_accessory/genital/penis/hemi::name + " (Old)"
+
+/datum/sprite_accessory/genital/penis/hemiknot_old
+	icon_state = /datum/sprite_accessory/genital/penis/hemiknot::icon_state
+	name = /datum/sprite_accessory/genital/penis/hemiknot::name + " (Old)"
+
+/datum/sprite_accessory/genital/breasts/pair
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
+	name = "Pair"
 	color_src = USE_MATRIXED_COLORS
-	always_color_customizable = TRUE
-	center = TRUE
-	special_x_dimension = TRUE
-	//default_color = DEFAULT_SKIN_OR_PRIMARY //This is the price we're paying for sheaths
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
-	var/can_have_sheath = TRUE
 
-/datum/sprite_accessory/genital/penis/nondescriptalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Nondescript (Alt)"
-
-/datum/sprite_accessory/genital/penis/knottedalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Knotted (Alt)"
-
-/datum/sprite_accessory/genital/penis/flaredalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Flared (Alt)"
-
-/datum/sprite_accessory/genital/penis/barbknotalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Barbed, Knotted (Alt)"
-
-/datum/sprite_accessory/genital/penis/taperedalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Tapered (Alt)"
-
-/datum/sprite_accessory/genital/penis/tentaclealt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Tentacled (Alt)"
-
-/datum/sprite_accessory/genital/penis/hemialt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Hemi (Alt)"
-
-/datum/sprite_accessory/genital/penis/hemiknotalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/penis_onmob.dmi'
-	name = "Knotted Hemi (Alt)"
-
-/datum/sprite_accessory/genital/splurtbreasts
+/datum/sprite_accessory/genital/breasts/quad
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
-	organ_type = /obj/item/organ/genital/breasts
-	associated_organ_slot = ORGAN_SLOT_BREASTS
-	key = ORGAN_SLOT_BREASTS
-	always_color_customizable = TRUE
-	default_color = DEFAULT_SKIN_OR_PRIMARY
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	has_skintone_shading = TRUE
-	genital_location = CHEST
-	genetic = TRUE
+	name = "Quad"
+	color_src = USE_MATRIXED_COLORS
 
-/datum/sprite_accessory/genital/breasts/none
-	icon_state = "none"
-	name = SPRITE_ACCESSORY_NONE
-	factual = FALSE
-	color_src = null
-
-/datum/sprite_accessory/genital/breasts/pairalt
+/datum/sprite_accessory/genital/breasts/sextuple
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
-	name = "Pair (Alt)"
+	name = "Sextuple"
+	color_src = USE_MATRIXED_COLORS
 
-/datum/sprite_accessory/genital/breasts/quadalt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
-	name = "Quad (Alt)"
+/datum/sprite_accessory/genital/breasts/pair_old
+	icon_state = /datum/sprite_accessory/genital/breasts/pair::icon_state
+	name = /datum/sprite_accessory/genital/breasts/pair::name + " (Old)"
 
-/datum/sprite_accessory/genital/breasts/sextuplealt
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
-	name = "Sextuple (Alt)"
+/datum/sprite_accessory/genital/breasts/quad_old
+	icon_state = /datum/sprite_accessory/genital/breasts/quad::icon_state
+	name = /datum/sprite_accessory/genital/breasts/quad::name + " (Old)"
 
-/datum/sprite_accessory/genital/splurttesticles
-	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
-	organ_type = /obj/item/organ/genital/testicles
-	associated_organ_slot = ORGAN_SLOT_TESTICLES
-	key = ORGAN_SLOT_TESTICLES
-	always_color_customizable = TRUE
-	special_x_dimension = TRUE
-	default_color = DEFAULT_SKIN_OR_PRIMARY
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_BEHIND_LAYER)
-	genetic = TRUE
-	var/has_size = TRUE
+/datum/sprite_accessory/genital/breasts/sextuple_old
+	icon_state = /datum/sprite_accessory/genital/breasts/sextuple::icon_state
+	name = /datum/sprite_accessory/genital/breasts/sextuple::name + " (Old)"
 
-/datum/sprite_accessory/genital/testicles/pairalt
-	name = "Pair (Alt)"
+/datum/sprite_accessory/genital/testicles/pair
+	name = "Pair"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
 	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/testicles/sheath
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
+	name = "Sheathed pair"
+	icon_state = "sheath"
+	has_skintone_shading = TRUE
+
+/datum/sprite_accessory/genital/testicles/pair_old
+	name = /datum/sprite_accessory/genital/testicles/pair::name + " (Old)"
+	icon_state = /datum/sprite_accessory/genital/testicles/pair::icon_state
 
 /datum/sprite_accessory/genital/butt
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/butt.dmi'
@@ -104,6 +138,16 @@
 	has_skintone_shading = TRUE
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
+
+/datum/sprite_accessory/genital/butt/none
+    icon_state = "none"
+    name = SPRITE_ACCESSORY_NONE
+    factual = FALSE
+    color_src = null
+
+/datum/sprite_accessory/genital/butt/pair
+    icon_state = "pair"
+    name = "Pair" //a pair of buns i guess
 
 /datum/sprite_accessory/genital/anus
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/anus.dmi'

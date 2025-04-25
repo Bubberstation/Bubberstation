@@ -155,12 +155,3 @@
 	relevant_mutant_bodypart = ORGAN_SLOT_BELLY
 	type_to_check = /datum/preference/choiced/genital/belly
 	skin_color_type = /datum/preference/toggle/genital_skin_color/belly
-
-//cumflation prefs
-/datum/preference/toggle/erp/cumflates_partners
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "cumflates_partners_pref"
-
-/datum/preference/toggle/erp/cumflates_partners/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return
