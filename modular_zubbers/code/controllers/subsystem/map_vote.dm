@@ -31,12 +31,12 @@
 		winner = map
 		winner_amount = map_vote_cache[map]
 
-	var/filtered_vote_results = "[span_bold("Vote Results (Including Carryover)")]\n\n[message_data.Join("\n")]"
+	var/filtered_vote_results = "[message_data.Join("\n")]"
 
 	ASSERT(winner, "No winner found in map vote.")
 	set_next_map(config.maplist[winner])
 	var/list/vote_result_message = list(filtered_vote_results)
-	vote_result_message += list("<hr>Next Map: [span_cyan(span_bold(next_map_config.map_name))]")
+	vote_result_message += list("<br/ >Next Map: [span_vote_notice(span_bold(next_map_config.map_name))]")
 	var/carryover_percentage = CONFIG_GET(number/map_vote_tally_carryover_percentage)
 	if(carryover_percentage)
 		vote_result_message += list("\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.")
@@ -58,7 +58,7 @@
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Map Vote")]\n<hr>[messages.Join("\n")]")))
+	to_chat(world, vote_font(fieldset_block("Map Vote - Results", "[messages.Join("\n")]", "boxed_message purple_box")))
 
 /datum/controller/subsystem/map_vote/update_tally_printout()
 	var/list/data = list()

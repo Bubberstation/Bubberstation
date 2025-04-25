@@ -782,10 +782,13 @@ SUBSYSTEM_DEF(gamemode)
 			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
 
 	log_dynamic("Storyteller vote tally is: [english_list_assoc(processed_votes)]")
-	message_admins(span_yellowteamradio("Storyteller vote tally is: [english_list_assoc(processed_votes)]"))
 	var/vote_winner = pick_weight(processed_votes)
 	log_dynamic("Storyteller vote winner is [vote_winner]")
-	message_admins(span_yellowteamradio("Storyteller vote winner is [vote_winner]"))
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_ADMINLOG,
+		html = span_vote_notice(fieldset_block("Storyteller", "Vote results: [english_list_assoc(processed_votes)]<br /><br />Selected storyteller: [vote_winner]", "boxed_message blue_box")),
+		confidential = TRUE,
+	)
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
 		if(storyboy.name == vote_winner)
