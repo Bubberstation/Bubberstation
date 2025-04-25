@@ -75,16 +75,12 @@
 
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
-	SSpowerator_penality.sum_powerators()
-	SSpowerator_penality.calculate_penality()
-	START_PROCESSING(SSobj, src)
+	SSpowerator_penality.add_powerator(src)
 
 /obj/machinery/powerator/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	SSpowerator_penality.remove_deled_powerators(src)
-	SSpowerator_penality.calculate_penality()
+	SSpowerator_penality.remove_powerator(src)
 	attached_cable = null
-	return ..()
+	. = ..()
 
 /obj/machinery/powerator/examine(mob/user)
 	. = ..()
@@ -213,7 +209,7 @@
 	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources! It appears to be an earlier variant before environmental regulation reduced its efficiency."
 	circuit = /obj/item/circuitboard/machine/powerator/interdyne
 
-	/// the account credits will be sent towards
+	powerator_faction = POWERATOR_FACTION_INTERDYNE
 	credits_account = ACCOUNT_INT
 
 
@@ -227,7 +223,7 @@
 	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources! It appears to be an earlier variant before environmental regulation reduced its efficiency."
 	circuit = /obj/item/circuitboard/machine/powerator/tarkon
 
-	/// the account credits will be sent towards
+	powerator_faction = POWERATOR_FACTION_TARKON
 	credits_account = ACCOUNT_TAR
 
 #undef POWERATOR_FACTION_STATION

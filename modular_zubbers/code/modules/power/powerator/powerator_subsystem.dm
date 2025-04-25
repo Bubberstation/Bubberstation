@@ -11,18 +11,21 @@ SUBSYSTEM_DEF(powerator_penality)
 /datum/controller/subsystem/powerator_penality/Initialize()
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/powerator_penality/proc/add_powerator(obj/machinery/powerator/powerator)
+	if(!powerator)
+		return
+	LAZYADD(powerator_list[powerator.powerator_faction], powerator)
+	calculate_penalty()
 
-/datum/controller/subsystem/powerator_penality/proc/sum_powerators()
-	for(var/obj/machinery/powerator/poweratorc as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/powerator))
-		powerator_list |= poweratorc
+/datum/controller/subsystem/powerator_penality/proc/remove_powerator(obj/machinery/powerator/powerator)
+	if(!powerator)
+		return
+	LAZYREMOVE(powerator_list[powerator.powerator_faction], powerator)
+	calculate_penalty()
 
-/datum/controller/subsystem/powerator_penality/proc/remove_deled_powerators(src)
-	powerator_list -= src
-	return
-
-/datum/controller/subsystem/powerator_penality/proc/calculate_penality()
-	if(length(powerator_list) > 0)
-		diminishing_gains_multiplier = min(1, 2 ** log(4, length(powerator_list)) / length(powerator_list))
-		return diminishing_gains_multiplier
-	else
-		diminishing_gains_multiplier = initial(diminishing_gains_multiplier)
+/datum/controller/subsystem/powerator_penality/proc/calculate_penalty()
+	for(var/faction in powerator_list)
+		if(length(powerator_list[faction] > 0))
+			diminishing_gains_multiplier_list[faction] = min(1, 2 ** log(4, length(powerator_list[faction])) / length(powerator_list[faction]))
+		else
+			diminishing_gains_multiplier_list[faction] = 1
