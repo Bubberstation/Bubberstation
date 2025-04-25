@@ -13,20 +13,18 @@
 	var/glowy_range = 1
 	var/obj/effect/dummy/lighting_obj/moblight/glowy_light
 
-/datum/quirk/glowy/add_unique(client/client_source)
+/datum/quirk/glowy/add(client/client_source)
 	. = ..()
+
+	var/mob/living/carbon/human/user = quirk_holder
 	glowy_color = client_source?.prefs.read_preference(/datum/preference/color/glowy_color)
 
 /datum/quirk_constant_data/glowy
 	associated_typepath = /datum/quirk/glowy
 	customization_options = list(/datum/preference/color/glowy_color)
 
-/datum/quirk/glowy/add(client/client_source)
-	. = ..()
-	if(.)
-		return
-	glowy_light = owner.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight)
-	refresh_light(owner)
+/datum/quirk/glowy/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source)
+	glowy_light = new_holder.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight)
 
 /datum/quirk/glowy/remove()
 	. = ..()
@@ -34,18 +32,6 @@
 	if(QDELETED(quirk_holder))
 		return
 	QDEL_NULL(glowy_light)
-
-/datum/quirk/glowy/proc/refresh_light(mob/living/carbon/human/owner)
-	SIGNAL_HANDLER
-	if(isnull(glowy_light))
-		return
-	if(owner.stat != DEAD)
-		glowy_light.set_light_range_power_color(glowy_range, glowy_power, glowy_color)
-		glowy_light.set_light_on(TRUE)
-		owner.update_body()
-	else
-		glowy_light.set_light_on(FALSE)
-		owner.update_body()
 
 // Client preference for glow color
 /datum/preference/color/glowy_color
