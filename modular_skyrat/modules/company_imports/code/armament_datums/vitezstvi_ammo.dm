@@ -88,8 +88,6 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells/flechettes
 	item_type = /obj/item/ammo_box/advanced/s12gauge/flechette
 */
-/datum/armament_entry/company_import/vitezstvi/shot_shells/hornet_nest
-	item_type = /obj/item/ammo_box/advanced/s12gauge/beehive
 /*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/stardust
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide

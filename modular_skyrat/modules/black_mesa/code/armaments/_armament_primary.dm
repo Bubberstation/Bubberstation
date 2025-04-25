@@ -70,13 +70,5 @@
 /obj/item/storage/box/ammo_box/shotgun_12g
 
 /obj/item/storage/box/ammo_box/shotgun_12g/PopulateContents()
-	var/funshell = pick(
-		/obj/item/ammo_box/advanced/s12gauge/incendiary,
-		/obj/item/ammo_box/advanced/s12gauge/flechette,
-		/obj/item/ammo_box/advanced/s12gauge/beehive,
-		/obj/item/ammo_box/advanced/s12gauge/antitide,
-		/obj/item/ammo_box/advanced/s12gauge/express,
-	)
-	new /obj/item/ammo_box/advanced/s12gauge/magnum(src)
+	new /obj/item/ammo_box/advanced/s12gauge/incendiary(src)
 	new /obj/item/ammo_box/advanced/s12gauge(src)
-	new funshell(src)

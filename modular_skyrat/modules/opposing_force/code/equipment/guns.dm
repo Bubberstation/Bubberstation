@@ -1,56 +1,5 @@
 /datum/opposing_force_equipment/ranged
 	category = OPFOR_EQUIPMENT_CATEGORY_RANGED
-
-/datum/opposing_force_equipment/ranged/renoster
-	name = "Renoster Shotgun"
-	description = "A twelve gauge shotgun with an eight shell capacity underneath."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/renoster
-
-/obj/item/storage/toolbox/guncase/skyrat/opfor/renoster/PopulateContents()
-	new /obj/item/gun/ballistic/shotgun/riot/sol/evil(src)
-	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
-	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
-
-/datum/opposing_force_equipment/ranged/infanteria
-	name = "Carwo-Cawil Battle Rifle"
-	description = "A heavy battle rifle, this one seems to be painted tacticool black. Accepts any standard TerraGov rifle magazine."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria
-
-/obj/item/storage/toolbox/guncase/skyrat/opfor/infanteria/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/sol_rifle/evil(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle/standard(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle/standard(src)
-
-/datum/opposing_force_equipment/ranged/miecz
-	name = "'Miecz' Submachinegun"
-	description = "A short barrel, further compacted conversion of the 'Lanca' rifle to fire pistol caliber cartridges."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/miecz
-
-/obj/item/storage/toolbox/guncase/skyrat/opfor/miecz/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/miecz(src)
-	new /obj/item/ammo_box/magazine/miecz(src)
-	new /obj/item/ammo_box/magazine/miecz(src)
-
-/datum/opposing_force_equipment/ranged/kiboko
-	name = "Kiboko Grenade Launcher"
-	description = "A unique grenade launcher firing .980 grenades. A laser sight system allows its user to specify a range for the grenades it fires to detonate at"
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/kiboko
-
-/obj/item/storage/toolbox/guncase/skyrat/opfor/kiboko/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/sol_grenade_launcher/evil(src)
-	new /obj/item/ammo_box/magazine/c980_grenade/drum(src)
-	new /obj/item/ammo_box/magazine/c980_grenade/drum(src)
-
-/datum/opposing_force_equipment/ranged/amr
-	name = "'Wyłom' AMR"
-	description = "A massive, outdated beast of an anti materiel rifle that was once in use by CIN military forces. Fires the devastating .60 Strela caseless round, the massively overperforming penetration of which being the reason this weapon was discontinued."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/opfor/amr
-
-/obj/item/storage/toolbox/guncase/skyrat/opfor/amr/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/wylom(src)
-	new /obj/item/ammo_box/magazine/wylom(src)
-	new /obj/item/ammo_box/magazine/wylom(src)
-
 /datum/opposing_force_equipment/ranged/lmg
 	name = "L6 SAW LMG"
 	description = "A heavily modified 7mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
@@ -147,26 +96,6 @@
 	new /obj/item/ammo_box/magazine/smgm45(src)
 	new /obj/item/ammo_box/magazine/smgm45(src)
 
-/datum/opposing_force_equipment/ranged_stealth/sindano
-	name = "Sindano SMG"
-	description = "A small submachinegun, this one is painted in tacticool black. Accepts any standard Sol pistol magazine."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/sindano
-
-/obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/sindano/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/sol_smg/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
-
-/datum/opposing_force_equipment/ranged_stealth/wespe
-	name = "Wespe Pistol"
-	description = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe
-
-/obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/wespe/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-
 /datum/opposing_force_equipment/ranged_stealth/makarov
 	name = "Makarov Pistol"
 	description = "A small, easily concealable 9x25mm Mk.12 handgun. This one is packed with a suppressor."
@@ -187,26 +116,6 @@
 	new /obj/item/gun/ballistic/automatic/pistol/m1911(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
-
-/datum/opposing_force_equipment/ranged_stealth/plasma_pistol
-	name = "'Słońce' Plasma Projector"
-	description = "An outdated sidearm rarely seen in use by some members of the CIN. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power and the trigger is pulled."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/plasma_pistol
-
-/obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/plasma_pistol/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/plasma_thrower(src)
-	new /obj/item/ammo_box/magazine/recharge/plasma_battery(src)
-	new /obj/item/ammo_box/magazine/recharge/plasma_battery(src)
-
-/datum/opposing_force_equipment/ranged_stealth/plasma_marksman
-	name = "'Gwiazda' Plasma Sharpshooter"
-	description = "An outdated sidearm rarely seen in use by some members of the CIN. Fires relatively accurate globs of searing plasma."
-	item_type = /obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/plasma_marksman
-
-/obj/item/storage/toolbox/guncase/skyrat/pistol/opfor/plasma_marksman/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/plasma_marksman(src)
-	new /obj/item/ammo_box/magazine/recharge/plasma_battery(src)
-	new /obj/item/ammo_box/magazine/recharge/plasma_battery(src)
 
 /datum/opposing_force_equipment/ranged_stealth/syndie_revolver
 	name = "Syndicate Revolver"

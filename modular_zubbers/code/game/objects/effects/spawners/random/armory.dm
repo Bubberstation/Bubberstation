@@ -47,8 +47,6 @@
 
 /obj/effect/spawner/random/armory/e_gun
 	loot = list(
-		/obj/item/gun/microfusion/mcr01,
-		/obj/item/gun/microfusion/mcr01,
 		/obj/item/gun/energy/e_gun,
 		/obj/item/gun/energy/e_gun,
 		/obj/item/gun/energy/laser,
