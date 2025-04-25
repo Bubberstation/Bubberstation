@@ -190,8 +190,8 @@ GLOBAL_LIST_EMPTY(powerator_penalty_multiplier_list)
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", energy_to_power(current_power) / (1 KILO WATTS), energy_to_power(max_power) / (1 KILO WATTS), 0)
-	if(isnull(new_power))
+	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", energy_to_power(current_power) / (1 KILO WATTS), energy_to_power(max_power) / (1 KILO WATTS), 1)
+	if(!isnum(new_power))
 		return TRUE
 	current_power = power_to_energy(new_power) KILO WATTS
 	return TRUE
