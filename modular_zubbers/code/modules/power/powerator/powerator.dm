@@ -69,9 +69,8 @@
 	var/credits_made = 0
 	/// which faction the powerator belongs to
 	var/powerator_faction = POWERATOR_FACTION_STATION
-
 	/// the account credits will be sent towards
-	var/credits_account = ""
+	var/credits_account = ACCOUNT_CAR
 
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
@@ -107,8 +106,8 @@
 
 	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
 	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
-	if(length(SSpowerator_penality.powerator_list) > 1)
-		. += span_notice("Multiple powerators detected, total efficiency reduced by [(SSpowerator_penality.diminishing_gains_multiplier)*100]%")
+	if(length(SSpowerator_penality.powerator_list[powerator_faction]) > 1)
+		. += span_notice("Multiple powerators detected, total efficiency reduced by [(SSpowerator_penality.diminishing_gains_multiplier_list[powerator_faction])*100]%")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -168,8 +167,8 @@
 		current_power = attached_cable.newavail()
 	attached_cable.add_delayedload(current_power)
 
-	var/money_ratio = round(current_power * divide_ratio) * SSpowerator_penality.diminishing_gains_multiplier
-	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
+	var/money_ratio = round(current_power * divide_ratio) * SSpowerator_penality.diminishing_gains_multiplier_list[powerator_faction]
+	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account)
 	synced_bank_account.adjust_money(money_ratio)
 	credits_made += money_ratio
 
@@ -177,10 +176,11 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	current_power = tgui_input_number(user, "How much power (in Watts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", current_power, max_power, 0)
-	if(isnull(current_power))
-		current_power = 10 KILO WATTS
-		return
+	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", (current_power / KILO WATT), (max_power / KILO WATT), 0)
+	if(isnull(new_power))
+		return TRUE
+	current_power = new_power KILO WATTS
+	return TRUE
 
 /obj/machinery/powerator/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
