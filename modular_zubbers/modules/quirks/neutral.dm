@@ -21,7 +21,7 @@
 	associated_typepath = /datum/quirk/glowy
 	customization_options = list(/datum/preference/color/glowy_color)
 
-/datum/quirk/glowy/add(mob/living/carbon/human/owner)
+/datum/quirk/glowy/add(client/client_source)
 	. = ..()
 	if(.)
 		return
