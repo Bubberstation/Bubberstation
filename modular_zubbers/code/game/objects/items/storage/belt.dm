@@ -24,4 +24,4 @@
 	atom_storage.open_sound = 'sound/items/handling/holster_open.ogg'
 	atom_storage.open_sound_vary = TRUE
 	atom_storage.rustle_sound = null
-	atom_storage.cant_hold = typecacheof(list(/obj/item/gun/ballistic/automatic/rom_flech, /obj/item/gun/syringe, /obj/item/gun/chem, /obj/item/gun/ballistic/automatic/ar, /obj/item/gun/magic/wand)
+	atom_storage.cant_hold = typecacheof(list(/obj/item/gun/ballistic/automatic/rom_flech, /obj/item/gun/syringe, /obj/item/gun/chem, /obj/item/gun/ballistic/automatic/ar, /obj/item/gun/magic/wand))
