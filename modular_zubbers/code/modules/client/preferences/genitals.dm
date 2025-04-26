@@ -83,7 +83,6 @@
 
 	target.dna.features["anus_uses_skincolor"] = value
 
-
 /datum/preference/tri_color/genital/anus
 	savefile_key = "anus_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_ANUS
