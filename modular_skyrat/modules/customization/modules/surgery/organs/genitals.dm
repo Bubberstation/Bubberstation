@@ -187,8 +187,14 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(25 to 36)
 			size_affix = "4"
+		if(37 to 48)
+			size_affix = "5"
+		if(49 to 60)
+			size_affix = "6"
+		else
+			size_affix = "7"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -215,8 +221,14 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(25 to 36)
 			size_affix = "4"
+		if(37 to 48)
+			size_affix = "5"
+		if(49 to 60)
+			size_affix = "6"
+		else
+			size_affix = "7"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -394,7 +406,7 @@
 
 /datum/bodypart_overlay/mutant/genital/anus
 	feature_key = ORGAN_SLOT_ANUS
-	layers = NONE
+	layers = BODY_FRONT_LAYER
 
 /obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see an [LOWER_TEXT(genital_name)]."

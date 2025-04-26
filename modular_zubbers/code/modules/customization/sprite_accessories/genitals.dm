@@ -44,48 +44,6 @@
 	name = "Knotted Hemi (Alt)"
 	icon_state = "hemiknot"
 
-/*
-/datum/sprite_accessory/genital/penis/human_old
-	icon_state = /datum/sprite_accessory/genital/penis/human::icon_state
-	name = /datum/sprite_accessory/genital/penis/human::name + " (Old)"
-	color_src = /datum/sprite_accessory/genital/penis/human::color_src
-	default_color = /datum/sprite_accessory/genital/penis/human::default_color
-	has_skintone_shading = /datum/sprite_accessory/genital/penis/human::has_skintone_shading
-	can_have_sheath = /datum/sprite_accessory/genital/penis/human::can_have_sheath
-
-/datum/sprite_accessory/genital/penis/nondescript_old
-	icon_state = /datum/sprite_accessory/genital/penis/nondescript::icon_state
-	name = /datum/sprite_accessory/genital/penis/nondescript::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/knotted_old
-	icon_state = /datum/sprite_accessory/genital/penis/knotted::icon_state
-	name = /datum/sprite_accessory/genital/penis/knotted::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/flared_old
-	icon_state = /datum/sprite_accessory/genital/penis/flared::icon_state
-	name = /datum/sprite_accessory/genital/penis/flared::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/barbknot_old
-	icon_state = /datum/sprite_accessory/genital/penis/barbknot::icon_state
-	name = /datum/sprite_accessory/genital/penis/barbknot::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/tapered_old
-	icon_state = /datum/sprite_accessory/genital/penis/tapered::icon_state
-	name = /datum/sprite_accessory/genital/penis/tapered::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/tentacle_old
-	icon_state = /datum/sprite_accessory/genital/penis/tentacle::icon_state
-	name = /datum/sprite_accessory/genital/penis/tentacle::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/hemi_old
-	icon_state = /datum/sprite_accessory/genital/penis/hemi::icon_state
-	name = /datum/sprite_accessory/genital/penis/hemi::name + " (Old)"
-
-/datum/sprite_accessory/genital/penis/hemiknot_old
-	icon_state = /datum/sprite_accessory/genital/penis/hemiknot::icon_state
-	name = /datum/sprite_accessory/genital/penis/hemiknot::name + " (Old)"
-*/
-
 /datum/sprite_accessory/genital/breasts/alt
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
 	color_src = USE_MATRIXED_COLORS
@@ -102,20 +60,6 @@
 	name = "Sextuple (Alt)"
 	icon_state = "sextuple"
 
-/*
-/datum/sprite_accessory/genital/breasts/pair_old
-	icon_state = /datum/sprite_accessory/genital/breasts/pair::icon_state
-	name = /datum/sprite_accessory/genital/breasts/pair::name + " (Old)"
-
-/datum/sprite_accessory/genital/breasts/quad_old
-	icon_state = /datum/sprite_accessory/genital/breasts/quad::icon_state
-	name = /datum/sprite_accessory/genital/breasts/quad::name + " (Old)"
-
-/datum/sprite_accessory/genital/breasts/sextuple_old
-	icon_state = /datum/sprite_accessory/genital/breasts/sextuple::icon_state
-	name = /datum/sprite_accessory/genital/breasts/sextuple::name + " (Old)"
-*/
-
 /datum/sprite_accessory/genital/testicles/alt
 	name = "Pair (Alt)"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/testicles_onmob.dmi'
@@ -127,12 +71,6 @@
 	name = "Sheathed Pair"
 	icon_state = "sheath"
 	has_skintone_shading = TRUE
-
-/*
-/datum/sprite_accessory/genital/testicles/pair_old
-	name = /datum/sprite_accessory/genital/testicles/pair::name + " (Old)"
-	icon_state = /datum/sprite_accessory/genital/testicles/pair::icon_state
-*/
 
 // New Objects
 
