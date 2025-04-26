@@ -387,7 +387,7 @@
 /datum/component/nanites/proc/set_cloud(datum/source, amount)
 	SIGNAL_HANDLER
 
-	cloud_id = clamp(amount, 0, 100)
+	cloud_id = clamp(amount, NANITE_MIN_CLOUD_ID, NANITE_MAX_CLOUD_ID)
 
 /datum/component/nanites/proc/get_cloud(datum/source)
 	SIGNAL_HANDLER
