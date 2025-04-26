@@ -399,7 +399,7 @@
 			var/new_cloud_id = params["new_cloud"]
 			if(!isnum(new_cloud_id))
 				return
-			nanite_cloud = clamp(new_cloud_id, NANITE_MIN_CLOUD_ID, NANITE_MAX_CLOUD_ID)
+			nanite_cloud = clamp(new_cloud_id, NANITE_MIN_CLOUD_ID+1, NANITE_MAX_CLOUD_ID)
 			. = TRUE
 		// BUBBER EDIT ADDITION END - NANITES
 
