@@ -16,6 +16,8 @@
 #define COMSIG_NANITE_SET_MAX_VOLUME "nanite_set_max_volume"
 ///(amount(0-100)) Sets cloud ID to the given amount
 #define COMSIG_NANITE_SET_CLOUD "nanite_set_cloud"
+///() Returns nanite cloud ID
+#define COMSIG_NANITE_GET_CLOUD "nanite_get_cloud"
 ///(method) Modify cloud sync status. Method can be toggle, enable or disable
 #define COMSIG_NANITE_SET_CLOUD_SYNC "nanite_set_cloud_sync"
 ///(amount) Sets safety threshold to the given amount
