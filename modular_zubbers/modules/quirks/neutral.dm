@@ -16,7 +16,6 @@
 /datum/quirk/glowy/add(client/client_source)
 	. = ..()
 
-	var/mob/living/carbon/human/user = quirk_holder
 	glowy_color = client_source?.prefs.read_preference(/datum/preference/color/glowy_color)
 
 /datum/quirk_constant_data/glowy
@@ -24,6 +23,7 @@
 	customization_options = list(/datum/preference/color/glowy_color)
 
 /datum/quirk/glowy/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source)
+	. = ..()
 	glowy_light = new_holder.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight)
 
 /datum/quirk/glowy/remove()
