@@ -376,8 +376,6 @@
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/stock_parts/power_store/cell/microfusion, //SKYRAT EDIT ADDITION
 	))
-	atom_storage.cant_hold = typecacheof(list(/obj/item/gun/ballistic/automatic/rom_flech, /obj/item/gun/syringe, /obj/item/gun/chem, /obj/item/gun/ballistic/automatic/ar, /obj/item/gun/energy/plasmacutter, /obj/item/gun/energy/recharge/kinetic_accelerator))
-
 	atom_storage.open_sound = 'sound/items/handling/holster_open.ogg'
 	atom_storage.open_sound_vary = TRUE
 	atom_storage.rustle_sound = null
