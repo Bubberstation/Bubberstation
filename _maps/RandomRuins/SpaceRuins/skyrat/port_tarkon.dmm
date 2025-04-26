@@ -81,6 +81,11 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"ax" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/template_noop,
+/area/template_noop)
 "ay" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -2373,6 +2378,7 @@
 "ik" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "im" = (
@@ -2753,6 +2759,7 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "jJ" = (
@@ -7387,6 +7394,14 @@
 /obj/structure/alien/resin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
+"AH" = (
+/obj/structure/transit_tube/diagonal{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/template_noop,
+/area/template_noop)
 "AI" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
@@ -8390,6 +8405,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/porthall)
+"Et" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/forehall)
 "Eu" = (
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
@@ -8885,6 +8905,8 @@
 /obj/structure/transit_tube/junction{
 	dir = 1
 	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
 /turf/template_noop,
 /area/template_noop)
 "Gj" = (
@@ -10748,6 +10770,12 @@
 /obj/machinery/camera/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
+"Ng" = (
+/obj/structure/transit_tube/curved/flipped,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/template_noop,
+/area/template_noop)
 "Nh" = (
 /obj/structure/toilet{
 	dir = 8
@@ -11326,6 +11354,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
+"Pq" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/layer3,
+/turf/open/space/basic,
+/area/template_noop)
 "Ps" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -22555,9 +22591,9 @@ sF
 Qp
 QT
 Wb
-QT
-QT
-QT
+Pq
+Pq
+Pq
 ds
 aO
 aO
@@ -22676,7 +22712,7 @@ za
 za
 za
 za
-za
+ax
 za
 za
 za
@@ -22798,7 +22834,7 @@ za
 za
 za
 za
-za
+ax
 za
 za
 za
@@ -22920,7 +22956,7 @@ Hd
 za
 za
 za
-za
+ax
 za
 za
 za
@@ -23042,7 +23078,7 @@ za
 Hd
 za
 za
-za
+ax
 za
 za
 za
@@ -23164,7 +23200,7 @@ za
 za
 Hd
 za
-za
+ax
 za
 ia
 ia
@@ -23286,7 +23322,7 @@ za
 Ir
 za
 Hd
-za
+ax
 za
 za
 za
@@ -23408,7 +23444,7 @@ za
 za
 za
 za
-Hd
+AH
 za
 za
 za
@@ -23530,7 +23566,7 @@ za
 za
 za
 za
-za
+ax
 Hd
 za
 za
@@ -23652,13 +23688,13 @@ za
 za
 za
 za
-za
-za
-yE
+ax
+ax
+Ng
 Gi
-za
-za
-Xc
+ax
+ax
+Et
 jG
 ik
 ik
