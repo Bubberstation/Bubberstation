@@ -142,7 +142,6 @@
 
 	target.dna.features["belly_uses_skincolor"] = value
 
-
 /datum/preference/tri_color/genital/belly
 	savefile_key = "belly_color"
 	relevant_mutant_bodypart = ORGAN_SLOT_BELLY
