@@ -25,12 +25,18 @@
 	var/secret = CONFIG_GET(number/storyteller_secret_percentage)
 	if(secret != 0)
 		to_chat(world, vote_font(fieldset_block("Storyteller Vote", "Secret is enabled! The winning storyteller may or may not be announced at the start of the round.<br />[span_vote_notice("Only players who are ready and joining the game round start will be calculated in voting results.")]", "boxed_message purple_box")))
+	else
+		to_chat(world, vote_font(fieldset_block("Storyteller Vote", "[span_vote_notice("Only players who are ready and joining the game round start will be calculated in voting results.")]", "boxed_message purple_box")))
 
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)
 
 /datum/vote/storyteller/get_result_text(winners, final_winner, non_voters)
-	return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Selected storyteller will be determined by round start population and may be revealed at round start.", "boxed_message purple_box")
+	var/secret = CONFIG_GET(number/storyteller_secret_percentage)
+	if(secret != 0)
+		return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Selected storyteller will be determined by round start population and may be revealed at round start.", "boxed_message purple_box")
+	else
+		return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Selected storyteller will be determined by round start population and will be revealed when the round starts.", "boxed_message purple_box")
 
 /datum/vote/storyteller/create_vote()
 	. = ..()
