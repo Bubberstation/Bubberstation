@@ -58,7 +58,7 @@
 		else
 			size_name = "nonexistent"
 
-	var/returned_string = "You see a [size_name] [round(genital_size) >= 4 ? "belly, it bounces around and gurgles as [owner] walks" : "belly in [owner?.p_their() ? owner?.p_their() : "their"] midsection"]."
+	var/returned_string = "You see a [size_name] [round(genital_size) >= 4 ? "belly, it's quite large." : "belly in [owner?.p_their() ? owner?.p_their() : "their"] midsection"]."
 	return returned_string
 
 

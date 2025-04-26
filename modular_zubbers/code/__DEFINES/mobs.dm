@@ -1,6 +1,6 @@
 //Genital Layers
-#define BUTT_LAYER_OFFSET        0.7
-#define ANUS_LAYER_OFFSET        0.8
+#define BUTT_LAYER_OFFSET        0.8
+#define ANUS_LAYER_OFFSET        0.7
 #define VAGINA_LAYER_OFFSET        0.6
 #define TESTICLES_LAYER_OFFSET    0.5
 #define GENITAL_LAYER_OFFSET    0.4
