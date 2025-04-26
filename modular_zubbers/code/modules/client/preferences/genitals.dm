@@ -123,7 +123,6 @@
 /datum/preference/numeric/belly_size/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features["belly_size"] = value
 
-
 /datum/preference/toggle/genital_skin_tone/belly
 	savefile_key = "belly_skin_tone"
 	relevant_mutant_bodypart = ORGAN_SLOT_BELLY
