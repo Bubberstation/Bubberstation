@@ -238,8 +238,8 @@
 		return
 
 	var/mob/living/carbon/patient = exposed_mob
-	if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
-		patient.cure_husk(BURN)
+	if(reac_volume >= 5 && HAS_TRAIT(patient, TRAIT_HUSK) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone. // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN)
+		patient.cure_husk() // BUBBER EDIT CHANGE - Synthflesh works on ling husks - Original: patient.cure_husk(BURN)
 		patient.visible_message(span_nicegreen("[patient]'s body rapidly absorbs moisture from the environment, taking on a more healthy appearance."))
 
 /datum/reagent/medicine/spaceacillin
@@ -1611,7 +1611,7 @@
 	affected_mob.adjust_confusion(-6 SECONDS * REM * seconds_per_tick)
 	affected_mob.disgust = max(affected_mob.disgust - (6 * REM * seconds_per_tick), 0)
 	if(affected_mob.mob_mood != null && affected_mob.mob_mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
-		affected_mob.mob_mood.set_sanity(min(affected_mob.mob_mood.sanity + (5 * REM * seconds_per_tick), SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
+		affected_mob.mob_mood.adjust_sanity(5 * REM * seconds_per_tick, maximum = SANITY_NEUTRAL) // set minimum to prevent unwanted spiking over neutral
 
 /datum/reagent/medicine/psicodine/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()

@@ -98,7 +98,8 @@
 			continue
 
 		trauma.owner = brain_owner
-		trauma.on_gain()
+		if(!trauma.on_gain())
+			qdel(trauma)
 
 	//Update the body's icon so it doesnt appear debrained anymore
 	if(!special && !(brain_owner.living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
@@ -275,6 +276,17 @@
 		LAZYADD(trauma_text, trauma_desc)
 	if(LAZYLEN(trauma_text))
 		return "Mental trauma: [english_list(trauma_text, and_text = ", and ")]."
+
+/obj/item/organ/brain/feel_for_damage(self_aware)
+	if(damage < low_threshold)
+		return ""
+	if(self_aware)
+		if(damage < high_threshold)
+			return span_warning("Your brain hurts a bit.")
+		return span_warning("Your brain hurts a lot.")
+	if(damage < high_threshold)
+		return span_warning("It feels a bit fuzzy.")
+	return span_warning("It aches incessantly.")
 
 /obj/item/organ/brain/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
@@ -568,8 +580,12 @@
 	add_trauma_to_traumas(actual_trauma)
 	if(owner)
 		actual_trauma.owner = owner
-		SEND_SIGNAL(owner, COMSIG_CARBON_GAIN_TRAUMA, trauma)
-		actual_trauma.on_gain()
+		if(SEND_SIGNAL(owner, COMSIG_CARBON_GAIN_TRAUMA, trauma, resilience) & COMSIG_CARBON_BLOCK_TRAUMA)
+			qdel(actual_trauma)
+			return FALSE
+		if(!actual_trauma.on_gain())
+			qdel(actual_trauma)
+			return FALSE
 		log_game("[key_name_and_tag(owner)] has gained the following brain trauma: [trauma.type]")
 	if(resilience)
 		actual_trauma.resilience = resilience

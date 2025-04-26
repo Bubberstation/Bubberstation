@@ -1,4 +1,6 @@
 /datum/crafting_recipe/food/haggis
+	added_foodtypes = MEAT
+	removed_foodtypes = VEGETABLES
 	name = "Haggis"
 	reqs = list(
 		/obj/item/organ/heart = 1,
@@ -34,6 +36,8 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/shortbread
+	added_foodtypes = JUNKFOOD | SUGAR
+	removed_foodtypes = DAIRY
 	name = "Shortbread"
 	time = 5
 	reqs = list(
