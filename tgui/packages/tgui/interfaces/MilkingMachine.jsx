@@ -29,13 +29,7 @@ const MilkingMachineContent = (props) => {
   const {
     mobName,
     mobCanLactate,
-    beaker,
-    BeakerName,
-    beakerMaxVolume,
-    beakerCurrentVolume,
     mode,
-    milkTankMaxVolume,
-    milkTankCurrentVolume,
     current_vessel,
     current_selected_organ,
     current_selected_organ_name,
@@ -206,18 +200,6 @@ const MilkingMachineContent = (props) => {
                                 />
                               </Box>
                             )}
-                          {current_selected_organ === 'the breasts' && (
-                            <Box as="div" m={1}>
-                              <Button
-                                content="Breasts"
-                                textAlign="center"
-                                width="100%"
-                                backgroundColor={palette.ControlButtonOn}
-                                textColor={palette.ControlButtonOnText}
-                                bold
-                              />
-                            </Box>
-                          )}
                           {current_vagina === null && (
                             <Box as="div" m={1}>
                               <Button
@@ -315,135 +297,6 @@ const MilkingMachineContent = (props) => {
                           )}
                         </Stack.Item>
                       </Stack>
-                    </Stack>
-                  </Stack.Item>
-                </Stack>
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item grow>
-            <Stack vertical>
-              <Stack.Item>
-                {beaker !== null && (
-                  <Section
-                    bold
-                    backgroundColor={palette.SectionBackgroundColor}
-                    textAlign="center"
-                  >
-                    Beaker: {BeakerName}
-                  </Section>
-                )}
-                {beaker === null && (
-                  <Section
-                    bold
-                    backgroundColor={palette.SectionBackgroundColor}
-                    textAlign="center"
-                  >
-                    Beaker: none
-                  </Section>
-                )}
-              </Stack.Item>
-              <Stack.Item>
-                <Stack>
-                  <Stack.Item grow>
-                    {beaker !== null && (
-                      <Section
-                        backgroundColor={palette.SectionBackgroundColor}
-                        textAlign="center"
-                      >
-                        Volume: {Math.round(beakerCurrentVolume)} /{' '}
-                        {Math.round(beakerMaxVolume)}
-                      </Section>
-                    )}
-                    {beaker === null && (
-                      <Section
-                        backgroundColor={palette.SectionBackgroundColor}
-                        textAlign="center"
-                      >
-                        Volume: n/a
-                      </Section>
-                    )}
-                  </Stack.Item>
-                  <Stack.Item align="center">
-                    {beaker !== null && (
-                      <Button
-                        icon="eject"
-                        content="Eject Beaker"
-                        textAlign="center"
-                        backgroundColor={palette.ButtonBackGroundColor}
-                        onClick={() => act('ejectBeaker')}
-                      />
-                    )}
-                    {beaker === null && (
-                      <Button
-                        icon="eject"
-                        content="Eject Beaker"
-                        textAlign="center"
-                        backgroundColor={palette.ButtonBackGroundColor}
-                        disabled
-                      />
-                    )}
-                  </Stack.Item>
-                </Stack>
-              </Stack.Item>
-              <Stack.Item>
-                <Section
-                  bold
-                  backgroundColor={palette.SectionBackgroundColor}
-                  textAlign="center"
-                >
-                  Tanks status
-                </Section>
-              </Stack.Item>
-              <Stack.Item>
-                <Stack vertical>
-                  <Stack.Item>
-                    <Stack>
-                      <Stack.Item grow basis="1rem">
-                        {current_vessel === 'MilkContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Milk"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOn}
-                              textColor={palette.ControlButtonOnText}
-                              bold
-                            />
-                          </Box>
-                        )}
-                        {current_vessel !== 'MilkContainer' && (
-                          <Box as="div" m={1}>
-                            <Button
-                              content="Milk"
-                              textAlign="center"
-                              width="100%"
-                              backgroundColor={palette.ControlButtonOff}
-                              textColor={palette.ControlButtonOffText}
-                              bold
-                              onClick={() => act('setMilk')}
-                            />
-                          </Box>
-                        )}
-                      </Stack.Item>
-                      <Stack.Item grow basis="1rem">
-                        <Section
-                          backgroundColor={palette.SectionBackgroundColor}
-                          textAlign="center"
-                        >
-                          {Math.round(milkTankCurrentVolume)} /{' '}
-                          {Math.round(milkTankMaxVolume)}
-                        </Section>
-                      </Stack.Item>
-                      <Stack.Item align="center">
-                        <Button
-                          content="50"
-                          minWidth="30pt"
-                          textAlign="center"
-                          backgroundColor={palette.ButtonBackGroundColor}
-                          onClick={() => act('transfer', { amount: 50 })}
-                        />
-                      </Stack.Item>
                     </Stack>
                   </Stack.Item>
                 </Stack>
