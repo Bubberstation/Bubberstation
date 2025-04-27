@@ -82,6 +82,11 @@
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
+/datum/species/protean/Destroy(force)
+	QDEL_NULL(species_modsuit)
+	owner = null
+	. = ..()
+
 /datum/species/protean/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 	owner = gainer
