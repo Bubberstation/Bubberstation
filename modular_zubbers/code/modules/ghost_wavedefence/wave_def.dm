@@ -108,6 +108,7 @@
 		spawn_types = defending_mobs, \
 		spawn_time = 10 SECONDS - difficulty_modifier, \
 		max_spawned = 10 + difficulty_modifier, \
+		max_spawn_per_attempt = 1 + difficulty_modifier, \
 		max_spawn_per_attempt = 4 + difficulty_modifier + spawn_mod, \
 		spawn_text = "appears to assault", \
 		spawn_distance = 4 + spawn_mod, \
@@ -189,9 +190,11 @@
 
 /obj/structure/wave_defence/tarkon/rnd
 	reward_key = /obj/item/keycard/tarkon_rnd
+	difficulty_modifier = 2
 
 /obj/structure/wave_defence/tarkon/engi
 	reward_key = /obj/item/keycard/tarkon_engi
+	difficulty_modifier = 2
 	spawn_mod = 1
 
 /obj/structure/wave_defence/tarkon/med
@@ -199,7 +202,7 @@
 
 /obj/structure/wave_defence/tarkon/boss
 	reward_key = /obj/item/keycard/tarkon_vault
-	difficulty_modifier = 2
+	difficulty_modifier = 3
 
 /obj/structure/wave_defence/tarkon/boss/initiate_wave_win()
 	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
