@@ -24,8 +24,8 @@
 	RegisterSignal(src, COMSIG_ITEM_POST_EQUIPPED, PROC_REF(check_equip))
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/Destroy()
-	. = ..()
 	UnregisterSignal(src, COMSIG_ITEM_POST_EQUIPPED)
+	. = ..()
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/mob_can_equip(mob/living/user, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(slot == ITEM_SLOT_ICLOTHING)

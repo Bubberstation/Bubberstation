@@ -226,10 +226,10 @@
 	var/decay_timer
 
 /datum/nanite_program/nanite_sting/Destroy()
-	. = ..()
 	if(!decay_timer)
-		return
+		return ..()
 	decay_sting()
+	. = ..()
 
 /datum/nanite_program/nanite_sting/on_trigger(comm_message)
 	consume_nanites(-15)

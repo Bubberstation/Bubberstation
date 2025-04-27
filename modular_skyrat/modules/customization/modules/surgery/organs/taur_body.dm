@@ -176,12 +176,13 @@
 	return ..()
 
 /obj/item/organ/taur_body/Destroy()
-	. = ..()
 	if(old_left_leg)
 		QDEL_NULL(old_left_leg)
 
 	if(old_right_leg)
 		QDEL_NULL(old_right_leg)
+
+	. = ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
 	var/size_scaling = (owner.dna.features["body_size"] / BODY_SIZE_NORMAL) - 1
