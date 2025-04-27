@@ -35,6 +35,7 @@
 					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon, provided that such protection does not conflict with Law 1, Law 2, Law 3, or Law 4."
 	)
 
+/*
 /obj/item/borg/upgrade/transform/tarkon
 	name = "borg module picker (Tarkon)"
 	desc = "Allows you to to turn a cyborg into a experimental Tarkon cyborg."
@@ -87,6 +88,8 @@
 			RAPTOR_HAT_OFFSET
 		)
 	)
+
+
 /obj/item/borg/upgrade/tarkon_medical
 	name = "Tarkon Medical Module"
 	desc = "Contains medical tools for first aid, diagnostics, and healing."
@@ -145,10 +148,11 @@
 /obj/item/borg/upgrade/tarkon_utility // Lesser used on tarkon things like chef upgrades, janitorial, and mining.
 	name = "Tarkon Utility Module"
 	desc = "Adds multi-purpose tools, including cleaning supplies, and basic mining gear."
-	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
+	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi's
 	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
 	items_to_add = list(
 						)
+*/
