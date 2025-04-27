@@ -324,6 +324,10 @@
 	if (victim_properly_resting())
 		return
 
+	// Should not run if this is zero,
+	if(!stamina_damage_max_degradation)
+		return
+
 	var/clamped_degradation = clamp((current_degradation - stamina_damage_minimum_degradation), 0, stamina_damage_max_degradation)
 	var/percent_to_max = min((clamped_degradation / stamina_damage_max_degradation), 1)
 	var/minimum_stamina_damage = max_stamina_damage * percent_to_max
