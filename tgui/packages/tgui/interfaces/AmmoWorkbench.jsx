@@ -266,7 +266,7 @@ const MaterialRow = (props) => {
           minValue={1}
           maxValue={50}
           value={amount}
-          onChange={(e, value) => setAmount(value)}
+          onChange={setAmount}
         />
         <Button
           disabled={amountAvailable < 1}
