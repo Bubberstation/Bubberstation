@@ -6,7 +6,6 @@
 	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	supports_variations_flags = STYLE_TAUR_HOOF|STYLE_TAUR_PAW
 
 /obj/item/riding_saddle/Initialize(mapload)
 	. = ..()
@@ -54,7 +53,6 @@
 	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	supports_variations_flags = STYLE_TAUR_HOOF|STYLE_TAUR_PAW
 
 	storage_type = /datum/storage/saddlebags
 
