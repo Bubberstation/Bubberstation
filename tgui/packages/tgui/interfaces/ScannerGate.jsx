@@ -307,7 +307,7 @@ const ScannerGateNutrition = (props) => {
 // BUBBER EDIT START - NANITES
 const ScannerGateNanites = (props, context) => {
   const { act, data } = useBackend(context);
-  const { reverse, nanite_cloud } = data;
+  const { reverse, nanite_cloud, min_cloud_id, max_cloud_id } = data;
   return (
     <>
       <Box mb={2}>
@@ -320,8 +320,9 @@ const ScannerGateNanites = (props, context) => {
             <NumberInput
               value={nanite_cloud}
               width="65px"
-              minValue={1}
-              maxValue={100}
+              minValue={min_cloud_id + 1}
+              maxValue={max_cloud_id}
+              step={1}
               stepPixelSize={2}
               onChange={(value) =>
                 act('set_nanite_cloud', {
