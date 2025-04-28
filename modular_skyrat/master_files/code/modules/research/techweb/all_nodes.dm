@@ -173,7 +173,7 @@
 
 ////////////////////////Medical////////////////////////
 
-/datum/techweb_node/cytology/New()
+/datum/techweb_node/medbay_equip/New()
 	design_ids += list(
 		"self_actualization_device",
 	)
