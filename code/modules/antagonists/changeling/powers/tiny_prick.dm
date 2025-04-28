@@ -1,6 +1,7 @@
 /datum/action/changeling/sting//parent path, not meant for users afaik
 	name = "Tiny Prick"
 	desc = "Stabby stabby"
+	var/invalid_biotypes = MOB_ROBOTIC
 
 /datum/action/changeling/sting/Trigger(trigger_flags)
 	var/mob/user = owner
@@ -48,7 +49,7 @@
 	if(!isturf(user.loc))
 		return
 	var/mob/living/carbon/human/to_check = target // SKYRAT EDIT START - STINGS DO NOT AFFECT ROBOTIC ENTITIES
-	if(to_check.mob_biotypes & MOB_ROBOTIC)
+	if(to_check.mob_biotypes & invalid_biotypes)
 		to_chat(user, "<span class='warning'>Our sting would have no effect on robotic entities</span>")
 		return // SKYRAT EDIT END
 	if(!length(get_path_to(user, target, max_distance = changeling.sting_range, simulated_only = FALSE)))
@@ -281,6 +282,7 @@
 	button_icon_state = "sting_cryo"
 	chemical_cost = 15
 	dna_cost = 2
+	invalid_biotypes = NONE
 
 /datum/action/changeling/sting/cryo/sting_action(mob/user, mob/target)
 	..()
