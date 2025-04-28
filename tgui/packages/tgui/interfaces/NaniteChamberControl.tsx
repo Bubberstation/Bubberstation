@@ -34,6 +34,8 @@ interface NaniteChamberProps {
   cloud_id: number;
   scan_level: number;
   mob_programs: NaniteProgram[];
+  min_cloud_id: number;
+  max_cloud_id: number;
 }
 
 export const NaniteChamberControlContent = () => {
@@ -49,6 +51,8 @@ export const NaniteChamberControlContent = () => {
     cloud_id,
     scan_level,
     mob_programs = [],
+    min_cloud_id,
+    max_cloud_id,
   } = data;
 
   if (status_msg) {
@@ -130,8 +134,8 @@ export const NaniteChamberControlContent = () => {
                   <LabeledList.Item label="Cloud ID">
                     <NumberInput
                       value={cloud_id}
-                      minValue={0}
-                      maxValue={100}
+                      minValue={min_cloud_id}
+                      maxValue={max_cloud_id}
                       step={1}
                       stepPixelSize={3}
                       width="39px"
