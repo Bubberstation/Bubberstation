@@ -26,7 +26,7 @@
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING // For Hemophages to be able to drink it without any issue.
 
 /datum/reagent/consumable/frostoil
-    process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
 /datum/reagent/blood/on_new(list/data)
 	. = ..()
