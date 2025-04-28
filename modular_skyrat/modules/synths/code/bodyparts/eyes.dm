@@ -11,8 +11,6 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 
-	var/asdf = severe_cooldown
-
 	if(COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
 		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
 		switch(severity)
