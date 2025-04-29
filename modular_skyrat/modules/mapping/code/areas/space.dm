@@ -260,6 +260,12 @@
 	name = "P-T AI Antechamber"
 	icon_state = "ai_interior"
 
+/area/ruin/space/has_grav/port_tarkon/asteroid // so thumpers can work
+	name = "Asteroid Space"
+	icon = 'icons/area/areas_ruins.dmi'
+	icon_state = "ruins"
+	outdoors = TRUE
+
 // Cargodise Lost Freighter
 
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall
