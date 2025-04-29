@@ -37,9 +37,6 @@
 	set_next_map(config.maplist[winner])
 	var/list/vote_result_message = list(filtered_vote_results)
 	vote_result_message += list("<br/ >Next Map: [span_vote_notice(span_bold(next_map_config.map_name))]")
-	var/carryover_percentage = CONFIG_GET(number/map_vote_tally_carryover_percentage)
-	if(carryover_percentage)
-		vote_result_message += list("\n[CONFIG_GET(number/map_vote_tally_carryover_percentage)]% of votes from the losing maps will be carried over and applied to the next map vote.")
 
 	// do not reset tallies if only one map is even possible
 	if(length(map_vote.choices) > 1)

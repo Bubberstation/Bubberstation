@@ -8,10 +8,11 @@
 	name = "Storyteller"
 	default_message = "Vote for the storyteller!"
 	has_desc = TRUE
-	count_method = VOTE_COUNT_METHOD_MULTI
-	winner_method = VOTE_WINNER_METHOD_SIMPLE
-	vote_reminder = TRUE
+	count_method = VOTE_COUNT_METHOD_RANKED
+	winner_method = VOTE_WINNER_METHOD_RANKED
+	ranked_winner_threshold = 70 // 70% threshold for direct win
 	display_statistics = FALSE
+	vote_reminder = TRUE
 	/// Only readied players can vote
 	var/ready_only = TRUE
 
@@ -33,6 +34,12 @@
 
 /datum/vote/storyteller/get_result_text(winners, final_winner, non_voters)
 	var/secret = CONFIG_GET(number/storyteller_secret_percentage)
+	if(!ready_only)
+		if(prob(secret))
+			return
+		else
+			return ..()
+
 	if(secret != 0)
 		return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Selected storyteller will be determined by round start population and may be revealed at round start.", "boxed_message purple_box")
 	else
@@ -56,12 +63,13 @@
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)
-	log_dynamic("Storyteller raw vote tally is: [english_list_assoc(choices)]")
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
 	if(ready_only)
 		SSgamemode.ready_only_vote = TRUE
-		SSgamemode.storyteller_vote_results = LAZYLISTDUPLICATE(choices_by_ckey)
+		SSgamemode.vote_choices = LAZYLISTDUPLICATE(choices)
+		SSgamemode.vote_choices_by_ckey = LAZYLISTDUPLICATE(choices_by_ckey)
+		SSgamemode.vote_threshold = ranked_winner_threshold
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
