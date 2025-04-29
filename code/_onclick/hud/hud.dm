@@ -293,8 +293,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	alien_queen_finder = null
 	combo_display = null
 
-	resist_icon = null // BUBBER EDIT ADDITION - Temp fix for TG problems
-
 	//SKYRAT EDIT ADDITION START - SKYRAT HUD
 	wanted_lvl = null
 	ammo_counter = null
