@@ -27,13 +27,13 @@
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/dropped(mob/living/user)
 	. = ..()
 	var/old_wear_locked = wear_locked?.resolve()
-	if(!old_wear_locked && old_wear_locked != user)
+	if(!old_wear_locked || old_wear_locked != user)
 		return
 	toggle_equip_lock(FALSE, user)
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/toggle_equip_lock(lock = TRUE, mob/living/user)
 	var/mob/living/carbon/human/human_wearer = user
-	if(!istype(human_wearer) && !human_wearer?.dna?.species)
+	if(!istype(human_wearer) || !human_wearer?.dna?.species)
 		return
 	var/datum/species/wearer_species = human_wearer.dna.species
 	var/has_flag = !!(wearer_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
