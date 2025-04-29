@@ -579,8 +579,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	final_countdown = TRUE
 
+	INVOKE_ASYNC(src, PROC_REF(final_announcement)) // BUBBER EDIT ADDITION - DELAM SOUNDS
 	if(is_main_engine) // BUBBER EDIT ADDITION - DELAM_SCRAM
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // BUBBER EDIT ADDITION - DELAM_SCRAM
+
 	notify_ghosts(
 		"[src] has begun the delamination process!",
 		source = src,

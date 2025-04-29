@@ -8,7 +8,7 @@
 
 /datum/nanite_program/viral/register_extra_settings()
 	extra_settings[NES_PROGRAM_OVERWRITE] = new /datum/nanite_extra_setting/type("Add To", list("Overwrite", "Add To", "Ignore"))
-	extra_settings[NES_CLOUD_OVERWRITE] = new /datum/nanite_extra_setting/number(0, 0, 100)
+	extra_settings[NES_CLOUD_OVERWRITE] = new /datum/nanite_extra_setting/number(NANITE_MIN_CLOUD_ID, NANITE_MIN_CLOUD_ID, NANITE_MAX_CLOUD_ID)
 
 /datum/nanite_program/viral/active_effect()
 	if(world.time < pulse_cooldown)
