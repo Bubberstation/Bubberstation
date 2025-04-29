@@ -191,6 +191,10 @@
 	name = "P-T Solar Control"
 	icon_state = "engine"
 
+/area/ruin/space/has_grav/port_tarkon/power2
+	name = "P-T Backup Generator Room"
+	icon_state = "engine"
+
 /area/ruin/space/has_grav/port_tarkon/centerhall
 	name = "P-T Central Hallway"
 	icon_state = "centralhall"
@@ -245,6 +249,10 @@
 
 /area/ruin/space/has_grav/port_tarkon/dorms
 	name = "P-T Dorms"
+	icon_state = "dorms"
+
+/area/ruin/space/has_grav/port_tarkon/random_dorm
+	name = "P-T Deluxe Dorm Room"
 	icon_state = "dorms"
 
 /area/solars/tarkon
