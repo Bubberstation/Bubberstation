@@ -56,6 +56,7 @@
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)
+	log_dynamic("Storyteller raw vote tally is: [english_list_assoc(choices)]")
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
 	if(ready_only)

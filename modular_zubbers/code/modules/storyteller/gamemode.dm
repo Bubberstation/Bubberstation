@@ -781,7 +781,7 @@ SUBSYSTEM_DEF(gamemode)
 		else
 			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
 
-	log_dynamic("Storyteller vote tally is: [english_list_assoc(processed_votes)]")
+	log_dynamic("Storyteller processed vote tally is: [english_list_assoc(processed_votes)]")
 	var/vote_winner = pick_weight(processed_votes)
 	log_dynamic("Storyteller vote winner is [vote_winner]")
 	to_chat(GLOB.admins,
