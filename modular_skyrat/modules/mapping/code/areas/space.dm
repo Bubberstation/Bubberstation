@@ -274,6 +274,11 @@
 	icon_state = "ruins"
 	outdoors = TRUE
 
+/area/ruin/space/has_grav/port_tarkon/vault
+	name = "P-T Vault"
+	icon_state = "vault"
+	area_flags = UNIQUE_AREA | NOTELEPORT
+
 // Cargodise Lost Freighter
 
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall

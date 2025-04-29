@@ -1141,10 +1141,10 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/power2)
 "ec" = (
-/obj/structure/table/wood,
-/obj/item/clothing/gloves/combat/maid/armored,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/port_tarkon/dorms)
+/obj/structure/alien/egg/burst,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/aiante)
 "ed" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/purple/half{
@@ -1165,11 +1165,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/port_tarkon/dorms)
-"eg" = (
-/obj/structure/table/wood,
-/obj/item/clothing/head/costume/maidheadband/syndicate/armored,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "eh" = (
@@ -2807,9 +2802,10 @@
 /turf/open/floor/engine/plasma,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "jO" = (
-/obj/structure/cable/multilayer/connected,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/port_tarkon/aiante)
+/obj/structure/table/wood,
+/obj/item/clothing/head/costume/maidheadband/syndicate/armored,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "jP" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/structure/disposalpipe/segment{
@@ -2980,6 +2976,7 @@
 /area/ruin/space/has_grav/port_tarkon/viro)
 "kv" = (
 /obj/machinery/light_switch/directional/south,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "kw" = (
@@ -3446,14 +3443,6 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/garden)
-"mp" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/table/wood,
-/obj/item/clothing/under/syndicate/skyrat/maid/armored,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/port_tarkon/dorms)
 "mq" = (
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/iron/dark,
@@ -6262,13 +6251,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/table/wood,
-/obj/item/clothing/gloves/combat,
-/obj/item/clothing/gloves/combat{
-	pixel_y = 7
-	},
-/obj/item/clothing/gloves/combat{
-	pixel_y = 11
-	},
+/obj/item/clothing/under/syndicate/skyrat/maid/armored,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "wC" = (
@@ -6914,6 +6897,20 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
+"yX" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/table/wood,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat{
+	pixel_y = 7
+	},
+/obj/item/clothing/gloves/combat{
+	pixel_y = 11
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "yY" = (
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 4
@@ -7878,6 +7875,11 @@
 /obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_corner,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
+"Cd" = (
+/obj/structure/table/wood,
+/obj/item/clothing/gloves/combat/maid/armored,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "Cf" = (
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
@@ -25596,7 +25598,7 @@ ab
 pu
 qh
 Hc
-wB
+yX
 Yk
 Hc
 zG
@@ -25719,7 +25721,7 @@ pu
 CJ
 hs
 Wj
-eg
+jO
 Cx
 Nc
 Oi
@@ -25840,8 +25842,8 @@ ab
 pu
 dw
 Hc
-mp
-ec
+wB
+Cd
 hs
 eT
 Oi
@@ -26185,9 +26187,9 @@ xu
 xu
 xu
 js
-jO
-RH
-cA
+hq
+hq
+ec
 kv
 xu
 RA
