@@ -192,6 +192,7 @@
 ///////Yes, I said humans. No, this won't end well...//////////
 /datum/component/riding/creature/human
 	can_be_driven = FALSE
+	var/obj/item/bodypart/used_hand // BUBBER EDIT ADDITION - Featherweight quirk
 
 /datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE)
 	. = ..()
@@ -208,7 +209,14 @@
 		// since pulled movables are moved before buckled movables
 		ADD_TRAIT(riding_mob, TRAIT_UNDENSE, VEHICLE_TRAIT)
 	else if(ride_check_flags & CARRIER_NEEDS_ARM) // fireman
-		human_parent.buckle_lying = 90
+		// BUBBER EDIT ADDITION BEGIN - Featherweight quirk
+		if(HAS_TRAIT(riding_mob, TRAIT_CAN_BE_PICKED_UP))
+			human_parent.buckle_lying = 0
+			used_hand = human_parent.get_active_hand()
+			ADD_TRAIT(riding_mob, TRAIT_UNDENSE, VEHICLE_TRAIT)
+		else
+		// BUBBER EDIT ADDITION END - Featherweight quirk
+			human_parent.buckle_lying = 90
 
 /datum/component/riding/creature/handle_buckle(mob/living/rider)
 	var/mob/living/ridden = parent
@@ -271,7 +279,7 @@
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent
-/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding
+/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding, Featherweight quirk
 	// fireman carry
 	if(seat.buckle_lying)
 		return list(
@@ -288,35 +296,52 @@
 		TEXT_WEST =  list( 6, 8, MOB_BELOW_PIGGYBACK_LAYER),
 	)
 */
-	// fireman carry
-	if(seat.buckle_lying)
-		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
-			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
-			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
-			TEXT_EAST = list(0, OVERSIZED_OFFSET),
-			TEXT_WEST = list(0, OVERSIZED_OFFSET),
-		) : list(
-			TEXT_NORTH = list(0, REGULAR_OFFSET),
-			TEXT_SOUTH = list(0, REGULAR_OFFSET),
-			TEXT_EAST = list(0, REGULAR_OFFSET),
-			TEXT_WEST = list(0, REGULAR_OFFSET),
-		)
-	else if(!(ride_check_flags & RIDING_TAUR)) // piggyback
-		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
-			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
-			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
-			TEXT_EAST = list(-OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
-			TEXT_WEST = list(OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
-		) : list(
-			TEXT_NORTH = list(0, REGULAR_OFFSET),
-			TEXT_SOUTH = list(0, REGULAR_OFFSET),
-			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET),
-			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET)
-		)
 	if(ride_check_flags & RIDING_TAUR) // riding a taur
 		var/obj/item/organ/taur_body/taur_body = seat.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		return taur_body.get_riding_offset(oversized = HAS_TRAIT(seat, TRAIT_OVERSIZED))
-// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding
+	// fireman carry or featherweight quirk
+	else if(ride_check_flags & CARRIER_NEEDS_ARM)
+		if(HAS_TRAIT(offsetter, TRAIT_CAN_BE_PICKED_UP))
+			// featherweight quirk
+			return used_hand.body_zone == BODY_ZONE_L_ARM ? list(
+				// held in left hand
+				TEXT_NORTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+			) : list(
+				// held in right hand
+				TEXT_NORTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+			)
+		else
+			// fireman carry
+			return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+				TEXT_NORTH = list(0, OVERSIZED_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_EAST = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			) : list(
+				TEXT_NORTH = list(0, REGULAR_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_EAST = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			)
+	else if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
+		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+			TEXT_NORTH = list(0, OVERSIZED_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+			TEXT_SOUTH = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_EAST = list(-OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_WEST = list(OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+		) : list(
+			TEXT_NORTH = list(0, REGULAR_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+			TEXT_SOUTH = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET, MOB_BELOW_PIGGYBACK_LAYER)
+		)
+// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding, Featherweight quirk
 
 /datum/component/riding/creature/human/get_parent_offsets_and_layers()
 	return list(
