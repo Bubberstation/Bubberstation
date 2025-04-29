@@ -1,3 +1,7 @@
+// Remove this once wallets spawning with normal IDs instead of cardboard is fixed
+/datum/station_trait/wallets
+	weight = 0
+
 /datum/job/assistant/stowaway
 	title = "Stowaway"
 	description = "Be a stowaway crewmember."
