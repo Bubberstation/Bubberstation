@@ -9,7 +9,7 @@
 	var/excavation_warning = "This will be awfully loud. Are you ready to protect the hacking pod?"
 	var/list/defending_mobs = list(/mob/living/basic/alien/drone/tarkon)
 	var/static/list/scanning_equipment = list(/obj/item/hackc)
-	move_resist = MOVE_FORCE_EXTREMELY_STRONG
+	move_resist = MOVE_FORCE_OVERPOWERING
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //This thing will take a beating.
 	anchored = TRUE
 	density = TRUE
@@ -41,6 +41,11 @@
 	icon_state = "mining_node_active"
 	icon_living = "mining_node_active"
 	icon_dead = "mining_node_active"
+	faction = list(FACTION_TARKON, FACTION_NEUTRAL)
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING // this thing isnt budging
+	pull_force = MOVE_FORCE_OVERPOWERING
+	var/obj/structure/wave_defence/attached_vent = null
 
 /obj/structure/wave_defence/examine(mob/user)
 	. += span_notice("This can be repaired by calling in a drone with a [span_bold("Hack-C signaller")].")

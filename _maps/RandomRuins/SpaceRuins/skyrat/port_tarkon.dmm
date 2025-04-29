@@ -1141,8 +1141,10 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/port_tarkon/power2)
 "ec" = (
-/turf/closed/mineral/random/high_chance,
-/area/ruin/space/has_grav/port_tarkon/aichamber)
+/obj/structure/table/wood,
+/obj/item/clothing/gloves/combat/maid/armored,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "ed" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/purple/half{
@@ -1163,6 +1165,11 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
+"eg" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/costume/maidheadband/syndicate/armored,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "eh" = (
@@ -3439,6 +3446,14 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/garden)
+"mp" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/table/wood,
+/obj/item/clothing/under/syndicate/skyrat/maid/armored,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "mq" = (
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/iron/dark,
@@ -6247,6 +6262,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/table/wood,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat{
+	pixel_y = 7
+	},
+/obj/item/clothing/gloves/combat{
+	pixel_y = 11
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "wC" = (
@@ -13447,6 +13469,7 @@
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/item/clothing/gloves/combat/maid/armored,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "Wl" = (
@@ -25696,7 +25719,7 @@ pu
 CJ
 hs
 Wj
-Yk
+eg
 Cx
 Nc
 Oi
@@ -25817,8 +25840,8 @@ ab
 pu
 dw
 Hc
-wB
-Yk
+mp
+ec
 hs
 eT
 Oi

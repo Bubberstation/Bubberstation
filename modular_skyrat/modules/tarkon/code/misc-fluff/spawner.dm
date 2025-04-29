@@ -14,7 +14,7 @@
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
-	computer_area = /area/ruin/space/has_grav/port_tarkon
+	computer_area = /area/ruin/space/has_grav/port_tarkon/centerhall
 
 /datum/outfit/tarkon
 	name = "default port tarkon outfit"
@@ -227,10 +227,6 @@
 	important_text = "You are not to abandon Port Tarkon. Check other sleepers for alternative jobs."
 	outfit = /datum/outfit/tarkon/director
 	spawner_job_path = /datum/job/tarkon
-	loadout_enabled = TRUE
-	quirks_enabled = TRUE
-	random_appearance = FALSE
-	computer_area = /area/ruin/space/has_grav/port_tarkon
 
 /datum/outfit/tarkon/director //Look at me, I'm the director now.
 	name = "Port Tarkon Ensigns Outfit"
