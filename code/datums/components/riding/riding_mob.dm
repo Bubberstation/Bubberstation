@@ -279,7 +279,7 @@
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent
-/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding
+/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding, Featherweight quirk
 	// fireman carry
 	if(seat.buckle_lying)
 		return list(
@@ -296,35 +296,40 @@
 		TEXT_WEST =  list( 6, 8, MOB_BELOW_PIGGYBACK_LAYER),
 	)
 */
-	// fireman carry
-	if(seat.buckle_lying)
-		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
-			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
-			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
-			TEXT_EAST = list(0, OVERSIZED_OFFSET),
-			TEXT_WEST = list(0, OVERSIZED_OFFSET),
-		) : list(
-			TEXT_NORTH = list(0, REGULAR_OFFSET),
-			TEXT_SOUTH = list(0, REGULAR_OFFSET),
-			TEXT_EAST = list(0, REGULAR_OFFSET),
-			TEXT_WEST = list(0, REGULAR_OFFSET),
-		)
-	// featherweight quirk
-	else if(HAS_TRAIT(offsetter, TRAIT_CAN_BE_PICKED_UP))
-		return used_hand.body_zone == BODY_ZONE_L_ARM ? list(
-			// held in left hand
-			TEXT_NORTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
-			TEXT_SOUTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
-			TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
-			TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
-		) : list(
-			// held in right hand
-			TEXT_NORTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
-			TEXT_SOUTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
-			TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
-			TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
-		)
-	else if(!(ride_check_flags & RIDING_TAUR)) // piggyback
+	if(ride_check_flags & RIDING_TAUR) // riding a taur
+		var/obj/item/organ/taur_body/taur_body = seat.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+		return taur_body.get_riding_offset(oversized = HAS_TRAIT(seat, TRAIT_OVERSIZED))
+	// fireman carry or featherweight quirk
+	else if(ride_check_flags & CARRIER_NEEDS_ARM)
+		if(HAS_TRAIT(offsetter, TRAIT_CAN_BE_PICKED_UP))
+			// featherweight quirk
+			return used_hand.body_zone == BODY_ZONE_L_ARM ? list(
+				// held in left hand
+				TEXT_NORTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+			) : list(
+				// held in right hand
+				TEXT_NORTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+			)
+		else
+			// fireman carry
+			return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+				TEXT_NORTH = list(0, OVERSIZED_OFFSET),
+				TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
+				TEXT_EAST = list(0, OVERSIZED_OFFSET),
+				TEXT_WEST = list(0, OVERSIZED_OFFSET),
+			) : list(
+				TEXT_NORTH = list(0, REGULAR_OFFSET),
+				TEXT_SOUTH = list(0, REGULAR_OFFSET),
+				TEXT_EAST = list(0, REGULAR_OFFSET),
+				TEXT_WEST = list(0, REGULAR_OFFSET),
+			)
+	else if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
 		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
 			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
 			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
@@ -336,10 +341,7 @@
 			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET),
 			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET)
 		)
-	if(ride_check_flags & RIDING_TAUR) // riding a taur
-		var/obj/item/organ/taur_body/taur_body = seat.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
-		return taur_body.get_riding_offset(oversized = HAS_TRAIT(seat, TRAIT_OVERSIZED))
-// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding
+// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding, Featherweight quirk
 
 /datum/component/riding/creature/human/get_parent_offsets_and_layers()
 	return list(
