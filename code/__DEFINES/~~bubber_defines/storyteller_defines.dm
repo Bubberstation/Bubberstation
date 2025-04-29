@@ -25,7 +25,8 @@
 #define TAG_SPACE "space"
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
-
+/// Used for Nukies/Cult/Revolutions
+#define TAG_BIG_THREE "big_three"
 
 #define EVENT_TRACK_MUNDANE "Mundane"
 #define EVENT_TRACK_MODERATE "Moderate"

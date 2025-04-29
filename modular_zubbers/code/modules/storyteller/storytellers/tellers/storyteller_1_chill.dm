@@ -10,7 +10,8 @@
 	tag_multipliers = list(
 		TAG_COMBAT = 0.5,
 		TAG_DESTRUCTIVE = 0.3,
-		TAG_CHAOTIC = 0.1
+		TAG_CHAOTIC = 0.1,
+		TAG_BIG_THREE = 0,
 	)
 
 /datum/storyteller_data/tracks/light

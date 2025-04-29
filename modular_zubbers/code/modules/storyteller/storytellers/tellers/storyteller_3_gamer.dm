@@ -11,7 +11,8 @@
 	tag_multipliers = list(
 		TAG_COMBAT = 1.5,
 		TAG_DESTRUCTIVE = 0.7,
-		TAG_CHAOTIC = 1.3
+		TAG_CHAOTIC = 1.3,
+		TAG_BIG_THREE = 1.1,
 	)
 
 /datum/storyteller_data/tracks/heavy

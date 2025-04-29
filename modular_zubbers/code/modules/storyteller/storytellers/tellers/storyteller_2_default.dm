@@ -8,5 +8,6 @@
 	antag_divisor = 8
 
 	tag_multipliers = list(
-		TAG_CHAOTIC = 0.7
+		TAG_CHAOTIC = 0.7,
+		TAG_BIG_THREE = 0,
 	)
