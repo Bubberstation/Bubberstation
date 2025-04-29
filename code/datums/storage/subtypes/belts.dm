@@ -72,6 +72,12 @@
 		/obj/item/wrench/medical,
 		/obj/item/knife/ritual,
 		/obj/item/flesh_shears,
+		/obj/item/clothing/suit/toggle/labcoat/hospitalgown,	//SKYRAT EDIT ADDITION - adds surgery gowns to belts
+		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
+		/obj/item/storage/hypospraykit/, //SKYRAT EDIT ADDITION - HYPOSPRAYS
+		/obj/item/reagent_containers/cup/vial, //SKYRAT EDIT ADDITION - HYPOSPRAYS
+		/obj/item/weaponcell/medical, //SKYRAT EDIT MEDIGUNS
+		/obj/item/handheld_soulcatcher, // SKYRAT EDIT SOULCATCHERS
 	))
 
 ///Security belt
@@ -99,6 +105,8 @@
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
+		/obj/item/gun, //SKYRAT EDIT ADDITION
+		/obj/item/stock_parts/power_store/cell/microfusion, //SKYRAT EDIT ADDITION
 	))
 
 ///Webbing security belt
@@ -227,6 +235,14 @@
 
 /datum/storage/janitor_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
+	// BUBBER EDIT BEGIN - Trash bag on da belt
+	var/static/list/exception_cache = typecacheof(list(
+		/obj/item/storage/bag/trash,
+	))
+	atom_storage.exception_hold = exception_cache
+	atom_storage.exception_max = 1
+	atom_storage.allow_big_nesting = TRUE
+	// BUBBER EDIT END - Trash bag on da belt
 	set_holdable(list(
 		/obj/item/access_key,
 		/obj/item/assembly/mousetrap,
@@ -244,6 +260,10 @@
 		/obj/item/reagent_containers/spray,
 		/obj/item/soap,
 		/obj/item/wirebrush,
+		/obj/item/mop, //SKYRAT EDIT - For when you're lazy to use soap
+		/obj/item/mop/advanced, //SKYRAT EDIT For when you're lazy to use a bucket
+		/obj/item/reagent_containers/cup/bucket, //SKYRAT EDIT - Bucket
+
 	))
 
 ///Bandolier belt

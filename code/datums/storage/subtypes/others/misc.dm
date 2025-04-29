@@ -27,6 +27,8 @@
 		/obj/item/cautery,
 		/obj/item/circular_saw,
 		/obj/item/clothing/mask/surgical,
+		/obj/item/reagent_containers/medigel/sterilizine, // BUBBER EDIT ADDITION
+		/obj/item/storage/pill_bottle/lidocaine,  // BUBBER EDIT ADDITION
 		/obj/item/hemostat,
 		/obj/item/razor,
 		/obj/item/retractor,
@@ -263,6 +265,10 @@
 			/obj/item/stack/medical,
 			/obj/item/stamp,
 			/obj/item/toy/crayon,
+			// SKYRAT EDIT BEGIN
+			/obj/item/condom_pack,
+			/obj/item/gbp_punchcard,
+			// SKYRAT EDIT END
 		),
 		cant_hold_list = list(
 			/obj/item/screwdriver/power
