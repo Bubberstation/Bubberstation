@@ -8,7 +8,7 @@
 	worn_icon_teshari = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_teshari.dmi'
 	body_parts_covered = NONE
 	strip_delay = 100
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION|STYLE_TAUR_ALL
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	slowdown = 4
 	item_flags = DROPDEL|IGNORE_DIGITIGRADE
 

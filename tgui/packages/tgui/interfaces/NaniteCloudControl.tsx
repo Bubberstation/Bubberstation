@@ -22,6 +22,8 @@ interface NaniteInfoBoxProps {
   backup_id: number;
   new_backup_id: number;
   techweb: Techweb;
+  min_cloud_id: number;
+  max_cloud_id: number;
 }
 
 export const NaniteDiskBox = (props, context) => {
@@ -300,7 +302,14 @@ export const NaniteCloudBackupDetails = () => {
 
 export const NaniteCloudControl = () => {
   const { act, data } = useBackend<NaniteInfoBoxProps>();
-  const { has_disk, current_view, new_backup_id, techweb } = data;
+  const {
+    has_disk,
+    current_view,
+    new_backup_id,
+    techweb,
+    min_cloud_id,
+    max_cloud_id,
+  } = data;
   return (
     <Window width={375} height={700}>
       <Window.Content scrollable>
@@ -338,8 +347,8 @@ export const NaniteCloudControl = () => {
                 {'New Backup: '}
                 <NumberInput
                   value={new_backup_id}
-                  minValue={1}
-                  maxValue={100}
+                  minValue={min_cloud_id + 1}
+                  maxValue={max_cloud_id}
                   stepPixelSize={4}
                   step={1}
                   width="39px"
