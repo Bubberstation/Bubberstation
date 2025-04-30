@@ -268,7 +268,7 @@
 	for(var/starting_knowledge in GLOB.heretic_start_knowledge)
 		gain_knowledge(starting_knowledge)
 
-	owner.AddElement(/datum/element/leeching_walk/minor)
+	owner.current.AddElement(/datum/element/leeching_walk/minor)
 
 	ADD_TRAIT(owner, TRAIT_SEE_BLESSED_TILES, REF(src))
 	addtimer(CALLBACK(src, PROC_REF(passive_influence_gain)), passive_gain_timer) // Gain +1 knowledge every 20 minutes.
@@ -280,7 +280,7 @@
 			var/datum/heretic_knowledge/knowledge = researched_knowledge[knowledge_index]
 			knowledge.on_lose(owner.current, src)
 
-	owner._RemoveElement(/datum/element/leeching_walk/minor)
+	owner.current.RemoveElement(/datum/element/leeching_walk/minor)
 
 	QDEL_LIST_ASSOC_VAL(researched_knowledge)
 	return ..()
