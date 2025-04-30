@@ -45,7 +45,17 @@
 	move_force = MOVE_FORCE_OVERPOWERING
 	move_resist = MOVE_FORCE_OVERPOWERING // this thing isnt budging
 	pull_force = MOVE_FORCE_OVERPOWERING
-	var/obj/structure/wave_defence/attached_vent = null
+	move_intent = MOVE_INTENT_RUN
+	var/obj/structure/ore_vent/attached_engine = null
+
+/mob/living/basic/node_drone/hackc/proc/arrivewd(obj/structure/wave_defence/parent_engine)
+	attached_engine = parent_engine
+	buckled = attached_engine
+	maxHealth = 500
+	health = maxHealth
+	update_appearance(UPDATE_ICON_STATE)
+	pixel_z = 400
+	animate(src, pixel_z = 0, time = 2 SECONDS, easing = QUAD_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 
 /obj/structure/wave_defence/examine(mob/user)
 	. += span_notice("This can be repaired by calling in a drone with a [span_bold("Hack-C signaller")].")
@@ -97,7 +107,7 @@
 	Shake(duration = 3 SECONDS)
 	if(spawn_drone)
 		node = new /mob/living/basic/node_drone/hackc(loc)
-		node.arrive(src)
+		node.arrivewd(src)
 		RegisterSignal(node, COMSIG_QDELETING, PROC_REF(handle_wave_conclusion))
 		RegisterSignal(node, COMSIG_MOVABLE_MOVED, PROC_REF(handle_wave_conclusion))
 		addtimer(CALLBACK(node, TYPE_PROC_REF(/atom, update_appearance)), wave_timer * 0.25)
