@@ -10,7 +10,7 @@
 		)
 	)
 
-/obj/item/storage/belt/security/New()
+/datum/storage/belt/security/New()
 	. = ..()
 	add_holdable(list(
 		/obj/item/gun,
@@ -18,14 +18,14 @@
 		)
 	)
 
-/obj/item/storage/belt/janitor/New()
+/datum/storage/belt/janitor/New()
 	. = ..()
 	var/static/list/exception_cache = typecacheof(list(
 		/obj/item/storage/bag/trash,
 	))
-	atom_storage.exception_hold = exception_cache
-	atom_storage.exception_max = 1
-	atom_storage.allow_big_nesting = TRUE
+	exception_hold = exception_cache
+	exception_max = 1
+	allow_big_nesting = TRUE
 	add_holdable(list(
 		/obj/item/mop,
 		/obj/item/mop/advanced,

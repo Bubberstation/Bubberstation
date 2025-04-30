@@ -29,6 +29,7 @@
 /obj/machinery/computer/order_console/mining/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/voucher_redeemer, /obj/item/mining_voucher, /datum/voucher_set/mining)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/suit_voucher, /datum/voucher_set/mining_suit) // Bubber Addition - SEVA suit voucher selection
 
 /obj/machinery/computer/order_console/mining/subtract_points(final_cost, obj/item/card/id/card)
 	if(final_cost <= card.registered_account.mining_points)

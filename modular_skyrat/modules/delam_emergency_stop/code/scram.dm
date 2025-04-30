@@ -405,6 +405,8 @@
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/Initialize(mapload)
 	name = "NT-approved delam emergency procedure"
 	desc = "Now you're a REAL engineer!"
+	AddElement(/datum/element/burn_on_item_ignition)
+	RegisterSignal(src, COMSIG_ATOM_IGNITED_BY_ITEM, PROC_REF(close_paper_ui))
 	return ..()
 
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/examine(mob/user)
@@ -412,10 +414,6 @@
 	ui_interact(user)
 
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(burn_paper_product_attackby_check(attacking_item, user))
-		SStgui.close_uis(src)
-		return
-
 	// Enable picking paper up by clicking on it with the clipboard or folder
 	if(istype(attacking_item, /obj/item/clipboard) || istype(attacking_item, /obj/item/folder) || istype(attacking_item, /obj/item/paper_bin))
 		attacking_item.attackby(src, user)

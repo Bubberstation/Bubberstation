@@ -235,14 +235,6 @@
 
 /datum/storage/janitor_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
-	// BUBBER EDIT BEGIN - Trash bag on da belt
-	var/static/list/exception_cache = typecacheof(list(
-		/obj/item/storage/bag/trash,
-	))
-	atom_storage.exception_hold = exception_cache
-	atom_storage.exception_max = 1
-	atom_storage.allow_big_nesting = TRUE
-	// BUBBER EDIT END - Trash bag on da belt
 	set_holdable(list(
 		/obj/item/access_key,
 		/obj/item/assembly/mousetrap,

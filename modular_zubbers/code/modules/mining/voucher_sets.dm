@@ -3,7 +3,7 @@
 
 /datum/voucher_set/mining_suit/explorer
 	name = "Explorer Suit"
-	desc = "An armoured suit for exploring harsh environments. It can be reinforced with goliath plates."
+	description = "An armoured suit for exploring harsh environments. It can be reinforced with goliath plates."
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	icon_state = "explorer"
 	set_items = list(

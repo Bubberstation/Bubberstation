@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(statpanels)
 			" ",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Station Time: [time_to_twelve_hour(station_time(), format = "hh:mm")], [timeinworld]", //BUBBER EDIT: READABLE STATION TIME
-			"Round Timer: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[worldtime2text()]" : worldtime2text()]",
+			"Round Timer: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[gameTimestamp()]" : gameTimestamp()]",
 			"Actual Round Timer: [time2text(real_round_time, "hh:mm:ss", 0)]"
 		)
 		// SKYRAT EDIT END
