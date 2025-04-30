@@ -5925,6 +5925,7 @@
 "bGa" = (
 /obj/machinery/photocopier,
 /obj/structure/secure_safe/directional/west,
+/obj/machinery/light/moonstation/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "bGr" = (
@@ -23971,6 +23972,9 @@
 "gBj" = (
 /obj/structure/sink/directional/east,
 /obj/structure/mirror/directional/west,
+/obj/effect/spawner/random/trash/soap{
+	spawn_scatter_radius = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/captain/private)
 "gBp" = (
@@ -32385,7 +32389,6 @@
 /area/station/science/research)
 "iTx" = (
 /obj/structure/table/wood,
-/obj/item/megaphone/command,
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/wood,
 /area/station/command/meeting_room)
@@ -59144,7 +59147,10 @@
 /turf/open/floor/wood,
 /area/station/service/bar)
 "qgv" = (
-/obj/structure/secure_safe/caps_spare,
+/obj/structure/secure_safe/caps_spare{
+	pixel_y = 32
+	},
+/obj/machinery/vending/access/command,
 /turf/open/floor/wood,
 /area/station/command/meeting_room)
 "qgB" = (
@@ -64020,6 +64026,16 @@
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/commissary)
+"rzt" = (
+/obj/structure/bed/dogbed/renault{
+	name = "Alpine's Bed"
+	},
+/mob/living/basic/pet/fox/renault{
+	name = "Alpine";
+	real_name = "Alpine"
+	},
+/turf/open/floor/carpet/blue,
+/area/station/command/heads_quarters/captain)
 "rzw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -64075,7 +64091,8 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/dorms/laundry)
 "rAd" = (
-/obj/machinery/vending/access/command,
+/obj/structure/table/wood,
+/obj/item/megaphone/command,
 /turf/open/floor/wood,
 /area/station/command/meeting_room)
 "rAg" = (
@@ -75198,6 +75215,10 @@
 /turf/open/floor/plating,
 /area/station/commons/storage/emergency/port)
 "uDn" = (
+/obj/machinery/greenscreen_camera{
+	dir = 1;
+	name = "captain-caster (NOT FOR PORN)"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "uDy" = (
@@ -75322,14 +75343,8 @@
 /turf/open/floor/glass/reinforced/scrape_below,
 /area/station/common/pool)
 "uFd" = (
-/obj/machinery/light/moonstation/directional/north,
-/obj/structure/bed/dogbed/renault{
-	name = "Alpine's Bed"
-	},
-/mob/living/basic/pet/fox/renault{
-	name = "Alpine";
-	real_name = "Alpine"
-	},
+/obj/structure/sign/poster/greenscreen/directional/north,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "uFl" = (
@@ -84291,7 +84306,6 @@
 /obj/structure/curtain,
 /obj/machinery/shower/directional/north,
 /obj/structure/drain,
-/obj/item/soap/deluxe,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/captain/private)
 "xih" = (
@@ -247021,7 +247035,7 @@ pwZ
 caV
 bol
 dEd
-pwZ
+rzt
 gSh
 ueA
 bLh
@@ -248550,7 +248564,7 @@ fyn
 aBD
 lpJ
 ffn
-iJq
+mQs
 wUf
 wUf
 fkl
@@ -249321,7 +249335,7 @@ vVc
 eHO
 lpJ
 ffn
-mQs
+iJq
 wUf
 qgv
 tRu
