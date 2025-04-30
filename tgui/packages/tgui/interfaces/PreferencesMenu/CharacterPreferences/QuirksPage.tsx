@@ -234,7 +234,9 @@ function QuirkPopper(props: QuirkPopperProps) {
               boxShadow: '0px 4px 8px 3px rgba(0, 0, 0, 0.7)',
             }}
           >
-            <Stack maxWidth="400px" backgroundColor="black" px="5px" py="3px"> {/*SKYRAT EDIT - maxWidth to 400px from 300px*/}
+            {/* SKYRAT EDIT START - maxWidth to 400px from 300px */}
+            <Stack maxWidth="400px" backgroundColor="black" px="5px" py="3px">
+            {/* SKYRAT EDIT END - maxWidth to 400px from 300px */}
               <Stack.Item>
                 <PreferenceList
                   preferences={getCorrespondingPreferences(
