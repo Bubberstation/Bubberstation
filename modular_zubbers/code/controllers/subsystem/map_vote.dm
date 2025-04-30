@@ -1,4 +1,4 @@
-/datum/controller/subsystem/map_vote/finalize_map_vote(datum/vote/map_vote/map_vote)
+/datum/controller/subsystem/map_vote/finalize_map_vote(datum/vote/map_vote/map_vote, winning_option)
 	if(already_voted)
 		message_admins("Attempted to finalize a map vote after a map vote has already been finalized.")
 		return
@@ -17,11 +17,11 @@
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
 
-	var/winner = map_vote.choices[1]
-	set_next_map(config.maplist[winner])
+	//var/winner = map_vote.choices[winning_option]
+	set_next_map(config.maplist[winning_option])
 	var/list/vote_results = map_vote.elimination_results
 	var/serialized_vote_results = "[vote_results.Join("\n")]"
-	var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winner))]")
+	var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winning_option))]")
 	send_map_vote_notice(arglist(vote_result_message))
 
 /datum/controller/subsystem/map_vote/send_map_vote_notice(...)
