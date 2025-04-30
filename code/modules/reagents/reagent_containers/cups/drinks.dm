@@ -16,8 +16,6 @@
 	. = ..()
 	if(!.) //if the bottle wasn't caught
 		var/mob/thrower = throwingdatum?.get_thrower()
-		if(!istype(thrower))
-			return
 		smash(hit_atom, thrower, throwingdatum)
 
 /obj/item/reagent_containers/cup/glass/proc/smash(atom/target, mob/thrower, datum/thrownthing/throwingdatum, break_top = FALSE)
