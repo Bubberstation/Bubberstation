@@ -3,7 +3,7 @@
 	desc = "Light on events with reduced weighting of destructive, combat-focused, and chaotic events. Lower crew-to-antag ratio and no roundstart antag selection."
 	welcome_text = "Handle with care!"
 
-	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
+	storyteller_type = STORYTELLER_TYPE_CALM
 	track_data = /datum/storyteller_data/tracks/light
 	guarantees_roundstart_crewset = FALSE
 	antag_divisor = 16

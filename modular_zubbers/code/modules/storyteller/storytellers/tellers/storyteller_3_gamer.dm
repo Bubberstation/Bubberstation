@@ -4,7 +4,7 @@
 	More combat-focused and frequent events than the Default, but stays ordered to avoid creating a hellshift."
 	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
 
-	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
+	storyteller_type = STORYTELLER_TYPE_INTENSE
 	track_data = /datum/storyteller_data/tracks/heavy
 	guarantees_roundstart_crewset = TRUE
 	antag_divisor = 5
