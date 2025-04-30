@@ -17,10 +17,11 @@
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
 
-	var/list/winner_list = map_vote.get_vote_result()
-	var/winner = winner_list[1]
+	var/winner = map_vote.choices[1]
 	set_next_map(config.maplist[winner])
-	var/list/vote_result_message = list("Method: Ranked Vote<br/ >Next Map: [span_vote_notice(span_bold(winner))]")
+	var/list/vote_results = map_vote.elimination_results
+	var/serialized_vote_results = "[vote_results.Join("\n")]"
+	var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winner))]")
 	send_map_vote_notice(arglist(vote_result_message))
 
 /datum/controller/subsystem/map_vote/send_map_vote_notice(...)

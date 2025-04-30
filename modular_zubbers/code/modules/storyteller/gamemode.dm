@@ -140,6 +140,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/ready_only_vote = FALSE
 	var/list/vote_choices = list()
 	var/list/vote_choices_by_ckey = list()
+	var/datum/vote/vote_datum
 	var/vote_threshold
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
@@ -782,7 +783,7 @@ SUBSYSTEM_DEF(gamemode)
 			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
 			LAZYREMOVE(vote_choices_by_ckey, vote)
 
-	var/list/vote_winner = get_ranked_winner(vote_choices, vote_choices_by_ckey, vote_threshold)
+	var/list/vote_winner = get_ranked_winner(vote_choices, vote_choices_by_ckey, vote_threshold, vote_datum)
 	log_dynamic("Storyteller vote winner is [vote_winner[1]]")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
