@@ -750,6 +750,10 @@ SUBSYSTEM_DEF(gamemode)
 		to_chat(world, vote_font(fieldset_block("Storyteller: Secret", "The storyteller for this round is secret! What could it be, it is a mystery...", "boxed_message purple_box")))
 	else
 		statpanel_display = storyteller.name
+		var/list/vote_results = vote_datum.elimination_results
+		var/serialized_vote_results = "[vote_results.Join("\n")]"
+		var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]")
+		to_chat(world, custom_boxed_message("purple_box", vote_font("[vote_result_message.Join("\n")]")))
 		to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
 
 	// Notify discord about the round's selected storyteller

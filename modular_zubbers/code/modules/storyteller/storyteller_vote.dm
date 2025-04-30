@@ -54,6 +54,9 @@
 		to_chat(world, span_boldannounce("The storyteller vote has been skipped because there is only one storyteller left to vote for. The storyteller has been changed to [de_facto_winner]."))
 		return FALSE
 
+	SSgamemode.vote_datum = src
+	SSgamemode.vote_choices = LAZYLISTDUPLICATE(choices)
+
 /datum/vote/storyteller/can_be_initiated(mob/by_who, forced = FALSE)
 	. = ..()
 	if(forced)
@@ -68,8 +71,6 @@
 	SSgamemode.storyteller_voted = TRUE
 	if(ready_only)
 		SSgamemode.ready_only_vote = TRUE
-		SSgamemode.vote_datum = src
-		SSgamemode.vote_choices = LAZYLISTDUPLICATE(choices)
 		SSgamemode.vote_choices_by_ckey = LAZYLISTDUPLICATE(choices_by_ckey)
 		SSgamemode.vote_threshold = ranked_winner_threshold
 
