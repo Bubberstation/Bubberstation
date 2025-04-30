@@ -85,14 +85,13 @@
 			else if(votes == highest_votes)
 				highest_choices += option
 
-		/*
 		// Check if any option has reached the threshold
 		if(highest_votes >= victory_threshold)
 			log_dynamic("Victory threshold ([victory_threshold]) reached! Winner(s): [highest_choices.Join(", ")] with [highest_votes] votes",
 				list("winners" = highest_choices, "votes" = highest_votes))
 			LAZYADD(elimination_results, "[highest_choices[1]] - [highest_votes]")
+			source_vote.elimination_results = elimination_results
 			return highest_choices
-		*/
 
 		// Find lowest vote count to eliminate
 		var/lowest_votes = INFINITY
