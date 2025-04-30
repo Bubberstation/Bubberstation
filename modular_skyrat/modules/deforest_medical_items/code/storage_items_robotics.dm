@@ -26,7 +26,7 @@
 			/obj/item/clothing/head/utility/welding,
 			/obj/item/clothing/glasses/welding,
 		),
-		list = list(),
+		list(),
 		list(/obj/item/clothing/head/utility/welding,
 		)
 	)
