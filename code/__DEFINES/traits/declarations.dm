@@ -465,6 +465,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Unable to gain any brain trauma whatsoever
 #define TRAIT_BRAIN_TRAUMA_IMMUNITY "brain_trauma_immunity"
 
+/// Prevents death from having too much brain damage
+#define TRAIT_BRAIN_DAMAGE_NODEATH "brain_damage_nodeath"
+
 #define TRAIT_SPACEWALK "spacewalk"
 /// Mobs with this trait still breathe gas in and out but aren't harmed by lacking any particular gas mix. (You can still be hurt by TOO MUCH of a specific gas).
 #define TRAIT_NO_BREATHLESS_DAMAGE "spacebreathing"
