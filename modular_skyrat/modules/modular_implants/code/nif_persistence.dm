@@ -75,6 +75,10 @@
 	if(!persistence.nif_path)
 		return
 
+	// if nif_path exists but isn't a valid path it probably needs to be migrated post-organ refactor
+	if(!text2path(persistence.nif_path))
+		persistence.nif_path = replacetext(persistence.nif_path, "/obj/item/organ/internal", "/obj/item/organ")
+
 	var/obj/item/organ/cyberimp/brain/nif/new_nif = new persistence.nif_path
 
 	new_nif.durability = persistence.nif_durability

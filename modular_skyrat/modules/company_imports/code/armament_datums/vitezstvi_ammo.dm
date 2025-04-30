@@ -64,7 +64,7 @@
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
 	subcategory = "Speedloaders"
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_CREW * 2
 
 /datum/armament_entry/company_import/vitezstvi/speedloader/detective_lethal
 	item_type = /obj/item/ammo_box/c38

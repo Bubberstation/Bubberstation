@@ -185,3 +185,35 @@
 	name = "Dome"
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/topscars_1
+	icon_state = "topscars_1"
+	name = "Top Scar Variant 1"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
+
+/datum/body_marking/bubber/topscars_2
+	icon_state = "topscars_2"
+	name = "Top Scar Variant 2"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
+
+/datum/body_marking/bubber/talleyes
+	icon_state = "talleyes"
+	name = "Tall Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/wideeyes
+	icon_state = "wideeyes"
+	name = "Wide Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/angledeyes
+	icon_state = "angledeyes"
+	name = "Angled Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD

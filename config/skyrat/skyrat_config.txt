@@ -87,11 +87,14 @@ PC_MOB_TEXT As a player controlled mob you are expected to play the role to the 
 #RUSSIAN_TEXT_FORMATION
 
 ## Toggles off SSDecay when uncommented, HIGHLY recommended for map test-merges, to avoid giving it a bad first impression.
-SSDECAY_DISABLED
+#SSDECAY_DISABLED
 
 ## Toggles off SSDecay nests when uncommented, HIGHLY recommended for map test-merges, to avoid giving it a bad first impression.
 ## If SSDECAY_DISABLED is uncommented, then it does not matter if this is commented out since this config requires SSDecay to be enabled first.
 SSDECAY_DISABLE_NESTS
+
+## Intensity of dirt generation for SSDecay (1-4) or set to 5 for random
+SSDECAY_INTENSITY 5
 
 ## Disables any ERP preferences for codebases that don't want it.
 #DISABLE_ERP_PREFERENCES

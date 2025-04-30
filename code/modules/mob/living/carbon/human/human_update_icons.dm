@@ -1160,6 +1160,14 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		draw_target.overlays += worn_overlays
 	draw_target = color_atom_overlay(draw_target)
 
+	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
+	if (mutant_styles & STYLE_TAUR_ALL)
+		if (!using_taur_variant)
+			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors)
+		else
+			draw_target.pixel_w -= 16 // it doesnt look right otherwise
+	// SKYRAT EDIT ADDITION END
+
 	// Okay so this has to be done because some overlays, like blood, want to be KEEP_APART
 	// but KEEP_APART breaks float layering, so what we need to do is make fake KEEP_APART for us to use
 	var/mutable_appearance/standing = mutable_appearance(layer = -layer2use, appearance_flags = KEEP_TOGETHER)
@@ -1169,14 +1177,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		standing.overlays += separate_overlays
 
 	standing = center_image(standing, isinhands ? inhand_x_dimension : worn_x_dimension, isinhands ? inhand_y_dimension : worn_y_dimension)
-
-	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
-	if (mutant_styles & STYLE_TAUR_ALL)
-		if (!using_taur_variant)
-			standing = wear_taur_version(standing.icon_state, standing.icon, layer2use, female_uniform, greyscale_colors)
-		else
-			standing.pixel_w -= 16 // it doesnt look right otherwise
-	// SKYRAT EDIT ADDITION END
 
 	//Worn offsets
 	var/list/offsets = get_worn_offsets(isinhands)

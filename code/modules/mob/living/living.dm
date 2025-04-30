@@ -925,7 +925,7 @@
 	if(full_heal_flags)
 		fully_heal(full_heal_flags)
 
-	if(stat == DEAD && can_be_revived() || (full_heal_flags & HEAL_ADMIN)) //in some cases you can't revive (e.g. no brain) //SKYRAT EDIT ADDITION - DNR TRAIT - Added: " || (full_heal_flags & HEAL_ADMIN)"
+	if(stat == DEAD && (can_be_revived() || (full_heal_flags & HEAL_ADMIN))) //in some cases you can't revive (e.g. no brain) //SKYRAT EDIT ADDITION - DNR TRAIT - Original: if(stat == DEAD && can_be_revived())
 		set_suicide(FALSE)
 		set_stat(UNCONSCIOUS) //the mob starts unconscious,
 		updatehealth() //then we check if the mob should wake up.
