@@ -53,6 +53,11 @@
 		initial_state_text += sorted_rankings.Join(", ") + "\n"
 
 	log_dynamic(initial_state_text, initial_state_data)
+	if(istype(source_vote, /datum/vote/storyteller))
+		SSgamemode.vote_datum = source_vote
+		SSgamemode.vote_choices = LAZYLISTDUPLICATE(source_vote.choices)
+		SSgamemode.vote_choices_by_ckey = LAZYLISTDUPLICATE(source_vote.choices_by_ckey)
+		SSgamemode.vote_threshold = source_vote.ranked_winner_threshold
 
 	// If no one voted, return empty list
 	if(total_voters == 0)
