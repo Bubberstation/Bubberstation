@@ -451,14 +451,14 @@
 	name = "Happiness Enhancer"
 	desc = "The nanites synthesize serotonin inside the host's brain, creating an artificial sense of happiness."
 	id = "good_mood_nanites"
-	program_type = /datum/nanite_program/good_mood
+	program_type = /datum/nanite_program/mood
 	category = list("Suppression Nanites")
 
 /datum/design/nanites/bad_mood
 	name = "Happiness Suppressor"
 	desc = "The nanites suppress the production of serotonin inside the host's brain, creating an artificial state of depression."
 	id = "bad_mood_nanites"
-	program_type = /datum/nanite_program/bad_mood
+	program_type = /datum/nanite_program/mood/bad
 	category = list("Suppression Nanites")
 
 ////////////////////SENSOR NANITES//////////////////////////////////////
