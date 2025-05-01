@@ -76,7 +76,7 @@
 	var/update = NONE
 	for(var/datum/loadout_item/item as anything in loadout_datums)
 		update |= item.on_equip_item(
-			equipped_item = locate(item.item_path) in new_contents,
+			equipped_item = loadout_placement_preference == LOADOUT_OVERRIDE_CASE ? locate(item.item_path) in travel_suitcase : locate(item.item_path) in new_contents, // BUBBER EDIT CHANGE - ORIGINAL: equipped_item = locate(item.item_path) in new_contents,
 			preference_source = preference_source,
 			preference_list = preference_list,
 			equipper = src,
