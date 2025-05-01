@@ -774,8 +774,11 @@ SUBSYSTEM_DEF(gamemode)
 	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
 
 	for(var/vote as anything in vote_datum.choices_by_ckey)
+		var/filter_required = FALSE
 		if(vote_datum.choices_by_ckey[vote] == 0)
 			continue
+		if(vote_datum.choices_by_ckey[vote] == 1) //only the player's 1st choice is mapped in the other table
+			filter_required = TRUE
 		var/vote_string = "[vote]"
 		var/list/vote_components = splittext(vote_string, "_")
 		var/vote_ckey = vote_components[1]
@@ -785,7 +788,8 @@ SUBSYSTEM_DEF(gamemode)
 		else
 			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
 			LAZYREMOVE(vote_datum.choices_by_ckey, vote)
-			vote_datum.choices[vote_storyteller]--
+			if(filter_required)
+				vote_datum.choices[vote_storyteller]--
 
 	var/list/vote_winner = vote_datum.get_vote_result()
 	log_dynamic("Storyteller vote winner is [vote_winner[1]]")
