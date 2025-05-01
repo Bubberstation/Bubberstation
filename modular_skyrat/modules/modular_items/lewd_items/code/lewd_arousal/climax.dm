@@ -4,6 +4,7 @@
 
 #define CLIMAX_ON_FLOOR "On the floor"
 #define CLIMAX_IN_OR_ON "Climax in or on someone"
+#define CLIMAX_OPEN_CONTAINER "Climax into"
 
 /mob/living/carbon/human
 	/// Used to prevent nightmare scenarios.
@@ -72,14 +73,24 @@
 
 		else
 			var/list/interactable_inrange_humans = list()
+			// monkey see, monkey do
+			var/list/interactable_inrange_open_containers = list()
 
 			// Unfortunately prefs can't be checked here, because byond/tgstation moment.
 			for(var/mob/living/carbon/human/iterating_human in (view(1, src) - src))
 				interactable_inrange_humans[iterating_human.name] = iterating_human
 
+			// this should be making a list of cups(?)
+			for(var/obj/item/reagent_containers/cup/iterating_open_container in (view(1, src) - src))
+				interactable_inrange_open_containers[iterating_open_container.name] = iterating_open_container
+
 			var/list/buttons = list(CLIMAX_ON_FLOOR)
 			if(interactable_inrange_humans.len)
 				buttons += CLIMAX_IN_OR_ON
+
+			// this probably only makes sense if you do have a penis?
+			if(climax_choice == CLIMAX_PENIS && interactable_inrange_open_containers.len)
+				buttons += CLIMAX_OPEN_CONTAINER
 
 			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
 
@@ -89,6 +100,28 @@
 				create_cum_decal = TRUE
 				visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
 					span_userlove("You shoot string after string of hot cum, hitting the floor!"))
+
+			else if(penis_climax_choice == CLIMAX_OPEN_CONTAINER)
+				var/target_choice = tgui_input_list(src, "Choose a container to cum into.", "Choose target!", interactable_inrange_open_containers)
+				if(!target_choice)
+					create_cum_decal = TRUE
+					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
+						span_userlove("You shoot string after string of hot cum, hitting the floor!"))
+				else
+					var/obj/item/reagent_containers/cup/target_open_container = interactable_inrange_open_containers[target_choice]
+					if(target_open_container.is_refillable() && target_open_container.is_drainable())
+						// here's where we actually do the cumming(?)
+						var/obj/item/organ/genital/testicles/src_testicles = src.get_organ_slot(ORGAN_SLOT_TESTICLES)
+						var/cum_volume = src_testicles.genital_size * 10
+						// i... dont know how this works
+						target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume)
+						// other stuff
+						// full check?
+						// overflow ???
+					else
+						create_cum_decal = TRUE
+						visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
+							span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 
 			else
 				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans)
