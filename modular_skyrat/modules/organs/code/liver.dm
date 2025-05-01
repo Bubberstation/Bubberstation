@@ -1,4 +1,4 @@
-/obj/item/organ/internal/liver/snail
+/obj/item/organ/liver/snail
 	name = "gastropod liver"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "liver-snail"

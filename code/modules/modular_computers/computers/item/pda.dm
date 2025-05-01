@@ -27,6 +27,7 @@
 	looping_sound = FALSE
 
 	shell_capacity = SHELL_CAPACITY_SMALL
+	action_slots = ALL
 
 	///The item currently inserted into the PDA, starts with a pen.
 	var/obj/item/inserted_item = /obj/item/pen
@@ -38,10 +39,11 @@
 		/datum/computer_file/program/messenger,
 		/datum/computer_file/program/nt_pay,
 		/datum/computer_file/program/notepad,
-		// SKYRAT EDIT ADDITION START
+		/datum/computer_file/program/crew_manifest,
+		// BUBBER EDIT ADDITION START
 		/datum/computer_file/program/maintenance/camera, // Adds camera to all base tablets
-		// SKRAT EDIT ADDITION END
-		/datum/computer_file/program/crew_manifest
+		/datum/computer_file/program/crew_self_serve, // Crew Self Serve
+		// BUBBER EDIT ADDITION END
 	)
 	///List of items that can be stored in a PDA
 	var/static/list/contained_item = list(
@@ -81,10 +83,6 @@
 		. += mutable_appearance(initial(icon), "light_overlay")
 	if(inserted_pai)
 		. += mutable_appearance(initial(icon), "pai_inserted")
-
-/obj/item/modular_computer/pda/attack_ai(mob/user)
-	to_chat(user, span_notice("It doesn't feel right to snoop around like that..."))
-	return // we don't want ais or cyborgs using a private role tablet
 
 /obj/item/modular_computer/pda/interact(mob/user)
 	. = ..()

@@ -81,7 +81,7 @@
 		floor_text += "<span class='info ml-1'>Body temperature: [scan_turf?.return_air()?.return_temperature() || "???"]</span><br>"
 
 		if(user.can_read(src)) // BUBBER EDIT - Blind people can analyze again
-			to_chat(user, examine_block(floor_text))
+			to_chat(user, custom_boxed_message("blue_box", floor_text))
 		last_scan_text = floor_text
 		return
 
@@ -168,18 +168,16 @@
 
 	// Husk detection
 	if(HAS_TRAIT(target, TRAIT_HUSK))
+		var/husk_reason = "unknown causes"
 		if(advanced)
+		// BUBBER EDIT BEGIN - Better unhusk info with rezadone and exact units mentioned
 			if(HAS_TRAIT_FROM(target, TRAIT_HUSK, BURN))
-				// BUBBER EDIT BEGIN - Better unhusk info with rezadone and exact units mentioned
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("severe burns", "Tend burns and apply [SYNTHFLESH_UNHUSK_AMOUNT]u [/datum/reagent/medicine/c2/synthflesh::name] or use [/datum/reagent/medicine/rezadone::name].", tochat)].</span><br>"
-			else if (HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
-				render_list += "<span class='alert ml-1'>Subject has been husked by [conditional_tooltip("desiccation", "Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u [/datum/reagent/medicine/c2/synthflesh::name] or use [/datum/reagent/medicine/rezadone::name]", tochat)].</span><br>"
-				// BUBBER EDIT END
-			else
-				render_list += "<span class='alert ml-1'>Subject has been husked by mysterious causes.</span><br>"
+				husk_reason = "severe burns"
+			else if(HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
+				husk_reason = "desiccation"
 
-		else
-			render_list += "<span class='alert ml-1'>Subject has been husked.</span><br>"
+		render_list += "<span class='alert ml-1'>Subject has been [conditional_tooltip("husked", "Repair burns, then apply choice of: [SYNTHFLESH_UNHUSK_AMOUNT]u pure [/datum/reagent/medicine/c2/synthflesh::name] / up to [SYNTHFLESH_UNHUSK_MAX]u impure [/datum/reagent/medicine/c2/synthflesh::name] / 5u [/datum/reagent/medicine/rezadone::name].", tochat)] due to [husk_reason].</span><br>"
+		// BUBBER EDIT END
 
 	if(target.getStaminaLoss())
 		if(advanced)
@@ -189,7 +187,6 @@
 	if (!target.get_organ_slot(ORGAN_SLOT_BRAIN)) // kept exclusively for soul purposes
 		render_list += "<span class='alert ml-1'>Subject lacks a brain.</span><br>"
 
-	var/death_consequences_status_text // SKYRAT EDIT ADDITION: Death consequences quirk
 	if(iscarbon(target))
 		var/mob/living/carbon/carbontarget = target
 		if(LAZYLEN(carbontarget.quirks))
@@ -329,7 +326,7 @@
 
 		// Cybernetics
 		var/list/cyberimps
-		for(var/obj/item/organ/internal/cyberimp/cyberimp in humantarget.organs)
+		for(var/obj/item/organ/cyberimp/cyberimp in humantarget.organs)
 			if(IS_ROBOTIC_ORGAN(cyberimp) && !(cyberimp.organ_flags & ORGAN_HIDDEN))
 				LAZYADD(cyberimps, cyberimp.examine_title(user))
 		if(LAZYLEN(cyberimps))
@@ -408,8 +405,9 @@
 	// SKYRAT EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
 	if(target.GetComponent(/datum/component/mutant_infection))
 		render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
-	if(death_consequences_status_text)
-		render_list += death_consequences_status_text
+	var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
+	if(consequences)
+		render_list += consequences.get_health_analyzer_link_text(user)
 	// SKYRAT EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
@@ -420,11 +418,8 @@
 			render_list += "<span class='alert ml-1'>Treatment Guide: Euthanasia.</span>"
 		else
 			render_list += span_userdanger("Classified viral infection detected.")
-			if(cling_infection.was_changeling_husked)
-				render_list += "<span class='alert ml-1'>Treatment Guide: Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u of synthflesh or inject rezadone.</span>"
-			else
-				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
-				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
+			render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
+			render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
 	//BUBBERSTATION EDIT END
 
 	// Time of death
@@ -435,7 +430,8 @@
 
 	. = jointext(render_list, "")
 	if(tochat)
-		to_chat(user, examine_block(.), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+		to_chat(user, custom_boxed_message("blue_box", .), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE) // BUBBER EDIT ADDITION - NANITES
 	return .
 
 /obj/item/healthanalyzer/click_ctrl_shift(mob/user)
@@ -483,7 +479,7 @@
 				var/datum/reagent/reagent = r
 				if(reagent.chemical_flags & REAGENT_INVISIBLE) //Don't show hidden chems on scanners
 					continue
-				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)] units of [reagent.name][reagent.overdosed ? "</span> - [span_boldannounce("OVERDOSING")]" : ".</span>"]<br>"
+				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)] units of [reagent.name][reagent.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
 
 		if(!length(render_block)) //If no VISIBLY DISPLAYED reagents are present, we report as if there is nothing.
 			render_list += "<span class='notice ml-1'>Subject contains no reagents in their blood.</span><br>"
@@ -493,7 +489,7 @@
 			render_block.Cut()
 
 		// Stomach reagents
-		var/obj/item/organ/internal/stomach/belly = target.get_organ_slot(ORGAN_SLOT_STOMACH)
+		var/obj/item/organ/stomach/belly = target.get_organ_slot(ORGAN_SLOT_STOMACH)
 		if(belly)
 			if(belly.reagents.reagent_list.len)
 				for(var/bile in belly.reagents.reagent_list)
@@ -501,11 +497,11 @@
 					if(bit.chemical_flags & REAGENT_INVISIBLE)
 						continue
 					if(!belly.food_reagents[bit.type])
-						render_block += "<span class='notice ml-2'>[round(bit.volume, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_boldannounce("OVERDOSING")]" : ".</span>"]<br>"
+						render_block += "<span class='notice ml-2'>[round(bit.volume, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
 					else
 						var/bit_vol = bit.volume - belly.food_reagents[bit.type]
 						if(bit_vol > 0)
-							render_block += "<span class='notice ml-2'>[round(bit_vol, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_boldannounce("OVERDOSING")]" : ".</span>"]<br>"
+							render_block += "<span class='notice ml-2'>[round(bit_vol, 0.001)] units of [bit.name][bit.overdosed ? "</span> - [span_bolddanger("OVERDOSING")]" : ".</span>"]<br>"
 
 			if(!length(render_block))
 				render_list += "<span class='notice ml-1'>Subject contains no reagents in their stomach.</span><br>"
@@ -532,7 +528,7 @@
 				render_list += "<span class='alert ml-2'>[allergies]</span><br>"
 
 		// we handled the last <br> so we don't need handholding
-		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+		to_chat(user, custom_boxed_message("blue_box", jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 
 /obj/item/healthanalyzer/click_alt(mob/user)
 	if(mode == SCANNER_NO_MODE)
@@ -583,7 +579,7 @@
 			simple_scanner.show_emotion(AID_EMOTION_HAPPY)
 		to_chat(user, "<span class='notice ml-1'>No wounds detected in subject.</span>")
 	else
-		to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+		to_chat(user, custom_boxed_message("blue_box", jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
 		if(simple_scan)
 			var/obj/item/healthanalyzer/simple/simple_scanner = scanner
 			simple_scanner.show_emotion(AID_EMOTION_WARN)
@@ -694,7 +690,7 @@
 
 /obj/item/healthanalyzer/simple/disease
 	name = "disease state analyzer"
-	desc = "Another of MeLo-Tech's dubiously useful medsci scanners, the disease analyzer is a pretty rare find these days - NT found out that giving their hospitals the lowest-common-denominator pandemic equipment resulted in too much financial loss of life to be profitable. There's rumours that the inbuilt AI is jealous of the first aid analyzer's success."
+	desc = "Another of MeLo-Tech's dubiously useful medsci scanners, the disease analyzer is a pretty rare find these days - NT found out that giving their hospitals the lowest-common-denominator pandemic equipment resulted in too much financial loss of life to be profitable. There are rumours that the inbuilt AI is jealous of the first aid analyzer's success."
 	icon_state = "disease_aid"
 	mode = SCANNER_NO_MODE
 	encouragements = list("encourages you to take your medication", "briefly displays a spinning cartoon heart", "reasures you about your condition", \

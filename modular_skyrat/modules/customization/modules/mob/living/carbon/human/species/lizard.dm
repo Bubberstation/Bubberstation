@@ -1,6 +1,6 @@
 /datum/species/lizard
 	mutant_bodyparts = list()
-	external_organs = list()
+	mutant_organs = list()
 	payday_modifier = 1.0
 
 /datum/species/lizard/get_default_mutant_bodyparts()

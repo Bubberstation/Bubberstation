@@ -65,7 +65,7 @@
 		// Reagent containers, for synth medicine
 		/obj/item/reagent_containers/spray,
 		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/cup,
 		/obj/item/reagent_containers/syringe,
 		// Tools, including tools you might not want to use but might have to (hemostat/retractor/etc)
@@ -184,11 +184,11 @@
 	name = "mechanical medkit"
 	desc = "For those mechanical booboos."
 
-	icon = 'modular_skyrat/modules/medical/code/medkit.dmi'
+	icon = 'modular_skyrat/modules/medical/icons/obj/medkit.dmi'
 	icon_state = "medkit_mechanical"
 	inhand_icon_state = "medkit_mechanical"
-	lefthand_file = 'modular_skyrat/modules/medical/code/medical_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/medical/code/medical_righthand.dmi'
+	lefthand_file = 'modular_skyrat/modules/medical/icons/medical_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/medical/icons/medical_righthand.dmi'
 
 /obj/item/storage/medkit/mechanical/Initialize(mapload)
 	. = ..()

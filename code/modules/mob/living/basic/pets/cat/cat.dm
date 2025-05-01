@@ -12,8 +12,8 @@
 	unsuitable_atmos_damage = 0.5
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/stack/sheet/animalhide/cat = 1
 	)
 	response_help_continuous = "pets"
@@ -59,6 +59,8 @@
 	var/mutable_appearance/held_item_overlay
 	///icon state of our cult icon
 	var/cult_icon_state = "cat_cult"
+	///callback for after a kitten is born
+	var/datum/callback/post_birth_callback
 
 /datum/emote/cat
 	mob_type_allowed_typecache = /mob/living/basic/pet/cat
@@ -153,10 +155,15 @@
 	icon_state = "[icon_living]"
 
 /mob/living/basic/pet/cat/proc/add_breeding_component()
+	var/static/list/partner_types = typecacheof(list(/mob/living/basic/pet/cat))
+	var/static/list/baby_types = list(
+		/mob/living/basic/pet/cat/kitten = 1,
+	)
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat)),\
-		baby_path = /mob/living/basic/pet/cat/kitten,\
+		baby_paths = baby_types,\
+		post_birth = post_birth_callback,\
 	)
 
 /mob/living/basic/pet/cat/space
@@ -181,8 +188,8 @@
 	can_interact_with_stove = TRUE
 	butcher_results = list(
 		/obj/item/food/meat/slab = 2,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/food/breadslice/plain = 1
 	)
 	collar_icon_state = null

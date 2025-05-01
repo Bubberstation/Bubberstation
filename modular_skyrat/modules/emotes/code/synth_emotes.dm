@@ -2,13 +2,13 @@
 	cooldown = 2 SECONDS
 
 /datum/emote/living/human/dwoop
-    key = "dwoop"
-    key_third_person = "dwoops"
-    message = "chirps happily!"
-    vary = TRUE
-    sound = 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg'
-    allowed_species = list(/datum/species/synthetic)
-    cooldown = 2 SECONDS
+	key = "dwoop"
+	key_third_person = "dwoops"
+	message = "chirps happily!"
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg'
+	allowed_species = list(/datum/species/synthetic)
+	cooldown = 2 SECONDS
 
 /datum/emote/silicon/yes
 	key = "yes"

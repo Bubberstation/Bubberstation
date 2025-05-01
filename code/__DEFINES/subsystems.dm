@@ -20,7 +20,7 @@
  *
  * make sure you add an update to the schema_version stable in the db changelog
  */
-#define DB_MINOR_VERSION 31 // BUBBER EDIT
+#define DB_MINOR_VERSION 32 // BUBBER EDIT
 
 
 //! ## Timing subsystem
@@ -167,7 +167,8 @@
 #define INIT_ORDER_OUTPUTS 35
 #define INIT_ORDER_RESTAURANT 34
 #define INIT_ORDER_TTS 33
-#define INIT_ORDER_POLLUTION 32 //SKYRAT EDIT ADDITION - //Needs to be above atoms
+#define INIT_ORDER_FLUIDS 32 // Needs to be above atoms, as some atoms may want to start fluids/gases on init
+#define INIT_ORDER_POLLUTION 31 //SKYRAT EDIT ADDITION - //Needs to be above atoms
 #define INIT_ORDER_ATOMS 30
 #define INIT_ORDER_ARMAMENTS 27 // SKYRAT EDIT ADDITION - Needs to be between atoms and default so it runs before gun companies
 #define INIT_ORDER_LANGUAGE 25
@@ -191,7 +192,6 @@
 #define INIT_ORDER_PATH -50
 #define INIT_ORDER_MATURITY_GUARD -60 //SKYRAT EDIT ADDITION
 #define INIT_ORDER_DECAY -61 //SKYRAT EDIT ADDITION
-#define INIT_ORDER_POWERATOR_PENALITY -62 // SKYRAT EDIT ADDITION
 #define INIT_ORDER_EXPLOSIONS -69
 #define INIT_ORDER_STATPANELS -97
 #define INIT_ORDER_BAN_CACHE -98
@@ -230,6 +230,7 @@
 #define FIRE_PRIORITY_PARALLAX 65
 #define FIRE_PRIORITY_INSTRUMENTS 80
 #define FIRE_PRIORITY_FLUIDS 80
+#define FIRE_PRIORITY_PRIORITY_EFFECTS 90
 #define FIRE_PRIORITY_MOBS 100
 #define FIRE_PRIORITY_TGUI 110
 #define FIRE_PRIORITY_TICKER 200

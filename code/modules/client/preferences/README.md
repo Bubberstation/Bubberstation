@@ -142,11 +142,11 @@ Choiced preferences can generate icons. This is how the clothing/species prefere
 /datum/preference/choiced/favorite_drink/icon_for(value)
 	switch (value)
 		if ("Milk")
-			return icon('drinks.dmi', "milk")
+			return uni_icon('drinks.dmi', "milk")
 		if ("Cola")
-			return icon('drinks.dmi', "cola")
+			return uni_icon('drinks.dmi', "cola")
 		if ("Water")
-			return icon('drinks.dmi', "water")
+			return uni_icon('drinks.dmi', "water")
 ```
 
 Then, change your `.tsx` file to look like:
@@ -419,7 +419,7 @@ In the `.ts` file you created earlier, you must now give the information of your
 
 ```ts
 import { Antagonist, Category } from "../base";
-import { multiline } from "common/string";
+import { multiline } from "tgui-core/string";
 
 const Changeling: Antagonist = {
   key: "changeling", // This must be the same as your filename

@@ -11,7 +11,7 @@
 	sound = 'sound/effects/magic/blind.ogg'
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 20 SECONDS
-
+	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 	invocation = "Mo'N S'M'LE"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
@@ -40,7 +40,7 @@
 	cast_on.adjust_temp_blindness(moon_smile_duration + 1 SECONDS)
 	cast_on.set_eye_blur_if_lower(moon_smile_duration + 2 SECONDS)
 
-	var/obj/item/organ/internal/ears/ears = cast_on.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/ears/ears = cast_on.get_organ_slot(ORGAN_SLOT_EARS)
 	//adjustEarDamage takes deafness duration parameter in one unit per two seconds, instead of the normal time, so we divide by two seconds
 	ears?.adjustEarDamage(0, (moon_smile_duration + 1 SECONDS) / (2 SECONDS))
 
@@ -51,5 +51,5 @@
 	if(cast_on.mob_mood.sanity < 40)
 		cast_on.AdjustKnockdown(2 SECONDS)
 	//Lowers sanity
-	cast_on.mob_mood.set_sanity(cast_on.mob_mood.sanity - 20)
+	cast_on.mob_mood.adjust_sanity(-20)
 	return TRUE

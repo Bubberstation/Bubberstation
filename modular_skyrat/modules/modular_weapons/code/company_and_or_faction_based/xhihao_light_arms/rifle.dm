@@ -9,7 +9,7 @@
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/xhihao_light_arms/guns40x.dmi'
 	icon_state = "rengo"
 	worn_icon_state = "enchanted_rifle" // Not actually magical looking, just looks closest to this one
-	inhand_icon_state = "enchanted_rifle"
+	inhand_icon_state = "sakhno"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/bubba
 	can_be_sawn_off = FALSE
 

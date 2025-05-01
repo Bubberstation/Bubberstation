@@ -5,7 +5,7 @@
 	recommended_species = list(SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
 	genetic = TRUE
-	organ_type = /obj/item/organ/external/spines
+	organ_type = /obj/item/organ/spines
 
 /datum/sprite_accessory/spines/is_hidden(mob/living/carbon/human/wearer)
 	if(wearer.w_uniform)
@@ -23,6 +23,10 @@
 	key = "tailspines"
 	default_color = DEFAULT_SECONDARY
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
+
+/datum/sprite_accessory/tail_spines/none
+	name = SPRITE_ACCESSORY_NONE
+	icon_state = "none"
 
 /datum/sprite_accessory/tail_spines/is_hidden(mob/living/carbon/human/wearer)
 	var/list/used_in_turf = list("tail")

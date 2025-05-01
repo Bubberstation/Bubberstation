@@ -27,17 +27,18 @@
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/bed_tuckable, mapload, 6, -6, 0)
-	AddComponent(/datum/component/stationloving, !fake)
 
 	if(!fake)
-		AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)), CALLBACK(src, PROC_REF(unsecured_process)))
+		AddComponent(/datum/component/stationloving, !fake)
+		AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)), CALLBACK(src, PROC_REF(unsecured_process)), 10)
 		SSpoints_of_interest.make_point_of_interest(src)
 	else
+		// Ensure fake disks still have examine text, but dont actually do anything
 		AddComponent(/datum/component/keep_me_secure)
 
 /obj/item/disk/nuclear/proc/secured_process(last_move)
 	var/turf/new_turf = get_turf(src)
-	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control //Bubber edit - changed to work with Storyteller
 	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 		loneop.weight = max(loneop.weight - 1, 0)
 		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
@@ -55,7 +56,7 @@
 			disk_comfort_level++
 
 	if(last_move < world.time - 500 SECONDS && prob((world.time - 500 SECONDS - last_move)*0.0001))
-		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
+		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control //Bubber edit - changed to work with Storyteller
 		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)

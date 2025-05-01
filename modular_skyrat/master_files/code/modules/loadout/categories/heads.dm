@@ -278,10 +278,6 @@
 *	MISC
 */
 
-/datum/loadout_item/head/baseball
-	name = "Ballcap"
-	item_path = /obj/item/clothing/head/soft/mime
-
 /datum/loadout_item/head/pirate
 	name = "Pirate hat"
 	item_path = /obj/item/clothing/head/costume/pirate
@@ -482,7 +478,7 @@
 /datum/loadout_item/head/navyblueofficerberet
 	name = "Security Officer's Navy Blue beret"
 	item_path = /obj/item/clothing/head/beret/sec/navyofficer
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/navybluewardenberet
 	name = "Warden's Navy Blue beret"

@@ -23,8 +23,8 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 	language_holder.adjust_languages_to_prefs(new_crewmember.client?.prefs)
 
 /datum/language_holder_adjustor/Destroy()
-	..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
+	. = ..()
 
 /datum/language_holder/proc/adjust_languages_to_prefs(datum/preferences/preferences)
 	// no prefs? then don't remove any languages
@@ -93,6 +93,9 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/siiktajr = list(LANGUAGE_ATOM),
 		/datum/language/canilunzt = list(LANGUAGE_ATOM),
 		/datum/language/akulan = list(LANGUAGE_ATOM),
+		/datum/language/marish = list(LANGUAGE_ATOM),
+		/datum/language/carptongue = list(LANGUAGE_ATOM),
+		/datum/language/chitinclick = list(LANGUAGE_ATOM),
 	)
 	spoken_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
@@ -122,4 +125,7 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/siiktajr = list(LANGUAGE_ATOM),
 		/datum/language/canilunzt = list(LANGUAGE_ATOM),
 		/datum/language/akulan = list(LANGUAGE_ATOM),
+		/datum/language/marish = list(LANGUAGE_ATOM),
+		/datum/language/carptongue = list(LANGUAGE_ATOM),
+		/datum/language/chitinclick = list(LANGUAGE_ATOM),
 	)

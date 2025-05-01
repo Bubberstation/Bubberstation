@@ -77,7 +77,7 @@
 	return static_data
 
 /datum/controller/subsystem/gamemode/ui_state(mob/user)
-	return GLOB.admin_state
+	return ADMIN_STATE(R_ADMIN)
 
 /datum/controller/subsystem/gamemode/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

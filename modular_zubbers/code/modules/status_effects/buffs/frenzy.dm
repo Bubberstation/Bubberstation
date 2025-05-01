@@ -16,7 +16,7 @@
 /datum/status_effect/frenzy
 	id = "Frenzy"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	///Boolean on whether they were an AdvancedToolUser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE

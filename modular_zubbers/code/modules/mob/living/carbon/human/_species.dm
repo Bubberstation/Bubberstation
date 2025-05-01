@@ -9,10 +9,10 @@
 /datum/species/proc/humanize_organs(mob/living/carbon/human/target, organs = list())
 	if(!organs || !length(organs))
 		organs = list(
-			ORGAN_SLOT_HEART = /obj/item/organ/internal/heart,
-			ORGAN_SLOT_LIVER = /obj/item/organ/internal/liver,
-			ORGAN_SLOT_STOMACH = /obj/item/organ/internal/stomach,
-			ORGAN_SLOT_TONGUE = /obj/item/organ/internal/tongue,
+			ORGAN_SLOT_HEART = /obj/item/organ/heart,
+			ORGAN_SLOT_LIVER = /obj/item/organ/liver,
+			ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
+			ORGAN_SLOT_TONGUE = /obj/item/organ/tongue,
 		)
 	mutantheart = organs[ORGAN_SLOT_HEART]
 	mutantliver = organs[ORGAN_SLOT_LIVER]

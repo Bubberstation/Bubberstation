@@ -344,7 +344,7 @@
 
 	add_action(ACTION_MELEED, 50 * (ismegafauna(attacked) ? 1.5 : 1))
 
-/datum/component/style/proc/on_mine(datum/source, turf/closed/mineral/rock, give_exp)
+/datum/component/style/proc/on_mine(datum/source, turf/closed/mineral/rock, exp_multiplier)
 	SIGNAL_HANDLER
 
 	if(istype(rock, /turf/closed/mineral/gibtonite))
@@ -363,11 +363,11 @@
 				return
 
 	if(rock.mineralType)
-		if(give_exp)
+		if(exp_multiplier)
 			add_action(ACTION_ORE_MINED, 40)
 		rock.mineralAmt = ROUND_UP(rock.mineralAmt * (1 + ((rank * 0.1) - 0.3))) // You start out getting 20% less ore, but it goes up to 20% more at S-tier
 
-	else if(give_exp)
+	else if(exp_multiplier)
 		add_action(ACTION_ROCK_MINED, 25)
 
 /datum/component/style/proc/on_resonator_burst(datum/source, mob/creator, mob/living/hit_living)
@@ -391,23 +391,13 @@
 
 	add_action(ACTION_GIBTONITE_DEFUSED, min(40, 20 * (10 - det_time))) // 40 to 180 points depending on speed
 
-//SKYRAT EDIT START
-/*
 /datum/component/style/proc/on_crusher_detonate(datum/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
-*/
-/datum/component/style/proc/on_crusher_detonate(datum/component/kinetic_crusher/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
-//SKYRAT EDIT END
 	SIGNAL_HANDLER
 
 	if(target.stat == DEAD)
 		return
 
-	//SKYRAT EDIT START
-	/*
 	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in crusher.trophies
-	*/
-	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in source.stored_trophies
-	//SKYRAT EDIT END
 
 	add_action(ACTION_MARK_DETONATED, round((backstabbed ? 60 : 30) * (ismegafauna(target) ? 1.5 : 1) * (has_brimdemon_trophy ? 1.25 : 1)))
 

@@ -174,8 +174,11 @@
 			offset_old = pixel_x
 			pixel_x = -APC_PIXEL_OFFSET
 
+	var/image/hud_image = image(icon = 'icons/mob/huds/hud.dmi', icon_state = "apc_hacked")
+	hud_image.pixel_w = pixel_x
+	hud_image.pixel_z = pixel_y
 	hud_list = list(
-		MALF_APC_HUD = image(icon = 'icons/mob/huds/hud.dmi', icon_state = "apc_hacked", pixel_x = src.pixel_x, pixel_y = src.pixel_y)
+		MALF_APC_HUD = hud_image
 	)
 
 	//Assign it to its area. If mappers already assigned an area string fast load the area from it else get the current area
@@ -425,15 +428,21 @@
 	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
 	update_appearance()
 
-/obj/machinery/power/apc/proc/disconnect_remote_access()
+/**
+ * Disconnects anyone using this APC via an APC control console and locks the interface.
+ * arguments:
+ * mute - whether the APC should announce the disconnection locally
+ */
+/obj/machinery/power/apc/proc/disconnect_remote_access(mute = FALSE)
 	// nothing to disconnect from
 	if(isnull(remote_control_user))
 		return
 	locked = TRUE
-	say("Remote access canceled. Interface locked.")
 	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Disconnected from [src]."))
-	playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
-	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
+	if(!mute)
+		say("Remote access canceled. Interface locked.")
+		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
+		playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
 	update_appearance()
 	remote_control_user = null
 

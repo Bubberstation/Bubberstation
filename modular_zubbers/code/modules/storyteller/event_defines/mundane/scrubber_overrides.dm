@@ -13,7 +13,3 @@
 /datum/round_event_control/scrubber_overflow/every_vent
 	weight = 0
 	max_occurrences = 0
-
-/datum/round_event_control/scrubber_overflow/ices
-	weight = 0
-	max_occurrences = 0

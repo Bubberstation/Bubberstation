@@ -6,7 +6,7 @@
 
 /datum/supply_pack/security/armory/sec_glock
 	name = "C-CK 9x25mm Crate"
-	desc = "Contains a pair of C-CK 9x25mm pistols pre-loaded with less-than-lethal rubber-tipped rounds. Additional ammo sold seperately. NanoTrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
+	desc = "Contains a pair of C-CK 9x25mm pistols pre-loaded with less-than-lethal rubber-tipped rounds. Additional ammo sold seperately. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock/security/rubber = 2)
 	crate_name = "C-CK 9x25mm crate"

@@ -120,7 +120,7 @@
 
 /obj/item/construction/plumbing/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/plumbing),
+		get_asset_datum(/datum/asset/spritesheet_batched/plumbing),
 	)
 
 /obj/item/construction/plumbing/ui_static_data(mob/user)
@@ -254,6 +254,8 @@
 	. = ..()
 	if(. & ITEM_INTERACT_ANY_BLOCKER)
 		return .
+	if(HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
+		return NONE
 
 	for(var/category_name in plumbing_design_types)
 		var/list/designs = plumbing_design_types[category_name]

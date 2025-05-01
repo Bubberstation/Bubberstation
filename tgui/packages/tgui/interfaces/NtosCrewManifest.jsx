@@ -1,7 +1,7 @@
 import { map } from 'common/collections';
+import { Button, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Button, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 // SKYRAT EDIT BEGIN - ALTERNATIVE_JOB_TITLES

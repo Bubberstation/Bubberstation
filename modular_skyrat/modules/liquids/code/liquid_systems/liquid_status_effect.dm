@@ -1,7 +1,7 @@
 /datum/status_effect/water_affected
 	id = "wateraffected"
 	alert_type = null
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 
 /datum/status_effect/water_affected/on_apply()
 	//We should be inside a liquid turf if this is applied

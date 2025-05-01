@@ -238,7 +238,7 @@
 /datum/dynamic_ruleset/midround/from_living/autotraitor
 	name = "Syndicate Sleeper Agent"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
-	antag_datum = /datum/antagonist/traitor/infiltrator/sleeper_agent
+	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_SLEEPER_AGENT
 	antag_flag_override = ROLE_TRAITOR
 	protected_roles = list(
@@ -269,14 +269,14 @@
 			candidates -= player
 		else if(is_centcom_level(player.z))
 			candidates -= player // We don't autotator people in CentCom
-		else if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+		else if(player.mind && (player.mind.special_role || !player.mind.can_roll_midround(antag_datum)))
 			candidates -= player // We don't autotator people with roles already
 
 /datum/dynamic_ruleset/midround/from_living/autotraitor/execute()
 	var/mob/M = pick(candidates)
 	assigned += M
 	candidates -= M
-	var/datum/antagonist/traitor/infiltrator/sleeper_agent/newTraitor = new
+	var/datum/antagonist/traitor/newTraitor = new
 	M.mind.add_antag_datum(newTraitor)
 	message_admins("[ADMIN_LOOKUPFLW(M)] was selected by the [name] ruleset and has been made into a midround traitor.")
 	log_dynamic("[key_name(M)] was selected by the [name] ruleset and has been made into a midround traitor.")
@@ -318,7 +318,7 @@
 			continue
 		if(isnull(player.mind))
 			continue
-		if(player.mind.special_role || length(player.mind.antag_datums))
+		if(player.mind.special_role || !player.mind.can_roll_midround(antag_datum))
 			continue
 		candidates += player
 
@@ -487,7 +487,7 @@
 			candidates -= player
 			continue
 
-		if(player.mind && (player.mind.special_role || length(player.mind.antag_datums) > 0))
+		if(player.mind && (player.mind.special_role || !player.mind.can_roll_midround(antag_datum)))
 			candidates -= player
 
 /datum/dynamic_ruleset/midround/from_living/blob_infection/execute()
@@ -546,7 +546,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/generate_ruleset_body(mob/applicant)
 	var/obj/vent = pick_n_take(vents)
 	var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
-	new_xeno.key = applicant.key
+	new_xeno.PossessByPlayer(applicant.ckey)
 	new_xeno.move_into_vent(vent)
 	message_admins("[ADMIN_LOOKUPFLW(new_xeno)] has been made into an alien by the midround ruleset.")
 	log_dynamic("[key_name(new_xeno)] was spawned as an alien by the midround ruleset.")
@@ -704,7 +704,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/space_ninja/generate_ruleset_body(mob/applicant)
 	var/mob/living/carbon/human/ninja = create_space_ninja(pick(spawn_locs))
-	ninja.key = applicant.key
+	ninja.PossessByPlayer(applicant.ckey)
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a Space Ninja by the midround ruleset.")
@@ -777,7 +777,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/revenant/generate_ruleset_body(mob/applicant)
 	var/mob/living/basic/revenant/revenant = new(pick(spawn_locs))
-	revenant.key = applicant.key
+	revenant.PossessByPlayer(applicant.ckey)
 	message_admins("[ADMIN_LOOKUPFLW(revenant)] has been made into a revenant by the midround ruleset.")
 	log_game("[key_name(revenant)] was spawned as a revenant by the midround ruleset.")
 	return revenant
@@ -851,7 +851,7 @@
 	candidates = living_players
 	for(var/mob/living/carbon/human/candidate in candidates)
 		if( \
-			!candidate.get_organ_by_type(/obj/item/organ/internal/brain) \
+			!candidate.get_organ_by_type(/obj/item/organ/brain) \
 			|| candidate.mind.has_antag_datum(/datum/antagonist/obsessed) \
 			|| candidate.stat == DEAD \
 			|| !(ROLE_OBSESSED in candidate.client?.prefs?.be_special) \
@@ -981,7 +981,7 @@
 	cost = 5
 	minimum_players = 40
 	repeatable = TRUE
-	signup_item_path = /obj/item/cosmic_skull
+	signup_item_path = /obj/item/clothing/head/helmet/skull/cosmic
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_VOIDWALKER_VOID)
 	/// The space turf we find in acceptable(), cached for ease
 	var/space_turf

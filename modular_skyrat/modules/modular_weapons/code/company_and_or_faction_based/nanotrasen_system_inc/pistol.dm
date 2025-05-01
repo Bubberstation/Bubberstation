@@ -77,7 +77,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/firefly
 	name = "\improper MX-7C 'Firefly'"
-	desc = "NanoTrasen Experimental Model 7 Compact, A rare pistol chambered in a .117 electrode cartridge. It has has a small magazine capacity."
+	desc = "Nanotrasen Experimental Model 7 Compact, A rare pistol chambered in a .117 electrode cartridge. It has has a small magazine capacity."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_system_inc/pistol.dmi'
 	icon_state = "firefly"
 	w_class = WEIGHT_CLASS_NORMAL

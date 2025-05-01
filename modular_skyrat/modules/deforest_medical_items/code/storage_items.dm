@@ -8,12 +8,13 @@
 
 /obj/item/storage/pill_bottle/painkiller/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/amollin(src)
+		new /obj/item/reagent_containers/applicator/pill/amollin(src)
 
-/obj/item/reagent_containers/pill/amollin
+/obj/item/reagent_containers/applicator/pill/amollin
 	name = "amollin pill"
 	desc = "Neutralizes many common pains and ailments. A blend of Miner's Salve and Lidocaine."
 	icon_state = "pill9"
+	layers_remaining = 1
 	list_reagents = list(
 		/datum/reagent/medicine/mine_salve = 10,
 		/datum/reagent/medicine/lidocaine = 5,
@@ -33,14 +34,14 @@
 	// Make sure we can only hold alifil pills since this is nested inside a symptom support kit
 	atom_storage.max_slots = 5
 	atom_storage.set_holdable(list(
-		/obj/item/reagent_containers/pill/prescription_stimulant,
+		/obj/item/reagent_containers/applicator/pill/prescription_stimulant,
 	))
 
 /obj/item/storage/pill_bottle/prescription_stimulant/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/pill/prescription_stimulant(src)
+		new /obj/item/reagent_containers/applicator/pill/prescription_stimulant(src)
 
-/obj/item/reagent_containers/pill/prescription_stimulant
+/obj/item/reagent_containers/applicator/pill/prescription_stimulant
 	name = "alifil pill"
 	desc = "Used to treat symptoms of drowsiness and sudden loss of consciousness. Contains a mix of sugar, synaptizine and modafinil. A warning label reads: <b>Take in moderation</b>."
 	icon_state = "pill15"
@@ -110,8 +111,8 @@
 	inhand_icon_state = "frontier"
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/storage/medkit/frontier/stocked
@@ -140,8 +141,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	worn_icon_state = "frontier"
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 
 /obj/item/storage/medkit/combat_surgeon/Initialize(mapload)
 	. = ..()
@@ -173,8 +174,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_medkit
 	zip_slowdown = 0.25 // Most won't notice normally but it'll hurt you if you're a paramedic or in combat
@@ -244,13 +245,14 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/stack/medical,
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/storage/box/bandages,
@@ -269,8 +271,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_big_surgery
 	zip_slowdown = 0.5 // Its a bulkier bag and thus slows you down a little more when unzipped
@@ -342,7 +344,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,
@@ -353,6 +355,7 @@
 		/obj/item/stamp,
 		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes,
 		/obj/item/surgicaldrill,
@@ -377,8 +380,8 @@
 	worn_icon = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/deforest_medical_items/icons/worn/worn_teshari.dmi'
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	storage_type = /datum/storage/duffel/deforest_paramedic
 	zip_slowdown = 0.3 // Midrange between the other two bags
@@ -414,6 +417,7 @@
 	. = ..()
 
 	can_hold = typecacheof(list(
+		/obj/item/blood_filter,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
@@ -444,7 +448,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,

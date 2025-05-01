@@ -14,10 +14,20 @@
 /datum/loadout_item/gloves/rubber_gloves/med
 	name = "Long Rubber Medical Gloves"
 	item_path = /obj/item/clothing/gloves/latex/nitrile/longrubbergloves
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
+	restricted_roles = list(ALL_JOBS_MEDICAL, JOB_GENETICIST)
 
 /datum/loadout_item/gloves/tactical_maid //Donor item for skyefree
 	name = "Tactical Maid Gloves"
 	item_path = /obj/item/clothing/gloves/tactical_maid
 	donator_only = TRUE
 
+/datum/loadout_item/gloves/color/black/security
+	name = "Security gloves"
+	item_path = /obj/item/clothing/gloves/color/black/security
+	restricted_roles = list(ALL_JOBS_SEC)
+	can_be_reskinned = TRUE
+
+/datum/loadout_item/gloves/combat/peacekeeper/armadyne
+	name = "Armadyne combat gloves"
+	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
+	restricted_roles = list(ALL_JOBS_SEC)

@@ -24,13 +24,13 @@
 /mob/living/proc/prefs_get_brain_to_use(value, is_cyborg = FALSE)
 	switch(value)
 		if(ORGAN_PREF_POSI_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain : /obj/item/organ/internal/brain/synth
+			return is_cyborg ? /obj/item/mmi/posibrain : /obj/item/organ/brain/synth
 
 		if(ORGAN_PREF_MMI_BRAIN)
-			return is_cyborg ? /obj/item/mmi : /obj/item/organ/internal/brain/synth/mmi
+			return is_cyborg ? /obj/item/mmi : /obj/item/organ/brain/synth/mmi
 
 		if(ORGAN_PREF_CIRCUIT_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain/circuit : /obj/item/organ/internal/brain/synth/circuit
+			return is_cyborg ? /obj/item/mmi/posibrain/circuit : /obj/item/organ/brain/synth/circuit
 
 /mob/living/silicon/robot/Initialize(mapload)
 	. = ..()
@@ -76,7 +76,7 @@
 	new_mmi = new new_mmi(src)
 
 	// Probably shitcode, but silicon code is spaghetti as fuck.
-	new_mmi.brain = new /obj/item/organ/internal/brain(new_mmi)
+	new_mmi.brain = new /obj/item/organ/brain(new_mmi)
 	new_mmi.brain.organ_flags |= ORGAN_FROZEN
 	new_mmi.brain.name = "[real_name]'s brain"
 	new_mmi.name = "[initial(new_mmi.name)]: [real_name]"

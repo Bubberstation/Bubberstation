@@ -23,7 +23,7 @@
 		)
 			features += preference.savefile_key
 
-	for (var/obj/item/organ/external/organ_type as anything in external_organs)
+	for (var/obj/item/organ/organ_type as anything in mutant_organs)
 		var/preference = initial(organ_type.preference)
 		if (!isnull(preference))
 			features += preference

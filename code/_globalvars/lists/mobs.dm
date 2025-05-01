@@ -29,8 +29,7 @@ GLOBAL_LIST_INIT(abstract_mob_types, list(
 	/mob/living/simple_animal/hostile/asteroid/elite,
 	/mob/living/simple_animal/hostile/asteroid,
 	/mob/living/simple_animal/hostile/megafauna,
-	/mob/living/simple_animal/hostile/mimic, // Cannot exist if spawned without being passed an item reference
-	/mob/living/simple_animal/hostile/retaliate,
+	/mob/living/basic/mimic, // Cannot exist if spawned without being passed an item reference
 	/mob/living/simple_animal/hostile,
 	/mob/living/simple_animal/soulscythe, // As mimic, can't exist if spawned outside an item
 	/mob/living/simple_animal,
@@ -59,8 +58,9 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(spidermobs) //all sentient spider mobs
 GLOBAL_LIST_EMPTY(bots_list)
-GLOBAL_LIST_EMPTY(aiEyes)
+GLOBAL_LIST_EMPTY(camera_eyes)
 GLOBAL_LIST_EMPTY(suit_sensors_list) //all people with suit sensors on
+GLOBAL_LIST_EMPTY(nanite_sensors_list) //app people with nanite monitoring program // BUBBER EDIT ADDITION
 
 /// All alive mobs with clients.
 GLOBAL_LIST_EMPTY(alive_player_list)
