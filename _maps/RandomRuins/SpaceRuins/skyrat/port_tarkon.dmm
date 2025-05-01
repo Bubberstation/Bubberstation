@@ -1631,7 +1631,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
-/obj/effect/mob_spawn/ghost_role/human/tarkon,
+/obj/effect/mob_spawn/ghost_role/human/tarkon/service,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "fL" = (
@@ -4015,6 +4015,18 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
+"oz" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/rack,
+/obj/item/mod/module/noslip,
+/obj/item/grenade/clusterbuster/cleaner,
+/obj/item/soap/omega,
+/obj/item/sharpener,
+/obj/item/sharpener,
+/obj/item/food/cake/lemon,
+/obj/item/kitchen/rollingpin/illegal,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/vault)
 "oB" = (
 /obj/structure/alien/weeds/node,
 /turf/open/floor/iron/dark,
@@ -8682,6 +8694,10 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
+"Fi" = (
+/obj/machinery/door/puzzle/keycard/personal_service,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/vault)
 "Fj" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -11214,6 +11230,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
+"OH" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/dorms)
 "OI" = (
 /obj/structure/table/glass,
 /obj/structure/reagent_dispensers/wall/virusfood/directional/east,
@@ -14557,7 +14581,6 @@
 /obj/item/flatpacked_machine/ore_thumper,
 /obj/item/flatpacked_machine/ore_thumper,
 /obj/item/pipe_dispenser/bluespace,
-/obj/item/autosurgeon/toolset,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "ZW" = (
@@ -22632,8 +22655,8 @@ za
 "}
 (67,1,1) = {"
 Vt
-TD
-Mv
+oz
+Fi
 jY
 Mv
 wY
@@ -22881,7 +22904,7 @@ Mv
 jY
 Dr
 Dr
-nl
+TD
 Vt
 za
 za
@@ -25234,7 +25257,7 @@ Fw
 Zn
 el
 Ee
-el
+OH
 VW
 MF
 hT

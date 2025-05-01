@@ -101,11 +101,28 @@
 		)
 	skillchips = list(/obj/item/skillchip/job/miner)
 
+
+/obj/effect/mob_spawn/ghost_role/human/tarkon/service
+	name = "Port Tarkon Service Crew Member"
+	prompt_name = "a port tarkon chef, and janitor"
+	outfit = /datum/outfit/tarkon/service
+
+/datum/outfit/tarkon/service
+	name = "Port Tarkon Service Outfit"
+	back = /obj/item/storage/backpack
+	id = /obj/item/card/id/advanced/tarkon/service
+	id_trim = /datum/id_trim/away/tarkon/service
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/keycard/tarkon_job_service,
+		/obj/item/crowbar = 1,
+		)
+	skillchips = list(/obj/item/skillchip/chefs_kiss, /obj/item/skillchip/intj)
+
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
 	name = "Port Tarkon Reserach Crew Member"
 	prompt_name = "a port researcher"
 	outfit = /datum/outfit/tarkon/sci
-
 
 /datum/outfit/tarkon/sci
 	name = "Port Tarkon Science Outfit"
@@ -229,7 +246,7 @@
 	spawner_job_path = /datum/job/tarkon
 
 /datum/outfit/tarkon/director //Look at me, I'm the director now.
-	name = "Port Tarkon Ensigns Outfit"
+	name = "Port Tarkon Director's Outfit"
 	uniform = /obj/item/clothing/under/tarkon/com
 	ears = /obj/item/radio/headset/tarkon/command
 	id = /obj/item/card/id/advanced/tarkon/director
