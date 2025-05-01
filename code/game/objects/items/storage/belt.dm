@@ -335,6 +335,7 @@
 	inhand_icon_state = "security"//Could likely use a better one.
 	worn_icon_state = "security"
 	content_overlays = TRUE
+	atom_storage.cant_hold = typecacheof(list(/obj/item/gun/ballistic/automatic/rom_flech, /obj/item/gun/syringe, /obj/item/gun/chem, /obj/item/gun/ballistic/automatic/ar, /obj/item/gun/magic/wand, /obj/item/gun/energy/recharge/kinetic_accelerator, /obj/item/gun/energy/plasmacutter)) //bubberstation edit
 	// SKYRAT EDIT ADDITION START
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
