@@ -290,4 +290,4 @@
 
 /datum/nanite_program/bad_mood/disable_passive_effect()
 	. = ..()
-	host_mob.add_mood_event("nanite_unhappy")
+	host_mob.clear_mood_event("nanite_unhappy")
