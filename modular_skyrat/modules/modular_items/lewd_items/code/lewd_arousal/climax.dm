@@ -117,7 +117,7 @@
 						if(target_open_container.reagents.holder_full())
 							// its full already
 							add_cum_splatter_floor(get_turf(target_open_container))
-							visible_message(span_userlove("[src] tries to cum into the [target_open_container], but it's already full, spilling their hot onto the floor!"), \
+							visible_message(span_userlove("[src] tries to cum into the [target_open_container], but it's already full, spilling their hot load onto the floor!"), \
 								span_userlove("You try to cum into the [target_open_container], but it's already full, so it all hits the floor instead!"))
 						else
 							target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume)
