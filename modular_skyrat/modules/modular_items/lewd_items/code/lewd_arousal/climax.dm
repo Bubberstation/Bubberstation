@@ -88,8 +88,7 @@
 			if(interactable_inrange_humans.len)
 				buttons += CLIMAX_IN_OR_ON
 
-			// this probably only makes sense if you do have a penis?
-			if(climax_choice == CLIMAX_PENIS && interactable_inrange_open_containers.len)
+			if(interactable_inrange_open_containers.len)
 				buttons += CLIMAX_OPEN_CONTAINER
 
 			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
