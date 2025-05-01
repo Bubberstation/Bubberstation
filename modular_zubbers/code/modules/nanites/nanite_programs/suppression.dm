@@ -275,7 +275,7 @@
 
 /datum/nanite_program/mood/disable_passive_effect()
 	. = ..()
-	host_mob.clear_mood_event("nanite_happy")
+	host_mob.clear_mood_event(mood_category)
 
 /datum/nanite_program/mood/bad
 	name = "Happiness Suppressor"
