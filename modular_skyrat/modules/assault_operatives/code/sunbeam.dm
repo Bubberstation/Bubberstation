@@ -114,7 +114,7 @@
 			if(isliving(atom_to_obliterate))
 				var/mob/living/mob_to_obliterate = atom_to_obliterate
 				mob_to_obliterate.apply_damage(300, BURN)
-				mob_to_obliterate.add_traits(TRAIT_HUSK, REF(src))
+				mob_to_obliterate.add_traits(TRAIT_HUSK, BURN)
 				continue
 
 	COOLDOWN_START(src, oblirerate_cooldown, obliteration_cooldown)
