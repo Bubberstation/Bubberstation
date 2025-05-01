@@ -90,6 +90,7 @@
 		for(var/turf/open/turf_to_incinerate in circle_range(src, obliteration_range_fire))
 			turf_to_incinerate.hotspot_expose(5500)
 			new /obj/effect/hotspot(turf_to_incinerate)
+			turf_to_incinerate.Melt()
 
 	if(obliteration_range_flatten)
 		for(var/atom/atom_to_obliterate in circle_range(src, obliteration_range_flatten))
