@@ -1,6 +1,5 @@
 /datum/vote
 	var/has_desc = FALSE
-	var/list/elimination_results
 
 /datum/vote/proc/return_desc(vote_name)
 	return ""

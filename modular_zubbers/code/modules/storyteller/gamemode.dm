@@ -138,10 +138,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	var/storyteller_voted = FALSE
 	var/ready_only_vote = FALSE
-	var/datum/vote/vote_datum
-	var/list/vote_choices = list()
-	var/list/vote_choices_by_ckey = list()
-	var/vote_threshold
+	var/datum/vote/storyteller/vote_datum
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	. = ..()
@@ -738,8 +735,6 @@ SUBSYSTEM_DEF(gamemode)
 		var/processed_storyteller = process_storyteller_vote()
 		if(!isnull(processed_storyteller))
 			voted_storyteller = processed_storyteller
-			vote_choices = null
-			vote_choices_by_ckey = null
 		else
 			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
 
@@ -750,11 +745,15 @@ SUBSYSTEM_DEF(gamemode)
 		to_chat(world, vote_font(fieldset_block("Storyteller: Secret", "The storyteller for this round is secret! What could it be, it is a mystery...", "boxed_message purple_box")))
 	else
 		statpanel_display = storyteller.name
-		var/list/vote_results = vote_datum.elimination_results
-		var/serialized_vote_results = "[vote_results.Join("\n")]"
-		var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]")
-		to_chat(world, custom_boxed_message("purple_box", vote_font("[vote_result_message.Join("\n")]")))
+		if(vote_datum)
+			var/list/vote_results = vote_datum.elimination_results
+			var/serialized_vote_results = "[vote_results.Join("\n")]"
+			var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]")
+			to_chat(world, custom_boxed_message("purple_box", vote_font("[vote_result_message.Join("\n")]")))
 		to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
+
+	if(vote_datum)
+		QDEL_NULL(vote_datum)
 
 	// Notify discord about the round's selected storyteller
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
@@ -765,7 +764,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
 	var/list/players = list()
-	if(!vote_choices_by_ckey)
+	if(!vote_datum?.choices_by_ckey)
 		return
 
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
@@ -774,8 +773,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
 
-	for(var/vote as anything in vote_choices_by_ckey)
-		if(vote_choices_by_ckey[vote] == 0)
+	for(var/vote as anything in vote_datum.choices_by_ckey)
+		if(vote_datum.choices_by_ckey[vote] == 0)
 			continue
 		var/vote_string = "[vote]"
 		var/list/vote_components = splittext(vote_string, "_")
@@ -785,10 +784,10 @@ SUBSYSTEM_DEF(gamemode)
 			log_dynamic("VALID: [vote_ckey] voted for [vote_storyteller]")
 		else
 			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
-			LAZYREMOVE(vote_choices_by_ckey, vote)
-			vote_choices[vote_storyteller]--
+			LAZYREMOVE(vote_datum.choices_by_ckey, vote)
+			vote_datum.choices[vote_storyteller]--
 
-	var/list/vote_winner = get_ranked_winner(vote_choices, vote_choices_by_ckey, vote_threshold, vote_datum)
+	var/list/vote_winner = vote_datum.get_vote_result()
 	log_dynamic("Storyteller vote winner is [vote_winner[1]]")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,

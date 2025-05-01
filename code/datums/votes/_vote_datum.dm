@@ -135,7 +135,7 @@
 			return get_random_winner()
 		// BUBBER EDIT ADDITION BEGIN - RANKED CHOICE VOTING
 		if(VOTE_WINNER_METHOD_RANKED)
-			return get_ranked_winner(choices, choices_by_ckey, ranked_winner_threshold, src)
+			return get_ranked_winner()
 		// BUBBER EDIT ADDITION END
 
 	stack_trace("invalid select winner method: [winner_method]. Defaulting to simple.")
