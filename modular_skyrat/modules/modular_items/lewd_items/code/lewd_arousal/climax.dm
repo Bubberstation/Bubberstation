@@ -4,7 +4,7 @@
 
 #define CLIMAX_ON_FLOOR "On the floor"
 #define CLIMAX_IN_OR_ON "Climax in or on someone"
-#define CLIMAX_OPEN_CONTAINER "Climax into"
+#define CLIMAX_OPEN_CONTAINER "Fill reagent container"
 
 /mob/living/carbon/human
 	/// Used to prevent nightmare scenarios.
@@ -113,12 +113,25 @@
 						// here's where we actually do the cumming(?)
 						var/obj/item/organ/genital/testicles/src_testicles = src.get_organ_slot(ORGAN_SLOT_TESTICLES)
 						var/cum_volume = src_testicles.genital_size * 10
-						// i... dont know how this works
-						target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume)
-						// other stuff
-						// full check?
-						// overflow ???
+						var/total_volume_w_cum = cum_volume + target_open_container.reagents.total_volume
+						conditional_pref_sound(get_turf(src), SFX_DESECRATION, 50, TRUE, pref_to_check = /datum/preference/toggle/erp/sounds)
+						if(target_open_container.reagents.holder_full())
+							// its full already
+							add_cum_splatter_floor(get_turf(target_open_container))
+							visible_message(span_userlove("[src] tries to cum into the [target_open_container], but it's already full, spilling their hot onto the floor!"), \
+								span_userlove("You try to cum into the [target_open_container], but it's already full, so it all hits the floor instead!"))
+						else
+							target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume)
+							if(total_volume_w_cum > target_open_container.volume)
+								// overflow, make the decal
+								add_cum_splatter_floor(get_turf(target_open_container))
+								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container], it's so full that it overflows!"), \
+									span_userlove("You shoot string after string of hot cum into the [target_open_container], making it overflow!"))
+							else
+								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container]!"), \
+									span_userlove("You shoot string after string of hot cum into the [target_open_container]!"))
 					else
+						// cum fail
 						create_cum_decal = TRUE
 						visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
 							span_userlove("You shoot string after string of hot cum, hitting the floor!"))
