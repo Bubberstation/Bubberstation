@@ -50,7 +50,7 @@
 
 /obj/item/card/id/advanced/tarkon/service
 	name = "P-T service techs access card"
-	desc = "An access card designated for \"the stations support\". Cook, clean, and keep everyone on the crew happy."
+	desc = "An access card designated for \"the stations` support\". Cook, clean, and keep everyone on the crew happy."
 	trim = /datum/id_trim/away/tarkon/service
 
 /datum/id_trim/away/tarkon/med
