@@ -38,11 +38,13 @@
 /obj/item/borg/upgrade/transform/tarkon
 	name = "borg module picker (Tarkon)"
 	desc = "Allows you to to turn a cyborg into a experimental Tarkon cyborg."
+	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	new_model = /obj/item/robot_model/tarkon
 
 // FYI - This is currently using ONE drake sprite from the RND borg because the others arent done yet, and i want playtesting.
 /obj/item/robot_model/tarkon
+	name = "Port Tarkon Prototype"
 	basic_modules = list( // A hideous amalgamation of all of the modules, as tarkon needs a lot of everything, and is often short staffed.
 		/obj/item/assembly/flash/cyborg, // Tarkon borgs were designed to be more "Modular" so you just print what you need for upgrades rather than everything.
 		/obj/item/borg/sight/meson, // As such, the inital borg model might seem "Barren" but they get the tech rather early.
@@ -126,7 +128,7 @@
 	name = "Tarkon Medical Module"
 	desc = "Contains medical tools for first aid, diagnostics, and healing."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_medical"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -163,7 +165,7 @@
 	name = "Tarkon Engineering Module"
 	desc = "Contains tools for repairs, construction, and maintenance."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_engineering"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -200,7 +202,7 @@
 	name = "Tarkon Security Module"
 	desc = "Provides enhanced lethal and non-lethal security options." // Sec and Peacekeeper modules
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_security"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -208,7 +210,6 @@
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/borg/projectile_dampen,
-		/obj/item/borg/upgrade/disablercooler, // Literally not available any other way, pretty neat.
 		/obj/item/gun/energy/laser/cyborg // The nature of tarkon requires a gun.
 						)
 
@@ -216,7 +217,7 @@
 	name = "Tarkon Cargo Module"
 	desc = "Provides basic manipulation equipment, and abilities such as stamps, paper dispensing, and improved mining gear."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_cargo"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -252,7 +253,7 @@
 	name = "Tarkon Research Module"
 	desc = "Provides research tools, sensors, and data collection capabilites for experiments."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_research"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -268,7 +269,7 @@
 	name = "Tarkon Utility Module"
 	desc = "Adds multi-purpose tools, including cleaning supplies, and basic service gear."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
-	icon_state = "module_tarkon_utility"
+	icon_state = "module_tarkon"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/tarkon)
 	model_flags = BORG_MODEL_TARKON
@@ -315,6 +316,23 @@
 		)
 
 	/// EXOFAB DATUMS ///
+
+/datum/design/borg_upgrade_tarkon_main
+	name = "Cyborg Module Unlocker (Tarkon)"
+	id = "borg_upgrade_tarkon_main"
+	desc = "Allows a cyborg to transform into the experimental Port Tarkon cyborg type."
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/transform/tarkon
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
+	)
+	construction_time = 40
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
+	)
 
 /datum/design/borg_upgrade_tarkon_medical
 	name = "Port Tarkon Medical Upgrades"
@@ -364,7 +382,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
 	)
 
-	/datum/design/borg_upgrade_tarkon_cargo
+/datum/design/borg_upgrade_tarkon_cargo
 	name = "Port Tarkon Cargo Upgrades"
 	id = "borg_upgrade_tarkon_cargo"
 	build_type = MECHFAB
@@ -396,7 +414,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
 	)
 
-	/datum/design/borg_upgrade_tarkon_utility
+/datum/design/borg_upgrade_tarkon_utility
 	name = "Port Tarkon Service Upgrades"
 	id = "borg_upgrade_tarkon_utility"
 	build_type = MECHFAB

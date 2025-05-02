@@ -1,5 +1,4 @@
 ///// First we enstate a techweb so we can add the node. /////
-
 /datum/techweb/tarkon
 	id = "TARKON"
 	organization = "Tarkon Industries"
@@ -9,6 +8,7 @@
 	. = ..()
 	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
 	research_node_id("tarkontech", TRUE, TRUE, FALSE)
+	research_node_id("tarkon_borgs", TRUE, TRUE, FALSE)
 
 /datum/techweb_node/tarkon
 	id = "tarkontech"
@@ -43,6 +43,27 @@
 		"target_designator",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+
+/datum/techweb_node/tarkon_borgs //Nor this, suprisingly
+	id = "tarkon_borgs"
+	display_name = "Tarkon Industries Robotics Technology"
+	description = "Tarkon Industries Experimental Cyborg Prototypes. Not for public use."
+	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_AI, TECHWEB_NODE_BORG_UTILITY) // Should hold it back long enough
+	required_items_to_unlock = list(
+		/obj/item/mod/construction/plating/tarkon,
+		/obj/item/construction/rcd/arcd/tarkon,
+		/obj/item/gun/energy/recharge/resonant_system,
+	)
+	design_ids = list(
+		"borg_upgrade_tarkon_medical",
+		"borg_upgrade_tarkon_engineering",
+		"borg_upgrade_tarkon_security",
+		"borg_upgrade_tarkon_cargo",
+		"borg_upgrade_tarkon_research",
+		"borg_upgrade_tarkon_utility",
+		"borg_upgrade_tarkon_main"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS) // They will likely have all other borg tech by now, no need to gate it further
 	hidden = TRUE
 
 /datum/design/hoplite_assembly
@@ -210,3 +231,4 @@
 
 
 
+#undef TARKON_SUBTYPE_UNLOCKS
