@@ -96,12 +96,6 @@
 	color = "#1b50d5"
 	puzzle_id = "tarkon_vaultensign"
 
-/obj/item/keycard/tarkon_job_service
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Service Secure Storage'"
-	color = "#1cac40"
-	puzzle_id = "tarkon_vaultservice"
-
 // End job specific vault keys
 
 // JOB SPECIFIC VAULT DOORS
@@ -139,10 +133,5 @@
 	name = "Personal Ensign Secure Airlock"
 	desc = "Tarkon industries secure storage lock. This one has blue and red markings on it."
 	puzzle_id = "tarkon_vaultensign"
-
-/obj/machinery/door/puzzle/keycard/personal_service
-	name = "Personal Service Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has dark green markings on it."
-	puzzle_id = "tarkon_vaultservice"
 
 // End job specific vault doors
