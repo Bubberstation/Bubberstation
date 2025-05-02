@@ -98,8 +98,7 @@
 			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			DRAKE_HAT_OFFSET
-		)
-		 // TODO: Waiting on sprite recolours for... ALL of this.
+		)// TODO: Waiting on sprite recolours for... ALL of this.
 	)
 
 /obj/item/radio/borg/tarkon
