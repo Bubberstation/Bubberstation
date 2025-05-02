@@ -6,6 +6,7 @@
 	icon_state = "syndie-ship"
 	outdoors = FALSE
 	ignore_weather_sfx = TRUE
+	flags_1 = null // Stops SSDecay from affecting the Persistance
 
 // Cargo
 
