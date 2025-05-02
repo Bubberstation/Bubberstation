@@ -57,8 +57,8 @@
 	log_dynamic(initial_state_text, initial_state_data)
 	if(istype(src, /datum/vote/storyteller))
 		SSgamemode.vote_datum = new
-		SSgamemode.vote_datum.choices = LAZYLISTDUPLICATE(choices)
-		SSgamemode.vote_datum.choices_by_ckey = LAZYLISTDUPLICATE(choices_by_ckey)
+		SSgamemode.vote_datum.choices = choices.Copy()
+		SSgamemode.vote_datum.choices_by_ckey = choices_by_ckey.Copy()
 		SSgamemode.vote_datum.ranked_winner_threshold = ranked_winner_threshold
 
 	// If no one voted, return empty list
@@ -91,9 +91,9 @@
 		if(highest_votes >= victory_threshold)
 			log_dynamic("Victory threshold ([victory_threshold]) reached! Winner(s): [highest_choices.Join(", ")] with [highest_votes] votes",
 				list("winners" = highest_choices, "votes" = highest_votes))
-			LAZYADD(elimination_results, "[highest_choices[1]] - [highest_votes]")
+			elimination_results += "[highest_choices[1]] - [highest_votes]"
 			if(istype(src, /datum/vote/storyteller))
-				SSgamemode.vote_datum.elimination_results = LAZYLISTDUPLICATE(elimination_results)
+				SSgamemode.vote_datum.elimination_results = elimination_results.Copy()
 			return highest_choices
 
 		// Find lowest vote count to eliminate
@@ -121,7 +121,7 @@
 
 		// Remove the eliminated option from choices
 		choices -= option_to_eliminate
-		LAZYADD(elimination_results, "[option_to_eliminate] - [lowest_votes]")
+		elimination_results += "[option_to_eliminate] - [lowest_votes]"
 
 		// Update rankings and redistribute votes
 		var/redistribution_text = "Vote redistribution after eliminating [option_to_eliminate]:\n"
@@ -201,9 +201,9 @@
 	// If we're down to one option, it's the winner
 	if(length(choices) == 1)
 		log_dynamic("Only one option remains: [choices[1]] is the winner!", list("winner" = choices[1]))
-		LAZYADD(elimination_results, "[choices[1]] - [highest_votes]")
+		elimination_results += "[choices[1]] - [highest_votes]"
 		if(istype(src, /datum/vote/storyteller))
-			SSgamemode.vote_datum.elimination_results = LAZYLISTDUPLICATE(elimination_results)
+			SSgamemode.vote_datum.elimination_results = elimination_results.Copy()
 		return list(choices[1])
 
 	// This should never happen but just in case
