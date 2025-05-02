@@ -269,7 +269,7 @@
 		return FALSE
 	var/mob/living/carbon/carbon = owner
 	if(iscarbon(carbon) && carbon.handcuffed)
-		owner.balloon_alert(owner, "you cannot stealthfully feed while handcuffed!")
+		owner.balloon_alert(owner, "you cannot stealthily feed while handcuffed!")
 		return FALSE
 	var/list/close_living_mobs = list()
 	var/list/close_dead_mobs = list()
