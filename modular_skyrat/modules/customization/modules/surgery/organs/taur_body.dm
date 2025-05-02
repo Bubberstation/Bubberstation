@@ -16,9 +16,9 @@
 	var/right_leg_name = "back legs"
 
 	/// The mob's old right leg. Used if the person switches to this organ and then back, so they don't just, have no legs anymore. Can be null.
-	var/obj/item/bodypart/leg/right/old_right_leg = null
+	var/old_right_leg = null
 	/// The mob's old left leg. Used if the person switches to this organ and then back, so they don't just, have no legs anymore. Can be null.
-	var/obj/item/bodypart/leg/right/old_left_leg = null
+	var/old_left_leg = null
 
 	/// If true, our sprite accessory will not render.
 	var/hide_self
@@ -109,8 +109,8 @@
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_HIDE_SHOES)
 		external_bodyshapes |= BODYSHAPE_HIDE_SHOES
 
-	old_right_leg = receiver.get_bodypart(BODY_ZONE_R_LEG)
-	old_left_leg = receiver.get_bodypart(BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/leg/right/current_right_leg = receiver.get_bodypart(BODY_ZONE_R_LEG)
+	var/obj/item/bodypart/leg/left/current_left_leg = receiver.get_bodypart(BODY_ZONE_L_LEG)
 	var/obj/item/bodypart/leg/left/taur/new_left_leg
 	var/obj/item/bodypart/leg/right/taur/new_right_leg
 
@@ -131,57 +131,44 @@
 
 	new_left_leg.bodyshape |= external_bodyshapes
 	new_left_leg.replace_limb(receiver, TRUE)
-	if(old_left_leg)
-		old_left_leg.forceMove(src)
+	if(current_left_leg)
+		old_left_leg = current_left_leg.type
+		qdel(current_left_leg)
 	new_left_leg.bodytype |= BODYTYPE_TAUR
 
 	new_right_leg.bodyshape |= external_bodyshapes
 	new_right_leg.replace_limb(receiver, TRUE)
-	if(old_right_leg)
-		old_right_leg.forceMove(src)
+	if(current_right_leg)
+		old_right_leg = current_right_leg.type
+		qdel(current_right_leg)
 	new_right_leg.bodytype |= BODYTYPE_TAUR
 
 	return ..()
 
 
 /obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
-	if(QDELETED(owner))
-		return ..()
-
 	var/obj/item/bodypart/leg/left/left_leg = organ_owner.get_bodypart(BODY_ZONE_L_LEG)
 	var/obj/item/bodypart/leg/right/right_leg = organ_owner.get_bodypart(BODY_ZONE_R_LEG)
 
 	if(left_leg)
 		left_leg.drop_limb()
-
-		if(left_leg)
-			qdel(left_leg)
+		qdel(left_leg)
 
 	if(right_leg)
 		right_leg.drop_limb()
-
-		if(right_leg)
-			qdel(right_leg)
+		qdel(right_leg)
 
 	if(old_left_leg)
-		old_left_leg.replace_limb(organ_owner, TRUE)
-		old_left_leg = null
+		var/obj/item/bodypart/leg/left/new_left_leg = new old_left_leg()
+		new_left_leg.replace_limb(organ_owner, TRUE)
 
 	if(old_right_leg)
-		old_right_leg.replace_limb(organ_owner, TRUE)
-		old_right_leg = null
+		var/obj/item/bodypart/leg/right/new_right_leg = new old_right_leg()
+		new_right_leg.replace_limb(organ_owner, TRUE)
 
 	// We don't call `synchronize_bodytypes()` here, because it's already going to get called in the parent because `external_bodyshapes` has a value.
 
 	return ..()
-
-/obj/item/organ/taur_body/Destroy()
-	. = ..()
-	if(old_left_leg)
-		QDEL_NULL(old_left_leg)
-
-	if(old_right_leg)
-		QDEL_NULL(old_right_leg)
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
 	var/size_scaling = (owner.dna.features["body_size"] / BODY_SIZE_NORMAL) - 1

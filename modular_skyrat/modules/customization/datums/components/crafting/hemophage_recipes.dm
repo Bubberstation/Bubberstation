@@ -22,6 +22,7 @@
 
 
 /datum/crafting_recipe/food/hemophage/blood_noodles
+	added_foodtypes = RAW | GORE | BLOODY
 	name = "Raw Blood Noodles"
 	reqs = list(
 		/obj/item/food/spaghetti/raw = 1,
@@ -31,6 +32,7 @@
 
 
 /datum/crafting_recipe/food/hemophage/boat_noodles
+	removed_foodtypes = RAW
 	name = "Boat Noodles"
 	reqs = list(
 		/obj/item/food/hemophage/blood_noodles = 1,
@@ -40,6 +42,8 @@
 
 
 /datum/crafting_recipe/food/hemophage/blood_cake
+	added_foodtypes = SUGAR | NUTS | GORE | BLOODY
+	removed_foodtypes = BREAKFAST
 	name = "Ti Hoeh Koe"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
@@ -50,6 +54,7 @@
 
 
 /datum/crafting_recipe/food/hemophage/blood_soup
+	removed_foodtypes = RAW
 	name = "Dinuguan"
 	reqs = list(
 		/obj/item/food/hemophage/blood_curd = 1,

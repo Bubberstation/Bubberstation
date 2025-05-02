@@ -5,7 +5,7 @@
 
 /obj/item/storage/pill_bottle/liquid_solder/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/liquid_solder(src)
+		new /obj/item/reagent_containers/applicator/pill/liquid_solder(src)
 
 // Contains 4 liquid_solder pills instead of 7, and 10u pills instead of 50u.
 // 50u pills heal 375 brain damage, 10u pills heal 75.
@@ -14,7 +14,7 @@
 
 /obj/item/storage/pill_bottle/liquid_solder/braintumor/PopulateContents()
 	for(var/i in 1 to 4)
-		new /obj/item/reagent_containers/pill/liquid_solder/braintumor(src)
+		new /obj/item/reagent_containers/applicator/pill/liquid_solder/braintumor(src)
 
 /obj/item/storage/pill_bottle/nanite_slurry
 	name = "bottle of concentrated nanite slurry pills"
@@ -22,7 +22,7 @@
 
 /obj/item/storage/pill_bottle/nanite_slurry/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/pill/nanite_slurry(src)
+		new /obj/item/reagent_containers/applicator/pill/nanite_slurry(src)
 
 /obj/item/storage/pill_bottle/system_cleaner
 	name = "bottle of system cleaner pills"
@@ -30,4 +30,4 @@
 
 /obj/item/storage/pill_bottle/system_cleaner/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/system_cleaner(src)
+		new /obj/item/reagent_containers/applicator/pill/system_cleaner(src)

@@ -925,7 +925,7 @@
 	if(full_heal_flags)
 		fully_heal(full_heal_flags)
 
-	if(stat == DEAD && can_be_revived() || (full_heal_flags & HEAL_ADMIN)) //in some cases you can't revive (e.g. no brain) //SKYRAT EDIT ADDITION - DNR TRAIT - Added: " || (full_heal_flags & HEAL_ADMIN)"
+	if(stat == DEAD && (can_be_revived() || (full_heal_flags & HEAL_ADMIN))) //in some cases you can't revive (e.g. no brain) //SKYRAT EDIT ADDITION - DNR TRAIT - Original: if(stat == DEAD && can_be_revived())
 		set_suicide(FALSE)
 		set_stat(UNCONSCIOUS) //the mob starts unconscious,
 		updatehealth() //then we check if the mob should wake up.
@@ -2871,8 +2871,20 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 	mob_mood.clear_mood_event(category)
 
-/mob/living/played_game()
-	. = ..()
+/// This should be called by games when the gamer reaches a winning state, just sends a signal
+/mob/living/proc/won_game()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_MOB_WON_VIDEOGAME)
+
+/// This should be called by games when the gamer reaches a losing state, just sends a signal
+/mob/living/proc/lost_game()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_MOB_LOST_VIDEOGAME)
+
+/// This should be called by games whenever the gamer interacts with the device, sends a signal and grants us a moodlet
+/mob/living/proc/played_game()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_MOB_PLAYED_VIDEOGAME)
 	add_mood_event("gaming", /datum/mood_event/gaming)
 
 /**
@@ -3058,7 +3070,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /**
  * Totals the physical cash on the mob and returns the total.
  */
-/mob/living/verb/tally_physical_credits()
+/mob/living/proc/tally_physical_credits()
 	//Here is all the possible non-ID payment methods.
 	var/list/counted_money = list()
 	var/physical_cash_total = 0
