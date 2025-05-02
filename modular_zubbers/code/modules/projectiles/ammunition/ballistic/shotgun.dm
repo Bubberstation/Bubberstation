@@ -5,7 +5,7 @@
 	icon_state = "Thshell"
 	pellets = 3
 	variance = 30
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_thundershot
+	projectile_type = /obj/projectile/bullet/shotgun_slug/shotgun_thundershot
 
 /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	name = "depleted uranium slug"

@@ -115,8 +115,8 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit) //wrapper
-	//allows bullets to hit the pilot of open-canopy mechs
-	if(!(mecha_flags & IS_ENCLOSED) \
+	//allows bullets to hit the pilot of open-canopy mechs // BUBBER EDIT - Allows Uranium Penatrators to hit pilots of sealed mechs. Original: if(!(mecha_flags & IS_ENCLOSED)
+	if((!(mecha_flags & IS_ENCLOSED) || istype(hitting_projectile, /obj/projectile/bullet/shotgun_slug/shotgun_uraniumslug)) \
 		&& LAZYLEN(occupants) \
 		&& !(mecha_flags & SILICON_PILOT) \
 		&& (def_zone == BODY_ZONE_HEAD || def_zone == BODY_ZONE_CHEST))
