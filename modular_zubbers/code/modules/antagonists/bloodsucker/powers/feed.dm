@@ -253,7 +253,7 @@
 
 /datum/action/cooldown/bloodsucker/feed/proc/check_aggro_feed(mob/living/feed_target)
 	var/mob/living/carbon/carbon = owner
-	if(owner.pulling != feed_target && owner.pulledby != feed_target
+	if(owner.pulling != feed_target && owner.pulledby != feed_target \
 	|| (feed_target.pulledby != owner && iscarbon(carbon) && carbon.handcuffed))
 		return FALSE
 	return TRUE
