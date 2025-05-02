@@ -384,8 +384,8 @@
 		to produce more advanced and complex medical reagents."
 	icon_state = "module_medical"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/medical)
-	model_flags = BORG_MODEL_MEDICAL
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/tarkon) // BUBBER ADDITION - Tarkon Borgs
+	model_flags = BORG_MODEL_MEDICAL, BORG_MODEL_TARKON // BUBBER ADDITION - Tarkon Borgs
 	var/list/additional_reagents = list()
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/borg, mob/living/user = usr)
@@ -820,7 +820,6 @@
 	model_flags = BORG_MODEL_ENGINEERING
 
 	items_to_add = list(/obj/item/shuttle_blueprints/borg)
-
 
 ///This isn't an upgrade or part of the same path, but I'm gonna just stick it here because it's a tool used on cyborgs.
 //A reusable tool that can bring borgs back to life. They gotta be repaired first, though.
