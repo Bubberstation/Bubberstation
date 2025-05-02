@@ -36,7 +36,7 @@
 		"total_voters" = total_voters,
 		"choices" = list()
 	)
-	elimination_results = null
+	elimination_results = list()
 	for(var/choice in choices)
 		initial_state_text += "\t[choice]: [choices[choice]] votes\n"
 		initial_state_data["choices"][choice] = choices[choice]
