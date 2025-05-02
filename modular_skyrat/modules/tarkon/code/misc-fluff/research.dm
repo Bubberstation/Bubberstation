@@ -228,7 +228,3 @@
 	name = "Tarkon Industries Protolathe"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon
-
-
-
-#undef TARKON_SUBTYPE_UNLOCKS
