@@ -52,6 +52,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// One can breath under water, you get me?
 #define TRAIT_WATER_BREATHING "water_breathing"
 
+/// Trait to assign to pets who've already had a space treat to prevent double-feeding
+#define TRAIT_PET_SPACE_TREAT "space_pet_treat"
+
 /// The trait which Akulas inherit, for their species mechanic revolving around wet_stacks
 #define TRAIT_SLICK_SKIN "slick_skin"
 /// The trait which is applied when a `slick skin` trait haver actually gets wet_stacks
@@ -139,6 +142,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel
 #define TRAIT_R_UNIQUEPANEL "unique_openpanel"
+/// Any model that has unique lights while resting
+#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_lights"
+/// Any model that cannot use a borg expander
+#define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 
 // Lewd traits
 #define TRAIT_MASOCHISM "masochism"

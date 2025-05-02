@@ -8,12 +8,13 @@
 
 /obj/item/storage/pill_bottle/lidocaine/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/lidocaine(src)
+		new /obj/item/reagent_containers/applicator/pill/lidocaine(src)
 
-/obj/item/reagent_containers/pill/lidocaine
+/obj/item/reagent_containers/applicator/pill/lidocaine
 	name = "lidocaine pill"
 	desc = "A local anesthetic medication used in surgery to numb patients."
 	icon_state = "pill3"
+	layers_remaining = 1
 	list_reagents = list(
 		/datum/reagent/medicine/lidocaine = 17,
 		/datum/reagent/consumable/astrotame = 7,

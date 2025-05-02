@@ -19,14 +19,14 @@ if command -v rg >/dev/null 2>&1; then
 	if [ ! rg -P '' >/dev/null 2>&1 ] ; then
 		pcre2_support=0
 	fi
-	code_files="code/**/**.dm"
+	code_files="code/**/**.dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="_maps/**/**.dmm"
 	shuttle_map_files="_maps/shuttles/**.dmm"
 	code_x_515="code/**/!(__byond_version_compat).dm"
 else
 	pcre2_support=0
 	grep=grep
-	code_files="-r --include=code/**/**.dm"
+	code_files="-r --include=code/**/**.dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="-r --include=_maps/**/**.dmm"
 	shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
 	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
@@ -123,6 +123,14 @@ if $grep 'allocate\(/mob/living/carbon/human[,\)]' $unit_test_files ||
 	echo
 	echo -e "${RED}ERROR: Usage of mob/living/carbon/human detected in a unit test, please use mob/living/carbon/human/consistent.${NC}"
 	st=1
+fi;
+
+section "516 Href Styles"
+part "byond href styles"
+if $grep "href[\s='\"\\\\]*\?" $code_files ; then
+    echo
+    echo -e "${RED}ERROR: BYOND requires internal href links to begin with \"byond://\".${NC}"
+    st=1
 fi;
 
 section "common mistakes"

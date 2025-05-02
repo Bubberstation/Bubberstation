@@ -10,7 +10,7 @@
 	death_sound = null // We don't need them screaming
 	death()
 
-	var/obj/item/organ/internal/brain/to_remove = get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/to_remove = get_organ_slot(ORGAN_SLOT_BRAIN)
 	QDEL_NULL(to_remove)
 
 	death_sound = old_death_sound // Now they can die loudly again

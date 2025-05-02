@@ -124,7 +124,7 @@
 
 /datum/antagonist/ert/deathsquad/leader
 	name = "Deathsquad Officer"
-	outfit = /datum/outfit/centcom/death_commando
+	outfit = /datum/outfit/centcom/death_commando/officer
 	role = "Officer"
 
 /datum/antagonist/ert/medic/inquisitor

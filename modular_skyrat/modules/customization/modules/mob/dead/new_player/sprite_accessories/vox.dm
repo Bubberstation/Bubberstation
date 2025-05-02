@@ -122,7 +122,7 @@
 	name = "Vox Tail"
 	icon_state = "vox"
 	recommended_species = list(SPECIES_VOX)
-	organ_type = /obj/item/organ/external/tail/lizard
+	organ_type = /obj/item/organ/tail/lizard
 	spine_key = SPINE_KEY_VOX
 
 //The tail markings

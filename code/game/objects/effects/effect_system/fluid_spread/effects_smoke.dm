@@ -91,7 +91,7 @@
 		spread_smoke.lifetime = lifetime
 
 		// the smoke spreads rapidly, but not instantly
-		SSfoam.queue_spread(spread_smoke)
+		SSsmoke.queue_spread(spread_smoke)
 
 
 /obj/effect/particle_effect/fluid/smoke/process(seconds_per_tick)
@@ -374,6 +374,8 @@
 	for(var/atom/movable/thing as anything in location)
 		if(thing == src)
 			continue
+		if(thing.invisibility >= INVISIBILITY_ABSTRACT) // Don't smoke landmarks please
+			continue
 		if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(thing, TRAIT_T_RAY_VISIBLE))
 			continue
 		reagents.expose(thing, TOUCH, fraction)
@@ -391,7 +393,7 @@
 
 	var/fraction = (seconds_per_tick SECONDS) / initial(lifetime)
 	reagents.copy_to(smoker, reagents.total_volume, fraction)
-	reagents.expose(smoker, INGEST, fraction)
+	reagents.expose(smoker, INHALE, fraction)
 	return TRUE
 
 /// Helper to quickly create a cloud of reagent smoke

@@ -2,13 +2,13 @@
 
 /datum/species/snail
 	eyes_icon = 'modular_skyrat/modules/organs/icons/snail_eyes.dmi' //This is to consolidate our icons and prevent future calamity.
-	mutantliver = /obj/item/organ/internal/liver/snail //This is just a better liver to deal with toxins, it's a thematic thing.
-	mutantheart = /obj/item/organ/internal/heart/snail //This gives them the shell buff where they take less damage from behind, and their heart's more durable.
+	mutantliver = /obj/item/organ/liver/snail //This is just a better liver to deal with toxins, it's a thematic thing.
+	mutantheart = /obj/item/organ/heart/snail //This gives them the shell buff where they take less damage from behind, and their heart's more durable.
 	exotic_blood = null
 
 	eyes_icon = 'modular_skyrat/modules/organs/icons/snail_eyes.dmi'
 
-/datum/species/snail/on_species_gain(mob/living/carbon/new_snailperson, datum/species/old_species, pref_load)
+/datum/species/snail/on_species_gain(mob/living/carbon/new_snailperson, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	new_snailperson.update_icons()
 

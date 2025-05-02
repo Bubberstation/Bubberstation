@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate
 	name = "tactical turtleneck"
-	desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
+	desc = "A nondescript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 	icon_state = "syndicate"
 	inhand_icon_state = "bl_suit"
 	has_sensor = NO_SENSORS
@@ -17,7 +17,7 @@
 
 /obj/item/clothing/under/syndicate/skirt
 	name = "tactical skirtleneck"
-	desc = "A non-descript and slightly suspicious looking skirtleneck."
+	desc = "A nondescript and slightly suspicious looking skirtleneck."
 	icon_state = "syndicate_skirt"
 	inhand_icon_state = "bl_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -36,7 +36,7 @@
 
 /obj/item/clothing/under/syndicate/bloodred/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //extra-tactical
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4) //extra-tactical
 
 /datum/armor/clothing_under/syndicate_bloodred
 	melee = 10
@@ -125,7 +125,7 @@
 
 /obj/item/clothing/under/syndicate/floortilecamo/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -4) //tacticool
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5) //tacticool
 
 /obj/item/clothing/under/syndicate/soviet
 	name = "Ratnik 5 tracksuit"
@@ -170,7 +170,7 @@
 
 /obj/item/clothing/under/syndicate/scrubs/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) //FISH DOCTOR?!
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /datum/armor/clothing_under/syndicate_scrubs
 	melee = 10

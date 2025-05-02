@@ -5,7 +5,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/horns.dmi'
 	default_color = "#555555"
 	genetic = TRUE
-	organ_type = /obj/item/organ/external/horns
+	organ_type = /obj/item/organ/horns
 
 /datum/sprite_accessory/horns/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.head && !wearer.wear_mask)

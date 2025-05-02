@@ -7,7 +7,7 @@
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.client)
-			user.balloon_alert(user, "Client inside!")
+			user.balloon_alert(user, "client inside!")
 			return FALSE
 	//Is there is somthing inside target.
 	if(target.contents.len)

@@ -66,7 +66,7 @@
 /obj/item/laser_pointer/infinite_range
 	name = "infinite laser pointer"
 	desc = "Used to shine in the eyes of Cyborgs who need a bit of a push, this works through camera consoles."
-	max_range = INFINITE
+	max_range = INFINITY
 
 /obj/item/laser_pointer/infinite_range/Initialize(mapload)
 	. = ..()
@@ -203,7 +203,7 @@
 		to_chat(user, span_warning("Your fingers can't press the button!"))
 		return
 
-	if(max_range != INFINITE)
+	if(max_range != INFINITY)
 		if(!IN_GIVEN_RANGE(target, user, max_range))
 			to_chat(user, span_warning("\The [target] is too far away!"))
 			return
@@ -295,12 +295,12 @@
 	var/mutable_appearance/laser = mutable_appearance('icons/obj/weapons/guns/projectiles.dmi', pointer_icon_state)
 	if(modifiers)
 		if(LAZYACCESS(modifiers, ICON_X))
-			laser.pixel_x = (text2num(LAZYACCESS(modifiers, ICON_X)) - 16)
+			laser.pixel_w = (text2num(LAZYACCESS(modifiers, ICON_X)) - 16)
 		if(LAZYACCESS(modifiers, ICON_Y))
-			laser.pixel_y = (text2num(LAZYACCESS(modifiers, ICON_Y)) - 16)
+			laser.pixel_z = (text2num(LAZYACCESS(modifiers, ICON_Y)) - 16)
 	else
-		laser.pixel_x = target.pixel_x + rand(-5,5)
-		laser.pixel_y = target.pixel_y + rand(-5,5)
+		laser.pixel_w = target.pixel_w + rand(-5,5)
+		laser.pixel_z = target.pixel_z + rand(-5,5)
 
 	if(outmsg)
 		user.visible_message(span_danger("[user] points [src] at [target]!"), outmsg) //SKYRAT EDIT CHANGE - ORIGINAL: to_chat(user, outmsg)

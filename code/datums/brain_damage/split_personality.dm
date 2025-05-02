@@ -15,12 +15,16 @@
 	var/poll_role = "split personality"
 
 /datum/brain_trauma/severe/split_personality/on_gain()
-	var/mob/living/M = owner
-	if(M.stat == DEAD || !M.client) //No use assigning people to a corpse or braindead
-		qdel(src)
-		return
-	..()
+	var/mob/living/brain_owner = owner
+	if(brain_owner.stat == DEAD || !GET_CLIENT(brain_owner)) //No use assigning people to a corpse or braindead
+		return FALSE
+	. = ..()
 	make_backseats()
+
+#ifdef UNIT_TESTS
+	return // There's no ghosts in the unit test
+#endif
+
 	get_ghost()
 
 /datum/brain_trauma/severe/split_personality/proc/make_backseats()
@@ -51,7 +55,7 @@
 		qdel(src)
 		return
 
-	stranger_backseat.key = ghost.key
+	stranger_backseat.PossessByPlayer(ghost.ckey)
 	stranger_backseat.log_message("became [key_name(owner)]'s split personality.", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(stranger_backseat)] became [ADMIN_LOOKUPFLW(owner)]'s split personality.")
 
@@ -191,7 +195,7 @@
 	var/codeword
 	var/objective
 
-/datum/brain_trauma/severe/split_personality/brainwashing/New(obj/item/organ/internal/brain/B, _permanent, _codeword, _objective)
+/datum/brain_trauma/severe/split_personality/brainwashing/New(obj/item/organ/brain/B, _permanent, _codeword, _objective)
 	..()
 	if(_codeword)
 		codeword = _codeword
@@ -204,7 +208,7 @@
 			| strings("ion_laws.json", "iondrinks"))
 
 /datum/brain_trauma/severe/split_personality/brainwashing/on_gain()
-	..()
+	. = ..()
 	var/mob/living/split_personality/traitor/traitor_backseat = stranger_backseat
 	traitor_backseat.codeword = codeword
 	traitor_backseat.objective = objective
@@ -217,7 +221,7 @@
 	set waitfor = FALSE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_danger("[owner.real_name]'s")] brainwashed mind?", poll_time = 7.5 SECONDS, checked_target = stranger_backseat, alert_pic = owner, role_name_text = "brainwashed mind")
 	if(chosen_one)
-		stranger_backseat.key = chosen_one.key
+		stranger_backseat.PossessByPlayer(chosen_one.ckey)
 	else
 		qdel(src)
 
@@ -265,6 +269,10 @@
 
 /datum/brain_trauma/severe/split_personality/blackout/on_gain()
 	. = ..()
+
+	if(QDELETED(src))
+		return
+
 	RegisterSignal(owner, COMSIG_ATOM_SPLASHED, PROC_REF(on_splashed))
 	notify_ghosts(
 		"[owner] is blacking out!",

@@ -17,6 +17,16 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
+"ah" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/airalarm/directional/north,
+/obj/item/implanter/radio,
+/obj/item/implantcase{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/syndielab)
 "aP" = (
 /obj/item/reagent_containers/condiment/milk,
 /obj/item/reagent_containers/cup/soda_cans/beer{
@@ -245,10 +255,6 @@
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
-"oA" = (
-/obj/structure/syndicate_uplink_beacon,
-/turf/open/floor/iron/dark/textured,
-/area/ruin/syndielab)
 "oY" = (
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/full_charge,
@@ -258,20 +264,6 @@
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
-/area/ruin/syndielab)
-"pK" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/airalarm/directional/north,
-/obj/item/implanter/radio,
-/obj/item/implantcase{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/traitor_bug{
-	pixel_y = 6;
-	pixel_x = 6
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
 "qy" = (
 /obj/item/clothing/suit/hooded/explorer/syndicate{
@@ -445,6 +437,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/iron/dark/textured,
+/area/ruin/syndielab)
+"yD" = (
+/obj/structure/table/wood,
+/obj/item/ammo_casing/shotgun/flechette/donk{
+	pixel_y = 6
+	},
+/obj/item/ammo_casing/shotgun/flechette/donk{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/gun/ballistic/shotgun/musket,
+/turf/open/floor/carpet/red,
 /area/ruin/syndielab)
 "yW" = (
 /turf/open/floor/carpet/red,
@@ -815,18 +819,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
-"Wo" = (
-/obj/structure/table/wood,
-/obj/item/ammo_casing/shotgun/fletchette{
-	pixel_y = 6
-	},
-/obj/item/ammo_casing/shotgun/fletchette{
-	pixel_x = 8;
-	pixel_y = 6
-	},
-/obj/item/gun/ballistic/shotgun/musket,
-/turf/open/floor/carpet/red,
-/area/ruin/syndielab)
 "WO" = (
 /obj/item/trash/boritos/red{
 	pixel_y = -9;
@@ -1050,7 +1042,7 @@ Xt
 (9,1,1) = {"
 Xt
 AR
-pK
+ah
 KV
 el
 nT
@@ -1087,7 +1079,7 @@ Xt
 Xt
 AR
 Jc
-oA
+ey
 FJ
 AR
 qC
@@ -1166,7 +1158,7 @@ dD
 Co
 AR
 cd
-Wo
+yD
 yW
 Dd
 AR

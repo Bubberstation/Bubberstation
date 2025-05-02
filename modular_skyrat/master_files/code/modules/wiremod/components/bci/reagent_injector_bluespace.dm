@@ -14,7 +14,7 @@
 	category = "BCI"
 	circuit_flags = CIRCUIT_NO_DUPLICATES|CIRCUIT_REAGENT_CONTAINER_TYPE
 
-	required_shells = list(/obj/item/organ/internal/cyberimp/bci)
+	required_shells = list(/obj/item/organ/cyberimp/bci)
 
 	/// The number of units to inject per trigger
 	var/datum/port/input/inject_amount
@@ -22,7 +22,7 @@
 	var/datum/port/input/inject
 	var/datum/port/output/injected
 
-	var/obj/item/organ/internal/cyberimp/bci/bci
+	var/obj/item/organ/cyberimp/bci/bci
 
 /obj/item/circuit_component/reagent_injector_bluespace/Initialize(mapload)
 	. = ..()
@@ -47,7 +47,7 @@
 
 /obj/item/circuit_component/reagent_injector_bluespace/register_shell(atom/movable/shell)
 	. = ..()
-	if(istype(shell, /obj/item/organ/internal/cyberimp/bci))
+	if(istype(shell, /obj/item/organ/cyberimp/bci))
 		bci = shell
 		bci.create_reagents(100, OPENCONTAINER)
 		if(reagents.total_volume)

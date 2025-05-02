@@ -62,6 +62,15 @@ SUBSYSTEM_DEF(statpanels)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
+
+		if(SSticker.reboot_timer)
+			var/reboot_time = timeleft(SSticker.reboot_timer)
+			if(reboot_time)
+				global_data += "Reboot: [DisplayTimeText(reboot_time, 1)]"
+		// admin must have delayed round end
+		else if(SSticker.ready_for_reboot)
+			global_data += "Reboot: DELAYED"
+
 		src.currentrun = GLOB.clients.Copy()
 		mc_data = null
 
@@ -119,7 +128,6 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/set_status_tab(client/target)
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
-
 	target.stat_panel.send_message("update_stat", list(
 		"global_data" = global_data,
 		"ping_str" = "Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)",
@@ -198,6 +206,24 @@ SUBSYSTEM_DEF(statpanels)
 		list("Failsafe Controller:", Failsafe.stat_entry(), text_ref(Failsafe)),
 		list("","")
 	)
+#if defined(MC_TAB_TRACY_INFO) || defined(SPACEMAN_DMM)
+	var/static/tracy_dll
+	var/static/tracy_present
+	if(isnull(tracy_dll))
+		tracy_dll = TRACY_DLL_PATH
+		tracy_present = fexists(tracy_dll)
+	if(tracy_present)
+		if(GLOB.tracy_initialized)
+			mc_data.Insert(2, list(list("byond-tracy:", "Active (reason: [GLOB.tracy_init_reason || "N/A"])")))
+		else if(GLOB.tracy_init_error)
+			mc_data.Insert(2, list(list("byond-tracy:", "Errored ([GLOB.tracy_init_error])")))
+		else if(fexists(TRACY_ENABLE_PATH))
+			mc_data.Insert(2, list(list("byond-tracy:", "Queued for next round")))
+		else
+			mc_data.Insert(2, list(list("byond-tracy:", "Inactive")))
+	else
+		mc_data.Insert(2, list(list("byond-tracy:", "[tracy_dll] not present")))
+#endif
 	for(var/datum/controller/subsystem/sub_system as anything in Master.subsystems)
 		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), text_ref(sub_system))
 	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", text_ref(GLOB.cameranet))

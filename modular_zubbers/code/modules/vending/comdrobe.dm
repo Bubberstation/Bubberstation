@@ -27,6 +27,7 @@
 		/obj/item/clothing/head/playbunnyears/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
 		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+		/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos = 1,
 	)
 
 	access_lists["[ACCESS_HOP]"] += list(

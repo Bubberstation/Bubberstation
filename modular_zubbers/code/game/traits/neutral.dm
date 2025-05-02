@@ -12,6 +12,8 @@
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/dnr/proc/apply_dnr(mob/living/holder)
+	if(IS_CHANGELING(holder) || IS_BLOODSUCKER(holder))
+		return
 	holder.ghostize()
 	var/mob/dead/observer/dnr_person = holder.mind.get_ghost(even_if_they_cant_reenter = TRUE)
 	dnr_person.can_reenter_corpse = FALSE

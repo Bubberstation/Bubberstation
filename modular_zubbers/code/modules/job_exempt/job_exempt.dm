@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(job_exempt_cache, list())
 			dat += "<b>[department.department_name]</b><br>"
 			for(var/datum/job/job as anything in department.department_jobs)
 				job_count++
-				dat += "<a [is_job_exempt_from(target_ckey, job.title) ? "class='linkOn'" : ""] href='?_src_=holder;[HrefToken()];getjobexempttask=[target_ckey];task=togglejob;job=[job.title]'>[job.title]</a><br>"
+				dat += "<a [is_job_exempt_from(target_ckey, job.title) ? "class='linkOn'" : ""] href='byond://?_src_=holder;[HrefToken()];getjobexempttask=[target_ckey];task=togglejob;job=[job.title]'>[job.title]</a><br>"
 		dat += "</tr></td></table>"
 	var/datum/browser/popup = new(user, "job_exempt_menu", "Job Exemption Menu", 730, 650)
 	popup.set_content(dat.Join())

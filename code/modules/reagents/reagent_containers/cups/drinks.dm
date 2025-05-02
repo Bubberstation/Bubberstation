@@ -32,11 +32,11 @@
 	target.Bumped(B)
 	return B //BUBBERSTATION CHANGE: RETURNS THE BROKEN BOTTLE.
 
-/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
+/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(QDELETED(src))
 		return
-	if(P.damage > 0 && P.damage_type == BRUTE)
+	if(proj.damage > 0 && proj.damage_type == BRUTE)
 		var/atom/T = get_turf(src)
 		smash(T)
 
@@ -265,11 +265,12 @@
 			cap_lost = TRUE
 		else
 			to_chat(user, span_notice("You remove the cap from [src]."))
-			playsound(loc, 'sound/effects/can/can_open1.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_open.ogg', 50, TRUE)
 	else
 		cap_on = TRUE
 		spillable = FALSE
 		to_chat(user, span_notice("You put the cap on [src]."))
+		playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_close.ogg', 50, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -541,7 +542,7 @@
 
 /obj/item/reagent_containers/cup/glass/mug/britcup
 	name = "cup"
-	desc = "A cup with the british flag emblazoned on it."
+	desc = "A cup with the British flag emblazoned on it."
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "britcup_empty"
 	base_icon_state = "britcup"

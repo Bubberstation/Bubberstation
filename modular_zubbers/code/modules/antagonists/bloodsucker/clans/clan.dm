@@ -293,7 +293,7 @@
 		option.info = "[initial(ghouldatums.name)] - [span_boldnotice(initial(ghouldatums.ghoul_description))]"
 		radial_display[initial(ghouldatums.name)] = option
 	if(!length(options))
-		master.balloon_alert(master, "Out of Special Ghoul slots!")
+		master.balloon_alert(master, "out of Special Ghoul slots!")
 		return FALSE
 
 	to_chat(master, span_notice("You can change who this Ghoul is, who are they to you? This will cost [SPECIAL_GHOUL_COST] blood."))

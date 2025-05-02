@@ -5,12 +5,13 @@ import { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { MalfAiModules } from './common/MalfAiModules';
 import {
   Objective,
   ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-import { GenericUplink, Item } from './Uplink/GenericUplink';
+import { Item } from './Uplink/GenericUplink';
 
 const allystyle = {
   fontWeight: 'bold',
@@ -27,7 +28,12 @@ const goalstyle = {
   fontWeight: 'bold',
 };
 
-type Info = {
+type Category = {
+  name: string;
+  items: Item[];
+};
+
+type Data = {
   has_codewords: BooleanLike;
   phrases: string;
   responses: string;
@@ -37,13 +43,14 @@ type Info = {
   intro: string;
   processingTime: string;
   objectives: Objective[];
-  categories: any[];
+  categories: Category[];
   can_change_objective: BooleanLike;
 };
 
-const IntroductionSection = (props) => {
-  const { act, data } = useBackend<Info>();
+function IntroductionSection(props) {
+  const { data } = useBackend<Data>();
   const { intro, objectives, can_change_objective } = data;
+
   return (
     <Section fill title="Intro" scrollable>
       <Stack vertical fill>
@@ -51,13 +58,13 @@ const IntroductionSection = (props) => {
         <Stack.Item grow>
           <ObjectivePrintout
             objectives={objectives}
-            titleMessage="Your prime objectives:"
+            titleMessage="Your prime objectives"
             objectivePrefix="&#8805-"
             objectiveFollowup={
               <ReplaceObjectivesButton
                 can_change_objective={can_change_objective}
-                button_title={'Overwrite Objectives Data'}
-                button_colour={'green'}
+                button_title="Overwrite Objectives Data"
+                button_colour="green"
               />
             }
           />
@@ -66,11 +73,12 @@ const IntroductionSection = (props) => {
       </Stack>
     </Section>
   );
-};
+}
 
-const FlavorSection = (props) => {
-  const { data } = useBackend<Info>();
+function FlavorSection(props) {
+  const { data } = useBackend<Data>();
   const { allies, goal } = data;
+
   return (
     <Section
       fill
@@ -86,9 +94,9 @@ const FlavorSection = (props) => {
             You don't have to follow it, unless you want some
             ideas for how to spend the round.`}
           */
-          tooltip={`
+          tooltip="
             Please refer to the 'Antagonist Policy' section of the wiki
-            if you have any questions.`}
+            if you have any questions."
           tooltipPosition="bottom-start"
         />
       }
@@ -126,21 +134,22 @@ const FlavorSection = (props) => {
       </Stack>
     </Section>
   );
-};
+}
 
-const CodewordsSection = (props) => {
-  const { data } = useBackend<Info>();
+function CodewordsSection(props) {
+  const { data } = useBackend<Data>();
   const { has_codewords, phrases, responses } = data;
+
   return (
     <Section title="Codewords" mb={!has_codewords && -1}>
       <Stack fill>
-        {(!has_codewords && (
+        {!has_codewords ? (
           <BlockQuote>
             You have not been supplied the Syndicate codewords. You will have to
             use alternative methods to find potential allies. Proceed with
             caution, however, as everyone is a potential foe.
           </BlockQuote>
-        )) || (
+        ) : (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
@@ -172,36 +181,21 @@ const CodewordsSection = (props) => {
       </Stack>
     </Section>
   );
-};
+}
 
-export const AntagInfoMalf = (props) => {
-  const { act, data } = useBackend<Info>();
-  const { processingTime, categories } = data;
-  const [antagInfoTab, setAntagInfoTab] = useState(0);
-  const categoriesList: string[] = [];
-  const items: Item[] = [];
-  for (let i = 0; i < categories.length; i++) {
-    const category = categories[i];
-    categoriesList.push(category.name);
-    for (let itemIndex = 0; itemIndex < category.items.length; itemIndex++) {
-      const item = category.items[itemIndex];
-      items.push({
-        id: item.name,
-        name: item.name,
-        icon: item.icon,
-        icon_state: item.icon_state,
-        category: category.name,
-        cost: `${item.cost} PT`,
-        desc: item.desc,
-        disabled: processingTime < item.cost,
-      });
-    }
-  }
+enum Screen {
+  Intro,
+  Modules,
+}
+
+export function AntagInfoMalf(props) {
+  const [antagInfoTab, setAntagInfoTab] = useState<Screen>(Screen.Intro);
+
   return (
     <Window
       width={660}
       height={530}
-      theme={(antagInfoTab === 0 && 'hackerman') || 'malfunction'}
+      theme={antagInfoTab === Screen.Intro ? 'hackerman' : 'malfunction'}
     >
       <Window.Content style={{ fontFamily: 'Consolas, monospace' }}>
         <Stack vertical fill>
@@ -209,21 +203,21 @@ export const AntagInfoMalf = (props) => {
             <Tabs fluid>
               <Tabs.Tab
                 icon="info"
-                selected={antagInfoTab === 0}
-                onClick={() => setAntagInfoTab(0)}
+                selected={antagInfoTab === Screen.Intro}
+                onClick={() => setAntagInfoTab(Screen.Intro)}
               >
                 Information
               </Tabs.Tab>
               <Tabs.Tab
                 icon="code"
-                selected={antagInfoTab === 1}
-                onClick={() => setAntagInfoTab(1)}
+                selected={antagInfoTab === Screen.Modules}
+                onClick={() => setAntagInfoTab(Screen.Modules)}
               >
                 Malfunction Modules
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
-          {(antagInfoTab === 0 && (
+          {antagInfoTab === Screen.Intro ? (
             <>
               <Stack.Item grow>
                 <Stack fill>
@@ -239,15 +233,10 @@ export const AntagInfoMalf = (props) => {
                 <CodewordsSection />
               </Stack.Item>
             </>
-          )) || (
-            <Stack.Item>
-              <Section>
-                <GenericUplink
-                  categories={categoriesList}
-                  items={items}
-                  currency={`${processingTime} PT`}
-                  handleBuy={(item) => act('buy', { name: item.name })}
-                />
+          ) : (
+            <Stack.Item grow>
+              <Section fill>
+                <MalfAiModules />
               </Section>
             </Stack.Item>
           )}
@@ -255,4 +244,4 @@ export const AntagInfoMalf = (props) => {
       </Window.Content>
     </Window>
   );
-};
+}

@@ -141,16 +141,16 @@
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 
 	if(!panel_open)
-		balloon_alert(user, span_warning("Open the panel first!"))
+		balloon_alert(user, "open the panel first!")
 		return TRUE
 
 	if(generator)
-		balloon_alert(user, span_warning("Disconnect [generator] first!"))
+		balloon_alert(user, "disconnect [generator] first!")
 		return TRUE
 
 	set_anchored(!anchored)
 	I.play_tool_sound(src)
-	balloon_alert(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
+	balloon_alert(user, "you [anchored?"secure":"unsecure"] [src].")
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
@@ -203,22 +203,22 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	if(generator)
-		balloon_alert(user, span_warning("Disconnect [generator] first!"))
+		balloon_alert(user, "disconnect [generator] first!")
 		return TRUE
 
 	mode = !mode
-	balloon_alert(user, span_notice("You set [src] to [mode?"cold":"hot"] mode."))
+	balloon_alert(user, "you set [src] to [mode?"cold":"hot"] mode.")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(generator)
-		balloon_alert(user, span_warning("Disconnect the generator first!"))
+		balloon_alert(user, "disconnect the generator first!")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	balloon_alert(user, span_notice("You [panel_open?"open":"close"] the panel on [src]."))
+	balloon_alert(user, "you [panel_open?"open":"close"] the panel on [src].")
 	update_icon_nopipes()
 	return TRUE
 
@@ -234,7 +234,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
 	if(anchored)
-		balloon_alert(user, span_warning("[src] is anchored!"))
+		balloon_alert(user, "[src] is anchored!")
 		return TRUE
 	if(!panel_open)
 		circulator_flip()
@@ -268,7 +268,7 @@
 	if(!ishuman(usr))
 		return
 	flipped = !flipped
-	balloon_alert(usr, span_notice("You flip [src]."))
+	balloon_alert(usr, "you flip [src].")
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
 	update_icon_nopipes()
 

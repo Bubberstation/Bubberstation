@@ -47,7 +47,7 @@
 
 	range = 14
 
-	speed = 2 // Higher means slower, y'all
+	speed = 0.5
 
 	sharpness = NONE
 

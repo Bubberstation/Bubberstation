@@ -56,7 +56,7 @@
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
-    //ckeywhitelist = list("raxraus")
+	//ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/uniform/rax_banded_uniform
@@ -139,16 +139,19 @@
 /datum/loadout_item/head/caligram_cap_tan
 	name = "Blacktide Tan Softcap"
 	item_path = /obj/item/clothing/head/caligram_cap_tan
+	can_be_reskinned = TRUE
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/uniform/caligram_fatigues_tan
 	name = "Blacktide Tan Fatigues"
 	item_path = /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
+	can_be_reskinned = TRUE
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_tan
 	name = "Blacktide Tan Coat"
 	item_path = /obj/item/clothing/suit/jacket/caligram_parka_tan
+	can_be_reskinned = TRUE
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_vest_tan
@@ -156,6 +159,7 @@
 	item_path = /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/suit/brasspriest
 	name = "Brasspriest Coat"
@@ -587,21 +591,25 @@
 	item_path = /obj/item/clothing/suit/armor/hos/elofy
 //	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/elofy
 	name = "Solar Admiral Hat"
 	item_path = /obj/item/clothing/head/hats/hos/elofy
 	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/gloves/elofy
 	name = "Solar Admiral Gloves"
 	item_path = /obj/item/clothing/gloves/elofy
+	can_be_reskinned = TRUE
 //	ckeywhitelist = list("october23")
 
 /datum/loadout_item/shoes/elofy
 	name = "Solar Admiral Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/elofy
+	can_be_reskinned = TRUE
 //	ckeywhitelist = list("october23")
 
 /datum/loadout_item/pocket_items/transponder
@@ -616,7 +624,7 @@
 
 /datum/loadout_item/uniform/caged_dress
 	name = "Caged Purple Dress"
-	item_path = /obj/item/clothing/under/caged_dress
+	item_path = /obj/item/clothing/under/caged_dress/skirt
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/shortcoat
@@ -682,23 +690,19 @@
 /datum/loadout_item/suit/lt3_armor
 	name = "Silver Jacket Mk II"
 	item_path = /obj/item/clothing/suit/armor/skyy
-	//ckeywhitelist = list("lt3")
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
 
 /datum/loadout_item/suit/lt3_jacket
 	name = "Silver Jacket"
 	item_path = /obj/item/clothing/suit/jacket/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/uniform/miscellaneous/lt3_jeans
 	name = "Silver Jeans"
 	item_path = /obj/item/clothing/under/pants/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/gloves/lt3_gloves
 	name = "Charcoal Fingerless Gloves"
 	item_path = /obj/item/clothing/gloves/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/toys/switchcomb
 	name = "Switchblade Comb"
@@ -713,7 +717,7 @@
 /datum/loadout_item/inhand/officialcat
 	name = "Official Cat Stamp"
 	item_path = /obj/item/stamp/cat
-	ckeywhitelist = list("kathrinbailey")
+//	ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/inhand/hardlight_wheelchair
 	name = "Hardlight Wheelchair Projector"
@@ -754,6 +758,7 @@
 	name = "Graceful Trenchcoat"
 	item_path = /obj/item/clothing/neck/trenchcoat
 	ckeywhitelist = list("Smol42", "Awers855")
+	can_be_reskinned = TRUE
 
 /datum/loadout_item/uniform/old_qm_jumpskirt
 	name = "Old Quartermaster's Jumpskirt"

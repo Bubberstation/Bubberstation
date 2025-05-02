@@ -26,7 +26,7 @@
 		return
 
 	var/mob/living/carbon/target_carbon = signal_source.loc
-	var/obj/item/organ/external/taur_body/taur_body = target_carbon.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+	var/obj/item/organ/taur_body/taur_body = target_carbon.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 	if (!istype(taur_body))
 		return
 	var/icon_dir = target_carbon.dir
@@ -35,7 +35,7 @@
 	var/offset = taur_body.taur_specific_clothing_y_offsets?["[icon_dir]"]
 	if (!offset)
 		return
-	standing.pixel_y += offset
+	standing.pixel_z += offset
 
 /// Signal handler for COMSIG_ITEM_EQUIPPED. Handles registering signals.
 /datum/component/taur_clothing_offset/proc/parent_equipped(datum/signal_source, mob/equipper, slot)
@@ -56,7 +56,7 @@
 /datum/component/taur_clothing_offset/proc/wearer_dir_changed(mob/living/carbon/human/signal_source, old_dir, new_dir)
 	SIGNAL_HANDLER
 
-	var/obj/item/organ/external/taur_body/taur_body = signal_source.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
+	var/obj/item/organ/taur_body/taur_body = signal_source.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 	if (isnull(taur_body))
 		return
 

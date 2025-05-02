@@ -92,6 +92,8 @@
 				/obj/item/toy/plush/skyrat/plushie_synthia = 3,
 				/obj/item/toy/plush/skyrat/jecca = 3,
 				/obj/item/toy/plush/skyrat/courier_synth = 3,
+				/obj/item/toy/plush/androiddog = 3,
+				/obj/item/toy/plush/mothroach_plush = 3,
 			),
 		),
 

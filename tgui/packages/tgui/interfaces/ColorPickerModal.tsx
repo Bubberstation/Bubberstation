@@ -14,26 +14,26 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import { clamp } from 'common/math';
-import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Interaction, Interactive } from 'tgui/components/Interactive';
-
-import { useBackend } from '../backend';
 import {
+  Autofocus,
   Box,
   Button,
   Flex,
   NumberInput,
-  Pointer,
   Section,
   Stack,
   Tooltip,
-} from '../components';
-import { Autofocus } from '../components/Autofocus';
+} from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
+import { Interaction, Interactive } from './common/Interactive';
 import { Loader } from './common/Loader';
+import { Pointer } from './common/Pointer';
 
 interface ColorPickerData {
   autofocus: boolean;

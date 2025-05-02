@@ -1,0 +1,164 @@
+2024-01-03:
+  Majkl-J:
+  - qol: Synth computers now show the current charge of the synth
+  - qol: Synth power cord now charges you more than before
+  - balance: Synth computer capacity is now back to 64, from Skyrat 32
+2024-01-04:
+  Majkl-J:
+  - rscdel: Removes broken stealthmerge change
+  - bugfix: Biodome now has the bitrunner vendor
+  Sylphet:
+  - bugfix: added cmo turtleneck/skirtleneck to garment bag
+2024-01-05:
+  Arturlang:
+  - bugfix: Observing works again.
+2024-01-06:
+  LT3:
+  - image: Colorable jean skirt is now adjustable
+  - bugfix: Morgue trays and freezing temperatures will no longer husk bodies
+  - bugfix: Organs outside bodies will properly receive cold damage
+  Majkl-J:
+  - qol: Subtler sound can now be toggled in game prefs
+  - rscadd: The syndicate access override on the Dauntless now includes the radio
+      key
+  - rscadd: Windows on Dauntless robotics
+  ReturnToZender:
+  - rscadd: role restriction to the tactical boots
+  - rscadd: two more goobers to the pinwheel list
+  - rscdel: restricted_roles on the mech suit, so anyone can wear it
+  - bugfix: /datum/armor/none added to the colorable arm wraps in loadout
+  - rscdel: redundant mech suit
+  StrangeWeirdKitten:
+  - bugfix: You can no longer dodge nose boops if you have a sensitive snout
+  nevimer:
+  - bugfix: dnr behavior is consistent again
+2024-01-07:
+  LT3:
+  - bugfix: Character directory will show all fields without resizing
+2024-01-09:
+  LT3:
+  - config: Adjusted population thresholds for certain random events
+  Majkl-J:
+  - rscdel: The mask FOV is gone
+2024-01-11:
+  Huskil & Orion:
+  - rscadd: Added cowprint bra and underwear
+  LT3:
+  - rscadd: Runechat message colour is now a character preference
+  theselfish:
+  - rscadd: ACTUALLY REALLY Lets Clown and Mime slots be opened again.
+2024-01-13:
+  Deek-Za:
+  - rscadd: Added redsec armor and belt reskin option
+  - bugfix: Adjusted redsec boots sprite to be more in-line with peacekeeper style
+  - image: Added new sprite for redsec gloves in peacekeeper style
+  Kyogon:
+  - rscadd: The new MultiSec vendor, containing all the Security clothing in one.
+  - rscadd: A new custom sprite for the MultiSec vendor.
+  - rscdel: Insertion file for Civil Protection suits, moving them into native vendor
+      lists.
+  SarmentiCampbell:
+  - balance: removed abductor's wounds immunity and delimbs.
+  - balance: Normal Zombies, not infectious types are no longer immune to pressure.
+2024-01-14:
+  BurgerBB:
+  - rscdel: Removes/rewords some Gimmick objectives, and adds some new ones.
+  ReturnToZender, LT3, Waterpig:
+  - rscadd: NSFW flavor text (for players and silicons)
+  - rscadd: New examine panel with slightly bigger font, easier to read, also integrates
+      most of the new preferences
+  - rscadd: Flavor text requirements now respect silicon flavor text, thanks to @lessthnthree
+  StrangeWeirdKitten:
+  - balance: gives medical borgs back their crew monitors
+2024-01-16:
+  IgiariValkyr:
+  - rscadd: Centcom Administration has moved to the Interlink
+  YakumoChen:
+  - rscadd: Security, HoS, Captain, Blueshield, and Centcom roles have had armour
+      booster modules built into their modsuits. Most do not reduce the slowdown of
+      your suit (except the HoS one)
+  - balance: Armour values in said modsuits have been halved across the board, with
+      the lost values moved to the armour boosters.
+  - balance: Effectively, armour in EVA combat is severely nerfed for everyone except
+      the syndicate who already had armour boosters.
+2024-01-17:
+  Arturlang:
+  - rscadd: Add bloodsuckers, a new reason to fear maintenance and the dark. Don't
+      go out there alone, or you might wake up pale and fainting.
+  BurgerBB:
+  - balance: Blob Fake Announcements are now followed by a clarification 60 to 180
+      seconds later.
+  StrangeWeirdKitten:
+  - code_imp: Switches the emergancy shuttle to Centcom instead of the Interlink
+  thegrb93:
+  - rscadd: Borg dominatrix module to lustwish that gives them some dominatrix toys
+2024-01-18:
+  Majkl-J:
+  - qol: Crew monitor consoles receive a new firmware update to address recent complaints,
+      removing the low health alarm on DNR and low sensor settings
+  - code_imp: Introduced get_dnr() proc
+  nevimer:
+  - rscadd: Shortcuts to internet relays are now on the top menu bar.
+2024-01-19:
+  BurgerBB:
+  - balance: Balances or outright removes some wizard spells.
+  - balance: Reworks or removes some wizard events so they're more roleplay friendly.
+2024-01-22:
+  Thlumyn, Arta/Maxi for the sprites:
+  - rscadd: Added peacock tails
+2024-01-23:
+  ReturnToZender, SpaceManJim (sprites):
+  - rscadd: Animated raptorborg sprites
+  YakumoChen:
+  - rscdel: After the introduction of the Multisec Vendor, stations are no longer
+      shipped with an additional Redsec vendor.
+2024-01-24:
+  BurgerBB:
+  - rscdel: Removes Slaughter Demons from the wizard spellbook.
+  - balance: Laughter Demons cost 2 points (instead of 1), and are limited to 1 purchase
+      per wizard.
+  pixelkitty286:
+  - rscadd: F3-LINE
+  - image: added felibot_all.dmi
+  - code_imp: modular robot_model.dm
+2024-01-25:
+  BurgerBB:
+  - rscadd: Adds Moon Station
+  - rscdel: Removes Burgerstation
+  TealSeer:
+  - bugfix: Dropdown options for quirks should now function properly
+  - bugfix: Randomize button in character prefs should look normal
+2024-01-27:
+  BurgerBB:
+  - rscadd: Replaces the Oh Hi Daniel shuttle with a similar shuttle.
+  Sylphet:
+  - rscadd: added vertical variants of the pride flags used in biodome
+  - image: resprited horizontal pride flags used in biodome
+  aKromatopzia:
+  - rscadd: digitigrade cybernetic legs, and the ability to select them in preferences
+2024-01-28:
+  Kepteyn:
+  - rscadd: Added a xenomorph plushie.
+  - rscadd: 'Added a xenomorph maid plushie.
+
+      :cl:'
+2024-01-29:
+  BurgerBB:
+  - bugfix: Fixes some Moonstation things (Fixes mining shuttle not having power,
+      Honkbot in clown's room starts unconstructed, Fixes missing Bar lighting, Fixes
+      missing emergency atmos in maint, Fixes missing robodrobe)
+  Cyprex:
+  - server: We've added a new relay, located in the city of Singapore!
+  pixelkitty286:
+  - sound: Add synth_scary.ogg synth_error.ogg synth_startup.ogg synth_shutdown.ogg
+  - code_imp: modular synth_emotes.dm
+2024-01-30:
+  AtoriBirb:
+  - image: added white/black sprites for worn/in hand.
+  - code_imp: added variant code to krav maga sec gloves
+  Majkl-J:
+  - image: Sexy snoodle plushie inhand sprite
+  ReturnToZender, Gax (Sprites):
+  - rscadd: Vale clownborg sprites are now available!
+  - bugfix: Fancy raptors have had their hat bounce fixed, Syndicate raptors have
+      their headlamp overlays properly implemented.

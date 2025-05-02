@@ -29,9 +29,10 @@
 		// This also helps for when the modsuit is out of power, as (to my awareness), there is no way currently to turn on someone else's entombed modsuit.
 		return
 	if (!modsuit || life_support_failed)
-		// we've got no modsuit or life support. take damage ow
-		human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
-		human_holder.set_jitter_if_lower(10 SECONDS)
+		if (!HAS_TRAIT(human_holder, TRAIT_STASIS))
+			// we've got no modsuit or life support and we're not on stasis. take damage ow
+			human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
+			human_holder.set_jitter_if_lower(10 SECONDS)
 
 	if (!modsuit.active)
 		if (!life_support_timer)
@@ -58,7 +59,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
 	human_holder.visible_message(span_danger("[human_holder] suddenly staggers, a dire pallor overtaking [human_holder.p_their()] features as a feeble 'breep' emanates from their suit..."), span_userdanger("Terror descends as your suit's life support system breeps feebly, and then goes horrifyingly silent."))
-	human_holder.balloon_alert(human_holder, "SUIT LIFE SUPPORT FAILING!")
+	human_holder.balloon_alert(human_holder, UNLINT("SUIT LIFE SUPPORT FAILING!"))
 	playsound(human_holder, 'sound/effects/alert.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE) // OH GOD THE STRESS NOISE
 	life_support_failed = TRUE
 
@@ -88,7 +89,7 @@
 	if (modsuit_skin == NONE)
 		modsuit_skin = "civilian"
 
-	modsuit.skin = lowertext(modsuit_skin)
+	modsuit.skin = LOWER_TEXT(modsuit_skin)
 
 	var/modsuit_name = client_source?.prefs.read_preference(/datum/preference/text/entombed_mod_name)
 	if (modsuit_name)
@@ -100,7 +101,7 @@
 
 	var/modsuit_skin_prefix = client_source?.prefs.read_preference(/datum/preference/text/entombed_mod_prefix)
 	if (modsuit_skin_prefix)
-		modsuit.theme.name = lowertext(modsuit_skin_prefix)
+		modsuit.theme.name = LOWER_TEXT(modsuit_skin_prefix)
 
 	// ensure we're applying our config theme changes, just in case
 	for(var/obj/item/part as anything in modsuit.get_parts())
@@ -113,7 +114,7 @@
 	if (force_dropped_items)
 		var/obj/item/old_bag = locate() in force_dropped_items
 		if (old_bag.atom_storage)
-			old_bag.atom_storage.dump_content_at(modsuit, human_holder)
+			old_bag.atom_storage.dump_content_at(modsuit, modsuit.get_dumping_location(), human_holder)
 
 /datum/quirk/equipping/entombed/post_add()
 	. = ..()
@@ -175,7 +176,8 @@
 	return "Civilian"
 
 /datum/preference/choiced/entombed_skin/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -191,7 +193,8 @@
 	maximum_value_length = 48
 
 /datum/preference/text/entombed_mod_name/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -216,7 +219,8 @@
 	can_randomize = FALSE
 
 /datum/preference/text/entombed_mod_desc/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks
@@ -242,7 +246,8 @@
 	maximum_value_length = 16
 
 /datum/preference/text/entombed_mod_prefix/is_accessible(datum/preferences/preferences)
-	if (!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	return "Entombed" in preferences.all_quirks

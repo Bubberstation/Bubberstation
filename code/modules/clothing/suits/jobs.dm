@@ -26,6 +26,7 @@
 		/obj/item/secateurs,
 		/obj/item/seeds,
 		/obj/item/storage/bag/plants,
+		/obj/item/tank/internals/emergency_oxygen,
 	)
 	species_exception = list(/datum/species/golem)
 	armor_type = /datum/armor/suit_apron
@@ -54,7 +55,7 @@
 
 /obj/item/clothing/suit/apron/overalls/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 //Captain
 /obj/item/clothing/suit/jacket/capjacket
@@ -356,7 +357,7 @@
 
 /obj/item/clothing/suit/apron/surgical/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2) // FISH DOCTOR?!
+	AddComponent(/datum/component/adjust_fishing_difficulty, -3) // FISH DOCTOR?!
 
 //Curator
 /obj/item/clothing/suit/jacket/curator
