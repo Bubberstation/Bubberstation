@@ -5,6 +5,6 @@
 	. = ..()
 
 /mob/remove_client_colour(source)
-	if(!ispath(source))
+	if(ispath(source))
 		stack_trace("[src] tried to remove a client colour with a path source.")
 	. = ..()
