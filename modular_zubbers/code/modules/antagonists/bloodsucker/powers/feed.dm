@@ -36,6 +36,8 @@
 	var/list/targets_and_blood = list()
 	/// What level of protection you need to prevent feeding
 	var/penetration = INJECT_CHECK_PENETRATE_THICK
+	///Did we start feeding with aggressive grab or not, or grabbed by someone else?
+	var/aggressive_feed = TRUE
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
 	. = list()
@@ -46,6 +48,7 @@
 	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
 	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
 	. += "If you are in desperate need of blood, mice can be fed off of, at a cost to your humanity."
+	. += "If you are handcuffed, you can use feed to feed off whoever is grabbing you, however this is slower, and very obvious."
 	. += "You must use the ability again to stop sucking blood."
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
@@ -73,7 +76,7 @@
 		return FALSE
 	if(!user.Adjacent(target))
 		return FALSE
-	if(check_aggresive_grab && check_aggro_feed(target))
+	if(check_aggresive_grab && !check_aggro_feed(target))
 		return FALSE
 	return TRUE
 
@@ -130,6 +133,7 @@
 		target_ref = null
 		return FALSE
 	if(check_aggro_feed(feed_target))
+		aggressive_feed = TRUE
 		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
@@ -138,12 +142,14 @@
 			span_warning("[owner] closes [owner.p_their()] mouth around [feed_target]'s neck!"),
 			span_warning("You sink your fangs into [feed_target]'s neck."))
 	else
+		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
 		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not remember this.</i>" : ""
 		owner.visible_message(
-			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."), \
-			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"), \
-			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target)
+			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
+			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
+			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target
+		)
 
 	check_if_seen(feed_target)
 
@@ -176,9 +182,8 @@
 	if(!feed_target)
 		DeactivatePower()
 		return
-	var/aggro_feed = check_aggro_feed(feed_target)
-	if(!ContinueActive(user, feed_target, aggro_feed))
-		if(aggro_feed)
+	if(!ContinueActive(user, feed_target, aggressive_feed))
+		if(aggressive_feed)
 			user.visible_message(
 				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"),
 				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!")
@@ -202,7 +207,7 @@
 		return
 
 	var/feed_strength_mult = 0.3
-	if(aggro_feed)
+	if(aggressive_feed)
 		feed_strength_mult = 1
 	if(bloodsuckerdatum_power.frenzied)
 		feed_strength_mult *= 2
@@ -243,11 +248,13 @@
 		return
 	owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, TRUE)
 	//play sound to target to show they're dying.
-	if(aggro_feed)
+	if(aggressive_feed)
 		feed_target.playsound_local(get_turf(src), 'sound/effects/singlebeat.ogg', 40, TRUE)
 
 /datum/action/cooldown/bloodsucker/feed/proc/check_aggro_feed(mob/living/feed_target)
-	if((owner.pulling != feed_target && owner.grab_state >= GRAB_AGGRESSIVE) && feed_target.pulling != owner)
+	var/mob/living/carbon/carbon = owner
+	if(owner.pulling != feed_target && owner.pulledby != feed_target
+	|| (feed_target.pulledby != owner && iscarbon(carbon) && carbon.handcuffed))
 		return FALSE
 	return TRUE
 
@@ -259,6 +266,10 @@
 		return TRUE
 	if(bloodsuckerdatum_power.frenzied)
 		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
+		return FALSE
+	var/mob/living/carbon/carbon = owner
+	if(iscarbon(carbon) && carbon.handcuffed)
+		owner.balloon_alert(owner, "you cannot stealthfully feed while handcuffed!")
 		return FALSE
 	var/list/close_living_mobs = list()
 	var/list/close_dead_mobs = list()
