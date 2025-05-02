@@ -89,6 +89,13 @@
 #define CYBORG_ICON_SCI 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_sci.dmi'
 #define CYBORG_ICON_SCI_HAYDEE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/curverobot_sci.dmi'
 
+//TARKON BORG ICON DEFINES
+#define CYBORG_ICON_TARKON 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_tarkon.dmi'
+#define CYBORG_ICON_TARKON_WIDE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/widerobot_tarkon.dmi'
+#define CYBORG_ICON_TARKON_TALL_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/tallrobot_tarkon.dmi'
+#define CYBORG_ICON_TARKON_LARGE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/largerobot_tarkon.dmi'
+#define CYBORG_ICON_TARKON_HAYDEE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/curverobot_tarkon.dmi'
+
 // RAPTOR BORG ICON TYPE DEFINE
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
 

@@ -34,7 +34,7 @@
 
 /datum/techweb_node/tarkonturret //Yes. Tarkon does not start with this unlocked.
 	id = "tarkondefence"
-	display_name = "Tarkon Industries Technology"
+	display_name = "Tarkon Industries Defensive Technology"
 	description = "Tarkon Industries Blackrust Salvage division's defense designs."
 	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
 	design_ids = list(
@@ -43,6 +43,7 @@
 		"target_designator",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	hidden = TRUE
 
 /datum/design/hoplite_assembly
 	name = "Hoplite Turret Assembly"
@@ -60,6 +61,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_WEAPONS_KITS
 	)
+
 /datum/design/cerberus_assembly
 	name = "Cerberus Turret Assembly"
 	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Cerberus\" model."
@@ -76,6 +78,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_WEAPONS_KITS,
 	)
+
 /datum/design/target_designator
 	name = "Turret Target Designator"
 	desc = "A basic target designator designed to control magazine-fed turrets."
