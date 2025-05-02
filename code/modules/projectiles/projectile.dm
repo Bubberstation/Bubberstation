@@ -269,6 +269,7 @@
 	// SKYRAT EDIT ADDITION START
 	/// If this should be able to hit the target even on direct firing when `ignored_factions` applies
 	var/ignore_direct_target = FALSE
+	var/projectile_flags = NONE	/// BUBBER EDIT
 	// SKYRAT EDIT ADDITION END
 	/// How much accuracy is lost for each tile travelled
 	var/accuracy_falloff = 7

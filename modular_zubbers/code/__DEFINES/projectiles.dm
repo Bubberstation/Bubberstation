@@ -1,0 +1,1 @@
+#define MECH_HIT_PASSENGER (1<<0)

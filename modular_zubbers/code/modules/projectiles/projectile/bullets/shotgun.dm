@@ -17,6 +17,7 @@
 	wound_bonus = 10
 	projectile_piercing = PASSMOB|PASSVEHICLE
 	projectile_phasing = ~(PASSMOB|PASSVEHICLE)
+	projectile_flags = MECH_HIT_PASSENGER
 	max_pierces = 4
 	phasing_ignore_direct_target = TRUE
 	dismemberment = 0 //goes through clean.
