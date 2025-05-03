@@ -33,12 +33,10 @@
 
 /datum/techweb_node/riot_supression/New()
 	design_ids += "s12g_br"
-	design_ids += "m9mm_mag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "s12g_incinslug"
-	design_ids += "sol_bolt_to_rifle"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
