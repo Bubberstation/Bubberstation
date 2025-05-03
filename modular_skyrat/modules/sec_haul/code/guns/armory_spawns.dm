@@ -69,3 +69,11 @@
 		/obj/item/gun/energy/laser,
 		/obj/item/gun/energy/e_gun,
 	)
+
+/obj/effect/spawner/armory_spawn/smg
+	vertical_guns = FALSE
+	guns = list(
+		/obj/item/gun/ballistic/automatic/wt550,
+		/obj/item/gun/ballistic/automatic/wt550,
+		/obj/item/gun/ballistic/automatic/wt550,
+	)
