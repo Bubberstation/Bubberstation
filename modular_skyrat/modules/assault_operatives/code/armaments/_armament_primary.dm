@@ -90,14 +90,6 @@
 /datum/armament_entry/assault_operatives/primary/shotgun_ammo/rubber
 	item_type = /obj/item/ammo_box/advanced/s12gauge/rubber
 
-/datum/armament_entry/assault_operatives/primary/shotgun_ammo/flechette
-
-
-/datum/armament_entry/assault_operatives/primary/shotgun_ammo/magnum
-
-
-/datum/armament_entry/assault_operatives/primary/shotgun_ammo/beehive
-
 
 /datum/armament_entry/assault_operatives/primary/shotgun_ammo/incendiary
 	item_type = /obj/item/ammo_box/advanced/s12gauge/incendiary
