@@ -288,3 +288,38 @@
   - rscadd: scanner gates can now be set to detect certain nanite cloud IDs
   - bugfix: the minimum values for "stamina damage end degradation percent" and "crit
       threshold end degradation percent" are now 1 instead of 0
+2025-04-28:
+  ArrisFairburne:
+  - bugfix: Fixed the EMP damage cooldown on synth organs not activating. Synths now
+      require a 10 second pause between EMPs to deal further damage to them.
+  - bugfix: fixed synths not getting their NTOS apps installed on their brain automatically,
+      if they joined secmed or any medical dept. role
+  CydiaButt13:
+  - rscadd: Added new SPLURT penis/balls/breasts sprites
+  - rscadd: 37 new Malkavian revelation lines
+  - rscdel: 48 Memey Malkavian revelation lines.
+  thegrb93:
+  - bugfix: Ashwalkers unable to craft arrows
+2025-04-29:
+  Arturlang:
+  - bugfix: Refactors syndi maid armor, it should work more reliably, or break more
+      hilariously.
+  - balance: Syndi maid armor no longer has maximum bio/acid armor
+  Lazhannya:
+  - rscadd: A way to craft the Detective's Notice Board with wooden planks.
+  TealSeer:
+  - bugfix: getting admin healed no longer makes you drop to the floor and then get
+      up
+  - bugfix: hairline and compound fractures are no longer instantly healed with bone
+      gel, sorry!
+  - bugfix: fixed port tarkon bounty pad returning 0 for all sales
+  - bugfix: fixed the featherweight quirk doing nothing when you're picked up
+  - bugfix: fixed rider always layering above carrier when fireman carrying/piggybacking
+  nevimer:
+  - code_imp: moffson should work without needing an ai to be damaged now.
+  thegrb93:
+  - rscdel: Remove asynchronous blinking due to eyes getting stuck closed
+2025-04-30:
+  TealSeer:
+  - bugfix: fixed loadout item customization breaking job equipment under certain
+      circumstances
