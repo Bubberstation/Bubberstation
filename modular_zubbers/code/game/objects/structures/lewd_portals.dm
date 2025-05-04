@@ -134,6 +134,13 @@
 	///The previous portal placed by the bore, recorded so that they can be linked.
 	var/obj/structure/lewd_portal/previous_portal
 
+/obj/item/wallframe/lewd_portal/examine(mob/user)
+	. = ..()
+	var/inspect_mode = "gloryhole"
+	if(creation_mode == WALLSTUCK)
+		inspect_mode = "stuck in wall"
+	. += span_notice("Its currently in [inspect_mode] mode.")
+
 /obj/item/wallframe/lewd_portal/after_attach(obj/attached_to)
 	var/obj/structure/lewd_portal/portal_result = attached_to
 	portal_result.portal_mode = creation_mode
@@ -149,7 +156,7 @@
 	if(previous_portal)
 		balloon_alert(user, "portals must match")
 		return
-	if(creation_mode = GLORYHOLE)
+	if(creation_mode == GLORYHOLE)
 		creation_mode = WALLSTUCK
 		balloon_alert(user, "switched to stuck in wall mode")
 	else
