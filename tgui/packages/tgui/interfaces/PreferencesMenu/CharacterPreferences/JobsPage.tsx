@@ -379,51 +379,141 @@ function JoblessRoleDropdown(props) {
   );
 }
 
+// export function JobsPage() {
+//   return (
+//     <>
+//       <JoblessRoleDropdown />
+//       <Stack vertical fill>
+//         <Gap amount={22} />
+
+//         <Stack.Item mt={15}>
+//           {/* BUBBER EDIT CHANGE */}
+//           {/*
+//           <Stack fill g={1} className="PreferencesMenu__Jobs">
+//             <Stack.Item mr={1}>
+//               <Gap amount={36} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Engineering">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Science">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Silicon">
+//                 <Gap amount={12} />
+//               </Department>
+
+//               <Department department="Assistant" />
+//             </Stack.Item>
+
+//             <Stack.Item mr={1}>
+//               <PriorityHeaders />
+
+//               <Department department="Captain">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Service">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Cargo" />
+//             </Stack.Item>
+
+//             <Stack.Item>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Engineering" />
+//                 <Department department="Science" />
+//                 <Department department="Silicon" />
+//                 <Department department="Assistant" />
+//               </Stack>
+//             </Stack.Item>
+//             <Stack.Item mt={-5.9}>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Captain" />
+//                 <Department department="Service" />
+//                 <Department department="Cargo" />
+//               </Stack>
+//             </Stack.Item>
+//             <Stack.Item>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Security" />
+//                 <Department department="Medical" />
+//               </Stack>
+//             </Stack.Item>
+//           </Stack>
+//           */}
+//           <Stack fill className="PreferencesMenu__Jobs">
+//             <Stack.Item mr={1}>
+//               <Gap amount={45} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Engineering">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Security">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Silicon">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Assistant" />
+//             </Stack.Item>
+
+//             <Stack.Item mr={1}>
+//               <Gap amount={45} />
+//               <PriorityHeaders />
+
+//               <Department department="Captain">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Service">
+//                 <Gap amount={6} />
+//               </Department>
+//             </Stack.Item>
+
+//             <Stack.Item>
+//               <Gap amount={45} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Science">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Medical">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Cargo" />
+//             </Stack.Item>
+//           </Stack>
+//           {/* BUBBER EDIT CHANGE END */}
+//         </Stack.Item>
+//       </Stack>
+//     </>
+//   );
+// }
+
 export function JobsPage() {
   return (
     <>
       <JoblessRoleDropdown />
       <Stack vertical fill>
-        <Gap amount={22} />
-
         <Stack.Item mt={15}>
-          {/* BUBBER EDIT CHANGE */}
-          {/*
           <Stack fill g={1} className="PreferencesMenu__Jobs">
-            <Stack.Item mr={1}>
-              <Gap amount={36} />
-
-              <PriorityHeaders />
-
-              <Department department="Engineering">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Science">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Silicon">
-                <Gap amount={12} />
-              </Department>
-
-              <Department department="Assistant" />
-            </Stack.Item>
-
-            <Stack.Item mr={1}>
-              <PriorityHeaders />
-
-              <Department department="Captain">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Service">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Cargo" />
-            </Stack.Item>
-
             <Stack.Item>
               <Stack vertical>
                 <PriorityHeaders />
@@ -449,58 +539,6 @@ export function JobsPage() {
               </Stack>
             </Stack.Item>
           </Stack>
-          */}
-          <Stack fill className="PreferencesMenu__Jobs">
-            <Stack.Item mr={1}>
-              <Gap amount={45} />
-
-              <PriorityHeaders />
-
-              <Department department="Engineering">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Security">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Silicon">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Assistant" />
-            </Stack.Item>
-
-            <Stack.Item mr={1}>
-              <Gap amount={45} />
-              <PriorityHeaders />
-
-              <Department department="Captain">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Service">
-                <Gap amount={6} />
-              </Department>
-            </Stack.Item>
-
-            <Stack.Item>
-              <Gap amount={45} />
-
-              <PriorityHeaders />
-
-              <Department department="Science">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Medical">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Cargo" />
-            </Stack.Item>
-          </Stack>
-          {/* BUBBER EDIT CHANGE END */}
         </Stack.Item>
       </Stack>
     </>
