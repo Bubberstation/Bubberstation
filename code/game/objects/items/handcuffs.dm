@@ -158,6 +158,7 @@
 		cuffs = new type()
 
 	target.equip_to_slot(cuffs, ITEM_SLOT_HANDCUFFED)
+	SEND_SIGNAL(target, COMSIG_MOB_HANDCUFFED) //BUBBER EDIT ADDITION
 
 	if(trashtype && !dispense)
 		qdel(src)

@@ -41,6 +41,7 @@
 	if (!isnull(linked_portal.current_mob))
 		balloon_alert(user, "portal already occupied!")
 		return FALSE
+	visible_message("[user] begins slotting [M] into the [src]")
 	if(!do_after(user, 5 SECONDS, M))
 		return
 	visible_message("[user] slots [M] into the [src]!")
@@ -71,7 +72,7 @@
 				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 		relayed_body.update_visuals()
 		head_only()
-		RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(head_only))
+		RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(head_only))
 		switch(dir)
 			if(NORTH)
 				current_mob.pixel_y += 12
@@ -105,7 +106,7 @@
 			current_mob.apply_overlay(BODY_LAYER)
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
-	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
+	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED))
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	qdel(relayed_body)
@@ -144,6 +145,16 @@
 		previous_portal = null
 	. = ..()
 
+/obj/item/wallframe/lewd_portal/attack_self(mob/user)
+	if(previous_portal)
+		balloon_alert(user, "portals must match")
+		return
+	if(creation_mode = GLORYHOLE)
+		creation_mode = WALLSTUCK
+		balloon_alert(user, "switched to stuck in wall mode")
+	else
+		creation_mode = GLORYHOLE
+		balloon_alert(user, "switched to gloryhole mode")
 
 /obj/lewd_portal_relay
 	name = "portal relay"
@@ -165,13 +176,13 @@
 	else
 		species_name = owner.dna.features["custom_species"]
 	name = LOWER_TEXT("[species_name] behind")
-	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR), PROC_REF(update_visuals))
+	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
 	interact_component?.body_relay = src
 
 /obj/lewd_portal_relay/Destroy(force)
-	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
+	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED))
 	visible_message("[src] vanishes into the portal!")
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)

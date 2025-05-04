@@ -12,3 +12,5 @@
 #define COMSIG_MOB_POST_EQUIP "mob_post_equip"
 /// From /mob/living/carbon/human/verb/toggle_undies()
 #define COMSIG_HUMAN_TOGGLE_UNDERWEAR "human_toggle_undies"
+/// From /obj/item/restraints/handcuffs/proc/apply_cuffs()
+#define COMSIG_MOB_HANDCUFFED "mob_handcuffed"
