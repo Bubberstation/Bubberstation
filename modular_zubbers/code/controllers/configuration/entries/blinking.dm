@@ -11,5 +11,5 @@
 /datum/config_entry/flag/blinking/proc/update_blinkers()
 	for(var/mob/living/carbon/human/blinker in GLOB.alive_mob_list)
 		var/obj/item/organ/eyes/eyes = blinker.get_organ_slot(ORGAN_SLOT_EYES)
-		eyes?.animate_eyelids(blinker)
+		eyes?.blink()
 		CHECK_TICK
