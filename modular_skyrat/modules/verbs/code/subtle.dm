@@ -151,30 +151,21 @@
 		var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 		if((get_dist(user.loc, target_mob.loc) <= subtler_range) || (hologram && get_dist(hologram.loc, target_mob.loc) <= subtler_range))
 			target_mob.show_message(subtler_message, alt_msg = subtler_message)
-			// Optional sound notification
-			var/datum/preferences/prefs = target_mob.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				target_mob.playsound_local(get_turf(target_mob), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+			subtler_sound(target_mob)
 		else
 			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
 	else if(istype(target, /obj/effect/overlay/holo_pad_hologram))
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
 			hologram.Impersonation.show_message(subtler_message, alt_msg = subtler_message)
-			// Optional sound notification
-			var/datum/preferences/prefs = hologram.Impersonation.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+			subtler_sound(hologram.Impersonation)
 	else if(istype(target, /obj/lewd_portal_relay)) //Direct Message to a portal user
 		var/obj/lewd_portal_relay/portal_relay = target
 		user.show_message(subtler_message, alt_msg = subtler_message)
 		if(portal_relay.owner?.client)
 			subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
 			portal_relay.owner.show_message(subtler_message, alt_msg = subtler_message)
-			// Optional sound notification
-			var/datum/preferences/prefs = portal_relay.owner.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				portal_relay.owner.playsound_local(get_turf(portal_relay.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+			subtler_sound(portal_relay.owner)
 	else
 		var/ghostless
 		if(target == PORTAL_SAME_TILE_TEXT || target == PORTAL_ONE_TILE_TEXT)
@@ -202,19 +193,21 @@
 		for(var/mob/receiver in ghostless)
 			receiver.show_message(subtler_message, alt_msg = subtler_message)
 			// Optional sound notification
-			var/datum/preferences/prefs = receiver.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+			subtler_sound(receiver)
 
 		for(var/obj/lewd_portal_relay/portal in ghostless) //Message portal owners caught in range
 			if(portal?.owner?.client && portal?.owner != user)
 				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
 				portal.owner.show_message(subtler_message, alt_msg = subtler_message)
-			var/datum/preferences/prefs = portal.owner.client?.prefs
-			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				portal.owner.playsound_local(get_turf(portal.owner), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+			subtler_sound(portal.owner)
 
 	return TRUE
+
+// Optional sound notification for subtler
+/datum/emote/living/subtler/proc/subtler_sound(var/mob/hearer)
+	var/datum/preferences/prefs = hearer.client?.prefs
+	if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
+		hearer.playsound_local(get_turf(hearer), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
 /*
 *	VERB CODE
