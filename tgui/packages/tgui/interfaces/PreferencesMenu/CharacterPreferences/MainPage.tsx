@@ -107,7 +107,7 @@ function CharacterControls(props: CharacterControlsProps) {
           tooltipPosition="top"
         />
       </Stack.Item>
-        {/* BUBBER EDIT ADDITION END */}
+      {/* BUBBER EDIT ADDITION END */}
 
       <Stack.Item>
         <Button

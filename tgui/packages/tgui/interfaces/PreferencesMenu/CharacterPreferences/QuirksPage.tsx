@@ -236,7 +236,7 @@ function QuirkPopper(props: QuirkPopperProps) {
           >
             {/* SKYRAT EDIT START - maxWidth to 400px from 300px */}
             <Stack maxWidth="400px" backgroundColor="black" px="5px" py="3px">
-            {/* SKYRAT EDIT END - maxWidth to 400px from 300px */}
+              {/* SKYRAT EDIT END - maxWidth to 400px from 300px */}
               <Stack.Item>
                 <PreferenceList
                   preferences={getCorrespondingPreferences(
