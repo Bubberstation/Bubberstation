@@ -46,7 +46,6 @@ SUBSYSTEM_DEF(statpanels)
 			"Connected: [GLOB.clients.len] | Active: [active_players]/[CONFIG_GET(number/hard_popcap)] | Observing: [observing_players]",
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]",
 			" ",
-			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]",
 			"Station Time: [station_time_timestamp(format = "hh:mm")], [current_date]",
 			"Round Time: [time2text(real_round_time, "hh:mm:ss", 0)]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
