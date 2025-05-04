@@ -256,38 +256,30 @@
 			else
 				extra_settings.Remove(NES_HALLUCINATION_DETAIL)
 
-/datum/nanite_program/good_mood
+/datum/nanite_program/mood
 	name = "Happiness Enhancer"
 	desc = "The nanites synthesize serotonin inside the host's brain, creating an artificial sense of happiness."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
+	var/mood_event = /datum/mood_event/nanite_happiness
+	var/default_text = "HAPPINESS ENHANCEMENT"
+	var/mood_category = "nanite_happy"
 
-/datum/nanite_program/good_mood/register_extra_settings()
+/datum/nanite_program/mood/register_extra_settings()
 	. = ..()
-	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS ENHANCEMENT")
+	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text(default_text)
 
-/datum/nanite_program/good_mood/enable_passive_effect()
+/datum/nanite_program/mood/enable_passive_effect()
 	. = ..()
-	host_mob.add_mood_event("nanite_happy", /datum/mood_event/nanite_happiness, get_extra_setting_value(NES_MOOD_MESSAGE))
+	host_mob.add_mood_event(mood_category, mood_event, get_extra_setting_value(NES_MOOD_MESSAGE))
 
-/datum/nanite_program/good_mood/disable_passive_effect()
+/datum/nanite_program/mood/disable_passive_effect()
 	. = ..()
-	host_mob.clear_mood_event("nanite_happy")
+	host_mob.clear_mood_event(mood_category)
 
-/datum/nanite_program/bad_mood
+/datum/nanite_program/mood/bad
 	name = "Happiness Suppressor"
 	desc = "The nanites suppress the production of serotonin inside the host's brain, creating an artificial state of depression."
-	use_rate = 0.1
-	rogue_types = list(/datum/nanite_program/brain_decay)
-
-/datum/nanite_program/bad_mood/register_extra_settings()
-	. = ..()
-	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS SUPPRESSION")
-
-/datum/nanite_program/bad_mood/enable_passive_effect()
-	. = ..()
-	host_mob.add_mood_event("nanite_unhappy", /datum/mood_event/nanite_sadness, get_extra_setting_value(NES_MOOD_MESSAGE))
-
-/datum/nanite_program/bad_mood/disable_passive_effect()
-	. = ..()
-	host_mob.add_mood_event("nanite_unhappy")
+	mood_event = /datum/mood_event/nanite_sadness
+	default_text = "HAPPINESS SUPPRESSION"
+	mood_category = "nanite_unhappy"

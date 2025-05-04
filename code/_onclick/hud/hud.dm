@@ -275,6 +275,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 	//SKYRAT EDIT ADDITION START - SKYRAT HUD
 	wanted_lvl = null
+	ammo_counter = null
 	// SKYRAT EDIT ADDITION END - SKYRAT HUD
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
