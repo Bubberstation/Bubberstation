@@ -11,14 +11,13 @@
 	max_buckled_mobs = 1
 	buckle_lying = 0
 	buckle_prevents_pull = TRUE
-
 	///Human currently occupying
 	var/mob/living/carbon/human/current_mob = null
-
+	///Portal mode, gloryhole for crotch, wallstuck for lower body
 	var/portal_mode = GLORYHOLE
-
+	///The other end of the portal
 	var/obj/structure/lewd_portal/linked_portal
-
+	///The relayed body portion associated with this.
 	var/obj/lewd_portal_relay/relayed_body
 
 /obj/structure/lewd_portal/Initialize(mapload)
@@ -83,6 +82,7 @@
 		unbuckle_all_mobs()
 	..()
 
+///Removes everything besides the head for the buckled mob, used in wallstuck mode
 /obj/structure/lewd_portal/proc/head_only()
 	SIGNAL_HANDLER
 	current_mob.cut_overlays()
@@ -121,14 +121,10 @@
 	result_path = /obj/structure/lewd_portal
 	pixel_shift = 32
 	multi_use = TRUE
+	///The mode portals created by this device will be in
 	var/creation_mode = GLORYHOLE
+	///The previous portal placed by the bore, recorded so that they can be linked.
 	var/obj/structure/lewd_portal/previous_portal
-
-/obj/item/wallframe/lewd_portal/try_build(turf/on_wall, mob/user)
-	//if(get_dir(user, on_wall) != NORTH)
-		//balloon_alert(user, "Cannot face direction!")
-		//return
-	. = ..()
 
 /obj/item/wallframe/lewd_portal/after_attach(obj/attached_to)
 	var/obj/structure/lewd_portal/portal_result = attached_to
@@ -147,6 +143,7 @@
 	desc = "Someone's behind hanging out from a portal."
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
+	///Mob that this relay is connected to
 	var/mob/living/carbon/human/owner
 
 /obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref)
