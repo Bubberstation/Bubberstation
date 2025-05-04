@@ -274,8 +274,7 @@ export const FeatureTextInput = (
       height="156px"
       value={props.value}
       maxLength={props.serverData.maximum_length}
-      onChange={(_, value) => props.handleSetValue(value)}
-      scrollbar
+      onChange={props.handleSetValue}
     />
   );
 };

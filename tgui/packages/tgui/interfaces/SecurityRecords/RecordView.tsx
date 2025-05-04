@@ -180,7 +180,7 @@ const RecordInfo = (props) => {
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_chrono_age}
-                onEnter={(event, value) =>
+                onEnter={(value) =>
                   act('edit_field', {
                     crew_ref: crew_ref,
                     field: 'chrono_age',
