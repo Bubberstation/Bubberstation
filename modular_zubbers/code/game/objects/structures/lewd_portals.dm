@@ -207,6 +207,7 @@
 
 /obj/lewd_portal_relay/proc/update_visuals()
 	SIGNAL_HANDLER
+	owner.dna.species.handle_body(owner) //Suboptimal way for doing this but I couldn't figure out another way to maintain underwear when dropping items
 	cut_overlays()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
 		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)
@@ -244,17 +245,6 @@
 
 /obj/lewd_portal_relay/click_ctrl_shift(mob/user)
 	owner.click_ctrl_shift(user)
-
-//obj/lewd_portal_relay/attackby(obj/item/attacking_item, mob/user, params)
-	//owner.attackby(attacking_item, user, params)
-
-//obj/lewd_portal_relay/attack_hand(mob/living/user, list/modifiers)
-	//owner.attack_hand(user, modifiers)
-
-/obj/lewd_portal_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods, message_range)
-	. = ..()
-	//if(owner)
-		//owner.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mods, message_range)
 
 #undef GLORYHOLE
 #undef WALLSTUCK
