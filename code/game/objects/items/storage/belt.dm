@@ -366,7 +366,6 @@
 		/obj/item/flashlight/seclite,
 		/obj/item/food/donut,
 		/obj/item/grenade,
-		/obj/item/gun, //SKYRAT EDIT ADDITION
 		/obj/item/holosign_creator/security,
 		/obj/item/knife/combat,
 		/obj/item/melee/baton,
@@ -376,16 +375,6 @@
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/stock_parts/power_store/cell/microfusion, //SKYRAT EDIT ADDITION
 	))
-	// BUBBER EDIT ADDITION BEGIN - Restrict belt items
-	atom_storage.cant_hold = typecacheof(list(
-	/obj/item/gun/ballistic/automatic/rom_flech,
-	/obj/item/gun/syringe,
-	/obj/item/gun/chem,
-	/obj/item/gun/ballistic/automatic/ar,
-	/obj/item/gun/magic/wand,
-	/obj/item/gun/energy/recharge/kinetic_accelerator,
-	/obj/item/gun/energy/plasmacutter))
-	// BUBBER EDIT ADDITION END - Restrict belt items
 	atom_storage.open_sound = 'sound/items/handling/holster_open.ogg'
 	atom_storage.open_sound_vary = TRUE
 	atom_storage.rustle_sound = null
