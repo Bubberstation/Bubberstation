@@ -38,7 +38,9 @@
 	if (!isnull(linked_portal.current_mob))
 		balloon_alert(user, "portal already occupied!")
 		return FALSE
-
+	if(!do_after(user, 5 SECONDS, M))
+		return
+	visible_message("[user] slots [M] into the [src]!")
 	return ..(M, user, check_loc = FALSE)
 
 /obj/structure/lewd_portal/post_buckle_mob(mob/living/buckled_mob)
@@ -47,6 +49,7 @@
 	if(LAZYLEN(buckled_mobs))
 		if(ishuman(buckled_mobs[1]))
 			current_mob = buckled_mobs[1]
+
 
 	if(istype(current_mob.dna.species))
 		current_mob.dir = SOUTH
@@ -100,6 +103,7 @@
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
 	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
+	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	qdel(relayed_body)
 	unbuckled_mob.regenerate_icons()
@@ -165,6 +169,7 @@
 
 /obj/lewd_portal_relay/Destroy(force)
 	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR))
+	visible_message("[src] vanishes into the portal!")
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
 	interact_component?.body_relay = null
