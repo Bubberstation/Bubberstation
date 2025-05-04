@@ -5,7 +5,7 @@
 /datum/opposing_force_equipment/antagonist_powers/uplink
 	item_type = /obj/item/uplink/standard
 	name = "Standard Syndicate Uplink"
-	description = "An mass-produced and cheap Syndicate uplink without a password and a balance of 25 telecrystals. It doesn't get more standard than this."
+	description = "A mass-produced and cheap Syndicate uplink without a password and a balance of 25 telecrystals. It doesn't get more standard than this."
 	admin_note = "Traitor uplink with 25 telecrystals." // LIES. LIES. LIES!!! ITS NOT EMPTY, IT HAD 20 TC BEFORE! No more.
 
 /datum/opposing_force_equipment/antagonist_powers/tc1
