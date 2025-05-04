@@ -106,6 +106,7 @@ function CharacterControls(props: CharacterControlsProps) {
           tooltip="Edit Food Preferences"
           tooltipPosition="top"
         />
+      </Stack.Item>
         {/* BUBBER EDIT ADDITION END */}
 
       <Stack.Item>

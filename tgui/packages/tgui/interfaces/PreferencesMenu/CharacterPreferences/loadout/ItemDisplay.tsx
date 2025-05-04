@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import {
+  Button,
   DmIcon,
   Icon,
   ImageButton,
@@ -142,24 +143,12 @@ function sortByGroup(items: LoadoutItem[]): LoadoutGroup[] {
 
 export function ItemListDisplay(props: ListProps) {
   const { data } = useBackend<LoadoutManagerData>();
-<<<<<<< HEAD
-  const loadout_list =
+  const { loadout_list } =
     data.character_preferences.misc.loadout_lists[
       data.character_preferences.misc.loadout_index
-    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
-  const itemList = FilterItemList(props.items); // SKYRAT EDIT - EXPANDED LOADOUT
-  return (
-    <Flex wrap>
-      {itemList.map((item /* SKYRAT EDIT : {props.items.map((item) => (*/) => (
-        <Flex.Item key={item.name} mr={2} mb={2}>
-          <ItemDisplay
-            item={item}
-            active={loadout_list && loadout_list[item.path] !== undefined}
-          />
-        </Flex.Item>
-=======
-  const { loadout_list } = data.character_preferences.misc;
-  const itemGroups = sortByGroup(props.items);
+    ]; // BUBBER EDIT CHANGE: Multiple loadout presets: Original: data.character_preferences.misc;
+  const itemList = FilterItemList(props.items); // BUBBER EDIT ADDITION: Expanded loadouts
+  const itemGroups = sortByGroup(itemList); // BUBBER EDIT CHANGE: Expanded loadouts Original: const itemGroups = sortByGroup(props.items);
 
   return (
     <Stack vertical>
@@ -191,7 +180,6 @@ export function ItemListDisplay(props: ListProps) {
             </Stack.Item>
           </Stack>
         </Stack.Item>
->>>>>>> 71a4f3a83ff ([MDB Ignore] Updates visuals for the loadout menu (#90399))
       ))}
     </Stack>
   );
