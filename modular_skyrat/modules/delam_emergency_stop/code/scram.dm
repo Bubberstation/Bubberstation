@@ -405,8 +405,6 @@
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/Initialize(mapload)
 	name = "NT-approved delam emergency procedure"
 	desc = "Now you're a REAL engineer!"
-	AddElement(/datum/element/burn_on_item_ignition)
-	RegisterSignal(src, COMSIG_ATOM_IGNITED_BY_ITEM, PROC_REF(close_paper_ui))
 	return ..()
 
 /obj/item/paper/paperslip/corporate/fluff/delam_procedure/examine(mob/user)
