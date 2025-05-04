@@ -461,6 +461,7 @@
 /// Animates one eyelid at a time, thanks BYOND and thanks animation chains
 /obj/item/organ/eyes/proc/animate_eyelid(obj/effect/abstract/eyelid_effect/eyelid, mob/living/carbon/human/parent, sync_blinking = TRUE, list/anim_times = null)
 	. = list()
+
 	var/prevent_loops = HAS_TRAIT(parent, TRAIT_PREVENT_BLINK_LOOPS)
 	animate(eyelid, alpha = 0, time = 0, loop = (prevent_loops ? 0 : -1))
 
@@ -516,6 +517,8 @@
 		addtimer(CALLBACK(src, PROC_REF(animate_eyelids), owner), blink_delay + duration)
 
 /obj/item/organ/eyes/proc/animate_eyelids(mob/living/carbon/human/parent)
+	if(!CONFIG_GET(flag/blinking)) return // BUBBER EDIT - CONFIG BLINKING
+
 	var/sync_blinking = TRUE // synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < ASYNC_BLINKING_BRAIN_DAMAGE) // BUBBER EDIT - REMOVE ASYNC BLINKING UNTIL https://github.com/tgstation/tgstation/issues/90269 is fixed
 	// Randomize order for unsynched animations
 	if (sync_blinking || prob(50))
