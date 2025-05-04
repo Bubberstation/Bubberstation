@@ -19,14 +19,16 @@
 	var/obj/structure/lewd_portal/linked_portal
 	///The relayed body portion associated with this.
 	var/obj/lewd_portal_relay/relayed_body
+	///Gloryhole mode needs to make a characters penis invisible, this records the previous state
+	var/initial_genital_visibility
 
 /obj/structure/lewd_portal/Initialize(mapload)
 	LAZYINITLIST(buckled_mobs)
 	. = ..()
 
 /obj/structure/wall_mount/Destroy()
-	. = ..()
 	unbuckle_all_mobs(TRUE)
+	. = ..()
 
 /obj/structure/lewd_portal/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	if(!M.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
@@ -34,6 +36,10 @@
 		return FALSE
 	if (!ishuman(M))
 		balloon_alert(user, "[M.p_they()] does not fit!")
+		return FALSE
+	var/mob/living/carbon/human/penis_inspection = M
+	if(!penis_inspection.has_penis(REQUIRE_GENITAL_EXPOSED) && portal_mode == GLORYHOLE)
+		balloon_alert(user, "a penis is required to operate!")
 		return FALSE
 	if (!linked_portal)
 		balloon_alert(user, "portal not linked!")
@@ -54,10 +60,8 @@
 		if(ishuman(buckled_mobs[1]))
 			current_mob = buckled_mobs[1]
 
-
 	if(istype(current_mob.dna.species))
-		current_mob.dir = SOUTH
-		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob)
+		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob, linked_portal)
 		switch(linked_portal.dir)
 			if(NORTH)
 				relayed_body.pixel_y = 24
@@ -71,23 +75,47 @@
 				relayed_body.pixel_x = -24
 				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 		relayed_body.update_visuals()
-		head_only()
-		RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(head_only))
-		switch(dir)
-			if(NORTH)
-				current_mob.pixel_y += 12
-			if(SOUTH)
-				current_mob.pixel_y += -12
-				current_mob.transform = turn(transform, ROTATION_FLIP)
-			if(EAST)
-				current_mob.pixel_x += 12
-				current_mob.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
-			if(WEST)
-				current_mob.pixel_x += -12
-				current_mob.transform = turn(transform, ROTATION_CLOCKWISE)
+		if(portal_mode == GLORYHOLE)
+			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
+			initial_genital_visibility = penis_reference?.visibility_preference
+			hide_penis()
+			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(hide_penis))
+			current_mob.dir = dir
+			switch(dir)
+				if(NORTH)
+					current_mob.pixel_y += 24
+				if(SOUTH)
+					current_mob.pixel_y += -24
+				if(EAST)
+					current_mob.pixel_x += 24
+				if(WEST)
+					current_mob.pixel_x += -24
+		else
+			current_mob.dir = SOUTH
+			head_only()
+			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(head_only))
+			switch(dir)
+				if(NORTH)
+					current_mob.pixel_y += 12
+				if(SOUTH)
+					current_mob.pixel_y += -12
+					current_mob.transform = turn(transform, ROTATION_FLIP)
+				if(EAST)
+					current_mob.pixel_x += 12
+					current_mob.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+				if(WEST)
+					current_mob.pixel_x += -12
+					current_mob.transform = turn(transform, ROTATION_CLOCKWISE)
 	else
 		unbuckle_all_mobs()
 	..()
+
+///hides the buckled mob's penis
+/obj/structure/lewd_portal/proc/hide_penis()
+	SIGNAL_HANDLER
+	var/obj/item/organ/genital/penis/affected_penis = current_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
+	affected_penis?.visibility_preference = GENITAL_NEVER_SHOW
+	current_mob.update_body()
 
 ///Removes everything besides the head for the buckled mob, used in wallstuck mode
 /obj/structure/lewd_portal/proc/head_only()
@@ -111,16 +139,23 @@
 	current_mob = null
 	qdel(relayed_body)
 	unbuckled_mob.regenerate_icons()
+	var/offset_ammount = 24
+	if(portal_mode == WALLSTUCK)
+		offset_ammount = 12
 	switch(dir)
 		if(NORTH)
-			unbuckled_mob.pixel_y += -12
+			unbuckled_mob.pixel_y -= offset_ammount
 		if(SOUTH)
-			unbuckled_mob.pixel_y += 12
+			unbuckled_mob.pixel_y += offset_ammount
 		if(EAST)
-			unbuckled_mob.pixel_x += -12
+			unbuckled_mob.pixel_x -= offset_ammount
 		if(WEST)
-			unbuckled_mob.pixel_x += 12
+			unbuckled_mob.pixel_x += offset_ammount
 	unbuckled_mob.transform = initial(unbuckled_mob.transform)
+	if(portal_mode == GLORYHOLE)
+		var/obj/item/organ/genital/penis/affected_penis = unbuckled_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
+		affected_penis?.visibility_preference = initial_genital_visibility
+		unbuckled_mob.update_body()
 	. = ..()
 
 /obj/item/wallframe/lewd_portal
@@ -170,12 +205,23 @@
 	layer = ABOVE_MOB_LAYER
 	///Mob that this relay is connected to
 	var/mob/living/carbon/human/owner
+	///Portal that spawns this relay
+	var/obj/structure/lewd_portal/owning_portal
+	///What mode this portal is in
+	var/portal_mode = GLORYHOLE
 
-/obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref)
+/obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref, obj/structure/lewd_portal/owning_portal_reference)
 	. = ..()
-	if(!owner_ref)
+	if(!owner_ref || !owning_portal_reference)
 		return INITIALIZE_HINT_QDEL
-	dir = NORTH
+	owning_portal = owning_portal_reference
+	portal_mode = owning_portal.portal_mode
+	if(portal_mode == GLORYHOLE)
+		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
+			dir = owning_portal.dir
+		else dir = SOUTH
+	else
+		dir = NORTH
 	owner = owner_ref
 	var/species_name
 	if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == "")
@@ -183,6 +229,7 @@
 	else
 		species_name = owner.dna.features["custom_species"]
 	name = LOWER_TEXT("[species_name] behind")
+
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
@@ -230,6 +277,18 @@
 
 /obj/lewd_portal_relay/proc/update_visuals()
 	SIGNAL_HANDLER
+	if(portal_mode == GLORYHOLE)
+		penis_only()
+	else
+		lower_body_only()
+
+/obj/lewd_portal_relay/proc/penis_only()
+	cut_overlays()
+	var/obj/item/organ/genital/penis/penis_reference = owner.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/mutable_appearance/penis_image = penis_reference.bodypart_overlay.get_overlay(EXTERNAL_FRONT)
+	add_overlay(penis_image)
+
+/obj/lewd_portal_relay/proc/lower_body_only()
 	owner.dna.species.handle_body(owner) //Suboptimal way for doing this but I couldn't figure out another way to maintain underwear when dropping items
 	cut_overlays()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
@@ -258,6 +317,8 @@
 /obj/lewd_portal_relay/attack_hand_secondary(mob/living/user)
 	if(!user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
 		return ..()
+	if(portal_mode == GLORYHOLE)
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(dir == NORTH)
 		dir = SOUTH
 	else
