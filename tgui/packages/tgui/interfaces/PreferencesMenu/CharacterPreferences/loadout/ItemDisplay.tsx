@@ -92,10 +92,9 @@ export function ItemDisplay(props: DisplayProps) {
                 </Tooltip>
               </Stack.Item>
             ))}
-<<<<<<< HEAD
             {
               // SKYRAT EDIT START - EXPANDED LOADOUT
-              <Flex.Item
+              <Stack.Item
                 ml={5.7}
                 mt={0.35}
                 style={{ position: 'absolute', bottom: 5, right: 5 }}
@@ -103,14 +102,11 @@ export function ItemDisplay(props: DisplayProps) {
                 {ShouldDisplayJobRestriction(item) && ItemJobRestriction(item)}
                 {ShouldDisplayPlayerRestriction(item) &&
                   ItemPlayerRestriction(item)}
-              </Flex.Item>
+              </Stack.Item>
 
               /* SKYRAT EDIT END */
             }
-          </Flex.Item>
-=======
           </Stack>
->>>>>>> 71a4f3a83ff ([MDB Ignore] Updates visuals for the loadout menu (#90399))
         )}
       </div>
     </div>
