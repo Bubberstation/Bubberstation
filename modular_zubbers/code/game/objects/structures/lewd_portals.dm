@@ -26,8 +26,11 @@
 	LAZYINITLIST(buckled_mobs)
 	. = ..()
 
-/obj/structure/wall_mount/Destroy()
+/obj/structure/lewd_portal/Destroy()
 	unbuckle_all_mobs(TRUE)
+	linked_portal?.linked_portal = null
+	if(linked_portal)
+		qdel(linked_portal)
 	. = ..()
 
 /obj/structure/lewd_portal/user_buckle_mob(mob/living/M, mob/user, check_loc)
@@ -65,15 +68,25 @@
 		switch(linked_portal.dir)
 			if(NORTH)
 				relayed_body.pixel_y = 24
+				if(portal_mode == GLORYHOLE)
+					relayed_body.pixel_y += 3
 			if(SOUTH)
 				relayed_body.pixel_y = -24
 				relayed_body.transform = turn(transform, ROTATION_FLIP)
+				if(portal_mode == GLORYHOLE)
+					relayed_body.pixel_y -= 3
 			if(EAST)
-				relayed_body.pixel_x = 24
-				relayed_body.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+				if(portal_mode == WALLSTUCK)
+					relayed_body.pixel_x = 24
+					relayed_body.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+				else
+					relayed_body.pixel_x = 10
 			if(WEST)
-				relayed_body.pixel_x = -24
-				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
+				if(portal_mode == WALLSTUCK)
+					relayed_body.pixel_x = -24
+					relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
+				else
+					relayed_body.pixel_x = -10
 		relayed_body.update_visuals()
 		if(portal_mode == GLORYHOLE)
 			relayed_body.pixel_x = relayed_body.pixel_x * 1.125
@@ -151,7 +164,7 @@
 			if(portal_mode == GLORYHOLE)
 				unbuckled_mob.pixel_y += 12
 			else
-				unbuckle_mob.pixel_y += 6
+				unbuckled_mob.pixel_y += 6
 		if(EAST)
 			unbuckled_mob.pixel_x -= 12
 		if(WEST)
@@ -162,6 +175,12 @@
 		affected_penis?.visibility_preference = initial_genital_visibility
 		unbuckled_mob.update_body()
 	. = ..()
+
+/obj/structure/lewd_portal/wrench_act_secondary(mob/living/user, obj/item/weapon)
+	..()
+	weapon.play_tool_sound(src)
+	deconstruct(disassembled = TRUE)
+	return TRUE
 
 /obj/item/wallframe/lewd_portal
 	name = "Lustwish Portal Bore"
@@ -221,20 +240,24 @@
 		return INITIALIZE_HINT_QDEL
 	owning_portal = owning_portal_reference
 	portal_mode = owning_portal.portal_mode
+	owner = owner_ref
 	if(portal_mode == GLORYHOLE)
+		var/obj/item/organ/genital/penis/penis_reference = owner.get_organ_slot(ORGAN_SLOT_PENIS)
+		var/penis_type = penis_reference.genital_name
+		name = LOWER_TEXT("[penis_type] penis")
+		desc = "Someone's penis hanging out from a portal."
 		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
 			dir = owning_portal.dir
 		else
 			dir = SOUTH
 	else
 		dir = NORTH
-	owner = owner_ref
-	var/species_name
-	if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == "")
-		species_name = owner.dna.species.name
-	else
-		species_name = owner.dna.features["custom_species"]
-	name = LOWER_TEXT("[species_name] behind")
+		var/species_name
+		if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == "")
+			species_name = owner.dna.species.name
+		else
+			species_name = owner.dna.features["custom_species"]
+		name = LOWER_TEXT("[species_name] behind")
 
 	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED), PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
