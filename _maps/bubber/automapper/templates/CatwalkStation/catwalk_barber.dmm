@@ -131,7 +131,8 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/light/warm/directional/south,
-/obj/machinery/light_switch/directional/south,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "z" = (
@@ -157,7 +158,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "F" = (
@@ -181,6 +181,7 @@
 /obj/item/reagent_containers/spray/quantum_hair_dye{
 	pixel_x = 6
 	},
+/obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "H" = (
@@ -259,6 +260,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "S" = (
@@ -289,10 +291,10 @@
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/obj/machinery/button/curtain{
+/obj/machinery/button/door/directional/north{
+	pixel_x = -8;
 	id = "barber_shutter";
-	pixel_y = 25;
-	name = "tactical shutters"
+	name = "Office Privacy Shutters"
 	},
 /turf/open/floor/iron,
 /area/station/service/barber)
@@ -316,13 +318,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
-/area/station/service/barber)
-"Z" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/closed/wall,
 /area/station/service/barber)
 
 (1,1,1) = {"
@@ -420,7 +415,7 @@ B
 B
 W
 m
-Z
+B
 o
 w
 z
@@ -433,7 +428,7 @@ B
 B
 S
 P
-Z
+B
 H
 G
 g
@@ -448,7 +443,7 @@ B
 B
 B
 B
-Z
+B
 B
 c
 B
