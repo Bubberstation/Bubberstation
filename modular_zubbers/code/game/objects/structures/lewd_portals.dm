@@ -184,6 +184,8 @@
 /obj/item/wallframe/lewd_portal
 	name = "Lustwish Portal Bore"
 	desc = "A device utilizing bluespace technology to transpose portions of people from one space to another."
+	icon = 'modular_zubbers/icons/obj/structures/lewd_portals.dmi'
+	icon_state = "device"
 	result_path = /obj/structure/lewd_portal
 	pixel_shift = 32
 	multi_use = 2
