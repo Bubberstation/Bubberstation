@@ -296,12 +296,6 @@
 	)
 	return ..()
 
-/datum/techweb_node/borg_service/New()
-	design_ids += list(
-		"borg_upgrade_botany"
-	)
-	return ..()
-
 /datum/techweb_node/borg_mining/New()
 	design_ids += list(
 		"borg_upgrade_welding",
