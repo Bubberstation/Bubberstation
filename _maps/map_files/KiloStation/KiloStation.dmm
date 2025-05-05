@@ -15216,11 +15216,14 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/maintenance/port/lesser)
 "fiQ" = (
-/obj/structure/table/wood,
-/obj/item/pinpointer/nuke,
-/obj/item/disk/nuclear,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/greenscreen_camera{
+	dir = 1;
+	pixel_y = 12;
+	pixel_x = -3
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
@@ -35526,7 +35529,12 @@
 "lBj" = (
 /obj/structure/table/wood,
 /obj/structure/cable,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/captain)
 "lBk" = (
@@ -51135,7 +51143,6 @@
 /obj/machinery/light_switch/directional/south{
 	pixel_x = -8
 	},
-/obj/structure/filingcabinet,
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -51143,6 +51150,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain/private)
 "qRS" = (
@@ -60266,7 +60274,6 @@
 	color = "#c45c57";
 	dir = 8
 	},
-/obj/structure/noticeboard/directional/north,
 /obj/machinery/status_display/ai/directional/north,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/captain)
@@ -73520,8 +73527,9 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "xUk" = (
-/obj/machinery/computer/security/wooden_tv,
 /obj/structure/table/wood,
+/obj/item/pinpointer/nuke,
+/obj/item/disk/nuclear,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/captain)
 "xUm" = (
@@ -74204,13 +74212,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "yeA" = (
-/obj/structure/extinguisher_cabinet/directional/north,
-/obj/structure/table/wood,
-/obj/item/crowbar/red,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/structure/sign/poster/greenscreen/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "yeH" = (
