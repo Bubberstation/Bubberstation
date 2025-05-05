@@ -95,3 +95,8 @@
 	else
 		busy = FALSE
 		balloon_alert_to_viewers("stopped churning")
+
+#undef CHURN_CREAM_RATIO
+#undef CHURN_BUTTER_RATIO
+#undef CHURN_STAMINA_MINIMUM
+#undef CHURN_STAMINA_USE
