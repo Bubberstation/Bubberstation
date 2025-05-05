@@ -117,7 +117,7 @@
 
 		var/list/targets = list(SUBTLE_ONE_TILE_TEXT, SUBTLE_SAME_TILE_TEXT) + in_view
 		var/obj/structure/lewd_portal/portal = user?.buckled
-		if(portal)
+		if(istype(portal, /obj/structure/lewd_portal))
 			targets += list(PORTAL_ONE_TILE_TEXT, PORTAL_SAME_TILE_TEXT)
 		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
 		if(!target)
