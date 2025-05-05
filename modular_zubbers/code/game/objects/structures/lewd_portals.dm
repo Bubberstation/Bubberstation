@@ -28,6 +28,7 @@
 
 /obj/structure/lewd_portal/Destroy()
 	unbuckle_all_mobs(TRUE)
+	visible_message("[src] vanishes!")
 	linked_portal?.linked_portal = null
 	if(linked_portal)
 		qdel(linked_portal)
@@ -80,13 +81,13 @@
 					relayed_body.pixel_x = 24
 					relayed_body.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
 				else
-					relayed_body.pixel_x = 10
+					relayed_body.pixel_y = 8
 			if(WEST)
 				if(portal_mode == WALLSTUCK)
 					relayed_body.pixel_x = -24
 					relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 				else
-					relayed_body.pixel_x = -10
+					relayed_body.pixel_y = 8
 		relayed_body.update_visuals()
 		if(portal_mode == GLORYHOLE)
 			relayed_body.pixel_x = relayed_body.pixel_x * 1.125
@@ -187,7 +188,7 @@
 	desc = "A device utilizing bluespace technology to transpose portions of people from one space to another."
 	result_path = /obj/structure/lewd_portal
 	pixel_shift = 32
-	multi_use = TRUE
+	multi_use = 2
 	///The mode portals created by this device will be in
 	var/creation_mode = GLORYHOLE
 	///The previous portal placed by the bore, recorded so that they can be linked.
@@ -246,10 +247,11 @@
 		var/penis_type = penis_reference.genital_name
 		name = LOWER_TEXT("[penis_type] penis")
 		desc = "Someone's penis hanging out from a portal."
-		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
-			dir = owning_portal.dir
-		else
-			dir = SOUTH
+		dir = SOUTH
+		if (owning_portal.dir == EAST)
+			dir = WEST
+		if (owning_portal.dir == WEST)
+			dir = EAST
 	else
 		dir = NORTH
 		var/species_name

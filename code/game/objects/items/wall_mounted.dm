@@ -9,7 +9,7 @@
 	var/result_path
 	var/wall_external = FALSE // For frames that are external to the wall they are placed on, like light fixtures and cameras.
 	var/pixel_shift //The amount of pixels
-	var/multi_use = FALSE //BUBBER EDIT ADDITION - User for lewd portals to allow you to place more than one
+	var/multi_use = 0 //BUBBER EDIT ADDITION - User for lewd portals to allow you to place more than one
 
 /obj/item/wallframe/proc/try_build(turf/on_wall, mob/user)
 	if(get_dist(on_wall,user) > 1)
@@ -55,7 +55,7 @@
 					hanging_object.pixel_x = -pixel_shift
 		after_attach(hanging_object)
 	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
-	if(multi_use)
+	if(multi_use > 0)
 		return
 	//BUBBER EDIT END
 	qdel(src)
