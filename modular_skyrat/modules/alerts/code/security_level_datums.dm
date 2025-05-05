@@ -3,7 +3,7 @@
  */
 
 /datum/security_level/green
-	//sound = 'modular_skyrat/modules/alerts/sound/security_levels/green.ogg'
+	sound = 'modular_skyrat/modules/alerts/sound/security_levels/green.ogg'
 
 /datum/security_level/blue
 	sound = 'modular_skyrat/modules/alerts/sound/security_levels/blue.ogg'
