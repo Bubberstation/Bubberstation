@@ -448,7 +448,19 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/perfume/rose = 1,
 		/obj/item/perfume/strawberry = 1,
 		/obj/item/perfume/vanilla = 1,
-		/obj/item/perfume/wood = 1
+		/obj/item/perfume/wood = 1,
+		/obj/item/perfume/ash = 1,
+		/obj/item/perfume/bergamot = 1,
+		/obj/item/perfume/cardamom = 1,
+		/obj/item/perfume/chocolate = 1,
+		/obj/item/perfume/cinnamon = 1,
+		/obj/item/perfume/citrus = 1,
+		/obj/item/perfume/clove = 1,
+		/obj/item/perfume/grass = 1,
+		/obj/item/perfume/iron = 1,
+		/obj/item/perfume/oil = 1,
+		/obj/item/perfume/peach = 1,
+		/obj/item/perfume/petrichor = 1
 	) = 25,
 	list(
 		/obj/item/assembly/health = 25,
@@ -948,6 +960,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 25,
 	/obj/item/toy/nyamagotchi = 15,
 	/obj/item/paper/fluff/stations/soap = 50,
+	/obj/item/extendohand/acme = 50,
 	list(
 		/obj/item/soap = 50,
 		/obj/item/soap/deluxe = 10,
@@ -998,5 +1011,15 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/heroinbrick = 1,
 		/obj/item/reagent_containers/hashbrick = 1
 	) = 50,
-	/obj/item/rack_parts = 75
+	/obj/item/rack_parts = 75,
+	list(
+		/obj/item/hairbrush = 1,
+		/obj/item/hairbrush/comb = 1
+	) = 5,
+	/obj/item/towel = 10,
+	/obj/item/lipstick/random = 5,
+	list(
+		/obj/item/bikehorn/rubberducky = 1,
+		/obj/item/bikehorn/rubberducky/plasticducky = 1
+	) = 5,
 ))
