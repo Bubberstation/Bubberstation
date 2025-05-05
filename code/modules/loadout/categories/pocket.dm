@@ -29,6 +29,7 @@
 
 /datum/loadout_item/pocket_items
 	abstract_type = /datum/loadout_item/pocket_items
+	can_be_named = TRUE // BUBBER EDIT ADDITION
 
 /datum/loadout_item/pocket_items/on_equip_item(
 	obj/item/equipped_item,
