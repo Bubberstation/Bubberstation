@@ -57,7 +57,7 @@
 					hanging_object.pixel_x = -pixel_shift
 		after_attach(hanging_object)
 	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
-	if(multi_use > 0)
+	if(multi_use > 1)
 		multi_use--
 		return
 	//BUBBER EDIT END
