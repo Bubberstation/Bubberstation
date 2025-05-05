@@ -13,7 +13,20 @@
 	icon_state = "berserker"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi' // SKYRAT EDIT - DIGIS
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi' // BUBBER EDIT - DIGIS
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+
+		"Default" = list(
+			RESKIN_ICON_STATE = "berserker",
+			RESKIN_WORN_ICON_STATE = 'icons/mob/clothing/suits/armor.dmi',
+		),
+
+		"Marked One Varient" = list(
+			RESKIN_ICON_STATE = "berk_suit",
+			RESKIN_WORN_ICON_STATE = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
+		),
+	)
 	hoodtype = /obj/item/clothing/head/hooded/berserker
 	armor_type = /datum/armor/hooded_berserker
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
