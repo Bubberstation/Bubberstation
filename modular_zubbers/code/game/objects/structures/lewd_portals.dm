@@ -189,6 +189,8 @@
 	result_path = /obj/structure/lewd_portal
 	pixel_shift = 32
 	multi_use = 2
+	bypass_unpowered = TRUE
+	bypass_floor = TRUE
 	///The mode portals created by this device will be in
 	var/creation_mode = GLORYHOLE
 	///The previous portal placed by the bore, recorded so that they can be linked.
