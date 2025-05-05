@@ -76,6 +76,8 @@
 				relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 		relayed_body.update_visuals()
 		if(portal_mode == GLORYHOLE)
+			relayed_body.pixel_x = relayed_body.pixel_x * 1.125
+			relayed_body.pixel_y = relayed_body.pixel_y * 1.125
 			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 			initial_genital_visibility = penis_reference?.visibility_preference
 			hide_penis()
@@ -85,11 +87,11 @@
 				if(NORTH)
 					current_mob.pixel_y += 24
 				if(SOUTH)
-					current_mob.pixel_y += -24
+					current_mob.pixel_y += -6
 				if(EAST)
-					current_mob.pixel_x += 24
+					current_mob.pixel_x += 12
 				if(WEST)
-					current_mob.pixel_x += -24
+					current_mob.pixel_x += -12
 		else
 			current_mob.dir = SOUTH
 			head_only()
@@ -146,11 +148,14 @@
 		if(NORTH)
 			unbuckled_mob.pixel_y -= offset_ammount
 		if(SOUTH)
-			unbuckled_mob.pixel_y += offset_ammount
+			if(portal_mode == GLORYHOLE)
+				unbuckled_mob.pixel_y += 12
+			else
+				unbuckle_mob.pixel_y += 6
 		if(EAST)
-			unbuckled_mob.pixel_x -= offset_ammount
+			unbuckled_mob.pixel_x -= 12
 		if(WEST)
-			unbuckled_mob.pixel_x += offset_ammount
+			unbuckled_mob.pixel_x += 12
 	unbuckled_mob.transform = initial(unbuckled_mob.transform)
 	if(portal_mode == GLORYHOLE)
 		var/obj/item/organ/genital/penis/affected_penis = unbuckled_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
@@ -219,7 +224,8 @@
 	if(portal_mode == GLORYHOLE)
 		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
 			dir = owning_portal.dir
-		else dir = SOUTH
+		else
+			dir = SOUTH
 	else
 		dir = NORTH
 	owner = owner_ref
