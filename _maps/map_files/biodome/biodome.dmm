@@ -76,7 +76,8 @@
 /turf/open/floor/iron,
 /area/station/security/prison/garden)
 "abE" = (
-/obj/machinery/vending/cigarette,
+/obj/structure/disposalpipe/segment,
+/obj/structure/displaycase/captain,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "abH" = (
@@ -3516,7 +3517,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "bix" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "biy" = (
@@ -4892,8 +4893,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "bIO" = (
-/obj/structure/displaycase/captain,
 /obj/effect/turf_decal/siding/yellow/corner,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "bIP" = (
@@ -7188,6 +7189,7 @@
 /area/station/service/janitor)
 "cwO" = (
 /obj/structure/cable,
+/obj/structure/plasticflaps/kitchen,
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
 "cwR" = (
@@ -9494,7 +9496,6 @@
 /area/station/hallway/primary/starboard)
 "dmh" = (
 /obj/machinery/light/cold/directional/north,
-/obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "dmn" = (
@@ -14356,6 +14357,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/science/rd,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/structure/cable,
+/obj/structure/plasticflaps/kitchen,
 /turf/open/floor/plating,
 /area/station/science/server)
 "eSK" = (
@@ -16762,9 +16764,13 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "fLX" = (
-/obj/structure/window/spawner/directional/north,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/station/service/kitchen/coldroom)
+/obj/machinery/greenscreen_camera{
+	dir = 4;
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/turf/open/floor/wood/tile,
+/area/station/command/heads_quarters/captain)
 "fMa" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -26368,10 +26374,10 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "jgn" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/structure/window/spawner/directional/north,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/station/service/kitchen/coldroom)
+/obj/structure/disposalpipe/segment,
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood/tile,
+/area/station/command/heads_quarters/captain)
 "jgr" = (
 /turf/open/floor/plating,
 /area/station/cargo/drone_bay)
@@ -28242,10 +28248,6 @@
 	},
 /obj/effect/turf_decal/trimline/purple/line{
 	dir = 8
-	},
-/obj/machinery/button/door/directional/west{
-	name = "Observation Shutters";
-	id = "nt_rep_priv_2"
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
@@ -31184,6 +31186,7 @@
 	c_tag = "Service - Cold Room"
 	},
 /obj/machinery/light/cold/directional/east,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "kMq" = (
@@ -44889,10 +44892,11 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "pom" = (
-/obj/machinery/door/window/right/directional/north{
-	name = "Freezer";
-	req_access = list("kitchen")
+/obj/structure/plasticflaps/kitchen,
+/obj/machinery/door/airlock/freezer{
+	name = "Coldroom"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "pon" = (
@@ -46026,7 +46030,7 @@
 /area/station/biodome/aft)
 "pKz" = (
 /obj/structure/sign/calendar/directional/south,
-/obj/item/kirbyplants/random,
+/obj/structure/sign/poster/greenscreen/directional/east,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "pKF" = (
@@ -47157,6 +47161,15 @@
 /obj/effect/turf_decal/trimline/red/arrow_ccw,
 /turf/open/floor/noslip,
 /area/station/biodome/fore)
+"qgN" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/firedoor,
+/obj/machinery/button/door/directional/west{
+	name = "Observation Shutters";
+	id = "nt_rep_priv_2"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "qgY" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/decal/cleanable/dirt,
@@ -47387,6 +47400,7 @@
 "qkU" = (
 /obj/machinery/light_switch/directional/west,
 /obj/machinery/light/cold/directional/west,
+/obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "qlm" = (
@@ -60979,6 +60993,7 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/north,
+/obj/structure/fish_mount/bar/directional/north,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "uVv" = (
@@ -63467,6 +63482,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/plasticflaps/kitchen,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "vPB" = (
@@ -68167,6 +68183,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
 "xqG" = (
@@ -109873,9 +109890,9 @@ kgA
 rWX
 nXi
 xqB
-shm
+jgn
 abE
-bix
+shm
 gHP
 bMe
 bwO
@@ -110132,7 +110149,7 @@ oHx
 vEK
 upY
 bmc
-bmc
+fLX
 gHP
 doI
 qlZ
@@ -110388,7 +110405,7 @@ vYg
 xlG
 mba
 bmc
-bmc
+bix
 pKz
 gHP
 bMe
@@ -168462,8 +168479,8 @@ sZD
 sZD
 ggF
 snd
-psv
 xSi
+ykV
 qkU
 iIg
 snd
@@ -168976,7 +168993,7 @@ sZD
 sZD
 dZM
 snd
-ykV
+psv
 hwS
 aYm
 lCR
@@ -169233,8 +169250,8 @@ sZD
 sZD
 rrw
 snd
+snd
 dmh
-xSi
 rvN
 cGd
 snd
@@ -169490,7 +169507,7 @@ ctt
 aHW
 aaI
 gym
-fLX
+snd
 pdI
 rvN
 cGd
@@ -170004,7 +170021,7 @@ sZD
 sZD
 snd
 ktI
-jgn
+snd
 kMo
 hTu
 rTe
@@ -170261,7 +170278,7 @@ sZD
 sZD
 snd
 obD
-obD
+snd
 snd
 snd
 snd
@@ -178240,7 +178257,7 @@ jzd
 jzd
 jzd
 jzd
-xLH
+qgN
 eCJ
 neH
 neH
