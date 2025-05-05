@@ -3402,7 +3402,7 @@
 /area/station/service/lawoffice)
 "aux" = (
 /obj/structure/sign/clock/directional/east,
-/obj/machinery/photocopier,
+/obj/structure/filingcabinet/employment,
 /turf/open/floor/carpet/blue,
 /area/station/service/lawoffice)
 "auy" = (
@@ -16520,7 +16520,7 @@
 "boD" = (
 /obj/structure/table,
 /obj/machinery/light/directional/north,
-/obj/item/surgery_tray/full,
+/obj/effect/spawner/surgery_tray,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "boE" = (
@@ -28588,7 +28588,6 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
 	},
-/obj/machinery/light/small/directional/north,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "cjX" = (
@@ -32283,11 +32282,11 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/table/glass,
-/obj/item/surgery_tray/full,
 /obj/machinery/vending/wallmed{
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/spawner/surgery_tray/full,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/fore)
 "cET" = (
@@ -33797,6 +33796,7 @@
 	pixel_x = 27;
 	pixel_y = -8
 	},
+/obj/machinery/photocopier,
 /turf/open/floor/wood/tile,
 /area/station/service/lawoffice)
 "cZy" = (
@@ -42818,8 +42818,8 @@
 /area/station/maintenance/abandon_cafeteria)
 "iMV" = (
 /obj/structure/table/reinforced,
-/obj/item/surgery_tray/full/morgue,
 /obj/effect/decal/cleanable/cobweb,
+/obj/effect/spawner/surgery_tray/full/morgue,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "iNi" = (
@@ -44519,11 +44519,11 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
-/obj/item/surgery_tray/full,
 /obj/machinery/vending/wallmed{
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/spawner/surgery_tray/full,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "jMf" = (
@@ -50040,9 +50040,10 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "nmM" = (
-/obj/structure/filingcabinet/employment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/table/wood,
+/obj/item/fish_tank/lawyer,
 /turf/open/floor/wood/tile,
 /area/station/service/lawoffice)
 "nmV" = (
@@ -50338,6 +50339,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
+"nzu" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron,
+/area/station/cargo/warehouse)
 "nzv" = (
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/grimy,
@@ -57821,7 +57828,7 @@
 	pixel_y = 6
 	},
 /obj/item/clothing/glasses/hud/health/sunglasses{
-	pixel_y = 10;
+	pixel_y = 11;
 	pixel_x = 3
 	},
 /turf/open/floor/iron/dark,
@@ -59513,10 +59520,13 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "tmn" = (
-/obj/item/fish_tank/lawyer,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/wood/tile,
-/area/station/service/lawoffice)
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/station/cargo/warehouse)
 "tmu" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/components/unary/passive_vent{
@@ -59870,10 +59880,10 @@
 	},
 /obj/item/radio/intercom/directional/north,
 /obj/structure/table/glass,
-/obj/item/surgery_tray/full,
+/obj/effect/spawner/surgery_tray,
 /obj/item/clothing/gloves/latex,
-/obj/item/reagent_containers/spray/cleaner,
 /obj/item/clothing/mask/surgical,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "txF" = (
@@ -62710,6 +62720,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/sign/eyechart/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "voq" = (
@@ -66262,7 +66273,6 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/west,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "xtO" = (
@@ -88126,7 +88136,7 @@ lhN
 rfN
 bdL
 cdb
-igh
+nzu
 lGF
 xzh
 xzh
@@ -88635,7 +88645,7 @@ axp
 axp
 eCg
 lGF
-kIb
+tmn
 wRT
 czn
 amH
@@ -97844,7 +97854,7 @@ grR
 nmM
 aqa
 asg
-tmn
+asg
 hQK
 qcV
 dFo
