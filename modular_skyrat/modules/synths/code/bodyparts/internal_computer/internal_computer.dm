@@ -1,7 +1,10 @@
 /// Custom computer for synth brains
 /obj/item/modular_computer/pda/synth
 	name = "virtual persocom"
-
+	icon = 'icons/obj/devices/assemblies.dmi'
+	icon_state = "posibrain"
+	base_icon_state = "posibrain"
+	greyscale_config = null
 	base_active_power_usage = 0 WATTS
 	base_idle_power_usage = 0 WATTS
 
@@ -79,6 +82,9 @@ Various overrides necessary to get the persocom working, namely ui status, power
 		else if(istype(item, /obj/item/modular_computer))
 			var/obj/item/modular_computer/pda = item
 			computer_id_slot = pda.computer_id_slot
+		else if(istype(item, /obj/item/storage/wallet))
+			var/obj/item/storage/wallet/wallet = item
+			computer_id_slot = wallet.front_id
 		else
 			computer_id_slot = null
 	else

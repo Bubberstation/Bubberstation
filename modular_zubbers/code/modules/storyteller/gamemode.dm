@@ -376,6 +376,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller_halted)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
 		return
+	log_dynamic("Initializing storyteller [storyteller.name] with the following multipliers! [english_list_assoc(storyteller.tag_multipliers)]")
 	while(TRUE)
 		if(!storyteller.handle_tracks())
 			break

@@ -1,5 +1,6 @@
 #define FEED_NOTICE_RANGE 2
 #define FEED_DEFAULT_TIMER (10 SECONDS)
+#define FEED_MIN_TIMER (1 SECONDS)
 
 /datum/action/cooldown/bloodsucker/feed
 	name = "Feed"
@@ -29,30 +30,35 @@
 	var/warning_target_bloodvol = BLOOD_VOLUME_MAX_LETHAL
 	///Reference to the target we've fed off of
 	var/datum/weakref/target_ref
-	///Are we feeding with passive grab or not?
-	var/silent_feed = TRUE
 	///Have we notified you already that you are at maximum blood?
 	var/notified_overfeeding = FALSE
 	///assoc list of weakrefs to targets and how much blood we've taken from them.
 	var/list/targets_and_blood = list()
+	/// What level of protection you need to prevent feeding
+	var/penetration = INJECT_CHECK_PENETRATE_THICK
+	///Did we start feeding with aggressive grab or not, or grabbed by someone else?
+	var/aggressive_feed = TRUE
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
 	. = list()
 	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
-	. += "The time needed before you start feeding is [DisplayTimeText(FEED_DEFAULT_TIMER)]."
+	. += "The time needed before you start feeding is [DisplayTimeText(get_feed_start_time())]."
 	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."
 	. += "While feeding, you can't speak, as you are using your mouth to drink blood."
 	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
 	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
 	. += "If you are in desperate need of blood, mice can be fed off of, at a cost to your humanity."
+	. += "If you are handcuffed, you can use feed to feed off whoever is grabbing you, however this is slower, and very obvious."
 	. += "You must use the ability again to stop sucking blood."
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(target_ref) //already sucking blood.
-		if(!ContinueActive(user, target_ref?.resolve(), !silent_feed, !silent_feed))
+	var/mob/target = target_ref?.resolve()
+	if(target) //already sucking blood.
+		var/aggro_feed = check_aggro_feed(target)
+		if(!ContinueActive(user, target, aggro_feed))
 			target_ref = null
 		else
 			owner.balloon_alert(owner, "already feeding!")
@@ -65,14 +71,12 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target, check_grab, check_aggresive_grab)
+/datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target, check_aggresive_grab)
 	if(!target)
 		return FALSE
 	if(!user.Adjacent(target))
 		return FALSE
-	if(check_grab && user.pulling != target)
-		return FALSE
-	if(check_aggresive_grab && user.grab_state < GRAB_AGGRESSIVE)
+	if(check_aggresive_grab && !check_aggro_feed(target))
 		return FALSE
 	return TRUE
 
@@ -107,7 +111,6 @@
 	// if this happens this means that we didn't properly deactivate the power
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILIZED, FEED_TRAIT) || HAS_TRAIT_FROM(owner, TRAIT_MUTE, FEED_TRAIT))
 		DeactivatePower()
-	silent_feed = TRUE
 	var/mob/living/feed_target = target_ref?.resolve()
 	if(!feed_target)
 		DeactivatePower()
@@ -122,17 +125,15 @@
 		feed_target.death()
 		StartCooldown()
 		return FALSE
-	var/feed_timer = get_feed_start_time()
-	if(bloodsuckerdatum_power.frenzied)
-		feed_timer = min(2 SECONDS, feed_timer)
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
-	if(!do_after(owner, feed_timer, feed_target, hidden = TRUE))
+	if(!do_after(owner, get_feed_start_time(), feed_target, hidden = TRUE))
 		owner.balloon_alert(owner, "feed stopped")
 		target_ref = null
 		return FALSE
-	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
+	if(check_aggro_feed(feed_target))
+		aggressive_feed = TRUE
 		if(!IS_BLOODSUCKER(feed_target) && !IS_GHOUL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
@@ -140,16 +141,24 @@
 		owner.visible_message(
 			span_warning("[owner] closes [owner.p_their()] mouth around [feed_target]'s neck!"),
 			span_warning("You sink your fangs into [feed_target]'s neck."))
-		silent_feed = FALSE //no more mr nice guy
 	else
+		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
 		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not remember this.</i>" : ""
 		owner.visible_message(
-			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."), \
-			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"), \
-			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target)
+			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
+			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
+			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target
+		)
 
-	//check if we were seen
+	check_if_seen(feed_target)
+
+	ADD_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
+	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(notify_move_block))
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/feed/proc/check_if_seen(mob/living/feed_target)
 	for(var/mob/living/watchers in oviewers(FEED_NOTICE_RANGE) - feed_target)
 		if(!watchers.client)
 			continue
@@ -165,11 +174,6 @@
 		bloodsuckerdatum_power.give_masquerade_infraction()
 		break
 
-	ADD_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
-	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
-	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(notify_move_block))
-	return TRUE
-
 /datum/action/cooldown/bloodsucker/feed/process(seconds_per_tick)
 	if(!active) //If we aren't active (running on SSfastprocess)
 		return ..() //Manage our cooldown timers
@@ -178,11 +182,12 @@
 	if(!feed_target)
 		DeactivatePower()
 		return
-	if(!ContinueActive(user, feed_target, !silent_feed, !silent_feed))
-		if(!silent_feed)
+	if(!ContinueActive(user, feed_target, aggressive_feed))
+		if(aggressive_feed)
 			user.visible_message(
 				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"),
-				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"))
+				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!")
+			)
 			// Deal Damage to Target (should have been more careful!)
 			if(iscarbon(feed_target))
 				var/mob/living/carbon/carbon_target = feed_target
@@ -201,18 +206,17 @@
 		DeactivatePower()
 		return
 
-	var/feed_strength_mult = 0
-	if(bloodsuckerdatum_power.frenzied)
-		feed_strength_mult = 2
-	else if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
+	var/feed_strength_mult = 0.3
+	if(aggressive_feed)
 		feed_strength_mult = 1
-	else
-		feed_strength_mult = 0.3
+	if(bloodsuckerdatum_power.frenzied)
+		feed_strength_mult *= 2
+
 	var/already_drunk = targets_and_blood[target_ref] || 0
 	var/blood_eaten = bloodsuckerdatum_power.handle_feeding(feed_target, feed_strength_mult, level_current, already_drunk)
 	blood_taken += blood_eaten
 	targets_and_blood[target_ref] += blood_eaten
-	decrement_blood_drunk(blood_eaten * 0.5)
+	modify_blood_drunk(blood_eaten * 0.5)
 
 	if(feed_strength_mult > 5 && feed_target.stat < DEAD)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood)
@@ -229,9 +233,10 @@
 			owner.balloon_alert(owner, "your victim's blood is dangerously low.")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
 			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
-		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && bloodsuckerdatum_power.GetBloodVolume() >= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
+		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
 			owner.balloon_alert(owner, "you cannot drink more without first getting a better grip!.")
 			DeactivatePower()
+			return
 		warning_target_bloodvol = feed_target.blood_volume
 
 	if(bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
@@ -241,18 +246,31 @@
 		user.balloon_alert(owner, "no blood left!")
 		DeactivatePower()
 		return
-	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, TRUE)
 	//play sound to target to show they're dying.
-	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
-		feed_target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	if(aggressive_feed)
+		feed_target.playsound_local(get_turf(src), 'sound/effects/singlebeat.ogg', 40, TRUE)
+
+/datum/action/cooldown/bloodsucker/feed/proc/check_aggro_feed(mob/living/feed_target)
+	var/mob/living/carbon/carbon = owner
+	if(owner.pulling != feed_target && owner.pulledby != feed_target \
+	|| (feed_target.pulledby != owner && iscarbon(carbon) && carbon.handcuffed))
+		return FALSE
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/proc/find_target()
-	if(owner.pulling && isliving(owner.pulling))
-		if(!can_feed_from(owner.pulling, give_warnings = TRUE))
-			return FALSE
-		set_target(owner.pulling)
+	// grabbing or grabbed, you're close enough to bite.
+	if(safe_set_target(owner.pulling))
 		return TRUE
-
+	if(safe_set_target(owner.pulledby))
+		return TRUE
+	if(bloodsuckerdatum_power.frenzied)
+		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
+		return FALSE
+	var/mob/living/carbon/carbon = owner
+	if(iscarbon(carbon) && carbon.handcuffed)
+		owner.balloon_alert(owner, "you cannot stealthily feed while handcuffed!")
+		return FALSE
 	var/list/close_living_mobs = list()
 	var/list/close_dead_mobs = list()
 	for(var/mob/living/near_targets in oview(1, owner))
@@ -274,6 +292,12 @@
 			return TRUE
 	//No one to suck blood from.
 	return FALSE
+
+/datum/action/cooldown/bloodsucker/feed/proc/safe_set_target(mob/living/target, give_warnings = TRUE)
+	if(!can_feed_from(target, give_warnings))
+		return FALSE
+	set_target(target)
+	return TRUE
 
 // this lets us compare and access things by weakrefs, if we use the actual same weakref instance in the assoc list
 /datum/action/cooldown/bloodsucker/feed/proc/set_target(mob/living/target)
@@ -305,7 +329,7 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "no blood!")
 		return FALSE
-	if(!target_user.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
+	if(!target_user.can_inject(owner, BODY_ZONE_HEAD, penetration))
 		if(give_warnings)
 			owner.balloon_alert(owner, "suit too thick!")
 		return FALSE
@@ -323,7 +347,14 @@
 	return (5 + bloodsuckerdatum_power?.GetRank() || 1) SECONDS
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
-	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (bloodsuckerdatum_power?.GetRank() || 1))), 1, FEED_DEFAULT_TIMER)
+	var/bloodsucker_level_divider = 1.25 * (bloodsuckerdatum_power?.GetRank() || 1)
+	var/feed_time = FEED_DEFAULT_TIMER / bloodsucker_level_divider
+	if(bloodsuckerdatum_power.frenzied)
+		feed_time *= 0.5
+	var/mob/living/carbon/carbon = owner
+	if(iscarbon(carbon) && carbon.handcuffed)
+		feed_time *= 2
+	return clamp(round(feed_time), FEED_MIN_TIMER, FEED_DEFAULT_TIMER)
 
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER
@@ -335,7 +366,7 @@
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
 	owner.balloon_alert(owner, "you cannot move while feeding! Click the power to stop.")
 
-/datum/action/cooldown/bloodsucker/feed/proc/decrement_blood_drunk(amount = 0)
+/datum/action/cooldown/bloodsucker/feed/proc/modify_blood_drunk(amount = 0)
 	for(var/datum/weakref/weakref as anything in targets_and_blood)
 		if(weakref == target_ref)
 			continue
@@ -345,3 +376,4 @@
 
 #undef FEED_NOTICE_RANGE
 #undef FEED_DEFAULT_TIMER
+#undef FEED_MIN_TIMER

@@ -70,6 +70,9 @@
 	name = "Pocket Watch"
 	item_path = /obj/item/clothing/accessory/pocketwatch
 
+/datum/loadout_item/pocket_items/table_clock
+	name = "Table Clock"
+	item_path = /obj/item/table_clock
 
 /datum/loadout_item/pocket_items/cigarettesleary
 	name = "Mindbreaker Cigs"
