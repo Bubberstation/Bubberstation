@@ -45,6 +45,7 @@
 	category = CAT_TESHARI
 
 /datum/crafting_recipe/food/kiri_curry
+	added_foodtypes = FRUIT | SUGAR
 	name = "Kiri Curry"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
@@ -104,6 +105,7 @@
 	category = CAT_TESHARI
 
 /datum/crafting_recipe/food/caramel_jelly_toast
+	added_foodtypes = FRUIT | SUGAR
 	name = "Caramel-jelly Toast"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,
@@ -114,6 +116,7 @@
 	category = CAT_TESHARI
 
 /datum/crafting_recipe/food/kiri_jellypuff
+	added_foodtypes = FRUIT | SUGAR
 	name = "Kiri Jellypuff"
 	reqs = list(
 		/obj/item/food/breadslice/piru = 1,

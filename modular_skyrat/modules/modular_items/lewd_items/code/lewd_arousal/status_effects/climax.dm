@@ -61,3 +61,7 @@
 		balls.aroused = AROUSAL_NONE
 	if(anus)
 		anus.aroused = AROUSAL_NONE
+
+#undef AROUSAL_REMOVAL_AMOUNT
+#undef STAMINA_REMOVAL_AMOUNT_EXTERNAL
+#undef STAMINA_REMOVAL_AMOUNT_SELF

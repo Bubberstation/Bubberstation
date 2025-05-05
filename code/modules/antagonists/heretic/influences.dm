@@ -154,15 +154,15 @@
 	explosion.start(src)
 */
 
-/obj/effect/visible_heretic_influence/examine(mob/user)
+/obj/effect/visible_heretic_influence/examine(mob/living/user)
 	. = ..()
+	. += span_hypnophrase(pick_list(HERETIC_INFLUENCE_FILE, "examine"))
 	if(IS_HERETIC(user) || !ishuman(user))
 		return
 
-	var/mob/living/carbon/human/human_user = user
-	to_chat(human_user, span_userdanger("Your mind burns as you stare at the tear!"))
-	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-	// human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) Bubberstation change: Hugboxes heretics.
+	. += span_userdanger("Your mind burns as you stare at the tear!")
+	user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
+	//user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) // BUBBER EDIT - Hugboxes
 
 /obj/effect/heretic_influence
 	name = "reality smash"
@@ -220,7 +220,7 @@
 		return FALSE
 	if(!codex.book_open)
 		codex.attack_self(user) // open booke
-	INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 2)
+	INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 2, codex.drain_speed)
 	return TRUE
 
 /**
@@ -229,12 +229,12 @@
  *
  * If successful, the influence is drained and deleted.
  */
-/obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain)
+/obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = 10 SECONDS)
 
 	being_drained = TRUE
 	loc.balloon_alert(user, "draining influence...")
 
-	if(!do_after(user, 10 SECONDS, src, hidden = TRUE))
+	if(!do_after(user, drain_speed, src, hidden = TRUE))
 		being_drained = FALSE
 		loc.balloon_alert(user, "interrupted!")
 		return

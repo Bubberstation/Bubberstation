@@ -219,7 +219,6 @@
 	damage = 1
 	wound_bonus = 20
 	armour_penetration = 30
-	speed = 1
 	speed = 0.6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	range = 30
@@ -286,3 +285,4 @@
 #undef THAUMATURGY_SHIELD_LEVEL
 #undef THAUMATURGY_DOOR_BREAK_LEVEL
 #undef THAUMATURGY_BLOOD_STEAL_LEVEL
+#undef THAUMATURGY_EXTRA_DAMAGE_LEVEL

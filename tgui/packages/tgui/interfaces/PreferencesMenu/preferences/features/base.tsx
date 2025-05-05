@@ -281,17 +281,14 @@ export const FeatureTextInput = (
   );
 };
 
-export const FeatureTriColorInput = (
-  props: FeatureValueProps<string[]> & {
-    act: (action: string, value?: unknown) => void;
-  },
-) => {
+export const FeatureTriColorInput = (props: FeatureValueProps<string[]>) => {
+  const { act } = useBackend();
   const buttonFromValue = (index) => {
     return (
       <Stack.Item>
         <Button
           onClick={() => {
-            props.act('set_tricolor_preference', {
+            act('set_tricolor_preference', {
               preference: props.featureId,
               value: index + 1,
             });

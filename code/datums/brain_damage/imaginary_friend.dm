@@ -15,9 +15,8 @@
 /datum/brain_trauma/special/imaginary_friend/on_gain()
 	var/mob/living/M = owner
 	if(M.stat == DEAD || !M.client)
-		qdel(src)
-		return
-	..()
+		return FALSE
+	. = ..()
 	make_friend()
 	get_ghost()
 
@@ -69,7 +68,7 @@
 		qdel(src)
 		return
 
-	friend.key = ghost.key
+	friend.PossessByPlayer(ghost.ckey)
 	friend.attach_to_owner(owner)
 	friend.setup_appearance()
 	friend_initialized = TRUE

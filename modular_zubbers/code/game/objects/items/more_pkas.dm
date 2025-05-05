@@ -166,7 +166,7 @@
 	armor_flag = BOMB
 	range = 6
 	pressure_decrease = 0.10 //Pressured enviorments are a no go for the railgun
-	speed = 0.1 //NYOOM
+	speed = 10 //NYOOM
 	projectile_piercing = PASSMOB
 
 /obj/projectile/kinetic/repeater

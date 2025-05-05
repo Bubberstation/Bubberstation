@@ -15,6 +15,8 @@
 	action.Grant(human_holder)
 
 /datum/quirk/venomous_bite/remove()
+	if(QDELETED(quirk_holder))
+		return ..()
 	var/datum/action/cooldown/mob_cooldown/venomous_bite/action = locate(/datum/action/cooldown/mob_cooldown/venomous_bite) in quirk_holder.actions
 	action.Remove()
 
@@ -28,21 +30,53 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "venomous_bite_venom"
 	savefile_identifier = PREFERENCE_CHARACTER
-	/// Format: (reagent typepath -> list(amount to inject per bite, cooldown))
+	/// Format: (reagent typepath -> list(amount to inject per bite, cooldown, can be milked (venom_milker.dm)))
 	var/static/list/venomous_bite_choice_specs = list(
-		/datum/reagent/toxin = list(5, 80 SECONDS),
-		/datum/reagent/toxin/venom = list(5, 180 SECONDS),
-		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS), // less powerful than toxin
+		/datum/reagent/toxin = list(5, 80 SECONDS, FALSE),
+		/datum/reagent/toxin/venom = list(5, 180 SECONDS, FALSE),
+		/datum/reagent/toxin/carpotoxin = list(5, 60 SECONDS, FALSE), // less powerful than toxin
 		// drugs
-		/datum/reagent/drug/space_drugs = list(5, 60 SECONDS),
-		/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS),
+		/datum/reagent/drug/space_drugs = list(5, 60 SECONDS, TRUE),
+		/datum/reagent/toxin/mindbreaker = list(5, 60 SECONDS, FALSE),
 		// erp stuff
-		/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS),
-		/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS),
-		/datum/reagent/drug/aphrodisiac/succubus_milk = list(5, 2 SECONDS),
-		/datum/reagent/drug/aphrodisiac/incubus_draft = list(5, 2 SECONDS),
+		/datum/reagent/drug/aphrodisiac/crocin = list(5, 2 SECONDS, TRUE),
+		/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(5, 5 SECONDS, TRUE),
+		/datum/reagent/drug/aphrodisiac/succubus_milk = list(5, 2 SECONDS, TRUE),
+		/datum/reagent/drug/aphrodisiac/incubus_draft = list(5, 2 SECONDS, TRUE),
 )
+	var/static/list/milkable_venoms = generate_milkable_venom_list()
+	var/static/filter_immune_string = generate_filter_immune_string()
 
+/**
+ * Generates a static list of /datum/reagent that will not be transformed into [/datum/reagent/generic_milked_venom] upon being milked by a venom milker.
+ *
+ * Ran once, then never again.
+ */
+/proc/generate_milkable_venom_list()
+	RETURN_TYPE(/list)
+
+	var/list/milkable = list()
+
+	for (var/datum/reagent/typepath as anything in /datum/preference/choiced/venomous_bite_venom::venomous_bite_choice_specs)
+		var/list/spec = /datum/preference/choiced/venomous_bite_venom::venomous_bite_choice_specs[typepath]
+
+		if (spec[3])
+			milkable += typepath
+
+	return milkable
+
+/**
+ * Generates a static string appended to the venom milker's description, detailing which reagents available to the venom quirk will not be transformed into [/datum/reagent/generic_milked_venom].
+ *
+ * Ran once, then never again.
+ */
+/proc/generate_filter_immune_string()
+	var/filter_immune_string = ""
+	for (var/datum/reagent/typepath as anything in /datum/preference/choiced/venomous_bite_venom::milkable_venoms)
+		if (length(filter_immune_string))
+			filter_immune_string += ", "
+		filter_immune_string += typepath::name
+	return filter_immune_string
 
 /datum/preference/choiced/venomous_bite_venom/init_possible_values()
 	var/list/choices = list()

@@ -1,0 +1,325 @@
+2025-04-01:
+  BurgerBB:
+  - rscdel: Disabler boots have a 5% chance (per locker) to spawn in a locker during
+      april fools.
+  StrangeWeirdKitten:
+  - rscdel: Removes the handheld crew monitor from the medical lathes.
+  plsleavemealon:
+  - bugfix: fixed ethereals powercell back to bubbers values
+2025-04-02:
+  Jinshee:
+  - bugfix: fixed wagging state for all shadekin tails and ring tail (long)
+  LT3:
+  - rscadd: 'Added new carp variant: carpmospheric technician'
+  StrangeWeirdKitten:
+  - rscdel: Disaboots have been removed from apirl fools.
+2025-04-03:
+  Jinshee:
+  - rscadd: 10 new wings, 3 new horns, 9 new IPC screens, 13 new tails, and 6 new
+      ears
+  - rscadd: 'Added new ear type: Shadekin Gradient'
+  LT3:
+  - bugfix: Lobotomy/blessed lobotomy should correctly remove all surgery based traumas
+  - balance: Lobotomy/blessed lobotomy now provides a predictable status effect instead
+      of a trauma RNG roll
+  StrangeWeirdKitten:
+  - balance: Cyborgs now auto link in a priority system. Malf > AI cores > Suit AIs
+      / Cards
+2025-04-04:
+  Bombermansam:
+  - rscadd: Makes Nugget Boxes and Food packs small
+2025-04-05:
+  Bombermansam:
+  - rscadd: '*skweh emote to be sad'
+  - bugfix: Silicons can now yip.
+  Jinshee:
+  - sound: Slug Scream sound added to *scream choices
+  LT3:
+  - bugfix: Sound prefs that went missing post-516 are restored
+  - rscadd: Jukebox volume slider in game preferences
+  Odairu:
+  - rscadd: several vulpkanin species buffs/debuffs
+  - balance: shadekin empathy is better/worse based on mood
+2025-04-06:
+  Odairu:
+  - balance: shadekin nv buffed from 4.5/100 to 15/100
+  - balance: shadekin move a bit slower in the light
+  Swiftfeather:
+  - balance: Cat ears no longer provide a tackle bonus
+  TealSeer:
+  - bugfix: fixed persistence medbots speaking on wrong radio frequency
+  - bugfix: fixed sechud nv goggles being invisible when off
+  pixelkitty286:
+  - balance: Super cat ear cool downs are longer and removed the freedom implant function.
+  sippykot:
+  - rscadd: added 4 new large shark tail options - large shark, large shark (finless),
+      large shark (striped), and large shark (striped, finless)
+2025-04-07:
+  Jinshee:
+  - bugfix: Fix Podperson eye color selection
+  LT3:
+  - admin: Map vote is automatically triggered near the conclusion of station ending
+      threats
+  - bugfix: Only a single announcement is sent when the shuttle is called, fixing
+      the overlapping sounds
+  Odairu:
+  - code_imp: respawn enabled until 30 min (world time)
+  - config: adds a respawn grace period
+  TealSeer, LT3:
+  - refactor: refactored how changelogs are generated and displayed
+  pixelkitty286:
+  - bugfix: chameleon model foot steps
+  - code_imp: moved many of the borg defines to their correct _defines file and folder
+2025-04-08:
+  Iamgoofball:
+  - qol: Puts the Sol/Carwo/Romulus/Szot/Trappiste gun magazine weight classes in
+      line with /tg/ standards for magazine weight classes (tiny for everything but
+      rifles or larger which are normal)
+  - rscdel: Removes the 60 round Sol drum from being printable in Security
+2025-04-09:
+  Odairu:
+  - code_imp: deathmatch doesn't reset your respawn timer
+2025-04-10:
+  LT3:
+  - bugfix: Mobs with cat tongue get their alternate meow sound back
+  - qol: Leaning no longer resets with directional change
+  MajManatee:
+  - rscadd: ' BUNCH of new tarkon things!'
+  - map: Tarkon QOL changes
+  TealSeer:
+  - bugfix: fixed shuttles missing landing/take off engine sounds
+  - bugfix: fixed shuttles not bolting/unbolting their doors when moving
+2025-04-11:
+  ArrisFairburne:
+  - qol: Synthetic crew now spawn in with PDA apps relevant to their work station.
+  Goku:
+  - map: Kilo Station's Dormitories area type is now classified as dormitories, not
+      as a Locker room.
+  Kepteyn:
+  - rscadd: 'Added infinidorms: Fox Bar; The Nightclub; EVA; and Oasis (day and night
+      versions)'
+  - rscadd: Added a mapping template for creating new infinidorms at modular_skyrat\modules\hotel_rooms
+  - bugfix: modified the lights of the Library infinidorm so it's not so damn dark.
+  TealSeer:
+  - bugfix: fixed character preview in the examine window being tiny
+  - bugfix: fixed vote results in chat having an extra box around them
+  aKromatopzia:
+  - rscadd: sec smolraptors
+  - image: fixes some errors in smolraptors
+2025-04-12:
+  TealSeer:
+  - admin: the cancel and refund buttons in storyteller event notifications will actually
+      do something now
+2025-04-13:
+  Bombermansam:
+  - rscadd: Adds Crowbars to Service, Medical, Clown, Sec and Peacekeeper borgs
+  Chestlet:
+  - admin: Improved RB-MK2 logging so admins have a full trace of exactly what happened
+      with it.
+  - bugfix: Corrected 'tritium usage' math in the RB-MK2.
+  - code_imp: We've noticed that the Radioscopical Bluespace Reactor Mark Two blueprints
+      provided to our stations came with antiquated firmware. This issue has been
+      rectified. (Significant rework of the RB-MK2 GUI)
+  Goku:
+  - bugfix: Fix wooden shelves turning into metal rack parts when broken.
+  - balance: Robotic blessed lobotomy now also requires holy water (just like the
+      organic surgery)
+  - balance: Robotic blessed lobotomy requires liquid solder instead of Palladium
+      Synthate Catalyst
+  - bugfix: Fix posibrain surgery now also cures surgery-tier brain traumas
+  - balance: Reticulate splines surgery now also cures lower tier brain traumas (surgery
+      and lobotomy)
+  - balance: Replaced advanced robotic brain surgery RNG roll with the 15-minute vulnerability
+      status effect that was added to organic brain surgery
+  LT3:
+  - qol: The medical pouch can now hold hyposprays and cable coil
+  TealSeer:
+  - qol: xenoarch machines have context tooltips now
+  - bugfix: fixed xenoarch diggers not working
+  - bugfix: fixed HEV suit not turning on properly
+  - qol: the xenoarch bag can now hold broken items and useless relics
+  - qol: you can use the bag on the researcher and the recoverer to dump items in
+  - sound: the digger and researcher now make a sound when they complete a cycle
+  UvvU:
+  - rscadd: Tackle gloves are now reskinnable.
+  nevimer:
+  - balance: reenabled the RCD vendors and moved RCD's from spawning in backpacks
+      to lockers.
+2025-04-14:
+  CydiaButt13:
+  - code_imp: Changes penis sizecap from 36 to 1024, 72 in character creator.
+  - code_imp: Changes boobs sizecap from P to 1024, still P in character creator.
+  shellspeed1:
+  - bugfix: Bitrunning sims no longer have comms access
+  - bugfix: Borgs given the persistence access upgrade no longer default to interdyne
+      and get cybersun comms instead
+2025-04-15:
+  TealSeer:
+  - sound: frogs make sounds again
+2025-04-16:
+  LT3:
+  - bugfix: Mood will show your correct drunkenness status
+  - bugfix: Surgery tray has the correct starting items
+2025-04-17:
+  LT3:
+  - bugfix: Premium internals boxes are no longer invisible
+  UvvU:
+  - rscdel: Removed metro cop armor from the sec vendors
+  sippykot:
+  - rscadd: blacksmith starts out with wood and a leather apron
+  - image: removes the sprite override for emergency medkits
+2025-04-18:
+  Boviro:
+  - rscadd: Adds top surgery scars as markings on the character creator.
+  LT3:
+  - bugfix: Fixed lidocaine/amollin pills having delayed effect
+2025-04-19:
+  Arturlang:
+  - admin: adds a verb to find all objects in nullspace
+  Shadow-Quill:
+  - spellcheck: The headset message from weapon beacons have been changed to have
+      better grammar.
+2025-04-20:
+  ArrisFairburne:
+  - rscadd: Added a Mothroach plushie to the loadout menu and toys vendor.
+  LT3:
+  - balance: SAD is now available to be built roundstart
+  - map: Added roundstart SAD to Bubberstation maps
+  - qol: Operating computer now gives information on trauma treatment
+  - qol: Trauma surgeries only show available when there's a trauma to fix
+  - rscadd: Trauma neurectomy / blessed neurectomy replacements for clearing traumas
+  - balance: Trauma / blessed neurectomy have a 100% success rate by default
+  - rscdel: Lobotomy functions like it used to (revert to TG)
+  TealSeer:
+  - bugfix: fixed both rotate buttons in character prefs rotating in the same direction
+  - bugfix: removing cargo teleporter destinations by clicking on them should work
+      again
+  - bugfix: fixed emissive overlays on body parts being offset
+  - bugfix: taur clothing should now draw on the body properly
+  UvvU:
+  - rscadd: Added a SAD to the interlink
+  - bugfix: Windoors are no longer immune to frangible slugs effects.
+2025-04-21:
+  ArrisFairburne:
+  - bugfix: Replaced placeholder text for amber, violet, orange, epsilon, and gamma
+      alerts when reading the alert level via PDA.
+  - rscadd: PDA alert readout now correctly inverts colors/blinks text to reflect
+      our different alert level behaviors compared to tgstation's.
+  LT3:
+  - code_imp: Improved storyteller vote formatting
+  - code_imp: Storyteller doesn't announce the roundstart event purchase
+  MajManatee:
+  - rscadd: With a new upgrade, Borgs get an RLD. Let there be light.
+  Shadow-Quill:
+  - bugfix: Cyborgs once more get an alert if their cover is being pried open.
+  - bugfix: It is no longer guaranteed to roll all three station goals. Now, the number
+      of goals selected will be random, weighted towards zero or one goals.
+2025-04-22:
+  ArrisFairburne:
+  - qol: synth brain PDAs now have the detailed NTOS messenger notification to their
+      brain owners
+  - qol: synth brain PDAs can now look inside wallets to find their inserted ID equivalent
+  HalcyonicWolf:
+  - image: added/modified several protective clothing sprites for Vox Primalis
+  Impish_Delights:
+  - rscadd: Voice modulator gasmask, a craftable gas mask that robotizes and disguises
+      your voice!
+  TealSeer:
+  - bugfix: gamers rejoice, minesweeper works again
+  - bugfix: fixed botany apron showing up as overalls on digi users
+  - image: some sprites that were broken on alt body types might be fixed who knows
+      really
+2025-04-23:
+  KazooBard:
+  - config: Heretic spawn changes, minimum pop lowered 50 -> 35
+  Shayoki, Asheia Lin:
+  - rscadd: Added a new taur body for rabbits/bunnies.
+  TealSeer:
+  - bugfix: fixed SADs spitting out a circuit board when you open them
+2025-04-24:
+  KazooBard:
+  - qol: Heads of Personnel have been given a bonus by Nanotrasen for their hard work,
+      they now are provided big "granted" and "denied" stamps to assert dominance
+      on any requesters in their line.
+  - balance: Romtech Carbine's Projectile Damage Multiplier 1 -> 0.75
+  - balance: Romtech Carbine's Projectile Wound Bonus -35 -> -20
+  TealSeer:
+  - bugfix: characters who had their NIFs disappear a few months ago should have them
+      back now
+  plsleavemealon:
+  - rscadd: Adds some new loadout options for Security Medics and Corrections Officers
+2025-04-25:
+  Jinshee:
+  - rscadd: Added tall, wide, and angled eye markings
+  KazooBard:
+  - qol: ' Ordering groceries from the service produce console is now much cheaper
+      for the express option.'
+  SapphoQueer:
+  - bugfix: Speedloaders now cost the same between cargo goodies, and company imports.
+  TealSeer:
+  - rscadd: added screentips for the powerator
+  - qol: powerator input now takes kilowatts instead of watts
+  - bugfix: powerator no longer draws weird amounts of power that aren't the number
+      you typed in
+  - bugfix: powerator penalties are now faction-based (station, persistence, tarkon),
+      no more diminishing gains on station because tarkon is also running a powerator
+  - bugfix: fixed opfor menu crashing when changing requested equipment amount
+  - bugfix: fixed ammo workbench crashing on changing amount of materials to release
+2025-04-26:
+  Bombermansam:
+  - rscadd: Mining Borg Gripper
+  - rscadd: Science and Engineering Borg Gripper Modifications
+  - rscadd: Mining Borg Vent Pointer
+  - rscadd: Mining and Science Borg Advanced Xenoarch Bag
+  - rscadd: Adds ability for borgs to eject cells from cell chargers by alt clicking
+      on the charger
+  - rscadd: Changes popping cells out on multicell chargers from right click to alt
+      click to keep the actions the same between chargers
+  LT3:
+  - bugfix: Those jerks over at Cybersun can no longer trigger your station's supermatter
+      delam suppression system
+  TealSeer:
+  - bugfix: fixed the scanner gate UI bluescreening as soon as you open it
+2025-04-27:
+  LT3:
+  - qol: Engine delam station-wide sound announcements are only triggered by the main
+      engine
+  TealSeer:
+  - rscadd: scanner gates can now be set to detect certain nanite cloud IDs
+  - bugfix: the minimum values for "stamina damage end degradation percent" and "crit
+      threshold end degradation percent" are now 1 instead of 0
+2025-04-28:
+  ArrisFairburne:
+  - bugfix: Fixed the EMP damage cooldown on synth organs not activating. Synths now
+      require a 10 second pause between EMPs to deal further damage to them.
+  - bugfix: fixed synths not getting their NTOS apps installed on their brain automatically,
+      if they joined secmed or any medical dept. role
+  CydiaButt13:
+  - rscadd: Added new SPLURT penis/balls/breasts sprites
+  - rscadd: 37 new Malkavian revelation lines
+  - rscdel: 48 Memey Malkavian revelation lines.
+  thegrb93:
+  - bugfix: Ashwalkers unable to craft arrows
+2025-04-29:
+  Arturlang:
+  - bugfix: Refactors syndi maid armor, it should work more reliably, or break more
+      hilariously.
+  - balance: Syndi maid armor no longer has maximum bio/acid armor
+  Lazhannya:
+  - rscadd: A way to craft the Detective's Notice Board with wooden planks.
+  TealSeer:
+  - bugfix: getting admin healed no longer makes you drop to the floor and then get
+      up
+  - bugfix: hairline and compound fractures are no longer instantly healed with bone
+      gel, sorry!
+  - bugfix: fixed port tarkon bounty pad returning 0 for all sales
+  - bugfix: fixed the featherweight quirk doing nothing when you're picked up
+  - bugfix: fixed rider always layering above carrier when fireman carrying/piggybacking
+  nevimer:
+  - code_imp: moffson should work without needing an ai to be damaged now.
+  thegrb93:
+  - rscdel: Remove asynchronous blinking due to eyes getting stuck closed
+2025-04-30:
+  TealSeer:
+  - bugfix: fixed loadout item customization breaking job equipment under certain
+      circumstances

@@ -16,6 +16,16 @@
 	melee_damage_upper = 20
 	next_evolution = /mob/living/carbon/alien/adult/skyrat/ravager
 	on_fire_pixel_y = 0
+	default_organ_types_by_slot = list(
+		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
+		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien/hivenode,
+		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue/alien,
+		ORGAN_SLOT_EYES = /obj/item/organ/eyes/alien,
+		ORGAN_SLOT_LIVER = /obj/item/organ/liver/alien,
+		ORGAN_SLOT_EARS = /obj/item/organ/ears,
+		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach/alien,
+		ORGAN_SLOT_XENO_PLASMAVESSEL = /obj/item/organ/alien/plasmavessel/small/tiny,
+	)
 
 /mob/living/carbon/alien/adult/skyrat/runner/Initialize(mapload)
 	. = ..()
@@ -24,10 +34,6 @@
 	evade_ability.Grant(src)
 
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_quick)
-
-/mob/living/carbon/alien/adult/skyrat/runner/create_internal_organs()
-	organs += new /obj/item/organ/alien/plasmavessel/small/tiny
-	..()
 
 /datum/action/cooldown/alien/skyrat/evade
 	name = "Evade"

@@ -251,7 +251,7 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,
@@ -270,6 +270,7 @@
 		/obj/item/handheld_soulcatcher, // SKYRAT EDIT SOULCATCHERS
 		/obj/item/wrench/medical,
 		/obj/item/knife/ritual,
+		/obj/item/flesh_shears,
 	))
 
 /obj/item/storage/belt/medical/paramedic
@@ -365,7 +366,6 @@
 		/obj/item/flashlight/seclite,
 		/obj/item/food/donut,
 		/obj/item/grenade,
-		/obj/item/gun, //SKYRAT EDIT ADDITION
 		/obj/item/holosign_creator/security,
 		/obj/item/knife/combat,
 		/obj/item/melee/baton,
@@ -377,7 +377,7 @@
 	))
 	atom_storage.open_sound = 'sound/items/handling/holster_open.ogg'
 	atom_storage.open_sound_vary = TRUE
-	atom_storage.rustle_sound = FALSE
+	atom_storage.rustle_sound = null
 
 /obj/item/storage/belt/security/full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
@@ -432,7 +432,7 @@
 		/obj/item/reagent_containers/cup/glass,
 		/obj/item/reagent_containers/cup/glass/bottle,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/resonator,
 		/obj/item/screwdriver,
 		/obj/item/shovel,
@@ -699,6 +699,14 @@
 	. = ..()
 	atom_storage.max_slots = 6
 	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL // Set to this so the  light replacer can fit.
+	// BUBBER EDIT BEGIN - Trash bag on da belt
+	var/static/list/exception_cache = typecacheof(list(
+		/obj/item/storage/bag/trash,
+	))
+	atom_storage.exception_hold = exception_cache
+	atom_storage.exception_max = 1
+	atom_storage.allow_big_nesting = TRUE
+	// BUBBER EDIT END - Trash bag on da belt
 	atom_storage.set_holdable(list(
 		/obj/item/access_key,
 		/obj/item/assembly/mousetrap,

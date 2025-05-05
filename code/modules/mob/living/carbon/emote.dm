@@ -77,6 +77,7 @@
 	if(user.put_in_hands(N))
 		to_chat(user, span_notice("You make a circle with your hand."))
 
+/* BUBBER EDIT REMOVE - moved to modular_skyrat/modules/emotes/code/emotes.dm
 /datum/emote/living/carbon/meow
 	key = "meow"
 	key_third_person = "meows"
@@ -98,6 +99,7 @@
 	sound = SFX_CAT_PURR
 	message = "purrs."
 	emote_type = EMOTE_AUDIBLE
+*/
 
 /datum/emote/living/carbon/purr/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional, params)
 	if(!iscarbon(user) || (!istype(user.get_organ_slot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/cat)) || HAS_MIND_TRAIT(user, TRAIT_MIMING))

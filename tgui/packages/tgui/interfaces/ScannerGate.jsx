@@ -1,4 +1,10 @@
-import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -87,6 +93,12 @@ const SCANNER_GATE_ROUTES = {
     component: () => ScannerGateGender,
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+  // BUBBER EDIT START - NANITES
+  Nanites: {
+    title: 'Scanner Mode: Nanites',
+    component: () => ScannerGateNanites,
+  },
+  // BUBBER EDIT END - NANITES
 };
 
 const ScannerGateControl = (props) => {
@@ -146,6 +158,12 @@ const ScannerGateOff = (props) => {
           content="Nutrition"
           onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
         />
+        {/* BUBBER EDIT START - NANITES */}
+        <Button
+          content="Nanites"
+          onClick={() => act('set_mode', { new_mode: 'Nanites' })}
+        />
+        {/* BUBBER EDIT END - NANITES */}
       </Box>
     </>
   );
@@ -286,6 +304,40 @@ const ScannerGateNutrition = (props) => {
     </>
   );
 };
+// BUBBER EDIT START - NANITES
+const ScannerGateNanites = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { reverse, nanite_cloud, min_cloud_id, max_cloud_id } = data;
+  return (
+    <>
+      <Box mb={2}>
+        Trigger if the person scanned {reverse ? 'does not have' : 'has'} nanite
+        cloud {nanite_cloud}.
+      </Box>
+      <Box mb={2}>
+        <LabeledList>
+          <LabeledList.Item label="Cloud ID">
+            <NumberInput
+              value={nanite_cloud}
+              width="65px"
+              minValue={min_cloud_id + 1}
+              maxValue={max_cloud_id}
+              step={1}
+              stepPixelSize={2}
+              onChange={(value) =>
+                act('set_nanite_cloud', {
+                  new_cloud: value,
+                })
+              }
+            />
+          </LabeledList.Item>
+        </LabeledList>
+      </Box>
+      <ScannerGateMode />
+    </>
+  );
+};
+// BUBBER EDIT END - NANITES
 
 //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
 const ScannerGateGender = (props) => {

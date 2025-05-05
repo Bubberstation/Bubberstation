@@ -106,6 +106,11 @@
 	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
+/datum/greyscale_config/shibari/worn/teshari
+	name = "Shibari (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform_teshari.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
+
 //body
 
 /datum/greyscale_config/shibari/body
@@ -114,22 +119,32 @@
 
 /datum/greyscale_config/shibari/body/worn
 	name = "Shibari Body (Worn)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/digi
 	name = "Shibari Body (Worn, Digi)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-digi.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_snake
 	name = "Shibari Body (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_paw
 	name = "Shibari Body (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 /datum/greyscale_config/shibari/body/worn/taur_hoof
 	name = "Shibari Body (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
+
+/datum/greyscale_config/shibari/body/worn/teshari
+	name = "Shibari Body (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform_teshari.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/body.json'
 
 //groin
@@ -140,22 +155,32 @@
 
 /datum/greyscale_config/shibari/groin/worn
 	name = "Shibari Groin (Worn)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/digi
 	name = "Shibari Groin (Worn, Digi)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-digi.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_snake
 	name = "Shibari Groin (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_paw
 	name = "Shibari Groin (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 /datum/greyscale_config/shibari/groin/worn/taur_hoof
 	name = "Shibari Groin (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
+
+/datum/greyscale_config/shibari/groin/worn/teshari
+	name = "Shibari Groin (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform_teshari.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/groin.json'
 
 //fullbody
@@ -166,22 +191,32 @@
 
 /datum/greyscale_config/shibari/worn/fullbody
 	name = "Shibari Fullbody (Worn)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/digi
 	name = "Shibari Fullbody (Worn, Digi)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-digi.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_snake
 	name = "Shibari Fullbody (Worn, Taur Snake)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-snake.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_paw
 	name = "Shibari Fullbody (Worn, Taur Paw)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 /datum/greyscale_config/shibari/fullbody/worn/taur_hoof
 	name = "Shibari Fullbody (Worn, Taur Hoof)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-hoof.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
+
+/datum/greyscale_config/shibari/fullbody/worn/teshari
+	name = "Shibari Fullbody (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform_teshari.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/fullbody.json'
 
 //hands
@@ -194,6 +229,11 @@
 /datum/greyscale_config/shibari/hands/worn
 	name = "Shibari Hands (Worn)"
 	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/hands.json'
+
+/datum/greyscale_config/shibari/hands/worn/teshari
+	name = "Shibari Hands (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves_teshari.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/hands.json'
 
 //legs
@@ -211,5 +251,10 @@
 /datum/greyscale_config/shibari/legs/worn/digi
 	name = "Shibari Legs Digi (Worn, Digi)"
 	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/legs.json'
+
+/datum/greyscale_config/shibari/legs/worn/teshari
+	name = "Shibari Legs (Worn, Teshari)"
+	icon_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_teshari.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/nsfw/json_configs/clothes/legs.json'
 

@@ -253,3 +253,42 @@
 	attack_verb_continuous = list("ghouls")
 	attack_verb_simple = list("ghoul")
 	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)
+
+// plushie for BeoTheKobold
+// sprite by Cepha, code by Mitryll
+/obj/item/toy/plush/mold_kobold
+	name = "hemophage awareness kobold"
+	desc = "A cuddly kobold plushie. Produced by Nanotrasen in the soft likeness of a hemophage employee; \
+			focus groups thought this design played less into hemophage stereotypes as opposed to the previous iteration, \
+			Lord Grog the Vile Parasite. A tag on the left leg says 10% of proceeds go to blood banks!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "themold"
+	attack_verb_continuous = list("bites", "curses", "drains")
+	attack_verb_simple = list("bite", "invoke", "claw")
+	gender = FEMALE
+
+// Plushie for Decinomics
+/obj/item/toy/plush/sinvox
+	name = "sinister vox plushie"
+	desc = "An evil looking toy. It's got a vox beak that splits into mandibles like a bug;\
+		its tail looks like a copy of the xenomorph plushie stitched together poorly.\
+		Property and copyright of VOXXXED Studios..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "sinvox"
+	attack_verb_continuous = list("hisses at", "bites", "mauls", "quills", "tail stabs")
+	attack_verb_simple = list("hiss at", "bite", "maul", "quill", "tail stab")
+	gender = MALE
+	squeak_override = list(
+		'sound/mobs/non-humanoids/hiss/hiss2.ogg' = 1,
+		'modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1,
+	)
+
+/obj/item/toy/plush/mothroach_plush
+	name = "Mothroach Plush"
+	desc = "A plushie featuring the likeness everyone's favorite genetic freak-turned station pet. Do not soak it in milk and throw it against a wall."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "mothroach"
+	attack_verb_continuous = list("mothroaches", "moths", "roaches")
+	attack_verb_simple = list("mothroach", "moth", "roach")
+	gender = MALE
+	squeak_override = list( 'sound/mobs/humanoids/moth/scream_moth.ogg' = 1, )

@@ -385,7 +385,7 @@
 
 /datum/computer_file/program/messenger/ui_assets(mob/user)
 	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/chat)
+	. += get_asset_datum(/datum/asset/spritesheet_batched/chat)
 
 //////////////////////
 // MESSAGE HANDLING //
@@ -716,6 +716,14 @@
 		receievers += computer.inserted_pai.pai
 	if(computer.loc && isliving(computer.loc))
 		receievers += computer.loc
+
+	/// BUBBER EDIT BEGINS - Synths get notified if their brain PDA is messaged
+	if(istype(computer, /obj/item/modular_computer/pda/synth))
+		var/obj/item/organ/brain/synth/brain_loc = computer.loc
+		var/mob/living/carbon/owner = brain_loc?.bodypart_owner?.owner
+		if(istype(owner))
+			receievers += owner
+	/// BUBBER EDIT ENDS
 
 	// resolving w/o nullcheck here, assume the messenger exists if a real person sent a message
 	var/datum/computer_file/program/messenger/sender_messenger = chat.recipient?.resolve()

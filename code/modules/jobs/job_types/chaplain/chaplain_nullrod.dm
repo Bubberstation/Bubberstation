@@ -906,7 +906,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 		successful_sneak_attack = FALSE
 		sneak_attack_fail_message = TRUE
 
-	else if(IS_HERETIC_MONSTER(living_target) && prob(50)) // IT IS HARD TO SNEAK ATTACK SOMETHING WITH TOO MANY REDUNDANT EVERYTHINGS.
+	else if(HAS_TRAIT(living_target, TRAIT_HERETIC_SUMMON) && prob(50)) // IT IS HARD TO SNEAK ATTACK SOMETHING WITH TOO MANY REDUNDANT EVERYTHINGS.
 		successful_sneak_attack = FALSE
 		sneak_attack_fail_message = TRUE
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Stack } from 'tgui-core/components';
+import { NoticeBox, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
@@ -57,7 +57,7 @@ function CharacterProfiles(props: ProfileProps) {
   ); */
   return (
     <Stack align="center" justify="left">
-      <Stack.Item width="225px">
+      <Stack.Item width="285px">
         <SideDropdown
           width="100%"
           selected={profiles[activeSlot]}
@@ -127,21 +127,30 @@ export function CharacterPreferenceWindow(props) {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <CharacterProfiles
-          activeSlot={data.active_slot - 1}
-          onClick={(slot) => {
-            act('change_slot', {
-              slot: slot + 1,
-            });
-          }}
-          profiles={data.character_profiles}
-        />
+        <Stack>
+          <Stack.Item>
+            <CharacterProfiles
+              activeSlot={data.active_slot - 1}
+              onClick={(slot) => {
+                act('change_slot', {
+                  slot: slot + 1,
+                });
+              }}
+              profiles={data.character_profiles}
+            />
+          </Stack.Item>
+          {!data.content_unlocked && (
+            <Stack.Item grow align="center" mb={-1}>
+              <NoticeBox color="grey">
+                <a href="https://www.byond.com/membership">
+                  Become a BYOND Member to unlock more character slots and other
+                  members-only benefits!
+                </a>
+              </NoticeBox>
+            </Stack.Item>
+          )}
+        </Stack>
       </Stack.Item>
-      {!data.content_unlocked && (
-        <Stack.Item align="center">
-          Buy BYOND premium for more slots!
-        </Stack.Item>
-      )}
       <Stack.Divider />
       <Stack.Item>
         <Stack fill>
@@ -163,6 +172,20 @@ export function CharacterPreferenceWindow(props) {
               setPage={setCurrentPage}
             >
               Loadout
+            </PageButton>
+          </Stack.Item>
+
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Jobs}
+              setPage={setCurrentPage}
+            >
+              {/*
+                    Fun fact: This isn't "Jobs" so that it intentionally
+                    catches your eyes, because it's really important!
+                  */}
+              Occupations
             </PageButton>
           </Stack.Item>
 
@@ -191,20 +214,6 @@ export function CharacterPreferenceWindow(props) {
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
-              page={Page.Jobs}
-              setPage={setCurrentPage}
-            >
-              {/*
-                    Fun fact: This isn't "Jobs" so that it intentionally
-                    catches your eyes, because it's really important!
-                  */}
-              Occupations
-            </PageButton>
-          </Stack.Item>
-
-          <Stack.Item grow>
-            <PageButton
-              currentPage={currentPage}
               page={Page.Antags}
               setPage={setCurrentPage}
             >
@@ -224,7 +233,9 @@ export function CharacterPreferenceWindow(props) {
         </Stack>
       </Stack.Item>
       <Stack.Divider />
-      <Stack.Item>{pageContents}</Stack.Item>
+      <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
+        {pageContents}
+      </Stack.Item>
     </Stack>
   );
 }

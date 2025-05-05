@@ -246,7 +246,7 @@ There are several things that need to be remembered:
 			if (glove_offset && (!feature_y_offset || glove_offset["y"] > feature_y_offset))
 				feature_y_offset = glove_offset["y"]
 
-		gloves_overlay.pixel_y += feature_y_offset
+		gloves_overlay.pixel_z += feature_y_offset
 
 		// We dont have any >2 hands human species (and likely wont ever), so theres no point in splitting this because:
 		// It will only run if the left hand OR the right hand is missing, and it wont run if both are missing because you cant wear gloves with no arms
@@ -446,7 +446,7 @@ There are several things that need to be remembered:
 			if (foot_offset && foot_offset["y"] > feature_y_offset)
 				feature_y_offset = foot_offset["y"]
 
-		shoes_overlay.pixel_y += feature_y_offset
+		shoes_overlay.pixel_z += feature_y_offset
 		overlays_standing[SHOES_LAYER] = shoes_overlay
 
 	apply_overlay(SHOES_LAYER)
@@ -720,9 +720,72 @@ There are several things that need to be remembered:
 		// SKYRAT EDIT END
 		overlays_standing[BACK_LAYER] = back_overlay
 	apply_overlay(BACK_LAYER)
+// BUBBER EDIT START
+/obj/effect/abstract/held_tk_effect
+	name = "held_tk_effect"
+	icon = 'modular_skyrat/master_files/icons/effects/tele_effects.dmi'
+	icon_state = "holder"
+	layer = HANDS_LAYER
+	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID
+	var/is_right = TRUE
+	var/list/base_x
+	var/list/base_y
 
+/obj/effect/abstract/held_tk_effect/proc/on_parent_dir_change(datum/source, _old_dir, new_dir)
+	SIGNAL_HANDLER
+	set_direction_facing(new_dir)
+
+/obj/effect/abstract/held_tk_effect/proc/set_direction_facing(new_dir)
+	if(base_x && base_y)
+		var/current_dir = dir2text(new_dir)
+		pixel_x = length(base_x) ? ((current_dir in base_x) ? base_x[current_dir] : base_x["south"]) : 0
+		pixel_y = length(base_y) ? ((current_dir in base_y) ? base_y[current_dir] : base_y["south"]) : 0
+		switch(new_dir)
+			if(NORTH)
+				if(is_right)
+					pixel_x += 5
+					pixel_y += 10
+				else
+					pixel_x += -5
+					pixel_y += 10
+			if(SOUTH)
+				if(is_right)
+					pixel_x += -5
+					pixel_y += 10
+				else
+					pixel_x += 5
+					pixel_y += 10
+			if(EAST)
+				if(is_right)
+					pixel_x += 0
+					pixel_y += 10
+				else
+					pixel_x += 0
+					pixel_y += 10
+			if(WEST)
+				if(is_right)
+					pixel_x += 0
+					pixel_y += 10
+				else
+					pixel_x += 0
+					pixel_y += 10
+
+/obj/effect/abstract/held_tk_effect/right
+	is_right = TRUE
+
+/obj/effect/abstract/held_tk_effect/left
+	is_right = FALSE
+// BUBBER EDIT END
 /mob/living/carbon/human/get_held_overlays()
 	var/list/hands = list()
+	// BUBBER EDIT START
+	if(held_left)
+		held_left.overlays.Cut()
+		held_left.underlays.Cut()
+	if(held_right)
+		held_right.overlays.Cut()
+		held_right.underlays.Cut()
+	// BUBBER EDIT END
 	for(var/obj/item/worn_item in held_items)
 		var/held_index = get_held_index_of_item(worn_item)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
@@ -747,9 +810,68 @@ There are several things that need to be remembered:
 		var/icon_file = IS_RIGHT_INDEX(held_index) ? worn_item.righthand_file : worn_item.lefthand_file
 		hand_overlay = worn_item.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
 		var/obj/item/bodypart/arm/held_in_hand = hand_bodyparts[held_index]
-		held_in_hand?.held_hand_offset?.apply_offset(hand_overlay)
-
-		hands += hand_overlay
+		// BUBBER EDIT START
+		if(HAS_TRAIT(src, TRAIT_FLOATING_HELD))
+			if(!held_left)
+				held_left = new(src)
+				held_left.render_target = "*[REF(src)]_hover_left"
+				held_left.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/obj/effect/abstract/held_tk_effect, on_parent_dir_change))
+				src.vis_contents += held_left
+			if(!held_right)
+				held_right = new(src)
+				held_right.render_target = "*[REF(src)]_hover_right"
+				held_right.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/obj/effect/abstract/held_tk_effect, on_parent_dir_change))
+				src.vis_contents += held_right
+			if(held_index % 2 == 0)
+				held_right.overlays.Cut()
+				held_right.underlays.Cut()
+				held_right.pixel_y = 0
+				held_right.pixel_x = 0
+				held_right.overlays += hand_overlay
+				var/mutable_appearance/hover_effect = mutable_appearance(held_left.icon, "hover_right", HANDS_LAYER)
+				if(held_hover_color)
+					hover_effect.color = held_hover_color
+				held_right.underlays += hover_effect
+				var/list/offset = held_in_hand?.held_hand_offset?.get_offset()
+				if(offset)
+					held_right.base_x = held_in_hand?.held_hand_offset?.offset_x
+					held_right.base_y = held_in_hand?.held_hand_offset?.offset_y
+				else
+					held_right.base_x = list("south" = 0)
+					held_right.base_y = list("south" = 0)
+				held_right.set_direction_facing(src.dir)
+			else
+				held_left.overlays.Cut()
+				held_left.underlays.Cut()
+				held_left.pixel_y = 0
+				held_left.pixel_x = 0
+				held_left.overlays += hand_overlay
+				var/mutable_appearance/hover_effect = mutable_appearance(held_left.icon, "hover_left", HANDS_LAYER)
+				if(held_hover_color)
+					hover_effect.color = held_hover_color
+				held_left.underlays += hover_effect
+				var/list/offset = held_in_hand?.held_hand_offset?.get_offset()
+				if(offset)
+					held_left.base_x = held_in_hand?.held_hand_offset?.offset_x
+					held_left.base_y = held_in_hand?.held_hand_offset?.offset_y
+				else
+					held_left.base_x = list("south" = 0)
+					held_left.base_y = list("south" = 0)
+				held_left.set_direction_facing(src.dir)
+			var/mutable_appearance/hand_overlay_real = mutable_appearance(layer = HANDS_LAYER, offset_spokesman = src)
+			if(held_index % 2 == 0)
+				hand_overlay_real.render_source = "*[REF(src)]_hover_right"
+				animate(held_right, pixel_y = 2, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
+				animate(pixel_y = -2, time = 1 SECONDS, flags = ANIMATION_RELATIVE)
+			else
+				hand_overlay_real.render_source = "*[REF(src)]_hover_left"
+				animate(held_left, pixel_y = 2, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
+				animate(pixel_y = -2, time = 1 SECONDS, flags = ANIMATION_RELATIVE)
+			hands += hand_overlay_real
+		else
+			held_in_hand?.held_hand_offset?.apply_offset(hand_overlay)
+			hands += hand_overlay
+		// BUBBER EDIT END
 	return hands
 
 /// Modifies a sprite slightly to conform to female body shapes
@@ -1010,7 +1132,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	var/mob/living/carbon/wearer = loc
 	var/is_digi = istype(wearer) && (wearer.bodyshape & BODYSHAPE_DIGITIGRADE) /*&& !wearer.is_digitigrade_squished()*/ // BUBBER EDIT TODO - Leg squishing skyrat killed
 
-	var/mutable_appearance/standing // this is the actual resulting MA
+	var/mutable_appearance/draw_target // MA of the item itself, not the final result
 	var/icon/building_icon // used to construct an icon across multiple procs before converting it to MA
 	if(female_uniform)
 		building_icon = wear_female_version(
@@ -1027,34 +1149,41 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			greyscale_colors = greyscale_colors,
 		)
 	if(building_icon)
-		standing = mutable_appearance(building_icon, layer = -layer2use)
+		draw_target = mutable_appearance(building_icon)
+	else
+		draw_target = mutable_appearance(file2use, t_state)
+
+	//Get the overlays for this item when it's being worn
+	//eg: ammo counters, primed grenade flashes, etc.
+	var/list/worn_overlays = worn_overlays(draw_target, isinhands, file2use, mutant_styles) // BUBBER EDIT CHANGE - adds mutant_styles
+	if(length(worn_overlays))
+		draw_target.overlays += worn_overlays
+	draw_target = color_atom_overlay(draw_target)
 
 	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
-			standing = wear_taur_version(standing.icon_state, standing.icon, layer2use, female_uniform, greyscale_colors)
+			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors)
 		else
-			standing.pixel_x -= 16 // it doesnt look right otherwise
+			draw_target.pixel_w -= 16 // it doesnt look right otherwise
 	// SKYRAT EDIT ADDITION END
 
-	// no special handling done, default it
-	standing ||= mutable_appearance(file2use, t_state, layer = -layer2use)
-
-	//Get the overlays for this item when it's being worn
-	//eg: ammo counters, primed grenade flashes, etc.
-	var/list/worn_overlays = worn_overlays(standing, isinhands, file2use, mutant_styles) // SKYRAT EDIT CHANGE - ORIGINAL: var/list/worn_overlays = worn_overlays(standing, isinhands, file2use)
-	if(length(worn_overlays))
-		standing.overlays += worn_overlays
+	// Okay so this has to be done because some overlays, like blood, want to be KEEP_APART
+	// but KEEP_APART breaks float layering, so what we need to do is make fake KEEP_APART for us to use
+	var/mutable_appearance/standing = mutable_appearance(layer = -layer2use, appearance_flags = KEEP_TOGETHER)
+	standing.overlays += draw_target
+	var/list/separate_overlays = separate_worn_overlays(standing, draw_target, isinhands, file2use)
+	if(length(separate_overlays))
+		standing.overlays += separate_overlays
 
 	standing = center_image(standing, isinhands ? inhand_x_dimension : worn_x_dimension, isinhands ? inhand_y_dimension : worn_y_dimension)
 
 	//Worn offsets
 	var/list/offsets = get_worn_offsets(isinhands)
-	standing.pixel_x += offsets[1]
-	standing.pixel_y += offsets[2]
+	standing.pixel_w += offsets[1]
+	standing.pixel_z += offsets[2]
 
 	standing.alpha = alpha
-	standing = color_atom_overlay(standing)
 
 	return standing
 
@@ -1194,7 +1323,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		else
 			return
 
-	appearance.pixel_y += final_offset
+	appearance.pixel_z += final_offset
 	return appearance
 
 /**

@@ -214,3 +214,5 @@
 	force = 15
 	block_chance = 30
 	armour_penetration = 5
+
+#undef CALIBRE_14MM

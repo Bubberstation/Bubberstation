@@ -98,3 +98,5 @@
 			if(dead_mob.client)
 				var/link = FOLLOW_LINK(dead_mob, user)
 				to_chat(dead_mob, "[link] [rendered]")
+
+#undef LANGUAGE_IMPLANT

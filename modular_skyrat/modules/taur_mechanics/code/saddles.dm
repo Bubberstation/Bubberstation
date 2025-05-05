@@ -3,10 +3,9 @@
 	desc = "someone spawned a basetype!"
 	slot_flags = ITEM_SLOT_BACK // no storage
 
-	icon = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	worn_icon = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	supports_variations_flags = STYLE_TAUR_HOOF|STYLE_TAUR_PAW
+	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 
 /obj/item/riding_saddle/Initialize(mapload)
 	. = ..()
@@ -51,10 +50,9 @@
 
 	slot_flags = ITEM_SLOT_BACK
 
-	icon = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	worn_icon = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/sprites/saddles.dmi'
-	supports_variations_flags = STYLE_TAUR_HOOF|STYLE_TAUR_PAW
+	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
 
 	storage_type = /datum/storage/saddlebags
 

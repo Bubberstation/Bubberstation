@@ -8,6 +8,7 @@
 
 	min_players = 20
 	roundstart = FALSE
+	alert_observers = TRUE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
@@ -23,7 +24,7 @@
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 2
+	weight = 6
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

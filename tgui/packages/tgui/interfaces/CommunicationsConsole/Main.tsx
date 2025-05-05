@@ -20,9 +20,11 @@ export function PageMain(props) {
     canSendToSectors,
     canSetAlertLevel,
     canToggleEmergencyAccess,
+    canToggleEngineeringOverride, // BUBBER EDIT - Engineering override
     emagged,
     syndicate,
     emergencyAccess,
+    engineeringOverride, // BUBBER EDIT - Engineering override
     importantActionReady,
     sectors,
     shuttleCalled,
@@ -106,6 +108,23 @@ export function PageMain(props) {
                 alertLevel="blue"
                 onClick={() => setNewAlertLevel('blue')}
               />
+
+              {/* BUBBER EDIT ADDITION BEGIN - ALERTS */}
+              <AlertButton
+                alertLevel="violet"
+                onClick={() => setNewAlertLevel('violet')}
+              />
+
+              <AlertButton
+                alertLevel="orange"
+                onClick={() => setNewAlertLevel('orange')}
+              />
+
+              <AlertButton
+                alertLevel="amber"
+                onClick={() => setNewAlertLevel('amber')}
+              />
+              {/* BUBBER EDIT ADDITION END - ALERTS */}
             </Flex.Item>
           </Flex>
         </Section>
@@ -133,6 +152,19 @@ export function PageMain(props) {
               Access
             </Button.Confirm>
           )}
+
+          {/* BUBBER EDIT ADDITION START - Engineering Override */}
+          {!!canToggleEngineeringOverride && (
+            <Button.Confirm
+              icon="wrench"
+              color={engineeringOverride ? 'bad' : undefined}
+              onClick={() => act('toggleEngOverride')}
+            >
+              {engineeringOverride ? 'Disable' : 'Enable'} Engineering Override
+              Access
+            </Button.Confirm>
+          )}
+          {/* BUBBER EDIT ADDITION END - Engineering Override */}
 
           {!syndicate && (
             <Button
@@ -193,6 +225,29 @@ export function PageMain(props) {
               Restore Backup Routing Data
             </Button>
           )}
+
+          {/* BUBBER EDIT ADDITION BEGIN - Additional Calls */}
+          {!!canMakeAnnouncement && (
+            <Button icon="bullhorn" onClick={() => act('callThePolice')}>
+              Call Terran Government 911: Marshals Response
+            </Button>
+          )}
+          {!!canMakeAnnouncement && (
+            <Button icon="bullhorn" onClick={() => act('callTheCatmos')}>
+              Call Terran Government 811: Atmospherics Response
+            </Button>
+          )}
+          {!!canMakeAnnouncement && (
+            <Button icon="bullhorn" onClick={() => act('callTheParameds')}>
+              Call Terran Government 911: Medical Response
+            </Button>
+          )}
+          {!!emagged && (
+            <Button icon="bullhorn" onClick={() => act('callThePizza')}>
+              Place an Order with Dogginos Pizza
+            </Button>
+          )}
+          {/* BUBBER EDIT ADDITION END - Additional Calls */}
         </Flex>
       </Section>
 

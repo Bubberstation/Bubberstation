@@ -304,8 +304,6 @@
 	user.put_in_hands(converted_arrow)
 	qdel(src)
 
-#define INCREASE_BLOCK_CHANGE 2
-
 /obj/item/forging/reagent_weapon/bokken
 	name = "bokken"
 	desc = "A wooden sword that is capable of wielded in two hands. It seems to be made to prevent permanent injuries."

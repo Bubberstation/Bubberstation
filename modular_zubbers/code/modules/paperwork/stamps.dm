@@ -30,3 +30,10 @@
 	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
 	icon_state = "stamp-warden"
 	dye_color = DYE_HOS
+
+/obj/item/stamp/persistence
+	name = "persistence rubber stamp"
+	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
+	icon_state = "stamp-persistence"
+	desc = "A rubber stamp for faking your legality in the sector."
+	dye_color = DYE_SYNDICATE

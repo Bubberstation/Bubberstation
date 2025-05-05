@@ -131,3 +131,5 @@
 	if(!pizza)
 		var/random_pizza = pick(EDIBLE_PIZZA_LIST)
 		pizza = new random_pizza(src)
+
+#undef EDIBLE_PIZZA_LIST

@@ -113,7 +113,7 @@
 
 	icon_state = "gaussphase"
 
-	speed = 0.5
+	speed = 2
 
 	damage = 25
 	armour_penetration = 20

@@ -167,7 +167,9 @@ ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "Assume Direct Control", "Assume 
 	var/mob/adminmob = user.mob
 	if(M.ckey)
 		M.ghostize(FALSE)
-	M.key = user.key
+
+	M.PossessByPlayer(user.key)
+
 	user.init_verbs()
 	if(isobserver(adminmob))
 		qdel(adminmob)
@@ -537,7 +539,9 @@ ADMIN_VERB(del_log, R_DEBUG, "Display del() Log", "Display del's log of everythi
 
 	dellog += "</ol>"
 
-	user << browse(dellog.Join(), "window=dellog")
+	var/datum/browser/browser = new(usr, "dellog", "Del Log", 00, 400)
+	browser.set_content(dellog.Join())
+	browser.open()
 
 ADMIN_VERB(display_overlay_log, R_DEBUG, "Display Overlay Log", "Display SSoverlays log of everything that's passed through it.", ADMIN_CATEGORY_DEBUG)
 	render_stats(SSoverlays.stats, user)
@@ -548,6 +552,8 @@ ADMIN_VERB(init_log, R_DEBUG, "Display Initialize() Log", "Displays a list of th
 	browser.open()
 
 ADMIN_VERB(debug_color_test, R_DEBUG, "Colorblind Testing", "Change your view to a budget version of colorblindness to test for usability.", ADMIN_CATEGORY_DEBUG)
+	if(!user.holder.color_test)
+		user.holder.color_test = new()
 	user.holder.color_test.ui_interact(user.mob)
 
 ADMIN_VERB(debug_plane_masters, R_DEBUG, "Edit/Debug Planes", "Edit and visualize plane masters and their connections (relays).", ADMIN_CATEGORY_DEBUG)
@@ -650,6 +656,14 @@ ADMIN_VERB(run_empty_query, R_DEBUG, "Run Empty Query", "Runs a specified number
 
 	message_admins("[key_name_admin(user)] ran [val] empty queries.")
 
+ADMIN_VERB(test_pathfinding, R_DEBUG, "Toggle Pathfind Testing", "Enables/Disables pathfinding testing action buttons", ADMIN_CATEGORY_DEBUG)
+	BLACKBOX_LOG_ADMIN_VERB("Toggle Pathfind Testing")
+	log_admin("[key_name(user)] [user.holder.path_debug ? "disabled" : "enabled"] their pathfinding debug tools")
+	if(!user.holder.path_debug)
+		user.holder.path_debug = new(user.holder)
+	else
+		QDEL_NULL(user.holder.path_debug)
+
 ADMIN_VERB(clear_turf_reservations, R_DEBUG, "Clear Dynamic Turf Reservations", "Deallocates all reserved space, restoring it to round start conditions.", ADMIN_CATEGORY_DEBUG)
 	var/answer = tgui_alert(
 		user,
@@ -708,10 +722,10 @@ ADMIN_VERB(stop_line_profiling, R_DEBUG, "Stop Line Profiling", "Stops tracking 
 
 ADMIN_VERB_VISIBILITY(show_line_profiling, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(show_line_profiling, R_DEBUG, "Show Line Profiling", "Shows tracked profiling info from code lines that support it.", ADMIN_CATEGORY_PROFILE)
-	var/sortlist = list(
+	var/list/sortlist = list(
 		"Avg time" = GLOBAL_PROC_REF(cmp_profile_avg_time_dsc),
 		"Total Time" = GLOBAL_PROC_REF(cmp_profile_time_dsc),
-		"Call Count" = GLOBAL_PROC_REF(cmp_profile_count_dsc)
+		"Call Count" = GLOBAL_PROC_REF(cmp_profile_count_dsc),
 	)
 	var/sort = input(user, "Sort type?", "Sort Type", "Avg time") as null|anything in sortlist
 	if (!sort)
@@ -720,7 +734,7 @@ ADMIN_VERB(show_line_profiling, R_DEBUG, "Show Line Profiling", "Shows tracked p
 	profile_show(user, sort)
 
 ADMIN_VERB(reload_configuration, R_DEBUG, "Reload Configuration", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_DEBUG)
-	if(!tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) == "Yes")
+	if(tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) != "Yes")
 		return
 	config.admin_reload()
 

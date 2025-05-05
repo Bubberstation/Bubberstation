@@ -728,12 +728,13 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 	if(listeningTo == user)
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, signalCache)
-	RegisterSignal(user, signalCache, PROC_REF(disrupt))
+	RegisterSignals(user, signalCache, PROC_REF(disrupt))
 	listeningTo = user
 
 /obj/item/borg_shapeshifter/proc/deactivate(mob/living/silicon/robot/user)
@@ -754,6 +755,7 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
@@ -881,3 +883,7 @@
 			new /obj/structure/reagent_water_basin(src_turf)
 		if("Crafting Bench")
 			new /obj/structure/reagent_crafting_bench(src_turf)
+
+#undef CYBORG_FONT
+#undef MAX_PAPER_INTEGRATED_CLIPBOARD
+#undef BASE_NINJA_REAGENTS

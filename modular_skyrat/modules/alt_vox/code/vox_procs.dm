@@ -9,6 +9,8 @@
 	var/list/vox_voices = list(VOX_HL, VOX_NORMAL, VOX_BMS)
 	/// The VOX word(s) that were previously inputed.
 	var/vox_word_string
+	/// Can the AI purchase the nuke as a malf
+	var/can_purchase_nuke = FALSE
 
 /mob/living/silicon/ai/verb/announcement_help()
 

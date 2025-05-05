@@ -35,8 +35,8 @@
 	glasses_type = type
 
 /obj/item/clothing/glasses/hud/ar/Destroy()
-	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/item/clothing/glasses/hud/ar/equipped(mob/living/carbon/human/user, slot)
 	if(mode != MODE_OFF || slot != slot_flags)
@@ -282,3 +282,7 @@
 	icon_state = "projector_sci"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 
+#undef MODE_OFF
+#undef MODE_OFF_FLASH_PROTECTION
+#undef MODE_ON
+#undef MODE_FREEZE_ANIMATION

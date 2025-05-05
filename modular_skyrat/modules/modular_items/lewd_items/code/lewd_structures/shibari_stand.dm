@@ -139,8 +139,7 @@
 	add_overlay(shibari_rope_overlay_behind)
 
 /obj/structure/chair/shibari_stand/post_buckle_mob(mob/living/buckled)
-	buckled.pixel_y = buckled.base_pixel_y + 4
-	buckled.pixel_x = buckled.base_pixel_x
+	buckled.add_offsets(type, y_add = 4)
 	buckled.layer = BELOW_MOB_LAYER
 
 	if(LAZYLEN(buckled_mobs))
@@ -163,8 +162,7 @@
 
 //Restore the position of the mob after unbuckling.
 /obj/structure/chair/shibari_stand/post_unbuckle_mob(mob/living/buckled)
-	buckled.pixel_x = buckled.base_pixel_x + buckled.body_position_pixel_x_offset
-	buckled.pixel_y = buckled.base_pixel_y + buckled.body_position_pixel_y_offset - 4
+	buckled.remove_offsets(type)
 	buckled.layer = initial(buckled.layer)
 
 	cut_overlay(shibari_shadow_overlay)

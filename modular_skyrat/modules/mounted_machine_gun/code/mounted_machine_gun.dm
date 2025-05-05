@@ -466,3 +466,7 @@
 /obj/item/mounted_machine_gun_folded/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy)
+
+#undef BARREL_HEAT_THRESHOLD_LOW
+#undef BARREL_HEAT_THRESHOLD_HIGH
+#undef REPAIR_WELDER_COST
