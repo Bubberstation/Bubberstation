@@ -77,21 +77,19 @@
 				if(portal_mode == GLORYHOLE)
 					relayed_body.pixel_y -= 3
 			if(EAST)
+				relayed_body.pixel_x = 24
 				if(portal_mode == WALLSTUCK)
-					relayed_body.pixel_x = 24
 					relayed_body.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
 				else
 					relayed_body.pixel_y = 8
 			if(WEST)
+				relayed_body.pixel_x = -24
 				if(portal_mode == WALLSTUCK)
-					relayed_body.pixel_x = -24
 					relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
 				else
 					relayed_body.pixel_y = 8
 		relayed_body.update_visuals()
 		if(portal_mode == GLORYHOLE)
-			relayed_body.pixel_x = relayed_body.pixel_x * 1.125
-			relayed_body.pixel_y = relayed_body.pixel_y * 1.125
 			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 			initial_genital_visibility = penis_reference?.visibility_preference
 			hide_penis()
