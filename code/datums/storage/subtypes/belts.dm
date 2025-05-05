@@ -105,7 +105,6 @@
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
-		/obj/item/gun, //SKYRAT EDIT ADDITION
 		/obj/item/stock_parts/power_store/cell/microfusion, //SKYRAT EDIT ADDITION
 	))
 
