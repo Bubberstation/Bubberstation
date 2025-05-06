@@ -310,7 +310,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/bodytemp
 	name = "Abnomal body tempature"
-	desc = "Your body tempature is rather odd compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with tempature sensitive species such as skrell, teshari, plasmamen, and ethereals. The quirk ranges from -40 to +70"
+	desc = "Your body tempature is rather odd compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with tempature sensitive species such as skrell, teshari, plasmamen, and ethereals. The quirk ranges from -40 to +70, due to how you are delivered to the station taking this at extreme amounts may result in minor burns."
 	value = 0
 	gain_text = span_danger("Your body tempature is feeling off.")
 	lose_text = span_notice("Your body tempature is feeling right.")
@@ -350,8 +350,8 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/datum/preferences/prefs = user.client.prefs
 	var/bodytempature = prefs.read_preference(/datum/preference/numeric/bodytempature_customization/bodytemp)
 	user.dna.species.bodytemp_normal += bodytempature
-	user.dna.species.bodytemp_heat_damage_limit += bodytempature + 20 //a bit of a buffer so they don't take burn damage on spawn due to spawning at 36C
-	user.dna.species.bodytemp_cold_damage_limit += bodytempature - 20 
+	user.dna.species.bodytemp_heat_damage_limit += bodytempature
+	user.dna.species.bodytemp_cold_damage_limit += bodytempature
 
 /datum/quirk/bodytemp/remove()
 	. = ..()
@@ -363,5 +363,5 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/bodytempature = prefs.read_preference(/datum/preference/numeric/bodytempature_customization/bodytemp)
 	// will cause issues if the user changes this value before removal
 	user.dna.species.bodytemp_normal -= bodytempature
-	user.dna.species.bodytemp_heat_damage_limit -= bodytempature - 20
-	user.dna.species.bodytemp_cold_damage_limit -= bodytempature + 20
+	user.dna.species.bodytemp_heat_damage_limit -= bodytempature
+	user.dna.species.bodytemp_cold_damage_limit -= bodytempature
