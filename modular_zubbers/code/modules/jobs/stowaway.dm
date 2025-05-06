@@ -1,10 +1,10 @@
 // Remove this once wallets spawning with normal IDs instead of cardboard is fixed
-/datum/station_trait/wallets
-	weight = 0
+//	/datum/station_trait/wallets
+//	weight = 0
 
 /datum/job/assistant/stowaway
 	title = "Stowaway"
-	description = "Be a stowaway crewmember."
+	description = "Be a stowaway aboard a hazardous research station that is infamous for many reasons."
 	faction = FACTION_NONE
 	supervisors = "Yourself."
 	minimal_player_age = 7
@@ -29,13 +29,8 @@
 	var/mob/living/carbon/human/human_holder = spawned
 	var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[human_holder.account_id]"]
 	account?.Destroy()
-	var/turf/T
-	if(LAZYLEN(GLOB.blobstart))
-		var/list/blobstarts = shuffle(GLOB.blobstart)
-		for(var/_T in blobstarts)
-			T = _T
-			break
-	else // no blob starts so look for an alternate
+	var/turf/T = find_maintenance_spawn(atmos_sensitive = TRUE, require_darkness = FALSE)
+	if(!T) // no safe spots... find another method.
 		for(var/i in 1 to 16)
 			var/turf/picked_safe = get_safe_random_station_turf_equal_weight()
 			T = picked_safe
@@ -44,3 +39,8 @@
 	spawned.put_in_hands(new /obj/item/storage/toolbox/mechanical)
 	spawned.equip_to_slot(new /obj/item/card/cardboard, ITEM_SLOT_ID)
 
+ // Fixes for station traits...
+/datum/station_trait/wallets/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
+	if(!(job.job_flags & JOB_EQUIP_RANK))
+		return
+	. = ..()
