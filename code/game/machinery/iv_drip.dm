@@ -23,7 +23,7 @@
 	anchored = FALSE
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	use_power = NO_POWER_USE
-	//interaction_flags_mouse_drop = NEED_HANDS //Bubber Edit Remove: This reverts the change restricting borgs from using an iv drip
+	interaction_flags_mouse_drop = NEED_HANDS
 
 	/// Information and effects about where the IV drip is attached to
 	var/datum/iv_drip_attachment/attachment
