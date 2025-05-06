@@ -15,8 +15,13 @@
 /turf/open/floor/plating,
 /area/station/commons/fitness/recreation/sauna)
 "g" = (
-/obj/machinery/door/window/right/directional/east,
+/obj/machinery/door/window/brigdoor/right/directional/east,
 /obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "sauna_priv";
+	name = "Tactical Privacy Shutter";
+	desc = "Heavy duty, airtight mechanical shutters for the most demanding enterprise resource planning."
+	},
 /turf/open/floor/wood/stairs/left,
 /area/station/commons/fitness/recreation/sauna)
 "i" = (
@@ -100,11 +105,25 @@
 /turf/open/floor/wood/tile,
 /area/station/commons/fitness/recreation/sauna)
 "B" = (
-/obj/machinery/light/warm/dim/directional/west,
+/obj/machinery/light/warm/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/wall{
+	pixel_x = -32
+	},
+/turf/open/floor/wood/tile,
+/area/station/commons/fitness/recreation/sauna)
+"C" = (
+/obj/machinery/button/door/directional/south{
+	id = "sauna_priv";
+	name = "Tactical Privacy Shutters";
+	skin = "-warning";
+	can_alter_skin = 0;
+	icon_state = "button-warning"
+	},
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/wood/tile,
 /area/station/commons/fitness/recreation/sauna)
 "E" = (
@@ -136,6 +155,11 @@
 /area/station/commons/fitness/recreation/sauna)
 "J" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "sauna_priv";
+	name = "Tactical Privacy Shutter";
+	desc = "Heavy duty, airtight mechanical shutters for the most demanding enterprise resource planning."
+	},
 /turf/open/floor/plating,
 /area/station/commons/fitness/recreation/sauna)
 "K" = (
@@ -161,10 +185,20 @@
 "Q" = (
 /obj/structure/sink/directional/south,
 /obj/item/reagent_containers/cup/bucket/wooden{
-	pixel_y = 6;
-	pixel_x = -8
+	pixel_y = 14;
+	pixel_x = 10;
+	name = "solid state sauna rehydration device"
 	},
 /obj/item/stack/sheet/mineral/wood/fifty,
+/obj/machinery/button/door/directional/north{
+	id = "sauna_priv";
+	name = "Tactical Privacy Shutters";
+	icon_state = "button-warning";
+	can_alter_skin = 0;
+	skin = "-warning";
+	pixel_y = 33;
+	pixel_x = 10
+	},
 /turf/open/floor/wood/tile,
 /area/station/commons/fitness/recreation/sauna)
 "R" = (
@@ -261,7 +295,7 @@ p
 a
 T
 O
-L
+C
 a
 a
 p
