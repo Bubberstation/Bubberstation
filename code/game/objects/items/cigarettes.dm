@@ -94,10 +94,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/proc/matchignite()
 	if(lit || burnt || broken)
 		return
-	//SKYRAT EDIT ADDITION
-	var/turf/my_turf = get_turf(src)
-	my_turf.pollute_turf(/datum/pollutant/sulphur, 5)
-	//SKYRAT EDIT END
 	playsound(src, 'sound/items/match_strike.ogg', 15, TRUE)
 	lit = TRUE
 	damtype = BURN
