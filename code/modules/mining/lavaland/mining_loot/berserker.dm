@@ -18,14 +18,18 @@
 	unique_reskin = list(
 
 		"Default" = list(
-			RESKIN_ICON_STATE = "berserker",
-			RESKIN_WORN_ICON_STATE = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+            RESKIN_ICON_STATE = "berserker",
+            RESKIN_WORN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+            RESKIN_WORN_ICON_STATE = "berserker"
 		),
-
 		"Marked One Varient" = list(
-			RESKIN_ICON_STATE = "berk_suit",
-			RESKIN_WORN_ICON_STATE = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
-		),
+            RESKIN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
+            RESKIN_ICON_STATE = "berk_suit",
+            RESKIN_WORN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
+			RESKIN_SUPPORTS_VARIATIONS_FLAGS = CLOTHING_DIGITIGRADE_VARIATION,
+            RESKIN_WORN_ICON_STATE = "berk_suit"
+        ),
 	)
 	hoodtype = /obj/item/clothing/head/hooded/berserker
 	armor_type = /datum/armor/hooded_berserker
