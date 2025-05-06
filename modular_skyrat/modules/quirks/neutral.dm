@@ -315,7 +315,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	gain_text = span_danger("Your body tempature is feeling off.")
 	lose_text = span_notice("Your body tempature is feeling right.")
 	medical_record_text = "Patient's body has an abnormal tempature for their species."
-	icon = FA_ICON_TIRED
+	icon = FA_ICON_THERMOMETER_HALF
 
 /datum/quirk_constant_data/bodytemp
 	associated_typepath = /datum/quirk/bodytemp
