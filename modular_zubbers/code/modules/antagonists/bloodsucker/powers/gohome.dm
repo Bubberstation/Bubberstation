@@ -112,7 +112,7 @@
 	user.uncuff()
 	if(drop_item)
 		for(var/obj/item/literally_everything in owner)
-			owner.dropItemToGround(literally_everything, TRUE)
+			owner.dropItemToGround(literally_everything)
 
 	playsound(current_turf, 'sound/effects/magic/summon_karp.ogg', 60, 1)
 
@@ -125,7 +125,7 @@
 	new new_mob(current_turf)
 	/// TELEPORT: Move to Coffin & Close it!
 	user.set_resting(TRUE, TRUE, FALSE)
-	do_teleport(user, bloodsuckerdatum_power.coffin, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+	do_teleport(user, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	bloodsuckerdatum_power.coffin.force_enter(user)
 
 	DeactivatePower()
