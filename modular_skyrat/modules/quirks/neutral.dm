@@ -310,7 +310,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/bodytemp
 	name = "Abnomal body tempature"
-	desc = "Your body tempature is rather odd compared to your baseline species, being a certain amount above or below. This is not recommended to take with tempature sensitive species such as skrell, teshari, plasmamen, and ethereals."
+	desc = "Your body tempature is rather odd compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with tempature sensitive species such as skrell, teshari, plasmamen, and ethereals. The quirk ranges from -40 to +70"
 	value = 0
 	gain_text = span_danger("Your body tempature is feeling off.")
 	lose_text = span_notice("Your body tempature is feeling right.")
