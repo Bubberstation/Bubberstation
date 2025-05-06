@@ -64,7 +64,7 @@
 	name = "Marked One Grafting"
 	result = /obj/item/clothing/suit/hooded/berserker/gladiator
 	reqs = list(/obj/item/clothing/suit/hooded/berserker = 1,
-				/obj/item/stack/ore/glass/basalt = 5
-				/obj/item/stack/ore/titaium =5)
+				/obj/item/stack/ore/glass/basalt = 5,
+				/obj/item/stack/ore/titanium =5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
