@@ -2,13 +2,6 @@
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
-	//SKYRAT EDIT ADDITION
-	if(isopenturf(loc))
-		var/turf/open/my_our_turf = loc
-		if(my_our_turf.pollution)
-			my_our_turf.pollution.touch_act(src)
-	//SKYRAT EDIT END
-
 	if(damageoverlaytemp)
 		damageoverlaytemp = 0
 		update_damage_hud()
@@ -131,13 +124,6 @@
 						visible_message("<span class='warning'>[src] chokes on [our_turf.liquids.reagents_to_text()]!</span>", \
 									"<span class='userdanger'>You're choking on [our_turf.liquids.reagents_to_text()]!</span>")
 					return FALSE
-				if(isopenturf(our_turf))
-					var/turf/open/open_turf = our_turf
-					if(open_turf.pollution)
-						if(next_smell <= world.time)
-							next_smell = world.time + SMELL_COOLDOWN
-							open_turf.pollution.smell_act(src)
-						open_turf.pollution.breathe_act(src)
 				//SKYRAT EDIT END
 				var/breath_moles = 0
 				if(environment)
