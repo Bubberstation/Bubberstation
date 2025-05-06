@@ -32,7 +32,14 @@
 	linked_portal?.linked_portal = null
 	if(linked_portal)
 		qdel(linked_portal)
+	return ..()
+
+/obj/structure/lewd_portal/examine(mob/user)
 	. = ..()
+	var/inspect_mode = "gloryhole"
+	if(portal_mode == WALLSTUCK)
+		inspect_mode = "stuck in wall"
+	. += span_notice("Its currently in [inspect_mode] mode.")
 
 /obj/structure/lewd_portal/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	if(!M.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
@@ -51,9 +58,6 @@
 	if (!isnull(linked_portal.current_mob))
 		balloon_alert(user, "portal already occupied!")
 		return FALSE
-	visible_message("[user] begins slotting [M] into the [src]")
-	if(!do_after(user, 5 SECONDS, M))
-		return
 	visible_message("[user] slots [M] into the [src]!")
 	return ..(M, user, check_loc = FALSE)
 
@@ -181,6 +185,25 @@
 	deconstruct(disassembled = TRUE)
 	return TRUE
 
+/obj/structure/lewd_portal/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(isnull(linked_portal))
+		balloon_alert(user, "portal not linked")
+		return
+	if(!isnull(current_mob) || !isnull(linked_portal.current_mob))
+		balloon_alert(user, "portal occupied")
+		return
+	if(portal_mode == GLORYHOLE)
+		portal_mode = WALLSTUCK
+		linked_portal.portal_mode = WALLSTUCK
+		balloon_alert(user, "switched to stuck in wall mode")
+		return
+	else
+		portal_mode = GLORYHOLE
+		linked_portal.portal_mode = GLORYHOLE
+		balloon_alert(user, "switched to gloryhole mode")
+
+
 /obj/item/wallframe/lewd_portal
 	name = "Lustwish Portal Bore"
 	desc = "A device utilizing bluespace technology to transpose portions of people from one space to another."
@@ -269,11 +292,12 @@
 	interact_component?.body_relay = src
 
 /obj/lewd_portal_relay/Destroy(force)
-	UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED))
+	if(!isnull(owner))
+		UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED))
+		var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
+		interact_component?.body_relay = null
 	visible_message("[src] vanishes into the portal!")
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
-	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
-	interact_component?.body_relay = null
 	return ..()
 
 /obj/lewd_portal_relay/examine(mob/user)

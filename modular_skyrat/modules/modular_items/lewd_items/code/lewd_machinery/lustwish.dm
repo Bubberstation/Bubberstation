@@ -148,7 +148,7 @@
 				/obj/item/storage/box/shibari_stand = 4,
 				/obj/item/storage/box/strippole_kit = 4,
 				/obj/item/storage/box/xstand_kit = 4,
-				/obj/item/wallframe/lewd_portal = 5,
+				/obj/item/wallframe/lewd_portal = 8,
 			),
 		),
 	)

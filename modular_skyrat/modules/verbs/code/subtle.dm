@@ -204,7 +204,7 @@
 	return TRUE
 
 // Optional sound notification for subtler
-/datum/emote/living/subtler/proc/subtler_sound(var/mob/hearer)
+/datum/emote/living/subtler/proc/subtler_sound(mob/hearer)
 	var/datum/preferences/prefs = hearer.client?.prefs
 	if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
 		hearer.playsound_local(get_turf(hearer), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
