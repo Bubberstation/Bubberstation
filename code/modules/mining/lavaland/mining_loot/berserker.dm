@@ -24,11 +24,12 @@
             RESKIN_WORN_ICON_STATE = "berserker"
 		),
 		"Marked One Varient" = list(
-            RESKIN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
+            RESKIN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi',
             RESKIN_ICON_STATE = "berk_suit",
             RESKIN_WORN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
 			RESKIN_SUPPORTS_VARIATIONS_FLAGS = CLOTHING_DIGITIGRADE_VARIATION,
-            RESKIN_WORN_ICON_STATE = "berk_suit"
+            RESKIN_WORN_ICON_DIGI = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi',
+			RESKIN_WORN_ICON_STATE = "berk_suit"
         ),
 	)
 	hoodtype = /obj/item/clothing/head/hooded/berserker

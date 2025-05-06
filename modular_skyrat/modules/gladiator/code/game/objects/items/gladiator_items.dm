@@ -37,6 +37,15 @@
 	uses_advanced_reskins = FALSE
 	resistance_flags = INDESTRUCTIBLE
 
+/obj/item/clothing/neck/warrior_cape_worn //Subtype for loadout item so i can make it not "indestructible"
+	name = "cloak of the marked one"
+	desc = "A cloak from a once feared foe now worn by those that have faced death in the eyes and prevailed, it looks rather rather worn as not as pristine as it used to be"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	icon_state = "berk_cape"
+	inhand_icon_state = ""
+	uses_advanced_reskins = FALSE
+
 /obj/item/clothing/neck/warrior_cape/examine()
 	. = ..()
 	. += span_warning("Struggle against the tide, no matter how strong it may be.")
@@ -62,7 +71,7 @@
 	bio = 70
 	fire = 100
 	acid = 100
-	
+
 /datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
 	laser = 10
 	energy = 0
