@@ -307,3 +307,61 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	if(HAS_TRAIT_FROM(parent_mob, TRAIT_FAT, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
 		description = "<b>I'm fat.</b>"
+
+/datum/quirk/bodytemp
+	name = "Abnomal body tempature"
+	desc = "Your body tempature is rather odd compared to your baseline species, being a certain amount above or below. This is not recommended to take with tempature sensitive species such as skrell, teshari, plasmamen, and ethereals."
+	value = 0
+	gain_text = span_danger("Your body tempature is feeling off.")
+	lose_text = span_notice("Your body tempature is feeling right.")
+	medical_record_text = "Patient's body has an abnormal tempature for their species."
+	icon = FA_ICON_TIRED
+
+/datum/quirk_constant_data/bodytemp
+	associated_typepath = /datum/quirk/bodytemp
+	customization_options = list(
+		/datum/preference/numeric/bodytempature_customization/bodytemp,
+	)
+
+/datum/preference/numeric/bodytempature_customization
+	abstract_type = /datum/preference/numeric/bodytempature_customization
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+
+	minimum = -40 //Plasmamen
+	maximum = 70 //Skrell
+
+	step = 1
+
+/datum/preference/numeric/bodytempature_customization/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/numeric/bodytempature_customization/create_default_value()
+	return 20
+
+/datum/preference/numeric/bodytempature_customization/bodytemp
+	savefile_key = "bodytemp"
+
+
+/datum/quirk/bodytemp/post_add()
+	. = ..()
+
+	var/mob/living/carbon/human/user = quirk_holder
+	var/datum/preferences/prefs = user.client.prefs
+	var/bodytempature = prefs.read_preference(/datum/preference/numeric/bodytempature_customization/bodytemp)
+	user.dna.species.bodytemp_normal += bodytempature
+	user.dna.species.bodytemp_heat_damage_limit += bodytempature + 20 //a bit of a buffer so they don't take burn damage on spawn due to spawning at 36C
+	user.dna.species.bodytemp_cold_damage_limit += bodytempature - 20 
+
+/datum/quirk/bodytemp/remove()
+	. = ..()
+
+	if(QDELETED(quirk_holder))
+		return
+	var/mob/living/carbon/human/user = quirk_holder
+	var/datum/preferences/prefs = user.client.prefs
+	var/bodytempature = prefs.read_preference(/datum/preference/numeric/bodytempature_customization/bodytemp)
+	// will cause issues if the user changes this value before removal
+	user.dna.species.bodytemp_normal -= bodytempature
+	user.dna.species.bodytemp_heat_damage_limit -= bodytempature - 20
+	user.dna.species.bodytemp_cold_damage_limit -= bodytempature + 20
