@@ -14,24 +14,6 @@
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi' // BUBBER EDIT - DIGIS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-
-		"Default" = list(
-			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
-            RESKIN_ICON_STATE = "berserker",
-            RESKIN_WORN_ICON = 'icons/obj/clothing/suits/armor.dmi',
-            RESKIN_WORN_ICON_STATE = "berserker"
-		),
-		"Marked One Varient" = list(
-            RESKIN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi',
-            RESKIN_ICON_STATE = "berk_suit",
-            RESKIN_WORN_ICON = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi',
-			RESKIN_SUPPORTS_VARIATIONS_FLAGS = CLOTHING_DIGITIGRADE_VARIATION,
-            RESKIN_WORN_ICON_DIGI = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi',
-			RESKIN_WORN_ICON_STATE = "berk_suit"
-        ),
-	)
 	hoodtype = /obj/item/clothing/head/hooded/berserker
 	armor_type = /datum/armor/hooded_berserker
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -160,6 +142,22 @@
 	user.remove_traits(list(TRAIT_NOGUNS, TRAIT_TOSS_GUN_HARD), BERSERK_TRAIT)
 	REMOVE_TRAIT(src, TRAIT_NODROP, BERSERK_TRAIT)
 	STOP_PROCESSING(SSobj, src)
+
+// Bubber Edit and alt varient for berserker suit
+
+/obj/item/clothing/suit/hooded/berserker/gladiator
+	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
+	icon_state = "berk_suit"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
+	hoodtype = /obj/item/clothing/head/hooded/berserker/gladiator
+
+/obj/item/clothing/head/hooded/berserker/gladiator
+	desc = "A uniquely styled helmet with ghastly red eyes that seals it's user inside."
+	icon_state = "berk_helm"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
 
 #undef MAX_BERSERK_CHARGE
 #undef PROJECTILE_HIT_MULTIPLIER

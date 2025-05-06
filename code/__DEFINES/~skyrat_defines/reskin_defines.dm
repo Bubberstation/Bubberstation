@@ -6,4 +6,3 @@
 #define RESKIN_INHAND_L "reskin_inhand_l"
 #define RESKIN_INHAND_R "reskin_inhand_r"
 #define RESKIN_INHAND_STATE "reskin_inhand_state"
-#define RESKIN_WORN_ICON_DIGI "reskin_worn_icon_digi"
