@@ -12,13 +12,13 @@ export const preset_blood_color: Feature<boolean> = {
 };
 
 export const input_blood_color: Feature<string> = {
-  name: 'Blood color',
+  name: 'Custom color',
   description:
     'NOTE: This matches the colour to the BRIGHTEST px. So, make this slightly (about 10?) more luminescent (HSL) than you want the blood to be.',
   component: FeatureColorInput,
 };
 
 export const select_blood_color: FeatureChoiced = {
-  name: 'Blood color',
+  name: 'Preset color',
   component: FeatureDropdownInput,
 };

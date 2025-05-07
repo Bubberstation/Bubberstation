@@ -44,7 +44,7 @@
 	can_randomize = FALSE
 
 /datum/preference/choiced/select_blood_color/create_default_value()
-	return "Red"
+	return "Red/Human"
 
 /datum/preference/choiced/select_blood_color/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
