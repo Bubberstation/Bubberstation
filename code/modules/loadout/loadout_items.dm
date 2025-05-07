@@ -2,6 +2,10 @@
 /// Loadout datums are created by loadout categories.
 GLOBAL_LIST_EMPTY(all_loadout_datums)
 
+//BUBBERSTATION ADDITION START. THIS BULLSHIT NEEDS TO BE PUT HERE BECAUSE IF THIS LIST WAS CREATED LATER, IT WOULD RUNTIME. I HATE EVERYTHING.
+GLOBAL_LIST_EMPTY(loadout_item_path_to_datum)
+//BUBBERSTATION ADDITION END.
+
 /// Global list of all loadout categories
 /// Doesn't really NEED to be a global but we need to init this early for preferences,
 /// as the categories instantiate all the loadout datums
@@ -78,8 +82,11 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/erp_item = FALSE
 	// BUBBER EDIT END
 
-/datum/loadout_item/New(category)
+/datum/loadout_item/New(category,name,obj/item/item_path) //BUBBERSTATION ADDITION, ADDITIONAL ARGS
+
 	src.category = category
+	src.name = name //BUBBERSTATION ADDITION, ADDITIONAL ARGS
+	src.item_path = item_path //BUBBERSTATION ADDITION, ADDITIONAL ARGS
 
 	if(can_be_greyscale == DONT_GREYSCALE)
 		can_be_greyscale = FALSE

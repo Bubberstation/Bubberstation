@@ -1,6 +1,6 @@
-GLOBAL_LIST_INIT(loadout_blacklist, list())
+GLOBAL_LIST_INIT(loadout_blacklist,list())
 
-/proc/generate_loadout_list(desired_subtype,subtypes_only=TRUE)
+/proc/generate_loadout_list(desired_subtype,subtypes_only=TRUE) as /list
 
 	. = list()
 
@@ -14,7 +14,10 @@ GLOBAL_LIST_INIT(loadout_blacklist, list())
 	for(var/obj/item/found_item as anything in found_types)
 
 		//Manually blacklisted.
-		if(found_item in loadout_blacklist)
+		if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[found_item])
+			continue
+
+		if(!initial(found_item.name) || !initial(found_item.desc))
 			continue
 
 		//Resistance Flags
@@ -22,7 +25,7 @@ GLOBAL_LIST_INIT(loadout_blacklist, list())
 			continue
 
 		//Makes you fast.
-		if(slowdown < 0)
+		if(found_item.slowdown < 0)
 			continue
 
 		//We're clothing.
@@ -48,7 +51,7 @@ GLOBAL_LIST_INIT(loadout_blacklist, list())
 				continue
 
 			//Armor Stuff
-			var/datum/armor/found_armor = initial(found_clothing.armor) ? GLOB.armor_by_type[initial(found_clothing)) : null
+			var/datum/armor/found_armor = initial(found_clothing.armor) ? GLOB.armor_by_type[initial(found_clothing)] : null
 			if(found_armor)
 				//Bio, Acid, Wounding, and Fire is excluded from here since some science related items have immunity from this.
 				if(found_armor.get_rating(BOMB) > 0)
