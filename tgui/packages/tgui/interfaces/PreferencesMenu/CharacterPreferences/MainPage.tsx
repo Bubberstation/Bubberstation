@@ -14,7 +14,7 @@ import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
-import { SideDropdown } from '../../../bubber_components/SideDropdown';
+import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { PageButton } from '../components/PageButton'; // BUBBER EDIT ADDITION
 import { RandomizationButton } from '../components/RandomizationButton';

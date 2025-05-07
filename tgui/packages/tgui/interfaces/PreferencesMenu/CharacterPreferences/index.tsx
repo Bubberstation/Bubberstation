@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { NoticeBox, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
-import { SideDropdown } from '../../../bubber_components/SideDropdown';
+import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { PageButton } from '../components/PageButton';
 import { LanguagesPage } from '../LanguagesMenu'; // BUBBER EDIT ADDITION
 import { LimbsPage } from '../LimbsPage'; // BUBBER EDIT ADDITION
