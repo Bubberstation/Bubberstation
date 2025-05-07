@@ -719,25 +719,6 @@ export function MainPage(props: MainPageProps) {
                   Character Lore
                 </PageButton>
               </Stack.Item>
-              <Stack.Item grow={0.98}>
-                <Box height="100%" width="100%">
-                  <Button
-                    height="100%"
-                    width="100%"
-                    textAlign="center"
-                    verticalAlignContent="middle"
-                    color="red"
-                    disabled={
-                      Object.values(data.character_profiles).filter(
-                        (name) => name,
-                      ).length < 2
-                    } // check if existing chars more than one
-                    onClick={() => setDeleteCharacterPopupOpen(true)}
-                  >
-                    Delete Character
-                  </Button>
-                </Box>
-              </Stack.Item>
             </Stack>
             {prefPageContents}
           </Stack>
