@@ -261,7 +261,10 @@
 "aP" = (
 /obj/machinery/light/directional/north,
 /obj/structure/sign/poster/contraband/killingjoke/directional/north,
-/obj/structure/frame/machine/secured,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 5
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "aQ" = (
@@ -2514,6 +2517,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"hT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/stairs/north,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/evac)
 "ia" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
@@ -2523,12 +2534,11 @@
 	name = "Blast Doors";
 	req_access = list("syndicate")
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/machinery/light/directional/north,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/power/portagrav,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "if" = (
@@ -3687,11 +3697,6 @@
 /obj/item/clothing/suit/jacket/runner/syndicate,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
-"lz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "lA" = (
 /obj/structure/sauna_oven,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -3733,7 +3738,7 @@
 	dir = 6
 	},
 /obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/colony/bolts,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "lH" = (
 /obj/structure/cable,
@@ -6586,9 +6591,6 @@
 "tO" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/digital_clock/directional/south,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "tP" = (
@@ -9003,9 +9005,6 @@
 	dir = 1
 	},
 /obj/machinery/disposal/bin,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "AQ" = (
@@ -9632,7 +9631,7 @@
 /area/icemoon/underground/explored)
 "Cy" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
@@ -9694,7 +9693,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/colony/bolts,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "CH" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
@@ -11415,7 +11414,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "HZ" = (
 /obj/machinery/light/cold/directional/north,
-/obj/machinery/power/portagrav,
+/obj/structure/closet/secure_closet/interdynefob/welding_supplies,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ia" = (
@@ -11899,12 +11898,6 @@
 	name = "Blast Doors";
 	req_access = list("syndicate")
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "JE" = (
@@ -12072,7 +12065,7 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+/area/ruin/space/has_grav/bubbers/persistance/evac)
 "Kh" = (
 /obj/structure/closet/crate,
 /obj/item/skillchip/job/engineer,
@@ -12735,7 +12728,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/iron/colony/bolts,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "LY" = (
 /obj/structure/cable,
@@ -12878,9 +12871,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "Mx" = (
 /obj/structure/sign/poster/contraband/icebox_moment/directional/south,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "MA" = (
@@ -14464,9 +14454,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
-"QO" = (
-/turf/open/floor/iron/colony/bolts,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
 "QQ" = (
 /obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate");
@@ -15683,10 +15670,6 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "UF" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 5
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "UH" = (
@@ -15726,6 +15709,9 @@
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "UM" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/iron/colony/bolts,
@@ -16406,6 +16392,9 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "WP" = (
@@ -16427,12 +16416,11 @@
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
 "WR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/machinery/light/cold/directional/north,
-/obj/structure/closet/secure_closet/interdynefob/welding_supplies,
-/turf/open/floor/pod/dark,
+/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer4,
+/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer2,
+/obj/structure/cable/multilayer/multiz,
+/obj/machinery/light/directional/north,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "WS" = (
 /obj/structure/frame/machine/secured{
@@ -18205,7 +18193,7 @@ rx
 DO
 HP
 UF
-lz
+Sd
 CG
 UM
 tO
@@ -18275,9 +18263,9 @@ VY
 bz
 HP
 aP
-Sd
+hT
 CG
-QO
+Cy
 Mx
 Vq
 QC
