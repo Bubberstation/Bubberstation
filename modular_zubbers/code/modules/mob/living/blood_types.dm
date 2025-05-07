@@ -1,4 +1,4 @@
-//why couldnt it just be a unified system...
+///generic blood type for making new ones
 
 /datum/blood_type/custom
 	root_abstract_type = /datum/blood_type/custom

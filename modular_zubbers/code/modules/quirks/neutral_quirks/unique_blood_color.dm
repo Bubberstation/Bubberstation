@@ -15,21 +15,22 @@
 
 /datum/quirk/unique_blood_color/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/var/datum/blood_type/new_blood_color = client_source?.prefs.read_preference(/datum/preference/color/unique_blood_color)
+	var/datum/blood_type/override = human_holder.dna.blood_type
+	override.color = client_source?.prefs.read_preference(/datum/preference/color/unique_blood_color)
 	if(!istype(human_holder))
 		return
-	change_blood_color(new_species = human_holder.dna.species, new_blood_type = human_holder.dna.blood_type,  new_blood_color)
+	change_blood_color(new_species = human_holder.dna.species, override = human_holder.dna.blood_type)
 
-/datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, datum/species/new_species, datum/species/old_species, datum/blood_type/new_blood_color, pref_load, regenerate_icons)
+/datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, datum/species/new_species, datum/species/old_species, datum/blood_type/override, pref_load, regenerate_icons)
 	SIGNAL_HANDLER
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(!istype(human_holder))
 		return
 
-	///making the new blood type
+///Making the new blood type
 	var/datum/blood_type/new_blood_type = new /datum/blood_type/custom(human_holder.dna.blood_type, human_holder.dna.blood_type.compatible_types)
-	new_blood_type.color = new_blood_color
+	new_blood_type.color = override.color
 	GLOB.blood_types[new_blood_type.id] = new_blood_type
 	human_holder.set_blood_type(new_blood_type)
 
