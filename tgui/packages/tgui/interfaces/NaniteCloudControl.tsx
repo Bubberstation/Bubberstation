@@ -26,7 +26,7 @@ interface NaniteInfoBoxProps {
   max_cloud_id: number;
 }
 
-export const NaniteDiskBox = (props, context) => {
+export const NaniteDiskBox = () => {
   const { data } = useBackend<NaniteInfoBoxProps>();
   const { has_disk, has_program, disk } = data;
   if (!has_disk) {

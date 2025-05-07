@@ -150,7 +150,7 @@
 
 	harass_target(target, always_shoot = TRUE)
 
-/mob/living/basic/pet/dog/corgi/borgi/proc/on_attackby(datum/source, obj/item/used_item, mob/living/target)
+/mob/living/basic/pet/dog/corgi/borgi/proc/on_attackby(datum/source, obj/item/used_item, mob/living/target, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!used_item.force || used_item.damtype == STAMINA || health <= 0)
