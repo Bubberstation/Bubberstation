@@ -11,15 +11,39 @@
 
 /datum/quirk_constant_data/uniquebloodcolor
 	associated_typepath = /datum/quirk/unique_blood_color
-	customization_options = list(/datum/preference/color/unique_blood_color)
+	customization_options = list(
+		/datum/preference/color/input_blood_color,
+		/datum/preference/toggle/preset_blood_color,
+		/datum/preference/choiced/select_blood_color,
+		)
 
 /datum/quirk/unique_blood_color/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/datum/blood_type/override = human_holder.dna.blood_type
-	override.color = client_source?.prefs.read_preference(/datum/preference/color/unique_blood_color)
-	if(!istype(human_holder))
+	if(!istype(human_holder)) //If you want to change the blood of a non-human mob, just varedit. It'll reset when changing species tho
 		return
+	var/datum/blood_type/override = human_holder.dna.blood_type
+	if(client_source?.prefs.read_preference(/datum/preference/toggle/preset_blood_color) == TRUE)
+		var/selected_color = client_source?.prefs.read_preference(/datum/preference/choiced/select_blood_color)
+		switch(selected_color)
+			if(NONE)
+				override.color = BLOOD_COLOR_RED
+			if("Red/Human")
+				override.color = BLOOD_COLOR_RED
+			//if("Lizard")
+			//	override.color = BLOOD_COLOR_LIZARD
+			if("Green/alt-Lizard")
+				override.color = BLOOD_COLOR_GREEN
+			if("Violet/Avali")
+				override.color = BLOOD_COLOR_VIOLET
+			if("Cyan/Vox")
+				override.color = BLOOD_COLOR_CYAN
+			if("White/Synth")
+				override.color = BLOOD_COLOR_WHITE
+	else
+		override.color = client_source?.prefs.read_preference(/datum/preference/color/input_blood_color)
 	change_blood_color(new_species = human_holder.dna.species, override = human_holder.dna.blood_type)
+
+//someone could turn this into a universal replace_blood() or something... but not me
 
 /datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, datum/species/new_species, datum/species/old_species, datum/blood_type/override, pref_load, regenerate_icons)
 	SIGNAL_HANDLER
