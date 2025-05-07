@@ -13,10 +13,16 @@
 /// Returns true if the quirk is valid for the target, call parent so quirk_species_whitelist and blacklist can be checked.
 /datum/quirk/proc/can_add(mob/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(length(species_whitelist) || length(species_blacklist))
+	if(length(species_whitelist))
 		if(!ishuman(target))
 			return FALSE
 		var/mob/living/carbon/human = target
-		if(!(human?.dna.species.id in species_whitelist) || (human?.dna.species.id in species_blacklist))
+		if(!(human?.dna.species.id in species_whitelist))
+			return FALSE
+	if(length(species_blacklist))
+		if(!ishuman(target))
+			return FALSE
+		var/mob/living/carbon/human = target
+		if(human?.dna.species.id in species_blacklist)
 			return FALSE
 	return TRUE

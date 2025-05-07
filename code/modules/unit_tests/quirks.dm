@@ -99,11 +99,13 @@
 		var/datum/quirk/quirk_instance = allocate(quirk_type)
 		if(length(quirk_instance.species_whitelist))
 			new_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
-		if(length(quirk_instance.species_blacklist))
-			new_character.set_species(GLOB.species_list[quirk_instance.species_blacklist[1]])
 		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
+		if(length(quirk_instance.species_blacklist)) // BUBBER EDIT QUIRK BLACKLIST
+			new_character.set_species(GLOB.species_list[quirk_instance.species_blacklist[1]])
+		if (new_character.add_quirk(quirk_type, roundstart_mock_client))
+			TEST_FAIL("Added a blacklisted quirk to a species that is on the blacklist!") //BUBBER EDIT END
 
 		var/mob/living/carbon/human/latejoin_character = allocate(/mob/living/carbon/human/consistent)
 		var/datum/client_interface/latejoin_mock_client = new()
@@ -116,6 +118,9 @@
 		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
-
+		if(length(quirk_instance.species_blacklist)) // BUBBER EDIT QUIRK BLACKLIST
+			new_character.set_species(GLOB.species_list[quirk_instance.species_blacklist[1]])
+		if (new_character.add_quirk(quirk_type, roundstart_mock_client))
+			TEST_FAIL("Added a blacklisted quirk to a species that is on the blacklist!") //BUBBER EDIT END
 	// Clean up after ourselves
 	GLOB.uncommon_roundstart_languages.Cut()
