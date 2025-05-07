@@ -168,7 +168,6 @@
 #define INIT_ORDER_RESTAURANT 34
 #define INIT_ORDER_TTS 33
 #define INIT_ORDER_FLUIDS 32 // Needs to be above atoms, as some atoms may want to start fluids/gases on init
-#define INIT_ORDER_POLLUTION 31 //SKYRAT EDIT ADDITION - //Needs to be above atoms
 #define INIT_ORDER_ATOMS 30
 #define INIT_ORDER_ARMAMENTS 27 // SKYRAT EDIT ADDITION - Needs to be between atoms and default so it runs before gun companies
 #define INIT_ORDER_LANGUAGE 25

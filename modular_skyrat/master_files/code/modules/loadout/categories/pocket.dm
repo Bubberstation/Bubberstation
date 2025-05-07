@@ -191,51 +191,6 @@
 	item_path = /obj/item/seeds/liberty
 
 /*
-*	FRAGRANCES
-*/
-
-/datum/loadout_item/pocket_items/fragrance_cologne
-	name = "Cologne Bottle"
-	item_path = /obj/item/perfume/cologne
-
-/datum/loadout_item/pocket_items/fragrance_wood
-	name = "Wood Perfume"
-	item_path = /obj/item/perfume/wood
-
-/datum/loadout_item/pocket_items/fragrance_rose
-	name = "Rose Perfume"
-	item_path = /obj/item/perfume/rose
-
-/datum/loadout_item/pocket_items/fragrance_jasmine
-	name = "Jasmine Perfume"
-	item_path = /obj/item/perfume/jasmine
-
-/datum/loadout_item/pocket_items/fragrance_mint
-	name = "Mint Perfume"
-	item_path = /obj/item/perfume/mint
-
-/datum/loadout_item/pocket_items/fragrance_vanilla
-	name = "Vanilla Perfume"
-	item_path = /obj/item/perfume/vanilla
-
-/datum/loadout_item/pocket_items/fragrance_pear
-	name = "Pear Perfume"
-	item_path = /obj/item/perfume/pear
-
-/datum/loadout_item/pocket_items/fragrance_strawberry
-	name = "Strawberry Perfume"
-	item_path = /obj/item/perfume/strawberry
-
-/datum/loadout_item/pocket_items/fragrance_cherry
-	name = "Cherry Perfume"
-	item_path = /obj/item/perfume/cherry
-
-/datum/loadout_item/pocket_items/fragrance_amber
-	name = "Amber Perfume"
-	item_path = /obj/item/perfume/amber
-
-
-/*
 *	DONATOR
 */
 
