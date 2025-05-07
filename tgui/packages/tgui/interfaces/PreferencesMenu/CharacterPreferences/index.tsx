@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { NoticeBox, Stack } from 'tgui-core/components';
+import { Dropdown, NoticeBox, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
-import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { PageButton } from '../components/PageButton';
 import { LanguagesPage } from '../LanguagesMenu'; // BUBBER EDIT ADDITION
 import { LimbsPage } from '../LimbsPage'; // BUBBER EDIT ADDITION
@@ -58,8 +57,7 @@ function CharacterProfiles(props: ProfileProps) {
   return (
     <Stack align="center" justify="left">
       <Stack.Item width="285px">
-        <SideDropdown
-          width="100%"
+        <Dropdown
           selected={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
             value: slot,
