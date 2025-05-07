@@ -32,8 +32,10 @@
 #define ORGAN_HAZARDOUS (1<<12)
 /// This is an external organ, not an inner one. Used in several checks.
 #define ORGAN_EXTERNAL (1<<13)
-/// Bubber Edit - Nanoswarm organ
-#define ORGAN_NANOMACHINE (1<<14)
+/// This is a mutant organ, having this makes you a -derived mutant to health analyzers.
+#define ORGAN_MUTANT (1<<14)
+/// BUBBER EDIT ADD - Nanoswarm organ
+#define ORGAN_NANOMACHINE (1<<15)
 
 /// Scarring on the right eye
 #define RIGHT_EYE_SCAR (1<<0)
@@ -58,6 +60,8 @@
 #define BODYPART_IMPLANTED (1<<2)
 /// Bodypart never displays as a husk
 #define BODYPART_UNHUSKABLE (1<<3)
+/// Bodypart has never been added to a mob
+#define BODYPART_VIRGIN (1<<4)
 
 // Bodypart change blocking flags
 ///Bodypart does not get replaced during set_species()

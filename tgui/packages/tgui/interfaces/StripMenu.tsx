@@ -21,7 +21,7 @@ const getGridSpotKey = (spot: [number, number]): GridSpotKey => {
 const CornerText = (props: {
   align: 'left' | 'right';
   children: string;
-}): JSX.Element => {
+}): React.JSX.Element => {
   const { align, children } = props;
 
   return (
@@ -78,6 +78,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'microchip',
     text: 'Adjust sensors',
   },
+  // BUBBER EDIT BEGIN - entombed quirk suit reactivation
+  entombed_emergency_reactivate: {
+    icon: 'power-off',
+    text: 'Emergency MODsuit reactivation',
+  }, // BUBBER EDIT END
 };
 
 const SLOTS: Record<
@@ -86,7 +91,7 @@ const SLOTS: Record<
     displayName: string;
     gridSpot: GridSpotKey;
     image?: string;
-    additionalComponent?: JSX.Element;
+    additionalComponent?: React.JSX.Element;
   }
 > = {
   eyes: {
@@ -315,8 +320,8 @@ export const StripMenu = (props) => {
                   const item = data.items[keyAtSpot];
                   const slot = SLOTS[keyAtSpot];
 
-                  let content: JSX.Element | undefined;
-                  let alternateActions: JSX.Element[] | undefined;
+                  let content: React.JSX.Element | undefined;
+                  let alternateActions: React.JSX.Element[] | undefined;
                   let tooltip: string | undefined;
 
                   if (item === null) {

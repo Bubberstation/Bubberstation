@@ -503,7 +503,7 @@ export const EquipmentTab = (props) => {
                           value={equipment.count}
                           minValue={1}
                           maxValue={5}
-                          onChange={(e, value) =>
+                          onChange={(value) =>
                             act('set_equipment_count', {
                               selected_equipment_ref: equipment.ref,
                               new_equipment_count: value,

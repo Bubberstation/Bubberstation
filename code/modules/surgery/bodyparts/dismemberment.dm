@@ -24,6 +24,9 @@
 	if (wounding_type)
 		LAZYSET(limb_owner.body_zone_dismembered_by, body_zone, wounding_type)
 
+	if (can_bleed())
+		limb_owner.bleed(rand(20, 40))
+
 	drop_limb(dismembered = TRUE)
 
 	limb_owner.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
@@ -37,8 +40,8 @@
 		burn()
 		return TRUE
 	if (can_bleed())
-		add_mob_blood(limb_owner)
 		limb_owner.bleed(rand(20, 40))
+
 	var/direction = pick(GLOB.cardinals)
 	var/t_range = rand(2,max(throw_range/2, 2))
 	var/turf/target_turf = get_turf(src)
@@ -61,10 +64,12 @@
 		return FALSE
 	if(HAS_TRAIT(chest_owner, TRAIT_NODISMEMBER))
 		return FALSE
+
 	. = list()
 	if(wounding_type != WOUND_BURN && isturf(chest_owner.loc) && can_bleed())
 		chest_owner.add_splatter_floor(chest_owner.loc)
 	playsound(get_turf(chest_owner), 'sound/misc/splort.ogg', 80, TRUE)
+	// BUBBER TODO - This needs a rework so we dont spill tails and whatnot
 	var/list/droppable_organs= list()// BUBBER EDIT BEGIN - One at a time
 	for(var/obj/item/organ/droppable in contents)
 		droppable_organs |= droppable
@@ -96,6 +101,7 @@
 	SEND_SIGNAL(owner, COMSIG_CARBON_REMOVE_LIMB, src, special, dismembered)
 	SEND_SIGNAL(src, COMSIG_BODYPART_REMOVED, owner, special, dismembered)
 	bodypart_flags &= ~BODYPART_IMPLANTED //limb is out and about, it can't really be considered an implant
+	add_mob_blood(owner)
 	owner.remove_bodypart(src, special)
 
 	for(var/datum/scar/scar as anything in scars)
@@ -347,7 +353,7 @@
 	real_name = new_head_owner.real_name
 
 	//Handle dental implants
-	for(var/obj/item/reagent_containers/pill/pill in src)
+	for(var/obj/item/reagent_containers/applicator/pill/pill in src)
 		for(var/datum/action/item_action/activate_pill/pill_action in pill.actions)
 			pill.forceMove(new_head_owner)
 			pill_action.Grant(new_head_owner)

@@ -18,7 +18,7 @@ import {
 import { removeAllSkiplines } from '../../../TextInputModal';
 import { PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
-import {
+import type {
   LoadoutCategory,
   LoadoutItem,
   LoadoutManagerData,
@@ -106,10 +106,8 @@ export function LoadoutPage(props) {
                   placeholder="Maximum of 24 characters long"
                   width="100%"
                   maxLength={24}
-                  onChange={(_, value) => onType(value)}
-                  onInput={(_, value) => onType(value)}
-                  onEnter={(event) => {
-                    event.preventDefault();
+                  onChange={onType}
+                  onEnter={() => {
                     act(`${managingPreset.toLowerCase()}_loadout_preset`, {
                       name: input,
                     });
@@ -148,7 +146,7 @@ export function LoadoutPage(props) {
           buttons={
             <Input
               width="200px"
-              onInput={(_, value) => setSearchLoadout(value)}
+              onChange={setSearchLoadout}
               placeholder="Search for an item..."
               value={searchLoadout}
             />
@@ -291,7 +289,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
       <Stack.Item grow>
         {searching || activeCategory?.contents ? (
           <Section
-            title={searching ? 'Searching...' : 'Catalog'}
+            title={searching ? 'Search results' : 'Catalog'}
             fill
             scrollable
             buttons={
@@ -442,16 +440,18 @@ function LoadoutPreviewSection() {
     <Section
       fill
       // BUBBER EDIT REMOVAL BEGIN - Better loadout pref
-      // title="Preview"
-      // buttons={
-      //  <Button.Checkbox
-      //    align="center"
-      //    checked={data.job_clothes}
-      //    onClick={() => act('toggle_job_clothes')}
-      //  >
-      //    Job Clothes
-      //  </Button.Checkbox>
-      // }
+      /*
+      title="Preview"
+      buttons={
+        <Button.Checkbox
+          align="center"
+          checked={data.job_clothes}
+          onClick={() => act('toggle_job_clothes')}
+        >
+          Job Clothes
+        </Button.Checkbox>
+      }
+      */
       // BUBBER EDIT REMOVAL END - Better loadout pref
     >
       <Stack vertical fill>
