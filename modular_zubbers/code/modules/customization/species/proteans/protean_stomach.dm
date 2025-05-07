@@ -18,12 +18,11 @@
 
 /obj/item/organ/stomach/protean/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
-	RegisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT, PROC_REF(try_stomach_eat))
+	RegisterSignal(receiver, COMSIG_CARBON_ATTEMPT_EAT, PROC_REF(try_stomach_eat))
 
 /obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
 	. = ..()
-	if(owner)
-		UnregisterSignal(owner, COMSIG_CARBON_ATTEMPT_EAT)
+	UnregisterSignal(stomach_owner, COMSIG_CARBON_ATTEMPT_EAT)
 
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
 	var/datum/species/protean/species = owner?.dna.species
