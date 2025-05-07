@@ -42,7 +42,3 @@
 /datum/loadout_item/neck/bowtie
 	name = "Bowtie"
 	item_path = /obj/item/clothing/neck/bowtie
-
-/datum/loadout_item/neck/warrior_cape_worn
-	name = "tattered cloak"
-	item_path = /obj/item/clothing/neck/warrior_cape/loadout

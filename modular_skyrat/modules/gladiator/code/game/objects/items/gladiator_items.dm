@@ -240,6 +240,22 @@
 	new /obj/item/clothing/neck/warrior_cape(src)
 	new /obj/item/crusher_trophy/gladiator(src)
 
+// Bubber Edit and alt varient for berserker suit
+
+/obj/item/clothing/suit/hooded/berserker/gladiator
+	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
+	icon_state = "berk_suit"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
+	hoodtype = /obj/item/clothing/head/hooded/berserker/gladiator
+
+/obj/item/clothing/head/hooded/berserker/gladiator
+	desc = "A uniquely styled helmet with ghastly red eyes that seals it's user inside."
+	icon_state = "berk_helm"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+
 #undef BERSERK_MAX_CHARGE
 #undef PROJECTILE_HIT_MULTIPLIER
 #undef DAMAGE_TO_CHARGE_SCALE
