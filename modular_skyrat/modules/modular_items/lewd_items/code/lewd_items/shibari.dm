@@ -96,7 +96,7 @@
 			new_color += num2hex(rand(0, 255), 2)
 		set_greyscale(colors = list(new_color))
 
-/obj/item/stack/shibari_rope/proc/handle_roping(datum/source, mob/living/carbon/attacked, mob/living/user)
+/obj/item/stack/shibari_rope/proc/handle_roping(datum/source, mob/living/carbon/attacked, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(get_dist(user, src) > 1)

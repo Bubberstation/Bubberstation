@@ -41,36 +41,36 @@
 		playsound(src,pick(attack_inanimate_sounds),50,TRUE,SOUND_RANGE*2)
 		COOLDOWN_START(src, sound_cooldown, 3 SECONDS)
 
+// todo: FIX
+// /obj/item/melee/arm_blade/changeling_zombie/add_mob_blood(mob/living/injected_mob)
 
-/obj/item/melee/arm_blade/changeling_zombie/add_mob_blood(mob/living/injected_mob)
+// 	if(blood_chance <= 0) //Can't infect. Will still draw blood anyways.
+// 		return ..()
 
-	if(blood_chance <= 0) //Can't infect. Will still draw blood anyways.
-		return ..()
+// 	if(!injected_mob.stat && !prob(blood_chance)) //Alive mobs have additional checks.
+// 		return
 
-	if(!injected_mob.stat && !prob(blood_chance)) //Alive mobs have additional checks.
-		return
+// 	. = ..()
 
-	. = ..()
+// 	if(!.)
+// 		return
 
-	if(!.)
-		return
+// 	if(!ishuman(injected_mob))
+// 		return
 
-	if(!ishuman(injected_mob))
-		return
+// 	if(!injected_mob.stat && !COOLDOWN_FINISHED(src,infection_cooldown))
+// 		return
 
-	if(!injected_mob.stat && !COOLDOWN_FINISHED(src,infection_cooldown))
-		return
+// 	COOLDOWN_START(src, infection_cooldown, CHANGELING_ZOMBIE_REINFECT_DELAY)
 
-	COOLDOWN_START(src, infection_cooldown, CHANGELING_ZOMBIE_REINFECT_DELAY)
+// 	var/mob/living/carbon/human/host = injected_mob
 
-	var/mob/living/carbon/human/host = injected_mob
-
-	if(can_become_changeling_zombie(host) && host.AddComponent(/datum/component/changeling_zombie_infection))
-		var/mob/living/arm_user = src.loc
-		if(istype(arm_user))
-			var/datum/component/changeling_zombie_infection/component = arm_user.GetComponent(/datum/component/changeling_zombie_infection)
-			if(component && component.infect_objective)
-				component.infect_objective.total_infections += 1
+// 	if(can_become_changeling_zombie(host) && host.AddComponent(/datum/component/changeling_zombie_infection))
+// 		var/mob/living/arm_user = src.loc
+// 		if(istype(arm_user))
+// 			var/datum/component/changeling_zombie_infection/component = arm_user.GetComponent(/datum/component/changeling_zombie_infection)
+// 			if(component && component.infect_objective)
+// 				component.infect_objective.total_infections += 1
 
 /obj/item/clothing/suit/armor/changeling/prototype
 	name = "prototype chitinous mass"
