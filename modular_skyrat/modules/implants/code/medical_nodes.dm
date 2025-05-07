@@ -17,6 +17,13 @@
 	)
 	return ..()
 
+/datum/techweb_node/cyber/cyber_organs_upgraded/New()
+	design_ids -= list(
+		"ci-gloweyes",
+		"ci-welding",
+	)
+	return ..()
+
 /datum/techweb_node/cyber/combat_implants/New()
 	design_ids += list(
 		"ci-mantis",

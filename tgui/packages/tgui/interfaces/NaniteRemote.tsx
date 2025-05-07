@@ -75,7 +75,7 @@ export const NaniteRemoteContent = () => {
               value={program_name}
               maxLength={14}
               width="130px"
-              onChange={(e, value) =>
+              onChange={(value) =>
                 act('update_name', {
                   name: value,
                 })
@@ -105,7 +105,7 @@ export const NaniteRemoteContent = () => {
               <Input
                 value={message}
                 width="270px"
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('set_message', {
                     value: value,
                   })
