@@ -1,0 +1,595 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/closed/wall/r_wall,
+/area/station/hallway/secondary/entry)
+"d" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/machinery/newscaster/directional/north,
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/cold/dim/directional/north,
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/open/floor/engine/hull,
+/area/station/maintenance/starboard/aft)
+"m" = (
+/obj/machinery/door/airlock/external{
+	name = "Centcom Ship Dock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "ert-lz-starboard"
+	},
+/turf/open/floor/catwalk_floor,
+/area/station/hallway/secondary/entry)
+"t" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/catwalk_floor,
+/area/station/hallway/secondary/entry)
+"u" = (
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/obj/item/radio/intercom/directional/south,
+/obj/structure/sign/warning/vacuum/external/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"w" = (
+/obj/machinery/light/cold/dim/directional/south,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"x" = (
+/obj/structure/closet/firecloset/wall{
+	pixel_x = -32
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"y" = (
+/obj/effect/landmark/navigate_destination/docksec,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"z" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/hallway/secondary/entry)
+"B" = (
+/turf/closed/wall,
+/area/station/maintenance/starboard/aft)
+"C" = (
+/obj/machinery/door/airlock/external{
+	name = "Auxiliary Ship Docks";
+	normalspeed = 0
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor,
+/area/station/hallway/secondary/entry)
+"E" = (
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"F" = (
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"G" = (
+/turf/closed/wall,
+/area/station/hallway/secondary/entry)
+"H" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light/cold/dim/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"I" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 11;
+	height = 22;
+	name = "SS13: Auxiliary Dock, Station-Port";
+	shuttle_id = "whiteship_home";
+	width = 35
+	},
+/turf/template_noop,
+/area/template_noop)
+"K" = (
+/obj/docking_port/stationary{
+	dheight = 3;
+	dir = 8;
+	dwidth = 8;
+	height = 11;
+	shuttle_id = "ferry_home";
+	name = "Secondary Station Dock";
+	width = 20
+	},
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"N" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"P" = (
+/obj/machinery/door/airlock/external{
+	name = "Auxiliary Ship Docks"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor,
+/area/station/hallway/secondary/entry)
+"Q" = (
+/obj/machinery/door/airlock/external{
+	name = "Aux Ship Dock"
+	},
+/turf/open/floor/catwalk_floor,
+/area/station/hallway/secondary/entry)
+"S" = (
+/obj/effect/landmark/navigate_destination/dockaux,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"U" = (
+/obj/structure/closet/emcloset/wall{
+	pixel_y = 32
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"W" = (
+/turf/open/floor/engine/hull,
+/area/space/nearstation)
+"Y" = (
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
+"Z" = (
+/turf/open/space/basic,
+/area/space)
+
+(1,1,1) = {"
+u
+u
+u
+P
+z
+c
+z
+z
+z
+c
+z
+z
+c
+u
+u
+u
+"}
+(2,1,1) = {"
+u
+u
+d
+M
+Y
+x
+Y
+Y
+w
+c
+S
+N
+c
+u
+u
+u
+"}
+(3,1,1) = {"
+u
+u
+t
+t
+t
+t
+t
+t
+t
+C
+t
+t
+Q
+I
+u
+u
+"}
+(4,1,1) = {"
+u
+u
+f
+E
+Y
+Y
+Y
+Y
+v
+c
+y
+H
+c
+u
+u
+u
+"}
+(5,1,1) = {"
+u
+u
+u
+G
+z
+z
+z
+z
+z
+c
+U
+F
+c
+u
+u
+u
+"}
+(6,1,1) = {"
+u
+u
+u
+Z
+u
+u
+u
+u
+u
+z
+Y
+Y
+z
+u
+u
+u
+"}
+(7,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+c
+m
+m
+c
+u
+u
+u
+"}
+(8,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(9,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(10,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(11,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(12,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+K
+u
+u
+u
+u
+"}
+
+(1,1,2) = {"
+B
+B
+B
+j
+B
+B
+W
+W
+W
+W
+W
+W
+W
+u
+u
+u
+"}
+(2,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+u
+u
+u
+"}
+(3,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+u
+u
+u
+"}
+(4,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+u
+u
+u
+"}
+(5,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+u
+u
+u
+"}
+(6,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+W
+W
+u
+u
+u
+"}
+(7,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+W
+W
+W
+W
+u
+u
+u
+"}
+(8,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(9,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(10,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(11,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(12,1,2) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
