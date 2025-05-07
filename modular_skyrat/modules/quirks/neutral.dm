@@ -314,6 +314,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	value = 0
 	gain_text = span_danger("Your body tempature is feeling off.")
 	lose_text = span_notice("Your body tempature is feeling right.")
+	species_blacklist = list(SPECIES_SKRELL, SPECIES_TESHARI) //
 	medical_record_text = "Patient's body has an abnormal tempature for their species."
 	icon = FA_ICON_THERMOMETER_HALF
 

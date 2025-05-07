@@ -99,6 +99,8 @@
 		var/datum/quirk/quirk_instance = allocate(quirk_type)
 		if(length(quirk_instance.species_whitelist))
 			new_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
+		if(length(quirk_instance.species_blacklist))
+			new_character.set_species(GLOB.species_list[quirk_instance.species_blacklist[1]])
 		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
