@@ -4,7 +4,6 @@ import { sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  Dropdown,
   Floating,
   Input,
   LabeledList,
@@ -15,6 +14,7 @@ import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
+import { SideDropdown } from '../../../bubber_components/SideDropdown';
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { PageButton } from '../components/PageButton'; // BUBBER EDIT ADDITION
 import { RandomizationButton } from '../components/RandomizationButton';
@@ -619,8 +619,7 @@ export function MainPage(props: MainPageProps) {
 
             {/* BUBBER EDIT ADDITION BEGIN: Preview Selection */}
             <Stack.Item position="relative">
-              <Dropdown
-                over
+              <SideDropdown
                 selected={data.preview_selection}
                 options={data.preview_options}
                 onSelected={(value) =>
@@ -634,8 +633,7 @@ export function MainPage(props: MainPageProps) {
 
             {/* BUBBER EDIT ADDITION START: Background Selection */}
             <Stack.Item position="relative">
-              <Dropdown
-                over
+              <SideDropdown
                 selected={data.character_preferences.misc.background_state}
                 options={serverData?.background_state.choices || []}
                 onSelected={(value) =>
@@ -649,6 +647,7 @@ export function MainPage(props: MainPageProps) {
             <Stack.Item height="545px">
               <CharacterPreview
                 height="100%"
+                width="270px" // BUBBER EDIT ADDITION
                 id={data.character_preview_view}
               />
             </Stack.Item>
