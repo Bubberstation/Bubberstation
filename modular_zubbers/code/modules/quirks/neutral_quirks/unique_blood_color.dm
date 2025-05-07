@@ -25,8 +25,6 @@
 	if(client_source?.prefs.read_preference(/datum/preference/toggle/preset_blood_color) == TRUE)
 		var/selected_color = client_source?.prefs.read_preference(/datum/preference/choiced/select_blood_color)
 		switch(selected_color)
-			if(NONE)
-				override.color = BLOOD_COLOR_RED
 			if("Red/Human")
 				override.color = BLOOD_COLOR_RED
 			//if("Lizard")
@@ -39,6 +37,8 @@
 				override.color = BLOOD_COLOR_CYAN
 			if("White/Synth")
 				override.color = BLOOD_COLOR_WHITE
+			else
+				override.color = BLOOD_COLOR_RED
 	else
 		override.color = client_source?.prefs.read_preference(/datum/preference/color/input_blood_color)
 	change_blood_color(new_species = human_holder.dna.species, override = human_holder.dna.blood_type)
