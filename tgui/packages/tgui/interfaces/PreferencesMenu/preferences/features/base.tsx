@@ -275,7 +275,7 @@ export const FeatureTextInput = (
       fluid
       value={props.value}
       maxLength={props.serverData.maximum_length}
-      onChange={props.handleSetValue}
+      onBlur={props.handleSetValue}
     />
   );
 };
