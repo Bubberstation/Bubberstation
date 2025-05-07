@@ -316,9 +316,11 @@
 	UnregisterSignal(mod.wearer, COMSIG_LIVING_HEALTH_UPDATE)
 
 /obj/item/mod/module/auto_doc/on_install()
+	. = ..()
 	RegisterSignal(mod, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interact))
 
 /obj/item/mod/module/auto_doc/on_uninstall(deleting)
+	. = ..()
 	UnregisterSignal(mod, COMSIG_ATOM_ATTACKBY)
 
 /obj/item/mod/module/auto_doc/attackby(obj/item/attacking_item, mob/user, params)
