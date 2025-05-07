@@ -31,6 +31,8 @@
 			//	override.color = BLOOD_COLOR_LIZARD
 			if("Green/alt-Lizard")
 				override.color = BLOOD_COLOR_GREEN
+			if("Lime/Xeno")
+				override.color = BLOOD_COLOR_XENO
 			if("Violet/Avali")
 				override.color = BLOOD_COLOR_VIOLET
 			if("Cyan/Vox")
