@@ -615,11 +615,15 @@
 			mob_parent.add_actionspeed_modifier(/datum/actionspeed_modifier/high_sanity)
 			sanity_level = SANITY_LEVEL_GREAT
 
+	// BUBBER EDIT REMOVAL BEGIN - No hallucination on hunger/sanity
+	/*
 	// Crazy or insane = add some uncommon hallucinations
 	if(sanity_level >= SANITY_LEVEL_CRAZY)
 		mob_parent.apply_status_effect(/datum/status_effect/hallucination/sanity)
 	else
 		mob_parent.remove_status_effect(/datum/status_effect/hallucination/sanity)
+	*/
+	// BUBBER EDIT REMOVAL END - No hallucination on hunger/sanity
 
 	update_mood_icon()
 
