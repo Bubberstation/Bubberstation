@@ -5,7 +5,7 @@
 	icon_state = "crack"
 	volume = 10
 	has_variable_transfer_amount = FALSE
-	list_reagents = list(/datum/reagent/drug/cocaine/freebase_cocaine = 10)
+	list_reagents = list(/datum/reagent/drug/freebase_cocaine = 10)
 
 /obj/item/reagent_containers/crackbrick
 	name = "crack brick"
@@ -14,7 +14,7 @@
 	icon_state = "crackbrick"
 	volume = 40
 	has_variable_transfer_amount = FALSE
-	list_reagents = list(/datum/reagent/drug/cocaine/freebase_cocaine = 40)
+	list_reagents = list(/datum/reagent/drug/freebase_cocaine = 40)
 
 /obj/item/reagent_containers/crackbrick/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
