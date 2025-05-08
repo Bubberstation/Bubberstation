@@ -27,7 +27,7 @@ export const OpposingForcePanel = (props) => {
     <Window
       title={'Opposing Force: ' + creator_ckey}
       width={585}
-      height={840}
+      height={860}
       theme={owner_antag ? 'syndicate' : 'admin'}
     >
       <Window.Content scrollable>
