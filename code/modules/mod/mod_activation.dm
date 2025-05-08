@@ -87,7 +87,7 @@
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
 		if(overslot && istype(overslot, /obj/item/clothing))
 			var/obj/item/clothing/clothing = overslot
-			if(clothing.clothing_flags & CLOTHING_MOD_OVERSLOTTING)
+			if(TRUE)
 				part_datum.overslotting = overslot
 				wearer.transferItemToLoc(overslot, part, force = TRUE)
 				RegisterSignal(part, COMSIG_ATOM_EXITED, PROC_REF(on_overslot_exit))
