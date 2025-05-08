@@ -106,6 +106,22 @@
 	prompt_name = "a port researcher"
 	outfit = /datum/outfit/tarkon/sci
 
+/obj/effect/mob_spawn/ghost_role/human/tarkon/service
+	name = "Port Tarkon Service Crew Member"
+	prompt_name = "a port tarkon chef, and janitor"
+	outfit = /datum/outfit/tarkon/service
+
+/datum/outfit/tarkon/service
+	name = "Port Tarkon Service Outfit"
+	back = /obj/item/storage/backpack
+	id = /obj/item/card/id/advanced/tarkon/service
+	id_trim = /datum/id_trim/away/tarkon/service
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/keycard/tarkon_job_service,
+		/obj/item/crowbar = 1,
+		)
+	skillchips = list(/obj/item/skillchip/chefs_kiss, /obj/item/skillchip/intj)
 
 /datum/outfit/tarkon/sci
 	name = "Port Tarkon Science Outfit"

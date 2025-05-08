@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
