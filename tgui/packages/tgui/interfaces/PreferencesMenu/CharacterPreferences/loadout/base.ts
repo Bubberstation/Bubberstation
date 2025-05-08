@@ -38,14 +38,6 @@ export type LoadoutItem = {
   buttons: LoadoutButton[];
   reskins: ReskinOption[] | null;
   information: LoadoutTooltip[];
-  // SKYRAT EDIT
-  ckey_whitelist: string[] | null;
-  restricted_roles: string[] | null;
-  blacklisted_roles: string[] | null;
-  restricted_species: string[] | null;
-  donator_only: BooleanLike;
-  erp_item: BooleanLike;
-  // SKYRAT EDIT
 };
 
 // Category of items in the loadout
