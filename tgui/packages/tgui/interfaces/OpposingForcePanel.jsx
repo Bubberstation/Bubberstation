@@ -203,11 +203,12 @@ export const OpposingForceTab = (props) => {
       <Stack.Item>
         <Section title="Backstory">
           <TextArea
+            fluid
             disabled={!can_edit}
             height="100px"
             value={backstory}
             placeholder="Provide a description of why you want to do bad things. Include specifics such as what lead upto the events that made you want to do bad things, think of it as though you were your character, react appropriately. If you don't have any ideas, check the #player-shared-opfors channel for some. (2000 char limit)"
-            onChange={(_e, value) =>
+            onBlur={(value) =>
               act('set_backstory', {
                 backstory: value,
               })
@@ -309,7 +310,7 @@ export const OpposingForceObjectives = (props) => {
                       width="100%"
                       placeholder="blank objective"
                       value={selectedObjective.title}
-                      onChange={(e, value) =>
+                      onBlur={(value) =>
                         act('set_objective_title', {
                           objective_ref: selectedObjective.ref,
                           title: value,
@@ -411,21 +412,15 @@ export const OpposingForceObjectives = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Stack vertical mt={2}>
-                  <Stack.Item>
-                    Description
-                    <Button
-                      icon="info"
-                      tooltip="Input objective description here, be descriptive about what you want to do, such as 'Destroy the Death Star' or 'Destroy the Death Star and the Death Star Base' (1000 char limit)."
-                      color="light-gray"
-                    />
-                  </Stack.Item>
+                  <Stack.Item>Description</Stack.Item>
                   <Stack.Item>
                     <TextArea
                       fluid
                       disabled={!can_edit}
                       height="85px"
                       value={selectedObjective.description}
-                      onChange={(e, value) =>
+                      placeholder="Input objective description here, be descriptive about what you want to do, such as 'Destroy the Death Star' or 'Destroy the Death Star and the Death Star Base' (1000 char limit)."
+                      onBlur={(value) =>
                         act('set_objective_description', {
                           objective_ref: selectedObjective.ref,
                           new_desciprtion: value,
@@ -437,20 +432,15 @@ export const OpposingForceObjectives = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Stack vertical mt={2}>
-                  <Stack.Item>
-                    Justification
-                    <Button
-                      icon="info"
-                      tooltip="Input justification for the objective here, make sure you have a good reason for the objective (1000 char limit)."
-                      color="light-gray"
-                    />
-                  </Stack.Item>
+                  <Stack.Item>Justification</Stack.Item>
                   <Stack.Item>
                     <TextArea
+                      fluid
                       disabled={!can_edit}
                       height="85px"
                       value={selectedObjective.justification}
-                      onChange={(e, value) =>
+                      placeholder="Input justification for the objective here, make sure you have a good reason for the objective (1000 char limit)."
+                      onBlur={(value) =>
                         act('set_objective_justification', {
                           objective_ref: selectedObjective.ref,
                           new_justification: value,
@@ -539,7 +529,7 @@ export const EquipmentTab = (props) => {
                   width="100%"
                   placeholder="Reason for item"
                   value={equipment.reason}
-                  onChange={(e, value) =>
+                  onBlur={(value) =>
                     act('set_equipment_reason', {
                       selected_equipment_ref: equipment.ref,
                       new_equipment_reason: value,
@@ -614,7 +604,7 @@ export const AdminChatTab = (props) => {
           selfClear
           placeholder="Send a message or command using '/'"
           mt={1}
-          onEnter={(e, value) =>
+          onEnter={(value) =>
             act('send_message', {
               message: value,
             })
