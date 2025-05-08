@@ -328,13 +328,19 @@ export const OpposingForceObjectives = (props) => {
                   <Stack.Item>
                     <Slider
                       disabled={!can_edit}
-                      step={0.1}
-                      stepPixelSize={0.1}
+                      step={1}
                       value={selectedObjective.intensity}
-                      format={(value) => round(value)}
+                      format={(value) => round(value, 1)}
                       minValue={0}
                       maxValue={500}
-                      onDrag={(e, value) =>
+                      ranges={{
+                        good: [0, 150],
+                        teal: [151, 250],
+                        olive: [251, 350],
+                        orange: [351, 450],
+                        red: [451, 500],
+                      }}
+                      onDrag={(_e, value) =>
                         act('set_objective_intensity', {
                           objective_ref: selectedObjective.ref,
                           new_intensity_level: value,
