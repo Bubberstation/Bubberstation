@@ -964,7 +964,7 @@
 		)
 
 	for(var/datum/opposing_force_selected_equipment/iterating_equipment as anything in selected_equipment)
-		exported_data["selected_equipment"]["[objectives.Find(iterating_equipment)]"] = list(
+		exported_data["selected_equipment"]["[selected_equipment.Find(iterating_equipment)]"] = list(
 			"equipment_name" = iterating_equipment.opposing_force_equipment.name,
 			"equipment_parent_category" = iterating_equipment.opposing_force_equipment.category,
 			"equipment_parent_type" = iterating_equipment.opposing_force_equipment.type,
