@@ -986,22 +986,6 @@
 
 	fdel(to_write_file)
 
-
-/datum/action/opfor
-	name = "Open Opposing Force Panel"
-	button_icon_state = "round_end"
-
-/datum/action/opfor/Trigger(trigger_flags)
-	. = ..()
-	if(!.)
-		return
-	owner.opposing_force()
-
-/datum/action/opfor/IsAvailable(feedback = FALSE)
-	if(!target)
-		return FALSE
-	return ..()
-
 /obj/effect/statclick/opfor_specific
 	var/datum/opposing_force/opfor
 
