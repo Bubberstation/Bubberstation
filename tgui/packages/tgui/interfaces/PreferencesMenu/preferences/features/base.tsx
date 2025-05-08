@@ -272,9 +272,10 @@ export const FeatureTextInput = (
   return (
     <TextArea
       height="156px"
+      fluid
       value={props.value}
       maxLength={props.serverData.maximum_length}
-      onChange={props.handleSetValue}
+      onBlur={props.handleSetValue}
     />
   );
 };
