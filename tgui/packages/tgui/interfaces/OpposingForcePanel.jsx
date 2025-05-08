@@ -334,11 +334,11 @@ export const OpposingForceObjectives = (props) => {
                       minValue={0}
                       maxValue={500}
                       ranges={{
-                        good: [0, 150],
-                        teal: [151, 250],
-                        olive: [251, 350],
-                        orange: [351, 450],
-                        red: [451, 500],
+                        good: [0, 149],
+                        teal: [150, 249],
+                        olive: [250, 349],
+                        orange: [350, 449],
+                        red: [450, 500],
                       }}
                       onDrag={(_e, value) =>
                         act('set_objective_intensity', {
