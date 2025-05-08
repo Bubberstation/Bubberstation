@@ -6,7 +6,7 @@
 	telegraph_message = span_danger("You see a dust cloud rising over the horizon. That can't be good...")
 	telegraph_duration = 30 SECONDS
 	telegraph_overlay = "dust_med"
-	telegraph_sound = 'sound/effects/siren.ogg'
+	//telegraph_sound = 'sound/effects/siren.ogg' // Bubber Removal - No sirens, we have sandstorms all the time on Moonstation.
 
 	weather_message = span_userdanger("<i>Hot sand and wind batter you! Get inside!</i>")
 	weather_duration_lower = 1 MINUTES
