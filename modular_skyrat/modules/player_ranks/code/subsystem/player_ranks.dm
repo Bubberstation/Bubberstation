@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -32,11 +34,10 @@ SUBSYSTEM_DEF(player_ranks)
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.

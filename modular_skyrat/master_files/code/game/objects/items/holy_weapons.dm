@@ -78,6 +78,7 @@
 
 /obj/item/nullrod/cultdagger/attack_self(mob/user)
 	if(narsian)
+		return ..()
 	else if(user.mind && (user.mind.holy_role))
 		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)
@@ -92,6 +93,7 @@
 
 /obj/item/nullrod/claymore/darkblade/attack_self(mob/user)
 	if(narsian)
+		return ..()
 	else if(user.mind && (user.mind.holy_role))
 		to_chat(user, span_cult_large("\"Partake in the language of blood..\""))
 		user.grant_language(/datum/language/narsie, source = LANGUAGE_MIND)

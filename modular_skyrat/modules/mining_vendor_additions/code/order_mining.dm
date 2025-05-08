@@ -26,6 +26,13 @@
 		),
 	)
 
+/obj/item/kinetic_crusher/setup_reskinning()
+	if(!check_setup_reskinning())
+		return
+
+	// We already register context regardless in Initialize.
+	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_click_alt_reskin))
+
 /obj/item/kinetic_crusher/post_reskin(mob/our_mob)
 	if(icon_state == "crusher-glaive")
 		name = "proto-kinetic glaive"

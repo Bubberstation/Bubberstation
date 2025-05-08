@@ -73,7 +73,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	/// The singleton blood type
+	var/datum/blood_type/blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	/// Assoc list of feature keys to their value
@@ -127,7 +128,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		return
 	destination.dna.unique_enzymes = unique_enzymes
 	destination.dna.unique_identity = unique_identity
-	destination.dna.blood_type = blood_type
+	destination.set_blood_type(blood_type)
 	destination.dna.unique_features = unique_features
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
@@ -465,7 +466,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		&& real_name == target_dna.real_name \
 		&& species.type == target_dna.species.type \
 		&& compare_list(features, target_dna.features) \
-		&& blood_type == target_dna.blood_type \
+		&& blood_type.type == target_dna.blood_type.type \
 	)
 		return TRUE
 
@@ -510,7 +511,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
  * * create_mutation_blocks - If true, generate_dna_blocks is called, which is used to set up mutation blocks (what a mob can naturally mutate).
  * * randomize_features - If true, all entries in the features list will be randomized.
  */
-/datum/dna/proc/initialize_dna(newblood_type, create_mutation_blocks = TRUE, randomize_features = TRUE)
+/datum/dna/proc/initialize_dna(newblood_type = random_human_blood_type(), create_mutation_blocks = TRUE, randomize_features = TRUE)
 	if(newblood_type)
 		blood_type = newblood_type
 	if(create_mutation_blocks) //I hate this
@@ -659,7 +660,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.generate_unique_enzymes()
 
 	if(newblood_type)
-		dna.blood_type = newblood_type
+		set_blood_type(newblood_type)
 
 	if(unique_identity)
 		dna.unique_identity = unique_identity
@@ -713,8 +714,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	..()
 	var/structure = dna.unique_identity
 	skin_tone = GLOB.skin_tones[deconstruct_block(get_uni_identity_block(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
-	eye_color_left = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_LEFT_BLOCK))
-	eye_color_right = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK))
+	set_eye_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_LEFT_BLOCK)), sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK)))
 	set_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_hair_gradient_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_GRADIENT_BLOCK)), update = FALSE)

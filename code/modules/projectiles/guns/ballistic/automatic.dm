@@ -182,8 +182,7 @@
 /obj/item/gun/ballistic/automatic/m90/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(isammocasing(tool))
 		if(istype(tool, underbarrel.magazine.ammo_type))
-			underbarrel.attack_self(user)
-			underbarrel.attackby(tool, user, list2params(modifiers))
+			underbarrel.item_interaction(user, tool, modifiers)
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -312,7 +311,7 @@
 		return
 	..()
 
-/obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
+/obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, list/modifiers)
 	if(!cover_open && istype(A, accepted_magazine_type))
 		balloon_alert(user, "open the cover!")
 		return
@@ -403,7 +402,7 @@
 	. = ..()
 	. += span_notice("<b><i>Looking down at \the [src], you recall something you read in a promotional pamphlet... </i></b>")
 
-	. += span_info("The BR-38 possesses an acceleration rail that launches bullets at higher than typical velocity.\
+	. += span_info("The BR-38 possesses an acceleration rail that launches bullets at higher than typical velocity. \
 		This allows even less powerful cartridges to put out significant amounts of stopping power.")
 
 	. += span_notice("<b><i>However, you also remember some of the rumors...  </i></b>")

@@ -436,7 +436,7 @@
 /mob/living/carbon/proc/vomit(vomit_flags = VOMIT_CATEGORY_DEFAULT, vomit_type = /obj/effect/decal/cleanable/vomit/toxic, lost_nutrition = 10, distance = 1, purge_ratio = 0.1)
 	var/force = (vomit_flags & MOB_VOMIT_FORCE)
 	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
-		return TRUE
+		return FALSE
 
 	if(!force && HAS_TRAIT(src, TRAIT_STRONG_STOMACH))
 		lost_nutrition *= 0.5
@@ -1211,7 +1211,7 @@
 			return
 		if(result)
 			var/chosenart = artnames[result]
-			var/datum/martial_art/MA = new chosenart
+			var/datum/martial_art/MA = new chosenart(src)
 			MA.teach(src)
 			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
 			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
@@ -1481,11 +1481,32 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
+	if(dna.blood_type.no_bleed_overlays)
+		return
 	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
 	our_splatter.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
 	our_splatter.blood_dna_info = get_blood_dna_list()
+	our_splatter.color = get_blood_dna_color(our_splatter.blood_dna_info)
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
 	our_splatter.fly_towards(targ, splatter_strength)
+
+/// Goes through the organs and bodyparts of the mob and updates their blood_dna_info, in case their blood type has changed (via set_species() or otherwise)
+/mob/living/carbon/proc/update_cached_blood_dna_info()
+	var/list/blood_dna_info = get_blood_dna_list()
+	for(var/obj/item/organ/organ in organs)
+		organ.blood_dna_info = blood_dna_info
+	for(var/obj/item/bodypart/bodypart in bodyparts)
+		bodypart.blood_dna_info = blood_dna_info
+
+/mob/living/carbon/set_blood_type(datum/blood_type/new_blood_type, update_cached_blood_dna_info = TRUE)
+	if(isnull(dna))
+		return
+	if(dna.blood_type == new_blood_type) // already has this blood type, we don't need to do anything.
+		return
+
+	dna.blood_type = new_blood_type
+	if(update_cached_blood_dna_info)
+		update_cached_blood_dna_info()
 
 /mob/living/carbon/dropItemToGround(obj/item/item, force = FALSE, silent = FALSE, invdrop = TRUE)
 	if(item && ((item in organs) || (item in bodyparts))) //let's not do this, aight?

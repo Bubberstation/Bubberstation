@@ -1,7 +1,10 @@
 /// Custom computer for synth brains
 /obj/item/modular_computer/pda/synth
 	name = "virtual persocom"
-
+	icon = 'icons/obj/devices/assemblies.dmi'
+	icon_state = "posibrain"
+	base_icon_state = "posibrain"
+	greyscale_config = null
 	base_active_power_usage = 0 WATTS
 	base_idle_power_usage = 0 WATTS
 
@@ -9,7 +12,7 @@
 
 	max_idle_programs = 3
 
-	max_capacity = 64
+	max_capacity = parent_type::max_capacity * 2
 
 /obj/item/modular_computer/pda/synth/Initialize(mapload)
 	. = ..()
@@ -17,6 +20,22 @@
 	// prevent these from being created outside of synth brains
 	if(!istype(loc, /obj/item/organ/brain/synth))
 		return INITIALIZE_HINT_QDEL
+
+	//this code has to be called at a delay because the required data (synth owner's job) is null when initialized
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/modular_computer/pda/synth, post_initialize)), 1 DECISECONDS)
+
+/obj/item/modular_computer/pda/synth/proc/post_initialize()
+	var/obj/item/organ/brain/synth/brain_loc = loc
+	var/mob/living/carbon/owner = brain_loc?.bodypart_owner?.owner
+	if(istype(owner))
+		var/obj/item/modular_computer/pda/job_pda = SSjob.get_pda_type_by_job(owner.job)
+		if(istype(job_pda))
+			starting_programs += job_pda.starting_programs
+			var/obj/item/modular_computer/pda/heads/head_pda = job_pda
+			if(istype(head_pda))
+				starting_programs += head_pda.head_programs
+			install_default_programs()
+		QDEL_NULL(job_pda)
 
 /* Action for opening the synthbrain computer */
 /datum/action/item_action/synth/open_internal_computer
@@ -63,6 +82,9 @@ Various overrides necessary to get the persocom working, namely ui status, power
 		else if(istype(item, /obj/item/modular_computer))
 			var/obj/item/modular_computer/pda = item
 			computer_id_slot = pda.computer_id_slot
+		else if(istype(item, /obj/item/storage/wallet))
+			var/obj/item/storage/wallet/wallet = item
+			computer_id_slot = wallet.front_id
 		else
 			computer_id_slot = null
 	else
