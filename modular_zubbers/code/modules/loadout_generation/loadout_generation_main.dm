@@ -51,7 +51,16 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 				continue
 
 			//Armor Stuff
-			var/datum/armor/found_armor = initial(found_clothing.armor) ? GLOB.armor_by_type[initial(found_clothing)] : null
+			var/datum/armor/found_armor = initial(found_clothing.armor) ?  : null
+			if(found_armor)
+				found_armor = GLOB.armor_by_type[initial(found_clothing)]
+				stack_trace("Loadout nonsense generated before armor stuff could initialize! Shits fucked!")
+				continue
+
+
+
+
+
 			if(found_armor)
 				//Bio, Acid, Wounding, and Fire is excluded from here since some science related items have immunity from this.
 				if(found_armor.get_rating(BOMB) > 0)
