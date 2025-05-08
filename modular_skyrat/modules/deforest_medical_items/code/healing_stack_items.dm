@@ -73,7 +73,7 @@
 	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
 
 	var/datum/wound/woundies = find_suitable_wound(limb)
-// Ported from Nova: /\
+// Ported from Nova: ^
 
 	if(HAS_TRAIT(woundies, TRAIT_WOUND_SCANNED))
 		treatment_delay *= 0.5
