@@ -91,8 +91,7 @@ export function ItemDisplay(props: DisplayProps) {
                   <Icon name={info.icon} />
                 </Tooltip>
               </Stack.Item>
-            ))
-            }
+            ))}
           </Stack>
         )}
       </div>
