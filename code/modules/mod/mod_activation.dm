@@ -86,9 +86,9 @@
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
 		if(overslot && istype(overslot, /obj/item/clothing))
-			var/obj/item/clothing/clothing = overslot
 			// Bubber Edit Start - Don't require clothing to be flagged for overslotting
-			//if(clothing.clothing_flags & CLOTHING_MOD_OVERSLOTTING)
+			// var/obj/item/clothing/clothing = overslot
+			// if(clothing.clothing_flags & CLOTHING_MOD_OVERSLOTTING)
 			part_datum.overslotting = overslot
 			wearer.transferItemToLoc(overslot, part, force = TRUE)
 			RegisterSignal(part, COMSIG_ATOM_EXITED, PROC_REF(on_overslot_exit))
