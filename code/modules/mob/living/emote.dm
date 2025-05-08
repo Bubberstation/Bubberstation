@@ -768,7 +768,6 @@
 		emote_type = user_emote_type
 
 	message = our_message
-	message = user.say_emphasis(message) //SKYRAT EDIT ADDITION - EMOTES
 	. = ..()
 
 	///Reset the message and emote type after it's run.
