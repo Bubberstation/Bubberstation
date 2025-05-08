@@ -56,7 +56,7 @@
 
 /mob/living/basic/mining/cazador/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_RESISTHEAT, TRAIT_RADIMMUNE), INNATE_TRAIT)
+	add_traits(list(TRAIT_RESISTHEAT, TRAIT_RADIMMUNE,TRAIT_SANDSTORM_IMMUNE), INNATE_TRAIT)
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/cazador, 2, injection_flags = INJECT_CHECK_PENETRATE_THICK)
 
 /datum/reagent/toxin/cazador
