@@ -288,7 +288,7 @@
 /obj/item/clothing/shoes/jackboots/diesel_m
 	name = "male diesel boots"
 	desc = "Fancy mens' steel-toed boots."
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "diesel_m"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
@@ -296,7 +296,7 @@
 /obj/item/clothing/shoes/jackboots/diesel_f
 	name = "female diesel boots"
 	desc = "Fancy womens' knee-high platform boots with shiny steel clasps."
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "diesel_f"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
