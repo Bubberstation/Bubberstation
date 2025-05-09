@@ -729,6 +729,10 @@
 
 	return TRUE
 
+/datum/emote/living/custom/get_message_flags(intentional)
+	. = ..()
+	return .|WITH_EMPHASIS_MESSAGE
+
 /datum/emote/living/custom/proc/get_custom_emote_from_user()
 	return stripped_multiline_input(usr, "Choose an emote to display.", "Me" , null, MAX_MESSAGE_LEN) // SKYRAT EDIT CHANGE - ORIGINAL : return copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
 
@@ -764,7 +768,6 @@
 		emote_type = user_emote_type
 
 	message = our_message
-	message = user.say_emphasis(message) //SKYRAT EDIT ADDITION - EMOTES
 	. = ..()
 
 	///Reset the message and emote type after it's run.
