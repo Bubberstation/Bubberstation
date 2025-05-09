@@ -12,9 +12,3 @@
 #define COMSIG_MOB_ALWAYS_APPLY_DAMAGE "mob_always_apply_damage"
 /// From modular_zubbers/code/modules/disease/disease_transmission.dm
 #define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
-/// From /mob/proc/equip_to_slot_if_possible()
-#define COMSIG_MOB_POST_EQUIP "mob_post_equip"
-/// From /mob/living/carbon/human/verb/toggle_undies()
-#define COMSIG_HUMAN_TOGGLE_UNDERWEAR "human_toggle_undies"
-/// From /obj/item/restraints/handcuffs/proc/apply_cuffs()
-#define COMSIG_MOB_HANDCUFFED "mob_handcuffed"
