@@ -77,19 +77,19 @@
 					relayed_body.pixel_y += 3
 			if(SOUTH)
 				relayed_body.pixel_y = -24
-				relayed_body.transform = turn(transform, ROTATION_FLIP)
+				relayed_body.transform = turn(relayed_body.transform, ROTATION_FLIP)
 				if(portal_mode == GLORYHOLE)
 					relayed_body.pixel_y -= 3
 			if(EAST)
 				relayed_body.pixel_x = 24
 				if(portal_mode == WALLSTUCK)
-					relayed_body.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+					relayed_body.transform = turn(relayed_body.transform, ROTATION_COUNTERCLOCKWISE)
 				else
 					relayed_body.pixel_y = 8
 			if(WEST)
 				relayed_body.pixel_x = -24
 				if(portal_mode == WALLSTUCK)
-					relayed_body.transform = turn(transform, ROTATION_CLOCKWISE)
+					relayed_body.transform = turn(relayed_body.transform, ROTATION_CLOCKWISE)
 				else
 					relayed_body.pixel_y = 8
 		relayed_body.update_visuals()
@@ -117,13 +117,13 @@
 					current_mob.pixel_y += 12
 				if(SOUTH)
 					current_mob.pixel_y += -12
-					current_mob.transform = turn(transform, ROTATION_FLIP)
+					current_mob.transform = turn(current_mob.transform, ROTATION_FLIP)
 				if(EAST)
 					current_mob.pixel_x += 12
-					current_mob.transform = turn(transform, ROTATION_COUNTERCLOCKWISE)
+					current_mob.transform = turn(current_mob.transform, ROTATION_COUNTERCLOCKWISE)
 				if(WEST)
 					current_mob.pixel_x += -12
-					current_mob.transform = turn(transform, ROTATION_CLOCKWISE)
+					current_mob.transform = turn(current_mob.transform, ROTATION_CLOCKWISE)
 	else
 		unbuckle_all_mobs()
 	..()
@@ -166,13 +166,17 @@
 		if(SOUTH)
 			if(portal_mode == WALLSTUCK)
 				unbuckled_mob.pixel_y += 12
+				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_FLIP)
 			else
 				unbuckled_mob.pixel_y += 6
 		if(EAST)
 			unbuckled_mob.pixel_x -= 12
+			if(portal_mode == WALLSTUCK)
+				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_CLOCKWISE)
 		if(WEST)
 			unbuckled_mob.pixel_x += 12
-	unbuckled_mob.transform = initial(unbuckled_mob.transform)
+			if(portal_mode == WALLSTUCK)
+				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_COUNTERCLOCKWISE)
 	if(portal_mode == GLORYHOLE)
 		var/obj/item/organ/genital/penis/affected_penis = unbuckled_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
 		affected_penis?.visibility_preference = initial_genital_visibility
@@ -357,10 +361,15 @@
 		if(istype(limb_object))
 			var/limb_icon_list = limb_object.get_limb_icon()
 			if(limb_object == owner.get_bodypart(BODY_ZONE_CHEST))
+				var/new_limb_icon_list = list()//There may be special cases where body overlays should not pass through portals, such as moth wings, this is used to removed them
 				for(var/image/limb_icon in limb_icon_list)
+					if(limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/moth_wings.dmi') //Moth wings are attached to the upper back so shouldn't be portalled, their weird sprite size also messes with rotations
+						continue
 					var/limb_icon_layer = limb_icon.layer * -1
 					if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi') //Tails need to be portaled
 						limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+					new_limb_icon_list += limb_icon
+				limb_icon_list = new_limb_icon_list
 			add_overlay(limb_icon_list)
 	if(owner.shoes)
 		add_overlay(owner.overlays_standing[SHOES_LAYER])
