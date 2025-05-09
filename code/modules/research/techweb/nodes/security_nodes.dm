@@ -16,6 +16,8 @@
 		"sec_dart",
 		"sec_Islug",
 		"sec_rshot",
+		"c9mm_sec", //BUBBER EDIT: 9mm ammo box
+		"m9mm_sec" //BUBBER EDIT: 9mm magazine
 	)
 
 /datum/techweb_node/sec_equip
@@ -91,6 +93,7 @@
 		"c38_true_strike_mag",
 		"techshotshell",
 		"flechetteshell",
+		"m9mm_sec_rocket",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	discount_experiments = list(/datum/experiment/ordnance/explosive/highyieldbomb = TECHWEB_TIER_4_POINTS)

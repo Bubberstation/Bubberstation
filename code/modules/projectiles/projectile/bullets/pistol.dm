@@ -15,6 +15,14 @@
 	jostle_pain_mult = 6
 	rip_time = 1 SECONDS
 
+//Bubberstation addition
+/obj/projectile/bullet/c9mm/security
+	name = "9mm Security bullet"
+	damage = 20
+	embed_type = /datum/embedding/bullet/c9mm
+	weak_against_armour = TRUE
+//bubber edit end
+
 /obj/projectile/bullet/c9mm/ap
 	name = "9mm armor-piercing bullet"
 	damage = 27

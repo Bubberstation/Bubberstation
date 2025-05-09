@@ -1,7 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol
 	name = "\improper Makarov pistol"
-//	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Original
-	desc = "A small, easily concealable 9x25mm Mk.12 handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Calibre rename
+	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm
