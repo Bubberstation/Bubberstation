@@ -22,6 +22,7 @@ The console is located at computer/gulag_teleporter.dm
 	var/breakout_time = 600
 	var/jumpsuit_type = /obj/item/clothing/under/rank/prisoner
 	var/jumpskirt_type = /obj/item/clothing/under/rank/prisoner/skirt
+	var/bunnysuit_type = /obj/item/clothing/under/rank/prisoner/bunnysuit //BUBBER EDIT
 	var/shoes_type = /obj/item/clothing/shoes/sneakers/orange
 	var/emergency_plasglove_type = /obj/item/clothing/gloves/color/plasmaman
 	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
@@ -160,8 +161,16 @@ The console is located at computer/gulag_teleporter.dm
 		return
 	strip_prisoner(occupant)
 	var/mob/living/carbon/human/prisoner = occupant
-	if(!isplasmaman(prisoner) && jumpsuit_type)
-		var/suit_or_skirt = prisoner.jumpsuit_style == PREF_SKIRT ? jumpskirt_type : jumpsuit_type //Check player prefs for jumpsuit or jumpskirt toggle, then give appropriate prison outfit.
+	if(!isplasmaman(prisoner) && jumpsuit_type) //BUBBER EDIT START - Bunnysuits
+		var/suit_or_skirt
+		switch(prisoner.jumpsuit_style)
+			if(PREF_SKIRT)
+				suit_or_skirt = jumpskirt_type
+			if(PREF_BUNNY)
+				suit_or_skirt = bunnysuit_type
+			else
+				suit_or_skirt = jumpsuit_type//BUBBER EDIT END - Bunnysuits
+
 		prisoner.equip_to_appropriate_slot(new suit_or_skirt, qdel_on_fail = TRUE)
 	if(isplasmaman(prisoner) && !prisoner.gloves && emergency_plasglove_type)
 		prisoner.equip_to_appropriate_slot(new emergency_plasglove_type, qdel_on_fail = TRUE)

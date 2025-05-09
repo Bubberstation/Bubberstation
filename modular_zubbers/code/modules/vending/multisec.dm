@@ -63,7 +63,7 @@
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/head/playbunnyears/security = 6,
-					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
+					/obj/item/clothing/under/rank/security/officer/bunnysuit = 6,
 					/obj/item/clothing/suit/armor/security_tailcoat = 6,
 					/obj/item/clothing/neck/tie/bunnytie/security = 6,
 					/obj/item/clothing/head/playbunnyears/security/assistant = 6,
@@ -117,7 +117,7 @@
 				/obj/item/clothing/suit/toggle/jacket/corrections_officer = 2,
 				/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
 				/obj/item/clothing/head/playbunnyears/prisoner = 6,
-				/obj/item/clothing/under/rank/security/prisoner_bunnysuit = 6,
+				/obj/item/clothing/under/rank/prisoner/bunnysuit = 6,
 				/obj/item/clothing/neck/tie/bunnytie/prisoner = 6,
 			),
 		),
@@ -149,6 +149,10 @@
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
 					/obj/item/clothing/glasses/hud/ar/projector/security = 3,
 					/obj/item/clothing/mask/gas/half_mask = 3,
+					/obj/item/clothing/under/rank/prisoner/classic = 6, //To be given to Prisoners.
+					/obj/item/clothing/head/playbunnyears/prisoner = 6,
+					/obj/item/clothing/under/rank/prisoner/bunnysuit = 6,
+					/obj/item/clothing/neck/tie/bunnytie/prisoner = 6,
 					/obj/item/clothing/head/hats/caphat/parade/fedcap/sec = 3,
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
 					/obj/item/clothing/mask/gas/soviet = 3,
