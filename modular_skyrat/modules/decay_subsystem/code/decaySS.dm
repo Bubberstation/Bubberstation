@@ -18,10 +18,13 @@ These procs are incredibly expensive and should only really be run once. That's 
 SUBSYSTEM_DEF(decay)
 	name = "Decay System"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_DECAY
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
 
 	/// This is used to determine what maps we should not spawn on.
-	var/list/station_filter = list("Birdshot Station", "Runtime Station", "MultiZ Debug", "Gateway Test")
+	var/list/station_filter = list("Catwalk Station", "Runtime Station", "MultiZ Debug", "Gateway Test")
 	var/list/possible_turfs = list()
 	var/list/possible_areas = list()
 	var/severity_modifier = 1

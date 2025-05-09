@@ -59,12 +59,6 @@
 	///Tagging vars
 	///A bitflag var for tagging reagents for the reagent loopup functon
 	var/reaction_tags = NONE
-	//SKYRAT EDIT ADDITION
-	///If defined, it'll emitt that pollutant on reaction
-	var/pollutant_type
-	///How much amount per volume of the pollutant shall we emitt if `pollutant_type` is defined
-	var/pollutant_amount = 1
-	//SKYRAT EDIT END
 
 ///REACTION PROCS
 
