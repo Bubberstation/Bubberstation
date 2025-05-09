@@ -1,5 +1,3 @@
-
-
 /*
  * Simple helper to generate a string of
  * garbled symbols up to [length] characters.
