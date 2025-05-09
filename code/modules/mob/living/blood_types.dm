@@ -137,7 +137,9 @@
 
 /datum/blood_type/lizard
 	name = BLOOD_TYPE_LIZARD
-	color = BLOOD_COLOR_LIZARD
+//BUBBER EDIT - Moved to optional quirk
+	//color = BLOOD_COLOR_LIZARD
+//edit end
 	compatible_types = list(
 		/datum/blood_type/lizard,
 	)
