@@ -27,8 +27,8 @@
 		switch(selected_color)
 			if("Red/Human")
 				override.color = BLOOD_COLOR_RED
-			//if("Lizard")
-			//	override.color = BLOOD_COLOR_LIZARD
+			if("Lizard")
+				override.color = BLOOD_COLOR_LIZARD
 			if("Green/alt-Lizard")
 				override.color = BLOOD_COLOR_GREEN
 			if("Lime/Xeno")

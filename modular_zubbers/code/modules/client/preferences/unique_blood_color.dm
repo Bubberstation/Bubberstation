@@ -58,7 +58,7 @@
 /datum/preference/choiced/select_blood_color/init_possible_values()
 	return list(
 		"Red/Human",
-		//"D.Green/Lizard", uncomment when green blood is downstreamed
+		"D.Green/Lizard", uncomment when green blood is downstreamed
 		"Green/alt-Lizard",
 		"Lime/Xeno",
 		"Violet/Avali",
