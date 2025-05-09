@@ -28,10 +28,9 @@
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(!QDELETED(hit_mob) && iscarbon(hit_mob))
-		var/mob/living/carbon/hit_carbon = hit_mob
-		hit_carbon.knockdown(2 SECONDS)
-	hit_mob.adjustBruteLoss(40)
+	if(!QDELETED(hit_mob))
+		hit_mob.Knockdown(2 SECONDS)
+		hit_mob.adjustBruteLoss(40)
 	qdel()
 
 /obj/item/ammo_box/magazine/m9mm/fire
