@@ -628,6 +628,13 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"cn" = (
+/obj/effect/turf_decal/tile/purple/anticorner{
+	dir = 1
+	},
+/obj/machinery/camera/directional/north,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/port_tarkon/developement)
 "cq" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/hydroponics/constructable,
@@ -805,6 +812,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"cV" = (
+/obj/machinery/camera/directional/west,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/port_tarkon/engineering)
 "cW" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/iron/fifty,
@@ -1333,6 +1344,7 @@
 	id = "tarkonconstruction";
 	name = "Construction Shutters"
 	},
+/obj/machinery/camera/directional/west,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "eG" = (
@@ -1486,6 +1498,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/garden)
+"fc" = (
+/obj/effect/turf_decal/tile/yellow/half{
+	dir = 8
+	},
+/obj/machinery/camera/directional/west,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/atmos)
 "fe" = (
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/lounge)
@@ -3255,7 +3274,7 @@
 /obj/item/kitchen/rollingpin/illegal,
 /obj/item/grenade/clusterbuster/cleaner,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav)
+/area/ruin/space/has_grav/port_tarkon/vault)
 "lw" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 5
@@ -6469,7 +6488,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/rnd/production/circuit_imprinter/offstation,
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "wX" = (
@@ -8199,7 +8218,7 @@
 "CP" = (
 /obj/machinery/door/puzzle/keycard/personal_service,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav)
+/area/ruin/space/has_grav/port_tarkon/vault)
 "CQ" = (
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 1
@@ -11245,7 +11264,7 @@
 /area/ruin/space/has_grav/port_tarkon/power1)
 "Oe" = (
 /obj/effect/turf_decal/tile/yellow/anticorner,
-/obj/machinery/rnd/production/circuit_imprinter/offstation,
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "Og" = (
@@ -13479,6 +13498,7 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/camera/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "VH" = (
@@ -17885,7 +17905,7 @@ ab
 ab
 ab
 bM
-EB
+cn
 Ie
 gL
 bM
@@ -18983,7 +19003,7 @@ ia
 ia
 ia
 bM
-Pp
+xw
 Vw
 wG
 bM
@@ -22796,7 +22816,7 @@ UT
 sY
 FD
 FD
-FD
+fc
 ve
 JL
 ZH
@@ -22805,7 +22825,7 @@ OP
 OP
 gQ
 OP
-OP
+cV
 XS
 OP
 OP
