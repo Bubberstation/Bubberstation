@@ -163,7 +163,7 @@
 		var/obj/lewd_portal_relay/portal_relay = target
 		user.show_message(subtler_message, alt_msg = subtler_message)
 		if(portal_relay.owner?.client)
-			subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
+			subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 			portal_relay.owner.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(portal_relay.owner)
 	else
@@ -178,7 +178,7 @@
 			var/obj/lewd_portal_relay/output_portal = portal_reference?.relayed_body
 			ghostless = get_hearers_in_view(target, output_portal) //Broadcast message through portal
 			user.show_message(subtler_message, alt_msg = subtler_message)
-			subtler_message = span_subtler("<b>[output_portal]</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
+			subtler_message = span_subtler("<b>[output_portal]</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 		else
 			ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
 
@@ -197,7 +197,7 @@
 
 		for(var/obj/lewd_portal_relay/portal in ghostless) //Message portal owners caught in range
 			if(portal?.owner?.client && portal?.owner != user)
-				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.say_emphasis(subtler_emote)]</i>")
+				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 				portal.owner.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(portal.owner)
 
