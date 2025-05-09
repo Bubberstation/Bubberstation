@@ -164,7 +164,7 @@
 		if(NORTH)
 			unbuckled_mob.pixel_y -= offset_ammount
 		if(SOUTH)
-			if(portal_mode == GLORYHOLE)
+			if(portal_mode == WALLSTUCK)
 				unbuckled_mob.pixel_y += 12
 			else
 				unbuckled_mob.pixel_y += 6
