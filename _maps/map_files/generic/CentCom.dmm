@@ -1371,13 +1371,6 @@
 /obj/item/storage/dice,
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/admin)
-"go" = (
-/obj/machinery/photocopier/prebuilt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/iron,
-/area/centcom/central_command_areas/supply)
 "gs" = (
 /obj/item/paper/pamphlet/centcom/visitor_info,
 /obj/item/paper/pamphlet/centcom/visitor_info,
@@ -1579,6 +1572,33 @@
 /obj/machinery/griddle,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/observation)
+"hw" = (
+/obj/machinery/photocopier/prebuilt,
+/obj/machinery/button/door/indestructible{
+	id = "CCsec3";
+	name = "CC Shutter 3 Control";
+	pixel_y = 24
+	},
+/obj/machinery/button/door/indestructible{
+	id = "CCcustoms2";
+	name = "CC Shutter 2 Control";
+	pixel_x = 9;
+	pixel_y = 32
+	},
+/obj/machinery/button/door/indestructible{
+	id = "CCsec1";
+	name = "CC Shutter 1 Control";
+	pixel_y = 40
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/button/door/indestructible{
+	id = "CCsec4";
+	name = "CC Shutter 4 Control";
+	pixel_x = -9;
+	pixel_y = 32
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/central_command_areas/control)
 "hz" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -6854,6 +6874,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/administration)
+"EU" = (
+/obj/machinery/photocopier/prebuilt,
+/turf/open/floor/iron/grimy,
+/area/centcom/central_command_areas/briefing)
 "EV" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave{
@@ -7039,6 +7063,13 @@
 /obj/effect/light_emitter/thunderdome,
 /turf/closed/indestructible/fakeglass,
 /area/centcom/tdome/observation)
+"Gd" = (
+/obj/machinery/photocopier/prebuilt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/supply)
 "Gf" = (
 /obj/machinery/firealarm/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -7333,33 +7364,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/centcom/central_command_areas/evacuation/ship)
-"HS" = (
-/obj/machinery/photocopier/prebuilt,
-/obj/machinery/button/door/indestructible{
-	id = "CCsec3";
-	name = "CC Shutter 3 Control";
-	pixel_y = 24
-	},
-/obj/machinery/button/door/indestructible{
-	id = "CCcustoms2";
-	name = "CC Shutter 2 Control";
-	pixel_x = 9;
-	pixel_y = 32
-	},
-/obj/machinery/button/door/indestructible{
-	id = "CCsec1";
-	name = "CC Shutter 1 Control";
-	pixel_y = 40
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/button/door/indestructible{
-	id = "CCsec4";
-	name = "CC Shutter 4 Control";
-	pixel_x = -9;
-	pixel_y = 32
-	},
-/turf/open/floor/iron/dark,
-/area/centcom/central_command_areas/control)
 "HV" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/secure_closet/quartermaster,
@@ -7864,10 +7868,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/central_command_areas/evacuation/ship)
-"Lr" = (
-/obj/machinery/photocopier/prebuilt,
-/turf/open/floor/iron/grimy,
-/area/centcom/central_command_areas/briefing)
 "Lt" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/centcom/central_command_areas/evacuation/ship)
@@ -47925,7 +47925,7 @@ wz
 qR
 Rd
 eF
-Lr
+EU
 TE
 az
 eF
@@ -52533,7 +52533,7 @@ kj
 kj
 nm
 iF
-go
+Gd
 iR
 oJ
 lo
@@ -53829,7 +53829,7 @@ Za
 tK
 gL
 io
-HS
+hw
 uc
 kl
 xV
