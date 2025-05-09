@@ -348,13 +348,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	formatted_item["icon"] = ui_icon
 	formatted_item["icon_state"] = ui_icon_state
 
-	// SKYRAT EDIT BEGIN - Extra loadout stuff
-	formatted_item["ckey_whitelist"] = ckeywhitelist
-	formatted_item["donator_only"] = donator_only
-	formatted_item["restricted_roles"] = restricted_roles
-	formatted_item["blacklisted_roles"] = blacklisted_roles
-	// SKYRAT EDIT END
-
 	return formatted_item
 
 /**
@@ -374,16 +367,21 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	// SKYRAT EDIT ADDITION
 	if(donator_only)
-		displayed_text += "Donator only"
+		displayed_text[FA_ICON_MONEY_BILL] = "Donator only"
 
 	if(ckeywhitelist)
-		displayed_text += "Unique"
+		displayed_text[FA_ICON_LOCK] = "Player Whitelist: [ckeywhitelist.Join(", ")]"
 
 	if(restricted_roles || blacklisted_roles)
-		displayed_text += "Role restricted"
+		var/list/tooltip_text = list()
+		if(restricted_roles)
+			tooltip_text += "Job Whitelist: [restricted_roles.Join(", ")]"
+		if(blacklisted_roles)
+			tooltip_text += "Job Blacklist: [blacklisted_roles.Join(", ")]"
+		displayed_text[FA_ICON_TOOLBOX] = tooltip_text.Join("\n")
 
 	if(restricted_species)
-		displayed_text += "Species restricted"
+		displayed_text[FA_ICON_DNA] = "Species Whitelist: [restricted_species.Join(", ")]"
 	// SKYRAT EDIT ADDITION
 	return displayed_text
 
