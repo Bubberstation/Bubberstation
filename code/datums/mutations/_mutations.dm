@@ -122,6 +122,10 @@
 	if(acquirer.has_borer())
 		to_chat(acquirer, span_warning("Something inside holds dearly to your humanity!"))
 	// SKYRAT EDIT END
+	// BUBBER EDIT ADDITION
+	if(SEND_SIGNAL(src, COMSIG_TRY_GAIN_MUTATION, acquirer))
+		return TRUE
+	// BUBBER EDIT END
 	if(species_allowed && !species_allowed.Find(acquirer.dna.species.id))
 		return TRUE
 	if(health_req && acquirer.health < health_req)
