@@ -421,9 +421,9 @@
 		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/screwdriver/cyborg/power, // Bubber ADDITION - Combines Screwdriver and Wrench into one
 		/obj/item/crowbar/cyborg/power, // Bubber ADDITION - Combines Crowbar and Wirecutters into one
-		/obj/item/multitool/cyborg, //Skyrat ADDITION - Adds multitool for easier access
+		/obj/item/multitool/cyborg, //Bubber ADDITION - Adds multitool for easier access
 		/obj/item/borg/cyborg_omnitool/engineering,
-		///obj/item/borg/cyborg_omnitool/engineering, //Skyrat REMOVAL
+		///obj/item/borg/cyborg_omnitool/engineering, //Bubber REMOVAL
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/holosign_creator/atmos, // Bubber Edit - Adds Holofans to engineering borgos

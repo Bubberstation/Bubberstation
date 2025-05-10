@@ -31,11 +31,11 @@
 			var/mob/living/carbon/C = user
 			C.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 0)
 		O.forceMove(get_turf(user))
-	//Skyrat Edit Start: Cortical Borer
+	//Bubber Edit Start: Cortical Borer
 	var/mob/living/basic/cortical_borer/cb_inside = user.has_borer()
 	if(cb_inside)
 		cb_inside.leave_host()
-	//Skyrat Edit Stop: Cortical Borer
+	//Bubber Edit Stop: Cortical Borer
 	user.reagents.add_reagent(/datum/reagent/medicine/mutadone, 10)
 	user.reagents.add_reagent(/datum/reagent/medicine/pen_acid, 20)
 	user.reagents.add_reagent(/datum/reagent/medicine/antihol, 10)

@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/beach_condo/ghost_cafe_rooms_beach_condo
 	var/datum/map_template/ghost_cafe_rooms/stationside/ghost_cafe_rooms_stationside
 	var/datum/map_template/ghost_cafe_rooms/library/ghost_cafe_rooms_library
-	//Skyrat EDIT END
+	//BUBBER EDIT END
 
 	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
 	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave

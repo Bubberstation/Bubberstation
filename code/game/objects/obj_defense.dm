@@ -115,7 +115,7 @@
 	. = ..()
 	if((resistance_flags & UNACIDABLE) || (acid_volume <= 0) || (acidpwr <= 0))
 		return FALSE
-	if(QDELETED(src)) //skyrat edit: fix createanddestroy
+	if(QDELETED(src)) //bubber edit: fix createanddestroy
 		return FALSE
 	AddComponent(/datum/component/acid, acidpwr, acid_volume, custom_acid_overlay || GLOB.acid_overlay)
 	return TRUE

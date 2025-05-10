@@ -251,7 +251,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			make_announcement(usr)
 		if ("messageAssociates")
-			if (!authenticated_as_ai_or_captain(usr)) //Skyrat edit | Allows AI and Captain to send messages
+			if (!authenticated_as_ai_or_captain(usr)) //Bubber edit | Allows AI and Captain to send messages
 				return
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
@@ -638,7 +638,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 					data["canMakeAnnouncement"] = TRUE
 
 				if (authenticated_as_ai_or_captain(user))
-					data["canMessageAssociates"] = TRUE //Skyrat Edit | Allows AI to report to CC in the event of there being no command alive/to begin with
+					data["canMessageAssociates"] = TRUE //Bubber Edit | Allows AI to report to CC in the event of there being no command alive/to begin with
 
 				if (SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL)
 					data["shuttleCalled"] = TRUE

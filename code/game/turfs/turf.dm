@@ -615,7 +615,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	. = ..()
 	if((acidpwr <= 0) || (acid_volume <= 0))
 		return FALSE
-	if(QDELETED(src)) //skyrat edit: fix createanddestroy // BUBBER TODO: Look into why this happens
+	if(QDELETED(src)) //bubber edit: fix createanddestroy // BUBBER TODO: Look into why this happens
 		return FALSE
 	AddComponent(/datum/component/acid, acidpwr, acid_volume, GLOB.acid_overlay)
 

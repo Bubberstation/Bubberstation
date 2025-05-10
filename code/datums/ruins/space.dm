@@ -290,7 +290,7 @@
 id = "whiteshipruin_box"
 suffix = "whiteshipruin_box.dmm"*/
 
-/datum/map_template/ruin/space/whiteshipruin_box_skyrat//Skyrat Edit
+/datum/map_template/ruin/space/whiteshipruin_box_skyrat//Bubber Edit
 	id = "whiteshipruin_box_skyrat"
 	suffix = "whiteshipruin_box_skyrat.dmm"
 	// BUBBER EDIT CHANGE END

@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 			antagonist_hud.show_to(player)
 
 	CHECK_TICK
-	///Skyrat EDIT END
+	///BUBBER EDIT END
 	*/
 
 	//Set news report and mode result

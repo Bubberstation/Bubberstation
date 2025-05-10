@@ -178,7 +178,7 @@ Version 5.18, 23 August 2021, by GoldenAlpharex
 Added `discord_report` column to the `ban table`
 
 ```sql
-`discord_reported` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0', /* SKYRAT EDIT - Labelling bans for ease of reporting them over Discord. */
+`discord_reported` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0', /* BUBBER EDIT - Labelling bans for ease of reporting them over Discord. */
 ```
 
 -----------------------------------------------------
