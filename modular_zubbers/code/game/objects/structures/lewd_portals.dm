@@ -140,6 +140,9 @@
 	SIGNAL_HANDLER
 	current_mob.cut_overlays()
 	current_mob.update_body_parts_head_only()
+	var/obj/item/clothing/glasses = current_mob.glasses
+	if(glasses)
+		current_mob.update_worn_glasses()
 	current_mob.remove_overlay(BODY_ADJ_LAYER)
 	current_mob.remove_overlay(BODY_LAYER)
 	current_mob.remove_overlay(HANDS_LAYER)
