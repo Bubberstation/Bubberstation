@@ -159,6 +159,7 @@
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	qdel(relayed_body)
+	unbuckled_mob.cut_overlays()
 	unbuckled_mob.regenerate_icons()
 	var/offset_ammount = 24
 	if(portal_mode == WALLSTUCK)
