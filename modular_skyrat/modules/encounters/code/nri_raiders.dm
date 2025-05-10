@@ -174,8 +174,7 @@ GLOBAL_VAR(first_officer)
 	access = list(ACCESS_SYNDICATE, ACCESS_MAINT_TUNNELS)
 	threat_modifier = 2 // Not as treatening as syndicate, but still potentially harmful to the station
 
-/obj/item/gun/energy/e_gun/advtaser/normal
-	w_class = WEIGHT_CLASS_NORMAL
+/obj/item/gun/energy/e_gun/advtaser
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider
 	name = "Pan-Slavic Raider sleeper"
