@@ -20,11 +20,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_SYNDICATE = RADIO_CHANNEL_SYNDICATE,
 	RADIO_KEY_UPLINK = RADIO_CHANNEL_UPLINK,
 	RADIO_KEY_CENTCOM = RADIO_CHANNEL_CENTCOM,
-	RADIO_KEY_FACTION = RADIO_CHANNEL_FACTION, //SKYRAT EDIT ADDITION - FACTION
-	RADIO_KEY_CYBERSUN = RADIO_CHANNEL_CYBERSUN, //SKYRAT EDIT ADDITION - MAPPING
-	RADIO_KEY_INTERDYNE = RADIO_CHANNEL_INTERDYNE, //SKYRAT EDIT ADDITION - MAPPING
-	RADIO_KEY_GUILD = RADIO_CHANNEL_GUILD, //SKYRAT EDIT ADDITION - MAPPING
-	RADIO_KEY_TARKON = RADIO_CHANNEL_TARKON, //SKYRAT EDIT ADDITION - MAPPING
+	RADIO_KEY_FACTION = RADIO_CHANNEL_FACTION, //BUBBER EDIT ADDITION - FACTION
+	RADIO_KEY_CYBERSUN = RADIO_CHANNEL_CYBERSUN, //BUBBER EDIT ADDITION - MAPPING
+	RADIO_KEY_INTERDYNE = RADIO_CHANNEL_INTERDYNE, //BUBBER EDIT ADDITION - MAPPING
+	RADIO_KEY_GUILD = RADIO_CHANNEL_GUILD, //BUBBER EDIT ADDITION - MAPPING
+	RADIO_KEY_TARKON = RADIO_CHANNEL_TARKON, //BUBBER EDIT ADDITION - MAPPING
 
 	// Admin
 	MODE_KEY_ADMIN = MODE_ADMIN,
@@ -235,11 +235,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	//Get which verb is prefixed to the message before radio but after most modifications
 	message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
 
-	// SKYRAT EDIT ADDITION START: autopunctuation
+	// BUBBER EDIT ADDITION START: autopunctuation
 	//ensure EOL punctuation exists and that word-bounded 'i' are capitalized before we do anything else
 	if(client?.autopunctuation) //BUBBER EDIT ADDITION: AUTOPUNCTUATION PREFERENCE CHECK
 		message = autopunct_bare(message)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
 	if(saymode && !saymode.handle_message(src, message, language))
 		return
@@ -531,11 +531,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) && !ispAI(src) && !ismecha(loc)) // If can't use items, you can't press the button
 		to_chat(src, span_warning("You can't use the radio right now as you can't reach the button!"))
 		return ITALICS | REDUCE_RANGE
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	var/obj/item/implant/radio/imp = locate() in src
 	if(imp?.radio.is_on())
 		if(message_mods[MODE_HEADSET])

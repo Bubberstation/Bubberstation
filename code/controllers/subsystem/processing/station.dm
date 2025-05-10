@@ -174,7 +174,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 		var/datum/station_trait/trait_to_remove = i
 		selectable_traits_by_types[initial(trait_to_remove.trait_type)] -= trait_to_remove
 
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /// Update station trait lobby buttons for clients who joined before we initialised this subsystem
 /datum/controller/subsystem/processing/station/proc/display_lobby_traits()
 	for (var/mob/dead/new_player/player as anything in GLOB.new_player_list)

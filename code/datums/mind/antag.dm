@@ -25,7 +25,7 @@
 		antag_team.add_member(src)
 	INVOKE_ASYNC(A, TYPE_PROC_REF(/datum/antagonist, on_gain))
 	log_game("[key_name(src)] has gained antag datum [A.name]([A.type]).")
-	handle_exploitables() //SKYRAT EDIT ADDITION - EXPLOITABLES MENU
+	handle_exploitables() //BUBBER EDIT ADDITION - EXPLOITABLES MENU
 	return A
 
 /datum/mind/proc/remove_antag_datum(datum_type)

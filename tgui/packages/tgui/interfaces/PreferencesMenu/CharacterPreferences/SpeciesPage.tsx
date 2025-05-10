@@ -335,13 +335,13 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                         )
                       }
                     >
-                      {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
+                      {/* BUBBER EDIT CHANGE START - Adds maxHeight, scrollable*/}
                       <Section
                         title="Description"
                         maxHeight="14vh"
                         overflowY="auto"
                       >
-                        {/* SKYRAT EDIT CHANGE END */}
+                        {/* BUBBER EDIT CHANGE END */}
                         {currentSpecies.desc.map((text, index) => (
                           <Box key={index} maxWidth="100%">
                             {text}
@@ -372,10 +372,10 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
 
               <Box mt={1}>
                 <Section title="Lore">
-                  <BlockQuote /* SKYRAT EDIT START - scrollable lore */
+                  <BlockQuote /* BUBBER EDIT START - scrollable lore */
                     overflowY="auto"
                     maxHeight="45vh"
-                    mr={-1} /* SKYRAT EDIT END */
+                    mr={-1} /* BUBBER EDIT END */
                   >
                     {currentSpecies.desc}
                   </BlockQuote>

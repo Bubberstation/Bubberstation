@@ -148,12 +148,12 @@
 /obj/structure/chair/post_buckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
 		visible_message(span_warning("[src] buckles under the weight of [M] causing it to break!"))
 		playsound(src, 'modular_skyrat/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	if (has_armrest)
 		update_armrest()
 

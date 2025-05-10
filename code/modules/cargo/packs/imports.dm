@@ -207,7 +207,7 @@
 	)
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
-// SKYRAT EDIT REMOVAL BEGIN - REPLACED BY LORE BEFITTING CRATE AT: modular_skyrat/modules/cargo/code/packs.dm
+// BUBBER EDIT REMOVAL BEGIN - REPLACED BY LORE BEFITTING CRATE AT: modular_skyrat/modules/cargo/code/packs.dm
 /*
 /datum/supply_pack/imports/russian
 	name = "Russian Surplus Military Gear Crate"
@@ -240,7 +240,7 @@
 		var/item = pick(contains)
 		new item(our_crate)
 */
-// SKYRAT EDIT REMOVAL END
+// BUBBER EDIT REMOVAL END
 
 /datum/supply_pack/imports/moistnuggets
 	name = "Refurbished Sakhno Precision Rifle Crate"

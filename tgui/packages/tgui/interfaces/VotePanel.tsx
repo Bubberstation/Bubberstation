@@ -279,7 +279,7 @@ const ChoicesPanel = (props) => {
                       />
                     )}
                   {currentVote.displayStatistics ||
-                  user.isLowerAdmin /* SKYRAT EDIT*/
+                  user.isLowerAdmin /* BUBBER EDIT*/
                     ? choice.votes + ' Votes'
                     : null}
                 </LabeledList.Item>
@@ -321,7 +321,7 @@ const ChoicesPanel = (props) => {
                   {
                     user.isLowerAdmin
                       ? `${choice.votes} Votes`
-                      : '' /* SKYRAT EDIT*/
+                      : '' /* BUBBER EDIT*/
                   }
                 </LabeledList.Item>
                 <LabeledList.Divider />

@@ -46,9 +46,9 @@
 			. += span_warning("[p_They()] do[p_es()]n't seem to be responding.")
 		if(DEAD)
 			. += span_deadsay("[p_They()] look[p_s()] like its system is corrupted and requires a reset.")
-	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+	//BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION
 	. += get_silicon_flavortext()
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	. += "</span>"
 
 	. += ..()

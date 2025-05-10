@@ -103,18 +103,18 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/admin_help/AH = I
 		if(AH.initiator)
 			var/obj/effect/statclick/updated = AH.statclick.update()
-			L[++L.len] = list("[AH.handler ? "H-[AH.handler]" : ""]#[AH.id]. [AH.initiator_key_name]:", "[updated.name]", REF(AH)) //SKYRAT EDIT CHANGE - ADMIN
+			L[++L.len] = list("[AH.handler ? "H-[AH.handler]" : ""]#[AH.id]. [AH.initiator_key_name]:", "[updated.name]", REF(AH)) //BUBBER EDIT CHANGE - ADMIN
 		else
 			++num_disconnected
 	if(num_disconnected)
 		L[++L.len] = list("Disconnected:", "[astatclick.update("[num_disconnected]")]", null, REF(astatclick))
 	L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[closed_tickets.len]")]", null, REF(cstatclick))
 	L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[resolved_tickets.len]")]", null, REF(rstatclick))
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(LAZYLEN(SSopposing_force.submitted_applications))
 		for(var/datum/opposing_force/opposing_force as anything in SSopposing_force.submitted_applications)
 			L[++L.len] = list("[opposing_force.handling_admin ? "H-[opposing_force.handling_admin]. " : ""]OPFOR:", "[opposing_force.stat_button.update(" [opposing_force.ckey] ")]", null, REF(opposing_force.stat_button))
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	return L
 
 //Reassociate still open ticket if one exists
@@ -214,24 +214,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
  * * msg_raw - The first message of this admin_help: used for the initial title of the ticket
  * * is_bwoink - Boolean operator, TRUE if this ticket was started by an admin PM
  */
-/datum/admin_help/New(msg_raw, client/C, is_bwoink, client/admin_C, urgent = FALSE) //SKYRAT EDIT CHANGE
+/datum/admin_help/New(msg_raw, client/C, is_bwoink, client/admin_C, urgent = FALSE) //BUBBER EDIT CHANGE
 	//clean the input msg
 	var/msg = sanitize(copytext_char(msg_raw, 1, MAX_MESSAGE_LEN))
 	if(!msg || !C || !C.mob)
 		qdel(src)
 		return
 
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	if(admin_C && is_bwoink)
 		handler = "[admin_C.ckey]"
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 	id = ++ticket_counter
 	opened_at = world.time
 
 	name = copytext_char(msg, 1, 100)
 
-	full_text = msg //SKYRAT EDIT ADDITION - Adminhelps into mentorhelps converting.
+	full_text = msg //BUBBER EDIT ADDITION - Adminhelps into mentorhelps converting.
 
 	initiator = C
 	initiator_ckey = initiator.ckey
@@ -248,7 +248,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	ticket_interactions = list()
 	player_interactions = list()
 
-	addtimer(CALLBACK(src, PROC_REF(add_to_ping_ss), 2 MINUTES)) //SKYRAT EDIT ADDITION - Ticket Ping | this is not responsible for the notification itself, but only for adding the ticket to the list of those to notify.
+	addtimer(CALLBACK(src, PROC_REF(add_to_ping_ss), 2 MINUTES)) //BUBBER EDIT ADDITION - Ticket Ping | this is not responsible for the notification itself, but only for adding the ticket to the list of those to notify.
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] PM'd [LinkedReplyName()]</font>")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
@@ -507,12 +507,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
-	//SKYRAT EDIT ADDITION BEGIN - ADMIN
+	//BUBBER EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
 		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
 		if(!response || response == "No")
 			return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
@@ -529,12 +529,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
-	//SKYRAT EDIT ADDITION BEGIN - ADMIN
+	//BUBBER EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
 		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
 		if(!response || response == "No")
 			return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	RemoveActive()
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
@@ -554,12 +554,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
-	//SKYRAT EDIT ADDITION BEGIN - ADMIN
+	//BUBBER EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
 		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
 		if(!response || response == "No")
 			return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	if(initiator)
 		initiator.giveadminhelpverb()
 		send2adminchat("[key_name]", "Rejected Adminhelp: [id]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
@@ -581,12 +581,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
-	//SKYRAT EDIT ADDITION BEGIN - ADMIN
+	//BUBBER EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
 		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
 		if(!response || response == "No")
 			return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
 	msg += "<font color='red'>Your issue has been determined by an administrator to be an in character issue and does NOT require administrator intervention at this time. For further resolution you should pursue options that are in character.</font>"
 
@@ -687,10 +687,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if("reject")
 			Reject()
 		if("reply")
-			// SKYRAT EDIT START - ADMIN HANDLE
+			// BUBBER EDIT START - ADMIN HANDLE
 			if(handle_issue())
 				usr?.client.cmd_ahelp_reply(initiator)
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 		if("icissue")
 			ICIssue()
 		if("close")
@@ -699,7 +699,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			Resolve()
 		if("reopen")
 			Reopen()
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if("handle_issue")
 			handle_issue()
 		if("pingmute")
@@ -710,7 +710,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			log_admin_private(msg)
 		if("convert")
 			convert_to_mentorhelp()
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 
 /datum/admin_help/proc/player_ticket_panel()
 	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Player Ticket</title></head>")
@@ -849,7 +849,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 		user_client.current_ticket.MessageNoRecipient(message, urgent)
 		return
 
-	new /datum/admin_help(message, user_client, FALSE, null, urgent) // SKYRAT EDIT - Handling tickets - ORIGINAL: new /datum/admin_help(message, user_client, FALSE, urgent)
+	new /datum/admin_help(message, user_client, FALSE, null, urgent) // BUBBER EDIT - Handling tickets - ORIGINAL: new /datum/admin_help(message, user_client, FALSE, urgent)
 
 /client/verb/no_tgui_adminhelp(message as message)
 	set name = "NoTguiAdminhelp"

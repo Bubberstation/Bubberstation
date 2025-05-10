@@ -11,7 +11,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers/inhand_right
 	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
 	flags_1 = IS_PLAYER_COLORABLE_1
-	greyscale_config_worn_digi = /datum/greyscale_config/sneakers/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/sneakers/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 	interaction_flags_mouse_drop = NEED_HANDS
 
 /obj/item/clothing/shoes/sneakers/get_general_color(icon/base_icon)
@@ -100,7 +100,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_orange/inhand_right
 	flags_1 = NONE
 	var/obj/item/restraints/handcuffs/attached_cuffs
-	greyscale_config_worn_digi = /datum/greyscale_config/sneakers_orange/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/sneakers_orange/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 
 /obj/item/clothing/shoes/sneakers/orange/Initialize(mapload)
 	. = ..()

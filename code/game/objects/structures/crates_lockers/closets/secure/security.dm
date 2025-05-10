@@ -18,7 +18,7 @@
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/storage/photo_album/captain(src)
-	new /obj/item/card/id/departmental_budget(src) //SKYRAT EDIT ADDITION
+	new /obj/item/card/id/departmental_budget(src) //BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
@@ -46,7 +46,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
-	new /obj/item/card/id/departmental_budget/srv(src) //SKYRAT EDIT ADDITION
+	new /obj/item/card/id/departmental_budget/srv(src) //BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hop/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
@@ -72,7 +72,7 @@
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
-	new /obj/item/card/id/departmental_budget/sec(src) //SKYRAT EDIT ADDITION
+	new /obj/item/card/id/departmental_budget/sec(src) //BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hos/populate_contents_immediate()
 	. = ..()
@@ -118,7 +118,7 @@
 	new /obj/item/radio/headset/headset_sec/alt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/flashlight/seclite(src)
-	new /obj/item/clothing/gloves/tackler/security(src) // SKYRAT EDIT CHANGE - Gives Them The Blue Ones - ORIGINAL: new /obj/item/clothing/gloves/tackler(src)
+	new /obj/item/clothing/gloves/tackler/security(src) // BUBBER EDIT CHANGE - Gives Them The Blue Ones - ORIGINAL: new /obj/item/clothing/gloves/tackler(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -126,7 +126,7 @@
 	..()
 	new /obj/item/storage/belt/security/full(src)
 
-// SKYRAT EDIT CHANGE -- GOOFSEC DEP GUARDS
+// BUBBER EDIT CHANGE -- GOOFSEC DEP GUARDS
 /obj/structure/closet/secure_closet/security/cargo
 	name = "\proper customs agent's locker"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_CARGO)
@@ -170,7 +170,7 @@
 	new /obj/item/restraints/handcuffs/cable/blue(src)
 	new /obj/item/storage/bag/garment/orderly(src)
 	new /obj/item/assembly/flash/handheld(src)
-// SKYRAT EDIT CHANGE END -- GOOFSEC DEP GUARDS
+// BUBBER EDIT CHANGE END -- GOOFSEC DEP GUARDS
 
 /obj/structure/closet/secure_closet/detective
 	name = "\improper detective's cabinet"
@@ -191,7 +191,7 @@
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/clothing/suit/armor/vest/det_suit(src)
-	new /obj/item/toy/crayon/white(src) //SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/storage/belt/holster/detective/full(src)
+	new /obj/item/toy/crayon/white(src) //BUBBER EDIT CHANGE - ORIGINAL: /obj/item/storage/belt/holster/detective/full(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/binoculars(src)
 	new /obj/item/storage/box/rxglasses/spyglasskit(src)

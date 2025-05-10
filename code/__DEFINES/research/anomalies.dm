@@ -43,9 +43,9 @@ GLOBAL_LIST_INIT(bioscrambler_organs_blacklist, typecacheof(list (
 	/obj/item/organ/tongue/dullahan,
 	/obj/item/organ/vocal_cords/colossus,
 	/obj/item/organ/zombie_infection,
-	/obj/item/organ/empowered_borer_egg, // SKYRAT EDIT ADDITION
-	/obj/item/organ/eyes/robotic, // SKYRAT EDIT ADDITION
-	/obj/item/organ/eyes/night_vision/cyber, // SKYRAT EDIT ADDITION
+	/obj/item/organ/empowered_borer_egg, // BUBBER EDIT ADDITION
+	/obj/item/organ/eyes/robotic, // BUBBER EDIT ADDITION
+	/obj/item/organ/eyes/night_vision/cyber, // BUBBER EDIT ADDITION
 )))
 
 /// List of body parts we can apply to people

@@ -1,4 +1,4 @@
-/// SKYRAT MODULE SKYRAT_XENO_REDO
+/// BUBBER MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/sentinel
 	name = "alien sentinel"

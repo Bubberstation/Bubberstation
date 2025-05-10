@@ -47,7 +47,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_INSTANT_RELOAD "instant_reload"
 
 // Trait sources
-#define TRAIT_GHOSTROLE "ghostrole" // SKYRAT EDIT ADDITION -- Ghost Cafe Traits
+#define TRAIT_GHOSTROLE "ghostrole" // BUBBER EDIT ADDITION -- Ghost Cafe Traits
 
 /// One can breath under water, you get me?
 #define TRAIT_WATER_BREATHING "water_breathing"

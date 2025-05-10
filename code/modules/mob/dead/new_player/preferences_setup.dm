@@ -92,7 +92,7 @@
 			highest_pref = job_preferences[job]
 
 	return preview_job
-/* SKYRAT EDIT REMOVE - MOVED TO MASTER FILES
+/* BUBBER EDIT REMOVE - MOVED TO MASTER FILES
 
 /datum/preferences/proc/render_new_preview_appearance(mob/living/carbon/human/dummy/mannequin, show_job_clothes = TRUE)
 	var/datum/job/no_job = SSjob.get_job_type(/datum/job/unassigned)

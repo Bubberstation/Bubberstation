@@ -46,10 +46,10 @@ export const NtosRecords = (props) => {
                       ' ' +
                       record.age +
                       ' ' +
-                      /* SKYRAT EDIT ADDITION BEGIN - Chronological age */
+                      /* BUBBER EDIT ADDITION BEGIN - Chronological age */
                       record.chrono_age +
                       ' ' +
-                      /* SKYRAT EDIT ADDITION END */
+                      /* BUBBER EDIT ADDITION END */
                       record.fingerprint,
                   )
                 )
@@ -66,14 +66,14 @@ export const NtosRecords = (props) => {
               <br />
               Gender: {record.gender}
               <br />
-              {/* SKYRAT EDIT CHANGE - Chronological age, ORIGINAL: Age: {record.age} */}
+              {/* BUBBER EDIT CHANGE - Chronological age, ORIGINAL: Age: {record.age} */}
               Physical Age: {record.age}
-              {/* SKYRAT EDIT CHANGE END */}
+              {/* BUBBER EDIT CHANGE END */}
               <br />
-              {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
+              {/* BUBBER EDIT ADDITION BEGIN - Chronological age */}
               Chronological Age: {record.chrono_age}
               <br />
-              {/* SKYRAT EDIT ADDITION END */}
+              {/* BUBBER EDIT ADDITION END */}
               Fingerprint Hash: {record.fingerprint}
               <br />
               <br />
@@ -104,12 +104,12 @@ export const NtosRecords = (props) => {
                 {record.name}
               </Box>
               <br />
-              {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
+              {/* BUBBER EDIT ADDITION BEGIN - Chronological age */}
               Physical Age: {record.age}
               <br />
               Chronological Age: {record.chrono_age}
               <br />
-              {/* SKYRAT EDIT ADDITION END */}
+              {/* BUBBER EDIT ADDITION END */}
               Bloodtype: {record.bloodtype}
               <br />
               Minor Disabilities: {record.mi_dis}

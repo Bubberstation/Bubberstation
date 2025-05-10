@@ -314,12 +314,12 @@
 		return
 	if(!iscarbon(target))
 		return
-	// SKYRAT EDIT ADDITION START - Skip trying to heal synths
+	// BUBBER EDIT ADDITION START - Skip trying to heal synths
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.mob_biotypes & MOB_ROBOTIC)
 			return
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	INVOKE_ASYNC(src, PROC_REF(medicate_patient), target)
 	return COMPONENT_HOSTILE_NO_ATTACK
 

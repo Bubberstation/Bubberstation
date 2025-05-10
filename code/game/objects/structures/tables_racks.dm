@@ -683,7 +683,7 @@
 /obj/structure/table/glass/proc/check_break(mob/living/M)
 	if(is_flipped)
 		return FALSE
-	if(M.has_gravity() && M.mob_size > MOB_SIZE_SMALL && !(M.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) && (!isteshari(M))) //SKYRAT EDIT ADDITION - Allows Teshari to climb on glassies safely. - This should be a component
+	if(M.has_gravity() && M.mob_size > MOB_SIZE_SMALL && !(M.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) && (!isteshari(M))) //BUBBER EDIT ADDITION - Allows Teshari to climb on glassies safely. - This should be a component
 		table_shatter(M)
 
 /obj/structure/table/glass/proc/table_shatter(mob/living/victim)
@@ -1025,7 +1025,7 @@
  * Surgery Tables
  */
 
-/obj/structure/table/optable//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/structure/table/optable//BUBBER EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
 	name = "operating table"
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/medical/surgery_table.dmi'

@@ -16,7 +16,7 @@
 	datum/preferences/preference_source,
 	visuals_only = FALSE,
 	datum/job/equipping,
-) // SKYRAT EDIT CHANGE - Added equipping param
+) // BUBBER EDIT CHANGE - Added equipping param
 	if(isnull(preference_source))
 		return equipOutfit(outfit, visuals_only)
 
@@ -31,7 +31,7 @@
 	var/list/preference_list = preference_source.read_preference(/datum/preference/loadout)
 	preference_list = preference_list[preference_source.read_preference(/datum/preference/loadout_index)] // BUBBER EDIT ADDITION: Multiple loadout presets
 	var/list/loadout_datums = loadout_list_to_datums(preference_list)
-	// SKYRAT EDIT ADDITION BEGIN
+	// BUBBER EDIT ADDITION BEGIN
 	var/obj/item/storage/briefcase/empty/travel_suitcase
 	var/loadout_placement_preference = preference_source.read_preference(/datum/preference/choiced/loadout_override_preference)
 	// Slap our things into the outfit given
@@ -60,16 +60,16 @@
 			if(!travel_suitcase)
 				travel_suitcase  = new(loc)
 			new item.item_path(travel_suitcase)
-		else // SKYRAT EDIT END
+		else // BUBBER EDIT END
 			item.insert_path_into_outfit(equipped_outfit, src, visuals_only, loadout_placement_preference)
 	// Equip the outfit loadout items included
 	if(!equipped_outfit.equip(src, visuals_only))
 		return FALSE
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	if(travel_suitcase)
 		put_in_hands(travel_suitcase)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	// Handle any snowflake on_equips.
 	var/list/new_contents = get_all_gear()
@@ -111,7 +111,7 @@
 
 	return datums
 
-// SKYRAT EDIT ADDITION
+// BUBBER EDIT ADDITION
 /*
  * Removes all invalid paths from loadout lists.
  *
@@ -136,4 +136,4 @@
 
 /obj/item/storage/briefcase/empty/PopulateContents()
 	return
-// SKYRAT EDIT END
+// BUBBER EDIT END

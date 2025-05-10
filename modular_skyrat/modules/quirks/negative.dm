@@ -1,4 +1,4 @@
-// SKYRAT NEGATIVE TRAITS
+// BUBBER NEGATIVE TRAITS
 
 /datum/quirk/alexithymia
 	name = "Alexithymia"

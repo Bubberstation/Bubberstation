@@ -4,7 +4,7 @@ import { Button, Section, Table } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
-// SKYRAT EDIT BEGIN - ALTERNATIVE_JOB_TITLES
+// BUBBER EDIT BEGIN - ALTERNATIVE_JOB_TITLES
 //
 // width={500} - Original: width={400}
 //
@@ -51,4 +51,4 @@ export const NtosCrewManifest = (props) => {
     </NtosWindow>
   );
 };
-// SKYRAT EDIT END - ALTERNATIVE_JOB_TITLES
+// BUBBER EDIT END - ALTERNATIVE_JOB_TITLES

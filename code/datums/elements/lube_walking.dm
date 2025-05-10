@@ -47,19 +47,19 @@
 	if(new_resting && lubricate(snail))
 		snail.add_movespeed_modifier(/datum/movespeed_modifier/snail_crawl)
 		RegisterSignal(snail, COMSIG_MOVABLE_MOVED, PROC_REF(lubricate))
-		//SKYRAT EDIT ADDITION BEGIN - This is to prevent snails from achieving FTL speeds without gravity, think of it like snails affixing to walls irl.
+		//BUBBER EDIT ADDITION BEGIN - This is to prevent snails from achieving FTL speeds without gravity, think of it like snails affixing to walls irl.
 		ADD_TRAIT(snail, TRAIT_NEGATES_GRAVITY, TRAIT_GENERIC)
 		snail.AddElement(/datum/element/forced_gravity, 0)
 		if(HAS_TRAIT(snail, TRAIT_SETTLER)) //This is to keep settlers from reaching FTL speeds too.
 			snail.remove_movespeed_modifier(/datum/movespeed_modifier/snail_crawl)
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 	else
 		snail.remove_movespeed_modifier(/datum/movespeed_modifier/snail_crawl)
 		UnregisterSignal(snail, COMSIG_MOVABLE_MOVED)
-		//SKYRAT EDIT ADDITION BEGIN - This clears the forced gravity so they're affected by it while standing.
+		//BUBBER EDIT ADDITION BEGIN - This clears the forced gravity so they're affected by it while standing.
 		REMOVE_TRAIT(snail, TRAIT_NEGATES_GRAVITY, TRAIT_GENERIC)
 		snail.RemoveElement(/datum/element/forced_gravity, 0)
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 
 /datum/element/lube_walking/proc/lubricate(atom/movable/snail)
 	SIGNAL_HANDLER
@@ -67,7 +67,7 @@
 	var/turf/open/turf_standing_on = get_turf(snail)
 	if(!istype(turf_standing_on))
 		return FALSE
-	turf_standing_on.MakeSlippery(TURF_WET_WATER, 1 SECONDS) //SKYRAT EDIT CHANGE: Roundstart Snails - No more lube - ORIGINAL: turf_standing_on.MakeSlippery(wet_flags, min_wet_time = min_time_wet_for)
-	turf_standing_on.wash(CLEAN_WASH) //SKYRAT EDIT ADDITION: Roundstart Snails - Snails Keep Clean
+	turf_standing_on.MakeSlippery(TURF_WET_WATER, 1 SECONDS) //BUBBER EDIT CHANGE: Roundstart Snails - No more lube - ORIGINAL: turf_standing_on.MakeSlippery(wet_flags, min_wet_time = min_time_wet_for)
+	turf_standing_on.wash(CLEAN_WASH) //BUBBER EDIT ADDITION: Roundstart Snails - Snails Keep Clean
 
 	return TRUE

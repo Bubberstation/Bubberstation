@@ -758,7 +758,7 @@
 					/obj/item/reagent_containers/cup/beaker,
 					/obj/item/reagent_containers/spray,
 					/obj/item/reagent_containers/medigel,
-					/obj/item/reagent_containers/cup/vial, //SKYRAT EDIT ADDITION - HYPOSPRAYS
+					/obj/item/reagent_containers/cup/vial, //BUBBER EDIT ADDITION - HYPOSPRAYS
 					/obj/item/reagent_containers/chem_pack
 	))
 	return is_type_in_typecache(weapon, chemfridge_typecache)

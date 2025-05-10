@@ -194,7 +194,7 @@
 			apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, MELEE))
 		return TRUE
 
-//SKYRAT EDIT REMOVAL BEGIN - SKYRAT_XENO_REDO - Moved to: modular_skyrat\modules\xenos_skyrat_redo\code\human_defense.dm
+//BUBBER EDIT REMOVAL BEGIN - SKYRAT_XENO_REDO - Moved to: modular_skyrat\modules\xenos_skyrat_redo\code\human_defense.dm
 /*
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
 	. = ..()
@@ -248,7 +248,7 @@
 			return TRUE
 		apply_damage(damage, BRUTE, affecting, armor_block)
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 /mob/living/carbon/human/attack_larva(mob/living/carbon/alien/larva/worm, list/modifiers)
 	. = ..()
@@ -577,10 +577,10 @@
 		if(bodypart_report)
 			combined_msg += "[span_notice("&rdsh;")] [bodypart_report]"
 
-		//SKYRAT EDIT ADDITION BEGIN - MEDICAL
+		//BUBBER EDIT ADDITION BEGIN - MEDICAL
 		if(body_part.current_gauze)
 			combined_msg += "\t [span_notice("Your [body_part.name] is [body_part.current_gauze.get_gauze_usage_prefix()] with <a href='byond://?src=[REF(body_part.current_gauze)];remove=1'>[body_part.current_gauze.get_gauze_description()]</a>.")]"
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 	for(var/t in missing)
 		combined_msg += span_boldannounce("&rdsh; Your [parse_zone(t)] is missing!")

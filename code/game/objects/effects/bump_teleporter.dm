@@ -29,7 +29,7 @@
 /obj/effect/bump_teleporter/singularity_pull(atom/singularity, current_size)
 	return
 
-/* SKYRAT EDIT REMOVAL  - MOVED TO BLACK_MESA
+/* BUBBER EDIT REMOVAL  - MOVED TO BLACK_MESA
 /obj/effect/bump_teleporter/Bumped(atom/movable/bumper)
 	if(!validate_setup(bumper))
 		return

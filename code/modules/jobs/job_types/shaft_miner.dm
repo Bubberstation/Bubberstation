@@ -40,7 +40,7 @@
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/mining_voucher = 1,
-		/obj/item/suit_voucher = 1, //SKYRAT EDIT: Suit_Voucher is an addition
+		/obj/item/suit_voucher = 1, //BUBBER EDIT: Suit_Voucher is an addition
 		/obj/item/stack/marker_beacon/ten = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 	)

@@ -22,20 +22,20 @@
 /// Someone, for the love of god, profile this.  Is there a reason to cache mutable_appearance
 /// if so, why are we JUST doing the airlocks when we can put this in mutable_appearance.dm for
 /// everything
-/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block, state_color = null) // SKYRAT EDIT - Airlock accent greyscale color support - Added `state_color = null`
+/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block, state_color = null) // BUBBER EDIT - Airlock accent greyscale color support - Added `state_color = null`
 	var/static/list/airlock_overlays = list()
 
-	var/base_icon_key = "[icon_state][REF(icon_file)][state_color]" // SKYRAT EDIT - Airlock accent greyscale color support - ORIGINAL: var/base_icon_key = "[icon_state][REF(icon_file)]"
+	var/base_icon_key = "[icon_state][REF(icon_file)][state_color]" // BUBBER EDIT - Airlock accent greyscale color support - ORIGINAL: var/base_icon_key = "[icon_state][REF(icon_file)]"
 	if(!(. = airlock_overlays[base_icon_key]))
-		/* SKYRAT EDIT - Airlock accent greyscale color support - ORIGINAL:
+		/* BUBBER EDIT - Airlock accent greyscale color support - ORIGINAL:
 		. = airlock_overlays[base_icon_key] = mutable_appearance(icon_file, icon_state)
-		*/ // SKYRAT EDIT START
+		*/ // BUBBER EDIT START
 		var/mutable_appearance/airlock_overlay = mutable_appearance(icon_file, icon_state)
 		if(state_color)
 			airlock_overlay.color = state_color
 
 		. = airlock_overlays[base_icon_key] = airlock_overlay
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 	if(isnull(em_block))
 		return
@@ -54,7 +54,7 @@
 // "Would this be better with a global var"
 
 // Wires for the airlock are located in the datum folder, inside the wires datum folder.
-// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+// BUBBER EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 /*
 #define AIRLOCK_FRAME_CLOSED "closed"
 #define AIRLOCK_FRAME_CLOSING "closing"
@@ -87,7 +87,7 @@
 
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
 */
-// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+// BUBBER EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 
 /obj/machinery/door/airlock
 	name = "Airlock"
@@ -532,7 +532,7 @@
 		if(AIRLOCK_DENY, AIRLOCK_OPENING, AIRLOCK_CLOSING, AIRLOCK_EMAG)
 			icon_state = "nonexistenticonstate" //MADNESS
 
-/* SKYRAT EDIT MOVED TO AIRLOCK.DM IN AESTHETICS MODULE
+/* BUBBER EDIT MOVED TO AIRLOCK.DM IN AESTHETICS MODULE
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
 
@@ -1337,7 +1337,7 @@
 
 		if(BYPASS_DOOR_CHECKS) // No power usage, special sound, get it open.
 			//playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE) - ORIGINAL
-			playsound(src, forcedOpen, 30, TRUE) //SKYRAT EDIT CHANGE - AESTHETICS
+			playsound(src, forcedOpen, 30, TRUE) //BUBBER EDIT CHANGE - AESTHETICS
 			return TRUE
 
 		else
@@ -2557,7 +2557,7 @@
 	operating = FALSE
 	return TRUE
 
-// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+// BUBBER EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 /*
 #undef AIRLOCK_SECURITY_NONE
 #undef AIRLOCK_SECURITY_IRON
@@ -2584,4 +2584,4 @@
 #undef AIRLOCK_FRAME_OPEN
 #undef AIRLOCK_FRAME_OPENING
 */
-// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+// BUBBER EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm

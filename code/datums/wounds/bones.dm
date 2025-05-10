@@ -13,7 +13,7 @@
 
 /datum/wound/blunt/bone
 	name = "Blunt (Bone) Wound"
-	wound_flags = (ACCEPTS_GAUZE | SPLINT_OVERLAY) // SKYRAT EDIT: MEDICAL -- Makes bone wounds have a splint overlay
+	wound_flags = (ACCEPTS_GAUZE | SPLINT_OVERLAY) // BUBBER EDIT: MEDICAL -- Makes bone wounds have a splint overlay
 
 	default_scar_file = BONE_SCAR_FILE
 
@@ -388,7 +388,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
-	wound_flags = (ACCEPTS_GAUZE | MANGLES_INTERIOR | SPLINT_OVERLAY) // SKYRAT EDIT - MEDICAL (SPLINT_OVERLAY)
+	wound_flags = (ACCEPTS_GAUZE | MANGLES_INTERIOR | SPLINT_OVERLAY) // BUBBER EDIT - MEDICAL (SPLINT_OVERLAY)
 	regen_ticks_needed = 120 // ticks every 2 seconds, 240 seconds, so roughly 4 minutes default
 
 	simple_desc = "Patient's bone has cracked in the middle, drastically reducing limb functionality."
@@ -429,7 +429,7 @@
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
-	wound_flags = (ACCEPTS_GAUZE | MANGLES_INTERIOR | SPLINT_OVERLAY) // SKYRAT EDIT - MEDICAL (SPLINT_OVERLAY)
+	wound_flags = (ACCEPTS_GAUZE | MANGLES_INTERIOR | SPLINT_OVERLAY) // BUBBER EDIT - MEDICAL (SPLINT_OVERLAY)
 	regen_ticks_needed = 240 // ticks every 2 seconds, 480 seconds, so roughly 8 minutes default
 
 	simple_desc = "Patient's bones have effectively shattered completely, causing total immobilization of the limb."

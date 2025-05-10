@@ -37,7 +37,7 @@ type Pai = {
   transmit: BooleanLike;
   receive: BooleanLike;
   range: number;
-  leash_enabled: BooleanLike; // SKYRAT EDIT ADDITION
+  leash_enabled: BooleanLike; // BUBBER EDIT ADDITION
 };
 
 export const PaiCard = (props) => {
@@ -164,7 +164,7 @@ const PaiOptions = (props) => {
       transmit,
       receive,
       range,
-      leash_enabled /* SKYRAT EDIT ADDITION */,
+      leash_enabled /* BUBBER EDIT ADDITION */,
     },
   } = data;
   const suppliedLaws = laws[0] ? decodeHtmlEntities(laws[0]) : 'None';
@@ -196,7 +196,7 @@ const PaiOptions = (props) => {
             Toggle
           </Button>
         </LabeledList.Item>
-        {/* SKYRAT EDIT ADDITION START */}
+        {/* BUBBER EDIT ADDITION START */}
         {!emagged && (
           <LabeledList.Item label="Holoform Leashed">
             <Button
@@ -209,7 +209,7 @@ const PaiOptions = (props) => {
             </Button>
           </LabeledList.Item>
         )}
-        {/* SKYRAT EDIT ADDITION END */}
+        {/* BUBBER EDIT ADDITION END */}
         <LabeledList.Item label="Holoform Range">
           {emagged ? (
             '∞'
@@ -219,7 +219,7 @@ const PaiOptions = (props) => {
                 <Button
                   icon="fa-circle-minus"
                   onClick={() => act('decrease_range')}
-                  /* SKYRAT EDIT CHANGE ORIGINAL: disabled={range === range_max} */
+                  /* BUBBER EDIT CHANGE ORIGINAL: disabled={range === range_max} */
                   disabled={!leash_enabled || range === range_min}
                 />
               </Stack.Item>
@@ -228,7 +228,7 @@ const PaiOptions = (props) => {
                 <Button
                   icon="fa-circle-plus"
                   onClick={() => act('increase_range')}
-                  /* SKYRAT EDIT CHANGE ORIGINAL: disabled={range === range_max} */
+                  /* BUBBER EDIT CHANGE ORIGINAL: disabled={range === range_max} */
                   disabled={!leash_enabled || range === range_max}
                 />
               </Stack.Item>

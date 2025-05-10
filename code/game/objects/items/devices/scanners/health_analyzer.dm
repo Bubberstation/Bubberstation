@@ -49,7 +49,7 @@
 	return BRUTELOSS
 
 /obj/item/healthanalyzer/attack_self(mob/user)
-	if(!user.can_read(src)) //SKYRAT EDIT: Blind People Can Analyze Again
+	if(!user.can_read(src)) //BUBBER EDIT: Blind People Can Analyze Again
 		return
 
 	scanmode = (scanmode + 1) % SCANMODE_COUNT
@@ -112,7 +112,7 @@
 /obj/item/healthanalyzer/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
-	if(user.can_read(src)) // SKYRAT EDIT CHANGE - Blind people can analyze again - ORIGINAL: if(user.can_read(src) && !user.is_blind())
+	if(user.can_read(src)) // BUBBER EDIT CHANGE - Blind people can analyze again - ORIGINAL: if(user.can_read(src) && !user.is_blind())
 		chemscan(user, interacting_with)
 	return ITEM_INTERACT_SUCCESS
 
@@ -411,13 +411,13 @@
 			Possible Cure: [disease.cure_text]</div>\
 			</span>"
 
-	// SKYRAT EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
+	// BUBBER EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
 	if(target.GetComponent(/datum/component/mutant_infection))
 		render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
 	var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
 	if(consequences)
 		render_list += consequences.get_health_analyzer_link_text(user)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
 	var/datum/component/changeling_zombie_infection/cling_infection = target.GetComponent(/datum/component/changeling_zombie_infection)
@@ -672,7 +672,7 @@
 /obj/item/healthanalyzer/simple/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
-	if(!user.can_read(src)) //SKYRAT EDIT CHANGE - Blind People Can Analyze Again - ORIGINAL: if(!user.can_read(src) || user.is_blind())
+	if(!user.can_read(src)) //BUBBER EDIT CHANGE - Blind People Can Analyze Again - ORIGINAL: if(!user.can_read(src) || user.is_blind())
 		return ITEM_INTERACT_BLOCKING
 
 	add_fingerprint(user)

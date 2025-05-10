@@ -213,19 +213,19 @@
 	inverse_chem = /datum/reagent/inverse/hercuri
 	inverse_chem_val = 0.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC // SKYRAT EDIT ADDITION - Lets hercuri process in synths
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC // BUBBER EDIT ADDITION - Lets hercuri process in synths
 
 /datum/reagent/medicine/c2/hercuri/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	var/need_mob_update
-	// SKYRAT EDIT CHANGE BEGIN -- Adds check for owner_flags; indented the getFireLoss check and everything under it, so synths can get cooled down
+	// BUBBER EDIT CHANGE BEGIN -- Adds check for owner_flags; indented the getFireLoss check and everything under it, so synths can get cooled down
 	var/owner_flags = affected_mob.dna.species.reagent_flags
 	if (owner_flags & PROCESS_ORGANIC)
 		if(affected_mob.getFireLoss() > 50)
 			need_mob_update = affected_mob.adjustFireLoss(-2 * REM * seconds_per_tick * normalise_creation_purity(), updating_health = FALSE, required_bodytype = affected_bodytype)
 		else
 			need_mob_update = affected_mob.adjustFireLoss(-1.25 * REM * seconds_per_tick * normalise_creation_purity(), updating_health = FALSE, required_bodytype = affected_bodytype)
-	// SKYRAT EDIT CHANGE END
+	// BUBBER EDIT CHANGE END
 	affected_mob.adjust_bodytemperature(rand(-25,-5) * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, 50)
 	if(ishuman(affected_mob))
 		var/mob/living/carbon/human/humi = affected_mob
@@ -593,7 +593,7 @@
 /datum/reagent/medicine/c2/penthrite/on_mob_life(mob/living/carbon/human/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	var/need_mob_update
-	need_mob_update = affected_mob.adjustStaminaLoss(-12.5 * REM * seconds_per_tick, updating_stamina = FALSE) //SKYRAT EDIT ADDITION - COMBAT - makes your heart beat faster, fills you with energy. For miners
+	need_mob_update = affected_mob.adjustStaminaLoss(-12.5 * REM * seconds_per_tick, updating_stamina = FALSE) //BUBBER EDIT ADDITION - COMBAT - makes your heart beat faster, fills you with energy. For miners
 	need_mob_update = affected_mob.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.25 * REM * seconds_per_tick, required_organ_flag = affected_organ_flags)
 	if(affected_mob.health <= HEALTH_THRESHOLD_CRIT && affected_mob.health > (affected_mob.crit_threshold + HEALTH_THRESHOLD_FULLCRIT * (2 * normalise_creation_purity()))) //we cannot save someone below our lowered crit threshold.
 

@@ -11,7 +11,7 @@
 	pass_flags = PASSTABLE
 	interaction_flags_click = ALLOW_SILICON_REACH
 	/// List of dishes the drive can hold
-	var/list/collectable_items = list( // SKYRAT EDIT CHANGE - non static list
+	var/list/collectable_items = list( // BUBBER EDIT CHANGE - non static list
 		/obj/item/broken_bottle,
 		/obj/item/kitchen/fork,
 		/obj/item/plate,
@@ -37,7 +37,7 @@
 	/// Distance this is capable of sucking dishes up over. (2 + servo tier)
 	var/suck_distance = 0
 
-	var/binrange = 7 //SKYRAT EDIT ADDITION - SEC_HAUL
+	var/binrange = 7 //BUBBER EDIT ADDITION - SEC_HAUL
 
 	COOLDOWN_DECLARE(time_since_dishes)
 
@@ -151,7 +151,7 @@
 		if(manual)
 			visible_message(span_notice("[src] is empty!"))
 		return
-	var/obj/machinery/disposal/bin/bin = locate() in view(binrange, src) //SKYRAT EDIT CHANGE
+	var/obj/machinery/disposal/bin/bin = locate() in view(binrange, src) //BUBBER EDIT CHANGE
 	if(!bin)
 		if(manual)
 			visible_message(span_warning("[src] buzzes. There are no disposal bins in range!"))

@@ -44,7 +44,7 @@
 
 #define DNA_UNI_IDENTITY_BLOCKS 12
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular_skyrat/modules/customization/_DEFINES/DNA.dm)
+//BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular_skyrat/modules/customization/_DEFINES/DNA.dm)
 /*
 /// This number needs to equal the total number of DNA blocks
 #define DNA_MUTANT_COLOR_BLOCK 1
@@ -63,7 +63,7 @@
 #define DNA_MUSHROOM_CAPS_BLOCK 14
 #define DNA_POD_HAIR_BLOCK 15
 #define DNA_FISH_TAIL_BLOCK 16
-*/ //SKYRAT EDIT REMOVAL END
+*/ //BUBBER EDIT REMOVAL END
 
 // Hey! Listen up if you're here because you're adding a species feature!
 //
@@ -72,8 +72,8 @@
 // (Which means having a DNA block for a feature tied to a mob without DNA is entirely pointless.)
 
 /// Total amount of DNA blocks, must be equal to the highest DNA block number
-#define DNA_FEATURE_BLOCKS SSaccessories.dna_total_feature_blocks // SKYRAT EDIT CHANGE - ORIGINAL: #define DNA_FEATURE_BLOCKS 15
-// SKYRAT EDIT ADDITION START
+#define DNA_FEATURE_BLOCKS SSaccessories.dna_total_feature_blocks // BUBBER EDIT CHANGE - ORIGINAL: #define DNA_FEATURE_BLOCKS 15
+// BUBBER EDIT ADDITION START
 #define DNA_MANDATORY_COLOR_BLOCKS 5
 #define DNA_MUTANT_COLOR_BLOCK 1
 #define DNA_MUTANT_COLOR_2_BLOCK 2
@@ -82,7 +82,7 @@
 #define DNA_SKIN_COLOR_BLOCK 5
 #define DNA_POD_HAIR_BLOCK 15
 #define DNA_FISH_TAIL_BLOCK 16
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 
 #define DNA_SEQUENCE_LENGTH 4
 #define DNA_MUTATION_BLOCKS 8

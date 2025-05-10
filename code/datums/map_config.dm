@@ -40,7 +40,7 @@
 		"cargo" = "cargo_skyrat",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_meta",
-		"emergency" = "emergency_skyrat", //SKYRAT EDIT CHANGE
+		"emergency" = "emergency_skyrat", //BUBBER EDIT CHANGE
 	)
 
 	/// Dictionary of job sub-typepath to template changes dictionary

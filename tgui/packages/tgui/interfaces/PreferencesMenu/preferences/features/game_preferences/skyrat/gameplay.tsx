@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBER UI FILE
 import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const soulcatcher_overlays: FeatureToggle = {

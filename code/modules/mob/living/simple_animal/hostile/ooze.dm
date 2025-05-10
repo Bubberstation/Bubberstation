@@ -309,7 +309,7 @@
 	obj_damage = 15
 	death_message = "deflates and spills its vital juices!"
 	edible_food_types = MEAT | VEGETABLES
-	ghost_controllable = TRUE //SKYRAT EDIT ADDITION - These guys can be helpful... maybe players will be helpful.
+	ghost_controllable = TRUE //BUBBER EDIT ADDITION - These guys can be helpful... maybe players will be helpful.
 
 /mob/living/simple_animal/hostile/ooze/grapes/get_innate_actions()
 	var/static/list/innate_actions = list(

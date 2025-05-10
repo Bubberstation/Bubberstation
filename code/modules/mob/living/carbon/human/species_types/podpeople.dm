@@ -8,7 +8,7 @@
 		TRAIT_PLANT_SAFE,
 	)
 	mutant_organs = list(
-		// /obj/item/organ/pod_hair = "None", // SKYRAT EDIT REMOVAL - Customization
+		// /obj/item/organ/pod_hair = "None", // BUBBER EDIT REMOVAL - Customization
 	)
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID | MOB_PLANT
 	inherent_factions = list(FACTION_PLANTS, FACTION_VINES)

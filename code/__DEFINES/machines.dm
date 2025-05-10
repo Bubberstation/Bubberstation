@@ -74,10 +74,10 @@
 #define AWAY_IMPRINTER (1<<9)
 /// For wiremod/integrated circuits. Uses various minerals.
 #define COMPONENT_PRINTER (1<<10)
-// SKYRAT EDIT ADDITION
+// BUBBER EDIT ADDITION
 /// Can be made by the orderable colony fabricator
 #define COLONY_FABRICATOR (1<<11)
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 #define HYPERTORUS_INACTIVE 0 // No or minimal energy
 #define HYPERTORUS_NOMINAL 1 // Normal operation

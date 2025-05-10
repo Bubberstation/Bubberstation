@@ -598,13 +598,13 @@
 		to_chat(usr, span_warning("This unit already has an expand module installed!"))
 		return FALSE
 
-	// SKYRAT EDIT ADDITION BEGIN
+	// BUBBER EDIT ADDITION BEGIN
 	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
 		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
 		return FALSE
 
 	var/resize_amount = 1.6
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	var/prev_lockcharge = borg.lockcharge
 	borg.SetLockdown(TRUE)
@@ -627,7 +627,7 @@
 	borg.set_anchored(FALSE)
 	REMOVE_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	borg.hasExpanded = TRUE
-	borg.update_transform(resize_amount) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(2)
+	borg.update_transform(resize_amount) // BUBBER EDIT CHANGE - ORIGINAL: borg.update_transform(2)
 
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/borg, mob/living/user = usr)
 	. = ..()
@@ -635,7 +635,7 @@
 		return .
 	if (borg.hasExpanded)
 		borg.hasExpanded = FALSE
-		borg.update_transform(0.625) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
+		borg.update_transform(0.625) // BUBBER EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg RPED"

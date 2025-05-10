@@ -142,11 +142,11 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 	/datum/wound = list(
 		"TRAIT_WOUND_SCANNED" = TRAIT_WOUND_SCANNED,
 	),
-	// SKYRAT EDIT ADDITON BEGIN - Synthetic wounds
+	// BUBBER EDIT ADDITON BEGIN - Synthetic wounds
 	/datum/wound/electrical_damage = list(
 		"TRAIT_ELECTRICAL_DAMAGE_REPAIRING" = TRAIT_ELECTRICAL_DAMAGE_REPAIRING,
 	),
-	// SKYRAT EDIT ADDITON END - Synthetic wounds
+	// BUBBER EDIT ADDITON END - Synthetic wounds
 	/obj = list(
 		"TRAIT_CONTRABAND" = TRAIT_CONTRABAND,
 		"TRAIT_SPEED_POTIONED" = TRAIT_SPEED_POTIONED,
@@ -788,7 +788,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_TURF_IGNORE_SLIPPERY" = TRAIT_TURF_IGNORE_SLIPPERY,
 		"TRAIT_TURF_IGNORE_SLOWDOWN" = TRAIT_TURF_IGNORE_SLOWDOWN,
 	),
-	// SKYRAT EDIT ADDITION START - SKYRAT TRAITS
+	// BUBBER EDIT ADDITION START - SKYRAT TRAITS
 	/obj/item/toy/plush/skyrat = list(
 		"TRAIT_AFFECTION_AVERSION" = TRAIT_AFFECTION_AVERSION,
 		"TRAIT_APHRO" = TRAIT_APHRO,
@@ -871,7 +871,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_FLOATING_HELD" = TRAIT_FLOATING_HELD,
 
 	),
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 ))
 
 /// value -> trait name, list of ALL traits that exist in the game, used for any type of accessing.

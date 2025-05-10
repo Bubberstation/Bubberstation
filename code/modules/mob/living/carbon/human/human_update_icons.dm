@@ -73,10 +73,10 @@ There are several things that need to be remembered:
 /mob/living/carbon/human/update_obscured_slots(obscured_flags)
 	..()
 	sec_hud_set_security_status()
-	// SKYRAT EDIT ADDITION START - ERP Overlays
+	// BUBBER EDIT ADDITION START - ERP Overlays
 	if(obscured_flags & HIDESEXTOY)
 		update_inv_lewd()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
@@ -112,47 +112,47 @@ There are several things that need to be remembered:
 		var/handled_by_bodyshape = TRUE
 		var/icon_file
 		var/woman
-		var/digi // SKYRAT EDIT ADDITION - Digi female gender shaping
-		var/female_sprite_flags = uniform.female_sprite_flags // SKYRAT EDIT ADDITION - Digi female gender shaping
-		var/mutant_styles = NONE // SKYRAT EDIT ADDITON - mutant styles to pass down to build_worn_icon.
+		var/digi // BUBBER EDIT ADDITION - Digi female gender shaping
+		var/female_sprite_flags = uniform.female_sprite_flags // BUBBER EDIT ADDITION - Digi female gender shaping
+		var/mutant_styles = NONE // BUBBER EDIT ADDITON - mutant styles to pass down to build_worn_icon.
 		//BEGIN SPECIES HANDLING
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (uniform.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
-			icon_file = uniform.worn_icon_digi || DIGITIGRADE_UNIFORM_FILE // SKYRAT EDIT CHANGE - ORIGINAL: icon_file = DIGITIGRADE_UNIFORM_FILE
-			digi = TRUE // SKYRAT EDIT ADDITION - Digi female gender shaping
-		// SKYRAT EDIT ADDITION - birbs
+			icon_file = uniform.worn_icon_digi || DIGITIGRADE_UNIFORM_FILE // BUBBER EDIT CHANGE - ORIGINAL: icon_file = DIGITIGRADE_UNIFORM_FILE
+			digi = TRUE // BUBBER EDIT ADDITION - Digi female gender shaping
+		// BUBBER EDIT ADDITION - birbs
 		else if(bodyshape & BODYSHAPE_CUSTOM)
 			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNIFORM, w_uniform, src) // Might have to refactor how this works eventually, maybe.
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		//Female sprites have lower priority than digitigrade sprites
-		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM)) // SKYRAT EDIT CHANGE - ORIGINAL: else if(dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(uniform.female_sprite_flags & NO_FEMALE_UNIFORM)) //Agggggggghhhhh
+		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM)) // BUBBER EDIT CHANGE - ORIGINAL: else if(dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(uniform.female_sprite_flags & NO_FEMALE_UNIFORM)) //Agggggggghhhhh
 			woman = TRUE
-			// SKYRAT EDIT ADDITION START - Digi female gender shaping
+			// BUBBER EDIT ADDITION START - Digi female gender shaping
 			if(digi)
 				mutant_styles |= STYLE_DIGI // for passing to wear_female_version
 				if(!(female_sprite_flags & FEMALE_UNIFORM_DIGI_FULL))
 					female_sprite_flags &= ~FEMALE_UNIFORM_FULL // clear the FEMALE_UNIFORM_DIGI_FULL bit if it was set, we don't want that.
 					female_sprite_flags |= FEMALE_UNIFORM_TOP_ONLY // And set the FEMALE_UNIFORM_TOP bit if it is unset.
-			// SKYRAT EDIT ADDITION END
+			// BUBBER EDIT ADDITION END
 
 		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(uniform)))
 			icon_file = DEFAULT_UNIFORM_FILE
 			handled_by_bodyshape = FALSE
 
-		// SKYRAT EDIT ADDITION START - Taur-friendly suits!
+		// BUBBER EDIT ADDITION START - Taur-friendly suits!
 		if(bodyshape & BODYSHAPE_TAUR)
 			if(istype(uniform) && uniform.gets_cropped_on_taurs)
 				mutant_styles |= get_taur_mode()
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		//END SPECIES HANDLING
 		uniform_overlay = uniform.build_worn_icon(
 			default_layer = UNIFORM_LAYER,
 			default_icon_file = icon_file,
 			isinhands = FALSE,
-			female_uniform = woman ? female_sprite_flags : null, // SKYRAT EDIT CHANGE - Digi female gender shaping - ORIGINAL: female_uniform = woman ? uniform.female_sprite_flags : null,
+			female_uniform = woman ? female_sprite_flags : null, // BUBBER EDIT CHANGE - Digi female gender shaping - ORIGINAL: female_uniform = woman ? uniform.female_sprite_flags : null,
 			override_state = target_overlay,
 			override_file = handled_by_bodyshape ? icon_file : null,
-			mutant_styles = mutant_styles, // SKYRAT EDIT ADDITION - Taur-friendly uniforms!
+			mutant_styles = mutant_styles, // BUBBER EDIT ADDITION - Taur-friendly uniforms!
 		)
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
@@ -232,16 +232,16 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/hands.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_GLOVES, gloves, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/gloves_overlay = gloves.build_worn_icon(default_layer = GLOVES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/gloves_overlay = gloves.build_worn_icon(default_layer = GLOVES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		var/feature_y_offset = 0
 		//needs to be typed, hand_bodyparts can have nulls
@@ -292,21 +292,21 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/eyes.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_GLASSES, glasses, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/glasses_overlay = glasses.build_worn_icon(default_layer = GLASSES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/glasses_overlay = glasses.build_worn_icon(default_layer = GLASSES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_head.worn_glasses_offset?.apply_offset(glasses_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[GLASSES_LAYER] = glasses_overlay
 	apply_overlay(GLASSES_LAYER)
 
@@ -334,21 +334,21 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_EARS, ears, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = EARS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = EARS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_head.worn_ears_offset?.apply_offset(ears_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[EARS_LAYER] = ears_overlay
 	apply_overlay(EARS_LAYER)
 
@@ -371,7 +371,7 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/neck.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_NECK, wear_neck, src)
@@ -384,15 +384,15 @@ There are several things that need to be remembered:
 			if(snout_icon_file && icon_exists(snout_icon_file, RESOLVE_ICON_STATE(worn_item)))
 				icon_file = snout_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/neck_overlay = worn_item.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/neck_overlay = worn_item.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_chest?.worn_belt_offset?.apply_offset(neck_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[NECK_LAYER] = neck_overlay
 
 	apply_overlay(NECK_LAYER)
@@ -419,14 +419,14 @@ There are several things that need to be remembered:
 
 		var/icon_file = DEFAULT_SHOES_FILE
 
-		// SKYRAT EDIT ADDITION START
+		// BUBBER EDIT ADDITION START
 		var/mutant_override = FALSE
 
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (worn_item.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
 			var/obj/item/bodypart/leg = src.get_bodypart(BODY_ZONE_L_LEG)
 			if(leg.limb_id == "digitigrade" || leg.bodyshape & BODYSHAPE_DIGITIGRADE)//Snowflakey and bad. But it makes it look consistent.
-				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SHOES_FILE // SKYRAT EDIT CHANGE
-				mutant_override = TRUE // SKYRAT EDIT ADDITION
+				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SHOES_FILE // BUBBER EDIT CHANGE
+				mutant_override = TRUE // BUBBER EDIT ADDITION
 		if(!mutant_override && bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHOES, shoes, src)
 			if(species_icon_file)
@@ -434,9 +434,9 @@ There are several things that need to be remembered:
 				mutant_override = TRUE
 		if(bodyshape & BODYSHAPE_HIDE_SHOES)
 			return // We just don't want shoes that float if we're not displaying legs (useful for taurs, for now)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/shoes_overlay = shoes.build_worn_icon(default_layer = SHOES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/shoes_overlay = shoes.build_worn_icon(default_layer = SHOES_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		if(!shoes_overlay)
 			return
@@ -497,7 +497,7 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/head/default.dmi'
 
-		// SKYRAT EDIT ADDITION - This needs to be refactored.
+		// BUBBER EDIT ADDITION - This needs to be refactored.
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_HEAD, head, src)
@@ -509,15 +509,15 @@ There are several things that need to be remembered:
 			if(snout_icon_file && icon_exists(snout_icon_file, RESOLVE_ICON_STATE(worn_item)))
 				icon_file = snout_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/head_overlay = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/head_overlay = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		var/obj/item/bodypart/head/my_head = get_bodypart(BODY_ZONE_HEAD)
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_head?.worn_head_offset?.apply_offset(head_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[HEAD_LAYER] = head_overlay
 
 	apply_overlay(HEAD_LAYER)
@@ -542,22 +542,22 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/belt.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_BELT, belt, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/belt_overlay = belt.build_worn_icon(default_layer = BELT_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/belt_overlay = belt.build_worn_icon(default_layer = BELT_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_chest?.worn_belt_offset?.apply_offset(belt_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[BELT_LAYER] = belt_overlay
 
 	apply_overlay(BELT_LAYER)
@@ -581,14 +581,14 @@ There are several things that need to be remembered:
 
 		var/icon_file = DEFAULT_SUIT_FILE
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		var/mutant_styles = NONE
 
 		//More currently unused digitigrade handling
 		if(bodyshape & BODYSHAPE_DIGITIGRADE)
 			if(worn_item.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION)
-				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SUIT_FILE // SKYRAT EDIT CHANGE
+				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SUIT_FILE // BUBBER EDIT CHANGE
 				mutant_override = TRUE
 
 		if(!mutant_override && bodyshape & BODYSHAPE_CUSTOM)
@@ -601,15 +601,15 @@ There are several things that need to be remembered:
 			var/obj/item/clothing/suit/worn_suit = wear_suit
 			if(istype(worn_suit) && worn_suit.gets_cropped_on_taurs)
 				mutant_styles |= get_taur_mode()
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/suit_overlay = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null, mutant_styles = mutant_styles) // SKYRAT EDIT CHANGE - Mutant bodytypes and Taur-friendly suits!
+		var/mutable_appearance/suit_overlay = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null, mutant_styles = mutant_styles) // BUBBER EDIT CHANGE - Mutant bodytypes and Taur-friendly suits!
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_chest?.worn_suit_offset?.apply_offset(suit_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[SUIT_LAYER] = suit_overlay
 
 	apply_overlay(SUIT_LAYER)
@@ -659,7 +659,7 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/mask.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_FACEMASK, wear_mask, src)
@@ -671,14 +671,14 @@ There are several things that need to be remembered:
 			if(snout_icon_file && icon_exists(snout_icon_file, RESOLVE_ICON_STATE(worn_item)))
 				icon_file = snout_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_head.worn_mask_offset?.apply_offset(mask_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[FACEMASK_LAYER] = mask_overlay
 
 	apply_overlay(FACEMASK_LAYER)
@@ -704,24 +704,24 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/back.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_BACK, back, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
-		back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE
 
 		if(!back_overlay)
 			return
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		if(!mutant_override)
 			my_chest?.worn_back_offset?.apply_offset(back_overlay)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		overlays_standing[BACK_LAYER] = back_overlay
 	apply_overlay(BACK_LAYER)
 // BUBBER EDIT START
@@ -1100,7 +1100,7 @@ in this situation default_icon_file is expected to match either the lefthand_ or
 female_uniform: A value matching a uniform item's female_sprite_flags var, if this is anything but NO_FEMALE_UNIFORM, we
 generate/load female uniform sprites matching all previously decided variables
 
-mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT EDIT ADDITION - Taur-friendly suits and uniforms
+mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // BUBBER EDIT ADDITION - Taur-friendly suits and uniforms
 */
 /obj/item/proc/build_worn_icon(
 	default_layer = 0,
@@ -1109,10 +1109,10 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	female_uniform = NO_FEMALE_UNIFORM,
 	override_state = null,
 	override_file = null,
-	mutant_styles = NONE, // SKYRAT EDIT ADD - Further outfit modification for outfits (added `mutant_styles` argument)
+	mutant_styles = NONE, // BUBBER EDIT ADD - Further outfit modification for outfits (added `mutant_styles` argument)
 )
 
-	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
+	// BUBBER EDIT ADDITION START - Taur-friendly uniforms and suits
 	var/using_taur_variant = FALSE
 	if (isnull(override_file))
 		if (mutant_styles & STYLE_TAUR_ALL)
@@ -1125,7 +1125,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			else if ((mutant_styles & STYLE_TAUR_HOOF) && worn_icon_taur_hoof)
 				override_file = worn_icon_taur_hoof
 				using_taur_variant = TRUE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	//Find a valid icon_state from variables+arguments
 	var/t_state = override_state || (isinhands ? inhand_icon_state : worn_icon_state) || icon_state
 	//Find a valid icon file from variables+arguments
@@ -1164,13 +1164,13 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		draw_target.overlays += worn_overlays
 	draw_target = color_atom_overlay(draw_target)
 
-	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
+	// BUBBER EDIT ADDITION START - Taur-friendly uniforms and suits
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
 			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors)
 		else
 			draw_target.pixel_w -= 16 // it doesnt look right otherwise
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	// Okay so this has to be done because some overlays, like blood, want to be KEEP_APART
 	// but KEEP_APART breaks float layering, so what we need to do is make fake KEEP_APART for us to use

@@ -4,9 +4,9 @@
 	id = SPECIES_SNAIL
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
-		// TRAIT_NO_UNDERWEAR, //SKYRAT EDIT REMOVAL - Roundstart Snails - Snails deserve to wear underwear
+		// TRAIT_NO_UNDERWEAR, //BUBBER EDIT REMOVAL - Roundstart Snails - Snails deserve to wear underwear
 		TRAIT_NO_SLIP_ALL,
-		TRAIT_WATER_BREATHING, //SKYRAT EDIT ADDITION - Roundstart Snails - Sea snails exist, and land snails can weather being underwater for almost a day.
+		TRAIT_WATER_BREATHING, //BUBBER EDIT ADDITION - Roundstart Snails - Sea snails exist, and land snails can weather being underwater for almost a day.
 	)
 
 	coldmod = 0.5 //snails only come out when its cold and wet
@@ -29,7 +29,7 @@
 	)
 
 	///Multiplier for the speed we give them. Positive numbers make it move slower, negative numbers make it move faster.
-	var/snail_speed_mod = 1 // SKYRAT EDIT REMOVAL - Moved the movespeed to the shell. Original - var/snail_speed_mod = 6
+	var/snail_speed_mod = 1 // BUBBER EDIT REMOVAL - Moved the movespeed to the shell. Original - var/snail_speed_mod = 6
 
 /datum/species/snail/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.dna.features["mcolor"] = COLOR_BEIGE
@@ -120,7 +120,7 @@
 	equip_sound = null
 
 
-// SKYRAT EDIT ADDITION - CLARIFICATION - Roundstart Snails - These armor values don't actually do any protection of the wearer, this is for checking direct damage to the backpack. Damage resistance stuff is in their heart file.
+// BUBBER EDIT ADDITION - CLARIFICATION - Roundstart Snails - These armor values don't actually do any protection of the wearer, this is for checking direct damage to the backpack. Damage resistance stuff is in their heart file.
 /datum/armor/backpack_snail
 	melee = 40
 	bullet = 30

@@ -363,11 +363,11 @@
 		weapon.attack(current_target, src)
 	if(ishuman(current_target))
 		current_target.set_stutter(10 SECONDS)
-		current_target.Paralyze(60) // SKYRAT EDIT CHANGE - original was current_target.Paralyze(100)
+		current_target.Paralyze(60) // BUBBER EDIT CHANGE - original was current_target.Paralyze(100)
 		var/mob/living/carbon/human/human_target = current_target
 		threat = human_target.assess_threat(judgement_criteria)
 	else
-		current_target.Paralyze(60) // SKYRAT EDIT CHANGE - original was current_target.Paralyze(100)
+		current_target.Paralyze(60) // BUBBER EDIT CHANGE - original was current_target.Paralyze(100)
 		current_target.set_stutter(10 SECONDS)
 		threat = current_target.assess_threat(judgement_criteria)
 

@@ -597,11 +597,11 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 
 	var/use_delay = repeating ? 1 SECONDS : 0
 	if(user == attacked_humanoid)
-		use_delay = self_delay // SKYRAT EDIT CHANGE - ORIGINAL: use_delay = 5 SECONDS
-	// SKYRAT EDIT ADDITION START
+		use_delay = self_delay // BUBBER EDIT CHANGE - ORIGINAL: use_delay = 5 SECONDS
+	// BUBBER EDIT ADDITION START
 	else
 		use_delay = other_delay
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	if(!do_after(user, use_delay, attacked_humanoid))
 		return ITEM_INTERACT_BLOCKING

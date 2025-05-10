@@ -1,4 +1,4 @@
-// SKYRAT GOOD TRAITS
+// BUBBER GOOD TRAITS
 
 /datum/quirk/hard_soles
 	name = "Hardened Soles"

@@ -73,11 +73,11 @@
 /datum/element/loomable/proc/loom_me(obj/item/source, mob/living/user, atom/target)
 	//this allows us to count the amount of times it has successfully used the stack's required amount
 	var/spawning_amount = 0
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) //SKYRAT EDIT
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) //BUBBER EDIT
 	if(isstack(source))
 		var/obj/item/stack/stack_we_use = source
 		while(stack_we_use.amount >= required_amount)
-			if(!do_after(user, loom_time * skill_modifier, target)) //SKYRAT EDIT
+			if(!do_after(user, loom_time * skill_modifier, target)) //BUBBER EDIT
 				break
 
 			if(!stack_we_use.use(required_amount))
@@ -85,16 +85,16 @@
 				break
 
 			spawning_amount++
-			user.mind.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
+			user.mind.adjust_experience(/datum/skill/production, 5) //BUBBER EDIT
 
 	else
-		if(!do_after(user, loom_time * skill_modifier, target)) //SKYRAT EDIT
+		if(!do_after(user, loom_time * skill_modifier, target)) //BUBBER EDIT
 			user.balloon_alert(user, "interrupted!")
 			return
 
 		qdel(source)
 		spawning_amount++
-		user.mind.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
+		user.mind.adjust_experience(/datum/skill/production, 5) //BUBBER EDIT
 
 	if(spawning_amount == 0)
 		return

@@ -17,7 +17,7 @@
 	resistance_flags = FLAMMABLE
 	var/mopcount = 0
 	///Maximum volume of reagents it can hold.
-	var/max_reagent_volume = 50 // SKYRAT EDIT - ORIGINAL: 15
+	var/max_reagent_volume = 50 // BUBBER EDIT - ORIGINAL: 15
 	var/mopspeed = 1.5 SECONDS
 	force_string = "robust... against germs"
 	var/insertable = TRUE
@@ -77,9 +77,9 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/mop/advanced
-	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this! Due to the self-wetting technology, it proves very inefficient for cleaning up spills." //SKYRAT EDIT
+	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this! Due to the self-wetting technology, it proves very inefficient for cleaning up spills." //BUBBER EDIT
 	name = "advanced mop"
-	max_reagent_volume = 100 // SKYRAT EDIT - ORIGINAL: 10
+	max_reagent_volume = 100 // BUBBER EDIT - ORIGINAL: 10
 	icon_state = "advmop"
 	inhand_icon_state = "advmop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'

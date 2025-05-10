@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /datum/preference/choiced/mushroom_cap
 	savefile_key = "feature_mushperson_cap"
 	savefile_identifier = PREFERENCE_CHARACTER

@@ -15,10 +15,10 @@
 		#include "map_files\tramstation\tramstation.dmm"
 		#include "map_files\CatwalkStation\CatwalkStation_2023.dmm"
 		#include "map_files\NebulaStation\NebulaStation.dmm"
-		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
+		// BUBBER EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		//#include "map_files\wawastation\wawastation.dmm" BUBBER EDIT - UNUSED
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"

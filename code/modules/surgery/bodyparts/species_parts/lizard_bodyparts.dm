@@ -47,7 +47,7 @@
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 
-/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR MUTANT_BODYPARTS.DM
+/* BUBBER EDIT REMOVAL - MOVED TO MODULAR MUTANT_BODYPARTS.DM
 /// Checks if this mob is wearing anything that does not have a valid sprite set for digitigrade legs
 /// (In other words, is the mob's digitigrade body squished by its clothing?)
 /mob/living/carbon/proc/is_digitigrade_squished()

@@ -276,7 +276,7 @@
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
 
-// SKYRAT EDIT REMOVAL START
+// BUBBER EDIT REMOVAL START
 /*
 /datum/crafting_recipe/arrow_quiver
 	name = "Archery Quiver"
@@ -288,7 +288,7 @@
 	)
 	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
-*/ // SKYRAT EDIT REMOVAL END
+*/ // BUBBER EDIT REMOVAL END
 
 /datum/crafting_recipe/tether_anchor
 	name = "Tether Anchor"

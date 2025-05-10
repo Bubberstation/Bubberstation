@@ -75,7 +75,7 @@
 			continue
 		if(!item.category.handle_duplicate_entires(src, item, selected_item, loadout_datums))
 			return
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	if(!isnull(selected_item.ckeywhitelist) && !(preferences?.parent?.ckey in selected_item.ckeywhitelist))
 		to_chat(preferences.parent, span_warning("You cannot select this item!"))
 		return
@@ -83,7 +83,7 @@
 	if(selected_item.donator_only && !GLOB.donator_list[preferences?.parent?.ckey])
 		to_chat(preferences.parent, span_warning("This item is for donators only."))
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	LAZYSET(loadout, selected_item.item_path, list())
 	save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
@@ -113,11 +113,11 @@
 /datum/preference_middleware/loadout/get_ui_static_data(mob/user)
 	var/list/data = list()
 	data["loadout_preview_view"] = preferences.character_preview_view.assigned_map
-	// SKYRAT EDIT START - EXPANDED LOADOUT
+	// BUBBER EDIT START - EXPANDED LOADOUT
 	data["ckey"] = user.ckey
 	if(SSplayer_ranks.is_donator(user.client))
 		data["is_donator"] = TRUE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	return data
 
 /datum/preference_middleware/loadout/get_constant_data()

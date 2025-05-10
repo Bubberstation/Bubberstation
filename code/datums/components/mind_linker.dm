@@ -60,11 +60,11 @@
 	src.speech_action_icon_state = speech_action_icon_state
 	src.speech_action_background_icon_state = speech_action_background_icon_state
 
-	//SKYRAT EDIT - NIFs
+	//BUBBER EDIT - NIFs
 	if(speech_action)
 		master_speech = new(src)
 		master_speech.Grant(owner)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /datum/component/mind_linker/Destroy(force)
 	for(var/mob/living/remaining_mob as anything in linked_mobs)

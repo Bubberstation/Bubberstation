@@ -27,10 +27,10 @@
 	human.dna.species.randomize_active_underwear_only(human)
 	// Needs to be called towards the end to update all the UIs just set above
 	human.dna.initialize_dna(newblood_type = random_human_blood_type(), create_mutation_blocks = randomize_mutations, randomize_features = TRUE)
-	// SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+	// BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION
 	human.dna.species.mutant_bodyparts = human.dna.mutant_bodyparts.Copy()
 	human.dna.species.body_markings = human.dna.body_markings.Copy()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	// Snowflake for Ethereals
 	human.updatehealth()
 	human.updateappearance(mutcolor_update = TRUE)

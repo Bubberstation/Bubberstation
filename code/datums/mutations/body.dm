@@ -123,24 +123,24 @@
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	// SKYRAT EDIT BEGIN
+	// BUBBER EDIT BEGIN
 	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
 		to_chat(owner, "You feel your body try to shrink, but your organs don't! Uh oh!")
 		owner.adjustBruteLoss(25)
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	ADD_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
 	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))
 
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	// SKYRAT EDIT BEGIN
+	// BUBBER EDIT BEGIN
 	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
 		to_chat(owner, "You feel relief as your organs cease to strain against your insides.")
 		REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
 	owner.visible_message(span_danger("[owner] suddenly grows!"), span_notice("Everything around you seems to shrink.."))
 
@@ -192,12 +192,12 @@
 /datum/mutation/human/gigantism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	// SKYRAT EDIT BEGIN
+	// BUBBER EDIT BEGIN
 	if(owner.dna.features["body_size"] > 1)
 		to_chat(owner, "You feel your body expanding even further, but it feels like your bones are expanding too much!")
 		owner.adjustBruteLoss(25) // take some DAMAGE
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	ADD_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
 	owner.update_transform(1.25)
 	owner.visible_message(span_danger("[owner] suddenly grows!"), span_notice("Everything around you seems to shrink.."))
@@ -205,11 +205,11 @@
 /datum/mutation/human/gigantism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	// SKYRAT EDIT BEGIN
+	// BUBBER EDIT BEGIN
 	if(owner.dna.features["body_size"] > 1)
 		to_chat(owner, "You feel relief as your bones cease their growth spurt.")
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	REMOVE_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
 	owner.update_transform(0.8)
 	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))

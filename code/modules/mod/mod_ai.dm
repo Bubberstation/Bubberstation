@@ -2,10 +2,10 @@
 	. = ..()
 	if(!.)
 		return
-	// SKYRAT EDIT ADDITION START - No AIs in MODsuits
+	// BUBBER EDIT ADDITION START - No AIs in MODsuits
 	if(!allow_ai)
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(!open) //mod must be open
 		balloon_alert(user, "panel closed!")
 		return
@@ -92,10 +92,10 @@
 	pai_assistant.can_holo = FALSE
 	if (pai_assistant.holoform)
 		pai_assistant.fold_in()
-	// SKYRAT EDIT ADDITION START - pAIs in MODsuits
+	// BUBBER EDIT ADDITION START - pAIs in MODsuits
 	if(can_pai_move_suit)
 		pai_assistant.remote_control = src
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	SStgui.close_uis(card)
 	on_gained_assistant(card.pai)
 	return TRUE
@@ -147,10 +147,10 @@
 	var/datum/mod_part/legs_to_move = get_part_datum_from_slot(ITEM_SLOT_FEET)
 	if(wearer && (!legs_to_move || !legs_to_move.sealed))
 		return FALSE
-	// SKYRAT EDIT START - pAIs in MODsuits with a bit more functionalities
+	// BUBBER EDIT START - pAIs in MODsuits with a bit more functionalities
 	if(active && !can_pai_move_suit && ispAI(ai_assistant))
 		return FALSE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	var/timemodifier = MOVE_DELAY * (ISDIAGONALDIR(direction) ? sqrt(2) : 1) * (wearer ? WEARER_DELAY : LONE_DELAY)
 	if(wearer && !wearer.Process_Spacemove(direction))
 		return FALSE

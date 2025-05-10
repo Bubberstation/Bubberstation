@@ -24,17 +24,17 @@
 	for (var/species_id in get_selectable_species())
 		values += GLOB.species_list[species_id]
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	for (var/species_id in get_customizable_races())
 		values += GLOB.species_list[species_id]
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 	return values
 
 /datum/preference/choiced/species/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/prefs)
-	target.set_species(value, FALSE, FALSE, prefs?.features.Copy(), prefs?.mutant_bodyparts.Copy(), prefs?.body_markings.Copy()) // SKYRAT EDIT - Customization
+	target.set_species(value, FALSE, FALSE, prefs?.features.Copy(), prefs?.mutant_bodyparts.Copy(), prefs?.body_markings.Copy()) // BUBBER EDIT - Customization
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	target.dna.update_body_size()
 
 	for(var/organ_key in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_PENIS, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS))
@@ -42,12 +42,12 @@
 		if(gent)
 			gent.aroused = prefs.arousal_preview
 			gent.update_sprite_suffix()
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /datum/preference/choiced/species/compile_constant_data()
 	var/list/data = list()
 
-	for (var/species_id in (get_selectable_species() + get_customizable_races())) //SKYRAT EDIT CHANGE
+	for (var/species_id in (get_selectable_species() + get_customizable_races())) //BUBBER EDIT CHANGE
 		var/species_type = GLOB.species_list[species_id]
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 

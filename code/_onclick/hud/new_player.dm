@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL - Custom HTML Lobby Screen
+/* BUBBER EDIT REMOVAL - Custom HTML Lobby Screen
 #define SHUTTER_MOVEMENT_DURATION 0.4 SECONDS
 #define SHUTTER_WAIT_DURATION 0.2 SECONDS
 /// Maximum number of station trait buttons we will display, please think hard before creating scenarios where there are more than this
@@ -783,4 +783,4 @@
 #undef SHUTTER_MOVEMENT_DURATION
 #undef SHUTTER_WAIT_DURATION
 #undef MAX_STATION_TRAIT_BUTTONS_VERTICAL
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END

@@ -331,7 +331,7 @@
 
 ///only operate on internal organs
 /datum/surgery_step/manipulate_organs/internal/can_use_organ(obj/item/organ/organ)
-	return !(organ.organ_flags & ORGAN_EXTERNAL & ORGAN_UNREMOVABLE) // SKYRAT EDIT - Don't show unremovable organs
+	return !(organ.organ_flags & ORGAN_EXTERNAL & ORGAN_UNREMOVABLE) // BUBBER EDIT - Don't show unremovable organs
 
 ///prosthetic surgery gives full effectiveness to crowbars (and hemostats)
 /datum/surgery_step/manipulate_organs/internal/mechanic
@@ -345,7 +345,7 @@
 
 ///Only operate on external organs
 /datum/surgery_step/manipulate_organs/external/can_use_organ(obj/item/organ/organ)
-	return (organ.organ_flags & ORGAN_EXTERNAL & ORGAN_UNREMOVABLE) // SKYRAT EDIT - Don't show unremovable organs
+	return (organ.organ_flags & ORGAN_EXTERNAL & ORGAN_UNREMOVABLE) // BUBBER EDIT - Don't show unremovable organs
 
 ///prosthetic surgery gives full effectiveness to crowbars (and hemostats)
 /datum/surgery_step/manipulate_organs/external/mechanic

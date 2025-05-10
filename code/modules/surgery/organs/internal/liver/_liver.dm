@@ -296,5 +296,5 @@
 		organ_owner.adjustToxLoss(3 * REM * seconds_per_tick)
 
 #undef LIVER_DEFAULT_TOX_TOLERANCE
-//#undef LIVER_DEFAULT_TOX_RESISTANCE // SKYRAT EDIT REMOVAL - Needed in modular
+//#undef LIVER_DEFAULT_TOX_RESISTANCE // BUBBER EDIT REMOVAL - Needed in modular
 #undef LIVER_FAILURE_STAGE_SECONDS

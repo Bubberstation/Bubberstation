@@ -61,7 +61,7 @@
 	//very imprecise
 
 /obj/item/melee/sabre
-	name = "officer's sabre" //SKYRAT EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
+	name = "officer's sabre" //BUBBER EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"

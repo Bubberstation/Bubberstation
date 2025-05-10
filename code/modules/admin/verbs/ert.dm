@@ -91,7 +91,7 @@
 		"leader_experience" = list("desc" = "Pick an experienced leader", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
 		"random_names" = list("desc" = "Randomize names", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
 		"spawn_admin" = list("desc" = "Spawn yourself as briefing officer", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
-		"notify_players" = list("desc" = "Notify players that you have sent an ERT", "type" = "boolean", "value" = "[(ertemplate.notify_players ? "Yes" : "No")]"), //SKYRAT EDIT ADDITION
+		"notify_players" = list("desc" = "Notify players that you have sent an ERT", "type" = "boolean", "value" = "[(ertemplate.notify_players ? "Yes" : "No")]"), //BUBBER EDIT ADDITION
 		"use_custom_shuttle" = list("desc" = "Use the ERT's custom shuttle (if it has one)", "type" = "boolean", "value" = "[(ertemplate.use_custom_shuttle ? "Yes" : "No")]"),
 		"mob_type" = list("desc" = "Base Species", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/mob/living/carbon/human", "subtypesonly" = TRUE, "value" = ertemplate.mob_type),
 		)
@@ -122,7 +122,7 @@
 	ertemplate.spawn_admin = prefs["spawn_admin"]["value"] == "Yes"
 	ertemplate.use_custom_shuttle = prefs["use_custom_shuttle"]["value"] == "Yes"
 	ertemplate.mob_type = prefs["mob_type"]["value"]
-	ertemplate.notify_players = prefs["notify_players"]["value"] == "Yes" //SKYRAT EDIT ADDITION
+	ertemplate.notify_players = prefs["notify_players"]["value"] == "Yes" //BUBBER EDIT ADDITION
 
 	var/list/spawn_points = GLOB.emergencyresponseteamspawn
 

@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/can_be_greyscale = FALSE
 	/// Whether this item can be renamed.
 	/// I recommend you apply this sparingly becuase it certainly can go wrong (or get reset / overridden easily)
-	var/can_be_named = TRUE // SKYRAT EDIT
+	var/can_be_named = TRUE // BUBBER EDIT
 	/// Whether this item can be reskinned.
 	/// Only works if the item has a "unique reskin" list set.
 	var/can_be_reskinned = FALSE
@@ -103,12 +103,12 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			cached_reskin_options = dummy_item.unique_reskin.Copy()
 		qdel(dummy_item)
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	// Let's sanitize in case somebody inserted the player's byond name instead of ckey in canonical form
 	if(ckeywhitelist)
 		for (var/i = 1, i <= length(ckeywhitelist), i++)
 			ckeywhitelist[i] = ckey(ckeywhitelist[i])
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /datum/loadout_item/Destroy(force, ...)
 	if(force)
@@ -135,13 +135,13 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 		if("set_name")
 			if(can_be_named)
-		// SKYRAT EDIT BEGIN - Description
+		// BUBBER EDIT BEGIN - Description
 				return set_name(manager, user, INFO_NAMED)
 
 		if("set_desc")
 			if(can_be_named)
 				return set_name(manager, user, INFO_DESCRIBED)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		if("set_skin")
 			return set_skin(manager, user, params)
@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	return TRUE // update UI
 
 /// Sets the name of the item.
-// SKYRAT EDIT BEGIN - Adds descriptions with minimal copypaste
+// BUBBER EDIT BEGIN - Adds descriptions with minimal copypaste
 // Generally, if this conflicts, name_slot is to be put anywhere where INFO_NAMED appears in tgcode
 /datum/loadout_item/proc/set_name(datum/preference_middleware/loadout/manager, mob/user, name_slot = INFO_NAMED)
 	var/isname = (name_slot == INFO_NAMED)
@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return FALSE // no update needed
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 /// Used for reskinning an item to an alt skin.
 /datum/loadout_item/proc/set_skin(datum/preference_middleware/loadout/manager, mob/user, params)
@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
  * * equipper - If we're equipping out outfit onto a mob at the time, this is the mob it is equipped on. Can be null.
  * * visual - If TRUE, then our outfit is only for visual use (for example, a preview).
  */
-/datum/loadout_item/proc/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, loadout_placement_preference) // SKYRAT EDIT CHANGE - Added loadout_placement_preference
+/datum/loadout_item/proc/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, loadout_placement_preference) // BUBBER EDIT CHANGE - Added loadout_placement_preference
 	if(!visuals_only)
 		LAZYADD(outfit.backpack_contents, item_path)
 
@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		equipped_item.set_greyscale(item_details[INFO_GREYSCALE])
 		update_flag |= equipped_item.slot_flags
 
-	// SKYRAT EDIT BEGIN - DESCRIPTIONS~
+	// BUBBER EDIT BEGIN - DESCRIPTIONS~
 	if(can_be_named && !visuals_only)
 		var/renamed = 0
 		if(item_details?[INFO_NAMED])
@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			ADD_TRAIT(equipped_item, TRAIT_WAS_RENAMED, TRAIT_SOURCE_LOADOUT)
 			equipped_item.AddElement(/datum/element/examined_when_worn)
 			SEND_SIGNAL(equipped_item, COMSIG_NAME_CHANGED)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	if(can_be_reskinned && item_details?[INFO_RESKIN])
 		var/skin_chosen = item_details[INFO_RESKIN]
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(can_be_reskinned)
 		displayed_text[FA_ICON_SWATCHBOOK] = "Reskinnable"
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	if(donator_only)
 		displayed_text[FA_ICON_MONEY_BILL] = "Donator only"
 
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(restricted_species)
 		displayed_text[FA_ICON_DNA] = "Species Whitelist: [restricted_species.Join(", ")]"
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	return displayed_text
 
 /**
@@ -418,14 +418,14 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			"button_icon" = FA_ICON_PEN,
 			"active_key" = INFO_NAMED,
 		))
-		// SKYRAT EDIT BEGIN - Descriptions
+		// BUBBER EDIT BEGIN - Descriptions
 		UNTYPED_LIST_ADD(button_list, list(
 			"label" = "Change description",
 			"act_key" = "set_desc",
 			"button_icon" = FA_ICON_PEN,
 			"active_key" = INFO_NAMED,
 		))
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 	return button_list
 
 /**

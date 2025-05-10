@@ -183,12 +183,12 @@
 		power_throw--
 	if(HAS_TRAIT(thrown_thing, TRAIT_DWARF))
 		power_throw++
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(HAS_TRAIT(src, TRAIT_OVERSIZED))
 		power_throw++
 	if(HAS_TRAIT(thrown_thing, TRAIT_OVERSIZED))
 		power_throw--
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	if(neckgrab_throw)
 		power_throw++
 	if(HAS_TRAIT(src, TRAIT_TOSS_GUN_HARD) && isgun(thrown_thing))
@@ -975,17 +975,17 @@
 /mob/living/carbon/can_be_revived()
 	if(!get_organ_by_type(/obj/item/organ/brain) && (!IS_CHANGELING(src)) || HAS_TRAIT(src, TRAIT_HUSK))
 		return FALSE
-//SKYRAT EDIT ADDITION - DNR TRAIT // BUBBER EDIT REMOVAL
+//BUBBER EDIT ADDITION - DNR TRAIT // BUBBER EDIT REMOVAL
 //	if(HAS_TRAIT(src, TRAIT_DNR))
 //		return FALSE
-//SKYRAT EDIT ADDITION END - DNR TRAIT // BUBBER EDIT REMOVAL
+//BUBBER EDIT ADDITION END - DNR TRAIT // BUBBER EDIT REMOVAL
 	return ..()
 
 /mob/living/carbon/proc/can_defib()
-//SKYRAT EDIT ADDITION - DNR TRAIT
+//BUBBER EDIT ADDITION - DNR TRAIT
 //	if(HAS_TRAIT(src, TRAIT_DNR)) //This is also added when a ghost DNR's! // BUBBER EDIT REMOVAL
 //		return DEFIB_FAIL_DNR
-//SKYRAT EDIT ADDITION END - DNR TRAIT
+//BUBBER EDIT ADDITION END - DNR TRAIT
 	if (HAS_TRAIT(src, TRAIT_SUICIDED))
 		return DEFIB_FAIL_SUICIDE
 
@@ -1025,7 +1025,7 @@
 	return DEFIB_POSSIBLE
 
 /mob/living/carbon/proc/can_defib_client()
-	return (client || get_ghost(FALSE, FALSE)) && (can_defib() & DEFIB_REVIVABLE_STATES) // SKYRAT EDIT - ORIGINAL: return (client || get_ghost(FALSE, TRUE)) && (can_defib() & DEFIB_REVIVABLE_STATES)
+	return (client || get_ghost(FALSE, FALSE)) && (can_defib() & DEFIB_REVIVABLE_STATES) // BUBBER EDIT - ORIGINAL: return (client || get_ghost(FALSE, TRUE)) && (can_defib() & DEFIB_REVIVABLE_STATES)
 
 /mob/living/carbon/harvest(mob/living/user)
 	if(QDELETED(src))
@@ -1405,14 +1405,14 @@
 /// Special carbon interaction on lying down, to transform its sprite by a rotation.
 /mob/living/carbon/proc/lying_angle_on_lying_down(new_lying_angle)
 	if(!new_lying_angle)
-		//SKYRAT EDIT ADDITION BEGIN
+		//BUBBER EDIT ADDITION BEGIN
 		if(dir == WEST)
 			set_lying_angle(LYING_ANGLE_WEST)
 			return
 		else if(dir == EAST)
 			set_lying_angle(LYING_ANGLE_EAST)
 			return
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 		set_lying_angle(pick(LYING_ANGLE_EAST, LYING_ANGLE_WEST))
 	else
 		set_lying_angle(new_lying_angle)

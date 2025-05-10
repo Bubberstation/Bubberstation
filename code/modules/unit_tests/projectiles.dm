@@ -23,11 +23,11 @@
 	TEST_ASSERT(loaded_bullet, "Ammo casing has no loaded bullet")
 
 	gunner.put_in_hands(test_gun, forced=TRUE)
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	if(test_gun.GetComponent(/datum/component/gun_safety))
 		qdel(test_gun.GetComponent(/datum/component/gun_safety))
 	loaded_bullet.wound_bonus = CANT_WOUND //Baseline wounding makes things weird
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	gunner.set_combat_mode(FALSE) // just to make sure we know we're not trying to pistol-whip them
 	var/expected_damage = loaded_bullet.damage
 	loaded_bullet.def_zone = BODY_ZONE_CHEST

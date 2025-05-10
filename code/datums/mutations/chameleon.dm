@@ -12,20 +12,20 @@
 /datum/mutation/human/chameleon/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	/// SKYRAT EDIT BEGIN
+	/// BUBBER EDIT BEGIN
 	if(HAS_TRAIT(owner, TRAIT_CHAMELEON_SKIN))
 		return
 	ADD_TRAIT(owner, TRAIT_CHAMELEON_SKIN, GENETIC_MUTATION)
-	/// SKYRAT EDIT END
+	/// BUBBER EDIT END
 	owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(owner, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 
 /datum/mutation/human/chameleon/on_life(seconds_per_tick, times_fired)
-	/// SKYRAT EDIT BEGIN
+	/// BUBBER EDIT BEGIN
 	if(HAS_TRAIT(owner, TRAIT_CHAMELEON_SKIN))
 		owner.alpha = max(owner.alpha - (12.5 * (GET_MUTATION_POWER(src)) * seconds_per_tick), 0)
-	/// SKYRAT EDIT END
+	/// BUBBER EDIT END
 
 //Upgraded mutation of the base variant, used for changelings. No instability and better power_coeff
 /datum/mutation/human/chameleon/changeling
@@ -46,12 +46,12 @@
 /datum/mutation/human/chameleon/proc/on_move(atom/movable/source, atom/old_loc, move_dir, forced, list/atom/old_locs)
 	SIGNAL_HANDLER
 
-	/// SKYRAT EDIT BEGIN
+	/// BUBBER EDIT BEGIN
 	if(HAS_TRAIT(owner, TRAIT_CHAMELEON_SKIN))
 		owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 	else
 		owner.alpha = 255
-		/// SKYRAT EDIT END
+		/// BUBBER EDIT END
 
 /**
  * Resets the alpha of the host if they click on something nearby.
@@ -68,18 +68,18 @@
 	if(!proximity) //stops tk from breaking chameleon
 		return
 
-	/// SKYRAT EDIT BEGIN
+	/// BUBBER EDIT BEGIN
 	if(HAS_TRAIT(owner, TRAIT_CHAMELEON_SKIN))
 		owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 	else
 		owner.alpha = 255
-	/// SKYRAT EDIT END
+	/// BUBBER EDIT END
 
 /datum/mutation/human/chameleon/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	owner.alpha = 255
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_UNARMED_ATTACK))
-	/// SKYRAT EDIT BEGIN
+	/// BUBBER EDIT BEGIN
 	REMOVE_TRAIT(owner, TRAIT_CHAMELEON_SKIN, GENETIC_MUTATION)
-	/// SKYRAT EDIT END
+	/// BUBBER EDIT END

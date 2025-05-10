@@ -1,4 +1,4 @@
-// Skyrat shuttle areas
+// Bubber shuttle areas
 
 /area/shuttle/prison_transport
 	name = "Prison Transporter NSS-74"

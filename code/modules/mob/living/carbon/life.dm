@@ -103,7 +103,7 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
-				//SKYRAT EDIT ADDITION
+				//BUBBER EDIT ADDITION
 				//Underwater breathing
 				var/turf/our_turf = loc
 				if(our_turf.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((body_position == LYING_DOWN && our_turf.liquids.liquid_state >= LIQUID_STATE_WAIST) || (body_position == STANDING_UP && our_turf.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
@@ -124,7 +124,7 @@
 						visible_message("<span class='warning'>[src] chokes on [our_turf.liquids.reagents_to_text()]!</span>", \
 									"<span class='userdanger'>You're choking on [our_turf.liquids.reagents_to_text()]!</span>")
 					return FALSE
-				//SKYRAT EDIT END
+				//BUBBER EDIT END
 				var/breath_moles = 0
 				if(environment)
 					breath_moles = environment.total_moles()*BREATH_PERCENTAGE

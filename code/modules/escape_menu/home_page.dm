@@ -41,7 +41,7 @@
 			/* offset = */ 4,
 		)
 	)
-	//SKYRAT EDIT REMOVAL BEGIN
+	//BUBBER EDIT REMOVAL BEGIN
 	/*
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/home_button/leave_body(
@@ -54,7 +54,7 @@
 		)
 	)
 	*/
-	// SKYRAT EDIT REMOVAL END
+	// BUBBER EDIT REMOVAL END
 
 /datum/escape_menu/proc/home_resume()
 	qdel(src)

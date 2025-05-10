@@ -165,7 +165,7 @@ export const ChemDispenser = (props) => {
             {recipes.length === 0 && <Box color="light-gray">No recipes.</Box>}
           </Box>
         </Section>
-        <Button // SKYRAT EDIT ADDITION BEGIN - CHEMISTRY QOL
+        <Button // BUBBER EDIT ADDITION BEGIN - CHEMISTRY QOL
           icon="pen"
           content="Custom Amount"
           onClick={() => act('custom_amount')}

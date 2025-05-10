@@ -1,7 +1,7 @@
 /obj/item/kirbyplants
 	name = "potted plant"
-	//icon = 'icons/obj/fluff/flora/plants.dmi' // SKYRAT EDIT - ORIGINAL
-	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' // SKYRAT EDIT CHANGE
+	//icon = 'icons/obj/fluff/flora/plants.dmi' // BUBBER EDIT - ORIGINAL
+	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' // BUBBER EDIT CHANGE
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
@@ -21,7 +21,7 @@
 	var/custom_plant_name = FALSE
 	var/static/list/random_plant_states
 	/// Maximum icon state number - KEEP THIS UP TO DATE
-	var/random_state_cap = 43 // SKYRAT EDIT ADDITION
+	var/random_state_cap = 43 // BUBBER EDIT ADDITION
 
 
 /obj/item/kirbyplants/Initialize(mapload)
@@ -77,7 +77,7 @@
 
 /obj/item/kirbyplants/proc/generate_states()
 	var/list/plant_states = list()
-	for(var/i in 1 to random_state_cap) //SKYRAT EDIT CHANGE - ORIGINAL: for(var/i in 1 to 24)
+	for(var/i in 1 to random_state_cap) //BUBBER EDIT CHANGE - ORIGINAL: for(var/i in 1 to 24)
 		var/number
 		if(i < 10)
 			number = "0[i]"
@@ -94,8 +94,8 @@
 
 /obj/item/kirbyplants/random/Initialize(mapload)
 	. = ..()
-	//icon = 'icons/obj/flora/plants.dmi' // SKYRAT EDIT - ORIGINAL
-	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' //SKYRAT EDIT CHANGE
+	//icon = 'icons/obj/flora/plants.dmi' // BUBBER EDIT - ORIGINAL
+	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' //BUBBER EDIT CHANGE
 	randomize_base_icon_state()
 
 //Handles randomizing the icon during initialize()
@@ -130,13 +130,13 @@
 	base_icon_state = "plant-[rand(26, 29)]"
 	update_appearance(UPDATE_ICON)
 
-//SKYRAT EDIT ADDITION START
+//BUBBER EDIT ADDITION START
 /obj/item/kirbyplants/monkey
 	name = "monkey plant"
 	desc = "Something that seems to have been made by the Nanotrasen science division, one might call it an abomination. It's heads seem... alive."
 	icon_state = "monkeyplant"
 	trimmable = FALSE
-//SKYRAT EDIT ADDITION END
+//BUBBER EDIT ADDITION END
 
 /obj/item/kirbyplants/photosynthetic
 	name = "photosynthetic potted plant"

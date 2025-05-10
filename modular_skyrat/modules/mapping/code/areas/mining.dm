@@ -1,4 +1,4 @@
-// Skyrat mining-related areas
+// Bubber mining-related areas
 
 // Xeno arch
 /area/mine/xenoarch

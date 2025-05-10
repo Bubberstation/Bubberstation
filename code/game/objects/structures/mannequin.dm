@@ -110,11 +110,11 @@
 	var/datum/sprite_accessory/socks/socks = SSaccessories.socks_list[socks_name]
 	if(socks)
 		. += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
-	//SKYRAT EDIT ADDITION BEGIN - Underwear and Bra split
+	//BUBBER EDIT ADDITION BEGIN - Underwear and Bra split
 	var/datum/sprite_accessory/bra/bra = SSaccessories.bra_list[bra_name]
 	if(bra)
 		. += mutable_appearance(bra.icon, bra.icon_state, -BODY_LAYER)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	for(var/slot_flag in worn_items)
 		var/obj/item/worn_item = worn_items[slot_flag]
 		if(!worn_item)
@@ -131,7 +131,7 @@
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	var/choice = tgui_input_list(user, "Underwear, Bra, Undershirt, or Socks?", "Changing", list("Underwear", "Bra", "Undershirt","Socks")) //SKYRAT EDIT ADDITION - Underwear and Bra split
+	var/choice = tgui_input_list(user, "Underwear, Bra, Undershirt, or Socks?", "Changing", list("Underwear", "Bra", "Undershirt","Socks")) //BUBBER EDIT ADDITION - Underwear and Bra split
 	if(!Adjacent(user))
 		return
 	switch(choice)
@@ -147,12 +147,12 @@
 			var/new_socks = tgui_input_list(user, "Select the mannequin's socks", "Changing", SSaccessories.socks_list)
 			if(new_socks)
 				socks_name = new_socks
-		//SKYRAT EDIT ADDITION BEGIN - Underwear and Bra split
+		//BUBBER EDIT ADDITION BEGIN - Underwear and Bra split
 		if("Bra")
 			var/new_bra = tgui_input_list(user, "Select the mannequin's bra", "Changing", SSaccessories.bra_list)
 			if(new_bra)
 				bra_name = new_bra
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 	update_appearance()
 
 /obj/structure/mannequin/wood

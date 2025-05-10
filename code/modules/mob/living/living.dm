@@ -70,11 +70,11 @@
 	if(istype(potential_spine))
 		damage_softening_multiplier *= potential_spine.athletics_boost_multiplier
 
-	//SKYRAT EDIT ADDITION START - Landing in liquids
+	//BUBBER EDIT ADDITION START - Landing in liquids
 	if(impacted_turf.liquids && impacted_turf.liquids.liquid_state >= LIQUID_STATE_WAIST)
 		Knockdown(2 SECONDS)
 		return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
 	if(levels <= 1 && can_help_themselves)
@@ -102,7 +102,7 @@
 	if(HAS_TRAIT(src, TRAIT_CATLIKE_GRACE) && (small_surface_area || usable_legs >= 2) && body_position == STANDING_UP && can_help_themselves)
 		. |= ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
 		skip_knockdown = TRUE
-		if(small_surface_area || isfeline(src)) // SKYRAT EDIT CHANGE - ORIGINAL: if(small_surface_area)
+		if(small_surface_area || isfeline(src)) // BUBBER EDIT CHANGE - ORIGINAL: if(small_surface_area)
 			visible_message(
 				span_notice("[src] makes a hard landing on [impacted_turf], but lands safely on [p_their()] feet!"),
 				span_notice("You make a hard landing on [impacted_turf], but land safely on your feet!"),
@@ -201,7 +201,7 @@
 					if(!(world.time % 5))
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return TRUE
-		//SKYRAT EDIT ADDITION BEGIN - GUNPOINT
+		//BUBBER EDIT ADDITION BEGIN - GUNPOINT
 		if(L.gunpointed.len)
 			var/is_pointing = FALSE
 			for(var/datum/gunpoint/gp in L.gunpointed)
@@ -216,7 +216,7 @@
 			if(!(world.time % 5))
 				to_chat(src, "<span class='warning'>[L] is holding someone at gunpoint, you cannot push past.</span>")
 			return TRUE
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 
 	if(moving_diagonally)//no mob swap during diagonal moves.
 		return TRUE
@@ -443,7 +443,7 @@
 
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
-			//SKYRAT EDIT START - Tail coiling
+			//BUBBER EDIT START - Tail coiling
 			if(ishuman(M))
 				if(zone_selected == BODY_ZONE_PRECISE_GROIN && M.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL) && src.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL))
 					M.visible_message(span_warning("[src] coils their tail with [AM], wow is that okay in public?!"), "[src] has entwined their tail with yours!")
@@ -454,7 +454,7 @@
 					M.visible_message(span_warning("[src] grabs [M] [grabbed_by_hands ? "by their hands":"passively"]!"), \
 									span_warning("[src] grabs you [grabbed_by_hands ? "by your hands":"passively"]!"), null, null, src)
 					to_chat(src, span_notice("You grab [M] [grabbed_by_hands ? "by their hands":"passively"]!"))
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 					grabbed_human.share_blood_on_touch(src, grabbed_by_hands ? ITEM_SLOT_GLOVES : ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING)
 			else
 				M.visible_message(span_warning("[src] grabs [M] passively!"), \
@@ -736,7 +736,7 @@
 /// Proc to append and redefine behavior to the change of the [/mob/living/var/resting] variable.
 /mob/living/proc/update_resting()
 	update_rest_hud_icon()
-	SEND_SIGNAL(src, COMSIG_LIVING_UPDATED_RESTING, resting) //SKYRAT EDIT ADDITION - GUNPOINT
+	SEND_SIGNAL(src, COMSIG_LIVING_UPDATED_RESTING, resting) //BUBBER EDIT ADDITION - GUNPOINT
 
 
 /mob/living/proc/get_up(instant = FALSE)
@@ -747,8 +747,8 @@
 	if(istype(potential_spine))
 		get_up_time *= potential_spine.athletics_boost_multiplier
 
-	// if(!instant && !do_after(src, 1 SECONDS, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP, hidden = TRUE)) // SKYRAT EDIT REMOVAL
-	// SKYRAT EDIT ADDITION START
+	// if(!instant && !do_after(src, 1 SECONDS, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP, hidden = TRUE)) // BUBBER EDIT REMOVAL
+	// BUBBER EDIT ADDITION START
 	var/get_up_speed = GET_UP_FAST
 	var/stam = getStaminaLoss()
 	switch(FLOOR(stam,1))
@@ -768,11 +768,11 @@
 				return
 	if(pulledby && pulledby.grab_state)
 		to_chat(src, span_warning("You fail to stand up, you're restrained!"))
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 		return
 	if(resting || body_position == STANDING_UP || HAS_TRAIT(src, TRAIT_FLOORED))
 		return
-	to_chat(src, span_notice("You stand up.")) // SKYRAT EDIT ADDITION
+	to_chat(src, span_notice("You stand up.")) // BUBBER EDIT ADDITION
 	set_body_position(STANDING_UP)
 	set_lying_angle(0)
 
@@ -926,7 +926,7 @@
 	if(full_heal_flags)
 		fully_heal(full_heal_flags)
 
-	if(stat == DEAD && (can_be_revived() || (full_heal_flags & HEAL_ADMIN))) //in some cases you can't revive (e.g. no brain) //SKYRAT EDIT ADDITION - DNR TRAIT - Original: if(stat == DEAD && can_be_revived())
+	if(stat == DEAD && (can_be_revived() || (full_heal_flags & HEAL_ADMIN))) //in some cases you can't revive (e.g. no brain) //BUBBER EDIT ADDITION - DNR TRAIT - Original: if(stat == DEAD && can_be_revived())
 		set_suicide(FALSE)
 		set_stat(UNCONSCIOUS) //the mob starts unconscious,
 		updatehealth() //then we check if the mob should wake up.
@@ -1317,7 +1317,7 @@
 		// see defines/combat.dm, this should be baseline 60%
 		// Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
 		var/resist_chance = clamp(BASE_GRAB_RESIST_CHANCE / effective_grab_state, 0, 100)
-		//SKYRAT EDIT ADDITION
+		//BUBBER EDIT ADDITION
 		// Akula grab resist
 		if(HAS_TRAIT(src, TRAIT_SLIPPERY))
 			resist_chance += AKULA_GRAB_RESIST_BONUS
@@ -1326,10 +1326,10 @@
 			resist_chance += OVERSIZED_GRAB_RESIST_BONUS
 		if(HAS_TRAIT(pulledby, TRAIT_OVERSIZED))
 			resist_chance -= OVERSIZED_GRAB_RESIST_BONUS
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 		if(prob(resist_chance))
-			//SKYRAT EDIT ADDITION
+			//BUBBER EDIT ADDITION
 			// Akula break-out flavor
 			if(HAS_TRAIT(src, TRAIT_SLIPPERY))
 				visible_message(span_cyan("[src] slips free of [pulledby]'s grip!"), \
@@ -1339,7 +1339,7 @@
 				log_combat(pulledby, src, "broke grab")
 				pulledby.stop_pulling()
 				return FALSE
-			//SKYRAT EDIT END
+			//BUBBER EDIT END
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
 							span_danger("You break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_warning("[src] breaks free of your grip!"))
@@ -2087,7 +2087,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(isliving(dropping))
 		var/mob/living/M = dropping
 		if(M.can_be_held && U.pulling == M)
-			return M.mob_try_pickup(U) //SKYRAT EDIT CHANGE //blame kevinz dont open the mobs inventory if you are picking them up
+			return M.mob_try_pickup(U) //BUBBER EDIT CHANGE //blame kevinz dont open the mobs inventory if you are picking them up
 	return ..()
 
 /mob/living/proc/mob_pickup(mob/living/user)
@@ -2117,7 +2117,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(!do_after(user, 2 SECONDS, target = src))
 			return FALSE
 	mob_pickup(user)
-	return TRUE //SKYRAT EDIT CHANGE
+	return TRUE //BUBBER EDIT CHANGE
 
 /mob/living/proc/get_static_viruses() //used when creating blood and other infective objects
 	if(!LAZYLEN(diseases))
@@ -2704,10 +2704,10 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	body_position = new_value
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, new_value, .)
 	if(new_value == LYING_DOWN) // From standing to lying down.
-		//SKYRAT EDIT ADDITION BEGIN - SOUNDS
+		//BUBBER EDIT ADDITION BEGIN - SOUNDS
 		if(has_gravity())
 			playsound(src, "bodyfall", 50, TRUE)
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 		on_lying_down()
 	else // From lying down to standing up.
 		on_standing_up()

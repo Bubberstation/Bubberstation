@@ -183,7 +183,7 @@
 	. = ..()
 	.[FA_ICON_PALETTE] = "Recolorable"
 
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /datum/loadout_item/pocket_items/lipstick/on_equip_item(
 	obj/item/lipstick/equipped_item,
 	datum/preferences/preference_source,

@@ -10,12 +10,12 @@ export type SecurityRecordsData = {
   records: SecurityRecord[];
   min_age: number;
   max_age: number;
-  max_chrono_age: number; // SKYRAT EDIT ADDITION - Chronological age
+  max_chrono_age: number; // BUBBER EDIT ADDITION - Chronological age
 };
 
 export type SecurityRecord = {
   age: number;
-  chrono_age: number; // SKYRAT EDIT ADDITION - Chronological age
+  chrono_age: number; // BUBBER EDIT ADDITION - Chronological age
   citations: Crime[];
   crew_ref: string;
   crimes: Crime[];
@@ -28,10 +28,10 @@ export type SecurityRecord = {
   trim: string;
   wanted_status: string;
   voice: string;
-  // SKYRAT EDIT START - RP Records
+  // BUBBER EDIT START - RP Records
   past_general_records: string;
   past_security_records: string;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 };
 
 export type Crime = {

@@ -151,7 +151,7 @@
 		return
 
 	if(!up)
-		. += mutable_appearance(visor_sprite_path, visor_state) //SKYRAT EDIT CHANGE - WELDING MUZZLES - ORIGINAL: . += mutable_appearance('icons/mob/clothing/head/utility.dmi', visor_state)
+		. += mutable_appearance(visor_sprite_path, visor_state) //BUBBER EDIT CHANGE - WELDING MUZZLES - ORIGINAL: . += mutable_appearance('icons/mob/clothing/head/utility.dmi', visor_state)
 
 /obj/item/clothing/head/utility/hardhat/welding/update_overlays()
 	. = ..()

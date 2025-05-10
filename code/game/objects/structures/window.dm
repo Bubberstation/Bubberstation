@@ -117,7 +117,7 @@
 
 /obj/structure/window/singularity_pull(atom/singularity, current_size)
 	..()
-	if(anchored && current_size >= STAGE_FIVE) //SKYRAT EDIT CHANGE
+	if(anchored && current_size >= STAGE_FIVE) //BUBBER EDIT CHANGE
 		set_anchored(FALSE)
 	if(current_size >= STAGE_FIVE)
 		deconstruct(FALSE)

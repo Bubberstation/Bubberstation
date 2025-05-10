@@ -6,7 +6,7 @@
 	message = "is strumming the air and headbanging like a safari chimp."
 	hands_use_check = TRUE
 
-//SKYRAT EDIT REMOVAL BEGIN - EMOTES - (Moved to modular_skyrat/modules/emotes/code/emotes.dm as /datum/emote/living/clap)
+//BUBBER EDIT REMOVAL BEGIN - EMOTES - (Moved to modular_skyrat/modules/emotes/code/emotes.dm as /datum/emote/living/clap)
 /*
 /datum/emote/living/carbon/clap
 	key = "clap"
@@ -27,7 +27,7 @@
 		'sound/mobs/humanoids/human/clap/clap4.ogg',
 	)
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 /datum/emote/living/carbon/crack
 	key = "crack"

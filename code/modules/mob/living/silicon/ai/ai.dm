@@ -419,8 +419,8 @@
 		alert_control.ui_interact(src)
 #ifdef AI_VOX
 	if(href_list["say_word"])
-		play_vox_word(href_list["say_word"], null, src, vox_type) //SKYRAT EDIT CHANGE
-		vox_word_string += "[href_list["say_word"]] " //SKYRAT EDIT ADDITION
+		play_vox_word(href_list["say_word"], null, src, vox_type) //BUBBER EDIT CHANGE
+		vox_word_string += "[href_list["say_word"]] " //BUBBER EDIT ADDITION
 		return
 #endif
 	if(href_list["show_tablet_note"])

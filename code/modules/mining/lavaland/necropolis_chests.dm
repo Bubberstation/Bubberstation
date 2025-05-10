@@ -132,7 +132,7 @@
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/bloodcrawl_bottle(src) //SKYRAT EDIT ORIGINAL : new /obj/item/mayhem(src)
+			new /obj/item/bloodcrawl_bottle(src) //BUBBER EDIT ORIGINAL : new /obj/item/mayhem(src)
 		if(2)
 	Bubberstation edit end*/
 	new /obj/item/soulscythe(src)

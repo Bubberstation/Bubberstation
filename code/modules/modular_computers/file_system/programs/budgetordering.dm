@@ -310,7 +310,7 @@
 		if("toggleprivate")
 			self_paid = !self_paid
 			. = TRUE
-		//SKYRAT EDIT START
+		//BUBBER EDIT START
 		if("company_import_window")
 			var/datum/component/armament/company_imports/gun_comp = computer.GetComponent(/datum/component/armament/company_imports)
 			if(!gun_comp)
@@ -319,7 +319,7 @@
 			gun_comp.parent_prog ||= src
 			gun_comp.ui_interact(usr)
 			. = TRUE
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 	if(.)
 		post_signal(cargo_shuttle)
 

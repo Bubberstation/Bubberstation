@@ -51,23 +51,23 @@
 	if(give_hook && length(SSmapping.levels_by_trait(ZTRAIT_STATION)) > 1 && SSmapping.current_map.give_players_hooks)
 		new /obj/item/climbing_hook/emergency(src)
 
-	new /obj/item/oxygen_candle(src) //SKYRAT EDIT ADDITION
+	new /obj/item/oxygen_candle(src) //BUBBER EDIT ADDITION
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival/proc/wardrobe_removal()
-	if(!isplasmaman(loc) && !isvox(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one	//SKYRAT EDIT: && !isvox(loc)
+	if(!isplasmaman(loc) && !isvox(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one	//BUBBER EDIT: && !isvox(loc)
 		return
 	var/obj/item/mask = locate(mask_type) in src
 	var/obj/item/internals = locate(internal_type) in src
-	//SKYRAT EDIT ADDITION START - VOX INTERNALS - Vox mimic the above and below behavior, removing the redundant mask/internals; they dont mimic the plasma breathing though
+	//BUBBER EDIT ADDITION START - VOX INTERNALS - Vox mimic the above and below behavior, removing the redundant mask/internals; they dont mimic the plasma breathing though
 	if(!isvox(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 	else
 		new /obj/item/tank/internals/nitrogen/belt/emergency(src)
-	//SKYRAT EDIT ADDITION END - VOX INTERNALS
+	//BUBBER EDIT ADDITION END - VOX INTERNALS
 	qdel(mask) // Get rid of the items that shouldn't be
 	qdel(internals)
 

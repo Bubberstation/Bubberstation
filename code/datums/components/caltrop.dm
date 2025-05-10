@@ -97,10 +97,10 @@
 		return
 
 	if (!(flags & CALTROP_BYPASS_SHOES))
-		// SKYRAT EDIT ADDITION BEGIN - Hardened Soles Quirk
+		// BUBBER EDIT ADDITION BEGIN - Hardened Soles Quirk
 		if(HAS_TRAIT(digitigrade_fan, TRAIT_HARD_SOLES))
 			return
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 		if ((digitigrade_fan.wear_suit?.body_parts_covered | digitigrade_fan.w_uniform?.body_parts_covered | digitigrade_fan.shoes?.body_parts_covered) & FEET)
 			return
 

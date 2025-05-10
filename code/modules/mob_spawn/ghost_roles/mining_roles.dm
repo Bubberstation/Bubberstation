@@ -14,8 +14,8 @@
 	the hostile creatures, and the ash drakes swooping down from the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
 	the fresh air of Earth. These thoughts are dispelled by yet another recollection of how you got here... "
 	spawner_job_path = /datum/job/hermit
-	quirks_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	quirks_enabled = TRUE // BUBBER EDIT ADDITION - ghost role loadouts
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/hermit/Initialize(mapload)
 	. = ..()
@@ -81,8 +81,8 @@
 	flavour_text = "Ch'yea. You came here, like, on spring break, hopin' to pick up some bangin' hot chicks, y'knaw?"
 	spawner_job_path = /datum/job/beach_bum
 	outfit = /datum/outfit/beachbum
-	quirks_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	quirks_enabled = TRUE // BUBBER EDIT ADDITION - ghost role loadouts
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/beach/lifeguard
 	you_are_text = "You're a spunky lifeguard!"
@@ -123,7 +123,7 @@
 	flavour_text = "Time to mix drinks and change lives. Smoking space drugs makes it easier to understand your patrons' odd dialect."
 	spawner_job_path = /datum/job/space_bartender
 	outfit = /datum/outfit/spacebartender
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 
 /datum/outfit/spacebartender
 	name = "Space Bartender"
@@ -159,8 +159,8 @@
 	and eventually bring life to this desolate planet while waiting for contact from your creators. \
 	Estimated time of last contact: Deployment, 5000 millennia ago."
 	spawner_job_path = /datum/job/lifebringer
-	restricted_species = list(/datum/species/pod) //SKYRAT EDIT ADDITION
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	restricted_species = list(/datum/species/pod) //BUBBER EDIT ADDITION
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Initialize(mapload)
 	. = ..()
@@ -228,8 +228,8 @@
 	spawner_job_path = /datum/job/ash_walker
 	var/datum/team/ashwalkers/team
 	var/obj/structure/ash_walker_eggshell/eggshell
-	restricted_species = list(/datum/species/lizard/ashwalker) //SKYRAT EDIT ADDITION
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	restricted_species = list(/datum/species/lizard/ashwalker) //BUBBER EDIT ADDITION
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/Destroy()
 	eggshell = null
@@ -243,10 +243,10 @@
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human)
-	// SKYRAT EDIT ADDITION BEGIN
-	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE)) // SKYRAT EDIT MOVE - Moving before parent call prevents char name randomization
+	// BUBBER EDIT ADDITION BEGIN
+	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE)) // BUBBER EDIT MOVE - Moving before parent call prevents char name randomization
 	quirks_enabled = TRUE // ghost role quirks
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	. = ..()
 	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE))
 	to_chat(spawned_human, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Invade the strange structure of the outsiders if you must. Do not cause unnecessary destruction, as littering the wastes with ugly wreckage is certain to not gain you favor. Glory to the Necropolis!</b>")
@@ -296,14 +296,14 @@
 	important_text = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
 	outfit = /datum/outfit/lavaland_syndicate
 	spawner_job_path = /datum/job/lavaland_syndicate
-	loadout_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
-	quirks_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
-	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	loadout_enabled = TRUE // BUBBER EDIT ADDITION - ghost role loadouts
+	quirks_enabled = TRUE // BUBBER EDIT ADDITION - ghost role loadouts
+	random_appearance = FALSE // BUBBER EDIT ADDITION
 	deletes_on_zero_uses_left = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/special(mob/living/new_spawn)
 	. = ..()
-	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER) // SKYRAT EDIT CHANGE - ORIGINAL: new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_MIND)
+	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER) // BUBBER EDIT CHANGE - ORIGINAL: new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_MIND)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms
 	name = "Syndicate Comms Agent"
@@ -329,14 +329,14 @@
 	glasses = /obj/item/clothing/glasses/welding/up
 
 	implants = list(/obj/item/implant/weapons_auth)
-	id_trim = /datum/id_trim/syndicom/skyrat/interdyne //SKYRAT EDIT
+	id_trim = /datum/id_trim/syndicom/skyrat/interdyne //BUBBER EDIT
 
-// SKYRAT EDIT REMOVAL BEGIN -- mapping
+// BUBBER EDIT REMOVAL BEGIN -- mapping
 /*
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
 	syndicate.faction |= ROLE_SYNDICATE
 */
-// SKYRAT EDIT REMOVAL END
+// BUBBER EDIT REMOVAL END
 
 /datum/outfit/lavaland_syndicate/comms
 	name = "Lavaland Syndicate Comms Agent"

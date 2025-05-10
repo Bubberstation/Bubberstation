@@ -94,7 +94,7 @@
 	if(multitooled)
 		src.multitooled = multitooled
 
-	ADD_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
+	ADD_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // BUBBER EDIT ADD - allows style meter chads to do flips
 
 /datum/component/style/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_USER_ITEM_INTERACTION, PROC_REF(hotswap))
@@ -131,7 +131,7 @@
 	if(mob_parent.hud_used)
 		mob_parent.hud_used.static_inventory -= meter
 		mob_parent.hud_used.show_hud(mob_parent.hud_used.hud_version)
-	REMOVE_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
+	REMOVE_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // BUBBER EDIT ADD - allows style meter chads to do flips
 	return ..()
 
 /datum/component/style/process(seconds_per_tick)

@@ -1,5 +1,5 @@
 GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
-GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
+GLOBAL_LIST_EMPTY(objectives) //BUBBER EDIT ADDITION
 
 /datum/objective
 	var/datum/mind/owner //The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
@@ -19,13 +19,13 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/admin_grantable = FALSE
 
 /datum/objective/New(text)
-	GLOB.objectives += src //SKYRAT EDIT ADDITION
+	GLOB.objectives += src //BUBBER EDIT ADDITION
 	if(text)
 		explanation_text = text
 
 //Apparently objectives can be qdel'd. Learn a new thing every day
 /datum/objective/Destroy()
-	GLOB.objectives -= src //SKYRAT EDIT ADDITION
+	GLOB.objectives -= src //BUBBER EDIT ADDITION
 	return ..()
 
 /datum/objective/proc/get_owners() // Combine owner and team into a single list.
@@ -140,13 +140,13 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	if(!HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS) && istype(target_area, /area/shuttle/arrival))
 		return FALSE
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	if(SSticker.IsRoundInProgress() && istype(target_area, /area/centcom/interlink))
 		return FALSE
 	if(!count_space_areas)
 		if(istype(target_area, /area/space) || istype(target_area, /area/ruin) || istype(target_area, /area/icemoon) || istype(target_area, /area/lavaland))
 			return FALSE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	return TRUE
 
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/assassinate/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] ONCE." //SKYRAT EDIT CHANGE
+		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] ONCE." //BUBBER EDIT CHANGE
 	else
 		explanation_text = "Free objective."
 

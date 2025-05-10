@@ -105,7 +105,7 @@
 /obj/effect/temp_visual/mining_overlay
 	plane = HIGH_GAME_PLANE
 	layer = FLASH_LAYER
-	icon = 'modular_skyrat/modules/xenoarch/icons/ore_visuals.dmi' //SKYRAT EDIT ADDITION - XENOARCHAEOLOGY
+	icon = 'modular_skyrat/modules/xenoarch/icons/ore_visuals.dmi' //BUBBER EDIT ADDITION - XENOARCHAEOLOGY
 	appearance_flags = 0 //to avoid having TILE_BOUND in the flags, so that the 480x480 icon states let you see it no matter where you are
 	duration = 35
 	pixel_x = -224

@@ -229,9 +229,9 @@
 
 			if (surgery_needs_exposure(surgery, surgery_target))
 				surgery_info["blocked"] = TRUE
-				surgery_info["blocked_reason"] = "Their body is covered!" // SKYRAT EDIT ADDITION - Surgically unremovable bodyparts
+				surgery_info["blocked_reason"] = "Their body is covered!" // BUBBER EDIT ADDITION - Surgically unremovable bodyparts
 
-			// SKYRAT EDIT START - Surgically unremovable bodyparts
+			// BUBBER EDIT START - Surgically unremovable bodyparts
 			if (surgery.removes_target_bodypart)
 				if (iscarbon(surgery_target))
 					var/mob/living/carbon/carbon_target = surgery_target
@@ -239,7 +239,7 @@
 					if(!affecting_limb.can_be_surgically_removed)
 						surgery_info["blocked"] = TRUE
 						surgery_info["blocked_reason"] = "That limb cannot be surgically removed!"
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 
 			surgeries += list(surgery_info)
 
@@ -303,11 +303,11 @@
 			target.balloon_alert(user, "no wound to operate on!")
 			return
 
-	// SKYRAT EDIT START - Limbs that can't be surgically removed
+	// BUBBER EDIT START - Limbs that can't be surgically removed
 	if (surgery.removes_target_bodypart && !isnull(affecting_limb) && !affecting_limb.can_be_surgically_removed)
 		target.balloon_alert(user, "limb can't be surgically removed!")
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	if (IS_IN_INVALID_SURGICAL_POSITION(target, surgery))
 		target.balloon_alert(user, "patient is not lying down!")

@@ -4,7 +4,7 @@
 	icon_state = "shorts"
 	greyscale_config = /datum/greyscale_config/shorts
 	greyscale_config_worn = /datum/greyscale_config/shorts/worn
-	greyscale_config_worn_digi = /datum/greyscale_config/shorts/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/shorts/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 	greyscale_colors = "#575757#3E3E3E#75634F"
 	gender = PLURAL
 	body_parts_covered = GROIN
@@ -20,7 +20,7 @@
 	icon_state = "jeanshorts"
 	greyscale_config = /datum/greyscale_config/jeanshorts
 	greyscale_config_worn = /datum/greyscale_config/jeanshorts/worn
-	greyscale_config_worn_digi = /datum/greyscale_config/jeanshorts/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/jeanshorts/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 	greyscale_colors = "#787878#723E0E#4D7EAC"
 
 /obj/item/clothing/under/shorts/red

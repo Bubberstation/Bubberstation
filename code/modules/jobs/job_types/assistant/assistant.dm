@@ -69,10 +69,10 @@ Assistant
 			head = special_hat
 
 /datum/outfit/job/assistant/proc/give_jumpsuit(mob/living/carbon/human/target)
-	// SKYRAT EDIT - Loadouts (we don't want jumpsuits to override the person's loadout item)
+	// BUBBER EDIT - Loadouts (we don't want jumpsuits to override the person's loadout item)
 	if(modified_outfit_slots & ITEM_SLOT_ICLOTHING)
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	var/static/jumpsuit_number = 0
 	jumpsuit_number += 1
 

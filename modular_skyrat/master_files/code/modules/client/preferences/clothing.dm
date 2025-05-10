@@ -61,7 +61,7 @@
 		var/datum/sprite_accessory/accessory = SSaccessories.bra_list[value]
 		icon_with_bra.blend_icon(uni_icon(accessory.icon, accessory.icon_state), ICON_OVERLAY)
 
-	icon_with_bra.crop(10, 11, 22, 23) // SKYRAT EDIT CHANGE : ORIGINAL - icon_with_undershirt.Crop(9, 9, 23, 23)
+	icon_with_bra.crop(10, 11, 22, 23) // BUBBER EDIT CHANGE : ORIGINAL - icon_with_undershirt.Crop(9, 9, 23, 23)
 	icon_with_bra.scale(32, 32)
 	return icon_with_bra
 

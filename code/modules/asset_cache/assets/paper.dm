@@ -2,7 +2,7 @@
 	name = "paper"
 	assets = list(
 
-		// SKYRAT EDIT ADDITION: START - Donator stamp icons
+		// BUBBER EDIT ADDITION: START - Donator stamp icons
 		"stamp-cat_blue" = 'modular_skyrat/master_files/icons/stamp_icons/cat_blue.png',
 		"stamp-paw_blue" = 'modular_skyrat/master_files/icons/stamp_icons/paw_blue.png',
 		"stamp-cat_red" = 'modular_skyrat/master_files/icons/stamp_icons/cat_red.png',
@@ -14,7 +14,7 @@
 		// Other stamp icons
 		"stamp-nri" = 'modular_skyrat/master_files/icons/stamp_icons/large_stamp-nri.png',
 		"stamp-solfed" = 'modular_skyrat/master_files/icons/stamp_icons/large_stamp-solfed.png',
-		// SKYRAT EDIT ADDITION: END
+		// BUBBER EDIT ADDITION: END
 		//BUBBERSTATION ADDITION: START - Bubberstation Stamp Icons
 		"stamp-merged" = 'icons/stamp_icons/large_stamp-merged.png',
 		"stamp-closed" = 'icons/stamp_icons/large_stamp-closed.png',

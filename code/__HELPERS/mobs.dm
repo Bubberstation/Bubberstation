@@ -83,7 +83,7 @@
 /proc/random_backpack()
 	return pick(GLOB.backpacklist)
 
-// SKYRAT EDIT REMOVAL - CUSTOMIZATION (moved to modular)
+// BUBBER EDIT REMOVAL - CUSTOMIZATION (moved to modular)
 /*
 /proc/random_features()
 	if(!GLOB.tails_list.len)
@@ -139,7 +139,7 @@
 		"pod_hair" = pick(SSaccessories.pod_hair_list),
 	))
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 /proc/random_hairstyle(gender)
 	switch(gender)
@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 
 /proc/age2agedescription(age)
 	switch(age)
-		if(0 to 30) //SKYRAT EDIT CHANGE - NO
+		if(0 to 30) //BUBBER EDIT CHANGE - NO
 			return "young adult"
 		if(30 to 45)
 			return "adult"
@@ -659,10 +659,10 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		// We've already added slimes.
 		if(isslime(mob_to_sort))
 			continue
-	// SKYRAT EDIT START - SOULCATCHERS
+	// BUBBER EDIT START - SOULCATCHERS
 	for(var/mob/living/soulcatcher_soul/mob_to_sort in sortmob)
 		moblist += mob_to_sort
-	// SKYRAT EDIT END - SOULCATCHERS
+	// BUBBER EDIT END - SOULCATCHERS
 	return moblist
 ///returns a mob type controlled by a specified ckey
 /proc/get_mob_by_ckey(key)

@@ -1,4 +1,4 @@
-// SKYRAT EDIT BEGIN - Overrode generic ambience files
+// BUBBER EDIT BEGIN - Overrode generic ambience files
 GLOBAL_LIST_INIT(generic_ambience, list(
 	'modular_skyrat/master_files/sound/ambience/ambigen1.ogg',
 	'modular_skyrat/master_files/sound/ambience/ambigen2.ogg',
@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(generic_ambience, list(
 	'modular_skyrat/master_files/sound/ambience/ambigen8.ogg',
 	'modular_skyrat/master_files/sound/ambience/ambigen9.ogg',
 ))
-//SKYRAT EDIT END
+//BUBBER EDIT END
 
 GLOBAL_LIST_INIT(holy_ambience,list(
 	'sound/ambience/holy/ambicha1.ogg',
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(spooky_ambience,list(
 ))
 
 GLOBAL_LIST_INIT(space_ambience,list(
-	'modular_skyrat/master_files/sound/ambience/starlight.ogg', //SKYRAT EDIT ADDITION
+	'modular_skyrat/master_files/sound/ambience/starlight.ogg', //BUBBER EDIT ADDITION
 	'sound/ambience/engineering/ambiatmos.ogg',
 	'sound/ambience/space/ambispace.ogg',
 	'sound/ambience/space/ambispace2.ogg',

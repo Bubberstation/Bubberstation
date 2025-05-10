@@ -9,7 +9,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
 import { Objective } from './common/Objectives';
 
 type Data = {
@@ -33,7 +33,7 @@ export const AntagInfoBlob = (props) => {
           <Structures />
           <Minions />
           <ObjectiveDisplay />
-          <Rules /* SKYRAT EDIT ADDITION */ />
+          <Rules /* BUBBER EDIT ADDITION */ />
         </Section>
       </Window.Content>
     </Window>

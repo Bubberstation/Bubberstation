@@ -1,7 +1,7 @@
 import { BlockQuote, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
 
 const tipstyle = {
   color: 'white',
@@ -71,11 +71,11 @@ export const AntagInfoNightmare = (props) => {
               </LabeledList>
             </Section>
           </Stack.Item>
-          {/* SKYRAT EDIT ADDITION START */}
+          {/* BUBBER EDIT ADDITION START */}
           <Stack.Item>
             <Rules />
           </Stack.Item>
-          {/* SKYRAT EDIT ADDITION END */}
+          {/* BUBBER EDIT ADDITION END */}
         </Stack>
       </Window.Content>
     </Window>

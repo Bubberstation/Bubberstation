@@ -13,9 +13,9 @@ import { CargoData } from './types';
 
 enum TAB {
   Catalog = 'catalog',
-  /* SKYRAT EDIT BELOW - ADDS company imports */
+  /* BUBBER EDIT BELOW - ADDS company imports */
   Imports = 'company_import_window',
-  /* SKYRAT EDIT END */
+  /* BUBBER EDIT END */
   Requests = 'active requests',
   Cart = 'cart',
   Help = 'help',

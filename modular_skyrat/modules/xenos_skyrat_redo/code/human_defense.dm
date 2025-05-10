@@ -1,4 +1,4 @@
-/// SKYRAT MODULE SKYRAT_XENO_REDO
+/// BUBBER MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
 	. = ..()

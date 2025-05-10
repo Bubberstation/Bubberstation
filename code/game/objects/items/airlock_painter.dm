@@ -391,7 +391,7 @@
 		list("Neutral", "#D4D4D432"),
 		list("Dark", "#0e0f0f"),
 		list("Bar Burgundy", "#79150082"),
-		list("Sec Blue", "#486091"), // SKYRAT EDIT CHANGE
+		list("Sec Blue", "#486091"), // BUBBER EDIT CHANGE
 		list("Sec Red", "#DE3A3A"),
 		list("Cargo Brown", "#A46106"),
 		list("Engi Yellow", "#EFB341"),

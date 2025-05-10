@@ -32,7 +32,7 @@
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
 
-	/* SKYRAT EDIT REMOVAL START - We have the panic bunker on 24/7, this just makes our method unusable.
+	/* BUBBER EDIT REMOVAL START - We have the panic bunker on 24/7, this just makes our method unusable.
 	if(!real_bans_only && !admin && CONFIG_GET(flag/panic_bunker) && !CONFIG_GET(flag/panic_bunker_interview))
 		var/datum/db_query/query_client_in_db = SSdbcore.NewQuery(
 			"SELECT 1 FROM [format_table_name("player")] WHERE ckey = :ckey",
@@ -52,7 +52,7 @@
 			return list("reason"="panicbunker", "desc" = "Sorry but the server is currently not accepting connections from never before seen players")
 
 		qdel(query_client_in_db)
-	*/ // SKYRAT EDIT REMOVAL END
+	*/ // BUBBER EDIT REMOVAL END
 
 	//Whitelist
 	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
@@ -107,17 +107,17 @@
 							addclientmessage(ckey,span_adminnotice("Admin [ckey] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]]."))
 						continue
 				var/expires = "This is a permanent ban."
-				var/global_ban = "This is a global ban from all of our servers." //SKYRAT EDIT ADDITION - MULTISERVER
+				var/global_ban = "This is a global ban from all of our servers." //BUBBER EDIT ADDITION - MULTISERVER
 				if(i["expiration_time"])
 					expires = " The ban is for [DisplayTimeText(text2num(i["duration"]) MINUTES)] and expires on [i["expiration_time"]] (server time)."
-				if(!text2num(i["global_ban"])) //SKYRAT EDIT ADDITION - MULTISERVER
-					global_ban = "This is a  single-server ban, and only applies to [i["server_name"]]." //SKYRAT EDIT ADDITION - MULTISERVER
-				var/desc = /* SKYRAT EDIT CHANGE - MULTISERVER */ {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
+				if(!text2num(i["global_ban"])) //BUBBER EDIT ADDITION - MULTISERVER
+					global_ban = "This is a  single-server ban, and only applies to [i["server_name"]]." //BUBBER EDIT ADDITION - MULTISERVER
+				var/desc = /* BUBBER EDIT CHANGE - MULTISERVER */ {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
 				The ban reason is: [i["reason"]]
 				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
 				[global_ban]
 				[expires]"}
-				log_suspicious_login("Failed Login: [ckey] [computer_id] [address] - Banned (#[i["id"]]) [text2num(i["global_ban"]) ? "globally" : "locally"]") //SKYRAT EDIT CHANGE - MULTISERVER
+				log_suspicious_login("Failed Login: [ckey] [computer_id] [address] - Banned (#[i["id"]]) [text2num(i["global_ban"]) ? "globally" : "locally"]") //BUBBER EDIT CHANGE - MULTISERVER
 				return list("reason"="Banned","desc"="[desc]")
 	if (admin)
 		if (GLOB.directory[ckey])

@@ -18,10 +18,10 @@
 		color = mutantpart_info[MUTANT_INDEX_COLOR_LIST][1]
 
 /obj/item/organ/Remove(mob/living/carbon/organ_owner, special, movement_flags)
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	if(mutantpart_key)
 		transfer_mutantpart_info(organ_owner, special)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	return ..()
 
 /// Copies the organ's mutantpart_info to the owner's mutant_bodyparts

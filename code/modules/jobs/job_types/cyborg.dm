@@ -3,7 +3,7 @@
 	description = "Assist the crew, follow your laws, obey your AI."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
-	total_positions = 3	// SKYRAT EDIT: Original value (0)
+	total_positions = 3	// BUBBER EDIT: Original value (0)
 	spawn_positions = 3
 	supervisors = "your laws and the AI" //Nodrak
 	spawn_type = /mob/living/silicon/robot
@@ -30,7 +30,7 @@
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
 	if(player_client)
 		robot_spawn.set_gender(player_client)
-	//SKYRAT EDIT START
+	//BUBBER EDIT START
 	robot_spawn.set_connected_ai(select_priority_ai())
 	if(robot_spawn.connected_ai)
 		log_combat(robot_spawn.connected_ai, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.connected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
@@ -45,7 +45,7 @@
 		robot_spawn.show_laws()
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI))
 			robot_spawn.visible_message(self_message = span_alert("Securityborg has been enabled for this shift."))
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	if(!robot_spawn.connected_ai) // Only log if there's no Master AI
 		robot_spawn.log_current_laws()
 

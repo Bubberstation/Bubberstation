@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	return DNR_trait_overlay
 
 
-// SKYRAT NEUTRAL TRAITS
+// BUBBER NEUTRAL TRAITS
 /datum/quirk/excitable
 	name = "Excitable!"
 	desc = "Head patting makes your tail wag! You're very excitable! WAG WAG."

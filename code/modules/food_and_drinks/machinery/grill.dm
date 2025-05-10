@@ -3,7 +3,7 @@
 ///The fuel amount used to actually grill the item
 #define GRILL_FUELUSAGE_ACTIVE 5
 
-/obj/machinery/grill //SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/machinery/grill //BUBBER EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
 	name = "Barbeque grill"
 	desc = "Just like the old days. Smokes items over a light heat"
 	icon = 'icons/obj/machines/kitchen.dmi'

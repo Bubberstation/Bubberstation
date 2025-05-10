@@ -1,5 +1,5 @@
 /datum/reagent/blood
-	data = list("viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null, "monkey_origins" = FALSE) // SKYRAT EDIT - Rebalancing blood for Hemophages - ORIGINAL: data = list("viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
+	data = list("viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null, "monkey_origins" = FALSE) // BUBBER EDIT - Rebalancing blood for Hemophages - ORIGINAL: data = list("viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
 	name = "Blood"
 	color = "#C80000" // rgb: 200, 0, 0
 	metabolization_rate = 12.5 * REAGENTS_METABOLISM //fast rate so it disappears fast.
@@ -66,14 +66,14 @@
 			if(!(donor_blood_type.type_key() in recipient_blood_type.compatible_types))
 				exposed_carbon.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
-				/* SKYRAT EDIT - Rebalancing blood for Hemophages - ORIGINAL:
+				/* BUBBER EDIT - Rebalancing blood for Hemophages - ORIGINAL:
 				exposed_carbon.blood_volume = min(exposed_carbon.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
 				*/ // ORIGINAL END - SKYRAT EDIT:
 				// We do a max() here so that being injected with monkey blood when you're past 560u doesn't reset you back to 560
 				var/max_blood_volume = data["monkey_origins"] ? max(exposed_carbon.blood_volume, BLOOD_VOLUME_NORMAL) : BLOOD_VOLUME_MAXIMUM
 
 				exposed_carbon.blood_volume = min(exposed_carbon.blood_volume + round(reac_volume, 0.1), max_blood_volume)
-				// SKYRAT EDIT END
+				// BUBBER EDIT END
 
 			exposed_carbon.reagents.remove_reagent(type, reac_volume) // Because we don't want blood to just lie around in the patient's blood, makes no sense.
 
@@ -244,7 +244,7 @@
 	var/cooling_temperature = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS
 	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
-	evaporates = TRUE //SKYRAT EDIT ADDITION
+	evaporates = TRUE //BUBBER EDIT ADDITION
 /datum/glass_style/shot_glass/water
 	required_drink_type = /datum/reagent/water
 	icon_state = "shotglassclear"
@@ -820,7 +820,7 @@
 	if(current_cycle >= CYCLES_TO_TURN)
 		var/datum/species/species_type = race
 		//affected_mob.set_species(species_type) //ORIGINAL
-		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE) //SKYRAT EDIT CHANGE - CUSTOMIZATION
+		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE) //BUBBER EDIT CHANGE - CUSTOMIZATION
 		holder.del_reagent(type)
 		to_chat(affected_mob, span_warning("You've become \a [LOWER_TEXT(initial(species_type.name))]!"))
 		return
@@ -884,13 +884,13 @@
 		to_chat(affected_mob, span_warning("Your jelly shifts and morphs, turning you into another subspecies!"))
 		var/species_type = pick(subtypesof(/datum/species/jelly))
 		//affected_mob.set_species(species_type) //ORIGINAL
-		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE, TRUE) //SKYRAT EDIT CHANGE - CUSTOMIZATION
+		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE, TRUE) //BUBBER EDIT CHANGE - CUSTOMIZATION
 		holder.del_reagent(type)
 		return UPDATE_MOB_HEALTH
 	if(current_cycle >= CYCLES_TO_TURN) //overwrite since we want subtypes of jelly
 		var/datum/species/species_type = pick(subtypesof(race))
 		//affected_mob.set_species(species_type) //ORIGINAL
-		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE, TRUE) //SKYRAT EDIT CHANGE - CUSTOMIZATION
+		affected_mob.set_species(species_type, TRUE, FALSE, null, null, null, null, TRUE, TRUE) //BUBBER EDIT CHANGE - CUSTOMIZATION
 		holder.del_reagent(type)
 		to_chat(affected_mob, span_warning("You've become \a [initial(species_type.name)]!"))
 		return UPDATE_MOB_HEALTH

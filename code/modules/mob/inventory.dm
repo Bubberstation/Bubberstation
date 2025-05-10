@@ -498,7 +498,7 @@
  *
  * returns 0 if it cannot, 1 if successful
  */
-/mob/proc/equip_to_appropriate_slot(obj/item/W, qdel_on_fail = FALSE, indirect_action = FALSE, blacklist, initial) // SKYRAT EDIT CHANGE - ORIGINAL: /mob/proc/equip_to_appropriate_slot(obj/item/W, qdel_on_fail = FALSE, indirect_action = FALSE)
+/mob/proc/equip_to_appropriate_slot(obj/item/W, qdel_on_fail = FALSE, indirect_action = FALSE, blacklist, initial) // BUBBER EDIT CHANGE - ORIGINAL: /mob/proc/equip_to_appropriate_slot(obj/item/W, qdel_on_fail = FALSE, indirect_action = FALSE)
 	if(!istype(W))
 		return FALSE
 	var/slot_priority = W.slot_equipment_priority
@@ -515,13 +515,13 @@
 			ITEM_SLOT_DEX_STORAGE\
 		)
 
-	// SKYRAT EDIT ADDITION START - CUSTOMIZATION
+	// BUBBER EDIT ADDITION START - CUSTOMIZATION
 	if (blacklist)
 		slot_priority -= blacklist
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	for(var/slot in slot_priority)
-		if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action, initial = initial)) // SKYRAT EDIT CHANGE - ORIGINAL: if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action))
+		if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action, initial = initial)) // BUBBER EDIT CHANGE - ORIGINAL: if(equip_to_slot_if_possible(W, slot, disable_warning = TRUE, redraw_mob = TRUE, indirect_action = indirect_action))
 			return TRUE
 
 	if(qdel_on_fail)

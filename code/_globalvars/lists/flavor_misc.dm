@@ -254,12 +254,12 @@ GLOBAL_LIST_INIT(status_display_approved_pictures, list(
 	"lockdown",
 	"greenalert",
 	"bluealert",
-	"violetalert", // SKYRAT EDIT ADD - Alert Levels
-	"orangealert", // SKYRAT EDIT ADD - Alert Levels
-	"amberalert", // SKYRAT EDIT ADD - Alert Levels
+	"violetalert", // BUBBER EDIT ADD - Alert Levels
+	"orangealert", // BUBBER EDIT ADD - Alert Levels
+	"amberalert", // BUBBER EDIT ADD - Alert Levels
 	"redalert",
 	"deltaalert",
-	"gammaalert", // SKYRAT EDIT ADD - Alert Levels
+	"gammaalert", // BUBBER EDIT ADD - Alert Levels
 	"radiation",
 	"currentalert", //For automatic set of status display on current level
 ))

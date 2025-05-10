@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBER UI FILE
 import { BlockQuote, Box, NoticeBox, Section } from 'tgui-core/components';
 
 import { Window } from '../layouts';

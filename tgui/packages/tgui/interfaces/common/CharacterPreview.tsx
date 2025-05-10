@@ -1,16 +1,16 @@
 import { ByondUi } from 'tgui-core/components';
 
 export const CharacterPreview = (props: {
-  width?: string; // SKYRAT EDIT
+  width?: string; // BUBBER EDIT
   height: string;
   id: string;
 }) => {
-  // SKYRAT EDIT
+  // BUBBER EDIT
   const { width = '225px' } = props;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
   return (
     <ByondUi
-      width={width} // SKYRAT EDIT
+      width={width} // BUBBER EDIT
       height={props.height}
       params={{
         id: props.id,

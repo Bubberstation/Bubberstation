@@ -503,8 +503,8 @@
 
 	beaker_one.reagents.add_reagent(/datum/reagent/fluorosurfactant, 40)
 	beaker_two.reagents.add_reagent(/datum/reagent/water, 40)
-	beaker_one.reagents.add_reagent(/datum/reagent/space_cleaner, 20) // SKYRAT EDIT - Bump to 20 to make it work with cellulose
-	beaker_two.reagents.add_reagent(/datum/reagent/cellulose, 20) // SKYRAT EDIT - Cellulose for liquid puddle cleaning
+	beaker_one.reagents.add_reagent(/datum/reagent/space_cleaner, 20) // BUBBER EDIT - Bump to 20 to make it work with cellulose
+	beaker_two.reagents.add_reagent(/datum/reagent/cellulose, 20) // BUBBER EDIT - Cellulose for liquid puddle cleaning
 
 	beakers += beaker_one
 	beakers += beaker_two

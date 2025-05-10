@@ -99,4 +99,4 @@
 /obj/effect/turf_decal/trimline/red/real_red/filled/shrink_ccw
 	icon_state = "trimline_shrink_ccw"
 
-// Skyrat Edit: End
+// Bubber Edit: End

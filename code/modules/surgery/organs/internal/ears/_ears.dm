@@ -160,7 +160,7 @@
 	preference = "feature_human_ears"
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
-	//dna_block = DNA_EARS_BLOCK // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = DNA_EARS_BLOCK // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears
 
@@ -175,7 +175,7 @@
 	var/inner_layer = EXTERNAL_FRONT
 
 /datum/bodypart_overlay/mutant/cat_ears/get_global_feature_list()
-	return SSaccessories.sprite_accessories["ears"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.ears_list
+	return SSaccessories.sprite_accessories["ears"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.ears_list
 
 /datum/bodypart_overlay/mutant/cat_ears/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	var/mob/living/carbon/human/human = bodypart_owner.owner

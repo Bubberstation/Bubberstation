@@ -44,7 +44,7 @@
 	. += create_table_notices(list(
 		"name",
 		"job",
-		"is_robot", //SKYRAT EDIT ADDITION - Displaying robotic species Icon
+		"is_robot", //BUBBER EDIT ADDITION - Displaying robotic species Icon
 		"is_dnr", //BUBBERSTATION EDIT ADDITION - Displays DNR status
 		"life_status",
 		"suffocation",
@@ -66,7 +66,7 @@
 		var/list/entry = list()
 		entry["name"] = player_record["name"]
 		entry["job"] = player_record["assignment"]
-		entry["is_robot"] = player_record["is_robot"] //SKYRAT EDIT ADDITION - Displaying robotic species Icon
+		entry["is_robot"] = player_record["is_robot"] //BUBBER EDIT ADDITION - Displaying robotic species Icon
 		entry["life_status"] = player_record["life_status"]
 		entry["suffocation"] = player_record["oxydam"]
 		entry["toxin"] = player_record["toxdam"]
@@ -104,14 +104,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_HEAD_OF_SECURITY = 10,
 		JOB_WARDEN = 11,
 		JOB_SECURITY_OFFICER = 12,
-		/* SKYRAT EDIT REMOVAL - We need those slots for our own jobs, these jobs aren't on Skyrat anymore anyway.
+		/* BUBBER EDIT REMOVAL - We need those slots for our own jobs, these jobs aren't on Skyrat anymore anyway.
 		JOB_SECURITY_OFFICER_MEDICAL = 13,
 		JOB_SECURITY_OFFICER_ENGINEERING = 14,
 		JOB_SECURITY_OFFICER_SCIENCE = 15,
 		JOB_SECURITY_OFFICER_SUPPLY = 16,
 		*/
 		JOB_SECURITY_MEDIC = 13, // BUBBER EDIT ADDITION
-		JOB_CORRECTIONS_OFFICER = 14, // SKYRAT EDIT ADDITION
+		JOB_CORRECTIONS_OFFICER = 14, // BUBBER EDIT ADDITION
 		JOB_DETECTIVE = 15,
 		// 20-29: Medbay
 		JOB_CHIEF_MEDICAL_OFFICER = 20,
@@ -119,26 +119,26 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_MEDICAL_DOCTOR = 22,
 		JOB_PARAMEDIC = 23,
 		JOB_CORONER = 24,
-		JOB_ORDERLY = 25, // SKYRAT EDIT ADDITION
-		JOB_PSYCHOLOGIST = 26, // SKYRAT EDIT - ORIGINAL: JOB_PSYCHOLOGIST = 71,
+		JOB_ORDERLY = 25, // BUBBER EDIT ADDITION
+		JOB_PSYCHOLOGIST = 26, // BUBBER EDIT - ORIGINAL: JOB_PSYCHOLOGIST = 71,
 		// 30-39: Science
 		JOB_RESEARCH_DIRECTOR = 30,
 		JOB_SCIENTIST = 31,
 		JOB_ROBOTICIST = 32,
 		JOB_GENETICIST = 33,
-		JOB_SCIENCE_GUARD = 34, // SKYRAT EDIT ADDITION
+		JOB_SCIENCE_GUARD = 34, // BUBBER EDIT ADDITION
 		// 40-49: Engineering
 		JOB_CHIEF_ENGINEER = 40,
 		JOB_STATION_ENGINEER = 41,
 		JOB_ATMOSPHERIC_TECHNICIAN = 42,
-		JOB_ENGINEERING_GUARD = 43, // SKYRAT EDIT ADDITION
-		JOB_TELECOMMS_SPECIALIST = 44, // SKYRAT EDIT ADDITION
+		JOB_ENGINEERING_GUARD = 43, // BUBBER EDIT ADDITION
+		JOB_TELECOMMS_SPECIALIST = 44, // BUBBER EDIT ADDITION
 		// 50-59: Cargo
 		JOB_QUARTERMASTER = 50,
 		JOB_SHAFT_MINER = 51,
 		JOB_CARGO_TECHNICIAN = 52,
 		JOB_BITRUNNER = 53,
-		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
+		JOB_CUSTOMS_AGENT = 54, // BUBBER EDIT ADDITION
 		JOB_BLACKSMITH = 55,	// Bubber edit Addition!
 		// 60+: Service
 		JOB_HEAD_OF_PERSONNEL = 60,
@@ -152,8 +152,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_MIME = 68,
 		JOB_JANITOR = 69,
 		JOB_LAWYER = 71,
-		JOB_BARBER = 74, // SKYRAT EDIT ADDITION
-		JOB_BOUNCER = 73, // SKYRAT EDIT ADDITION
+		JOB_BARBER = 74, // BUBBER EDIT ADDITION
+		JOB_BOUNCER = 73, // BUBBER EDIT ADDITION
 		JOB_PSYCHOLOGIST = 72,
 		// 200-229: Centcom
 		JOB_CENTCOM_ADMIRAL = 200,
@@ -172,8 +172,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_ERT_CHAPLAIN = 225,
 		JOB_ERT_JANITOR = 226,
 		JOB_ERT_DEATHSQUAD = 227,
-		JOB_NT_REP = 230, // SKYRAT EDIT ADDITION
-		JOB_BLUESHIELD = 231, // SKYRAT EDIT ADDITION
+		JOB_NT_REP = 230, // BUBBER EDIT ADDITION
+		JOB_BLUESHIELD = 231, // BUBBER EDIT ADDITION
 
 		// ANYTHING ELSE = UNKNOWN_JOB_ID, Unknowns/custom jobs will appear after civilians, and before assistants
 		JOB_ASSISTANT = 999,
@@ -278,10 +278,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
 
-		// SKYRAT EDIT BEGIN: Checking for robotic race
+		// BUBBER EDIT BEGIN: Checking for robotic race
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		// Broken sensors show garbage data
 		if (uniform?.has_sensor == BROKEN_SENSORS) // BUBBER EDIT CHANGE - NANITES - Original: if (uniform.has_sensor == BROKEN_SENSORS)

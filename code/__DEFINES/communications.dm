@@ -4,7 +4,7 @@
 /// The extended time an admin has to cancel a cross-sector message if they pass the filter, for instance
 #define EXTENDED_CROSS_SECTOR_CANCEL_TIME (30 SECONDS)
 
-// SKYRAT EDIT REMOVAL BEGIN - modularized into code/__DEFINES/~skyrat_defines/security_alerts.dm
+// BUBBER EDIT REMOVAL BEGIN - modularized into code/__DEFINES/~skyrat_defines/security_alerts.dm
 /*
 //Security levels affect the escape shuttle timer
 /// Security level is green. (no threats)
@@ -16,4 +16,4 @@
 /// Security level is delta. (station destruction immiment)
 #define SEC_LEVEL_DELTA 3
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END

@@ -137,7 +137,7 @@
 		/obj/projectile/magic/antimagic,
 		/obj/projectile/magic/arcane_barrage,
 		/obj/projectile/magic/bounty,
-		///obj/projectile/magic/change, //SKYRAT EDIT REMOVAL
+		///obj/projectile/magic/change, //BUBBER EDIT REMOVAL
 		/obj/projectile/magic/death,
 		/obj/projectile/magic/door,
 		/obj/projectile/magic/fetch,

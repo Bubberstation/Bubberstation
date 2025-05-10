@@ -22,7 +22,7 @@
 	mutantlungs = null
 
 	species_language_holder = /datum/language_holder/shadowpeople
-	examine_limb_id = SPECIES_SHADOW // SKYRAT EDIT: Fixing Shadowpeople
+	examine_limb_id = SPECIES_SHADOW // BUBBER EDIT: Fixing Shadowpeople
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/shadow,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/shadow,

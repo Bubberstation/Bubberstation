@@ -43,15 +43,15 @@
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly,
 	)
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
-	var/datum/action/innate/alter_form/alter_form //SKYRAT EDIT ADDITION - CUSTOMIZATION
+	var/datum/action/innate/alter_form/alter_form //BUBBER EDIT ADDITION - CUSTOMIZATION
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/new_jellyperson, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	if(ishuman(new_jellyperson))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(new_jellyperson)
-		alter_form = new //SKYRAT EDIT CUSTOMIZATION
-		alter_form.Grant(new_jellyperson) //SKYRAT EDIT CUSTOMIZATION
+		alter_form = new //BUBBER EDIT CUSTOMIZATION
+		alter_form.Grant(new_jellyperson) //BUBBER EDIT CUSTOMIZATION
 
 	new_jellyperson.AddElement(/datum/element/soft_landing)
 	RegisterSignal(new_jellyperson, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(slime_blood))
@@ -60,8 +60,8 @@
 	if(regenerate_limbs)
 		regenerate_limbs.Remove(former_jellyperson)
 
-	if(alter_form) //SKYRAT EDIT CUSTOMIZATION
-		alter_form.Remove(former_jellyperson) //SKYRAT EDIT CUSTOMIZATION
+	if(alter_form) //BUBBER EDIT CUSTOMIZATION
+		alter_form.Remove(former_jellyperson) //BUBBER EDIT CUSTOMIZATION
 
 	former_jellyperson.RemoveElement(/datum/element/soft_landing)
 	UnregisterSignal(former_jellyperson, COMSIG_HUMAN_ON_HANDLE_BLOOD)

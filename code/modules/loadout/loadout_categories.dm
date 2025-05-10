@@ -40,7 +40,7 @@
 		if(found_type == initial(found_type.abstract_type))
 			continue
 
-		if(!initial(found_type.item_path)) // SKYRAT EDIT ADDITION
+		if(!initial(found_type.item_path)) // BUBBER EDIT ADDITION
 			continue
 
 		if(!ispath(initial(found_type.item_path), /obj/item))

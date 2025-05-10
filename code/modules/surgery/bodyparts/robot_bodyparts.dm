@@ -277,7 +277,7 @@
 
 	if(all_robotic)
 		owner.add_traits(list(
-			/* SKYRAT EDIT REMOVAL BEGIN - Synths are not immune to temperature
+			/* BUBBER EDIT REMOVAL BEGIN - Synths are not immune to temperature
 			TRAIT_RESISTCOLD,
 			TRAIT_RESISTHEAT,
 			SKYRAT EDIT REMOVAL END */
@@ -286,7 +286,7 @@
 			), AUGMENTATION_TRAIT)
 	else
 		owner.remove_traits(list(
-			/* SKYRAT EDIT REMOVAL BEGIN - Synths are not immune to temperature
+			/* BUBBER EDIT REMOVAL BEGIN - Synths are not immune to temperature
 			TRAIT_RESISTCOLD,
 			TRAIT_RESISTHEAT,
 			SKYRAT EDIT REMOVAL END */

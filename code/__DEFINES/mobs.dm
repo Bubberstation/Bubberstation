@@ -130,7 +130,7 @@
 #define BODYTYPE_PLANT (1<<6)
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
-// SKYRAT EDIT ADDITION
+// BUBBER EDIT ADDITION
 ///The limb fits a modular custom shape
 #define BODYSHAPE_CUSTOM (1<<9)
 ///The limb fits a taur body
@@ -139,7 +139,7 @@
 #define BODYSHAPE_HIDE_SHOES (1<<11)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
 #define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<12)
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 
 // Bodyshape defines for how things can be worn, i.e., what "shape" the mob sprite is
@@ -444,14 +444,14 @@
 #define OFFSET_SUIT "suit"
 #define OFFSET_NECK "neck"
 #define OFFSET_HELD "held"
-#define OFFSET_ACCESSORY "accessory" // Skyrat edit - addition
-#define OFFSET_HAIR "hair" // Skyrat edit - addition - Akulas
+#define OFFSET_ACCESSORY "accessory" // Bubber edit - addition
+#define OFFSET_HAIR "hair" // Bubber edit - addition - Akulas
 
 //MINOR TWEAKS/MISC
 //#define AGE_MIN 17	//youngest a character can be //ORIGINAL
-#define AGE_MIN	18	//youngest a character can be //SKYRAT EDIT CHANGE - age
-#define AGE_MAX 100 //oldest a character can be //SKYRAT EDIT CHANGE - Increase max character age to 100 - ORIGINAL: #define AGE_MAX 85 //oldest a character can be
-#define AGE_CHRONO_MAX 9999 //SKYRAT EDIT ADDITION - Chronological age
+#define AGE_MIN	18	//youngest a character can be //BUBBER EDIT CHANGE - age
+#define AGE_MAX 100 //oldest a character can be //BUBBER EDIT CHANGE - Increase max character age to 100 - ORIGINAL: #define AGE_MAX 85 //oldest a character can be
+#define AGE_CHRONO_MAX 9999 //BUBBER EDIT ADDITION - Chronological age
 #define AGE_MINOR 20 //legal age of space drinking and smoking
 #define WIZARD_AGE_MIN 30 //youngest a wizard can be
 #define APPRENTICE_AGE_MIN 29 //youngest an apprentice can be
@@ -699,36 +699,36 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 /// Total number of layers for mob overlays
 /// KEEP THIS UP-TO-DATE OR SHIT WILL BREAK
 /// Also consider updating layers_to_offset
-#define TOTAL_LAYERS 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
+#define TOTAL_LAYERS 42 // BUBBER EDIT CHANGE - ORIGINAL: 36
 /// Mutations layer - Tk headglows, cold resistance glow, etc
-#define MUTATIONS_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
+#define MUTATIONS_LAYER 42 // BUBBER EDIT CHANGE - ORIGINAL: 36
 /// Mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODY_BEHIND_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 35
+#define BODY_BEHIND_LAYER 41 // BUBBER EDIT CHANGE - ORIGINAL: 35
 /// Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST
-#define BODYPARTS_LOW_LAYER 40 // SKYRAT EDIT CHANGE - ORIGINAL: 34
+#define BODYPARTS_LOW_LAYER 40 // BUBBER EDIT CHANGE - ORIGINAL: 34
 /// Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER
-#define BODYPARTS_LAYER 39 // SKYRAT EDIT CHANGE - ORIGINAL: 33
+#define BODYPARTS_LAYER 39 // BUBBER EDIT CHANGE - ORIGINAL: 33
 /// Mutantrace features (snout, body markings) that must appear above the body parts
-#define BODY_ADJ_LAYER 38 // SKYRAT EDIT CHANGE - ORIGINAL: 32
+#define BODY_ADJ_LAYER 38 // BUBBER EDIT CHANGE - ORIGINAL: 32
 /// Underwear, undershirts, socks, eyes, lips(makeup)
-#define BODY_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 31
+#define BODY_LAYER 37 // BUBBER EDIT CHANGE - ORIGINAL: 31
 /// Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define FRONT_MUTATIONS_LAYER 36 // SKYRAT EDIT CHANGE - ORIGINAL: 30
+#define FRONT_MUTATIONS_LAYER 36 // BUBBER EDIT CHANGE - ORIGINAL: 30
 /// Damage indicators (cuts and burns)
-#define DAMAGE_LAYER 35 // SKYRAT EDIT CHANGE - ORIGINAL: 29
-// SKYRAT EDIT ADDITION START
+#define DAMAGE_LAYER 35 // BUBBER EDIT CHANGE - ORIGINAL: 29
+// BUBBER EDIT ADDITION START
 /// This layer is used for things that shouldn't be over clothes, but should be over mutations
 #define BODY_FRONT_UNDER_CLOTHES 34
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 /// Jumpsuit clothing layer
-#define UNIFORM_LAYER 33 // SKYRAT EDIT CHANGE - ORIGINAL: 27
-// SKYRAT EDIT ADDITION BEGIN - cursed layers under clothing
+#define UNIFORM_LAYER 33 // BUBBER EDIT CHANGE - ORIGINAL: 27
+// BUBBER EDIT ADDITION BEGIN - cursed layers under clothing
 #define ANUS_LAYER 32
 #define VAGINA_LAYER 31
 #define PENIS_LAYER 30
 #define NIPPLES_LAYER 29
 #define BANDAGE_LAYER 28
-//SKYRAT EDIT ADDITION END
+//BUBBER EDIT ADDITION END
 /// ID card layer
 #define ID_LAYER 27
 /// ID card layer (might be deprecated)
@@ -838,14 +838,14 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define EXTERNAL_ADJACENT (1 << 2)
 /// Draws organ on the BODY_BEHIND_LAYER
 #define EXTERNAL_BEHIND (1 << 3)
-// SKYRAT EDIT ADDITION - Customization
+// BUBBER EDIT ADDITION - Customization
 /// Draws organ on the BODY_FRONT_UNDER_CLOTHES
 #define EXTERNAL_FRONT_UNDER_CLOTHES (1 << 4)
 /// Draws organ on the ABOVE_BODY_FRONT_HEAD_LAYER
 #define EXTERNAL_FRONT_OVER (1 << 5)
 /// Draws organ on the HEAD_LAYER, for things that need to be above hair but below hats.
 #define EXTERNAL_FRONT_ABOVE_HAIR (1 << 6)
-// SKYRAT EDIT END (not touching what comes next because we don't actually have to (nor want to))
+// BUBBER EDIT END (not touching what comes next because we don't actually have to (nor want to))
 /// Draws organ on all EXTERNAL layers
 #define ALL_EXTERNAL_OVERLAYS EXTERNAL_FRONT | EXTERNAL_ADJACENT | EXTERNAL_BEHIND
 

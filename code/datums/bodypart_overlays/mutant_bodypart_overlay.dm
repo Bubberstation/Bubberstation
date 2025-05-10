@@ -35,15 +35,15 @@
 	if(imprint_on_next_insertion) //We only want this set *once*
 		var/feature_name = receiver.dna.features[feature_key]
 		if (isnull(feature_name))
-		/* SKYRAT EDIT - Customization - ORIGINAL:
+		/* BUBBER EDIT - Customization - ORIGINAL:
 			feature_name = receiver.dna.species.mutant_organs[parent.type]
 		set_appearance_from_name(feature_name)
-		*/ // SKYRAT EDIT START
+		*/ // BUBBER EDIT START
 			if(!set_appearance_from_dna(receiver.dna))
 				set_appearance_from_name(receiver.dna.species.mutant_organs[parent.type] || pick(get_global_feature_list()))
 		else
 			set_appearance_from_name(feature_name)
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		imprint_on_next_insertion = FALSE
 
 /datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
@@ -131,13 +131,13 @@
 /datum/bodypart_overlay/mutant/proc/inherit_color(obj/item/bodypart/bodypart_owner, force)
 	if(isnull(bodypart_owner))
 		draw_color = null
-		alpha = 255 // SKYRAT ADDITION - Mutant bodyparts transparency are based on limb transparency
+		alpha = 255 // BUBBER ADDITION - Mutant bodyparts transparency are based on limb transparency
 		return TRUE
 
 	if(draw_color && !force)
 		return FALSE
 
-	alpha = bodypart_owner.alpha // SKYRAT ADDITION - Mutant bodyparts transparency are based on limb transparency
+	alpha = bodypart_owner.alpha // BUBBER ADDITION - Mutant bodyparts transparency are based on limb transparency
 	switch(color_source)
 		if(ORGAN_COLOR_OVERRIDE)
 			draw_color = override_color(bodypart_owner)

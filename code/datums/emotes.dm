@@ -119,7 +119,7 @@
 	var/is_visual = emote_type & EMOTE_VISIBLE
 	var/is_audible = emote_type & EMOTE_AUDIBLE
 	var/additional_message_flags = get_message_flags(intentional)
-	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // SKYRAT EDIT ADDITION
+	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // BUBBER EDIT ADDITION
 
 	// Emote doesn't get printed to chat, runechat only
 	if(emote_type & EMOTE_RUNECHAT)
@@ -131,10 +131,10 @@
 					continue
 				if(is_visual && viewer.is_blind())
 					continue
-			// SKYRAT EDIT BEGIN - Pref checked emotes
+			// BUBBER EDIT BEGIN - Pref checked emotes
 			if(!pref_check_emote(viewer))
 				continue
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
 					speaker = user,
@@ -157,10 +157,10 @@
 	// The emote has some important information, and should always be shown to the user
 	else if(is_important)
 		for(var/mob/viewer as anything in viewers(user))
-			// SKYRAT EDIT BEGIN - Pref checked emotes
+			// BUBBER EDIT BEGIN - Pref checked emotes
 			if(!pref_check_emote(viewer))
 				continue
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 			to_chat(viewer, span_emote("<b>[user]</b> [msg]"))
 			if(user.runechat_prefs_check(viewer, EMOTE_MESSAGE))
 				viewer.create_chat_message(
@@ -176,8 +176,8 @@
 			deaf_message = span_emote("You see how <b>[user]</b> [msg]"),
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
-			separation = space, // SKYRAT EDIT ADDITION
-			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
+			separation = space, // BUBBER EDIT ADDITION
+			pref_to_check = pref_to_check // BUBBER EDIT ADDITION - Pref checked emotes
 		)
 	// Emote is entirely audible, no visible component
 	else if(is_audible)
@@ -185,8 +185,8 @@
 			message = msg,
 			self_message = msg,
 			audible_message_flags = EMOTE_MESSAGE|additional_message_flags,
-			separation = space, // SKYRAT EDIT ADDITION
-			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
+			separation = space, // BUBBER EDIT ADDITION
+			pref_to_check = pref_to_check // BUBBER EDIT ADDITION - Pref checked emotes
 		)
 	// Emote is entirely visible, no audible component
 	else if(is_visual)
@@ -194,13 +194,13 @@
 			message = msg,
 			self_message = msg,
 			visible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
-			separation = space, // SKYRAT EDIT ADDITION
-			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
+			separation = space, // BUBBER EDIT ADDITION
+			pref_to_check = pref_to_check // BUBBER EDIT ADDITION - Pref checked emotes
 		)
 	else
 		CRASH("Emote [type] has no valid emote type set!")
 
-	// SKYRAT EDIT -- BEGIN -- ADDITION -- AI QOL - RELAY EMOTES OVER HOLOPADS
+	// BUBBER EDIT -- BEGIN -- ADDITION -- AI QOL - RELAY EMOTES OVER HOLOPADS
 	var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 	if(hologram)
 		if(is_important)
@@ -233,19 +233,19 @@
 				separation = space,
 				pref_to_check = pref_to_check,
 			)
-	// SKYRAT EDIT -- END
+	// BUBBER EDIT -- END
 
 	if(!isnull(user.client))
-		var/dchatmsg = "<b>[user]</b>[space][msg]" // SKYRAT EDIT - Better emotes - Original: var/dchatmsg = "<b>[user]</b> [msg]"
+		var/dchatmsg = "<b>[user]</b>[space][msg]" // BUBBER EDIT - Better emotes - Original: var/dchatmsg = "<b>[user]</b> [msg]"
 		for(var/mob/ghost as anything in GLOB.dead_mob_list - viewers(get_turf(user)))
 			if(isnull(ghost.client) || isnewplayer(ghost))
 				continue
 			if(!(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT))
 				continue
-			// SKYRAT EDIT BEGIN - Pref checked emotes
+			// BUBBER EDIT BEGIN - Pref checked emotes
 			if(!pref_check_emote(ghost))
 				continue
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 			to_chat(ghost, span_emote("[FOLLOW_LINK(ghost, user)] [dchatmsg]"))
 
 	return
@@ -407,14 +407,14 @@
 	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))
 		return FALSE
 
-	//SKYRAT EDIT BEGIN
+	//BUBBER EDIT BEGIN
 	if(allowed_species && ishuman(user))
 		var/mob/living/carbon/human/sender = user
 		if(sender.dna.species.type in allowed_species)
 			return TRUE
 		else
 			return FALSE
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	return TRUE
 
 /**

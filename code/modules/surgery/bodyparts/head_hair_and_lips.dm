@@ -54,7 +54,7 @@
 	lip_style = human_head_owner.lip_style
 	lip_color = human_head_owner.lip_color
 	hairstyle = human_head_owner.hairstyle
-	hair_alpha = human_head_owner.hair_alpha ? human_head_owner.hair_alpha : owner_species.hair_alpha // SKYRAT EDIT - Customization - Hair alpha - ORIGINAL: hair_alpha = owner_species.hair_alpha
+	hair_alpha = human_head_owner.hair_alpha ? human_head_owner.hair_alpha : owner_species.hair_alpha // BUBBER EDIT - Customization - Hair alpha - ORIGINAL: hair_alpha = owner_species.hair_alpha
 	hair_color = human_head_owner.hair_color
 	facial_hairstyle = human_head_owner.facial_hairstyle
 	facial_hair_alpha = owner_species.facial_hair_alpha
@@ -123,11 +123,11 @@
 			for(var/image/hair_overlay as anything in all_hair_overlays)
 				hair_overlay.alpha = hair_alpha
 				hair_overlay.pixel_z = hair_sprite_accessory.y_offset
-				// SKYRAT EDIT ADDITION - Species hair offset
+				// BUBBER EDIT ADDITION - Species hair offset
 				if(LAZYFIND(owner?.dna?.species?.offset_features, OFFSET_HAIR))
 					hair_overlay.pixel_w += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
 					hair_overlay.pixel_z += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
-				// SKYRAT EDIT ADDITION END
+				// BUBBER EDIT ADDITION END
 				//Emissive blocker
 				if(blocks_emissive != EMISSIVE_BLOCK_NONE)
 					hair_overlay.overlays += emissive_blocker(hair_overlay.icon, hair_overlay.icon_state, location, alpha = hair_alpha)
@@ -140,11 +140,11 @@
 					var/hair_gradient_color = gradient_colors[GRADIENT_HAIR_KEY]
 					var/image/hair_gradient_overlay = get_gradient_overlay(base_icon, hair_overlay.layer, SSaccessories.hair_gradients_list[hair_gradient_style], hair_gradient_color)
 					hair_gradient_overlay.pixel_z = hair_sprite_accessory.y_offset
-					// SKYRAT EDIT ADDITION - Species hair offset
+					// BUBBER EDIT ADDITION - Species hair offset
 					if(LAZYFIND(owner?.dna?.species?.offset_features, OFFSET_HAIR))
 						hair_gradient_overlay.pixel_w += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_X]
 						hair_gradient_overlay.pixel_z += owner.dna.species.offset_features[OFFSET_HAIR][INDEX_Y]
-					// SKYRAT EDIT ADDITION END
+					// BUBBER EDIT ADDITION END
 					. += hair_gradient_overlay
 
 	if(show_debrained && (head_flags & HEAD_DEBRAIN))

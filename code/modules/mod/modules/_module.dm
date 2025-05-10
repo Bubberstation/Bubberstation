@@ -145,17 +145,17 @@
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
 		balloon_alert(mod.wearer, "on cooldown!")
 		return FALSE
-	if(((!mod.active || mod.activating) && !(allow_flags & MODULE_ALLOW_INACTIVE)) || !mod.get_charge()) // SKYRAT EDIT ADDITION: INACTIVE USE
+	if(((!mod.active || mod.activating) && !(allow_flags & MODULE_ALLOW_INACTIVE)) || !mod.get_charge()) // BUBBER EDIT ADDITION: INACTIVE USE
 		balloon_alert(mod.wearer, "unpowered!")
 		return FALSE
 
-	// SKYRAT EDIT START - No using modules when not all parts are deployed.
+	// BUBBER EDIT START - No using modules when not all parts are deployed.
 	if(!(allow_flags & MODULE_ALLOW_INACTIVE))
 		for(var/obj/item/part as anything in mod.get_parts())
 			if(part.loc == mod)
 				balloon_alert(mod.wearer, "deploy all parts first!")
 				return FALSE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		//specifically a to_chat because the user is phased out.
 		to_chat(mod.wearer, span_warning("You cannot activate this right now."))

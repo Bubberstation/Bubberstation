@@ -257,7 +257,7 @@
 			return ", must be made on a tram!"
 
 	//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
-	//SKYRAT EDIT START: Two Skills (Construction)
+	//BUBBER EDIT START: Two Skills (Construction)
 	var/mob/crafter_mob
 	var/skill_modifier = 1
 	if(ismob(crafter))
@@ -283,7 +283,7 @@
 				qdel(thing)
 	if(crafter_mob)
 		crafter_mob.mind.adjust_experience(/datum/skill/construction, 5)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	var/datum/reagents/holder = locate() in parts
 	if(holder) //transfer reagents from ingredients to result
 		if(!ispath(recipe.result, /obj/item/reagent_containers) && result.reagents)

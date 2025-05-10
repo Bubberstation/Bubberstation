@@ -14,7 +14,7 @@
 		"Suicide",
 		"Perform a dramatic suicide in game",
 		/* pixel_offset = */ -105,
-		// CALLBACK(src, PROC_REF(leave_suicide)), // SKYRAT EDIT REMOVAL
+		// CALLBACK(src, PROC_REF(leave_suicide)), // BUBBER EDIT REMOVAL
 		/* button_overlay = */ dead_clown,
 	))
 
@@ -67,7 +67,7 @@
 	var/mob/living/living_user = client?.mob
 	living_user?.ghost()
 
-//SKYRAT EDIT REMOVAL BEGIN
+//BUBBER EDIT REMOVAL BEGIN
 /*
 /datum/escape_menu/proc/leave_suicide()
 	PRIVATE_PROC(TRUE)
@@ -76,7 +76,7 @@
 	var/mob/living/carbon/human/human_user = client?.mob
 	human_user?.suicide()
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 /atom/movable/screen/escape_menu/leave_body_button
 	icon = 'icons/hud/escape_menu_leave_body.dmi'

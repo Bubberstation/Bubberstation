@@ -27,7 +27,7 @@
 	ninja.PossessByPlayer(chosen_one.key)
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 	spawned_mobs += ninja
-// SKYRAT EDIT ADDITION BEGIN: Preference Ninjas
+// BUBBER EDIT ADDITION BEGIN: Preference Ninjas
 	var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
 	var/codename
 	if(loadme == "Yes!")
@@ -45,7 +45,7 @@
 	var/obj/item/mod/module/dna_lock/reinforced/ninja_dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in ninjamod.contents
 	ninja_dna_lock.on_use()// BUBBER EDIT END
 
-// SKYRAT EDIT ADDITION END: Preference Ninjas
+// BUBBER EDIT ADDITION END: Preference Ninjas
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")
 	ninja.log_message("was spawned as a ninja by an event.", LOG_GAME)
 
@@ -56,9 +56,9 @@
 
 /proc/create_space_ninja(spawn_loc)
 	var/mob/living/carbon/human/new_ninja = new(spawn_loc)
-//	new_ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES)) //SKYRAT EDIT: Player Prefs Ninjas
+//	new_ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES)) //BUBBER EDIT: Player Prefs Ninjas
 	var/new_name = "[pick(GLOB.ninja_titles)] [pick(GLOB.ninja_names)]"
 	new_ninja.name = new_name
 	new_ninja.real_name = new_name
-//	new_ninja.dna.update_dna_identity()  //SKYRAT EDIT: Player Prefs Ninjas
+//	new_ninja.dna.update_dna_identity()  //BUBBER EDIT: Player Prefs Ninjas
 	return new_ninja

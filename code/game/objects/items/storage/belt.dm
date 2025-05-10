@@ -60,18 +60,18 @@
 	SSwardrobe.provide_type(/obj/item/multitool, src)
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src) //SKYRAT EDIT - Ranged Analyzer for CE - ORIGINAL: SSwardrobe.provide_type(/obj/item/analyzer, src)
+	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src) //BUBBER EDIT - Ranged Analyzer for CE - ORIGINAL: SSwardrobe.provide_type(/obj/item/analyzer, src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/chief/full/get_types_to_preload()
 	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
 	to_preload += /obj/item/screwdriver/power
 	to_preload += /obj/item/crowbar/power
-	to_preload += /obj/item/weldingtool/electric // SKYRAT EDIT - Electric welder
+	to_preload += /obj/item/weldingtool/electric // BUBBER EDIT - Electric welder
 	to_preload += /obj/item/multitool
 	to_preload += /obj/item/stack/cable_coil
 	to_preload += /obj/item/extinguisher/mini
-	to_preload += /obj/item/analyzer/ranged // SKYRAT EDIT - Ranged Analyzer for CE
+	to_preload += /obj/item/analyzer/ranged // BUBBER EDIT - Ranged Analyzer for CE
 	return to_preload
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -100,7 +100,7 @@
 /obj/item/storage/belt/utility/full/powertools/PopulateContents()
 	new /obj/item/screwdriver/power(src)
 	new /obj/item/crowbar/power(src)
-	new /obj/item/weldingtool/electric(src) // SKYRAT EDIT - original: new /obj/item/weldingtool/experimental(src)
+	new /obj/item/weldingtool/electric(src) // BUBBER EDIT - original: new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool(src)
 	new /obj/item/holosign_creator/atmos(src)
 	new /obj/item/extinguisher/mini(src)
@@ -259,7 +259,7 @@
 	inhand_icon_state = "security"//Could likely use a better one.
 	worn_icon_state = "security"
 	content_overlays = TRUE
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Basic Security" = list(
@@ -275,7 +275,7 @@
 			RESKIN_WORN_ICON_STATE = "peacekeeperbelt"
 		)
 	)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	storage_type = /datum/storage/security_belt
 
 /obj/item/storage/belt/security/full/PopulateContents()
@@ -485,7 +485,7 @@
 /obj/item/storage/belt/wands/full/PopulateContents()
 	new /obj/item/gun/magic/wand/death(src)
 	new /obj/item/gun/magic/wand/resurrection(src)
-	new /obj/item/gun/magic/wand/fireball(src) //SKYRAT EDIT - Trades polymorph for second fireball
+	new /obj/item/gun/magic/wand/fireball(src) //BUBBER EDIT - Trades polymorph for second fireball
 	new /obj/item/gun/magic/wand/teleport(src)
 	new /obj/item/gun/magic/wand/door(src)
 	new /obj/item/gun/magic/wand/fireball(src)

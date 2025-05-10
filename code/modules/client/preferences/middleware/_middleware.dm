@@ -51,14 +51,14 @@
 /datum/preference_middleware/proc/on_new_character(mob/user)
 	return
 
-// SKYRAT EDIT
+// BUBBER EDIT
 /// Called after every update_preference, returns TRUE if this handled it.
 /datum/preference_middleware/proc/post_set_preference(mob/user, preference, value)
 	return
 
 /// Called when applying preferences to the mob.
-/datum/preference_middleware/proc/apply_to_human(mob/living/carbon/human/target, datum/preferences/preferences, visuals_only = FALSE) //SKYRAT EDIT CHANGE
+/datum/preference_middleware/proc/apply_to_human(mob/living/carbon/human/target, datum/preferences/preferences, visuals_only = FALSE) //BUBBER EDIT CHANGE
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
 	return
-//SKYRAT EDIT END
+//BUBBER EDIT END

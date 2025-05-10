@@ -12,7 +12,7 @@ import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
 import {
   Objective,
   ObjectivePrintout,
@@ -91,11 +91,11 @@ const IntroductionSection = (props) => {
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
-            {/* SKYRAT EDIT ADDITION START */}
+            {/* BUBBER EDIT ADDITION START */}
             <Stack.Item>
               <Rules />
             </Stack.Item>
-            {/* SKYRAT EDIT ADDITION END */}
+            {/* BUBBER EDIT ADDITION END */}
             <Stack.Divider />
             <GuideSection />
             <Stack.Divider />
@@ -107,8 +107,8 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? 'Your OPFOR objectives are your primary ones, but in order to ascend, you have these tasks to fulfill' /* SKYRAT EDIT CHANGE - opfor objectives */
-                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
+                      ? 'Your OPFOR objectives are your primary ones, but in order to ascend, you have these tasks to fulfill' /* BUBBER EDIT CHANGE - opfor objectives */
+                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* BUBBER EDIT CHANGE - opfor objectives  */
                   }
                   objectives={objectives}
                   objectiveFollowup={

@@ -50,12 +50,12 @@
 /obj/item/gun/syringe/recharge_newshot()
 	if(!syringes.len)
 		return
-	//SKYRAT EDIT SMARTDARTS
+	//BUBBER EDIT SMARTDARTS
 	if(istype(syringes[length(syringes)], /obj/item/reagent_containers/syringe/smartdart))
 		chambered.newshot(/obj/projectile/bullet/dart/syringe/dart)
 	else
 		chambered.newshot()
-	//SKYRAT EDIT SMARTDARTS END
+	//BUBBER EDIT SMARTDARTS END
 
 /obj/item/gun/syringe/can_shoot()
 	return syringes.len

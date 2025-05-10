@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_AI_DETECT = new /datum/atom_hud/ai_detector(),
 	DATA_HUD_FAN = new /datum/atom_hud/data/human/fan_hud(),
 	DATA_HUD_MALF_APC = new /datum/atom_hud/data/malf_apc(),
-	DATA_HUD_PERMIT = new /datum/atom_hud/data/human/permit(), // SKYRAT EDIT ADDITION
+	DATA_HUD_PERMIT = new /datum/atom_hud/data/human/permit(), // BUBBER EDIT ADDITION
 ))
 
 GLOBAL_LIST_INIT(trait_to_hud, list(
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 	TRAIT_MEDICAL_HUD = DATA_HUD_MEDICAL_ADVANCED,
 	TRAIT_DIAGNOSTIC_HUD = DATA_HUD_DIAGNOSTIC,
 	TRAIT_BOT_PATH_HUD = DATA_HUD_BOT_PATH,
-	TRAIT_PERMIT_HUD = DATA_HUD_PERMIT, // SKYRAT EDIT ADDITION
+	TRAIT_PERMIT_HUD = DATA_HUD_PERMIT, // BUBBER EDIT ADDITION
 	TRAIT_BASIC_SECURITY_HUD = DATA_HUD_SECURITY_BASIC // BUBBER EDIT ADDITION
 ))
 

@@ -32,16 +32,16 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/undershirt_m //! stores only undershirt name
 	var/list/undershirt_f //! stores only undershirt name
 
-	// SKYRAT EDIT ADDITION START - Underwear/bra split
+	// BUBBER EDIT ADDITION START - Underwear/bra split
 	var/list/bra_list
 	var/list/bra_m
 	var/list/bra_f
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	//Socks
 	var/list/socks_list //! stores /datum/sprite_accessory/socks indexed by name
 
-	/* SKYRAT EDIT REMOVAL START - Customization - Moved to sprite_accessories var
+	/* BUBBER EDIT REMOVAL START - Customization - Moved to sprite_accessories var
 	//Lizard Bits (all datum lists indexed by name)
 	var/list/lizard_markings_list
 	var/list/snouts_list
@@ -61,11 +61,11 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/wings_open_list
 	var/list/moth_wings_list
 	var/list/moth_antennae_list
-	*/ //SKYRAT EDIT REMOVAL END
+	*/ //BUBBER EDIT REMOVAL END
 	var/list/moth_markings_list
 	var/list/pod_hair_list
 
-	// SKYRAT EDIT ADDITION START - Customization
+	// BUBBER EDIT ADDITION START - Customization
 	var/list/lizard_markings_list
 	var/list/tails_list_monkey
 	var/list/tails_list_xeno
@@ -83,13 +83,13 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/dna_total_feature_blocks = DNA_MANDATORY_COLOR_BLOCKS
 	var/list/dna_mutant_bodypart_blocks = list()
 	var/list/features_block_lengths = list()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /datum/controller/subsystem/accessories/PreInit() // this stuff NEEDS to be set up before GLOB for preferences and stuff to work so this must go here. sorry
 	setup_lists()
 	init_hair_gradients()
 	init_hair_masks()
-	make_sprite_accessory_references() // SKYRAT EDIT ADDITION - Customization
+	make_sprite_accessory_references() // BUBBER EDIT ADDITION - Customization
 
 /// Sets up all of the lists for later utilization in the round and building sprites.
 /// In an ideal world we could tack everything that just needed `DEFAULT_SPRITE_LIST` into static variables on the top, but due to the initialization order
@@ -116,16 +116,16 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	undershirt_m = undershirt_lists[MALE_SPRITE_LIST]
 	undershirt_f = undershirt_lists[FEMALE_SPRITE_LIST]
 
-	// SKYRAT EDIT ADDITION START - Underwear/bra split
+	// BUBBER EDIT ADDITION START - Underwear/bra split
 	var/bra_lists = init_sprite_accessory_subtypes(/datum/sprite_accessory/bra)
 	bra_list = bra_lists[DEFAULT_SPRITE_LIST]
 	bra_m = bra_lists[MALE_SPRITE_LIST]
 	bra_f = bra_lists[FEMALE_SPRITE_LIST]
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/socks)[DEFAULT_SPRITE_LIST]
 
-	/* // SKYRAT EDIT START - Customization
+	/* // BUBBER EDIT START - Customization
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/socks)[DEFAULT_SPRITE_LIST]
 
 	lizard_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
@@ -148,10 +148,10 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	caps_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/caps)[DEFAULT_SPRITE_LIST]
 	moth_wings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings)[DEFAULT_SPRITE_LIST]
 	moth_antennae_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_antennae)[DEFAULT_SPRITE_LIST]
-	*/ // SKYRAT EDIT END
+	*/ // BUBBER EDIT END
 	moth_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	pod_hair_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair)[DEFAULT_SPRITE_LIST]
-	// SKYRAT EDIT ADDITION START - Customization
+	// BUBBER EDIT ADDITION START - Customization
 	tails_list_monkey = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey)[DEFAULT_SPRITE_LIST]
 	caps_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	moth_wings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings)[DEFAULT_SPRITE_LIST]
@@ -163,7 +163,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 		"[DNA_ETHEREAL_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 		"[DNA_SKIN_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 	)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /// This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
 /datum/controller/subsystem/accessories/proc/init_hair_gradients()

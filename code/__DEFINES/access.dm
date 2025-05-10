@@ -339,7 +339,7 @@
 	ACCESS_XENOBIOLOGY, \
 	ACCESS_BARBER, \
 	ACCESS_BLACKSMITH, \
-) // SKYRAT EDIT ADDITION
+) // BUBBER EDIT ADDITION
 
 /// Command staff/secure accesses, think bridge/armoury, ai_upload, notably access to modify ID cards themselves. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND)
 #define COMMAND_ACCESS list( \
@@ -367,7 +367,7 @@
 	ACCESS_QM, \
 	ACCESS_RD, \
 	ACCESS_NTREP, \
-	) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_NTREP to PRIVATE_COMMAND_ACCESS
+	) // BUBBER EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_NTREP to PRIVATE_COMMAND_ACCESS
 
 /// Captains private rooms. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN)
 #define CAPTAIN_ACCESS list( \

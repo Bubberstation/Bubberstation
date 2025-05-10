@@ -118,10 +118,10 @@
 /datum/mutation/human/proc/on_acquiring(mob/living/carbon/human/acquirer)
 	if(!acquirer || !istype(acquirer) || acquirer.stat == DEAD || (src in acquirer.dna.mutations))
 		return TRUE
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	if(acquirer.has_borer())
 		to_chat(acquirer, span_warning("Something inside holds dearly to your humanity!"))
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(species_allowed && !species_allowed.Find(acquirer.dna.species.id))
 		return TRUE
 	if(health_req && acquirer.health < health_req)

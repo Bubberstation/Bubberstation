@@ -835,11 +835,11 @@
 	var/mob/user = client?.mob
 	if (isnull(user))
 		return
-	///SKYRAT EDIT ADDITION BEGIN
+	///BUBBER EDIT ADDITION BEGIN
 	// Face directions on combat mode. No procs, no typechecks, just a var for speed
 	if(user.face_mouse)
 		user.face_atom(src)
-	///SKYRAT EDIT ADDITION END
+	///BUBBER EDIT ADDITION END
 
 	SEND_SIGNAL(user, COMSIG_ATOM_MOUSE_ENTERED, src)
 

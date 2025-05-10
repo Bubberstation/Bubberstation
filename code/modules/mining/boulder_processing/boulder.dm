@@ -115,7 +115,7 @@
  * @param override_speed_multiplier The speed multiplier to use if weapon is null. The do_after will take 2 * this value seconds to complete.
  * @param continued Whether or not this is a continued process, or the first one. If true, we don't play the "You swing at the boulder" message.
  */
-/* SKYRAT EDIT OVERRIDE! Check the module:mining boulder.dm!
+/* BUBBER EDIT OVERRIDE! Check the module:mining boulder.dm!
 /obj/item/boulder/proc/manual_process(obj/item/weapon, mob/living/user, override_speed_multiplier, continued = FALSE)
 	var/process_speed = 0
 	//Handle weapon conditions.

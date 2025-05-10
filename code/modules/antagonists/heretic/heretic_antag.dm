@@ -37,7 +37,7 @@
 	/// The path our heretic has chosen. Mostly used for flavor.
 	var/heretic_path = PATH_START
 	/// A sum of how many knowledge points this heretic CURRENTLY has. Used to research.
-	var/knowledge_points = 2 //SKYRAT EDIT - ORIGINAL 1
+	var/knowledge_points = 2 //BUBBER EDIT - ORIGINAL 1
 	/// The time between gaining influence passively. The heretic gain +1 knowledge points every this duration of time.
 	var/passive_gain_timer = 20 MINUTES
 	/// Assoc list of [typepath] = [knowledge instance]. A list of all knowledge this heretic's reserached.
@@ -634,7 +634,7 @@
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
 
-	//var/succeeded = TRUE // SKYRAT EDIT REMOVAL
+	//var/succeeded = TRUE // BUBBER EDIT REMOVAL
 
 	parts += printplayer(owner)
 	parts += "<b>Sacrifices Made:</b> [total_sacrifices]"
@@ -642,17 +642,17 @@
 	if(length(objectives))
 		var/count = 1
 		for(var/datum/objective/objective as anything in objectives)
-			// SKYRAT EDIT START - No greentext
+			// BUBBER EDIT START - No greentext
 			/*
 			if(!objective.check_completion())
 				succeeded = FALSE
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			*/
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text]"
-			// SKYRAT EDIT END - No greentext
+			// BUBBER EDIT END - No greentext
 			count++
 
-	// SKYRAT EDIT START - No greentext
+	// BUBBER EDIT START - No greentext
 	/*
 	if(feast_of_owls)
 		parts += span_greentext("Ascension Forsaken")
@@ -665,7 +665,7 @@
 		else
 			parts += span_redtext("The heretic has failed.")
 	*/
-	// SKYRAT EDIT END - No greentext
+	// BUBBER EDIT END - No greentext
 
 	parts += "<b>Knowledge Researched:</b> "
 

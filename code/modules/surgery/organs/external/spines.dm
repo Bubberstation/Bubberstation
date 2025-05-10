@@ -9,7 +9,7 @@
 
 	preference = "feature_lizard_spines"
 
-	//dna_block = DNA_SPINES_BLOCK // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = DNA_SPINES_BLOCK // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/spines
@@ -35,7 +35,7 @@
 	dyable = TRUE
 
 /datum/bodypart_overlay/mutant/spines/get_global_feature_list()
-	return SSaccessories.sprite_accessories["spines"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.spines_list
+	return SSaccessories.sprite_accessories["spines"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.spines_list
 
 /datum/bodypart_overlay/mutant/spines/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	var/mob/living/carbon/human/human = bodypart_owner.owner

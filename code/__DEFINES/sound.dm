@@ -18,9 +18,9 @@
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
-// SKYRAT EDIT START
+// BUBBER EDIT START
 #define CHANNEL_HEV 1005
-//SKYRAT EDIT CHANGE END
+//BUBBER EDIT CHANGE END
 
 /// This is the lowest volume that can be used by playsound otherwise it gets ignored
 /// Most sounds around 10 volume can barely be heard. Almost all sounds at 5 volume or below are inaudible
@@ -162,7 +162,7 @@
 #define ANNOUNCER_SHUTTLERECALLED "announcer_shuttlerecalled"
 #define ANNOUNCER_SPANOMALIES "announcer_spanomalies"
 
-//SKYRAT EDIT ADDITION BEGIN
+//BUBBER EDIT ADDITION BEGIN
 #define ANNOUNCER_SHUTTLELEFT "announcer_shuttleleft"
 #define ANNOUNCER_CARP "announcer_carp"
 #define ANNOUNCER_VORTEXANOMALIES "announcer_vortexanomalies"
@@ -190,7 +190,7 @@
 #define ANNOUNCER_OUTBREAK6 "announcer_outbreak6"
 #define ANNOUNCER_DEPARTMENTAL "announcer_departmental"
 #define ANNOUNCER_SHUTTLE "announcer_shuttle"
-//SKYRAT EDIT END
+//BUBBER EDIT END
 
 // BUBBER EDIT ADDITION BEGIN
 #define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_SHUTTLEDOCK,
 	ANNOUNCER_SHUTTLERECALLED,
 	ANNOUNCER_SPANOMALIES,
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	ANNOUNCER_SHUTTLELEFT,
 	ANNOUNCER_CARP,
 	ANNOUNCER_VORTEXANOMALIES,
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_ICARUS,
 	ANNOUNCER_NRI_RAIDERS,
 	ANNOUNCER_OUTBREAK6,
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	// BUBBER EDIT ADDITION BEGIN
 	ANNOUNCER_GRAVGENBLACKOUT,
 	ANNOUNCER_METEORWARNING,

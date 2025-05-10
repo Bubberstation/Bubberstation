@@ -161,7 +161,7 @@
  * This is most dangerous for fuel tanks, which will explosion().
  * Other dispensers will scatter their contents within range.
  */
-/obj/structure/reagent_dispensers/proc/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //SKYRAT EDIT CHANGE
+/obj/structure/reagent_dispensers/proc/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //BUBBER EDIT CHANGE
 	if(QDELETED(src))
 		return // little bit of sanity sauce before we wreck ourselves somehow
 	var/datum/reagent/fuel/volatiles = reagents.has_reagent(/datum/reagent/fuel)
@@ -244,7 +244,7 @@
 	icon_state = "water_high" //I was gonna clean my room...
 	tank_volume = 3000
 
-/obj/structure/reagent_dispensers/foamtank//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/structure/reagent_dispensers/foamtank//BUBBER EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "firefighting foam tank"
 	desc = "A tank full of firefighting foam."
 	icon_state = "foam"
@@ -253,7 +253,7 @@
 	openable = TRUE
 	climbable = TRUE
 
-/obj/structure/reagent_dispensers/fueltank//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/structure/reagent_dispensers/fueltank//BUBBER EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "fuel tank"
 	desc = "A tank full of industrial welding fuel. Do not consume."
 	icon_state = "fuel"
@@ -268,33 +268,33 @@
 	if(check_holidays(APRIL_FOOLS))
 		icon_state = "fuel_fools"
 
-/obj/structure/reagent_dispensers/fueltank/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //SKYRAT EDIT CHANGE
+/obj/structure/reagent_dispensers/fueltank/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //BUBBER EDIT CHANGE
 	if(damage_type == BURN || guaranteed_violent)
 		explosion(src, heavy_impact_range = 1, light_impact_range = 5, flame_range = 5)
 		qdel(src)
 	else
 		. = ..()
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /obj/structure/reagent_dispensers/fueltank/blob_act(obj/structure/blob/B)
-	boom(guaranteed_violent = TRUE) //SKYRAT EDIT CHANGE
+	boom(guaranteed_violent = TRUE) //BUBBER EDIT CHANGE
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
-	boom(guaranteed_violent = TRUE) //SKYRAT EDIT CHANGE
+	boom(guaranteed_violent = TRUE) //BUBBER EDIT CHANGE
 	return TRUE
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(exposed_temperature, exposed_volume)
-	boom(guaranteed_violent = TRUE) //SKYRAT EDIT CHANGE
+	boom(guaranteed_violent = TRUE) //BUBBER EDIT CHANGE
 
 /obj/structure/reagent_dispensers/fueltank/zap_act(power, zap_flags)
 	. = ..() //extend the zap
 	if(ZAP_OBJ_DAMAGE & zap_flags)
-		boom(guaranteed_violent = TRUE) //SKYRAT EDIT CHANGE
+		boom(guaranteed_violent = TRUE) //BUBBER EDIT CHANGE
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/hitting_projectile)
 	if(hitting_projectile.damage > 0 && ((hitting_projectile.damage_type == BURN) || (hitting_projectile.damage_type == BRUTE)))
 		log_bomber(hitting_projectile.firer, "detonated a", src, "via projectile")
-		boom(guaranteed_violent = TRUE) // SKYRAT EDIT CHANGE
+		boom(guaranteed_violent = TRUE) // BUBBER EDIT CHANGE
 		return hitting_projectile.on_hit(src, 0)
 
 	// we override parent like this because otherwise we won't actually properly log the fact that a projectile caused this welding tank to explode.
@@ -341,13 +341,13 @@
 	icon_state = "fuel_high"
 	tank_volume = 5000
 
-/obj/structure/reagent_dispensers/fueltank/large/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //SKYRAT EDIT CHANGE
+/obj/structure/reagent_dispensers/fueltank/large/boom(damage_type = BRUTE, guaranteed_violent = FALSE) //BUBBER EDIT CHANGE
 	if(damage_type == BURN || guaranteed_violent)
 		explosion(src, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 7, flame_range = 12)
 		qdel(src)
 	else
 		. = ..()
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /// Wall mounted dispeners, like pepper spray or virus food. Not a normal tank, and shouldn't be able to be turned into a plumbed stationary one.
 /obj/structure/reagent_dispensers/wall
@@ -372,7 +372,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 /obj/structure/reagent_dispensers/water_cooler
 	name = "liquid cooler"
 	desc = "A machine that dispenses liquid to drink."
-	icon = 'icons/obj/machines/vending.dmi' //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/vending.dmi' //BUBBER EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	icon_state = "water_cooler"
 	anchored = TRUE
 	tank_volume = 500
@@ -442,7 +442,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 /obj/structure/reagent_dispensers/plumbed
 	name = "stationary water tank"
 	anchored = TRUE
-	icon_state = "water_stationary" //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+	icon_state = "water_stationary" //BUBBER EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	desc = "A stationary, plumbed, water tank."
 	can_be_tanked = FALSE
 

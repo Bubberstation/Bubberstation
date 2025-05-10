@@ -13,7 +13,7 @@
 	)
 
 /datum/surgery/coronary_bypass/mechanic
-	name = "Engine Diagnostic (Heart Repair)" // SKYRAT EDIT: Original name = "Engine Diagnostic"
+	name = "Engine Diagnostic (Heart Repair)" // BUBBER EDIT: Original name = "Engine Diagnostic"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,

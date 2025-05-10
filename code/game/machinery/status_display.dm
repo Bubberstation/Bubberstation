@@ -14,7 +14,7 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 /obj/machinery/status_display
 	name = "status display"
 	desc = null
-	icon = 'icons/obj/machines/status_display.dmi' //// SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/status_display.dmi' //// BUBBER EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "frame"
 	verb_say = "beeps"
 	verb_ask = "beeps"
@@ -601,10 +601,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 		"Red Alert" = "redalert",
 		"Blue Alert" = "bluealert",
 		"Green Alert" = "greenalert",
-		"Violet Alert" = "violetalert", // SKYRAT EDIT ADD - Alert Levels
-		"Orange Alert" = "orangealert", // SKYRAT EDIT ADD - Alert Levels
-		"Amber Alert" = "amberalert", // SKYRAT EDIT ADD - Alert Levels
-		"Gamma Alert" = "gammaalert", // SKYRAT EDIT ADD - Alert Levels
+		"Violet Alert" = "violetalert", // BUBBER EDIT ADD - Alert Levels
+		"Orange Alert" = "orangealert", // BUBBER EDIT ADD - Alert Levels
+		"Amber Alert" = "amberalert", // BUBBER EDIT ADD - Alert Levels
+		"Gamma Alert" = "gammaalert", // BUBBER EDIT ADD - Alert Levels
 		"Biohazard" = "biohazard",
 		"Lockdown" = "lockdown",
 		"Radiation" = "radiation",

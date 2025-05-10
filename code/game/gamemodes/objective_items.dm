@@ -440,9 +440,9 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 /datum/objective_item/steal/hypo
 	//name = "the hypospray" // ORIGINAL
-	name = "the Chief Medical Officer's hypospray" // SKYRAT EDIT CHANGE
+	name = "the Chief Medical Officer's hypospray" // BUBBER EDIT CHANGE
 	//targetitem = /obj/item/reagent_containers/hypospray/cmo // ORIGINAL
-	targetitem = /obj/item/hypospray/mkii/deluxe/cmo // SKYRAT EDIT CHANGE
+	targetitem = /obj/item/hypospray/mkii/deluxe/cmo // BUBBER EDIT CHANGE
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	item_owner = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
@@ -450,8 +450,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	steal_hint = "The Chief Medical Officer's personal medical injector. \
 		Usually found amongst their medical supplies on their person, in their belt, or otherwise in their locker."
 
-/obj/item/hypospray/mkii/deluxe/cmo/add_stealing_item_objective() // SKYRAT EDIT CHANGE
-	return add_item_to_steal(src, /obj/item/hypospray/mkii/deluxe/cmo) // SKYRAT EDIT CHANGE
+/obj/item/hypospray/mkii/deluxe/cmo/add_stealing_item_objective() // BUBBER EDIT CHANGE
+	return add_item_to_steal(src, /obj/item/hypospray/mkii/deluxe/cmo) // BUBBER EDIT CHANGE
 
 /datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk"
@@ -569,12 +569,12 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	if(istype(potential_storage, /obj/item/aicard))
 		var/obj/item/aicard/card = potential_storage
 		being = card.AI // why is this one capitalized and the other one not? i wish i knew.
-	// SKYRAT EDIT REMOVAL START - MOD PAI
+	// BUBBER EDIT REMOVAL START - MOD PAI
 	/*else if(istype(potential_storage, /obj/item/mod/control))
 		var/obj/item/mod/control/suit = potential_storage
 		if(isAI(suit.ai_assistant))
 			being = suit.ai_assistant
-	*/ // SKYRAT EDIT REMOVAL END
+	*/ // BUBBER EDIT REMOVAL END
 	else
 		stack_trace("check_special_completion() called on [src] with [potential_storage] ([potential_storage.type])! That's not supposed to happen!")
 		return FALSE

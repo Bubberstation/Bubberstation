@@ -197,7 +197,7 @@
 		SSair.remove_from_active(src)
 	else
 		SSair.add_to_active(src)
-	liquid_update_turf() //SKYRAT EDIT ADDITION
+	liquid_update_turf() //BUBBER EDIT ADDITION
 
 /atom/movable/proc/move_update_air(turf/target_turf)
 	if(isturf(target_turf))

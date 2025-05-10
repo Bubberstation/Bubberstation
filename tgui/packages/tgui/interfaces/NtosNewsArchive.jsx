@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBER UI FILE
 import { useBackend } from '../backend';
 import { Collapsible, Section } from 'tgui-core/components';
 import { NtosWindow } from '../layouts';

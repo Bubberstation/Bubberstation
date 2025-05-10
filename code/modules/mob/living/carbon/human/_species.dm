@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	  * Layer hiding is handled by [/datum/species/proc/handle_mutant_bodyparts] below.
 	  */
 	//var/list/mutant_bodyparts = list() //ORIGINAL
-	var/list/list/mutant_bodyparts = list() //SKYRAT EDIT CHANGE - CUSTOMIZATION (typed list)
+	var/list/list/mutant_bodyparts = list() //BUBBER EDIT CHANGE - CUSTOMIZATION (typed list)
 	///The bodyparts this species uses. assoc of bodypart string - bodypart type. Make sure all the fucking entries are in or I'll skin you alive.
 	var/list/bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,
@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/organ/appendix/mutantappendix = /obj/item/organ/appendix
 
 	/// Store body marking defines. See mobs.dm for bitflags
-	//var/list/body_markings = list() // SKYRAT EDIT REMOVAL - We already have this defined as an assoc list
+	//var/list/body_markings = list() // BUBBER EDIT REMOVAL - We already have this defined as an assoc list
 
 	/// Flat modifier on all damage taken via [apply_damage][/mob/living/proc/apply_damage] (so being punched, shot, etc.)
 	/// IE: 10 = 10% less damage taken.
@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			human_who_gained_species.set_blood_type(random_human_blood_type())
 			human_who_gained_species.update_cached_blood_dna_info()
 
-	regenerate_organs(human_who_gained_species, old_species, replace_current = human_who_gained_species.visual_only_organs, visual_only = human_who_gained_species.visual_only_organs) // SKYRAT EDIT - Allows existing organs to be properly removed when regenerating organs - ORIGINAL: regenerate_organs(human_who_gained_species, old_species, replace_current = FALSE, visual_only = human_who_gained_species.visual_only_organs)
+	regenerate_organs(human_who_gained_species, old_species, replace_current = human_who_gained_species.visual_only_organs, visual_only = human_who_gained_species.visual_only_organs) // BUBBER EDIT - Allows existing organs to be properly removed when regenerating organs - ORIGINAL: regenerate_organs(human_who_gained_species, old_species, replace_current = FALSE, visual_only = human_who_gained_species.visual_only_organs)
 	// Update locked slots AFTER all organ and body stuff is handled
 	human_who_gained_species.hud_used?.update_locked_slots()
 	// Drop the items the new species can't wear
@@ -416,7 +416,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Resets blood if it is excessively high so they don't gib
 	normalize_blood(human_who_gained_species)
 
-	//add_body_markings(human_who_gained_species) // SKYRAT EDIT REMOVAL - We do this differently
+	//add_body_markings(human_who_gained_species) // BUBBER EDIT REMOVAL - We do this differently
 
 	if(length(inherent_traits))
 		human_who_gained_species.add_traits(inherent_traits, SPECIES_TRAIT)
@@ -499,7 +499,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * Arguments:
  * * species_human - Human, whoever we're handling the body for
  */
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+//BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
 /*
 /datum/species/proc/handle_body(mob/living/carbon/human/species_human)
 	species_human.remove_overlay(BODY_LAYER)
@@ -550,7 +550,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	species_human.apply_overlay(BODY_LAYER)
 	*/
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
 //number in their sprite name, which causes issues when those numbers change.
@@ -562,12 +562,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
 			return "FRONT"
-		//SKYRAT EDIT ADDITION BEGIN
+		//BUBBER EDIT ADDITION BEGIN
 		if(BODY_FRONT_UNDER_CLOTHES)
 			return "FRONT_UNDER"
 		if(ABOVE_BODY_FRONT_HEAD_LAYER)
 			return "FRONT_OVER"
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 
 ///Proc that will randomise the hair, or primary appearance element (i.e. for moths wings) of a species' associated mob
 /datum/species/proc/randomize_main_appearance_element(mob/living/carbon/human/human_mob)
@@ -579,7 +579,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	human_mob.undershirt = random_undershirt(human_mob.gender)
 	human_mob.underwear = random_underwear(human_mob.gender)
 	human_mob.socks = random_socks(human_mob.gender)
-	human_mob.bra = random_bra(human_mob.gender) //SKYRAT EDIT ADDITION - Underwear and Bra split
+	human_mob.bra = random_bra(human_mob.gender) //BUBBER EDIT ADDITION - Underwear and Bra split
 
 ///Proc that will randomise the underwear (i.e. top, pants and socks) of a species' associated mob
 /datum/species/proc/randomize_active_underwear(mob/living/carbon/human/human_mob)
@@ -621,7 +621,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.adjustBruteLoss(0.5 * seconds_per_tick)
 
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
-	if(no_equip_flags & slot && !(I.is_mod_shell_component() && (modsuit_slot_exceptions & slot))) // SKYRAT EDIT ADDITION - ORIGINAL: if(no_equip_flags & slot)
+	if(no_equip_flags & slot && !(I.is_mod_shell_component() && (modsuit_slot_exceptions & slot))) // BUBBER EDIT ADDITION - ORIGINAL: if(no_equip_flags & slot)
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(ITEM_SLOT_FEET)
 			if(H.num_legs < 2)
 				return FALSE
-			/* SKYRAT EDIT REMOVAL
+			/* BUBBER EDIT REMOVAL
 			if((H.bodyshape & BODYSHAPE_DIGITIGRADE) && !(I.item_flags & IGNORE_DIGITIGRADE))
 				if(!(I.supports_variations_flags & DIGITIGRADE_VARIATIONS))
 					if(!disable_warning)
@@ -985,7 +985,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
-	var/unarmed_sharpness = attacking_bodypart.unarmed_sharpness //SKYRAT EDIT ADDITION - If unarmed damage sharpness needs to be taken into account.
+	var/unarmed_sharpness = attacking_bodypart.unarmed_sharpness //BUBBER EDIT ADDITION - If unarmed damage sharpness needs to be taken into account.
 	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
 	var/final_armor_block = armor_block
 	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
@@ -995,7 +995,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		final_armor_block -= limb_accuracy
 		target.apply_damage(damage, attack_type, affecting, final_armor_block, attack_direction = attack_direction)
 	else // Normal attacks do not gain the benefit of armor penetration.
-		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = unarmed_sharpness) //SKYRAT EDIT - Applies sharpness if it does - ORIGINAL: target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction)
+		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = unarmed_sharpness) //BUBBER EDIT - Applies sharpness if it does - ORIGINAL: target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction)
 		if(damage >= 9)
 			target.force_say()
 		log_combat(user, target, "punched")
@@ -1175,14 +1175,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// Get the temperature of the environment for area
 	var/area_temp = humi.get_temperature(environment)
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	//Special handling for getting liquids temperature
 	if(isturf(humi.loc))
 		var/turf/T = humi.loc
 		if(T.liquids && T.liquids.liquid_state > LIQUID_STATE_PUDDLE)
 			var/submergment_percent = SUBMERGEMENT_PERCENT(humi, T.liquids)
 			area_temp = (area_temp*(1-submergment_percent)) + (T.liquids.temp * submergment_percent)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	// Get the insulation value based on the area's temp
 	var/thermal_protection = humi.get_insulation_protection(area_temp)
 
@@ -1453,7 +1453,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	former_tail_owner.clear_mood_event("tail_balance_lost")
 	former_tail_owner.clear_mood_event("tail_regained")
 
-/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
+/* BUBBER EDIT REMOVAL - MOVED TO MODULAR
 
 /// Returns a list of strings representing features this species has.
 /// Used by the preferences UI to know what buttons to show.
@@ -1597,7 +1597,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_description()
 	SHOULD_CALL_PARENT(FALSE)
 
-	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.") // SKYRAT EDIT REMOVAL
+	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.") // BUBBER EDIT REMOVAL
 	return "No species description set, file a bug report!"
 
 /**
@@ -1611,7 +1611,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SHOULD_CALL_PARENT(FALSE)
 	RETURN_TYPE(/list)
 
-	//stack_trace("Species [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_species_lore.") // SKYRAT EDIT REMOVAL
+	//stack_trace("Species [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_species_lore.") // BUBBER EDIT REMOVAL
 	return list("No species lore set, file a bug report!")
 
 /**
@@ -2028,11 +2028,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "comment",
 			SPECIES_PERK_NAME = "Native Speaker",
-			/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
+			/* BUBBER EDIT - Digitigrade customization - ORIGINAL:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
 			*/ // ORIGINAL END - SKYRAT EDIT START:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] commonly speak [english_list(bonus_languages)].",
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 		))
 
 	else

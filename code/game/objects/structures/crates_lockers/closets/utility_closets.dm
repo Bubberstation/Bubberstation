@@ -33,13 +33,13 @@
 /obj/structure/closet/emcloset/PopulateContents()
 	..()
 
-	new /obj/item/storage/box/emergency_spacesuit(src) // SKYRAT EDIT ADD
+	new /obj/item/storage/box/emergency_spacesuit(src) // BUBBER EDIT ADD
 
 	if (prob(40))
 		new /obj/item/storage/toolbox/emergency(src)
 
 	//switch (pick_weight(list("small" = 35, "aid" = 30, "tank" = 20, "both" = 10, "nothing" = 4))) // ORIGINAL
-	switch (pick_weight(list("small" = 35, "aid" = 30, "tank" = 20, "both" = 10))) // SKYRAT EDIT CHANGE
+	switch (pick_weight(list("small" = 35, "aid" = 30, "tank" = 20, "both" = 10))) // BUBBER EDIT CHANGE
 		if ("small")
 			new /obj/item/tank/internals/emergency_oxygen(src)
 			new /obj/item/tank/internals/emergency_oxygen(src)
@@ -59,13 +59,13 @@
 			new /obj/item/tank/internals/emergency_oxygen(src)
 			new /obj/item/clothing/mask/breath(src)
 
-		// SKYRAT EDIT REMOVAL START
+		// BUBBER EDIT REMOVAL START
 		/*
 		if ("nothing")
 			// doot
 			pass()
 		*/
-		// SKYRAT EDIT REMOVAL END
+		// BUBBER EDIT REMOVAL END
 
 /*
  * Fire Closet
@@ -78,16 +78,16 @@
 /obj/structure/closet/firecloset/PopulateContents()
 	..()
 	new /obj/item/clothing/suit/utility/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas/alt(src) //SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/alt(src) //BUBBER EDIT CHANGE - ORIGINAL: /obj/item/clothing/mask/gas(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)
 	new /obj/item/clothing/head/utility/hardhat/red(src)
 	new /obj/item/crowbar/large/emergency(src)
-	new /obj/item/storage/inflatable(src) //SKYRAT EDIT ADDITION - INFLATABLES
+	new /obj/item/storage/inflatable(src) //BUBBER EDIT ADDITION - INFLATABLES
 
 /obj/structure/closet/firecloset/full/PopulateContents()
 	new /obj/item/clothing/suit/utility/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas/alt(src) //SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/alt(src) //BUBBER EDIT CHANGE - ORIGINAL: /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)

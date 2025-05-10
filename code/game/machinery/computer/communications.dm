@@ -5,13 +5,13 @@
 #define STATE_CHANGING_STATUS "changing_status"
 #define STATE_MAIN "main"
 #define STATE_MESSAGES "messages"
-//SKYRAT EDIT ADDITION
+//BUBBER EDIT ADDITION
 GLOBAL_VAR_INIT(cops_arrived, FALSE)
 #define EMERGENCY_RESPONSE_POLICE "WOOP WOOP THAT'S THE SOUND OF THE POLICE"
 #define EMERGENCY_RESPONSE_ATMOS "DISCO INFERNO"
 #define EMERGENCY_RESPONSE_EMT "AAAAAUGH, I'M DYING, I NEEEEEEEEEED A MEDIC BAG"
 #define EMERGENCY_RESPONSE_EMAG "AYO THE PIZZA HERE"
-//SKYRAT EDIT END
+//BUBBER EDIT END
 
 // The communications computer
 /obj/machinery/computer/communications
@@ -117,13 +117,13 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		return TRUE
 	return authenticated
 
-// SKYRAT EDIT START - Are we the AI?
+// BUBBER EDIT START - Are we the AI?
 /// Are we the ai, or captain?
 /obj/machinery/computer/communications/proc/authenticated_as_ai_or_captain(mob/user)
 	if (isAI(user))
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 /obj/machinery/computer/communications/attackby(obj/I, mob/user, list/modifiers)
 	if(isidcard(I))
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		caller_card.use_charge(user)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(summon_battlecruiser), caller_card.team), rand(20 SECONDS, 1 MINUTES))
 		playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
-		priority_announce("Attention crew: deep-space sensors detect a Syndicate battlecruiser-class signature subspace rift forming near your station. Estimated time until arrival: three to five minutes.", "[command_name()] High-Priority Update") //SKYRAT EDIT ADDITION: announcement on battlecruiser call
+		priority_announce("Attention crew: deep-space sensors detect a Syndicate battlecruiser-class signature subspace rift forming near your station. Estimated time until arrival: three to five minutes.", "[command_name()] High-Priority Update") //BUBBER EDIT ADDITION: announcement on battlecruiser call
 		return TRUE
 
 	if(obj_flags & EMAGGED)
@@ -217,7 +217,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 					return
 
 			var/new_sec_level = SSsecurity_level.text_level_to_number(params["newSecurityLevel"])
-			if (new_sec_level < SEC_LEVEL_GREEN || new_sec_level > SEC_LEVEL_AMBER) //SKYRAT EDIT CHANGE - ALERTS
+			if (new_sec_level < SEC_LEVEL_GREEN || new_sec_level > SEC_LEVEL_AMBER) //BUBBER EDIT CHANGE - ALERTS
 				return
 			if (SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_DELTA)
 				to_chat(user, span_warning("Central Command has placed a lock on the alert level due to a doomsday!"))
@@ -475,7 +475,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			SSjob.safe_code_timer_id = addtimer(CALLBACK(SSjob, TYPE_PROC_REF(/datum/controller/subsystem/job, send_spare_id_safe_code), pod_location), 120 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
 			minor_announce("Due to staff shortages, your station has been approved for delivery of access codes to secure the Captain's Spare ID. Delivery via drop pod at [get_area(pod_location)]. ETA 120 seconds.")
 
-		// SKYRAT EDIT ADDITION START
+		// BUBBER EDIT ADDITION START
 		if ("callThePolice")
 			if(!pre_911_check(usr))
 				return
@@ -514,7 +514,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				toggle_eng_override()
 				usr.log_message("enabled airlock engineering override.", LOG_GAME)
 				deadchat_broadcast(" enabled airlock engineering override at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 
 /obj/machinery/computer/communications/proc/emergency_access_cooldown(mob/user)
 	if(toggle_uses == toggle_max_uses) //you have used up free uses already, do it one more time and start a cooldown
@@ -546,9 +546,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	if(GLOB.communications_controller.soft_filtering)
 		payload["is_filtered"] = TRUE
 
-	var/name_to_send = "[CONFIG_GET(string/cross_comms_name)]([station_name()])" //SKYRAT EDIT ADDITION
+	var/name_to_send = "[CONFIG_GET(string/cross_comms_name)]([station_name()])" //BUBBER EDIT ADDITION
 
-	send2otherserver(html_decode(name_to_send), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload) //SKYRAT EDIT END
+	send2otherserver(html_decode(name_to_send), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload) //BUBBER EDIT END
 	minor_announce(message, title = "Outgoing message to allied station")
 	user.log_talk(message, LOG_SAY, tag = "message to the other server")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has sent a message to the other server\[s].")
@@ -597,7 +597,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				data["canSendToSectors"] = FALSE
 				data["canSetAlertLevel"] = FALSE
 				data["canToggleEmergencyAccess"] = FALSE
-				data["canToggleEngineeringOverride"] = FALSE //SKYRAT EDIT - Engineering Override
+				data["canToggleEngineeringOverride"] = FALSE //BUBBER EDIT - Engineering Override
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
@@ -629,8 +629,8 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				if (authenticated_as_silicon_or_captain(user))
 					data["canToggleEmergencyAccess"] = TRUE
 					data["emergencyAccess"] = GLOB.emergency_access
-					data["canToggleEngineeringOverride"] = TRUE //SKYRAT EDIT - Engineering Override Toggle
-					data["engineeringOverride"] = GLOB.force_eng_override //SKYRAT EDIT - Engineering Override Toggle
+					data["canToggleEngineeringOverride"] = TRUE //BUBBER EDIT - Engineering Override Toggle
+					data["engineeringOverride"] = GLOB.force_eng_override //BUBBER EDIT - Engineering Override Toggle
 					data["alertLevelTick"] = alert_level_tick
 					data["canMakeAnnouncement"] = TRUE
 					data["canSetAlertLevel"] = HAS_SILICON_ACCESS(user) ? "NO_SWIPE_NEEDED" : "SWIPE_NEEDED"
@@ -1012,9 +1012,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 #undef STATE_MAIN
 #undef STATE_MESSAGES
 
-//SKYRAT EDIT ADDITION
+//BUBBER EDIT ADDITION
 #undef EMERGENCY_RESPONSE_POLICE
 #undef EMERGENCY_RESPONSE_ATMOS
 #undef EMERGENCY_RESPONSE_EMT
 #undef EMERGENCY_RESPONSE_EMAG
-//SKYRAT EDIT END
+//BUBBER EDIT END

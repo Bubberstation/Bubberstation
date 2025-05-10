@@ -264,12 +264,12 @@
 					to_chat(human_user,  "<span class='notice ml-1'>Detected physiological traits:</span>\n<span class='notice ml-2'>[quirkstring]</span>")
 				else
 					to_chat(usr,  "<span class='notice ml-1'>No physiological traits found.</span>")
-			//SKYRAT EDIT ADDITION BEGIN - EXAMINE RECORDS
+			//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
 			if(href_list["medrecords"])
 				to_chat(usr, "<b>Medical Record:</b> [target_record.past_medical_records]")
 			if(href_list["genrecords"])
 				to_chat(usr, "<b>General Record:</b> [target_record.past_general_records]")
-			//SKYRAT EDIT END
+			//BUBBER EDIT END
 			return //Medical HUD ends here.
 
 		if(href_list["hud"] == "s")
@@ -358,7 +358,7 @@
 					SSblackbox.ReportCitation(REF(new_citation), human_user.ckey, human_user.real_name, target_record.name, citation_name, fine)
 					return
 
-				//SKYRAT EDIT ADDITION BEGIN - EXAMINE RECORDS
+				//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
 				if(href_list["genrecords"])
 					if(!human_user.canUseHUD())
 						return
@@ -372,7 +372,7 @@
 					if(!HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 					to_chat(human_user, "<b>Security Record:</b> [target_record.past_security_records]")
-				//SKYRAT EDIT END
+				//BUBBER EDIT END
 
 				if(href_list["add_crime"])
 					var/crime_name = tgui_input_text(human_user, "Crime name", "Security HUD", max_length = MAX_MESSAGE_LEN)
@@ -396,7 +396,7 @@
 
 					return
 
-	//SKYRAT EDIT ADDITION BEGIN - VIEW RECORDS
+	//BUBBER EDIT ADDITION BEGIN - VIEW RECORDS
 	var/examined_name = get_face_name(get_id_name(""))
 	var/datum/record/locked/target_locked_record = find_record(examined_name, TRUE)
 	var/datum/record/crew/target_record = find_record(examined_name, FALSE)
@@ -413,7 +413,7 @@
 	if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
 		if(target_locked_record && href_list["exprecords"])
 			to_chat(usr, "<b>Exploitable information:</b> [target_locked_record.exploitable_information]")
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that.
 
 //called when something steps onto a human
@@ -517,7 +517,7 @@
 	if(istype(head, /obj/item/clothing/head/wizard))
 		threatcount += 2
 
-	/* SKYRAT EDIT - REMOVAL
+	/* BUBBER EDIT - REMOVAL
 	//Check for nonhuman scum
 	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
@@ -747,12 +747,12 @@
 		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
 		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
 		return TRUE
-	// SKYRAT EDIT ADDITION: NOW GLOVES CAN RESTRAIN PLAYERS
+	// BUBBER EDIT ADDITION: NOW GLOVES CAN RESTRAIN PLAYERS
 	if(I == gloves)
 		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
 		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
 		return TRUE
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /mob/living/carbon/human/replace_records_name(oldname, newname) // Only humans have records right now, move this up if changed.
 	var/datum/record/crew/crew_record = find_record(oldname)
@@ -858,10 +858,10 @@
 			var/datum/quirk/quirk_type = type
 			if(initial(quirk_type.abstract_parent_type) == type)
 				continue
-			// SKYRAT EDIT ADDITION START
+			// BUBBER EDIT ADDITION START
 			if(initial(quirk_type.erp_quirk) && CONFIG_GET(flag/disable_erp_preferences))
 				continue
-			// SKYRAT EDIT ADDITION END
+			// BUBBER EDIT ADDITION END
 			var/qname = initial(quirk_type.name)
 			options[has_quirk(quirk_type) ? "[qname] (Remove)" : "[qname] (Add)"] = quirk_type
 		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in sort_list(options)
@@ -1000,11 +1000,11 @@
 		skills_space = " very quickly"
 	else if(carrydelay <= 4 SECONDS)
 		skills_space = " quickly"
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	else if(HAS_TRAIT(target, TRAIT_OVERSIZED) && !HAS_TRAIT(src, TRAIT_OVERSIZED))
 		visible_message(span_warning("[src] tries to carry [target], but they are too heavy!"))
 		return
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	visible_message(span_notice("[src] starts[skills_space] lifting [target] onto [p_their()] back..."),
 		span_notice("You[skills_space] start to lift [target] onto your back..."))
 	if(!do_after(src, carrydelay, target))
@@ -1034,7 +1034,7 @@
 	if(INCAPACITATED_IGNORING(target, INCAPABLE_GRAB) || INCAPACITATED_IGNORING(src, INCAPABLE_GRAB))
 		target.visible_message(span_warning("[target] can't hang onto [src]!"))
 		return
-	//SKYRAT EDIT START
+	//BUBBER EDIT START
 	if(HAS_TRAIT(target, TRAIT_OVERSIZED) && !HAS_TRAIT(src, TRAIT_OVERSIZED))
 		target.visible_message(span_warning("[target] is too heavy for [src] to carry!"))
 		var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
@@ -1056,7 +1056,7 @@
 		if(get_turf(target) != get_turf(src))
 			target.throw_at(get_turf(src), 1, 1, spin=FALSE, quickstart=FALSE)
 		return
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 	return buckle_mob(target, TRUE, TRUE, RIDER_NEEDS_ARMS)
 
@@ -1159,7 +1159,7 @@
 	if (!isnull(race))
 		dna.species = new race
 
-/mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, list/override_features, list/override_mutantparts, list/override_markings, retain_features = FALSE, retain_mutantparts = FALSE) // SKYRAT EDIT - Customization
+/mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, list/override_features, list/override_mutantparts, list/override_markings, retain_features = FALSE, retain_mutantparts = FALSE) // BUBBER EDIT - Customization
 
 	. = ..()
 	if(use_random_name)

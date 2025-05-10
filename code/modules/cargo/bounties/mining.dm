@@ -18,7 +18,7 @@
 	required_count = 2
 	wanted_types = list(/obj/item/oar = TRUE)
 
-//SKYRAT EDIT REMOVAL
+//BUBBER EDIT REMOVAL
 /*
 /datum/bounty/item/mining/bone_axe
 	name = "Bone Axe"
@@ -61,7 +61,7 @@
 	required_count = 1
 	wanted_types = list(/obj/item/clothing/neck/wreath/icewing = TRUE)
 
-//SKYRAT EDIT REMOVAL
+//BUBBER EDIT REMOVAL
 /*
 /datum/bounty/item/mining/bone_dagger
 	name = "Bone Daggers"

@@ -4,7 +4,7 @@ import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
 import { MalfAiModules } from './common/MalfAiModules';
 import {
   Objective,
@@ -68,7 +68,7 @@ function IntroductionSection(props) {
               />
             }
           />
-          <Rules /* SKYRAT EDIT ADDITION */ />
+          <Rules /* BUBBER EDIT ADDITION */ />
         </Stack.Item>
       </Stack>
     </Section>
@@ -88,7 +88,7 @@ function FlavorSection(props) {
           mr={-0.8}
           mt={-0.5}
           icon="hammer"
-          /* SKYRAT EDIT: ORIGINAL TOOLTIP
+          /* BUBBER EDIT: ORIGINAL TOOLTIP
           tooltip={`
             This is a gameplay suggestion for bored ais.
             You don't have to follow it, unless you want some

@@ -19,10 +19,10 @@
 	new /obj/item/roulette_wheel_beacon(src)
 
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /obj/structure/closet/secure_closet/bar/all_access
 	req_access = null

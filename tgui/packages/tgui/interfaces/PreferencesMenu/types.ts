@@ -29,7 +29,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
-  Bloody = 'BLOODY', // SKYRAT EDIT ADDITION - Hemophage Food
+  Bloody = 'BLOODY', // BUBBER EDIT ADDITION - Hemophage Food
 }
 
 export enum JobPriority {
@@ -81,9 +81,9 @@ export type Department = {
 export type Job = {
   description: string;
   department: string;
-  // SKYRAT EDIT
+  // BUBBER EDIT
   alt_titles?: string[];
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 };
 
 export type Quirk = {
@@ -96,7 +96,7 @@ export type Quirk = {
   species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
-// SKYRAT EDIT START
+// BUBBER EDIT START
 export type Language = {
   description: string;
   name: string;
@@ -135,7 +135,7 @@ export type Organ = {
   costs: Record<string, number>;
 };
 
-// SKYRAT EDIT END
+// BUBBER EDIT END
 export type QuirkInfo = {
   max_positive_quirks: number;
   quirk_info: Record<string, Quirk>;
@@ -178,8 +178,8 @@ export type PreferencesMenuData = {
   character_preview_view: string;
   character_profiles: (string | null)[];
 
-  preview_options: string[]; // SKYRAT EDIT ADDITION
-  preview_selection: string; // SKYRAT EDIT ADDITION
+  preview_options: string[]; // BUBBER EDIT ADDITION
+  preview_selection: string; // BUBBER EDIT ADDITION
 
   is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
@@ -222,7 +222,7 @@ export type PreferencesMenuData = {
   >;
   job_preferences: Record<string, JobPriority>;
 
-  // SKYRAT EDIT
+  // BUBBER EDIT
   job_alt_titles: Record<string, string>;
 
   robotic_styles: string[];
@@ -238,7 +238,7 @@ export type PreferencesMenuData = {
   species_restricted_jobs?: string[];
   ckey: string;
   is_donator: BooleanLike;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 
   keybindings: Record<string, string[]>;
   overflow_role: string;

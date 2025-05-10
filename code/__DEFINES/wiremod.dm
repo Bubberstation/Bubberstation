@@ -125,10 +125,10 @@
 #define CIRCUIT_NO_DUPLICATES (1<<6)
 /// This circuit component is currently disabled via configs
 #define CIRCUIT_FLAG_DISABLED (1<<7)
-// SKYRAT EDIT ADDITION BEGIN - This is required since we have two reagent components, and the BCI only allows one active
+// BUBBER EDIT ADDITION BEGIN - This is required since we have two reagent components, and the BCI only allows one active
 /// This circuit component is a reagent container type. Check for existing reagent containers before adding.
 #define CIRCUIT_REAGENT_CONTAINER_TYPE (1<<16) // This value should not conflict with any of the previous flags
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 
 // Datatype flags
 /// The datatype supports manual inputs

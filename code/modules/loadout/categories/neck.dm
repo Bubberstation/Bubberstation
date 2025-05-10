@@ -9,11 +9,11 @@
 	abstract_type = /datum/loadout_item/neck
 
 /datum/loadout_item/neck/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, loadout_placement_preference)
-	// SKYRAT EDIT CHANGE
+	// BUBBER EDIT CHANGE
 	if(loadout_placement_preference != LOADOUT_OVERRIDE_JOB && outfit.neck)
 		LAZYADD(outfit.backpack_contents, outfit.neck)
 	outfit.neck = item_path
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /datum/loadout_item/neck/scarf_greyscale
 	name = "Scarf (Colorable)"

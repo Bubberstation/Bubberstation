@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(blackbox)
 		return
 	var/playercount = LAZYLEN(GLOB.player_list)
 	var/admincount = GLOB.admins.len
-	/* // SKYRAT EDIT CHANGE - MULTISERVER - ORIGINAL:
+	/* // BUBBER EDIT CHANGE - MULTISERVER - ORIGINAL:
 	var/datum/db_query/query_record_playercount = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id)
 		VALUES (:playercount, :admincount, NOW(), INET_ATON(:server_ip), :server_port, :round_id)
@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(blackbox)
 	"}, list(
 		"playercount" = playercount,
 		"admincount" = admincount,
-		"server_name" = CONFIG_GET(string/serversqlname), // SKYRAT EDIT ADDITION - MULTISERVER
+		"server_name" = CONFIG_GET(string/serversqlname), // BUBBER EDIT ADDITION - MULTISERVER
 		"server_ip" = world.internet_address || "0",
 		"server_port" = "[world.port]",
 		"round_id" = GLOB.round_id,
@@ -339,7 +339,7 @@ Versioning
 	if(!SSdbcore.Connect())
 		return
 
-/* SKYRAT EDIT CHANGE - MULTISERVER - ORIGINAL:
+/* BUBBER EDIT CHANGE - MULTISERVER - ORIGINAL:
 	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, staminaloss, last_words, suicide)
 		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:internet_address), :port, :round_id, NOW(), :job, :special, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :stamina, :last_words, :suicide)
@@ -367,7 +367,7 @@ Versioning
 		"last_words" = L.last_words,
 		"suicide" = did_they_suicide,
 		"map" = SSmapping.current_map.map_name,
-		"server_name" = CONFIG_GET(string/serversqlname),  // SKYRAT EDIT ADDITION - MULTISERVER
+		"server_name" = CONFIG_GET(string/serversqlname),  // BUBBER EDIT ADDITION - MULTISERVER
 		"internet_address" = world.internet_address || "0",
 		"port" = "[world.port]",
 		"round_id" = GLOB.round_id,

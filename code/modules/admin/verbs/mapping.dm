@@ -196,16 +196,16 @@ ADMIN_VERB(disable_communication, R_DEBUG, "Disable all communication verbs", "D
 ADMIN_VERB_VISIBILITY(create_mapping_job_icons, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "Generates job starting location landmarks.", ADMIN_CATEGORY_MAPPING)
 	var/icon/final = icon()
-	var/list/job_key_to_icon = list() // SKYRAT EDIT ADDITION
+	var/list/job_key_to_icon = list() // BUBBER EDIT ADDITION
 	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
 	D.setDir(SOUTH)
 	for(var/job in subtypesof(/datum/job))
 		var/datum/job/JB = new job
 		switch(JB.title)
 			if(JOB_AI)
-				job_key_to_icon["AI"] = icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1) // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1), "AI")
+				job_key_to_icon["AI"] = icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1) // BUBBER EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1), "AI")
 			if(JOB_CYBORG)
-				job_key_to_icon["Cyborg"] = icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1) // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1), "Cyborg")
+				job_key_to_icon["Cyborg"] = icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1) // BUBBER EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1), "Cyborg")
 			else
 				for(var/obj/item/I in D)
 					qdel(I)
@@ -216,12 +216,12 @@ ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "G
 					consistent = TRUE,
 				)
 				var/icon/I = icon(getFlatIcon(D), frame = 1)
-				job_key_to_icon[JB.title] = I // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(I, JB.title)
+				job_key_to_icon[JB.title] = I // BUBBER EDIT CHANGE - ORIGINAL: final.Insert(I, JB.title)
 	qdel(D)
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	for(var/job_key in job_key_to_icon)
 		final.Insert(job_key_to_icon[job_key], job_key)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	//Also add the x
 	for(var/x_number in 1 to 4)
 		final.Insert(icon('icons/hud/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")
