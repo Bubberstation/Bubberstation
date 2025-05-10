@@ -5,6 +5,7 @@
 	slot = ORGAN_SLOT_WINGS
 	mutantpart_key = "wings"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Bat", MUTANT_INDEX_COLOR_LIST = list("#335533"))
+	organ_flags = ORGAN_EXTERNAL
 	///Whether the wings should grant flight on insertion.
 	var/unconditional_flight
 	///What species get flights thanks to those wings. Important for moth wings

@@ -254,6 +254,8 @@
 	. = ..()
 	if(. != MOD_CANCEL_ACTIVATE || !isliving(user))
 		return
+	if(istype(mod, /obj/item/mod/control/pre_equipped/protean)) // BUBBER EDIT START
+		return													// BUBBER EDIT END
 	if(mod.ai_assistant == user)
 		to_chat(mod.ai_assistant, span_danger("<B>fATaL EERRoR</B>: 381200-*#00CODE <B>BLUE</B>\nAI INTErFERenCE DEtECted\nACTi0N DISrEGArdED"))
 		return

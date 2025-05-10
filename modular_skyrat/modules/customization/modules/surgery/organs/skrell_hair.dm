@@ -8,7 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SKRELL_HAIR
-
+	organ_flags = ORGAN_EXTERNAL
 	preference = "feature_skrell_hair"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/skrell_hair

@@ -12,3 +12,7 @@
 #define COMSIG_MOB_ALWAYS_APPLY_DAMAGE "mob_always_apply_damage"
 /// From modular_zubbers/code/modules/disease/disease_transmission.dm
 #define COMSIG_DISEASE_COUNT_UPDATE "disease_count_update"
+/// From [/mob/living/carbon/human/verb/safeword]: (mob/living/carbon)
+#define COMSIG_OOC_ESCAPE "ooc_escape"
+/// From [/datum/outfit]: (datum/outfit)
+#define COMSIG_OUTFIT_EQUIP "outfit_equip"

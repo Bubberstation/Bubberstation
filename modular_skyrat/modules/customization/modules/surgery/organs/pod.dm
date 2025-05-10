@@ -7,7 +7,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_POD_HAIR
-
+	organ_flags = ORGAN_EXTERNAL
 	bodypart_overlay = /datum/bodypart_overlay/mutant/pod_hair
 
 /datum/bodypart_overlay/mutant/pod_hair

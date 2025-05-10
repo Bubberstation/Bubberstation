@@ -16,7 +16,7 @@
 
 /datum/surgery/gastrectomy/mechanic
 	name = "Nutrient Processing System Diagnostic"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,
