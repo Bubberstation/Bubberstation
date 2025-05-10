@@ -1,7 +1,7 @@
 
 /*
 
-Skyrat removal START, moved to modular file
+Bubber removal START, moved to modular file
 
 #define TEG_EFFICIENCY 0.65
 
@@ -227,5 +227,5 @@ Skyrat removal START, moved to modular file
 #undef TEG_EFFICIENCY
 
 
-Skyrat removal END
+Bubber removal END
 */

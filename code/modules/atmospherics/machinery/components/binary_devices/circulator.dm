@@ -1,6 +1,6 @@
 /*
 
-Skyrat removal START, moved to modular file
+Bubber removal START, moved to modular file
 
 //node2, air2, network2 correspond to input
 //node1, air1, network1 correspond to output
@@ -179,5 +179,5 @@ Skyrat removal START, moved to modular file
 	pixel_y = 0
 
 
-Skyrat removal END
+Bubber removal END
 */
