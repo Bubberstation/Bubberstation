@@ -18,6 +18,8 @@
 
 #undef INGAME_TIME_NEEDED
 /datum/vote/transfer_vote
+	winner_method = VOTE_WINNER_METHOD_SIMPLE
+	display_statistics = FALSE
 	allow_ghosts = FALSE
 	// Has this vote been run before?
 	var/has_ran = FALSE
