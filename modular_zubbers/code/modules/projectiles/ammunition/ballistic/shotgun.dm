@@ -9,7 +9,7 @@
 
 /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	name = "depleted uranium slug"
-	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
+	desc = "A relatively low-tech shell, utilizing the unique properties of uranium, and possessing \
 	very impressive armor penetration capabilities."
 	icon = 'modular_zubbers/icons/obj/ammo.dmi'
 	icon_state = "dushell"
