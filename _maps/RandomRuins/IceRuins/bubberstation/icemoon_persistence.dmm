@@ -875,13 +875,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
-"bO" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/window/reinforced/tinted/spawner/directional/north,
-/obj/structure/fans/tiny/forcefield,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "bP" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -2130,6 +2123,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/shower)
+"en" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west{
+	pixel_x = -4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "ep" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -3579,6 +3579,12 @@
 /obj/effect/mob_spawn/ghost_role/robot/persistence,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
+"hy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "hz" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
@@ -3810,28 +3816,12 @@
 	},
 /area/icemoon/underground/explored)
 "ia" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/warning,
-/obj/effect/turf_decal/trimline/dark_red/filled/warning{
-	dir = 1
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
+	pixel_x = 4
 	},
-/obj/effect/turf_decal/trimline/dark/warning,
-/obj/effect/turf_decal/trimline/dark/warning{
-	dir = 1
-	},
-/obj/item/storage/box/donkpockets/donkpocketteriyaki{
-	name = "box of WIN-flavoured donk-pockets";
-	desc = "STAY WINNING"
-	},
-/obj/item/toy/figure/syndie{
-	pixel_x = -5;
-	pixel_y = 0
-	},
-/obj/item/toy/figure/syndie{
-	pixel_x = 4;
-	pixel_y = 7
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "ib" = (
 /obj/machinery/button/door/directional/west{
 	id = "syndimining";
@@ -4724,12 +4714,11 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "jV" = (
-/obj/structure/marker_beacon/cerulean{
-	pixel_x = -16;
-	pixel_y = 12
-	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	pixel_x = 4
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
+	pixel_y = 4
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
@@ -8312,7 +8301,9 @@
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "qS" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
+	pixel_y = 4
+	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	pixel_x = 4
 	},
@@ -10571,6 +10562,12 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"vz" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
+	pixel_y = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "vB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -11601,6 +11598,13 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
+"xB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/duct,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/ruin/space/has_grav/bubbers/persistance/service)
 "xC" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -12129,6 +12133,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "yz" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/pollution_scrubber,
 /obj/effect/turf_decal/stripes/red/end,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
@@ -12322,13 +12327,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
-"yW" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/west{
-	pixel_x = -4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "yX" = (
 /obj/structure/dresser,
 /turf/open/floor/carpet/donk,
@@ -13165,6 +13163,22 @@
 /obj/machinery/duct,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
+"Ax" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
+/obj/structure/flora/bush/large/style_2{
+	desc = "A taxidermied corpse of an alien runner. Looks pretty realistic, doesn't it?";
+	icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/big_xenos.dmi';
+	icon_state = "alienrunner";
+	name = "alien runner showcase";
+	pixel_y = 8;
+	pixel_x = 0;
+	dir = 4
+	},
+/obj/structure/fans/tiny/forcefield,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "Ay" = (
 /obj/machinery/smartfridge/food,
 /obj/item/reagent_containers/cup/glass/bottle{
@@ -13536,9 +13550,6 @@
 	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	pixel_x = 4
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	pixel_y = -4
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
@@ -14387,15 +14398,6 @@
 	dir = 1
 	},
 /area/lavaland/surface/outdoors)
-"CW" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
-	pixel_x = 4
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
-	pixel_y = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "CY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -17010,12 +17012,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
-"Ic" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
-	pixel_y = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Id" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -17772,6 +17768,19 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
+"JG" = (
+/obj/structure/marker_beacon/cerulean{
+	pixel_x = -16;
+	pixel_y = 12
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
+	pixel_x = 4
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "JI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/effect/turf_decal/trimline/dark/filled/line{
@@ -19052,16 +19061,6 @@
 /obj/item/circuitboard/machine/stacking_unit_console,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
-"My" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
-	pixel_x = 4
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
-	dir = 5
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "MA" = (
 /obj/machinery/netpod,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -19070,6 +19069,13 @@
 /obj/structure/marker_beacon/purple,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"MB" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
+/obj/structure/fans/tiny/forcefield,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "MC" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 10
@@ -20691,7 +20697,7 @@
 	pixel_x = 24
 	},
 /obj/structure/cable,
-/obj/machinery/photocopier/prebuilt,
+/obj/machinery/photocopier,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
 "PJ" = (
@@ -20851,22 +20857,6 @@
 /obj/machinery/coffeemaker,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
-"PY" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/window/reinforced/tinted/spawner/directional/north,
-/obj/structure/flora/bush/large/style_2{
-	desc = "A taxidermied corpse of an alien runner. Looks pretty realistic, doesn't it?";
-	icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/big_xenos.dmi';
-	icon_state = "alienrunner";
-	name = "alien runner showcase";
-	pixel_y = 8;
-	pixel_x = 0;
-	dir = 4
-	},
-/obj/structure/fans/tiny/forcefield,
-/turf/open/floor/plating/reinforced,
-/area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "PZ" = (
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/corporateliaison{
 	name = "Persistence Corporate Liason";
@@ -22121,6 +22111,16 @@
 	},
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/med)
+"SF" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
+	pixel_x = 4
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
+	dir = 5
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "SG" = (
 /obj/effect/turf_decal/vg_decals/numbers/two,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west{
@@ -22819,12 +22819,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service)
-"Up" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Ur" = (
 /obj/machinery/atmospherics/miner/n2o,
@@ -23901,6 +23895,16 @@
 /obj/structure/marker_beacon/cerulean,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med)
+"WE" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground/explored)
 "WF" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -24516,13 +24520,6 @@
 /obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
-"XM" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/duct,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/service)
 "XN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -24603,15 +24600,28 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
 "XV" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/trimline/dark_red/filled/warning,
+/obj/effect/turf_decal/trimline/dark_red/filled/warning{
+	dir = 1
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/trimline/dark/warning,
+/obj/effect/turf_decal/trimline/dark/warning{
+	dir = 1
 	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
+/obj/item/storage/box/donkpockets/donkpocketteriyaki{
+	name = "box of WIN-flavoured donk-pockets";
+	desc = "STAY WINNING"
+	},
+/obj/item/toy/figure/syndie{
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/item/toy/figure/syndie{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "XW" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
@@ -25422,15 +25432,6 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"Zp" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
-	pixel_x = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "Zq" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -26102,7 +26103,7 @@ eR
 Tm
 Tm
 Tm
-XV
+WE
 Fc
 Fc
 Cx
@@ -26220,7 +26221,7 @@ dk
 Vq
 It
 Nf
-Ic
+vz
 tC
 DN
 vO
@@ -26288,10 +26289,10 @@ oF
 ix
 dk
 Vq
-qS
-Br
-CW
+ia
+JG
 jV
+Br
 DN
 cE
 YQ
@@ -26358,7 +26359,7 @@ LX
 Cy
 JD
 Vq
-yW
+en
 SG
 QC
 re
@@ -26428,10 +26429,10 @@ CG
 UM
 tO
 Vq
-qS
-Br
-CW
+ia
+JG
 jV
+Br
 tg
 in
 nI
@@ -26498,7 +26499,7 @@ cg
 on
 on
 on
-yW
+en
 oP
 QC
 FD
@@ -26568,10 +26569,10 @@ lG
 on
 AP
 GF
-My
+SF
+JG
+qS
 Br
-Zp
-jV
 tg
 Ux
 pB
@@ -26922,7 +26923,7 @@ MZ
 gV
 tI
 nx
-PY
+Ax
 bx
 Qg
 DT
@@ -26992,7 +26993,7 @@ UW
 TQ
 mV
 ss
-bO
+MB
 uP
 ue
 Vg
@@ -27272,7 +27273,7 @@ jo
 hj
 LY
 xK
-Up
+hy
 rB
 cA
 KV
@@ -28904,7 +28905,7 @@ wT
 do
 tk
 IL
-XM
+xB
 Yj
 YY
 YY
@@ -29140,7 +29141,7 @@ RO
 Fq
 Bu
 IA
-ia
+XV
 ha
 fk
 zG
