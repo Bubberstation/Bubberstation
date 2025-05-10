@@ -97,7 +97,7 @@
 			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 			initial_genital_visibility = penis_reference?.visibility_preference
 			hide_penis()
-			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE), PROC_REF(hide_penis))
+			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL), PROC_REF(hide_penis))
 			current_mob.dir = dir
 			switch(dir)
 				if(NORTH)
@@ -111,7 +111,7 @@
 		else
 			current_mob.dir = SOUTH
 			head_only()
-			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE), PROC_REF(head_only))
+			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL), PROC_REF(head_only))
 			switch(dir)
 				if(NORTH)
 					current_mob.pixel_y += 12
@@ -155,7 +155,7 @@
 			current_mob.apply_overlay(BODY_LAYER)
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
-	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE))
+	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL))
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	qdel(relayed_body)
@@ -300,7 +300,7 @@
 
 /obj/lewd_portal_relay/Destroy(force)
 	if(!isnull(owner))
-		UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE))
+		UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL))
 		var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
 		interact_component?.body_relay = null
 	visible_message("[src] vanishes into the portal!")
