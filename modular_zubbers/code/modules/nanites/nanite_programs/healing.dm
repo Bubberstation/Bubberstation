@@ -158,7 +158,8 @@
 /datum/nanite_program/defib/on_trigger(comm_message)
 	host_mob.notify_revival("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
 	host_mob.grab_ghost()
-	addtimer(CALLBACK(src, .proc/zap), 50)
+	playsound(host_mob, 'sound/machines/defib/defib_charge.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, .proc/zap), 5 SECONDS)
 
 /datum/nanite_program/defib/proc/check_revivable()
 	if(!iscarbon(host_mob)) //nonstandard biology
@@ -170,13 +171,12 @@
 
 /datum/nanite_program/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
-	playsound(C, 'sound/machines/defib/defib_charge.ogg', 50, FALSE)
-	sleep(30)
 	playsound(C, 'sound/machines/defib/defib_zap.ogg', 50, FALSE)
 	if(check_revivable())
 		if(C.stat == DEAD)
 			var/original_oxyloss = C.getOxyLoss()
-			C.setOxyLoss(OXYLOSS_PASSOUT_THRESHOLD - 5)
+			C.setOxyLoss(OXYLOSS_PASSOUT_THRESHOLD - 20)
+			C.SetSleeping(5 SECONDS)
 			if(C.revive())
 				playsound(C, 'sound/machines/defib/defib_success.ogg', 50, FALSE)
 				C.emote("gasp")
