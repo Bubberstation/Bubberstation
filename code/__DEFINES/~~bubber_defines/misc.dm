@@ -14,3 +14,5 @@ GLOBAL_DATUM_INIT(noncapital_i, /regex, regex("\\b\[i]\\b", "g")) */ // TODO: RE
 #define COMSIG_HUMAN_TOGGLE_UNDERWEAR "human_toggle_undies"
 /// From /obj/item/restraints/handcuffs/proc/apply_cuffs()
 #define COMSIG_MOB_HANDCUFFED "mob_handcuffed"
+/// From /datum/bodypart_overlay/simple/emote/Destroy() - Calls when an emote that applies a temporary visual effect expires
+#define COMSIG_EMOTE_OVERLAY_EXPIRE "emote_overlay_exprie"
