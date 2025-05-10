@@ -52,7 +52,16 @@
 	make_unblind()
 
 /datum/status_effect/grouped/blindness/proc/make_blind()
-	owner.overlay_fullscreen(id, /atom/movable/screen/fullscreen/blind)
+	//BUBBER EDIT START
+	if (!owner)
+		return
+
+	var/overlay_type = /atom/movable/screen/fullscreen/blind
+	if (owner.is_blind_from(ECHOLOCATION_TRAIT) || owner.is_blind_from(QUIRK_TRAIT))
+		overlay_type = /atom/movable/screen/fullscreen/blind_special
+
+	owner.overlay_fullscreen(id, overlay_type) //BUBBER EDIT - Changed from just setting fullscreen/blind to the var/overlay_type.
+	//BUBBER EDIT END
 	// You are blind - at most, able to make out shapes near you
 	owner.add_client_colour(/datum/client_colour/monochrome, REF(src))
 
