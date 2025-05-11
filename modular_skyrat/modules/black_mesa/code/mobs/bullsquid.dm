@@ -6,7 +6,7 @@
 	icon_living = "bullsquid"
 	icon_dead = "bullsquid_dead"
 	icon_gib = null
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	speak_chance = 1
 	speak_emote = list("growls")
