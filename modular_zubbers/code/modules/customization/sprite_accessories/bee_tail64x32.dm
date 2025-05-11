@@ -1,4 +1,3 @@
-
 /datum/sprite_accessory/tails/mammal/largebee
 	icon = 'modular_zubbers/icons/customization/bee_tail64x32.dmi'
 	dimension_x = 64
