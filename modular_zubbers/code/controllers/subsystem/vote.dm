@@ -4,6 +4,12 @@
 	/// Has the vote reminder fired yet
 	var/reminder_fired = FALSE
 
+/datum/controller/subsystem/vote
+	dependencies = list(
+		/datum/controller/subsystem/persistence,
+		/datum/controller/subsystem/map_vote,
+	)
+
 /// Bubber vote fire proc, original at code/controllers/subsystem/vote.dm
 /datum/controller/subsystem/vote/fire()
 	if(!current_vote)
