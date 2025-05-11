@@ -290,6 +290,7 @@
 	desc = "Fancy mens' steel-toed boots."
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_m"
 
 /obj/item/clothing/shoes/jackboots/diesel_f
@@ -297,4 +298,5 @@
 	desc = "Fancy womens' knee-high platform boots with shiny steel clasps."
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_f"
