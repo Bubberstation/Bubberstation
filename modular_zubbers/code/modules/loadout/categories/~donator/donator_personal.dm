@@ -6,7 +6,7 @@
 */
 
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
-	name = "Magnificent Pinwheel Hat"
+	name = "Magnificent Pinwheel Hat (Award)"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby",)
 
