@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(quirk_species_blacklist, generate_quirk_species_blacklist())
 			for(var/species_id in quirk.species_blacklist)
 				quirk_species_blacklist[quirk.type] += species_id
 		qdel(quirk)
-	return quirk_species_blacklist	
+	return quirk_species_blacklist
 
 //Permanent Limp Quirk
 GLOBAL_LIST_INIT(permanent_limp_choice, list(
