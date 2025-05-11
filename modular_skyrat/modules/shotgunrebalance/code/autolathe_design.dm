@@ -11,18 +11,6 @@
 		RND_CATEGORY_HACKED, RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 
-/datum/design/shotgun_slug/sec
-	id = "sec_shotgun_slug"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
-	)
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-	autolathe_exportable = FALSE
-
 /datum/design/buckshot_shell
 	name = "Buckshot Shell"
 	id = "buckshot_shell"
@@ -34,18 +22,6 @@
 	category = list(
 		RND_CATEGORY_HACKED, RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
-
-/datum/design/buckshot_shell/sec
-	id = "sec_buckshot_shell"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
-	)
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-	autolathe_exportable = FALSE
 
 //Existing Designs Discounting
 

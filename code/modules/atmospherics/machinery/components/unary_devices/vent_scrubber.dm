@@ -256,12 +256,6 @@
 
 			environment.garbage_collect()
 
-			// SKYRAT EDIT ADDITION
-			if(isopenturf(tile))
-				var/turf/open/floor_turf = tile
-				floor_turf.pollution?.scrub_amount(1)
-			// SKYRAT EDIT END
-
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)
 			update_parents()

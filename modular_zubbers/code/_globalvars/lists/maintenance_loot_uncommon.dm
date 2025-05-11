@@ -149,7 +149,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/storage/box/papersack/meat = 200,
 		/obj/item/storage/box/party_poppers = 75,
 		/obj/item/storage/box/pdas = 25,
-		/obj/item/storage/box/perfume = 25,
 		/obj/item/storage/box/petridish = 75,
 		/obj/item/storage/box/pillbottles = 100,
 		/obj/item/storage/box/pinpointer_pairs = 1,

@@ -111,10 +111,10 @@
 
 /datum/design/cocoa
 	name = "Powdered Hot Chocolate"
-	id = "slavic_coco"
+	id = "cocoa"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 4)
-	make_reagent = /datum/reagent/consumable/powdered_coco
+	make_reagent = /datum/reagent/consumable/coco
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_FOOD,
