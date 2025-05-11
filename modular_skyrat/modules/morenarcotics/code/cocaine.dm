@@ -49,7 +49,7 @@
 	overdose_threshold = 20
 	ph = 9
 	taste_description = "bitterness" //supposedly does taste bitter in real life
-	addiction_types = list(/datum/addiction/stimulants = 14) //5.6 per 2 seconds
+	addiction_types = list(/datum/addiction/stimulants = 17)
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -116,7 +116,7 @@
 	color = "#4e6444"
 	ph = 5
 	taste_description = "acidic sludge"
-	addiction_types = list(/datum/addiction/stimulants = 14) //5.6 per 2 seconds - mindless copy from cocaine to cover up for the inhereit
+	addiction_types = list(/datum/addiction/stimulants = 17)
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -174,7 +174,7 @@
 	overdose_threshold = 15
 	ph = 9 // it probably shouldnt be? but im too lazy to check it, and it was 9 because it was inhereiting
 	taste_description = "crunchy bitterness"
-	addiction_types = list(/datum/addiction/stimulants = 20) // even more addictive
+	addiction_types = list(/datum/addiction/stimulants = 24) // even more addictive
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
