@@ -23,8 +23,8 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 	language_holder.adjust_languages_to_prefs(new_crewmember.client?.prefs)
 
 /datum/language_holder_adjustor/Destroy()
-	..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
+	. = ..()
 
 /datum/language_holder/proc/adjust_languages_to_prefs(datum/preferences/preferences)
 	// no prefs? then don't remove any languages

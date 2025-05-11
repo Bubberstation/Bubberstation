@@ -58,6 +58,12 @@
 
 	return data
 
+/obj/machinery/computer/nanite_chamber_control/ui_static_data(mob/user)
+	. = ..()
+
+	.["min_cloud_id"] = NANITE_MIN_CLOUD_ID
+	.["max_cloud_id"] = NANITE_MAX_CLOUD_ID
+
 /obj/machinery/computer/nanite_chamber_control/ui_act(action, params)
 	. = ..()
 	if(.)
@@ -77,7 +83,7 @@
 		if("set_cloud")
 			var/cloud_id = text2num(params["value"])
 			if(!isnull(cloud_id))
-				chamber.set_cloud(clamp(round(cloud_id, 1),0,100))
+				chamber.set_cloud(clamp(round(cloud_id, 1),NANITE_MIN_CLOUD_ID,NANITE_MAX_CLOUD_ID))
 				playsound(src, "terminal_type", 25, FALSE)
 				chamber.occupant.investigate_log("'s nanites' cloud id was set to [cloud_id] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
