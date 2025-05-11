@@ -99,10 +99,8 @@
 
 	var/list/pref_return = present_pref_like_picker(usr, "Customize ERT", "Customize ERT", width = 600, timeout = 0, settings = settings)
 
-	if (isnull(pref_return))
-		return FALSE
-
-	if (pref_return["button"] != 1)
+	if (isnull(pref_return) || pref_return["button"] != 1)
+		message_admins("[key_name_admin(owner)] changed [owner.p_their()] mind and didn't create a CentCom response team.")
 		return FALSE
 
 	var/list/prefs = settings["mainsettings"]
@@ -129,16 +127,16 @@
 	var/list/spawn_points = GLOB.emergencyresponseteamspawn
 
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
-	var/team_spawned = 0
+
+	if(!length(candidates))
+		message_admins("[key_name_admin(owner)] tried to create a CentCom response team but [owner.p_they()] didn't find any candidates.")
+		return FALSE
 
 	// This list will take priority over spawn_points if not empty
 	var/list/spawn_turfs = list()
 
 	// Takes precedence over spawn_points[1] if not null
 	var/turf/brief_spawn
-
-	if(!length(candidates))
-		return FALSE
 
 	if(ertemplate.use_custom_shuttle && ertemplate.ert_template)
 		to_chat(usr, span_boldnotice("Attempting to spawn ERT custom shuttle, this may take a few seconds..."))
@@ -225,8 +223,6 @@
 
 		var/mob/dead/observer/chosen_candidate = earmarked_leader || pick(candidates) // this way we make sure that our leader gets chosen
 		candidates -= chosen_candidate
-		if(!chosen_candidate?.key)
-			continue
 
 		//Spawn the body
 		var/mob/living/carbon/human/ert_operative
@@ -258,32 +254,30 @@
 		//Logging and cleanup
 		ert_operative.log_message("has been selected as \a [ert_antag.name].", LOG_GAME)
 		numagents--
-		team_spawned++
-
-	if (team_spawned != 0)
-		message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
-		//SKYRAT EDIT ADDITION BEGIN
-		if(ertemplate.notify_players)
-			priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
-			// shitcode begin!
-			if(istype(ertemplate, /datum/ert/deathsquad))
-				SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
-		//SKYRAT EDIT END
 
 	//Open the Armory doors
 	if(ertemplate.opendoors)
 		for(var/obj/machinery/door/poddoor/ert/door as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/poddoor/ert))
 			door.open()
 			CHECK_TICK
+
+	message_admins("[key_name_admin(owner)] created a CentCom response team.")
+	message_admins("[capitalize(ertemplate.polldesc)] has spawned with the mission: [ertemplate.mission]")
+	// BUBBER EDIT ADDITION BEGIN
+	if(ertemplate.notify_players)
+		priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+		// shitcode begin!
+		if(istype(ertemplate, /datum/ert/deathsquad))
+			SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
+	// BUBBER EDIT ADDITION END
+
 	return TRUE
 
 ADMIN_VERB(summon_ert, R_FUN, "Summon ERT", "Summons an emergency response team.", ADMIN_CATEGORY_FUN)
 	message_admins("[key_name_admin(user)] is creating a CentCom response team...")
 	if(user.holder?.make_emergency_response_team())
-		message_admins("[key_name_admin(user)] created a CentCom response team.")
 		log_admin("[key_name(user)] created a CentCom response team.")
 	else
-		message_admins("[key_name_admin(user)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
 		log_admin("[key_name(user)] failed to create a CentCom response team.")
 
 #undef ERT_EXPERIENCED_LEADER_CHOOSE_TOP
