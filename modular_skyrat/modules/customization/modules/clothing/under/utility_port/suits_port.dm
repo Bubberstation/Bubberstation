@@ -36,6 +36,11 @@
 		/obj/item/lighter,
 	)
 
+// do not have the new sprites for these
+/obj/item/clothing/suit/toggle/jacket/det_trench
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+
 /datum/armor/jacket_engi
 	fire = 30
 	acid = 45
