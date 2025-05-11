@@ -64,7 +64,7 @@ GLOBAL_LIST(end_titles)
 	set name = "Stop End Titles"
 	set category = "OOC"
 	verbs -= /client/proc/ClearCredits
-	QDEL_NULL(credits)
+	QDEL_LAZYLIST(credits)
 
 /atom/movable/screen/credit
 	icon_state = "blank"
