@@ -25,7 +25,7 @@
 	desc = "A medical case that goes in your pocket. Can be used to store things unrelated to medicine, except for guns, ammo and raw materials."
 	icon = 'modular_skyrat/modules/food_replicator/icons/pouch.dmi'
 	icon_state = "cfak"
-	//w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/pouch/cin_medkit/Initialize(mapload)
 	. = ..()
@@ -37,8 +37,9 @@
 /obj/item/storage/pouch/cin_general
 	name = "colonial general pouch"
 	desc = "A synthleather general purpose pouch that goes in your pocket."
-	icon = 'modular_nova/modules/food_replicator/icons/pouch.dmi'
+	icon = 'modular_skyrat/modules/food_replicator/icons/pouch.dmi'
 	icon_state = "gen_pouch"
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/pouch/cin_general/Initialize(mapload)
 	. = ..()

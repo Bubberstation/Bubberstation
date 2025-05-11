@@ -69,6 +69,7 @@
 	icon = 'modular_skyrat/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/food_replicator/icons/clothing_worn.dmi'
 	icon_state = "accessory_webbing"
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clothing/accessory/colonial_webbing/Initialize(mapload)
 	. = ..()

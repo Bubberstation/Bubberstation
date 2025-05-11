@@ -42,7 +42,6 @@
 		RND_CATEGORY_NRI_CLOTHING,
 	)
 
-// no, im not putting it in medical, idk why nova did
 /datum/design/genpouch
 	name = "Empty General Purpose Pouch"
 	id = "slavic_genpouch"
@@ -53,7 +52,6 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_MEDICAL,
 	)
-
 
 /datum/design/cool_hat
 	name = "Colonial Cap"
