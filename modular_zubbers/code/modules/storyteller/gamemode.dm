@@ -739,7 +739,15 @@ SUBSYSTEM_DEF(gamemode)
 			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
 
 	set_storyteller(voted_storyteller)
-	var/secret_percentage = CONFIG_GET(number/storyteller_secret_percentage)
+	var/secret_percentage
+	switch(SSgamemode.storyteller.display_setting)
+		if(STORYTELLER_DISPLAY_NEVER_SECRET)
+			secret_percentage = 0
+		if(STORYTELLER_DISPLAY_ALWAYS_SECRET)
+			secret_percentage = 100
+		else
+			secret_percentage = CONFIG_GET(number/storyteller_secret_percentage)
+
 	if(prob(secret_percentage))
 		statpanel_display = "Secret"
 		to_chat(world, vote_font(fieldset_block("Storyteller: Secret", "The storyteller for this round is secret! What could it be, it is a mystery...", "boxed_message purple_box")))
