@@ -40,6 +40,14 @@
 /// Sent when supermatter begins its delam countdown/when the suppression system is triggered: (var/trigger_reason)
 #define COMSIG_MAIN_SM_DELAMINATING "delam_time"
 
+// Reasons for delam suppression
+/// player button push
+#define COMSIG_SCRAM_TRIGGER_PUSHED "trigger_pushed"
+/// integrity hit minimum
+#define COMSIG_SCRAM_AUTO_FIRE "auto_fire"
+/// admin fuckery
+#define COMSIG_SCRAM_DIVINE_INTERVENTION "divine_intervention"
+
 // Health signals
 /// /mob/living/proc/updatehealth()
 #define COMSIG_MOB_RUN_ARMOR "mob_run_armor"
