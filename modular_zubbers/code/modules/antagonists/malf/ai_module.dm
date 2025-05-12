@@ -6,7 +6,7 @@
 	Synthetic may exhibit abnormal conditions that might be detected."
 	cost = 60
 	power_type = /datum/action/innate/ai/ranged/override_directive
-	unlock_text = span_notice("You finish up the SQL injection payload to use on a vulnerability in Synthetics")
+	unlock_text = span_notice("You finish up the SQL injection payload to use for a vulnerability in Synthetics.")
 	unlock_sound = 'sound/machines/ping.ogg'
 
 /datum/action/innate/ai/ranged/override_directive
