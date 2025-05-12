@@ -17,10 +17,10 @@
 	var/mob/living/carbon/target = new_owner.current
 	var/mob/living/silicon/ai/owner_ai
 	if(!istype(target))
-		to_chat(admin, "Infected Synthetic's come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "Infected Synthetics come from a brain trauma, so they need to at least be a carbon!")
 		return
 	if(!target.get_organ_by_type(/obj/item/organ/brain))
-		to_chat(admin, "Infected Synthetic's come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "Infected Synthetics come from a brain trauma, so they need to HAVE A BRAIN.")
 		return
 	var/chosen = tgui_input_list(admin, "Pick AI for the Synthetic to be bound to:", "Pick AI", GLOB.ai_list)
 	if(istype(chosen, /mob/living/silicon/ai))
@@ -29,7 +29,7 @@
 		to_chat(admin, "Invalid AI selected!")
 		return
 	if(!is_species(target, /datum/species/synthetic))
-		var/do_robotize = tgui_alert(admin, "Target is not currently an Synthetic, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
+		var/do_robotize = tgui_alert(admin, "Target is not currently a Synthetic, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
 		if(do_robotize == "Yes")
 			var/mob/living/carbon/human/new_ipc = target
 			new_ipc.set_species(/datum/species/synthetic)
