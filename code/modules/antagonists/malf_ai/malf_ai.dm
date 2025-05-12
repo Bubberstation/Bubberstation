@@ -272,7 +272,7 @@
 		result += span_redtext("The [special_role_text] has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
-	// monkestation edit start PR #5133
+	// Bubbers Edit Start
 	if(istype(owner?.current, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/master_ai = owner.current
 		var/list/ipc_results = list()
@@ -282,7 +282,7 @@
 			for(var/mob/living/carbon/human/connected_ipc as anything in master_ai.connected_ipcs)
 				ipc_results += connected_ipc.name
 		result += ipc_results
-	// monkestation edit end PR #5133
+	// Bubbers Edit End
 
 	return result.Join("<br>")
 
